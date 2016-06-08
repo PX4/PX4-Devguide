@@ -10,8 +10,6 @@ Before moving on to a graphical editor or IDE, it is important to validate the s
 
 The terminal starts in the home directory. We default to '~/src/Firmware' and clone the upstream repository. Experienced developers might clone [their fork](https://help.github.com/articles/fork-a-repo/) instead.
 
-<div class="host-code"></div>
-
 ```sh
 mkdir -p ~/src
 cd ~/src
@@ -24,7 +22,6 @@ Now its time to build the binaries by compiling the source code. But before goin
 
 ### NuttX / Pixhawk based boards
 
-<div class="host-code"></div>
 
 ```sh
 cd Firmware
@@ -32,8 +29,6 @@ make px4fmu-v2_default
 ```
 
 Note the syntax: 'make' is the build tool, 'px4fmu-v2' is the hardware / autopilot version and 'default' is the default configuration. All PX4 build targets follow this logic. A successful run will end with this output:
-
-<div class="host-code"></div>
 
 ```sh
 [100%] Linking CXX executable firmware_nuttx
@@ -45,15 +40,11 @@ Scanning dependencies of target build_firmware_px4fmu-v2
 
 By appending 'upload' to these commands the compiled binary will be uploaded via USB to the autopilot hardware:
 
-<div class="host-code"></div>
-
 ```sh
 make px4fmu-v2_default upload
 ```
 
 A successful run will end with this output:
-
-<div class="host-code"></div>
 
 ```sh
 Erase  : [====================] 100.0%
@@ -65,8 +56,6 @@ Rebooting.
 ```
 ### Raspberry Pi 2 boards
 The command below builds the target for Raspbian (posix_pi2_release).
-
-<div class="host-code"></div>
 
 ```sh
 cd Firmware
@@ -81,7 +70,6 @@ scp build_posix_rpi2_release/src/firmware/posix/mainapp pi@YOUR_PI:/home/pi/
 ```
 
 And run it with :
-<div class="host-code"></div>
 
 ```sh
 ./mainapp
@@ -90,8 +78,6 @@ And run it with :
 
 If you're building *directly* on the Pi, you will want the native build target (posix_pi2_default).
 
-<div class="host-code"></div>
-
 ```sh
 cd Firmware
 make posix_rpi2_default # for native build
@@ -99,7 +85,6 @@ make posix_rpi2_default # for native build
 
 The "mainapp" executable file is in the directory build_posix_rpi2_default/src/firmware/posix.
 Run it directly with :
-<div class="host-code"></div>
 
 ```sh
 ./build_posix_rpi2_default/src/firmware/posix/mainapp
@@ -130,8 +115,6 @@ pxh>
 
 The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](advanced-uorb.md).
 
-<div class="host-code"></div>
-
 ```sh
 cd Firmware
 make eagle_default
@@ -139,15 +122,11 @@ make eagle_default
 
 To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
 
-<div class="host-code"></div>
-
 ```sh
 adb shell
 ```
 
 Go back to previous terminal and upload:
-
-<div class="host-code"></div>
 
 ```sh
 make eagle_default upload
@@ -159,17 +138,13 @@ Note that this will also copy (and overwrite) the two config files [mainapp.conf
 
 The mixer currently needs to be copied manually:
 
-<div class="host-code"></div>
-
-```
+```sh
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 ```
 
 #### Run it
 
 Run the DSP debug monitor:
-
-<div class="host-code"></div>
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
@@ -205,7 +180,7 @@ adb push rc.local /etc/rc.local
 
 For the auto-start, add the following line before `exit 0`:
 
-```
+```sh
 (cd /home/linaro && ./mainapp mainapp.config > mainapp.log)
 
 exit 0
@@ -213,14 +188,14 @@ exit 0
 
 Make sure that the `rc.local` is executable:
 
-```
+```sh
 adb shell
 chmod +x /etc/rc.local
 ```
 
 Then reboot the Snapdragon:
 
-```
+```sh
 adb reboot
 ```
 
@@ -253,8 +228,6 @@ Windows has not been tested with Qt creator yet.
 ### Qt Creator on Mac OS
 
 Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
-
-<div class="host-code"></div>
 
 ```sh
 cd ~/src/Firmware
