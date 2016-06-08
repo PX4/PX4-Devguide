@@ -221,9 +221,7 @@ After loading, the 'play' button can be configured to run the project by selecti
 
 ### Qt Creator on Windows
 
-<aside class="todo">
-Windows has not been tested with Qt creator yet.
-</aside>
+> ** Windows has not been tested with Qt creator yet. **
 
 ### Qt Creator on Mac OS
 
