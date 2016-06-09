@@ -8,6 +8,7 @@ We have standardized on Debian / Ubuntu LTS as the supported Linux distribution,
 
 The user needs to be part of the group "dialout":
 
+
 ```sh
 sudo usermod -a -G dialout $USER
 ```
@@ -36,13 +37,15 @@ sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-7
 
 ### NuttX based hardware
 
-Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port (or USB serial). It can be uninstalled without side effects:
+Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port (or USB serial). It can deinstalled without side effects:
+
 
 ```sh
 sudo apt-get remove modemmanager
 ```
 
 Update the package list and install the following dependencies. Packages with specified versions should be installed with this particular package version.
+
 
 ```sh
 sudo add-apt-repository ppa:terry.guo/gcc-arm-embedded -y
@@ -53,77 +56,116 @@ sudo apt-get install python-serial openocd \
     python-empy gcc-arm-none-eabi -y
 ```
 
-If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmware master, please refer to [the bare metal installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#Toolchain Installation) to install version 4.8 manually.
+If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmware master, please refer to [the bare metal installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation) to install version 4.8 manually.
 
 ### Snapdragon Flight
 
 #### Toolchain installation
 
-First add the official Ubuntu tablet team repository, then install ADB and the arm cross toolchain.
 
 ```sh
-sudo add-apt-repository ppa:phablet-team/tools && sudo apt-get update -y
+sudo apt-get install android-tools-adb android-tools-fastboot fakechroot fakeroot unzip xz-utils wget python python-empy -y
 ```
 
-```sh
-sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf android-tools-adb android-tools-fastboot fakechroot fakeroot -y
-```
-
-The installation guide will come up, leave everything at default by just continuing to press enter.
-
-> **Info** Developers working on Snapdragon Flight should request the Hexagon 7.2.10 Linux toolchain and the Hexagon 2.0 SDK for Linux from [here](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tool-request).
-
-After downloading the Hexagon SDK and Hexagon Toolchain through the process above, clone this repository:
 
 ```sh
 git clone https://github.com/ATLFlight/cross_toolchain.git
 ```
 
+Get the Hexagon SDK 3.0 from QDN: https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin
+
+This will require a QDN login. You will have to register if you do not already have an account.
+
 Now move the following files in the download folder of the cross toolchain as follows:
 
+
 ```sh
-mv qualcomm_hexagon_sdk_2_0_eval.bin cross_toolchain/downloads
-mv Hexagon.LNX.7.2 Installer-07210.1.tar cross_toolchain/downloads
+mv ~/Downloads/hexagon-sdk-v3-linux.bin cross_toolchain/downloads
 ```
 Install the toolchain and SDK like this:
 
+
 ```sh
 cd cross_toolchain
-./install.sh
+./installv3.sh
+cd ..
 ```
 
 Follow the instructions to set up the development environment. If you accept all the install defaults you can at any time re-run the following to get the env setup. It will only install missing components.
 
 After this the tools and SDK will have been installed to "$HOME/Qualcomm/...". Append the following to your ~/.bashrc:
 
+
 ```sh
-export HEXAGON_SDK_ROOT="${HOME}/Qualcomm/Hexagon_SDK/2.0"
-export HEXAGON_TOOLS_ROOT="${HOME}/Qualcomm/HEXAGON_Tools/7.2.10/Tools"
-export HEXAGON_ARM_SYSROOT="${HOME}/Qualcomm/Hexagon_SDK/2.0/sysroot"
-export PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-arm-linux-gnueabihf-4.8-2013.08_linux/bin:$PATH"
+export HEXAGON_SDK_ROOT="${HOME}/Qualcomm/Hexagon_SDK/3.0"
+export HEXAGON_TOOLS_ROOT="${HOME}/Qualcomm/HEXAGON_Tools/7.2.12/Tools"
+export PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-4.9-2014.11-x86_64_arm-linux-gnueabihf_linux/bin:$PATH"
 ```
 
 Load the new configuration:
 
+
 ```sh
 source ~/.bashrc
 ```
+
+#### Sysroot Installation
+
+A sysroot is required to provide the libraries and header files needed to cross compile applications for the Snapdragon Flight applications processor.
+
+Login to the Intrinsyc support page and download: http://support.intrinsyc.com/attachments/download/483/Flight_qrlSDK.zip
+
+Copy/move the file to the cross_toolchain/download directory
+
+```
+cd cross_toolchain
+cp ~/Downloads/Flight_qrlSDK.zip downloads
+./qrlinux_sysroot.sh --clean
+```
+
+Append the following to your ~/.bashrc:
+
+```
+export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/qrlinux_v1.0_sysroot
+```
+
+Load the new configuration:
+
+
+```sh
+source ~/.bashrc
+```
+
+
+If `qrlinux_sysroot.sh` complains about an existing wrong path:
+
+```
+Invalid install path for HEXAGON_ARM_SYSROOT
+```
+
+You need to remove the old path from `.bashrc`, open a new bash, and try again.
+
+
+For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
+
 #### Update ADSP firmware
 Before building, flashing and running code, you'll need to update the [ADSP firmware](advanced-snapdragon.html#updating-the-adsp-firmware).
 
 #### References
 
-There is a an external guide for installing the toolchain at
-[GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). The [HelloWorld](https://github.com/ATLFlight/HelloWorld) and [DSPAL tests](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester) can be used to validate your tools installation and DSP image.
+There is a an external set of documentation for Snapdragon Flight toolchain and SW setup and verification:
+[ATLFlightDocs](https://github.com/ATLFlight/ATLFlightDocs/blob/master/README.md)
 
-Messages from the DSP can be viewed using mini-dm:
+Messages from the DSP can be viewed using mini-dm.
+
 
 ```sh
-$HOME/Qualcomm/Hexagon_SDK/2.0/tools/mini-dm/Linux_Debug/mini-dm
+$HOME/Qualcomm/Hexagon_SDK/3.0/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
 ### Raspberry Pi hardware
 Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the *native* Raspberry Pi toolchain to compile directly on the Pi, see [here](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
+
 
 ```sh
 git clone https://github.com/pixhawk/rpi_toolchain.git
@@ -132,7 +174,18 @@ cd rpi_toolchain
 ```
 You will be required to enter your password for toolchain installation to complete successfully.
 
-You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of ```/opt/rpi_toolchain```. Run ```./install_cross.sh <PATH>```. The installer will automatically configure required environment variables as well.
+You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of ```/opt/rpi_toolchain```. Run ``` ./install_cross.sh <PATH>```. The installer will automatically configure required environment variables as well.
+
+### Parrot Bebop
+Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
+description under [Raspberry Pi hardware](raspberry-pi-hardware).
+
+Next, install ADB.
+
+
+``sh
+sudo apt-get install android-tools-adb -y`
+``
 
 ## Finishing Up
 
