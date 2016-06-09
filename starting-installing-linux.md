@@ -132,7 +132,7 @@ cd rpi_toolchain
 ```
 You will be required to enter your password for toolchain installation to complete successfully.
 
-You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of ```/opt/rpi_toolchain```. Run ``` ./install_cross.sh <PATH>```. The installer will automatically configure required environment variables as well.
+You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of ```/opt/rpi_toolchain```. Run ```./install_cross.sh <PATH>```. The installer will automatically configure required environment variables as well.
 
 ## Finishing Up
 
