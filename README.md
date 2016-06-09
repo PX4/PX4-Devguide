@@ -3,9 +3,7 @@
 <h1 style="border: none; font-size: 2.8em; margin-top: 0;" id="px4-development-guide">PX4 Development Guide</h1>
 </div>
 
-<aside class="caution">
-Developers only! This guide is under active development and not intended for consumers.
-</aside>
+> **Info** Developers only! This guide is under active development and not intended for consumers.
 
 This guide describes how to work inside the PX4 system architecture. It enables developers to:
 
