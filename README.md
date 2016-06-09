@@ -1,7 +1,4 @@
-<div style="text-align: center">
-<!-- <img src=""> -->
-<h1 style="border: none; font-size: 2.8em; margin-top: 0;" id="px4-development-guide">PX4 Development Guide</h1>
-</div>
+# PX4 Development Guide
 
 > **Info** Developers only! This guide is under active development and not intended for consumers.
 
