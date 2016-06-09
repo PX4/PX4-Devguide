@@ -18,9 +18,5 @@ All radio control setup checks can be disabled by setting the parameter `COM_RC_
 
 ### Single Channel Mode Switch
 
-<aside class="todo">
-Move these instructions here.
-</aside>
-
 Instead of using multiple switches, in this mode the system accepts a single channel as mode switch. This is explained in the [legacy wiki](https://pixhawk.org/peripherals/radio-control/opentx/single_channel_mode_switch).
 
