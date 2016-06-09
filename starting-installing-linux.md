@@ -6,7 +6,7 @@ We have standardized on Debian / Ubuntu LTS as the supported Linux distribution,
 
 > **Warning** Never ever fix permission problems by using 'sudo'. It will create more permission problems in the process and require a system reinstallation to fix them.
 
-The user needs to be added to the group "dialout":
+The user needs to be part of the group "dialout":
 
 ```sh
 sudo usermod -a -G dialout $USER
@@ -36,7 +36,7 @@ sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-7
 
 ### NuttX based hardware
 
-Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port (or USB serial). It can deinstalled without side effects:
+Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port (or USB serial). It can be uninstalled without side effects:
 
 ```sh
 sudo apt-get remove modemmanager
@@ -114,10 +114,9 @@ Before building, flashing and running code, you'll need to update the [ADSP firm
 #### References
 
 There is a an external guide for installing the toolchain at
-[GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). The
-[HelloWorld](https://github.com/ATLFlight/HelloWorld) and [DSPAL tests](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester) can be used to validate your tools installation and DSP image.
+[GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md). The [HelloWorld](https://github.com/ATLFlight/HelloWorld) and [DSPAL tests](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester) can be used to validate your tools installation and DSP image.
 
-Messages from the DSP can be viewed using mini-dm.
+Messages from the DSP can be viewed using mini-dm:
 
 ```sh
 $HOME/Qualcomm/Hexagon_SDK/2.0/tools/mini-dm/Linux_Debug/mini-dm
