@@ -6,9 +6,7 @@ Interfacing a companion computer (Raspberry Pi, Odroid, Tegra K1) to Pixhawk-fam
 
 Set the `SYS_COMPANION` parameter (in the System group) to one of these values.
 
-<aside class="tip">
-Changing this parameter requires an autopilot reboot to become active.
-</aside>
+> **Info** Changing this parameter requires an autopilot reboot to become active.
 
   * `0` to disable MAVLink output on TELEM2 (default)
   * `921600` to enable MAVLink output at 921600 baud, 8N1 (recommended)
