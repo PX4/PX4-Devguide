@@ -2,7 +2,7 @@
     "plugins": [
         "youtube",
         "richquotes",
-        "mermaid2"
+        "mermaid-2"
     ],
     "pluginsConfig": {}
 }
