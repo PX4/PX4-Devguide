@@ -3,7 +3,7 @@
         "youtube",
         "richquotes",
         "anchors",
-        "-mermaid"
+        "mermaid"
     ],
     "pluginsConfig": {}
 }
