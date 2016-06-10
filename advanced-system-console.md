@@ -10,7 +10,7 @@ There are multiple shells, but only one console: The system console is the locat
   * Additional shells: Pixhawk on USB (e.g. lists as /dev/tty.usbmodem1 on Mac OS)
 
 <aside class="tip">
-USB: To just run a few quick commands or test an application connecting to the USB shell is sufficient. To use it, boot the system without the microSD card inserted. The hardware serial console is only needed for boot debugging or when USB should be used for MAVLink to connect a [GCS](qgroundcontrol-intro.md).
+USB shell: To just run a few quick commands or test an application connecting to the USB shell is sufficient. **To use it, boot the system without the microSD card inserted.** The hardware serial console is only needed for boot debugging or when USB should be used for MAVLink to connect a [GCS](qgroundcontrol-intro.md).
 </aside>
 
 ## Snapdragon Flight: Wiring the Console
