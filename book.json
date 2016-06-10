@@ -4,7 +4,7 @@
         "richquotes",
         "anchors",
         "-mermaid",
-        "mermaid-2"
+        "-mermaid-2"
     ],
     "pluginsConfig": {}
 }
