@@ -2,6 +2,7 @@
     "plugins": [
         "youtube",
         "richquotes",
+        "anchors",
         "mermaid-2"
     ],
     "pluginsConfig": {}
