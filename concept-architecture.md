@@ -14,13 +14,11 @@ In addition to these runtime considerations, its modularity maximizes [reusabili
 
 Each of the blocks below is a separate module, which is self-contained in terms of code, dependencies and even at runtime. Each arrow is a connection through publish/subscribe calls through [uORB](advanced-uorb.md).
 
-<aside class="tip">
-The architecture of PX4 allows to exchange every single of these blocks very rapidly and conveniently, even at runtime.
-</aside>
+> ** Info ** The architecture of PX4 allows to exchange every single of these blocks very rapidly and conveniently, even at runtime.
 
 The controllers / mixers are specific to a particular airframe (e.g. a multicopter, VTOL or plane), but the higher-level mission management blocks like the `commander` and `navigator` are shared between platforms.
 
-```mermaid
+{% mermaid %}
 graph TD;
   commander-->navigator;
   user-->commander;
@@ -34,17 +32,17 @@ graph TD;
   position_estimator-->attitude_estimator;
   attitude_estimator-->att_ctrl;
   mixer-->motor_driver;
-```
+{% endmermaid %}
 
 ## Communication Architecture with the GCS
 
 The interaction with the ground control station (GCS) is handled through the "business logic" applications including the commander (general command & control, e.g. arming), the navigator (accepts missions and turns them into lower-level navigation primitives) and the mavlink application, which accepts MAVLink packets and converts them into the onboard uORB data structures. This isolation has been architected explicitely to avoid having a MAVLink dependency deep in the system. The MAVLink application also consumes a lot of sensor data and state estimates and sends them to the ground control station.
 
-```mermaid
+{% mermaid %}
 graph TD;
   mavlink---commander;
   mavlink---navigator;
   position_estimator-->mavlink;
   attitude_estimator-->mavlink;
   mixer-->mavlink;
-```
+{% endmermaid %}

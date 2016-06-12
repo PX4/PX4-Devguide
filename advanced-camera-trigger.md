@@ -18,10 +18,7 @@ In `TRIG_MODE` 0 the triggering is off.
 The full list of parameters pertaining to the camera trigger module can be found
 on the [parameter reference](https://pixhawk.org/firmware/parameters#camera_trigger) page.
 
-<aside class="tip">
-If it is your first time enabling the camera trigger app, remember to reboot
-after changing the `TRIG_MODE` parameter to either 1, 2 or 3.
-</aside>
+> **Info ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter to either 1, 2 or 3.
 
 ## Camera-IMU sync example
 In this example, we will go over the basics of synchronizing IMU measurements
@@ -33,7 +30,7 @@ provide accurate data to our VI algorithm.
 The following diagram illustrates the sequence of events which must happen in
 order to correctly time stamp our images.
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   Note right of px4 : Time sync with mavros is done automatically
   px4 ->> mavros : Camera Trigger ready
@@ -46,7 +43,7 @@ sequenceDiagram
   camera driver ->> camera driver : Match sequence number
   camera driver ->> camera driver : Stamp image and publish
 end
-```
+{% endmermaid %}
 
 ### Step 1
 First, set the TRIG_MODE to 1 to make the driver wait for the start command and

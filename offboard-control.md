@@ -1,8 +1,6 @@
 # Offboard Control
 
-<aside class="caution">
-Offboard control is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
-</aside>
+> ** Warning ** Offboard control is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
 
 The idea behind off-board control is to be able to control the px4 flight stack using software running outside of the autopilot. This is done through the Mavlink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](http://mavlink.org/messages/common#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](http://mavlink.org/messages/common#SET_ATTITUDE_TARGET) messages.
 
@@ -31,12 +29,12 @@ Example radios include
 * [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
 * [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
-```mermaid
+{% mermaid %}
 graph TD;
   gnd[Ground Station] --MAVLink--> rad1[Ground Radio];
   rad1 --RadioProtocol--> rad2[Vehicle Radio];
   rad2 --MAVLink--> a[Autopilot];
-```
+{% endmermaid %}
 
 ### 2. On-board processor
 A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter. There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
@@ -51,17 +49,17 @@ Larger high power examples
 * [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
 * [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
 
-```mermaid
+{% mermaid %}
 graph TD;
   comp[Companion Computer] --MAVLink--> uart[UART Adapter];
   uart --MAVLink--> Autopilot;
-```
+{% endmermaid %}
 
 ### 3. On-board processor and wifi link to ROS (***Recommended***)
 A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. This can be any of the computers from the above section coupled with a WiFi adapter. For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accomodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
 
 
-```mermaid
+{% mermaid %}
  graph TD
 	subgraph Ground  Station
 		gnd[ROS Enabled Computer] --- qgc[qGroundControl]
@@ -73,4 +71,4 @@ A small computer mounted onto the vehicle connected to the autopilot through a U
 	uart --- Autopilot
 	end
 	w --- comp
-```
+{% endmermaid %}

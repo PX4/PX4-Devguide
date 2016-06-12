@@ -5,20 +5,18 @@
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
 
-```mermaid
+{% mermaid %}
 graph LR;
   Gazebo-->Plugin;
   Plugin-->MAVLink;
   MAVLink-->SITL;
-```
+{% endmermaid %}
 
 ## Installation
 
 The installation requires to install Gazebo and our simulation plugin.
 
-<aside class="tip">
-Gazebo version 6 should be used. Linux users: If you installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
-</aside>
+> ** Note ** Gazebo version 6 should be used. Linux users: If you installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
 
 ### Mac OS
 

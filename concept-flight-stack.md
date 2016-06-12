@@ -6,7 +6,7 @@ The PX4 flight stack is a collection of guidance, navigation and control algorit
 
 The diagram below shows an example implementation of the typical blocks. Depending on the vehicle some of these can be also combined into a single application (e.g. when a model predictive controller for a specific vehicle is wanted).
 
-```mermaid
+{% mermaid %}
 graph TD;
   pos_ctrl-->att_ctrl;
   att_ctrl-->mixer;
@@ -18,4 +18,4 @@ graph TD;
   position_estimator-->attitude_estimator;
   position_estimator-->pos_ctrl;
   attitude_estimator-->att_ctrl;
-```
+{% endmermaid %}
