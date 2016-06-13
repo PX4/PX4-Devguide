@@ -113,20 +113,17 @@ source ~/.bashrc
 
 A sysroot is required to provide the libraries and header files needed to cross compile applications for the Snapdragon Flight applications processor.
 
-Login to the Intrinsyc support page and download: http://support.intrinsyc.com/attachments/download/483/Flight_qrlSDK.zip
-
-Copy/move the file to the cross_toolchain/download directory
+Currently, the trusty sysroot is used because the provided one by Intrinsyc has miraculously been removed from their download website.
 
 ```
 cd cross_toolchain
-cp ~/Downloads/Flight_qrlSDK.zip downloads
-./qrlinux_sysroot.sh --clean
+./trusty_sysroot.sh
 ```
 
 Append the following to your ~/.bashrc:
 
 ```
-export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/qrlinux_v1.0_sysroot
+export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/ubuntu_14.04_armv7_sysroot
 ```
 
 Load the new configuration:
@@ -135,16 +132,6 @@ Load the new configuration:
 ```sh
 source ~/.bashrc
 ```
-
-
-If `qrlinux_sysroot.sh` complains about an existing wrong path:
-
-```
-Invalid install path for HEXAGON_ARM_SYSROOT
-```
-
-You need to remove the old path from `.bashrc`, open a new bash, and try again.
-
 
 For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
 
