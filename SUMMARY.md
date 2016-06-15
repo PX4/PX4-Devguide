@@ -30,7 +30,7 @@
    * [Interfacing to ROS](simulation-ros-interface.md)
 * Autopilot Hardware
    * [Snapdragon Flight](hardware-snapdragon.md)
-       * Optical Flow
+       * [Optical Flow](optical_flow.md)
    * [Raspberry Pi 2](hardware-pi2.md)
    * [Pixhawk](hardware-pixhawk.md)
    * [Pixfalcon](hardware-pixfalcon.md)
