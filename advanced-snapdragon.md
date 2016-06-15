@@ -132,8 +132,8 @@ Download the file Flight_adsp_8074_firmware.zip from Intrinsyc.
 And copy them on to the Snapdragon:
 
 ```
-unzip Flight_adsp_8074_firmware.zip -d Flight_adsp_8074_firmware
-cd Flight_adsp_8074_firmware
+unzip Flight_adsp_8074_firmware_readme_update.zip
+cd Flight_adsp_8074_firmware_2
 adb push . /lib/firmware
 ```
 
