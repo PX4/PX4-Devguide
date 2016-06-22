@@ -213,7 +213,16 @@ Qt creator offers clickable symbols, auto-completion of the complete codebase an
 
 ### Qt Creator on Linux
 
-> ** Linux users can just load the CMakeLists.txt in the root firmware folder via File -> Open File or Project -> Select the CMakeLists.txt file. **
+Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
+
+```sh
+cd ~/src/Firmware
+mkdir ../Firmware-build
+cd ../Firmware-build
+cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
+```
+
+Then load the CMakeLists.txt in the root firmware folder via File -> Open File or Project -> Select the CMakeLists.txt file.
 
 After loading, the 'play' button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 

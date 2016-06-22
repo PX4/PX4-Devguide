@@ -2,11 +2,37 @@
 
 ## Introduction
 
-The uORB is a publish() / subcribe() messaging API.
+The uORB is an asynchronous publish() / subcribe() messaging API used for
+inter-thread/inter-process communication.
 
-<aside class="todo">
-The current documentation is still here for [uORB](https://pixhawk.org/dev/shared_object_communication) and this [page](https://pixhawk.org/dev/add_uorb_topic) covers how to add a new topic.
-</aside>
+Look at the [tutorial](tutorial-hello-sky.md) to learn how to use it in C++.
+
+uORB is automatically started early on bootup as many applications depend on it.
+It is started with `uorb start`. Unit tests can be started with `uorb test`.
+
+## Adding a new topic
+
+To add a new topic, you need to create a new `.msg` file in the `msg/`
+directory and add the file name to the `msg/CMakeLists.txt` list. From this,
+there will automatically be C/C++ code generated.
+
+Have a look at the existing `msg` files for supported types. A message can also
+be used nested in other messages.
+To each generated C/C++ struct, a field `uint64_t timestamp` will be added. This
+is used for the logger, so make sure to fill it in when logging the message.
+
+To use the topic in the code, include the header:
+```
+#include <uORB/topics/topic_name.h>
+```
+
+By adding a line like the following in the `.msg` file, a single message
+definition can be used for multiple independent topic instances:
+```
+# TOPICS mission offboard_mission onboard_mission
+```
+Then in the code, use them as topic id: `ORB_ID(offboard_mission)`.
+
 
 ## Publishing
 

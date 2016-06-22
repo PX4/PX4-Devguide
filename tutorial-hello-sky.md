@@ -238,7 +238,7 @@ Compile the app now by issuing
 
 ### Testing the uORB Subscription
 
-The final step is to start your application as foreground application.
+The final step is to start your application as background application.
 
 ```
   px4_simple_app &
