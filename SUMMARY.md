@@ -37,6 +37,7 @@
    * [Pixracer](hardware-pixracer.md)
 * Middleware and Architecture
    * [uORB Messaging](advanced-uorb.md)
+   * [Custom MAVLink Message](custom-mavlink-message.md)
    * [Daemons](architecture-daemon.md)
    * [Driver Framework](advanced-drivers.md)
 * Airframes
@@ -76,6 +77,7 @@
    * [System Console](advanced-system-console.md)
    * [System Boot](advanced-system-startup.md)
    * [Parameters & Configs](advanced-configurations.md)
+   * [Autopilot Debugging](advanced-gdb-debugging.md)
    * [Simulation Debugging](simulation-debugging.md)
    * [Sending Debug Values](advanced-debug-values.md)
    * [Indoor / Fake GPS](advanced-fake-gps.md)
@@ -89,5 +91,6 @@
    * [Switching State Estimators](advanced-switching_state_estimators.md)
    * [Docker Containers](advanced-docker.md)
    * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
+   * [ULog File Format](advanced-ulog-file-format.md)
    * [Licenses](advanced-licenses.md)
 

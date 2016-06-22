@@ -97,7 +97,7 @@ ______  __   __    ___
 | |     / /^\ \ \___  |
 \_|     \/   \/     |_/
 
-Ready to fly.
+mainapp starting.
 
 
 pxh>
