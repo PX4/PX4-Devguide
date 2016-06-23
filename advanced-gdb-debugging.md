@@ -26,6 +26,23 @@ top
 
 Stack usage is calculated with stack coloring and thus is not the current usage, but the maximum since the start of the task.
 
+### Heap allocations
+Dynamic heap allocations can be traced on POSIX in SITL with [gperftools](https://github.com/gperftools/gperftools).
+Once installed, it can be used with:
+  * Run jmavsim: `cd Tools/jMAVSim/out/production && java -Djava.ext.dirs= -jar jmavsim_run.jar -udp 127.0.0.1:14560`
+  * Then:
+
+```bash
+cd build_posix_sitl_default/src/firmware/posix
+export HEAPPROFILE=/tmp/heapprofile.hprof
+env LD_PRELOAD=/lib64/libtcmalloc.so ./mainapp ../../../../posix-configs/SITL/init/rcS_jmavsim_iris
+pprof --pdf mainapp /tmp/heapprofile.hprof.0001.heap > heap.pdf
+```
+
+It will generate a pdf with a graph of the heap allocations.
+The numbers in the graph will all be zero, because they are in MB. Just look at the percentages instead. They show the live memory (of the node and the subtree), meaning the memory that was still in use at the end.
+
+
 ## Sending MAVLink debug key / value pairs
 
 The code for this tutorial is available here:
