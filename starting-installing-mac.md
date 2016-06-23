@@ -1,5 +1,15 @@
 # Installing Files and Code
 
+The first step is to install Xcode from the Mac app store. Once its installed, open a new terminal and install the command line tools:
+
+<div class="host-code"></div>
+
+```bash
+xcode-select --install
+```
+
+## Homebrew Installation
+
 Usage of the [Homebrew package manager](http://mxcl.github.com/homebrew/) for Mac OS X is recommended. The installation of Homebrew is quick and easy: [installation instructions](http://mxcl.github.com/homebrew/).
 
 After installing Homebrew, copy these commands to your shell:

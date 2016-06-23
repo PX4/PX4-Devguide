@@ -5,7 +5,9 @@
 ## Flight Mode Quick Summary
 
   * **_MANUAL_**
-    * **Fixed wing aircraft/ rovers / boats:** The pilot's control inputs are passed directly to the output mixer.
+    * **Fixed wing aircraft/ rovers / boats:** 
+        * **MANUAL:** The pilot's control inputs are passed directly to the output mixer.
+        * **STABILIZED:** The pilot's inputs are passed as roll and pitch *angle* commands and a manual yaw command.
     * **Multirotors:**
         * **ACRO:** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot.  This allows the multirotor to become completely inverted.  Throttle is passed directly to the output mixer
         * **RATTITUDE** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot if they are greater than the mode's threshold.  If not the inputs are passed as roll and pitch  *angle* commands and a yaw *rate* command.  Throttle is passed directly to the output mixer.
