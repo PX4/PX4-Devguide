@@ -1,4 +1,4 @@
-# Optical flow and LIDAR-Lite
+# Optical flow and LIDAR
 ----------------------------------------------------
 
 This page shows you how to set up the PX4Flow and a LIDAR-Lite for position estimation.
