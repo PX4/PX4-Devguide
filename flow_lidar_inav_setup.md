@@ -2,6 +2,12 @@
 
 This page shows you how to set up the PX4Flow and a LIDAR-Lite for position estimation.
 
+## Selecting an Estimator
+--------------------------------------------------------
+
+Two estimators support optical flow based navigation, LPE and INAV. There are benefits to both, but LPE is currently recommended for new users as it has the most testing and is the most robust.
+
+
 ## Hardware
 
 ![](images/hardware/px4flow_offset.png)
@@ -33,11 +39,6 @@ All the parameters can be changed in QGroundControl
 	Set to 1 to enable lidar-lite distance measurements
 * SENS_EN_SF0X
 	Set to 1 to enable lightware distance measurements (e.g. sf02 and sf10a)
-
-## Selecting an Estimator
---------------------------------------------------------
-
-Two estimators support optical flow based navigation, LPE and INAV. There are benefits to both, but LPE is currently recommended for new users as it has the most testing and is the most robust.
 
 ## Local Position Estimator (LPE)
 --------------------------------------------------------
