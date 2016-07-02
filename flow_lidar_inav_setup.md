@@ -54,7 +54,7 @@ Due to the ability of LPE to more robustly handle optical flow based estimation,
 
 
 
-{%youtube%}https://www.youtube.com/watch?v=CccoyyX-xtE{%endyoutube%} 
+* indoor {%youtube%}https://www.youtube.com/watch?v=CccoyyX-xtE{%endyoutube%} 
 * [outdoor](https://www.youtube.com/watch?v=Ttfq0-2K434)
 
 ### Parameters
