@@ -1,4 +1,4 @@
-# Optical flow and LIDAR-Lite
+# INAV Optical flow and LIDAR-Lite
 
 This page shows you how to set up the PX4Flow and a LIDAR-Lite for position estimation in the INAV position estimator. A short video demonstrating a position hold can be seen here: 
 * [indoor](https://www.youtube.com/watch?v=MtmWYCEEmS8) 
@@ -15,10 +15,19 @@ For best performance make sure the PX4Flow is attached at a good position and is
 
 ![](images/hardware/flow_lidar_attached.jpg)
 
-## Parameters
+## Sensor Parameters
 All the parameters can be changed in QGroundControl
 * SENS_EN_LL40LS
 	Set to 1 to enable lidar-lite distance measurements
+
+## Estimator Parameters
+
+### Local Position Estimator (LPE)
+The local position estimator will automatically fuse lidar and optical flow data when present.
+
+
+
+### INAV
 * INAV_LIDAR_EST
 	Set to 1 to enable altitude estimation based on distance measurements
 * INAV_FLOW_DIST_X and INAV_FLOW_DIST_Y
