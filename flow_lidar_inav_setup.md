@@ -48,15 +48,10 @@ Below is a plot of an autonomous mission using optical flow. GPS is not used to 
 
 ![](images/lpe/lpe_flow_vs_gps.png)
 
-### Flight Videos
-
-Due to the ability of LPE to more robustly handle optical flow based estimation, it is capable of performing auto missions at low altitude and slow speed. The main criterion is that the camera image is in focus and the vehicle doesn't lean significantly during the flight.
-
-
-#### Indoor
+### Flight Video Indoor
 {% youtube %}https://www.youtube.com/watch?v=CccoyyX-xtE{% endyoutube %} 
 
-#### Outdoor
+### Flight Video Outdoor
 {% youtube %}https://www.youtube.com/watch?v=Ttfq0-2K434{% endyoutube %} 
 
 ### Parameters
@@ -95,9 +90,13 @@ Create waypoints with altitude 3 meters or below.
 
 INAV has a fixed gain matrix for correction and can be viewed as a steady state Kalman filter. It has the lowest computational cost of all position estimators.
 
-#### INAV Flight Videos
-* [indoor](https://www.youtube.com/watch?v=MtmWYCEEmS8) 
-* [outdoor](https://www.youtube.com/watch?v=4MEEeTQiWrQ)
+
+### Flight Video Indoor
+{% youtube %}https://www.youtube.com/watch?v=MtmWYCEEmS8{% endyoutube %} 
+
+### Flight Video Outdoor
+{% youtube %}https://www.youtube.com/watch?v=4MEEeTQiWrQ{% endyoutube %} 
+
 
 ### Local Position Estimator (LPE)
 
