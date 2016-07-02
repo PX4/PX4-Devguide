@@ -47,6 +47,7 @@ conda install -c https://conda.anaconda.org/dronecrew px4tools
 ```
 
 ### Positive
+* easy to share, users can view notebooks on github (e.g. [https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb](https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb))
 * python based, cross platform, works witn anaconda 2 and anaconda3
 * ipython/ jupyter notebooks can be used to share analysis easily
 * advanced plotting capabilities to allow detailed analysis
