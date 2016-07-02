@@ -22,6 +22,8 @@ Two estimators support optical flow based navigation, LPE and INAV. There are be
 
 The PX4Flow has to point towards the ground and can be connected using the I2C port on the pixhawk. For best performance make sure the PX4Flow is attached at a good position and is not exposed to vibration. (preferably on the down side of the quad-rotor).
 
+**Note** The default orientation is that the PX4Flow sonar side (+Y on flow) be pointed toward +X on the vehicle (forward). If it is not, you will need to set SENS_FLOW_ROT accordingly.
+
 ![](images/hardware/lidarlite.png)
 
 *Figure 3: Lidar Lite*
