@@ -9,6 +9,7 @@ Two estimators support optical flow based navigation, LPE and INAV. There are be
 
 
 ## Hardware
+--------------------------------------------------------
 
 ![](images/hardware/px4flow_offset.png)
 
