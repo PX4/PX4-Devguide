@@ -65,7 +65,7 @@ The local position estimator will automatically fuse lidar and optical flow data
 * LPE_LDR_Z - Lidar standard deviation in meters.
 * LPE_LDR_Z_OFF -Offset of lidar from center of mass.
 
-### Flow-based Autonomous Flight Parameters
+### Autonomous Flight Parameters
 
 * Tell the vehicle where it is in the world*
 
@@ -97,20 +97,7 @@ INAV has a fixed gain matrix for correction and can be viewed as a steady state 
 {% youtube %}https://www.youtube.com/watch?v=4MEEeTQiWrQ{% endyoutube %} 
 
 
-### Local Position Estimator (LPE)
-
-The local position estimator will automatically fuse lidar and optical flow data when present.
-
-* LPE_FLOW_OFF_Z - This is the offset of the optical flow camera from the center of mass of the vehicle. This measures positive down and defaults to zero. This can be left zero for most typical configurations where the z offset is negligible.
-* LPE_FLW_XY - Flow standard deviation in meters.
-* LPW_FLW_QMIN - Minimum flow quality to accept measurement.
-* LPE_SNR_Z -Sonar standard deviation in meters.
-* LPE_SNR_OFF_Z - Offset of sonar sensor from center of mass.
-* LPE_LDR_Z - Lidar standard deviation in meters.
-* LPE_LDR_Z_OFF -Offset of lidar from center of mass.
-
-
-### INAV
+### Parameters
 * INAV_LIDAR_EST
 	Set to 1 to enable altitude estimation based on distance measurements
 * INAV_FLOW_DIST_X and INAV_FLOW_DIST_Y
@@ -121,7 +108,7 @@ The local position estimator will automatically fuse lidar and optical flow data
 	Set a calibration offset for the lidar-lite in meters. The value will be added to the measured distance.
 
 
-#### Advanced
+### Advanced Parameters
 
 For advanced usage/development the following parameters can be changed as well. Do NOT change them if you do not know what you are doing!
 
