@@ -6,6 +6,8 @@ There are several software packages that exist to analyze PX4 flight logs. They 
 
 ### Upload
 
+Users can visit this webpage and upload log files directly: [http://logs.uaventure.com/](http://logs.uaventure.com/)
+
 ![](images/flight_log_analysis/logmuncher.png)
 
 ### Result
