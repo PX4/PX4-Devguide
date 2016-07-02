@@ -2,7 +2,7 @@
 
 There are several software packages that exist to analyze PX4 flight logs. They are described below.
 
-## Log Muncher
+## [Log Muncher](http://logs.uaventure.com)
 
 ### Upload
 
@@ -23,7 +23,7 @@ Users can visit this webpage and upload log files directly: [http://logs.uaventu
 ### Negative
 * analysis is very constrained, no customization possible
 
-## Flight Plot
+## [FlightPlot](https://github.com/DrTon/FlightPlot)
 
 ![](https://pixhawk.org/_media/dev/flightplot-0.2.16-screenshot.png)
 
@@ -32,7 +32,6 @@ Users can visit this webpage and upload log files directly: [http://logs.uaventu
 * intuitive GUI, no programming knowledge required
 
 ### Negative
-* java libraries brittle
 * analysis constrained by what features have been built-in
 
 ## [PX4Tools](https://github.com/dronecrew/px4tools)
