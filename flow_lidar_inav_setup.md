@@ -1,7 +1,7 @@
 # Optical Flow and LIDAR
 ----------------------------------------------------
 
-This page shows you how to set up the PX4Flow and a LIDAR distance measurement device for position estimation.
+This page shows you how to set up the PX4Flow and a LIDAR distance measurement device for position estimation. Using a LIDAR device is not necessary if you use the LPE estimator described below, but LIDAR does improve performance.
 
 ## Selecting an Estimator
 --------------------------------------------------------
@@ -52,6 +52,9 @@ LPE is an Extended Kalman Filter based estimator for position and velocity state
 Below is a plot of the autonomous mission from the above video using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison. The offset between the GPS and flow data is due to the initialization of the estimator from user error on where it was placed. The initial placement is assumed to be at LPE_LAT and LPE_LON (described below).
 
 ![](images/lpe/lpe_flow_vs_gps.png)
+
+*Figure 4: LPE based autnomous mission with optical flow and sonar*
+
 
 ### Parameters
 
