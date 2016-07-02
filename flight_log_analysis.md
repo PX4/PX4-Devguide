@@ -52,4 +52,4 @@ conda install -c https://conda.anaconda.org/dronecrew px4tools
 
 ### Negative
 * Requires the user to know python
-* Currently requires use of sdlog2_dump.py or px4tools embedded px42csv program to convert log files to csv before use.
+* Currently requires use of sdlog2_dump.py or px4tools embedded px42csv program to convert log files to csv before use
