@@ -4,8 +4,6 @@ This page shows you how to set up the PX4Flow and a LIDAR-Lite for position esti
 
 ## Hardware
 
-### PX4FLOW Mounting
-
 ![](images/hardware/px4flow_offset.png)
 
 *Figure 1: Mounting Coordinate Frame*
@@ -15,7 +13,7 @@ This page shows you how to set up the PX4Flow and a LIDAR-Lite for position esti
 *Figure 2: PX4Flow*
 
 
-Several lidar options exist. Lidar Lite is no longer manufactured so the lightware sf10a is a good options: [sf10a](http://www.lightware.co.za/shop/en/drone-altimeters/33-sf10a.html)
+Several lidar options exist including the Lidar Lite and the sf10a: [sf10a](http://www.lightware.co.za/shop/en/drone-altimeters/33-sf10a.html)
 
 ![](images/hardware/lidarlite.png)
 
@@ -29,10 +27,12 @@ For best performance make sure the PX4Flow is attached at a good position and is
 ![](images/hardware/flow_lidar_attached.jpg)
 
 ### Sensor Parameters
+
 All the parameters can be changed in QGroundControl
 * SENS_EN_LL40LS
 	Set to 1 to enable lidar-lite distance measurements
-
+* SENS_EN_SF0X
+	Set to 1 to enable lightware distance measurements (e.g. sf02 and sf10a)
 
 ## Selecting an Estimator
 
@@ -42,7 +42,7 @@ Two estimators support optical flow based navigation, LPE and INAV. There are be
 
 LPE is an Extended Kalman Filter based estimator for position and velocity states. It uses inertial navigation and is similar to the INAV estimator below but it dynamics calculates the Kalman gain based on the state covariance. It also is capable of detecting faults, which is beneficial for sensors like sonar which can return invalid reads over soft surfaces.
 
-Below is a plot of an autonomous mission using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison.
+Below is a plot of an autonomous mission using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison. 
 
 ![](images/lpe/lpe_flow_vs_gps.png| width=200)
 
@@ -64,7 +64,12 @@ The local position estimator will automatically fuse lidar and optical flow data
 * LPE_SNR_OFF_Z - Offset of sonar sensor from center of mass.
 * LPE_LDR_Z - Lidar standard deviation in meters.
 * LPE_LDR_Z_OFF -Offset of lidar from center of mass.
+
+### Autonomous Flight Parameters
+* LPE_LAT - The latitude associated with the (0,0) coordinate in the local frame.
+* LPE_LON - The longitude associated with the (0,0) coordinate in the local frame.
 * 
+
 ## Inertial Navigation Extimator (INAV)
 
 INAV has a fixed gain matrix for correction and can be viewed as a steady state Kalman filter. It has the lowest computational cost of all position estimators.
