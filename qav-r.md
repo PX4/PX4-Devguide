@@ -1,10 +1,9 @@
 # QAV-R
 -------------------------
 
-{% youtube %}https://www.youtube.com/watch?v=DgPkecUOjFI{% endyoutube %}
-
 ![](images/airframes/multicopter/qav-r/qav-r.jpg)
 
+{% youtube %}https://www.youtube.com/watch?v=DgPkecUOjFI{% endyoutube %}
 
 ## Parts List
 
