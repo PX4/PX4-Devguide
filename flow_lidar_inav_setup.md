@@ -8,18 +8,18 @@ This page shows you how to set up the PX4Flow and a LIDAR-Lite for position esti
 
 ![](images/hardware/px4flow_offset.png)
 
-*Figure 1: Mounting Coordinate Frame
+*Figure 1: Mounting Coordinate Frame*
 
 ![](images/hardware/px4flow.png)
 
-*Figure 2: PX4Flow
+*Figure 2: PX4Flow*
 
 
 Several lidar options exist. Lidar Lite is no longer manufactured so the lightware sf10a is a good options: [sf10a](http://www.lightware.co.za/shop/en/drone-altimeters/33-sf10a.html)
 
 ![](images/hardware/lidarlite.png)
 
-*Figure 3: Lidar Lite
+*Figure 3: Lidar Lite*
 
 
 The PX4Flow has to point towards the ground and can be connected using the I2C port on the pixhawk.
