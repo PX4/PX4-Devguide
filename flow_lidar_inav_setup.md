@@ -35,20 +35,22 @@ All the parameters can be changed in QGroundControl
 	Set to 1 to enable lightware distance measurements (e.g. sf02 and sf10a)
 
 ## Selecting an Estimator
+--------------------------------------------------------
 
 Two estimators support optical flow based navigation, LPE and INAV. There are benefits to both, but LPE is currently recommended for new users as it has the most testing and is the most robust.
 
 ## Local Position Estimator (LPE)
+--------------------------------------------------------
 
 LPE is an Extended Kalman Filter based estimator for position and velocity states. It uses inertial navigation and is similar to the INAV estimator below but it dynamics calculates the Kalman gain based on the state covariance. It also is capable of detecting faults, which is beneficial for sensors like sonar which can return invalid reads over soft surfaces.
 
 Below is a plot of an autonomous mission using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison. 
 
-![](images/lpe/lpe_flow_vs_gps.png| width=200)
+![](images/lpe/lpe_flow_vs_gps.png)
 
 ### Flight Videos
 
-Due to the ability of LPE to more robustly handle optical flow based estimation, it is capable of performing auto missions at low altitude (less than 3 meters) and slow speed (less than 2 m/s). The main criterion is that the camera image is in focus and the vehicle doesn't lean significantly during the flight.
+Due to the ability of LPE to more robustly handle optical flow based estimation, it is capable of performing auto missions at low altitude and slow speed. The main criterion is that the camera image is in focus and the vehicle doesn't lean significantly during the flight.
 
 * [indoor](https://www.youtube.com/watch?v=CccoyyX-xtE) 
 * [outdoor](https://www.youtube.com/watch?v=Ttfq0-2K434)
@@ -65,12 +67,27 @@ The local position estimator will automatically fuse lidar and optical flow data
 * LPE_LDR_Z - Lidar standard deviation in meters.
 * LPE_LDR_Z_OFF -Offset of lidar from center of mass.
 
-### Autonomous Flight Parameters
+### Flow-based Autonomous Flight Parameters
+
+* Tell the vehicle where it is in the world*
+
 * LPE_LAT - The latitude associated with the (0,0) coordinate in the local frame.
 * LPE_LON - The longitude associated with the (0,0) coordinate in the local frame.
-* 
 
-## Inertial Navigation Extimator (INAV)
+*Make the vehicle keep a low altitude and slow speed*
+
+* MPC_ALT_MODE - Set this to 1 to enable terrain follow
+* LPE_T_Z - This is the terrain process noise. If your environment is hilly, set it to 0.1, if it is a flat parking lot etc. set it to 0.01.
+* MPC_XY_VEL_MAX - Set this to 2 to limit leaning
+* MPC_XY_P - Decrease this to around 0.5 to limit leaning
+* MIS_TAKEOFF_ALT - Set this to 2 meters to allow low altitude takeoffs.
+
+*Waypoints*
+
+Create waypoints with altitude 3 meters or below.
+
+## Inertial Navigation Estimator (INAV)
+--------------------------------------------------------
 
 INAV has a fixed gain matrix for correction and can be viewed as a steady state Kalman filter. It has the lowest computational cost of all position estimators.
 
