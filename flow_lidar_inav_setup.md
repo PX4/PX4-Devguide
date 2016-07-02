@@ -34,7 +34,7 @@ LPE is an Extended Kalman Filter based estimator for position and velocity state
 
 Below is a plot of an autonomous mission using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison.
 
-![](images/lpe/lpe_flow_vs_gps.png)
+![](images/lpe/lpe_flow_vs_gps.png| width=200)
 
 ### Flight Videos
 
