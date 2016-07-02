@@ -30,6 +30,12 @@ Several LIDAR options exist including the Lidar-Lite (not currently manufacuture
 
 ![](images/hardware/flow_lidar_attached.jpg)
 
+### Focusing Camera
+
+In order to ensure good optical flow quality, it is important to focus the camera on the PX4Flow to the desired height of flight. To focus the camera, put an object with text on (e. g. a book) and plug in the PX4Flow into usb and run QGroundControl. Under the settings menu, select the PX4Flow and you should see a camera image. Focus the lens by unscrewing the set screw and loosening and tightening the lens to find where it is in focus.
+
+**Note** If you fly above 3m, the camera will be focused at infinity and won't need to be changed for higher flight.
+
 ### Sensor Parameters
 
 All the parameters can be changed in QGroundControl
@@ -53,12 +59,12 @@ Below is a plot of the autonomous mission from the outdoor flight video above us
 
 ![](images/lpe/lpe_flow_vs_gps.png)
 
-*Figure 4: LPE based autnomous mission with optical flow and sonar*
+*Figure 4: LPE based autonomous mission with optical flow and sonar*
 
 
 ### Parameters
 
-The local position estimator will automatically fuse lidar and optical flow data when present.
+The local position estimator will automatically fuse LIDAR and optical flow data when the sensors are plugged in.
 
 * LPE_FLOW_OFF_Z - This is the offset of the optical flow camera from the center of mass of the vehicle. This measures positive down and defaults to zero. This can be left zero for most typical configurations where the z offset is negligible.
 * LPE_FLW_XY - Flow standard deviation in meters.
