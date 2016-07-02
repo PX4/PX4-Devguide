@@ -3,6 +3,7 @@
 
 {% youtube %}https://www.youtube.com/watch?v=DgPkecUOjFI{% endyoutube %}
 
+![](qav-r.jpg)
 
 
 ## Parts List
