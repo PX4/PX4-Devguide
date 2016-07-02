@@ -43,15 +43,15 @@ All the parameters can be changed in QGroundControl
 
 LPE is an Extended Kalman Filter based estimator for position and velocity states. It uses inertial navigation and is similar to the INAV estimator below but it dynamics calculates the Kalman gain based on the state covariance. It also is capable of detecting faults, which is beneficial for sensors like sonar which can return invalid reads over soft surfaces.
 
-Below is a plot of an autonomous mission using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison. 
-
-![](images/lpe/lpe_flow_vs_gps.png)
-
 ### Flight Video Indoor
 {% youtube %}https://www.youtube.com/watch?v=CccoyyX-xtE{% endyoutube %} 
 
 ### Flight Video Outdoor
 {% youtube %}https://www.youtube.com/watch?v=Ttfq0-2K434{% endyoutube %} 
+
+Below is a plot of the autonomous mission from the above video using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison. 
+
+![](images/lpe/lpe_flow_vs_gps.png)
 
 ### Parameters
 
