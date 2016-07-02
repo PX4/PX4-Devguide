@@ -4,12 +4,20 @@ This page shows you how to set up the PX4Flow and a LIDAR-Lite for position esti
 
 ## Hardware
 
+### PX4FLOW Mounting
+
 ![](images/hardware/px4flow_offset.png)
+
+*Figure 1: Mounting Coordinate Frame
+
 ![](images/hardware/px4flow.png)
+
+*Figure 2: PX4Flow
+
 
 ![](images/hardware/lidarlite.png)
 
-*Figure 1: Coordinate System*
+*Figure 3: Lidar Lite
 
 
 The PX4Flow has to point towards the ground and can be connected using the I2C port on the pixhawk.
