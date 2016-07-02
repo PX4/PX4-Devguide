@@ -15,6 +15,8 @@ This page shows you how to set up the PX4Flow and a LIDAR-Lite for position esti
 *Figure 2: PX4Flow
 
 
+Several lidar options exist. Lidar Lite is no longer manufactured so the lightware sf10a is a good options: [sf10a](http://www.lightware.co.za/shop/en/drone-altimeters/33-sf10a.html)
+
 ![](images/hardware/lidarlite.png)
 
 *Figure 3: Lidar Lite
