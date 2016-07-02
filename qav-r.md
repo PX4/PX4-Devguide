@@ -13,7 +13,7 @@
 * Lumenier RX2204-14 2300Kv Motor
 * Lumenier Mini 20A ESC w/ SimonK AutoShot, 5V/1A BEC (2-4s)
 * Gemfan 5x4.5 Nylon Glass Fiber Propeller (Set of 4 - Black)
-* Lumenier 1300mAh 4s 60c Lipo Battery (XT60)
+* Lumenier 1300mAh 3s 60c Lipo Battery (XT60)
 
 ### FPV Gear
 * QAV180/210 Carbon Fiber Vibration Damping Camera Plate (GoPro+Mobius)
