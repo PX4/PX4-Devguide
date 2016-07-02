@@ -70,7 +70,7 @@ The local position estimator will automatically fuse lidar and optical flow data
 
 ### Autonomous Flight Parameters
 
-* Tell the vehicle where it is in the world*
+*Tell the vehicle where it is in the world*
 
 * LPE_LAT - The latitude associated with the (0,0) coordinate in the local frame.
 * LPE_LON - The longitude associated with the (0,0) coordinate in the local frame.
