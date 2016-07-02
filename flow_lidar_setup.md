@@ -36,7 +36,7 @@ Several LIDAR options exist including the Lidar-Lite (not currently manufacuture
 
 In order to ensure good optical flow quality, it is important to focus the camera on the PX4Flow to the desired height of flight. To focus the camera, put an object with text on (e. g. a book) and plug in the PX4Flow into usb and run QGroundControl. Under the settings menu, select the PX4Flow and you should see a camera image. Focus the lens by unscrewing the set screw and loosening and tightening the lens to find where it is in focus.
 
-**Note** If you fly above 3m, the camera will be focused at infinity and won't need to be changed for higher flight.
+**Note: If you fly above 3m, the camera will be focused at infinity and won't need to be changed for higher flight.**
 
 ### Sensor Parameters
 
@@ -75,6 +75,9 @@ The local position estimator will automatically fuse LIDAR and optical flow data
 * LPE_SNR_OFF_Z - Offset of sonar sensor from center of mass.
 * LPE_LDR_Z - Lidar standard deviation in meters.
 * LPE_LDR_Z_OFF -Offset of lidar from center of mass.
+* LPE_GPS_ON - You won't be able to fly without GPS if LPE_GPS_ON is set to 1. You must disable it or it will wait for GPS altitude to initialize position. This is so that GPS altitude will take precedence over baro altitude if GPS is available.
+
+**NOTE: LPE_GPS_ON must be set to 0 to enable flight without GPS **
 
 ### Autonomous Flight Parameters
 
@@ -96,7 +99,7 @@ The local position estimator will automatically fuse LIDAR and optical flow data
 * Create waypoints with altitude 3 meters or below.
 * Do not create flight plans with extremely long distance, expect about 1m drift / 100 m of flight.
 
-**Note** Before your first auto flight, walk the vehicle manually through the flight with the flow sensor to make sure it will trace the path you expect.
+**Note: Before your first auto flight, walk the vehicle manually through the flight with the flow sensor to make sure it will trace the path you expect.**
 
 
 ## Inertial Navigation Estimator (INAV)
