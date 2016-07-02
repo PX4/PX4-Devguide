@@ -36,7 +36,7 @@ Several LIDAR options exist including the Lidar-Lite (not currently manufacuture
 
 ![](images/flow/flow_mounting_iris.png)
 
-*Figure: This Iris+ has a PX4Flow attached without a LIDAR, this works with the LPE Firmware.*
+*Figure: This Iris+ has a PX4Flow attached without a LIDAR, this works with the LPE estimator.*
 
 ![](images/flow/flow_mounting_iris_2.png)
 
