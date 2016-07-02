@@ -21,7 +21,7 @@
    * [Ground Control Station](qgroundcontrol-intro.md)
    * [Writing an Application](tutorial-hello-sky.md)
    * [Video streaming in QGC](advanced-videostreaming-qgc.md)
-   * [INAV Optical flow and LIDAR-Lite](flow_lidar_inav_setup.md)
+   * [Optical flow and LIDAR-Lite](flow_lidar_inav_setup.md)
    * [Integration Testing](tutorial-integration-testing.md)
 * Simulation
    * [Basic Simulation](simulation-sitl.md)
