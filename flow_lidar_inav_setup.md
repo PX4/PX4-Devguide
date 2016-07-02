@@ -52,7 +52,9 @@ Below is a plot of an autonomous mission using optical flow. GPS is not used to 
 
 Due to the ability of LPE to more robustly handle optical flow based estimation, it is capable of performing auto missions at low altitude and slow speed. The main criterion is that the camera image is in focus and the vehicle doesn't lean significantly during the flight.
 
-* [indoor](https://www.youtube.com/watch?v=CccoyyX-xtE) 
+
+
+{%youtube%}https://www.youtube.com/watch?v=CccoyyX-xtE{%endyoutube%} 
 * [outdoor](https://www.youtube.com/watch?v=Ttfq0-2K434)
 
 ### Parameters
