@@ -92,6 +92,10 @@ The local position estimator will automatically fuse LIDAR and optical flow data
 *Waypoints*
 
 * Create waypoints with altitude 3 meters or below.
+* Do not create flight plans with extremely long distance, expect about 1m drift / 100 m of flight.
+
+**Note** Before your first auto flight, walk the vehicle manually through the flight with the flow sensor to make sure it will trace the path you expect.
+
 
 ## Inertial Navigation Estimator (INAV)
 --------------------------------------------------------
