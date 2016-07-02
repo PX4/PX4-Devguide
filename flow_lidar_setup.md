@@ -91,7 +91,7 @@ The local position estimator will automatically fuse LIDAR and optical flow data
 
 *Waypoints*
 
-Create waypoints with altitude 3 meters or below.
+* Create waypoints with altitude 3 meters or below.
 
 ## Inertial Navigation Estimator (INAV)
 --------------------------------------------------------
