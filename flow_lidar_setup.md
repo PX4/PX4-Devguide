@@ -1,12 +1,12 @@
 # Optical Flow and LIDAR
 ----------------------------------------------------
 
-This page shows you how to set up the PX4Flow and a LIDAR distance measurement device for position estimation. Using a LIDAR device is not necessary if you use the LPE estimator described below, but LIDAR does improve performance.
+This page shows you how to set up the PX4Flow and a LIDAR distance measurement device for position estimation. Using a LIDAR device is not necessary if you use the LPE estimator described below since the PX4FLOW has a sonar, but LIDAR does improve performance.
 
 ## Selecting an Estimator
 --------------------------------------------------------
 
-Two estimators support optical flow based navigation, LPE and INAV. There are benefits to both, but LPE is currently recommended for new users as it has the most testing and is the most robust.
+Two estimators support optical flow based navigation, LPE and INAV. There are benefits to both, but LPE is currently recommended for new users as it has the most testing and is the most robust. INAV uses slightly less CPU.
 
 
 ## Hardware
@@ -14,11 +14,11 @@ Two estimators support optical flow based navigation, LPE and INAV. There are be
 
 ![](images/hardware/px4flow_offset.png)
 
-*Figure 1: Mounting Coordinate Frame*
+*Figure 1: Mounting Coordinate Frame (relevant to parameters below)*
 
 ![](images/hardware/px4flow.png)
 
-*Figure 2: PX4Flow*
+*Figure 2: PX4Flow optical flow sensor (camera and sonar)*
 
 The PX4Flow has to point towards the ground and can be connected using the I2C port on the pixhawk. For best performance make sure the PX4Flow is attached at a good position and is not exposed to vibration. (preferably on the down side of the quad-rotor).
 
@@ -26,7 +26,7 @@ The PX4Flow has to point towards the ground and can be connected using the I2C p
 
 *Figure 3: Lidar Lite*
 
-Several lidar options exist including the Lidar Lite and the sf10a: [sf10a](http://www.lightware.co.za/shop/en/drone-altimeters/33-sf10a.html) For the connection of the LIDAR-Lite please refer to [this](https://pixhawk.org/peripherals/rangefinder?s[]=lidar) page.
+Several LIDAR options exist including the Lidar-Lite (not currently manufacutured) and the sf10a: [sf10a](http://www.lightware.co.za/shop/en/drone-altimeters/33-sf10a.html). For the connection of the LIDAR-Lite please refer to [this](https://pixhawk.org/peripherals/rangefinder?s[]=lidar) page. The sf10a can be connected using a serial cable.
 
 ![](images/hardware/flow_lidar_attached.jpg)
 
@@ -41,7 +41,7 @@ All the parameters can be changed in QGroundControl
 ## Local Position Estimator (LPE)
 --------------------------------------------------------
 
-LPE is an Extended Kalman Filter based estimator for position and velocity states. It uses inertial navigation and is similar to the INAV estimator below but it dynamics calculates the Kalman gain based on the state covariance. It also is capable of detecting faults, which is beneficial for sensors like sonar which can return invalid reads over soft surfaces.
+LPE is an Extended Kalman Filter based estimator for position and velocity states. It uses inertial navigation and is similar to the INAV estimator below but it dynamically calculates the Kalman gain based on the state covariance. It also is capable of detecting faults, which is beneficial for sensors like sonar which can return invalid reads over soft surfaces.
 
 ### Flight Video Indoor
 {% youtube %}https://www.youtube.com/watch?v=CccoyyX-xtE{% endyoutube %} 
@@ -49,7 +49,7 @@ LPE is an Extended Kalman Filter based estimator for position and velocity state
 ### Flight Video Outdoor
 {% youtube %}https://www.youtube.com/watch?v=Ttfq0-2K434{% endyoutube %} 
 
-Below is a plot of the autonomous mission from the above video using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison. The offset between the GPS and flow data is due to the initialization of the estimator from user error on where it was placed. The initial placement is assumed to be at LPE_LAT and LPE_LON (described below).
+Below is a plot of the autonomous mission from the outdoor flight video above using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison. The offset between the GPS and flow data is due to the initialization of the estimator from user error on where it was placed. The initial placement is assumed to be at LPE_LAT and LPE_LON (described below).
 
 ![](images/lpe/lpe_flow_vs_gps.png)
 
