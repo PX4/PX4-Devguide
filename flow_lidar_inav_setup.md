@@ -18,17 +18,13 @@ Two estimators support optical flow based navigation, LPE and INAV. There are be
 
 *Figure 2: PX4Flow*
 
-
-Several lidar options exist including the Lidar Lite and the sf10a: [sf10a](http://www.lightware.co.za/shop/en/drone-altimeters/33-sf10a.html)
+The PX4Flow has to point towards the ground and can be connected using the I2C port on the pixhawk. For best performance make sure the PX4Flow is attached at a good position and is not exposed to vibration. (preferably on the down side of the quad-rotor).
 
 ![](images/hardware/lidarlite.png)
 
 *Figure 3: Lidar Lite*
 
-
-The PX4Flow has to point towards the ground and can be connected using the I2C port on the pixhawk.
-For the connection of the LIDAR-Lite please refer to [this](https://pixhawk.org/peripherals/rangefinder?s[]=lidar) page.
-For best performance make sure the PX4Flow is attached at a good position and is not exposed to vibration. (preferably on the down side of the quad-rotor).
+Several lidar options exist including the Lidar Lite and the sf10a: [sf10a](http://www.lightware.co.za/shop/en/drone-altimeters/33-sf10a.html) For the connection of the LIDAR-Lite please refer to [this](https://pixhawk.org/peripherals/rangefinder?s[]=lidar) page.
 
 ![](images/hardware/flow_lidar_attached.jpg)
 
