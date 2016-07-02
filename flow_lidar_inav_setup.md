@@ -1,4 +1,4 @@
-# Optical Flow and LIDAR
+# Optical Flow Position Estimation
 ----------------------------------------------------
 
 This page shows you how to set up the PX4Flow and a LIDAR distance measurement device for position estimation. Using a LIDAR device is not necessary if you use the LPE estimator described below, but LIDAR does improve performance.
