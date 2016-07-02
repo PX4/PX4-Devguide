@@ -1,7 +1,7 @@
 # Optical Flow and LIDAR
 ----------------------------------------------------
 
-This page shows you how to set up the PX4Flow and a LIDAR-Lite for position estimation.
+This page shows you how to set up the PX4Flow and a LIDAR distance measurement device for position estimation.
 
 ## Selecting an Estimator
 --------------------------------------------------------
