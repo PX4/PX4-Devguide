@@ -69,7 +69,7 @@ chmod +x fastboot-all.sh
 ./fastboot-all.sh
 ```
 
-On P1 boards, it is normal that the partitions `recovery`, `update`, and `factory` will fail.
+It is normal that the partitions `recovery`, `update`, and `factory` will fail.
 
 ### Updating the ADSP firmware
 
