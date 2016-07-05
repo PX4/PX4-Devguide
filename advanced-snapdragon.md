@@ -397,6 +397,8 @@ REV A
 QUALCOMM
 ```
 
-The P1 of the second line is key.
+If you see **H9550**, it means you have a P2 board!
 
-<aside class="note">P1 boards don't have a factory partition/image and therefore can't be restored to factory state.</aside>
+**Please ignore that it says -P1.**
+
+Presumably P1 boards don't have a factory partition/image and therefore can't be restored to factory state.
