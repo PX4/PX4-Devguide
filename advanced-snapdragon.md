@@ -63,9 +63,8 @@ fastboot devices
 Download the latest BSP from Intrinsyc:
 
 ```
-unzip Flight_BSP_3.0_apq8074-le-1-0_r00015.zip
-cd Flight_3.0_apq8074-le-1-0_ap_standard_oem_r00015/Flight_3.0_apq8074-le-1-0_ap_standard_oem_r00015/binaries/Flight_BSP_3.0
-chmod +x fastboot-all.sh
+unzip Flight_3.1.1_BSP_apq8074-00003.zip
+cd BSP/binaries/Flight_BSP_4.0
 ./fastboot-all.sh
 ```
 
@@ -77,7 +76,7 @@ Part of the PX4 stack is running on the ADSP (the DSP side of the Snapdragon 807
 
 <aside class="caution">If anything goes wrong during the ADSP firmware update, your Snapdragon can get bricked! Follow the steps below carefully which should prevent bricking in most cases.</aside>
 
-First of all, if you're not already on BSP 3.0, [upgrade the Linux image](#upgradingreplacing-the-linux-image)!
+First of all, if you're not already on BSP 3.1.1, [upgrade the Linux image](#upgradingreplacing-the-linux-image)!
 
 #### Prevent bricking
 
@@ -132,8 +131,8 @@ Download the file Flight_adsp_8074_firmware.zip from Intrinsyc.
 And copy them on to the Snapdragon:
 
 ```
-unzip Flight_adsp_8074_firmware_readme_update.zip
-cd Flight_adsp_8074_firmware_2
+unzip Flight_3.1.1a_qcom_flight_controller_hexagon_sdk_add_on.zip
+cd images/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmware
 adb push . /lib/firmware
 ```
 
