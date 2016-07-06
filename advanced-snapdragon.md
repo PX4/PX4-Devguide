@@ -315,7 +315,7 @@ rm -rf /var/log/ramdump/*
 Also, the logs might have filled the space. To delete them, do:
 
 ```
-rm -rf /root/logs/*
+rm -rf /root/log/*
 ```
 
 ### Undefined PLT symbol
