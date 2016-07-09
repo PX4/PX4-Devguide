@@ -10,6 +10,7 @@ Set the `SYS_COMPANION` parameter (in the System group) to one of these values.
 
   * `0` to disable MAVLink output on TELEM2 (default)
   * `921600` to enable MAVLink output at 921600 baud, 8N1 (recommended)
+  * `57600` to enable MAVLink output at 57600 baud, 8N1
   * `157600` to enable MAVLink in *OSD* mode at 57600 baud
   * `257600` to enable MAVLink in listen-only mode at 57600 baud
 
