@@ -83,7 +83,10 @@
    * [Sending Debug Values](advanced-debug-values.md)
    * [Indoor / Fake GPS](advanced-fake-gps.md)
    * [Camera Trigger](advanced-camera-trigger.md)
+   * [Logging](advanced-logging.md)
+   * [Flight Log Analysis](flight_log_analysis.md)
    * [EKF2 Log Replay](ekf2_log_replay.md)
+   * [System-wide Replay](advanced-replay.md)
    * [Snapdragon Advanced](advanced-snapdragon.md)
        * [Accessing I/O Data](advanced-accessing-io-data.md)
        * [Camera and optical flow](advanced-snapdragon_camera.md)
@@ -94,5 +97,4 @@
    * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
    * [ULog File Format](advanced-ulog-file-format.md)
    * [Licenses](advanced-licenses.md)
-   * [Flight Log Analysis](flight_log_analysis.md)
 

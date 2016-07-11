@@ -1,5 +1,7 @@
 # EKF2 Log Replay
-This page shows you how you can tune the parameters of the EKF2 estimator by using the replay feature on a real flight log.
+This page shows you how you can tune the parameters of the EKF2 estimator by
+using the replay feature on a real flight log. It is based on the `sdlog2`
+logger.
 
 ## Introduction
 A developer has the possibility to enable onboard logging of the EKF2 estimator input sensor data.
