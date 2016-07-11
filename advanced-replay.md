@@ -69,7 +69,7 @@ ignore_others: true
 EKF2_GB_NOISE 0.001
 ```
   By default, all parameters from the log file are applied. When a parameter
-  changed during recoding, it will be changed as well at the right time during
+  changed during recording, it will be changed as well at the right time during
   replay. A parameter in the `replay_params.txt` will override the value and
   changes to it from the log file will not be applied.
 - Optional: copy `dataman` missions file from the SD card to the build
