@@ -38,6 +38,6 @@ amount of dropouts:
 - Formatting an SD card can help to prevent dropouts.
 - Increasing the log buffer helps.
 - Decrease the logging rate of selected topics or remove unneeded topics from
-  being logged (`info.py -v <file>` is useful for this).
+  being logged (`info.py <file>` is useful for this).
 
 
