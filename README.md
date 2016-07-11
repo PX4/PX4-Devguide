@@ -8,12 +8,6 @@ This guide describes how to work inside the PX4 system architecture. It enables 
 * Access and modify the [PX4 Flight Stack](concept-flight-stack.md) and [PX4 Middleware](concept-middleware.md)
 * Deploy PX4 on [Snapdragon Flight](hardware-snapdragon.md), [Pixhawk](hardware-pixhawk.md) and [Pixfalcon](hardware-pixfalcon.md)
 
-## Changelog
-
-### 2015-10-06
-
-* Initial Release
-
 ## License
 
 The PX4 Development Guide is released as [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See our [Github Repository](https://github.com/PX4/Devguide) for more details.
