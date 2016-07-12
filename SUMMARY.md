@@ -98,4 +98,5 @@
    * [ULog File Format](advanced-ulog-file-format.md)
    * [Licenses](advanced-licenses.md)
 * Software Update
+   * STM32 Bootloader
 
