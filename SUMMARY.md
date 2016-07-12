@@ -97,6 +97,6 @@
    * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
    * [ULog File Format](advanced-ulog-file-format.md)
    * [Licenses](advanced-licenses.md)
-* Software Update
+* [Software Update](software_update.md)
    * STM32 Bootloader
 
