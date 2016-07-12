@@ -48,7 +48,7 @@ Update the package list and install the following dependencies. Packages with sp
 
 
 ```sh
-sudo add-apt-repository ppa:terry.guo/gcc-arm-embedded -y
+sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
 sudo apt-get update
 sudo apt-get install python-serial openocd \
     flex bison libncurses5-dev autoconf texinfo build-essential \
@@ -57,6 +57,11 @@ sudo apt-get install python-serial openocd \
 ```
 
 If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmware master, please refer to [the bare metal installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation) to install version 4.8 manually.
+
+If it reports error message of conflict to gcc-arm-none-eabi, which is likely if upgrading from 4.x to 5+, please uninstall it first with:
+```sh
+sudo apt-get remove gcc-arm-none-eabi
+```
 
 ### Snapdragon Flight
 
