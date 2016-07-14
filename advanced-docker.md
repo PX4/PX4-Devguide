@@ -17,7 +17,7 @@ Containers are currently only supported on Linux. If you don't have Linux you ca
 
 ## Use the Docker container
 
-The following will run the Docker container including support for X forwarding which makes the simulation GUI available from inside the container. It also maps the directory `<local_src>` from your computer to `<container_src>` inside the container. Please see the Docker docs for more information on volume and network port mapping.
+The following will run the Docker container including support for X forwarding which makes the simulation GUI available from inside the container. It also maps the directory `<local_src>` from your computer to `<container_src>` inside the container and forwards the UDP port needed to connect QGC. Please see the Docker docs for more information on volume and network port mapping.
 
 With the `-–privileged` option it will automatically have access to the devices on your host (e.g. a joystick and GPU). If you connect/disconnect a device you have to restart the container.
 
@@ -29,6 +29,7 @@ docker run -it --privileged \
     -v <local_src>:<container_src>:rw \
     -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
     -e DISPLAY=:0 \
+    -p 14556:14556/udp \
     --name=container_name px4io/px4-dev bash
 ```
 
@@ -38,6 +39,24 @@ If everything went well you should be in a new bash shell now. Verify if everyth
 cd <container_src>
 make posix_sitl_default gazebo
 ```
+
+### Graphics driver issues
+
+It's possible that running Gazebo will result in a similar error message like the following:
+
+```sh
+libGL error: failed to load driver: swrast
+```
+
+In that case the native graphics driver for your host system must be installed. Download the right driver and install it inside the container. For Nvidia drivers the following command should be used (otherwise the installer will see the loaded modules from the host and refuse to proceed):
+
+```sh
+./NVIDIA-DRIVER.run -a -N --ui=none --no-kernel-module
+```
+
+More information on this can be found here: http://gernotklingler.com/blog/howto-get-hardware-accelerated-opengl-support-docker/
+
+### Re-enter the container
 
 If you exit the container, your changes are left in this container. The above “docker run” command can only be used to create a new container. To get back into this container simply do:
 
