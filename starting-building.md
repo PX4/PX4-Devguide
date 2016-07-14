@@ -55,39 +55,51 @@ Rebooting.
 [100%] Built target upload
 ```
 ### Raspberry Pi 2 boards
-The command below builds the target for Raspbian (posix_pi2_release).
+The command below builds the target for Raspbian.
+
+#### Cross-compiler build
 
 ```sh
 cd Firmware
-make posix_rpi2_release # for cross-compiler build
+make posix_rpi2_cross # for cross-compiler build
 ```
 
-The "mainapp" executable file is in the directory build_posix_rpi2_release/src/firmware/posix.
-Copy it over to the RPi (replace YOUR_PI with the IP or hostname of your RPi, [instructions how to access your RPi](hardware-pi2.md#developer-quick-start))
+The "mainapp" executable file is in the directory build_posix_rpi2_cross/src/firmware/posix.
+Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](hardware-pi2.md#developer-quick-start).
+
+Then set the IP (or hostname) of your RPi using:
 
 ```sh
-scp build_posix_rpi2_release/src/firmware/posix/mainapp pi@YOUR_PI:/home/pi/
+export AUTOPILOT_HOST=192.168.X.X
 ```
 
-And run it with :
-
-```sh
-./mainapp
-```
-
-
-If you're building *directly* on the Pi, you will want the native build target (posix_pi2_default).
+And upload it with:
 
 ```sh
 cd Firmware
-make posix_rpi2_default # for native build
+make posix_rpi2_cross upload # for cross-compiler build
 ```
 
-The "mainapp" executable file is in the directory build_posix_rpi2_default/src/firmware/posix.
+Then, connect over ssh and run it with :
+
+```sh
+./mainapp mainapp.config
+```
+
+#### Native build
+
+If you're building *directly* on the Pi, you will want the native build target (posix_rpi2_native).
+
+```sh
+cd Firmware
+make posix_rpi2_native # for native build
+```
+
+The "mainapp" executable file is in the directory build_posix_rpi2_native/src/firmware/posix.
 Run it directly with :
 
 ```sh
-./build_posix_rpi2_default/src/firmware/posix/mainapp
+./build_posix_rpi2_native/src/firmware/posix/mainapp ./posix-configs/rpi2/mainapp.config
 ```
 
 A successful build followed by executing mainapp will give you this :
