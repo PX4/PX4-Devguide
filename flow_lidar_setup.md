@@ -8,6 +8,8 @@ This page shows you how to set up the PX4Flow and a LIDAR distance measurement d
 
 Two estimators support optical flow based navigation, LPE and INAV. There are benefits to both, but LPE is currently recommended for new users as it has the most testing and is the most robust. INAV uses slightly less CPU.
 
+Use the `SYS_MC_EST_GROUP` parameter to select the estimator and then reboot.
+
 
 ## Hardware
 --------------------------------------------------------
