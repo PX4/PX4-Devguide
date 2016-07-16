@@ -79,7 +79,7 @@ LPE is an Extended Kalman Filter based estimator for position and velocity state
 ### Flight Video Outdoor
 {% youtube %}https://www.youtube.com/watch?v=Ttfq0-2K434{% endyoutube %} 
 
-For outdoor autonmous missions with LPE estimator, see tutorial on Optical Flow Outdoors.
+For outdoor autonmous missions with LPE estimator, see tutorial on (Optical Flow Outdoors)[./optical-flow-outdoors.md]
 
 ### Parameters
 
