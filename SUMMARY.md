@@ -31,7 +31,7 @@
 * Autopilot Hardware
    * [Snapdragon Flight](hardware-snapdragon.md)
        * [Optical Flow](optical_flow.md)
-   * [Raspberry Pi 2](hardware-pi2.md)
+   * [Raspberry Pi](hardware-rpi.md)
    * [Pixhawk](hardware-pixhawk.md)
    * [Pixfalcon](hardware-pixfalcon.md)
    * [Pixracer](hardware-pixracer.md)
@@ -60,7 +60,7 @@
    * [DroneKit usage](dronekit-example.md)
 * Robotics using ROS
    * [Offboard Control from Linux](offboard-control.md)
-   * [ROS Installation on RPi 2](ros-raspberrypi-installation.md)
+   * [ROS Installation on RPi](ros-raspberrypi-installation.md)
    * [MAVROS (MAVLink on ROS)](ros-mavros-installation.md)
    * [MAVROS offboard example](ros-mavros-offboard.md)
    * [External Position Estimation](external-position.md)

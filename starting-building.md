@@ -54,18 +54,18 @@ Rebooting.
 
 [100%] Built target upload
 ```
-### Raspberry Pi 2 boards
+### Raspberry Pi 2/3 boards
 The command below builds the target for Raspbian.
 
 #### Cross-compiler build
 
 ```sh
 cd Firmware
-make posix_rpi2_cross # for cross-compiler build
+make posix_rpi_cross # for cross-compiler build
 ```
 
-The "mainapp" executable file is in the directory build_posix_rpi2_cross/src/firmware/posix.
-Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](hardware-pi2.md#developer-quick-start).
+The "mainapp" executable file is in the directory build_posix_rpi_cross/src/firmware/posix.
+Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](hardware-rpi.md#developer-quick-start).
 
 Then set the IP (or hostname) of your RPi using:
 
@@ -77,7 +77,7 @@ And upload it with:
 
 ```sh
 cd Firmware
-make posix_rpi2_cross upload # for cross-compiler build
+make posix_rpi_cross upload # for cross-compiler build
 ```
 
 Then, connect over ssh and run it with :
@@ -88,18 +88,18 @@ Then, connect over ssh and run it with :
 
 #### Native build
 
-If you're building *directly* on the Pi, you will want the native build target (posix_rpi2_native).
+If you're building *directly* on the Pi, you will want the native build target (posix_rpi_native).
 
 ```sh
 cd Firmware
-make posix_rpi2_native # for native build
+make posix_rpi_native # for native build
 ```
 
-The "mainapp" executable file is in the directory build_posix_rpi2_native/src/firmware/posix.
+The "mainapp" executable file is in the directory build_posix_rpi_native/src/firmware/posix.
 Run it directly with :
 
 ```sh
-./build_posix_rpi2_native/src/firmware/posix/mainapp ./posix-configs/rpi2/mainapp.config
+./build_posix_rpi_native/src/firmware/posix/mainapp ./posix-configs/rpi/mainapp.config
 ```
 
 A successful build followed by executing mainapp will give you this :
