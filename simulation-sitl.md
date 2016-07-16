@@ -20,7 +20,7 @@ This will bring up the PX4 shell:
 
 ```sh
 [init] shell id: 140735313310464
-[init] task name: mainapp
+[init] task name: px4
 
 ______  __   __    ___ 
 | ___ \ \ \ / /   /   |

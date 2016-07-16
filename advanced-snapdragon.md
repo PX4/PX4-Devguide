@@ -303,7 +303,7 @@ If everything fails, you probably need to request help from intrinsyc.
 Sometimes `make eagle_default upload` fails to upload:
 
 ```
-failed to copy 'mainapp' to '/home/linaro/mainapp': No space left on device
+failed to copy 'px4' to '/home/linaro/px4': No space left on device
 ```
 
 This can happen if ramdumps fill up the disk. To clean up, do:
@@ -322,7 +322,7 @@ rm -rf /root/log/*
 
 #### _FDtest
 
-If you see the following output on mini-dm when trying to start the mainapp, it means that you need to [update the ADSP firmware](#updating-the-adsp-firmware):
+If you see the following output on mini-dm when trying to start the px4 program, it means that you need to [update the ADSP firmware](#updating-the-adsp-firmware):
 
 ```
 [08500/03]  05:10.960  HAP:45:undefined PLT symbol _FDtest (689) /libpx4muorb_skel.so  0303  symbol.c
