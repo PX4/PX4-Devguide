@@ -79,12 +79,7 @@ LPE is an Extended Kalman Filter based estimator for position and velocity state
 ### Flight Video Outdoor
 {% youtube %}https://www.youtube.com/watch?v=Ttfq0-2K434{% endyoutube %} 
 
-Below is a plot of the autonomous mission from the outdoor flight video above using optical flow. GPS is not used to estimate the vehicle position but is plotted for a ground truth comparison. The offset between the GPS and flow data is due to the initialization of the estimator from user error on where it was placed. The initial placement is assumed to be at LPE_LAT and LPE_LON (described below).
-
-![](images/lpe/lpe_flow_vs_gps.png)
-
-*Figure 4: LPE based autonomous mission with optical flow and sonar*
-
+For outdoor autonmous missions with LPE estimator, see tutorial on Optical Flow Outdoors.
 
 ### Parameters
 
@@ -100,29 +95,6 @@ The local position estimator will automatically fuse LIDAR and optical flow data
 * LPE_GPS_ON - You won't be able to fly without GPS if LPE_GPS_ON is set to 1. You must disable it or it will wait for GPS altitude to initialize position. This is so that GPS altitude will take precedence over baro altitude if GPS is available.
 
 **NOTE: LPE_GPS_ON must be set to 0 to enable flight without GPS **
-
-### Autonomous Flight Parameters
-
-*Tell the vehicle where it is in the world*
-
-* LPE_LAT - The latitude associated with the (0,0) coordinate in the local frame.
-* LPE_LON - The longitude associated with the (0,0) coordinate in the local frame.
-
-*Make the vehicle keep a low altitude and slow speed*
-
-* MPC_ALT_MODE - Set this to 1 to enable terrain follow
-* LPE_T_Z - This is the terrain process noise. If your environment is hilly, set it to 0.1, if it is a flat parking lot etc. set it to 0.01.
-* MPC_XY_VEL_MAX - Set this to 2 to limit leaning
-* MPC_XY_P - Decrease this to around 0.5 to limit leaning
-* MIS_TAKEOFF_ALT - Set this to 2 meters to allow low altitude takeoffs.
-
-*Waypoints*
-
-* Create waypoints with altitude 3 meters or below.
-* Do not create flight plans with extremely long distance, expect about 1m drift / 100 m of flight.
-
-**Note: Before your first auto flight, walk the vehicle manually through the flight with the flow sensor to make sure it will trace the path you expect.**
-
 
 ## Inertial Navigation Estimator (INAV)
 --------------------------------------------------------
