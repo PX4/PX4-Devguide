@@ -88,7 +88,7 @@ This will bring up the PX4 shell:
 
 ```sh
 [init] shell id: 140735313310464
-[init] task name: mainapp
+[init] task name: px4
 
 ______  __   __    ___
 | ___ \ \ \ / /   /   |
@@ -97,7 +97,7 @@ ______  __   __    ___
 | |     / /^\ \ \___  |
 \_|     \/   \/     |_/
 
-mainapp starting.
+px4 starting.
 
 
 pxh>

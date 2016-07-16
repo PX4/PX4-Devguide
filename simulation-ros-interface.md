@@ -68,7 +68,7 @@ This should start the simulator and the console will look like this
 
 ```sh
 [init] shell id: 46979166467136
-[init] task name: mainapp
+[init] task name: px4
 
 ______  __   __    ___
 | ___ \ \ \ / /   /   |

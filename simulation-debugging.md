@@ -64,7 +64,7 @@ This will start the debugger and launch the SITL application. In order to break 
 
 ```bash
 Process 16529 stopped
-* thread #1: tid = 0x114e6d, 0x00007fff90f4430a libsystem_kernel.dylib`__read_nocancel + 10, name = 'mainapp', queue = 'com.apple.main-thread', stop reason = signal SIGSTOP
+* thread #1: tid = 0x114e6d, 0x00007fff90f4430a libsystem_kernel.dylib`__read_nocancel + 10, name = 'px4', queue = 'com.apple.main-thread', stop reason = signal SIGSTOP
     frame #0: 0x00007fff90f4430a libsystem_kernel.dylib`__read_nocancel + 10
 libsystem_kernel.dylib`__read_nocancel:
 ->  0x7fff90f4430a <+10>: jae    0x7fff90f44314            ; <+20>

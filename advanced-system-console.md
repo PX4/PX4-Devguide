@@ -120,7 +120,7 @@ ${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
 Run the main app on the linaro side:
 ```
 cd /home/linaro
-./mainapp mainapp.config
+./px4 px4.config
 ```
 
 You can now use all apps loaded on the DSP from the linaro shell with the following syntax:
