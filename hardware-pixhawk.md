@@ -6,7 +6,7 @@
 
 ## Quick Summary
 
-  * Main System-on-Chip: [STM32F437](http://www.st.com/web/en/catalog/mmc/FM141/SC1169/SS1577/LN1789)
+  * Main System-on-Chip: [STM32F427](http://www.st.com/web/en/catalog/mmc/FM141/SC1169/SS1577/LN1789)
     * CPU: 180 MHz ARM Cortex M4 with single-precision FPU
     * RAM: 256 KB SRAM (L1)
   * Failsafe System-on-Chip: STM32F100
