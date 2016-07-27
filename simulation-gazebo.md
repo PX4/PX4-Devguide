@@ -16,14 +16,14 @@ graph LR;
 
 The installation requires to install Gazebo and our simulation plugin.
 
-> ** Note ** Gazebo version 6 or greater is mandatory. If you run Linux and installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
+> ** Note ** Gazebo version 7 is recommended (the minimum version is Gazebo 6). If you run Linux and installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
 
 ### Mac OS
 
-Mac OS requires Gazebo 6.
+Mac OS requires Gazebo 7.
 
 ```sh
-brew install gazebo6
+brew install gazebo7
 ```
 
 ### Linux
@@ -32,11 +32,11 @@ The PX4 SITL uses the Gazebo simulator, but does not depend on ROS. The simulati
 
 #### ROS Users
 
-If you plan to use PX4 with ROS, make sure to follow the [Gazebo version guide for version 6](http://gazebosim.org/tutorials?tut=ros_wrapper_versions#Gazebo6.xseries) for ROS.
+If you plan to use PX4 with ROS, make sure to follow the [Gazebo version guide for version 7](http://gazebosim.org/tutorials?tut=ros_wrapper_versions#Gazebo7.xseries) for ROS.
 
 #### Normal Installation
 
-Follow the [Linux installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&ver=6.0&cat=install) for Gazebo 6.
+Follow the [Linux installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&ver=7.0&cat=install) for Gazebo 7.
 
 ## Running the Simulation
 
@@ -70,7 +70,7 @@ cd ~/src/Firmware
 make posix_sitl_default gazebo_tailsitter
 ```
 
-Please refer to the [Installing Files and Code](http://dev.px4.io/starting-installing-mac.html) guide in case you run into any errors.
+> ** Note ** Please refer to the [Installing Files and Code](http://dev.px4.io/starting-installing-mac.html) guide in case you run into any errors.
 
 This will bring up the PX4 shell:
 
@@ -91,7 +91,7 @@ px4 starting.
 pxh>
 ```
 
-Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
+> ** Note ** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
 
 ## Taking it to the Sky
 
@@ -103,13 +103,13 @@ The system will print the home position once it finished intializing (`telem> ho
 pxh> commander takeoff
 ```
 
-Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
+> ** Note ** Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
 
 ## Extending and Customizing
 
 To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
 
-The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
+> ** Note ** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
 
 ## Interfacing to ROS
 
