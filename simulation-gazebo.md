@@ -16,16 +16,16 @@ graph LR;
 
 The installation requires to install Gazebo and our simulation plugin.
 
-> ** Note ** Gazebo version 6 should be used. Linux users: If you installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
+> ** Note ** Gazebo version 7 should be used. Linux users: If you installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
 
 ### Mac OS
 
-Mac OS requires Gazebo 6.
+Mac OS requires Gazebo 7.
 
 <div class="host-code"></div>
 
 ```sh
-brew install gazebo6
+brew install gazebo7
 ```
 
 ### Linux
@@ -34,11 +34,11 @@ The PX4 SITL uses the Gazebo simulator, but does not depend on ROS. The simulati
 
 #### ROS Users
 
-If you plan to use PX4 with ROS, make sure to follow the [Gazebo version guide for version 6](http://gazebosim.org/tutorials?tut=ros_wrapper_versions#Gazebo6.xseries) for ROS.
+If you plan to use PX4 with ROS, make sure to follow the [Gazebo version guide for version 7](http://gazebosim.org/tutorials?tut=ros_wrapper_versions#Gazebo7.xseries) for ROS.
 
 #### Normal Installation
 
-Follow the [Linux installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&ver=6.0&cat=install) for Gazebo 6.
+Follow the [Linux installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&ver=7.0&cat=install) for Gazebo 7.
 
 ## Running the Simulation
 
