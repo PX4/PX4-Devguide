@@ -116,17 +116,18 @@ source ~/.bashrc
 
 A sysroot is required to provide the libraries and header files needed to cross compile applications for the Snapdragon Flight applications processor.
 
-Currently, the trusty sysroot is used because the provided one by Intrinsyc has miraculously been removed from their download website.
+The qrlSDK sysroot provies the required header files and libraries for the camera, GPU, etc.
 
-```
+```sh
 cd cross_toolchain
-./trusty_sysroot.sh
+unset HEXAGON_ARM_SYSROOT
+./qrlinux_sysroot.sh
 ```
 
 Append the following to your ~/.bashrc:
 
-```
-export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/ubuntu_14.04_armv7_sysroot
+```sh
+export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/qrlinux_v3.1.1_sysroot
 ```
 
 Load the new configuration:
