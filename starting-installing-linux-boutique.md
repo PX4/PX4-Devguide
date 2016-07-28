@@ -45,8 +45,8 @@ sudo usermod -a -G plugdev $USER
 
 ### CentOs
 
-The build requires Python 2.7.5. Therefore as of this writing Centos 7 should be used. 
-(For earlier Centos releases a side-by-side install of python v2.7.5 may be done. But it is not recommended because it can break yum.) 
+The build requires Python 2.7.5. Therefore as of this writing Centos 7 should be used.
+(For earlier Centos releases a side-by-side install of python v2.7.5 may be done. But it is not recommended because it can break yum.)
 
 The EPEL repositories are required for openocd libftdi-devel libftdi-python
 
@@ -74,7 +74,7 @@ Once the arm toolchain is installed test it with:
 ```sh
 arm-none-eabi-gcc --version
 ```
-If you receive the following message 
+If you receive the following message
 
 <div class="host-code"></div>
 
@@ -86,7 +86,7 @@ Then you will also need to install other 32-bit libraries glibc.i686 ncurses-lib
 <div class="host-code"></div>
 
 ```sh
-sudo yum install glibc.i686 ncurses-libs.i686 
+sudo yum install glibc.i686 ncurses-libs.i686
 ```
 <aside class="note">
 Pulling in ncurses-libs.i686 will pull in most of the other required 32 bit libraries. Centos 7 will install most all the PX4 related devices without the need for any added udev rules. The devices will be accessible to the predefined group ' dialout'. Therefore any references to adding udev rules can be ignored. The only requirement is that your user account is a member of the group 'dial out'
@@ -129,9 +129,9 @@ Log out and log in for changes to take effect! Also remove the device and plug i
 
 ### Toolchain Installation
 
-Execute the script below to either install GCC 4.8.4 or 4.9.2:
+Execute the script below to either install GCC 4.8 or 5.4:
 
-<div class="host-code"></div>
+**GCC 4.8**:
 
 ```sh
 pushd .
@@ -144,16 +144,14 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 popd
 ```
 
-GCC 4.9:
-
-<div class="host-code"></div>
+**GCC 5.4**:
 
 ```sh
 pushd .
 cd ~
-wget https://launchpad.net/gcc-arm-embedded/4.9/4.9-2014-q4-major/+download/gcc-arm-none-eabi-4_9-2014q4-20141203-linux.tar.bz2
-tar -jxf gcc-arm-none-eabi-4_9-2014q4-20141203-linux.tar.bz2
-exportline="export PATH=$HOME/gcc-arm-none-eabi-4_9-2014q4/bin:\$PATH"
+wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:\$PATH"
 if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
 . ~/.profile
 popd

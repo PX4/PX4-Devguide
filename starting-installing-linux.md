@@ -46,17 +46,20 @@ sudo apt-get remove modemmanager
 
 Update the package list and install the following dependencies. Packages with specified versions should be installed with this particular package version.
 
+Make sure to remove the packaged version before adding the ppa.
 
 ```sh
-sudo add-apt-repository ppa:terry.guo/gcc-arm-embedded -y
+sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi
+sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
 sudo apt-get update
 sudo apt-get install python-serial openocd \
     flex bison libncurses5-dev autoconf texinfo build-essential \
     libftdi-dev libtool zlib1g-dev \
-    python-empy gcc-arm-none-eabi -y
+    python-empy gcc-arm-embedded -y
 ```
 
-If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmware master, please refer to [the bare metal installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation) to install version 4.8 manually.
+If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmware master, please refer to [the bare metal installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation) to install version 4.8 or 5.4 manually.
+
 
 ### Snapdragon Flight
 
