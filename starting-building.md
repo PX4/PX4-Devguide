@@ -204,7 +204,7 @@ Go back to ADB shell and run px4:
 
 ```sh
 cd /home/linaro
-./px4 px4.config
+./px4 mainapp.config
 ```
 
 Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
