@@ -123,9 +123,7 @@ pxh>
 
 ### Parrot Bebop
 
-<aside class="caution">
-Support for the Bebop is really early stage and should not be used.
-</aside>
+Support for the Bebop is really early stage and is not ready for mainstream use yet.
 
 #### Build it
 ```sh
@@ -140,9 +138,7 @@ four times to enable ADB and start the telnet daemon.
 make posix_bebop_default upload
 ```
 
-<aside class="note">
 Note this will also copy px4.config file.
-</aside>
 
 #### Run it
 Connect to the Bebop's wifi and press the power button four times.
@@ -155,9 +151,7 @@ Run px4 with:
 px4
 ```
 
-<aside class="note">
-You can also use adb shell to start the px4 program.
-</aside>
+You can alternatively use adb shell to start the px4 program.
 
 ### QuRT / Snapdragon based boards
 
@@ -182,9 +176,7 @@ Go back to previous terminal and upload:
 make eagle_default upload
 ```
 
-<aside class="note">
 Note that this will also copy (and overwrite) the two config files [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/px4.config respectively if you want to edit the startup scripts directly on your vehicle.
-</aside>
 
 The mixer currently needs to be copied manually:
 
