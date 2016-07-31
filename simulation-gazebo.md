@@ -1,6 +1,6 @@
 # Gazebo Simulation
 
-[Gazebo](http://gazebosim.org) is a 3D simulation environment for autonomous robots. It can be used with ROS as complete robotics simulation suite or standalone, and this guide covers the simpler to set up standalone operation.
+[Gazebo](http://gazebosim.org) is a 3D simulation environment for autonomous robots. It supports standalone use (without ROS) or SITL + ROS.
 
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
@@ -16,7 +16,7 @@ graph LR;
 
 The installation requires to install Gazebo and our simulation plugin.
 
-> ** Note ** Gazebo version 6 should be used. Linux users: If you installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
+> ** Note ** Gazebo version 6 or greater is mandatory. If you run Linux and installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
 
 ### Mac OS
 
@@ -70,7 +70,7 @@ cd ~/src/Firmware
 make posix_sitl_default gazebo_tailsitter
 ```
 
-Make sure you followed the [Installing Files and Code](http://dev.px4.io/starting-installing-mac.html) guide appropiate for your OS if you run into any errors or missing dependencies.
+Please refer to the [Installing Files and Code](http://dev.px4.io/starting-installing-mac.html) guide in case you run into any errors.
 
 This will bring up the PX4 shell:
 
@@ -91,9 +91,7 @@ px4 starting.
 pxh>
 ```
 
-<aside class="note">
 Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
-</aside>
 
 ## Taking it to the Sky
 
@@ -105,17 +103,13 @@ The system will print the home position once it finished intializing (`telem> ho
 pxh> commander takeoff
 ```
 
-<aside class="tip">
 Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
-</aside>
 
 ## Extending and Customizing
 
-To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code can be accessed through the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
+To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
 
-<aside class="note">
-The build system enforces the correct submodule to be checked out for all dependencies, including the simulator. It will not overwrite changes in files in the directory, however, when these changes are comitted the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/sitl_gazebo` and commit the change. This will update the GIT hash of the simulator.
-</aside>
+The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
 
 ## Interfacing to ROS
 
