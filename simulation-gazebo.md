@@ -22,8 +22,6 @@ The installation requires to install Gazebo and our simulation plugin.
 
 Mac OS requires Gazebo 6.
 
-<div class="host-code"></div>
-
 ```sh
 brew install gazebo6
 ```
@@ -46,16 +44,12 @@ From within the source directory of the PX4 Firmware run the PX4 SITL with one o
 
 ### Quadrotor
 
-<div class="host-code"></div>
-
 ```sh
 cd ~/src/Firmware
 make posix_sitl_default gazebo
 ```
 
 ### Quadrotor with Optical Flow
-
-<div class="host-code"></div>
 
 ```sh
 cd ~/src/Firmware
@@ -64,8 +58,6 @@ make posix gazebo_iris_opt_flow
 
 ### Standard VTOL
 
-<div class="host-code"></div>
-
 ```sh
 cd ~/src/Firmware
 make posix_sitl_default gazebo_standard_vtol
@@ -73,16 +65,12 @@ make posix_sitl_default gazebo_standard_vtol
 
 ### Tailsitter VTOL
 
-<div class="host-code"></div>
-
 ```sh
 cd ~/src/Firmware
 make posix_sitl_default gazebo_tailsitter
 ```
 
-<aside class="tip">
 Make sure you followed the [Installing Files and Code](http://dev.px4.io/starting-installing-mac.html) guide appropiate for your OS if you run into any errors or missing dependencies.
-<aside>
 
 This will bring up the PX4 shell:
 
