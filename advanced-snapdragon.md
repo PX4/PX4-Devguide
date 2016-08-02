@@ -338,6 +338,13 @@ Is the module listed in the [cmake config](https://github.com/PX4/Firmware/blob/
 - Is the (added) file included in the `CMakeLists.txt`?
 - Try adding it to the POSIX build and running the compilation. The POSIX linker will inform you about linking errors at compile/linking time.
 
+### krait update param XXX failed on startup
+
+If you get the above error when starting px4, try 
+- [upgrading the Linux image](#upgradingreplacing-the-linux-image) 
+- and [updating the ADSP firmware](#updating-the-adsp-firmware)
+- then [rebuild the px4 software](http://dev.px4.io/starting-building.html#building-px4-software), by first completely deleting your existing Firmware repo and then recloning it [as described here](http://dev.px4.io/starting-building.html#compiling-on-the-console)
+- and finally [rebuild and re-run it](http://dev.px4.io/starting-building.html#qurt--snapdragon-based-boards)
 
 ### ADSP restarts
 
