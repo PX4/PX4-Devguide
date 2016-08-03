@@ -23,7 +23,7 @@ Usually, there are three ways of setting up offboard communication.
 
 ### 1. Serial radios
 1. One connected to a UART port of the autopilot
-1. One connected to a ground station computer
+2. One connected to a ground station computer
 
 Example radios include
 * [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
@@ -60,14 +60,14 @@ A small computer mounted onto the vehicle connected to the autopilot through a U
 
 
 {% mermaid %}
- graph TD
+	graph TD
 	subgraph Ground  Station
-		gnd[ROS Enabled Computer] --- qgc[qGroundControl]
+	  gnd[ROS Enabled Computer] --- qgc[qGroundControl]
 	end
 	gnd --MAVLink/UDP--> w[WiFi];
 	qgc --MAVLink--> w;
 	subgraph Vehicle
-		comp[Companion Computer] --MAVLink--> uart[UART Adapter]
+	  comp[Companion Computer] --MAVLink--> uart[UART Adapter]
 	uart --- Autopilot
 	end
 	w --- comp
