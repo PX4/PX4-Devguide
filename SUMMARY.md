@@ -68,6 +68,7 @@
     * [Gazebo Octomap](simulation-gazebo-octomap.md)
 * Sensor and Actuator Buses
     * [I2C Bus](i2c-intro.md)
+        * [SF1XX lidar](sf1xx_lidar_setup.md)
     * [UAVCAN Bus](uavcan-intro.md)
         * [UAVCAN Bootloader](uavcan-bootloader-installation.md)
         * [UAVCAN Firmware Upgrades](uavcan-node-firmware.md)
