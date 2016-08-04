@@ -176,7 +176,7 @@ Go back to previous terminal and upload:
 make eagle_default upload
 ```
 
-Note that this will also copy (and overwrite) the two config files [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/px4.config respectively if you want to edit the startup scripts directly on your vehicle.
+Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle.
 
 The mixer currently needs to be copied manually:
 
@@ -223,7 +223,7 @@ adb push rc.local /etc/rc.local
 For the auto-start, add the following line before `exit 0`:
 
 ```sh
-(cd /home/linaro && ./px4 px4.config > px4.log)
+(cd /home/linaro && ./px4 mainapp.config > mainapp.log)
 
 exit 0
 ```
