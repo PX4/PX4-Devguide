@@ -70,10 +70,10 @@ Therefore, we can create a new UDEV rule in a file called `/etc/udev/rules.d/99-
 
 ```sh
 SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="ttyLasers"
-SUBSYSTEM=="tty", ATTRS{idVendor}=="26ac", ATTRS{idProduct}=="0011", SYMLINK+="ttyPixHawk"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="26ac", ATTRS{idProduct}=="0011", SYMLINK+="ttyPixhawk"
 ```
 
-Finally, after a **reboot** you can be sure to know which device is what and put `/dev/ttyPixHawk` instead of `/dev/ttyUSB0` in your scripts.
+Finally, after a **reboot** you can be sure to know which device is what and put `/dev/ttyPixhawk` instead of `/dev/ttyUSB0` in your scripts.
 
 > Be sure to add yourself in the `tty` and `dialout` groups via `usermod`
 
