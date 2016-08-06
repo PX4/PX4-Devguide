@@ -30,6 +30,12 @@ After this step a range of elf files for all supported boards are present in the
   * Connect the USB power cable
   * Connect the JTAG cable
 
+
+#### Using the right serial port
+
+  * On LINUX: ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
+  * On MAC OS: Make sure to use the cu.xxx port, not the tty.xxx port: ```tar ext /dev/tty.usbmodemDDEasdf```
+
 ```bash
 arm-none-eabi-gdb
   (gdb) tar ext /dev/serial/by-id/usb-Black_Sphere_XXX-if00
