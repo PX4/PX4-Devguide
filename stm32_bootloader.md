@@ -4,13 +4,13 @@ The code for the PX4 bootloader is available from the Github [Bootloader](https:
 
 ## Supported Boards
 
-  * FMUv1 (PX4FMU)
-  * FMUv2 (Pixhawk 1)
-  * FMUv3 (Pixhawk 2)
-  * FMUv4 (Pixracer 3 and Pixhawk 3 Pro)
+  * FMUv1 (PX4FMU, STM32F4)
+  * FMUv2 (Pixhawk 1, STM32F4)
+  * FMUv3 (Pixhawk 2, STM32F4)
+  * FMUv4 (Pixracer 3 and Pixhawk 3 Pro, STM32F4)
   * FMUv5 (Pixhawk 4, STM32F7)
-  * TAPv1 (TBA)
-  * ASCv1 (TBA)
+  * TAPv1 (TBA, STM32F4)
+  * ASCv1 (TBA, STM32F4)
 
 ## Building the Bootloader
 
