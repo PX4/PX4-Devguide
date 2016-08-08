@@ -11,3 +11,10 @@ Download and install these on your system:
   * [PX4 USB Drivers](http://pixhawk.org/static/px4driver.msi) (32/64 bit systems)
 
 Now continue to run the [first build](starting-building.md)!
+
+## NEW! Bash on Windows
+
+There is a new option for Windows users which is to run Bash shell natively then follow the Linux
+build instructions.  See [BashOnWindows](https://github.com/Microsoft/BashOnWindows).  We have 
+verified that the PX4 build succeeds in this environment.  It cannot yet flash the firmware, but
+you can use the Mission Planner or QGroundControl to flash custom firwmare on Windows.
