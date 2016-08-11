@@ -41,7 +41,7 @@ The safe bet is to use an FTDI Chip USB-to-serial adapter board and the wiring b
 
 ## Software setup on Linux
 
-On Linux the default name of a USB FTDI would be like `\dev\ttyUSB0`. If you have a second FTDI linked on the USB or an Arduino, it will registered as `\dev\ttyUSB1`. To avoid the confusion between the first plugged and the second plugged, it is a good maneer to create a symlink it by the . To do it, you can use UDEV rules based on the Vendor and Product ID of the USB device.
+On Linux the default name of a USB FTDI would be like `\dev\ttyUSB0`. If you have a second FTDI linked on the USB or an Arduino, it will registered as `\dev\ttyUSB1`. To avoid the confusion between the first plugged and the second plugged, we recommend you to create a symlink from `ttyUSBx` to a friendly name, depending on the Vendor and Product ID of the USB device. 
 
 Using `lsusb` we can get the vendor and product IDs.
 
@@ -66,16 +66,18 @@ The Arduino is `Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC AC
 
 The Pixhawk is `Bus 003 Device 005: ID 26ac:0011`
 
+> If you do not find your device, unplug it, execute `lsusb`, plug it, execute `lsusb` again and see the added device.
+
 Therefore, we can create a new UDEV rule in a file called `/etc/udev/rules.d/99-pixhawk.rules` with the following content, changing the idVendor and idProduct to yours.
 
 ```sh
-SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="ttyLasers"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="ttyArduino"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="26ac", ATTRS{idProduct}=="0011", SYMLINK+="ttyPixhawk"
 ```
 
 Finally, after a **reboot** you can be sure to know which device is what and put `/dev/ttyPixhawk` instead of `/dev/ttyUSB0` in your scripts.
 
-> Be sure to add yourself in the `tty` and `dialout` groups via `usermod`
+> Be sure to add yourself in the `tty` and `dialout` groups via `usermod` to avoid to have to execute scripts as root.
 
 ```sh
 usermod -a -G tty ros-user
