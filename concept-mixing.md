@@ -155,7 +155,7 @@ The null mixer definition has the form:
 #### Simple Mixer ####
 
 A simple mixer combines zero or more control inputs into a single actuator
-output.  Inputs are scaled, and the mixing function sums the result before
+output. Inputs are scaled, and the mixing function sums the result before
 applying an output scaler.
 
 A simple mixer definition begins with:
@@ -163,22 +163,22 @@ A simple mixer definition begins with:
 	M: <control count>
 	O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
 
-If <control count> is zero, the sum is effectively zero and the mixer will
-output a fixed value that is <offset> constrained by <lower limit> and <upper
-limit>.
+If &lt;control count&gt; is zero, the sum is effectively zero and the mixer will
+output a fixed value that is &lt;offset&gt; constrained by &lt;lower limit&gt;
+and &lt;upper limit&gt;.
 
 The second line defines the output scaler with scaler parameters as discussed
 above. Whilst the calculations are performed as floating-point operations, the
 values stored in the definition file are scaled by a factor of 10000; i.e. an
 offset of -0.5 is encoded as -5000.
 
-The definition continues with <control count> entries describing the control
+The definition continues with &lt;control count&gt; entries describing the control
 inputs and their scaling, in the form:
 
 	S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
 
-The <group> value identifies the control group from which the scaler will read,
-and the <index> value an offset within that group.  These values are specific to
+The &lt;group&gt; value identifies the control group from which the scaler will read,
+and the &lt;index&gt; value an offset within that group.  These values are specific to
 the device reading the mixer definition.
 
 When used to mix vehicle controls, mixer group zero is the vehicle attitude
