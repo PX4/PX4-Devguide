@@ -119,7 +119,7 @@ graph TD;
 
 ## PX4 mixer definitions
 
-Files in ROMFS/px4fmu_common/mixers implement mixers are used for predefined airframes. They can be used as a basis
+Files in `ROMFS/px4fmu_common/mixers` implement mixers that are used for predefined airframes. They can be used as a basis
 for customisation, or for general testing purposes.
 
 ### Syntax
