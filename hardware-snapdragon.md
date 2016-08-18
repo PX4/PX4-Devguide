@@ -73,36 +73,36 @@ Be sure to include the text "2-wire" at the end of each line to allow the UART t
 
 #### J9 / GPS
 
-| Pin | 2-wire UART + I2C | SPI | Comment |
-| -- | -- | -- | -- |
-| 1 | 3.3V | 3.3V | 3.3V |
-| 2 | UART2_TX | SPI2_MOSI | Output (3.3V) |
-| 3 | UART2_RX | SPI2_MISO | Input (3.3V) |
-| 4 | I2C2_SDA | SPI2_CS | (3.3V) |
-| 5 | GND | GND | |
-| 6 | I2C2_SCL | SPI2_CLK | (3.3V) |
+| Pin | 2-wire UART + I2C | 4-wire UART | SPI | Comment |
+| -- | -- | -- | -- | -- |
+| 1 | 3.3V | 3.3V | 3.3V | |
+| 2 | UART2_TX | UART2_TX | SPI2_MOSI | Output (3.3V) |
+| 3 | UART2_RX | UART2_RX | SPI2_MISO | Input (3.3V) |
+| 4 | I2C2_SDA | UART2_RTS | SPI2_CS | (3.3V) |
+| 5 | GND | GND | GND | |
+| 6 | I2C2_SCL | UART2_CTS | SPI2_CLK | (3.3V) |
 
 #### J12 / Gimbal bus
 
-| Pin | 2-wire UART + GPIO | SPI | Comment |
-| -- | -- | -- | -- |
-| 1 | 3.3V | 3.3V | |
-| 2 | UART8_TX | SPI8_MOSI | Output (3.3V) |
-| 3 | UART8_RX | SPI8_MISO | Input (3.3V) |
-| 4 | APQ_GPIO_47 | SPI8_CS | (3.3V) |
-| 5 | GND | GND | |
-| 6 | APQ_GPIO_48 | SPI8_CLK | (3.3V) |
+| Pin | 2-wire UART + GPIO | 4-wire UART | SPI | Comment |
+| -- | -- | -- | -- | -- |
+| 1 | 3.3V | 3.3V | 3.3V | |
+| 2 | UART8_TX | UART8_TX | SPI8_MOSI | Output (3.3V) |
+| 3 | UART8_RX | UART8_RX | SPI8_MISO | Input (3.3V) |
+| 4 | APQ_GPIO_47 | UART8_RTS | SPI8_CS | (3.3V) |
+| 5 | GND | GND | GND | |
+| 6 | APQ_GPIO_48 | UART8_CTS | SPI8_CLK | (3.3V) |
 
 #### J13 / ESC bus
 
-| Pin | 2-wire UART + GPIO | SPI | Comment |
-| -- | -- | -- | -- |
-| 1 | 5V | 5V | |
-| 2 | UART6_TX | SPI6_MOSI | Output (5V) |
-| 3 | UART6_RX | SPI6_MISO |Input (5V) |
-| 4 | APQ_GPIO_29 | SPI6_CS | (5V) |
-| 5 | GND | GND | |
-| 6 | APQ_GPIO_30 | SPI6_CLK | (5V) |
+| Pin | 2-wire UART + GPIO | 4-wire UART | SPI | Comment |
+| -- | -- | -- | -- | -- |
+| 1 | 5V | 5V | 5V | |
+| 2 | UART6_TX | UART6_TX | SPI6_MOSI | Output (5V) |
+| 3 | UART6_RX | UART6_RX | SPI6_MISO |Input (5V) |
+| 4 | APQ_GPIO_29 | UART6_RTS | SPI6_CS | (5V) |
+| 5 | GND | GND | GND | |
+| 6 | APQ_GPIO_30 | UART6_CTS | SPI6_CLK | (5V) |
 
 #### J14 / Power
 
@@ -115,14 +115,14 @@ Be sure to include the text "2-wire" at the end of each line to allow the UART t
 
 #### J15 / Radio Receiver / Sensors
 
-| Pin | 2-wire UART + I2C | SPI | Comment |
-| -- | -- | -- | -- |
-| 1 | 3.3V | 3.3V | |
-| 2 | UART9_TX | SPI9_MOSI | Output |
-| 3 | UART9_RX | SPI9_MISO | Input |
-| 4 | I2C9_SDA | SPI9_CS | |
-| 5 | GND | GND | |
-| 6 | I2C9_SCL | SPI9_CLK | |
+| Pin | 2-wire UART + I2C | 4-wire UART | SPI | Comment |
+| -- | -- | -- | -- | -- |
+| 1 | 3.3V | 3.3V | 3.3V | |
+| 2 | UART9_TX | UART9_TX | SPI9_MOSI | Output |
+| 3 | UART9_RX | UART9_RX | SPI9_MISO | Input |
+| 4 | I2C9_SDA | UART9_RTS | SPI9_CS | |
+| 5 | GND | GND | GND | |
+| 6 | I2C9_SCL | UART9_CTS | SPI9_CLK | |
 
 ## Peripherals
 
