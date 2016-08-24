@@ -20,9 +20,11 @@ The installation requires to install Gazebo and our simulation plugin.
 
 ### Mac OS
 
-Mac OS requires Gazebo 7.
+Mac OS requires Gazebo 7 which in turn requires xquartz and doesn't run without OpenCV.
 
 ```sh
+brew cask install xquartz
+brew install homebrew/science/opencv
 brew install gazebo7
 ```
 
