@@ -36,6 +36,7 @@
    * [Pixhawk](hardware-pixhawk.md)
    * [Pixfalcon](hardware-pixfalcon.md)
    * [Pixracer](hardware-pixracer.md)
+   * [Crazyflie 2.0](hardware-crazyflie2.md)
 * Middleware and Architecture
    * [uORB Messaging](advanced-uorb.md)
    * [Custom MAVLink Message](custom-mavlink-message.md)
