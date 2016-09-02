@@ -90,7 +90,7 @@ is equivalent with
 <div class="host-code"></div>
 
 ```sh
-cmake posix_sitl_lpe
+make posix_sitl_lpe	# Configure with cmake
 cd build_posix_sitl_lpe
 make jmavsim___gdb
 ```
