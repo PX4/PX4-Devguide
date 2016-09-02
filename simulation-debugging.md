@@ -58,7 +58,7 @@ make posix_sitl_lpe gazebo___gdb
 make posix_sitl_lpe gazebo___lldb
 ```
 
-where the last parameter is the <viewer_model_debugger> triplet (using three underscores implies the default 'iris' model).
+where the last parameter is the &lt;viewer_model_debugger&gt; triplet (using three underscores implies the default 'iris' model).
 This will start the debugger and launch the SITL application. In order to break into the debugger shell and halt the execution, hit ```CTRL-C```:
 
 <div class="host-code"></div>
@@ -77,7 +77,7 @@ libsystem_kernel.dylib`__read_nocancel:
 
 The lldb or gdb shells behave like normal sessions, please refer to the LLDB / GDB documentation.
 
-The last parameter, the <viewer_model_debugger> triplet, is actually passed to make in the build directory, so
+The last parameter, the &lt;viewer_model_debugger&gt; triplet, is actually passed to make in the build directory, so
 
 <div class="host-code"></div>
 
@@ -104,7 +104,7 @@ be obtained with:
 make help
 ```
 
-but for your convenience, a list with just the <viewer_model_debugger> triplets
+but for your convenience, a list with just the &lt;viewer_model_debugger&gt; triplets
 is printed with the command
 
 <div class="host-code"></div>
@@ -133,4 +133,3 @@ export PX4_NO_OPTIMIZATION='px4;^modules__uORB;^modules__systemlib$'
 ```
 
 would suppress optimization of the targets: platforms__posix__px4_layer, modules__systemlib, modules__uORB, examples__px4_simple_app, modules__uORB__uORB_tests and px4.
-```
