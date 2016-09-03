@@ -91,8 +91,7 @@ is equivalent with
 
 ```sh
 make posix_sitl_lpe	# Configure with cmake
-cd build_posix_sitl_lpe
-make jmavsim___gdb
+make -C build_posix_sitl_lpe jmavsim___gdb
 ```
 
 A full list of the available make targets in the build directory can
@@ -133,3 +132,12 @@ export PX4_NO_OPTIMIZATION='px4;^modules__uORB;^modules__systemlib$'
 ```
 
 would suppress optimization of the targets: platforms__posix__px4_layer, modules__systemlib, modules__uORB, examples__px4_simple_app, modules__uORB__uORB_tests and px4.
+
+The targets that can be matched with these regular expressions can be
+printed with the command:
+
+<div class="host-code"></div>
+
+```sh
+make -C build_posix_sitl_* list_cmake_targets
+```
