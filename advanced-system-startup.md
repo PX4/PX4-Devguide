@@ -2,7 +2,7 @@
 
 The PX4 boot is controlled by shell scripts in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder.
 
-All files starting with a number and underscore (e.g. `10000_airplane`) are canned airframe configurations. They are exported at build-time into an `airframes.xml` file which is parsed by [QGroundControl](http://qgroundcontrol.org) for the airframe selection UI. Adding a new configuration is covered [here](airframes-adding-a-new-frame.md).
+All files starting with a number and underscore (e.g. `10000_airplane`) are canned airframe configurations. They are exported at build-time into an `airframes.xml` file which is parsed by [QGroundControl](http://qgroundcontrol.com) for the airframe selection UI. Adding a new configuration is covered [here](airframes-adding-a-new-frame.md).
 
 The remaining files are part of the general startup logic, and the first executed file is the [rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) script, which calls all other scripts.
 
