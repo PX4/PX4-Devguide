@@ -41,7 +41,7 @@ Note the code style in this file - all contributions to PX4 should adhere to it.
 ```C
 /****************************************************************************
  *
- *   Copyright (c) 2012-2015 PX4 Development Team. All rights reserved.
+ *   Copyright (c) 2012-2016 PX4 Development Team. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -104,6 +104,7 @@ int px4_simple_app_main(int argc, char *argv[])
 
 The application is now complete and could be run, but it is not registered as NuttShell command yet. To enable the compilation of the application into the firmware, add it to the list of modules to build, which is here: 
 
+  * Posix SITL: [Firmware/cmake/configs/posix_sitl_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_sitl_default.cmake)
   * Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
   * Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
 
@@ -196,7 +197,7 @@ Subscribing to a topic is swift and clean:
 int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 ```
 
-The `sensor_sub_fd` is a topic handle and can be used to very efficiently perform a blocking wait for new data. The current thread goes to sleep and is woken up automatically by the scheduler once new data is available, not consuming any CPU cycles while waiting. To do this, we use the (poll())[http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html] POSIX system call.
+The `sensor_sub_fd` is a topic handle and can be used to very efficiently perform a blocking wait for new data. The current thread goes to sleep and is woken up automatically by the scheduler once new data is available, not consuming any CPU cycles while waiting. To do this, we use the [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) POSIX system call.
 
 Adding `poll()` to the subscription looks like (*pseudocode, look for the full implementation below*):
 
@@ -220,7 +221,7 @@ while (true) {
 		struct sensor_combined_s raw;
 		/* copy sensors raw data into local buffer */
 		orb_copy(ORB_ID(sensor_combined), sensor_sub_fd, &raw);
-		printf("[px4_simple_app] Accelerometer:\t%8.4f\t%8.4f\t%8.4f\n",
+		PX4_INFO("Accelerometer:\t%8.4f\t%8.4f\t%8.4f",
 					(double)raw.accelerometer_m_s2[0],
 					(double)raw.accelerometer_m_s2[1],
 					(double)raw.accelerometer_m_s2[2]);
@@ -301,7 +302,8 @@ int px4_simple_app_main(int argc, char *argv[])
 
 	/* subscribe to sensor_combined topic */
 	int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
-	orb_set_interval(sensor_sub_fd, 1000);
+	/* limit the update rate to 5 Hz */
+	orb_set_interval(sensor_sub_fd, 200);
 
 	/* advertise attitude topic */
 	struct vehicle_attitude_s att;
@@ -325,14 +327,13 @@ int px4_simple_app_main(int argc, char *argv[])
 		/* handle the poll result */
 		if (poll_ret == 0) {
 			/* this means none of our providers is giving us data */
-			PX4_ERR("[px4_simple_app] Got no data within a second");
+			PX4_ERR("Got no data within a second");
 
 		} else if (poll_ret < 0) {
 			/* this is seriously bad - should be an emergency */
 			if (error_counter < 10 || error_counter % 50 == 0) {
 				/* use a counter to prevent flooding (and slowing us down) */
-				PX4_ERR("[px4_simple_app] ERROR return value from poll(): %d"
-				       , poll_ret);
+				PX4_ERR("ERROR return value from poll(): %d", poll_ret);
 			}
 
 			error_counter++;
@@ -344,10 +345,10 @@ int px4_simple_app_main(int argc, char *argv[])
 				struct sensor_combined_s raw;
 				/* copy sensors raw data into local buffer */
 				orb_copy(ORB_ID(sensor_combined), sensor_sub_fd, &raw);
-				PX4_WARN("[px4_simple_app] Accelerometer:\t%8.4f\t%8.4f\t%8.4f",
-				       (double)raw.accelerometer_m_s2[0],
-				       (double)raw.accelerometer_m_s2[1],
-				       (double)raw.accelerometer_m_s2[2]);
+				PX4_INFO("Accelerometer:\t%8.4f\t%8.4f\t%8.4f",
+					 (double)raw.accelerometer_m_s2[0],
+					 (double)raw.accelerometer_m_s2[1],
+					 (double)raw.accelerometer_m_s2[2]);
 
 				/* set att and publish this information for other apps */
 				att.roll = raw.accelerometer_m_s2[0];
@@ -361,6 +362,7 @@ int px4_simple_app_main(int argc, char *argv[])
 			 */
 		}
 	}
+
 	PX4_INFO("exiting");
 
 	return 0;
