@@ -1,36 +1,20 @@
 # Gimbal Control Setup
 
-This is a rough scrapbook on how to setup gimbal control via MAVLink.
+PX4 contains a generic mount/gimbal control driver with different input and output methods. Any input can be selected to drive any output.
 
-## Relevant parameters
+First, make sure the driver runs, using `vmount start`, then configure its parameters.
 
-GMB_USE_MNT
+## Parameters
+The parameters are described in [src/drivers/vmount/vmount_params.c](https://github.com/PX4/Firmware/blob/master/src/drivers/vmount/vmount_params.c). The most important ones are the input (`MNT_MODE_IN`) and the output (`MNT_MODE_OUT`) mode. By default, the input is disabled. Any input method can be selected to drive any of the available outputs.
 
-GMB_AUX_MNT_CHN
+If a mavlink input mode is selected, manual RC input can be enabled in
+addition (`MNT_MAN_CONTROL`). It is active as long as no mavlink message is received yet, or mavlink explicitly requests RC mode.
 
-## MAVLink control commands
 
-Use [COMMAND_LONG](https://pixhawk.ethz.ch/mavlink/#COMMAND_LONG) with the following enums:
 
-[MAV_CMD_DO_MOUNT_CONTROL](https://pixhawk.ethz.ch/mavlink/#MAV_CMD_DO_MOUNT_CONTROL) to control the outputs directly.
+### Configure the gimbal mixer for AUX output
 
-[MAV_CMD_DO_MOUNT_CONFIGURE](https://pixhawk.ethz.ch/mavlink/#MAV_CMD_DO_MOUNT_CONFIGURE) to configure the gimbal app.
-
-## Setup
-
-The setup requires knowledge about how to configure the [system startup](advanced-system-startup.html#customizing-the-system-startup).
-
-### Start gimbal app
-
-Add the following command to your boot process:
-
-```
-gimbal start
-```
-
-### Configure the gimbal mixer
-
-These are the supported outputs:
+The gimbal uses the control group #2 (see [Mixing and Actuators](concept-mixing.md)). This is the mixer configuration:
 
 ```
 # roll
@@ -47,17 +31,22 @@ S: 2 1  10000  10000      0 -10000  10000
 M: 1
 O:      10000  10000      0 -10000  10000
 S: 2 2  10000  10000      0 -10000  10000
-
-# shutter (currently not implemented by the gimbal app)
-#M: 1
-#O:      10000  10000      0 -10000  10000
-#S: 2 3  10000  10000      0 -10000  10000
-
-# mount, retractables
-M: 1
-O:      10000  10000      0 -10000  10000
-S: 2 4  10000  10000      0 -10000  10000
 ```
 
 Add those you need to your main or auxiliary mixer.
+
+## Testing
+The driver provides a simple test command - it needs to be stopped first with `vmount stop`. The following describes testing in SITL, but the commands also work on a real device.
+
+Start the simulation with (no parameter needs to be changed for that):
+```
+make posix gazebo_typhoon_h480
+```
+Make sure it's armed, eg. with `commander takeoff`, then use for example
+```
+vmount test yaw 30
+```
+to control the gimbal.
+
+![Gazebo Gimbal Simulation](images/gazebo-gimbal-simulation.png)
 
