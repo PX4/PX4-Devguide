@@ -94,7 +94,7 @@
        * [Accessing I\/O Data](advanced-accessing-io-data.md)
        * [Camera and optical flow](advanced-snapdragon_camera.md)
    * [Installing driver for Intel RealSense R200](advanced-realsense_intel.md)
-   * [Gimbal Control Setup](advanced-gimbal-control.md)
+   * [Gimbal (Mount) Control Setup](advanced-gimbal-control.md)
    * [Switching State Estimators](advanced-switching_state_estimators.md)
    * [Docker Containers](advanced-docker.md)
    * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
