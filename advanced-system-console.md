@@ -11,7 +11,8 @@ There are multiple shells, but only one console: The system console is the locat
 
 > **Info** 
 > USB shell: To just run a few quick commands or test an application connecting to the USB
-> shell is sufficient. **To use it, boot the system without the microSD card inserted.** 
+> shell is sufficient. **To use it, boot the system without the microSD card inserted** 
+> (with the microSD, the mavlink shell can be used instead, see below).
 > The hardware serial console is only needed for boot debugging or when USB should be used
 > for MAVLink to connect a [GCS](qgroundcontrol-intro.md).
 
@@ -107,6 +108,12 @@ nsh> ls
 nsh> free
 ```
 
+## MAVLink Shell
+For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be
+accessed via mavlink. This works via serial link or WiFi (UDP/TCP). Make sure
+that QGC is not running, then start the shell with e.g.
+`./Tools/mavlink_shell.py /dev/ttyACM0` (use `-h` to get a description of all
+available arguments).
 
 # Snapdragon DSP Console
 When you are connected to your Snapdragon board via usb you have access to the px4 shell on the posix side of things.
