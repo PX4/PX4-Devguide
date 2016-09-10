@@ -36,7 +36,7 @@ After setting up the PX4 development environment, follow these steps to put the 
 4. Flash bootloader using dfu-util: `sudo dfu-util -d 0483:df11 -a 0 -s 0x08000000 -D crazyflie_bl.bin` and unplug CF2 when done
 	- If successful, then the yellow LED should blink when plugging in again
 
-5. Grab the [Firmware](https://github.com/PX4/Bootloader)
+5. Grab the [Firmware](https://github.com/PX4/Firmware)
 
 6. Compile with `make crazyflie_default upload`
 
@@ -48,11 +48,23 @@ After setting up the PX4 development environment, follow these steps to put the 
 
 ## Wireless
 
-NOTE: The drivers for wireless communication are still in development and not fully available.
-
 The onboard nRF module allows connecting to the board via Bluetooth or through the proprietary 2.4GHz Nordic ESB protocol.
+
 - A [Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/) is recommended.
-- To fly the CF2, currently only the Crazyflie phone app is supported via Bluetooth
+- To fly the CF2 right away, the Crazyflie phone app is supported via Bluetooth
+
+Using the official Bitcraze **Crazyflie phone app**
+
+- Connect via Bluetooth
+- Change mode in settings to 1 or 2
+- Calibrate via QGC
+
+
+Connecting via **MAVLink**
+
+- Use a Crazyradio PA alongside a compatible GCS
+- See [cfbridge](https://github.com/dennisss/cfbridge) for how to connect any UDP capable GCS to the radio
+
 
 ## Flying
 
