@@ -74,8 +74,8 @@ JLinkGDBServer -select USB=0 -device STM32F429AI -if SWD-DP -speed 20000
 
 ```bash
 arm-none-eabi-gdb
-gdb> tar ext :2331
-gdb> load aerofcv1_bl.elf
+  (gdb) tar ext :2331
+  (gdb) load aerofcv1_bl.elf
 ```
 
 ### Troubleshooting
