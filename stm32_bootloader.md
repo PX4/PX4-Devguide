@@ -30,6 +30,7 @@ After this step a range of elf files for all supported boards are present in the
   * Connect the USB power cable
   * Connect the JTAG cable
 
+### Black Magic / Dronecode Probe
 
 #### Using the right serial port
 
@@ -47,6 +48,33 @@ arm-none-eabi-gdb
         ...
         Transfer rate: 17 KB/sec, 828 bytes/write.
   (gdb) kill
+```
+
+### J-Link
+
+These instructions are for the [J-Link GDB server](https://www.segger.com/jlink-gdb-server.html).
+
+#### Prerequisites
+
+[Download the J-Link software](https://www.segger.com/downloads/jlink#) from the Segger website and install it according to their instructions.
+
+#### Run the JLink GDB server
+
+FMUv1:
+```bash
+JLinkGDBServer -select USB=0 -device STM32F405RG -if SWD-DP -speed 20000
+```
+
+AeroFC:
+```bash
+JLinkGDBServer -select USB=0 -device STM32F429AI -if SWD-DP -speed 20000
+```
+
+#### Connect GDB
+
+```bash
+arm-none-eabi-gdb
+gdb> tar ext :2331
 ```
 
 ### Troubleshooting
