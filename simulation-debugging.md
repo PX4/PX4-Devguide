@@ -6,9 +6,6 @@ As the simulation is running on the host machine, all the desktop development to
 
 The Clang address sanitizer can help to find alignment (bus) errors and other memory faults like segmentation fauls. The command below sets the right compile options.
 
-
-<div class="host-code"></div>
-
 ```sh
 make clean # only required on first address sanitizer run after a normal build
 MEMORY_DEBUG=1 make posix jmavsim
@@ -16,15 +13,11 @@ MEMORY_DEBUG=1 make posix jmavsim
 
 ## Valgrind
 
-<div class="host-code"></div>
-
 ```sh
 brew install valgrind
 ```
 
 or
-
-<div class="host-code"></div>
 
 ```sh
 sudo apt-get install valgrind
@@ -37,8 +30,6 @@ Add instructions how to run Valgrind
 ## Start combinations
 
 SITL can be launched with and without debugger attached and with either jMAVSim or Gazebo as simulation backend. This results in the start options below:
-
-<div class="host-code"></div>
 
 ```sh
 make posix_sitl_default jmavsim
@@ -60,8 +51,6 @@ make posix_sitl_lpe gazebo___lldb
 
 This will start the debugger and launch the SITL application. In order to break into the debugger shell and halt the execution, hit ```CTRL-C```:
 
-<div class="host-code"></div>
-
 ```bash
 Process 16529 stopped
 * thread #1: tid = 0x114e6d, 0x00007fff90f4430a libsystem_kernel.dylib`__read_nocancel + 10, name = 'px4', queue = 'com.apple.main-thread', stop reason = signal SIGSTOP
@@ -74,4 +63,16 @@ libsystem_kernel.dylib`__read_nocancel:
 (lldb) 
 ```
 
-The lldb or gdb shells behave like normal sessions, please refer to the LLDB / GDB documentation.
+In order to not have the DriverFrameworks scheduling interfere with the debugging session ```SIGCONT``` should be masked in LLDB and GDB:
+
+```bash
+(lldb) process handle SIGCONT -n false -p false -s false
+```
+
+Or in the case of GDB:
+
+```
+(gdb) handle SIGCONT noprint nostop
+```
+
+After that the The lldb or gdb shells behave like normal sessions, please refer to the LLDB / GDB documentation.
