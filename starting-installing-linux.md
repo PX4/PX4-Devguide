@@ -118,6 +118,8 @@ A sysroot is required to provide the libraries and header files needed to cross 
 
 The qrlSDK sysroot provies the required header files and libraries for the camera, GPU, etc.
 
+Download the file [Flight_3.1.1_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) and save it in `cross_toolchain/download/`.
+
 ```sh
 cd cross_toolchain
 unset HEXAGON_ARM_SYSROOT
