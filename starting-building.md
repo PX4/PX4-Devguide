@@ -123,7 +123,7 @@ pxh>
 
 ### Parrot Bebop
 
-Support for the Bebop is really early stage and is not ready for mainstream use yet.
+Support for the Bebop is really early stage and should be used very carefully.
 
 #### Build it
 ```sh
@@ -132,26 +132,47 @@ make posix_bebop_default
 ```
 
 Turn on your Bebop and connect your host machine with the Bebop's wifi. Then, press the power button
-four times to enable ADB and start the telnet daemon.
+four times to enable ADB and to start the telnet daemon.
 
 ```sh
 make posix_bebop_default upload
 ```
 
-Note this will also copy px4.config file.
+This will upload the PX4 mainapp into /usr/bin and create the file /home/root/parameters if not already 
+present. In addition, we need the Bebop's mixer file and the px4.config. Currently, both files have
+to be copied manually using the following commands.
+```sh
+adb connect 192.168.42.1:9050
+adb push ROMFS/px4fmu_common/mixers/bebop.main.mix /home/root
+adb push posix-configs/bebop/px4.config /home/root
+adb disconnect
+```
 
 #### Run it
-Connect to the Bebop's wifi and press the power button four times.
+Connect to the Bebop's wifi and press the power button four times. Next,
+connect with the Bebop via telnet or adb shell and run the commands bellow.
 
 ```sh
 telnet 192.168.42.1
 ```
-Run px4 with:
+
+Kill the Bebop's proprietary driver with 
 ```sh
-px4
+kk
+```
+and start the PX4 mainapp with:
+```sh
+px4 /home/root/px4.config
 ```
 
-You can alternatively use adb shell to start the px4 program.
+In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both, 
+the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors
+and setup your joystick device.
+
+Currently, the offsets of the magnetometer computed by the sensor calibration are not accurate enough. This
+leads to drifts in the yaw estimation, especially in east/west direction. To fix this issue for now,
+point the airframe to the eastern compass point, read the magnetometer outputs of the X- and Y-axis
+and adjust the offsets accordingly by hand.
 
 ### QuRT / Snapdragon based boards
 
