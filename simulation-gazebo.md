@@ -40,6 +40,8 @@ If you plan to use PX4 with ROS, make sure to follow the [Gazebo version guide f
 
 Follow the [Linux installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&ver=7.0&cat=install) for Gazebo 7.
 
+Make sure to have both installed: `gazebo7` and `libgazebo7-dev`.
+
 ## Running the Simulation
 
 From within the source directory of the PX4 Firmware run the PX4 SITL with one of the airframes (Quads, planes and VTOL are supported, including optical flow):
