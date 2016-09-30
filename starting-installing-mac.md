@@ -35,6 +35,10 @@ sudo easy_install pip
 sudo pip install pyserial empy
 ```
 
+### Java for jMAVSim
+
+If you're intending to use jMAVSim, you need to install [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+
 ## Snapdragon Flight
 
 Developers working on Snapdragon Flight should use an Ubuntu VM for the time being and follow the Linux instructions. Qualcomm provides reliable tooling for Ubuntu exclusively. The PX4 dev team had the most consistent experience with VMWare, in particular when it comes to USB stability.
