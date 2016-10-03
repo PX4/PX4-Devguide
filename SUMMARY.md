@@ -98,6 +98,7 @@
    * [Switching State Estimators](advanced-switching_state_estimators.md)
    * [Docker Containers](advanced-docker.md)
    * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
+   * [Out-of-tree Modules](advanced-out-of-tree-modules.md)
    * [ULog File Format](advanced-ulog-file-format.md)
    * [Licenses](advanced-licenses.md)
 * [Software Update](software_update.md)
