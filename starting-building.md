@@ -80,10 +80,10 @@ cd Firmware
 make posix_rpi_cross upload # for cross-compiler build
 ```
 
-Then, connect over ssh and run it with :
+Then, connect over ssh and run it with (as root):
 
 ```sh
-./px4 px4.config
+sudo ./px4 px4.config
 ```
 
 #### Native build
@@ -96,17 +96,15 @@ make posix_rpi_native # for native build
 ```
 
 The "px4" executable file is in the directory build_posix_rpi_native/src/firmware/posix.
-Run it directly with :
+Run it directly with:
 
 ```sh
-./build_posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
+sudo ./build_posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
 ```
 
-A successful build followed by executing px4 will give you this :
+A successful build followed by executing px4 will give you something like this:
 
 ```sh
-[init] shell id: 1996021760
-[init] task name: px4
 
 ______  __   __    ___
 | ___ \ \ \ / /   /   |
@@ -115,7 +113,7 @@ ______  __   __    ___
 | |     / /^\ \ \___  |
 \_|     \/   \/     |_/
 
-Ready to fly.
+px4 starting.
 
 
 pxh>
