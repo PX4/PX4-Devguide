@@ -38,7 +38,7 @@ make posix_sitl_default
   replay, the build system knows through the `replay` environment variable that
   it's in replay mode.
 - Add ORB publisher rules file in
-  `build_posix_sitl_default_replay/src/firmware/posix/rootfs/orb_publisher.rules`.
+  `build_posix_sitl_default_replay/tmp/rootfs/orb_publisher.rules`.
   This file defines which module is allowed to publish which messages. It has
   the following format:
 ```
@@ -63,7 +63,7 @@ ignore_others: true
   to be disabled for replay.
 
 - Optional: setup parameter overrides in the file
-  `build_posix_sitl_default_replay/src/firmware/posix/rootfs/replay_params.txt`.
+  `build_posix_sitl_default_replay/tmp/rootfs/replay_params.txt`.
   This file should contain a list of `<param_name> <value>`, like:
 ```
 EKF2_GB_NOISE 0.001
