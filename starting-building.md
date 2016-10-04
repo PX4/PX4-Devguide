@@ -169,11 +169,6 @@ In order to fly the Bebop, connect a joystick device with your host machine and 
 the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors
 and setup your joystick device.
 
-Currently, the offsets of the magnetometer computed by the sensor calibration are not accurate enough. This
-leads to drifts in the yaw estimation, especially in east/west direction. To fix this issue for now,
-point the airframe to the eastern compass point, read the magnetometer outputs of the X- and Y-axis
-and adjust the offsets accordingly by hand.
-
 ### QuRT / Snapdragon based boards
 
 #### Build it
