@@ -89,6 +89,14 @@ nullptr
 };
 ```
 
+Then make sure to enable the stream, for example by adding the following line to
+the startup script (`-r` configures the streaming rate, `-u` identifies the
+mavlink channel on UDP port 14556):
+
+```
+mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
+```
+
 
 # Receiving Custom MAVLink Messages
 This section explains how to receive a message over mavlink and publish it to
