@@ -17,7 +17,11 @@ All contributions have to be under the permissive [BSD 3-clause license](https:/
 Please use descriptive, multi-paragraph commit messages for all non-trivial changes. Structure them well so they make sense in the one-line summary but also provide full detail.
 
 ```
-Header line: Explain the change in one sentence. Fixes #1234
+Component: Explain the change in one sentence. Fixes #1234
+
+Prepend the software component to the start of the summary
+line, either by the module name or a description of it.
+(e.g. "mc_att_ctrl" or "multicopter attitude controller").
 
 If the issue number is appended as <Fixes #1234>, Github
 will automatically close the issue when the commit is
