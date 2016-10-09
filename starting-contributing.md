@@ -12,6 +12,16 @@ To contribute new functionality, [sign up for Github](https://help.github.com/ar
 
 All contributions have to be under the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause) and all code must not impose any further constraints on the use.
 
+## Commits and Commit Messages
+
+Please use descriptive, multi-paragraph commit messages for all non-trivial changes. Structure them well so they make sense in the one-line summary but also provide full detail.
+
+```
+
+```
+
+**Use ```git commit -s``` to sign off on all of your commits.**
+
 ## Tests Flight Results
 
 Test flights are important for quality assurance. Please upload the logs from the microSD card to [Log Muncher](http://logs.uaventure.com) and share the link on the [forum](http://groups.google.com/group/px4users) along with a verbal flight report.
