@@ -17,10 +17,26 @@ All contributions have to be under the permissive [BSD 3-clause license](https:/
 Please use descriptive, multi-paragraph commit messages for all non-trivial changes. Structure them well so they make sense in the one-line summary but also provide full detail.
 
 ```
+Header line: Explain the change in one sentence. Fixes #1234
 
+If the issue number is appended as <Fixes #1234>, Github
+will automatically close the issue when the commit is
+merged to the master branch.
+
+The body of the message can contain several paragraphs.
+Describe in detail what you changed. Link issues and flight
+logs either related to this fix or to the testing results
+of this commit.
+
+Describe the change and why you changed it, avoid to
+paraphrase the code change (Good: "Adds an additional
+safety check for vehicles with low quality GPS reception".
+Bad: "Add gps_reception_check() function").
+
+Reported-by: Name <email@px4.io>
 ```
 
-**Use ```git commit -s``` to sign off on all of your commits.**
+**Use ```git commit -s``` to sign off on all of your commits.** This will add ```signed-off-by:``` with your name and email as the last line.
 
 ## Tests Flight Results
 
