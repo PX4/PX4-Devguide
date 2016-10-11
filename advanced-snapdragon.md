@@ -340,9 +340,18 @@ Is the module listed in the [cmake config](https://github.com/PX4/Firmware/blob/
 
 ### krait update param XXX failed on startup
 
-If you get the above error when starting px4, try 
-- [upgrading the Linux image](#upgradingreplacing-the-linux-image) 
-- and [updating the ADSP firmware](#updating-the-adsp-firmware)
+```
+ERROR [platforms__posix__px4_layer] krait update param 297 failed
+ERROR [platforms__posix__px4_layer] krait update param 646 failed
+
+px4 starting.
+ERROR [muorb] Initialize Error calling the uorb fastrpc initalize method..
+ERROR [muorb] ERROR: FastRpcWrapper Not Initialized
+```
+
+If you get errors like the above when starting px4, try
+- [upgrading the Linux image](#upgradingreplacing-the-linux-image)
+- and [updating the ADSP firmware](#updating-the-adsp-firmware). Also try to do this from a native Linux installation instead of a virtual machine. There have been [reports](https://github.com/PX4/Firmware/issues/5303) where it didn't seem to work when done in a virtual machine.
 - then [rebuild the px4 software](http://dev.px4.io/starting-building.html#building-px4-software), by first completely deleting your existing Firmware repo and then recloning it [as described here](http://dev.px4.io/starting-building.html#compiling-on-the-console)
 - and finally [rebuild and re-run it](http://dev.px4.io/starting-building.html#qurt--snapdragon-based-boards)
 
