@@ -23,15 +23,8 @@ brew update
 brew install git bash-completion genromfs kconfig-frontends gcc-arm-none-eabi
 brew install astyle cmake ninja
 # simulation tools
-brew install ant graphviz sdformat3 eigen
+brew install ant graphviz sdformat3 eigen protobuf
 brew install homebrew/science/opencv
-```
-
-We need to get an older version of protobuf (`< 3.0.0`).
-
-```sh
-brew tap homebrew/versions
-brew install homebrew/versions/protobuf260
 ```
 
 Then install the required python packages:
