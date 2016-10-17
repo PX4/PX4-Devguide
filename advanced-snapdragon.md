@@ -104,6 +104,7 @@ And push it back:
 
 ```sh
 adb push q6-admin.sh /usr/local/qr-linux/q6-admin.sh
+adb shell chmod +x /usr/local/qr-linux/q6-admin.sh
 ```
 
 Comment out the while loops causing boot to hang:
@@ -354,6 +355,8 @@ If you get errors like the above when starting px4, try
 - and [updating the ADSP firmware](#updating-the-adsp-firmware). Also try to do this from a native Linux installation instead of a virtual machine. There have been [reports](https://github.com/PX4/Firmware/issues/5303) where it didn't seem to work when done in a virtual machine.
 - then [rebuild the px4 software](http://dev.px4.io/starting-building.html#building-px4-software), by first completely deleting your existing Firmware repo and then recloning it [as described here](http://dev.px4.io/starting-building.html#compiling-on-the-console)
 - and finally [rebuild and re-run it](http://dev.px4.io/starting-building.html#qurt--snapdragon-based-boards)
+- make sure the executable bit of `/usr/local/qr-linux/q6-admin.sh` is set:
+  `adb shell chmod +x /usr/local/qr-linux/q6-admin.sh`
 
 ### ADSP restarts
 
