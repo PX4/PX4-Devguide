@@ -29,7 +29,7 @@ Stack usage is calculated with stack coloring and thus is not the current usage,
 ### Heap allocations
 Dynamic heap allocations can be traced on POSIX in SITL with [gperftools](https://github.com/gperftools/gperftools).
 Once installed, it can be used with:
-  * Run jmavsim: `cd Tools/jMAVSim/out/production && java -Djava.ext.dirs= -jar jmavsim_run.jar -udp 127.0.0.1:14560`
+  * Run jmavsim: `./Tools/jmavsim_run.sh`
   * Then:
 
 ```bash
