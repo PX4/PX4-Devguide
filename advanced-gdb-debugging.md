@@ -33,10 +33,10 @@ Once installed, it can be used with:
   * Then:
 
 ```bash
-cd build_posix_sitl_default/src/firmware/posix
+cd build_posix_sitl_default/tmp
 export HEAPPROFILE=/tmp/heapprofile.hprof
-env LD_PRELOAD=/lib64/libtcmalloc.so ./px4 ../../../../posix-configs/SITL/init/rcS_jmavsim_iris
-pprof --pdf px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
+env LD_PRELOAD=/lib64/libtcmalloc.so ../src/firmware/posix/px4 posix-configs/SITL/init/lpe/iris
+pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
 It will generate a pdf with a graph of the heap allocations.
