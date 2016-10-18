@@ -21,7 +21,7 @@ Update the package list and install the following dependencies for all PX4 build
 
   * NuttX based hardware: [Pixhawk](hardware-pixhawk.md), [Pixfalcon](hardware-pixfalcon.md)
   * Snapdragon Flight hardware: [Snapdragon](hardware-snapdragon.md)
-  * Raspberry Pi hardware: [Raspberry Pi 2](hardware-pi2.md)
+  * Raspberry Pi hardware: [Raspberry Pi 2](hardware-rpi.md)
   * Host simulation: [jMAVSim SITL](simulation-sitl.md) and [Gazebo SITL](simulation-gazebo.md)
 
 > **Info** Install the [Ninja Build System](http://dev.px4.io/starting-installing-linux-boutique.html#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
