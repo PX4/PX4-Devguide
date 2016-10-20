@@ -8,11 +8,19 @@ PX4 supports HITL for multicopters (using jMAVSim) and fixed wing (using X-Plane
 
 ![](images/gcs/qgc_hil_config.png)
 
-## Switch to Joystick Input
+## Using jMAVSim (Quadrotor)
 
-If a joystick is preferred over a radio remote control, set the parameter `COM_RC_IN_MODE` to `1`. It can be found in the Commander parameter group.
+- Make sure QGroundControl is not running (or accessing the device via serial port)
+- Run jMAVSim in HITL mode (replace the serial port if necessary):
+  ```
+  ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600
+  ```
+- The console will display mavlink text messages from the autopilot.
+- Then run QGroundControl and connect via default UDP configuration.
 
-## Enable Remote Access in X-Plane
+
+## Using X-Plane
+#### Enable Remote Access in X-Plane
 
 In X-Plane two key settings have to be made: In Settings -> Data Input and Output, set these checkboxes:
 
@@ -22,11 +30,15 @@ In Settings -> Net Connections in the Data tab, set localhost and port 49005 as 
 
 ![](images/gcs/xplane_net_config.png)
 
-## Enable HITL in QGroundControl
+#### Enable HITL in QGroundControl
 
 Widgets -> HIL Config, then select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
 
 ![](images/gcs/qgc_sim_run.png)
+
+## Switch to Joystick Input
+
+If a joystick is preferred over a radio remote control, set the parameter `COM_RC_IN_MODE` to `1`. It can be found in the Commander parameter group.
 
 ## Fly an Autonomous Mission in HITL
 
