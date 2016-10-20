@@ -23,7 +23,8 @@ Users can visit this webpage and upload log files directly: [http://logs.uaventu
 ### Negative
 * analysis is very constrained, no customization possible
 
-## [FlightPlot](https://github.com/DrTon/FlightPlot)
+
+## [FlightPlot](https://github.com/PX4/FlightPlot)
 
 ![](https://pixhawk.org/_media/dev/flightplot-0.2.16-screenshot.png)
 
