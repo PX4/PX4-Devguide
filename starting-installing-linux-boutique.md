@@ -129,16 +129,16 @@ Log out and log in for changes to take effect! Also remove the device and plug i
 
 ### Toolchain Installation
 
-Execute the script below to either install GCC 4.8 or 5.4:
+Execute the script below to either install GCC 4.9 or 5.4:
 
-**GCC 4.8**:
+**GCC 4.9**:
 
 ```sh
 pushd .
 cd ~
-wget https://launchpadlibrarian.net/186124160/gcc-arm-none-eabi-4_8-2014q3-20140805-linux.tar.bz2
-tar -jxf gcc-arm-none-eabi-4_8-2014q3-20140805-linux.tar.bz2
-exportline="export PATH=$HOME/gcc-arm-none-eabi-4_8-2014q3/bin:\$PATH"
+wget https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update/+download/gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2
+tar -jxf gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2
+exportline="export PATH=$HOME/gcc-arm-none-eabi-4_9-2015q3/bin:\$PATH"
 if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
 . ~/.profile
 popd
