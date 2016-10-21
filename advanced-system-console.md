@@ -124,6 +124,8 @@ With the Snapdragon connected via USB, open the mini-dm to see the output of the
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
+Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+
 Run the main app on the linaro side:
 ```
 cd /home/linaro
