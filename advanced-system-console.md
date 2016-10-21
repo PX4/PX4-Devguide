@@ -121,7 +121,7 @@ The interaction with the DSP side (QuRT) is enabled with the `qshell` posix app 
 
 With the Snapdragon connected via USB, open the mini-dm to see the output of the DSP:
 ```
-${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
+${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
 Run the main app on the linaro side:

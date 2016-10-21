@@ -153,7 +153,7 @@ Messages from the DSP can be viewed using mini-dm.
 
 
 ```sh
-$HOME/Qualcomm/Hexagon_SDK/3.0/tools/debug/mini-dm/Linux_Debug/mini-dm
+${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
 ### Raspberry Pi hardware
