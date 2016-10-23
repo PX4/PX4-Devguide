@@ -28,8 +28,7 @@ Users can visit this webpage and upload log files directly: [http://logs.uaventu
 
 ![](https://pixhawk.org/_media/dev/flightplot-0.2.16-screenshot.png)
 
-### Binary Download
-<iframe src="https://s3.amazonaws.com/flightplot/releases/latest.html"></iframe>
+* [FlightPlot Downloads](https://s3.amazonaws.com/flightplot/releases/latest.html)
 
 ### Positive
 * java based, cross-platform
