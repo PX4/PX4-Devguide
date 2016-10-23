@@ -203,8 +203,10 @@ adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 Run the DSP debug monitor:
 
 ```sh
-${HEXAGON_SDK_ROOT}/tools/mini-dm/Linux_Debug/mini-dm
+${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
+
+Note: alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
 
 Go back to ADB shell and run px4:
 
