@@ -136,7 +136,7 @@ four times to enable ADB and to start the telnet daemon.
 make posix_bebop_default upload
 ```
 
-This will upload the PX4 mainapp into /usr/bin and create the file /home/root/parameters if not already 
+This will upload the PX4 mainapp into /usr/bin and create the file /home/root/parameters if not already
 present. In addition, we need the Bebop's mixer file and the px4.config. Currently, both files have
 to be copied manually using the following commands.
 ```sh
@@ -154,7 +154,7 @@ connect with the Bebop via telnet or adb shell and run the commands bellow.
 telnet 192.168.42.1
 ```
 
-Kill the Bebop's proprietary driver with 
+Kill the Bebop's proprietary driver with
 ```sh
 kk
 ```
@@ -163,7 +163,7 @@ and start the PX4 mainapp with:
 px4 /home/root/px4.config
 ```
 
-In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both, 
+In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both,
 the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors
 and setup your joystick device.
 
