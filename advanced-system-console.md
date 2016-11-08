@@ -11,8 +11,7 @@ There are multiple shells, but only one console: The system console is the locat
 
 > **Info**
 > USB shell: To just run a few quick commands or test an application connecting to the USB
-> shell is sufficient. **To use it, boot the system without the microSD card inserted**
-> (with the microSD, the mavlink shell can be used instead, see below).
+> shell is sufficient. The mavlink shell can be used instead, see below.
 > The hardware serial console is only needed for boot debugging or when USB should be used
 > for MAVLink to connect a [GCS](qgroundcontrol-intro.md).
 
