@@ -42,6 +42,14 @@ pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pd
 It will generate a pdf with a graph of the heap allocations.
 The numbers in the graph will all be zero, because they are in MB. Just look at the percentages instead. They show the live memory (of the node and the subtree), meaning the memory that was still in use at the end.
 
+If it does not generate heap dumps while running the `px4` app you might need to change the settings of the profiler. On some systems it is necessary to set an interval time when to write the dumps:
+
+```
+# Specify interval in seconds
+export HEAP_PROFILE_TIME_INTERVAL=10
+```
+
+See the [gperftools docs](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/heapprofile.html) for more information.
 
 ## Sending MAVLink debug key / value pairs
 
