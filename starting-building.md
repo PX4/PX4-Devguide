@@ -119,6 +119,14 @@ px4 starting.
 pxh>
 ```
 
+#### Autostart
+To autostart px4, add the following to the file `/etc/rc.local` (adjust it
+accordingly if you use native build), right before the `exit 0` line:
+```
+cd /home/pi && ./px4 -d px4.config > px4.log
+```
+
+
 ### Parrot Bebop
 
 Support for the Bebop is really early stage and should be used very carefully.
