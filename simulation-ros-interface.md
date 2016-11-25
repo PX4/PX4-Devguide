@@ -44,11 +44,13 @@ There are ROS launch scripts available to run the simulation wrapped in ROS:
 
 To run SITL wrapped in ROS the ROS environment needs to be updated, then launch as usual:
 
+(optional): only source the catkin workspace if you compiled MAVROS or other ROS packages from source
+
 ```sh
 cd <Firmware_clone>
 make posix_sitl_default gazebo
-source ~/catkin_ws/devel/setup.bash
-source Tools/setup_gazebo.bash $(pwd) build_posix_sitl_default
+source ~/catkin_ws/devel/setup.bash    // (optional)
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build_posix_sitl_default
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 posix_sitl.launch
