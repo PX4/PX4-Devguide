@@ -6,9 +6,7 @@ The Pixhawk XRacer board family is optimized for small racing quads and planes. 
 
 ## Quick Summary
 
-<aside class="tip">
-The main hardware documentation is here: https://pixhawk.org/modules/pixracer
-</aside>
+> ** The main hardware documentation is here: https://pixhawk.org/modules/pixracer **
 
   * Main System-on-Chip: [STM32F427VIT6 rev.3](http://www.st.com/web/en/catalog/mmc/FM141/SC1169/SS1577/LN1789)
     * CPU: 180 MHz ARM Cortex M4 with single-precision FPU
