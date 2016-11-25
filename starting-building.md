@@ -225,7 +225,7 @@ cd /home/linaro
 
 Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
 
-#### Auto-start px4
+#### Autostart
 
 To run the px4 as soon as the Snapdragon has booted, you can add the startup to `rc.local`:
 

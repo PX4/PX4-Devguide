@@ -19,9 +19,11 @@ And then you have to logout and login again, as this is only changed after a new
 
 Update the package list and install the following dependencies for all PX4 build targets. PX4 supports four main families:
 
-  * NuttX based hardware: [Pixhawk](hardware-pixhawk.md), [Pixfalcon](hardware-pixfalcon.md)
+  * NuttX based hardware: [Pixhawk](hardware-pixhawk.md), [Pixfalcon](hardware-pixfalcon.md),
+	[Pixracer](hardware-pixracer.md), [Crazyflie](hardware-crazyflie2.md),
+	[Intel Aero](hardware-intel-aero.md)
   * Snapdragon Flight hardware: [Snapdragon](hardware-snapdragon.md)
-  * Raspberry Pi hardware: [Raspberry Pi 2](hardware-rpi.md)
+  * Linux-based hardware: [Raspberry Pi 2/3](hardware-rpi.md), Parrot Bebop
   * Host simulation: [jMAVSim SITL](simulation-sitl.md) and [Gazebo SITL](simulation-gazebo.md)
 
 > **Info** Install the [Ninja Build System](http://dev.px4.io/starting-installing-linux-boutique.html#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
