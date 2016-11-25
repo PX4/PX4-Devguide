@@ -4,6 +4,8 @@ There are several software packages that exist to analyze PX4 flight logs. They 
 
 ## [Log Muncher](http://logs.uaventure.com)
 
+Note: Log Muncher can only be used with the previous log format (.px4log).
+
 ### Upload
 
 Users can visit this webpage and upload log files directly: [http://logs.uaventure.com/](http://logs.uaventure.com/)
@@ -17,11 +19,28 @@ Users can visit this webpage and upload log files directly: [http://logs.uaventu
 [Example Log](http://logs.uaventure.com/view/KwTFDaheRueMNmFRJQ3huH)
 
 ### Postive
-*  web based, great for end-users
-*  user can upload load and then share report with others
+* web based, great for end-users
+* user can upload, load and then share report with others
 
 ### Negative
 * analysis is very constrained, no customization possible
+
+
+## [Flight Review](http://logs.px4.io)
+
+Flight Review is the successor of Log Muncher, used in combination with the new
+ULog logging format.
+
+### Example
+![](images/flight_log_analysis/flight-review-example.png)
+
+### Postive
+* web based, great for end-users
+* user can upload, load and then share report with others
+* interactive plots
+
+### Negative
+* no customization possible
 
 
 ## [FlightPlot](https://github.com/PX4/FlightPlot)
