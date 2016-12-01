@@ -24,6 +24,7 @@
    * [Optical Flow and LIDAR](flow_lidar_setup.md)
    * [Integration Testing](tutorial-integration-testing.md)
    * [Optical Flow Outdoors](optical-flow-outdoors.md)
+   * Tuning the ecl EKF
 * Simulation
    * [Basic Simulation](simulation-sitl.md)
    * [Gazebo Simulation](simulation-gazebo.md)
