@@ -34,8 +34,8 @@ The first is a mode entered into on start-up that provides rotation, vertical ve
 If these measurements are not present, the EKF will not start. When these measurements have been detected, the EKF will initialise the states and complete the tilt and yaw alignment. When tilt and yaw alignment is complete, the EKF can then transition to other modes of operation  enabling use of additional sensor data:
 
 * GPS North, East, Down position and velocity. GPS measurements will be used for position and velocity if the following conditions are met:
- * GPS use is enabled via setting of the EKF2_AID_MASK parameter
- * GPS quality checks have passed. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ_ parameters. 
+ * GPS use is enabled via setting of the EKF2_AID_MASK parameter.
+ * GPS quality checks have passed. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ<> parameters. 
  * GPS height can be used directly by the EKF via setting of the EKF2_HGT_MODE parameter.
 * Range finder distance to ground. Range finder data is used a by a single state filter to estimate the vertical position of the terrain relative to the height datum. When operating over a flat surface, the range finder data can also be used directly by the EKF to estimate height via setting of the EKF2_HGT_MODE parameter. 
 * Equivalent Airspeed (EAS) (also requires knowledge of the EAS to TAS ratio). This data can be used to estimate wind velocity and reduce drift when GPS is lost by setting EKF2_ARSP_THR to a positive value representing the minimum speed for airspeed measurements to be considered valid.
@@ -43,10 +43,8 @@ If these measurements are not present, the EKF will not start. When these measur
  * Valid range finder data is available
  * Optical flow use is enabled via setting of the EKF2_AID_MASK parameter
  * The quality measure returned by the flow sensor is greater than the minimum requirement set by the EKF2_OF_QMIN parameter
-* External vision system horizontal position. External vision horizontal position estimates will be used if the following conditions are met:
- * Vision position fusion is enabled via the EKF2_AID_MASK parameter
-* External vision system vertical position will be used if the following conditions are met:
- * Use of external vsion dat for height is enabled via setting of the EKF2_HGT_MODE parameter.
+* External vision system horizontal position. External vision horizontal position estimates will be used if bit position 3 in the EKF2_AID_MASK parameter is true
+* External vision system vertical position will be used if the the EKF2_HGT_MODE parameter is set to 3.
 * External vision system pose will be used for yaw angle
 
 ## How do I use the 'ecl' library EKF?
