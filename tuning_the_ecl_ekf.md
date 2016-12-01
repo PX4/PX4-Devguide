@@ -28,16 +28,26 @@ The EKF has different modes of operation that use different combinations of sens
 The first is a mode entered into on start-up that provides rotation, vertical velocity,  vertical position, IMU delta angle bias and IMU delta velocity bias estimates. It uses the following measurements which are mandatory for all modes of operation:
 
 * Three axis body fixed Inertial Measurement unit delta angle and delta velocity data at a minimum rate of 100Hz. Note: Coning corrections should be applied to the IMU delta angle data before it is used by the EKF.
-* Three axis body fixed magnetometer data at minimum rate of 5Hz
+* Three axis body fixed magnetometer data OR external vision system pose data at a minimum rate of 5Hz 
 * A source of height data - either GPS, barometric pressure, range finder or external vision at a minimum rate of 5Hz. Note: The primary source of height data is controlled by the EKF2_HGT_MODE parameter. 
 
 If these measurements are not present, the EKF will not start. When these measurements have been detected, the EKF will initialise the states and complete the tilt and yaw alignment. When tilt and yaw alignment is complete, the EKF can then transition to other modes of operation  enabling use of additional sensor data:
 
-* GPS North, East, Down position and velocity. GPS measurements will be used for position and velocity if available and when GPS quality checks have passed. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ_ parameters. GPS height can be used directly by the EKF by setting the EKF2_HGT_MODE parameter to 1.
-* Range finder distance to ground. Range finder data is used a by a single state filter to estimate the vertical position of the terrain relative to the height datum. When operating over a flat surface, the range finder data can also be used directly by the EKF to estimate height by setting the EKF2_HGT_MODE parameter to 2. 
-* Equivalent Airspeed (EAS) (also requires EAS to TAS ratio)
-* Optical Flow.
-* External Vision position and pose (eg Vicon)
+* GPS North, East, Down position and velocity. GPS measurements will be used for position and velocity if the following conditions are met:
+ * GPS use is enabled via setting of the EKF2_AID_MASK parameter
+ * GPS quality checks have passed. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ_ parameters. 
+ * GPS height can be used directly by the EKF via setting of the EKF2_HGT_MODE parameter.
+* Range finder distance to ground. Range finder data is used a by a single state filter to estimate the vertical position of the terrain relative to the height datum. When operating over a flat surface, the range finder data can also be used directly by the EKF to estimate height via setting of the EKF2_HGT_MODE parameter. 
+* Equivalent Airspeed (EAS) (also requires knowledge of the EAS to TAS ratio). This data can be used to estimate wind velocity and reduce drift when GPS is lost by setting EKF2_ARSP_THR to a positive value representing the minimum speed for airspeed measurements to be considered valid.
+* Optical Flow. Data from an attached optical flow sensor will be used if the following conditions are met:
+ * Valid range finder data is available
+ * Optical flow use is enabled via setting of the EKF2_AID_MASK parameter
+ * The quality measure returned by the flow sensor is greater than the minimum requirement set by the EKF2_OF_QMIN parameter
+* External vision system horizontal position. External vision horizontal position estimates will be used if the following conditions are met:
+ * Vision position fusion is enabled via the EKF2_AID_MASK parameter
+* External vision system vertical position will be used if the following conditions are met:
+ * Use of external vsion dat for height is enabled via setting of the EKF2_HGT_MODE parameter.
+* External vision system pose will be used for yaw angle
 
 ## How do I select the 'ecl' library EKF?
 The EKF is selected by setting the SYS_MC_EST_GROUP parameter to 2. 
