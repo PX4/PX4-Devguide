@@ -49,8 +49,8 @@ If these measurements are not present, the EKF will not start. When these measur
  * Use of external vsion dat for height is enabled via setting of the EKF2_HGT_MODE parameter.
 * External vision system pose will be used for yaw angle
 
-## How do I select the 'ecl' library EKF?
-The EKF is selected by setting the SYS_MC_EST_GROUP parameter to 2. 
+## How do I use the 'ecl' library EKF?
+Set the SYS_MC_EST_GROUP parameter to 2 to use the ecl EKF.
 
 How
 
