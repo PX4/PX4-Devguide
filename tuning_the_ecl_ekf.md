@@ -86,5 +86,6 @@ Internal Data:
  * [22 ... 23] Wind velocity NE (m/s)^2
  * [24 ... 28] Not Used
 * EKF measurement innovations
- * 
+ * Magnetometer XYZ (gauss) : Refer to mag_innov[3] in the ekf2_innovations message.
+ * Yaw angle:
 
