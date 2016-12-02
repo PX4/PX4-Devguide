@@ -26,7 +26,7 @@ The EKF uses the IMU data for state prediction only. IMU data is not used as an 
 ## What sensor measurements does it use?
 The EKF has different modes of operation that allow for different combinations of sensor measurements:
 
-On start-up the filter checks for a minimum viable combination of sensors and after initial atitude and height alignment is completed, enters a mode that provides rotation, vertical velocity,  vertical position, IMU delta angle bias and IMU delta velocity bias estimates. The following measurements that this mode uses are mandatory for all modes of operation:
+On start-up the filter checks for a minimum viable combination of sensors and after initial tilt, yaw and height alignment is completed, enters a mode that provides rotation, vertical velocity,  vertical position, IMU delta angle bias and IMU delta velocity bias estimates. The following measurements that this mode uses are mandatory for all modes of operation:
 
 * Three axis body fixed Inertial Measurement unit delta angle and delta velocity data at a minimum rate of 100Hz. Note: Coning corrections should be applied to the IMU delta angle data before it is used by the EKF.
 * Three axis body fixed magnetometer data OR external vision system pose data at a minimum rate of 5Hz 
@@ -86,4 +86,5 @@ Internal Data:
  * [22 ... 23] Wind velocity NE (m/s)^2
  * [24 ... 28] Not Used
 * EKF measurement innovations
+ * 
 
