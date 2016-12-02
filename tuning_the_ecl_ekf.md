@@ -123,4 +123,13 @@ The output complementary filter is used to propagate states forward from the fus
 * [0] Angular tracking error magnitude (rad)
 * [1] Velocity tracking error magntiude (m/s). The velocity tracking time constant can be adjusted using the EKF2_TAU_VEL parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the NED velocity outputs.
 * [2] Position tracking error magntiude (m). The position tracking time constant can be adjusted using the EKF2_TAU_POS parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the NED position outputs.
-  
+
+###EKF Errors
+The EKF constains internal error checking for badly conditioned state and covariance updates. Refer to the filter_fault_flags in the estimator_status message.
+
+###Observation Errors
+There are two categories of observation faults:
+
+* Loss of data. An example of this is a range finder failing to provide a return.
+* The innovation, which is the difference between the state prediction and sensor observation is excessive. An example of this is excessive vibration causing a large vertical position error, resulting in the barometer height measurement being rejected.
+
