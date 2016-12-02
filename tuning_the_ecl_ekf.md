@@ -87,5 +87,5 @@ Internal Data:
  * [24 ... 28] Not Used
 * EKF measurement innovations
  * Magnetometer XYZ (gauss) : Refer to mag_innov[3] in the ekf2_innovations message.
- * Yaw angle:
+ * Yaw angle : 
 
