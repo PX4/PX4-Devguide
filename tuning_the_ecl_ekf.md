@@ -52,10 +52,10 @@ If these measurements are not present, the EKF will not start. When these measur
 ## How do I use the 'ecl' library EKF?
 Set the SYS_MC_EST_GROUP parameter to 2 to use the ecl EKF.
 
-## How do I check the EKF perfomrance?
+## How do I check the EKF performance?
 EKF outputs, states and status data are published to a number of uORB topics which are logged to the SD card during flight.
 
-Output Data:
+###Output Data
 
 * Attitude output data: Refer to vehicle_attitude.msg for definitions.
 * Local position output data: Refer to vehicle_local_position.msg for definitions.
@@ -63,30 +63,39 @@ Output Data:
 * Global (WGS-84) output data: Refer to vehicle_global_position.msg for definitions.
 * Wind velocity output data: Refer to wind_estimate.msg for definitions.
 
-Internal Data:
+###States
 
-* EKF state vector: Refer to states[32] in estimator_status message. The index map for states[32] is as follows:
- * [0 ... 3] Quaternions
- * [4 ... 6] Velocity NED (m/s)
- * [7 ... 9] Position NED (m)
- * [10 ... 12] IMU delta angle bias XYZ (rad)
- * [13 ... 15] IMU delta velocity bias XYZ (m/s)
- * [16 ... 18] Earth magnetic field NED (gauss)
- * [19 ... 21] Body magnetic field XYZ (gauss)
- * [22 ... 23] Wind velocity NE (m/s)
- * [24 ... 32] Not Used
-* EKF state variances: Refer to covariances[28] in the estimator_status message. The index map for covariances[28] is as follows:
- * [0 ... 3] Quaternions
- * [4 ... 6] Velocity NED (m/s)^2
- * [7 ... 9] Position NED (m)^2
- * [10 ... 12] IMU delta angle bias XYZ (rad)^2
- * [13 ... 15] IMU delta velocity bias XYZ (m/s)^2
- * [16 ... 18] Earth magnetic field NED (gauss)^2
- * [19 ... 21] Body magnetic field XYZ (gauss)^2
- * [22 ... 23] Wind velocity NE (m/s)^2
- * [24 ... 28] Not Used
-* EKF measurement innovations
- * Magnetometer XYZ (gauss) : Refer to mag_innov[3] in the ekf2_innovations message.
- * Yaw angle (rad) : Refer to heading_innov in the ekf2_innovations message.
- * 
+Refer to states[32] in estimator_status message. The index map for states[32] is as follows:
+
+* [0 ... 3] Quaternions
+* [4 ... 6] Velocity NED (m/s)
+* [7 ... 9] Position NED (m)
+* [10 ... 12] IMU delta angle bias XYZ (rad)
+* [13 ... 15] IMU delta velocity bias XYZ (m/s)
+* [16 ... 18] Earth magnetic field NED (gauss)
+* [19 ... 21] Body magnetic field XYZ (gauss)
+* [22 ... 23] Wind velocity NE (m/s)
+* [24 ... 32] Not Used
+
+###State Variances
+Refer to covariances[28] in the estimator_status message. The index map for covariances[28] is as follows:
+
+* [0 ... 3] Quaternions
+* [4 ... 6] Velocity NED (m/s)^2
+* [7 ... 9] Position NED (m)^2
+* [10 ... 12] IMU delta angle bias XYZ (rad)^2
+* [13 ... 15] IMU delta velocity bias XYZ (m/s)^2
+* [16 ... 18] Earth magnetic field NED (gauss)^2
+* [19 ... 21] Body magnetic field XYZ (gauss)^2
+* [22 ... 23] Wind velocity NE (m/s)^2
+* [24 ... 28] Not Used
+
+###Observation Innovations
+
+* Magnetometer XYZ (gauss) : Refer to mag_innov[3] in the ekf2_innovations message.
+* Yaw angle (rad) : Refer to heading_innov in the ekf2_innovations message.
+* Velocity and position innovations : Refer to vel_pos_innov[6] in the ekf2_innovations. The index map for vel_pos_innov[6] is as follows:
+  * [0 ... 2] Velocity NED (m/s)
+  * [3 ... 5] Position NED (m)
+* True Airspeed (m/s) : Refer to airspeed_innov in the ekf2_innovations message.
 
