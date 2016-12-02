@@ -55,6 +55,25 @@ If these measurements are not present, the EKF will not start. When these measur
 ## How do I use the 'ecl' library EKF?
 Set the SYS_MC_EST_GROUP parameter to 2 to use the ecl EKF.
 
+## What are the advantages and disadvantages of the ecl EKF over other estimators?
+Like all estimators, much of the performance comes from the tuning to match sensor characteristics. Tuning is a compromise between accuracy and robustness and although we have attempted to provide a tune that meets the needs of most users, there will be applications where tuning changes are required. 
+
+No claims for accuracy relative to the legacy combination of attitude_estimator_q + local_position_estimator have been made and the best choice of estimator will depend on the application.
+
+### Disadvantages
+* The ecl EKF is a complex algorithm that requires a good understanding of extended Kalman filter theory and its application to navigation problems to tune successfully. It is therefore difficult for users that are not achieving good results to know what to change.
+* The ecl EKF uses more RAM and flash space
+* The ecl EKF requires more logging space.
+* The ecl EKF has had less flight time
+ 
+### Advantages
+* The ecl EKF is able to fuse data from sensors with different time delays in a mathematically consistent way which improves accuracy during dynamic manoeuvres once time delay parameters are tuned correctly.
+* The ecl EKF is capable of fusing a large range of different sensor types.
+* The ecl EKF detects and reports statistically significant inconsistencies in sensor data helping to diagnose sensor issues.
+* For fixed wing operation, the ecl EKF estimates wind speed with or without an airspeed sensor and is able to use the estimated wind in combination with airspeed measurements and sideslip assumptions to extend the dead-reckoning time avalable if GPS is lost in flight.
+* The ecl EKF estimates 3-axis accelerometer bias which improves accuracy for tailsitters and other vehicles that experience large attitude changes between flight phases.
+* The federated architecture (combined attitude and position/velocity estimation) means that attitude estimation benefits from all sensor measurements. This should provide the potential for improved attitude estimation if tuned correctly. 
+
 ## How do I check the EKF performance?
 EKF outputs, states and status data are published to a number of uORB topics which are logged to the SD card during flight.
 
@@ -146,12 +165,11 @@ Test levels are  available in the estimator_status message as follows:
 
 For a binary pass/fail summary for each sensor, refer to innovation_check_flags in the estimator_status message.
 
-##What should I do if my height is diverging?
+##What should I do if the height estimate is diverging?
 The most common cause of EKF height diverging away from GPS and altimeter measurements during flight is clipping and/or aliasing of the IMU measurements caused by vibration. If this is occurring, then the following signs should be evident in the data
 
 1. ekf2_innovations.vel_pos_innov[3] and  ekf2_innovations.vel_pos_innov[5] will both have the same sign.
 2. estimator_status.hgt_test_ratio will be greater than 1.0
-
 
 The recommended first step is to  esnure that the autopilot is isolated from the airframe using an effective isolatoin mounting system. An isolaton mount has 6 degrees of freedom, and therefore 6 resonant frequencies. As a general rule, the 6 resonant frequencies of the autopilot on the isolation mount should be above 25Hz to avoid interaction with the autopilot dynamics and below the frequency of the motors.
 
@@ -162,41 +180,58 @@ The EKF can be made more resistant to vibration induced height divergence by mak
 1. Double the value of the innovation gate for the primary height sensor. If using barometeric height this is EK2_EKF2_BARO_GATE.
 2. Increase the value of EKF2_ACC_NOISE to 0.5 initially. If divergence is still occurring,   increase in further increments of 0.1 but do not go above 1.0
 
-
 Note that the effect of these changes will make the EKF more sensitive to errors in GPS vertical velocity and barometric pressure.
 
-##What should i do if my position is diverging?
+##What should I do if the position estimate is diverging?
 The most common causues of position divergence are:
 
-* High vibration levels
-* Large gyro bias offsets
+* High vibration levels. 
+ * Fix by improving mechanical isolation of the autopilot. Increasing the value of EKF2_ACC_NOISE can help, but does make the EKF more vulnerable to GPS glitches
+* Large gyro bias offsets. 
+ * Fix by re-calibrating the gyro. Check for excessive temperature sensitivity (> 3 deg/sec bias change during warm-up from a cold start and replace the sensor if affected of insulate to to slow the rate of temeprature change.
 * Bad yaw alignment
+  * Check the magntometer calibration and alignment.
+  * Check the heading shown QGC is within within 15 deg truth
 * Poor GPS accuracy
+ * Check for interference
+ * Improve separation and shielding
+ * Check flying location for GPS signal obstructions and reflectors (nearboy tall buildings)
 * Loss of GPS
 
 Determining which of these is the primary casue requires a methodical approach to analysis of the EKF log data:
 
-1. Plot the velocty innovation test ratio - estimator_status.vel_test_ratio
-2. Plot the horizontal position innovation test ratio - estimator_status.pos_test_ratio
-3. Plot the height innovation test ratio - estimator_status.hgt_test_ratio
-4. Plot the magnetoemrer innovation test ratio - estimator_status.mag_test_ratio
-5. Plot the GPS receier reported speed accuracy - vehicle_gps_position.s_variance_m_s
-6. Plot the IMU delta angle state estimates - estimator_status.states[10], states[11] and states[12]
-7. Plot the vibration
+* Plot the velocty innovation test ratio - estimator_status.vel_test_ratio
+* Plot the horizontal position innovation test ratio - estimator_status.pos_test_ratio
+* Plot the height innovation test ratio - estimator_status.hgt_test_ratio
+* Plot the magnetoemrer innovation test ratio - estimator_status.mag_test_ratio
+* Plot the GPS receier reported speed accuracy - vehicle_gps_position.s_variance_m_s
+* Plot the IMU delta angle state estimates - estimator_status.states[10], states[11] and states[12]
+* Plot the EKF internal high frequency vibration metrics:
+  * Delta angle coning vibration - estimator_status.vibe[0]
+  * High frequency delta angle vibration - estimator_status.vibe[1]
+  * High frequency delta velocity vibration - estimator_status.vibe[2]
 
 During normal operation, all the test ratios should remain below 0.5 with only occasional spikes above this as shown in the example below from a successful flight:
 ![Position, Velocity, Height and Magnetometer Test Ratios](Screen Shot 2016-12-02 at 9.20.50 pm.png)
+The following plot shows the EKF vibration metrics for a multirotor with good isolation. The landing shock and the increased vibration during takeoff and landing can be seen. Insifficient data has been gathered with these metrics to provide specific advice on maximum thresholds.
+![](Screen Shot 2016-12-02 at 10.24.00 pm.png)
+The above vibration metrics are of limited value as the presence of vibration at a frequency close to the IMU sampling frequency (1kHz for most boards) will cause  offsets to appear in the data that do not show up in the high frequency vibration metrics. The only way to detect aliasing errors is in their effect on inertial navigation accuracy and the rise in innovation levels.
 
-In addition to position and velocity test ratios > 1.0, the different errors affect the other test ratios in different ways:
+In addition to genrating large position and velocity test ratios of > 1.0, the different error mechanisms affect the other test ratios in different ways:
 
 * High vibration levels normally affect vertical positiion and velocity innovations as well as the horizontal componenets. Magnetometer test levels are only affected to a small extent.
 
-(insert example plot of bad vibration data here)
-* Large gyro bias offsets are normally characterised by a large value of delta angle bias greater than 3.5E-4 and in exrem cases can also cause a noticeable increase in the magnetometer test ratio. Height is normally unaffected other than exteme cases.
+(insert example plots showing bad vibration here)
+* Large gyro bias offsets are normally characterised by a large value of delta angle bias greater than 3.5E-4 and can also cause a large increase in the magnetometer test ratio if the yaw axis is affected. Height is normally unaffected other than extreme cases.
 
-(insert example plot of bad gyro bias data here)
-* Bad yaw alignment casues a velocity test ratio that increases rapidly when the vehicle starts moving due inconsistency in the direction of velocity calculatde by the inertial nav and the  GPS measurement. Magnetometer innovations are slightly affected. Height is normally unaffected. 
+(insert example plots showing bad gyro bias here)
+* Bad yaw alignment causes a velocity test ratio that increases rapidly when the vehicle starts moving due inconsistency in the direction of velocity calculatde by the inertial nav and the  GPS measurement. Magnetometer innovations are slightly affected. Height is normally unaffected. 
 
-(insert example plot of bad yaw alignment data here)
+(insert example plots showing bad yaw alignment here)
 * Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver.
+
+(insert example plots showing bad GPS data here)
 * Loss of GPS data will be shown by the velocity and position innvoation test ratios 'flat-lining'. If this occurs, check the oher GPS status data in vehicle_gps_position for further information.
+
+(insert example plosts showing loss of GPS data here)
+
