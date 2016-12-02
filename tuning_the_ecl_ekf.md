@@ -168,8 +168,18 @@ The most common causues of position divergence are:
 
 * High vibration levels
 * Bad yaw alignment
+* Poor GPS accuracy
 
-Determining which of these is the primary casue requires a methodical analysis of the EKF log data. The following steps should be followed.
+Determining which of these is the primary casue requires a methodical approach to analysis of the EKF log data:
 
-1) ....
+1) Plot estimator_status.vel_test_ratio
+2) Plot estimator_status.pos_test_ratio
+3) Plot estimator_status.hgt_test_ratio
+4) Plot estimator_status.mag_test_ratio
+5) Plot vehicle_gps_position.s_variance_m_s
+
+During normal operation, all the test levels should remain below 0.5 with only occasional spikes above this. An example of a good log is shown here:
+![Position, Velocity, Height and Magnetometer Test Ratios](Screen Shot 2016-12-02 at 9.20.50 pm.png)
+
+
 
