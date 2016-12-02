@@ -1,7 +1,6 @@
 # Using the ecl EKF
 This tutorial answers common questions about use of the ECL EKF algorithm. 
 
-
 ## What is the ecl EKF?
 The ECL (Estimation and Control Library) uses an Extended Kalman Filter algorithm to processe sensor measurements and provide an estimate of the following states:
 
@@ -52,5 +51,13 @@ If these measurements are not present, the EKF will not start. When these measur
 Set the SYS_MC_EST_GROUP parameter to 2 to use the ecl EKF.
 
 ## How do I check the EKF perfomrance?
+EKF outputs, states and status data are published to a number of uORB topics which are logged to SD card during flight.
+
+Output Data:
+
+* Attitude output data: Refer to vehicle_attitude.msg for definitions.
+* Local position output data: Refer to vehicle_local_position.msg for definitions.
+* Control loop data: Refer to control_state.msg for definitions.
+* 
 
 
