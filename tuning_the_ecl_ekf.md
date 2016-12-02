@@ -149,8 +149,9 @@ For a binary pass/fail summary for each sensor, refer to innovation_check_flags 
 ##What should I do if my height is diverging?
 The most common cause of EKF height diverging away from GPS and altimeter measurements during flight is clipping and/or aliasing of the IMU measurements caused by vibration. If this is occurring, then the following signs should be evident in the data
 
-1) ekf2_innovations.vel_pos_innov[3] and  ekf2_innovations.vel_pos_innov[5] will both have the same sign.
-2) estimator_status.hgt_test_ratio will be greater than 1.0
+1. ekf2_innovations.vel_pos_innov[3] and  ekf2_innovations.vel_pos_innov[5] will both have the same sign.
+2. estimator_status.hgt_test_ratio will be greater than 1.0
+
 
 The recommended first step is to  esnure that the autopilot is isolated from the airframe using an effective isolatoin mounting system. An isolaton mount has 6 degrees of freedom, and therefore 6 resonant frequencies. As a general rule, the 6 resonant frequencies of the autopilot on the isolation mount should be above 25Hz to avoid interaction with the autopilot dynamics and below the frequency of the motors.
 
@@ -158,8 +159,9 @@ An isolation mount can make vibration worse if the resonant frequncies coincide 
 
 The EKF can be made more resistant to vibration induced height divergence by making the following parameter changes:
 
-1) Double the value of the innovation gate for the primary height sensor. If using barometeric height this is EK2_EKF2_BARO_GATE.
-3) Increase the value of EKF2_ACC_NOISE to 0.5 initially. If divergence is still occurring,   increase in further increments of 0.1 but do not go above 1.0
+1. Double the value of the innovation gate for the primary height sensor. If using barometeric height this is EK2_EKF2_BARO_GATE.
+2. Increase the value of EKF2_ACC_NOISE to 0.5 initially. If divergence is still occurring,   increase in further increments of 0.1 but do not go above 1.0
+
 
 Note that the effect of these changes will make the EKF more sensitive to errors in GPS vertical velocity and barometric pressure.
 
@@ -167,19 +169,34 @@ Note that the effect of these changes will make the EKF more sensitive to errors
 The most common causues of position divergence are:
 
 * High vibration levels
+* Large gyro bias offsets
 * Bad yaw alignment
 * Poor GPS accuracy
+* Loss of GPS
 
 Determining which of these is the primary casue requires a methodical approach to analysis of the EKF log data:
 
-1) Plot estimator_status.vel_test_ratio
-2) Plot estimator_status.pos_test_ratio
-3) Plot estimator_status.hgt_test_ratio
-4) Plot estimator_status.mag_test_ratio
-5) Plot vehicle_gps_position.s_variance_m_s
+1. Plot the velocty innovation test ratio - estimator_status.vel_test_ratio
+2. Plot the horizontal position innovation test ratio - estimator_status.pos_test_ratio
+3. Plot the height innovation test ratio - estimator_status.hgt_test_ratio
+4. Plot the magnetoemrer innovation test ratio - estimator_status.mag_test_ratio
+5. Plot the GPS receier reported speed accuracy - vehicle_gps_position.s_variance_m_s
+6. Plot the IMU delta angle state estimates - estimator_status.states[10], states[11] and states[12]
+7. Plot the vibration
 
-During normal operation, all the test levels should remain below 0.5 with only occasional spikes above this. An example of a good log is shown here:
+During normal operation, all the test ratios should remain below 0.5 with only occasional spikes above this as shown in the example below from a successful flight:
 ![Position, Velocity, Height and Magnetometer Test Ratios](Screen Shot 2016-12-02 at 9.20.50 pm.png)
 
+In addition to position and velocity test ratios > 1.0, the different errors affect the other test ratios in different ways:
 
+* High vibration levels normally affect vertical positiion and velocity innovations as well as the horizontal componenets. Magnetometer test levels are only affected to a small extent.
 
+(insert example plot of bad vibration data here)
+* Large gyro bias offsets are normally characterised by a large value of delta angle bias greater than 3.5E-4 and in exrem cases can also cause a noticeable increase in the magnetometer test ratio. Height is normally unaffected other than exteme cases.
+
+(insert example plot of bad gyro bias data here)
+* Bad yaw alignment casues a velocity test ratio that increases rapidly when the vehicle starts moving due inconsistency in the direction of velocity calculatde by the inertial nav and the  GPS measurement. Magnetometer innovations are slightly affected. Height is normally unaffected. 
+
+(insert example plot of bad yaw alignment data here)
+* Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver.
+* Loss of GPS data will be shown by the velocity and position innvoation test ratios 'flat-lining'. If this occurs, check the oher GPS status data in vehicle_gps_position for further information.
