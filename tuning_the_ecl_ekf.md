@@ -51,5 +51,6 @@ If these measurements are not present, the EKF will not start. When these measur
 ## How do I use the 'ecl' library EKF?
 Set the SYS_MC_EST_GROUP parameter to 2 to use the ecl EKF.
 
-## How do I check
+## How do I check the EKF perfomrance?
+
 
