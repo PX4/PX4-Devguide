@@ -58,6 +58,7 @@ Output Data:
 * Attitude output data: Refer to vehicle_attitude.msg for definitions.
 * Local position output data: Refer to vehicle_local_position.msg for definitions.
 * Control loop data: Refer to control_state.msg for definitions.
-* 
+* Global (WGS-84) output data: Refer to vehicle_global_position.msg for definitions.
+* Wind velocity output data: Refer to wind_estimate.msg for definitions.
 
 
