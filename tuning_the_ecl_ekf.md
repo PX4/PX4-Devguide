@@ -1,9 +1,9 @@
 # Using the ecl EKF
-This tutorial answers common questions about use of the 'ecl' library EKF algorithm. 
+This tutorial answers common questions about use of the ECL EKF algorithm. 
 
 
 ## What is the ecl EKF?
-The ecl (Estimation and Control Library) uses an Extended Kalman Filter algorithm to processe sensor measurements and provide an estimate of the following states:
+The ECL (Estimation and Control Library) uses an Extended Kalman Filter algorithm to processe sensor measurements and provide an estimate of the following states:
 
 * Quaternion defining the rotation from earth to body frame
 * Velocity at the IMU North,East,Down (m/s)
