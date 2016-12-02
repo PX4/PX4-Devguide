@@ -3,7 +3,7 @@ This tutorial answers common questions about use of the 'ecl' library EKF algori
 
 
 ## What is the ecl EKF?
-The EKF is an Extended Kalman Filter algorithm that processes sensor measurements to provide an estimate of the following states:
+The ecl (Estimation and Control Library) uses an Extended Kalman Filter algorithm to processe sensor measurements and provide an estimate of the following states:
 
 * Quaternion defining the rotation from earth to body frame
 * Velocity at the IMU North,East,Down (m/s)
