@@ -133,3 +133,34 @@ There are two categories of observation faults:
 * Loss of data. An example of this is a range finder failing to provide a return.
 * The innovation, which is the difference between the state prediction and sensor observation is excessive. An example of this is excessive vibration causing a large vertical position error, resulting in the barometer height measurement being rejected.
 
+Both of these can result in observation data being rejected for long enough to cause the EKF to attempt a reset of the states using the sensor observations. All observations have a statistical confidence check applied to the innovations. The number of standard deviations for the check are controlled by the EKF2_<>_GATE parameter for each observation type.
+
+Test levels are  available in the estimator_status message as follows:
+
+* mag_test_ratio : ratio of the largest magnetometer innovation component to the innovation test limit
+* vel_test_ratio : ratio of the largest velocity innovation component to the innovation test limit
+* pos_test_ratio : ratio of the largest horizontal position innovation component to the innovation test limit
+* hgt_test_ratio : ratio of the vertical position innovation to the innovation test limit
+* tas_test_ratio : ratio of the true airspeed innovation to the innovation test limit
+* hagl_test_ratio : ratio of the height above ground innovation to the innovation test limit
+
+For a binary pass/fail summary for each sensor, refer to innovation_check_flags in the estimator_status message.
+
+##What should I do if my height is diverging?
+The most common cause of EKF height diverging away from GPS and altimeter measurements during flight is clipping and/or aliasing of the IMU measurements caused by vibration. If this is occurring, then the following signs should be evident in the data
+
+1) ekf2_innovations.vel_pos_innov[3] and  ekf2_innovations.vel_pos_innov[5] will both have the same sign.
+2) estimator_status.hgt_test_ratio will be greater than 1.0
+
+The recommended first step is to  esnure that the autopilot is isolated from the airframe using an effective isolatoin mounting system. An isolaton mount has 6 degrees of freedom, and therefore 6 resonant frequencies. As a general rule, the 6 resonant frequencies of the autopilot on the isolation mount should be above 25Hz to avoid interaction with the autopilot dynamics and below the frequency of the motors.
+
+An isolation mount can make vibration worse if the resonant frequncies coincide with motor or propeller blade passage frequencies.
+
+The EKF can be made more resistant to vibration induced height divergence by making the following parameter changes:
+
+1) Double the value of the innovation gate for the primary height sensor. If using barometeric height this is EK2_EKF2_BARO_GATE.
+3) Increase the value of EKF2_ACC_NOISE to 0.5 initially. If divergence is still occurring,   increase in further increments of 0.1 but do not go above 1.0
+
+Note that the effect of these changes will make the EKF more sensitive to errors in GPS vertical velocity and barometric pressure.
+
+##What should i do if my position is diverging?
