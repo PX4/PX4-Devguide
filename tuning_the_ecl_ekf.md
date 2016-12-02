@@ -58,16 +58,16 @@ Set the SYS_MC_EST_GROUP parameter to 2 to use the ecl EKF.
 ## What are the advantages and disadvantages of the ecl EKF over other estimators?
 Like all estimators, much of the performance comes from the tuning to match sensor characteristics. Tuning is a compromise between accuracy and robustness and although we have attempted to provide a tune that meets the needs of most users, there will be applications where tuning changes are required. 
 
-No claims for accuracy relative to the legacy combination of attitude_estimator_q + local_position_estimator have been made and the best choice of estimator will depend on the application.
+For this reason, no claims for accuracy relative to the legacy combination of attitude_estimator_q + local_position_estimator have been made and the best choice of estimator will depend on the application.
 
 ### Disadvantages
-* The ecl EKF is a complex algorithm that requires a good understanding of extended Kalman filter theory and its application to navigation problems to tune successfully. It is therefore difficult for users that are not achieving good results to know what to change.
+* The ecl EKF is a complex algorithm that requires a good understanding of extended Kalman filter theory and its application to navigation problems to tune successfully. It is therefore more difficult for users that are not achieving good results to know what to change.
 * The ecl EKF uses more RAM and flash space
 * The ecl EKF uses more logging space.
 * The ecl EKF has had less flight time
  
 ### Advantages
-* The ecl EKF is able to fuse data from sensors with different time delays in a mathematically consistent way which improves accuracy during dynamic manoeuvres once time delay parameters are tuned correctly.
+* The ecl EKF is able to fuse data from sensors with different time delays and data rates in a mathematically consistent way which improves accuracy during dynamic manoeuvres once time delay parameters are tuned correctly.
 * The ecl EKF is capable of fusing a large range of different sensor types.
 * The ecl EKF detects and reports statistically significant inconsistencies in sensor data helping to diagnose sensor issues.
 * For fixed wing operation, the ecl EKF estimates wind speed with or without an airspeed sensor and is able to use the estimated wind in combination with airspeed measurements and sideslip assumptions to extend the dead-reckoning time avalable if GPS is lost in flight.
