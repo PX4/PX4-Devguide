@@ -82,11 +82,11 @@ Refer to covariances[28] in the estimator_status message. The index map for cova
 
 * [0 ... 3] Quaternions
 * [4 ... 6] Velocity NED (m/s)^2
-* [7 ... 9] Position NED (m)^2
-* [10 ... 12] IMU delta angle bias XYZ (rad)^2
+* [7 ... 9] Position NED (m^2)
+* [10 ... 12] IMU delta angle bias XYZ (rad^2)
 * [13 ... 15] IMU delta velocity bias XYZ (m/s)^2
-* [16 ... 18] Earth magnetic field NED (gauss)^2
-* [19 ... 21] Body magnetic field XYZ (gauss)^2
+* [16 ... 18] Earth magnetic field NED (gauss^2)
+* [19 ... 21] Body magnetic field XYZ (gauss^2)
 * [22 ... 23] Wind velocity NE (m/s)^2
 * [24 ... 28] Not Used
 
@@ -98,4 +98,18 @@ Refer to covariances[28] in the estimator_status message. The index map for cova
   * [0 ... 2] Velocity NED (m/s)
   * [3 ... 5] Position NED (m)
 * True Airspeed (m/s) : Refer to airspeed_innov in the ekf2_innovations message.
+* Synthetic sideslip (rad) : Refer to beta_innov in the ekf2_innovations message.
+* Optical flow XY (rad/sec) : Refer to flow_innov in the ekf2_innovations message.
+* Height above ground (m) : Refer to hagl_innov in the ekf2_innovations message.
 
+###Observation Innovation Variances
+
+* Magnetometer XYZ (gauss^2) : Refer to mag_innov_var[3] in the ekf2_innovations message.
+* Yaw angle (rad^2) : Refer to heading_innov_var in the ekf2_innovations message.
+* Velocity and position innovations : Refer to vel_pos_innov_var[6] in the ekf2_innovations. The index map for vel_pos_innov_var[6] is as follows:
+  * [0 ... 2] Velocity NED (m/s)^2
+  * [3 ... 5] Position NED (m^2)
+* True Airspeed (m/s)^2 : Refer to airspeed_innov_var in the ekf2_innovations message.
+* Synthetic sideslip (rad^2) : Refer to beta_innov_var in the ekf2_innovations message.
+* Optical flow XY (rad/sec)^2 : Refer to flow_innov_var in the ekf2_innovations message.
+* Height above ground (m^2) : Refer to hagl_innov_var in the ekf2_innovations message.
