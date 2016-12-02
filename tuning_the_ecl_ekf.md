@@ -21,10 +21,10 @@ Note: The 'fusion time horizon' delay and length of the buffers is determined by
 
 The position and velocity states are adjusted to account for the offset between the IMU and the body frame before they are output to the control loops. The position of the IMU relative to the body frame is set by the EKF2_IMU_POS_X,Y,Z parameters.
 
-The EKF uses the IMU data for state prediction only. IMU data is not used as an observation in the EKF derivation. The algebraic equations for the covariance prediction, state update and covariance update were derived using the Matlab symbolic toolbox and can be found here: [](https://github.com/PX4/ecl/blob/master/matlab/scripts/Inertial%20Nav%20EKF/GenerateNavFilterEquations.m)
+The EKF uses the IMU data for state prediction only. IMU data is not used as an observation in the EKF derivation. The algebraic equations for the covariance prediction, state update and covariance update were derived using the Matlab symbolic toolbox and can be found here: [Matlab Symbolic Derivation](https://github.com/PX4/ecl/blob/master/matlab/scripts/Inertial%20Nav%20EKF/GenerateNavFilterEquations.m)
 
 ## What sensor measurements does it use?
-The EKF has different modes of operation that use different combinations of sensor measurements:
+The EKF has different modes of operation that allow for different combinations of sensor measurements:
 
 The first is a mode entered into on start-up that provides rotation, vertical velocity,  vertical position, IMU delta angle bias and IMU delta velocity bias estimates. It uses the following measurements which are mandatory for all modes of operation:
 
