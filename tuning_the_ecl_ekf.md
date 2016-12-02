@@ -61,4 +61,7 @@ Output Data:
 * Global (WGS-84) output data: Refer to vehicle_global_position.msg for definitions.
 * Wind velocity output data: Refer to wind_estimate.msg for definitions.
 
+Status Data:
+
+* 
 
