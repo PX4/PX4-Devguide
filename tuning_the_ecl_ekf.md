@@ -183,7 +183,7 @@ The EKF can be made more resistant to vibration induced height divergence by mak
 Note that the effect of these changes will make the EKF more sensitive to errors in GPS vertical velocity and barometric pressure.
 
 ##What should I do if the position estimate is diverging?
-The most common causues of position divergence are:
+The most common causes of position divergence are:
 
 * High vibration levels. 
  * Fix by improving mechanical isolation of the autopilot. Increasing the value of EKF2_ACC_NOISE can help, but does make the EKF more vulnerable to GPS glitches
