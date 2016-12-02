@@ -164,3 +164,12 @@ The EKF can be made more resistant to vibration induced height divergence by mak
 Note that the effect of these changes will make the EKF more sensitive to errors in GPS vertical velocity and barometric pressure.
 
 ##What should i do if my position is diverging?
+The most common causues of position divergence are:
+
+* High vibration levels
+* Bad yaw alignment
+
+Determining which of these is the primary casue requires a methodical analysis of the EKF log data. The following steps should be followed.
+
+1) ....
+
