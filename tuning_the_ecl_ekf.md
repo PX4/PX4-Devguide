@@ -121,6 +121,6 @@ Refer to covariances[28] in the estimator_status message. The index map for cova
 The output complementary filter is used to propagate states forward from the fusion time horizon to current time. To check the magnitude of the angular, velocity and position tracking errors measured at the fusion time horizon, refer to output_tracking_error[3] in the ekf2_innovations message. The index map is as follows:
 
 * [0] Angular tracking error magnitude (rad)
-* [1] Velocity tracking error magntiude (m/s). The velocity tracking time constant can be adjusted using the EKF2_TAU_VEL parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the velocity outputs.
-* [2] Position tracking error magntiude (m). The position tracking time constant can be adjusted using the EKF2_TAU_POS parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the position outputs.
+* [1] Velocity tracking error magntiude (m/s). The velocity tracking time constant can be adjusted using the EKF2_TAU_VEL parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the NED velocity outputs.
+* [2] Position tracking error magntiude (m). The position tracking time constant can be adjusted using the EKF2_TAU_POS parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the NED position outputs.
   
