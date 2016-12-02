@@ -80,3 +80,51 @@ performance is usually different.
 
 You can test your own SD card with `sd_bench -r 50`, and report the results to
 https://github.com/PX4/Firmware/issues/4634.
+
+## Log Streaming
+The traditional and still fully supported way to do logging is using an SD card
+on the FMU. However there is an alternative, log streaming, which sends the
+same logging data via MAVLink. This method can be used for example in cases
+where the FMU does not have an SD card slot (eg. Intel Aero) or simply to avoid
+having to deal with SD cards. Both methods can be used independently and at the
+same time.
+
+The requirement is that the link provides at least ~50KB/s, so for example a
+WiFi link. And only one client can request log streaming at the same time. The
+connection does not need to be reliable, the protocol is designed to handle
+drops.
+
+There are different clients that support ulog streaming:
+- `mavlink_ulog_streaming.py` script in Firmware/Tools.
+- QGroundControl:
+![](images/qgc_log_streaming.png)
+- [MAVGCL](https://github.com/ecmnet/MAVGCL)
+
+### Diagnostics
+- If log streaming does not start, make sure the `logger` is running (see
+  above), and inspect the console output while starting.
+- Log streaming uses a maximum of 70% of the configured mavlink rate (`-r`
+  parameter). If more is needed, messages are dropped. The currently used
+  percentage can be inspected with `mavlink status` (1.8% is used in this
+  example):
+```
+instance #0:
+        GCS heartbeat:  160955 us ago
+        mavlink chan: #0
+        type:           GENERIC LINK OR RADIO
+        flow control:   OFF
+        rates:
+        tx: 95.781 kB/s
+        txerr: 0.000 kB/s
+        rx: 0.021 kB/s
+        rate mult: 1.000
+        ULog rate: 1.8% of max 70.0%
+        accepting commands: YES
+        MAVLink version: 2
+        transport protocol: UDP (14556)
+```
+  Also make sure `txerr` stays at 0. If this goes up, either the NuttX sending
+  buffer is too small, the physical link is saturated or the hardware is too
+  slow to handle the data.
+
+
