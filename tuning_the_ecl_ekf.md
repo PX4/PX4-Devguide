@@ -67,7 +67,7 @@ For this reason, no claims for accuracy relative to the legacy combination of at
 * The ecl EKF has had less flight time
  
 ### Advantages
-* The ecl EKF is able to fuse data from sensors with different time delays and data rates in a mathematically consistent way which improves accuracy during dynamic manoeuvres once time delay parameters are tuned correctly.
+* The ecl EKF is able to fuse data from sensors with different time delays and data rates in a mathematically consistent way which improves accuracy during dynamic manoeuvres once time delay parameters are set correctly.
 * The ecl EKF is capable of fusing a large range of different sensor types.
 * The ecl EKF detects and reports statistically significant inconsistencies in sensor data helping to diagnose sensor issues.
 * For fixed wing operation, the ecl EKF estimates wind speed with or without an airspeed sensor and is able to use the estimated wind in combination with airspeed measurements and sideslip assumptions to extend the dead-reckoning time avalable if GPS is lost in flight.
