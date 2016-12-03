@@ -44,6 +44,7 @@ If these measurements are not present, the EKF will not start. When these measur
 * Range finder distance to ground. Range finder data is used a by a single state filter to estimate the vertical position of the terrain relative to the height datum. 
  * If operating over a flat surface that can be used as a zero height datum, the range finder data can be used directly by the EKF to estimate height by setting the EKF2_HGT_MODE parameter to 2. 
 * Equivalent Airspeed (EAS). This data can be used to estimate wind velocity and reduce drift when GPS is lost by setting EKF2_ARSP_THR to a positive value representing the minimum speed for airspeed measurements to be considered valid.
+* Fixed wing platforms can take advantage of an assumed sidelsip observation of zero to improve wind speed estimation and also enable wind speed estimation without an airspeed sensor. This is enabled by setting the EKF2_FUSE_BETA parameter to 1.
 * Optical Flow. Data from an attached optical flow sensor will be used if the following conditions are met:
  * Valid range finder data is available.
  * Bit position 1 in the EKF2_AID_MASK parameter is true.
