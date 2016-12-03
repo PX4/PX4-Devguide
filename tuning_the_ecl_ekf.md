@@ -217,7 +217,7 @@ The following plot shows the EKF vibration metrics for a multirotor with good is
 ![](Screen Shot 2016-12-02 at 10.24.00 pm.png)
 The above vibration metrics are of limited value as the presence of vibration at a frequency close to the IMU sampling frequency (1kHz for most boards) will cause  offsets to appear in the data that do not show up in the high frequency vibration metrics. The only way to detect aliasing errors is in their effect on inertial navigation accuracy and the rise in innovation levels.
 
-In addition to genrating large position and velocity test ratios of > 1.0, the different error mechanisms affect the other test ratios in different ways:
+In addition to generating large position and velocity test ratios of > 1.0, the different error mechanisms affect the other test ratios in different ways:
 
 * High vibration levels normally affect vertical positiion and velocity innovations as well as the horizontal componenets. Magnetometer test levels are only affected to a small extent.
 
