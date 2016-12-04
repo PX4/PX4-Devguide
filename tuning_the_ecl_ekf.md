@@ -26,29 +26,47 @@ The EKF uses the IMU data for state prediction only. IMU data is not used as an 
 ## What sensor measurements does it use?
 The EKF has different modes of operation that allow for different combinations of sensor measurements:
 
-On start-up the filter checks for a minimum viable combination of sensors and after initial tilt, yaw and height alignment is completed, enters a mode that provides rotation, vertical velocity,  vertical position, IMU delta angle bias and IMU delta velocity bias estimates. The following measurements that this mode uses are mandatory for all modes of operation:
+On start-up the filter checks for a minimum viable combination of sensors and after initial tilt, yaw and height alignment is completed, enters a mode that provides rotation, vertical velocity,  vertical position, IMU delta angle bias and IMU delta velocity bias estimates. The IMU along with a source of yaw (magnetometer or external vision) and a source of height data are required for all EKF modes of operation.
 
+###IMU
 * Three axis body fixed Inertial Measurement unit delta angle and delta velocity data at a minimum rate of 100Hz. Note: Coning corrections should be applied to the IMU delta angle data before it is used by the EKF.
-* Three axis body fixed magnetometer data OR external vision system pose data at a minimum rate of 5Hz. Magnetometer data can be used in two ways: 
- * Magnetometer measurements are converted to a yaw angle using the tilt estimate and magnetic declination. This yaw angle is then used as an observation by the EKF. This method is less accurate and does not allow for learning of body frame field offsets, however it is more robust to magnetic anomalies and large start-up gyro biases. It is the default method used during start-up and on ground.
- * The  XYZ magnetometer readings are used as separate observations. This method is more accurate and allows body frame offsets to be learned, but assumes the earth magnetic field environment only changes slowly and performs less well when there are significant external magnetic anomalies. It is the default method when the vehicle is airborne and has climbed past 1.5 m altitude.
- * The logic used to select the mode is set by the EKF2_MAG_TYPE parameter.
-* A source of height data - either GPS, barometric pressure, range finder or external vision at a minimum rate of 5Hz. Note: The primary source of height data is controlled by the EKF2_HGT_MODE parameter. 
+
+###Magnetometer
+Three axis body fixed magnetometer data OR external vision system pose data at a minimum rate of 5Hz is required. Magnetometer data can be used in two ways:
+
+* Magnetometer measurements are converted to a yaw angle using the tilt estimate and magnetic declination. This yaw angle is then used as an observation by the EKF. This method is less accurate and does not allow for learning of body frame field offsets, however it is more robust to magnetic anomalies and large start-up gyro biases. It is the default method used during start-up and on ground.
+* The  XYZ magnetometer readings are used as separate observations. This method is more accurate and allows body frame offsets to be learned, but assumes the earth magnetic field environment only changes slowly and performs less well when there are significant external magnetic anomalies. It is the default method when the vehicle is airborne and has climbed past 1.5 m altitude.
+* The logic used to select the mode is set by the EKF2_MAG_TYPE parameter.
+
+###Height
+A source of height data - either GPS, barometric pressure, range finder or external vision at a minimum rate of 5Hz is required. Note: The primary source of height data is controlled by the EKF2_HGT_MODE parameter. 
 
 If these measurements are not present, the EKF will not start. When these measurements have been detected, the EKF will initialise the states and complete the tilt and yaw alignment. When tilt and yaw alignment is complete, the EKF can then transition to other modes of operation  enabling use of additional sensor data:
 
-* GPS North, East, Down position and velocity. GPS measurements will be used for position and velocity if the following conditions are met:
- * GPS use is enabled via setting of the EKF2_AID_MASK parameter.
- * GPS quality checks have passed. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ<> parameters. 
- * GPS height can be used directly by the EKF via setting of the EKF2_HGT_MODE parameter.
+###GPS
+GPS North, East, Down position and velocity. GPS measurements will be used for position and velocity if the following conditions are met:
+
+* GPS use is enabled via setting of the EKF2_AID_MASK parameter.
+* GPS quality checks have passed. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ<> parameters. 
+* GPS height can be used directly by the EKF via setting of the EKF2_HGT_MODE parameter.
+
+###Range Finder
 * Range finder distance to ground. Range finder data is used a by a single state filter to estimate the vertical position of the terrain relative to the height datum. 
  * If operating over a flat surface that can be used as a zero height datum, the range finder data can be used directly by the EKF to estimate height by setting the EKF2_HGT_MODE parameter to 2. 
+
+###Airspeed
 * Equivalent Airspeed (EAS). This data can be used to estimate wind velocity and reduce drift when GPS is lost by setting EKF2_ARSP_THR to a positive value. Airspeed data will be used when it exceeds the threshold set by a positive value for EKF2_ARSP_THR and the vehicle type is not rotary wing.
+
+###Synthetic Sideslip
 * Fixed wing platforms can take advantage of an assumed sidelsip observation of zero to improve wind speed estimation and also enable wind speed estimation without an airspeed sensor. This is enabled by setting the EKF2_FUSE_BETA parameter to 1.
+
+###Optical Flow
 * Optical Flow. Data from an attached optical flow sensor will be used if the following conditions are met:
  * Valid range finder data is available.
  * Bit position 1 in the EKF2_AID_MASK parameter is true.
  * The quality metric returned by the flow sensor is greater than the minimum requirement set by the EKF2_OF_QMIN parameter
+
+###External Vision
 * External vision system horizontal position data will be used if bit position 3 in the EKF2_AID_MASK parameter is true.
 * External vision system vertical position data will be used if the EKF2_HGT_MODE parameter is set to 3.
 * External vision system pose data will be used for yaw estimation if bit position 4 in the EKF2_AID_MASK parameter is true.
