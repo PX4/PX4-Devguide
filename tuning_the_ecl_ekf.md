@@ -5,13 +5,13 @@ This tutorial answers common questions about use of the ECL EKF algorithm.
 The ECL (Estimation and Control Library) uses an Extended Kalman Filter algorithm to processe sensor measurements and provide an estimate of the following states:
 
 * Quaternion defining the rotation from North,East,Down local earth fram to X,Y,Z body frame
-* Velocity at the IMU North,East,Down (m/s)
-* Position at the IMU North,East,Down (m)
-* IMU delta angle bias estimates X,Y,Z (rad)
-* IMU delta velocity bias estimates X,Y,Z(m/s)
-* Earth Magnetic field components North, East,Down (gauss)
-* Vehicle body frame magnetic field bias X,Y,Z (gauss)
-* Wind velocity North,East (m/s)
+* Velocity at the IMU - North,East,Down (m/s)
+* Position at the IMU - North,East,Down (m)
+* IMU delta angle bias estimates - X,Y,Z (rad)
+* IMU delta velocity bias estimates - X,Y,Z(m/s)
+* Earth Magnetic field components - North,East,Down (gauss)
+* Vehicle body frame magnetic field bias - X,Y,Z (gauss)
+* Wind velocity - North,East (m/s)
 
 The EKF runs on a delayed 'fusion time horizon' to allow for different time delays on each measurement relative to the IMU. Data for each sensor is FIFO buffered and retrieved from the buffer by the EKF to be used at the correct time. The delay compensation for each sensor is controlled by the EKF2_*_DELAY parameters.
 
