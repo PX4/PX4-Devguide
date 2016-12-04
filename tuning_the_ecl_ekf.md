@@ -68,7 +68,9 @@ Optical flow data will be used if the following conditions are met:
  * Bit position 1 in the EKF2_AID_MASK parameter is true.
  * The quality metric returned by the flow sensor is greater than the minimum requirement set by the EKF2_OF_QMIN parameter
 
-###External Vision
+###External Vision System
+Position and Pose Measurements from an exernal vision system, eg Vicon, can be used:
+
 * External vision system horizontal position data will be used if bit position 3 in the EKF2_AID_MASK parameter is true.
 * External vision system vertical position data will be used if the EKF2_HGT_MODE parameter is set to 3.
 * External vision system pose data will be used for yaw estimation if bit position 4 in the EKF2_AID_MASK parameter is true.
