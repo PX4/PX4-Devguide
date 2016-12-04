@@ -190,7 +190,7 @@ For a binary pass/fail summary for each sensor, refer to innovation_check_flags 
 ###GPS Quality Checks
 The EKF applies a number of GPS quality checks before commencing GPS aiding. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ<> parameters. The pass/fail status for these checks is logged in the estimator_status.gps_check_fail_flags message. This integer will be zero when all requried GPs checks have passed. If the EKF is not commencing GPS alignment, check the value of the integer against the bitmask definition gps_check_fail_flags in the estimator_status.msg [estimator_status.msg](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) file.
 ###EKF Numerical Errors
-The EKF uses single precision floating point operations for all of its computations and first order approximations for derivation of the equations in order to reduce processing requirements. This means that it would possible when re-tunig the filter to encounter conditions where the covariance matrix operations become badly conditioned enough to caus divergence or singificant errors in the state estimates.
+The EKF uses single precision floating point operations for all of its computations and first order approximations for derivation of the equations in order to reduce processing requirements. This means that it is possible when re-tunig the filter to encounter conditions where the covariance matrix operations become badly conditioned enough to caus divergence or significant errors in the state estimates.
 
 To prevent this, every covariance and state update step contains the following error drection and correction steps:
 
