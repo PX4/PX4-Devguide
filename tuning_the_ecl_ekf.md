@@ -90,7 +90,7 @@ For this reason, no claims for accuracy relative to the legacy combination of at
 ### Advantages
 * The ecl EKF is able to fuse data from sensors with different time delays and data rates in a mathematically consistent way which improves accuracy during dynamic manoeuvres once time delay parameters are set correctly.
 * The ecl EKF is capable of fusing a large range of different sensor types.
-* The ecl EKF detects and reports statistically significant inconsistencies in sensor data helping to diagnose sensor issues.
+* The ecl EKF detects and reports statistically significant inconsistencies in sensor data, assisting with diagnosis of sensor errors.
 * For fixed wing operation, the ecl EKF estimates wind speed with or without an airspeed sensor and is able to use the estimated wind in combination with airspeed measurements and sideslip assumptions to extend the dead-reckoning time avalable if GPS is lost in flight.
 * The ecl EKF estimates 3-axis accelerometer bias which improves accuracy for tailsitters and other vehicles that experience large attitude changes between flight phases.
 * The federated architecture (combined attitude and position/velocity estimation) means that attitude estimation benefits from all sensor measurements. This should provide the potential for improved attitude estimation if tuned correctly. 
@@ -189,8 +189,8 @@ For a binary pass/fail summary for each sensor, refer to innovation_check_flags 
 ##What should I do if the height estimate is diverging?
 The most common cause of EKF height diverging away from GPS and altimeter measurements during flight is clipping and/or aliasing of the IMU measurements caused by vibration. If this is occurring, then the following signs should be evident in the data
 
-1. ekf2_innovations.vel_pos_innov[3] and  ekf2_innovations.vel_pos_innov[5] will both have the same sign.
-2. estimator_status.hgt_test_ratio will be greater than 1.0
+* ekf2_innovations.vel_pos_innov[3] and  ekf2_innovations.vel_pos_innov[5] will both have the same sign.
+* estimator_status.hgt_test_ratio will be greater than 1.0
 
 The recommended first step is to  esnure that the autopilot is isolated from the airframe using an effective isolatoin mounting system. An isolaton mount has 6 degrees of freedom, and therefore 6 resonant frequencies. As a general rule, the 6 resonant frequencies of the autopilot on the isolation mount should be above 25Hz to avoid interaction with the autopilot dynamics and below the frequency of the motors.
 
@@ -198,8 +198,8 @@ An isolation mount can make vibration worse if the resonant frequncies coincide 
 
 The EKF can be made more resistant to vibration induced height divergence by making the following parameter changes:
 
-1. Double the value of the innovation gate for the primary height sensor. If using barometeric height this is EK2_EKF2_BARO_GATE.
-2. Increase the value of EKF2_ACC_NOISE to 0.5 initially. If divergence is still occurring,   increase in further increments of 0.1 but do not go above 1.0
+* Double the value of the innovation gate for the primary height sensor. If using barometeric height this is EK2_EKF2_BARO_GATE.
+* Increase the value of EKF2_ACC_NOISE to 0.5 initially. If divergence is still occurring,   increase in further increments of 0.1 but do not go above 1.0
 
 Note that the effect of these changes will make the EKF more sensitive to errors in GPS vertical velocity and barometric pressure.
 
