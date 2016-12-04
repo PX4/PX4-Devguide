@@ -189,6 +189,15 @@ Test levels are  available in the estimator_status message as follows:
 For a binary pass/fail summary for each sensor, refer to innovation_check_flags in the estimator_status message.
 ###GPS Quality Checks
 The EKF applies a number of GPS quality checks before commencing GPS aiding. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ<> parameters. The pass/fail status for these checks is logged in the estimator_status.gps_check_fail_flags message. This integer will be zero when all requried GPs checks have passed. If the EKF is not commencing GPS alignment, check the value of the integer against the bitmask definition gps_check_fail_flags in the estimator_status.msg [estimator_status.msg](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) file.
+###EKF Numerical Errors
+The EKF uses single precision floating point operations for all of its computations and first order approximations for derivation of the equations in order to reduce processing requirements. This means that it would possible when re-tunig the filter to encounter conditions where the covariance matrix operations become badly conditioned enough to caus divergence or singificant errors in the state estimates.
+
+To prevent this, every covariance and state update step contains the following error drection and correction steps:
+
+* If an innovation variance is less than the observation variance (this requires a negative state covariance which is impossible) or the covariance update will produce a negative variance for any of the states, then:
+ * The state and covariance update is skipped
+ * The corresponding rows and columns in the covariance matrix are reset
+ * The failure is recorded in the estimator_status.filter_fault_flags messaage
 
 ##What should I do if the height estimate is diverging?
 The most common cause of EKF height diverging away from GPS and altimeter measurements during flight is clipping and/or aliasing of the IMU measurements caused by vibration. If this is occurring, then the following signs should be evident in the data
