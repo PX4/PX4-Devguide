@@ -44,24 +44,25 @@ A source of height data - either GPS, barometric pressure, range finder or exter
 If these measurements are not present, the EKF will not start. When these measurements have been detected, the EKF will initialise the states and complete the tilt and yaw alignment. When tilt and yaw alignment is complete, the EKF can then transition to other modes of operation  enabling use of additional sensor data:
 
 ###GPS
-GPS North, East, Down position and velocity. GPS measurements will be used for position and velocity if the following conditions are met:
+GPS measurements will be used for position and velocity if the following conditions are met:
 
 * GPS use is enabled via setting of the EKF2_AID_MASK parameter.
 * GPS quality checks have passed. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ<> parameters. 
 * GPS height can be used directly by the EKF via setting of the EKF2_HGT_MODE parameter.
 
 ###Range Finder
-* Range finder distance to ground. Range finder data is used a by a single state filter to estimate the vertical position of the terrain relative to the height datum. 
- * If operating over a flat surface that can be used as a zero height datum, the range finder data can be used directly by the EKF to estimate height by setting the EKF2_HGT_MODE parameter to 2. 
+Range finder distance to ground is used a by a single state filter to estimate the vertical position of the terrain relative to the height datum. 
+
+If operating over a flat surface that can be used as a zero height datum, the range finder data can also be used directly by the EKF to estimate height by setting the EKF2_HGT_MODE parameter to 2. 
 
 ###Airspeed
-* Equivalent Airspeed (EAS). This data can be used to estimate wind velocity and reduce drift when GPS is lost by setting EKF2_ARSP_THR to a positive value. Airspeed data will be used when it exceeds the threshold set by a positive value for EKF2_ARSP_THR and the vehicle type is not rotary wing.
+Equivalent Airspeed (EAS) data can be used to estimate wind velocity and reduce drift when GPS is lost by setting EKF2_ARSP_THR to a positive value. Airspeed data will be used when it exceeds the threshold set by a positive value for EKF2_ARSP_THR and the vehicle type is not rotary wing.
 
 ###Synthetic Sideslip
-* Fixed wing platforms can take advantage of an assumed sidelsip observation of zero to improve wind speed estimation and also enable wind speed estimation without an airspeed sensor. This is enabled by setting the EKF2_FUSE_BETA parameter to 1.
+Fixed wing platforms can take advantage of an assumed sidelsip observation of zero to improve wind speed estimation and also enable wind speed estimation without an airspeed sensor. This is enabled by setting the EKF2_FUSE_BETA parameter to 1.
 
 ###Optical Flow
-* Optical Flow. Data from an attached optical flow sensor will be used if the following conditions are met:
+Optical flow data will be used if the following conditions are met:
  * Valid range finder data is available.
  * Bit position 1 in the EKF2_AID_MASK parameter is true.
  * The quality metric returned by the flow sensor is greater than the minimum requirement set by the EKF2_OF_QMIN parameter
