@@ -36,7 +36,8 @@ Three axis body fixed magnetometer data OR external vision system pose data at a
 
 * Magnetometer measurements are converted to a yaw angle using the tilt estimate and magnetic declination. This yaw angle is then used as an observation by the EKF. This method is less accurate and does not allow for learning of body frame field offsets, however it is more robust to magnetic anomalies and large start-up gyro biases. It is the default method used during start-up and on ground.
 * The  XYZ magnetometer readings are used as separate observations. This method is more accurate and allows body frame offsets to be learned, but assumes the earth magnetic field environment only changes slowly and performs less well when there are significant external magnetic anomalies. It is the default method when the vehicle is airborne and has climbed past 1.5 m altitude.
-* The logic used to select the mode is set by the EKF2_MAG_TYPE parameter.
+
+The logic used to select the mode is set by the EKF2_MAG_TYPE parameter.
 
 ###Height
 A source of height data - either GPS, barometric pressure, range finder or external vision at a minimum rate of 5Hz is required. Note: The primary source of height data is controlled by the EKF2_HGT_MODE parameter. 
