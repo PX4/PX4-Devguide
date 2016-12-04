@@ -4,7 +4,7 @@ This tutorial answers common questions about use of the ECL EKF algorithm.
 ## What is the ecl EKF?
 The ECL (Estimation and Control Library) uses an Extended Kalman Filter algorithm to processe sensor measurements and provide an estimate of the following states:
 
-* Quaternion defining the rotation from earth to body frame
+* Quaternion defining the rotation from North, East, Down local earth fram to X, Y, Z body frame
 * Velocity at the IMU North,East,Down (m/s)
 * Position at the IMU North,East,Down (m)
 * IMU delta angle bias estimates X,Y,Z (rad)
