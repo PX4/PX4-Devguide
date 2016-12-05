@@ -225,7 +225,7 @@ The most common causes of position divergence are:
 
 * High vibration levels. 
  * Fix by improving mechanical isolation of the autopilot.
- * Increasing the value of EKF2_ACC_NOISE and EKF2_GYR_NOISE can help, but does make the EKF more vulnerable to GPS glitches
+ * Increasing the value of EKF2_ACC_NOISE and EKF2_GYR_NOISE can help, but does make the EKF more vulnerable to GPS glitches.
 * Large gyro bias offsets. 
  * Fix by re-calibrating the gyro. Check for excessive temperature sensitivity (> 3 deg/sec bias change during warm-up from a cold start and replace the sensor if affected of insulate to to slow the rate of temeprature change.
 * Bad yaw alignment
