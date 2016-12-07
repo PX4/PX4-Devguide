@@ -287,7 +287,6 @@ This is accompanied with rise in the GPS receivers reported velocity accuracy wh
 
 If we also look at the GPS horizontal velocity innovations and innovation variances, we can see the large spike in North velocity innovation that accompanies this GPS 'glitch' event.
 ![](gps glitch - velocity innovations.png)
-
 ###Determination of GPS Data Loss
 Loss of GPS data will be shown by the velocity and position innvoation test ratios 'flat-lining'. If this occurs, check the oher GPS status data in vehicle_gps_position for further information.
 
