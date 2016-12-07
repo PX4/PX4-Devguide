@@ -102,6 +102,8 @@ EKF outputs, states and status data are published to a number of uORB topics whi
 
 The .ulog format data can be parsed in python by using the [PX4 pyulog library](https://github.com/PX4/pyulog).
 
+Most of the EKF data is found in the [innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) and [filter status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) uORB messages that are logged to the .ulog file.
+
 ###Output Data
 
 * Attitude output data: Refer to vehicle_attitude.msg for definitions.
