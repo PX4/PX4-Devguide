@@ -106,8 +106,8 @@ Most of the EKF data is found in the [ekf2_innovations](https://github.com/PX4/F
 
 ###Output Data
 
-* Attitude output data: Refer to [vehicle_attitude](https://github.com/PX4/Firmware/blob/master/msg/vehicle_attitude.msg) for definitions.
-* Local position output data: Refer to vehicle_local_position.msg for definitions.
+* Attitude output data - found in the [vehicle_attitude](https://github.com/PX4/Firmware/blob/master/msg/vehicle_attitude.msg) message.
+* Local position output data - found in the [vehicle_local_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_local_position.msg) message.
 * Control loop feedback data: Refer to control_state.msg for definitions.
 * Global (WGS-84) output data: Refer to vehicle_global_position.msg for definitions.
 * Wind velocity output data: Refer to wind_estimate.msg for definitions.
