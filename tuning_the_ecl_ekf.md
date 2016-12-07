@@ -114,7 +114,7 @@ Most of the EKF data is found in the [ekf2_innovations](https://github.com/PX4/F
 
 ###States
 
-Refer to states[32] in estimator_status message. The index map for states[32] is as follows:
+Refer to states[32] in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg). The index map for states[32] is as follows:
 
 * [0 ... 3] Quaternions
 * [4 ... 6] Velocity NED (m/s)
@@ -127,7 +127,7 @@ Refer to states[32] in estimator_status message. The index map for states[32] is
 * [24 ... 32] Not Used
 
 ###State Variances
-Refer to covariances[28] in the estimator_status message. The index map for covariances[28] is as follows:
+Refer to covariances[28] in in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg). The index map for covariances[28] is as follows:
 
 * [0 ... 3] Quaternions
 * [4 ... 6] Velocity NED (m/s)^2
@@ -141,9 +141,9 @@ Refer to covariances[28] in the estimator_status message. The index map for cova
 
 ###Observation Innovations
 
-* Magnetometer XYZ (gauss) : Refer to mag_innov[3] in the ekf2_innovations message.
-* Yaw angle (rad) : Refer to heading_innov in the ekf2_innovations message.
-* Velocity and position innovations : Refer to vel_pos_innov[6] in the ekf2_innovations. The index map for vel_pos_innov[6] is as follows:
+* Magnetometer XYZ (gauss) : Refer to mag_innov[3] in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Yaw angle (rad) : Refer to heading_innov in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Velocity and position innovations : Refer to vel_pos_innov[6] in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg). The index map for vel_pos_innov[6] is as follows:
   * [0 ... 2] Velocity NED (m/s)
   * [3 ... 5] Position NED (m)
 * True Airspeed (m/s) : Refer to airspeed_innov in the ekf2_innovations message.
@@ -153,15 +153,15 @@ Refer to covariances[28] in the estimator_status message. The index map for cova
 
 ###Observation Innovation Variances
 
-* Magnetometer XYZ (gauss^2) : Refer to mag_innov_var[3] in the ekf2_innovations message.
+* Magnetometer XYZ (gauss^2) : Refer to mag_innov_var[3] in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 * Yaw angle (rad^2) : Refer to heading_innov_var in the ekf2_innovations message.
-* Velocity and position innovations : Refer to vel_pos_innov_var[6] in the ekf2_innovations. The index map for vel_pos_innov_var[6] is as follows:
+* Velocity and position innovations : Refer to vel_pos_innov_var[6] in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg). The index map for vel_pos_innov_var[6] is as follows:
   * [0 ... 2] Velocity NED (m/s)^2
   * [3 ... 5] Position NED (m^2)
-* True Airspeed (m/s)^2 : Refer to airspeed_innov_var in the ekf2_innovations message.
-* Synthetic sideslip (rad^2) : Refer to beta_innov_var in the ekf2_innovations message.
-* Optical flow XY (rad/sec)^2 : Refer to flow_innov_var in the ekf2_innovations message.
-* Height above ground (m^2) : Refer to hagl_innov_var in the ekf2_innovations message.
+* True Airspeed (m/s)^2 : Refer to airspeed_innov_var in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Synthetic sideslip (rad^2) : Refer to beta_innov_var in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Optical flow XY (rad/sec)^2 : Refer to flow_innov_var in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Height above ground (m^2) : Refer to hagl_innov_var in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 
 ###Output Complementary Filter
 The output complementary filter is used to propagate states forward from the fusion time horizon to current time. To check the magnitude of the angular, velocity and position tracking errors measured at the fusion time horizon, refer to output_tracking_error[3] in the ekf2_innovations message. The index map is as follows:
