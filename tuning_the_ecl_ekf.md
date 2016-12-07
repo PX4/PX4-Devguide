@@ -262,19 +262,34 @@ The above vibration metrics are of limited value as the presence of vibration at
 
 In addition to generating large position and velocity test ratios of > 1.0, the different error mechanisms affect the other test ratios in different ways:
 
-* High vibration levels normally affect vertical positiion and velocity innovations as well as the horizontal components. Magnetometer test levels are only affected to a small extent.
+###Determination of Excessive Vibration
+High vibration levels normally affect vertical positiion and velocity innovations as well as the horizontal components. Magnetometer test levels are only affected to a small extent.
 
 (insert example plots showing bad vibration here)
-* Large gyro bias offsets are normally characterised by a change in the value of delta angle bias greater than 5E-4 during flight (equivalent to ~3 deg/sec) and can also cause a large increase in the magnetometer test ratio if the yaw axis is affected. Height is normally unaffected other than extreme cases. Switch on bias value of up to 5 deg/sec can be tolerated provided the filter is given time time settle before flying . Pre-flight checks performed by the commander should prevent arming if the position is diverging.
+
+###Determination of Excessive Gyro Bias
+Large gyro bias offsets are normally characterised by a change in the value of delta angle bias greater than 5E-4 during flight (equivalent to ~3 deg/sec) and can also cause a large increase in the magnetometer test ratio if the yaw axis is affected. Height is normally unaffected other than extreme cases. Switch on bias value of up to 5 deg/sec can be tolerated provided the filter is given time time settle before flying . Pre-flight checks performed by the commander should prevent arming if the position is diverging.
 
 (insert example plots showing bad gyro bias here)
-* Bad yaw alignment causes a velocity test ratio that increases rapidly when the vehicle starts moving due inconsistency in the direction of velocity calculatde by the inertial nav and the  GPS measurement. Magnetometer innovations are slightly affected. Height is normally unaffected. 
+
+###Determination of Poor Yaw Accuracy
+Bad yaw alignment causes a velocity test ratio that increases rapidly when the vehicle starts moving due inconsistency in the direction of velocity calculatde by the inertial nav and the  GPS measurement. Magnetometer innovations are slightly affected. Height is normally unaffected. 
 
 (insert example plots showing bad yaw alignment here)
-* Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver.
 
-(insert example plots showing bad GPS data here)
-* Loss of GPS data will be shown by the velocity and position innvoation test ratios 'flat-lining'. If this occurs, check the oher GPS status data in vehicle_gps_position for further information.
+###Determination of Poor GPS Accuracy
+Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver in conjunction with a rise in innovations. Transient errors due to multipath, obscuration and interference are more common causes. Here is an example of a temporary loss of GPS accuracy where the multi-rotor started drifting away from its loiter location and had to be corrected using the sticks. The rise in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel_test_ratio to greater than 1 indicates the GPs velocity was inconsistent with other measurements and has been rejected.
+
+![](gps glitch - test ratios.png)
+
+This is accompanied with rise in the GPS receivers reported velocity accuracy which indicates that it was likely a GPS error.
+![](gps glitch - reported receiver accuracy.png)
+
+If we also look at the GPS horizontal velocity innovations and innovation variances, we can see the large spike in North velocity innovation that accompanies this GPS 'glitch' event.
+![](gps glitch - velocity innovations.png)
+
+###Determination of GPS Data Loss
+Loss of GPS data will be shown by the velocity and position innvoation test ratios 'flat-lining'. If this occurs, check the oher GPS status data in vehicle_gps_position for further information.
 
 (insert example plosts showing loss of GPS data here)
 
