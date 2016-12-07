@@ -98,7 +98,7 @@ For this reason, no claims for accuracy relative to the legacy combination of at
 * The federated architecture (combined attitude and position/velocity estimation) means that attitude estimation benefits from all sensor measurements. This should provide the potential for improved attitude estimation if tuned correctly. 
 
 ## How do I check the EKF performance?
-EKF outputs, states and status data are published to a number of uORB topics which are logged to the SD card during flight. The following guide assumes that that data has been logged using the ulog file format. 
+EKF outputs, states and status data are published to a number of uORB topics which are logged to the SD card during flight. The following guide assumes that data has been logged using the .ulog file format. To use the .ulog format, set the SYS_LOGGER parameter to 1.
 
 ###Output Data
 
