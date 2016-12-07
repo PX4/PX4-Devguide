@@ -146,10 +146,10 @@ Refer to covariances[28] in in [estimator_status](https://github.com/PX4/Firmwar
 * Velocity and position innovations : Refer to vel_pos_innov[6] in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg). The index map for vel_pos_innov[6] is as follows:
   * [0 ... 2] Velocity NED (m/s)
   * [3 ... 5] Position NED (m)
-* True Airspeed (m/s) : Refer to airspeed_innov in the ekf2_innovations message.
-* Synthetic sideslip (rad) : Refer to beta_innov in the ekf2_innovations message.
-* Optical flow XY (rad/sec) : Refer to flow_innov in the ekf2_innovations message.
-* Height above ground (m) : Refer to hagl_innov in the ekf2_innovations message.
+* True Airspeed (m/s) : Refer to airspeed_innov in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Synthetic sideslip (rad) : Refer to beta_innov in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Optical flow XY (rad/sec) : Refer to flow_innov in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Height above ground (m) : Refer to hagl_innov in [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 
 ###Observation Innovation Variances
 
