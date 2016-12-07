@@ -100,6 +100,8 @@ For this reason, no claims for accuracy relative to the legacy combination of at
 ## How do I check the EKF performance?
 EKF outputs, states and status data are published to a number of uORB topics which are logged to the SD card during flight. The following guide assumes that data has been logged using the .ulog file format. To use the .ulog format, set the SYS_LOGGER parameter to 1.
 
+The .ulog format data can be parsed in python by using the [PX4 pyulog library](https://github.com/PX4/pyulog).
+
 ###Output Data
 
 * Attitude output data: Refer to vehicle_attitude.msg for definitions.
