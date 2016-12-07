@@ -127,7 +127,7 @@ Refer to states[32] in [estimator_status](https://github.com/PX4/Firmware/blob/m
 * [24 ... 32] Not Used
 
 ###State Variances
-Refer to covariances[28] in in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg). The index map for covariances[28] is as follows:
+Refer to covariances[28] in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg). The index map for covariances[28] is as follows:
 
 * [0 ... 3] Quaternions
 * [4 ... 6] Velocity NED (m/s)^2
@@ -171,7 +171,7 @@ The output complementary filter is used to propagate states forward from the fus
 * [2] Position tracking error magntiude (m). The position tracking time constant can be adjusted using the EKF2_TAU_POS parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the NED position outputs.
 
 ###EKF Errors
-The EKF constains internal error checking for badly conditioned state and covariance updates. Refer to the filter_fault_flags in the estimator_status message.
+The EKF constains internal error checking for badly conditioned state and covariance updates. Refer to the filter_fault_flags in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).
 
 ###Observation Errors
 There are two categories of observation faults:
@@ -181,7 +181,7 @@ There are two categories of observation faults:
 
 Both of these can result in observation data being rejected for long enough to cause the EKF to attempt a reset of the states using the sensor observations. All observations have a statistical confidence check applied to the innovations. The number of standard deviations for the check are controlled by the EKF2_<>_GATE parameter for each observation type.
 
-Test levels are  available in the estimator_status message as follows:
+Test levels are  available in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) as follows:
 
 * mag_test_ratio : ratio of the largest magnetometer innovation component to the innovation test limit
 * vel_test_ratio : ratio of the largest velocity innovation component to the innovation test limit
@@ -190,9 +190,9 @@ Test levels are  available in the estimator_status message as follows:
 * tas_test_ratio : ratio of the true airspeed innovation to the innovation test limit
 * hagl_test_ratio : ratio of the height above ground innovation to the innovation test limit
 
-For a binary pass/fail summary for each sensor, refer to innovation_check_flags in the estimator_status message.
+For a binary pass/fail summary for each sensor, refer to innovation_check_flags in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).
 ###GPS Quality Checks
-The EKF applies a number of GPS quality checks before commencing GPS aiding. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ<> parameters. The pass/fail status for these checks is logged in the estimator_status.gps_check_fail_flags message. This integer will be zero when all requried GPs checks have passed. If the EKF is not commencing GPS alignment, check the value of the integer against the bitmask definition gps_check_fail_flags in the estimator_status.msg [estimator_status.msg](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) file.
+The EKF applies a number of GPS quality checks before commencing GPS aiding. These checks are controlled by the EKF2_GPS_CHECK and EKF2_REQ<> parameters. The pass/fail status for these checks is logged in the estimator_status.gps_check_fail_flags message. This integer will be zero when all requried GPs checks have passed. If the EKF is not commencing GPS alignment, check the value of the integer against the bitmask definition gps_check_fail_flags in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).
 ###EKF Numerical Errors
 The EKF uses single precision floating point operations for all of its computations and first order approximations for derivation of the covariance prediction and update equations in order to reduce processing requirements. This means that it is possible when re-tuning the EKF to encounter conditions where the covariance matrix operations become badly conditioned enough to cause divergence or significant errors in the state estimates.
 
@@ -201,7 +201,7 @@ To prevent this, every covariance and state update step contains the following e
 * If the innovation variance is less than the observation variance (this requires a negative state variance which is impossible) or the covariance update will produce a negative variance for any of the states, then:
  * The state and covariance update is skipped
  * The corresponding rows and columns in the covariance matrix are reset
- * The failure is recorded in the estimator_status.filter_fault_flags messaage
+ * The failure is recorded in the [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) filter_fault_flags messaage
 * State variances (diagonals in the covariance matrix) are constrained to be non-negative.
 * An upper limit is applied to state variances.
 * Symmetry is forced on the covariance matrix.
@@ -210,8 +210,8 @@ After re-tuning the filter, particularly re-tuning that involve reducing the noi
 ##What should I do if the height estimate is diverging?
 The most common cause of EKF height diverging away from GPS and altimeter measurements during flight is clipping and/or aliasing of the IMU measurements caused by vibration. If this is occurring, then the following signs should be evident in the data
 
-* ekf2_innovations.vel_pos_innov[3] and  ekf2_innovations.vel_pos_innov[5] will both have the same sign.
-* estimator_status.hgt_test_ratio will be greater than 1.0
+* [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).vel_pos_innov[3] and  [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).vel_pos_innov[5] will both have the same sign.
+* [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt_test_ratio will be greater than 1.0
 
 The recommended first step is to  esnure that the autopilot is isolated from the airframe using an effective isolatoin mounting system. An isolaton mount has 6 degrees of freedom, and therefore 6 resonant frequencies. As a general rule, the 6 resonant frequencies of the autopilot on the isolation mount should be above 25Hz to avoid interaction with the autopilot dynamics and below the frequency of the motors.
 
@@ -243,16 +243,16 @@ The most common causes of position divergence are:
 
 Determining which of these is the primary casue requires a methodical approach to analysis of the EKF log data:
 
-* Plot the velocty innovation test ratio - estimator_status.vel_test_ratio
-* Plot the horizontal position innovation test ratio - estimator_status.pos_test_ratio
-* Plot the height innovation test ratio - estimator_status.hgt_test_ratio
-* Plot the magnetoemrer innovation test ratio - estimator_status.mag_test_ratio
-* Plot the GPS receier reported speed accuracy - vehicle_gps_position.s_variance_m_s
-* Plot the IMU delta angle state estimates - estimator_status.states[10], states[11] and states[12]
+* Plot the velocty innovation test ratio - [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel_test_ratio
+* Plot the horizontal position innovation test ratio - [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).pos_test_ratio
+* Plot the height innovation test ratio - [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt_test_ratio
+* Plot the magnetoemrer innovation test ratio - [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).mag_test_ratio
+* Plot the GPS receier reported speed accuracy - [vehicle_gps_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_gps_position.msg).s_variance_m_s
+* Plot the IMU delta angle state estimates - [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).states[10], states[11] and states[12]
 * Plot the EKF internal high frequency vibration metrics:
-  * Delta angle coning vibration - estimator_status.vibe[0]
-  * High frequency delta angle vibration - estimator_status.vibe[1]
-  * High frequency delta velocity vibration - estimator_status.vibe[2]
+  * Delta angle coning vibration - [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe[0]
+  * High frequency delta angle vibration - [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe[1]
+  * High frequency delta velocity vibration - [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe[2]
 
 During normal operation, all the test ratios should remain below 0.5 with only occasional spikes above this as shown in the example below from a successful flight:
 ![Position, Velocity, Height and Magnetometer Test Ratios](Screen Shot 2016-12-02 at 9.20.50 pm.png)
@@ -262,7 +262,7 @@ The above vibration metrics are of limited value as the presence of vibration at
 
 In addition to generating large position and velocity test ratios of > 1.0, the different error mechanisms affect the other test ratios in different ways:
 
-* High vibration levels normally affect vertical positiion and velocity innovations as well as the horizontal componenets. Magnetometer test levels are only affected to a small extent.
+* High vibration levels normally affect vertical positiion and velocity innovations as well as the horizontal components. Magnetometer test levels are only affected to a small extent.
 
 (insert example plots showing bad vibration here)
 * Large gyro bias offsets are normally characterised by a change in the value of delta angle bias greater than 5E-4 during flight (equivalent to ~3 deg/sec) and can also cause a large increase in the magnetometer test ratio if the yaw axis is affected. Height is normally unaffected other than extreme cases. Switch on bias value of up to 5 deg/sec can be tolerated provided the filter is given time time settle before flying . Pre-flight checks performed by the commander should prevent arming if the position is diverging.
