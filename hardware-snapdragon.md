@@ -143,14 +143,14 @@ This interface is used to leverage the Pixracer / Pixfalcon as I/O interface boa
 
 Even though the 3DR GPS is described to have a 5v input, operation with 3.3V seems to work fine. (The built-in regulator MIC5205 has a minimum operating voltage of 2.5v.)
 
-| Snapdragon J9 Pin | Signal   | Comment       | 3DR GPS 6pin/4pin  | Pixfalcon GPS pin |
-| ----------------- | ---------| ------------- | ------------------ | ----------------- |
-| 1                 | 3.3V     | (3.3V)        | 1                  | 4                 |
-| 2                 | UART2_TX | Output (3.3V) | 2/-                | 3                 |
-| 3                 | UART2_RX | Input (3.3V)  | 3/-                | 2                 |
-| 4                 | I2C2_SDA | (3.3V)        | -/3                | 5                 |
-| 5                 | GND      |               | 6/-                | 1                 |
-| 6                 | I2C2_SCL | (3.3V)        | -/2                | 6                 |
+| Snapdragon J9 Pin | Signal   | Comment       | 3DR GPS 6pin/4pin  | Pixfalcon GPS pin | 3DR PIXHAWK MINI GSP |
+| ----------------- | ---------| ------------- | ------------------ | ----------------- | -------------------  |
+| 1                 | 3.3V     | (3.3V)        | 1                  | 4                 |3 (5V)                |
+| 2                 | UART2_TX | Output (3.3V) | 2/-                | 3                 |4                     |
+| 3                 | UART2_RX | Input (3.3V)  | 3/-                | 2                 |5                     | 
+| 4                 | I2C2_SDA | (3.3V)        | -/3                | 5                 |2                     |
+| 5                 | GND      |               | 6/-                | 1                 |6                     |
+| 6                 | I2C2_SCL | (3.3V)        | -/2                | 6                 |1                     |
 
 ## Dimensions
 
