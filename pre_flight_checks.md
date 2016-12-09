@@ -20,8 +20,11 @@ The commander module performs a number of preflight sensor quality and EKF check
  * This error is produced when the IMU gyro bias estimated by the EKF is excessive. 
  * The check is controlled by the COM_ARM_EKF_GB parameter.
 * PREFLIGHT FAIL: ACCEL SENSORS INCONSISTENT - CHECK CALIBRATION
- * The check is controlled by the COM_ARM_IMU_ACC parameter.
+ * 
+ * This check only applies to boards with more than one IMU.
+  * The check is controlled by the COM_ARM_IMU_ACC parameter.
 * PREFLIGHT FAIL: GYRO SENSORS INCONSISTENT - CHECK CALIBRATION
+ * This check only applies to boards with more than one IMU.
  * The check is controlled by the COM_ARM_IMU_GYR parameter.
 
 ##COM_ARM_WO_GPS
