@@ -2,21 +2,27 @@
 The commander module performs a number of preflight sensor quality and EKF checks which are controlled by the COM_ARM<> parameters. If these checks fail, the motors are prevented from arming and the following error messages are produced:
 
 * PREFLIGHT FAIL: EKF HGT ERROR
- * This error is produced when the IMU and height measurement data are inconsistent. The check is controlled by the COM_ARM_EKF_HGT parameter.
+ * This error is produced when the IMU and height measurement data are inconsistent. 
+ * The check is controlled by the COM_ARM_EKF_HGT parameter.
 * PREFLIGHT FAIL: EKF VEL ERROR
- * This error is produced when the IMU and GPS velocity measurement data are inconsistent. The check is controlled by the COM_ARM_EKF_VEL parameter.
+ * This error is produced when the IMU and GPS velocity measurement data are inconsistent. 
+ * The check is controlled by the COM_ARM_EKF_VEL parameter.
 * PREFLIGHT FAIL: EKF HORIZ POS ERROR
- * This error is produced when the IMU and position measurement data (either GPS or external vision) are inconsistent. The check is controlled by the COM_ARM_EKF_POS parameter.
+ * This error is produced when the IMU and position measurement data (either GPS or external vision) are inconsistent. 
+ * The check is controlled by the COM_ARM_EKF_POS parameter.
 * PREFLIGHT FAIL: EKF YAW ERROR
- * This error is produced when the IMU and yaw measurement data (either magnetometer or external vision) are inconsistent. The check is controlled by the COM_ARM_EKF_POS parameter
+ * This error is produced when the IMU and yaw measurement data (either magnetometer or external vision) are inconsistent. 
+ * The check is controlled by the COM_ARM_EKF_POS parameter
 * PREFLIGHT FAIL: EKF HIGH IMU ACCEL BIAS
- * This error is produced when the IMU accelerometer bias estimate produced by the EKF is excessive. The check is controlled by the COM_ARM_EKF_AB parameter.
+ * This error is produced when the IMU accelerometer bias estimated by the EKF is excessive. 
+ * The check is controlled by the COM_ARM_EKF_AB parameter.
 * PREFLIGHT FAIL: EKF HIGH IMU GYRO BIAS
- * Controlled by COM_ARM_EKF_GB
+ * This error is produced when the IMU gyro bias estimated by the EKF is excessive. 
+ * The check is controlled by the COM_ARM_EKF_GB parameter.
 * PREFLIGHT FAIL: ACCEL SENSORS INCONSISTENT - CHECK CALIBRATION
- * Controlled by COM_ARM_IMU_ACC
+ * The check is controlled by the COM_ARM_IMU_ACC parameter.
 * PREFLIGHT FAIL: GYRO SENSORS INCONSISTENT - CHECK CALIBRATION
- * Controlled by COM_ARM_IMU_GYR
+ * The check is controlled by the COM_ARM_IMU_GYR parameter.
 
 ##COM_ARM_WO_GPS
 The COM_ARM_WO_GPS parameter controls whether arming is allowed without a GPS signal. This parameter must be set to 0 to allow arming when there is no GPS signal present. Arming without GPS is only allowed if the flight mode selected does not require GPS.
