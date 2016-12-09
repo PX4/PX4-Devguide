@@ -10,7 +10,7 @@ The commander module performs a number of preflight sensor quality and EKF check
 * PREFLIGHT FAIL: EKF YAW ERROR
  * This error is produced when the IMU and yaw measurement data (either magnetometer or external vision) are inconsistent. The check is controlled by the COM_ARM_EKF_POS parameter
 * PREFLIGHT FAIL: EKF HIGH IMU ACCEL BIAS
- * This error is produced when the IMU acceerometer bias estimate produced by the EKF is excessive. The check is controlled by the COM_ARM_EKF_AB parameter.
+ * This error is produced when the IMU accelerometer bias estimate produced by the EKF is excessive. The check is controlled by the COM_ARM_EKF_AB parameter.
 * PREFLIGHT FAIL: EKF HIGH IMU GYRO BIAS
  * Controlled by COM_ARM_EKF_GB
 * PREFLIGHT FAIL: ACCEL SENSORS INCONSISTENT - CHECK CALIBRATION
