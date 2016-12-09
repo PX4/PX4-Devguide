@@ -7,6 +7,7 @@ The commander module performs a number of preflight sensor quality and EKF check
  * The check is controlled by the COM_ARM_EKF_HGT parameter.
 * PREFLIGHT FAIL: EKF VEL ERROR
  * This error is produced when the IMU and GPS velocity measurement data are inconsistent. 
+ * Check the GPS velocity data for un-realistic data jumps. If GPS quality looks OK, perform an accel and gyro calibration and restart the vehicle.
  * The check is controlled by the COM_ARM_EKF_VEL parameter.
 * PREFLIGHT FAIL: EKF HORIZ POS ERROR
  * This error is produced when the IMU and position measurement data (either GPS or external vision) are inconsistent. 
