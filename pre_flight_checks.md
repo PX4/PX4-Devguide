@@ -41,10 +41,13 @@ The COM_ARM_EKF_YAW parameter controls the maximum allowed inconsistency between
 ##COM_ARM_EKF_AB
 The COM_ARM_EKF_AB parameter controls the maximum allowed EKF estimated IMU accelerometer bias. The default value of 0.005 allows for up to 0.5 m/s/s of accelerometer bias.
 ##COM_ARM_EKF_GB
-The COM_ARM_EKF_AB parameter controls the maximum allowed EKF estimated IMU gyro bias. The default value of 0.00087 allows for up to 5 deg/sec of switch on gyro bias.
+The COM_ARM_EKF_GB parameter controls the maximum allowed EKF estimated IMU gyro bias. The default value of 0.00087 allows for up to 5 deg/sec of switch on gyro bias.
 ##COM_ARM_IMU_ACC
-The EKF
-The COM_ARM_IMU_ACC parameter controls the maximum al
+The COM_ARM_IMU_ACC parameter controls the maximum allowed inconsistency in acceleration measurements between the default IMU used for flight control and other IMU units if fitted. 
+##COM_ARM_IMU_GYR
+The COM_ARM_IMU_GYR parameter controls the maximum allowed inconsistency in angular rate measurements between the default IMU used for flight control and other IMU units if fitted.
+
+
 
 
 
