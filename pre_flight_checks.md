@@ -1,8 +1,9 @@
-# Preflight Checks
+# Preflight Sensor and EKF Checks
 The commander module performs a number of preflight sensor quality and EKF checks which are controlled by the COM_ARM<> parameters. If these checks fail, the motors are prevented from arming and the following error messages are produced:
 
 * PREFLIGHT FAIL: EKF HGT ERROR
- * This error is produced when the IMU and height measurement data are inconsistent. 
+ * This error is produced when the IMU and height measurement data are inconsistent.
+ * Perform an accel and gyro calibration and restart the vehicle. If the error persists, check the height sensor data for problems.
  * The check is controlled by the COM_ARM_EKF_HGT parameter.
 * PREFLIGHT FAIL: EKF VEL ERROR
  * This error is produced when the IMU and GPS velocity measurement data are inconsistent. 
