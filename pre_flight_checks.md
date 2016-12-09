@@ -11,9 +11,12 @@ The commander module performs a number of preflight sensor quality and EKF check
  * The check is controlled by the COM_ARM_EKF_VEL parameter.
 * PREFLIGHT FAIL: EKF HORIZ POS ERROR
  * This error is produced when the IMU and position measurement data (either GPS or external vision) are inconsistent. 
+ * Check the position sensor data for un-realistic data jumps. If data quality looks OK, perform an accel and gyro calibration and restart the vehicle.
  * The check is controlled by the COM_ARM_EKF_POS parameter.
 * PREFLIGHT FAIL: EKF YAW ERROR
  * This error is produced when the IMU and yaw measurement data (either magnetometer or external vision) are inconsistent. 
+ * This error is produced when the yaw angle estimated using gyro data and the yaw angle from the magnetoemter or exernal vision system are inconsistent.
+ * Check the IMU data for large yaw rate offsets and check the magnetometer alignment and calibration.
  * The check is controlled by the COM_ARM_EKF_POS parameter
 * PREFLIGHT FAIL: EKF HIGH IMU ACCEL BIAS
  * This error is produced when the IMU accelerometer bias estimated by the EKF is excessive. 
