@@ -71,6 +71,8 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
+IMPORTANT REMARK: If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the chanels the output will still be wrong. Thus for a correct channal assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below). 
+
 ### Mixer file
 
 A typical configuration file is below. 
@@ -93,7 +95,7 @@ S: 0 1   6500   6500      0 -10000  10000
 Where each number from left to right means:
 
   * M: Indicates two scalers for two inputs
-  * O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here)
+  * O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  If you want to invert your PWM signal, the signs for both output scalings and both output range numbers have to be changed. (```O:      -10000  -10000      0 10000  -10000```)
   * S: Indicates the first input scaler: It takes input from control group #0 (attitude controls) and the first input (roll). It scales the input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
   * S: Indicates the second input scaler: It takes input from control group #0 (attitude controls) and the second input (pitch). It scales the input * 0.65 and reverts the sign (-0.65 becomes -6500 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
 
