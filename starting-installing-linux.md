@@ -8,7 +8,6 @@ We have standardized on Debian / Ubuntu LTS as the supported Linux distribution,
 
 The user needs to be part of the group "dialout":
 
-
 ```sh
 sudo usermod -a -G dialout $USER
 ```
@@ -19,12 +18,12 @@ And then you have to logout and login again, as this is only changed after a new
 
 Update the package list and install the following dependencies for all PX4 build targets. PX4 supports four main families:
 
-  * NuttX based hardware: [Pixhawk](hardware-pixhawk.md), [Pixfalcon](hardware-pixfalcon.md),
-	[Pixracer](hardware-pixracer.md), [Crazyflie](hardware-crazyflie2.md),
-	[Intel Aero](hardware-intel-aero.md)
-  * Snapdragon Flight hardware: [Snapdragon](hardware-snapdragon.md)
-  * Linux-based hardware: [Raspberry Pi 2/3](hardware-rpi.md), Parrot Bebop
-  * Host simulation: [jMAVSim SITL](simulation-sitl.md) and [Gazebo SITL](simulation-gazebo.md)
+* NuttX based hardware: [Pixhawk](hardware-pixhawk.md), [Pixfalcon](hardware-pixfalcon.md),
+  [Pixracer](hardware-pixracer.md), [Crazyflie](hardware-crazyflie2.md),
+  [Intel Aero](hardware-intel-aero.md)
+* Snapdragon Flight hardware: [Snapdragon](hardware-snapdragon.md)
+* Linux-based hardware: [Raspberry Pi 2/3](hardware-rpi.md), Parrot Bebop
+* Host simulation: [jMAVSim SITL](simulation-sitl.md) and [Gazebo SITL](simulation-gazebo.md)
 
 > **Info** Install the [Ninja Build System](http://dev.px4.io/starting-installing-linux-boutique.html#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
 
@@ -39,8 +38,7 @@ sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8
 
 ### NuttX based hardware
 
-Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port (or USB serial). It can deinstalled without side effects:
-
+Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port \(or USB serial\). It can deinstalled without side effects:
 
 ```sh
 sudo apt-get remove modemmanager
@@ -62,33 +60,29 @@ sudo apt-get install python-serial openocd \
 
 If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmware master, please refer to [the bare metal installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation) to install version 4.9 or 5.4 manually.
 
-
 ### Snapdragon Flight
 
 #### Toolchain installation
-
 
 ```sh
 sudo apt-get install android-tools-adb android-tools-fastboot fakechroot fakeroot unzip xz-utils wget python python-empy -y
 ```
 
-
 ```sh
 git clone https://github.com/ATLFlight/cross_toolchain.git
 ```
 
-Get the Hexagon SDK 3.0 from QDN: https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin
+Get the Hexagon SDK 3.0 from QDN: [https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin)
 
 This will require a QDN login. You will have to register if you do not already have an account.
 
 Now move the following files in the download folder of the cross toolchain as follows:
 
-
 ```sh
 mv ~/Downloads/hexagon-sdk-v3-linux.bin cross_toolchain/downloads
 ```
-Install the toolchain and SDK like this:
 
+Install the toolchain and SDK like this:
 
 ```sh
 cd cross_toolchain
@@ -100,7 +94,6 @@ Follow the instructions to set up the development environment. If you accept all
 
 After this the tools and SDK will have been installed to "$HOME/Qualcomm/...". Append the following to your ~/.bashrc:
 
-
 ```sh
 export HEXAGON_SDK_ROOT="${HOME}/Qualcomm/Hexagon_SDK/3.0"
 export HEXAGON_TOOLS_ROOT="${HOME}/Qualcomm/HEXAGON_Tools/7.2.12/Tools"
@@ -108,7 +101,6 @@ export PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-4.9-2014.11-x86_64_arm-linux-gnueabi
 ```
 
 Load the new configuration:
-
 
 ```sh
 source ~/.bashrc
@@ -120,7 +112,7 @@ A sysroot is required to provide the libraries and header files needed to cross 
 
 The qrlSDK sysroot provies the required header files and libraries for the camera, GPU, etc.
 
-Download the file [Flight_3.1.1_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) and save it in `cross_toolchain/download/`.
+Download the file [Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) and save it in `cross_toolchain/download/`.
 
 ```sh
 cd cross_toolchain
@@ -136,7 +128,6 @@ export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/qrlinux_v3.1.1_sysroot
 
 Load the new configuration:
 
-
 ```sh
 source ~/.bashrc
 ```
@@ -144,15 +135,15 @@ source ~/.bashrc
 For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
 
 #### Update ADSP firmware
+
 Before building, flashing and running code, you'll need to update the [ADSP firmware](advanced-snapdragon.html#updating-the-adsp-firmware).
 
 #### References
 
-There is a an external set of documentation for Snapdragon Flight toolchain and SW setup and verification:
+There is a an external set of documentation for Snapdragon Flight toolchain and SW setup and verification:  
 [ATLFlightDocs](https://github.com/ATLFlight/ATLFlightDocs/blob/master/README.md)
 
 Messages from the DSP can be viewed using mini-dm.
-
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
@@ -161,29 +152,41 @@ ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
 
 ### Raspberry Pi hardware
-Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the *native* Raspberry Pi toolchain to compile directly on the Pi, see [here](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
 
+Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the _native_ Raspberry Pi toolchain to compile directly on the Pi, see [here](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
 
 ```sh
 git clone https://github.com/pixhawk/rpi_toolchain.git
 cd rpi_toolchain
 ./install_cross.sh
 ```
+
 You will be required to enter your password for toolchain installation to complete successfully.
 
-You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of ```/opt/rpi_toolchain```. Run ``` ./install_cross.sh <PATH>```. The installer will automatically configure required environment variables as well.
+You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of `/opt/rpi_toolchain`. Run `./install_cross.sh <PATH>`. The installer will automatically configure required environment variables as well.
+
+
+
+Finally, run the following command to update the evironmental variables:
+
+\`\`\`
+
+source ~/.profile
+
+\`\`\`
 
 ### Parrot Bebop
-Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
+
+Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the  
 description under [Raspberry Pi hardware](raspberry-pi-hardware).
 
 Next, install ADB.
 
-
-``sh
-sudo apt-get install android-tools-adb -y`
+``sh  
+sudo apt-get install android-tools-adb -y`  
 ``
 
 ## Finishing Up
 
 Now continue to run the [first build](starting-building.md)!
+
