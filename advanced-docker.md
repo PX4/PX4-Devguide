@@ -4,6 +4,8 @@ Docker containers are available that contain the complete PX4 development toolch
 
   * **px4io/px4-dev**: toolchain including simulation
   * **px4io/px4-dev-ros**: toolchain including simulation and ROS (incl. MAVROS)
+  
+Pull one of the tagged images if you're after a container that just works, for instance `px4io/px4-dev-ros:v1.0`, the `latest` container is usually changing a lot.
 
 Dockerfiles and README can be found here: https://github.com/PX4/containers/tree/master/docker/px4-dev
 
