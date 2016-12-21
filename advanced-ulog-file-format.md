@@ -117,13 +117,27 @@ struct message_info_s {
 
   Predefined information messages are:
 
-| `key`                     | Description            | Example for value |
-| -----                     | -----------            | -------------     |
-| char[value_len] sys_name  | Name of the system     |  "PX4"            |
-| char[value_len] ver_hw    | Hardware version       |  "PX4FMU_V4"      |
-| char[value_len] ver_sw    | Software version       |  "7f65e01"        |
-| char[value_len] replay    | File name of replayed log if in replay mode | "log001.ulg" |
-| int32_t time_ref_utc      | UTC Time offset in seconds |  -3600        |
+| `key`                        | Description               | Example for value |
+| -----                        | -----------               | ----------------- |
+| char[value_len] sys_name     | Name of the system        |  "PX4"            |
+| char[value_len] ver_hw       | Hardware version          |  "PX4FMU_V4"      |
+| char[value_len] ver_sw       | Software version (git tag)|  "7f65e01"        |
+| uint32_t ver_sw_release      | Software version (see below)|  0x010401ff     |
+| char[value_len] sys_os_name  | Operating System Name     |  "Linux"          |
+| char[value_len] sys_os_ver   | OS version (git tag)      |  "9f82919"        |
+| uint32_t ver_os_release      | OS version (see below)    |  0x010401ff       |
+| char[value_len] sys_toolchain| Toolchain Name            |  "GNU GCC"        |
+| char[value_len] sys_toolchain_ver| Toolchain Version     |  "6.2.1"          |
+| char[value_len] sys_mcu      | Chip name and revision    |  "STM32F42x, rev A"|
+| char[value_len] sys_uuid     | Unique identifier for vehicle (eg. MCU ID) |  "392a93e32fa3"...|
+| char[value_len] replay       | File name of replayed log if in replay mode | "log001.ulg" |
+| int32_t time_ref_utc         | UTC Time offset in seconds |  -3600        |
+
+  The format of `ver_sw_release` and `ver_os_release` is: 0xAABBCCTT, where AA
+  is major, BB is minor, CC is patch and TT is the type. Type is defined as
+  following: `>= 0`: development, `>= 64`: alpha version, `>= 128`: beta
+  version, `>= 192`: RC version, `== 255`: release version.
+  So for example 0x010402ff translates into the release version v1.4.2.
 
 
 - 'P': parameter message. Same format as `message_info_s`.
