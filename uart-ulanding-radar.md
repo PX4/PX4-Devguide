@@ -11,7 +11,7 @@ To do so add the following line to the cmake config file which corresponds to th
 drivers/ulanding
 ```
 
-All config files are located [here.](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
+All config files are located [here.](https://github.com/PX4/Firmware/tree/master/cmake/configs)
 
 ## Start the driver
 You will have to tell the sytem to start the driver for the radar during sytem startup.
