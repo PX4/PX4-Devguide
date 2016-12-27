@@ -79,7 +79,7 @@
        * [UAVCAN Configuration](uavcan-node-enumeration.md)
    * [PWM \/ GPIO](pwm-gpio-intro.md)
    * [UART](uart-intro.md)
-      * [uLanding Radar](uart-ulanding-radar.md)
+       * [uLanding Radar](uart-ulanding-radar.md)
 * Debugging and Advanced Topics
    * [FAQ](advanced-faq.md)
    * [System Console](advanced-system-console.md)
