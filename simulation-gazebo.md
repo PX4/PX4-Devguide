@@ -46,6 +46,8 @@ Make sure to have both installed: `gazebo7` and `libgazebo7-dev`.
 
 From within the source directory of the PX4 Firmware run the PX4 SITL with one of the airframes (Quads, planes and VTOL are supported, including optical flow):
 
+> **Note** You can use the instructions below to keep Gazebo running and only re-launch PX4.
+
 ### Quadrotor
 
 ```sh
@@ -56,23 +58,42 @@ make posix_sitl_default gazebo
 ### Quadrotor with Optical Flow
 
 ```sh
-cd ~/src/Firmware
 make posix gazebo_iris_opt_flow
 ```
+
+### 3DR Solo
+
+```sh
+make posix gazebo_solo
+```
+
+![](/assets/gazebo_solo.png)
+
+### Standard Plane
+
+```sh
+make posix gazebo_plane
+```
+
+![](/assets/gazebo_plane.png)
 
 ### Standard VTOL
 
 ```sh
-cd ~/src/Firmware
 make posix_sitl_default gazebo_standard_vtol
 ```
+
+![](/assets/gazebo_standard_vtol.png)
 
 ### Tailsitter VTOL
 
 ```sh
-cd ~/src/Firmware
 make posix_sitl_default gazebo_tailsitter
 ```
+
+![](/assets/gazebo_tailsitter.png)
+
+## Taking it to the Sky
 
 > ** Note ** Please refer to the [Installing Files and Code](http://dev.px4.io/starting-installing-mac.html) guide in case you run into any errors.
 
@@ -97,8 +118,6 @@ pxh>
 
 > ** Note ** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
 
-## Taking it to the Sky
-
 ![](images/sim/gazebo.png)
 
 The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
@@ -108,6 +127,22 @@ pxh> commander takeoff
 ```
 
 > ** Note ** Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
+
+## Starting Gazebo and PX4 separately
+
+For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
+
+In addition to the existing cmake targets that run `sitl_run.sh` with parameters for px4 to load the correct model it creates a launcher targets named `px4_<mode>` that is a thin wrapper around original sitl px4 app. This thin wrapper simply embeds app arguments like current working directories and the path to the model file.
+
+### How to use it
+
+  * Run gazebo (or any other sim) server and client viewers via the terminal:
+```
+make posix_sitl_default gazebo_none_ide
+```
+  * In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
+  * Start the debug session directly from IDE
+This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
 
 ## Extending and Customizing
 
