@@ -84,6 +84,7 @@
   * [UART](uart-intro.md)
     * [uLanding Radar](uart-ulanding-radar.md)
 * Debugging and Advanced Topics
+
   * [FAQ](advanced-faq.md)
   * [System Console](advanced-system-console.md)
   * [System Boot](advanced-system-startup.md)
@@ -98,11 +99,13 @@
   * [EKF2 Log Replay](ekf2_log_replay.md)
 
   * [Installing driver for Intel RealSense R200](advanced-realsense_intel.md)
+
   * [Gimbal \(Mount\) Control Setup](advanced-gimbal-control.md)
   * [Switching State Estimators](advanced-switching_state_estimators.md)
   * [Out-of-tree Modules](advanced-out-of-tree-modules.md)
   * [ULog File Format](advanced-ulog-file-format.md)
   * [Licenses](advanced-licenses.md)
+
 * [Software Update](software_update.md)
   * [STM32 Bootloader](stm32_bootloader.md)
 * [Testing and CI](testing-and-ci.md)
