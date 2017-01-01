@@ -100,8 +100,6 @@
   * [Installing driver for Intel RealSense R200](advanced-realsense_intel.md)
   * [Gimbal \(Mount\) Control Setup](advanced-gimbal-control.md)
   * [Switching State Estimators](advanced-switching_state_estimators.md)
-  * [Continuous Integration](advanced-ci.md)
-    * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
   * [Out-of-tree Modules](advanced-out-of-tree-modules.md)
   * [ULog File Format](advanced-ulog-file-format.md)
   * [Licenses](advanced-licenses.md)
@@ -109,6 +107,8 @@
   * [STM32 Bootloader](stm32_bootloader.md)
 * [Testing and CI](testing-and-ci.md)
   * [Docker Containers](advanced-docker.md)
+  * [Continuous Integration](advanced-ci.md)
+    * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
 
 
 
