@@ -96,9 +96,7 @@
   * [Logging](advanced-logging.md)
   * [Flight Log Analysis](flight_log_analysis.md)
   * [EKF2 Log Replay](ekf2_log_replay.md)
-  * [Snapdragon Advanced](advanced-snapdragon.md)
-    * [Accessing I\/O Data](advanced-accessing-io-data.md)
-    * [Camera and optical flow](advanced-snapdragon_camera.md)
+
   * [Installing driver for Intel RealSense R200](advanced-realsense_intel.md)
   * [Gimbal \(Mount\) Control Setup](advanced-gimbal-control.md)
   * [Switching State Estimators](advanced-switching_state_estimators.md)
