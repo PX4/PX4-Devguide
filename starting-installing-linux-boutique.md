@@ -157,9 +157,7 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 popd
 ```
 
-<aside class="note">
-If using Debian Linux, run this command:
-</aside>
+**If using Debian Linux, run this command:**
 
 <div class="host-code"></div>
 
@@ -168,12 +166,13 @@ sudo dpkg --add-architecture i386
 sudo apt-get update
 ```
 
-Install the 32 bit support libraries (if running already on 32 bit this might fail and can be skipped):
+**and Install the 32 bit support libraries** (this might fail and can be skipped if running a 32 bit OS):
 
 <div class="host-code"></div>
 
 ```sh
-sudo apt-get install libc6:i386 libgcc1:i386 gcc-4.6-base:i386 libstdc++5:i386 libstdc++6:i386
+sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386
+sudo apt-get install gcc-4.6-base:i386 
 ```
 
 ## Ninja Build System
