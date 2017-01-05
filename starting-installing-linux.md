@@ -46,19 +46,21 @@ sudo apt-get remove modemmanager
 
 Update the package list and install the following dependencies. Packages with specified versions should be installed with this particular package version.
 
-Make sure to remove the packaged version before adding the ppa.
-
 ```sh
-sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi
-sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
-sudo apt-get update
 sudo apt-get install python-serial openocd \
     flex bison libncurses5-dev autoconf texinfo build-essential \
     libftdi-dev libtool zlib1g-dev \
-    python-empy gcc-arm-embedded -y
+    python-empy  -y
 ```
 
-If the resulting `gcc-arm-none-eabi` version produces build errors for PX4/Firmware master, please refer to [the bare metal installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation) to install version 4.9 or 5.4 manually.
+Make sure to remove leftovers before adding the arm-none-eabi toolchain.
+
+```sh
+sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
+sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
+```
+
+Then follow the [toolchain installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation) to install the arm-none-eabi toolchain version 4.9 or 5.4 manually.
 
 ### Snapdragon Flight
 
@@ -140,7 +142,7 @@ Before building, flashing and running code, you'll need to update the [ADSP firm
 
 #### References
 
-There is a an external set of documentation for Snapdragon Flight toolchain and SW setup and verification:  
+There is a an external set of documentation for Snapdragon Flight toolchain and SW setup and verification:
 [ATLFlightDocs](https://github.com/ATLFlight/ATLFlightDocs/blob/master/README.md)
 
 Messages from the DSP can be viewed using mini-dm.
@@ -172,12 +174,12 @@ source ~/.profile
 
 ### Parrot Bebop
 
-Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the  
+Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
 description under [Raspberry Pi hardware](raspberry-pi-hardware).
 
 Next, install ADB.
 
-``sh      
+``sh
 sudo apt-get install android-tools-adb -y` ``
 
 ## Finishing Up
