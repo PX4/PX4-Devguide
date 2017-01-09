@@ -93,6 +93,10 @@ make posix_sitl_default gazebo_tailsitter
 
 ![](/assets/gazebo_tailsitter.png)
 
+## Change World
+
+The current default world is the iris.wold located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds). The default surroundig in the iris.world uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, it is recommended to change the model in iris.model from uneven_ground to asphalt_plane.
+
 ## Taking it to the Sky
 
 > ** Note ** Please refer to the [Installing Files and Code](http://dev.px4.io/starting-installing-mac.html) guide in case you run into any errors.
