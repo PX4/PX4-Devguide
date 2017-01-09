@@ -63,3 +63,4 @@ The PX4 Dev Team syncs up on its weekly dev call (connect via [Mumble](http://mu
   * Port: 64738
   * Password: px4
   * The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
+  * Issues and PRs may be labelled "devcall" to flag them for discussion
