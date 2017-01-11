@@ -20,7 +20,7 @@ The controllers / mixers are specific to a particular airframe (e.g. a multicopt
 
 ![Architecture](images/diagrams/PX4_Architecture.png)
 
-> ** Info ** This flow chart can be updated from [here](https://www.draw.io/?state=%7B%22ids%22:%5B%220Byq0TIV9P8jfbVVZOVZ0YzhqYWs%22%5D,%22action%22:%22open%22,%22userId%22:%22105324025069119724742%22%7D#G0Byq0TIV9P8jfbVVZOVZ0YzhqYWs).
+> ** Info ** This flow chart can be updated from [here](https://drive.google.com/file/d/0Byq0TIV9P8jfbVVZOVZ0YzhqYWs/view?usp=sharing) and open it with draw.io Diagrams.
 
 ## Communication Architecture with the GCS
 
