@@ -18,21 +18,9 @@ Each of the blocks below is a separate module, which is self-contained in terms 
 
 The controllers / mixers are specific to a particular airframe (e.g. a multicopter, VTOL or plane), but the higher-level mission management blocks like the `commander` and `navigator` are shared between platforms.
 
-{% mermaid %}
-graph TD;
-  commander-->navigator;
-  user-->commander;
-  user-->stickmapper;
-  stickmapper-->navigator;
-  navigator-->pos_ctrl
-  pos_ctrl-->att_ctrl;
-  att_ctrl-->mixer;
-  position_estimator-->pos_ctrl;
-  position_estimator-->navigator;
-  position_estimator-->attitude_estimator;
-  attitude_estimator-->att_ctrl;
-  mixer-->motor_driver;
-{% endmermaid %}
+![Architecture](images/diagrams/PX4_Architecture.png)
+
+> ** Info ** This flow chart can be updated from [here](https://www.draw.io/?state=%7B%22ids%22:%5B%220Byq0TIV9P8jfbVVZOVZ0YzhqYWs%22%5D,%22action%22:%22open%22,%22userId%22:%22105324025069119724742%22%7D#G0Byq0TIV9P8jfbVVZOVZ0YzhqYWs).
 
 ## Communication Architecture with the GCS
 
