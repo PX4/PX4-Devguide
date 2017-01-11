@@ -17,7 +17,7 @@ git submodule update --init --recursive
 git remote add upstream https://github.com/PX4/Firmware.git
 ```
 * You should have now two remote repositories: One repository is called upstream that points to the PX4 Firmware,
-and one repository that points to your own fork of the PX4 repository. 
+and one repository that points to your own fork of the PX4 repository.
 * This can be checked with the following command:
 ```sh
 git remote -v
@@ -25,7 +25,7 @@ git remote -v
 * Make the changes that you want to add to the current master.
 * Create a new branch with a meaningful name that represents your feature<br>
 ```sh
-git checkout -b <feature branch name>
+git checkout -b <your feature branch name>
 ```
 you can use the command ```git branch``` to make sure you're on the right branch.
 * Add your changes that you want to be part of the commit<br>
@@ -52,7 +52,7 @@ git pull upstream master
 ```
 Now your local master is up to date. Switch back to your feature branch<br>
 ```sh
-git checkout <your branch name>
+git checkout <your feature branch name>
 ```
 and rebase on your updated master<br>
 ```sh
@@ -60,7 +60,7 @@ git rebase master
 ```
 * Now you can push your local commits to your fork<br>
 ```sh
-git push origin <your branch name>
+git push origin <your feature branch name>
 ```
 * You can verify that the push was successful by going to your forked repository in your browser: ```https://github.com/<your git name>/Firmware.git```<br>
 There you should see the message that a new branch has been pushed to your fork.
@@ -70,6 +70,6 @@ There you should see the message that a new branch has been pushed to your fork.
 ## Common pitfalls
 After having done the first PR, people from the PX4 community will review your changes. In most cases this means that you have to fix your local branch according to the review. Afther the changes have been done locally, the feature branch needs to be rebased again with the most recent upstream/master. However, after the rebase, it is no longer possible to push the feature branch to your local fork repository directly, but instead you need to use a force push:
 ```sh
-git push --force-with-lease origin <your branch name>
+git push --force-with-lease origin <your feature branch name>
 ```
 ### How to handle merge conflicts
