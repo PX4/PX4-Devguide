@@ -10,6 +10,7 @@
     * [Windows](starting-installing-windows.md)
   * [Building the Code](starting-building.md)
   * [Contributing & Dev Call](starting-contributing.md)
+    * [GIT Examples](git-examples.md)
 * Concepts
   * [Flight Modes \/ Operation](concept-flight-modes.md)
   * [Architectural Overview](concept-architecture.md)
@@ -110,6 +111,3 @@
   * [Docker Containers](advanced-docker.md)
   * [Continuous Integration](advanced-ci.md)
     * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
-
-
-
