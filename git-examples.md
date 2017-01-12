@@ -72,15 +72,15 @@ There you should see the message that a new branch has been pushed to your forke
 ```sh
 cd Firmware
 ```
-* Make a new branch that describes new feature:
+* Make a new branch that describes the new feature:
 ```sh
 git checkout -b feature_branch
 ```
-* Go go submodule subdirectory
+* Go to submodule subdirectory
 ```sh
 cd <path to submodule>
 ```
-* PX4 submodule might not necessarilty point to the newest commit. Therefore, first checkout out master and pull the newest upstream code.
+* PX4 submodule might not necessarily point to the newest commit. Therefore, first checkout master and pull the newest upstream code.
 ```sh
 git checkout master
 git pull upstream master
