@@ -85,12 +85,26 @@ cd <path to submodule>
 git checkout master
 git pull upstream master
 ```
-* Go back to Firmware directory, and as usual add, commit and push the changes. 
+* Go back to Firmware directory, and as usual add, commit and push the changes.
 ```sh
 cd -
 git add <path to submodule>
 git commit -m "Update submodule because ..."
 git push upstream feature_branch
+```
+
+## Checkout pull requests
+You can test someone's pull request (changes are not yet merged) even if the branch to merge only exists on the fork from that person. Do the following
+```sh
+git fetch upstream  pull/<PR ID>/head:<branch name>
+```
+```PR ID``` is the number right next to the PR's title (without the #) and the ```<branch name>``` can also be found right below the ```PR ID```, e.g. ```<the other persons git name>:<branch name>```. After that you can see the newly created branch locally with
+```sh
+git branch
+```
+Then switch to that branch
+```sh
+git checkout <branch name>
 ```
 
 ## Common pitfalls
