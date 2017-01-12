@@ -67,6 +67,32 @@ There you should see the message that a new branch has been pushed to your forke
 * Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (short) and message (explain what you did for what reason. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
+## Adding feature to PX4 Submodule
+* Go to your local PX4 Firmware folder:
+```sh
+cd Firmware
+```
+* Make a new branch that describes new feature:
+```sh
+git checkout -b feature_branch
+```
+* Go go submodule subdirectory
+```sh
+cd <path to submodule>
+```
+* PX4 submodule might not necessarilty point to the newest commit. Therefore, first checkout out master and pull the newest upstream code.
+```sh
+git checkout master
+git pull upstream master
+```
+* Go back to Firmware directory, and as usual add, commit and push the changes. 
+```sh
+cd -
+git add <path to submodule>
+git commit -m "Update submodule because ..."
+git push upstream feature_branch
+```
+
 ## Common pitfalls
 
 ### Force push to forked repository
