@@ -68,8 +68,15 @@ There you should see the message that a new branch has been pushed to your forke
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
 ## Common pitfalls
+
+### Force push to forked repository
 After having done the first PR, people from the PX4 community will review your changes. In most cases this means that you have to fix your local branch according to the review. Afther the changes have been done locally, the feature branch needs to be rebased again with the most recent upstream/master. However, after the rebase, it is no longer possible to push the feature branch to your local forked repository directly, but instead you need to use a force push:
 ```sh
 git push --force-with-lease origin <your feature branch name>
 ```
-### How to handle merge conflicts
+
+### Rebase merge conflicts
+If a conflict occurs during a ```git rebase```, please refer to [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/).
+
+### Pull merge conflicts
+If a conflict occurs during a ```git pull```, please refer to [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts).
