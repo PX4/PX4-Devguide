@@ -6,7 +6,9 @@
 
 ### OS Image
 
-Use the [Emlid RT Raspbian image](http://docs.emlid.com/navio/Downloads/Real-time-Linux-RPi2/) till the default pre-configured PX4 image is made available. The default image will have most of the setup procedures shown below already done.
+Use the [Emlid RT Raspbian image for Navio 2](https://docs.emlid.com/navio2/Navio-APM/configuring-raspberry-pi/).
+The default image will have most of the setup procedures shown below already
+done.
 
 ### Setting up access
 
