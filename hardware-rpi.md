@@ -6,7 +6,14 @@
 
 ### OS Image
 
-Use the [Emlid RT Raspbian image](http://docs.emlid.com/navio/Downloads/Real-time-Linux-RPi2/) till the default pre-configured PX4 image is made available. The default image will have most of the setup procedures shown below already done.
+Use the [Emlid RT Raspbian image for Navio 2](https://docs.emlid.com/navio2/Navio-APM/configuring-raspberry-pi/).
+The default image will have most of the setup procedures shown below already
+done.
+
+**Important**: make sure not to upgrade the system (more specifically the kernel).
+By upgrading, a new kernel can get installed which lacks the necessary HW
+support (you can check with `ls /sys/class/pwm`, the directory should not be
+empty).
 
 ### Setting up access
 
@@ -20,6 +27,12 @@ Find the IP address of your Pi from your network, and then you can proceed to co
 ```sh
 ssh pi@<IP-ADDRESS>
 ```
+
+### Expand the Filesystem
+
+After installing the OS and connecting to it, make sure to
+[expand the Filesystem](https://www.raspberrypi.org/documentation/configuration/raspi-config.md),
+so there is enough space on the SD Card.
 
 ### Changing hostnames
 
@@ -149,17 +162,24 @@ This should copy over a "hello.txt" file into the home folder of your RPi. Valid
 
 ### Native builds (optional)
 
-You can run PX4 builds directly on the Pi if you desire. This is the *native* build.
-The other option is to run builds on a development computer which cross-compiles for the Pi, and pushes the PX4 executable binary directly to the Pi. This is the *cross-compiler* build, and the recommended one for developers due to speed of deployment and ease of use. For cross-compiling setups, you can skip this step.
+You can run PX4 builds directly on the Pi if you desire. This is the *native*
+build. The other option is to run builds on a development computer which
+cross-compiles for the Pi, and pushes the PX4 executable binary directly to the
+Pi. This is the *cross-compiler* build, and the recommended one for developers
+due to speed of deployment and ease of use.
 
-The below installation script will automatically update the native build system on the Pi to that required by PX4. Run these commands on the Pi itself!
+For cross-compiling setups, you can skip this step.
+
+The steps below will setup the build system on the Pi to that required by PX4.
+Run these commands on the Pi itself!
 
 ```sh
-git clone https://github.com/pixhawk/rpi_toolchain.git
-cd rpi_toolchain
-chmod +x install_native.sh
-./install_native.sh
+sudo apt-get update
+sudo apt-get install cmake python-empy
 ```
+
+Then clone the Firmware directly onto the Pi.
+
 ### Building the code
 
 Continue with our [standard build system installation](starting-installing-linux.md).
