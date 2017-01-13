@@ -1,5 +1,5 @@
 # GIT Examples
-## Contributing code to PX4
+## Contributing code to PX4 
 
 Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 
@@ -63,14 +63,17 @@ There you should see the message that a new branch has been pushed to your forke
 * Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
-## Adding feature to PX4 Submodule
-* Go to your local PX4 Firmware folder:
+## Update Submodule
+There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#Contributing-code-to-PX4).
+
+## Do a PR for a submodule update
+This is required after you have done a PR for a submodule X repository and the bug-fix / feature-add is in the current master of submodule X. Since the Firmware still points to a commit before your update, a submodule pull request is required such that the submodule used by the Firmware points to the newest commit.
 ```sh
 cd Firmware
 ```
-* Make a new branch that describes the new feature:
+* Make a new branch that describes the fix / feature for the submodule update:
 ```sh
-git checkout -b feature_branch
+git checkout -b pr-some-fix
 ```
 * Go to submodule subdirectory
 ```sh
@@ -79,14 +82,14 @@ cd <path to submodule>
 * PX4 submodule might not necessarily point to the newest commit. Therefore, first checkout master and pull the newest upstream code.
 ```sh
 git checkout master
-git pull upstream master
+git pull origin master
 ```
 * Go back to Firmware directory, and as usual add, commit and push the changes.
 ```sh
 cd -
 git add <path to submodule>
-git commit -m "Update submodule because ..."
-git push upstream feature_branch
+git commit -m "Update submodule to include ..."
+git push upstream pr-some-fix
 ```
 
 ## Checkout pull requests
