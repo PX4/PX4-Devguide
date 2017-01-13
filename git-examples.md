@@ -1,5 +1,5 @@
 # GIT Examples
-## Adding a feature to PX4
+## Contributing code to PX4
 
 Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 
@@ -28,15 +28,11 @@ git remote -v
 git checkout -b <your feature branch name>
 ```
 you can use the command ```git branch``` to make sure you're on the right branch.
-* Add your changes that you want to be part of the commit<br>
-```sh
-git add .
-```
-to add all your files or<br>
+* Add your changes that you want to be part of the commit by adding the respective files<br>
 ```sh
 git add <file name>
 ```
-to add single files
+If you prefer having a GUI to add your files see [Gitk](https://git-scm.com/book/en/v2/Git-in-Other-Environments-Graphical-Interfaces) or [```git add -p```](http://nuclearsquid.com/writings/git-add/).
 * Commit the added files with a meaningful message explaining your changes<br>
 ```sh
 git commit -m "<your commit message>"
@@ -64,7 +60,7 @@ git push origin <your feature branch name>
 ```
 * You can verify that the push was successful by going to your forked repository in your browser: ```https://github.com/<your git name>/Firmware.git```<br>
 There you should see the message that a new branch has been pushed to your forked repository.
-* Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (short) and message (explain what you did for what reason. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
+* Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
 ## Adding feature to PX4 Submodule
