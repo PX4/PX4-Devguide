@@ -46,7 +46,7 @@
       * [Camera and optical flow](advanced-snapdragon_camera.md)
 * Middleware and Architecture
   * [uORB Messaging](advanced-uorb.md)
-  * [Custom MAVLink Message](custom-mavlink-message.md)
+  * [MAVLink Messaging](mavlink-messaging.md)
   * [Daemons](architecture-daemon.md)
   * [Driver Framework](advanced-drivers.md)
 * Airframes
