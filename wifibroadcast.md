@@ -1,13 +1,14 @@
 # Long-distance video streaming in QGroundControl
-This page shows how to set up a a companion computer (Odroid C1 or C0) with a camera (Logitech C920) such that the video stream is transferred via the Odroid C1 to a network computer and displayed in the application QGroundControl that runs on this computer. This setup uses WiFi in unconnected (broadcast) mode. See [original post](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) about wifibroadcast for additional details.
+This page shows how to set up a a companion computer (Odroid C1 or C0) with a camera (Logitech C920) such that the video stream is transferred via the Odroid C1 to a network computer and displayed in the application QGroundControl that runs on this computer. This setup uses WiFi in unconnected (broadcast) mode.
 
 The whole hardware setup consists of the following parts:
+
 On TX (copter) side:
 * Odroid C1
 * Logitech camera C920
 * WiFi module  ALPHA AWUS051NH v2.
 
-On RX (group station side)
+On RX (group station side):
 * Any computer with Linux.
 * WiFi module  ALPHA AWUS051NH v2.
 
@@ -33,25 +34,30 @@ Wifibroadcast puts the wifi cards into monitor mode. This mode allows to send an
 ## Hardware modification.
 Alpha WUS051NH is a high power card and eats too much current while TX. If you power it from USB will reset port on Odroid C1/C0.
 So you need to connect it to 5V BEC directly. You can do this two ways:
-1. Make a custom usb cable.
-2. Cut a 5V wire on odroid PCB near usb port and wire it to BEC.
-Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes.
+
+ 1. Make a custom usb cable.
+ 2. Cut a 5V wire on odroid PCB near usb port and wire it to BEC.
+    Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes.
 
 ## Software setup
+Download wifibroadcast [sources](https://github.com/svpcom/wifibroadcast).
+
 You need to patch kernel to:
-1. Enable TX rate lock. Use ``mac80211-radiotap-bitrate_mcs_rtscts.linux-4.4.patch``. Instead there are no way to specify data rate for injected radiotap packets.
-2. Enable TX power lock. Use ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``. This will lock tx power to maximum supported by card.
-3. Enable RX of frames with bad FSC (checksum). Use ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``. This is optional and don't use in current code.
+ 
+ 1. Enable TX rate lock. Use ``mac80211-radiotap-bitrate_mcs_rtscts.linux-4.4.patch``. Instead there are no way to specify data rate for injected radiotap packets.
+ 2. Enable TX power lock. Use ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``. This will lock tx power to maximum supported by card.
+ 3. Enable RX of frames with bad FSC (checksum). Use ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``. This is optional and don't use in current code.
 
 So you can only patch kernel on TX side.
 
 ### On TX side you need:
+
 1. Setup camera to output RTP stream:
 ```
 gst-launch-1.0 uvch264src device=/dev/video0 initial-bitrate=6000000 average-bitrate=6000000 iframe-period=1000 name=src auto-start=true \
                src.vidsrc ! queue ! video/x-h264,width=1920,height=1080,framerate=30/1 ! h264parse ! rtph264pay ! udpsink host=localhost port=5600
 ```
-2. Setup wifibroadcast in TX mode:
+ 2. Setup wifibroadcast in TX mode:
 
 ```
 git clone https://github.com/svpcom/wifibroadcast
@@ -67,7 +73,8 @@ iwconfig wlan1 channel 149
 This will setup wifibroadcast using 24Mbit/s data rate on 149 wifi channel (in 5GHz band) listening on UDP port 5600 for incoming data.
 
 ### On RX side you need:
-1. Setup wifibroadcast in RX mode:
+
+ 1. Setup wifibroadcast in RX mode:
 ```
 git clone https://github.com/svpcom/wifibroadcast
 cd wifibroadcast
@@ -79,7 +86,7 @@ ifconfig wlan1 up
 iwconfig wlan1 channel 149
 ./rx wlan1
 ```
-2. Run qgroundcontrol or
+ 2. Run qgroundcontrol or
 ```
 gst-launch-1.0 udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
              ! rtph264depay ! avdec_h264 ! clockoverlay valignment=bottom ! autovideosink fps-update-interval=1000 sync=false
@@ -88,19 +95,23 @@ to decode video.
 
 ## FAQ
 Q: What is a difference from original wifibroadcast?
+
 A: Original version of wifibroadcast use a byte-stream as input and splits it to packets of fixed size (1024 by default). If radio
 packet was lost and this is not corrected by FEC you'll got a hole at random (unexpected) place of stream. This is especially bad if
 data protocol is not resistent to (was not desired for) such random erasures. So i've rewrite it to use UDP as data source and pack one
 source UDP packet into one radio packet. Radio packets now have variable size depends on payload size. This is reduces a video latency a lot.
 
 Q: What type of data can be transmitted using wifibroadcast?
+
 A: Any UDP with packet size <= 1466. For example x264 inside RTP or Mavlink.
 
 Q: What are transmission guarancies?
+
 A: Wifibrodcast use FEC (forward error correction) which can recover 4 lost packets from 12 packets block with default settings.
    You can tune it (both TX and RX simultaniuosly!) to fit your needs.
 
 Q: I have a lot of frame drops and messages ``XX packets lost``. What is this?
+
 A: This is can be due to:
    1. Signal power is too low. Use high-power card or annennas with more gain. Use directed antenna on RX side. Use additional RX card for diversity (add wlan2, wlan3, ... to rx program)
    2. Signal power is too high. Especially if you use 30dBm TX indoors. Try to reduce TX power (for example hack CRDA database inside kernel and make
@@ -146,3 +157,6 @@ When used as an Rx dongle, bad blocks can occur when the received signal strengt
 * AWUS051NH This adapter will provide around 330mw output power. Range on 5Ghz is around 800-1000m. Stock antenna is not recommended because they have 5dbi gain, which will give a too-flat radiation pattern.
 
 * AWUS052NH This adapter will provide around 330mw output power. This is the same adapter as the 051NH, but with two TX chains. Stock antennas are not recommended because they have 5dbi gain, which will give a too-flat radiation pattern.
+
+## Links:
+ -  [Original version](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) of wifibroadcast
