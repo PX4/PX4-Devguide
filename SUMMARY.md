@@ -22,6 +22,7 @@
   * [Ground Control Station](qgroundcontrol-intro.md)
   * [Writing an Application](tutorial-hello-sky.md)
   * [Video streaming in QGC](advanced-videostreaming-qgc.md)
+  * [Long-distance video streaming](wifibroadcast.md)
   * [Optical Flow and LIDAR](flow_lidar_setup.md)
   * [Integration Testing](tutorial-integration-testing.md)
   * [Optical Flow Outdoors](optical-flow-outdoors.md)
