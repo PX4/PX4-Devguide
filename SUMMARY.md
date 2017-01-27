@@ -27,6 +27,7 @@
   * [Optical Flow Outdoors](optical-flow-outdoors.md)
   * [ecl EKF](tuning_the_ecl_ekf.md)
   * [Preflight Checks](pre_flight_checks.md)
+  * [Telemetry](telemetry.md)
 * Simulation
   * [Basic Simulation](simulation-sitl.md)
   * [Gazebo Simulation](simulation-gazebo.md)
