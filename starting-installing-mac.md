@@ -33,7 +33,7 @@ Then install the required python packages:
 
 ```sh
 sudo easy_install pip
-sudo pip install pyserial empy
+sudo pip install pyserial empy pandas jinja2
 ```
 
 ### Java for jMAVSim
