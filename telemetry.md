@@ -9,4 +9,4 @@ password: 12345678
 ```
 Once connected to the WIFI, it should automatically connect to QGroundControl.
 ![](images/hardware/3dr_wifi_1.JPG)
-![](images/hardware/3dr_wifi_2.JPG)
+![](images/hardware/3dr_wifi_2.png)
