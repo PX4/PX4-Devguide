@@ -100,6 +100,7 @@
   * [Logging](advanced-logging.md)
   * [Flight Log Analysis](flight_log_analysis.md)
   * [EKF Log Replay](ekf2_log_replay.md)
+  * [System-wide Replay](advanced-replay.md)
   * [Installing driver for Intel RealSense R200](advanced-realsense_intel.md)
   * [Parrot Bebop](advanced-bebop.md)
   * [Gimbal \(Mount\) Control Setup](advanced-gimbal-control.md)
