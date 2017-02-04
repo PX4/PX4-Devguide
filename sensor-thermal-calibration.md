@@ -20,5 +20,7 @@ Add step by step procedure calibration using the SYS\_LOGGER and SDLOG\_MODE par
 
 ## FAQ
 
-https://www.gitbook.com/book/px4/devguide/edit\#/edit/master/sensor-thermal-calibration.md?\_k=cto1im
+### Why aren't scale factors compensated?
+
+
 
