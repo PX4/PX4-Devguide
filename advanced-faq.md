@@ -29,7 +29,7 @@ To remedy it, either use more recent hardware or remove modules from the build w
 
 ### The upload never succeeds
 
-On Ubuntu, deinstall the modem manager:
+On Ubuntu, uninstall the modem manager:
 
 ```sh
 sudo apt-get remove modemmanager

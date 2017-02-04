@@ -6,7 +6,7 @@ This page shows you how to set up the PX4Flow for position estimation and autono
 ## Selecting LPE Estimator
 --------------------------------------------------------
 
-The only estimator that is tested to work with optical flow based autonmous flight outdoors is, LPE.
+The only estimator that is tested to work with optical flow based autonomous flight outdoors is, LPE.
 
 Use the `SYS_MC_EST_GROUP = 1` parameter to select the estimator and then reboot.
 

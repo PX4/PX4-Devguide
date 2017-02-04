@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The uORB is an asynchronous publish() / subcribe() messaging API used for
+The uORB is an asynchronous publish() / subscribe() messaging API used for
 inter-thread/inter-process communication.
 
 Look at the [tutorial](tutorial-hello-sky.md) to learn how to use it in C++.

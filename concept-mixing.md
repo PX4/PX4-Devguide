@@ -21,7 +21,7 @@ graph LR;
 
 ## Control Groups
 
-PX4 uses control groups (inputs) and output groups. Conceptionally they are very simple: A control group is e.g. `attitude`, for the core flight controls, or `gimbal` for payload. An output group is one physical bus, e.g. the first 8 PWM outputs for servos. Each of these groups has 8 normalized (-1..+1) command ports, which can be mapped and scaled through the mixer. A mixer defines how each of these 8 signals of the controls are connected to the 8 outputs.
+PX4 uses control groups (inputs) and output groups. Conceptually they are very simple: A control group is e.g. `attitude`, for the core flight controls, or `gimbal` for payload. An output group is one physical bus, e.g. the first 8 PWM outputs for servos. Each of these groups has 8 normalized (-1..+1) command ports, which can be mapped and scaled through the mixer. A mixer defines how each of these 8 signals of the controls are connected to the 8 outputs.
 
 For a simple plane control 0 (roll) is connected straight to output 0 (aileron). For a multicopter things are a bit different: control 0 (roll) is connected to all four motors and combined with throttle.
 
@@ -203,8 +203,8 @@ The supported geometries include:
 
  * 4x - quadrotor in X configuration
  * 4+ - quadrotor in + configuration
- * 6x - hexcopter in X configuration
- * 6+ - hexcopter in + configuration
+ * 6x - hexacopter in X configuration
+ * 6+ - hexacopter in + configuration
  * 8x - octocopter in X configuration
  * 8+ - octocopter in + configuration
   
