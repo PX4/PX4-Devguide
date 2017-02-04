@@ -8,7 +8,7 @@ PX4 conains functionality to calibrate and compensate rate gyro, accelerometer a
 
 The inertial rate gyro and accelerometer sensor offsets are calculated using a 3rd order polynomial, whereas the barometric pressure sensor offset is calculated using a 5th order polynomial.
 
-## Parameter Storage
+## Calibration Parameter Storage
 
 With the existing parameter system implementation we are limited to storing each value in the struct as a separate entry. To work around this limitation the following logical naming convention for the parameters is used:
 
@@ -20,11 +20,11 @@ TC\_&lt;type&gt;&lt;instance&gt;\_&lt;cal\_name&gt;\_&lt;axis&gt; , where
 
 * &lt;cal\_name&gt; is a string identifyng the calibration value with the following possible values:
 
-* Xn : Polynomial coefficient where n is the order of the coefficient, eg X2 \* \(temperature - reference temperature\)^2
-  SCL : scale factor
-  TREF : reference temperature \(deg C\)
-  TMIN : minimum valid temperature \(deg C\)
-  TMAX : maximum valid temperature \(deg C\)
+* Xn : Polynomial coefficient where n is the order of the coefficient, eg X2 \* \(temperature - reference temperature\)^2  
+  SCL : scale factor  
+  TREF : reference temperature \(deg C\)  
+  TMIN : minimum valid temperature \(deg C\)  
+  TMAX : maximum valid temperature \(deg C\)  
   &lt;axis&gt; is an integer 0,1 or 2 indicating that the cal data is for X,Y or Z axis in the board frame of reference. for the barometric pressure sensor, the \_&lt;axis&gt; suffix is omitted.
 
 Examples:
@@ -32,6 +32,20 @@ Examples:
 TC\_G0\_X3\_0 is the x^3 coefficient for the first gyro x-axis
 
 TC\_A1\_TREF is the reference temperature for the second accelerometer
+
+## How Calibration Parameters Are Used
+
+The correction for thermal offsets using the calibration parameters is performed in the sensors module.  The reference temperature is subtracted from the measured temperature to obtain a delta temperature where:
+
+delta = measured\_temperature - refernece\_temperature. 
+
+The delta temperature is then used to calculate a offset, where:
+
+offset = X0 + X1\*delta + X2\*delta\*\*2 + ... + Xn\*delta\*\*n
+
+The offset and scale factor are then used to correct the sensor measurement:
+
+corrected\_measurement = \(raw\_measurement - offset\) \* scale\_factor
 
 ## Limitations
 
