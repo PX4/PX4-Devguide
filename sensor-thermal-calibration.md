@@ -8,7 +8,31 @@ PX4 conains functionality to calibrate and compensate rate gyro, accelerometer a
 
 The inertial rate gyro and accelerometer sensor offsets are calculated using a 3rd order polynomial, whereas the barometric pressure sensor offset is calculated using a 5th order polynomial.
 
-Scale factors are assumed to be temperature invariant due to the difficulty associated with measuring these at different temperatures. In theory with a thermal chamber or IMU heater capable of controlling IMU internal temperature to within a degree, it would be possible to perform a series of 6 sided accelerometer calibrations and correct the acclerometers for both offset and scale factor. 
+## Parameter Storage
+
+With the existing parameter system implementation we are limited to storing each value in the struct as a separate entry. To work around this limitation the following logical naming convention for the parameters is used:
+
+TC&lt;type&gt;&lt;instance&gt;&lt;cal\_name&gt;\_&lt;axis&gt; , where
+
+&lt;type&gt; is a single character indicating the type of sensor where G = rate gyroscope, A = accelerometer and B = barometer
+
+&lt;instance&gt; is an integer 0,1 or 2 allowing for calibration of up to three sensors of the same &lt;type&gt;
+
+&lt;cal\_name&gt; is a string identifyng the calibration value with the following possible values:
+
+Xn : Polynomial coefficient where n is the order of the coefficient, eg X2 \* \(temperature - reference temperature\)^2
+
+SCL : scale factor
+
+TREF : reference temperature \(deg C\)
+
+TMIN : minimum valid temperature \(deg C\)
+
+TMAX : maximum valid temperature \(deg C\)
+
+## Limitations
+
+Scale factors are assumed to be temperature invariant due to the difficulty associated with measuring these at different temperatures. This limits the usefulness of the accelerometer calibration to those sensor models with stable scale factors. In theory with a thermal chamber or IMU heater capable of controlling IMU internal temperature to within a degree, it would be possible to perform a series of 6 sided accelerometer calibrations and correct the acclerometers for both offset and scale factor. Due to the complexity of integrating the motin control with the calibration algorithm, this capability  has not been  included.
 
 ## Onboard Calibration Procedure
 
@@ -19,8 +43,6 @@ Add step by step procedure for calibration using the inbuilt calibrator and the 
 Add step by step procedure calibration using the SYS\_LOGGER and SDLOG\_MODE parameters and the process\_sensor\_caldata.py script file.
 
 ## FAQ
-
-
 
 
 
