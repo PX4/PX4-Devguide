@@ -8,7 +8,7 @@ PX4 conains functionality to calibrate and compensate rate gyro, accelerometer a
 
 The inertial rate gyro and accelerometer sensor offsets are calculated using a 3rd order polynomial, whereas the barometric pressure sensor offset is calculated using a 5th order polynomial.
 
-Scale factors are assumed to be temperature invariant due to the difficulty associated with measuring these at different temperatures. In theory with a thermal chamber or IMU heater capable of controlling IMU internal temperature to within a degree, it would be possible to perform a series of
+Scale factors are assumed to be temperature invariant due to the difficulty associated with measuring these at different temperatures. In theory with a thermal chamber or IMU heater capable of controlling IMU internal temperature to within a degree, it would be possible to perform a series of 6 sided accelerometer calibrations and correct the acclerometers for both offset and scale factor. 
 
 ## Onboard Calibration Procedure
 
@@ -20,7 +20,7 @@ Add step by step procedure calibration using the SYS\_LOGGER and SDLOG\_MODE par
 
 ## FAQ
 
-### Why aren't scale factors compensated?
+
 
 
 
