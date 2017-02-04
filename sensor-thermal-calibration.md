@@ -30,6 +30,8 @@ TMIN : minimum valid temperature \(deg C\)
 
 TMAX : maximum valid temperature \(deg C\)
 
+&lt;axis&gt; is an integer 0,1 or 2 indicating that the cal data is for X,Y or Z axis in the board frame of reference. for the barometric pressure sensor, the \_&lt;axis&gt; suffix is omitted.
+
 ## Limitations
 
 Scale factors are assumed to be temperature invariant due to the difficulty associated with measuring these at different temperatures. This limits the usefulness of the accelerometer calibration to those sensor models with stable scale factors. In theory with a thermal chamber or IMU heater capable of controlling IMU internal temperature to within a degree, it would be possible to perform a series of 6 sided accelerometer calibrations and correct the acclerometers for both offset and scale factor. Due to the complexity of integrating the motin control with the calibration algorithm, this capability  has not been  included.
