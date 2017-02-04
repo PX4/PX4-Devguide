@@ -12,25 +12,26 @@ The inertial rate gyro and accelerometer sensor offsets are calculated using a 3
 
 With the existing parameter system implementation we are limited to storing each value in the struct as a separate entry. To work around this limitation the following logical naming convention for the parameters is used:
 
-TC&lt;type&gt;&lt;instance&gt;&lt;cal\_name&gt;\_&lt;axis&gt; , where
+TC\_&lt;type&gt;&lt;instance&gt;\_&lt;cal\_name&gt;\_&lt;axis&gt; , where
 
-&lt;type&gt; is a single character indicating the type of sensor where G = rate gyroscope, A = accelerometer and B = barometer
+* &lt;type&gt; is a single character indicating the type of sensor where G = rate gyroscope, A = accelerometer and B = barometer
 
-&lt;instance&gt; is an integer 0,1 or 2 allowing for calibration of up to three sensors of the same &lt;type&gt;
+* &lt;instance&gt; is an integer 0,1 or 2 allowing for calibration of up to three sensors of the same &lt;type&gt;
 
-&lt;cal\_name&gt; is a string identifyng the calibration value with the following possible values:
+* &lt;cal\_name&gt; is a string identifyng the calibration value with the following possible values:
 
-Xn : Polynomial coefficient where n is the order of the coefficient, eg X2 \* \(temperature - reference temperature\)^2
+* Xn : Polynomial coefficient where n is the order of the coefficient, eg X2 \* \(temperature - reference temperature\)^2
+  SCL : scale factor
+  TREF : reference temperature \(deg C\)
+  TMIN : minimum valid temperature \(deg C\)
+  TMAX : maximum valid temperature \(deg C\)
+  &lt;axis&gt; is an integer 0,1 or 2 indicating that the cal data is for X,Y or Z axis in the board frame of reference. for the barometric pressure sensor, the \_&lt;axis&gt; suffix is omitted.
 
-SCL : scale factor
+Examples:
 
-TREF : reference temperature \(deg C\)
+TC\_G0\_X3\_0 is the x^3 coefficient for the first gyro x-axis
 
-TMIN : minimum valid temperature \(deg C\)
-
-TMAX : maximum valid temperature \(deg C\)
-
-&lt;axis&gt; is an integer 0,1 or 2 indicating that the cal data is for X,Y or Z axis in the board frame of reference. for the barometric pressure sensor, the \_&lt;axis&gt; suffix is omitted.
+TC\_A1\_TREF is the reference temperature for the second accelerometer
 
 ## Limitations
 
