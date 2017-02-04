@@ -33,11 +33,11 @@ TC\_G0\_X3\_0 is the x^3 coefficient for the first gyro x-axis
 
 TC\_A1\_TREF is the reference temperature for the second accelerometer
 
-## How Calibration Parameters Are Used
+## Calibration Parameter Useage
 
 The correction for thermal offsets using the calibration parameters is performed in the sensors module.  The reference temperature is subtracted from the measured temperature to obtain a delta temperature where:
 
-delta = measured\_temperature - refernece\_temperature. 
+delta = measured\_temperature - refernece\_temperature.
 
 The delta temperature is then used to calculate a offset, where:
 
@@ -46,6 +46,10 @@ offset = X0 + X1\*delta + X2\*delta\*\*2 + ... + Xn\*delta\*\*n
 The offset and scale factor are then used to correct the sensor measurement:
 
 corrected\_measurement = \(raw\_measurement - offset\) \* scale\_factor
+
+## Compatibility with legacy CAL\_\* parameters and commander controlled calibration
+
+
 
 ## Limitations
 
