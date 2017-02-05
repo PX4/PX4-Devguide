@@ -23,6 +23,7 @@ TC\_&lt;type&gt;&lt;instance&gt;\_&lt;cal\_name&gt;\_&lt;axis&gt; , where
   * Xn : Polynomial coefficient where n is the order of the coefficient, eg X3 \* \(temperature - reference temperature\)\*\*3
 
   * SCL : scale factor
+
   * TREF : reference temperature \(deg C\)  
   * TMIN : minimum valid temperature \(deg C\)  
   * TMAX : maximum valid temperature \(deg C\)
@@ -49,15 +50,17 @@ The offset and temperature scale factor are then used to correct the sensor meas
 
 corrected\_measurement = \(raw\_measurement - offset\) \* scale\_factor
 
-Temperature compensation for the accelerometers, barometers or rate gyroscopes will not be performed unless enabled by the TC\_A\_ENABLE_, _TC\_B\_ENABLE or TC\_G\_ENABLE parameters respectively.
+Correction os the accelerometer, barometers or rate gyroscope data is enabled by setting TC\_A\_ENABLE\_, \_TC\_B\_ENABLE or TC\_G\_ENABLE parameters to 1 respectively.
 
 ## Compatibility with legacy CAL\_\* parameters and commander controlled calibration
 
-The legacy PX4 rate gyro and accelerometer sensor calibration is performed by the commander module and involves adjusting offset, and in the case of accelerometer calibration, scale factor calibraton parameters. the parameters them selves are applied within the individual drivers for each sensor. These parameters are found in the CAL parameter group. 
+The legacy PX4 rate gyro and accelerometer sensor calibration is performed by the commander module and involves adjusting offset, and in the case of accelerometer calibration, scale factor calibraton parameters. the parameters them selves are applied within the individual drivers for each sensor. These parameters are found in the CAL parameter group.
 
 Onboard temperature calibration is controlled by the events module and the corrections are applied within the sensors module before the sensor combined uORB topic is published.
 
-For compatibility reasons, if an on-board temperature calibration is performed, all of the legacy CAL\_GYRO and CAL\_ACCEL parameters will be reset to defaults with an offsets of zero and scale factor of unity.
+**Note** For compatibility reasons, if an on-board temperature calibration is performed, all of the legacy CAL\_GYRO and CAL\_ACCEL parameters will be reset to defaults with an offsets of zero and scale factor of unity.
+
+If after performing a thermal calibration
 
 ## Limitations
 
