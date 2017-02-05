@@ -12,7 +12,6 @@ The inertial rate gyro and accelerometer sensor offsets are calculated using a 3
 
 ![](/assets/Screen Shot 2017-01-20 at 7.36.10 pm.png)
 
-
 ## Calibration Parameter Storage
 
 With the existing parameter system implementation we are limited to storing each value in the struct as a separate entry. To work around this limitation the following logical naming convention for the parameters is used:
@@ -63,11 +62,11 @@ Correction os the accelerometer, barometers or rate gyroscope data is enabled by
 
 ## Compatibility with legacy CAL\_\* parameters and commander controlled calibration
 
-The legacy temperature agnostic PX4 rate gyro and accelerometer sensor calibration is performed by the commander module and involves adjusting offset, and in the case of accelerometer calibration, scale factor calibraton parameters. the parameters them selves are applied within the individual drivers for each sensor. These parameters are found in the CAL parameter group.
+The legacy temperature agnostic PX4 rate gyro and accelerometer sensor calibration is performed by the commander module and involves adjusting offset, and in the case of accelerometer calibration, scale factor calibraton parameters. The offset and scale fator parameters are applied within the driver for each sensor. These parameters are found in the CAL parameter group.
 
-Onboard temperature calibration is controlled by the events module and the corrections are applied within the sensors module before the sensor combined uORB topic is published. This means that if thermal compensation is being used, all of the corresponding legacy offset and scale factor parameters must be set to defaults of zero and unity before a thermal calibration is performed. If an on-board temperature calibration is performed, this will be done automatically, however if an offboard calibration is being performed it is important that the legacy CAL\*OFF and CAL\*SCALE parameters be reset before calibration data is logged
+Onboard temperature calibration is controlled by the events module and the corrections are applied within the sensors module before the sensor combined uORB topic is published. This means that if thermal compensation is being used, all of the corresponding legacy offset and scale factor parameters must be set to defaults of zero and unity before a thermal calibration is performed. If an on-board temperature calibration is performed, this will be done automatically, however if an offboard calibration is being performed it is important that the legacy CAL\*OFF and CAL\*SCALE parameters be reset before calibration data is logged.
 
-If gyro thermal compensation has been enabled by setting the TC\_\_G\_\_ENABLE parameter to 1, then the commander controlled gyro calibration can still be perfomred, however it will be used to shift the compensation curve up or down by the amount required to zero the angular rate offset at the current temperature. It achieves this by adjusting the X0 coefficients.
+If gyro thermal compensation has been enabled by setting the TC\_\_G\_\_ENABLE parameter to 1, then the commander controlled gyro calibration can still be perfomred, however it will be used to shift the compensation curve up or down by the amount required to zero the angular rate offset. It achieves this by adjusting the X0 coefficients.
 
 If accel thermal compensation has been enabled by setting the TC\_A\_ENABLE parameter to 1, then the commander controlled 6-point accel calibration can still be perfomred, however in stead of adjusting the \*OFF and \*SCALE parameters in the CAL parameter group, these parameters are set to defaults and the thermal compensation X0 and SCL parameters are adjusted instead.
 
