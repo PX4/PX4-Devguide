@@ -12,21 +12,22 @@ The inertial rate gyro and accelerometer sensor offsets are calculated using a 3
 
 With the existing parameter system implementation we are limited to storing each value in the struct as a separate entry. To work around this limitation the following logical naming convention for the parameters is used:
 
-TC\_typeinstance>\_&lt;cal\_name&gt;\_&lt;axis&gt; , where
+TC\_&lt;type&gt;&lt;instance&gt;\_&lt;cal\_name&gt;\_&lt;axis&gt; , where
 
-* type ; is a single character indicating the type of sensor where G = rate gyroscope, A = accelerometer and B = barometer
+* &lt;type&gt; : is a single character indicating the type of sensor where G = rate gyroscope, A = accelerometer and B = barometer
 
-* instanc ; is an integer 0,1 or 2 allowing for calibration of up to three sensors of the same &lt;type&gt;
+* &lt;instance&gt; : is an integer 0,1 or 2 allowing for calibration of up to three sensors of the same &lt;type&gt;
 
-* cal\_name ; is a string identifyng the calibration value with the following possible values:
+* &lt;cal\_name&gt; : is a string identifyng the calibration value with the following possible values:
 
-* Xn : Polynomial coefficient where n is the order of the coefficient, eg X2 \* \(temperature - reference temperature\)\*\*2
-* SCL : scale factor
-* TREF : reference temperature \(deg C\)  
-* TMIN : minimum valid temperature \(deg C\)  
-* TMAX : maximum valid temperature \(deg C\) 
- 
-* axis : is an integer 0,1 or 2 indicating that the cal data is for X,Y or Z axis in the board frame of reference. for the barometric pressure sensor, the \_&lt;axis&gt; suffix is omitted.
+  * Xn : Polynomial coefficient where n is the order of the coefficient, eg X3 \* \(temperature - reference temperature\)\*\*3
+
+  * SCL : scale factor
+  * TREF : reference temperature \(deg C\)  
+  * TMIN : minimum valid temperature \(deg C\)  
+  * TMAX : maximum valid temperature \(deg C\)
+
+* &lt;axis&gt; : is an integer 0,1 or 2 indicating that the cal data is for X,Y or Z axis in the board frame of reference. for the barometric pressure sensor, the \_&lt;axis&gt; suffix is omitted.
 
 Examples:
 
@@ -44,13 +45,19 @@ The delta temperature is then used to calculate a offset, where:
 
 offset = X0 + X1\*delta + X2\*delta\*\*2 + ... + Xn\*delta\*\*n
 
-The offset and temperature scale factor are then used to correct the sensor measurement:
+The offset and temperature scale factor are then used to correct the sensor measurement where:
 
 corrected\_measurement = \(raw\_measurement - offset\) \* scale\_factor
 
+Temperature compensation for the accelerometers, barometers or rate gyroscopes will not be performed unless enabled by the TC\_A\_ENABLE_, _TC\_B\_ENABLE or TC\_G\_ENABLE parameters respectively.
+
 ## Compatibility with legacy CAL\_\* parameters and commander controlled calibration
 
-The legacy PX4 rate gyro and accelerometer sensor calibration is controlled by the commander module and involves adjusting offset, and in the case of accelerometer calibration, scale factor calibraton parameters that applied within the driver for each sensor.
+The legacy PX4 rate gyro and accelerometer sensor calibration is performed by the commander module and involves adjusting offset, and in the case of accelerometer calibration, scale factor calibraton parameters. the parameters them selves are applied within the individual drivers for each sensor. These parameters are found in the CAL parameter group. 
+
+Onboard temperature calibration is controlled by the events module and the corrections are applied within the sensors module before the sensor combined uORB topic is published.
+
+For compatibility reasons, if an on-board temperature calibration is performed, all of the legacy CAL\_GYRO and CAL\_ACCEL parameters will be reset to defaults with an offsets of zero and scale factor of unity.
 
 ## Limitations
 
