@@ -72,7 +72,17 @@ Scale factors are assumed to be temperature invariant due to the difficulty asso
 
 ## Onboard Calibration Procedure
 
-Thermal calibration requires warming the board across the range of temperature it is required to operate in whilst running the onboard calibrator.
+Thermal calibration requires warming the board whilst running the onboard calibrator. This method is simpler than the off-board method, but does require knowledge off the amount of temperature rise that is achievable with the test setup.
+
+1. Ensure the frame type is set before calibration, otherwise calibration parameters will be lost when the board is setup
+2. Power the board and set the SYS\_CAL\_\* parameters to 1 to enable calibration of the required sensors at the next startup.
+3. Set the SYS\_CAL\_TEMP parameter to the number of degrees of temperature rise required for the onboard calibrator. to complete. If this parameter is too small, then the calibration will complete early and the temperature range for the calibration will not be sufficient to compensate then the board is  fully warmed up. If this parameter is set too large, then the onboard calibrator will never complete. allowance should be made for the rise in temperature due to the boards self heating when setting this parameter. If the amount of temperature rise at the sensors is unknown, then the off-board method should be used.
+4. Remove power and cold soak the board to the minimum temperature it is required to operate in. 
+5. Keeping the board stationary, apply power and warm to a temperature high enough to achieve the temperature rise specified by the SYS\_CAL\_TEMP parameter. The completion percentage is printed to the system console during calibration.[^1]   
+6. When the calibration completes, remove power, allow the board to cool to normal operating temperature.
+7. Re-power the board and verify that the TC\_\*\_ENABLE parameters have been changed to 1 for the sensors that were calibrated. If not then that indicates that the calibration id not successfully complete. It is advisable to monitor the board using a system console connection during calibration.
+8. Perform a 6-point accel calibration via the system console using  'commander calibrate accel' or via QGC. If the board is being set-up for the first time, the gyro and magnetometer calibration will also need to be performed.
+9. The board should always be re-powered after any sensor calibration before flying, because  sudden offset changes from calibration can upset the navigation estimator. 
 
 ## Offboard Calibration Procedure
 
@@ -81,4 +91,6 @@ Add step by step procedure calibration using the SYS\_LOGGER and SDLOG\_MODE par
 ## FAQ
 
 
+
+[^1]: The SYS\_CAL\_ACCEL, SYS\_CAL\_BARO and SYS\_CAL\_GYRO parameters are reset to 0 when the calibration is started.
 
