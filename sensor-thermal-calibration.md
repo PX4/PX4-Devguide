@@ -73,10 +73,10 @@ Scale factors are assumed to be temperature invariant due to the difficulty asso
 This method is simpler and faster than the off-board method, but does require knowledge off the amount of temperature rise that is achievable with the test setup. It does not provide a method to visually check the quality of the data and curve-fit.
 
 1. Ensure the frame type is set before calibration, otherwise calibration parameters will be lost when the board is setup
-2. Power the board and set the SYS\_CAL\_\* parameters to 1 to enable calibration of the required sensors at the next startup. Ensure the frame type is set before
+2. Power the board and set the SYS\_CAL\_\* parameters to 1 to enable calibration of the required sensors at the next startup. [^1]
 3. Set the SYS\_CAL\_TEMP parameter to the number of degrees of temperature rise required for the onboard calibrator. to complete. If this parameter is too small, then the calibration will complete early and the temperature range for the calibration will not be sufficient to compensate then the board is  fully warmed up. If this parameter is set too large, then the onboard calibrator will never complete. allowance should be made for the rise in temperature due to the boards self heating when setting this parameter. If the amount of temperature rise at the sensors is unknown, then the off-board method should be used.
 4. Remove power and cold soak the board to the minimum temperature it is required to operate in. 
-5. Keeping the board stationary, apply power and warm to a temperature high enough to achieve the temperature rise specified by the SYS\_CAL\_TEMP parameter. The completion percentage is printed to the system console during calibration.[^1]
+5. Keeping the board stationary[^2], apply power and warm to a temperature high enough to achieve the temperature rise specified by the SYS\_CAL\_TEMP parameter. The completion percentage is printed to the system console during calibration.
 6. When the calibration completes, remove power, allow the board to cool to normal operating temperature.
 7. Perform a 6-point accel calibration via the system console using  'commander calibrate accel' or via QGC. If the board is being set-up for the first time, the gyro and magnetometer calibration will also need to be performed.
 8. The board should always be re-powered after any sensor calibration before flying, because  sudden offset changes from calibration can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup. 
@@ -99,4 +99,5 @@ This method provides a way to visually check the quality of data and curve fit b
 12. Power the board and perform a normal accelerometer sensor calibration using QGC. It is important that this step is performed when board is within the calibration temperature range. The board must be repowered after this step before flying as the sudden offset changes can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup.
 
 [^1]: The SYS\_CAL\_ACCEL, SYS\_CAL\_BARO and SYS\_CAL\_GYRO parameters are reset to 0 when the calibration is started.
+[^2]: Calibration of the barometric pressure sensor offsets requires a stable air pressure environment. The air pressure will change slowly due to weather and inside  buildings can change rapidly due to external wind fluctuations and HVAC system operation.
 
