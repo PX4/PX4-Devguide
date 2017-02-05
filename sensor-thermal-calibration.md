@@ -72,7 +72,7 @@ Scale factors are assumed to be temperature invariant due to the difficulty asso
 
 ## Onboard Calibration Procedure
 
-Thermal calibration requires warming the board across the range of temperature it is required to operate in whilst running the onboard calibrator.
+Thermal calibration requires warming the board across the range of temperature it is required to operate in whilst running the onboard calibrator. 
 
 ## Offboard Calibration Procedure
 
