@@ -82,15 +82,23 @@ Thermal calibration requires warming the board whilst running the onboard calibr
 6. When the calibration completes, remove power, allow the board to cool to normal operating temperature.
 7. Re-power the board and verify that the TC\_\*\_ENABLE parameters have been changed to 1 for the sensors that were calibrated. If not then that indicates that the calibration id not successfully complete. It is advisable to monitor the board using a system console connection during calibration.
 8. Perform a 6-point accel calibration via the system console using  'commander calibrate accel' or via QGC. If the board is being set-up for the first time, the gyro and magnetometer calibration will also need to be performed.
-9. The board should always be re-powered after any sensor calibration before flying, because  sudden offset changes from calibration can upset the navigation estimator. 
+9. The board should always be re-powered after any sensor calibration before flying, because  sudden offset changes from calibration can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup. 
 
 ## Offboard Calibration Procedure
 
-Add step by step procedure calibration using the SYS\_LOGGER and SDLOG\_MODE parameters and the process\_sensor\_caldata.py script file.
+1. Power up the board and set the TC_A_ENABLE, TC_B_ENABLE and TC_G_ENABLE parameters to 1
+2. Set all CAL_GYR and CAL_ACC parameters to defaults
+3. Set the SYS_LOGGER parameter to 1 to use the new system logger
+4. Set the SDLOG_MODE parameter to 3 to enable logging of sensor data for calibration and remove power.
+5. Cold soak the board to the minimum temperature it will be required to operate in.
+6. Apply power and warm the board slowly to the maximum required operating temperautre, keeping the board still.
+7. Remove power and extract the .ulog file
+8. Open a terminal window in the Firmware/Tools directory and run the python calibration script script file: 'python process\_sensor\_caldata.py <full path name to .ulog file>
+9. Power the board, connect QGC and load the parameter from the generated .params file onto the board using QGC. Due to the number of parameters, loading them may take some time.
+10. After parameters have finished loading, set SDLOG_MODE to 1 to re-enable normal logging and remove power.
+11. Power the board and perform a normal accelerometer sensor calibration using QGC. It is important that this step is performed when board is within the calibration temperature range. The board must be repowered after this step before flying as the sudden offset changes can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup.
 
 ## FAQ
-
-
 
 [^1]: The SYS\_CAL\_ACCEL, SYS\_CAL\_BARO and SYS\_CAL\_GYRO parameters are reset to 0 when the calibration is started.
 
