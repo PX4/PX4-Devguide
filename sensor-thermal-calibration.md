@@ -4,19 +4,26 @@
 
 PX4 conains functionality to calibrate and compensate rate gyro, accelerometer and barometric pressure sensors for the effect of changing sensor temperature on sensor bias. Calibration refers to the process of measuring the change in sensor value across a range of internal temperatures and performing a polynomial fit on the data to calculate a set of coefficients stored as parameters that can be used to correct the sensor data. Compensation refers to the process of using the internal temperature to calculate an offset which is subtracted from the sensor reading to correct for changing offset with temperature
 
-The inertial rate gyro and accelerometer sensor offsets are calculated using a 3rd order polynomial, whereas the barometric pressure sensor offset is calculated using a 5th order polynomial.
+The inertial rate gyro and accelerometer sensor offsets are calculated using a 3rd order polynomial, whereas the barometric pressure sensor offset is calculated using a 5th order polynomial. Examples fits are show below:
+
+![](/assets/Screen Shot 2017-01-20 at 7.34.16 pm.png)
+
+![](/assets/Screen Shot 2017-01-20 at 7.35.52 pm.png)
+
+![](/assets/Screen Shot 2017-01-20 at 7.36.10 pm.png)
+
 
 ## Calibration Parameter Storage
 
 With the existing parameter system implementation we are limited to storing each value in the struct as a separate entry. To work around this limitation the following logical naming convention for the parameters is used:
 
-TC\_&lt;type&gt;&lt;instance&gt;\_&lt;cal\_name&gt;\_&lt;axis&gt; , where
+TC\_[type][instance]\_[cal\_name]\_[axis] , where
 
-* &lt;type&gt; : is a single character indicating the type of sensor where G = rate gyroscope, A = accelerometer and B = barometer
+* [type] : is a single character indicating the type of sensor where G = rate gyroscope, A = accelerometer and B = barometer
 
-* &lt;instance&gt; : is an integer 0,1 or 2 allowing for calibration of up to three sensors of the same &lt;type&gt;
+* [instance] : is an integer 0,1 or 2 allowing for calibration of up to three sensors of the same [type]
 
-* &lt;cal\_name&gt; : is a string identifyng the calibration value with the following possible values:
+* [cal\_name] : is a string identifyng the calibration value with the following possible values:
 
   * Xn : Polynomial coefficient where n is the order of the coefficient, eg X3 \* \(temperature - reference temperature\)\*\*3
 
@@ -28,7 +35,7 @@ TC\_&lt;type&gt;&lt;instance&gt;\_&lt;cal\_name&gt;\_&lt;axis&gt; , where
 
   * TMAX : maximum valid temperature \(deg C\)
 
-* &lt;axis&gt; : is an integer 0,1 or 2 indicating that the cal data is for X,Y or Z axis in the board frame of reference. for the barometric pressure sensor, the \_&lt;axis&gt; suffix is omitted.
+* [axis] : is an integer 0,1 or 2 indicating that the cal data is for X,Y or Z axis in the board frame of reference. for the barometric pressure sensor, the \_&lt;axis&gt; suffix is omitted.
 
 Examples:
 
@@ -66,7 +73,7 @@ If accel thermal compensation has been enabled by setting the TC\_A\_ENABLE para
 
 ## Limitations
 
-Scale factors are assumed to be temperature invariant due to the difficulty associated with measuring these at different temperatures. This limits the usefulness of the accelerometer calibration to those sensor models with stable scale factors. In theory with a thermal chamber or IMU heater capable of controlling IMU internal temperature to within a degree, it would be possible to perform a series of 6 sided accelerometer calibrations and correct the acclerometers for both offset and scale factor. Due to the complexity of integrating the motion control with the calibration algorithm, this capability  has not been  included.
+Scale factors are assumed to be temperature invariant due to the difficulty associated with measuring these at different temperatures. This limits the usefulness of the accelerometer calibration to those sensor models with stable scale factors. In theory with a thermal chamber or IMU heater capable of controlling IMU internal temperature to within a degree, it would be possible to perform a series of 6 sided accelerometer calibrations and correct the acclerometers for both offset and scale factor. Due to the complexity of integrating the required board movement with the calibration algorithm, this capability  has not been  included.
 
 ## Onboard Calibration Procedure
 
@@ -76,7 +83,7 @@ This method is simpler and faster than the off-board method, but does require kn
 2. Power the board and set the SYS\_CAL\_\* parameters to 1 to enable calibration of the required sensors at the next startup. [^1]
 3. Set the SYS\_CAL\_TEMP parameter to the number of degrees of temperature rise required for the onboard calibrator. to complete. If this parameter is too small, then the calibration will complete early and the temperature range for the calibration will not be sufficient to compensate then the board is  fully warmed up. If this parameter is set too large, then the onboard calibrator will never complete. allowance should be made for the rise in temperature due to the boards self heating when setting this parameter. If the amount of temperature rise at the sensors is unknown, then the off-board method should be used.
 4. Remove power and cold soak the board to the minimum temperature it is required to operate in. 
-5. Keeping the board stationary[^2], apply power and warm to a temperature high enough to achieve the temperature rise specified by the SYS\_CAL\_TEMP parameter. The completion percentage is printed to the system console during calibration.
+5. Keeping the board stationary[^2], apply power and warm to a temperature high enough to achieve the temperature rise specified by the SYS\_CAL\_TEMP parameter. The completion percentage is printed to the system console during calibration. [^3]
 6. When the calibration completes, remove power, allow the board to cool to normal operating temperature.
 7. Perform a 6-point accel calibration via the system console using  'commander calibrate accel' or via QGC. If the board is being set-up for the first time, the gyro and magnetometer calibration will also need to be performed.
 8. The board should always be re-powered after any sensor calibration before flying, because  sudden offset changes from calibration can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup. 
@@ -91,7 +98,7 @@ This method provides a way to visually check the quality of data and curve fit b
 4. Set the SYS_LOGGER parameter to 1 to use the new system logger
 5. Set the SDLOG_MODE parameter to 3 to enable logging of sensor data for calibration and remove power.
 6. Cold soak the board to the minimum temperature it will be required to operate in.
-7. Apply power and warm the board slowly to the maximum required operating temperautre, keeping the board still.
+7. Apply power and keeping the board still [^2], warm it slowly to the maximum required operating temperature. [^3]
 8. Remove power and extract the .ulog file
 9. Open a terminal window in the Firmware/Tools directory and run the python calibration script script file: 'python process\_sensor\_caldata.py <full path name to .ulog file>
 10. Power the board, connect QGC and load the parameter from the generated .params file onto the board using QGC. Due to the number of parameters, loading them may take some time.
@@ -100,4 +107,4 @@ This method provides a way to visually check the quality of data and curve fit b
 
 [^1]: The SYS\_CAL\_ACCEL, SYS\_CAL\_BARO and SYS\_CAL\_GYRO parameters are reset to 0 when the calibration is started.
 [^2]: Calibration of the barometric pressure sensor offsets requires a stable air pressure environment. The air pressure will change slowly due to weather and inside  buildings can change rapidly due to external wind fluctuations and HVAC system operation.
-
+[^3]: Care must be taken when warming a cold soaked board to avoid formation of condensation on the board that can cause board damage under some circumstances.
