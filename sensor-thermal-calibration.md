@@ -72,31 +72,31 @@ Scale factors are assumed to be temperature invariant due to the difficulty asso
 
 ## Onboard Calibration Procedure
 
-Thermal calibration requires warming the board whilst running the onboard calibrator. This method is simpler than the off-board method, but does require knowledge off the amount of temperature rise that is achievable with the test setup.
+This method is simpler and faster than the off-board method, but does require knowledge off the amount of temperature rise that is achievable with the test setup. It also does not provide a method to visually check the quality of the data and curve-fit. However
 
 1. Ensure the frame type is set before calibration, otherwise calibration parameters will be lost when the board is setup
-2. Power the board and set the SYS\_CAL\_\* parameters to 1 to enable calibration of the required sensors at the next startup.
+2. Power the board and set the SYS\_CAL\_\* parameters to 1 to enable calibration of the required sensors at the next startup. Ensure the frame type is set before
 3. Set the SYS\_CAL\_TEMP parameter to the number of degrees of temperature rise required for the onboard calibrator. to complete. If this parameter is too small, then the calibration will complete early and the temperature range for the calibration will not be sufficient to compensate then the board is  fully warmed up. If this parameter is set too large, then the onboard calibrator will never complete. allowance should be made for the rise in temperature due to the boards self heating when setting this parameter. If the amount of temperature rise at the sensors is unknown, then the off-board method should be used.
 4. Remove power and cold soak the board to the minimum temperature it is required to operate in. 
-5. Keeping the board stationary, apply power and warm to a temperature high enough to achieve the temperature rise specified by the SYS\_CAL\_TEMP parameter. The completion percentage is printed to the system console during calibration.[^1]   
+5. Keeping the board stationary, apply power and warm to a temperature high enough to achieve the temperature rise specified by the SYS\_CAL\_TEMP parameter. The completion percentage is printed to the system console during calibration.[^1]
 6. When the calibration completes, remove power, allow the board to cool to normal operating temperature.
-7. Re-power the board and verify that the TC\_\*\_ENABLE parameters have been changed to 1 for the sensors that were calibrated. If not then that indicates that the calibration id not successfully complete. It is advisable to monitor the board using a system console connection during calibration.
-8. Perform a 6-point accel calibration via the system console using  'commander calibrate accel' or via QGC. If the board is being set-up for the first time, the gyro and magnetometer calibration will also need to be performed.
-9. The board should always be re-powered after any sensor calibration before flying, because  sudden offset changes from calibration can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup. 
+7. Perform a 6-point accel calibration via the system console using  'commander calibrate accel' or via QGC. If the board is being set-up for the first time, the gyro and magnetometer calibration will also need to be performed.
+8. The board should always be re-powered after any sensor calibration before flying, because  sudden offset changes from calibration can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup. 
 
 ## Offboard Calibration Procedure
 
-1. Power up the board and set the TC_A_ENABLE, TC_B_ENABLE and TC_G_ENABLE parameters to 1
-2. Set all CAL_GYR and CAL_ACC parameters to defaults
-3. Set the SYS_LOGGER parameter to 1 to use the new system logger
-4. Set the SDLOG_MODE parameter to 3 to enable logging of sensor data for calibration and remove power.
-5. Cold soak the board to the minimum temperature it will be required to operate in.
-6. Apply power and warm the board slowly to the maximum required operating temperautre, keeping the board still.
-7. Remove power and extract the .ulog file
-8. Open a terminal window in the Firmware/Tools directory and run the python calibration script script file: 'python process\_sensor\_caldata.py <full path name to .ulog file>
-9. Power the board, connect QGC and load the parameter from the generated .params file onto the board using QGC. Due to the number of parameters, loading them may take some time.
-10. After parameters have finished loading, set SDLOG_MODE to 1 to re-enable normal logging and remove power.
-11. Power the board and perform a normal accelerometer sensor calibration using QGC. It is important that this step is performed when board is within the calibration temperature range. The board must be repowered after this step before flying as the sudden offset changes can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup.
+1. Ensure the frame type is set before calibration, otherwise calibration parameters will be lost when the board is setup
+2. Power up the board and set the TC_A_ENABLE, TC_B_ENABLE and TC_G_ENABLE parameters to 1
+3. Set all CAL_GYR and CAL_ACC parameters to defaults
+4. Set the SYS_LOGGER parameter to 1 to use the new system logger
+5. Set the SDLOG_MODE parameter to 3 to enable logging of sensor data for calibration and remove power.
+6. Cold soak the board to the minimum temperature it will be required to operate in.
+7. Apply power and warm the board slowly to the maximum required operating temperautre, keeping the board still.
+8. Remove power and extract the .ulog file
+9. Open a terminal window in the Firmware/Tools directory and run the python calibration script script file: 'python process\_sensor\_caldata.py <full path name to .ulog file>
+10. Power the board, connect QGC and load the parameter from the generated .params file onto the board using QGC. Due to the number of parameters, loading them may take some time.
+11. After parameters have finished loading, set SDLOG_MODE to 1 to re-enable normal logging and remove power.
+12. Power the board and perform a normal accelerometer sensor calibration using QGC. It is important that this step is performed when board is within the calibration temperature range. The board must be repowered after this step before flying as the sudden offset changes can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup.
 
 ## FAQ
 
