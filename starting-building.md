@@ -175,6 +175,38 @@ In order to fly the Bebop, connect a joystick device with your host machine and 
 the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors
 and setup your joystick device.
 
+#### Autostart
+
+To auto-start PX4 on the Bebop at boot, modify the init script `/etc/init.d/rcS_mode_default`. Comment the following line:
+```
+DragonStarter.sh -out2null &
+```
+Replace it with:
+```
+px4 -d /home/root/px4.config > /home/root/px4.log
+```
+
+Enable adb server by pressing the power button 4 times and connect to adb server as described before:
+```sh
+adb connect 192.168.42.1:9050
+```
+Re-mount the system partition as writeable:
+```sh
+adb shell mount -o remount,rw /
+```
+In order to avoid editing the file manually, you can use this one : https://gist.github.com/mhkabir/b0433f0651f006e3c7ac4e1cbd83f1e8
+
+Save the original one and push this one to the Bebop
+```sh
+adb shell cp /etc/init.d/rcS_mode_default /etc/init.d/rcS_mode_default_backup
+adb push rcS_mode_default /etc/init.d/
+```
+Sync and reboot:
+```sh
+adb shell sync
+adb shell reboot
+```
+
 ### QuRT / Snapdragon based boards
 
 #### Build it
