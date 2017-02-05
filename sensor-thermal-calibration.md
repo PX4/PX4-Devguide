@@ -99,7 +99,7 @@ This method provides a way to visually check the quality of data and curve fit b
 6. Cold soak the board to the minimum temperature it will be required to operate in.
 7. Apply power and keeping the board still [^2], warm it slowly to the maximum required operating temperature. [^3]
 8. Remove power and extract the .ulog file
-9. Open a terminal window in the Firmware/Tools directory and run the python calibration script script file: 'python process\_sensor\_caldata.py <full path name to .ulog file>
+9. Open a terminal window in the Firmware/Tools directory and run the python calibration script script file: 'python process\_sensor\_caldata.py <full path name to .ulog file>. This will generate a .pdf file showing the measured data and curve fits for each sensor, and a .params file containing the calibration parameters.
 10. Power the board, connect QGC and load the parameter from the generated .params file onto the board using QGC. Due to the number of parameters, loading them may take some time.
 11. After parameters have finished loading, set SDLOG_MODE to 1 to re-enable normal logging and remove power.
 12. Power the board and perform a normal accelerometer sensor calibration using QGC. It is important that this step is performed when board is within the calibration temperature range. The board must be repowered after this step before flying as the sudden offset changes can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup.
