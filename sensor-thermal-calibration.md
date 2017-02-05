@@ -2,8 +2,6 @@
 
 ## Overview
 
-Use material from [https://docs.google.com/document/d/1GHzjsPTfSUAxYGPNlXSL7FYkxFcq76jTfsaquc57Rww/edit](https://docs.google.com/document/d/1GHzjsPTfSUAxYGPNlXSL7FYkxFcq76jTfsaquc57Rww/edit)
-
 PX4 conains functionality to calibrate and compensate rate gyro, accelerometer and barometric pressure sensors for the effect of changing sensor temperature on sensor bias. Calibration refers to the process of measuring the change in sensor value across a range of internal temperatures and performing a polynomial fit on the data to calculate a set of coefficients stored as parameters that can be used to correct the sensor data. Compensation refers to the process of using the internal temperature to calculate an offset which is subtracted from the sensor reading to correct for changing offset with temperature
 
 The inertial rate gyro and accelerometer sensor offsets are calculated using a 3rd order polynomial, whereas the barometric pressure sensor offset is calculated using a 5th order polynomial.
@@ -72,7 +70,7 @@ Scale factors are assumed to be temperature invariant due to the difficulty asso
 
 ## Onboard Calibration Procedure
 
-This method is simpler and faster than the off-board method, but does require knowledge off the amount of temperature rise that is achievable with the test setup. It also does not provide a method to visually check the quality of the data and curve-fit. However
+This method is simpler and faster than the off-board method, but does require knowledge off the amount of temperature rise that is achievable with the test setup. It does not provide a method to visually check the quality of the data and curve-fit.
 
 1. Ensure the frame type is set before calibration, otherwise calibration parameters will be lost when the board is setup
 2. Power the board and set the SYS\_CAL\_\* parameters to 1 to enable calibration of the required sensors at the next startup. Ensure the frame type is set before
@@ -84,6 +82,8 @@ This method is simpler and faster than the off-board method, but does require kn
 8. The board should always be re-powered after any sensor calibration before flying, because  sudden offset changes from calibration can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup. 
 
 ## Offboard Calibration Procedure
+
+This method provides a way to visually check the quality of data and curve fit but is a more complex procedure requiring more human intervention.
 
 1. Ensure the frame type is set before calibration, otherwise calibration parameters will be lost when the board is setup
 2. Power up the board and set the TC_A_ENABLE, TC_B_ENABLE and TC_G_ENABLE parameters to 1
@@ -97,8 +97,6 @@ This method is simpler and faster than the off-board method, but does require kn
 10. Power the board, connect QGC and load the parameter from the generated .params file onto the board using QGC. Due to the number of parameters, loading them may take some time.
 11. After parameters have finished loading, set SDLOG_MODE to 1 to re-enable normal logging and remove power.
 12. Power the board and perform a normal accelerometer sensor calibration using QGC. It is important that this step is performed when board is within the calibration temperature range. The board must be repowered after this step before flying as the sudden offset changes can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup.
-
-## FAQ
 
 [^1]: The SYS\_CAL\_ACCEL, SYS\_CAL\_BARO and SYS\_CAL\_GYRO parameters are reset to 0 when the calibration is started.
 
