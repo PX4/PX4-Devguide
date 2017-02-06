@@ -84,6 +84,7 @@
     * [UAVCAN Bootloader](uavcan-bootloader-installation.md)
     * [UAVCAN Firmware Upgrades](uavcan-node-firmware.md)
     * [UAVCAN Configuration](uavcan-node-enumeration.md)
+    * [UAVCAN Various Notes](uavcan-various-notes.md)
   * [PWM \/ GPIO](pwm-gpio-intro.md)
   * [UART](uart-intro.md)
     * [uLanding Radar](uart-ulanding-radar.md)
