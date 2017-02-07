@@ -4,7 +4,7 @@
 
 Use material from [https://docs.google.com/document/d/1GHzjsPTfSUAxYGPNlXSL7FYkxFcq76jTfsaquc57Rww/edit](https://docs.google.com/document/d/1GHzjsPTfSUAxYGPNlXSL7FYkxFcq76jTfsaquc57Rww/edit)
 
-PX4 conains functionality to calibrate and compensate rate gyro, accelerometer and barometric pressure sensors for the effect of changing sensor temperature on sensor bias. Calibration refers to the process of measuring the change in sensor value across a range of internal temperatures and performing a polynomial fit on the data to calculate a set of coefficients stored as parameters that can be used to correct the sensor data. Compensation refers to the process of using the internal temperature to calculate an offset which is subtracted from the sensor reading to correct for changing offset with temperature
+PX4 conains functionality to calibrate and compensate rate gyro, accelerometer and barometric pressure sensors for the effect of changing sensor temperature on sensor bias. Calibration refers to the process of measuring the change in sensor value across a range of internal temperatures and performing a polynomial fit on the data to calculate a set of coefficients stored as parameters that can be used to correct the sensor data. Compensation refers to the process of using the internal temperature to calculate an offset which is subtracted from the sensor reading to correct for changing offset with temperature.
 
 The inertial rate gyro and accelerometer sensor offsets are calculated using a 3rd order polynomial, whereas the barometric pressure sensor offset is calculated using a 5th order polynomial.
 
@@ -33,17 +33,17 @@ TC\_G0\_X3\_0 is the x^3 coefficient for the first gyro x-axis
 
 TC\_A1\_TREF is the reference temperature for the second accelerometer
 
-## Calibration Parameter Useage
+## Calibration Parameter Usage
 
-The correction for thermal offsets using the calibration parameters is performed in the sensors module.  The reference temperature is subtracted from the measured temperature to obtain a delta temperature where:
+The correction for thermal offsets using the calibration parameters is performed in the `sensors` module.  The reference temperature is subtracted from the measured temperature to obtain a delta temperature where:
 
 delta = measured\_temperature - refernece\_temperature.
 
-The delta temperature is then used to calculate a offset, where:
+The delta temperature is then used to calculate an offset, where:
 
 offset = X0 + X1\*delta + X2\*delta\*\*2 + ... + Xn\*delta\*\*n
 
-The offset and scale factor are then used to correct the sensor measurement:
+The offset and scale factors are then used to correct the sensor measurement:
 
 corrected\_measurement = \(raw\_measurement - offset\) \* scale\_factor
 
@@ -53,7 +53,7 @@ corrected\_measurement = \(raw\_measurement - offset\) \* scale\_factor
 
 ## Limitations
 
-Scale factors are assumed to be temperature invariant due to the difficulty associated with measuring these at different temperatures. This limits the usefulness of the accelerometer calibration to those sensor models with stable scale factors. In theory with a thermal chamber or IMU heater capable of controlling IMU internal temperature to within a degree, it would be possible to perform a series of 6 sided accelerometer calibrations and correct the acclerometers for both offset and scale factor. Due to the complexity of integrating the motin control with the calibration algorithm, this capability  has not been  included.
+Scale factors are assumed to be temperature invariant due to the difficulty associated with measuring these at different temperatures. This limits the usefulness of the accelerometer calibration to those sensor models with stable scale factors. In theory with a thermal chamber or IMU heater capable of controlling IMU internal temperature to within a degree, it would be possible to perform a series of 6 sided accelerometer calibrations and correct the acclerometers for both offset and scale factor. Due to the complexity of integrating the motion control with the calibration algorithm, this capability  has not been  included.
 
 ## Onboard Calibration Procedure
 
