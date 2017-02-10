@@ -10,7 +10,11 @@ For vision, the mavlink message used to send the pose data is [VISION_POSITION_E
 
 The mavros ROS-Mavlink interface has default implementations to send these messages. They can also be sent using pure C/C++ code and direct use of the MAVLink() library.
 
-## Enabling external pose input
+**This feature has only been tested to work with the LPE estimator.**
+
+## LPE Tuning for Vision or Mocap
+
+### Enabling external pose input
 You need to set 2 parameters (from QGroundControl or the NSH shell) to enable or disable vision/mocap usage in the system.
 
 <aside class="note">
@@ -20,3 +24,8 @@ Set the system parameter ```CBRK_NO_VISION``` to 0 to enable vision position int
 <aside class="note">
 Set the system parameter ```ATT_EXT_HDG_M``` to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables mocap heading use.
 </aside>
+
+### Disabling baro
+If a highly accurate altitude is already available from vision or mocap information, it may be useful to disable the baro correction in LPE to reduce drift.
+
+There is a bit field for this in the param **LPE_FUSION**
