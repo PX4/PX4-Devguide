@@ -31,7 +31,7 @@ You will be using the ROS python tools `wstool, rosinstall,and catkin_tools` for
 $ sudo apt-get install python-wstool python-rosinstall-generator python-catkin-tools
 ```
 
-Note that while the package can be built using catkin_make the prefered method is using catkin_tools as it is a more versitile and "friendly" build tool.
+Note that while the package can be built using catkin_make the prefered method is using catkin_tools as it is a more versatile and "friendly" build tool.
 
 If this is your first time using wstool you will need to initialize your source space with:
 ```sh

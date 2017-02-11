@@ -4,11 +4,11 @@ As the simulation is running on the host machine, all the desktop development to
 
 ## CLANG Address Sanitizer (Mac OS, Linux)
 
-The Clang address sanitizer can help to find alignment (bus) errors and other memory faults like segmentation fauls. The command below sets the right compile options.
+The Clang address sanitizer can help to find alignment (bus) errors and other memory faults like segmentation faults. The command below sets the right compile options.
 
 ```sh
 make clean # only required on first address sanitizer run after a normal build
-MEMORY_DEBUG=1 make posix jmavsim
+PX4_ASAN=1 make posix jmavsim
 ```
 
 ## Valgrind

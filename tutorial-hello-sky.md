@@ -377,7 +377,7 @@ And finally run your app:
   px4_simple_app
 ```
 
-If you start QGroundControl, you can check the sensor values in the realtime plot (Tools -> Analyze)
+If you start QGroundControl, you can check the sensor values in the real time plot (Tools -> Analyze)
 
 ## Wrap-Up
 

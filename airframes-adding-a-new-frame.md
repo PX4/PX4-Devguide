@@ -2,7 +2,7 @@
 
 PX4 uses canned configurations as starting point for airframes. Adding a configuration is straightforward: Create a new file which is prepended with a free autostart ID in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) and [build and upload](starting-building.md) the software.
 
-Developers not wanting to create their own configuration can instead  customize existing configurations using textfiles on the microSD card, as detailed on the [custom system startup](advanced-system-startup.md) page.
+Developers not wanting to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](advanced-system-startup.md) page.
 
 ## Airframe configurations
 
@@ -71,7 +71,7 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-IMPORTANT REMARK: If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channal assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below). 
+IMPORTANT REMARK: If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below). 
 
 ### Mixer file
 
@@ -99,7 +99,7 @@ Where each number from left to right means:
   * S: Indicates the first input scaler: It takes input from control group #0 (attitude controls) and the first input (roll). It scales the input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
   * S: Indicates the second input scaler: It takes input from control group #0 (attitude controls) and the second input (pitch). It scales the input * 0.65 and reverts the sign (-0.65 becomes -6500 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
 
-Both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch. As it is over-comitted with 125% total deflection for maximum pitch and roll, it means the first channel (roll here) has priority over the second channel / scaler (pitch).
+Both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch. As it is over-committed with 125% total deflection for maximum pitch and roll, it means the first channel (roll here) has priority over the second channel / scaler (pitch).
 
 The complete mixer looks like this:
 

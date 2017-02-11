@@ -50,7 +50,7 @@ The GPS can be mounted in the middle at the very back of the airframe. This help
 bigger battery can make it quite nose heavy. Also the large distance to the 12V power cables is beneficial for reducing magnetic interference of the external magnetometer.
 
 ### Airspeed sensor
-Attach the pitot tube close to the outside edge of one of the wing sides. Make sure that the pitot is not effected by the airflow of the propeller. You should be fine if the horizontal distance from the tube to the axis of the motors is larger than the radius of the propeller. Use e.g. an old soldering iron to create a recess for the pitot tube, the tubing and the actual sensor (see picture). Create a channel for routing the cable across the wing to the other components.
+Attach the pitot tube close to the outside edge of one of the wing sides. Make sure that the pitot is not affected by the airflow of the propeller. You should be fine if the horizontal distance from the tube to the axis of the motors is larger than the radius of the propeller. Use e.g. an old soldering iron to create a recess for the pitot tube, the tubing and the actual sensor (see picture). Create a channel for routing the cable across the wing to the other components.
 
 ### Sensor connection to the I2C bus
 Both the airspeed sensor and the external magnetometer (located in the gps housing) need to be connected to the I2C bus of the autopilot. Therefore, you will have to use an I2C splitter like the one indicated in the part list. Connect the splitter board with the I2C bus of the autopilot.  Then connect both the external magnetometer and the airspeed sensor to the splitter board with a standard I2C cable.
