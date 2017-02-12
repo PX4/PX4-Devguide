@@ -19,13 +19,13 @@ You need to set a few parameters (from QGroundControl or the NSH shell) to enabl
 
 Set the system parameter `ATT_EXT_HDG_M` to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables mocap heading use.
 
-Vision integration is enabled by default in LPE. You can control this using the`LPE_FUSION` parameter
+Vision integration is enabled by default in LPE. You can control this using the`LPE_FUSION` parameter in QGroundControl. Make sure that "fuse vision pos" is checked.
 
-### Disabling barometer fusion
+#### Disabling barometer fusion
 If a highly accurate altitude is already available from vision or mocap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
 
-There is a bit field for this in the parameter `LPE_FUSION`, which you can set from QGroundControl. Just uncheck "fuse baro" and make sure "fuse vision pos" is checked.
+There is a bit field for this in the parameter `LPE_FUSION`, which you can set from QGroundControl. Just uncheck "fuse baro".
 
-### Tuning noise parameters
+#### Tuning noise parameters
 
 If your vision or mocap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters, `LPE_VIS_XY` and `LPE_VIS_Z` (for vision) or `LPE_VIC_P` (for motion capture). Reducing them will cause the estimator to trust the incoming pose estimate more. You may need to set them lower than the allowed minimum and force-save.
