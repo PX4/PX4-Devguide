@@ -56,7 +56,7 @@ The offset and temperature scale factor are then used to correct the sensor meas
 
 corrected\_measurement = \(raw\_measurement - offset\) \* scale\_factor
 
-If the temperature is above the test range set by the TMIN and TMAX parameters, then the measured temperature will be clipped to remain within the limits.
+If the temperature is above the test range set by the \*\_TMIN and \*\_TMAX parameters, then the measured temperature will be clipped to remain within the limits.
 
 Correction os the accelerometer, barometers or rate gyroscope data is enabled by setting TC\_A\_ENABLE\_, \_TC\_B\_ENABLE or TC\_G\_ENABLE parameters to 1 respectively.
 
@@ -80,11 +80,13 @@ This method is simpler and faster than the off-board method, but does require kn
 
 1. Ensure the frame type is set before calibration, otherwise calibration parameters will be lost when the board is setup
 2. Power the board and set the SYS\_CAL\_\* parameters to 1 to enable calibration of the required sensors at the next startup. [^1]
-3. Set the SYS\_CAL\_TEMP parameter to the number of degrees of temperature rise required for the onboard calibrator. to complete. If this parameter is too small, then the calibration will complete early and the temperature range for the calibration will not be sufficient to compensate then the board is  fully warmed up. If this parameter is set too large, then the onboard calibrator will never complete. allowance should be made for the rise in temperature due to the boards self heating when setting this parameter. If the amount of temperature rise at the sensors is unknown, then the off-board method should be used.
-4. Remove power and cold soak the board to the minimum temperature it is required to operate in. 
-5. Keeping the board stationary[^2], apply power and warm to a temperature high enough to achieve the temperature rise specified by the SYS\_CAL\_TEMP parameter. The completion percentage is printed to the system console during calibration. [^3]
-6. When the calibration completes, remove power, allow the board to cool to normal operating temperature.
-7. Perform a 6-point accel calibration via the system console using  'commander calibrate accel' or via QGC. If the board is being set-up for the first time, the gyro and magnetometer calibration will also need to be performed.
+3. Set the SYS\_CAL\_TDEL parameter to the number of degrees of temperature rise required for the onboard calibrator. to complete. If this parameter is too small, then the calibration will complete early and the temperature range for the calibration will not be sufficient to compensate then the board is  fully warmed up. If this parameter is set too large, then the onboard calibrator will never complete. allowance should be made for the rise in temperature due to the boards self heating when setting this parameter. If the amount of temperature rise at the sensors is unknown, then the off-board method should be used.
+4. Set the SYS\_CAL\_TMIN parameter to the lowest temperature data that you want the calibrator to use. This enables a lower cold soak ambient temperature to be used to reduce the cold soak time whilst maintaining control over the calibration mnimum temperature. The data for a sensor will not be used by the calibrator if it is below the value set by this parameter.
+5. Set the SYS\_CAL\_TMAX parameter to the highest starting sensor temperature that should be accepted by the calibrator. If the starting temperature is higher than the value set by this parameter, the calibration will exit with an error. Note that if the variation in measured temperature between different sensors exceeds the gap between SYS\_CAL\_TMAX and SYS\_CAL\_TMIN, then it will be impossible for the calibration to start.
+6. Remove power and cold soak the board to below the starting temperature specified by the SYS\_CAL\_TMIN parameter. Note that there is a 10 second delay on startup before calibration starts to allow any sensors to stabilise and the sensors will warm internally during this period.
+7. Keeping the board stationary[^2], apply power and warm to a temperature high enough to achieve the temperature rise specified by the SYS\_CAL\_TDEL parameter. The completion percentage is printed to the system console during calibration. [^3]
+8. When the calibration completes, remove power, allow the board to cool to normal operating temperature.
+9. Perform a 6-point accel calibration via the system console using  'commander calibrate accel' or via QGC. If the board is being set-up for the first time, the gyro and magnetometer calibration will also need to be performed.
 8. The board should always be re-powered after any sensor calibration before flying, because  sudden offset changes from calibration can upset the navigation estimator and some parameters are not loaded by the algorithms that use them until the next startup. 
 
 ## Offboard Calibration Procedure
