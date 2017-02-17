@@ -28,7 +28,7 @@ Run the optical flow application as root:
 optical_flow -n 50 -f 30
 ```
 
-The optical flow application requres IMU Mavlink messages from PX4. You may have to add an additional Mavlink instance to PX4 by adding the following to your `px4.config`:
+The optical flow application requres IMU Mavlink messages from PX4. You may have to add an additional Mavlink instance to PX4 by adding the following to your `mainapp.config`:
 
 ```
 mavlink start -u 14557 -r 1000000 -t 127.0.0.1 -o 14558
