@@ -124,7 +124,7 @@ Most of the EKF data is found in the [ekf2\_innovations](https://github.com/PX4/
 
 A python script that automatically generates analysis plots and metadata can be found [here](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/process_logdata_ekf.py). To use this script file, cd to the Tools/ecl_ekf directory and enter 'python process_logdata_ekf.py \<logfile path name'. This saves performance metadata in a csv file named \<input file name>.mdat.csv and plots in a pdf file named \<inputfilename>.pdf
 
-Multiple log files in a directory can be analysed using the following [file].(https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_logdata_ekf.py). When this has been done, the performance metadata files can be processed to provide a statistical assessment of the estimator performance across the population of logs using this [file](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_metadata_ekf.py).
+Multiple log files in a directory can be analysed using the following [file](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_logdata_ekf.py). When this has been done, the performance metadata files can be processed to provide a statistical assessment of the estimator performance across the population of logs using this [file](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_metadata_ekf.py).
 
 ### Output Data
 
