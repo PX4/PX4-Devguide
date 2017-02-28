@@ -9,7 +9,7 @@ A developer has the possibility to do replay on particularly logged data for est
 
 ### Prerequisites
 
-* set the parameter **SYS_LOGGER** to sdlog2 (default) and reboot vehicle
+* set the parameter **SYS_LOGGER** to sdlog2 (default) and reboot vehicle (0 = sdlog2 and 1 = ulog).
 * set the parameter **EKF2\_REC\_RPL** to 1. This will tell the estimator to publish **special** replay messages for logging. 
 * if available, set the parameter **SDLOG\_PRIO\_BOOST** to a value contained in the set {0, 1, 2, 3}. A value of 0 means that the onboard logging app has a default \(low\) scheduling priority. A low scheduling priority can lead to a loss of logging messages. If you find that your log file contains 'gaps' due to skipped messages then you can increase this parameter to a maximum value of 3. Testing has shown that a minimum value of 2 is required in order to avoid loss of data.
 
@@ -18,10 +18,9 @@ A developer has the possibility to do replay on particularly logged data for est
 Once you have a real flight log (.px4log) created with the above settings then you can **run** a replay on it by using the following command in the root directory of your PX4 Firmware:
 
 ```
-make posix_sitl_replay replay logfile=absolute_path_to_log_file/my_log_file.px4log
+make posix_sitl_replay replay logfile=<absolute_path_to_log_file>/my_log_file.px4log
 ```
-
-where 'absolute\_path\_to\_log\_file/my\_log\_file.px4log' is a placeholder for the absolute path of the log file you want to run the replay on. Once the command has executed check the terminal for the location and name of the replayed log file. 
+Once the command has executed check the terminal for the location and name of the replayed log file. 
 This file should be located in
 ```
 <path to Firmware>/build_posix_sitl_replay/src/firmware/posix/rootfs/
