@@ -14,7 +14,7 @@ A developer has the possibility to do replay on particularly logged data for est
 
 ### Deployment
 
-Once you have a real flight log created with the above settings then you can **run** a replay on it by using the following command in the root directory of your PX4 Firmware
+Once you have a real flight log (.px4log) created with the above settings then you can **run** a replay on it by using the following command in the root directory of your PX4 Firmware:
 
 ```
 make posix_sitl_replay replay logfile=absolute_path_to_log_file/my_log_file.px4log
@@ -25,19 +25,19 @@ This file should be located in
 ```
 <path to Firmware>/build_posix_sitl_replay/src/firmware/posix/rootfs/
 ```
-The replayed file is called **replay_replayed.px4log** can then be used to analyze the estimator performance. 
+The output replayed file is called **replay_replayed.px4log**, which can be used to analyze the estimator performance. 
 
 
 ### Changing tuning parameters for a replay
+When you run the replay the first time, a replay_replayed.px4log file will be generated using the default EKF2 parameter values from the actual flight. 
+After that you can change any EKF2 parameter value by changing the estimator parameters in **replay\_params.txt**, which is located in the same directory as your replay_replayed.px4log output file.
 
-You can set the estimator parameter values for the replay in the file **replay\_params.txt** located in the same directory as your replayed log file.
-When you run the replay the first time, the replay_replayed.px4log file will be generated and filled with the default EKF2 parameter values used during the actual flight. 
-After that you can change any EKF2 parameter value by changing the corresponding number in the text file. For exmaple setting the noise value for the gyro bias would require the following line.
+For example setting the noise value for the gyro bias would require the following line.
 
 ```
 EKF2_GB_NOISE 0.001
 ```
-Once EKF2 parameter is changed, the replay can be run again with the command given in [Deployment](deployment).
+Once EKF2 parameter is changed, a new replay_replay.px4log file can be gnerated using the same command given in [Deployment](deployment).
 
 ## ulog logger
 Is coming...
