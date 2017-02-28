@@ -3,7 +3,7 @@
 This page shows you how you can tune the parameters of the EKF2 estimator by using the replay feature on a real flight log.
 
 ## Introduction
-A developer has the possibility to do replay on logged data for estimation analysis. The remainder of this page will explain which parameters have to be set in order to benefit from this feature and how to correctly deploy it.
+A developer has the possibility to do replay on particularly logged data for estimation analysis. The remainder of this page will explain which parameters have to be set in order to benefit from this feature and how to correctly deploy it.
 
 ## sdlog2 logger (.px4log)
 
@@ -21,23 +21,23 @@ make posix_sitl_replay replay logfile=absolute_path_to_log_file/my_log_file.px4l
 ```
 
 where 'absolute\_path\_to\_log\_file/my\_log\_file.px4log' is a placeholder for the absolute path of the log file you want to run the replay on. Once the command has executed check the terminal for the location and name of the replayed log file. 
-This file should be located in:
+This file should be located in
 ```
-<path to Firmware>/build_posix_sitl_replay/src/firmware/posix/rootfs/replay_replayed.px4log
+<path to Firmware>/build_posix_sitl_replay/src/firmware/posix/rootfs/
 ```
-This replayed file can then be used to analyze the estimator performance. 
+The replayed file is called **replay_replayed.px4log** can then be used to analyze the estimator performance. 
 
 
 ### Changing tuning parameters for a replay
 
-You can set the estimator parameter values for the replay in the file **replay\_params.txt** located in the same directory as your replayed log file, e.g. **build\_posix\_sitl\_replay/src/firmware/posix/rootfs/replay\_params.txt**.
+You can set the estimator parameter values for the replay in the file **replay\_params.txt** located in the same directory as your replayed log file.
 When you run the replay the first time, the replay_replayed.px4log file will be generated and filled with the default EKF2 parameter values used during the actual flight. 
-After that you can change any EKF2 parameter value by changing the corresponding number in the text file. Setting the noise value for the gyro bias would require the following line.
+After that you can change any EKF2 parameter value by changing the corresponding number in the text file. For exmaple setting the noise value for the gyro bias would require the following line.
 
 ```
 EKF2_GB_NOISE 0.001
 ```
-Once EKF2 parameter is changed, the replay can be run again with the new value.
+Once EKF2 parameter is changed, the replay can be run again with the command given in [Deployment](deployment).
 
 ## ulog logger
 Is coming...
