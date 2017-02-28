@@ -5,17 +5,16 @@ This page shows you how you can tune the parameters of the EKF2 estimator by usi
 ## Introduction
 A developer has the possibility to do replay on logged data for estimation analysis. The remainder of this page will explain which parameters have to be set in order to benefit from this feature and how to correctly deploy it.
 
-## sdlog2 logger
-It is to note that when choosing `sdlog2` logger only ekf2 related data is logged. 
+## sdlog2 logger (.px4log)
 
 ### Prerequisites
 
-* set the parameter **EKF2\_REC\_RPL** to 1. This will tell the estimator to publish special replay messages for logging.
+* set the parameter **EKF2\_REC\_RPL** to 1. This will tell the estimator to publish **special** replay messages for logging. 
 * set the parameter **SDLOG\_PRIO\_BOOST** to a value contained in the set {0, 1, 2, 3}. A value of 0 means that the onboard logging app has a default \(low\) scheduling priority. A low scheduling priority can lead to a loss of logging messages. If you find that your log file contains 'gaps' due to skipped messages then you can increase this parameter to a maximum value of 3. Testing has shown that a minimum value of 2 is required in order to avoid loss of data.
 
 ### Deployment
 
-Once you have a real flight log created with the above settings then you can run a replay on it by using the following command in the root directory of your PX4 Firmware
+Once you have a real flight log created with the above settings then you can **run** a replay on it by using the following command in the root directory of your PX4 Firmware
 
 ```
 make posix_sitl_replay replay logfile=absolute_path_to_log_file/my_log_file.px4log
@@ -31,10 +30,14 @@ This replayed file can then be used to analyze the estimator performance.
 
 ### Changing tuning parameters for a replay
 
-You can set the estimator parameter values for the replay in the file **replay\_params.txt** located in the same directory as your replayed log file, e.g. **build\_posix\_sitl\_replay/src/firmware/posix/rootfs/replay\_params.txt**. When running the replay for the first time \(e.g. after a **make clean**\) this file will be auto generated and filled with the default EKF2 parameter values taken from the flight log. After that you can change any EKF2 parameter value by changing the corresponding number in the text file. Setting the noise value for the gyro bias would require the following line.
+You can set the estimator parameter values for the replay in the file **replay\_params.txt** located in the same directory as your replayed log file, e.g. **build\_posix\_sitl\_replay/src/firmware/posix/rootfs/replay\_params.txt**.
+When you run the replay the first time, the replay_replayed.px4log file will be generated and filled with the default EKF2 parameter values used during the actual flight. 
+After that you can change any EKF2 parameter value by changing the corresponding number in the text file. Setting the noise value for the gyro bias would require the following line.
 
 ```
 EKF2_GB_NOISE 0.001
 ```
+Once EKF2 parameter is changed, the replay can be run again with the new value.
+
 ## ulog logger
 Is coming...
