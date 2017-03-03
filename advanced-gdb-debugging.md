@@ -39,7 +39,7 @@ sudo apt-get install google-perftools libgoogle-perftools-dev
 
 First of all, build the firmware as follows:
 ```bash
-build_posix_sitl_default
+make posix_sitl_default
 ```
 Start jmavsim: `./Tools/jmavsim_run.sh`
 
@@ -50,7 +50,7 @@ export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
 
-And entry this depending on your system:
+Enter this depending on your system:
 ##### Fedora:
 ```bash
 env LD_PRELOAD=/lib64/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
@@ -66,9 +66,7 @@ google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > 
 It will generate a pdf with a graph of the heap allocations.
 The numbers in the graph will all be zero, because they are in MB. Just look at the percentages instead. They show the live memory (of the node and the subtree), meaning the memory that was still in use at the end.
 
-If it does not generate heap dumps while running the `px4` app you might need to change the settings of the profiler. On some systems it is necessary to set an interval time when to write the dumps:
-
-See the [gperftools docs](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/heapprofile.html) for more information.
+See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html) for more information.
 
 ## Sending MAVLink debug key / value pairs
 
