@@ -14,8 +14,6 @@ Usage of the [Homebrew package manager](http://mxcl.github.com/homebrew/) for Ma
 
 After installing Homebrew, copy these commands to your shell:
 
-<div class="host-code"></div>
-
 ```sh
 brew tap PX4/px4
 brew tap px4/simulation
@@ -28,8 +26,6 @@ brew install homebrew/science/opencv
 ```
 
 Then install the required python packages:
-
-<div class="host-code"></div>
 
 ```sh
 sudo easy_install pip
