@@ -17,8 +17,8 @@ After installing Homebrew, copy these commands to your shell:
 <div class="host-code"></div>
 
 ```sh
-brew tap PX4/homebrew-px4
-brew tap osrf/simulation
+brew tap PX4/px4
+brew tap px4/simulation
 brew update
 brew install git bash-completion genromfs kconfig-frontends gcc-arm-none-eabi
 brew install astyle cmake ninja
