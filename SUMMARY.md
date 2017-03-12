@@ -30,6 +30,7 @@
   * [Preflight Checks](pre_flight_checks.md)
   * [Telemetry](telemetry.md)
   * [Sensor Thermal Compensation](sensor-thermal-calibration.md)
+  * Land Detector
 * Simulation
   * [Basic Simulation](simulation-sitl.md)
   * [Gazebo Simulation](simulation-gazebo.md)
