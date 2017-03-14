@@ -33,7 +33,7 @@ BOARD=s2740vc_1_0 make && BOARD=px4esc_1_6 make
 
 This will build the UAVCAN node firmware for both supported ESCs. The firmware images will be located at `com.thiemar.s2740vc-v1-1.0-1.0.<git hash>.bin` and `org.pixhawk.px4esc-v1-1.6-1.0.<git hash>.binn`.
 
-## Sapog Codebase (Pixhawk ESC 1.4)
+## Sapog Codebase (Pixhawk ESC 1.4 and Zubax Orel 20)
 
 Download the Sapog codebase:
 
@@ -47,7 +47,7 @@ git submodule update --init --recursive
 
 ### Flashing the UAVCAN Bootloader
 
-Before updating firmware via UAVCAN, the Pixhawk ESC 1.4 requires the UAVCAN bootloader be flashed. The bootloader can be built as follows:
+Before updating firmware via UAVCAN, the ESC requires the UAVCAN bootloader to be flashed. The bootloader can be built as follows:
 
 <div class="host-code"></div>
 
@@ -65,9 +65,10 @@ The bootloader image is located at `bootloader/firmware/bootloader.bin`, and the
 
 ```sh
 cd firmware
-make sapog.image
+make RELEASE=1 # RELEASE is optional; omit to build the debug version
 ```
-The firmware image will be located at `firmware/build/org.pixhawk.sapog-v1-1.0.<xxxxxxxx>.bin`, where `<xxxxxxxx>` is an arbitrary sequence of numbers and letters.
+Beware, some newer version of GCC lead to segfaults during linking. Version 4.9 did work at the time of writing.
+The firmware image will be located at `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`, where `<xxxxxxxx>` is an arbitrary sequence of numbers and letters. There are two hardware version of the Zubax Orel 20 (1.0 and 1.1). Make sure you copy the binary to the correct folder in the subsequent description. The ESC firmware will check the hardware version and works on both products.1
 
 ## Zubax GNSS
 
@@ -88,7 +89,11 @@ However, due to space/performance constraints (names may not exceed 28 charates)
 
   ```/fs/microsd/fw/<node name>/<hw version major>.<hw version minor>/<hw name>-<sw version major>.<sw version minor>.<git hash>.bin```
 
- e.g. ```s2740vc-v1-1.0.68e34de6.bin```
+ e.g. 
+ ```
+ s2740vc-v1-1.0.68e34de6.bin 
+ /fs/microsd/fw/io.px4.sapog/1.1/sapog-1.7.87c7bc0.bin
+ ``` 
 
 The ROMFS-based updater follows that pattern, but prepends the file name with ```_``` so you add the firmware in:
 

@@ -2,9 +2,9 @@
 
 Contact information for the core dev team and community can be found below. The PX4 project uses a three-branch Git branching model:
 
-  * [master](https://github.com/px4/firmware/tree/master) is by default unstable and sees rapid development.
-  * [beta](https://github.com/px4/firmware/tree/beta) has been thoroughly tested. It's intended for flight testers.
-  * [stable](https://github.com/px4/firmware/tree/stable) points to the last release.
+* [master](https://github.com/px4/firmware/tree/master) is by default unstable and sees rapid development.
+* [beta](https://github.com/px4/firmware/tree/beta) has been thoroughly tested. It's intended for flight testers.
+* [stable](https://github.com/px4/firmware/tree/stable) points to the last release.
 
 We try to retain a [linear history through rebases](https://www.atlassian.com/git/tutorials/rewriting-history) and avoid the [Github flow](https://guides.github.com/introduction/flow/). However, due to the global team and fast moving development we might resort to merges at times.
 
@@ -40,7 +40,7 @@ Bad: "Add gps_reception_check() function").
 Reported-by: Name <email@px4.io>
 ```
 
-**Use ```git commit -s``` to sign off on all of your commits.** This will add ```signed-off-by:``` with your name and email as the last line.
+**Use **`git commit -s`** to sign off on all of your commits.** This will add `signed-off-by:` with your name and email as the last line.
 
 This commit guide is based on best practices for the Linux Kernel and other [projects maintained](https://github.com/torvalds/subsurface/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88-L115) by Linus Torvalds.
 
@@ -50,17 +50,20 @@ Test flights are important for quality assurance. Please upload the logs from th
 
 ## Forums and Chat
 
-  * [Google+](https://plus.google.com/117509651030855307398)
-  * [Gitter](https://gitter.im/PX4/Firmware)
-  * [PX4 Discuss](http://discuss.px4.io/)
+* [Google+](https://plus.google.com/117509651030855307398)
+* [Gitter](https://gitter.im/PX4/Firmware)
+* [PX4 Discuss](http://discuss.px4.io/)
 
 ## Weekly Dev Call
 
-The PX4 Dev Team syncs up on its weekly dev call (connect via [Mumble](http://mumble.info) client).
+The PX4 Dev Team syncs up on its weekly dev call \(connect via [Mumble](http://mumble.info) client\).
 
-  * TIME: 19:00h Zurich time, 1 p.m. Eastern Time, 10 a.m. Pacific Standard Time
-  * Server: sitl01.dronetest.io
-  * Port: 64738
-  * Password: px4
-  * The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
-  * Issues and PRs may be labelled "devcall" to flag them for discussion
+* TIME: Tuesday 5PM CET, 11AM EST, 8AM PDT
+* Server: sitl01.dronetest.io
+* Port: 64738
+* Password: px4
+* The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
+* Issues and PRs may be labelled "devcall" to flag them for discussion
+
+
+
