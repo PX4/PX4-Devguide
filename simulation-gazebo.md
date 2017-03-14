@@ -132,6 +132,20 @@ pxh> commander takeoff
 
 > ** Note ** Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
 
+## Set custom takeoff location
+
+The default takeoff location in SITL Gazebo can be overridden using environment variables.
+
+The variables to set are: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
+
+As an example:
+```
+export PX4_HOME_LAT=28.452386
+export PX4_HOME_LON=-13.867138
+export PX4_HOME_ALT=28.5
+make posix gazebo
+```
+
 ## Starting Gazebo and PX4 separately
 
 For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
