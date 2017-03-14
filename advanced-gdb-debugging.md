@@ -51,24 +51,6 @@ export HEAP_PROFILE_TIME_INTERVAL=10
 
 See the [gperftools docs](http://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/doc/heapprofile.html) for more information.
 
-## Sending MAVLink debug key / value pairs
-
-The code for this tutorial is available here:
-
-  * [Debug Tutorial Code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.c)
-  * [Enable the tutorial app](https://github.com/PX4/Firmware/tree/master/cmake/configs) by uncommenting / enabling the mavlink debug app in the config of your board
-
-All required to set up a debug publication is this code snippet. First add the header file:
-
-<div class="host-code"></div>
-
-```C
-#include <uORB/uORB.h>
-#include <uORB/topics/debug_key_value.h>
-```
-
-Then advertise the debug value topic (one advertisement for different published names is sufficient). Put this in front of your main loop:
-
 
 ## Debugging Hard Faults in NuttX
 
