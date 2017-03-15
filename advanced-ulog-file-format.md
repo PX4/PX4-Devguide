@@ -139,6 +139,9 @@ struct message_info_s {
   version, `>= 192`: RC version, `== 255`: release version.
   So for example 0x010402ff translates into the release version v1.4.2.
 
+  This message can also be used in the Data section (this is however the
+  preferred section).
+
 
 - 'P': parameter message. Same format as `message_info_s`.
   If a parameter dynamically changes during runtime, this message can also be
@@ -234,5 +237,8 @@ struct message_dropout_s {
 };
 ```
 
+- 'I': information message. See above.
+
+- 'P': parameter message. See above.
 
 
