@@ -130,8 +130,10 @@ The parameters can be adjusted as well. They can be extracted from the log with
 ```
 ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build_posix_sitl_default_replay/tmp/rootfs/replay_params.txt
 ```
+Then edit the parameters in the file as needed and restart the replay process
+with `make posix none`. This will create a new log file.
 
-The location of the newly generated log is printed with a message like this:
+The location of the generated log is printed with a message like this:
 
 ```
 INFO  [logger] Opened log file: rootfs/fs/microsd/log/2017-03-01/13_30_51_replayed.ulg
