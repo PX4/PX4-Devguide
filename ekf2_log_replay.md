@@ -39,5 +39,4 @@ EKF2_GB_NOISE 0.001
 ```
 Once some EKF2 parameters have been changed, a new replay_replayed.px4log file can be generated using the same command given in [Deployment](deployment).
 
-## ulog logger
-Is coming...
+
