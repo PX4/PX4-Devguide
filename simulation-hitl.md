@@ -13,7 +13,7 @@ PX4 supports HITL for multicopters (using jMAVSim) and fixed wing (using X-Plane
 - Make sure QGroundControl is not running (or accessing the device via serial port)
 - Run jMAVSim in HITL mode (replace the serial port if necessary):
   ```
-  ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600
+  ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
   ```
 - The console will display mavlink text messages from the autopilot.
 - Then run QGroundControl and connect via default UDP configuration.
