@@ -105,8 +105,8 @@ unset replay
 
 ## EKF2 Replay
 
-This is a specialization of the system-wide replay for fast EKF2 replay. It
-works as following:
+This is a specialization of the system-wide replay for fast EKF2 replay. It will
+automatically create the ORB publisher rules and works as following:
 
 * Optionally set`SDLOG_MODE` to 1 to start logging from boot
 * Record the log
