@@ -23,9 +23,8 @@
   * [Writing an Application](tutorial-hello-sky.md)
   * [Video streaming in QGC](advanced-videostreaming-qgc.md)
   * [Long-distance video streaming](wifibroadcast.md)
-  * [Optical Flow and LIDAR](flow_lidar_setup.md)
   * [Integration Testing](tutorial-integration-testing.md)
-  * [Optical Flow Outdoors](optical-flow-outdoors.md)
+  * [Optical Flow](optical-flow.md)
   * [ecl EKF](tuning_the_ecl_ekf.md)
   * [Preflight Checks](pre_flight_checks.md)
   * [Telemetry](telemetry.md)
@@ -44,10 +43,9 @@
   * [Pixracer](hardware-pixracer.md)
   * [Raspberry Pi](hardware-rpi.md)
   * [Snapdragon Flight](hardware-snapdragon.md)
-    * [Optical Flow](optical_flow.md)
+    * [Camera App and Optical Flow](advanced-snapdragon_camera.md)
     * [Snapdragon Advanced](advanced-snapdragon.md)
       * [Accessing I\/O Data](advanced-accessing-io-data.md)
-      * [Camera and optical flow](advanced-snapdragon_camera.md)
 * Middleware and Architecture
   * [uORB Messaging](advanced-uorb.md)
   * [MAVLink Messaging](mavlink-messaging.md)
@@ -116,4 +114,3 @@
   * [Docker Containers](advanced-docker.md)
   * [Continuous Integration](advanced-ci.md)
     * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
-
