@@ -97,6 +97,7 @@
   * [Autopilot Debugging](advanced-gdb-debugging.md)
   * [Simulation Debugging](simulation-debugging.md)
   * [Sending Debug Values](advanced-debug-values.md)
+  * [Profiling](advanced-profiling.md)
   * [Indoor \/ Fake GPS](advanced-fake-gps.md)
   * [Camera Trigger](advanced-camera-trigger.md)
   * [Logging](advanced-logging.md)
