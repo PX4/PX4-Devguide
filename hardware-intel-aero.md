@@ -41,7 +41,7 @@ After setting up the PX4 development environment, follow these steps update the 
 
 4. Configure the target hostname
 
-If your system resolves link local names you don't have to do anything and you can skip this step. you can test it by trying to ssh into intel-aero.local after connecting to it either via WiFi or usb:
+If your system resolves link local names you don't have to do anything and you can skip this step. You can test it by trying to ssh into intel-aero.local after connecting to it either via WiFi or USB:
 
 ```
 ssh root@intel-aero.local
