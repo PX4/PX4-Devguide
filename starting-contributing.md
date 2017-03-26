@@ -58,7 +58,7 @@ Test flights are important for quality assurance. Please upload the logs from th
 
 The PX4 Dev Team syncs up on its weekly dev call \(connect via [Mumble](http://mumble.info) client\).
 
-* TIME: Tuesday 5PM CET, 11AM EST, 8AM PDT
+* TIME: Tuesday 5PM CET, 11AM EST, 8AM PDT ([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics))
 * Server: sitl01.dronetest.io
 * Port: 64738
 * Password: px4
