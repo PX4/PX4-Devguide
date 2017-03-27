@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* Getting Started
+* [Getting Started](getting-started.md)
   * [Initial Configuration](starting-initial-config.md)
   * [Toolchain Installation](starting-installing.md)
     * [Mac OS](starting-installing-mac.md)
