@@ -30,11 +30,12 @@
   * [Telemetry](telemetry.md)
   * [Sensor Thermal Compensation](sensor-thermal-calibration.md)
   * [Land Detector](land-detector.md)
-* Simulation
+* [Simulation](simulation.md)
   * [Basic Simulation](simulation-sitl.md)
   * [Gazebo Simulation](simulation-gazebo.md)
   * [HITL Simulation](simulation-hitl.md)
   * [Interfacing to ROS](simulation-ros-interface.md)
+  * [AirSim Simulation](airsim-simulation.md)
 * Autopilot Hardware
   * [Crazyflie 2.0](hardware-crazyflie2.md)
   * [Intel Aero](hardware-intel-aero.md)
@@ -115,3 +116,4 @@
   * [Docker Containers](advanced-docker.md)
   * [Continuous Integration](advanced-ci.md)
     * [Jenkins Continuous Integration](advanced-jenkins-ci.md)
+
