@@ -35,7 +35,7 @@
   * [Gazebo Simulation](simulation-gazebo.md)
   * [HITL Simulation](simulation-hitl.md)
   * [Interfacing to ROS](simulation-ros-interface.md)
-  * [AirSim Simulation](airsim-simulation.md)
+  * [AirSim Simulation](simulation-airsim.md)
 * Autopilot Hardware
   * [Crazyflie 2.0](hardware-crazyflie2.md)
   * [Intel Aero](hardware-intel-aero.md)
