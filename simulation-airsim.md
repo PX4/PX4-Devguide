@@ -10,7 +10,9 @@ The instructions for [HITL setup are here](https://github.com/Microsoft/AirSim/b
 
 The walkthrough video below shows the setup for HITL with Pixhawk in more detail.
 
-{% youtube src="[https://www.youtube.com/watch?v=9bZkp7q19f0](https://youtu.be/HNWdYrtw3f0)" %}{% endyoutube %}
+{% youtube %}
+https://youtu.be/HNWdYrtw3f0
+{% endyoutube %}
 
 ## SITL
 
