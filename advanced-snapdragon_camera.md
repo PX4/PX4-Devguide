@@ -22,7 +22,7 @@ mavlink stream -u 14557 -s HIGHRES_IMU -r 250
 ### TeraRanger One setup
 To connect the TeraRanger One (TROne) to the Snapdragon Flight, the TROne I2C adapter must be used. The TROne must be flashed with the I2C firmware by the vendor.
 
-The TROne is connected to the Snapdragon Flight through a custom DF13 4-to-6 pin cable. The wiring is as follows:
+The TROne is connected to the Snapdragon Flight through a custom DF13 4-to-6 pin cable. We recommend using connector J15 (next to USB), as all others are already in use (RC, ESCs, GPS). The wiring is as follows:
 
 | 4 pin | <-> | 6 pin |
 | -- | -- | -- |
