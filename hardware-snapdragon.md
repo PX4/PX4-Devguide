@@ -29,6 +29,21 @@ More information about the Snapdragon Flight platform is at [Snapdragon-Flight-D
   * Power: 5VDC via external 2S-6S battery regulated down to 5V via APM adapter
   * Availability: [Intrinsyc Store](http://shop.intrinsyc.com/products/snapdragon-flight-dev-kit)
 
+## Recommended setup
+
+We use the Snapdragon Flight with the following setup.
+
+![](images/hardware/snapdragon-setup.JPG)
+
+#### Components
+* [Quantum Falcon 250](https://hobbyking.com/en_us/quanum-falcon-billet-block-fpv-racing-frame.html?___store=en_us)
+* [Custom mounting plate](https://drive.google.com/file/d/0B2piootk_fIKTVNTYlNULVM5ZG8/view?usp=sharing)
+* 3DR PIXHAWK MINI GPS
+* Trone range finder
+* Spektrum DXe and FPV Racing Serial Receiver (3.3V Autobind)
+
+Details on wiring can be found below.
+
 ## Connectivity
 
   * One USB 3.0 OTG port (micro-A/B)
@@ -126,6 +141,56 @@ Be sure to include the text "2-wire" at the end of each line to allow the UART t
 
 ## Peripherals
 
+### GPS Wiring
+
+Even though the 3DR GPS is described to have a 5v input, operation with 3.3V seems to work fine. (The built-in regulator MIC5205 has a minimum operating voltage of 2.5v.)
+
+| Snapdragon J9 Pin | Signal   | Comment       | 3DR GPS 6pin/4pin  | Pixfalcon GPS pin | 3DR PIXHAWK MINI GPS |
+| ----------------- | ---------| ------------- | ------------------ | ----------------- | -------------------  |
+| 1                 | 3.3V     | (3.3V)        | 1                  | 4                 |3 (5V)                |
+| 2                 | UART2_TX | Output (3.3V) | 2/-                | 3                 |4                     |
+| 3                 | UART2_RX | Input (3.3V)  | 3/-                | 2                 |5                     |
+| 4                 | I2C2_SDA | (3.3V)        | -/3                | 5                 |2                     |
+| 5                 | GND      |               | 6/-                | 1                 |6                     |
+| 6                 | I2C2_SCL | (3.3V)        | -/2                | 6                 |1                     |
+
+### PWM ESC Wiring
+
+For controlling the motors, PWM ESCs can be used. Use connector J13 (next to power module connector) and the following wiring. ESC numbers is according to [here](https://dev.px4.io/airframes-motor-map.html#quadrotor-x-layout).
+
+| Snapdragon J13 Pin | ESC | Comment                   |
+| ------------------ | --- | ------------------------  |
+| 1                  | -   | They already have voltage |
+| 2                  | 1   | Signal (orange)           |
+| 3                  | 2   | Signal (orange)           |
+| 4                  | 3   | Signal (orange)           |
+| 5                  | GND | GND from all ESCs         |
+| 6                  | 4   | Signal (orange)           |
+
+### RC Wiring
+
+| Snapdragon J12 Pin | Spektrum receiver (3 pins) |
+| ------------------ | -------------------------- |
+| 1                  | 3.3 V                      |
+| 2                  | -                          |
+| 3                  | Signal                     |
+| 4                  | -                          |
+| 5                  | GND                        |
+| 6                  | -                          |
+
+### Trone Range Finder Wiring
+
+| Snapdragon J15 Pin | Trone (4 pins) |
+| ------------------ | -------------- |
+| 1                  | 1              |
+| 2                  | -              |
+| 3                  | -              |
+| 4                  | 3              |
+| 5                  | 4              |
+| 6                  | 2              |
+
+Details can be found [here](advanced-snapdragon_camera.md)
+
 ### UART to Pixracer / Pixfalcon Wiring
 
 This interface is used to leverage the Pixracer / Pixfalcon as I/O interface board. Connect to `TELEM1` Pixfalcon and to `TELEM2` on Pixracer.
@@ -139,20 +204,6 @@ This interface is used to leverage the Pixracer / Pixfalcon as I/O interface boa
 | 5 | GND | | 6 |
 | 6 | APQ_GPIO_30 | (5V) | Not connected |
 
-### GPS Wiring
-
-Even though the 3DR GPS is described to have a 5v input, operation with 3.3V seems to work fine. (The built-in regulator MIC5205 has a minimum operating voltage of 2.5v.)
-
-| Snapdragon J9 Pin | Signal   | Comment       | 3DR GPS 6pin/4pin  | Pixfalcon GPS pin | 3DR PIXHAWK MINI GPS |
-| ----------------- | ---------| ------------- | ------------------ | ----------------- | -------------------  |
-| 1                 | 3.3V     | (3.3V)        | 1                  | 4                 |3 (5V)                |
-| 2                 | UART2_TX | Output (3.3V) | 2/-                | 3                 |4                     |
-| 3                 | UART2_RX | Input (3.3V)  | 3/-                | 2                 |5                     | 
-| 4                 | I2C2_SDA | (3.3V)        | -/3                | 5                 |2                     |
-| 5                 | GND      |               | 6/-                | 1                 |6                     |
-| 6                 | I2C2_SCL | (3.3V)        | -/2                | 6                 |1                     |
-
 ## Dimensions
 
 ![](images/hardware/hardware-snapdragon-dimensions.png)
-
