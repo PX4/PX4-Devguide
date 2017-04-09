@@ -211,6 +211,8 @@ adb shell reboot
 
 #### Build it
 
+NOTE: If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
+
 The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](advanced-uorb.md).
 
 ```sh
