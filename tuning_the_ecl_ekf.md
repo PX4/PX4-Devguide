@@ -317,13 +317,13 @@ Bad yaw alignment causes a velocity test ratio that increases rapidly when the v
 
 Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver in conjunction with a rise in innovations. Transient errors due to multipath, obscuration and interference are more common causes. Here is an example of a temporary loss of GPS accuracy where the multi-rotor started drifting away from its loiter location and had to be corrected using the sticks. The rise in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio to greater than 1 indicates the GPs velocity was inconsistent with other measurements and has been rejected.
 
-![](gps glitch - test ratios.png)
+![](images/ecl/gps_glitch_-_test_ratios.png)
 
 This is accompanied with rise in the GPS receivers reported velocity accuracy which indicates that it was likely a GPS error.  
-![](gps glitch - reported receiver accuracy.png)
+![](images/ecl/gps_glitch_-_reported_receiver_accuracy.png)
 
 If we also look at the GPS horizontal velocity innovations and innovation variances, we can see the large spike in North velocity innovation that accompanies this GPS 'glitch' event.  
-![](gps glitch - velocity innovations.png)
+![](images/ecl/gps_glitch_-_velocity_innovations.png)
 
 ### Determination of GPS Data Loss
 
