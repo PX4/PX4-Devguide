@@ -6,11 +6,11 @@ PX4 conains functionality to calibrate and compensate rate gyro, accelerometer a
 
 The inertial rate gyro and accelerometer sensor offsets are calculated using a 3rd order polynomial, whereas the barometric pressure sensor offset is calculated using a 5th order polynomial. Examples fits are show below:
 
-![](/assets/Screen Shot 2017-01-20 at 7.34.16 pm.png)
+![](/images/thermal-calibration-gyro.png)
 
-![](/assets/Screen Shot 2017-01-20 at 7.35.52 pm.png)
+![](/images/thermal-calibration-accel.png)
 
-![](/assets/Screen Shot 2017-01-20 at 7.36.10 pm.png)
+![](/images/thermal-calibration-baro.png)
 
 ## Calibration Parameter Storage
 
