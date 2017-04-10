@@ -8,7 +8,7 @@ inter-thread/inter-process communication.
 Look at the [tutorial](tutorial-hello-sky.md) to learn how to use it in C++.
 
 uORB is automatically started early on bootup as many applications depend on it.
-It is started with `uorb start`. Unit tests can be started with `uorb test`.
+It is started with `uorb start`. Unit tests can be started with `uorb_tests`.
 
 ## Adding a new topic
 
@@ -19,7 +19,7 @@ there will automatically be C/C++ code generated.
 Have a look at the existing `msg` files for supported types. A message can also
 be used nested in other messages.
 To each generated C/C++ struct, a field `uint64_t timestamp` will be added. This
-is used for the logger, so make sure to fill it in when logging the message.
+is used for the logger, so make sure to fill it in when publishing the message.
 
 To use the topic in the code, include the header:
 ```
@@ -36,7 +36,10 @@ Then in the code, use them as topic id: `ORB_ID(offboard_mission)`.
 
 ## Publishing
 
-Publishing a topic can be done from anywhere in the system, including interrupt context (functions called by the `hrt_call` API). However, advertising a topic is only possible outside of interrupt context. A topic has to be advertised in the same process as its later published.
+Publishing a topic can be done from anywhere in the system, including interrupt
+context (functions called by the `hrt_call` API). However, advertising a topic
+is only possible outside of interrupt context. A topic has to be advertised in
+the same process as it's later published.
 
 ## Listing Topics and Listening in
 
@@ -87,3 +90,61 @@ temperature: 46
 range_m_s2: 78
 scaling: 0
 ```
+
+### uorb top Command
+The command `uorb top` shows the publishing frequency of each topic in
+real-time:
+
+```sh
+update: 1s, num topics: 77
+TOPIC NAME                        INST #SUB #MSG #LOST #QSIZE
+actuator_armed                       0    6    4     0 1
+actuator_controls_0                  0    7  242  1044 1
+battery_status                       0    6  500  2694 1
+commander_state                      0    1   98    89 1
+control_state                        0    4  242   433 1
+ekf2_innovations                     0    1  242   223 1
+ekf2_timestamps                      0    1  242    23 1
+estimator_status                     0    3  242   488 1
+mc_att_ctrl_status                   0    0  242     0 1
+sensor_accel                         0    1  242     0 1
+sensor_accel                         1    1  249    43 1
+sensor_baro                          0    1   42     0 1
+sensor_combined                      0    6  242   636 1
+```
+The columns are: topic name, multi-instance index, number of subscribers,
+publishing frequency in Hz, number of lost messages (all subscribers combined), and
+queue size.
+
+
+## Multi-instance
+uORB provides a mechanism to publish multiple independent instances of the same
+topic through `orb_advertise_multi`. It will return an instance index to the
+publisher. A subscriber will then have to choose to which instance to subscribe
+to using `orb_subscribe_multi` (`orb_subscribe` subscribes to the first
+instance).
+Having multiple instances is useful for example if the system has several
+sensors of the same type.
+
+Make sure not to mix `orb_advertise_multi` and `orb_advertise` for the same
+topic.
+
+The full API is documented in
+[src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp).
+
+## Troubleshooting and common Pitfalls
+The following explains some common pitfalls and corner cases:
+- The topic is not published: make sure the `ORB_ID()`'s of each call match. It
+  is also important that `orb_subscribe` and `orb_unsubscribe` are **called from
+  the same task** as `orb_publish`. This applies to `px4_task_spawn_cmd()`, but
+  also when using work queues (`work_queue()`).
+- Make sure to clean up: use `orb_unsubscribe` and `orb_unadvertise`.
+- A successful `orb_check()` or `px4_poll()` call requires an `orb_copy()`,
+  otherwise the next poll will return immediately.
+- It is perfectly ok to call `orb_subscribe` before anyone advertised the topic.
+- `orb_check()` and `px4_poll()` will only return true for publications that are
+  done after `orb_subscribe()`. This is important for topics that are not
+  published regularly. If a subscriber needs the previous data, it should just
+  do an unconditional `orb_copy()` right after `orb_subscribe()` (Note that
+  `orb_copy()` will fail if there is no advertiser yet).
+

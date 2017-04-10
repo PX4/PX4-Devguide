@@ -61,6 +61,8 @@ Details on wiring can be found below.
 Although the Snapdragon uses DF13 connectors, the pinout is different from Pixhawk.
 </aside>
 
+Detailed pinout information can be found here: [Qualcomm Developer Network](https://developer.qualcomm.com/hardware/snapdragon-flight/board-pin-outs).
+
 ### WiFi
 
   * WLAN0, WLAN1 (+BT 4.0): U.FL connector: [Taoglas adhesive antenna (DigiKey)](http://www.digikey.com/product-detail/en/FXP840.07.0055B/931-1222-ND/3877414)
