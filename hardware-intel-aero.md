@@ -48,7 +48,7 @@ ssh root@intel-aero.local
 ```
 
 If it doesn't work you can try giving the IP that will be used by the upload script:
- 
+
 ```
 export AERO_HOSTNAME=192.168.1.1`
 ```
@@ -56,7 +56,7 @@ export AERO_HOSTNAME=192.168.1.1`
 5. Upload with  `make aerofc-v1_default upload`
 
 
-## Connecting QGroundControl via Network 
+## Connecting QGroundControl via Network
 
 1. Make sure you are connected to the board with WiFi or USB Network
 
@@ -71,3 +71,22 @@ export AERO_HOSTNAME=192.168.1.1`
 ```
 ./Tools/mavlink_shell.py 0.0.0.0:14550
 ```
+
+## Connecting a Lidar Lite range finder
+
+The following instructions are for a Lidar Lite V3 connected via I2C. The I2C port on the Aero (labled compass) is used for the external magnetometer (part of the GPS). Therefore a I2C splitter has to be used to connect the Lidar Lite (see picture).
+
+![](images/hardware/Aero_I2C_splitter.JPG)
+
+The pinout for the Lidar Lite V3 is as follows
+
+| pin | Aerofc I2C | Lidar Lite V3    |
+| --- | ---------- | ---------------- |
+| 1   | VCC        | VCC              |
+| 2   | SCL        | - (Power enable) |
+| 3   | SDA        | - (Mode control) |
+| 4   | GND        | SCL              |
+| 5   | -          | SDA              |
+| 6   | -          | GND              |
+
+![](images/hardware/Aero_LidarLite.JPG)
