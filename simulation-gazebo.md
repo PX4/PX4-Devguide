@@ -67,7 +67,7 @@ make posix gazebo_iris_opt_flow
 make posix gazebo_solo
 ```
 
-![](/assets/gazebo_solo.png)
+![](/images/gazebo/solo.png)
 
 ### Standard Plane
 
@@ -75,7 +75,7 @@ make posix gazebo_solo
 make posix gazebo_plane
 ```
 
-![](/assets/gazebo_plane.png)
+![](/images/gazebo/plane.png)
 
 ### Standard VTOL
 
@@ -83,7 +83,7 @@ make posix gazebo_plane
 make posix_sitl_default gazebo_standard_vtol
 ```
 
-![](/assets/gazebo_standard_vtol.png)
+![](/images/gazebo/standard_vtol.png)
 
 ### Tailsitter VTOL
 
@@ -91,7 +91,7 @@ make posix_sitl_default gazebo_standard_vtol
 make posix_sitl_default gazebo_tailsitter
 ```
 
-![](/assets/gazebo_tailsitter.png)
+![](/images/gazebo/tailsitter.png)
 
 ## Change World
 
