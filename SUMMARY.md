@@ -93,6 +93,7 @@
   * [System Console](advanced-system-console.md)
   * [System Boot](advanced-system-startup.md)
   * [Parameters & Configs](advanced-configurations.md)
+  * [Parameter Reference](parameter_reference.md)
   * [Autopilot Debugging](advanced-gdb-debugging.md)
   * [Simulation Debugging](simulation-debugging.md)
   * [Sending Debug Values](advanced-debug-values.md)
