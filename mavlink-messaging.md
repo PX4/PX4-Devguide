@@ -12,7 +12,7 @@ create a custom mavlink message and header).
 This section explains how to use a custom uORB message and send it as a mavlink
 message.
 
-Add the headers of the mavlink and uorb messages to
+Add the headers of the mavlink and uORB messages to
 [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
 
 ```C
@@ -57,13 +57,13 @@ private:
 
 protected:
 	explicit MavlinkStreamCaTrajectory(Mavlink *mavlink) : MavlinkStream(mavlink),
-		_sub(_mavlink->add_orb_subscription(ORB_ID(ca_trajectory))),  // make sure you enter the name of your uorb topic here
+		_sub(_mavlink->add_orb_subscription(ORB_ID(ca_trajectory))),  // make sure you enter the name of your uORB topic here
 		_ca_traj_time(0)
 	{}
 
 	void send(const hrt_abstime t)
 	{
-		struct ca_traj_struct_s _ca_trajectory;    //make sure ca_traj_struct_s is the definition of your uorb topic
+		struct ca_traj_struct_s _ca_trajectory;    //make sure ca_traj_struct_s is the definition of your uORB topic
 
 		if (_sub->update(&_ca_traj_time, &_ca_trajectory)) {
 			mavlink_ca_trajectory_t _msg_ca_trajectory;  //make sure mavlink_ca_trajectory_t is the definition of your custom mavlink message
