@@ -57,6 +57,5 @@ $ rosdep install --from-paths src --ignore-src --rosdistro indigo -y
     # finally - build
 $ catkin build
 ```
-<aside class="note">
-If you are installing mavros on a raspberry pi, you may get an error related to your os, when running "rosdep install ...". Add "--os=OS_NAME:OS_VERSION " to the rosdep command and replace OS_NAME with your OS name and OS_VERSION with your OS version (e.g. --os=debian:jessie).
-</aside>
+
+> **Note** If you are installing mavros on a raspberry pi, you may get an error related to your os, when running "rosdep install ...". Add "--os=OS_NAME:OS_VERSION " to the rosdep command and replace OS_NAME with your OS name and OS_VERSION with your OS version (e.g. --os=debian:jessie).

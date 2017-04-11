@@ -34,9 +34,7 @@ Create a new C file named `px4_simple_app.c` in the `px4_simple_app` folder (it 
 
 Edit it and start with the default header and a main function.
 
-<aside class="tip">
-Note the code style in this file - all contributions to PX4 should adhere to it.
-</aside>
+> **Tip** Note the code style in this file - all contributions to PX4 should adhere to it.
 
 ```C
 /****************************************************************************

@@ -15,15 +15,11 @@ There are currently 3 ways of commanding the VTOL to transition:
 
 When a transition is commanded (by either of the methods above), the VTOL enters the transition phase. If the VTOL receives a new transition command back to the old state during an ongoing transition it will switch back instantly. This is a safety feature to abort the transition when necessary. After the transition has been completed, the VTOL will be in the new state and a commanded transition into the reverse direction will take place normally.
 
-<aside class="note">
-Make sure the AUX1 channel is assigned to an RC switch and that airspeed is working properly.
-</aside>
+> **Note** Make sure the AUX1 channel is assigned to an RC switch and that airspeed is working properly.
 
 ## On the bench
 
-<aside class="caution">
-Remove all props! To test transition functionality properly, the vehicle needs to be armed.
-</aside>
+> **Caution** Remove all props! To test transition functionality properly, the vehicle needs to be armed.
 
 By default, starting in multirotor mode:
 
@@ -40,9 +36,7 @@ By default, starting in multirotor mode:
 
 ## In flight
 
-<aside class="tip">
-Before testing transitions in flight, make sure the VTOL flies stable in multirotor mode. In general, if something doesn't go as planned, transition to multirotor mode and let it recover (it does a good job when it's properly tuned).
-</aside>
+> **Tip** Before testing transitions in flight, make sure the VTOL flies stable in multirotor mode. In general, if something doesn't go as planned, transition to multirotor mode and let it recover (it does a good job when it's properly tuned).
 
 In-flight transition requires at least the following parameters to match your airframe and piloting skills:
 

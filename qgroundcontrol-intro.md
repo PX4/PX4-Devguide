@@ -27,9 +27,7 @@ Switch to the setup tab. Scroll the menu on the left all the way to the bottom a
 
 QGroundControl can be downloaded from its [website](http://qgroundcontrol.com/downloads).
 
-<aside class="tip">
-Developers are advised to use the latest daily build instead of the stable release.
-</aside>
+> **Tip** Developers are advised to use the latest daily build instead of the stable release.
 
 ## Building from source
 

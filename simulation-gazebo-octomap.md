@@ -30,9 +30,8 @@ Open ~/catkin_ws/src/rotors_simulator/rotors_gazebo/package.xml and add the foll
 ```
 
 Run the following two lines. 
-<aside class="note">
-The first line changes your default shell editor (which is vim by default) to gedit. This is recommended for users who have little experience with vim, but can otherwise be omitted.
-</aside>
+
+> **Note** The first line changes your default shell editor (which is vim by default) to gedit. This is recommended for users who have little experience with vim, but can otherwise be omitted.
 
 <div class="host-code"></div>
 ```sh

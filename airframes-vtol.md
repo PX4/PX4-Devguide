@@ -8,9 +8,8 @@ The [PX4 Flight Stack](concept-flight-stack.md) supports virtually all VTOL conf
 
 The VTOL codebase is the same codebase as for all other airframes and just adds additional control logic, in particular for transitions.
 
-<aside class="note">
-All these VTOL configurations have been actively test-flown and are ready to use. Ensure to have an airspeed sensor attached to the system as its used by the autopilot when its safe to perform the transition.
-</aside>
+> **Note** All these VTOL configurations have been actively test-flown and are ready to use. Ensure to have an airspeed sensor attached to the system as its used by the autopilot when its safe to perform the transition.
+
 
 ## Key Configuration Parameters
 
