@@ -4,9 +4,8 @@
 
 Linux users need to explicitly allow access to the USB bus for JTAG programming adapters.
 
-<aside class="note">
-For Archlinux: replace the group plugdev with uucp in the following commands
-</aside>
+> **Note** For Archlinux: replace the group plugdev with uucp in the following commands
+
 
 Run a simple ls in sudo mode to ensure the commands below succeed:
 
@@ -88,9 +87,9 @@ Then you will also need to install other 32-bit libraries glibc.i686 ncurses-lib
 ```sh
 sudo yum install glibc.i686 ncurses-libs.i686
 ```
-<aside class="note">
-Pulling in ncurses-libs.i686 will pull in most of the other required 32 bit libraries. Centos 7 will install most all the PX4 related devices without the need for any added udev rules. The devices will be accessible to the predefined group ' dialout'. Therefore any references to adding udev rules can be ignored. The only requirement is that your user account is a member of the group 'dial out'
-</aside>
+
+> **Note** Pulling in ncurses-libs.i686 will pull in most of the other required 32 bit libraries. Centos 7 will install most all the PX4 related devices without the need for any added udev rules. The devices will be accessible to the predefined group ' dialout'. Therefore any references to adding udev rules can be ignored. The only requirement is that your user account is a member of the group 'dial out'
+
 
 ### Arch Linux
 
@@ -123,9 +122,7 @@ sudo usermod -a -G uucp $USER
 After that, logging out and logging back in is needed.
 
 
-<aside class="note">
-Log out and log in for changes to take effect! Also remove the device and plug it back in!**
-</aside>
+> **Note** Log out and log in for changes to take effect! Also remove the device and plug it back in!**
 
 ### Toolchain Installation
 

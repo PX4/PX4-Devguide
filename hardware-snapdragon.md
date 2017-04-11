@@ -57,9 +57,7 @@ Details on wiring can be found below.
 
 ## Pinouts
 
-<aside class="warning">
-Although the Snapdragon uses DF13 connectors, the pinout is different from Pixhawk.
-</aside>
+> **Warning** Although the Snapdragon uses DF13 connectors, the pinout is different from Pixhawk.
 
 Detailed pinout information can be found here: [Qualcomm Developer Network](https://developer.qualcomm.com/hardware/snapdragon-flight/board-pin-outs).
 

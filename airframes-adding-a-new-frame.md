@@ -77,9 +77,7 @@ IMPORTANT REMARK: If you want to reverse a channel, never do this neither on you
 
 A typical configuration file is below. 
 
-<aside class="note">
-The plugs of the servos / motors go in the order of the mixers in this file.
-</aside>
+> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
 So MAIN1 would be the left aileron, MAIN2 the right aileron, MAIN3 is empty (note the Z: zero mixer) and MAIN4 is throttle (to keep throttle on output 4 for common fixed wing configurations).
 

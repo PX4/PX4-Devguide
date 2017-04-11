@@ -61,9 +61,8 @@ param import /fs/microsd/vtol_param_backup
 
 There is also a C and a separate C++ API which can be used to access parameter values.
 
-<aside class="todo">
-Discuss param C / C++ API.
-</aside>
+> **Todo** Discuss param C / C++ API.
+
 
 <div class="host-code"></div>
 

@@ -2,9 +2,7 @@
 
 ## Parts List
 
-<aside class="note">
-Ensure to order the PNF version which includes motor, propeller and electronic speed controller. The kit version requires these to be purchased individually.
-</aside>
+> **Note** Ensure to order the PNF version which includes motor, propeller and electronic speed controller. The kit version requires these to be purchased individually.
 
   * Zeta Science Wing-Wing Z-84 *PNF* ([Hobbyking Store](http://hobbyking.com/hobbyking/store/RC_PRODUCT_SEARCH.asp?strSearch=z-84))
   * 1800 mAh 2S LiPo

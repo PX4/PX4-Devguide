@@ -40,7 +40,7 @@ For this step the Flight_BSP zip file from Intrynsic is required. It can be obta
 
 ### Upgrading/replacing the Linux image
 
-<aside class="caution">Flashing the Linux image will erase everything on the Snapdragon. Back up your work before you perform this step!</aside>
+> **Caution** Flashing the Linux image will erase everything on the Snapdragon. Back up your work before you perform this step!
 
 Make sure the board can be found using adb:
 
@@ -74,7 +74,7 @@ It is normal that the partitions `recovery`, `update`, and `factory` will fail.
 
 Part of the PX4 stack is running on the ADSP (the DSP side of the Snapdragon 8074). The underlying operating system QURT needs to be updated separately.
 
-<aside class="caution">If anything goes wrong during the ADSP firmware update, your Snapdragon can get bricked! Follow the steps below carefully which should prevent bricking in most cases.</aside>
+> **Caution** If anything goes wrong during the ADSP firmware update, your Snapdragon can get bricked! Follow the steps below carefully which should prevent bricking in most cases.
 
 First of all, if you're not already on BSP 3.1.1, [upgrade the Linux image](#upgradingreplacing-the-linux-image)!
 
@@ -154,7 +154,7 @@ The APIs to set up and use the UART are described in [dspal](https://github.com/
 
 ## Wifi-settings
 
-<aside class="todo">These are notes for advanced developers.</aside>
+> **Todo** These are notes for advanced developers.
 
 Connect to the Linux shell (see [console instructions](advanced-system-console.html#snapdragon-flight-wiring-the-console)).
 

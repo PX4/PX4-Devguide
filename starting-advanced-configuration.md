@@ -2,9 +2,7 @@
 
 The advanced system configuration is performed through [QGroundControl](qgroundcontrol-intro.md).
 
-<aside class="tip">
-[Download the DAILY BUILD of QGroundControl](http://qgroundcontrol.com/downloads) in regular intervals to stay up to date.
-</aside>
+> **Tip** [Download the DAILY BUILD of QGroundControl](http://qgroundcontrol.com/downloads) in regular intervals to stay up to date.
 
 ## Setting Configuration Parameters
 

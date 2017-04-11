@@ -10,9 +10,7 @@ The remaining files are part of the general startup logic, and the first execute
 
 A failure of a driver of software component can lead to an aborted boot.
 
-<aside class="tip">
-An incomplete boot often materializes as missing parameters in the ground control stations, because the non-started applications did not initialize their parameters.
-</aside>
+> **Tip** An incomplete boot often materializes as missing parameters in the ground control stations, because the non-started applications did not initialize their parameters.
 
 The right approach to debug the boot sequence is to connect the [system console](advanced-system-console.md) and power-cycle the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
@@ -30,9 +28,7 @@ In most cases customizing the default boot is the better approach, which is docu
 
 The best way to customize the system startup is to introduce a [new airframe configuration](airframes-adding-a-new-frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
 
-<aside class="caution">
-The system boot files are UNIX FILES which require UNIX LINE ENDINGS. If editing on Windows use a suitable editor.
-</aside>
+> **Caution** The system boot files are UNIX FILES which require UNIX LINE ENDINGS. If editing on Windows use a suitable editor.
 
 There are three main hooks. Note that the root folder of the microsd card is identified by the path `/fs/microsd`.
 

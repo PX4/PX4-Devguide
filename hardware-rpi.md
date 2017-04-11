@@ -95,9 +95,7 @@ sudo /etc/init.d/avahi-daemon restart
 And that's it. You should be able to access your Pi directly by its hostname from any computer on the network.
 
 
-<aside class="tip">
-You might have to add .local to the hostname to discover it.
-</aside>
+> **Tip** You might have to add .local to the hostname to discover it.
 
 ### Configuring a SSH Public-Key
 

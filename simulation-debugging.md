@@ -23,9 +23,7 @@ or
 sudo apt-get install valgrind
 ```
 
-<aside class="todo">
-Add instructions how to run Valgrind
-</aside>
+> **Todo** Add instructions how to run Valgrind
 
 ## Start combinations
 

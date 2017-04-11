@@ -2,9 +2,7 @@
 
 The motor maps below indicate which `MAIN` output connects to which motor. It also indicates the turn direction of the propeller.
 
-<aside class="tip">
-The turn direction of a 3-phase motor can be reversed by flipping any two of the three connected wires.
-</aside>
+> **Tip** The turn direction of a 3-phase motor can be reversed by flipping any two of the three connected wires.
 
 ## Quadrotor X Layout
 
@@ -30,6 +28,4 @@ The turn direction of a 3-phase motor can be reversed by flipping any two of the
 
 ![Octorotor Plus Layout](images/motor_map/octorotor_plus_assignment.png)
 
-<aside class="todo">
-Tricopters and coaxial hexacopters are supported as well, but we have no graphics yet.
-</aside>
+> **Todo** Tricopters and coaxial hexacopters are supported as well, but we have no graphics yet.

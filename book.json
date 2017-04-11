@@ -7,5 +7,14 @@
         "mermaid",
         "-mermaid-2"
     ],
-    "pluginsConfig": {}
+    "pluginsConfig":
+    {
+        "richquotes":
+        {
+            "star": {
+                "tip": "hint",
+                "todo": "caution"
+            }
+        }
+    }
 }
