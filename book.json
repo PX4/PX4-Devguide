@@ -5,16 +5,29 @@
         "anchors",
         "page-toc-button",
         "mermaid",
-        "-mermaid-2"
+        "-mermaid-2",
+        "github",
+        "language-picker",
+        "language-redirect@git+https://github.com/hamishwillee/gitbook-plugin-language-redirect.git"
     ],
     "pluginsConfig":
     {
+
         "richquotes":
         {
-            "star": {
-                "tip": "hint",
-                "todo": "caution"
+            "tip": {
+                "alert": "success",
+                "picto": "fa-thumbs-o-up"
             }
+
+        },
+        "language-redirect": {
+            "baseurl": "https://dev.px4.io/"
+        },
+        "github": {
+            "url": "https://github.com/PX4/Devguide"
         }
+
+
     }
 }
