@@ -54,6 +54,7 @@
   * [Driver Framework](advanced-drivers.md)
 * Airframes
   * [Unified Codebase](airframes-architecture.md)
+  * [Airframes Reference](airframe_reference.md)
   * [Adding a new Airframe](airframes-adding-a-new-frame.md)
   * [Multicopters](airframes-multicopter.md)
     * [Motor Map](airframes-motor-map.md)
