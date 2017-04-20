@@ -1,4 +1,5 @@
 # Long-distance video streaming in QGroundControl
+
 This page shows how to set up a a companion computer (Odroid C1 or C0) with a camera (Logitech C920) such that the video stream is transferred via the Odroid C1 to a network computer and displayed in the application QGroundControl that runs on this computer. This setup uses WiFi in unconnected (broadcast) mode.
 
 The whole hardware setup consists of the following parts:

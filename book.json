@@ -9,7 +9,8 @@
         "github",
         "language-picker",
         "language-redirect@git+https://github.com/hamishwillee/gitbook-plugin-language-redirect.git",
-        "custom-favicon"
+        "custom-favicon",
+        "bulk-redirect"
     ],
     "pluginsConfig":
     {
@@ -28,7 +29,11 @@
         "github": {
             "url": "https://github.com/PX4/Devguide"
         },
-        "favicon": "favicon.ico"
+        "favicon": "favicon.ico",
+        "bulk-redirect": {
+            "basepath": "/",
+            "redirectsFile": "redirects.json"
+        }
 
 
     }

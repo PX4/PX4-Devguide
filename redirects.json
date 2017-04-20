@@ -1,0 +1,443 @@
+{
+    "redirects": [
+            {
+                "from": "en/git-examples.html",
+                "to": "en/contribute/git_examples.html"
+            },
+            {
+                "from": "en/starting-contributing.html",
+                "to": "en/contribute/"
+            },
+            {
+                "from": "en/simulation.html",
+                "to": "en/simulation/"
+            },
+            {
+                "from": "en/simulation-sitl.html",
+                "to": "en/simulation/sitl.html"
+            },
+            {
+                "from": "en/simulation-gazebo.html",
+                "to": "en/simulation/gazebo.html"
+            },
+            {
+                "from": "en/simulation-hitl.html",
+                "to": "en/simulation/hitl.html"
+            },
+            {
+                "from": "en/simulation-ros-interface.html",
+                "to": "en/simulation/ros_interface.html"
+            },
+            {
+                "from": "en/simulation-airsim.html",
+                "to": "en/simulation/airsim.html"
+            },
+            {
+                "from": "en/airframe_reference.html",
+                "to": "en/airframes/airframe_reference.html"
+            },
+            {
+                "from": "en/airframes-adding-a-new-frame.html",
+                "to": "en/airframes/adding_a_new_frame.html"
+            },
+            {
+                "from": "en/airframes-architecture.html",
+                "to": "en/airframes/architecture.html"
+            },
+            {
+                "from": "en/airframes-multicopter.html",
+                "to": "en/airframes_multicopter/README.html"
+            },
+            {
+                "from": "en/airframes-motor-map.html",
+                "to": "en/airframes_multicopter/motor_map.html"
+            },
+            {
+                "from": "en/airframes-multicopter-qav250.html",
+                "to": "en/airframes_multicopter/qav250.html"
+            },
+            {
+                "from": "en/airframes-multicopter-matrice100.html",
+                "to": "en/airframes_multicopter/matrice100.html"
+            },
+            {
+                "from": "en/qav-r.html",
+                "to": "en/airframes_multicopter/qav-r.html"
+            },
+            {
+                "from": "en/airframes-plane.html",
+                "to": "en/airframes_plane/"
+            },
+            {
+                "from": "en/airframes-plane-wing-z-84.html",
+                "to": "en/airframes_plane/wing_z_84.html"
+            },
+            {
+                "from": "en/airframes-vtol.html",
+                "to": "en/airframes_vtol/"
+            },
+            {
+                "from": "en/airframes-vtol-caipiroshka.html",
+                "to": "en/airframes_vtol/caipiroshka.html"
+            },
+            {
+                "from": "en/airframes-vtol-testing.html",
+                "to": "en/airframes_vtol/testing.html"
+            },
+            {
+                "from": "en/airframes-experimental.html",
+                "to": "en/airframes_experimental/"
+            },
+            {
+                "from": "en/hardware-crazyflie2.html",
+                "to": "en/flight_controller/crazyflie2.html"
+            },
+            {
+                "from": "en/hardware-intel-aero.html",
+                "to": "en/flight_controller/intel_aero.html"
+            },
+            {
+                "from": "en/hardware-pixfalcon.html",
+                "to": "en/flight_controller/pixfalcon.html"
+            },
+            {
+                "from": "en/hardware-pixhawk.html",
+                "to": "en/flight_controller/pixhawk.html"
+            },
+            {
+                "from": "en/hardware-pixracer.html",
+                "to": "en/flight_controller/pixracer.html"
+            },
+            {
+                "from": "en/hardware-rpi.html",
+                "to": "en/flight_controller/raspberry_pi.html"
+            },
+            {
+                "from": "en/hardware-snapdragon.html",
+                "to": "en/flight_controller/snapdragon_flight.html"
+            },
+            {
+                "from": "en/advanced-snapdragon.html",
+                "to": "en/flight_controller/snapdragon_flight_advanced.html"
+            },
+            {
+                "from": "en/advanced-snapdragon_camera.html",
+                "to": "en/flight_controller/snapdragon_flight_camera.html"
+            },
+            {
+                "from": "en/advanced-accessing-io-data.html",
+                "to": "en/flight_controller/snapdragon_flight_accessing_io_data.html"
+            },
+            {
+                "from": "en/uavcan-intro.html",
+                "to": "en/uavcan/"
+            },
+            {
+                "from": "en/uavcan-bootloader-installation.html",
+                "to": "en/uavcan/bootloader_installation.html"
+            },
+            {
+                "from": "en/uavcan-node-enumeration.html",
+                "to": "en/uavcan/node_enumeration.html"
+            },
+            {
+                "from": "en/uavcan-node-firmware.html",
+                "to": "en/uavcan/node_firmware.html"
+            },
+            {
+                "from": "en/uavcan-various-notes.html",
+                "to": "en/uavcan/notes.html"
+            },
+            {
+                "from": "en/robotics-using-dronekit.html",
+                "to": "en/dronekit/"
+            },
+            {
+                "from": "en/dronekit-example.html",
+                "to": "en/dronekit/example.html"
+            },
+            {
+                "from": "en/robotics-using-ros.html",
+                "to": "en/ros/"
+            },
+            {
+                "from": "en/ros-mavros-installation.html",
+                "to": "en/ros/mavros_installation.html"
+            },
+            {
+                "from": "en/ros-raspberrypi-installation.html",
+                "to": "en/ros/raspberrypi_installation.html"
+            },
+            {
+                "from": "en/ros-mavros-offboard.html",
+                "to": "en/ros/mavros_offboard.html"
+            },
+            {
+                "from": "en/advanced-faq.html",
+                "to": "en/debug/faq.html"
+            },
+            {
+                "from": "en/advanced-debug-values.html",
+                "to": "en/debug/debug_values.html"
+            },
+            {
+                "from": "en/simulation-debugging.html",
+                "to": "en/debug/simulation_debugging.html"
+            },
+            {
+                "from": "en/advanced-gdb-debugging.html",
+                "to": "en/debug/gdb_debugging.html"
+            },
+            {
+                "from": "en/advanced-replay.html",
+                "to": "en/debug/system_wide_replay.html"
+            },
+            {
+                "from": "en/advanced-profiling.html",
+                "to": "en/debug/profiling.html"
+            },
+            {
+                "from": "en/advanced-system-console.html",
+                "to": "en/debug/system_console.html"
+            },
+            {
+                "from": "en/advanced-logging.html",
+                "to": "en/log/logging.html"
+            },
+            {
+                "from": "en/flight_log_analysis.html",
+                "to": "en/log/flight_log_analysis.html"
+            },
+            {
+                "from": "en/advanced-ulog-file-format.html",
+                "to": "en/log/ulog_file_format.html"
+            },
+            {
+                "from": "en/ekf2_log_replay.html",
+                "to": "en/log/ekf2_log_replay.html"
+            },
+            {
+                "from": "en/advanced-ci.html",
+                "to": "en/test_and_ci/continous_integration.html"
+            },
+            {
+                "from": "en/advanced-docker.html",
+                "to": "en/test_and_ci/docker.html"
+            },
+            {
+                "from": "en/advanced-jenkins-ci.html",
+                "to": "en/test_and_ci/jenkins_ci.html"
+            },
+            {
+                "from": "en/testing-and-ci.html",
+                "to": "en/test_and_ci/"
+            },
+            {
+                "from": "en/tutorial-integration-testing.html",
+                "to": "en/test_and_ci/integration_testing.html"
+            },
+            {
+                "from": "en/concept-architecture.html",
+                "to": "en/concept/architecture.html"
+            },
+            {
+                "from": "en/concept-flight-modes.html",
+                "to": "en/concept/flight_modes.html"
+            },
+            {
+                "from": "en/concept-middleware.html",
+                "to": "en/concept/middleware.html"
+            },
+            {
+                "from": "en/concept-flight-stack.html",
+                "to": "en/concept/flight_stack.html"
+            },
+            {
+                "from": "en/concept-pwm_limit.html",
+                "to": "en/concept/pwm_limit.html"
+            },
+            {
+                "from": "en/concept-mixing.html",
+                "to": "en/concept/mixing.html"
+            },
+            {
+                "from": "en/starting-advanced-configuration.html",
+                "to": "en/setup/config_advanced.html"
+            },
+            {
+                "from": "en/starting-building.html",
+                "to": "en/setup/building_px4.html"
+            },
+            {
+                "from": "en/starting-initial-config.html",
+                "to": "en/setup/config_initial.html"
+            },
+            {
+                "from": "en/starting-installing.html",
+                "to": "en/setup/dev_env.html"
+            },
+            {
+                "from": "en/starting-installing-linux.html",
+                "to": "en/setup/dev_env_linux.html"
+            },
+            {
+                "from": "en/starting-installing-linux-boutique.html",
+                "to": "en/setup/dev_env_linux-boutique.html"
+            },
+            {
+                "from": "en/starting-installing-mac.html",
+                "to": "en/setup/dev_env_mac.html"
+            },
+            {
+                "from": "en/starting-installing-windows.html",
+                "to": "en/setup/dev_env_windows.html"
+            },
+            {
+                "from": "en/getting-started.html",
+                "to": "en/setup/getting_started.html"
+            },
+            {
+                "from": "en/i2c-intro.html",
+                "to": "en/sensor_bus/i2c.html"
+            },
+            {
+                "from": "en/uart-ulanding-radar.html",
+                "to": "en/sensor/uart_ulanding_radar.html"
+            },
+            {
+                "from": "en/advanced-videostreaming-qgc.html",
+                "to": "en/qgc/video_streaming.html"
+            },
+            {
+                "from": "en/qgroundcontrol-intro.html",
+                "to": "en/qgc/"
+            },
+            {
+                "from": "en/wifibroadcast.html",
+                "to": "en/qgc/video_streaming_wifi_broadcast.html"
+            },
+            {
+                "from": "en/land-detector.html",
+                "to": "en/tutorials/land_detector.html"
+            },
+            {
+                "from": "en/optical-flow.html",
+                "to": "en/tutorials/optical_flow.html"
+            },
+            {
+                "from": "en/pre_flight_checks.html",
+                "to": "en/tutorials/pre_flight_checks.html"
+            },
+            {
+                "from": "en/sensor-thermal-calibration.html",
+                "to": "en/tutorials/sensor_thermal_calibration.html"
+            },
+            {
+                "from": "en/telemetry.html",
+                "to": "en/tutorials/telemetry.html"
+            },
+            {
+                "from": "en/tuning_the_ecl_ekf.html",
+                "to": "en/tutorials/tuning_the_ecl_ekf.html"
+            },
+            {
+                "from": "en/tutorial-hello-sky.html",
+                "to": "en/tutorials/tutorial_hello_sky.html"
+            },
+            {
+                "from": "en/tutorials.html",
+                "to": "en/tutorials/tutorials.html"
+            },
+            {
+                "from": "en/mavlink-messaging.html",
+                "to": "en/middleware/mavlink.html"
+            },
+            {
+                "from": "en/advanced-drivers.html",
+                "to": "en/middleware/drivers.html"
+            },
+            {
+                "from": "en/advanced-uorb.html",
+                "to": "en/middleware/uorb.html"
+            },
+            {
+                "from": "en/software_update.html",
+                "to": "en/software_update/"
+            },
+            {
+                "from": "en/stm32_bootloader.html",
+                "to": "en/software_update/stm32_bootloader.html"
+            },
+            {
+                "from": "en/architecture-daemon.html",
+                "to": "en/advanced/architecture_daemon.html"
+            },
+            {
+                "from": "en/parameter_reference.html",
+                "to": "en/advanced/parameter_reference.html"
+            },
+            {
+                "from": "en/parameters_and_configurations.html",
+                "to": "en/advanced/xxxxx.html"
+            },
+            {
+                "from": "en/advanced-switching_state_estimators.html",
+                "to": "en/advanced/switching_state_estimators.html"
+            },
+            {
+                "from": "en/advanced-system-startup.html",
+                "to": "en/advanced/system_startup.html"
+            },
+            {
+                "from": "en/advanced-realsense_intel.html",
+                "to": "en/advanced/realsense_intel_driver.html"
+            },
+            {
+                "from": "en/advanced-out-of-tree-modules.html",
+                "to": "en/advanced/out_of_tree_modules.html"
+            },
+            {
+                "from": "en/advanced-licenses.html",
+                "to": "en/advanced/licenses.html"
+            },
+            {
+                "from": "en/advanced-gimbal-control.html",
+                "to": "en/advanced/gimbal_control.html"
+            },
+            {
+                "from": "en/advanced-fake-gps.html",
+                "to": "en/advanced/fake-gps.html"
+            },
+            {
+                "from": "en/advanced-camera-trigger.html",
+                "to": "en/advanced/camera_trigger.html"
+            },
+            {
+                "from": "en/advanced-bebop.html",
+                "to": "en/advanced/parrot_bebop.html"
+            },
+            {
+                "from": "en/external-position.html",
+                "to": "en/ros/external_position_estimation.html"
+            },
+            {
+                "from": "en/offboard-control.html",
+                "to": "en/ros/offboard_control.html"
+            },
+            {
+                "from": "en/simulation-gazebo-octomap.html",
+                "to": "en/simulation/gazebo_octomap.html"
+            },
+            {
+                "from": "en/pixhawk-companion-computer.html",
+                "to": "en/companion_computer/pixhawk_companion.html"
+            }
+            
+  
+            
+            
+        ]
+}
+
+
+
