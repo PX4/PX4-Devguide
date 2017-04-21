@@ -1,6 +1,6 @@
 # Development Environment on Linux
 
-We have standardized on Debian / Ubuntu LTS as the supported Linux distribution, but [boutique distribution instructions](../setup/dev_env_linux-boutique.md) are available for Cent OS and Arch Linux.
+We have standardized on Debian / Ubuntu LTS as the supported Linux distribution, but [boutique distribution instructions](../setup/dev_env_linux_boutique.md) are available for Cent OS and Arch Linux.
 
 ## Permission Setup
 
