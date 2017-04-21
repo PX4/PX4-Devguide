@@ -156,7 +156,7 @@ Even though the 3DR GPS is described to have a 5v input, operation with 3.3V see
 
 ### PWM ESC Wiring
 
-For controlling the motors, PWM ESCs can be used. Use connector J13 (next to power module connector) and the following wiring. ESC numbers is according to [here](https://dev.px4.io/airframes-motor-map.html#quadrotor-x-layout).
+For controlling the motors, PWM ESCs can be used. Use connector J13 (next to power module connector) and the following wiring. ESC numbers is according to [here](../airframes_multicopter/motor_map.md#quadrotor-x-layout).
 
 | Snapdragon J13 Pin | ESC | Comment                   |
 | ------------------ | --- | ------------------------  |

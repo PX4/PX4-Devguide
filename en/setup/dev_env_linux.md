@@ -25,7 +25,7 @@ Update the package list and install the following dependencies for all PX4 build
 * Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md), Parrot Bebop
 * Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
 
-> **Info** Install the [Ninja Build System](http://dev.px4.io/starting-installing-linux-boutique.html#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
+> **Info** Install the [Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
 
 ```sh
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
@@ -60,7 +60,7 @@ sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi g
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 
-Then follow the [toolchain installation instructions](http://dev.px4.io/starting-installing-linux-boutique.html#toolchain-installation) to install the arm-none-eabi toolchain version 4.9 or 5.4 manually.
+Then follow the [toolchain installation instructions](../setup/dev_env_linux_boutique.md#toolchain-installation) to install the arm-none-eabi toolchain version 4.9 or 5.4 manually.
 
 ### Snapdragon Flight
 
@@ -155,7 +155,7 @@ Note: Alternatively, especially on Mac, you can also use [nano-dm](https://githu
 
 ### Raspberry Pi hardware
 
-Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the _native_ Raspberry Pi toolchain to compile directly on the Pi, see [here](http://dev.px4.io/hardware-pi2.html#native-builds-optional)
+Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the _native_ Raspberry Pi toolchain to compile directly on the Pi, see [here](../flight_controller/raspberry_pi.md#native-builds-optional)
 
 ```sh
 git clone https://github.com/pixhawk/rpi_toolchain.git
