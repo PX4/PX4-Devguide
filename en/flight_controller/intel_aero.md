@@ -8,7 +8,7 @@ the [RTF](https://software.intel.com/en-us/aero/drone-dev-kit), which also inclu
 the vision accessory kit.
 
 
-![](../images/hardware/hardware-intel-aero-rtf.jpg)
+![](../../images/hardware/hardware-intel-aero-rtf.jpg)
 
 ## Introduction
 
@@ -76,7 +76,7 @@ export AERO_HOSTNAME=192.168.1.1`
 
 The following instructions are for a Lidar Lite V3 connected via I2C. The I2C port on the Aero (labled compass) is used for the external magnetometer (part of the GPS). Therefore a I2C splitter has to be used to connect the Lidar Lite (see picture).
 
-![](../images/hardware/Aero_I2C_splitter.JPG)
+![](../../images/hardware/Aero_I2C_splitter.JPG)
 
 The pinout for the Lidar Lite V3 is as follows
 
@@ -89,4 +89,4 @@ The pinout for the Lidar Lite V3 is as follows
 | 5   | -          | SDA              |
 | 6   | -          | GND              |
 
-![](../images/hardware/Aero_LidarLite.JPG)
+![](../../images/hardware/Aero_LidarLite.JPG)

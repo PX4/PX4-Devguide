@@ -20,4 +20,4 @@
 
 
 ## State Transition Diagram
-![](../images/diagrams/pwm_limit_state_diagram.png)
+![](../../images/diagrams/pwm_limit_state_diagram.png)

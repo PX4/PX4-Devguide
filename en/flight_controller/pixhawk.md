@@ -2,7 +2,7 @@
 
 [Pixhawk](https://pixhawk.org/modules/pixhawk) is the standard microcontroller platform for the PX4 flight stack. It runs the PX4 Middleware on the [NuttX](http://nuttx.org) OS. As a CC-BY-SA 3.0 licensed Open Hardware design, all schematics and design files are [available](https://github.com/PX4/Hardware). The [Pixfalcon](hardware-pixfalcon.md) is a smaller version of Pixhawk for FPV racers and similar platforms. For drones requiring high processing performance or a camera interface the [Snapdragon Flight](hardware-snapdragon.md) might be a more optimal fit.
 
-![](../images/hardware/hardware-pixhawk.png)
+![](../../images/hardware/hardware-pixhawk.png)
 
 ## Quick Summary
 

@@ -4,7 +4,7 @@ The Snapdragon Flight platform is a high-end autopilot / onboard computer which 
 
 More information about the Snapdragon Flight platform is at [Snapdragon-Flight-Details](https://www.intrinsyc.com/qualcomm-snapdragon-flight-details/)
 
-![](../images/hardware/hardware-snapdragon.jpg)
+![](../../images/hardware/hardware-snapdragon.jpg)
 
 ## Quick Summary
 
@@ -33,7 +33,7 @@ More information about the Snapdragon Flight platform is at [Snapdragon-Flight-D
 
 We use the Snapdragon Flight with the following setup.
 
-![](../images/hardware/snapdragon-setup.JPG)
+![](../../images/hardware/snapdragon-setup.JPG)
 
 #### Components
 * [Quantum Falcon 250](https://hobbyking.com/en_us/quanum-falcon-billet-block-fpv-racing-frame.html?___store=en_us)
@@ -206,4 +206,4 @@ This interface is used to leverage the Pixracer / Pixfalcon as I/O interface boa
 
 ## Dimensions
 
-![](../images/hardware/hardware-snapdragon-dimensions.png)
+![](../../images/hardware/hardware-snapdragon-dimensions.png)

@@ -18,7 +18,7 @@ Each of the blocks below is a separate module, which is self-contained in terms 
 
 The controllers / mixers are specific to a particular airframe (e.g. a multicopter, VTOL or plane), but the higher-level mission management blocks like the `commander` and `navigator` are shared between platforms.
 
-![Architecture](../images/diagrams/PX4_Architecture.png)
+![Architecture](../../images/diagrams/PX4_Architecture.png)
 
 > ** Info ** This flow chart can be updated from [here](https://drive.google.com/file/d/0Byq0TIV9P8jfbVVZOVZ0YzhqYWs/view?usp=sharing) and open it with draw.io Diagrams.
 

@@ -44,7 +44,7 @@ pxh>
 
 And a window with the 3D view of the [jMAVSim](http://github.com/PX4/jMAVSim.git) simulator:
 
-![](../images/sim/jmavsim.png)
+![](../../images/sim/jmavsim.png)
 
 The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
 

@@ -97,7 +97,7 @@ drops.
 There are different clients that support ulog streaming:
 - `mavlink_ulog_streaming.py` script in Firmware/Tools.
 - QGroundControl:
-![](../images/gcs/qgc-log-streaming.png)
+![](../../images/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 
 ### Diagnostics

@@ -1,7 +1,7 @@
 # QAV-R
 -------------------------
 
-![](../images/airframes/multicopter/qav-r/qav-r.png)
+![](../../images/airframes/multicopter/qav-r/qav-r.png)
 
 {% youtube %}https://www.youtube.com/watch?v=DgPkecUOjFI{% endyoutube %}
 
