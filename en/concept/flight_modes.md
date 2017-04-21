@@ -1,6 +1,6 @@
 # Flight Modes
 
-**Flight Modes** define the state of the system at any given time.  The user transitions between flight modes via switches on the remote control or the [ground control station](qgroundcontrol-intro.md).
+**Flight Modes** define the state of the system at any given time.  The user transitions between flight modes via switches on the remote control or the [ground control station](../qgc/README.md).
 
 ## Flight Mode Quick Summary
 

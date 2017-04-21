@@ -37,7 +37,7 @@ If you prefer having a GUI to add your files see [Gitk](https://git-scm.com/book
 ```sh
 git commit -m "<your commit message>"
 ```
-For a good commit message, please refer to [Contributing](starting-contributing.md) section.
+For a good commit message, please refer to [Contributing](../contribute/README.md) section.
 * Some time might have passed and the [upstream master](https://github.com/PX4/Firmware.git) has changed. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch<br>
 ```sh
 git checkout master

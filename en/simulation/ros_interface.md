@@ -4,7 +4,7 @@ The simulated autopilot starts a second MAVLink interface on port 14557. Connect
 
 ## Launching MAVROS
 
-If an interface to ROS is wanted, the already running secondary MAVLink instance can be connected to ROS via [mavros](ros-mavros-offboard.md). To connect to a specific IP (`fcu_url` is the IP / port of SITL), use a URL in this form:
+If an interface to ROS is wanted, the already running secondary MAVLink instance can be connected to ROS via [mavros](../ros/mavros_offboard.md). To connect to a specific IP (`fcu_url` is the IP / port of SITL), use a URL in this form:
 
 <div class="host-code"></div>
 

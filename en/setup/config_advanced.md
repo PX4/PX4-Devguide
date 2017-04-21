@@ -1,6 +1,6 @@
 # Advanced Configuration
 
-The advanced system configuration is performed through [QGroundControl](qgroundcontrol-intro.md).
+The advanced system configuration is performed through [QGroundControl](../qgc/README.md).
 
 > **Tip** [Download the DAILY BUILD of QGroundControl](http://qgroundcontrol.com/downloads) in regular intervals to stay up to date.
 

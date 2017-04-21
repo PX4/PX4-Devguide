@@ -7,7 +7,7 @@ necessary is generated from the `.msg` file, so that only the topic name needs
 to be specified. An optional interval parameter specifies the maximum logging
 rate of a certain topic. All existing instances of a topic are logged.
 
-The output log format is [ULog](advanced-ulog-file-format.md).
+The output log format is [ULog](../log/ulog_file_format.md).
 
 ## Usage
 By default, logging is automatically started when arming, and stopped when

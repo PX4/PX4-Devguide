@@ -2,7 +2,7 @@
 
 The PX4 boot is controlled by shell scripts in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder.
 
-All files starting with a number and underscore (e.g. `10000_airplane`) are canned airframe configurations. They are exported at build-time into an `airframes.xml` file which is parsed by [QGroundControl](http://qgroundcontrol.com) for the airframe selection UI. Adding a new configuration is covered [here](airframes-adding-a-new-frame.md).
+All files starting with a number and underscore (e.g. `10000_airplane`) are canned airframe configurations. They are exported at build-time into an `airframes.xml` file which is parsed by [QGroundControl](http://qgroundcontrol.com) for the airframe selection UI. Adding a new configuration is covered [here](../airframes/adding_a_new_frame.md).
 
 The remaining files are part of the general startup logic, and the first executed file is the [rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) script, which calls all other scripts.
 
@@ -12,7 +12,7 @@ A failure of a driver of software component can lead to an aborted boot.
 
 > **Tip** An incomplete boot often materializes as missing parameters in the ground control stations, because the non-started applications did not initialize their parameters.
 
-The right approach to debug the boot sequence is to connect the [system console](advanced-system-console.md) and power-cycle the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
+The right approach to debug the boot sequence is to connect the [system console](../debug/system_console.md) and power-cycle the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
 ### Common boot failure causes
 
@@ -26,7 +26,7 @@ In most cases customizing the default boot is the better approach, which is docu
 
 ## Customizing the System Startup
 
-The best way to customize the system startup is to introduce a [new airframe configuration](airframes-adding-a-new-frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
+The best way to customize the system startup is to introduce a [new airframe configuration](../airframes/adding_a_new_frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
 
 > **Caution** The system boot files are UNIX FILES which require UNIX LINE ENDINGS. If editing on Windows use a suitable editor.
 

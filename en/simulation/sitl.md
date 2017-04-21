@@ -10,7 +10,7 @@ graph LR;
 
 ## Running SITL
 
-After ensuring that the [simulation prerequisites](starting-installing.md) are installed on the system, just launch: The convenience make target will compile the POSIX host build and run the simulation.
+After ensuring that the [simulation prerequisites](../setup/dev_env.md) are installed on the system, just launch: The convenience make target will compile the POSIX host build and run the simulation.
 
 ```sh
 make posix_sitl_default jmavsim
@@ -72,4 +72,4 @@ To extend or customize the simulation interface, edit the files in the `Tools/jM
 
 ## Interfacing to ROS
 
-The simulation can be [interfaced to ROS](simulation-ros-interface.md) the same way as onboard a real vehicle.
+The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.

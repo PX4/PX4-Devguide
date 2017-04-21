@@ -67,7 +67,7 @@ export AERO_HOSTNAME=192.168.1.1`
 
 3. Start QGroundControl and it should automatically connect.
 
-4. Instead of starting QGroundControl, you can open a [NuttX shell](advanced-system-console.md#mavlink-shell) with:
+4. Instead of starting QGroundControl, you can open a [NuttX shell](../debug/system_console.md#mavlink-shell) with:
 ```
 ./Tools/mavlink_shell.py 0.0.0.0:14550
 ```

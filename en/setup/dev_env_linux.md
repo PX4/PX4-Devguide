@@ -1,6 +1,6 @@
 # Development Environment on Linux
 
-We have standardized on Debian / Ubuntu LTS as the supported Linux distribution, but [boutique distribution instructions](starting-installing-linux-boutique.md) are available for Cent OS and Arch Linux.
+We have standardized on Debian / Ubuntu LTS as the supported Linux distribution, but [boutique distribution instructions](../setup/dev_env_linux-boutique.md) are available for Cent OS and Arch Linux.
 
 ## Permission Setup
 
@@ -18,12 +18,12 @@ And then you have to logout and login again, as this is only changed after a new
 
 Update the package list and install the following dependencies for all PX4 build targets. PX4 supports four main families:
 
-* NuttX based hardware: [Pixhawk](hardware-pixhawk.md), [Pixfalcon](hardware-pixfalcon.md),
-  [Pixracer](hardware-pixracer.md), [Crazyflie](hardware-crazyflie2.md),
-  [Intel Aero](hardware-intel-aero.md)
-* Snapdragon Flight hardware: [Snapdragon](hardware-snapdragon.md)
-* Linux-based hardware: [Raspberry Pi 2/3](hardware-rpi.md), Parrot Bebop
-* Host simulation: [jMAVSim SITL](simulation-sitl.md) and [Gazebo SITL](simulation-gazebo.md)
+* NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
+  [Pixracer](../flight_controller/pixracer.md), [Crazyflie](../flight_controller/crazyflie2.md),
+  [Intel Aero](../flight_controller/intel_aero.md)
+* Snapdragon Flight hardware: [Snapdragon](../flight_controller/snapdragon_flight.md)
+* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md), Parrot Bebop
+* Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
 
 > **Info** Install the [Ninja Build System](http://dev.px4.io/starting-installing-linux-boutique.html#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
 
@@ -184,5 +184,5 @@ sudo apt-get install android-tools-adb -y` ``
 
 ## Finishing Up
 
-Now continue to run the [first build](starting-building.md)!
+Now continue to run the [first build](../setup/building_px4.md)!
 

@@ -14,7 +14,7 @@ addition (`MNT_MAN_CONTROL`). It is active as long as no mavlink message is rece
 
 ### Configure the gimbal mixer for AUX output
 
-The gimbal uses the control group #2 (see [Mixing and Actuators](concept-mixing.md)). This is the mixer configuration:
+The gimbal uses the control group #2 (see [Mixing and Actuators](../concept/mixing.md)). This is the mixer configuration:
 
 ```
 # roll

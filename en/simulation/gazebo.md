@@ -30,7 +30,7 @@ brew install gazebo7
 
 ### Linux
 
-The PX4 SITL uses the Gazebo simulator, but does not depend on ROS. The simulation can be [interfaced to ROS](simulation-ros-interface.md) the same way as normal flight code is.
+The PX4 SITL uses the Gazebo simulator, but does not depend on ROS. The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as normal flight code is.
 
 #### ROS Users
 
@@ -170,4 +170,4 @@ To extend or customize the simulation interface, edit the files in the `Tools/si
 
 ## Interfacing to ROS
 
-The simulation can be [interfaced to ROS](simulation-ros-interface.md) the same way as onboard a real vehicle.
+The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.

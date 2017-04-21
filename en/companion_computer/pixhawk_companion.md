@@ -18,7 +18,7 @@ Set the `SYS_COMPANION` parameter (in the System group) to one of these values.
 
 In order to receive MAVLink, the companion computer needs to run some software talking to the serial port. The most common options are:
 
-  * [MAVROS](ros-mavros-installation.md) to communicate to ROS nodes
+  * [MAVROS](../ros/mavros_installation.md) to communicate to ROS nodes
   * [C/C++ example code](https://github.com/mavlink/c_uart_interface_example) to connect custom code
   * [MAVProxy](http://mavproxy.org) to route MAVLink between serial and UDP
 
