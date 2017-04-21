@@ -5,7 +5,7 @@ Jenkins continuous integration server on [SITL01](http://sitl01.dronetest.io/) i
 ## Overview
 
   * Involved components: Jenkins, Docker, PX4 POSIX SITL
-  * Tests run inside [Docker Containers](advanced-docker.md)
+  * Tests run inside [Docker Containers](../test_and_ci/docker.md)
   * Jenkins executes 2 jobs: one to check each PR against master, and the other to check every push on master
 
 ## Test Execution

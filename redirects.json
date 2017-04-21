@@ -377,8 +377,8 @@
                 "to": "en/advanced/parameter_reference.html"
             },
             {
-                "from": "en/parameters_and_configurations.html",
-                "to": "en/advanced/xxxxx.html"
+                "from": "en/advanced-configurations.html",
+                "to": "en/advanced/parameters_and_configurations.html"
             },
             {
                 "from": "en/advanced-switching_state_estimators.html",

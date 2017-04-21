@@ -180,5 +180,5 @@ Then clone the Firmware directly onto the Pi.
 
 ### Building the code
 
-Continue with our [standard build system installation](starting-installing-linux.md).
+Continue with our [standard build system installation](../setup/dev_env_linux.md).
 

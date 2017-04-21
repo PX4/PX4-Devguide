@@ -16,7 +16,7 @@ Installing or updating the UAVCAN bootloader requires:
 
 * An SWD or JTAG interface (depending on device), for example the [BlackMagic Probe](http://www.blacksphere.co.nz/main/blackmagic) or the [ST-Link v2](http://www.st.com/internet/evalboard/product/251168.jsp);
 * An adapter cable to connect your SWD or JTAG interface to the UAVCAN device's debugging port;
-* A [supported ARM toolchain](starting-installing.md).
+* A [supported ARM toolchain](../setup/dev_env.md).
 
 ## Device Preparation
 

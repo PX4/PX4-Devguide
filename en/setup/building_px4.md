@@ -18,7 +18,7 @@ cd Firmware
 git submodule update --init --recursive
 cd ..
 ```
-Now its time to build the binaries by compiling the source code. But before going straight to the hardware, a [simulation run](simulation-sitl.md) is recommended as the next step. Users preferring to work in a graphical development environment should continue with the next section.
+Now its time to build the binaries by compiling the source code. But before going straight to the hardware, a [simulation run](../simulation/sitl.md) is recommended as the next step. Users preferring to work in a graphical development environment should continue with the next section.
 
 ### NuttX / Pixhawk based boards
 
@@ -65,7 +65,7 @@ make posix_rpi_cross # for cross-compiler build
 ```
 
 The "px4" executable file is in the directory build_posix_rpi_cross/src/firmware/posix.
-Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](hardware-rpi.md#developer-quick-start).
+Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](../flight_controller/raspberry_pi.md#developer-quick-start).
 
 Then set the IP (or hostname) of your RPi using:
 
@@ -213,7 +213,7 @@ adb shell reboot
 
 NOTE: If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
 
-The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](advanced-uorb.md).
+The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](../middleware/uorb.md).
 
 ```sh
 cd Firmware

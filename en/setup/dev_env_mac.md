@@ -48,4 +48,4 @@ OS X comes with CLANG pre-installed. No further installation steps are required.
 
 And finally download and install the Qt Creator app: [Download](http://www.qt.io/download-open-source/#section-6)
 
-Now continue to run the [first build](starting-building.md)!
+Now continue to run the [first build](../setup/building_px4.md)!

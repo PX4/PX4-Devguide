@@ -18,7 +18,7 @@ The Caipiroshka VTOL is a slightly modified TBS Caipirinha.
   * BEC (3A, 5-5.3V) (only needed if you are using ESCs which cannot act as a 5V power supply for the output rail)
   * 3S 2200 mA LiPo battery
     * Team Orion 3S 11.1V 50 C ([Brack store](https://www.brack.ch/team-orion-2200mah-11-1v-50c-308340))
-  * [Pixracer autopilot board + power module](hardware-pixracer.md)
+  * [Pixracer autopilot board + power module](../flight_controller/pixracer.md)
   * [Digital airspeed sensor](http://www.hobbyking.com/hobbyking/store/__62752__HKPilot_32_Digital_Air_Speed_Sensor_And_Pitot_Tube_Set.html)
 
 ## Assembly
@@ -65,7 +65,7 @@ in the build manual for the TBS Caipirinha. Depending on the additional componen
 
 ## Airframe configuration
 
-Switch to the configuration section in [QGroundControl](qgroundcontrol-intro.md) and select the airframe tab. Scroll down the list to find the VTOL Duorotor Tailsitter icon. Select the ```Duorotor Tailsitter``` from the drop-down list.
+Switch to the configuration section in [QGroundControl](../qgc/README.md) and select the airframe tab. Scroll down the list to find the VTOL Duorotor Tailsitter icon. Select the ```Duorotor Tailsitter``` from the drop-down list.
 
 ![](../../images/gcs/qgc_caipiroshka.jpg)
 

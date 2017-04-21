@@ -1,6 +1,6 @@
 # Snapdragon Flight Autopilot
 
-The Snapdragon Flight platform is a high-end autopilot / onboard computer which runs the PX4 Flight Stack on the DSP on the QuRT real time operating system using the [DSPAL API](https://github.com/ATLFlight/dspal) for POSIX compatibility. In comparison to [Pixhawk](hardware-pixhawk.md) it adds a camera and WiFi and high-end processing power, and different IO.
+The Snapdragon Flight platform is a high-end autopilot / onboard computer which runs the PX4 Flight Stack on the DSP on the QuRT real time operating system using the [DSPAL API](https://github.com/ATLFlight/dspal) for POSIX compatibility. In comparison to [Pixhawk](../flight_controller/pixhawk.md) it adds a camera and WiFi and high-end processing power, and different IO.
 
 More information about the Snapdragon Flight platform is at [Snapdragon-Flight-Details](https://www.intrinsyc.com/qualcomm-snapdragon-flight-details/)
 
@@ -189,7 +189,7 @@ For controlling the motors, PWM ESCs can be used. Use connector J13 (next to pow
 | 5                  | 4              |
 | 6                  | 2              |
 
-Details can be found [here](advanced-snapdragon_camera.md)
+Details can be found [here](../flight_controller/snapdragon_flight_camera.md)
 
 ### UART to Pixracer / Pixfalcon Wiring
 

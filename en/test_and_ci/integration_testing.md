@@ -1,14 +1,14 @@
 # Integration Testing
 
-This is about end to end integration testing. Tests are executed automatically ([Jenkins CI](advanced-jenkins-ci.md))
+This is about end to end integration testing. Tests are executed automatically ([Jenkins CI](../test_and_ci/jenkins_ci.md))
 
 ## ROS / MAVROS Tests
 
 Prerequisites:
 
-  * [SITL Simulation](simulation-sitl.md)
-  * [Gazebo](simulation-gazebo.md)
-  * [ROS and MAVROS](simulation-ros-interface.md)
+  * [SITL Simulation](../simulation/sitl.md)
+  * [Gazebo](../simulation/gazebo.md)
+  * [ROS and MAVROS](../simulation/ros_interface.md)
 
 ### Execute Tests
 

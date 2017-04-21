@@ -15,7 +15,7 @@ All config files are located [here.](https://github.com/PX4/Firmware/tree/master
 
 ## Start the driver
 You will have to tell the sytem to start the driver for the radar during sytem startup.
-You can simply add the following line to an [extras.txt](advanced-system-startup.md) file located on your SD card.
+You can simply add the following line to an [extras.txt](../advanced/system_startup.md) file located on your SD card.
 ```
 ulanding_radar start /dev/serial_port
 ```
