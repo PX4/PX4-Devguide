@@ -10,11 +10,11 @@ Note: Log Muncher can only be used with the previous log format (.px4log).
 
 Users can visit this webpage and upload log files directly: [http://logs.uaventure.com/](http://logs.uaventure.com/)
 
-![](../images/flight_log_analysis/logmuncher.png)
+![](../../images/flight_log_analysis/logmuncher.png)
 
 ### Result
 
-![](../images/flight_log_analysis/log-muncher-result.png)
+![](../../images/flight_log_analysis/log-muncher-result.png)
 
 [Example Log](http://logs.uaventure.com/view/KwTFDaheRueMNmFRJQ3huH)
 
@@ -32,7 +32,7 @@ Flight Review is the successor of Log Muncher, used in combination with the new
 ULog logging format.
 
 ### Example
-![](../images/flight_log_analysis/flight-review-example.png)
+![](../../images/flight_log_analysis/flight-review-example.png)
 
 ### Postive
 * web based, great for end-users
@@ -58,7 +58,7 @@ ULog logging format.
 
 ## [PX4Tools](https://github.com/dronecrew/px4tools)
 
-![](../images/flight_log_analysis/px4tools.png)
+![](../../images/flight_log_analysis/px4tools.png)
 
 ### Install
 

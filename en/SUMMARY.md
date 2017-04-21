@@ -87,7 +87,7 @@
     * [UAVCAN Firmware Upgrades](uavcan/node_firmware.md)
     * [UAVCAN Configuration](uavcan/node_enumeration.md)
     * [UAVCAN Various Notes](uavcan/notes.md)
-  * [PWM \/ GPIO](sensor_bus/pwm_gpio.md)
+  * [PWM / GPIO](sensor_bus/pwm_gpio.md)
   * [UART](sensor_bus/uart.md)
     * [uLanding Radar](sensor/uart_ulanding_radar.md)
 * Debugging and Advanced Topics
