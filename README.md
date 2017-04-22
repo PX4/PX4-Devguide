@@ -4,9 +4,9 @@
 
 This guide describes how to work inside the PX4 system architecture. It enables developers to:
 
-* Get an [overview of the system](starting-initial-config.md)
-* Access and modify the [PX4 Flight Stack](concept-flight-stack.md) and [PX4 Middleware](concept-middleware.md)
-* Deploy PX4 on Intel [Aero](hardware-intel-aero.md), Qualcomm [Snapdragon Flight](hardware-snapdragon.md), [Pixhawk](hardware-pixhawk.md), [Pixfalcon](hardware-pixfalcon.md) and many more autopilots.
+* Get an [overview of the system](en/setup/config_initial.md)
+* Access and modify the [PX4 Flight Stack](en/concept/flight_stack.md) and [PX4 Middleware](en/concept/middleware.md)
+* Deploy PX4 on Intel [Aero](en/flight_controller/intel_aero.md), Qualcomm [Snapdragon Flight](en/flight_controller/snapdragon_flight.md), [Pixhawk](en/flight_controller/pixhawk.md), [Pixfalcon](en/flight_controller/pixfalcon.md) and many more autopilots.
 
 ## Contributing
 
