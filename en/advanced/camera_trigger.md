@@ -11,7 +11,7 @@ Three different modes are supported:
 In `TRIG_MODE` 0 the triggering is off.
 
 The full list of parameters pertaining to the camera trigger module can be found
-on the [parameter reference](parameter_reference.md/#camera-trigger) page.
+on the [parameter reference](parameter_reference.md#camera-trigger) page.
 
 > **Info ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter to either 1, 2 or 3.
 
