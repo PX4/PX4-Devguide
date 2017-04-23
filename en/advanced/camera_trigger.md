@@ -44,7 +44,7 @@ The full list of parameters pertaining to the camera trigger module can be found
 
 ## Sony QX-1 example (Photogrammetry)
 
-![](/assets/Screen Shot 2017-04-23 at 11.48.33 AM.png)
+![](../../assets/Screen Shot 2017-04-23 at 11.48.33 AM.png)
 
 Coming soon.
 
