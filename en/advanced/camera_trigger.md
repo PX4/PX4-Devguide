@@ -1,12 +1,7 @@
 # Camera Trigger
-The camera trigger driver allows the use of the AUX ports to send out pulses in
-order to trigger a camera. This can be used for multiple applications including
-timestamping photos for aerial surveying and reconstruction, synchronizing a
-multi-camera system or visual-inertial navigation.
+The camera trigger driver allows the use of the AUX ports to send out pulses in order to trigger a camera. This can be used for multiple applications including timestamping photos for aerial surveying and reconstruction, synchronizing a multi-camera system or visual-inertial navigation.
 
-In addition to a pulse being sent out, a MAVLink message is published containing
-a sequence number (thus the current session's image sequence number) and the
-corresponding time stamp.
+In addition to a pulse being sent out, a MAVLink message is published containing a sequence number (thus the current session's image sequence number) and the corresponding time stamp.
 
 Three different modes are supported:
 * `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by calling in the system console `camera_trigger enable` or `camera_trigger disable`, respectively. Repeated enabling time-shifts the intervals to match the latest call.
@@ -16,7 +11,7 @@ Three different modes are supported:
 In `TRIG_MODE` 0 the triggering is off.
 
 The full list of parameters pertaining to the camera trigger module can be found
-on the [parameter reference](https://pixhawk.org/firmware/parameters#camera_trigger) page.
+on the [parameter reference](parameter_reference.md/#camera-trigger) page.
 
 > **Info ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter to either 1, 2 or 3.
 
