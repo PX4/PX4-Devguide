@@ -3,24 +3,40 @@ The camera trigger driver allows the use of the AUX ports to send out pulses in 
 
 In addition to a pulse being sent out, a MAVLink message is published containing a sequence number (thus the current session's image sequence number) and the corresponding time stamp.
 
-Three different modes are supported:
+## Trigger modes
+
+Three different modes are supported, controlled by the `TRIG_MODE` parameter:
 * `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by calling in the system console `camera_trigger enable` or `camera_trigger disable`, respectively. Repeated enabling time-shifts the intervals to match the latest call.
 * `TRIG_MODE` 2 switches the intervalometer constantly on.
 * `TRIG_MODE` 3 triggers based on distance. A shot is taken every time the set horizontal distance is exceeded. The minimum time interval between two shots is however limited by the set triggering interval.
 
-In `TRIG_MODE` 0 the triggering is off.
+In `TRIG_MODE` 0, camera triggering is disabled.
 
-The full list of parameters pertaining to the camera trigger module can be found
-on the [parameter reference](parameter_reference.md#camera-trigger) page.
+> **Info : ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter to either 1, 2 or 3.
 
-> **Info ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter to either 1, 2 or 3.
+## Trigger hardware configuration
 
-## Camera-IMU sync example
+You can choose which AUX pins to use for triggering using the `TRIG_PINS` parameter. The default is 56, which means that trigger is enabled on AUX 5 and AUX 6. 
+
+> **Important :** With `TRIG_PINS` set to its **default** value of 56, you can use the AUX pins 1, 2, 3 and 4 as actuator outputs (for servos/ESCs). Due to the way the timers on the STM32 are handled (1234 are 56 are 2 different groups handled by 2 timers), this is the ONLY combination which allows the simultaneous usage of camera trigger and FMU actuator outputs. **DO NOT CHANGE THE DEFAULT VALUE OF `TRIG_PINS` IF YOU NEED ACTUATOR OUTPUTS.**
+
+The full list of parameters pertaining to the camera trigger module can be found on the [parameter reference](parameter_reference.md#camera-trigger) page.
+
+## Trigger interface backends
+
+The camera trigger driver supports several backends - each for a specific application, controlled by the `TRIG_INTERFACE` parameter : 
+* `TRIG_INTERFACE` 1 works like a basic intervalometer that can be enabled and disabled by calling in the system console `camera_trigger enable` or `camera_trigger disable`, respectively. Repeated enabling time-shifts the intervals to match the latest call.
+* `TRIG_MODE` 2 switches the intervalometer constantly on.
+* `TRIG_MODE` 3 triggers based on distance. A shot is taken every time the set horizontal distance is exceeded. The minimum time interval between two shots is however limited by the set triggering interval.
+
+
+## Sony QX-1 sync example (Photogammetry)
+
+
+
+## Camera-IMU sync example (VIO)
 In this example, we will go over the basics of synchronizing IMU measurements
-with visual data to build a stereo Visual-Inertial Navigation System (VINS). To
-be clear, the idea here isn't to take an IMU measurement exactly at the same time
-as we take a picture but rather to correctly time stamp our images so as to
-provide accurate data to our VI algorithm.
+with visual data to build a stereo Visual-Inertial Navigation System (VINS). To be clear, the idea here isn't to take an IMU measurement exactly at the same time as we take a picture but rather to correctly time stamp our images so as to provide accurate data to our VIO algorithm.
 
 The autopilot and companion have different clock bases (boot-time for the autopilot and UNIX epoch for companion), so instead of skewing either clock, we directly observe the time offset between the clocks. This offset is added or subtracted from the timestamps in the mavlink messages (e.g `HIGHRES_IMU`) in the cross-middleware translator component (e.g Mavros on the companion and `mavlink_receiver` in PX4). The actual synchronisation algorithm is a modified version of the Network Time Protocol (NTP) algorithm and uses an exponential moving average to smooth the tracked time offset. This synchronisation is done automatically if Mavros is used with a high-bandwidth on-board link.
 
@@ -44,28 +60,22 @@ sequenceDiagram
 end
 {% endmermaid %}
 
-### Step 1
+#### Step 1
 First, set the TRIG_MODE to 1 to make the driver wait for the start command and
 reboot your FCU to obtain the remaining parameters.
 
-### Step 2
+#### Step 2
 For the purposes of this example we will be configuring the trigger to operate
 in conjunction with a Point Grey Firefly MV camera running at 30 FPS.
 
-* TRIG_INTERVAL: 33.33 ms
-* TRIG_POLARITY: 0, active low
-* TRIG_ACT_TIME: 0.5 ms, leave default. The manual specifies it only has to be a
-minimum of 1 microsecond.
-* TRIG_MODE: 1, because we want our camera driver to be ready to receive images
-before starting to trigger. This is essential to properly process sequence
-numbers.
-* TRIG_PINS: 12, Leave default.
+* `TRIG_INTERVAL`: 33.33 ms
+* `TRIG_POLARITY`: 0, active low
+* `TRIG_ACT_TIME`: 0.5 ms, leave default. The manual specifies it only has to be a minimum of 1 microsecond.
+* `TRIG_MODE`: 1, because we want our camera driver to be ready to receive images before starting to trigger. This is essential to properly process sequence numbers.
+* `TRIG_PINS`: 12, Leave default.
 
-### Step 3
-Wire up your cameras to your AUX port by connecting the ground and signal pins to
-the appropriate place.
+#### Step 3
+Wire up your cameras to your AUX port by connecting the ground and signal pins to the appropriate place.
 
-### Step 4
-You will have to modify your driver to follow the sequence diagram above. Public
-reference implementations for [IDS Imaging UEye](https://github.com/ProjectArtemis/ueye_cam)
-cameras and for [IEEE1394 compliant](https://github.com/andre-nguyen/camera1394) cameras are available.
+#### Step 4
+You will have to modify your driver to follow the sequence diagram above. Public reference implementations for [IDS Imaging UEye](https://github.com/ProjectArtemis/ueye_cam) cameras and for [IEEE1394 compliant](https://github.com/andre-nguyen/camera1394) cameras are available.
