@@ -59,13 +59,13 @@ The following diagram illustrates the sequence of events which must happen in or
 
 {% mermaid %}
 sequenceDiagram
-  Note right of px4 : Time sync with mavros is done automatically
-  px4 ->> mavros : Camera Trigger ready
+  Note right of PX4 : Time sync with mavros is done automatically
+  PX4 ->> mavros : Camera Trigger ready
   Note right of camera driver : Camera driver boots and is ready
   camera driver ->> mavros : mavros_msgs::CommandTriggerControl
-  mavros ->> px4 : MAVLink::MAV_CMD_DO_TRIGGER_CONTROL
+  mavros ->> PX4 : MAVLink::MAV_CMD_DO_TRIGGER_CONTROL
   loop Every TRIG_INTERVAL milliseconds
-  px4 ->> mavros : MAVLink::CAMERA_TRIGGER
+  PX4 ->> mavros : MAVLink::CAMERA_TRIGGER
   mavros ->> camera driver : mavros_msgs::CamIMUStamp
   camera driver ->> camera driver : Match sequence number
   camera driver ->> camera driver : Stamp image and publish
