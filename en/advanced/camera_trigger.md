@@ -3,7 +3,7 @@ The camera trigger driver allows the use of the AUX ports to send out pulses in 
 
 In addition to a pulse being sent out, a MAVLink message is published containing a sequence number (thus the current session's image sequence number) and the corresponding timestamp.
 
-## Trigger modes
+### Trigger modes
 
 Three different modes are supported, controlled by the `TRIG_MODE` parameter:
 * `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by using the MAVLink commands `MAV_CMD_DO_TRIGGER_CONTROL`() or `MAV_CMD_DO_DIGICAM_CONTROL`(). It can also be tested from the system console by calling `camera_trigger test`. Repeated enabling time-shifts the intervals to match the latest call.
@@ -14,7 +14,7 @@ In `TRIG_MODE` 0, camera triggering is disabled.
 
 > **Info : ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter.
 
-## Trigger hardware configuration
+### Trigger hardware configuration
 
 You can choose which AUX pins to use for triggering using the `TRIG_PINS` parameter. The default is 56, which means that trigger is enabled on AUX 5 and AUX 6. 
 
@@ -22,7 +22,7 @@ You can choose which AUX pins to use for triggering using the `TRIG_PINS` parame
 
 The full list of parameters pertaining to the camera trigger module can be found on the [parameter reference](parameter_reference.md#camera-trigger) page.
 
-## Trigger interface backends
+### Trigger interface backends
 
 The camera trigger driver supports several backends - each for a specific application, controlled by the `TRIG_INTERFACE` parameter : 
 * `TRIG_INTERFACE` 1 enables the GPIO interface. The AUX outputs are pulsed high or low (depending on the `TRIG_POLARITY` parameter) every `TRIG_INTERVAL` duration. This can be used to trigger most standard machine vision cameras directly. Note that on PX4FMU series hardware (Pixhawk, Pixracer, etc.), the signal level on the AUX pins is 3.3v.
@@ -30,7 +30,7 @@ The camera trigger driver supports several backends - each for a specific applic
 * `TRIG_INTERFACE` 3 enables the MAVLink interface. In this mode, no actual hardware output is used. Only the `CAMERA_TRIGGER` MAVLink message is sent by the autopilot (by default, if the MAVLink application is in `onboard` mode. Otherwise, a custom stream will need to be enabled).
 * `TRIG_INTERFACE` 4 enables the generic PWM interface. This allows the use of  [infrared triggers](https://hobbyking.com/en_us/universal-remote-control-infrared-shutter-ir-rc-1g.html) or servos to trigger your camera.
 
-## Other parameters 
+### Other parameters 
 
 * `TRIG_POLARITY`
 * `TRIG_INTERVAL`
@@ -38,7 +38,7 @@ The camera trigger driver supports several backends - each for a specific applic
 
 The full list of parameters pertaining to the camera trigger module can be found on the [parameter reference](parameter_reference.md#camera-trigger) page.
 
-## Command interface 
+### Command interface 
 
 `MAV_CMD_DO_TRIGGER_CONTROL`, `MAV_CMD_DO_DIGICAM_CONTROL`, `MAV_CMD_DO_SET_CAM_TRIGG_DIST`.
 
@@ -81,10 +81,10 @@ For the purposes of this example we will be configuring the trigger to operate
 in conjunction with a Point Grey Firefly MV camera running at 30 FPS.
 
 * `TRIG_INTERVAL`: 33.33 ms
-* `TRIG_POLARITY`: 0, active low
-* `TRIG_ACT_TIME`: 0.5 ms, leave default. The manual specifies it only has to be a minimum of 1 microsecond.
+* `TRIG_POLARITY`: 0 (active low)
+* `TRIG_ACT_TIME`: 0.5 ms. The manual specifies it only has to be a minimum of 1 microsecond.
 * `TRIG_MODE`: 1, because we want our camera driver to be ready to receive images before starting to trigger. This is essential to properly process sequence numbers.
-* `TRIG_PINS`: 12, Leave default.
+* `TRIG_PINS`: 56, Leave default.
 
 #### Step 3
 Wire up your cameras to your AUX port by connecting the ground and signal pins to the appropriate place.
