@@ -1,7 +1,7 @@
 # Camera Trigger
 The camera trigger driver allows the use of the AUX ports to send out pulses in order to trigger a camera. This can be used for multiple applications including timestamping photos for aerial surveying and reconstruction, synchronizing a multi-camera system or visual-inertial navigation.
 
-In addition to a pulse being sent out, a MAVLink message is published containing a sequence number (thus the current session's image sequence number) and the corresponding time stamp.
+In addition to a pulse being sent out, a MAVLink message is published containing a sequence number (thus the current session's image sequence number) and the corresponding timestamp.
 
 ## Trigger modes
 
@@ -26,22 +26,27 @@ The full list of parameters pertaining to the camera trigger module can be found
 
 The camera trigger driver supports several backends - each for a specific application, controlled by the `TRIG_INTERFACE` parameter : 
 * `TRIG_INTERFACE` 1 enables the GPIO interface. The AUX outputs are pulsed high or low (depending on the `TRIG_POLARITY` parameter) every `TRIG_INTERVAL` duration. This can be used to trigger most standard machine vision cameras directly. Note that on PX4FMU series hardware (Pixhawk, Pixracer, etc.), the signal level on the AUX pins is 3.3v.
-* `TRIG_INTERFACE` 2 enables the Seagull MAP2 interface. This allows the use of the [Seagull MAP2](http://www.seagulluav.com/product/seagull-map2/) Multiport convertor to interface to a multitude of supported cameras. Pin 1 of the MAP2 should be connected to the 
+* `TRIG_INTERFACE` 2 enables the Seagull MAP2 interface. This allows the use of the [Seagull MAP2](http://www.seagulluav.com/product/seagull-map2/) to interface to a multitude of supported cameras. Pin 1 of the MAP2 should be connected to the lower AUX pin of `TRIG_PINS` (therefore, pin 1 to AUX 5 and pin 2 to AUX 6 by default). In this mode, PX4 also supports automatic power control and keep-alive functionalities of Sony Multiport cameras like the QX-1.
 * `TRIG_INTERFACE` 3 enables the MAVLink interface. In this mode, no actual hardware output is used. Only the `CAMERA_TRIGGER` MAVLink message is sent by the autopilot (by default, if the MAVLink application is in `onboard` mode. Otherwise, a custom stream will need to be enabled).
-* `TRIG_INTERFACE` 4 enables the generic PWM interface. This allows the use of  infrared triggers and servos to trigger your camera.
+* `TRIG_INTERFACE` 4 enables the generic PWM interface. This allows the use of  infrared triggers or servos to trigger your camera.
 
 ## Other parameters 
 
+* `TRIG_POLARITY`
+* `TRIG_INTERVAL`
+* `TRIG_ACTIVATION_TIME`
 
+The full list of parameters pertaining to the camera trigger module can be found on the [parameter reference](parameter_reference.md#camera-trigger) page.
 
+## Command interface 
 
+`MAV_CMD_DO_TRIGGER_CONTROL`, `MAV_CMD_DO_DIGICAM_CONTROL`, `MAV_CMD_DO_SET_CAM_TRIGG_DIST`.
 
-
-
-
-The full list of parameters pertaining to the camera trigger module can be found on the [parameter reference](parameter_reference.md#camera-trigger) page.## Sony QX-1 example (Photogrammetry)
+## Sony QX-1 example (Photogrammetry)
 
 ![](/assets/Screen Shot 2017-04-23 at 11.48.33 AM.png)
+
+Coming soon.
 
 ## Camera-IMU sync example (VIO)
 In this example, we will go over the basics of synchronizing IMU measurements with visual data to build a stereo Visual-Inertial Navigation System (VINS). To be clear, the idea here isn't to take an IMU measurement exactly at the same time as we take a picture but rather to correctly time stamp our images so as to provide accurate data to our VIO algorithm.
