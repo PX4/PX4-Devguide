@@ -6,13 +6,13 @@ In addition to a pulse being sent out, a MAVLink message is published containing
 ## Trigger modes
 
 Three different modes are supported, controlled by the `TRIG_MODE` parameter:
-* `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by calling in the system console `camera_trigger enable` or `camera_trigger disable`, respectively. Repeated enabling time-shifts the intervals to match the latest call.
+* `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by using the MAVLink commands `MAV_CMD_DO_TRIGGER_CONTROL`() or `MAV_CMD_DO_DIGICAM_CONTROL`(). It can also be tested from the system console by calling `camera_trigger test`. Repeated enabling time-shifts the intervals to match the latest call.
 * `TRIG_MODE` 2 switches the intervalometer constantly on.
 * `TRIG_MODE` 3 triggers based on distance. A shot is taken every time the set horizontal distance is exceeded. The minimum time interval between two shots is however limited by the set triggering interval.
 
 In `TRIG_MODE` 0, camera triggering is disabled.
 
-> **Info : ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter to either 1, 2 or 3.
+> **Info : ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter.
 
 ## Trigger hardware configuration
 
@@ -25,25 +25,32 @@ The full list of parameters pertaining to the camera trigger module can be found
 ## Trigger interface backends
 
 The camera trigger driver supports several backends - each for a specific application, controlled by the `TRIG_INTERFACE` parameter : 
-* `TRIG_INTERFACE` 1 works like a basic intervalometer that can be enabled and disabled by calling in the system console `camera_trigger enable` or `camera_trigger disable`, respectively. Repeated enabling time-shifts the intervals to match the latest call.
-* `TRIG_MODE` 2 switches the intervalometer constantly on.
-* `TRIG_MODE` 3 triggers based on distance. A shot is taken every time the set horizontal distance is exceeded. The minimum time interval between two shots is however limited by the set triggering interval.
+* `TRIG_INTERFACE` 1 enables the GPIO interface. The AUX outputs are pulsed high or low (depending on the `TRIG_POLARITY` parameter) every `TRIG_INTERVAL` duration. This can be used to trigger most standard machine vision cameras directly. Note that on PX4FMU series hardware (Pixhawk, Pixracer, etc.), the signal level on the AUX pins is 3.3v.
+* `TRIG_INTERFACE` 2 enables the Seagull MAP2 interface. This allows the use of the [Seagull MAP2](http://www.seagulluav.com/product/seagull-map2/) Multiport convertor to interface to a multitude of supported cameras. Pin 1 of the MAP2 should be connected to the 
+* `TRIG_INTERFACE` 3 enables the MAVLink interface. In this mode, no actual hardware output is used. Only the `CAMERA_TRIGGER` MAVLink message is sent by the autopilot (by default, if the MAVLink application is in `onboard` mode. Otherwise, a custom stream will need to be enabled).
+* `TRIG_INTERFACE` 4 enables the generic PWM interface. This allows the use of  infrared triggers and servos to trigger your camera.
+
+## Other parameters 
 
 
-## Sony QX-1 sync example (Photogammetry)
 
 
+
+
+
+
+The full list of parameters pertaining to the camera trigger module can be found on the [parameter reference](parameter_reference.md#camera-trigger) page.## Sony QX-1 example (Photogrammetry)
+
+![](/assets/Screen Shot 2017-04-23 at 11.48.33 AM.png)
 
 ## Camera-IMU sync example (VIO)
-In this example, we will go over the basics of synchronizing IMU measurements
-with visual data to build a stereo Visual-Inertial Navigation System (VINS). To be clear, the idea here isn't to take an IMU measurement exactly at the same time as we take a picture but rather to correctly time stamp our images so as to provide accurate data to our VIO algorithm.
+In this example, we will go over the basics of synchronizing IMU measurements with visual data to build a stereo Visual-Inertial Navigation System (VINS). To be clear, the idea here isn't to take an IMU measurement exactly at the same time as we take a picture but rather to correctly time stamp our images so as to provide accurate data to our VIO algorithm.
 
-The autopilot and companion have different clock bases (boot-time for the autopilot and UNIX epoch for companion), so instead of skewing either clock, we directly observe the time offset between the clocks. This offset is added or subtracted from the timestamps in the mavlink messages (e.g `HIGHRES_IMU`) in the cross-middleware translator component (e.g Mavros on the companion and `mavlink_receiver` in PX4). The actual synchronisation algorithm is a modified version of the Network Time Protocol (NTP) algorithm and uses an exponential moving average to smooth the tracked time offset. This synchronisation is done automatically if Mavros is used with a high-bandwidth on-board link.
+The autopilot and companion have different clock bases (boot-time for the autopilot and UNIX epoch for companion), so instead of skewing either clock, we directly observe the time offset between the clocks. This offset is added or subtracted from the timestamps in the mavlink messages (e.g `HIGHRES_IMU`) in the cross-middleware translator component (e.g Mavros on the companion and `mavlink_receiver` in PX4). The actual synchronisation algorithm is a modified version of the Network Time Protocol (NTP) algorithm and uses an exponential moving average to smooth the tracked time offset. This synchronisation is done automatically if Mavros is used with a high-bandwidth on-board link (mavlink mode `onboard`).
 
 For acquiring synchronised image frames and inertial measurements, we connect the trigger inputs of the two cameras to a GPIO pin on the autopilot. The timestamp of the inertial measurement from mid-exposure, and a image sequence number is recorded and sent to the companion computer (`CAMERA_TRIGGER` message), which buffers these packets and the image frames acquired from the camera. They are matched based on the sequence number, the images timestamped (with the timestamp from the `CAMERA_TRIGGER` message) and then published.
 
-The following diagram illustrates the sequence of events which must happen in
-order to correctly timestamp our images.
+The following diagram illustrates the sequence of events which must happen in order to correctly timestamp our images.
 
 {% mermaid %}
 sequenceDiagram
