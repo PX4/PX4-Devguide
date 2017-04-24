@@ -63,9 +63,8 @@ In this example, we will use a Seagull MAP2 trigger cable to interface to a Sony
 
 Leave the rest of the parameters at their defaults.
 
-![](/assets/trigger_pins.png)
-
 You will need to connect the Seagull MAP2 to AUX 5 and AUX 6 on your autopilot. Pin 1 goes to AUX 5, and Pin 2 to AUX 6. The other end of the MAP2 cable will go into the QX-1's "MULTI" port.
+
 #### Mission planning :
 
 
