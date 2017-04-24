@@ -24,7 +24,7 @@ The Caipiroshka VTOL is a slightly modified TBS Caipirinha.
 ## Assembly
 The picture below shows an example of how a fully assembled Caipiroshka could look like.
 
-![Caipiroshka](../../images/airframes/vtol/caipiroshka/caipiroshka.jpg)
+![Caipiroshka](../../assets/airframes/vtol/caipiroshka/caipiroshka.jpg)
 
 In the following some general tips on how to build the vehicle will be given.
 
@@ -67,7 +67,7 @@ in the build manual for the TBS Caipirinha. Depending on the additional componen
 
 Switch to the configuration section in [QGroundControl](../qgc/README.md) and select the airframe tab. Scroll down the list to find the VTOL Duorotor Tailsitter icon. Select the ```Duorotor Tailsitter``` from the drop-down list.
 
-![](../../images/gcs/qgc_caipiroshka.jpg)
+![](../../assets/gcs/qgc_caipiroshka.jpg)
 
 ## Servo Connections
 The descriptions in the table below are referring to the user facing the front of the vehicle when it lies flat on its belly on a table.

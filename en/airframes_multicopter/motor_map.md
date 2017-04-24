@@ -6,26 +6,26 @@ The motor maps below indicate which `MAIN` output connects to which motor. It al
 
 ## Quadrotor X Layout
 
-![Quadrotor X Layout](../../images/motor_map/quadrotor_x_assignment.png)
+![Quadrotor X Layout](../../assets/motor_map/quadrotor_x_assignment.png)
 
 ## Quadrotor Plus Layout
 
-![Quadrotor Plus Layout](../../images/motor_map/quadrotor_plus_assignment.png)
+![Quadrotor Plus Layout](../../assets/motor_map/quadrotor_plus_assignment.png)
 
 ## Hexarotor X Layout
 
-![Hexarotor X Layout](../../images/motor_map/hexarotor_x_assignment.png)
+![Hexarotor X Layout](../../assets/motor_map/hexarotor_x_assignment.png)
 
 ## Hexarotor Plus Layout
 
-![Hexarotor Plus Layout](../../images/motor_map/hexarotor_plus_assignment.png)
+![Hexarotor Plus Layout](../../assets/motor_map/hexarotor_plus_assignment.png)
 
 ## Octorotor X Layout
 
-![Octorotor X Layout](../../images/motor_map/octorotor_x_assignment.png)
+![Octorotor X Layout](../../assets/motor_map/octorotor_x_assignment.png)
 
 ## Octorotor Plus Layout
 
-![Octorotor Plus Layout](../../images/motor_map/octorotor_plus_assignment.png)
+![Octorotor Plus Layout](../../assets/motor_map/octorotor_plus_assignment.png)
 
 > **Todo** Tricopters and coaxial hexacopters are supported as well, but we have no graphics yet.

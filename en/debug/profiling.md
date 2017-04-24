@@ -63,7 +63,7 @@ Please read the script for a more in depth understanding of how it works.
 
 A screenshot of an example output is provided below (note that it is not interactive here):
 
-![FlameGraph Example](../../images/flamegraph-example.png)
+![FlameGraph Example](../../assets/flamegraph-example.png)
 
 On the flame graph, the horizontal levels represent stack frames,
 whereas the width of each frame is proportional to the number of times it was sampled.
