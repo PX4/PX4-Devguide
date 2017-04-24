@@ -6,7 +6,7 @@ In addition to a pulse being sent out, a MAVLink message is published containing
 ### Trigger modes
 
 Three different modes are supported, controlled by the `TRIG_MODE` parameter:
-* `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by using the MAVLink command `MAV_CMD_DO_TRIGGER_CONTROL`. See [command interface](camera-trigger.md#command-interface) for more details.
+* `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by using the MAVLink command `MAV_CMD_DO_TRIGGER_CONTROL`. See [command interface](camera_trigger.md#command-interface) for more details.
 * `TRIG_MODE` 2 switches the intervalometer constantly on.
 * `TRIG_MODE` 3 triggers based on distance. A shot is taken every time the set horizontal distance is exceeded. The minimum time interval between two shots is however limited by the set triggering interval.
 * `TRIG_MODE` 4 triggers in when in Mission mode. TODO.
