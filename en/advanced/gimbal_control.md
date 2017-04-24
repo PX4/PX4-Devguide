@@ -47,8 +47,8 @@ S: 2 2  10000  10000      0 -10000  10000
 
 Add those you need to your [main or auxiliary mixer](../advanced/system_startup.md#starting-a-custom-mixer).
 
-There is also a generic quad airframe config which includes a [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix):
-[Generic Quadrotor X config with mount](../airframes/airframe_reference.md#quadrotor-x).
+There is also a [generic quad airframe config](../airframes/airframe_reference.md#quadrotor-x)
+which includes a [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix).
 
 
 ## SITL
