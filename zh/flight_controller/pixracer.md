@@ -1,49 +1,52 @@
 # Pixracer
 
-The Pixhawk XRacer board family is optimized for small racing quads and planes. In contrast to [Pixfalcon](../flight_controller/pixfalcon.md) and [Pixhawk](../flight_controller/pixhawk.md) it has in-built Wifi, new sensors, convenient full servo headers, CAN and supports 2M flash.
+
+Pixhawk XRacer板系列专门为小型赛车和飞机进行了优化。 与 [Pixfalcon](../flight_controller/pixfalcon.md)和[Pixhawk](../flight_controller/pixhawk.md) 相反，Pixracer具有内置 wifi、 新传感器、 方便的全速接口、CAN口、支持 2 M 闪存。
 
 ![](../../images/hardware/hardware-pixracer.jpg)
 
-## Quick Summary
+## 快速摘要
 
-> ** The main hardware documentation is here: https://pixhawk.org/modules/pixracer **
-
-  * Main System-on-Chip: [STM32F427VIT6 rev.3](http://www.st.com/web/en/catalog/mmc/FM141/SC1169/SS1577/LN1789)
-    * CPU: 180 MHz ARM Cortex M4 with single-precision FPU
-    * RAM: 256 KB SRAM (L1)
-  * Standard FPV form factor: 36x36 mm with standard 30.5 mm hole pattern
-  * Wifi telemetry and software upgrade
-  * Invensense ICM-20608 Accel / Gyro (4 KHz) / MPU9250 Accel / Gyro / Mag (4 KHz)
-  * HMC5983 magnetometer with temperature compensation
-  * Measurement Specialties MS5611 barometer
-  * JST GH connectors
-  * microSD (logging)
-  * S.BUS / Spektrum / SUMD / PPM input
-  * FrSky telemetry port
-  * OneShot PWM out (configurable)
-  * Optional: Safety switch and buzzer
-  * Availability:
-    * [AUAV Pixracer](http://www.auav.co/product-p/xr-v1.htm)
-  * Accessories:
-    * [Digital airspeed sensor](http://www.hobbyking.com/hobbyking/store/__62752__HKPilot_32_Digital_Air_Speed_Sensor_And_Pitot_Tube_Set.html)
-    * [Hobbyking OSD + US Telemetry (915 MHz)](http://www.hobbyking.com/hobbyking/store/__74651__Micro_HKPilot_Telemetry_Radio_Module_with_On_Screen_Display_OSD_unit_915MHz_.html)
-    * [Hobbyking OSD + EU Telemetry (433 MHz)](http://www.hobbyking.com/hobbyking/store/__74650__Micro_HKPilot_Telemetry_Radio_Module_with_On_Screen_Display_OSD_unit_433MHz_.html)
+主要硬件文档在这里: https://pixhawk.org/modules/pixracer
 
 
-## Kit
+-   主片上系统:  [STM32F437](http://www.st.com/web/en/catalog/mmc/FM141/SC1169/SS1577/LN1789)
+    - CPU: 180 MHz，ARM Cortex M4内核，单精度FPU
+    - RAM: 256 KB SRAM
+-   FPV标准参数: 36×36毫米，标准30.5毫米孔型
+-   Wifi 数传 and 软件升级
+-   公司的 ICM-20608 加速度计 / 陀螺仪 (4 KHz) / MPU9250 加速度计 / 陀螺仪 / 磁力计 (4 KHz)
+-   HMC5983 磁力计的温度补偿
+-   Measurement Specialties公司的 MS5611 气压计
+-   JST GH 连接器
+-   microSD (记录日志)
+-   S.BUS / Spektrum / SUMD / PPM 输入
+-   FrSky 数传口
+-   OneShot PWM 输出 (可配置)
+-   可选：安全开关和蜂鸣器
+-   可购买:
+ -   [AUAV Pixracer](http://www.auav.co/product-p/xr-v1.htm)
+-   配件:
+    - [数字空速管](http://www.hobbyking.com/hobbyking/store/__62752__HKPilot_32_Digital_Air_Speed_Sensor_And_Pitot_Tube_Set.html)
+    - [Hobbyking OSD + US 数传 (915 MHz)](http://www.hobbyking.com/hobbyking/store/__74651__Micro_HKPilot_Telemetry_Radio_Module_with_On_Screen_Display_OSD_unit_915MHz_.html)
+    - [Hobbyking OSD + EU 数传 (433 MHz)](http://www.hobbyking.com/hobbyking/store/__74650__Micro_HKPilot_Telemetry_Radio_Module_with_On_Screen_Display_OSD_unit_433MHz_.html)
 
-The Pixracer is designed to use a separate avionics power supply. This is necessary to avoid current surges from motors or ESCs to flow back to the flight controller and disturb its delicate sensors.
+## 套件
 
-  * Power module (with voltage and current sensing)
-  * I2C splitter (supporting AUAV, Hobbyking and 3DR peripherals)
-  * Cable kit for all common peripherals
+Pixracer有专门设计的单独航空电子设备的电源。这是必要的，以避免浪涌电流从电机和电调回流到飞控，扰乱敏感的传感器。
 
-## Wifi (no USB required)
+- 电源模块 （电压和电流监测）
+- I2C扩展器（支持 AUAV，Hobbyking和3DR外设）
+  - 常见的所有外围设备的电缆配套件
 
-One of the main features of the board is its ability to use Wifi for flashing new firmware, system setup and in-flight telemetry. This frees it of the need of any desktop system.
+## Wifi (无需USB)
 
-> **Todo** Setup and telemetry are already available, firmware upgrade is already supported by the default bootloader but not yet enabled
+板子的主要特征之一是它能够使用 Wifi 闪烁的新固件、 系统设置和空中遥测。这将释放它的任何桌面系统的需要
 
+<aside class="todo">
+步骤和数传已经可用，固件升级已经由默认引导支持，但尚未启用。
+</aside>
 
-* [ESP8266 Documentation and Flash Instructions](https://pixhawk.org/peripherals/8266)
-* [Custom ESP8266 MAVLink firmware](https://github.com/dogmaphobic/mavesp8266)
+- [ESP8266文档和Flash说明](https://pixhawk.org/peripherals/8266)
+- [自定义 ESP8266 MAVLink firmwarePixracer](https://github.com/dogmaphobic/mavesp8266)
+

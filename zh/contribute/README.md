@@ -1,16 +1,19 @@
-# Contributing
+# 贡献代码
 
-Contact information for the core dev team and community can be found below. The PX4 project uses a three-branch Git branching model:
+官网英文原文地址：http://dev.px4.io/starting-contributing.html
 
-* [master](https://github.com/px4/firmware/tree/master) is by default unstable and sees rapid development.
-* [beta](https://github.com/px4/firmware/tree/beta) has been thoroughly tested. It's intended for flight testers.
-* [stable](https://github.com/px4/firmware/tree/stable) points to the last release.
+核心开发团队和社区的联系信息可以在下面找到。PX4项目使用了三个分支Git branching model:
 
-We try to retain a [linear history through rebases](https://www.atlassian.com/git/tutorials/rewriting-history) and avoid the [Github flow](https://guides.github.com/introduction/flow/). However, due to the global team and fast moving development we might resort to merges at times.
+* [master](https://github.com/px4/firmware/tree/master) 默认情况下不稳定，可以看到快速的开发。  
+* [beta](https://github.com/px4/firmware/tree/beta) 已充分测试，面向飞行测试者。  
+* [stable](https://github.com/px4/firmware/tree/stable) 指向最新的发布分支。  
 
-To contribute new functionality, [sign up for Github](https://help.github.com/articles/signing-up-for-a-new-github-account/), then [fork](https://help.github.com/articles/fork-a-repo/) the repository, [create a new branch](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/), add your changes, and finally [send a pull request](https://help.github.com/articles/using-pull-requests/). Changes will be merged when they pass our [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration) tests.
+我们尝试通过[rebases保持一个线性的历史](https://www.atlassian.com/git/tutorials/rewriting-history)，避免[Github flow](https://guides.github.com/introduction/flow/)。但是由于全球的开发队伍和快速的开发转移，我们会定期分类合并。
 
-All contributions have to be under the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause) and all code must not impose any further constraints on the use.
+为了贡献新的功能，首先[注册Github账户](https://help.github.com/articles/signing-up-for-a-new-github-account/)，然后[fork](https://help.github.com/articles/fork-a-repo/)仓库，[创建新分支](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/)，加入你的改变，最后发送\[pull request\]。当它们通过我们的持续的[综合测试](https://en.wikipedia.org/wiki/Continuous_integration)，更新就会被合并。
+
+所有的贡献必须在 [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause)许可下进行,并且所有的代码在使用上不能提出任何的，进一步的限制。
+
 
 ## Commits and Commit Messages
 
@@ -40,30 +43,27 @@ Bad: "Add gps_reception_check() function").
 Reported-by: Name <email@px4.io>
 ```
 
-**Use **`git commit -s`** to sign off on all of your commits.** This will add `signed-off-by:` with your name and email as the last line.
+**Use ```git commit -s``` to sign off on all of your commits.** This will add ```signed-off-by:``` with your name and email as the last line.
 
 This commit guide is based on best practices for the Linux Kernel and other [projects maintained](https://github.com/torvalds/subsurface/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88-L115) by Linus Torvalds.
 
-## Tests Flight Results
+## 测试飞行结果
 
-Test flights are important for quality assurance. Please upload the logs from the microSD card to [Log Muncher](http://logs.uaventure.com) and share the link on the [PX4 Discuss](http://discuss.px4.io/) along with a verbal flight report.
+飞行测试对于保证质量非常重要，请从microSD卡上传飞行日志到 [Log Muncher](http://logs.uaventure.com)，并在[论坛](http://groups.google.com/group/px4users)分享连接，附带有书面飞行报告。
 
-## Forums and Chat
+
+## 论坛和聊天
 
 * [Google+](https://plus.google.com/117509651030855307398)
-* [Gitter](https://gitter.im/PX4/Firmware)
-* [PX4 Discuss](http://discuss.px4.io/)
+* [Gitter](https://gitter.im/PX4/Firmware?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+* [PX4 Users Forum](http://groups.google.com/group/px4users)
 
-## Weekly Dev Call
+## 每周开发电话
 
-The PX4 Dev Team syncs up on its weekly dev call \(connect via [Mumble](http://mumble.info) client\).
+PX4团队在每周同时进行电话联系（通过[Mumble](http://mumble.info) client\)客户端连接）。
 
-* TIME: Tuesday 5PM CET, 11AM EST, 8AM PDT ([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics))
-* Server: sitl01.dronetest.io
-* Port: 64738
-* Password: px4
-* The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
-* Issues and PRs may be labelled "devcall" to flag them for discussion
-
-
-
+* TIME: 19:00h Zurich time, 1 p.m. Eastern Time, 10 a.m. Pacific Standard Time
+* Server: mumble.dronecode.org
+  * Port: 10028
+  * Channel: PX4 Channel
+  * The agenda is announced the same day on the [px4users forum](http://groups.google.com/group/px4users)

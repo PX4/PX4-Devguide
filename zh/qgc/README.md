@@ -1,36 +1,38 @@
 # QGroundControl
 
-QGroundControl is an app to configure and fly a PX4 based autopilot. It is cross platform and supports all major operating systems:
+QGroundControl是一个基于PX4自动驾驶仪配置和飞行的应用程序。 并且跨平台支持所有的主流操作系统：
 
-  * Mobile: Android and iOS (currently focused on tablet)
-  * Desktop: Windows, Linux, Mac OS
+- 手机系统: Android 和 iOS (目前专注于平板电脑)
+- 桌面系统: Windows, Linux, Mac OS
 
-## Planning Missions
+## 任务规划
 
-To plan a new mission, switch to the planning tab, click on the + icon in the top left and click on the map to create waypoints. A context menu will open on the side to adjust the waypoints. Click on the highlight transmission icon to send them to the vehicle.
+规划一个新的任务, 切换到任务菜单, 点击左上角的“+”图标然后在地图上单击创建出一个任务点。同时在旁边将打开一个快捷菜单用来调整任务点。点击高亮的任务发送图标把任务信息发送到驾驶仪设备。
+
 
 ![](../../images/gcs/planning-mission.png)
 
-## Flying Missions
+## 任务飞行
 
-Switch to the flying tab. The mission should be visible on the map. Click on the current flight mode to change it to MISSION and click on DISARMED to arm the vehicle. If the vehicle is already in flight it will fly to the first leg of the mission and then follow it.
+切换到飞行菜单。让地图上的任务路径保持可见。点击当前的飞行模式使其变为任务模式并且点击锁定按钮来解锁飞行器。如果飞行器已经飞行在空中它将直接飞向第一个任务点并且跟随任务路径飞行。。
 
 ![](../../images/gcs/flying-mission.png)
 
-## Setting parameters
+## 参数设置
 
-Switch to the setup tab. Scroll the menu on the left all the way to the bottom and click on the parameter icon. Parameters can be changed by double-clicking on them, which opens a context menu to edit, along with a more detailed description.
+切换到设置菜单。滚动左边的菜单到最底部并且点击参数图标。可以通过双击某一项参数来弹出一个带有详细信息描述的可编辑菜单来改变参数。
 
 ![](../../images/gcs/setting-parameter.png)
 
-## Installation
+## 安装
 
-QGroundControl can be downloaded from its [website](http://qgroundcontrol.com/downloads).
+QGroundControl可以从这里下载 [QGroundControl](http://qgroundcontrol.com/).
 
-> **Tip** Developers are advised to use the latest daily build instead of the stable release.
+> **提示:** 开发人员建议使用最新的版本，而不是稳定版本。
+ 
 
-## Building from source
+## 从源代码编译
 
-Firmware developers are encouraged to build from source in order to have a matching recent version to their flight code.
+鼓励固件开发人员使用源代码来编译匹配他们飞行代码的版本。
 
-Follow the [QGroundControl build instructions](https://github.com/mavlink/qgroundcontrol#obtaining-source-code) to install Qt and build the source code.
+查看 [QGroundControl编译说明](https://github.com/mavlink/qgroundcontrol#obtaining-source-code) 来学习安装Qt以及编译源代码。

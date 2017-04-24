@@ -1,6 +1,6 @@
 # 飞行模式
 
-**飞行模式**定义了系统在任何给定时间的状态。用户可以使用远程遥控器或者[QGroundControl](../3_Tutorial/ground_control_station.md)地面站来进行飞行模式切换。
+**飞行模式**定义了系统在任何给定时间的状态。用户可以使用远程遥控器或者[QGroundControl](../qgc/README.md)地面站来进行飞行模式切换。
 
 ## 飞行模式的简要说明
 

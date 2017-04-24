@@ -1,63 +1,60 @@
-# uORB Messaging
+# uORB消息机制
 
-## Introduction
+## 简介
 
-The uORB is an asynchronous publish() / subscribe() messaging API used for
-inter-thread/inter-process communication.
+uORB是一种用于进程间进行异步发布和订阅的消息机制API。
 
-Look at the [tutorial](../tutorials/tutorial_hello_sky.md) to learn how to use it in C++.
+在[教程](../tutorials/tutorial_hello_sky.md)中可以学习通过C++如何使用uORB。
 
-uORB is automatically started early on bootup as many applications depend on it.
-It is started with `uorb start`. Unit tests can be started with `uorb_tests`.
+由于很多应用都是基于uORB的，因此在系统刚启动时uORB就自动运行了。uORB通过`uorb start`启动。可以使用`uorb test`进行单位测试。
 
-## Adding a new topic
+## 添加新的主题(topic)
 
-To add a new topic, you need to create a new `.msg` file in the `msg/`
-directory and add the file name to the `msg/CMakeLists.txt` list. From this,
-there will automatically be C/C++ code generated.
+要想增加新的topic，你需要在`msg/`目录下创建一个新的`.msg` 文件并在`msg/CMakeLists.txt`下添加该文件。这样C/C++编译器自动在程序中添相应的代码。
 
-Have a look at the existing `msg` files for supported types. A message can also
-be used nested in other messages.
-To each generated C/C++ struct, a field `uint64_t timestamp` will be added. This
-is used for the logger, so make sure to fill it in when publishing the message.
+可以先看看现有的`msg`文件了解下都支持那些类型。一个消息也可以嵌套在其他消息当中。
 
-To use the topic in the code, include the header:
+每一个生成的C/C++结构体中，会多出一个`uint64_t timestamp` 字段。这个变量用于将消息记录到日志当中。
+
+为了在代码中使用"topic"需要添加头文件:
+
 ```
 #include <uORB/topics/topic_name.h>
 ```
 
-By adding a line like the following in the `.msg` file, a single message
-definition can be used for multiple independent topic instances:
+首先需要在文件`.msg`中，通过添加类似如下的一行代码,一个消息定义就可以用于多个独立的主题.
+
 ```
 # TOPICS mission offboard_mission onboard_mission
 ```
-Then in the code, use them as topic id: `ORB_ID(offboard_mission)`.
 
+> 【按】这里这一步将产生三个主题ID- mission、 offboard_mission 、以及 onboard_mission (第一个ID务必与.msg文件名相同)
 
-## Publishing
+然后在代码中, 把它们作为主题ID用:`ORB_ID(offboard_mission)`.
 
-Publishing a topic can be done from anywhere in the system, including interrupt
-context (functions called by the `hrt_call` API). However, advertising a topic
-is only possible outside of interrupt context. A topic has to be advertised in
-the same process as it's later published.
+## 发布主题
 
-## Listing Topics and Listening in
+在系统的任何地方都可以发布一个主题, 包括在中断上下文中(被`hrt_call`接口调用的函数). 但是, 公告(advertise)一个主题仅限于在中断上下文之外.
 
-> **Note** The 'listener' command is only available on Pixracer (FMUv4) and Linux / OS X.
+一个主题只能由同一个进程进行公告, 并作为其之后的发布(publish).
 
-To list all topics, list the file handles:
+## 列出所有主题并进行监听
+
+`接收者(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
+
+要列出所有主题, 先列出文件句柄:
 
 ```sh
 ls /obj
 ```
 
-To listen to the content of one topic for 5 messages, run the listener:
+要列出一个主题中的5个消息, 执行以下监听命令:
 
 ```sh
 listener sensor_accel 5
 ```
 
-The output is n-times the content of the topic:
+得到的输出就是关于该主题的n次内容:
 
 ```sh
 TOPIC: sensor_accel #3

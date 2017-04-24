@@ -1,79 +1,95 @@
 # Flight Log Analysis
 
-There are several software packages that exist to analyze PX4 flight logs. They are described below.
+
+这里有几个分析PX4飞行日志的软件，描述如下：
 
 ## [Log Muncher](http://logs.uaventure.com)
 
-Note: Log Muncher can only be used with the previous log format (.px4log).
+> **注意：** Log Muncher只可以被用来查看先前`.px4log`格式的日志。
 
-### Upload
+### 上传
 
-Users can visit this webpage and upload log files directly: [http://logs.uaventure.com/](http://logs.uaventure.com/)
+### 上传
+
+用户可直接访问网站并直接上传log: [http://logs.uaventure.com/](http://logs.uaventure.com/)
 
 ![](../../images/flight_log_analysis/logmuncher.png)
 
-### Result
+### 结果
 
 ![](../../images/flight_log_analysis/log-muncher-result.png)
 
 [Example Log](http://logs.uaventure.com/view/KwTFDaheRueMNmFRJQ3huH)
 
-### Postive
-* web based, great for end-users
-* user can upload, load and then share report with others
+### 优点
 
-### Negative
-* analysis is very constrained, no customization possible
+* 基于网页，便于终端用户
 
+* 用户可以上传日志并和别人分享
+
+### 缺点
+
+* 分析非常有限，没有定制功能
 
 ## [Flight Review](http://logs.px4.io)
 
-Flight Review is the successor of Log Muncher, used in combination with the new
-ULog logging format.
+Flight Review是Log Muncher的继任者，与新的ULog记录格式结合使用。
 
-### Example
+### 示例
 ![](../../images/flight_log_analysis/flight-review-example.png)
 
-### Postive
-* web based, great for end-users
-* user can upload, load and then share report with others
-* interactive plots
+### 优点
 
-### Negative
-* no customization possible
+* 基于网页，便于终端用户
 
+* 用户可以上传并和别人分享
 
-## [FlightPlot](https://github.com/PX4/FlightPlot)
+* 交互式的画图体验
+
+### 缺点
+
+* 没有定制功能
+
+## [FlightPlot](https://github.com/DrTon/FlightPlot)
 
 ![](https://pixhawk.org/_media/dev/flightplot-0.2.16-screenshot.png)
 
-* [FlightPlot Downloads](https://s3.amazonaws.com/flightplot/releases/latest.html)
+### 优点
 
-### Positive
-* java based, cross-platform
-* intuitive GUI, no programming knowledge required
+* 基于JAVA,跨平台
 
-### Negative
-* analysis constrained by what features have been built-in
+* 直观的用户界面，没有编程知识的要求
+
+### 缺点
+
+* 分析受限于系统内置的一些特性
 
 ## [PX4Tools](https://github.com/dronecrew/px4tools)
 
+
 ![](../../images/flight_log_analysis/px4tools.png)
 
-### Install
+### 安装
 
-* The recommended procedure is to use anaconda3. See [px4tools github page](https://github.com/dronecrew/px4tools) for details.
+* 建议的方法是使用anaconda3. 详情见 [px4tools github page](https://github.com/dronecrew/px4tools) .
 
 ```bash
 conda install -c https://conda.anaconda.org/dronecrew px4tools
 ```
 
-### Positive
-* easy to share, users can view notebooks on github (e.g. [https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb](https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb))
-* python based, cross platform, works witn anaconda 2 and anaconda3
-* ipython/ jupyter notebooks can be used to share analysis easily
-* advanced plotting capabilities to allow detailed analysis
+### 优点
 
-### Negative
-* Requires the user to know python
-* Currently requires use of sdlog2_dump.py or px4tools embedded px42csv program to convert log files to csv before use
+* 便于分享，用户可以查看笔记在github\(e.g. [https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb](https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb)\)
+
+* 基于python,跨平台，产品有anaconda 2 and anaconda3
+
+* ipython/ jupyter 笔记容易分享和分析
+
+* 高级绘图能力允许做细节的分析
+
+
+### 缺点
+
+* 要求用户懂python
+
+* 目前需要使用sdlog2_dump.py或px4tools嵌入的px42csv程序将日志文件转换为csv才能使用

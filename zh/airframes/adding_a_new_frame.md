@@ -1,24 +1,25 @@
-# Adding a new Airframe Configuration
+# 添加一个新的机型
 
-PX4 uses canned configurations as starting point for airframes. Adding a configuration is straightforward: Create a new file which is prepended with a free autostart ID in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) and [build and upload](../setup/building_px4.md) the software.
 
-Developers not wanting to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../advanced/system_startup.md) page.
+PX4使用存储的配置作为机型的起始点。添加配置是非常简单的：在[init.d文件夹](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)创建一个新的文件，这个文件需要以一个没有使用的自动启动ID作为文件名的前缀，然后[构建并上传](../setup/building_px4.md)固件即可。
 
-## Airframe configurations
+如果不想创建自己的配置文件，也可以用SD卡上的文本文件替换掉已有的自定义配置文件，具体细节请查看[自定义系统启动](../advanced/system_startup.md)页。
 
-An airframe configuration consists of three main blocks:
+## 机型配置
 
-  * The apps it should start, e.g. multicopter or fixed wing controllers
-  * The physical configuration of the system (e.g. a plane, wing or multicopter). This is called mixer.
-  * Tuning gains
+一个机型配置包括3项基本内容：
 
-These three aspects are mostly independent, which means that many configurations share the same physical layout of the airframe and start the same applications and most differ in their tuning gains.
+- 应该启动的应用，例如多旋翼或者固定翼的控制器
+- 系统（固定翼，飞翼或者多旋翼）的物理配置，这叫做混控器
+- 参数整定
 
-All configurations are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. All mixers are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
+这三方面大多数时候是独立的，也就是说，许多配置会共享相同的机型物理布局以及启动相同的应用，它们之间最大的不同在参数整定部分。
 
-### Config file
+所有的配置存储在[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)文件夹。所有的混控器存储在[ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers)文件夹。
 
-A typical configuration file is below.
+### 配置文件
+
+如下所示，是一个典型的配置文件：
 
 ```bash
 #!nsh
@@ -70,18 +71,19 @@ set MIXER wingwing
 set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
+> 注意事项: IMPORTANT REMARK: If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channal assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below). 
 
-IMPORTANT REMARK: If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below). 
+### 混控器文件
 
-### Mixer file
+一个典型的混控器文件会像下面这样：
 
-A typical configuration file is below. 
+<aside class="note">
+舵机/电机的接口顺序和这个文件中的混控器顺序一致。
+</aside>
 
-> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
+所以MAIN1对应左副翼，MAIN2对应右副翼，MAIN3置空（注意：Z即为空混控器），MAIN4则对应油门（对于一般固定翼配置，保持油门和输出4对应）。
 
-So MAIN1 would be the left aileron, MAIN2 the right aileron, MAIN3 is empty (note the Z: zero mixer) and MAIN4 is throttle (to keep throttle on output 4 for common fixed wing configurations).
-
-A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1..+1.
+混控器被编码为从-10000到10000的标准单位，对应-1到+1。
 
 ```
 M: 2
@@ -90,17 +92,16 @@ S: 0 0  -6000  -6000      0 -10000  10000
 S: 0 1   6500   6500      0 -10000  10000
 ```
 
-Where each number from left to right means:
+从左到右每个数字代表的意思如下：
 
-  * M: Indicates two scalers for two inputs
-  * O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  If you want to invert your PWM signal, the signs for both output scalings and both output range numbers have to be changed. (```O:      -10000  -10000      0 10000  -10000```)
-  * S: Indicates the first input scaler: It takes input from control group #0 (attitude controls) and the first input (roll). It scales the input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
-  * S: Indicates the second input scaler: It takes input from control group #0 (attitude controls) and the second input (pitch). It scales the input * 0.65 and reverts the sign (-0.65 becomes -6500 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
+- M：代表有2个缩放系数（对应着两个输入）
+- O：代表输出缩放系数（负输入量缩放系数为1，正输入量缩放系数为1），偏移量（这里是0），输出范围（这里-1到+1）
+- S：代表第一个输入量的缩放系数：输入量来自控制组#0（姿态控制）的第一个输入（滚转），缩放系数为0.6，并且符号取反（-0.6换算到标准单位是-6000），没有偏移量（0），输出为全范围（-1到+1）
+- S：代表第二个输入量的缩放系数：输入量来自控制组#0（姿态控制）的第二个输入（俯仰），缩放系数为0.65（0.65换算到标准单位是6500），没有偏移量（0），输出为全范围（-1到+1）
 
-Both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch. As it is over-committed with 125% total deflection for maximum pitch and roll, it means the first channel (roll here) has priority over the second channel / scaler (pitch).
+所有的缩放器结果累加，对飞翼而言，控制面偏移量取滚转信号的60%和俯仰信号的65%。如果俯仰信号和滚转信号都取最大值，那么偏移量将达到125%，超出了输出范围，这就意味着第一个通道（滚转）比第二个通道（俯仰）优先级高。
 
-The complete mixer looks like this:
-
+完整的混控器定义如下：
 
 ```bash
 Delta-wing mixer for PX4FMU
@@ -154,5 +155,4 @@ range.  Inputs below zero are treated as zero.
 M: 1
 O:      10000  10000      0 -10000  10000
 S: 0 3      0  20000 -10000 -10000  10000
-
 ```

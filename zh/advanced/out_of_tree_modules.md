@@ -1,29 +1,23 @@
-# Out-of-tree Modules
+# 外部模块
 
-This describes the possibility to add an external module to the PX4 build.
 
-External modules can use the same includes as internal modules and can interact
-with internal modules via uORB.
+本教程描述了向PX4构建中添加外部模块的可能性。
 
-## Usage
+外部模块可以使用与内部模块相同的模块，并且可以通过$\mu$ORB与内部模块交互
 
-- `EXTERNAL_MODULES_LOCATION` needs to point to a directory with the same
-  structure as Firmware (and thus contains a directory called `src`).
-- There are two options: copy an existing module (eg. examples/px4_simple_app)
-  to the external directory, or directly create a new module.
-- Rename the module (including `MODULE` in CMakeLists.txt) or remove it from the
-  existing Firmware cmake build config. This is to avoid conflicts with internal
-  modules.
-- Add a file `$EXTERNAL_MODULES_LOCATION/CMakeLists.txt` with content:
+## 使用
 
+- `EXTERNAL_MODULES_LOCATION` 需要指向一个与原生固件Firmware具有相同结构的目录(因此需包含一个称为`src`的目录)。
+- 有两种方法：将现有模块(如examples/px4_simple_app)复制到外部目录，或者直接创建一个新的模块 。
+- 重命名模块(包括CMakeLists.txt中的`MODULE`)或将其从现有的Firmware/cmake//config中移除。这是为了避免与内部模块发生冲突。
+- 添加一个文件`$EXTERNAL_MODULES_LOCATION/CMakeLists.txt`，其内容包括：
 ```
 set(config_module_list_external
     modules/<new_module>
     PARENT_SCOPE
     )
 ```
-- add a line `EXTERNAL` to the `modules/<new_module>/CMakeLists.txt` within
-  `px4_add_module`, for example like this:
+- 添加一行 `EXTERNAL` 到`modules/<new_module>/CMakeLists.txt`下的`px4_add_module`函数中, 例如像这样：
 
 ```
 px4_add_module(
@@ -38,9 +32,5 @@ px4_add_module(
 	)
 
 ```
-- Execute `make posix EXTERNAL_MODULES_LOCATION=<path>`. Any other build target
-  can be used, but the build directory must not yet exist. If it already exists,
-  you can also just set the cmake variable in the build folder.
-  For the following incremental builds `EXTERNAL_MODULES_LOCATION` does not need
-  to be specified anymore.
 
+- 执行 `make posix EXTERNAL_MODULES_LOCATION=<path>`。可以使用任何其他的构建目标，但是构建目录必须是不存在的。如果它已经存在，你也可以在build文件夹中设置cmake变量。对于以后要增加的构建，就不需要再指定`EXTERNAL_MODULES_LOCATION`了。

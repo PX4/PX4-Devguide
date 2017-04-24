@@ -1,45 +1,42 @@
-# Driver Development
-
-The PX4 codebase uses a lightweight, unified driver abstraction layer: [DriverFramework](https://github.com/px4/DriverFramework). New drivers for POSIX and [QuRT](https://en.wikipedia.org/wiki/Qualcomm_Hexagon) are written against this framework.
-
-> **Todo** Legacy drivers for NuttX are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/drivers/device) framework and will be ported to DriverFramework.
+# 驱动框架
 
 
-## Core Architecture
+PX4的代码库使用一个轻量级的，统一的驱动抽象层：[DriverFramework](https://github.com/px4/DriverFramework). 
+POSIX和 [QuRT](https://en.wikipedia.org/wiki/Qualcomm_Hexagon)的驱动写入这个驱动框架当中。
 
-PX4 is a [reactive system](../concept/architecture.md) and uses pub/sub to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
+> **Todo** 旧的NuttX驱动是基于[设备](https://github.com/PX4/Firmware/tree/master/src/drivers/device) 架构的，以后将会移植到驱动框架之中。
 
-  * The publish / subscribe system which has a file, network or shared memory backend depending on the system PX4 runs on
-  * The global device registry, which allows to enumerate devices and get/set their configuration. This can be as simple as a linked list or map to the file system.
 
-## Bringing up a new Platform
+## 核心架构
+PX4 是一个反应式系统[reactive system](../concept/architecture.md) ，使用订阅/发布来传递消息。文件句柄是不被操作系统的核心所需要或者使用。主要使用了以下两个API：
 
+- 发布/订阅系统，该系统拥有一个文件，网络或者共享内存，其依靠于PX4后台运行。
+- 全局驱动注册器，它允许枚举设备和获取/设置这些设备参数。这个可以很简单的作为一个链表或者文件系统地图。
+
+## 一个新的平台
 ### NuttX
-
-  * The start script is located in [ROMFS/px4fmu_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
-  * The OS configuration is located in [nuttx-configs](https://github.com/PX4/Firmware/tree/master/nuttx-configs). The OS gets loaded as part of the application build.
-  * The PX4 middleware configuration is located in [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards). It contains bus and GPIO mappings and the board initialization code.
-  * Drivers are located in [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)
-  * Reference config: Running 'make px4fmu-v4_default' builds the FMUv4 config, which is the current NuttX reference configuration
+- 启动脚本位于[ROMFS/px4fmu_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
+- 系统配置文件位于[nuttx-configs](https://github.com/PX4/Firmware/tree/master/nuttx-configs). 作为应用的一部分被构建并被操作系统加载。
+- PX4中间件配置位于[src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards).其中包括总线和GPIO映射还有硬件平台初始化代码。
+- 驱动位于[src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)
+- 参考配置:运行使px4fmu-v4_default构建FMUv4配置,这是当前NuttX参考配置。
 
 ### QuRT / Hexagon
+- 启动脚本位于 [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs)
+- 系统配置文件模式作为Linux映射的一部分（备注：提供 本地的LINUX IMAGE和flash指令）
+- PX4中间件配置位于[src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards)。备注：增加总线配置。
+- 驱动位于[DriverFramework](https://github.com/px4/DriverFramework)
+- 参考配置：运行'make qurt_eagle_release'构建Snapdragon飞行参考配置。
 
-  * The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs)
-  * The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions)
-  * The PX4 middleware configuration is located in [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards). TODO: ADD BUS CONFIG
-  * Drivers are located in [DriverFramework](https://github.com/px4/DriverFramework)
-  * Reference config: Running 'make qurt_eagle_release' builds the Snapdragon Flight reference config
 
-## Device IDs
+## 驱动ID
+PX4使用驱动ID将独立传感器贯穿于整个系统。这些ID存储于配置参数中，用于匹配传感器校正值，以及决定哪些传感器被记录到log中。
 
-PX4 uses device IDs to identify individual sensors consistently across the system. These IDs are stored in the configuration parameters and used to match sensor calibration values, as well as to determine which sensor is logged to which logfile entry.
+传感器的顺序（例如一个是`/dev/mag0`，另一个是`/dev/mag1`）于优先级是不挂钩的，优先级实际是在发布uORB topic时确定的。
 
-The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) is not determining priority - the priority is instead stored as part of the published uORB topic.
+### 举个例子
 
-### Decoding example
-
-For the example of three magnetometers on a system, use the flight log (.px4log) to dump the parameters. The three parameters encode the sensor IDs and `MAG_PRIME` identifies which magnetometer is selected as the primary sensor. Each MAGx_ID is a 24bit number and should be padded left with zeros for manual decoding.
-
+有关系统上三个磁力计的示例，使用飞行日志（.px4log）转存变量。三个参数对传感器ID进行编码，MAG_PRIME识别哪个磁力计被选为主传感器。每一个MAGx_ID是一个24bit数值，左面手工填零补充。
 
 ```
 CAL_MAG0_ID = 73225.0
@@ -47,8 +44,7 @@ CAL_MAG1_ID = 66826.0
 CAL_MAG2_ID = 263178.0
 CAL_MAG_PRIME = 73225.0
 ```
-
-This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will show up in the log file as `IMU.MagX`.
+通过I2C连接的外部HMC5983，总线1，地址0x1E：在log中以`IMU.MagX`显示。
 
 ```
 # device ID 73225 in 24-bit binary:
@@ -58,7 +54,7 @@ This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will
 HMC5883   0x1E    bus 1 I2C
 ```
 
-This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It will show up in the log file as `IMU1.MagX`.
+通过SPI连接的内部HMC5983，总线1，选择slot5。在log中以`IMU1.MagX`显示。
 
 ```
 # device ID 66826 in 24-bit binary:
@@ -68,7 +64,7 @@ This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It w
 HMC5883   dev 5   bus 1 SPI
 ```
 
-And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave select slot 4. It will show up in the log file as `IMU2.MagX`.
+以及通过SPI总线连接的内部MPU9250磁力计，总线1，从设备选择slot4。在log中以`IMU2.MagX`显示。
 
 ```
 # device ID 263178 in 24-bit binary:
@@ -78,9 +74,8 @@ And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave se
 MPU9250   dev 4   bus 1 SPI
 ```
 
-### Device ID Encoding
-
-The device ID is a 24bit number according to this format. Note that the first fields are the least significant bits in the decoding example above.
+### 设备ID编码
+根据此格式，设备ID是一个24位的数字。注意，第一字段是上述解码示例中的最低有效位。
 
 ```C
 struct DeviceStructure {
@@ -90,7 +85,7 @@ struct DeviceStructure {
   uint8_t devtype;   // device class specific device type
 };
 ```
-The `bus_type` is decoded according to:
+这里`bus_type` 按以下方式解码：
 
 ```C
 enum DeviceBusType {
@@ -101,7 +96,7 @@ enum DeviceBusType {
 };
 ```
 
-and `devtype` is decoded according to:
+`devtype` 按以下方式解码：
 
 ```C
 #define DRV_MAG_DEVTYPE_HMC5883  0x01
