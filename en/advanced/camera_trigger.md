@@ -33,15 +33,20 @@ The camera trigger driver supports several backends - each for a specific applic
 
 ### Other parameters 
 
-* `TRIG_POLARITY`
-* `TRIG_INTERVAL`
-* `TRIG_ACTIVATION_TIME`
+* `TRIG_POLARITY` - Valid only while using the GPIO interface. Sets the polarity of the trigger pin. Active high means that the pin is pulled low normally and pulled high on a trigger event. Active low is vice-versa.
+* `TRIG_INTERVAL` - Defines the time between two consecutive trigger events in milliseconds.
+* `TRIG_ACTIVATION_TIME`- Defines the time in milliseconds the trigger pin is held in the "active" state before returning to neutral. In PWM modes, the minimum is limited to 40 ms to make sure we always fit an activate pulse into the 50Hz PWM signal.
 
 The full list of parameters pertaining to the camera trigger module can be found on the [parameter reference](parameter_reference.md#camera-trigger) page.
 
 ### Command interface 
 
-`MAV_CMD_DO_TRIGGER_CONTROL`, `MAV_CMD_DO_DIGICAM_CONTROL`, `MAV_CMD_DO_SET_CAM_TRIGG_DIST`.
+The camera trigger driver supports several commands 
+`MAV_CMD_DO_TRIGGER_CONTROL`
+
+`MAV_CMD_DO_DIGICAM_CONTROL`
+
+`MAV_CMD_DO_SET_CAM_TRIGG_DIST`.
 
 ## Sony QX-1 example (Photogrammetry)
 
@@ -51,12 +56,16 @@ In this example, we will use a Seagull MAP2 trigger cable to interface to a Sony
 
 #### Trigger settings : 
 
+![](/assets/trigger_pins.png)
+
 * `TRIG_INTERFACE`: 2, Seagull MAP2.
 * `TRIG_MODE`: 4, Mission controlled.
-* `TRIG_PINS`: 56 (Leave default). 
+
+Leave the rest of the parameters at their defaults.
+
+![](/assets/trigger_pins.png)
 
 You will need to connect the Seagull MAP2 to AUX 5 and AUX 6 on your autopilot. Pin 1 goes to AUX 5, and Pin 2 to AUX 6. The other end of the MAP2 cable will go into the QX-1's "MULTI" port.
-
 #### Mission planning :
 
 
