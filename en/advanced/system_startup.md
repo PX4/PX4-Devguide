@@ -52,12 +52,12 @@ The following example shows how to add a custom aux mixer:
   * Create a file on the SD card, `etc/mixers/gimbal.aux.mix` with your mixer
 	content.
   * Then to use it, create an additional file `etc/config.txt` with this content:
-```
-set MIXER_AUX gimbal
-set PWM_AUX_OUT 1234
-set PWM_AUX_DISARMED 1500
-set PWM_AUX_MIN 1000
-set PWM_AUX_MAX 2000
-set PWM_AUX_RATE 50
-```
+    ```
+    set MIXER_AUX gimbal
+    set PWM_AUX_OUT 1234
+    set PWM_AUX_DISARMED 1500
+    set PWM_AUX_MIN 1000
+    set PWM_AUX_MAX 2000
+    set PWM_AUX_RATE 50
+    ```
 
