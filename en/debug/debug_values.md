@@ -42,4 +42,4 @@ orb_publish(ORB_ID(debug_key_value), pub_dbg, &dbg);
 
 The result in QGroundControl then looks like this on the real-time plot:
 
-![](../../images/gcs/qgc-debugval-plot.jpg)
+![](../../assets/gcs/qgc-debugval-plot.jpg)

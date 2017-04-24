@@ -2,7 +2,7 @@
 
 Pixfalcon is binary-compatible derivative of the [Pixhawk](../flight_controller/pixhawk.md) design optimized for space-constrained applications such as FPV racers, designed by [Holybro](http://www.holybro.com/). It has less IO to allow for the reduction in size. For drones requiring high processing performance or a camera interface the [Snapdragon Flight](../flight_controller/snapdragon_flight.md) might be a more optimal fit.
 
-![](../../images/hardware/hardware-pixfalcon.png)
+![](../../assets/hardware/hardware-pixfalcon.png)
 
 ## Quick Summary
 

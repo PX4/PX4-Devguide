@@ -6,7 +6,7 @@ PX4 can be built on the console or in a graphical development environment / IDE.
 
 Before moving on to a graphical editor or IDE, it is important to validate the system setup. Do so by bringing up the terminal. On OS X, hit ⌘-space and search for 'terminal'. On Ubuntu, click the launch bar and search for 'terminal'. On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'.
 
-![](../../images/toolchain/terminal.png)
+![](../../assets/toolchain/terminal.png)
 
 The terminal starts in the home directory. We default to '~/src/Firmware' and clone the upstream repository. Experienced developers might clone [their fork](https://help.github.com/articles/fork-a-repo/) instead.
 
@@ -309,7 +309,7 @@ The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the 
 
 Qt creator offers clickable symbols, auto-completion of the complete codebase and building and flashing firmware.
 
-![](../../images/toolchain/qtcreator.png)
+![](../../assets/toolchain/qtcreator.png)
 
 ### Qt Creator on Linux
 
