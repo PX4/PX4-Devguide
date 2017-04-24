@@ -24,9 +24,14 @@ motion is required.
 
 ## Configure the gimbal mixer for AUX output
 
-If the `MNT_MODE_OUT` parameter is set to `AUX`, a mixer file has to be configured.
-The gimbal uses the control group #2 (see [Mixing and Actuators](../concept/mixing.md)).
-This is the basic mixer configuration:
+The gimbal configuration must be specified in a [main or auxiliary mixer file](../advanced/system_startup.md#starting-a-custom-mixer)
+(a mixer file has to be configured if the `MNT_MODE_OUT` parameter is set to
+`AUX`).
+
+> **Note** Read [Mixing and Actuators](../concept/mixing.md) for an explanation
+> of how mixers work and the format of the mixer file.
+
+A basic basic mixer configuration for a mount is shown below.
 
 ```
 # roll
@@ -45,7 +50,9 @@ O:      10000  10000      0 -10000  10000
 S: 2 2  10000  10000      0 -10000  10000
 ```
 
-Add those you need to your [main or auxiliary mixer](../advanced/system_startup.md#starting-a-custom-mixer).
+The gimbal uses the control group #2 (see [Mixing and Actuators](../concept/mixing.md)).
+Add the configuration values you need (depending on the gimbal hardware and
+selected output pins) to your own mixer.
 
 There is also a [generic quad airframe config](../airframes/airframe_reference.md#quadrotor-x)
 which includes a [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix).
