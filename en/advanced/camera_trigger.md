@@ -39,12 +39,19 @@ The full list of parameters pertaining to the camera trigger module can be found
 
 ### Command interface 
 
-The camera trigger driver supports several commands 
-`MAV_CMD_DO_TRIGGER_CONTROL`
+The camera trigger driver supports several commands -
 
-`MAV_CMD_DO_DIGICAM_CONTROL`
+`MAV_CMD_DO_TRIGGER_CONTROL` - Accepted in "command controlled" mode (`TRIG_MODE` 1).
 
-`MAV_CMD_DO_SET_CAM_TRIGG_DIST`.
+// TODO : param docs
+
+`MAV_CMD_DO_DIGICAM_CONTROL` - Accepted in all modes. This is used by the GCS to test-shoot the camera from the user interface. 
+
+// TODO : param docs
+
+`MAV_CMD_DO_SET_CAM_TRIGG_DIST` - Accepted in "mission controlled" mode (`TRIG_MODE` 4)
+
+// TODO : param docs
 
 ## Sony QX-1 example (Photogrammetry)
 
