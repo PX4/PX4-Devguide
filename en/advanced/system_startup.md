@@ -48,9 +48,10 @@ The `extras.txt` can be used to start additional applications after the main sys
 
 By default the system loads the mixer from `/etc/mixers`. If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
 #### Example
-The following example shows how to add a custom aux mixer: create a file on the
-SD card, `etc/mixers/gimbal.aux.mix` with your mixer content. Then to use it,
-create an additional file `etc/config.txt` with this content:
+The following example shows how to add a custom aux mixer:
+  * Create a file on the SD card, `etc/mixers/gimbal.aux.mix` with your mixer
+	content.
+  * Then to use it, create an additional file `etc/config.txt` with this content:
 ```
 set MIXER_AUX gimbal
 set PWM_AUX_OUT 1234
