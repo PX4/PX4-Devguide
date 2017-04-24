@@ -43,15 +43,20 @@ The camera trigger driver supports several commands -
 
 `MAV_CMD_DO_TRIGGER_CONTROL` - Accepted in "command controlled" mode (`TRIG_MODE` 1).
 
-// TODO : param docs
+| Command Parameter | Description |
+| -- | -- |
+| Param #1 | Trigger enable/disable (set to 0 for disable, 1 for start) |
+| Param #2 | Trigger cycle time in milliseconds (sets `TRIG_INTERVAL` parameter. ) |
+| Param #3 | Sequence reset (set to 1 to reset image sequence number, 0 to keep current sequence number) |
 
-`MAV_CMD_DO_DIGICAM_CONTROL` - Accepted in all modes. This is used by the GCS to test-shoot the camera from the user interface. 
 
-// TODO : param docs
+`MAV_CMD_DO_DIGICAM_CONTROL` - Accepted in all modes. This is used by the GCS to test-shoot the camera from the user interface. The trigger driver does not yet support all camera control parameters defined by the MAVLink spec.
+
+| Command Parameter | Description |
+| -- | -- |
+| Param #5 | Trigger one-shot command (set to 1 to trigger a single image frame) |
 
 `MAV_CMD_DO_SET_CAM_TRIGG_DIST` - Accepted in "mission controlled" mode (`TRIG_MODE` 4)
-
-// TODO : param docs
 
 ## Sony QX-1 example (Photogrammetry)
 
