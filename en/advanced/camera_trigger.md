@@ -60,7 +60,7 @@ The camera trigger driver supports several commands -
 
 ## Sony QX-1 example (Photogrammetry)
 
-![](/assets/photogrammetry.png)
+![](../../assets/photogrammetry.png)
 
 In this example, we will use a Seagull MAP2 trigger cable to interface to a Sony QX-1 and use the setup to create ground mosaics after flying a fully autonomous mission. 
 
@@ -73,7 +73,7 @@ The camera trigger can be configured from QGroundControl's "Camera" page under t
 
 Leave the rest of the parameters at their defaults.
 
-![](/assets/trigger_pins.png)
+![](../../assets/trigger_pins.png)
 
 You will need to connect the Seagull MAP2 to AUX 5 and AUX 6 on your autopilot. Pin 1 goes to AUX 5, and Pin 2 to AUX 6. The other end of the MAP2 cable will go into the QX-1's "MULTI" port.
 
@@ -86,7 +86,7 @@ QGroundControl
 
 #### Reconstruction :
 
-![](/assets/geotag.jpg)
+![](../../assets/geotag.jpg)
 
 ## Camera-IMU sync example (VIO)
 In this example, we will go over the basics of synchronising IMU measurements with visual data to build a stereo Visual-Inertial Navigation System (VINS). To be clear, the idea here isn't to take an IMU measurement exactly at the same time as we take a picture but rather to correctly time stamp our images so as to provide accurate data to our VIO algorithm.
