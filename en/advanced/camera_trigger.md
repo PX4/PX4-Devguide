@@ -1,5 +1,5 @@
 # Camera Trigger
-The camera trigger driver allows the use of the AUX ports to send out pulses in order to trigger a camera. This can be used for multiple applications including timestamping photos for aerial surveying and reconstruction, synchronizing a multi-camera system or visual-inertial navigation.
+The camera trigger driver allows the use of the AUX ports to send out pulses in order to trigger a camera. This can be used for multiple applications including timestamping photos for aerial surveying and reconstruction, synchronising a multi-camera system or visual-inertial navigation.
 
 In addition to a pulse being sent out, a MAVLink message is published containing a sequence number (thus the current session's image sequence number) and the corresponding timestamp.
 
@@ -49,7 +49,6 @@ The camera trigger driver supports several commands -
 | Param #2 | Trigger cycle time in milliseconds (sets `TRIG_INTERVAL` parameter. ) |
 | Param #3 | Sequence reset (set to 1 to reset image sequence number, 0 to keep current sequence number) |
 
-
 **`MAV_CMD_DO_DIGICAM_CONTROL` ** - Accepted in all modes. This is used by the GCS to test-shoot the camera from the user interface. The trigger driver does not yet support all camera control parameters defined by the MAVLink spec.
 
 | Command Parameter | Description |
@@ -62,7 +61,7 @@ The camera trigger driver supports several commands -
 
 ![](../../assets/photogrammetry.png)
 
-In this example, we will use a Seagull MAP2 trigger cable to interface to a Sony QX-1 and use the setup to create ground mosaics after flying a fully autonomous mission. 
+In this example, we will use a Seagull MAP2 trigger cable to interface to a Sony QX-1 and use the setup to create orthomosaics after flying a fully autonomous mission. 
 
 #### Trigger settings : 
 
@@ -76,6 +75,19 @@ Leave the rest of the parameters at their defaults.
 ![](../../assets/trigger_pins.png)
 
 You will need to connect the Seagull MAP2 to AUX 5 and AUX 6 on your autopilot. Pin 1 goes to AUX 5, and Pin 2 to AUX 6. The other end of the MAP2 cable will go into the QX-1's "MULTI" port.
+
+#### Camera configuration :
+
+We need to avoid autofocus and metering lag when the camera is triggered, so :
+
+* Manual focus to infinity
+* Set camera to continuous shooting mode
+* Manually set exposure and aperture
+
+ISO 
+White balance
+Lens used
+White balance manual, focus to infinity, aperture to lowest, and after setting these params the highest speed possible to acquire a good amount of light
 
 #### Mission planning :
 
