@@ -40,4 +40,4 @@
 
 
 ## 飞行模式评估图
-![](../../images/diagrams/commander-flow-diagram.png)
+![](../../assets/diagrams/commander-flow-diagram.png)

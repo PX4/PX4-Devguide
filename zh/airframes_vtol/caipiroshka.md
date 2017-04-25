@@ -33,7 +33,7 @@ poster="http://image84.360doc.com/DownloadImg/2015/04/1617/52474470_2.jpg" data-
 
 下图展示了组装完成的Caipiroshka的样子
 
-![Caipiroshka](../../images/airframes/vtol/caipiroshka/caipiroshka.jpg)
+![Caipiroshka](../../assets/airframes/vtol/caipiroshka/caipiroshka.jpg)
 
 下面是一些关于如何组装该飞行器的提示
 
@@ -73,7 +73,7 @@ GPS可以挂载在机身的中后部，这样做有助于机身重心后移，�
 
 在[QGroundControl](../qgc/README.md) 中切换到配置页面并打开机型选项卡，滚动列表寻找垂直起降双旋翼尾座型图标，在下拉菜单中选择```Duorotor Tailsitter```
 
-![](../../images/gcs/qgc_caipiroshka.jpg)
+![](../../assets/gcs/qgc_caipiroshka.jpg)
 
 ## 舵机连接
 

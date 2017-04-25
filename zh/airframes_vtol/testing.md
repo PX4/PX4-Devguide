@@ -116,8 +116,8 @@
 - (6) 转换路径点（到多旋翼模式）
 - (7) 着陆位置附近的路径点
 
-![Mission, showing transition WP to plane](../../images/vtol/qgc_mission_example_a.png)
+![Mission, showing transition WP to plane](../../assets/vtol/qgc_mission_example_a.png)
 
-![Mission, showing transition WP to hover](../../images/vtol/qgc_mission_example_b.png)
+![Mission, showing transition WP to hover](../../assets/vtol/qgc_mission_example_b.png)
 
 

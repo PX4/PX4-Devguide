@@ -6,26 +6,26 @@
 
 ## 四旋翼X型布局
 
-![Quadrotor X Layout](../../images/motor_map/quadrotor_x_assignment.png)
+![Quadrotor X Layout](../../assets/motor_map/quadrotor_x_assignment.png)
 
 ## 四旋翼+型布局
 
-![Quadrotor Plus Layout](../../images/motor_map/quadrotor_plus_assignment.png)
+![Quadrotor Plus Layout](../../assets/motor_map/quadrotor_plus_assignment.png)
 
 ## 六旋翼X型布局
 
-![Hexarotor X Layout](../../images/motor_map/hexarotor_x_assignment.png)
+![Hexarotor X Layout](../../assets/motor_map/hexarotor_x_assignment.png)
 
 ## 六旋翼+型布局
 
-![Hexarotor Plus Layout](../../images/motor_map/hexarotor_plus_assignment.png)
+![Hexarotor Plus Layout](../../assets/motor_map/hexarotor_plus_assignment.png)
 
 ## 八旋翼X型布局
 
-![Octorotor X Layout](../../images/motor_map/octorotor_x_assignment.png)
+![Octorotor X Layout](../../assets/motor_map/octorotor_x_assignment.png)
 
 ## 八旋翼+型布局
 
-![Octorotor Plus Layout](../../images/motor_map/octorotor_plus_assignment.png)
+![Octorotor Plus Layout](../../assets/motor_map/octorotor_plus_assignment.png)
 
 > **Todo** 支持三旋翼和共轴六旋翼，但是目前没有布局图
