@@ -17,25 +17,25 @@ And for pure rotations, the integraded_xgyro and integraded_x (respectively inte
 
 An exemplary setup is the PX4Flow and LIDAR-Lite (see picture).
 
-![](../../images/hardware/flow_lidar_attached.jpg)
+![](../../assets/hardware/flow_lidar_attached.jpg)
 
 ### Cameras
 
 #### PX4Flow
 The easiest way to calculate the optical flow is to use the PX4Flow board. In order to use the PX4Flow board, just connect it with I2C. The recommended way of mounting it is with the Sonar side facing forwards (see image). In this configuration the parameter `SENS_FLOW_ROT` should be 270 degrees (which is the default). Make sure the the PX4Flow board is well dampened.
 
-![](../../images/hardware/px4flowalignwithpixhawk.jpg)
+![](../../assets/hardware/px4flowalignwithpixhawk.jpg)
 
 In order to ensure good optical flow quality, it is important to focus the camera on the PX4Flow to the desired height of flight. To focus the camera, put an object with text on (e. g. a book) and plug in the PX4Flow into USB and run QGroundControl. Under the settings menu, select the PX4Flow and you should see a camera image. Focus the lens by unscrewing the set screw and loosening and tightening the lens to find where it is in focus.
 
 **Note: If you fly above 3m, the camera will be focused at infinity and won't need to be changed for higher flight.**
 
-![](../../images/flow/flow_focus_book.png)
+![](../../assets/flow/flow_focus_book.png)
 
 *Figure: Use a text book to focus the flow camera at the height you want to fly, typically 1-3 meters. Above 3 meters the camera should be focused at infinity and work for all higher altitudes.*
 
 
-![](../../images/flow/flow_focusing.png)
+![](../../assets/flow/flow_focusing.png)
 
 *Figure: The px4flow interface in QGroundControl that can be used for focusing the camera*
 

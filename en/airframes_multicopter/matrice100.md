@@ -2,7 +2,7 @@
 
 {% youtube %}https://www.youtube.com/watch?v=3OGs0ONemGc{% endyoutube %}
 
-![Matrice 100](../../images/airframes/multicopter/matrice100/Matrice100.jpg)
+![Matrice 100](../../assets/airframes/multicopter/matrice100/Matrice100.jpg)
 
 ## Parts List
 
@@ -10,19 +10,19 @@
 
 ## Motor Connections
 
-![Connections](../../images/airframes/multicopter/matrice100/Wiring Diagram.jpg)
+![Connections](../../assets/airframes/multicopter/matrice100/Wiring Diagram.jpg)
 
-![Wiring Harness](../../images/airframes/multicopter/matrice100/WiringHarness.jpg)
+![Wiring Harness](../../assets/airframes/multicopter/matrice100/WiringHarness.jpg)
 
-![PWM Connections](../../images/airframes/multicopter/matrice100/PwmInput.jpg)
+![PWM Connections](../../assets/airframes/multicopter/matrice100/PwmInput.jpg)
 
-![Top](../../images/airframes/multicopter/matrice100/Top.jpg)
+![Top](../../assets/airframes/multicopter/matrice100/Top.jpg)
 
-![Back](../../images/airframes/multicopter/matrice100/Back.jpg)
+![Back](../../assets/airframes/multicopter/matrice100/Back.jpg)
 
-![No Stack](../../images/airframes/multicopter/matrice100/NoStack.jpg)
+![No Stack](../../assets/airframes/multicopter/matrice100/NoStack.jpg)
 
-![No Top Deck](../../images/airframes/multicopter/matrice100/NoTopDeck.jpg)
+![No Top Deck](../../assets/airframes/multicopter/matrice100/NoTopDeck.jpg)
 
 | Output | Rate | Actuator |
 | -- | -- | -- |
