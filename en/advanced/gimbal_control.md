@@ -22,14 +22,27 @@ If the input mode is set to `AUTO`, the mode will automatically be
 switched based on the latest input. To switch from mavlink to RC, a large stick
 motion is required.
 
-## Configure the gimbal mixer for AUX output
+## AUX output
 
-The gimbal configuration must be specified in a [main or auxiliary mixer file](../advanced/system_startup.md#starting-a-custom-mixer)
-(a mixer file has to be configured if the `MNT_MODE_OUT` parameter is set to
-`AUX`).
+If the output mode is set to `AUX`, a mixer file is required to define the
+mapping for the output pins and the
+[mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix)
+is automatically selected (overriding any aux mixer provided by the
+airframe configuration).
 
+The output assignment is as following:
+- **AUX1**: Pitch
+- **AUX2**: Roll
+- **AUX3**: Yaw
+- **AUX4**: Shutter/retract
+
+### Customizing the mixer configuration
 > **Note** Read [Mixing and Actuators](../concept/mixing.md) for an explanation
 > of how mixers work and the format of the mixer file.
+
+The outputs can be customized by [creating a mixer
+file](../advanced/system_startup.md#starting-a-custom-mixer) on the SD card with
+name `etc/mixers/mount.aux.mix`.
 
 A basic basic mixer configuration for a mount is shown below.
 
@@ -49,13 +62,6 @@ M: 1
 O:      10000  10000      0 -10000  10000
 S: 2 2  10000  10000      0 -10000  10000
 ```
-
-The gimbal uses the control group #2 (see [Mixing and Actuators](../concept/mixing.md)).
-Add the configuration values you need (depending on the gimbal hardware and
-selected output pins) to your own mixer.
-
-There is also a [generic quad airframe config](../airframes/airframe_reference.md#quadrotor-x)
-which includes a [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix).
 
 
 ## SITL
