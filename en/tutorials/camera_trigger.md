@@ -5,12 +5,12 @@ In addition to a pulse being sent out, a MAVLink message is published containing
 
 ### Trigger modes
 
-Three different modes are supported, controlled by the `TRIG_MODE` parameter:
+Four different modes are supported, controlled by the `TRIG_MODE` parameter:
 * `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by using the MAVLink command `MAV_CMD_DO_TRIGGER_CONTROL`. See [command interface](camera_trigger.md#command-interface) for more details.
 * `TRIG_MODE` 2 switches the intervalometer constantly on.
 * `TRIG_MODE` 3 triggers based on distance. A shot is taken every time the set horizontal distance is exceeded. The minimum time interval between two shots is however limited by the set triggering interval.
-* `TRIG_MODE` 4 triggers in when in Mission mode. TODO.
-
+* `TRIG_MODE` 4 triggers automatically when flying a survey in Mission mode.
+ 
 In `TRIG_MODE` 0, camera triggering is disabled.
 
 > **Info : ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter.
@@ -88,16 +88,15 @@ You will need to connect the Seagull MAP2 to the auxiliary/FMU pins on your auto
 
 #### Camera configuration :
 
-We need to avoid autofocus and metering lag when the camera is triggered, so :
+We use a Sony QX-1 with a 16-50mm f3.5-5.6 lens for this example.
+
+To avoid autofocus and metering lag when the camera is triggered, the following guidelines should be followed :
 
 * Manual focus to infinity
 * Set camera to continuous shooting mode
 * Manually set exposure and aperture
-
-ISO 
-White balance
-Lens used
-White balance manual, focus to infinity, aperture to lowest, and after setting these params the highest speed possible to acquire a good amount of light
+* ISO should be set as low as possible
+* Manual white balance suitable for scene
 
 #### Mission planning :
 
