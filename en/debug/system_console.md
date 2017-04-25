@@ -40,7 +40,7 @@ The system console can be accessed through the Dronecode probe or an FTDI cable.
 
 Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product) to the SERIAL4/5 port of Pixhawk.
 
-![](../../images/console/dronecode_probe.jpg)
+![](../../assets/console/dronecode_probe.jpg)
 
 ### Connecting via FTDI 3.3V Cable
 
@@ -57,11 +57,11 @@ If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](http://ww
 
 The connector pinout is shown in the figure below.
 
-![](../../images/console/console_connector.jpg)
+![](../../assets/console/console_connector.jpg)
 
 The complete wiring is shown below.
 
-![](../../images/console/console_debug.jpg)
+![](../../assets/console/console_debug.jpg)
 
 ## Opening the Console
 

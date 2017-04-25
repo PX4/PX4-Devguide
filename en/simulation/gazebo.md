@@ -67,7 +67,7 @@ make posix gazebo_iris_opt_flow
 make posix gazebo_solo
 ```
 
-![](../../images/gazebo/solo.png)
+![](../../assets/gazebo/solo.png)
 
 ### Standard Plane
 
@@ -75,7 +75,7 @@ make posix gazebo_solo
 make posix gazebo_plane
 ```
 
-![](../../images/gazebo/plane.png)
+![](../../assets/gazebo/plane.png)
 
 ### Standard VTOL
 
@@ -83,7 +83,7 @@ make posix gazebo_plane
 make posix_sitl_default gazebo_standard_vtol
 ```
 
-![](../../images/gazebo/standard_vtol.png)
+![](../../assets/gazebo/standard_vtol.png)
 
 ### Tailsitter VTOL
 
@@ -91,7 +91,7 @@ make posix_sitl_default gazebo_standard_vtol
 make posix_sitl_default gazebo_tailsitter
 ```
 
-![](../../images/gazebo/tailsitter.png)
+![](../../assets/gazebo/tailsitter.png)
 
 ## Change World
 
@@ -122,7 +122,7 @@ pxh>
 
 > ** Note ** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
 
-![](../../images/sim/gazebo.png)
+![](../../assets/sim/gazebo.png)
 
 The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
 

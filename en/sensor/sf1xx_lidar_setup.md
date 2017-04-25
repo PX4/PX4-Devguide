@@ -8,7 +8,7 @@ This page shows you how to set up one of following lidars:
  4. SF11/c
 
 Driver supports only i2c connection.
-![](../../images/hardware/sf1xx_i2c.jpg)
+![](../../assets/hardware/sf1xx_i2c.jpg)
 
 ## Configuring lidar
 --------------------------------------------------------
