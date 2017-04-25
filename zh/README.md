@@ -1,3 +1,7 @@
+---
+translated_commit: https://github.com/PX4/px4_user_guide/blob/e9d8ee6fc72c9d0111c14edaf7c585c0024382aa/book.json 
+---
+
 # PX4 Development Guide
 
 > **Info** Developers only! This guide is under active development and not intended for consumers.
