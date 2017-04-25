@@ -3,7 +3,7 @@
 
 Pixhawk XRacer板系列专门为小型赛车和飞机进行了优化。 与 [Pixfalcon](../flight_controller/pixfalcon.md)和[Pixhawk](../flight_controller/pixhawk.md) 相反，Pixracer具有内置 wifi、 新传感器、 方便的全速接口、CAN口、支持 2 M 闪存。
 
-![](../../images/hardware/hardware-pixracer.jpg)
+![](../../assets/hardware/hardware-pixracer.jpg)
 
 ## 快速摘要
 

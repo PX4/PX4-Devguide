@@ -5,7 +5,7 @@
 The following tutorial will run through the basics of offboard control through mavros as applied to an Iris quadcopter simulated in Gazebo. At the end of the tutorial, you should see the same behaviour as in the video below, i.e. a slow takeoff to an altitude of 2 meters.
 
 <video width="100%" autoplay="true" controls="true">
-	<source src="../images/sim/gazebo_offboard.webm" type="video/webm">
+	<source src="../assets/sim/gazebo_offboard.webm" type="video/webm">
 </video>
 
 ## Code

@@ -8,4 +8,4 @@ The advanced system configuration is performed through [QGroundControl](../qgc/R
 
 The parameter menu is in the cogwheel tab at the bottom. Parameters are grouped per module, e.g. system parameters or attitude controller parameters. Clicking on the value opens a menu with further explanations and the option to change it.
 
-![](../../images/gcs/setting-parameter.png)
+![](../../assets/gcs/setting-parameter.png)

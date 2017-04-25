@@ -3,7 +3,7 @@
 
 Pixfalcon 是衍生于[Pixhawk](../flight_controller/pixhawk.md)的设计，优化在空间受限的应用，如 FPV(First Persoan View,第一人称主视角),由[Holybro](http://www.holybro.com/)设计。考虑到减小尺寸，Pixfalcon有更少的IO。对于性能要求较高或需要带有照相机的无人机，高通骁龙[Snapdragon Flight](../flight_controller/snapdragon_flight.md)可能会更加合适。
 
-![](../../images/hardware/hardware-pixfalcon.png)
+![](../../assets/hardware/hardware-pixfalcon.png)
 
 ## 快速摘要
 

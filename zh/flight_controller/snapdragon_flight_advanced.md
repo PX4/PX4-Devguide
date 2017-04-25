@@ -133,7 +133,7 @@ And copy them on to the Snapdragon:
 
 ```
 unzip Flight_3.1.1a_qcom_flight_controller_hexagon_sdk_add_on.zip
-cd images/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmware
+cd assets/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmware
 adb push . /lib/firmware
 ```
 

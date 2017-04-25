@@ -6,7 +6,7 @@ PX4可以在控制台或者图形界面/IDE开发
 ## 在控制台编译
 在去到图形界面或者IDE前，验证系统设置的正确性非常重要，因此打开控制台。在 OS X, 敲击 ⌘-space ，并搜索'terminal'。在Ubuntu，单击启动栏，搜索“terminal”（或者trl+alt+T）。在windows平台，在开始菜菜单找到px4文件夹，单击'PX4 Console'
 
-![](../../images/toolchain/terminal.png)
+![](../../assets/toolchain/terminal.png)
 
 终端在Home目录启动，我们默认去到'~/src/Firmware' 然后，克隆顶层资源库。有经验的开发者可以克隆自己的复制的[资源库](https://help.github.com/articles/fork-a-repo/) 
 
@@ -342,7 +342,7 @@ poster="../pictures/diagrams/qtcreator.PNG" data-setup='{"aspectRatio":"16:9"}'>
 ## Qt Creator 功能
 Qt creator 提供单击选择变量、代码自动补全、代码编译和固件上传等功能。
 
-![](../../images/toolchain/qtcreator.png)
+![](../../assets/toolchain/qtcreator.png)
 
 ### Linux 平台的 Qt Creator 
 
