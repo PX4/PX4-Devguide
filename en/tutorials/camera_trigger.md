@@ -104,10 +104,6 @@ To avoid autofocus and metering lag when the camera is triggered, the following 
 
 ![](../..//assets/qgc_survey_parameters.jpg)
 
-#### Geotagging :
-
-QGroundControl
-
 #### Reconstruction :
 
 ![](../../assets/geotag.jpg)
