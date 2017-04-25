@@ -26,4 +26,4 @@ PWM_limit 状态机根据解锁前和解锁后的输入控制PWM输出。并在�
   * pwm输出值根据控制量设定。
 
 ## 状态转移图
-![](../../images/diagrams/pwm_limit_state_diagram.png)
+![](../../assets/diagrams/pwm_limit_state_diagram.png)

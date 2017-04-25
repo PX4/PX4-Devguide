@@ -10,7 +10,7 @@
 - 罗技镜头 C920
 - WiFi module TP-LINK TL-WN722N
 
-![](../../images/videostreaming/setup-whole.png)
+![](../../assets/videostreaming/setup-whole.png)
 
 ## 安装Odroid C1　Linux的环境
 
@@ -21,7 +21,7 @@
 Odroid C1 能够通过5V DC电源插孔。如果ODROID是安装在无人机的，建议采用焊接两引脚通孔焊接5V直流插孔固定的方法如下图所示。 [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) 。 电源的使用是连接到通过跳线(红色如上面的图片) 的ODROID　C1 的直流电压（5 V）和接地电路连接在示例设置中Odroid C1 的跳线地线针脚上 (如上图黑线)。 
 
 
-![](../../images/videostreaming/power-pins.png)
+![](../../assets/videostreaming/power-pins.png)
 
 ## 启用ODROID C1 WiFi连接 
 
@@ -207,7 +207,7 @@ up iptables-restore < /etc/iptables.ipv4.nat
 
 如果一切正常，你应该看到在底部的左上角OGC视频流在飞行模式下screeenshot显示窗口。 
 
-![](../../images/videostreaming/qgc-screenshot.png)
+![](../../assets/videostreaming/qgc-screenshot.png)
 
 如果你点击了视频流，卫星地图将在整个背景左下角的显示和视频显示。
 

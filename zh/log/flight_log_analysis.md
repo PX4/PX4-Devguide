@@ -13,11 +13,11 @@
 
 用户可直接访问网站并直接上传log: [http://logs.uaventure.com/](http://logs.uaventure.com/)
 
-![](../../images/flight_log_analysis/logmuncher.png)
+![](../../assets/flight_log_analysis/logmuncher.png)
 
 ### 结果
 
-![](../../images/flight_log_analysis/log-muncher-result.png)
+![](../../assets/flight_log_analysis/log-muncher-result.png)
 
 [Example Log](http://logs.uaventure.com/view/KwTFDaheRueMNmFRJQ3huH)
 
@@ -36,7 +36,7 @@
 Flight Review是Log Muncher的继任者，与新的ULog记录格式结合使用。
 
 ### 示例
-![](../../images/flight_log_analysis/flight-review-example.png)
+![](../../assets/flight_log_analysis/flight-review-example.png)
 
 ### 优点
 
@@ -67,7 +67,7 @@ Flight Review是Log Muncher的继任者，与新的ULog记录格式结合使用�
 ## [PX4Tools](https://github.com/dronecrew/px4tools)
 
 
-![](../../images/flight_log_analysis/px4tools.png)
+![](../../assets/flight_log_analysis/px4tools.png)
 
 ### 安装
 

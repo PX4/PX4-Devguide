@@ -43,4 +43,4 @@ orb_publish(ORB_ID(debug_key_value), pub_dbg, &dbg);
 
 在QGroundControl中的结果实时绘图：
 
-![](../../images/gcs/qgc-debugval-plot.jpg)
+![](../../assets/gcs/qgc-debugval-plot.jpg)
