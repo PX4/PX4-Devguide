@@ -1,7 +1,7 @@
 
 # 树莓派2/3自动驾驶仪
 
-![](../../images/hardware/hardware-rpi2.jpg)
+![](../../assets/hardware/hardware-rpi2.jpg)
 
 ## 开发者快速开始使用
 

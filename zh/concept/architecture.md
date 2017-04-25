@@ -20,7 +20,7 @@ PX4由两个层次组成：一是[飞行控制栈(flight stack)](../concept/flig
 
 控制器/混控器是针对于特定机型的（如多旋翼，垂直起降或其他飞机），但是顶层任务管理模块如`commander` 和`navigator` 是可以在不同平台共享的。
 
-![Architecture](../../images/diagrams/PX4_Architecture.png)
+![Architecture](../../assets/diagrams/PX4_Architecture.png)
 
 > ** Info ** This flow chart can be updated from [here](https://drive.google.com/file/d/0Byq0TIV9P8jfbVVZOVZ0YzhqYWs/view?usp=sharing) and open it with draw.io Diagrams.
 

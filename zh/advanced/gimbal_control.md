@@ -46,7 +46,7 @@ vmount test yaw 30
 ```
 以控制云台。请注意，仿真中云台本身会增稳，因此，如果你发送mavlink命令，请将 `stabilize`  标志位置为false。
 
-![gimbal](../pictures/hardware/gazebo-gimbal-simulation.png)
+![Gazebo Gimbal Simulation](../../assets/gazebo/gimbal-simulation.png)
 
 
 

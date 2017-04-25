@@ -3,7 +3,7 @@
 
 Crazyfile系列的微型四轴飞行器是由Bitcraze AB创建的。关于Crazyfile 2(CF2)的概况在[这里](https://www.bitcraze.io/crazyflie-2/)。
 
-![](../../images/hardware/hardware-crazyflie2.png)
+![](../../assets/hardware/hardware-crazyflie2.png)
 
 ## 简要概括
 

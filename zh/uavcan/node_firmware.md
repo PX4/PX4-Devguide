@@ -31,7 +31,7 @@ After building, the bootloader image is located at `firmware/px4esc_1_6-bootload
 BOARD=s2740vc_1_0 make && BOARD=px4esc_1_6 make
 ```
 
-This will build the UAVCAN node firmware for both supported ESCs. The firmware images will be located at `com.thiemar.s2740vc-v1-1.0-1.0.<git hash>.bin` and `org.pixhawk.px4esc-v1-1.6-1.0.<git hash>.binn`.
+This will build the UAVCAN node firmware for both supported ESCs. The firmware assets will be located at `com.thiemar.s2740vc-v1-1.0-1.0.<git hash>.bin` and `org.pixhawk.px4esc-v1-1.6-1.0.<git hash>.binn`.
 
 ## Sapog Codebase (Pixhawk ESC 1.4 and Zubax Orel 20)
 

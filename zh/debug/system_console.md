@@ -39,7 +39,7 @@
 
 将 [Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product) 的6P DF13 1:1线连接到Pixhawk的SERIAL4/5接口。
 
-![](../../images/console/dronecode_probe.jpg)
+![](../../assets/console/dronecode_probe.jpg)
 
 ### 通过FTDI 3.3V 线（USB 转串口模块）连接
 
@@ -56,11 +56,11 @@
 
 连接器引脚接线如图下图。
 
-![](../../images/console/console_connector.jpg)
+![](../../assets/console/console_connector.jpg)
 
 完整的连线如下。
 
-![](../../images/console/console_debug.jpg)
+![](../../assets/console/console_debug.jpg)
 
 ## 打开控制台
 

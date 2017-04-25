@@ -6,4 +6,4 @@ Use [QGroundControl](../qgc/README.md) and switch to the Setup view. Select the 
 
 After the first beep, turn the propeller on the first ESC swiftly into the correct turn direction. The ESCs will all beep each time one is enumerated. Repeat this step for all motor controllers in the order as shown on the [motor map](airframes-motor-map.md). This step has to be performed only once and does not need to be repeated after firmware upgrades.
 
-![UAVCAN Enumeration Controls (bottom right of image)](../../images/uavcan-qgc-setup.png)
+![UAVCAN Enumeration Controls (bottom right of image)](../../assets/uavcan-qgc-setup.png)

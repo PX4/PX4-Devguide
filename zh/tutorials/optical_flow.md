@@ -17,25 +17,25 @@ And for pure rotations, the integraded_xgyro and integraded_x (respectively inte
 
 An exemplary setup is the PX4Flow and LIDAR-Lite (see picture).
 
-![](../../images/hardware/flow_lidar_attached.jpg)
+![](../../assets/hardware/flow_lidar_attached.jpg)
 
 ### 相机
 
 #### PX4Flow
 The easiest way to calculate the optical flow is to use the PX4Flow board. In order to use the PX4Flow board, just connect it with I2C. The recommended way of mounting it is with the Sonar side facing forwards (see image). In this configuration the parameter `SENS_FLOW_ROT` should be 270 degrees (which is the default). Make sure the the PX4Flow board is well dampened.
 
-![](../../images/hardware/px4flowalignwithpixhawk.jpg)
+![](../../assets/hardware/px4flowalignwithpixhawk.jpg)
 
 In order to ensure good optical flow quality, it is important to focus the camera on the PX4Flow to the desired height of flight. To focus the camera, put an object with text on (e. g. a book) and plug in the PX4Flow into USB and run QGroundControl. Under the settings menu, select the PX4Flow and you should see a camera image. Focus the lens by unscrewing the set screw and loosening and tightening the lens to find where it is in focus.
 
 **注意：如果你的飞行高度超过了3米，相机将聚焦在一个无限远的地方，对于在更高处的飞行，这一点不需要作改变 **
 
-![](../../images/flow/flow_focus_book.png)
+![](../../assets/flow/flow_focus_book.png)
 
 *图：用一本书在你想要飞行的高度上完成光流相机的聚焦，一般在1-3米的范围内。超过3米时，应该将相机聚焦到一个无限远的位置，这样对于在更高处的飞行也适用*
 
 
-![](../../images/flow/flow_focusing.png)
+![](../../assets/flow/flow_focusing.png)
 
 *图8：QGroudControl地面站的px4flow光流界面可以被用来对相机进行聚焦*
 

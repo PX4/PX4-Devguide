@@ -46,7 +46,7 @@ PMSP使用GDB收集堆栈踪迹。目前使用的是 `arm-none-eabi-gdb` ,未来
 
 下面是一个样例输出的截屏（并不是交互性的）
 
-![FlameGraph Example](../../images/flamegraph-example.png)
+![FlameGraph Example](../../assets/flamegraph-example.png)
 
 
 在火焰图上，水平方向表示堆栈帧，每个帧的宽度正比于它被采样的次数。反过来，函数最终被采样的次数正比于执行的持续时间频率。

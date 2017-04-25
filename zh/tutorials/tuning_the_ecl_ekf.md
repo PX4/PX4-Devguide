@@ -306,11 +306,11 @@ Determining which of these is the primary casue requires a methodical approach t
 
 During normal operation, all the test ratios should remain below 0.5 with only occasional spikes above this as shown in the example below from a successful flight:
 
-![Position, Velocity, Height and Magnetometer Test Ratios](../../images/ecl/test_ratios_-_successful.png)
+![Position, Velocity, Height and Magnetometer Test Ratios](../../assets/ecl/test_ratios_-_successful.png)
 
 The following plot shows the EKF vibration metrics for a multirotor with good isolation. The landing shock and the increased vibration during takeoff and landing can be seen. Insifficient data has been gathered with these metrics to provide specific advice on maximum thresholds.
 
-![](../../images/ecl/vibration_metrics_-_successful.png)
+![](../../assets/ecl/vibration_metrics_-_successful.png)
 
 The above vibration metrics are of limited value as the presence of vibration at a frequency close to the IMU sampling frequency \(1kHz for most boards\) will cause  offsets to appear in the data that do not show up in the high frequency vibration metrics. The only way to detect aliasing errors is in their effect on inertial navigation accuracy and the rise in innovation levels.
 
@@ -338,15 +338,15 @@ Bad yaw alignment causes a velocity test ratio that increases rapidly when the v
 
 Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver in conjunction with a rise in innovations. Transient errors due to multipath, obscuration and interference are more common causes. Here is an example of a temporary loss of GPS accuracy where the multi-rotor started drifting away from its loiter location and had to be corrected using the sticks. The rise in [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio\) to greater than 1 indicates the GPs velocity was inconsistent with other measurements and has been rejected.
 
-![](../../images/ecl/gps_glitch_-_test_ratios.png)
+![](../../assets/ecl/gps_glitch_-_test_ratios.png)
 
 This is accompanied with rise in the GPS receivers reported velocity accuracy which indicates that it was likely a GPS error.
 
-![](../../images/ecl/gps_glitch_-_reported_receiver_accuracy.png)
+![](../../assets/ecl/gps_glitch_-_reported_receiver_accuracy.png)
 
 If we also look at the GPS horizontal velocity innovations and innovation variances, we can see the large spike in North velocity innovation that accompanies this GPS 'glitch' event.
 
-![](../../images/ecl/gps_glitch_-_velocity_innovations.png)
+![](../../assets/ecl/gps_glitch_-_velocity_innovations.png)
 
 ### Determination of GPS Data Loss
 

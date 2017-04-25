@@ -1,17 +1,20 @@
-# PX4 Development Guide
+# PX4开发指南#
 
-> **Info** Developers only! This guide is under active development and not intended for consumers.
 
-This guide describes how to work inside the PX4 system architecture. It enables developers to:
+> **须知：** 仅限于开发者！这个指南旨在推动开发而不是为消费者准备。
 
-* Get an [overview of the system](setup/config_initial.md)
-* Access and modify the [PX4 Flight Stack](concept/flight_stack.md) and [PX4 Middleware](concept/middleware.md)
-* Deploy PX4 on Intel [Aero](flight_controller/intel_aero.md), Qualcomm [Snapdragon Flight](flight_controller/snapdragon_flight.md), [Pixhawk](flight_controller/pixhawk.md), [Pixfalcon](flight_controller/pixfalcon.md) and many more autopilots.
 
-## Contributing
+这个指南介绍了如何在PX4系统架构下开发，它使开发人员能够: 
 
-This guide is maintained using GitBook. A local copy can be installed by following the [official instructions](https://toolchain.gitbook.com/setup.html). Before calling `gitbook serve` make sure to have all the plugins installed.
+* 了解[系统的概况](setup/config_initial.md)。 
+* 获取和修改[PX4飞行栈](concept/flight_stack.md)和[PX4中间件](concept/middleware.md)。 
+* 在Intel[Aero](flight_controller/intel_aero.md)、高通[骁龙飞控](flight_controller/snapdragon_flight.md)、[Pixhawk](flight_controller/pixhawk.md)和[Pixfalcon](flight_controller/pixfalcon.md) and many more autopilots)以及其他一些自驾仪上部署PX4。
 
-## License
+## 贡献
 
-The PX4 Development Guide is available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. See our [Github Repository](https://github.com/PX4/Devguide) for more details.
+本指南使用GitBook进行维护。按照[官方说明](https://toolchain.gitbook.com/setup.html)可以安装本地副本。 在调用`gitbook serve`之前，请确保安装了所有插件。
+
+
+## 许可证
+
+PX4开发指南可在 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可证下使用。 有关详细信息，请参阅我们的[Github 仓库](https://github.com/PX4/Devguide)。

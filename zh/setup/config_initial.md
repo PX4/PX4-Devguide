@@ -1,3 +1,7 @@
+---
+translated_commit: https://github.com/PX4/px4_user_guide/blob/e9d8ee6fc72c9d0111c14edaf7c585c0024382aa/book.json 
+---
+
 # 初始配置
 
 在开始开发PX4之前，系统应当以默认配置进行初始配置，以确保硬件已经正确配备和测试。下方视频讲解了 [Pixhawk硬件](../flight_controller/pixhawk.md)与[QGroundControl](../qgc/README.md)的安装过程。 [此链接](../airframes/architecture.md)为已支持的参考机架列表。
@@ -22,7 +26,7 @@ poster="http://image84.360doc.com/DownloadImg/2015/04/1617/52474470_2.jpg" data-
 
 PX4飞行控制栈并不强制要求有遥控系统。也不要求使用单独的开关来选择飞行模式。
 
-### Flying without Radio Control
+### 不用遥控飞行
 
 所有的遥控装置的检查可以通过设置参数`COM_RC_IN_MODE`为` 1 `禁用。这将不允许手动飞行，但是，除了比如flying in之类的飞行模式。
 
