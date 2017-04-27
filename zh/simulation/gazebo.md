@@ -1,75 +1,98 @@
 # Gazebo Simulation
 
-[Gazebo](http://gazebosim.org) is a 3D simulation environment for autonomous robots. It supports standalone use (without ROS) or SITL + ROS.
+官网英文原文地址：http://dev.px4.io/simulation-gazebo.html
 
-{% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
+[Gazebo](http://gazebosim.ort)是一个自主机器人3D仿真环境。它可以与ROS配套用于完整的机器人仿真，也可以单独使用。本文简要介绍单独的使用方法。
 
+{% raw %}
+<video id="my-video" class="video-js" controls preload="auto" width="100%" 
+poster="../pictures/diagrams/PX4-Flight.JPG" data-setup='{"aspectRatio":"16:9"}'>
+  <source src="http://7xvob5.com1.z0.glb.clouddn.com/2-PX4%20Flight%20Stack%20ROS%203D%20Software%20in%20the%20Loop%20Simulation%20(SITL).mp4" type='video/mp4' >
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+  </p>
+</video>
+{% endraw %}
 
 {% mermaid %}
 graph LR;
-  Gazebo-->Plugin;
-  Plugin-->MAVLink;
+  Gazebo-->插件;
+  插件-->MAVLink;
   MAVLink-->SITL;
 {% endmermaid %}
 
-## Installation
 
-The installation requires to install Gazebo and our simulation plugin.
+## 安装
 
-> ** Note ** Gazebo version 7 is recommended (the minimum version is Gazebo 6). If you run Linux and installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
+需要安装Gazebo和我们的仿真插件。
+
+
+> **提示** 推荐使用Gazebo 7（最低使用Gazebo 6）。如果你的Linux操作系统安装的ROS版本早于Jade，请先卸载其绑定的旧版本Gazebo (sudo apt-get remove ros-indigo-gazebo)，因为该版本太老了。
+
 
 ### Mac OS
 
-Mac OS requires Gazebo 7 which in turn requires xquartz and doesn't run without OpenCV.
+Mac OS需要安装Gazebo 7，相应的需要安装xquartz，并且在没有OpenCV时无法运行。
+
+<div class="host-code"></div>
 
 ```sh
 brew cask install xquartz
+
 brew install homebrew/science/opencv
+
 brew install gazebo7
 ```
 
 ### Linux
 
-The PX4 SITL uses the Gazebo simulator, but does not depend on ROS. The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as normal flight code is.
+PX4 SITL使用Gazebo仿真软件，但不依赖ROS。但是也可以像普通飞行代码一样[与ROS连接](../4_Simulation/interfacingto_ros.md)进行仿真。
 
-#### ROS Users
+#### ROS 用户
 
-If you plan to use PX4 with ROS, make sure to follow the [Gazebo version guide for version 7](http://gazebosim.org/tutorials?tut=ros_wrapper_versions#Gazebo7.xseries) for ROS.
+如果你计划与ROS一起用PX4，确保按照[Gazebo 7版本指南](http://gazebosim.org/tutorials?tut=ros_wrapper_versions#Gazebo7.xseries)进行配置。
 
-#### Normal Installation
+#### 正常安装
 
-Follow the [Linux installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&ver=7.0&cat=install) for Gazebo 7.
+按照[Linux安装指导](http://gazebosim.org/tutorials?tut=install_ubuntu&ver=7.0&cat=install) 安装Gazebo 7。
 
-Make sure to have both installed: `gazebo7` and `libgazebo7-dev`.
+确保gazebo7和libgazebo7-dev都装上了。
 
-## Running the Simulation
+## 进行仿真
 
-From within the source directory of the PX4 Firmware run the PX4 SITL with one of the airframes (Quads, planes and VTOL are supported, including optical flow):
+在PX4固件源文件的目录下运行一种机架类型（支持四旋翼、固定翼和垂直起降，含光流）的PX4 SITL。
 
-> **Note** You can use the instructions below to keep Gazebo running and only re-launch PX4.
+> 注意：您可以使用下面的说明来保持Gazebo运行，并且只用重新启动PX4。
 
-### Quadrotor
+### 四旋翼
+
+<div class="host-code"></div>
 
 ```sh
 cd ~/src/Firmware
 make posix_sitl_default gazebo
 ```
 
-### Quadrotor with Optical Flow
+### 四旋翼带光流模块
+
+<div class="host-code"></div>
 
 ```sh
+cd ~/src/Firmware
 make posix gazebo_iris_opt_flow
 ```
 
 ### 3DR Solo
 
 ```sh
+cd ~/src/Firmware
 make posix gazebo_solo
 ```
 
 ![](../../assets/gazebo/solo.png)
 
-### Standard Plane
+### 标准直升机
 
 ```sh
 make posix gazebo_plane
@@ -77,7 +100,7 @@ make posix gazebo_plane
 
 ![](../../assets/gazebo/plane.png)
 
-### Standard VTOL
+### 标准垂直起降飞机
 
 ```sh
 make posix_sitl_default gazebo_standard_vtol
@@ -85,7 +108,7 @@ make posix_sitl_default gazebo_standard_vtol
 
 ![](../../assets/gazebo/standard_vtol.png)
 
-### Tailsitter VTOL
+### 立式垂直起降
 
 ```sh
 make posix_sitl_default gazebo_tailsitter
@@ -97,11 +120,12 @@ make posix_sitl_default gazebo_tailsitter
 
 The current default world is the iris.wold located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds). The default surrounding in the iris.world uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, it is recommended to change the model in iris.model from uneven_ground to asphalt_plane.
 
-## Taking it to the Sky
+## 起飞
 
-> ** Note ** Please refer to the [Installing Files and Code](../setup/dev_env_mac.md) guide in case you run into any errors.
+> **提示** 如果你在运行的时候遇到错误或缺少依赖，确保你是按照[安装文件和代码](../setup/dev_env_mac.md)安装的。
 
-This will bring up the PX4 shell:
+
+接着会启动PX4 shell:
 
 ```sh
 [init] shell id: 140735313310464
@@ -120,17 +144,18 @@ px4 starting.
 pxh>
 ```
 
-> ** Note ** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
+> ** Note ** 右击四旋翼模型可以从弹出的菜单中启用跟随模式，这将会始终保持飞行器在视野中。
+
 
 ![](../../assets/sim/gazebo.png)
 
-The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
+一旦完成初始化，系统将会打印出起始位置(`telem> home: 55.7533950, 37.6254270, -0.00`)。你可以通过输入下面的命令让飞行器起飞：
 
 ```sh
 pxh> commander takeoff
 ```
 
-> ** Note ** Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
+> **提示：** QGroundControl(QGC)支持手柄或拇指手柄。为了使用手柄控制飞行器，要将系统设为手动飞行模式（如 POSCTL，位置控制），并从QGC的选项菜单中启用拇指手柄。
 
 ## Set custom takeoff location
 
@@ -146,28 +171,31 @@ export PX4_HOME_ALT=28.5
 make posix gazebo
 ```
 
-## Starting Gazebo and PX4 separately
+## 单独启动Gazebo和PX4
 
-For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
+对于扩展开发会话(development sessions)，单独启动Gazebo和PX4可能会更为方便，甚至还可以从IDE中启动。
 
-In addition to the existing cmake targets that run `sitl_run.sh` with parameters for px4 to load the correct model it creates a launcher targets named `px4_<mode>` that is a thin wrapper around original sitl px4 app. This thin wrapper simply embeds app arguments like current working directories and the path to the model file.
+除了现有的使用px4参数运行sitl\_run.sh来加载正确的模型的cmake 目标(target)之外，它还创建了一个名为px4\_<mode>的启动器目标(launcher targets)(这是原始sitl px4应用程序的thin wrapper)。 这个thin wrapper只是简单地嵌入应用程序参数，如当前工作目录和模型文件的路径。
 
-### How to use it
-
-  * Run gazebo (or any other sim) server and client viewers via the terminal:
+### 如何使用
+* 通过终端运行gazebo（或任何其他模拟器）服务器(server)和客户端(client)查看器：
 ```
 make posix_sitl_default gazebo_none_ide
 ```
-  * In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
-  * Start the debug session directly from IDE
-      This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
+* 在您的IDE中选择您要调试的px4_ <mode>目标（例如`px4_iris`）
+* 直接从IDE启动调试会话(session)
 
-## Extending and Customizing
+这种方法显着减少了调试周期时间，因为模拟器（例如Gazebo）总是在后台运行，并且您只用重新运行非常light的px4进程。
 
-To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
 
-> ** Note ** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
+## 扩展和自定义
 
-## Interfacing to ROS
+为了扩展和定制仿真接口，编辑`Tools/sitl_gazebo`文件夹中的文件。这些代码可以从Github上的[sitl_gazebo repository](https://github.com/px4/sitl_gazebo)访问。
 
-The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.
+
+> **提示** 构建系统强制检查所有依赖的子模块，包括仿真软件。虽然这些文件夹中文件的改变不会被覆盖，但当这些改变被提交的时候子模块需要在固件库中以新的hash注册。为此，输入`git add Tools/sitl_gazebo` 进行提交。这样仿真软件的GIT hash就会被更新。
+
+
+## 与ROS连接
+
+仿真可以像真实的飞控一样[与ROS连接](../simulation/ros_interface.md)

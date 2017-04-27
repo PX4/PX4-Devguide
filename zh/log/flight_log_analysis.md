@@ -9,8 +9,6 @@
 
 ### 上传
 
-### 上传
-
 用户可直接访问网站并直接上传log: [http://logs.uaventure.com/](http://logs.uaventure.com/)
 
 ![](../../assets/flight_log_analysis/logmuncher.png)

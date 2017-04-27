@@ -22,7 +22,7 @@ cd ..
 ```
 
 
-现在可以通过编译源代码来构建二进制文件。在直接使用硬件前，推荐先[进行仿真](../4_Simulation/basic_simulation.md)。喜欢在图形界面开发环境工作的用户也应该继续完成下面部分。
+现在可以通过编译源代码来构建二进制文件。在直接使用硬件前，推荐先[进行仿真](../simulation/sitl.md)。喜欢在图形界面开发环境工作的用户也应该继续完成下面部分。
 
 
 ###基于NuttX / Pixhawk的硬件板
@@ -80,7 +80,7 @@ cd Firmware
 make posix_rpi2_release # for cross-compiler build
 ```
 
-"mainapp"可执行文件位于目录build_posix_rpi2_release/src/firmware/posix下。 将其复制到RPi（用你的RPi的IP或主机名替换YOUR_PI，关于如何访问你的RPi，查看[介绍](../5_Autopilot-Hardware/raspeberry_pi2.md#developer-quick-start))
+"mainapp"可执行文件位于目录build_posix_rpi2_release/src/firmware/posix下。 将其复制到RPi（用你的RPi的IP或主机名替换YOUR_PI，关于如何访问你的RPi，查看[介绍](../flight_controller/raspberry_pi.md#developer-quick-start))
 
 然后使用以下命令设置你的RPi的IP（或主机名）：
 
@@ -149,6 +149,7 @@ cd /home/pi && ./px4 -d px4.config > px4.log
 支持的Bebop是非常早期的版本，使用前请特别注意。
 
 #### 编译
+
 ```sh
 cd Firmware
 make posix_bebop_default

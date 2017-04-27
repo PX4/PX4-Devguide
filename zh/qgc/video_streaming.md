@@ -1,6 +1,4 @@
 # QGC的视频流
-官网英文原文地址：http://dev.px4.io/advanced-videostreaming-qgc.html
-
 这页面说明如何建立一台带一个镜头(Logitech C920) 的配套工业计算机Odroid C1  ，视频流通过Odroid C1（ODROID　C1）传输到网络计算机和在计算机上的QDC应用显示运行。 
 
 
@@ -16,9 +14,9 @@
 
 按照Odroid C1安装教程，安装Ubuntu 14.04)的运行环境, 在本教程中 [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1). 还说明如何用串口电缆接入Odroid C1（ODROID　C1 ）以及如何建立以太网连接。
 
-## 建立连接替代电源
+## 设置备用电源连接
 
-Odroid C1 能够通过5V DC电源插孔。如果ODROID是安装在无人机的，建议采用焊接两引脚通孔焊接5V直流插孔固定的方法如下图所示。 [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) 。 电源的使用是连接到通过跳线(红色如上面的图片) 的ODROID　C1 的直流电压（5 V）和接地电路连接在示例设置中Odroid C1 的跳线地线针脚上 (如上图黑线)。 
+Odroid C1 能够通过5V DC电源插孔。如果ODROID是安装在无人机的，建议采用焊接两引脚通孔焊接5V直流插孔固定的[方法](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering)，如下图所示。电源与Odroid C1的连接如上图所示，上图中红色的线为5V电压，黑色的线为地线。
 
 
 ![](../../assets/videostreaming/power-pins.png)

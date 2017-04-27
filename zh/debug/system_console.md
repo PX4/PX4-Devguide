@@ -1,7 +1,5 @@
 # PX4系统控制台
 
-官网英文原文地址：http://dev.px4.io/advanced-system-console.html
-
 该系统控制台（System Console）允许访问系统底层，调试输出和分析系统启动流程。访问系统控制台最方便的方式是使用[Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product)，但是也可以使用FTDI线（译者注：如果没有FTDI线，可用常见的USB转串口（TTL）模块代替，效果是一样的）。
 
 ## 系统控制台（System Console） vs. Shell

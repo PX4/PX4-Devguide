@@ -1,43 +1,41 @@
-# STM32 Bootloader
+# STM32 BootLoader
 
-The code for the PX4 bootloader is available from the Github [Bootloader](https://github.com/px4/bootloader) repository.
+PX4 bootloader的代码在Github的 [Bootloader](https://github.com/px4/bootloader) 仓库。
 
-## Supported Boards
+## 支持的飞控板
 
-  * FMUv1 (PX4FMU, STM32F4)
-  * FMUv2 (Pixhawk 1, STM32F4)
-  * FMUv3 (Pixhawk 2, STM32F4)
-  * FMUv4 (Pixracer 3 and Pixhawk 3 Pro, STM32F4)
-  * FMUv5 (Pixhawk 4, STM32F7)
-  * TAPv1 (TBA, STM32F4)
-  * ASCv1 (TBA, STM32F4)
+* FMUv1 \(PX4FMU, STM32F4\)
+* FMUv2 \(Pixhawk 1, STM32F4\)
+* FMUv3 \(Pixhawk 2, STM32F4\)
+* FMUv4 \(Pixracer 3 和 Pixhawk 3 Pro, STM32F4\)
+* FMUv5 \(Pixhawk 4, STM32F7\)
+* TAPv1 \(TBA, STM32F4\)
+* ASCv1 \(TBA, STM32F4\)
 
-## Building the Bootloader
+## 构建Bootloader
 
-```bash
+```
 git clone https://github.com/PX4/Bootloader.git
 cd Bootloader
 make
 ```
 
-After this step a range of elf files for all supported boards are present in the Bootloader directory.
+经过这一步会为所有支持的飞控板生成一系列elf文件，这些文件都在BootLoader目录中。
 
-## Flashing the Bootloader
+## 刷Bootloader
 
-> IMPORTANT: The right power sequence is critical for some boards to allow JTAG / SWD access. Follow these steps exactly as described. The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
+> 重要提醒：对于一些飞控板来说，为了使用JTAG\/SWD接口需要采取正确的供电顺序。正是按照所描述的这些步骤。 下列的说明适用于Blackmagic\/Dronecode探针。其他的JTAG探针可能需要使用类似的不同顺序。尝试刷BootLoader的开发者应该具备相关知识。如果你不知道如何进行这些操作，或许你应该再三考虑你是否确实需要更改BootLoader中的任何东西。
 
-  * Disconnect the JTAG cable
-  * Connect the USB power cable
-  * Connect the JTAG cable
+* 断开JTAG连线
+* 连接USB电源线
+* 连接JTAG
 
-### Black Magic / Dronecode Probe
+## 使用正确的串口
 
-#### Using the right serial port
+* LINUX: `/dev/serial/by-id/usb-Black_Sphere_XXX-if00`
+* MAC OS: 确认使用的是xxx口而不是tty.xxx口: `tar ext /dev/tty.usbmodemDDEasdf`
 
-  * On LINUX: ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
-  * On MAC OS: Make sure to use the cu.xxx port, not the tty.xxx port: ```tar ext /dev/tty.usbmodemDDEasdf```
-
-```bash
+```
 arm-none-eabi-gdb
   (gdb) tar ext /dev/serial/by-id/usb-Black_Sphere_XXX-if00
   (gdb) mon swdp_scan
@@ -49,16 +47,15 @@ arm-none-eabi-gdb
         Transfer rate: 17 KB/sec, 828 bytes/write.
   (gdb) kill
 ```
-
 ### J-Link
 
-These instructions are for the [J-Link GDB server](https://www.segger.com/jlink-gdb-server.html).
+关于 [J-Link GDB server](https://www.segger.com/jlink-gdb-server.html)的教程点进去就行了。
 
-#### Prerequisites
+#### 必备条件
 
-[Download the J-Link software](https://www.segger.com/downloads/jlink#) from the Segger website and install it according to their instructions.
+从Segger官网下载[J-Link](https://www.segger.com/downloads/jlink#) 软件并按照其教程进行安装。
 
-#### Run the JLink GDB server
+#### 运行JLink GDB
 
 FMUv1:
 ```bash
@@ -70,7 +67,7 @@ AeroFC:
 JLinkGDBServer -select USB=0 -device STM32F429AI -if SWD-DP -speed 20000
 ```
 
-#### Connect GDB
+#### 连接GDB
 
 ```bash
 arm-none-eabi-gdb
@@ -78,20 +75,20 @@ arm-none-eabi-gdb
   (gdb) load aerofcv1_bl.elf
 ```
 
-### Troubleshooting
+## 故障检测
 
-If any of the commands above are not found, you are either not using a Blackmagic probe or its software is outdated. Upgrade the on-probe software first.
+如果上述任意一条指令没有找到，要么你就是没有使用Blackmagic探针，或者是软件过时了。首先尝试升级探针软件。
 
-If this error message occurs:
-```Error erasing flash with vFlashErase packet```
+如果出现这个错误： `Error erasing flash with vFlashErase packet`
 
-Disconnect the target (while leaving JTAG connected) and run 
+断开目标连接（同时让JTAG保持连接），进而运行下列指令
 
-```bash
+```
 mon tpwr disable
 swdp_scan
 attach 1
 load tapv1_bl.elf
 ```
-This will disable target powering and attempt another flash cycle.
+
+此举将禁用目标连接的电源并尝试另一个刷写循环。
 

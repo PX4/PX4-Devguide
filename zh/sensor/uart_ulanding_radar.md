@@ -1,29 +1,44 @@
-# uLanding Radar
-
-The uLanding radar is a product from [Aerotenna](http://aerotenna.com/sensors/) and can be used to measure distance to an object.
+# uLanding 雷达
 
 
-## Enable the driver for your hardware
-Currently, this radar device is supported by any hardware which runs the OS NuttX and which can offer a serial port for the
-interface. Since flash space is small on some hardware you may have to enable building the driver for your target yourself.
-To do so add the following line to the cmake config file which corresponds to the target you want to build for:
+uLanding雷达是[Aerotenna](http://aerotenna.com/sensors/)的产品，可用于测量与物体的距离。
+
+
+
+## 启用硬件的驱动程序
+
+
+
+目前，该雷达设备支持任何运行NuttX操作系统的硬件，并以串行端口作为接口。由于某些硬件上的闪存空间很小，因此须自行为目标启用驱动程序。为此，请将以下行添加到cmake配置文件中，并对应于要构建的目标：
+
 ```
 drivers/ulanding
 ```
 
-All config files are located [here.](https://github.com/PX4/Firmware/tree/master/cmake/configs)
+所有配置文件都位于[此处](https://github.com/PX4/Firmware/tree/master/cmake/configs)。
 
-## Start the driver
-You will have to tell the sytem to start the driver for the radar during sytem startup.
-You can simply add the following line to an [extras.txt](../advanced/system_startup.md) file located on your SD card.
+##  启动驱动程序
+
+
+在系统启动期间，须告诉系统启动雷达驱动程序，将以下行添加到位于SD卡上的[extras.txt](../12_Debugging-and-Advanced-Topics/advanced-system-startup.md)文件即可。
+
 ```
 ulanding_radar start /dev/serial_port
 ```
 
-In the upper command you will have to replace the last argument with the serial port you have connected the hardware to.
-If you don't specify any port the driver will use /dev/ttyS2 which is the TELEM2 port on Pixhawk.
+在上面的命令中，您必须将最后一个参数替换为已连接硬件的串行端口。
 
-**Warning**
 
-If you are connecting the radar device to TELEM2 then make sure to set the parameter SYS_COMPANION to 0. Otherwise the serial port
-will be used by a another application and you will get unexpected behaviour.
+
+如果没有指定任何端口，驱动程序将使用`/dev/ttyS2`，这是Pixhawk飞控板上的TELEM2端口。
+
+
+
+**警告**
+
+
+
+如果要将雷达设备连接到TELEM2，请确保将参数`SYS_COMPANION`设置为0。否则串行端口将被另一个应用程序使用，并且实际结果不可控。
+
+ 
+

@@ -1,28 +1,46 @@
-# Lightware SF1XX lidar setup
+# Lightware SF1XX 激光雷达设置
 ----------------------------------------------------
 
-This page shows you how to set up one of following lidars:
- 1. SF10/a
- 2. SF10/b
- 3. SF10/c
- 4. SF11/c
 
-Driver supports only i2c connection.
+本页面向你展示如何去设置一个下面几种类型的激光雷达:
+
+  1. SF10/a
+
+  2. SF10/b
+
+  3. SF10/c
+
+  4. SF11/c
+
+硬件驱动仅适合于飞控板上I2C的连接方式。
+
+
 ![](../../assets/hardware/sf1xx_i2c.jpg)
 
-## Configuring lidar
+
+## 激光雷达设置
 --------------------------------------------------------
 
-You should connect to sensor via usb (it has internal usb to serial converter), run terminal, press `space` and check that i2c address equal to `0x66`.
-Newer sensor versions already have `0x66` preconfigured. Older have `0x55` which conflicts with `rgbled` module.
 
 
-## Configuring PX4
+首先通过USB连接传感器（内含USB转串口），运行终端，并按空格键检查I2C地址是否等于`0x66`。
+
+新版本飞控板已经预先设置为`0x66`，而老版本设置的`0x55`地址与 `rgbled` 模块地址相冲突。
+
+
+
+##  PX4设置
 --------------------------------------------------------
 
-Use the `SENS_EN_SF1XX` parameter to select the lidar model and then reboot.
+通过 `SENS_EN_SF1XX` 参数选择激光雷达模型，然后重启。参数SENS_EN_SF1XX具体定义如下：
+
 * `0` lidar disabled
+
 * `1` SF10/a
+
 * `2` SF10/b
+
 * `3` SF10/c
+
 * `4` SF11/c
+
