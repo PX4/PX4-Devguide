@@ -4,7 +4,7 @@
 
 ## 创建自定义MAVLink消息
 
-这篇教程是假设你已经在 `msg/ca_trajectory.msg` 有了一个[自定义uORB](../6_Middleware-and-Architecture/uorb_messaging.md) `ca_trajectory`
+这篇教程是假设你已经在 `msg/ca_trajectory.msg` 有了一个[自定义uORB](../middleware/uorb.md) `ca_trajectory`
 消息，并且在 `mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h` 有了一个自定义mavlink
 `ca_trajectory` 消息（点击[此处](http://qgroundcontrol.org/mavlink/create_new_mavlink_message)查看如何建立一个自定义mavlink消息以及头文件）。
 

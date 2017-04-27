@@ -11,7 +11,7 @@
 * [PX4 USB Drivers](http://pixhawk.org/static/px4driver.msi) (32/64 bit systems)
 * [CMake](http://pan.baidu.com/s/1c1RgVgk)(这里推荐安装CMake-3.3.2-win32-x86)
 
-现在继续运行： [代码编译](../1_Getting-Started/building_the_code.md)!
+现在继续运行： [代码编译](../setup/building_px4.md)!
 
 ## 新消息!Windows上的Bash
 现在,那些想要在本地运行Bash shell进而按照Linux编译教程进行操作的Windows用户有了新的选择.请参见[BashOnWindows](https://github.com/Microsoft/BashOnWindows).我们已经进行了验证,PX4可以在此环境下成功编译.目前还无法用其刷写固件,但是你可以使用Mission Planner或者QGroundControl地面站刷固件.

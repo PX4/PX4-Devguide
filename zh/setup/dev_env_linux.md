@@ -1,5 +1,5 @@
 # Linux开发环境
-我们使用Debian / Ubuntu LTS 作为Linux的标准支持版本，但是也支持[Cent OS 和 Arch Linux的发行版本](../1_Getting-Started/adcanced_linux.md)
+我们使用Debian / Ubuntu LTS 作为Linux的标准支持版本，但是也支持[Cent OS 和 Arch Linux的发行版本](../setup/dev_env_linux_boutique.md)。
 
 ## 权限设置
 
@@ -21,14 +21,14 @@ sudo usermod -a -G dialout $USER
 
 更新包列表，安装下面编译PX4的依赖包。PX4主要支持的系列：
 
-* NuttX based hardware: [Pixhawk](../5_Autopilot-Hardware/pixhawk.md), [Pixfalcon](../5_Autopilot-Hardware/pixfalcon.md),
-  [Pixracer](../5_Autopilot-Hardware/pixracer.md), [Crazyflie](../5_Autopilot-Hardware/crazyfile.md),
-  [Intel Aero](../5_Autopilot-Hardware/intel_aero.md)
-* Snapdragon Flight hardware: [Snapdragon](../5_Autopilot-Hardware/snapdragon_flight.md)
-* Linux-based hardware: [Raspberry Pi 2/3]([Raspberry Pi 2/3](../5_Autopilot-Hardware/raspeberry_pi2.md)), Parrot Bebop
-* Host simulation: [jMAVSim SITL](../4_Simulation/basic_simulation.md) and [Gazebo SITL](../4_Simulation/gazebo_simulation.md)
+* NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
+  [Pixracer](../flight_controller/pixracer.md), [Crazyflie](../flight_controller/crazyflie2.md),
+  [Intel Aero](../flight_controller/intel_aero.md)
+* Snapdragon Flight hardware: [Snapdragon](../flight_controller/snapdragon_flight.md)
+* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md)、, Parrot Bebop
+* Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
 
-> 提示：安装[Ninja Build System](https://fantasyjxf.gitbooks.io/px4-wiki/content/1_Getting-Started/adcanced_linux.html#Ninja构建系统)可以比make更快进行编译。如果安装了它就会自动选择使用它进行编译。
+> 提示：安装[Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system)可以比make更快进行编译。如果安装了它就会自动选择使用它进行编译。
 
 
 <div class="host-code"></div>
@@ -74,7 +74,7 @@ sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi g
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 
-如果`gcc-arm-none-eabi`版本导致PX4/Firmware编译错误，请参考[the bare metal installation instructions](../1_Getting-Started/adcanced_linux.md#toolchain-installation) 手动安装4.9或者5.4版本的arm-none-eabi工具链。
+如果`gcc-arm-none-eabi`版本导致PX4/Firmware编译错误，请参考[the bare metal installation instructions](../setup/dev_env_linux_boutique.md#toolchain-installation)手动安装4.9或者5.4版本的arm-none-eabi工具链。
 
 ### 骁龙
 
@@ -150,9 +150,10 @@ source ~/.bashrc
 ```
 
 For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
+
 #### 升级ADSP固件
 
-在构建，烧写以及运行代码之前，还需要升级[ADSP固件](../12_Debugging-and-Advanced-Topics/advanced-snapdragon.md#updating-the-adsp-firmware)。
+在构建，烧写以及运行代码之前，还需要升级[ADSP固件](https://github.com/ATLFlight/ATLFlightDocs/blob/master/README.md)。
 
 #### 参考
 
@@ -169,7 +170,7 @@ $HOME/Qualcomm/Hexagon_SDK/2.0/tools/mini-dm/Linux_Debug/mini-dm
 
 ### 树莓派
 
-树莓派开发者应该从下面地址下载树莓派Linux工具链。安装脚本会自动安装交叉编译工具链。如果想要用原生树莓派工具链在树莓派上直接编译，参见[这里](../5_Autopilot-Hardware/raspeberry_pi2.md#native-builds-optional)。
+树莓派开发者应该从下面地址下载树莓派Linux工具链。安装脚本会自动安装交叉编译工具链。如果想要用原生树莓派工具链在树莓派上直接编译，参见[这里](../flight_controller/raspberry_pi.md#native-builds-optional)。
 
 <div class="host-code"></div>
 
@@ -200,4 +201,4 @@ sudo apt-get install android-tools-adb -y` ``
 
 ## 完成
 
-继续，进行[第一次构建](../1_Getting-Started/building_the_code.md)!
+继续，进行[第一次代码编译](../setup/building_px4.md)!

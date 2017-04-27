@@ -1,44 +1,49 @@
-
 # MAVROS
 
-The [mavros](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) ros package enables MAVLink extendable communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.  While MAVRos can be used to communicate with any MAVLink enabled autopilot this documentation will be in the context of enabling communication between the PX4 flight stack and a ROS enabled companion computer.
+[MAVROS](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status)ROS包允许在运行ROS的计算机、支持MAVLink的飞控板以及支持MAVLink的地面站之间通讯。虽然MAVROS可以用来与任何支持MAVLink的飞控板通讯，但是本文仅就PX4飞行栈与运行ROS的协同计算机之间的通讯予以说明。
 
-## Installation
+## 安装
 
-MAVROS can be installed either from source or binary. Developers working with ROS are advised to use the source installation.
+MAVROS可以通过源文件或者二进制文件安装。推荐使用源文件安装。
 
-### Binary installation (Debian / Ubuntu)
+### 二进制文件安装（Debian / Ubuntu）
 
-Since v0.5 that programs available in precompiled debian packages for x86 and amd64 (x86\_64).
-Also v0.9+ exists in ARMv7 repo for Ubuntu armhf.
-Just use `apt-get` for installation:
+从v0.5开始有x86和amd64平台的预编译的Debian安装包，从v0.9版本开始有Ubuntu armhf平台上的ARMv7安装包。
+
+使用`apt-get`安装即可：
+
 ```sh
-$ sudo apt-get install ros-indigo-mavros ros-indigo-mavros-extras
+$ sudo apt-get install ros-indigo-mavros ros-indigo-mavros-extras ros‐indigo‐control‐toolbox
 ```
 
-### Source installation
-**Dependencies**
+### 源文件安装
 
-This installation assumes you have a catkin workspace located at `~/catkin_ws` If you don't create one with: 
+**依赖**
+
+假定你有一个catkin工作空间位于`~/catkin_ws`，如果没有，则创建一个：
+
 ```sh
 $ mkdir -p ~/catkin_ws/src
 $ cd ~/catkin_ws
 $ catkin init
 ```
 
-You will be using the ROS python tools `wstool, rosinstall,and catkin_tools` for this installation. While they may have been installed during your installation of ROS you can also install them with:
+安装MAVROS需要用到ROS python工具`wstool`，`rosinstall`和`catkin_tools`，尽管在安装ROS时可能已经安装过这些工具，但是仍然可以重新安装一遍：
+
 ```sh
 $ sudo apt-get install python-wstool python-rosinstall-generator python-catkin-tools
 ```
 
-Note that while the package can be built using catkin_make the prefered method is using catkin_tools as it is a more versatile and "friendly" build tool.
+注意，尽管可以使用catkin_make构建这些包，但是推荐使用catkin_tools，因为它更加友好，功能更加全面。
 
-If this is your first time using wstool you will need to initialize your source space with:
+如果这是第一次使用wstool，那么需要初始化你的源空间：
+
 ```sh
 $ wstool init ~/catkin_ws/src
 ```
 
-Now you are ready to do the build
+现在准备构建
+
 ```sh
     # 1. get source (upstream - released)
 $ rosinstall_generator --upstream mavros | tee /tmp/mavros.rosinstall
@@ -58,4 +63,5 @@ $ rosdep install --from-paths src --ignore-src --rosdistro indigo -y
 $ catkin build
 ```
 
-> **Note** If you are installing mavros on a raspberry pi, you may get an error related to your os, when running "rosdep install ...". Add "--os=OS_NAME:OS_VERSION " to the rosdep command and replace OS_NAME with your OS name and OS_VERSION with your OS version (e.g. --os=debian:jessie).
+
+> **提示:** 如果在树莓派上安装MAVROS，当运行`rosdep install ...`时可能会遇到和操作系统有关的错误。在rosdep命令中加上`--os=OS_NAME:OS_VERSION `，其中OS_NAME是你的操作系统名称，OS_VERSION是你的操作系统版本（例如：--os=debian:jessie）

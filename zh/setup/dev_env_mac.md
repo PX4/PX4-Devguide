@@ -49,4 +49,4 @@ OS X 预装了CLANG. 因此无需再安装其他的编译器.
 
 最后下载并安装 Qt Creator: [下载](http://www.qt.io/download-open-source/#section-6)
 
-接下来进行 [第一次编译](../1_Getting-Started/building_the_code.md)!
+接下来进行 [第一次代码编译](../setup/building_px4.md)!

@@ -1,28 +1,26 @@
-# Testing and Continuous Integration
+# 测试与持续集成
 
-PX4 offers extensive unit testing and continuous integration facilities. This page provides an overview.
+PX4提供大量的测试和持续集成。 本页提供概述。
 
-## Testing on the local machine
-
-The following command is sufficient to start a minimal new shell with the PX4 posix port running.
+## 在本地机器上测试
+下面这条命令足够打开一个带有运行中的PX4端口的新shell。
 
 ```
 make posix_sitl_shell none
 ```
 
-The shell can then be used to e.g. execute unit tests:
+shell可以用这个例子运行单元测试:
 
 ```
 pxh> tests mixer
 ```
 
-Alternatively it is also possible to run the complete unit-tests right from bash:
+另一种选择也可以从bash中运行以下命令运行完整的单元测试:
 
 ```
 make tests
 ```
 
-## Testing in the Cloud / CI
-
+## 在云端测试和持续集成
 
 
