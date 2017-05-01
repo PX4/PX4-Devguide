@@ -9,8 +9,7 @@
         "github",
         "language-picker",
         "custom-favicon",
-        "bulk-redirect",
-        "redirect-root@git+https://github.com/hamishwillee/gitbook-plugin-redirect-root.git"
+        "bulk-redirect"
     ],
     "pluginsConfig":
     {
@@ -33,10 +32,6 @@
         "bulk-redirect": {
             "basepath": "/",
             "redirectsFile": "redirects.json"
-        },
-
-        "redirect-root": {
-            "url":"https://dev.px4.io/en/"
         }
         
     }
