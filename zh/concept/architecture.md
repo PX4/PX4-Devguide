@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/architecture.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 结构预览
 
 PX4由两个层次组成：一是[飞行控制栈(flight stack)](../concept/flight_stack.md)，即自驾仪的软件解决方案，二是[中间件](../concept/middleware.md)，一种可以支持任意类型自主机器人的通用机器人中间件。

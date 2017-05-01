@@ -1,14 +1,40 @@
-# Various Notes
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/uavcan/notes.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
 
-This is a collection of tips and tricks to solve issues when setting up or working with the UAVCAN.
+# 各种笔记
 
-### Arm but motors not spinning
 
-If the PX4 Firmware arms but the motors do not start to rotate, check the parameter **UAVCAN\_ENABLE**. It should be set to 3 in order to use the ESCs connected via UAVCAN as output. Moreover, if the motors do not start spinning before thrust is increased, check **UAVCAN\_ESC\_IDLT** and set it to one.
+这是一个提示和技巧的集合，以解决在设置或使用UAVCAN时的问题。
 
-### Debugging with Zubax Babel
+### 启动但电机不旋转
 
-A great tool to debug the transission on the UAVCAN bus is the [Zubax Babel](https://docs.zubax.com/zubax_babel) in combination with the [GUI tool](http://uavcan.org/GUI_Tool/Overview/). They can also be used independently from Pixhawk hardware in order to test a node or manually control UAVCAN enabled ESCs.
+如果PX4固件启动，但电机没有开始旋转，请检查参数**UAVCAN_ENABLE**（应将其设置为`3`，以便使用通过UAVCAN连接的ESC作为输出）。此外，如果电机在推力增加之前不开始旋转，请检查参数**UAVCAN_ESC_IDLT，**并将其设置为`1`。
+
+### 使用Zubax Babel进行调试
+
+
+调试UAVCAN总线上的数据传输的一个好方法是[Zubax Babel](https://docs.zubax.com/zubax_babel)与[GUI工具](http://uavcan.org/GUI_Tool/Overview/)的组合使用。它们也可以独立于Pixhawk硬件使用，以便测试节点或手动控制启用了UAVCAN的ESC。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

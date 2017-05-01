@@ -1,12 +1,15 @@
-# 第一个应用程序教程(Hello Sky)
-官网英文原文地址：http://dev.px4.io/tutorial-hello-sky.html
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/tutorials/tutorial_hello_sky.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
 
+# 第一个应用程序教程(Hello Sky)
 本教程详细解释了如何创建一个新的板载应用程序，以及如何运行它。
 
 ##前提条件
 
 - Pixhawk 或者 Snapdragon兼容的自驾仪
-- [安装](../1_Getting-Started/install_toolchain.md)PX4 工具链
+- [安装](../setup/dev_env.md)PX4 工具链
 - Github 账号  ([免费注册](https://github.com/signup/free))
 
 ## 第一步：文件设置 
@@ -154,7 +157,7 @@ Rebooting.
 
 ### 连接到终端
 
-现在通过串口或USB连接到[系统命令行终端](../12_Debugging-and-Advanced-Topics/advanced-system-console.md)（新手玩家第一次进行USB或者串口连接系统命令行终端，请点开上面的链接，按照要求进行系统控制台安装，安装完毕后，输入回车键打开终端（linux）或者命令行工具（windows））。点击回车键能打开shell命令行工具：
+现在通过串口或USB连接到[系统命令行终端](../debug/system_console.md) （新手玩家第一次进行USB或者串口连接系统命令行终端，请点开上面的链接，按照要求进行系统控制台安装，安装完毕后，输入回车键打开终端（linux）或者命令行工具（windows））。点击回车键能打开shell命令行工具：
 
 ```sh
   nsh>
@@ -198,7 +201,7 @@ Rebooting.
 > 为了实现一些功能，应用程序需要读取传感器的输入然后反应到对电机或者舵机的输出中。注意在这里，PX平台真正的硬件抽象的概念在这里体现---当硬件平台或者传感器更新，完全不需要更新你的应用程序或者更新传感器驱动程序。
 
 
-在PX4中，应用程序间发送的单独的消息叫做“topics”，在本教程中，我们关心的话题是“多传感器间的uORB消息机制”（[sensor_combined](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/topics/sensor_combined.h) [topic](../6_Mid)）。这些消息机制使得整个系统能够同步传感器数据。
+在PX4中，应用程序间发送的单独的消息叫做“topics”，在本教程中，我们关心的话题是“多传感器间的uORB消息机制”（[sensor_combined](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/topics/sensor_combined.h) [topic](../middleware/uorb.md)）。这些消息机制使得整个系统能够同步传感器数据。
 
 订阅一个话题是非常迅速并且简洁的：
 

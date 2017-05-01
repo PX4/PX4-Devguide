@@ -1,51 +1,59 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/uavcan/README.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # UAVCAN Introduction
 
 ![](../../assets/uavcan-logo-transparent.png)
 
-[UAVCAN](http://uavcan.org) is an onboard network which allows the autopilot to connect to avionics. It supports hardware like:
+[UAVCAN](http://uavcan.org) 是一种板载网络，允许自驾仪通过该协议连接各类航空电子仪器，其支持的硬件有：
 
-* Motor controllers
-  * [Pixhawk ESC](https://pixhawk.org/modules/pixhawk_esc)
-  * [SV2740 ESC](https://github.com/thiemar/vectorcontrol)
-  * [Zubax Orel 20](https://zubax.com/product/zubax-orel-20)
-* Airspeed sensors
-  * [Thiemar airspeed sensor](https://github.com/thiemar/airspeed)
-* GNSS receivers for GPS and GLONASS
-  * [Zubax GNSS](http://zubax.com/product/zubax-gnss)
+- 电机控制器
+  - [Pixhawk ESC](https://pixhawk.org/modules/pixhawk_esc)
+  - [SV2740 ESC](https://github.com/thiemar/vectorcontrol)
+- 空速管传感器
+  - [Thiemar 空速管](https://github.com/thiemar/airspeed)
+- GPS和GLONASS的GNSS接收器
+  - [Zubax GNSS](http://zubax.com/product/zubax-gnss)
 
-In contrast to hobby-grade devices it uses rugged, differential signalling and supports firmware upgrades over the bus. All motor controllers provide status feedback and implement field-oriented-control \(FOC\).
+相较于爱好级设备而言，UAVCAN使用坚固的差分信号，并通过总线支持固件升级。所有电机控制器ESC均能提供反馈（数值式信号并直接控制电机转速）和转子磁通定向控制FOC应用（FOC专为高性能电机应用而开发，实现高精度矢量控制）。
 
-## Initial Setup
 
-The following instructions provide a step-by-step guide to connect and setup a quadcopter with ESCs and GPS connected via UAVCAN. The hardware of choice is a Pixhawk 2.1, Zubax Orel 20 ESCs and a Zubax GNSS GPS module.
+## 初始设置
 
-### Wiring
 
-The first step is to connect all UAVCAN enabled devices with the flight controller. The following diagram displays how to wire all components. The used Zubax devices all support a redundant CAN interface in which the second bus is optional but increases the robustness of the connection. 
+以下说明提供连接和设置四轴飞行器的分步指南，其中ESC和GPS通过UAVCAN连接。硬件选取：Pixhawk 2.1、Zubax Orel 20 ESCs和Zubax GNSS GPS模块。
+
+
+### 连线
+
+第一步是将所有启用UAVCAN的设备与飞行控制器连接。下图显示如何连接所有组件，所使用的Zubax器件都支持冗余CAN接口，其中第二总线是可选的，但增加了连接的鲁棒性。
 
 ![](../../assets/UAVCAN_wiring.png)
 
-It is important to mention that some devices require an external power supply \(e.g. Zubax Orel 20\) and others can be powered by the CAN connection \(e.g Zubax GNSS\) itself. Please refer to the documentation of your hardware before continuing with the setup.
+值得注意的是，一些设备需要外部电源供电（例如Zubax Orel 20电调需连接动力电池），而其他设备可由CAN供电（例如Zubax GNSS）。请在继续设置前，参考相关硬件文档。
 
-### Firmware Setup
 
-Next, follow the instructions in [UAVCAN Configuration](../uavcan/node_enumeration.md) to activate the UAVCAN functionalities in the firmware. Disconnect your power supply and reconnect it. After the power cycle all UAVCAN devices should be detected which is confirmed by a beeping motor on the Orel 20 ESCs. You can now continue with the general setup and calibration. 
+### 固件设置
 
-Depending on the used hardware, it can be reasonable to perform an update of the firmware on the UAVCAN devices. This can be done via the UAVCAN itself and the PX4 firmware. For more details please refer to the instructions in [UAVCAN Firmware](../uavcan/node_firmware.md).
+然后，按照[UAVCAN配置](../uavcan/node_enumeration.md)中的说明激活固件中的UAVCAN功能。断开电源并重新连接，在重新上电后，所有UAVCAN设备将被检查到，可以通过连接Orel 20 电调上的电机蜂鸣确认。现在可以继续进行常规设置和校准。
 
-## Upgrading Node Firmware
+根据所使用的硬件，在UAVCAN设备上执行固件更新是合理的。这可以通过UAVCAN本身和PX4固件来完成。有关详细信息，请参阅[UAVCAN固件](../uavcan/node_firmware.md)中的说明。
 
-The PX4 middleware will automatically upgrade firmware on UAVCAN nodes if the matching firmware is supplied. The process and requirements are described on the [UAVCAN Firmware](../uavcan/node_firmware.md) page.
+## 升级节点固件
 
-## Enumerating and Configuring Motor Controllers
+当提供匹配的固件时，PX4中间件将自动升级UAVCAN节点上的固件。过程和要求在[UAVCAN 固件](../uavcan/node_firmware.md)页面中有相关描述。
 
-The ID and rotational direction of each motor controller can be assigned after installation in a simple setup routine: [UAVCAN Node Enumeration](../uavcan/node_enumeration.md). The routine can be started by the user through QGroundControl.
 
-## Useful links
+## 编号并配置电机控制器
+
+在简单的设置操作完成后，可以多每个电机控制器ID和旋转方向进行分配：[UAVCAN节点编号](../uavcan/node_enumeration.md)。该操作可以由用户通过QGroundControl启动。
+
+## 有用的链接
 
 * [Homepage](http://uavcan.org)
 * [Specification](http://uavcan.org/Specification)
 * [Implementations and tutorials](http://uavcan.org/Implementations)
-
 
 

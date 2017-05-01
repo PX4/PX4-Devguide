@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/debug/debug_values.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 发送调试的字符串/浮点数对
 
 在软件开发期间通常需要输出单个重要的数字。

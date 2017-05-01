@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/airframes_multicopter/motor_map.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # Airframe Motor Map
 
 下面的电机映射指明`MAIN`输出口和电机的连接关系，同时也给出了螺旋桨的旋转方向。

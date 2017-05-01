@@ -1,5 +1,6 @@
 ---
-translated_commit: https://github.com/PX4/px4_user_guide/blob/e9d8ee6fc72c9d0111c14edaf7c585c0024382aa/book.json 
+translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/config_initial.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ---
 
 # 初始配置

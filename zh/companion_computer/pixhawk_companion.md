@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/companion_computer/pixhawk_companion.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # Pixhawk系列飞控板的协同计算机
 
 官网英文原文地址：http://dev.px4.io/pixhawk-companion-computer.html

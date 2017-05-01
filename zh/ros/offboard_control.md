@@ -1,33 +1,45 @@
-# Offboard Control
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/ros/offboard_control.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
 
-> ** Warning ** Offboard control is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
+# 外部控制
 
-The idea behind off-board control is to be able to control the px4 flight stack using software running outside of the autopilot. This is done through the Mavlink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](http://mavlink.org/messages/common#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](http://mavlink.org/messages/common#SET_ATTITUDE_TARGET) messages.
 
-## Offboard Control Firmware Setup
-There are two things you want to setup on the firmware side before starting offboard development.
+> **警告：** 外部控制是很危险的。在进行外部控制飞行之前，开发者需要保证有充分的准备、测试以及安全预防措施。
 
-### 1. Map an RC switch to offboard mode activation
-To do this, load up the parameters in qGroundcontrol and look for the RC_MAP_OFFB_SW parameter to which you can assign the RC channel you want to use to activate offboard mode. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
 
-Although this step isn't mandatory since you can activate offboard mode using a MAVLink message. We consider this method much safer.
+外部控制允许使用运行在飞控板外部的软件去控制px4飞行控制栈。通过MAVLink协议完成这些操作，特别是[SET_POSITION_TARGET_LOCAL_NED](http://mavlink.org/messages/common#SET_POSITION_TARGET_LOCAL_NED)和[SET_ATTITUDE_TARGET](http://mavlink.org/messages/common#SET_ATTITUDE_TARGET)消息.
 
-### 2. Enable the companion computer interface
-Look for the [SYS_COMPANION](https://pixhawk.org/firmware/parameters#system) parameter and set it to either 921600 (Recommended) or 57600. This parameter will activate a MAVLink stream on the Telem2 port with data streams specific to onboard mode with the appropriate baud rate (921600 8N1 or 57600 8N1). 
+## 外部控制固件设置
 
-For more information on these data streams, look for "MAVLINK_MODE_ONBOARD" in the [source code](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp).
+在开始外部控制开发之前，固件方面需要做两项设置。
 
-## Hardware setup
+### 1. 映射一个RC切换开关为外部模式激活开关
 
-Usually, there are three ways of setting up offboard communication.
+在QGroundcontrol中载入参数，并设置RC_MAP_OFFB_SW参数为想要控制外部模式激活的RC通道。这样做是非常有用的，当在外部模式出现问题时可以切换到位置控制模式。
 
-### 1. Serial radios
-1. One connected to a UART port of the autopilot
-2. One connected to a ground station computer
+尽管这一步并不是强制的，因为通过MAVLink消息同样可以激活外部模式。但是我们认为这种方式更加安全。
 
-Example radios include
-* [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
-* [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
+### 2. 使能协同计算机接口
+
+将参数[SYS_COMPANION](https://pixhawk.org/firmware/parameters#system)设置为921600（推荐）或者57600。这个参数将会以合适的波特率(921600 8N1或者57600 8N1)激活TELEM2端口上的MAVLink消息流，这与内部模式的数据流是相同的。
+
+有关这些数据流的更多信息，参考[source code](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp)中的"MAVLINK_MODE_ONBOARD"。
+
+## 硬件设置
+
+通常，有3种方式配置板外通讯
+
+### 1. 数传
+
+1. 一个连接到飞控板的UART端口
+2. 一个连接到地面站计算机
+
+参考数传包括：
+
+- [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
+- [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
 {% mermaid %}
 graph TD;
@@ -36,18 +48,21 @@ graph TD;
   rad2 --MAVLink--> a[Autopilot];
 {% endmermaid %}
 
-### 2. On-board processor
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter. There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
+### 2. 机载协同计算机
 
-Small low power examples:
-* [Odroid C1+](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143703355573) or [Odroid XU4](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143452239825)
-* [Raspberry Pi](https://www.raspberrypi.org/)
-* [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
+一个挂载在飞行器上的小型计算机，通过串口转USB适配器连接到飞控板。有许多可用的选择，主要取决于除了向飞控板发送指令外还想要进行的额外操作。
 
-Larger high power examples
-* [Intel NUC](http://www.intel.com/content/www/us/en/nuc/overview.html)
-* [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
-* [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
+低性能机载计算机:
+
+- [Odroid C1+](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143703355573) or [Odroid XU4](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143452239825)
+- [Raspberry Pi](https://www.raspberrypi.org/)
+- [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
+
+高性能机载计算机：
+
+- [Intel NUC](http://www.intel.com/content/www/us/en/nuc/overview.html)
+- [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
+- [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
 
 {% mermaid %}
 graph TD;
@@ -55,20 +70,20 @@ graph TD;
   uart --MAVLink--> Autopilot;
 {% endmermaid %}
 
-### 3. On-board processor and wifi link to ROS (***Recommended***)
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. This can be any of the computers from the above section coupled with a WiFi adapter. For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accomodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
+### 3. 机载计算机和到ROS的WIFI连接（***推荐***）
 
-
+一个挂载在飞行器上的小型计算机，通过串口转USB适配器连接到飞控板，同时提供到运行ROS的地面站的WIFI连接。可以是上一部分的任意一个机载计算机，同时再加一个WIFI适配器。例如：Intel NUC D34010WYB有一个PCI Express Half-Mini接口，可以连接一个[Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/)适配器。
 {% mermaid %}
-	graph TD
-	subgraph Ground  Station
-	  gnd[ROS Enabled Computer] --- qgc[qGroundControl]
-	end
-	gnd --MAVLink/UDP--> w[WiFi];
-	qgc --MAVLink--> w;
-	subgraph Vehicle
-	  comp[Companion Computer] --MAVLink--> uart[UART Adapter]
-	uart --- Autopilot
-	end
-	w --- comp
+graph TD
+subgraph Ground  Station
+gnd[ROS Enabled Computer] --- qgc[qGroundControl]
+end
+gnd --MAVLink/UDP--> w[WiFi];
+qgc --MAVLink--> w;
+subgraph Vehicle
+comp[Companion Computer] --MAVLink--> uart[UART Adapter]
+uart --- Autopilot
+end
+w --- comp
 {% endmermaid %}
+

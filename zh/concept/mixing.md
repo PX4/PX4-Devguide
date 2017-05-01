@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/mixing.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 混控和执行器
 
 PX4架构保证了核心控制器中不需要针对机身布局做特别处理。

@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/dev_env_mac.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 安装文件和代码
 第一步就是从Mac应用商店中安装Xcode。安装完成后打开一个新的终端并安装命令行工具：
 
@@ -49,4 +54,4 @@ OS X 预装了CLANG. 因此无需再安装其他的编译器.
 
 最后下载并安装 Qt Creator: [下载](http://www.qt.io/download-open-source/#section-6)
 
-接下来进行 [第一次编译](../1_Getting-Started/building_the_code.md)!
+接下来进行 [第一次代码编译](../setup/building_px4.md)!

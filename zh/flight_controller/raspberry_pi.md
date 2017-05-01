@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/flight_controller/raspberry_pi.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 
 # 树莓派2/3自动驾驶仪
 
