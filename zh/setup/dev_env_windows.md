@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/dev_env_windows.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # Windows安装指南
 
 > **警告：**虽然Windows上的工具链是可用的，但官方并不支持，我们不推荐使用Windows。Windows上固件编译的过程十分缓慢，且不支持新的板子，比如骁龙（Snapdragon Flight），它也不能运行标准机器人软件包，许多开发人员使用原型计算机视觉和导航。开始在Windows上开发之前，可以考虑安装一个双启动环境 [Ubuntu](http://www.ubuntu.com/index_kylin) 。

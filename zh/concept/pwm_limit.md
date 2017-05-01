@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/pwm_limit.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # PWM_limit状态机
 
 PWM_limit 状态机根据解锁前和解锁后的输入控制PWM输出。并在”解锁“、油门加速和解锁信号的断言之间提供延迟。

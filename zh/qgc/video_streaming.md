@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/qgc/video_streaming.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # QGC的视频流
 这页面说明如何建立一台带一个镜头(Logitech C920) 的配套工业计算机Odroid C1  ，视频流通过Odroid C1（ODROID　C1）传输到网络计算机和在计算机上的QDC应用显示运行。 
 

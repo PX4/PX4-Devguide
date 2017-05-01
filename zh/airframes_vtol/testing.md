@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/airframes_vtol/testing.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 垂直起降测试
 
 测试垂直起降飞行器是否正确运行，主要的关注点在转换阶段：

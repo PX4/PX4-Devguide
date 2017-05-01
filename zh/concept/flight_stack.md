@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/flight_stack.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 #  PX4飞行控制栈
 
 PX4飞行控制栈集成了各种自主无人机的制导、导航以及控制算法。支持的机型包括固定翼，多旋翼以及垂直起降飞行器，算法包括姿态估计算法和姿态控制算法。

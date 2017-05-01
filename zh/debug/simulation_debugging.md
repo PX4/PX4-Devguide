@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/debug/simulation_debugging.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # Simulation Debugging
 
 As the simulation is running on the host machine, all the desktop development tools are available.

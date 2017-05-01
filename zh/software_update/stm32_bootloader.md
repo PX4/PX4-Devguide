@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/software_update/stm32_bootloader.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # STM32 BootLoader
 
 PX4 bootloader的代码在Github的 [Bootloader](https://github.com/px4/bootloader) 仓库。

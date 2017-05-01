@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/advanced/parameters_and_configurations.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 参数 & 配置
 
 PX4使用参数子系统（实际就是浮点和整型数据的列表）和文本文件（用来配置Mixer混合器和启动脚本）来储存相关配置。
