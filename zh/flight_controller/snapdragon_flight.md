@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/flight_controller/snapdragon_flight.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 骁龙飞控
 
 骁龙Snapdragon Flight平台是高端的自动驾驶仪 / 机载计算机, 其板载的DSP跑QuRT实时操作系统和PX4飞控代码 ，使用[DSPAL API](https://github.com/ATLFlight/dspal)实现POSIX兼容与.与[Pixhawk](../flight_controller/pixhawk.md) 相比,多添加了一个摄像头,WiFi及其更高端的处理能力和不同的IO接口。

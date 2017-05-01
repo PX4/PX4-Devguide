@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/log/ulog_file_format.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # ULog File Format
 
 Ulog是一种用来记录系统数据的日志格式。这种格式是自解释的，比如，他包含了日志的格式和消息类型。

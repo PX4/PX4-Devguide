@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/advanced/parameter_reference.md
+translated_sha: 
+---
+
 # Parameter Reference
 
 > **Note** **This list is auto-generated from the source code** and contains the most recent parameter documentation (

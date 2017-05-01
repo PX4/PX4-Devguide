@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/uavcan/bootloader_installation.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 安装UAVCAN启动程序
 
 > **警告：** 无人机控制器局域网络（Unmanned Aerial Vehicle Controller Area Network，UAVCAN）设备通常在出厂时就预安装了启动程序。 如果你不对UAVCAN设备进行开发，请不要试图去重复本章的任何操作。

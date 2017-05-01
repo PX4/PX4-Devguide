@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/dev_env_mac.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 安装文件和代码
 第一步就是从Mac应用商店中安装Xcode。安装完成后打开一个新的终端并安装命令行工具：
 

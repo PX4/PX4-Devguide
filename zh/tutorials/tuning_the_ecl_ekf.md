@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/tutorials/tuning_the_ecl_ekf.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 使用 ecl EKF
 
 本教程旨在解答一些关于ECL EKF算法使用的常见问题。

@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/uavcan/node_enumeration.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # UAVCAN枚举与配置
 
 > **提示：** 如下图所示通过勾选`Enable UAVCAN`复选框，将UAVCAN作为默认电机输出总线。或者可以在QGroundControl参数编辑器中将`UAVCAN_ENABLE`参数设置为`3`。 若将其设置为`2`虽然能启用CAN，但电机输出仍为PWM。

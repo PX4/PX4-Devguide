@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/flight_modes.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 飞行模式
 
 **飞行模式**定义了系统在任何给定时间的状态。用户可以使用远程遥控器或者[QGroundControl](../qgc/README.md)地面站来进行飞行模式切换。
