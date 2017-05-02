@@ -31,7 +31,7 @@ poster="http://image84.360doc.com/DownloadImg/2015/04/1617/52474470_2.jpg" data-
 - BEC(3A, 5-5.3V)（使用的电调不具备5V电源输出功能时选用）
 - 3S 2200 mA锂电池
   - Team Orion 3S 11.1V 50 C ([Brack商店](https://www.brack.ch/team-orion-2200mah-11-1v-50c-308340))
-- [Pixracer飞控板 + 电源模块](hardware-pixracer.md)
+- [Pixracer飞控板 + 电源模块](../flight_controller/pixracer.md)
 - [电子空速传感器](http://www.hobbyking.com/hobbyking/store/__62752__HKPilot_32_Digital_Air_Speed_Sensor_And_Pitot_Tube_Set.html)
 
 ## 组装

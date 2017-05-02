@@ -1,6 +1,7 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/tutorials/tutorial_hello_sky.md
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated: true
 ---
 
 # 第一个应用程序教程(Hello Sky)
@@ -393,4 +394,4 @@ If you start QGroundControl, you can check the sensor values in the realtime plo
 
 ## 小结
 
-这个教程包含了所有开发一个PX4应用程序需要的东西。关于uORB消息机制的详细信息参见可以从[这里]((https://github.com/PX4/Firmware/tree/master/msg/))获得 。所有的头文件都已经良好的注释作为参考。
+这个教程包含了所有开发一个PX4应用程序需要的东西。关于uORB消息机制的详细信息参见可以从[这里](https://github.com/PX4/Firmware/tree/master/msg/)获得 。所有的头文件都已经良好的注释作为参考。
