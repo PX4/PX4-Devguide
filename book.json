@@ -6,10 +6,10 @@
         "page-toc-button",
         "mermaid",
         "-mermaid-2",
-        "github",
         "language-picker",
         "custom-favicon",
-        "bulk-redirect"
+        "bulk-redirect",
+        "toolbar@git+https://github.com/hamishwillee/gitbook-plugin-toolbar.git"
     ],
     "pluginsConfig":
     {
@@ -25,13 +25,33 @@
         "language-redirect": {
             "baseurl": "https://dev.px4.io/"
         },
-        "github": {
-            "url": "https://github.com/PX4/Devguide"
-        },
         "favicon": "favicon.ico",
         "bulk-redirect": {
             "basepath": "/",
             "redirectsFile": "redirects.json"
+        },
+        "toolbar": {
+            "buttons":
+            [
+                {
+                    "label": "Bug tracker",
+                    "icon": "fa fa-bug",
+                    "position" : "left",
+                    "url": "https://github.com/PX4/Devguide/issues/new?title=Doc+Bug:+{{title}}&body=DESCRIBE+PROBLEM+WITH+DOCS+HERE%0A%0ABug+Page:+[{{title}}]({{url}})"
+                    
+                },
+                {
+                    "label": "GitHub",
+                    "icon": "fa fa-github",
+                    "url": "https://github.com/PX4/Devguide"
+                },
+                {
+                    "label": "Edit page on github",
+                    "icon": "fa fa-pencil-square-o",
+                    "position" : "left",
+                    "url": "https://github.com/PX4/Devguide/edit/master/{{filepath_lang}}"
+                }
+            ]
         }
         
     }
