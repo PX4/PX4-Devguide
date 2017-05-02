@@ -242,7 +242,7 @@ adb shell reboot
 
 #### 编译
 
-以下命令编译Linux和DSP端的固件。 两个可执行机构通过[muORB](advanced-uorb.md)进行通信。
+以下命令编译Linux和DSP端的固件。 两个可执行机构通过[muORB](../middleware/uorb.md)进行通信。
 
 ```sh
 cd Firmware

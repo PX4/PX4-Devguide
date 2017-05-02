@@ -5,7 +5,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 # Gazebo Simulation
 
-官网英文原文地址：http://dev.px4.io/simulation-gazebo.html
+官网英文原文地址： http://dev.px4.io/simulation-gazebo.html
 
 [Gazebo](http://gazebosim.ort)是一个自主机器人3D仿真环境。它可以与ROS配套用于完整的机器人仿真，也可以单独使用。本文简要介绍单独的使用方法。
 
@@ -52,7 +52,7 @@ brew install gazebo7
 
 ### Linux
 
-PX4 SITL使用Gazebo仿真软件，但不依赖ROS。但是也可以像普通飞行代码一样[与ROS连接](../4_Simulation/interfacingto_ros.md)进行仿真。
+PX4 SITL使用Gazebo仿真软件，但不依赖ROS。但是也可以像普通飞行代码一样[与ROS连接](../simulation/ros_interface.md)进行仿真。
 
 #### ROS 用户
 

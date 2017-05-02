@@ -1,6 +1,7 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/uavcan/node_firmware.md
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated: true
 ---
 
 # UAVCAN 固件升级
@@ -123,7 +124,7 @@ UAVCAN节点的文档命名遵循约定的命名方式，这种命名方式允�
 ### 开始固件升级过程
 
 
-当使用的是 [PX4飞行控制栈](../2_Concepts/flight_stack.md)时, 在`电源配置(Power Config)`部分中启用UAVCAN，并在尝试升级UAVCAN固件之前要重启系统。
+当使用的是 [PX4飞行控制栈](../concept/flight_stack.md)时, 在`电源配置(Power Config)`部分中启用UAVCAN，并在尝试升级UAVCAN固件之前要重启系统。
 
 
 或者可以通过以下方式在NSH上手动启动UAVCAN固件升级进程：

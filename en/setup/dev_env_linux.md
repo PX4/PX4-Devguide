@@ -138,7 +138,7 @@ For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight
 
 #### Update ADSP firmware
 
-Before building, flashing and running code, you'll need to update the [ADSP firmware](advanced-snapdragon.html#updating-the-adsp-firmware).
+Before building, flashing and running code, you'll need to update the [ADSP firmware](../flight_controller/snapdragon_flight_advanced.md#updating-the-adsp-firmware).
 
 #### References
 
@@ -175,7 +175,7 @@ source ~/.profile
 ### Parrot Bebop
 
 Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
-description under [Raspberry Pi hardware](raspberry-pi-hardware).
+description under [Raspberry Pi hardware](../flight_controller/raspberry_pi.md).
 
 Next, install ADB.
 
