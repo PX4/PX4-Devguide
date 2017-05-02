@@ -1,11 +1,12 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/companion_computer/pixhawk_companion.md
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated: true
 ---
 
 # Pixhawk系列飞控板的协同计算机
 
-官网英文原文地址：http://dev.px4.io/pixhawk-companion-computer.html
+官网英文原文地址： http://dev.px4.io/pixhawk-companion-computer.html
 
 无论何种协同计算机（Raspberry Pi, Odroid, Tegra K1），与Pixhawk系列飞控板之间的接口是相同的：它们通过串口连接到Pixhawk上的`TELEM2`，这个端口专用于与协同计算机相连。连接的消息格式是[MAVLink](http://mavlink.org)。
 
@@ -25,7 +26,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 为了能够接收MAVLink消息，协同计算机需要运行一些和串口通讯的软件，最常用的是：
 
-- [MAVROS](../10_Robotics-using-ROS/ros-mavros-installation.md)：ROS
+- [MAVROS](../ros/mavros_installation.md)：ROS
 - [C/C++ example code](https://github.com/mavlink/c_uart_interface_example)：自定义的代码
 - [MAVProxy](http://mavproxy.org)：在串口和UDP之间传输MAVLink
 

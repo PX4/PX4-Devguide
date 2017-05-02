@@ -197,7 +197,7 @@ source ~/.profile
 ### Parrot Bebop
 
 Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the  
-description under [Raspberry Pi hardware](raspberry-pi-hardware).
+description under [Raspberry Pi hardware](../flight_controller/raspberry_pi.md).
 
 Next, install ADB.
 

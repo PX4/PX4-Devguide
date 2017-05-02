@@ -1,6 +1,7 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/sensor/uart_ulanding_radar.md
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated: true
 ---
 
 # uLanding 雷达
@@ -25,7 +26,7 @@ drivers/ulanding
 ##  启动驱动程序
 
 
-在系统启动期间，须告诉系统启动雷达驱动程序，将以下行添加到位于SD卡上的[extras.txt](../12_Debugging-and-Advanced-Topics/advanced-system-startup.md)文件即可。
+在系统启动期间，须告诉系统启动雷达驱动程序，将以下行添加到位于SD卡上的[extras.txt](../advanced/system_startup.md)文件即可。
 
 ```
 ulanding_radar start /dev/serial_port
