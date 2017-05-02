@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/test_and_ci/docker.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # PX4 Docker Containers
 
 Docker containers are available that contain the complete PX4 development toolchain including Gazebo and ROS simulation:

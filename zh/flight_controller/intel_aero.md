@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/flight_controller/intel_aero.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # Intel Aero RTF
 
 The Aero RTF is a UAV development platform. Part of this is the [Intel Aero

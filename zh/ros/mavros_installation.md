@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/ros/mavros_installation.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # MAVROS
 
 [MAVROS](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status)ROS包允许在运行ROS的计算机、支持MAVLink的飞控板以及支持MAVLink的地面站之间通讯。虽然MAVROS可以用来与任何支持MAVLink的飞控板通讯，但是本文仅就PX4飞行栈与运行ROS的协同计算机之间的通讯予以说明。

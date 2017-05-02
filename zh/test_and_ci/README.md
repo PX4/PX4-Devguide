@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/test_and_ci/README.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 测试与持续集成
 
 PX4提供大量的测试和持续集成。 本页提供概述。

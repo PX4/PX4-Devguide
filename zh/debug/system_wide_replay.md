@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/debug/system_wide_replay.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # System-wide Replay
 Based on ORB messages, it's possible to record and replay arbitrary parts of the
 system. For this to work, the new logger needs to be enabled (`SYS_LOGGER` set

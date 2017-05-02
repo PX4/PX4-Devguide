@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/simulation/airsim.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # AirSim仿真
 
 AirSim是一个基于虚幻引擎([Unreal Engine](https://www.unrealengine.com/zh-CN))的开源、跨平台无人机模拟器。它可以使用硬件在环（HITL）或软件在环（SITL）的方式为Pixhawk / PX4提供逼真的物理和视觉仿真。

@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/ros/mavros_offboard.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # MAVROS外部控制例程
 
 > **注意：** 外部控制是危险的。如果在真机上操作，确保可以在出错的时候切换回手动控制。

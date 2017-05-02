@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/tutorials/tutorial_hello_sky.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # 第一个应用程序教程(Hello Sky)
 本教程详细解释了如何创建一个新的板载应用程序，以及如何运行它。
 

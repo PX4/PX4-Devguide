@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/qgc/README.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # QGroundControl
 
 QGroundControl是一个基于PX4自动驾驶仪配置和飞行的应用程序。 并且跨平台支持所有的主流操作系统：

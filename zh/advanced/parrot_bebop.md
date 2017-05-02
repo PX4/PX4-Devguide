@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/advanced/parrot_bebop.md
+translated_sha: 999dd32122118cdd75d02831ff71787a23b2ef84
+---
+
 # Bebop 2 - Advanced
 
 ## FTDI connection

@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/debug/profiling.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # Poor Man's Sampling Profiler
 
 官网英文原文地址：https://dev.px4.io/advanced-profiling.html

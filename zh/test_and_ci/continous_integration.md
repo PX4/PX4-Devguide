@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/test_and_ci/continous_integration.md
+translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+---
+
 # PX4 Continuous Integration
 
 PX4 builds and testing are spread out over multiple continuous integration services. 
