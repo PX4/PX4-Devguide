@@ -55,15 +55,25 @@ Test flights are important for quality assurance. Please upload the logs from th
 * [PX4 Discuss](http://discuss.px4.io/)
 
 ## Weekly Dev Call
+The PX4 Dev Team syncs up on its weekly dev call connect via Uberconference.
 
-The PX4 Dev Team syncs up on its weekly dev call \(connect via [Mumble](http://mumble.info) client\).
-
-* TIME: Tuesday 5PM CET, 11AM EST, 8AM PDT ([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics))
-* Server: sitl01.dronetest.io
-* Port: 64738
-* Password: px4
 * The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
 * Issues and PRs may be labelled "devcall" to flag them for discussion
+
+### Call time
+* Wednesdays
+* 08:00h PST
+* 17:00h Zurich
+
+### Where
+* Uber conference (dial-in or web client)
+* Join the call: www.uberconference.com/lf-dronecode15
+* Dial in number: 415-891-1494
+* No PIN needed
+
+### How to find the event in your calendar
+You can [subscribe to our shared calendar](https://calendar.google.com/calendar/ical/linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com/public/basic.ics) and RSVP
+
 
 
 
