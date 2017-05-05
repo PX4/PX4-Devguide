@@ -91,7 +91,7 @@
   * [PWM / GPIO](sensor_bus/pwm_gpio.md)
   * [UART](sensor_bus/uart.md)
     * [uLanding Radar](sensor/uart_ulanding_radar.md)
-* Debugging and Advanced Topics
+* [Debugging and Advanced Topics](debugging-and-advanced-topics.md)
   * [FAQ](debug/faq.md)
   * [System Console](debug/system_console.md)
   * [System Boot](advanced/system_startup.md)
