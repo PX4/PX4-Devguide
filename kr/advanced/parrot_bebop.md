@@ -1,14 +1,14 @@
-# Bebop 2 - Advanced
+# Bebop 2 - 고급
 
-## FTDI connection
-Follow the instructions to connect to the Parrot Bebop 2 via FTDI.
-* Loosen the two Torx screws (T5) to take off the front cap.
+## FTDI 연결
+다음 절차에 따라서 FTDI를 Parrot Bebop 2에 연결합니다.
+* 2개 Torx 나사(T5)를 풀어서 앞면 캡을 벗깁니다.
 ![](../../assets/hardware/bebop_torx.JPG)
-* Use pins to connect to ground/RX/TX or solder cables onto the connectors.
+* 핀을 사용해서 ground/RX/TX에 연결하거나 커넥터에 케이블을 납땜합니다.
 ![](../../assets/hardware/bebop_serial.JPG)
-* Connect the FTDI cable and run
+* FTDI 케이블을 연결하고 실행
 ```sh
 screen /dev/ttyUSB0 115200
 ```
-to connect to the Bebop.
+Bebop에 연결
 ![](../../assets/hardware/bebop_ftdi.JPG)
