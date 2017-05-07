@@ -4,11 +4,11 @@
 
 ![Matrice 100](../../assets/airframes/multicopter/matrice100/Matrice100.jpg)
 
-## Parts List
+## 부품 목록
 
-  * [DJI Matrice 100](http://store.dji.com/product/matrice-100) Just ESC''s motors, and frame.
+  * [DJI Matrice 100](http://store.dji.com/product/matrice-100) ESC, 모터, 프레임만
 
-## Motor Connections
+## Motor 연결
 
 ![Connections](../../assets/airframes/multicopter/matrice100/Wiring Diagram.jpg)
 
@@ -36,8 +36,9 @@
 
 ## Parameters
 
-* At high throttle the inner loop causes oscillations with default x quad gains. At low throttle, higher gains give a better response, this suggests that some gain scheduling based on the throttle may improve the overall response and this could be implemented in mc_att_control. For now we will just tune it so that there are no oscillations at low or high throttle, and take the bandwidth hit at low throttle.
+
+* 높은 throttle에서 inner loop은 기본 x quad gain을 사용하면 진동이 발생합니다. 낮은 throttle에서 gain을 더 높이면 더 나은 응답성을 제공합니다. throttle 기반의 일부 gain scheduling은 전반적인 응답성이 개선될 수 있고 이는 mc_att_control에서 구현할 수 있습니다. 우선은 낮거나 높은 throttle에서 진동이 없도록 튜닝하고 낮은 throttle에서 bandwidth hit이 발생합니다.
 	* MC_PITCHRATE_P: 0.05
 	* MC_PITCHRATE_D: 0.001
-* The battery has 6 cells instead of the default 3
+* 배터리는 기본 3셀 대신에 6셀로
 	* BAT_N_CELLS: 6
