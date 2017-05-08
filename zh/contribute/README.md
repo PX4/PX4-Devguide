@@ -1,6 +1,6 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/contribute/README.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated_sha: 2acbab69945cdf72e38baea783e7859f51a3a27d
 ---
 
 # 贡献代码
@@ -20,9 +20,9 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 所有的贡献必须在 [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause)许可下进行,并且所有的代码在使用上不能提出任何的，进一步的限制。
 
 
-## Commits and Commit Messages
+## 提交与提交消息
 
-Please use descriptive, multi-paragraph commit messages for all non-trivial changes. Structure them well so they make sense in the one-line summary but also provide full detail.
+请使用描述性的、多段落提交消息进行所有非平凡的更改。 也可以好好组织语言，使其能够在一行的总结中有意义，并且依然提供全面的细节。
 
 ```
 Component: Explain the change in one sentence. Fixes #1234
@@ -48,9 +48,9 @@ Bad: "Add gps_reception_check() function").
 Reported-by: Name <email@px4.io>
 ```
 
-**Use ```git commit -s``` to sign off on all of your commits.** This will add ```signed-off-by:``` with your name and email as the last line.
+**使用 ```git commit -s```来结束你的所有提交。** 这将会添加签名 ```signed-off-by:``` 以您的姓名和电子邮件作为最后一行。
 
-This commit guide is based on best practices for the Linux Kernel and other [projects maintained](https://github.com/torvalds/subsurface/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88-L115) by Linus Torvalds.
+此提交指南是基于Linux内核和Linus Torvalds[维护的其他项目](https://github.com/torvalds/subsurface/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88-L115)的最佳做法。
 
 ## 测试飞行结果
 

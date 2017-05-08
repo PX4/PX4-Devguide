@@ -3,58 +3,66 @@ translated_page: https://github.com/PX4/Devguide/blob/master/en/tutorials/pre_fl
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ---
 
-# Preflight Sensor and EKF Checks
-The commander module performs a number of preflight sensor quality and EKF checks which are controlled by the COM_ARM<> parameters. If these checks fail, the motors are prevented from arming and the following error messages are produced:
+# 飞行前传感器和EKF检查
 
-* PREFLIGHT FAIL: EKF HGT ERROR
- * This error is produced when the IMU and height measurement data are inconsistent.
- * Perform an accel and gyro calibration and restart the vehicle. If the error persists, check the height sensor data for problems.
- * The check is controlled by the COM_ARM_EKF_HGT parameter.
-* PREFLIGHT FAIL: EKF VEL ERROR
- * This error is produced when the IMU and GPS velocity measurement data are inconsistent. 
- * Check the GPS velocity data for un-realistic data jumps. If GPS quality looks OK, perform an accel and gyro calibration and restart the vehicle.
- * The check is controlled by the COM_ARM_EKF_VEL parameter.
-* PREFLIGHT FAIL: EKF HORIZ POS ERROR
- * This error is produced when the IMU and position measurement data (either GPS or external vision) are inconsistent. 
- * Check the position sensor data for un-realistic data jumps. If data quality looks OK, perform an accel and gyro calibration and restart the vehicle.
- * The check is controlled by the COM_ARM_EKF_POS parameter.
-* PREFLIGHT FAIL: EKF YAW ERROR
- * This error is produced when the yaw angle estimated using gyro data and the yaw angle from the magnetometer or external vision system are inconsistent.
- * Check the IMU data for large yaw rate offsets and check the magnetometer alignment and calibration.
- * The check is controlled by the COM_ARM_EKF_POS parameter
-* PREFLIGHT FAIL: EKF HIGH IMU ACCEL BIAS
- * This error is produced when the IMU accelerometer bias estimated by the EKF is excessive. 
- * The check is controlled by the COM_ARM_EKF_AB parameter.
-* PREFLIGHT FAIL: EKF HIGH IMU GYRO BIAS
- * This error is produced when the IMU gyro bias estimated by the EKF is excessive. 
- * The check is controlled by the COM_ARM_EKF_GB parameter.
-* PREFLIGHT FAIL: ACCEL SENSORS INCONSISTENT - CHECK CALIBRATION
- * This error message is produced when the acceleration measurements from different IMU units are inconsistent.
- * This check only applies to boards with more than one IMU.
- * The check is controlled by the COM_ARM_IMU_ACC parameter.
-* PREFLIGHT FAIL: GYRO SENSORS INCONSISTENT - CHECK CALIBRATION
- * This error message is produced when the angular rate measurements from different IMU units are inconsistent.
- * This check only applies to boards with more than one IMU.
- * The check is controlled by the COM_ARM_IMU_GYR parameter.
+commander模块执行多个传感器飞行前的质量检查和EKF检查，这些检查由COM \_ARM<>参数控制。如果这些检查失败，电机将无法解锁，并产生以下错误信息
+
+* PREFLIGHT FAIL: EKF HGT ERROR（高度错误）
+   * 当IMU和高度检测数据不一致时,会产生此错误。
+   * 校准加速度计和陀螺仪后重启飞行器, 如果这个错误任然存在,检查高度传感器数据的问题。
+   * 此检查由参数COM_ARM_EKF_HGT控制。
+* PREFLIGHT FAIL: EKF VEL ERROR（速度错误）
+   * 当IMU和GPS速度检测数据不一致时,会产生此错误。 
+   * 检查GPS速度数据是否存在不切合实际的数据跳跃,如果GPS品质良好，执行加速机和陀螺仪校准，并重新启动飞行器。
+   * 此检查由参数COM_ARM_EKF_VEL控制。
+* PREFLIGHT FAIL: EKF HORIZ POS ERROR（水平位置错误）
+   * 当IMU和位置测量数据（GPS或外部视觉设备）不一致时，会产生此错误。 
+   * 检查位置传感器数据是否存在不切实际的数据跳转。如果数据品质良好，执行加速和陀螺仪校准，并重新启动飞行器。
+   * 此检查由参数COM_ARM_EKF_POS控制
+* PREFLIGHT FAIL: EKF YAW ERROR（偏航角错误）
+   * 当使用陀螺仪数据估计的偏航角和来自磁力计或外部视觉系统的偏航角不一致时，会产生此错误。
+   * 检查IMU数据是否存在大的偏航速率偏移量，并检查磁力计调整和校准。
+   * 此检查由参数COM\_ARM\_EKF\_POS控制。
+* PREFLIGHT FAIL: EKF HIGH IMU ACCEL BIAS（加速度计错误）
+   * 当由EKF估计的IMU加速度计偏差过大时，会产生此错误。
+   * 此检查由参数COM\_ARM\_EKF\_AB控制。
+* PREFLIGHT FAIL: EKF HIGH IMU GYRO BIAS（陀螺仪错误）
+   * 当由EKF估计的IMU陀螺仪偏差过大时，会产生此错误。
+   * 此检查由参数COM\_ARM\_EKF\_GB控制
+* PREFLIGHT FAIL: ACCEL SENSORS INCONSISTENT - CHECK CALIBRATION（加速度不一致）
+   * 当来自不同IMU单元的加速度测量值不一致时，会产生此错误信息。
+   * 此检查仅适用于具有多个IMU的电路板。
+   * 此检查由参数COM\_ARM\_IMU\_ACC控制。
+* PREFLIGHT FAIL: GYRO SENSORS INCONSISTENT - CHECK CALIBRATION（角速度不一致）
+   * 当来自不同IMU单元的角速率测量不一致时，会产生此错误信息。
+   * 此检查仅适用于具有多个IMU的电路板。
+   * 此检查由参数COM_ARM_IMU_GYR 控制。
 
 ##COM_ARM_WO_GPS
-The COM_ARM_WO_GPS parameter controls whether arming is allowed without a GPS signal. This parameter must be set to 0 to allow arming when there is no GPS signal present. Arming without GPS is only allowed if the flight mode selected does not require GPS.
+参数COM_ARM_WO_GPS控制是否允许在没有GPS信号的情况下解锁。当不存在GPS信号时，该参数必须设置为0才允许解锁。只有选择的飞行模式不需要GPS，才允许无GPS的解锁。
+
 ##COM_ARM_EKF_POS
-The COM_ARM_EKF_POS parameter controls the maximum allowed inconsistency between the EKF inertial measurements and position reference (GPS or external vision). The default value of 0.5 allows the differences to be no more than 50% of the maximum tolerated by the EKF and provides some margin for error increase when flight commences.
+参数COM_ARM_EKF_POS控制EKF惯性测量和位置参考（GPS或外部视觉）之间允许的最大不一致度。默认值0.5允许差异不超过EKF允许的最大值的50％，并在飞行开始时提供误差增加的一些余量。
+
 ##COM_ARM_EKF_VEL
-The COM_ARM_EKF_VEL parameter controls the maximum allowed inconsistency between the EKF inertial measurements and GPS velocity measurements. The default value of 0.5 allows the differences to be no more than 50% of the maximum tolerated by the EKF and provides some margin for error increase when flight commences.
+参数COM_ARM_EKF_VEL控制EKF惯性测量和GPS速度测量之间允许的最大不一致度。默认值0.5允许差异不超过EKF允许的最大值的50％，并在飞行开始时提供误差增加的一些余量。
+
 ##COM_ARM_EKF_HGT
-The COM_ARM_EKF_HGT parameter controls the maximum allowed inconsistency between the EKF inertial measurements and height measurement (Baro, GPS, range finder or external vision). The default value of 0.5 allows the differences to be no more than 50% of the maximum tolerated by the EKF and provides some margin for error increase when flight commences.
+参数COM_ARM_EKF_HGT控制EKF惯性测量和高度测量（Baro，GPS，测距仪或外部视觉设备）之间允许的最大不一致度。默认值0.5允许差异不超过EKF允许的最大值的50％，并在飞行开始时提供误差增加的一些余量。
 ##COM_ARM_EKF_YAW
-The COM_ARM_EKF_YAW parameter controls the maximum allowed inconsistency between the EKF inertial measurements and yaw measurement (magnetometer or external vision). The default value of 0.5 allows the differences to be no more than 50% of the maximum tolerated by the EKF and provides some margin for error increase when flight commences.
+参数COM_ARM_EKF_YAW控制EKF惯性测量和偏航测量（磁力计或外部视觉）之间允许的最大不一致度。默认值0.5允许差异不超过EKF允许的最大值的50％，并在飞行开始时提供误差增加的一些余量。
+
 ##COM_ARM_EKF_AB
-The COM_ARM_EKF_AB parameter controls the maximum allowed EKF estimated IMU accelerometer bias. The default value of 0.005 allows for up to 0.5 m/s/s of accelerometer bias.
+参数COM_ARM_EKF_AB控制最大允许的EKF估计IMU加速度计偏差。 默认值0.005允许高达0.5 $m/s^2$的加速度偏差。
+
 ##COM_ARM_EKF_GB
-The COM_ARM_EKF_GB parameter controls the maximum allowed EKF estimated IMU gyro bias. The default value of 0.00087 allows for up to 5 deg/sec of switch on gyro bias.
+参数COM_ARM_EKF_GB控制最大允许的EKF估计IMU陀螺仪偏差。默认值为0.00087允许陀螺仪偏置下的开启高达5度/秒。默认值为0.00087允许陀螺仪高达5度/秒的角速度偏差。
+
 ##COM_ARM_IMU_ACC
-The COM_ARM_IMU_ACC parameter controls the maximum allowed inconsistency in acceleration measurements between the default IMU used for flight control and other IMU units if fitted. 
+参数COM_ARM_IMU_ACC控制默认用于飞行控制的IMU与其他IMU单元（如果适用）之间的加速度测量之间允许的最大不一致度。
+
 ##COM_ARM_IMU_GYR
-The COM_ARM_IMU_GYR parameter controls the maximum allowed inconsistency in angular rate measurements between the default IMU used for flight control and other IMU units if fitted.
+参数COM_ARM_IMU_GYR控制默认用于飞行控制的IMU和其他IMU单元（如果适用）之间的角速率测量之间允许的最大不一致度。
 
 
 

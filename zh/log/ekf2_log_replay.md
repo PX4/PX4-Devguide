@@ -1,6 +1,6 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/log/ekf2_log_replay.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated_sha: 23bf0248facb1ab7d0dd58003c3234a95f479931
 ---
 
 # EKF2 Log Replay
