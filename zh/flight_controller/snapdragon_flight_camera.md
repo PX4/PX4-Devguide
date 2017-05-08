@@ -3,31 +3,31 @@ translated_page: https://github.com/PX4/Devguide/blob/master/en/flight_controlle
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ---
 
-# Using the cameras on the Snapdragon Flight
+# 将相机用于骁龙飞控
 
-The Snapdragon Flight board has a downward facing gray-scale camera which can be used for optical flow based position stabilization and a forward facing RGB camera. The [snap_cam](https://github.com/PX4/snap_cam) repo offers a way to run and stream the different cameras and calculate the optical flow.
+骁龙飞控具有向下的灰度级相机，可用于基于光流的位置稳定和前置RGB相机。  [snap_cam](https://github.com/PX4/snap_cam) 仓库提供了一种运行和流式传输不同相机并计算光流的方法。
 
-Besides a camera, optical flow requires a downward facing distance sensor. Here, the use of the TeraRanger One is discussed.
+除了相机外，光流需要向下的距离传感器。在这里，讨论了TeraRanger One的使用。
 
-## Optical Flow
-The optical flow is computed on the application processor and sent to PX4 through Mavlink.
-Clone and compile the [snap_cam](https://github.com/PX4/snap_cam) repo according to the instructions in its readme.
+## 光流
+光流在应用处理器上计算并通过Mavlink发送到PX4。.
+根据其自述文件中的说明克隆并编译[snap_cam](https://github.com/PX4/snap_cam)
 
-Run the optical flow application as root:
+以root身份运行光流应用程序:
 ```
 optical_flow -n 50 -f 30
 ```
 
-The optical flow application requires IMU Mavlink messages from PX4. You may have to add an additional Mavlink instance to PX4 by adding the following to your `mainapp.config`:
+光流应用需要来自PX4的IMU Mavlink消息. 您可能需要添加一个额外的Mavlink实例到PX4通过添加以下到您的 `mainapp.config`:
 ```
 mavlink start -u 14557 -r 1000000 -t 127.0.0.1 -o 14558
 mavlink stream -u 14557 -s HIGHRES_IMU -r 250
 ```
 
 ### TeraRanger One setup
-To connect the TeraRanger One (TROne) to the Snapdragon Flight, the TROne I2C adapter must be used. The TROne must be flashed with the I2C firmware by the vendor.
+为了连接 TeraRanger One (TROne) 到骁龙飞控, 必须使用TROne I2C适配器，TROne必须使用供应商的I2C固件
 
-The TROne is connected to the Snapdragon Flight through a custom DF13 4-to-6 pin cable. We recommend using connector J15 (next to USB), as all others are already in use (RC, ESCs, GPS). The wiring is as follows:
+THRO通过定制的DF13 4针至6针电缆连接到骁龙飞控. 我们建议使用连接器J15（USB旁边的那个），因为所有其他的已经在使用（RC，ESCs，GPS）。 接线如下:
 
 | 4 pin | <-> | 6 pin |
 | -- | -- | -- |
@@ -35,5 +35,4 @@ The TROne is connected to the Snapdragon Flight through a custom DF13 4-to-6 pin
 | 2 |  | 6 |
 | 3 |  | 4 |
 | 4 |  | 5 |
-
-The TROne must be powered with 10 - 20V.
+THRO必须用10 - 20V的电源供电.
