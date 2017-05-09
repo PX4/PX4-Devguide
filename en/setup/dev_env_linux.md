@@ -70,37 +70,7 @@ Then follow the [toolchain installation instructions](../setup/dev_env_linux_bou
 sudo apt-get install android-tools-adb android-tools-fastboot fakechroot fakeroot unzip xz-utils wget python python-empy -y
 ```
 
-```sh
-git clone https://github.com/ATLFlight/cross_toolchain.git
-```
-
-Get the Hexagon SDK 3.0 from QDN: [https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin)
-
-This will require a QDN login. You will have to register if you do not already have an account.
-
-Now move the following files in the download folder of the cross toolchain as follows:
-
-```sh
-mv ~/Downloads/hexagon-sdk-v3-linux.bin cross_toolchain/downloads
-```
-
-Install the toolchain and SDK like this:
-
-```sh
-cd cross_toolchain
-./installv3.sh
-cd ..
-```
-
-Follow the instructions to set up the development environment. If you accept all the install defaults you can at any time re-run the following to get the env setup. It will only install missing components.
-
-After this the tools and SDK will have been installed to "$HOME/Qualcomm/...". Append the following to your ~/.bashrc:
-
-```sh
-export HEXAGON_SDK_ROOT="${HOME}/Qualcomm/Hexagon_SDK/3.0"
-export HEXAGON_TOOLS_ROOT="${HOME}/Qualcomm/HEXAGON_Tools/7.2.12/Tools"
-export PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-4.9-2014.11-x86_64_arm-linux-gnueabihf_linux/bin:$PATH"
-```
+Please follow the instructions on https://github.com/ATLFlight/cross_toolchain for the toolchain installation.
 
 Load the new configuration:
 
@@ -185,4 +155,3 @@ sudo apt-get install android-tools-adb -y` ``
 ## Finishing Up
 
 Now continue to run the [first build](../setup/building_px4.md)!
-
