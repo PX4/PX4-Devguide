@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The uORB is an asynchronous publish() / subscribe() messaging API used for
+The uORB is an asynchronous `publish()` / `subscribe()` messaging API used for
 inter-thread/inter-process communication.
 
 Look at the [tutorial](../tutorials/tutorial_hello_sky.md) to learn how to use it in C++.
@@ -14,23 +14,27 @@ It is started with `uorb start`. Unit tests can be started with `uorb_tests`.
 
 To add a new topic, you need to create a new `.msg` file in the `msg/`
 directory and add the file name to the `msg/CMakeLists.txt` list. From this,
-there will automatically be C/C++ code generated.
+the needed C/C++ code is automatically generated.
 
 Have a look at the existing `msg` files for supported types. A message can also
 be used nested in other messages.
+
 To each generated C/C++ struct, a field `uint64_t timestamp` will be added. This
 is used for the logger, so make sure to fill it in when publishing the message.
 
 To use the topic in the code, include the header:
+
 ```
 #include <uORB/topics/topic_name.h>
 ```
 
 By adding a line like the following in the `.msg` file, a single message
 definition can be used for multiple independent topic instances:
+
 ```
 # TOPICS mission offboard_mission onboard_mission
 ```
+
 Then in the code, use them as topic id: `ORB_ID(offboard_mission)`.
 
 
@@ -89,9 +93,12 @@ range_m_s2: 78
 scaling: 0
 ```
 
-### uorb top Command
-The command `uorb top` shows the publishing frequency of each topic in
-real-time:
+> **Tip** On NuttX-based systems (Pixhawk, Pixracer, etc) the `listener` command can be called from within the *QGroundControl* MAVLink Console to inspect the values of sensors and other topics. This is a powerful debugging tool because it can be used even when QGC is connected over a wireless link (e.g. when the vehicle is flying). For more information see: [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md).
+
+
+### urb top Command
+
+The command `uorb top` shows the publishing frequency of each topic in real-time:
 
 ```sh
 update: 1s, num topics: 77
@@ -116,6 +123,7 @@ queue size.
 
 
 ## Multi-instance
+
 uORB provides a mechanism to publish multiple independent instances of the same
 topic through `orb_advertise_multi`. It will return an instance index to the
 publisher. A subscriber will then have to choose to which instance to subscribe
@@ -124,13 +132,13 @@ instance).
 Having multiple instances is useful for example if the system has several
 sensors of the same type.
 
-Make sure not to mix `orb_advertise_multi` and `orb_advertise` for the same
-topic.
+Make sure not to mix `orb_advertise_multi` and `orb_advertise` for the same topic.
 
 The full API is documented in
 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp).
 
 ## Troubleshooting and common Pitfalls
+
 The following explains some common pitfalls and corner cases:
 - The topic is not published: make sure the `ORB_ID()`'s of each call match. It
   is also important that `orb_subscribe` and `orb_unsubscribe` are **called from
@@ -143,6 +151,6 @@ The following explains some common pitfalls and corner cases:
 - `orb_check()` and `px4_poll()` will only return true for publications that are
   done after `orb_subscribe()`. This is important for topics that are not
   published regularly. If a subscriber needs the previous data, it should just
-  do an unconditional `orb_copy()` right after `orb_subscribe()` (Note that
+  do an unconditional `orb_copy()` right after `orb_subscribe()` (note that
   `orb_copy()` will fail if there is no advertiser yet).
 
