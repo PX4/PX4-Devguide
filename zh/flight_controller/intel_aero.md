@@ -3,13 +3,13 @@ translated_page: https://github.com/PX4/Devguide/blob/master/en/flight_controlle
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ---
 
-# Intel Aero RTF
+# Intel® Aero Ready to Fly Drone
 
-The Aero RTF is a UAV development platform. Part of this is the [Intel Aero
+The Intel® Aero Ready to Fly Drone is a UAV development platform. Part of this is the [Intel Aero
 Compute Board](https://software.intel.com/en-us/aero/dev-kit), running Linux on
 a Quad-core CPU. The other part is an STM32 microcontroller that is connected
 to it and that runs PX4 on NuttX. These are integrated in the same package on
-the [RTF](https://software.intel.com/en-us/aero/drone-dev-kit), which also includes
+the [Intel® Aero Ready to Fly Drone](https://software.intel.com/en-us/aero/drone-dev-kit), which also includes
 the vision accessory kit.
 
 

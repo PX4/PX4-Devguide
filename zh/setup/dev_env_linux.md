@@ -28,8 +28,8 @@ sudo usermod -a -G dialout $USER
 
 * NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
   [Pixracer](../flight_controller/pixracer.md), [Crazyflie](../flight_controller/crazyflie2.md),
-  [Intel Aero](../flight_controller/intel_aero.md)
-* Snapdragon Flight hardware: [Snapdragon](../flight_controller/snapdragon_flight.md)
+  [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
+* [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
 * Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md)、, Parrot Bebop
 * Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
 
