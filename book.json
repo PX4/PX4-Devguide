@@ -10,8 +10,8 @@
         "custom-favicon",
         "bulk-redirect",
         "toolbar@git+https://github.com/hamishwillee/gitbook-plugin-toolbar.git",
-        "validate-links"
-        "-stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git",
+        "validate-links",
+        "-stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git"
 
     ],
     "pluginsConfig":
