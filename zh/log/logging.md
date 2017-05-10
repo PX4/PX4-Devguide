@@ -90,7 +90,7 @@ https://github.com/PX4/Firmware/issues/4634.
 The traditional and still fully supported way to do logging is using an SD card
 on the FMU. However there is an alternative, log streaming, which sends the
 same logging data via MAVLink. This method can be used for example in cases
-where the FMU does not have an SD card slot (eg. Intel Aero) or simply to avoid
+where the FMU does not have an SD card slot (e.g. Intel® Aero Ready to Fly Drone) or simply to avoid
 having to deal with SD cards. Both methods can be used independently and at the
 same time.
 

@@ -39,7 +39,7 @@
   * [AirSim仿真](simulation/airsim.md)
 * [自驾仪硬件](flight_controller/README.md)
   * [Crazyflie 2.0](flight_controller/crazyflie2.md)
-  * [Intel Aero](flight_controller/intel_aero.md)
+  * [Intel® Aero Ready to Fly Drone](flight_controller/intel_aero.md)
   * [Pixfalcon](flight_controller/pixfalcon.md)
   * [Pixhawk](flight_controller/pixhawk.md)
   * [Pixracer](flight_controller/pixracer.md)
