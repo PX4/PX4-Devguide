@@ -527,12 +527,12 @@ This page lists all supported airframes and types including
 </tr>
 <tr>
  <td style="vertical-align: top;">Generic Quadrotor X config with mount (e.g. gimbal)</td>
- <td style="vertical-align: top;"><p>Maintainer: Leon Mueller <thedevleon></p><p><code>SYS_AUTOSTART</code> = 4002</p><p><b>Specific Outputs:</b><ul><li><b>AUX1</b>: Mount pitch</li><li><b>AUX2</b>: Mount roll</li><li><b>AUX3</b>: Mount yaw</li><li><b>AUX4</b>: Mount mode</li><li><b>AUX5</b>: Mount retract</li></ul></p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Leon Mueller <thedevleon></p><p><code>SYS_AUTOSTART</code> = 4002</p><p><b>Specific Outputs:</b><ul><li><b>AUX1</b>: Mount pitch</li><li><b>AUX2</b>: Mount roll</li><li><b>AUX3</b>: Mount yaw</li><li><b>AUX4</b>: Mount retract</li></ul></p></td>
 
 </tr>
 <tr>
- <td style="vertical-align: top;">Intel Aero RTF</td>
- <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 4070</p></td>
+ <td style="vertical-align: top;">Intel Aero Ready to Fly Drone</td>
+ <td style="vertical-align: top;"><p>Maintainer: Lucas de Marchi</p><p><code>SYS_AUTOSTART</code> = 4070</p></td>
 
 </tr>
 <tr>
