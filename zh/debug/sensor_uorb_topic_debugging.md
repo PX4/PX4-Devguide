@@ -15,4 +15,4 @@ The image below demonstrates *QGroundControl* being used to get the value of the
 
 ![QGC MAVLink Console](../../assets/gcs/qgc_mavlink_console_listener_command.png)
 
-For more information about how to determine what topics are available and how to call `listener` see: [uORB Messaging > Listing Topics and Listening in](../middleware/uorb.md#listing-topics-and-listening-in).
+For more information about how to determine what topics are available and how to call `listener` see: [uORB Messaging > Listing Topics and Listening in](../middleware/uorb.md#列出所有主题并进行监听).

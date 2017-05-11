@@ -47,7 +47,7 @@ the same process as it's later published.
 
 ## Listing Topics and Listening in
 
-> **Note** The 'listener' command is only available on Pixracer (FMUv4) and Linux / OS X.
+> **Note** The `listener` command is only available on Pixracer (FMUv4) and Linux / OS X.
 
 To list all topics, list the file handles:
 

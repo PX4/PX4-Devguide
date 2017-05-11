@@ -102,6 +102,7 @@
   * [参数&配置](advanced/parameters_and_configurations.md)
   * [参考参数](advanced/parameter_reference.md)
   * [自驾仪调试](debug/gdb_debugging.md)
+  * [Sensor/Topic Debugging](debug/sensor_uorb_topic_debugging.md)
   * [仿真调试](debug/simulation_debugging.md)
   * [发送调试的值](debug/debug_values.md)
   * [Profiling](debug/profiling.md)
