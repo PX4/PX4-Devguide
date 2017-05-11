@@ -21,7 +21,7 @@ poster="http://image84.360doc.com/DownloadImg/2015/04/1617/52474470_2.jpg" data-
 ## 部件列表
 
 - TBS Caipirinha飞翼([Eflight商店](http://www.eflight.ch/shop/USER_ARTIKEL_HANDLING_AUFRUF.php?von_suchresultat=true&Ziel_ID=19638&Kategorie_ID=110923))
-- 3D打印的左右电机支架([设计文件](parts/motor_mounts.zip))
+- 3D打印的左右电机支架 (<a href="https://github.com/PX4/Devguide/raw/master/assets/airframes/vtol/caipiroshka/motor_mounts.zip" target="_blank">设计文件</a>)
 - 顺时针8045螺旋桨([Eflight商店](http://www.eflight.ch/shop/USER_ARTIKEL_HANDLING_AUFRUF.php?von_suchresultat=true&Ziel_ID=19532&Kategorie_ID=288))
 - 逆时针8045螺旋桨([Eflight商店](http://www.eflight.ch/shop/USER_ARTIKEL_HANDLING_AUFRUF.php?von_suchresultat=true&Ziel_ID=19533&Kategorie_ID=288))
 - 2个1800 kV 120-180W电机

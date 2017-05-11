@@ -103,6 +103,7 @@
   * [Parameters & Configs](advanced/parameters_and_configurations.md)
   * [Parameter Reference](advanced/parameter_reference.md)
   * [Autopilot Debugging](debug/gdb_debugging.md)
+  * [Sensor/Topic Debugging](debug/sensor_uorb_topic_debugging.md)
   * [Simulation Debugging](debug/simulation_debugging.md)
   * [Sending Debug Values](debug/debug_values.md)
   * [Profiling](debug/profiling.md)

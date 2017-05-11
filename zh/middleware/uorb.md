@@ -91,6 +91,9 @@ range_m_s2: 78
 scaling: 0
 ```
 
+> **Tip** On NuttX-based systems (Pixhawk, Pixracer, etc) the `listener` command can be called from within the *QGroundControl* MAVLink Console to inspect the values of sensors and other topics. This is a powerful debugging tool because it can be used even when QGC is connected over a wireless link (e.g. when the vehicle is flying). For more information see: [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md).
+
+
 ### uorb top Command
 The command `uorb top` shows the publishing frequency of each topic in
 real-time:
