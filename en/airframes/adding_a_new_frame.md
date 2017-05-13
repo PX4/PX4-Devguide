@@ -156,3 +156,9 @@ O:      10000  10000      0 -10000  10000
 S: 0 3      0  20000 -10000 -10000  10000
 
 ```
+
+### Getting the new airframe to show in QGroundControl
+
+The airframe meta data is bundled in the .px4 firmware file (which is a zipped JSON file).
+
+> **Note** Ensure to flash the resulting .px4 file in QGroundControl (custom file option) to load the meta data into the application. The new airframe will then be available in the user interface.
