@@ -1,66 +1,57 @@
-# Modules Reference: Driver
+# 模块参考：驱动
 ## fmu
-Source: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
+源代码: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
 
 
-### Description
-This module is responsible for driving the output and reading the input pins. For boards without a separate IO chip
-(eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the
-px4io driver is used for main ones.
+### 说明
+该模块负责驱动输出以及读取输入引脚。对于没有单独IO芯片的飞控板（例如Pixracer），它使用主通道。在具有IO芯片（例如Pixhawk）的飞控板上，它使用辅助通道，px4io驱动程序使用主通道。
 
-It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
-In addition it does the RC input parsing and auto-selecting the method. Supported methods are:
+它通过监听actuator_controls主题，实现混控以及PWM输出。此外，它还进行RC输入解析并自动选择解析方法。支持的方法有：
 - PPM
 - SBUS
 - DSM
 - SUMD
 - ST24
 
-The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy.
-By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder
-driver.
+该模块通过mode_ *命令配置。 这定义了驱动程序应该占用的前N个引脚。例如，通过使用mode_pwm4，引脚5和6可以用于相机触发驱动或PWM测距仪驱动。
 
-### Implementation
-By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread,
-specified via start flag -t, to reduce latency.
-When running on the work queue, it schedules at a fixed frequency, and the pwm rate limits the update rate of
-the actuator_controls topics. In case of running in its own thread, the module polls on the actuator_controls topic.
-Additionally the pwm rate defines the lower-level IO timer rates.
+### 实现
+默认情况下，模块在工作队列上运行，以减少RAM的使用。 它也可以在独占线程中运行，通过标志-t启用，以减少延迟。
 
-### Examples
-It is typically started with:
+当在工作队列上运行时，它以固定的频率被调用，pwm速率限制actuator_controls主题的更新速率。在独占线程中运行的情况下，模块会轮询actuator_controls主题。此外，pwm速率定义了较低级别的IO定时器速率。
+
+### 示例
+通常以以下方式启动：
 ```
 fmu mode_pwm
 ```
-To drive all available pins.
+驱动所有可用引脚。
 
-Capture input (rising and falling edges) and print on the console: start the fmu in one of the capture modes:
+捕获输入（上升沿和下降沿）并在控制台上打印：以其中一种捕获模式启动fmu：
 ```
 fmu mode_pwm3cap1
 ```
-This will enable capturing on the 4th pin. Then do:
+这将能够在第4个引脚上捕获。 然后：
 ```
 fmu test
 ```
 
-Use the `pwm` command for further configurations (PWM rate, levels, ...), and the `mixer` command to load
-mixer files.
+使用`pwm`命令进一步配置（PWM速率，电平，...），使用`mixer`命令加载混控器文件。
 
-### Usage
+### 用法
 ```
-fmu <command> [arguments...]
- Commands:
-   start         Start the task (without any mode set, use any of the mode_*
-                 cmds)
-     [-t]        Run as separate task instead of the work queue
+fmu <命令> [参数...]
+ 命令:
+   start         启动任务（没有任何模式设置，使用任意mode_ *均可）
+     [-t]        运行在独占线程而不是工作队列上
 
- All of the mode_* commands will start the fmu if not running already
+ 如果fmu不在运行状态，那么所有的mode_*命令都会启动它
 
    mode_gpio
 
-   mode_rcin     Only do RC input, no PWM outputs
+   mode_rcin     只做RC输入，不做PWM输出
 
-   mode_pwm      Select all available pins as PWM
+   mode_pwm      选择所有可用引脚作为PWM输出
 
    mode_pwm1
 
@@ -82,23 +73,23 @@ fmu <command> [arguments...]
 
    mode_pwm_gpio
 
-   bind          Send a DSM bind command (module must be running)
+   bind          发送DSM绑定命令（模块必须正在运行）
 
-   sensor_reset  Do a sensor reset (SPI bus)
-     [<ms>]      Delay time in ms between reset and re-enabling
+   sensor_reset  执行传感器重置(SPI bus)
+     [<ms>]      在重置和重启之间的延迟时间，单位：ms
 
-   peripheral_reset Reset board peripherals
-     [<ms>]      Delay time in ms between reset and re-enabling
+   peripheral_reset 重置所有外设
+     [<ms>]      在重置和重启之间的延迟时间，单位：ms
 
-   i2c           Configure I2C clock rate
-     <bus_id> <rate> Specify the bus id (>=0) and rate in Hz
+   i2c           配置I2C时钟速率
+     <bus_id> <rate> 指定总线id(>=0)和速率，单位：Hz
 
-   test          Test inputs and outputs
+   test          测试输入输出
 
-   fake          Arm and send an actuator controls command
-     <roll> <pitch> <yaw> <thrust> Control values in range [-100, 100]
+   fake          解锁并发送作动器控制指令
+     <roll> <pitch> <yaw> <thrust> 控制量，取值范围：[-100, 100]
 
    stop
 
-   status        print status info
+   status        打印状态信息
 ```
