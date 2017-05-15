@@ -32,3 +32,17 @@ The TROne is connected to the Snapdragon Flight through a custom DF13 4-to-6 pin
 | 4 |  | 5 |
 
 The TROne must be powered with 10 - 20V.
+
+## Camera streaming in QGroundControl
+
+To watch the live stream of either camera `qcamvid` can be used. Run the following command on the Snapdragon Flight to stream the hires camera for 10 minutes without recording with a 720p resolution.
+```
+qcamvid -c hires -r 720p -s -t 600
+```
+Use `qcamvid -h` to have a look at all the options.
+
+To watch the live stream in QGroundControl, it has to be built with gstreamer (see [here](https://github.com/mavlink/qgroundcontrol/tree/master/src/VideoStreaming)).
+
+Once installed and conneted to the Snapdragon Flight's network, the following changes have to be made in QGroundControl.
+
+![](../../assets/videostreaming/QGC_snapdragon_streaming_settings.png)
