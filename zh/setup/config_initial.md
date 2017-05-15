@@ -6,7 +6,7 @@ translated: true
 
 # 初始配置
 
-在开始开发PX4之前，系统应当以默认配置进行初始配置，以确保硬件已经正确配备和测试。下方视频讲解了 [Pixhawk硬件](../flight_controller/pixhawk.md)与[QGroundControl](../qgc/README.md)的安装过程。 [此链接](../airframes/architecture.md)为已支持的参考机架列表。
+在开始开发PX4之前，系统应当以默认配置进行初始配置，以确保硬件已经正确配备和测试。下方视频讲解了 [Pixhawk硬件](../flight_controller/pixhawk.md)与[QGroundControl](../qgc/README.md)的安装过程。 [这里](../airframes/architecture.md)是已支持的参考机架列表。
 
 > **须知：** [下载DAILY BUILD版本的QGroundControl](http://qgroundcontrol.org/downloads)跟随下方的视屏教程来设置你的飞行器。参考[QGroundControl 教程](../qgc/README.md)来了解任务规划，飞行和和参数设置的具体细节。
 
@@ -14,7 +14,7 @@ translated: true
 
 {% raw %}
 <video id="my-video" class="video-js" controls preload="auto" width="100%" 
-poster="http://image84.360doc.com/DownloadImg/2015/04/1617/52474470_2.jpg" data-setup='{"aspectRatio":"16:9"}'>
+poster="https://files.readme.io/218544b-2016-09-14_09_38_55-QGroundControl_v3.0.0.png" data-setup='{"aspectRatio":"16:9"}'>
   <source src="http://7xvob5.com1.z0.glb.clouddn.com/1-PX4%20Autopilot%20Setup%20Tutorial%20Preview.mp4" type='video/mp4' >
   <p class="vjs-no-js">
 
