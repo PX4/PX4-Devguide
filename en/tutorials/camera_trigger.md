@@ -113,7 +113,11 @@ Download/copy the logfile and images from the flight and point QGroundControl to
 
 ![](../../assets/qgc_geotag.png)
 
+You can verify the geotagging using a free online service like [Pic2Map](https://www.pic2map.com/). Note that Pic2Map is limited to only 40 images.
+
 #### Reconstruction :
+
+We use [Pix4D](https://pix4d.com/) for 3D reconstruction.
 
 ![](../../assets/geotag.jpg)
 
