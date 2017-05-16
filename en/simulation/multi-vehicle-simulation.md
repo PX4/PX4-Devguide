@@ -123,3 +123,4 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
         </include>
     </group>
     ```
+To simulate more vehicles, add more blocks with the appropriate changes in the startup files, and launch file's parameters.
