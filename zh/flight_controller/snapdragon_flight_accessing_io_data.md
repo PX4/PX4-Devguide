@@ -3,32 +3,28 @@ translated_page: https://github.com/PX4/Devguide/blob/master/en/flight_controlle
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ---
 
-# Accessing I/O Data
-Low level bus data can be accessed from code running on the aDSP, using a POSIX-like API called DSPAL.  The header files for this API are maintained
-on [github](https://github.com/ATLFlight/dspal) and are commented with Doxygen formatted documentation in each header file.  A description of the API's supported
-and links to the applicable header files is provided below. 
+# 访问I/O数据
+可以使用DSPAL（一种类POSIX的API）从运行在aDSP上的代码中访问低级总线数据。 该API的头文件被维护在[github](https://github.com/ATLFlight/dspal)上，并在每个头文件中使用Doxygen格式的文档进行注释。 API的支持说明以及到对应头文件的链接如下所示：
 
-## API Overview
-* [Serial:](https://github.com/ATLFlight/dspal/blob/master/include/dev_fs_lib_serial.h)
+## API总览
+* [串口:](https://github.com/ATLFlight/dspal/blob/master/include/dev_fs_lib_serial.h)
 * [I2C:](https://github.com/ATLFlight/dspal/blob/master/include/dev_fs_lib_i2c.h)
 * [SPI:](https://github.com/ATLFlight/dspal/blob/master/include/dev_fs_lib_spi.h) 
 * [GPIO:](https://github.com/ATLFlight/dspal/blob/master/include/dev_fs_lib_gpio.h)
-* Timers: [qurt_timer.h](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools)
-* Power Control: [HAP_power.h](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools)
+* 定时器: [qurt_timer.h](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools)
+* 功率控制: [HAP_power.h](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools)
 
-## Sample Source Code
-The unit test code to verify each DSPAL function also represent good examples for how to call the functions.  
-This code is also on [github](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester)
+## 源代码示例
+用于验证每个DSPAL功能的单元测试代码也展示了如何调用函数。
+代码一样托管在[github](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester)
 
-### Setting the Serial Data Rate
-The serial API does not conform to the termios convention for setting data rate through the tcsetattr() function.  IOCTL codes are used instead and are
-described in the header file linked above.
+### 设置串行数据速率
+串行API不符合termios的约定——通过tcsetattr()函数设置数据速率，而是使用IOCTL，在上面链接的头文件中有相关描述。
 
-### Timers
-Additional functions for more advanced aDSP operations are available with the prefix qurt_.  Timer functions, for example, are available with the qurt_timer prefix
-and are documented in the qurt_timer.h header file included with the [Hexagon SDK](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools).
+### 定时器
+更高级的aDSP操作的其它函数可用qurt_前缀。 例如，定时器函数可用qurt_timer前缀，在[Hexagon SDK](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools)中的qurt_timer.h头文件中有相关文档。
 
-### Setting the Power Level
-Using the HAP functions provided by the Hexagon SDK, it is possible to set the power level of the aDSP.  This will often lead to reduced I/O latencies.
-More information on these API's is available in the HAP_power.h header file available in the [Hexagon SDK](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools).
+### 设置功率级别
+使用Hexagon SDK提供的HAP函数，可以设置aDSP的功率级别。这通常会使I/O延迟减少。
+有关这些API的更多信息，请参见[Hexagon SDK](https://developer.qualcomm.com/software/hexagon-dsp-sdk/tools)中的HAP_power.h头文件。
 

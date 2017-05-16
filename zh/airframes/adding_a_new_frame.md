@@ -1,6 +1,6 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/airframes/adding_a_new_frame.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated_sha: f7d0be49d427db1a07e35167f8fe7e861d577b27
 ---
 
 # 添加一个新的机型
@@ -76,15 +76,14 @@ set MIXER wingwing
 set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
-> 注意事项: IMPORTANT REMARK: If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channal assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below). 
+> **注意事项：如果要反转通道，请勿在RC遥控器发射器或者RC1_REV上进行。通道只会在以手动模式飞行时反转，当你切换到一个自驾仪飞行模式时，通道输出仍然会出错(只会反转遥控器信号)。因此，为了正确地分配通道，可以使用PWM_MAIN_REV1(例如通道1)改变PWM的值，或者更改相应混控器中输出缩放值和输出 范围的符号(如下图)。
 
 ### 混控器文件
 
 一个典型的混控器文件会像下面这样：
 
-<aside class="note">
-舵机/电机的接口顺序和这个文件中的混控器顺序一致。
-</aside>
+> **注意：** 舵机/电机的接口顺序和这个文件中的混控器顺序一致。
+
 
 所以MAIN1对应左副翼，MAIN2对应右副翼，MAIN3置空（注意：Z即为空混控器），MAIN4则对应油门（对于一般固定翼配置，保持油门和输出4对应）。
 
@@ -161,3 +160,9 @@ M: 1
 O:      10000  10000      0 -10000  10000
 S: 0 3      0  20000 -10000 -10000  10000
 ```
+
+### 让新的机型在QGroundControl中显示
+
+机型的元数据捆绑在.px4固件文件中（这是一个压缩的JSON文件）。
+
+> **注意：** 确保在QGroundControl（自定义文件选项）中刷写生成的.px4文件以将元数据加载到应用程序中。 然后，新的机型将在用户界面中可用。

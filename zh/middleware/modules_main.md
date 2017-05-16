@@ -1,21 +1,15 @@
 
-# Modules & Commands Reference
-The following pages document the PX4 modules, drivers and commands. They
-describe the provided functionality, high-level implementation overview and how
-to use the command-line interface.
+# 模块 & 命令参考
+下列页面给出了PX4模块、驱动和命令的相关文档。这些文档描述了所提供的功能，高级实现概述以及如何使用命令行界面。
 
-> **Note** **This is auto-generated from the source code** and contains the
-> most recent modules documentation.
+>**Note** **这是从源代码自动生成的**，并且包含最新的模块文档。
 
-It is not a complete list and NuttX provides some additional commands
-as well (such as `free`). Use `help` on the console to get a list of all
-available commands, and in most cases `command help` will print the usage.
+这不是一个完整的列表，并且NuttX提供了一些额外的命令（例如`free`）。 在控制台使用`help`来获取所有可用命令的列表，在大多数情况下，`command help`将给出用法说明。
 
-Since this is generated from source, errors must be reported/fixed
-in the [Firmware](https://github.com/PX4/Firmware) repository.
+因为这份文档是从源代码生成的，所以有任何错误的话需要在[固件](https://github.com/PX4/Firmware)仓库提交/修复。
 
-## Categories
-- [Command](modules_command.md)
-- [Communication](modules_communication.md)
-- [Driver](modules_driver.md)
-- [System](modules_system.md)
+## 分类
+- [命令](modules_command.md)
+- [通讯](modules_communication.md)
+- [驱动](modules_driver.md)
+- [系统](modules_system.md)
