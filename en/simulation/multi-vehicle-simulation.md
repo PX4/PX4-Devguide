@@ -53,6 +53,7 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
 * for each vehicle,
 
   * loads gazebo model and runs PX4 SITL app instance, runs
+  ```
 
                 <arg name="fcu_url" default="udp://:14540@localhost:14557"/>
                 <arg name="gcs_url" value=""/>
@@ -73,8 +74,8 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
                     <arg name="mavlink_udp_port" value="14560"/>
                     <arg name="ID" value="$(arg ID)"/>
                 </include>
-                
-
+    ```
+    
   * runs a mavros node,
     ```
             <include file="$(find mavros)/launch/node.launch">
