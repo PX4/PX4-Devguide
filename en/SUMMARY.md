@@ -25,6 +25,7 @@
   * [HITL Simulation](simulation/hitl.md)
   * [Interfacing to ROS](simulation/ros_interface.md)
   * [AirSim Simulation](simulation/airsim.md)
+  * [Multi-Vehicle Simulation](simulation/multi-vehicle-simulation.md)
 * [Tutorials](tutorials/tutorials.md)
   * [Ground Control Station](qgc/README.md)
   * [Writing an Application](tutorials/tutorial_hello_sky.md)
