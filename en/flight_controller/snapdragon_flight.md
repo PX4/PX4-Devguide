@@ -37,12 +37,18 @@ We use the Snapdragon Flight with the following setup.
 
 #### Components
 * [Quantum Falcon 250](https://hobbyking.com/en_us/quanum-falcon-billet-block-fpv-racing-frame.html?___store=en_us)
-* [Custom mounting plate](https://drive.google.com/file/d/0B2piootk_fIKTVNTYlNULVM5ZG8/view?usp=sharing)
 * 3DR PIXHAWK MINI GPS
 * Trone range finder
 * Spektrum DXe and FPV Racing Serial Receiver (3.3V Autobind)
 
 Details on wiring can be found below.
+
+In order to mount the Snapdragon Flight, our custom board and camera mounts can be used (the optical flow mount is not needed for new generations):
+* [Board mounting plate](https://drive.google.com/open?id=0B2piootk_fIKeHpFX0wyejJkdXc)
+* [Hires camera mount 1](https://drive.google.com/open?id=0B2piootk_fIKdTlkX2c5c2IyNGM)
+* [Hires camera mount 2](https://drive.google.com/open?id=0B2piootk_fIKbkcxZndrQjFrc0E)
+* [Optical flow camera mount](https://drive.google.com/open?id=0B2piootk_fIKcXJRRW9ZT3hDTlk)
+
 
 ## Connectivity
 
