@@ -8,7 +8,15 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 ![](../../assets/airframes/multicopter/qav-r/qav-r.png)
 
-{% youtube %}https://www.youtube.com/watch?v=DgPkecUOjFI{% endyoutube %}
+{% raw %}
+<video id="my-video" class="video-js" controls preload="auto" width="100%" 
+poster="https://cdn.shopify.com/s/files/1/1227/0036/products/IMG_9161_2048x2048.JPG?v=1460685507" data-setup='{"aspectRatio":"16:9"}'>
+  <source src="http://7xvob5.com2.z0.glb.qiniucdn.com/Qav-r%20pos%20hold%20no%20baro%20with%20px4%20lpe%20estimator.mp4" type='video/mp4' >
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
+  </p >
+</video>
+{% endraw %}
 
 ## Parts List
 

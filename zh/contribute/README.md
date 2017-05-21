@@ -1,6 +1,6 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/contribute/README.md
-translated_sha: 2acbab69945cdf72e38baea783e7859f51a3a27d
+translated_sha: 8d53a0221388930d07f44e470505abcd94437835
 ---
 
 # 贡献代码
@@ -15,7 +15,7 @@ translated_sha: 2acbab69945cdf72e38baea783e7859f51a3a27d
 
 我们尝试通过[rebases保持一个线性的历史](https://www.atlassian.com/git/tutorials/rewriting-history)，避免[Github flow](https://guides.github.com/introduction/flow/)。但是由于全球的开发队伍和快速的开发转移，我们会定期分类合并。
 
-为了贡献新的功能，首先[注册Github账户](https://help.github.com/articles/signing-up-for-a-new-github-account/)，然后[fork](https://help.github.com/articles/fork-a-repo/)仓库，[创建新分支](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/)，加入你的改变，最后发送\[pull request\]。当它们通过我们的持续的[综合测试](https://en.wikipedia.org/wiki/Continuous_integration)，更新就会被合并。
+为了贡献新的功能，首先[注册Github账户](https://help.github.com/articles/signing-up-for-a-new-github-account/)，然后[fork](https://help.github.com/articles/fork-a-repo/)仓库，[创建新分支](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/)，加入你的改变，最后发送[pull request](https://help.github.com/articles/using-pull-requests/)。当它们通过我们的持续的[综合测试](https://en.wikipedia.org/wiki/Continuous_integration)，更新就会被合并。
 
 所有的贡献必须在 [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause)许可下进行,并且所有的代码在使用上不能提出任何的，进一步的限制。
 
@@ -54,7 +54,7 @@ Reported-by: Name <email@px4.io>
 
 ## 测试飞行结果
 
-飞行测试对于保证质量非常重要，请从microSD卡上传飞行日志到 [Log Muncher](http://logs.uaventure.com)，并在[论坛](http://groups.google.com/group/px4users)分享连接，附带有书面飞行报告。
+飞行测试对于保证质量非常重要，请从microSD卡上传飞行日志到 [Log Muncher](http://logs.uaventure.com)，并在[PX4 Discuss](http://discuss.px4.io/)分享链接，附带书面飞行报告。
 
 
 ## 论坛和聊天
@@ -65,10 +65,11 @@ Reported-by: Name <email@px4.io>
 
 ## 每周开发电话
 
-PX4团队在每周同时进行电话联系（通过[Mumble](http://mumble.info) client\)客户端连接）。
+PX4开发团队每周都会进行电话会议，同步进度。
 
-* TIME: 19:00h Zurich time, 1 p.m. Eastern Time, 10 a.m. Pacific Standard Time
-* Server: mumble.dronecode.org
-  * Port: 10028
-  * Channel: PX4 Channel
-  * The agenda is announced the same day on the [px4users forum](http://groups.google.com/group/px4users)
+* 时间： 周三 5PM CET, 11AM EST, 8AM PDT \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
+* Uberconference: [www.uberconference.com/lf-dronecode](http://www.uberconference.com/lf-dronecode)
+* 电话： +1 415-891-1494
+* 议程事先在[PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)公布
+* 问题和PRs可能被标记为[devcall](https://github.com/PX4/Firmware/labels/devcall)来进行讨论
+
