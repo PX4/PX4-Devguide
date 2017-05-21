@@ -123,7 +123,7 @@ xPSR: 61000000 BASEPRI: 00000000 CONTROL: 00000000
 EXC_RETURN: ffffffe9
 ```
 
-To decode the hardfault, load the *exact* binary into the debugger:
+To decode the hard fault, load the *exact* binary into the debugger:
 
 <div class="host-code"></div>
 
