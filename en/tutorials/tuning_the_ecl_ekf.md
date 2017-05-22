@@ -23,7 +23,7 @@ Note: The 'fusion time horizon' delay and length of the buffers is determined by
 
 The position and velocity states are adjusted to account for the offset between the IMU and the body frame before they are output to the control loops. The position of the IMU relative to the body frame is set by the EKF2\_IMU\_POS\_X,Y,Z parameters.
 
-The EKF uses the IMU data for state prediction only. IMU data is not used as an observation in the EKF derivation. The algebraic equations for the covariance prediction, state update and covariance update were derived using the Matlab symbolic toolbox and can be found here: [Matlab Symbolic Derivation](https://github.com/PX4/ecl/blob/master/matlab/scripts/Inertial%20Nav%20EKF/GenerateNavFilterEquations.m)
+The EKF uses the IMU data for state prediction only. IMU data is not used as an observation in the EKF derivation. The algebraic equations for the covariance prediction, state update and covariance update were derived using the Matlab symbolic toolbox and can be found here: [Matlab Symbolic Derivation](https://github.com/PX4/ecl/blob/master/matlab/scripts/Inertial Nav EKF/GenerateNavFilterEquations.m)
 
 ## What sensor measurements does it use?
 
@@ -71,6 +71,10 @@ Equivalent Airspeed \(EAS\) data can be used to estimate wind velocity and reduc
 ### Synthetic Sideslip
 
 Fixed wing platforms can take advantage of an assumed sideslip observation of zero to improve wind speed estimation and also enable wind speed estimation without an airspeed sensor. This is enabled by setting the EKF2\_FUSE\_BETA parameter to 1.
+
+### Drag Specific Forces
+
+Multi-rotor platforms can take advantage of the relationship between airspeed and drag force along the X and Y body axes to estimate earth frame wind velocity components. This is enabled by setting bit position 4 in the EKF2\_AID\_MASK parameter to true. The relationship between airspeed and specific force \(IMU acceleration\) along the X and Y body axes is controlled by the the EKF2\_BCOEF\_X and EKF2\_BCOEF\_Y parameters which set the ballistic coefficient for flight in the X and Y directions respectively. See the parameter documentation for further description of  the ballstic coefficient parameters. The amount of specific force observation noise is set by the 
 
 ### Optical Flow
 
@@ -124,7 +128,7 @@ Most of the EKF data is found in the [ekf2\_innovations](https://github.com/PX4/
 
 A python script that automatically generates analysis plots and metadata can be found [here](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/process_logdata_ekf.py). To use this script file, cd to the `Tools/ecl_ekf` directory and enter `python process_logdata_ekf.py <log_file.ulg>`. This saves performance metadata in a csv file named `<log_file>.mdat.csv` and plots in a pdf file named `<log_file>.pdf`.
 
-Multiple log files in a directory can be analysed using the [batch_process_logdata_ekf.py](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_logdata_ekf.py) script. When this has been done, the performance metadata files can be processed to provide a statistical assessment of the estimator performance across the population of logs using the [batch_process_metadata_ekf.py](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_metadata_ekf.py) script.
+Multiple log files in a directory can be analysed using the [batch\_process\_logdata\_ekf.py](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_logdata_ekf.py) script. When this has been done, the performance metadata files can be processed to provide a statistical assessment of the estimator performance across the population of logs using the [batch\_process\_metadata\_ekf.py](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_metadata_ekf.py) script.
 
 ### Output Data
 
