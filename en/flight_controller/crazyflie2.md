@@ -6,7 +6,7 @@ The Crazyflie line of micro quads was created by Bitcraze AB. An overview of the
 
 ## Quick Summary
 
-> ** The main hardware documentation is here: https://wiki.bitcraze.io/projects:crazyflie2:index **
+> **Note** The main hardware documentation is here: https://wiki.bitcraze.io/projects:crazyflie2:index
 
   * Main System-on-Chip: STM32F405RG
     * CPU: 168 MHz ARM Cortex M4 with single-precision FPU
@@ -21,28 +21,20 @@ The Crazyflie line of micro quads was created by Bitcraze AB. An overview of the
 After setting up the PX4 development environment, follow these steps to put the PX4 software on the CF2:
 
 1. Grab source code of the PX4 [Bootloader](https://github.com/PX4/Bootloader)
-
-2. Compile using `make crazyflie_bl`
-
-3. Put the CF2 into DFU mode:
-	- Ensure it is initially unpowered
-	- Hold down button
-	- Plug into computer's USB port
-	- After a second, the blue LED should start blinking and after 5 seconds should start blinking faster
-	- Release button
-
-4. Flash bootloader using dfu-util: `sudo dfu-util -d 0483:df11 -a 0 -s 0x08000000 -D crazyflie_bl.bin` and unplug CF2 when done
-	- If successful, then the yellow LED should blink when plugging in again
-
-5. Grab the [Firmware](https://github.com/PX4/Firmware)
-
-6. Compile with `make crazyflie_default upload`
-
-7. When prompted to plug in device, plug in CF2: the yellow LED should start blinking indicating bootloader mode. Then the red LED should turn on indicating that the flashing process has started.
-
-8. Wait for completion
-
-9. Done! Calibrate via QGC
+1. Compile using `make crazyflie_bl`
+1. Put the CF2 into DFU mode:
+   - Ensure it is initially unpowered
+   - Hold down button
+   - Plug into computer's USB port
+   - After a second, the blue LED should start blinking and after 5 seconds should start blinking faster
+   - Release button
+1. Flash bootloader using dfu-util: `sudo dfu-util -d 0483:df11 -a 0 -s 0x08000000 -D crazyflie_bl.bin` and unplug CF2 when done
+   - If successful, then the yellow LED should blink when plugging in again
+1. Grab the [Firmware](https://github.com/PX4/Firmware)
+1. Compile with `make crazyflie_default upload`
+1. When prompted to plug in device, plug in CF2: the yellow LED should start blinking indicating bootloader mode. Then the red LED should turn on indicating that the flashing process has started.
+1. Wait for completion
+1. Done! Calibrate via QGC
 
 ## Wireless
 
