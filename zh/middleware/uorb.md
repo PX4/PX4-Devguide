@@ -1,6 +1,6 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/middleware/uorb.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated_sha: 18f5865bf5265934136cf5d18f838203c3db2100
 ---
 
 # uORB消息机制
@@ -15,7 +15,7 @@ uORB是一种用于进程间进行异步发布和订阅的消息机制API。
 
 ## 添加新的主题(topic)
 
-要想增加新的topic，你需要在`msg/`目录下创建一个新的`.msg` 文件并在`msg/CMakeLists.txt`下添加该文件。这样C/C++编译器自动在程序中添相应的代码。
+要想增加新的topic，你需要在`msg/`目录下创建一个新的`.msg` 文件并在`msg/CMakeLists.txt`下添加该文件。这样会自动生成所需的C / C ++代码
 
 可以先看看现有的`msg`文件了解下都支持那些类型。一个消息也可以嵌套在其他消息当中。
 
@@ -43,9 +43,9 @@ uORB是一种用于进程间进行异步发布和订阅的消息机制API。
 
 一个主题只能由同一个进程进行公告, 并作为其之后的发布(publish).
 
-## 列出所有主题并进行监听
+## 列出主题并进行监听
 
-`接收者(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
+> **Note** `监听(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
 
 要列出所有主题, 先列出文件句柄:
 
@@ -95,8 +95,7 @@ scaling: 0
 
 
 ### uorb top Command
-The command `uorb top` shows the publishing frequency of each topic in
-real-time:
+The command `uorb top` shows the publishing frequency of each topic in real-time:
 
 ```sh
 update: 1s, num topics: 77
