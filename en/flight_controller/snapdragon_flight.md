@@ -33,7 +33,8 @@ More information about the Snapdragon Flight platform is at [Snapdragon-Flight-D
 
 We use the Snapdragon Flight with the following setup.
 
-![](../../assets/hardware/snapdragon-setup.JPG)
+![](../../assets/hardware/snapdragon-setup_1.JPG)
+![](../../assets/hardware/snapdragon-setup_4.JPG)
 
 #### Components
 * [Quantum Falcon 250](https://hobbyking.com/en_us/quanum-falcon-billet-block-fpv-racing-frame.html?___store=en_us)
@@ -43,11 +44,23 @@ We use the Snapdragon Flight with the following setup.
 
 Details on wiring can be found below.
 
-In order to mount the Snapdragon Flight, our custom board and camera mounts can be used (the optical flow mount is not needed for new generations):
-* [Board mounting plate](https://drive.google.com/open?id=0B2piootk_fIKeHpFX0wyejJkdXc)
-* [Hires camera mount 1](https://drive.google.com/open?id=0B2piootk_fIKdTlkX2c5c2IyNGM)
-* [Hires camera mount 2](https://drive.google.com/open?id=0B2piootk_fIKbkcxZndrQjFrc0E)
+In order to mount the Snapdragon Flight, our custom board and camera mounts can be used (the optical flow camera mount is not needed for newer generation boards):
+* [Board mounting plate, for  5mm dampers](https://drive.google.com/open?id=0B2piootk_fIKZ3YyRXQzR1A0ejQ)
+* [Board mounting plate, for  7mm dampers](https://drive.google.com/open?id=0B2piootk_fIKUUYzMEd6WWxmNnM)
+* [Hires camera mount, part 1](https://drive.google.com/open?id=0B2piootk_fIKdTlkX2c5c2IyNGM)
+* [Hires camera mount, part 2](https://drive.google.com/open?id=0B2piootk_fIKbkcxZndrQjFrc0E)
 * [Optical flow camera mount](https://drive.google.com/open?id=0B2piootk_fIKcXJRRW9ZT3hDTlk)
+
+To assemble the hires camera mount, additional screws (M2x6 or M1.6x6 should fit) have to be used.
+
+This particular setup uses vibration dampers with a 7mm mounting diameter which are similar to [these](https://hobbyking.com/en_us/vibration-damping-ball-50gram-8-pcs-bag.html). In addition, the following things are needed:
+* Screws, M3x12
+* O-rings, 3mm inner diameter
+* M3 washers, ~9mm for the inside
+* M3 washers, ~12mm for the outside
+
+![](../../assets/hardware/snapdragon-setup_5.JPG)
+![](../../assets/hardware/snapdragon-setup_3.JPG)
 
 
 ## Connectivity
