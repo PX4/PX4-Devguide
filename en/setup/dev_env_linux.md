@@ -34,6 +34,9 @@ sudo apt-get install python-argparse git-core wget zip \
     python-empy qtcreator cmake build-essential genromfs -y
 # simulation tools
 sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
+# required python packages
+sudo apt-get install python-pip
+sudo -H pip install pyserial empy pandas jinja2
 ```
 
 ### NuttX based hardware
