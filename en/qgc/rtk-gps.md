@@ -12,12 +12,9 @@ The datalink should typically be able to handle an uplink rate of 300 bytes per 
 
 ### Automatic Configuration
 
-Both QGroundControl and the autopilot firmware share the same [PX4 GPS driver stack](https://github.com/PX4/GpsDrivers)
+Both QGroundControl and the autopilot firmware share the same [PX4 GPS driver stack](https://github.com/PX4/GpsDrivers). In practice, this means that support for new protocols and/or messages only need to be added to one place.
 
-When using UBlox M8P modules, they will be automatically setup up to send and receive the correct messages over the UART or USB, depending on where the module is connected (to QGroundControl or the autopilot)
-
-> **Note** : When using UBlox M8P modules **with the TX line from the flight controller connected to the GPS module's RX**, the PX4 GPS driver will automatically setup up the receiver module to send and receive the correct messages over the UART. This is also necessary to stream RTCM corrections from the autopilot to the GNSS receiver.
-
+When using UBlox M8P modules, they will be automatically setup up to send and receive the correct messages over the UART or USB, depending on where the module is connected (to QGroundControl or the autopilot.) No further configuration using U-Center is necessary.
 
 ### RTCM Messages
 
@@ -28,12 +25,21 @@ QGroundControl configures the RTK base station to output the following RTCM3.2 f
 **1087** - Full GLONASS pseudo-ranges, carrier phases, Doppler and signal strength (high
 resolution)
 **1127** -  Full BeiDou pseudo-ranges, carrier phases, Doppler and signal strength (high resolution)
-**1097** - Full Galileo pseudo-ranges, carrier phases, Doppler and signal strength (high resolution)
+**1097** - Full Galileo pseudo-ranges, carrier phases, Doppler and signal strength (high resolution) **Only supported with M8P Firmware Version 3.01 and above. See section below on firmware updates**
+**1127** -  Full BeiDou pseudo-ranges, carrier phases, Doppler and signal strength (high resolution)
+
+**TODO : QGC doesn't configure the Galileo message yet -- needs an update**
 
 ### Uplink Datarate
 
 The raw RTCM messages from the base are packed into a MAVLink `GPS_RTCM_DATA` message and sent over the datalink. The length of each MAVLink message is 182 bytes, and usually
 
-The Base Position message (1005) is of length 22 bytes, while the others are all of variable length depending on the satellites visible and the number of signals from the satellite (only 1 for L1 units like M8P). Since at a given time, the maximum number of satellites visible from any single constellation is 12, the RTCM messages are around 120 bytes each. Therefore under real-world conditions, an uplink rate of 300 bps is sufficient  
+The Base Position message (1005) is of length 22 bytes, while the others are all of variable length depending on the satellites visible and the number of signals from the satellite (only 1 for L1 units like M8P). Since at a given time, the _maximum_ number of satellites visible from any single constellation is 12, the RTCM messages are around 120 bytes each. Under real-world conditions, an uplink rate of 300 bps is sufficient.
+
+HOWEVER - 
+
+
 
 ## Drotek Tiny XXL Example 
+
+## HEX/ProfiCNC Here+ Example
