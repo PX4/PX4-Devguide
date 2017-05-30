@@ -39,6 +39,7 @@
   * [Telemetry](tutorials/telemetry.md)
   * [Sensor Thermal Compensation](tutorials/sensor_thermal_calibration.md)
   * [Land Detector](tutorials/land_detector.md)
+  * [RTK GPS](qgc/rtk-gps.md)
 * [Autopilot Hardware](flight_controller/README.md)
   * [Crazyflie 2.0](flight_controller/crazyflie2.md)
   * [Intel® Aero Ready to Fly Drone](flight_controller/intel_aero.md)
@@ -124,8 +125,4 @@
   * [Telemetry Wifi](advanced/telemetry_wifi.md)
 * [Software Update](software_update/README.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
-* [Testing and CI](test_and_ci/README.md)
-  * [Docker Containers](test_and_ci/docker.md)
-  * [Continuous Integration](test_and_ci/continous_integration.md)
-    * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
-  * [Maintenance](test_and_ci/maintenance.md)
+
