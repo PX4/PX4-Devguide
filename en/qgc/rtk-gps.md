@@ -8,13 +8,13 @@ PX4 currently ONLY supports the single-frequency (L1) UBlox M8P based GNSS recei
 
 Two M8P GPS modules (see below for example setups) and a datalink is required to set up RTK with PX4. The unit on the ground (static position) is called the Base, and the in-air unit is called the Rover. The Base unit connects to QGroundControl and uses the datalink to the vehicle to stream RTCM corrections to it (using the MAVLink `GPS_RTCM_DATA` message). On the autopilot, the MAVLink packets are unpacked and sent to the GNSS unit where they are processed to get the RTK solution.
 
-The datalink should typically be able to handle an uplink rate of 300 bytes per second. See the [Uplink Datarate]() section below for more.
+The datalink should typically be able to handle an uplink rate of 300 bytes per second. See the Uplink Datarate section below for more.
 
 ### Automatic Configuration
 
 Both QGroundControl and the autopilot firmware share the same [PX4 GPS driver stack](https://github.com/PX4/GpsDrivers). In practice, this means that support for new protocols and/or messages only need to be added to one place.
 
-The PX4 GPS stack automatically sets up the UBlox M8P modules up to send and receive the correct messages over the UART or USB, depending on where the module is connected (to QGroundControl or the autopilot.) No configuration using U-Center is necessary.
+The PX4 GPS stack automatically sets up the UBlox M8P modules to send and receive the correct messages over the UART or USB, depending on where the module is connected (to QGroundControl or the autopilot.) No configuration using U-Center is necessary.
 
 Note : M8P-1 vs M8P-2
 
@@ -22,13 +22,12 @@ Note : M8P-1 vs M8P-2
 
 QGroundControl configures the RTK base station to output the following RTCM3.2 frames :
 
-**1005** - Station coordinates XYZ for antenna reference point. (Base position).
-**1077** - Full GPS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution)
-**1087** - Full GLONASS pseudo-ranges, carrier phases, Doppler and signal strength (high
-resolution)
-**1127** -  Full BeiDou pseudo-ranges, carrier phases, Doppler and signal strength (high resolution)
-**1097** - Full Galileo pseudo-ranges, carrier phases, Doppler and signal strength (high resolution) **Only supported with M8P Firmware Version 3.01 and above. See section below on firmware updates**
-**1127** -  Full BeiDou pseudo-ranges, carrier phases, Doppler and signal strength (high resolution)
+**1005** - Station coordinates XYZ for antenna reference point. (Base position.)
+**1077** - Full GPS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.)
+**1087** - Full GLONASS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.)
+**1127** -  Full BeiDou pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.)
+**1097** - Full Galileo pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.) **Only supported with M8P Firmware Version 3.01 and above. See section below on firmware updates.**
+**1127** -  Full BeiDou pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.)
 
 **TODO : QGC doesn't configure the Galileo message yet -- needs an update**
 
@@ -43,5 +42,7 @@ HOWEVER -
 
 
 ## Drotek Tiny XXL Example 
+
+![](/assets/rtk_base.jpg)
 
 ## HEX/ProfiCNC Here+ Example
