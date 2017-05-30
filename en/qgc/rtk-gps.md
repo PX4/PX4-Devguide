@@ -12,7 +12,9 @@ The datalink should typically be able to handle an uplink rate of 300 bytes per 
 
 ### Automatic Configuration
 
-When using UBlox M8P modules, the PX4 GPS driver will automatically setup up the receiver module to send and receive the correct messages over the UART or USB, depending on where the module is connected (to QGroundControl or the autopilot)
+Both QGroundControl and the autopilot firmware share the same [PX4 GPS driver stack](https://github.com/PX4/GpsDrivers)
+
+When using UBlox M8P modules, they will be automatically setup up to send and receive the correct messages over the UART or USB, depending on where the module is connected (to QGroundControl or the autopilot)
 
 > **Note** : When using UBlox M8P modules **with the TX line from the flight controller connected to the GPS module's RX**, the PX4 GPS driver will automatically setup up the receiver module to send and receive the correct messages over the UART. This is also necessary to stream RTCM corrections from the autopilot to the GNSS receiver.
 
