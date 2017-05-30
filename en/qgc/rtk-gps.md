@@ -14,7 +14,7 @@ The datalink should typically be able to handle an uplink rate of 300 bytes per 
 
 Both QGroundControl and the autopilot firmware share the same [PX4 GPS driver stack](https://github.com/PX4/GpsDrivers). In practice, this means that support for new protocols and/or messages only need to be added to one place.
 
-The PX4 GPS stack automatically sets up the UBlox M8P modules up to send and receive the correct messages over the UART or USB, depending on where the module is connected (to QGroundControl or the autopilot.) No further configuration using U-Center is necessary.
+The PX4 GPS stack automatically sets up the UBlox M8P modules up to send and receive the correct messages over the UART or USB, depending on where the module is connected (to QGroundControl or the autopilot.) No configuration using U-Center is necessary.
 
 Note : M8P-1 vs M8P-2
 
