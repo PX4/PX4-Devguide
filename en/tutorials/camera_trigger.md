@@ -39,6 +39,8 @@ The full list of parameters pertaining to the camera trigger module can be found
 
 ### Command interface 
 
+**TODO : needs updating**
+
 The camera trigger driver supports several commands -
 
 **`MAV_CMD_DO_TRIGGER_CONTROL`** - Accepted in "command controlled" mode (`TRIG_MODE` 1).
