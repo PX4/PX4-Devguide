@@ -59,10 +59,10 @@ Test flights are important for quality assurance. Please upload the logs from th
 The PX4 Dev Team syncs up on its weekly dev call.
 
 * TIME: Wednesday 5PM CET, 11AM EST, 8AM PDT \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
-* Uberconference: [www.uberconference.com/lf-dronecode](/www.uberconference.com/lf-dronecode)
+* Uberconference: [www.uberconference.com/lf-dronecode](http://www.uberconference.com/lf-dronecode)
 * Phone: +1 415-891-1494
 * The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
-* Issues and PRs may be labelled [devcall](https://github.com/PX4/Firmware/labels/devcall) to flag them for discussion
+* Issues and PRs may be labeled [devcall](https://github.com/PX4/Firmware/labels/devcall) to flag them for discussion
 
 
 

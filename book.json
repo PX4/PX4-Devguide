@@ -2,7 +2,7 @@
     "plugins": [
         "youtube",
         "richquotes",
-        "anchors",
+        "-anchors",
         "page-toc-button",
         "mermaid",
         "-mermaid-2",
@@ -10,8 +10,9 @@
         "custom-favicon",
         "bulk-redirect",
         "toolbar@git+https://github.com/hamishwillee/gitbook-plugin-toolbar.git",
-        "-stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git",
-        "-validate-links"
+        "validate-links",
+        "-stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git"
+
     ],
     "pluginsConfig":
     {

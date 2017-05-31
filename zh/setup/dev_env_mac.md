@@ -10,7 +10,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 xcode-select --install
 ```
 
-## Homebrew Installation
+## 安装Homebrew
 
 推荐使用Mac OS X的 [Homebrew 包管理器](http://mxcl.github.com/homebrew/) 进行安装. Homebrew的安装十分便捷: [安装指南](http://mxcl.github.com/homebrew/).
 
@@ -42,7 +42,7 @@ sudo pip install pyserial empy pandas jinja2
 
 如果你打算使用JMAVSim,需要同时安装[Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).。
 
-## 骁龙飞行平台
+## 骁龙飞控
 
 高通为Ubuntu提供了可靠的工具链。因此使用骁龙飞行平台的开发者应该安装一个Ubuntu虚拟机，并参考Linux下方法进行工具链的安装。PX4开发团队使用的虚拟机软件是VMWare，尤其是在VMWare对USB有了稳定的支持以后。
 

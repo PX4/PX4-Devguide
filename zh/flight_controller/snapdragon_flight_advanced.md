@@ -3,69 +3,67 @@ translated_page: https://github.com/PX4/Devguide/blob/master/en/flight_controlle
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ---
 
-# Snapdragon Advanced
+# 骁龙飞控——高级篇
 
-## Connect to Snapdragon
+## 连接到骁龙
 
-### Over FTDI
+### 通过FTDI
 
-Connect the small debug header shipped with the Snapdragon and the FTDI cable.
+将FTDI线缆连接到骁龙附带的小型调试插头上
 
-On Linux, open a console using:
+在Linux上，使用下面命令打开控制台：
 
 ```
 screen /dev/ttyUSB0 115200
 ```
 
-Change USB0 to whatever it happens to be. Check `/dev/` or `/dev/serial/by-id`.
+检查`/dev/`或`/dev/serial/by-id`，并将USB0改为相应项。
 
 
-### Over ADB (Android Debug Bridge)
+### 通过ADB (Android Debug Bridge)
 
-Connect the Snapdragon over USB2.0 and power it up using the power module.
-When the Snapdragon is running the, the LED will be slowly blinking (breathing) in blue.
+通过USB2.0连接骁龙，并使用电源模块供电。
+当骁龙运行时，LED将以蓝色慢慢闪烁（呼吸）。
 
-Make sure the board can be found using adb:
+确保使用adb可以找到飞控板：
 
 ```
 adb devices
 ```
 
-If you cannot see the device, it is most likely a USB device permission issue. Follow the instructions
-
-To get a shell, do:
+如果看不到该设备，那么很可能是USB设备的权限问题。 按照下面说明操作来获得shell：
 
 ```
 adb shell
 ```
 
-## Upgrade Snapdragon
+## 升级骁龙
 
-For this step the Flight_BSP zip file from Intrynsic is required. It can be obtained after registering using the board serial.
+对于此步骤，需要来自Intrynsic的Flight_BSP压缩文件。 使用序列号注册后可以获得。
 
-### Upgrading/replacing the Linux image
+### 升级/更换Linux镜像
 
-> **Caution** Flashing the Linux image will erase everything on the Snapdragon. Back up your work before you perform this step!
+> **Caution** 烧写Linux映像将清除骁龙上的所有内容。 在执行此步骤之前请做好备份！
 
-Make sure the board can be found using adb:
+确保使用adb可以找到飞控板：
 
 ```
 adb devices
 ```
 
-Then, reboot it into the fastboot bootloader:
+然后，重启骁龙进入fastboot引导程序：
 
 ```
 adb reboot bootloader
 ```
 
-Make sure the board can be found using fastboot:
+确保可以使用fastboot找到飞控板：
 
 ```
 fastboot devices
 ```
 
-Download the latest BSP from Intrinsyc:
+从Intrinsyc下载最新的BSP：
 
 ```
 unzip Flight_3.1.1_BSP_apq8074-00003.zip
@@ -73,46 +71,46 @@ cd BSP/binaries/Flight_BSP_4.0
 ./fastboot-all.sh
 ```
 
-It is normal that the partitions `recovery`, `update`, and `factory` will fail.
+分区 `recovery`, `update`以及`factory`操作失败是很正常的。
 
-### Updating the ADSP firmware
+### 升级ADSP固件
 
-Part of the PX4 stack is running on the ADSP (the DSP side of the Snapdragon 8074). The underlying operating system QURT needs to be updated separately.
+PX4栈的一部分是在ADSP（骁龙8074的DSP端）上运行的。底层操作系统QURT需要单独更新。
 
-> **Caution** If anything goes wrong during the ADSP firmware update, your Snapdragon can get bricked! Follow the steps below carefully which should prevent bricking in most cases.
+> **Caution** 如果在ADSP固件更新过程中出现任何问题，那么骁龙就会变砖！ 请仔细阅读并严格按照以下步骤操作，以防止变砖。
 
-First of all, if you're not already on BSP 3.1.1, [upgrade the Linux image](#upgradingreplacing-the-linux-image)!
+首先，如果你还没有BSP 3.1.1，[升级Linux映像](#linux)！
 
-#### Prevent bricking
+#### 防止变砖
 
-To prevent the system from hanging on boot because of anything wrong with the ADSP firmware, do the following changes before updating:
+为防止系统由于ADSP固件发生任何问题而挂起，请在更新之前进行以下更改：
 
-Edit the file directly on the Snapdragon over `screen` or `adb shell`:
+通过`screen`或`adb shell`直接在骁龙上编辑文件：
 ```sh
 vim /usr/local/qr-linux/q6-admin.sh
 ```
 
-Or load the file locally and edit it there with the editor of your choice:
+或者在本地加载文件，并使用任意编辑器进行编辑：
 
-To do this, load the file locally:
+本地加载文件：
 ```sh
 adb pull /usr/local/qr-linux/q6-admin.sh
 ```
 
-Edit it:
+编辑：
 
 ```sh
 gedit q6-admin.sh
 ```
 
-And push it back:
+上传：
 
 ```sh
 adb push q6-admin.sh /usr/local/qr-linux/q6-admin.sh
 adb shell chmod +x /usr/local/qr-linux/q6-admin.sh
 ```
 
-Comment out the while loops causing boot to hang:
+注释掉导致挂起的while循环：
 
 ```
 # Wait for adsp.mdt to show up
@@ -121,7 +119,7 @@ Comment out the while loops causing boot to hang:
 #done
 ```
 
-and:
+以及：
 
 ```
 # Don't leave until ADSP is up
@@ -130,11 +128,11 @@ and:
 #done
 ```
 
-#### Push the latest ADSP firmware files
+#### 上传最新的ADSP 固件文件
 
-Download the file [Flight_3.1.1a_qcom_flight_controller_hexagon_sdk_add_on.zip](http://support.intrinsyc.com/attachments/download/691/Flight_3.1.1a_qcom_flight_controller_hexagon_sdk_add_on.zip) from Intrinsyc.
+从Intrinsyc下载[Flight_3.1.1a_qcom_flight_controller_hexagon_sdk_add_on.zip](http://support.intrinsyc.com/attachments/download/691/Flight_3.1.1a_qcom_flight_controller_hexagon_sdk_add_on.zip)。 
 
-And copy them on to the Snapdragon:
+并把它复制到骁龙上：
 
 ```
 unzip Flight_3.1.1a_qcom_flight_controller_hexagon_sdk_add_on.zip
@@ -142,46 +140,46 @@ cd assets/8074-eagle/normal/adsp_proc/obj/qdsp6v5_ReleaseG/LA/system/etc/firmwar
 adb push . /lib/firmware
 ```
 
-Then do a graceful reboot, so that the firmware gets applied:
+接下来只需要重新启动，新固件就会自动应用：
 
 ```
 adb reboot
 ```
 
 
-## Serial ports
+## 串口
 
-### Use serial ports
+### 使用串口
 
-Not all POSIX calls are currently supported on QURT. Therefore, some custom ioctl are needed.
+目前，并不是所有的POSIX调用都被QURT支持。 因此，需要自定义的ioctl。
 
-The APIs to set up and use the UART are described in [dspal](https://github.com/PX4/dspal/blob/master/include/dev_fs_lib_serial.h).
+用于设置和使用UART的API在[dspal](https://github.com/PX4/dspal/blob/master/include/dev_fs_lib_serial.h)中有详尽说明。
 
-## Wifi-settings
+## Wifi设置
 
-> **Todo** These are notes for advanced developers.
+> **Todo** 这些是高级开发人员的注意事项。
 
-Connect to the Linux shell (see [console instructions](../debug/system_console.md#snapdragon-flight-wiring-the-console)).
+连接到Linux shell (参见[控制台说明](../debug/system_console.md#snapdragon-flight-wiring-the-console)).
 
-### Access point mode
+### AP模式
 
-If you want the Snapdragon to be a wifi access point (AP mode), edit the file: `/etc/hostapd.conf` and set:
+如果希望骁龙成为WiFi接入点（AP模式），请编辑文件：`/etc/hostapd.conf`并设置：
 
 ```
 ssid=EnterYourSSID
 wpa_passphrase=EnterYourPassphrase
 ```
 
-Then configure AP mode:
+接下来配置AP模式：
 
 ```
 /usr/local/qr-linux/wificonfig.sh -s softap
 reboot
 ```
 
-### Station mode
+### Station模式
 
-If you want the Snapdragon to connect to your existing wifi, edit the file: `/etc/wpa_supplicant/wpa_supplicant.conf` and add your network settings:
+如果希望骁龙连接到现有的WiFi，请编辑文件：`/etc/wpa_supplicant/wpa_supplicant.conf`并添加网络设置：
 
 ```
 network={
@@ -190,7 +188,7 @@ network={
 }
 ```
 
-Then configure station mode:
+接下来配置station模式：
 
 ```
 /usr/local/qr-linux/wificonfig.sh -s station
@@ -198,25 +196,24 @@ reboot
 ```
 
 
-## Troubleshooting
+## 故障排除
 
-### adb does not work
+### adb不工作
 
-- Check [permissions](#usb-permissions)
-- Make sure you are using a working Micro-USB cable.
-- Try a USB 2.0 port.
-- Try front and back ports of your computer.
+- 检查[权限](#usb)
+- 确保使用的是可用的Micro-USB电缆。
+- 尝试USB 2.0端口。
+- 尝试计算机的面板和背板端口。
 
+### USB权限
 
-### USB permissions
-
-1) Create a new permissions file
+1) 创建新的权限文件
 
 ```
 sudo -i gedit /etc/udev/rules.d/51-android.rules
 ```
 
-paste this content, which enables most known devices for ADB access:
+粘贴以下内容，这能保证大多数设备的ADB访问：
 
 ```
 SUBSYSTEM=="usb", ATTRS{idVendor}=="0bb4", MODE="0666", GROUP="plugdev"
@@ -252,13 +249,13 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="0930", MODE="0666", GROUP="plugdev"
 SUBSYSTEM=="usb", ATTRS{idVendor}=="19d2", MODE="0666", GROUP="plugdev"
 ```
 
-Set up the right permissions for the file:
+为文件设置正确的权限：
 
 ```
 sudo chmod a+r /etc/udev/rules.d/51-android.rules
 ```
 
-Restart the deamon
+重新启动守护进程：
 
 ```
 sudo udevadm control --reload-rules
@@ -266,85 +263,84 @@ sudo service udev restart
 sudo udevadm trigger
 ```
 
-If it still doesn't work, check [this answer on StackOverflow](http://askubuntu.com/questions/461729/ubuntu-is-not-detecting-my-android-device#answer-644222).
+如果仍然不工作，查看[StackOverflow上的这个回答](http://askubuntu.com/questions/461729/ubuntu-is-not-detecting-my-android-device#answer-644222).
 
 
-### Board doesn't start / is boot-looping / is bricked
+### 飞控板不能启动/不断重启/变砖
 
-If you can still connect to the board using the serial console and get to a prompt such as:
+如果仍然可以使用串行控制台连接到飞控板，并获得如下提示：
 
 ```
 root@linaro-developer:~#
 ```
 
-You can get into fastboot (bootloader) mode by entering:
+输入以下命令进入fastboot（bootloader）模式：
 
 ```
 reboot2fastboot
 ```
 
 If the serial console is not possible, you can try to connect the Micro USB cable, and enter:
+如果串行控制台不可行，可以尝试连接Micro USB电缆，然后输入：
 
 ```
 adb wait-for-device && adb reboot bootloader
 ```
 
-Then power cycle the board. If you're lucky, adb manages to connect briefly and can send the board into fastboot.
+然后重新给飞控板上电。 如果幸运的话，adb会自动连接，并使飞控板进入fastboot模式。
 
-To check if it's in fastboot mode, use:
+要检查它是否处于快速启动模式，请使用：
 
 ```
 fastboot devices
 ```
 
-Once you managed to get into fastboot mode, you can try [above teps](#upgradingreplacing-the-linux-image) to update the Android/Linux image.
+只要进入fastboot模式，就可以尝试[上面的脚本](#linux)来更新Android/Linux映像。
 
-If you happen to have a [P2 board](#do-i-have-a-p1-or-p2-board), you should be able to reset the Snapdragon to the recovery image by starting up the Snapdragon while shorting the two pins next to where J3 is written (The two rectangular pins in-between the corner hole and the MicroSD card slot almost at the edge of the board.
+如果你碰巧有一个[P2板](＃do-i-with-a-p1-or-p2-board)，你应该能够通过如下操作将骁龙重置为恢复镜像：短接J3标示附近的两个引脚（这两个引脚在角孔和SD卡插槽之间，并靠近板子边缘），并重新给骁龙上电。
 
-If everything fails, you probably need to request help from intrinsyc.
+如果一切都失败，那么可能需要向intrinsyc求助。
 
+### 设备上没有剩余空间
 
-### No space left on device
-
-Sometimes `make eagle_default upload` fails to upload:
+又是会导致`make eagle_default upload`上传命令失败：
 
 ```
 failed to copy 'px4' to '/home/linaro/px4': No space left on device
 ```
 
-This can happen if ramdumps fill up the disk. To clean up, do:
+如果ramdumps占用太多空间，则可能会发生这种情况。 清理磁盘：
 
 ```
 rm -rf /var/log/ramdump/*
 ```
 
-Also, the logs might have filled the space. To delete them, do:
+此外，日志也可能占用太多空间。 要删除它们，请执行以下操作：
 
 ```
 rm -rf /root/log/*
 ```
 
-### Undefined PLT symbol
+### 未定义的PLT符号
 
 #### _FDtest
 
-If you see the following output on mini-dm when trying to start the px4 program, it means that you need to [update the ADSP firmware](#updating-the-adsp-firmware):
+如果在尝试启动px4程序时看到mini-dm上有如下输出，则表示需要[更新ADSP固件](#adsp)：
 
 ```
 [08500/03]  05:10.960  HAP:45:undefined PLT symbol _FDtest (689) /libpx4muorb_skel.so  0303  symbol.c
 ```
 
-#### Something else
+#### 其它
 
-If you have changed the source, presumably added functions and you see `undefined PLT symbol ...` it means that the linking has failed.
+如果您更改了源代码，可能添加了函数，并看到`undefined PLT symbol ...`，这意味着链接失败。
 
-- Do the declaration and definition of your function match one to one?
-- Is your code actually getting compiled?
-Is the module listed in the [cmake config](https://github.com/PX4/Firmware/blob/master/cmake/configs/qurt_eagle_default.cmake)?
-- Is the (added) file included in the `CMakeLists.txt`?
-- Try adding it to the POSIX build and running the compilation. The POSIX linker will inform you about linking errors at compile/linking time.
+- 函数的声明和定义是否一一对应？
+- 代码是否实际编译？模块是否列在[cmake config](https://github.com/PX4/Firmware/blob/master/cmake/configs/qurt_eagle_default.cmake)中？
+- 添加的文件是否包含在`CMakeLists.txt`中？
+- 尝试将其添加到POSIX构建并运行编译。 POSIX链接器将在编译/链接时显示链接错误。
 
-### krait update param XXX failed on startup
+### 启动时显示krait update param XXX failed
 
 ```
 ERROR [platforms__posix__px4_layer] krait update param 297 failed
@@ -355,20 +351,18 @@ ERROR [muorb] Initialize Error calling the uorb fastrpc initalize method..
 ERROR [muorb] ERROR: FastRpcWrapper Not Initialized
 ```
 
-If you get errors like the above when starting px4, try
-- [upgrading the Linux image](#upgradingreplacing-the-linux-image)
-- and [updating the ADSP firmware](#updating-the-adsp-firmware). Also try to do this from a native Linux installation instead of a virtual machine. There have been [reports](https://github.com/PX4/Firmware/issues/5303) where it didn't seem to work when done in a virtual machine.
-- then [rebuild the px4 software](../setup/building_px4.md#building-px4-software), by first completely deleting your existing Firmware repo and then recloning it [as described here](../setup/building_px4.md#compiling-on-the-console)
-- and finally [rebuild and re-run it](../setup/building_px4.md#qurt--snapdragon-based-boards)
-- make sure the executable bit of `/usr/local/qr-linux/q6-admin.sh` is set:
-  `adb shell chmod +x /usr/local/qr-linux/q6-admin.sh`
+如果在启动px4时遇到上述错误，请尝试：
+- [升级Linux镜像](#linux)
+- 并且[升级ADSP固件](#adsp)，尝试在本地Linux而不是虚拟机上执行此操作。有[相关报告](https://github.com/PX4/Firmware/issues/5303)指出在虚拟机上执行时不成功。
+- 接着[重新构建px4](../setup/building_px4.md#building-px4-software)，这一步需要完全删除现存的固件仓库并重新克隆仓库，[就像这样](../setup/building_px4.md#compiling-on-the-console)
+- 最后[重新构建并重新运行](../setup/building_px4.md#qurt--snapdragon-based-boards)
+- 确保`/usr/local/qr-linux/q6-admin.sh`的执行位被正确设置：`adb shell chmod +x /usr/local/qr-linux/q6-admin.sh`
 
-### ADSP restarts
+### ADSP重启
 
-If the mini-dm console suddenly shows a whole lot of INIT output, the ADSP side has crashed. The reasons for it are not obvious, e.g. it can be some segmentation fault, null pointer exception, etc..
+如果mini-dm控制台突然显示了大量的INIT输出，则ADSP端已经崩溃了。其原因不明显，例如它可以是一些分段错误，空指针异常等。
 
-The mini-dm console output typically looks like this:
-
+mini-dm控制台输出通常如下所示：
 ```
 [08500/02]  20:32.332  Process Sensor launched with ID=1   0130  main.c
 [08500/02]  20:32.337  mmpm_register: MMPM client for USM ADSP core 12  0117  UltrasoundStreamMgr_Mmpm.cpp
@@ -409,9 +403,9 @@ The mini-dm console output typically looks like this:
 [08500/02]  20:32.550  HAP:76:cannot find /voiceproc_rx.so  0141  load.c
 ```
 
-### Do I have a P1 or P2 board?
+### P1板还是P2板？
 
-The silkscreen on the Snapdragon reads something like:
+骁龙上的丝印读取如下：
 
 ```
 1DN14-25-
@@ -420,8 +414,8 @@ REV A
 QUALCOMM
 ```
 
-If you see **H9550**, it means you have a P2 board!
+如果有**H9550**，那意味着这是块P2板！
 
-**Please ignore that it says -P1.**
+**请忽视之后的-P1.**
 
-Presumably P1 boards don't have a factory partition/image and therefore can't be restored to factory state.
+推测P1板没有工厂分区/镜像，因此无法恢复出厂状态。

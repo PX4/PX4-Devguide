@@ -14,7 +14,6 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 * [Qt Creator IDE](http://www.qt.io/download-open-source/#section-6)
 * [PX4 Toolchain Installer v14 for Windows Download](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (32/64 bit systems, complete build system, drivers)
 * [PX4 USB Drivers](http://pixhawk.org/static/px4driver.msi) (32/64 bit systems)
-* [CMake](http://pan.baidu.com/s/1c1RgVgk)(这里推荐安装CMake-3.3.2-win32-x86)
 
 现在继续运行： [代码编译](../setup/building_px4.md)!
 

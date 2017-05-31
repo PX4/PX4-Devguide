@@ -1,4 +1,7 @@
 # FAKE GPS
+
+**THIS PAGE IS OUTDATED. PLEASE USE [THIS PAGE](../ros/external_position_estimation.md) FOR GENERAL MOTION-CAPTURE AND VISION INTEGRATION.**
+
 This page shows you how to use mocap data to fake gps. 
 
 The setup looks as follows:
