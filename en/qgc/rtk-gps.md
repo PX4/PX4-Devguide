@@ -43,9 +43,9 @@ HOWEVER -
 
 ## Drotek Tiny XXL Example 
 
-![](/assets/drotek_rtk_base.jpg)
+![](../../assets/drotek_rtk_base.jpg)
 
-![](/assets/drotek_rtk_rover.jpg)
+![](../../assets/drotek_rtk_rover.jpg)
 
 ## HEX/ProfiCNC Here+ Example
 
