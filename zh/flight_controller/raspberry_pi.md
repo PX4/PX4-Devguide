@@ -12,9 +12,9 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 ### OS Image系统镜像
 
-  使用[Emlid RT Raspbian image](http://docs.emlid.com/navio/Downloads/Real-time-Linux-RPi2/)这个前期配置好的有效的PX4树莓派镜像。这个镜像默认最大化的事先配置了程序。
+  使用[Emlid RT Raspbian image](http://docs.emlid.com/navio/Downloads/Real-time-Linux-RPi2/)这个前期配置好的有效的PX4树莓派镜像。这个镜像默认最大化的事先配置了程序。specifically
 
-> **Important**: make sure not to upgrade the system (more specifically the kernel). By upgrading, a new kernel can get installed which lacks the necessary HW support (you can check with `ls /sys/class/pwm`, the directory should not be empty).
+> **重要**: 确保不要升级系统 （更确切的说是内核）。 升级后，一个缺少必要硬件支持的新内核将被安装。(你可以通过 `ls /sys/class/pwm`命令查看，这个目录不应当是空的)。
 
 ### 访问设置
 此树莓派镜像已经事先设置好了SSH。用户名：pi 和密码：raspberry。你可以直接通过网络去连接你的树莓派2（以太网已经启动并且默认自动分配IP）和可以配置使用wifi。在这篇文档中，我们采取默认的用户名和密码登入树莓派系统。
@@ -28,9 +28,9 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ssh pi@<IP-ADDRESS>
 ```
 
-### Expand the Filesystem
+### 扩展文件系统
 
-After installing the OS and connecting to it, make sure to [expand the Filesystem](https://www.raspberrypi.org/documentation/configuration/raspi-config.md),so there is enough space on the SD Card.
+安装好操作系统并连接上它后，确保进行 [扩展文件系统](https://www.raspberrypi.org/documentation/configuration/raspi-config.md)，来获得足够的SD卡可用空间。
 
 ### 改变树莓派主机名
 为了避免与同一网络上的其他树莓派有冲突，我们建议你改变默认主机名为明显的名字。我们使用px4autopilot作为我们的主机名。通过ssh连接pi并执行指令。
@@ -99,7 +99,7 @@ sudo /etc/init.d/avahi-daemon restart
 You might have to add .local to the hostname to discover it.
 </aside>
 
-### Configuring a SSH Public-Key
+### 配置SSH公钥
 
 为了允许PX4开发环境自动的更新可执行文件到你的开发板子上，你需要配置无密码访问RPi。我们使用公钥的验证方法。
 
@@ -170,19 +170,18 @@ rm hello.txt
 
 ### 本地构建 (可选)
 
-You can run PX4 builds directly on the Pi if you desire. This is the native build. The other option is to run builds on a development computer which cross-compiles for the Pi, and pushes the PX4 executable binary directly to the Pi. This is the cross-compiler build, and the recommended one for developers due to speed of deployment and ease of use.
+如果你希望，可以直接在树莓派上构建PX4。这是本机构建版本。另一种选择是在一台开发用电脑上交叉编译，再推送PX4可执行文件到树莓派上。这是交叉编译构建版本，因为可以快速应用并简单实用，推荐开发者们选择。
 
-For cross-compiling setups, you can skip this step.
+交叉编译配置时，可以跳过此步。
 
-The steps below will setup the build system on the Pi to that required by PX4. Run these commands on the Pi itself!
+下面的步骤会配置PX4所必需的编译系统。在树莓派上执行这些命令！
 
 ```sh
 sudo apt-get update
 sudo apt-get install cmake python-empy
 ```
 
-Then clone the Firmware directly onto the Pi.
-
+之后将Firmware直接克隆到树莓派上。
 ### Building the code
 
-Continue with our [standard build system installation](../setup/dev_env_linux.md).
+继续我们的 [Linux开发环境](../setup/dev_env_linux.md).
