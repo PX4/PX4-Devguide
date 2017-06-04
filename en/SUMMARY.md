@@ -39,6 +39,7 @@
   * [Preflight Checks](tutorials/pre_flight_checks.md)
   * [Telemetry](tutorials/telemetry.md)
   * [Sensor Thermal Compensation](tutorials/sensor_thermal_calibration.md)
+  * [Land Detector](tutorials/land_detector.md)
 * [Autopilot Hardware](flight_controller/README.md)
   * [Crazyflie 2.0](flight_controller/crazyflie2.md)
   * [Intel® Aero Ready to Fly Drone](flight_controller/intel_aero.md)
