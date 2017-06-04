@@ -33,7 +33,7 @@ QGroundControl configures the RTK base station to output the following RTCM3.2 f
 
 ### Uplink Datarate
 
-The raw RTCM messages from the base are packed into a MAVLink `GPS_RTCM_DATA` message and sent over the datalink. The length of each MAVLink message is 182 bytes, and it encapsulates RTCM messages in it's body's payload field. Depending on the RTCM message, the MAVLink message is almost never completely filled.
+The raw RTCM messages from the base are packed into a MAVLink `GPS_RTCM_DATA` message and sent over the datalink. The length of each MAVLink message is 182 bytes, and it encapsulates RTCM messages in its body. Depending on the RTCM message, the MAVLink message is almost never completely filled.
 
 The Base Position message (1005) is of length 22 bytes, while the others are all of variable length depending on the satellites visible and the number of signals from the satellite (only 1 for L1 units like M8P). Since at a given time, the _maximum_ number of satellites visible from any single constellation is 12, under real-world conditions, an uplink rate of 300 bps is sufficient in theory.
 
