@@ -25,7 +25,8 @@ QGroundControl configures the RTK base station to output the following RTCM3.2 f
 - **1077** - Full GPS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.)
 - **1087** - Full GLONASS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.)
 - **1127** -  Full BeiDou pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.)
-- **1097** - Full Galileo pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.) **Only supported with M8P Firmware Version 3.01 and above. See section below on firmware updates.**
+- **1097** - Full Galileo pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.) 
+**Only supported with M8P Firmware Version 3.01 and above. See section below on firmware updates.**
 - **1127** -  Full BeiDou pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.)
 
 **TODO : QGC doesn't configure the Galileo message yet -- needs an update**
