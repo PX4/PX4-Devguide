@@ -42,7 +42,6 @@ If **MAVLink 1** is used, no packet truncation is done. Therefore the whole 182-
 If **MAVLink 2** is used (PX4 automatically switches to MAVLink 2 if the GCS and telemetry modules support it), empty space in a packet is truncated, leading to a much leaner uplink requirement of ~300 bytes per second. It is **critical** that MAVLink 2 is used for good RTK performance - on these links - so care must be taken to make sure that the telemetry chain uses MAVLink 2 throughout. You can verify the protocol version by using the `mavlink status` command in the system console : 
 
 ```
-
 nsh> mavlink status
 instance #0:
         GCS heartbeat:  593486 us ago
@@ -64,8 +63,11 @@ instance #0:
         accepting commands: YES
         MAVLink version: 2
         transport protocol: serial (/dev/ttyS1 @57600)
-
 ```
+
+### Firmware update
+
+todo
 
 ## Drotek XL RTK Example
 
@@ -78,4 +80,3 @@ Buy online : [Drotek XL RTK](https://drotek.com/shop/en/home/792-xl-rtk-gps-neo-
 ## HEX/ProfiCNC Here+ Example
 
 Buy online : [Here+ RTK GNSS](http://www.hex.aero/shop/all/here-rtk-gnss-set/)
-
