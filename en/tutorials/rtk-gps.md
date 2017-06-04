@@ -4,7 +4,7 @@ RTK (Real Time Kinematic) increases GPS accuracy to centimeter-level. It uses me
 
 PX4 currently ONLY supports the single-frequency (L1) UBlox M8P based GNSS receivers for RTK.
 
-### Working 
+### Working
 
 Two M8P GPS modules (see below for example setups) and a datalink is required to set up RTK with PX4. The unit on the ground (static position) is called the Base, and the in-air unit is called the Rover. The Base unit connects to QGroundControl and uses the datalink to the vehicle to stream RTCM corrections to it (using the MAVLink `GPS_RTCM_DATA` message). On the autopilot, the MAVLink packets are unpacked and sent to the GNSS unit where they are processed to get the RTK solution.
 
