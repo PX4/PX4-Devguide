@@ -336,7 +336,7 @@ PX4 支持Qt Creator, Eclipse 和Sublime Text三种集成式开发环境。  Qt 
 
 {% raw %}
 <video id="my-video" class="video-js" controls preload="auto" width="100%" 
-poster="../pictures/diagrams/qtcreator.PNG" data-setup='{"aspectRatio":"16:9"}'>
+poster="http://docs.huihoo.com/qt/qtcreator/1.3/images/qtcreator-screenshots.png" data-setup='{"aspectRatio":"16:9"}'>
   <source src="http://7xvob5.com1.z0.glb.clouddn.com/PX4%20Flight%20Stack%20Build%20Experience.mp4" type='video/mp4' >
   <p class="vjs-no-js">
     To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -391,7 +391,7 @@ cmake .. -G "CodeBlocks - Unix Makefiles"
 
 {% raw %}
 <video id="my-video" class="video-js" controls preload="auto" width="100%" 
-poster="../pictures/diagrams/macQt.PNG" data-setup='{"aspectRatio":"16:9"}'>
+poster="https://qt-wiki-uploads.s3.amazonaws.com/images/6/67/Qtcreator-welcome.png" data-setup='{"aspectRatio":"16:9"}'>
   <source src="http://7xvob5.com2.z0.glb.qiniucdn.com/PX4%20Cmake%20Project%20Setup%20on%20Mac%20OS.mp4" type='video/mp4' >
   <p class="vjs-no-js">
     To view this video please enable JavaScript, and consider upgrading to a web browser that
