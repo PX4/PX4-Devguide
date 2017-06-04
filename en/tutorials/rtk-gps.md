@@ -36,7 +36,7 @@ The raw RTCM messages from the base are packed into a MAVLink `GPS_RTCM_DATA` me
 
 The Base Position message (1005) is of length 22 bytes, while the others are all of variable length depending on the satellites visible and the number of signals from the satellite (only 1 for L1 units like M8P). Since at a given time, the _maximum_ number of satellites visible from any single constellation is 12, under real-world conditions, an uplink rate of 300 bps is sufficient in theory.
 
-If **MAVLink 1** is used, no packet truncation is done. Therefore the whole 182-byte `GPS_RTCM_DATA` message is sent for every RTCM message. This means that the approximate uplink requirement is increased to 700+ bytes per second, which can lead to link saturation on low-bandwidth telemetry modules like 3DR radios.
+If **MAVLink 1** is used, no packet truncation is done. Therefore the whole 182-byte `GPS_RTCM_DATA` message is sent for every RTCM message. This means that the approximate uplink requirement is increased to 700+ bytes per second, which can lead to link saturation on low-bandwidth half-duplex telemetry modules like 3DR radios.
 
 If **MAVLink 2** is used (PX4 automatically switches to MAVLink 2 if the GCS and telemetry modules support it), empty space in a packet is truncated, leading to a much leaner uplink requirement of ~300 bytes per second. It is **critical** that MAVLink 2 is used for good RTK performance - on these links - so care must be taken to make sure that the telemetry chain uses MAVLink 2 throughout. You can verify the protocol version by using the `mavlink status` command in the system console : 
 
