@@ -61,7 +61,7 @@ instance #0:
         rx: 0.021 kB/s
         rate mult: 0.366
         accepting commands: YES
-        MAVLink version: 2
+        **MAVLink version: 2**
         transport protocol: serial (/dev/ttyS1 @57600)
 ```
 
