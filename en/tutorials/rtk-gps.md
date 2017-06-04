@@ -29,7 +29,7 @@ QGroundControl configures the RTK base station to output the following RTCM3.2 f
 **Only supported with M8P Firmware Version 3.01 and above. See section below on firmware updates.**
 - **1127** -  Full BeiDou pseudo-ranges, carrier phases, Doppler and signal strength (high resolution.)
 
-**TODO : QGC doesn't configure the Galileo message yet -- needs an update**
+**TODO : QGC doesn't configure the Galileo (and BeiDou?) message yet -- needs an update**
 
 ### Uplink Datarate
 
