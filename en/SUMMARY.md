@@ -8,6 +8,7 @@
     * [Linux](setup/dev_env_linux.md)
       * [Advanced Linux](setup/dev_env_linux_boutique.md)
     * [Windows](setup/dev_env_windows.md)
+  * [Fast RTPS installation](setup/fast-rtps-installation.md)
   * [Building the Code](setup/building_px4.md)
   * [Advanced Configuration](setup/config_advanced.md)
   * [Contributing & Dev Call](contribute/README.md)
