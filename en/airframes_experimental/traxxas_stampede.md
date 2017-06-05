@@ -1,5 +1,7 @@
 # Traxxas Stampede VXL
 
+This vehicle was chosen to understand how a Pixhawk could be used for wheeled platforms. We chose to use a Traxxas vehicle as they are very popular and it is a very strong brand in the RC community. The idea was to develop a platform that allows for easy control of wheeled UGVs with an autopilot.
+
 {% youtube %}https://youtu.be/N3HvSKS3nCw{% endyoutube %}
 
 ![Traxxas Stampede VXL](../../assets/airframes/experimental/stampede/stampede.jpg)
@@ -17,21 +19,21 @@
 
 ## Assembly
 
-The assembly consists of a wooden frame on which all the parts were attached. Tests showed that a better vibration insulation should be used, especially for the Pixhawk and the Flow module.
+The assembly consists of a wooden frame on which all the autopilot parts were attached. Tests showed that a better vibration insulation should be used, especially for the Pixhawk and the Flow module.
 
-![Assembly0](../../assets/airframes/experimental/stampede/stampede_chassis.jpg)
+![Stampede Chassis](../../assets/airframes/experimental/stampede/stampede_chassis.jpg)
 
-![Assembly1](../../assets/airframes/experimental/stampede/panel_top.png)
+![Wooden Panel Top](../../assets/airframes/experimental/stampede/panel_top.png)
 
-![Assembly2](../../assets/airframes/experimental/stampede/panel_bottom.png)
+![Wooden Panel Bottom](../../assets/airframes/experimental/stampede/panel_bottom.png)
 
-![Assembly3](../../assets/airframes/experimental/stampede/final_assembly.jpg)
+![Traxxas Stampede Final Assembly](../../assets/airframes/experimental/stampede/final_assembly.jpg)
 
-![Assembly4](../../assets/airframes/experimental/stampede/final_side.jpg)
+![Side View Final Assembly](../../assets/airframes/experimental/stampede/final_side.jpg)
 
-![Assembly5](../../assets/airframes/experimental/stampede/mounting_detail.jpg)
+![Wodden panel fixture](../../assets/airframes/experimental/stampede/mounting_detail.jpg)
 
-For this particular mounting it was chosen to use the clip supplied with the rover to attach the upper plane. For this, two supports were 3D printed. The CAD files are provided [here](../../assets/airframes/experimental/stampede/plane_holders.zip).
+For this particular mounting we chose to use the clip supplied with the rover to attach the upper plate. For this, two supports were 3D printed. The CAD files are provided [here](../../assets/airframes/experimental/stampede/plane_holders.zip).
 
 > **Warning** It is **HIGHLY RECOMMENDED** to set the ESC in training mode (see Traxxas Stampede Manual) so to reduce the power to 50%.
 
@@ -60,7 +62,7 @@ To test the algorithms, a simulation was used. This can be ran by running
  from the Firmware folder. 
 
 ## Usage
-At the current state, the only supported modes are `MISSION`  and `MANUAL` when a RC remote is connected. To use the mission mode, first upload a new mission to the vehicle with QGC. Then, BEFORE ARMING, select `MISSION` and then arm. 
+At the current time, PX4 only supports MISSION and MANUAL modes when a RC remote is connected. To use the mission mode, first upload a new mission to the vehicle with QGC. Then, BEFORE ARMING, select `MISSION` and then arm. 
 
 > **Warning** It is **_VERY IMPORTANT_** to do a mission composed **_ONLY_** by normal waypoints (i.e. **_NO TAKEOFF WAYPOINTS_**) and it is crucial to **_SET THE WAYPOINT HEIGHT OF EVERY WAYPOINT TO 0_** for a correct execution. Failing to do so will cause the rover to continuously spin around a waypoint.
 
@@ -84,10 +86,18 @@ cd Firmware
 git submodule update --init --recursive
 ```
 
+## Building the firmware
+To build the firmware it is necessary to use the terminal (QGC not supported yet). This can be done by following the instructions in [Building the Code section](../setup/building_px4.md) and uploading by running
+
+```sh
+cd ~/src/Firmware
+make px4fmu-v2_default upload
+```
+
 ## Parameters
 
 The current software provides an attitude controller and a position controller. These build on top of the fixed wing framework to move an Ackerman steered vehicle following GPS coordinates (real or fake). In order to this, 2 PIDs were implemented, one for the steering and the other for the speed. 
-These can be started by setting the following general parameters:
+These can be started by setting the following general parameters, which can be set with QGC (instructions [here](https://docs.qgroundcontrol.com/en/SetupView/Parameters.html)):
 * SYS_AUTOSTART 50002
 * MAV_TYPE 10
 * MIS_LTRMIN_ALT 0.01
