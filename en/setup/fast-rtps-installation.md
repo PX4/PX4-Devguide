@@ -8,15 +8,11 @@
 
 *eProsima Fast RTPS* requires the following packages to work.
 
-### Common Dependencies
-
-#### Gtest
-
-Gtest is needed to compile the tests when building from sources.
+### Run Dependencies
 
 #### Java
 
-Java is required to make use of our buil-in code generation tool *fastrtpsgen*.
+Java is required to make use of our built-in code generation tool *fastrtpsgen*. It's recommended install [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
 ### Windows 7 32-bit and 64-bit
 
