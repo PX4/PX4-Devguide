@@ -128,21 +128,45 @@ Note: Alternatively, especially on Mac, you can also use [nano-dm](https://githu
 
 ### Raspberry Pi hardware
 
-Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the _native_ Raspberry Pi toolchain to compile directly on the Pi, see [here](../flight_controller/raspberry_pi.md#native-builds-optional)
+Developers working on Raspberry Pi hardware need to download a ARMv7 cross-compiler, either GCC or clang.
+The recommended toolchain for raspbian is GCC 4.8.3 and can be cloned from `https://github.com/raspberrypi/tools.git`.
+The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
 
 ```sh
-git clone https://github.com/pixhawk/rpi_toolchain.git
-cd rpi_toolchain
-./install_cross.sh
+git clone https://github.com/raspberrypi/tools.git ${HOME}/aero-workspace/rpi-tools
+
+# test compiler
+$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
+
+# permanently update PATH variable by modifying ~/.profile
+echo 'export PATH=$PATH:$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-' >> ~/.profile
+
+# update PATH variable only for this session
+export PATH=$PATH:$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
 ```
 
-You will be required to enter your password for toolchain installation to complete successfully.
+#### clang
 
-You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of `/opt/rpi_toolchain`. Run `./install_cross.sh <PATH>`. The installer will automatically configure required environment variables as well.
+In order to use clang, you also need GCC.
 
-Finally, run the following command to update the evironmental variables:
-```
-source ~/.profile
+Download clang for your specific distribution from [LLVM Download page](http://releases.llvm.org/download.html) and unpack it.
+Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
+
+Example below for building PX4 firmware out of tree, using CMake.
+```sh
+ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
+ln -s <CLANG_DIR>/bin/clang++ <GCC_DIR>/bin/clang++
+export PATH=<GCC_DIR>/bin:$PATH
+
+mkdir /tmp/px4-build
+cd /tmp/px4-build
+cmake \
+-G"Unix Makefiles" \
+-DCONFIG=posix_rpi_cross \
+-DCMAKE_C_COMPILER=clang \
+-DCMAKE_CXX_COMPILER=clang++ \
+<PATH-TO-PX4-SRC>
+
 ```
 
 ### Parrot Bebop
