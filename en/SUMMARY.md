@@ -125,4 +125,9 @@
   * [Telemetry Wifi](advanced/telemetry_wifi.md)
 * [Software Update](software_update/README.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
+* [Testing and CI](test_and_ci/README.md)
+  * [Docker Containers](test_and_ci/docker.md)
+  * [Continuous Integration](test_and_ci/continous_integration.md)
+    * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
+  * [Maintenance](test_and_ci/maintenance.md)
 
