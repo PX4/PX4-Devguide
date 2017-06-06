@@ -139,10 +139,10 @@ git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
 $HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
 
 # permanently update PATH variable by modifying ~/.profile
-echo 'export PATH=$PATH:$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin' >> ~/.profile
+echo 'export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin' >> ~/.profile
 
 # update PATH variable only for this session
-export PATH=$PATH:$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
+export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ```
 
 #### clang
