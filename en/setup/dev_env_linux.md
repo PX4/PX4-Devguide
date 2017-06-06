@@ -133,16 +133,16 @@ The recommended toolchain for raspbian is GCC 4.8.3 and can be cloned from `http
 The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
 
 ```sh
-git clone https://github.com/raspberrypi/tools.git ${HOME}/aero-workspace/rpi-tools
+git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
 
 # test compiler
-$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
+$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
 
 # permanently update PATH variable by modifying ~/.profile
-echo 'export PATH=$PATH:$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-' >> ~/.profile
+echo 'export PATH=$PATH:$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin' >> ~/.profile
 
 # update PATH variable only for this session
-export PATH=$PATH:$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-
+export PATH=$PATH:$HOME/aero-workspace/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ```
 
 #### clang
@@ -158,14 +158,15 @@ ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
 ln -s <CLANG_DIR>/bin/clang++ <GCC_DIR>/bin/clang++
 export PATH=<GCC_DIR>/bin:$PATH
 
-mkdir /tmp/px4-build
-cd /tmp/px4-build
+cd <PATH-TO-PX4-SRC>
+mkdir build_posix_rpi_cross_clang
+cd build_posix_rpi_cross_clang
 cmake \
 -G"Unix Makefiles" \
 -DCONFIG=posix_rpi_cross \
 -DCMAKE_C_COMPILER=clang \
 -DCMAKE_CXX_COMPILER=clang++ \
-<PATH-TO-PX4-SRC>
+..
 
 ```
 
