@@ -73,18 +73,6 @@ A correct mission setup looks as follows
  
 Since at the current state of development there is no obstacle avoidance, it is highly recommended to test missions in the simulator first to get acquainted with the software usage.
 
-## Software location
-
-As it still is a work in progress, the code can be obtained from a personal repository currently being considered for merging in PRs [7139](https://github.com/PX4/Firmware/pull/7139) and [7175](https://github.com/PX4/Firmware/pull/7175). 
-
-```sh
-cd ~ 
-mkdir src
-cd src
-git clone -b pr-rover-rebase git@github.com:marcozorzi/Firmware.git
-cd Firmware
-git submodule update --init --recursive
-```
 
 ## Building the firmware
 To build the firmware it is necessary to use the terminal (QGC is not supported yet). This can be done by following the instructions in [Building the Code section](../setup/building_px4.md) and uploading by running
