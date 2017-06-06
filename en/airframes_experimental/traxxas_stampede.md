@@ -23,9 +23,9 @@ The assembly consists of a wooden frame on which all the autopilot parts were at
 
 ![Stampede Chassis](../../assets/airframes/experimental/stampede/stampede_chassis.jpg)
 
-![Wooden Panel Top](../../assets/airframes/experimental/stampede/panel_top.png)
+![Wooden Panel Top](../../assets/airframes/experimental/stampede/panel_top.jpg)
 
-![Wooden Panel Bottom](../../assets/airframes/experimental/stampede/panel_bottom.png)
+![Wooden Panel Bottom](../../assets/airframes/experimental/stampede/panel_bottom.jpg)
 
 ![Traxxas Stampede Final Assembly](../../assets/airframes/experimental/stampede/final_assembly.jpg)
 
@@ -59,7 +59,7 @@ To test the algorithms, a simulation was used. This can be ran by running
  make posix gazebo-rover
  ``` 
 
- from the Firmware folder. 
+ from the Firmware folder. More details on how to do it can be found in section [Gazebo Simulation](../simulation/gazebo.md).
 
 ## Usage
 At the current time, PX4 only supports MISSION and MANUAL modes when a RC remote is connected. To use the mission mode, first upload a new mission to the vehicle with QGC. Then, BEFORE ARMING, select `MISSION` and then arm. 
@@ -69,7 +69,7 @@ At the current time, PX4 only supports MISSION and MANUAL modes when a RC remote
 
 A correct mission setup looks as follows
 
-![mission](../../assets/airframes/experimental/stampede/correct_mission.png)
+![mission](../../assets/airframes/experimental/stampede/correct_mission.jpg)
  
 Since at the current state of development there is no obstacle avoidance, it is highly recommended to test missions in the simulator first to get acquainted with the software usage.
 
@@ -87,7 +87,7 @@ git submodule update --init --recursive
 ```
 
 ## Building the firmware
-To build the firmware it is necessary to use the terminal (QGC not supported yet). This can be done by following the instructions in [Building the Code section](../setup/building_px4.md) and uploading by running
+To build the firmware it is necessary to use the terminal (QGC is not supported yet). This can be done by following the instructions in [Building the Code section](../setup/building_px4.md) and uploading by running
 
 ```sh
 cd ~/src/Firmware
