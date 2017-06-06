@@ -16,7 +16,10 @@ Both QGroundControl and the autopilot firmware share the same [PX4 GPS driver st
 
 The PX4 GPS stack automatically sets up the UBlox M8P modules to send and receive the correct messages over the UART or USB, depending on where the module is connected (to QGroundControl or the autopilot.) No configuration using U-Center is necessary.
 
-Note : UBlox has two variants of the M8P chip, the M8P-0 and the M8P-2. It is important to note that the M8P-0 
+
+> **Note** UBlox has two variants of the M8P chip, the M8P-0 and the M8P-2. The
+> M8P-0 can only be used as rover, not as base, whereas the M8P-2 can be used
+> both as rover or as base.
 
 ### RTCM Messages
 
