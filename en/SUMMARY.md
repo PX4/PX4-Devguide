@@ -46,7 +46,7 @@
   * [Pixfalcon](flight_controller/pixfalcon.md)
   * [Pixhawk](flight_controller/pixhawk.md)
   * [Pixracer](flight_controller/pixracer.md)
-  * [Raspberry Pi](flight_controller/raspberry_pi.md)
+  * [Raspberry Pi 2/3 Navio2](flight_controller/raspberry_pi_navio2.md)
   * [Snapdragon Flight](flight_controller/snapdragon_flight.md)
     * [Camera App and Optical Flow](flight_controller/snapdragon_flight_camera.md)
     * [Snapdragon Advanced](flight_controller/snapdragon_flight_advanced.md)

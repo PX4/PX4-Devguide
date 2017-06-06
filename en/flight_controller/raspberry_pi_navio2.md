@@ -1,4 +1,4 @@
-# Raspberry Pi 2/3 Autopilot
+# Raspberry Pi 2/3 Navio2 Autopilot
 
 ![](../../assets/hardware/hardware-rpi2.jpg)
 
