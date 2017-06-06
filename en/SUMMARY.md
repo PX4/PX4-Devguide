@@ -60,6 +60,7 @@
     * [Commands](middleware/modules_command.md)
     * [Communication](middleware/modules_communication.md)
     * [Drivers](middleware/modules_driver.md)
+    * [Estimators](middleware/modules_estimator.md)
     * [System](middleware/modules_system.md)
 * [Airframes](airframes/README.md)
   * [Unified Codebase](airframes/architecture.md)
