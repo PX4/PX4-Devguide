@@ -34,6 +34,14 @@ After installing the OS and connecting to it, make sure to
 [expand the Filesystem](https://www.raspberrypi.org/documentation/configuration/raspi-config.md),
 so there is enough space on the SD Card.
 
+### Disable Navio RGB Overlay
+
+The existing Navio RGB overlay claims GPIOs used by PX4 for RGB Led.
+Edit `/boot/config.txt` by commenting the line enabling the `navio-rgb` overlay.
+```
+#dtoverlay=navio-rgb
+```
+
 ### Changing hostnames
 
 To avoid conflicts with any other RPis on the network, we advise you to change the default hostname to something sensible. We used "px4autopilot" for our setup. Connect to the Pi via SSH and follow the below instructions.
