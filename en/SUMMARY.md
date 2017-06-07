@@ -77,6 +77,7 @@
     * [VTOL Testing](airframes_vtol/testing.md)
     * [TBS Caipiroshka](airframes_vtol/caipiroshka.md)
   * [Boats, Submarines, Blimps, Rovers](airframes_experimental/README.md)
+    * [Traxxas Sampede](airframes_experimental/traxxas_stampede.md)
 * [Companion Computers](companion_computer/README.md)
   * [Pixhawk family companion](companion_computer/pixhawk_companion.md)
 * [Robotics using DroneKit](dronekit/README.md)
