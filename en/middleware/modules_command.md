@@ -484,7 +484,8 @@ top [arguments...]
 ## usb_connected
 Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
-Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
+Utility to check if USB is connected. Was previously used in startup scripts.
+A return value of 0 means USB is connected, 1 otherwise.
 ### Usage
 ```
 usb_connected [arguments...]
