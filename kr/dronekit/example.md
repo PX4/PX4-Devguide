@@ -1,12 +1,12 @@
-# Using DroneKit to communicate with PX4
+# DroneKit 이용해서 PX4와 통신하기
 
-[DroneKit](http://dronekit.io) helps you create powerful apps for UAVs. These apps run on a UAV’s Companion Computer, and augment the autopilot by performing tasks that are both computationally intensive and require a low-latency link (e.g. computer vision).
+[DroneKit](http://dronekit.io)을 이용해서 UAV용 app을 만들 수 있습니다. 이 app은 UAV의 Companion Computer에서 실행되며 계산이 많고 빠르게 데이터 전송(예로 컴퓨터 비전)이 필요한 타스크를 실행해서 자동비행 기능을 향상시킵니다.
 
-DroneKit and PX4 are currently working on getting full compatibility. As of DroneKit-python 2.2.0 there is basic support for mission handling and vehicle monitoring.
+DroneKit과 PX4는 현재 완전히 호환되도록 개발 중입니다. DroneKit-python 2.2.0에서 미션 처리와 비행체 모니터링에 대해서 기본으로 지원하고 있다.
 
-## Setting up DroneKit with PX4
+## DroneKit을 PX4와 셋업하기
 
-Start by installing DroneKit-python from the current master.
+현재 master에서 DroneKit-python 설치하는 것부터 시작합니다.
 
 ```sh
 git clone https://github.com/dronekit/dronekit-python.git
@@ -15,7 +15,7 @@ sudo python setup.py build
 sudo python setup.py install
 ```
 
-Create a new python file and import DroneKit, pymavlink and basic modules
+새로 python 파일을 생성하고 DroneKit, pymavlink와 기본 모듈을 import 합니다.
 
 ```C
 # Import DroneKit-Python
@@ -25,7 +25,7 @@ import time, sys, argparse, math
 
 ```
 
-Connect to a Mavlink port of your drone or simulation
+드론이나 시뮬레이션의 Mavlink port에 연결합니다.
 
 ```C
 # Connect to the Vehicle
@@ -35,7 +35,7 @@ vehicle = connect(connection_string, wait_ready=True)
 
 ```
 
-Display some basic status information
+기본 상태 정보를 표시합니다.
 
 ```C
 # Display basic vehicle state
@@ -47,9 +47,9 @@ print " Alt: %s" % vehicle.location.global_relative_frame.alt
 ```
 
 
-## Full mission example
+## 전체 미션 예제
 
-The following python script shows a full mission example using DroneKit and PX4. Mode switching is not yet fully supported from DroneKit, we therefor send our own custom mode switching commands.
+다음 python script는 DroneKit과 PX4를 사용해서 전체 미션 예제를 보여줍니다. Mode 스위칭은 DroneKit에서 지원하지 않으므로 커스텀 mode 스위칭 명령을 사용합니다.
 
 ```C
 ################################################################################################
