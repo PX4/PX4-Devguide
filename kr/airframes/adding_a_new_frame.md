@@ -1,24 +1,25 @@
-# Adding a new Airframe Configuration
+# 새로운 Airframe 설정 추가하기
 
-PX4 uses canned configurations as starting point for airframes. Adding a configuration is straightforward: Create a new file which is prepended with a free autostart ID in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) and [build and upload](../setup/building_px4.md) the software.
+PX4는 airframe을 시작 시점에 설정을 이용합니다. 설정을 추가하는 것은 직관적입니다. : [init.d 폴더](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 내에 free autosart ID를 가지는 새로운 파일을 생성하고 소프트웨어를 [빌드 및 업로드](../setup/building_px4.md)합니다.
 
-Developers not wanting to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../advanced/system_startup.md) page.
+자신만의 설정을 새로 만드는 것을 원치 않는 개발자라면 microSD 카드에서 텍스트파일을 이용해서 기존 설정을 대신 수정할 수 있습니다. 상세한 내용은 [커스텀 시스템 startup](../advanced/system_startup.md)을 참고하세요.
 
-## Airframe configurations
+## Airframe 설정
 
-An airframe configuration consists of three main blocks:
+airframe 설정은 3개 주요 블록으로 구성 :
 
-  * The apps it should start, e.g. multicopter or fixed wing controllers
-  * The physical configuration of the system (e.g. a plane, wing or multicopter). This is called mixer.
-  * Tuning gains
+  * 구동시켜야 하는 app들. (예로 multicopter이나 fixed wing controllers)
+  * 시스템의 물리적 설정(예로 plane, wing 혹은 multicopter)을 mixer라고 부름.
+  * 튜닝 게인 (Tuning gains)
 
-These three aspects are mostly independent, which means that many configurations share the same physical layout of the airframe and start the same applications and most differ in their tuning gains.
+이 3가지는 독립적입니다. 이말은 많은 설정이 airframe의 동일한 물리적 레이아웃을 공유하며 동일한 applications을 구동시키며 가장 큰 차이는 튜닝 게인이 다르다는 것입니다.
 
-All configurations are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. All mixers are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
+모든 설정은 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 저장됩니다.
+모든 믹서는 [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) 폴더에 저장됩니다.
 
-### Config file
+### 설정 파일
 
-A typical configuration file is below.
+일반적인 설정 파일은 아래와 같습니다.
 
 ```bash
 #!nsh
@@ -71,17 +72,17 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-IMPORTANT REMARK: If you want to reverse a channel, never do this neither on your RC transmitter nor with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs for both output scaling and output range in the corresponding mixer (see below). 
+중요 : 채널을 reverse시킬 때, RC 트랜스미터나 `RC1_REV`로 절대로 바꾸지 마세요. 채널은 매뉴얼 모드로 비행할 때만 reverse되므로 만약 autopilot flight mode로 변환되면, 채널 출력이 잘못된 상태로 남게 됩니다.(RC 시그널만 반대로 변환) 따라서 채널을 올바르게 할당하려면, `PWM_MAIN_REV1`으로 PWM 신호를 변경하거나 믹서에서 출력 스케일링과 출력 범위를 변경하여야 합니다. (아래 참고)
 
-### Mixer file
+### 믹서 파일
 
-A typical configuration file is below. 
+일반적인 설정 파일은 아래와 같다.
 
-> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
+> **Note** 서보/모터 plug는 이 파일에 있는 믹서의 순서와 관련이 있습니다.
 
-So MAIN1 would be the left aileron, MAIN2 the right aileron, MAIN3 is empty (note the Z: zero mixer) and MAIN4 is throttle (to keep throttle on output 4 for common fixed wing configurations).
+MAIN1은 왼쪽 aileron, MAIN2는 오른쪽 aileron, MAIN3은 빈값(Z: zero mizer)이고 MAIN4는 throttle(일반적으로 fixed wing 설정에 output 4에 throttle 유지)입니다.
 
-A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1..+1.
+믹서는 -1..+1에 대응해서 -10000에서 10000값으로 정규화시켜 인코딩됩니다.
 
 ```
 M: 2
@@ -90,16 +91,16 @@ S: 0 0  -6000  -6000      0 -10000  10000
 S: 0 1   6500   6500      0 -10000  10000
 ```
 
-Where each number from left to right means:
+왼쪽에서 오른쪽으로 각 숫자의 의미 :
 
-  * M: Indicates two scalers for two inputs
-  * O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  If you want to invert your PWM signal, the signs for both output scalings and both output range numbers have to be changed. (```O:      -10000  -10000      0 10000  -10000```)
-  * S: Indicates the first input scaler: It takes input from control group #0 (attitude controls) and the first input (roll). It scales the input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
-  * S: Indicates the second input scaler: It takes input from control group #0 (attitude controls) and the second input (pitch). It scales the input * 0.65 and reverts the sign (-0.65 becomes -6500 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
+  * M: 2개 input에 대한 2개 scaler 표시
+  * O: output scaling (*1 in negative, *1 in positive), offset (여기서는 0), output range (여기서는 -1..+1)를 표시. 만약 여러분의 PWM 신호를 invert 시키고자 한다면, 2개 output scaling와 2개 output range 숫자 모두의 sign을 변경해야만 함.(```O:      -10000  -10000      0 10000  -10000```)
+  * S: 첫번째 input scaler : control group #0의 입력 (attitude controls)과 첫번째 input (roll)을 입력으로 사용. input * 0.6을 scale하고 sign(-0.6은 -6000으로 스케일)을 revert시킴. 여기서는 offset (0)이 적용되지 않고 output에 full range (-1..+1)를 적용.
+  * S: 두번째 input scaler : control group #0의 입력 (attitude controls)과 두번째 input (pitch)을 입력으로 사용. input * 0.65로 scale하고 sign(-0.65는 -6500으로 스케일)을 revert시킴. 여기서는 offset (0)과 full range (-1..+1)에 대한 출력을 적용하지 않음.
 
-Both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch. As it is over-committed with 125% total deflection for maximum pitch and roll, it means the first channel (roll here) has priority over the second channel / scaler (pitch).
+두쪽 모두 scaler가 추가되면, flywing wing에 대해서 control surface는 roll에 대해서 최대 60% 그리고 pitch에 대해서 65% deflection이 발생한다는 것을 의미합니다. 최대 pitch와 roll에 대해서 총 125% deflection이 되므로 첫번째 채널(여기서는 roll)이 두번째 채널(pitch)보다 우선순위를 갖게 됩니다.
 
-The complete mixer looks like this:
+완료된 믹서는 다음과 같은 형태 :
 
 
 ```bash

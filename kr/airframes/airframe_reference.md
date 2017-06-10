@@ -1,12 +1,10 @@
-# Airframes Reference
-> **Note** **This list is auto-generated from the source code**.
-> 
-> The **AUX** channels are only available on Pixhawk Boards (labeled with **AUX OUT**).
-> 
+# Airframes 레퍼런스
+> **Note** **이 목록은 소스코드에서 자동으로 생성됩니다.**.
+>
+> **AUX** 채널은 Pixhawk 보드에서만 유효합니다. (**AUX OUT**이라는 레이블을 가짐)
+>
 
-This page lists all supported airframes and types including
- the motor assignment and numbering. The motors in **green** rotate clockwise,
- the ones in **blue** conterclockwise.
+이 페이지에서는 지원하는 모든 airframe과 타입을 보여주며 모터와 관련된 정보를 보여줍니다. **녹색** 모터는 시계방향으로 회전하고 **blue** 모터는 반시계방향으로 회전합니다.
 
 ## Coaxial Helicopter
 
@@ -527,12 +525,12 @@ This page lists all supported airframes and types including
 </tr>
 <tr>
  <td style="vertical-align: top;">Generic Quadrotor X config with mount (e.g. gimbal)</td>
- <td style="vertical-align: top;"><p>Maintainer: Leon Mueller <thedevleon></p><p><code>SYS_AUTOSTART</code> = 4002</p><p><b>Specific Outputs:</b><ul><li><b>AUX1</b>: Mount pitch</li><li><b>AUX2</b>: Mount roll</li><li><b>AUX3</b>: Mount yaw</li><li><b>AUX4</b>: Mount mode</li><li><b>AUX5</b>: Mount retract</li></ul></p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Leon Mueller <thedevleon></p><p><code>SYS_AUTOSTART</code> = 4002</p><p><b>Specific Outputs:</b><ul><li><b>AUX1</b>: Mount pitch</li><li><b>AUX2</b>: Mount roll</li><li><b>AUX3</b>: Mount yaw</li><li><b>AUX4</b>: Mount retract</li></ul></p></td>
 
 </tr>
 <tr>
- <td style="vertical-align: top;">Intel Aero RTF</td>
- <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 4070</p></td>
+ <td style="vertical-align: top;">Intel Aero Ready to Fly Drone</td>
+ <td style="vertical-align: top;"><p>Maintainer: Lucas de Marchi</p><p><code>SYS_AUTOSTART</code> = 4070</p></td>
 
 </tr>
 <tr>
@@ -942,4 +940,3 @@ passthrough of RC input and PWM output.</p><p><code>SYS_AUTOSTART</code> = 20000
 
 </tr>
 </tbody></table>
-

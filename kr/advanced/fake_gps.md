@@ -1,4 +1,7 @@
 # FAKE GPS
+
+**이 페이지는 예전 정보를 담고 있습니다. 일반 MOTION-CAPTURE와 VISION 통합에 관련한 내용은 [여기](../ros/external_position_estimation.md)를 참고하세요.**
+
 이 페이지에서는 mocap 데이터를 가짜 gps로 사용하는 방법에 대해서 알아봅니다.
 
 셋업은 다음과 같습니다. :
@@ -84,7 +87,7 @@ DJI_450/DJI_450를 여러분이 정한 모델 이름으로 대체합니다. (e.g
 ```sh
 mocap_tf_sub = mp_nh.subscribe("/vicon/DJI_450/DJI_450_drop", 1, &MocapFakeGPSPlugin::mocap_tf_cb, this);
 ```
-"_drop"은 다음 단계에서 설명합니다.
+여러분의 모델이 예제로 /vicon/yourModelName/yourModelname_drop를 가지는 경우입니다. "_drop"은 다음 단계에서 설명합니다.
 
 
 ### Step 7

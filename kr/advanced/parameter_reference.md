@@ -1,12 +1,11 @@
-# Parameter Reference
+# 파라미터 참조
 
-> **Note** **This list is auto-generated from the source code** and contains the most recent parameter documentation (
-  this supersedes the [firmware parameter documentation here](https://pixhawk.org/firmware/parameters).)
+> **Note** **이 목록은 소스코드에서 자동으로 생성되며** 가장 최근 파라미터 문서를 포함합니다.([펌웨어 파라미터 문서](https://pixhawk.org/firmware/parameters)를 대체합니다)
 
 ## Attitude EKF estimator
 
 
-The module where these parameters are defined is: *src/examples/attitude_estimator_ekf*.
+이 파라미터가 정의되어 있는 모듈 : *src/examples/attitude_estimator_ekf*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -96,7 +95,7 @@ The module where these parameters are defined is: *src/examples/attitude_estimat
 ## Attitude Q estimator
 
 
-The module where these parameters are defined is: *src/modules/attitude_estimator_q*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/attitude_estimator_q*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -151,11 +150,11 @@ The module where these parameters are defined is: *src/modules/attitude_estimato
  <td style="vertical-align: top;"><p>External heading usage mode (from Motion capture/Vision)
 Set to 1 to use heading estimate from vision.
 Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> None</li> 
+<li><strong>0:</strong> None</li>
 
-<li><strong>1:</strong> Vision</li> 
+<li><strong>1:</strong> Vision</li>
 
-<li><strong>2:</strong> Motion Capture</li> 
+<li><strong>2:</strong> Motion Capture</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 2 </td>
@@ -238,9 +237,9 @@ velocity</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_SOURCE">BAT_SOURCE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Battery monitoring source</p><p><strong>Comment:</strong> This parameter controls the source of battery data. The value 'Power Module' means that measurements are expected to come from a power module. If the value is set to 'External' then the system expects to receive mavlink battery status messages.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Power Module</li> 
+<li><strong>0:</strong> Power Module</li>
 
-<li><strong>1:</strong> External</li> 
+<li><strong>1:</strong> External</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -314,37 +313,37 @@ velocity</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_N_CELLS">BAT_N_CELLS</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Number of cells</p><p><strong>Comment:</strong> Defines the number of cells the attached battery consists of.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unconfigured</li> 
+<li><strong>0:</strong> Unconfigured</li>
 
-<li><strong>2:</strong> 2S Battery</li> 
+<li><strong>2:</strong> 2S Battery</li>
 
-<li><strong>3:</strong> 3S Battery</li> 
+<li><strong>3:</strong> 3S Battery</li>
 
-<li><strong>4:</strong> 4S Battery</li> 
+<li><strong>4:</strong> 4S Battery</li>
 
-<li><strong>5:</strong> 5S Battery</li> 
+<li><strong>5:</strong> 5S Battery</li>
 
-<li><strong>6:</strong> 6S Battery</li> 
+<li><strong>6:</strong> 6S Battery</li>
 
-<li><strong>7:</strong> 7S Battery</li> 
+<li><strong>7:</strong> 7S Battery</li>
 
-<li><strong>8:</strong> 8S Battery</li> 
+<li><strong>8:</strong> 8S Battery</li>
 
-<li><strong>9:</strong> 9S Battery</li> 
+<li><strong>9:</strong> 9S Battery</li>
 
-<li><strong>10:</strong> 10S Battery</li> 
+<li><strong>10:</strong> 10S Battery</li>
 
-<li><strong>11:</strong> 11S Battery</li> 
+<li><strong>11:</strong> 11S Battery</li>
 
-<li><strong>12:</strong> 12S Battery</li> 
+<li><strong>12:</strong> 12S Battery</li>
 
-<li><strong>13:</strong> 13S Battery</li> 
+<li><strong>13:</strong> 13S Battery</li>
 
-<li><strong>14:</strong> 14S Battery</li> 
+<li><strong>14:</strong> 14S Battery</li>
 
-<li><strong>15:</strong> 15S Battery</li> 
+<li><strong>15:</strong> 15S Battery</li>
 
-<li><strong>16:</strong> 16S Battery</li> 
+<li><strong>16:</strong> 16S Battery</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> src/modules/systemlib</p>
@@ -367,7 +366,7 @@ velocity</p>    </td>
 ## Camera trigger
 
 
-The module where these parameters are defined is: *src/drivers/camera_trigger*.
+이 파라미터가 정의되어 있는 모듈 : *src/drivers/camera_trigger*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -378,13 +377,13 @@ The module where these parameters are defined is: *src/drivers/camera_trigger*.
 <tr>
  <td style="vertical-align: top;"><strong id="TRIG_INTERFACE">TRIG_INTERFACE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Camera trigger Interface</p><p><strong>Comment:</strong> Selects the trigger interface</p> <strong>Values:</strong><ul>
-<li><strong>1:</strong> GPIO</li> 
+<li><strong>1:</strong> GPIO</li>
 
-<li><strong>2:</strong> Seagull MAP2 (over PWM)</li> 
+<li><strong>2:</strong> Seagull MAP2 (over PWM)</li>
 
-<li><strong>3:</strong> MAVLink (forward via MAV_CMD_IMAGE_START_CAPTURE)</li> 
+<li><strong>3:</strong> MAVLink (forward via MAV_CMD_IMAGE_START_CAPTURE)</li>
 
-<li><strong>4:</strong> Generic PWM (IR trigger, servo)</li> 
+<li><strong>4:</strong> Generic PWM (IR trigger, servo)</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  </td>
@@ -402,9 +401,9 @@ The module where these parameters are defined is: *src/drivers/camera_trigger*.
 <tr>
  <td style="vertical-align: top;"><strong id="TRIG_POLARITY">TRIG_POLARITY</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Camera trigger polarity</p><p><strong>Comment:</strong> This parameter sets the polarity of the trigger (0 = active low, 1 = active high )</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Active low</li> 
+<li><strong>0:</strong> Active low</li>
 
-<li><strong>1:</strong> Active high</li> 
+<li><strong>1:</strong> Active high</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -421,15 +420,15 @@ The module where these parameters are defined is: *src/drivers/camera_trigger*.
 <tr>
  <td style="vertical-align: top;"><strong id="TRIG_MODE">TRIG_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Camera trigger mode</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disable</li> 
+<li><strong>0:</strong> Disable</li>
 
-<li><strong>1:</strong> On individual commands</li> 
+<li><strong>1:</strong> On individual commands</li>
 
-<li><strong>2:</strong> Time based, always on</li> 
+<li><strong>2:</strong> Time based, always on</li>
 
-<li><strong>3:</strong> Distance based, always on</li> 
+<li><strong>3:</strong> Distance based, always on</li>
 
-<li><strong>4:</strong> Distance, mission controlled</li> 
+<li><strong>4:</strong> Distance, mission controlled</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  </td>
@@ -457,7 +456,7 @@ The module where these parameters are defined is: *src/drivers/camera_trigger*.
 ## Circuit Breaker
 
 
-The module where these parameters are defined is: *src/modules/systemlib*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/systemlib*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -542,7 +541,7 @@ The module where these parameters are defined is: *src/modules/systemlib*.
 ## Commander
 
 
-The module where these parameters are defined is: *src/modules/commander*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/commander*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -609,11 +608,11 @@ The module where these parameters are defined is: *src/modules/commander*.
 <tr>
  <td style="vertical-align: top;"><strong id="COM_RC_IN_MODE">COM_RC_IN_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>RC control input mode</p><p><strong>Comment:</strong> The default value of 0 requires a valid RC transmitter setup. Setting this to 1 allows joystick control and disables RC input handling and the associated checks. A value of 2 will generate RC control data from manual input received via MAVLink instead of directly forwarding the manual input data.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> RC Transmitter</li> 
+<li><strong>0:</strong> RC Transmitter</li>
 
-<li><strong>1:</strong> Joystick/No RC Checks</li> 
+<li><strong>1:</strong> Joystick/No RC Checks</li>
 
-<li><strong>2:</strong> Virtual RC by Joystick</li> 
+<li><strong>2:</strong> Virtual RC by Joystick</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 2 </td>
@@ -644,9 +643,9 @@ The module where these parameters are defined is: *src/modules/commander*.
 <tr>
  <td style="vertical-align: top;"><strong id="COM_ARM_SWISBTN">COM_ARM_SWISBTN</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Arm switch is only a button</p><p><strong>Comment:</strong> The default uses the arm switch as real switch. If parameter set button gets handled like stick arming.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Arm switch is a switch that stays on when armed</li> 
+<li><strong>0:</strong> Arm switch is a switch that stays on when armed</li>
 
-<li><strong>1:</strong> Arm switch is a button that only triggers arming and disarming</li> 
+<li><strong>1:</strong> Arm switch is a button that only triggers arming and disarming</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -656,13 +655,13 @@ The module where these parameters are defined is: *src/modules/commander*.
 <tr>
  <td style="vertical-align: top;"><strong id="COM_LOW_BAT_ACT">COM_LOW_BAT_ACT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Battery failsafe mode</p><p><strong>Comment:</strong> Action the system takes on low battery. Defaults to off</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Warning</li> 
+<li><strong>0:</strong> Warning</li>
 
-<li><strong>1:</strong> Return to land</li> 
+<li><strong>1:</strong> Return to land</li>
 
-<li><strong>2:</strong> Land at current position</li> 
+<li><strong>2:</strong> Land at current position</li>
 
-<li><strong>3:</strong> Return to land at critically low level, land at current position if reaching dangerously low levels</li> 
+<li><strong>3:</strong> Return to land at critically low level, land at current position if reaching dangerously low levels</li>
 </ul>
    </td>
  <td style="vertical-align: top;">(1)</td>
@@ -752,7 +751,7 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>    </td>
 ## Data Link Loss
 
 
-The module where these parameters are defined is: *src/modules/navigator*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -835,7 +834,7 @@ The module where these parameters are defined is: *src/modules/navigator*.
 ## EKF2
 
 
-The module where these parameters are defined is: *src/modules/ekf2*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/ekf2*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -903,15 +902,15 @@ Assumes measurement is timestamped at trailing edge of integration period</p>   
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_GPS_CHECK">EKF2_GPS_CHECK</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Integer bitmask controlling GPS checks</p><p><strong>Comment:</strong> Set bits to 1 to enable checks. Checks enabled by the following bit positions 0 : Minimum required sat count set by EKF2_REQ_NSATS 1 : Minimum required GDoP set by EKF2_REQ_GDOP 2 : Maximum allowed horizontal position error set by EKF2_REQ_EPH 3 : Maximum allowed vertical position error set by EKF2_REQ_EPV 4 : Maximum allowed speed error set by EKF2_REQ_SACC 5 : Maximum allowed horizontal position rate set by EKF2_REQ_HDRIFT. This check can only be used if the vehicle is stationary during alignment. 6 : Maximum allowed vertical position rate set by EKF2_REQ_VDRIFT. This check can only be used if the vehicle is stationary during alignment. 7 : Maximum allowed horizontal speed set by EKF2_REQ_HDRIFT. This check can only be used if the vehicle is stationary during alignment. 8 : Maximum allowed vertical velocity discrepancy set by EKF2_REQ_VDRIFT</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> Min sat count (EKF2_REQ_NSATS)</li> 
-  <li><strong>1:</strong> Min GDoP (EKF2_REQ_GDOP)</li> 
-  <li><strong>2:</strong> Max horizontal position error (EKF2_REQ_EPH)</li> 
-  <li><strong>3:</strong> Max vertical position error (EKF2_REQ_EPV)</li> 
-  <li><strong>4:</strong> Max speed error (EKF2_REQ_SACC)</li> 
-  <li><strong>5:</strong> Max horizontal position rate (EKF2_REQ_HDRIFT)</li> 
-  <li><strong>6:</strong> Max vertical position rate (EKF2_REQ_VDRIFT)</li> 
-  <li><strong>7:</strong> Max horizontal speed (EKF2_REQ_HDRIFT)</li> 
-  <li><strong>8:</strong> Max vertical velocity discrepancy (EKF2_REQ_VDRIFT)</li> 
+ <td style="vertical-align: top;"><p>Integer bitmask controlling GPS checks</p><p><strong>Comment:</strong> Set bits to 1 to enable checks. Checks enabled by the following bit positions 0 : Minimum required sat count set by EKF2_REQ_NSATS 1 : Minimum required GDoP set by EKF2_REQ_GDOP 2 : Maximum allowed horizontal position error set by EKF2_REQ_EPH 3 : Maximum allowed vertical position error set by EKF2_REQ_EPV 4 : Maximum allowed speed error set by EKF2_REQ_SACC 5 : Maximum allowed horizontal position rate set by EKF2_REQ_HDRIFT. This check can only be used if the vehicle is stationary during alignment. 6 : Maximum allowed vertical position rate set by EKF2_REQ_VDRIFT. This check can only be used if the vehicle is stationary during alignment. 7 : Maximum allowed horizontal speed set by EKF2_REQ_HDRIFT. This check can only be used if the vehicle is stationary during alignment. 8 : Maximum allowed vertical velocity discrepancy set by EKF2_REQ_VDRIFT</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> Min sat count (EKF2_REQ_NSATS)</li>
+  <li><strong>1:</strong> Min GDoP (EKF2_REQ_GDOP)</li>
+  <li><strong>2:</strong> Max horizontal position error (EKF2_REQ_EPH)</li>
+  <li><strong>3:</strong> Max vertical position error (EKF2_REQ_EPV)</li>
+  <li><strong>4:</strong> Max speed error (EKF2_REQ_SACC)</li>
+  <li><strong>5:</strong> Max horizontal position rate (EKF2_REQ_HDRIFT)</li>
+  <li><strong>6:</strong> Max vertical position rate (EKF2_REQ_VDRIFT)</li>
+  <li><strong>7:</strong> Max horizontal speed (EKF2_REQ_HDRIFT)</li>
+  <li><strong>8:</strong> Max vertical velocity discrepancy (EKF2_REQ_VDRIFT)</li>
 </ul>
   </td>
  <td style="vertical-align: top;">0 > 511 </td>
@@ -1095,9 +1094,9 @@ Assumes measurement is timestamped at trailing edge of integration period</p>   
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_DECL_TYPE">EKF2_DECL_TYPE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Integer bitmask controlling handling of magnetic declination</p><p><strong>Comment:</strong> Set bits in the following positions to enable functions. 0 : Set to true to use the declination from the geo_lookup library when the GPS position becomes available, set to false to always use the EKF2_MAG_DECL value. 1 : Set to true to save the EKF2_MAG_DECL parameter to the value returned by the EKF when the vehicle disarms. 2 : Set to true to always use the declination as an observation when 3-axis magnetometer fusion is being used.</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> use geo_lookup declination</li> 
-  <li><strong>1:</strong> save EKF2_MAG_DECL on disarm</li> 
-  <li><strong>2:</strong> use declination as an observation</li> 
+ <td style="vertical-align: top;"><p>Integer bitmask controlling handling of magnetic declination</p><p><strong>Comment:</strong> Set bits in the following positions to enable functions. 0 : Set to true to use the declination from the geo_lookup library when the GPS position becomes available, set to false to always use the EKF2_MAG_DECL value. 1 : Set to true to save the EKF2_MAG_DECL parameter to the value returned by the EKF when the vehicle disarms. 2 : Set to true to always use the declination as an observation when 3-axis magnetometer fusion is being used.</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> use geo_lookup declination</li>
+  <li><strong>1:</strong> save EKF2_MAG_DECL on disarm</li>
+  <li><strong>2:</strong> use declination as an observation</li>
 </ul>
   </td>
  <td style="vertical-align: top;">0 > 7 </td>
@@ -1107,13 +1106,13 @@ Assumes measurement is timestamped at trailing edge of integration period</p>   
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_MAG_TYPE">EKF2_MAG_TYPE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Type of magnetometer fusion</p><p><strong>Comment:</strong> Integer controlling the type of magnetometer fusion used - magnetic heading or 3-axis magnetometer. If set to automatic: heading fusion on-ground and 3-axis fusion in-flight</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Automatic</li> 
+<li><strong>0:</strong> Automatic</li>
 
-<li><strong>1:</strong> Magnetic heading</li> 
+<li><strong>1:</strong> Magnetic heading</li>
 
-<li><strong>2:</strong> 3-axis fusion</li> 
+<li><strong>2:</strong> 3-axis fusion</li>
 
-<li><strong>3:</strong> None</li> 
+<li><strong>3:</strong> None</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -1157,11 +1156,11 @@ Assumes measurement is timestamped at trailing edge of integration period</p>   
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_AID_MASK">EKF2_AID_MASK</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Integer bitmask controlling data fusion and aiding methods</p><p><strong>Comment:</strong> Set bits in the following positions to enable: 0 : Set to true to use GPS data if available 1 : Set to true to use optical flow data if available 2 : Set to true to inhibit IMU bias estimation 3 : Set to true to enable vision position fusion 4 : Set to true to enable vision yaw fusion</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> use GPS</li> 
-  <li><strong>1:</strong> use optical flow</li> 
-  <li><strong>2:</strong> inhibit IMU bias estimation</li> 
-  <li><strong>3:</strong> vision position fusion</li> 
-  <li><strong>4:</strong> vision yaw fusion</li> 
+ <td style="vertical-align: top;"><p>Integer bitmask controlling data fusion and aiding methods</p><p><strong>Comment:</strong> Set bits in the following positions to enable: 0 : Set to true to use GPS data if available 1 : Set to true to use optical flow data if available 2 : Set to true to inhibit IMU bias estimation 3 : Set to true to enable vision position fusion 4 : Set to true to enable vision yaw fusion</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> use GPS</li>
+  <li><strong>1:</strong> use optical flow</li>
+  <li><strong>2:</strong> inhibit IMU bias estimation</li>
+  <li><strong>3:</strong> vision position fusion</li>
+  <li><strong>4:</strong> vision yaw fusion</li>
 </ul>
   </td>
  <td style="vertical-align: top;">0 > 28 </td>
@@ -1171,13 +1170,13 @@ Assumes measurement is timestamped at trailing edge of integration period</p>   
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_HGT_MODE">EKF2_HGT_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Determines the primary source of height data used by the EKF</p><p><strong>Comment:</strong> The range sensor option should only be used when for operation over a flat surface as the local NED origin will move up and down with ground level.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Barometric pressure</li> 
+<li><strong>0:</strong> Barometric pressure</li>
 
-<li><strong>1:</strong> GPS</li> 
+<li><strong>1:</strong> GPS</li>
 
-<li><strong>2:</strong> Range sensor</li> 
+<li><strong>2:</strong> Range sensor</li>
 
-<li><strong>3:</strong> Vision</li> 
+<li><strong>3:</strong> Vision</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -1449,7 +1448,7 @@ value will determine the minimum airspeed which will still be fused</p>    </td>
 ## FW Attitude Control
 
 
-The module where these parameters are defined is: *src/modules/fw_att_control*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/fw_att_control*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -1642,9 +1641,9 @@ The module where these parameters are defined is: *src/modules/fw_att_control*.
 <tr>
  <td style="vertical-align: top;"><strong id="FW_YCO_METHOD">FW_YCO_METHOD</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Method used for yaw coordination</p><p><strong>Comment:</strong> The param value sets the method used to calculate the yaw rate 0: open-loop zero lateral acceleration based on kinematic constraints 1: closed-loop: try to reduce lateral acceleration to 0 by measuring the acceleration</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> open-loop</li> 
+<li><strong>0:</strong> open-loop</li>
 
-<li><strong>1:</strong> closed-loop</li> 
+<li><strong>1:</strong> closed-loop</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -1696,11 +1695,11 @@ The module where these parameters are defined is: *src/modules/fw_att_control*.
 <tr>
  <td style="vertical-align: top;"><strong id="FW_ARSP_MODE">FW_ARSP_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Airspeed mode</p><p><strong>Comment:</strong> The param value sets the method used to publish the control state airspeed. For small wings or VTOL without airspeed sensor this parameter can be used to enable flying without an airspeed reading</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> use measured airspeed</li> 
+<li><strong>0:</strong> use measured airspeed</li>
 
-<li><strong>1:</strong> use vehicle ground velocity as airspeed</li> 
+<li><strong>1:</strong> use vehicle ground velocity as airspeed</li>
 
-<li><strong>2:</strong> declare airspeed invalid</li> 
+<li><strong>2:</strong> declare airspeed invalid</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 2 </td>
@@ -1768,7 +1767,7 @@ The module where these parameters are defined is: *src/modules/fw_att_control*.
 ## FW L1 Control
 
 
-The module where these parameters are defined is: *src/modules/fw_pos_control_l1*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/fw_pos_control_l1*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -1928,7 +1927,7 @@ The module where these parameters are defined is: *src/modules/fw_pos_control_l1
 ## FW Launch detection
 
 
-The module where these parameters are defined is: *src/lib/launchdetection*.
+이 파라미터가 정의되어 있는 모듈 : *src/lib/launchdetection*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2138,7 +2137,7 @@ The module where these parameters are defined is: *src/lib/launchdetection*.
 ## Follow target
 
 
-The module where these parameters are defined is: *src/modules/navigator*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2181,7 +2180,7 @@ but also ignore less noise</p>    </td>
 ## GPS
 
 
-The module where these parameters are defined is: *src/drivers/gps*.
+이 파라미터가 정의되어 있는 모듈 : *src/drivers/gps*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2192,9 +2191,9 @@ The module where these parameters are defined is: *src/drivers/gps*.
 <tr>
  <td style="vertical-align: top;"><strong id="GPS_DUMP_COMM">GPS_DUMP_COMM</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Dump GPS communication to a file</p><p><strong>Comment:</strong> If this is set to 1, all GPS communication data will be published via uORB, and written to the log file as gps_dump message.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disable</li> 
+<li><strong>0:</strong> Disable</li>
 
-<li><strong>1:</strong> Enable</li> 
+<li><strong>1:</strong> Enable</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -2206,7 +2205,7 @@ The module where these parameters are defined is: *src/drivers/gps*.
 ## GPS Failure Navigation
 
 
-The module where these parameters are defined is: *src/modules/navigator*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2247,7 +2246,7 @@ The module where these parameters are defined is: *src/modules/navigator*.
 ## Geofence
 
 
-The module where these parameters are defined is: *src/modules/navigator*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2258,15 +2257,15 @@ The module where these parameters are defined is: *src/modules/navigator*.
 <tr>
  <td style="vertical-align: top;"><strong id="GF_ACTION">GF_ACTION</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Geofence violation action</p><p><strong>Comment:</strong> Note: Setting this value to 4 enables flight termination, which will kill the vehicle on violation of the fence. Due to the inherent danger of this, this function is disabled using a software circuit breaker, which needs to be reset to 0 to really shut down the system.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> None</li> 
+<li><strong>0:</strong> None</li>
 
-<li><strong>1:</strong> Warning</li> 
+<li><strong>1:</strong> Warning</li>
 
-<li><strong>2:</strong> Loiter</li> 
+<li><strong>2:</strong> Loiter</li>
 
-<li><strong>3:</strong> Return to Land</li> 
+<li><strong>3:</strong> Return to Land</li>
 
-<li><strong>4:</strong> Flight terminate</li> 
+<li><strong>4:</strong> Flight terminate</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 4 </td>
@@ -2276,9 +2275,9 @@ The module where these parameters are defined is: *src/modules/navigator*.
 <tr>
  <td style="vertical-align: top;"><strong id="GF_ALTMODE">GF_ALTMODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Geofence altitude mode</p><p><strong>Comment:</strong> Select which altitude reference should be used 0 = WGS84, 1 = AMSL</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> WGS84</li> 
+<li><strong>0:</strong> WGS84</li>
 
-<li><strong>1:</strong> AMSL</li> 
+<li><strong>1:</strong> AMSL</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -2288,9 +2287,9 @@ The module where these parameters are defined is: *src/modules/navigator*.
 <tr>
  <td style="vertical-align: top;"><strong id="GF_SOURCE">GF_SOURCE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Geofence source</p><p><strong>Comment:</strong> Select which position source should be used. Selecting GPS instead of global position makes sure that there is no dependence on the position estimator 0 = global position, 1 = GPS</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> GPOS</li> 
+<li><strong>0:</strong> GPOS</li>
 
-<li><strong>1:</strong> GPS</li> 
+<li><strong>1:</strong> GPS</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -2323,7 +2322,7 @@ The module where these parameters are defined is: *src/modules/navigator*.
 ## Iridium SBD
 
 
-The module where these parameters are defined is: *src/drivers/iridiumsbd*.
+이 파라미터가 정의되어 있는 모듈 : *src/drivers/iridiumsbd*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2343,7 +2342,7 @@ The module where these parameters are defined is: *src/drivers/iridiumsbd*.
 ## Land Detector
 
 
-The module where these parameters are defined is: *src/modules/land_detector*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/land_detector*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2461,7 +2460,7 @@ The module where these parameters are defined is: *src/modules/land_detector*.
 ## Local Position Estimator
 
 
-The module where these parameters are defined is: *src/modules/local_position_estimator*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/local_position_estimator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2733,14 +2732,14 @@ by initializing the estimator to the LPE_LAT/LON parameters when global informat
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="LPE_FUSION">LPE_FUSION</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Integer bitmask controlling data fusion</p><p><strong>Comment:</strong> Set bits in the following positions to enable: 0 : Set to true to fuse GPS data if available, also requires GPS for altitude init 1 : Set to true to fuse optical flow data if available 2 : Set to true to fuse vision position 3 : Set to true to fuse vision yaw 4 : Set to true to fuse land detector 5 : Set to true to publish AGL as local position down component 6 : Set to true to enable flow gyro compensation 7 : Set to true to enable baro fusion default (145 - GPS only)</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> fuse GPS, requires GPS for alt. init</li> 
-  <li><strong>1:</strong> fuse optical flow</li> 
-  <li><strong>2:</strong> fuse vision position</li> 
-  <li><strong>3:</strong> fuse vision yaw</li> 
-  <li><strong>4:</strong> fuse land detector</li> 
-  <li><strong>5:</strong> pub agl as lpos down</li> 
-  <li><strong>6:</strong> flow gyro compensation</li> 
-  <li><strong>7:</strong> fuse baro</li> 
+ <td style="vertical-align: top;"><p>Integer bitmask controlling data fusion</p><p><strong>Comment:</strong> Set bits in the following positions to enable: 0 : Set to true to fuse GPS data if available, also requires GPS for altitude init 1 : Set to true to fuse optical flow data if available 2 : Set to true to fuse vision position 3 : Set to true to fuse vision yaw 4 : Set to true to fuse land detector 5 : Set to true to publish AGL as local position down component 6 : Set to true to enable flow gyro compensation 7 : Set to true to enable baro fusion default (145 - GPS only)</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> fuse GPS, requires GPS for alt. init</li>
+  <li><strong>1:</strong> fuse optical flow</li>
+  <li><strong>2:</strong> fuse vision position</li>
+  <li><strong>3:</strong> fuse vision yaw</li>
+  <li><strong>4:</strong> fuse land detector</li>
+  <li><strong>5:</strong> pub agl as lpos down</li>
+  <li><strong>6:</strong> flow gyro compensation</li>
+  <li><strong>7:</strong> fuse baro</li>
 </ul>
   </td>
  <td style="vertical-align: top;">0 > 255 </td>
@@ -2752,7 +2751,7 @@ by initializing the estimator to the LPE_LAT/LON parameters when global informat
 ## MAVLink
 
 
-The module where these parameters are defined is: *src/modules/mavlink*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/mavlink*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2777,11 +2776,11 @@ The module where these parameters are defined is: *src/modules/mavlink*.
 <tr>
  <td style="vertical-align: top;"><strong id="MAV_PROTO_VER">MAV_PROTO_VER</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>MAVLink protocol version</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Default to 1, switch to 2 if GCS sends version 2</li> 
+<li><strong>0:</strong> Default to 1, switch to 2 if GCS sends version 2</li>
 
-<li><strong>1:</strong> Always use version 1</li> 
+<li><strong>1:</strong> Always use version 1</li>
 
-<li><strong>2:</strong> Always use version 2</li> 
+<li><strong>2:</strong> Always use version 2</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -2819,9 +2818,9 @@ The module where these parameters are defined is: *src/modules/mavlink*.
 <tr>
  <td style="vertical-align: top;"><strong id="MAV_BROADCAST">MAV_BROADCAST</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Broadcast heartbeats on local network</p><p><strong>Comment:</strong> This allows a ground control station to automatically find the drone on the local network.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Never broadcast</li> 
+<li><strong>0:</strong> Never broadcast</li>
 
-<li><strong>1:</strong> Always broadcast</li> 
+<li><strong>1:</strong> Always broadcast</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -2840,7 +2839,7 @@ The module where these parameters are defined is: *src/modules/mavlink*.
 ## MKBLCTRL Testmode
 
 
-The module where these parameters are defined is: *src/drivers/mkblctrl*.
+이 파라미터가 정의되어 있는 모듈 : *src/drivers/mkblctrl*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2860,7 +2859,7 @@ The module where these parameters are defined is: *src/drivers/mkblctrl*.
 ## MPU9x50 Configuration
 
 
-The module where these parameters are defined is: *src/platforms/qurt/fc_addon/mpu_spi*.
+이 파라미터가 정의되어 있는 모듈 : *src/platforms/qurt/fc_addon/mpu_spi*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -2871,21 +2870,21 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 <tr>
  <td style="vertical-align: top;"><strong id="MPU_GYRO_LPF_ENM">MPU_GYRO_LPF_ENM</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Low pass filter frequency for Gyro</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> MPU9X50_GYRO_LPF_250HZ</li> 
+<li><strong>0:</strong> MPU9X50_GYRO_LPF_250HZ</li>
 
-<li><strong>1:</strong> MPU9X50_GYRO_LPF_184HZ</li> 
+<li><strong>1:</strong> MPU9X50_GYRO_LPF_184HZ</li>
 
-<li><strong>2:</strong> MPU9X50_GYRO_LPF_92HZ</li> 
+<li><strong>2:</strong> MPU9X50_GYRO_LPF_92HZ</li>
 
-<li><strong>3:</strong> MPU9X50_GYRO_LPF_41HZ</li> 
+<li><strong>3:</strong> MPU9X50_GYRO_LPF_41HZ</li>
 
-<li><strong>4:</strong> MPU9X50_GYRO_LPF_20HZ</li> 
+<li><strong>4:</strong> MPU9X50_GYRO_LPF_20HZ</li>
 
-<li><strong>5:</strong> MPU9X50_GYRO_LPF_10HZ</li> 
+<li><strong>5:</strong> MPU9X50_GYRO_LPF_10HZ</li>
 
-<li><strong>6:</strong> MPU9X50_GYRO_LPF_5HZ</li> 
+<li><strong>6:</strong> MPU9X50_GYRO_LPF_5HZ</li>
 
-<li><strong>7:</strong> MPU9X50_GYRO_LPF_3600HZ_NOLPF</li> 
+<li><strong>7:</strong> MPU9X50_GYRO_LPF_3600HZ_NOLPF</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -2895,21 +2894,21 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 <tr>
  <td style="vertical-align: top;"><strong id="MPU_ACC_LPF_ENM">MPU_ACC_LPF_ENM</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Low pass filter frequency for Accelerometer</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> MPU9X50_ACC_LPF_460HZ</li> 
+<li><strong>0:</strong> MPU9X50_ACC_LPF_460HZ</li>
 
-<li><strong>1:</strong> MPU9X50_ACC_LPF_184HZ</li> 
+<li><strong>1:</strong> MPU9X50_ACC_LPF_184HZ</li>
 
-<li><strong>2:</strong> MPU9X50_ACC_LPF_92HZ</li> 
+<li><strong>2:</strong> MPU9X50_ACC_LPF_92HZ</li>
 
-<li><strong>3:</strong> MPU9X50_ACC_LPF_41HZ</li> 
+<li><strong>3:</strong> MPU9X50_ACC_LPF_41HZ</li>
 
-<li><strong>4:</strong> MPU9X50_ACC_LPF_20HZ</li> 
+<li><strong>4:</strong> MPU9X50_ACC_LPF_20HZ</li>
 
-<li><strong>5:</strong> MPU9X50_ACC_LPF_10HZ</li> 
+<li><strong>5:</strong> MPU9X50_ACC_LPF_10HZ</li>
 
-<li><strong>6:</strong> MPU9X50_ACC_LPF_5HZ</li> 
+<li><strong>6:</strong> MPU9X50_ACC_LPF_5HZ</li>
 
-<li><strong>7:</strong> MPU9X50_ACC_LPF_460HZ_NOLPF</li> 
+<li><strong>7:</strong> MPU9X50_ACC_LPF_460HZ_NOLPF</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -2919,13 +2918,13 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 <tr>
  <td style="vertical-align: top;"><strong id="MPU_SAMPLE_R_ENM">MPU_SAMPLE_R_ENM</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Sample rate in Hz</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> MPU9x50_SAMPLE_RATE_100HZ</li> 
+<li><strong>0:</strong> MPU9x50_SAMPLE_RATE_100HZ</li>
 
-<li><strong>1:</strong> MPU9x50_SAMPLE_RATE_200HZ</li> 
+<li><strong>1:</strong> MPU9x50_SAMPLE_RATE_200HZ</li>
 
-<li><strong>2:</strong> MPU9x50_SAMPLE_RATE_500HZ</li> 
+<li><strong>2:</strong> MPU9x50_SAMPLE_RATE_500HZ</li>
 
-<li><strong>3:</strong> MPU9x50_SAMPLE_RATE_1000HZ</li> 
+<li><strong>3:</strong> MPU9x50_SAMPLE_RATE_1000HZ</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -2945,11 +2944,11 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 <tr>
  <td style="vertical-align: top;"><strong id="COM_OBL_ACT">COM_OBL_ACT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Set offboard loss failsafe mode</p><p><strong>Comment:</strong> The offboard loss failsafe will only be entered after a timeout, set by COM_OF_LOSS_T in seconds.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Land at current position</li> 
+<li><strong>0:</strong> Land at current position</li>
 
-<li><strong>1:</strong> Loiter</li> 
+<li><strong>1:</strong> Loiter</li>
 
-<li><strong>2:</strong> Return to Land</li> 
+<li><strong>2:</strong> Return to Land</li>
 </ul>
    <p><b>Module:</b> src/modules/commander</p>
 </td>
@@ -2960,15 +2959,15 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 <tr>
  <td style="vertical-align: top;"><strong id="COM_OBL_RC_ACT">COM_OBL_RC_ACT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Set offboard loss failsafe mode when RC is available</p><p><strong>Comment:</strong> The offboard loss failsafe will only be entered after a timeout, set by COM_OF_LOSS_T in seconds.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Position control</li> 
+<li><strong>0:</strong> Position control</li>
 
-<li><strong>1:</strong> Altitude control</li> 
+<li><strong>1:</strong> Altitude control</li>
 
-<li><strong>2:</strong> Manual</li> 
+<li><strong>2:</strong> Manual</li>
 
-<li><strong>3:</strong> Return to Land</li> 
+<li><strong>3:</strong> Return to Land</li>
 
-<li><strong>4:</strong> Land at current position</li> 
+<li><strong>4:</strong> Land at current position</li>
 </ul>
    <p><b>Module:</b> src/modules/commander</p>
 </td>
@@ -3011,19 +3010,19 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 <tr>
  <td style="vertical-align: top;"><strong id="NAV_DLL_ACT">NAV_DLL_ACT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Set data link loss failsafe mode</p><p><strong>Comment:</strong> The data link loss failsafe will only be entered after a timeout, set by COM_DL_LOSS_T in seconds. Once the timeout occurs the selected action will be executed. Setting this parameter to 4 will enable CASA Outback Challenge rules, which are only recommended to participants of that competition.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
+<li><strong>0:</strong> Disabled</li>
 
-<li><strong>1:</strong> Loiter</li> 
+<li><strong>1:</strong> Loiter</li>
 
-<li><strong>2:</strong> Return to Land</li> 
+<li><strong>2:</strong> Return to Land</li>
 
-<li><strong>3:</strong> Land at current position</li> 
+<li><strong>3:</strong> Land at current position</li>
 
-<li><strong>4:</strong> Data Link Auto Recovery (CASA Outback Challenge rules)</li> 
+<li><strong>4:</strong> Data Link Auto Recovery (CASA Outback Challenge rules)</li>
 
-<li><strong>5:</strong> Terminate</li> 
+<li><strong>5:</strong> Terminate</li>
 
-<li><strong>6:</strong> Lockdown</li> 
+<li><strong>6:</strong> Lockdown</li>
 </ul>
    <p><b>Module:</b> src/modules/navigator</p>
 </td>
@@ -3034,19 +3033,19 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 <tr>
  <td style="vertical-align: top;"><strong id="NAV_RCL_ACT">NAV_RCL_ACT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Set RC loss failsafe mode</p><p><strong>Comment:</strong> The RC loss failsafe will only be entered after a timeout, set by COM_RC_LOSS_T in seconds. If RC input checks have been disabled by setting the COM_RC_IN_MODE param it will not be triggered. Setting this parameter to 4 will enable CASA Outback Challenge rules, which are only recommended to participants of that competition.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
+<li><strong>0:</strong> Disabled</li>
 
-<li><strong>1:</strong> Loiter</li> 
+<li><strong>1:</strong> Loiter</li>
 
-<li><strong>2:</strong> Return to Land</li> 
+<li><strong>2:</strong> Return to Land</li>
 
-<li><strong>3:</strong> Land at current position</li> 
+<li><strong>3:</strong> Land at current position</li>
 
-<li><strong>4:</strong> RC Auto Recovery (CASA Outback Challenge rules)</li> 
+<li><strong>4:</strong> RC Auto Recovery (CASA Outback Challenge rules)</li>
 
-<li><strong>5:</strong> Terminate</li> 
+<li><strong>5:</strong> Terminate</li>
 
-<li><strong>6:</strong> Lockdown</li> 
+<li><strong>6:</strong> Lockdown</li>
 </ul>
    <p><b>Module:</b> src/modules/navigator</p>
 </td>
@@ -3097,9 +3096,9 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 <tr>
  <td style="vertical-align: top;"><strong id="MIS_ALTMODE">MIS_ALTMODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Altitude setpoint mode</p><p><strong>Comment:</strong> 0: the system will follow a zero order hold altitude setpoint 1: the system will follow a first order hold altitude setpoint values follow the definition in enum mission_altitude_mode</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Zero Order Hold</li> 
+<li><strong>0:</strong> Zero Order Hold</li>
 
-<li><strong>1:</strong> First Order Hold</li> 
+<li><strong>1:</strong> First Order Hold</li>
 </ul>
    <p><b>Module:</b> src/modules/navigator</p>
 </td>
@@ -3110,13 +3109,13 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 <tr>
  <td style="vertical-align: top;"><strong id="MIS_YAWMODE">MIS_YAWMODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Multirotor only. Yaw setpoint mode</p><p><strong>Comment:</strong> The values are defined in the enum mission_altitude_mode</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Heading as set by waypoint</li> 
+<li><strong>0:</strong> Heading as set by waypoint</li>
 
-<li><strong>1:</strong> Heading towards waypoint</li> 
+<li><strong>1:</strong> Heading towards waypoint</li>
 
-<li><strong>2:</strong> Heading towards home</li> 
+<li><strong>2:</strong> Heading towards home</li>
 
-<li><strong>3:</strong> Heading away from home</li> 
+<li><strong>3:</strong> Heading away from home</li>
 </ul>
    <p><b>Module:</b> src/modules/navigator</p>
 </td>
@@ -3169,7 +3168,7 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/m
 ## Mount
 
 
-The module where these parameters are defined is: *src/drivers/vmount*.
+이 파라미터가 정의되어 있는 모듈 : *src/drivers/vmount*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -3183,15 +3182,15 @@ The module where these parameters are defined is: *src/drivers/vmount*.
 RC uses the AUX input channels (see MNT_MAN_* parameters),
 MAVLINK_ROI uses the MAV_CMD_DO_SET_ROI Mavlink message, and MAVLINK_DO_MOUNT the
 MAV_CMD_DO_MOUNT_CONFIGURE and MAV_CMD_DO_MOUNT_CONTROL messages to control a mount</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> DISABLED</li> 
+<li><strong>-1:</strong> DISABLED</li>
 
-<li><strong>0:</strong> AUTO</li> 
+<li><strong>0:</strong> AUTO</li>
 
-<li><strong>1:</strong> RC</li> 
+<li><strong>1:</strong> RC</li>
 
-<li><strong>2:</strong> MAVLINK_ROI</li> 
+<li><strong>2:</strong> MAVLINK_ROI</li>
 
-<li><strong>3:</strong> MAVLINK_DO_MOUNT</li> 
+<li><strong>3:</strong> MAVLINK_DO_MOUNT</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  </td>
@@ -3205,9 +3204,9 @@ MAV_CMD_DO_MOUNT_CONFIGURE and MAV_CMD_DO_MOUNT_CONTROL messages to control a mo
 AUX uses the mixer output Control Group #2.
 MAVLINK uses the MAV_CMD_DO_MOUNT_CONFIGURE and MAV_CMD_DO_MOUNT_CONTROL MavLink messages
 to control a mount (set MNT_MAV_SYSID & MNT_MAV_COMPID)</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> AUX</li> 
+<li><strong>0:</strong> AUX</li>
 
-<li><strong>1:</strong> MAVLINK</li> 
+<li><strong>1:</strong> MAVLINK</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -3247,17 +3246,17 @@ if required for the gimbal (only in AUX output mode)</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="MNT_MAN_ROLL">MNT_MAN_ROLL</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Auxiliary channel to control roll (in AUX input or manual mode)</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disable</li> 
+<li><strong>0:</strong> Disable</li>
 
-<li><strong>1:</strong> AUX1</li> 
+<li><strong>1:</strong> AUX1</li>
 
-<li><strong>2:</strong> AUX2</li> 
+<li><strong>2:</strong> AUX2</li>
 
-<li><strong>3:</strong> AUX3</li> 
+<li><strong>3:</strong> AUX3</li>
 
-<li><strong>4:</strong> AUX4</li> 
+<li><strong>4:</strong> AUX4</li>
 
-<li><strong>5:</strong> AUX5</li> 
+<li><strong>5:</strong> AUX5</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 5 </td>
@@ -3267,17 +3266,17 @@ if required for the gimbal (only in AUX output mode)</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="MNT_MAN_PITCH">MNT_MAN_PITCH</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Auxiliary channel to control pitch (in AUX input or manual mode)</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disable</li> 
+<li><strong>0:</strong> Disable</li>
 
-<li><strong>1:</strong> AUX1</li> 
+<li><strong>1:</strong> AUX1</li>
 
-<li><strong>2:</strong> AUX2</li> 
+<li><strong>2:</strong> AUX2</li>
 
-<li><strong>3:</strong> AUX3</li> 
+<li><strong>3:</strong> AUX3</li>
 
-<li><strong>4:</strong> AUX4</li> 
+<li><strong>4:</strong> AUX4</li>
 
-<li><strong>5:</strong> AUX5</li> 
+<li><strong>5:</strong> AUX5</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 5 </td>
@@ -3287,17 +3286,17 @@ if required for the gimbal (only in AUX output mode)</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="MNT_MAN_YAW">MNT_MAN_YAW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Auxiliary channel to control yaw (in AUX input or manual mode)</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disable</li> 
+<li><strong>0:</strong> Disable</li>
 
-<li><strong>1:</strong> AUX1</li> 
+<li><strong>1:</strong> AUX1</li>
 
-<li><strong>2:</strong> AUX2</li> 
+<li><strong>2:</strong> AUX2</li>
 
-<li><strong>3:</strong> AUX3</li> 
+<li><strong>3:</strong> AUX3</li>
 
-<li><strong>4:</strong> AUX4</li> 
+<li><strong>4:</strong> AUX4</li>
 
-<li><strong>5:</strong> AUX5</li> 
+<li><strong>5:</strong> AUX5</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 5 </td>
@@ -4191,9 +4190,9 @@ if required for the gimbal (only in AUX output mode)</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_ALT_MODE">MPC_ALT_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Altitude control mode, note mode 1 only tested with LPE</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Altitude following</li> 
+<li><strong>0:</strong> Altitude following</li>
 
-<li><strong>1:</strong> Terrain following</li> 
+<li><strong>1:</strong> Terrain following</li>
 </ul>
    <p><b>Module:</b> src/modules/mc_pos_control</p>
 </td>
@@ -4573,7 +4572,7 @@ if required for the gimbal (only in AUX output mode)</p>    </td>
 ## Payload drop
 
 
-The module where these parameters are defined is: *src/modules/bottle_drop*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/bottle_drop*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -4628,7 +4627,7 @@ The module where these parameters are defined is: *src/modules/bottle_drop*.
 ## Position Estimator
 
 
-The module where these parameters are defined is: *src/examples/ekf_att_pos_estimator*.
+이 파라미터가 정의되어 있는 모듈 : *src/examples/ekf_att_pos_estimator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -4795,7 +4794,7 @@ The module where these parameters are defined is: *src/examples/ekf_att_pos_esti
 ## Position Estimator INAV
 
 
-The module where these parameters are defined is: *src/modules/position_estimator_inav*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/position_estimator_inav*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -4967,9 +4966,9 @@ The module where these parameters are defined is: *src/modules/position_estimato
 <tr>
  <td style="vertical-align: top;"><strong id="INAV_DISAB_MOCAP">INAV_DISAB_MOCAP</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Mo-cap</p><p><strong>Comment:</strong> Set to 0 if using fake GPS</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Mo-cap enabled</li> 
+<li><strong>0:</strong> Mo-cap enabled</li>
 
-<li><strong>1:</strong> Mo-cap disabled</li> 
+<li><strong>1:</strong> Mo-cap disabled</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -5003,7 +5002,7 @@ The module where these parameters are defined is: *src/modules/position_estimato
 ## RC Receiver Configuration
 
 
-The module where these parameters are defined is: *src/platforms/qurt/fc_addon/rc_receiver*.
+이 파라미터가 정의되어 있는 모듈 : *src/platforms/qurt/fc_addon/rc_receiver*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -5751,9 +5750,9 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_RL1_DSM_VCC">RC_RL1_DSM_VCC</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Relay control of relay 1 mapped to the Spektrum receiver power supply</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
+<li><strong>0:</strong> Disabled</li>
 
-<li><strong>1:</strong> Relay controls DSM power</li> 
+<li><strong>1:</strong> Relay controls DSM power</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -5764,11 +5763,11 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_DSM_BIND">RC_DSM_BIND</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>DSM binding trigger</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Inactive</li> 
+<li><strong>-1:</strong> Inactive</li>
 
-<li><strong>0:</strong> Start DSM2 bind</li> 
+<li><strong>0:</strong> Start DSM2 bind</li>
 
-<li><strong>1:</strong> Start DSMX bind</li> 
+<li><strong>1:</strong> Start DSMX bind</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -5795,43 +5794,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_ROLL">RC_MAP_ROLL</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Roll control channel mapping</p><p><strong>Comment:</strong> The channel index (starting from 1 for channel 1) indicates which channel should be used for reading roll inputs from. A value of zero indicates the switch is not assigned.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -5842,43 +5841,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_PITCH">RC_MAP_PITCH</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Pitch control channel mapping</p><p><strong>Comment:</strong> The channel index (starting from 1 for channel 1) indicates which channel should be used for reading pitch inputs from. A value of zero indicates the switch is not assigned.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -5889,43 +5888,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_THROTTLE">RC_MAP_THROTTLE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Throttle control channel mapping</p><p><strong>Comment:</strong> The channel index (starting from 1 for channel 1) indicates which channel should be used for reading throttle inputs from. A value of zero indicates the switch is not assigned.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -5936,43 +5935,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_YAW">RC_MAP_YAW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Yaw control channel mapping</p><p><strong>Comment:</strong> The channel index (starting from 1 for channel 1) indicates which channel should be used for reading yaw inputs from. A value of zero indicates the switch is not assigned.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -5983,43 +5982,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_AUX1">RC_MAP_AUX1</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>AUX1 Passthrough RC Channel</p><p><strong>Comment:</strong> Default function: Camera pitch</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -6030,43 +6029,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_AUX2">RC_MAP_AUX2</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>AUX2 Passthrough RC Channel</p><p><strong>Comment:</strong> Default function: Camera roll</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -6077,43 +6076,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_AUX3">RC_MAP_AUX3</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>AUX3 Passthrough RC Channel</p><p><strong>Comment:</strong> Default function: Camera azimuth / yaw</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -6124,43 +6123,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_AUX4">RC_MAP_AUX4</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>AUX4 Passthrough RC Channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -6171,43 +6170,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_AUX5">RC_MAP_AUX5</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>AUX5 Passthrough RC Channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -6218,43 +6217,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_PARAM1">RC_MAP_PARAM1</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>PARAM1 tuning channel</p><p><strong>Comment:</strong> Can be used for parameter tuning with the RC. This one is further referenced as the 1st parameter channel. Set to 0 to deactivate *</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -6265,43 +6264,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_PARAM2">RC_MAP_PARAM2</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>PARAM2 tuning channel</p><p><strong>Comment:</strong> Can be used for parameter tuning with the RC. This one is further referenced as the 2nd parameter channel. Set to 0 to deactivate *</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -6312,43 +6311,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_PARAM3">RC_MAP_PARAM3</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>PARAM3 tuning channel</p><p><strong>Comment:</strong> Can be used for parameter tuning with the RC. This one is further referenced as the 3th parameter channel. Set to 0 to deactivate *</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -6367,43 +6366,43 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 <tr>
  <td style="vertical-align: top;"><strong id="RC_RSSI_PWM_CHAN">RC_RSSI_PWM_CHAN</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>PWM input channel that provides RSSI</p><p><strong>Comment:</strong> 0: do not read RSSI from input channel 1-18: read RSSI from specified input channel Specify the range for RSSI input with RC_RSSI_PWM_MIN and RC_RSSI_PWM_MAX parameters.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -6472,7 +6471,7 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/r
 ## Radio Signal Loss
 
 
-The module where these parameters are defined is: *src/modules/navigator*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -6492,7 +6491,7 @@ The module where these parameters are defined is: *src/modules/navigator*.
 ## Radio Switches
 
 
-The module where these parameters are defined is: *src/modules/sensors*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/sensors*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -6503,43 +6502,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_FLTMODE">RC_MAP_FLTMODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Single channel flight mode selection</p><p><strong>Comment:</strong> If this parameter is non-zero, flight modes are only selected by this channel and are assigned to six slots.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6549,43 +6548,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_MODE_SW">RC_MAP_MODE_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Mode switch channel mapping</p><p><strong>Comment:</strong> This is the main flight mode selector. The channel index (starting from 1 for channel 1) indicates which channel should be used for deciding about the main mode. A value of zero indicates the switch is not assigned.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6595,43 +6594,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_RETURN_SW">RC_MAP_RETURN_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Return switch channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6641,43 +6640,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_RATT_SW">RC_MAP_RATT_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Rattitude switch channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6687,43 +6686,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_POSCTL_SW">RC_MAP_POSCTL_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Position Control switch channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6733,43 +6732,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_LOITER_SW">RC_MAP_LOITER_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Loiter switch channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6779,43 +6778,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_ACRO_SW">RC_MAP_ACRO_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Acro switch channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6825,43 +6824,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_OFFB_SW">RC_MAP_OFFB_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Offboard switch channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6871,43 +6870,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_KILL_SW">RC_MAP_KILL_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Kill switch channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6917,43 +6916,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_ARM_SW">RC_MAP_ARM_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Arm switch channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -6963,43 +6962,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_FLAPS">RC_MAP_FLAPS</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Flaps channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -7009,43 +7008,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_TRANS_SW">RC_MAP_TRANS_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>VTOL transition switch channel mapping</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -7055,43 +7054,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_GEAR_SW">RC_MAP_GEAR_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Landing gear switch channel</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -7101,43 +7100,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_STAB_SW">RC_MAP_STAB_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Stabilize switch channel mapping</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -7147,43 +7146,43 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_MAN_SW">RC_MAP_MAN_SW</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Manual switch channel mapping</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 18 </td>
@@ -7293,7 +7292,7 @@ The module where these parameters are defined is: *src/modules/sensors*.
 ## Return To Land
 
 
-The module where these parameters are defined is: *src/modules/navigator*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -7334,7 +7333,7 @@ The module where these parameters are defined is: *src/modules/navigator*.
 ## Runway Takeoff
 
 
-The module where these parameters are defined is: *src/lib/runway_takeoff*.
+이 파라미터가 정의되어 있는 모듈 : *src/lib/runway_takeoff*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -7352,9 +7351,9 @@ The module where these parameters are defined is: *src/lib/runway_takeoff*.
 <tr>
  <td style="vertical-align: top;"><strong id="RWTO_HDG">RWTO_HDG</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Specifies which heading should be held during runnway takeoff</p><p><strong>Comment:</strong> 0: airframe heading, 1: heading towards takeoff waypoint</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Airframe</li> 
+<li><strong>0:</strong> Airframe</li>
 
-<li><strong>1:</strong> Waypoint</li> 
+<li><strong>1:</strong> Waypoint</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -7437,11 +7436,11 @@ FW_AIRSPD_MIN * RWTO_AIRSPD_SCL</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="SDLOG_EXT">SDLOG_EXT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Extended logging mode</p><p><strong>Comment:</strong> A value of -1 indicates the command line argument should be obeyed. A value of 0 disables extended logging mode, a value of 1 enables it. This parameter is only read out before logging starts (which commonly is before arming).</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Command Line</li> 
+<li><strong>-1:</strong> Command Line</li>
 
-<li><strong>0:</strong> Disable</li> 
+<li><strong>0:</strong> Disable</li>
 
-<li><strong>1:</strong> Enable</li> 
+<li><strong>1:</strong> Enable</li>
 </ul>
    <p><b>Module:</b> src/modules/sdlog2</p>
 </td>
@@ -7461,13 +7460,13 @@ FW_AIRSPD_MIN * RWTO_AIRSPD_SCL</p>    </td>
  <td style="vertical-align: top;"><strong id="SDLOG_PRIO_BOOST">SDLOG_PRIO_BOOST</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Give logging app higher thread priority to avoid data loss.
 This is used for gathering replay logs for the ekf2 module</p><p><strong>Comment:</strong> A value of 0 indicates that the default priority is used. Increasing the parameter in steps of one increases the priority.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Low priority</li> 
+<li><strong>0:</strong> Low priority</li>
 
-<li><strong>1:</strong> Default priority</li> 
+<li><strong>1:</strong> Default priority</li>
 
-<li><strong>2:</strong> Medium priority</li> 
+<li><strong>2:</strong> Medium priority</li>
 
-<li><strong>3:</strong> Max priority</li> 
+<li><strong>3:</strong> Max priority</li>
 </ul>
    <p><b>Module:</b> src/modules/sdlog2</p>
 </td>
@@ -7486,13 +7485,13 @@ This is used for gathering replay logs for the ekf2 module</p><p><strong>Comment
 <tr>
  <td style="vertical-align: top;"><strong id="SDLOG_MODE">SDLOG_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Logging Mode</p><p><strong>Comment:</strong> Determines when to start and stop logging. By default, logging is started when arming the system, and stopped when disarming. This parameter is only for the new logger (SYS_LOGGER=1).</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> when armed until disarm (default)</li> 
+<li><strong>0:</strong> when armed until disarm (default)</li>
 
-<li><strong>1:</strong> from boot until disarm</li> 
+<li><strong>1:</strong> from boot until disarm</li>
 
-<li><strong>2:</strong> from boot until shutdown</li> 
+<li><strong>2:</strong> from boot until shutdown</li>
 
-<li><strong>3:</strong> from boot until shutdown - IMU and Baro data only (used for thermal calibration)</li> 
+<li><strong>3:</strong> from boot until shutdown - IMU and Baro data only (used for thermal calibration)</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> src/modules/logger</p>
@@ -7523,7 +7522,7 @@ This is used for gathering replay logs for the ekf2 module</p><p><strong>Comment
 ## Sensor Calibration
 
 
-The module where these parameters are defined is: *src/modules/sensors*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/sensors*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -7597,59 +7596,59 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="CAL_MAG0_ROT">CAL_MAG0_ROT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Rotation of magnetometer 0 relative to airframe</p><p><strong>Comment:</strong> An internal magnetometer will force a value of -1, so a GCS should only attempt to configure the rotation if the value is greater than or equal to zero.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Internal mag</li> 
+<li><strong>-1:</strong> Internal mag</li>
 
-<li><strong>0:</strong> No rotation</li> 
+<li><strong>0:</strong> No rotation</li>
 
-<li><strong>1:</strong> Yaw 45°</li> 
+<li><strong>1:</strong> Yaw 45°</li>
 
-<li><strong>2:</strong> Yaw 90°</li> 
+<li><strong>2:</strong> Yaw 90°</li>
 
-<li><strong>3:</strong> Yaw 135°</li> 
+<li><strong>3:</strong> Yaw 135°</li>
 
-<li><strong>4:</strong> Yaw 180°</li> 
+<li><strong>4:</strong> Yaw 180°</li>
 
-<li><strong>5:</strong> Yaw 225°</li> 
+<li><strong>5:</strong> Yaw 225°</li>
 
-<li><strong>6:</strong> Yaw 270°</li> 
+<li><strong>6:</strong> Yaw 270°</li>
 
-<li><strong>7:</strong> Yaw 315°</li> 
+<li><strong>7:</strong> Yaw 315°</li>
 
-<li><strong>8:</strong> Roll 180°</li> 
+<li><strong>8:</strong> Roll 180°</li>
 
-<li><strong>9:</strong> Roll 180°, Yaw 45°</li> 
+<li><strong>9:</strong> Roll 180°, Yaw 45°</li>
 
-<li><strong>10:</strong> Roll 180°, Yaw 90°</li> 
+<li><strong>10:</strong> Roll 180°, Yaw 90°</li>
 
-<li><strong>11:</strong> Roll 180°, Yaw 135°</li> 
+<li><strong>11:</strong> Roll 180°, Yaw 135°</li>
 
-<li><strong>12:</strong> Pitch 180°</li> 
+<li><strong>12:</strong> Pitch 180°</li>
 
-<li><strong>13:</strong> Roll 180°, Yaw 225°</li> 
+<li><strong>13:</strong> Roll 180°, Yaw 225°</li>
 
-<li><strong>14:</strong> Roll 180°, Yaw 270°</li> 
+<li><strong>14:</strong> Roll 180°, Yaw 270°</li>
 
-<li><strong>15:</strong> Roll 180°, Yaw 315°</li> 
+<li><strong>15:</strong> Roll 180°, Yaw 315°</li>
 
-<li><strong>16:</strong> Roll 90°</li> 
+<li><strong>16:</strong> Roll 90°</li>
 
-<li><strong>17:</strong> Roll 90°, Yaw 45°</li> 
+<li><strong>17:</strong> Roll 90°, Yaw 45°</li>
 
-<li><strong>18:</strong> Roll 90°, Yaw 90°</li> 
+<li><strong>18:</strong> Roll 90°, Yaw 90°</li>
 
-<li><strong>19:</strong> Roll 90°, Yaw 135°</li> 
+<li><strong>19:</strong> Roll 90°, Yaw 135°</li>
 
-<li><strong>20:</strong> Roll 270°</li> 
+<li><strong>20:</strong> Roll 270°</li>
 
-<li><strong>21:</strong> Roll 270°, Yaw 45°</li> 
+<li><strong>21:</strong> Roll 270°, Yaw 45°</li>
 
-<li><strong>22:</strong> Roll 270°, Yaw 90°</li> 
+<li><strong>22:</strong> Roll 270°, Yaw 90°</li>
 
-<li><strong>23:</strong> Roll 270°, Yaw 135°</li> 
+<li><strong>23:</strong> Roll 270°, Yaw 135°</li>
 
-<li><strong>24:</strong> Pitch 90°</li> 
+<li><strong>24:</strong> Pitch 90°</li>
 
-<li><strong>25:</strong> Pitch 270°</li> 
+<li><strong>25:</strong> Pitch 270°</li>
 </ul>
    </td>
  <td style="vertical-align: top;">-1 > 30 </td>
@@ -7806,59 +7805,59 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="CAL_MAG1_ROT">CAL_MAG1_ROT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Rotation of magnetometer 1 relative to airframe</p><p><strong>Comment:</strong> An internal magnetometer will force a value of -1, so a GCS should only attempt to configure the rotation if the value is greater than or equal to zero.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Internal mag</li> 
+<li><strong>-1:</strong> Internal mag</li>
 
-<li><strong>0:</strong> No rotation</li> 
+<li><strong>0:</strong> No rotation</li>
 
-<li><strong>1:</strong> Yaw 45°</li> 
+<li><strong>1:</strong> Yaw 45°</li>
 
-<li><strong>2:</strong> Yaw 90°</li> 
+<li><strong>2:</strong> Yaw 90°</li>
 
-<li><strong>3:</strong> Yaw 135°</li> 
+<li><strong>3:</strong> Yaw 135°</li>
 
-<li><strong>4:</strong> Yaw 180°</li> 
+<li><strong>4:</strong> Yaw 180°</li>
 
-<li><strong>5:</strong> Yaw 225°</li> 
+<li><strong>5:</strong> Yaw 225°</li>
 
-<li><strong>6:</strong> Yaw 270°</li> 
+<li><strong>6:</strong> Yaw 270°</li>
 
-<li><strong>7:</strong> Yaw 315°</li> 
+<li><strong>7:</strong> Yaw 315°</li>
 
-<li><strong>8:</strong> Roll 180°</li> 
+<li><strong>8:</strong> Roll 180°</li>
 
-<li><strong>9:</strong> Roll 180°, Yaw 45°</li> 
+<li><strong>9:</strong> Roll 180°, Yaw 45°</li>
 
-<li><strong>10:</strong> Roll 180°, Yaw 90°</li> 
+<li><strong>10:</strong> Roll 180°, Yaw 90°</li>
 
-<li><strong>11:</strong> Roll 180°, Yaw 135°</li> 
+<li><strong>11:</strong> Roll 180°, Yaw 135°</li>
 
-<li><strong>12:</strong> Pitch 180°</li> 
+<li><strong>12:</strong> Pitch 180°</li>
 
-<li><strong>13:</strong> Roll 180°, Yaw 225°</li> 
+<li><strong>13:</strong> Roll 180°, Yaw 225°</li>
 
-<li><strong>14:</strong> Roll 180°, Yaw 270°</li> 
+<li><strong>14:</strong> Roll 180°, Yaw 270°</li>
 
-<li><strong>15:</strong> Roll 180°, Yaw 315°</li> 
+<li><strong>15:</strong> Roll 180°, Yaw 315°</li>
 
-<li><strong>16:</strong> Roll 90°</li> 
+<li><strong>16:</strong> Roll 90°</li>
 
-<li><strong>17:</strong> Roll 90°, Yaw 45°</li> 
+<li><strong>17:</strong> Roll 90°, Yaw 45°</li>
 
-<li><strong>18:</strong> Roll 90°, Yaw 90°</li> 
+<li><strong>18:</strong> Roll 90°, Yaw 90°</li>
 
-<li><strong>19:</strong> Roll 90°, Yaw 135°</li> 
+<li><strong>19:</strong> Roll 90°, Yaw 135°</li>
 
-<li><strong>20:</strong> Roll 270°</li> 
+<li><strong>20:</strong> Roll 270°</li>
 
-<li><strong>21:</strong> Roll 270°, Yaw 45°</li> 
+<li><strong>21:</strong> Roll 270°, Yaw 45°</li>
 
-<li><strong>22:</strong> Roll 270°, Yaw 90°</li> 
+<li><strong>22:</strong> Roll 270°, Yaw 90°</li>
 
-<li><strong>23:</strong> Roll 270°, Yaw 135°</li> 
+<li><strong>23:</strong> Roll 270°, Yaw 135°</li>
 
-<li><strong>24:</strong> Pitch 90°</li> 
+<li><strong>24:</strong> Pitch 90°</li>
 
-<li><strong>25:</strong> Pitch 270°</li> 
+<li><strong>25:</strong> Pitch 270°</li>
 </ul>
    </td>
  <td style="vertical-align: top;">-1 > 30 </td>
@@ -8015,59 +8014,59 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="CAL_MAG2_ROT">CAL_MAG2_ROT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Rotation of magnetometer 2 relative to airframe</p><p><strong>Comment:</strong> An internal magnetometer will force a value of -1, so a GCS should only attempt to configure the rotation if the value is greater than or equal to zero.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Internal mag</li> 
+<li><strong>-1:</strong> Internal mag</li>
 
-<li><strong>0:</strong> No rotation</li> 
+<li><strong>0:</strong> No rotation</li>
 
-<li><strong>1:</strong> Yaw 45°</li> 
+<li><strong>1:</strong> Yaw 45°</li>
 
-<li><strong>2:</strong> Yaw 90°</li> 
+<li><strong>2:</strong> Yaw 90°</li>
 
-<li><strong>3:</strong> Yaw 135°</li> 
+<li><strong>3:</strong> Yaw 135°</li>
 
-<li><strong>4:</strong> Yaw 180°</li> 
+<li><strong>4:</strong> Yaw 180°</li>
 
-<li><strong>5:</strong> Yaw 225°</li> 
+<li><strong>5:</strong> Yaw 225°</li>
 
-<li><strong>6:</strong> Yaw 270°</li> 
+<li><strong>6:</strong> Yaw 270°</li>
 
-<li><strong>7:</strong> Yaw 315°</li> 
+<li><strong>7:</strong> Yaw 315°</li>
 
-<li><strong>8:</strong> Roll 180°</li> 
+<li><strong>8:</strong> Roll 180°</li>
 
-<li><strong>9:</strong> Roll 180°, Yaw 45°</li> 
+<li><strong>9:</strong> Roll 180°, Yaw 45°</li>
 
-<li><strong>10:</strong> Roll 180°, Yaw 90°</li> 
+<li><strong>10:</strong> Roll 180°, Yaw 90°</li>
 
-<li><strong>11:</strong> Roll 180°, Yaw 135°</li> 
+<li><strong>11:</strong> Roll 180°, Yaw 135°</li>
 
-<li><strong>12:</strong> Pitch 180°</li> 
+<li><strong>12:</strong> Pitch 180°</li>
 
-<li><strong>13:</strong> Roll 180°, Yaw 225°</li> 
+<li><strong>13:</strong> Roll 180°, Yaw 225°</li>
 
-<li><strong>14:</strong> Roll 180°, Yaw 270°</li> 
+<li><strong>14:</strong> Roll 180°, Yaw 270°</li>
 
-<li><strong>15:</strong> Roll 180°, Yaw 315°</li> 
+<li><strong>15:</strong> Roll 180°, Yaw 315°</li>
 
-<li><strong>16:</strong> Roll 90°</li> 
+<li><strong>16:</strong> Roll 90°</li>
 
-<li><strong>17:</strong> Roll 90°, Yaw 45°</li> 
+<li><strong>17:</strong> Roll 90°, Yaw 45°</li>
 
-<li><strong>18:</strong> Roll 90°, Yaw 90°</li> 
+<li><strong>18:</strong> Roll 90°, Yaw 90°</li>
 
-<li><strong>19:</strong> Roll 90°, Yaw 135°</li> 
+<li><strong>19:</strong> Roll 90°, Yaw 135°</li>
 
-<li><strong>20:</strong> Roll 270°</li> 
+<li><strong>20:</strong> Roll 270°</li>
 
-<li><strong>21:</strong> Roll 270°, Yaw 45°</li> 
+<li><strong>21:</strong> Roll 270°, Yaw 45°</li>
 
-<li><strong>22:</strong> Roll 270°, Yaw 90°</li> 
+<li><strong>22:</strong> Roll 270°, Yaw 90°</li>
 
-<li><strong>23:</strong> Roll 270°, Yaw 135°</li> 
+<li><strong>23:</strong> Roll 270°, Yaw 135°</li>
 
-<li><strong>24:</strong> Pitch 90°</li> 
+<li><strong>24:</strong> Pitch 90°</li>
 
-<li><strong>25:</strong> Pitch 270°</li> 
+<li><strong>25:</strong> Pitch 270°</li>
 </ul>
    </td>
  <td style="vertical-align: top;">-1 > 30 </td>
@@ -8175,59 +8174,59 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="CAL_MAG3_ROT">CAL_MAG3_ROT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Rotation of magnetometer 2 relative to airframe</p><p><strong>Comment:</strong> An internal magnetometer will force a value of -1, so a GCS should only attempt to configure the rotation if the value is greater than or equal to zero.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Internal mag</li> 
+<li><strong>-1:</strong> Internal mag</li>
 
-<li><strong>0:</strong> No rotation</li> 
+<li><strong>0:</strong> No rotation</li>
 
-<li><strong>1:</strong> Yaw 45°</li> 
+<li><strong>1:</strong> Yaw 45°</li>
 
-<li><strong>2:</strong> Yaw 90°</li> 
+<li><strong>2:</strong> Yaw 90°</li>
 
-<li><strong>3:</strong> Yaw 135°</li> 
+<li><strong>3:</strong> Yaw 135°</li>
 
-<li><strong>4:</strong> Yaw 180°</li> 
+<li><strong>4:</strong> Yaw 180°</li>
 
-<li><strong>5:</strong> Yaw 225°</li> 
+<li><strong>5:</strong> Yaw 225°</li>
 
-<li><strong>6:</strong> Yaw 270°</li> 
+<li><strong>6:</strong> Yaw 270°</li>
 
-<li><strong>7:</strong> Yaw 315°</li> 
+<li><strong>7:</strong> Yaw 315°</li>
 
-<li><strong>8:</strong> Roll 180°</li> 
+<li><strong>8:</strong> Roll 180°</li>
 
-<li><strong>9:</strong> Roll 180°, Yaw 45°</li> 
+<li><strong>9:</strong> Roll 180°, Yaw 45°</li>
 
-<li><strong>10:</strong> Roll 180°, Yaw 90°</li> 
+<li><strong>10:</strong> Roll 180°, Yaw 90°</li>
 
-<li><strong>11:</strong> Roll 180°, Yaw 135°</li> 
+<li><strong>11:</strong> Roll 180°, Yaw 135°</li>
 
-<li><strong>12:</strong> Pitch 180°</li> 
+<li><strong>12:</strong> Pitch 180°</li>
 
-<li><strong>13:</strong> Roll 180°, Yaw 225°</li> 
+<li><strong>13:</strong> Roll 180°, Yaw 225°</li>
 
-<li><strong>14:</strong> Roll 180°, Yaw 270°</li> 
+<li><strong>14:</strong> Roll 180°, Yaw 270°</li>
 
-<li><strong>15:</strong> Roll 180°, Yaw 315°</li> 
+<li><strong>15:</strong> Roll 180°, Yaw 315°</li>
 
-<li><strong>16:</strong> Roll 90°</li> 
+<li><strong>16:</strong> Roll 90°</li>
 
-<li><strong>17:</strong> Roll 90°, Yaw 45°</li> 
+<li><strong>17:</strong> Roll 90°, Yaw 45°</li>
 
-<li><strong>18:</strong> Roll 90°, Yaw 90°</li> 
+<li><strong>18:</strong> Roll 90°, Yaw 90°</li>
 
-<li><strong>19:</strong> Roll 90°, Yaw 135°</li> 
+<li><strong>19:</strong> Roll 90°, Yaw 135°</li>
 
-<li><strong>20:</strong> Roll 270°</li> 
+<li><strong>20:</strong> Roll 270°</li>
 
-<li><strong>21:</strong> Roll 270°, Yaw 45°</li> 
+<li><strong>21:</strong> Roll 270°, Yaw 45°</li>
 
-<li><strong>22:</strong> Roll 270°, Yaw 90°</li> 
+<li><strong>22:</strong> Roll 270°, Yaw 90°</li>
 
-<li><strong>23:</strong> Roll 270°, Yaw 135°</li> 
+<li><strong>23:</strong> Roll 270°, Yaw 135°</li>
 
-<li><strong>24:</strong> Pitch 90°</li> 
+<li><strong>24:</strong> Pitch 90°</li>
 
-<li><strong>25:</strong> Pitch 270°</li> 
+<li><strong>25:</strong> Pitch 270°</li>
 </ul>
    </td>
  <td style="vertical-align: top;">-1 > 30 </td>
@@ -8300,11 +8299,11 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="CAL_MAG_SIDES">CAL_MAG_SIDES</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Bitfield selecting mag sides for calibration</p><p><strong>Comment:</strong> DETECT_ORIENTATION_TAIL_DOWN = 1 DETECT_ORIENTATION_NOSE_DOWN = 2 DETECT_ORIENTATION_LEFT = 4 DETECT_ORIENTATION_RIGHT = 8 DETECT_ORIENTATION_UPSIDE_DOWN = 16 DETECT_ORIENTATION_RIGHTSIDE_UP = 32</p> <strong>Values:</strong><ul>
-<li><strong>34:</strong> Two side calibration</li> 
+<li><strong>34:</strong> Two side calibration</li>
 
-<li><strong>38:</strong> Three side calibration</li> 
+<li><strong>38:</strong> Three side calibration</li>
 
-<li><strong>63:</strong> Six side calibration</li> 
+<li><strong>63:</strong> Six side calibration</li>
 </ul>
    </td>
  <td style="vertical-align: top;">34 > 63 </td>
@@ -8342,57 +8341,57 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_BOARD_ROT">SENS_BOARD_ROT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Board rotation</p><p><strong>Comment:</strong> This parameter defines the rotation of the FMU board relative to the platform.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> No rotation</li> 
+<li><strong>0:</strong> No rotation</li>
 
-<li><strong>1:</strong> Yaw 45°</li> 
+<li><strong>1:</strong> Yaw 45°</li>
 
-<li><strong>2:</strong> Yaw 90°</li> 
+<li><strong>2:</strong> Yaw 90°</li>
 
-<li><strong>3:</strong> Yaw 135°</li> 
+<li><strong>3:</strong> Yaw 135°</li>
 
-<li><strong>4:</strong> Yaw 180°</li> 
+<li><strong>4:</strong> Yaw 180°</li>
 
-<li><strong>5:</strong> Yaw 225°</li> 
+<li><strong>5:</strong> Yaw 225°</li>
 
-<li><strong>6:</strong> Yaw 270°</li> 
+<li><strong>6:</strong> Yaw 270°</li>
 
-<li><strong>7:</strong> Yaw 315°</li> 
+<li><strong>7:</strong> Yaw 315°</li>
 
-<li><strong>8:</strong> Roll 180°</li> 
+<li><strong>8:</strong> Roll 180°</li>
 
-<li><strong>9:</strong> Roll 180°, Yaw 45°</li> 
+<li><strong>9:</strong> Roll 180°, Yaw 45°</li>
 
-<li><strong>10:</strong> Roll 180°, Yaw 90°</li> 
+<li><strong>10:</strong> Roll 180°, Yaw 90°</li>
 
-<li><strong>11:</strong> Roll 180°, Yaw 135°</li> 
+<li><strong>11:</strong> Roll 180°, Yaw 135°</li>
 
-<li><strong>12:</strong> Pitch 180°</li> 
+<li><strong>12:</strong> Pitch 180°</li>
 
-<li><strong>13:</strong> Roll 180°, Yaw 225°</li> 
+<li><strong>13:</strong> Roll 180°, Yaw 225°</li>
 
-<li><strong>14:</strong> Roll 180°, Yaw 270°</li> 
+<li><strong>14:</strong> Roll 180°, Yaw 270°</li>
 
-<li><strong>15:</strong> Roll 180°, Yaw 315°</li> 
+<li><strong>15:</strong> Roll 180°, Yaw 315°</li>
 
-<li><strong>16:</strong> Roll 90°</li> 
+<li><strong>16:</strong> Roll 90°</li>
 
-<li><strong>17:</strong> Roll 90°, Yaw 45°</li> 
+<li><strong>17:</strong> Roll 90°, Yaw 45°</li>
 
-<li><strong>18:</strong> Roll 90°, Yaw 90°</li> 
+<li><strong>18:</strong> Roll 90°, Yaw 90°</li>
 
-<li><strong>19:</strong> Roll 90°, Yaw 135°</li> 
+<li><strong>19:</strong> Roll 90°, Yaw 135°</li>
 
-<li><strong>20:</strong> Roll 270°</li> 
+<li><strong>20:</strong> Roll 270°</li>
 
-<li><strong>21:</strong> Roll 270°, Yaw 45°</li> 
+<li><strong>21:</strong> Roll 270°, Yaw 45°</li>
 
-<li><strong>22:</strong> Roll 270°, Yaw 90°</li> 
+<li><strong>22:</strong> Roll 270°, Yaw 90°</li>
 
-<li><strong>23:</strong> Roll 270°, Yaw 135°</li> 
+<li><strong>23:</strong> Roll 270°, Yaw 135°</li>
 
-<li><strong>24:</strong> Pitch 90°</li> 
+<li><strong>24:</strong> Pitch 90°</li>
 
-<li><strong>25:</strong> Pitch 270°</li> 
+<li><strong>25:</strong> Pitch 270°</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -8402,21 +8401,21 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_FLOW_ROT">SENS_FLOW_ROT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>PX4Flow board rotation</p><p><strong>Comment:</strong> This parameter defines the yaw rotation of the PX4FLOW board relative to the vehicle body frame. Zero rotation is defined as X on flow board pointing towards front of vehicle. The recommneded installation default for the PX4FLOW board is with the Y axis forward (270 deg yaw).</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> No rotation</li> 
+<li><strong>0:</strong> No rotation</li>
 
-<li><strong>1:</strong> Yaw 45°</li> 
+<li><strong>1:</strong> Yaw 45°</li>
 
-<li><strong>2:</strong> Yaw 90°</li> 
+<li><strong>2:</strong> Yaw 90°</li>
 
-<li><strong>3:</strong> Yaw 135°</li> 
+<li><strong>3:</strong> Yaw 135°</li>
 
-<li><strong>4:</strong> Yaw 180°</li> 
+<li><strong>4:</strong> Yaw 180°</li>
 
-<li><strong>5:</strong> Yaw 225°</li> 
+<li><strong>5:</strong> Yaw 225°</li>
 
-<li><strong>6:</strong> Yaw 270°</li> 
+<li><strong>6:</strong> Yaw 270°</li>
 
-<li><strong>7:</strong> Yaw 315°</li> 
+<li><strong>7:</strong> Yaw 315°</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  </td>
@@ -8448,57 +8447,57 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_EXT_MAG_ROT">SENS_EXT_MAG_ROT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>External magnetometer rotation</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> No rotation</li> 
+<li><strong>0:</strong> No rotation</li>
 
-<li><strong>1:</strong> Yaw 45°</li> 
+<li><strong>1:</strong> Yaw 45°</li>
 
-<li><strong>2:</strong> Yaw 90°</li> 
+<li><strong>2:</strong> Yaw 90°</li>
 
-<li><strong>3:</strong> Yaw 135°</li> 
+<li><strong>3:</strong> Yaw 135°</li>
 
-<li><strong>4:</strong> Yaw 180°</li> 
+<li><strong>4:</strong> Yaw 180°</li>
 
-<li><strong>5:</strong> Yaw 225°</li> 
+<li><strong>5:</strong> Yaw 225°</li>
 
-<li><strong>6:</strong> Yaw 270°</li> 
+<li><strong>6:</strong> Yaw 270°</li>
 
-<li><strong>7:</strong> Yaw 315°</li> 
+<li><strong>7:</strong> Yaw 315°</li>
 
-<li><strong>8:</strong> Roll 180°</li> 
+<li><strong>8:</strong> Roll 180°</li>
 
-<li><strong>9:</strong> Roll 180°, Yaw 45°</li> 
+<li><strong>9:</strong> Roll 180°, Yaw 45°</li>
 
-<li><strong>10:</strong> Roll 180°, Yaw 90°</li> 
+<li><strong>10:</strong> Roll 180°, Yaw 90°</li>
 
-<li><strong>11:</strong> Roll 180°, Yaw 135°</li> 
+<li><strong>11:</strong> Roll 180°, Yaw 135°</li>
 
-<li><strong>12:</strong> Pitch 180°</li> 
+<li><strong>12:</strong> Pitch 180°</li>
 
-<li><strong>13:</strong> Roll 180°, Yaw 225°</li> 
+<li><strong>13:</strong> Roll 180°, Yaw 225°</li>
 
-<li><strong>14:</strong> Roll 180°, Yaw 270°</li> 
+<li><strong>14:</strong> Roll 180°, Yaw 270°</li>
 
-<li><strong>15:</strong> Roll 180°, Yaw 315°</li> 
+<li><strong>15:</strong> Roll 180°, Yaw 315°</li>
 
-<li><strong>16:</strong> Roll 90°</li> 
+<li><strong>16:</strong> Roll 90°</li>
 
-<li><strong>17:</strong> Roll 90°, Yaw 45°</li> 
+<li><strong>17:</strong> Roll 90°, Yaw 45°</li>
 
-<li><strong>18:</strong> Roll 90°, Yaw 90°</li> 
+<li><strong>18:</strong> Roll 90°, Yaw 90°</li>
 
-<li><strong>19:</strong> Roll 90°, Yaw 135°</li> 
+<li><strong>19:</strong> Roll 90°, Yaw 135°</li>
 
-<li><strong>20:</strong> Roll 270°</li> 
+<li><strong>20:</strong> Roll 270°</li>
 
-<li><strong>21:</strong> Roll 270°, Yaw 45°</li> 
+<li><strong>21:</strong> Roll 270°, Yaw 45°</li>
 
-<li><strong>22:</strong> Roll 270°, Yaw 90°</li> 
+<li><strong>22:</strong> Roll 270°, Yaw 90°</li>
 
-<li><strong>23:</strong> Roll 270°, Yaw 135°</li> 
+<li><strong>23:</strong> Roll 270°, Yaw 135°</li>
 
-<li><strong>24:</strong> Pitch 90°</li> 
+<li><strong>24:</strong> Pitch 90°</li>
 
-<li><strong>25:</strong> Pitch 270°</li> 
+<li><strong>25:</strong> Pitch 270°</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -8508,11 +8507,11 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_EXT_MAG">SENS_EXT_MAG</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Select primary magnetometer</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Auto-select Mag</li> 
+<li><strong>0:</strong> Auto-select Mag</li>
 
-<li><strong>1:</strong> External is primary Mag</li> 
+<li><strong>1:</strong> External is primary Mag</li>
 
-<li><strong>2:</strong> Internal is primary Mag</li> 
+<li><strong>2:</strong> Internal is primary Mag</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 2 </td>
@@ -8531,7 +8530,7 @@ The module where these parameters are defined is: *src/modules/sensors*.
 ## Sensor Enable
 
 
-The module where these parameters are defined is: *src/modules/sensors*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/sensors*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -8542,11 +8541,11 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_EN_LL40LS">SENS_EN_LL40LS</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Lidar-Lite (LL40LS)</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
+<li><strong>0:</strong> Disabled</li>
 
-<li><strong>1:</strong> PWM</li> 
+<li><strong>1:</strong> PWM</li>
 
-<li><strong>2:</strong> I2C</li> 
+<li><strong>2:</strong> I2C</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  </td>
@@ -8557,17 +8556,17 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_EN_SF0X">SENS_EN_SF0X</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Lightware laser rangefinder (serial)</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
+<li><strong>0:</strong> Disabled</li>
 
-<li><strong>1:</strong> SF02</li> 
+<li><strong>1:</strong> SF02</li>
 
-<li><strong>2:</strong> SF10/a</li> 
+<li><strong>2:</strong> SF10/a</li>
 
-<li><strong>3:</strong> SF10/b</li> 
+<li><strong>3:</strong> SF10/b</li>
 
-<li><strong>4:</strong> SF10/c</li> 
+<li><strong>4:</strong> SF10/c</li>
 
-<li><strong>5:</strong> SF11/c</li> 
+<li><strong>5:</strong> SF11/c</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  </td>
@@ -8594,15 +8593,15 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_EN_SF1XX">SENS_EN_SF1XX</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Lightware SF1xx laser rangefinder (i2c)</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
+<li><strong>0:</strong> Disabled</li>
 
-<li><strong>1:</strong> SF10/a</li> 
+<li><strong>1:</strong> SF10/a</li>
 
-<li><strong>2:</strong> SF10/b</li> 
+<li><strong>2:</strong> SF10/b</li>
 
-<li><strong>3:</strong> SF10/c</li> 
+<li><strong>3:</strong> SF10/c</li>
 
-<li><strong>4:</strong> SF11/c</li> 
+<li><strong>4:</strong> SF11/c</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  </td>
@@ -8613,9 +8612,9 @@ The module where these parameters are defined is: *src/modules/sensors*.
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_EN_THERMAL">SENS_EN_THERMAL</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Thermal control of sensor temperature</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Thermal control unavailable</li> 
+<li><strong>-1:</strong> Thermal control unavailable</li>
 
-<li><strong>0:</strong> Thermal control off</li> 
+<li><strong>0:</strong> Thermal control off</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -8627,7 +8626,7 @@ The module where these parameters are defined is: *src/modules/sensors*.
 ## Sensor Thermal Compensation
 
 
-The module where these parameters are defined is: *src/modules/sensors*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/sensors*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -9690,7 +9689,7 @@ The module where these parameters are defined is: *src/modules/sensors*.
 ## Snapdragon UART ESC
 
 
-The module where these parameters are defined is: *src/platforms/qurt/fc_addon/uart_esc*.
+이 파라미터가 정의되어 있는 모듈 : *src/platforms/qurt/fc_addon/uart_esc*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -9701,11 +9700,11 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/u
 <tr>
  <td style="vertical-align: top;"><strong id="UART_ESC_MODEL">UART_ESC_MODEL</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>ESC model</p><p><strong>Comment:</strong> See esc_model_t enum definition in uart_esc_dev.h for all supported ESC model enum values.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> ESC_200QX</li> 
+<li><strong>0:</strong> ESC_200QX</li>
 
-<li><strong>1:</strong> ESC_350QX</li> 
+<li><strong>1:</strong> ESC_350QX</li>
 
-<li><strong>2:</strong> ESC_210QC</li> 
+<li><strong>2:</strong> ESC_210QC</li>
 </ul>
    </td>
  <td style="vertical-align: top;"></td>
@@ -9752,7 +9751,7 @@ The module where these parameters are defined is: *src/platforms/qurt/fc_addon/u
 ## Subscriber Example
 
 
-The module where these parameters are defined is: *src/examples/subscriber*.
+이 파라미터가 정의되어 있는 모듈 : *src/examples/subscriber*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -9779,7 +9778,7 @@ The module where these parameters are defined is: *src/examples/subscriber*.
 ## Syslink
 
 
-The module where these parameters are defined is: *src/modules/syslink*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/syslink*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -9837,9 +9836,9 @@ The module where these parameters are defined is: *src/modules/syslink*.
 <tr>
  <td style="vertical-align: top;"><strong id="SYS_AUTOCONFIG">SYS_AUTOCONFIG</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Automatically configure default values</p><p><strong>Comment:</strong> Set to 1 to reset parameters on next system startup (setting defaults). Platform-specific values are used if available. RC* parameters are preserved.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Keep parameters</li> 
+<li><strong>0:</strong> Keep parameters</li>
 
-<li><strong>1:</strong> Reset parameters</li> 
+<li><strong>1:</strong> Reset parameters</li>
 </ul>
    <p><b>Module:</b> src/modules/systemlib</p>
 </td>
@@ -9858,11 +9857,11 @@ The module where these parameters are defined is: *src/modules/syslink*.
 <tr>
  <td style="vertical-align: top;"><strong id="SYS_RESTART_TYPE">SYS_RESTART_TYPE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Set restart type</p><p><strong>Comment:</strong> Set by px4io to indicate type of restart</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Data survives resets</li> 
+<li><strong>0:</strong> Data survives resets</li>
 
-<li><strong>1:</strong> Data survives in-flight resets only</li> 
+<li><strong>1:</strong> Data survives in-flight resets only</li>
 
-<li><strong>2:</strong> Data does not survive reset</li> 
+<li><strong>2:</strong> Data does not survive reset</li>
 </ul>
    <p><b>Module:</b> src/modules/systemlib</p>
 </td>
@@ -9873,9 +9872,9 @@ The module where these parameters are defined is: *src/modules/syslink*.
 <tr>
  <td style="vertical-align: top;"><strong id="SYS_MC_EST_GROUP">SYS_MC_EST_GROUP</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Set multicopter estimator group</p><p><strong>Comment:</strong> Set the group of estimators used for multicopters and VTOLs</p> <strong>Values:</strong><ul>
-<li><strong>1:</strong> local_position_estimator, attitude_estimator_q</li> 
+<li><strong>1:</strong> local_position_estimator, attitude_estimator_q</li>
 
-<li><strong>2:</strong> ekf2</li> 
+<li><strong>2:</strong> ekf2</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> src/modules/systemlib</p>
@@ -9887,31 +9886,31 @@ The module where these parameters are defined is: *src/modules/syslink*.
 <tr>
  <td style="vertical-align: top;"><strong id="SYS_COMPANION">SYS_COMPANION</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>TELEM2 as companion computer link</p><p><strong>Comment:</strong> CHANGING THIS VALUE REQUIRES A RESTART. Configures the baud rate of the TELEM2 connector as companion computer interface.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
+<li><strong>0:</strong> Disabled</li>
 
-<li><strong>10:</strong> FrSky Telemetry</li> 
+<li><strong>10:</strong> FrSky Telemetry</li>
 
-<li><strong>20:</strong> Crazyflie (Syslink)</li> 
+<li><strong>20:</strong> Crazyflie (Syslink)</li>
 
-<li><strong>57600:</strong> Companion Link (57600 baud, 8N1)</li> 
+<li><strong>57600:</strong> Companion Link (57600 baud, 8N1)</li>
 
-<li><strong>157600:</strong> OSD (57600 baud, 8N1)</li> 
+<li><strong>157600:</strong> OSD (57600 baud, 8N1)</li>
 
-<li><strong>257600:</strong> Command Receiver (57600 baud, 8N1)</li> 
+<li><strong>257600:</strong> Command Receiver (57600 baud, 8N1)</li>
 
-<li><strong>319200:</strong> Normal Telemetry (19200 baud, 8N1)</li> 
+<li><strong>319200:</strong> Normal Telemetry (19200 baud, 8N1)</li>
 
-<li><strong>338400:</strong> Normal Telemetry (38400 baud, 8N1)</li> 
+<li><strong>338400:</strong> Normal Telemetry (38400 baud, 8N1)</li>
 
-<li><strong>357600:</strong> Normal Telemetry (57600 baud, 8N1)</li> 
+<li><strong>357600:</strong> Normal Telemetry (57600 baud, 8N1)</li>
 
-<li><strong>419200:</strong> Iridium Telemetry (19200 baud, 8N1)</li> 
+<li><strong>419200:</strong> Iridium Telemetry (19200 baud, 8N1)</li>
 
-<li><strong>921600:</strong> Companion Link (921600 baud, 8N1)</li> 
+<li><strong>921600:</strong> Companion Link (921600 baud, 8N1)</li>
 
-<li><strong>1921600:</strong> ESP8266 (921600 baud, 8N1)</li> 
+<li><strong>1921600:</strong> ESP8266 (921600 baud, 8N1)</li>
 
-<li><strong>3115200:</strong> Normal Telemetry (115200 baud, 8N1)</li> 
+<li><strong>3115200:</strong> Normal Telemetry (115200 baud, 8N1)</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> src/modules/systemlib</p>
@@ -9931,9 +9930,9 @@ The module where these parameters are defined is: *src/modules/syslink*.
 <tr>
  <td style="vertical-align: top;"><strong id="SYS_LOGGER">SYS_LOGGER</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>SD logger</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> sdlog2 (legacy)</li> 
+<li><strong>0:</strong> sdlog2 (legacy)</li>
 
-<li><strong>1:</strong> logger (default)</li> 
+<li><strong>1:</strong> logger (default)</li>
 </ul>
   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> src/modules/systemlib</p>
@@ -10165,11 +10164,11 @@ The module where these parameters are defined is: *src/modules/syslink*.
 <tr>
  <td style="vertical-align: top;"><strong id="UAVCAN_ENABLE">UAVCAN_ENABLE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>UAVCAN mode</p><p><strong>Comment:</strong> 0 - UAVCAN disabled. 1 - Basic support for UAVCAN actuators and sensors. 2 - Full support for dynamic node ID allocation and firmware update. 3 - Sets the motor control outputs to UAVCAN and enables support for dynamic node ID allocation and firmware update.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
+<li><strong>0:</strong> Disabled</li>
 
-<li><strong>2:</strong> Sensors Enabled</li> 
+<li><strong>2:</strong> Sensors Enabled</li>
 
-<li><strong>3:</strong> Sensors and Motors</li> 
+<li><strong>3:</strong> Sensors and Motors</li>
 </ul>
    <p><b>Module:</b> src/modules/uavcan</p>
 </td>
@@ -10207,7 +10206,7 @@ The module where these parameters are defined is: *src/modules/syslink*.
 ## VTOL Attitude Control
 
 
-The module where these parameters are defined is: *src/modules/vtol_att_control*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/vtol_att_control*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -10311,11 +10310,11 @@ to accelerate forward if necessary</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="VT_TYPE">VT_TYPE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>VTOL Type (Tailsitter=0, Tiltrotor=1, Standard=2)</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Tailsitter</li> 
+<li><strong>0:</strong> Tailsitter</li>
 
-<li><strong>1:</strong> Tiltrotor</li> 
+<li><strong>1:</strong> Tiltrotor</li>
 
-<li><strong>2:</strong> Standard</li> 
+<li><strong>2:</strong> Standard</li>
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 2 </td>
@@ -10467,7 +10466,7 @@ to accelerate forward if necessary</p>    </td>
 ## mTECS
 
 
-The module where these parameters are defined is: *src/modules/fw_pos_control_l1/mtecs*.
+이 파라미터가 정의되어 있는 모듈 : *src/modules/fw_pos_control_l1/mtecs*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -10849,43 +10848,43 @@ Maps the change of airspeed error to the acceleration setpoint</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_FAILSAFE">RC_MAP_FAILSAFE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Failsafe channel mapping</p><p><strong>Comment:</strong> The RC mapping index indicates which channel is used for failsafe If 0, whichever channel is mapped to throttle is used otherwise the value indicates the specific rc channel to use</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Unassigned</li> 
+<li><strong>0:</strong> Unassigned</li>
 
-<li><strong>1:</strong> Channel 1</li> 
+<li><strong>1:</strong> Channel 1</li>
 
-<li><strong>2:</strong> Channel 2</li> 
+<li><strong>2:</strong> Channel 2</li>
 
-<li><strong>3:</strong> Channel 3</li> 
+<li><strong>3:</strong> Channel 3</li>
 
-<li><strong>4:</strong> Channel 4</li> 
+<li><strong>4:</strong> Channel 4</li>
 
-<li><strong>5:</strong> Channel 5</li> 
+<li><strong>5:</strong> Channel 5</li>
 
-<li><strong>6:</strong> Channel 6</li> 
+<li><strong>6:</strong> Channel 6</li>
 
-<li><strong>7:</strong> Channel 7</li> 
+<li><strong>7:</strong> Channel 7</li>
 
-<li><strong>8:</strong> Channel 8</li> 
+<li><strong>8:</strong> Channel 8</li>
 
-<li><strong>9:</strong> Channel 9</li> 
+<li><strong>9:</strong> Channel 9</li>
 
-<li><strong>10:</strong> Channel 10</li> 
+<li><strong>10:</strong> Channel 10</li>
 
-<li><strong>11:</strong> Channel 11</li> 
+<li><strong>11:</strong> Channel 11</li>
 
-<li><strong>12:</strong> Channel 12</li> 
+<li><strong>12:</strong> Channel 12</li>
 
-<li><strong>13:</strong> Channel 13</li> 
+<li><strong>13:</strong> Channel 13</li>
 
-<li><strong>14:</strong> Channel 14</li> 
+<li><strong>14:</strong> Channel 14</li>
 
-<li><strong>15:</strong> Channel 15</li> 
+<li><strong>15:</strong> Channel 15</li>
 
-<li><strong>16:</strong> Channel 16</li> 
+<li><strong>16:</strong> Channel 16</li>
 
-<li><strong>17:</strong> Channel 17</li> 
+<li><strong>17:</strong> Channel 17</li>
 
-<li><strong>18:</strong> Channel 18</li> 
+<li><strong>18:</strong> Channel 18</li>
 </ul>
    <p><b>Module:</b> src/modules/sensors</p>
 </td>
@@ -10904,33 +10903,33 @@ Maps the change of airspeed error to the acceleration setpoint</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_FLTMODE1">COM_FLTMODE1</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>First flightmode slot (1000-1160)</p><p><strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Unassigned</li> 
+<li><strong>-1:</strong> Unassigned</li>
 
-<li><strong>0:</strong> Manual</li> 
+<li><strong>0:</strong> Manual</li>
 
-<li><strong>1:</strong> Altitude</li> 
+<li><strong>1:</strong> Altitude</li>
 
-<li><strong>2:</strong> Position</li> 
+<li><strong>2:</strong> Position</li>
 
-<li><strong>3:</strong> Mission</li> 
+<li><strong>3:</strong> Mission</li>
 
-<li><strong>4:</strong> Hold</li> 
+<li><strong>4:</strong> Hold</li>
 
-<li><strong>5:</strong> Return</li> 
+<li><strong>5:</strong> Return</li>
 
-<li><strong>6:</strong> Acro</li> 
+<li><strong>6:</strong> Acro</li>
 
-<li><strong>7:</strong> Offboard</li> 
+<li><strong>7:</strong> Offboard</li>
 
-<li><strong>8:</strong> Stabilized</li> 
+<li><strong>8:</strong> Stabilized</li>
 
-<li><strong>9:</strong> Rattitude</li> 
+<li><strong>9:</strong> Rattitude</li>
 
-<li><strong>10:</strong> Takeoff</li> 
+<li><strong>10:</strong> Takeoff</li>
 
-<li><strong>11:</strong> Land</li> 
+<li><strong>11:</strong> Land</li>
 
-<li><strong>12:</strong> Follow Me</li> 
+<li><strong>12:</strong> Follow Me</li>
 </ul>
    <p><b>Module:</b> src/modules/commander</p>
 </td>
@@ -10941,33 +10940,33 @@ Maps the change of airspeed error to the acceleration setpoint</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_FLTMODE2">COM_FLTMODE2</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Second flightmode slot (1160-1320)</p><p><strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Unassigned</li> 
+<li><strong>-1:</strong> Unassigned</li>
 
-<li><strong>0:</strong> Manual</li> 
+<li><strong>0:</strong> Manual</li>
 
-<li><strong>1:</strong> Altitude</li> 
+<li><strong>1:</strong> Altitude</li>
 
-<li><strong>2:</strong> Position</li> 
+<li><strong>2:</strong> Position</li>
 
-<li><strong>3:</strong> Mission</li> 
+<li><strong>3:</strong> Mission</li>
 
-<li><strong>4:</strong> Hold</li> 
+<li><strong>4:</strong> Hold</li>
 
-<li><strong>5:</strong> Return</li> 
+<li><strong>5:</strong> Return</li>
 
-<li><strong>6:</strong> Acro</li> 
+<li><strong>6:</strong> Acro</li>
 
-<li><strong>7:</strong> Offboard</li> 
+<li><strong>7:</strong> Offboard</li>
 
-<li><strong>8:</strong> Stabilized</li> 
+<li><strong>8:</strong> Stabilized</li>
 
-<li><strong>9:</strong> Rattitude</li> 
+<li><strong>9:</strong> Rattitude</li>
 
-<li><strong>10:</strong> Takeoff</li> 
+<li><strong>10:</strong> Takeoff</li>
 
-<li><strong>11:</strong> Land</li> 
+<li><strong>11:</strong> Land</li>
 
-<li><strong>12:</strong> Follow Me</li> 
+<li><strong>12:</strong> Follow Me</li>
 </ul>
    <p><b>Module:</b> src/modules/commander</p>
 </td>
@@ -10978,33 +10977,33 @@ Maps the change of airspeed error to the acceleration setpoint</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_FLTMODE3">COM_FLTMODE3</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Third flightmode slot (1320-1480)</p><p><strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Unassigned</li> 
+<li><strong>-1:</strong> Unassigned</li>
 
-<li><strong>0:</strong> Manual</li> 
+<li><strong>0:</strong> Manual</li>
 
-<li><strong>1:</strong> Altitude</li> 
+<li><strong>1:</strong> Altitude</li>
 
-<li><strong>2:</strong> Position</li> 
+<li><strong>2:</strong> Position</li>
 
-<li><strong>3:</strong> Mission</li> 
+<li><strong>3:</strong> Mission</li>
 
-<li><strong>4:</strong> Hold</li> 
+<li><strong>4:</strong> Hold</li>
 
-<li><strong>5:</strong> Return</li> 
+<li><strong>5:</strong> Return</li>
 
-<li><strong>6:</strong> Acro</li> 
+<li><strong>6:</strong> Acro</li>
 
-<li><strong>7:</strong> Offboard</li> 
+<li><strong>7:</strong> Offboard</li>
 
-<li><strong>8:</strong> Stabilized</li> 
+<li><strong>8:</strong> Stabilized</li>
 
-<li><strong>9:</strong> Rattitude</li> 
+<li><strong>9:</strong> Rattitude</li>
 
-<li><strong>10:</strong> Takeoff</li> 
+<li><strong>10:</strong> Takeoff</li>
 
-<li><strong>11:</strong> Land</li> 
+<li><strong>11:</strong> Land</li>
 
-<li><strong>12:</strong> Follow Me</li> 
+<li><strong>12:</strong> Follow Me</li>
 </ul>
    <p><b>Module:</b> src/modules/commander</p>
 </td>
@@ -11015,33 +11014,33 @@ Maps the change of airspeed error to the acceleration setpoint</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_FLTMODE4">COM_FLTMODE4</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Fourth flightmode slot (1480-1640)</p><p><strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Unassigned</li> 
+<li><strong>-1:</strong> Unassigned</li>
 
-<li><strong>0:</strong> Manual</li> 
+<li><strong>0:</strong> Manual</li>
 
-<li><strong>1:</strong> Altitude</li> 
+<li><strong>1:</strong> Altitude</li>
 
-<li><strong>2:</strong> Position</li> 
+<li><strong>2:</strong> Position</li>
 
-<li><strong>3:</strong> Mission</li> 
+<li><strong>3:</strong> Mission</li>
 
-<li><strong>4:</strong> Hold</li> 
+<li><strong>4:</strong> Hold</li>
 
-<li><strong>5:</strong> Return</li> 
+<li><strong>5:</strong> Return</li>
 
-<li><strong>6:</strong> Acro</li> 
+<li><strong>6:</strong> Acro</li>
 
-<li><strong>7:</strong> Offboard</li> 
+<li><strong>7:</strong> Offboard</li>
 
-<li><strong>8:</strong> Stabilized</li> 
+<li><strong>8:</strong> Stabilized</li>
 
-<li><strong>9:</strong> Rattitude</li> 
+<li><strong>9:</strong> Rattitude</li>
 
-<li><strong>10:</strong> Takeoff</li> 
+<li><strong>10:</strong> Takeoff</li>
 
-<li><strong>11:</strong> Land</li> 
+<li><strong>11:</strong> Land</li>
 
-<li><strong>12:</strong> Follow Me</li> 
+<li><strong>12:</strong> Follow Me</li>
 </ul>
    <p><b>Module:</b> src/modules/commander</p>
 </td>
@@ -11052,33 +11051,33 @@ Maps the change of airspeed error to the acceleration setpoint</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_FLTMODE5">COM_FLTMODE5</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Fifth flightmode slot (1640-1800)</p><p><strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Unassigned</li> 
+<li><strong>-1:</strong> Unassigned</li>
 
-<li><strong>0:</strong> Manual</li> 
+<li><strong>0:</strong> Manual</li>
 
-<li><strong>1:</strong> Altitude</li> 
+<li><strong>1:</strong> Altitude</li>
 
-<li><strong>2:</strong> Position</li> 
+<li><strong>2:</strong> Position</li>
 
-<li><strong>3:</strong> Mission</li> 
+<li><strong>3:</strong> Mission</li>
 
-<li><strong>4:</strong> Hold</li> 
+<li><strong>4:</strong> Hold</li>
 
-<li><strong>5:</strong> Return</li> 
+<li><strong>5:</strong> Return</li>
 
-<li><strong>6:</strong> Acro</li> 
+<li><strong>6:</strong> Acro</li>
 
-<li><strong>7:</strong> Offboard</li> 
+<li><strong>7:</strong> Offboard</li>
 
-<li><strong>8:</strong> Stabilized</li> 
+<li><strong>8:</strong> Stabilized</li>
 
-<li><strong>9:</strong> Rattitude</li> 
+<li><strong>9:</strong> Rattitude</li>
 
-<li><strong>10:</strong> Takeoff</li> 
+<li><strong>10:</strong> Takeoff</li>
 
-<li><strong>11:</strong> Land</li> 
+<li><strong>11:</strong> Land</li>
 
-<li><strong>12:</strong> Follow Me</li> 
+<li><strong>12:</strong> Follow Me</li>
 </ul>
    <p><b>Module:</b> src/modules/commander</p>
 </td>
@@ -11089,33 +11088,33 @@ Maps the change of airspeed error to the acceleration setpoint</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_FLTMODE6">COM_FLTMODE6</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Sixth flightmode slot (1800-2000)</p><p><strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Unassigned</li> 
+<li><strong>-1:</strong> Unassigned</li>
 
-<li><strong>0:</strong> Manual</li> 
+<li><strong>0:</strong> Manual</li>
 
-<li><strong>1:</strong> Altitude</li> 
+<li><strong>1:</strong> Altitude</li>
 
-<li><strong>2:</strong> Position</li> 
+<li><strong>2:</strong> Position</li>
 
-<li><strong>3:</strong> Mission</li> 
+<li><strong>3:</strong> Mission</li>
 
-<li><strong>4:</strong> Hold</li> 
+<li><strong>4:</strong> Hold</li>
 
-<li><strong>5:</strong> Return</li> 
+<li><strong>5:</strong> Return</li>
 
-<li><strong>6:</strong> Acro</li> 
+<li><strong>6:</strong> Acro</li>
 
-<li><strong>7:</strong> Offboard</li> 
+<li><strong>7:</strong> Offboard</li>
 
-<li><strong>8:</strong> Stabilized</li> 
+<li><strong>8:</strong> Stabilized</li>
 
-<li><strong>9:</strong> Rattitude</li> 
+<li><strong>9:</strong> Rattitude</li>
 
-<li><strong>10:</strong> Takeoff</li> 
+<li><strong>10:</strong> Takeoff</li>
 
-<li><strong>11:</strong> Land</li> 
+<li><strong>11:</strong> Land</li>
 
-<li><strong>12:</strong> Follow Me</li> 
+<li><strong>12:</strong> Follow Me</li>
 </ul>
    <p><b>Module:</b> src/modules/commander</p>
 </td>
@@ -11124,4 +11123,3 @@ Maps the change of airspeed error to the acceleration setpoint</p>    </td>
  <td style="vertical-align: top;"></td>
 </tr>
 </tbody></table>
-

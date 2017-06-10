@@ -1,118 +1,120 @@
-# VTOL Testing
+# VTOL 테스팅
 
-How-to test that the VTOL functions properly, main focus are transitions:
+VTOL 기능을 제대로 동작하는지에 대한 기본 테스트는 주로 transition에 초점 :
 
-  * On the bench
-  * In flight
+  * 대기 상태 (On the bench)
+  * 비행 중 (In flight)
 
-## General notes on transitions
+## transition 중 일반 주의내용
 
-There are currently 3 ways of commanding the VTOL to transition:
+현재 제공하는 VTOL에 transiton 명령을 내리는 3가지 방식 :
 
-  * RC switch (2 pos, aux1)
-  * MAVLink command (MAV_CMD_DO_VTOL_TRANSITION)
-  * Transition during mission (MAV_CMD_DO_VTOL_TRANSITION internally)
+  * RC 스위치 (2 pos, aux1)
+  * MAVLink 명령 (MAV_CMD_DO_VTOL_TRANSITION)
+  * mission 중에 transition (내부적으로 MAV_CMD_DO_VTOL_TRANSITION)
 
-When a transition is commanded (by either of the methods above), the VTOL enters the transition phase. If the VTOL receives a new transition command back to the old state during an ongoing transition it will switch back instantly. This is a safety feature to abort the transition when necessary. After the transition has been completed, the VTOL will be in the new state and a commanded transition into the reverse direction will take place normally.
+위 방법중에 하나로 transition 명령이 내리면, VTOL은 transition phase로 들어갑니다. 만약 VTOL이 transition을 진행 중인 상태에서 이전 상태로 돌아가는 새로운 transition 명령을 받으면, 바로 이전 상태로 돌아갑니다. 필요한 경우 transition을 취소하는 것은 안전과 관련된 기능입니다. transition이 완료되면, VTOL은 새로운 상태로 들어갔으므로 반대 방향의 transition 명령은 정상적으로 수행하게 됩니다.
 
-> **Note** Make sure the AUX1 channel is assigned to an RC switch and that airspeed is working properly.
+> **Note**
+AUX1 채널을 RC 스위치에 할당하고 airspeed가 정상적으로 동작하는지 확인합니다.
 
-## On the bench
+## 대기 상태 (On the bench)
 
-> **Caution** Remove all props! To test transition functionality properly, the vehicle needs to be armed.
+> **Caution** 모든 프로펠러를 제거합니다! transition 기능을 제대로 테스트하기 위해서 비행체는 arm 상태로 되어 있어야 합니다.
 
-By default, starting in multirotor mode:
+기본적으로 멀티로터 모드에서 시작 :
 
-  * arm the vehicle
-  * check that motors are running in multirotor configuration (rudders/elevons should not move on roll/pitch/yaw inputs)
-  * toggle transition switch
-  * (if applicable) wait on step 1 of the transition phase to complete
-  * blow into pito tube to simulate airspeed
-  * (if applicable) step 2 of the transition phase will be executed
-  * check that motors are running in fixed-wing configuration (roll/pitch/yaw inputs should control rudders/elevons)
-  * toggle transition switch
-  * observe back transition
-  * check that motors are running in multirotor configuration (rudders/elevons should not move on roll/pitch/yaw inputs)
+  * 비행체 arm
+  * 모터가 멀티로터 설정에서 실행되는지 확인 (rudders/elevons은 반드시 roll/pitch/yaw 입력에도 움직이면 안됨)
+  * transition 스위치를 토글
+  * (가능하면) transition의 1단계가 완료될때까지 대기
+  * airspeed를 시뮬레이션하기 위해서 pito에 바람 불어보
+  * (가능하면) transition의 2단계가 실행
+  * 고정익 설절에서 모터가 실행되는지 확인 (roll/pitch/yaw 입력으로 rudders/elevons를 제어할 수 있어야함)
+  * transition 스위치를 토글
+  * 이전 상태로 돌아가는 것을 관찰
+  * 모터가 멀티로터 설정에서 실행되는지 확인 (rudders/elevons는 roll/pitch/yaw입력에도 움직이면 안됨)
 
-## In flight
+## 비행 중 (In flight)
 
-> **Tip** Before testing transitions in flight, make sure the VTOL flies stable in multirotor mode. In general, if something doesn't go as planned, transition to multirotor mode and let it recover (it does a good job when it's properly tuned).
+> **Tip** 비행 중에 transition을 테스트하기 전에, VTOL이 멀티로터 모드에서 안정적으로 비행하는지 확인합니다. 계획한대로 제대로 동작하지 않는 경우, 멀티로터 모드로 전환하고 복구되도록 합니다.(제대로 튜닝이 되고나야 제대로 동작)
 
-In-flight transition requires at least the following parameters to match your airframe and piloting skills:
+비행 중에 transition을 하기 위해서는 여러분이 가지고 있는 비행체와 비행조정 기술에 맞게 최소한 다음 parameter가 필요합니다. :
 
 | Param | Notes |
 | :--- | :--- |
-| VT_FW_PERM_STAB | Turns permanent stabilization on/off for fixed-wing. |
-| VT_ARSP_BLEND | At which airspeed the fixed-wing controls becom active. |
-| VT_ARSP_TRANS | At which airspeed the transition to fixed-wing is complete. |
+| VT_FW_PERM_STAB | 고정익에 대해서 영구 안정화 on/off 시키기 |
+| VT_ARSP_BLEND | 특정 airspeed에서 고정익 제어를 활성화 |
+| VT_ARSP_TRANS | 특정 airspeed에서 고정익 전환을 완료 |
 
-There are more parameters depending on the type of VTOL, see the [parameter reference](https://pixhawk.org/firmware/parameters#vtol_attitude_control).
+VTOL 타입에 따라서 더 다양한 parameter이 있습니다. [parameter reference](https://pixhawk.org/firmware/parameters#vtol_attitude_control)를 참고하세요.
 
-### Manual transition test
+### 수동 transition 테스트
 
-The basic procedure to test manual transitions is as follows:
+수동 transition을 테스트하기 위한 기본 절차는 다음과 같다 :
 
-  * arm and takeoff in multirotor mode
-  * climb to a safe height to allow for some drop after transition
-  * turn into the wind
-  * toggle transition switch
-  * observe transition **(MC-FW)**
-  * fly in fixed-wing
-  * come in at a safe height to allow for some drop after transition
-  * toggle transition switch
-  * observe transition **(FW-MC)**
-  * land and disarm
+  * 멀티로터 모드에서 arm과 이륙
+  * transition 이후에 조금 아래로 내려올 수 있으므로 안전한 높이까지 올라가기
+  * 바람방향으로 돌리기
+  * transition 스위치를 토글
+  * transition 관찰 **(MC-FW)**
+  * 고정익으로 비행
+  * transition 이후에 조금 아래로 내려올 수 있으므로 안전한 높이로 이동
+  * transition 스위치를 토글
+  * transition 관찰 **(FW-MC)**
+  * 착륙 및 disarm
 
 **MC-FW**
 
-During the transition from MC to FW the following can happen:
+MC에서 FW로 transition하는 동안 다음과 같은 일이 일어납니다 :
 
-  1. it looses control while gaining speed (this can happen due to many factors)
-  2. the transition takes too long and it flies too far away before the transition finishes
+  1. 속도가 높으면서 제어가 되지 않는다 (여러 가지 요인이 있음)
+  2. transition에 너무 오래 걸리고 transition이 끝나기 전에 너무 멀리 날아가 버린다.
 
-For 1): Switch back to multirotor (will happen instantly). Try to identify the problem (check setpoints).
+1)에 대해서 : 스위치를 멀티로터로 되돌린다. (바로) 무슨 문제인지를 찾는다.(setpoint 확인하기)
 
-For 2): If blending airspeed is set and it has a higher airspeed already it is controllable as fixed-wing. Therefore it is possible to fly around and give it more time to finish the transition. Otherwise switch back to multirotor and try to identify the problem (check airspeed).
+2)에 대해서 : blending airspeed가 설정되어 있고 이미 더 높은 airspeed인 경우라면 고정익으로 제어가능합니다. 따라서 주변을 비행하면서 transition는 완료하는데 필요한 시간을 더 주어야 합니다. 그렇지 않은 경우 멀티로터로 스위치를 되돌리고 무슨 문제인지를 찾습니다.(airspeed 확인)
 
 **FW-MC**
 
-The transition from FW to MC is mostly unproblematic. In-case it seems to loose control the best approach is to let it recover.
+FW에서 MC로 transition하는 경우 거의 문제가 발생하지 않습니다. 만약 제어가 되지 않는 경우 가장 좋은 방법은 복귀시키는 것입니다.
 
-### Automatic transition test (mission, commanded)
+### 자동 transition 테스트 (mission, commanded)
 
-Commanded transitions only work in auto (mission) or offboard flight-mode. Make sure you are confident to operate the auto/offboard and transition switch in flight.
+명령으로 transition을 받는 경우는 auto(mission)이나 offboard 비행모드에서만 동작합니다. 비행중에 auto/offboard와 transition 스위치가 제대로 동작하는지를 확신할 수 있어야 합니다.
 
-Switching to manual will reactivate the transition switch. For example: if you switch out of auto/offboard when in automatic fixed-wing flight and the transition switch is currently in multirotor position it will transition to multirotor right away.
+수동으로 스위칭하면 transition 스위치를 재활성화시켜야 합니다. 예를 들자면 auto/offboard 이외 모드로 되어 있고 자동으로 고정익 비행에 transition 스위치가 현재 멀티로터로 되어 있다면 바로 멀티로터로 전환될 것입니다.
 
-#### Proceduce
+#### 절차
 
-The following procedure can be used to test a mission with transition:
 
-  * upload mission
-  * takeoff in multirotor mode and climb to mission height
-  * enable mission with switch
-  * observe transition to fixed-wing flight
-  * enjoy flight
-  * observe transition back to multirotor mode
-  * disable mission
-  * land manually
-  
-During flight, the manual transition switch stays in multirotor position. If something doesn't go as planned, switch to manual and it will recover in multirotor mode.
+transtion이 있는 mission을 테스트하는데 사용하는 절차는 :
 
-#### Example mission
+  * mission을 업로드
+  * 멀티로터 모드로 이륙하고 mission 높이까지 올라가기
+  * 스위치로 mission 활성화  
+  * 고정익 비행으로 전환되는 것 관찰하기
+  * 비행 즐기기
+  * 다시 멀티로터 모드로 전환되는 것 관찰하기
+  * mission 비활성화
+  * 수동으로 착륙
 
-The mission should contain at least (also see screenshots below):
+비행 동안에 수동으로 transition 스위치를 멀티로터로 유지합니다. 잘 되지 않으면, 스위치를 수동하면 멀티로터 모드로 복귀됩니다.
 
-  * (1) position waypoint near takeoff location
-  * (2) position waypoint in the direction of the planned fixed-wing flight route
-  * (3) transition waypoint (to plane mode)
-  * (4) position waypoint further away (at least as far away as the transition needs)
-  * (6) position waypoint to fly back (a bit before takeoff location so back transition takes some distance)
-  * (7) transition waypoint (to hover mode)
-  * (8) position waypoint near takeoff location
+#### 예제 mission
+
+#### 예제 mission
+
+mission에서 최소한 포함해야 하는 것들(아래 스크린샷 참조) :
+
+  * (1) 이륙 장소 근처에 position waypoint
+  * (2) 사전 계획한 고정익 비행 경로의 방향으로 position waypoint
+  * (3) transition waypoint (plane mode로)
+  * (4) 더 떨어진 position waypoint (적어도 transition에 필요한 거리 만큼은 떨어져 있어야)
+  * (6) 다시 되돌아 가기 위한 position waypoint (이륙 위치 약간 앞쪽. 다시 전환에 필요한 거리)
+  * (7) transition waypoint (hover mode로)
+  * (8) 이륙 위치 근처에 position waypoint
 
 ![Mission, showing transition WP to plane](../../assets/vtol/qgc_mission_example_a.png)
 
 ![Mission, showing transition WP to hover](../../assets/vtol/qgc_mission_example_b.png)
-
-
