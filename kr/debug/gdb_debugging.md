@@ -1,10 +1,10 @@
 # Embedded Debugging
 
-The autopilots running PX4 support debugging via GDB or LLDB.
+PX4를 실행하는 autopilot에서 GDB나 LLDB를 통한 디버깅이 가능합니다.
 
-## Identifying large memory consumers
+## 많은 메모리 사용하는 부분 찾기
 
-The command below will list the largest static allocations:
+아래에서 이 명령을 이용하면 가장 많이 정적 메모리 할당한 목록을 보여줍니다. :
 
 <div class="host-code"></div>
 
@@ -12,45 +12,45 @@ The command below will list the largest static allocations:
 arm-none-eabi-nm --size-sort --print-size --radix=dec build_px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
 ```
 
-This NSH command provides the remaining free memory:
+NSH 명령은 남은 메모리의 양을 알려줍니다.:
 
 ```bash
 free
 ```
 
-And the top command shows the stack usage per application:
+그리고 top 명령은 application당 stack 사용량을 보여줍니다. :
 
 ```
 top
 ```
 
-Stack usage is calculated with stack coloring and thus is not the current usage, but the maximum since the start of the task.
+stack 사용량은 stack coloring으로 계산되며, 현재 사용량이 아니라 task를 시작한 이후 최대량을 뜻합니다.
 
-### Heap allocations
-Dynamic heap allocations can be traced on POSIX in SITL with [gperftools](https://github.com/gperftools/gperftools).
+### 힙 할당 (Heap allocations)
+동적 힙 할당은 [gperftools](https://github.com/gperftools/gperftools)로 SITL에서 POSIX상에서 추적이 가능합니다.
 
-#### Install Instructions
+#### 설치 명령
 ##### Ubuntu:
 ```bash
 sudo apt-get install google-perftools libgoogle-perftools-dev
 ```
 
-#### Start heap profiling
+#### 힙 프로파일링 시작하기
 
-First of all, build the firmware as follows:
+무엇보다 먼저 펌웨어를 다음과 같이 빌드 :
 ```bash
 make posix_sitl_default
 ```
-Start jmavsim: `./Tools/jmavsim_run.sh`
+jmavsim 시작하기: `./Tools/jmavsim_run.sh`
 
-In another terminal, type:
+다른 터미널에서 다음을 입력:
 ```bash
 cd build_posix_sitl_default/tmp
 export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
 
-Enter this depending on your system:
+여러분이 사용하는 시스템에 따라 다음을 입력:
 ##### Fedora:
 ```bash
 env LD_PRELOAD=/lib64/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
@@ -63,18 +63,18 @@ env LD_PRELOAD=/usr/lib/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-con
 google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
-It will generate a pdf with a graph of the heap allocations.
-The numbers in the graph will all be zero, because they are in MB. Just look at the percentages instead. They show the live memory (of the node and the subtree), meaning the memory that was still in use at the end.
+힙 할당 그래프로 pdf를 생성합니다.
+그래프에서 숫자는 모드 0이 됩니다. 왜냐하면 단위가 MB이기 때문입니다. 대신에 퍼센트를 살펴봅시다. node나 subtree의 live 메모리를 보여주며 마지막까지 사용할 메모리를 의미합니다.
 
-See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html) for more information.
+보다 자세한 내용은 [gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html)을 참고하세요.
 
 
-## Debugging Hard Faults in NuttX
+## NuttX에서 하드 폴트 디버깅하기 (Debugging Hard Faults in NuttX)
 
-A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted. A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
+하드 폴트는 OS가 실행할 유효 명령어가 존재하지 않는다는 것을 검출할 때를 말합니다. 일반적으로 RAM의 핵심 영역에 문제가 있는 경우입니다. 잘못된 메모리 접근으로 stack이 날라가고 프로세서는 메모리의 주소가 마이크로프로세서 RAM내에 유효한 주소가 아니라는 것을 인지하게 됩니다.
 
-  * NuttX maintains two stacks: The IRQ stack for interrupt processing and the user stack
-  * The stack grows downward. So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
+  * NuttX는 2개 스택을 유지 : IRQ stack과 user stack
+  * stack은 아래로 증가합니다. 따라서 아래 예제에서 가장 높은 주소는 0x20021060이며 사이즈는 0x11f4 (4596 bytes)이고 결과적으로 가장 낮은 주소는 0x2001fe6c입니다.
 
 ```bash
 Assertion failed at file:armv7-m/up_hardfault.c line: 184 task: ekf_att_pos_estimator
@@ -123,7 +123,7 @@ xPSR: 61000000 BASEPRI: 00000000 CONTROL: 00000000
 EXC_RETURN: ffffffe9
 ```
 
-To decode the hardfault, load the *exact* binary into the debugger:
+하드폴트를 디코딩하기 위해서 *정확히 일치하는* binary를 디버거로 로드합니다. :
 
 <div class="host-code"></div>
 
@@ -131,7 +131,7 @@ To decode the hardfault, load the *exact* binary into the debugger:
 arm-none-eabi-gdb build_px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx
 ```
 
-Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
+GDB 프롬프트에서, R8에서 마지막 명령과 flash에서 첫번째 주소로 시작합니다.(`0x080`로 시작하고 첫번째 주소는 `0x0808439f`임) 하드폴트가 있기 전에 마지막 동작 중에 하나는 ```mavlink_log.c```가 뭔가를 publish를 시도했다는 것입니다.
 
 <div class="host-code"></div>
 
