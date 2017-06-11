@@ -1,45 +1,40 @@
-# Intel® Aero Ready to Fly Drone
+# Intel® Aero Ready to Fly 드론
 
-The Intel® Aero Ready to Fly Drone is a UAV development platform. Part of this is the [Intel Aero
-Compute Board](https://software.intel.com/en-us/aero/dev-kit), running Linux on
-a Quad-core CPU. The other part is an STM32 microcontroller that is connected
-to it and that runs PX4 on NuttX. These are integrated in the same package on
-the [Intel® Aero Ready to Fly Drone](https://software.intel.com/en-us/aero/drone-dev-kit), which also includes
-the vision accessory kit.
-
+The Intel® Aero Ready to Fly 드론은 UAV 개발 플랫폼입니다. 구성품 중에 [Intel Aero
+Compute Board](https://software.intel.com/en-us/aero/dev-kit)은 쿼드코어 CPU를 가지고 있으며 Linux가 실행됩니다. 다른 구성품으로는 여기에 연결되는 STM32 마이크로컨트롤러가 있으며 NuttX 위에서 PX4가 실행됩니다. 이것들은 모두 [Intel® Aero Ready to Fly Drone](https://software.intel.com/en-us/aero/drone-dev-kit)에 패키징되어 있으며 비전 악세사리 킷도 포함되어 있습니다.
 
 ![](../../assets/hardware/hardware-intel-aero-rtf.jpg)
 
-## Introduction
+## 소개
 
-The main documentation is on the [official wiki](https://github.com/intel-aero/meta-intel-aero/wiki). It includes instructions how to setup, update and connect to the board. It's important to update to the latest image available since some instructions changed from previous releases.
+주요 문서는 [official wiki](https://github.com/intel-aero/meta-intel-aero/wiki)를 참고하세요. 보드 셋업, 업데이트, 연결하는 방법이 포함되어 있습니다. 이전 릴리즈와 방법이 달라질 수 있으므로 최신 이미지로 업데이트하는 것이 중요합니다.
 
-You can check the BIOS and distro version by connecting to the board and running the following command:
+보드에 연결해서 BIOS와 distro 버전을 확인하기 위해 다음 명령을 실행합니다 :
 
 ```
 get_aero_version.py
 ```
 
-The instructions here are tested with the following version:
+여기에 소개된 방법은 다음 버전에서 테스트를 진행했습니다 :
 
 ```
 BIOS_VERSION = Aero-01.00.12_Prod
 OS_VERSION = v01.00.04
 ```
 
-The official documentation also explains how to do development on the Linux side, while these instructions concentrate on updating the firmware on the microcontroller from a development tree.
+공식문서에서는 Linux에서 어떻게 개발 방법도 설명하므로 여기서는 마이크로컨트롤러에 펌웨어를 업데이트하는 방법에 집중하도록 합니다.
 
 ## Flashing
 
-After setting up the PX4 development environment, follow these steps update the PX4 software:
+PX4 개발 환경을 설정한 후에, 다음 단계를 따라 PX4 소프트웨어를 엡데이트합니다. :
 
-1. Do a full update of all software on the Aero (https://github.com/intel-aero/meta-intel-aero/wiki/Upgrade-To-Latest-Software-Release)
+1. Aero에 모든 소프트웨어를 최신으로 업데이트하기 (https://github.com/intel-aero/meta-intel-aero/wiki/Upgrade-To-Latest-Software-Release)
 
-2. Grab the [Firmware](https://github.com/PX4/Firmware)
+2. [Firmware](https://github.com/PX4/Firmware) 소스를 가져 오기
 
-3. Compile with `make aerofc-v1_default`
+3. `make aerofc-v1_default` 명령으로 컴파일하기
 
-4. Configure the target hostname
+4. 타겟 hostname을 설정하기
 
 If your system resolves link local names you don't have to do anything and you can skip this step. You can test it by trying to ssh into intel-aero.local after connecting to it either via WiFi or USB:
 
@@ -47,38 +42,38 @@ If your system resolves link local names you don't have to do anything and you c
 ssh root@intel-aero.local
 ```
 
-If it doesn't work you can try giving the IP that will be used by the upload script:
+동작하지 않는 경우에는 업로드 스크립트로 사용할 IP로 시도해봅니다. :
 
 ```
 export AERO_HOSTNAME=192.168.1.1`
 ```
 
-5. Upload with  `make aerofc-v1_default upload`
+5. `make aerofc-v1_default upload`로 업로드
 
 
-## Connecting QGroundControl via Network
+## 네트워크로 QGroundControl 연결하기
 
-1. Make sure you are connected to the board with WiFi or USB Network
+1. WiFi나 USB 네트워크로 보드에 연결했는지 확인합니다.
 
-2. ssh to the board and make sure mavlink forwarding runs. By default it automatically starts when booting. It can be started manually with:
+2. 보드에 ssh로 연결하고 mavlink 포워딩이 실행되었는지 확인합니다. 기본적으로 부팅때 자동으로 시작됩니다. 다음 명령으로 수동으로 시작시킬 수 있습니다. :
 ```
 /etc/init.d/mavlink-routerd.sh start
 ```
 
-3. Start QGroundControl and it should automatically connect.
+3. QGroundControl를 시작되면서 자동으로 연결됩니다.
 
-4. Instead of starting QGroundControl, you can open a [NuttX shell](../debug/system_console.md#mavlink-shell) with:
+4. QGroundControl를 시작하기 전에, [NuttX shell](../debug/system_console.md#mavlink-shell)을 시작 시키기 :
 ```
 ./Tools/mavlink_shell.py 0.0.0.0:14550
 ```
 
-## Connecting a Lidar Lite range finder
+## Lidar Lite range finder 연결하기
 
-The following instructions are for a Lidar Lite V3 connected via I2C. The I2C port on the Aero (labled compass) is used for the external magnetometer (part of the GPS). Therefore a I2C splitter has to be used to connect the Lidar Lite (see picture).
+여기서 소개하는 방법은 I2C로 Lidar Lite V3에 연결합니다. Aero(레이블은 compass)에 I2C 포트는 외부 magnetometer(GPS의 일부)로 사용합니다. 따라서 I2C splitter는 Lidar Lite를 연결하는데 사용해야 합니다.(사진 참조)
 
 ![](../../assets/hardware/Aero_I2C_splitter.JPG)
 
-The pinout for the Lidar Lite V3 is as follows
+Lidar Lite V3용 핀아웃은 다음과 같습니다.
 
 | pin | Aerofc I2C | Lidar Lite V3    |
 | --- | ---------- | ---------------- |
