@@ -1,10 +1,10 @@
-# Pixhawk Hardware
+# Pixhawk 하드웨어
 
-[Pixhawk](https://pixhawk.org/modules/pixhawk) is the standard microcontroller platform for the PX4 flight stack. It runs the PX4 Middleware on the [NuttX](http://nuttx.org) OS. As a CC-BY-SA 3.0 licensed Open Hardware design, all schematics and design files are [available](https://github.com/PX4/Hardware). The [Pixfalcon](../flight_controller/pixfalcon.md) is a smaller version of Pixhawk for FPV racers and similar platforms. For drones requiring high processing performance or a camera interface the [Snapdragon Flight](../flight_controller/snapdragon_flight.md) might be a more optimal fit.
+[Pixhawk](https://pixhawk.org/modules/pixhawk)는 PX4 flight stack의 표준 마이크로컨트롤러 플랫폼입니다. [NuttX](http://nuttx.org) 운영체제 기반으로 PX4 미들웨어가 동작합니다. CC-BY-SA 3.0 라이센스를 가지며 회로도 및 디자인 관련 파일은 [available](https://github.com/PX4/Hardware)를 참고하세요.  [Pixfalcon](../flight_controller/pixfalcon.md)은 FPV용으로 Pixhawk를 작게 만든 버전으로 동일한 플랫폼입니다. 높은 프로세싱 성능이나 카메라 인터페이스를 원하는 경우에는 [Snapdragon Flight](../flight_controller/snapdragon_flight.md)이 적당합니다.
 
 ![](../../assets/hardware/hardware-pixhawk.png)
 
-## Quick Summary
+## 간략 요약
 
   * Main System-on-Chip: [STM32F427](http://www.st.com/web/en/catalog/mmc/FM141/SC1169/SS1577/LN1789)
     * CPU: 180 MHz ARM Cortex M4 with single-precision FPU
@@ -39,4 +39,4 @@
 
 ## Pinouts and Schematics
 
-The board is documented in detailed on the [Pixhawk project](https://pixhawk.org/modules/pixhawk) website.
+보드에 관련된 상세 문서는 [Pixhawk project](https://pixhawk.org/modules/pixhawk)를 참고하세요.

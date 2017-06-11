@@ -1,10 +1,10 @@
 # Pixracer
 
-The Pixhawk XRacer board family is optimized for small racing quads and planes. In contrast to [Pixfalcon](../flight_controller/pixfalcon.md) and [Pixhawk](../flight_controller/pixhawk.md) it has in-built Wifi, new sensors, convenient full servo headers, CAN and supports 2M flash.
+Pixhawk XRacer 보드 패밀리는 레이싱용 쿼드드론과 비행체에 최적화되어 있습니다. [Pixfalcon](../flight_controller/pixfalcon.md)나 [Pixhawk](../flight_controller/pixhawk.md) 와 다른점은 빌트인 Wifi와 새로운 센서, 편리한 풀 서보 헤더, CAN, 2M flash를 제공합니다.
 
 ![](../../assets/hardware/hardware-pixracer.jpg)
 
-## Quick Summary
+## 간략 요약
 
 > ** The main hardware documentation is here: https://pixhawk.org/modules/pixracer **
 
@@ -32,18 +32,16 @@ The Pixhawk XRacer board family is optimized for small racing quads and planes. 
 
 ## Kit
 
-The Pixracer is designed to use a separate avionics power supply. This is necessary to avoid current surges from motors or ESCs to flow back to the flight controller and disturb its delicate sensors.
+Pixracer는 별도의 항공 전자기기의 전원 공급장치로 사용하도록 설계되었습니다. 이 경우 모터나 ESC에서 flight controller로 서지 전류(current surge)가 발생하는 것을 방지하는 기능이 필요하고 민감한 센서가 영향받지 않도록 해야 합니다.
 
-  * Power module (with voltage and current sensing)
-  * I2C splitter (supporting AUAV, Hobbyking and 3DR peripherals)
-  * Cable kit for all common peripherals
+  * 파워 모듈 (전압과 전류 센싱 기능을 가진)
+  * I2C splitter (AUAV, Hobbyking, 3DR 주변장치 지원)
+  * 일반 주변장치를 위한 케이블 키트
 
-## Wifi (no USB required)
+## Wifi (USB 필요없이)
+보드의 주요 기능중에 하나는 새로운 펌웨어를 flash, 시스템 셋업, in-flight telemetry 용으로 Wifi를 이용할 수 있다는 것입니다. 별도의 데스크탑 시스템이 필요없게 됩니다.
 
-One of the main features of the board is its ability to use Wifi for flashing new firmware, system setup and in-flight telemetry. This frees it of the need of any desktop system.
+> **Todo** 셋업과 telemetry는 이미 사용가능합니다. 펌웨어 업그레이드는 기본 bootloader에서 지원하지만 활성화되어 있지는 않습니다.
 
-> **Todo** Setup and telemetry are already available, firmware upgrade is already supported by the default bootloader but not yet enabled
-
-
-* [ESP8266 Documentation and Flash Instructions](https://pixhawk.org/peripherals/8266)
-* [Custom ESP8266 MAVLink firmware](https://github.com/dogmaphobic/mavesp8266)
+* [ESP8266 문서 및 Flash 방법](https://pixhawk.org/peripherals/8266)
+* [커스텀 ESP8266 MAVLink 펌웨어](https://github.com/dogmaphobic/mavesp8266)
