@@ -2,6 +2,10 @@
 
 There are several software packages that exist to analyze PX4 flight logs. They are described below.
 
+## Reporting Flights
+
+The instructions in the PX4 user guide detail [how to report a flight](https://docs.px4.io/en/flight-reporting.html) or issues with a flight.
+
 ## Structured Analysis
 
 Before analyzing a flight log it is key to establish the context of it:
