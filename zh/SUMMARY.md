@@ -129,3 +129,11 @@
   * [持续集成](test_and_ci/continous_integration.md)
     * [Jenkins持续集成环境](test_and_ci/jenkins_ci.md)
   * [维护](test_and_ci/maintenance.md)
+
+  
+## Dronecode Shortcuts
+
+* [PX4 User Guide](https://docs.px4.io/en/)
+* [QGroundControl User Guide](https://docs.qgroundcontrol.com/en/)
+* [QGroundControl Developer Guide](https://dev.qgroundcontrol.com/en/)
+* [MAVLink Developer Guide](https://mavlink.io/en/)
