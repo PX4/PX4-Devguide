@@ -138,3 +138,12 @@
     * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
   * [Maintenance](test_and_ci/maintenance.md)
 
+
+  
+## Dronecode Shortcuts
+
+* [PX4 User Guide](https://docs.px4.io/en/)
+* [QGroundControl User Guide](https://docs.qgroundcontrol.com/en/)
+* [QGroundControl Developer Guide](https://dev.qgroundcontrol.com/en/)
+* [MAVLink Developer Guide](https://mavlink.io/en/)
+
