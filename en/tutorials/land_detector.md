@@ -2,6 +2,10 @@
 
 The land detector is a dynamic vehicle model representing key vehicle states such as landed and ground contact.
 
+## Configuring Auto-Disarming
+
+By default the land detector does detect landing, but does not auto-disarm. If the hysteresis parameter `COM_DISARM_LAND` is set to a non-zero value the system will auto-disarm after N seconds \(the value it is set to\).
+
 ## Multicopter Land Detector Configuration
 
 The complete set of parameters is available in the QGroundControl parameter editor under the `LNDMC` prefix. The key parameters that might differ per airframe are these:
