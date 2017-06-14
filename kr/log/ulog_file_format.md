@@ -240,5 +240,3 @@ struct message_dropout_s {
 - 'I': information message. See above.
 
 - 'P': parameter message. See above.
-
-

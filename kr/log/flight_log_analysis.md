@@ -1,12 +1,17 @@
-# Flight Log Analysis
+# 비행 로그 분석
 
-There are several software packages that exist to analyze PX4 flight logs. They are described below.
+PX4 비행 로그를 분석하는 다양한 소프트웨어 패키지가 있습니다. 아래에서 소개합니다.
 
-## Structured Analysis
+## 비행 리포팅
 
-Before analyzing a flight log it is key to establish the context of it:
+PX4 사용자 가이드의 [how to report a flight](https://docs.px4.io/en/flight-reporting.html) 혹은 비행 관련 이슈에서 상세하게 소개합니다.
 
-* If the analysis is done after a malfunction, did the log capture the crash or did it stop mid-air?
+## 구조화된 분석
+
+비행 로그를 분석하기 전에 콘텍스트를 만드는 것이 핵심 :
+
+* 오작동 이후에 분석을 한다면, 해당 로그가 crash나 캡쳐했거나 공중에서 멈췄을까?
+* 
 * Did all controllers track their references? The easiest location to establish this is comparing attitude roll and pitch rates to their set points.
 * Does the sensor data look valid? Was there very strong vibration \(a reasonable threshold for strong vibration is anything with a peak-to-peak of more than 2-3 m/s/s\)
 * If the root cause is not specific to the vehicle make sure to report it with a link to the log file \(and video if one exists\) on the [PX4 issue tracker](https://github.com/px4/firmware/issues/new).
@@ -61,6 +66,3 @@ conda install -c https://conda.anaconda.org/dronecrew px4tools
 * python based, cross platform, works witn anaconda 2 and anaconda3
 * ipython/ jupyter notebooks can be used to share analysis easily
 * advanced plotting capabilities to allow detailed analysis
-
-
-
