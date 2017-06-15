@@ -28,7 +28,18 @@ cd Firmware
 make px4fmu-v2_default
 ```
 
-Note the syntax: 'make' is the build tool, 'px4fmu-v2' is the hardware / autopilot version and 'default' is the default configuration. All PX4 build targets follow this logic. A successful run will end with this output:
+Note the syntax: 'make' is the build tool, 'px4fmu-v2' is the hardware / autopilot version and 'default' is the default configuration. All PX4 build targets follow this logic.
+
+Build targets:
+* Crazyflie: `make crazyflie_default`
+* Intel® Aero RTF: `make aerofc-v1_default`
+* MindPX: `make mindpx-v2_default`
+* Pixhawk: `make px4fmu-v2_default`. You can use `make px4fmu-v3_default` for
+  boards that support 2MB Flash (such as Pixhawk mini)
+* Pixracer: `make px4fmu-v4_default`
+* Pixhawk 3 Pro: `make px4fmu-v4pro_default`
+
+A successful run will end with this output:
 
 ```sh
 [100%] Linking CXX executable firmware_nuttx
