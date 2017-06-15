@@ -1,20 +1,21 @@
-# Video streaming in QGroundControl
-This page shows how to set up a a companion computer (Odroid C1) with a camera (Logitech C920) such that the video stream is transferred via the Odroid C1 to a network computer and displayed in the application QGroundControl that runs on this computer.
+# QGroundControl에서 비디오 스트리밍
+이 페이지는 카메라(Logitech C920) 달린 컴패니온 컴퓨터(Odroid C1이나 C0)를 셋업하는 방법을 알려줍니다. 비디오 스트림은 Odroid C1을 통해 네트워크 컴퓨터로 전송되며 QGroundControl를 실행하는 컴퓨터에서 볼 수 있습니다. 이 셋업은 비연결(broadcast) 모드에서 WiFi를 사용합니다.
 
-The whole hardware setup is shown in the figure below. It consists of the following parts:
+전체 하드웨어 셋업은 아래와 같습니다. 다음과 같은 부분들로 구성:
 * Odroid C1
 * Logitech camera C920
 * WiFi module TP-LINK TL-WN722N
 
 ![](../../assets/videostreaming/setup-whole.png)
 
-## Install Linux environment in Odroid C1
+## Odroid C1에 리눅스 환경 설치
 
-To install the Linux environment (Ubuntu 14.04), follow the instruction given in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1). In this tutorial it is also shown how to access the Odroid C1 with a UART cable and how to establish Ethernet connection.
+Linux 환경(Ubuntu 14.04)를 설치하기 위해서, [Odroid C1 튜토리얼](https://pixhawk.org/peripherals/onboard_computers/odroid_c1)의 지시를 따릅니다. 이 튜토리얼에서 UART 케이블이 있는 Odroid C1에 접근하는 방법과 이더넷 연결을 구성하는 방법을 소개하고 있습니다.
 
-## Set up alternative power connection
+## 전원 연결 셋업
 
-The Odroid C1 can be powered via the 5V DC jack. If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup. 
+Odroid C1은 5V DC 잭으로 전원을 공급받습니다. 만약 Odroid가 드론에 장착되면, 아래 그림에서와 같은 [방법](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering)으로 5V DC잭 옆에 2개 핀을 납땜하는 것을 추천합니다. 점퍼 케이블로 DC 전압 소스 (5V)에 연결해서 전원을 공급받으면
+The Odroid C1 can be powered via the 5V DC jack. If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup.
 
 ![](../../assets/videostreaming/power-pins.png)
 
@@ -101,7 +102,7 @@ to:
 
 If you have followed the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) to set up the WiFi connection, you might have created the file `/etc/network/intefaces.d/wlan0`. Please comment out all lines in that file such that those configurations have no effect anymore.
 
-Configure HostAPD: To create a WPA-secured network, edit the file `/etc/hostapd/hostapd.conf` (create it if it does not exist) and add the following lines: 
+Configure HostAPD: To create a WPA-secured network, edit the file `/etc/hostapd/hostapd.conf` (create it if it does not exist) and add the following lines:
 
 
 ```
@@ -124,7 +125,7 @@ wpa_passphrase=QGroundControl
 ```
 
 Change `ssid=`, `channel=`, and `wpa_passphrase=` to values of your choice. SSID is the hotspot's name which is broadcast to other devices, channel is what frequency the hotspot will run on, wpa_passphrase is the password for the wireless network. For many more options see the file `/usr/share/doc/hostapd/examples/hostapd.conf.gz`.
-Look for a channel that is not in use in the area. You can use tools such as wavemon for that. 
+Look for a channel that is not in use in the area. You can use tools such as wavemon for that.
 
 Edit the file `/etc/default/hostapd` and change the line:
 
@@ -137,7 +138,7 @@ to:
 ```
 DAEMON_CONF="/etc/hostapd/hostapd.conf"
 ```
-Your Onboard Computer should now be hosting a wireless hotspot. To get the hotspot to start on boot, run these additional commands: 
+Your Onboard Computer should now be hosting a wireless hotspot. To get the hotspot to start on boot, run these additional commands:
 
 <div class="host-code"></div>
 
@@ -146,8 +147,8 @@ sudo update-rc.d hostapd enable
 sudo update-rc.d udhcpd enable
 ```
 
-This is enough to have the Onboard Computer present itself as an Access Point and allow your ground station to connect. If you truly want to make it work as a real Access Point (routing the WiFi traffic to the Onboard Computer’s ethernet connection), we need to configure the routing and network address translation (NAT). 
-Enable IP forwarding in the kernel: 
+This is enough to have the Onboard Computer present itself as an Access Point and allow your ground station to connect. If you truly want to make it work as a real Access Point (routing the WiFi traffic to the Onboard Computer’s ethernet connection), we need to configure the routing and network address translation (NAT).
+Enable IP forwarding in the kernel:
 
 <div class="host-code"></div>
 
@@ -172,7 +173,7 @@ To make this permanent, run the following command:
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 ```
 
-Now edit the file /etc/network/interfaces and add the following line to the bottom of the file: 
+Now edit the file /etc/network/interfaces and add the following line to the bottom of the file:
 
 <div class="host-code"></div>
 
@@ -182,7 +183,7 @@ up iptables-restore < /etc/iptables.ipv4.nat
 
 # gstreamer Installation
 
-To install gstreamer packages on the computer and on the Odroid C1 and start the stream, follow the instruction  given in the [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md). 
+To install gstreamer packages on the computer and on the Odroid C1 and start the stream, follow the instruction  given in the [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md).
 
 If you cannnot start the stream on the Odroid with the uvch264s plugin, you can also try to start it with the v4l2src plugin:
 
@@ -191,11 +192,10 @@ If you cannnot start the stream on the Odroid with the uvch264s plugin, you can 
 ```sh
  gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,framerate=24/1 ! h264parse ! rtph264pay ! udpsink host=xxx.xxx.xxx.xxx port=5000
 ```
-Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running. If you get the system error: `Permission denied`, you might need to prepend `sudo` to the  command above. 
+Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running. If you get the system error: `Permission denied`, you might need to prepend `sudo` to the  command above.
 
-If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screeenshot below. 
+If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screeenshot below.
 
 ![](../../assets/videostreaming/qgc-screenshot.png)
 
 If you click on the video stream, the satellite map is shown in the left bottom cornor and the video is shown in the whole background.
-

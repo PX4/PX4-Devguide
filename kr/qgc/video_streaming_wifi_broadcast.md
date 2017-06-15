@@ -15,11 +15,12 @@ RX(ground station) 쪽:
 
 
 ## 왜 일반 wifi는 장거리 비디오 전송에 적합하지 않을까?
- - 연계 : 비디오 전송기와 수신기는 관련이 높습니다. 만약 한쪽 장치가 연결을 끊어지면(신호가 약해서) 비디오 전송은 바로 끊어지게 됩니다.
- - Error-free transmission: Wifi transmits either data that is correct or no data. In an FPV scenario this means that even if you received data with just small errors it would be rejected completely. This could result in stalling video although you have received useful data.
- - Two-way communication: Even if you are sending data only from source to sink a bi-directional data flow is required using wifi. The reason for this is that a wifi receiver needs to acknowledge the received packets. If the transmitter receives no acknowledgements it will drop the association. Therefore, you would need equally strong transmitters and antennas both on the aircraft and on the ground station. A setup with a strong transmitter in the air using an omnidirectional antenna and a weak device on the ground using a high-gain antenna is not possible with normal wifi.
- - Rate control: Normal wifi connections switch automatically to a lower transmission rate if signal strength is too weak. Due to this it is possible that the (automatically) selected rate is too low to transfer the video data. This way the data would queue up and introduce an unpredictable latency that can be up to several seconds.
- - One to one transfers: Unless you use broadcast frames or similar techniques a normal wifi data flow is a one to one connection. A scenario where a bystander just locks onto your “channel” as in analog video transmission to watch your stream is not easy to accomplish using traditional wifi.
+ - 연결 : 비디오 전송기와 수신기는 관련이 높습니다. 만약 한쪽 장치가 연결을 끊어지면(신호가 약해서) 비디오 전송은 바로 끊어지게 됩니다.
+ - 에러에 자유로운 전송 : Wifi는 올바른 데이터를 전송하거나 아니면 데이터가 없거나이다. FPV 시나리오에서 만약 약간의 에러가 있는 데이터를 수신하는 경우 사용할 수 없다는 뜻입니다. 유용한 데이터를 수신했지만 결국에는 비디오를 볼수 없다는 뜻입니다.
+ - 양방향 통신 : 소스에서만 데이터를 보낸다할지라도 wifi를 사용하는 경우 양방향 데이터 flow가 필요합니다. 이유는 wifi 수신기는 받은 패킷에 대해서 ack를 해야합니다. 만약 전송기가 어떤 ack도 받지 못한다면 연결을 끊게 됩니다. 따라서 비행체와 지상 모두 똑같이 강한 세기의 전송기와 안테나가 필요합니다. 공중에서는 단방향 안테나와 강한 전송기로 셋업하고 지상은 high-gain 안테나를 상뇽해서 설정하는 방식은 일반 wifi에서 불가능합니다.g an omnidirectional antenna and a weak device on the ground using a high-gain antenna is not possible with normal wifi.
+ - rate 제어 : 일반 wifi 연결에서 신호가 너무 약하면 자동으로 낮은 전송 rate로 전환됩니다. 이런 이유로 (자동으로) rate를 선택하는게 비디오 데이터를 전송하기에 너무 낮을 수 있습니다. 이런 방식으로 데이터가 큐에 쌓이고 예상치 못한 지연을 생기면 수초동안 지속될 수 있습니다.
+ - 1대1 전송 : 프레임을 브로드캐스트하지 않거나 일반 wifi 데이터 flow가 1대1 연결과 유사한 기술. bystander가  
+ One to one transfers: Unless you use broadcast frames or similar techniques a normal wifi data flow is a one to one connection. A scenario where a bystander just locks onto your “channel” as in analog video transmission to watch your stream is not easy to accomplish using traditional wifi.
  - Limited diversity: Normal wifi limits you to the number of diversity streams that your wifi card offers.
 
 ## What wifibroadcast makes different
@@ -32,33 +33,32 @@ Wifibroadcast puts the wifi cards into monitor mode. This mode allows to send an
  - Wifibroadcast uses Forward Error Correction to archive a high reliability at low bandwidth requirements. It is able to repair lost or corrupted packets at the receiver.
 
 
-## Hardware modification.
-Alpha WUS051NH is a high power card and eats too much current while TX. If you power it from USB will reset port on Odroid C1/C0.
-So you need to connect it to 5V BEC directly. You can do this two ways:
+## 하드웨어 수정
+Alpha WUS051NH는 높은 전원이 필요한 카드고 TX 동안 전류소모가 많습니다. 만약 USB로부터 전원을 준다면 Odroid C1/C0에 포트를 리셋할 것입니다. 5V BEC로 직접 연결할 필요가 있습니다. 2가지 방식으로 이를 할 수 있습니다 :
 
- 1. Make a custom usb cable.
- 2. Cut a 5V wire on odroid PCB near usb port and wire it to BEC.
-    Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes.
+ 1. 커스텀 usb 케이블 만들기
+ 2. usb 포트 주변 odroid PCB에 5V 전선을 끊고 BEC에 결선합니다.
+    전원과 그라운드 사이에 전압 스파크를 필터링하기 위해서 470uF low ESR 캐패시터 추가를 권장합니다.
 
-## Software setup
-Download wifibroadcast [sources](https://github.com/svpcom/wifibroadcast).
+## 소프트웨어 셋업
+wifibroadcast [소스](https://github.com/svpcom/wifibroadcast) 다운로드 받기
 
-You need to patch kernel to:
+커널 패치의 필요성 :
 
- 1. Enable TX rate lock. Use ``mac80211-radiotap-bitrate_mcs_rtscts.linux-4.4.patch``. Instead there are no way to specify data rate for injected radiotap packets.
- 2. Enable TX power lock. Use ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``. This will lock tx power to maximum supported by card.
- 3. Enable RX of frames with bad FSC (checksum). Use ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``. This is optional and don't use in current code.
+ 1. TX rate lock을 활성화 시키기. ``mac80211-radiotap-bitrate_mcs_rtscts.linux-4.4.patch``를 사용하세요. 대신에 삽입된 radiotap 패킷에 대해서 데이터 rate를 지정하는 방법은 없습니다.
+ 2. TX power lock을 활성화 시키기. ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``를 사용하세요. 카드로 최대로 지원할 수 있도록 tx power를 lock합니다.
+ 3. 잘못된 FSC(checksum)을 가진 프레임의 RX를 활성화 시키기. ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``를 사용하세요. 이는 선택적이며 현재 코드에서는 사용하지 않습니다.
 
-So you can only patch kernel on TX side.
+TX쪽에만 커널 패치를 할 수 있습니다.
 
-### On TX side you need:
+### 필요한 TX 쪽:
 
-1. Setup camera to output RTP stream:
+1. RTP 스트림 출력을 위한 카메라 셋업:
 ```
 gst-launch-1.0 uvch264src device=/dev/video0 initial-bitrate=6000000 average-bitrate=6000000 iframe-period=1000 name=src auto-start=true \
                src.vidsrc ! queue ! video/x-h264,width=1920,height=1080,framerate=30/1 ! h264parse ! rtph264pay ! udpsink host=localhost port=5600
 ```
- 2. Setup wifibroadcast in TX mode:
+ 2. TX 모드에서 wifibroadcast 셋업:
 
 ```
 git clone https://github.com/svpcom/wifibroadcast
@@ -71,11 +71,11 @@ ifconfig wlan1 up
 iwconfig wlan1 channel 149
 ./tx -r 24 wlan1
 ```
-This will setup wifibroadcast using 24Mbit/s data rate on 149 wifi channel (in 5GHz band) listening on UDP port 5600 for incoming data.
+149 wifi channel(in 5GHz band)에서 24Mbit/s 데이터 rate를 사용해서 wifibroadcast를 셋업합니다. 들어오는 데이커에 대해서 UDP 포트 5600을 listen합니다.
 
-### On RX side you need:
+### 필요한 RX 쪽:
 
- 1. Setup wifibroadcast in RX mode:
+ 1. RX 모드에서 wifibroadcast를 셋업:
 ```
 git clone https://github.com/svpcom/wifibroadcast
 cd wifibroadcast
@@ -87,24 +87,21 @@ ifconfig wlan1 up
 iwconfig wlan1 channel 149
 ./rx wlan1
 ```
- 2. Run qgroundcontrol or
+ 2. qgroundcontrol를 실행하거나
 ```
 gst-launch-1.0 udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
              ! rtph264depay ! avdec_h264 ! clockoverlay valignment=bottom ! autovideosink fps-update-interval=1000 sync=false
 ```
-to decode video.
+비디오를 디코드하기 위해서
 
 ## FAQ
-Q: What is a difference from original wifibroadcast?
+Q: 원래 wifibroadcast와 차이점은 무엇인가?
 
-A: Original version of wifibroadcast use a byte-stream as input and splits it to packets of fixed size (1024 by default). If radio
-packet was lost and this is not corrected by FEC you'll got a hole at random (unexpected) place of stream. This is especially bad if
-data protocol is not resistent to (was not desired for) such random erasures. So i've rewrite it to use UDP as data source and pack one
-source UDP packet into one radio packet. Radio packets now have variable size depends on payload size. This is reduces a video latency a lot.
+A: wifibroadcast의 원래 버전은 byte-stream을 입력으로 사용하고 고정 길이(1024가 디폴트)의 패킷으로 나눕니다. 만약 라디오 패킷을 잃어버리고 FEC로 보정이 되지 않으면 스트림의 임의의(예상못한) 위치에 구멍이 생기게 됩니다. 데이터 프로토콜이 임의로 지워지는 것을 회복하지 못하면 아주 좋지 않은 상황이 됩니다. 데이터 소스로 UDP를 사용하기 위해서 다시 쓸수 있고 소스 UDP 패킷을 라디오 패킷으로 패킹합니다. 이제 라디오 패킷은 payload 사이즈에 따라서 가변 길이를 가집니다. 이렇게 하면 비디오 지연을 크게 줄여줍니다.
 
-Q: What type of data can be transmitted using wifibroadcast?
+Q: 어떤 데이터 타입이 wifibroadcast를 사용해서 전송될 수 있을까?
 
-A: Any UDP with packet size <= 1466. For example x264 inside RTP or Mavlink.
+A: 패킷 사이즈 <= 1466인 어떤 UDP라도 가능. 예를 들면 RTP내부에 x264 혹은 Mavlink.  
 
 Q: What are transmission guarancies?
 
