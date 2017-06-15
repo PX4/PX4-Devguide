@@ -1,44 +1,48 @@
-# Driver Development
+# Driver 개발
 
-The PX4 codebase uses a lightweight, unified driver abstraction layer: [DriverFramework](https://github.com/px4/DriverFramework). New drivers for POSIX and [QuRT](https://en.wikipedia.org/wiki/Qualcomm_Hexagon) are written against this framework.
+PX4는 가볍고 통합된 driver 추상 레이어를 사용합니다:
+[DriverFramework](https://github.com/px4/DriverFramework). POSIX용 새로운 드라이버와 [QuRT](https://en.wikipedia.org/wiki/Qualcomm_Hexagon)가 이 프레임워크로 작성되었습니다.
 
-> **Todo** Legacy drivers for NuttX are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/drivers/device) framework and will be ported to DriverFramework.
 
 
-## Core Architecture
+> **Todo** Nuttx용 기존 driver는 [Device](https://github.com/PX4/Firmware/tree/master/src/drivers/device)을 기반으로 하며 DriverFramework로 포팅될 예정입니다.
 
-PX4 is a [reactive system](../concept/architecture.md) and uses pub/sub to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
 
-  * The publish / subscribe system which has a file, network or shared memory backend depending on the system PX4 runs on
-  * The global device registry, which allows to enumerate devices and get/set their configuration. This can be as simple as a linked list or map to the file system.
+## 핵심 아키텍쳐
 
-## Bringing up a new Platform
+PX4는 [reactive system](concept-architecture.md)으로 pub/sub을 사용해서 메시지를 전송합니다. 파일 핸들이 필요없으며 시스템을 운영하는 핵심입니다. 2개의 주요 API가 사용됩니다 :
+
+  * publish / sucscribe 시스템으로 파일과 네트워크 혹은 백엔드로 공유 메모리를 가지는데 이는 PX4가 실행되는 시스템에 따라 달라집니다.
+  * global device registry는 device를 열거하고 설정에 get/set 형태로 사용 가능합니다. 이는 linked list나 파일 시스템에 매핑처럼 간단하게도 가능합니다.
+
+## 새로운 플랫폼 도입
 
 ### NuttX
 
-  * The start script is located in [ROMFS/px4fmu_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
-  * The OS configuration is located in [nuttx-configs](https://github.com/PX4/Firmware/tree/master/nuttx-configs). The OS gets loaded as part of the application build.
-  * The PX4 middleware configuration is located in [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards). It contains bus and GPIO mappings and the board initialization code.
-  * Drivers are located in [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)
-  * Reference config: Running 'make px4fmu-v4_default' builds the FMUv4 config, which is the current NuttX reference configuration
+  * 시작 스크립트의 위치는 [ROMFS/px4fmu_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)입니다.
+  * OS 설정은 [nuttx-configs](https://github.com/PX4/Firmware/tree/master/nuttx-configs)에 있습니다. OS는 application 빌드의 일부로 로드됩니다.
+  * PX4 미들웨어 설정은 [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards)에 있습니다. 여기에는 bus와 GPIO 매핑 그리고 보드 초기화 코드가 있습니다.
+  * Driver는 [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)에 위치하고 있습니다.
+  * Reference config: 'make px4fmu-v4_default'를 실행하면 FMUv4 config를 빌드합니다. 현재 NuttX를 참조하는 설정입니다.
 
 ### QuRT / Hexagon
 
-  * The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs)
-  * The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions)
-  * The PX4 middleware configuration is located in [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards). TODO: ADD BUS CONFIG
-  * Drivers are located in [DriverFramework](https://github.com/px4/DriverFramework)
-  * Reference config: Running 'make qurt_eagle_release' builds the Snapdragon Flight reference config
+  * 시작 스크립트는 [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs)에 있습니다.
+  * OS 설정은 기본 Linux 이미지(TODO: Linux 이미지와 플래쉬 명령 제공)의 일부분 입니다.
+  * PX4 미들웨어 설정은 [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards)에 위치하고 있습니다. TODO: bus 설정 추가하기
+  * Driver는 [DriverFramework](https://github.com/px4/DriverFramework)에 있습니다.
+  * Reference config: 'make qurt_eagle_release'를 실행하면 Snapdragon Flight config를 빌드합니다.
 
 ## Device IDs
 
-PX4 uses device IDs to identify individual sensors consistently across the system. These IDs are stored in the configuration parameters and used to match sensor calibration values, as well as to determine which sensor is logged to which logfile entry.
+PX4는 시스템 내부에서 개별 센서를 식별하기 위해서 device ID를 사용합니다. ID는 설정 파라미터에 저장되며 센서 칼리브레이션 값과 매칭하는데 사용합니다. 또 어떤 센서가 logfile에 기록되어야할지를 결정합니다.
 
-The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) is not determining priority - the priority is instead stored as part of the published uORB topic.
+센서의 순서(예로 `/dev/mag0`이 기존에 있다면 `/dev/mag1`를 사용할 수 있다)가 우선순위를 결정하지는 않습니다. - 대신 우선순위는 published되는 uORB topic의 부분으로 저장됩니다.
 
-### Decoding example
+### Decoding 예제
 
-For the example of three magnetometers on a system, use the flight log (.px4log) to dump the parameters. The three parameters encode the sensor IDs and `MAG_PRIME` identifies which magnetometer is selected as the primary sensor. Each MAGx_ID is a 24bit number and should be padded left with zeros for manual decoding.
+
+시스템에 있는 3개 지자기센서의 예제로 flight log (.px4log)를 사용해서 파라미터 정보를 확인합니다. 3개 파라미터는 센서 ID를 인코드하고 `MAG_PRIME`는 어느 지자기센서가 주센서로 선택되었는지 확인합니다. 각 MAGx_ID는 24 bit 수로 매뉴얼 디코딩시에 0을 padded left해줘야 합니다.
 
 
 ```
@@ -48,7 +52,7 @@ CAL_MAG2_ID = 263178.0
 CAL_MAG_PRIME = 73225.0
 ```
 
-This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will show up in the log file as `IMU.MagX`.
+이것은 I2C로 연결된 외부 HMC5983이고 bus 1의 주소는 `0x1E`입니다. `IMU.MagX`과 같은 로그 파일에서 볼 수 있습니다.
 
 ```
 # device ID 73225 in 24-bit binary:
@@ -58,7 +62,7 @@ This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will
 HMC5883   0x1E    bus 1 I2C
 ```
 
-This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It will show up in the log file as `IMU1.MagX`.
+이것은 SPI로 연결된 내부 HMC5983이고 bus 1은 slave select slot 5입니다. `IMU1.MagX`과 같은 로그 파일에서 볼 수 있습니다.
 
 ```
 # device ID 66826 in 24-bit binary:
@@ -68,7 +72,7 @@ This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It w
 HMC5883   dev 5   bus 1 SPI
 ```
 
-And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave select slot 4. It will show up in the log file as `IMU2.MagX`.
+이것은 SPI로 연결된 내부  MPU9250 지자기센서이며 bus 1은 slave select slot 4입니다. `IMU2.MagX`과 같은 로그 파일에서 볼 수 있습니다.
 
 ```
 # device ID 263178 in 24-bit binary:
@@ -78,9 +82,9 @@ And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave se
 MPU9250   dev 4   bus 1 SPI
 ```
 
-### Device ID Encoding
+### Device ID 인코딩
 
-The device ID is a 24bit number according to this format. Note that the first fields are the least significant bits in the decoding example above.
+device ID는 포캣을 따르는 24 bit 수 입니다. 첫번째 필드는 위의 예제의 디코딩에서 최하위 비트(least significant bits)가 됩니다.
 
 ```C
 struct DeviceStructure {
@@ -90,7 +94,7 @@ struct DeviceStructure {
   uint8_t devtype;   // device class specific device type
 };
 ```
-The `bus_type` is decoded according to:
+`bus_type`는 다음에 따라 디코딩 :
 
 ```C
 enum DeviceBusType {
@@ -101,7 +105,7 @@ enum DeviceBusType {
 };
 ```
 
-and `devtype` is decoded according to:
+그리고 `devtype`은 다음에 따라 디코딩 :
 
 ```C
 #define DRV_MAG_DEVTYPE_HMC5883  0x01

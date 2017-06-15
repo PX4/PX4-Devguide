@@ -1,37 +1,35 @@
 # Modules Reference: Communication
 ## mavlink
-Source: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
+소스: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
 
 
-### Description
-This module implements the MAVLink protocol, which can be used on a Serial link or UDP network connection.
-It communicates with the system via uORB: some messages are directly handled in the module (eg. mission
-protocol), others are published via uORB (eg. vehicle_command).
+### 설명
+이 모듈은 MAVLink 프로토콜을 구현하며 시리얼 링크나 UDP 네트워크 연결에 사용할 수 있습니다.
+uORB를 통한 시스템과 통신 : 일부 메시지는 모듈에서 직접 처리(예제 mission protocol)하며 다른 메시지는 uORB를 통해 publish(예제 vehicle_command).
 
-Streams are used to send periodic messages with a specific rate, such as the vehicle attitude.
-When starting the mavlink instance, a mode can be specified, which defines the set of enabled streams with their rates.
-For a running instance, streams can be configured via `mavlink stream` command.
+스트림은 vehicle attitude와 같이 특정 rate로 주기적인 메시지를 전송합니다. mavlink instance를 시작시킬때, mode는 지정할 수 있고 각자의 rate와 함께 활성화된 스트림의 집합을 정의합니다.
+실행 인스턴스에 대해서 스트림은 `mavlink stream` 명령을 통해 설정할 수 있습니다.
 
-There can be multiple independent instances of the module, each connected to one serial device or network port.
+모듈의 다양한 독립적인 인스턴스가 있을 수 있는데, 시리얼 장치나 네트워크 포트에 연결될 수 있습니다.
 
-### Implementation
-The implementation uses 2 threads, a sending and a receiving thread. The sender runs at a fixed rate and dynamically
-reduces the rates of the streams if the combined bandwidth is higher than the configured rate (`-r`) or the
-physical link becomes saturated. This can be checked with `mavlink status`, see if `rate mult` is less than 1.
+### 구현
+구현에서 수신/발신 thread 이렇게 2개 thread를 사용합니다. 발신자는 고정된 rate로 실행되고 결합된 대역폭이 설정한 rate(`-r`)보다 높거나 물리적 링크가 포화상태가 되면 동적으로 스트림의 rate를 줄입니다. `mavlink status`로 검사할 수 있으며 `rate mult`가 1보다 작은지를 살펴봅니다.
 
-### Examples
-Start mavlink on ttyS1 serial with baudrate 921600 and maximum sending rate of 80kB/s:
+**주의**: 데이터의 일부는 양쪽 thread로 접근이나 수정이 됩니다. 따라서 코드를 바꾸거나 기능을 확장하는 경우 race condition이나 데이터가 잘못되는 일이 발생하지 않는지 고려해야 합니다.
+
+### 예제
+mavlink를 ttyS1에서 baudrate은 921600로 그리고 최대 전송 rete는 80kB/s로 시작합니다. :
 ```
 mavlink start -d /dev/ttyS1 -b 921600 -m onboard -r 80000
 ```
 
-Start mavlink on UDP port 14556 and enable the HIGHRES_IMU message with 50Hz:
+UDP 포트 14556에서 mavlink를 시작시키고 HIGHRES_IMU 메시지는 50Hz로 활성화 시킴:
 ```
 mavlink start -u 14556 -r 1000000
 mavlink stream -u 14556 -s HIGHRES_IMU -r 50
 ```
 
-### Usage
+### 사용법
 ```
 mavlink <command> [arguments...]
  Commands:
@@ -73,37 +71,35 @@ mavlink <command> [arguments...]
                  startup script.
 ```
 ## uorb
-Source: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
+소스: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
 
 
-### Description
-uORB is the internal pub-sub messaging system, used for communication between modules.
+### 설명
+uORB는 내부 pub-sub 메시징 시스템으로 모듈간 통신에 사용됩니다.
 
-It is typically started as one of the very first modules and most other modules depend on it.
+가장 먼저 실행되는 모듈 중에 하나로 다른 모듈들이 이 모듈에 의존합니다.
 
-### Implementation
-No thread or work queue is needed, the module start only makes sure to initialize the shared global state.
-Communication is done via shared memory.
-The implementation is asynchronous and lock-free, ie. a publisher does not wait for a subscriber and vice versa.
-This is achieved by having a separate buffer between a publisher and a subscriber.
+### 구현
+thread나 work queue가 필요하지 않습니다. 해당 모듈은 공유하는 global state를 초기화시키기 위해서만 시작합니다.
+통신은 공유 메모리를 통해 이뤄집니다.
+구현은 비동기로 lock-free 방식입니다. 예로 publisher와 subscriber는 서로 기다리지 않습니다.
+이는 publisher와 subscriber가 각자 독립된 버퍼를 가지므로 가능합니다.
 
-The code is optimized to minimize the memory footprint and the latency to exchange messages.
+코드는 메모리 사용과 메시지 교환 지연시간을 최소화하도록 최적화되어 있습니다.
 
-The interface is based on file descriptors: internally it uses `read`, `write` and `ioctl`. Except for the
-publications, which use `orb_advert_t` handles, so that they can be used from interrupts as well (on NuttX).
+인터페이스는 file descriptors를 기반으로 합니다 : 내부적으로 `read`, `write` 그리고 `ioctl`를 사용합니다. publications을 제외하고 `orb_advert_t` 핸들을 사용합니다. 따라서 인터럽트로 사용할 수도 있습니다.(NuttX에서)
 
-Messages are defined in the `/msg` directory. They are converted into C/C++ code at build-time.
+`/msg` 디렉토리에 메시지가 정의되어 있습니다. 빌드할때 C/C++ 코드로 변환됩니다.
 
-If compiled with ORB_USE_PUBLISHER_RULES, a file with uORB publication rules can be used to configure which
-modules are allowed to publish which topics. This is used for system-wide replay.
+만약 ORB_USE_PUBLISHER_RULES로 컴파일되면, uORB publication rule을 가진 파일은 어떤 모듈이 어떤 topic을 publish할 수 있는지 설정하는데 사용할 수 있습니다. system-wide replay에서 사용됩니다.
 
-### Examples
-Monitor topic publication rates. Besides `top`, this is an important command for general system inspection:
+### 예제
+topic publication rate를 감독합니다. `top`과 함께 일반 시스템 인스펙션을 위한 중요한 명령입니다 :
 ```
 uorb top
 ```
 
-### Usage
+### 사용법
 ```
 uorb <command> [arguments...]
  Commands:

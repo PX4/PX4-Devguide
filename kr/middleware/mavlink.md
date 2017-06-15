@@ -1,26 +1,20 @@
 # MAVLink Messaging
-An overview of all messages can be found [here](http://mavlink.org/messages/common).
-## Create Custom MAVLink Messages
-This tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory`
-message in `msg/ca_trajectory.msg` and a custom mavlink
-`ca_trajectory` message in
-`mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h` (see
-[here](http://qgroundcontrol.org/mavlink/create_new_mavlink_message) how to
-create a custom mavlink message and header).
+전체 메시지에 대한 개요는 다음 링크를 참고하세요. [여기](http://mavlink.org/messages/common).
+## 커스텀 MAVLink Messages 생성
+여기 튜터리얼에서는 `msg/ca_trajectory.msg`에 있는 [custom uORB](../middleware/uorb.md) `ca_trajectory`와 `mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h`에 있는 커스텀 mavlink `ca_trajectory` 메시지를 가지고 있다고 가정합니다. (
+[여기](http://qgroundcontrol.org/mavlink/create_new_mavlink_message)에서 커스텀 mavlink 메시지와 헤더 생성하는 방법을 참고).
 
-## Sending Custom MAVLink Messages
-This section explains how to use a custom uORB message and send it as a mavlink
-message.
+## 커스텀 MAVLink Message 보내기
+이 섹션에서는 커스텀 uORB 메시지를 사용하는 방법과 이를 mavlink 메시지로 보내는 방법을 설명합니다.
 
-Add the headers of the mavlink and uORB messages to
-[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
+mavlink의 헤더와 uorb 메시지를 [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)에 추가합니다.
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
+새로운 class를 [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)에 추가
 
 ```C
 class MavlinkStreamCaTrajectory : public MavlinkStream
@@ -80,8 +74,7 @@ protected:
 };
 ```
 
-Finally append the stream class to the `streams_list` at the bottom of
-[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
+마지막으로 stream class를 [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp) 끝에 있는 `streams_list`에 추가합니다.
 
 ```C
 StreamListItem *streams_list[] = {
@@ -91,42 +84,36 @@ nullptr
 };
 ```
 
-Then make sure to enable the stream, for example by adding the following line to
-the startup script (`-r` configures the streaming rate, `-u` identifies the
-mavlink channel on UDP port 14556):
+다음으로 stream을 사용하기 위해서 startup 스크립트에 다음 한 줄을 추가할 수 있습니다. (`-r`은 streaming rate를 설정하며 `-u`은 UDP port 14556로 mavlink channel을 식별함) :
 
 ```
 mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
 ```
 
 
-## Receiving Custom MAVLink Messages
-This section explains how to receive a message over mavlink and publish it to
-uORB.
+## 커스텀 MAVLink Message 수신하기
+이 섹션에서는 mavlink로 메시지를 받고 이를 uORB로 publish하는 방법을 설명합니다.
 
-Add a function that handles the incoming mavlink message in
-[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)
+들어오는 mavlink 메시지를 처리하는 함수를 [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)에 추가
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Add a function that handles the incoming mavlink message in the
-`MavlinkReceiver` class in
-[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)
+수신하는 mavlink 메시지를 처리하는 함수를 [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)
+에 있는 `MavlinkReceiver` class에 추가
 
 ```C
 void handle_message_ca_trajectory_msg(mavlink_message_t *msg);
 ```
-Add an uORB publisher in the `MavlinkReceiver` class in
-[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)
+uORB publisher를 [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)에 있는 `MavlinkReceiver` class에 추가
 
 ```C
 orb_advert_t _ca_traj_msg_pub;
 ```
 
-Implement the `handle_message_ca_trajectory_msg` function in [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)
+`handle_message_ca_trajectory_msg` 함수 구현을 [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)에 추가
 
 ```C
 void
@@ -154,7 +141,7 @@ MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
 }
 ```
 
-and finally make sure it is called in [MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)
+그리고 마지막으로 [MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)에서 호출되는지 확인
 
 ```C
 MavlinkReceiver::handle_message(mavlink_message_t *msg)
@@ -167,13 +154,13 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 		...
  	}
 ```
-## General
-### Set streaming rate
-Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by the following line
+## 일반
+### streaming rate 설정
+가끔은 개별 topic의 streaming rate를 올리는 것이 유용합니다. (예로 QGC에서 inspection용도로) 다음과 같은 라인으로 처리할 수 있습니다.
 ```sh
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>
 ```
-You can get the port number with ```mavlink status``` which will output (amongst others) ```transport protocol: UDP (<port number>)```. An example would be
+```mavlink status```으로 port number를 가져올 수 있습니다. 출력 중에 ```transport protocol: UDP (<port number>)```를 확인합니다. 예제로
 ```sh
 mavlink stream -u 14556 -s OPTICAL_FLOW_RAD -r 300
 ```
