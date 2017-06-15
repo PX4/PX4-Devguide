@@ -19,7 +19,7 @@ And then you have to logout and login again, as this is only changed after a new
 Update the package list and install the following dependencies for all PX4 build targets. PX4 supports four main families:
 
 * NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
-  [Pixracer](../flight_controller/pixracer.md), [Crazyflie](../flight_controller/crazyflie2.md),
+  [Pixracer](../flight_controller/pixracer.md), [Pixhawk 3 Pro](../flight_controller/pixhawk3_pro.md), [Crazyflie](../flight_controller/crazyflie2.md),
   [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
 * [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
 * Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md), Parrot Bebop
