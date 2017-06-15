@@ -17,20 +17,20 @@ RX(ground station) 쪽:
 ## 왜 일반 wifi는 장거리 비디오 전송에 적합하지 않을까?
  - 연결 : 비디오 전송기와 수신기는 관련이 높습니다. 만약 한쪽 장치가 연결을 끊어지면(신호가 약해서) 비디오 전송은 바로 끊어지게 됩니다.
  - 에러에 자유로운 전송 : Wifi는 올바른 데이터를 전송하거나 아니면 데이터가 없거나이다. FPV 시나리오에서 만약 약간의 에러가 있는 데이터를 수신하는 경우 사용할 수 없다는 뜻입니다. 유용한 데이터를 수신했지만 결국에는 비디오를 볼수 없다는 뜻입니다.
- - 양방향 통신 : 소스에서만 데이터를 보낸다할지라도 wifi를 사용하는 경우 양방향 데이터 flow가 필요합니다. 이유는 wifi 수신기는 받은 패킷에 대해서 ack를 해야합니다. 만약 전송기가 어떤 ack도 받지 못한다면 연결을 끊게 됩니다. 따라서 비행체와 지상 모두 똑같이 강한 세기의 전송기와 안테나가 필요합니다. 공중에서는 단방향 안테나와 강한 전송기로 셋업하고 지상은 high-gain 안테나를 상뇽해서 설정하는 방식은 일반 wifi에서 불가능합니다.g an omnidirectional antenna and a weak device on the ground using a high-gain antenna is not possible with normal wifi.
- - rate 제어 : 일반 wifi 연결에서 신호가 너무 약하면 자동으로 낮은 전송 rate로 전환됩니다. 이런 이유로 (자동으로) rate를 선택하는게 비디오 데이터를 전송하기에 너무 낮을 수 있습니다. 이런 방식으로 데이터가 큐에 쌓이고 예상치 못한 지연을 생기면 수초동안 지속될 수 있습니다.
- - 1대1 전송 : 프레임을 브로드캐스트하지 않거나 일반 wifi 데이터 flow가 1대1 연결과 유사한 기술. bystander가  
- One to one transfers: Unless you use broadcast frames or similar techniques a normal wifi data flow is a one to one connection. A scenario where a bystander just locks onto your “channel” as in analog video transmission to watch your stream is not easy to accomplish using traditional wifi.
- - Limited diversity: Normal wifi limits you to the number of diversity streams that your wifi card offers.
+ - 양방향 통신 : 소스에서만 데이터를 보낸다할지라도 wifi를 사용하는 경우 양방향 데이터 flow가 필요합니다. 이유는 wifi 수신기는 받은 패킷에 대해서 ack를 해야합니다. 만약 전송기가 어떤 ack도 받지 못한다면 연결을 끊게 됩니다. 따라서 비행체와 지상 모두 똑같이 강한 세기의 전송기와 안테나가 필요합니다. 공중에서는 단방향 안테나와 강한 전송기로 셋업하고 지상은 high-gain 안테나를 사용해서 설정하는 방식은 일반 wifi에서 불가능합니다.
+ - rate 제어 : 일반 wifi 연결에서 신호가 너무 약하면 자동으로 낮은 전송 rate로 전환됩니다. 이런 이유로 (자동으로) rate를 선택하는게 비디오 데이터를 전송하기에 너무 낮을 수 있습니다. 이런 방식으로 데이터가 큐에 쌓이고 예상치 못한 지연이 생기면 수초동안 지속될 수 있습니다.
+ - 1대1 전송 : 프레임을 브로드캐스트하지 않거나 일반 wifi 데이터 flow가 1대1 연결과 유사한 기술인 경우. 주변 사람이 아날로그 비디오 전송에 사용하는 채널을 맞추면 비디오를 볼수 있는 시나리오가 전통 wifi를 사용하는 경우에는 어렵습니다.
+ - 제한된 다이버시티(diversity) : 일반 wifi에서 wifi 카드가 제공하는 많은 다이버시티 스트림 수로 제한됩니다.
 
-## What wifibroadcast makes different
-Wifibroadcast puts the wifi cards into monitor mode. This mode allows to send and receive arbitrary packets without association. Additionally, it is also possible to receive erroneous frames (where the checksum does not match). This way a true unidirectional connection is established which mimics the advantageous properties of an analog link. Those are:
+## wifibroadcast의 차이점은
+wifibroadcast는 wifi 카드를 모니터 모드로 설정합니다. 이 모드에서 임의의 패킷을 연결없이도 주고받을 수 있습니다. 추가로 에러가 있을 수 있는 프레임을 수신하는 것도 가능합니다.(checksum이 매치되지 않는 경우) 이런 방식은 실제로는 단방향 연결을 설정하여 아날로그 링크의 장점을 흉내냅니다.
+이런 것들은 :
 
- - The transmitter sends its data regardless of any associated receivers. Thus there is no risk of sudden video stall due to the loss of association
- - The receiver receives video as long as it is in range of the transmitter. If it gets slowly out of range the video quality degrades but does not stall. Even if frames are erroneous they will be displayed instead of being rejected.
- - The traditional scheme “single broadcaster – multiple receivers” works out of the box. If bystanders want to watch the video stream with their devices they just have to “switch to the right channel”
- - Wifibroadcast allows you to use several low cost receivers in parallel and combine their data to increase probability of correct data reception. This so-called software diversity allows you to use identical receivers to improve relieability as well as complementary receivers (think of one receiver with an omnidirectional antenna covering 360° and several directional antennas for high distance all working in parallel)
- - Wifibroadcast uses Forward Error Correction to archive a high reliability at low bandwidth requirements. It is able to repair lost or corrupted packets at the receiver.
+ - 트랜스미터는 연결된 수신기에 상관없이 데이터를 전송합니다. 따라서 연결을 끊어진다고 갑자기 비디오가 멈추는 위험은 없습니다.
+ - 수신기는 발신기의 범위내에 있는한 비디오를 수신합니다. 서서히 비디오 품질이 떨어지더라도 멈추지는 않도록합니다. 심지어 프레임에 에러가 있더라도 프레임을 버리는 대신에 표시하게 됩니다.
+ - 고적적인 개념 "단일 브로드캐스터 - 멀티 수신기"는 바로 동작합니다. 만약 주변 사람이 그들의 장치로 비디오 스트림을 보고자 한다면 "채널만 제대로 맞추면" 가능합니다.
+ - wifibroadcast는 병렬로 저렴한 수신기를 사용할 수 있게하며 데이터를 결합하여 수신한 데이터의 보정 가능성을 높이도록 합니다. 이런 소위 소프트웨어 다이버시티는 보완 리시버뿐만 아니라 신뢰성을 높이기 위해 동일한 수신기를 사용할수 있도록 합니다.(360도를 커버하는 단반향 안테나를 가지는 수신기와 병렬로 동작하는 높은 거리에 있는 여러 개의 방향 안테나를 생각해보세요)
+ - wifibroadcast는 낮은 대역폭에서 높은 신뢰성을 달성하기 위해서 FEC(Forward Error Correction)을 사용합니다. 수신부에서 손실되었거나 변형된 패킷을 복구할 수도 있습니다.
 
 
 ## 하드웨어 수정
@@ -103,36 +103,33 @@ Q: 어떤 데이터 타입이 wifibroadcast를 사용해서 전송될 수 있을
 
 A: 패킷 사이즈 <= 1466인 어떤 UDP라도 가능. 예를 들면 RTP내부에 x264 혹은 Mavlink.  
 
-Q: What are transmission guarancies?
+Q: 전송 보장이란 무엇인가요?
 
-A: Wifibrodcast use FEC (forward error correction) which can recover 4 lost packets from 12 packets block with default settings.
-   You can tune it (both TX and RX simultaniuosly!) to fit your needs.
+A: Wifibrodcast는 FEC (forward error correction)을 사용해서 기본 셋팅으로 12개 패킷에서 손실된 4개 패킷을 복구할 수 있습니다. 요구에 맞추기 위해서 TX와 RX 동시에 튜닝할 수 있습니다.
 
-Q: I have a lot of frame drops and messages ``XX packets lost``. What is this?
+Q: 프레임 드롭이 많이 일어나고 ``XX packets lost``를 나옵니다. 이것은 무슨 뜻인가요?
 
-A: This is can be due to:
-   1. Signal power is too low. Use high-power card or annennas with more gain. Use directed antenna on RX side. Use additional RX card for diversity (add wlan2, wlan3, ... to rx program)
-   2. Signal power is too high. Especially if you use 30dBm TX indoors. Try to reduce TX power (for example hack CRDA database inside kernel and make
-      several regions with power limit 10dBm and 20dBm).
-   3. Interference with other WiFi. Try to change WIFI channel and/or WIFI band. CAUTION: Don't use band where you RC TX operates on! Or setup RTL properly to avoid model loss.
-      You can increase FEC block size (by default it is 8/12 (8 data blocks and 4 fec blocks), but it will also increase latency. Use additional RX card for diversity (add wlan2, wlan3, ... to rx program)
+A: 이는 다음과 같은 이유 때문일 수 있습니다:
+   1. 단일 전원은 매우 납습니다. 높은 전원 카드를 사용하거나 게인이 높은 안테나를 이용하세요. RX쪽에 직접 안테나를 사용합니다. 다이버시티를 위해 추가 RX 카드를 사용합니다. (wlan2, wlan3, ... 를 rx 프로그램에 추가)
+   2. 신호 세기가 너무 높습니다. 인도어 30dBm TX를 사용하고 있다면 TX 전원을 낮춰보세요.(예로 커널 내부의 CRDA 데이터베이스를 해킹해서 전원 제약을 10dBm와 20dBm와 같이 여러 가지로 바꿔봅니다.)
+   3. 다른 WiFi와 간섭. WIFI 채널이나 WIFI 밴드를 변경해 보세요. 주의: RC TX가 동작 중이 경우 밴드를 사용하지 마세요! 아니면 RTL을 적절하게 셋업해서 모델 손실을 회피해보세요. FEC block 사이즈를 증가해 보세요(기본적으로 8/12 (8 데이터 블록과 4 fec 블록)) 하지만 이렇게 되면 지연시간이 길어질 것입니다. 다이버시티를(wlan2, wlan3, ... 를 rx 프로그램에 추가) 위해서 추가 RX 카드를 사용하세요.
 
 ## TODO
-1. Do a flight test with different cards/antennas.
-2. Investigate how to set TX power without CRDA hacks.
-3. Tune FEC for optimal latency/redundancy.
+1. 다른 카드/안테나로 비행 테스트를 해보세요.
+2. CRDA 해킹하지 않고 TX 파워를 설정하는 방법을 찾아보세요.
+3. FEC를 튜닝해서 지연/중복을 최적화시키세요.
 
 ## Wifi Cards:
 
-The following Atheros chipsets should work:
+다음 Atheros 칩셋은 동작합니다:
 
  -  Atheros AR9271, Atheros AR9280, Atheros AR9287
 
-The following Ralink chipsets should work:
+다음 Ralink 칩셋은 동작합니다:
 
  -  RT2070, RT2770, RT2870, RT3070, RT3071, RT3072, RT3370, RT3572, RT5370, RT5372, RT5572
 
-However, there might be whatever small issues that prevent some cards from working, so if you want to play it safe, choose one of the cards that have been tested by different people and definitely work:
+하지만 카드가 동작하지 않는 자잘한 문제가 있을 수 있습니다. 따라서 안전하게 하려면 다른 사람들로부터 검증된 카드 중에 하나를 선택합니다:
 
  -  CSL 300Mbit Stick (2.4/5Ghz, Diversity, RT5572 chipset)
  -  Alfa AWUS036NHA (2.3/2.4Ghz, high power, Atheros AR9271 chipset)
@@ -142,19 +139,19 @@ However, there might be whatever small issues that prevent some cards from worki
  -  TP-Link-TL-WDN3200 (2.4/5Ghz, Diversity, RT5572 chipset)
  -  Ralink RT5572 (2.4/5Ghz, Diversity???, RT5572 chipset)
 
-On the other hand, if everybody gets the same cards, we'll never find out which other ones work. There are also very small and lightweight RT5370 cards available in china shops for under 4$. Aliexpress for example has a lot of cheap wifi cards in general. It would be nice if you report back your findings in case you tried a wifi card that is not listed here.
+반면에 만약에 모든 사람이 동일한 카드를 갖고 있다면 어느 것이 동작하는지 찾기가 어려울 것입니다. 중국에는 4$ 이하의 가격으로 매우 작고 가벼운 RT5370 카드도 있습니다. 예로 Aliexpress에는 저렴하고 다양한 Wifi 카드가 있습니다. 여기 목록에 없는 wifi 카드로 시도해 본 경험을 리포팅해주면 좋겠습니다.
 
-* AWUS036NHA This adapter will provide around 280mW output power. Ranges of several kilometers have been reported (with directional antennas though).
+* AWUS036NHA 이 아답터는 280mW 출력 파워를 제공합니다. 수 km 범위라고 알려져 있습니다.(지향성 안테나 사용)
 
-* TL-WN722N This adapter will provide around 60mW output power. Range should be roughly around 800-1000m with 2.1dbi stock antennas. IMPORTANT: Under certain circumstances, the second antenna on the PCB causes bad reception. Please disconnect the antenna by removing the white PCB component on the back of the PCB like shown below (in the picture, the component was soldered to the upper pad to be able to reverse the mod if needed)
+* TL-WN722N 이 아답터는 60mw 출력 파워를 제공합니다. 범위는 대략 800-1000m 정도로 2.1dbi 안테나를 가지고 있습니다. 중요: 특정 환경에서 PCB에 있는 두번째 안테나의 성능이 나쁘게 나타납니다. 아래와 같이 PCB 뒷면에 PCB 흰색 컴포넌트르르 제거해서 안테나를 제거해주세요.(사진에서 컴포넌트는 필요에 따라서 mod를 뒤집을 수 있도록 상단 패드에 납떔이 되어있음)
 
-* CSL 300Mbit stick This adapter provides around 30mw output power. Range on 5Ghz is not very high, around 200-300m. Stock antennas are not usable on 5Ghz, as they are simple 2.4Ghz 2.1dbi sleeved-dipole antennas.
+* CSL 300Mbit stick 이 아답터는 대략 30mw 출력 파워를 제공합니다. 5Ghz 범위로 대략 200-300m로 매우 높지는 않습니다. stock 안테나는 5Ghz에서 사용할 수 없습니다. 단순히 2.4Ghz 2.1dbi sleeved-diploe 안테나입니다.
 
-When used as an Rx dongle, bad blocks can occur when the received signal strength is higher than -20dbm. This can be worked-around by using more than one adapter and pointing antennas in different directions / polarizations.
+Rx 동글을 사용할 때, 수신 신호 세기가 -20dbm보다 높은 경우 배드 블록이 발생할 수 있습니다. 이는 1개 이상 아답터를 사용하거나 다른 방향이나 극성으로 안테나를 향하게 해서 회피할 수 있습니다.
 
-* AWUS051NH This adapter will provide around 330mw output power. Range on 5Ghz is around 800-1000m. Stock antenna is not recommended because they have 5dbi gain, which will give a too-flat radiation pattern.
+* AWUS051NH 이 아답터는 330mw 출력 파워를 제공합니다. 5Ghz로 대략 800-1000m정도 입니다. stock 안테나를 추천하지 않는데 왜냐하면 5dbi 게인을 가지고 있기 때문입니다. 이는 too-flat radiation 패턴을 가지기 때문입니다.
 
-* AWUS052NH This adapter will provide around 330mw output power. This is the same adapter as the 051NH, but with two TX chains. Stock antennas are not recommended because they have 5dbi gain, which will give a too-flat radiation pattern.
+* AWUS052NH 이 아답터는 330mw 출력 파워를 제공합니다. 051NH와 동일한 아답터지만 2개의 TX 체인을 가지고 있습니다. stock 안테나를 추천하지 않는데 왜냐하면 게인이 5dbi로 too-flat raidation 패턴을 가지고 있기 때문입니다.
 
 ## Links:
- -  [Original version](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) of wifibroadcast
+ - wifibroadcast의 [원본 버전](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/)
