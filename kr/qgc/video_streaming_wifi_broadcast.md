@@ -1,21 +1,21 @@
-# Long-distance video streaming in QGroundControl
+# QGroundControl에서 장거리 비디오 스트리밍
 
-This page shows how to set up a a companion computer (Odroid C1 or C0) with a camera (Logitech C920) such that the video stream is transferred via the Odroid C1 to a network computer and displayed in the application QGroundControl that runs on this computer. This setup uses WiFi in unconnected (broadcast) mode.
+이 페이지는 카메라(Logitech C920) 달린 컴패니온 컴퓨터(Odroid C1이나 C0)를 셋업하는 방법을 알려줍니다. 비디오 스트림은 Odroid C1을 통해 네트워크 컴퓨터로 전송되며 QGroundControl를 실행하는 컴퓨터에서 볼 수 있습니다. 이 셋업은 비연결(broadcast) 모드에서 WiFi를 사용합니다.  
 
-The whole hardware setup consists of the following parts:
+전체 하드웨어 셋업은 다음 부품들로 구성 :
 
-On TX (copter) side:
+TX (콥터) 쪽:
 * Odroid C1
 * Logitech camera C920
 * WiFi module  ALPHA AWUS051NH v2.
 
-On RX (group station side):
-* Any computer with Linux.
+RX(ground station) 쪽:
+* Linux 컴퓨터
 * WiFi module  ALPHA AWUS051NH v2.
 
 
-## Why normal wifi is a bad choice for long-distance video transfer
- - Association: Video transmitter and receiver need to be associated. If one device looses association (for example due to too weak signal strength) the video transmission stops instantly.
+## 왜 일반 wifi는 장거리 비디오 전송에 적합하지 않을까?
+ - 연계 : 비디오 전송기와 수신기는 관련이 높습니다. 만약 한쪽 장치가 연결을 끊어지면(신호가 약해서) 비디오 전송은 바로 끊어지게 됩니다.
  - Error-free transmission: Wifi transmits either data that is correct or no data. In an FPV scenario this means that even if you received data with just small errors it would be rejected completely. This could result in stalling video although you have received useful data.
  - Two-way communication: Even if you are sending data only from source to sink a bi-directional data flow is required using wifi. The reason for this is that a wifi receiver needs to acknowledge the received packets. If the transmitter receives no acknowledgements it will drop the association. Therefore, you would need equally strong transmitters and antennas both on the aircraft and on the ground station. A setup with a strong transmitter in the air using an omnidirectional antenna and a weak device on the ground using a high-gain antenna is not possible with normal wifi.
  - Rate control: Normal wifi connections switch automatically to a lower transmission rate if signal strength is too weak. Due to this it is possible that the (automatically) selected rate is too low to transfer the video data. This way the data would queue up and introduce an unpredictable latency that can be up to several seconds.
@@ -44,7 +44,7 @@ So you need to connect it to 5V BEC directly. You can do this two ways:
 Download wifibroadcast [sources](https://github.com/svpcom/wifibroadcast).
 
 You need to patch kernel to:
- 
+
  1. Enable TX rate lock. Use ``mac80211-radiotap-bitrate_mcs_rtscts.linux-4.4.patch``. Instead there are no way to specify data rate for injected radiotap packets.
  2. Enable TX power lock. Use ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``. This will lock tx power to maximum supported by card.
  3. Enable RX of frames with bad FSC (checksum). Use ``ez-wifibroadcast-1.4-kernel-4.4-patches.diff``. This is optional and don't use in current code.
