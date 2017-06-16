@@ -1,31 +1,31 @@
-# Offboard Control
+# 오프보드 제어
 
-> ** Warning ** Offboard control is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
+> ** Warning ** 오프보드 제어는 위험합니다. 오프보드 비행 전에 안전을 위해 준비, 테스팅, 안전에 관해 예방책을 마련하는 것은 개발자의 몫입니다.
 
-The idea behind off-board control is to be able to control the px4 flight stack using software running outside of the autopilot. This is done through the Mavlink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](http://mavlink.org/messages/common#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](http://mavlink.org/messages/common#SET_ATTITUDE_TARGET) messages.
+오프보드 제어의 기반 아이디어는 autopilot 외부에서 실행되는 소프트웨어로 px4 flight stack을 제어할 수 있다는 것입니다. Mavlink 프로토콜을 통해 이뤄지며 특별히 [SET_POSITION_TARGET_LOCAL_NED](http://mavlink.org/messages/common#SET_POSITION_TARGET_LOCAL_NED)와 [SET_ATTITUDE_TARGET](http://mavlink.org/messages/common#SET_ATTITUDE_TARGET) 메시지와 관련이 있습니다.
 
-## Offboard Control Firmware Setup
-There are two things you want to setup on the firmware side before starting offboard development.
+## 오프보드 제어 펌웨어 셋업
+오프보드 개발을 시작하기 전에 펌웨어 쪽에 필요한 셋업 2가지
 
-### 1. Map an RC switch to offboard mode activation
-To do this, load up the parameters in qGroundcontrol and look for the RC_MAP_OFFB_SW parameter to which you can assign the RC channel you want to use to activate offboard mode. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
+### 1. RC 스위치를 오프보드 모드 활성화로 매핑
+이를 위해, QGroundControl내에서 파라미터를 로드하고 오프보드 모드를 활성화시키기 위해서 사용할려는 RC 채널을 할당하기 위한 RC_MAP_OFFB_SW 파라미터를 찾습니다. 오프보드 모드를 빠져나올때 position 제어로 들어가게 하는 방식이 유용할 수 있습니다.
 
-Although this step isn't mandatory since you can activate offboard mode using a MAVLink message. We consider this method much safer.
+비록 이 단계는 필수는 아니며 MAVLink 메시지를 사용해서 오프보드 모드를 활성화시킬 수 있습니다. 이 방식 훨씬 안전하다고 생각합니다.
 
-### 2. Enable the companion computer interface
-Look for the [SYS_COMPANION](https://pixhawk.org/firmware/parameters#system) parameter and set it to either 921600 (Recommended) or 57600. This parameter will activate a MAVLink stream on the Telem2 port with data streams specific to onboard mode with the appropriate baud rate (921600 8N1 or 57600 8N1). 
+### 2. 컴패니언 컴퓨터 인터페이스 활성화
+[SYS_COMPANION](https://pixhawk.org/firmware/parameters#system) 파라미터를 찾고 921600(추천)이나 57600으로 설정합니다. 이 파라미터는 온보드 모드에 특화된 데이터 스트림을 가지는 Telem2 포트에 MAVLink 스트림을 활성화시킬 수 있습니다. 여기서 적절한 baud rate는 921600 8N1 혹은 57600 8N1입니다.
 
-For more information on these data streams, look for "MAVLINK_MODE_ONBOARD" in the [source code](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp).
+이런 데이터 스트림에 대한 상세 정보는 [소스 코드](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp)에서 "MAVLINK_MODE_ONBOARD"를 찾습니다.
 
-## Hardware setup
+## 하드웨어 셋업
 
-Usually, there are three ways of setting up offboard communication.
+일반적인 오프보드 통신을 셋업하는 3가지 방식
 
-### 1. Serial radios
-1. One connected to a UART port of the autopilot
-2. One connected to a ground station computer
+### 1. 시리얼 라디오
+1. 한쪽을 autopilot의 UART 포트에 연결
+2. 한쪽을 ground station 컴퓨터에 연결
 
-Example radios include
+예제 라디오는 다음을 포함
 * [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
 * [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
@@ -55,8 +55,8 @@ graph TD;
   uart --MAVLink--> Autopilot;
 {% endmermaid %}
 
-### 3. On-board processor and wifi link to ROS (***Recommended***)
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. This can be any of the computers from the above section coupled with a WiFi adapter. For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accomodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
+### 3. 온보드 프로세서와 wifi로 ROS에 연결 (***추천***)
+비행체에 부착하는 작은 컴퓨터는 UART USB 아답터를 통해 autopilot로 연결하며 ROS가 실행되고 있는 ground station에 WiFi 링크를 가질 수 있습니다. WiFi 아답터와 결합된 위 섹션에 소개한 어떤 컴퓨터도 가능합니다. 예로 Intel NUC D34010WYB는 [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) 아답터를 제공하는 PCI Express Half-Mini 커넥터가 있습니다.
 
 
 {% mermaid %}
