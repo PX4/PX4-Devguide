@@ -90,7 +90,7 @@ To enable the Lidar-Lite V3 (connected via I2C), the parameter `SENS_EN_LL40LS`
 has to be set to `2`. This can be done using the NuttX shell and the command
 `param set SENS_EN_LL40LS 2`. See
 [here](../debug/sensor_uorb_topic_debugging.md) how to get a shell (Note that
-this is only a temporary solution, because QGC currently does currently not
+this is only a temporary solution, because QGC currently doesn't
 support setting the value to 2 directly).
 
 ### RTK GPS
@@ -105,5 +105,3 @@ Set the following parameters as well:
 - `CBRK_IO_SAFETY=22027`: disable the safety button
 - `EKF2_GPS_POS_X`, `EKF2_GPS_POS_Y`, `EKF2_GPS_POS_Z`: set the GPS device
   offset with respect to the board (NED coordinates).
-
-
