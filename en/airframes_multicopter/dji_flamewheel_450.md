@@ -22,9 +22,22 @@ In addition we use a FrSky X4R-SB 3/16ch 2.4Ghz receiver and a FrSky Taranis con
 
 The Pixhawk 3 Pro can be attached using the double sided tape because the IMU inside is already dampened.
 
-## Wiring
+## Wiring and connections
 
 General pinout for the Pixhawk 3 Pro can be found [here](https://pixhawk.drotek.com/en/inputs-outputs.html).
+
+### 3DR Telemetry
+
+The 3DR Telemetry does not come with a JST GH connector which the Pixhawk 3 Pro uses. The pinout remains the same and just the plug needs to be changed. Use the Telem 1 port on the Pixhawk 3 Pro.
+
+| pin | Pixhawk 3 Pro Telem 1 | 3DR Telemetry    |
+| --- | --------------------- | ---------------- |
+| 1   | VCC                   | VCC              |
+| 2   | TX                    | RX               |
+| 3   | RX                    | TX               |
+| 4   | CTS                   | CTS              |
+| 5   | RTS                   | RTS              |
+| 6   | GND                   | GND              |
 
 ### Lidar-Lite V3
 
@@ -60,3 +73,21 @@ page 17.
 | 6   | BUTTON        | -   | -                 |
 | 7   | BUTTON_LED    | -   | -                 |
 | 8   | GND           | 6   | GND               |
+
+## Parameters
+
+General documentation on how to setup your quad in QGC can be found [here](https://docs.qgroundcontrol.com/en/).
+
+### Airframe
+
+Select the airframe `DJI Flame Wheel 450` in `QGC -> Airframe -> Quadrotor x`.
+
+![](../../assets/airframes/multicopter/Flamewheel_450/f450_setup_airframe.png)
+
+### Lidar-Lite
+
+To enable the Lidar-Lite V3 (connected via I2C), the parameter `SENS_EN_LL40LS` has to be set to `2`. This can be done using the NuttX shell and the command `param set SENS_EN_LL40LS 2`. See [here](../debug/sensor_uorb_topic_debugging.md) how to get a shell.
+
+### RTK GPS
+
+RTK GPS is plug and play. For more instructions see [here](https://docs.px4.io/en/advanced_features/rtk-gps.html).
