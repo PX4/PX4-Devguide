@@ -12,7 +12,7 @@
 * ESCs:             Hobbywing XRotor 35A Micro 3-6S BLHeli
 * Blades:           Graupner 10"x5" (You need to print [these adapters](https://drive.google.com/open?id=0B2piootk_fIKMWhIVzVPWEFGLU0) to be M6 compatible) <!--TODO-->
 * Distance sensor:  Lidar-Lite V3
-* GPS:              Here+ GPS
+* GPS:              Here+ RTK GPS
 * Telemetry:        3DR Telemetry
 * Battery:          Roxxy LiPo - 4S, 4000mAh
 
@@ -24,7 +24,8 @@ The Pixhawk 3 Pro can be attached using the double sided tape because the IMU in
 
 ## Wiring
 
-General pinout for the Pixhawk 3 Pro can be found [here](https://pixhawk.drotek.com/en/inputs-outputs.html)
+General pinout for the Pixhawk 3 Pro can be found [here](https://pixhawk.drotek.com/en/inputs-outputs.html).
+
 ### Lidar-Lite V3
 
 The pinout for the Lidar Lite V3 and the Pixhawk 3 Pro I2C 1 port is as follows.
@@ -38,9 +39,14 @@ The pinout for the Lidar Lite V3 and the Pixhawk 3 Pro I2C 1 port is as follows.
 | 5   | -                   | SDA              |
 | 6   | -                   | GND              |
 
-### Here+ GPS
+### Here+ RTK GPS
 
-The Here+ GPS comes with a 8 pin connector suited for the Pixhawk 2. In order to use it with the Pixhawk 3 Pro, a 6 pin connector has to be used and pin 6 and 7 are not needed (see below). More information on the pinout can be found in [this document](http://www.hex.aero/wp-content/uploads/2016/07/DRS_Pixhawk-2-17th-march-2016.pdf), page 17.
+The Here+ GPS comes with an 8 pin connector suited for the Pixhawk 2. In order to
+use it with the Pixhawk 3 Pro (or a Pixracer), a 6 pin connector has to be used
+and pin 6 and 7 are not needed (see below). The additional pins are for the
+safety button and can be attached as well if needed.
+More information on the pinout can be found in [this document](http://www.hex.aero/wp-content/uploads/2016/07/DRS_Pixhawk-2-17th-march-2016.pdf),
+page 17.
 
 ![](../../assets/airframes/multicopter/Flamewheel_450/f450_setup_gps.JPG)
 

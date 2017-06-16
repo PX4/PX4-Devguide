@@ -75,6 +75,7 @@
   * [Adding a new Airframe](airframes/adding_a_new_frame.md)
   * [Multicopters](airframes_multicopter/README.md)
     * [Motor Map](airframes_multicopter/motor_map.md)
+    * [DJI Flamewheel 450 with RTK](airframes_multicopter/dji_flamewheel_450.md)
     * [QAV 250 Racer](airframes_multicopter/qav250.md)
     * [Matrice 100](airframes_multicopter/matrice100.md)
     * [QAV-R](airframes_multicopter/qav-r.md)
