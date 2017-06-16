@@ -37,7 +37,7 @@ We use the Snapdragon Flight with the following setup.
 ![](../../assets/hardware/snapdragon-setup_4.JPG)
 
 #### Components
-* [Quantum Falcon 250](https://hobbyking.com/en_us/quanum-falcon-billet-block-fpv-racing-frame.html?___store=en_us)
+* [Quantum Falcon 250](http://readme.dronesmith.io/docs/ql25) (includes ESCs and motors)
 * 3DR PIXHAWK MINI GPS
 * Trone range finder
 * Spektrum DXe and FPV Racing Serial Receiver (3.3V Autobind)
@@ -175,7 +175,7 @@ Even though the 3DR GPS is described to have a 5v input, operation with 3.3V see
 
 ### PWM ESC Wiring
 
-For controlling the motors, PWM ESCs can be used. Use connector J13 (next to power module connector) and the following wiring. ESC numbers is according to [here](../airframes_multicopter/motor_map.md#quadrotor-x-layout).
+For controlling the motors, PWM ESCs can be used. Use connector J13 (next to power module connector) and the following wiring. ESC numbers is according to [here](../airframes_multicopter/motor_map.md#quadrotor-x-layout). The ESCs are powered using the ESC power distribution board that comes with the frame.
 
 | Snapdragon J13 Pin | ESC | Comment                   |
 | ------------------ | --- | ------------------------  |
