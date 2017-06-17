@@ -1,1 +1,1 @@
-# PWM/GPIO Bus
+# PWM/GPIO 버스
