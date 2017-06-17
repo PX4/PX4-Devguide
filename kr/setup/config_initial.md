@@ -1,22 +1,21 @@
-# Initial Configuration
+# 초기 설정
 
-Before starting to develop on PX4, the system should be configured initially with a default configuration to ensure the hardware is set up properly and is tested. The video below explains the setup process with [Pixhawk hardware](../flight_controller/pixhawk.md) and [QGroundControl](../qgc/README.md). A list of supported reference airframes is [here](../airframes/architecture.md).
+PX4에서 개발을 시작하기 전에, 하드웨어가 제대로 셋업되어 있는지 확인하기 위해서 시스템은 디폴트 설정으로 초기화 되어야 합니다. 아래 비디오는 [Pixhawk 하드웨어](../flight_controller/pixhawk.md) 와 [QGroundControl](../qgc/README.md)의 셋업 프로세스를 설명합니다. 지원하는 에어프레임 레퍼런스의 목록은 [여기](../airframes/architecture.md)를 참고하세요.
 
-> **Info** [Download the DAILY BUILD of QGroundControl](http://qgroundcontrol.com/downloads) and follow the video instructions below to set up your vehicle. See the [QGroundControl Tutorial](../qgc/README.md) for details on mission planning, flying and parameter setting.
+> **Info** [DAILY BUILD of QGroundControl](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) 다운받기와 아래 비디오를 따라서 여러분의 비행체를 셋업합니다. mission planning, 비행, 파라미터 셋팅에 대해서 보다 상세한 내용을 위해서는 [QGroundControl 튜터리얼](../qgc/README.md)을 참고하세요.
 
-A list of setup options is below the video.
+셋업 옵션의 목록은 아래 비디오를 참고하세요.
 
 {% youtube %}https://www.youtube.com/watch?v=91VGmdSlbo4&rel=0&vq=hd720{% endyoutube %}
 
-## Radio Control Options
+## 라디오 컨트롤 옵션
 
-The PX4 flight stack does not mandate a radio control system. It also does not mandate the use of individual switches for selecting flight modes.
+PX4 flight stack은 라디오 컨트롤 시스템을 강제하지 않습니다. 비행 모드를 선택하는 개발 스위치에 대해서도 강제사항은 없습니다.
 
-### Flying without Radio Control
+### 라디오 컨트롤 없이 비행
 
-All radio control setup checks can be disabled by setting the parameter `COM_RC_IN_MODE` to `1`. This will not allow manual flight, but e.g. flying in 
+모든 라디오 컨트롤 셋업 체크는 `COM_RC_IN_MODE` 파라미터를 `1`로 설정해서 비활성화시킬 수 있습니다. 이렇게 하면 비행 중인 경우를 제외하고 수동 비행을 허용하지 않습니다.
 
-### Single Channel Mode Switch
+### 단일 채널 모드 스위치
 
-Instead of using multiple switches, in this mode the system accepts a single channel as mode switch. This is explained in the [legacy wiki](https://pixhawk.org/peripherals/radio-control/opentx/single_channel_mode_switch).
-
+여러 스위치를 사용하는 대신에 이 모드에서 시스템은 한개 채널만 모드 스위치로 받아들입니다. 이와 관련해서는 [기존 위키](https://pixhawk.org/peripherals/radio-control/opentx/single_channel_mode_switch)를 참고하세요.
