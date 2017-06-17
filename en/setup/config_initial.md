@@ -2,7 +2,7 @@
 
 Before starting to develop on PX4, the system should be configured initially with a default configuration to ensure the hardware is set up properly and is tested. The video below explains the setup process with [Pixhawk hardware](../flight_controller/pixhawk.md) and [QGroundControl](../qgc/README.md). A list of supported reference airframes is [here](../airframes/architecture.md).
 
-> **Info** [Download the DAILY BUILD of QGroundControl](http://qgroundcontrol.com/downloads) and follow the video instructions below to set up your vehicle. See the [QGroundControl Tutorial](../qgc/README.md) for details on mission planning, flying and parameter setting.
+> **Info** [Download the DAILY BUILD of QGroundControl](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) and follow the video instructions below to set up your vehicle. See the [QGroundControl Tutorial](../qgc/README.md) for details on mission planning, flying and parameter setting.
 
 A list of setup options is below the video.
 

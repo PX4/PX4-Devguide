@@ -18,7 +18,8 @@ In addition it does the RC input parsing and auto-selecting the method. Supporte
 
 The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy.
 By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder
-driver.
+driver. Alternatively, the fmu can be started in one of the capture modes, and then drivers can register a capture
+callback with ioctl calls.
 
 ### Implementation
 By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread,
@@ -97,6 +98,85 @@ fmu <command> [arguments...]
 
    fake          Arm and send an actuator controls command
      <roll> <pitch> <yaw> <thrust> Control values in range [-100, 100]
+
+   stop
+
+   status        print status info
+```
+## gps
+Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
+
+
+### Description
+GPS driver module that handles the communication with the device and publishes the position via uORB.
+It supports multiple protocols (device vendors) and by default automatically selects the correct one.
+
+The module supports a secondary GPS device, specified via `-e` parameter. The position will be published
+on the second uORB topic instance, but it's currently not used by the rest of the system (however the
+data will be logged, so that it can be used for comparisons).
+
+### Implementation
+There is a thread for each device polling for data. The GPS protocol classes are implemented with callbacks
+so that they can be used in other projects as well (eg. QGroundControl uses them too).
+
+### Examples
+For testing it can be useful to fake a GPS signal (it will signal the system that it has a valid position):
+```
+gps stop
+gps start -f
+```
+
+### Usage
+```
+gps <command> [arguments...]
+ Commands:
+   start
+     [-d <val>]  GPS device
+                 values: <file:dev>, default: /dev/ttyS3
+     [-e <val>]  Optional secondary GPS device
+                 values: <file:dev>
+     [-f]        Fake a GPS signal (useful for testing)
+     [-s]        Enable publication of satellite info
+     [-i <val>]  GPS interface
+                 values: spi|uart, default: uart
+     [-p <val>]  GPS Protocol (default=auto select)
+                 values: ubx|mtk|ash
+
+   stop
+
+   status        print status info
+```
+## vmount
+Source: [drivers/vmount](https://github.com/PX4/Firmware/tree/master/src/drivers/vmount)
+
+
+### Description
+Mount (Gimbal) control driver. It maps several different input methods (eg. RC or MAVLink) to a configured
+output (eg. AUX channels or MAVLink).
+
+Documentation how to use it is on the [gimbal_control](https://dev.px4.io/en/advanced/gimbal_control.html) page.
+
+### Implementation
+Each method is implemented in its own class, and there is a common base class for inputs and outputs.
+They are connected via an API, defined by the `ControlData` data structure. This makes sure that each input method
+can be used with each output method and new inputs/outputs can be added with minimal effort.
+
+### Examples
+Test the output by setting a fixed yaw angle (and the other axes to 0):
+```
+vmount stop
+vmount test yaw 30
+```
+
+### Usage
+```
+vmount <command> [arguments...]
+ Commands:
+   start
+
+   test          Test the output: set a fixed angle for one axis (vmount must
+                 not be running)
+     roll|pitch|yaw <angle> Specify an axis and an angle in degrees
 
    stop
 
