@@ -1,6 +1,6 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/simulation/gazebo.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated_sha: d85d45b8e4f82e318ace49bd87c0ad17a129e017
 ---
 
 # Gazebo Simulation
@@ -121,9 +121,17 @@ make posix_sitl_default gazebo_tailsitter
 
 ![](../../assets/gazebo/tailsitter.png)
 
-## Change World
+### Ackerman车
 
-The current default world is the iris.wold located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds). The default surrounding in the iris.world uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, it is recommended to change the model in iris.model from uneven_ground to asphalt_plane.
+```sh
+make posix gazebo_rover
+```
+
+![](../../assets/gazebo/rover.png)
+
+## 更改世界背景
+
+当前的默认世界是位于[世界](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds)目录中的`iris.world`。`iris.world`中的默认环境使用高度图作为地面。使用距离传感器时，遇到这样的地面往往很难取得理想的效果。如果在该高度图中出现和预期不一致的结果，建议将iris.model中的模型从irregular_ground更改为asphalt_plane。
 
 ## 起飞
 
@@ -162,13 +170,14 @@ pxh> commander takeoff
 
 > **提示：** QGroundControl(QGC)支持手柄或拇指手柄。为了使用手柄控制飞行器，要将系统设为手动飞行模式（如 POSCTL，位置控制），并从QGC的选项菜单中启用拇指手柄。
 
-## Set custom takeoff location
+## 设置自定义起飞位置
 
-The default takeoff location in SITL Gazebo can be overridden using environment variables.
+SITL Gazebo中的默认起飞位置可以使用环境变量来覆盖。
 
-The variables to set are: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
+要设置的变量有： `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
 
-As an example:
+举个例子
+
 ```
 export PX4_HOME_LAT=28.452386
 export PX4_HOME_LON=-13.867138

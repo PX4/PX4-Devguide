@@ -1,10 +1,10 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/flight_controller/raspberry_pi.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated_sha: f3cb054e3c12e775bcd69e4c826ef70b18307bb5
 ---
 
 
-# 树莓派2/3自动驾驶仪
+# 树莓派2/3 Navio2自动驾驶仪
 
 ![](../../assets/hardware/hardware-rpi2.jpg)
 
@@ -31,6 +31,18 @@ ssh pi@<IP-ADDRESS>
 ### 扩展文件系统
 
 安装好操作系统并连接上它后，确保进行 [扩展文件系统](https://www.raspberrypi.org/documentation/configuration/raspi-config.md)，来获得足够的SD卡可用空间。
+
+
+### 禁用Navio RGB Overlay
+
+The existing Navio RGB overlay claims GPIOs used by PX4 for RGB Led. Edit /boot/config.txt by commenting the line enabling the navio-rgb overlay.
+
+现有的Navio RGB overlay声明了PX4用于RGB Led的GPIO。编辑` /boot/config.txt `并注释掉下列行已启用navio-rgb overlay。
+
+```shell
+#dtoverlay=navio-rgb
+```
+
 
 ### 改变树莓派主机名
 为了避免与同一网络上的其他树莓派有冲突，我们建议你改变默认主机名为明显的名字。我们使用px4autopilot作为我们的主机名。通过ssh连接pi并执行指令。
