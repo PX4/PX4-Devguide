@@ -1,31 +1,31 @@
-# Development Environment on Linux
+# 리눅스 개발 환경
 
-We have standardized on Debian / Ubuntu LTS as the supported Linux distribution, but [boutique distribution instructions](../setup/dev_env_linux_boutique.md) are available for Cent OS and Arch Linux.
+Linux 배포판 중에 Debian / Ubuntu LTS가 기준입니다. 하지만 Cent OS나 Arch Linux을 위해 [boutique distribution instructions](../setup/dev_env_linux_boutique.md)도 사용 가능합니다.
 
-## Permission Setup
+## Permission 셋업
 
-> **Warning** Never ever fix permission problems by using 'sudo'. It will create more permission problems in the process and require a system reinstallation to fix them.
+> **Warning** sudo'를 이용해서 permission 문제를 해결하지 마세요. 이로 인해 더 많은 permission 문제가 생길수도 있고 시스템을 다시 설치해야할수도 있습니다.
 
-The user needs to be part of the group "dialout":
+user는 "dialout" 그룹에 속해야 합니다. :
 
 ```sh
 sudo usermod -a -G dialout $USER
 ```
 
-And then you have to logout and login again, as this is only changed after a new login.
+다음으로 logout을 하고 다시 login합니다. 새로 login해야만 변경사항에 적용됩니다.
 
-## Installation
+## 설치
 
-Update the package list and install the following dependencies for all PX4 build targets. PX4 supports four main families:
+패키지 목록을 업데이트하고 모든 PX4 빌드 타겟을 위해 필요한 의존 패키지를 설치합니다. PX4가 지원하는 4가지 계열 :
 
-* NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
+* NuttX 기반 하드웨어: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
   [Pixracer](../flight_controller/pixracer.md), [Pixhawk 3 Pro](../flight_controller/pixhawk3_pro.md), [Crazyflie](../flight_controller/crazyflie2.md),
   [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
 * [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
-* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md), Parrot Bebop
-* Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
+* Linux 기반 하드웨어: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md), Parrot Bebop
+* 호스트 시뮬레이션: [jMAVSim SITL](../simulation/sitl.md) 와 [Gazebo SITL](../simulation/gazebo.md)
 
-> **Info** Install the [Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
+> **Info** Make보다 빠르게 빌드하기 위해 [Ninja 빌드 시스템](../setup/dev_env_linux_boutique.md#ninja-build-system)을 설치합니다. 이미 설치되어 있다면 자동으로 선택해서 빌드하게 됩니다.
 
 ```sh
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
@@ -39,15 +39,15 @@ sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
 ```
 
-### NuttX based hardware
+### NuttX 기반 하드웨어
 
-Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port \(or USB serial\). It can deinstalled without side effects:
+Ubuntu에 기본으로 serial modem manager가 설치되어 있어서 로보틱스 관련해서 시리얼 포트나 \( USB 시리얼\) 을 사용하는 경우 방해가 됩니다. 효과적으로 삭제하는 방법은 :
 
 ```sh
 sudo apt-get remove modemmanager
 ```
 
-Update the package list and install the following dependencies. Packages with specified versions should be installed with this particular package version.
+패키지 목록을 업데이트하고 의존 패키지를 설치합니다. 특정 버전이 필요한 패키지는 해당 버전의 패키지를 설치해야만 합니다.
 
 ```sh
 sudo apt-get install python-serial openocd \
@@ -56,38 +56,38 @@ sudo apt-get install python-serial openocd \
     python-empy  -y
 ```
 
-Make sure to remove leftovers before adding the arm-none-eabi toolchain.
+arm-none-eabi 툴체인을 추가하기 전에 이전에 설치된 것을 제거되었는지 확인합니다.
 
 ```sh
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 
-Then follow the [toolchain installation instructions](../setup/dev_env_linux_boutique.md#toolchain-installation) to install the arm-none-eabi toolchain version 4.9 or 5.4 manually.
+4.9나 5.4 버전의 arm-none-eabi 툴체인을 수동으로 설치하려면 [툴체인 설치 방법](../setup/dev_env_linux_boutique.md#toolchain-installation))을 참고합니다.
 
 ### Snapdragon Flight
 
-#### Toolchain installation
+#### 툴체인 설치
 
 ```sh
 sudo apt-get install android-tools-adb android-tools-fastboot fakechroot fakeroot unzip xz-utils wget python python-empy -y
 ```
 
-Please follow the instructions on https://github.com/ATLFlight/cross_toolchain for the toolchain installation.
+툴체인 설치는 https://github.com/ATLFlight/cross_toolchain 방법을 따라합니다.
 
-Load the new configuration:
+새로운 설정을 로드합니다:
 
 ```sh
 source ~/.bashrc
 ```
 
-#### Sysroot Installation
+#### Sysroot 설치
 
-A sysroot is required to provide the libraries and header files needed to cross compile applications for the Snapdragon Flight applications processor.
+sysroot은 Snapdragon Flight 어플리케이션 프로세서용 크로스 컴파일 어플리케이션에 필요한 라이브러리와 헤더 파일을 제공하는데 필요합니다.
 
-The qrlSDK sysroot provies the required header files and libraries for the camera, GPU, etc.
+qrlSDK sysroot은 카메라, GPU 등에 필요한 헤더 파일과 라이브러리를 제공합니다.
 
-Download the file [Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) and save it in `cross_toolchain/download/`.
+[Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) 파일을 다운로드 받고 `cross_toolchain/download/`에 저장합니다.
 
 ```sh
 cd cross_toolchain
@@ -95,64 +95,63 @@ unset HEXAGON_ARM_SYSROOT
 ./qrlinux_sysroot.sh
 ```
 
-Append the following to your ~/.bashrc:
+다음을 ~/.bashrc 에 추가 :
 
 ```sh
 export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/qrlinux_v3.1.1_sysroot
 ```
 
-Load the new configuration:
+새로운 설정을 로드:
 
 ```sh
 source ~/.bashrc
 ```
 
-For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
+sysroot 옵션은 [Sysroot 설치](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)를 참고하세요.
 
-#### Update ADSP firmware
+#### ADSP 펌웨어 업데이트
 
-Before building, flashing and running code, you'll need to update the [ADSP firmware](../flight_controller/snapdragon_flight_advanced.md#updating-the-adsp-firmware).
+빌드, 플래쉬, 실행하기 전에 [ADSP 펌웨어](../flight_controller/snapdragon_flight_advanced.md#updating-the-adsp-firmware) 업데이트가 필요합니다.
 
-#### References
+#### 레퍼런스
 
-There is a an external set of documentation for Snapdragon Flight toolchain and SW setup and verification:
+Snapdragon Flight 툴체인, SW 셋업과 검증에 관련된 외부 문서 :
 [ATLFlightDocs](https://github.com/ATLFlight/ATLFlightDocs/blob/master/README.md)
 
-Messages from the DSP can be viewed using mini-dm.
+DSP에서 받은 메시지는 mini-dm을 사용해서 볼 수 있습니다.
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
-Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+Note: 특히 Mac에서는 [nano-dm](https://github.com/kevinmehall/nano-dm)을 사용할 수 있습니다.
 
-### Raspberry Pi hardware
+### Raspberry Pi 하드웨어
 
-Developers working on Raspberry Pi hardware need to download a ARMv7 cross-compiler, either GCC or clang.
-The recommended toolchain for raspbian is GCC 4.8.3 and can be cloned from `https://github.com/raspberrypi/tools.git`.
-The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
+라즈베리파이 하드웨어로 개발하는 경우 ARMv7 cross-compiler로 GCC나 clang을 다운로드해야합니다.
+추천하는 툴체인은 GCC 4.8.3으로 `https://github.com/raspberrypi/tools.git`에서 클론할 수 있습니다.
+`PATH` 환경 변수는 `arm-linux-gnueabihf-` 접두어를 가진 도구(gcc, g++, strip등)의 gcc 크로스 컴파일러에 대한 path를 포함하고 있어야만 합니다.
 
 ```sh
 git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
 
-# test compiler
+# 컴파일러 테스트하기
 $HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
 
-# permanently update PATH variable by modifying ~/.profile
+# ~/.profile를 수정해서 PATH 변수 업데이트
 echo 'export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin' >> ~/.profile
 
-# update PATH variable only for this session
+# 이번 세션만 적용되도록 PATH 변수 업데이트
 export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ```
 
 #### clang
 
-In order to use clang, you also need GCC.
+clang을 사용하기 위해서 GCC를 사용해야 합니다.
 
-Download clang for your specific distribution from [LLVM Download page](http://releases.llvm.org/download.html) and unpack it.
-Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
+[LLVM 다운로드](http://releases.llvm.org/download.html)에서 배포하는 clang을 다운로드 받아서 압축을 풉니다. `CLANG_DIR` 경로에 압축을 풀었다고 가정하고 `clang` 바이너리는 `CLANG_DIR/bin`에 위치하게 됩니다. `GCC_DIR`에 GCC 크로스 컴파일러가 위치합니다. `GCC_DIR` bin 디렉토리로 clang에 대한 symlink를 셋업하고 `GCC_DIR/bin`를 `PATH`에 추가합니다.
 
-Example below for building PX4 firmware out of tree, using CMake.
+아래 예제에서 PX4 펌웨어를 빌드하는데 CMake를 사용합니다.
 ```sh
 ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
 ln -s <CLANG_DIR>/bin/clang++ <GCC_DIR>/bin/clang++
@@ -170,16 +169,15 @@ cmake \
 
 ```
 
-### Parrot Bebop
+### 패롯 비밥
 
-Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
-description under [Raspberry Pi hardware](../flight_controller/raspberry_pi.md).
+패롯 비밥으로 개발하는 경우 RPi 리눅스 툴체인을 설치해야만 합니다. [Raspberry Pi 하드웨어](../flight_controller/raspberry_pi.md)에 있는 설명을 참고하세요.
 
-Next, install ADB.
+다음으로 ADB를 설치합니다.
 
 ``sh
 sudo apt-get install android-tools-adb -y` ``
 
-## Finishing Up
+## 마무리
 
-Now continue to run the [first build](../setup/building_px4.md)!
+이제 [처음 빌드하기](../setup/building_px4.md)를 이어서 실행하면 됩니다!

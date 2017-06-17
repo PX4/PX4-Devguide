@@ -1,6 +1,6 @@
-# Installing Files and Code
+# 파일과 코드 설치하기
 
-The first step is to install Xcode from the Mac app store. Once its installed, open a new terminal and install the command line tools:
+첫번째 단계는 Mac app 스토어에서 Xcode를 설치하는 것입니다. 일단 설치하고 나면, 새로운 터미널을 열어서 커맨드 라인 툴로 설치합니다:
 
 <div class="host-code"></div>
 
@@ -8,11 +8,11 @@ The first step is to install Xcode from the Mac app store. Once its installed, o
 xcode-select --install
 ```
 
-## Homebrew Installation
+## Homebrew 설치하기
 
-Usage of the [Homebrew package manager](http://mxcl.github.com/homebrew/) for Mac OS X is recommended. The installation of Homebrew is quick and easy: [installation instructions](http://mxcl.github.com/homebrew/).
+Mac OS X를 사용하는 경우 [Homebrew 패키지 매니저](http://mxcl.github.com/homebrew/) 사용을 권장합니다. Homebrew 설치는 [설치 방법](http://mxcl.github.com/homebrew/)를 따라하면 쉽고 간편합니다.
 
-After installing Homebrew, copy these commands to your shell:
+Homebrew를 설치한 후에, 이 명령을 shell에 복사합니다. :
 
 ```sh
 brew tap PX4/px4
@@ -25,27 +25,28 @@ brew install ant graphviz sdformat3 eigen protobuf
 brew install homebrew/science/opencv
 ```
 
-Then install the required python packages:
+다음으로 필요한 python 패키지를 설치합니다. :
 
 ```sh
 sudo easy_install pip
 sudo pip install pyserial empy pandas jinja2
 ```
 
-### Java for jMAVSim
+### jMAVSim을 위한 Java
 
-If you're intending to use jMAVSim, you need to install [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+jMAVSim을 사용하고자 한다면, [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)을 설치해야 합니다.
 
 ## Snapdragon Flight
 
-Developers working on Snapdragon Flight should use an Ubuntu VM for the time being and follow the Linux instructions. Qualcomm provides reliable tooling for Ubuntu exclusively. The PX4 dev team had the most consistent experience with VMWare, in particular when it comes to USB stability.
+Snapdragon Flight로 개발하는 경우 Ubuntu VM을 사용해야 합니다. Qualcomm은 Ubuntu용으로만 툴을 제공하고 있습니다. PX4 개발팀은 VMWare으로 쭉 개발했으며 특히 USB가 안정적입니다.
 
-## Simulation
+## 시뮬레이션
 
-OS X comes with CLANG pre-installed. No further installation steps are required.
+OS X에는 CLANG이 미리 설치되어 있습니다. 추가 설치 단계가 필요하지 않습니다.
 
 ## Editor / IDE
 
-And finally download and install the Qt Creator app: [Download](http://www.qt.io/download-open-source/#section-6)
+이제 마지막으로 Qt Creator app을 다운로드 및 설치합니다. :
+[Download](http://www.qt.io/download-open-source/#section-6)
 
-Now continue to run the [first build](../setup/building_px4.md)!
+이제 [처음 빌드하기](../setup/building_px4.md)를 이어서 실행하면 됩니다!
