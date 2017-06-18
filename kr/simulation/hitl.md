@@ -1,49 +1,48 @@
 # Hardware in the Loop Simulation (HITL)
 
-Hardware in the loop simulation is a simulation mode where the autopilot is connected to the simulator and all flight code runs on the autopilot. This approach has the benefit of testing the actual flight code on the real processor.
+HITL은 autopilot이 시뮬레이터에 연결하고 모든 flight mode가 autopilot에서 실행되는 시뮬레이션 모드입니다. 이 방식은 실제 프로세서에서 실제 비행 코드를 테스팅하는 장점을 가지고 있습니다.
 
-## Configure the System for HITL
+## HITL에 대한 시스템 설정
 
-PX4 supports HITL for multicopters (using jMAVSim) and fixed wing (using X-Plane demo or full). Flightgear support is present as well, but we generally recommend X-Plane. To enable it, configure it via the airframe menu.
+PX4는 멀티콥터(jMAVSim을 사용)와 고정익을(X-Plane demo나 모두 사용) 위해 HITL을 지원합니다. Flightgear 지원도 잘 되고 있지만 X-Plane를 추천합니다. 이를 활성화시키려면 airframe 메뉴를 통해 설정합니다.
 
 ![](../../assets/gcs/qgc_hil_config.png)
 
-## Using jMAVSim (Quadrotor)
+## jMAVSim (쿼드로터) 사용하기
 
-- Make sure QGroundControl is not running (or accessing the device via serial port)
-- Run jMAVSim in HITL mode (replace the serial port if necessary):
+- QGroundControl가 실행 중이 아님을 확인(혹은 시리얼 포트로 장치 연결 중)
+- HITL 모드엥서 jMAVSim을 실행 (필요하면 serial 포트를 교체):
   ```
   ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
   ```
-- The console will display mavlink text messages from the autopilot.
-- Then run QGroundControl and connect via default UDP configuration.
+- 콘솔은 autopilot으로부터의 mavlink 텍스트 메시지를 출력합니다.
+- 다음으로 QGroundControl를 실행하고 UDP 디폴트 설정으로 연결합니다.
 
+## X-Plane 사용하기
+#### X-Plane에 리모트 접근을 활성화
 
-## Using X-Plane
-#### Enable Remote Access in X-Plane
-
-In X-Plane two key settings have to be made: In Settings -> Data Input and Output, set these checkboxes:
+X-Plane에서 해야할 2가지 핵심 셋팅 :  Settings -> Data Input and Output 에서 체크박스 설정:
 
 ![](../../assets/gcs/xplane_data_config.png)
 
-In Settings -> Net Connections in the Data tab, set localhost and port 49005 as IP address, as shown in the screenshot below:
+Data 탭에서 Settings -> Net Connections에서 localhost와 port 49005를 IP 주소로 설정. 아래 스크린샷 참조:
 
 ![](../../assets/gcs/xplane_net_config.png)
 
-#### Enable HITL in QGroundControl
+#### QGroundControl에서 HITL 활성화
 
-Widgets -> HIL Config, then select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
+Widgets -> HIL Config, 다음으로 드롭다운에서 X-Plane 10을 선택하고 연결. 일단 시스템이 연결되면 배터리 상태, GPS 상태, 비행기 위치가 활성화됩니다 :
 
 ![](../../assets/gcs/qgc_sim_run.png)
 
-## Switch to Joystick Input
+## Joystick 입력으로 스위치
 
-If a joystick is preferred over a radio remote control, set the parameter `COM_RC_IN_MODE` to `1`. It can be found in the Commander parameter group.
+라디오 리모트 컨트롤보다 조이스틱을 선호한다면, `COM_RC_IN_MODE`을 `1`로 설정합니다. Commander 파라미터 그룹에서 찾을 수 있습니다.
 
-## Fly an Autonomous Mission in HITL
+## HITL에서 자동 mission 비행
 
-Switch to the flight planning view and put a single waypoint in front of the plane. Click on the sync icon to send the waypoint.
+비행 planning view로 전환해서 비행체 앞에 한개 waypoint를 찍습니다. waypoint를 전송하기 위해서 sync 아이콘을 클릭합니다.
 
-Then select MISSION from the flight mode menu in the toolbar and click on DISARMED to arm the plane. It will take off and loiter around the takeoff waypoint.
+다음으로 툴바에 있는 비행 모드 메뉴에서 MISSION을 선택하고 비행기를 arm하기 위해서 DISARMED를 클릭합니다. 이륙해서 waypoint 주변에 떠있게 됩니다.
 
 ![](../../assets/gcs/qgc_sim_mission.png)
