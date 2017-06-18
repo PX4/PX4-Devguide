@@ -1,84 +1,82 @@
 # Optical Flow
-Optical Flow uses a downward facing camera and a downward facing distance sensor for position estimation. Optical Flow based navigation is supported by all three estimators: EKF2, LPE and INAV (see below).
+position estimation을 위해서 아래를 향하는 카메라와 거리 센서를 사용합니다. Optical Flow 기반 네비게이션은 모두 3개 estimator에서 지원합니다. : EKF2, LPE 그리고 INAV (아래 참고)
 
-## Setup
-As mentioned above, an Optical Flow setup requires a downward facing camera which publishes to the [`OPTICAL_FLOW_RAD` topic](http://mavlink.org/messages/common#OPTICAL_FLOW_RAD) and a distance sensor (preferably a LiDAR) publishing messages to the [`DISANCE_SENSOR` topic](http://mavlink.org/messages/common#DISTANCE_SENSOR).
+## 셋업
+위에서 언급한 것처럼 Optical Flow 셋업에는 아래를 향하는 카메라와 거리 센서(LiDAR 선호)가 필요합니다. 각각은 [`OPTICAL_FLOW_RAD` topic](http://mavlink.org/messages/common#OPTICAL_FLOW_RAD) 메시지와 [`DISANCE_SENSOR` topic](http://mavlink.org/messages/common#DISTANCE_SENSOR) 메시지를 publish합니다.
 
-The output of the flow has to be as follows
+출력은 다음과 같습니다
 
-| Moving direction of the MAV | Integrated flow |
+| MAV의 움직이는 방향 | Integrated flow |
 | -- | -- |
 | Forwards | + Y |
 | Backwards | - Y |
 | Right | - X |
 | Left | + X |
 
-And for pure rotations, the integraded_xgyro and integraded_x (respectively integraded_ygyro and integraded_y) have to be the same.
+그리고 순전히 회전을 위해서 integraded_xgyro와 integraded_x(각각 integraded_ygyro와 integraded_y)는 동일해야만 합니다.
 
-An exemplary setup is the PX4Flow and LIDAR-Lite (see picture).
+예제 셋업은 PX4Flow와 LIDAR-Lite입니다.(사진 참고)
 
 ![](../../assets/hardware/flow_lidar_attached.jpg)
 
-### Cameras
+### 카메라
 
 #### PX4Flow
-The easiest way to calculate the optical flow is to use the PX4Flow board. In order to use the PX4Flow board, just connect it with I2C. The recommended way of mounting it is with the Sonar side facing forwards (see image). In this configuration the parameter `SENS_FLOW_ROT` should be 270 degrees (which is the default). Make sure the the PX4Flow board is well dampened.
+optical flow를 계산하는 가장 쉬운 방법은 PX4Flow 보드를 사용하는 것입니다. PX4Flow 보드를 사용하기 위해서 I2C에 연결하기만 하면 됩니다. 추천 마운팅 방법은 Sonar 쪽이 전면을 향하게 하는 것입니다.(이미지 참고) 이 설정에서 `SENS_FLOW_ROT` 파라미터는 270 도입니다.(기본값) PX4Flow 보드가 흔들리지 않도록 합니다.
 
 ![](../../assets/hardware/px4flowalignwithpixhawk.jpg)
 
-In order to ensure good optical flow quality, it is important to focus the camera on the PX4Flow to the desired height of flight. To focus the camera, put an object with text on (e. g. a book) and plug in the PX4Flow into USB and run QGroundControl. Under the settings menu, select the PX4Flow and you should see a camera image. Focus the lens by unscrewing the set screw and loosening and tightening the lens to find where it is in focus.
+양질의 optical flow 정보를 얻기 위해서, PX4Flow에 카메라가 비행의 원하는 높이에서 초점이 맞도록 해야합니다. 카메라 초점을 맞추기 위해서 글자가 있는 물체(책)을 놓고 PX4Flow에 USB를 꽂고 QGroundControl를 실행합니다. 셋팅메뉴에서 PX4Flow를 선택하고 카메라 이미지가 나옵니다. 나사를 돌려서 렌즈 초점을 맞춥니다.
 
-**Note: If you fly above 3m, the camera will be focused at infinity and won't need to be changed for higher flight.**
+**Note: 3m 이상을 날리는 경우 카메라는 무한대로 초점이 되며 더 높은 비행에 대해서 변경할 필요가 없습니다 **
 
 ![](../../assets/flow/flow_focus_book.png)
 
-*Figure: Use a text book to focus the flow camera at the height you want to fly, typically 1-3 meters. Above 3 meters the camera should be focused at infinity and work for all higher altitudes.*
-
+*Figure: 책을 이용해서 비행을 원하는 높이에서 flow 카메라 초점을 맞춥니다. 일반적으로 1-3 미터. 3미터가 넘으면 카메라는 무한대로 초점이 되므로 이상의 높이에서 동작합니다*
 
 ![](../../assets/flow/flow_focusing.png)
 
-*Figure: The px4flow interface in QGroundControl that can be used for focusing the camera*
+*Figure: QGroundControl에서 px4flow 인터페이스는 카메라 초점을 맞추는데 사용*
 
-#### Other cameras
-It is also possible to use a board/quad that has an integrated camera (Bebop2, Snapdragon Flight). For this the [Optical Flow repo](https://github.com/PX4/OpticalFlow) can be used (see also [snap_cam](https://github.com/PX4/snap_cam)).
+#### 다른 카메라
+통합 카메라를 가진 보드/쿼드를 사용하는 것이 가능합니다.(Bebop2, Snapdragon Flight) [Optical Flow repo](https://github.com/PX4/OpticalFlow)에 대해서 사용 가능. ([snap_cam](https://github.com/PX4/snap_cam) 참고)
 
 ### Range Finder
-We recommend using a LIDAR over a Sonar, because of robustness and accuracy. One possibility is the [LIDAR-Lite](https://pixhawk.org/peripherals/rangefinder).
+일정하고 정확함을 위해 Sonar에서 LIDAR를 사용하는 것을 추천합니다. [LIDAR-Lite](https://pixhawk.org/peripherals/rangefinder)를 사용할 수 있습니다.
 
 ## Estimators
 
 ### Extended Kalman Filter (EKF2)
-In order to use the EKF2 estimator, make sure the parameter `SYS_MC_EST_GROUP` is set to `2` and reboot. For Optical Flow fusion, the parameter `EKF2_AID_MASK` has to be set accordingly.
+EKF2 estimator를 사용하기 위해서 `SYS_MC_EST_GROUP` 파라미터가 `2`로 설정하고 리부팅합니다. Optical Flow fusion을 위해서 `EKF2_AID_MASK` 파라미터도 설정해야만 합니다.
 
 ### Local Position Estimator (LPE)
 TODO
 
-<!-- ### INAV (not under active development anymore)
-The INAV has a fixed gain matrix for correction and can be viewed as a steady state Kalman filter. It has the lowest computational cost of all position estimators.
+<!-- ### INAV (더이상 개발하지 않음)
+INAV는 보정을 위해 고정 게인 행렬을 가지며 일정한 상태 kalman filter로 볼수 있습니다. 모든 position estimators 중에 가장 계산량이 적습니다.
 
-
-#### Flight Video Indoor
+#### 실내 비행 비디오
 {% youtube %}https://www.youtube.com/watch?v=MtmWYCEEmS8{% endyoutube %}
 
-#### Flight Video Outdoor
+#### 실외 비행 비디오
 {% youtube %}https://www.youtube.com/watch?v=4MEEeTQiWrQ{% endyoutube %}
 
 
-#### Parameters
-* `INAV_LIDAR_EST` Set to 1 to enable altitude estimation based on distance measurements
+#### 파라미터
+* `INAV_LIDAR_EST`는 1로 설정해서 측정한 거리기반 altitude estimation을 활성화
 * `INAV_FLOW_DIST_X` and `INAV_FLOW_DIST_Y`
-	These two values (in meters) are used for yaw compensation.
-	The offset has to be measured according to Figure 1 above.
-	In the above example the offset of the PX4Flow (red dot) would have a negative X offset and a negative Y offset.
+	이 2개 값(미터)은 yaw 보상으로 사용됩니다.
+  offset은 위 Figure 1에 따라서 측정해야만 합니다.
+  위 예제에서 PX4Flow의 offset은(붉은 점선) 음수 X offset과 음수 Y offset을 가집니다.
 * `INAV_LIDAR_OFF`
-	Set a calibration offset for the lidar-lite in meters. The value will be added to the measured distance.
+  lidar-lite에 대해서 칼리브레이션 offset을 미터 단위로 설정합니다. 해당 값은 측정한 거리에 추가됩니다.
 
 
-#### Advanced Parameters
+#### 고급 파라미터
 
-For advanced usage/development the following parameters can be changed as well. Do NOT change them if you do not know what you are doing!
+고급 사용/개발에 대해서 다음 파라미터도 변경할 수 있습니다. 내용을 알지 못한다면 변경하지 마세요!
 
 * `INAV_FLOW_W`
-	Sets the weight for the flow estimation/update
+	flow estimation/update에 대한 weight를 설정
 * `INAV_LIDAR_ERR`
-	Sets the threshold for altitude estimation/update in meters. If the correction term is bigger than this value, it will not be used for the update. -->
+	altitude estimation/update 에대한 임계값을 미터단위로 설정. 만약 보정할 값이 이 값보다 크다면 업데이트로 사용할 수 없습니다. -->
