@@ -1,8 +1,8 @@
 # STM32 Bootloader
 
-The code for the PX4 bootloader is available from the Github [Bootloader](https://github.com/px4/bootloader) repository.
+PX4 bootloader 코드는 Github [Bootloader](https://github.com/px4/bootloader) repository를 참조하세요.
 
-## Supported Boards
+## 지원 보드
 
   * FMUv1 (PX4FMU, STM32F4)
   * FMUv2 (Pixhawk 1, STM32F4)
@@ -12,7 +12,7 @@ The code for the PX4 bootloader is available from the Github [Bootloader](https:
   * TAPv1 (TBA, STM32F4)
   * ASCv1 (TBA, STM32F4)
 
-## Building the Bootloader
+## Bootloader 빌드하기
 
 ```bash
 git clone https://github.com/PX4/Bootloader.git
@@ -20,22 +20,22 @@ cd Bootloader
 make
 ```
 
-After this step a range of elf files for all supported boards are present in the Bootloader directory.
+이 과정이 지나면 모든 지원 보드에 대한 elf 파일들이 Bootloader 디렉토리에 나타납니다.
 
-## Flashing the Bootloader
+## Bootloader를 플래쉬
 
-> IMPORTANT: The right power sequence is critical for some boards to allow JTAG / SWD access. Follow these steps exactly as described. The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
+> IMPORTANT: JTAG / SWD 접근이 가능한 일부 보드에서는 정확한 전원 순서가 중요합니다. 아래 내용은 Blackmagic / Dronecode probe에 대해서 유효합니다. 다른 JTAG probe는 비슷하지만 다를 수 있습니다. bootloader를 플래쉬하는 개발자는 관련 지식이 필요합니다. 만약 어떻게 하는지 모른다면 bootloader를 변경하는 것이 실제로 필요한 것인지 다시 생각해보세요.
 
-  * Disconnect the JTAG cable
-  * Connect the USB power cable
-  * Connect the JTAG cable
+  * JTAG 케이블 연결 끊기
+  * USB 파워 케이블 연결
+  * JTAG 케이블 연결하기
 
 ### Black Magic / Dronecode Probe
 
-#### Using the right serial port
+#### 시리얼 포트 사용하기
 
-  * On LINUX: ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
-  * On MAC OS: Make sure to use the cu.xxx port, not the tty.xxx port: ```tar ext /dev/tty.usbmodemDDEasdf```
+  * LINUX: ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
+  * MAC OS: tty.xxx port가 아니라 cu.xxx port를 사용하는지 확인 : ```tar ext /dev/tty.usbmodemDDEasdf```
 
 ```bash
 arm-none-eabi-gdb
@@ -52,13 +52,13 @@ arm-none-eabi-gdb
 
 ### J-Link
 
-These instructions are for the [J-Link GDB server](https://www.segger.com/jlink-gdb-server.html).
+[J-Link GDB server](https://www.segger.com/jlink-gdb-server.html)에 대한 설명
 
-#### Prerequisites
+#### 전제 조건
 
-[Download the J-Link software](https://www.segger.com/downloads/jlink#) from the Segger website and install it according to their instructions.
+Segger 사이트에서 [J-Link 소프트웨어 다운로드](https://www.segger.com/downloads/jlink#)하고 지시에 따라 설치하기
 
-#### Run the JLink GDB server
+#### JLink GDB server 실행하기
 
 FMUv1:
 ```bash
@@ -70,7 +70,7 @@ AeroFC:
 JLinkGDBServer -select USB=0 -device STM32F429AI -if SWD-DP -speed 20000
 ```
 
-#### Connect GDB
+#### GDB 연결하기
 
 ```bash
 arm-none-eabi-gdb
@@ -78,14 +78,14 @@ arm-none-eabi-gdb
   (gdb) load aerofcv1_bl.elf
 ```
 
-### Troubleshooting
+### 문제해결
 
-If any of the commands above are not found, you are either not using a Blackmagic probe or its software is outdated. Upgrade the on-probe software first.
+위에 명령을 찾을 수 없다면 여러분이 사용하는 것이 Blackmagic이 아니거나 소프트웨어가 예전 버전일 수 있습니다. 먼저 on-probe 소프트웨어를 업데이트하세요.
 
-If this error message occurs:
+만약 에러 메시지 발생:
 ```Error erasing flash with vFlashErase packet```
 
-Disconnect the target (while leaving JTAG connected) and run 
+타겟 연결을 끊고(JTAG 연결은 두고) 실행
 
 ```bash
 mon tpwr disable
@@ -93,5 +93,4 @@ swdp_scan
 attach 1
 load tapv1_bl.elf
 ```
-This will disable target powering and attempt another flash cycle.
-
+이렇게 하면 타겟 전원을 비활성화시키고 다른 플래쉬 사이클을 시도합니다.

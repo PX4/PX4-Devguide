@@ -7,7 +7,7 @@
 
 ## sdlog2 logger (.px4log)
 
-### 전제조건
+### 전제 조건
 *  **SYS_LOGGER** 파라미터를 sdlog2(디폴트)로 설정하고 기체를 리부팅합니다.(0 = sdlog2 이고 1 = ulog)
 * **EKF2_REC_RPL** 파라미터를 1로 설정. 이렇게 하면 estimator로 하여금 logging에서 특정 replay 메시지를 publish하도록 합니다.
 * **SDLOG_PRIO_BOOST** parameter를 {0, 1, 2, 3} 중에 하나의 값으로 설정합니다. 0인 경우는 온보드 logging app은 기본적으로 \(low\) 스케쥴링 우선순위를 가지게 됩니다. low 스케쥴링 우선순위인 경우 logging 메시지 손실이 일어날 수 있습니다. log 파일에 건너뛴 메시지가 있는 경우 'gaps'이라고 표시되므로 이런 경우 parameter 값을 최대치인 3으로 설정합니다. 테스팅에서는 데이터 손실을 피하기 위해서 최소 2 값으로 설정합니다.

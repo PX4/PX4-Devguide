@@ -1,7 +1,6 @@
-# Software Update
+# 소프트웨어 업데이트
 
-The method to update the PX4 software on the drone depends on the hardware platform. For microcontroller based applications new Firmware is flashed through USB or serial.
+드론에서 PX4 소프트웨어 업데이트하기 위한 방법은 하드웨어 플랫폼에 의존합니다. 마이크로컨트롤러 기반 어플리케이션에 대해서 새로운 Firmware가 USB나 serial을 통해 플래쉬됩니다.
 
 
 ## Infrastructure
-
