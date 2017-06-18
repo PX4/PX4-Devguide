@@ -6,7 +6,7 @@
 
 * [시스템 개요](setup/config_initial.md)
 * [PX4 Flight Stack](concept/flight_stack.md)과 [PX4 미들웨어](concept/middleware.md)
-* [Aero](flight_controller/intel_aero.md), Qualcomm [Snapdragon Flight](flight_controller/snapdragon_flight.md), [Pixhawk](flight_controller/pixhawk.md), [Pixfalcon](flight_controller/pixfalcon.md)와 그외 autopilot에서 PX4 개발
+* PX4는 [Intel® Aero Ready to Fly Drone](flight_controller/intel_aero.md), [Qualcomm Snapdragon Flight](flight_controller/snapdragon_flight.md), [Pixhawk](flight_controller/pixhawk.md), [Pixfalcon](flight_controller/pixfalcon.md)와 다양한 autopilot 지원  
 
 ## 기여하기
 
