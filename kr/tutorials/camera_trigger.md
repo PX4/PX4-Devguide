@@ -1,27 +1,27 @@
-# Camera Trigger
-The camera trigger driver allows the use of the AUX ports to send out pulses in order to trigger a camera. This can be used for multiple applications including timestamping photos for aerial surveying and reconstruction, synchronising a multi-camera system or visual-inertial navigation.
+# 카메라 트리거(Camera Trigger)
+카메라 트리거 드라이버는 펄스를 AUX 포트를 사용해서 전송합니다.  드론을 이용해서 조사를 할때 타임스탬프를 가지는 사진, 여러 카메라를 사용하는 시스템의 동기화 혹은 시각-관성(visual-inertial) 네비게이션을 포함한 다양한 어플리케이션에 사용할 수 있습니다.
 
-In addition to a pulse being sent out, a MAVLink message is published containing a sequence number (thus the current session's image sequence number) and the corresponding timestamp.
+펄스를 보내는 것 외에도, 메시지의 순서 번호와 타임 스탬프를 포함한 MAVLink 메시지를 publish할 수 있습니다.
 
-### Trigger modes
+### 트리거 모드
 
-Four different modes are supported, controlled by the `TRIG_MODE` parameter:
-* `TRIG_MODE` 1 works like a basic intervalometer that can be enabled and disabled by using the MAVLink command `MAV_CMD_DO_TRIGGER_CONTROL`. See [command interface](camera_trigger.md#command-interface) for more details.
-* `TRIG_MODE` 2 switches the intervalometer constantly on.
-* `TRIG_MODE` 3 triggers based on distance. A shot is taken every time the set horizontal distance is exceeded. The minimum time interval between two shots is however limited by the set triggering interval.
-* `TRIG_MODE` 4 triggers automatically when flying a survey in Mission mode.
- 
-In `TRIG_MODE` 0, camera triggering is disabled.
+`TRIG_MODE` 파라미터로 제어되며 지원하는 4가지 다른 모드 :
+* `TRIG_MODE` 1은 기본 intervalometer입니다. `MAV_CMD_DO_TRIGGER_CONTROL` MAVLink 명령을 사용해서 활성/비활성화 됩니다. 상세 내용은 [command interface](camera_trigger.md#command-interface) 참고하세요.
+* `TRIG_MODE` 2는 intervalometer를 on 상태를 유지합니다.
+* `TRIG_MODE` 3은 거리 기반한 트리거입니다. 설정한 수평 거리를 초과할 때마다 사진을 찍습니다. 사진을 찍는 시간 간격은 triggering interval 설정으로 제한됩니다.
+* `TRIG_MODE` 4는 Mission 모드로 서베이 비행할 때 자동으로 트리거됩니다.
 
-> **Info : ** If it is your first time enabling the camera trigger app, remember to reboot after changing the `TRIG_MODE` parameter.
+`TRIG_MODE` 0에서 카메라 트리거가 비활성화됩니다.
 
-### Trigger hardware configuration
+> **Info : ** 만약 처음으로 카메라 트리거 app을 활성화시키는 경우라면, `TRIG_MODE` 파라미터를 변경한 후에 리부팅을 해야합니다.
 
-You can choose which AUX pins to use for triggering using the `TRIG_PINS` parameter. The default is 56, which means that trigger is enabled on AUX 5 and AUX 6. 
+### 트리거 하드웨어 설정
 
-**IMPORTANT :** With `TRIG_PINS` set to its **default** value of 56, you can use the AUX pins 1, 2, 3 and 4 as actuator outputs (for servos/ESCs). Due to the way the hardware timers are handled (1234 are 56 are 2 different groups handled by 2 timers), this is the ONLY combination which allows the simultaneous usage of camera trigger and FMU actuator outputs. **DO NOT CHANGE THE DEFAULT VALUE OF `TRIG_PINS` IF YOU NEED ACTUATOR OUTPUTS.**
+`TRIG_PINS` 파라미터를 사용해서 트리거에 사용할 AUX 핀을 선택할 수 있습니다. 디폴트는 56이고 이는 트리거가 AUX 5와 AUX 6에서 활성화된다는 뜻입니다.
 
-### Trigger interface backends
+**IMPORTANT :** `TRIG_PINS`을 디폴트 값인 56으로 설정하고 AUX 핀 1, 2, 3, 4를 액츄레이터 출력으로(servos/ESC용으로) 사용할 수 있습니다. 하드웨어 타이머가 처리하는 방식때문에(1234와 56는 서로 다른 그룹으로 2개 타이머로 처리) 카메라 트리거와 FMU 액츄레이터 출력을 동시에 사용할 수 있게하는 유일한 조합입니다. **액츄레이터 출력이 필요하다면 디폴트 `TRIG_PINS`의 값을 변경하지 마세요**
+
+### 트리거 인터페이스 백엔드
 
 The camera trigger driver supports several backends - each for a specific application, controlled by the `TRIG_INTERFACE` parameter : 
 * `TRIG_INTERFACE` 1 enables the GPIO interface. The AUX outputs are pulsed high or low (depending on the `TRIG_POLARITY` parameter) every `TRIG_INTERVAL` duration. This can be used to trigger most standard machine vision cameras directly. Note that on PX4FMU series hardware (Pixhawk, Pixracer, etc.), the signal level on the AUX pins is 3.3v.
@@ -29,7 +29,7 @@ The camera trigger driver supports several backends - each for a specific applic
 * `TRIG_INTERFACE` 3 enables the MAVLink interface. In this mode, no actual hardware output is used. Only the `CAMERA_TRIGGER` MAVLink message is sent by the autopilot (by default, if the MAVLink application is in `onboard` mode. Otherwise, a custom stream will need to be enabled).
 * `TRIG_INTERFACE` 4 enables the generic PWM interface. This allows the use of  [infrared triggers](https://hobbyking.com/en_us/universal-remote-control-infrared-shutter-ir-rc-1g.html) or servos to trigger your camera.
 
-### Other parameters 
+### Other parameters
 
 * `TRIG_POLARITY` - Relevant only while using the GPIO interface. Sets the polarity of the trigger pin. Active high means that the pin is pulled low normally and pulled high on a trigger event. Active low is vice-versa.
 * `TRIG_INTERVAL` - Defines the time between two consecutive trigger events in milliseconds.
@@ -37,7 +37,9 @@ The camera trigger driver supports several backends - each for a specific applic
 
 The full list of parameters pertaining to the camera trigger module can be found on the [parameter reference](../advanced/parameter_reference.md#camera-trigger) page.
 
-### Command interface 
+### Command interface
+
+**TODO : needs updating**
 
 The camera trigger driver supports several commands -
 
@@ -61,19 +63,22 @@ This command is autogenerated during missions to trigger the camera based on sur
 
 ### Testing trigger functionality
 
-1. On the PX4 console : 
+1. On the PX4 console :
 `camera_trigger test`
 
-2. From QGroundControl : 
+2. From QGroundControl :
 
+Click on "Trigger Camera" in the main instrument panel. These shots are not logged or counted for geotagging.
+
+![](../../assets/qgc_test_camera.png)
 
 ## Sony QX-1 example (Photogrammetry)
 
 ![](../../assets/photogrammetry.png)
 
-In this example, we will use a Seagull MAP2 trigger cable to interface to a Sony QX-1 and use the setup to create orthomosaics after flying a fully autonomous survey mission. 
+In this example, we will use a Seagull MAP2 trigger cable to interface to a Sony QX-1 and use the setup to create orthomosaics after flying a fully autonomous survey mission.
 
-#### Trigger settings : 
+#### Trigger settings :
 
 The camera trigger can be configured from QGroundControl's "Camera" page under the settings tab
 
@@ -104,7 +109,17 @@ To avoid autofocus and metering lag when the camera is triggered, the following 
 
 ![](../..//assets/qgc_survey_parameters.jpg)
 
+#### Geotagging :
+
+Download/copy the logfile and images from the flight and point QGroundControl to them. Then click on "Start Tagging".
+
+![](../../assets/qgc_geotag.png)
+
+You can verify the geotagging using a free online service like [Pic2Map](https://www.pic2map.com/). Note that Pic2Map is limited to only 40 images.
+
 #### Reconstruction :
+
+We use [Pix4D](https://pix4d.com/) for 3D reconstruction.
 
 ![](../../assets/geotag.jpg)
 
@@ -113,7 +128,7 @@ In this example, we will go over the basics of synchronising IMU measurements wi
 
 The autopilot and companion have different clock bases (boot-time for the autopilot and UNIX epoch for companion), so instead of skewing either clock, we directly observe the time offset between the clocks. This offset is added or subtracted from the timestamps in the mavlink messages (e.g `HIGHRES_IMU`) in the cross-middleware translator component (e.g Mavros on the companion and `mavlink_receiver` in PX4). The actual synchronisation algorithm is a modified version of the Network Time Protocol (NTP) algorithm and uses an exponential moving average to smooth the tracked time offset. This synchronisation is done automatically if Mavros is used with a high-bandwidth onboard link (MAVLink mode `onboard`).
 
-For acquiring synchronised image frames and inertial measurements, we connect the trigger inputs of the two cameras to a GPIO pin on the autopilot. The timestamp of the inertial measurement from mid-exposure, and a image sequence number is recorded and sent to the companion computer (`CAMERA_TRIGGER` message), which buffers these packets and the image frames acquired from the camera. They are matched based on the sequence number (first image frame is sequence 0), the images timestamped (with the timestamp from the `CAMERA_TRIGGER` message) and then published.
+For acquiring synchronised image frames and inertial measurements, we connect the trigger inputs of the two cameras to a GPIO pin on the autopilot. The timestamp of the inertial measurement from start of exposure and a image sequence number is recorded and sent to the companion computer (`CAMERA_TRIGGER` message), which buffers these packets and the image frames acquired from the camera. They are matched based on the sequence number (first image frame is sequence 0), the images timestamped (with the timestamp from the `CAMERA_TRIGGER` message) and then published.
 
 The following diagram illustrates the sequence of events which must happen in order to correctly timestamp our images.
 

@@ -1,23 +1,24 @@
-# Land Detector Configuration
+# 착륙 감지기(Land Detector) 설정
 
-The land detector is a dynamic vehicle model representing key vehicle states such as landed and ground contact.
+착륙 감지기는 착륙과 지상 접촉과 같은 비행체의 상태를 알려주는 동작 비행체 모델입니다.
 
-## Multicopter Land Detector Configuration
+## Auto-Disarming 설정
 
-The complete set of parameters is available in the QGroundControl parameter editor under the `LNDMC` prefix. The key parameters that might differ per airframe are these:
+디폴트로 착륙 감지기는 착륙을 감지합니다. 하지만 auto-disarm을 하지는 않습니다. 만약 `COM_DISARM_LAND`가 0이 아닌 값으로 설정되어 있다면 시스템은 N 초 후에\(설정되어 있는 값\) auto-disarm이 됩니다.
 
-* `LNDMC_MAN_DWNTHR` - the threshold \(in percent, default is 15%\) for how much manual throttle is allowed to be considering the state as landed. Systems with very high thrust-to-weight ratios like racers might need a lower setting here \(e.g. 8%\).
-* `MPC_THR_HOVER` - the hover throttle of the system \(in percent, default is 50%\). It is important to set this correctly as it does not only make the altitude control more accurate, but also ensures correct land detection. A racer or a big camera drone without payload mounted might need a much lower setting \(e.g. 35%\).
-* `LNDMC_POS_UPTHR` - throttle level to trigger takeoff \(in percent, default is 65%\). If the pilot raises above this threshold the system will attempt to take off. This value should be greater than the hover throttle.
+## 멀티콥터 착륙 감지기 설정
 
-## Fixed Wing Land Detector Configuration
+파라미터의 전체 집합은 `LNDMC` 접두어로 시작하는 QGroundControl 파라미터 에디터에서 설정할 수 있습니다. airframe마다 다른 핵심 파라미터는 다음과 같이 :
 
-The complete set of parameters is available under the `LNDFW` prefix. These two user parameters are sometimes worth tuning:
+* `LNDMC_MAN_DWNTHR` - 상태를 착륙이라고 볼 수 있는 수동 스로틀에 대한 임계값 \(퍼센티지로 디폴트 15%\). 레이서아 같이 아주 높은 thrust-to-weight 비율은 더 낮은 셋팅이 필요하다.\(예로 8%\)
+* `MPC_THR_HOVER` - 시스템의 hover 스로틀\(퍼센티지로 디폴트 50%\). altitude 제어를 정확하게 하는 목적이 아니라 정확히 착륙 감지를 하기 위해서는 이를 정확하게 설정하는 것이 중요하다. 페이로드가 없는 레이서와 큰 카메라 드론은 더 낮게 셋팅해야함\(예로 35%\)
+* `MPC_THR_MIN` - 시스템의 전체 최소 스로틀. 제어되면서 내려오도록 설정해야함.
+* `LNDMC_THR_RANGE` - 착륙시 수용하는 최소화 hover 스로틀 사이에 범위를 정의하기 위해서 스케일링 팩터로 사용. 예제: 최소 스로틀이 0.1이면 hover 스로틀은 0.5이고 범위는 0.2 \(20%\) 입니다. 착륙에서 카운트하는 가장 높은 스로틀 값은 최소 스로틀 + \(0.5 - 0.1\) \* 0.2 = 0.08. 따라서 전체 스로틀은 0.18.
+* `LNDMC_POS_UPTHR` - 트리거 이륙에 대한 스로틀 레벨\(퍼센티지로 디폴트 65%\). 만약 조정자가 이 임계값 위로 높이면 시스템은 이륙하게 됩니다. 이 값은 hover 스로틀보다 커야합니다.
 
-* `LNDFW_AIRSPD_MAX` - the maximum airspeed allowed for the system still to be considered landed. The default of 8 m/s is a reliable tradeoff between airspeed sensing accuracy and triggering fast enough. Better airspeed sensors should allow lower values of this parameter.
-* `LNDFW_VELI_MAX` - the maximum velocity for the system to be still considered landed. This parameter can be adjusted to ensure a sooner or later land detection on throwing the airframe for hand-launches.
+## 고정익 착륙 감지기 설정
 
+파라미터의 전체 집합은 `LNDFW` 접두어로 시작하는 QGroundControl 파라미터 에디터에서 설정할 수 있습니다. 2개 사용자 파라미터는 가끔씩 튜닝이 필요합니다. :
 
-
-
-
+* `LNDFW_AIRSPD_MAX` - 시스템이 허용하는 최대 airspeed는 착륙시 고려. 디폴트 값인 8 m/s는 airspeed 센싱 정확도와 빠른 트리거링을 고려했을 때 신뢰할 수 있음. 더 성능이 좋은 airspeed 센서를 사용하는 경우 이 파라미터 값을 더 낮게 설정 가능.
+* `LNDFW_VELI_MAX` - 시스템에 대한 최대 속도에서 여전히 착륙시 고려. 이 파라미터는 손으로 던져서 airframe 런칭하는 경우 착륙 감지를 시작하는 때를 조정할 수 있습니다.

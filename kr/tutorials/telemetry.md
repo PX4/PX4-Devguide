@@ -1,12 +1,12 @@
-# Telemetry
-Telemetry can be used to communicate with QGroundControl and is very useful especially for tuning for example as parameters can be changed without plugging in a cable each time.
+# 텔레메트리
+텔레메트리는 QGroundControl과 통신하는데 사용하며 파라미터로 튜닝하는데 특히 유용합니다. 예로 매번 케이블을 연결하지 않아도 파라미터를 변경할 수 있습니다.
 
-## 3DR WIFI Telemetry
-With the 3DR WIFI Telemetry you just need one transmitter (provided you have a WIFI card/stick in your computer/tablet). Just connect the module to the ```TELEM``` port and it should act as a WIFI station.
+## 3DR WIFI 텔레메트리
+3DR WIFI 텔레메트리를 사용하면 트랜스미터가 하나만 있어도 됩니다. (컴퓨터나 타블릿에 WIFI 카드/스틱이 있으면 가능) 모듈을 ```TELEM``` 포트에 연결하면 WIFI 스테이션으로 동작합니다.
 ```sh
 essid: APM_PIX
 password: 12345678
 ```
-Once connected to the WIFI, it should automatically connect to QGroundControl.
+일단 WIFI에 연결하면 자동으로 QGroundControl에 연결해야 합니다.
 ![](../../assets/hardware/3dr_wifi_1.JPG)
 ![](../../assets/hardware/3dr_wifi_2.png)

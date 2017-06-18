@@ -16,7 +16,7 @@ To conveniently manage your custom code and pull in updates from the main reposi
   - Go to the [Firmware repository website](https://github.com/px4/Firmware/) and click **FORK** on the upper right part.
   - If you are not already there, open the website of your fork and copy the private repository URL in the center.
   - Clone the repository to your hard drive, e.g. on the command line via `git clone https://github.com/<youraccountname>/Firmware.git`. Windows users please [refer to the Github help](https://help.github.com/articles/set-up-git#platform-windows) and e.g. fork / clone with their Github for Windows app.
-  - Update the git submodules: Run in your shell (on Windows in the PX4 console). 
+  - Update the git submodules: Run in your shell (on Windows in the PX4 console).
 
 <div class="host-code"></div>
 
@@ -25,7 +25,7 @@ cd Firmware
 git submodule init
 git submodule update --recursive
 ```
-  
+
 Enter the `Firmware/src/examples/` directory on your local hard drive and look at the files in the directory.
 
 ## Step 2: Minimal Application
@@ -100,7 +100,7 @@ int px4_simple_app_main(int argc, char *argv[])
 
 ## Step 3: Register the Application in NuttShell and build it
 
-The application is now complete and could be run, but it is not registered as NuttShell command yet. To enable the compilation of the application into the firmware, add it to the list of modules to build, which is here: 
+The application is now complete and could be run, but it is not registered as NuttShell command yet. To enable the compilation of the application into the firmware, add it to the list of modules to build, which is here:
 
   * Posix SITL: [Firmware/cmake/configs/posix_sitl_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_sitl_default.cmake)
   * Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
@@ -153,14 +153,14 @@ Type ''help'' and hit ENTER
 ```sh
   nsh> help
     help usage:  help [-v] [<cmd>]
-  
+
     [           df          kill        mkfifo      ps          sleep       
     ?           echo        losetup     mkrd        pwd         test        
     cat         exec        ls          mh          rm          umount      
     cd          exit        mb          mount       rmdir       unset       
     cp          free        mkdir       mv          set         usleep      
     dd          help        mkfatfs     mw          sh          xd          
-  
+
   Builtin Apps:
     reboot
     perf
@@ -185,7 +185,7 @@ The application is now correctly registered with the system and can be extended 
 
 To do something useful, the application needs to subscribe inputs and publish outputs (e.g. motor or servo commands). Note that the *true* hardware abstraction of the PX4 platform comes into play here -- no need to interact in any way with sensor drivers and no need to update your app if the board or sensors are updated.
 
-Individual message channels between applications are called *topics* in PX4. For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/topics/sensor_combined.h) [topic](../middleware/uorb.md), which holds the synchronized sensor data of the complete system.
+Individual message channels between applications are called *topics* in PX4. For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) [topic](../middleware/uorb.md), which holds the synchronized sensor data of the complete system.
 
 Subscribing to a topic is swift and clean:
 
