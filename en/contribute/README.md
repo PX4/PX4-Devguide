@@ -12,6 +12,17 @@ To contribute new functionality, [sign up for Github](https://help.github.com/ar
 
 All contributions have to be under the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause) and all code must not impose any further constraints on the use.
 
+## Code style formatting
+
+PX4 uses [astyle](http://astyle.sourceforge.net/) for code formatting. Valid versions are
+* [astyle 2.05.1](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.05.1/) (apt-get default)
+* [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/) (recommended)
+* [astyle 3.0](https://sourceforge.net/projects/astyle/files/astyle/astyle%203.0/)
+
+Once installed, formatting can be checked with `./Tools/check_code_style_all.sh`. The output should be `Format checks passed` on a clean master. If that worked, `make format` can be used in the future to check and format all files automatically.
+
+> **Info** There is a known issue resulting in a huge diff with versions 2.05.1 and 2.06 from [PX4](https://github.com/PX4/astyle). In that case, try a clean installed version 2.06 or 3.0 from [sourceforge](http://astyle.sourceforge.net/).
+
 ## Commits and Commit Messages
 
 Please use descriptive, multi-paragraph commit messages for all non-trivial changes. Structure them well so they make sense in the one-line summary but also provide full detail.
@@ -63,6 +74,3 @@ The PX4 Dev Team syncs up on its weekly dev call.
 * Phone: +1 415-891-1494
 * The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
 * Issues and PRs may be labeled [devcall](https://github.com/PX4/Firmware/labels/devcall) to flag them for discussion
-
-
-
