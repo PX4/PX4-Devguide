@@ -5,7 +5,7 @@ translated_sha: e1883b9506bf686e8d0ec3984b1d0262745cf444
 
 # 相机触发器
 
-官网英文原文地址:http://dev.px4.io/advanced-camera-trigger.html
+官网英文原文地址: http://dev.px4.io/advanced-camera-trigger.html
 
 相机触发驱动器是为了让AUX端口发出一个脉冲来触发相机. 这个可以用于多个应用程序，包括航测和重建照片、同步多相机系统或者视觉惯性导航.
 
@@ -15,7 +15,7 @@ translated_sha: e1883b9506bf686e8d0ec3984b1d0262745cf444
 
 支持四种不同的模式，由`TRIG_MODE`参数控制
 
-* `TRIG_MODE` 1 就像一个基本的定时曝光器，可以使用MAVLink命令`MAV_CMD_DO_TRIGGER_CONTROL`使能或禁用。 有关详细信息，请参阅[命令界面](../zh/tutorials/camera_trigger.html#command-interface)。
+* `TRIG_MODE` 1 就像一个基本的定时曝光器，可以使用MAVLink命令`MAV_CMD_DO_TRIGGER_CONTROL`使能或禁用。 有关详细信息，请参阅[命令界面](#command-interface)。
 * `TRIG_MODE` 2 不断打开定时曝光器。
 * `TRIG_MODE` 3 每次超过设定的水平距离时都会拍摄照片。然而，两个镜头之间的最小时间间隔受限于设置的触发间隔。
 * `TRIG_MODE` 4 在任务模式下飞行测量时自动触发。
