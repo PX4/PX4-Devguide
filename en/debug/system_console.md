@@ -108,6 +108,7 @@ nsh> free
 ```
 
 ## MAVLink Shell
+
 For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be
 accessed via mavlink. This works via serial link or WiFi (UDP/TCP). Make sure
 that QGC is not running, then start the shell with e.g.
@@ -116,6 +117,7 @@ get a description of all available arguments. You may first have to install the
 dependencies with `sudo pip install pymavlink pyserial`.
 
 # Snapdragon DSP Console
+
 When you are connected to your Snapdragon board via usb you have access to the px4 shell on the posix side of things.
 The interaction with the DSP side (QuRT) is enabled with the `qshell` posix app and its QuRT companion.
 
