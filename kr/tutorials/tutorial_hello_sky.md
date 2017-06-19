@@ -1,22 +1,22 @@
-# First App Tutorial (Hello Sky)
+# 첫번째 App 만들기 튜터리얼 (Hello Sky)
 
-This tutorial explains in detail how to create a new onboard application and how to run it.
+여기서는 새로운 온보드 어플리케이션을 만드는 방법과 실행하는 방법을 상세하게 설명합니다.
 
-## Prerequisites
+## 전제 조건
 
-  * Pixhawk or Snapdragon compatible autopilot
-  * PX4 Toolchain [installed](../setup/dev_env.md)
-  * Github Account ([sign up for free](https://github.com/signup/free))
+  * Pixhawk나 Snapdragon 호환 autopilot
+  * PX4 툴체인 [설치](../setup/dev_env.md)
+  * Github 계정 ([무료 가입](https://github.com/signup/free))
 
-## Step 1: File Setup
+## Step 1: 파일 셋업
 
-To conveniently manage your custom code and pull in updates from the main repository, it is recommended to fork the Firmware repository with the GIT version control system:
+편라히게 커스텀 코드를 관리하기 위해서 main 저장소에서 업데이트된 내용을 가지고 옵니다. GIT 버전 관리 시스템으로 Firmware 저장소를 fork하는 것을 추천합니다. :
 
-  - [Sign up](https://github.com/signup/free) for Github
-  - Go to the [Firmware repository website](https://github.com/px4/Firmware/) and click **FORK** on the upper right part.
-  - If you are not already there, open the website of your fork and copy the private repository URL in the center.
-  - Clone the repository to your hard drive, e.g. on the command line via `git clone https://github.com/<youraccountname>/Firmware.git`. Windows users please [refer to the Github help](https://help.github.com/articles/set-up-git#platform-windows) and e.g. fork / clone with their Github for Windows app.
-  - Update the git submodules: Run in your shell (on Windows in the PX4 console).
+  - Github [가입하기](https://github.com/signup/free)
+  - [Firmware repository 사이트](https://github.com/px4/Firmware/)가서 오른쪽 상단의 **FORK** 를 클릭
+  - 여기까지 준비가 안된 경우라면 fork 웹사이트를 열고 가운데 있는 개별 저장소 URL을 복사
+  - 저장소를 하드 드라이브로 clone한다. `git clone https://github.com/<youraccountname>/Firmware.git` 명령을 사용. Windows 사용자는 [Github 도움말](https://help.github.com/articles/set-up-git#platform-windows)을 참고하세요.
+  - git submodules 업데이트 : 쉘에서 실행(윈도우에서는 PX4 콘솔에서 실행)
 
 <div class="host-code"></div>
 
@@ -26,15 +26,15 @@ git submodule init
 git submodule update --recursive
 ```
 
-Enter the `Firmware/src/examples/` directory on your local hard drive and look at the files in the directory.
+하드디스크의 `Firmware/src/examples/` 디렉토리로 진입해서 디렉토리 내부에 잇는 파일들을 살펴봅시다.
 
-## Step 2: Minimal Application
+## Step 2: 최소 단위 Application
 
-Create a new C file named `px4_simple_app.c` in the `px4_simple_app` folder (it will already be present, delete the existing file for the maximum educational effect).
+`px4_simple_app` 폴더에 `px4_simple_app.c`라는 파일을 생성합니다. (이미 존재하는 경우 교육효과를 극대화하기 위해서 기존 파일을 지우고 따라 합니다)
 
-Edit it and start with the default header and a main function.
+이 파일을 편집하고 기본 헤더와 main 함수로 시작합니다.
 
-> **Tip** Note the code style in this file - all contributions to PX4 should adhere to it.
+> **Tip** 이 파일에서 사용하는 코드 스타일은 PX4를 개발할 때 동일하게 적용됩니다.
 
 ```C
 /****************************************************************************
@@ -98,35 +98,35 @@ int px4_simple_app_main(int argc, char *argv[])
 }
 ```
 
-## Step 3: Register the Application in NuttShell and build it
+## Step 3: 이 Application을 NuttSheel에 등록하고 빌드하기
 
-The application is now complete and could be run, but it is not registered as NuttShell command yet. To enable the compilation of the application into the firmware, add it to the list of modules to build, which is here:
+이제 이 application은 완성되어 실행할 수 있습니다. 하지만 NuttShell command로 등록하지는 않았습니다. firmware 내부로 컴파일 가능하도록 하기 위해, build 대상 module 목록에 추가합니다. 위치는 아래와 같습니다. :
 
   * Posix SITL: [Firmware/cmake/configs/posix_sitl_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_sitl_default.cmake)
   * Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
   * Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
 
-Create a new line for your application somewhere in the file:
+파일내에서 특정 위치에 여러분이 작성한 application을 위해 한 줄 추가합니다.
 
   `examples/px4_simple_app`
 
-Build it:
+빌드하기:
 
   * Pixhawk v1/2: `make px4fmu-v2_default`
   * Pixhawk v3: `make px4fmu-v4_default`
 
-## Step 4: Upload and Test the app
+## Step 4: app을 업로드하고 테스트하기
 
-Enable the uploader and then reset the board:
+uploader를 활성화시키고 board를 리셋 :
 
   * Pixhawk v1/2: `make px4fmu-v2_default upload`
   * Pixhawk v3: `make px4fmu-v4_default upload`
 
-It should print before you reset the board a number of compile messages and at the end:
+보드를 리셋하기 전에 많은 컴파일 메시지를 프린트해야 하며 마지막에는 :
 
   `Loaded firmware for X,X, waiting for the bootloader...`
 
-Once the board is reset, and uploads, it prints:
+일단 board가 리셋되고 upload되고 이를 프린트한다. :
 
 <div class="host-code"></div>
 
@@ -139,16 +139,16 @@ Rebooting.
 [100%] Built target upload
 ```
 
-### Connect the console
+### 콘솔 연결하기
 
-Now connect to the [system console](../debug/system_console.md) either via serial or USB. Hitting ENTER will bring up the shell prompt:
+이제 시리얼이나 USB로 [시스템 콘솔](../debug/system_console.md)에 연결합니다. ENTER를 눌르면 쉘 프롬프트가 나타납니다:
 
 ```sh
   nsh>
 ```
 
 
-Type ''help'' and hit ENTER
+''help''를 입력하고 엔터를 누르면
 
 ```sh
   nsh> help
@@ -172,22 +172,22 @@ Type ''help'' and hit ENTER
     serdis
 ```
 
-Note that `px4_simple_app` is now part of the available commands. Start it by typing `px4_simple_app` and ENTER:
+이제 `px4_simple_app`는 사용할 수 있는 명령이 되었습니다. `px4_simple_app`을 입력하고 ENTER를 치면 :
 
 ```sh
   nsh> px4_simple_app
   Hello Sky!
 ```
 
-The application is now correctly registered with the system and can be extended to actually perform useful tasks.
+어플리케이션은 이제 시스템에 올바로 등록되었고 실제 task를 수행할 수 있게 확장할 수 있습니다.
 
-## Step 5: Subscribing Sensor Data
+## Step 5: 센서 데이터 subscribing
 
-To do something useful, the application needs to subscribe inputs and publish outputs (e.g. motor or servo commands). Note that the *true* hardware abstraction of the PX4 platform comes into play here -- no need to interact in any way with sensor drivers and no need to update your app if the board or sensors are updated.
+유용한 작업을 하기 위해서, 어플리케이션은 입력을 subscribe하고 출력(모터나 서보 명령)을 publish해야 합니다. 실제 PX4 플랫폼의 하드웨어 추상화는 여기서 중요한 역할을 하게 됩니다. -- 즉 board나 센서가 업데이트되더라도 센서 driver와 상호동작 그리고 여러분의 app을 업데이트하지 않아도 됩니다.
 
-Individual message channels between applications are called *topics* in PX4. For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) [topic](../middleware/uorb.md), which holds the synchronized sensor data of the complete system.
+어플리케이션 사이에 개별 메시지 채널을 PX4에서 *topics* 이라고 부릅니다. 여기서는 [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) [topic](../middleware/uorb.md) 에 초점을 둡니다. 이 topic은 시스템에서 동기화된 센서 데이터를 가집니다.
 
-Subscribing to a topic is swift and clean:
+topic을 subscribe하는 것은 빠르고 간편합니다 :
 
 ```C++
 #include <uORB/topics/sensor_combined.h>
@@ -195,9 +195,9 @@ Subscribing to a topic is swift and clean:
 int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 ```
 
-The `sensor_sub_fd` is a topic handle and can be used to very efficiently perform a blocking wait for new data. The current thread goes to sleep and is woken up automatically by the scheduler once new data is available, not consuming any CPU cycles while waiting. To do this, we use the [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) POSIX system call.
+`sensor_sub_fd`는 topic handle로서 새 데이터를 기다리는 작업을 매우 효과적으로 처리할 수 있습니다. 현재 thread가 sleep으로 빠지고 새 데이터가 들어오면 스케쥴러가 자동으로 깨워줍니다. 기다리는 동안 CPU cycle을 사용하지 않습니다. 이렇게 하기 위해서,  [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) POSIX system call을 사용합니다.
 
-Adding `poll()` to the subscription looks like (*pseudocode, look for the full implementation below*):
+`poll()`을 subscription에 추가하는 방법은 다음과 같습니다. (*pseudocode로 전체 구현은 아래에서 다룹니다.*)
 
 ```C++
 #include <poll.h>
@@ -227,7 +227,7 @@ while (true) {
 }
 ```
 
-Compile the app now by issuing
+이제 app을 컴파일합니다.
 
 <div class="host-code"></div>
 
@@ -235,15 +235,15 @@ Compile the app now by issuing
   make
 ```
 
-### Testing the uORB Subscription
+### uORB Subscription 테스팅
 
-The final step is to start your application as background application.
+마지막 단계는 여러분의 application을 백그라운드로 구동합니다.
 
 ```
   px4_simple_app &
 ```
 
-Your app will flood the console with the current sensor values:
+여러분의 app은 현재 센서 값을 콘솔에서 계속 출력합니다.:
 
 ```
   [px4_simple_app] Accelerometer:   0.0483          0.0821          0.0332
@@ -254,13 +254,13 @@ Your app will flood the console with the current sensor values:
   [px4_simple_app] Accelerometer:   0.0489          0.0804          0.0328
 ```
 
-It will exit after printing five values. The next tutorial page will explain how to write a deamon which can be controlled from the commandline.
+5개 값을 프린팅한 후에도 계속 살아 있습니다. 다음 튜터리얼 페이지에는 commandline으로 제어할 수 있는 deamon 작성 방법을 설명하겠습니다.
 
-## Step 7: Publishing Data
+## Step 7: 데이터 Publishing
 
-To use the calculated outputs, the next step is to *publish* the results. If we use a topic from which we know that the ''mavlink'' app forwards it to the ground control station, we can even look at the results. Let's hijack the attitude topic for this purpose.
+계산한 output을 사용하기 위해, 다음 단계로 결과를 *publish* 합니다. topic을 사용해서 ''mavlink'' app이 ground control station으로 전달한다면, 결과를 살펴볼 수 있습니다. 이런 목적으로 attitude topic을 가로채기합니다.
 
-The interface is pretty simple: Initialize the struct of the topic to be published and advertise the topic:
+인터페이스는 매우 단순합니다. : publish할 topic의 구조를 초기화하고 topic을 advertise합니다. :
 
 ```C
 #include <uORB/topics/vehicle_attitude.h>
@@ -271,13 +271,13 @@ memset(&att, 0, sizeof(att));
 orb_advert_t att_pub_fd = orb_advertise(ORB_ID(vehicle_attitude), &att);
 ```
 
-In the main loop, publish the information whenever its ready:
+main loop에서 준비가 되면, 정보를 publish합니다. :
 
 ```C
 orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
 ```
 
-The modified complete example code is now:
+수정한 전체 예제 코드는 아래와 같습니다. :
 
 ```C
 #include <px4_config.h>
@@ -367,16 +367,16 @@ int px4_simple_app_main(int argc, char *argv[])
 }
 ```
 
-## Running the final example
+## 최종 예제 실행하기
 
-And finally run your app:
+이제 마지막으로 여러분의 app을 실행 :
 
 ```sh
   px4_simple_app
 ```
 
-If you start QGroundControl, you can check the sensor values in the real time plot (Tools -> Analyze)
+QGroundControl을 시작하면, 실시간 plot으로 센서 값을 검사할 수 있습니다. (Tools -> Analyze)
 
-## Wrap-Up
+## 정리
 
-This tutorial covered everything needed to develop a "grown up" PX4 autopilot application. Keep in mind that the full list of uORB messages / topics is [available here](https://github.com/PX4/Firmware/tree/master/msg/) and that the headers are well documented and serve as reference.
+이 튜터리얼에서 PX4 autopilot application을 개발하는데 필요한 모든 것을 다뤘습니다. uORB 메시지의 전체 목록 / topic은 [여기에서](https://github.com/PX4/Firmware/tree/master/msg/) 확인할 수 있으며 헤더는 문서화가 잘 되어있고 레퍼런스 역할을 할 수 있다는 사실을 명심하세요.
