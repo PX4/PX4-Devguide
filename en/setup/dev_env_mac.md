@@ -1,4 +1,4 @@
-# Develepment Environment on Mac
+# Development Environment on Mac
 
 ## Command Line Tools
 
