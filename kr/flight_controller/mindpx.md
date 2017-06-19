@@ -6,7 +6,7 @@ MindPX 시리즈는 AirMind에서 만들었습니다. http://mindpx.net 를 참�
 
 ## 간략 요약
 
-> **Note** 메인 하드웨어 문서는 여기 : http://mindpx.net/assets/accessories/Specification9.18_3_pdf.pdf
+> **Note** 메인 하드웨어 문서는 [여기](http://mindpx.net/assets/accessories/Specification9.18_3_pdf.pdf)를 참고하세요.
 
 MindPX는 Pixhawk에서 브랜치한 차세대 autopilot 시스템으로 회로도와 구조를 개선하고 무인비행체를 보다 스마트하고 사용하게 편리하게 하기 위해서 새로운 기능으로 개선하였습니다.
 
@@ -14,13 +14,13 @@ MindPX은 전체 PWM 출력 채널을 16까지 늘렸습니다. (8개 메인 출
 
 ![](../../assets/hardware/hardware-mindpx-specs.png)
 
-  * Main System-on-Chip: STM32F427
-    * CPU: 32bits, 168 MHz ARM Cortex M4 with FPU
-    * RAM: 256 KB SRAM
-	* 2MB Flash
-	* ST Micro LSM303D 14 bit accelerometer/magnetometer
-	* MEAS MS5611 barometer
-	* InvenSense MPU6500 integrated 6-axis sensors
+* Main System-on-Chip: STM32F427
+  * CPU: 32bits, 168 MHz ARM Cortex M4 with FPU
+  * RAM: 256 KB SRAM
+  * 2MB Flash
+  * ST Micro LSM303D 14 bit accelerometer/magnetometer
+  * MEAS MS5611 barometer
+  * InvenSense MPU6500 integrated 6-axis sensors
 
 
   * 강조 기능 :
@@ -28,7 +28,7 @@ MindPX은 전체 PWM 출력 채널을 16까지 늘렸습니다. (8개 메인 출
     * 빌트인으로 분리된 추가 IMU
     * 모두 16 PWM 출력 채널 (8 main + 8 aux)
     * flow 연결을 위한 추가로 1개 I2C 포트
-    * companion computer 연결을 위한 추가로 1개 USB 포트 (built-in UART-to-USB convertor)
+    * companion computer 연결을 위한 추가로 1개 USB 포트 (built-in UART-to-USB 컨버터)
     * 개발용으로 debug 포트 제공
 
 ## 바로 시작하기
@@ -45,7 +45,7 @@ MindPX은 전체 PWM 출력 채널을 16까지 늘렸습니다. (8개 메인 출
 
 ### Pin
 
-[](../../assets/hardware/hardware-mindpx-pin.png)
+![](../../assets/hardware/hardware-mindpx-pin.png)
 
 |Num.|Description|Num.|Description|
 |:--:|:--:|:--:|:--:|
@@ -58,18 +58,18 @@ MindPX은 전체 PWM 출력 채널을 16까지 늘렸습니다. (8개 메인 출
 |7|TF card slot|15|Tricolor Light|
 |8|NRF/SPI(Remote Control)|16|Looper|
 
-[](../../assets/hardware/hardware-mindpx-looper.png)
+![](../../assets/hardware/hardware-mindpx-looper.png)
 
 ### Radio Receiver
 
 MindPX는 PPM/SBUS/DSM/DSM2/DSMX와 같이 다양한 라디오 수신기를 지원합니다.(V2.6 버전 이후) MindPX는 FrSky의 양방향 텔레메트리 D와 S.Pot를 지원합니다.
 
-상세 Pin 다이어그램은 [User Guide](http://mindpx.net/assets/accessories/UserGuide9.18_2_pdf.pdf)을 참조하세요.
+상세 Pin 다이어그램은 [사용자 가이드](http://mindpx.net/assets/accessories/UserGuide9.18_2_pdf.pdf)를 참조하세요.
 
 ### 빌드 방법
 
-[Getting Started](setup/getting_started.md)와 [Building the Code](setup/building_px4.md)을 따라하세요.
-그리고 MindPX에 대한 target명령은 \[nuttx_\]mindpx-v2_default 로 다음과 같습니다 :
+[Getting Started](../setup/getting_started.md)와 [Building the Code](../setup/building_px4.md)을 따라하세요.
+그리고 MindPX에 대한 target명령은 `nuttx_mindpx-v2_default`로 다음과 같습니다 :
 
 `make nuttx_mindpx-v2_default`
 
@@ -81,7 +81,7 @@ MindPX는 USB-TO-UART 브리지 IC가 보드에 포함되어 있습니다. micro
 
 ### 사용자 가이드
 
-> **Note** 사용자 가이드는 다음 링크를 참고하세요 : http://mindpx.net/assets/accessories/UserGuide9.18_2_pdf.pdf
+> **Note** 사용자 가이드는 [다음](http://mindpx.net/assets/accessories/UserGuide9.18_2_pdf.pdf) 링크를 참고하세요.
 
 ## 구매하기
 
@@ -89,4 +89,4 @@ MindPX는 USB-TO-UART 브리지 IC가 보드에 포함되어 있습니다. micro
 
 ## 지원
 
-보다 상세한 정보는 http://www.mindpx.org 에서 찾을 수 있습니다. 문의나 도움이 필요한 경우 <support@mindpx.net>로 메일로 전달해 주세요.
+보다 상세한 정보는 http://www.mindpx.org 에서 찾을 수 있습니다. 문의나 도움이 필요한 경우 [support@mindpx.net](mailto://support@mindpx.net)로 전달해 주세요.

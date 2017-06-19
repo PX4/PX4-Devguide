@@ -33,7 +33,7 @@
 
 ![Wodden panel fixture](../../assets/airframes/experimental/stampede/mounting_detail.jpg)
 
-특수 마운팅을 위해서 상단 판을 붙이기 위해서 rover와 함께 제공된 clip을 사용하기로 결정했습니다. 이를 위해 3D 프린팅을 사용하였고 CAD 파일은 다음과 같습니다. [여기](../../assets/airframes/experimental/stampede/plane_holders.zip).
+특수 마운팅을 위해서 상단 판을 붙이기 위해서 rover와 함께 제공된 clip을 사용하기로 결정했습니다. 이를 위해 3D 프린팅을 사용하였고 CAD 파일은 [다음](https://github.com/PX4/Devguide/raw/master/assets/airframes/experimental/stampede/plane_holders.zip)과 같습니다.
 
 > **Warning** 트레이닝 모드에서 ESC를 설정은 파워를 50% 줄여닌 것을 **강력 추천** 합니다.
 

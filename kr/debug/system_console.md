@@ -94,7 +94,7 @@ screen /dev/ttyXXX BAUDRATE 8N1
 
 'serial connection'를 선택하고 포트 파라미터를 다음과 같이 설정 :
 
-  * 57600 baud
+  * 57600 baud다
   * 8 data bits
   * 1 stop bit
 
@@ -108,9 +108,11 @@ nsh> free
 ```
 
 ## MAVLink Shell
+
 NuttX기반 시스템 (Pixhawk, Pixracer, ...)에 대해서 nsh 콘솔로도 mavlink로 접근이 가능합니다. 시리얼 링크나 WiFi (UDP/TCP)를 통해 동작합니다. QGC가 실행중이지 아니라는 것을 확인하고, 쉘을 시작합니다.(예로 `./Tools/mavlink_shell.py /dev/ttyACM0`) 사용 가능한 파라미터를 볼려면 `-h`을 사용합니다. 여러분은 먼저 `sudo pip install pymavlink pyserial`로 관련 프로그램을 설치해야할 수도 있습니다.
 
 # Snapdragon DSP 콘솔
+
 usb로 Snapdragon 보드에 연결한 경우, px4 쉘에 접근할 수 있습니다. DSP쪽(QuRT)와 연동은 `qshell` posix app과 QuRT 컴패니언으로 활성화시킵니다.
 
 USB로 Snapdragon에 연결해서 mini-dm을 열어서 DSP의 출력을 확인합니다. :

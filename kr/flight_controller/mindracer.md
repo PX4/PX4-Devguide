@@ -9,7 +9,7 @@ MindRacer 시리즈는 AirMind에서 제작했습니다. 참고 : http://mindpx.
 MindRacer는 소형 UAV용의 비행 플랫폼입니다. MindRacer는 MindPX를 기반으로 하였으며 모듈로 제공하는데 초점을 두어 폼팩터를 소형화시켰습니다. MindRacer는 flight controller이라기 보다는 일종의 플랫폼이라고 할 수 있습니다.
 MindRacer는 SEP(soldering-elimination-port)와 WEP(wiring-elimination-protocol) 컨셉으로 만들었습니다. SEP와 WEP 이전 기술에서 납땜과 선연결은 항상 UAV를 생산하고 튜닝하는데 주요 문제점으로 지적되어 왔습니다.
 
-> **Note** 주요 하드웨어 문서는 다음을 참고하세요. : http://mindpx.net/assets/accessories/mindracer_spec_v1.2.pdf
+> **Note** 주요 하드웨어 문서는 [여기](http://mindpx.net/assets/accessories/mindracer_spec_v1.2.pdf)을 참고하세요.
 
 - Ultra mini size, weight ~6g
 - High performance STM32F427 168MHz floating point processor, super fast throttle response
@@ -43,8 +43,8 @@ MindRacer는 SEP(soldering-elimination-port)와 WEP(wiring-elimination-protocol)
 
 ### 빌드 방법
 
-[Getting Started](setup/getting_started.md)와 [Building the Code](setup/building_px4.md)을 따라하세요.
-그리고 MindRacer에 대한 target명령은 \[nuttx_\]mindpx-v2_default 로 다음과 같습니다. (MindPX와 호환) :
+[Getting Started](../setup/getting_started.md)와 [Building the Code](../setup/building_px4.md)을 따라하세요.
+그리고 MindRacer에 대한 target명령은 `nuttx_mindpx-v2_default`로 다음과 같습니다. (MindPX와 호환) :
 
 `make nuttx_mindpx-v2_default`
 
@@ -60,12 +60,12 @@ MindRacer는 빌트인 UART-to-USB 컨버터를 가지고 있습니다. companio
 
 ### 사용자 가이드
 
-> **Note** 사용자 가이드는 다음 링크를 참고하세요 : http://mindpx.net/assets/accessories/mindracer_user_guide_v1.2.pdf
+> **Note** 사용자 가이드는 [여기](http://mindpx.net/assets/accessories/mindracer_user_guide_v1.2.pdf) 링크를 참고하세요.
 
 ## 구매하기
 
-인터넷 [AirMind Store](http://drupal.xitronet.com/?q=catalog)에서 구매할 수 있습니다. Amazon이나 eBay에서도 가능합니다.
+[AirMind Store](http://drupal.xitronet.com/?q=catalog)에서 구매할 수 있습니다. Amazon이나 eBay에서도 가능합니다.
 
 ## Support
 
-보다 상세한 정보는 http://www.mindpx.org 에서 찾을 수 있습니다. 문의나 도움이 필요한 경우 <support@mindpx.net>로 메일로 전달해 주세요.
+보다 상세한 정보는 http://www.mindpx.org 에서 찾을 수 있습니다. 문의나 도움이 필요한 경우 [support@mindpx.net](mailto::/support@mindpx.net)로 전달해 주세요.

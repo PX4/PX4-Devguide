@@ -22,7 +22,7 @@ sudo usermod -a -G dialout $USER
   [Pixracer](../flight_controller/pixracer.md), [Pixhawk 3 Pro](../flight_controller/pixhawk3_pro.md), [Crazyflie](../flight_controller/crazyflie2.md),
   [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
 * [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
-* Linux 기반 하드웨어: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md), Parrot Bebop
+* Linux 기반 하드웨어: [Raspberry Pi 2/3](../flight_controller/raspberry_pi_navio2.md), Parrot Bebop
 * 호스트 시뮬레이션: [jMAVSim SITL](../simulation/sitl.md) 와 [Gazebo SITL](../simulation/gazebo.md)
 
 > **Info** Make보다 빠르게 빌드하기 위해 [Ninja 빌드 시스템](../setup/dev_env_linux_boutique.md#ninja-build-system)을 설치합니다. 이미 설치되어 있다면 자동으로 선택해서 빌드하게 됩니다.
@@ -171,7 +171,7 @@ cmake \
 
 ### 패롯 비밥
 
-패롯 비밥으로 개발하는 경우 RPi 리눅스 툴체인을 설치해야만 합니다. [Raspberry Pi 하드웨어](../flight_controller/raspberry_pi.md)에 있는 설명을 참고하세요.
+패롯 비밥으로 개발하는 경우 RPi 리눅스 툴체인을 설치해야만 합니다. [Raspberry Pi 하드웨어](../flight_controller/raspberry_pi_navio2.md)에 있는 설명을 참고하세요.
 
 다음으로 ADB를 설치합니다.
 

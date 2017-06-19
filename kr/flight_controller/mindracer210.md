@@ -19,12 +19,12 @@ MR210은 flight controller로 MindRacer를 사용합니다. MR210은 완전한 �
 
 ### 사용자 가이드
 
-> **Note** 사용자 가이드는 다음 링크를 참고하세요 : http://mindpx.net/assets/accessories/MR210usermanual_pdf.pdf
+> **Note** 사용자 가이드는  [여기](http://mindpx.net/assets/accessories/MR210usermanual_pdf.pdf) 링크를 참고하세요.
 
 ### 구매하기
 
-인터넷 [AirMind Store](http://drupal.xitronet.com/?q=catalog)에서 구매할 수 있습니다. Amazon이나 eBay에서도 가능합니다.
+[AirMind Store](http://drupal.xitronet.com/?q=catalog)에서 구매할 수 있습니다. Amazon이나 eBay에서도 가능합니다.
 
 ### Support
 
-보다 상세한 정보는 http://www.mindpx.org 에서 찾을 수 있습니다. 문의나 도움이 필요한 경우 <support@mindpx.net>로 메일로 전달해 주세요.
+보다 상세한 정보는 http://www.mindpx.org 에서 찾을 수 있습니다. 문의나 도움이 필요한 경우 [support@mindpx.net](mailto://support@mindpx.net)로 전달해 주세요.
