@@ -30,7 +30,7 @@ sudo usermod -a -G dialout $USER
   [Pixracer](../flight_controller/pixracer.md), [Crazyflie](../flight_controller/crazyflie2.md),
   [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
 * [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
-* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md)、, Parrot Bebop
+* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md), Parrot Bebop
 * Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
 
 > 提示：安装[Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system)可以比make更快进行编译。如果安装了它就会自动选择使用它进行编译。
@@ -201,7 +201,7 @@ source ~/.profile
 
 ### Parrot Bebop
 
-Parrot Bebop的开发者应该安装树莓派的Linux工具链。请跟随[这里]((../flight_controller/raspberry_pi.md))的介绍进行安装。
+Parrot Bebop的开发者应该安装树莓派的Linux工具链。请跟随([这里](../flight_controller/raspberry_pi.md))的介绍进行安装。
 
 接下来安装ADB。
 
