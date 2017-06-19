@@ -1,42 +1,42 @@
-# UAVCAN Bootloader Installation
+# UAVCAN Bootloader 설치하기
 
-> **Warning** UAVCAN devices typically ship with a bootloader pre-installed. Do not follow the instructions in this section unless you are developing UAVCAN devices.
+> **Warning** UAVCAN 장치는 미리 bootloader를 설치하여 배송됩니다. UAVCAN 장치를 개발하는게 아니라면 이번 섹션을 따라할 필요는 없습니다.
 
-## Overview
+## 개요
 
-The PX4 project includes a standard UAVCAN bootloader for STM32 devices.
+PX4 프로젝트는 STM32 장치에 대해서 표준 UAVCAN bootloader를 포함하고 있습니다.
 
-The bootloader occupies the first 8–16 KB of flash, and is the first code executed on power-up. Typically, the bootloader performs low-level device initialization, automatically determines the CAN bus baud rate, acts as a UAVCAN dynamic node ID client to obtain a unique node ID, and waits for confirmation from the flight controller before proceeding with application boot.
+bootloader는 flash의 처음 8-16 KB를 차지하며 전원이 들어오면 가장 먼저 실행됩니다. 일반적으로 bootloader는 하위레벨 장치를 초기화하고 자동으로 CAN bus의 baud rate를 결정하며 고유의 node ID를 얻기 위해서 UAVCAN dynamic node ID client처럼 동작합니다. 그리고 application이 부트되기 전까지 flight controller의 확인을 위해 대기하게 됩니다.
 
-This process ensures that a UAVCAN device can recover from invalid or corrupted application firmware without user intervention, and also permits automatic firmware updates.
+이 절차를 통해 사용자의 개입없이도 유효하지 않거나 손상된 appliation 펌웨어로부터 UAVCAN 장치가 복구가능하도록 하며 또한 자동으로 펌웨어 업데이트도 허용합니다.
 
-## Prerequisites
+## 전제 조건
 
-Installing or updating the UAVCAN bootloader requires:
+UAVCAN bootloader를 설치하거나 업데이트시 필요한 것들 :
 
-* An SWD or JTAG interface (depending on device), for example the [BlackMagic Probe](http://www.blacksphere.co.nz/main/blackmagic) or the [ST-Link v2](http://www.st.com/internet/evalboard/product/251168.jsp);
-* An adapter cable to connect your SWD or JTAG interface to the UAVCAN device's debugging port;
-* A [supported ARM toolchain](../setup/dev_env.md).
+* SWD 혹은 JTAG 인터페이스(장치에 따라 다름), 예를 들면, [BlackMagic Probe](http://www.blacksphere.co.nz/main/blackmagic)나 [ST-Link v2](http://www.st.com/internet/evalboard/product/251168.jsp);
+* SWD와 JTAG 인터페이스를 UAVCAN 장치의 디버깅 포트에 연결하는 어답터 케이블;
+* [지원하는 ARM 툴체인](../setup/dev_env.md).
 
-## Device Preparation
+## 장치 준비
 
-If you are unable to connect to your device using the instructions below, it's possible that firmware already on the device has disabled the MCU's debug pins. To recover from this, you will need to connect your interface's NRST or nSRST pin (pin 15 on the standard ARM 20-pin connector) to your MCU's NRST pin. Obtain your device schematics and PCB layout or contact the manufacturer for details.
+아래 지시대로 장치를 연결할 수 없는 경우라면 장치에 설치된 펌웨어가 이미 MCU의 debug pin을 비활성화 시켰을 가능성이 있습니다. 이를 복구하기 위해서는 인터페이스의 NRST나 nSRST pin을(표준 ARM 20-pin 커넥터에서 pin 15) MCU의 NRST pin에 연결하는 것입니다. 여러분이 가지고 있는 장치의 회로도나 PCB 레이아웃을 구해보거나 제조사에 연락해서 상세한 내용을 파악할 수 있습니다.
 
-## Installation
+## 설치
 
-After compiling or obtaining a bootloader image for your device (refer to device documentation for details), the bootloader must be copied to the beginning of the device's flash memory.
+여러분 장치에 맞는 bootloader를 컴파일하거나 이미지를 구한 후라면 bootloader는 반드시 장치의 flash 메모리의 시작부분에 복사해야만 합니다.
 
-The process for doing this depends on the SWD or JTAG interface used.
+이를 수행하는 절차는 사용하는 SWD나 JTAG 인터페이스에 따라 달라집니다.
 
 ## BlackMagic Probe
 
-Ensure your BlackMagic Probe [firmware is up to date](https://github.com/blacksphere/blackmagic/wiki/Hacking).
+BlackMagic Proble의 [최신 펌웨어](https://github.com/blacksphere/blackmagic/wiki/Hacking)를 확인합니다.
 
-Connect the probe to your UAVCAN device, and connect the probe to your computer.
+UAVAN 장치와 컴퓨터에 probe를 연결합니다.
 
-Identify the probe's device name. This will typically be `/dev/ttyACM<x>` or `/dev/ttyUSB<x>`.
+probe의 장치 이름을 식별해야합니다. 일반적으로 `/dev/ttyACM<x>`나 `/dev/ttyUSB<x>`와 같은 형태입니다.
 
-Power up your UAVCAN device, and run:
+UAVCAN 장치에 전원을 넣고 실행 :
 
 <div class="host-code"></div>
 
@@ -44,7 +44,7 @@ Power up your UAVCAN device, and run:
 arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 ```
 
-At the `gdb` prompt, run:
+`gdb` 프롬프트에서 실행 :
 
 <div class="host-code"></div>
 
@@ -58,15 +58,15 @@ load
 run
 ```
 
-If `monitor swdp_scan` returns an error, ensure your wiring is correct, and that you have an up-to-date version of the BlackMagic firmware.
+`monitor swdp_scan`가 에러를 반환하면, 전선 연결이 제대로 되었는지 확인하고 최신버전의 펌웨어를 설치했는지 확인합니다.
 
 ## ST-Link v2
 
-Ensure you have a recent version—at least 0.9.0—of [OpenOCD](http://openocd.org).
+최소한 0.9.0버전의 [OpenOCD](http://openocd.org)를 사용합니다.
 
-Connect the ST-Link to your UAVCAN device, and connect the ST-Link to your computer.
+ST-Link를 UAVCAN 장치와 컴퓨터에 연결합니다.
 
-Power up your UAVCAN device, and run:
+UAVCAN 장치에 전원을 넣고 실행 :
 
 <div class="host-code"></div>
 
@@ -75,7 +75,7 @@ openocd -f /path/to/your/openocd.cfg &
 arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 ```
 
-At the `gdb` prompt, run:
+`gdb` 프롬프트에서 실행 :
 
 <div class="host-code"></div>
 
@@ -88,9 +88,9 @@ run
 ```
 ## Segger J-Link Debugger
 
-Connect the JLink Debugger to your UAVCAN device, and connect the JLink Debugger to your computer.
+JLink Debugger를 UAVCAN 장치와 컴퓨터에 연결합니다.
 
-Power up your UAVCAN device, and run:
+UAVCAN 장치에 전원을 넣고 실행 :
 
 <div class="host-code"></div>
 
@@ -109,11 +109,11 @@ At the `gdb` prompt, run:
 ```tar ext :2331
 load
 ```
-## Erasing Flash with SEGGER JLink Debugger
+## SEGGER JLink Debugger로 Flash 삭제하기
 
-As a recovery method it may be useful to erase flash to factory defaults such that the firmware is using the default parameters. Go to the directory of your SEGGER installation and launch JLinkExe, then run:
+복구하는 방법으로 flash를 지워서 펌웨어가 기본 parameter를 사용할 수 있게 하는 방법이 유용합니다. SEGGER 설치 디렉토리로 가서 JLinkExe를 띄우고 다음을 실행 :
 
     device <name-of-device>
     erase
-    
-Replace `<name-of-device>` with the name of the microcontroller, e.g. STM32F446RE for the Pixhawk ESC 1.6 or STM32F302K8 for the SV2470VC ESC.
+
+`<name-of-device>`를 마이크로컨트롤러의 이름으로 대체합니다. 예를 들자면 Pixhawk ESC 1.6인 경우는 STM32F446RE, SV2470VC ESC인 경우는 STM32F302K8가 됩니다.
