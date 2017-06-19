@@ -169,7 +169,7 @@ time.sleep(1)
 cmds = vehicle.commands
 cmds.clear()
 
-home = vehicle.location.global_frame
+home = vehicle.location.global_relative_frame
 
 # takeoff to 10 meters
 wp = get_location_offset_meters(home, 0, 0, 10);
