@@ -44,6 +44,8 @@ brew install graphviz protobuf
 brew install homebrew/science/opencv
 ```
 
+For more infos check [Gazebo simulation](../simulation/gazebo.md).
+
 
 ### jMAVSim simulation
 
@@ -53,6 +55,8 @@ ant:
 ```sh
 brew install ant
 ```
+
+For mor infos check [Basic simulation](../simulation/sitl.md).
 
 ## Snapdragon Flight
 
