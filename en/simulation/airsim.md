@@ -16,5 +16,5 @@ https://youtu.be/HNWdYrtw3f0
 
 ## SITL
 
-The instructions for [SITL setup are here](https://github.com/Microsoft/AirSim/blob/master/docs/prereq.md).
+The instructions for [SITL setup are here](https://github.com/Microsoft/AirSim/blob/master/docs/sitl.md).
 
