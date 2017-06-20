@@ -1,6 +1,8 @@
 # DJI Flamewheel 450 with distance sensor and RTK GPS
 -------------------------
 
+{% youtube %}https://www.youtube.com/watch?v=JovSwzoTepU{% endyoutube %}
+
 ![](../../assets/airframes/multicopter/Flamewheel_450/f450_setup_full.JPG)
 
 ![](../../assets/airframes/multicopter/Flamewheel_450/f450_setup_back.JPG)
