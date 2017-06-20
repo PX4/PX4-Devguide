@@ -94,7 +94,7 @@ make posix gazebo_rover
 
 ## Change World
 
-The current default world is the iris.wold located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds). The default surrounding in the iris.world uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, it is recommended to change the model in iris.model from uneven_ground to asphalt_plane.
+The current default world is the iris.world located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds). The default surrounding in the iris.world uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, it is recommended to change the model in iris.model from uneven_ground to asphalt_plane.
 
 ## Taking it to the Sky
 
@@ -159,7 +159,7 @@ make posix_sitl_default gazebo_none_ide
 ```
   * In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
   * Start the debug session directly from IDE
-This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
+  This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
 
 ## Extending and Customizing
 
