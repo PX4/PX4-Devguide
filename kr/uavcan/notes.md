@@ -1,26 +1,11 @@
-# Various Notes
+# 여러 가지 노트
 
-This is a collection of tips and tricks to solve issues when setting up or working with the UAVCAN.
+여기에는 UAVAN을 셋업하고 동작할때 문제를 해결하기 위해서 방법들을 모아두었습니다.
 
-### Arm but motors not spinning
+### arm은 되었으나 모터가 회전하지 않는 경우
 
-If the PX4 Firmware arms but the motors do not start to rotate, check the parameter **UAVCAN\_ENABLE**. It should be set to 3 in order to use the ESCs connected via UAVCAN as output. Moreover, if the motors do not start spinning before thrust is increased, check **UAVCAN\_ESC\_IDLT** and set it to one.
+PX4 펌웨어가 arm이지만 모터가 회전하지 않는다면 **UAVCAN\_ENABLE** 파라미터를 체크하세요. 출력으로 UAVCAN을 통해 연결된 ESC를 사용하기 위해서 3으로 설정해야만 합니다. 더우기 thrust가 증가하기 전에 모터가 회전하지 않는다면 **UAVCAN\_ESC\_IDLT** 을 체크하고 1로 설정하세요.
 
-### Debugging with Zubax Babel
+### Zubax Babel로 디버깅하기
 
-A great tool to debug the transission on the UAVCAN bus is the [Zubax Babel](https://docs.zubax.com/zubax_babel) in combination with the [GUI tool](http://uavcan.org/GUI_Tool/Overview/). They can also be used independently from Pixhawk hardware in order to test a node or manually control UAVCAN enabled ESCs.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+UAVCAN 버스에서 트랜지션을 디버깅하기에 훌륭한 도구는 [Zubax Babel](https://docs.zubax.com/zubax_babel)로 [GUI 도구](http://uavcan.org/GUI_Tool/Overview/)와 결합되어 있습니다. node를 테스트하거나 수동으로 UAVCAN이 활성화된 ESC를 제어하는데 Pixhawk 하드웨어와 독립되어서 사용할 수도 있습니다.

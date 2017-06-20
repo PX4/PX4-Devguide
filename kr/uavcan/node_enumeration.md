@@ -1,9 +1,9 @@
-# UAVCAN Enumeration and Configuration
+# UAVCAN 열거와 설정
 
-> **Note** Enable UAVCAN as the default motor output bus by ticking the 'Enable UAVCAN' checkbox as shown below. Alternatively the UAVCAN_ENABLE parameter can be set to '3' in the QGroundControl parameter editor. Set it to '2' to enable CAN, but leave motor outputs on PWM.
+> **Note** 아래에서 보는 바와 'Enable UAVCAN' 체크박스를 체크해서 디폴트 모터 출력 버스로 UAVCAN을 활성화시킬 수 있습니다. 대안으로 UAVCAN ENABLE 파라미터를 QGroundControl 파라미터 편집기에서 '3'으로 설정할 수 있습니다. '2'로 설정하면 CAN이 활성화되지만 모터 출력은 PWM을 유지합니다.
 
-Use [QGroundControl](../qgc/README.md) and switch to the Setup view. Select the Power Configuration on the left. Click on the 'start assignment' button.
+[QGroundControl](../qgc/README.md)를 사용하고 Setup view로 전환합니다. 왼쪽에 Power Configuration을 선택합니다. 'start assignment' 버튼을 클릭합니다.
 
-After the first beep, turn the propeller on the first ESC swiftly into the correct turn direction. The ESCs will all beep each time one is enumerated. Repeat this step for all motor controllers in the order as shown on the [motor map](../airframes_multicopter/motor_map.md). This step has to be performed only once and does not need to be repeated after firmware upgrades.
+첫번째 비프음 후에, 첫번째 ESC에 있는 프로펠러가 잽싸게 올바른 방향으로 회전합니다. ESC는 모두 비프음이 나고 한 번에 하나만 열거됩니다. [motor map](../airframes_multicopter/motor_map.md)에서 보는바와 같이 순서대로 모든 모터 제어기에 대해서 이 단계를 되풀이하게 됩니다. 이 단계는 한 번만 수행되고 펌웨어 업그레이드 후에는 반복할 필요가 없습니다.
 
-![UAVCAN Enumeration Controls (bottom right of image)](../../assets/uavcan-qgc-setup.png)
+![UAVCAN 열거 컨트롤 (이미지의 바닥 오른쪽)](../../assets/uavcan-qgc-setup.png)
