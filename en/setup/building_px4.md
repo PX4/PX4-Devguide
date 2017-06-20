@@ -76,7 +76,7 @@ make posix_rpi_cross # for cross-compiler build
 ```
 
 The "px4" executable file is in the directory build_posix_rpi_cross/src/firmware/posix.
-Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](../flight_controller/raspberry_pi.md#developer-quick-start).
+Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](../flight_controller/raspberry_pi_navio2.md#developer-quick-start).
 
 Then set the IP (or hostname) of your RPi using:
 

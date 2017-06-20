@@ -25,7 +25,7 @@ import time, sys, argparse, math
 
 ```
 
-Connect to a Mavlink port of your drone or simulation
+Connect to a Mavlink port of your drone or simulation (e.g. [JMavSim](../simulation/sitl.md)).
 
 ```C
 # Connect to the Vehicle
@@ -104,8 +104,7 @@ def PX4setMode(mavMode):
 def get_location_offset_meters(original_location, dNorth, dEast, alt):
     """
     Returns a LocationGlobal object containing the latitude/longitude `dNorth` and `dEast` metres from the
-    specified `original_location`. The returned Location has the same `alt` value
-    as `original_location`.
+    specified `original_location`. The returned Location adds the entered `alt` value to the altitude of the `original_location`.
     The function is useful when you want to move the vehicle around specifying locations relative to
     the current vehicle position.
     The algorithm is relatively accurate over small distances (10m within 1km) except close to the poles.
@@ -164,7 +163,7 @@ time.sleep(1)
 cmds = vehicle.commands
 cmds.clear()
 
-home = vehicle.location.global_frame
+home = vehicle.location.global_relative_frame
 
 # takeoff to 10 meters
 wp = get_location_offset_meters(home, 0, 0, 10);

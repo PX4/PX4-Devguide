@@ -31,7 +31,7 @@ More information about the Snapdragon Flight platform is at [Snapdragon-Flight-D
 
 ## Recommended setup
 
-We use the Snapdragon Flight with the following setup.
+We suggest using the Snapdragon Flight with the following racer frame (250) and our custom hardware mounts. This setup uses a conventional PWM ESC board and therefore needs to be built with the `eagle_default` make target (see our instructions [here](../setup/building_px4.md)). If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board), please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md).
 
 ![](../../assets/hardware/snapdragon-setup_1.JPG)
 ![](../../assets/hardware/snapdragon-setup_4.JPG)
