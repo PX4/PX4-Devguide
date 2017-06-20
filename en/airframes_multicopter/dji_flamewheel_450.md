@@ -22,6 +22,12 @@ In addition we use a FrSky X4R-SB 3/16ch 2.4Ghz receiver and a FrSky Taranis con
 
 The Pixhawk 3 Pro can be attached using the double sided tape because the IMU inside is already dampened.
 
+In this setup the Pixhawk 3 Pro is rotated by 180 degrees so that it's easier to access
+the SD card. But if you rotate the base plate by 180 degrees instead, the flight
+controller board can be mounted facing forward. Either way works, just make sure
+to set the board rotation correctly in QGC afterwards.
+
+
 ## Wiring and connections
 
 General pinout for the Pixhawk 3 Pro can be found [here](https://pixhawk.drotek.com/en/inputs-outputs.html).
