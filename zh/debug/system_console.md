@@ -20,7 +20,7 @@ The system console is the location where all boot output (and applications auto-
 > **info**
 > USB shell: 如果只是运行几个简单的命令或测试应用程序，连接到USB shell就足够了。
 >MAVLink shell可以这么使用，参照下文。
->只有在调试启动流程或USB接口已被用于MAVlink连接地面站[GCS](qgroundcontrol-intro.md)的时候，才需要使用硬件串口console。
+>只有在调试启动流程或USB接口已被用于MAVlink连接地面站[GCS](../qgc/README.md)的时候，才需要使用硬件串口console。
 
 ## Snapdragon Flight : Console接线
 
