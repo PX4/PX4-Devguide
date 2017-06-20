@@ -14,7 +14,8 @@ translated_sha: e1883b9506bf686e8d0ec3984b1d0262745cf444
 
 支持四种不同的模式，由`TRIG_MODE`参数控制
 
-* `TRIG_MODE` 1 就像一个基本的定时曝光器，可以使用MAVLink命令`MAV_CMD_DO_TRIGGER_CONTROL`使能或禁用。 有关详细信息，请参阅[命令界面](#command-interface)。
+
+* `TRIG_MODE` 1 就像一个基本的定时曝光器，可以使用MAVLink命令`MAV_CMD_DO_TRIGGER_CONTROL`使能或禁用。 有关详细信息，请参阅[命令界面](../zh/tutorials/camera_trigger.html#command-interface)。
 * `TRIG_MODE` 2 不断打开定时曝光器。
 * `TRIG_MODE` 3 每次超过设定的水平距离时都会拍摄照片。然而，两个镜头之间的最小时间间隔受限于设置的触发间隔。
 * `TRIG_MODE` 4 在任务模式下飞行测量时自动触发。
