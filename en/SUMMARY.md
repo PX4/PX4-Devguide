@@ -32,7 +32,7 @@
   * [Writing an Application](tutorials/tutorial_hello_sky.md)
   * [Video streaming in QGC](qgc/video_streaming.md)
   * [Long-distance video streaming](qgc/video_streaming_wifi_broadcast.md)
-  * [UBlox M8P RTK](tutorials/rtk-gps.md)
+  * [u-blox M8P RTK](tutorials/rtk-gps.md)
   * [Camera Trigger](tutorials/camera_trigger.md)
   * [Integration Testing](test_and_ci/integration_testing.md)
   * [Optical Flow](tutorials/optical_flow.md)
