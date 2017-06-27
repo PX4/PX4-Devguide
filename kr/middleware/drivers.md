@@ -10,7 +10,7 @@ PX4는 가볍고 통합된 driver 추상 레이어를 사용합니다:
 
 ## 핵심 아키텍쳐
 
-PX4는 [reactive system](concept-architecture.md)으로 pub/sub을 사용해서 메시지를 전송합니다. 파일 핸들이 필요없으며 시스템을 운영하는 핵심입니다. 2개의 주요 API가 사용됩니다 :
+PX4는 [reactive system](../concept/architecture.md)으로 pub/sub을 사용해서 메시지를 전송합니다. 파일 핸들이 필요없으며 시스템을 운영하는 핵심입니다. 2개의 주요 API가 사용됩니다 :
 
   * publish / sucscribe 시스템으로 파일과 네트워크 혹은 백엔드로 공유 메모리를 가지는데 이는 PX4가 실행되는 시스템에 따라 달라집니다.
   * global device registry는 device를 열거하고 설정에 get/set 형태로 사용 가능합니다. 이는 linked list나 파일 시스템에 매핑처럼 간단하게도 가능합니다.

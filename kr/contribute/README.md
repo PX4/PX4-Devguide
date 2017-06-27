@@ -59,7 +59,7 @@ Reported-by: Name <email@px4.io>
 PX4 개발 팀은 매주 개발관련 내용에 대해서 대화를 나눕니다.
 
 * TIME: Wednesday 5PM CET, 11AM EST, 8AM PDT \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
-* Uberconference: [www.uberconference.com/lf-dronecode](/www.uberconference.com/lf-dronecode)
+* Uberconference: [www.uberconference.com/lf-dronecode](https://www.uberconference.com/lf-dronecode)
 * Phone: +1 415-891-1494
 * 아젠더는 미리 [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)에 공지
 * Issues와 PRs은 [devcall](https://github.com/PX4/Firmware/labels/devcall)로 레이블을 붙여서 토의
