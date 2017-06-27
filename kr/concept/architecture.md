@@ -1,4 +1,4 @@
-# Architectural Overview
+# 아키텍쳐 개요
 
 PX4는 2개 주요 레이어로 구성 : autopilot 소프트웨어 솔루션인 [PX4 flight stack](../concept/flight_stack.md)과 자동 로봇을 지원할 수 있는 일반적인 로보틱스 미들웨어인 [PX4 미들웨어](../concept/middleware.md)로 구성됩니다.
 
