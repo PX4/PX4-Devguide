@@ -15,7 +15,7 @@
     * [GIT 예제](contribute/git_examples.md)
 * [개념](concept/README.md)
   * [비행 모드](concept/flight_modes.md)
-  * [구조 개요](concept/architecture.md)
+  * [아키텍쳐 개요](concept/architecture.md)
   * [비행 스택](concept/flight_stack.md)
   * [미들웨어](concept/middleware.md)
   * [믹싱과 액츄레이터](concept/mixing.md)
@@ -142,7 +142,7 @@
   * [유지보수](test_and_ci/maintenance.md)
 
 
-  
+
 ## Dronecode 바로가기
 
 * [PX4 사용자 가이드](https://docs.px4.io/en/)
