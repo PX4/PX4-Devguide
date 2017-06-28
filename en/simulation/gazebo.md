@@ -18,21 +18,11 @@ The installation requires to install Gazebo and our simulation plugin.
 
 > ** Note ** Gazebo version 7 is recommended (the minimum version is Gazebo 6). If you run Linux and installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
 
-### Mac OS
-
-Mac OS requires Gazebo 7 which in turn requires xquartz and doesn't run without OpenCV.
-
-```sh
-brew cask install xquartz
-brew install homebrew/science/opencv
-brew install gazebo7
-```
-
-### Linux
-
-The PX4 SITL uses the Gazebo simulator, but does not depend on ROS. The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as normal flight code is.
+Check the [Linux](../setup/dev_env_linux.md) and [Mac](../setup/dev_env_mac.md) pages for install infos.
 
 #### ROS Users
+
+The PX4 SITL uses the Gazebo simulator, but does not depend on ROS. The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as normal flight code is.
 
 If you plan to use PX4 with ROS, make sure to follow the [Gazebo version guide for version 7](http://gazebosim.org/tutorials?tut=ros_wrapper_versions#Gazebo7.xseries) for ROS.
 
@@ -93,9 +83,18 @@ make posix_sitl_default gazebo_tailsitter
 
 ![](../../assets/gazebo/tailsitter.png)
 
+### Ackerman vehicle
+
+```sh
+make posix gazebo_rover
+```
+
+![](../../assets/gazebo/rover.png)
+
+
 ## Change World
 
-The current default world is the iris.wold located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds). The default surrounding in the iris.world uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, it is recommended to change the model in iris.model from uneven_ground to asphalt_plane.
+The current default world is the iris.world located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds). The default surrounding in the iris.world uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, it is recommended to change the model in iris.model from uneven_ground to asphalt_plane.
 
 ## Taking it to the Sky
 
@@ -160,7 +159,7 @@ make posix_sitl_default gazebo_none_ide
 ```
   * In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
   * Start the debug session directly from IDE
-This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
+  This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
 
 ## Extending and Customizing
 

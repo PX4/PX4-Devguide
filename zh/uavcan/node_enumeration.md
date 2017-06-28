@@ -10,7 +10,7 @@ translated: true
 
 使用 [QGroundControl](../qgc/README.md)并切换到设置界面，选择左侧的电源配置，点击`开始分配(start assignment)`按钮。
 
-第一次发出哔声后，将第一个ESC上的电机桨叶快速朝正确方向转动。 每次编号完成后，ESC都将发出蜂鸣声。对所有电机控制器按[电机映射图](../airframes_multicopter/motor_map.md)上显示的顺序重复此步骤。此步骤只能执行一次，不需要在固件升级后重复。
+第一次发出哔声后，将第一个ESC上的电机桨叶快速朝正确方向转动。 每次编号完成后，ESC都将发出蜂鸣声。对所有电机控制器按[电机映射图](../airframes/airframe_reference.md)上显示的顺序重复此步骤。此步骤只能执行一次，不需要在固件升级后重复。
 
 
 

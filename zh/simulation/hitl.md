@@ -14,11 +14,23 @@ PX4支持多旋翼（使用jMAVSim）和固定翼（使用X-Plane demo或者full
 
 ![](../../assets/gcs/qgc_hil_config.png)
 
-## 切换到Joystick输入
 
-如果相比遥控器更喜欢使用joystick，那么可以设置参数`COM_RC_IN_MODE`为1来启用joystick。可以在Command参数组中找到这个参数。
+## 使用jMAVSim (四旋翼)
 
-## 允许远程访问X-Plane
+- 确保QGroundControl没有运行（或通过串口访问设备）
+
+- 在HITL模式下运行jMAVSim(必要时更换串口):
+  ```
+  ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
+  ```
+
+- 控制台将显示从自驾仪发出的mavlink信息。
+
+- 然后运行QGroundControl并通过默认UDP配置进行连接。
+
+
+## 使用X-Plane
+#### 启用X-Plane的远程接口
 
 在X-Plane中必须进行两项关键设置：在Settings -&gt; Data Input and Output中，参照图中复选框设置：
 
@@ -28,13 +40,17 @@ PX4支持多旋翼（使用jMAVSim）和固定翼（使用X-Plane demo或者full
 
 ![](../../assets/gcs/xplane_net_config.png)
 
-## 在QGroundControl中启用硬件在环仿真
+### 在QGroundControl中启用HITL
 
 在Widgets -&gt; HIL Config中，选中下拉菜单中的X-Plane 10，点击'connect'。一旦系统成功连接，电池状态，GPS状态和飞行器位置应该变为有效：
 
 ![](../../assets/gcs/qgc_sim_run.png)
 
-## 在硬件在环仿真中执行自动飞行任务
+## 切换到Joystick输入
+
+如果相比遥控器更喜欢使用joystick，那么可以设置参数`COM_RC_IN_MODE`为1来启用joystick。可以在Command参数组中找到这个参数。
+
+## 在HITL中执行自动飞行任务
 
 切换到flight planning页面，在飞机前面放置一个路径点。点击同步图标向自驾仪发送路径点。
 

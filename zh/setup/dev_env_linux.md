@@ -30,7 +30,7 @@ sudo usermod -a -G dialout $USER
   [Pixracer](../flight_controller/pixracer.md), [Crazyflie](../flight_controller/crazyflie2.md),
   [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
 * [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
-* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md)、, Parrot Bebop
+* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi_navio2.md), Parrot Bebop
 * Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
 
 > 提示：安装[Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system)可以比make更快进行编译。如果安装了它就会自动选择使用它进行编译。
@@ -94,17 +94,19 @@ git clone https://github.com/ATLFlight/cross_toolchain.git
 ```
 
 
-Get the Hexagon SDK 3.0 from QDN: [https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin)
+从QDN上获得Hexagon SDK 3.0： [https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin)
 
-This will require a QDN login. You will have to register if you do not already have an account.
+需要登录到QDN。如果你还没有帐户，必须先注册一个。
 
-Now move the following files in the download folder of the cross toolchain as follows:
+
+
+将以下文件移动到交叉工具链的下载文件夹中：
 
 ```sh
 mv ~/Downloads/hexagon-sdk-v3-linux.bin cross_toolchain/downloads
 ```
 
-Install the toolchain and SDK like this:
+安装工具链和SDK，如下所示：
 
 ```sh
 cd cross_toolchain
@@ -112,9 +114,11 @@ cd cross_toolchain
 cd ..
 ```
 
-Follow the instructions to set up the development environment. If you accept all the install defaults you can at any time re-run the following to get the env setup. It will only install missing components.
+按照说明配置开发环境。如果你接受默认安装选项，则可以在之后随时重新运行下面的命令来配置开发环境。它只会安装缺少的组件。
 
-After this the tools and SDK will have been installed to "$HOME/Qualcomm/...". Append the following to your ~/.bashrc:
+
+
+执行后工具和SDK将被安装到`$HOME/Qualcomm/...`。 将以下内容添加到` ~/.bashrc`:
 
 ```sh
 export HEXAGON_SDK_ROOT="${HOME}/Qualcomm/Hexagon_SDK/3.0"
@@ -122,19 +126,19 @@ export HEXAGON_TOOLS_ROOT="${HOME}/Qualcomm/HEXAGON_Tools/7.2.12/Tools"
 export PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-4.9-2014.11-x86_64_arm-linux-gnueabihf_linux/bin:$PATH"
 ```
 
-Load the new configuration:
+加载新的配置：
 
 ```sh
 source ~/.bashrc
 ```
 
-#### Sysroot Installation
+#### Sysroot安装
 
-A sysroot is required to provide the libraries and header files needed to cross compile applications for the Snapdragon Flight applications processor.
+需要一个sysroot来提供交叉编译骁龙飞控应用处理器应用程序所需的库和头文件。
 
-The qrlSDK sysroot provies the required header files and libraries for the camera, GPU, etc.
+qrlSDK sysroot提供了摄像头、GPU等需要的头文件和链接库。
 
-Download the file [Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) and save it in `cross_toolchain/download/`.
+下载 [Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) 并保存到`cross_toolchain/download/`。
 
 ```sh
 cd cross_toolchain
@@ -142,19 +146,19 @@ unset HEXAGON_ARM_SYSROOT
 ./qrlinux_sysroot.sh
 ```
 
-Append the following to your ~/.bashrc:
+将以下内容添加到` ~/.bashrc`：
 
 ```sh
 export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/qrlinux_v3.1.1_sysroot
 ```
 
-Load the new configuration:
+加载新的配置：
 
 ```sh
 source ~/.bashrc
 ```
 
-For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
+有关sysroot的更多选项，请参见[Sysroot安装](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)。
 
 #### 升级ADSP固件
 
@@ -171,11 +175,11 @@ DSP的信息可以通过mini-dm查看。
 ```sh
 $HOME/Qualcomm/Hexagon_SDK/2.0/tools/mini-dm/Linux_Debug/mini-dm
 ```
-> Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+> **提示**: 在MAC上也可以使用[nano-dm](https://github.com/kevinmehall/nano-dm)。
 
 ### 树莓派
 
-树莓派开发者应该从下面地址下载树莓派Linux工具链。安装脚本会自动安装交叉编译工具链。如果想要用原生树莓派工具链在树莓派上直接编译，参见[这里](../flight_controller/raspberry_pi.md#native-builds-optional)。
+树莓派开发者应该从下面地址下载树莓派Linux工具链。安装脚本会自动安装交叉编译工具链。如果想要用原生树莓派工具链在树莓派上直接编译，参见[这里](../flight_controller/raspberry_pi_navio2.md#native-builds-optional)。
 
 <div class="host-code"></div>
 
@@ -189,17 +193,17 @@ cd rpi_toolchain
 
 如果不想把工具链安装在默认位置```/opt/rpi_toolchain```，可以执行``` ./install_cross.sh <PATH>```向安装脚本传入其它地址。安装脚本会自动配置需要的环境变量。
 
-Finally, run the following command to update the environmental variables:
+最后，运行以下命令更新环境变量：
+
 ```
 source ~/.profile
 ```
 
 ### Parrot Bebop
 
-Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the  
-description under [Raspberry Pi hardware](../flight_controller/raspberry_pi.md).
+Parrot Bebop的开发者应该安装树莓派的Linux工具链。请跟随([这里](../flight_controller/raspberry_pi_navio2.md))的介绍进行安装。
 
-Next, install ADB.
+接下来安装ADB。
 
 ``sh      
 sudo apt-get install android-tools-adb -y` ``

@@ -44,6 +44,22 @@ The `config.txt` file is loaded after the main system has been configured and *b
 
 The `extras.txt` can be used to start additional applications after the main system boot. Typically these would be payload controllers or similar optional custom components.
 
+> **Caution** Calling an unknown command in system boot files may result in boot failure. Typically the system does not stream mavlink messages after boot failure, in this case check the error messages that are printed on the system console.
+
+The following example shows how to start custom applications:
+  * Create a file on the SD card `etc/extras.txt` with this content:
+    ```
+    custom_app start
+    ```
+  * A command can be made optional by gating it with the `set +e` and `set -e` commands:
+    ```
+    set +e
+    optional_app start      # Will not result in boot failure if optional_app is unknown or fails
+    set -e
+
+    mandatory_app start     # Will abort boot if mandatory_app is unknown or fails
+    ```  
+
 ### Starting a custom mixer
 
 By default the system loads the mixer from `/etc/mixers`. If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
@@ -60,4 +76,3 @@ The following example shows how to add a custom aux mixer:
     set PWM_AUX_MAX 2000
     set PWM_AUX_RATE 50
     ```
-

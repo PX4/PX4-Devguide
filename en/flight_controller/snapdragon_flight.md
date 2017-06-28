@@ -31,23 +31,36 @@ More information about the Snapdragon Flight platform is at [Snapdragon-Flight-D
 
 ## Recommended setup
 
-We use the Snapdragon Flight with the following setup.
+We suggest using the Snapdragon Flight with the following racer frame (250) and our custom hardware mounts. This setup uses a conventional PWM ESC board and therefore needs to be built with the `eagle_default` make target (see our instructions [here](../setup/building_px4.md)). If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board), please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md).
 
-![](../../assets/hardware/snapdragon-setup.JPG)
+![](../../assets/hardware/snapdragon-setup_1.JPG)
+![](../../assets/hardware/snapdragon-setup_4.JPG)
 
 #### Components
-* [Quantum Falcon 250](https://hobbyking.com/en_us/quanum-falcon-billet-block-fpv-racing-frame.html?___store=en_us)
+* [Quantum Falcon 250](http://readme.dronesmith.io/docs/ql25) (includes ESCs and motors)
 * 3DR PIXHAWK MINI GPS
 * Trone range finder
 * Spektrum DXe and FPV Racing Serial Receiver (3.3V Autobind)
 
 Details on wiring can be found below.
 
-In order to mount the Snapdragon Flight, our custom board and camera mounts can be used (the optical flow mount is not needed for new generations):
-* [Board mounting plate](https://drive.google.com/open?id=0B2piootk_fIKeHpFX0wyejJkdXc)
-* [Hires camera mount 1](https://drive.google.com/open?id=0B2piootk_fIKdTlkX2c5c2IyNGM)
-* [Hires camera mount 2](https://drive.google.com/open?id=0B2piootk_fIKbkcxZndrQjFrc0E)
+In order to mount the Snapdragon Flight, our custom board and camera mounts can be used (the optical flow camera mount is not needed for newer generation boards):
+* [Board mounting plate, for  5mm dampers](https://drive.google.com/open?id=0B2piootk_fIKZ3YyRXQzR1A0ejQ)
+* [Board mounting plate, for  7mm dampers](https://drive.google.com/open?id=0B2piootk_fIKUUYzMEd6WWxmNnM)
+* [Hires camera mount, part 1](https://drive.google.com/open?id=0B2piootk_fIKdTlkX2c5c2IyNGM)
+* [Hires camera mount, part 2](https://drive.google.com/open?id=0B2piootk_fIKbkcxZndrQjFrc0E)
 * [Optical flow camera mount](https://drive.google.com/open?id=0B2piootk_fIKcXJRRW9ZT3hDTlk)
+
+To assemble the hires camera mount, additional screws (M2x6 or M1.6x6 should fit) have to be used.
+
+This particular setup uses vibration dampers with a 7mm mounting diameter which are similar to [these](https://hobbyking.com/en_us/vibration-damping-ball-50gram-8-pcs-bag.html). In addition, the following things are needed:
+* Screws, M3x12
+* O-rings, 3mm inner diameter
+* M3 washers, ~9mm for the inside
+* M3 washers, ~12mm for the outside
+
+![](../../assets/hardware/snapdragon-setup_5.JPG)
+![](../../assets/hardware/snapdragon-setup_3.JPG)
 
 
 ## Connectivity
@@ -162,7 +175,7 @@ Even though the 3DR GPS is described to have a 5v input, operation with 3.3V see
 
 ### PWM ESC Wiring
 
-For controlling the motors, PWM ESCs can be used. Use connector J13 (next to power module connector) and the following wiring. ESC numbers is according to [here](../airframes_multicopter/motor_map.md#quadrotor-x-layout).
+For controlling the motors, PWM ESCs can be used. Use connector J13 (next to power module connector) and the following wiring. ESC numbering is according to [here](../airframes/airframe_reference.md#quadrotor-x). The ESCs are powered using the ESC power distribution board that comes with the frame.
 
 | Snapdragon J13 Pin | ESC | Comment                   |
 | ------------------ | --- | ------------------------  |

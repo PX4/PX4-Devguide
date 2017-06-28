@@ -19,10 +19,10 @@ And then you have to logout and login again, as this is only changed after a new
 Update the package list and install the following dependencies for all PX4 build targets. PX4 supports four main families:
 
 * NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
-  [Pixracer](../flight_controller/pixracer.md), [Crazyflie](../flight_controller/crazyflie2.md),
+  [Pixracer](../flight_controller/pixracer.md), [Pixhawk 3 Pro](../flight_controller/pixhawk3_pro.md), [Crazyflie](../flight_controller/crazyflie2.md),
   [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
 * [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
-* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi.md), Parrot Bebop
+* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi_navio2.md), Parrot Bebop
 * Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
 
 > **Info** Install the [Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
@@ -34,6 +34,9 @@ sudo apt-get install python-argparse git-core wget zip \
     python-empy qtcreator cmake build-essential genromfs -y
 # simulation tools
 sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
+# required python packages
+sudo apt-get install python-pip
+sudo -H pip install pandas jinja2
 ```
 
 ### NuttX based hardware
@@ -125,27 +128,52 @@ Note: Alternatively, especially on Mac, you can also use [nano-dm](https://githu
 
 ### Raspberry Pi hardware
 
-Developers working on Raspberry Pi hardware should download the RPi Linux toolchain from below. The installation script will automatically install the cross-compiler toolchain. If you are looking for the _native_ Raspberry Pi toolchain to compile directly on the Pi, see [here](../flight_controller/raspberry_pi.md#native-builds-optional)
+Developers working on Raspberry Pi hardware need to download a ARMv7 cross-compiler, either GCC or clang.
+The recommended toolchain for raspbian is GCC 4.8.3 and can be cloned from `https://github.com/raspberrypi/tools.git`.
+The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
 
 ```sh
-git clone https://github.com/pixhawk/rpi_toolchain.git
-cd rpi_toolchain
-./install_cross.sh
+git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
+
+# test compiler
+$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
+
+# permanently update PATH variable by modifying ~/.profile
+echo 'export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin' >> ~/.profile
+
+# update PATH variable only for this session
+export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ```
 
-You will be required to enter your password for toolchain installation to complete successfully.
+#### clang
 
-You can pass a different path to the installer script if you wouldn't like to install the toolchain to the default location of `/opt/rpi_toolchain`. Run `./install_cross.sh <PATH>`. The installer will automatically configure required environment variables as well.
+In order to use clang, you also need GCC.
 
-Finally, run the following command to update the evironmental variables:
-```
-source ~/.profile
+Download clang for your specific distribution from [LLVM Download page](http://releases.llvm.org/download.html) and unpack it.
+Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
+
+Example below for building PX4 firmware out of tree, using CMake.
+```sh
+ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
+ln -s <CLANG_DIR>/bin/clang++ <GCC_DIR>/bin/clang++
+export PATH=<GCC_DIR>/bin:$PATH
+
+cd <PATH-TO-PX4-SRC>
+mkdir build_posix_rpi_cross_clang
+cd build_posix_rpi_cross_clang
+cmake \
+-G"Unix Makefiles" \
+-DCONFIG=posix_rpi_cross \
+-DCMAKE_C_COMPILER=clang \
+-DCMAKE_CXX_COMPILER=clang++ \
+..
+
 ```
 
 ### Parrot Bebop
 
 Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
-description under [Raspberry Pi hardware](../flight_controller/raspberry_pi.md).
+description under [Raspberry Pi hardware](../flight_controller/raspberry_pi_navio2.md).
 
 Next, install ADB.
 

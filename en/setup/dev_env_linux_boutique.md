@@ -95,8 +95,10 @@ sudo yum install glibc.i686 ncurses-libs.i686
 
 <div class="host-code"></div>
 
+Ensure you have the multilib repository enabled.
+
 ```sh
-sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip python-empy
+sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip
 ```
 
 Install [yaourt](https://wiki.archlinux.org/index.php/Yaourt#Installation), the package manager for the [Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository).
@@ -106,7 +108,7 @@ Then use it to download, compile and install the following:
 <div class="host-code"></div>
 
 ```sh
-yaourt -S genromfs
+yaourt -S genromfs python-empy
 ```
 
 #### Permissions
@@ -136,8 +138,7 @@ cd ~
 wget https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update/+download/gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2
 tar -jxf gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2
 exportline="export PATH=$HOME/gcc-arm-none-eabi-4_9-2015q3/bin:\$PATH"
-if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
-. ~/.profile
+if grep -Fxq "$exportline" ~/.bash_profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
 popd
 ```
 
@@ -149,10 +150,11 @@ cd ~
 wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
 exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:\$PATH"
-if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
-. ~/.profile
+if grep -Fxq "$exportline" ~/.bash_profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
 popd
 ```
+
+Now restart your machine.
 
 **If using Debian Linux, run this command:**
 

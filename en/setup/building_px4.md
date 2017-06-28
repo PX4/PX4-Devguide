@@ -28,7 +28,18 @@ cd Firmware
 make px4fmu-v2_default
 ```
 
-Note the syntax: 'make' is the build tool, 'px4fmu-v2' is the hardware / autopilot version and 'default' is the default configuration. All PX4 build targets follow this logic. A successful run will end with this output:
+Note the syntax: 'make' is the build tool, 'px4fmu-v2' is the hardware / autopilot version and 'default' is the default configuration. All PX4 build targets follow this logic.
+
+Build targets:
+* Crazyflie: `make crazyflie_default`
+* Intel® Aero RTF: `make aerofc-v1_default`
+* MindPX: `make mindpx-v2_default`
+* Pixhawk: `make px4fmu-v2_default`. You can use `make px4fmu-v3_default` for
+  boards that support 2MB Flash (such as Pixhawk mini)
+* Pixracer: `make px4fmu-v4_default`
+* Pixhawk 3 Pro: `make px4fmu-v4pro_default`
+
+A successful run will end with this output:
 
 ```sh
 [100%] Linking CXX executable firmware_nuttx
@@ -65,7 +76,7 @@ make posix_rpi_cross # for cross-compiler build
 ```
 
 The "px4" executable file is in the directory build_posix_rpi_cross/src/firmware/posix.
-Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](../flight_controller/raspberry_pi.md#developer-quick-start).
+Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](../flight_controller/raspberry_pi_navio2.md#developer-quick-start).
 
 Then set the IP (or hostname) of your RPi using:
 

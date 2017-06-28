@@ -145,7 +145,7 @@ tty-4 bam-2 2-wire
 
 ### PWM ESC Wiring
 
-For controlling the motors, PWM ESCs can be used. Use connector J13 (next to power module connector) and the following wiring. ESC numbers is according to [here](../airframes_multicopter/motor_map.md#quadrotor-x-layout).
+For controlling the motors, PWM ESCs can be used. Use connector J13 (next to power module connector) and the following wiring. ESC numbers is according to [here](../airframes/airframe_reference.md#quadrotor-x).
 
 | Snapdragon J13 Pin | ESC  | Comment                   |
 | ------------------ | ---- | ------------------------- |

@@ -3,14 +3,15 @@ translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/config_adv
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ---
 
-# Advanced Configuration
+# 高级配置
 
-The advanced system configuration is performed through [QGroundControl](../qgc/README.md).
 
-> **Tip** [Download the DAILY BUILD of QGroundControl](http://qgroundcontrol.com/downloads) in regular intervals to stay up to date.
+高级系统配置通过[QGroundControl](../qgc/README.md)执行。
 
-## Setting Configuration Parameters
+> **提示：** 定期下载DAILY BUILD版本的[QGroundControl](http://qgroundcontrol.com/downloads)以保持最新状态。
 
-The parameter menu is in the cogwheel tab at the bottom. Parameters are grouped per module, e.g. system parameters or attitude controller parameters. Clicking on the value opens a menu with further explanations and the option to change it.
+## 设置配置参数
+
+参数菜单位于底部的齿轮选项卡中。参数按模块分组，例如系统参数或姿态控制器参数。单击该值将打开一个进一步说明的菜单，并且可以更改该选项。
 
 ![](../../assets/gcs/setting-parameter.png)
