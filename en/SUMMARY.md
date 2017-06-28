@@ -77,6 +77,7 @@
   * [Boats, Submarines, Blimps, Rovers](airframes_experimental/README.md)
 * [Companion Computers](companion_computer/README.md)
   * [Pixhawk family companion](companion_computer/pixhawk_companion.md)
+  * [FlytOS](companion_computer/FlytOS.md)
 * [Robotics using DroneKit](dronekit/README.md)
   * [DroneKit usage](dronekit/example.md)
 * [Robotics using ROS](ros/README.md)
