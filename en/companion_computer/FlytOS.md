@@ -1,3 +1,5 @@
+# FlytOS 
+
 [FlytOS](https://flytbase.com) is a software framework which provides Drone APIs and SDKs for building high-level 
 drone applications such as aerial delivery, precision agriculture, surveys, photography, industrial inspections and disaster
 management. It is designed to enable drone-developers build advanced drone applications using its open APIs.
@@ -5,7 +7,7 @@ management. It is designed to enable drone-developers build advanced drone appli
 FlytOS is based on Linux and ROS (Robot Operating System), making it an ideal platform for building commercial as well as 
 research orientated drone applications. It supports a wide range of hardware options such as *Raspberry Pi 3, Odroid XU4, 
 Nvidia TX1, Intel Edison, Intel Aero and FlytPOD*. It uses MAVLink to communicate with the autopilot, and exposes high level
-FlytAPIs in *ROS, CPP, Python, REST and Websocket*. |
+FlytAPIs in *ROS, CPP, Python, REST and Websocket*.
 
 ![](https://github.com/persie09/Devguide/blob/master/assets/flytosccsupport.jpg)
  
