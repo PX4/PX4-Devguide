@@ -176,7 +176,7 @@ tty-4 bam-2 2-wire
 
 ### PWM ESC 배선
 
-모터 제어를 위해서 PWM ESC를 사용할 수 있습니다. J13 커넥터(파워 모듈 커넥터 옆)를 사용해서 배선합니다. ESC 넘버는 [여기](../airframes_multicopter/motor_map.md#quadrotor-x-layout)를 참조하세요.
+모터 제어를 위해서 PWM ESC를 사용할 수 있습니다. J13 커넥터(파워 모듈 커넥터 옆)를 사용해서 배선합니다. ESC 넘버는 [여기](../airframes/airframe_reference.md#quadrotor-x)를 참조하세요.
 
 | Snapdragon J13 Pin | ESC | Comment                   |
 | ------------------ | --- | ------------------------  |

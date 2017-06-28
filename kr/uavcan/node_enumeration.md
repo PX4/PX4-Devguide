@@ -4,6 +4,6 @@
 
 [QGroundControl](../qgc/README.md)를 사용하고 Setup view로 전환합니다. 왼쪽에 Power Configuration을 선택합니다. 'start assignment' 버튼을 클릭합니다.
 
-첫번째 비프음 후에, 첫번째 ESC에 있는 프로펠러가 잽싸게 올바른 방향으로 회전합니다. ESC는 모두 비프음이 나고 한 번에 하나만 열거됩니다. [motor map](../airframes_multicopter/motor_map.md)에서 보는바와 같이 순서대로 모든 모터 제어기에 대해서 이 단계를 되풀이하게 됩니다. 이 단계는 한 번만 수행되고 펌웨어 업그레이드 후에는 반복할 필요가 없습니다.
+첫번째 비프음 후에, 첫번째 ESC에 있는 프로펠러가 잽싸게 올바른 방향으로 회전합니다. ESC는 모두 비프음이 나고 한 번에 하나만 열거됩니다. [motor map](../airframes/airframe_reference.md)에서 보는바와 같이 순서대로 모든 모터 제어기에 대해서 이 단계를 되풀이하게 됩니다. 이 단계는 한 번만 수행되고 펌웨어 업그레이드 후에는 반복할 필요가 없습니다.
 
 ![UAVCAN 열거 컨트롤 (이미지의 바닥 오른쪽)](../../assets/uavcan-qgc-setup.png)

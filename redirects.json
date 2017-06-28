@@ -1,6 +1,10 @@
 {
     "redirects": [
             {
+                "from": "airframes_multicopter/motor_map.html",
+                "to": "en/airframes/airframe_reference.html"
+            },
+            {
                 "from": "git-examples.html",
                 "to": "en/contribute/git_examples.html"
             },
