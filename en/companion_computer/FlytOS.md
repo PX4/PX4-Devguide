@@ -9,9 +9,8 @@ research orientated drone applications. It supports a wide range of hardware opt
 Nvidia TX1, Intel Edison, Intel Aero and FlytPOD*. It uses MAVLink to communicate with the autopilot, and exposes high level
 FlytAPIs in *ROS, CPP, Python, REST and Websocket*.
 
-![](https://github.com/persie09/Devguide/blob/master/assets/flytosccsupport.jpg)
- 
-    Supported Companion Computers
+![](../../assets/flytosccsupport.jpg)
+
 
 This makes it easy to build high-level applications using computer-vision, machine-learning, cloud-connectivity and enables
 developers to create their custom user-interfaces on web/mobile devices of their choice. FlytOS also has modules to manage 
