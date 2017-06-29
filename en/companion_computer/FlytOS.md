@@ -18,7 +18,8 @@ payloads, security and updates. The modular design of FlytOS allows for integrat
 custom data plumbing between onboard and offboard apps. FlytOS aims to provide a standard language for the drone application
 developers to talk to their drones.
 
-[![](http://img.youtube.com/vi/CZFVWDN5Gcc/0.jpg)](http://www.youtube.com/watch?v=CZFVWDN5Gcc)
+{% youtube %}https://www.youtube.com/watch?v=CZFVWDN5Gcc{% endyoutube %}
+
 
 ![](../../assets/FlytOSArch.png)
    
@@ -39,12 +40,12 @@ requirement for flight-tests.
 Supported Companion Computers
 =============================
 
-* Raspberry Pi3 [installation instructions](http://docs.flytbase.com/docs/FlytOS/GettingStarted/RaspiGuide.html)
-* Odroid-XU4 [installation instructions](http://docs.flytbase.com/docs/FlytOS/GettingStarted/OdroidGuide.html)
-* Nvidia-TX1 [installation instructions](http://docs.flytbase.com/docs/FlytOS/GettingStarted/TX1Guide.html)
-* FlytPOD [installation instructions](http://docs.flytbase.com/docs/FlytOS/GettingStarted/FlytPODGuide.html)
-* Intel Edison [installation instructions](http://docs.flytbase.com/docs/FlytOS/GettingStarted/EdisonGuide.html)
-* Intel Aero [installation instructions](http://docs.flytbase.com/docs/FlytOS/GettingStarted/AeroGuide.html)
+* Raspberry Pi3 [[installation instructions]](http://docs.flytbase.com/docs/FlytOS/GettingStarted/RaspiGuide.html)
+* Odroid-XU4 [[installation instructions]](http://docs.flytbase.com/docs/FlytOS/GettingStarted/OdroidGuide.html)
+* Nvidia-TX1 [[installation instructions]](http://docs.flytbase.com/docs/FlytOS/GettingStarted/TX1Guide.html)
+* FlytPOD [[installation instructions]](http://docs.flytbase.com/docs/FlytOS/GettingStarted/FlytPODGuide.html)
+* Intel Edison [[installation instructions]](http://docs.flytbase.com/docs/FlytOS/GettingStarted/EdisonGuide.html)
+* Intel Aero [[installation instructions]](http://docs.flytbase.com/docs/FlytOS/GettingStarted/AeroGuide.html)
 * Intel Joule (*coming soon*)
 * Qualcomm Snapdragon Flight (*coming soon*)
 * Nvidia-TX2 (*coming soon*)
@@ -96,9 +97,9 @@ Vision-based Object-Tracking and Following
 ------------------------------------------
 
 FlytOS comes bundled with Vision-based Object-Tracking and Following module. To learn more about it, checkout 
-[this blog](http://blogs.flytbase.com/computer-vision-for-drones-part-2/)
+[this blog](http://blogs.flytbase.com/computer-vision-for-drones-part-2/).
 
-[![](http://img.youtube.com/vi/bom1VEcxwEA/0.jpg)](http://www.youtube.com/watch?v=bom1VEcxwEA)
+{% youtube %}https://www.youtube.com/watch?v=bom1VEcxwEA{% endyoutube %}
 
 Deep Learning with Nvidia
 -------------------------
@@ -107,7 +108,7 @@ Using FlytOS on Nvidia-TX1/Nvidia-TX2 opens up possible integration of deep lear
 you could install *caffe*, a popular deep learning framework by follwing our [deep learning tutorial](https://goo.gl/HwNMuY).
 We also have a sample [object classification and tracking](https://github.com/flytbase/flytos_tx1) example using caffe. [Read more](https://goo.gl/ZReoJ7).
 
-[![](http://img.youtube.com/vi/wSFYOw4VIYY/0.jpg)](http://www.youtube.com/watch?v=wSFYOw4VIYY)
+{% youtube %}https://www.youtube.com/watch?v=wSFYOw4VIYY{% endyoutube %}
 
 
 GPS based Object Following
