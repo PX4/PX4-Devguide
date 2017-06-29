@@ -20,10 +20,8 @@ developers to talk to their drones.
 
 [![](http://img.youtube.com/vi/CZFVWDN5Gcc/0.jpg)](http://www.youtube.com/watch?v=CZFVWDN5Gcc)
 
-
-![](https://github.com/persie09/Devguide/blob/master/assets/FlytOSArch.png)
+![](../../assets/FlytOSArch.png)
    
-    FlytOS Architecture Diagram
 
 Developer Tools
 ===============
