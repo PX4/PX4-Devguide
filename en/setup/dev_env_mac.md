@@ -6,7 +6,9 @@ The installation of Homebrew is quick and easy: [installation instructions](http
 
 ## Ground Control Software
 
-Download the [daily build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) of QGroundControl and put it into the standard /Applications folder.![](/assets/qgc_goto.jpg)
+Download the [daily build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) of QGroundControl and put it into the standard /Applications folder.
+
+![](../../assets/qgc_goto.jpg)
 
 ## Common Tools Needed
 
