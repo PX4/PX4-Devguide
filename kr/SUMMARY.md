@@ -87,7 +87,7 @@
     * [Traxxas Sampede](airframes_experimental/traxxas_stampede.md)
 * [컴패니온 컴퓨터](companion_computer/README.md)
   * [Pixhawk 계열](companion_computer/pixhawk_companion.md)
-* [DroneKit사용 로보틱스](dronekit/README.md)
+* [Robotics에서 Dronekit 사용하기](dronekit/README.md)
   * [DroneKit 사용법](dronekit/example.md)
 * [ROS사용 로보틱스](ros/README.md)
   * [Linux에서 오프보드 제어](ros/offboard_control.md)
