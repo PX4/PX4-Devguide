@@ -46,7 +46,7 @@ This commit guide is based on best practices for the Linux Kernel and other [pro
 
 ## Tests Flight Results
 
-Test flights are important for quality assurance. Please upload the logs from the microSD card to [Log Muncher](http://logs.uaventure.com) and share the link on the [PX4 Discuss](http://discuss.px4.io/) along with a verbal flight report.
+Test flights are important for quality assurance. Please upload the logs from the microSD card to the [Flight Log Review site](http://logs.px4.io/) and share the link on the [PX4 Discuss](http://discuss.px4.io/) along with a verbal flight report.
 
 ## Forums and Chat
 
