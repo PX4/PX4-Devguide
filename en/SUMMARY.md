@@ -121,7 +121,6 @@
   * [Indoor / Fake GPS](advanced/fake_gps.md)
   * [Logging](log/logging.md)
   * [Flight Log Analysis](log/flight_log_analysis.md)
-  * [EKF Log Replay](log/ekf2_log_replay.md)
   * [System-wide Replay](debug/system_wide_replay.md)
   * [Installing driver for Intel RealSense R200](advanced/realsense_intel_driver.md)
   * [Parrot Bebop](advanced/parrot_bebop.md)
