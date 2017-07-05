@@ -13,36 +13,22 @@ Information about available simulators and how to set them up are provided in th
 
 The following simulators work with PX4 for HITL and/or SITL simulation.
 
-Simulator | Description
+Simulator |Description
 ---|---
-[jMAVSim](https://github.com/px4/jMAVSim) | A simple multirotor simulator that allows you to fly *copter* type vehicles around a simulated world. <ul><li>This is probably the easiest simulator to set up with SITL</li><li>It can be used to test that your vehicle can take off, fly and land, and responds appropriately to various fail conditions (e.g. GPS failure).</li></ul>
-[Gazebo](../simulation/gazebo.md) | A powerful 3D simulation environment that is particularly suitable for testing object-avoidance and computer vision. <ul><li>It can also be used for <a href="../simulation/multi-vehicle-simulation.md">multi-vehicle Simulation</a><li>Gazebo is commonly used with <a href="../simulation/ros_interface.md">ROS</a>, a collection of tools for automating vehicle control.</li><li>If you're thinking about using ROS, then it is easier to <a href="../simulation/ros_interface.md">install the packages together</a>.</li></ul>
-[AirSim](../simulation/airsim.md) | An open-source, cross platform simulator that provides physically and visually realistic simulations.<ul><li>Supports either HITL or SITL.</li><li>This simulator is resource intensive, and requires a very significantly more powerful computer than the other simulators described here. </li></ul>
-[XPlane](../simulation/hitl.md) | X-Plane is a comprehensive and powerful flight simulator for personal computers and offers very realistic flight models.<ul><li>HITL only.</li></ul> 
+[jMAVSim](../simulation/jmavsim.md) | A simple multirotor simulator that allows you to fly *copter* type vehicles around a simulated world. <p>It is easy to set up and can be used to test that your vehicle can take off, fly, land, and responds appropriately to various fail conditions (e.g. GPS failure).</p><p><strong>Supported Vehicles:</strong> Quad</p>
+[Gazebo](../simulation/gazebo.md) | A powerful 3D simulation environment that is particularly suitable for testing object-avoidance and computer vision. <p>It can also be used for <a href="../simulation/multi-vehicle-simulation.md">multi-vehicle Simulation</a> and is commonly used with <a href="../simulation/ros_interface.md">ROS</a>, a collection of tools for automating vehicle control. <p><strong>Supported Vehicles:</strong> Quad (<a href="../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor">Iris</a> and <a href="../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo">Solo</a>), Hex (Typhoon H480), <a href="../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol">Generic quad delta VTOL</a>, Tailsitter, Plane, [Rover]), Submarine (coming soon!) </p>
+[AirSim](../simulation/airsim.md) | A cross platform simulator that provides physically and visually realistic simulations. This simulator is resource intensive, and requires a very significantly more powerful computer than the other simulators described here. <p><strong>Supported Vehicles:</strong> Iris?</p>
+[XPlane](../simulation/hitl.md) (HITL only)| A comprehensive and powerful fixed-wing flight simulator that offers very realistic flight models.<br><p><strong>Supported Vehicles:</strong> Plane</p>
+
 
 Instructions for how to setup and use the simulators are in the topics linked above. Below is a "somewhat generic" description of how the simulation infrastructure works. It is not required to *use* the simulators. 
 
- 
-## Simulation Environment
 
-The diagram below shows a fairly "standard" simulation environment for working with any of the supported simulators. The simulator and PX4 are connected by UDP, and if using SITL can be run on either the same computer or a different computer on the same network. The standard setup also creates UDP connections from PX4 to *QGroundControl* and an additional connection that can be used to connect to an offboard API.
+## Simulator MAVLink API
 
-![](../../assets/simulation/px4_simulator_overview.png)
+All simulators communicate with PX4 using the Simulator MAVLink API. This API defines a set of MAVLink messages that supply sensor data from the simulated world to PX4 and return motor and actuator values from the flight code that will be applied to the simulated vehicle. The image below shows the message flow.
 
-> **Note** Only remote (server) ports are shown in the diagram. The client side port has to be set up and mapped to its associated remote port, but you don't need to know what those ports are to use/connect the different components.
-
-PX4 uses the standard mavlink module to set up UDP connections to *QGroundControl* and the API. It uses a simulation-specific module to set up a UDP connection to the Simulator and share information (this is discussed in the next section).
-
-TBD - Add something about the gamepad or QGC throttle switches. Using normal RC connected to simulation via a Pixhawk is messy.
-
-
-
-
-### Simulator MAVLink API
-
-All simulators communicate with PX4 using the Simulator MAVLink API. This API defines a set of MAVLink messages that (among other things) supply sensor data from the simulated world to PX4 and return motor and actuator values from the flight code that will be applied to the simulated vehicle. The image below shows the message flow.
-
-![](../../assets/simulation/px4_simulator_messages.png)
+![Simulator MAVLink API](../../assets/simulation/px4_simulator_messages.png)
 
 > **Note** A simulator build of PX4 (both SITL and HITL) includes [simulator_mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp) to handle these messages. Sensor data from the simulator is written to a dummy driver and appears "real" to PX4. All motors / actuators are blocked, but internal software is fully operational.
 
@@ -58,27 +44,29 @@ Message | Direction | Description
 [HIL_STATE_QUATERNION](http://mavlink.org/messages/common#HIL_STATE_QUATERNION) | Sim to PX4 | Contains the actual "simulated" vehicle position, attitude, speed etc. This can be logged and compared to PX4's estimates for analysis and debugging (for example, checking how well an estimator works for noisy (simulated) sensor inputs).
 [HIL_RC_INPUTS_RAW](http://mavlink.org/messages/common#HIL_RC_INPUTS_RAW) | Sim to PX4 | The RAW values of the RC channels received.
 
-## Manual Simulator Flight (Gamepads, Joysticks)
 
-TBD
+## SITL Simulation Environment
 
-<!-- 
-for thumb sticks it's a checkbox in the QGC settings
-click the Q
+The diagram below shows a typical SITL simulation environment for any of the supported simulators. 
 
-for a gamepad it should probably be available if you plug it in before starting
-Tried with the common logitech gamepad and a and a random joystick on
-linux and windows -->
+* PX4 uses a simulation-specific module to create a UDP link to the Simulator and exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. SITL and the Simulator can run on either the same computer or different computers on the same network.
+* PX4 uses the normal MAVLink module to set up UDP connections to *QGroundControl* and external APIs.
+* A serial connection is used to connect RC controllers or gamepad hardware.
+* Only remote (server) ports are shown in the diagram. The client side port has to be set up and mapped to its associated remote port, but you don't need to know what those ports are to use/connect the different components.
+
+![](../../assets/simulation/px4_simulator_overview.png)
+
+If you use the normal normal build system SITL `make` configuration targets (see next section) then both SITL and the Simulator will be launched on the same computer and the ports above will automatically be configured. You can configure additional MAVLink UDP connections and otherwise modify the simulation environment in the build configuration and initialisation files.
 
 
-## Starting/Building a Simulator
+### Starting/Building SITL Simulation
 
-The build system makes it very easy to build PX4 with an appropriate initialisation file and launch a simulator to connect to it. For example, you can launch a SITL version of PX4 that uses the EKF2 estimator and simulate a plane in gazebo with just the following command (provided all the build and gazebo dependencies are present!):
+The build system makes it very easy to build and start PX4 on SITL, launch a simulator, and connect them. For example, you can launch a SITL version of PX4 that uses the EKF2 estimator and simulate a plane in gazebo with just the following command (provided all the build and gazebo dependencies are present!):
 ```
 make posix_sitl_ekf2 gazebo_plane
 ```
 
-<!-- ? How about HITL -->
+> **Tip** It is also possible to separately/manually build and start SITL and the various simulators, but nowhere near as "turnkey".
 
 The syntax to call `make` with a particular configuration and initialisation file is:
 
@@ -88,7 +76,7 @@ make [CONFIGURATION_TARGET] [SIMULATOR]_[INIT_FILE]
 
 where:
 * **CONFIGURATION_TARGET:** has the format `[OS]_[PLATFORM]_[FEATURE]`
-  * **OS:**: posix, nuttx, qurt
+  * **OS:** posix, nuttx, qurt
   * **PLATFORM:** SITL (or in principle any platform supported among the different OS: bebop, eagle, excelsior, etc.)
   * **FEATURE:** <!-- better name? --> A particular high level feature - for example which estimator to use (ekf2, lpe) or to run tests or simulate using a replay.
 * **SIMULATOR:** The simulator to launch and connect: gazebo, jmavsim, ?airsim
@@ -173,3 +161,35 @@ logger start -e -t
 mavlink boot_complete
 replay trystart
 ```
+
+### Remote Control/Joystick Integration
+
+TBD
+
+<!-- Taranis can be connected via USB -->
+<!-- General transmitter links: https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html -->
+<!-- Airsim info on this topic: https://github.com/Microsoft/AirSim/blob/master/docs/remote_controls.md -->
+<!-- 
+for thumb sticks it's a checkbox in the QGC settings
+click the Q
+for a gamepad it should probably be available if you plug it in before starting
+Tried with the common logitech gamepad and a and a random joystick on
+linux and windows -->
+
+
+## HITL Simulation Environment
+
+TBD 
+
+<!-- 
+for HIL you're running the regular firmware on the real target
+you select a HIL config which doesn't start any real sensors
+the data is fed in through mavlink
+the typical setup is with QGC connected to the flight simulator and forwarding the data
+
+- Related to https://dev.px4.io/en/simulation/hitl.html)
+
+So QGC connects to the simulator as normal via the standard UDP port. YOu have to tell the simulator to connect to it (set up a port). The autopilot is connected to the computer via a serial port, and from there to QGC. Everything just works like magic?
+usually it's usb serial
+
+-->
