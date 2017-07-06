@@ -8,9 +8,9 @@ Besides a camera, optical flow requires a downward facing distance sensor. Here,
 The optical flow is computed on the application processor and sent to PX4 through Mavlink.
 Clone and compile the [snap_cam](https://github.com/PX4/snap_cam) repo according to the instructions in its readme.
 
-Run the optical flow application as root:
+Run the optical flow application (90 frames per second and auto exposure) as root:
 ```
-optical_flow -n 50 -f 30
+./optical_flow -f 90 -a
 ```
 
 The optical flow application requires IMU Mavlink messages from PX4. You may have to add an additional Mavlink instance to PX4 by adding the following to your `mainapp.config`:
