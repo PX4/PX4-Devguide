@@ -1,10 +1,33 @@
-# Development Environment on Linux
+# Development Environment on Ubuntu LTS / Debian Linux
 
-We have standardized on Debian / Ubuntu LTS as the supported Linux distribution, but [boutique distribution instructions](../setup/dev_env_linux_boutique.md) are available for Cent OS and Arch Linux.
+> **Tip** We have standardized on Debian / Ubuntu LTS as the supported Linux distribution. Installation instructions are also provided for [boutique distributions](../setup/dev_env_linux_boutique.md) (Cent OS and Arch Linux).
+
+PX4 development on Linux supports four main families:
+
+* NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
+  [Pixracer](../flight_controller/pixracer.md), [Pixhawk 3 Pro](../flight_controller/pixhawk3_pro.md), [Crazyflie](../flight_controller/crazyflie2.md),
+  [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
+* [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
+* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi_navio2.md), Parrot Bebop
+* Simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
+
+
+## Convenience Bash Scripts
+
+We've created a number of bash scripts below that you can use to install the dependencies for different build targets (a lot more convenient than typing the instructions in manually). All of these scripts include the [Ninja Build System](#ninja-build-system), [Common Dependencies](http://localhost:4000/en/setup/dev_env_linux.html#common-dependencies), and [Gazebo & jMAVSim Simulators](#simulation-dependencies) (i.e. everything before the hardware-specific builds). 
+
+* [ubuntu_sim.sh](https://github.com/hamishwillee/Devguide/blob/tidy_toolchain/build_scripts/ubuntu_sim.sh) - Simulators builds
+* [ubuntu_sim_nuttx.sh](https://github.com/hamishwillee/Devguide/blob/tidy_toolchain/build_scripts/ubuntu_sim_nuttx.sh) - Simulator builds and NuttX tools (GCC 5.4)
+
+> **Tip** To use these scripts, first perform the [Permission Setup](#permission-setup) in the next section. Then download the scripts to your computer, make them executable, and then run them. For example:
+```bash
+chmod +x ubuntu_sim.sh
+./ubuntu_sim.sh
+```
 
 ## Permission Setup
 
-> **Warning** Never ever fix permission problems by using 'sudo'. It will create more permission problems in the process and require a system reinstallation to fix them.
+> **Warning** Never ever fix permission problems by using `sudo`. It will create more permission problems in the process and require a system reinstallation to fix them.
 
 The user needs to be part of the group "dialout":
 
@@ -14,63 +37,113 @@ sudo usermod -a -G dialout $USER
 
 And then you have to logout and login again, as this is only changed after a new login.
 
-## Installation
 
-Update the package list and install the following dependencies for all PX4 build targets. PX4 supports four main families:
+## Ubuntu Configuration
 
-* NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
-  [Pixracer](../flight_controller/pixracer.md), [Pixhawk 3 Pro](../flight_controller/pixhawk3_pro.md), [Crazyflie](../flight_controller/crazyflie2.md),
-  [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
-* [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
-* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi_navio2.md), Parrot Bebop
-* Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
+Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port \(or USB serial\). It can removed/deinstalled without side effects:
 
-> **Info** Install the [Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system) for faster build times than with Make. It will be automatically selected if installed.
+```sh
+sudo apt-get remove modemmanager
+```
+
+## Ninja Build System
+
+Ninja is fast than Make and the PX4 CMake generators support it. Unfortunately Ubuntu carries only a very outdated version at this point. To install a recent version of [Ninja](https://github.com/martine/ninja), download the binary and add it to your path:
+
+<div class="host-code"></div>
+
+```sh
+mkdir -p $HOME/ninja
+cd $HOME/ninja
+wget https://github.com/martine/ninja/releases/download/v1.6.0/ninja-linux.zip
+unzip ninja-linux.zip
+rm ninja-linux.zip
+exportline="export PATH=$HOME/ninja:\$PATH"
+if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
+. ~/.profile
+```
+
+## Common Dependencies
+
+Update the package list and install the following dependencies for all PX4 build targets. 
+
+> **Info** Install the [Ninja Build System](#ninja-build-system) for faster build times than with `Make`. It will be automatically selected if installed.
 
 ```sh
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
 sudo apt-get install python-argparse git-core wget zip \
     python-empy qtcreator cmake build-essential genromfs -y
-# simulation tools
-sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
 # required python packages
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
 ```
 
-### NuttX based hardware
+## Simulation Dependencies
+The dependencies for the Gazebo and jMAVSim simulators listed below. You should minimally install jMAVSim to make it easy to test the installation. Additional information about these and other supported simulators is covered in: [Simulation](../simulation/README.md).
 
-Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port \(or USB serial\). It can deinstalled without side effects:
+### jMAVSim
 
-```sh
-sudo apt-get remove modemmanager
+Install the dependencies for [jMAVSim Simulation](../simulation/sitl.md).
+
+```
+# jMAVSim simulator
+sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
 ```
 
-Update the package list and install the following dependencies. Packages with specified versions should be installed with this particular package version.
+### Gazebo
+
+Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
+
+```
+# Gazebo simulator
+sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+## Setup keys
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+## Update the debian database:
+sudo apt-get update -y
+## Install Gazebo8
+sudo apt-get install gazebo8 -y
+## For developers (who work on top of Gazebo) one extra package
+sudo apt-get install libgazebo8-dev
+```
+
+<!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
+sudo apt-get install clang-3.5 lldb-3.5 -y
+-->
+
+## NuttX-based Hardware
+
+Install the following dependencies to build for NuttX based hardware: Pixhawk, Pixfalcon, Pixracer, Pixhawk 3, Intel® Aero Ready to Fly Drone.
+
+> **Note** Packages with specified versions should be installed with the specified package version.
 
 ```sh
 sudo apt-get install python-serial openocd \
-    flex bison libncurses5-dev autoconf texinfo build-essential \
-    libftdi-dev libtool zlib1g-dev \
-    python-empy  -y
+    flex bison libncurses5-dev autoconf texinfo \
+    libftdi-dev libtool zlib1g-dev -y
 ```
+<!-- removed duplicate deps from "common" set: build-essential python-empy -->
 
-Make sure to remove leftovers before adding the arm-none-eabi toolchain.
+Remove any old versions of the arm-none-eabi toolchain.
 
 ```sh
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 
-Then follow the [toolchain installation instructions](../setup/dev_env_linux_boutique.md#toolchain-installation) to install the arm-none-eabi toolchain version 4.9 or 5.4 manually.
+<!-- import GCC toolchain common documentation -->
+{% include "_gcc_toolchain_installation.txt" %}
 
-### Snapdragon Flight
 
-#### Toolchain installation
+## Snapdragon Flight
+
+### (Cross) Toolchain installation
 
 ```sh
-sudo apt-get install android-tools-adb android-tools-fastboot fakechroot fakeroot unzip xz-utils wget python python-empy -y
+sudo apt-get install android-tools-adb android-tools-fastboot \
+    fakechroot fakeroot unzip xz-utils wget python python-empy -y
 ```
 
 Please follow the instructions on https://github.com/ATLFlight/cross_toolchain for the toolchain installation.
@@ -81,11 +154,11 @@ Load the new configuration:
 source ~/.bashrc
 ```
 
-#### Sysroot Installation
+### Sysroot Installation
 
 A sysroot is required to provide the libraries and header files needed to cross compile applications for the Snapdragon Flight applications processor.
 
-The qrlSDK sysroot provies the required header files and libraries for the camera, GPU, etc.
+The qrlSDK sysroot provides the required header files and libraries for the camera, GPU, etc.
 
 Download the file [Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) and save it in `cross_toolchain/download/`.
 
@@ -109,11 +182,11 @@ source ~/.bashrc
 
 For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
 
-#### Update ADSP firmware
+### Update ADSP firmware
 
 Before building, flashing and running code, you'll need to update the [ADSP firmware](../flight_controller/snapdragon_flight_advanced.md#updating-the-adsp-firmware).
 
-#### References
+### References
 
 There is a an external set of documentation for Snapdragon Flight toolchain and SW setup and verification:
 [ATLFlightDocs](https://github.com/ATLFlight/ATLFlightDocs/blob/master/README.md)
@@ -126,7 +199,7 @@ ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 
 Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
 
-### Raspberry Pi hardware
+## Raspberry Pi Hardware
 
 Developers working on Raspberry Pi hardware need to download a ARMv7 cross-compiler, either GCC or clang.
 The recommended toolchain for raspbian is GCC 4.8.3 and can be cloned from `https://github.com/raspberrypi/tools.git`.
@@ -145,7 +218,7 @@ echo 'export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabi
 export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ```
 
-#### clang
+### clang
 
 In order to use clang, you also need GCC.
 
@@ -170,16 +243,16 @@ cmake \
 
 ```
 
-### Parrot Bebop
+## Parrot Bebop
 
 Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
 description under [Raspberry Pi hardware](../flight_controller/raspberry_pi_navio2.md).
 
 Next, install ADB.
 
-``sh
-sudo apt-get install android-tools-adb -y` ``
+```sh
+sudo apt-get install android-tools-adb -y
+```
 
-## Finishing Up
-
-Now continue to run the [first build](../setup/building_px4.md)!
+<!-- import docs for other tools and next steps. -->
+{% include "_addition_dev_tools.txt" %}
