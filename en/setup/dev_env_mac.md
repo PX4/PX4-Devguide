@@ -4,15 +4,10 @@
 
 The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
 
-## Ground Control Software
 
-Download the [daily build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) of QGroundControl and put it into the standard /Applications folder.
+## Common Tools
 
-![](../../assets/qgc_goto.jpg)
-
-## Common Tools Needed
-
-After installing Homebrew, run these commands in your shell:
+After installing Homebrew, run these commands in your shell to install the common tools:
 
 ```sh
 brew tap PX4/px4
@@ -34,11 +29,6 @@ sudo easy_install pip
 sudo -H pip install pyserial empy pandas jinja2
 ```
 
-## Editor / IDE
-
-[Sublime Text](https://www.sublimetext.com) is a fast and lean text editor. If you want to use an integrated development environment, Qt Creator is an option: [Download](http://www.qt.io/download-open-source/#section-6)
-
-## Build and Fly in the Simulator!
-
-Now continue to run the [first build](../setup/building_px4.md)!
+<!-- import docs for other tools and next steps. -->
+{% include "_addition_dev_tools.txt" %}
 
