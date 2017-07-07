@@ -301,7 +301,7 @@ struct message_dropout_s {
 - 'P': parameter message. See above.
 
 
-### Requirements for Parsers
+## Requirements for Parsers
 A valid ULog parser must fulfill the following requirements:
 - Must ignore unknown messages (but it can print a warning).
 - Parse future/unknown file format versions as well (but it can print a warning).
@@ -316,7 +316,7 @@ A valid ULog parser must fulfill the following requirements:
   Appended data must be treated as if it was part of the regular Data section.
 
 
-### Known Implementations
+## Known Implementations
 - PX4 Firmware: C++
   - [logger module](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
   - [replay module](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
@@ -336,8 +336,8 @@ A valid ULog parser must fulfill the following requirements:
   MAVLink and parser for plotting and analysis.
 
 
-### File Format Version History
-#### Changes in version 2
+## File Format Version History
+### Changes in version 2
 Addition of `ulog_message_info_multiple_header_s` and `ulog_message_flag_bits_s`
 messages and the ability to append data to a log. This is used to add crash data
 to an existing log. If data is appended to a log that is cut in the middle of a
