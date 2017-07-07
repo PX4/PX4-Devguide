@@ -44,11 +44,11 @@ The file consists of three sections:
 The header is a fixed-size section and has the following format (16 bytes):
 ```
 ----------------------------------------------------------------------
-| 0x55 0x4c 0x6f 0x67 0x01 0x12 0x35 | 0x00         | uint64_t       |
+| 0x55 0x4c 0x6f 0x67 0x01 0x12 0x35 | 0x01         | uint64_t       |
 | File magic (7B)                    | Version (1B) | Timestamp (8B) |
 ----------------------------------------------------------------------
 ```
-Version is the file format version, currently 0. Timestamp is an
+Version is the file format version, currently 1. Timestamp is an
 uint64_t integer, denotes the start of the logging in microseconds.
 
 
@@ -67,6 +67,42 @@ struct message_header_s {
 `msg_size` is the size of the message in bytes without the header
 (`hdr_size`= 3 bytes). `msg_type` defines the content and is one of the
 following:
+
+
+- 'B': Flag bitset message.
+```
+struct ulog_message_flag_bits_s {
+	uint8_t compat_flags[8];
+	uint8_t incompat_flags[8];
+	uint64_t appended_offsets[3]; ///< file offset(s) for appended data if appending bit is set
+};
+```
+  This message **must** be the first message, right after the header section, so
+  that it has a fixed constant offset.
+
+  - `compat_flags`: compatible flag bits. None of them is currently defined and
+	all must be set to 0. These bits can be used for future ULog changes that
+	are compatible with existing parsers. It means parsers can just ignore the
+    bits if one of the unknown bits is set.
+  - `incompat_flags`: incompatible flag bits. The LSB bit of index 0 is set to
+	one if the log contains appended data and at lease one of the
+	`appended_offsets` is non-zero. All other bits are undefined und must be set
+	to 0. If a parser finds one of these bits set, it must refuse to parse the
+	log. This can be used to introduce breaking changes that existing parsers
+	cannot handle.
+  - `appended_offsets`: File offsets (0-based) for appended data. If no data is
+	appended, all offsets must be zero. This can be used to reliably append data
+	for logs that may stop in the middle of a message. A process appending data
+	should do:
+	- set the relevant `incompat_flags` bit,
+	- set the first `appended_offsets` that is 0 to the length of the log file,
+	- then append any type of messages that are valid for the Data section.
+
+  It is possible that there are more fields appended at the end of this message
+  in future ULog specifications. This means a parser must not assume a fixed
+  length of this message. If the message is longer than expected (currently 40
+  bytes), the exceeding bytes must just be ignored.
+
 
 - 'F': format definition for a single (composite) type that can be logged or
   used in another definition as a nested type.
@@ -111,9 +147,14 @@ struct message_info_s {
 	char value[header.msg_size-hdr_size-1-key_len]
 };
 ```
-  `key` is a plain string, as in the format message, but consists of only a
+  `key` is a plain string, as in the format message (can also be a custom type),
+  but consists of only a
   single field without ending `;`, eg. `float[3] myvalues`. `value` contains the
   data as described by `key`.
+
+  Note that an information message with a certain key must occur at most
+  once in the entire log. Parsers can store information messages as a
+  dictionary.
 
   Predefined information messages are:
 
@@ -122,6 +163,7 @@ struct message_info_s {
 | char[value_len] sys_name     | Name of the system        |  "PX4"            |
 | char[value_len] ver_hw       | Hardware version          |  "PX4FMU_V4"      |
 | char[value_len] ver_sw       | Software version (git tag)|  "7f65e01"        |
+| char[value_len] ver_sw_branch| git branch                |  "master"         |
 | uint32_t ver_sw_release      | Software version (see below)|  0x010401ff     |
 | char[value_len] sys_os_name  | Operating System Name     |  "Linux"          |
 | char[value_len] sys_os_ver   | OS version (git tag)      |  "9f82919"        |
@@ -142,6 +184,21 @@ struct message_info_s {
   This message can also be used in the Data section (this is however the
   preferred section).
 
+
+- 'M': information message multi.
+```
+struct ulog_message_info_multiple_header_s {
+	uint8_t is_continued; ///< can be used for arrays
+	uint8_t key_len;
+	char key[key_len];
+	char value[header.msg_size-hdr_size-2-key_len]
+};
+```
+  The same as the information message, except that there can be multiple
+  messages with the same key (parsers store them as a list). The `is_continued`
+  can be used for split-up messages: if set to 1, it is part of the previous
+  message with the same key. Parsers can store all information multi messages as
+  a 2D list, using the same order as the messages occur in the log.
 
 - 'P': parameter message. Same format as `message_info_s`.
   If a parameter dynamically changes during runtime, this message can also be
@@ -239,6 +296,51 @@ struct message_dropout_s {
 
 - 'I': information message. See above.
 
+- 'M': information message multi. See above.
+
 - 'P': parameter message. See above.
 
+
+### Requirements for Parsers
+A valid ULog parser must fulfill the following requirements:
+- Must ignore unknown messages (but it can print a warning).
+- Parse future/unknown file format versions as well (but it can print a warning).
+- Must refuse to parse a log which contains unknown incompatibility bits set
+  (`incompat_flags` of `ulog_message_flag_bits_s` message), meaning the log
+  contains breaking changes that the parser cannot handle.
+- A parser must be able to correctly handle logs that end abruptly, in the
+  middle of a message. The unfinished message should just be discarged.
+- For appended data: a parser can assume the Data section exists, i.e. the
+  offset points to a place after the Definitions section.
+
+  Appended data must be treated as if it was part of the regular Data section.
+
+
+### Known Implementations
+- PX4 Firmware: C++
+  - [logger module](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
+  - [replay module](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
+  - [hardfault_log module](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log):
+	append hardfault crash data.
+- [pyulog](https://github.com/PX4/pyulog): python, ULog parser library with CLI
+  scripts.
+- [FlightPlot](https://github.com/PX4/FlightPlot): Java, log plotter.
+- [MAVLink](https://github.com/mavlink/mavlink): Messages for ULog streaming via
+  MAVLink (note that appending data is not supported, at least not for cut off
+  messages).
+- [QGroundControl](https://github.com/mavlink/qgroundcontrol): C++, ULog
+  streaming via MAVLink and minimal parsing for GeoTagging.
+- [mavlink-router](https://github.com/01org/mavlink-router): C++, ULog streaming
+  via MAVLink.
+- [MAVGAnalysis](https://github.com/ecmnet/MAVGCL): Java, ULog streaming via
+  MAVLink and parser for plotting and analysis.
+
+
+### File Format Version History
+#### Changes in version 2
+Addition of `ulog_message_info_multiple_header_s` and `ulog_message_flag_bits_s`
+messages and the ability to append data to a log. This is used to add crash data
+to an existing log. If data is appended to a log that is cut in the middle of a
+message, it cannot be parsed with version 1 parsers. Other than that forward and
+backward compatibility is given if parsers ignore unknown messages.
 
