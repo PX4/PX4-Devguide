@@ -1,20 +1,6 @@
 <!-- GCC toolchain documentation used for all Linux platforms to build NuttX -->
 
-Execute the script below to install either GCC 4.9 or 5.4:
-
-**GCC 4.9**
-
-```sh
-pushd .
-cd ~
-wget https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update/+download/gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2
-tar -jxf gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2
-exportline="export PATH=$HOME/gcc-arm-none-eabi-4_9-2015q3/bin:\$PATH"
-if grep -Fxq "$exportline" ~/.bash_profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
-popd
-```
-
-**GCC 5.4**:
+Execute the script below to install 5.4:
 
 ```sh
 pushd .
@@ -54,8 +40,8 @@ arm-none-eabi-gcc --version
 The output should be something similar to:
 
 ```sh
-arm-none-eabi-gcc (GNU Tools for ARM Embedded Processors) 4.7.4 20140401 (release) [ARM/embedded-4_7-branch revision 209195]
-Copyright (C) 2012 Free Software Foundation, Inc.
+arm-none-eabi-gcc (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-branch revision 237715]
+Copyright (C) 2015 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
