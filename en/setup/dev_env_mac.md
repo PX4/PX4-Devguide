@@ -1,5 +1,8 @@
 # Development Environment on Mac
 
+The following instructions explain how to set up a development environment for NuttX-based hardware (Pixhawk, etc.) and Simulation (jMAVSim/Gazebo) targets. For other targets see: [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets).
+
+
 ## Homebrew Installation
 
 The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).

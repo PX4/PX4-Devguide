@@ -1,29 +1,10 @@
 # Development Environment on Ubuntu LTS / Debian Linux
 
+[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) is the main PX4 development platform, allowing you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation).
+
 > **Tip** We have standardized on Debian / Ubuntu LTS as the supported Linux distribution. Installation instructions are also provided for [boutique distributions](../setup/dev_env_linux_boutique.md) (Cent OS and Arch Linux).
 
-PX4 development on Linux supports four main families:
-
-* NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
-  [Pixracer](../flight_controller/pixracer.md), [Pixhawk 3 Pro](../flight_controller/pixhawk3_pro.md), [Crazyflie](../flight_controller/crazyflie2.md),
-  [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
-* [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
-* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi_navio2.md), Parrot Bebop
-* Simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
-
-
-## Convenience Bash Scripts
-
-We've created a number of bash scripts below that you can use to install the dependencies for different build targets (a lot more convenient than typing the instructions in manually). All of these scripts include the [Ninja Build System](#ninja-build-system), [Common Dependencies](http://localhost:4000/en/setup/dev_env_linux.html#common-dependencies), and [Gazebo & jMAVSim Simulators](#simulation-dependencies) (i.e. everything before the hardware-specific builds). 
-
-* [ubuntu_sim.sh](https://github.com/hamishwillee/Devguide/blob/tidy_toolchain/build_scripts/ubuntu_sim.sh) - Simulators builds
-* [ubuntu_sim_nuttx.sh](https://github.com/hamishwillee/Devguide/blob/tidy_toolchain/build_scripts/ubuntu_sim_nuttx.sh) - Simulator builds and NuttX tools (GCC 5.4)
-
-> **Tip** To use these scripts, first perform the [Permission Setup](#permission-setup) in the next section. Then download the scripts to your computer, make them executable, and then run them. For example:
-```bash
-chmod +x ubuntu_sim.sh
-./ubuntu_sim.sh
-```
+The following instructions explain how to set up a development environment each of the supported targets.
 
 ## Permission Setup
 
@@ -35,8 +16,32 @@ The user needs to be part of the group "dialout":
 sudo usermod -a -G dialout $USER
 ```
 
-And then you have to logout and login again, as this is only changed after a new login.
+Then logout and login again (the change is only made after a new login).
 
+
+
+## Convenience Bash Scripts
+
+We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. This is a lot easier/more reliable than copying/typing the instructions in the rest of this topic.
+
+
+### How to use the scripts
+To use the scripts, download them to your computer, make them executable, and then run them. For example:
+```bash
+chmod +x ubuntu_sim.sh
+./ubuntu_sim.sh
+```
+
+### Scripts
+
+All of the scripts include the [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), and [Gazebo & jMAVSim Simulators](#simulation-dependencies), and also download the PX4 source to your computer (**~/src/Firmware**). 
+
+The scripts are:
+
+* <strong><a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a></strong>: Common dependencies, Simulator builds. Used as "base" for other scripts.
+* <strong><a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a></strong>: Common dependencies, Simulator builds and NuttX tools. *This requires computer restart on completion.*
+
+> **Tip** The **ubuntu_sim.sh** script contains the common dependencies for all PX4 build targets. You can run this before installing the remaining dependencies for [Qualcomm Snapdragon Flight](#snapdragon-flight) or [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
 
 ## Ubuntu Configuration
 
@@ -48,9 +53,8 @@ sudo apt-get remove modemmanager
 
 ## Ninja Build System
 
-Ninja is fast than Make and the PX4 CMake generators support it. Unfortunately Ubuntu carries only a very outdated version at this point. To install a recent version of [Ninja](https://github.com/martine/ninja), download the binary and add it to your path:
+[Ninja](https://github.com/martine/ninja) is a faster build system than *Make* and the PX4 *CMake* generators support it. Unfortunately Ubuntu currently carries a very outdated version of *Ninja*. To install a recent version, download the binary and add it to your path:
 
-<div class="host-code"></div>
 
 ```sh
 mkdir -p $HOME/ninja
@@ -133,9 +137,53 @@ sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi g
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 
-<!-- import GCC toolchain common documentation -->
-{% include "_gcc_toolchain_installation.txt" %}
+Execute the script below to install 5.4:
 
+```sh
+pushd .
+cd ~
+wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:\$PATH"
+if grep -Fxq "$exportline" ~/.bash_profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
+popd
+```
+
+Run these commands to install the 32 bit support libraries (this might fail and can be skipped if running a 32 bit OS):
+
+```sh
+sudo dpkg --add-architecture i386
+sudo apt-get update
+
+sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386
+sudo apt-get install gcc-4.6-base:i386 
+```
+
+Now restart your machine.
+
+**Troubleshooting**
+
+Check the version by entering the following command:
+
+```sh
+arm-none-eabi-gcc --version
+```
+
+The output should be something similar to:
+
+```sh
+arm-none-eabi-gcc (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-branch revision 237715]
+Copyright (C) 2015 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
+If you get the following output, make sure you have the 32bit libs installed properly as described in the installation steps:
+
+```sh
+arm-none-eabi-gcc --version
+arm-none-eabi-gcc: No such file or directory
+```
 
 ## Snapdragon Flight
 
