@@ -16,8 +16,7 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 # Common Dependencies
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
-sudo apt-get install python-argparse git-core wget zip \
-    python-empy qtcreator cmake build-essential genromfs -y
+sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
 # required python packages
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
@@ -50,11 +49,18 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 # Install GCC 5.4
 pushd .
 cd ~
-wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q2-update/+download/gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
-tar -jxf gcc-arm-none-eabi-5_4-2016q2-20160622-linux.tar.bz2
+wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/5_4-2016q2/gccarmnoneeabi542016q220160622linuxtar.bz2
+tar -jxf gccarmnoneeabi542016q220160622linuxtar.bz2
 exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:\$PATH"
 if grep -Fxq "$exportline" ~/.bash_profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
 popd
+
+# Install 32 bit support libraries (ignore if fails)
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386
+sudo apt-get install gcc-4.6-base:i386
+
 
 # Clone PX4/Firmware
 mkdir -p ~/src
@@ -62,3 +68,6 @@ cd ~/src
 git clone https://github.com/PX4/Firmware.git
 cd Firmware
 git submodule update --init --recursive
+
+#Reboot the computer (required before building)
+ecbo RESTART YOUR COMPUTER to complete installation of PX4 development toolchain

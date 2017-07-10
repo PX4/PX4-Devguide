@@ -16,8 +16,7 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 # Common Dependencies
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
-sudo apt-get install python-argparse git-core wget zip \
-    python-empy qtcreator cmake build-essential genromfs -y
+sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
 # required python packages
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
