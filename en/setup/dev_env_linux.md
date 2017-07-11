@@ -1,6 +1,6 @@
 # Development Environment on Ubuntu LTS / Debian Linux
 
-[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) is the main PX4 development platform, allowing you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation).
+[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) is the main PX4 development platform, allowing you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation, ROS).
 
 > **Tip** We have standardized on Debian / Ubuntu LTS as the supported Linux distribution. Installation instructions are also provided for [boutique distributions](../setup/dev_env_linux_boutique.md) (Cent OS and Arch Linux).
 
@@ -26,22 +26,26 @@ We've created a number of bash scripts that you can use to install the Simulator
 
 
 ### How to use the scripts
-To use the scripts, download them to your computer, make them executable, and then run them. For example:
+To use the scripts, download them to your computer and then run them. For example:
 ```bash
-chmod +x ubuntu_sim.sh
-./ubuntu_sim.sh
+source ubuntu_sim.sh
 ```
+
+You may need to acknowledge some prompts as the scripts progress.
 
 ### Scripts
 
-All of the scripts include the [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), and [Gazebo & jMAVSim Simulators](#simulation-dependencies), and also download the PX4 source to your computer (**~/src/Firmware**). 
+All the scripts include the [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), and also download the PX4 source to your computer (**~/src/Firmware**). 
 
 The scripts are:
 
-* <strong><a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a></strong>: Common dependencies, Simulator builds. Used as "base" for other scripts.
-* <strong><a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a></strong>: Common dependencies, Simulator builds and NuttX tools. *This requires computer restart on completion.*
+* <strong><a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a></strong>: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator, [Gazebo8](#gazebo) simulator. 
+  * This contains the common dependencies for all PX4 build targets. You can run this before installing the remaining dependencies for [Qualcomm Snapdragon Flight](#snapdragon-flight) or [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
+* <strong><a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a></strong>: **ubuntu_sim.sh** + NuttX tools. *This requires computer restart on completion.*
+* <strong><a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a></strong>: [ROS/Gazebo and MAVROS](#rosgazebo). 
+  * ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 to simplify ROS development).
+  * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
 
-> **Tip** The **ubuntu_sim.sh** script contains the common dependencies for all PX4 build targets. You can run this before installing the remaining dependencies for [Qualcomm Snapdragon Flight](#snapdragon-flight) or [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
 
 ## Ubuntu Configuration
 
@@ -97,6 +101,8 @@ sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
 
 ### Gazebo
 
+> **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation). 
+
 Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
 
 ```
@@ -116,6 +122,66 @@ sudo apt-get install libgazebo8-dev
 <!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
 sudo apt-get install clang-3.5 lldb-3.5 -y
 -->
+
+### ROS/Gazebo
+
+Install the dependencies for [ROS/Gazebo](ros/README.md)) ("Kinetic"). These include Gazebo7 (at time of writing, the default version that comes with ROS). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+
+```sh
+# ROS Kinetic/Gazebo
+## Gazebo dependencies
+sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
+
+## ROS Gazebo: http://wiki.ros.org/kinetic/Installation/Ubuntu
+## Setup keys
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+## For keyserver connection problems substitute hkp://pgp.mit.edu:80 or hkp://keyserver.ubuntu.com:80 above.
+sudo apt-get update
+## Get ROS/Gazebo
+sudo apt-get install ros-kinetic-desktop-full -y
+## Initialize rosdep
+sudo rosdep init
+rosdep update
+## Setup environment variables
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+## Get rosinstall
+sudo apt-get install python-rosinstall -y
+```
+
+Install the [MAVROS \(MAVLink on ROS\)](../ros/mavros_installation.md) package. This enables MAVLink communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS. 
+
+> **Tip** MAVROS can be installed as a ubuntu package or from source. Source is recommended for developers.
+
+
+```sh
+## Create catkin workspace (ROS build system)
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws
+
+## Install dependencies
+sudo apt-get install python-wstool python-rosinstall-generator python-catkin-tools -y
+
+## Initialise wstool
+wstool init ~/catkin_ws/src
+
+## Build MAVROS
+### Get source (upstream - released)
+rosinstall_generator --upstream mavros | tee /tmp/mavros.rosinstall
+### Get latest released mavlink package
+rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
+### Setup workspace & install deps
+wstool merge -t src /tmp/mavros.rosinstall
+wstool update -t src
+rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
+## Build!
+catkin build
+## Re-source environment to reflect new packages/build environment
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+```
+
 
 ## NuttX-based Hardware
 
