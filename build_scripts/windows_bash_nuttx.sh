@@ -35,20 +35,6 @@ sudo apt-get install python-pip -y
 sudo -H pip install pandas jinja2
 
 
-# Gazebo simulator
-echo "Installing Gazebo8"
-sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
-sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
-## Setup keys
-wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-## Update the debian database:
-sudo apt-get update
-## Install Gazebo8
-sudo apt-get install gazebo8 -y
-## For developers (who work on top of Gazebo) one extra package
-sudo apt-get install libgazebo8-dev
-
-
 # NuttX
 sudo apt-get install python-serial openocd \
     flex bison libncurses5-dev autoconf texinfo \
@@ -82,24 +68,17 @@ else
 fi
 
 
-# jMAVSim simulator
-echo "Installing jMAVSim"
-sudo apt-get install ant -y
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install oracle-java8-installer -y
-
 
 
 # Clone PX4/Firmware
 clone_dir=~/src
-echo "Cloning PX4 to: $ninja_dir."
+echo "Cloning PX4 to: $clone_dir."
 if [ -d "$clone_dir" ]
 then
     echo " Firmware already cloned."
 else
     mkdir -p $clone_dir
-    cd ~/$clone_dir
+    cd $clone_dir
     git clone https://github.com/PX4/Firmware.git
     cd Firmware
 fi
