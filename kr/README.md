@@ -1,6 +1,6 @@
 # PX4 개발 가이드
 
-[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) <script async defer src="http://px4-slack.herokuapp.com/slackin.js"></script>
+[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
 > **Info** 개발자 대상! 이 길잡이 문서는 계속 작업 중이며 일반 사용자용은 아닙니다.
 
