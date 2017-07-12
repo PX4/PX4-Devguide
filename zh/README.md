@@ -5,6 +5,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 # PX4开发指南#
 
+[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) <script async defer src="http://px4-slack.herokuapp.com/slackin.js"></script>
 
 > **须知：** 仅限于开发者！这个指南旨在推动开发而不是为消费者准备。
 
