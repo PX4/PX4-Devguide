@@ -4,20 +4,31 @@
 sudo apt-get remove modemmanager -y
 
 # Ninja build system
-mkdir -p $HOME/ninja
-cd $HOME/ninja
-wget https://github.com/martine/ninja/releases/download/v1.6.0/ninja-linux.zip
-unzip ninja-linux.zip
-rm ninja-linux.zip
-exportline="export PATH=$HOME/ninja:\$PATH"
-if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
-. ~/.profile
+ninja_dir=$HOME/ninja
+echo "Installing Ninja to: $ninja_dir."
+if [ -d "$ninja_dir" ]
+then
+    echo " Ninja already installed."
+else
+    pushd .
+    mkdir -p $ninja_dir
+    cd $ninja_dir
+    wget https://github.com/martine/ninja/releases/download/v1.6.0/ninja-linux.zip
+    unzip ninja-linux.zip
+    rm ninja-linux.zip
+    exportline="export PATH=$ninja_dir:\$PATH"
+    if grep -Fxq "$exportline" ~/.profile; then echo " Ninja already in path" ; else echo $exportline >> ~/.profile; fi
+    . ~/.profile
+    popd
+fi
 
 # Common dependencies
+echo "Installing common dependencies"
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
-sudo apt-get update -y
+sudo apt-get update
 sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
 # Required python packages
+sudo apt-get install python-dev -y
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
 
@@ -68,8 +79,17 @@ catkin build
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
+
 # Clone PX4/Firmware
-mkdir -p ~/src
-cd ~/src
-git clone https://github.com/PX4/Firmware.git
-cd Firmware
+clone_dir=~/src
+echo "Cloning PX4 to: $ninja_dir."
+if [ -d "$clone_dir" ]
+then
+    echo " Firmware already cloned."
+else
+    mkdir -p $clone_dir
+    cd ~/$clone_dir
+    git clone https://github.com/PX4/Firmware.git
+    cd Firmware
+fi
+cd $clone_dir/Firmware
