@@ -1,5 +1,7 @@
 # PX4 개발 가이드
 
+[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) <script async defer src="http://px4-slack.herokuapp.com/slackin.js"></script>
+
 > **Info** 개발자 대상! 이 길잡이 문서는 계속 작업 중이며 일반 사용자용은 아닙니다.
 
 이 문서에서는 PX4 시스템 구조 내부가 어떻게 동작하는지를 설명합니다. 개발자는 다음과 같은 정보를 얻을 수 있습니다 :

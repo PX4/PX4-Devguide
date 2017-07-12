@@ -1,5 +1,7 @@
 # PX4 Development Guide
 
+[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) <script async defer src="http://px4-slack.herokuapp.com/slackin.js"></script>
+
 > **Info** Developers only! This guide is under active development and not intended for consumers.
 
 This guide describes how to work inside the PX4 system architecture. It enables developers to:
