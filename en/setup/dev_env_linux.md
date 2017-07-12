@@ -24,6 +24,8 @@ Then logout and login again (the change is only made after a new login).
 
 We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. This is a lot easier/more reliable than copying/typing the instructions in the rest of this topic.
 
+> **Tip** The scripts have been tested on a clean Ubuntu LTS installation. They *may* not work as expected if installed on top of an existing system.
+
 
 ### How to use the scripts
 To use the scripts, download them to your computer and then run them. For example:
@@ -83,6 +85,7 @@ sudo apt-get update
 sudo apt-get install python-argparse git-core wget zip \
     python-empy qtcreator cmake build-essential genromfs -y
 # required python packages
+sudo apt-get install python-dev -y
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
 ```
