@@ -56,7 +56,7 @@ ULog logging format.
 * The recommended procedure is to use anaconda3. See [px4tools github page](https://github.com/dronecrew/px4tools) for details.
 
 ```bash
-conda install -c https://conda.anaconda.org/dronecrew px4tools
+conda install -c https://conda.anaconda.org/dronecrew apptools
 ```
 
 ### Strengths
