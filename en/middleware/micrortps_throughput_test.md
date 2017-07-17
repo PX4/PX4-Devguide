@@ -1,4 +1,4 @@
-# Throughput test
+# Micro RTPS Throughput Test
 
 This a simple test to measure the throughput of the bridge. Sending an receiving messages of the 256 bytes at the same time as fast as we can.
 

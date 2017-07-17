@@ -1,4 +1,4 @@
-# Hello world
+# Micro RTPS Hello World Example
 
 As a basic example we go to explain how implement a simple use case what sends information of some sensors (*sensor_combined* uORB topic) in the direction PX4-Fast RTPS and receives information as a text message (*log_message* uORB topic) sent in the other direction.
 

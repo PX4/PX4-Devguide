@@ -1,12 +1,12 @@
-# PX4-FastRTPS bridge
+# DDS/ROS2 interface: the PX4-FastRTPS bridge
 
 
 This bridge adds communication capabilities between a **PX4 Autopilot** and a **Fast RTPS** application through serial ports or
-UDP sockets using **CDR serialization**. The goal is to provide a DDS (Data Distribution Service) interface to PX4. This interface allows sharing information also with the upcoming release of ROS (Robot Operating System), ROS2.
+UDP sockets using **[CDR](https://en.wikipedia.org/wiki/Common_Data_Representation) serialization**. The goal is to provide a DDS (Data Distribution Service) interface to PX4. This interface allows sharing information also with the upcoming release of ROS (Robot Operating System), ROS2.
 
 DDS is an standard from the OMG (Object Management Group) providing a real-time pub/sub middleware widely used in aerospace, defense and IoT applications, while in Robotics has been adopted as the middleware for ROS2.
 
-![alt text](res/1_general-white.png)
+![micro RTPS general scheme](../../assets/middleware/micrortps/micrortps_general_scheme.png)
 
 ## Automatic code generation
 
@@ -19,27 +19,27 @@ The support for the functionality is mainly done within three new (automatically
   void deserialize_sensor_combined(struct sensor_combined_s *output, char *input, struct microCDR *microCDRReader);
   ```
 
--  An application to send and receive the CDR serialized data from several topics through a selected UART or selected UDP ports. This is called the client.
+-  An application to send and receive the CDR serialized data from several topics through a selected UART or selected UDP ports. This is called the **client**.
 
-![alt text](res/2_trasnmitter-white.png)
+![micro RTPS client](../../assets/middleware/micrortps/micrortps_client.png)
 
 -  The other side of the communication is an application between CDR serialized data and the
 ROS2/DDS world (using **Fast RTPS**). An important step in this part is the generation of a idl file for each topic which
 is the translation of the correspondent msg file. For the case of  *sensor_combined* topic it's generated the
-*sensor_combined_.idl* file from *sensor_combined.msg* file. This application is called the agent.
+*sensor_combined_.idl* file from *sensor_combined.msg* file. This application is called the **agent**.
 
-![alt text](res/3_receiver-white.png)
+![micro RTPS agent](../../assets/middleware/micrortps/micrortps_agent.png)
 
 This covers the entire spectrum of communications.
 
-![alt text](res/4_both-white.png)
+![micro RTPS both sides summary](../../assets/middleware/micrortps/micrortps_boths_sides.png)
 
 These pieces of code are generated within the normal PX4 Firmware generation process. Also can be generated under demand calling the script **generate_microRTPS_bridge.py** placed in *Tools* folder, see section below.
 
 ### Generating the client and the agent
 
-**NOTE**: Before continue we need to have installed Fast RTPS. Visit its installation
-[manual](http://eprosima-fast-rtps.readthedocs.io/en/latest/sources.html) for more information.
+> **Note** Before continue we need to have installed Fast RTPS. Visit its installation
+[guide](../setup/fast-rtps-installation.md) for more information.
 
 The generation of the code is performed automatically through the normal process of compilation of the PX4 Firmware. Only we need to specify the topics we want to send and receive. For that purpose we need to add them in the **.cmake** file (*cmake/configs*) correspondent with our target platform in this way:
 
@@ -61,7 +61,7 @@ set(config_rtps_receive_topics
 
 The client application will be generated in *build_OURPLATFORM/src/modules/micrortps_bridge/micrortps_client/* folder and the agent will be created in *src/modules/micrortps_bridge/micrortps_agent/* folder.
 
-**NOTE**: In the process of the agent generation we use a Fast RTPS tool called **fastrtpsgen**. If you don't have installed Fast RTPS in the default path you need to specify the directory of installation of fastrtpsgen setting the environment variable **FASTRTPSGEN_DIR** before make executing in this way:
+> **Note** In the process of the agent generation we use a Fast RTPS tool called **fastrtpsgen**. If you haven't installed Fast RTPS in the default path you need to specify the directory of installation of fastrtpsgen setting the environment variable **FASTRTPSGEN_DIR** before make executing in this way:
 
 ```sh
 export FASTRTPSGEN_DIR=/path//to/fastrtps/install/folder/bin
@@ -204,12 +204,12 @@ After uploading the firmware, the application can be launched typing its name an
     -r <reception port>     UDP port for receiving. Default 2019
     -s <sending port>       UDP port for sending. Default 2020
   ```
-  **NOTE**: If we are working with a USB-serial adapter the **-b** option will be ignored and will be working at maximum speed of the link.
+  > **Note** If we are working with a USB-serial adapter the **-b** option will be ignored and will be working at maximum speed of the link.
   ```sh
   > micrortps_client start #by default -t UART -d /dev/ttyACM0 -u 0 -l 10000 -w 1 -b 460800 -p 1
   ```
 
-**NOTE**: If the UART port selected is busy, it's possible that Mavlink applications were using them. If it is the case, you can stop Mavlink from NuttShell typing:
+> **Note** If the UART port selected is busy, it's possible that Mavlink applications were using them. If it is the case, you can stop Mavlink from NuttShell typing:
 
   ```sh
   > mavlink stop-all
@@ -238,7 +238,7 @@ To create the application, compile the code:
   $ make
   ```
 
-**NOTE**: To crosscompiling for Snapdragon Fligth platform you can see this [link](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use).
+> **Note** To crosscompiling for Snapdragon Fligth platform you can see this [link](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use).
 
 To launch the publisher run:
 
@@ -252,7 +252,7 @@ To launch the publisher run:
     -r <reception port>     UDP port for receiving. Default 2019
     -s <sending port>       UDP port for sending. Default 2020
   ```
-  **NOTE**: If we are working with a USB-serial adapter the **-b** option will be ignored and will be working at maximum speed of the link.
+  > **Note** If we are working with a USB-serial adapter the **-b** option will be ignored and will be working at maximum speed of the link.
   ```sh
   $ ./micrortps_agent # by default -t UART -d /dev/ttyACM0 -w 1 -b 460800 -p 1
   ```
@@ -298,7 +298,7 @@ Now we can add some code to print some info on the screen, for example:
   }
   ```
 
-**NOTE**: Normally, for UART transport it's necessary set up the UART port in the Raspberry Pi. To enable the serial port available on Raspberry Pi connector:
+> **Note** Normally, for UART transport it's necessary set up the UART port in the Raspberry Pi. To enable the serial port available on Raspberry Pi connector:
 
 1. Make sure the userid (default is pi) is a member of the dialout group:
 
@@ -331,8 +331,8 @@ Please click in [Hello world](hello_world.md) or in [Throughput test](throughput
 
 This flow chart shows graphically how works a bridge for an example of use that sends the topic sensor_combined from a Pixracer to a Raspberry Pi through UART.
 
-![alt text](res/architecture.png)
+![basic example flow](../../assets/middleware/micrortps/basic_example_flow.png)
 
 If all steps has been followed, you should see this output on the subscriber side of Fast RTPS.
 
-![alt text](res/subscriber.png)
+![Fast RTPA subscriber](../../assets/middleware/micrortps/fastrtps_subscriber_ex.png)
