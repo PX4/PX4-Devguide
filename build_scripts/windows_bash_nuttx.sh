@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Ubuntu Config
-echo "Removing modemmanager"
-sudo apt-get remove modemmanager -y
-
 # Ninja build system
 ninja_dir=$HOME/ninja
 echo "Installing Ninja to: $ninja_dir."
@@ -28,7 +24,7 @@ fi
 echo "Installing common dependencies"
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
-sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cmake build-essential genromfs -y
+sudo apt-get install python-argparse git-core wget zip python-empy cmake build-essential genromfs -y
 # required python packages
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip -y
@@ -44,7 +40,7 @@ sudo apt-get install python-serial openocd \
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
-# Install GCC 5.4 - 64 Bit.
+# Install GCC 5.4
 gcc_dir=$HOME/gcc-arm-none-eabi-5_4-2017q2
 echo "Installing GCC to: $gcc_dir"
 if [ -d "$gcc_dir" ]
@@ -53,6 +49,7 @@ then
 else
     pushd .
     cd ~
+    # Install custom 64bit build of toolchain
     wget https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-/raw/master/gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
     tar -jxf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
     exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH"
@@ -66,8 +63,6 @@ else
     sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386
     sudo apt-get install gcc-5.4-base:i386
 fi
-
-
 
 
 # Clone PX4/Firmware
@@ -85,5 +80,3 @@ fi
 cd $clone_dir/Firmware
 
 
-#Reboot the computer (required before building)
-#echo RESTART YOUR COMPUTER to complete installation of PX4 development toolchain
