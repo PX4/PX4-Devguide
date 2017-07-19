@@ -1,6 +1,6 @@
 # Development Environment on Mac
 
-The following instructions explain how to set up a development environment for NuttX-based hardware (Pixhawk, etc.) and Simulation (jMAVSim/Gazebo) targets. For other targets see: [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets).
+Mac OS X is the main development platform for PX4. The following instructions explain how to set up a development environment for building NuttX-based hardware (Pixhawk, etc.) and Simulation (jMAVSim/Gazebo) targets. For other targets see: [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets).
 
 
 ## Homebrew Installation
