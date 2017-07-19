@@ -1,5 +1,14 @@
 #!/bin/bash
 
+## Bash script for setting up a PX4 development environment on Ubuntu LTS (16.04).
+## It can be used for installing simulators (only) or for installing the preconditions for Snapdragon Flight or Raspberry Pi.
+##
+## Installs:
+## - Common dependencies and tools for all targets (including Ninja build system and Qt Creator) 
+## - jMAVSim simulator
+## - Gazebo8 simulator
+## - PX4/Firmware source (to ~/src/Firmware/)
+
 # Ubuntu Config
 sudo apt-get remove modemmanager -y
 

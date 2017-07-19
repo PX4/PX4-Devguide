@@ -1,5 +1,15 @@
 #!/bin/bash
 
+## Bash script for setting up a ROS/Gazebo development environment for PX4 on Ubuntu LTS (16.04). 
+##
+## It installs the common dependencies for all targets (including Qt Creator) and the ROS Kinetic/Gazebo 7 (the default).
+##
+## Installs:
+## - Common dependencies and tools for all targets (including Ninja build system and Qt Creator) 
+## - ROS Kinetic (including Gazebo7)
+## - MAVROS
+## - PX4/Firmware source (to ~/src/Firmware/)
+
 # Ubuntu Config
 sudo apt-get remove modemmanager -y
 

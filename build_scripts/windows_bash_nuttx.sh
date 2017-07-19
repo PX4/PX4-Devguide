@@ -1,5 +1,13 @@
 #!/bin/bash
 
+## Bash script for setting up a PX4 development environment for Pixhawk/NuttX targets in Bash on Windows.
+## It can be used for installing the NuttX toolchain (only).
+##
+## Installs:
+## - Common dependencies and tools for all targets (including Ninja build system) 
+## - NuttX toolchain (i.e. 64 bit version of gcc compiler)
+## - PX4/Firmware source (to ~/src/Firmware/)
+
 # Ninja build system
 ninja_dir=$HOME/ninja
 echo "Installing Ninja to: $ninja_dir."
