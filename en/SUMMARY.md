@@ -6,7 +6,10 @@
   * [Toolchain Installation](setup/dev_env.md)
     * [Mac OS](setup/dev_env_mac.md)
     * [Linux](setup/dev_env_linux.md)
+      * [Ubuntu/Debian Linux](setup/dev_env_linux_ubuntu.md)
       * [Arch/CentOS Linux](setup/dev_env_linux_boutique.md)
+      * [Advanced Linux](setup/dev_env_advanced_linux.md)
+      dev_env_advanced_linux.md
     * [Windows](setup/dev_env_windows.md)
   * [Fast RTPS installation](setup/fast-rtps-installation.md)
   * [Building the Code](setup/building_px4.md)
