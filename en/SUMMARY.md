@@ -21,7 +21,7 @@
   * [Mixing and Actuators](concept/mixing.md)
   * [PWM limit state machine](concept/pwm_limit.md)
 * [Simulation](simulation/README.md)
-  * [Basic Simulation](simulation/sitl.md)
+  * [jMAVSim Simulation](simulation/jmavsim.md)
   * [Gazebo Simulation](simulation/gazebo.md)
   * [HITL Simulation](simulation/hitl.md)
   * [Interfacing to ROS](simulation/ros_interface.md)
