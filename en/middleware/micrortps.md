@@ -12,7 +12,7 @@ DDS is an standard from the OMG (Object Management Group) providing a real-time 
 
 The support for the functionality is mainly done within three new (automatically generated) code blocks.
 
--  CDR serialization support is generated for every uORB topic adding a interfaces what for *sensor_combined.msg* topic looks like this:
+-  CDR serialization functions are generated for every uORB topic, e.g. *sensor_combined.msg*:
 
   ```sh
   void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
