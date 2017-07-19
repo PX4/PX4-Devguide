@@ -1,5 +1,15 @@
 #!/bin/bash
 
+## Bash script for setting up a PX4 development environment for Pixhawk/NuttX targets on Ubuntu LTS (16.04).
+## It can be used for installing simulators and the NuttX toolchain.
+##
+## Installs:
+## - Common dependencies and tools for all targets (including Ninja build system and Qt Creator) 
+## - jMAVSim simulator
+## - Gazebo8 simulator
+## - NuttX toolchain (i.e. gcc compiler)
+## - PX4/Firmware source (to ~/src/Firmware/)
+
 # Ubuntu Config
 sudo apt-get remove modemmanager -y
 
