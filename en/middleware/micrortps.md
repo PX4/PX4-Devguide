@@ -1,9 +1,11 @@
-# DDS/ROS2 interface: the PX4-FastRTPS Bridge
+# RTPS/ROS2 interface: the PX4-FastRTPS bridge
 
 This bridge adds communication capabilities between a *PX4 Autopilot* and a *Fast RTPS* application, through serial ports or
 UDP sockets, using [CDR serialization](https://en.wikipedia.org/wiki/Common_Data_Representation). The goal is to provide a DDS (Data Distribution Service) interface to PX4. This interface will also allow sharing information with the forthcoming release of ROS2 (Robot Operating System).
 
-DDS is a standard from the Object Management Group (OMG), providing a real-time publish/subscribe middleware that is widely used in aerospace, defense and IoT applications. It has also been adopted as the middleware for the ROS2 robotics toolkit.
+RTPS is the underlying protocol of DDS, an standard from the OMG (Object Management Group) providing a real-time pub/sub middleware widely used in aerospace, defense and IoT applications, while in Robotics has been adopted as the middleware for ROS2.
+
+Fast RTPS implements the latest version of the RTPS protocol and a minimum DDS API, resulting in a very lightweight implementation of the standard and full access to the RTPS fine settings.
 
 ![micro RTPS general scheme](../../assets/middleware/micrortps/micrortps_general_scheme.png)
 
