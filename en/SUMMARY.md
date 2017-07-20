@@ -61,9 +61,8 @@
 * Middleware and Architecture
   * [uORB Messaging](middleware/uorb.md)
   * [MAVLink Messaging](middleware/mavlink.md)
-  * [DDS/ROS2 interface](middleware/micrortps.md)
-    * [MicroRTPS HelloWorld Example](middleware/micrortps_hello_world.md)
-    * [MicroRTPS Throughput Test](middleware/micrortps_throughput_test.md)
+  * [RTPS/ROS2 interface](middleware/micrortps.md)
+    * [Throughput Test](middleware/micrortps_throughput_test.md)
   * [Daemons](advanced/architecture_daemon.md)
   * [Driver Framework](middleware/drivers.md)
   * [Modules & Commands](middleware/modules_main.md)
