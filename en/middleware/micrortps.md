@@ -263,46 +263,97 @@ To launch the publisher run:
   $ ./micrortps_agent # by default -t UART -d /dev/ttyACM0 -w 1 -b 460800 -p 1
   ```
 
-Now we can add some code to print some info on the screen, for example:
 
-  ```cpp
-  void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
-  {
-      // Take data
-      if(sub->takeNextData(&msg, &m_info))
-      {
-          if(m_info.sampleKind == ALIVE)
-          {
-              cout << "\n\n\n\n\n\n\n\n\n\n";
-              cout << "Received sensor_combined data" << endl;
-              cout << "=============================" << endl;
-              cout << "timestamp: " << msg.timestamp() << endl;
-              cout << "gyro_rad: " << msg.gyro_rad().at(0);
-              cout << ", " << msg.gyro_rad().at(1);
-              cout << ", " << msg.gyro_rad().at(2) << endl;
-              cout << "gyro_integral_dt: " << msg.gyro_integral_dt() << endl;
-              cout << "accelerometer_timestamp_relative: " << msg.accelerometer_timestamp_relative() << endl;
-              cout << "accelerometer_m_s2: " << msg.accelerometer_m_s2().at(0);
-              cout << ", " << msg.accelerometer_m_s2().at(1);
-              cout << ", " << msg.accelerometer_m_s2().at(2) << endl;
-              cout << "accelerometer_integral_dt: " << msg.accelerometer_integral_dt() << endl;
-              cout << "magnetometer_timestamp_relative: " << msg.magnetometer_timestamp_relative() << endl;
-              cout << "magnetometer_ga: " << msg.magnetometer_ga().at(0);
-              cout << ", " << msg.magnetometer_ga().at(1);
-              cout << ", " << msg.magnetometer_ga().at(2) << endl;
-              cout << "baro_timestamp_relative: " << msg.baro_timestamp_relative() << endl;
-              cout << "baro_alt_meter: " << msg.baro_alt_meter() << endl;
-              cout << "baro_temp_celcius: " << msg.baro_temp_celcius() << endl;
+## Creating a Listener
 
-              // Print your structure data here.
-              ++n_msg;
-              //std::cout << "Sample received, count=" << n_msg << std::endl;
-              has_msg = true;
+Now that we have the Client running on the flight controller and the Agent on an offboard computer, we can create an application to communicate with the flight controller through FastRTPS. The fastrtpsgen script allows us to quickly generate a simple application from a .idl message file. We will use it to create a Listener which subscribes to the sensor_combined topic. The Listener can be run on any computer on the same network as the Agent, but here they will be on the same computer.
 
-          }
-      }
-  }
-  ```
+```sh
+$ cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
+$ mkdir micrortps_listener
+$ cd micrortps_listener
+$ fastrtpsgen -example x64Linux2.6gcc ../micrortps_agent/idl/sensor_combined_.idl
+```
+
+This creates a sample subscriber, a publisher and a main-application to run them. To print out the data from the sensor_combined topic we modify the onNewDataMessage-method in sensor_combined_Subscriber.cxx:
+
+```sh
+void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
+{
+    // Take data
+    sensor_combined_ st;
+
+    if(sub->takeNextData(&st, &m_info))
+    {
+        if(m_info.sampleKind == ALIVE)
+        {
+            // Print your structure data here.
+            ++n_msg;
+            std::cout << "\n\n\n\n\n\n\n\n\n\n";
+            std::cout << "Sample received, count=" << n_msg << std::endl;
+            std::cout << "=============================" << std::endl;
+            std::cout << "gyro_rad: " << st.gyro_rad().at(0);
+            std::cout << ", " << st.gyro_rad().at(1);
+            std::cout << ", " << st.gyro_rad().at(2) << std::endl;
+            std::cout << "gyro_integral_dt: " << st.gyro_integral_dt() << std::endl;
+            std::cout << "accelerometer_timestamp_relative: " << st.accelerometer_timestamp_relative() << std::endl;
+            std::cout << "accelerometer_m_s2: " << st.accelerometer_m_s2().at(0);
+            std::cout << ", " << st.accelerometer_m_s2().at(1);
+            std::cout << ", " << st.accelerometer_m_s2().at(2) << std::endl;
+            std::cout << "accelerometer_integral_dt: " << st.accelerometer_integral_dt() << std::endl;
+            std::cout << "magnetometer_timestamp_relative: " << st.magnetometer_timestamp_relative() << std::endl;
+            std::cout << "magnetometer_ga: " << st.magnetometer_ga().at(0);
+            std::cout << ", " << st.magnetometer_ga().at(1);
+            std::cout << ", " << st.magnetometer_ga().at(2) << std::endl;
+            std::cout << "baro_timestamp_relative: " << st.baro_timestamp_relative() << std::endl;
+            std::cout << "baro_alt_meter: " << st.baro_alt_meter() << std::endl;
+            std::cout << "baro_temp_celcius: " << st.baro_temp_celcius() << std::endl;
+
+        }
+    }
+}
+
+```
+
+Now build and run the Listener:
+
+```sh
+$ make -f makefile_x64Linux2.6gcc
+$ bin/*/sensor_combined_PublisherSubscriber subscriber
+```
+
+Now you should see the alititude being printed out by the Listener
+
+```sh
+Sample received, count=10119
+Received sensor_combined data
+=============================
+gyro_rad: -0.0103228, 0.0140477, 0.000319406
+gyro_integral_dt: 0.004
+accelerometer_timestamp_relative: 0
+accelerometer_m_s2: -2.82708, -6.34799, -7.41101
+accelerometer_integral_dt: 0.004
+magnetometer_timestamp_relative: -10210
+magnetometer_ga: 0.60171, 0.0405879, -0.040995
+baro_timestamp_relative: -17469
+baro_alt_meter: 368.647
+baro_temp_celcius: 43.93
+```
+
+If the Listener does not print anything, make sure the Client is running. By default the Client runs for 10000 and than stops, to run the Client continuously run
+```sh
+$ micrortps_client start -l -1 
+```
+
+
+## Throughput test
+
+The [Hello world](../middleware/micrortps_hello_world.md) and [Throughput test](../middleware/micrortps_throughput_test.md) show some real-world examples of how to use the features described in this topic. 
+
+
+## Troubleshooting
+
+### Extra steps for Raspberry Pi 
 
 > **Note** Normally, for UART transport it's necessary set up the UART port in the Raspberry Pi. To enable the serial port available on Raspberry Pi connector:
 
@@ -329,9 +380,6 @@ Now we can add some code to print some info on the screen, for example:
 
 And enable UART setting `enable_uart=1`.
 
-## Hello world and Throughput test
-
-The [Hello world](../middleware/micrortps_hello_world.md) and [Throughput test](../middleware/micrortps_throughput_test.md) show some real-world examples of how to use the features described in this topic. 
 
 ## Graphical example of usage
 
@@ -339,6 +387,3 @@ This flow chart shows graphically how the bridge works. It demonstrates a bridge
 
 ![basic example flow](../../assets/middleware/micrortps/basic_example_flow.png)
 
-If all steps has been followed, you should see this output on the subscriber side of Fast RTPS.
-
-![Fast RTPA subscriber](../../assets/middleware/micrortps/fastrtps_subscriber_ex.png)
