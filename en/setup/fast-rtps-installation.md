@@ -2,7 +2,7 @@
 
 <img src="../../assets/fastrtps/eprosima_logo.png" style="float:left;"/> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium. RTPS is also the wire interoperability protocol defined for the Data Distribution Service (DDS) standard, again by the OMG.
 
-> **Tip** Fast RTPS is used by PX4 to enable publish/subscribe of uOrb topics to be extended to offboard components, including robotics and simulator tools. For more information see: [Micro RTPS](../middleware/micrortps.md).
+> **Tip** Fast RTPS is used by PX4 to enable publish/subscribe of uORB topics to be extended to offboard components, including robotics and simulator tools. For more information see: [Micro RTPS](../middleware/micrortps.md).
 
 <span></span>
 > **Note** This topic is derived from the official [*eProsima Fast RTPS* documentation](http://eprosima-fast-rtps.readthedocs.io/en/latest/). For more information see:
