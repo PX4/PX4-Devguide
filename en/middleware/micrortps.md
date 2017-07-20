@@ -19,20 +19,12 @@ Support for the functionality is mainly implemented within three new (automatica
   void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
   void deserialize_sensor_combined(struct sensor_combined_s *output, char *input, struct microCDR *microCDRReader);
   ```
-  
+
   > **Note** *CDR serialization* provides a common format for exchanging serial data between different platforms.  
 
 - A *client application* that sends and receives the CDR serialized data from topics through a selected UART or UDP port.
 
-  ![micro RTPS client](../../assets/middleware/micrortps/micrortps_client.png)
-
-- An *agent application* that shares the CDR serialized data via (using **Fast RTPS**) to DDS service clients (e.g. ROS2). An important step in this part is the generation of a IDL file for each topic which is the translation of the corresponding MSG file. For the case of *sensor_combined* topic the **sensor_combined_.idl** file is generated from **sensor_combined.msg** file.
-
-  ![micro RTPS agent](../../assets/middleware/micrortps/micrortps_agent.png)
-
-The diagram below covers the entire spectrum of communications.
-
-![micro RTPS both sides summary](../../assets/middleware/micrortps/micrortps_boths_sides.png)
+- An *agent application* that shares the CDR serialized data via (using **Fast RTPS**) to DDS service clients (e.g. ROS2). A first step in this part is the generation of a IDL file for each topic which is the translation of the corresponding MSG file (For the case of *sensor_combined* topic the **sensor_combined_.idl** file is generated from **sensor_combined.msg** file). After that *fastrtpsgen* tool is capable to generate code from the IDL file.
 
 These pieces of code are generated within the normal PX4 Firmware generation process. They can also can be generated explicitly by calling the script **Tools/generate_microRTPS_bridge.py** (see section below).
 
@@ -60,7 +52,7 @@ set(config_rtps_receive_topics
 
 The client application will be generated in *build_OURPLATFORM/src/modules/micrortps_bridge/micrortps_client/* folder and the agent will be created in *src/modules/micrortps_bridge/micrortps_agent/* folder.
 
-> **Note** In the process of the agent generation we use a Fast RTPS tool called *fastrtpsgen*. If you haven't installed Fast RTPS in the default path you need to specify the directory of installation of *fastrtpsgen* setting the environment variable `FASTRTPSGEN_DIR` before executing *make*. 
+> **Note** In the process of the agent generation we use a Fast RTPS tool called *fastrtpsgen*. If you haven't installed Fast RTPS in the default path you need to specify the directory of installation of *fastrtpsgen* setting the environment variable `FASTRTPSGEN_DIR` before executing *make*.
 > On Linux/Mac this is done as shown below:
 >
 >  ```sh
@@ -68,9 +60,15 @@ The client application will be generated in *build_OURPLATFORM/src/modules/micro
   ```
 
 ### Manually generate client and agent code
-  
+
 It is also possible to generate and install the code for the client and the agent outside the normal PX4 build process using the python script
-**Tools/generate_microRTPS_bridge.py**. 
+**Tools/generate_microRTPS_bridge.py**.
+
+First at all, we need to disable the automatic generation in the PX4 compiling process setting the variable `GENERATE_RTPS_BRIDGE` to *off* inside the *.cmake* file for the target platform:
+
+```sh
+set(GENERATE_RTPS_BRIDGE off)
+```
 
 The tool's command syntax is shown below:
 
@@ -85,7 +83,7 @@ usage: generate_microRTPS_bridge.py [-h] [-s *.msg [*.msg ...]]
 optional arguments:
   -h, --help            show this help message and exit
   -s *.msg [*.msg ...], --send *.msg [*.msg ...]
-                        Topics to be sended
+                        Topics to be sent
   -r *.msg [*.msg ...], --receive *.msg [*.msg ...]
                         Topics to be received
   -a, --agent           Flag for generate the agent, by default is true if -c
@@ -102,14 +100,12 @@ optional arguments:
                         src/modules/micrortps_bridge/micrortps_client
   -f FASTRTPSGEN, --fastrtpsgen-dir FASTRTPSGEN
                         fastrtpsgen installation dir, by default /bin
-  --no-delete           Do not delete dir tree output dir(s)
+  --delete-tree         Delete dir tree output dir(s)
 ```
+  > **Caution with --delete-tree option** so erases the content of the `CLIENTDIR` and the `AGENTDIR` before creating new files and folders.
 
-- The argument `--send/-s` means that the application from PX4 side will send these messages, and the argument `--receive/-r` specifies which messages is going to be received.
-- The output appears in `CLIENTDIR` (`-o src/modules/micrortps_bridge/micrortps_client`, by default) and in the `AGENTDIR` (`-u src/modules/micrortps_bridge/micrortps_agent`, by default). 
- 
-  > **Caution** This script erases the content of the `CLIENTDIR` and the `AGENTDIR` before creating new files and folders.
-
+- The argument `--send/-s` means that the application from PX4 side will send these messages, and the argument `--receive/-r` specifies which messages are going to be received.
+- The output appears in `CLIENTDIR` (`-o src/modules/micrortps_bridge/micrortps_client`, by default) and in the `AGENTDIR` (`-u src/modules/micrortps_bridge/micrortps_agent`, by default).
 - If no flag `-a` or `-c` is specified, both the client and the agent will be generated and installed.
 - The `-f` option may be needed if *Fast RTPS* was not installed in the default location (`-f /path/to/fastrtps/installation/bin`).
 
@@ -120,7 +116,7 @@ $ cd /path/to/PX4/Firmware
 $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor_combined.msg
 ```
 
-Checking the correct installation:
+Checking the correct generation and installation:
 
 ```sh
 $ tree src/modules/micrortps_bridge/micrortps_agent
@@ -161,9 +157,9 @@ src/modules/micrortps_bridge/micrortps_client
 ```
 
 
-## PX4 Firmware: the micro RTPS client
+## PX4 Firmware side: the micro RTPS client
 
-The agent application runs as both a uORB node and as a micro RTPS node. As a uORB node the agent could be subscribed to several topics as well as publish under internal uORB topics. The application receives from a internal publishers the messages, serializes the struct and writes it trough an UART
+The client application runs as both a uORB node and as a micro RTPS node. As a uORB node the agent could be subscribed to several topics as well as publish under internal uORB topics. The application receives from a internal publishers the messages, serializes the struct and writes it trough an UART
 device or UDP port selected by the user. Also will be reading from the UART device or UDP port and then publish the info
 to the internal subscribers.
 
@@ -182,7 +178,7 @@ Steps to use the auto generated application:
       )
   ```
   > **Note** For Nuttx platforms (e.g. *Pixracer*) the cmake files are **cmake/configs/nuttx_px4fmu-v4_default.cmake**. For the *Snapdragon Flight* platform you can find the cmake configuration here: **cmake/configs/posix_sdflight_default.cmake**.
-  
+
 - Construct and upload the firmware executing, for example:
 
   ```sh
@@ -219,10 +215,8 @@ After uploading the firmware, the application can be launched typing its name an
   ```sh
   > mavlink stop-all
   ```
- 
-## Fast RTPS: the Micro RTPS agent
 
-The *Fast RTPS* side will be explained taking a *Raspberry Pi* board to run an application as example.
+## Fast RTPS side: the Micro RTPS agent
 
 The application has several functions and possibilities of use: get the sensor data from a system that is using the *PX4
 Firmware* (obtaining the information from the selected transport: UDP or UART), publish this to a *Fast RTPS* environment
@@ -238,7 +232,7 @@ On the *Fast RTPS* side, it will be used an application running as a Fast RTPS n
 To create the application, compile the code:
 
   ```sh
-  $ cd /agent/installation/path/
+  $ cd src/modules/micrortps_bridge/microRTPS_agent
   $ mkdir build && cd build
   $ cmake ..
   $ make
@@ -342,18 +336,18 @@ baro_temp_celcius: 43.93
 
 If the Listener does not print anything, make sure the Client is running. By default the Client runs for 10000 and than stops, to run the Client continuously run
 ```sh
-$ micrortps_client start -l -1 
+$ micrortps_client start -l -1
 ```
 
 
 ## Throughput test
 
-The [Hello world](../middleware/micrortps_hello_world.md) and [Throughput test](../middleware/micrortps_throughput_test.md) show some real-world examples of how to use the features described in this topic. 
+[Throughput test](../middleware/micrortps_throughput_test.md) show some real-world examples of how to use the features described in this topic.
 
 
 ## Troubleshooting
 
-### Extra steps for Raspberry Pi 
+### Extra steps for Raspberry Pi
 
 > **Note** Normally, for UART transport it's necessary set up the UART port in the Raspberry Pi. To enable the serial port available on Raspberry Pi connector:
 
@@ -370,7 +364,7 @@ The [Hello world](../middleware/micrortps_hello_world.md) and [Throughput test](
   $ sudo raspi-config
   ```
 
-  Go to **Interfacing options > Serial**. Select **NO for *Would you like a login shell to be accessible over serial?*. Valid and reboot.
+  In the menu showed go to **Interfacing options > Serial**. Select **NO for *Would you like a login shell to be accessible over serial?*. Valid and reboot.
 
 3. Check UART in kernel:
 
@@ -386,4 +380,3 @@ And enable UART setting `enable_uart=1`.
 This flow chart shows graphically how the bridge works. It demonstrates a bridge that sends the topic `sensor_combined` from a Pixracer to a Raspberry Pi through UART.
 
 ![basic example flow](../../assets/middleware/micrortps/basic_example_flow.png)
-
