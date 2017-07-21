@@ -7,8 +7,6 @@ RTPS is the underlying protocol of DDS, an standard from the OMG (Object Managem
 
 Fast RTPS implements the latest version of the RTPS protocol and a minimum DDS API, resulting in a very lightweight implementation of the standard and full access to the RTPS fine settings.
 
-![micro RTPS general scheme](../../assets/middleware/micrortps/micrortps_general_scheme.png)
-
 ## Code generation
 
 Support for the functionality is mainly implemented within three new (automatically generated) code blocks:
