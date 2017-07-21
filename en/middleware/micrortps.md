@@ -39,15 +39,20 @@ set(config_rtps_send_topics
    sensor_accel
    sensor_baro
    sensor_gyro
-   ...
+   # Add new topic...
    )
 
 set(config_rtps_receive_topics
    sensor_combined
    telemetry_status
    wind_estimate
-   ...
+   # Add new topic...
    )
+```
+
+> **Note** Before compiling ensure that the code generation is not disabled in this way:
+```sh
+set(GENERATE_RTPS_BRIDGE off)
 ```
 
 The client application will be generated in *build_OURPLATFORM/src/modules/micrortps_bridge/micrortps_client/* folder and the agent will be created in *src/modules/micrortps_bridge/micrortps_agent/* folder.
@@ -260,7 +265,7 @@ To launch the publisher run:
 
 ## Creating a Listener
 
-Now that we have the Client running on the flight controller and the Agent on an offboard computer, we can create an application to communicate with the flight controller through FastRTPS. The fastrtpsgen script allows us to quickly generate a simple application from a .idl message file. We will use it to create a Listener which subscribes to the sensor_combined topic. The Listener can be run on any computer on the same network as the Agent, but here they will be on the same computer.
+Now that we have the Client running on the flight controller and the Agent on an offboard computer, we can create an application to communicate with the flight controller through FastRTPS. The *fastrtpsgen* script allows us to quickly generate a simple application from a IDL message file. We will use it to create a Listener which subscribes to the sensor_combined topic. The Listener can be run on any computer on the same network as the Agent, but here they will be on the same computer.
 
 ```sh
 $ cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
