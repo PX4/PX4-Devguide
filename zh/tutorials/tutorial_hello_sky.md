@@ -199,10 +199,10 @@ Rebooting.
 
 ## 第五步：读取传感器数据
 
-> 为了实现一些功能，应用程序需要读取传感器的输入然后反应到对电机或者舵机的输出中。注意在这里，PX平台真正的硬件抽象的概念在这里体现---当硬件平台或者传感器更新，完全不需要更新你的应用程序或者更新传感器驱动程序。
+> 为了实现一些功能，应用程序需要读取传感器的输入然后反应到对电机或者舵机的输出中。请注意，PX4平台真正的硬件抽象的概念在这里体现--无需与传感器驱动程序以任何方式交互，如果你更新了主板或传感器，也无需更新应用程序。
 
 
-在PX4中，应用程序间发送的单独的消息叫做“topics”，在本教程中，我们关心的topic是“多传感器间的uORB消息机制”（[sensor_combined](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/topics/sensor_combined.h) [topic](../middleware/uorb.md)）。这些消息机制使得整个系统能够同步传感器数据。
+在PX4中，应用程序之间的各个消息通道称为“topics”（话题）。在本教程中，我们关心的topic是“多传感器间的uORB消息机制”（[sensor_combined](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/topics/sensor_combined.h) [topic](../middleware/uorb.md))。这些消息机制使得整个系统能够同步传感器数据。
 
 订阅一个话题是非常迅速并且简洁的：
 
@@ -212,9 +212,9 @@ Rebooting.
 int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 ```
 
-“sensor_sub_fd” 是一个topic句柄，它能非常高效地产生一个模块来等待新数据。当有新数据产生时，一个正处于休眠状态对线程就会自动地被调度程序唤醒。因此在等待数据时，不会占用任何CPU周期。为了实现这个功能，我们使用poll()函数[http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html]，即POSIX系统调用。
+“sensor_sub_fd” 是一个topic句柄，它能非常高效地为新数据执行阻塞等待。当有新数据产生时，一个正处于休眠状态对线程就会自动地被调度程序唤醒。因此在等待数据时，不会占用任何CPU周期。为了实现这个功能，我们使用[poll()][http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html] 函数，即POSIX系统调用。
 
-在消息订阅中加入“poll()”函数（伪代码，完整程序如下）：
+在消息订阅中加入“poll()”函数，看起来如下（伪代码，完整程序代码可在下面找到）：
 
 ```C++
 #include <poll.h>
