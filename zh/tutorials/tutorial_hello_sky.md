@@ -212,7 +212,7 @@ Rebooting.
 int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 ```
 
-“sensor_sub_fd” 是一个topic句柄，它能非常高效地为新数据执行阻塞等待。当有新数据产生时，一个正处于休眠状态对线程就会自动地被调度程序唤醒。因此在等待数据时，不会占用任何CPU周期。为了实现这个功能，我们使用[poll()][http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html] 函数，即POSIX系统调用。
+“sensor_sub_fd” 是一个topic句柄，它能非常高效地为新数据执行阻塞等待。当有新数据产生时，一个正处于休眠状态对线程就会自动地被调度程序唤醒。因此在等待数据时，不会占用任何CPU周期。为了实现这个功能，我们使用[poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html)函数，即POSIX系统调用。
 
 在消息订阅中加入“poll()”函数，看起来如下（伪代码，完整程序代码可在下面找到）：
 
