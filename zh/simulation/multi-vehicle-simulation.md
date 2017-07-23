@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/simulation/sitl.md
+translated_sha: b522243efef9deb5e2d3ae7bd03ae9ed0eee3418
+---
+
 # Multi-Vehicle Simulation
 
 This tutorial explains how to simulate multi UAV in Gazebo. This is a software in the loop \(SITL\) simulation.
@@ -74,8 +79,8 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
                     <arg name="mavlink_udp_port" value="14560"/>
                     <arg name="ID" value="$(arg ID)"/>
                 </include>
-    ```
-    
+  ```
+
   * runs a mavros node,
     ```
             <include file="$(find mavros)/launch/node.launch">
@@ -87,7 +92,7 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
             <arg name="tgt_system" value="$(arg tgt_system)" />
             <arg name="tgt_component" value="$(arg tgt_component)" />
         </include>
-        ```
+    ```
 * The complete block for each vehicle looks like the following,
     ```
         <!-- UAV2 iris_2 -->
@@ -123,4 +128,4 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
         </include>
     </group>
     ```
-To simulate more vehicles, add more blocks with the appropriate changes in the startup files, and launch file's parameters.
+    To simulate more vehicles, add more blocks with the appropriate changes in the startup files, and launch file's parameters.

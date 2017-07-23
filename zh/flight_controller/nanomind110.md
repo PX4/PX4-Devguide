@@ -1,3 +1,8 @@
+---
+translated_page: https://github.com/PX4/Devguide/blob/master/en/flight_controller/pixfalcon.md
+translated_sha: 81c7139544eda1c6170317fec6e4156a40a75b1b
+---
+
 ## NanoMind 110
 
 ![](../../assets/hardware/hardware-nanomind110.png)
@@ -17,6 +22,11 @@ NanoMind uses MindRacer as flight controller, which runs full PX4/MindPX flight 
 ### User Guide
 
 > **Note** The user guide is [here](http://mindpx.net/assets/accessories/NanoMind_110_user_manual.pdf).
+
+### Flight video
+
+{% youtube %}https://www.youtube.com/watch?v=bLtKa--Buic{% endyoutube %}
+
 
 ### Where to buy
 
