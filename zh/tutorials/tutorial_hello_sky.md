@@ -390,7 +390,6 @@ int px4_simple_app_main(int argc, char *argv[])
   px4_simple_app
 ```
 如果你打开了QGroundControl，你就能通过实时绘图程序plot(Tools -> Analyze)来获得传感器数据。
-If you start QGroundControl, you can check the sensor values in the realtime plot (Tools -> Analyze)
 
 ## 小结
 
