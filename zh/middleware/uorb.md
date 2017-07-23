@@ -7,59 +7,57 @@ translated_sha: 18f5865bf5265934136cf5d18f838203c3db2100
 
 ## 简介
 
-uORB是一种用于进程间进行异步发布和订阅的消息机制API。
+uORB是一种用于线程间/进程间进行异步发布-订阅的消息机制的应用程序接口（API）。
 
-在[教程](../tutorials/tutorial_hello_sky.md)中可以学习通过C++如何使用uORB。
+在[这个教程](../tutorials/tutorial_hello_sky.md)中可以学习通过C++如何使用uORB。
 
 由于很多应用都是基于uORB的，因此在系统刚启动时uORB就自动运行了。uORB通过`uorb start`启动。可以使用`uorb test`进行单位测试。
 
-## 添加新的主题(topic)
+## 添加新的话题(topic)
 
-要想增加新的topic，你需要在`msg/`目录下创建一个新的`.msg` 文件并在`msg/CMakeLists.txt`下添加该文件。这样会自动生成所需的C / C ++代码
+要想增加新的topic，你需要在`msg/`目录下创建一个新的`.msg` 文件，并在`msg/CMakeLists.txt`下添加该文件名。这样会自动生成所需的C / C ++代码
 
-可以先看看现有的`msg`文件了解下都支持那些类型。一个消息也可以嵌套在其他消息当中。
+可以先看看现有的`msg`文件所支持的类型。一个消息也可以嵌套在其他消息当中。
 
-每一个生成的C/C++结构体中，会多出一个`uint64_t timestamp` 字段。这个变量用于将消息记录到日志当中。
+每一个生成的C/C++结构体中，需要添加一个`uint64_t timestamp` 时间戳字段。该字段用于记录器（logger），因此确保在发布消息时一定要添加它。
 
-为了在代码中使用"topic"需要添加头文件:
+为了在代码中使用"topic"，需要添加头文件:
 
 ```
 #include <uORB/topics/topic_name.h>
 ```
 
-首先需要在文件`.msg`中，通过添加类似如下的一行代码,一个消息定义就可以用于多个独立的主题.
+通过在`.msg`文件中，添加类似如下的一行代码,一个消息定义就可以用于多个独立的topic中：
 
 ```
 # TOPICS mission offboard_mission onboard_mission
 ```
 
-> 【按】这里这一步将产生三个主题ID- mission、 offboard_mission 、以及 onboard_mission (第一个ID务必与.msg文件名相同)
+> 【按】这里这一步将产生三个topic ID- mission、 offboard_mission 以及 onboard_mission (第一个ID务必与.msg文件名相同)
 
-然后在代码中, 把它们作为主题ID用:`ORB_ID(offboard_mission)`.
+然后在代码中, 通过topic ID:`ORB_ID(offboard_mission)`来使用这个topic.
 
-## 发布主题
+## 发布话题
 
-在系统的任何地方都可以发布一个主题, 包括在中断上下文中(被`hrt_call`接口调用的函数). 但是, 公告(advertise)一个主题仅限于在中断上下文之外.
+在系统的任何地方都可以发布（publish）一个话题, 包括在中断上下文中(被`hrt_call`接口调用的函数). 但是, 公告(advertise)一个话题仅限于在中断上下文之外. 一个话题必须同它随后发布的同一进程中公告。一个话题必须在它随后发布的相同进程中进行公告。
 
-一个主题只能由同一个进程进行公告, 并作为其之后的发布(publish).
+## 列出话题并进行监听
 
-## 列出主题并进行监听
+> **Note** `监听器(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
 
-> **Note** `监听(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
-
-要列出所有主题, 先列出文件句柄:
+要列出所有话题, 先列出文件句柄:
 
 ```sh
 ls /obj
 ```
 
-要列出一个主题中的5个消息, 执行以下监听命令:
+要列出一个话题中的5个消息, 执行以下监听命令:
 
 ```sh
 listener sensor_accel 5
 ```
 
-得到的输出就是关于该主题的n次内容:
+得到的输出就是关于该话题的n次内容:
 
 ```sh
 TOPIC: sensor_accel #3
@@ -91,10 +89,10 @@ range_m_s2: 78
 scaling: 0
 ```
 
-> **Tip** On NuttX-based systems (Pixhawk, Pixracer, etc) the `listener` command can be called from within the *QGroundControl* MAVLink Console to inspect the values of sensors and other topics. This is a powerful debugging tool because it can be used even when QGC is connected over a wireless link (e.g. when the vehicle is flying). For more information see: [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md).
+> **提示** 在基于NuttX的系统(Pixhawk, Pixracer等)， `listener`命令可从地面站*QGroundControl* MAVLink控制台调用，来监听传感器数值和其他话题。 这是一个强大的调试工具，因为QGC通过无线链路连接时也可以使用它（例如，当无人机在飞行过程中）。更多信息可以看[Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md).
 
 
-### uorb top Command
+### uORB 顶层命令
 The command `uorb top` shows the publishing frequency of each topic in real-time:
 
 ```sh
