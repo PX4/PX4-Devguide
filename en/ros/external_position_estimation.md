@@ -10,7 +10,7 @@ The system can then be used for applications such as position hold indoors or wa
 
 For vision, the mavlink message used to send the pose data is [VISION_POSITION_ESTIMATE](http://mavlink.org/messages/common#VISION_POSITION_ESTIMATE) and the message for all motion capture systems is [ATT_POS_MOCAP](http://mavlink.org/messages/common#ATT_POS_MOCAP) messages.
 
-The mavros ROS-Mavlink interface has default implementations to send these messages. They can also be sent using pure C/C++ code and direct use of the MAVLink library.
+The mavros ROS-Mavlink interface has default implementations to send these messages. They can also be sent using pure C/C++ code and direct use of the MAVLink library. The ROS topics are: `mocap_pose_estimate` for mocap systems and `vision_pose_estimate` for vision. Check [mavros_extras](http://wiki.ros.org/mavros_extras) for further info.
 
 **This feature has only been tested to work with the LPE estimator.**
 
