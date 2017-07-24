@@ -1,4 +1,4 @@
-# Using Vision or Motion Capture systems
+[](assets/lpe)# Using Vision or Motion Capture systems
 
 > **Info** Before following the instructions below, ensure that your autopilot has a firmware version with the LPE modules enabled. The LPE version of the PX4 firmware can be found inside the zip file of the latest PX4 release or it can be built from source using a build command such as `make px4fmu-v2_lpe`. See [Building the Code](../setup/building_px4.md) for more details.
 
@@ -30,4 +30,45 @@ There is a bit field for this in the parameter `LPE_FUSION`, which you can set f
 
 #### Tuning noise parameters
 
-If your vision or mocap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters, `LPE_VIS_XY` and `LPE_VIS_Z` (for vision) or `LPE_VIC_P` (for motion capture). Reducing them will cause the estimator to trust the incoming pose estimate more. You may need to set them lower than the allowed minimum and force-save.
+If your vision or mocap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters, `LPE_VIS_XY` and `LPE_VIS_Z` (for vision) or `LPE_VIC_P` (for motion capture). Reducing them will cause the estimator to trust the incoming pose estimate more. You may need to set them lower than the allowed minimum and force-save. 
+
+> **Tip** If performances are still bad, try to increase `LPE_PN_V` parameter in order to trust measurement more regarding velocity estimation.
+
+## Asserting on reference frames
+This section shows how to setup the system with the proper reference frames. There are various representations but we will use two of them: ENU and NED. 
+
+* ENU representation has a ground-fixed frame where $$x$$ axis points East, $$y$$ points North and $$z$$ up. Robot frame is $$x$$ towards the front, $$z$$ up and $$y$$ accordingly.
+
+* NED has $$x$$ towards North, $$y$$ East and $$z$$ down. Robot frame is $$x$$ towards the front, $$s$$ down and $$y$$ accordingly.
+
+Frames are shown in the image below: NED on the left while ENU on the right.
+![Reference frames](../../assets/lpe/ref_frames.png)
+
+With the external heading estimation, however, magnetic North ignored and it will be faked with a vector corresponding to world $$x$$ axis (which can be placed freely at mocap calibration) and yaw angle will be given respect to that.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
