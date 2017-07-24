@@ -26,7 +26,7 @@ pxh> commander takeoff
 
 ![](../../assets/jmavsim_first_takeoff.png)
 
-Hitting CTRL-C stops the simulation and simulated flight code. The simulation setup is documented in full detail here: [Basic Simulation](../simulation/sitl.md).
+Hitting CTRL-C stops the simulation and simulated flight code. The simulation setup is documented in full detail here: [jMAVSim Simulation](../simulation/jmavsim.md).
 
 Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
 
