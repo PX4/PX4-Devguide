@@ -46,9 +46,14 @@ Frames are shown in the image below: NED on the left while ENU on the right.
 
 With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world $$x$$ axis (which can be placed freely at mocap calibration), yaw angle will be given respect to local $$x$$.
 
+> **Important** When creating the rigid body in the mocap software, remember to first align the robot with the world $$x$$ axis otherwise yaw estimation will have an initial offset.
+
 ###Using Mavros
 
-With MAVROS this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use 
+With MAVROS this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams already in ENU the object pose on a ROS topic. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation. 
+
+### Without Mavros
+If you do not use MAVROS or ROS in general, you need to stream data over Mavlink with `ATT_POS_MOCAP` message. In this case you will need to apply a custom transformation depending on the system. Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane ($$x$$ front and $$z$$ right) while $$y$$ axis is vertical and pointing up. 
 
 
 
