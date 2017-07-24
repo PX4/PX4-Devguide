@@ -63,6 +63,7 @@
   * [MAVLink Messaging](middleware/mavlink.md)
   * [RTPS/ROS2 interface](middleware/micrortps.md)
     * [Throughput Test](middleware/micrortps_throughput_test.md)
+    * [Manually generate Client and Agent code](middleware/micrortps_manual_code_generation.md)
   * [Daemons](advanced/architecture_daemon.md)
   * [Driver Framework](middleware/drivers.md)
   * [Modules & Commands](middleware/modules_main.md)
