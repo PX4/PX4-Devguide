@@ -1,6 +1,6 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/log/ulog_file_format.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
+translated_sha: cd45f94f39aae63536cde77a0a8b959392d23d9e
 ---
 
 # ULog File Format
@@ -248,4 +248,47 @@ struct message_dropout_s {
 
 * 'P': parameter message. See above.
 
+
+## Requirements for Parsers
+A valid ULog parser must fulfill the following requirements:
+- Must ignore unknown messages (but it can print a warning).
+- Parse future/unknown file format versions as well (but it can print a warning).
+- Must refuse to parse a log which contains unknown incompatibility bits set
+  (`incompat_flags` of `ulog_message_flag_bits_s` message), meaning the log
+  contains breaking changes that the parser cannot handle.
+- A parser must be able to correctly handle logs that end abruptly, in the
+  middle of a message. The unfinished message should just be discarged.
+- For appended data: a parser can assume the Data section exists, i.e. the
+  offset points to a place after the Definitions section.
+
+  Appended data must be treated as if it was part of the regular Data section.
+
+
+## Known Implementations
+- PX4 Firmware: C++
+  - [logger module](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
+  - [replay module](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
+  - [hardfault_log module](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log):
+    append hardfault crash data.
+- [pyulog](https://github.com/PX4/pyulog): python, ULog parser library with CLI
+  scripts.
+- [FlightPlot](https://github.com/PX4/FlightPlot): Java, log plotter.
+- [MAVLink](https://github.com/mavlink/mavlink): Messages for ULog streaming via
+  MAVLink (note that appending data is not supported, at least not for cut off
+  messages).
+- [QGroundControl](https://github.com/mavlink/qgroundcontrol): C++, ULog
+  streaming via MAVLink and minimal parsing for GeoTagging.
+- [mavlink-router](https://github.com/01org/mavlink-router): C++, ULog streaming
+  via MAVLink.
+- [MAVGAnalysis](https://github.com/ecmnet/MAVGCL): Java, ULog streaming via
+  MAVLink and parser for plotting and analysis.
+
+
+## File Format Version History
+### Changes in version 2
+Addition of `ulog_message_info_multiple_header_s` and `ulog_message_flag_bits_s`
+messages and the ability to append data to a log. This is used to add crash data
+to an existing log. If data is appended to a log that is cut in the middle of a
+message, it cannot be parsed with version 1 parsers. Other than that forward and
+backward compatibility is given if parsers ignore unknown messages.
 
