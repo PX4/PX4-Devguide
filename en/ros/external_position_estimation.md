@@ -44,20 +44,11 @@ This section shows how to setup the system with the proper reference frames. The
 Frames are shown in the image below: NED on the left while ENU on the right.
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
-With the external heading estimation, however, magnetic North ignored and it will be faked with a vector corresponding to world $$x$$ axis (which can be placed freely at mocap calibration) and yaw angle will be given respect to that.
+With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world $$x$$ axis (which can be placed freely at mocap calibration), yaw angle will be given respect to local $$x$$.
 
+###Using Mavros
 
-
-
-
-
-
-
-
-
-
-
-
+With MAVROS this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use 
 
 
 
