@@ -89,7 +89,7 @@ The dependencies for the Gazebo and jMAVSim simulators listed below. You should 
 
 ### jMAVSim
 
-Install the dependencies for [jMAVSim Simulation](../simulation/sitl.md).
+Install the dependencies for [jMAVSim Simulation](../simulation/jmavsim.md).
 
 ```
 # jMAVSim simulator

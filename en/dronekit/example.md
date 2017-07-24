@@ -25,7 +25,7 @@ import time, sys, argparse, math
 
 ```
 
-Connect to a Mavlink port of your drone or simulation (e.g. [JMavSim](../simulation/sitl.md)).
+Connect to a MAVLink port of your drone or simulation (e.g. [JMavSim](../simulation/jmavsim.md)).
 
 ```C
 # Connect to the Vehicle

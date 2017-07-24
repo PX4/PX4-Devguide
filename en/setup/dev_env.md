@@ -13,7 +13,7 @@ Target | Linux (Ubuntu) | Mac | Windows
 **NuttX based hardware:** [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md), [Pixracer](../flight_controller/pixracer.md), [Pixhawk 3 Pro](../flight_controller/pixhawk3_pro.md), [Crazyflie](../flight_controller/crazyflie2.md), [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md) | X | X | X
 [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md) | X | | 
 **Linux-based hardware:** [Raspberry Pi 2/3](../flight_controller/raspberry_pi_navio2.md), Parrot Bebop  | X | | 
-**Simulation:** [jMAVSim SITL](../simulation/sitl.md) | X | X | X
+**Simulation:** [jMAVSim SITL](../simulation/jmavsim.md) | X | X | X
 **Simulation:** [Gazebo SITL](../simulation/gazebo.md) | X | X | 
 
 ## Development Environment
