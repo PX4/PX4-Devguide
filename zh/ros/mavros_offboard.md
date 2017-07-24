@@ -3,12 +3,12 @@ translated_page: https://github.com/PX4/Devguide/blob/master/en/ros/mavros_offbo
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ---
 
-# MAVROS外部控制例程
+# MAVROS机外（offboard）控制例程
 
-> **注意：** 外部控制是危险的。如果在真机上操作，确保可以在出错的时候切换回手动控制。
+> **注意：** 机外控制非常危险。如果在真机上操作，请确保可以在出错的时候切回手动控制。
 
 
-下面的教程是一个基础的外部控制例子，通过MAVROS应用在Gazebo模拟的Iris四旋翼上。在教程最后，你应该会得到与下面视频相同的结果，即无人机缓慢起飞到高度2米。
+下面的教程是一个基础的机外控制例子，通过MAVROS在Gazebo中应用于Iris四旋翼上。在教程最后，你应该会得到与下面视频相同的结果，即无人机缓慢起飞到高度2米。
 
 <video width="100%" autoplay="true" controls="true">
 	<source src="../assets/sim/gazebo_offboard.webm" type="video/webm">
@@ -178,7 +178,7 @@ for(int i = 100; ros::ok() && i > 0; --i){
 }
 ```
 
-在进入机外控制模式之前，就必须开始发送设定值（这里是指pose），否则模式切换会被拒绝。这里的100是个随意选取的值。
+在进入机外控制模式之前，就必须开始发送设定值（这里是指pose），否则模式切换会被拒绝。这里的100是一个随意选取的值。
 
 ```C++
 mavros_msgs::SetMode offb_set_mode;
