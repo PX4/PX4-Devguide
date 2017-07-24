@@ -53,9 +53,17 @@ With the external heading estimation, however, magnetic North is ignored and fak
 With MAVROS this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams already in ENU the object pose on a ROS topic. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation. 
 
 ### Without Mavros
-If you do not use MAVROS or ROS in general, you need to stream data over Mavlink with `ATT_POS_MOCAP` message. In this case you will need to apply a custom transformation depending on the system. Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane ($$x$$ front and $$z$$ right) while $$y$$ axis is vertical and pointing up. 
+If you do not use MAVROS or ROS in general, you need to stream data over Mavlink with `ATT_POS_MOCAP` message. In this case you will need to apply a custom transformation depending on the system. 
 
+Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane ($$x$$ front and $$z$$ right) while $$y$$ axis is vertical and pointing up. A simple trick is swapping axis in order to obtained NED convention. 
 
+We call x_{mav}, y_{mav} and z_{mav} the coordinates that are sent through Mavlink as position feedback, then we obtain:
+
+$$x_{mav} = x_{mocap}$$
+$$y_{mav} = z_{mocap}$$
+$$z_{mav} = - y_{mocap}$$
+
+Regarding the orientation, keep w the same and swap quaternion x y and z in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
 
 
 
