@@ -2,7 +2,7 @@
 
 <img src="../../assets/fastrtps/eprosima_logo.png" style="float:left;"/> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium. RTPS is also the wire interoperability protocol defined for the Data Distribution Service (DDS) standard, again by the OMG.
 
-> **Tip** Fast RTPS is used by PX4 to enable an RTPS interface allowing PX4 info to be extended to offboard components, including robotics and simulator tools. RTPS is the underlying protocol of DDS, an standard from the OMG (Object Management Group) providing a real-time publish/subscribe middleware that is widely used in aerospace, defense and IoT applications. It has also been adopted as the middleware for the ROS2 robotics toolkit. For more information see: [Micro RTPS](../middleware/micrortps.md).
+> **Tip** Fast RTPS is used by PX4 to enable an RTPS interface allowing PX4 info to be extended to offboard components, including robotics and simulator tools. RTPS is the underlying protocol of DDS, an standard from the OMG (Object Management Group) providing a real-time publish/subscribe middleware that is widely used in aerospace, defense and IoT applications. It has also been adopted as the middleware for the ROS2 robotics toolkit. For more information see: [RTPS/ROS2 interface: the PX4-FastRTPS bridge](../middleware/micrortps.md).
 
 <span></span>
 > **Note** This topic is derived from the official [*eProsima Fast RTPS* documentation](http://eprosima-fast-rtps.readthedocs.io/en/latest/). For more information see:
@@ -20,13 +20,13 @@
 
 #### Java
 
-Java is required to make use of our built-in code generation tool *fastrtpsgen*. It's recommended install [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+Java is required to use our built-in code generation tool - *fastrtpsgen*. [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) is recommended.
 
 ### Windows 7 32-bit and 64-bit
 
 #### Visual C++ 2013 or 2015 Redistributable Package
 
-*eProsima Fast RTPS* requires the Visual C++ Redistributable packages for the Visual Studio version you choose during the installation or compilation. The installer gives you the option of downloading and installing them.
+*eProsima Fast RTPS* requires the Visual C++ Redistributable packages for the Visual Studio version you chose during the installation or compilation. The installer gives you the option of downloading and installing them.
 
 
 
@@ -51,9 +51,9 @@ If you are on Windows, choose your version of *Visual Studio*:
 > cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON ..
 > cmake --build . --target install
 ```
-If you want to compile the examples, you will need to add the argmuent `-DCOMPILE_EXAMPLES=ON` when calling CMake.
+If you want to compile the examples, you will need to add the argument `-DCOMPILE_EXAMPLES=ON` when calling *CMake*.
 
-If you want to compile the performance tests, you will need to add the argument `-DPERFORMANCE_TESTS=ON` when calling CMake.
+If you want to compile the performance tests, you will need to add the argument `-DPERFORMANCE_TESTS=ON` when calling *CMake*.
 
 
 
