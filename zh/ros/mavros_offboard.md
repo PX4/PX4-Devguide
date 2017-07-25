@@ -109,8 +109,7 @@ int main(int argc, char **argv)
 ```
 
 > **提示：** 本过程需要对ROS有一定的了解。
-> 创建工作空间后需要`source devel/setup.bash`，否则会出现找不到package的情况，要想保证工作空间已配置正确需确保ROS_PACKAGE_PATH环境变量包含你
-> 的工作空间目录，采用`echo $ROS_PACKAGE_PATH`命令查看是否包含了你创建的package的路径，此操作也可以通过直接在.bashrc文件最后添加路径的方式解决。
+> 创建工作空间后需要`source devel/setup.bash`，否则会出现找不到package的情况，要想保证工作空间已配置正确需确保ROS_PACKAGE_PATH环境变量包含你的工作空间目录，采用`echo $ROS_PACKAGE_PATH`命令查看是否包含了你创建的package的路径，此操作也可以通过直接在.bashrc文件最后添加路径的方式解决。
 
 
 ## 代码解释
