@@ -26,7 +26,7 @@ We have provided a script below that makes this easy.
 
 To use the build script:
 1. Install [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
-1. Download the <strong><a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a></strong> script.
+1. Download the <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a></strong> script.
 1. Open the bash shell and navigate to the directory containing the script. 
 1. Run the script using the command below (acknowledging any prompts as required):
   ```sh
@@ -42,7 +42,7 @@ To use the build script:
 
 #### Build script details
 
-The <a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/windows_bash_nuttx.sh">windows_bash_nuttx.sh</a> build script modifies the Ubuntu build instructions to removes Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators. 
+The <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh">windows_bash_nuttx.sh</a> build script modifies the Ubuntu build instructions to removes Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators. 
 
 In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) 
 since BashOnWindows doesn't run 32 bit ELF programs (and the default compiler from `https://launchpad.net/gcc-arm-embedded` is 32 bit).
