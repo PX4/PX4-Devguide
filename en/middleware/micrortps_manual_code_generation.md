@@ -1,4 +1,4 @@
-# Manually generate Client and Agent code
+# Manually Generate Client and Agent Code
 
 It is also possible to generate and install the code for the client and the agent outside the normal PX4 build process using the python script
 **Tools/generate_microRTPS_bridge.py**.
@@ -41,7 +41,8 @@ optional arguments:
                         fastrtpsgen installation dir, by default /bin
   --delete-tree         Delete dir tree output dir(s)
 ```
-  > **Caution with --delete-tree option** so erases the content of the `CLIENTDIR` and the `AGENTDIR` before creating new files and folders.
+
+> **Caution** Using with `--delete-tree`` option erases the content of the `CLIENTDIR` and the `AGENTDIR` before creating new files and folders.
 
 - The argument `--send/-s` means that the application from PX4 side will send these messages, and the argument `--receive/-r` specifies which messages are going to be received.
 - The output appears in `CLIENTDIR` (`-o src/modules/micrortps_bridge/micrortps_client`, by default) and in the `AGENTDIR` (`-u src/modules/micrortps_bridge/micrortps_agent`, by default).

@@ -1,36 +1,38 @@
-# RTPS/ROS2 interface: the PX4-FastRTPS bridge
+# RTPS/ROS2 Interface: PX4-FastRTPS Bridge
 
-This bridge adds communication capabilities between a *PX4 Autopilot* and a *Fast RTPS* application, through serial ports or
-UDP sockets, using [CDR serialization](https://en.wikipedia.org/wiki/Common_Data_Representation). The goal is to provide a RTPS (Real Time Publish Subscribe Protocol) interface to PX4. This interface will also allow sharing information with the forthcoming release of ROS2 (Robot Operating System).
+The *PX4-FastRTPS Bridge* adds a Real Time Publish Subscribe (RTPS) interface to PX4, enabling the exchange of [uORB messages](../middleware/uorb.md) between PX4 components and (offboard) FastRTPS applications.
 
-RTPS is the underlying protocol of DDS, an standard from the OMG (Object Management Group) providing a real-time publish/subscribe middleware that is widely used in aerospace, defense and IoT applications. It has also been adopted as the middleware for the ROS2 robotics toolkit.
+> **Note** RTPS is the underlying protocol of the Object Management Group's (OMG) Data Distribution Service (DDS) standard. It aims to enable scalable, real-time, dependable, high-performance and interoperable data communication using the publish/subscribe pattern. *FastRTPS* is a very lightweight cross-platform implementation of the latest version of the RTPS protocol and a minimum DDS API.
 
-Fast RTPS implements the latest version of the RTPS protocol and a minimum DDS API, resulting in a very lightweight implementation of the standard and full access to the RTPS extensive configurability.
+RTPS has been adopted as the middleware for the ROS2 (Robot Operating System). The bridge allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
+
+This topic describes the bridge architecture and how it is compiled (including how to specify which uORB messages are exchanged), and how to write a simple FastRTSP application to subscribe to PX4 changes.
+
+
+## Architectural overview
 
 ![basic example flow](../../assets/middleware/micrortps/basic_example_flow.png)
 
+The main elements of the architecture are the client and agent processes shown in the diagram above.
+
+- The *Client* is PX4 middleware daemon process that runs on the flight controller. It subscribes to uORB topics published by other PX4 components and sends any updates to the *Agent* (via a UART or UDP port). It also receives messages from the *Agent* and publishes them as uORB message on PX4.
+- The *Agent* runs as a daemon process on an offboard computer. It watches for uORB update messages from the *Client* and (re)publishes them over RTPS. It also subscribes to "uORB" RTPS messages from other RTPS applications and forwards them to the *Client*.
+- The *Agent* and *Client* are connected via a serial link (UART) or UDP network. The uORB information is [CDR serialized](https://en.wikipedia.org/wiki/Common_Data_Representation) for sending (*CDR serialization* provides a common format for exchanging serial data between different platforms).
+- The *Agent* and any *FastRTPS* applications are connected via UDP, and may be on the same or another device. In a typical configuration they will both be on the same system (e.g. a development computer, Linux companion computer or compute board), connected to the *Client* over a Wifi link or via USB.
+
+
 ## Code generation
 
-Support for the functionality is mainly implemented within three new (automatically generated) code blocks:
+The code needed for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages is automatically generated when the PX4 Firmware is compiled (and can also be [generated manually](micrortps_manual_code_generation.md)). 
 
-- *CDR serialization functions* are generated for specified uORB topics (those that are to be sent/received). *CDR serialization* provides a common format for exchanging serial data between different platforms. For example, the following functions are generated for the *sensor_combined.msg*:
+> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! 
 
-  ```sh
-  void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
-  void deserialize_sensor_combined(struct sensor_combined_s *output, char *input, struct microCDR *microCDRReader);
-  ```
+The source code for the *Client* and *Agent* will be generated in **build\__BUILDPLATFORM_/src/modules/micrortps_bridge**, under the **/micrortps_client** and **/micrortps_agent** folders (respectively).
 
-- The *Client* acts as a bridge between uORB-messages on the flight-controller and CDR-messages from either UART or UDP.
 
-- The *Agent* similarly acts as a bridge between Fast RTPS messages on the offboard computer and CDR-messages on either UART or UDP.
+### Supported uORB/RTSP messages
 
-These pieces of code are generated within the normal PX4 Firmware generation process. They can also can be [generated manually](micrortps_manual_code_generation.md).
-
-### Automatically generate Client and Agent
-
-> **Note** Before continuing we need to have [installed Fast RTPS](../setup/fast-rtps-installation.md).
-
-The code needed for the Client, Agent, and CDR serialization is automatically generated when the PX4 Firmware is compiled. The topics which will be handled by the bridge are listed in the **.cmake** file (**cmake/configs**) for each target platform:
+The set of uORB topics that can be sent and received by the bridge are listed in the **.cmake** file (**cmake/configs**) for each target platform:
 
 ```cmake
 set(config_rtps_send_topics
@@ -44,30 +46,36 @@ set(config_rtps_receive_topics
    )
 ```
 
-The Client application will be generated in *build_OURPLATFORM/src/modules/micrortps_bridge/micrortps_client/* folder and the Agent will be created in *src/modules/micrortps_bridge/micrortps_agent/* folder.
+A uORB serialization function will be generated for each topic in both lists. An IDL file will also be created for each topic from the associated uORB **.msg** files 
 
-> **Note** To generate the Agent we use a Fast RTPS tool called *fastrtpsgen*. If you haven't installed Fast RTPS in the default path you need to specify the directory of installation of *fastrtpsgen* setting the environment variable `FASTRTPSGEN_DIR` before executing *make*.
-> On Linux/Mac this is done as shown below:
->
->  ```sh
-  export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
+> **Note** FastRTSP uses IDL files to define the structure of RTPS messages (in this case, RTPS messages for sending uORB topics). The IDL files are compiled to C++ by the *fastrtpsgen* tool, which is then used by the Agent and other FastRTPS applications.
+
+
+#### uORB serialization code
+
+Serialization functions are generated for the uORB topics that are to be sent/received. 
+For example, the following functions would be generated for the *sensor_combined.msg*:
+
+```sh
+void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
+void deserialize_sensor_combined(struct sensor_combined_s *output, char *input, struct microCDR *microCDRReader);
+```
+
+
+## Client (PX4 Firmware)
+
+The *Client* source code is generated, and the executable is automatically built and included when you make the firmware (in the normal way). For example, to build and upload the firmware:
+
+For NuttX/Pixhawk flight controllers:
+```sh
+make px4fmu-v4_default upload
+```
+For Qualcomm Snapdragon Flight:
+```sh
+$ make eagle_default upload
   ```
 
-
-## PX4 Firmware side: The Client
-
-- Construct and upload the firmware executing, for example:
-
-  ```sh
-  # For NuttX/Pixhawk flight controllers:
-  $ make px4fmu-v4_default upload
-  ```
-  ```sh
-  # For Snapdragon Flight:
-  $ make eagle_default upload
-  ```
-
-After uploading the firmware, the application can be launched typing its name and passing a variable number of arguments as shown below:
+After uploading the firmware, the *Client* application can be launched by typing its name and passing a variable number of arguments as shown below:
 
 ```sh
 > micrortps_client start|stop [options]
@@ -88,45 +96,50 @@ After uploading the firmware, the application can be launched typing its name an
   ```
 
 
-## Fast RTPS side: The Agent
+## Agent (Off Board FastRTPS Interface)
 
-To create the application, compile the code:
+The *Agent* code is automatically generated when you compile/build the associated PX4 firmware (into **build_BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/**)
 
-  ```sh
-  $ cd src/modules/micrortps_bridge/microRTPS_agent
-  $ mkdir build && cd build
-  $ cmake ..
-  $ make
-  ```
-
-> **Note** To cross-compile for the Qualcomm Snapdragon Flight platform see [this link](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use).
-
-To launch the publisher run:
-
-  ```text
-  $ ./micrortps_agent [options]
-    -t <transport>          [UART|UDP] Default UART
-    -d <device>             UART device. Default /dev/ttyACM0
-    -w <sleep_time_us>      Time in us for which each iteration sleep. Default 1ms
-    -b <baudrate>           UART device baudrate. Default 460800
-    -p <poll_ms>            Time in ms to poll over UART. Default 1ms
-    -r <reception port>     UDP port for receiving. Default 2019
-    -s <sending port>       UDP port for sending. Default 2020
-  ```
-
-
-## Creating a Listener
-
-Now that we have the Client running on the flight controller and the Agent on an offboard computer, we can create an application to communicate with the flight controller through FastRTPS. The *fastrtpsgen* script allows us to quickly generate a simple application from a IDL message file. We will use it to create a Listener which subscribes to the sensor_combined topic. The Listener can be run on any computer on the same network as the Agent, but here they will be on the same computer.
-
+To build the *Agent* application, compile the code:
 ```sh
-$ cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
-$ mkdir micrortps_listener
-$ cd micrortps_listener
-$ fastrtpsgen -example x64Linux2.6gcc ../micrortps_agent/idl/sensor_combined_.idl
+cd src/modules/micrortps_bridge/microRTPS_agent
+mkdir build && cd build
+cmake ..
+make
+  ```
+
+> **Note** To cross-compile for the *Qualcomm Snapdragon Flight* platform see [this link](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use).
+
+To launch the *Agent* run:
+
+```text
+$ ./micrortps_agent [options]
+  -t <transport>          [UART|UDP] Default UART
+  -d <device>             UART device. Default /dev/ttyACM0
+  -w <sleep_time_us>      Time in us for which each iteration sleep. Default 1ms
+  -b <baudrate>           UART device baudrate. Default 460800
+  -p <poll_ms>            Time in ms to poll over UART. Default 1ms
+  -r <reception port>     UDP port for receiving. Default 2019
+  -s <sending port>       UDP port for sending. Default 2020
 ```
 
-This creates a sample subscriber, a publisher and a main-application to run them. To print out the data from the sensor_combined topic, we modify the onNewDataMessage-method in sensor_combined_Subscriber.cxx:
+
+## Creating a Listener application
+
+Once the *Client* is running on the flight controller and the *Agent* on an offboard computer, FastRTPS applications running on the RTPS network can publish and subscribe to uORB topics on PX4 using RTPS. 
+
+> **Note** A connected RTPS application can run on any computer on the same network as the *Agent*. For this example they will be on the same computer.
+
+The *fastrtpsgen* script can be used to generate a simple application from an IDL message file. Below will use it to create a Listener application that subscribes to the `sensor_combined` topic and prints out updates (from PX4). Enter the following commands to create the application:
+
+```sh
+cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
+mkdir micrortps_listener
+cd micrortps_listener
+fastrtpsgen -example x64Linux2.6gcc ../micrortps_agent/idl/sensor_combined_.idl
+```
+
+This creates a sample subscriber, a publisher and a main-application to run them. To print out the data from the `sensor_combined` topic, modify the `onNewDataMessage()`-method in **sensor_combined_Subscriber.cxx**:
 
 ```sh
 void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
@@ -163,17 +176,16 @@ void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
         }
     }
 }
-
 ```
 
-Now build and run the Listener:
+To build and run the Listener application:
 
 ```sh
-$ make -f makefile_x64Linux2.6gcc
-$ bin/*/sensor_combined_PublisherSubscriber subscriber
+make -f makefile_x64Linux2.6gcc
+bin/*/sensor_combined_PublisherSubscriber subscriber
 ```
 
-Now you should see the alititude being printed out by the Listener
+Now you should see the sensor inforation being printed out:
 
 ```sh
 Sample received, count=10119
@@ -191,34 +203,51 @@ baro_alt_meter: 368.647
 baro_temp_celcius: 43.93
 ```
 
-If the Listener does not print anything, make sure the Client is running. By default the Client runs for 10000 loops and than stops. To run the Client continuously, run
+If the Listener does not print anything, make sure the *Client* is running. By default the *Client* runs for 10000 loops and than stops. To run the Client continuously:
+
 ```sh
-$ micrortps_client start -l -1
+micrortps_client start -l -1
 ```
 
 
-## Throughput test
+## Examples/tests
 
-[Throughput test](../middleware/micrortps_throughput_test.md) show some real-world examples of how to use the features described in this topic.
+The following examples provide additional real-world demonstrations of how to use the features described in this topic.
+
+* [Throughput test](../middleware/micrortps_throughput_test.md): A simple simple test to measure the throughput of the bridge.
 
 
 ## Troubleshooting
 
-### Extra steps for Raspberry Pi
+### Agent not built/fastrtpsgen is not found
 
-> **Note** Normally, for UART transport it's necessary set up the UART port in the Raspberry Pi. To enable the serial port available on Raspberry Pi connector:
+The *Agent* code is generated using a *FastRTPS* tool called *fastrtpsgen* (environment variable ).  
+
+If you haven't installed Fast RTPS in the default path then you must to specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
+
+On Linux/Mac this is done as shown below:
+
+```sh
+export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
+```
+
+> **Note** This should not be a problem if [Fast RTPS is installed in the default location](../setup/fast-rtps-installation.md).
+
+### Enable UART on Raspberry Pi
+
+For UART transport on Raspberry Pi you will have to enable the serial port:
 
 1. Make sure the `userid` (default is pi) is a member of the `dialout` group:
 
   ```sh
-  $ groups pi
-  $ sudo usermod -a -G dialout pi
+  groups pi
+  sudo usermod -a -G dialout pi
   ```
 
 2. You need to stop the already running on the GPIO serial console:
 
   ```sh
-  $ sudo raspi-config
+  sudo raspi-config
   ```
 
   In the menu showed go to **Interfacing options > Serial**. Select **NO for *Would you like a login shell to be accessible over serial?*. Valid and reboot.
@@ -226,7 +255,17 @@ $ micrortps_client start -l -1
 3. Check UART in kernel:
 
   ```sh
-  $ sudo vi /boot/config.txt
+  sudo vi /boot/config.txt
   ```
 
-And enable UART setting `enable_uart=1`.
+  And make sure that the `enable_uart` value is set to 1:
+  ```txt
+  enable_uart=1
+  ```
+
+
+## Additional information
+
+* [FastRTPS Installation](../setup/fast-rtps-installation.md).
+* [DDS and ROS middleware implementations](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
+
