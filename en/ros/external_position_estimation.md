@@ -39,16 +39,16 @@ This section shows how to setup the system with the proper reference frames. The
 
 * ENU representation has a ground-fixed frame where $$x$$ axis points East, $$y$$ points North and $$z$$ up. Robot frame is $$x$$ towards the front, $$z$$ up and $$y$$ accordingly.
 
-* NED has $$x$$ towards North, $$y$$ East and $$z$$ down. Robot frame is $$x$$ towards the front, $$s$$ down and $$y$$ accordingly.
+* NED has $$ x $$ towards North, $$ y $$ East and $$ z $$ down. Robot frame is $$ x $$ towards the front, $$ z $$ down and $$ y $$ accordingly.
 
 Frames are shown in the image below: NED on the left while ENU on the right.
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
-With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world $$x$$ axis (which can be placed freely at mocap calibration), yaw angle will be given respect to local $$x$$.
+With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world $$ x $$ axis (which can be placed freely at mocap calibration), yaw angle will be given respect to local $$x$$.
 
 > **Info** When creating the rigid body in the mocap software, remember to first align the robot with the world $$x$$ axis otherwise yaw estimation will have an initial offset.
 
-###Using Mavros
+### Using Mavros
 
 With MAVROS this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and mavros will take care of NED conversions.
 
@@ -65,7 +65,7 @@ $$z_{mav} = - y_{mocap}$$
 
 Regarding the orientation, keep w the same and swap quaternion x y and z in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
 
-##First flight
+## First flight
 At this point, if you followed those steps, you are ready to test your setup. 
 
 Be sure to perform the following checks:
