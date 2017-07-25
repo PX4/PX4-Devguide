@@ -26,7 +26,7 @@ Then follow the instructions for your development target in the sections below.
 
 To install the development toolchain:
 
-1. Download <a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
 1. Run the script in a bash shell:
    ```bash
    source ubuntu_sim_nuttx.sh
@@ -38,7 +38,7 @@ To install the development toolchain:
 ### Snapdragon Flight or Raspberry Pi
 
 To install the development toolchain:
-1. Download <a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a> (this contains the simulators and common toolchain dependencies).
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a> (this contains the simulators and common toolchain dependencies).
 1. Run the script in a bash shell:
    ```bash
    source ubuntu_sim.sh
@@ -57,7 +57,7 @@ Follow the (manual) instructions here: [Ubuntu/Debian Linux > Parrot Bebop](../s
 
 To install the development toolchain:
 
-1. Download <a href="https://raw.githubusercontent.com/hamishwillee/Devguide/tidy_toolchain/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>.
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>.
 1. Run the script in a bash shell:
    ```bash
    source ubuntu_sim_ros_gazebo.sh
