@@ -19,7 +19,7 @@ The mavros ROS-Mavlink interface has default implementations to send these messa
 ### Enabling external pose input
 You need to set a few parameters (from QGroundControl or the NSH shell) to enable or disable vision/mocap usage in the system.
 
-Set the system parameter `ATT_EXT_HDG_M` to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables mocap heading use.
+Set the system parameter `ATT_EXT_HDG_M` to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables mocap heading use. 
 
 Vision integration is enabled by default in LPE. You can control this using the`LPE_FUSION` parameter in QGroundControl. Make sure that "fuse vision position" is checked.
 
