@@ -31,20 +31,24 @@ PX4 GPS栈自动设置了u-blox M8P模块，其通过UART或USB发送和接收�
 #### RTCM 消息
 
 QGroundControl配置RTK基站以输出以下RTCM3.2消息帧，每帧为1 Hz：
-- **1005** - Station coordinates XYZ for antenna reference point (Base position).
-- **1077** - Full GPS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution).
-- **1087** - Full GLONASS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution).
+- **1005** - 天线参考点的基站坐标XYZ(基本点)。
+- **1077** - 全GPS伪距，载波相位，多普勒速度以及信号强度(高精度)
+- **1087** - 全GLONASS伪距，载波相位，多普勒速度以及信号强度(高精度)。
 
 
-### Uplink Datarate
+### 上行数据速率
 
-The raw RTCM messages from the base are packed into a MAVLink `GPS_RTCM_DATA` message and sent over the datalink. The length of each MAVLink message is 182 bytes, and it encapsulates RTCM messages in its body. Depending on the RTCM message, the MAVLink message is almost never completely filled.
+来自基站的原始RTCM信息被打包到一个MAVLink消息帧`GPS_RTCM_DATA`中并通过数据链发送出去。每个MAVLink消息长度为182个字节，并将RTCM信息封装到其主体中。根据RTCM信息的特点，MAVLink消息帧不会被填满。
 
-The Base Position message (1005) is of length 22 bytes, while the others are all of variable length depending on the number of visible satellites and the number of signals from the satellite (only 1 for L1 units like M8P). Since at a given time, the _maximum_ number of satellites visible from any single constellation is 12, under real-world conditions, an uplink rate of 300 B/s is sufficient in theory.
+基本位置消息(1005)的长度为22个字节，而根据可见卫星的数量和来自卫星的信号数不同（对于诸如M8P的L1单元仅有1个），其他消息的长度都是可变的。 由于在给定的时间，从任何单个星座可见的`最大`卫星数为12个，在实际情况下，理论上300B / s的上行速率是足够的。
 
-If **MAVLink 1** is used, no packet truncation is done. Therefore the whole 182-byte `GPS_RTCM_DATA` message is sent for every RTCM message. This means that the approximate uplink requirement is increased to 700+ bytes per second, which can lead to link saturation on low-bandwidth half-duplex telemetry modules like 3DR radios.
 
-If **MAVLink 2** is used (PX4 automatically switches to MAVLink 2 if the GCS and telemetry modules support it), empty space in a packet is truncated, leading to a much leaner uplink requirement of ~300 bytes per second. It is important that MAVLink 2 is used  on low-bandwidth links for good RTK performance. So care must be taken to make sure that the telemetry chain uses MAVLink 2 throughout. You can verify the protocol version by using the `mavlink status` command on the system console : 
+
+如果使用**MAVLink 1**，则不会进行数据包截断。因此，为每个RTCM信息发送整个182字节的`GPS_RTCM_DATA`消息。这意味着上行速率需要增加到近700+字节每秒，这可能到时低带宽半双工数传模块(如3DR的电台)的链路饱和。
+
+
+
+如果使用**MAVLink 2**（如果GCS和数传模块支持，PX4会自动切换到MAVLink 2），数据包中的空闲空间将被截断，从而导致每秒300字节的上行链路需求。为了获得良好的RTK表现，在低带宽链路上使用MAVLink 2显得尤为重要。因此，必须注意确保数传链路在整个过程中使用MAVLink 2。 你也可以使用系统控制台上的`mavlink status`命令验证MAVLink协议的版本：
 
 ```
 nsh> mavlink status
