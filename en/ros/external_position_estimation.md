@@ -66,7 +66,7 @@ $$z_{mav} = - y_{mocap}$$
 Regarding the orientation, keep w the same and swap quaternion x y and z in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
 
 ##First flight
-At this point if you followed this steps, you are ready to test your setup. 
+At this point, if you followed those steps, you are ready to test your setup. 
 
 Be sure to perform the following checks:
 
