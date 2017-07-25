@@ -43,7 +43,7 @@ uORB是一种用于线程间/进程间进行异步发布-订阅的消息机制�
 
 ## 列出话题并进行监听
 
-> **Note** `监听器(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
+> **注意** `监听器(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
 
 要列出所有话题, 先列出文件句柄:
 
@@ -92,8 +92,8 @@ scaling: 0
 > **提示** 在基于NuttX的系统(Pixhawk, Pixracer等)， `listener`命令可从地面站*QGroundControl* MAVLink控制台调用，来监听传感器数值和其他话题。 这是一个强大的调试工具，因为QGC通过无线链路连接时也可以使用它（例如，当无人机在飞行过程中）。更多信息可以看[Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md).
 
 
-### uORB 顶层命令
-The command `uorb top` shows the publishing frequency of each topic in real-time:
+### uorb up 命令
+`uorb top` 命令可以实时显示每个话题的发布频率：
 
 ```sh
 update: 1s, num topics: 77
@@ -112,28 +112,18 @@ sensor_accel                         1    1  249    43 1
 sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
-The columns are: topic name, multi-instance index, number of subscribers,
-publishing frequency in Hz, number of lost messages (all subscribers combined), and
-queue size.
+每列分别是：话题名，多实例索引，订阅者数，发布频率(Hz)，丢失消息数（所有订阅者合并显示），队列大小。
 
 
-## Multi-instance
-uORB provides a mechanism to publish multiple independent instances of the same
-topic through `orb_advertise_multi`. It will return an instance index to the
-publisher. A subscriber will then have to choose to which instance to subscribe
-to using `orb_subscribe_multi` (`orb_subscribe` subscribes to the first
-instance).
-Having multiple instances is useful for example if the system has several
-sensors of the same type.
+## 多实例（Multi-instance）
+uORB提供一种通过 `orb_advertise_multi` 发布同一话题的多个实例的机制。它将向发布者（publisher）返回一个实例索引。一个订阅者（subscriber）必须用 `orb_subscribe_multi` (`orb_subscribe` ，订阅第一个实例)来选择订阅哪个实例。对于一个具有多个相同类型传感器的系统，这种多实例机制非常有用。
 
-Make sure not to mix `orb_advertise_multi` and `orb_advertise` for the same
-topic.
+对于同一个话题，确保不要将 `orb_advertise_multi` 和 `orb_advertise` 混淆。
 
-The full API is documented in
-[src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp).
+完整的API文档可见[src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp).
 
-## Troubleshooting and common Pitfalls
-The following explains some common pitfalls and corner cases:
+## 故障排除和常见问题
+以下列出一些常见的问题和几个极端情况：
 - The topic is not published: make sure the `ORB_ID()`'s of each call match. It
   is also important that `orb_subscribe` and `orb_unsubscribe` are **called from
   the same task** as `orb_publish`. This applies to `px4_task_spawn_cmd()`, but
