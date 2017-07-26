@@ -32,21 +32,21 @@ There is a bit field for this in the parameter `LPE_FUSION`, which you can set f
 
 If your vision or mocap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters, `LPE_VIS_XY` and `LPE_VIS_Z` (for vision) or `LPE_VIC_P` (for motion capture). Reducing them will cause the estimator to trust the incoming pose estimate more. You may need to set them lower than the allowed minimum and force-save. 
 
-> **Tip** If performances are still bad, try to increase `LPE_PN_V` parameter in order to trust measurement more regarding velocity estimation.
+> **Tip**If performance is still poor, try increasing the `LPE_PN_V` parameter. This will cause the estimator to trust measurements more during velocity estimation..
 
 ## Asserting on reference frames
 This section shows how to setup the system with the proper reference frames. There are various representations but we will use two of them: ENU and NED. 
 
-* ENU representation has a ground-fixed frame where $$x$$ axis points East, $$y$$ points North and $$z$$ up. Robot frame is $$x$$ towards the front, $$z$$ up and $$y$$ accordingly.
+* ENU representation has a ground-fixed frame where *x* axis points East, *y* points North and *z* up. Robot frame is *x* towards the front, *z* up and *y* accordingly.
 
-* NED has $$ x $$ towards North, $$ y $$ East and $$ z $$ down. Robot frame is $$ x $$ towards the front, $$ z $$ down and $$ y $$ accordingly.
+* NED has *x* towards North, *y* East and *z* down. Robot frame is *x* towards the front, *z* down and *y* accordingly.
 
 Frames are shown in the image below: NED on the left while ENU on the right.
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
-With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world $$ x $$ axis (which can be placed freely at mocap calibration), yaw angle will be given respect to local $$x$$.
+With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration), yaw angle will be given respect to local *x*.
 
-> **Info** When creating the rigid body in the mocap software, remember to first align the robot with the world $$x$$ axis otherwise yaw estimation will have an initial offset.
+> **Info** When creating the rigid body in the mocap software, remember to first align the robot with the world *x* axis otherwise yaw estimation will have an initial offset.
 
 ### Using Mavros
 
@@ -55,13 +55,13 @@ With MAVROS this operation is straightforward. ROS uses ENU frames as convention
 ### Without Mavros
 If you do not use MAVROS or ROS in general, you need to stream data over Mavlink with `ATT_POS_MOCAP` message. In this case you will need to apply a custom transformation depending on the system in order to obtain NED convention.
 
-Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane ($$x$$ front and $$z$$ right) while $$y$$ axis is vertical and pointing up. A simple trick is swapping axis in order to obtained NED convention. 
+Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. A simple trick is swapping axis in order to obtained NED convention. 
 
-We call x_{mav}, y_{mav} and z_{mav} the coordinates that are sent through Mavlink as position feedback, then we obtain:
+We call *x_{mav}*, *y_{mav}* and *z_{mav}* the coordinates that are sent through Mavlink as position feedback, then we obtain:
 
-$$x_{mav} = x_{mocap}$$
-$$y_{mav} = z_{mocap}$$
-$$z_{mav} = - y_{mocap}$$
+*x_{mav}* = *x_{mocap}*
+*y_{mav}* = *z_{mocap}*
+*z_{mav}* = - *y_{mocap}*
 
 Regarding the orientation, keep w the same and swap quaternion x y and z in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
 
