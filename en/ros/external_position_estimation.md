@@ -37,14 +37,14 @@ If your vision or mocap data is highly accurate, and you just want the estimator
 ## Asserting on reference frames
 This section shows how to setup the system with the proper reference frames. There are various representations but we will use two of them: ENU and NED. 
 
-* ENU representation has a ground-fixed frame where *x* axis points East, *y* points North and *z* up. Robot frame is *x* towards the front, *z* up and *y* accordingly.
+* ENU has a ground-fixed frame where *x* axis points East, *y* points North and *z* up. Robot frame is *x* towards the front, *z* up and *y* accordingly.
 
 * NED has *x* towards North, *y* East and *z* down. Robot frame is *x* towards the front, *z* down and *y* accordingly.
 
 Frames are shown in the image below: NED on the left while ENU on the right.
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
-With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration), yaw angle will be given respect to local *x*.
+With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration); yaw angle will be given respect to local *x*.
 
 > **Info** When creating the rigid body in the mocap software, remember to first align the robot with the world *x* axis otherwise yaw estimation will have an initial offset.
 
