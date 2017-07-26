@@ -78,15 +78,15 @@ Be sure to perform the following checks:
 
 * Rotate the robot on the vertical axis and check the yaw with the Mavlink inspector
 
-If those steps are consistent, then you can try your first flight.
+If those steps are consistent, you can try your first flight.
 
 Put the robot on the ground and start streaming mocap feedback. Lower your left stick and arm the motors.
 
 At this point, with the left stick at the lowest position, switch to position control. You should have a green light. The green light tells you that position feedback is available and position control is now activated. 
 
-Put your left stick at the middle, this is the dead zone. With this stick value, the robot maintain its altitude, when you increase the stick the reference altitude will increase. Putting back to the middle, the robot will stabilize to that point. Same for right stick on x and y. 
+Put your left stick at the middle, this is the dead zone. With this stick value, the robot maintain its altitude; rising the stick will increase the reference altitude while lowering the value will decrease it. Same for right stick on x and y. 
 
-Increase the value of the left stick and the robot will take off. Check if it is able to keep its position.
+Increase the value of the left stick and the robot will take off, put it back to the middle right after. Check if it is able to keep its position.
 
 If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint form a remote ground station.
 
