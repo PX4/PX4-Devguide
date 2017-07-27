@@ -9,7 +9,6 @@
       * [Ubuntu/Debian Linux](setup/dev_env_linux_ubuntu.md)
       * [Arch/CentOS Linux](setup/dev_env_linux_boutique.md)
       * [Advanced Linux](setup/dev_env_advanced_linux.md)
-      dev_env_advanced_linux.md
     * [Windows](setup/dev_env_windows.md)
   * [Fast RTPS installation](setup/fast-rtps-installation.md)
   * [Building the Code](setup/building_px4.md)
@@ -44,6 +43,7 @@
   * [Telemetry](tutorials/telemetry.md)
   * [Sensor Thermal Compensation](tutorials/sensor_thermal_calibration.md)
   * [Land Detector](tutorials/land_detector.md)
+  * [Motion Capture \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
 * [Autopilot Hardware](flight_controller/README.md)
   * [Crazyflie 2.0](flight_controller/crazyflie2.md)
   * [Intel® Aero Ready to Fly Drone](flight_controller/intel_aero.md)
@@ -142,8 +142,6 @@
     * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
   * [Maintenance](test_and_ci/maintenance.md)
 
-
-  
 ## Dronecode Shortcuts
 
 * [PX4 User Guide](https://docs.px4.io/en/)
