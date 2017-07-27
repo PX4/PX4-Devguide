@@ -6,7 +6,11 @@ It is **highly recommended** to send motion capture data from an onboard compute
 
 The motion capture data can be used to update PX4's local position estimate relative to the local origin. Heading (yaw) from the motion capture system can also be optionally integrated by the attitude estimator.
 
-Pose (position and orientation) data from the motion capture system is sent over MAVLinkm using the [ATT_POS_MOCAP](http://mavlink.org/messages/common#ATT_POS_MOCAP) message. Note that this data is expected to be in the NED (North-East-Down) frame . The [mavros]() ROS-Mavlink interface has a default plugin to send this message. They can also be sent using pure C/C++ code and direct use of the MAVLink library.
+Pose (position and orientation) data from the motion capture system is sent to the autopilot over MAVLink, using the [ATT_POS_MOCAP](http://mavlink.org/messages/common#ATT_POS_MOCAP) message. See the section below on coordinate frames for data representation conventions. The [mavros]() ROS-Mavlink interface has a default plugin to send this message. They can also be sent using pure C/C++ code and direct use of the MAVLink library.
+
+## Computing Architecture
+
+
 
 # move to ros
 The ROS topic for motion cap `mocap_pose_estimate` for mocap systems and `vision_pose_estimate` for vision. Check [mavros_extras](http://wiki.ros.org/mavros_extras) for further info.
@@ -14,6 +18,8 @@ The ROS topic for motion cap `mocap_pose_estimate` for mocap systems and `vision
 **This feature has only been tested to work with the LPE estimator.**
 
 ## Coordinate Frames
+
+
 
 ## Testing
 
