@@ -1,5 +1,7 @@
 # Flying with Motion Capture (VICON, Optitrack)
 
+ ** WORK IN PROGRESS **
+
 Indoor motion capture systems like VICON and Optitrack can be used to provide position and attitude data for vehicle state estimation, orto serve as ground-truth for analysis.
 The motion capture data can be used to update PX4's local position estimate relative to the local origin. Heading (yaw) from the motion capture system can also be optionally integrated by the attitude estimator.
 
@@ -24,10 +26,14 @@ Frames are shown in the image below. NED on the left, ENU on the right :
 
 With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration); yaw angle will be given respect to local *x*.
 
-> **Info** When creating the rigid body in the mocap software, remember to first align the robot with the world *x* axis otherwise yaw estimation will have an initial offset.
+> **Important : ** When creating the rigid body in the motion capture software, remember to first align the robot with the world **X** axis otherwise yaw estimation will have an initial offset.
 
 
 ## Estimator choice
+
+### LPE and Attitude Estimator Q
+
+### EKF2
 
 
 The ROS topic for motion cap `mocap_pose_estimate` for mocap systems and `vision_pose_estimate` for vision. Check [mavros_extras](http://wiki.ros.org/mavros_extras) for further info.
