@@ -7,11 +7,9 @@ Pose (position and orientation) data from the motion capture system is sent to t
 
 ## Computing Architecture
 
+It is **highly recommended** that you send motion capture data via an **onboard** computer (e.g Raspberry Pi, ODroid, etc.) for reliable communications. The onboard computer can be connected to the motion capture computer through WiFi, which offers reliable, high-bandwidth connection.
 
-The ROS topic for motion cap `mocap_pose_estimate` for mocap systems and `vision_pose_estimate` for vision. Check [mavros_extras](http://wiki.ros.org/mavros_extras) for further info.
-
-**This feature has only 
-It is **highly recommended** to send motion capture data from an onboard computer for reliable communications. Most standard telemetry links like 3DR/SiK radios are **not** suitable for high-bandwidth motion capture applications.been tested to work with the LPE estimator.**
+Most standard telemetry links like 3DR/SiK radios are **not** suitable for high-bandwidth motion capture applications.
 
 ## Coordinate Frames
 
