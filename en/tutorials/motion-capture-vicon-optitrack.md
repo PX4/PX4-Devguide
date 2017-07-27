@@ -17,9 +17,9 @@ This section shows how to setup the system with the proper reference frames. The
 
 * ENU is a ground-fixed frame where **X** axis points East, **Y** points North and **Z** up. The robot/vehicle body frame is **X** towards the front, **Z** up and **Y** towards the right.
 
-* NED has *x* towards North, *y* East and *z* down. Robot frame is *x* towards the front, *z* down and *y* accordingly.
+* NED has **X** towards North, **Y** East and **Z** down. The robot/vehicle body frame has **X** towards the front, **Z** down and **Y** accordingly.
 
-Frames are shown in the image below: NED on the left while ENU on the right.
+Frames are shown in the image below. NED on the left, ENU on the right :
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
 With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration); yaw angle will be given respect to local *x*.
