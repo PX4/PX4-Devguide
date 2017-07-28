@@ -61,6 +61,7 @@
     * [Camera App and Optical Flow](flight_controller/snapdragon_flight_camera.md)
     * [Snapdragon Advanced](flight_controller/snapdragon_flight_advanced.md)
       * [Accessing I/O Data](flight_controller/snapdragon_flight_accessing_io_data.md)
+  * [Pixhawk 2](flight_controller/pixhawk-2.md)
 * Middleware and Architecture
   * [uORB Messaging](middleware/uorb.md)
   * [MAVLink Messaging](middleware/mavlink.md)
