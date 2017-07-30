@@ -9,7 +9,7 @@ The hardware for the SiK radio can be obtained from various stores.
 * [RFD900u](http://rfdesign.com.au/products/rfd900u-modem/) \(small\)
 * [RFD900](http://rfdesign.com.au/products/rfd900-modem/) \(long range\)
 
-![](/assets/sik_radio.jpg)
+![](../../assets/sik_radio.jpg)
 
 ## Build Instructions
 
@@ -47,7 +47,7 @@ screen /dev/tty.usbserial-CHANGETHIS 57600 8N1
 
 Then start command mode:
 
-**DO NOT TYPE ANYTHING ONE SECOND BEFORE AND AFTER**
+> **Note** DO NOT TYPE ANYTHING ONE SECOND BEFORE AND AFTER
 
 ```
 +++
@@ -69,5 +69,5 @@ W
 ATZ
 ```
 
-**You might have to power-cycle the radio to connect it to the 2nd radio**
+> **Note** You might have to power-cycle the radio to connect it to the 2nd radio
 
