@@ -133,7 +133,6 @@
   * [Out-of-tree Modules](advanced/out_of_tree_modules.md)
   * [ULog File Format](log/ulog_file_format.md)
   * [Licenses](advanced/licenses.md)
-  * [Telemetry Radio](advanced/telemetry_radio_modem.md)
   * [Telemetry Wifi](advanced/telemetry_wifi.md)
 * [Software Update](software_update/README.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
