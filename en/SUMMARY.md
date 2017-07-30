@@ -142,6 +142,8 @@
   * [Continuous Integration](test_and_ci/continous_integration.md)
     * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
   * [Maintenance](test_and_ci/maintenance.md)
+* Datalinks
+  * [SiK Radio](sik-radio.md)
 
 ## Dronecode Shortcuts
 
