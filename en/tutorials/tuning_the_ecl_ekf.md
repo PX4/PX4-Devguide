@@ -74,7 +74,7 @@ Fixed wing platforms can take advantage of an assumed sideslip observation of ze
 
 ### Drag Specific Forces
 
-Multi-rotor platforms can take advantage of the relationship between airspeed and drag force along the X and Y body axes to estimate North/East components of wind velocity. This is enabled by setting bit position 4 in the EKF2\_AID\_MASK parameter to true. The relationship between airspeed and specific force \(IMU acceleration\) along the X and Y body axes is controlled by the the EKF2\_BCOEF\_X and EKF2\_BCOEF\_Y parameters which set the ballistic coefficients for flight in the X and Y directions respectively.. The amount of specific force observation noise is set by the EKF2\_DRAG\_NOISE parameter.
+Multi-rotor platforms can take advantage of the relationship between airspeed and drag force along the X and Y body axes to estimate North/East components of wind velocity. This is enabled by setting bit position 5 in the EKF2\_AID\_MASK parameter to true. The relationship between airspeed and specific force \(IMU acceleration\) along the X and Y body axes is controlled by the the EKF2\_BCOEF\_X and EKF2\_BCOEF\_Y parameters which set the ballistic coefficients for flight in the X and Y directions respectively.. The amount of specific force observation noise is set by the EKF2\_DRAG\_NOISE parameter.
 
 ### Optical Flow
 
