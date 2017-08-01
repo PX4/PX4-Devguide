@@ -28,17 +28,18 @@ Use the `SENS_EN_SF1XX` parameter to select the lidar model and then reboot.
 * `3` SF10/c
 * `4` SF11/c
 
-For PX4v2 you also need to add it to the make file:
+For older targets using where you need to flash px4fmu-v2_default.cmake:
 open up /cmake/config/nuttx_px4fmu-v2_default.cmake
 
 You should see a list of drivers.
 Make sure /drivers/sf1xx is not commented out (no # sign in from of that line)
 
-If you are using a pixhawk2, you will also have to edit the driver. 
+Temporary hack for pixhawk2:
+There is a current issue with the driver that should be resolved soon.
+For now, you need to edit the driver:
 Navigate to /src/drivers/sf1xx/
 Open up sf1xx.cpp
 Find the line that says #define SF1XX_BUS  PX4_I2C_BUS_EXPANSION
 Change PX4_I2C_BUS_EXPANSION to PX4_I2C_BUS_ONBOARD
-
 
 
