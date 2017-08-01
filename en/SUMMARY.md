@@ -10,7 +10,7 @@
       * [Arch/CentOS Linux](setup/dev_env_linux_boutique.md)
       * [Advanced Linux](setup/dev_env_advanced_linux.md)
     * [Windows](setup/dev_env_windows.md)
-  * [Fast RTPS installation](setup/fast-rtps-installation.md)
+    * [Fast RTPS installation](setup/fast-rtps-installation.md)
   * [Building the Code](setup/building_px4.md)
   * [Advanced Configuration](setup/config_advanced.md)
   * [Contributing & Dev Call](contribute/README.md)
@@ -65,6 +65,9 @@
 * Middleware and Architecture
   * [uORB Messaging](middleware/uorb.md)
   * [MAVLink Messaging](middleware/mavlink.md)
+  * [RTPS/ROS2 Interface](middleware/micrortps.md)
+    * [Throughput Test](middleware/micrortps_throughput_test.md)
+    * [Manually Generate Client/Agent](middleware/micrortps_manual_code_generation.md)
   * [Daemons](advanced/architecture_daemon.md)
   * [Driver Framework](middleware/drivers.md)
   * [Modules & Commands](middleware/modules_main.md)
@@ -150,4 +153,3 @@
 * [QGroundControl User Guide](https://docs.qgroundcontrol.com/en/)
 * [QGroundControl Developer Guide](https://dev.qgroundcontrol.com/en/)
 * [MAVLink Developer Guide](https://mavlink.io/en/)
-
