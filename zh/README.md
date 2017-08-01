@@ -5,9 +5,9 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 # PX4开发指南#
 
-[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
+[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io) 
 
-> **须知：** 仅限于开发者！这个指南旨在推动开发而不是为消费者准备。
+> **Info** 仅限于开发者！这个指南旨在推动开发而不是为消费者准备。
 
 
 这个指南介绍了如何在PX4系统架构下开发，它使开发人员能够: 

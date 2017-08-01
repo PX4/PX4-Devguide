@@ -6,7 +6,9 @@
   * [Toolchain Installation](setup/dev_env.md)
     * [Mac OS](setup/dev_env_mac.md)
     * [Linux](setup/dev_env_linux.md)
-      * [Advanced Linux](setup/dev_env_linux_boutique.md)
+      * [Ubuntu/Debian Linux](setup/dev_env_linux_ubuntu.md)
+      * [Arch/CentOS Linux](setup/dev_env_linux_boutique.md)
+      * [Advanced Linux](setup/dev_env_advanced_linux.md)
     * [Windows](setup/dev_env_windows.md)
     * [Fast RTPS installation](setup/fast-rtps-installation.md)
   * [Building the Code](setup/building_px4.md)
@@ -21,7 +23,7 @@
   * [Mixing and Actuators](concept/mixing.md)
   * [PWM limit state machine](concept/pwm_limit.md)
 * [Simulation](simulation/README.md)
-  * [Basic Simulation](simulation/sitl.md)
+  * [jMAVSim Simulation](simulation/jmavsim.md)
   * [Gazebo Simulation](simulation/gazebo.md)
   * [HITL Simulation](simulation/hitl.md)
   * [Interfacing to ROS](simulation/ros_interface.md)
@@ -41,6 +43,7 @@
   * [Telemetry](tutorials/telemetry.md)
   * [Sensor Thermal Compensation](tutorials/sensor_thermal_calibration.md)
   * [Land Detector](tutorials/land_detector.md)
+  * [Motion Capture \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
 * [Autopilot Hardware](flight_controller/README.md)
   * [Crazyflie 2.0](flight_controller/crazyflie2.md)
   * [Intel® Aero Ready to Fly Drone](flight_controller/intel_aero.md)
@@ -58,6 +61,7 @@
     * [Camera App and Optical Flow](flight_controller/snapdragon_flight_camera.md)
     * [Snapdragon Advanced](flight_controller/snapdragon_flight_advanced.md)
       * [Accessing I/O Data](flight_controller/snapdragon_flight_accessing_io_data.md)
+  * [Pixhawk 2](flight_controller/pixhawk-2.md)
 * Middleware and Architecture
   * [uORB Messaging](middleware/uorb.md)
   * [MAVLink Messaging](middleware/mavlink.md)
@@ -132,7 +136,6 @@
   * [Out-of-tree Modules](advanced/out_of_tree_modules.md)
   * [ULog File Format](log/ulog_file_format.md)
   * [Licenses](advanced/licenses.md)
-  * [Telemetry Radio](advanced/telemetry_radio_modem.md)
   * [Telemetry Wifi](advanced/telemetry_wifi.md)
 * [Software Update](software_update/README.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
@@ -141,8 +144,8 @@
   * [Continuous Integration](test_and_ci/continous_integration.md)
     * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
   * [Maintenance](test_and_ci/maintenance.md)
-
-
+* [Datalinks](datalinks.md)
+  * [SiK Radio](sik-radio.md)
 
 ## Dronecode Shortcuts
 
