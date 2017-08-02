@@ -41,14 +41,19 @@ $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 If you are on Linux, execute:
 
 ```sh
-$ cmake -DTHIRDPARTY=ON ..
+$ cmake -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
 $ make
 $ sudo make install
 ```
+This will install Fast RTPS to `/usr/local`. You can use
+`-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location. Afterwards make
+sure the `fastrtpsgen` application is in your `PATH`. You can check with `which
+fastrtpsgen`.
+
 If you are on Windows, choose your version of *Visual Studio*:
 
 ```sh
-> cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON ..
+> cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
 > cmake --build . --target install
 ```
 If you want to compile the examples, you will need to add the argument `-DCOMPILE_EXAMPLES=ON` when calling *CMake*.
