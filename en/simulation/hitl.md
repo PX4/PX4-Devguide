@@ -9,7 +9,9 @@ PX4 supports HITL for multicopters \(using jMAVSim\) and fixed wing \(using X-Pl
 * X-frame multicopters
 * Standard AERT planes
 
-![](/assets/qgc_hitl_config.png)If the autopilot is exclusively used for HITL it can also be configured with a HITL-only simulation configuration.
+![](../../assets/qgc_hitl_config.png)
+
+If the autopilot is exclusively used for HITL it can also be configured with a HITL-only simulation configuration.
 
 ![](../../assets/gcs/qgc_hil_config.png)
 
