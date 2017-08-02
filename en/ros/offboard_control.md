@@ -62,12 +62,12 @@ A small computer mounted onto the vehicle connected to the autopilot through a U
 {% mermaid %}
 graph TD
   subgraph Ground  Station
-    gnd[ROS Enabled Computer] --- qgc[qGroundControl]
+  gnd[ROS Enabled Computer] --- qgc[qGroundControl]
   end
   gnd --MAVLink/UDP--> w[WiFi];
   qgc --MAVLink--> w;
   subgraph Vehicle
-    comp[Companion Computer] --MAVLink--> uart[UART Adapter]
+  comp[Companion Computer] --MAVLink--> uart[UART Adapter]
   uart --- Autopilot
   end
   w --- comp
