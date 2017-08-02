@@ -25,7 +25,7 @@
   * [编写应用程序](tutorials/tutorial_hello_sky.md)
   * [QGC的视频流](qgc/video_streaming.md)
   * [远距离视频流](qgc/video_streaming_wifi_broadcast.md)
-  * [UBlox M8P RTK](tutorials/rtk-gps.md)
+  * [u-blox M8P RTK](tutorials/rtk-gps.md)
   * [相机触发器](tutorials/camera_trigger.md)
   * [综合测试](test_and_ci/integration_testing.md)
   * [光流](tutorials/optical_flow.md)

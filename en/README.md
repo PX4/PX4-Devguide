@@ -1,5 +1,7 @@
 # PX4 Development Guide
 
+[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io) 
+
 > **Info** Developers only! This guide is under active development and not intended for consumers.
 
 This guide describes how to work inside the PX4 system architecture. It enables developers to:

@@ -6,8 +6,8 @@ This is about end to end integration testing. Tests are executed automatically (
 
 Prerequisites:
 
-  * [SITL Simulation](../simulation/sitl.md)
-  * [Gazebo](../simulation/gazebo.md)
+  * [jMAVSim Simulator](../simulation/jmavsim.md)
+  * [Gazebo Simulator](../simulation/gazebo.md)
   * [ROS and MAVROS](../simulation/ros_interface.md)
 
 ### Execute Tests
