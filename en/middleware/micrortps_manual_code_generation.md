@@ -13,25 +13,6 @@ First disable automatic generation of bridge code. Set the variable `GENERATE_RT
 set(GENERATE_RTPS_BRIDGE off)
 ```
 
-## Supported uORB messages
-
-The set of uORB topics that can be supported by the bridge are listed in the **.cmake** file (**cmake/configs**) for each target platform. You can modify the list to change what uORB messages can be published/subscribed using RTPS. 
-
-```cmake
-set(config_rtps_send_topics
-  sensor_combined
-   # Add new topic...
-   )
-
-set(config_rtps_receive_topics
-   vehicle_command
-   # Add new topic...
-   )
-```
-
-> **Note** You can further refine which messages are supported when you call **generate_microRTPS_bridge.py** using `-s` (send) and `-r` (receive) flags.
-
-
 ## Using generate_microRTPS_bridge.py
 
 The *generate_microRTPS_bridge* tool's command syntax is shown below:
@@ -83,15 +64,15 @@ $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor
 
 Code is generated for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages (IDL files). 
 
-Code for the bridge can be found here:
+Code for the bridge by default in the manual generation can be found here:
 
-- *Client*: **build\__BUILDPLATFORM_/src/modules/micrortps_client/**
-- *Agent*: **build\__BUILDPLATFORM_/src/modules/micrortps_bridge/**
+- *Client*: **src/modules/micrortps_bridge/micrortps_client/**
+- *Agent*: **src/modules/micrortps_bridge/micrortps_agent/**
 
 
 ### uORB serialization code
 
-Serialization functions are generated for the [supported uORB topics](#supported-uorb-messages). For example, the following functions would be generated for the *sensor_combined.msg*:
+Serialization functions are generated in the PX4 normal compilation process for all the uORB topics. For example, the following functions would be generated for the *sensor_combined.msg*:
 
 ```sh
 void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
@@ -100,7 +81,7 @@ void deserialize_sensor_combined(struct sensor_combined_s *output, char *input, 
 
 ### RTPS message IDL files
 
-IDL files are generated from the uORB **.msg** files ([for supported uORB topics](#supported-uorb-messages)). These can be found in: **build\__BUILDPLATFORM_/src/modules/micrortps_bridge/idl/**
+IDL files are generated from the uORB **.msg** files for selected uORB topics in the generation of the bridge. These can be found in: **src/modules/micrortps_bridge/micrortps_agent/idl/**
 
 *FastRTSP* uses IDL files to define the structure of RTPS messages (in this case, RTPS messages that map to uORB topics). They are used to generate code for the *Agent*, and *FastRTSP* applications that need to publish/subscribe to uORB topics.
 

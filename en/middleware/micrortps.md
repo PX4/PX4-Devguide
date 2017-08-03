@@ -21,7 +21,6 @@ The main elements of the architecture are the client and agent processes shown i
 - The *Agent* and any *FastRTPS* applications are connected via UDP, and may be on the same or another device. In a typical configuration they will both be on the same system (e.g. a development computer, Linux companion computer or compute board), connected to the *Client* over a Wifi link or via USB.
 
 
-
 ## Code generation
 
 All the code needed to create, build and use the bridge is automatically generated when the PX4 Firmware is compiled. 
@@ -32,6 +31,25 @@ The *Client* application is also compiled and built into the firmware as part of
 
 <span></span>
 > **Tip** The bridge code can also be [manually generated](micrortps_manual_code_generation.md). Most users will not need to do so, but the linked topic provides a more detailed overview of the build process and can be useful for troubleshooting.
+
+
+## Supported uORB messages
+
+The set of uORB topics that can be supported by the bridge are listed in the **msg/CMakeLists.txt**. You can modify the list to change what uORB messages can be published/subscribed using RTPS in the **.cmake** file (**cmake/configs**) for each target platform.
+
+```cmake
+set(config_rtps_send_topics
+  sensor_combined
+   # Add new topic...
+   )
+
+set(config_rtps_receive_topics
+   vehicle_command
+   # Add new topic...
+   )
+```
+
+> **Note** You can further refine which messages are supported when you call **generate_microRTPS_bridge.py** using `-s` (send) and `-r` (receive) flags. Please see [Manual Generation of the Code](../middleware/micrortps_manual_code_generation.md).
 
 
 ## Client (PX4 Firmware)
