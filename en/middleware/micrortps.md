@@ -49,7 +49,7 @@ set(config_rtps_receive_topics
    )
 ```
 
-> **Note** You can further refine which messages are supported when you call **generate_microRTPS_bridge.py** using `-s` (send) and `-r` (receive) flags. Please see [Manual Generation of the Code](../middleware/micrortps_manual_code_generation.md).
+> **Note** There is another way to specify which messages are intended to be used calling **generate_microRTPS_bridge.py** using `-s` (send) and `-r` (receive) flags. Please see [Manual Generation of the Code](../middleware/micrortps_manual_code_generation.md).
 
 
 ## Client (PX4 Firmware)

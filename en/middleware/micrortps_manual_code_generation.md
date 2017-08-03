@@ -72,7 +72,7 @@ Code for the bridge by default in the manual generation can be found here:
 
 ### uORB serialization code
 
-Serialization functions are generated in the PX4 normal compilation process for all the uORB topics. For example, the following functions would be generated for the *sensor_combined.msg*:
+Serialization functions are generated for all the uORB topics as part of the normal PX4 compilation process (and also for manual generation). For example, the following functions would be generated for the *sensor_combined.msg*:
 
 ```sh
 void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
@@ -81,7 +81,7 @@ void deserialize_sensor_combined(struct sensor_combined_s *output, char *input, 
 
 ### RTPS message IDL files
 
-IDL files are generated from the uORB **.msg** files for selected uORB topics in the generation of the bridge. These can be found in: **src/modules/micrortps_bridge/micrortps_agent/idl/**
+IDL files are generated from the uORB **.msg** files ([for selected uORB topics](../middleware/micrortps.md#supported-uorb-messages)) in the generation of the bridge. These can be found in: **src/modules/micrortps_bridge/micrortps_agent/idl/**
 
 *FastRTSP* uses IDL files to define the structure of RTPS messages (in this case, RTPS messages that map to uORB topics). They are used to generate code for the *Agent*, and *FastRTSP* applications that need to publish/subscribe to uORB topics.
 
