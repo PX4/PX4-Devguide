@@ -4,7 +4,7 @@
 ## It can be used for installing simulators and the NuttX toolchain.
 ##
 ## Installs:
-## - Common dependencies and tools for all targets (including Ninja build system and Qt Creator) 
+## - Common dependencies and tools for all targets (including Ninja build system and Qt Creator)
 ## - jMAVSim simulator
 ## - Gazebo8 simulator
 ## - NuttX toolchain (i.e. gcc compiler)
@@ -79,14 +79,14 @@ then
     echo " GCC already installed."
 else
     pushd .
-    cd ~    
+    cd ~
     wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/5_4-2016q2/gccarmnoneeabi542016q220160622linuxtar.bz2
     tar -jxf gccarmnoneeabi542016q220160622linuxtar.bz2
     exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:\$PATH"
     if grep -Fxq "$exportline" ~/.profile; then echo " GCC path already set." ; else echo $exportline >> ~/.profile; fi
     . ~/.profile
     popd
-    
+
     # Install 32 bit support libraries (ignore if fails)
     sudo dpkg --add-architecture i386
     sudo apt-get update
@@ -109,7 +109,9 @@ else
     cd Firmware
 fi
 cd $clone_dir/Firmware
-    
+
+# Install pyulog
+sudo pip install pyulog    
 
 #Reboot the computer (required before building)
 echo RESTART YOUR COMPUTER to complete installation of PX4 development toolchain
