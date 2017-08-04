@@ -71,6 +71,12 @@ sudo docker exec -it container_name bash
 
 If you need multiple shells connected to the container, just open a new shell and execute that last command again. 
 
+### QGroundControl
+
+When running a simulation instance e.g. SITL inside the docker container and controlling it via QGroundControl from the host, the communication link has to be set up manually. The autoconnect feature of QGroundControl does not work here.
+
+In QGroundControl, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL) e.g. port 14557 for the SITL iris config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network.
+
 ## Virtual machine support
 
 Any recent Linux distribution should work.
