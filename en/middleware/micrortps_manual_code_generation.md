@@ -64,7 +64,7 @@ $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor
 
 Code is generated for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages (IDL files). 
 
-Code for the bridge by default in the manual generation can be found here:
+Manually generated code for the bridge can be found here (by default):
 
 - *Client*: **src/modules/micrortps_bridge/micrortps_client/**
 - *Agent*: **src/modules/micrortps_bridge/micrortps_agent/**
