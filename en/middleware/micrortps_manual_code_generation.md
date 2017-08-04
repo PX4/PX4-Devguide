@@ -133,3 +133,7 @@ src/modules/micrortps_bridge/micrortps_client
 └── microRTPS_transport.h
  0 directories, 4 files
 ```
+
+## Build and use the code
+
+The manually generated code is built and used in almost exactly the same way as [automatically generated code](../middleware/micrortps.md) (the main difference is that the source is generated to a different location).
