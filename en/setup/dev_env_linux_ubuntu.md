@@ -10,7 +10,7 @@ The following instructions explain how to *manually* set up a development enviro
 
 ## Convenience Bash Scripts
 
-We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), and also download the PX4 source to your computer (**~/src/Firmware**). 
+We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**). 
 
 > **Tip** The scripts have been tested on a clean Ubuntu LTS installation. They *may* not work as expected if installed on top of an existing system.
 
@@ -83,6 +83,26 @@ sudo apt-get install python-dev -y
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
 ```
+
+## FastRTPS installation
+
+[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
+
+The following instructions can be used to install the FastRTPS 1.5 binaries to your home directory.
+
+```sh
+wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz
+mv eprosima_fastrtps-1-5-0-linux-tar-gz eprosima_fastrtps-1-5-0-linux.tar.gz
+tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
+tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
+tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
+cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+cd ..
+cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+```
+
+> **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
+
 
 ## Simulation Dependencies
 The dependencies for the Gazebo and jMAVSim simulators listed below. You should minimally install jMAVSim to make it easy to test the installation. Additional information about these and other supported simulators is covered in: [Simulation](../simulation/README.md).

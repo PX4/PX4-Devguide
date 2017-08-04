@@ -22,6 +22,9 @@ Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 d
 We have provided a script below that makes this easy.
 
 > **Note** This approach does not currently support simulation because *Bash on Windows* does not enable Linux UI applications.
+
+<span></span>
+> **Tip** The script has been updated to  [install Fast RTPS from (Linux) binaries](../setup/fast-rtps-installation.md#linux).
   
 
 To use the build script:

@@ -4,7 +4,8 @@
 ## It can be used for installing the NuttX toolchain (only).
 ##
 ## Installs:
-## - Common dependencies and tools for all targets (including Ninja build system) 
+## - Common dependencies and tools for all targets (including Ninja build system)
+## - FastRTPS and FastCDR
 ## - NuttX toolchain (i.e. 64 bit version of gcc compiler)
 ## - PX4/Firmware source (to ~/src/Firmware/)
 
@@ -43,6 +44,28 @@ sudo -H pip install pandas jinja2
 sudo apt-get install python-serial openocd \
     flex bison libncurses5-dev autoconf texinfo \
     libftdi-dev libtool zlib1g-dev -y
+
+    
+# Install FastRTPS 1.5.0 and FastCDR-1.0.7
+fastrtps_dir=$HOME/eProsima_FastRTPS-1.5.0-Linux
+echo "Installing FastRTPS to: $fastrtps_dir"
+if [ -d "$fastrtps_dir" ]
+then
+    echo " FastRTPS already installed."
+else
+    pushd .
+    cd ~
+    wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz
+    mv eprosima_fastrtps-1-5-0-linux-tar-gz eprosima_fastrtps-1-5-0-linux.tar.gz
+    tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
+    tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
+    tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
+    cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+    cd ..
+    cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+    popd
+fi
+
 
 # Clean up old GCC
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
