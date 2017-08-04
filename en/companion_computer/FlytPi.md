@@ -6,6 +6,8 @@ The kit also comes with a dedicated power module to power up FlytPi, Autopilot a
 using a single drone battery. It offers a hassle-free connection with the Autopilot, thus saving time and effort in getting 
 your drone applications built and deployed.
 
+![](../../assets/flytPi.png)
+
 Features:
 =========
 
