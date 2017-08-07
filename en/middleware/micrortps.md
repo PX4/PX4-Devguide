@@ -53,7 +53,7 @@ set(config_rtps_receive_topics
 
 > **Caution** At time of writing (August 2017), only the small set of uORB topics listed above are included in our cmake files: **posix_sitl_default.cmake**, **nuttx_px4fmu-v4_default.cmake**, **posix_sdflight_default.cmake**. It is likely you will need to edit your *cmake* file and add additional uORB topics. In future we hope to define a larger standard set. 
 
-For *manual code generation* the uORM topics that will be supported by the bridge are specified when you call **generate_microRTPS_bridge.py** (using the `-s`/`--send` and `-r`/`--receive` flags). See [Manual Generation of the Code](../middleware/micrortps_manual_code_generation.md) for more information.
+For *manual code generation* the uORB topics that will be supported by the bridge are specified when you call **generate_microRTPS_bridge.py** (using the `-s`/`--send` and `-r`/`--receive` flags). See [Manual Generation of the Code](../middleware/micrortps_manual_code_generation.md) for more information.
 
 
 ## Client (PX4 Firmware)
