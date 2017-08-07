@@ -17,8 +17,10 @@
 
 ## Assembling the Basic Frame
 
-I assembled the basic center plate and the arms like in this video between 09:25 and 13:26:
-{% youtube %}https://youtu.be/7SIpJccXZjM?t=565{% endyoutube %}
+I assembled the basic center plate and the arms like shown in this video between 09:25 and 13:26:
+<p align="center">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/7SIpJccXZjM?start=565&end=806" frameborder="0" allowfullscreen></iframe>
+</p>
 
 I mounted the four motors to the frame with the cables coming out towards the center of the frame. I used two of the longer motor screws that come with the frame for each motor and put them in the two holes which are further apart.
 
@@ -30,11 +32,13 @@ The KISS ESCs are known for their good performance but they also come with two d
 
 This means we need to solder at least 6 joints on every ESC but it's still totally worth it.
 
-> **Tip** Always tin both sides you want to connect with solder before actually soldering them together.
+> **Tip** Always tin both sides you want to connect with solder before actually soldering them together. This will make it a lot easier and it will be less likely to have cold soldering joints.
 
-> **Tip** Make sure that you use a propriate cable gauge for the power connections that transport the high current all the way from the battery to the motors. All signal cables can be very thin in comparison.
+<span></span>
+> **Tip** Make sure that you use an apropriate cable gauge for the power connections that transport the high current all the way from the battery to the motors. All signal cables can be very thin in comparison.
 
-> **Tip** Put heat shrink on the cables before you start soldering! Heatshrinking the ESCs and the power module after a successful function test will protect them from dirt, moisure and physical damage
+<span></span>
+> **Tip** Put heat shrink on the cables before you start soldering! Heatshrinking the ESCs, the power module and the free floating uninsolated wire soldering joints after a successful function test will protect them from dirt, moisure and physical damage
 
 ### Motors
 First I cut all three motor cables to directly fit when the ESCs are mounted on the arms shifted towards the center but still let enough slack to allow easy placement of the parts and not produce any tension on the cables. Then I soldered them in the order they come out of the motor to the output contacts of the ESCs which are oriented with the switching MOS-FETs facing updwards to get good air cooling during flight. Choosing this cable order resulted in all the motors spinning counter-clockwise in my tests and I switched where necessary the direction of rotation by bridging the dedicated [JP1 solder jumper](https://1.bp.blogspot.com/-JZoWC1LjLis/VtMP6XdU9AI/AAAAAAAAAiU/4dygNp0hpwc/s640/KISS-ESC-2-5S-24A-race-edition-32bit-brushless-motor-ctrl.jpg) to conform the [Quadrotor x configuration](../airframes/airframe_reference.html#quadrotor-x).
@@ -60,11 +64,12 @@ I tested all ESC motor pairs and their rotation directions using a cheap PWM ser
 
 ## Connecting & Mounting Electronics
 
+> **Tip**
+> Double check the pin assignment of every component you connect. Sadly not every hardware component out there is plug and play even if it may look like this at first glance.
+
 You'll need the [hardware documentation of the Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html) for this step to find all needed connectors. I tried to route all the cables under the Pixracer board to have a clean build and save space for FPV camera and transmitter in the future.
 
 I mounted the Pixracer using the nylon spacers and screws that get shipped with the QAV-R frame but put some small O-rings between the board and the spacers to add a bit of vibration dampening. If you do the same make sure to not tighten the screws too much, not more than to make the board clearly touch both sides.
-
-> **Tip** Double check the pin assignment of every component you connect. Sadly not every hardware component out there is plug and play even if it may look like this at first glance.
 
 ![](../../assets/airframes/multicopter/qav-r-5-kiss-esc-racer/IMG_20170726_180634_c.jpg)
 
@@ -120,9 +125,12 @@ I mounted the GPS using double sided tape to the far back of the top plate of th
 
 ## Software Configuration
 
-> **Warning** Always make sure to not have battery or propellers not connected to your system during any initial configuration. Better safe than sorry!
+> **Warning**
+> Always make sure to have either battery or propellers pyhsically removed from your vehicle during any initial configuration. Better safe than sorry!
 
-I pulled the newest PX4 master and flashed it to the Pixracer. Then I calibrated the sensors and while doing this had to set the external magnetometer mounting rotation to `YAW_270` even though I mounted it the oppsoite way (with the printed arrow facing upwards but pointing backwards, see pictures). 
+For general configuration instruction please refer to the [step-by-step guide](https://docs.px4.io/en/config/).
+
+For this build I pulled the newest PX4 master because it supports the "FMU as task" improvements I'll exaplain later and flashed it to the Pixracer. Then I calibrated the sensors and while doing this had to set the external magnetometer mounting rotation to `YAW_270` even though I mounted it the oppsoite way (with the printed arrow facing upwards but pointing backwards, see pictures). 
 
 I configured the battery as 4S with charged cell voltage 4.15V and empty cell voltage 3.5V, calibrated the voltage devider through typing in an accurate voltmeter measurement in QGC.
 
@@ -136,21 +144,23 @@ To use an arm switch manually set the parameter `RC_MAP_ARM_SW` to the correspon
 ### Improve Racer performance
 
 This build was done to evaluate and improve PX4 racing quad performance. Recently progress was made in reducing the control loop delay and the following options therefore increase the rate controllers performance:
-- Use the Oneshot125 protocol to communicate to the ESCs
-  **set `PWM_RATE = 0` and reboot**
-- Run the FMU as task instead of the work queue
-  **set `SYS_FMU_TASK = 1` and reboot**
+- **Activate the Oneshot125 protocol** to communicate to the ESCs <br>
+  set `PWM_RATE = 0` (takes effect after the next reboot)
+- **Run the FMU as task** instead of in the work queue <br>
+  set `SYS_FMU_TASK = 1` (takes effect after the next reboot)
 
 ### Tuning
 
 I first made sure `PWM_MIN` is set such that all motors still safely turn idle when arming but with a value as low as possible. For me it was `1075`.
 
-I did first tuning in acro mode with `MC_ACRO_...` all set to 100 deg/s to have useful hover control. And arrived after the two optimizations from above at the following tuning gains:
-`...` is `ROLL` and `PITCH`
-`MC_...RATE_P = 0.06`
-`MC_...RATE_I = 0.1`
-`MC_...RATE_D = 0.001`
-`MC_YAWRATE_P = 0.1`
-Note that this gains will pretty likely not work well for you but I wanted to give them just as a reference.
+I did first tuning in acro mode with all `MC_ACRO_...` all set to 100 deg/s to have useful hover control. And arrived after the two optimizations from above at the following tuning gains:
+```
+... stands for ROLL and PITCH
+MC_...RATE_P = 0.06
+MC_...RATE_I = 0.1
+MC_...RATE_D = 0.001
+MC_YAWRATE_P = 0.1
+```
+Note that this gains will likely not work well for you but I wanted to give them just as a reference.
 
-After you found a good tuning for the rate controller, flying in manual mode with the default attitude controller gains is most of the time already ok and tuning it isn't very hard and can easily become a matter of taste.
+After you found a good tuning for the rate controller, flying in manual mode with the default attitude controller gains is most of the time already ok and tuning it further isn't very hard anymore.
