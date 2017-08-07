@@ -35,7 +35,9 @@ The *Client* application is also compiled and built into the firmware as part of
 
 ## Supported uORB messages
 
-The set of uORB topics that can be supported by the bridge are listed in the **msg/CMakeLists.txt**. You can modify the list to change what uORB messages can be published/subscribed using RTPS in the **.cmake** file (**cmake/configs**) for each target platform.
+The generated bridge code will enable a specified subset of uORB topics to be published/subscribed via RTPS.
+
+For *automatic code generation* (via the normal PX4 firmware build process) this set must be listed in the **.cmake** file (**cmake/configs**) for your target platform.
 
 ```cmake
 set(config_rtps_send_topics
@@ -44,12 +46,14 @@ set(config_rtps_send_topics
    )
 
 set(config_rtps_receive_topics
-   vehicle_command
+   sensor_baro
    # Add new topic...
    )
 ```
 
-> **Note** There is another way to specify which messages are intended to be used calling **generate_microRTPS_bridge.py** using `-s` (send) and `-r` (receive) flags. Please see [Manual Generation of the Code](../middleware/micrortps_manual_code_generation.md).
+> **Caution** At time of writing (August 2017), only the small set of uORB topics listed above are included in our cmake files: **posix_sitl_default.cmake**, **nuttx_px4fmu-v4_default.cmake**, **posix_sdflight_default.cmake**. It is likely you will need to edit your *cmake* file and add additional uORB topics. In future we hope to define a larger standard set. 
+
+For *manual code generation* the uORM topics that will be supported by the bridge are specified when you call **generate_microRTPS_bridge.py** (using the `-s`/`--send` and `-r`/`--receive` flags). See [Manual Generation of the Code](../middleware/micrortps_manual_code_generation.md) for more information.
 
 
 ## Client (PX4 Firmware)
@@ -66,7 +70,6 @@ To build and upload the firmware for Qualcomm Snapdragon Flight:
 $ make eagle_default upload
 ```
   
-> **Note** The PX4 Firmware initialisation code should also automatically start the *Client* as a permanent daemon process. This will happen in the near future. In the meantime you will need to start the client manually.<!-- at that point, most of this section would move into the "manual generation" doc: https://github.com/PX4/Firmware/pull/7663#issuecomment-317928506 -->
 
 The *Client* application can be launched from [NuttShell/System Console](../debug/system_console.md). The command syntax is shown below (you can specify a variable number of arguments):
 
@@ -88,6 +91,8 @@ By default the *Client* runs for 10000 loops and then stops. To run the *Client*
 ```sh
 micrortps_client start -l -1
 ```
+
+> **Note** The PX4 Firmware initialisation code may in future automatically start the *Client* as a permanent daemon process. In the meantime you will need to start the client manually.<!-- at that point, most of this section would move into the "manual generation" doc: https://github.com/PX4/Firmware/pull/7663#issuecomment-317928506 -->
 
 
 ## Agent (Off Board FastRTPS Interface)
