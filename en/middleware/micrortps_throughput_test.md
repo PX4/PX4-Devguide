@@ -91,15 +91,18 @@ while (!_should_exit_task)
 ...
 ```
 
-Compile and launch both the [client](../middleware/micrortps.md#client-px4-firmware) and the [agent](../middleware/micrortps.md#agent-off-board-fastrtps-interface).
 
-> **Note** You may recall this is a *bidirectional* throughput test, where messages must also be sent from the *Agent* to the *Client*. The good news is that you do not need to modify the Agent code to make this happen. As the *Agent* is an RTPS publisher and subscriber, it will automatically get notified of the RTPS messages it sends, and will then transfer these back to the client.
+> **Note** You may recall this is intended to be a *bidirectional* throughput test, where messages must also be sent from the *Agent* to the *Client*. You do not need to modify the Agent code to make this happen. As the *Agent* is an RTPS publisher and subscriber, it will automatically get notified of the RTPS messages it sends, and will then mirror these back to the client.
+
+
+[Compile and launch](../middleware/micrortps_manual_code_generation.md#build-and-use-the-code) both the *Client* and the *Agent*.
+
 
 ## Result
 
-The test was executed with PX4 running on Pixracer, connected via a UART to an ordinary PC running Ubuntu 16.04. The default configuration was used for both the Client/Agent configuration.
+The test was executed with PX4 running on Pixracer, connected via a UART to an ordinary PC running Ubuntu 16.04. The default configuration was used for both the Client/Agent.
 
-The throughput that was observed in the client shell window is shown below:
+The throughput that was observed in the client shell window on completion is shown below:
 
 ```sh
 SENT:     13255 messages in 13255 LOOPS, 3512575 bytes in 30.994 seconds - 113.33KB/s
