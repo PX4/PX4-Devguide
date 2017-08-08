@@ -9,6 +9,15 @@ RTPS has been adopted as the middleware for the ROS2 (Robot Operating System). T
 This topic describes the bridge architecture, how it is compiled, and how to write a simple FastRTSP application to subscribe to PX4 changes.
 
 
+## When should RTPS be used?
+
+RTPS should be used in circumstances where there is a need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a peer software components running in PX4 (by sending and receiving uORB topics). RTPS is not suitable for use over slow links (e.g. like radio telemetry).
+
+Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control. 
+
+> **Note** FastRTPS is not intended as a replacement for MAVLink. MAVLink remains the most appropriate protocol for communicating with ground stations, gimbals, cameras, etc. (although FastRTPS may open other opportunities for working with some peripherals).
+
+
 ## Architectural overview
 
 ![basic example flow](../../assets/middleware/micrortps/basic_example_flow.png)
