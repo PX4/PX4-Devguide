@@ -49,7 +49,7 @@ sudo apt-get install python-serial openocd \
 
 # Install Java (needed by fastrtpsgen)
 ## Java7
-sudo apt-get install default-jdk 
+sudo apt-get install default-jdk -y
 # Install FastRTPS 1.5.0 and FastCDR-1.0.7
 fastrtps_dir=$HOME/eProsima_FastRTPS-1.5.0-Linux
 echo "Installing FastRTPS to: $fastrtps_dir"
