@@ -456,6 +456,7 @@ Reboot the system
 ```
 reboot [arguments...]
      [-b]        Reboot into bootloader
+     [lock|unlock] Take/release the shutdown lock (for testing)
 ```
 ## sd_bench
 Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
