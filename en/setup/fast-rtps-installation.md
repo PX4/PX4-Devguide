@@ -32,6 +32,7 @@ The instruction below are useful for adding FastRTPS support in other environmen
 
 Java is required to use our built-in code generation tool - *fastrtpsgen*. [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) is recommended.
 
+
 ### Windows 7 32-bit and 64-bit
 
 #### Visual C++ 2013 or 2015 Redistributable Package
@@ -48,6 +49,9 @@ Clone the project from Github:
 $ git clone https://github.com/eProsima/Fast-RTPS
 $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 ```
+
+> **Note** You may need to [install Gradle](https://gradle.org/install/) to build the source (e.g. this is true on vanilla Fedora Linux). A build warning will be displayed if this is the case.
+
 If you are on Linux, execute:
 
 ```sh
