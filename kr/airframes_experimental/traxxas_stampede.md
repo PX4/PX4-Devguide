@@ -1,6 +1,6 @@
 # Traxxas Stampede VXL
 
-이 비행체는 Pixhawk가 휠이 장착된 플랫폼에서 어떻게 사용될 수 있는지 보여주기 위해서 선택되었습니다. 매우 대중적이고 RC 커뮤니티에서 브랜드 인지도가 아주 높기 때문에 Traxxas를 선택하게 되었습니다. autopilot으로 휠이 달린 UGV를 쉽게 제어할 수 있는 플랫폼이라는 것이 아이디어입니다.
+이 기체는 Pixhawk가 휠이 장착된 플랫폼에 어떻게 사용될 수 있는지 보여주기 위해서 선택되었습니다. 매우 대중적이고 RC 커뮤니티에서 브랜드 인지도가 아주 높기 때문에 Traxxas를 선택하게 되었습니다. autopilot으로 휠이 달린 UGV를 쉽게 제어할 수 있는 플랫폼이라는 것이 아이디어입니다.
 
 {% youtube %}https://youtu.be/N3HvSKS3nCw{% endyoutube %}
 
@@ -62,7 +62,7 @@
  보다 자세한 내용은 [Gazebo Simulation](../simulation/gazebo.md)을 참고하세요.
 
 ## 사용
-현재 PX4는 RC 리모트가 연결되는 경우 MISSION과 MANUAL 모드를 지원합니다. mission 모드를 사용하기 위해서 가장 먼저 QGC와 연결된 비행체에 새로운 mission을 업로드합니다. 다음으로 ARMING하기 전에, `MISSION`을 선택하고 arm을 수행합니다.
+현재 PX4는 RC 리모트가 연결된 경우 MISSION과 MANUAL 모드를 지원합니다. mission 모드를 사용하기 위해서 가장 먼저 QGC와 연결된 비행체에 새로운 mission을 업로드합니다. 다음으로 ARMING하기 전에, `MISSION`을 선택하고 arm을 수행합니다.
 
 > **Warning** 일반적인 waypoint로 **만** mission을 설정할 수 있다는 것이 **_매우 중요_** 합니다. (예로 **TAKEOFF WAYPOINTS가 없음**) 그리고 제대로 수행하기 위해서는 **모든 WAYPOINT의 높이를 0으로 설정** 해야하는 것이 핵심입니다. 이렇게 하지 않으면 rover가 waypoint 주변을 계속 회전하게 됩니다.
 
