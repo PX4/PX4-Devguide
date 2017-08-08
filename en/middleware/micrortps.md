@@ -106,7 +106,7 @@ micrortps_client start -l -1
 
 ## Agent (Off Board FastRTPS Interface)
 
-The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **build_BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/**.
+The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **src/modules/micrortps_bridge/micrortps_agent/**.
 
 To build the *Agent* application, compile the code:
 
