@@ -34,7 +34,7 @@ There are three main hooks. Note that the root folder of the microsd card is ide
 
   * /fs/microsd/etc/config.txt
   * /fs/microsd/etc/extras.txt
-  * /fs/microsd/mixers/NAME_OF_MIXER
+  * /fs/microsd/etc/mixers/NAME_OF_MIXER
 
 ### Customizing the Configuration (config.txt)
 

@@ -199,10 +199,10 @@ Rebooting.
 
 ## 第五步：读取传感器数据
 
-> 为了实现一些功能，应用程序需要读取传感器的输入然后反应到对电机或者舵机的输出中。注意在这里，PX平台真正的硬件抽象的概念在这里体现---当硬件平台或者传感器更新，完全不需要更新你的应用程序或者更新传感器驱动程序。
+> 为了实现一些功能，应用程序需要读取传感器的输入然后反应到对电机或者舵机的输出中。请注意，PX4平台真正的硬件抽象的概念在这里体现--无需与传感器驱动程序以任何方式交互，如果你更新了主板或传感器，也无需更新应用程序。
 
 
-在PX4中，应用程序间发送的单独的消息叫做“topics”，在本教程中，我们关心的话题是“多传感器间的uORB消息机制”（[sensor_combined](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/topics/sensor_combined.h) [topic](../middleware/uorb.md)）。这些消息机制使得整个系统能够同步传感器数据。
+在PX4中，应用程序之间的各个消息通道称为“topics”（话题）。在本教程中，我们关心的topic是“多传感器间的uORB消息机制”[sensor_combined](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/topics/sensor_combined.h) [topic](../middleware/uorb.md)。这些消息机制使得整个系统能够同步传感器数据。
 
 订阅一个话题是非常迅速并且简洁的：
 
@@ -212,9 +212,9 @@ Rebooting.
 int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 ```
 
-“sensor_sub_fd” 是一个文件描述符，可以用来非常高效地实现对新数据的阻塞式等待。当前线程进入休眠状态，当新数据可用时，它自动地被调度程序唤醒 ，因此在数据等待时， 不会占用任何CPU资源。为了实现这个功能，我们使用poll()函数[http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html]，即POSIX系统调用。
+“sensor_sub_fd” 是一个topic句柄，它能非常高效地为新数据执行阻塞等待。当有新数据产生时，一个正处于休眠状态对线程就会自动地被调度程序唤醒。因此在等待数据时，不会占用任何CPU周期。为了实现这个功能，我们使用[poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html)函数，即POSIX系统调用。
 
-在消息读取中加入“poll()”机制：
+在消息订阅中加入“poll()”函数，看起来如下（伪代码，完整程序代码可在下面找到）：
 
 ```C++
 #include <poll.h>
@@ -254,7 +254,7 @@ while (true) {
 
 ### 第六步：测试uORB消息读取机制
 
-最后一步，开始你的应用程序，并且切换到后台应用。
+最后一步，启动你的应用程序作为后台应用：
 
 ```
   px4_simple_app &
@@ -273,11 +273,11 @@ while (true) {
 
 它会在输出5次数据后退出。下一篇教程中会介绍如何编写一个能通过命令行控制的后台应用。
 
-## 第七部：打印数据
+## 第七部：发布数据
 
-为了能获取到计算后的数据，下一步就是“打印”这些结果。如果我们知道某一个消息是使用mavlink协议转发给地面控制站的，我们就可以通过这个消息去查看结果。例如我们通过这个方法来获得高度信息的消息。
+为了能获取到计算后的数据，下一步就是“发布”这些结果。如果我们知道某一个消息是使用mavlink协议转发给地面控制站的，就可以通过这个消息去查看结果。基于此目的，我们来拦截姿态topic。
 
-接口非常简单:初始化消息的结构体，然后公告这条消息：
+接口非常简单:初始化即将发布的话题（topic）的结构，然后通告（advertise）这个话题：
 
 ```C
 #include <uORB/topics/vehicle_attitude.h>
@@ -288,7 +288,7 @@ memset(&att, 0, sizeof(att));
 orb_advert_t att_pub_fd = orb_advertise(ORB_ID(vehicle_attitude), &att);
 ```
 
-在主循环中，当消息准备好时，打印这条消息。
+在主循环中，当消息准备好时，发布这条消息：
 
 ```C
 orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
@@ -389,9 +389,8 @@ int px4_simple_app_main(int argc, char *argv[])
 ```sh
   px4_simple_app
 ```
-如果打开QGroundControl，你就能通过实时绘图程序(Tools -> Analyze)来获得实时的传感器数据。
-If you start QGroundControl, you can check the sensor values in the realtime plot (Tools -> Analyze)
+如果你打开了QGroundControl，你就能通过实时绘图程序plot(Tools -> Analyze)来获得传感器数据。
 
 ## 小结
 
-这个教程包含了所有开发一个PX4应用程序需要的东西。关于uORB消息机制的详细信息参见可以从[这里](https://github.com/PX4/Firmware/tree/master/msg/)获得 。所有的头文件都已经良好的注释作为参考。
+这个教程包含了所有开发一个“增量式”的PX4自驾仪应用程序需要的东西。注意，关于uORB消息的完整列表可以从[这里](https://github.com/PX4/Firmware/tree/master/msg/)获得 。其中，已经写好了每个消息的标题，可作为参考。

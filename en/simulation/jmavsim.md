@@ -1,4 +1,17 @@
-# Software in the Loop (SITL) Simulation
+# jMAVSim with SITL
+
+jMAVSim is a simple multirotor/Quad simulator that allows you to fly *copter* type vehicles running PX4 around a simulated world. It is easy to set up and can be used to test that your vehicle can take off, fly, land, and responds appropriately to various fail conditions (e.g. GPS failure).
+
+<strong>Supported Vehicles:</strong>
+
+* Quad
+
+This topic shows how to set up jMAVSim to connect with a SITL version of PX4. 
+
+> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#using-jmavsim-quadrotor)).
+
+
+## Simulation Environment
 
 Software in the Loop Simulation runs the complete system on the host machine and simulates the autopilot. It connects via local network to the simulator. The setup looks like this:
 
@@ -62,13 +75,13 @@ There is a special target to simulate a drone connected via Wifi on the local ne
 make broadcast jmavsim
 ```
 
-The simulator broadcasts his address on the local network as a real drone would do.
+The simulator broadcasts its address on the local network as a real drone would do.
 
 ## Extending and Customizing
 
-To extend or customize the simulation interface, edit the files in the `Tools/jMAVSim` folder. The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
+To extend or customize the simulation interface, edit the files in the **Tools/jMAVSim** folder. The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
 
-> ** Info ** The build system enforces the correct submodule to be checked out for all dependencies, including the simulator. It will not overwrite changes in files in the directory, however, when these changes are committed the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/jMAVSim` and commit the change. This will update the GIT hash of the simulator.
+> **Info** The build system enforces the correct submodule to be checked out for all dependencies, including the simulator. It will not overwrite changes in files in the directory, however, when these changes are committed the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/jMAVSim` and commit the change. This will update the GIT hash of the simulator.
 
 ## Interfacing to ROS
 

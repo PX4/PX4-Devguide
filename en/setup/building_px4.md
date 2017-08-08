@@ -1,26 +1,38 @@
 # Building PX4 Software
 
-PX4 can be built on the console or in a graphical development environment / IDE.
+PX4 can be built on the console or in a graphical development environment / IDE. Focus on the simulator, not real hardware for the first build.
 
-## Compiling on the Console
+## Downloading the Software and First Build
 
-Before moving on to a graphical editor or IDE, it is important to validate the system setup. Do so by bringing up the terminal. On OS X, hit ⌘-space and search for 'terminal'. On Ubuntu, click the launch bar and search for 'terminal'. On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'.
-
-![](../../assets/toolchain/terminal.png)
-
-The terminal starts in the home directory. We default to '~/src/Firmware' and clone the upstream repository. Experienced developers might clone [their fork](https://help.github.com/articles/fork-a-repo/) instead.
+Before moving on to a graphical editor or IDE, it is important to validate the system setup. Do so by bringing up the terminal. On OS X, hit ⌘-space and search for 'terminal'. On Ubuntu, click the launch bar and search for 'terminal'. On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'. Experienced developers might clone [their fork](https://help.github.com/articles/fork-a-repo/) instead.
 
 ```sh
 mkdir -p ~/src
 cd ~/src
 git clone https://github.com/PX4/Firmware.git
 cd Firmware
-git submodule update --init --recursive
-cd ..
+make posix jmavsim
 ```
-Now its time to build the binaries by compiling the source code. But before going straight to the hardware, a [simulation run](../simulation/sitl.md) is recommended as the next step. Users preferring to work in a graphical development environment should continue with the next section.
 
-### NuttX / Pixhawk based boards
+This will bring up the console below:
+
+![](../../assets/console_jmavsim.png)
+
+And the drone can be flown by typing:
+
+```sh
+pxh> commander takeoff
+```
+
+![](../../assets/jmavsim_first_takeoff.png)
+
+Hitting CTRL-C stops the simulation and simulated flight code. The simulation setup is documented in full detail here: [jMAVSim Simulation](../simulation/jmavsim.md).
+
+Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
+
+![](../../assets/qgc_goto.jpg)
+
+## NuttX / Pixhawk based boards
 
 
 ```sh
@@ -38,6 +50,7 @@ Build targets:
   boards that support 2MB Flash (such as Pixhawk mini)
 * Pixracer: `make px4fmu-v4_default`
 * Pixhawk 3 Pro: `make px4fmu-v4pro_default`
+* Pixhawk 4: `make px4fmu-v5_default`
 
 A successful run will end with this output:
 
@@ -48,6 +61,8 @@ Scanning dependencies of target build_firmware_px4fmu-v2
 [100%] Generating nuttx-px4fmu-v2-default.px4
 [100%] Built target build_firmware_px4fmu-v2
 ```
+
+### Flashing the board
 
 By appending 'upload' to these commands the compiled binary will be uploaded via USB to the autopilot hardware:
 

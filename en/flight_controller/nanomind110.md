@@ -18,6 +18,10 @@ NanoMind uses MindRacer as flight controller, which runs full PX4/MindPX flight 
 
 > **Note** The user guide is [here](http://mindpx.net/assets/accessories/NanoMind_110_user_manual.pdf).
 
+### Flight video
+
+{% youtube %}https://www.youtube.com/watch?v=bLtKa--Buic{% endyoutube %}
+
 ### Where to buy
 
 NanoMind 110 is available at [AirMind Store](http://drupal.xitronet.com/?q=catalog). You can also find MindRacer at Amazon or eBay.
