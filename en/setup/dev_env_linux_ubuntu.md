@@ -10,7 +10,7 @@ The following instructions explain how to *manually* set up a development enviro
 
 ## Convenience Bash Scripts
 
-We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**). 
+We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), [pyulog](https://github.com/PX4/pyulog#pyulog), and also download the PX4 source to your computer (**~/src/Firmware**). 
 
 > **Tip** The scripts have been tested on a clean Ubuntu LTS installation. They *may* not work as expected if installed on top of an existing system.
 
@@ -69,9 +69,7 @@ sudo apt-get remove modemmanager
 
 ## Common Dependencies
 
-Update the package list and install the following dependencies for all PX4 build targets. 
-
-> **Info** Install the [Ninja Build System](#ninja-build-system) for faster build times than with `Make`. It will be automatically selected if installed.
+Update the package list and install the following dependencies for all PX4 build targets.
 
 ```sh
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
@@ -82,6 +80,12 @@ sudo apt-get install python-argparse git-core wget zip \
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
+```
+
+You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). This is is a useful python package that contains scripts to parse *ULog* files and display them.
+```
+# optional python tools
+pip install pyulog
 ```
 
 ## FastRTPS installation

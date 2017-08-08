@@ -5,7 +5,7 @@
 ## It installs the common dependencies for all targets (including Qt Creator) and the ROS Kinetic/Gazebo 7 (the default).
 ##
 ## Installs:
-## - Common dependencies and tools for all targets (including Ninja build system and Qt Creator) 
+## - Common dependencies and tools for all targets (including: Ninja build system, Qt Creator, pyulog)
 ## - FastRTPS and FastCDR
 ## - ROS Kinetic (including Gazebo7)
 ## - MAVROS
@@ -42,6 +42,8 @@ sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cma
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
+# optional python tools
+pip install pyulog
 
 
 # Install FastRTPS 1.5.0 and FastCDR-1.0.7

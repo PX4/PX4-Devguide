@@ -4,7 +4,7 @@
 ## It can be used for installing the NuttX toolchain (only).
 ##
 ## Installs:
-## - Common dependencies and tools for all targets (including Ninja build system)
+## - Common dependencies and tools for all targets (including: Ninja build system, pyulog)
 ## - FastRTPS and FastCDR
 ## - NuttX toolchain (i.e. 64 bit version of gcc compiler)
 ## - PX4/Firmware source (to ~/src/Firmware/)
@@ -38,6 +38,8 @@ sudo apt-get install python-argparse git-core wget zip python-empy cmake build-e
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip -y
 sudo -H pip install pandas jinja2
+# optional python tools
+pip install pyulog
 
 
 # NuttX
