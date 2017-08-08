@@ -19,6 +19,10 @@ NanoMind는 flight controller로 MindRacer를 사용하며 PX4/MindPX 완전한 
 
 > **Note** 사용자 가이드는 [여기](http://mindpx.net/assets/accessories/NanoMind_110_user_manual.pdf) 링크를 참고하세요.
 
+### Flight video
+
+{% youtube %}https://www.youtube.com/watch?v=bLtKa--Buic{% endyoutube %}
+
 ### 구매하기
 
 [AirMind Store](http://drupal.xitronet.com/?q=catalog)에서 구매할 수 있습니다. Amazon이나 eBay에서도 가능합니다.

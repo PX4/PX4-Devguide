@@ -8,9 +8,9 @@
 optical flow는 어플리케이션 프로세서에서 계산하며 Mavlink를 통해 PX4로 전달됩니다.
 readme에 있는 지시에 따라 [snap_cam](https://github.com/PX4/snap_cam) repo를 clone하고 컴파일합니다.
 
-root 권한으로 optical flow 어플리케이션을 실행:
+root 권한으로 optical flow 어플리케이션을 실행(초당 90프레임 및 자동 노출):
 ```
-optical_flow -n 50 -f 30
+./optical_flow -f 90 -a
 ```
 
 optical flow 어플리케이션은 PX4에게 IMU Mavlink 메시지를 요청합니다. 추가적인 Mavlink 인스턴스를 PX4에 추가하기 위해서는 다음을 `mainapp.config`에 추가해야할 수도 있습니다 :
