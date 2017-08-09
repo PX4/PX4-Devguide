@@ -10,7 +10,7 @@ The following instructions explain how to *manually* set up a development enviro
 
 ## Convenience Bash Scripts
 
-We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), [pyulog](https://github.com/PX4/pyulog#pyulog), and also download the PX4 source to your computer (**~/src/Firmware**). 
+We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**). 
 
 > **Tip** The scripts have been tested on a clean Ubuntu LTS installation. They *may* not work as expected if installed on top of an existing system.
 
