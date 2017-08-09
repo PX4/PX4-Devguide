@@ -50,37 +50,37 @@ mavros ROS-Mavlink 인터페이스는 기본적으로 이런 메시지를 보내
 
 ### Mavros 사용하기
 
-With MAVROS this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and mavros will take care of NED conversions.
+MAVROS에서 이런 동작은 간단합니다. ROS는 관습적으로 ENU 프레임을 사용하며, 포지션 피드백은 반드시 ENU로 제공해야만 합니다. 만약 Optitrack 시스템을 가지고 있다면 [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) 노드를 사용해서 기존 ENU에 있는 ROS topic에서 object pose를 스트림으로 내보냅니다. remapping으로 직접 `mocap_pose_estimate`에서 publish할 수 있으며, 변환을 하지 않아도 되며 mavros는 NED 규칙만 신경쓰면 됩니다.
 
-### Without Mavros
-If you do not use MAVROS or ROS in general, you need to stream data over Mavlink with `ATT_POS_MOCAP` message. In this case you will need to apply a custom transformation depending on the system in order to obtain NED convention.
+### Mavros 사용하지 않고
+일반적으로 MAVROS나 ROS를 사용할 수 없다면, Mavlink 상에서 `ATT_POS_MOCAP` 메시지로 데이터를 스트림으로 내보낼 수 있습니다. 이 경우 시스템에 따라서 NED 규칙을 따라기 위해서 커스텀 변환을 적용해야할 수도 있습니다.
 
-Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. A simple trick is swapping axis in order to obtained NED convention.
+Optitrack 프레임워크 예제를 살펴봅시다;이 경우 로컬 프레임은 수평 비행체(*x* 전면과 *z* 오른쪽)에서 $$x$$ 와 $$z$$ 를 가지며 반면에 *y* 축은 수직으로 위를 가리킵니다. 단순한 트릭으로는 NED 규칙을 따르기 위해서 축을 맞바꾸는 것입니다.
 
-We call *x_{mav}*, *y_{mav}* and *z_{mav}* the coordinates that are sent through Mavlink as position feedback, then we obtain:
+*x_{mav}*, *y_{mav}* 그리고 *z_{mav}* 를 포지션 피드백으로 Mavlink를 통해 보낸 좌표계라고 부릅니다. 그리고 다음을 얻을 수 있습니다:
 
 *x_{mav}* = *x_{mocap}*
 *y_{mav}* = *z_{mocap}*
 *z_{mav}* = - *y_{mocap}*
 
-Regarding the orientation, keep w the same and swap quaternion x y and z in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
+방향에 따라서 w를 동일하게 유지하고 쿼터니언 x y z를 동일한 방식으로 교환합니다. 모든 시스템에 대해서 이런 방법을 적용할 수 있습니다. NED 프레임을 얻기 위해 필요하며 mocap 출력을 보고 적절하게 축을 맞교환합니다.
 
-## First flight
-At this point, if you followed those steps, you are ready to test your setup.
+## 처음 비행
+이 시점까지 과정을 잘 따라왔다면 이제 셋업을 테스트할 준비가 된 것입니다.
 
-Be sure to perform the following checks:
+다음 점검사항을 지키는지 확인합니다 :
 
-* **Before** creating the rigid body, align the robot with world x axis
+* 고정 바디를 생성하기 **전에**, x 축으로 robot을 정렬합니다.
 
-* Stream over Mavlink and check the Mavlink inspector with Qgroundcontrol, the local pose topic should be in NED
+* Mavlink로 스트림으로 보내고 Qgroundcontrol에 있는 Mavlink inspector로 확인하며 local pose topic은 NED형태여야 합니다.
 
-* Move the robot around by hand and see if the estimated local position is consistent (always in NED)
+* robot을 손으로 움직이고 estimated local position이 일정한지를 봅니다.(항상 NED로)
 
-* Rotate the robot on the vertical axis and check the yaw with the Mavlink inspector
+* 수직 축으로 robot을 회전시키고 Mavlink inspector로 yaw를 검사합니다.
 
-If those steps are consistent, you can try your first flight.
+이런 단계들을 거치면, 처음 비행을 시도할 수 있습니다.
 
-Put the robot on the ground and start streaming mocap feedback. Lower your left stick and arm the motors.
+robot을 그라운드에 위치시키고 mocap 피드백을 스트림으로 내보내도록 합니다. 왼쪽 스틱을 낮추고 모터에 시동을 겁니다.
 
 At this point, with the left stick at the lowest position, switch to position control. You should have a green light. The green light tells you that position feedback is available and position control is now activated.
 
