@@ -31,3 +31,61 @@ mavros ROS-Mavlink 인터페이스는 기본적으로 이런 메시지를 보내
 #### 노이즈 파라미터 튜닝
 
 비젼이나 mocap 데이터의 정확도가 높아서 estimator가 촘촘하게 track해나가길 원한다면, `LPE_VIS_XY` 와 `LPE_VIS_Z` (비젼에 대해서) 혹은 `LPE_VIC_P` (모션 캡쳐에 대해서)와 같은 표준 편차 파라미터를 줄여야 합니다. 이를 줄인다는 것은 estimator가 입력으로 들어오는 pose estimate를 더 신뢰하게 됩니다. 허용하는 최소와 force-save보다 더 낮게 설정해야 합니다.
+
+> **Tip** 성능이 여전히 좋지 않다면, `LPE_PN_V` 파라미터 값을 증가시키세요. 이렇게 하면 velocity estimation 동안 측정값을 더 신뢰하게 됩니다.
+
+## 레퍼런스 프레임에 대한 확인
+이 섹션에서는 적합한 레퍼런스 프레임으로 시스템을 셋업하는 방법을 보여줍니다. 여러가지 표현이 있지만 여기서는 ENU와 NED 이렇게 2가지를 사용합니다.
+
+* ENU는 그라운드-고정 프레임을 가지며 *x* 축이 동쪽을, *y* 는 북쪽을 *z* 는 위를 가리킵니다. Robot 프레임은 *x* 가 앞쪽, *z* 가 위를 그리고 *y* 옆을 가리킵니다.
+
+* NED는 *x* 는 북쪽, *y* 는 동쪽 그리고 *z* 는 아래를 가리킵니다. Robot 프레임은 *x* 가 전방향, *z* 가 아래쪽 그리고 *y* 가 옆을 가리킵니다.
+
+프레임은 아래 이미지와 같습니다: ENUrk 오른쪽인 반면에 NED는 왼쪽입니다.
+![Reference frames](../../assets/lpe/ref_frames.png)
+
+외부 헤딩 estimation인 경우, 자기장 북쪽은 무시되고 *x* 축(mocap 칼리브레이션에서 자유롭게 위치시킬 수 있음)에 관련된 벡터로 속이게 됩니다. yaw 각은 로컬 *x* 에 따라 주어집니다.
+
+> **Info** mocap 소프트웨어에서 고정 바디를 생성할 때, 먼저 robot을 *x* 축에 맞춰야하는 것을 명심합니다. 그렇지 않으면 yaw estimation은 초기 offset을 가지게 될지도 모릅니다.
+
+### Mavros 사용하기
+
+With MAVROS this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and mavros will take care of NED conversions.
+
+### Without Mavros
+If you do not use MAVROS or ROS in general, you need to stream data over Mavlink with `ATT_POS_MOCAP` message. In this case you will need to apply a custom transformation depending on the system in order to obtain NED convention.
+
+Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. A simple trick is swapping axis in order to obtained NED convention.
+
+We call *x_{mav}*, *y_{mav}* and *z_{mav}* the coordinates that are sent through Mavlink as position feedback, then we obtain:
+
+*x_{mav}* = *x_{mocap}*
+*y_{mav}* = *z_{mocap}*
+*z_{mav}* = - *y_{mocap}*
+
+Regarding the orientation, keep w the same and swap quaternion x y and z in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
+
+## First flight
+At this point, if you followed those steps, you are ready to test your setup.
+
+Be sure to perform the following checks:
+
+* **Before** creating the rigid body, align the robot with world x axis
+
+* Stream over Mavlink and check the Mavlink inspector with Qgroundcontrol, the local pose topic should be in NED
+
+* Move the robot around by hand and see if the estimated local position is consistent (always in NED)
+
+* Rotate the robot on the vertical axis and check the yaw with the Mavlink inspector
+
+If those steps are consistent, you can try your first flight.
+
+Put the robot on the ground and start streaming mocap feedback. Lower your left stick and arm the motors.
+
+At this point, with the left stick at the lowest position, switch to position control. You should have a green light. The green light tells you that position feedback is available and position control is now activated.
+
+Put your left stick at the middle, this is the dead zone. With this stick value, the robot maintain its altitude; rising the stick will increase the reference altitude while lowering the value will decrease it. Same for right stick on x and y.
+
+Increase the value of the left stick and the robot will take off, put it back to the middle right after. Check if it is able to keep its position.
+
+If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint form a remote ground station.
