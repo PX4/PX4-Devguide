@@ -196,4 +196,37 @@ struct message_dropout_s {
 
 - 'I': information message. 위를 참고.
 
+- 'M': 다중 information message. 위를 참조.
+
 - 'P': parameter message. 위를 참고.
+
+
+## 파서(Parser) 요구사항
+유효한 ULog 파서는 다음과 같은 요구사항을 만족해야만 합니다:
+- 모르는 메시지는 반드시 무시 (warning을 출력할 수 있음)
+- future/unknown 파일 포맷 버전 파싱 (warning을 출력할 수 있음)
+- unknown 비호환 bit set을 포함하는 경우 로그 파싱이 반드시 거부해야함(`ulog_message_flag_bits_s` 메시지의 `incompat_flags`) 로그에 파서가 처리할 수 없는 변경이 포함되어 있다는 의미.
+- 파서는 메시지 중간에 갑자기 종료되는 로그를 제대로 처리할 수 있어야 함. 이렇게 종료되지 않는 메시지는 폐기됨.
+- 추가된 데이터 : 파서는 Data 섹션에 있다고 가정함. 오프셋은 Definitions 섹션 이후 위치를 가리킴.
+
+  추가된 데이터는 일반 Data 섹션의 일부였던 것처럼 취급되어야만 합니다.
+
+
+## 공개된 구현
+- PX4 Firmware: C++
+  - [logger module](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
+  - [replay module](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
+  - [hardfault_log module](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log):
+	하드폴트 크러쉬 데이터 추가.
+- [pyulog](https://github.com/PX4/pyulog): python, CLI 스크립트로 작성된 ULog parser library
+- [FlightPlot](https://github.com/PX4/FlightPlot): Java, log plotter.
+- [MAVLink](https://github.com/mavlink/mavlink): MAVLink를 통해 ULog 스트리밍에 관한 메시지(추가된 데이터는 지원하지 않으며 끊어진 메시지는 지원하지 않음.
+- [QGroundControl](https://github.com/mavlink/qgroundcontrol): C++, MAVLink를 통한 ULog
+  streaming과 GeoTagging에 대한 최소 파싱.
+- [mavlink-router](https://github.com/01org/mavlink-router): C++, MAVLink를 통한 ULog streaming.
+- [MAVGAnalysis](https://github.com/ecmnet/MAVGCL): Java, MAVLink를 통한 ULog streaming과 plotting과 분석을 위한 파서.
+
+
+## 파일 포맷 버전 History
+### 버전 2에서 변경사항
+`ulog_message_info_multiple_header_s`와 `ulog_message_flag_bits_s` 메시지 추가 및 로그에 데이터 추가 가능한 기능. 이렇게 하면 기존 로그에 깨진 데이터가 추가될 수 있다. 메시지 중간이 잘린 상태로 데이터가 로그에 추가되는 것은 기본 버전 1 파서에서는 불가능했음. 파서가 unknown 메시지를 무시하게 되면 이전 버전에 대해서 호환이 가능하다.
