@@ -1,4 +1,4 @@
-# u-blox M8P RTK GPS Configuration
+# RTK GPS Background Information
 
 RTK (Real Time Kinematic) increases GPS accuracy to centimeter-level. It uses measurements of the phase of the signal's carrier wave, rather than the information content of the signal, and relies on a single reference station to provide real-time corrections, providing up to centimetre-level accuracy.
 
