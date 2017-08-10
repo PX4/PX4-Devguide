@@ -4,7 +4,6 @@ The code for the PX4 bootloader is available from the Github [Bootloader](https:
 
 ## Supported Boards
 
-  * FMUv1 (PX4FMU, STM32F4)
   * FMUv2 (Pixhawk 1, STM32F4)
   * FMUv3 (Pixhawk 2, STM32F4)
   * FMUv4 (Pixracer 3 and Pixhawk 3 Pro, STM32F4)
@@ -59,11 +58,6 @@ These instructions are for the [J-Link GDB server](https://www.segger.com/jlink-
 [Download the J-Link software](https://www.segger.com/downloads/jlink#) from the Segger website and install it according to their instructions.
 
 #### Run the JLink GDB server
-
-FMUv1:
-```bash
-JLinkGDBServer -select USB=0 -device STM32F405RG -if SWD-DP -speed 20000
-```
 
 AeroFC:
 ```bash
