@@ -59,7 +59,7 @@ These instructions are for the [J-Link GDB server](https://www.segger.com/jlink-
 
 #### Run the JLink GDB server
 
-The command below is used to run the server for autopilots that use the STM32F427VI SoC:
+The command below is used to run the server for flight controllers that use the STM32F427VI SoC:
 
 ```bash
 JLinkGDBServer -select USB=0 -device STM32F427VI -if SWD-DP -speed 20000
@@ -68,7 +68,7 @@ JLinkGDBServer -select USB=0 -device STM32F427VI -if SWD-DP -speed 20000
 The `--device`/SoC for common targets is:
 
 * **FMUv2, FMUv3, FMUv4, aerofc-v1, mindpx-v2:** STM32F427VI
-* **px4fmu-v4pro:** STM32F469I
+* **px4fmu-v4pro:** STM32F469II
 * **px4fmu-v5:** STM32F765II
 * **crazyflie:** STM32F405RG
 
