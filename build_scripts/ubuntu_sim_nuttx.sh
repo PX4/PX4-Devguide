@@ -44,6 +44,7 @@ sudo apt-get install python-argparse git-core wget zip python-empy qtcreator cma
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
+pip install pyserial
 # optional python tools
 pip install pyulog
 

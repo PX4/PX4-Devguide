@@ -38,6 +38,7 @@ sudo apt-get install python-argparse git-core wget zip python-empy cmake build-e
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip -y
 sudo -H pip install pandas jinja2
+pip install pyserial
 # optional python tools
 pip install pyulog
 
