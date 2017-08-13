@@ -75,7 +75,7 @@ Update the package list and install the following dependencies for all PX4 build
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
 sudo apt-get install python-argparse git-core wget zip \
-    python-empy qtcreator cmake build-essential genromfs -y
+    python-empy qtcreator cmake build-essential genromfs pyserial -y
 # required python packages
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip
