@@ -80,6 +80,7 @@ sudo apt-get install python-argparse git-core wget zip \
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
+pip install pyserial
 ```
 
 You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). This is is a useful python package that contains scripts to parse *ULog* files and display them.
