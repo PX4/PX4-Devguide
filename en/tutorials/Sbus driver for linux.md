@@ -13,11 +13,13 @@ NPN transistor * 1
 Usbtty *1  
 
 ## Installation
+Connect the components according to the following ways  
 
-1. S.bus singal->1K resistor->NPN transistor base  
-2. NPN transistor emmit GND  
-3. 3VCC-> 10K resistor -> usbtty rxd
-4
+S.bus singal->1K resistor->NPN transistor base  
+NPN transistor emmit GND  
+3.3v  VCC-> 10K resistor -> usbtty rxd  
+5.0v  VCC->S.bus vcc  
+GND ->S.bus gnd  
 
-
-
+## Circuit diagram
+![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)
