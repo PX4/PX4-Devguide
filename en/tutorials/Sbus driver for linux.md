@@ -15,9 +15,9 @@ Usbtty *1
 ## Installation
 Connect the components according to the following ways  
 
-S.bus singal->1K resistor->NPN transistor base   
-NPN transistor emmit GND  
-3.3v  VCC-> 10K resistor -> usbtty rxd  
+S.bus singal->1K resistor->NPN transistor base  
+NPN transistor emmit -> GND  
+3.3v  VCC-> 10K resistor -> NPN transistor collection ->usbtty rxd  
 5.0v  VCC->S.bus vcc  
 GND ->S.bus gnd  
 
