@@ -25,8 +25,9 @@ GND ->S.bus gnd
 ![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)
 
 ## Launch the driver
+After the following command started, the autopilot would fetch the sbus data via /dev/ttyUSB0, up to 8 channels.
 ```
-pxh> linux_sbus start -d /dev/ttyUSB0 -c 8 //  Fetch the sbus data via /dev/ttyUSB0, 8 channels was available
+pxh> linux_sbus start -d /dev/ttyUSB0 -c 8 
 ```
 
 
