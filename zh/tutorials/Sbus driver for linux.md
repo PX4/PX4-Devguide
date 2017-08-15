@@ -16,7 +16,7 @@ usb转ttl *1  
 ## 组装
 请安下列方式对器件进行连线  
 
-S.bus信号线 -> 1K电阻 ->NPN三极管基级    
+S.bus信号线 -> 1K电阻 ->NPN三极管基级  
 NPN 三极管发射级 -> GND  
 3.3v  VCC-> 10K电阻 -> NPN三极管发射级集电极 ->usbtty rxd  
 5.0v  VCC->S.bus vcc  
