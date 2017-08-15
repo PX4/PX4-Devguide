@@ -16,11 +16,11 @@ usb转ttl *1  
 ## 组装
 请安下列方式对器件进行连线  
 
-S.bus信号线 -> 1K电阻 ->NPN三极管基级     
-NPN 三极管发射级 -> GND  
-3.3v  VCC-> 10K电阻 -> NPN三极管发射级集电极 ->usbtty rxd  
+S.bus信号线 -> 1K电阻 ->NPN三极管基级    
+NPN 三极管发射级 -> GND  
+3.3v  VCC-> 10K电阻 -> NPN三极管发射级集电极 ->usbtty rxd  
 5.0v  VCC->S.bus vcc  
-GND ->S.bus gnd  
+GND ->S.bus GND  
 
 ## 电路图
 ![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)
