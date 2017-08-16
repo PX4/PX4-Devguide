@@ -31,4 +31,4 @@ GND ->S.bus GND
 ![](https://raw.githubusercontent.com/crossa/raspx4-sbus-rc-in/master/example.png)  
 
 ## 启动
-把 `linux_sbus start -d /dev/ttyUSB0 -c 8` 加入配置文件中，即可自动运行
+把 `linux_sbus start -d /dev/ttyUSB0 -c 8` 加入配置文件中，即可自动运行,并通过/dev/ttyUSBO监听8个通道
