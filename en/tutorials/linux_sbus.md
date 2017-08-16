@@ -32,5 +32,5 @@ GND ->S.bus gnd
 ![](https://raw.githubusercontent.com/crossa/raspx4-sbus-rc-in/master/example.png)
 
 ## Launch it  
-Add `linux_sbus start -d /dev/ttyUSB0 -c 8` to the configuration file and it will start automatically
+Add `linux_sbus start -d /dev/ttyUSB0 -c 8` to the configuration file and it will start automatically the driver on /dev/ttyUSB0 listening to 8 channels.
 
