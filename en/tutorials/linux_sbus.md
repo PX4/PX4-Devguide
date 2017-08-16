@@ -10,13 +10,13 @@ All platforms running linux system are supported.
 1x  10K resistance  
 1x  1K  resistor  
 
-Any type of transistor can be used for this function. 
+Any type of transistor can be used for this purpose. 
 
 ## Optional components
 1x USB to TTL Serial Cable/Converter
 
 ## Installing
-Connect the components according to the following ways  
+Connect the components according to the following  
 
 S.bus singal->1K resistor->NPN transistor base  
 NPN transistor emmit -> GND  
@@ -26,3 +26,8 @@ GND ->S.bus gnd
 
 ## Circuit diagram
 ![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)
+![](https://github.com/crossa/raspx4-sbus-rc-in/blob/master/sbusToSerial_small.jpg?raw=true)
+
+##Launch it
+Add `linux_sbus start -d /dev/ttyUSB0 -c 8` to the configuration file and it will start automatically
+
