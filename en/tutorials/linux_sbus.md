@@ -7,7 +7,7 @@ All platforms running linux system are supported.
 ## Required components
 
 1x  NPN transistor  
-1x  10K resistance  
+1x  10K resistor  
 1x  1K  resistor  
 
 Any type of transistor can be used for this purpose. 
