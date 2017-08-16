@@ -29,7 +29,7 @@ GND ->S.bus gnd
 ![](https://github.com/crossa/raspx4-sbus-rc-in/blob/master/sbusToSerial_small.jpg?raw=true)  
 
 ## Example
-![](https://raw.githubusercontent.com/crossa/raspx4-sbus-rc-in/master/example.jpeg)
+![](https://raw.githubusercontent.com/crossa/raspx4-sbus-rc-in/master/example.png)
 
 ## Launch it  
 Add `linux_sbus start -d /dev/ttyUSB0 -c 8` to the configuration file and it will start automatically
