@@ -28,7 +28,7 @@ GND ->S.bus GND
 ![](https://github.com/crossa/raspx4-sbus-rc-in/blob/master/sbusToSerial_small.jpg?raw=true)  
 
 ## 安装实例
-![](https://raw.githubusercontent.com/crossa/raspx4-sbus-rc-in/master/example.jpeg)  
+![](https://raw.githubusercontent.com/crossa/raspx4-sbus-rc-in/master/example.png)  
 
 ## 启动
 把 `linux_sbus start -d /dev/ttyUSB0 -c 8` 加入配置文件中，即可自动运行
