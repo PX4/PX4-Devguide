@@ -26,7 +26,10 @@ GND ->S.bus gnd
 
 ## Circuit diagram
 ![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)
-![](https://github.com/crossa/raspx4-sbus-rc-in/blob/master/sbusToSerial_small.jpg?raw=true)
+![](https://github.com/crossa/raspx4-sbus-rc-in/blob/master/sbusToSerial_small.jpg?raw=true)  
+
+## Example
+![](https://raw.githubusercontent.com/crossa/raspx4-sbus-rc-in/master/example.jpeg)
 
 ## Launch it  
 Add `linux_sbus start -d /dev/ttyUSB0 -c 8` to the configuration file and it will start automatically
