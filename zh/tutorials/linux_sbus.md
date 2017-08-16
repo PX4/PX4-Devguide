@@ -25,5 +25,7 @@ GND ->S.bus GND
 
 ## 电路图
 ![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)
+![](https://github.com/crossa/raspx4-sbus-rc-in/blob/master/sbusToSerial_small.jpg?raw=true)
 
-
+## 启动
+把 `linux_sbus start -d /dev/ttyUSB0 -c 8` 加入配置文件中，即可自动运行
