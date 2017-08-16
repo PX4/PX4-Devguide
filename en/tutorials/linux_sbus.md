@@ -6,14 +6,14 @@ All platforms running linux system are supported.
 
 ## Required components
 
-1 * NPN transistor
-1 * 10K resistance
-1 * resistor * 1  
+1x  NPN transistor  
+1x  10K resistance  
+1x  1K  resistor  
 
 Any type of transistor can be used for this function. 
 
 ## Optional components
-1 * USB to TTL Serial Cable/Converter
+1x USB to TTL Serial Cable/Converter
 
 ## Installing
 Connect the components according to the following ways  
