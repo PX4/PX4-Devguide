@@ -4,7 +4,8 @@
 ## It can be used for installing the NuttX toolchain (only).
 ##
 ## Installs:
-## - Common dependencies and tools for all targets (including Ninja build system) 
+## - Common dependencies and tools for all targets (including: Ninja build system, pyulog)
+## - FastRTPS and FastCDR
 ## - NuttX toolchain (i.e. 64 bit version of gcc compiler)
 ## - PX4/Firmware source (to ~/src/Firmware/)
 
@@ -37,12 +38,42 @@ sudo apt-get install python-argparse git-core wget zip python-empy cmake build-e
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip -y
 sudo -H pip install pandas jinja2
+pip install pyserial
+# optional python tools
+pip install pyulog
 
 
 # NuttX
 sudo apt-get install python-serial openocd \
     flex bison libncurses5-dev autoconf texinfo \
     libftdi-dev libtool zlib1g-dev -y
+
+# Install Java (needed by fastrtpsgen)
+## Java7
+sudo apt-get install default-jdk -y
+# Install FastRTPS 1.5.0 and FastCDR-1.0.7
+fastrtps_dir=$HOME/eProsima_FastRTPS-1.5.0-Linux
+echo "Installing FastRTPS to: $fastrtps_dir"
+if [ -d "$fastrtps_dir" ]
+then
+    echo " FastRTPS already installed."
+else
+    pushd .
+    cd ~
+    wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz
+    mv eprosima_fastrtps-1-5-0-linux-tar-gz eprosima_fastrtps-1-5-0-linux.tar.gz
+    tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
+    tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
+    tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
+    cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+    cd ..
+    cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+    exportline="export FASTRTPSGEN_DIR=/usr/local/bin/"
+    if grep -Fxq "$exportline" ~/.bashrc; then echo " fastrtpsgen path already set." ; else echo $exportline >> ~/.bashrc; fi
+    . ~/.bashrc
+    popd
+fi
+
 
 # Clean up old GCC
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
@@ -61,8 +92,8 @@ else
     wget https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-/raw/master/gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
     tar -jxf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
     exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH"
-    if grep -Fxq "$exportline" ~/.profile; then echo " GCC path already set." ; else echo $exportline >> ~/.profile; fi
-    . ~/.profile
+    if grep -Fxq "$exportline" ~/.bashrc; then echo " GCC path already set." ; else echo $exportline >> ~/.bashrc; fi
+    . ~/.bashrc
     popd
     
     # Install 32 bit support libraries (ignore if fails)

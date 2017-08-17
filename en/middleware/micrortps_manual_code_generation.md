@@ -13,25 +13,6 @@ First disable automatic generation of bridge code. Set the variable `GENERATE_RT
 set(GENERATE_RTPS_BRIDGE off)
 ```
 
-## Supported uORB messages
-
-The set of uORB topics that can be supported by the bridge are listed in the **.cmake** file (**cmake/configs**) for each target platform. You can modify the list to change what uORB messages can be published/subscribed using RTPS. 
-
-```cmake
-set(config_rtps_send_topics
-  sensor_combined
-   # Add new topic...
-   )
-
-set(config_rtps_receive_topics
-   vehicle_command
-   # Add new topic...
-   )
-```
-
-> **Note** You can further refine which messages are supported when you call **generate_microRTPS_bridge.py** using `-s` (send) and `-r` (receive) flags.
-
-
 ## Using generate_microRTPS_bridge.py
 
 The *generate_microRTPS_bridge* tool's command syntax is shown below:
@@ -83,15 +64,15 @@ $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor
 
 Code is generated for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages (IDL files). 
 
-Code for the bridge can be found here:
+Manually generated code for the bridge can be found here (by default):
 
-- *Client*: **build\__BUILDPLATFORM_/src/modules/micrortps_client/**
-- *Agent*: **build\__BUILDPLATFORM_/src/modules/micrortps_bridge/**
+- *Client*: **src/modules/micrortps_bridge/micrortps_client/**
+- *Agent*: **src/modules/micrortps_bridge/micrortps_agent/**
 
 
 ### uORB serialization code
 
-Serialization functions are generated for the [supported uORB topics](#supported-uorb-messages). For example, the following functions would be generated for the *sensor_combined.msg*:
+Serialization functions are generated for all the uORB topics as part of the normal PX4 compilation process (and also for manual generation). For example, the following functions would be generated for the *sensor_combined.msg*:
 
 ```sh
 void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
@@ -100,7 +81,7 @@ void deserialize_sensor_combined(struct sensor_combined_s *output, char *input, 
 
 ### RTPS message IDL files
 
-IDL files are generated from the uORB **.msg** files ([for supported uORB topics](#supported-uorb-messages)). These can be found in: **build\__BUILDPLATFORM_/src/modules/micrortps_bridge/idl/**
+IDL files are generated from the uORB **.msg** files ([for selected uORB topics](../middleware/micrortps.md#supported-uorb-messages)) in the generation of the bridge. These can be found in: **src/modules/micrortps_bridge/micrortps_agent/idl/**
 
 *FastRTSP* uses IDL files to define the structure of RTPS messages (in this case, RTPS messages that map to uORB topics). They are used to generate code for the *Agent*, and *FastRTSP* applications that need to publish/subscribe to uORB topics.
 
@@ -120,22 +101,22 @@ src/modules/micrortps_bridge/micrortps_agent
 ├── idl
 │   ├── sensor_baro_.idl
 │   └── sensor_combined_.idl
-├── microRTPS_agent.cxx
-├── microRTPS_transport.cxx
+├── microRTPS_agent.cpp
+├── microRTPS_transport.cpp
 ├── microRTPS_transport.h
-├── RtpsTopics.cxx
+├── RtpsTopics.cpp
 ├── RtpsTopics.h
-├── sensor_baro_.cxx
+├── sensor_baro_.cpp
 ├── sensor_baro_.h
-├── sensor_baro_Publisher.cxx
+├── sensor_baro_Publisher.cpp
 ├── sensor_baro_Publisher.h
-├── sensor_baro_PubSubTypes.cxx
+├── sensor_baro_PubSubTypes.cpp
 ├── sensor_baro_PubSubTypes.h
-├── sensor_combined_.cxx
+├── sensor_combined_.cpp
 ├── sensor_combined_.h
-├── sensor_combined_PubSubTypes.cxx
+├── sensor_combined_PubSubTypes.cpp
 ├── sensor_combined_PubSubTypes.h
-├── sensor_combined_Subscriber.cxx
+├── sensor_combined_Subscriber.cpp
 └── sensor_combined_Subscriber.h
  2 directories, 20 files
 ```
@@ -146,7 +127,23 @@ $ tree src/modules/micrortps_bridge/micrortps_client
 src/modules/micrortps_bridge/micrortps_client
 ├── CMakeLists.txt
 ├── microRTPS_client.cpp
-├── microRTPS_transport.cxx
+├── microRTPS_client_dummy.cpp
+├── microRTPS_client_main.cpp
+├── microRTPS_transport.cpp
 └── microRTPS_transport.h
  0 directories, 4 files
 ```
+
+## Build and use the code
+
+The manually generated *Client* code is built and used in *exactly* the same way as [automatically generated Client code](../middleware/micrortps.md#client-px4-firmware).
+
+Specifically, once manually generated, the *Client* source code is compiled and built into the PX4 firmware as part of the normal build process. For example, to compile the code and include it in firmware for NuttX/Pixhawk targets: 
+
+```sh
+make px4fmu-v4_default upload
+```
+
+> **Note** You must first [disable automatic bridge code generation](#disable-automatic-bridge-code-generation) so that the toolchain uses the manually generated source code (and does not attempt to regenerate it).
+
+The manually generated *Agent* code is also compiled and used in the same way as the [automatically generated code](../middleware/micrortps.md#agent-off-board-fastrtps-interface). The only difference is that the manually source code is created in **src/modules/micrortps_bridge/micrortps_agent** instead of <strong><emphasis>build_BUILDPLATFORM</emphasis></strong>**/src/modules/micrortps_bridge/micrortps_agent/**.

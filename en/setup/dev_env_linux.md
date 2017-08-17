@@ -9,7 +9,7 @@ The following instructions explain how to set up a development environment on Ub
 
 ## Development Toolchain
 
-The instructions below show how you can use bash scripts to install the developer toolchain on Ubuntu LTS. All the scripts include the *Qt Creator IDE*, [Ninja Build System](https://ninja-build.org/), [Common Dependencies](../setup/dev_env_linux_ubuntu.md#common-dependencies), and also download the PX4 source to your computer (**~/src/Firmware**).
+The instructions below show how you can use bash scripts to install the developer toolchain on Ubuntu LTS. All the scripts include the *Qt Creator IDE*, [Ninja Build System](https://ninja-build.org/), [Common Dependencies](../setup/dev_env_linux_ubuntu.md#common-dependencies), [FastRTPS](../setup/dev_env_linux_ubuntu.md#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**).
 
 > **Tip** The scripts have been tested on a clean Ubuntu LTS 16.04 installation. They *may* not work as expected if installed on top of an existing system or on another Ubuntu release. If you have any problems then follow the [manual installation instructions](../setup/dev_env_linux_ubuntu.md).
 

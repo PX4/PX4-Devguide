@@ -85,6 +85,7 @@
     * [QAV 250 Racer](airframes_multicopter/qav250.md)
     * [Matrice 100](airframes_multicopter/matrice100.md)
     * [QAV-R](airframes_multicopter/qav-r.md)
+    * [QAV-R 5" KISS ESC Racer](airframes_multicopter/qav-r-5-kiss-esc-racer.md)
   * [Planes](airframes_plane/README.md)
     * [Wing Wing Z-84](airframes_plane/wing_z_84.md)
   * [VTOL](airframes_vtol/README.md)

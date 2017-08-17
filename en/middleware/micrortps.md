@@ -9,6 +9,15 @@ RTPS has been adopted as the middleware for the ROS2 (Robot Operating System). T
 This topic describes the bridge architecture, how it is compiled, and how to write a simple FastRTSP application to subscribe to PX4 changes.
 
 
+## When should RTPS be used?
+
+RTPS should be used in circumstances where there is a need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a peer software components running in PX4 (by sending and receiving uORB topics). RTPS is not suitable for use over slow links (e.g. like radio telemetry).
+
+Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control. 
+
+> **Note** FastRTPS is not intended as a replacement for MAVLink. MAVLink remains the most appropriate protocol for communicating with ground stations, gimbals, cameras, etc. (although FastRTPS may open other opportunities for working with some peripherals).
+
+
 ## Architectural overview
 
 ![basic example flow](../../assets/middleware/micrortps/basic_example_flow.png)
@@ -21,7 +30,6 @@ The main elements of the architecture are the client and agent processes shown i
 - The *Agent* and any *FastRTPS* applications are connected via UDP, and may be on the same or another device. In a typical configuration they will both be on the same system (e.g. a development computer, Linux companion computer or compute board), connected to the *Client* over a Wifi link or via USB.
 
 
-
 ## Code generation
 
 All the code needed to create, build and use the bridge is automatically generated when the PX4 Firmware is compiled. 
@@ -32,6 +40,29 @@ The *Client* application is also compiled and built into the firmware as part of
 
 <span></span>
 > **Tip** The bridge code can also be [manually generated](micrortps_manual_code_generation.md). Most users will not need to do so, but the linked topic provides a more detailed overview of the build process and can be useful for troubleshooting.
+
+
+## Supported uORB messages
+
+The generated bridge code will enable a specified subset of uORB topics to be published/subscribed via RTPS.
+
+For *automatic code generation* (via the normal PX4 firmware build process) this set must be listed in the **.cmake** file (**cmake/configs**) for your target platform.
+
+```cmake
+set(config_rtps_send_topics
+  sensor_combined
+   # Add new topic...
+   )
+
+set(config_rtps_receive_topics
+   sensor_baro
+   # Add new topic...
+   )
+```
+
+> **Caution** At time of writing (August 2017), only the small set of uORB topics listed above are included in our cmake files: **posix_sitl_default.cmake**, **nuttx_px4fmu-v4_default.cmake**, **posix_sdflight_default.cmake**. It is likely you will need to edit your *cmake* file and add additional uORB topics. In future we hope to define a larger standard set. 
+
+For *manual code generation* the uORB topics that will be supported by the bridge are specified when you call **generate_microRTPS_bridge.py** (using the `-s`/`--send` and `-r`/`--receive` flags). See [Manual Generation of the Code](../middleware/micrortps_manual_code_generation.md) for more information.
 
 
 ## Client (PX4 Firmware)
@@ -48,7 +79,6 @@ To build and upload the firmware for Qualcomm Snapdragon Flight:
 $ make eagle_default upload
 ```
   
-> **Note** The PX4 Firmware initialisation code should also automatically start the *Client* as a permanent daemon process. This will happen in the near future. In the meantime you will need to start the client manually.<!-- at that point, most of this section would move into the "manual generation" doc: https://github.com/PX4/Firmware/pull/7663#issuecomment-317928506 -->
 
 The *Client* application can be launched from [NuttShell/System Console](../debug/system_console.md). The command syntax is shown below (you can specify a variable number of arguments):
 
@@ -71,10 +101,12 @@ By default the *Client* runs for 10000 loops and then stops. To run the *Client*
 micrortps_client start -l -1
 ```
 
+> **Note** The PX4 Firmware initialisation code may in future automatically start the *Client* as a permanent daemon process. In the meantime you will need to start the client manually.<!-- at that point, most of this section would move into the "manual generation" doc: https://github.com/PX4/Firmware/pull/7663#issuecomment-317928506 -->
+
 
 ## Agent (Off Board FastRTPS Interface)
 
-The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **build_BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/**.
+The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **src/modules/micrortps_bridge/micrortps_agent/**.
 
 To build the *Agent* application, compile the code:
 

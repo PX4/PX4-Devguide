@@ -1,38 +1,45 @@
-# Hardware in the Loop Simulation (HITL)
+# Hardware in the Loop Simulation \(HITL\)
 
 Hardware in the loop simulation is a simulation mode where the autopilot is connected to the simulator and all flight code runs on the autopilot. This approach has the benefit of testing the actual flight code on the real processor.
 
 ## Configure the System for HITL
 
-PX4 supports HITL for multicopters (using jMAVSim) and fixed wing (using X-Plane demo or full). Flightgear support is present as well, but we generally recommend X-Plane. To enable it, configure it via the airframe menu.
+PX4 supports HITL for multicopters \(using jMAVSim\) and fixed wing \(using X-Plane demo or full version\). Flightgear support is present as well, but we generally recommend X-Plane. Generally any compatible airframe can be put into HITL mode. Compatible airframes are right now:
+
+* X-frame multicopters
+* Standard AERT planes
+
+![](../../assets/qgc_hitl_config.png)
+
+If the autopilot is exclusively used for HITL it can also be configured with a HITL-only simulation configuration.
 
 ![](../../assets/gcs/qgc_hil_config.png)
 
-## Using jMAVSim (Quadrotor)
+## Using jMAVSim \(Quadrotor\)
 
-- Make sure QGroundControl is not running (or accessing the device via serial port)
-- Run jMAVSim in HITL mode (replace the serial port if necessary):
+* Make sure QGroundControl is not running \(or accessing the device via serial port\)
+* Run jMAVSim in HITL mode \(replace the serial port if necessary\):
   ```
   ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
   ```
-- The console will display mavlink text messages from the autopilot.
-- Then run QGroundControl and connect via default UDP configuration.
-
+* The console will display mavlink text messages from the autopilot.
+* Then run QGroundControl and connect via default UDP configuration.
 
 ## Using X-Plane
+
 #### Enable Remote Access in X-Plane
 
-In X-Plane two key settings have to be made: In Settings -> Data Input and Output, set these checkboxes:
+In X-Plane two key settings have to be made: In Settings -&gt; Data Input and Output, set these checkboxes:
 
 ![](../../assets/gcs/xplane_data_config.png)
 
-In Settings -> Net Connections in the Data tab, set localhost and port 49005 as IP address, as shown in the screenshot below:
+In Settings -&gt; Net Connections in the Data tab, set localhost and port 49005 as IP address, as shown in the screenshot below:
 
 ![](../../assets/gcs/xplane_net_config.png)
 
 #### Enable HITL in QGroundControl
 
-Widgets -> HIL Config, then select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
+Widgets -&gt; HIL Config, then select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
 
 ![](../../assets/gcs/qgc_sim_run.png)
 
@@ -47,3 +54,4 @@ Switch to the flight planning view and put a single waypoint in front of the pla
 Then select MISSION from the flight mode menu in the toolbar and click on DISARMED to arm the plane. It will take off and loiter around the takeoff waypoint.
 
 ![](../../assets/gcs/qgc_sim_mission.png)
+
