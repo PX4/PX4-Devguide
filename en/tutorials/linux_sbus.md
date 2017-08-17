@@ -1,8 +1,9 @@
-# Sbus Driver for linux（drivers/linux_sbus）
+# SBus Driver for Linux（drivers/linux_sbus）
 This driver allows the autopilot to fetch data from the futaba sbus receiver via serial port, up to 16 channels.  
-You can also use other receivers based on the sbus protocol, such as frsky, radioLink, and even sbus encoders.  
+You can also use other receivers based on the sbus protocol, such as FrSky, radioLink, and even sbus encoders.  
 Onboard serial, USB to TTL serial cable/converter, and other types of serial ports are supported.  
 All platforms running linux system are supported.  
+This driver is located in  Firm/src/drivers/linux_sbus
 
 ## Required components
 
@@ -20,13 +21,12 @@ Connect the components according to the following
 
 S.bus singal->1K resistor->NPN transistor base  
 NPN transistor emmit -> GND  
-3.3v  VCC-> 10K resistor -> NPN transistor collection ->usbtty rxd  
-5.0v  VCC->S.bus vcc  
-GND ->S.bus gnd  
+3.3VCC -> 10K resistor -> NPN transistor collection -> USB-to-TTY rxd
+5.0VCC -> S.bus VCC  
+GND -> S.bus GND  
 
 ## Circuit diagram
 ![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)
-![](https://github.com/crossa/raspx4-sbus-rc-in/blob/master/sbusToSerial_small.jpg?raw=true)  
 
 ## Example
 ![](https://raw.githubusercontent.com/crossa/raspx4-sbus-rc-in/master/example.png)
