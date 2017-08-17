@@ -7,14 +7,14 @@ All platforms running linux system are supported.
 
 ## Required components
 
-1x  NPN transistor
+1x  NPN transistor  (I recommend NPN S9014 TO92)
 1x  10K resistor  
 1x  1K  resistor  
 
-`Any type of transistor can be used for this purpose. `
+`Because of the load current is small ,any type of transistor can be used for this purpose. `
 
 ## Optional components
-1x USB to TTL Serial Cable/Converter
+1x USB to TTL Serial Cable/Converter (I recommend PL2302 usb to tty serial converter)
 
 `You can also use onboard serial port to instead`
 
