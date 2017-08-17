@@ -39,5 +39,5 @@ S.bus is an inverted UART communication signal. Many flight controllers can read
 
 ## Launch it  
 Add `linux_sbus start -d /dev/ttyUSB0 -c 8` to the configuration file and it will start automatically the driver on /dev/ttyUSB0 listening to 8 channels. The original configuration files are located in Firmware/posix-configs.   
-According to the official document, after you finish "make upload" related operations, all posix related configuration files will be placed in /home/pi, modify the file you want to use.
+According to the official document, after you finish "make upload" related operations, all posix related configuration files will be placed in `/home/pi`, modify the file you want to use.
 
