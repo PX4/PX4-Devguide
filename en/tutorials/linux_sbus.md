@@ -1,18 +1,17 @@
 # SBus Driver for Linux
-This driver allows the autopilot to fetch data from the futaba sbus receiver via serial port, up to 16 channels.  
-You can also use other receivers based on the sbus protocol, such as FrSky, radioLink, and even sbus encoders.  
+This driver allows the autopilot to fetch data from the futaba Sbus receiver via serial port, up to 16 channels.  
+You can also use other receivers based on the Sbus protocol, such as FrSky, radioLink, and even Sbus encoders.  
 Onboard serial, USB to TTL serial cable/converter, and other types of serial ports are supported.  
 All platforms running linux system are supported.  
-`This driver is located in  Firm/src/drivers/linux_sbus`
+This driver is located in  **Firmware/src/drivers/linux_sbus**  
 
 ## Required components
 
 1x  NPN transistor  (I recommend NPN S9014 TO92)  
 1x  10K resistor  
 1x  1K  resistor  
-
-`Because of the load current is small ,any type of transistor can be used for this purpose. `
-`The devices described above are very common and are available anywhere, without regard to device models`
+**Note** `Because of the load current is small ,any type of transistor can be used for this purpose. `  
+`The devices described above are very common and are available anywhere, without regard to device models`.
 
 
 ## Optional components
