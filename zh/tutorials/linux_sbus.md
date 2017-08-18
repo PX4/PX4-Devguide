@@ -29,7 +29,7 @@ NPN 三极管发射级 -> GND
 GND ->S.bus GND  
 
 ## 电路图
-![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)
+![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)  
 这个电路是个倒相器，树莓派这类设备没办法直接读取S.bus信号，必须借助倒相器辅助
 
 
