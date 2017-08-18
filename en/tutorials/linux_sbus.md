@@ -10,7 +10,7 @@ This driver is located in  **Firmware/src/drivers/linux_sbus**
 1x  NPN transistor  (I recommend NPN S9014 TO92)  
 1x  10K resistor  
 1x  1K  resistor  
-**Note** `Because of the load current is small ,any type of transistor can be used for this purpose. `  
+> **Note** `Because of the load current is small ,any type of transistor can be used for this purpose. `  
 `The devices described above are very common and are available anywhere, without regard to device models`.
 
 
