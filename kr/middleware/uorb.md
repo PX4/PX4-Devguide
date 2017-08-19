@@ -12,7 +12,7 @@ uORB는 많은 어플리케이션이 의존하므로 자동으로 부팅시에 �
 
 새로운 topic을 추가하기 위해서 `msg/` 디렉토리에 새로운 `.msg` 파일을 생성하고 파일 이름을 `msg/CMakeLists.txt` 목록에 추가합니다. 이렇게 하면 필요한 C/C++ 코드가 자동으로 생성됩니다.
 
-지원하는 타입을 참고하려면 기존 `msg` 파일을 살펴보세요. 메시지는 달느 메시지의 nest로 사용할 수 있습니다.
+지원하는 타입을 참고하려면 기존 `msg` 파일을 살펴보세요. 메시지는 다른 메시지의 nest로 사용할 수 있습니다.
 
 각 생성된 C/C++ 구조체에는 `uint64_t timestamp` 필드가 추가되어 있을 것입니다. 이는 logger를 위해 사용되므로 메시지를 publish할 때 값을 넣도록 합니다.
 
@@ -33,7 +33,7 @@ topic을 코드에서 사용하려면 헤더를 포함합니다 :
 
 ## Publishing
 
-topic을 publish하는 것은 시스템 어디서든 가능합니다. 인터럽트 컨텍스트(`hrt call` API에서 호출하는 함수)에서도 가능합니다. 그러나 topic을 advertising은 인터럽트 컨텍스트의 외부에서만 가능합니다. topic은 추후 publish되므로 동일한 프로세스에서 advertise해야만 합니다.
+topic을 publish하는 것은 시스템 어디서든 가능합니다. 인터럽트 컨텍스트(`hrt call` API에서 호출하는 함수)에서도 가능합니다. 그러나 topic을 advertising하는 것은 인터럽트 컨텍스트의 외부에서만 가능합니다. topic은 추후 publish되므로 동일한 프로세스에서 advertise해야만 합니다.
 
 ## Topics 목록 및 Listening in
 
