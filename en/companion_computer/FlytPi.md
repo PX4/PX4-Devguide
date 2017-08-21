@@ -8,8 +8,8 @@ your drone applications built and deployed.
 
 ![](../../assets/flytPi.png)
 
-Features:
-=========
+## Features:
+
 
 * Plug & Play Companion Computer. Hassle-free connection with the Autopilot.
 * Pre-loaded FlytOS Commercial Edition.
@@ -22,23 +22,21 @@ Features:
 * FlytSIM Simulator to test drone apps without drone hardware.
 * Priority Email and Chat support from FlytBase experts.
 
-Add-on features:
-=================
+## Add-on features:
+
 
 * Instantly connect your drone to FlytBase Cloud.
 * Real time access to drone navigation, telemetry and payload data over 4G/LTE..
 * Integration with 3rd Party Apps.
 * Cloud Simulator to test your applications.
  
-Specifications:
-================
+## Specifications:
 
 * FlytOS Commercial Edition. (See details)
 * Raspberry Pi3 Model B (Quad-Core 1.2 GHz, 1GB RAM, Built-in Wifi+Bluetooth)
 * Storage: 32GB MicroSD
  
-Kit includes:
-=============
+## Kit includes:
 
 * 1x Raspberry Pi3 Model B
 * 1x Plastic Enclosure
