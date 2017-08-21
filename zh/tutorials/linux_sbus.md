@@ -1,5 +1,5 @@
+# Linux系统下使用S.Bus驱动
 
-# Linux系统下使用sbus驱动 
 这个驱动可以使飞控通过串口读取Sbus接收机的数据，最大支持16通道。  
 兼容市面上的常见接收机，诸如frsky，乐迪，甚至sbus编码器。  
 板载串口、USB串口、以及其他串口均可支持。  
@@ -8,9 +8,9 @@
 
 ## 必要组件
 
-NPN 三极管 * 1  
-10K 电阻 * 1  
-1K 电阻 * 1  
+* NPN 三极管 * 1  
+* 10K 电阻 * 1  
+* 1K 电阻 * 1  
 
 **注意：**上述器件型号不限,可从淘宝上任意购买，因为接收机的电流较小，所以三极管的型号任意。  
 
@@ -22,19 +22,21 @@ usb转ttl *1  ,推荐PL2302
 ## 组装
 请安下列方式对器件进行连线  
 
-S.bus信号线 -> 1K电阻 ->NPN三极管基级  
-NPN 三极管发射级 -> GND  
-3.3v  VCC-> 10K电阻 -> NPN三极管发射级集电极 ->USB-to-TTY rxd  
-5.0v  VCC->S.bus vcc  
-GND ->S.bus GND  
+* S.bus信号线 &rarr; 1K电阻 &rarr; NPN三极管基级  
+* NPN 三极管发射级 &rarr; GND  
+* 3.3v  VCC &rarr; 10K电阻 &rarr; NPN三极管发射级集电极 &rarr; USB-to-TTY rxd  
+* 5.0v  VCC &rarr; S.Bus vcc  
+* GND &rarr; S.Bus GND  
 
 ## 电路图
-![](http://www.playuav.com/uploads/article/20160310/56cf0f65bb1f7437c1618041a30dc308.png)  
+
+![Signal inverter circuit diagram](../../assets/driver_sbus_signal_inverter_circuit_diagram.png)
 这个电路是个倒相器，树莓派这类设备无法直接读取S.bus信号，必须借助倒相器辅助，将信号进行反转，才可读取。
 
 
 ## 安装实例
-![](https://raw.githubusercontent.com/crossa/raspx4-sbus-rc-in/master/example.png)  
+
+![Signal inverter breadboard](../../assets/driver_sbus_signal_inverter_breadboard.png)
 
 ## 启动
 把 `linux_sbus start -d /dev/ttyUSB0 -c 8` 加入配置文件中，即可自动运行,并通过`/dev/ttyUSBO`监听8个通道  
