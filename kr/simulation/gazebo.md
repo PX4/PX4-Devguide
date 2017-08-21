@@ -24,7 +24,7 @@ Mac OS가 Gazebo 7을 필요로하고 다음으로 xquartz 필요하며 OpenCV �
 
 ```sh
 brew cask install xquartz
-brew install homebrew/science/opencv
+brew install opencv
 brew install gazebo7
 ```
 
