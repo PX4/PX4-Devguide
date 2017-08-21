@@ -118,7 +118,7 @@ For the ESC signals I followed the [hardware documentation of the Pixracer](http
 
 ### GPS / External Magnetometer
 
-I took the GPS cable which fits the connector of the used GPS and came with the Pixracer set. Sadly the pin assignment was completely wrong and I rewired the connector again using tweezers according to the [3DR pixhawk mini user manual](../flight_controller/pixhawk_mini.md#connector-pin-assignments-pin-outs) GPS port.
+I took the GPS cable which fits the connector of the used GPS and came with the Pixracer set. Sadly the pin assignment was completely wrong and I rewired the connector again using tweezers according to the [3DR Pixhawk Mini user manual](https://docs.px4.io/en/flight_controller/pixhawk_mini.html#connector-pin-assignments-pin-outs) GPS port.
 
 #### Pixracer GPS/I2C Port
 | Pin  | Assignment |
