@@ -9,7 +9,7 @@ RTK（Real Time Kinematic）可将GPS精度提高到厘米级。 它使用信号
 
 PX4目前仅支持基于u-blox M8P的单频（L1） GNSS接收器用于RTK。
 
-> **Note** 本页面介绍如何将RTK集成到PX4中，如果你只想知道如何使用它，请阅读PX4用户指南中的[相关页面]((https://docs.px4.io/en/advanced_features/rtk-gps.html))。
+> **Note** 本页面介绍如何将RTK集成到PX4中，如果你只想知道如何使用它，请阅读PX4用户指南中的[相关页面](https://docs.px4.io/en/advanced_features/rtk-gps.html)。
 
 需要两个M8P GPS模块和数据链路才能使用PX4设置RTK。地面上的GPS单元（固定位置）称为基站(Base)，空中的GPS单元称为流动站(Rover)。基站连接到QGroundControl（通过USB），并使用数据链路向飞行器传输RTCM校正数据（使用MAVLink传过来的 `GPS_RTCM_DATA`消息）。在自驾仪上，MAVLink数据包被解包并发送到机载GNSS单元，在那里进行处理以获得RTK解决方案。
 

@@ -2,7 +2,7 @@
 
 A daemon is a process running in the background. In NuttX a daemon process is a task, in POSIX (Linux / Mac OS) a daemon is a thread.
 
-New daemons are created through the `px4_task_spawn()` command.
+New daemons are created through the `px4_task_spawn_cmd()` command.
 
 ```C++
 daemon_task = px4_task_spawn_cmd("commander",
@@ -21,4 +21,3 @@ The arguments here are:
   * arg3: the stack size of the new process or thread
   * arg4: the task / thread main function
   * arg5: a void pointer to pass to the new task, in this case holding the commandline arguments.
-
