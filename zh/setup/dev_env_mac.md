@@ -26,7 +26,7 @@ brew install git bash-completion genromfs kconfig-frontends gcc-arm-none-eabi
 brew install astyle cmake ninja
 # simulation tools
 brew install ant graphviz sdformat3 eigen protobuf
-brew install homebrew/science/opencv
+brew install opencv
 ```
 
 然后安装我们需要的python包:
