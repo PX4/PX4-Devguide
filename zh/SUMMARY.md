@@ -34,7 +34,7 @@
   * [数传](tutorials/telemetry.md)
   * [传感器热补偿](tutorials/sensor_thermal_calibration.md)
   * [着陆检测](tutorials/land_detector.md)
-  * [Linux系统下使用Sbus驱动](tutorials/linux_sbus.md)
+  * [Linux系统下使用S.Bus驱动](tutorials/linux_sbus.md)
 * [仿真](simulation/README.md)
   * [基本仿真](simulation/sitl.md)
   * [Gazebo仿真](simulation/gazebo.md)
