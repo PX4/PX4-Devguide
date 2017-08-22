@@ -139,6 +139,7 @@
   * [ULog File Format](log/ulog_file_format.md)
   * [Licenses](advanced/licenses.md)
   * [Telemetry Wifi](advanced/telemetry_wifi.md)
+  * [Distance sensor message](advanced/distance_sensor_msg.md)
 * [Software Update](software_update/README.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
 * [Testing and CI](test_and_ci/README.md)
