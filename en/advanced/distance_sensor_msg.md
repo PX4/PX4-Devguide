@@ -1,6 +1,9 @@
 # Distance sensor message
 The not self-explanatory attributes of the [distance sensor message](http://mavlink.org/messages/common#DISTANCE_SENSOR) need to be filled accordingly.
 
+> **Warning**
+> The distances in the mavlink message are in centimeters while the distances in the [uorb message](https://github.com/PX4/Firmware/blob/b596874b91e8b1178bbdb9df625460d8188e079b/msg/distance_sensor.msg) are in meters!
+
 ## Type
 The type needs to be set according to [MAV_DISTANCE_SENSOR](http://mavlink.org/messages/common#MAV_DISTANCE_SENSOR).
 
