@@ -21,7 +21,7 @@ These configuration parameters have to be set correctly when creating a new airf
 
 ## Tailsitter
 
-The [build log](../airframes_vtol/caipiroshka.md) contains further detail.
+The [build log](https://docs.px4.io/en/frames_vtol/vtol_tailsitter_caipiroshka_pixracer.html) contains further detail.
 
 {% youtube %}https://www.youtube.com/watch?v=acG0aTuf3f8&vq=hd720{% endyoutube %}
 

@@ -1,5 +1,10 @@
 {
     "redirects": [
+    
+            {
+                "from": "en/airframes_vtol/caipiroshka.html",
+                "to": "https://docs.px4.io/en/frames_vtol/vtol_tailsitter_caipiroshka_pixracer.html"
+            },
             {
                 "from": "airframes_multicopter/motor_map.html",
                 "to": "en/airframes/airframe_reference.html"
