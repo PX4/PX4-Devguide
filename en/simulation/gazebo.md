@@ -16,7 +16,7 @@ graph LR;
 
 The installation requires to install Gazebo and our simulation plugin.
 
-> ** Note ** Gazebo version 7 is recommended (the minimum version is Gazebo 6). If you run Linux and installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
+> **Note** Gazebo version 7 is recommended (the minimum version is Gazebo 6). If you run Linux and installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
 
 Check the [Linux](../setup/dev_env_linux.md) and [Mac](../setup/dev_env_mac.md) pages for install infos.
 
@@ -83,7 +83,7 @@ make posix_sitl_default gazebo_tailsitter
 
 ![](../../assets/gazebo/tailsitter.png)
 
-### Ackerman vehicle
+### Ackerman vehicle (UGV/Rover) {#ugv}
 
 ```sh
 make posix gazebo_rover
@@ -98,7 +98,7 @@ The current default world is the iris.world located in the directory [worlds](ht
 
 ## Taking it to the Sky
 
-> ** Note ** Please refer to the [Installing Files and Code](../setup/dev_env_mac.md) guide in case you run into any errors.
+> **Note** Please refer to the [Installing Files and Code](../setup/dev_env_mac.md) guide in case you run into any errors.
 
 This will bring up the PX4 shell:
 
@@ -119,7 +119,7 @@ px4 starting.
 pxh>
 ```
 
-> ** Note ** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
+> **Note** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
 
 ![](../../assets/sim/gazebo.png)
 
@@ -129,7 +129,7 @@ The system will print the home position once it finished intializing (`telem> ho
 pxh> commander takeoff
 ```
 
-> ** Note ** Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
+> **Note** Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
 
 ## Set custom takeoff location
 
@@ -153,19 +153,20 @@ In addition to the existing cmake targets that run `sitl_run.sh` with parameters
 
 ### How to use it
 
-  * Run gazebo (or any other sim) server and client viewers via the terminal:
-```
-make posix_sitl_default gazebo_none_ide
-```
-  * In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
-  * Start the debug session directly from IDE
-  This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
+* Run gazebo (or any other sim) server and client viewers via the terminal:
+  ```
+  make posix_sitl_default gazebo_none_ide
+  ```
+* In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
+* Start the debug session directly from IDE
+
+This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
 
 ## Extending and Customizing
 
 To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
 
-> ** Note ** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
+> **Note** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
 
 ## Interfacing to ROS
 
