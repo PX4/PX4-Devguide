@@ -49,9 +49,18 @@ ssh root@intel-aero.local
 
 If it doesn't work you can try giving the IP that will be used by the upload script:
 
+Wifi: 
+
 ```
-export AERO_HOSTNAME=192.168.1.1`
+export AERO_HOSTNAME=192.168.8.1
 ```
+
+USB:
+
+```
+export AERO_HOSTNAME=192.168.1.1
+```
+
 
 5. Upload with  `make aerofc-v1_default upload`
 
