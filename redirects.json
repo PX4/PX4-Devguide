@@ -1,6 +1,10 @@
 {
     "redirects": [
-    
+
+            {
+                "from": "en/airframes_experimental/traxxas_stampede.html",
+                "to": "https://docs.px4.io/en/frames_rover/traxxas_stampede.html"
+            },
             {
                 "from": "en/airframes_vtol/caipiroshka.html",
                 "to": "https://docs.px4.io/en/frames_vtol/vtol_tailsitter_caipiroshka_pixracer.html"
