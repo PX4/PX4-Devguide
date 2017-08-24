@@ -82,8 +82,6 @@
     * [Wing Wing Z-84](airframes_plane/wing_z_84.md)
   * [VTOL](airframes_vtol/README.md)
     * [VTOL Testing](airframes_vtol/testing.md)
-    * [TBS Caipiroshka](airframes_vtol/caipiroshka.md)
-  * [船舶，潜水艇，飞艇，车辆](airframes_experimental/README.md)
 * [协同电脑](companion_computer/README.md)
   * [Pixhawk系列协同电脑](companion_computer/pixhawk_companion.md)
 * [使用DroneKit的机器人](dronekit/README.md)

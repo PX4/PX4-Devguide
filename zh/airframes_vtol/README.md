@@ -30,7 +30,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 ## 尾座式
 
-[构建日志](../airframes_vtol/caipiroshka.md)包括更加详细的信息。
+[构建日志](https://docs.px4.io/en/frames_rover/traxxas_stampede.html)包括更加详细的信息。
 
 {% raw %}
 <video id="my-video" class="video-js" controls preload="auto" width="100%" 
@@ -44,7 +44,7 @@ poster="http://image84.360doc.com/DownloadImg/2015/04/1617/52474470_2.jpg" data-
 
 ## 倾转式
 
-[构建日志](../airframes_vtol/caipiroshka.md)包括所有的设置以及操作指南，这些会指导整个系统顺利运行。
+[构建日志](https://docs.px4.io/en/frames_vtol/vtol_tailsitter_caipiroshka_pixracer.html)包括所有的设置以及操作指南，这些会指导整个系统顺利运行。
 
 {% raw %}
 <video id="my-video" class="video-js" controls preload="auto" width="100%" 
