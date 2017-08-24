@@ -1,6 +1,6 @@
-# Airframe Overview
+# Architectural Overview
 
-The PX4 system is architected in a modular fashion allowing it to use a single codebase for all robot types.
+PX4 is architected in a modular fashion, such that there is a single codebase for all vehicle types.
 
 {% mermaid %}
 graph LR;
