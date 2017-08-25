@@ -20,7 +20,7 @@ Possible use cases include communicating with robotics libraries for computer vi
 
 ## Architectural overview
 
-![basic example flow](../../assets/middleware/micrortps/basic_example_flow.png)
+![basic example flow](../../assets/middleware/micrortps/architecture.png)
 
 The main elements of the architecture are the client and agent processes shown in the diagram above.
 
@@ -87,7 +87,7 @@ The *Client* application can be launched from [NuttShell/System Console](../debu
   -t <transport>          [UART|UDP] Default UART
   -d <device>             UART device. Default /dev/ttyACM0
   -u <update_time_ms>     Time in ms for uORB subscribed topics update. Default 0
-  -l <loops>              How many iterations will this program have. -1 for infinite. Default 10000.
+  -l <loops>              How many iterations will this program have. -1 for infinite. Default -1.
   -w <sleep_time_ms>      Time in ms for which each iteration sleep. Default 1ms
   -b <baudrate>           UART device baudrate. Default 460800
   -p <poll_ms>            Time in ms to poll over UART. Default 1ms
@@ -95,14 +95,7 @@ The *Client* application can be launched from [NuttShell/System Console](../debu
   -s <sending port>       UDP port for sending. Default 2020
 ```
 
-By default the *Client* runs for 10000 loops and then stops. To run the *Client* continuously, enter the following command:
-
-```sh
-micrortps_client start -l -1
-```
-
-> **Note** The PX4 Firmware initialisation code may in future automatically start the *Client* as a permanent daemon process. In the meantime you will need to start the client manually.<!-- at that point, most of this section would move into the "manual generation" doc: https://github.com/PX4/Firmware/pull/7663#issuecomment-317928506 -->
-
+> **Note** By default the *Client* runs as a daemon but you will need to start manually. The PX4 Firmware initialisation code may in future automatically start the *Client* as a permanent daemon process.<!-- at that point, most of this section would move into the "manual generation" doc: https://github.com/PX4/Firmware/pull/7663#issuecomment-317928506 -->
 
 ## Agent (Off Board FastRTPS Interface)
 
