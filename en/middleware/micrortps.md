@@ -95,7 +95,7 @@ The *Client* application can be launched from [NuttShell/System Console](../debu
   -s <sending port>       UDP port for sending. Default 2020
 ```
 
-> **Note** By default the *Client* runs as a daemon but you will need to start manually. The PX4 Firmware initialisation code may in future automatically start the *Client* as a permanent daemon process.<!-- at that point, most of this section would move into the "manual generation" doc: https://github.com/PX4/Firmware/pull/7663#issuecomment-317928506 -->
+> **Note** By default the *Client* runs as a daemon, but you will need to start it manually. The PX4 Firmware initialisation code may in future automatically start the *Client* as a permanent daemon process.<!-- at that point, most of this section would move into the "manual generation" doc: https://github.com/PX4/Firmware/pull/7663#issuecomment-317928506 -->
 
 ## Agent (Off Board FastRTPS Interface)
 
