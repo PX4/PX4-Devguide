@@ -4,7 +4,7 @@ The uLanding radar is a product from [Aerotenna](http://aerotenna.com/sensors/) 
 
 
 ## Enable the driver for your hardware
-Currently, this radar device is supported by any hardware which runs the OS NuttX and which can offer a serial port for the
+Currently, this radar device is supported by any hardware which runs a NuttX or Posix OS and which can offer a serial port for the
 interface. Since flash space is small on some hardware you may have to enable building the driver for your target yourself.
 To do so add the following line to the cmake config file which corresponds to the target you want to build for:
 ```
@@ -20,8 +20,9 @@ You can simply add the following line to an [extras.txt](../advanced/system_star
 ulanding_radar start /dev/serial_port
 ```
 
-In the upper command you will have to replace the last argument with the serial port you have connected the hardware to.
-If you don't specify any port the driver will use /dev/ttyS2 which is the TELEM2 port on Pixhawk.
+In the above command you will have to replace the last argument with the serial port you have connected the hardware to.
+If you don't specify any port the driver will use /dev/ttyS2 which is the TELEM2 port on Pixhawk. If either of the OcPoc config
+files are used (posix_ocpoc_cross.cmake or posix_ocpoc_ubuntu.cmake) the default port will be /dev/ttyS6.
 
 **Warning**
 
