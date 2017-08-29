@@ -91,7 +91,7 @@ int main(int argc, char **argv)
             if( !current_state.armed &&
                 (ros::Time::now() - last_request > ros::Duration(5.0))){
                 if( arming_client.call(arm_cmd) &&
-                    arm_cmd.response.success){
+                    arm_cmd.response.mode_sent){
                     ROS_INFO("Vehicle armed");
                 }
                 last_request = ros::Time::now();
