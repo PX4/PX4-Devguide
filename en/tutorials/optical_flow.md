@@ -26,6 +26,18 @@ The easiest way to calculate the optical flow is to use the PX4Flow board. In or
 
 ![](../../assets/hardware/px4flowalignwithpixhawk.jpg)
 
+##### Custom I2C address
+The default I2C address of the PX4Flow is 0x42, but it can be incremented using the three solder jumpers labeled "I2C BUS ADDR" on the picture above. This is useful if another device has the same address.
+The address increment is equal to the 3-bit value encoded by the jumpers. For example if jumper 0 and 1 are soldered and jumper 2 is unsoldered, the address is incremented by 1\*1 + 1\*2 + 0\*4 = 3, which gives address 0x45.
+If all jumpers are unsoldered, the camera will be automatically discovered by the autopilot firmware.
+If you modify the I2C address of the PX4Flow, make sure to start the PX4 driver with the correct address:
+```
+px4flow start                  # address=0x42 (default)
+px4flow stop
+px4flow start -a 0x45          # address=0x45
+```
+
+##### Focusing the lens
 In order to ensure good optical flow quality, it is important to focus the camera on the PX4Flow to the desired height of flight. To focus the camera, put an object with text on (e. g. a book) and plug in the PX4Flow into USB and run QGroundControl. Under the settings menu, select the PX4Flow and you should see a camera image. Focus the lens by unscrewing the set screw and loosening and tightening the lens to find where it is in focus.
 
 **Note: If you fly above 3m, the camera will be focused at infinity and won't need to be changed for higher flight.**
@@ -38,6 +50,8 @@ In order to ensure good optical flow quality, it is important to focus the camer
 ![](../../assets/flow/flow_focusing.png)
 
 *Figure: The px4flow interface in QGroundControl that can be used for focusing the camera*
+
+
 
 #### Other cameras
 It is also possible to use a board/quad that has an integrated camera (Bebop2, Snapdragon Flight). For this the [Optical Flow repo](https://github.com/PX4/OpticalFlow) can be used (see also [snap_cam](https://github.com/PX4/snap_cam)).
