@@ -1,9 +1,23 @@
-# Send Debug String / Float Pairs
+# Send and Receive Debug Values
 
 It is often necessary during software development to output individual important numbers.
-This is where the generic `NAMED_VALUE` packets of MAVLink come in.
+This is where the generic `NAMED_VALUE_FLOAT`, `DEBUG` and `DEBUG_VECT` packets of MAVLink come in.
 
-## Files
+## Mapping between MAVLink Debug Messages and uORB Topics
+
+MAVLink debug messages are translated to/from uORB topic.
+In order to send or receive a MAVLink debug message, you have to respectively publish or subscribe to the corresponding topic.
+Here is a table that summarizes the mapping between MAVLink debug messages and uORB topics:
+
+|  MAVLink message  |    uORB topic   |
+|-------------------|-----------------|
+| NAMED_VALUE_FLOAT | debug_key_value |
+| DEBUG             | debug_value     |
+| DEBUG_VECT        | debug_vect      |
+
+## Tutorial: Send String / Float Pairs
+
+This tutorial shows how to send the MAVLink message `NAMED_VALUE_FLOAT` using the associated uORB topic `debug_key_value`.
 
 The code for this tutorial is available here:
 
