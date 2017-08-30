@@ -177,7 +177,7 @@ In this case, it can be time-consumming and error-prone to regenerate the MAVLin
 An alternative - and temporary - solution is to repurpose [debug messages](../debug/debug_values.md). 
 Instead of creating a custom MAVLink message `CA_TRAJECTORY`, you can send a message `DEBUG_VECT` with the string key `CA_TRAJ` and data in the `x`, `y` and `z` fields.
 
-** Note: This solution is not efficient as it sends character string over the network and involves comparison of strings. It should be used for development only! **
+**Note** This solution is not efficient as it sends character string over the network and involves comparison of strings. It should be used for development only!
 
 ## General
 ### Set streaming rate
