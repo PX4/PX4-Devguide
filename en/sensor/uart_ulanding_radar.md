@@ -11,7 +11,10 @@ To do so add the following line to the cmake config file which corresponds to th
 drivers/ulanding
 ```
 
-All config files are located [here.](https://github.com/PX4/Firmware/tree/master/cmake/configs)
+All config files are located [here.](https://github.com/PX4/Firmware/tree/master/cmake/configs) If you are running a Posix build
+and want to use the uLanding driver, your config file will need to include -D__PX4_POSIX in the add_definitions section. An example
+of how to do this is in either of the OcPoc config files (posix_ocpoc_cross.cmake or posix_ocpoc_ubuntu.cmake) but you do not 
+need an OcPoc, the driver will run on any Posix build.  
 
 ## Start the driver
 You will have to tell the sytem to start the driver for the radar during sytem startup.
@@ -24,7 +27,5 @@ In the above command you will have to replace the last argument with the serial 
 If you don't specify any port the driver will use /dev/ttyS2 which is the TELEM2 port on Pixhawk. If either of the OcPoc config
 files are used (posix_ocpoc_cross.cmake or posix_ocpoc_ubuntu.cmake) the default port will be /dev/ttyS6.
 
-**Warning**
-
-If you are connecting the radar device to TELEM2 then make sure to set the parameter SYS_COMPANION to 0. Otherwise the serial port
-will be used by a another application and you will get unexpected behaviour.
+> **Warning** If you are connecting the radar device to TELEM2 then make sure to set the parameter SYS_COMPANION to 0. Otherwise the
+serial port will be used by a another application and you will get unexpected behaviour.
