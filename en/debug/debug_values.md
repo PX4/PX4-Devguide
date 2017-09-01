@@ -5,7 +5,7 @@ This is where the generic `NAMED_VALUE_FLOAT`, `DEBUG` and `DEBUG_VECT` packets 
 
 ## Mapping between MAVLink Debug Messages and uORB Topics
 
-MAVLink debug messages are translated to/from uORB topic.
+MAVLink debug messages are translated to/from uORB topics.
 In order to send or receive a MAVLink debug message, you have to respectively publish or subscribe to the corresponding topic.
 Here is a table that summarizes the mapping between MAVLink debug messages and uORB topics:
 

@@ -169,7 +169,7 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 ```
 
 ## Alternative to Creating Custom MAVLink Messages
-Sometimes there is the need for custom MAVLink message whose content is not fully defined.
+Sometimes there is the need for a custom MAVLink message with content that is not fully defined.
 
 For example when using MAVLink to interface PX4 with an embedded device, the messages that are exchanged between the autopilot and the device may go through several iterations before they are stabilized.
 In this case, it can be time-consumming and error-prone to regenerate the MAVLink headers, and make sure both devices use the same version of the protocol.
