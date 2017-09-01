@@ -97,7 +97,7 @@ When a new message is available on the `debug_key_value` topic, do not forget to
 
 <div class="host-code"></div>
 
-```
+```C
     [...]
     if (fds[0].revents & POLLIN) {
         /* obtained data for the first file descriptor */
