@@ -1,9 +1,23 @@
-# Send Debug String / Float Pairs
+# Send and Receive Debug Values
 
 It is often necessary during software development to output individual important numbers.
-This is where the generic `NAMED_VALUE` packets of MAVLink come in.
+This is where the generic `NAMED_VALUE_FLOAT`, `DEBUG` and `DEBUG_VECT` packets of MAVLink come in.
 
-## Files
+## Mapping between MAVLink Debug Messages and uORB Topics
+
+MAVLink debug messages are translated to/from uORB topics.
+In order to send or receive a MAVLink debug message, you have to respectively publish or subscribe to the corresponding topic.
+Here is a table that summarizes the mapping between MAVLink debug messages and uORB topics:
+
+|  MAVLink message  |    uORB topic   |
+|-------------------|-----------------|
+| NAMED_VALUE_FLOAT | debug_key_value |
+| DEBUG             | debug_value     |
+| DEBUG_VECT        | debug_vect      |
+
+## Tutorial: Send String / Float Pairs
+
+This tutorial shows how to send the MAVLink message `NAMED_VALUE_FLOAT` using the associated uORB topic `debug_key_value`.
 
 The code for this tutorial is available here:
 
@@ -43,3 +57,60 @@ orb_publish(ORB_ID(debug_key_value), pub_dbg, &dbg);
 The result in QGroundControl then looks like this on the real-time plot:
 
 ![](../../assets/gcs/qgc-debugval-plot.jpg)
+
+
+## Tutorial: Receive String / Float Pairs
+
+The following code snippets show how to receive the `velx` debug variable that was sent in the previous tutorial.
+
+First, subscribe to the topic `debug_key_value`:
+
+<div class="host-code"></div>
+
+```C
+#include <poll.h>
+#include <uORB/topics/debug_key_value.h>
+
+int debug_sub_fd = orb_subscribe(ORB_ID(debug_key_value));
+[...]
+```
+
+Then poll on the topic:
+
+<div class="host-code"></div>
+
+```C
+[...]
+/* one could wait for multiple topics with this technique, just using one here */
+px4_pollfd_struct_t fds[] = {
+    { .fd = debug_sub_fd,   .events = POLLIN },
+};
+
+while (true) {
+    /* wait for debug_key_value for 1000 ms (1 second) */
+    int poll_ret = px4_poll(fds, 1, 1000);
+
+    [...]
+```
+
+When a new message is available on the `debug_key_value` topic, do not forget to filter it based on its key attribute in order to discard the messages with key different than `velx`:
+
+<div class="host-code"></div>
+
+```C
+    [...]
+    if (fds[0].revents & POLLIN) {
+        /* obtained data for the first file descriptor */
+        struct debug_key_value_s dbg;
+
+        /* copy data into local buffer */
+        orb_copy(ORB_ID(debug_key_value), debug_sub_fd, &dbg);
+        
+        /* filter message based on its key attribute */
+        if (strcmp(_sub_debug_vect.get().key, "velx") == 0) {
+            PX4_INFO("velx:\t%8.4f", dbg.value);
+        }
+    }
+}
+
+```
