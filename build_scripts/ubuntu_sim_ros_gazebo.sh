@@ -46,6 +46,8 @@ pip install pyserial
 # optional python tools
 pip install pyulog
 
+sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
+
 
 # Install FastRTPS 1.5.0 and FastCDR-1.0.7
 fastrtps_dir=$HOME/eProsima_FastRTPS-1.5.0-Linux
