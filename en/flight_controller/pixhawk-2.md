@@ -10,7 +10,7 @@ Pixhawk 2 is an upgrade from the standard Pixhawk 1 from 2013. It is fully suppo
 * 2 MB Flash \(fully accessible\)
 * 32 bit STM32F103 failsafe co-processor
 
-![](/assets/pixhawk2.jpg)
+![](../../assets/pixhawk2.jpg)
 
 ## Build Instructions
 
