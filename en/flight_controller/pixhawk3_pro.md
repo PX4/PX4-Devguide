@@ -26,3 +26,6 @@ and additional features, designed by [Drotek](https://drotek.com) and PX4.
   * S.BUS / Spektrum / SUMD / PPM input
   * JST GH user-friendly connectors: same connectors and pinouts as Pixracer
 
+## Build Instructions
+
+`make px4fmu-v4pro_default upload`

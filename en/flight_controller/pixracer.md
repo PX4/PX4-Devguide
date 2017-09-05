@@ -47,3 +47,7 @@ One of the main features of the board is its ability to use Wifi for flashing ne
 
 * [ESP8266 Documentation and Flash Instructions](https://pixhawk.org/peripherals/8266)
 * [Custom ESP8266 MAVLink firmware](https://github.com/dogmaphobic/mavesp8266)
+
+## Build Instructions
+
+`make px4fmu-v4_default upload`

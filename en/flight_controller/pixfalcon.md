@@ -30,3 +30,7 @@ Pixfalcon is binary-compatible derivative of the [Pixhawk](../flight_controller/
   * 2x UART (one for Telemetry / OSD, no flow control)
   * 8x PWM with manual override
   * S.BUS / PPM input
+
+## Build Instructions
+
+`make px4fmu-v2_default upload`

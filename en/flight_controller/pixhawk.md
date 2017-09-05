@@ -40,3 +40,7 @@
 ## Pinouts and Schematics
 
 The board is documented in detailed on the [Pixhawk project](https://pixhawk.org/modules/pixhawk) website.
+
+## Build Instructions
+
+`make px4fmu-v2_default upload`
