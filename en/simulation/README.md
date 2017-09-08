@@ -1,6 +1,6 @@
 # Simulation
 
-Simulators allow PX4 flight code to control a computer modeled vehicle in a simulated "world". You can interact with this vehicle just as you might with a real vehicle, using a *QGroundControl*, offboard API, or radio controller/gamepad. 
+Simulators allow PX4 flight code to control a computer modeled vehicle in a simulated "world". You can interact with this vehicle just as you might with a real vehicle, using *QGroundControl*, an offboard API, or a radio controller/gamepad.
 
 > **Tip** Simulation is a quick, easy, and most importantly, *safe* way to test changes to PX4 code before attempting to fly in the real world. It is also a good way to start flying with PX4 when you haven't yet got a vehicle to experiment with.
 
@@ -84,7 +84,7 @@ where:
   make list_config_targets
   ```
 * **SIMULATOR:** The simulator to launch and connect: gazebo, jmavsim, ?airsim
-* **INIT_FILE:** The specific init file to use for PX4 launch, within the associated configuration target This might define the start up for a particular vehicle, or allow simulation of multiple vehicles (we explain how to determine available init files in the next section).
+* **INIT_FILE:** The specific init file to use for PX4 launch, within the associated configuration target. This might define the start up for a particular vehicle, or allow simulation of multiple vehicles (we explain how to determine available init files in the next section).
 
 
 ### Init File Location
