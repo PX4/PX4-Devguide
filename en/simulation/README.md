@@ -50,11 +50,11 @@ Message | Direction | Description
 The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be on either the same computer or another computer on the same network.
 
 * PX4 uses a simulation-specific module to create a UDP link to the Simulator and exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. SITL and the Simulator can run on either the same computer or different computers on the same network.
-* PX4 uses the normal MAVLink module to set up UDP connections to *QGroundControl* and external APIs.
+* PX4 uses the normal MAVLink module to set up UDP connections to *QGroundControl* (broadcasting on port 14550) and external APIs <!-- link to DroneCore here? --> (broadcasting on port 14540).
 * A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 * Only remote (server) ports are shown in the diagram. The client side port has to be set up and mapped to its associated remote port, but you don't need to know what those ports are to use/connect the different components.
 
-![](../../assets/simulation/px4_sitl_overview.png)
+![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
 If you use the normal build system SITL `make` configuration targets (see next section) then both SITL and the Simulator will be launched on the same computer and the ports above will automatically be configured. You can configure additional MAVLink UDP connections and otherwise modify the simulation environment in the build configuration and initialisation files.
 
@@ -113,9 +113,6 @@ Firmware/
 
 A slightly reduced version of the startup file for `make posix_sitl_ekf2 gazebo_iris` ([/Firmware/posix-configs/SITL/init/ekf2/iris](https://github.com/PX4/Firmware/blob/master/posix-configs/SITL/init/ekf2/iris)) is shown below.
 
-Note the sections that set parameters, start simulator drivers, and other modules, and that set up MAVLink ports (`mavlink start `) and streaming of messages (`mavlink stream`) to the *QGroundControl* UDP port.
-
-
 ```bash
 uorb start
 param load
@@ -161,6 +158,19 @@ mavlink boot_complete
 replay trystart
 ```
 
+Note the sections that set parameters, start simulator drivers and other modules, and that set up MAVLink ports (`mavlink start `) and streaming of messages (`mavlink stream`) to the *QGroundControl* UDP port.
+
+More specifically, note that two MAVLink interfaces are started. The first one sets the UDP source port (on the PX4 side) to 14556. The corresponding UDP destination port will default to 14550 (which is for QGroundControl). In other words, this MAVLink interface will broadcast on 14550/udp and listen on 14556/udp.
+
+```bash
+mavlink start -u 14556 -r 4000000
+```
+
+See how the second MAVLink interface is set to listen on port 14557 and broadcast on port 14540. Here, the `-m onboard` argument specifies the set of MAVLink messages that will be broadcasted by this interface (whereas it is explicitly defined with the `mavlink stream` lines for the first interface):
+
+```bash
+mavlink start -u 14557 -r 4000000 -m onboard -o 14540
+```
 
 ## HITL Simulation Environment
 
