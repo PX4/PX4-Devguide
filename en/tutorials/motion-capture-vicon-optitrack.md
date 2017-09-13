@@ -17,7 +17,7 @@ Most standard telemetry links like 3DR/SiK radios are **not** suitable for high-
 
 This section shows how to setup the system with the proper reference frames. There are various representations but we will use two of them: ENU and NED. 
 
-* ENU is a ground-fixed frame where **X** axis points East, **Y** points North and **Z** up. The robot/vehicle body frame is **X** towards the front, **Z** up and **Y** towards the right.
+* ENU is a ground-fixed frame where **X** axis points East, **Y** points North and **Z** up. The robot/vehicle body frame is **X** towards the front, **Z** up and **Y** towards the left.
 
 * NED has **X** towards North, **Y** East and **Z** down. The robot/vehicle body frame has **X** towards the front, **Z** down and **Y** accordingly.
 
