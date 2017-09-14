@@ -52,6 +52,7 @@
     * [MindRacer BNF & RTF](flight_controller/mindracer_BNF_RTF.md)
       * [MindRacer 210](flight_controller/mindracer210.md)
       * [NanoMind 110](flight_controller/nanomind110.md)
+  * [OcPoC-Zynq Mini](flight_controller/ocpoc_zynq.md)
   * [Pixfalcon](flight_controller/pixfalcon.md)
   * [Pixhawk](flight_controller/pixhawk.md)
   * [Pixracer](flight_controller/pixracer.md)
