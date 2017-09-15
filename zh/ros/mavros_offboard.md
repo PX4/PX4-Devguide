@@ -83,7 +83,7 @@ int main(int argc, char **argv)
         if( current_state.mode != "OFFBOARD" &&
             (ros::Time::now() - last_request > ros::Duration(5.0))){
             if( set_mode_client.call(offb_set_mode) &&
-                offb_set_mode.response.success){
+                offb_set_mode.response.mode_sent){
                 ROS_INFO("Offboard enabled");
             }
             last_request = ros::Time::now();
@@ -91,7 +91,7 @@ int main(int argc, char **argv)
             if( !current_state.armed &&
                 (ros::Time::now() - last_request > ros::Duration(5.0))){
                 if( arming_client.call(arm_cmd) &&
-                    arm_cmd.response.mode_sent){
+                    arm_cmd.response.success){
                     ROS_INFO("Vehicle armed");
                 }
                 last_request = ros::Time::now();
@@ -196,7 +196,7 @@ while(ros::ok()){
 		if( current_state.mode != "OFFBOARD" &&
 				(ros::Time::now() - last_request > ros::Duration(5.0))){
 				if( set_mode_client.call(offb_set_mode) &&
-						offb_set_mode.response.success){
+						offb_set_mode.response.mode_sent){
 						ROS_INFO("Offboard enabled");
 				}
 				last_request = ros::Time::now();
@@ -204,7 +204,7 @@ while(ros::ok()){
 				if( !current_state.armed &&
 						(ros::Time::now() - last_request > ros::Duration(5.0))){
 						if( arming_client.call(arm_cmd) &&
-								arm_cmd.response.mode_sent){
+								arm_cmd.response.success){
 								ROS_INFO("Vehicle armed");
 						}
 						last_request = ros::Time::now();
