@@ -85,7 +85,7 @@ cd Firmware
 make posix_rpi2_release # for cross-compiler build
 ```
 
-"mainapp"可执行文件位于目录build_posix_rpi2_release/src/firmware/posix下。 将其复制到RPi（用你的RPi的IP或主机名替换YOUR_PI，关于如何访问你的RPi，查看[介绍](../flight_controller/raspberry_pi_navio2.md#developer-quick-start))
+"mainapp"可执行文件位于目录build_posix_rpi2_release/src/firmware/posix下。 将其复制到RPi（用你的RPi的IP或主机名替换YOUR_PI，关于如何访问你的RPi，查看[介绍](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start))
 
 然后使用以下命令设置你的RPi的IP（或主机名）：
 

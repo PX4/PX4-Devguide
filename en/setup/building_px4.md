@@ -1,10 +1,17 @@
 # Building PX4 Software
 
-PX4 can be built on the console or in a graphical development environment / IDE. Focus on the simulator, not real hardware for the first build.
+PX4 can be built on the console or in an IDE, for both simulated and hardware targets. 
 
 ## Downloading the Software and First Build
 
-Before moving on to a graphical editor or IDE, it is important to validate the system setup. Do so by bringing up the terminal. On OS X, hit ⌘-space and search for 'terminal'. On Ubuntu, click the launch bar and search for 'terminal'. On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'. Experienced developers might clone [their fork](https://help.github.com/articles/fork-a-repo/) instead.
+For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and and IDE. 
+
+First bring up the terminal
+* On OS X, hit ⌘-space and search for 'terminal'. 
+* On Ubuntu, click the launch bar and search for 'terminal'. 
+* On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'. 
+
+Then clone the PX4/Firmware repository and build the jMAVSim target, as shown below. Experienced developers might clone [their fork](https://help.github.com/articles/fork-a-repo/) instead.
 
 ```sh
 mkdir -p ~/src
@@ -14,11 +21,11 @@ cd Firmware
 make posix jmavsim
 ```
 
-This will bring up the console below:
+This will bring up the PX4 console below:
 
 ![](../../assets/console_jmavsim.png)
 
-And the drone can be flown by typing:
+The drone can be flown by typing:
 
 ```sh
 pxh> commander takeoff
@@ -26,21 +33,24 @@ pxh> commander takeoff
 
 ![](../../assets/jmavsim_first_takeoff.png)
 
-Hitting CTRL-C stops the simulation and simulated flight code. The simulation setup is documented in full detail here: [jMAVSim Simulation](../simulation/jmavsim.md).
+Hitting **CTRL-C** stops the simulation and simulated flight code. The simulation setup is documented in full detail here: [jMAVSim Simulation](../simulation/jmavsim.md).
 
 Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
 
 ![](../../assets/qgc_goto.jpg)
 
+
+
 ## NuttX / Pixhawk based boards
 
+To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board. 
 
 ```sh
 cd Firmware
 make px4fmu-v2_default
 ```
 
-Note the syntax: 'make' is the build tool, 'px4fmu-v2' is the hardware / autopilot version and 'default' is the default configuration. All PX4 build targets follow this logic.
+Note the syntax: `make` is the build tool, `px4fmu-v2` is the hardware / autopilot version and `default` is the default configuration. All PX4 build targets follow this logic.
 
 Build targets:
 * Crazyflie: `make crazyflie_default`
@@ -90,8 +100,8 @@ cd Firmware
 make posix_rpi_cross # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory build_posix_rpi_cross/src/firmware/posix.
-Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](../flight_controller/raspberry_pi_navio2.md#developer-quick-start).
+The "px4" executable file is in the directory **build_posix_rpi_cross/src/firmware/posix**.
+Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
 Then set the IP (or hostname) of your RPi using:
 

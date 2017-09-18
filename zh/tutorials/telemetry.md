@@ -13,5 +13,5 @@ essid: APM_PIX
 password: 12345678
 ```
 Once connected to the WIFI, it should automatically connect to QGroundControl.
-![](../../assets/hardware/3dr_wifi_1.JPG)
-![](../../assets/hardware/3dr_wifi_2.png)
+![](../../assets/hardware/3dr_wifi/3dr_wifi_1.jpg)
+![](../../assets/hardware/3dr_wifi/3dr_wifi_2.png)

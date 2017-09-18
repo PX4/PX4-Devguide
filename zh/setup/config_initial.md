@@ -6,7 +6,7 @@ translated: true
 
 # 初始配置
 
-在开始开发PX4之前，系统应当以默认配置进行初始化，以确保硬件已正确装配并通过测试。下方视频讲解了 [Pixhawk硬件](../flight_controller/pixhawk.md)与[QGroundControl](../qgc/README.md)的安装过程。 [这里](../airframes/architecture.md)是已支持的参考机架列表。
+在开始开发PX4之前，系统应当以默认配置进行初始化，以确保硬件已正确装配并通过测试。下方视频讲解了 [Pixhawk硬件](https://docs.px4.io/en/flight_controller/pixhawk_series.html)与[QGroundControl](../qgc/README.md)的安装过程。 [这里](../airframes/architecture.md)是已支持的参考机架列表。
 
 > **须知：** [下载DAILY BUILD版本的QGroundControl](http://qgroundcontrol.org/downloads)并跟随下方的视频教程来设置你的飞行器。参考[QGroundControl 教程](../qgc/README.md)来了解任务规划(mission planning)，飞行(flying)和参数整定(parameter setting)的具体细节。
 

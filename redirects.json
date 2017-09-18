@@ -2,6 +2,34 @@
     "redirects": [
 
             {
+                "from": "en/flight_controller/crazyflie2.html",
+                "to": "https://docs.px4.io/en/flight_controller/crazyflie2.html"
+            },
+            {
+                "from": "en/flight_controller/intel_aero.html",
+                "to": "https://docs.px4.io/en/flight_controller/intel_aero.html"
+            },
+            {
+                "from": "en/flight_controller/snapdragon_flight.html",
+                "to": "https://docs.px4.io/en/flight_controller/snapdragon_flight.html"
+            },
+            {
+                "from": "en/flight_controller/pixhawk.html",
+                "to": "https://docs.px4.io/en/flight_controller/pixhawk.html"
+            },
+            {
+                "from": "en/flight_controller/raspberry_pi_navio2.html",
+                "to": "https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html"
+            },
+            {
+                "from": "en/flight_controller/mindpx.html",
+                "to": "https://docs.px4.io/en/flight_controller/mindpx.html"
+            },
+            {
+                "from": "en/flight_controller/pixhawk3_pro.html",
+                "to": "https://docs.px4.io/en/flight_controller/pixhawk3_pro.html"
+            },
+            {
                 "from": "en/airframes_experimental/traxxas_stampede.html",
                 "to": "https://docs.px4.io/en/frames_rover/traxxas_stampede.html"
             },

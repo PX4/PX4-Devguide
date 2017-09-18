@@ -17,14 +17,14 @@ And for pure rotations, the integraded_xgyro and integraded_x (respectively inte
 
 An exemplary setup is the PX4Flow and LIDAR-Lite (see picture).
 
-![](../../assets/hardware/flow_lidar_attached.jpg)
+![](../../assets/hardware/optical_flow/flow_lidar_attached.jpg)
 
 ### Cameras
 
 #### PX4Flow
 The easiest way to calculate the optical flow is to use the PX4Flow board. In order to use the PX4Flow board, just connect it with I2C. The recommended way of mounting it is with the Sonar side facing forwards (see image). In this configuration the parameter `SENS_FLOW_ROT` should be 270 degrees (which is the default). Make sure the the PX4Flow board is well dampened.
 
-![](../../assets/hardware/px4flowalignwithpixhawk.jpg)
+![](../../assets/hardware/optical_flow/px4flowalignwithpixhawk.jpg)
 
 ##### Custom I2C address
 The default I2C address of the PX4Flow is 0x42, but it can be incremented using the three solder jumpers labeled "I2C BUS ADDR" on the picture above. This is useful if another device has the same address.

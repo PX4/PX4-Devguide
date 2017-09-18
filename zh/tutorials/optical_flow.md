@@ -22,14 +22,14 @@ And for pure rotations, the integraded_xgyro and integraded_x (respectively inte
 
 An exemplary setup is the PX4Flow and LIDAR-Lite (see picture).
 
-![](../../assets/hardware/flow_lidar_attached.jpg)
+![](../../assets/hardware/optical_flow/flow_lidar_attached.jpg)
 
 ### 相机
 
 #### PX4Flow
 The easiest way to calculate the optical flow is to use the PX4Flow board. In order to use the PX4Flow board, just connect it with I2C. The recommended way of mounting it is with the Sonar side facing forwards (see image). In this configuration the parameter `SENS_FLOW_ROT` should be 270 degrees (which is the default). Make sure the the PX4Flow board is well dampened.
 
-![](../../assets/hardware/px4flowalignwithpixhawk.jpg)
+![](../../assets/hardware/optical_flow/px4flowalignwithpixhawk.jpg)
 
 In order to ensure good optical flow quality, it is important to focus the camera on the PX4Flow to the desired height of flight. To focus the camera, put an object with text on (e. g. a book) and plug in the PX4Flow into USB and run QGroundControl. Under the settings menu, select the PX4Flow and you should see a camera image. Focus the lens by unscrewing the set screw and loosening and tightening the lens to find where it is in focus.
 

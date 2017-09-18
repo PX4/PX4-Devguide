@@ -1,6 +1,6 @@
 # 초기 설정
 
-PX4에서 개발을 시작하기 전에, 하드웨어가 제대로 셋업되어 있는지 확인하기 위해서 시스템은 디폴트 설정으로 초기화 되어야 합니다. 아래 비디오는 [Pixhawk 하드웨어](../flight_controller/pixhawk.md) 와 [QGroundControl](../qgc/README.md)의 셋업 프로세스를 설명합니다. 지원하는 에어프레임 레퍼런스의 목록은 [여기](../airframes/architecture.md)를 참고하세요.
+PX4에서 개발을 시작하기 전에, 하드웨어가 제대로 셋업되어 있는지 확인하기 위해서 시스템은 디폴트 설정으로 초기화 되어야 합니다. 아래 비디오는 [Pixhawk 하드웨어](https://docs.px4.io/en/flight_controller/pixhawk_series.htmld) 와 [QGroundControl](../qgc/README.md)의 셋업 프로세스를 설명합니다. 지원하는 에어프레임 레퍼런스의 목록은 [여기](../airframes/architecture.md)를 참고하세요.
 
 > **Info** [DAILY BUILD of QGroundControl](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) 다운받기와 아래 비디오를 따라서 여러분의 비행체를 셋업합니다. mission planning, 비행, 파라미터 셋팅에 대해서 보다 상세한 내용을 위해서는 [QGroundControl 튜터리얼](../qgc/README.md)을 참고하세요.
 

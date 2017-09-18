@@ -76,7 +76,7 @@ make posix_rpi_cross # for cross-compiler build
 ```
 
 build_posix_rpi_cross/src/firmware/posix 디렉토리에 실행가능한 "px4" 파일이 있습니다.
-RPi를 ssh로 연결할 수 있는지 확인합니다. [RPi에 접근하는 방법](../flight_controller/raspberry_pi_navio2.md#developer-quick-start)를 참고합니다.
+RPi를 ssh로 연결할 수 있는지 확인합니다. [RPi에 접근하는 방법](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start)를 참고합니다.
 
 다음으로 RPi의 IP(혹은 hostname)를 다음과 같이 설정 :
 
