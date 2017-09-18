@@ -13,7 +13,7 @@ The equipment below is highly recommended:
   * Modern laptop with Ubuntu Linux (14.04 or newer)
 * A ground control station device
   * Any MacBook or Ubuntu Linux laptop (can be the development computer)
-  * Samsung Note 4 or equivalent / more recent Android tablet
+  * Samsung Note 4 or equivalent (any recent Android tablet or phone with a large enough screen to run QGroundControl effectively).
   * iPad (requires Wifi telemetry adapter)
 * Safety glasses
 * For multicopters - tether for more risky tests
@@ -27,8 +27,4 @@ Download the [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/rel
 Follow the video instructions below to set up your vehicle. For more detailed/written instructions see the sidebar topics in the [PX4 User Guide > Basic Configuration](https://docs.px4.io/en/config/) section. 
 
 {% youtube %}https://www.youtube.com/watch?v=91VGmdSlbo4&rel=0&vq=hd720{% endyoutube %}
-
-
-
-
 
