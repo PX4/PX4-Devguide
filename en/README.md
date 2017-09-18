@@ -8,7 +8,7 @@ This guide describes how to work inside the PX4 system architecture. It enables 
 
 * Get an [overview of the system](setup/config_initial.md)
 * Access and modify the [PX4 Flight Stack](concept/flight_stack.md) and [PX4 Middleware](concept/middleware.md)
-* Deploy PX4 on [Intel® Aero Ready to Fly Drone](flight_controller/intel_aero.md), [Qualcomm Snapdragon Flight](flight_controller/snapdragon_flight.md), [Pixhawk](flight_controller/pixhawk.md), [Pixfalcon](flight_controller/pixfalcon.md) and many more autopilots.
+* [Build and deploy PX4](setup/building_px4.md) on *Intel® Aero Ready to Fly Drone*, *Qualcomm Snapdragon Flight*, *Pixhawk*, *Pixfalcon* and [many more autopilots](https://docs.px4.io/en/flight_controller/).
 
 ## Contributing
 

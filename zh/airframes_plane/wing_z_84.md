@@ -14,9 +14,9 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 - 1800 mAh 2S LiPo
   - [Team Orion 1800mAh 7.4V 50C 2S1P](https://www.brack.ch/team-orion-1800mah-7-4v-50c-315318)
 - FrSky D4R-II接收机或同类产品（根据手册设置跳帽为PPM输出）
-  - [Pixracer kit](../flight_controller/pixracer.md) (包含GPS和电源模块)
-  - [Mini telemetry set](../flight_controller/pixfalcon.md) for HKPilot32
-  - [电子空速传感器](../flight_controller/pixfalcon.md) for HKPilot32 / Pixfalcon
+  - [Pixracer kit](https://docs.px4.io/en/flight_controller/pixracer.html) (包含GPS和电源模块)
+  - [Mini telemetry set](https://docs.px4.io/en/flight_controller/pixfalcon.html#availability) for HKPilot32
+  - [电子空速传感器](https://docs.px4.io/en/flight_controller/pixfalcon.html#availability) for HKPilot32 / Pixfalcon
   - 备用零件
     - [O-Rings螺旋桨保护环](http://www.hobbyking.com/hobbyking/store/__27339__Wing_Wing_Z_84_O_Ring_10pcs_.html)
   - [备用螺旋桨](http://www.hobbyking.com/hobbyking/store/__27453__GWS_EP_Propeller_DD_5043_125x110mm_orange_6pcs_set_.html)

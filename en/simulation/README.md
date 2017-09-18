@@ -199,7 +199,7 @@ Note the sections that set parameters, start simulator drivers and other modules
         ...
         ```
 
-For more information about using the MAVLink module see [Modules Reference: Communication > MAVLink](../middleware/modules_communication.html#mavlink).
+For more information about using the MAVLink module see [Modules Reference: Communication > MAVLink](../middleware/modules_communication.md#mavlink).
 
 
 ## HITL Simulation Environment

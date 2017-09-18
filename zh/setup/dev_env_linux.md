@@ -26,17 +26,14 @@ sudo usermod -a -G dialout $USER
 
 更新包列表，安装下面编译PX4的依赖包。PX4主要支持的系列：
 
-* NuttX based hardware: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
-  [Pixracer](../flight_controller/pixracer.md), [Crazyflie](../flight_controller/crazyflie2.md),
-  [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
-* [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
-* Linux-based hardware: [Raspberry Pi 2/3](../flight_controller/raspberry_pi_navio2.md), Parrot Bebop
+* NuttX based hardware: [Pixhawk series](https://docs.px4.io/en/flight_controller/pixhawk_series.html), [Crazyflie](https://docs.px4.io/en/flight_controller/crazyflie2.html),
+  [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html)
+* [Qualcomm Snapdragon Flight hardware](https://docs.px4.io/en/flight_controller/snapdragon_flight.html)
+* Linux-based hardware: [Raspberry Pi 2/3](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html), Parrot Bebop
 * Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
 
 > 提示：安装[Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system)可以比make更快进行编译。如果安装了它就会自动选择使用它进行编译。
 
-
-<div class="host-code"></div>
 
 ```sh
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
@@ -55,15 +52,11 @@ sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8
 
 Ubuntu配备了一系列代理管理，这会严重干扰任何机器人相关的串口（或usb串口），卸载掉它也不会有什么影响:
 
-<div class="host-code"></div>
-
 ```sh
 sudo apt-get remove modemmanager
 ```
 
 更新包列表和安装下面的依赖包。务必安装指定的版本的包
-
-<div class="host-code"></div>
 
 ```sh
 sudo apt-get install python-serial openocd \
@@ -162,15 +155,13 @@ source ~/.bashrc
 
 #### 升级ADSP固件
 
-在构建，烧写以及运行代码之前，还需要升级[ADSP固件](../flight_controller/snapdragon_flight_advanced.md#updating-the-adsp-firmware)。
+在构建，烧写以及运行代码之前，还需要升级[ADSP固件](https://docs.px4.io/en/flight_controller/snapdragon_flight_advanced.html#updating-the-adsp-firmware)。
 
 #### 参考
 
 [GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md)是另外一个工具链安装向导。[HelloWorld](https://github.com/ATLFlight/HelloWorld)和[DSPAL tests](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester)可以用来验证工具链安装和DSP镜像。
 
 DSP的信息可以通过mini-dm查看。
-
-<div class="host-code"></div>
 
 ```sh
 $HOME/Qualcomm/Hexagon_SDK/2.0/tools/mini-dm/Linux_Debug/mini-dm
@@ -179,7 +170,7 @@ $HOME/Qualcomm/Hexagon_SDK/2.0/tools/mini-dm/Linux_Debug/mini-dm
 
 ### 树莓派
 
-树莓派开发者应该从下面地址下载树莓派Linux工具链。安装脚本会自动安装交叉编译工具链。如果想要用原生树莓派工具链在树莓派上直接编译，参见[这里](../flight_controller/raspberry_pi_navio2.md#native-builds-optional)。
+树莓派开发者应该从下面地址下载树莓派Linux工具链。安装脚本会自动安装交叉编译工具链。如果想要用原生树莓派工具链在树莓派上直接编译，参见[这里](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#native-builds-optional)。
 
 <div class="host-code"></div>
 
@@ -201,7 +192,7 @@ source ~/.profile
 
 ### Parrot Bebop
 
-Parrot Bebop的开发者应该安装树莓派的Linux工具链。请跟随([这里](../flight_controller/raspberry_pi_navio2.md))的介绍进行安装。
+Parrot Bebop的开发者应该安装树莓派的Linux工具链。请跟随([这里](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html))的介绍进行安装。
 
 接下来安装ADB。
 

@@ -7,7 +7,7 @@
 ## Parts List
 
 ### Vehicle (needed for flying)
-* Autopilot: [Pixracer](../flight_controller/pixracer.md) from [AUAV](https://store.mrobotics.io/mRo-PixRacer-R14-Official-p/auav-pxrcr-r14-mr.htm) including ESP8266  WiFi- and [ACSP5](https://store.mrobotics.io/product-p/auav-acsp5-mr.htm)  power-module
+* Autopilot: [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html) from [AUAV](https://store.mrobotics.io/mRo-PixRacer-R14-Official-p/auav-pxrcr-r14-mr.htm) including ESP8266  WiFi- and [ACSP5](https://store.mrobotics.io/product-p/auav-acsp5-mr.htm)  power-module
 * Frame:  [Lumenier QAV-R 5"](http://www.getfpv.com/qav-r-fpv-racing-quadcopter-5.html)
 * Motors:  [Lumenier RX2206-11 2350KV](http://www.getfpv.com/lumenier-rx2206-11-2350kv-motor.html)
 * ESCs:  [KISS 24A Race Edition](http://www.getfpv.com/kiss-24a-esc-race-edition-32bit-brushless-motor-ctrl.html)
@@ -54,7 +54,7 @@ This means we need to solder at least 6 joints on every ESC but it's still total
 > **Tip** Put heat shrink on the cables before you start soldering! Heatshrinking the ESCs, the power module and the free floating uninsolated wire soldering joints after a successful function test will protect them from dirt, moisure and physical damage
 
 ### Motors
-First I cut all three motor cables to directly fit when the ESCs are mounted on the arms shifted towards the center but still let enough slack to allow easy placement of the parts and not produce any tension on the cables. Then I soldered them in the order they come out of the motor to the output contacts of the ESCs which are oriented with the switching MOS-FETs facing updwards to get good air cooling during flight. Choosing this cable order resulted in all the motors spinning counter-clockwise in my tests and I switched where necessary the direction of rotation by bridging the dedicated [JP1 solder jumper](https://1.bp.blogspot.com/-JZoWC1LjLis/VtMP6XdU9AI/AAAAAAAAAiU/4dygNp0hpwc/s640/KISS-ESC-2-5S-24A-race-edition-32bit-brushless-motor-ctrl.jpg) to conform the [Quadrotor x configuration](../airframes/airframe_reference.html#quadrotor-x).
+First I cut all three motor cables to directly fit when the ESCs are mounted on the arms shifted towards the center but still let enough slack to allow easy placement of the parts and not produce any tension on the cables. Then I soldered them in the order they come out of the motor to the output contacts of the ESCs which are oriented with the switching MOS-FETs facing updwards to get good air cooling during flight. Choosing this cable order resulted in all the motors spinning counter-clockwise in my tests and I switched where necessary the direction of rotation by bridging the dedicated [JP1 solder jumper](https://1.bp.blogspot.com/-JZoWC1LjLis/VtMP6XdU9AI/AAAAAAAAAiU/4dygNp0hpwc/s640/KISS-ESC-2-5S-24A-race-edition-32bit-brushless-motor-ctrl.jpg) to conform the [Quadrotor x configuration](../airframes/airframe_reference.md#quadrotor-x).
 
 ![](../../assets/airframes/multicopter/qav-r-5-kiss-esc-racer/power-motor-connections.jpg)
 
@@ -114,7 +114,7 @@ For this method you cut the big end with the hole off the zip tie, put the rest 
 
 ### ESC signal
 
-For the ESC signals I followed the [hardware documentation of the Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html) and the [Quadrotor x configuration](../airframes/airframe_reference.html#quadrotor-x) motor numbering scheme. As we have no ground or positive BEC voltage connections we connect our `PWM` ESC signal cables each to its topmost pins of the corresponding output connector.
+For the ESC signals I followed the [hardware documentation of the Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html) and the [Quadrotor x configuration](../airframes/airframe_reference.md#quadrotor-x) motor numbering scheme. As we have no ground or positive BEC voltage connections we connect our `PWM` ESC signal cables each to its topmost pins of the corresponding output connector.
 
 ### GPS / External Magnetometer
 
@@ -166,7 +166,7 @@ The magnificent FPV camera set in the part list comes not only with the best FPV
 For general configuration instruction please refer to the [step-by-step guide](https://docs.px4.io/en/config/).
 
 For this build I pulled the latest PX4 master because it supports the "FMU as task" improvements is [explained just below](#improve-racer-performance) and flashed it to the Pixracer. I used [QGC](http://qgroundcontrol.com/) daily build configure the following:
-- Choose the [Quadrotor x configuration](../airframes/airframe_reference.html#quadrotor-x) Airframe
+- Choose the [Quadrotor x configuration](../airframes/airframe_reference.md#quadrotor-x) Airframe
 - Calibrate the sensors
 - Set the battery to 4S (4 cell LiPo) with charged cell voltage 4.15V and empty cell voltage 3.5V
 - Calibrate the voltage devider through typing in the current accurate voltmeter measurement

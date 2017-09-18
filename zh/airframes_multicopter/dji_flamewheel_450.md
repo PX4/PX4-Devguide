@@ -6,7 +6,7 @@
 ![](../../assets/airframes/multicopter/Flamewheel_450/f450_setup_back.JPG)
 
 ## Parts List
-* Autopilot:        [Pixhawk 3 Pro](..//flight_controller/pixhawk3_pro.md)
+* Autopilot:        [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html)
 * Frame:            DJI Flamewheel 450
 * Motors:           3DR Iris Plus 950kv repranded T-Motors MN2213
 * ESCs:             Hobbywing XRotor 35A Micro 3-6S BLHeli

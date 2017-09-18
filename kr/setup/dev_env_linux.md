@@ -18,11 +18,10 @@ sudo usermod -a -G dialout $USER
 
 패키지 목록을 업데이트하고 모든 PX4 빌드 타겟을 위해 필요한 의존 패키지를 설치합니다. PX4가 지원하는 4가지 계열 :
 
-* NuttX 기반 하드웨어: [Pixhawk](../flight_controller/pixhawk.md), [Pixfalcon](../flight_controller/pixfalcon.md),
-  [Pixracer](../flight_controller/pixracer.md), [Pixhawk 3 Pro](../flight_controller/pixhawk3_pro.md), [Crazyflie](../flight_controller/crazyflie2.md),
-  [Intel® Aero Ready to Fly Drone](../flight_controller/intel_aero.md)
-* [Qualcomm Snapdragon Flight hardware](../flight_controller/snapdragon_flight.md)
-* Linux 기반 하드웨어: [Raspberry Pi 2/3](../flight_controller/raspberry_pi_navio2.md), Parrot Bebop
+* NuttX 기반 하드웨어: [Pixhawk series](https://docs.px4.io/en/flight_controller/pixhawk_series.html), [Crazyflie](https://docs.px4.io/en/flight_controller/crazyflie2.html),
+  [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html)
+* [Qualcomm Snapdragon Flight hardware](https://docs.px4.io/en/flight_controller/snapdragon_flight.html)
+* Linux 기반 하드웨어: [Raspberry Pi 2/3](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html), Parrot Bebop
 * 호스트 시뮬레이션: [jMAVSim SITL](../simulation/sitl.md) 와 [Gazebo SITL](../simulation/gazebo.md)
 
 > **Info** Make보다 빠르게 빌드하기 위해 [Ninja 빌드 시스템](../setup/dev_env_linux_boutique.md#ninja-build-system)을 설치합니다. 이미 설치되어 있다면 자동으로 선택해서 빌드하게 됩니다.
@@ -111,7 +110,7 @@ sysroot 옵션은 [Sysroot 설치](https://github.com/ATLFlight/cross_toolchain/
 
 #### ADSP 펌웨어 업데이트
 
-빌드, 플래쉬, 실행하기 전에 [ADSP 펌웨어](../flight_controller/snapdragon_flight_advanced.md#updating-the-adsp-firmware) 업데이트가 필요합니다.
+빌드, 플래쉬, 실행하기 전에 [ADSP 펌웨어](https://docs.px4.io/en/flight_controller/snapdragon_flight_advanced.html#updating-the-adsp-firmware) 업데이트가 필요합니다.
 
 #### 레퍼런스
 
@@ -171,7 +170,7 @@ cmake \
 
 ### 패롯 비밥
 
-패롯 비밥으로 개발하는 경우 RPi 리눅스 툴체인을 설치해야만 합니다. [Raspberry Pi 하드웨어](../flight_controller/raspberry_pi_navio2.md)에 있는 설명을 참고하세요.
+패롯 비밥으로 개발하는 경우 RPi 리눅스 툴체인을 설치해야만 합니다. [Raspberry Pi 하드웨어](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html)에 있는 설명을 참고하세요.
 
 다음으로 ADB를 설치합니다.
 
