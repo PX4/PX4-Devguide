@@ -26,7 +26,6 @@ This will bring up the PX4 console below:
 ![](../../assets/console_jmavsim.png)
 
 The drone can be flown by typing:
-
 ```sh
 pxh> commander takeoff
 ```
@@ -41,29 +40,20 @@ Flying the simulation with the ground control station is closer to the real oper
 
 
 
-## NuttX / Pixhawk based boards
+## NuttX / Pixhawk Based Boards
+
+### Building
 
 To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board. 
 
+> **Note** In the example below the first part of the build target `px4fmu-v2` is the autopilot hardware version and `default` is the configuration name (in this case the "default" configuration). All PX4 build targets follow this logic).
+
+For example, to build for *Pixhawk 1* you would use the following command:
 ```sh
 cd Firmware
 make px4fmu-v2_default
 ```
-
-Note the syntax: `make` is the build tool, `px4fmu-v2` is the hardware / autopilot version and `default` is the default configuration. All PX4 build targets follow this logic.
-
-Build targets:
-* Crazyflie: `make crazyflie_default`
-* Intel® Aero RTF: `make aerofc-v1_default`
-* MindPX: `make mindpx-v2_default`
-* Pixhawk: `make px4fmu-v2_default`. You can use `make px4fmu-v3_default` for
-  boards that support 2MB Flash (such as Pixhawk mini)
-* Pixracer: `make px4fmu-v4_default`
-* Pixhawk 3 Pro: `make px4fmu-v4pro_default`
-* Pixhawk 4: `make px4fmu-v5_default`
-
 A successful run will end with this output:
-
 ```sh
 [100%] Linking CXX executable firmware_nuttx
 [100%] Built target firmware_nuttx
@@ -72,9 +62,26 @@ Scanning dependencies of target build_firmware_px4fmu-v2
 [100%] Built target build_firmware_px4fmu-v2
 ```
 
-### Flashing the board
+The following list shows the build commands for common boards:
+* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default`
+* [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4fmu-v2_default`
+* [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4fmu-v2_default`
+* [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4fmu-v2_default`
+* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
+* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
+* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
+* [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.md): `make px4fmu-v4_default`
+* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4fmu-v4_default`
+* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4fmu-v4pro_default`
+* [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make crazyflie_default`
+* [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make aerofc-v1_default`
+* Pixhawk 4: `make px4fmu-v5_default`
+* [AUAV-X2 (Discontinued)](https://docs.px4.io/en/flight_controller/auav_x2.html): `make px4fmu-v2_default`
 
-By appending 'upload' to these commands the compiled binary will be uploaded via USB to the autopilot hardware:
+
+### Uploading Firmware (Flashing the board)
+
+Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
 
 ```sh
 make px4fmu-v2_default upload
@@ -90,10 +97,16 @@ Rebooting.
 
 [100%] Built target upload
 ```
-### Raspberry Pi 2/3 boards
-The command below builds the target for Raspbian.
 
-#### Cross-compiler build
+## Other Boards
+
+The following boards have more complicated build and/or deployment instructions.
+
+### Raspberry Pi 2/3 Boards
+
+The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+
+#### Cross-compiler Build
 
 ```sh
 cd Firmware
@@ -122,7 +135,7 @@ Then, connect over ssh and run it with (as root):
 sudo ./px4 px4.config
 ```
 
-#### Native build
+#### Native Build
 
 If you're building *directly* on the Pi, you will want the native build target (posix_rpi_native).
 
@@ -156,18 +169,18 @@ pxh>
 ```
 
 #### Autostart
-To autostart px4, add the following to the file `/etc/rc.local` (adjust it
+To autostart px4, add the following to the file **/etc/rc.local** (adjust it
 accordingly if you use native build), right before the `exit 0` line:
-```
+```sh
 cd /home/pi && ./px4 -d px4.config > px4.log
 ```
 
 
 ### Parrot Bebop
 
-Support for the Bebop is really early stage and should be used very carefully.
+Support for the [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.html) is at an early stage and should be used very carefully.
 
-#### Build it
+#### Build
 ```sh
 cd Firmware
 make posix_bebop_default
@@ -190,7 +203,7 @@ adb push posix-configs/bebop/px4.config /home/root
 adb disconnect
 ```
 
-#### Run it
+#### Run
 Connect to the Bebop's wifi and press the power button four times. Next,
 connect with the Bebop via telnet or adb shell and run the commands bellow.
 
@@ -243,11 +256,20 @@ adb shell sync
 adb shell reboot
 ```
 
-### QuRT / Snapdragon based boards
+### OcPoC-Zynq Mini
 
-#### Build it
+Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html) are covered in:
+* [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
+* [OcPoC PX4 Setup Page](https://aerotenna.readme.io/docs/px4-setup)
 
-NOTE: If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
+
+### QuRT / Snapdragon Based Boards
+
+This section shows how to build for the [Qualcomm Snapdragon Flight](https://docs.px4.io/en/flight_controller/snapdragon_flight.html).
+
+#### Build
+
+> **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
 
 The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](../middleware/uorb.md).
 
@@ -276,7 +298,7 @@ The mixer currently needs to be copied manually:
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 ```
 
-#### Run it
+#### Run
 
 Run the DSP debug monitor:
 
@@ -335,7 +357,7 @@ Then reboot the Snapdragon:
 adb reboot
 ```
 
-## Compiling in a graphical IDE
+## Compiling in a Graphical IDE
 
 The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
 
