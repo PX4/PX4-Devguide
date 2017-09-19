@@ -17,14 +17,14 @@ position estimation을 위해서 아래를 향하는 카메라와 거리 센서�
 
 예제 셋업은 PX4Flow와 LIDAR-Lite입니다.(사진 참고)
 
-![](../../assets/hardware/flow_lidar_attached.jpg)
+![](../../assets/hardware/optical_flow/flow_lidar_attached.jpg)
 
 ### 카메라
 
 #### PX4Flow
 optical flow를 계산하는 가장 쉬운 방법은 PX4Flow 보드를 사용하는 것입니다. PX4Flow 보드를 사용하기 위해서 I2C에 연결하기만 하면 됩니다. 추천 마운팅 방법은 Sonar 쪽이 전면을 향하게 하는 것입니다.(이미지 참고) 이 설정에서 `SENS_FLOW_ROT` 파라미터는 270 도입니다.(기본값) PX4Flow 보드가 흔들리지 않도록 합니다.
 
-![](../../assets/hardware/px4flowalignwithpixhawk.jpg)
+![](../../assets/hardware/optical_flow/px4flowalignwithpixhawk.jpg)
 
 양질의 optical flow 정보를 얻기 위해서, PX4Flow에 카메라가 비행의 원하는 높이에서 초점이 맞도록 해야합니다. 카메라 초점을 맞추기 위해서 글자가 있는 물체(책)을 놓고 PX4Flow에 USB를 꽂고 QGroundControl를 실행합니다. 셋팅메뉴에서 PX4Flow를 선택하고 카메라 이미지가 나옵니다. 나사를 돌려서 렌즈 초점을 맞춥니다.
 

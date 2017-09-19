@@ -1,4 +1,20 @@
 # Modules Reference: Communication
+## frsky_telemetry
+Source: [drivers/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/frsky_telemetry)
+
+FrSky Telemetry support. Auto-detects D or S.PORT protocol.
+### Usage
+```
+frsky_telemetry <command> [arguments...]
+ Commands:
+   start
+     [-d <val>]  Select Serial Device
+                 values: <file:dev>, default: /dev/ttyS6
+
+   stop
+
+   status
+```
 ## mavlink
 Source: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
 

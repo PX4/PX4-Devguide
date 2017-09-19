@@ -38,6 +38,7 @@ sudo apt-get install python-argparse git-core wget zip python-empy cmake build-e
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip -y
 sudo -H pip install pandas jinja2
+pip install pyserial
 # optional python tools
 pip install pyulog
 
@@ -47,7 +48,9 @@ sudo apt-get install python-serial openocd \
     flex bison libncurses5-dev autoconf texinfo \
     libftdi-dev libtool zlib1g-dev -y
 
-    
+# Install Java (needed by fastrtpsgen)
+## Java7
+sudo apt-get install default-jdk -y
 # Install FastRTPS 1.5.0 and FastCDR-1.0.7
 fastrtps_dir=$HOME/eProsima_FastRTPS-1.5.0-Linux
 echo "Installing FastRTPS to: $fastrtps_dir"
@@ -65,6 +68,9 @@ else
     cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make; sudo make install
     cd ..
     cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+    exportline="export FASTRTPSGEN_DIR=/usr/local/bin/"
+    if grep -Fxq "$exportline" ~/.bashrc; then echo " fastrtpsgen path already set." ; else echo $exportline >> ~/.bashrc; fi
+    . ~/.bashrc
     popd
 fi
 
@@ -86,8 +92,8 @@ else
     wget https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-/raw/master/gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
     tar -jxf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
     exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH"
-    if grep -Fxq "$exportline" ~/.profile; then echo " GCC path already set." ; else echo $exportline >> ~/.profile; fi
-    . ~/.profile
+    if grep -Fxq "$exportline" ~/.bashrc; then echo " GCC path already set." ; else echo $exportline >> ~/.bashrc; fi
+    . ~/.bashrc
     popd
     
     # Install 32 bit support libraries (ignore if fails)

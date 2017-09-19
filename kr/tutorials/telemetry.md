@@ -8,5 +8,5 @@ essid: APM_PIX
 password: 12345678
 ```
 일단 WIFI에 연결하면 자동으로 QGroundControl에 연결해야 합니다.
-![](../../assets/hardware/3dr_wifi_1.JPG)
-![](../../assets/hardware/3dr_wifi_2.png)
+![](../../assets/hardware/3dr_wifi/3dr_wifi_1.jpg)
+![](../../assets/hardware/3dr_wifi/3dr_wifi_2.png)

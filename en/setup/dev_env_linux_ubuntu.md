@@ -10,7 +10,7 @@ The following instructions explain how to *manually* set up a development enviro
 
 ## Convenience Bash Scripts
 
-We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), [pyulog](https://github.com/PX4/pyulog#pyulog), and also download the PX4 source to your computer (**~/src/Firmware**). 
+We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**). 
 
 > **Tip** The scripts have been tested on a clean Ubuntu LTS installation. They *may* not work as expected if installed on top of an existing system.
 
@@ -80,6 +80,7 @@ sudo apt-get install python-argparse git-core wget zip \
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip
 sudo -H pip install pandas jinja2
+pip install pyserial
 ```
 
 You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). This is is a useful python package that contains scripts to parse *ULog* files and display them.
@@ -319,7 +320,7 @@ For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight
 
 ### Update ADSP firmware
 
-Before building, flashing and running code, you'll need to update the [ADSP firmware](../flight_controller/snapdragon_flight_advanced.md#updating-the-adsp-firmware).
+Before building, flashing and running code, you'll need to update the [ADSP firmware](https://docs.px4.io/en/flight_controller/snapdragon_flight_advanced.html#updating-the-adsp-firmware).
 
 ### References
 
@@ -381,7 +382,7 @@ cmake \
 ## Parrot Bebop
 
 Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
-description under [Raspberry Pi hardware](../flight_controller/raspberry_pi_navio2.md).
+description under [Raspberry Pi hardware](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 
 Next, install ADB.
 

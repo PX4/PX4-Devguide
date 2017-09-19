@@ -1,6 +1,6 @@
 # Simulation
 
-Simulators allow PX4 flight code to control a computer modeled vehicle in a simulated "world". You can interact with this vehicle just as you might with a real vehicle, using a *QGroundControl*, offboard API, or radio controller/gamepad. 
+Simulators allow PX4 flight code to control a computer modeled vehicle in a simulated "world". You can interact with this vehicle just as you might with a real vehicle, using *QGroundControl*, an offboard API, or a radio controller/gamepad.
 
 > **Tip** Simulation is a quick, easy, and most importantly, *safe* way to test changes to PX4 code before attempting to fly in the real world. It is also a good way to start flying with PX4 when you haven't yet got a vehicle to experiment with.
 
@@ -20,8 +20,11 @@ Simulator |Description
 [AirSim](../simulation/airsim.md) | A cross platform simulator that provides physically and visually realistic simulations. This simulator is resource intensive, and requires a very significantly more powerful computer than the other simulators described here. <p><strong>Supported Vehicles:</strong> Iris (MultiRotor model and a configuration for PX4 QuadRotor in the X configuration).</p>
 [XPlane](../simulation/hitl.md) (HITL only)| A comprehensive and powerful fixed-wing flight simulator that offers very realistic flight models.<br><p><strong>Supported Vehicles:</strong> Plane</p>
 
+Instructions for how to setup and use the simulators are in the topics linked above.
 
-Instructions for how to setup and use the simulators are in the topics linked above. Below is a "somewhat generic" description of how the simulation infrastructure works. It is not required to *use* the simulators. 
+
+---
+The remainder of this topic is a "somewhat generic" description of how the simulation infrastructure works. It is not required to *use* the simulators.
 
 
 ## Simulator MAVLink API
@@ -30,7 +33,7 @@ All simulators communicate with PX4 using the Simulator MAVLink API. This API de
 
 ![Simulator MAVLink API](../../assets/simulation/px4_simulator_messages.png)
 
-> **Note** A simulator build of PX4 (both SITL and HITL) includes [simulator_mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp) to handle these messages. Sensor data from the simulator is written to a dummy driver and appears "real" to PX4. All motors / actuators are blocked, but internal software is fully operational.
+> **Note** A simulator build of PX4 (both SITL and HITL) uses [simulator_mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp) to handle these messages. Sensor data from the simulator is written to a dummy driver and appears "real" to PX4. All motors / actuators are blocked, but internal software is fully operational.
 
 The messages are described below (see links for specific detail).
 
@@ -45,16 +48,26 @@ Message | Direction | Description
 [HIL_RC_INPUTS_RAW](http://mavlink.org/messages/common#HIL_RC_INPUTS_RAW) | Sim to PX4 | The RAW values of the RC channels received.
 
 
+## Standard MAVLink UDP Ports
+
+PX4 defines a number of standard UDP broadcast ports that ground control stations (e.g. *QGroundControl*, Offboard APIs and simulators) can listen to in order to connect to the autopilot:
+
+- Offboard APIs: 14540
+- Ground Control Stations: 14550  (*QGroundControl* automatically connects to PX4 broadcasting on this port).
+- Simulators: 14560
+
+> **Note** The "connection model" is that PX4 broadcasts to the standard ports above; other systems listen and respond to the source port in the PX4 messages. The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module. 
+
+
 ## SITL Simulation Environment
 
-The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be on either the same computer or another computer on the same network.
+The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
 
-* PX4 uses a simulation-specific module to create a UDP link to the Simulator and exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. SITL and the Simulator can run on either the same computer or different computers on the same network.
-* PX4 uses the normal MAVLink module to set up UDP connections to *QGroundControl* and external APIs.
+* PX4 uses a simulation-specific module to broadcast on UDP port 14560. Simulators listen to this port, then connect and exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. SITL and the simulator can run on either the same computer or different computers on the same network.
+* PX4 uses the normal MAVLink module to set up UDP connections for *QGroundControl* (broadcast port: 14550, listen: 14557) and external developer APIs like DroneCore or ROS (broadcast: 14540, listen: 14557).
 * A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
-* Only remote (server) ports are shown in the diagram. The client side port has to be set up and mapped to its associated remote port, but you don't need to know what those ports are to use/connect the different components.
 
-![](../../assets/simulation/px4_sitl_overview.png)
+![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
 If you use the normal build system SITL `make` configuration targets (see next section) then both SITL and the Simulator will be launched on the same computer and the ports above will automatically be configured. You can configure additional MAVLink UDP connections and otherwise modify the simulation environment in the build configuration and initialisation files.
 
@@ -78,13 +91,13 @@ where:
 * **CONFIGURATION_TARGET:** has the format `[OS]_[PLATFORM]_[FEATURE]`
   * **OS:** posix, nuttx, qurt
   * **PLATFORM:** SITL (or in principle any platform supported among the different OS: bebop, eagle, excelsior, etc.)
-  * **FEATURE:** <!-- better name? --> A particular high level feature - for example which estimator to use (ekf2, lpe) or to run tests or simulate using a replay.
+  * **FEATURE:** A particular high level feature - for example which estimator to use (ekf2, lpe) or to run tests or simulate using a replay.
   > **Tip** You can get a list of all available configuration targets using the command:
   ```
   make list_config_targets
   ```
-* **SIMULATOR:** The simulator to launch and connect: gazebo, jmavsim, ?airsim
-* **INIT_FILE:** The specific init file to use for PX4 launch, within the associated configuration target This might define the start up for a particular vehicle, or allow simulation of multiple vehicles (we explain how to determine available init files in the next section).
+* **SIMULATOR:** The simulator to launch and connect: gazebo, jmavsim <!-- , ?airsim -->
+* **INIT_FILE:** The specific init file to use for PX4 launch, within the associated configuration target. This might define the start up for a particular vehicle, or allow simulation of multiple vehicles (we explain how to determine available init files in the next section).
 
 
 ### Init File Location
@@ -112,9 +125,6 @@ Firmware/
 ### Example Startup File
 
 A slightly reduced version of the startup file for `make posix_sitl_ekf2 gazebo_iris` ([/Firmware/posix-configs/SITL/init/ekf2/iris](https://github.com/PX4/Firmware/blob/master/posix-configs/SITL/init/ekf2/iris)) is shown below.
-
-Note the sections that set parameters, start simulator drivers, and other modules, and that set up MAVLink ports (`mavlink start `) and streaming of messages (`mavlink stream`) to the *QGroundControl* UDP port.
-
 
 ```bash
 uorb start
@@ -160,6 +170,36 @@ logger start -e -t
 mavlink boot_complete
 replay trystart
 ```
+
+Note the sections that set parameters, start simulator drivers and other modules. A few of the more relevant lines for simulation are highlighted below. 
+
+1. Simulator being started:
+   ```
+   simulator start -s
+   ```
+1. PWM out mode being set for simulator:
+   ```
+   pwm_out_sim mode_pwm
+   ```
+1. Set MAVLink ports:
+
+   * This line starts the MAVLink instance for connecting to offboard APIs. It broadcasts on 14540 and listens for responses on 14557. The `-m onboard` flag specifies a set of messages that will be streamed over the interface.
+      ```bash
+      mavlink start -u 14557 -r 4000000 -m onboard -o 14540
+      ```
+   * This line starts MAVLink instance for connecting to *QGroundControl*/GCSs. PX4 listens for messages on port 14556. 
+   ```bash
+   mavlink start -u 14556 -r 4000000
+   ```
+      * The broadcast port is not explicitly set (the default is used: 14550). 
+      * The messages that are streamed over this interface are specified using `mavlink stream` as shown below:
+        ```
+        mavlink stream -r 50 -s POSITION_TARGET_LOCAL_NED -u 14556
+        mavlink stream -r 50 -s LOCAL_POSITION_NED -u 14556
+        ...
+        ```
+
+For more information about using the MAVLink module see [Modules Reference: Communication > MAVLink](../middleware/modules_communication.md#mavlink).
 
 
 ## HITL Simulation Environment

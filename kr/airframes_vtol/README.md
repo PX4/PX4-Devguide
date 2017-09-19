@@ -21,7 +21,7 @@ VTOL 코드베이스는 다른 모든 비행체에 대해서 동일한 코드베
 
 ## Tailsitter
 
-[build log](../airframes_vtol/caipiroshka.md)에서 상세한 정보를 확인하세요.
+[build log](https://docs.px4.io/en/frames_vtol/vtol_tailsitter_caipiroshka_pixracer.html)에서 상세한 정보를 확인하세요.
 
 {% youtube %}https://www.youtube.com/watch?v=acG0aTuf3f8&vq=hd720{% endyoutube %}
 

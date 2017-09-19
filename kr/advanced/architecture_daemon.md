@@ -2,7 +2,7 @@
 
 daemon은 백그라운드로 실행되는 일종의 프로세스입니다. NuttX에서 daemon 프로세스는 일종의 task고, POSIX(Linux / Mac OS)에서 daemon은 일종의 thread입니다.
 
-새로운 daemon은 `px4_task_spawn()` 명령을 통해 생성할 수 있습니다.
+새로운 daemon은 `px4_task_spawn_cmd()` 명령을 통해 생성할 수 있습니다.
 
 ```C++
 daemon_task = px4_task_spawn_cmd("commander",

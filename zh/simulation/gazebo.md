@@ -10,7 +10,7 @@ translated_sha: d85d45b8e4f82e318ace49bd87c0ad17a129e017
 [Gazebo](http://gazebosim.ort)是一个自主机器人3D仿真环境。它可以与ROS配套用于完整的机器人仿真，也可以单独使用。本文简要介绍单独的使用方法。
 
 {% raw %}
-<video id="my-video" class="video-js" controls preload="auto" width="100%" 
+<video id="my-video" class="video-js" controls preload="auto" width="100%"
 poster="../pictures/diagrams/PX4-Flight.JPG" data-setup='{"aspectRatio":"16:9"}'>
   <source src="http://7xvob5.com1.z0.glb.clouddn.com/2-PX4%20Flight%20Stack%20ROS%203D%20Software%20in%20the%20Loop%20Simulation%20(SITL).mp4" type='video/mp4' >
   <p class="vjs-no-js">
@@ -45,7 +45,7 @@ Mac OS需要安装Gazebo 7，相应的需要安装xquartz，并且在没有OpenC
 ```sh
 brew cask install xquartz
 
-brew install homebrew/science/opencv
+brew install opencv
 
 brew install gazebo7
 ```

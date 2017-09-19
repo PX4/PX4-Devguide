@@ -63,9 +63,7 @@ Then set the net ID, write settings and reboot radio:
 
 ```
 ATS3=55
-AT
-&
-W
+AT&W
 ATZ
 ```
 
