@@ -10,6 +10,7 @@
 
 ## Code
 ros 패키지에서 offb_node.cpp 파일 생성하고 다음을 내부에 붙여넣기:
+
 ```C++
 /**
  * @file offb_node.cpp
@@ -100,7 +101,9 @@ int main(int argc, char **argv)
 }
 
 ```
+
 ## Code 설명
+
 ```C++
 #include <ros/ros.h>
 #include <geometry_msgs/PoseStamped.h>
@@ -108,6 +111,7 @@ int main(int argc, char **argv)
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
 ```
+
 `mavros_msgs` 패키지는 mavros 패키지가 제공하는 서비스와 topic을 운영하는데 필요한 모든 커스텀 메시지를 포함하고 있습니다. 관련된 메시지 타입뿐만 아니라 모든 서비스와 topic들에 관한 자료를 [mavros wiki](http://wiki.ros.org/mavros)에서 참고할 수 있습니다.
 
 ```C++
@@ -116,6 +120,7 @@ void state_cb(const mavros_msgs::State::ConstPtr& msg){
     current_state = *msg;
 }
 ```
+
 autopilot의 현재 상태를 저장하기 위한 간단한 콜백을 생성합니다. 이것을 통해 연결, armimg, 오프보드 flag를 검사할 수 있습니다.
 
 ```C++
@@ -124,7 +129,9 @@ ros::Publisher local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>("mavros/
 ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>("mavros/cmd/arming");
 ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
 ```
+
 local position을 publish하기 위해서 publisher 인스턴스를 만들고 적합한 client에게 arming과 모드 변경을 요청합니다. 여러분의 시스템에서 "mavros" 접두사는 다른 의미일 수 있습니다. launch 파일내부에서 node에 주어진 이름에 의존하기 때문입니다.
+
 ```C++
 //the setpoint publishing rate MUST be faster than 2Hz
 ros::Rate rate(20.0);
@@ -138,14 +145,18 @@ while(ros::ok() && current_state.connected){
     rate.sleep();
 }
 ```
-Before publishing anything, we wait for the connection to be established between mavros and the autopilot. This loop should exit as soon as a heartbeat message is received.
+
+어떤 것을 publishing하기 전에, mavros와 autopilot 사이에 연결이 되기까지 기다립니다. heartbeat 메시지를 받자마자 이 loop를 빠져나와야 합니다.
+
 ```C++
 geometry_msgs::PoseStamped pose;
 pose.pose.position.x = 0;
 pose.pose.position.y = 0;
 pose.pose.position.z = 2;
 ```
+
 비록 px4 flight stack이 대기 NED 좌표 프레임에서 운영되므로 mavros는 이 좌표변환을 표준 ENU 프레임으로 변환합니다. 반대로도 변환이 가능합니다. 이것이 z를 +2로 설정하는 이유입니다.
+
 ```C++
 //send a few setpoints before starting
 for(int i = 100; ros::ok() && i > 0; --i){

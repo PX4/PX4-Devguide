@@ -26,6 +26,18 @@ optical flow를 계산하는 가장 쉬운 방법은 PX4Flow 보드를 사용하
 
 ![](../../assets/hardware/optical_flow/px4flowalignwithpixhawk.jpg)
 
+##### Custom I2C address
+The default I2C address of the PX4Flow is 0x42, but it can be incremented using the three solder jumpers labeled "I2C BUS ADDR" on the picture above. This is useful if another device has the same address.
+The address increment is equal to the 3-bit value encoded by the jumpers. For example if jumper 0 and 1 are soldered and jumper 2 is unsoldered, the address is incremented by 1\*1 + 1\*2 + 0\*4 = 3, which gives address 0x45.
+If all jumpers are unsoldered, the camera will be automatically discovered by the autopilot firmware.
+If you modify the I2C address of the PX4Flow, make sure to start the PX4 driver with the correct address:
+```
+px4flow start                  # address=0x42 (default)
+px4flow stop
+px4flow start -a 0x45          # address=0x45
+```
+
+##### 렌즈 초점 맞추기
 양질의 optical flow 정보를 얻기 위해서, PX4Flow에 카메라가 비행의 원하는 높이에서 초점이 맞도록 해야합니다. 카메라 초점을 맞추기 위해서 글자가 있는 물체(책)을 놓고 PX4Flow에 USB를 꽂고 QGroundControl를 실행합니다. 셋팅메뉴에서 PX4Flow를 선택하고 카메라 이미지가 나옵니다. 나사를 돌려서 렌즈 초점을 맞춥니다.
 
 **Note: 3m 이상을 날리는 경우 카메라는 무한대로 초점이 되며 더 높은 비행에 대해서 변경할 필요가 없습니다 **

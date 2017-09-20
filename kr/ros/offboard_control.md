@@ -36,15 +36,15 @@ graph TD;
   rad2 --MAVLink--> a[Autopilot];
 {% endmermaid %}
 
-### 2. On-board processor
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter. There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
+### 2. On-board 프로세서
+autopilot에 연결하는 작은 컴퓨터는 UART를 통해 USB 어댑터에 연결합니다. autopilot에 추가로 명령을 보내고자 한다면 추가하는 온보드 프로세싱 종류에 따라서 다양한 선택이 가능합니다.
 
-Small low power examples:
+작고 낮은 성능을 필요로 하는 경우:
 * [Odroid C1+](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143703355573) or [Odroid XU4](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143452239825)
 * [Raspberry Pi](https://www.raspberrypi.org/)
 * [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
 
-Larger high power examples
+좀더 크고 높은 성능을 필요로 하는 경우:
 * [Intel NUC](http://www.intel.com/content/www/us/en/nuc/overview.html)
 * [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
 * [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)

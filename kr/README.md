@@ -1,14 +1,14 @@
 # PX4 개발 가이드
 
-[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io) 
+[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
-> **Info** 개발자 대상! 이 길잡이 문서는 계속 작업 중이며 일반 사용자용은 아닙니다.
+> **Info** 개발자를 위한 문서! 이 길잡이 문서는 계속 작업 중이며 일반 사용자용은 아닙니다.
 
 이 문서에서는 PX4 시스템 구조 내부가 어떻게 동작하는지를 설명합니다. 개발자는 다음과 같은 정보를 얻을 수 있습니다 :
 
-* [시스템 개요](setup/config_initial.md)
-* [PX4 Flight Stack](concept/flight_stack.md)과 [PX4 미들웨어](concept/middleware.md)
-* PX4는 *Intel® Aero Ready to Fly Drone*, *Qualcomm Snapdragon Flight*, [Pixhawk series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) 와 다양한 autopilot 지원  
+* [개발자를 위한 초기 셋업](setup/config_initial.md).
+* [PX4 Flight Stack](concept/flight_stack.md)와 [PX4 미들웨어](concept/middleware.md) 접근 및 수정.
+* [PX4 빌드 및 배포](setup/building_px4.md) *Intel® Aero Ready to Fly Drone*, *Qualcomm Snapdragon Flight*, *Pixhawk*, *Pixfalcon* 및 [기타 autopilots](https://docs.px4.io/en/flight_controller/).
 
 ## 기여하기
 

@@ -154,6 +154,19 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 		...
  	}
 ```
+
+## Alternative to Creating Custom MAVLink Messages
+Sometimes there is the need for a custom MAVLink message with content that is not fully defined.
+
+For example when using MAVLink to interface PX4 with an embedded device, the messages that are exchanged between the autopilot and the device may go through several iterations before they are stabilized.
+In this case, it can be time-consumming and error-prone to regenerate the MAVLink headers, and make sure both devices use the same version of the protocol.
+
+An alternative - and temporary - solution is to repurpose debug messages.
+Instead of creating a custom MAVLink message `CA_TRAJECTORY`, you can send a message `DEBUG_VECT` with the string key `CA_TRAJ` and data in the `x`, `y` and `z` fields.
+See [this tutorial](../debug/debug_values.md). for an example usage of debug messages.
+
+> **Note** This solution is not efficient as it sends character string over the network and involves comparison of strings. It should be used for development only!
+
 ## 일반
 ### streaming rate 설정
 가끔은 개별 topic의 streaming rate를 올리는 것이 유용합니다. (예로 QGC에서 inspection용도로) 다음과 같은 라인으로 처리할 수 있습니다.

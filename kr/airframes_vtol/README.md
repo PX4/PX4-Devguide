@@ -1,6 +1,6 @@
 # VTOL Airframes
 
-[PX4 Flight Stack](../concept/flight_stack.md)은 거의 모든 VTOL 설정을 제공합니다 :
+[PX4 Flight Stack](../concept/flight_stack.md)에서 대부분의 VTOL 설정을 제공합니다 :
 
   * Tailsitters (2개와 4개로 구성되는 rotor로 X와 + 설정지원)
   * Tiltrotors (Firefly Y6)
