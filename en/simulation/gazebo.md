@@ -92,6 +92,16 @@ make posix gazebo_rover
 ![](../../assets/gazebo/rover.png)
 
 
+### HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#ugv}
+
+```sh
+make posix_sitl_default gazebo_hippocampus
+```
+
+![](../../assets/gazebo/hippocampus.png)
+
+
+
 ## Change World
 
 The current default world is the iris.world located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds). The default surrounding in the iris.world uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, it is recommended to change the model in iris.model from uneven_ground to asphalt_plane.
