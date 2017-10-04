@@ -39,7 +39,7 @@ pxh>
 
   * 시작 스크립트는 [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) 폴더에 있고 이름은 `rcS_SIM_AIRFRAME`입니다. 디폴트는 `rcS_jmavsim_iris`입니다.
   * root 파일 시스템(`/`와 동일)은 빌드 디렉토리 내부에 위치:
- `build_posix_sitl_default/src/firmware/posix/rootfs/`
+ `build/posix_sitl_default/src/firmware/posix/rootfs/`
 
 ## 하늘로 올리기
 

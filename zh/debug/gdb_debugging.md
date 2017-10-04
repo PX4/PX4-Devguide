@@ -14,7 +14,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 <div class="host-code"></div>
 
 ```bash
-arm-none-eabi-nm --size-sort --print-size --radix=dec build_px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
+arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
 ```
 
 这个NSH命令提供了剩余的空闲内存：
@@ -52,7 +52,7 @@ make posix_sitl_default
 
 在另一个中断，输入：
 ```bash
-cd build_posix_sitl_default/tmp
+cd build/posix_sitl_default/tmp
 export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
@@ -137,7 +137,7 @@ EXC_RETURN: ffffffe9
 <div class="host-code"></div>
 
 ```bash
-arm-none-eabi-gdb build_px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx
+arm-none-eabi-gdb build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx
 ```
 
 

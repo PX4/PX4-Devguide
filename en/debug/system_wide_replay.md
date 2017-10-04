@@ -33,12 +33,12 @@ export replay=<absolute_path_to_log_file.ulg>
 make posix_sitl_default
 ```
   This will create the output in a separate build directory
-  `build_posix_sitl_default_replay` (so that the parameters don't interfere with
+  `build/posix_sitl_default_replay` (so that the parameters don't interfere with
   normal builds). It's possible to choose any posix SITL build target for
   replay, the build system knows through the `replay` environment variable that
   it's in replay mode.
 - Add ORB publisher rules file in
-  `build_posix_sitl_default_replay/tmp/rootfs/orb_publisher.rules`.
+  `build/posix_sitl_default_replay/tmp/rootfs/orb_publisher.rules`.
   This file defines which module is allowed to publish which messages. It has
   the following format:
 ```
@@ -63,7 +63,7 @@ ignore_others: true
   to be disabled for replay.
 
 - Optional: setup parameter overrides in the file
-  `build_posix_sitl_default_replay/tmp/rootfs/replay_params.txt`.
+  `build/posix_sitl_default_replay/tmp/rootfs/replay_params.txt`.
   This file should contain a list of `<param_name> <value>`, like:
 ```
 EKF2_GB_NOISE 0.001
@@ -128,7 +128,7 @@ The parameters can be adjusted as well. They can be extracted from the log with
 \(install pyulog with `sudo pip install pyulog` first\):
 
 ```
-ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build_posix_sitl_default_replay/tmp/rootfs/replay_params.txt
+ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build/posix_sitl_default_replay/tmp/rootfs/replay_params.txt
 ```
 Then edit the parameters in the file as needed and restart the replay process
 with `make posix none`. This will create a new log file.

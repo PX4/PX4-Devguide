@@ -48,9 +48,9 @@ make px4fmu-v2_default
 ```sh
 [100%] Linking CXX executable firmware_nuttx
 [100%] Built target firmware_nuttx
-Scanning dependencies of target build_firmware_px4fmu-v2
+Scanning dependencies of target build/firmware_px4fmu-v2
 [100%] Generating nuttx-px4fmu-v2-default.px4
-[100%] Built target build_firmware_px4fmu-v2
+[100%] Built target build/firmware_px4fmu-v2
 ```
 
 通过在命令后面添加‘upload’，编译的二进制程序就会通过USB上传到飞控硬件:
@@ -85,7 +85,7 @@ cd Firmware
 make posix_rpi2_release # for cross-compiler build
 ```
 
-"mainapp"可执行文件位于目录build_posix_rpi2_release/src/firmware/posix下。 将其复制到RPi（用你的RPi的IP或主机名替换YOUR_PI，关于如何访问你的RPi，查看[介绍](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start))
+"mainapp"可执行文件位于目录build/posix_rpi2_release/src/firmware/posix下。 将其复制到RPi（用你的RPi的IP或主机名替换YOUR_PI，关于如何访问你的RPi，查看[介绍](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start))
 
 然后使用以下命令设置你的RPi的IP（或主机名）：
 
@@ -116,11 +116,11 @@ cd Firmware
 make posix_rpi_native # for native build
 ```
 
-“px4”可执行文件位于目录build_posix_rpi_native/src/firmware/posix中。直接运行：
+“px4”可执行文件位于目录build/posix_rpi_native/src/firmware/posix中。直接运行：
 
 
 ```sh
-sudo ./build_posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
+sudo ./build/posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
 ```
 
 px4成功执行的情况如下：
@@ -382,8 +382,8 @@ Windows平台下的Qt Creator开发目前也没经过详细测试。
 
 ```sh
 cd ~/src/Firmware
-mkdir build_creator
-cd build_creator
+mkdir build/creator
+cd build/creator
 cmake .. -G "CodeBlocks - Unix Makefiles"
 ```
 
