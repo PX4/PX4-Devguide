@@ -22,7 +22,7 @@ make posix_sitl_replay replay logfile=<absolute_path_to_log_file>/my_log_file.px
 해당 명령이 실행되면 replay할 로그 파일의 위치와 이름을 검사합니다.
 이 파일은 다음 위치에 있어야 합니다.
 ```
-<path to Firmware>/build_posix_sitl_replay/src/firmware/posix/rootfs/
+<path to Firmware>/build/posix_sitl_replay/src/firmware/posix/rootfs/
 ```
 출력 replay 파일을 **replay_replayed.px4log** 라고 부릅니다. estimator 성능을 분석하는데 사용할 수 있습니다.
 

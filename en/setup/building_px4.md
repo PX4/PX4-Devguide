@@ -57,9 +57,9 @@ A successful run will end with this output:
 ```sh
 [100%] Linking CXX executable firmware_nuttx
 [100%] Built target firmware_nuttx
-Scanning dependencies of target build_firmware_px4fmu-v2
+Scanning dependencies of target build/firmware_px4fmu-v2
 [100%] Generating nuttx-px4fmu-v2-default.px4
-[100%] Built target build_firmware_px4fmu-v2
+[100%] Built target build/firmware_px4fmu-v2
 ```
 
 The following list shows the build commands for common boards:
@@ -113,7 +113,7 @@ cd Firmware
 make posix_rpi_cross # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory **build_posix_rpi_cross/src/firmware/posix**.
+The "px4" executable file is in the directory **build/posix_rpi_cross/src/firmware/posix**.
 Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
 Then set the IP (or hostname) of your RPi using:
@@ -144,11 +144,11 @@ cd Firmware
 make posix_rpi_native # for native build
 ```
 
-The "px4" executable file is in the directory build_posix_rpi_native/src/firmware/posix.
+The "px4" executable file is in the directory build/posix_rpi_native/src/firmware/posix.
 Run it directly with:
 
 ```sh
-sudo ./build_posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
+sudo ./build/posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
 ```
 
 A successful build followed by executing px4 will give you something like this:
@@ -394,9 +394,9 @@ Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Gene
 
 ```sh
 cd ~/src/Firmware
-mkdir build_creator
-cd build_creator
-cmake .. -G "CodeBlocks - Unix Makefiles"
+mkdir -p build/creator
+cd build/creator
+cmake ../.. -G "CodeBlocks - Unix Makefiles"
 ```
 
 That's it! Start Qt Creator, then complete the steps in the video below to set up the project to build.

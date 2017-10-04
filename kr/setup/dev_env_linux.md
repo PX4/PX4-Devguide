@@ -157,8 +157,8 @@ ln -s <CLANG_DIR>/bin/clang++ <GCC_DIR>/bin/clang++
 export PATH=<GCC_DIR>/bin:$PATH
 
 cd <PATH-TO-PX4-SRC>
-mkdir build_posix_rpi_cross_clang
-cd build_posix_rpi_cross_clang
+mkdir build/posix_rpi_cross_clang
+cd build/posix_rpi_cross_clang
 cmake \
 -G"Unix Makefiles" \
 -DCONFIG=posix_rpi_cross \

@@ -50,7 +50,7 @@ ROS로 SITL을 포함시킬려면 ROS 환경의 업데이트가 필요합니다.
 cd <Firmware_clone>
 make posix_sitl_default gazebo
 source ~/catkin_ws/devel/setup.bash    // (optional)
-source Tools/setup_gazebo.bash $(pwd) $(pwd)/build_posix_sitl_default
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 posix_sitl.launch
@@ -96,7 +96,7 @@ INFO  Waiting for initial data on UDP. Please start the flight simulator to proc
 
 ```sh
 cd <Firmware_clone>
-source Tools/setup_gazebo.bash $(pwd) $(pwd)/build_posix_sitl_default
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
 ```
 
 ROS와 동작할 때와 Iris 쿼드콥터 모델을 삽입할때처럼 이제 Gazebo를 구동시킵니다. 일단 Iris가 로드되면 자동으로 px4 app에 연결될 것입니다.

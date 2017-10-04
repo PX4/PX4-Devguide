@@ -32,7 +32,7 @@ make posix_sitl_replay replay logfile=<absolute_path_to_log_file>/my_log_file.px
 文件夹应该在
 
 ```
-<path to Firmware>/build_posix_sitl_replay/src/firmware/posix/rootfs/
+<path to Firmware>/build/posix_sitl_replay/src/firmware/posix/rootfs/
 ```
 输出重放文件夹称为 **replay_replayed.px4log**，可以用来分析估计器的性能。
 

@@ -44,9 +44,9 @@ make px4fmu-v2_default
 ```sh
 [100%] Linking CXX executable firmware_nuttx
 [100%] Built target firmware_nuttx
-Scanning dependencies of target build_firmware_px4fmu-v2
+Scanning dependencies of target build/firmware_px4fmu-v2
 [100%] Generating nuttx-px4fmu-v2-default.px4
-[100%] Built target build_firmware_px4fmu-v2
+[100%] Built target build/firmware_px4fmu-v2
 ```
 
 명령에 'upload'을 추가하면 컴파일된 바이너리를 USB를 통해 autopilot 하드웨어에 upload됩니다. :
@@ -75,7 +75,7 @@ cd Firmware
 make posix_rpi_cross # for cross-compiler build
 ```
 
-build_posix_rpi_cross/src/firmware/posix 디렉토리에 실행가능한 "px4" 파일이 있습니다.
+build/posix_rpi_cross/src/firmware/posix 디렉토리에 실행가능한 "px4" 파일이 있습니다.
 RPi를 ssh로 연결할 수 있는지 확인합니다. [RPi에 접근하는 방법](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start)를 참고합니다.
 
 다음으로 RPi의 IP(혹은 hostname)를 다음과 같이 설정 :
@@ -106,11 +106,11 @@ cd Firmware
 make posix_rpi_native # for native build
 ```
 
-build_posix_rpi_native/src/firmware/posix 디렉토리에 실행가능한 "px4" 파일이 있습니다.
+build/posix_rpi_native/src/firmware/posix 디렉토리에 실행가능한 "px4" 파일이 있습니다.
 직접 실행하기 :
 
 ```sh
-sudo ./build_posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
+sudo ./build/posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
 ```
 
 px4 실행이 성공적으로 되면 다음과 같은 메시지가 나옵니다 :
@@ -341,8 +341,8 @@ Qt Creator를 시작하기 전에, [project file](https://cmake.org/Wiki/CMake_G
 
 ```sh
 cd ~/src/Firmware
-mkdir build_creator
-cd build_creator
+mkdir build/creator
+cd build/creator
 cmake .. -G "CodeBlocks - Unix Makefiles"
 ```
 

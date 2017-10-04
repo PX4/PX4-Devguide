@@ -86,7 +86,7 @@ make posix_sitl_lpe jmavsim___gdb
 
 ```sh
 make posix_sitl_lpe	# Configure with cmake
-make -C build_posix_sitl_lpe jmavsim___gdb
+make -C build/posix_sitl_lpe jmavsim___gdb
 ```
 
 빌드 디렉토리에서 make target 가능한 모든 목록을 보고 싶다면 :
@@ -118,5 +118,5 @@ export PX4_NO_OPTIMIZATION='px4;^modules__uORB;^modules__systemlib$'
 이 정규표현으로 매치시킬 수 있는 타겟을 아래 명령으로 출력 :
 
 ```sh
-make -C build_posix_sitl_* list_cmake_targets
+make -C build/posix_sitl_* list_cmake_targets
 ```
