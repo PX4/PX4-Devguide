@@ -92,7 +92,7 @@ make posix gazebo_rover
 ![](../../assets/gazebo/rover.png)
 
 
-### HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#ugv}
+### HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#uuv}
 
 ```sh
 make posix_sitl_default gazebo_hippocampus
