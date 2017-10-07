@@ -33,7 +33,7 @@ fi
 echo "Installing common dependencies"
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update
-sudo apt-get install python-argparse git git-core wget zip python-empy cmake build-essential genromfs -y
+sudo apt-get install python-argparse git git-core wget zip python-empy python-numpy cmake build-essential genromfs -y
 # required python packages
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip -y
