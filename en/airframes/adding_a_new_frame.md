@@ -18,16 +18,17 @@ All configurations are stored in the [ROMFS/px4fmu_common/init.d](https://github
 
 ### Config file
 
-A typical configuration file is below.
+A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/3033_wingwing)) .
 
 ```bash
 #!nsh
 #
 # @name Wing Wing (aka Z-84) Flying Wing
 #
-# @url https://pixhawk.org/platforms/planes/z-84_wing_wing
+# @url https://docs.px4.io/en/framebuild_plane/wing_wing_z84.html
 #
 # @type Flying Wing
+# @class Plane
 #
 # @output MAIN1 left aileron
 # @output MAIN2 right aileron
@@ -48,7 +49,8 @@ then
 	param set FW_AIRSPD_MAX 15
 	param set FW_AIRSPD_MIN 10
 	param set FW_AIRSPD_TRIM 13
-	param set FW_ATT_TC 0.3
+	param set FW_R_TC 0.3
+	param set FW_P_TC 0.3
 	param set FW_L1_DAMPING 0.74
 	param set FW_L1_PERIOD 16
 	param set FW_LND_ANG 15
@@ -71,7 +73,7 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-IMPORTANT REMARK: If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
+> **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
 ### Mixer file
 

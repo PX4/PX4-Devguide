@@ -62,7 +62,7 @@
 * [Airframes](airframes/README.md)
   * [Unified Codebase](airframes/architecture.md)
   * [Airframes Reference](airframes/airframe_reference.md)
-  * [Adding a new Airframe](airframes/adding_a_new_frame.md)
+  * [Adding a New Airframe](airframes/adding_a_new_frame.md)
   * [Multicopters](airframes_multicopter/README.md)
     * [DJI Flamewheel 450 with RTK](airframes_multicopter/dji_flamewheel_450.md)
     * [QAV 250 Racer](airframes_multicopter/qav250.md)

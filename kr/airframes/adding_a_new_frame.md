@@ -26,9 +26,10 @@ airframe 설정은 3개 주요 블록으로 구성 :
 #
 # @name Wing Wing (aka Z-84) Flying Wing
 #
-# @url https://pixhawk.org/platforms/planes/z-84_wing_wing
+# @url https://docs.px4.io/en/framebuild_plane/wing_wing_z84.html
 #
 # @type Flying Wing
+# @class Plane
 #
 # @output MAIN1 left aileron
 # @output MAIN2 right aileron
@@ -49,7 +50,8 @@ then
 	param set FW_AIRSPD_MAX 15
 	param set FW_AIRSPD_MIN 10
 	param set FW_AIRSPD_TRIM 13
-	param set FW_ATT_TC 0.3
+	param set FW_R_TC 0.3
+	param set FW_P_TC 0.3
 	param set FW_L1_DAMPING 0.74
 	param set FW_L1_PERIOD 16
 	param set FW_LND_ANG 15
@@ -72,7 +74,7 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-중요 : 채널을 reverse시킬 때, RC 트랜스미터나 `RC1_REV`로 절대로 바꾸지 마세요. 채널은 매뉴얼 모드로 비행할 때만 reverse되므로 만약 autopilot flight mode로 변환되면, 채널 출력이 잘못된 상태로 남게 됩니다.(RC 시그널만 반대로 변환) 따라서 채널을 올바르게 할당하려면, `PWM_MAIN_REV1`으로 PWM 신호를 변경하거나 믹서에서 출력 스케일링과 출력 범위를 변경하여야 합니다. (아래 참고)
+> **Warning** 채널을 reverse시킬 때, RC 트랜스미터나 `RC1_REV`로 절대로 바꾸지 마세요. 채널은 매뉴얼 모드로 비행할 때만 reverse되므로 만약 autopilot flight mode로 변환되면, 채널 출력이 잘못된 상태로 남게 됩니다.(RC 시그널만 반대로 변환) 따라서 채널을 올바르게 할당하려면, `PWM_MAIN_REV1`으로 PWM 신호를 변경하거나 믹서에서 출력 스케일링과 출력 범위를 변경하여야 합니다. (아래 참고)
 
 ### 믹서 파일
 
