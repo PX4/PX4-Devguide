@@ -23,6 +23,7 @@ yum groupinstall “Development Tools”
 yum install python-setuptools python-numpy
 easy_install pyserial
 easy_install pexpect
+easy_install toml
 yum install openocd libftdi-devel libftdi-python python-argparse flex bison-devel ncurses-devel ncurses-libs autoconf texinfo libtool zlib-devel cmake
 ```
 
@@ -62,7 +63,8 @@ sudo yum install glibc.i686 ncurses-libs.i686
 Ensure you have the multilib repository enabled.
 
 ```sh
-sudo pacman -S base-devel lib32-glibc git-core python-pyserial python-numpy zip vim
+sudo pacman -S base-devel lib32-glibc git-core python-pyserial python-numpy python-pip zip vim
+pip install --user toml
 ```
 
 Install [yaourt](https://wiki.archlinux.org/index.php/Yaourt#Installation), the package manager for the [Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository).

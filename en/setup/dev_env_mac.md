@@ -29,7 +29,7 @@ Install pip if you don't already have it and use it to install the required pack
 
 ```sh
 sudo easy_install pip
-sudo -H pip install pyserial empy numpy pandas jinja2
+sudo -H pip install pyserial empy toml numpy pandas jinja2
 ```
 
 <!-- import docs for other tools and next steps. -->
