@@ -31,9 +31,10 @@ PX4使用存储的配置作为机型的起始点。添加配置是非常简单�
 #
 # @name Wing Wing (aka Z-84) Flying Wing
 #
-# @url https://pixhawk.org/platforms/planes/z-84_wing_wing
+# @url https://docs.px4.io/en/framebuild_plane/wing_wing_z84.html
 #
 # @type Flying Wing
+# @class Plane
 #
 # @output MAIN1 left aileron
 # @output MAIN2 right aileron
@@ -54,7 +55,8 @@ then
 	param set FW_AIRSPD_MAX 15
 	param set FW_AIRSPD_MIN 10
 	param set FW_AIRSPD_TRIM 13
-	param set FW_ATT_TC 0.3
+	param set FW_R_TC 0.3
+	param set FW_P_TC 0.3
 	param set FW_L1_DAMPING 0.74
 	param set FW_L1_PERIOD 16
 	param set FW_LND_ANG 15
@@ -76,7 +78,7 @@ set MIXER wingwing
 set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
-> **注意事项：如果要反转通道，请勿在RC遥控器发射器或者RC1_REV上进行。通道只会在以手动模式飞行时反转，当你切换到一个自驾仪飞行模式时，通道输出仍然会出错(只会反转遥控器信号)。因此，为了正确地分配通道，可以使用PWM_MAIN_REV1(例如通道1)改变PWM的值，或者更改相应混控器中输出缩放值和输出 范围的符号(如下图)。
+> **Warning** 如果要反转通道，请勿在RC遥控器发射器或者RC1_REV上进行。通道只会在以手动模式飞行时反转，当你切换到一个自驾仪飞行模式时，通道输出仍然会出错(只会反转遥控器信号)。因此，为了正确地分配通道，可以使用PWM_MAIN_REV1(例如通道1)改变PWM的值，或者更改相应混控器中输出缩放值和输出 范围的符号(如下图)。
 
 ### 混控器文件
 
