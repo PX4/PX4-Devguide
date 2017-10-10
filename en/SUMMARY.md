@@ -70,7 +70,6 @@
     * [QAV-R](airframes_multicopter/qav-r.md)
     * [QAV-R 5" KISS ESC Racer](airframes_multicopter/qav-r-5-kiss-esc-racer.md)
   * [Planes](airframes_plane/README.md)
-    * [Wing Wing Z-84](airframes_plane/wing_z_84.md)
   * [VTOL](airframes_vtol/README.md)
     * [VTOL Testing](airframes_vtol/testing.md)
 * [Companion Computers](companion_computer/README.md)
