@@ -11,6 +11,10 @@
 ## - NuttX toolchain (i.e. gcc compiler)
 ## - PX4/Firmware source (to ~/src/Firmware/)
 
+# Preventing sudo timeout https://serverfault.com/a/833888
+trap "exit" INT TERM; trap "kill 0" EXIT; sudo -v || exit $?; sleep 1; while true; do sleep 60; sudo -nv; done 2>/dev/null &
+
+
 # Ubuntu Config
 sudo apt-get remove modemmanager -y
 
@@ -83,7 +87,7 @@ sudo apt-get update
 ## Install Gazebo8
 sudo apt-get install gazebo8 -y
 ## For developers (who work on top of Gazebo) one extra package
-sudo apt-get install libgazebo8-dev
+sudo apt-get install libgazebo8-dev -y
 
 
 # NuttX
@@ -92,8 +96,8 @@ sudo apt-get install python-serial openocd \
     libftdi-dev libtool zlib1g-dev -y
 
 # Clean up old GCC
-sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
-sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
+sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded -y
+sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa -y
 
 
 
@@ -116,8 +120,8 @@ else
     # Install 32 bit support libraries (ignore if fails)
     sudo dpkg --add-architecture i386
     sudo apt-get update
-    sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386
-    sudo apt-get install gcc-5.4-base:i386
+    sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386 -y
+    sudo apt-get install gcc-5.4-base:i386 -y
 fi
 
 

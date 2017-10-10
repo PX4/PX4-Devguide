@@ -10,6 +10,10 @@
 ## - Gazebo8 simulator
 ## - PX4/Firmware source (to ~/src/Firmware/)
 
+# Preventing sudo timeout https://serverfault.com/a/833888
+trap "exit" INT TERM; trap "kill 0" EXIT; sudo -v || exit $?; sleep 1; while true; do sleep 60; sudo -nv; done 2>/dev/null &
+
+
 # Ubuntu Config
 sudo apt-get remove modemmanager -y
 
@@ -82,7 +86,7 @@ sudo apt-get update -y
 ## Install Gazebo8
 sudo apt-get install gazebo8 -y
 ## For developers (who work on top of Gazebo) one extra package
-sudo apt-get install libgazebo8-dev
+sudo apt-get install libgazebo8-dev -y
 
 
 # Clone PX4/Firmware

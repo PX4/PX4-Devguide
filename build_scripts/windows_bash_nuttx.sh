@@ -9,6 +9,10 @@
 ## - NuttX toolchain (i.e. 64 bit version of gcc compiler)
 ## - PX4/Firmware source (to ~/src/Firmware/)
 
+# Preventing sudo timeout https://serverfault.com/a/833888
+trap "exit" INT TERM; trap "kill 0" EXIT; sudo -v || exit $?; sleep 1; while true; do sleep 60; sudo -nv; done 2>/dev/null &
+
+
 # Ninja build system
 ninja_dir=$HOME/ninja
 echo "Installing Ninja to: $ninja_dir."
@@ -76,8 +80,8 @@ fi
 
 
 # Clean up old GCC
-sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
-sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
+sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded -y
+sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa -y
 
 # Install GCC 5.4
 gcc_dir=$HOME/gcc-arm-none-eabi-5_4-2017q2
@@ -99,8 +103,8 @@ else
     # Install 32 bit support libraries (ignore if fails)
     sudo dpkg --add-architecture i386
     sudo apt-get update
-    sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386
-    sudo apt-get install gcc-5.4-base:i386
+    sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386 -y
+    sudo apt-get install gcc-5.4-base:i386 -y
 fi
 
 
