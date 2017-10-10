@@ -26,7 +26,7 @@ Then follow the instructions for your development target in the sections below.
 
 To install the development toolchain:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build/scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
 1. Run the script in a bash shell:
    ```bash
    source ubuntu_sim_nuttx.sh
