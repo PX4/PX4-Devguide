@@ -63,7 +63,6 @@
     * [Matrice 100](airframes_multicopter/matrice100.md)
     * [QAV-R](airframes_multicopter/qav-r.md)
   * [Planes](airframes_plane/README.md)
-    * [Wing Wing Z-84](airframes_plane/wing_z_84.md)
   * [VTOL](airframes_vtol/README.md)
     * [VTOL 테스팅](airframes_vtol/testing.md)
 * [컴패니온 컴퓨터](companion_computer/README.md)
