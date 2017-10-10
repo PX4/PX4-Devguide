@@ -58,7 +58,6 @@
   * [参考机型](airframes/airframe_reference.md)
   * [添加一个新的机型](airframes/adding_a_new_frame.md)
   * [多旋翼](airframes_multicopter/README.md)
-    * [DJI Flamewheel 450 with RTK](airframes_multicopter/dji_flamewheel_450.md)
     * [Matrice 100](airframes_multicopter/matrice100.md)
     * [QAV-R](airframes_multicopter/qav-r.md)
   * [直升机](airframes_plane/README.md)
