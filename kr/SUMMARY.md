@@ -59,7 +59,6 @@
   * [새로운 Airframe 추가하기](airframes/adding_a_new_frame.md)
   * [멀티콥터](airframes_multicopter/README.md)
     * [RTK 장착 DJI Flamewheel 450](airframes_multicopter/dji_flamewheel_450.md)
-    * [QAV 250 Racer](airframes_multicopter/qav250.md)
     * [Matrice 100](airframes_multicopter/matrice100.md)
     * [QAV-R](airframes_multicopter/qav-r.md)
   * [Planes](airframes_plane/README.md)
