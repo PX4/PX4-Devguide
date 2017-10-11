@@ -63,10 +63,6 @@
   * [Unified Codebase](airframes/architecture.md)
   * [Airframes Reference](airframes/airframe_reference.md)
   * [Adding a New Airframe](airframes/adding_a_new_frame.md)
-  * [Multicopters](airframes_multicopter/README.md)
-  * [Planes](airframes_plane/README.md)
-  * [VTOL](airframes_vtol/README.md)
-    * [VTOL Testing](airframes_vtol/testing.md)
 * [Companion Computers](companion_computer/README.md)
   * [Pixhawk family companion](companion_computer/pixhawk_companion.md)
 * [Robotics using DroneKit](dronekit/README.md)
@@ -120,6 +116,7 @@
   * [Continuous Integration](test_and_ci/continous_integration.md)
     * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
   * [Maintenance](test_and_ci/maintenance.md)
+  * [VTOL Testing](airframes_vtol/testing.md)
 * [Datalinks](datalinks.md)
   * [SiK Radio](sik-radio.md)
 
