@@ -57,11 +57,6 @@
   * [통합 코드](airframes/architecture.md)
   * [Airframes 레퍼런스](airframes/airframe_reference.md)
   * [새로운 Airframe 추가하기](airframes/adding_a_new_frame.md)
-  * [멀티콥터](airframes_multicopter/README.md)
-    * [Matrice 100](airframes_multicopter/matrice100.md)
-  * [Planes](airframes_plane/README.md)
-  * [VTOL](airframes_vtol/README.md)
-    * [VTOL 테스팅](airframes_vtol/testing.md)
 * [컴패니온 컴퓨터](companion_computer/README.md)
   * [Pixhawk 계열](companion_computer/pixhawk_companion.md)
 * [DroneKit사용 로보틱스](dronekit/README.md)
@@ -116,6 +111,7 @@
   * [지속통합](test_and_ci/continous_integration.md)
     * [Jenkins 지속통합](test_and_ci/jenkins_ci.md)
   * [유지보수](test_and_ci/maintenance.md)
+  * [VTOL 테스팅](airframes_vtol/testing.md)
 
 
 
