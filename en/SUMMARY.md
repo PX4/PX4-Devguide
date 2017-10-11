@@ -64,8 +64,6 @@
   * [Airframes Reference](airframes/airframe_reference.md)
   * [Adding a New Airframe](airframes/adding_a_new_frame.md)
   * [Multicopters](airframes_multicopter/README.md)
-    * [Matrice 100](airframes_multicopter/matrice100.md)
-    * [QAV-R 5" KISS ESC Racer](airframes_multicopter/qav-r-5-kiss-esc-racer.md)
   * [Planes](airframes_plane/README.md)
   * [VTOL](airframes_vtol/README.md)
     * [VTOL Testing](airframes_vtol/testing.md)

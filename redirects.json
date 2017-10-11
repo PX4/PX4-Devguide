@@ -1,6 +1,14 @@
 {
     "redirects": [
-    
+
+            {
+                "from": "en/airframes_multicopter/qav-r-5-kiss-esc-racer.html",
+                "to": "https://docs.px4.io/en/frames_multicopter/qav_r_5_kiss_esc_racer.html"
+            },
+            {
+                "from": "en/airframes_multicopter/matrice100.html",
+                "to": "https://docs.px4.io/en/frames_multicopter/matrice100.html"
+            },
             {
                 "from": "en/airframes_multicopter/dji_flamewheel_450.html",
                 "to": "https://docs.px4.io/en/frames_multicopter/dji_flamewheel_450.html"
