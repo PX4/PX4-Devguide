@@ -1,10 +1,10 @@
-# Adding a new Airframe Configuration
+# Adding a New Airframe Configuration
 
 PX4 uses canned configurations as starting point for airframes. Adding a configuration is straightforward: Create a new file which is prepended with a free autostart ID in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) and [build and upload](../setup/building_px4.md) the software.
 
 Developers not wanting to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../advanced/system_startup.md) page.
 
-## Airframe configurations
+## Airframe Configurations
 
 An airframe configuration consists of three main blocks:
 
@@ -16,7 +16,7 @@ These three aspects are mostly independent, which means that many configurations
 
 All configurations are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. All mixers are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
-### Config file
+### Config File
 
 A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/3033_wingwing)) .
 
@@ -75,7 +75,7 @@ set PWM_DISARMED 1000
 
 > **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
-### Mixer file
+### Mixer File
 
 A typical configuration file is below. Note that the mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code. 
 
@@ -162,8 +162,21 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ```
 
-### Getting the new airframe to show in QGroundControl
+
+
+## VTOL-specific Configuration
+
+### Key Configuration Parameters
+
+These configuration parameters have to be set correctly when creating a new VTOL airframe configuration.
+
+* `VT_FW_PERM_STAB` the system always uses attitude stabilization in hover mode. If this parameter is set to 1, the plane mode also defaults to attitude stabilization. If it is set to 0, it defaults to pure manual flight.
+* `VT_ARSP_TRANS` is the airspeed in m/s at which the plane transitions into forward flight. Setting it too low can cause a stall during the transition.
+* `RC_MAP_TRANS_SW` should be assigned to a RC switch before flight. This allows you to check if the multicopter- and fixed wing mode work properly. (Can also be used to switch manually between those two control modes during flight)
+
+
+## Getting a New Airframe to Show in QGroundControl
 
 The airframe meta data is bundled in the .px4 firmware file (which is a zipped JSON file).
 
-> **Note** Ensure to flash the resulting .px4 file in QGroundControl (custom file option) to load the meta data into the application. The new airframe will then be available in the user interface once you restart QGroundControl.
+> **Note** Flash the resulting **.px4** file in *QGroundControl* (custom file option) to load the meta data into the application. The new airframe will then be available in the user interface once you restart *QGroundControl*.
