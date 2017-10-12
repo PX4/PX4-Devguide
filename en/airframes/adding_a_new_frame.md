@@ -10,7 +10,7 @@ An airframe configuration consists of three main blocks:
 
   * The apps it should start, e.g. multicopter or fixed wing controllers
   * The physical configuration of the system (e.g. a plane, wing or multicopter). This is called a [mixer](../concept/mixing.md).
-  * Tuning gains
+  * Vehicle-specific parameter settings, including [tuning gains](#tuning-gains).
 
 These three aspects are mostly independent, which means that many configurations share the same physical layout of the airframe and start the same applications and most differ in their tuning gains.
 
@@ -43,7 +43,7 @@ The first section is the airframe documentation. This is used in the [Airframes 
 #
 ```
 
-The next section specifies tuning gains and other parameters:
+The next section specifies vehicle-specific parameters, including [tuning gains](#tuning-gains):
 ```bash
 sh /etc/init.d/rc.fw_defaults
 
