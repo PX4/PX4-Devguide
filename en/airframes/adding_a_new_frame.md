@@ -20,6 +20,7 @@ All configurations are stored in the [ROMFS/px4fmu_common/init.d](https://github
 
 A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/3033_wingwing)) .
 
+The first section is the airframe documentation. This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
 ```bash
 #!nsh
 #
@@ -40,7 +41,10 @@ A typical configuration file is shown below ([original file here](https://github
 #
 # @maintainer Lorenz Meier <lorenz@px4.io>
 #
+```
 
+The next section specifies tuning gains and other parameters:
+```bash
 sh /etc/init.d/rc.fw_defaults
 
 if [ $AUTOCNF == yes ]
@@ -63,11 +67,21 @@ then
 	param set FW_RR_FF 0.6
 	param set FW_RR_P 0.04
 fi
+```
 
+Set frame type:
+```bash
 # Configure this as plane
 set MAV_TYPE 1
+```
+
+Set the mixer:
+```bash
 # Set mixer
 set MIXER wingwing
+```
+
+```bash
 # Provide ESC a constant 1000 us pulse
 set PWM_OUT 4
 set PWM_DISARMED 1000
@@ -75,9 +89,10 @@ set PWM_DISARMED 1000
 
 > **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
+
 ### Mixer File
 
-A typical configuration file is below. Note that the mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code. 
+A typical mixer file is below. Note that the mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code. 
 
 > **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
@@ -163,16 +178,14 @@ S: 0 3      0  20000 -10000 -10000  10000
 ```
 
 
+## Tuning Gains
 
-## VTOL-specific Configuration
+The following *PX4 User Guide* topics explain tune the parameters that will be specified in the config file:
 
-### Key Configuration Parameters
+* [Multicopter PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
+* [Fixed Wing PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
+* [VTOL Configuration](https://docs.px4.io/en/config_vtol/)
 
-These configuration parameters have to be set correctly when creating a new VTOL airframe configuration.
-
-* `VT_FW_PERM_STAB` the system always uses attitude stabilization in hover mode. If this parameter is set to 1, the plane mode also defaults to attitude stabilization. If it is set to 0, it defaults to pure manual flight.
-* `VT_ARSP_TRANS` is the airspeed in m/s at which the plane transitions into forward flight. Setting it too low can cause a stall during the transition.
-* `RC_MAP_TRANS_SW` should be assigned to a RC switch before flight. This allows you to check if the multicopter- and fixed wing mode work properly. (Can also be used to switch manually between those two control modes during flight)
 
 
 ## Getting a New Airframe to Show in QGroundControl
