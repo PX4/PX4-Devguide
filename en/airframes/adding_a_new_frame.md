@@ -1,22 +1,23 @@
 # Adding a New Airframe Configuration
 
-PX4 uses canned configurations as starting point for airframes. Adding a configuration is straightforward: Create a new file which is prepended with a free autostart ID in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) and [build and upload](../setup/building_px4.md) the software.
+PX4 uses canned airframe configurations as starting point for airframes. The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
-Developers not wanting to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../advanced/system_startup.md) page.
+Adding a configuration is straightforward: create a new config file in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (prepend the filename with an unused autostart ID), then [build and upload](../setup/building_px4.md) the software.
 
-## Airframe Configurations
+Developers who do not want to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../advanced/system_startup.md) page.
 
-An airframe configuration consists of three main blocks:
+## Configuration File Overview
 
-  * The apps it should start, e.g. multicopter or fixed wing controllers
-  * The physical configuration of the system (e.g. a plane, wing or multicopter). This is called a [mixer](../concept/mixing.md).
-  * Vehicle-specific parameter settings, including [tuning gains](#tuning-gains).
+The configuration in the config and mixer files consists of several main blocks:
 
-These three aspects are mostly independent, which means that many configurations share the same physical layout of the airframe and start the same applications and most differ in their tuning gains.
+* Airframe documentation (used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*).
+* Vehicle-specific parameter settings, including [tuning gains](#tuning-gains).
+* The controllers and apps it should start, e.g. multicopter or fixed wing controllers, land detectors etc.
+* The physical configuration of the system (e.g. a plane, wing or multicopter). This is called a [mixer](../concept/mixing.md).
 
-All configurations are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. All mixers are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
+These aspects are mostly independent, which means that many configurations share the same physical layout of the airframe, start the same applications and differ most in their tuning gains.
 
-### Config File
+### Config File {#config-file}
 
 A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/3033_wingwing)) .
 
@@ -69,18 +70,19 @@ then
 fi
 ```
 
-Set frame type:
+Set frame type ([MAV_TYPE](http://mavlink.org/messages/common#MAV_TYPE)):
 ```bash
 # Configure this as plane
 set MAV_TYPE 1
 ```
 
-Set the mixer:
+Set the [mixer](#mixer-file) to use:
 ```bash
 # Set mixer
 set MIXER wingwing
 ```
 
+Configure PWM outputs (specify the outputs to drive/activate, and the levels).
 ```bash
 # Provide ESC a constant 1000 us pulse
 set PWM_OUT 4
@@ -90,7 +92,7 @@ set PWM_DISARMED 1000
 > **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
 
-### Mixer File
+### Mixer File {#mixer-file}
 
 A typical mixer file is shown below (for general information about mixing see: [Concepts > Mixing](../concept/mixing.md)). 
 
