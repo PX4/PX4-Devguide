@@ -1,25 +1,27 @@
-# Adding a new Airframe Configuration
+# Adding a New Airframe Configuration
 
-PX4 uses canned configurations as starting point for airframes. Adding a configuration is straightforward: Create a new file which is prepended with a free autostart ID in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) and [build and upload](../setup/building_px4.md) the software.
+PX4 uses canned airframe configurations as starting point for airframes. The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
-Developers not wanting to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../advanced/system_startup.md) page.
+Adding a configuration is straightforward: create a new config file in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (prepend the filename with an unused autostart ID), then [build and upload](../setup/building_px4.md) the software.
 
-## Airframe configurations
+Developers who do not want to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../advanced/system_startup.md) page.
 
-An airframe configuration consists of three main blocks:
+## Configuration File Overview
 
-  * The apps it should start, e.g. multicopter or fixed wing controllers
-  * The physical configuration of the system (e.g. a plane, wing or multicopter). This is called mixer.
-  * Tuning gains
+The configuration in the config and mixer files consists of several main blocks:
 
-These three aspects are mostly independent, which means that many configurations share the same physical layout of the airframe and start the same applications and most differ in their tuning gains.
+* Airframe documentation (used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*).
+* Vehicle-specific parameter settings, including [tuning gains](#tuning-gains).
+* The controllers and apps it should start, e.g. multicopter or fixed wing controllers, land detectors etc.
+* The physical configuration of the system (e.g. a plane, wing or multicopter). This is called a [mixer](../concept/mixing.md).
 
-All configurations are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. All mixers are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
+These aspects are mostly independent, which means that many configurations share the same physical layout of the airframe, start the same applications and differ most in their tuning gains.
 
-### Config file
+### Config File {#config-file}
 
 A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/3033_wingwing)) .
 
+The first section is the airframe documentation. This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
 ```bash
 #!nsh
 #
@@ -40,7 +42,10 @@ A typical configuration file is shown below ([original file here](https://github
 #
 # @maintainer Lorenz Meier <lorenz@px4.io>
 #
+```
 
+The next section specifies vehicle-specific parameters, including [tuning gains](#tuning-gains):
+```bash
 sh /etc/init.d/rc.fw_defaults
 
 if [ $AUTOCNF == yes ]
@@ -63,11 +68,22 @@ then
 	param set FW_RR_FF 0.6
 	param set FW_RR_P 0.04
 fi
+```
 
+Set frame type ([MAV_TYPE](http://mavlink.org/messages/common#MAV_TYPE)):
+```bash
 # Configure this as plane
 set MAV_TYPE 1
+```
+
+Set the [mixer](#mixer-file) to use:
+```bash
 # Set mixer
 set MIXER wingwing
+```
+
+Configure PWM outputs (specify the outputs to drive/activate, and the levels).
+```bash
 # Provide ESC a constant 1000 us pulse
 set PWM_OUT 4
 set PWM_DISARMED 1000
@@ -75,9 +91,12 @@ set PWM_DISARMED 1000
 
 > **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
-### Mixer file
 
-A typical configuration file is below. Note that the mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code. 
+### Mixer File {#mixer-file}
+
+A typical mixer file is shown below (for general information about mixing see: [Concepts > Mixing](../concept/mixing.md)). 
+
+The mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code. 
 
 > **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
@@ -94,10 +113,10 @@ S: 0 1   6500   6500      0 -10000  10000
 
 Where each number from left to right means:
 
-  * M: Indicates two scalers for two inputs
-  * O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  If you want to invert your PWM signal, the signs of the output scalings has to be changed. (```O:      -10000  -10000      0 -10000  10000```)
-  * S: Indicates the first input scaler: It takes input from control group #0 (attitude controls) and the first input (roll). It scales the input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
-  * S: Indicates the second input scaler: It takes input from control group #0 (attitude controls) and the second input (pitch). It scales the input * 0.65 and reverts the sign (-0.65 becomes -6500 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
+* M: Indicates two scalers for two inputs
+* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  If you want to invert your PWM signal, the signs of the output scalings has to be changed. (```O:      -10000  -10000      0 -10000  10000```)
+* S: Indicates the first input scaler: It takes input from control group #0 (attitude controls) and the first input (roll). It scales the input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
+* S: Indicates the second input scaler: It takes input from control group #0 (attitude controls) and the second input (pitch). It scales the input * 0.65 and reverts the sign (-0.65 becomes -6500 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
 
 Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch, i.e., SERVO = (0.60 * roll) + (0.65 * pitch). As it is over-committed with 125% total deflection for maximum pitch and roll, it means the first channel (roll here) has priority over the second channel / scaler (pitch). 
 
@@ -162,8 +181,19 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ```
 
-### Getting the new airframe to show in QGroundControl
+
+## Tuning Gains
+
+The following *PX4 User Guide* topics explain tune the parameters that will be specified in the config file:
+
+* [Multicopter PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
+* [Fixed Wing PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
+* [VTOL Configuration](https://docs.px4.io/en/config_vtol/)
+
+
+
+## Getting a New Airframe to Show in QGroundControl
 
 The airframe meta data is bundled in the .px4 firmware file (which is a zipped JSON file).
 
-> **Note** Ensure to flash the resulting .px4 file in QGroundControl (custom file option) to load the meta data into the application. The new airframe will then be available in the user interface once you restart QGroundControl.
+> **Note** Flash the resulting **.px4** file in *QGroundControl* (custom file option) to load the meta data into the application. The new airframe will then be available in the user interface once you restart *QGroundControl*.
