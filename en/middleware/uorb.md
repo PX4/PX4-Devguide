@@ -142,7 +142,7 @@ The full API is documented in
 The following explains some common pitfalls and corner cases:
 - The topic is not published: make sure the `ORB_ID()`'s of each call match. It
   is also important that `orb_subscribe` and `orb_unsubscribe` are **called from
-  the same task** as `orb_publish`. This applies to `px4_task_spawn_cmd()`, but
+  the same task** as `orb_check` and `orb_copy`. This applies to `px4_task_spawn_cmd()`, but
   also when using work queues (`work_queue()`).
 - Make sure to clean up: use `orb_unsubscribe` and `orb_unadvertise`.
 - A successful `orb_check()` or `px4_poll()` call requires an `orb_copy()`,
