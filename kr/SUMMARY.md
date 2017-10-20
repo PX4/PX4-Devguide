@@ -120,4 +120,5 @@
 * [PX4 사용자 가이드](https://docs.px4.io/en/)
 * [QGroundControl 사용자 가이드](https://docs.qgroundcontrol.com/en/)
 * [QGroundControl 개발자 가이드](https://dev.qgroundcontrol.com/en/)
+* [DroneCore Guide](https://docs.dronecore.io/en/)
 * [MAVLink 개발자 가이드](https://mavlink.io/en/)
