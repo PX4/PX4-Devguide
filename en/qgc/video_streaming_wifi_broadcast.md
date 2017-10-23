@@ -195,7 +195,7 @@ See [wiki](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) article.
      * 1Gbps ethernet port
      * 3 UARTs
      * Very small form-factor
-     * Resistent to radio interference
+     * Resistant to radio interference
 
    Cons:
      * Small community
