@@ -1,31 +1,42 @@
 # Long-distance video streaming in QGroundControl
 
-This page shows how to set up a a companion computer with a camera (Logitech C920 or RaspberryPI camera) such that the video stream is transferred from UAV to a ground computer and displayed in the application QGroundControl that runs on this computer. This setup uses WiFi in unconnected (broadcast) mode.
+This page shows how to set up a companion computer with a camera (Logitech C920 or RaspberryPi camera) such that the video stream is transferred from the UAV to a ground computer and displayed in the QGroundControl application. This setup uses WiFi in unconnected (broadcast) mode.
 
 The whole hardware setup consists of the following parts:
 
 On TX (UAV) side:
-* NanoPI NEO2 (and/or Raspberry PI if use PI camera)
-* Logitech camera C920 or RaspberryPI camera
-* WiFi module  ALPHA AWUS051NH v2.
+* [NanoPI NEO2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180) (and/or Raspberry Pi if use Pi camera).
+* [Logitech camera C920](https://www.logitech.com/en-us/product/hd-pro-webcam-c920?crid=34) or [Raspberry Pi camera](https://www.raspberrypi.org/products/camera-module-v2/).
+* WiFi module  [ALPHA AWUS051NH v2](https://www.alfa.com.tw/products_show.php?pc=67&ps=241).
 
 On RX (group station side):
-* Any computer with Linux.
-* WiFi module with Ralink RT5572 chipset (CSL 300Mbit Stick or GWF-4M02)
+* Any computer with Linux. (Tested on Fedora 25 x86-64)
+* WiFi module with Ralink RT5572 chipset ([CSL 300Mbit Sticks](https://www.amazon.co.uk/high-performance-gold-plated-technology-Frequency-adjustable/dp/B00RTJW1ZM) or [GWF-4M02](http://en.ogemray.com/product/product.php?t=4M02)). OEM modules are cheap but you need to order them from China. CSL stick is expensive but available on ebay.
 
 
 ## Wifibroadcast
 
  - 1:1 map RTP to IEEE80211 packets for minimum latency (doesn't serialize to byte steam)
- - Smart FEC support (immediately yeild packet to video decoder if FEC pipeline without gaps)
+ - Smart FEC support (immediately yield packet to video decoder if FEC pipeline without gaps)
  - Stream encryption and authentication ([libsodium](https://download.libsodium.org/doc/))
  - Distributed operation. It can gather data from cards on different hosts. So you don't limited to bandwidth of single USB bus.
- - Aggreagation of mavlink packets. Doesn't send wifi packet for every mavlink packet.
- - Enhanced OSD https://github.com/svpcom/wifibroadcast_osd for Raspberry PI (consume 10% CPU on PI Zero)
+ - Aggregation of MAVLink packets. Doesn't send wifi packet for every MAVLink packet.
+ - Enhanced OSD https://github.com/svpcom/wifibroadcast_osd for Raspberry Pi (consume 10% CPU on Pi Zero)
 
 
 ## Theory:
+### Why normal wifi is a bad choice for long-distance video transfer
+ - Association: Video transmitter and receiver need to be associated. If one device looses association (for example due to too weak signal strength) the video transmission stops instantly.
 
+ - Two-way communication: Even if you are sending data only from source to sink a bi-directional data flow is required using wifi. The reason for this is that a wifi receiver needs to acknowledge the received packets. If the transmitter receives no acknowledgements it will drop the association. Therefore, you would need equally strong transmitters and antennas both on the aircraft and on the ground station. A setup with a strong transmitter in the air using an omnidirectional antenna and a weak device on the ground using a high-gain antenna is not possible with normal wifi.
+
+ - Rate control: Normal wifi connections switch automatically to a lower transmission rate if signal strength is too weak. Due to this it is possible that the (automatically) selected rate is too low to transfer the video data. This way the data would queue up and introduce an unpredictable latency that can be up to several seconds.
+
+ - One to one transfers: Unless you use broadcast frames or similar techniques a normal wifi data flow is a one to one connection. A scenario where a bystander just locks onto your “channel” as in analog video transmission to watch your stream is not easy to accomplish using traditional wifi.
+
+ - Limited diversity: Normal wifi limits you to the number of diversity streams that your wifi card offers.
+
+### What wifibroadcast makes different
 Wifibroadcast puts the wifi cards into monitor mode. This mode allows to send and receive arbitrary packets without association.
 This way a true unidirectional connection is established which mimics the advantageous properties of an analog link. Those are:
 
@@ -39,15 +50,13 @@ This way a true unidirectional connection is established which mimics the advant
 
  - Wifibroadcast uses Forward Error Correction to archive a high reliability at low bandwidth requirements. It is able to repair lost or corrupted packets at the receiver.
 
-
-
 ## Hardware modification.
 Alpha WUS051NH is a high power card and eats too much current while TX. If you power it from USB will reset port on most ARM boards.
 So you need to connect it to 5V BEC directly. You can do this two ways:
 
- 1. Make a custom usb cable.
- 2. Cut a 5V wire on PCB near usb port and wire it to BEC.
-    Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes.
+ 1. Make a custom usb cable. [You need to cut ``+5V`` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
+ 2. Cut a ``+5V`` wire on PCB near usb port and wire it to BEC. Don't do this if doubt. Use custom cable instead!
+    Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_(electricity)) when using several ground wires.
 
 ## Software setup
 
@@ -104,13 +113,14 @@ to decode video.
 
 ## Enhanced setup with RX antenna array, FPV goggles and OSD
 See [wiki](https://github.com/svpcom/wifibroadcast/wiki/enhanced-setup) article
+Using RX setup above (and ALPHA AWUS051NH v2 as TX) I was able to receive stable 1080p video on 1-2km in any copter pitch/roll angles.
 
 ## TODO
-1. Write user docs and make prebuild packages. Pull requests are welcome.
+1. Make prebuild packages. Pull requests are welcome.
 2. Do a flight test with different cards/antennas.
 3. Investigate how to set TX power without CRDA hacks.
 4. Tune FEC for optimal latency/redundancy.
-5. Inject packets with radio link RSSI to mavlink stream
+5. Inject packets with radio link RSSI to MAVLink stream
 
 
 ## FAQ
@@ -118,12 +128,12 @@ Q: What is a difference from original wifibroadcast?
 
 A: Original version of wifibroadcast use a byte-stream as input and splits it to packets of fixed size (1024 by default). If radio
 packet was lost and this is not corrected by FEC you'll got a hole at random (unexpected) place of stream. This is especially bad if
-data protocol is not resistent to (was not desired for) such random erasures. So i've rewrite it to use UDP as data source and pack one
+data protocol is not resistant to (was not desired for) such random erasures. So i've rewrite it to use UDP as data source and pack one
 source UDP packet into one radio packet. Radio packets now have variable size depends on payload size. This is reduces a video latency a lot.
 
 Q: What type of data can be transmitted using wifibroadcast?
 
-A: Any UDP with packet size <= 1466. For example x264 inside RTP or Mavlink.
+A: Any UDP with packet size <= 1466. For example x264 inside RTP or MAVLink.
 
 Q: What are transmission guarancies?
 
@@ -192,7 +202,7 @@ See [wiki](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) article.
      * 512MB SDRAM
      * No camera interface
 
- My choice is to use Pi Zero as camera board (encode video) and NEO2 as main UAV board (wifibroadcast, mavlink telemetry, etc)
+ My choice is to use Pi Zero as camera board (encode video) and NEO2 as main UAV board (wifibroadcast, MAVLink telemetry, etc)
 
 ## Links:
  -  [Original version](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) of wifibroadcast
