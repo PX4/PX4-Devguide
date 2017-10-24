@@ -135,11 +135,12 @@ This way a true unidirectional connection is established which mimics the advant
 - *Wifibroadcast* allows you to use several low cost receivers in parallel and combine their data to increase probability of correct data reception. This so-called software diversity allows you to use identical receivers to improve reliability as well as complementary receivers (think of one receiver with an omnidirectional antenna covering 360° and several directional antennas for high distance all working in parallel)
 - *Wifibroadcast* uses Forward Error Correction (FEC) to archive a high reliability at low bandwidth requirements. It is able to repair lost or corrupted packets at the receiver.
 
-#### What is a difference from original Wifibroadcast?
+#### How does the new Wifibroadcast differ from the original project?
 
-The original version of *Wifibroadcast* used a byte-stream as input and split it to packets of fixed size (1024 by default). If a radio
-packet was lost and this was not corrected by FEC you'll got a hole at random (unexpected) place in the stream. This is especially bad if the
-data protocol is not resistant to (was not designed for) such random erasures. 
+The [original version of wifibroadcast](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) shares the same name as the [current project](https://github.com/svpcom/wifibroadcast/wiki), but does not derive any code from it.
+
+The original version used a byte-stream as input and split it to packets of fixed size (1024 by default). If a radio
+packet was lost and this was not corrected by FEC you'll got a hole at random (unexpected) place in the stream. This is especially bad if the data protocol is not resistant to (was not designed for) such random erasures. 
 
 The new version has been rewritten to use UDP as data source and pack one source UDP packet into one radio packet. Radio packets now have variable size depends on payload size. This is reduces a video latency a lot.
 
@@ -175,10 +176,6 @@ Board | Pros  | Cons
 
 This article chose to use Pi Zero as camera board (encode video) and NEO2 as main UAV board (wifibroadcast, MAVLink telemetry, etc.)
 
-
-## Links
-
--  [Original version](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) of wifibroadcast
 
 ## TODO
 
