@@ -102,7 +102,7 @@ Copy ``rx.key`` to RX host and ``tx.key`` to TX host.
 
 ## Enhanced setup with RX antenna array, FPV goggles and OSD
 
-See [wiki](https://github.com/svpcom/wifibroadcast/wiki/enhanced-setup) article
+See [wiki](https://github.com/svpcom/wifibroadcast/wiki/enhanced-setup) article.
 Using RX setup above (and ALPHA AWUS051NH v2 as TX) I was able to receive stable 1080p video on 1-2km in any copter pitch/roll angles.
 
 
@@ -165,12 +165,12 @@ This can be due to:
 You can increase FEC block size (by default it is 8/12 - 8 data blocks and 4 FEC blocks), at the cost of increasing latency. Use additional RX card for diversity (add wlan2, wlan3, ... to RX program)
 
 
-#### What ARM Boards can be used for UAV
+#### What ARM Boards are recommended for the UAV?
 
 Board | Pros  | Cons
 --- | --- | ---
 [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/) | - Huge community<br>- Camera support<br>- HW video encoder/decoder with OMX API. | - Hard to buy outside US (shipping costs >> its price)<br>- Slow CPU<br>- Only one USB bus<br>- 512MB SDRAM
-[Odroid C0](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G145326484280) | - Fast CPU<br>- EMMC<br>- 1GB SDRAM | - Very sensitive to radio interference<br>- Doesn't supported by mainline kernel<br>- High cost<br>- HW video encoder is broken<br>- Bad PCB quality (too thin, ground pins without solder bridges)
+[Odroid C0](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G145326484280) | - Fast CPU<br>- EMMC<br>- 1GB SDRAM | - Very sensitive to radio interference<br>- Doesn't supported by mainline kernel<br>- High cost<br>- HW video encoder is broken<br>- Bad PCB quality (too thin, ground pins without [thermal relief](https://en.wikipedia.org/wiki/Thermal_relief))
 [NanoPI NEO2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180) | - ARM 64-bit CPU<br>- Very cheap<br>- Supported by mainline kernel<br>- 3 independent USB busses<br>- 1Gbps Ethernet port<br>- 3 UARTs<br>- Very small form-factor<br>- Resistant to radio interference | - Small community<br>- 512MB SDRAM<br>- No camera interface
 
 This article chose to use Pi Zero as camera board (encode video) and NEO2 as main UAV board (wifibroadcast, MAVLink telemetry, etc.)
