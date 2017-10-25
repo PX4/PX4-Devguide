@@ -284,8 +284,8 @@ For UART transport on Raspberry Pi you will have to enable the serial port:
   ```
 
 
-## Additional information
+## 추가 정보
 
-* [FastRTPS Installation](../setup/fast-rtps-installation.md)
-* [Manually Generate Client and Agent Code](micrortps_manual_code_generation.md)
-* [DDS and ROS middleware implementations](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
+* [FastRTPS 설치](../setup/fast-rtps-installation.md)
+* [수동으로 Client와 Agent 코드 생성](micrortps_manual_code_generation.md)
+* [DDS와 ROS 미들웨어 구현](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
