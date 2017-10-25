@@ -11,11 +11,14 @@ This topic describes the bridge architecture, how it is compiled, and how to wri
 
 ## When should RTPS be used?
 
-RTPS should be used in circumstances where there is a need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a peer software components running in PX4 (by sending and receiving uORB topics). RTPS is not suitable for use over slow links (e.g. like radio telemetry).
+RTPS should be used in circumstances where there is a need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a peer software components running in PX4 (by sending and receiving uORB topics).
 
 Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control. 
 
 > **Note** FastRTPS is not intended as a replacement for MAVLink. MAVLink remains the most appropriate protocol for communicating with ground stations, gimbals, cameras, etc. (although FastRTPS may open other opportunities for working with some peripherals).
+
+<span></span>
+> **Tip** RTPS can be used over slower links (e.g. like radio telemetry, but care should be taken not to overload the channel. 
 
 
 ## Architectural overview
@@ -137,7 +140,7 @@ This example shows how to create a *FastRTPS* "listener" application that subscr
 
 The *fastrtpsgen* script can be used to generate a simple RTPS application from an IDL message file. 
 
-> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build_BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a FastRTPS application to communicate with PX4.
+> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a FastRTPS application to communicate with PX4.
 
 Enter the following commands to create the application:
 

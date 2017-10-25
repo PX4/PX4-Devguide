@@ -34,7 +34,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 <div class="host-code"></div>
 
 ```sh
-	<build_depend>octomap</build_depend>
+	<build/depend>octomap</build/depend>
 	<run_depend>octomap</run_depend>
 ```
 

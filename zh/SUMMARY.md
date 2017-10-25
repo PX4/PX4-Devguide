@@ -57,15 +57,6 @@
   * [统一的基础代码](airframes/architecture.md)
   * [参考机型](airframes/airframe_reference.md)
   * [添加一个新的机型](airframes/adding_a_new_frame.md)
-  * [多旋翼](airframes_multicopter/README.md)
-    * [DJI Flamewheel 450 with RTK](airframes_multicopter/dji_flamewheel_450.md)
-    * [QAV 250 Racer](airframes_multicopter/qav250.md)
-    * [Matrice 100](airframes_multicopter/matrice100.md)
-    * [QAV-R](airframes_multicopter/qav-r.md)
-  * [直升机](airframes_plane/README.md)
-    * [Wing Wing Z-84](airframes_plane/wing_z_84.md)
-  * [VTOL](airframes_vtol/README.md)
-    * [VTOL Testing](airframes_vtol/testing.md)
 * [协同电脑](companion_computer/README.md)
   * [Pixhawk系列协同电脑](companion_computer/pixhawk_companion.md)
 * [使用DroneKit的机器人](dronekit/README.md)
@@ -120,6 +111,7 @@
   * [持续集成](test_and_ci/continous_integration.md)
     * [Jenkins持续集成环境](test_and_ci/jenkins_ci.md)
   * [维护](test_and_ci/maintenance.md)
+  * [VTOL Testing](airframes_vtol/testing.md)
 
 
 ## Dronecode Shortcuts
@@ -127,4 +119,5 @@
 * [PX4用户指南](https://docs.px4.io/en/)
 * [QGroundControl用户指南](https://docs.qgroundcontrol.com/en/)
 * [QGroundControl开发指南](https://dev.qgroundcontrol.com/en/)
+* [DroneCore Guide](https://docs.dronecore.io/en/)
 * [MAVLink开发指南](https://mavlink.io/en/)

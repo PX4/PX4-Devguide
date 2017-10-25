@@ -62,7 +62,7 @@ sudo yum install glibc.i686 ncurses-libs.i686
 Ensure you have the multilib repository enabled.
 
 ```sh
-sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip
+sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip vim
 ```
 
 Install [yaourt](https://wiki.archlinux.org/index.php/Yaourt#Installation), the package manager for the [Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository).

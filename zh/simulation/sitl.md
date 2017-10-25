@@ -46,7 +46,7 @@ pxh>
 ## 重要的文件
 
 - 启动脚本文件在 [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) 文件夹中并被命名为`rcS_SIM_AIRFRAME`, 默认是 `rcS_jmavsim_iris`.
-- 系统启动文件 (相当于 `/` 被视为) 位于构建文件夹内部 : `build_posix_sitl_default/src/firmware/posix/rootfs/`
+- 系统启动文件 (相当于 `/` 被视为) 位于构建文件夹内部 : `build/posix_sitl_default/src/firmware/posix/rootfs/`
 
 ## 起飞
 

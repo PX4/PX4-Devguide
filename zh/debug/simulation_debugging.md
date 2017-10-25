@@ -91,7 +91,7 @@ is equivalent with
 
 ```sh
 make posix_sitl_lpe	# Configure with cmake
-make -C build_posix_sitl_lpe jmavsim___gdb
+make -C build/posix_sitl_lpe jmavsim___gdb
 ```
 
 A full list of the available make targets in the build directory can
@@ -132,5 +132,5 @@ The targets that can be matched with these regular expressions can be
 printed with the command:
 
 ```sh
-make -C build_posix_sitl_* list_cmake_targets
+make -C build/posix_sitl_* list_cmake_targets
 ```

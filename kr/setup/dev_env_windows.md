@@ -25,4 +25,4 @@ arm gcc 크로스 컴파일러를 포함하는 다음 폴더가 생깁니다 :
 
 `gcc-arm-none-eabi-5_4-2017q2/bin`
 
-이 폴더를 PATH에 추가할려면 보통 export PATH=...를 사용하면 PX4 빌드는 이 컴파일러를 찾아서 실행할 수 있습니다. 다음으로 `make px4fmu-v2_default`을 BashOnWindows에서 실행하면 펌웨어가 생기게 됩니다 : `build_px4fmu-v2_default/src/firmware/nuttx/px4fmu-v2_default.px4`. 이제 이 펌웨어를 QGroundControl을 이용해서 Pixhawk에 플래쉬합니다.
+이 폴더를 PATH에 추가할려면 보통 export PATH=...를 사용하면 PX4 빌드는 이 컴파일러를 찾아서 실행할 수 있습니다. 다음으로 `make px4fmu-v2_default`을 BashOnWindows에서 실행하면 펌웨어가 생기게 됩니다 : `build/px4fmu-v2_default/src/firmware/nuttx/px4fmu-v2_default.px4`. 이제 이 펌웨어를 QGroundControl을 이용해서 Pixhawk에 플래쉬합니다.

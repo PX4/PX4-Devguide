@@ -25,7 +25,7 @@
 ~/catkin_ws/src/rotors_simulator/rotors_gazebo/package.xml을 열고 다음 라인을 추가합니다.
 <div class="host-code"></div>
 ```sh
-	<build_depend>octomap</build_depend>
+	<build/depend>octomap</build/depend>
 	<run_depend>octomap</run_depend>
 ```
 
