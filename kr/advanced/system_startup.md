@@ -34,7 +34,7 @@ The PX4 부트는 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/t
 
   * /fs/microsd/etc/config.txt
   * /fs/microsd/etc/extras.txt
-  * /fs/microsd/mixers/NAME_OF_MIXER
+  * /fs/microsd/etc/mixers/NAME_OF_MIXER
 
 ### 설정 변경하기 (config.txt)
 

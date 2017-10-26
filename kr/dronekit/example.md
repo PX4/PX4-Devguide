@@ -25,7 +25,7 @@ import time, sys, argparse, math
 
 ```
 
-드론이나 시뮬레이션의 Mavlink port에 연결합니다.(예제 [JMavSim](../simulation/sitl.md))
+드론이나 시뮬레이션의 MavLink port에 연결합니다.(예제 [JMavSim](../simulation/jmavsim.md))
 
 ```C
 # Connect to the Vehicle

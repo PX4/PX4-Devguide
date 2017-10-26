@@ -159,3 +159,21 @@ O:      10000  10000      0 -10000  10000
 S: 0 3      0  20000 -10000 -10000  10000
 
 ```
+
+
+
+## 게인값 튜닝(Tuning Gains)
+
+이어지는 *PX4 사용자 가이드*에서 config 파일에 지정하는 파라미터 튜닝에 대해서 소개합니다. :
+
+* [멀티콥터 PID 튜닝 가이드](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
+* [Fixed Wing PID 튜닝 가이드](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
+* [VTOL 설정](https://docs.px4.io/en/config_vtol/)
+
+
+
+## 새로운 Airframe이 QGroundControl에 나타나게 하기
+
+airframe 메타 데이터는 .px4 펌웨어 파일에 번들로 제공됩니다. (압축된 JSON 파일)
+
+> **Note** 어플리케이션에서 메타 데이터를 로드하기 위해서 *QGroundControl* (커스텀 파일 옵션)에 있는 **.px4** 파일을 플래쉬해야 합니다. 일단 *QGroundControl*을 재시작하면 새로운 airframe이 사용자 인터페이스에서 활성화됩니다. 

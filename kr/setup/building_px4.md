@@ -2,45 +2,57 @@
 
 PX4는 콘솔이나 IDE 개발환경에서 빌드할 수 있습니다.
 
-## 콘솔에서 컴파일하기
+## 소프트웨어 다운로드와 처음 빌드하기
 
-IDE를 설명하기 전에 시스템 셋업이 제대로 되었는지 확인하는 것이 중요합니다. 먼저 터미널을 띄웁니다. OS X에서는 ⌘-space를 누르고 'terminal'을 검색합니다. Ubuntu에서는 런치바를 클릭하고 'terminal'을 검색합니다. 윈도우에서는 시작메뉴에서 PX4 폴더를 찾아 'PX4 Console'을 클릭합니다.
+콘솔 환경을 이용해서 시뮬레이트 타겟용으로 처음 빌드를 해봅시다. 실제 하드웨어나 IDE에서 진행하기 전에 시스템 셋업이 제대로 되었는지를 확인할 수 있습니다.
 
-![](../../assets/toolchain/terminal.png)
+먼저 터미널 띄우기
+* OS X의 경우 ⌘-space를 누르고 'terminal' 찾기
+* Ubuntu의 경우, 런치바를 클릭하고 'terminal' 찾기
+* Windows의 경우, 시작 메뉴에서 PX4 폴더 찾은 후에 'PX4 Console' 클릭하기
 
-터미널 실행시 home 디렉토리에 위치합니다. '~/src/Firmware' 위치를 기본위치로 upstream 저장소를 clone합니다. 숙련된 개발자는 자신이 fork한 것을 clone할 수 있습니다. 참고 [their fork](https://help.github.com/articles/fork-a-repo/)
+PX4/Firmware 저장소를 clone하고 jMAVSim 타겟으로 빌드합니다. 아래와 같습니다. 숙련된 개발자는 [자신의 fork](https://help.github.com/articles/fork-a-repo/)를 clone합니다.
 
 ```sh
 mkdir -p ~/src
 cd ~/src
 git clone https://github.com/PX4/Firmware.git
 cd Firmware
-git submodule update --init --recursive
-cd ..
+make posix jmavsim
 ```
-이제 소스코드를 빌드해서 바이너리를 만들어 보겠습니다. 하드웨어로 바로 가기전에 [simulation 실행](../simulation/sitl.md)을 진행하는 것을 추천합니다. IDE 개발환경을 원하는 사용자는 다음 섹션으로 넘어가면 됩니다.
 
-### NuttX / Pixhawk 기본 보드
+아래와 같이 PX4 콘솔이 뜨고:
+
+![](../../assets/console_jmavsim.png)
+
+다음과 같이 입력하면 드론이 이륙:
+```sh
+pxh> commander takeoff
+```
+
+![](../../assets/jmavsim_first_takeoff.png)
+
+**CTRL-C** 를 누르면 시뮬레이션과 시뮬레이션되는 flight code가 멈추게 됩니다. 시뮬레이션 셋업의 상세한 내용은 다음을 참고 : [jMAVSim Simulation](../simulation/jmavsim.md).
+
+그라운드 컨트롤 스테이션으로 시뮬레이션 비행은 실제 비행체로 동작하는 것과 유사합니다. 비행체가 비행 중일때 지도에서 위치를 클릭하고 슬라이더를 활성화시킵니다. 이렇게 하면 비행체가 이동하게 됩니다.
+
+![](../../assets/qgc_goto.jpg)
 
 
+## NuttX / Pixhawk 기반 보드
+
+### 빌드하기
+
+NuttX- 나 Pixhawk- 기반 보드용으로 빌드하기 위해서는 **Firmware** 디렉토리로 가서 여러분이 가진 보드에 적합한 빌드를 위해서 `make`를 호출합니다.
+
+> **Note** 아래 예제에서 빌드 타겟 `px4fmu-v2`의 첫번째 부분은 autopilot 하드웨어 버전이고 `default`는 설정 이름입니다.(이경우 "default" 설정) PX4의 모든 빌드 타겟은 다음과 같은 로직을 따릅니다.
+
+예제로 *Pixhawk 1* 용으로 빌드하는 경우 다음과 같은 명령을 사용:
 ```sh
 cd Firmware
 make px4fmu-v2_default
 ```
-
-문법 : 'make'는 빌드 도구로, 'px4fmu-v2'는 하드웨어 / autopilot 버전, 'default'는 기본 설정을 뜻합니다. 모든 PX4 빌드 타겟은 이 로직을 따르고 있습니다.
-
-빌드 타겟:
-* Crazyflie: `make crazyflie_default`
-* Intel® Aero RTF: `make aerofc-v1_default`
-* MindPX: `make mindpx-v2_default`
-* Pixhawk: `make px4fmu-v2_default`. You can use `make px4fmu-v3_default` for
-  boards that support 2MB Flash (such as Pixhawk mini)
-* Pixracer: `make px4fmu-v4_default`
-* Pixhawk 3 Pro: `make px4fmu-v4pro_default`
-
-성공적으로 실행되면 다음과 같이 출력 :
-
+성공적으로 실행되면 다음과 같이 출력:
 ```sh
 [100%] Linking CXX executable firmware_nuttx
 [100%] Built target firmware_nuttx
@@ -49,13 +61,32 @@ Scanning dependencies of target build/firmware_px4fmu-v2
 [100%] Built target build/firmware_px4fmu-v2
 ```
 
-명령에 'upload'을 추가하면 컴파일된 바이너리를 USB를 통해 autopilot 하드웨어에 upload됩니다. :
+보드들에 대한 빌드 명령 목록:
+* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default`
+* [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4fmu-v2_default`
+* [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4fmu-v2_default`
+* [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4fmu-v2_default`
+* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
+* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
+* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
+* [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.md): `make px4fmu-v4_default`
+* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4fmu-v3_default`
+* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4fmu-v4pro_default`
+* [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make crazyflie_default`
+* [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make aerofc-v1_default`
+* Pixhawk 4: `make px4fmu-v5_default`
+* [AUAV-X2 (Discontinued)](https://docs.px4.io/en/flight_controller/auav_x2.html): `make px4fmu-v2_default`
+
+
+### 펌웨어 업로드 (보드에 flash)
+
+컴파일된 바이너리를 USB로 하드웨어에 업로드하기 위해 `upload`를 make 명령에 추가합니다.
 
 ```sh
 make px4fmu-v2_default upload
 ```
 
-성공적으로 실행되면 다음과 같이 출력 :
+성공적으로 실행되면 다음과 같이 출력:
 
 ```sh
 Erase  : [====================] 100.0%
@@ -65,6 +96,12 @@ Rebooting.
 
 [100%] Built target upload
 ```
+
+## 기타 보드들
+
+다음 보드들에 대해서 빌드와 배포는 좀더 복잡합니다.
+
+
 ### Raspberry Pi 2/3 보드
 아래 명령은 Raspbian용으로 타겟을 빌드합니다.
 
@@ -212,6 +249,13 @@ adb shell sync
 adb shell reboot
 ```
 
+### OcPoC-Zynq Mini
+
+[OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html)에 관련된 빌드 :
+* [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 사용자 가이드)
+* [OcPoC PX4 Setup 페이지](https://aerotenna.readme.io/docs/px4-setup)
+
+
 ### QuRT / Snapdragon 기반 보드
 
 #### 빌드하기
@@ -304,7 +348,7 @@ chmod +x /etc/rc.local
 adb reboot
 ```
 
-## DIE에서 컴파일하기
+## IDE에서 컴파일하기
 
 PX4 시스템은 Qt Creator, Eclipse, Sublime Text를 지원합니다. Qt Creator가 가장 사용자를 위한 기능이 많아서 유일하게 공식적으로 지원하는 IDE입니다. Eclipse와 Sublime의 경우 전문가가 아니라면 사용하기 쉽지 않습니다. 하드코어 사용자는 [Eclipse project](https://github.com/PX4/Firmware/blob/master/.project)와 [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project)를 소스 트리에서 찾을 수 있습니다.
 

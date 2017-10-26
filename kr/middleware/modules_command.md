@@ -1,4 +1,4 @@
-# Modules Reference: Command
+# Modules 레퍼런스: Command
 ## bl_update
 소스: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 

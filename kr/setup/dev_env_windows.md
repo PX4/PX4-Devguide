@@ -2,27 +2,73 @@
 
 > **Warning** 윈도우 툴체인이 있긴하지만, 공식적으로 지원되는 것이 아니라 사용을 추천하지 않습니다. 펌웨어를 컴파일에 드는 시간이 오래 걸리고 Snapdragon Flight 같은 새로운 보드에 대해서 지원하지 않습니다. 많은 개발자가 컴퓨터 비전과 네비게이션 프로토타입으로 사용하는 표준 ROS 패키지를 사용할 수 없습니다. Windows에서 개발하기 전에, [Ubuntu](http://ubuntu.com)로 듀얼부트되는 환경을 고려해 보세요.
 
-## 개발 환경 설치
+## 툴체인 설치
 
-시스템에 다운로드 및 설치 :
+There are a number of ways you can set up a Windows development toolchain for PX4.
 
-  * [Qt Creator IDE](http://www.qt.io/download-open-source/#section-6)
-  * [PX4 Toolchain Installer v14 윈도우용 다운로드](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (32/64 bit 시스템, 완전한 빌드 시스템, 드라이버)
-  * [PX4 USB Drivers](http://pixhawk.org/static/px4driver.msi) (32/64 bit 시스템)
+* The native toolchain allows you to build for NuttX/Pixhawk and jMAVSim simulator targets.
+* The Windows Bash toolchain allows you to build for NuttX/Pixhawk targets (only).
 
-이제 [처음 빌드하기](../setup/building_px4.md)를 이어서 실행하면 됩니다!
+### Native 툴체인
 
-## 새소식! 윈도우용 Bash
+Download and install these on your system:
 
-Linux 빌드 명령을 사용할 수 있는 Bash shell 사용할 수 있게 되면서 Windows 사용자에게 새로운 선택사항이 생겼습니다. [BashOnWindows](https://github.com/Microsoft/BashOnWindows)를 참고하세요. 이 환경에서 px4 빌드가 성공적으로 되는 것을 확인하였습니다. 아직 펌웨어를 flash할 수는 없지만 Mission Planner나 QGroundControl을 사용하면 Windows에서도 커스텀 펌웨어를 플래쉬할 수 있습니다.
+  * [PX4 Toolchain Installer v14 for Windows Download](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (32/64 bit systems, complete build system, drivers)
+  * [PX4 USB Drivers](http://pixhawk.org/static/px4driver.msi) (32/64 bit systems)
 
-Note: Pixhawk ARM 펌웨어를 빌드하려면 [64 bit arm-none-eabi 컴파일러](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git)를 사용해야 합니다. BashOnWindows은 32 bit ELF 프로그램을 실행하지 않고 `https://launchpad.net/gcc-arm-embedded`의 기본 컴파일러는 32bit입니다.
-따라서 SolinGuo가 생성한 *.tar.bz2 파일을 다운로드 받고 BashOnWindows 콘솔에서 다음 명령을 실행해서 압축을 풉니다 :
+### Windows에서 Bash (NEW!)
 
-`tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2`
+Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to build firmware for NuttX/Pixhawk targets.
+We have provided a script below that makes this easy.
 
-arm gcc 크로스 컴파일러를 포함하는 다음 폴더가 생깁니다 :
+> **Note** This approach does not currently support simulation because *Bash on Windows* does not enable Linux UI applications.
 
-`gcc-arm-none-eabi-5_4-2017q2/bin`
+<span></span>
+> **Tip** The script has been updated to  [install Fast RTPS from (Linux) binaries](../setup/fast-rtps-installation.md#linux).
 
-이 폴더를 PATH에 추가할려면 보통 export PATH=...를 사용하면 PX4 빌드는 이 컴파일러를 찾아서 실행할 수 있습니다. 다음으로 `make px4fmu-v2_default`을 BashOnWindows에서 실행하면 펌웨어가 생기게 됩니다 : `build/px4fmu-v2_default/src/firmware/nuttx/px4fmu-v2_default.px4`. 이제 이 펌웨어를 QGroundControl을 이용해서 Pixhawk에 플래쉬합니다.
+
+To use the build script:
+1. Install [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
+1. Download the <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a></strong> script.
+1. Open the bash shell and navigate to the directory containing the script.
+1. Run the script using the command below (acknowledging any prompts as required):
+  ```sh
+  source windows_bash_nuttx.sh
+  ```
+1. Test the script by building the firmware:
+  ```
+  cd $src/Firmware
+  make px4fmu-v2_default
+  ```
+  On successful completion you'll find the firmware here: `Firmware/build/px4fmu-v2/src/firmware/nuttx/px4fmu-v2_default.px4`
+1. You can flash the custom firmware on Windows using *QGroundControl* or *Mission Planner* (it is not yet possible to directly flash the firmware from within the bash shell).
+
+#### Build script details
+
+The <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh">windows_bash_nuttx.sh</a> build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
+
+In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git)
+since BashOnWindows doesn't run 32 bit ELF programs (and the default compiler from `https://launchpad.net/gcc-arm-embedded` is 32 bit).
+
+To add this compiler to your environment manually:
+
+1. Download the compiler:
+   ```sh
+   wget https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-/raw/master/gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
+   ```
+1. Unpack it using this command line in the Bash On Windows console:
+   ```sh
+   tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
+   ```
+   This will unpack the arm gcc cross-compiler to:
+   ```
+   gcc-arm-none-eabi-5_4-2017q2/bin
+   ```
+1. Add the to the environment (add the line to your bash profile to make the change permanent)
+   ```
+   export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH
+   ```
+
+
+<!-- import docs for other tools and next steps. -->
+{% include "_addition_dev_tools.txt" %}

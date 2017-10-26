@@ -18,21 +18,11 @@ Gazebo와 시뮬레이션 플러그인 설치가 필요합니다.
 
 > ** Note ** Gazebo 버전 7을 추천합니다.(최소 Gazebo 6 버전) Linux을 실행하고 Jade보다 이전 ROS 버전이 설치되어 있다면 예전 버전인 번들 Gazebo를 언인스톨해야 합니다.(sudo apt-get remove ros-indigo-gazebo)
 
-### Mac OS
-
-Mac OS가 Gazebo 7을 필요로하고 다음으로 xquartz 필요하며 OpenCV 없이 실행할 수 없습니다.
-
-```sh
-brew cask install xquartz
-brew install opencv
-brew install gazebo7
-```
-
-### Linux
-
-PX4 SITL은 Gazebo 시뮬레이터를 사용하며 ROS에 의존하지 않습니다. 시뮬레이션은 [ROS로 인터페이스](../simulation/ros_interface.md)될 수 있고 동일한 방식으로 일반 flight 코드에도 적용될 수 있습니다.
+설치 관련 정보는 [Linux](../setup/dev_env_linux.md)와 [Mac](../setup/dev_env_mac.md)를 참고하세요.
 
 #### ROS 사용자
+
+PX4 SITL은 Gazebo 시뮬레이터를 사용하며 ROS에 의존하지 않습니다. 시뮬레이션은 [ROS로 인터페이스](../simulation/ros_interface.md)될 수 있고 동일한 방식으로 일반 flight 코드에도 적용될 수 있습니다.
 
 PX4를 ROS와 사용할려고 한다면, 다음 ROS를 위한 [Gazebo 버전 7 가이드](http://gazebosim.org/tutorials?tut=ros_wrapper_versions#Gazebo7.xseries)를 참고하세요.
 
@@ -92,6 +82,15 @@ make posix_sitl_default gazebo_tailsitter
 ```
 
 ![](../../assets/gazebo/tailsitter.png)
+
+### Ackerman vehicle (UGV/Rover) {#ugv}
+
+```sh
+make posix gazebo_rover
+```
+
+![](../../assets/gazebo/rover.png)
+
 
 ## World 바꾸기
 
