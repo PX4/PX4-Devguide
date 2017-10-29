@@ -109,6 +109,7 @@
   * [Licenses](advanced/licenses.md)
   * [Telemetry Wifi](telemetry_wifi.md)
   * [RTK GPS](advanced/rtk_gps.md)
+  * [Porting Guide](debug/porting-guide.md)
 * [Software Update](software_update/README.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
 * [Testing and CI](test_and_ci/README.md)
@@ -127,3 +128,4 @@
 * [QGroundControl Developer Guide](https://dev.qgroundcontrol.com/en/)
 * [DroneCore Guide](https://docs.dronecore.io/en/)
 * [MAVLink Developer Guide](https://mavlink.io/en/)
+
