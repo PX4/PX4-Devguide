@@ -17,7 +17,9 @@ The main files for a NuttX board are located at \(for the FMUv5 example\):
 
 ## Linux Boards
 
+Linux boards do not include the OS and kernel configuration. These are already provided by the Linux image available for the board \(which needs to support the inertial sensors out of the box\).
 
+* [cmake/configs/posix\_rpi\_cross.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_rpi_cross.cmake) - RPI cross-compilation
 
 
 
