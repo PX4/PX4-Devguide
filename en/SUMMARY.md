@@ -107,7 +107,7 @@
   * [Out-of-tree Modules](advanced/out_of_tree_modules.md)
   * [ULog File Format](log/ulog_file_format.md)
   * [Licenses](advanced/licenses.md)
-  * [Telemetry Wifi](telemetry_wifi.md)
+  * [Telemetry Wifi](advanced/telemetry_wifi.md)
   * [RTK GPS](advanced/rtk_gps.md)
   * [Porting Guide](debug/porting-guide.md)
 * [Software Update](software_update/README.md)
