@@ -140,6 +140,8 @@ led_control <command> [arguments...]
 
    breathe       Continuously fade LED in & out
 
+   flash         Two fast blinks and then off with frequency of 1Hz
+
  The following arguments apply to all of the above commands except for 'test':
      [-c <val>]  color
                  values: red|blue|green|yellow|purple|amber|cyan|white, default:
@@ -520,5 +522,10 @@ ver <command> [arguments...]
    all           Print all versions
 
    hwcmp         Compare hardware version (returns 0 on match)
-     <hw>        Hardware to compare against (eg. PX4FMU_V4)
+     <hw> [<hw2>] Hardware to compare against (eg. PX4FMU_V4). An OR comparison
+                 is used if multiple are specified
+
+   hwtypecmp     Compare hardware type (returns 0 on match)
+     <hwtype> [<hwtype2>] Hardware type to compare against (eg. V2). An OR
+                 comparison is used if multiple are specified
 ```

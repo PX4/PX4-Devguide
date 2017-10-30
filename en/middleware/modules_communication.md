@@ -76,6 +76,9 @@ mavlink <command> [arguments...]
      [-w]        Wait to send, until first message received
      [-x]        Enable FTP
 
+   verbose       Set verbose mode for all running instances
+     [on|off]    Enable/disable
+
    stop-all      Stop all instances
 
    status        Print status for all instances
@@ -90,6 +93,39 @@ mavlink <command> [arguments...]
 
    boot_complete Enable sending of messages. (Must be) called as last step in
                  startup script.
+```
+## micrortps_client
+Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
+
+### Usage
+```
+micrortps_client <command> [arguments...]
+ Commands:
+   start
+     [-t <val>]  Transport protocol
+                 values: UART|UDP, default: UART
+     [-d <val>]  Select Serial Device
+                 values: <file:dev>, default: /dev/ttyACM0
+     [-b <val>]  Baudrate
+                 default: 460800
+     [-p <val>]  Poll timeout for UART in ms
+                 default: 1
+     [-u <val>]  Interval in ms to limit the update rate of all sent topics
+                 (0=unlimited)
+                 default: 0
+     [-l <val>]  Limit number of iterations until the program exits
+                 (-1=infinite)
+                 default: 10000
+     [-w <val>]  Time in ms for which each iteration sleeps
+                 default: 1
+     [-r <val>]  Select UDP Network Port for receiving (local)
+                 default: 2019
+     [-s <val>]  Select UDP Network Port for sending (remote)
+                 default: 2020
+
+   stop
+
+   status
 ```
 ## uorb
 Source: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
