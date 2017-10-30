@@ -4,17 +4,4 @@ AirSim is a open-source, cross platform simulator for drones, built on Unreal En
 
 The main entry point for the documentation is the [Github AirSim README](https://github.com/Microsoft/AirSim/blob/master/README.md).
 
-## HITL
-
-The instructions for [HITL setup are here](https://github.com/Microsoft/AirSim/blob/master/docs/prereq.md).
-
-The walkthrough video below shows the setup for HITL with Pixhawk in more detail.
-
-{% youtube %}
-https://youtu.be/HNWdYrtw3f0
-{% endyoutube %}
-
-## SITL
-
-The instructions for [SITL setup are here](https://github.com/Microsoft/AirSim/blob/master/docs/sitl.md).
-
+The main entry point for documentation on working with PX4 is [PX4 Setup for AirSim](https://github.com/Microsoft/AirSim/blob/master/docs/px4_setup.md) (covering both HITL and SITL).
