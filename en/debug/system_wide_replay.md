@@ -52,7 +52,7 @@ ignore_others: <true/false>
   to other topics from `<module>` are ignored.
 
   For replay, we only want the `replay` module to be able to publish the
-  previously identified list of opics. So for replaying `ekf2`, the rules file
+  previously identified list of topics. So for replaying `ekf2`, the rules file
   looks like this:
 ```
 restrict_topics: sensor_combined, vehicle_gps_position, vehicle_land_detected
