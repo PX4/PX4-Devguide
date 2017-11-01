@@ -25,7 +25,8 @@ for a list of all supported logger commands and parameters.
 
 ## Configuration
 The list of logged topics can be customized with a file on the SD card. Create a
-file `etc/logging/logger_topics.txt` on the card with a list of topics:
+file `etc/logging/logger_topics.txt` on the card with a list of topics (For
+SITL, it's `build/posix_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`):
 ```
 <topic_name>, <interval>
 ```
