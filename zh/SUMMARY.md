@@ -93,7 +93,6 @@
   * [室内 / 虚拟 GPS](advanced/fake_gps.md)
   * [日志记录](log/logging.md)
   * [飞行日志分析](log/flight_log_analysis.md)
-  * [EKF日志回放](log/ekf2_log_replay.md)
   * [System-wide Replay](debug/system_wide_replay.md)
   * [安装Intel RealSense R200的驱动](advanced/realsense_intel_driver.md)
   * [Parrot Bebop](advanced/parrot_bebop.md)
