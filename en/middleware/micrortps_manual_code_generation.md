@@ -18,7 +18,7 @@ set(GENERATE_RTPS_BRIDGE off)
 The *generate_microRTPS_bridge* tool's command syntax is shown below:
 
 ```sh
-$ cd /path/to/PX4/Firmware/Tools
+$ cd /path/to/PX4/Firmware/msg/tools
 $ python generate_microRTPS_bridge.py -h
 usage: generate_microRTPS_bridge.py [-h] [-s *.msg [*.msg ...]]
                                     [-r *.msg [*.msg ...]] [-a] [-c]
