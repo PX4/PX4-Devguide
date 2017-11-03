@@ -49,7 +49,7 @@ The *Client* application is also compiled and built into the firmware as part of
 
 The generated bridge code will enable a specified subset of uORB topics to be published/subscribed via RTPS.
 
-For *automatic code generation* (via the normal PX4 firmware build process) this set must be listed in the **.cmake** file (**cmake/configs**) for your target platform.
+For *automatic code generation* (via the normal PX4 firmware build process) this set must be listed in the **/path/to/PX4/Firmware/src/modules/micrortps_bridge/CMakeLists.txt** file.
 
 ```cmake
 set(config_rtps_send_topics
@@ -102,12 +102,12 @@ The *Client* application can be launched from [NuttShell/System Console](../debu
 
 ## Agent (Off Board FastRTPS Interface)
 
-The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **src/modules/micrortps_bridge/micrortps_agent/**.
+The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
 
 To build the *Agent* application, compile the code:
 
 ```sh
-cd src/modules/micrortps_bridge/microRTPS_agent
+cd build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent
 mkdir build && cd build
 cmake ..
 make
