@@ -70,7 +70,7 @@ then
 fi
 ```
 
-Set frame type ([MAV_TYPE](http://mavlink.org/messages/common#MAV_TYPE)):
+Set frame type ([MAV_TYPE](https://mavlink.io/en/messages/common.html#MAV_TYPE)):
 ```bash
 # Configure this as plane
 set MAV_TYPE 1
