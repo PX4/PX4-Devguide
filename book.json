@@ -8,7 +8,7 @@
         "-mermaid-2",
         "language-picker",
         "custom-favicon",
-        "bulk-redirect",
+        "bulk-redirect@git+https://github.com/Dronecode/gitbook-plugin-bulk-redirect.git",
         "toolbar@git+https://github.com/hamishwillee/gitbook-plugin-toolbar.git",
         "validate-links",
         "-stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git",
