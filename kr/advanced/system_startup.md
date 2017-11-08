@@ -61,7 +61,7 @@ The PX4 부트는 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/t
     mandatory_app start     # mandatory_app이 없거나 실패하는 경우 부트가 취소된다
     ```  
 
-### 커스텀 믹서 구동시키기
+### 커스텀 믹서 구동시키기 {#starting-a-custom-mixer}
 
 기본적으로 `/etc/mixers`에서 시스템이 믹서를 로드합니다. `/fs/microsd/etc/mixers`에 동일한 이름의 파일이 있는 경우, 이 파일이 대신 로드될 것입니다. 펌웨어를 다시 컴파일할 필요없이 믹서 파일을 수정하는 것이 가능합니다.
 #### 예제
