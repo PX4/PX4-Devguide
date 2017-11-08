@@ -1,10 +1,12 @@
 # SiK Radio
 
+[SiK radio](https://github.com/LorenzMeier/SiK) is a collection of firmware and tools for telemetry radios.
+
 The hardware for the SiK radio can be obtained from various stores.
 
 ### Vendors
 
-* [3DR Radio](https://store.3drobotics.com/products/3dr-radio-set) \(small\)
+* 3DR Radio \(small\) - [US (915MHz)](https://store.3dr.com/products/915-mhz-telemetry-radio) / [European (433MHz)](https://store.3dr.com/products/433-mhz-telemetry-radio)
 * [HK Radio](http://www.hobbyking.com/hobbyking/store/uh_viewitem.asp?idproduct=55559) \(small\)
 * [RFD900u](http://rfdesign.com.au/products/rfd900u-modem/) \(small\)
 * [RFD900](http://rfdesign.com.au/products/rfd900-modem/) \(long range\)
