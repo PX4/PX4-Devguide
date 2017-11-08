@@ -15,13 +15,12 @@
 ## Code style formatting
 
 PX4에서는 코드 포맷에 [astyle](http://astyle.sourceforge.net/)을 사용합니다. 유효한 버전은 다음과 같습니다.
-* [astyle 2.05.1](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.05.1/) (apt-get default)
 * [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/) (recommended)
 * [astyle 3.0](https://sourceforge.net/projects/astyle/files/astyle/astyle%203.0/)
+* [astyle 3.01](https://sourceforge.net/projects/astyle/files/)
 
 일단 설치하면, 포맷은 `./Tools/check_code_style_all.sh`로 체크할 수 있습니다. 출력은 clean master에서 `Format checks passed`로 나와야 합니다. 이것이 제대로 작동했다면 향후에 모든 파일을 자동으로 검사하고 포맷팅하기 위해서 `make format`을 사용할 수 있습니다.
 
-> **Info** [PX4](https://github.com/PX4/astyle)의 버전 2.05.1와 2.06 사이에 차이가 크다는 이슈가 있습니다. 이 경우 [sourceforge](http://astyle.sourceforge.net/)에서 버전 2.06이나 3.0을 설치하세요.
 
 ## 커밋과 커밋 메시지 (Commits and Commit Messages)
 

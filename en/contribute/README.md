@@ -15,13 +15,12 @@ All contributions have to be under the permissive [BSD 3-clause license](https:/
 ## Code style formatting
 
 PX4 uses [astyle](http://astyle.sourceforge.net/) for code formatting. Valid versions are
-* [astyle 2.05.1](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.05.1/) (apt-get default)
 * [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/) (recommended)
 * [astyle 3.0](https://sourceforge.net/projects/astyle/files/astyle/astyle%203.0/)
+* [astyle 3.01](https://sourceforge.net/projects/astyle/files/)
 
 Once installed, formatting can be checked with `./Tools/check_code_style_all.sh`. The output should be `Format checks passed` on a clean master. If that worked, `make format` can be used in the future to check and format all files automatically.
 
-> **Info** There is a known issue resulting in a huge diff with versions 2.05.1 and 2.06 from [PX4](https://github.com/PX4/astyle). In that case, try a clean installed version 2.06 or 3.0 from [sourceforge](http://astyle.sourceforge.net/).
 
 ## Commits and Commit Messages
 
