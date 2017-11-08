@@ -135,7 +135,7 @@ source ~/.bashrc
 
 qrlSDK sysroot提供了摄像头、GPU等需要的头文件和链接库。
 
-下载 [Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) 并保存到`cross_toolchain/download/`。
+下载 [Flight_3.1.3_qrlSDK.tgz](https://support.intrinsyc.com/attachments/download/1515/Flight_3.1.3_qrlSDK.tgz) 并保存到`cross_toolchain/download/`。
 
 ```sh
 cd cross_toolchain
