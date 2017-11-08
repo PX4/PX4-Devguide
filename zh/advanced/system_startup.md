@@ -16,9 +16,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 软件组件的驱动程序故障会导致启动中止。
 
-<aside class="tip">
-一个不完整的启动往往表现为地面站中参数丢失，因为无法启动的应用程序没有初始化它们的参数。
-</aside>
+> **Tip** 一个不完整的启动往往表现为地面站中参数丢失，因为无法启动的应用程序没有初始化它们的参数。
 
 调试启动序列正确的方法是连接[系统控制台](../debug/system_console.md) 和为电路板供电。由此产生的启动日志包含引导序列的详细信息，而且应该包含引导中止得原因。
 
@@ -36,9 +34,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 自定义系统启动的最好的方式是引进新的 [机身配置](../airframes/adding_a_new_frame.md)。如果仅仅进行微调（如多启动一个应用程序或只是使用不同的混合器），启动时可以使用特别的hook。
 
-<aside class="caution">
-该系统启动文件是UNIX文件，这需要UNIX形式的行结尾。如果在Windows上编辑，请使用合适的编辑器。
-</aside>
+> **Warning** 该系统启动文件是UNIX文件，这需要UNIX形式的行结尾。如果在Windows上编辑，请使用合适的编辑器。
 
 主要有三个hook。需要注意的是microSD卡的根目录文件夹路径是 `/fs/microsd`。
 
@@ -54,6 +50,6 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
  `extras.txt`可用于在主系统引导后启动额外的应用程序。通常，这些将是载荷控制器或类似的可选自定义组件。
 
-### 启动一个自定义的mixer
+### 启动一个自定义的mixer {#starting-a-custom-mixer}
 
 系统默认从 `/etc/mixers`加载mixer。如果在 `/fs/microsd/etc/mixers`有相同名称的文件中存在，那么将加载该文件来代替。这允许定制混合器文件，而不需要重新编译固件。
