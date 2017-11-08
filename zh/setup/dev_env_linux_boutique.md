@@ -9,20 +9,16 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 Linux用户需要明确地允许JTAG编程适配器可以访问USB总线。
 
-> **注意：**对于Archlinux，用`uucp`替换`plugdev`，然后执行下面命令。
+> **Note** 对于Archlinux，用`uucp`替换`plugdev`，然后执行下面命令。
 
 
 在sudo模式下执行ls命令以确保之后的命令可以成功执行：
-
-<div class="host-code"></div>
 
 ```sh
 sudo ls
 ```
 
 暂时获得sudo权限，执行以下命令：
-
-<div class="host-code"></div>
 
 ```sh
 cat > $HOME/rule.tmp <<_EOF
@@ -53,7 +49,6 @@ sudo usermod -a -G plugdev $USER
 
 需要使用EPEL仓库来安装openocd，libftdi-devel和libftdi-python。
 
-<div class="host-code"></div>
 
 ```sh
 wget https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
@@ -80,15 +75,12 @@ arm-none-eabi-gcc --version
 
 如果返回下列信息
 
-<div class="host-code"></div>
-
 ```sh
 bash: gcc-arm-none-eabi-4_7-2014q2/bin/arm-none-eabi-gcc: /lib/ld-linux.so.2: bad ELF interpreter: No such file or directory
 ```
 
 那么你还需要安装其它的32位库：glibc.i686，ncurses-libs.i686
 
-<div class="host-code"></div>
 
 ```sh
 sudo yum install glibc.i686 ncurses-libs.i686 
@@ -100,17 +92,15 @@ sudo yum install glibc.i686 ncurses-libs.i686
 
 ### Arch Linux
 
-<div class="host-code"></div>
-
 ```sh
 sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip python-empy
 ```
 
-安装[Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository)的包管理器[yaourt](https://wiki.archlinux.org/index.php/Yaourt#Installation)。
+安装[Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository)的包管理器[yaourt](https://archlinux.fr/yaourt-en) (Yet AnOther User Repository Tool)。
+
+
 
 然后使用它下载，编译以及安装以下内容：
-
-<div class="host-code"></div>
 
 ```sh
 yaourt -S genromfs
@@ -120,7 +110,6 @@ yaourt -S genromfs
 
 用户需要被添加至'uucp'组：
 
-<div class="host-code"></div>
 
 ```sh
 sudo usermod -a -G uucp $USER
@@ -128,32 +117,12 @@ sudo usermod -a -G uucp $USER
 
 执行上述操作后，需要注销账户然后再次登陆。
 
-<aside class="note">
-注销账户然后再次登陆的目的是使更改生效，当然移除设备并再次插入也是必要操作。
-</aside>
 
-### 工具链安装
+> **Note** 注销账户然后再次登陆的目的是使更改生效，当然移除设备并再次插入也是必要操作。
 
-执行下面的脚本来安装GCC 4.9或者5.4版本:
-
-GCC 4.9:
-
-<div class="host-code"></div>
-
-```sh
-pushd .
-cd ~
-wget https://launchpad.net/gcc-arm-embedded/4.9/4.9-2015-q3-update/+download/gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2
-tar -jxf gcc-arm-none-eabi-4_9-2015q3-20150921-linux.tar.bz2
-exportline="export PATH=$HOME/gcc-arm-none-eabi-4_9-2015q3/bin:\$PATH"
-if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $exportline >> ~/.profile; fi
-. ~/.profile
-popd
-```
+### 工具链安装 {#toolchain-installation}
 
 GCC 5.4:
-
-<div class="host-code"></div>
 
 ```sh
 pushd .
@@ -166,11 +135,8 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 popd
 ```
 
-<aside class="note">
-**如果使用Debian Linux，执行下列命令：**
-</aside>
 
-<div class="host-code"></div>
+> **Note** **如果使用Debian Linux，执行下列命令：**
 
 ```sh
 sudo dpkg --add-architecture i386
@@ -179,18 +145,15 @@ sudo apt-get update
 
 安装32位支持库（如果已经是运行在32位，那么可能会失败，并且此步骤可以跳过）：
 
-<div class="host-code"></div>
 
 ```sh
 sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386
 sudo apt-get install gcc-4.6-base:i386 
 ```
 
-## Ninja构建系统
+## Ninja构建系统 {#ninja-build-system}
 
 Ninja比Make更快，并且PX4的CMake生成器可以支持它。不幸的是，Ubuntu目前只支持一个非常过时的版本。下载二进制文件并添加到系统路径来安装最新版本的[Ninja](https://github.com/martine/ninja)：
-
-<div class="host-code"></div>
 
 ```sh
 mkdir -p $HOME/ninja
@@ -209,15 +172,11 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 
 输入：
 
-<div class="host-code"></div>
-
 ```sh
 arm-none-eabi-gcc --version
 ```
 
-输出应该类似以下内容：
-
-<div class="host-code"></div>
+输出应该类似以下内容： 
 
 ```sh
 arm-none-eabi-gcc (GNU Tools for ARM Embedded Processors) 4.7.4 20140401 (release) [ARM/embedded-4_7-branch revision 209195]
@@ -227,8 +186,6 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
 
 如果输出是：
-
-<div class="host-code"></div>
 
 ```sh
 arm-none-eabi-gcc --version

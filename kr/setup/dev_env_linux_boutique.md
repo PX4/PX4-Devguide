@@ -65,7 +65,7 @@ sudo yum install glibc.i686 ncurses-libs.i686
 sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip vim
 ```
 
-[yaourt](https://wiki.archlinux.org/index.php/Yaourt#Installation)와 [Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository)를 위한 패키지 매니저 설치합니다.
+[yaourt](https://archlinux.fr/yaourt-en) (Yet AnOther User Repository Tool) 와 [Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository)를 위한 패키지 매니저 설치합니다.
 
 이를 이용해서 다음과 같이 다운로드, 컴파일, 설치:
 

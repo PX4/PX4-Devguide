@@ -1,6 +1,6 @@
 # PX4 시스템 콘솔
 
-시스템 콘솔을 이용하면 시스템, 디버깅 출력, 시스템 부팅 순서를 확인할 수 있습니다. [Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product)를 사용하는 것이 가장 편리한 방법이지만, 일반 FTDI 케이블도 이용할 수 있습니다.
+시스템 콘솔을 이용하면 시스템, 디버깅 출력, 시스템 부팅 순서를 확인할 수 있습니다. [Dronecode probe](http://nicadrone.com/index.php?id_product=61&controller=product)를 사용하는 것이 가장 편리한 방법이지만, 일반 FTDI 케이블도 이용할 수 있습니다.
 
 ## 시스템 콘솔 vs. 쉘
 

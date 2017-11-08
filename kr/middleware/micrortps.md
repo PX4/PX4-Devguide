@@ -20,7 +20,7 @@ RTPS는 flight controller와 오프보드 컴포넌트 사이에 time-critical/�
 
 ## 아키텍쳐 개요
 
-![basic example flow](../../assets/middleware/micrortps/basic_example_flow.png)
+![basic example flow](../../assets/middleware/micrortps/architecture.png)
 
 아키텍쳐의 주요 요소는 클라이언트와 에이젠트 프로세스로 위 다이어그램에서 볼 수 있습니다.
 
@@ -41,7 +41,7 @@ PX4 펌웨어가 컴파일되면, 브리지를 생성, 빌드, 사용하는데 �
 > **Tip** 브리지 코드는 [수동 생성](micrortps_manual_code_generation.md)이 가능합니다. 대부분 사용자는 그렇게 할 필요가 없지만 linked topic은 빌드 과정에 대한 보다 상세한 정보를 제공하며 문제해결에 도움이 됩니다.
 
 
-## uORB 메시지 지원
+## uORB 메시지 지원 {#supported-uorb-messages}
 
 생성된 브리지 코드는 uORB topic의 특정 서브 집합이 RTPS를 통해 publish/subscribe되는 것을 가능하게 합니다.
 

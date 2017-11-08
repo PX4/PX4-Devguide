@@ -79,6 +79,8 @@
   * [PWM / GPIO](sensor_bus/pwm_gpio.md)
   * [UART](sensor_bus/uart.md)
     * [uLanding Radar](sensor/uart_ulanding_radar.md)
+* [Data Links](data_links/README.md)
+  * [SiK Radio](data_links/sik_radio.md)
 * 调试及高级主题
   * [FAQ](debug/faq.md)
   * [系统控制台](debug/system_console.md)
@@ -102,7 +104,6 @@
   * [ULog文件格式](log/ulog_file_format.md)
   * [Licenses](advanced/licenses.md)
   * [Telemetry Wifi](advanced/telemetry_wifi.md)
-  * [无线数传](advanced/telemetry_radio_modem.md)
   * [Wifi数传](advanced/telemetry_wifi.md)
 * [软件更新](software_update/README.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)

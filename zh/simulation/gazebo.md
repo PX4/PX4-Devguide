@@ -7,7 +7,7 @@ translated_sha: d85d45b8e4f82e318ace49bd87c0ad17a129e017
 
 官网英文原文地址： http://dev.px4.io/simulation-gazebo.html
 
-[Gazebo](http://gazebosim.ort)是一个自主机器人3D仿真环境。它可以与ROS配套用于完整的机器人仿真，也可以单独使用。本文简要介绍单独的使用方法。
+[Gazebo](http://gazebosim.org)是一个自主机器人3D仿真环境。它可以与ROS配套用于完整的机器人仿真，也可以单独使用。本文简要介绍单独的使用方法。
 
 {% raw %}
 <video id="my-video" class="video-js" controls preload="auto" width="100%"

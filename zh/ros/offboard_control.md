@@ -23,7 +23,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 ### 2. 使能协同计算机接口
 
-将参数[SYS_COMPANION](https://pixhawk.org/firmware/parameters#system)设置为921600（推荐）或者57600。这个参数将会以合适的波特率(921600 8N1或者57600 8N1)激活TELEM2端口上的MAVLink消息流，这与内部模式的数据流是相同的。
+将参数[SYS_COMPANION](../advanced/parameter_reference.md#system)设置为921600（推荐）或者57600。这个参数将会以合适的波特率(921600 8N1或者57600 8N1)激活TELEM2端口上的MAVLink消息流，这与内部模式的数据流是相同的。
 
 有关这些数据流的更多信息，参考[source code](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp)中的"MAVLINK_MODE_ONBOARD"。
 

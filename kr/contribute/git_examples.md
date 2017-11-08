@@ -1,5 +1,6 @@
 # GIT 예제
-## PX4 code에 기여하기
+
+## PX4 code에 기여하기 {#contributing-code-to-px4}
 
 PX4에 새로운 기능을 추가하기 위해서는 정해놓은 워크플로우를 따라야 합니다. PX4에 여러분이 기여한 코드를 공유하기 위해서 아래와 같은 예제를 참고하세요.
 
@@ -63,9 +64,11 @@ git push origin <your feature branch name>
 * 자 이제 끝났습니다! PX4의 멤버가 여러분의 작성한 코드르르 살펴보고 통합시킬지 여부를 결정하게 됩니다. 만약에 여러분이 변경한 부분에 대해서 질문이 있을 수 있으니 확인해 주세요.
 
 ## submodule 업데이트
-submodule 업데이트하는 여러가지 방식이 있습니다. repository를 clone하거나 submodule 디렉토리로 가서 [Contributing code to PX4](##Contributing-code-to-PX4)와 동일한 절차를 따릅니다.
+
+submodule 업데이트하는 여러가지 방식이 있습니다. repository를 clone하거나 submodule 디렉토리로 가서 [Contributing code to PX4](#contributing-code-to-px4)와 동일한 절차를 따릅니다.
 
 ## submodule 업데이트를 위한 PR
+
 이 과정은 submodle X repository에 대해서 PR를 한 후에 필요하며 buf-fix / feature-add는 submodule X의 현재 master에 있습니다. Firmware는 여러분이 업데이트하기 전의 commit를 가리키므로, Firmware가 사용한 submodule이 가리키는 새로운 commit처럼 submodule pull request가 필요합니다.
 ```sh
 cd Firmware
@@ -92,6 +95,7 @@ git push upstream pr-some-fix
 ```
 
 ## Checkout pull requests
+
 아직 merge하지 않은 변경에 대해서도 다른 사람의 pull request를 테스트할 수 있습니다. 특정 사람의 fork에만 존재하더라도 가능합니다. 다음과 같이 따라합니다.
 ```sh
 git fetch upstream  pull/<PR ID>/head:<branch name>
@@ -108,13 +112,16 @@ git checkout <branch name>
 ## 흔히 하는 실수
 
 ### fork한 repository에 force push 하기
+
 처음 PR을 하고나서, PX4 커뮤니티에서 여러분이 변경한 내용을 리뷰합니다. 대부분 경우 리뷰를 참고하여 여러분의 local branch를 수정해야한다는 것을 의미합니다. 파일을 변경한 후에, 가장 최신의 upstream/master으로 feature branch를 다시 rebase해야 합니다. 하지만 rebase 후에, 직접 여러분이 fork한 repository로 feature branch를 push할 수 없으므로 대신 force push를 사용해야 합니다. :
 ```sh
 git push --force-with-lease origin <your feature branch name>
 ```
 
 ### Rebase merge 충돌
+
 ```git rebase``` 할때 conflict가 발생하면 다음을 참고하세요. [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/).
 
 ### Pull merge conflicts
+
 ```git pull``` 할때 conflict가 발생하면 다음을 참고하세요. [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts).

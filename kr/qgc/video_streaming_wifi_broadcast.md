@@ -42,7 +42,7 @@ So you need to connect it to 5V BEC directly. You can do this two ways:
 
 1. Make a custom USB cable. [You need to cut ``+5V`` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
 2. Cut a ``+5V`` wire on PCB near USB port and wire it to BEC. Don't do this if doubt. Use custom cable instead!
-   Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_(electricity)) when using several ground wires.
+   Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29) when using several ground wires.
 
    
 ## Software Setup

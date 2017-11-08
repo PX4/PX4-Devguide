@@ -1,6 +1,6 @@
 # 파라미터 참조
 
-> **Note** **이 목록은 소스코드에서 자동으로 생성되며** 가장 최근 파라미터 문서를 포함합니다.([펌웨어 파라미터 문서](https://pixhawk.org/firmware/parameters)를 대체합니다)
+> **Note** **이 목록은 소스코드에서 자동으로 생성되며** 가장 최근 파라미터 문서를 포함합니다.
 
 ## Attitude EKF estimator
 

@@ -15,7 +15,7 @@
   - Github [가입하기](https://github.com/signup/free)
   - [Firmware repository 사이트](https://github.com/px4/Firmware/)가서 오른쪽 상단의 **FORK** 를 클릭
   - 여기까지 준비가 안된 경우라면 fork 웹사이트를 열고 가운데 있는 개별 저장소 URL을 복사
-  - 저장소를 하드 드라이브로 clone한다. `git clone https://github.com/<youraccountname>/Firmware.git` 명령을 사용. Windows 사용자는 [Github 도움말](https://help.github.com/articles/set-up-git#platform-windows)을 참고하세요.
+  - 저장소를 하드 드라이브로 clone한다. `git clone https://github.com/<youraccountname>/Firmware.git` 명령을 사용. Windows 사용자는 [Github 도움말](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/)을 참고하세요.
   - git submodules 업데이트 : 쉘에서 실행(윈도우에서는 PX4 콘솔에서 실행)
 
 <div class="host-code"></div>

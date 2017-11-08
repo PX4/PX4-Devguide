@@ -56,7 +56,7 @@ arm-none-eabi-gdb
 
 #### 전제 조건
 
-Segger 사이트에서 [J-Link 소프트웨어 다운로드](https://www.segger.com/downloads/jlink#)하고 지시에 따라 설치하기
+Segger 사이트에서 [J-Link 소프트웨어 다운로드](https://www.segger.com/downloads/jlink)하고 지시에 따라 설치하기
 
 #### JLink GDB server 실행하기
 

@@ -46,7 +46,7 @@ In-flight transition requires at least the following parameters to match your ai
 | VT_ARSP_BLEND | At which airspeed the fixed-wing controls becom active. |
 | VT_ARSP_TRANS | At which airspeed the transition to fixed-wing is complete. |
 
-There are more parameters depending on the type of VTOL, see the [parameter reference](https://pixhawk.org/firmware/parameters#vtol_attitude_control).
+There are more parameters depending on the type of VTOL, see the [parameter reference](../advanced/parameter_reference.md#vtol-attitude-control).
 
 ### Manual transition test
 

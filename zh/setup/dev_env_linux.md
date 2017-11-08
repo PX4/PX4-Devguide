@@ -1,6 +1,7 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/dev_env_linux.md
 translated_sha: 23bf0248facb1ab7d0dd58003c3234a95f479931
+translated_note: NEEDS_FULL_RE-TRANSLATION
 ---
 
 # Linux开发环境
@@ -79,15 +80,18 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 #### 工具链安装
 
 ```sh
-sudo apt-get install android-tools-adb android-tools-fastboot fakechroot fakeroot unzip xz-utils wget python python-empy -y
+sudo apt-get install android-tools-adb android-tools-fastboot \
+    fakechroot fakeroot unzip xz-utils wget python python-empy -y
 ```
+
+Please follow the instructions on https://github.com/ATLFlight/cross_toolchain for the toolchain installation.
+
+Load the new configuration:
 
 ```sh
-git clone https://github.com/ATLFlight/cross_toolchain.git
+source ~/.bashrc
 ```
 
-
-从QDN上获得Hexagon SDK 3.0： [https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin)
 
 需要登录到QDN。如果你还没有帐户，必须先注册一个。
 

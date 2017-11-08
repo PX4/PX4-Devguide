@@ -57,7 +57,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 | VT_ARSP_BLEND   | 固定翼控制器激活空速阈值    |
 | VT_ARSP_TRANS   | 完成固定翼模式转换的空速    |
 
-根据垂直起降飞行器类型的不同，有更多的参数需要调整，查看[参考参数](https://pixhawk.org/firmware/parameters#vtol_attitude_control)。
+根据垂直起降飞行器类型的不同，有更多的参数需要调整，查看[参考参数](../advanced/parameter_reference.md#vtol-attitude-control)。
 
 ### 手动转换测试
 

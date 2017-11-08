@@ -85,6 +85,8 @@
   * [PWM / GPIO](sensor_bus/pwm_gpio.md)
   * [UART](sensor_bus/uart.md)
     * [uLanding Radar](sensor/uart_ulanding_radar.md)
+* [Data Links](data_links/README.md)
+  * [SiK Radio](data_links/sik_radio.md)
 * [Debugging and Advanced Topics](debugging-and-advanced-topics.md)
   * [FAQ](debug/faq.md)
   * [System Console](debug/system_console.md)
@@ -118,8 +120,7 @@
     * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
   * [Maintenance](test_and_ci/maintenance.md)
   * [VTOL Testing](airframes_vtol/testing.md)
-* [Datalinks](datalinks.md)
-  * [SiK Radio](sik-radio.md)
+
 
 ## Dronecode Shortcuts
 
