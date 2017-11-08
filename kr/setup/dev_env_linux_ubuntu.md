@@ -8,7 +8,7 @@
 
 
 
-## 편리한 Bash 스크립트
+## 편리한 Bash 스크립트 {#convenience-bash-scripts}
 
 We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**).
 
@@ -296,7 +296,7 @@ A sysroot is required to provide the libraries and header files needed to cross 
 
 The qrlSDK sysroot provides the required header files and libraries for the camera, GPU, etc.
 
-Download the file [Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) and save it in `cross_toolchain/download/`.
+Download the file [Flight_3.1.3_qrlSDK.tgz](https://support.intrinsyc.com/attachments/download/1515/Flight_3.1.3_qrlSDK.tgz) and save it in `cross_toolchain/download/`.
 
 ```sh
 cd cross_toolchain

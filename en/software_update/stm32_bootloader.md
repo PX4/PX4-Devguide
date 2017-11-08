@@ -55,7 +55,7 @@ These instructions are for the [J-Link GDB server](https://www.segger.com/jlink-
 
 #### Prerequisites
 
-[Download the J-Link software](https://www.segger.com/downloads/jlink#) from the Segger website and install it according to their instructions.
+[Download the J-Link software](https://www.segger.com/downloads/jlink) from the Segger website and install it according to their instructions.
 
 #### Run the JLink GDB server
 

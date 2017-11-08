@@ -37,13 +37,13 @@ uORB是一种用于线程间/进程间进行异步发布-订阅的消息机制�
 
 然后在代码中, 通过topic ID:`ORB_ID(offboard_mission)`来使用这个topic.
 
-## 发布话题
+## 发布话题 
 
 在系统的任何地方都可以发布（publish）一个话题, 包括在中断上下文中(被`hrt_call`接口调用的函数). 但是, 公告(advertise)一个话题仅限于在中断上下文之外. 一个话题必须同它随后发布的同一进程中公告。一个话题必须在它随后发布的相同进程中进行公告。
 
-## 列出话题并进行监听
+## 列出话题并进行监听 {#listing-topics-and-listening-in}
 
-> **注意** `监听器(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
+> **Note** `监听器(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
 
 要列出所有话题, 先列出文件句柄:
 

@@ -6,7 +6,7 @@
 
 전제 조건:
 
-  * [SITL Simulation](../simulation/sitl.md)
+  * [jMAVSim SITL Simulation](../simulation/jmavsim.md)
   * [Gazebo](../simulation/gazebo.md)
   * [ROS and MAVROS](../simulation/ros_interface.md)
 

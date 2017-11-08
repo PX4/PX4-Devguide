@@ -5,7 +5,7 @@
 생성된 코드는 파이썬 스크립트를 사용합니다 : **/Tools/generate_microRTPS_bridge.py**
 
 
-## 자동 브리지 코드 생성 비활성화
+## 자동 브리지 코드 생성 비활성화 {#disable-automatic-bridge-code-generation}
 
 먼저 브리지 코드의 자동 생성을 비활성화 시킵니다. 타겟 플랫폼에 대해서 **.cmake** 파일에 있는 `GENERATE_RTPS_BRIDGE` 변수를 *off* 로 설정합니다:
 
@@ -134,7 +134,7 @@ src/modules/micrortps_bridge/micrortps_client
  0 directories, 4 files
 ```
 
-## 빌드와 코드 사용
+## 빌드와 코드 사용 {#build-and-use-the-code}
 
 수동으로 생성한 *Client* 코드가 빌드해서  [자동으로 생성한 Client code](../middleware/micrortps.md#client-px4-firmware)와 정확히 같은 방식으로 사용합니다.
 

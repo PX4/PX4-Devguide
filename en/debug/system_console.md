@@ -1,6 +1,6 @@
 # PX4 System Console
 
-The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product), but a plain FTDI cable can be used as well.
+The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](http://nicadrone.com/index.php?id_product=61&controller=product), but a plain FTDI cable can be used as well.
 
 ## System Console vs. Shell
 

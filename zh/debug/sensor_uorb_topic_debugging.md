@@ -15,4 +15,4 @@ uORB是一个异步`publish()` / `subscribe()` 消息API，用于线程进程间
 
 ![QGC MAVLink Console](../../assets/gcs/qgc_mavlink_console_listener_command.png)
 
-有关如何确定哪些话题可用以及如何调用`listener`的更多信息，请参阅： [uORB消息机制 > 列出主题并进行监听](../middleware/uorb.md#列出主题并进行监听)。
+有关如何确定哪些话题可用以及如何调用`listener`的更多信息，请参阅： [uORB消息机制 > 列出主题并进行监听](../middleware/uorb.md#listing-topics-and-listening-in)。

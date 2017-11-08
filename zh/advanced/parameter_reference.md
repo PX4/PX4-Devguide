@@ -5,8 +5,7 @@ translated_sha:
 
 # Parameter Reference
 
-> **Note** **This list is auto-generated from the source code** and contains the most recent parameter documentation (
-  this supersedes the [firmware parameter documentation here](https://pixhawk.org/firmware/parameters).)
+> **Note** **This list is auto-generated from the source code** and contains the most recent parameter documentation.
 
 ## Attitude EKF estimator
 

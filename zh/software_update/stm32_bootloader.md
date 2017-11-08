@@ -58,7 +58,7 @@ arm-none-eabi-gdb
 
 #### 必备条件
 
-从Segger官网下载[J-Link](https://www.segger.com/downloads/jlink#) 软件并按照其教程进行安装。
+从Segger官网下载[J-Link](https://www.segger.com/downloads/jlink) 软件并按照其教程进行安装。
 
 #### 运行JLink GDB
 

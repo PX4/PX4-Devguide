@@ -1,6 +1,6 @@
 # Flying with Motion Capture (VICON, Optitrack)
 
- ** WORK IN PROGRESS **
+> **Warning** **WORK IN PROGRESS**
 
 Indoor motion capture systems like VICON and Optitrack can be used to provide position and attitude data for vehicle state estimation, orto serve as ground-truth for analysis.
 The motion capture data can be used to update PX4's local position estimate relative to the local origin. Heading (yaw) from the motion capture system can also be optionally integrated by the attitude estimator.

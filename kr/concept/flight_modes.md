@@ -47,6 +47,6 @@
   * **_OFFBOARD_** (Offboard)
     이 모드에서 position, velocity 그리고 attitude reference / target / setpoint은 시리얼 케이블과 MAVLink로 연결된 컴패니온 컴퓨터에서 제공합니다. offboard setpoint는 [MAVROS](https://github.com/mavlink/mavros) 나 [Dronekit](http://dronekit.io)와 같은 API를 제공할 수 있습니다.
 
-## Flight Mode Evaluation 다이어그램
+## Flight Mode Evaluation 다이어그램 {#flight-mode-evaluation-diagram}
 
-![](../../assets/diagrams/commander-flow-diagram.png)
+![Flight Mode Evaluation Diagram](../../assets/diagrams/commander-flow-diagram.png)

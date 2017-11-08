@@ -13,7 +13,7 @@
 비록 이 단계는 필수는 아니며 MAVLink 메시지를 사용해서 오프보드 모드를 활성화시킬 수 있습니다. 이 방식 훨씬 안전하다고 생각합니다.
 
 ### 2. 컴패니언 컴퓨터 인터페이스 활성화
-[SYS_COMPANION](https://pixhawk.org/firmware/parameters#system) 파라미터를 찾고 921600(추천)이나 57600으로 설정합니다. 이 파라미터는 온보드 모드에 특화된 데이터 스트림을 가지는 Telem2 포트에 MAVLink 스트림을 활성화시킬 수 있습니다. 여기서 적절한 baud rate는 921600 8N1 혹은 57600 8N1입니다.
+[SYS_COMPANION](../advanced/parameter_reference.md#system) 파라미터를 찾고 921600(추천)이나 57600으로 설정합니다. 이 파라미터는 온보드 모드에 특화된 데이터 스트림을 가지는 Telem2 포트에 MAVLink 스트림을 활성화시킬 수 있습니다. 여기서 적절한 baud rate는 921600 8N1 혹은 57600 8N1입니다.
 
 이런 데이터 스트림에 대한 상세 정보는 [소스 코드](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp)에서 "MAVLINK_MODE_ONBOARD"를 찾습니다.
 

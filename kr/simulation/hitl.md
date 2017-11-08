@@ -6,9 +6,9 @@ HITL은 autopilot이 시뮬레이터에 연결하고 모든 flight mode가 autop
 
 PX4는 멀티콥터(jMAVSim을 사용)와 고정익을(X-Plane demo나 모두 사용) 위해 HITL을 지원합니다. Flightgear 지원도 잘 되고 있지만 X-Plane를 추천합니다. 이를 활성화시키려면 airframe 메뉴를 통해 설정합니다.
 
-![](../../assets/gcs/qgc_hil_config.png)
+![QGroundControl HITL configuration](../../assets/gcs/qgc_hil_config.png)
 
-## jMAVSim (쿼드로터) 사용하기
+## jMAVSim (쿼드로터) 사용하기 {#using-jmavsim-quadrotor}
 
 - QGroundControl가 실행 중이 아님을 확인(혹은 시리얼 포트로 장치 연결 중)
 - HITL 모드엥서 jMAVSim을 실행 (필요하면 serial 포트를 교체):

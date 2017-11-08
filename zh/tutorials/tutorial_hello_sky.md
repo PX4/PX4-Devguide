@@ -22,7 +22,7 @@ translated: true
 - 点击到你fork后的站点，复制你的私人PX4代码仓库的URL地址。
 - 克隆你的代码仓库到你的硬盘中，在命令行中输入：
   `git clone https://github.com/<youraccountname>/Firmware.git`
-  对于windows用户，请参考[github帮助](https://help.github.com/articles/set-up-git#platform-windows)中的介绍。例如在github创建的官方应用程序中使用fork/clone命令克隆仓库到本地硬盘中。
+  对于windows用户，请参考[github帮助](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/)中的介绍。例如在github创建的官方应用程序中使用fork/clone命令克隆仓库到本地硬盘中。
 - 更新px4代码包含的git子模块：运行命令行工具（在windows上运行PX4终端）
 
 
@@ -202,7 +202,7 @@ Rebooting.
 > 为了实现一些功能，应用程序需要读取传感器的输入然后反应到对电机或者舵机的输出中。请注意，PX4平台真正的硬件抽象的概念在这里体现--无需与传感器驱动程序以任何方式交互，如果你更新了主板或传感器，也无需更新应用程序。
 
 
-在PX4中，应用程序之间的各个消息通道称为“topics”（话题）。在本教程中，我们关心的topic是“多传感器间的uORB消息机制”[sensor_combined](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/topics/sensor_combined.h) [topic](../middleware/uorb.md)。这些消息机制使得整个系统能够同步传感器数据。
+在PX4中，应用程序之间的各个消息通道称为“topics”（话题）。在本教程中，我们关心的topic是“多传感器间的uORB消息机制”[sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) [topic](../middleware/uorb.md)。这些消息机制使得整个系统能够同步传感器数据。
 
 订阅一个话题是非常迅速并且简洁的：
 

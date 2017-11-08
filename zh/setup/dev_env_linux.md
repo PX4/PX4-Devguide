@@ -1,6 +1,7 @@
 ---
 translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/dev_env_linux.md
 translated_sha: 23bf0248facb1ab7d0dd58003c3234a95f479931
+translated_note: NEEDS_FULL_RE-TRANSLATION
 ---
 
 # Linux开发环境
@@ -30,7 +31,7 @@ sudo usermod -a -G dialout $USER
   [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html)
 * [Qualcomm Snapdragon Flight hardware](https://docs.px4.io/en/flight_controller/snapdragon_flight.html)
 * Linux-based hardware: [Raspberry Pi 2/3](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html), Parrot Bebop
-* Host simulation: [jMAVSim SITL](../simulation/sitl.md) and [Gazebo SITL](../simulation/gazebo.md)
+* Host simulation: [jMAVSim SITL](../simulation/jmavsim.md) and [Gazebo SITL](../simulation/gazebo.md)
 
 > 提示：安装[Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system)可以比make更快进行编译。如果安装了它就会自动选择使用它进行编译。
 
@@ -79,15 +80,18 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 #### 工具链安装
 
 ```sh
-sudo apt-get install android-tools-adb android-tools-fastboot fakechroot fakeroot unzip xz-utils wget python python-empy -y
+sudo apt-get install android-tools-adb android-tools-fastboot \
+    fakechroot fakeroot unzip xz-utils wget python python-empy -y
 ```
+
+Please follow the instructions on https://github.com/ATLFlight/cross_toolchain for the toolchain installation.
+
+Load the new configuration:
 
 ```sh
-git clone https://github.com/ATLFlight/cross_toolchain.git
+source ~/.bashrc
 ```
 
-
-从QDN上获得Hexagon SDK 3.0： [https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin](https://developer.qualcomm.com/download/hexagon/hexagon-sdk-v3-linux.bin)
 
 需要登录到QDN。如果你还没有帐户，必须先注册一个。
 
@@ -131,7 +135,7 @@ source ~/.bashrc
 
 qrlSDK sysroot提供了摄像头、GPU等需要的头文件和链接库。
 
-下载 [Flight\_3.1.1\_qrlSDK.zip](http://support.intrinsyc.com/attachments/download/690/Flight_3.1.1_qrlSDK.zip) 并保存到`cross_toolchain/download/`。
+下载 [Flight_3.1.3_qrlSDK.tgz](https://support.intrinsyc.com/attachments/download/1515/Flight_3.1.3_qrlSDK.tgz) 并保存到`cross_toolchain/download/`。
 
 ```sh
 cd cross_toolchain

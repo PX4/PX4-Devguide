@@ -69,7 +69,7 @@ Scanning dependencies of target build/firmware_px4fmu-v2
 * [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
 * [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
 * [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
-* [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.md): `make px4fmu-v4_default`
+* [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make px4fmu-v4_default`
 * [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4fmu-v3_default`
 * [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4fmu-v4pro_default`
 * [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make crazyflie_default`
@@ -350,7 +350,7 @@ adb reboot
 
 ## IDE에서 컴파일하기
 
-PX4 시스템은 Qt Creator, Eclipse, Sublime Text를 지원합니다. Qt Creator가 가장 사용자를 위한 기능이 많아서 유일하게 공식적으로 지원하는 IDE입니다. Eclipse와 Sublime의 경우 전문가가 아니라면 사용하기 쉽지 않습니다. 하드코어 사용자는 [Eclipse project](https://github.com/PX4/Firmware/blob/master/.project)와 [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project)를 소스 트리에서 찾을 수 있습니다.
+PX4 시스템은 Qt Creator, Eclipse, Sublime Text를 지원합니다. Qt Creator가 가장 사용자를 위한 기능이 많아서 유일하게 공식적으로 지원하는 IDE입니다. Eclipse와 Sublime의 경우 전문가가 아니라면 사용하기 쉽지 않습니다. 하드코어 사용자는 [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project)와 [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project)를 소스 트리에서 찾을 수 있습니다.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 

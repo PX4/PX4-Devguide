@@ -85,6 +85,8 @@
   * [PWM / GPIO](sensor_bus/pwm_gpio.md)
   * [UART](sensor_bus/uart.md)
     * [uLanding Radar](sensor/uart_ulanding_radar.md)
+* [Data Links](data_links/README.md)
+  * [SiK Radio](data_links/sik_radio.md)
 * [디버깅과 고급 topics](debugging-and-advanced-topics.md)
   * [FAQ](debug/faq.md)
   * [시스템 콘솔](debug/system_console.md)
@@ -107,7 +109,7 @@
   * [Out-of-tree 모듈](advanced/out_of_tree_modules.md)
   * [ULog 파일 포맷](log/ulog_file_format.md)
   * [라이센스](advanced/licenses.md)
-  * [텔레메트리 Wifi](telemetry_wifi.md)
+  * [텔레메트리 Wifi](advanced/telemetry_wifi.md)
   * [RTK GPS](advanced/rtk_gps.md)
 * [소프트웨어 업데이트](software_update/README.md)
   * [STM32 부트로더](software_update/stm32_bootloader.md)
@@ -117,8 +119,7 @@
     * [Jenkins 지속 통합](test_and_ci/jenkins_ci.md)
   * [유지보수](test_and_ci/maintenance.md)
   * [VTOL Testing](airframes_vtol/testing.md)  
-* [Datalinks](datalinks.md)
-  * [SiK Radio](sik-radio.md)
+
 
 ## Dronecode 바로가기
 

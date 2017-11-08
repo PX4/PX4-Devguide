@@ -27,7 +27,7 @@ cd ..
 ```
 
 
-现在可以通过编译源代码来构建二进制文件。在直接使用硬件前，推荐先[进行仿真](../simulation/sitl.md)。喜欢在图形界面开发环境工作的用户也应该继续完成下面部分。
+现在可以通过编译源代码来构建二进制文件。在直接使用硬件前，推荐先[进行仿真](../simulation/jmavsim.md)。喜欢在图形界面开发环境工作的用户也应该继续完成下面部分。
 
 
 ###基于NuttX / Pixhawk的硬件板
@@ -332,7 +332,7 @@ adb reboot
 
 
 ##图形IDE界面下编译
-PX4 支持Qt Creator, Eclipse 和Sublime Text三种集成式开发环境。  Qt Creator是最友好的开发环境，所以被是唯一官方支持的IDE。除非资深的Eclipse 或Sublime开发者，否则一般不推荐使用Eclipse或Sublime进行二次开发。硬件底层开发可以在 [Eclipse project](https://github.com/PX4/Firmware/blob/master/.project) 和 a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) 找到源码。
+PX4 支持Qt Creator, Eclipse 和Sublime Text三种集成式开发环境。  Qt Creator是最友好的开发环境，所以被是唯一官方支持的IDE。除非资深的Eclipse 或Sublime开发者，否则一般不推荐使用Eclipse或Sublime进行二次开发。硬件底层开发可以在 [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) 和 a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) 找到源码。
 
 {% raw %}
 <video id="my-video" class="video-js" controls preload="auto" width="100%" 

@@ -134,9 +134,9 @@ Multiple log files in a directory can be analysed using the [batch\_process\_log
 
 * Attitude output data is found in the [vehicle\_attitude](https://github.com/PX4/Firmware/blob/master/msg/vehicle_attitude.msg) message.
 * Local position output data is found in the [vehicle\_local\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_local_position.msg) message.
-* Control loop feedback data is found in the the [control\_state](https://github.com/PX4/Firmware/blob/master/msg/control_state.msg) message.
 * Global \(WGS-84\) output data is found in the [vehicle\_global\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_global_position.msg) message.
 * Wind velocity output data is found in the [wind\_estimate](https://github.com/PX4/Firmware/blob/master/msg/wind_estimate.msg) message.
+
 
 ### States
 

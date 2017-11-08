@@ -47,7 +47,7 @@ AUX1 채널을 RC 스위치에 할당하고 airspeed가 정상적으로 동작�
 | VT_ARSP_BLEND | 특정 airspeed에서 고정익 제어를 활성화 |
 | VT_ARSP_TRANS | 특정 airspeed에서 고정익 전환을 완료 |
 
-VTOL 타입에 따라서 더 다양한 parameter이 있습니다. [parameter reference](https://pixhawk.org/firmware/parameters#vtol_attitude_control)를 참고하세요.
+VTOL 타입에 따라서 더 다양한 parameter이 있습니다. [parameter reference](../advanced/parameter_reference.md#vtol-attitude-control)를 참고하세요.
 
 ### 수동 transition 테스트
 

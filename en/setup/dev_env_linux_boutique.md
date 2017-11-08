@@ -65,7 +65,7 @@ Ensure you have the multilib repository enabled.
 sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip vim
 ```
 
-Install [yaourt](https://wiki.archlinux.org/index.php/Yaourt#Installation), the package manager for the [Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository).
+Install [yaourt](https://archlinux.fr/yaourt-en) (Yet AnOther User Repository Tool), a package manager for the [Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository).
 
 Then use it to download, compile and install the following:
 
