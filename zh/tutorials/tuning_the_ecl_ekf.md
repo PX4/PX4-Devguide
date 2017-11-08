@@ -137,7 +137,6 @@ EKF仅使用IMU的数据进行状态预测。IMU的数据不会用作EKF推导�
 
 * 姿态输出数据在 [vehicle\_attitude](https://github.com/PX4/Firmware/blob/master/msg/vehicle_attitude.msg) 消息中。
 * 本地位置输出在 [vehicle\_local\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_local_position.msg) 消息中。
-* 控制回路反馈数据在 [control\_state](https://github.com/PX4/Firmware/blob/master/msg/control_state.msg) 消息中。
 * 全局 \(WGS-84\) 输出数据在 [vehicle\_global\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_global_position.msg) 消息中。
 * 风速输出数据在 [wind\_estimate](https://github.com/PX4/Firmware/blob/master/msg/wind_estimate.msg) mess消息中。
 
