@@ -18,8 +18,6 @@
 * [Concepts](concept/README.md)
   * [Flight Modes](concept/flight_modes.md)
   * [Architectural Overview](concept/architecture.md)
-  * [Flight Stack](concept/flight_stack.md)
-  * [Middleware](concept/middleware.md)
   * [Mixing and Actuators](concept/mixing.md)
   * [PWM limit state machine](concept/pwm_limit.md)
 * [Simulation](simulation/README.md)

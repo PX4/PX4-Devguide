@@ -114,7 +114,7 @@ Note that the ROMFS/px4fmu_common directory will be mounted to /etc on Pixhawk.
 ### Starting the Firmware Upgrade process
 
 
-When using the [PX4 Flight Stack](../concept/flight_stack.md), enable UAVCAN in the 'Power Config' section and reboot the system before attempting an UAVCAN firmware upgrade.
+When using the [PX4 Flight Stack](../concept/architecture.md), enable UAVCAN in the 'Power Config' section and reboot the system before attempting an UAVCAN firmware upgrade.
 
 
 Alternatively UAVCAN firmware upgrading can be started manually on NSH via:
