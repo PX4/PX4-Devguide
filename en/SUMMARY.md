@@ -58,7 +58,6 @@
     * [Estimators](middleware/modules_estimator.md)
     * [System](middleware/modules_system.md)
 * [Airframes](airframes/README.md)
-  * [Unified Codebase](airframes/architecture.md)
   * [Airframes Reference](airframes/airframe_reference.md)
   * [Adding a New Airframe](airframes/adding_a_new_frame.md)
 * [Companion Computers](companion_computer/README.md)
