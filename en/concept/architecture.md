@@ -1,7 +1,7 @@
 # Architectural Overview
 
-PX4 consists of two main layers: the [flight stack](#flight-stack) is an autopilot software solution,
-and the [middleware](#middleware) is a general robotics layer that can support any type of autonomous robot.
+PX4 consists of two main layers: the [flight stack](#flight-stack) is an estimation and flight control system,
+and the [middleware](#middleware) is a general robotics layer that can support any type of autonomous robot, providing internal/external communications and hardware integration.
 
 All PX4 [airframes](../airframes/README.md) share a single codebase (this includes other robotic systems like boats, rovers, submarines etc.). The complete system design is [reactive](http://www.reactivemanifesto.org), which means that:
 
@@ -24,14 +24,14 @@ section shows the components of the flight stack.
 [here](https://drive.google.com/file/d/0B1TDW9ajamYkaGx3R0xGb1NaeU0/view?usp=sharing) 
 and opened with draw.io Diagrams. -->
 
-The source code is split into self-contained modules (shown in `monospace` in the
+The source code is split into self-contained modules/programs (shown in `monospace` in the
 diagram). Usually a building block corresponds to exactly one module. At
 runtime, you can inspect which modules are executed with the `top` command, and
 each module can be started/stopped individually via `<module_name> start/stop`.
 
 The arrows show the information flow for the *most important* connections between
-the modules. In reality, there are many more connections than shown, and some messages 
-(e.g. for parameters) are accessed by most of the modules.
+the modules. In reality, there are many more connections than shown, and some data 
+(e.g. for parameters) is accessed by most of the modules.
 
 Modules communicate with each other through a publish-subscribe message bus
 named [uORB](../middleware/uorb.md). 
@@ -52,7 +52,7 @@ the `commander` and `navigator` are shared between platforms.
 
 The middleware consists primarily of device drivers
 for embedded sensors, communication with the external world (companion computer,
-GCS, etc.) and a publish-subscribe message bus.
+GCS, etc.) and the uORB publish-subscribe message bus.
 
 ### Flight Stack {#flight-stack}
 
@@ -63,19 +63,20 @@ as well as estimators for attitude and position.
 
 ## Update Rates
 
-Since the modules poll for message updates, typically the drivers define how
+Since the modules wait for message updates, typically the drivers define how
 fast a module updates. Most of the IMU drivers sample the data at 1kHz,
 integrate it and publish with 250Hz. Other parts of the system, such
 as the `navigator`, don't need such a high update rate, and thus run
 considerably slower.
 
-The message update rates can be inspected in real-time on the system by running
-`uorb top`.
+The message update rates can be [inspected](../middleware/uorb.md#urb-top-command)
+in real-time on the system by running `uorb top`.
 
 ## Runtime Environment
 
-PX4 runs on various operating systems that provide a POSIX-API and execution
-model (such as Linux, MacOS, NuttX or QuRT).
+PX4 runs on various operating systems that provide a POSIX-API
+(such as Linux, macOS, NuttX or QuRT). It should also have some form of
+real-time scheduling (e.g. FIFO).
 
 The inter-module communication (using uORB) is based on shared memory. The whole
 PX4 middleware runs in a single address space, i.e. memory is shared between all
@@ -92,11 +93,12 @@ There are 2 different ways that a module can be executed:
   stack. Multiple tasks run on the same stack with a single priority per work
   queue.
   
-A task is scheduled by specifying a fixed time in the future.
-The advantage is that it uses less RAM, but the task is not allowed to sleep
-or poll on a message.
+  A task is scheduled by specifying a fixed time in the future.
+  The advantage is that it uses less RAM, but the task is not allowed to sleep
+  or poll on a message.
 
-It is used for periodic tasks, such as sensor drivers or the land detector.
+  Work queues are used for periodic tasks, such as sensor drivers or the land
+  detector.
 
 > **Note** Tasks running on a work queue do not show up in `top` 
 > (only the work queues themselves can be seen - e.g. as `lpwork`).
