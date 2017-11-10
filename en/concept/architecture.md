@@ -22,7 +22,9 @@ section shows the components of the flight stack.
 
 <!-- This diagram can be updated from 
 [here](https://drive.google.com/file/d/0B1TDW9ajamYkaGx3R0xGb1NaeU0/view?usp=sharing) 
-and opened with draw.io Diagrams. -->
+and opened with draw.io Diagrams. You might need to request access if you
+don't have a px4.io Google account -->
+
 
 The source code is split into self-contained modules/programs (shown in `monospace` in the
 diagram). Usually a building block corresponds to exactly one module. At
@@ -44,9 +46,6 @@ The use of the publish-subscribe scheme means that:
 > **Info** This architecture allows every single one of these
 > blocks to be rapidly and easily replaced, even at runtime.
 
-The controllers / mixers are specific to a particular airframe (e.g. a
-multicopter, VTOL or plane), but the higher-level mission management blocks like
-the `commander` and `navigator` are shared between platforms.
 
 ### Middleware {#middleware}
 
@@ -60,6 +59,23 @@ The flight stack is a collection of guidance, navigation and control algorithms
 for autonomous drones. 
 It includes controllers for fixed wing, multirotor and VTOL airframes 
 as well as estimators for attitude and position.
+
+An **estimator** takes one or more sensor inputs, combines them, and computes a
+vehicle state (for example the attitude from IMU sensor data).
+
+A **controller** is a component that takes a setpoint and a measurement or
+estimated state (process variable) as input. Its goal is to adjust the value of
+the process variable such that it matches the setpoint. The output is a
+correction to eventually reach that setpoint. For example the position
+controller takes position setpoints as inputs, the process variable is the
+currently estimated position, and the output is an attitude and thrust setpoint
+that move the vehicle towards the desired position.
+
+A **mixer** takes force commands (e.g. turn right) and translates them into
+individual motor commands, while ensuring that some limits are not
+exceeded. This translation is specific for a vehicle type and depends on various
+factors, such as the motor arrangements with respect to the center of gravity,
+or the vehicle's rotational inertia.
 
 ## Update Rates
 
@@ -117,7 +133,7 @@ that share the file descriptor list.
 Each task/thread has a fixed-size stack, and there is a periodic task which
 checks that all stacks have enough free space left (based on stack coloring).
 
-### Linux/Mac
+### Linux/macOS
 
 On Linux or macOS, PX4 runs in a single process, and the modules run in their own
 threads (there is no distinction between tasks and threads as on NuttX).
