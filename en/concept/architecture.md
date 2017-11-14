@@ -53,6 +53,10 @@ The middleware consists primarily of device drivers
 for embedded sensors, communication with the external world (companion computer,
 GCS, etc.) and the uORB publish-subscribe message bus.
 
+In addition, the middleware includes a [simulation layer](../simulation/README.md) 
+that allows PX4 flight code to run on a desktop operating system and control 
+a computer modeled vehicle in a simulated "world".
+
 ### Flight Stack {#flight-stack}
 
 The flight stack is a collection of guidance, navigation and control algorithms 
