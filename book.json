@@ -2,6 +2,7 @@
     "plugins": [
         "youtube",
         "richquotes",
+        "collapsible-menu",
         "-anchors",
         "page-toc-button",
         "mermaid",

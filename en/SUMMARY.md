@@ -43,7 +43,7 @@
   * [Motion Capture \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
   * [S.Bus Driver for Linux](tutorials/linux_sbus.md)
 * [Autopilot Hardware](flight_controller/README.md)
-* Middleware and Architecture
+* [Middleware and Architecture](middleware/README.md)
   * [uORB Messaging](middleware/uorb.md)
   * [MAVLink Messaging](middleware/mavlink.md)
   * [RTPS/ROS2 Interface](middleware/micrortps.md)
@@ -84,7 +84,7 @@
     * [uLanding Radar](sensor/uart_ulanding_radar.md)
 * [Data Links](data_links/README.md)
   * [SiK Radio](data_links/sik_radio.md)
-* [Debugging and Advanced Topics](debugging-and-advanced-topics.md)
+* [Debugging and Advanced Topics](debug/README.md)
   * [FAQ](debug/faq.md)
   * [System Console](debug/system_console.md)
   * [System Boot](advanced/system_startup.md)
