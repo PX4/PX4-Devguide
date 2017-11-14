@@ -45,7 +45,7 @@
   * [모션 캡쳐 \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
   * [리눅스 S.Bus 드라이버](tutorials/linux_sbus.md)
 * [Autopilot 하드웨어](flight_controller/README.md)
-* 미들웨어와 아키텍쳐
+* [미들웨어와 아키텍쳐](middleware/README.md)
   * [uORB 메시징](middleware/uorb.md)
   * [MAVLink 메시징](middleware/mavlink.md)
   * [RTPS/ROS2 인터페이스](middleware/micrortps.md)
@@ -87,7 +87,7 @@
     * [uLanding Radar](sensor/uart_ulanding_radar.md)
 * [Data Links](data_links/README.md)
   * [SiK Radio](data_links/sik_radio.md)
-* [디버깅과 고급 topics](debugging-and-advanced-topics.md)
+* [디버깅과 고급 topics](debug/README.md)
   * [FAQ](debug/faq.md)
   * [시스템 콘솔](debug/system_console.md)
   * [시스템 부트](advanced/system_startup.md)

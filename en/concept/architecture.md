@@ -31,6 +31,9 @@ diagram). Usually a building block corresponds to exactly one module. At
 runtime, you can inspect which modules are executed with the `top` command, and
 each module can be started/stopped individually via `<module_name> start/stop`.
 
+> **Tip** For more information about each of these modules see the
+> [Modules & Commands Reference](../middleware/modules_main.md).
+
 The arrows show the information flow for the *most important* connections between
 the modules. In reality, there are many more connections than shown, and some data 
 (e.g. for parameters) is accessed by most of the modules.
@@ -49,7 +52,7 @@ The use of the publish-subscribe scheme means that:
 
 ### Middleware {#middleware}
 
-The middleware consists primarily of device drivers
+The [middleware](../middleware/README.md) consists primarily of device drivers
 for embedded sensors, communication with the external world (companion computer,
 GCS, etc.) and the uORB publish-subscribe message bus.
 

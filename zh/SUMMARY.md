@@ -43,7 +43,7 @@
   * [AirSim仿真](simulation/airsim.md)
   * [多机仿真](simulation/multi-vehicle-simulation.md)
 * [自驾仪硬件](flight_controller/README.md)
-* 中间件及架构
+* [中间件及架构](middleware/README.md)
   * [uORB消息机制](middleware/uorb.md)
   * [MAVLink消息机制](middleware/mavlink.md)
   * [守护程序](advanced/architecture_daemon.md)
@@ -81,7 +81,7 @@
     * [uLanding Radar](sensor/uart_ulanding_radar.md)
 * [Data Links](data_links/README.md)
   * [SiK Radio](data_links/sik_radio.md)
-* 调试及高级主题
+* [调试及高级主题](debug/README.md)
   * [FAQ](debug/faq.md)
   * [系统控制台](debug/system_console.md)
   * [系统启动](advanced/system_startup.md)
