@@ -21,8 +21,3 @@ Alternatively it is also possible to run the complete unit-tests right from bash
 ```
 make tests
 ```
-
-## Testing in the Cloud / CI
-
-
-
