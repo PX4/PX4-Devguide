@@ -22,7 +22,7 @@ translated_sha: 5d3a4b74ed78490309ad921f2a6a78fd092d196d
 
 * [MPC_THR_HOVER](../advanced/parameter_reference.md#MPC_THR_HOVER) - 系统的悬停油门（以百分比表示，默认为50％）。 重要的是正确设置，因为它不仅使高度控制更准确，而且确保正确的着陆检测。 无负载安装的竞赛手或大型航拍无人机可能需要低得多的设置（例如35％）。
 * [MPC_THR_MIN](../advanced/parameter_reference.md#MPC_THR_MIN) - 整个系统的最小油门。设置此项以启用受控下降。
-* [LNDMC_THR_RANGE](../advanced/parameter_reference.md#LNDMC_THR_RANGE) - 这是一个缩放因子，用于定义最小和悬停油门之间可被接受作为着陆油门的范围。例如：如果最小油门是0.1，悬停油门是0.5并且范围为0.2\(20%\)，那么用于着陆的最高油门可通过最小油门加上\(0.5 - 0.1\) \* 0.2 = 0.08来计算，因此总油门量为0.18.
+* [LNDMC_THR_RANGE](../advanced/parameter_reference.md#LNDMC_THR_RANGE) - 这是一个缩放因子，用于定义最小和悬停油门之间可被接受作为着陆油门的范围。Example: If the minimum throttle is 0.1, the hover throttle is 0.5 and the range is 0.2 \(20%\), then the highest throttle value that counts as landed is: `0.1 + (0.5 - 0.1) * 0.2 = 0.18`.
 
 The throttle level to trigger takeoff is hard-coded to 62.5%. If the pilot raises above this threshold the system will attempt to take off. This value should be greater than the hover throttle.
 

@@ -12,7 +12,7 @@
 
 * [MPC_THR_HOVER](../advanced/parameter_reference.md#MPC_THR_HOVER) - 시스템의 hover 스로틀\(퍼센티지로 디폴트 50%\). altitude 제어를 정확하게 하는 목적이 아니라 정확히 착륙 감지를 하기 위해서는 이를 정확하게 설정하는 것이 중요하다. 페이로드가 없는 레이서와 큰 카메라 드론은 더 낮게 셋팅해야함\(예로 35%\)
 * [MPC_THR_MIN](../advanced/parameter_reference.md#MPC_THR_MIN) - 시스템의 전체 최소 스로틀. 제어되면서 내려오도록 설정해야함.
-* [LNDMC_THR_RANGE](../advanced/parameter_reference.md#LNDMC_THR_RANGE) - 착륙시 수용하는 최소화 hover 스로틀 사이에 범위를 정의하기 위해서 스케일링 팩터로 사용. 예제: 최소 스로틀이 0.1이면 hover 스로틀은 0.5이고 범위는 0.2 \(20%\) 입니다. 착륙에서 카운트하는 가장 높은 스로틀 값은 최소 스로틀 + \(0.5 - 0.1\) \* 0.2 = 0.08. 따라서 전체 스로틀은 0.18.
+* [LNDMC_THR_RANGE](../advanced/parameter_reference.md#LNDMC_THR_RANGE) - 착륙시 수용하는 최소화 hover 스로틀 사이에 범위를 정의하기 위해서 스케일링 팩터로 사용. Example: If the minimum throttle is 0.1, the hover throttle is 0.5 and the range is 0.2 \(20%\), then the highest throttle value that counts as landed is: `0.1 + (0.5 - 0.1) * 0.2 = 0.18`.
 
 
 The throttle level to trigger takeoff is hard-coded to 62.5%. If the pilot raises above this threshold the system will attempt to take off. This value should be greater than the hover throttle.
