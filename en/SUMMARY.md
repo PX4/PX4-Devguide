@@ -108,7 +108,6 @@
   * [Telemetry Wifi](advanced/telemetry_wifi.md)
   * [RTK GPS](advanced/rtk_gps.md)
   * [Porting Guide](debug/porting-guide.md)
-* [Software Update](software_update/README.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
 * [Testing and CI](test_and_ci/README.md)
   * [Docker Containers](test_and_ci/docker.md)
