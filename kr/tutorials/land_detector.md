@@ -15,9 +15,6 @@
 * [LNDMC_THR_RANGE](../advanced/parameter_reference.md#LNDMC_THR_RANGE) - 착륙시 수용하는 최소화 hover 스로틀 사이에 범위를 정의하기 위해서 스케일링 팩터로 사용. Example: If the minimum throttle is 0.1, the hover throttle is 0.5 and the range is 0.2 \(20%\), then the highest throttle value that counts as landed is: `0.1 + (0.5 - 0.1) * 0.2 = 0.18`.
 
 
-The throttle level to trigger takeoff is hard-coded to 62.5%. If the pilot raises above this threshold the system will attempt to take off. This value should be greater than the hover throttle.
-
-
 ## 고정익 착륙 감지기 설정
 
 파라미터의 전체 집합은 `LNDFW` 접두어로 시작하는 QGroundControl 파라미터 에디터에서 설정할 수 있습니다. 2개 사용자 파라미터는 가끔씩 튜닝이 필요합니다. :

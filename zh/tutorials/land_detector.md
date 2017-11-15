@@ -24,9 +24,6 @@ translated_sha: 5d3a4b74ed78490309ad921f2a6a78fd092d196d
 * [MPC_THR_MIN](../advanced/parameter_reference.md#MPC_THR_MIN) - 整个系统的最小油门。设置此项以启用受控下降。
 * [LNDMC_THR_RANGE](../advanced/parameter_reference.md#LNDMC_THR_RANGE) - 这是一个缩放因子，用于定义最小和悬停油门之间可被接受作为着陆油门的范围。Example: If the minimum throttle is 0.1, the hover throttle is 0.5 and the range is 0.2 \(20%\), then the highest throttle value that counts as landed is: `0.1 + (0.5 - 0.1) * 0.2 = 0.18`.
 
-The throttle level to trigger takeoff is hard-coded to 62.5%. If the pilot raises above this threshold the system will attempt to take off. This value should be greater than the hover throttle.
-
-
 
 ## 固定翼着陆探测器配置
 
