@@ -105,7 +105,6 @@
   * [Wifi数传](advanced/telemetry_wifi.md)
 <!--  * [RTK GPS](advanced/rtk_gps.md) -->
 <!--  * [Porting Guide](debug/porting-guide.md)  -->
-* [软件更新](software_update/README.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
 * [测试和持续集成](test_and_ci/README.md)
   * [Docker容器](test_and_ci/docker.md)
