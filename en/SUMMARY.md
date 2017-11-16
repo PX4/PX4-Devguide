@@ -98,7 +98,6 @@
   * [System Boot](advanced/system_startup.md)
   * [Parameters & Configs](advanced/parameters_and_configurations.md)
   * [Parameter Reference](advanced/parameter_reference.md)
-  * [Indoor / Fake GPS](advanced/fake_gps.md)
   * [Installing driver for Intel RealSense R200](advanced/realsense_intel_driver.md)
   * [Parrot Bebop](advanced/parrot_bebop.md)
   * [Gimbal \(Mount\) Control Setup](advanced/gimbal_control.md)

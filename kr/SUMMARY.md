@@ -101,7 +101,6 @@
   * [시스템 부트](advanced/system_startup.md)
   * [퍄라미터 & 설정](advanced/parameters_and_configurations.md)
   * [파라미터 레퍼런스](advanced/parameter_reference.md)
-  * [인도어 / Fake GPS](advanced/fake_gps.md)
   * [Intel RealSense R200 드라이버 설치](advanced/realsense_intel_driver.md)
   * [Parrot Bebop](advanced/parrot_bebop.md)
   * [짐벌 \(마운트\) 제어 셋업](advanced/gimbal_control.md)

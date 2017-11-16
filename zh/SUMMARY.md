@@ -95,7 +95,6 @@
   * [系统启动](advanced/system_startup.md)
   * [参数&配置](advanced/parameters_and_configurations.md)
   * [参考参数](advanced/parameter_reference.md)
-  * [室内 / 虚拟 GPS](advanced/fake_gps.md)
   * [安装Intel RealSense R200的驱动](advanced/realsense_intel_driver.md)
   * [Parrot Bebop](advanced/parrot_bebop.md)
   * [设置云台控制](advanced/gimbal_control.md)
