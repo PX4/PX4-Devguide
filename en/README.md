@@ -2,27 +2,53 @@
 
 [![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io) 
 
-> **Info** Developers only! This guide is under active development and not intended for consumers.
+> **Info** This guide is for primarily for software developers and (new) hardware integrators.
+> To fly, build and modify vehicles using supported hardware see the [PX4 User Guide](https://docs.px4.io/en/).
 
-This guide describes how to work inside the PX4 system architecture. It enables developers to:
+This guide explains how to:
 
-* Get a [minimum developer setup](setup/config_initial.md).
-* Understand the [PX4 System Architecture](concept/architecture.md) and learn how to modify the flight stack and middleware.
-* [Build and deploy PX4](setup/building_px4.md) on _Intel® Aero Ready to Fly Drone_, _Qualcomm Snapdragon Flight_, _Pixhawk_, _Pixfalcon_ and [many more autopilots](https://docs.px4.io/en/flight_controller/).
+* Get a [minimum developer setup](setup/config_initial.md), [build PX4 from source](setup/building_px4.md) and deploy on [numerous supported autopilots](https://docs.px4.io/en/flight_controller/).
+* Understand the [PX4 System Architecture](concept/architecture.md) and other core concepts.
+* Learn how to modify the flight stack and middleware:
+  - Modify flight algorithms and add new [flight modes](concept/flight_modes.md).
+  - Support new [airframes](airframes/README.md).
+* Learn how to integrate PX4 with new hardware:
+  - Support new sensors and actuators, including cameras, rangefinders, etc.
+  - Modify PX4 to run on new autopilot hardware.
+* [Simulate](simulation/README.md), [test](test_and_ci/README.md) and [debug/log](debug/README.md) PX4.
+* Communicate/integrate with external robotics APIs.
+
+
+## Forums and Chat {#support}
+
+The core development team and community are active on the following forums and chat channels.
+
+* [PX4 Discuss](http://discuss.px4.io/) (*recommended*)
+* [Slack](http://slack.px4.io) (sign up)
+* [Gitter](https://gitter.im/PX4/Firmware)
+* [Google+](https://plus.google.com/117509651030855307398)
+
+Developers who want to [contribute](contribute/README.md) to the platform can also
+join the [weekly dev call](contribute/README.md#dev_call).
+
 
 ## Contributing
 
-This guide is maintained using GitBook. A local copy can be installed by following the [official instructions](https://toolchain.gitbook.com/setup.html). Before calling `gitbook serve` make sure to have all the plugins installed.
+[Contributing & Dev Call](contribute/README.md) explains how to work with our source codelines.
+[Documentation](contribute/docs.md) explains how and where documentation changes can be made. 
+
 
 ## Translations
 
-We have recently started adding translated versions of this guide! You can access these by clicking the language-switcher icon:
+There are Chinese and Korean [translations](contribute/docs.md#translation) of this guide.
+You can you can access these by clicking the language-switcher icon:
 
 ![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
 
-> **Tip** If you would like to contribute to our translations, there is information on how to [get started here](https://github.com/PX4/px4_user_guide#translation).
 
+## Licence
 
-## License
-
-The PX4 Development Guide is available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) license. See our [Github Repository](https://github.com/PX4/Devguide) for more details.
+The code is free to use and modify under terms of the permissive 
+[BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause). 
+The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 
+For more information see: [Licences](contribute/licenses.md).

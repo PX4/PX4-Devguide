@@ -1,6 +1,11 @@
 # Contributing
 
-Contact information for the core dev team and community can be found below. The PX4 project uses a three-branch Git branching model:
+Contact information for the core dev team and community can be [found here](../README.md#support). 
+Developers are also most welcome to attend the [weekly dev call](#dev_call).
+
+## Source Code Management
+
+The PX4 project uses a three-branch Git branching model:
 
 * [master](https://github.com/px4/firmware/tree/master) is by default unstable and sees rapid development.
 * [beta](https://github.com/px4/firmware/tree/beta) has been thoroughly tested. It's intended for flight testers.
@@ -10,9 +15,9 @@ We try to retain a [linear history through rebases](https://www.atlassian.com/gi
 
 To contribute new functionality, [sign up for Github](https://help.github.com/articles/signing-up-for-a-new-github-account/), then [fork](https://help.github.com/articles/fork-a-repo/) the repository, [create a new branch](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/), add your changes, and finally [send a pull request](https://help.github.com/articles/using-pull-requests/). Changes will be merged when they pass our [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration) tests.
 
-All contributions have to be under the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause) and all code must not impose any further constraints on the use.
+All code contributions have to be under the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause) and all code must not impose any further constraints on the use.
 
-## Code style formatting
+## Code Style Formatting
 
 PX4 uses [astyle](http://astyle.sourceforge.net/) for code formatting. Valid versions are
 * [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/) (recommended)
@@ -58,18 +63,18 @@ This commit guide is based on best practices for the Linux Kernel and other [pro
 
 Test flights are important for quality assurance. Please upload the logs from the microSD card to the [Flight Log Review site](http://logs.px4.io/) and share the link on the [PX4 Discuss](http://discuss.px4.io/) along with a verbal flight report.
 
-## Forums and Chat
 
-* [Google+](https://plus.google.com/117509651030855307398)
-* [Gitter](https://gitter.im/PX4/Firmware)
-* [PX4 Discuss](http://discuss.px4.io/)
-
-## Weekly Dev Call
+## Weekly Dev Call {#dev_call}
 
 The PX4 Dev Team syncs up on its weekly dev call.
+
+> **Tip** The dev call is open to all interested developers (not just the core dev team). 
+> This is a great opportunity to meet the team and contribute to the ongoing development of the platform.
 
 * TIME: Wednesday 5PM CET, 11AM EST, 8AM PDT \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
 * Uberconference: [www.uberconference.com/lf-dronecode](http://www.uberconference.com/lf-dronecode)
 * Phone: +1 415-891-1494
 * The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
 * Issues and PRs may be labeled [devcall](https://github.com/PX4/Firmware/labels/devcall) to flag them for discussion
+
+

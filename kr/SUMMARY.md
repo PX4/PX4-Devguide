@@ -15,6 +15,8 @@
   * [고급 설정](setup/config_advanced.md)
   * [기여하기](contribute/README.md)
     * [GIT 예제](contribute/git_examples.md)
+    * [Documentation](contribute/docs.md)
+  * [라이센스](contribute/licenses.md)
 * [개념](concept/README.md)
   * [비행 모드](concept/flight_modes.md)
   * [아키텍쳐 개요](concept/architecture.md)
@@ -106,7 +108,6 @@
   * [짐벌 \(마운트\) 제어 셋업](advanced/gimbal_control.md)
   * [State Estimators 스위칭](advanced/switching_state_estimators.md)
   * [Out-of-tree 모듈](advanced/out_of_tree_modules.md)
-  * [라이센스](advanced/licenses.md)
   * [텔레메트리 Wifi](advanced/telemetry_wifi.md)
   * [RTK GPS](advanced/rtk_gps.md)
 <!--  * [Porting Guide](debug/porting-guide.md) -->
