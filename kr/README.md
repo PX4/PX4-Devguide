@@ -23,6 +23,19 @@
 > **Tip** 번역에 기여하는 방법에 대해서 [시작하기](https://github.com/PX4/px4_user_guide#translation)를 참고하세요.
 
 
+## Forums and Chat {#support}
+
+The core development team and community are active on the following forums and chat channels.
+
+* [PX4 Discuss](http://discuss.px4.io/) (*recommended*)
+* [Slack](http://slack.px4.io) (sign up)
+* [Gitter](https://gitter.im/PX4/Firmware)
+* [Google+](https://plus.google.com/117509651030855307398)
+
+Developers who want to [contribute](contribute/README.md) to the platform can also
+join the [weekly dev call](contribute/README.md#dev_call).
+
+
 ## 라이센스
 
 PX4 개발 가이드는 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 라이센스를 따릅니다. 보다 자세한 내용은 [Github Repository](https://github.com/PX4/Devguide)을 참고하세요.

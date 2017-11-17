@@ -82,7 +82,7 @@ Everything you need to install and build Gitbook locally is explained in the
    * Don't translate the *first part* of a note, tip or warning declaration (e.g. `> **Note**`) 
      as this precise text is required to render the note properly.
 
-## Translations
+## Translations {#translation}
 
 We have recently started adding translated versions of all the PX4/Dronecode guides! 
 If you would like to help, contact us on [our support channels](../README.md#support). 
