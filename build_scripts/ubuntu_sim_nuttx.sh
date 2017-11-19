@@ -14,10 +14,8 @@
 # Preventing sudo timeout https://serverfault.com/a/833888
 trap "exit" INT TERM; trap "kill 0" EXIT; sudo -v || exit $?; sleep 1; while true; do sleep 60; sudo -nv; done 2>/dev/null &
 
-
 # Ubuntu Config
 sudo apt-get remove modemmanager -y
-
 
 # Ninja build system
 ninja_dir=$HOME/ninja
@@ -38,20 +36,19 @@ else
     popd
 fi
 
-
-# Common Dependencies
+# Common dependencies
 echo "Installing common dependencies"
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install python-argparse git git-core wget zip python-empy python-toml python-numpy qtcreator cmake build-essential genromfs -y
-# required python packages
+# Required python packages
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip -y
+sudo -H pip install --upgrade pip
 sudo -H pip install pandas jinja2
 pip install pyserial
 # optional python tools
 pip install pyulog
-
 
 # Install FastRTPS 1.5.0 and FastCDR-1.0.7
 fastrtps_dir=$HOME/eProsima_FastRTPS-1.5.0-Linux
@@ -62,28 +59,30 @@ then
 else
     pushd .
     cd ~
-    wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz
-    mv eprosima_fastrtps-1-5-0-linux-tar-gz eprosima_fastrtps-1-5-0-linux.tar.gz
+    wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz -O eprosima_fastrtps-1-5-0-linux.tar.gz
     tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
     tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
     tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
-    cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+    cpucores=$(( $(lscpu | grep Core.*per.*socket | awk -F: '{print $2}') * $(lscpu | grep Socket\(s\) | awk -F: '{print $2}') ))
+    cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make -j$cpucores; sudo make install
     cd ..
-    cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+    cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make -j$cpucores; sudo make install
+    cd ..
+    rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
     popd
 fi
 
-
-# jMAVSim simulator
+# jMAVSim simulator dependencies
 sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
 
-# Gazebo simulator
+# Gazebo simulator dependencies
+echo "Installing Gazebo8"
 sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
 ## Setup keys
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 ## Update the debian database:
-sudo apt-get update
+sudo apt-get update -y
 ## Install Gazebo8
 sudo apt-get install gazebo8 -y
 ## For developers (who work on top of Gazebo) one extra package
