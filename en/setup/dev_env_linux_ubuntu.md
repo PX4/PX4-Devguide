@@ -73,12 +73,14 @@ Update the package list and install the following dependencies for all PX4 build
 
 ```sh
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
-sudo apt-get update
-sudo apt-get install python-argparse git-core wget zip \
-    python-empy python-toml python-numpy qtcreator cmake build-essential genromfs -y
-# required python packages
+sudo apt-get update -y
+sudo apt-get install python-argparse git git-core zip \
+    python-empy python-toml python-numpy qtcreator cmake \
+    build-essential genromfs -y
+# Required python packages
 sudo apt-get install python-dev -y
-sudo apt-get install python-pip
+sudo apt-get install python-pip -y
+sudo -H pip install --upgrade pip 
 sudo -H pip install pandas jinja2
 pip install pyserial
 ```
@@ -96,14 +98,20 @@ pip install pyulog
 The following instructions can be used to install the FastRTPS 1.5 binaries to your home directory.
 
 ```sh
-wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz
-mv eprosima_fastrtps-1-5-0-linux-tar-gz eprosima_fastrtps-1-5-0-linux.tar.gz
+wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz -O eprosima_fastrtps-1-5-0-linux.tar.gz
 tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
 tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
 tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
-cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+```
+
+> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
+
+```sh
+cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
 cd ..
-cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
+cd ..
+rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
 ```
 
 > **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
@@ -166,7 +174,9 @@ sudo apt-get install ros-kinetic-desktop-full -y
 sudo rosdep init
 rosdep update
 ## Setup environment variables
-echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+rossource="source /opt/ros/kinetic/setup.bash"
+if grep -Fxq "$rossource" ~/.bashrc; then echo ROS setup.bash already in .bashrc;
+else echo "$rossource" >> ~/.bashrc; fi
 source ~/.bashrc
 ## Get rosinstall
 sudo apt-get install python-rosinstall -y
@@ -174,7 +184,7 @@ sudo apt-get install python-rosinstall -y
 
 Install the [MAVROS \(MAVLink on ROS\)](../ros/mavros_installation.md) package. This enables MAVLink communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS. 
 
-> **Tip** MAVROS can be installed as a ubuntu package or from source. Source is recommended for developers.
+> **Tip** MAVROS can be installed as an ubuntu package or from source. Source is recommended for developers.
 
 
 ```sh
@@ -197,10 +207,17 @@ rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
 wstool merge -t src /tmp/mavros.rosinstall
 wstool update -t src
 rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
+```
+
+> **Note** If you use an ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
+
+```sh
 ## Build!
 catkin build
 ## Re-source environment to reflect new packages/build environment
-echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+catkin_ws_source="source ~/catkin_ws/devel/setup.bash"
+if grep -Fxq "$catkin_ws_source" ~/.bashrc; then echo ROS catkin_ws setup.bash already in .bashrc;
+else echo "$catkin_ws_source" >> ~/.bashrc; fi
 source ~/.bashrc
 ```
 
