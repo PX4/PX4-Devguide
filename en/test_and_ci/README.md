@@ -2,22 +2,10 @@
 
 PX4 offers extensive unit testing and continuous integration facilities. This page provides an overview.
 
-## Testing on the local machine
+* [Unit Tests](../test_and_ci/unit_tests.md)
+* [Continuous Integration (CI)](../test_and_ci/continous_integration.md)
+* [Jenkins CI](../test_and_ci/jenkins_ci.md)
+* [Integration Testing](../test_and_ci/integration_testing.md)
+* [Docker](../test_and_ci/docker.md)
+* [Maintenance](../test_and_ci/maintenance.md)
 
-The following command is sufficient to start a minimal new shell with the PX4 posix port running.
-
-```
-make posix_sitl_shell none
-```
-
-The shell can then be used to e.g. execute unit tests:
-
-```
-pxh> tests mixer
-```
-
-Alternatively it is also possible to run the complete unit-tests right from bash:
-
-```
-make tests
-```
