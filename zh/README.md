@@ -30,6 +30,17 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 > **提示：** 如果您想为我们的翻译作出贡献，可以从[这里](https://github.com/PX4/px4_user_guide#translation)了解想相关信息。
 
 
+## Forums and Chat {#support}
+
+The core development team and community are active on the following forums and chat channels.
+
+* [PX4 Discuss](http://discuss.px4.io/) (*recommended*)
+* [Slack](http://slack.px4.io) (sign up)
+* [Google+](https://plus.google.com/117509651030855307398)
+
+Developers who want to [contribute](contribute/README.md) to the platform can also
+join the [weekly dev call](contribute/README.md#dev_call).
+
 
 ## 许可证
 

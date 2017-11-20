@@ -13,6 +13,8 @@
   * [高级配置](setup/config_advanced.md)
   * [贡献&  开发者电话会议](contribute/README.md)
     * [GIT例程](contribute/git_examples.md)
+    * [Documentation](contribute/docs.md)
+  * [Licenses](contribute/licenses.md)
 * [概念解读](concept/README.md)
   * [飞行模式](concept/flight_modes.md)
   * [结构概述](concept/architecture.md)
@@ -100,7 +102,6 @@
   * [设置云台控制](advanced/gimbal_control.md)
   * [切换状态估计器](advanced/switching_state_estimators.md)
   * [外部模块](advanced/out_of_tree_modules.md)
-  * [Licenses](advanced/licenses.md)
   * [Wifi数传](advanced/telemetry_wifi.md)
 <!--  * [RTK GPS](advanced/rtk_gps.md) -->
 <!--  * [Porting Guide](debug/porting-guide.md)  -->
