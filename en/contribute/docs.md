@@ -1,6 +1,6 @@
 # Contributing to Documentation
 
-Contributions to the DroneCore guides, including the PX developer and user guides are very welcome!
+Contributions to the Dronecode guides, including the PX4 developer and user guides are very welcome!
 This article explains how you can make changes, add content, and create translations.
 
 > **Note** You will need a (free) [Github](http://github.com) account to contribute to the guide.
@@ -63,7 +63,7 @@ Everything you need to install and build Gitbook locally is explained in the
 1. Files/file names
 
    * Put new files in an appropriate sub-folder
-   * Use descriptive names. In particular, images should describe what the contain.
+   * Use descriptive names. In particular, image filename should describe what they contain.
    * User lower case and separate words using underscores "\_"
 
 2. Images

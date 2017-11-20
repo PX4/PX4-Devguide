@@ -29,7 +29,6 @@ The core development team and community are active on the following forums and c
 
 * [PX4 Discuss](http://discuss.px4.io/) (*recommended*)
 * [Slack](http://slack.px4.io) (sign up)
-* [Gitter](https://gitter.im/PX4/Firmware)
 * [Google+](https://plus.google.com/117509651030855307398)
 
 Developers who want to [contribute](contribute/README.md) to the platform can also
