@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ## Bash script for setting up a ROS/Gazebo development environment for PX4 on Ubuntu LTS (16.04). 
-##
 ## It installs the common dependencies for all targets (including Qt Creator) and the ROS Kinetic/Gazebo 7 (the default).
 ##
 ## Installs:
@@ -40,18 +39,16 @@ fi
 # Common dependencies
 echo "Installing common dependencies"
 sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
-sudo apt-get update
-sudo apt-get install python-argparse git git-core wget zip python-empy python-toml python-numpy qtcreator cmake build-essential genromfs -y
+sudo apt-get update -y
+sudo apt-get install python-argparse git git-core zip python-empy python-toml python-numpy qtcreator cmake build-essential genromfs -y
 # Required python packages
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip -y
+sudo -H pip install --upgrade pip
 sudo -H pip install pandas jinja2
 pip install pyserial
 # optional python tools
 pip install pyulog
-
-sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
-
 
 # Install FastRTPS 1.5.0 and FastCDR-1.0.7
 fastrtps_dir=$HOME/eProsima_FastRTPS-1.5.0-Linux
@@ -62,20 +59,24 @@ then
 else
     pushd .
     cd ~
-    wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz
-    mv eprosima_fastrtps-1-5-0-linux-tar-gz eprosima_fastrtps-1-5-0-linux.tar.gz
+    wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz -O eprosima_fastrtps-1-5-0-linux.tar.gz
     tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
     tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
     tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
-    cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+    cpucores=$(( $(lscpu | grep Core.*per.*socket | awk -F: '{print $2}') * $(lscpu | grep Socket\(s\) | awk -F: '{print $2}') ))
+    cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make -j$cpucores; sudo make install
     cd ..
-    cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+    cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make -j$cpucores; sudo make install
+    cd ..
+    rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
     popd
 fi
 
+# jMAVSim simulator dependencies
+sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
 
 # ROS Kinetic/Gazebo (ROS Kinetic includes Gazebo7 by default)
-## Gazebo dependencies
+## Gazebo simulator dependencies
 sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
 
 ## ROS Gazebo: http://wiki.ros.org/kinetic/Installation/Ubuntu
@@ -90,8 +91,10 @@ sudo apt-get install ros-kinetic-desktop-full -y
 sudo rosdep init
 rosdep update
 ## Setup environment variables
-echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
+rossource="source /opt/ros/kinetic/setup.bash"
+if grep -Fxq "$rossource" ~/.bashrc; then echo ROS setup.bash already in .bashrc;
+else echo "$rossource" >> ~/.bashrc; fi
+eval $rossource
 ## Get rosinstall
 sudo apt-get install python-rosinstall -y
 
@@ -114,13 +117,18 @@ rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
 ### Setup workspace & install deps
 wstool merge -t src /tmp/mavros.rosinstall
 wstool update -t src
-rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
+if ! rosdep install --from-paths src --ignore-src --rosdistro kinetic -y; then
+    # (Use echo to trim leading/trailing whitespaces from the unsupported OS name
+    unsupported_os=$(echo $(rosdep db 2>&1| grep Unsupported | awk -F: '{print $2}'))
+    rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial
+fi
 ## Build!
 catkin build
 ## Re-source environment to reflect new packages/build environment
-echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-
+catkin_ws_source="source ~/catkin_ws/devel/setup.bash"
+if grep -Fxq "$catkin_ws_source" ~/.bashrc; then echo ROS catkin_ws setup.bash already in .bashrc; 
+else echo "$catkin_ws_source" >> ~/.bashrc; fi
+eval $catkin_ws_source
 
 # Clone PX4/Firmware
 clone_dir=~/src
@@ -135,3 +143,9 @@ else
     cd Firmware
 fi
 cd $clone_dir/Firmware
+
+if [[ ! -z $unsupported_os ]]; then
+    >&2 echo -e "\033[31mYour OS ($unsupported_os) is unsupported. Assumed an Ubuntu 16.04 installation,"
+    >&2 echo -e "and continued with the installation, but if things are not working as"
+    >&2 echo -e "expected you have been warned."
+fi
