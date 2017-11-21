@@ -7,11 +7,12 @@
 ## - Common dependencies libraries, tools, and Gazebo8 simulator as defined in `ubuntu_sim.sh`
 ## - NuttX toolchain (i.e. gcc compiler)
 
+echo "Downloading dependent script 'ubuntu_sim.sh'"
 # Source the ubuntu_sim.sh script directly from github
 ubuntu_sim=$(wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh -O -)
 wget_return_code=$?
 # If there was an error downloading the dependent script, we must warn the user and exit at this point.
-if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'ubuntu_sim.sh'"; exit 1; fi
+if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'ubuntu_sim.sh'. Sorry but I cannot proceed further :("; exit 1; fi
 # Otherwise source the downloaded script.
 . <(echo "${ubuntu_sim}")
 

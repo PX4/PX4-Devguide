@@ -7,11 +7,12 @@
 ## - Common dependencies libraries and tools as defined in `ubuntu_sim_common_deps.sh`
 ## - Gazebo8 simulator
 
+echo "Downloading dependent script 'ubuntu_sim_common_deps.sh'"
 # Source the ubuntu_sim_common_deps.sh script directly from github
 common_deps=$(wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh -O -)
 wget_return_code=$?
 # If there was an error downloading the dependent script, we must warn the user and exit at this point.
-if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'ubuntu_sim_common_deps.sh'"; exit 1; fi
+if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'ubuntu_sim_common_deps.sh'. Sorry but I cannot proceed further :("; exit 1; fi
 # Otherwise, source the downloaded script.
 . <(echo "${common_deps}")
 
