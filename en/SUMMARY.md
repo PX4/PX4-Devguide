@@ -91,7 +91,7 @@
   * [Flight Log Analysis](log/flight_log_analysis.md)
   * [ULog File Format](log/ulog_file_format.md)
 * [Tutorials](tutorials/tutorials.md)
-  * [Ground Control Station](qgc/README.md)
+  * [Ground Control Station](qgc/README.md) 
   * [Writing an Application](tutorials/tutorial_hello_sky.md)
   * [Video Streaming in QGC](qgc/video_streaming.md)
   * [Long-distance Video Streaming](qgc/video_streaming_wifi_broadcast.md)
