@@ -9,7 +9,7 @@ The following instructions explain how to set up a development environment on Ub
 
 ## Development Toolchain
 
-The instructions below show how you can use bash scripts to install the developer toolchain on Ubuntu LTS. All the scripts include the *Qt Creator IDE*, [Ninja Build System](https://ninja-build.org/), [Common Dependencies](../setup/dev_env_linux_ubuntu.md#common-dependencies), [FastRTPS](../setup/dev_env_linux_ubuntu.md#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**).
+The instructions below show how you can use our [convenience bash scripts](../setup/dev_env_linux_ubuntu.md#convenience-bash-scripts) to setup the developer toolchain on Ubuntu LTS. All the scripts install the *Qt Creator IDE*, [Ninja Build System](https://ninja-build.org/), [Common Dependencies](../setup/dev_env_linux_ubuntu.md#common-dependencies), [FastRTPS](../setup/dev_env_linux_ubuntu.md#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**).
 
 > **Tip** The scripts have been tested on a clean Ubuntu LTS 16.04 installation. They *may* not work as expected if installed on top of an existing system or on another Ubuntu release. If you have any problems then follow the [manual installation instructions](../setup/dev_env_linux_ubuntu.md).
 
@@ -22,7 +22,8 @@ First make the user a member of the group "dialout"
 
 Then follow the instructions for your development target in the sections below.
 
-### Pixhawk/NuttX and jMAVSim/Gazebo Simulation
+
+### Pixhawk/NuttX (and jMAVSim)
 
 To install the development toolchain:
 
@@ -38,10 +39,10 @@ To install the development toolchain:
 ### Snapdragon Flight or Raspberry Pi
 
 To install the development toolchain:
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a> (this contains the simulators and common toolchain dependencies).
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
 1. Run the script in a bash shell:
    ```bash
-   source ubuntu_sim.sh
+   source ubuntu_sim_common_deps.sh
    ```
    You may need to acknowledge some prompts as the script progresses.
 1. Follow the platform-specific instructions in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md) for your target:
@@ -51,6 +52,20 @@ To install the development toolchain:
 ### Parrot Bepop
 
 Follow the (manual) instructions here: [Ubuntu/Debian Linux > Parrot Bebop](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
+
+
+### jMAVSim/Gazebo Simulation
+
+To install the Gazebo and jMAVSim simulators:
+
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
+1. Run the script in a bash shell:
+   ```bash
+   source ubuntu_sim.sh
+   ```
+   You may need to acknowledge some prompts as the script progresses.
+
+> **Tip** If you just need jMAVSim, instead download and run <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
 
 
 ### Gazebo with ROS

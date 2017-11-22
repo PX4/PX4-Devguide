@@ -10,18 +10,21 @@ The following instructions explain how to *manually* set up a development enviro
 
 ## Convenience Bash Scripts
 
-We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts include the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**). 
+We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts install the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**). 
 
-> **Tip** The scripts have been tested on a clean Ubuntu LTS installation. They *may* not work as expected if installed on top of an existing system.
+> **Tip** The scripts have been tested on a clean Ubuntu 16.04 LTS installation. They *may* not work as expected if installed on top of an existing system.
 
 The scripts are:
 
-* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a></strong>: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator, [Gazebo8](#gazebo) simulator. 
-  * This contains the common dependencies for all PX4 build targets. 
+* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a></strong>: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator
+  * This script contains the common dependencies for all PX4 build targets. It is automatically downloaded and run when you call any of the other scripts.
   * You can run this before installing the remaining dependencies for [Qualcomm Snapdragon Flight](#snapdragon-flight) or [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
-* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a></strong>: **ubuntu_sim.sh** + NuttX tools. *This requires computer restart on completion.*
-* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a></strong>: [ROS/Gazebo and MAVROS](#rosgazebo). 
-  * ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 to simplify ROS development).
+
+* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a></strong>: **ubuntu_sim_common_deps.sh** + [Gazebo8](#gazebo) simulator. 
+* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a></strong>: **ubuntu_sim_common_deps.sh** + NuttX tools. 
+  * *This requires computer restart on completion.*
+* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a></strong>: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo and MAVROS](#rosgazebo). 
+  * ROS Kinetic is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo 8 to simplify ROS development).
   * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
 
 
