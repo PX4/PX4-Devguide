@@ -1,6 +1,6 @@
 # PX4 Development Guide
 
-[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io) 
+[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
 > **Info** This guide is for primarily for software developers and (new) hardware integrators.
 > To fly, build and modify vehicles using supported hardware see the [PX4 User Guide](https://docs.px4.io/en/).
@@ -18,6 +18,15 @@ This guide explains how to:
 * [Simulate](simulation/README.md), [test](test_and_ci/README.md) and [debug/log](debug/README.md) PX4.
 * Communicate/integrate with external robotics APIs.
 
+## Calendar & Events
+
+[Dronecode Calendar](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Europe%2FZurich)
+
+{% raw %}
+
+<iframe src="https://calendar.google.com/calendar/embed?title=Dronecode%20Calendar&amp;mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Europe%2FZurich" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+{% endraw %}
 
 ## Forums and Chat {#support}
 
@@ -34,7 +43,7 @@ join the [weekly dev call](contribute/README.md#dev_call).
 ## Contributing
 
 [Contributing & Dev Call](contribute/README.md) explains how to work with our source codelines.
-[Documentation](contribute/docs.md) explains how and where documentation changes can be made. 
+[Documentation](contribute/docs.md) explains how and where documentation changes can be made.
 
 
 ## Translations
@@ -47,7 +56,7 @@ You can you can access these by clicking the language-switcher icon:
 
 ## Licence
 
-The code is free to use and modify under terms of the permissive 
-[BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause). 
-The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 
+The code is free to use and modify under terms of the permissive
+[BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause).
+The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 For more information see: [Licences](contribute/licenses.md).
