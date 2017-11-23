@@ -50,10 +50,10 @@ Message | Direction | Description
 
 ## Default PX4 MAVLink UDP ports
 
-By default, PX4 uses well-defined MAVLink UDP ports for communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. DroneCore, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
+By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. DroneCore, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
 
-* Port **14540** is used for communication with offboard APIs. PX4 broadcasts data towards this port, and Offboard APIs are expected to listen.
-* Port **14550** is used for communication with ground control stations. PX4 broadcasts data towards this port, and GCS are expected to listen. *QGroundControl* listens to this port by default.
+* Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
+* Port **14550** is used for communication with ground control stations. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
 * Port **14560** is used for communication with simulators. PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
 
 > **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module. 
