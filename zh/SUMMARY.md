@@ -107,12 +107,12 @@
 <!--  * [Porting Guide](debug/porting-guide.md)  -->
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
 * [测试和持续集成](test_and_ci/README.md)
-  * [Docker容器](test_and_ci/docker.md)
+  * [Unit Tests](https://dev.px4.io/en/test_and_ci/unit_tests.html)
   * [持续集成](test_and_ci/continous_integration.md)
-    * [Jenkins持续集成环境](test_and_ci/jenkins_ci.md)
-  * [维护](test_and_ci/maintenance.md)
-  * [VTOL Testing](airframes_vtol/testing.md)
+  * [Jenkins持续集成环境](test_and_ci/jenkins_ci.md)
   * [综合测试](test_and_ci/integration_testing.md)
+  * [Docker容器](test_and_ci/docker.md)
+  * [维护](test_and_ci/maintenance.md)
 
 
 ## Dronecode Shortcuts

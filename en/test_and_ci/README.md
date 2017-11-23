@@ -1,4 +1,4 @@
-# Testing and Continuous Integration
+# Platform Testing and Continuous Integration
 
 PX4 offers extensive unit testing and continuous integration facilities. This page provides an overview.
 
