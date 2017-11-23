@@ -48,23 +48,23 @@ Message | Direction | Description
 [HIL_RC_INPUTS_RAW](http://mavlink.org/messages/common#HIL_RC_INPUTS_RAW) | Sim to PX4 | The RAW values of the RC channels received.
 
 
-## Standard MAVLink UDP Ports
+## Default PX4 MAVLink UDP ports
 
-PX4 defines a number of standard UDP broadcast ports that ground control stations (e.g. *QGroundControl*, Offboard APIs and simulators) can listen to in order to connect to the autopilot:
+By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. DroneCore, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
 
-- Offboard APIs: 14540
-- Ground Control Stations: 14550  (*QGroundControl* automatically connects to PX4 broadcasting on this port).
-- Simulators: 14560
+* Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
+* Port **14550** is used for communication with ground control stations. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
+* Port **14560** is used for communication with simulators. PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
 
-> **Note** The "connection model" is that PX4 broadcasts to the standard ports above; other systems listen and respond to the source port in the PX4 messages. The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module. 
+> **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module. 
 
 
 ## SITL Simulation Environment
 
 The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
 
-* PX4 uses a simulation-specific module to broadcast on UDP port 14560. Simulators listen to this port, then connect and exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. SITL and the simulator can run on either the same computer or different computers on the same network.
-* PX4 uses the normal MAVLink module to set up UDP connections for *QGroundControl* (broadcast port: 14550, listen: 14557) and external developer APIs like DroneCore or ROS (broadcast: 14540, listen: 14557).
+* PX4 uses a simulation-specific module to listen on UDP port 14560. Simulators connect to this port, then exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. SITL and the simulator can run on either the same computer or different computers on the same network.
+* PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like DroneCore or ROS (which listen on port 14540).
 * A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
 ![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
