@@ -109,15 +109,15 @@
   * [RTK GPS](advanced/rtk_gps.md)
   * [Porting Guide](debug/porting-guide.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
-* [Testing and CI](test_and_ci/README.md)
-  * [Docker Containers](test_and_ci/docker.md)
+* [Platform Testing and CI](test_and_ci/README.md)
+  * [Unit Tests](test_and_ci/unit_tests.md)
   * [Continuous Integration](test_and_ci/continous_integration.md)
-    * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
-  * [Maintenance](test_and_ci/maintenance.md)
-  * [VTOL Testing](airframes_vtol/testing.md)
+  * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
   * [Integration Testing](test_and_ci/integration_testing.md)
-
-
+  * [Docker Containers](test_and_ci/docker.md)
+  * [Maintenance](test_and_ci/maintenance.md)
+  
+  
 ## Dronecode Shortcuts
 
 * [PX4 User Guide](https://docs.px4.io/en/)
