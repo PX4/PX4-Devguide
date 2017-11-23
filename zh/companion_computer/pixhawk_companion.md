@@ -8,13 +8,13 @@ translated: true
 
 官网英文原文地址： http://dev.px4.io/pixhawk-companion-computer.html
 
-无论何种协同计算机（Raspberry Pi, Odroid, Tegra K1），与Pixhawk系列飞控板之间的接口是相同的：它们通过串口连接到Pixhawk上的`TELEM2`，这个端口专用于与协同计算机相连。连接的消息格式是[MAVLink](http://mavlink.org)。
+无论何种协同计算机（Raspberry Pi, Odroid, Tegra K1），与Pixhawk系列飞控板之间的接口是相同的：它们通过串口连接到Pixhawk上的`TELEM2`，这个端口专用于与协同计算机相连。连接的消息格式是[MAVLink](https://mavlink.io/en/)。
 
 ## Pixhawk设置
 
 参考下表，设置`SYS_COMPANION`参数（System参数组）
 
-> **须知：** 变更参数后需要重启飞控使其生效。
+> **Note** 变更参数后需要重启飞控使其生效。
 
 
 - `0`：禁用TELEM2上的MAVLink输出（默认）
@@ -34,7 +34,7 @@ translated: true
 
 根据下面的说明连接串口。所有Pixhawk串口工作在3.3V，兼容5V。
 
-> ** 警告： ** 许多现代协同计算机在UART端口仅支持1.8V的电压，并且可能在3.3V下损坏。使用电压转换器。大多数时候，可以使用的硬件串口有特定的功能（modem or console），在使用之前，需要在Linux下重新配置它们。
+> **Note** 许多现代协同计算机在UART端口仅支持1.8V的电压，并且可能在3.3V下损坏。使用电压转换器。大多数时候，可以使用的硬件串口有特定的功能（modem or console），在使用之前，需要在Linux下重新配置它们。
 
 
 安全的做法是使用FTDI（USB转串口适配器），并按照下面说明连接它。这大多数时候都管用并且很容易设置。
@@ -75,7 +75,7 @@ The Arduino is `Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC AC
 
 The Pixhawk is `Bus 003 Device 005: ID 26ac:0011`
 
-> If you do not find your device, unplug it, execute `lsusb`, plug it, execute `lsusb` again and see the added device.
+> **Note** If you do not find your device, unplug it, execute `lsusb`, plug it, execute `lsusb` again and see the added device.
 
 Therefore, we can create a new UDEV rule in a file called `/etc/udev/rules.d/99-pixhawk.rules` with the following content, changing the idVendor and idProduct to yours.
 
@@ -86,7 +86,7 @@ SUBSYSTEM=="tty", ATTRS{idVendor}=="26ac", ATTRS{idProduct}=="0011", SYMLINK+="t
 
 Finally, after a **reboot** you can be sure to know which device is what and put `/dev/ttyPixhawk` instead of `/dev/ttyUSB0` in your scripts.
 
-> Be sure to add yourself in the `tty` and `dialout` groups via `usermod` to avoid to have to execute scripts as root.
+> **Note** Be sure to add yourself in the `tty` and `dialout` groups via `usermod` to avoid to have to execute scripts as root.
 
 ```sh
 usermod -a -G tty ros-user

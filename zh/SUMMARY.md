@@ -48,8 +48,7 @@
     * [设置云台控制](advanced/gimbal_control.md)
 <!--  * [RTK GPS](advanced/rtk_gps.md) -->
     * [카메라 트리거](tutorials/camera_trigger.md)
-  * [协同电脑](companion_computer/README.md)
-    * [Pixhawk系列协同电脑](companion_computer/pixhawk_companion.md)
+  * [协同电脑](companion_computer/pixhawk_companion.md)
 * [仿真](simulation/README.md)
   * [基本仿真](simulation/jmavsim.md)
   * [Gazebo仿真](simulation/gazebo.md)

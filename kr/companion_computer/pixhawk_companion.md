@@ -1,6 +1,6 @@
 # Pixhawk 계열용 Companion Computer
 
-companion computer(Raspberry Pi, Odroid, Tegra K1)를 Pixhawk 계열 보드에 연결은 항상 동일한 방식으로 동작합니다. 시리얼 포트 `TELEM2`를 사용해서 연결합니다. 이 링크에서 메시지 포맷은 [MAVLink](http://mavlink.org)입니다.
+companion computer(Raspberry Pi, Odroid, Tegra K1)를 Pixhawk 계열 보드에 연결은 항상 동일한 방식으로 동작합니다. 시리얼 포트 `TELEM2`를 사용해서 연결합니다. 이 링크에서 메시지 포맷은 [MAVLink](https://mavlink.io/en/)입니다.
 
 ## Pixhawk 셋업
 
@@ -67,7 +67,7 @@ Arduino는 `Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC ACM)` 
 
 Pixhawk는 `Bus 003 Device 005: ID 26ac:0011` 입니다.`
 
-> 만약 장치가 보이지 않는다면, 플러그를 뽑고 `lsusb`를 실행하고, 다시 플러그를 연결하고 `lsusb`를 실행해서 추가된 장치를 확인합니다.
+> **Note** 만약 장치가 보이지 않는다면, 플러그를 뽑고 `lsusb`를 실행하고, 다시 플러그를 연결하고 `lsusb`를 실행해서 추가된 장치를 확인합니다.
 
 따라서 `/etc/udev/rules.d/99-pixhawk.rules` 파일에서 idVendor와 idProduct를 변경하기 위해서 다음 내용으로 새로운 UDEV rule을 생성할 수 있습니다.
 
@@ -78,7 +78,7 @@ SUBSYSTEM=="tty", ATTRS{idVendor}=="26ac", ATTRS{idProduct}=="0011", SYMLINK+="t
 
 마지막으로 **reboot** 후, 어떤 장치인지를 확인할 수 있어야 하고, script에 `/dev/ttyUSB0` 대신에 `/dev/ttyPixhawk`를 넣는다.
 
-> `tty`와 `dialout` groups에 `usermod`로 여러분의 계정을 추가해야 root로 script가 실행되는 것을 피할 수 있습니다.
+> **Note** `tty`와 `dialout` groups에 `usermod`로 여러분의 계정을 추가해야 root로 script가 실행되는 것을 피할 수 있습니다.
 
 ```sh
 usermod -a -G tty ros-user
