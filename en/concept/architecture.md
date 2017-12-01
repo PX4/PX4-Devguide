@@ -12,9 +12,24 @@ All PX4 [airframes](../airframes/README.md) share a single codebase (this includ
 In addition to these runtime considerations, its modularity maximizes [reusability](https://en.wikipedia.org/wiki/Reusability).
 
 
-## High Level Software Architecture
+## High-Level Software Architecture
 
-The diagram below provides an overview of the building blocks of PX4. 
+The following diagram shows a high-level overview for the building blocks of
+the flight stack. It contains the full pipeline from sensors, RC input and
+autonomous flight control (Navigator), down to the motor or servo control
+(Actuators).
+
+![PX4 High-Level Architecture](../../assets/diagrams/PX4_High-Level_Architecture.svg)
+<!-- This diagram can be updated from 
+[here](https://drive.google.com/a/px4.io/file/d/15J0eCL77fHbItA249epT3i2iOx4VwJGI/view?usp=sharing) 
+and opened with draw.io Diagrams. You might need to request access if you
+don't have a px4.io Google account.
+Caution: it can happen that after exporting some of the arrows are wrong. In
+that case zoom into the graph until the arrows are correct, and then export
+again. -->
+
+
+The diagram below provides a more detailed overview of the building blocks of PX4. 
 The top part of the diagram contains middleware blocks, while the lower
 section shows the components of the flight stack.
 
@@ -23,7 +38,10 @@ section shows the components of the flight stack.
 <!-- This diagram can be updated from 
 [here](https://drive.google.com/file/d/0B1TDW9ajamYkaGx3R0xGb1NaeU0/view?usp=sharing) 
 and opened with draw.io Diagrams. You might need to request access if you
-don't have a px4.io Google account -->
+don't have a px4.io Google account.
+Caution: it can happen that after exporting some of the arrows are wrong. In
+that case zoom into the graph until the arrows are correct, and then export
+again. -->
 
 
 The source code is split into self-contained modules/programs (shown in `monospace` in the
