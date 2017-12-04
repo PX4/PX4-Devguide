@@ -2,24 +2,24 @@
 
 PX4 consists of two main layers: the [flight stack](#flight-stack) is an estimation and flight control system,
 and the [middleware](#middleware) is a general robotics layer that can support any type of autonomous robot, providing internal/external communications and hardware integration.
-
-All PX4 [airframes](../airframes/README.md) share a single codebase (this includes other robotic systems like boats, rovers, submarines etc.). The complete system design is [reactive](http://www.reactivemanifesto.org), which means that:
-
-- All functionality is divided into exchangeable components
-- Communication is done by asynchronous message passing 
-- The system can deal with varying workload
-
-In addition to these runtime considerations, its modularity maximizes [reusability](https://en.wikipedia.org/wiki/Reusability).
+A detailed diagram for both layers is shown [further down](#architecture).
 
 
-## High-Level Software Architecture
+## Flight Stack {#flight-stack}
 
-The following diagram shows a high-level overview for the building blocks of
+The flight stack is a collection of guidance, navigation and control algorithms 
+for autonomous drones. 
+It includes controllers for fixed wing, multirotor and VTOL airframes 
+as well as estimators for attitude and position.
+
+All PX4 [airframes](../airframes/README.md) share a single codebase (this includes other robotic systems like boats, rovers, submarines etc.).
+
+The following diagram shows an overview for the building blocks of
 the flight stack. It contains the full pipeline from sensors, RC input and
 autonomous flight control (Navigator), down to the motor or servo control
 (Actuators).
 
-![PX4 High-Level Architecture](../../assets/diagrams/PX4_High-Level_Architecture.svg)
+![PX4 High-Level Flight Stack](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg)
 <!-- This diagram can be updated from 
 [here](https://drive.google.com/a/px4.io/file/d/15J0eCL77fHbItA249epT3i2iOx4VwJGI/view?usp=sharing) 
 and opened with draw.io Diagrams. You might need to request access if you
@@ -28,8 +28,39 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
+An **estimator** takes one or more sensor inputs, combines them, and computes a
+vehicle state (for example the attitude from IMU sensor data).
 
-The diagram below provides a more detailed overview of the building blocks of PX4. 
+A **controller** is a component that takes a setpoint and a measurement or
+estimated state (process variable) as input. Its goal is to adjust the value of
+the process variable such that it matches the setpoint. The output is a
+correction to eventually reach that setpoint. For example the position
+controller takes position setpoints as inputs, the process variable is the
+currently estimated position, and the output is an attitude and thrust setpoint
+that move the vehicle towards the desired position.
+
+A **mixer** takes force commands (e.g. turn right) and translates them into
+individual motor commands, while ensuring that some limits are not
+exceeded. This translation is specific for a vehicle type and depends on various
+factors, such as the motor arrangements with respect to the center of gravity,
+or the vehicle's rotational inertia.
+
+
+## Middleware {#middleware}
+
+The [middleware](../middleware/README.md) consists primarily of device drivers
+for embedded sensors, communication with the external world (companion computer,
+GCS, etc.) and a publish-subscribe message bus named uORB.
+
+In addition, the middleware includes a [simulation layer](../simulation/README.md) 
+that allows PX4 flight code to run on a desktop operating system and control 
+a computer modeled vehicle in a simulated "world".
+
+
+
+## High-Level Software Architecture{#architecture}
+
+The diagram below provides a detailed overview of the building blocks of PX4. 
 The top part of the diagram contains middleware blocks, while the lower
 section shows the components of the flight stack.
 
@@ -56,51 +87,20 @@ The arrows show the information flow for the *most important* connections betwee
 the modules. In reality, there are many more connections than shown, and some data 
 (e.g. for parameters) is accessed by most of the modules.
 
-Modules communicate with each other through a publish-subscribe message bus
-named [uORB](../middleware/uorb.md). 
+Modules communicate with each other through the [uORB](../middleware/uorb.md)
+publish-subscribe message bus. 
 The use of the publish-subscribe scheme means that:
 
-- The system is reactive — it will update instantly when new data is available
+- The system is [reactive](http://www.reactivemanifesto.org) — it is
+  asynchronous and will update instantly when new data is available
 - All operations and communication are fully parallelized
 - A system component can consume data from anywhere in a thread-safe fashion
 
 > **Info** This architecture allows every single one of these
 > blocks to be rapidly and easily replaced, even at runtime.
 
+In addition to these runtime considerations, its modularity maximizes [reusability](https://en.wikipedia.org/wiki/Reusability).
 
-### Middleware {#middleware}
-
-The [middleware](../middleware/README.md) consists primarily of device drivers
-for embedded sensors, communication with the external world (companion computer,
-GCS, etc.) and the uORB publish-subscribe message bus.
-
-In addition, the middleware includes a [simulation layer](../simulation/README.md) 
-that allows PX4 flight code to run on a desktop operating system and control 
-a computer modeled vehicle in a simulated "world".
-
-### Flight Stack {#flight-stack}
-
-The flight stack is a collection of guidance, navigation and control algorithms 
-for autonomous drones. 
-It includes controllers for fixed wing, multirotor and VTOL airframes 
-as well as estimators for attitude and position.
-
-An **estimator** takes one or more sensor inputs, combines them, and computes a
-vehicle state (for example the attitude from IMU sensor data).
-
-A **controller** is a component that takes a setpoint and a measurement or
-estimated state (process variable) as input. Its goal is to adjust the value of
-the process variable such that it matches the setpoint. The output is a
-correction to eventually reach that setpoint. For example the position
-controller takes position setpoints as inputs, the process variable is the
-currently estimated position, and the output is an attitude and thrust setpoint
-that move the vehicle towards the desired position.
-
-A **mixer** takes force commands (e.g. turn right) and translates them into
-individual motor commands, while ensuring that some limits are not
-exceeded. This translation is specific for a vehicle type and depends on various
-factors, such as the motor arrangements with respect to the center of gravity,
-or the vehicle's rotational inertia.
 
 ## Update Rates
 
