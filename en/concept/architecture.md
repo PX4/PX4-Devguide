@@ -2,19 +2,63 @@
 
 PX4 consists of two main layers: the [flight stack](#flight-stack) is an estimation and flight control system,
 and the [middleware](#middleware) is a general robotics layer that can support any type of autonomous robot, providing internal/external communications and hardware integration.
-A detailed diagram for both layers is shown [further down](#architecture).
+
+All PX4 [airframes](../airframes/README.md) share a single codebase (this includes other robotic systems like boats, rovers, submarines etc.). The complete system design is [reactive](http://www.reactivemanifesto.org), which means that:
+
+- All functionality is divided into exchangeable and reusable components
+- Communication is done by asynchronous message passing
+- The system can deal with varying workload
 
 
-## Flight Stack {#flight-stack}
+## High-Level Software Architecture{#architecture}
+
+The diagram below provides a detailed overview of the building blocks of PX4. 
+The top part of the diagram contains middleware blocks, while the lower
+section shows the components of the flight stack.
+
+![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
+
+<!-- This diagram can be updated from 
+[here](https://drive.google.com/file/d/0B1TDW9ajamYkaGx3R0xGb1NaeU0/view?usp=sharing) 
+and opened with draw.io Diagrams. You might need to request access if you
+don't have a px4.io Google account.
+Caution: it can happen that after exporting some of the arrows are wrong. In
+that case zoom into the graph until the arrows are correct, and then export
+again. -->
+
+The source code is split into self-contained modules/programs (shown in `monospace` in the
+diagram). Usually a building block corresponds to exactly one module. 
+
+> **Tip** At runtime, you can inspect which modules are executed with the `top` command, 
+> and each module can be started/stopped individually via `<module_name> start/stop`.
+> For more information about each of these modules see the
+> [Modules & Commands Reference](../middleware/modules_main.md).
+
+The arrows show the information flow for the *most important* connections between
+the modules. In reality, there are many more connections than shown, and some data 
+(e.g. for parameters) is accessed by most of the modules.
+
+Modules communicate with each other through the [uORB](../middleware/uorb.md)
+publish-subscribe message bus. 
+The use of the publish-subscribe scheme means that:
+
+- The system is [reactive](http://www.reactivemanifesto.org) — it is
+  asynchronous and will update instantly when new data is available
+- All operations and communication are fully parallelized
+- A system component can consume data from anywhere in a thread-safe fashion
+
+> **Info** This architecture allows every single one of these
+> blocks to be rapidly and easily replaced, even at runtime.
+
+
+### Flight Stack {#flight-stack}
 
 The flight stack is a collection of guidance, navigation and control algorithms 
 for autonomous drones. 
 It includes controllers for fixed wing, multirotor and VTOL airframes 
 as well as estimators for attitude and position.
 
-All PX4 [airframes](../airframes/README.md) share a single codebase (this includes other robotic systems like boats, rovers, submarines etc.).
-
-The following diagram shows an overview for the building blocks of
+The following diagram shows an overview of the building blocks of
 the flight stack. It contains the full pipeline from sensors, RC input and
 autonomous flight control (Navigator), down to the motor or servo control
 (Actuators).
@@ -46,7 +90,7 @@ factors, such as the motor arrangements with respect to the center of gravity,
 or the vehicle's rotational inertia.
 
 
-## Middleware {#middleware}
+### Middleware {#middleware}
 
 The [middleware](../middleware/README.md) consists primarily of device drivers
 for embedded sensors, communication with the external world (companion computer,
@@ -56,50 +100,6 @@ In addition, the middleware includes a [simulation layer](../simulation/README.m
 that allows PX4 flight code to run on a desktop operating system and control 
 a computer modeled vehicle in a simulated "world".
 
-
-
-## High-Level Software Architecture{#architecture}
-
-The diagram below provides a detailed overview of the building blocks of PX4. 
-The top part of the diagram contains middleware blocks, while the lower
-section shows the components of the flight stack.
-
-![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
-
-<!-- This diagram can be updated from 
-[here](https://drive.google.com/file/d/0B1TDW9ajamYkaGx3R0xGb1NaeU0/view?usp=sharing) 
-and opened with draw.io Diagrams. You might need to request access if you
-don't have a px4.io Google account.
-Caution: it can happen that after exporting some of the arrows are wrong. In
-that case zoom into the graph until the arrows are correct, and then export
-again. -->
-
-
-The source code is split into self-contained modules/programs (shown in `monospace` in the
-diagram). Usually a building block corresponds to exactly one module. At
-runtime, you can inspect which modules are executed with the `top` command, and
-each module can be started/stopped individually via `<module_name> start/stop`.
-
-> **Tip** For more information about each of these modules see the
-> [Modules & Commands Reference](../middleware/modules_main.md).
-
-The arrows show the information flow for the *most important* connections between
-the modules. In reality, there are many more connections than shown, and some data 
-(e.g. for parameters) is accessed by most of the modules.
-
-Modules communicate with each other through the [uORB](../middleware/uorb.md)
-publish-subscribe message bus. 
-The use of the publish-subscribe scheme means that:
-
-- The system is [reactive](http://www.reactivemanifesto.org) — it is
-  asynchronous and will update instantly when new data is available
-- All operations and communication are fully parallelized
-- A system component can consume data from anywhere in a thread-safe fashion
-
-> **Info** This architecture allows every single one of these
-> blocks to be rapidly and easily replaced, even at runtime.
-
-In addition to these runtime considerations, its modularity maximizes [reusability](https://en.wikipedia.org/wiki/Reusability).
 
 
 ## Update Rates
