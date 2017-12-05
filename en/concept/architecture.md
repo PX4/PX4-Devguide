@@ -38,11 +38,11 @@ The arrows show the information flow for the *most important* connections betwee
 the modules. In reality, there are many more connections than shown, and some data 
 (e.g. for parameters) is accessed by most of the modules.
 
-Modules communicate with each other through the [uORB](../middleware/uorb.md)
-publish-subscribe message bus. 
+Modules communicate with each other through a 
+publish-subscribe message bus named [uORB](../middleware/uorb.md). 
 The use of the publish-subscribe scheme means that:
 
-- The system is [reactive](http://www.reactivemanifesto.org) — it is
+- The system is reactive — it is
   asynchronous and will update instantly when new data is available
 - All operations and communication are fully parallelized
 - A system component can consume data from anywhere in a thread-safe fashion
@@ -94,7 +94,7 @@ or the vehicle's rotational inertia.
 
 The [middleware](../middleware/README.md) consists primarily of device drivers
 for embedded sensors, communication with the external world (companion computer,
-GCS, etc.) and a publish-subscribe message bus named uORB.
+GCS, etc.) and the uORB publish-subscribe message bus.
 
 In addition, the middleware includes a [simulation layer](../simulation/README.md) 
 that allows PX4 flight code to run on a desktop operating system and control 
