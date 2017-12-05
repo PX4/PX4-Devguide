@@ -93,7 +93,8 @@ sudo yum install glibc.i686 ncurses-libs.i686
 ### Arch Linux
 
 ```sh
-sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip python-empy
+sudo pacman -S base-devel lib32-glibc git-core python-pyserial python-numpy python-pip zip vim
+pip install --user toml
 ```
 
 安装[Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository)的包管理器[yaourt](https://archlinux.fr/yaourt-en) (Yet AnOther User Repository Tool)。
@@ -103,7 +104,7 @@ sudo pacman -S base-devel lib32-glibc git-core python-pyserial zip python-empy
 然后使用它下载，编译以及安装以下内容：
 
 ```sh
-yaourt -S genromfs
+yaourt -S genromfs python-empy
 ```
 
 #### 权限
