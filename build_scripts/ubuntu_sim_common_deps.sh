@@ -16,38 +16,19 @@ trap "exit" INT TERM; trap "kill 0" EXIT; sudo -v || exit $?; sleep 1; while tru
 echo "We must first remove modemmanager"
 sudo apt-get remove modemmanager -y
 
-# Ninja build system
-ninja_dir=$HOME/ninja
-echo "Installing Ninja to: $ninja_dir."
-if [ -d "$ninja_dir" ]
-then
-    echo " Ninja already installed."
-else
-    pushd .
-    mkdir -p $ninja_dir
-    cd $ninja_dir
-    wget https://github.com/martine/ninja/releases/download/v1.6.0/ninja-linux.zip
-    unzip ninja-linux.zip
-    rm ninja-linux.zip
-    exportline="export PATH=$ninja_dir:\$PATH"
-    if grep -Fxq "$exportline" ~/.profile; then echo " Ninja already in path" ; else echo $exportline >> ~/.profile; fi
-    . ~/.profile
-    popd
-fi
 
 # Common dependencies
 echo "Installing common dependencies"
-sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update -y
-sudo apt-get install python-argparse git git-core zip python-empy python-toml python-numpy qtcreator cmake build-essential genromfs -y
+sudo apt-get install python-argparse git git-core zip python-empy python-toml python-numpy qtcreator cmake build-essential genromfs ninja-build -y
 # Required python packages
 sudo apt-get install python-dev -y
 sudo apt-get install python-pip -y
 sudo -H pip install --upgrade pip
 sudo -H pip install pandas jinja2
-pip install pyserial
+sudo -H pip install pyserial
 # optional python tools
-pip install pyulog
+sudo -H pip install pyulog
 
 # Install FastRTPS 1.5.0 and FastCDR-1.0.7
 fastrtps_dir=$HOME/eProsima_FastRTPS-1.5.0-Linux
