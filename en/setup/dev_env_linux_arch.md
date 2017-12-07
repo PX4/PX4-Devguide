@@ -13,8 +13,6 @@ The build requires Python 2.7.5. Therefore as of this writing Centos 7 should be
 
 The EPEL repositories are required for openocd libftdi-devel libftdi-python
 
-<div class="host-code"></div>
-
 ```sh
 wget https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
 sudo yum install epel-release-7-5.noarch.rpm
@@ -33,21 +31,15 @@ Note:You may want to also install  python-pip and screen
 
 Once the arm toolchain is installed test it with:
 
-<div class="host-code"></div>
-
 ```sh
 arm-none-eabi-gcc --version
 ```
 If you receive the following message
 
-<div class="host-code"></div>
-
 ```sh
 bash: gcc-arm-none-eabi-4_7-2014q2/bin/arm-none-eabi-gcc: /lib/ld-linux.so.2: bad ELF interpreter: No such file or directory
 ```
 Then you will also need to install other 32-bit libraries glibc.i686 ncurses-libs.i686
-
-<div class="host-code"></div>
 
 ```sh
 sudo yum install glibc.i686 ncurses-libs.i686
@@ -57,8 +49,6 @@ sudo yum install glibc.i686 ncurses-libs.i686
 
 
 ### Arch Linux
-
-<div class="host-code"></div>
 
 Ensure you have the multilib repository enabled.
 
@@ -71,8 +61,6 @@ Install [yaourt](https://archlinux.fr/yaourt-en) (Yet AnOther User Repository To
 
 Then use it to download, compile and install the following:
 
-<div class="host-code"></div>
-
 ```sh
 yaourt -S genromfs python-empy
 ```
@@ -80,8 +68,6 @@ yaourt -S genromfs python-empy
 #### Permissions
 
 The user needs to be added to the group "uucp":
-
-<div class="host-code"></div>
 
 ```sh
 sudo usermod -a -G uucp $USER
