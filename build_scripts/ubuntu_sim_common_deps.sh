@@ -20,13 +20,11 @@ sudo apt-get remove modemmanager -y
 # Common dependencies
 echo "Installing common dependencies"
 sudo apt-get update -y
-sudo apt-get install python-argparse git git-core zip python-empy python-toml python-numpy qtcreator cmake build-essential genromfs ninja-build -y
+sudo apt-get install git zip qtcreator cmake build-essential genromfs ninja-build -y
 # Required python packages
-sudo apt-get install python-dev -y
-sudo apt-get install python-pip -y
+sudo apt-get install python-argparse python-empy python-toml python-numpy python-dev python-pip -y
 sudo -H pip install --upgrade pip
-sudo -H pip install pandas jinja2
-sudo -H pip install pyserial
+sudo -H pip install pandas jinja2 pyserial
 # optional python tools
 sudo -H pip install pyulog
 
