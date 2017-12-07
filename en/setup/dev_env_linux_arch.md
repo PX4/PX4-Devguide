@@ -12,26 +12,37 @@ After that, logging out and logging back in is needed.
 
 > **Note** Log out and log in for changes to take effect! Also remove the device and plug it back in!
 
+## Script-based Installation
+
+Once ArchLinux is installed you can use our standard docker script 
+[archlinux_install_script.sh](https://github.com/PX4/containers/blob/master/docker/px4-dev/scripts/archlinux_install_script.sh)
+to install all dependencies required for building PX4 firmware.
+
+To install using this script, enter the following in a terminal:
+```sh
+wget https://raw.githubusercontent.com/PX4/containers/master/docker/px4-dev/scripts/archlinux_install_script.sh
+source ./archlinux_install_script.sh
+```
+
 ## Common Dependencies
 
-Ensure you have the multilib repository enabled.
+To install the dependencies manually, enter the following lines into a terminal.
 
 ```sh
-sudo pacman -S base-devel lib32-glibc git-core python-pyserial python-numpy python-pip zip vim
-pip install --user toml
+# All dependencies for posix and nuttx targets
+sudo pacman -Sy base-devel make cmake git-core \
+    python-pip tar unzip zip vim wget \
+    arm-none-eabi-gcc arm-none-eabi-newlib
+    
+# Install Python dependencies
+pip install serial empy numpy toml jinja2
+
+# Install genromfs
+wget https://sourceforge.net/projects/romfs/files/genromfs/0.5.2/genromfs-0.5.2.tar.gz
+tar zxvf genromfs-0.5.2.tar.gz
+cd genromfs-0.5.2 && make && make install && cd ..
+rm genromfs-0.5.2.tar.gz genromfs-0.5.2 -r 
 ```
-
-Install [yaourt](https://archlinux.fr/yaourt-en) (Yet AnOther User Repository Tool), a package manager for the [Arch User Repository (AUR)](https://wiki.archlinux.org/index.php/Arch_User_Repository).
-
-Then use it to download, compile and install the following:
-
-```sh
-yaourt -S genromfs python-empy
-```
-
-## GCC Toolchain Installation
-<!-- import GCC toolchain common documentation -->
-{% include "_gcc_toolchain_installation.txt" %}
 
 <!-- import docs ninja build system -->
 {% include "_ninja_build_system.txt" %}
