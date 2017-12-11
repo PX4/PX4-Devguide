@@ -10,7 +10,7 @@ By default the land detector does detect landing, but does not auto-disarm. If t
 
 The complete set of parameters is available in the *QGroundControl* parameter editor under the `LNDMC` prefix. The key parameters that might differ per airframe are these:
 
-* [MPC_THR_HOVER](../advanced/parameter_reference.md#MPC_THR_HOVER) - the hover throttle of the system \(in percent, default is 50%\). It is important to set this correctly as not only it does it make the altitude control more accurate, but it also ensures correct land detection. A racer or a big camera drone without payload mounted might need a much lower setting \(e.g. 35%\).
+* [MPC_THR_HOVER](../advanced/parameter_reference.md#MPC_THR_HOVER) - the hover throttle of the system \(in percent, default is 50%\). It is important to set this correctly as not only does it make the altitude control more accurate, but it also ensures correct land detection. A racer or a big camera drone without payload mounted might need a much lower setting \(e.g. 35%\).
 * [MPC_THR_MIN](../advanced/parameter_reference.md#MPC_THR_MIN) - the overall minimum throttle of the system. This should be set to enable a controlled descent.
 * [LNDMC_THR_RANGE](../advanced/parameter_reference.md#LNDMC_THR_RANGE) - this is a scaling factor to define the range between min and hover throttle that gets accepted as landed. 
   Example: If the minimum throttle is 0.1, the hover throttle is 0.5 and the range is 0.2 \(20%\), then the highest throttle value that counts as landed is: `0.1 + (0.5 - 0.1) * 0.2 = 0.18`.
@@ -33,7 +33,7 @@ This state is reached if following conditions are true for 0.35 seconds:
 - no horizontal movement ([LNDMC_XY_VEL_MAX](../advanced/parameter_reference.md#LNDMC_XY_VEL_MAX))
 - low thrust `MPC_THR_MIN + (MPC_THR_HOVER - MPC_THR_MIN) * 0.3f` or velocity setpoint is 0.9 of land speed but vehicle has no vertical movement.
 
-If the vehicle is in position or velocity control and ground contact were detected, 
+If the vehicle is in position- or velocity-control and ground contact was detected, 
 the position controller will set the thrust vector along the body x-y-axis to zero.
 
 
