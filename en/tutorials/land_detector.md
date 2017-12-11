@@ -10,38 +10,40 @@ By default the land detector does detect landing, but does not auto-disarm. If t
 
 The complete set of parameters is available in the *QGroundControl* parameter editor under the `LNDMC` prefix. The key parameters that might differ per airframe are these:
 
-* [MPC_THR_HOVER](../advanced/parameter_reference.md#MPC_THR_HOVER) - the hover throttle of the system \(in percent, default is 50%\). It is important to set this correctly as it does not only make the altitude control more accurate, but also ensures correct land detection. A racer or a big camera drone without payload mounted might need a much lower setting \(e.g. 35%\).
+* [MPC_THR_HOVER](../advanced/parameter_reference.md#MPC_THR_HOVER) - the hover throttle of the system \(in percent, default is 50%\). It is important to set this correctly as not only does it make the altitude control more accurate, but it also ensures correct land detection. A racer or a big camera drone without payload mounted might need a much lower setting \(e.g. 35%\).
 * [MPC_THR_MIN](../advanced/parameter_reference.md#MPC_THR_MIN) - the overall minimum throttle of the system. This should be set to enable a controlled descent.
-* [LNDMC_THR_RANGE](../advanced/parameter_reference.md#LNDMC_THR_RANGE) - this is a scaling factor to define the range between min and hover throttle that gets accepted as landed. Example: If the minimum throttle is 0.1, the hover throttle is 0.5 and the range is 0.2 \(20%\), then the highest throttle value that counts as landed is: `0.1 + (0.5 - 0.1) * 0.2 = 0.18`.
+* [LNDMC_THR_RANGE](../advanced/parameter_reference.md#LNDMC_THR_RANGE) - this is a scaling factor to define the range between min and hover throttle that gets accepted as landed. 
+  Example: If the minimum throttle is 0.1, the hover throttle is 0.5 and the range is 0.2 \(20%\), then the highest throttle value that counts as landed is: `0.1 + (0.5 - 0.1) * 0.2 = 0.18`.
 
 
-### Landdetector states
+### Land detector states
 
 In order to detect landing, the multicopter first has to go through three different states, where each state contains the conditions from the previous states plus tighter constraints. 
 If a condition cannot be reached because of missing sensors, then the condition is true by default. 
-For instance, in Acro mode and no sensor is active except of the gyro sensor, then the detection solely relies on thrust output and time. 
+For instance, in Acro mode and no sensor is active except for the gyro sensor, then the detection solely relies on thrust output and time. 
  
 In order to proceed to the next state, each condition has to be true for some predefined time. 
-If one condition fails, the landdetector drops out of the current state immediately. 
+If one condition fails, the land detector drops out of the current state immediately. 
 
-1. Ground contact
+#### Ground contact
 
 This state is reached if following conditions are true for 0.35 seconds:
 
 - no vertical movement ([LNDMC_Z_VEL_MAX](../advanced/parameter_reference.md#LNDMC_Z_VEL_MAX))
 - no horizontal movement ([LNDMC_XY_VEL_MAX](../advanced/parameter_reference.md#LNDMC_XY_VEL_MAX))
-- low thrust `(0.3 * MPC_THR_MIN + LNDMC_THR_RANGE* (MPC_THR_HOVER-MPC_THR_MIN))` or velocity setpoint is 0.9 of land speed but vehicle has no vertical movement.
+- low thrust `MPC_THR_MIN + (MPC_THR_HOVER - MPC_THR_MIN) * 0.3f` or velocity setpoint is 0.9 of land speed but vehicle has no vertical movement.
 
-If the vehicle is in position or velocity control and ground contact was detected, 
-the position controller will set the thrust vector along the body x-y-axis to zero. 
+If the vehicle is in position- or velocity-control and ground contact was detected, 
+the position controller will set the thrust vector along the body x-y-axis to zero.
 
-2. Maybe landed
+
+#### Maybe landed
 
 This state is reached if following conditions are true for 0.25 seconds:
 
 - all conditions of ground contact are true
 - is not rotating ([LNDMC_ROT_MAX](../advanced/parameter_reference.md#LNDMC_ROT_MAX))
-- has low thrust `(LNDMC_THR_RANGE * MPC_THR_MIN + LNDMC_THR_RANGE* (MPC_THR_HOVER-MPC_THR_MIN))`; 
+- has low thrust `MPC_THR_MIN + (MPC_THR_HOVER - MPC_THR_MIN) * LNDMC_THR_RANGE`; 
 
 If the vehicle only has knowledge of thrust and angular rate, 
 in order to proceed to the next state the vehicle has to have low thrust and no rotation for 8.0 seconds. 
@@ -49,7 +51,7 @@ in order to proceed to the next state the vehicle has to have low thrust and no 
 If the vehicle is in position or velocity control and maybe landed was detected, the position controller will set the thrust vector to zero. 
 
 
-3. Landed
+#### Landed
 
 This state is reached if following conditions are true for 0.3 seconds:
 - all conditions of maybe landed are true
