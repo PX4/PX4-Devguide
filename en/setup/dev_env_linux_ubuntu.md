@@ -66,33 +66,32 @@ Ubuntu comes with a serial modem manager which interferes heavily with any robot
 sudo apt-get remove modemmanager
 ```
 
-<!-- import docs ninja build system -->
-{% include "_ninja_build_system.txt" %}
-
 
 ## Common Dependencies
 
 Update the package list and install the following dependencies for all PX4 build targets.
 
 ```sh
-sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
 sudo apt-get update -y
-sudo apt-get install python-argparse git git-core zip \
-    python-empy python-toml python-numpy qtcreator cmake \
-    build-essential genromfs -y
+sudo apt-get install git zip qtcreator cmake \
+    build-essential genromfs ninja-build -y
 # Required python packages
-sudo apt-get install python-dev -y
-sudo apt-get install python-pip -y
+sudo apt-get install python-argparse \
+    python-empy python-toml python-numpy \
+    python-dev python-pip -y
 sudo -H pip install --upgrade pip 
-sudo -H pip install pandas jinja2
-pip install pyserial
+sudo -H pip install pandas jinja2 pyserial
 ```
 
 You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). This is is a useful python package that contains scripts to parse *ULog* files and display them.
 ```
 # optional python tools
-pip install pyulog
+sudo -H pip install pyulog
 ```
+
+<!-- import docs ninja build system -->
+{% include "_ninja_build_system.txt" %}
+
 
 ## FastRTPS installation
 
