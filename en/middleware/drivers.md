@@ -6,13 +6,24 @@ NuttX device drivers are based on the [Device](https://github.com/PX4/Firmware/t
 > This work has been discontinued and the intention is to update the existing NuttX drivers to also run on other platforms.
 
 
+## Creating a Driver
+
+PX4 almost exclusively consumes data from [uORB](../middleware/uorb.md). Drivers for common peripheral types must publish the correct uORB messages (for example: gyro, accelerometer, pressure sensors, etc.).
+
+The best approach for creating a new driver is to start with a similar driver as a template (see [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)). 
+
+> **Tip** More detailed information about working with specific I/O busses and sensors may be available in [Sensor and Actuator Buses](../sensor_bus/README.md) section.
+
+<span></span>
+> **Note** Publishing the correct uORB topics is the only pattern that drivers *must* follow. 
+
+
 ## Core Architecture
 
-PX4 is a [reactive system](../concept/architecture.md) and uses pub/sub to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
+PX4 is a [reactive system](../concept/architecture.md) and uses [uORB](../middleware/uorb.md) publish/subscribe to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
 
-  * The publish / subscribe system which has a file, network or shared memory backend depending on the system PX4 runs on
-  * The global device registry, which allows to enumerate devices and get/set their configuration. This can be as simple as a linked list or map to the file system.
-
+* The publish / subscribe system which has a file, network or shared memory backend depending on the system PX4 runs on.
+* The global device registry, which can be used to enumerate devices and get/set their configuration. This can be as simple as a linked list or map to the file system.
 
 ## Device IDs
 
