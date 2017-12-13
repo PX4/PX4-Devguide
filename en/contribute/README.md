@@ -1,7 +1,7 @@
 # Contributing
 
 Contact information for the core dev team and community can be [found here](../README.md#support). 
-Developers are also most welcome to attend the [weekly dev call](#dev_call).
+Developers are also most welcome to attend the [weekly dev call](#dev_call) and other [developer events](#calendar).
 
 ## Source Code Management
 
@@ -78,3 +78,17 @@ The PX4 Dev Team syncs up on its weekly dev call.
 * Issues and PRs may be labeled [devcall](https://github.com/PX4/Firmware/labels/devcall) to flag them for discussion
 
 
+## Calendar & Events {#calendar}
+
+The *Dronecode Calendar* shows important events for platform developers and users. 
+Select the links below to display the calendar in your timezone (and to add it to your own calendar):
+* [Switzerland – Zurich](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Europe%2FZurich)
+* [Pacific Time – Tijuana](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=America%2FTijuana)
+* [Australia – Melbourne/Sydney/Hobart](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Australia%2FSydney)
+
+The calendar below shows events for the Zurich timezone.
+
+
+{% raw %}
+<iframe src="https://calendar.google.com/calendar/embed?title=Dronecode%20Calendar&amp;mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Europe%2FZurich" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+{% endraw %}

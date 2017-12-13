@@ -1,6 +1,6 @@
 # PX4 Development Guide
 
-[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io) 
+[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
 > **Info** This guide is for primarily for software developers and (new) hardware integrators.
 > To fly, build and modify vehicles using supported hardware see the [PX4 User Guide](https://docs.px4.io/en/).
@@ -27,14 +27,15 @@ The core development team and community are active on the following forums and c
 * [Slack](http://slack.px4.io) (sign up)
 * [Google+](https://plus.google.com/117509651030855307398)
 
-Developers who want to [contribute](contribute/README.md) to the platform can also
-join the [weekly dev call](contribute/README.md#dev_call).
+> **Tip** Developers who want to [contribute](contribute/README.md) to the platform are also most welcome 
+to attend the [weekly dev call](contribute/README.md#dev_call) 
+and our other [developer events](contribute/README.md#calendar).
 
 
 ## Contributing
 
 [Contributing & Dev Call](contribute/README.md) explains how to work with our source codelines.
-[Documentation](contribute/docs.md) explains how and where documentation changes can be made. 
+[Documentation](contribute/docs.md) explains how and where documentation changes can be made.
 
 
 ## Translations
@@ -47,7 +48,7 @@ You can you can access these by clicking the language-switcher icon:
 
 ## Licence
 
-The code is free to use and modify under terms of the permissive 
-[BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause). 
-The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 
+The code is free to use and modify under terms of the permissive
+[BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause).
+The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 For more information see: [Licences](contribute/licenses.md).
