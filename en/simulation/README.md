@@ -114,9 +114,11 @@ Notes:
 - Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. 
   For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`. 
 - You can use three underscores if you want to specify a default value between two other settings. 
-  For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`. 
+  For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
+- You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. 
+  For example start PX4 using `make posix_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
 
-  
+
 ### Init File Location {#init_file}
 
 The settings for each configuration target are defined in appropriately named files in [/Firmware/cmake/configs](https://github.com/PX4/Firmware/tree/master/cmake/configs). Within each file there is a setting `config_sitl_rcS_dir` that defines the location of the folder where the configuration stores its init files.
