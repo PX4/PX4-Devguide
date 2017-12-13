@@ -1,13 +1,13 @@
 # Autopilot Hardware (Flight Controllers)
 
-PX4 runs on many [flight controller boards and systems](https://docs.px4.io/en/flight_controller/).
-PX4 users can download pre-built firmware for supported (or custom) [airframes](../airframes/airframe_reference.md) using *QGroundControl* [Firmware update](https://docs.px4.io/en/config/firmware.html).
+The following topics are useful to developers who want to port PX4 to work with *new* [flight controller hardware](../flight_controller/README.md):
 
-Flight controller topics relevant to developers include:
-
-* [Building the Code](../setup/building_px4.md) - How to build firmware for the different controllers 
 * [Porting Guide](../debug/porting-guide.md) - How to port PX4 to new flight controller hardware
+* [Device Drivers](../middleware/drivers.md) - How to support new peripheral hardware (device drivers)
+* [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
 
+> **Note** Existing/supported boards are covered in 
+  [PX4 User Guide > Flight Controllers](https://docs.px4.io/en/flight_controller/).
 
 ## Further Information
 
