@@ -84,23 +84,40 @@ make posix_sitl_ekf2 gazebo_plane
 The syntax to call `make` with a particular configuration and initialisation file is:
 
 ```bash
-make [CONFIGURATION_TARGET] [SIMULATOR]_[INIT_FILE]
+make [CONFIGURATION_TARGET] [VIEWER_MODEL_DEBUGGER]
 ```
 
 where:
-* **CONFIGURATION_TARGET:** has the format `[OS]_[PLATFORM]_[FEATURE]`
+* **CONFIGURATION_TARGET:** has the format `[OS][_PLATFORM][_FEATURE]`
+
   * **OS:** posix, nuttx, qurt
   * **PLATFORM:** SITL (or in principle any platform supported among the different OS: bebop, eagle, excelsior, etc.)
   * **FEATURE:** A particular high level feature - for example which estimator to use (ekf2, lpe) or to run tests or simulate using a replay.
+
   > **Tip** You can get a list of all available configuration targets using the command:
   ```
   make list_config_targets
   ```
-* **SIMULATOR:** The simulator to launch and connect: gazebo, jmavsim <!-- , ?airsim -->
-* **INIT_FILE:** The specific init file to use for PX4 launch, within the associated configuration target. This might define the start up for a particular vehicle, or allow simulation of multiple vehicles (we explain how to determine available init files in the next section).
+  
+* **VIEWER_MODEL_DEBUGGER:** has the format `[SIMULATOR]_[MODEL][_DEBUGGER]`
+  
+  * **SIMULATOR:** This is the simulator ("viewer") to launch and connect: `gazebo`, `jmavsim` <!-- , ?airsim -->
+  * **MODEL:** The vehicle model to use (e.g. `iris`, `rover`, `tailsitter`, etc). This corresponds to a specific [initialisation file](#init_file) that will be used to configure PX4. This might define the start up for a particular vehicle, or allow simulation of multiple vehicles (we explain how to find available init files in the next section).
+  * **DEBUGGER:** Debugger to (optionally) use: `none`, `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. For more information see [Simulation Debugging](../debug/simulation_debugging.md).
 
+  > **Tip** You can get a list of all available `VIEWER_MODEL_DEBUGGER` options using the command:
+  ```
+  make posix list_vmd_make_targets
+  ```
+  
+Notes:
+- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. 
+  For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`. 
+- You can use three underscores if you want to specify a default value between two other settings. 
+  For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`. 
 
-### Init File Location
+  
+### Init File Location {#init_file}
 
 The settings for each configuration target are defined in appropriately named files in [/Firmware/cmake/configs](https://github.com/PX4/Firmware/tree/master/cmake/configs). Within each file there is a setting `config_sitl_rcS_dir` that defines the location of the folder where the configuration stores its init files.
 
