@@ -18,15 +18,6 @@ This guide explains how to:
 * [Simulate](simulation/README.md), [test](test_and_ci/README.md) and [debug/log](debug/README.md) PX4.
 * Communicate/integrate with external robotics APIs.
 
-## Calendar & Events
-
-[Dronecode Calendar](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Europe%2FZurich)
-
-{% raw %}
-
-<iframe src="https://calendar.google.com/calendar/embed?title=Dronecode%20Calendar&amp;mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Europe%2FZurich" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
-{% endraw %}
 
 ## Forums and Chat {#support}
 
@@ -36,8 +27,9 @@ The core development team and community are active on the following forums and c
 * [Slack](http://slack.px4.io) (sign up)
 * [Google+](https://plus.google.com/117509651030855307398)
 
-Developers who want to [contribute](contribute/README.md) to the platform can also
-join the [weekly dev call](contribute/README.md#dev_call).
+> **Tip** Developers who want to [contribute](contribute/README.md) to the platform are also most welcome 
+to attend the [weekly dev call](contribute/README.md#dev_call) 
+and our other [developer events](contribute/README.md#calendar).
 
 
 ## Contributing
