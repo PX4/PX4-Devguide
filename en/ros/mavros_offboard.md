@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     ros::Rate rate(20.0);
 
     // wait for FCU connection
-    while(ros::ok() && current_state.connected){
+    while(ros::ok() && !current_state.connected){
         ros::spinOnce();
         rate.sleep();
     }
@@ -133,7 +133,7 @@ The px4 flight stack has a timeout of 500ms between two *Offboard* commands. If 
 
 ```C++
 // wait for FCU connection
-while(ros::ok() && current_state.connected){
+while(ros::ok() && !current_state.connected){
     ros::spinOnce();
     rate.sleep();
 }
