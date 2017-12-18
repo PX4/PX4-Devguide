@@ -1,12 +1,24 @@
 # Interfacing the Simulation to ROS
 
-The simulated autopilot starts a second MAVLink interface on port 14557. Connecting MAVROS to this port allows to receive all data the vehicle would expose if in real flight.
+[ROS](../ros/README.md) (Robot Operating System) is a general purpose robotics library that can be used with the PX4 flight stack and also (optionally) with the Gazebo simulator. It uses the [MAVROS](../ros/mavros_installation.md) MAVLink node to communicate with PX4.
 
-> **Tip** Information about using ROS for offboard control is covered in: [ROS](../ros/README.md).
+The diagram below shows the *standard* [PX4 simulation environment](../simulation/README.md#sitl-simulation-environment). PX4 communicates with the simulator (e.g. Gazebo) to receive sensor data from the simulated world and send motor and actuator values. It communicates with the GCS and Offboard API to send telemetry from the simulated environment and receive commands. 
 
-## Launching MAVROS
+![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
-If an interface to ROS is wanted, the already running secondary MAVLink instance can be connected to ROS via [mavros](../ros/mavros_offboard.md). To connect to a specific IP (`fcu_url` is the IP / port of SITL), use a URL in this form:
+The ROS/Gazebo integration with PX4 follows the pattern above. The only *slight* difference being that ROS initiates the connection on port 14557, while it is more typical for an offboard API to listen for connections on UDP port 14540. 
+
+
+## Installing Gazebo for ROS
+
+The easiest way to setup PX4 simulation with ROS on Ubuntu Linux is to use the standard installation script that can be found at [Development Environment on Linux > Gazebo with ROS](../setup/dev_env_linux.md#gazebo-with-ros). The script installs everything you need: PX4, ROS "Kinetic", the Gazebo 7 simulator, and [MAVROS](../ros/mavros_installation.md).
+
+> **Note** The script follows the [standard ROS "Kinetic" installation instructions](http://wiki.ros.org/kinetic/Installation/Ubuntu), which include Gazebo 7. Installation of ROS Kinetic for other platforms is covered in the [ROS Wiki here](http://wiki.ros.org/kinetic/Installation).
+
+
+## Launching ROS/Simulation
+
+The command below can be used to launch the simulation and connect ROS to it via [MAVROS](../ros/mavros_installation.md), where `fcu_url` is the IP / port of the computer running the simulation:
 
 ```sh
 roslaunch mavros px4.launch fcu_url:="udp://:14540@192.168.1.36:14557"
@@ -22,26 +34,20 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
   ```sh
   roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
   ```
-  
-## Installing Gazebo for ROS
-
-The easiest way to setup ROS and Gazebo 7 with PX4 on Ubuntu Linux is to use our installation scripts: [Development Environment on Linux > Gazebo with ROS](https://dev.px4.io/en/setup/dev_env_linux.md#gazebo-with-ros).
-
-> **Note** The [ROS](../ros/README.md) "Kinetic" [standard installation](http://wiki.ros.org/kinetic/Installation/Ubuntu) includes the Gazebo 7 simulator by default. Installation of ROS Kinetic for other platforms is covered in the [ROS Wiki here](http://wiki.ros.org/kinetic/Installation).
 
 
-## Launching Gazebo with ROS wrappers
+## Launching Gazebo with ROS Wrappers
 
-In case you would like to modify the Gazebo simulation to integrate sensors publishing directly to ROS topics e.g. the Gazebo ROS laser plugin, Gazebo must be launched with the appropriate ROS wrappers.
+The Gazebo simulation can be modified to integrate sensors publishing directly to ROS topics e.g. the Gazebo ROS laser plugin. To support this feature, Gazebo must be launched with the appropriate ROS wrappers.
 
 There are ROS launch scripts available to run the simulation wrapped in ROS:
 
-  * [posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch): plain SITL launch
-  * [mavros_posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch): SITL and MAVROS
+* [posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch): plain SITL launch
+* [mavros_posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch): SITL and MAVROS 
 
 To run SITL wrapped in ROS the ROS environment needs to be updated, then launch as usual:
 
-(optional): only source the catkin workspace if you compiled MAVROS or other ROS packages from source
+(optional): only source the catkin workspace if you compiled MAVROS or other ROS packages from source:
 
 ```sh
 cd <Firmware_clone>
@@ -55,15 +61,17 @@ roslaunch px4 posix_sitl.launch
 
 Include one of the above mentioned launch files in your own launch file to run your ROS application in the simulation.
 
-### What's happening behind the scenes
+### What's Happening Behind the Scenes
 
-(or how to run it manually)
+This section shows how the *roslaunch* instructions provided previously actually work (you can follow them to manually launch the simulation and ROS).
+
+First start the simulator using the command below: 
 
 ```sh
 no_sim=1 make posix_sitl_default gazebo
 ```
 
-This should start the simulator and the console will look like this
+The console will look like this:
 
 
 ```sh

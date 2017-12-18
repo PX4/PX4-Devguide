@@ -1,6 +1,10 @@
 # Gazebo Simulation
 
-[Gazebo](http://gazebosim.org) is a 3D simulation environment for autonomous robots. It supports standalone use (without ROS) or SITL + ROS.
+[Gazebo](http://gazebosim.org) is a powerful 3D simulation environment for autonomous robots that is particularly suitable for testing object-avoidance and computer vision. It can also be used for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md) and is commonly used with [ROS](../simulation/ros_interface.md), a collection of tools for automating vehicle control. 
+
+**Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) and [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo), Hex (Typhoon H480), [Generic quad delta VTOL](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), Tailsitter, Plane, Rover, Submarine (coming soon!)
+
+> **Tip** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment and available simulation configuration (e.g. supported vehicles). 
 
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
@@ -12,31 +16,31 @@ graph LR;
   MAVLink-->SITL;
 {% endmermaid %}
 
+
+
 ## Installation
 
-The installation requires to install Gazebo and our simulation plugin.
+> **Tip** If you plan to use PX4 with ROS you should instead [follow the instructions here](../simulation/ros_interface.md) to install Gazebo as part of ROS! Note that we install Gazebo7 with ROS, as this is the default compatible version.
 
-> **Note** Gazebo version 7 is recommended (the minimum version is Gazebo 6). If you run Linux and installed a ROS version earlier than Jade, be sure to uninstall the bundled Gazebo (sudo apt-get remove ros-indigo-gazebo) version as it is too old.
+Gazebo 8 setup in included in our standard build instructions:
+- **macOS:** [Development Environment on Mac](http://localhost:4000/en/setup/dev_env_mac.html)
+- **Linux:** [Development Environment on Linux > jMAVSim/Gazebo Simulation](../setup/dev_env_linux.md#jmavsimgazebo-simulation)
+- **Windows:** Not supported.
 
-Check the [Linux](../setup/dev_env_linux.md) and [Mac](../setup/dev_env_mac.md) pages for install infos.
+Additional installation instructions can be found on [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1).
 
-#### ROS Users
-
-The PX4 SITL uses the Gazebo simulator, but does not depend on ROS. The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as normal flight code is.
-
-If you plan to use PX4 with ROS, make sure to follow the [Gazebo version guide for version 7](http://gazebosim.org/tutorials?tut=ros_wrapper_versions#Gazebo7.xseries) for ROS.
-
-#### Normal Installation
-
-Follow the [Linux installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&ver=7.0&cat=install) for Gazebo 7.
-
-Make sure to have both installed: `gazebo7` and `libgazebo7-dev`.
 
 ## Running the Simulation
 
-From within the source directory of the PX4 Firmware run the PX4 SITL with one of the airframes (Quads, planes and VTOL are supported, including optical flow):
+You can run a simulation by starting PX4 SITL and gazebo with the airframe configuration to load (multicopters, planes, VTOL, optical flow and multi-vehicle simulations are supported). 
 
-> **Note** You can use the instructions below to keep Gazebo running and only re-launch PX4.
+The easiest way to do this is to open a terminal in the root directory of the PX4 *Firmware* repository and call `make` for the targets as shown in the following sections.
+
+> **Tip** You can use the [instructions below](#start_px4_sim_separately) to keep Gazebo running and only re-launch PX4. This is quicker than restarting both.
+
+<span></span>
+> **Tip** For the full list of build targets run `make posix list_vmd_make_targets` (and filter on those that start with `gazebo_`).
+
 
 ### Quadrotor
 
@@ -98,7 +102,7 @@ make posix gazebo_rover
 make posix_sitl_default gazebo_hippocampus
 ```
 
-![](../../assets/gazebo/hippocampus.png)
+![Submarine/UUV](../../assets/gazebo/hippocampus.png)
 
 
 
@@ -108,7 +112,7 @@ The current default world is the iris.world located in the directory [worlds](ht
 
 ## Taking it to the Sky
 
-> **Note** Please refer to the [Installing Files and Code](../setup/dev_env_mac.md) guide in case you run into any errors.
+> **Note** Please refer to the [Installing Files and Code](../setup/dev_env.md) guide if you run into any errors.
 
 This will bring up the PX4 shell:
 
@@ -139,7 +143,7 @@ The system will print the home position once it finished intializing (`telem> ho
 pxh> commander takeoff
 ```
 
-> **Note** Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
+> **Note** Joystick or thumb-joystick support [is available](../simulation/README.md#joystickgamepad-integration).
 
 ## Set custom takeoff location
 
@@ -155,7 +159,7 @@ export PX4_HOME_ALT=28.5
 make posix gazebo
 ```
 
-## Starting Gazebo and PX4 separately
+## Starting Gazebo and PX4 separately {#start_px4_sim_separately}
 
 For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
 
