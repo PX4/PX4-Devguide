@@ -157,7 +157,7 @@ sudo apt-get install clang-3.5 lldb-3.5 -y
 
 ### ROS/Gazebo
 
-Install the dependencies for [ROS/Gazebo](../ros/README.md)) ("Kinetic"). These include Gazebo7 (at time of writing, the default version that comes with ROS). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Kinetic"). These include Gazebo7 (at time of writing, the default version that comes with ROS). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
 
 ```sh
 # ROS Kinetic/Gazebo

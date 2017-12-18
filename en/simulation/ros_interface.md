@@ -2,6 +2,8 @@
 
 The simulated autopilot starts a second MAVLink interface on port 14557. Connecting MAVROS to this port allows to receive all data the vehicle would expose if in real flight.
 
+> **Tip** Information about using ROS for offboard control is covered in: [ROS](../ros/README.md).
+
 ## Launching MAVROS
 
 If an interface to ROS is wanted, the already running secondary MAVLink instance can be connected to ROS via [mavros](../ros/mavros_offboard.md). To connect to a specific IP (`fcu_url` is the IP / port of SITL), use a URL in this form:
@@ -21,18 +23,12 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
   roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
   ```
   
-
 ## Installing Gazebo for ROS
 
-The Gazebo ROS SITL simulation is known to work with both Gazebo 6 and Gazebo 7, which can be installed via:
+The easiest way to setup ROS and Gazebo 7 with PX4 on Ubuntu Linux is to use our installation scripts: [Development Environment on Linux > Gazebo with ROS](https://dev.px4.io/en/setup/dev_env_linux.md#gazebo-with-ros).
 
-```sh
-sudo apt-get install ros-$(ROS_DISTRO)-gazebo7-ros-pkgs    //Recommended
-```
-or
-```sh
-sudo apt-get install ros-$(ROS_DISTRO)-gazebo6-ros-pkgs
-```
+> **Note** The [ROS](../ros/README.md) "Kinetic" [standard installation](http://wiki.ros.org/kinetic/Installation/Ubuntu) includes the Gazebo 7 simulator by default. Installation of ROS Kinetic for other platforms is covered in the [ROS Wiki here](http://wiki.ros.org/kinetic/Installation).
+
 
 ## Launching Gazebo with ROS wrappers
 
