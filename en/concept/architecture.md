@@ -143,24 +143,21 @@ There are 2 different ways that a module can be executed:
 > (only the work queues themselves can be seen - e.g. as `lpwork`).
 
 
-### Background Programs/Daemons
+### Background Tasks
 
-A daemon is a module (program) running in the background. 
-New daemons are created through the `px4_task_spawn_cmd()` command:
+`px4_task_spawn_cmd()` is used to launch new tasks (NuttX) or threads (POSIX - Linux/macOS) that run independently from the calling (parent) task:
 
 ```cpp
-daemon_task = px4_task_spawn_cmd(
+independent_task = px4_task_spawn_cmd(
     "commander",                    // Process name
     SCHED_DEFAULT,                  // Scheduling type (RR or FIFO)
-    SCHED_PRIORITY_DEFAULT + 40,    //Scheduling priority
+    SCHED_PRIORITY_DEFAULT + 40,    // Scheduling priority
     3600,                           // Stack size of the new task or thread
     commander_thread_main,          // Task (or thread) main function
     (char * const *)&argv[0]        // Void pointer to pass to the new task
                                     // (here the commandline arguments).
     );
 ```
-
-In NuttX a daemon process is a task. In POSIX (Linux / Mac OS) a daemon is a thread.
 
 
 ### OS-Specific Information
