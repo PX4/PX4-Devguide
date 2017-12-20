@@ -68,9 +68,10 @@
     * [MAVROS \(MAVLink on ROS\)](ros/mavros_installation.md)
     * [MAVROS offboard example](ros/mavros_offboard.md)
     * [ROS with Gazebo Simulation](simulation/ros_interface.md)
+      * [Gazebo Octomap](simulation/gazebo_octomap.md)
     * [ROS Installation on RPi](ros/raspberrypi_installation.md)
     * [External Position Estimation](ros/external_position_estimation.md)
-    * [Gazebo Octomap](simulation/gazebo_octomap.md)
+    
   * [DroneKit](robotics/dronekit.md)
 * [Debugging/Logging](debug/README.md)
   * [FAQ](debug/faq.md)
