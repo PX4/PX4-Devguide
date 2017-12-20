@@ -2,7 +2,7 @@
 
 > ** Warning ** 오프보드 제어는 위험합니다. 오프보드 비행 전에 안전을 위해 준비, 테스팅, 안전에 관해 예방책을 마련하는 것은 개발자의 몫입니다.
 
-오프보드 제어의 기반 아이디어는 autopilot 외부에서 실행되는 소프트웨어로 px4 flight stack을 제어할 수 있다는 것입니다. Mavlink 프로토콜을 통해 이뤄지며 특별히 [SET_POSITION_TARGET_LOCAL_NED](http://mavlink.org/messages/common#SET_POSITION_TARGET_LOCAL_NED)와 [SET_ATTITUDE_TARGET](http://mavlink.org/messages/common#SET_ATTITUDE_TARGET) 메시지와 관련이 있습니다.
+오프보드 제어의 기반 아이디어는 autopilot 외부에서 실행되는 소프트웨어로 px4 flight stack을 제어할 수 있다는 것입니다. Mavlink 프로토콜을 통해 이뤄지며 특별히 [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED)와 [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) 메시지와 관련이 있습니다.
 
 ## 오프보드 제어 펌웨어 셋업
 오프보드 개발을 시작하기 전에 펌웨어 쪽에 필요한 셋업 2가지

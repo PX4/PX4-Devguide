@@ -13,7 +13,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 现在，这个系统被用来进行室内位置控制或者基于视觉的路径点导航。
 
-对于视觉，用来发送位姿数据的MAVLink消息是[VISION_POSITION_ESTIMATE](http://mavlink.org/messages/common#VISION_POSITION_ESTIMATE)。对于运动捕捉系统，相应的则为[ATT_POS_MOCAP](http://mavlink.org/messages/common#ATT_POS_MOCAP)。
+对于视觉，用来发送位姿数据的MAVLink消息是[VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE)。对于运动捕捉系统，相应的则为[ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP)。
 
 默认发送这些消息的应用是ROS-Mavlink接口MAVROS，当然，也可以直接使用纯C/C++代码或者MAVLink()库来发送它们。
 

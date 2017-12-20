@@ -2,7 +2,7 @@
 position estimation을 위해서 아래를 향하는 카메라와 거리 센서를 사용합니다. Optical Flow 기반 네비게이션은 모두 3개 estimator에서 지원합니다. : EKF2, LPE 그리고 INAV (아래 참고)
 
 ## 셋업
-위에서 언급한 것처럼 Optical Flow 셋업에는 아래를 향하는 카메라와 거리 센서(LiDAR 선호)가 필요합니다. 각각은 [`OPTICAL_FLOW_RAD` topic](http://mavlink.org/messages/common#OPTICAL_FLOW_RAD) 메시지와 [`DISANCE_SENSOR` topic](http://mavlink.org/messages/common#DISTANCE_SENSOR) 메시지를 publish합니다.
+위에서 언급한 것처럼 Optical Flow 셋업에는 아래를 향하는 카메라와 거리 센서(LiDAR 선호)가 필요합니다. 각각은 [`OPTICAL_FLOW_RAD` topic](https://mavlink.io/en/messages/common.html#OPTICAL_FLOW_RAD) 메시지와 [`DISANCE_SENSOR` topic](https://mavlink.io/en/messages/common.html#DISTANCE_SENSOR) 메시지를 publish합니다.
 
 출력은 다음과 같습니다
 
