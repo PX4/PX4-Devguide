@@ -5,7 +5,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 # MAVLink消息
 
-所有消息的概述可以在[这里](http://mavlink.org/messages/common)找到.
+所有消息的概述可以在[这里](https://mavlink.io/en/messages/)找到.
 
 ## 创建自定义MAVLink消息
 

@@ -8,7 +8,7 @@ position estimate는 오프보드(예로 VICON) 뿐만 아니라 온보드 컴�
 
 시스템은 실내 position hold나 비젼 기반 waypoint 네비게이션과 같은 어플리케이션으로 사용될 수 있습니다.
 
-비전에 관해서 pose data를 보내는데 사용하는 mavlink 메시지는 [VISION_POSITION_ESTIMATE](http://mavlink.org/messages/common#VISION_POSITION_ESTIMATE)와 모션 캡쳐 시스템에 관한 모든 메시지는 [ATT_POS_MOCAP](http://mavlink.org/messages/common#ATT_POS_MOCAP) 메시지입니다.
+비전에 관해서 pose data를 보내는데 사용하는 mavlink 메시지는 [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE)와 모션 캡쳐 시스템에 관한 모든 메시지는 [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) 메시지입니다.
 
 mavros ROS-Mavlink 인터페이스는 기본적으로 이런 메시지를 보내는 구현을 가지고 있습니다. 이 메시지는 순수 C/C++ 코드와 MAVLink 라이브러리를 직접 사용하는 방식으로 전달할 수 있습니다.
 

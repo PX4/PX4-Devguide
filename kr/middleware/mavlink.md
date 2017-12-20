@@ -1,5 +1,5 @@
 # MAVLink Messaging
-전체 메시지에 대한 개요는 다음 링크를 참고하세요. [여기](http://mavlink.org/messages/common).
+전체 메시지에 대한 개요는 다음 링크를 참고하세요. [여기](https://mavlink.io/en/messages/).
 ## 커스텀 MAVLink Messages 생성
 여기 튜터리얼에서는 `msg/ca_trajectory.msg`에 있는 [custom uORB](../middleware/uorb.md) `ca_trajectory`와 `mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h`에 있는 커스텀 mavlink `ca_trajectory` 메시지를 가지고 있다고 가정합니다. (
 [여기](http://qgroundcontrol.org/mavlink/create_new_mavlink_message)에서 커스텀 mavlink 메시지와 헤더 생성하는 방법을 참고).

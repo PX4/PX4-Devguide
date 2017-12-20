@@ -7,7 +7,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 Optical Flow uses a downward facing camera and a downward facing distance sensor for position estimation. Optical Flow based navigation is supported by all three estimators: EKF2, LPE and INAV (see below).
 
 ## 设置
-As mentioned above, an Optical Flow setup requires a downward facing camera which publishes to the [`OPTICAL_FLOW_RAD` topic](http://mavlink.org/messages/common#OPTICAL_FLOW_RAD) and a distance sensor (preferably a LiDAR) publishing messages to the [`DISANCE_SENSOR` topic](http://mavlink.org/messages/common#DISTANCE_SENSOR).
+As mentioned above, an Optical Flow setup requires a downward facing camera which publishes to the [`OPTICAL_FLOW_RAD` topic](https://mavlink.io/en/messages/common.html#OPTICAL_FLOW_RAD) and a distance sensor (preferably a LiDAR) publishing messages to the [`DISANCE_SENSOR` topic](https://mavlink.io/en/messages/common.html#DISTANCE_SENSOR).
 
 The output of the flow has to be as follows
 
