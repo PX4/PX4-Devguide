@@ -39,7 +39,7 @@
   * [Device Drivers](middleware/drivers.md)
   * [Telemetry Radio](data_links/telemetry.md)
     * [SiK Radio](data_links/sik_radio.md)
-  * [Sensor and Actuator Buses](sensor_bus/README.md)
+  * [Sensor and Actuator I/O](sensor_bus/README.md)
     * [I2C Bus](sensor_bus/i2c.md)
     * [UAVCAN Bus](uavcan/README.md)
       * [UAVCAN Bootloader](uavcan/bootloader_installation.md)
