@@ -119,34 +119,53 @@ PX4 runs on various operating systems that provide a POSIX-API
 (such as Linux, macOS, NuttX or QuRT). It should also have some form of
 real-time scheduling (e.g. FIFO).
 
-The inter-module communication (using uORB) is based on shared memory. The whole
-PX4 middleware runs in a single address space, i.e. memory is shared between all
-modules. 
+The inter-module communication (using [uORB](../middleware/uorb.md)) is based on shared memory. 
+The whole PX4 middleware runs in a single address space, i.e. memory is shared between all modules. 
 
 > **Info** The system is designed such that with minimal effort it would
 > be possible to run each module in separate address space (parts that would need
 > to be changed include `uORB`, `parameter interface`, `dataman` and `perf`).
 
 There are 2 different ways that a module can be executed:
-- **Tasks**: this is the more common way. A module runs in its own task with its
-  own stack and process priority.
-- **Work queues**: the module runs on a shared task, meaning it does not own a
-  stack. Multiple tasks run on the same stack with a single priority per work
-  queue.
-  
+- **Tasks**: The module runs in its own task with its own stack and process priority
+  (this is the more common way). 
+- **Work queues**: The module runs on a shared task, meaning that it does not own a stack. 
+  Multiple tasks run on the same stack with a single priority per work queue.
+
   A task is scheduled by specifying a fixed time in the future.
   The advantage is that it uses less RAM, but the task is not allowed to sleep
   or poll on a message.
 
-  Work queues are used for periodic tasks, such as sensor drivers or the land
-  detector.
+  Work queues are used for periodic tasks, 
+  such as sensor drivers or the land detector.
 
 > **Note** Tasks running on a work queue do not show up in `top` 
 > (only the work queues themselves can be seen - e.g. as `lpwork`).
 
-The following sections provide additional OS-specific information.
 
-### NuttX
+### Background Programs/Daemons
+
+A daemon is a module (program) running in the background. 
+New daemons are created through the `px4_task_spawn_cmd()` command:
+
+```cpp
+daemon_task = px4_task_spawn_cmd(
+    "commander",                    // Process name
+    SCHED_DEFAULT,                  // Scheduling type (RR or FIFO)
+    SCHED_PRIORITY_DEFAULT + 40,    //Scheduling priority
+    3600,                           // Stack size of the new task or thread
+    commander_thread_main,          // Task (or thread) main function
+    (char * const *)&argv[0]        // Void pointer to pass to the new task
+                                    // (here the commandline arguments).
+    );
+```
+
+In NuttX a daemon process is a task. In POSIX (Linux / Mac OS) a daemon is a thread.
+
+
+### OS-Specific Information
+
+#### NuttX
 
 [NuttX](http://nuttx.org/) is the primary RTOS for running PX4 on a flight-control
 board. It is open source (BSD license), light-weight, efficient and very stable.
@@ -158,7 +177,8 @@ that share the file descriptor list.
 Each task/thread has a fixed-size stack, and there is a periodic task which
 checks that all stacks have enough free space left (based on stack coloring).
 
-### Linux/macOS
+
+#### Linux/macOS
 
 On Linux or macOS, PX4 runs in a single process, and the modules run in their own
 threads (there is no distinction between tasks and threads as on NuttX).
