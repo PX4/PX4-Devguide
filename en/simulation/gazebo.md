@@ -184,3 +184,8 @@ To extend or customize the simulation interface, edit the files in the `Tools/si
 ## Interfacing to ROS
 
 The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.
+
+## Further Information
+
+* [ROS with Gazebo Simulation](../simulation/ros_interface.md)
+* [Gazebo Octomap](../simulation/gazebo_octomap.md)
