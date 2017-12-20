@@ -1,18 +1,21 @@
 # Offboard Control
 
-> **Warning** Offboard control is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
+> **Warning** [Offboard control](https://docs.px4.io/en/flight_modes/offboard.html) is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
 
-The idea behind off-board control is to be able to control the px4 flight stack using software running outside of the autopilot. This is done through the Mavlink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](http://mavlink.org/messages/common#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](http://mavlink.org/messages/common#SET_ATTITUDE_TARGET) messages.
+The idea behind off-board control is to be able to control the PX4 flight stack using software running outside of the autopilot. This is done through the Mavlink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) messages.
 
 ## Offboard Control Firmware Setup
+
 There are two things you want to setup on the firmware side before starting offboard development.
 
 ### 1. Map an RC switch to offboard mode activation
-To do this, load up the parameters in qGroundcontrol and look for the RC_MAP_OFFB_SW parameter to which you can assign the RC channel you want to use to activate offboard mode. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
+
+To do this, load up the parameters in *QGroundControl* and look for the RC_MAP_OFFB_SW parameter to which you can assign the RC channel you want to use to activate offboard mode. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
 
 Although this step isn't mandatory since you can activate offboard mode using a MAVLink message. We consider this method much safer.
 
 ### 2. Enable the companion computer interface
+
 Look for the [SYS_COMPANION](../advanced/parameter_reference.md#SYS_COMPANION) parameter and set it to either 921600 (Recommended) or 57600. This parameter will activate a MAVLink stream on the Telem2 port with data streams specific to onboard mode with the appropriate baud rate (921600 8N1 or 57600 8N1). 
 
 For more information on these data streams, look for "MAVLINK_MODE_ONBOARD" in the [source code](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp).
@@ -22,10 +25,11 @@ For more information on these data streams, look for "MAVLINK_MODE_ONBOARD" in t
 Usually, there are three ways of setting up offboard communication.
 
 ### 1. Serial radios
+
 1. One connected to a UART port of the autopilot
 2. One connected to a ground station computer
 
-Example radios include
+Example radios include:
 * [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
 * [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
@@ -37,14 +41,16 @@ graph TD;
 {% endmermaid %}
 
 ### 2. On-board processor
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter. There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
+
+A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter. 
+There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
 
 Small low power examples:
 * [Odroid C1+](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143703355573) or [Odroid XU4](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143452239825)
 * [Raspberry Pi](https://www.raspberrypi.org/)
 * [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
 
-Larger high power examples
+Larger high power examples:
 * [Intel NUC](http://www.intel.com/content/www/us/en/nuc/overview.html)
 * [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
 * [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
@@ -56,7 +62,10 @@ graph TD;
 {% endmermaid %}
 
 ### 3. On-board processor and wifi link to ROS (***Recommended***)
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. This can be any of the computers from the above section coupled with a WiFi adapter. For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accomodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
+
+A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. 
+This can be any of the computers from the above section coupled with a WiFi adapter. 
+For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accommodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
 
 
 {% mermaid %}
