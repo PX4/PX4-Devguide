@@ -9,7 +9,9 @@ The ROS/Gazebo integration with PX4 follows the pattern in the diagram below (th
 > **Note** The only *slight* difference to "normal behaviour" is that ROS initiates the connection on port 14557, while it is more typical for an offboard API to listen for connections on UDP port 14540. 
 
 
-## Installing Gazebo for ROS
+## Installing ROS and Gazebo
+
+> **Note** *ROS* is only supported on Linux (not macOS or Windows).
 
 The easiest way to setup PX4 simulation with ROS on Ubuntu Linux is to use the standard installation script that can be found at [Development Environment on Linux > Gazebo with ROS](../setup/dev_env_linux.md#gazebo-with-ros). The script installs everything you need: PX4, ROS "Kinetic", the Gazebo 7 simulator, and [MAVROS](../ros/mavros_installation.md).
 
@@ -61,7 +63,7 @@ roslaunch px4 posix_sitl.launch
 
 Include one of the above mentioned launch files in your own launch file to run your ROS application in the simulation.
 
-### What's Happening Behind the Scenes
+## What's Happening Behind the Scenes
 
 This section shows how the *roslaunch* instructions provided previously actually work (you can follow them to manually launch the simulation and ROS).
 
