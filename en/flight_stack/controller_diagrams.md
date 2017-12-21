@@ -2,6 +2,8 @@
 
 This section contains diagrams for the main PX4 controllers.
 
+The diagrams use the standard [PX4 notation](../contribute/notation.md) (and each have an annotated legend).
+
 ## Multicopter Position Controller
 
 ![MC Position Controller Diagram](../../assets/diagrams/px4_mc_position_controller_diagram.jpg) 
