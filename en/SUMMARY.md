@@ -19,6 +19,7 @@
   * [Licenses](contribute/licenses.md)
 * [Concepts](concept/README.md)
   * [Architectural Overview](concept/architecture.md)
+  * [Dronecode Platform Overview](concept/dronecode_architecture.md)
   * [Flight Modes](concept/flight_modes.md)
   * [Mixing and Actuators](concept/mixing.md)
   * [PWM limit state machine](concept/pwm_limit.md)
