@@ -1,6 +1,6 @@
 # Dronecode Platform Hardware/Software Architecture
 
-The diagram below provides a forward-looking high level overview of the Dronecode Platform. The left hand side shows ones possible hardware configuration with a *flight controller* (light blue) connected to a *perception computer* (dark blue) via RTPS. The perception computer provides vision control and object avoidance using a camera sensor array, and has a separate payload camera. 
+The diagram below provides a forward-looking high level overview of the Dronecode Platform. The left hand side shows one possible hardware configuration with a *flight controller* (light blue) connected to a *perception computer* (dark blue) via RTPS. The perception computer provides vision control and object avoidance using a camera sensor array, and has a separate payload camera. 
 
 The right hand side of the diagram shows the end-to-end software stack. The stack "approximately" aligns horizontally with the hardware parts of the diagram, and is colour coded to show which software is running on the flight controller and which on the companion computer. 
 
