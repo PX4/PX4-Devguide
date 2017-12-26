@@ -68,6 +68,7 @@ The following list shows the build commands for common boards:
 * [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4fmu-v2_default`
 * [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4fmu-v2_default`
 * [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
+* [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav-x21_default` 
 * [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
 * [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
 * [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make mindpx-v2_default`
