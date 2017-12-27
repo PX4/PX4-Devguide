@@ -18,7 +18,7 @@
     * [Documentation](contribute/docs.md)
   * [Licenses](contribute/licenses.md)
 * [Concepts](concept/README.md)
-  * [Architectural Overview](concept/architecture.md)
+  * [PX4 Architectural Overview](concept/architecture.md)
   * [Dronecode Platform Overview](concept/dronecode_architecture.md)
   * [Flight Modes](concept/flight_modes.md)
   * [Mixing and Actuators](concept/mixing.md)
