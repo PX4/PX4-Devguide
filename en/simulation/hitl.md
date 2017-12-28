@@ -25,12 +25,12 @@ If the autopilot is exclusively used for HITL it can also be configured with a H
 
 ## Using jMAVSim \(Quadrotor\)
 
-* Make sure QGroundControl is not running
+* **Make sure QGroundControl is not running**
 * Run jMAVSim in HITL mode \(replace the serial port name `/dev/ttyACM0` if necessary - e.g. on Mac OS this would be `/dev/tty.usbmodem1`\):
   ```
   ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
   ```
-* The console will display mavlink text messages from the autopilot.
+
 * Then run QGroundControl - it will auto-connect.
 
 ## Using X-Plane
@@ -50,10 +50,6 @@ In Settings -&gt; Net Connections in the Data tab, set localhost and port 49005 
 Widgets -&gt; HIL Config, then select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
 
 ![](../../assets/gcs/qgc_sim_run.png)
-
-## Switch to Joystick Input
-
-If a joystick is preferred over a radio remote control, set the parameter `COM_RC_IN_MODE` to "Joystick/No RC Checks" \(numeric value 1\). It can be found in the Commander parameter group.
 
 ## Fly an Autonomous Mission in HITL
 
