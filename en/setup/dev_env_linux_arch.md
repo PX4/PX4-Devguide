@@ -1,5 +1,7 @@
 # Development Environment on ArchLinux
 
+> **Note** These instructions allow you to build PX4 (without RTPS) for NuttX targets, using an unsupported version of GCCE from the package manager. The instructions have been tested on Antergos (an Arch Linux based distribution) as it is easier to set up than Arch Linux. We hope to provide fully tested instructions with the supported toolchain in the near future.
+
 ## Permissions
 
 The user needs to be added to the group "uucp":
@@ -13,7 +15,9 @@ Then log out and log in for changes to take effect.
 
 ## Script-based Installation
 
-Once ArchLinux is installed you can use our standard docker script 
+> **Note** This script installs the (unsupported) latest GCCE from the package manager. MicroRTPS is not built.
+
+Once ArchLinux is installed you can use the docker script 
 [archlinux_install_script.sh](https://github.com/PX4/containers/blob/master/docker/px4-dev/scripts/archlinux_install_script.sh)
 to install all dependencies required for building PX4 firmware.
 
@@ -24,15 +28,14 @@ sudo -s
 source ./archlinux_install_script.sh
 ```
 
-> **Note** At time of writing this script installs the latest GCCE from the package manager. 
-> This version works for building NuttX firmware, but is not "supported". 
-
 <!-- 
 > Follow the instructions [below](#gcc-toolchain-installation) to install the supported version.
 -->
 
 
-## Common Dependencies
+## Manual Installation
+
+### Common Dependencies
 
 To install the dependencies manually, enter the following lines into a terminal.
 
@@ -60,13 +63,18 @@ rm genromfs-0.5.2.tar.gz genromfs-0.5.2 -r
   yaourt -S genromfs
   ```
 
-## GCCE Compiler
+### GCCE Compiler
 
 A GCC compiler is required to build for NuttX targets. 
-Enter the command below to install the latest version from the package manager.
+Enter the command below to install the latest version from the package manager (unsupported).
 
 ```
 # Compiler from package manager (unsupported)
 sudo pacman -Sy --noconfirm \
     arm-none-eabi-gcc arm-none-eabi-newlib
 ```
+
+The standard instructions for installing the official version are listed below (untested):
+<!-- import GCC toolchain common documentation -->
+
+{% include "_gcc_toolchain_installation.txt" %}
