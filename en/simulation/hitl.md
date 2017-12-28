@@ -2,40 +2,44 @@
 
 Hardware in the loop simulation is a simulation mode where the autopilot is connected to the simulator and all flight code runs on the autopilot. This approach has the benefit of testing the actual flight code on the real processor.
 
-## Configure the System for HITL
+## Step 1: Enable HITL mode and configure airframe
 
-The main configuration required is setting these parameters in QGroundControl. Use the search bar on the top of the parameter editor to bring them up.
+First enable HITL mode in the safety setup as shown in the screenshot below. Select the "Enabled" in the drop down on the HITL enabled section \(first on the page\):![QGroundControl HITL configuration](../../assets/qgc_hitl_config.png)
 
-* Required: `SYS_HITL` to "Enabled"
-* Optional: `COM_RC_IN_MODE` to "Joystick/No RC Checks" if no RC remote control is used. This allows joystick input and disables RC input checks.
-* Optional: `NAV_DLL_ACT` to "Disabled" if no RC remote control is used. This ensures that no RC failsafe actions interfere when not running HITL with a radio control.
+PX4 supports HITL for multicopters \(using jMAVSim\) and fixed wing \(using X-Plane demo or full version\). Generally any compatible airframe can be put into HITL mode. Compatible airframes are right now:
 
-### Airframe Configuration
-
-PX4 supports HITL for multicopters \(using jMAVSim\) and fixed wing \(using X-Plane demo or full version\). Flightgear support is present as well, but we generally recommend X-Plane. Generally any compatible airframe can be put into HITL mode. Compatible airframes are right now:
-
-* X-frame multicopters
+* X-frame multicopters \(autostart IDs 4001, 4011\)
 * Standard AERT planes
+* HITL X-frame multicopter \(autostart ID 1001\)
+* HITL AERT plane \(autostart ID 1000\)
 
-![QGroundControl HITL configuration](../../assets/qgc_hitl_config.png)
-
-If the autopilot is exclusively used for HITL it can also be configured with a HITL-only simulation configuration.
+The screenshot below shows the simulation airframe selected. Select HILStar for XPlane Simulator and fixed wing and Quadrotor X for jMAVSim.
 
 ![](../../assets/gcs/qgc_hil_config.png)
 
-## Using jMAVSim \(Quadrotor\)
+## Configure Joystick and Failsafe \(Optional\)
+
+These parameter are optional and allow to run HITL without a radio remote controller connected. Use the search bar on the top of the parameter editor to bring them up.
+
+* Optional: `COM_RC_IN_MODE` to "Joystick/No RC Checks" if no RC remote control is used. This allows joystick input and disables RC input checks.
+* Optional: `NAV_DLL_ACT` to "Disabled" if no RC remote control is used. This ensures that no RC failsafe actions interfere when not running HITL with a radio control.
+
+## Connect to the Simulator
+
+Currently either jMAVSim or X-Plane and QGroundControl are supported. Follow either setup step below.
+
+### Using jMAVSim \(Quadrotor only\)
 
 * **Make sure QGroundControl is not running**
 * Run jMAVSim in HITL mode \(replace the serial port name `/dev/ttyACM0` if necessary - e.g. on Mac OS this would be `/dev/tty.usbmodem1`\):
+
   ```
   ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
   ```
 
 * Then run QGroundControl - it will auto-connect.
 
-## Using X-Plane
-
-#### Enable Remote Access in X-Plane
+### Using X-Plane and QGroundControl \(Fixed Wing only\)
 
 In X-Plane two key settings have to be made: In Settings -&gt; Data Input and Output, set these checkboxes:
 
