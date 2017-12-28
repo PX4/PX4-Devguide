@@ -50,6 +50,7 @@
   * [Camera Trigger](tutorials/camera_trigger.md)
   * [Gimbal \(Mount\) Control Setup](advanced/gimbal_control.md)
   * [Companion Computers](companion_computer/pixhawk_companion.md)
+  * [Reference Design](debug/reference-design.md)
 * [Middleware](middleware/README.md)
   * [uORB Messaging](middleware/uorb.md)
   * [uORB Graph](middleware/uorb_graph.md)
@@ -72,7 +73,6 @@
     * [OctoMap Models with ROS](simulation/gazebo_octomap.md)
     * [ROS Installation on RPi](ros/raspberrypi_installation.md)
     * [External Position Estimation](ros/external_position_estimation.md)
-    
   * [DroneKit](robotics/dronekit.md)
 * [Debugging/Logging](debug/README.md)
   * [FAQ](debug/faq.md)
@@ -87,7 +87,7 @@
   * [Flight Log Analysis](log/flight_log_analysis.md)
   * [ULog File Format](log/ulog_file_format.md)
 * [Tutorials](tutorials/tutorials.md)
-  * [Ground Control Station](qgc/README.md) 
+  * [Ground Control Station](qgc/README.md)
   * [Writing an Application](tutorials/tutorial_hello_sky.md)
   * [Video Streaming in QGC](qgc/video_streaming.md)
   * [Long-distance Video Streaming](qgc/video_streaming_wifi_broadcast.md)
@@ -113,8 +113,7 @@
   * [Integration Testing](test_and_ci/integration_testing.md)
   * [Docker Containers](test_and_ci/docker.md)
   * [Maintenance](test_and_ci/maintenance.md)
-  
-  
+
 ## Dronecode Shortcuts
 
 * [PX4 User Guide](https://docs.px4.io/en/)
