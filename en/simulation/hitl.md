@@ -4,6 +4,8 @@ Hardware in the loop simulation is a simulation mode where the autopilot is conn
 
 ## Step 1: Enable HITL mode and configure airframe
 
+Connect the autopilot directly to QGroundControl.
+
 First enable HITL mode in the safety setup as shown in the screenshot below. Select the "Enabled" in the drop down on the HITL enabled section \(first on the page\):![QGroundControl HITL configuration](../../assets/qgc_hitl_config.png)
 
 PX4 supports HITL for multicopters \(using jMAVSim or Gazebo\) and fixed wing \(using X-Plane demo or full version or Gazebo\). Generally any compatible airframe can be put into HITL mode. Compatible airframes are right now:
@@ -17,7 +19,13 @@ The screenshot below shows the simulation airframe selected. Select HILStar for 
 
 ![](../../assets/gcs/qgc_hil_config.png)
 
-For Gazebo, set the `SYS_COMPANION` parameter to `921600`.
+For Gazebo, set the `SYS_COMPANION` parameter to `921600`. 
+
+Under the `General` tab of the settings menu, uncheck all AutoConnect boxes except for UDP. 
+
+![](../../assets/sim/QGC_AutoConnect.png)
+
+Once configuration in QGroundControl is complete, close QGroundControl and disconnect the autopilot from the computer. 
 
 ## Configure Joystick and Failsafe \(Optional\)
 
@@ -51,6 +59,8 @@ source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
 ![](../../assets/sim/gps_plugin_param.png)
 
 * **Make sure QGroundControl is not running**
+
+* Connect the autopilot to the computer and allow it a few seconds to boot.
 
 * Run Gazebo in HITL mode 
 ```
