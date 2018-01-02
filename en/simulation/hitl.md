@@ -54,10 +54,6 @@ source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
 
 * Replace the `serialDevice` parameter (`/dev/ttyACM0`) if necessary.
 
-* Recommended: Under the `gps_plugin` section, change `gpsNoise` to false.
-
-![](../../assets/sim/gps_plugin_param.png)
-
 * **Make sure QGroundControl is not running**
 
 * Connect the autopilot to the computer and allow it a few seconds to boot.
