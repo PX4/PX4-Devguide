@@ -23,16 +23,18 @@
 > **Tip** 번역에 기여하는 방법에 대해서 [시작하기](https://github.com/PX4/px4_user_guide#translation)를 참고하세요.
 
 
-## Forums and Chat {#support}
+## 포럼 및 채팅 {#support}
 
-The core development team and community are active on the following forums and chat channels.
+핵심 개발팀 및 커뮤니티는 다음 포럼 및 채팅 채널에서 활발하게 활동합니다.
 
-* [PX4 Discuss](http://discuss.px4.io/) (*recommended*)
-* [Slack](http://slack.px4.io) (sign up)
+* [PX4 Discuss](http://discuss.px4.io/) (*권장*)
+* [Slack](http://slack.px4.io) (가입)
 * [Google+](https://plus.google.com/117509651030855307398)
 
-Developers who want to [contribute](contribute/README.md) to the platform can also
-join the [weekly dev call](contribute/README.md#dev_call).
+플랫폼에  [기여](contribute/README.md) 하고자 하는 개발자는
+[weekly dev call](contribute/README.md#dev_call) 또한 참여할 수 있습니다.
+
+
 
 
 ## 라이센스
