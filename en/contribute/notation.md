@@ -3,8 +3,9 @@
 The following terms, symbols, and decorators are used in text and diagrams throughout this guide.
 
 ## Notation
+
 - Bold face variables indicate vectors or matrices and non-bold face variables represent scalars. 
-- The default frame for each variable is the local frame $$\ell$$. Right superscripts represent the coordinate frame. If no right superscript is present, then the default frame $$\ell$$ is assumed. An exception is given by Rotation Matrices, where the lower right subscripts indicates the current frame and the right superscripts the target frame.
+- The default frame for each variable is the local frame $$\ell$$. Right [superscripts](#superscripts) represent the coordinate frame. If no right superscript is present, then the default frame $$\ell$$ is assumed. An exception is given by Rotation Matrices, where the lower right subscripts indicates the current frame and the right superscripts the target frame.
 - Variables and subscripts can share the same letter, but they always have different meaning.
 
 ## Acronyms
@@ -56,7 +57,9 @@ $$p,q,r$$ | Angular rates around body axis x,y and z.
 $$\boldsymbol{\omega}^b$$ | Angular rate vector in body frame $$\boldsymbol{\omega}^b = [p \quad q \quad r]^T$$.
 $$\boldsymbol{\mathrm{x}}$$ | General state vector.
 
-Indices / Subscripts | Description
+### Subscripts / Indices
+
+Subscripts / Indices | Description
 --- | ---
 $$a$$ | Aileron.
 $$e$$ | Elevator.
@@ -67,11 +70,14 @@ $$w$$ | Relative airspeed.
 $$x,y,z$$ | Component of vector along coordinate axis x, y and z.
 $$N,E,D$$ | Component of vector along global north, east and down direction.
 
-Indices / Superscripts | Description
+### Superscripts / Indices {#superscripts}
+
+Superscripts / Indices | Description
 --- | ---
 $$\ell$$ | Local-frame. Default for PX4 related variables.
 $$b$$ | Body-frame.
 $$w$$ | Wind-frame.
+
 
 ## Decorators
 
