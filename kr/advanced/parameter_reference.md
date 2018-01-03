@@ -42,49 +42,49 @@
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF_ATT_V4_R0">EKF_ATT_V4_R0</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Gyro measurement noise</p>    </td>
+ <td style="vertical-align: top;"><p>자이로 측정 노이즈</p>    </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0.0008 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF_ATT_V4_R1">EKF_ATT_V4_R1</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Accel measurement noise</p>    </td>
+ <td style="vertical-align: top;"><p>가속 측정 노이즈</p>    </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">10000.0 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF_ATT_V4_R2">EKF_ATT_V4_R2</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Mag measurement noise</p>    </td>
+ <td style="vertical-align: top;"><p>자기 측정 노이즈</p>    </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">100.0 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="ATT_J11">ATT_J11</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Moment of inertia matrix diagonal entry (1, 1)</p>    </td>
+ <td style="vertical-align: top;"><p>관성모멘트 대각행렬 엔트리 (1, 1)</p>    </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0.0018 </td>
  <td style="vertical-align: top;">kg*m^2</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="ATT_J22">ATT_J22</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Moment of inertia matrix diagonal entry (2, 2)</p>    </td>
+ <td style="vertical-align: top;"><p>관성모멘트 대각행렬 엔트리 (2, 2)</p>    </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0.0018 </td>
  <td style="vertical-align: top;">kg*m^2</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="ATT_J33">ATT_J33</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Moment of inertia matrix diagonal entry (3, 3)</p>    </td>
+ <td style="vertical-align: top;"><p>관성모멘트 대각행렬 엔트리 (3, 3)</p>    </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0.0037 </td>
  <td style="vertical-align: top;">kg*m^2</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="ATT_J_EN">ATT_J_EN</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Moment of inertia enabled in estimator</p><p><strong>Comment:</strong> If set to != 0 the moment of inertia will be used in the estimator</p>    </td>
+ <td style="vertical-align: top;"><p>추정기에서 사용가능한 관성모멘트</p><p><strong>Comment:</strong> != 0로 설정하면 관성모멘트가 추정기에 사용될 것입니다.</p>    </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;"></td>
@@ -99,7 +99,7 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -182,7 +182,7 @@ velocity</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -370,7 +370,7 @@ velocity</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -395,7 +395,7 @@ velocity</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -485,7 +485,7 @@ velocity</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -578,7 +578,7 @@ velocity</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -693,7 +693,7 @@ velocity</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_LOW_BAT_ACT">COM_LOW_BAT_ACT</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Battery failsafe mode</p><p><strong>Comment:</strong> Action the system takes on low battery. Defaults to off</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>Battery failsafe mode</p><p><strong>Comment:</strong> Action the system takes on low battery. 기본값s to off</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Warning</li> 
 
 <li><strong>1:</strong> Return to land</li> 
@@ -1016,7 +1016,7 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>    </td>
 - 7bits to authentication method
 - one arm = 0
 - two step arm = 1
-* the MSB bit is not used to avoid problems in the conversion between int and uint</p><p><strong>Comment:</strong> Default value: (10 << 0 | 1000 << 8 | 0 << 24) = 256010 - authorizer system id = 10 - authentication method parameter = 10000msec of timeout - authentication method = during arm</p>    </td>
+* the MSB bit is not used to avoid problems in the conversion between int and uint</p><p><strong>Comment:</strong> 기본값 value: (10 << 0 | 1000 << 8 | 0 << 24) = 256010 - authorizer system id = 10 - authentication method parameter = 10000msec of timeout - authentication method = during arm</p>    </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">256010 </td>
  <td style="vertical-align: top;"></td>
@@ -1062,7 +1062,7 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -1145,7 +1145,7 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -1966,7 +1966,7 @@ This parameter controls the time constant of the decay</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -2328,7 +2328,7 @@ This parameter controls the time constant of the decay</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -2438,7 +2438,7 @@ This parameter controls the time constant of the decay</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_LND_TLALT">FW_LND_TLALT</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Landing throttle limit altitude (relative landing altitude)</p><p><strong>Comment:</strong> Default of -1.0 lets the system default to applying throttle limiting at 2/3 of the flare altitude.</p>    </td>
+ <td style="vertical-align: top;"><p>Landing throttle limit altitude (relative landing altitude)</p><p><strong>Comment:</strong> 기본값 of -1.0 lets the system default to applying throttle limiting at 2/3 of the flare altitude.</p>    </td>
  <td style="vertical-align: top;">-1.0 > 30.0 (0.5)</td>
  <td style="vertical-align: top;">-1.0 </td>
  <td style="vertical-align: top;">m</td>
@@ -2489,7 +2489,7 @@ Set to 0 to disable heading hold</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -2534,7 +2534,7 @@ Set to 0 to disable heading hold</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -2715,7 +2715,7 @@ Set to 0 to disable heading hold</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -2755,7 +2755,7 @@ but also ignore less noise</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -2893,7 +2893,7 @@ but also ignore less noise</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -2955,7 +2955,7 @@ but also ignore less noise</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -2994,12 +2994,12 @@ but also ignore less noise</p>    </td>
 ## GPS Failure Navigation
 
 
-The module where these parameters are defined is: *modules/navigator*.
+이 파라미터가 정의된 모듈은 *modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -3035,12 +3035,12 @@ The module where these parameters are defined is: *modules/navigator*.
 ## Geofence
 
 
-The module where these parameters are defined is: *modules/navigator*.
+이 파라미터가 정의된 모듈은 *modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -3111,12 +3111,12 @@ The module where these parameters are defined is: *modules/navigator*.
 ## Iridium SBD
 
 
-The module where these parameters are defined is: *drivers/iridiumsbd*.
+이 파라미터가 정의된 모듈은 *drivers/iridiumsbd*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -3131,12 +3131,12 @@ The module where these parameters are defined is: *drivers/iridiumsbd*.
 ## Land Detector
 
 
-The module where these parameters are defined is: *modules/land_detector*.
+이 파라미터가 정의된 모듈은 *modules/land_detector*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -3235,12 +3235,12 @@ The module where these parameters are defined is: *modules/land_detector*.
 ## Local Position Estimator
 
 
-The module where these parameters are defined is: *modules/local_position_estimator*.
+이 파라미터가 정의된 모듈은 *modules/local_position_estimator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -3526,12 +3526,12 @@ by initializing the estimator to the LPE_LAT/LON parameters when global informat
 ## MAVLink
 
 
-The module where these parameters are defined is: *modules/mavlink*.
+이 파라미터가 정의된 모듈은 *modules/mavlink*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -3553,7 +3553,7 @@ The module where these parameters are defined is: *modules/mavlink*.
 <tr>
  <td style="vertical-align: top;"><strong id="MAV_PROTO_VER">MAV_PROTO_VER</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>MAVLink protocol version</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Default to 1, switch to 2 if GCS sends version 2</li> 
+<li><strong>0:</strong> 기본값 to 1, switch to 2 if GCS sends version 2</li> 
 
 <li><strong>1:</strong> Always use version 1</li> 
 
@@ -3616,12 +3616,12 @@ The module where these parameters are defined is: *modules/mavlink*.
 ## MKBLCTRL Testmode
 
 
-The module where these parameters are defined is: *drivers/mkblctrl*.
+이 파라미터가 정의된 모듈은 *drivers/mkblctrl*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -3638,7 +3638,7 @@ The module where these parameters are defined is: *drivers/mkblctrl*.
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -3731,7 +3731,7 @@ The module where these parameters are defined is: *drivers/mkblctrl*.
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="NAV_LOITER_RAD">NAV_LOITER_RAD</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Loiter radius (FW only)</p><p><strong>Comment:</strong> Default value of loiter radius for missions, loiter, RTL, etc. (fixedwing only).</p>    <p><b>Module:</b> modules/navigator</p>
+ <td style="vertical-align: top;"><p>Loiter radius (FW only)</p><p><strong>Comment:</strong> 기본값 value of loiter radius for missions, loiter, RTL, etc. (fixedwing only).</p>    <p><b>Module:</b> modules/navigator</p>
 </td>
  <td style="vertical-align: top;">25 > 1000 (0.5)</td>
  <td style="vertical-align: top;">50.0 </td>
@@ -3739,7 +3739,7 @@ The module where these parameters are defined is: *drivers/mkblctrl*.
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="NAV_ACC_RAD">NAV_ACC_RAD</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Acceptance Radius</p><p><strong>Comment:</strong> Default acceptance radius, overridden by acceptance radius of waypoint if set. For fixed wing the L1 turning distance is used for horizontal acceptance.</p>    <p><b>Module:</b> modules/navigator</p>
+ <td style="vertical-align: top;"><p>Acceptance Radius</p><p><strong>Comment:</strong> 기본값 acceptance radius, overridden by acceptance radius of waypoint if set. For fixed wing the L1 turning distance is used for horizontal acceptance.</p>    <p><b>Module:</b> modules/navigator</p>
 </td>
  <td style="vertical-align: top;">0.05 > 200.0 (0.5)</td>
  <td style="vertical-align: top;">10.0 </td>
@@ -3910,12 +3910,12 @@ The module where these parameters are defined is: *drivers/mkblctrl*.
 ## Mount
 
 
-The module where these parameters are defined is: *drivers/vmount*.
+이 파라미터가 정의된 모듈은 *drivers/vmount*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -4096,7 +4096,7 @@ Does not affect MAVLINK_ROI input</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -4575,7 +4575,7 @@ applied to input of all axis: roll, pitch, yaw</p><p><strong>Comment:</strong> 0
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -5070,7 +5070,7 @@ towards MPC_ACC_HOR_MAX/MPC_ACC_UP_MAX with jerk limit</p>    <p><b>Module:</b> 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -5529,12 +5529,12 @@ towards MPC_ACC_HOR_MAX/MPC_ACC_UP_MAX with jerk limit</p>    <p><b>Module:</b> 
 ## Payload drop
 
 
-The module where these parameters are defined is: *examples/bottle_drop*.
+이 파라미터가 정의된 모듈은 *examples/bottle_drop*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -5584,12 +5584,12 @@ The module where these parameters are defined is: *examples/bottle_drop*.
 ## Position Estimator
 
 
-The module where these parameters are defined is: *examples/ekf_att_pos_estimator*.
+이 파라미터가 정의된 모듈은 *examples/ekf_att_pos_estimator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -5751,12 +5751,12 @@ The module where these parameters are defined is: *examples/ekf_att_pos_estimato
 ## Position Estimator INAV
 
 
-The module where these parameters are defined is: *modules/position_estimator_inav*.
+이 파라미터가 정의된 모듈은 *modules/position_estimator_inav*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -5961,7 +5961,7 @@ The module where these parameters are defined is: *modules/position_estimator_in
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -6950,7 +6950,7 @@ The module where these parameters are defined is: *modules/position_estimator_in
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_AUX1">RC_MAP_AUX1</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>AUX1 Passthrough RC channel</p><p><strong>Comment:</strong> Default function: Camera pitch</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>AUX1 Passthrough RC channel</p><p><strong>Comment:</strong> 기본값 function: Camera pitch</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Unassigned</li> 
 
 <li><strong>1:</strong> Channel 1</li> 
@@ -6997,7 +6997,7 @@ The module where these parameters are defined is: *modules/position_estimator_in
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_AUX2">RC_MAP_AUX2</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>AUX2 Passthrough RC channel</p><p><strong>Comment:</strong> Default function: Camera roll</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>AUX2 Passthrough RC channel</p><p><strong>Comment:</strong> 기본값 function: Camera roll</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Unassigned</li> 
 
 <li><strong>1:</strong> Channel 1</li> 
@@ -7044,7 +7044,7 @@ The module where these parameters are defined is: *modules/position_estimator_in
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_AUX3">RC_MAP_AUX3</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>AUX3 Passthrough RC channel</p><p><strong>Comment:</strong> Default function: Camera azimuth / yaw</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>AUX3 Passthrough RC channel</p><p><strong>Comment:</strong> 기본값 function: Camera azimuth / yaw</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Unassigned</li> 
 
 <li><strong>1:</strong> Channel 1</li> 
@@ -7440,12 +7440,12 @@ The module where these parameters are defined is: *modules/position_estimator_in
 ## Radio Signal Loss
 
 
-The module where these parameters are defined is: *modules/navigator*.
+이 파라미터가 정의된 모듈은 *modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -7460,12 +7460,12 @@ The module where these parameters are defined is: *modules/navigator*.
 ## Radio Switches
 
 
-The module where these parameters are defined is: *modules/sensors*.
+이 파라미터가 정의된 모듈은 *modules/sensors*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -8261,12 +8261,12 @@ The module where these parameters are defined is: *modules/sensors*.
 ## Return To Land
 
 
-The module where these parameters are defined is: *modules/navigator*.
+이 파라미터가 정의된 모듈은 *modules/navigator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -8302,12 +8302,12 @@ The module where these parameters are defined is: *modules/navigator*.
 ## Runway Takeoff
 
 
-The module where these parameters are defined is: *lib/runway_takeoff*.
+이 파라미터가 정의된 모듈은 *lib/runway_takeoff*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -8391,7 +8391,7 @@ FW_AIRSPD_MIN * RWTO_AIRSPD_SCL</p>    </td>
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -8431,7 +8431,7 @@ FW_AIRSPD_MIN * RWTO_AIRSPD_SCL</p>    </td>
 This is used for gathering replay logs for the ekf2 module</p><p><strong>Comment:</strong> A value of 0 indicates that the default priority is used. Increasing the parameter in steps of one increases the priority.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Low priority</li> 
 
-<li><strong>1:</strong> Default priority</li> 
+<li><strong>1:</strong> 기본값 priority</li> 
 
 <li><strong>2:</strong> Medium priority</li> 
 
@@ -8506,12 +8506,12 @@ This is used for gathering replay logs for the ekf2 module</p><p><strong>Comment
 ## SITL
 
 
-The module where these parameters are defined is: *modules/simulator*.
+이 파라미터가 정의된 모듈은 *modules/simulator*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -8533,12 +8533,12 @@ The module where these parameters are defined is: *modules/simulator*.
 ## Sensor Calibration
 
 
-The module where these parameters are defined is: *modules/sensors*.
+이 파라미터가 정의된 모듈은 *modules/sensors*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -9361,12 +9361,12 @@ The module where these parameters are defined is: *modules/sensors*.
 ## Sensor Thermal Compensation
 
 
-The module where these parameters are defined is: *modules/sensors*.
+이 파라미터가 정의된 모듈은 *modules/sensors*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -10424,12 +10424,12 @@ The module where these parameters are defined is: *modules/sensors*.
 ## Sensors
 
 
-The module where these parameters are defined is: *modules/sensors*.
+이 파라미터가 정의된 모듈은 *modules/sensors*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -10668,12 +10668,12 @@ The module where these parameters are defined is: *modules/sensors*.
 ## Subscriber Example
 
 
-The module where these parameters are defined is: *examples/subscriber*.
+이 파라미터가 정의된 모듈은 *examples/subscriber*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -10695,12 +10695,12 @@ The module where these parameters are defined is: *examples/subscriber*.
 ## Syslink
 
 
-The module where these parameters are defined is: *modules/syslink*.
+이 파라미터가 정의된 모듈은 *modules/syslink*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -10738,7 +10738,7 @@ The module where these parameters are defined is: *modules/syslink*.
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -10948,7 +10948,7 @@ The module where these parameters are defined is: *modules/syslink*.
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -11094,7 +11094,7 @@ The module where these parameters are defined is: *modules/syslink*.
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -11177,12 +11177,12 @@ The module where these parameters are defined is: *modules/syslink*.
 ## VTOL Attitude Control
 
 
-The module where these parameters are defined is: *modules/vtol_att_control*.
+이 파라미터가 정의된 모듈은 *modules/vtol_att_control*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
@@ -11486,7 +11486,7 @@ For ESCs that support thrust reversal with a control channel please set VT_B_REV
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+   <tr><th>이름</th><th>설명</th><th>Min > Max (Incr.)</th><th>기본값</th><th>단위</th></tr>
  </thead>
 <tbody>
 <tr>
