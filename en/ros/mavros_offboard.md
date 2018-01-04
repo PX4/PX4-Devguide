@@ -5,12 +5,12 @@
 The following tutorial will run through the basics of *Offboard* control through MAVROS as applied to an Iris quadcopter simulated in Gazebo with SITL running. At the end of the tutorial, you should see the same behaviour as in the video below, i.e. a slow takeoff to an altitude of 2 meters.
 
 <video width="100%" autoplay="true" controls="true">
-	<source src="../../assets/sim/gazebo_offboard.webm" type="video/webm">
+	<source src="../../assets/simulation/gazebo_offboard.webm" type="video/webm">
 </video>
 
 ## Code
 Create the `offb_node.cpp` file in your ROS package (by also adding it to you `CMakeList.txt` so it is compiled), and paste the following inside it:
-```C++
+```cpp
 /**
  * @file offb_node.cpp
  * @brief Offboard control example node, written with MAVROS version 0.19.x, PX4 Pro Flight
@@ -101,7 +101,7 @@ int main(int argc, char **argv)
 
 ```
 ## Code explanation
-```C++
+```cpp
 #include <ros/ros.h>
 #include <geometry_msgs/PoseStamped.h>
 #include <mavros_msgs/CommandBool.h>
@@ -110,7 +110,7 @@ int main(int argc, char **argv)
 ```
 The `mavros_msgs` package contains all of the custom messages required to operate services and topics provided by the MAVROS package. All services and topics as well as their corresponding message types are documented in the [mavros wiki](http://wiki.ros.org/mavros).
 
-```C++
+```cpp
 mavros_msgs::State current_state;
 void state_cb(const mavros_msgs::State::ConstPtr& msg){
     current_state = *msg;
@@ -118,20 +118,20 @@ void state_cb(const mavros_msgs::State::ConstPtr& msg){
 ```
 We create a simple callback which will save the current state of the autopilot. This will allow us to check connection, arming and *Offboard* flags.
 
-```C++
+```cpp
 ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>("mavros/state", 10, state_cb);
 ros::Publisher local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>("mavros/setpoint_position/local", 10);
 ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>("mavros/cmd/arming");
 ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
 ```
 We instantiate a publisher to publish the commanded local position and the appropriate clients to request arming and mode change. Note that for your own system, the "mavros" prefix might be different as it will depend on the name given to the node in it's launch file.
-```C++
+```cpp
 //the setpoint publishing rate MUST be faster than 2Hz
 ros::Rate rate(20.0);
 ```
 The px4 flight stack has a timeout of 500ms between two *Offboard* commands. If this timeout is exceeded, the commander will fall back to the last mode the vehicle was in before entering *Offboard* mode. This is why the publishing rate **must** be faster than 2 Hz to also account for possible latencies. This is also the same reason why it is recommended to enter *Offboard* mode from *Position* mode, this way if the vehicle drops out of *Offboard* mode it will stop in its tracks and hover.
 
-```C++
+```cpp
 // wait for FCU connection
 while(ros::ok() && !current_state.connected){
     ros::spinOnce();
@@ -139,14 +139,14 @@ while(ros::ok() && !current_state.connected){
 }
 ```
 Before publishing anything, we wait for the connection to be established between MAVROS and the autopilot. This loop should exit as soon as a heartbeat message is received.
-```C++
+```cpp
 geometry_msgs::PoseStamped pose;
 pose.pose.position.x = 0;
 pose.pose.position.y = 0;
 pose.pose.position.z = 2;
 ```
 Even though the PX4 Pro Flight Stack operates in the aerospace NED coordinate frame, MAVROS translates these coordinates to the standard ENU frame and vice-versa. This is why we set `z` to positive 2.
-```C++
+```cpp
 //send a few setpoints before starting
 for(int i = 100; ros::ok() && i > 0; --i){
     local_pos_pub.publish(pose);
@@ -155,12 +155,13 @@ for(int i = 100; ros::ok() && i > 0; --i){
 }
 ```
 Before entering *Offboard* mode, you must have already started streaming setpoints. Otherwise the mode switch will be rejected. Here, `100` was chosen as an arbitrary amount.
-```C++
+```cpp
 mavros_msgs::SetMode offb_set_mode;
 offb_set_mode.request.custom_mode = "OFFBOARD";
 ```
+
 We set the custom mode to `OFFBOARD`. A list of [supported modes](http://wiki.ros.org/mavros/CustomModes#PX4_native_flight_stack) is available for reference.
-```C++
+```cpp
 mavros_msgs::CommandBool arm_cmd;
 arm_cmd.request.value = true;
 

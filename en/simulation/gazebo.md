@@ -134,7 +134,7 @@ pxh>
 
 > **Note** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
 
-![](../../assets/sim/gazebo.png)
+![Gazebo UI](../../assets/simulation/gazebo.png)
 
 The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
 

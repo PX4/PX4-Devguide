@@ -122,7 +122,7 @@ pxh>
 > ** Note ** 쿼드로터 모델을 오른쪽 클릭하면 콘텍스트 메뉴에서 팔로우 모드를 활성화시킬 수 있습니다.
 Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
 
-![](../../assets/sim/gazebo.png)
+![Gazebo UI](../../assets/simulation/gazebo.png)
 
 시스템은 일단 초기화를 마치면 home position을 출력합니다. (`telem> home: 55.7533950, 37.6254270, -0.00`) 다음을 입력해서 공중으로 띄웁니다 :
 

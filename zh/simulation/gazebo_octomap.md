@@ -3,7 +3,7 @@ translated_page: https://github.com/PX4/Devguide/blob/master/en/simulation/gazeb
 translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ---
 
-# OctoMap
+# OctoMap 3D Models with ROS/Gazebo
 
 
 [OctoMap库](http://octomap.github.io/)实现了一个三维占据栅格地图的方法。本文介绍如何在[RotorS仿真](https://github.com/ethz-asl/rotors_simulator/wiki/RotorS-Simulator)中使用它。
@@ -13,7 +13,6 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 需要预先安装ROS，Gazebo和Rotors Simulator插件，按照Rotors Simulator中的[指南](https://github.com/ethz-asl/rotors_simulator)安装这些。
 
 接着，安装OctoMap库
-<div class="host-code"></div>
 
 ```sh
 	sudo apt-get install ros-indigo-octomap ros-indigo-octomap-mapping
@@ -22,7 +21,6 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ```
 
 现在，打开`~/catkin_ws/src/rotors_simulator/rotors_gazebo/CMakeLists.txt`并在文件底部添加下面内容：
-<div class="host-code"></div>
 
 ```sh
 	find_package(octomap REQUIRED)
@@ -31,7 +29,6 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 ```
 
 打开`~/catkin_ws/src/rotors_simulator/rotors_gazebo/package.xml`添加下面内容：
-<div class="host-code"></div>
 
 ```sh
 	<build/depend>octomap</build/depend>
@@ -82,5 +79,5 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 在Gazebo窗口的红色旋翼飞行器前方插入一个立方体，此时你应该可以在Rviz中看到它。
 
 
-![](../../assets/sim/octomap.png)
+![OctoMap Example in Gazebo](../../assets/simulation/octomap.png)
 
