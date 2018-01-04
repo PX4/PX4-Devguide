@@ -52,7 +52,7 @@ pxh>
 
 添加一个带[jMAVSim](http://github.com/PX4/jMAVSim.git)仿真器的3D视觉窗口：
 
-![](../../assets/sim/jmavsim.png)
+![jMAVSim 3d View](../../assets/simulation/jmavsim.png)
 
 一旦完成初始化，该系统将打印home的位置 (`telem> home: 55.7533950, 37.6254270, -0.00`). 你能够通过输入以下指令让其起飞：
 
@@ -67,8 +67,6 @@ pxh> commander takeoff
 ## Wifi无人机的仿真
 
 现有一个特殊的任务：对通过局域网WiFi连接的无人机进行仿真
-
-<div class="host-code"></div>
 
 ```sh
 make broadcast jmavsim

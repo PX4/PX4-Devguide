@@ -1,4 +1,4 @@
-# OctoMap
+# OctoMap 3D Models with ROS/Gazebo
 
 [OctoMap 라이브러리](http://octomap.github.io/)는 3D 그리드 매핑접근법을 구현했습니다. 이 가이드에서는 [Rotors Simulator](https://github.com/ethz-asl/rotors_simulator/wiki/RotorS-Simulator)로 사용하는 방법을 다루고 있습니다.
 
@@ -33,19 +33,19 @@
 
 > **Note** 첫번째 라인은 gedit로(기본은 vim) 기본 쉘 에디터를 변경합니다. vim에 경험이 적은 사용자에게 추천하며 그렇지 않은 경우 생략합니다.
 
-<div class="host-code"></div>
+
 ```sh
 	export EDITOR='gedit'
 	rosed octomap_server octomap_tracking_server.launch
 ```
 그리고 2개 라인을
-<div class="host-code"></div>
+
 ```sh
 	<param name="frame_id" type="string" value="map" />
 	...
 	<!--remap from="cloud_in" to="/rgbdslam/batch_clouds" /-->
 ```
-<div class="host-code"></div>
+
 다음처럼 변경합니다.
 ```sh
 	<param name="frame_id" type="string" value="world" />
@@ -54,12 +54,10 @@
 ```
 
 
-
 ## 시뮬레이션 실행하기
 
 3개 각 터미널 윈도우에서 다음 3개 라인을 실행합니다. Gazebo, Rviz, octomap 서버를 시작합니다.
 
-<div class="host-code"></div>
 ```sh
 	roslaunch rotors_gazebo mav_hovering_example_with_vi_sensor.launch  mav_name:=firefly
 	rviz
@@ -74,4 +72,4 @@ Rviz에서 윈도우의 왼쪽위 'map'에서 'world'로 'Fixed Frame' 필드를
 Gazebo 창에서 붉은 로터 앞에 큐브를 넣으면 이를 Rviz에서 볼 수 있습니다.
 
 
-![](../../assets/sim/octomap.png)
+![OctoMap Example in Gazebo](../../assets/simulation/octomap.png)
