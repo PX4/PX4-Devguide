@@ -17,6 +17,8 @@ The configuration in the config and mixer files consists of several main blocks:
 
 These aspects are mostly independent, which means that many configurations share the same physical layout of the airframe, start the same applications and differ most in their tuning gains.
 
+> **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
+
 ### Config File {#config-file}
 
 A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/3033_wingwing)) .
