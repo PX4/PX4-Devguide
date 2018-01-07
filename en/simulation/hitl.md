@@ -93,6 +93,9 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
   ![HIL Parameters](../../assets/simulation/gazebo_sdf_model_hil_params.png)
 1. Replace the `serialDevice` parameter (`/dev/ttyACM0`) if necessary.
+
+   > **Note** The serial device depends on what port is used to connect the vehicle to the computer (this is usually `/dev/ttyACM0`). An easy way to check on Ubuntu is to plug in the autopilot, open up a terminal, and type `dmesg | grep "tty"`. The correct device will be the last one shown.
+
 1. Connect the flight controller to the computer and wait for it to boot.
 1. Run Gazebo in HITL mode 
   ```sh
@@ -121,7 +124,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
    ![X-Plane network configuration](../../assets/gcs/xplane_net_config.png)
 
-1. Enable HITL in QGroundControl
+1. Enable X-Plane HITL in *QGroundControl*:
    1. Open *QGroundControl*
    1. Open **Widgets > HIL Config**. Select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
 
