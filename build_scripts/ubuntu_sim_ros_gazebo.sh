@@ -19,7 +19,7 @@ if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'ubuntu_sim_commo
 
 # ROS Kinetic/Gazebo (ROS Kinetic includes Gazebo7 by default)
 ## Gazebo simulator dependencies
-sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
+sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev gstreamer1.0 -y
 
 ## ROS Gazebo: http://wiki.ros.org/kinetic/Installation/Ubuntu
 ## Setup keys
