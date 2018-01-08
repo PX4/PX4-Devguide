@@ -1,6 +1,12 @@
 # Gazebo Simulation
 
-[Gazebo](http://gazebosim.org) is a powerful 3D simulation environment for autonomous robots that is particularly suitable for testing object-avoidance and computer vision. It can also be used for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md).
+<!-- Check if updates required - ie that following are fixed:
+- Gazebo8 not supported and should be: https://github.com/PX4/sitl_gazebo/pull/118#pullrequestreview-86032497
+- Video functionality disabled by default (should be enabled): https://github.com/PX4/Devguide/pull/418#pullrequestreview-86789154
+- Find out actual gstreamer dependencies and update both this doc and build scripts - should be done when the camera plugin is a default.
+-->
+
+[Gazebo](http://gazebosim.org) is a powerful 3D simulation environment for autonomous robots that is particularly suitable for testing object-avoidance and computer vision. This page describes its use with SITL and a single vehicle. Gazebo can also be used with [HITL](../simulation/hitl.md) and for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md).
 
 **Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) and [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo), Hex (Typhoon H480), [Generic quad delta VTOL](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), Tailsitter, Plane, Rover, Submarine (coming soon!)
 
@@ -60,7 +66,7 @@ make posix gazebo_iris_opt_flow
 make posix gazebo_solo
 ```
 
-![](../../assets/gazebo/solo.png)
+![3DR Solo in Gazebo](../../assets/gazebo/solo.png)
 
 ### Standard Plane
 
@@ -68,7 +74,7 @@ make posix gazebo_solo
 make posix gazebo_plane
 ```
 
-![](../../assets/gazebo/plane.png)
+![Plane in Gazebo](../../assets/gazebo/plane.png)
 
 ### Standard VTOL
 
@@ -76,7 +82,7 @@ make posix gazebo_plane
 make posix_sitl_default gazebo_standard_vtol
 ```
 
-![](../../assets/gazebo/standard_vtol.png)
+![Standard VTOL in Gazebo](../../assets/gazebo/standard_vtol.png)
 
 ### Tailsitter VTOL
 
@@ -84,7 +90,7 @@ make posix_sitl_default gazebo_standard_vtol
 make posix_sitl_default gazebo_tailsitter
 ```
 
-![](../../assets/gazebo/tailsitter.png)
+![Tailsitter VTOL in Gazebo](../../assets/gazebo/tailsitter.png)
 
 ### Ackerman vehicle (UGV/Rover) {#ugv}
 
@@ -92,7 +98,7 @@ make posix_sitl_default gazebo_tailsitter
 make posix gazebo_rover
 ```
 
-![](../../assets/gazebo/rover.png)
+![Rover in Gazebo](../../assets/gazebo/rover.png)
 
 
 ### HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#uuv}
@@ -144,7 +150,7 @@ pxh> commander takeoff
 
 > **Note** Joystick or thumb-joystick support [is available](../simulation/README.md#joystickgamepad-integration).
 
-## Set custom takeoff location
+## Set Custom Takeoff Location
 
 The default takeoff location in SITL Gazebo can be overridden using environment variables.
 
@@ -158,13 +164,13 @@ export PX4_HOME_ALT=28.5
 make posix gazebo
 ```
 
-## Starting Gazebo and PX4 separately {#start_px4_sim_separately}
+## Starting Gazebo and PX4 Separately {#start_px4_sim_separately}
 
 For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
 
 In addition to the existing cmake targets that run `sitl_run.sh` with parameters for px4 to load the correct model it creates a launcher targets named `px4_<mode>` that is a thin wrapper around original sitl px4 app. This thin wrapper simply embeds app arguments like current working directories and the path to the model file.
 
-### How to use it
+To start Gazebo and PX4 separately:
 
 * Run gazebo (or any other sim) server and client viewers via the terminal:
   ```
@@ -175,74 +181,86 @@ In addition to the existing cmake targets that run `sitl_run.sh` with parameters
 
 This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
 
+
 ## Video Streaming
-PX4 SITL for Gazebo supports UDP Video Streaming. The video from gazebo camera sensor, attached to a model, is streamed over UDP port 5600 and can be viewed remotely. The video is streamed by a gstreamer pipeline
 
-### Prerequisite
-* Install Gstreamer 1.0
-```
-sudo apt-get install gstreamer1.0*
-```
-### How to Run
-Follow the steps below. Make changes required if not done by default
-* Enable Gstreamer Plugin
-In <Firmware>/Tools/sitl_gazebo
-```
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 60e8077..5ce6ab6 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -20,7 +20,7 @@ include(GNUInstallDirs)
- list(APPEND CMAKE_MODULE_PATH /usr/local/share/cmake/Modules)
- list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor attached to a vehicle model. You can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera. The video is streamed using a *gstreamer* pipeline.
 
--option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "OFF")
-+option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "ON")
+> **Note** Video streaming from Gazebo and the Gazebo widget to turn streaming on/off are not enabled by default. This article explains how to enable them. In the near future we expect these features to be enabled by default.
 
- option(BUILD_ROS_INTERFACE "enable ROS subscriber for motor failure plugin" "OFF")
+### Prerequisites
+
+Install *Gstreamer 1.0* and its dependencies:
 ```
-* Make
+sudo apt-get install $(apt-cache --names-only search ^gstreamer1.0-* | awk '{ print $1 }' | grep -v gstreamer1.0-hybris) -y
+```
+
+### Enable GStreamer Plugin
+
+> **Note** This step will not be required once video streaming is enabled by default.
+
+Enable the *GStreamer Plugin* (if disabled) by changing the `BUILD_GSTREAMER_PLUGIN` option to `"ON"` in [&lt;Firmware&gt;/Tools/sitl_gazebo/CMakeLists.txt](https://github.com/PX4/sitl_gazebo/blob/master/CMakeLists.txt) (as shown below):
+
+```
+option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "ON")
+```
+
+Once the plugin is enabled you can run SITL with Gazebo in the normal way:
 ```
 make posix gazebo_typhoon_h480
 ```
-Now you can see PX4 SITL & Gazebo running.
-### How to View
-UDP Video Stream from SITL Gazebo Camera can be viewed in multiple ways
-- **QGroundControl :** In QGC Settings, set ```Video Source``` to UDP Video Stream, ```UDP Port``` to 5600
-- **Gstreamer Pipeline :** Run the following gstreamer pipeline from terminal
+
+### How to View Gazebo Video
+
+The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Settings > General** and set **Video Source** to *UDP Video Stream* and **UDP Port** to *5600*:
+  
+![QGC Video Streaming Settings for Gazebo](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
+
+The video from Gazebo should then display in *QGroundControl* just as it would from a real camera.
+  
+It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
 ```
 gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264'
 ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
- ```
-### GUI to start/stop video streaming
-Instead of having Video Streaming to run always, it can be started or stopped on the click of a button. This is supported for Gazebo version 7. Follow the steps below to see GUI button to control video streaming -
-* Enable GUI Plugin
-In <Firmware>/Tools/sitl_gazebo
 ```
-diff --git a/worlds/typhoon_h480.world b/worlds/typhoon_h480.world
-index ed82e42..3c2bf98 100644
---- a/worlds/typhoon_h480.world
-+++ b/worlds/typhoon_h480.world
-@@ -1,9 +1,9 @@
- <?xml version="1.0" ?>
- <sdf version="1.5">
-   <world name="default">
--    <!--<gui>
-+    <gui>
-       <plugin name="video_widget" filename="libgazebo_video_stream_widget.so"/>
--    </gui>-->
-+    </gui>
-     <!-- A global light source -->
-     <include>
-       <uri>model://sun</uri>
-```
-* Make
-```
-make posix gazebo_typhoon_h480
-```
-Now you should see a GUI overlay button that can be clicked to control video streaming
+  
+### Gazebo GUI to Start/Stop Video Streaming
 
-![](../../assets/gazebo/sitl_video_stream.png)
+> **Note** This feature is supported for Gazebo version 7. 
+
+Video streaming can be enabled/disabled using the Gazebo UI *Video ON/OFF* button.
+
+![Video ON/OFF button](../../assets/gazebo/sitl_video_stream.png)
+
+
+To enable the button:
+
+1. Open the "world" file to be modified (e.g. [&lt;Firmware>/Tools/sitl_gazebo/worlds/typhoon_h480.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world)).
+1. Within the default `world name="default"` section, add the `gui` section for the `libgazebo_video_stream_widget` (as shown below): 
+
+   ```xml
+   <?xml version="1.0" ?>
+   <sdf version="1.5">
+     <world name="default">
+   ```
+   ```xml
+       <gui>
+         <plugin name="video_widget" filename="libgazebo_video_stream_widget.so"/>
+       </gui>
+   ```
+   ```xml
+    <!-- A global light source -->
+    <include>
+    ...
+   ```
+   
+   > **Tip** This section present in **typhoon_h480.world** - you just need to uncomment the section.
+   
+1. Rebuild SITL:
+   ```
+   make posix gazebo_typhoon_h480
+   ```
+
 
 ## Extending and Customizing
 
