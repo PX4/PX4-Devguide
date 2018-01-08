@@ -91,7 +91,7 @@ This method provides a way to visually check the quality of data and curve fit b
 2. Power up the board and set the TC_A_ENABLE, TC_B_ENABLE and TC_G_ENABLE parameters to 1
 3. Set all CAL_GYR and CAL_ACC parameters to defaults
 4. Set the SYS_LOGGER parameter to 1 to use the new system logger
-5. Set the SDLOG_MODE parameter to 3 to enable logging of sensor data for calibration and remove power.
+5. Set the SDLOG_MODE parameter to 2 to enable logging of data from boot and set the SDLOG_PROFILE parameter to 4 to log the raw sensor data required for calibration.
 6. Cold soak the board to the minimum temperature it will be required to operate in.
 7. Apply power and keeping the board still [^2], warm it slowly to the maximum required operating temperature. [^3]
 8. Remove power and extract the .ulog file
