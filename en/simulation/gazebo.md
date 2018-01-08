@@ -3,6 +3,7 @@
 <!-- Check if updates required - ie that following are fixed:
 - Gazebo8 not supported and should be: https://github.com/PX4/sitl_gazebo/pull/118#pullrequestreview-86032497
 - Video functionality disabled by default (should be enabled): https://github.com/PX4/Devguide/pull/418#pullrequestreview-86789154
+- Find out actual gstreamer dependencies and update both this doc and build scripts - should be done when the camera plugin is a default.
 -->
 
 [Gazebo](http://gazebosim.org) is a powerful 3D simulation environment for autonomous robots that is particularly suitable for testing object-avoidance and computer vision. This page describes its use with SITL and a single vehicle. Gazebo can also be used with [HITL](../simulation/hitl.md) and for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md).
@@ -189,9 +190,9 @@ PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor att
 
 ### Prerequisites
 
-Install *Gstreamer 1.0*:
+Install *Gstreamer 1.0* and its dependencies:
 ```
-sudo apt-get install gstreamer1.0* 
+sudo apt-get install $(apt-cache --names-only search ^gstreamer1.0-* | awk '{ print $1 }' | grep -v gstreamer1.0-hybris) -y
 ```
 
 ### Enable GStreamer Plugin
@@ -227,15 +228,15 @@ gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video
 
 > **Note** This feature is supported for Gazebo version 7. 
 
-Video streaming can be enabled/disabled using an overlay button in the Gazebo UI.
+Video streaming can be enabled/disabled using the Gazebo UI *Video ON/OFF* button.
 
 ![Video ON/OFF button](../../assets/gazebo/sitl_video_stream.png)
 
 
-To enable the *Video ON/OFF* button:
+To enable the button:
 
 1. Open the "world" file to be modified (e.g. [&lt;Firmware>/Tools/sitl_gazebo/worlds/typhoon_h480.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world)).
-1. Within the default `world name="default"` section, add the `gui` section for the `libgazebo_video_stream_widget` as shown: 
+1. Within the default `world name="default"` section, add the `gui` section for the `libgazebo_video_stream_widget` (as shown below): 
 
    ```xml
    <?xml version="1.0" ?>
