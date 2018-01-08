@@ -115,7 +115,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
 #### Using X-Plane (Fixed Wing only)
 
-> **Note** X-Plane is currently not recommended. Among other issues, the frame update rate is too slow to run the system realistically (loops running at 40-50 Hz that typically run at 250 Hz).
+> **Note** X-Plane is currently not recommended. Among other issues, the frame update rate is too slow to run the system realistically.
 
 To set up X-Plane:
 
