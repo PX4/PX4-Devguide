@@ -2,7 +2,7 @@
 
 Hardware-in-the-Loop (HITL) is a simulation mode in which normal PX4 firmware is run on real flight controller hardware. This approach has the benefit of testing most of the actual flight code on the real hardware.
 
-PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and fixed wing (using X-Plane demo/full version or Gazebo). 
+PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and fixed wing (using Gazebo or X-Plane demo/full version). 
 
 
 ## HITL-Compatible Airframes {#compatible_airframe}
@@ -114,6 +114,10 @@ Follow the appropriate setup steps for your simulator in the following sections.
 1. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
 
 #### Using X-Plane (Fixed Wing only)
+
+> **Note** X-Plane is currently not recommended. Among other issues, the frame update rate is too slow to run the system realistically.
+
+To set up X-Plane:
 
 1. Open X-Plane
 1. In **Settings > Data Input and Output**, set these checkboxes:
