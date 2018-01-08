@@ -5,7 +5,7 @@
         "collapsible-menu",
         "-anchors",
         "page-toc-button",
-        "mermaid",
+        "-mermaid",
         "-mermaid-2",
         "language-picker",
         "custom-favicon",
@@ -13,7 +13,7 @@
         "toolbar@git+https://github.com/hamishwillee/gitbook-plugin-toolbar.git",
         "validate-links",
         "mathjax",
-        "-stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git",
+        "stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git",
         "theme-dronecode@git+https://github.com/dronecode/theme-dronecode.git"
 
     ],
