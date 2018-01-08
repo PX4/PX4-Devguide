@@ -175,6 +175,75 @@ In addition to the existing cmake targets that run `sitl_run.sh` with parameters
 
 This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
 
+## Video Streaming
+PX4 SITL for Gazebo supports UDP Video Streaming. The video from gazebo camera sensor, attached to a model, is streamed over UDP port 5600 and can be viewed remotely. The video is streamed by a gstreamer pipeline
+
+### Prerequisite
+* Install Gstreamer 1.0
+```
+sudo apt-get install gstreamer1.0*
+```
+### How to Run
+Follow the steps below. Make changes required if not done by default
+* Enable Gstreamer Plugin
+In <Firmware>/Tools/sitl_gazebo
+```
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 60e8077..5ce6ab6 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -20,7 +20,7 @@ include(GNUInstallDirs)
+ list(APPEND CMAKE_MODULE_PATH /usr/local/share/cmake/Modules)
+ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+
+-option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "OFF")
++option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "ON")
+
+ option(BUILD_ROS_INTERFACE "enable ROS subscriber for motor failure plugin" "OFF")
+```
+* Make
+```
+make posix gazebo_typhoon_h480
+```
+Now you can see PX4 SITL & Gazebo running.
+### How to View
+UDP Video Stream from SITL Gazebo Camera can be viewed in multiple ways
+- **QGroundControl :** In QGC Settings, set ```Video Source``` to UDP Video Stream, ```UDP Port``` to 5600
+- **Gstreamer Pipeline :** Run the following gstreamer pipeline from terminal
+```
+gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264'
+! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
+ ```
+### GUI to start/stop video streaming
+Instead of having Video Streaming to run always, it can be started or stopped on the click of a button. This is supported for Gazebo version 7. Follow the steps below to see GUI button to control video streaming -
+* Enable GUI Plugin
+In <Firmware>/Tools/sitl_gazebo
+```
+diff --git a/worlds/typhoon_h480.world b/worlds/typhoon_h480.world
+index ed82e42..3c2bf98 100644
+--- a/worlds/typhoon_h480.world
++++ b/worlds/typhoon_h480.world
+@@ -1,9 +1,9 @@
+ <?xml version="1.0" ?>
+ <sdf version="1.5">
+   <world name="default">
+-    <!--<gui>
++    <gui>
+       <plugin name="video_widget" filename="libgazebo_video_stream_widget.so"/>
+-    </gui>-->
++    </gui>
+     <!-- A global light source -->
+     <include>
+       <uri>model://sun</uri>
+```
+* Make
+```
+make posix gazebo_typhoon_h480
+```
+Now you should see a GUI overlay button that can be clicked to control video streaming
+
+![](../../assets/gazebo/sitl_video_stream.png)
+
 ## Extending and Customizing
 
 To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
