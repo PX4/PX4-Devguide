@@ -96,7 +96,6 @@
   * [光流](tutorials/optical_flow.md)
   * [ecl EKF](tutorials/tuning_the_ecl_ekf.md)
   * [飞行前检查](tutorials/pre_flight_checks.md)
-  * [传感器热补偿](tutorials/sensor_thermal_calibration.md)
   * [着陆检测](tutorials/land_detector.md)
   * [Linux系统下使用S.Bus驱动](tutorials/linux_sbus.md)
 * [Advanced Topics](advanced/README.md)

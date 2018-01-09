@@ -100,7 +100,6 @@
   * [Optical Flow](tutorials/optical_flow.md)
   * [ecl EKF](tutorials/tuning_the_ecl_ekf.md)
   * [비행전 체크](tutorials/pre_flight_checks.md)
-  * [센서 열 보상](tutorials/sensor_thermal_calibration.md)
   * [착륙 감지기](tutorials/land_detector.md)
   * [모션 캡쳐 \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
   * [리눅스 S.Bus 드라이버](tutorials/linux_sbus.md)
