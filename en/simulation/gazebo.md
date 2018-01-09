@@ -113,7 +113,7 @@ make posix_sitl_default gazebo_hippocampus
 
 ## Change World
 
-The current default world is the iris.world located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/367ab1bf55772c9e51f029f34c74d318833eac5b/worlds). The default surrounding in the iris.world uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, it is recommended to change the model in iris.model from uneven_ground to asphalt_plane.
+The current default world is the **iris.world** located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds). The default surrounding in the **iris.world** uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
 
 ## Taking it to the Sky
 
@@ -148,9 +148,9 @@ The system will print the home position once it finished intializing (`telem> ho
 pxh> commander takeoff
 ```
 
-> **Note** Joystick or thumb-joystick support [is available](../simulation/README.md#joystickgamepad-integration).
+## Usage/Configuration Options
 
-## Set Custom Takeoff Location
+### Set Custom Takeoff Location
 
 The default takeoff location in SITL Gazebo can be overridden using environment variables.
 
@@ -163,6 +163,37 @@ export PX4_HOME_LON=-13.867138
 export PX4_HOME_ALT=28.5
 make posix gazebo
 ```
+
+### Using a Joystick
+
+Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here] here](../simulation/README.md#joystickgamepad-integration)).
+
+
+### Simulating GPS Noise
+
+Gazebo can simulate GPS noise that is similar to that typically found in real systems (otherwise reported GPS values will be noise-free/perfect). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
+
+GPS noise is enabled if the target vehicle's SDF file contains a value for the `gpsNoise` element (i.e. it has the line: `<gpsNoise>true</gpsNoise>`). It is enabled by default in many vehicle SDF files: **solo.sdf**, **iris.sdf**, **standard_vtol.sdf**, **delta_wing.sdf**, **plane.sdf**, **typhoon_h480**, **tailsitter.sdf**.
+
+To enable/disable GPS noise:
+1. Build any gazebo target in order to generate SDF files (for all vehicles). For example:
+   ```
+   make posix_sitl_default gazebo_iris
+   ```
+   > **Tip** The SDF files are not overwritten on subsequent builds. 
+2. Open the SDF file for your target vehicle (e.g. **./Tools/sitl_gazebo/models/iris/iris.sdf**).
+3. Search for the `gpsNoise` element:
+   ```xml
+   <plugin name='gps_plugin' filename='libgazebo_gps_plugin.so'>
+     <robotNamespace/>
+     <gpsNoise>true</gpsNoise>
+   </plugin>
+   ```
+   * If it is present, GPS is enabled. You can disable it by deleting the line: `<gpsNoise>true</gpsNoise>`
+   * If it is not preset GPS is disabled. You can enable it by adding the `gpsNoise` element to the `gps_plugin` section (as shown above).
+
+The next time you build/restart Gazebo it will use the new GPS noise setting.
+
 
 ## Starting Gazebo and PX4 Separately {#start_px4_sim_separately}
 
