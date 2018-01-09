@@ -2,6 +2,14 @@
     "redirects": [
 
             {
+                "from": "en/advanced_config/sensor_thermal_calibration.html",
+                "to": "https://docs.px4.io/en/advanced_config/sensor_thermal_calibration.html"
+            },
+            {
+                "from": "sensor-thermal-calibration.html",
+                "to": "https://docs.px4.io/en/advanced_config/sensor_thermal_calibration.html"
+            },
+            {
                 "from": "en/dronekit/example.html",
                 "to": "https://dev.px4.io/en/robotics/dronekit.html"
             },
@@ -388,10 +396,6 @@
             {
                 "from": "pre_flight_checks.html",
                 "to": "en/tutorials/pre_flight_checks.html"
-            },
-            {
-                "from": "sensor-thermal-calibration.html",
-                "to": "en/tutorials/sensor_thermal_calibration.html"
             },
             {
                 "from": "telemetry.html",
