@@ -46,9 +46,9 @@ Test flights are important for quality assurance, the Dronecode Test Team can he
 
 ### Have a problem?
 
-#### Help diagnozing problems
+#### Help diagnosing problems
 
-If you are unsure what the problem is and you need help diagnozing
+If you are unsure what the problem is and you need help diagnosing
 
 * Upload logs to [Flight Log Review](http://logs.px4.io/)
 * Open a discussion on [PX4 Discuss](http://discuss.px4.io/) with a flight report and links to logs.
