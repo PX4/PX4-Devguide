@@ -1,8 +1,6 @@
-# Advanced Linux
+# Advanced Linux Installation Use-Cases
 
-This topic contains advanced installation use-cases.
-
-## USB Device Configuration
+## Using JTAG Programming Adapters
 
 Linux users need to explicitly allow access to the USB bus for JTAG programming adapters.
 
