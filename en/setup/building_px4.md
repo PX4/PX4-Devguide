@@ -4,14 +4,14 @@ PX4 can be built on the console or in an IDE, for both simulated and hardware ta
 
 ## Downloading PX4 Source Code {#get_px4_code}
 
-The PX4 source code is stored on Github in the [px4/Firmware](https://github.com/px4/Firmware/) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
+The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
 
 > **Tip** Forking the repository allows you to better manage your custom code. Later on you will be able to use *git* to share changes with the main project.
 
 The steps to fork and clone the project source code are:
 
 1. [Sign up](https://github.com/) to Github.
-1. Go to the [Firmware](https://github.com/px4/Firmware/) repository and click the **Fork** button near the upper right corner.
+1. Go to the [Firmware](https://github.com/PX4/Firmware) repository and click the **Fork** button near the upper right corner.
    This will create and open the forked repository.
 
    ![Github Fork button](../../assets/toolchain/github_fork.png)
@@ -39,7 +39,7 @@ This will copy *most* of PX4 onto your computer (the rest of the code is automat
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
 
-For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and and IDE.
+For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
 
 Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 ```sh
@@ -57,7 +57,7 @@ pxh> commander takeoff
 
 ![jMAVSim UI](../../assets/jmavsim_first_takeoff.png)
 
-The drone can be landed by typing `commander land` and the simulation and simulation code can be stopped by entering `shutdown` (or by doing **CTRL+C**). 
+The drone can be landed by typing `commander land` and the whole simulation can be stopped by doing **CTRL+C** (or by entering `shutdown`). 
 
 > **Tip** The simulation setup is documented in full detail here: [jMAVSim Simulation](../simulation/jmavsim.md).
 
