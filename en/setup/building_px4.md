@@ -2,47 +2,74 @@
 
 PX4 can be built on the console or in an IDE, for both simulated and hardware targets. 
 
-## Downloading the Software and First Build
+## Downloading PX4 Source Code {#get_px4_code}
 
-For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and and IDE. 
+The PX4 source code is stored on Github in the [px4/Firmware](https://github.com/px4/Firmware/) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
 
-First bring up the terminal
-* On OS X, hit ⌘-space and search for 'terminal'. 
-* On Ubuntu, click the launch bar and search for 'terminal'. 
-* On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'. 
+> **Tip** Forking the repository allows you to better manage your custom code. Later on you will be able to use *git* to share changes with the main project.
 
-Then clone the PX4/Firmware repository and build the jMAVSim target, as shown below. Experienced developers might clone [their fork](https://help.github.com/articles/fork-a-repo/) instead.
+The steps to fork and clone the project source code are:
 
+1. [Sign up](https://github.com/) to Github.
+1. Go to the [Firmware](https://github.com/px4/Firmware/) repository and click the **Fork** button near the upper right corner.
+   This will create and open the forked repository.
+
+   ![Github Fork button](../../assets/toolchain/github_fork.png)
+1. Copy the repository URL for your *Firmware* repository fork. The easiest way to do this is to click the **Clone or download** button and then copy the URL:
+
+   ![Github Clone or download button](../../assets/toolchain/github_clone_or_download.png)
+1. Open a command prompt/terminal on your computer
+   * On OS X, hit ⌘-space and search for 'terminal'. 
+   * On Ubuntu, click the launch bar and search for 'terminal'. 
+   * On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'. 
+1. Clone the repository fork using the copied URL. This will look something like:
+   ```
+   git clone https://github.com/<youraccountname>/Firmware.git
+   ```
+   Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
+
+This will copy *most* of PX4 onto your computer (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
+
+
+> **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown:
+> ```sh
+  git clone https://github.com/PX4/Firmware.git
+  cd Firmware
+  ```
+
+## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
+
+For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and and IDE.
+
+Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 ```sh
-mkdir -p ~/src
-cd ~/src
-git clone https://github.com/PX4/Firmware.git
-cd Firmware
 make posix jmavsim
 ```
 
 This will bring up the PX4 console below:
 
-![](../../assets/console_jmavsim.png)
+![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
 
 The drone can be flown by typing:
 ```sh
 pxh> commander takeoff
 ```
 
-![](../../assets/jmavsim_first_takeoff.png)
+![jMAVSim UI](../../assets/jmavsim_first_takeoff.png)
 
-Hitting **CTRL-C** stops the simulation and simulated flight code. The simulation setup is documented in full detail here: [jMAVSim Simulation](../simulation/jmavsim.md).
+The drone can be landed by typing `commander land` and the simulation and simulation code can be stopped by entering `shutdown` (or by doing **CTRL+C**). 
+
+> **Tip** The simulation setup is documented in full detail here: [jMAVSim Simulation](../simulation/jmavsim.md).
 
 Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
 
-![](../../assets/qgc_goto.jpg)
+![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
 
 
 ## NuttX / Pixhawk Based Boards
 
-### Building
+### Building {#building_nuttx}
 
 To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board. 
 

@@ -1,134 +1,176 @@
 # First App Tutorial (Hello Sky)
 
-This tutorial explains in detail how to create a new onboard application and how to run it.
+This tutorial explains in detail how to create and run a new onboard application.
+
 
 ## Prerequisites
 
-  * Pixhawk or Snapdragon compatible autopilot
-  * PX4 Toolchain [installed](../setup/dev_env.md)
-  * Github Account ([sign up for free](https://github.com/signup/free))
+You will require the following:
+* [PX4 SITL Simulator](../simulation/README.md) *or* a Pixhawk/Snapdragon compatible autopilot.
+* [PX4 Development Toolchain](../setup/dev_env.md) for the desired target.
+* [Download the PX4 Source Code](../setup/building_px4.md#get_px4_code) from Github
 
-## Step 1: File Setup
+The source code **Firmware/src/examples/px4_simple_app** directory contains a completed version of this tutorial that you can review if you get stuck. 
+* Rename (or delete) the **px4_simple_app** directory. 
 
-To conveniently manage your custom code and pull in updates from the main repository, it is recommended to fork the Firmware repository with the GIT version control system:
+## Minimal Application
 
-  - [Sign up](https://github.com/signup/free) for Github
-  - Go to the [Firmware repository website](https://github.com/px4/Firmware/) and click **FORK** on the upper right part.
-  - If you are not already there, open the website of your fork and copy the private repository URL in the center.
-  - Clone the repository to your hard drive, e.g. on the command line via `git clone https://github.com/<youraccountname>/Firmware.git`. Windows users please [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/) and e.g. fork / clone with their Github for Windows app.
-  - Update the git submodules: Run in your shell (on Windows in the PX4 console). 
+In this section we create a *minimal application* that just prints out `Hello Sky!`. This consists of a single c file and a *cmake* definition (which tells the toolchain how to build the application). 
 
-<div class="host-code"></div>
+1. Create a new directory **Firmware/src/examples/px4_simple_app**.
+1. Create a new C file in that directory named **px4_simple_app.c**. Copy in the text below.
 
-```sh
-cd Firmware
-git submodule init
-git submodule update --recursive
+   > **Tip** Note the default header and code style in this file - all contributions to PX4 should adhere to it.
+
+   ```c
+   /****************************************************************************
+    *
+    *   Copyright (c) 2012-2016 PX4 Development Team. All rights reserved.
+    *
+    * Redistribution and use in source and binary forms, with or without
+    * modification, are permitted provided that the following conditions
+    * are met:
+    *
+    * 1. Redistributions of source code must retain the above copyright
+    *    notice, this list of conditions and the following disclaimer.
+    * 2. Redistributions in binary form must reproduce the above copyright
+    *    notice, this list of conditions and the following disclaimer in
+    *    the documentation and/or other materials provided with the
+    *    distribution.
+    * 3. Neither the name PX4 nor the names of its contributors may be
+    *    used to endorse or promote products derived from this software
+    *    without specific prior written permission.
+    *
+    * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+    * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+    * OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+    * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    * POSSIBILITY OF SUCH DAMAGE.
+    *
+    ****************************************************************************/
+
+   /**
+    * @file px4_simple_app.c
+    * Minimal application example for PX4 autopilot
+    *
+    * @author Example User <mail@example.com>
+    */
+
+   #include <px4_config.h>
+   #include <px4_tasks.h>
+   #include <px4_posix.h>
+   #include <unistd.h>
+   #include <stdio.h>
+   #include <poll.h>
+   #include <string.h>
+
+   #include <uORB/uORB.h>
+   #include <uORB/topics/sensor_combined.h>
+   #include <uORB/topics/vehicle_attitude.h>
+
+   __EXPORT int px4_simple_app_main(int argc, char *argv[]);
+
+   int px4_simple_app_main(int argc, char *argv[])
+   {
+       PX4_INFO("Hello Sky!");
+       return OK;
+   }
+   ```
+
+1. Create and open a new *cmake* definition file named **CMakeLists.txt**. 
+   Copy in the text below.
+   ```cmake
+   ############################################################################
+   #
+   #   Copyright (c) 2015 PX4 Development Team. All rights reserved.
+   #
+   # Redistribution and use in source and binary forms, with or without
+   # modification, are permitted provided that the following conditions
+   # are met:
+   #
+   # 1. Redistributions of source code must retain the above copyright
+   #    notice, this list of conditions and the following disclaimer.
+   # 2. Redistributions in binary form must reproduce the above copyright
+   #    notice, this list of conditions and the following disclaimer in
+   #    the documentation and/or other materials provided with the
+   #    distribution.
+   # 3. Neither the name PX4 nor the names of its contributors may be
+   #    used to endorse or promote products derived from this software
+   #    without specific prior written permission.
+   #
+   # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+   # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+   # LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+   # FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+   # COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+   # INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+   # BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+   # OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+   # AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+   # LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+   # ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   # POSSIBILITY OF SUCH DAMAGE.
+   #
+   ############################################################################
+   px4_add_module(
+       MODULE examples__px4_simple_app
+       MAIN px4_simple_app
+       STACK_MAIN 2000
+       SRCS
+           px4_simple_app.c
+       DEPENDS
+           platforms__common
+       )
+   ```
+
+## Register and Build the Application
+
+The application is now complete. In order to run it you need to register it with NuttShell (or the SITL console). Applications are added to the build/firmware in the appropriate board-level *cmake* file for your target: 
+
+* Posix SITL (Simulator): [Firmware/cmake/configs/posix_sitl_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_sitl_default.cmake)
+* Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
+* Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
+* *cmake* files for other boards can be found in [Firmware/cmake/configs/](https://github.com/PX4/Firmware/blob/master/cmake/configs/)
+
+To enable the compilation of the application into the firmware create a new line for your application somewhere in the *cmake* file:
+
 ```
-  
-Enter the `Firmware/src/examples/` directory on your local hard drive and look at the files in the directory.
-
-## Step 2: Minimal Application
-
-Create a new C file named `px4_simple_app.c` in the `px4_simple_app` folder (it will already be present, delete the existing file for the maximum educational effect).
-
-Edit it and start with the default header and a main function.
-
-> **Tip** Note the code style in this file - all contributions to PX4 should adhere to it.
-
-```C
-/****************************************************************************
- *
- *   Copyright (c) 2012-2016 PX4 Development Team. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in
- *    the documentation and/or other materials provided with the
- *    distribution.
- * 3. Neither the name PX4 nor the names of its contributors may be
- *    used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
- * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
- * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
- * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
- * OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
- * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- ****************************************************************************/
-
-/**
- * @file px4_simple_app.c
- * Minimal application example for PX4 autopilot
- *
- * @author Example User <mail@example.com>
- */
-
-#include <px4_config.h>
-#include <px4_tasks.h>
-#include <px4_posix.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <poll.h>
-#include <string.h>
-
-#include <uORB/uORB.h>
-#include <uORB/topics/sensor_combined.h>
-#include <uORB/topics/vehicle_attitude.h>
-
-__EXPORT int px4_simple_app_main(int argc, char *argv[]);
-
-int px4_simple_app_main(int argc, char *argv[])
-{
-	PX4_INFO("Hello Sky!");
-	return OK;
-}
+examples/px4_simple_app
 ```
 
-## Step 3: Register the Application in NuttShell and build it
+> **Note** The line will already be present for most files, because the examples are included in firmware by default.
 
-The application is now complete and could be run, but it is not registered as NuttShell command yet. To enable the compilation of the application into the firmware, add it to the list of modules to build, which is here: 
+Build the example using the board-specific command:
 
-  * Posix SITL: [Firmware/cmake/configs/posix_sitl_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_sitl_default.cmake)
-  * Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
-  * Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
+* jMAVSim Simulator: `make posix_sitl_default jmavsim`
+* Pixhawk v1/2: `make px4fmu-v2_default`
+* Pixhawk v3: `make px4fmu-v4_default`
+* Other boards: [Building the Code](../setup/building_px4.md#building_nuttx)
 
-Create a new line for your application somewhere in the file:
 
-  `examples/px4_simple_app`
+## Test App (Hardware)
 
-Build it:
-
-  * Pixhawk v1/2: `make px4fmu-v2_default`
-  * Pixhawk v3: `make px4fmu-v4_default`
-
-## Step 4: Upload and Test the app
+### Upload the firmware to your board 
 
 Enable the uploader and then reset the board:
 
-  * Pixhawk v1/2: `make px4fmu-v2_default upload`
-  * Pixhawk v3: `make px4fmu-v4_default upload`
+* Pixhawk v1/2: `make px4fmu-v2_default upload`
+* Pixhawk v3: `make px4fmu-v4_default upload`
 
 It should print before you reset the board a number of compile messages and at the end:
 
-  `Loaded firmware for X,X, waiting for the bootloader...`
+```sh
+Loaded firmware for X,X, waiting for the bootloader...
+```
 
 Once the board is reset, and uploads, it prints:
-
-<div class="host-code"></div>
 
 ```sh
 Erase  : [====================] 100.0%
@@ -139,57 +181,72 @@ Rebooting.
 [100%] Built target upload
 ```
 
-### Connect the console
+### Connect the Console
 
 Now connect to the [system console](../debug/system_console.md) either via serial or USB. Hitting ENTER will bring up the shell prompt:
 
 ```sh
-  nsh>
+nsh>
 ```
-
 
 Type ''help'' and hit ENTER
 
 ```sh
-  nsh> help
-    help usage:  help [-v] [<cmd>]
-  
-    [           df          kill        mkfifo      ps          sleep       
-    ?           echo        losetup     mkrd        pwd         test        
-    cat         exec        ls          mh          rm          umount      
-    cd          exit        mb          mount       rmdir       unset       
-    cp          free        mkdir       mv          set         usleep      
-    dd          help        mkfatfs     mw          sh          xd          
-  
-  Builtin Apps:
-    reboot
-    perf
-    top
-    ..
-    px4_simple_app
-    ..
-    sercon
-    serdis
+nsh> help
+  help usage:  help [-v] [<cmd>]
+
+  [           df          kill        mkfifo      ps          sleep       
+  ?           echo        losetup     mkrd        pwd         test        
+  cat         exec        ls          mh          rm          umount      
+  cd          exit        mb          mount       rmdir       unset       
+  cp          free        mkdir       mv          set         usleep      
+  dd          help        mkfatfs     mw          sh          xd          
+
+Builtin Apps:
+  reboot
+  perf
+  top
+  ..
+  px4_simple_app
+  ..
+  sercon
+  serdis
 ```
 
 Note that `px4_simple_app` is now part of the available commands. Start it by typing `px4_simple_app` and ENTER:
 
 ```sh
-  nsh> px4_simple_app
-  Hello Sky!
+nsh> px4_simple_app
+Hello Sky!
 ```
 
 The application is now correctly registered with the system and can be extended to actually perform useful tasks.
 
-## Step 5: Subscribing Sensor Data
+## Test App (SITL)
 
-To do something useful, the application needs to subscribe inputs and publish outputs (e.g. motor or servo commands). Note that the *true* hardware abstraction of the PX4 platform comes into play here -- no need to interact in any way with sensor drivers and no need to update your app if the board or sensors are updated.
+If you're using SITL the *PX4 console* is automatically started (see [Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build)). As with the *nsh console* (see previous section) you can type `help` to see the list of built-in apps.
 
-Individual message channels between applications are called *topics* in PX4. For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) [topic](../middleware/uorb.md), which holds the synchronized sensor data of the complete system.
+Enter `px4_simple_app` to run the minimal app.
 
-Subscribing to a topic is swift and clean:
+```sh
+pxh> px4_simple_app
+INFO  [px4_simple_app] Hello Sky!
+```
 
-```C++
+The application can now be extended to actually perform useful tasks.
+
+
+## Subscribing Sensor Data
+
+To do something useful, the application needs to subscribe inputs and publish outputs (e.g. motor or servo commands). 
+
+> **Tip** The benefits of the PX4 hardware abstraction comes into play here! There is no need to interact in any way with sensor drivers and no need to update your app if the board or sensors are updated.
+
+Individual message channels between applications are called [topics](../middleware/uorb.md). For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) topic, which holds the synchronized sensor data of the complete system.
+
+Subscribing to a topic is straightforward:
+
+```cpp
 #include <uORB/topics/sensor_combined.h>
 ..
 int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
@@ -199,7 +256,7 @@ The `sensor_sub_fd` is a topic handle and can be used to very efficiently perfor
 
 Adding `poll()` to the subscription looks like (*pseudocode, look for the full implementation below*):
 
-```C++
+```cpp
 #include <poll.h>
 #include <uORB/topics/sensor_combined.h>
 ..
@@ -207,62 +264,62 @@ int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 
 /* one could wait for multiple topics with this technique, just using one here */
 px4_pollfd_struct_t fds[] = {
-	{ .fd = sensor_sub_fd,   .events = POLLIN },
+    { .fd = sensor_sub_fd,   .events = POLLIN },
 };
 
 while (true) {
-	/* wait for sensor update of 1 file descriptor for 1000 ms (1 second) */
-	int poll_ret = px4_poll(fds, 1, 1000);
+uORB/* wait for sensor update of 1 file descriptor for 1000 ms (1 second) */
+uORBint poll_ret = px4_poll(fds, 1, 1000);
 ..
-	if (fds[0].revents & POLLIN) {
-		/* obtained data for the first file descriptor */
-		struct sensor_combined_s raw;
-		/* copy sensors raw data into local buffer */
-		orb_copy(ORB_ID(sensor_combined), sensor_sub_fd, &raw);
-		PX4_INFO("Accelerometer:\t%8.4f\t%8.4f\t%8.4f",
-					(double)raw.accelerometer_m_s2[0],
-					(double)raw.accelerometer_m_s2[1],
-					(double)raw.accelerometer_m_s2[2]);
-	}
+    if (fds[0].revents & POLLIN) {
+        /* obtained data for the first file descriptor */
+        struct sensor_combined_s raw;
+        /* copy sensors raw data into local buffer */
+        orb_copy(ORB_ID(sensor_combined), sensor_sub_fd, &raw);
+        PX4_INFO("Accelerometer:\t%8.4f\t%8.4f\t%8.4f",
+                    (double)raw.accelerometer_m_s2[0],
+                    (double)raw.accelerometer_m_s2[1],
+                    (double)raw.accelerometer_m_s2[2]);
+    }
 }
 ```
 
-Compile the app now by issuing
+Compile the app again by entering:
 
-<div class="host-code"></div>
-
-```
-  make
+```sh
+make
 ```
 
 ### Testing the uORB Subscription
 
-The final step is to start your application as background application.
+The final step is to start your application as a background process/task.
 
-```
-  px4_simple_app &
-```
-
-Your app will flood the console with the current sensor values:
-
-```
-  [px4_simple_app] Accelerometer:   0.0483          0.0821          0.0332
-  [px4_simple_app] Accelerometer:   0.0486          0.0820          0.0336
-  [px4_simple_app] Accelerometer:   0.0487          0.0819          0.0327
-  [px4_simple_app] Accelerometer:   0.0482          0.0818          0.0323
-  [px4_simple_app] Accelerometer:   0.0482          0.0827          0.0331
-  [px4_simple_app] Accelerometer:   0.0489          0.0804          0.0328
+```sh
+px4_simple_app &
 ```
 
-It will exit after printing five values. The next tutorial page will explain how to write a deamon which can be controlled from the commandline.
+Your app will display 5 sensor values in the console and then exit:
 
-## Step 7: Publishing Data
+```sh
+[px4_simple_app] Accelerometer:   0.0483          0.0821          0.0332
+[px4_simple_app] Accelerometer:   0.0486          0.0820          0.0336
+[px4_simple_app] Accelerometer:   0.0487          0.0819          0.0327
+[px4_simple_app] Accelerometer:   0.0482          0.0818          0.0323
+[px4_simple_app] Accelerometer:   0.0482          0.0827          0.0331
+[px4_simple_app] Accelerometer:   0.0489          0.0804          0.0328
+```
 
-To use the calculated outputs, the next step is to *publish* the results. If we use a topic from which we know that the ''mavlink'' app forwards it to the ground control station, we can even look at the results. Let's hijack the attitude topic for this purpose.
+> **Tip** The **Firmware/src/examples/px4_daemon_app** example shows how to write a daemon (background process) that can be controlled from the commandline.
 
-The interface is pretty simple: Initialize the struct of the topic to be published and advertise the topic:
+## Publishing Data
 
-```C
+To use the calculated outputs, the next step is to *publish* the results. Below we show how to publish the attitude topic.
+
+> **Note** We've chosen `attitude` because we know that the *mavlink* app forwards it to the ground control station - providing an easy way to look at the results.
+
+The interface is pretty simple: initialize the `struct` of the topic to be published and advertise the topic:
+
+```c
 #include <uORB/topics/vehicle_attitude.h>
 ..
 /* advertise attitude topic */
@@ -273,13 +330,13 @@ orb_advert_t att_pub_fd = orb_advertise(ORB_ID(vehicle_attitude), &att);
 
 In the main loop, publish the information whenever its ready:
 
-```C
+```c
 orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
 ```
 
 The modified complete example code is now:
 
-```C
+```c
 #include <px4_config.h>
 #include <px4_tasks.h>
 #include <px4_posix.h>
@@ -296,91 +353,90 @@ __EXPORT int px4_simple_app_main(int argc, char *argv[]);
 
 int px4_simple_app_main(int argc, char *argv[])
 {
-	PX4_INFO("Hello Sky!");
+    PX4_INFO("Hello Sky!");
 
-	/* subscribe to sensor_combined topic */
-	int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
-	/* limit the update rate to 5 Hz */
-	orb_set_interval(sensor_sub_fd, 200);
+    /* subscribe to sensor_combined topic */
+    int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
+    /* limit the update rate to 5 Hz */
+    orb_set_interval(sensor_sub_fd, 200);
 
-	/* advertise attitude topic */
-	struct vehicle_attitude_s att;
-	memset(&att, 0, sizeof(att));
-	orb_advert_t att_pub = orb_advertise(ORB_ID(vehicle_attitude), &att);
+    /* advertise attitude topic */
+    struct vehicle_attitude_s att;
+    memset(&att, 0, sizeof(att));
+    orb_advert_t att_pub = orb_advertise(ORB_ID(vehicle_attitude), &att);
 
-	/* one could wait for multiple topics with this technique, just using one here */
-	px4_pollfd_struct_t fds[] = {
-		{ .fd = sensor_sub_fd,   .events = POLLIN },
-		/* there could be more file descriptors here, in the form like:
-		 * { .fd = other_sub_fd,   .events = POLLIN },
-		 */
-	};
+    /* one could wait for multiple topics with this technique, just using one here */
+    px4_pollfd_struct_t fds[] = {
+        { .fd = sensor_sub_fd,   .events = POLLIN },
+        /* there could be more file descriptors here, in the form like:
+        * { .fd = other_sub_fd,   .events = POLLIN },
+        */
+    };
 
-	int error_counter = 0;
+    int error_counter = 0;
 
-	for (int i = 0; i < 5; i++) {
-		/* wait for sensor update of 1 file descriptor for 1000 ms (1 second) */
-		int poll_ret = px4_poll(fds, 1, 1000);
+    for (int i = 0; i < 5; i++) {
+        /* wait for sensor update of 1 file descriptor for 1000 ms (1 second) */
+        int poll_ret = px4_poll(fds, 1, 1000);
 
-		/* handle the poll result */
-		if (poll_ret == 0) {
-			/* this means none of our providers is giving us data */
-			PX4_ERR("Got no data within a second");
+        /* handle the poll result */
+        if (poll_ret == 0) {
+            /* this means none of our providers is giving us data */
+            PX4_ERR("Got no data within a second");
 
-		} else if (poll_ret < 0) {
-			/* this is seriously bad - should be an emergency */
-			if (error_counter < 10 || error_counter % 50 == 0) {
-				/* use a counter to prevent flooding (and slowing us down) */
-				PX4_ERR("ERROR return value from poll(): %d", poll_ret);
-			}
+        } else if (poll_ret < 0) {
+            /* this is seriously bad - should be an emergency */
+            if (error_counter < 10 || error_counter % 50 == 0) {
+                /* use a counter to prevent flooding (and slowing us down) */
+                PX4_ERR("ERROR return value from poll(): %d", poll_ret);
+            }
 
-			error_counter++;
+            error_counter++;
 
-		} else {
+        } else {
 
-			if (fds[0].revents & POLLIN) {
-				/* obtained data for the first file descriptor */
-				struct sensor_combined_s raw;
-				/* copy sensors raw data into local buffer */
-				orb_copy(ORB_ID(sensor_combined), sensor_sub_fd, &raw);
-				PX4_INFO("Accelerometer:\t%8.4f\t%8.4f\t%8.4f",
-					 (double)raw.accelerometer_m_s2[0],
-					 (double)raw.accelerometer_m_s2[1],
-					 (double)raw.accelerometer_m_s2[2]);
+            if (fds[0].revents & POLLIN) {
+                /* obtained data for the first file descriptor */
+                struct sensor_combined_s raw;
+                /* copy sensors raw data into local buffer */
+                orb_copy(ORB_ID(sensor_combined), sensor_sub_fd, &raw);
+                PX4_INFO("Accelerometer:\t%8.4f\t%8.4f\t%8.4f",
+                    (double)raw.accelerometer_m_s2[0],
+                    (double)raw.accelerometer_m_s2[1],
+                    (double)raw.accelerometer_m_s2[2]);
 
-				/* set att and publish this information for other apps */
-				att.rollspeed = raw.accelerometer_m_s2[0];
-				att.pitchspeed = raw.accelerometer_m_s2[1];
-				att.yawspeed = raw.accelerometer_m_s2[2];
-				orb_publish(ORB_ID(vehicle_attitude), att_pub, &att);
-			}
+                /* set att and publish this information for other apps */
+                att.rollspeed = raw.accelerometer_m_s2[0];
+                att.pitchspeed = raw.accelerometer_m_s2[1];
+                att.yawspeed = raw.accelerometer_m_s2[2];
+                orb_publish(ORB_ID(vehicle_attitude), att_pub, &att);
+            }
 
-			/* there could be more file descriptors here, in the form like:
-			 * if (fds[1..n].revents & POLLIN) {}
-			 */
-		}
-	}
+            /* there could be more file descriptors here, in the form like:
+            * if (fds[1..n].revents & POLLIN) {}
+            */
+        }
+    }
 
-	PX4_INFO("exiting");
+    PX4_INFO("exiting");
 
-	return 0;
+    return 0;
 }
 ```
 
-## Running the final example
+## Running the Complete Example
 
 And finally run your app:
 
 ```sh
-  px4_simple_app
+px4_simple_app
 ```
 
-If you start QGroundControl, you can check the sensor values in the real time plot (Tools -> Analyze)
+If you start *QGroundControl*, you can check the sensor values in the real time plot (**Widgets > Analyze**).
 
 ## Wrap-Up
 
-This tutorial covered everything needed to develop a "grown up" PX4 autopilot application. Keep in mind that the full list of uORB messages / topics is [available here](https://github.com/PX4/Firmware/tree/master/msg/) and that the headers are well documented and serve as reference.
+This tutorial covered everything needed to develop a "grown up" PX4 autopilot application. Keep in mind that the full list of uORB messages/topics is [available here](https://github.com/PX4/Firmware/tree/master/msg/) and that the headers are well documented and serve as reference.
 
-Further information and troubleshooting/common pitfalls for uORB can be found on
-[this page](../middleware/uorb.md).
+Further information and troubleshooting/common pitfalls can be found here: [uORB](../middleware/uorb.md).
 
