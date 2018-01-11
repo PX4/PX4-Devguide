@@ -14,7 +14,7 @@
     * [Fast RTPS installation](setup/fast-rtps-installation.md)
   * [Building the Code](setup/building_px4.md)
   * [Advanced Configuration](setup/config_advanced.md)
-  * [Contributing & Dev Call](contribute/README.md)
+  * [Contributing](contribute/README.md)
     * [GIT Examples](contribute/git_examples.md)
     * [Documentation](contribute/docs.md)
   * [Terminology/Notation](contribute/notation.md)
@@ -115,6 +115,7 @@
   * [Integration Testing](test_and_ci/integration_testing.md)
   * [Docker Containers](test_and_ci/docker.md)
   * [Maintenance](test_and_ci/maintenance.md)
+  * [Test Flights](test_and_ci/test_flights.md)
 
 ## Dronecode Shortcuts
 

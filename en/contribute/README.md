@@ -30,23 +30,12 @@ The PX4 dev team syncs up on platform technical details and in-depth analysis. T
 
 ### Tests Flights
 
-Test flights are important for quality assurance. The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
+Test flights are important for quality assurance. The Dronecode test team can help review (test fly) your pull requests and provide feedback and logs. For more informations see: [Test Flights](../test_and_ci/test_flights.md).
 
-#### How to request test flights
 
-* Assign the test team [@PX4/testflights](https://github.com/orgs/PX4/teams/testflights) as a reviewer to the pull request or issue
-* Add a complete and thorough description of your changes
-* Wait for feedback from the test team
-* The test team will [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
+### Have a Problem?
 
-#### Response times
-
-* Multi-Copter: up to 48 hours (typically within 24 hours)
-* VTOL, Fixed Wing: up to 4 days (typically 2 days)
-
-### Have a problem?
-
-#### Help diagnosing problems
+#### Diagnosing Problems
 
 If you are unsure what the problem is and you need help diagnosing
 
@@ -59,9 +48,10 @@ If you are unsure what the problem is and you need help diagnosing
 * Upload logs to [Flight Log Review](http://logs.px4.io/)
 * [Open a Github Issue](https://github.com/PX4/Devguide/issues) with a flight report with as much detail as possible and links to logs.
 
-#### General support
-* [Join our Slack community](http://slack.px4.io/)
+#### General Support
+
 * [Open a discussion](http://discuss.px4.io)
+* [Join our Slack community](http://slack.px4.io/)
 * [Open Github Issue](https://github.com/PX4/Devguide/issues)
 
 
@@ -73,7 +63,7 @@ Select the links below to display the calendar in your timezone (and to add it t
 * [Pacific Time – Tijuana](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=America%2FTijuana)
 * [Australia – Melbourne/Sydney/Hobart](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Australia%2FSydney)
 
-**Note:** calendar defaults to CET.
+> **Note:** calendar defaults to CET.
 
 
 {% raw %}

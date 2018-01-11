@@ -8,4 +8,5 @@ PX4 offers extensive unit testing and continuous integration facilities. This pa
 * [Integration Testing](../test_and_ci/integration_testing.md)
 * [Docker](../test_and_ci/docker.md)
 * [Maintenance](../test_and_ci/maintenance.md)
+* [Test Flights](../test_and_ci/test_flights.md)
 
