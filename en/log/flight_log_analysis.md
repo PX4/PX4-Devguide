@@ -1,67 +1,64 @@
 # Flight Log Analysis
 
-There are several software packages that exist to analyze PX4 flight logs. They are described below.
+This topic outlines approaches and software packages that can be used to analyze PX4 flight logs.
 
 ## Reporting Flights
 
-The instructions in the PX4 user guide detail [how to report a flight](https://docs.px4.io/en/flight-reporting.html) or issues with a flight.
+[Flight Reporting](https://docs.px4.io/en/flight-reporting.html) (PX4 User Guide) explains how to download a log and report/discuss issues with a flight.
 
 ## Structured Analysis
 
-Before analyzing a flight log it is key to establish the context of it:
+Before analyzing a flight log it is important to establish its context:
 
 * If the analysis is done after a malfunction, did the log capture the crash or did it stop mid-air?
-* Did all controllers track their references? The easiest location to establish this is comparing attitude roll and pitch rates to their set points.
-* Does the sensor data look valid? Was there very strong vibration \(a reasonable threshold for strong vibration is anything with a peak-to-peak of more than 2-3 m/s/s\)
+* Did all controllers track their references? The easiest way to establish this is to compare attitude roll and pitch rates to their set points.
+* Does the sensor data look valid? Was there very strong vibration \(a reasonable threshold for strong vibration is anything with a peak-to-peak of more than 2-3 m/s/s\).
 * If the root cause is not specific to the vehicle make sure to report it with a link to the log file \(and video if one exists\) on the [PX4 issue tracker](https://github.com/px4/firmware/issues/new).
 
 ## Ruling Out Power Failures
 
-If a log file ends mid-air, two main causes are possible: A power failure or a hard fault of the operating system. On autopilots based on the [STM32 ](http://www.st.com/en/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169)series hard faults of the operating system are logged to the SD card.
+If a log file ends mid-air, two main causes are possible: a power failure *or* a hard fault of the operating system. 
 
-These are located on the top level of the SD card and named_ fault\_date.log_, e.g. **fault\_2017\_04\_03\_00\_26\_05.log**. Please always check for the presence of this file if a flight log ends abruptly.
+On autopilots based on the [STM32 series](http://www.st.com/en/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169), hard faults of the operating system are logged to the SD card. 
+These are located on the top level of the SD card and named _fault\_date.log_, e.g. **fault\_2017\_04\_03\_00\_26\_05.log**. Please always check for the presence of this file if a flight log ends abruptly.
 
-## [Flight Review Online Tool](http://logs.px4.io)
+## Analysis Tools
 
-Flight Review is the successor of Log Muncher, used in combination with the new  
-ULog logging format.
+### Flight Review (Online Tool)
 
-### Example
+[Flight Review](http://logs.px4.io) is the successor of *Log Muncher*. 
+It is used in combination with the new [ULog](../log/ulog_file_format.md) logging format.
 
-![](../../assets/flight_log_analysis/flight-review-example.png)
+Key features:
+* Web based, great for end-users.
+* User can upload, load and then share report with others.
+* Interactive plots.
 
-### Strengths
-
-* web based, great for end-users
-* user can upload, load and then share report with others
-* interactive plots
-
-## [FlightPlot Desktop Tool](https://github.com/PX4/FlightPlot)
-
-![](https://pixhawk.org/_media/dev/flightplot-0.2.16-screenshot.png)
-
-* [FlightPlot Downloads](https://s3.amazonaws.com/flightplot/releases/latest.html)
-
-### Strengths
-
-* java based, cross-platform
-* intuitive GUI, no programming knowledge required
-
-## [PX4Tools](https://github.com/dronecrew/px4tools)
-
-![](../../assets/flight_log_analysis/px4tools.png)
-
-### Install
-
-The recommended procedure is to use anaconda3. See [px4tools github page](https://github.com/dronecrew/px4tools) for details.
+![Flight Review Charts](../../assets/flight_log_analysis/flight-review-example.png)
 
 
-### Strengths
+### FlightPlot (Desktop)
 
-* easy to share, users can view notebooks on github \(e.g. [https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb](https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30 Kabir Log.ipynb)\)
-* python based, cross platform, works witn anaconda 2 and anaconda3
-* ipython/ jupyter notebooks can be used to share analysis easily
-* advanced plotting capabilities to allow detailed analysis
+[FlightPlot](https://github.com/PX4/FlightPlot) is a desktop based tool for log analysis. It can be downloaded from [FlightPlot Downloads](https://s3.amazonaws.com/flightplot/releases/latest.html) (Linux, MacOS Windows).
+
+Key features:
+* Java based, cross-platform.
+* Intuitive GUI, no programming knowledge required.
+* Supports both new and old PX4 log formats (.ulg, .px4log, .bin)
+* Allows saving plots as images.
+
+![FlightPlot Charts](../../assets/flight_log_analysis/flightplot_0.2.16.png)
 
 
+### PX4Tools
 
+[PX4Tools](https://github.com/dronecrew/px4tools) is a log analysis toolbox for the PX4 autopilot written in Python. 
+The recommended installation procedure is to use [anaconda3](https://conda.io/docs/index.html). See [px4tools github page](https://github.com/dronecrew/px4tools) for details.
+
+Key features:
+* Easy to share, users can view notebooks on Github \(e.g. [https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb](https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30 Kabir Log.ipynb)\)
+* Python based, cross platform, works witn anaconda 2 and anaconda3
+* iPython/ jupyter notebooks can be used to share analysis easily
+* Advanced plotting capabilities to allow detailed analysis
+
+![PX4Tools-based analysis](../../assets/flight_log_analysis/px4tools.png)
