@@ -7,7 +7,7 @@ Developers are also most welcome to attend the [weekly dev call](#dev_call) and 
 
 ### Weekly Dev Call {#dev_call}
 
-The PX4 dev team syncs up on platform technical details and in-depth analysis, there is also space in the agenda to discuss pull requests, major impacting issues and Q&A.
+The PX4 dev team syncs up on platform technical details and in-depth analysis. There is also space in the agenda to discuss pull requests, major impacting issues and Q&A.
 
 #### Who should attend:
 
@@ -30,19 +30,19 @@ The PX4 dev team syncs up on platform technical details and in-depth analysis, t
 
 ### Tests Flights
 
-Test flights are important for quality assurance, the Dronecode Test Team can help review (test flight) your pull requests provide feedback and logs.
+Test flights are important for quality assurance. The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
 
 #### How to request test flights
 
-* Assign the Test Team [@PX4/testflights](https://github.com/orgs/PX4/teams/testflights) as a reviewer to Pull Request or Issue
+* Assign the test team [@PX4/testflights](https://github.com/orgs/PX4/teams/testflights) as a reviewer to the pull request or issue
 * Add a complete and thorough description of your changes
-* Wait for feedback from Test Team
-* Test team will [add your PR/Issue to their queue](https://github.com/PX4/Firmware/projects/18)
+* Wait for feedback from the test team
+* The test team will [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
 
 #### Response times
 
-* Multi-Copter, up to 48hr, typically within 24hr
-* VTOL, Fixed Wing, 4 days, typically 2 days
+* Multi-Copter: up to 48 hours (typically within 24 hours)
+* VTOL, Fixed Wing: up to 4 days (typically 2 days)
 
 ### Have a problem?
 
@@ -80,12 +80,11 @@ Select the links below to display the calendar in your timezone (and to add it t
 <iframe src="https://calendar.google.com/calendar/embed?title=Dronecode%20Calendar&amp;mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Europe%2FZurich" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 {% endraw %}
 
+## Contribution
 
-## Contributing
+### Code of Conduct
 
-### [Code of Conduct](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md)
-
-We pledge to adhere to the code of conduct as published in [PX4/Firmware](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md) in the interest of fostering an open and welcoming environment.
+We pledge to adhere to the [PX4 code of conduct](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md). This code aims to foster an open and welcoming environment.
 
 
 ### Source Code Management
