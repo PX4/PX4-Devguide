@@ -72,11 +72,8 @@ mavlink <command> [arguments...]
                  values: custom|camera|onboard|osd|magic|config|iridium,
                  default: normal
      [-f]        Enable message forwarding to other Mavlink instances
-     [-v]        Verbose output
      [-w]        Wait to send, until first message received
      [-x]        Enable FTP
-
-   verbose       Set verbose mode for all running instances
      [on|off]    Enable/disable
 
    stop-all      Stop all instances
