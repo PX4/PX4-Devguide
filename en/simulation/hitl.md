@@ -99,7 +99,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 1. Connect the flight controller to the computer and wait for it to boot.
 1. Run Gazebo in HITL mode 
   ```sh
-  gazebo /Tools/sitl_gazebo/worlds/iris.world
+  gazebo Tools/sitl_gazebo/worlds/iris.world
   ```
 1. Start *QGroundControl*. It should autoconnect to PX4 and Gazebo.
 
