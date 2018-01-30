@@ -1,5 +1,10 @@
 # 파라미터레퍼런스
+
+> **Warning** This may be out of date. The latest version is untranslated: [파라미터 레퍼런스 (English)](../advanced/parameter_reference.md)
+
+<span></span>
 > **Note** **이 목록은 소스코드에서 자동으로 생성됩니다.** 또한 가장 최근의 파라미터 문서를 포함합니다.
+
 
 ## Attitude EKF estimator
 
