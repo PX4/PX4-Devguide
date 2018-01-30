@@ -1,6 +1,6 @@
 # Hardware
 
-This section contains developer topics about modifying PX4 to work with *new* hardware, including airfames, autopilots, sensors, and other peripherals. 
+이 섹션에는PX4가 동체, 오토파일럿, 센서, 기타 주변장치 등의 *새로운* 하드웨어와 작동하도록 변경하는것에 대한 개발자 주제가 포함되어있습니다.
 
 
-> **Tip** The [PX4 User Guide](https://docs.px4.io/en/) contains topics about using and configuring existing/supported hardware.
+> **Tip** [PX4 사용자 가이드](https://docs.px4.io/en/)에는 현존하는/지원된 하드웨어 사용 및 구성에 관한 항목이 포함되어 있습니다.

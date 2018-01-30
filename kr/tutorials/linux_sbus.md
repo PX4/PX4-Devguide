@@ -1,6 +1,6 @@
-# S.Bus Driver for Linux
+# 리눅스 S.Bus 드라이버
 
-The *S.Bus Driver for Linux* allows a Linux-based autopilot to access up to 16 channels from a *Futaba S.Bus receiver* via a serial port. The driver should also work with other receivers that use the S.Bus protocol, including as FrSky, RadioLink, and even S.Bus encoders. 
+*리눅스 S.Bus드라이버* 는 리눅스 기반 자동조종장치가 시리얼 포트를 통해 *후타바 S.Bus수신기*의 최대 16채널까지 엑세스할 수 있습니다. 드라이버는 FrSky와 RadioLink, S.Bus 인코더와 같은 S.Bus 프로토콜을 사옹하는 다른 수신기들에서도 작동된다.
 
 A signal inverter circuit is required (described below) to enable the device serial port to read data from the receiver.
 
