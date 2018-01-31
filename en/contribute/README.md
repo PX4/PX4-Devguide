@@ -22,7 +22,7 @@ The PX4 dev team syncs up on platform technical details and in-depth analysis. T
 
 #### Schedule
 
-* TIME: Wednesday 5PM CET, 11AM EST, 8AM PDT \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
+* TIME: Wednesday 5PM CET, 11AM EST, 8AM PST \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
 * Uberconference: [www.uberconference.com/lf-dronecode](http://www.uberconference.com/lf-dronecode)
 * Phone: +1 415-891-1494
 * The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
