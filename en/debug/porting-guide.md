@@ -25,6 +25,14 @@ The location of the main files for a NuttX board are:
 * Reference config: Running `make px4fmu-v4_default` builds the FMUv4 config, which is the current NuttX reference configuration.
 
 
+### NuttX Menuconfig
+
+If you need to modify the NuttX [menuconfig](https://bitbucket.org/nuttx/nuttx) you can do this using the PX4 shortcuts:
+```sh
+make px4fmu-v2_default menuconfig
+make px4fmu-v2_default qconfig
+```
+
 ## QuRT / Hexagon
 
 * The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs).
@@ -39,6 +47,9 @@ The location of the main files for a NuttX board are:
 Linux boards do not include the OS and kernel configuration. These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
 
 * [cmake/configs/posix\_rpi\_cross.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_rpi_cross.cmake) - RPI cross-compilation.
+
+
+
 
 
 ## Related Information
