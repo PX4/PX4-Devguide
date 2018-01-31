@@ -14,7 +14,7 @@
    viewBox="0 0 173.65246 90.222927"
    version="1.1"
    id="svg4553"
-   inkscape:version="0.92.2 (unknown)"
+   inkscape:version="0.92.1 r15371"
    sodipodi:docname="px4_hitl_overview.svg"
    inkscape:export-filename="px4_hitl_overview.png"
    inkscape:export-xdpi="300.0"
@@ -442,16 +442,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="-26.642773"
+     inkscape:cx="309.56696"
      inkscape:cy="197.15888"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="mm"
-     inkscape:window-width="2048"
-     inkscape:window-height="1123"
-     inkscape:window-x="1366"
-     inkscape:window-y="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:snap-bbox="true"
      inkscape:snap-smooth-nodes="true"
@@ -469,7 +469,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
         <dc:creator>
           <cc:Agent>
             <dc:title>Vangelis Tasoulas</dc:title>
@@ -885,7 +885,7 @@
          id="tspan2761"
          x="-83.335098"
          y="147.11555"
-         style="font-size:3.88055563px;writing-mode:lr-tb;stroke-width:0.26458335px">simulator_mavlink.cpp</tspan></text>
+         style="font-size:3.88055563px;writing-mode:lr-tb;stroke-width:0.26458335px">mavlink_receiver.cpp</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.79375017;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.58750011, 0.79375004999999998;stroke-dashoffset:2.46062517;stroke-opacity:1;marker-start:url(#marker3113);marker-end:url(#marker3445)"
        d="M -42.713286,146.11223 H -31.60079"
