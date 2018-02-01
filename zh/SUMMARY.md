@@ -29,7 +29,6 @@
     * [统一的基础代码](airframes/architecture.md)
     * [参考机型](airframes/airframe_reference.md)
     * [添加一个新的机型](airframes/adding_a_new_frame.md)
-    * [Parrot Bebop](advanced/parrot_bebop.md)
   * [Data Links](data_links/README.md)
     * [SiK Radio](data_links/sik_radio.md)
     * [Wifi数传](advanced/telemetry_wifi.md)

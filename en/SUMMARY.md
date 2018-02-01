@@ -39,7 +39,6 @@
   * [Airframes](airframes/README.md)
     * [Airframes Reference](airframes/airframe_reference.md)
     * [Adding a New Airframe](airframes/adding_a_new_frame.md)
-    * [Parrot Bebop](advanced/parrot_bebop.md)
   * [Device Drivers](middleware/drivers.md)
   * [Telemetry Radio](data_links/telemetry.md)
     * [SiK Radio](data_links/sik_radio.md)
