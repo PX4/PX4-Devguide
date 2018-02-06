@@ -37,7 +37,7 @@ arm-none-eabi-gcc --version
 If you receive the following message
 
 ```sh
-bash: gcc-arm-none-eabi-4_7-2014q2/bin/arm-none-eabi-gcc: /lib/ld-linux.so.2: bad ELF interpreter: No such file or directory
+bash: gcc-arm-none-eabi-4_7-2014q2/bin/arm-none-eabi-gcc: /lib/ld-linux.so.2: bad ELF interpreter: No such file or directory 
 ```
 Then you will also need to install other 32-bit libraries glibc.i686 ncurses-libs.i686
 
