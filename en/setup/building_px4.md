@@ -176,7 +176,7 @@ The "px4" executable file is in the directory **build/posix_rpi_native/src/firmw
 Run it directly with:
 
 ```sh
-sudo ./build/posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
+sudo ./build/posix_rpi_native/px4 ./posix-configs/rpi/px4.config
 ```
 
 A successful build followed by executing px4 will give you something like this:
