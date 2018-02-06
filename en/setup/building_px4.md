@@ -172,7 +172,7 @@ cd Firmware
 make posix_rpi_native # for native build
 ```
 
-The "px4" executable file is in the directory **build/posix_rpi_native/src/firmware/posix**.
+The "px4" executable file is in the directory **build/posix_rpi_native/**.
 Run it directly with:
 
 ```sh
