@@ -238,6 +238,7 @@ option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "ON")
 
 Once the plugin is enabled you can run SITL with Gazebo in the normal way:
 ```
+make clean
 make posix gazebo_typhoon_h480
 ```
 
@@ -289,6 +290,7 @@ To enable the button:
    
 1. Rebuild SITL:
    ```
+   make clean
    make posix gazebo_typhoon_h480
    ```
 
