@@ -27,26 +27,6 @@ yum install openocd libftdi-devel libftdi-python python-argparse flex bison-deve
 <!-- import GCC toolchain common documentation -->
 {% include "_gcc_toolchain_installation.txt" %}
 
-## Additional 32 bit libraries
-
-Once the arm toolchain is installed test it with:
-
-```sh
-arm-none-eabi-gcc --version
-```
-If you receive the following message
-
-```sh
-bash: gcc-arm-none-eabi-4_7-2014q2/bin/arm-none-eabi-gcc: /lib/ld-linux.so.2: bad ELF interpreter: No such file or directory 
-```
-Then you will also need to install other 32-bit libraries glibc.i686 ncurses-libs.i686
-
-```sh
-sudo yum install glibc.i686 ncurses-libs.i686
-```
-
-> **Note** Pulling in ncurses-libs.i686 will pull in most of the other required 32 bit libraries. Centos 7 will install most all the PX4 related devices without the need for any added udev rules. The devices will be accessible to the predefined group ' dialout'. Therefore any references to adding udev rules can be ignored. The only requirement is that your user account is a member of the group 'dial out'
-
 
 <!-- import docs ninja build system -->
 {% include "_ninja_build_system.txt" %}

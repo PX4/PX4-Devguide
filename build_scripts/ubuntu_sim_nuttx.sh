@@ -41,12 +41,6 @@ else
     if grep -Fxq "$exportline" ~/.profile; then echo " GCC path already set." ; else echo $exportline >> ~/.profile; fi
     . ~/.profile
     popd
-    
-    # Install 32 bit support libraries (ignore if fails)
-    sudo dpkg --add-architecture i386
-    sudo apt-get update
-    sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386 -y
-    sudo apt-get install gcc-7.3-base:i386 -y
 fi
 
 

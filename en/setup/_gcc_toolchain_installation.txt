@@ -14,20 +14,6 @@ popd
 
 Now restart your machine.
 
-**If using Debian Linux, run this command:**
-
-```sh
-sudo dpkg --add-architecture i386
-sudo apt-get update
-```
-
-**Then install the 32 bit support libraries** (this might fail and can be skipped if running a 32 bit OS):
-
-```sh
-sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386
-sudo apt-get install gcc-7.3-base:i386 
-```
-
 
 **Troubleshooting**
 
@@ -44,11 +30,4 @@ arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 
 Copyright (C) 2017 Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-```
-
-If you get the following output, make sure you have the 32bit libs installed properly as described in the installation steps:
-
-```sh
-arm-none-eabi-gcc --version
-arm-none-eabi-gcc: No such file or directory
 ```
