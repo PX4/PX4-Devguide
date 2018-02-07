@@ -25,8 +25,9 @@ sudo apt-get install python-serial openocd \
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded -y
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa -y
 
-# Install GCC 5.4
-gcc_dir=$HOME/gcc-arm-none-eabi-5_4-2016q2
+
+# GNU Arm Embedded Toolchain: 7-2017-q4-major December 18, 2017
+gcc_dir=$HOME/gcc-arm-none-eabi-7-2017-q4-major
 echo "Installing GCC to: $gcc_dir"
 if [ -d "$gcc_dir" ]
 then
@@ -34,19 +35,14 @@ then
 else
     pushd .
     cd ~    
-    wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/5_4-2016q2/gccarmnoneeabi542016q220160622linuxtar.bz2
-    tar -jxf gccarmnoneeabi542016q220160622linuxtar.bz2
-    exportline="export PATH=$HOME/gcc-arm-none-eabi-5_4-2016q2/bin:\$PATH"
+    wget https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-rm/7-2017q4/gcc-arm-none-eabi-7-2017-q4-major-linux.tar.bz2
+    tar -jxf gcc-arm-none-eabi-7-2017-q4-major-linux.tar.bz2
+    exportline="export PATH=$HOME/gcc-arm-none-eabi-7-2017-q4-major/bin:\$PATH"
     if grep -Fxq "$exportline" ~/.profile; then echo " GCC path already set." ; else echo $exportline >> ~/.profile; fi
     . ~/.profile
     popd
-    
-    # Install 32 bit support libraries (ignore if fails)
-    sudo dpkg --add-architecture i386
-    sudo apt-get update
-    sudo apt-get install libc6:i386 libgcc1:i386 libstdc++5:i386 libstdc++6:i386 -y
-    sudo apt-get install gcc-5.4-base:i386 -y
 fi
+
 
 # Go to the firmware directory
 cd $clone_dir/Firmware

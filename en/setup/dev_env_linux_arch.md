@@ -74,7 +74,10 @@ sudo pacman -Sy --noconfirm \
     arm-none-eabi-gcc arm-none-eabi-newlib
 ```
 
-The standard instructions for installing the official version are listed below (untested):
+*Alternatively*, the standard instructions for installing the **official** version are listed below. 
+
+> **Note** These are untested. Attempt them at your own risk!
+
 <!-- import GCC toolchain common documentation -->
 
 {% include "_gcc_toolchain_installation.txt" %}
