@@ -20,17 +20,34 @@ Airframe | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim
 
 ## HITL Simulation Environment {#simulation_environment}
 
-With Hardware-in-the-Loop (HITL) simulation the normal PX firmware is run on real hardware. *QGroundControl* is connected to the physical hardware over USB and acts as a gateway to forward data between the simulator running on a development computer, PX4, and any offboard API.
+With Hardware-in-the-Loop (HITL) simulation the normal PX firmware is run on real hardware. The HITL configuration is slightly different for Gazebo and jMAVSim.
 
-The diagram below shows a typical HITL simulation environment:
+> **Tip** For more information see: [Simulation](../simulation/README.md).
+
+### Gazebo HITL Environment
+
+*QGroundControl* is connected to the flight controller hardware via USB and acts as a gateway to forward data between the Gazebo simulator running on a development computer, PX4, and any offboard API.
+
+The diagram below shows the Gazebo HITL simulation environment:
 * A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
-* *QGroundControl* is connected to the flight controller via the USB.
+* *QGroundControl* is connected to the flight controller via USB.
 * *QGroundControl* is connected to the simulator and offboard API via UDP.
 * A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
-![HITL setup](../../assets/simulation/px4_hitl_overview.png)
+![HITL Setup - Gazebo](../../assets/simulation/px4_hitl_overview_gazebo.png)
 
-> **Tip** For more information see: [Simulation](../simulation/README.md).
+
+### jMAVSim HITL Environment
+
+*jMAVSim* is connected to the flight controller hardware via USB/UART and acts as gateway to forward MAVLink data to *QGroundControl* or any offboard API (if required).
+
+The diagram below shows the jMAVSim HITL simulation environment:
+* A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
+* *jMAVSim* is connected to the flight controller via USB.
+* (Optional) *QGroundControl* and any Offboard API connects to jMAVSim via UDP. jMAVSim forwards commands to PX4.
+* (Optional) A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
+
+![HITL Setup - jMAVSim](../../assets/simulation/px4_hitl_overview_jmavsim.png)
 
 
 ## HITL vs SITL

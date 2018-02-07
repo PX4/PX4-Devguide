@@ -223,9 +223,7 @@ For more information about using the MAVLink module see [Modules Reference: Comm
 
 ## HITL Simulation Environment
 
-With Hardware-in-the-Loop (HITL) simulation the normal PX firmware is run on real hardware. *QGroundControl* is connected to the physical hardware over USB and acts as a gateway to forward data between the simulator, PX4 and any offboard API.
-
-The HITL Simulation Environment in documented in: [HITL Simulation](../simulation/hitl.md).
+With Hardware-in-the-Loop (HITL) simulation the normal PX firmware is run on real hardware. The HITL Simulation Environment in documented in: [HITL Simulation](../simulation/hitl.md).
 
 
 ## Joystick/Gamepad Integration
