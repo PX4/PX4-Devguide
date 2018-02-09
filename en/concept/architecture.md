@@ -48,7 +48,7 @@ The use of the publish-subscribe scheme means that:
 - A system component can consume data from anywhere in a thread-safe fashion
 
 > **Info** This architecture allows every single one of these
-> blocks to be rapidly and easily replaced, even at runtime.
+> blocks to be rapidly and easily be replaced, even at runtime.
 
 
 ### Flight Stack {#flight-stack}
