@@ -12,7 +12,7 @@ ekf2 can be started in replay mode (`-r`): in this mode it does not access the s
 timestamps from the sensor topics.
 
 
-### Usage
+### Usage {#ekf2_usage}
 ```
 ekf2 <command> [arguments...]
  Commands:
