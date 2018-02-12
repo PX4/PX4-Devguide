@@ -112,8 +112,7 @@ nsh> free
 For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be
 accessed via mavlink. This works via serial link or WiFi (UDP/TCP). Make sure
 that QGC is not running, then start the shell with e.g.
-`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source). Use ./Tools/mavlink_shell.py -h to get a description of all available arguments which also displays the IP address of wifi connection. For e.g ./Tools/mavlink_shell.py <IP address> can be used to start nsh shell via wifi connection to the autopilot. You may first have to install the
-dependencies with `sudo pip install pymavlink pyserial`. You can also start nsh shell on QGC directly: **Analyze -> Mavlink Console**
+`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source). Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection. For e.g `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot. You can also start nsh shell on QGC directly: **Analyze -> Mavlink Console**. You may first have to install the dependencies with `sudo pip install pymavlink pyserial`.
 
 # Snapdragon DSP Console
 
