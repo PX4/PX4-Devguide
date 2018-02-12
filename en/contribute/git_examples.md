@@ -82,7 +82,7 @@ cd <path to submodule>
 * PX4 submodule might not necessarily point to the newest commit. Therefore, first checkout master and pull the newest upstream code.
 ```sh
 git checkout master
-git pull origin master
+git pull upstream master
 ```
 * Go back to Firmware directory, and as usual add, commit and push the changes.
 ```sh
