@@ -26,7 +26,7 @@ The sections below provide an overview of the modes, followed by a [flight mode 
 "Assisted" modes are also user controlled but offer some level of "automatic" assistance - for example, automatically holding position/direction, against wind. Assisted modes often make it much easier to gain or restore controlled flight.
 
 * **ALTCTL** (Altitude Control)
-  * **Fixed wing aircraft:** When the roll, pitch and yaw inputs (RPY) or sticks in RC are all centered (less than some specified deadband range) the aircraft will return to straight and level flight and keep its current altitude. It's x,y position will drift with the wind.
+  * **Fixed wing aircraft:** When the roll, pitch and yaw (RPY) RC sticks are all centered (or less than some specified deadband range) the aircraft will return to straight and level flight and keep its current altitude. Its x and y position will drift with the wind.
   * **Multirotors:** Roll, pitch and yaw inputs are as in MANUAL mode. Throttle inputs indicate climb or sink at a predetermined maximum rate. Throttle has large deadzone. Centered Throttle holds altitude steady. The autopilot only controls altitude so the x,y position of the vehicle can drift due to wind. 
 * **POSCTL** (Position Control)
   * **Fixed wing aircraft:** Neutral inputs (centered RC sticks) give level flight and it will crab against the wind if needed to maintain a straight line.
