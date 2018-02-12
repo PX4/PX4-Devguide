@@ -296,7 +296,7 @@ make
 
 ### Testing the uORB Subscription
 
-The final step is to start your application as a background process/task.
+The final step is to start your application as a background process/task by typing the following in the nsh shell:
 
 ```sh
 px4_simple_app &
