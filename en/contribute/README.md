@@ -22,10 +22,21 @@ The PX4 dev team syncs up on platform technical details and in-depth analysis. T
 
 #### Schedule
 
-* TIME: Wednesday 5PM CET, 11AM EST, 8AM PDT \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
-* Uberconference: [www.uberconference.com/lf-dronecode](http://www.uberconference.com/lf-dronecode)
-* Phone: +1 415-891-1494
-* The agenda is announced in advance on the [PX4 Discuss](http://discuss.px4.io/c/weekly-dev-call)
+* TIME: Wednesday 5PM CET, 11AM EST, 8AM PST \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
+* **Join the call**: https://zoom.us/j/625711763
+* **Meeting ID**: 625 711 763
+* **Dial(for higher quality, dial a number based on your current location)**:
+  * **Switzerland**: +41 (0) 31 528 0988 
+  * **US**: +1 646 876 9923  or +1 669 900 6833  or +1 408 740 3766 
+  * **Germany**: +49 (0) 30 3080 6188 
+  * **Mexico**: +52 554 161 4288 
+  * **Australia**: +61 (0) 2 8015 2088 
+  * **United Kingdom**: +44 (0) 20 3695 0088 
+  * **South Korea**: +82 (0) 2 6022 2322 
+  * **Spain**: +34 91 198 0188 
+  * [**International numbers available**](https://zoom.us/zoomconference?m=bMNcJolpnXMOL_qSf2svkR7Yow6FqceS)
+
+* Agenda is published before the call on [PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)
 * To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/Firmware/labels/devcall) label to flag them for discussion.
 
 ### Tests Flights

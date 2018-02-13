@@ -38,7 +38,6 @@
     * [통합 코드베이스](airframes/architecture.md)
     * [Airframes 레퍼런스](airframes/airframe_reference.md)
     * [새로운 Airframe 추가](airframes/adding_a_new_frame.md)
-    * [Parrot Bebop](advanced/parrot_bebop.md)
   * [Data Links](data_links/README.md)
     * [SiK Radio](data_links/sik_radio.md)
     * [텔레메트리 Wifi](advanced/telemetry_wifi.md)

@@ -24,7 +24,7 @@ the mavlink mission manager). During that time, navigator will try to acquire th
 check for geofence violations.
 
 
-### Usage
+### Usage {#dataman_usage}
 ```
 dataman <command> [arguments...]
  Commands:
@@ -72,7 +72,7 @@ position controller sets the thrust setpoint to zero.
 
 The module runs periodically on the HP work queue.
 
-### Usage
+### Usage {#land_detector_usage}
 ```
 land_detector <command> [arguments...]
  Commands:
@@ -94,7 +94,7 @@ usage and publish the `cpuload` topic.
 On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output,
 which will also appear in the log file.
 
-### Usage
+### Usage {#load_mon_usage}
 ```
 load_mon <command> [arguments...]
  Commands:
@@ -138,7 +138,7 @@ Or if already running:
 logger on
 ```
 
-### Usage
+### Usage {#logger_usage}
 ```
 logger <command> [arguments...]
  Commands:
@@ -186,7 +186,7 @@ module start -f -p 42
 ```
 
 
-### Usage
+### Usage {#module_usage}
 ```
 module <command> [arguments...]
  Commands:
@@ -220,7 +220,7 @@ the log.
 The replay procedure is documented on the [System-wide Replay](https://dev.px4.io/en/debug/system_wide_replay.html)
 page.
 
-### Usage
+### Usage {#replay_usage}
 ```
 replay <command> [arguments...]
  Commands:
@@ -244,7 +244,7 @@ It is currently only responsible for temperature calibration.
 
 The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
 
-### Usage
+### Usage {#send_event_usage}
 ```
 send_event <command> [arguments...]
  Commands:
@@ -286,7 +286,7 @@ The provided functionality includes:
 It runs in its own thread and polls on the currently selected gyro topic.
 
 
-### Usage
+### Usage {#sensors_usage}
 ```
 sensors <command> [arguments...]
  Commands:

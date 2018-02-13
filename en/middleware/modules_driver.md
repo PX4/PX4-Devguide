@@ -47,7 +47,7 @@ fmu test
 Use the `pwm` command for further configurations (PWM rate, levels, ...), and the `mixer` command to load
 mixer files.
 
-### Usage
+### Usage {#fmu_usage}
 ```
 fmu <command> [arguments...]
  Commands:
@@ -122,7 +122,7 @@ OR with any of the avaliabel AUX pins
 ```
 To drive an LED connected AUX5 pin.
 
-### Usage
+### Usage {#gpio_led_usage}
 ```
 gpio_led <command> [arguments...]
  Commands:
@@ -154,7 +154,7 @@ gps stop
 gps start -f
 ```
 
-### Usage
+### Usage {#gps_usage}
 ```
 gps <command> [arguments...]
  Commands:
@@ -196,7 +196,7 @@ vmount stop
 vmount test yaw 30
 ```
 
-### Usage
+### Usage {#vmount_usage}
 ```
 vmount <command> [arguments...]
  Commands:

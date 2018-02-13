@@ -141,7 +141,7 @@ cd Firmware
 make posix_rpi_cross # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory **build/posix_rpi_cross/src/firmware/posix**.
+The "px4" executable file is in the directory **build/posix_rpi_cross/**.
 Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
 Then set the IP (or hostname) of your RPi using:
@@ -172,11 +172,11 @@ cd Firmware
 make posix_rpi_native # for native build
 ```
 
-The "px4" executable file is in the directory **build/posix_rpi_native/src/firmware/posix**.
+The "px4" executable file is in the directory **build/posix_rpi_native/**.
 Run it directly with:
 
 ```sh
-sudo ./build/posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
+sudo ./build/posix_rpi_native/px4 ./posix-configs/rpi/px4.config
 ```
 
 A successful build followed by executing px4 will give you something like this:

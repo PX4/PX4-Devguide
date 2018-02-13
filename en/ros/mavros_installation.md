@@ -55,7 +55,7 @@ $ rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
     # 3. Setup workspace & install deps
 $ wstool merge -t src /tmp/mavros.rosinstall
 $ wstool update -t src
-$ rosdep install --from-paths src --ignore-src --rosdistro indigo -y
+$ rosdep install --from-paths src --ignore-src --rosdistro `echo $ROS_DISTRO` -y
 
     # finally - build
 $ catkin build
