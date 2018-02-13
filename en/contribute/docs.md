@@ -64,7 +64,7 @@ Everything you need to install and build Gitbook locally is explained in the
 
    * Put new files in an appropriate sub-folder
    * Use descriptive names. In particular, image filename should describe what they contain.
-   * User lower case and separate words using underscores "\_"
+   * Use lower case and separate words using underscores "\_"
 
 2. Images
 
