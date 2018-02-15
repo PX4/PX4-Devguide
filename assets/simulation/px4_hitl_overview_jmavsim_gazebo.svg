@@ -15,8 +15,8 @@
    version="1.1"
    id="svg4553"
    inkscape:version="0.92.1 r15371"
-   sodipodi:docname="px4_hitl_overview_jmavsim.svg"
-   inkscape:export-filename="D:\Github\forks\px4\Devguide\assets\simulation\px4_hitl_overview_gazebo.png"
+   sodipodi:docname="px4_hitl_overview_jmavsim_gazebo.svg"
+   inkscape:export-filename="D:\Github\forks\px4\Devguide\assets\simulation\px4_hitl_overview_jmavsim_gazebo.svg.png"
    inkscape:export-xdpi="300.0"
    inkscape:export-ydpi="300.0">
   <defs
@@ -110,7 +110,7 @@
       <path
          transform="scale(0.6)"
          d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
-         style="fill:#e31a1c;fill-opacity:1;fill-rule:evenodd;stroke:#e31a1c;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         style="fill:#e31a1c;fill-opacity:0.69019608;fill-rule:evenodd;stroke:#e31a1c;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:0.69019608"
          id="path3896"
          inkscape:connector-curvature="0" />
     </marker>
@@ -397,7 +397,7 @@
        inkscape:isstock="true">
       <path
          id="path1414-6"
-         style="fill:#e31a1c;fill-opacity:1;fill-rule:evenodd;stroke:#e31a1c;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         style="fill:#e31a1c;fill-opacity:0.69019608;fill-rule:evenodd;stroke:#e31a1c;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:0.69019608"
          d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
          transform="scale(-0.6)"
          inkscape:connector-curvature="0" />
@@ -426,7 +426,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="251.56088"
+     inkscape:cx="-252.00017"
      inkscape:cy="116.34668"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -625,7 +625,7 @@
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300" />
     <rect
-       style="opacity:1;fill:#ffff99;fill-opacity:1;stroke:#000000;stroke-width:0.26458335;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal"
+       style="opacity:0.5;fill:#ffff99;fill-opacity:1;stroke:#000000;stroke-width:0.26458334;stroke-miterlimit:4;stroke-dasharray:1.58750007, 1.58750006999999990;paint-order:normal;stroke-dashoffset:0"
        id="rect899-5-9-9-6-2-9-3-6-7"
        width="37.041668"
        height="18.520834"
@@ -683,17 +683,22 @@
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;stroke-width:0.26458335px">PX4 HITL</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333359px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333359px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:0.7;"
        x="13.892466"
        y="68.756058"
        id="text1034-1"
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
          sodipodi:role="line"
-         id="tspan1032-2"
          x="13.892466"
          y="68.756058"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;stroke-width:0.26458335px">API/Offboard</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;stroke-width:0.26458335px;"
+         id="tspan166">API/Offboard</tspan><tspan
+         sodipodi:role="line"
+         x="13.892466"
+         y="74.047722"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial, Bold';text-align:center;text-anchor:middle;stroke-width:0.26458335px;font-size:3.17500014px;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
+         id="tspan5127">(Gazebo only)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333359px;line-height:125%;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -721,13 +726,18 @@
        inkscape:export-xdpi="300"
        inkscape:export-ydpi="300"><tspan
          sodipodi:role="line"
-         id="tspan1032-3"
-         x="13.652682"
+         x="14.239727"
          y="89.418503"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;stroke-width:0.26458335px">jMAVSim</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;stroke-width:0.26458335px"
+         id="tspan148">jMAVSim / </tspan><tspan
          sodipodi:role="line"
          x="13.652682"
          y="94.710167"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;stroke-width:0.26458335px"
+         id="tspan156">Gazebo</tspan><tspan
+         sodipodi:role="line"
+         x="13.652682"
+         y="100.00184"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;stroke-width:0.26458335px"
          id="tspan3819">Simulator</tspan></text>
     <text
@@ -819,7 +829,7 @@
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;fill:#1f78b4;fill-opacity:1;stroke-width:0.26458335px">UDP</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333359px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:vertical-lr;text-anchor:middle;fill:#1f78b4;fill-opacity:1;stroke:none;stroke-width:0.26458335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333359px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:vertical-lr;text-anchor:middle;fill:#1f78b4;fill-opacity:1;stroke:none;stroke-width:0.26458335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;opacity:0.5;"
        x="-28.366526"
        y="-75.915298"
        id="text1194-7-2-2"
@@ -830,7 +840,7 @@
          id="tspan1192-9-0-3"
          x="-75.648033"
          y="-28.633795"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;fill:#1f78b4;fill-opacity:1;stroke-width:0.26458335px">UDP</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;fill:#1f78b4;fill-opacity:1;stroke-width:0.26458335px;">UDP</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.70416689px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:vertical-lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -935,7 +945,7 @@
          id="tspan2765-6-2"
          x="37.759518"
          y="101.11072"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.88055563px;font-family:Arial;-inkscape-font-specification:'Arial Bold';writing-mode:lr-tb;fill:#33a02c;fill-opacity:1;stroke-width:0.26458335px">port 14560</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.88055563px;font-family:Arial;-inkscape-font-specification:'Arial Bold';writing-mode:lr-tb;fill:#33a02c;fill-opacity:1;stroke-width:0.26458335px">port 14550</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.85547924;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.71095834, 0.85547917;stroke-dashoffset:2.46062517;stroke-opacity:1;marker-start:url(#marker3113-6);marker-end:url(#marker3255)"
        d="M -59.517629,93.84472 H -46.60951"
@@ -1014,7 +1024,7 @@
          y="-0.045680352"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.70416689px;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:center;text-anchor:middle;stroke-width:0.26458335px">Serial</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#e31a1c;stroke-width:0.69313884;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.38627758, 0.69313879;stroke-dashoffset:2.46062517;stroke-opacity:1;marker-start:url(#marker3898);marker-end:url(#Arrow2Mend-35)"
+       style="fill:none;fill-rule:evenodd;stroke:#e31a1c;stroke-width:0.69320833;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.38641666, 0.69320833000000004;stroke-dashoffset:2.46087186;stroke-opacity:0.6901961;marker-start:url(#marker3898);marker-end:url(#Arrow2Mend-35);opacity:0.8"
        d="m 32.921424,90.022979 26.796005,7e-6 V 75.081668 H 32.921413"
        id="path1304-9-7-2"
        inkscape:connector-curvature="0"
@@ -1123,5 +1133,37 @@
            height="236.3757"
            x="319.20819"
            y="185.43654" /></flowRegion><flowPara
-         id="flowPara150"></flowPara></flowRoot>  </g>
+         id="flowPara150" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot158"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion160"><rect
+           id="rect162"
+           width="212.13203"
+           height="119.198"
+           x="259.60919"
+           y="-40.837639" /></flowRegion><flowPara
+         id="flowPara164" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       x="68.239182"
+       y="75.882797"
+       id="text5117"><tspan
+         sodipodi:role="line"
+         id="tspan5115"
+         x="68.239182"
+         y="85.538292"
+         style="stroke-width:0.26458335" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333397px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458335"
+       x="39.374062"
+       y="71.071945"
+       id="text5121"><tspan
+         sodipodi:role="line"
+         id="tspan5119"
+         x="39.374062"
+         y="80.72744"
+         style="stroke-width:0.26458335" /></text>
+  </g>
 </svg>

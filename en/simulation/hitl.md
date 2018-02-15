@@ -1,6 +1,6 @@
 # Hardware in the Loop Simulation \(HITL\)
 
-Hardware-in-the-Loop (HITL) is a simulation mode in which normal PX4 firmware is run on real flight controller hardware. This approach has the benefit of testing most of the actual flight code on the real hardware.
+Hardware-in-the-Loop (HITL or HIL) is a simulation mode in which normal PX4 firmware is run on real flight controller hardware. This approach has the benefit of testing most of the actual flight code on the real hardware.
 
 PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and fixed wing (using Gazebo or X-Plane demo/full version). 
 
@@ -20,34 +20,38 @@ Airframe | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim
 
 ## HITL Simulation Environment {#simulation_environment}
 
-With Hardware-in-the-Loop (HITL) simulation the normal PX firmware is run on real hardware. The HITL configuration is slightly different for Gazebo and jMAVSim.
+With Hardware-in-the-Loop (HITL) simulation the normal PX firmware is run on real hardware. The HITL configuration is slightly different for Gazebo, jMAVSim and X-Plane.
 
 > **Tip** For more information see: [Simulation](../simulation/README.md).
 
-### Gazebo HITL Environment
+### JMAVSim/Gazebo HITL Environment
 
-*QGroundControl* is connected to the flight controller hardware via USB and acts as a gateway to forward data between the Gazebo simulator running on a development computer, PX4, and any offboard API.
+JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*. 
 
-The diagram below shows the Gazebo HITL simulation environment:
+> **Tip** Gazebo can additionally share MAVLink data with an offboard API!
+
+The diagram below shows the simulation environment:
+* A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
+* *jMAVSim* or *Gazebo* are connected to the flight controller via USB.
+* The simulator is connected to *QGroundControl* via UDP and bridges its MAVLink messages to PX4.
+* (Optional) A serial connection can be used to connect Joystick/Gamepad hardware via *QGroundControl*.
+* (Optional - Gazebo only) Gazebo can also connect to an offboard API and bridge MAVLink messages to PX4.
+
+![HITL Setup - jMAVSim and Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
+
+
+### X-Plane HITL Environment
+
+
+*QGroundControl* is connected to the flight controller hardware via USB, and acts as a gateway to forward data between the X-Plane simulator running on a development computer, PX4, and any offboard API.
+The diagram below shows the simulation environment:
+
 * A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
 * *QGroundControl* is connected to the flight controller via USB.
 * *QGroundControl* is connected to the simulator and offboard API via UDP.
 * A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
-![HITL Setup - Gazebo](../../assets/simulation/px4_hitl_overview_gazebo.png)
-
-
-### jMAVSim HITL Environment
-
-*jMAVSim* is connected to the flight controller hardware via USB/UART and acts as gateway to forward MAVLink data to *QGroundControl* or any offboard API (if required).
-
-The diagram below shows the jMAVSim HITL simulation environment:
-* A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
-* *jMAVSim* is connected to the flight controller via USB.
-* (Optional) *QGroundControl* and any Offboard API connects to jMAVSim via UDP. jMAVSim forwards commands to PX4.
-* (Optional) A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
-
-![HITL Setup - jMAVSim](../../assets/simulation/px4_hitl_overview_jmavsim.png)
+![HITL Setup - X-Plane](../../assets/simulation/px4_hitl_overview_xplane.png)
 
 
 ## HITL vs SITL
