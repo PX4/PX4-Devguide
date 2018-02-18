@@ -222,7 +222,7 @@ baro_temp_celcius: 43.93
 
 The following examples provide additional real-world demonstrations of how to use the features described in this topic.
 
-* [Throughput test](../middleware/micrortps_throughput_test.md): A simple simple test to measure the throughput of the bridge.
+* [Throughput test](../middleware/micrortps_throughput_test.md): A simple test to measure the throughput of the bridge.
 
 
 ## Troubleshooting
@@ -240,7 +240,7 @@ If the selected UART port is busy, it's possible that the MAVLink application is
 
 The *Agent* code is generated using a *FastRTPS* tool called *fastrtpsgen*.  
 
-If you haven't installed Fast RTPS in the default path then you must to specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
+If you haven't installed Fast RTPS in the default path then you must specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
 
 On Linux/Mac this is done as shown below:
 
