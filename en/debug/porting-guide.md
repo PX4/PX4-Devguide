@@ -1,6 +1,6 @@
 # Flight Controller Porting Guide
 
-This topic for developers who want to port PX4 to work with *new* flight controller hardware.
+This topic is for developers who want to port PX4 to work with *new* flight controller hardware.
 
 ## Architecture
 
