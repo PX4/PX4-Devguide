@@ -186,7 +186,7 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ## Tuning Gains
 
-The following *PX4 User Guide* topics explain tune the parameters that will be specified in the config file:
+The following *PX4 User Guide* topics explain how to tune the parameters that will be specified in the config file:
 
 * [Multicopter PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
 * [Fixed Wing PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
