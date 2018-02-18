@@ -48,7 +48,7 @@ Frames are shown in the image below: NED on the left while ENU on the right.
 
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
-With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration); yaw angle will be given respect to local *x*.
+With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration); yaw angle will be given with respect to local *x*.
 
 > **Info** When creating the rigid body in the mocap software, remember to first align the robot with the world *x* axis otherwise yaw estimation will have an initial offset.
 
