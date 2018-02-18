@@ -14,7 +14,7 @@ The sections below provide an overview of the modes, followed by a [flight mode 
 "Manual" modes are those where the user has direct control over the vehicle via the RC control (or joystick). Vehicle movement always follows stick movement, but the level/type of response changes depending on the mode. For example, experienced fliers can use modes that provide direct passthrough of stick positions to actuators, while beginners will often choose modes that are less responsive to sudden stick-position changes.
 
 * **Fixed wing aircraft/ rovers / boats:** 
-  * **MANUAL:** The pilot's control inputs or RC commands are passed directly to the output mixer.
+  * **MANUAL:** The pilot's control inputs (raw user inputs from RC transmitter) are passed directly to the output mixer.
   * **STABILIZED:** The pilot's inputs are passed as roll and pitch *angle* commands and a manual yaw command. If the RC roll and pitch sticks are centered, the autopilot regulates the roll and pitch angles to zero, hence stabilizing (leveling-out) the attitude against any wind disturbances. However, in this mode the position of the aircraft is not controlled by the autopilot, hence the position can drift due to wind.
 * **Multirotors:**
   * **ACRO:** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot. The autopilot controls the angular rates, but not the attitude. Hence, if the RC sticks are centered the vehicle will not level-out. This allows the multirotor to become completely inverted.  Throttle is passed directly to the output mixer.
