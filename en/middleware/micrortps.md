@@ -11,7 +11,7 @@ This topic describes the bridge architecture, how it is compiled, and how to wri
 
 ## When should RTPS be used?
 
-RTPS should be used in circumstances where there is a need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a peer software components running in PX4 (by sending and receiving uORB topics).
+RTPS should be used in circumstances where there is a need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a peer software component running in PX4 (by sending and receiving uORB topics).
 
 Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control. 
 
