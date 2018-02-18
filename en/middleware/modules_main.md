@@ -23,6 +23,7 @@ The generated files will be written to the `modules` directory.
 ## Categories
 - [Command](modules_command.md)
 - [Communication](modules_communication.md)
+- [Controller](modules_controller.md)
 - [Driver](modules_driver.md)
 - [Estimator](modules_estimator.md)
 - [System](modules_system.md)
