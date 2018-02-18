@@ -9,7 +9,7 @@ The following tutorial will run through the basics of *Offboard* control through
 </video>
 
 ## Code
-Create the `offb_node.cpp` file in your ROS package (by also adding it to you `CMakeList.txt` so it is compiled), and paste the following inside it:
+Create the `offb_node.cpp` file in your ROS package (by also adding it to your `CMakeList.txt` so it is compiled), and paste the following inside it:
 ```cpp
 /**
  * @file offb_node.cpp
