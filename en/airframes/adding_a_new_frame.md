@@ -115,12 +115,14 @@ S: 0 1   6500   6500      0 -10000  10000
 
 Where each number from left to right means:
 
-* M: Indicates two scalers for two inputs
-* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  If you want to invert your PWM signal, the signs of the output scalings has to be changed. (```O:      -10000  -10000      0 -10000  10000```)
-* S: Indicates the first input scaler: It takes input from control group #0 (attitude controls) and the first input (roll). It scales the input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
-* S: Indicates the second input scaler: It takes input from control group #0 (attitude controls) and the second input (pitch). It scales the input * 0.65 and reverts the sign (-0.65 becomes -6500 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
+* M: Indicates two scalers for two control inputs. It indicates the number of control inputs mixer will receive.
+* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  If you want to invert your PWM signal, the signs of the output scalings have to be changed. (```O:      -10000  -10000      0 -10000  10000```)
+* S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll). It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
+* S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
 
-Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch, i.e., SERVO = (0.60 * roll) + (0.65 * pitch). As it is over-committed with 125% total deflection for maximum pitch and roll, it means the first channel (roll here) has priority over the second channel / scaler (pitch). 
+In short, the output of this mixer would be SERVO = ( (roll input * -0.6 + 0) + (pitch input * 0.65 + 0) ) * 1 + 0
+
+Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch.
 
 The complete mixer looks like this:
 
