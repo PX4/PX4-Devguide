@@ -217,7 +217,7 @@ Roll, pitch and yaw inputs are expected to range from -1.0 to 1.0, whilst the
 thrust input ranges from 0.0 to 1.0. Output for each actuator is in the 
 range -1.0 to 1.0.
 
-Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed of motors and it is the speed with which the motors are commanded to rotate when all control inputs are zero.
+Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed of motors and it is the speed at which the motors are commanded to rotate when all control inputs are zero.
 
 In the case where an actuator saturates, all actuator values are rescaled so that 
 the saturating actuator is limited to 1.0.
