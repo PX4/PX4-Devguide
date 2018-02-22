@@ -20,7 +20,7 @@ Airframe | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim
 
 ## HITL Simulation Environment {#simulation_environment}
 
-With Hardware-in-the-Loop (HITL) simulation the normal PX firmware is run on real hardware. The HITL configuration is slightly different for Gazebo, jMAVSim and X-Plane.
+With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL configuration is slightly different for Gazebo, jMAVSim and X-Plane.
 
 > **Tip** For more information see: [Simulation](../simulation/README.md).
 
