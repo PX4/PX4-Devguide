@@ -261,7 +261,7 @@ For UART transport on Raspberry Pi you will have to enable the serial port:
   sudo usermod -a -G dialout pi
   ```
 
-2. You need to stop the already running on the GPIO serial console:
+2. You need to stop the GPIO serial console that using the port:
 
   ```sh
   sudo raspi-config
