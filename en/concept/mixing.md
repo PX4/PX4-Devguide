@@ -190,6 +190,8 @@ discussed above. Whilst the calculations are performed as floating-point
 operations, the values stored in the definition file are scaled by a factor of
 10000; i.e. an offset of -0.5 is encoded as -5000.
 
+An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
+
 #### Multirotor Mixer ####
 
 The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust)
