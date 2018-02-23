@@ -66,6 +66,7 @@
   * [Communication](middleware/modules_communication.md)
   * [Drivers](middleware/modules_driver.md)
   * [Estimators](middleware/modules_estimator.md)
+  * [Controllers](middleware/modules_controller.md)
   * [System](middleware/modules_system.md)
 * [Robotics](robotics/README.md)
   * [Offboard Control from Linux](ros/offboard_control.md)
