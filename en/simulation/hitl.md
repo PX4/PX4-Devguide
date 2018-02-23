@@ -59,7 +59,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
 
       ![Select Airframe](../../assets/gcs/qgc_hil_config.png)
 1. Setup UDP
-   1. Under the *General* tab of the settings menu, uncheck all *AutoConnect* boxes except for **UDP**. This will disconnect the vehicle from QGC.
+   1. Under the *General* tab of the settings menu, uncheck all *AutoConnect* boxes except for **UDP**.
 
       ![QGC Auto-connect settings for HITL](../../assets/gcs/qgc_hitl_autoconnect.png)
 1. (Gazebo only) Set the `SYS_COMPANION` parameter to `921600` (see [PX4 User Guide > Parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) for instructions on how to change parameters).
