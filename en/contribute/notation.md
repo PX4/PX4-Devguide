@@ -44,7 +44,7 @@ $$AR$$ | Aspect ratio. $$AR = b^2/S$$.
 $$\beta$$ | Angle of sideslip (AOS).
 $$c$$ | Wing chord length.
 $$\delta$$ | Aerodynamic control surface angular deflection. A positive deflection generates a negative moment.
-$$\phi,\psi,\theta$$ | Euler angles roll (=Bank), pitch and yaw (=Heading).
+$$\phi,\theta,\psi$$ | Euler angles roll (=Bank), pitch and yaw (=Heading).
 $$\Psi$$ | Attitude vector. $$\Psi = [\phi \quad \theta \quad \psi]^T$$.
 $$X,Y,Z$$ | Forces along coordinate axis x,y and z.
 $$\boldsymbol{\mathrm{F}}$$| Force vector $$\boldsymbol{\mathrm{F}}= [X \quad Y \quad Z]^T$$ . 
@@ -98,3 +98,4 @@ $$\bar{()}$$ | Mean.
 $$()^{-1}$$ | Matrix inverse.
 $$()^T$$ | Matrix transpose.
 $$\tilde{()}$$ | Quaternion.
+
