@@ -29,8 +29,8 @@ again. -->
 The source code is split into self-contained modules/programs (shown in `monospace` in the
 diagram). Usually a building block corresponds to exactly one module. 
 
-> **Tip** At runtime, you can inspect which modules are executed with the `top` command, 
-> and each module can be started/stopped individually via `<module_name> start/stop`.
+> **Tip** At runtime, you can inspect which modules are executed with the `top` command in shell, 
+> and each module can be started/stopped individually via `<module_name> start/stop`. While `top` command is specific to NuttX shell, the other commands can be used in the SITL shell (pxh>) as well.
 > For more information about each of these modules see the
 > [Modules & Commands Reference](../middleware/modules_main.md).
 
