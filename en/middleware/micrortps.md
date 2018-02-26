@@ -11,7 +11,7 @@ This topic describes the bridge architecture, how it is compiled, and how to wri
 
 ## When should RTPS be used?
 
-RTPS should be used in circumstances where there is a need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a peer software components running in PX4 (by sending and receiving uORB topics).
+RTPS should be used in circumstances where there is a need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a peer software component running in PX4 (by sending and receiving uORB topics).
 
 Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control. 
 
@@ -222,7 +222,7 @@ baro_temp_celcius: 43.93
 
 The following examples provide additional real-world demonstrations of how to use the features described in this topic.
 
-* [Throughput test](../middleware/micrortps_throughput_test.md): A simple simple test to measure the throughput of the bridge.
+* [Throughput test](../middleware/micrortps_throughput_test.md): A simple test to measure the throughput of the bridge.
 
 
 ## Troubleshooting
@@ -240,7 +240,7 @@ If the selected UART port is busy, it's possible that the MAVLink application is
 
 The *Agent* code is generated using a *FastRTPS* tool called *fastrtpsgen*.  
 
-If you haven't installed Fast RTPS in the default path then you must to specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
+If you haven't installed Fast RTPS in the default path then you must specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
 
 On Linux/Mac this is done as shown below:
 

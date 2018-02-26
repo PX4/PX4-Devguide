@@ -8,7 +8,7 @@ data, compare different estimators, etc.
 
 ## Prerequisites
 The first thing that needs to be done is to identify the module or modules that
-should be replayed. Then, all the inputs to these modules, i.e. subscribed ORB
+should be replayed. Then, identify all the inputs to these modules, i.e. subscribed ORB
 topics. For system-wide replay, this consists of all hardware input: sensors, RC
 input, mavlink commands and file system.
 

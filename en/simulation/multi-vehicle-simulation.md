@@ -119,8 +119,6 @@ To add a third iris to this simulation there are two main components to consider
     > **Note** Be aware of which port is `src` and `dst` for the different endpoints.
 
     
-    
-    
 ## Additional Resources
 
 * See [Simulation](../simulation/README.md) for a description of the UDP port configuration.

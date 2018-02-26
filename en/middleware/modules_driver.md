@@ -116,7 +116,7 @@ It is started with:
 ```
 To drive an LED connected AUX1 pin.
 
-OR with any of the avaliabel AUX pins
+OR with any of the available AUX pins
 ```
  gpio_led start -p 5
 ```

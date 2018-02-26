@@ -80,12 +80,12 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
 
       ![Select Airframe](../../assets/gcs/qgc_hil_config.png)
 1. Setup UDP
-   1. Under the *General* tab of the settings menu, uncheck all *AutoConnect* boxes except for **UDP**. 
+   1. Under the *General* tab of the settings menu, uncheck all *AutoConnect* boxes except for **UDP**.
 
       ![QGC Auto-connect settings for HITL](../../assets/gcs/qgc_hitl_autoconnect.png)
 1. (Gazebo only) Set the `SYS_COMPANION` parameter to `921600` (see [PX4 User Guide > Parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) for instructions on how to change parameters).
 
-1. (Optional) Configure Joystick and Failsafe.
+1. (Optional) Configure Joystick and Failsafe. If you want to use RC instead of Joystick, configure Radio setup before step 4. 
 
    Set the following [parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) in order to use a joystick instead of an RC remote control transmitter:
    * [COM_RC_IN_MODE](../advanced/parameter_reference.md#COM_RC_IN_MODE) to "Joystick/No RC Checks". This allows joystick input and disables RC input checks.

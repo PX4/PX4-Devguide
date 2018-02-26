@@ -48,9 +48,9 @@ Frames are shown in the image below: NED on the left while ENU on the right.
 
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
-With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration); yaw angle will be given respect to local *x*.
+With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration); yaw angle will be given with respect to local *x*.
 
-> **Info** When creating the rigid body in the mocap software, remember to first align the robot with the world *x* axis otherwise yaw estimation will have an initial offset.
+> **Info** When creating the rigid body in the mocap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise yaw estimation will have an initial offset.
 
 ### Using Mavros
 
@@ -68,7 +68,7 @@ We call *x_{mav}*, *y_{mav}* and *z_{mav}* the coordinates that are sent through
 *y_{mav}* = *z_{mocap}*
 *z_{mav}* = - *y_{mocap}*
 
-Regarding the orientation, keep w the same and swap quaternion x y and z in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
+Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
 
 ## First Flight
 
@@ -83,7 +83,7 @@ Be sure to perform the following checks:
 
 If those steps are consistent, you can try your first flight.
 
-Put the robot on the ground and start streaming mocap feedback. Lower your left stick and arm the motors.
+Put the robot on the ground and start streaming mocap feedback. Lower your left (throttle) stick and arm the motors.
 
 At this point, with the left stick at the lowest position, switch to position control. 
 You should have a green light. The green light tells you that position feedback is available and position control is now activated. 

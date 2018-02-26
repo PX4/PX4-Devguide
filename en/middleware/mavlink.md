@@ -185,7 +185,7 @@ See [this tutorial](../debug/debug_values.md). for an example usage of debug mes
 
 ### Set streaming rate
 
-Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by the following line
+Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by typing the following line in the shell:
 ```sh
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>
 ```
