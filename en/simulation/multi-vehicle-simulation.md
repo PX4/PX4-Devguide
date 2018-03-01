@@ -21,6 +21,7 @@ To build an example setup, follow the step below:
    ```
    cd Firmware_clone
    git submodule update --init --recursive
+   make posix_sitl_default
    make posix_sitl_default sitl_gazebo
    ```
 1. Source your environment:
