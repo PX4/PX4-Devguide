@@ -69,7 +69,7 @@ mavlink <command> [arguments...]
                  param)
                  default: 127.0.0.1
      [-m <val>]  Mode: sets default streams and rates
-                 values: custom|camera|onboard|osd|magic|config|iridium,
+                 values: custom|camera|onboard|osd|magic|config|iridium|minimal,
                  default: normal
      [-f]        Enable message forwarding to other Mavlink instances
      [-w]        Wait to send, until first message received
