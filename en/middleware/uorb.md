@@ -29,7 +29,7 @@ To use the topic in the code, include the header:
 ```
 
 By adding a line like the following in the `.msg` file, a single message
-definition can be used for multiple independent topic instances:
+definition can be used for multiple independent topics:
 
 ```
 # TOPICS mission offboard_mission onboard_mission
