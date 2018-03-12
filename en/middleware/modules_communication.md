@@ -74,6 +74,7 @@ mavlink <command> [arguments...]
      [-f]        Enable message forwarding to other Mavlink instances
      [-w]        Wait to send, until first message received
      [-x]        Enable FTP
+     [-z]        Force flow control always on
      [on|off]    Enable/disable
 
    stop-all      Stop all instances
