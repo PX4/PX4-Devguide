@@ -41,19 +41,10 @@ The PX4 dev team syncs up on platform technical details and in-depth analysis. T
 
 ### Tests Flights
 
-Test flights are important for quality assurance. The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
+The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
 
-#### How to request test flights
+See [Test Flights](../test_and_ci/test_flights.md) for information about available test vehicles/autopilots, how to request flights, and response times.
 
-* Assign the test team [@PX4/testflights](https://github.com/orgs/PX4/teams/testflights) as a reviewer to the pull request or issue
-* Add a complete and thorough description of your changes
-* Wait for feedback from the test team
-* The test team will [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
-
-#### Response times
-
-* Multi-Copter: up to 48 hours (typically within 24 hours)
-* VTOL, Fixed Wing: up to 4 days (typically 2 days)
 
 ### Have a problem?
 
