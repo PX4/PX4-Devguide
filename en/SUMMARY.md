@@ -109,6 +109,7 @@
   * [Out-of-tree Modules](advanced/out_of_tree_modules.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
 * [Platform Testing and CI](test_and_ci/README.md)
+  * [Test Flights](test_and_ci/test_flights.md)
   * [Unit Tests](test_and_ci/unit_tests.md)
   * [Continuous Integration](test_and_ci/continous_integration.md)
   * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
