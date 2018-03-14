@@ -1,30 +1,30 @@
-# Initial Configuration & Setup
+# Initial Setup & Configuration
 
-Before starting to work on PX4 we recommend that developers obtain the basic equipment described below (or similar), and initially use a "default" configuration for their [airframe](../airframes/airframe_reference.md).
-
-> **Tip** PX4 can be used with a much wider range of equipment, but new developers will benefit from going with one of the standard setups, and a Taranis RC plus a Note 4 tablet make up for a very inexpensive field kit.
+We recommend that developers obtain the basic equipment described below (or similar) and use a "default" [airframe](../airframes/airframe_reference.md) configuration.
 
 ## Basic Equipment
 
+> **Tip** PX4 can be used with a much wider range of equipment than described here, but new developers will benefit from going with one of the standard setups. A Taranis RC plus a Note 4 tablet make up for a very inexpensive field kit.
+
 The equipment below is highly recommended:
+
 * A Taranis Plus remote control for the safety pilot (or equivalent)
-* A development computer
-  * MacBook Pro or Air with OSX 10.10 or newer
-  * Modern laptop with Ubuntu Linux (14.04 or newer)
-* A ground control station device
-  * Any MacBook or Ubuntu Linux laptop (can be the development computer)
-  * Samsung Note 4 or equivalent (any recent Android tablet or phone with a large enough screen to run QGroundControl effectively).
+* A development computer:
+  * MacBook Pro (early 2015 and later) with OSX 10.13 or later
+  * Lenovo Thinkpad 450 (i5) with Ubuntu Linux 16.04 or later
+* A ground control station device:
   * iPad (requires Wifi telemetry adapter)
+  * Any MacBook or Ubuntu Linux laptop (can be the development computer)
+  * Samsung Note 4 or equivalent (any recent Android tablet or phone with a large enough screen to run *QGroundControl* effectively).
 * Safety glasses
 * For multicopters - tether for more risky tests
 
 ## Vehicle Configuration
 
-Download the [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) for your development platform.
+> **Tip** *QGroundControl* for a **desktop OS** is required for vehicle configuration. You should use (and regularly update) the daily build in order to take advantage of the latest features in PX4.
 
-> **Tip** *QGroundControl* for a desktop OS is required for vehicle configuration. The daily build is highly recommended in order to take advantage of the latest features in PX4.
+To configure the vehicle:
 
-Follow the video instructions below to set up your vehicle. For more detailed/written instructions see the sidebar topics in the [PX4 User Guide > Basic Configuration](https://docs.px4.io/en/config/) section. 
-
-{% youtube %}https://www.youtube.com/watch?v=91VGmdSlbo4&rel=0&vq=hd720{% endyoutube %}
-
+1. Download the [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) for your development platform.
+1. [Basic Configuration](https://docs.px4.io/en/config/) (PX4 User Guide) explains how to to perform basic configuration. 
+1. [Parameter Configuration](https://docs.px4.io/en/advanced_config/parameters.html) (PX4 User Guide) explains how you can find and modify individual parameters.

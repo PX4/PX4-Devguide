@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
 * [Getting Started](setup/getting_started.md)
-  * [Initial Configuration](setup/config_initial.md)
+  * [Initial Setup](setup/config_initial.md)
   * [Toolchain Installation](setup/dev_env.md)
     * [Mac OS](setup/dev_env_mac.md)
     * [Linux](setup/dev_env_linux.md)
@@ -14,12 +14,6 @@
     * [Fast RTPS installation](setup/fast-rtps-installation.md)
   * [Building the Code](setup/building_px4.md)
   * [Writing an Application](tutorials/tutorial_hello_sky.md)
-  * [Advanced Configuration](setup/config_advanced.md)
-  * [Contributing & Dev Call](contribute/README.md)
-    * [GIT Examples](contribute/git_examples.md)
-    * [Documentation](contribute/docs.md)
-  * [Terminology/Notation](contribute/notation.md)
-  * [Licenses](contribute/licenses.md)
 * [Concepts](concept/README.md)
   * [PX4 Architectural Overview](concept/architecture.md)
     * [Controller Diagrams](flight_stack/controller_diagrams.md) 
@@ -116,6 +110,11 @@
   * [Integration Testing](test_and_ci/integration_testing.md)
   * [Docker Containers](test_and_ci/docker.md)
   * [Maintenance](test_and_ci/maintenance.md)
+* [Contributing & Dev Call](contribute/README.md)
+  * [GIT Examples](contribute/git_examples.md)
+  * [Documentation](contribute/docs.md)
+  * [Terminology/Notation](contribute/notation.md)
+  * [Licenses](contribute/licenses.md)
 
 ## Dronecode Shortcuts
 
