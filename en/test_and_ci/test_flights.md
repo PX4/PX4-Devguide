@@ -30,4 +30,7 @@ Test flights are important for quality assurance. The Dronecode test team can he
 * 200qx (UART-ESC)
   * Snapdragon 
 * Intel Aero Ready To Fly Drone
+* Phantom FW
+  * Pixhawk 1
+* Yuneec H520
 * 3DR Iris+
