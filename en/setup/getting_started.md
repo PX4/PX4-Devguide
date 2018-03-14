@@ -1,3 +1,8 @@
 # Getting Started
 
-This section contains topics related to getting a [minimum developer setup](../setup/config_initial.md), [build PX4 from source](../setup/building_px4.md) and contributing to PX4.
+This section contains topics about getting started with PX4 development:
+
+* [Initial Setup](../setup/config_initial.md)
+* [Toolchain Installation](../setup/dev_env.md)
+* [Building the Code](../setup/building_px4.md)
+* [Writing an Application](../tutorials/tutorial_hello_sky.md)
