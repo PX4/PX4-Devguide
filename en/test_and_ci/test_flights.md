@@ -16,21 +16,21 @@ Test flights are important for quality assurance. The Dronecode test team can he
 
 ## Test Vehicles/Autopilots
 
-* DJI F450
+* [DJI F450](http://px4.io/portfolio/dji-flamewheel-450/)
   * Pixhawk mini
   * Pixhawk 3 Pro
   * Pixhawk 2.1 Cube
   * Pixracer
   * Pixhawk 1
   * Aerotenna OcPoc
-* Flyingwings Falcon Vertigo VTOL
+* [Flyingwings Falcon Vertigo VTOL](http://px4.io/portfolio/falcon-vertigo-hybrid-vtol/)
   * Pixhawk
-* QAV 250 (PWM-ESC)
+* [QAV 250](http://px4.io/portfolio/multicopter-portfolio/) (PWM-ESC)
   * Snapdragon 
 * 200qx (UART-ESC)
   * Snapdragon 
-* Intel Aero Ready To Fly Drone
-* Phantom FW
+* [Intel Aero Ready To Fly Drone](http://px4.io/portfolio/intel-aero-ready-fly-drone/)
+* [Booole Phantom FPV Flying Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html?___store=en_us)
   * Pixhawk 1
-* Yuneec H520
+* [Yuneec H520](http://px4.io/portfolio/yuneec-h520-hexacopter/)
 * 3DR Iris+
