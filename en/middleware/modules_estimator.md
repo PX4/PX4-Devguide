@@ -23,3 +23,21 @@ ekf2 <command> [arguments...]
 
    status        print status info
 ```
+## local_position_estimator
+Source: [modules/local_position_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/local_position_estimator)
+
+
+### Description
+Attitude and position estimator using an Extended Kalman Filter.
+
+
+### Usage {#local_position_estimator_usage}
+```
+local_position_estimator <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```

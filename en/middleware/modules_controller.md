@@ -28,6 +28,38 @@ fw_pos_control_l1 is the fixed wing position controller.
 ```
 fw_pos_control_l1 <command> [arguments...]
  Commands:
+   start
+
+   stop
+
+   status        print status info
+```
+## navigator
+Source: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modules/navigator)
+
+
+### Description
+Module that is responsible for autonomous flight modes. This includes missions (read from dataman),
+takeoff and RTL.
+It is also responsible for geofence violation checking.
+
+### Implementation
+The different internal modes are implemented as separate classes that inherit from a common base class `NavigatorMode`.
+The member `_navigation_mode` contains the current active mode.
+
+Navigator publishes position setpoint triplets (`position_setpoint_triplet_s`), which are then used by the position
+controller.
+
+
+### Usage {#navigator_usage}
+```
+navigator <command> [arguments...]
+ Commands:
+   start
+
+   fencefile     load a geofence file from SD card, stored at etc/geofence.txt
+
+   fake_traffic  publishes 3 fake transponder_report_s uORB messages
 
    stop
 
