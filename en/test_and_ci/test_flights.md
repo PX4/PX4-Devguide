@@ -19,10 +19,11 @@ Test flights are important for quality assurance. The Dronecode test team can he
 * DJI F450
   * Pixhawk mini
   * Pixhawk 3 Pro
+  * Pixhawk 2.1 Cube
   * Pixracer
   * Pixhawk 1
   * Aerotenna OcPoc
-* VTOL
+* Flyingwings Falcon Vertigo VTOL
   * Pixhawk
 * QAV 250 (PWM-ESC)
   * Snapdragon 
