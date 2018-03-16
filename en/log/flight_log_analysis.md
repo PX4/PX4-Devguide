@@ -39,7 +39,7 @@ Key features:
 
 ### FlightPlot (Desktop)
 
-[FlightPlot](https://github.com/PX4/FlightPlot) is a desktop based tool for log analysis. It can be downloaded from [FlightPlot Downloads](https://s3.amazonaws.com/flightplot/releases/latest.html) (Linux, MacOS Windows).
+[FlightPlot](https://github.com/PX4/FlightPlot) is a desktop based tool for log analysis. It can be downloaded from [FlightPlot Downloads](https://github.com/PX4/FlightPlot/releases) (Linux, MacOS Windows).
 
 Key features:
 * Java based, cross-platform.
