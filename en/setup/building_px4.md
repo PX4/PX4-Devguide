@@ -66,44 +66,42 @@ Flying the simulation with the ground control station is closer to the real oper
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
 
-
 ## NuttX / Pixhawk Based Boards
 
 ### Building {#building_nuttx}
 
 To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board. 
 
-> **Note** In the example below the first part of the build target `px4fmu-v2` is the autopilot hardware version and `default` is the configuration name (in this case the "default" configuration). All PX4 build targets follow this logic).
+> **Note** In the example below the first part of the build target `px4fmu-v4` is the autopilot hardware version and `default` is the configuration name (in this case the "default" configuration). All PX4 build targets follow this logic).
 
-For example, to build for *Pixhawk 1* you would use the following command:
+For example, to build for *Pixracer* you would use the following command:
 ```sh
 cd Firmware
-make px4fmu-v2_default
+make px4fmu-v4_default
 ```
 A successful run will end with this output:
 ```sh
-[100%] Linking CXX executable firmware_nuttx
-[100%] Built target firmware_nuttx
-Scanning dependencies of target build/firmware_px4fmu-v2
-[100%] Generating nuttx-px4fmu-v2-default.px4
-[100%] Built target build/firmware_px4fmu-v2
+...
+-- Build files have been written to: /home/youruser/src/Firmware/build/px4fmu-v4_default
+[954/954] Creating /home/youruser/src/Firmware/build/px4fmu-v4_default/px4fmu-v4_default.px4
 ```
 
 The following list shows the build commands for common boards:
-* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default`
+* Pixhawk 4: `make px4fmu-v5_default`
+* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
+* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4fmu-v4pro_default`
+* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4fmu-v3_default`
+* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
+* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
 * [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4fmu-v2_default`
 * [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4fmu-v2_default`
 * [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4fmu-v2_default`
-* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
-* [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav-x21_default` 
-* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
-* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
 * [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make mindpx-v2_default`
-* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4fmu-v3_default`
-* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4fmu-v4pro_default`
+* [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav-x21_default` 
 * [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make crazyflie_default`
 * [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make aerofc-v1_default`
-* Pixhawk 4: `make px4fmu-v5_default`
+* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default`
+  > **Warning** You **must** use a [recent version of GCCE](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware) to build this board (or remove modules from the build). Building with an older GCCE may fail, as PX4 is close to the board's 1MB flash limit.
 * [AUAV-X2 (Discontinued)](https://docs.px4.io/en/flight_controller/auav_x2.html): `make px4fmu-v2_default`
 
 
@@ -112,7 +110,7 @@ The following list shows the build commands for common boards:
 Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
 
 ```sh
-make px4fmu-v2_default upload
+make px4fmu-v4_default upload
 ```
 
 A successful run will end with this output:
