@@ -98,7 +98,7 @@ set PWM_DISARMED 1000
 
 > **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
 
-A typical mixer file is shown below.
+A typical mixer file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). A mixer filename , in this case ````wingwing.main.mix````, gives important information about the type of airframe ````wingwing```` the type of outputs if gives ````.main```` and lastly that it is a mixer file ````.mix````.
 
 The mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code. 
 
