@@ -120,7 +120,7 @@ graph TD;
 ## PX4 mixer definitions
 
 Files in `ROMFS/px4fmu_common/mixers` implement mixers that are used for predefined airframes. They can be used as a basis
-for customisation, or for general testing purposes.
+for customisation, or for general testing purposes. A mixer file should be named XXXX.main.mix if it is responsible for the mixing of MAIN outputs or XXXX.aux.mix if it mixes AUX outputs.
 
 ### Syntax
 
