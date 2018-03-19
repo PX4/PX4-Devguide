@@ -39,7 +39,7 @@ Flight Review는 Log Muncher의 다음 버전으로 새로운 ULog 로깅 포맷
 
 ![](https://pixhawk.org/_media/dev/flightplot-0.2.16-screenshot.png)
 
-* [FlightPlot 다운로드](https://s3.amazonaws.com/flightplot/releases/latest.html)
+* [FlightPlot 다운로드](https://github.com/PX4/FlightPlot/releases)
 
 ### 강점
 
