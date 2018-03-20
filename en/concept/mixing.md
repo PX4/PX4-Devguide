@@ -25,86 +25,86 @@ PX4 uses control groups (inputs) and output groups. Conceptually they are very s
 
 For a simple plane control 0 (roll) is connected straight to output 0 (aileron). For a multicopter things are a bit different: control 0 (roll) is connected to all four motors and combined with throttle.
 
-#### Control Group #0 (Flight Control)
+### Control Group #0 (Flight Control)
 
- * 0: roll (-1..1)
- * 1: pitch (-1..1)
- * 2: yaw (-1..1)
- * 3: throttle (0..1 normal range, -1..1 for variable pitch / thrust reversers)
- * 4: flaps (-1..1)
- * 5: spoilers (-1..1)
- * 6: airbrakes (-1..1)
- * 7: landing gear (-1..1)
+* 0: roll (-1..1)
+* 1: pitch (-1..1)
+* 2: yaw (-1..1)
+* 3: throttle (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 4: flaps (-1..1)
+* 5: spoilers (-1..1)
+* 6: airbrakes (-1..1)
+* 7: landing gear (-1..1)
 
-#### Control Group #1 (Flight Control VTOL/Alternate)
+### Control Group #1 (Flight Control VTOL/Alternate)
 
- * 0: roll ALT (-1..1)
- * 1: pitch ALT (-1..1)
- * 2: yaw ALT (-1..1)
- * 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
- * 4: reserved / aux0
- * 5: reserved / aux1
- * 6: reserved / aux2
- * 7: reserved / aux3
+* 0: roll ALT (-1..1)
+* 1: pitch ALT (-1..1)
+* 2: yaw ALT (-1..1)
+* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 4: reserved / aux0
+* 5: reserved / aux1
+* 6: reserved / aux2
+* 7: reserved / aux3
 
-#### Control Group #2 (Gimbal)
+### Control Group #2 (Gimbal)
 
- * 0: gimbal roll
- * 1: gimbal pitch
- * 2: gimbal yaw
- * 3: gimbal shutter
- * 4: reserved
- * 5: reserved
- * 6: reserved
- * 7: reserved (parachute, -1..1)
+* 0: gimbal roll
+* 1: gimbal pitch
+* 2: gimbal yaw
+* 3: gimbal shutter
+* 4: reserved
+* 5: reserved
+* 6: reserved
+* 7: reserved (parachute, -1..1)
 
-#### Control Group #3 (Manual Passthrough)
+### Control Group #3 (Manual Passthrough)
 
- * 0: RC roll
- * 1: RC pitch
- * 2: RC yaw
- * 3: RC throttle
- * 4: RC mode switch
- * 5: RC aux1
- * 6: RC aux2
- * 7: RC aux3
+* 0: RC roll
+* 1: RC pitch
+* 2: RC yaw
+* 3: RC throttle
+* 4: RC mode switch
+* 5: RC aux1
+* 6: RC aux2
+* 7: RC aux3
 
-#### Control Group #6 (First Payload)
+### Control Group #6 (First Payload)
 
- * 0: function 0 (default: parachute)
- * 1: function 1
- * 2: function 2
- * 3: function 3
- * 4: function 4
- * 5: function 5
- * 6: function 6
- * 7: function 7
+* 0: function 0 (default: parachute)
+* 1: function 1
+* 2: function 2
+* 3: function 3
+* 4: function 4
+* 5: function 5
+* 6: function 6
+* 7: function 7
 
-### Virtual Control Groups
+## Virtual Control Groups
 
 These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing and multicopter controller outputs into the VTOL governor module.
 
-#### Control Group #4 (Flight Control MC VIRTUAL)
+### Control Group #4 (Flight Control MC VIRTUAL)
 
- * 0: roll ALT (-1..1)
- * 1: pitch ALT (-1..1)
- * 2: yaw ALT (-1..1)
- * 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
- * 4: reserved / aux0
- * 5: reserved / aux1
- * 6: reserved / aux2
- * 7: reserved / aux3
+* 0: roll ALT (-1..1)
+* 1: pitch ALT (-1..1)
+* 2: yaw ALT (-1..1)
+* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 4: reserved / aux0
+* 5: reserved / aux1
+* 6: reserved / aux2
+* 7: reserved / aux3
 
-#### Control Group #5 (Flight Control FW VIRTUAL)
+### Control Group #5 (Flight Control FW VIRTUAL)
 
- * 0: roll ALT (-1..1)
- * 1: pitch ALT (-1..1)
- * 2: yaw ALT (-1..1)
- * 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
- * 4: reserved / aux0
- * 5: reserved / aux1
- * 6: reserved / aux2
- * 7: reserved / aux3
+* 0: roll ALT (-1..1)
+* 1: pitch ALT (-1..1)
+* 2: yaw ALT (-1..1)
+* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 4: reserved / aux0
+* 5: reserved / aux1
+* 6: reserved / aux2
+* 7: reserved / aux3
 
 ## Mapping
 
@@ -117,10 +117,14 @@ graph TD;
   actuator_group_1-->output_group_0
 {% endmermaid %}
 
-## PX4 mixer definitions
+## PX4 Mixer Definitions
 
-Files in `ROMFS/px4fmu_common/mixers` implement mixers that are used for predefined airframes. They can be used as a basis
-for customisation, or for general testing purposes. A mixer file should be named XXXX.main.mix if it is responsible for the mixing of MAIN outputs or XXXX.aux.mix if it mixes AUX outputs.
+Files in **ROMFS/px4fmu_common/mixers** implement mixers that are used for predefined airframes. They can be used as a basis
+for customisation, or for general testing purposes. 
+
+### Mixer File Names
+
+A mixer file must be named **XXXX._main_.mix** if it is responsible for the mixing of MAIN outputs or **XXXX._aux_.mix** if it mixes AUX outputs.
 
 ### Syntax
 
@@ -137,22 +141,25 @@ in the order they appear in the mixer file.
 
 A mixer begins with a line of the form
 
-	<tag>: <mixer arguments>
+```
+<tag>: <mixer arguments>
+```
 
 The tag selects the mixer type; 'M' for a simple summing mixer, 'R' for a 
 multirotor mixer, etc.
 
-#### Null Mixer ####
+#### Null Mixer
 
 A null mixer consumes no controls and generates a single actuator output whose
 value is always zero.  Typically a null mixer is used as a placeholder in a
 collection of mixers in order to achieve a specific pattern of actuator outputs.
 
 The null mixer definition has the form:
+```
+Z:
+```
 
-	Z:
-
-#### Simple Mixer ####
+#### Simple Mixer
 
 A simple mixer combines zero or more control inputs into a single actuator
 output. Inputs are scaled, and the mixing function sums the result before
@@ -160,25 +167,29 @@ applying an output scaler.
 
 A simple mixer definition begins with:
 
-	M: <control count>
-	O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
+```
+M: <control count>
+O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
+```
 
-If &lt;control count&gt; is zero, the sum is effectively zero and the mixer will
-output a fixed value that is &lt;offset&gt; constrained by &lt;lower limit&gt;
-and &lt;upper limit&gt;.
+If `<control count>` is zero, the sum is effectively zero and the mixer will
+output a fixed value that is `<offset>` constrained by `<lower limit>`
+and `<upper limit>`.
 
 The second line defines the output scaler with scaler parameters as discussed
 above. Whilst the calculations are performed as floating-point operations, the
 values stored in the definition file are scaled by a factor of 10000; i.e. an
 offset of -0.5 is encoded as -5000.
 
-The definition continues with &lt;control count&gt; entries describing the control
+The definition continues with `<control count>` entries describing the control
 inputs and their scaling, in the form:
 
-	S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
+```
+S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
+```
 
-The &lt;group&gt; value identifies the control group from which the scaler will read,
-and the &lt;index&gt; value an offset within that group.  These values are specific to
+The `<group>` value identifies the control group from which the scaler will read,
+and the `<index>` value an offset within that group.  These values are specific to
 the device reading the mixer definition.
 
 When used to mix vehicle controls, mixer group zero is the vehicle attitude
@@ -192,23 +203,24 @@ operations, the values stored in the definition file are scaled by a factor of
 
 An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
 
-#### Multirotor Mixer ####
+#### Multirotor Mixer
 
 The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust)
 into a set of actuator outputs intended to drive motor speed controllers.
 
 The mixer definition is a single line of the form:
-
-	R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
+```
+R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
+```
 
 The supported geometries include:
 
- * 4x - quadrotor in X configuration
- * 4+ - quadrotor in + configuration
- * 6x - hexacopter in X configuration
- * 6+ - hexacopter in + configuration
- * 8x - octocopter in X configuration
- * 8+ - octocopter in + configuration
+* 4x - quadrotor in X configuration
+* 4+ - quadrotor in + configuration
+* 6x - hexacopter in X configuration
+* 6+ - hexacopter in + configuration
+* 8x - octocopter in X configuration
+* 8+ - octocopter in + configuration
   
 Each of the roll, pitch and yaw scale values determine scaling of the roll,
 pitch and yaw controls relative to the thrust control.  Whilst the calculations
