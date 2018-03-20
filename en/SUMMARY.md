@@ -14,6 +14,7 @@
     * [Fast RTPS installation](setup/fast-rtps-installation.md)
   * [Building the Code](setup/building_px4.md)
   * [Writing an Application](tutorials/tutorial_hello_sky.md)
+  * [Module Template](tutorials/module_template.md)
 * [Concepts](concept/README.md)
   * [PX4 Architectural Overview](concept/architecture.md)
     * [Controller Diagrams](flight_stack/controller_diagrams.md) 
