@@ -1,12 +1,5 @@
 # Terminology
 
-<!-- Fixes page load bug in notation, courtesy https://github.com/GitbookIO/plugin-mathjax/issues/34#issuecomment-349453673 -->
-<script>
-gitbook.events.bind("page.change", function() {
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-}
-</script>
-
 The following terms, symbols, and decorators are used in text and diagrams throughout this guide.
 
 ## Notation
