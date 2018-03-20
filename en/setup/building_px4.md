@@ -79,9 +79,8 @@ For example, to build for *Pixracer* you would use the following command:
 cd Firmware
 make px4fmu-v4_default
 ```
-A successful run will end with this output:
+A successful run will end with similar output to:
 ```sh
-...
 -- Build files have been written to: /home/youruser/src/Firmware/build/px4fmu-v4_default
 [954/954] Creating /home/youruser/src/Firmware/build/px4fmu-v4_default/px4fmu-v4_default.px4
 ```
@@ -101,7 +100,7 @@ The following list shows the build commands for common boards:
 * [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make crazyflie_default`
 * [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make aerofc-v1_default`
 * [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default`
-  > **Warning** You **must** use a [recent version of GCCE](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware) to build this board (or remove modules from the build). Building with an older GCCE may fail, as PX4 is close to the board's 1MB flash limit.
+  > **Warning** You **must** use a [supported version of GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware) to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. Building with an unsupported GCC may fail, as PX4 is close to the board's 1MB flash limit.
 * [AUAV-X2 (Discontinued)](https://docs.px4.io/en/flight_controller/auav_x2.html): `make px4fmu-v2_default`
 
 
