@@ -100,7 +100,7 @@
   * [Parameter Reference](advanced/parameter_reference.md)
   * [Installing driver for Intel RealSense R200](advanced/realsense_intel_driver.md)
   * [Switching State Estimators](advanced/switching_state_estimators.md)
-  * [Out-of-tree Modules](advanced/out_of_tree_modules.md)
+  * [Out-of-Tree Modules](advanced/out_of_tree_modules.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
 * [Platform Testing and CI](test_and_ci/README.md)
   * [Test Flights](test_and_ci/test_flights.md)
