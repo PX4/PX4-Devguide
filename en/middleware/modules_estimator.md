@@ -41,3 +41,25 @@ local_position_estimator <command> [arguments...]
 
    status        print status info
 ```
+## wind_estimator
+Source: [modules/wind_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/wind_estimator)
+
+
+### Description
+This module runs a combined wind and airspeed scale factor estimator.
+If provided the vehicle NED speed and attitude it can estimate the horizontal wind components based on a zero
+sideslip assumption. This makes the estimator only suitable for fixed wing vehicles.
+If provided an airspeed measurement this module also estimates an airspeed scale factor based on the following model:
+measured_airspeed = scale_factor * real_airspeed.
+
+
+### Usage {#wind_estimator_usage}
+```
+wind_estimator <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
