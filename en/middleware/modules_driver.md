@@ -174,38 +174,31 @@ gps <command> [arguments...]
 
    status        print status info
 ```
-## pwmsim
+## pwm_out_sim
 Source: [drivers/pwm_out_sim](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_out_sim)
 
 
 ### Description
+Driver for simulated PWM outputs.
 
-Driver/configurator for the virtual PWMSim port.
-
-This virtual driver emulates PWM / servo outputs for setups where
-the connected hardware does not provide enough or no PWM outputs.
-
-Its only function is to take actuator_control uORB messages,
+Its only function is to take `actuator_control` uORB messages,
 mix them with any loaded mixer and output the result to the
-actuator_output uORB topic. PWMSim can also be performed with normal
-PWM outputs, a special flag prevents the outputs to be operated
-during PWMSim mode. If PWMSim is not performed with a standalone FMU,
-but in a real system, it is NOT recommended to use this virtual
-driver. Use instead the normal FMU or IO driver.
+`actuator_output` uORB topic.
+
+It is used in SITL and HITL.
 
 
-### Usage {#pwmsim_usage}
+### Usage {#pwm_out_sim_usage}
 ```
-pwmsim <command> [arguments...]
+pwm_out_sim <command> [arguments...]
  Commands:
-   start         Start the task (without any mode set, use any of the mode_*
-                 cmds)
+   start         Start the task in mode_pwm16
 
  All of the mode_* commands will start the pwm sim if not running already
 
-   mode_pwm
+   mode_pwm      use 8 PWM outputs
 
-   mode_pwm16
+   mode_pwm16    use 16 PWM outputs
 
    stop
 
