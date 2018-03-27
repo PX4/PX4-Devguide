@@ -67,6 +67,8 @@ To install the Gazebo and jMAVSim simulators:
 
 > **Tip** If you just need jMAVSim, instead download and run <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
 
+<span><span>
+> **Note** PX4 works with Gazebo 7, 8, and 9. The script installs Gazebo 9.
 
 ### Gazebo with ROS
 
@@ -80,7 +82,7 @@ To install the development toolchain:
    You may need to acknowledge some prompts as the script progresses.
 
 Note: 
-* ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 to simplify ROS development).
+* ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 or Gazebo9 to simplify ROS development).
 * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
 
 
