@@ -34,6 +34,38 @@ fw_pos_control_l1 <command> [arguments...]
 
    status        print status info
 ```
+## mc_att_control
+Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
+
+
+### Description
+This implements the multicopter attitude and rate controller. It takes attitude
+setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode
+via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+
+The controller has two loops: a P loop for angular error and a PID loop for angular rate error.
+
+Publication documenting the implemented Quaternion Attitude Control:
+Nonlinear Quadrocopter Attitude Control (2013)
+by Dario Brescianini, Markus Hehn and Raffaello D'Andrea
+Institute for Dynamic Systems and Control (IDSC), ETH Zurich
+
+https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf
+
+### Implementation
+To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
+
+
+### Usage {#mc_att_control_usage}
+```
+mc_att_control <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## navigator
 Source: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modules/navigator)
 
