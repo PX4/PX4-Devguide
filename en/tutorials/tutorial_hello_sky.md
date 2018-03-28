@@ -1,6 +1,11 @@
-# First App Tutorial (Hello Sky)
+# First Application Tutorial (Hello Sky)
 
-This tutorial explains in detail how to create and run a new onboard application.
+This tutorial explains in detail how to create and run your first onboard application.
+It will guide you through basic PX4 concepts and API's. For simplicity, more
+advanced features such as start/stop functionality and command-line arguments
+are ignored here.
+Nevertheless these are required for a full application and are covered on the
+[Module Template page](module_template.md).
 
 
 ## Prerequisites
@@ -490,6 +495,6 @@ This tutorial covered everything needed to develop a basic PX4 autopilot applica
 
 Further information and troubleshooting/common pitfalls can be found here: [uORB](../middleware/uorb.md).
 
-The next page presents a template for writing a PX4 application with start
+The next page presents a template for writing a full application with start
 and stop functionality.
 
