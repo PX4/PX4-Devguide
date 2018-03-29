@@ -2,6 +2,10 @@
     "redirects": [
 
             {
+                "from": "en/tutorials/tutorial_hello_sky.html",
+                "to": "en/apps/hello_sky.html"
+            },
+            {
                 "from": "en/advanced_config/sensor_thermal_calibration.html",
                 "to": "https://docs.px4.io/en/advanced_config/sensor_thermal_calibration.html"
             },
