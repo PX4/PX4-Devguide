@@ -133,7 +133,7 @@ sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
 
 ### Gazebo
 
-> **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation). 
+> **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation).
 
 Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
 
@@ -145,11 +145,13 @@ sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `ls
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 ## Update the debian database:
 sudo apt-get update -y
-## Install Gazebo8
-sudo apt-get install gazebo8 -y
+## Install Gazebo9
+sudo apt-get install gazebo9 -y
 ## For developers (who work on top of Gazebo) one extra package
-sudo apt-get install libgazebo8-dev
+sudo apt-get install libgazebo9-dev -y
 ```
+
+> **Tip** PX4 works with Gazebo 7, 8, and 9. The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
 
 <!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
 sudo apt-get install clang-3.5 lldb-3.5 -y
