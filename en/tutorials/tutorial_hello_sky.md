@@ -1,6 +1,11 @@
-# First App Tutorial (Hello Sky)
+# First Application Tutorial (Hello Sky)
 
-This tutorial explains in detail how to create and run a new onboard application.
+This tutorial explains in detail how to create and run your first onboard application.
+It will guide you through basic PX4 concepts and API's. For simplicity, more
+advanced features such as start/stop functionality and command-line arguments
+are ignored here.
+Nevertheless these are required for a full application and are covered on the
+[Module Template page](module_template.md).
 
 
 ## Prerequisites
@@ -486,7 +491,10 @@ If you start *QGroundControl*, you can check the sensor values in the real time 
 
 ## Wrap-Up
 
-This tutorial covered everything needed to develop a "grown up" PX4 autopilot application. Keep in mind that the full list of uORB messages/topics is [available here](https://github.com/PX4/Firmware/tree/master/msg/) and that the headers are well documented and serve as reference.
+This tutorial covered everything needed to develop a basic PX4 autopilot application. Keep in mind that the full list of uORB messages/topics is [available here](https://github.com/PX4/Firmware/tree/master/msg/) and that the headers are well documented and serve as reference.
 
 Further information and troubleshooting/common pitfalls can be found here: [uORB](../middleware/uorb.md).
+
+The next page presents a template for writing a full application with start
+and stop functionality.
 
