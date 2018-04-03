@@ -191,7 +191,10 @@ If you cannnot start the stream on the Odroid with the uvch264s plugin, you can 
 ```sh
  gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,framerate=24/1 ! h264parse ! rtph264pay ! udpsink host=xxx.xxx.xxx.xxx port=5000
 ```
-Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running. If you get the system error: `Permission denied`, you might need to prepend `sudo` to the  command above. 
+Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running. If you get the system error: `Permission denied`, you might need to prepend `sudo` to the  command above. If you don't want to type `sudo` you should be member of `video` group. To do that simply type this command : 
+```sh
+sudo usermod -aG video $USER
+```
 
 If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screeenshot below. 
 
