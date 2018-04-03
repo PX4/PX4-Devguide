@@ -161,7 +161,8 @@ struct message_info_s {
 | `key`                        | Description               | Example for value |
 | -----                        | -----------               | ----------------- |
 | char[value_len] sys_name     | Name of the system        |  "PX4"            |
-| char[value_len] ver_hw       | Hardware version          |  "PX4FMU_V4"      |
+| char[value_len] ver_hw       | Hardware version (board)  |  "PX4FMU_V4"      |
+| char[value_len] ver_hw_subtype| Board subversion (variation)|  "V2"          |
 | char[value_len] ver_sw       | Software version (git tag)|  "7f65e01"        |
 | char[value_len] ver_sw_branch| git branch                |  "master"         |
 | uint32_t ver_sw_release      | Software version (see below)|  0x010401ff     |
