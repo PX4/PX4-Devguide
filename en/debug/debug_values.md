@@ -21,12 +21,10 @@ This tutorial shows how to send the MAVLink message `NAMED_VALUE_FLOAT` using th
 
 The code for this tutorial is available here:
 
-  * [Debug Tutorial Code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.c)
-  * [Enable the tutorial app](https://github.com/PX4/Firmware/tree/master/cmake/configs) by uncommenting / enabling the mavlink debug app in the config of your board
+* [Debug Tutorial Code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.c)
+* [Enable the tutorial app](https://github.com/PX4/Firmware/tree/master/cmake/configs) by uncommenting / enabling the mavlink debug app in the config of your board
 
 All required to set up a debug publication is this code snippet. First add the header file:
-
-<div class="host-code"></div>
 
 ```C
 #include <uORB/uORB.h>
@@ -35,8 +33,6 @@ All required to set up a debug publication is this code snippet. First add the h
 
 Then advertise the debug value topic (one advertisement for different published names is sufficient). Put this in front of your main loop:
 
-<div class="host-code"></div>
-
 ```C
 /* advertise debug value */
 struct debug_key_value_s dbg = { .key = "velx", .value = 0.0f };
@@ -44,8 +40,6 @@ orb_advert_t pub_dbg = orb_advertise(ORB_ID(debug_key_value), &dbg);
 ```
 
 And sending in the main loop is even simpler:
-
-<div class="host-code"></div>
 
 ```C
 dbg.value = position[0];
@@ -56,7 +50,7 @@ orb_publish(ORB_ID(debug_key_value), pub_dbg, &dbg);
 
 The result in QGroundControl then looks like this on the real-time plot:
 
-![](../../assets/gcs/qgc-debugval-plot.jpg)
+![QGC debugvalue plot](../../assets/gcs/qgc-debugval-plot.jpg)
 
 
 ## Tutorial: Receive String / Float Pairs
@@ -64,8 +58,6 @@ The result in QGroundControl then looks like this on the real-time plot:
 The following code snippets show how to receive the `velx` debug variable that was sent in the previous tutorial.
 
 First, subscribe to the topic `debug_key_value`:
-
-<div class="host-code"></div>
 
 ```C
 #include <poll.h>
@@ -76,8 +68,6 @@ int debug_sub_fd = orb_subscribe(ORB_ID(debug_key_value));
 ```
 
 Then poll on the topic:
-
-<div class="host-code"></div>
 
 ```C
 [...]
@@ -94,8 +84,6 @@ while (true) {
 ```
 
 When a new message is available on the `debug_key_value` topic, do not forget to filter it based on its key attribute in order to discard the messages with key different than `velx`:
-
-<div class="host-code"></div>
 
 ```C
     [...]

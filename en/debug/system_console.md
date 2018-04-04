@@ -57,11 +57,11 @@ If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](http://ww
 
 The connector pinout is shown in the figure below.
 
-![](../../assets/console/console_connector.jpg)
+![Console Connector](../../assets/console/console_connector.jpg)
 
 The complete wiring is shown below.
 
-![](../../assets/console/console_debug.jpg)
+![Console Debug](../../assets/console/console_debug.jpg)
 
 ## Opening the Console
 
@@ -71,18 +71,14 @@ After the console connection is wired up, use the default serial port tool of yo
 
 Install screen on Ubuntu (Mac OS already has it installed):
 
-<div class="host-code"></div>
-
 ```bash
 sudo apt-get install screen
 ```
 
-  * Serial: Pixhawk v1 / Pixracer use 57600 baud
-  * Serial: Snapdragon Flight uses 115200 baud
+* Serial: Pixhawk v1 / Pixracer use 57600 baud
+* Serial: Snapdragon Flight uses 115200 baud
 
 Connect screen at BAUDRATE baud, 8 data bits, 1 stop bit to the right serial port (use `ls /dev/tty*` and watch what changes when unplugging / replugging the USB device). Common names are `/dev/ttyUSB0` and `/dev/ttyACM0` for Linux and `/dev/tty.usbserial-ABCBD` for Mac OS.
-
-<div class="host-code"></div>
 
 ```bash
 screen /dev/ttyXXX BAUDRATE 8N1
@@ -94,9 +90,9 @@ Download [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 
 Then select 'serial connection' and set the port parameters to:
 
-  * 57600 baud
-  * 8 data bits
-  * 1 stop bit
+* 57600 baud
+* 8 data bits
+* 1 stop bit
 
 ## Getting Started on the Console
 
@@ -112,7 +108,7 @@ nsh> free
 For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be
 accessed via mavlink. This works via serial link or WiFi (UDP/TCP). Make sure
 that QGC is not running, then start the shell with e.g.
-`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source). Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection. For e.g `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot. You can also start nsh shell on QGC directly: **Analyze -> Mavlink Console**. You may first have to install the dependencies with `sudo pip install pymavlink pyserial`.
+`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source). Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection. For e.g `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot. You can also start nsh shell on QGC directly: **Analyze > Mavlink Console**. You may first have to install the dependencies with `sudo pip install pymavlink pyserial`.
 
 # Snapdragon DSP Console
 

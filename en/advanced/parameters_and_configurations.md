@@ -6,7 +6,7 @@ The [system startup](../advanced/system_startup.md) and how [airframe configurat
 
 ## Command Line usage
 
-The PX4 [system console](../debug/system_console.md) offers the ```param``` tool, which allows to set parameters, read their value, save them and export and restore to and from files.
+The PX4 [system console](../debug/system_console.md) offers the *param* tool, which allows to set parameters, read their value, save them and export and restore to and from files.
 
 ### Getting and Setting Parameters
 
@@ -43,7 +43,7 @@ If provided with an argument, it will store the parameters instead to this new l
 param save /fs/microsd/vtol_param_backup
 ```
 
-There are two different commands to load parameters: ```param load``` will load a file and replace the current parameters with what is in this file, resulting in a 1:1 copy of the state that was present when these parameters were stored. ```param import``` is more subtle: It will only change parameter values which have been changed from the default. This is great to e.g. initially calibrate a board (without configuring it further), then importing the calibration data without overwriting the rest of the system configuration.
+There are two different commands to load parameters: `param load` will load a file and replace the current parameters with what is in this file, resulting in a 1:1 copy of the state that was present when these parameters were stored. `param import` is more subtle: It will only change parameter values which have been changed from the default. This is great to e.g. initially calibrate a board (without configuring it further), then importing the calibration data without overwriting the rest of the system configuration.
 
 Overwrite the current parameters:
 
@@ -64,7 +64,6 @@ There is also a C and a separate C++ API which can be used to access parameter v
 > **Todo** Discuss param C / C++ API.
 
 
-<div class="host-code"></div>
 
 ```C
 int32_t param = 0;
@@ -77,7 +76,7 @@ PX4 uses an extensive parameter meta data system to drive the user-facing presen
 
 A typical parameter metadata section will look like this:
 
-```C++
+```cpp
 /**
  * Pitch P gain
  *
@@ -96,7 +95,7 @@ PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
 
 Where each line has this use:
 
-```C++
+```cpp
 /**
  * <title>
  *
@@ -112,4 +111,3 @@ Where each line has this use:
  */
 PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
 ```
-
