@@ -38,15 +38,11 @@ Identify the probe's device name. This will typically be `/dev/ttyACM<x>` or `/d
 
 Power up your UAVCAN device, and run:
 
-<div class="host-code"></div>
-
 ```sh
 arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 ```
 
 At the `gdb` prompt, run:
-
-<div class="host-code"></div>
 
 ```gdb
 target extended /dev/ttyACM0
@@ -68,16 +64,12 @@ Connect the ST-Link to your UAVCAN device, and connect the ST-Link to your compu
 
 Power up your UAVCAN device, and run:
 
-<div class="host-code"></div>
-
 ```sh
 openocd -f /path/to/your/openocd.cfg &
 arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 ```
 
 At the `gdb` prompt, run:
-
-<div class="host-code"></div>
 
 ```gdb
 target extended-remote localhost:3333
@@ -86,34 +78,37 @@ set mem inaccessible-by-default off
 load
 run
 ```
+
 ## Segger J-Link Debugger
 
 Connect the JLink Debugger to your UAVCAN device, and connect the JLink Debugger to your computer.
 
 Power up your UAVCAN device, and run:
 
-<div class="host-code"></div>
-
-```JLinkGDBServer -select USB=0 -device STM32F446RE -if SWD-DP -speed 20000 -vd```
+```
+JLinkGDBServer -select USB=0 -device STM32F446RE -if SWD-DP -speed 20000 -vd
+```
 
 Open a second terminal, navigate to the directory that includes the px4esc_1_6-bootloader.elf for the esc and run:
 
-<div class="host-code"></div>
-
-```arm-none-eabi-gdb px4esc_1_6-bootloader.elf```
+```
+arm-none-eabi-gdb px4esc_1_6-bootloader.elf
+```
 
 At the `gdb` prompt, run:
 
-<div class="host-code"></div>
-
-```tar ext :2331
+```
+tar ext :2331
 load
 ```
+
 ## Erasing Flash with SEGGER JLink Debugger
 
 As a recovery method it may be useful to erase flash to factory defaults such that the firmware is using the default parameters. Go to the directory of your SEGGER installation and launch JLinkExe, then run:
 
-    device <name-of-device>
-    erase
-    
+```
+device <name-of-device>
+erase
+```
+
 Replace `<name-of-device>` with the name of the microcontroller, e.g. STM32F446RE for the Pixhawk ESC 1.6 or STM32F302K8 for the SV2470VC ESC.
