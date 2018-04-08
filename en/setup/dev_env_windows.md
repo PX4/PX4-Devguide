@@ -78,7 +78,7 @@ Simulation with GUI tools needs X-Window applications like XMing.
   make posix jmavsim
  ```
  Then JMavsim will display in XMing
- ![jMAVSimOnWindows](../../assets/JMAVSim_on_Windows.PNG)
+ ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
  It's also possible running Gazebo on WSL by pratice (but may have some issue)
   ```sh
   export DISPLAY=:0
