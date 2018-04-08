@@ -21,7 +21,7 @@ Download and install these on your system:
 Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to build firmware for NuttX/Pixhawk targets. 
 We have provided a script below that makes this easy.
 
-> **Note** This approach does not currently support simulation because *Bash on Windows* does not enable Linux UI applications.
+> **Note** This approach can using GUI simulation tools with the help of X-Windows Application on Windows like X-Ming
 
 <span></span>
 > **Tip** The script has been updated to  [install Fast RTPS from (Linux) binaries](../setup/fast-rtps-installation.md#linux).
@@ -69,6 +69,26 @@ To add this compiler to your environment manually:
    export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH
    ```
 
+#### Simulation
+Simulation with GUI tools needs X-Window applications like XMing.
+ 1.Install and start [XMing](https://sourceforge.net/projects/xming/) on Windows
+ 2.In Bash on Windows or other terminal
+ ```sh
+  export DISPLAY=:0
+  make posix jmavsim
+ ```
+ Then JMavsim will display in XMing
+ ![jMAVSimOnWindows](../../assets/JMAVSim_on_Windows.PNG)
+ It's also possible running Gazebo on WSL by pratice (but may have some issue)
+  ```sh
+  export DISPLAY=:0
+  make posix gazebo_plane
+ ```
+You can also add
+  ```sh
+  export DISPLAY=:0
+  ```
+ to your .bashrc for more easy use.
 
 <!-- import docs for other tools and next steps. -->
 {% include "_addition_dev_tools.txt" %}
