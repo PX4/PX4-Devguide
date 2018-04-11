@@ -57,11 +57,15 @@ git clone https://github.com/<your git name>/px4_user_guide.git
 ```sh
 npm install gitbook-cli -g
 ```
-* Navigate to your local repository:
+> **Note** Everything you need to install and build Gitbook locally is also explained in the 
+[toolchain documentation](https://toolchain.gitbook.com/setup.html). 
+
+* Navigate to your local repository and add original upstream:
 ```sh
 cd ~/wherever/px4_user_guide
+git remote add upstream https://github.com/PX4/px4_user_guide.git
 ```
-* To build your book, run:
+* Now you can checkout a new branch and add your changes. To build your book, run:
 ```sh
 gitbook build
 ```
@@ -80,14 +84,25 @@ gitbook serve
 ```sh
 gitbook serve --port 4003
 ```
-* You can output as html, pdf, epub or mobi:
+* You can also output as html, pdf, epub or mobi:
 ```sh
 gitbook help
 ```
+* Once you are satisfied with your changes after previewing them, you can add and commit them:
+```sh
+git add <file name>
+git commit -m "<your commit message>"
+```
+For a good commit message, please refer to [Contributing](../contribute/README.md) section.
 
-Everything you need to install and build Gitbook locally is also explained in the 
-[toolchain documentation](https://toolchain.gitbook.com/setup.html). 
-
+* Now you can push your local commits to your forked repository
+```sh
+git push origin <your feature branch name>
+```
+* You can verify that the push was successful by going to your forked repository in your browser: ```https://github.com/<your git name>/px4_user_guide.git```<br>
+There you should see the message that a new branch has been pushed to your forked repository.
+* Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/px4_user_guide/pulls) for comparison)
+* You're done! Responsible members of PX4 guides will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
 In overview:
 
