@@ -107,11 +107,15 @@ Follow the appropriate setup steps for your simulator in the following sections.
 > **Note** Make sure *QGroundControl* is not running!
 
 1. Update the environment variables: 
-  ```sh
-  cd <Firmware_clone>
-  make posix_sitl_default gazebo
-  source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
-  ```
+   ```sh
+   cd <Firmware_clone>
+   make posix_sitl_default gazebo
+   ```
+   In a new terminal, run:
+   ```sh
+   source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
+   ```
+  
 1. Open the vehicle model's sdf file (e.g. **Tools/sitl_gazebo/models/iris/iris.sdf**).
 1. Under the `mavlink_interface plugin` section, change the `serialEnabled` and `hil_mode` parameters to `true`. 
 
