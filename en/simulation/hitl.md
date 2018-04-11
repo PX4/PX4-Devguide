@@ -79,8 +79,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
       ![QGroundControl HITL configuration](../../assets/gcs/qgc_hitl_config.png)
 1. Select Airframe
    1. Open **Setup > Airframes**
-   1. Select a [compatible airframe](#compatible_airframe) you want to test.
-      Generally you'll select *HILStar* for Fixed Wing/X-Plane simulator and a *HIL QuadCopter* option for copters (and jMAVSim or Gazebo).
+   1. Select a [compatible airframe](#compatible_airframe) you want to test. Generally you'll select *HILStar* for Fixed Wing/X-Plane simulator and a *HIL QuadCopter* option for copters (and jMAVSim or Gazebo). Then click "Apply and Restart" on top-right of the Airframe Setup page.
 
       ![Select Airframe](../../assets/gcs/qgc_hil_config.png)
 1. Setup UDP
