@@ -85,7 +85,7 @@ gitbook serve --port 4003
 gitbook help
 ```
 
-Everything you need to install and build Gitbook locally is explained in the 
+Everything you need to install and build Gitbook locally is also explained in the 
 [toolchain documentation](https://toolchain.gitbook.com/setup.html). 
 
 
