@@ -4,7 +4,7 @@ This topic is for developers who want to port PX4 to work with *new* flight cont
 
 ## PX4 Architecture
 
-PX4 consists of two main layers: The [board support and middleware layer](https://dev.px4.io/en/middleware/) on top of the host OS (NuttX, Linux or any other POSIX platform like Mac OS), and the applications (Flight Stack in [src/modules](https://github.com/PX4/Firmware/tree/master/src/modules)\).  Please reference the [PX4 Architectural Overview](../concept/architecture.md) for more information.
+PX4 consists of two main layers: The [board support and middleware layer](../middleware/README.md) on top of the host OS (NuttX, Linux or any other POSIX platform like Mac OS), and the applications (Flight Stack in [src/modules](https://github.com/PX4/Firmware/tree/master/src/modules)\).  Please reference the [PX4 Architectural Overview](../concept/architecture.md) for more information.
 
 This guide is focused only on the host OS and middleware as the applications/flight stack will run on any board target.
 
@@ -30,7 +30,7 @@ For all NuttX based flight controllers (e.g. the Pixhawk series) the OS is loade
 
 The configuration files for NuttX based boards, including linker scripts and other required settings are located under [platforms/nuttx/nuttx-configs](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/nuttx-configs).
 
-The following example uses FMUv5 as it is the current [reference configuration](./reference-design.md) for NuttX based flight controllers:
+The following example uses FMUv5 as it is a recent [reference configuration](../debug/reference-design.md) for NuttX based flight controllers:
 * Running `make px4fmu-v5_default` from the `src/Firmware` directory will build the FMUv5 config
 * The base FMUv5 configuration files are located in: [platforms/nuttx/nuttx-configs/px4fmu-v5](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/nuttx-configs/px4fmu-v5).
 * Board specific header: [platforms/nuttx/nuttx-configs/px4fmu-v5/include/board.h](https://github.com/PX4/Firmware/blob/master/platforms/nuttx/nuttx-configs/px4fmu-v5/include/board.h).
@@ -62,7 +62,7 @@ This section describes the various middleware components, and the configuration 
 * The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions).
 * The PX4 middleware configuration is located in [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards). TODO: ADD BUS CONFIG
 * Drivers: [DriverFramework](https://github.com/px4/DriverFramework).
-* Reference config: Running `make qurt_eagle_release` builds the Snapdragon Flight reference config.
+* Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
 
 ## Related Information
 
