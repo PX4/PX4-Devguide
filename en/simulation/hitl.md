@@ -82,14 +82,14 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
    1. Select a [compatible airframe](#compatible_airframe) you want to test. Generally you'll select *HILStar* for Fixed Wing/X-Plane simulator and a *HIL QuadCopter* option for copters (and jMAVSim or Gazebo). Then click "Apply and Restart" on top-right of the Airframe Setup page.
 
       ![Select Airframe](../../assets/gcs/qgc_hil_config.png)
+1. Calibrate your RC or Joystick, if needed.
 1. Setup UDP
    1. Under the *General* tab of the settings menu, uncheck all *AutoConnect* boxes except for **UDP**.
 
       ![QGC Auto-connect settings for HITL](../../assets/gcs/qgc_hitl_autoconnect.png)
 1. (Gazebo only) Set the `SYS_COMPANION` parameter to `921600` (see [PX4 User Guide > Parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) for instructions on how to change parameters).
 
-1. (Optional) Configure Joystick and Failsafe. If you want to use RC instead of Joystick, configure Radio setup before step 4. 
-
+1. (Optional) Configure Joystick and Failsafe.
    Set the following [parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) in order to use a joystick instead of an RC remote control transmitter:
    * [COM_RC_IN_MODE](../advanced/parameter_reference.md#COM_RC_IN_MODE) to "Joystick/No RC Checks". This allows joystick input and disables RC input checks.
    * [NAV_DLL_ACT](../advanced/parameter_reference.md#NAV_DLL_ACT) to "Disabled". This ensures that no RC failsafe actions interfere when not running HITL with a radio control.
@@ -124,7 +124,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
    > **Note** The serial device depends on what port is used to connect the vehicle to the computer (this is usually `/dev/ttyACM0`). An easy way to check on Ubuntu is to plug in the autopilot, open up a terminal, and type `dmesg | grep "tty"`. The correct device will be the last one shown.
 
-1. Connect the flight controller to the computer and wait for it to boot.
+1. Close Gazebo, connect the flight controller to the computer and wait for it to boot.
 1. Run Gazebo in HITL mode 
   ```sh
   gazebo Tools/sitl_gazebo/worlds/iris.world
