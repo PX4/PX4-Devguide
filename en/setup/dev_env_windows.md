@@ -1,49 +1,86 @@
 # Windows Installation Instructions
 
-> **Warning** Although a Windows toolchain is available, it is not officially supported (and we discourage its use). It is unbearably slow during Firmware compilation and does not support new boards like Snapdragon Flight. It also cannot run the standard robotics software packages many developers use to prototype computer vision and navigation. Before starting to develop on Windows, consider installing a dual-boot environment with [Ubuntu](http://ubuntu.com).
+There are a number of ways you can set up a Windows development toolchain for PX4. These allow you to build for NuttX/Pixhawk and jMAVSim simulator targets.
 
-## Toolchain Installation
+> **Warning** The Windows toolchains are not officially supported (and we discourage their use). They are unbearably slow during Firmware compilation and do not support new boards like Snapdragon Flight. They also cannot run the standard robotics software packages many developers use to prototype computer vision and navigation.
 
-There are a number of ways you can set up a Windows development toolchain for PX4.
+<span></span>
+> **Tip** Before starting to develop on Windows, consider installing a dual-boot environment with [Ubuntu](http://ubuntu.com).
 
-* The native toolchain allows you to build for NuttX/Pixhawk and jMAVSim simulator targets. 
-* The Windows Bash toolchain allows you to build for NuttX/Pixhawk targets (only). 
 
-### Native toolchain
+## Native Toolchain
 
 Download and install these on your system:
 
-  * [PX4 Toolchain Installer v14 for Windows Download](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (32/64 bit systems, complete build system, drivers)
-  * [PX4 USB Drivers](http://pixhawk.org/static/px4driver.msi) (32/64 bit systems)
+* [PX4 Toolchain Installer v14 for Windows Download](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (32/64 bit systems, complete build system, drivers)
+* [PX4 USB Drivers](http://pixhawk.org/static/px4driver.msi) (32/64 bit systems)
 
-### Bash on Windows (NEW!)
 
-Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to build firmware for NuttX/Pixhawk targets. 
-We have provided a script below that makes this easy.
+## Bash on Windows (NEW!)
 
-> **Note** This approach can using GUI simulation tools with the help of X-Windows Application on Windows like X-Ming
+Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to:
+* Build firmware for NuttX/Pixhawk targets. 
+* Run the PX4 JMAVSim simulation (using a Windows-hosted X-Windows app to display the UI)
 
-<span></span>
-> **Tip** The script has been updated to  [install Fast RTPS from (Linux) binaries](../setup/fast-rtps-installation.md#linux).
-  
+### Setup Environment
 
-To use the build script:
+The easiest way to setup the environment is to use the <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a></strong> script (details for script are [given below](#build_script_details)).
+
+To setup the development environment:
 1. Install [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
-1. Download the <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a></strong> script.
-1. Open the bash shell and navigate to the directory containing the script. 
+1. Open the bash shell. 
+1. Download the **windows_bash_nuttx.sh**:
+   ```
+   wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh
+   ```
 1. Run the script using the command below (acknowledging any prompts as required):
   ```sh
   source windows_bash_nuttx.sh
   ```
-1. Test the script by building the firmware:
-  ```
-  cd $src/Firmware
-  make px4fmu-v2_default
-  ```
-  On successful completion you'll find the firmware here: `Firmware/build/px4fmu-v2/src/firmware/nuttx/px4fmu-v2_default.px4`
-1. You can flash the custom firmware on Windows using *QGroundControl* or *Mission Planner* (it is not yet possible to directly flash the firmware from within the bash shell).
+  
+### Build Firmware
 
-#### Build script details
+To build the firmware (i.e. for px4fmu-v4):
+1. Enter the following commands in the bash shell:
+   ```
+   cd ~/src/Firmware
+   make px4fmu-v4_default
+   ```
+   On successful completion you'll find the firmware here: `Firmware/build/px4fmu-v4_default/px4fmu-v4_default.px4`
+   
+   > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx--pixhawk-based-boards)
+   
+1. You can flash the custom firmware on Windows using *QGroundControl* or *Mission Planner* (it is not possible to directly flash the firmware from within the bash shell using the `upload` command).
+
+
+### Simulation (JMAVSim)
+
+Bash on Windows does not include support for UI libraries. In order to display the jMAVSim UI you will first need to install an X-Window application like [XMing](https://sourceforge.net/projects/xming/) into Windows.
+
+To run JMAVSim:
+1. Install and start [XMing](https://sourceforge.net/projects/xming/) on Windows.
+1. Enter the following command in the bash shell:
+   ```sh
+   export DISPLAY=:0
+   ```
+   > **Tip** Add this line to the Ubuntu **.bashrc** file if you don't want to enter it every session.
+1. Start PX4 and jMAVSim in the bash shell:
+   ```sh
+   make posix jmavsim
+   ```
+   The JMAVSim UI is then displayed in XMing as shown below:
+   
+   ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
+   
+> **Caution** Gazebo can similarly be run within Ubuntu Bash for Windows, but too slow to be useful. To try this, follow the [ROS kinetic install guide](http://wiki.ros.org/kinetic/Installation/Ubuntu) and run Gazebo in the Bash shell as shown:
+  ```sh
+  export DISPLAY=:0
+  export GAZEBO_IP=127.0.0.1
+  make posix gazebo
+ ```
+
+
+### Build Script Details {#build_script_details}
 
 The <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh">windows_bash_nuttx.sh</a> build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators. 
 
@@ -69,41 +106,16 @@ To add this compiler to your environment manually:
    export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH
    ```
 
-#### Simulation
-Simulation with GUI tools needs X-Window applications like XMing.
- 1.Install and start [XMing](https://sourceforge.net/projects/xming/) on Windows
- 2.In Bash on Windows or other terminal
- ```sh
-  export DISPLAY=:0
-  make posix jmavsim
- ```
- Then JMavsim will display in XMing
- ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
- It's also possible running Gazebo on WSL by pratice (but the speed is really slow)
- For running Gazebo on WSL, you need Gazebo first
-  by follow ROS install guide to install [ros-kinetic-desktop-full](http://wiki.ros.org/kinetic/Installation/Ubuntu) or you can use <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a></strong> 
-  
-  The only difference running gazebo in WSL is you need to add
-  ```sh
-  export GAZEBO_IP=127.0.0.1
-  ```
-  That is 
-  
-  ```sh
-  export DISPLAY=:0
-  export GAZEBO_IP=127.0.0.1
-  make posix gazebo
- ```
- And gazebo will run in XMing
- ![jMAVSimOnWindows](../../assets/simulation/Gazebo_on_Windows.png)
- 
-You can also add
-  ```sh
-  export DISPLAY=:0
-   export GAZEBO_IP=127.0.0.1
-  ```
- to your .bashrc for more easy use.
+## Virtual Machine-Hosted Toolchain
 
+Windows developers can also run the PX4 toolchain in a virtual machine. The installation and setup of PX4 within the VM is exactly the same as on a native Linux computer.
+
+> **Tip** Allocate as many CPU and memory resources to the VM as possible. 
+
+While using a VM is a very easy way to set up and test an environment for building firmware, users should be aware:
+1. Firmware building will be slower than native building on Linux.
+1. The JMAVSim frame rate be much slower than on native Linux. In some cases the vehicle may crash due to issues related to insufficient VM resources.
+1. Gazebo and ROS can be installed, but are unusably slow.
 
 
 <!-- import docs for other tools and next steps. -->
