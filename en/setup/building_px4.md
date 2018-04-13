@@ -194,6 +194,7 @@ pxh>
 ```
 
 #### Autostart
+
 To autostart px4, add the following to the file **/etc/rc.local** (adjust it
 accordingly if you use native build), right before the `exit 0` line:
 ```sh
@@ -407,11 +408,12 @@ cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 
 Then load the CMakeLists.txt in the root firmware folder via File -> Open File or Project -> Select the CMakeLists.txt file.
 
-After loading, the 'play' button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
+After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
 ### Qt Creator on Windows
 
-> ** Windows has not been tested with Qt creator yet. **
+> **Note** Windows has not been tested for PX4 development with Qt Creator.
+
 
 ### Qt Creator on Mac OS
 
@@ -424,6 +426,6 @@ cd build/creator
 cmake ../.. -G "CodeBlocks - Unix Makefiles"
 ```
 
-That's it! Start Qt Creator, then complete the steps in the video below to set up the project to build.
+That's it! Start *Qt Creator*, then complete the steps in the video below to set up the project to build.
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
