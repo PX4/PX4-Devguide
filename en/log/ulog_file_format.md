@@ -326,6 +326,8 @@ A valid ULog parser must fulfill the following requirements:
 - [pyulog](https://github.com/PX4/pyulog): python, ULog parser library with CLI
   scripts.
 - [FlightPlot](https://github.com/PX4/FlightPlot): Java, log plotter.
+- [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis): Python, log 
+  plotter and 3D visualization tool based on pyulog.
 - [MAVLink](https://github.com/mavlink/mavlink): Messages for ULog streaming via
   MAVLink (note that appending data is not supported, at least not for cut off
   messages).
