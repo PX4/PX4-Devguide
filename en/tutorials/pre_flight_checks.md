@@ -32,7 +32,16 @@ The commander module performs a number of preflight sensor quality and EKF check
   * This error message is produced when the angular rate measurements from different IMU units are inconsistent.
   * This check only applies to boards with more than one IMU.
   * The check is controlled by the [COM_ARM_IMU_GYR](../advanced/parameter_reference.md#COM_ARM_IMU_GYR) parameter.
-
+* PREFLIGHT FAIL: EKF INTERNAL CHECKS
+  * This error message is generated if the innovation magnitudes of either the horizontal GPS velocity, magnetic yaw, vertical GPS velocity or vertical position sensor (Baro by default but could be range finder or GPS if non-standard params are being used) are excessive. Innovations are the difference between the value predicted by the inertial navigation calculation and measured by the sensor.
+  * Users should check the innovation levels in the log file to determine the cause. These can be found under the `ekf2_innovations` message. 
+    Common problems/solutions include:
+	* IMU drift on warmup. May be resolved by restarting the autopilot. May require an IMU accel and gyro calibration.
+    * Adjacent magnetic interference combined with vehicle movement. Resolve my moving vehicle and waiting or re-powering.
+    * Bad magnetometer calibration combined with vehicle movement. Resolve by recalibrating.
+    * Initial shock or rapid movement on startup that caused a bad inertial nav solution. Resolve by restarting the vehicle and minimising movement for the first 5 seconds.
+  
+  
 
 ## COM_ARM_WO_GPS
 
