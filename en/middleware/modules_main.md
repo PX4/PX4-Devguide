@@ -27,3 +27,4 @@ The generated files will be written to the `modules` directory.
 - [Driver](modules_driver.md)
 - [Estimator](modules_estimator.md)
 - [System](modules_system.md)
+- [Template](modules_template.md)
