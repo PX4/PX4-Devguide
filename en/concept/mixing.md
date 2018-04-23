@@ -177,7 +177,7 @@ inputs and their scaling, in the form:
 
 	S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
 
-The 'S:' lines cannot be located above the 'O:' line.
+> **Note** The `S:` lines must be below the `O:` line.
 
 The &lt;group&gt; value identifies the control group from which the scaler will read,
 and the &lt;index&gt; value an offset within that group.  These values are specific to
