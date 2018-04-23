@@ -201,7 +201,7 @@ The following *PX4 User Guide* topics explain how to tune the parameters that wi
 
 To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/en/config/airframe.html):
 
-1. Make a clean build (e.g. by running `make clean` and then `make px4fmu-v5_default upload`)
+1. Make a clean build (e.g. by running `make clean` and then `make px4fmu-v5_default`)
 1. Open QGC and select **Custom firmware file...** as shown below:
 
   ![QGC flash custom firmware](../../assets/gcs/qgc_flash_custom_firmware.png)
