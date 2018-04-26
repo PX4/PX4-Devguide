@@ -1,6 +1,6 @@
 # Preflight Sensor and EKF Checks
 
-The commander module performs a number of preflight sensor quality and EKF checks which are controlled by the [COM_ARM_](../advanced/parameter_reference.md#commander) parameters. If these checks fail, the motors are prevented from arming and the following error messages are produced:
+PX4 performs a number of preflight sensor quality and EKF checks to determine if there is a good enough position estimate to arm/fly. These checks are controlled by the [COM_ARM_](../advanced/parameter_reference.md#commander) parameters.
 
 * PREFLIGHT FAIL: EKF HGT ERROR
   * This error is produced when the IMU and height measurement data are inconsistent.
@@ -36,7 +36,7 @@ The commander module performs a number of preflight sensor quality and EKF check
   * This error message is generated if the innovation magnitudes of either the horizontal GPS velocity, magnetic yaw, vertical GPS velocity or vertical position sensor (Baro by default but could be range finder or GPS if non-standard params are being used) are excessive. Innovations are the difference between the value predicted by the inertial navigation calculation and measured by the sensor.
   * Users should check the innovation levels in the log file to determine the cause. These can be found under the `ekf2_innovations` message. 
     Common problems/solutions include:
-	* IMU drift on warmup. May be resolved by restarting the autopilot. May require an IMU accel and gyro calibration.
+    * IMU drift on warmup. May be resolved by restarting the autopilot. May require an IMU accel and gyro calibration.
     * Adjacent magnetic interference combined with vehicle movement. Resolve my moving vehicle and waiting or re-powering.
     * Bad magnetometer calibration combined with vehicle movement. Resolve by recalibrating.
     * Initial shock or rapid movement on startup that caused a bad inertial nav solution. Resolve by restarting the vehicle and minimising movement for the first 5 seconds.
