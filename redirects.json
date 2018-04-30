@@ -2,6 +2,10 @@
     "redirects": [
 
             {
+                "from": "en/tutorials/pre_flight_checks.html",
+                "to": "https://docs.px4.io/en/flying/pre_flight_checks.html"
+            },
+            {
                 "from": "en/tutorials/tutorial_hello_sky.html",
                 "to": "en/apps/hello_sky.html"
             },
