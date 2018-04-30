@@ -92,7 +92,6 @@
   * [Long-distance Video Streaming](qgc/video_streaming_wifi_broadcast.md)
   * [Optical Flow](tutorials/optical_flow.md)
   * [ecl EKF](tutorials/tuning_the_ecl_ekf.md)
-  * [Preflight Checks](tutorials/pre_flight_checks.md)
   * [Land Detector](tutorials/land_detector.md)
   * [Motion Capture \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
   * [S.Bus Driver for Linux](tutorials/linux_sbus.md)
