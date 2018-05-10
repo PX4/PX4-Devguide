@@ -18,22 +18,43 @@ Tested and working:
 * Building and uploading NuttX builds like px4fmu-v2 and px4fmu-v4
 * Style check with astyle with the command make format
 * Command line auto completion
-* The installer does **NOT** screw up your system and global path, it only modifies the selected installation directory e.g. `C:\PX4\` and uses a temporary local path 
+* The installer does **NOT** screw up your system and global path, it only modifies the selected installation directory e.g. `C:\PX4\` and uses a temporary local path
+* The installer supports updating to a new version keeping your personal changes inside the toolchain folder
 
 [Known problems / Report your issue](https://github.com/orgs/PX4/projects/6)
 
 ## Installation Instructions
 
 1. Download the latest version of the ready to use MSI installer above
-1. Run it, choose your desired installation location (default C:\PX4\ strongly recommended), let it install
+1. Run it, choose your desired installation location, let it install
+    ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 1. Make sure to tick the box in the end of the installation to clone the PX4 repository, build and run simulation with jMAVsim this simplifies the process to get you started. 
 
-> **Tip** Don't worry if you missed the opportunity or the script failed (e.g. because you didn't have a working internet connection). You can also do that step manually on the console afterwards.
+> **Note** Don't worry if you missed the opportunity or the script failed (e.g. because you didn't have a working internet connection). You can also [do that step manually on the console afterwards](#getting_started).
 
 ## Usage Instructions
 
+After the installation when you browse to the directory you installed the toolchain to (default `C:\PX4\`) you'll find the following batch scripts which start up a console/terminal or different IDEs inside the Cygwin toolchain environment:
 
+* **`run-console.bat`**
 
+    To start the POSIX (linux like) bash console.
+* **`run-eclipse.bat`**
+
+    To start the as of Toolchain version 0.2 built in portable [eclipse for C++ IDE](http://www.eclipse.org/downloads/eclipse-packages/).
+* **`run-vscode.bat`**
+
+    To start the not included [Visual Studio Code IDE](https://code.visualstudio.com/) from its default install directory `C:\Program Files\Microsoft VS Code`
+
+> **Tip** Further details on why you need to use the scripts and how it all works [explained below](#manual_setup).
+
+> **Tip** You can create desktop shortcuts to the batch scripts to have easier access, the installer as of toolchain version 0.2 does not yet create them for you.
+
+The ordinary workflow consists of starting a console window by douple clicking on the `run-console.bat` script to manually run terminal commands and starting your favorite IDE with its corresponding `run-XXX.bat` script to edit code and maybe also run builds. 
+
+### Getting Started {#getting_started}
+
+Ticking the box to clone and run simulation at the end of the installer opens the Cygwin console and runs the following commands:
 ```
 # clones PX4 repository into the home folder & loads submodules in parallel
 git clone --recursive -j8 https://github.com/PX4/Firmware.git
@@ -43,7 +64,13 @@ cd Firmware
 make posix jmavsim
 ```
 
-## Step by Step Manual Setup (for Toolchain Developers)
+> **Note** Cloning only needs to be done once, if you ticked the box to clone at the installer or just updated your toolchain it's already done and you can skip the fist command.
+
+![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.PNG)
+
+Continue form here with [the more detailed instructions on how to build PX4](../setup/building_px4.md).
+
+## Step by Step Manual Setup (for Toolchain Developers) {#manual_setup}
 
 This section describes step by step how to reproduce all the core setup of the Cygwin toolchain which is in the ready to use installer.
 
@@ -71,6 +98,11 @@ This section describes step by step how to reproduce all the core setup of the C
     * Shells:bash-completion
 
     > **Note** Do not select as many packages as possible which are not on this list, there are some which conflict and break the builds.
+
+1. **WIP**
+    The reason to start all the development tools through the prepared batch scripts is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder.
+
+    locally set environmental variables to configure the `PATH`, `HOME` and workspace root directory `PX4_DIR`
 
 1. Add necessary **python packages** to your setup
     * Open the Cygwin toolchain console and run
