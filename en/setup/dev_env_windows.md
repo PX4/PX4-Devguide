@@ -41,7 +41,8 @@ There are a number of ways you can set up a Windows development toolchain for PX
 + Official POSIX environment solution offered by Microsoft
 
 **\-**
-- similar to VM just with less memory overhead
+- Similar to VM just with less memory overhead
+- Doesn't work on Windows 7, 8 (only 10)
 
 ## Msys based Toolchain
 
