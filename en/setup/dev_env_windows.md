@@ -16,10 +16,11 @@ There are a number of ways you can set up a Windows development toolchain for PX
 + Supports all basic functionality (see instructions)
 + No virtual machine and additional operating system overhead
 + Native Windows binary execution
++ Portable (folder could be on a pen drive)
 
 **\-**
 - Does not support all features of the PX4 environment
-- Known issues see link to issue trakcing on the instructions page
+- Known issues see link to issue tracking on the instructions page
 
 ## Virtual Machine-Hosted Toolchain
 
