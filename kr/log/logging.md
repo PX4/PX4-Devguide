@@ -62,7 +62,7 @@ SD 카드별로 성능 결과를 알아봅니다.
 
 요구사항은 연결시 속도가 최소한 50KB/s 이상이 되어야 합니다. WiFi 연결가 좋은 예제입니다. 그리고 client 하나만 log streaming을 요청할 수 있습니다. 연결이 안정적이지 않다면, 해당 프로토콜이 드롭을 처리할 수 있도록 설계해야 합니다.
 
-ulog streaming을 지원하는 여러 client들 :
+ULog streaming을 지원하는 여러 client들 :
 - `mavlink_ulog_streaming.py` script in Firmware/Tools.
 - QGroundControl:
 ![](../../assets/gcs/qgc-log-streaming.png)

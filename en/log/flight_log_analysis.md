@@ -42,7 +42,7 @@ Key features:
 [pyulog](https://github.com/PX4/pyulog) is a python package to parse ULog files, along with a set of command-line scripts to extract/display ULog information and convert them to other file formats. 
 
 Key features:
-* Python library for parsing ULog files. Base library used by a number of other uLog analysis and visualisation tools.
+* Python library for parsing ULog files. Base library used by a number of other ULog analysis and visualisation tools.
 * Scripts to extract/display ULog information:
   * *ulog_info*: display information from an ULog file.
   * *ulog_messages*: display logged messages from an ULog file.
@@ -99,7 +99,7 @@ Name (multi id, message size in bytes)    number of data points, total bytes
 
 ### pyFlightAnalysis
 
-[pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis) is a cross-platform PX4 flight log (ulog) visual analysis tool, inspired by [FlightGear](http://home.flightgear.org/).
+[pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis) is a cross-platform PX4 flight log (ULog) visual analysis tool, inspired by [FlightPlot](https://github.com/DrTon/FlightPlot).
 
 Key features:
 * Dynamic filter for displaying data
