@@ -72,6 +72,15 @@ if grep -Fxq "$catkin_ws_source" ~/.bashrc; then echo ROS catkin_ws setup.bash a
 else echo "$catkin_ws_source" >> ~/.bashrc; fi
 eval $catkin_ws_source
 
+echo "Downloading dependent script 'install_geographiclib_datasets.sh'"
+# Source the install_geographiclib_datasets.sh script directly from github
+install_geo=$(wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh -O -)
+wget_return_code=$?
+# If there was an error downloading the dependent script, we must warn the user and exit at this point.
+if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'install_geographiclib_datasets.sh'. Sorry but I cannot proceed further :("; exit 1; fi
+# Otherwise source the downloaded script.
+sudo bash -c "$install_geo"
+
 # Go to the firmware directory
 cd $clone_dir/Firmware
 
