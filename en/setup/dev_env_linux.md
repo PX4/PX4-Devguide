@@ -36,7 +36,15 @@ To install the development toolchain:
 1. Restart the computer on completion.
 
 
-### Snapdragon Flight or Raspberry Pi
+### Snapdragon Flight
+
+Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
+* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+
+   
+### Raspberry Pi
 
 To install the development toolchain:
 1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
@@ -45,9 +53,7 @@ To install the development toolchain:
    source ubuntu_sim_common_deps.sh
    ```
    You may need to acknowledge some prompts as the script progresses.
-1. Follow the platform-specific instructions in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md) for your target:
-   * [Snapdragon Flight](../setup/dev_env_linux_ubuntu.md#snapdragon-flight)
-   * [Raspberry Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware)
+1. Follow setup instructions in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md) for [Raspberry Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
 
 ### Parrot Bepop
 

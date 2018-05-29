@@ -34,8 +34,15 @@
    스크립트 진행되면서 프롬프트가 나타날 수 있습니다.
 1. 완료되면 컴퓨터를 재시작합니다.
 
+### Snapdragon Flight
 
-### Snapdragon Flight 혹은 Raspberry Pi
+Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
+* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+
+
+### Raspberry Pi
 
 개발 툴체인 설치하기:
 1. <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a> 다운로드 (시뮬레이터와 공통 툴체인 관련 내용이 포함).
@@ -45,7 +52,6 @@
    ```
    스크립트 진행되면서 프롬프트가 나타날 수 있습니다.
 1. [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md)에서 플랫폼에 따라 해당 지시를 따릅니다:
-   * [Snapdragon Flight](../setup/dev_env_linux_ubuntu.md#snapdragon-flight)
    * [Raspberry Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware)
 
 ### Parrot Bepop
