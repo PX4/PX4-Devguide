@@ -253,65 +253,10 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 ## Snapdragon Flight
 
-### (Cross) Toolchain installation
-
-```sh
-sudo apt-get install android-tools-adb android-tools-fastboot \
-    fakechroot fakeroot unzip xz-utils wget python python-empy -y
-```
-
-Please follow the instructions on https://github.com/ATLFlight/cross_toolchain for the toolchain installation.
-
-Load the new configuration:
-
-```sh
-source ~/.bashrc
-```
-
-### Sysroot Installation
-
-A sysroot is required to provide the libraries and header files needed to cross compile applications for the Snapdragon Flight applications processor.
-
-The qrlSDK sysroot provides the required header files and libraries for the camera, GPU, etc.
-
-Download the file [Flight_3.1.3_qrlSDK.tgz](https://support.intrinsyc.com/attachments/download/1515/Flight_3.1.3_qrlSDK.tgz) and save it in `cross_toolchain/download/`.
-
-```sh
-cd cross_toolchain
-unset HEXAGON_ARM_SYSROOT
-./qrlinux_sysroot.sh
-```
-
-Append the following to your ~/.bashrc:
-
-```sh
-export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/qrlinux_v3.1.1_sysroot
-```
-
-Load the new configuration:
-
-```sh
-source ~/.bashrc
-```
-
-For more sysroot options see [Sysroot Installation](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)
-
-### Update ADSP firmware
-
-Before building, flashing and running code, you'll need to update the [ADSP firmware](https://docs.px4.io/en/flight_controller/snapdragon_flight_advanced.html#updating-the-adsp-firmware).
-
-### References
-
-There is a an external set of documentation for Snapdragon Flight toolchain and SW setup and verification:
-[ATLFlightDocs](https://github.com/ATLFlight/ATLFlightDocs/blob/master/README.md)
-
-Messages from the DSP can be viewed using mini-dm.
-
-```sh
-${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
-```
-
-Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
+* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
 
 ## Raspberry Pi Hardware
 
