@@ -70,6 +70,29 @@ make posix jmavsim
 
 Continue form here with [the more detailed instructions on how to build PX4](../setup/building_px4.md).
 
+### Windows & Git Special Cases
+
+#### Windows CR+LF vs Unix LF Line Endings
+It is recommended that you force unix style LF endings for every repository you're working with using this Toolcahin and use an editor which preserves them when saving your changes like eclipse or VS Code.
+Compilation of source files also works with CR+LF endings checked out locally but there are cases in Cygwin like execution of shell scripts that require unix line endings otherwise you get errors like `$'\r': Command not found.`.
+Luckily git can do this for you when you execute the two commands in the root directory of your repo:
+```
+git config core.autocrlf false
+git config core.eol lf
+```
+If you work with this Toolchain on multiple repositories you can also set these two configurations globally for your machine by `git config --global`... but this will apply system wide and hence also in other unrelated git usages on your Windows and is not recommended.
+
+#### Unix permissions execution bit
+Under unix there's a flag in the permissions of each file which tells the OS if the file is allowed to be executed or not. Windows has a different permission system and no such bit but git especially under cygwin supports and cares about that bit.
+This often results in git finding difffereces in permissions even if there is no real diff which looks like this:
+```
+diff --git ...
+old mode 100644
+new mode 100755
+```
+
+It's recommended to disable this functionality by executing `git config core.fileMode false` in every repo you use with this toolchain.
+
 ## Step by Step Manual Setup (for Toolchain Developers) {#manual_setup}
 
 This section describes step by step how to reproduce all the core setup of the Cygwin toolchain which is in the ready to use installer.
