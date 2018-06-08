@@ -100,7 +100,7 @@ It's recommended to disable this functionality by executing `git config core.fil
 1. Clone the repository https://github.com/MaEtUgR/PX4Toolchain to the location you want to install the toolchain. Default location and naming is achieved by opening the `Git Bash` and executing:
 ```
 cd /c/
-git clone git@github.com:MaEtUgR/PX4Toolchain.git PX4
+git clone https://github.com/MaEtUgR/PX4Toolchain PX4
 ```
 1. If you want to install all components navigate to the freshly cloned folder and double click on the script `install-all-components.bat` located in the folder `toolchain`. If you only need certain components and want to safe internet traffic and or disk space you can navigate to the different component folders like e.g. `toolchain\cygwin64` and click on the `install-XXX.bat` scripts to only fetch something specific.
 1. Continue with [Usage Instructions](#usage_instructions) and [Getting Started](#getting_started)
