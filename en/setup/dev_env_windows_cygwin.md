@@ -50,6 +50,7 @@ After the installation when you browse to the directory you installed the toolch
 
 > **Tip** Further details on why you need to use the scripts and how it all works [explained below](#manual_setup).
 
+<span></span>
 > **Tip** You can create desktop shortcuts to the batch scripts to have easier access, the installer as of toolchain version 0.2 does not yet create them for you.
 
 The ordinary workflow consists of starting a console window by douple clicking on the `run-console.bat` script to manually run terminal commands and starting your favorite IDE with its corresponding `run-XXX.bat` script to edit code and possibly also run builds. 
@@ -82,7 +83,7 @@ Luckily git can do this for you when you execute the two commands in the root di
 git config core.autocrlf false
 git config core.eol lf
 ```
-If you work with this Toolchain on multiple repositories you can also set these two configurations globally for your machine by `git config --global`... but this will apply system wide and hence also in other unrelated git usages on your Windows and is not recommended.
+If you work with this Toolchain on multiple repositories you can also set these two configurations globally for your machine by `git config --global ...` but this will apply system wide and hence also in other unrelated git usages on your Windows and is not recommended.
 
 #### Unix permissions execution bit
 Under unix there's a flag in the permissions of each file which tells the OS if the file is allowed to be executed or not. Windows has a different permission system and no such bit but git especially under cygwin supports and cares about that bit.
@@ -109,7 +110,7 @@ git clone https://github.com/MaEtUgR/PX4Toolchain PX4
 
 This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 
-> **Note:** The Toolchain gets maintained and hence these instructions might not cover every detail of all the future changes.
+> **Note** The Toolchain gets maintained and hence these instructions might not cover every detail of all the future changes.
 
 1. Create the **folders** `C:\PX4\`, `C:\PX4\toolchain\` and `C:\PX4\home\`
 1. Download the **Cygwin installer** file [setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe) from the [official Cygwin website](https://cygwin.com/install.html)
@@ -137,7 +138,8 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 
     > **Note** Do not select as many packages as possible which are not on this list, there are some which conflict and break the builds.
 
-    > **Note:** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
+    <span></span>
+    > **Note** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
 
 1. 
     Write up or copy the **batch scripts** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) and [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat). 
@@ -147,52 +149,56 @@ This section describes how to setup the Cygwin toolchain manually yourself while
     The script [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat)
     locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
 
-1.
+1. 
     Add necessary **python packages** to your setup by opening the Cygwin toolchain console (double clicking `run-console.bat`) and executing
     ```
     pip2 install toml
     pip2 install pyserial
     pip2 install pyulog
     ```
-    > **Note:** That's what [cygwin64/install-cygwin-python-packages.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) does.
+    
+    > **Note** That's what [cygwin64/install-cygwin-python-packages.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) does.
 
-1.
+1. 
     Download the [**ARM GCC compiler**](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads) as zip archive of the binaries for Windows and unpack the content to the folder `C:\PX4\toolchain\gcc-arm`.
 
-    > **Note:** That's what [gcc-arm/install-gcc-arm.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat) does.
+    > **Note** That's what [gcc-arm/install-gcc-arm.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat) does.
 
-1.
+1. 
     * Download the [**Java Development Kit Installer**](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
     * Because sadly there is no portable archive containing the binaries directly you have to install it.
     *  Find the binaries and move/copy them to `C:\PX4\toolchain\jdk`.
     * You can uninstall the Kit from your Windows system again, we only needed the binaried for the toolchain.
 
-    > **Note:** That's what [jdk/install-jdk.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/jdk/install-jdk.bat) does.
+    > **Note** That's what [jdk/install-jdk.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/jdk/install-jdk.bat) does.
 
-1.
+1. 
     Download [**Apache Ant**](https://ant.apache.org/bindownload.cgi) as zip archive of the binaries for Windows and unpack the content to the folder `C:\PX4\toolchain\apache-ant`.
 
-    > **Tip:** make sure you don't have an additional folder layer from the folder which is inside the downloaded archive.
+    > **Tip** Make sure you don't have an additional folder layer from the folder which is inside the downloaded archive.
 
-    > **Note:** That's what [apache-ant/install-apache-ant.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/apache-ant/install-apache-ant.bat) does.
+    <span></span>
+    > **Note** That's what [apache-ant/install-apache-ant.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/apache-ant/install-apache-ant.bat) does.
 
-1.
+1. 
     Download, build and add **genromfs** to the path:
     * Clone the source code to the folder `C:\PX4\toolchain\genromfs\genromfs-src` with
-    ```
-    cd /c/toolchain/genromfs
-    git clone https://github.com/chexum/genromfs.git genromfs-src
-    ```
+        ```
+        cd /c/toolchain/genromfs
+        git clone https://github.com/chexum/genromfs.git genromfs-src
+        ```
+
     * compile it with
-    ```
-    cd genromfs-src
-    make all
-    ```
+        ```
+        cd genromfs-src
+        make all
+        ```
+
     * Copy the resulting binary `genromfs.exe` one folder level out to `C:\PX4\toolchain\genromfs`
 
-    > **Note:** That's what [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat) does.
+    > **Note** That's what [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat) does.
 
-1.
+1. 
     Make sure all the binary folders of all the isntalled components are correctly listed in the `PATH` variable configured by [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
 
 <!-- import docs for other tools and next steps. -->
