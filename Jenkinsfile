@@ -6,11 +6,13 @@ pipeline {
       environment {
         HOME = "${WORKSPACE}"
       }
+
       agent {
         docker {
-          image 'px4io/px4-docs:1.0'
+          image 'px4io/px4-docs:2018-06-14'
         }
       }
+
       steps {
         sh 'export'
         sh 'gitbook install'
@@ -27,6 +29,7 @@ pipeline {
           reportName: 'PX4 Dev Guide'
         ]
       }
+
     } // Build
 
     stage('Deploy') {
@@ -37,7 +40,7 @@ pipeline {
 
       agent {
         docker {
-          image 'px4io/px4-docs:1.0'
+          image 'px4io/px4-docs:2018-06-14'
         }
       }
 
@@ -45,19 +48,27 @@ pipeline {
         sh 'export'
         unstash 'gitbook'
         withCredentials([usernamePassword(credentialsId: 'px4buildbot_github', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
-          sh('git clone --bare https://${GIT_USER}:${GIT_PASS}@github.com/PX4/dev.px4.io.git')
+          sh('git clone https://${GIT_USER}:${GIT_PASS}@github.com/PX4/dev.px4.io.git')
         }
-        //sh('cd docs.px4.io; git status')
-        //sh('cd docs.px4.io; git push')
+        sh('rm -rf dev.px4.io/*')
+        sh('cp -r _book/* dev.px4.io/')
+        sh('cd dev.px4.io; git add .; git commit -a -m "gitbook build update `date`"')
+        sh('cd dev.px4.io; git push origin master')
       }
 
       when {
         anyOf {
           branch 'master'
-          branch 'pr-jenkins'
         }
       }
+
     } // Deploy
   } // stages
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '10', artifactDaysToKeepStr: '30'))
+    timeout(time: 60, unit: 'MINUTES')
+  }
+
 }
 
