@@ -91,24 +91,7 @@ Note:
 * ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 or Gazebo9 to simplify ROS development).
 * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
 
+<!-- import docs for other tools and next steps. -->
+{% include "_addition_dev_tools.txt" %}
 
-<!-- Additional DevTools Common to all Platforms -->
-
-## Ground Control Software
-
-Download and install the [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html).
-
-![QGroundControl](../../assets/qgc_goto.jpg)
-
-
-## Editor / IDE
-
-The development team often use:
-
-* [Sublime Text](https://www.sublimetext.com): a fast and lean text editor. 
-* [Qt Creator](http://www.qt.io/download-open-source/#section-6): A popular open-source IDE.
-  > **Note** The installation scripts automatically install *Qt Creator* as part of the common dependencies. You can launch it by entering `qtcreator` in a bash terminal.
-
-## Next Steps
-
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+> **Note** The installation scripts automatically install *Qt Creator* as part of the common dependencies. You can launch it by entering `qtcreator` in a bash terminal.
