@@ -200,6 +200,3 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 
 1. 
     Make sure all the binary folders of all the isntalled components are correctly listed in the `PATH` variable configured by [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
-
-<!-- import docs for other tools and next steps. -->
-{% include "_addition_dev_tools.txt" %}

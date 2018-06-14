@@ -17,3 +17,6 @@ There are a number of ways you can set up a Windows development toolchain for PX
 | Simulation gazebo | - (not yet) | + (slow) | + (slow) | -- |
 | Support | + | ++ (Linux) | +/- | -- |
 | Comments | <ul><li>New in 2018</li><li>Slim setup</li><li>Portable</li></ul> | <ul><li>Full Linux features</li><li>CPU & RAM intensive</li><li>Disk space intensive</li></ul> | <ul><li>Official Microsoft solution</li><li>Windows 10 only</li><li>Essentially a VM</li></ul> | <ul><li>No support</li><li>No documentation</li><li>No simulation</li></ul> |
+
+<!-- import docs for other tools and next steps. -->
+{% include "_addition_dev_tools.txt" %}

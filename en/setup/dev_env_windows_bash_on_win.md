@@ -87,7 +87,3 @@ To add this compiler to your environment manually:
    ```
    export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH
    ```
-
-
-<!-- import docs for other tools and next steps. -->
-{% include "_addition_dev_tools.txt" %}
