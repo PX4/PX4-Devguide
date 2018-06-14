@@ -16,6 +16,16 @@ pipeline {
         sh 'gitbook install'
         sh 'gitbook build'
         stash includes: '_book/', name: 'gitbook'
+        // publish html
+        publishHTML target: [
+          reportTitles: 'PX4 Dev Guide',
+          allowMissing: false,
+          alwaysLinkToLastBuild: true,
+          keepAll: true,
+          reportDir: '_book',
+          reportFiles: '*',
+          reportName: 'PX4 Dev Guide'
+        ]
       }
     } // Build
 
