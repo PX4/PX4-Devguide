@@ -48,26 +48,45 @@ Ready to fly.
 pxh>
 ```
 
-## Important Files
 
-  * The startup script is in the [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) folder and named `rcS_SIM_AIRFRAME`, the default is `rcS_jmavsim_iris`.
-  * The root file system (the equivalent of `/` as seen by the) is located inside the build directory: `build/posix_sitl_default/src/firmware/posix/rootfs/`
+It will also bring up a window showing a 3D view of the [jMAVSim](https://github.com/PX4/jMAVSim) simulator:
+
+![jMAVSim 3d View](../../assets/simulation/jmavsim.jpg)
+
 
 ## Taking it to the Sky
 
-And a window with the 3D view of the [jMAVSim](http://github.com/PX4/jMAVSim.git) simulator:
+The system will start printing status information. You will be able to start flying once you have a position lock (shortly after the console displays the message: *EKF commencing GPS fusion*).
 
-![jMAVSim 3d View](../../assets/simulation/jmavsim.png)
-
-The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
+To takeoff enter the following into the console:
 
 ```sh
 pxh> commander takeoff
 ```
 
-> **Info** Joystick or thumb-joystick support is available through QGroundControl (QGC). To use manual input, put the system in a manual flight mode (e.g. POSCTL, position control). Enable the thumb joystick from the QGC preferences menu.
+You can use *QGroundControl* to fly a mission or to connect to a [joystick](#joystick).
 
-## Simulating a Wifi Drone
+## Usage/Configuration Options
+
+### Set Custom Takeoff Location
+
+The default takeoff location in can be overridden using the environment variables: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
+
+For example, to set the latitude, longitude and altitude:
+```
+export PX4_HOME_LAT=28.452386
+export PX4_HOME_LON=-13.867138
+export PX4_HOME_ALT=28.5
+make posix_sitl_default jmavsim
+```
+
+
+### Using a Joystick {#joystick}
+
+Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
+
+
+### Simulating a Wifi Drone
 
 There is a special target to simulate a drone connected via Wifi on the local network:
 
@@ -76,6 +95,7 @@ make broadcast jmavsim
 ```
 
 The simulator broadcasts its address on the local network as a real drone would do.
+
 
 ## Extending and Customizing
 
@@ -86,3 +106,8 @@ To extend or customize the simulation interface, edit the files in the **Tools/j
 ## Interfacing to ROS
 
 The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.
+
+## Important Files
+
+* The startup script is in the [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) folder and named `rcS_SIM_AIRFRAME`, the default is `rcS_jmavsim_iris`.
+* The root file system (the equivalent of `/` as seen by the) is located inside the build directory: `build/posix_sitl_default/src/firmware/posix/rootfs/`
