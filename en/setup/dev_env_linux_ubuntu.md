@@ -305,7 +305,7 @@ cmake \
 ## Parrot Bebop
 
 Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
-description under [Raspberry Pi hardware](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+description under [Raspberry Pi hardware](#raspberry-pi-hardware).
 
 Next, install ADB.
 
