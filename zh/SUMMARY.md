@@ -119,6 +119,6 @@
 * [PX4用户指南](https://docs.px4.io/en/)
 * [QGroundControl用户指南](https://docs.qgroundcontrol.com/en/)
 * [QGroundControl开发指南](https://dev.qgroundcontrol.com/en/)
-* [DroneCore Guide](https://docs.dronecore.io/en/)
 * [MAVLink开发指南](https://mavlink.io/en/)
-* [Dronecode Camera Manager Guide](https://camera-manager.dronecode.org/en/)
+* [Dronecode SDK](https://sdk.dronecode.org/en/)
+* [Dronecode Camera Manager](https://camera-manager.dronecode.org/en/)
