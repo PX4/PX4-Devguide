@@ -128,3 +128,4 @@
 * [QGroundControl 개발자 가이드](https://dev.qgroundcontrol.com/en/)
 * [DroneCore 가이드](https://docs.dronecore.io/en/)
 * [MAVLink 개발자 가이드](https://mavlink.io/en/)
+* [Dronecode Camera Manager Guide](https://camera-manager.dronecode.org/en/)

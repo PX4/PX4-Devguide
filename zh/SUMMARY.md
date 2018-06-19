@@ -121,3 +121,4 @@
 * [QGroundControl开发指南](https://dev.qgroundcontrol.com/en/)
 * [DroneCore Guide](https://docs.dronecore.io/en/)
 * [MAVLink开发指南](https://mavlink.io/en/)
+* [Dronecode Camera Manager Guide](https://camera-manager.dronecode.org/en/)
