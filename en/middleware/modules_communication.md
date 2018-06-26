@@ -75,11 +75,11 @@ mavlink <command> [arguments...]
      [-w]        Wait to send, until first message received
      [-x]        Enable FTP
      [-z]        Force flow control always on
-     [on|off]    Enable/disable
 
    stop-all      Stop all instances
 
    status        Print status for all instances
+     [streams]   Print all enabled streams
 
    stream        Configure the sending rate of a stream for a running instance
      [-u <val>]  Select Mavlink instance via local Network Port
@@ -87,7 +87,7 @@ mavlink <command> [arguments...]
      [-d <val>]  Select Mavlink instance via Serial Device
                  values: <file:dev>
      -s <val>    Mavlink stream to configure
-     -r <val>    Rate in Hz (0 = turn off)
+     -r <val>    Rate in Hz (0 = turn off, -1 = set to default)
 
    boot_complete Enable sending of messages. (Must be) called as last step in
                  startup script.
