@@ -93,5 +93,3 @@ Note:
 
 <!-- import docs for other tools and next steps. -->
 {% include "_addition_dev_tools.txt" %}
-
-> **Note** The installation scripts automatically install *Qt Creator* as part of the common dependencies. You can launch it by entering `qtcreator` in a bash terminal.
