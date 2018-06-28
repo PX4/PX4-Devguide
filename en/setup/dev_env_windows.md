@@ -18,5 +18,12 @@ There are a number of ways you can set up a Windows development toolchain for PX
 | Support | + | ++ (Linux) | +/- | -- |
 | Comments | <ul><li>New in 2018</li><li>Slim setup</li><li>Portable</li></ul> | <ul><li>Full Linux features</li><li>CPU & RAM intensive</li><li>Disk space intensive</li></ul> | <ul><li>Official Microsoft solution</li><li>Windows 10 only</li><li>Essentially a VM</li></ul> | <ul><li>No support</li><li>No documentation</li><li>No simulation</li></ul> |
 
-<!-- import docs for other tools and next steps. -->
-{% include "_addition_dev_tools.txt" %}
+
+## Additional Tools
+
+After setting up the build/simulation toolchain (see links above), see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
+
+
+## Next Steps
+
+Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).

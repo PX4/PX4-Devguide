@@ -1,4 +1,6 @@
-<!-- Additional DevTools Common to all Platforms - imported into other pages -->
+# General Development Tools
+
+This section lists useful additional development tools that are not part of the core PX4 build toolchain.
 
 ## Ground Control Software
 
@@ -16,7 +18,3 @@ The development team often use:
 * [Qt Creator](http://www.qt.io/download-open-source/#section-6): A popular open-source IDE.
 
 > **Note** On linux the installation scripts automatically install *Qt Creator* as part of the common dependencies. You can launch it by entering `qtcreator` in a bash terminal.
-
-## Next Steps
-
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
