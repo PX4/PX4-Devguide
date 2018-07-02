@@ -201,8 +201,7 @@ accordingly if you use native build), right before the `exit 0` line:
 cd /home/pi && ./px4 -d px4.config > px4.log
 ```
 
-
-### Parrot  2
+### Parrot Bebop 2
 
 Support for the [Parrot Bebop 2](https://docs.px4.io/en/flight_controller/bebop.html) is at an early stage and should be used very carefully.
 
@@ -219,15 +218,12 @@ four times to enable ADB and to start the telnet daemon.
 make posix_bebop_default upload
 ```
 
-This will upload the PX4 mainapp into /usr/bin and create the file /home/root/parameters if not already
-present. In addition, we need the Bebop's mixer file and the px4.config. Currently, both files have
-to be copied manually using the following commands.
-```sh
-adb connect 192.168.42.1:9050
-adb push ROMFS/px4fmu_common/mixers/bebop.main.mix /home/root
-adb push posix-configs/bebop/px4.config /home/root
-adb disconnect
-```
+This will:
+- Upload the PX4 mainapp into `/data/ftp/internal_000`
+- Create the file `/home/root/parameters` if not already
+present.
+- Upload the mixer file `bebop.main.mix` into `/home/root`.
+- Upload the config file `/posix-configs/bebop/px4.config` into `/home/root`.
 
 #### Run
 Connect to the Bebop's wifi and press the power button four times. Next,
@@ -243,7 +239,7 @@ kk
 ```
 and start the PX4 mainapp with:
 ```sh
-px4 /home/root/px4.config
+/data/ftp/internal_000/px4 /home/root/px4.config
 ```
 
 In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both,
@@ -258,7 +254,7 @@ DragonStarter.sh -out2null &
 ```
 Replace it with:
 ```
-px4 -d /home/root/px4.config > /home/root/px4.log
+/data/ftp/internal_000/px4 -d /home/root/px4.config > /home/root/px4.log
 ```
 
 Enable adb server by pressing the power button 4 times and connect to adb server as described before:
