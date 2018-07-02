@@ -261,7 +261,7 @@ Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 ## Raspberry Pi Hardware
 
 Developers working on Raspberry Pi hardware need to download a ARMv7 cross-compiler, either GCC or clang.
-The recommended toolchain for raspbian is GCC 4.8.3 and can be cloned from `https://github.com/raspberrypi/tools.git`.
+The current recommended toolchain for raspbian can be cloned from `https://github.com/raspberrypi/tools.git` (at time of writing 4.9.3).
 The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
 
 ```sh
