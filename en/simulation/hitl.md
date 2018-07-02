@@ -7,12 +7,13 @@ PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and fixed wing (usi
 
 ## HITL-Compatible Airframes {#compatible_airframe}
 
-The current list of compatible airframes vs Simulators is:
+The current set of compatible airframes vs Simulators is:
 
 Airframe | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim
----|---|---
+--- | --- | --- | --- | ---
 <a href="../airframes/airframe_reference.md#plane_simulation_(plane)_hilstar_(xplane)">HILStar (X-Plane)</a> | 1000 | Y | |
 <a href="../airframes/airframe_reference.md#copter_simulation_(copter)_hil_quadcopter_x">HIL Quadcopter X</a> | 1001 | | Y | Y
+<a href="../airframes/airframe_reference.md#vtol_standard_vtol_hil_standard_vtol_quadplane">HIL Standard VTOL QuadPlane</a> | 1002 | | Y |
 [Standard planes](../airframes/airframe_reference.md#plane_standard_plane_standard_plane) | 2100 | Y | |
 [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadrotor_x) copter | 4001 | | Y | Y
 [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450) | 4011 | | Y | Y
@@ -119,16 +120,16 @@ Follow the appropriate setup steps for your simulator in the following sections.
 1. Open the vehicle model's sdf file (e.g. **Tools/sitl_gazebo/models/iris/iris.sdf**).
 1. Under the `mavlink_interface plugin` section, change the `serialEnabled` and `hil_mode` parameters to `true`. 
 
-  ![HIL Parameters](../../assets/simulation/gazebo_sdf_model_hil_params.png)
+   ![HIL Parameters](../../assets/simulation/gazebo_sdf_model_hil_params.png)
 1. Replace the `serialDevice` parameter (`/dev/ttyACM0`) if necessary.
 
    > **Note** The serial device depends on what port is used to connect the vehicle to the computer (this is usually `/dev/ttyACM0`). An easy way to check on Ubuntu is to plug in the autopilot, open up a terminal, and type `dmesg | grep "tty"`. The correct device will be the last one shown.
 
 1. Close Gazebo, connect the flight controller to the computer and wait for it to boot.
 1. Run Gazebo in HITL mode 
-  ```sh
-  gazebo Tools/sitl_gazebo/worlds/iris.world
-  ```
+   ```sh
+   gazebo Tools/sitl_gazebo/worlds/iris.world
+   ```
 1. Start *QGroundControl*. It should autoconnect to PX4 and Gazebo.
 
 #### jMAVSim (Quadrotor only)
@@ -137,9 +138,9 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
 1. Connect the flight controller to the computer and wait for it to boot.
 1. Run jMAVSim in HITL mode (replace the serial port name `/dev/ttyACM0` if necessary - e.g. on Mac OS this would be `/dev/tty.usbmodem1`):
-  ```sh
-  ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
-  ```
+   ```sh
+   ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
+   ```
 1. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
 
 #### Using X-Plane (Fixed Wing only)
@@ -166,4 +167,4 @@ To set up X-Plane:
 
 ## Fly an Autonomous Mission in HITL
 
-You should not be able to use *QGroundControl* to [run missions](../qgc/README.md#planning-missions) and otherwise control the vehicle. 
+You should be able to use *QGroundControl* to [run missions](../qgc/README.md#planning-missions) and otherwise control the vehicle.
