@@ -55,9 +55,9 @@ To install the development toolchain:
    You may need to acknowledge some prompts as the script progresses.
 1. Follow setup instructions in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md) for [Raspberry Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
 
-### Parrot Bepop
+### Parrot Bepop 2
 
-Follow the (manual) instructions here: [Ubuntu/Debian Linux > Parrot Bebop](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
+Follow the (manual) instructions here: [Ubuntu/Debian Linux > Parrot Bebop 2](../setup/dev_env_linux_ubuntu.md#parrot-bebop-2).
 
 
 ### jMAVSim/Gazebo Simulation

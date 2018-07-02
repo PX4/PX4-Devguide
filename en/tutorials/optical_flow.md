@@ -59,7 +59,7 @@ In order to ensure good optical flow quality, it is important to focus the camer
 
 #### Other Cameras
 
-It is also possible to use a board/quad that has an integrated camera (Bebop2, Snapdragon Flight). For this the [Optical Flow repo](https://github.com/PX4/OpticalFlow) can be used (see also [snap_cam](https://github.com/PX4/snap_cam)).
+It is also possible to use a board/quad that has an integrated camera (Bebop 2, Snapdragon Flight). For this the [Optical Flow repo](https://github.com/PX4/OpticalFlow) can be used (see also [snap_cam](https://github.com/PX4/snap_cam)).
 
 ### Range Finder
 

@@ -202,9 +202,9 @@ cd /home/pi && ./px4 -d px4.config > px4.log
 ```
 
 
-### Parrot Bebop
+### Parrot  2
 
-Support for the [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.html) is at an early stage and should be used very carefully.
+Support for the [Parrot Bebop 2](https://docs.px4.io/en/flight_controller/bebop.html) is at an early stage and should be used very carefully.
 
 #### Build
 ```sh

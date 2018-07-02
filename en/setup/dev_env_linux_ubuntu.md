@@ -4,7 +4,7 @@
 
 The following instructions explain how to *manually* set up a development environment each of the supported targets.
 
-> **Tip** We recommend that you use the [Convenience bash scripts](#convenience-bash-scripts) to install the Simulators and/or NuttX toolchain (this is easier than typing in the instructions below). Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etc.)
+> **Tip** We recommend that you use the [Convenience bash scripts](#convenience-bash-scripts) to install the Simulators and/or NuttX toolchain (this is easier than typing in the instructions below). Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop 2, Raspberry Pi, etc.)
 
 
 
@@ -18,7 +18,7 @@ The scripts are:
 
 * <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a></strong>: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator
   * This script contains the common dependencies for all PX4 build targets. It is automatically downloaded and run when you call any of the other scripts.
-  * You can run this before installing the remaining dependencies for [Qualcomm Snapdragon Flight](#snapdragon-flight) or [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
+  * You can run this before installing the remaining dependencies for [Qualcomm Snapdragon Flight](#snapdragon-flight) or [Raspberry Pi/Parrot Bebop 2](#raspberry-pi-hardware).
 
 * <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a></strong>: **ubuntu_sim_common_deps.sh** + [Gazebo8](#gazebo) simulator. 
 * <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a></strong>: **ubuntu_sim.sh** + NuttX tools. 
@@ -305,7 +305,7 @@ cmake \
 
 Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 
-## Parrot Bebop
+## Parrot Bebop 2
 
 Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the
 description under [Raspberry Pi hardware](#raspberry-pi-hardware).
