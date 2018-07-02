@@ -13,7 +13,7 @@ Airframe | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim
 --- | --- | --- | --- | ---
 <a href="../airframes/airframe_reference.md#plane_simulation_(plane)_hilstar_(xplane)">HILStar (X-Plane)</a> | 1000 | Y | |
 <a href="../airframes/airframe_reference.md#copter_simulation_(copter)_hil_quadcopter_x">HIL Quadcopter X</a> | 1001 | | Y | Y
-<a href="../airframes/airframe_reference.md#vtol_simulation_standard_vtol_(gazebo)">Standard VTOL</a> | 1002 | | Y |
+<a href="../airframes/airframe_reference.md#vtol_standard_vtol_hil_standard_vtol_quadplane">HIL Standard VTOL QuadPlane</a> | 1002 | | Y |
 [Standard planes](../airframes/airframe_reference.md#plane_standard_plane_standard_plane) | 2100 | Y | |
 [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadrotor_x) copter | 4001 | | Y | Y
 [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450) | 4011 | | Y | Y
