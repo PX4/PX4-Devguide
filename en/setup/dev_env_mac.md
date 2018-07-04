@@ -1,6 +1,6 @@
 # Development Environment on Mac
 
-Mac OS X is the main development platform for PX4. The following instructions set up a development environment for building:
+MacOS is a supported development platform for PX4. The following instructions set up an environment for building:
 * NuttX-based hardware (Pixhawk, etc.)
 * jMAVSim Smulation
 * Gazebo 8 Simulation
