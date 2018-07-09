@@ -10,6 +10,8 @@ frsky_telemetry <command> [arguments...]
    start
      [-d <val>]  Select Serial Device
                  values: <file:dev>, default: /dev/ttyS6
+     [-t <val>]  Scanning timeout [s] (default: no timeout)
+                 default: 0
 
    stop
 
