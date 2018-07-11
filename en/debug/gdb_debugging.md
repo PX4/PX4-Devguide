@@ -7,7 +7,7 @@ The autopilots running PX4 support debugging via GDB or LLDB.
 The command below will list the largest static allocations:
 
 ```bash
-arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
+arm-none-eabi-nm --size-sort --print-size --radix=dec build/nuttx_px4fmu-v2_default/nuttx_px4fmu-v2_default.elf | grep " [bBdD] "
 ```
 
 This NSH command provides the remaining free memory:
@@ -127,7 +127,7 @@ EXC_RETURN: ffffffe9
 To decode the hard fault, load the *exact* binary into the debugger:
 
 ```bash
-arm-none-eabi-gdb build/px4fmu-v2_default/nuttx_px4fmu-v2_default.elf
+arm-none-eabi-gdb build/nuttx_px4fmu-v2_default/nuttx_px4fmu-v2_default.elf
 ```
 
 Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,

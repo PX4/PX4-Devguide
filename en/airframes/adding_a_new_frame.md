@@ -207,7 +207,7 @@ To make a new airframe available for section in the *QGroundControl* [airframe c
   ![QGC flash custom firmware](../../assets/gcs/qgc_flash_custom_firmware.png)
   
   You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata). 
-1. Navigate to the build folder and select the firmware file (e.g. **Firmware/build/px4fmu-v5_default/px4fmu-v5_default.px4**).
+1. Navigate to the build folder and select the firmware file (e.g. **Firmware/build/nuttx_px4fmu-v5_default/px4fmu-v5_default.px4**).
 1. Press **OK** to start flashing the firmware.
 1. Restart *QGroundControl*.
 
