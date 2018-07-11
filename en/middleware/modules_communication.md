@@ -12,6 +12,8 @@ frsky_telemetry <command> [arguments...]
                  values: <file:dev>, default: /dev/ttyS6
      [-t <val>]  Scanning timeout [s] (default: no timeout)
                  default: 0
+     [-m <val>]  Select protocol (default: auto-detect)
+                 values: sport|sport_single|dtype, default: auto
 
    stop
 
