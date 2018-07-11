@@ -81,8 +81,8 @@ make px4fmu-v4_default
 ```
 A successful run will end with similar output to:
 ```sh
--- Build files have been written to: /home/youruser/src/Firmware/build/px4fmu-v4_default
-[954/954] Creating /home/youruser/src/Firmware/build/px4fmu-v4_default/px4fmu-v4_default.px4
+-- Build files have been written to: /home/youruser/src/Firmware/build/nuttx_px4fmu-v4_default
+[954/954] Creating /home/youruser/src/Firmware/build/nuttx_px4fmu-v4_default/px4fmu-v4_default.px4
 ```
 
 The following list shows the build commands for common boards:
