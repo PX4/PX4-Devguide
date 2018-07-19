@@ -72,3 +72,13 @@ This section describes the various middleware components, and the configuration 
   * [Autopilot Hardware](https://docs.px4.io/en/flight_controller/) (PX4 User Guide)
   * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
 * [Supported Peripherals](https://docs.px4.io/en/peripherals/) (PX4 User Guide)
+
+
+## RC UART Wiring Recommendations (Singlewire)
+
+Boards using STMF7 (or other microcontrollers that support singlewire) should connect UARTs using the "normal" connector wiring - i.e. TX (OUT) of the F7 to RX (IN) of device and RX (IN) on the F7 to TX (OUT) of that device. 
+PX4 will ensure that the hardware sets the single wire on the SoC's RX pin to prevent any contention. 
+
+If the STMF7 RC UART RX & TX are connected together, *singlewire mode* must to be used.
+
+For more information, see [px4fmu-v5/board_config.h](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/board_config.h)
