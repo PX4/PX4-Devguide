@@ -11,9 +11,7 @@ There are multiple shells, but only one console: The system console is the locat
 
 > **Info**
 > USB shell: To just run a few quick commands or test an application connecting to the USB
-> shell is sufficient. The Mavlink shell can be used for this, see below.
-> The hardware serial console is only needed for boot debugging or when USB should be used
-> for MAVLink to connect a [GCS](../qgc/README.md).
+> shell is sufficient. The MAVLink shell can be used for this, see [below](#mavlink_shell).
 
 ## Snapdragon Flight: Wiring the Console
 
@@ -103,12 +101,17 @@ nsh> ls
 nsh> free
 ```
 
-## MAVLink Shell
+## MAVLink Shell{#mavlink_shell}
 
 For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be
-accessed via mavlink. This works via serial link or WiFi (UDP/TCP). Make sure
+accessed via MAVLink. This works via serial link (USB/Telemetry) or WiFi (UDP/TCP). Make sure
 that QGC is not running, then start the shell with e.g.
-`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source). Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection. For e.g `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot. You can also start nsh shell on QGC directly: **Analyze > Mavlink Console**. You may first have to install the dependencies with `sudo pip install pymavlink pyserial`.
+`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source, you may first have to install the dependencies with `sudo pip install pymavlink pyserial`).
+Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection.
+For example `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot.
+.
+
+> **Tip** You can also use the nsh shell on [QGC directly](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html).
 
 # Snapdragon DSP Console
 
