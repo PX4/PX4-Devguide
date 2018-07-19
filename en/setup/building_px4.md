@@ -26,16 +26,28 @@ The steps to fork and clone the project source code are:
    ```
    git clone https://github.com/<youraccountname>/Firmware.git
    ```
-   Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
+   Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). 
+   You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
 
-This will copy *most* of PX4 onto your computer (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
+This will copy *most* of the *very latest* version of PX4 source code onto your computer 
+(the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
 
+> **Tip** To instead get the source for a *specific release*:
+> ```sh
+  # list the releases (tags)
+  git tag –l
+  
+  # Checkout code for particular tag (e.g. for tag 1.7.4beta)
+  git checkout -b tags/v1.7.4beta
+  ```
 
+<span></span>
 > **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown:
 > ```sh
   git clone https://github.com/PX4/Firmware.git
   cd Firmware
   ```
+  
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
 
