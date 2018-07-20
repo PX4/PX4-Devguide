@@ -2,16 +2,21 @@
 
 The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](http://nicadrone.com/index.php?id_product=61&controller=product), but a plain FTDI cable can be used as well.
 
-## System Console vs. Shell
+## System Console vs. Shells
 
-There are multiple shells, but only one console: The system console is the location where all boot output (and applications auto-started on boot) is printed.
+There is just one *System Console*, which runs on one specific UART (the debug port, as configured in NuttX), and is commonly attached via FTDI cable.
+- Used for *low-level debugging/development*: bootup, NuttX, startup scripts, board bringup, development on central parts of PX4 (e.g. uORB).
+- In particular, is the only place where all boot output (including information about applications auto-started on boot) is printed.
 
-  * System console (first shell): Hardware serial port
-  * Additional shells: Pixhawk on USB (e.g. lists as /dev/tty.usbmodem1 on Mac OS)
+Shells provide higher-level access to the system:
+- Used for basic module testing/running commands.
+- Only display the output of modules you start (and therefore cannot debug the boot process).
+- Cannot display the output of tasks running on the work queue.
 
-> **Info**
-> USB shell: To just run a few quick commands or test an application connecting to the USB
-> shell is sufficient. The MAVLink shell can be used for this, see [below](#mavlink_shell).
+There are several shells:
+* USB shell (e.g. Pixhawk on USB lists as `/dev/tty.usbmodem1` on Mac OS)
+* [MAVLink shell](#mavlink_shell) - Accessed via *QGroundControl*
+
 
 ## Snapdragon Flight: Wiring the Console
 
