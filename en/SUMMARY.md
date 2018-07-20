@@ -34,7 +34,7 @@
   * [HITL Simulation](simulation/hitl.md)
 * [Hardware](hardware/README.md)
   * [Flight Controller Reference Design](debug/reference-design.md)
-  * [Flight Controller Porting Guide](debug/porting-guide.md)
+  * [Flight Controller Porting Guide](hardware/porting_guide.md)
   * [Airframes](airframes/README.md)
     * [Airframes Reference](airframes/airframe_reference.md)
     * [Adding a New Airframe](airframes/adding_a_new_frame.md)

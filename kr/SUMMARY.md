@@ -33,7 +33,7 @@
   * [Multi-Vehicle 시뮬레이션](simulation/multi-vehicle-simulation.md)
 * [Hardware](hardware/README.md)
   * [Autopilot 하드웨어](flight_controller/README.md)
-    * [Porting Guide](https://dev.px4.io/en/debug/porting-guide.html)
+    * [Porting Guide](https://dev.px4.io/en/hardware/porting_guide.html)
   * [Airframes](airframes/README.md)
     * [통합 코드베이스](airframes/architecture.md)
     * [Airframes 레퍼런스](airframes/airframe_reference.md)
