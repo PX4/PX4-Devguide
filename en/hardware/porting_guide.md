@@ -74,11 +74,9 @@ This section describes the various middleware components, and the configuration 
 * [Supported Peripherals](https://docs.px4.io/en/peripherals/) (PX4 User Guide)
 
 
-## RC UART Wiring Recommendations (Singlewire)
+## RC UART Wiring Recommendations
 
-Boards using STMF7 (or other microcontrollers that support singlewire) should connect UARTs using the "normal" connector wiring - i.e. TX (OUT) of the F7 to RX (IN) of device and RX (IN) on the F7 to TX (OUT) of that device. 
-PX4 will ensure that the hardware sets the single wire on the SoC's RX pin to prevent any contention. 
-
-If the STMF7 RC UART RX & TX are connected together, *singlewire mode* must to be used.
-
-For more information, see [px4fmu-v5/board_config.h](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/board_config.h)
+It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. 
+If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. 
+This is done via board config and manifest files. 
+One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c).
