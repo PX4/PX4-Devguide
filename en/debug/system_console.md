@@ -13,9 +13,8 @@ Shells provide higher-level access to the system:
 - Only display the output of modules you start (and therefore cannot debug the boot process).
 - Cannot display the output of tasks running on the work queue.
 
-There are several shells:
-* USB shell (e.g. Pixhawk on USB lists as `/dev/tty.usbmodem1` on Mac OS)
-* [MAVLink shell](#mavlink_shell) - Accessed via *QGroundControl*
+There can be several shells, either running on a dedicated UART, or via MAVLink.
+Since MAVLink provides more flexibility, the shell is nowadays only used [via MAVLink](#mavlink_shell).
 
 
 ## Snapdragon Flight: Wiring the Console
