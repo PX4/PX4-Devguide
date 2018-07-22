@@ -94,7 +94,6 @@
   * [Ground Control Station](qgc/README.md)
   * [Video Streaming in QGC](qgc/video_streaming.md)
   * [Long-distance Video Streaming](qgc/video_streaming_wifi_broadcast.md)
-  * [Optical Flow](tutorials/optical_flow.md)
   * [ecl EKF](tutorials/tuning_the_ecl_ekf.md)
   * [Land Detector](tutorials/land_detector.md)
   * [Motion Capture \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
