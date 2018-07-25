@@ -92,7 +92,6 @@
   * [QGC的视频流](qgc/video_streaming.md)
   * [远距离视频流](qgc/video_streaming_wifi_broadcast.md)
   * [u-blox M8P RTK](tutorials/rtk-gps.md)
-  * [光流](tutorials/optical_flow.md)
   * [ecl EKF](tutorials/tuning_the_ecl_ekf.md)
   * [飞行前检查](tutorials/pre_flight_checks.md)
   * [着陆检测](tutorials/land_detector.md)
