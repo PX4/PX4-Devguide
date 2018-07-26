@@ -4,12 +4,12 @@ The code for the PX4 bootloader is available from the Github [Bootloader](https:
 
 ## Supported Boards
 
-  * FMUv2 (Pixhawk 1, STM32F4)
-  * FMUv3 (Pixhawk 2, STM32F4)
-  * FMUv4 (Pixracer 3 and Pixhawk 3 Pro, STM32F4)
-  * FMUv5 (Pixhawk 4, STM32F7)
-  * TAPv1 (TBA, STM32F4)
-  * ASCv1 (TBA, STM32F4)
+* FMUv2 (Pixhawk 1, STM32F4)
+* FMUv3 (Pixhawk 2, STM32F4)
+* FMUv4 (Pixracer 3 and Pixhawk 3 Pro, STM32F4)
+* FMUv5 (Pixhawk 4, STM32F7)
+* TAPv1 (TBA, STM32F4)
+* ASCv1 (TBA, STM32F4)
 
 ## Building the Bootloader
 
@@ -23,11 +23,14 @@ After this step a range of elf files for all supported boards are present in the
 
 ## Flashing the Bootloader
 
-> IMPORTANT: The right power sequence is critical for some boards to allow JTAG / SWD access. Follow these steps exactly as described. The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
+> **Important** The right power sequence is critical for some boards to allow JTAG / SWD access. Follow these steps exactly as described. 
 
-  * Disconnect the JTAG cable
-  * Connect the USB power cable
-  * Connect the JTAG cable
+The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
+
+The sequence is
+1. Disconnect the JTAG cable
+1. Connect the USB power cable
+1. Connect the JTAG cable
 
 ### Black Magic / Dronecode Probe
 
@@ -97,4 +100,3 @@ attach 1
 load tapv1_bl.elf
 ```
 This will disable target powering and attempt another flash cycle.
-

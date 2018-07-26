@@ -7,7 +7,7 @@ PX4는 다양한 flight controller 보드와 시스템에서 실행할 수 있�
 Flight controller topics relevant to developers include:
 
 * [Building the Code](../setup/building_px4.md) - How to build firmware for the different controllers 
-* [Porting Guide](../debug/porting-guide.md) - How to port PX4 to new flight controller hardware
+* [Porting Guide](https://dev.px4.io/en/hardware/porting_guide.html) - How to port PX4 to new flight controller hardware
 
 
 ## Further Information

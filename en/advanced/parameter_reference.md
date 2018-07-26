@@ -80,7 +80,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="ATT_W_MAG">ATT_W_MAG</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Complimentary filter magnetometer weight</p>    </td>
+ <td style="vertical-align: top;"><p>Complimentary filter magnetometer weight</p><p><strong>Comment:</strong> Set to 0 to avoid using the magnetometer.</p>    </td>
  <td style="vertical-align: top;">0 > 1 </td>
  <td style="vertical-align: top;">0.1 </td>
  <td style="vertical-align: top;"></td>
@@ -106,7 +106,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_CAPACITY">BAT_CAPACITY</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Battery capacity</p><p><strong>Comment:</strong> Defines the capacity of the attached battery.</p>   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
+ <p><b>Module:</b> lib/battery</p>
 </td>
  <td style="vertical-align: top;">-1.0 > 100000 (50)</td>
  <td style="vertical-align: top;">-1.0 </td>
@@ -131,7 +131,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_CRIT_THR">BAT_CRIT_THR</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Critical threshold</p><p><strong>Comment:</strong> Sets the threshold when the battery will be reported as critically low. This has to be lower than the low threshold. This threshold commonly will trigger RTL.</p>   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
+ <p><b>Module:</b> lib/battery</p>
 </td>
  <td style="vertical-align: top;">0.05 > 0.1 (0.01)</td>
  <td style="vertical-align: top;">0.07 </td>
@@ -140,7 +140,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_EMERGEN_THR">BAT_EMERGEN_THR</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Emergency threshold</p><p><strong>Comment:</strong> Sets the threshold when the battery will be reported as dangerously low. This has to be lower than the critical threshold. This threshold commonly will trigger landing.</p>   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
+ <p><b>Module:</b> lib/battery</p>
 </td>
  <td style="vertical-align: top;">0.03 > 0.07 (0.01)</td>
  <td style="vertical-align: top;">0.05 </td>
@@ -149,7 +149,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_LOW_THR">BAT_LOW_THR</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Low threshold</p><p><strong>Comment:</strong> Sets the threshold when the battery will be reported as low. This has to be higher than the critical threshold.</p>   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
+ <p><b>Module:</b> lib/battery</p>
 </td>
  <td style="vertical-align: top;">0.12 > 0.4 (0.01)</td>
  <td style="vertical-align: top;">0.15 </td>
@@ -191,7 +191,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 <li><strong>16:</strong> 16S Battery</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
+ <p><b>Module:</b> lib/battery</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -200,7 +200,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_R_INTERNAL">BAT_R_INTERNAL</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Explicitly defines the per cell internal resistance</p><p><strong>Comment:</strong> If non-negative, then this will be used in place of BAT_V_LOAD_DROP for all calculations.</p>   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
+ <p><b>Module:</b> lib/battery</p>
 </td>
  <td style="vertical-align: top;">-1.0 > 0.2 </td>
  <td style="vertical-align: top;">-1.0 </td>
@@ -222,7 +222,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_V_CHARGED">BAT_V_CHARGED</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Full cell voltage (5C load)</p><p><strong>Comment:</strong> Defines the voltage where a single cell of the battery is considered full under a mild load. This will never be the nominal voltage of 4.2V</p>   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
+ <p><b>Module:</b> lib/battery</p>
 </td>
  <td style="vertical-align: top;">(0.01)</td>
  <td style="vertical-align: top;">4.05 </td>
@@ -239,7 +239,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_V_EMPTY">BAT_V_EMPTY</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Empty cell voltage (5C load)</p><p><strong>Comment:</strong> Defines the voltage where a single cell of the battery is considered empty. The voltage should be chosen before the steep dropoff to 2.8V. A typical lithium battery can only be discharged down to 10% before it drops off to a voltage level damaging the cells.</p>   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
+ <p><b>Module:</b> lib/battery</p>
 </td>
  <td style="vertical-align: top;">(0.01)</td>
  <td style="vertical-align: top;">3.5 </td>
@@ -248,7 +248,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 <tr>
  <td style="vertical-align: top;"><strong id="BAT_V_LOAD_DROP">BAT_V_LOAD_DROP</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Voltage drop per cell on full throttle</p><p><strong>Comment:</strong> This implicitely defines the internal resistance to maximum current ratio and assumes linearity. A good value to use is the difference between the 5C and 20-25C load. Not used if BAT_R_INTERNAL is set.</p>   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
+ <p><b>Module:</b> lib/battery</p>
 </td>
  <td style="vertical-align: top;">0.07 > 0.5 (0.01)</td>
  <td style="vertical-align: top;">0.3 </td>
@@ -359,7 +359,7 @@ The module where these parameters are defined is: *drivers/camera_trigger*.
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="TRIG_PINS">TRIG_PINS</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Camera trigger pin</p><p><strong>Comment:</strong> Selects which pin is used, ranges from 1 to 6 (AUX1-AUX6 on px4fmu-v2 and the rail pins on px4fmu-v4). The PWM interface takes two pins per camera, while relay triggers on every pin individually. Example: Value 56 would trigger on pins 5 and 6.</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Camera trigger pin</p><p><strong>Comment:</strong> Selects which pin is used, ranges from 1 to 6 (AUX1-AUX6 on px4fmu-v2 and the rail pins on px4fmu-v4). The PWM interface takes two pins per camera, while relay triggers on every pin individually. Example: Value 56 would trigger on pins 5 and 6. For GPIO mode Pin 6 will be triggered followed by 5. With a value of 65 pin 5 will be triggered followed by 6. Pins may be non contiguous. I.E. 16 or 61. In GPIO mode the delay pin to pin is < .2 uS.</p>   <p><b>Reboot required:</b> true</p>
  </td>
  <td style="vertical-align: top;">1 > 123456 </td>
  <td style="vertical-align: top;">56 </td>
@@ -382,7 +382,7 @@ The module where these parameters are defined is: *drivers/camera_trigger*.
 ## Circuit Breaker
 
 
-The module where these parameters are defined is: *modules/systemlib*.
+The module where these parameters are defined is: *lib/circuit_breaker*.
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
@@ -485,7 +485,7 @@ The module where these parameters are defined is: *modules/commander*.
 <tbody>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_ARM_AUTH">COM_ARM_AUTH</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Arm authorization parameters, this uint32_t will be splitted between starting from the LSB:
+ <td style="vertical-align: top;"><p>Arm authorization parameters, this uint32_t will be split between starting from the LSB:
 - 8bits to authorizer system id
 - 16bits to authentication method parameter, this will be used to store a timeout for the first 2 methods but can be used to another parameter for other new authentication methods.
 - 7bits to authentication method
@@ -852,6 +852,20 @@ Note: ekf2 will limit the delta velocity bias estimate magnitude to be less than
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="COM_HLDL_LOSS_T">COM_HLDL_LOSS_T</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>High Latency Datalink loss time threshold</p><p><strong>Comment:</strong> After this amount of seconds without datalink the data link lost mode triggers</p>    </td>
+ <td style="vertical-align: top;">60 > 3600 </td>
+ <td style="vertical-align: top;">120 </td>
+ <td style="vertical-align: top;">s</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="COM_HLDL_REG_T">COM_HLDL_REG_T</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>High Latency Datalink regain time threshold</p><p><strong>Comment:</strong> After a data link loss: after this this amount of seconds with a healthy datalink the 'datalink loss' flag is set back to false</p>    </td>
+ <td style="vertical-align: top;">0 > 60 </td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;">s</td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="COM_HOME_H_T">COM_HOME_H_T</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Home set horizontal threshold</p><p><strong>Comment:</strong> The home position will be set if the estimated positioning accuracy is below the threshold.</p>    </td>
  <td style="vertical-align: top;">2 > 15 (0.5)</td>
@@ -870,11 +884,11 @@ Note: ekf2 will limit the delta velocity bias estimate magnitude to be less than
  <td style="vertical-align: top;"><p>Battery failsafe mode</p><p><strong>Comment:</strong> Action the system takes on low battery. Defaults to off</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Warning</li> 
 
-<li><strong>1:</strong> Return to land</li> 
+<li><strong>1:</strong> Return mode</li> 
 
-<li><strong>2:</strong> Land at current position</li> 
+<li><strong>2:</strong> Land mode</li> 
 
-<li><strong>3:</strong> Return to land at critically low level, land at current position if reaching dangerously low levels</li> 
+<li><strong>3:</strong> Return mode at critically low level, Land mode at current position if reaching dangerously low levels</li> 
 </ul>
    </td>
  <td style="vertical-align: top;">(1)</td>
@@ -893,9 +907,23 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>    </td>
  <td style="vertical-align: top;"><strong id="COM_POS_FS_DELAY">COM_POS_FS_DELAY</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Loss of position failsafe activation delay</p><p><strong>Comment:</strong> This sets number of seconds that the position checks need to be failed before the failsafe will activate. The default value has been optimised for rotary wing applications. For fixed wing applications, a larger value between 5 and 10 should be used.</p>   <p><b>Reboot required:</b> true</p>
  </td>
- <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">1 > 100 </td>
  <td style="vertical-align: top;">1 </td>
  <td style="vertical-align: top;">sec</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="COM_POS_FS_EPH">COM_POS_FS_EPH</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Horizontal position error threshold</p><p><strong>Comment:</strong> This is the horizontal position error (EPV) threshold that will trigger a failsafe. The default is appropriate for a multicopter. Can be increased for a fixed-wing.</p>    </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">5 </td>
+ <td style="vertical-align: top;">m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="COM_POS_FS_EPV">COM_POS_FS_EPV</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Vertical position error threshold</p><p><strong>Comment:</strong> This is the vertical position error (EPV) threshold that will trigger a failsafe. The default is appropriate for a multicopter. Can be increased for a fixed-wing.</p>    </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">10 </td>
+ <td style="vertical-align: top;">m</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_POS_FS_GAIN">COM_POS_FS_GAIN</strong> (INT32)</td>
@@ -909,7 +937,7 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>    </td>
  <td style="vertical-align: top;"><strong id="COM_POS_FS_PROB">COM_POS_FS_PROB</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Loss of position probation delay at takeoff</p><p><strong>Comment:</strong> The probation delay is the number of seconds that the EKF innovation checks need to pass for the position to be declared good after it has been declared bad. The probation delay will be reset to this parameter value when takeoff is detected. After takeoff, if position checks are passing, the probation delay will reduce by one second for every lapsed second of valid position down to a minimum of 1 second. If position checks are failing, the probation delay will increase by COM_POS_FS_GAIN seconds for every lapsed second up to a maximum of 100 seconds. The default value has been optimised for rotary wing applications. For fixed wing applications, a value of 1 should be used.</p>   <p><b>Reboot required:</b> true</p>
  </td>
- <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">1 > 100 </td>
  <td style="vertical-align: top;">30 </td>
  <td style="vertical-align: top;">sec</td>
 </tr>
@@ -954,6 +982,13 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>    </td>
  <td style="vertical-align: top;">5 > 40 (0.05)</td>
  <td style="vertical-align: top;">12.0 </td>
  <td style="vertical-align: top;">%</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="COM_VEL_FS_EVH">COM_VEL_FS_EVH</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Horizontal velocity error threshold</p><p><strong>Comment:</strong> This is the horizontal velocity error (EVH) threshold that will trigger a failsafe. The default is appropriate for a multicopter. Can be increased for a fixed-wing.</p>    </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">1 </td>
+ <td style="vertical-align: top;">m</td>
 </tr>
 </tbody></table>
 
@@ -1334,6 +1369,17 @@ Increasing it makes the multi-rotor wind estimates adjust more slowly</p>    </t
  <td style="vertical-align: top;">ms</td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="EKF2_GPS_MASK">EKF2_GPS_MASK</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Multi GPS Blending Control Mask</p><p><strong>Comment:</strong> Set bits in the following positions to set which GPS accuracy metrics will be used to calculate the blending weight. Set to zero to disable and always used first GPS instance. 0 : Set to true to use speed accuracy 1 : Set to true to use horizontal position accuracy 2 : Set to true to use vertical position accuracy</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> use speed accuracy</li> 
+  <li><strong>1:</strong> use hpos accuracy</li> 
+  <li><strong>2:</strong> use vpos accuracy</li> 
+</ul>
+  </td>
+ <td style="vertical-align: top;">0 > 7 </td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="EKF2_GPS_POS_X">EKF2_GPS_POS_X</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>X position of GPS antenna in body frame</p>    </td>
  <td style="vertical-align: top;"></td>
@@ -1367,6 +1413,13 @@ Increasing it makes the multi-rotor wind estimates adjust more slowly</p>    </t
  <td style="vertical-align: top;">0.01 > 10.0 </td>
  <td style="vertical-align: top;">0.5 </td>
  <td style="vertical-align: top;">m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="EKF2_GPS_TAU">EKF2_GPS_TAU</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Multi GPS Blending Time Constant</p><p><strong>Comment:</strong> Sets the longest time constant that will be applied to the calculation of GPS position and height offsets used to correct data from multiple GPS data for steady state position differences.</p>    </td>
+ <td style="vertical-align: top;">1.0 > 100.0 </td>
+ <td style="vertical-align: top;">10.0 </td>
+ <td style="vertical-align: top;">s</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_GPS_V_GATE">EKF2_GPS_V_GATE</strong> (FLOAT)</td>
@@ -1553,14 +1606,16 @@ This parameter is used when the magnetometer fusion method is set automatically 
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_MAG_TYPE">EKF2_MAG_TYPE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Type of magnetometer fusion</p><p><strong>Comment:</strong> Integer controlling the type of magnetometer fusion used - magnetic heading or 3-axis magnetometer. If set to automatic: heading fusion on-ground and 3-axis fusion in-flight with fallback to heading fusion if there is insufficient motion to make yaw or mag biases observable.</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>Type of magnetometer fusion</p><p><strong>Comment:</strong> Integer controlling the type of magnetometer fusion used - magnetic heading or 3-component vector. The fuson of magnetomer data as a three component vector enables vehicle body fixed hard iron errors to be learned, but requires a stable earth field. If set to 'Automatic' magnetic heading fusion is used when on-ground and 3-axis magnetic field fusion in-flight with fallback to magnetic heading fusion if there is insufficient motion to make yaw or magnetic field states observable. If set to 'Magnetic heading' magnetic heading fusion is used at all times If set to '3-axis' 3-axis field fusion is used at all times. If set to 'VTOL custom' the behaviour is the same as 'Automatic', but if fusing airspeed, magnetometer fusion is only allowed to modify the magnetic field states. This can be used by VTOL platforms with large magnetic field disturbances to prevent incorrect bias states being learned during forward flight operation which can adversely affect estimation accuracy after transition to hovering flight. If set to 'MC custom' the behaviour is the same as 'Automatic, but if there are no earth frame position or velocity observations being used, the magnetometer will not be used. This enables vehicles to operate with no GPS in environments where the magnetic field cannot be used to provide a heading reference.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Automatic</li> 
 
 <li><strong>1:</strong> Magnetic heading</li> 
 
-<li><strong>2:</strong> 3-axis fusion</li> 
+<li><strong>2:</strong> 3-axis</li> 
 
-<li><strong>3:</strong> None</li> 
+<li><strong>3:</strong> VTOL customn</li> 
+
+<li><strong>4:</strong> MC custom</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
  </td>
@@ -1598,6 +1653,13 @@ Baro and Magnetometer data will be averaged before downsampling, other data will
  <td style="vertical-align: top;">0.5 > 50.0 </td>
  <td style="vertical-align: top;">10.0 </td>
  <td style="vertical-align: top;">m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="EKF2_NOAID_TOUT">EKF2_NOAID_TOUT</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Maximum lapsed time from last fusion of measurements that constrain velocity drift before the EKF will report the horizontal nav solution as invalid</p>    </td>
+ <td style="vertical-align: top;">500000 > 10000000 </td>
+ <td style="vertical-align: top;">5000000 </td>
+ <td style="vertical-align: top;">uSec</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_OF_DELAY">EKF2_OF_DELAY</strong> (FLOAT)</td>
@@ -1656,14 +1718,6 @@ Assumes measurement is timestamped at trailing edge of integration period</p>   
  <td style="vertical-align: top;">0 > 255 </td>
  <td style="vertical-align: top;">1 </td>
  <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="EKF2_OF_RMAX">EKF2_OF_RMAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Optical Flow data will not fused if the magnitude of the flow rate > EKF2_OF_RMAX.
-Control loops will be instructed to limit ground speed such that the flow rate produced by movement over ground is less than 50% of EKF2_OF_RMAX</p>    </td>
- <td style="vertical-align: top;">1.0 > ? </td>
- <td style="vertical-align: top;">2.5 </td>
- <td style="vertical-align: top;">rad/s</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_PCOEF_XN">EKF2_PCOEF_XN</strong> (FLOAT)</td>
@@ -1751,7 +1805,7 @@ This is the ratio of static pressure error to dynamic pressure generated by a wi
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_RNG_AID">EKF2_RNG_AID</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Range sensor aid</p><p><strong>Comment:</strong> If this parameter is enabled then the estimator will make use of the range finder measurements to estimate it's height even if range sensor is not the primary height source. It will only do so if conditions for range measurement fusion are met.</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>Range sensor aid</p><p><strong>Comment:</strong> If this parameter is enabled then the estimator will make use of the range finder measurements to estimate it's height even if range sensor is not the primary height source. It will only do so if conditions for range measurement fusion are met. This enables the range finder to be used during low speed and low altitude operation, eg takeoff and landing, where baro interference from rotor wash is excessive and can corrupt EKF state estimates. It is intended to be used where a vertical takeoff and landing is performed, and horizontal flight does not occur until above EKF2_RNG_A_HMAX. If vehicle motion causes repeated switching between the primary height sensor and range finder, an offset in the local position origin can accumulate. Also range finder measurements are less reliable and can experience unexpected errors. For these reasons, if accurate control of height relative to ground is required, it is recommended to use the MPC_ALT_MODE parameter instead, unless baro errors are severe enough to cause problems with landing and takeoff.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Range aid disabled</li> 
 
 <li><strong>1:</strong> Range aid enabled</li> 
@@ -1883,6 +1937,35 @@ This is the ratio of static pressure error to dynamic pressure generated by a wi
 </tr>
 </tbody></table>
 
+## Events
+
+
+The module where these parameters are defined is: *modules/events*.
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+ <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
+ <thead>
+   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+ </thead>
+<tbody>
+<tr>
+ <td style="vertical-align: top;"><strong id="EV_TSK_RC_LOSS">EV_TSK_RC_LOSS</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>RC Loss Alarm</p><p><strong>Comment:</strong> Enable/disable event task for RC Loss. When enabled, an alarm tune will be played via buzzer or ESCs, if supported. The alarm will sound after a disarm, if the vehicle was previously armed and only if the vehicle had RC signal at some point. Particularly useful for locating crashed drones without a GPS sensor.</p>   <p><b>Reboot required:</b> true</p>
+ </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="EV_TSK_STAT_DIS">EV_TSK_STAT_DIS</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Status Display</p><p><strong>Comment:</strong> Enable/disable event task for displaying the vehicle status using arm-mounted LEDs. When enabled and if the vehicle supports it, LEDs will flash indicating various vehicle status changes. Currently PX4 has not implemented any specific status events. -</p>   <p><b>Reboot required:</b> true</p>
+ </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+</tbody></table>
+
 ## FW Attitude Control
 
 
@@ -2005,6 +2088,13 @@ The module where these parameters are defined is: *modules/fw_att_control*.
  <td style="vertical-align: top;">norm</td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="FW_FLAPS_TO_SCL">FW_FLAPS_TO_SCL</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Flaps setting during take-off</p><p><strong>Comment:</strong> Sets a fraction of full flaps (FW_FLAPS_SCL) during take-off</p>    </td>
+ <td style="vertical-align: top;">0.0 > 1.0 (0.01)</td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">norm</td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="FW_MAN_P_MAX">FW_MAN_P_MAX</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Max manual pitch</p><p><strong>Comment:</strong> Max pitch for manual control in attitude stabilized mode</p>    </td>
  <td style="vertical-align: top;">0.0 > 90.0 (0.5)</td>
@@ -2076,14 +2166,14 @@ The module where these parameters are defined is: *modules/fw_att_control*.
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_P_RMAX_NEG">FW_P_RMAX_NEG</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum negative / down pitch rate</p><p><strong>Comment:</strong> This limits the maximum pitch down up angular rate the controller will output (in degrees per second). Setting a value of zero disables the limit.</p>    </td>
+ <td style="vertical-align: top;"><p>Maximum negative / down pitch rate</p><p><strong>Comment:</strong> This limits the maximum pitch down up angular rate the controller will output (in degrees per second).</p>    </td>
  <td style="vertical-align: top;">0.0 > 90.0 (0.5)</td>
  <td style="vertical-align: top;">60.0 </td>
  <td style="vertical-align: top;">deg/s</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_P_RMAX_POS">FW_P_RMAX_POS</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum positive / up pitch rate</p><p><strong>Comment:</strong> This limits the maximum pitch up angular rate the controller will output (in degrees per second). Setting a value of zero disables the limit.</p>    </td>
+ <td style="vertical-align: top;"><p>Maximum positive / up pitch rate</p><p><strong>Comment:</strong> This limits the maximum pitch up angular rate the controller will output (in degrees per second).</p>    </td>
  <td style="vertical-align: top;">0.0 > 90.0 (0.5)</td>
  <td style="vertical-align: top;">60.0 </td>
  <td style="vertical-align: top;">deg/s</td>
@@ -2146,7 +2236,7 @@ The module where these parameters are defined is: *modules/fw_att_control*.
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_R_RMAX">FW_R_RMAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum roll rate</p><p><strong>Comment:</strong> This limits the maximum roll rate the controller will output (in degrees per second). Setting a value of zero disables the limit.</p>    </td>
+ <td style="vertical-align: top;"><p>Maximum roll rate</p><p><strong>Comment:</strong> This limits the maximum roll rate the controller will output (in degrees per second).</p>    </td>
  <td style="vertical-align: top;">0.0 > 90.0 (0.5)</td>
  <td style="vertical-align: top;">70.0 </td>
  <td style="vertical-align: top;">deg/s</td>
@@ -2195,9 +2285,9 @@ The module where these parameters are defined is: *modules/fw_att_control*.
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_W_RMAX">FW_W_RMAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum wheel steering rate</p><p><strong>Comment:</strong> This limits the maximum wheel steering rate the controller will output (in degrees per second). Setting a value of zero disables the limit.</p>    </td>
+ <td style="vertical-align: top;"><p>Maximum wheel steering rate</p><p><strong>Comment:</strong> This limits the maximum wheel steering rate the controller will output (in degrees per second).</p>    </td>
  <td style="vertical-align: top;">0.0 > 90.0 (0.5)</td>
- <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">30.0 </td>
  <td style="vertical-align: top;">deg/s</td>
 </tr>
 <tr>
@@ -2211,7 +2301,7 @@ The module where these parameters are defined is: *modules/fw_att_control*.
  <td style="vertical-align: top;"><strong id="FW_YR_I">FW_YR_I</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Yaw rate integrator gain</p><p><strong>Comment:</strong> This gain defines how much control response will result out of a steady state error. It trims any constant error.</p>    </td>
  <td style="vertical-align: top;">0.0 > 50.0 (0.5)</td>
- <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">0.01 </td>
  <td style="vertical-align: top;">%/rad</td>
 </tr>
 <tr>
@@ -2230,9 +2320,9 @@ The module where these parameters are defined is: *modules/fw_att_control*.
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_Y_RMAX">FW_Y_RMAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum yaw rate</p><p><strong>Comment:</strong> This limits the maximum yaw rate the controller will output (in degrees per second). Setting a value of zero disables the limit.</p>    </td>
+ <td style="vertical-align: top;"><p>Maximum yaw rate</p><p><strong>Comment:</strong> This limits the maximum yaw rate the controller will output (in degrees per second).</p>    </td>
  <td style="vertical-align: top;">0.0 > 90.0 (0.5)</td>
- <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">50.0 </td>
  <td style="vertical-align: top;">deg/s</td>
 </tr>
 </tbody></table>
@@ -2287,7 +2377,7 @@ The module where these parameters are defined is: *modules/fw_pos_control_l1*.
  <td style="vertical-align: top;"><strong id="FW_LND_FLALT">FW_LND_FLALT</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Landing flare altitude (relative to landing altitude)</p>    </td>
  <td style="vertical-align: top;">0.0 > 25.0 (0.5)</td>
- <td style="vertical-align: top;">8.0 </td>
+ <td style="vertical-align: top;">3.0 </td>
  <td style="vertical-align: top;">m</td>
 </tr>
 <tr>
@@ -2519,7 +2609,7 @@ The module where these parameters are defined is: *modules/fw_pos_control_l1/lau
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_T_INTEG_GAIN">FW_T_INTEG_GAIN</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Integrator gain</p><p><strong>Comment:</strong> This is the integrator gain on the control loop. Increasing this gain increases the speed at which speed and height offsets are trimmed out, but reduces damping and increases overshoot.</p>    <p><b>Module:</b> modules/fw_pos_control_l1</p>
+ <td style="vertical-align: top;"><p>Integrator gain</p><p><strong>Comment:</strong> This is the integrator gain on the control loop. Increasing this gain increases the speed at which speed and height offsets are trimmed out, but reduces damping and increases overshoot. Set this value to zero to completely disable all integrator action.</p>    <p><b>Module:</b> modules/fw_pos_control_l1</p>
 </td>
  <td style="vertical-align: top;">0.0 > 2.0 (0.05)</td>
  <td style="vertical-align: top;">0.1 </td>
@@ -2545,7 +2635,7 @@ The module where these parameters are defined is: *modules/fw_pos_control_l1/lau
  <td style="vertical-align: top;"><strong id="FW_T_SINK_MAX">FW_T_SINK_MAX</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Maximum descent rate</p><p><strong>Comment:</strong> This sets the maximum descent rate that the controller will use. If this value is too large, the aircraft can over-speed on descent. This should be set to a value that can be achieved without exceeding the lower pitch angle limit and without over-speeding the aircraft.</p>    <p><b>Module:</b> modules/fw_pos_control_l1</p>
 </td>
- <td style="vertical-align: top;">2.0 > 15.0 (0.5)</td>
+ <td style="vertical-align: top;">1.0 > 15.0 (0.5)</td>
  <td style="vertical-align: top;">5.0 </td>
  <td style="vertical-align: top;">m/s</td>
 </tr>
@@ -2921,6 +3011,14 @@ The module where these parameters are defined is: *drivers/gps*.
  <td style="vertical-align: top;">7 </td>
  <td style="vertical-align: top;"></td>
 </tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="GPS_YAW_OFFSET">GPS_YAW_OFFSET</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Heading/Yaw offset for dual antenna GPS</p><p><strong>Comment:</strong> Heading offset angle for dual antenna GPS setups that support heading estimation. (currently only for the Trimble MB-Two). Set this to 0 if the antennas are parallel to the forward-facing direction of the vehicle and the first antenna is in front. The offset angle increases counterclockwise. Set this to 90 if the first antenna is placed on the right side and the second on the left side of the vehicle.</p>   <p><b>Reboot required:</b> true</p>
+ </td>
+ <td style="vertical-align: top;">0 > 360 </td>
+ <td style="vertical-align: top;">0. </td>
+ <td style="vertical-align: top;">deg</td>
+</tr>
 </tbody></table>
 
 ## GPS Failure Navigation
@@ -2982,11 +3080,11 @@ The module where these parameters are defined is: *modules/navigator*.
 
 <li><strong>1:</strong> Warning</li> 
 
-<li><strong>2:</strong> Loiter</li> 
+<li><strong>2:</strong> Hold mode</li> 
 
-<li><strong>3:</strong> Return to Land</li> 
+<li><strong>3:</strong> Return mode</li> 
 
-<li><strong>4:</strong> Flight terminate</li> 
+<li><strong>4:</strong> Terminate</li> 
 </ul>
    </td>
  <td style="vertical-align: top;">0 > 4 </td>
@@ -3052,11 +3150,26 @@ The module where these parameters are defined is: *drivers/telemetry/iridiumsbd*
  </thead>
 <tbody>
 <tr>
- <td style="vertical-align: top;"><strong id="ISBD_READINT">ISBD_READINT</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Satellite radio read interval</p>    </td>
- <td style="vertical-align: top;">0 > 300 </td>
- <td style="vertical-align: top;">10 </td>
+ <td style="vertical-align: top;"><strong id="ISBD_READ_INT">ISBD_READ_INT</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Satellite radio read interval. Only required to be nonzero if data is not sent using a ring call</p>    </td>
+ <td style="vertical-align: top;">0 > 5000 </td>
+ <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;">s</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="ISBD_SBD_TIMEOUT">ISBD_SBD_TIMEOUT</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Iridium SBD session timeout</p>    </td>
+ <td style="vertical-align: top;">0 > 300 </td>
+ <td style="vertical-align: top;">60 </td>
+ <td style="vertical-align: top;">s</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="ISBD_STACK_TIME">ISBD_STACK_TIME</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Time [ms] the Iridium driver will wait for additional mavlink messages to combine them into one SBD message
+Value 0 turns the functionality off</p>    </td>
+ <td style="vertical-align: top;">0 > 500 </td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;">ms</td>
 </tr>
 </tbody></table>
 
@@ -3079,13 +3192,6 @@ The module where these parameters are defined is: *modules/land_detector*.
  <td style="vertical-align: top;">m/s</td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="LNDFW_VELI_MAX">LNDFW_VELI_MAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Fixedwing max short-term velocity</p><p><strong>Comment:</strong> Maximum velocity integral in flight direction allowed in the landed state (m/s)</p>    </td>
- <td style="vertical-align: top;">2 > 10 </td>
- <td style="vertical-align: top;">8.0 </td>
- <td style="vertical-align: top;">m/s</td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="LNDFW_VEL_XY_MAX">LNDFW_VEL_XY_MAX</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Fixedwing max horizontal velocity</p><p><strong>Comment:</strong> Maximum horizontal velocity allowed in the landed state (m/s)</p>    </td>
  <td style="vertical-align: top;">0.5 > 10 </td>
@@ -3095,9 +3201,16 @@ The module where these parameters are defined is: *modules/land_detector*.
 <tr>
  <td style="vertical-align: top;"><strong id="LNDFW_VEL_Z_MAX">LNDFW_VEL_Z_MAX</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Fixedwing max climb rate</p><p><strong>Comment:</strong> Maximum vertical velocity allowed in the landed state (m/s up and down)</p>    </td>
- <td style="vertical-align: top;">5 > 20 </td>
- <td style="vertical-align: top;">10.0 </td>
+ <td style="vertical-align: top;">0.1 > 20 </td>
+ <td style="vertical-align: top;">3.0 </td>
  <td style="vertical-align: top;">m/s</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="LNDFW_XYACC_MAX">LNDFW_XYACC_MAX</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Fixedwing max horizontal acceleration</p><p><strong>Comment:</strong> Maximum horizontal (x,y body axes) acceleration allowed in the landed state (m/s^2)</p>    </td>
+ <td style="vertical-align: top;">2 > 15 </td>
+ <td style="vertical-align: top;">8.0 </td>
+ <td style="vertical-align: top;">m/s^2</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="LNDMC_ALT_MAX">LNDMC_ALT_MAX</strong> (FLOAT)</td>
@@ -3777,11 +3890,11 @@ The module where these parameters are defined is: *platforms/qurt/fc_addon/mpu_s
 <tr>
  <td style="vertical-align: top;"><strong id="COM_OBL_ACT">COM_OBL_ACT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Set offboard loss failsafe mode</p><p><strong>Comment:</strong> The offboard loss failsafe will only be entered after a timeout, set by COM_OF_LOSS_T in seconds.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Land at current position</li> 
+<li><strong>0:</strong> Land mode</li> 
 
-<li><strong>1:</strong> Loiter</li> 
+<li><strong>1:</strong> Hold mode</li> 
 
-<li><strong>2:</strong> Return to Land</li> 
+<li><strong>2:</strong> Return mode</li> 
 </ul>
    <p><b>Module:</b> modules/commander</p>
 </td>
@@ -3792,17 +3905,17 @@ The module where these parameters are defined is: *platforms/qurt/fc_addon/mpu_s
 <tr>
  <td style="vertical-align: top;"><strong id="COM_OBL_RC_ACT">COM_OBL_RC_ACT</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Set offboard loss failsafe mode when RC is available</p><p><strong>Comment:</strong> The offboard loss failsafe will only be entered after a timeout, set by COM_OF_LOSS_T in seconds.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Position control</li> 
+<li><strong>0:</strong> Position mode</li> 
 
-<li><strong>1:</strong> Altitude control</li> 
+<li><strong>1:</strong> Altitude mode</li> 
 
 <li><strong>2:</strong> Manual</li> 
 
-<li><strong>3:</strong> Return to Land</li> 
+<li><strong>3:</strong> Return mode</li> 
 
-<li><strong>4:</strong> Land at current position</li> 
+<li><strong>4:</strong> Land mode</li> 
 
-<li><strong>5:</strong> Loiter</li> 
+<li><strong>5:</strong> Hold mode</li> 
 </ul>
    <p><b>Module:</b> modules/commander</p>
 </td>
@@ -3812,10 +3925,10 @@ The module where these parameters are defined is: *platforms/qurt/fc_addon/mpu_s
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_POSCTL_NAVL">COM_POSCTL_NAVL</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Position control navigation loss response</p><p><strong>Comment:</strong> This sets the flight mode that will be used if navigation accuracy is no longer adequte for position control. Navigation accuracy checks can be disabled using the CBRK_VELPOSERR parameter, but doing so will remove protection for all flight modes.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Assume use of remote control after fallback. Switch to ALTCTL if a height estimate is available, else switch to MANUAL.</li> 
+ <td style="vertical-align: top;"><p>Position control navigation loss response</p><p><strong>Comment:</strong> This sets the flight mode that will be used if navigation accuracy is no longer adequate for position control. Navigation accuracy checks can be disabled using the CBRK_VELPOSERR parameter, but doing so will remove protection for all flight modes.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Assume use of remote control after fallback. Switch to Altitude mode if a height estimate is available, else switch to MANUAL.</li> 
 
-<li><strong>1:</strong> Assume no use of remote control after fallback. Switch to DESCEND if a height estimate is available, else switch to TERMINATION.</li> 
+<li><strong>1:</strong> Assume no use of remote control after fallback. Switch to Land mode if a height estimate is available, else switch to TERMINATION.</li> 
 </ul>
    <p><b>Module:</b> modules/commander</p>
 </td>
@@ -3940,11 +4053,11 @@ The module where these parameters are defined is: *platforms/qurt/fc_addon/mpu_s
  <td style="vertical-align: top;"><p>Set data link loss failsafe mode</p><p><strong>Comment:</strong> The data link loss failsafe will only be entered after a timeout, set by COM_DL_LOSS_T in seconds. Once the timeout occurs the selected action will be executed. Setting this parameter to 4 will enable CASA Outback Challenge rules, which are only recommended to participants of that competition.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Disabled</li> 
 
-<li><strong>1:</strong> Loiter</li> 
+<li><strong>1:</strong> Hold mode</li> 
 
-<li><strong>2:</strong> Return to Land</li> 
+<li><strong>2:</strong> Return mode</li> 
 
-<li><strong>3:</strong> Land at current position</li> 
+<li><strong>3:</strong> Land mode</li> 
 
 <li><strong>4:</strong> Data Link Auto Recovery (CASA Outback Challenge rules)</li> 
 
@@ -3976,7 +4089,7 @@ The module where these parameters are defined is: *platforms/qurt/fc_addon/mpu_s
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="NAV_LOITER_RAD">NAV_LOITER_RAD</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Loiter radius (FW only)</p><p><strong>Comment:</strong> Default value of loiter radius for missions, loiter, RTL, etc. (fixedwing only).</p>    <p><b>Module:</b> modules/navigator</p>
+ <td style="vertical-align: top;"><p>Loiter radius (FW only)</p><p><strong>Comment:</strong> Default value of loiter radius for missions, Hold mode, Return mode, etc. (fixedwing only).</p>    <p><b>Module:</b> modules/navigator</p>
 </td>
  <td style="vertical-align: top;">25 > 1000 (0.5)</td>
  <td style="vertical-align: top;">50.0 </td>
@@ -3995,11 +4108,11 @@ The module where these parameters are defined is: *platforms/qurt/fc_addon/mpu_s
  <td style="vertical-align: top;"><p>Set RC loss failsafe mode</p><p><strong>Comment:</strong> The RC loss failsafe will only be entered after a timeout, set by COM_RC_LOSS_T in seconds. If RC input checks have been disabled by setting the COM_RC_IN_MODE param it will not be triggered. Setting this parameter to 4 will enable CASA Outback Challenge rules, which are only recommended to participants of that competition.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Disabled</li> 
 
-<li><strong>1:</strong> Loiter</li> 
+<li><strong>1:</strong> Hold mode</li> 
 
-<li><strong>2:</strong> Return to Land</li> 
+<li><strong>2:</strong> Return mode</li> 
 
-<li><strong>3:</strong> Land at current position</li> 
+<li><strong>3:</strong> Land mode</li> 
 
 <li><strong>4:</strong> RC Auto Recovery (CASA Outback Challenge rules)</li> 
 
@@ -4028,9 +4141,9 @@ The module where these parameters are defined is: *platforms/qurt/fc_addon/mpu_s
 
 <li><strong>1:</strong> Warn only</li> 
 
-<li><strong>2:</strong> Return to Land</li> 
+<li><strong>2:</strong> Return mode</li> 
 
-<li><strong>3:</strong> Land immediately</li> 
+<li><strong>3:</strong> Land mode</li> 
 </ul>
    <p><b>Module:</b> modules/navigator</p>
 </td>
@@ -4261,8 +4374,14 @@ The module where these parameters are defined is: *modules/mc_att_control*.
 <tbody>
 <tr>
  <td style="vertical-align: top;"><strong id="MC_ACRO_EXPO">MC_ACRO_EXPO</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Acro Expo factor
-applied to input of all axis: roll, pitch, yaw</p><p><strong>Comment:</strong> 0 Purely linear input curve 1 Purely cubic input curve</p>    </td>
+ <td style="vertical-align: top;"><p>Acro mode Expo factor for Roll and Pitch</p><p><strong>Comment:</strong> Exponential factor for tuning the input curve shape. 0 Purely linear input curve 1 Purely cubic input curve</p>    </td>
+ <td style="vertical-align: top;">0 > 1 </td>
+ <td style="vertical-align: top;">0.69 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="MC_ACRO_EXPO_Y">MC_ACRO_EXPO_Y</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Acro mode Expo factor for Yaw</p><p><strong>Comment:</strong> Exponential factor for tuning the input curve shape. 0 Purely linear input curve 1 Purely cubic input curve</p>    </td>
  <td style="vertical-align: top;">0 > 1 </td>
  <td style="vertical-align: top;">0.69 </td>
  <td style="vertical-align: top;"></td>
@@ -4271,7 +4390,7 @@ applied to input of all axis: roll, pitch, yaw</p><p><strong>Comment:</strong> 0
  <td style="vertical-align: top;"><strong id="MC_ACRO_P_MAX">MC_ACRO_P_MAX</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Max acro pitch rate
 default: 2 turns per second</p>    </td>
- <td style="vertical-align: top;">0.0 > 1000.0 (5)</td>
+ <td style="vertical-align: top;">0.0 > 1800.0 (5)</td>
  <td style="vertical-align: top;">720.0 </td>
  <td style="vertical-align: top;">deg/s</td>
 </tr>
@@ -4279,14 +4398,20 @@ default: 2 turns per second</p>    </td>
  <td style="vertical-align: top;"><strong id="MC_ACRO_R_MAX">MC_ACRO_R_MAX</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Max acro roll rate
 default: 2 turns per second</p>    </td>
- <td style="vertical-align: top;">0.0 > 1000.0 (5)</td>
+ <td style="vertical-align: top;">0.0 > 1800.0 (5)</td>
  <td style="vertical-align: top;">720.0 </td>
  <td style="vertical-align: top;">deg/s</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MC_ACRO_SUPEXPO">MC_ACRO_SUPEXPO</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Acro SuperExpo factor
-applied to input of all axis: roll, pitch, yaw</p><p><strong>Comment:</strong> 0 Pure Expo function 0.7 resonable shape enhancement for intuitive stick feel 0.95 very strong bent input curve only near maxima have effect</p>    </td>
+ <td style="vertical-align: top;"><p>Acro mode SuperExpo factor for Roll and Pitch</p><p><strong>Comment:</strong> SuperExpo factor for refining the input curve shape tuned using MC_ACRO_EXPO. 0 Pure Expo function 0.7 resonable shape enhancement for intuitive stick feel 0.95 very strong bent input curve only near maxima have effect</p>    </td>
+ <td style="vertical-align: top;">0 > 0.95 </td>
+ <td style="vertical-align: top;">0.7 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="MC_ACRO_SUPEXPOY">MC_ACRO_SUPEXPOY</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Acro mode SuperExpo factor for Yaw</p><p><strong>Comment:</strong> SuperExpo factor for refining the input curve shape tuned using MC_ACRO_EXPO_Y. 0 Pure Expo function 0.7 resonable shape enhancement for intuitive stick feel 0.95 very strong bent input curve only near maxima have effect</p>    </td>
  <td style="vertical-align: top;">0 > 0.95 </td>
  <td style="vertical-align: top;">0.7 </td>
  <td style="vertical-align: top;"></td>
@@ -4295,9 +4420,16 @@ applied to input of all axis: roll, pitch, yaw</p><p><strong>Comment:</strong> 0
  <td style="vertical-align: top;"><strong id="MC_ACRO_Y_MAX">MC_ACRO_Y_MAX</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Max acro yaw rate
 default 1.5 turns per second</p>    </td>
- <td style="vertical-align: top;">0.0 > 1000.0 (5)</td>
+ <td style="vertical-align: top;">0.0 > 1800.0 (5)</td>
  <td style="vertical-align: top;">540.0 </td>
  <td style="vertical-align: top;">deg/s</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="MC_AIRMODE">MC_AIRMODE</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Multicopter air-mode</p><p><strong>Comment:</strong> The air-mode enables the mixer to increase the total thrust of the multirotor in order to keep attitude and rate control even at low and high throttle. This function should be disabled during tuning as it will help the controller to diverge if the closed-loop is unstable.</p>    </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MC_BAT_SCALE_EN">MC_BAT_SCALE_EN</strong> (INT32)</td>
@@ -4503,13 +4635,6 @@ default 1.5 turns per second</p>    </td>
  <td style="vertical-align: top;">deg/s</td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="MC_YAW_FF">MC_YAW_FF</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Yaw feed forward</p><p><strong>Comment:</strong> Feed forward weight for manual yaw control. 0 will give slow responce and no overshot, 1 - fast responce and big overshot.</p>    </td>
- <td style="vertical-align: top;">0.0 > 1.0 (0.01)</td>
- <td style="vertical-align: top;">0.5 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="MC_YAW_P">MC_YAW_P</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Yaw P gain</p><p><strong>Comment:</strong> Yaw proportional gain, i.e. desired angular speed in rad/s for error 1 rad.</p>    </td>
  <td style="vertical-align: top;">0.0 > 5 (0.1)</td>
@@ -4551,9 +4676,10 @@ The module where these parameters are defined is: *modules/mc_pos_control*.
  <td style="vertical-align: top;">m/s/s</td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="MPC_ACC_HOR_FLOW">MPC_ACC_HOR_FLOW</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Horizontal acceleration in manual modes when optical flow ground speed limit is removed.
-If full stick is being applied and the EKF starts using GPS whilst using optical flow,
+ <td style="vertical-align: top;"><strong id="MPC_ACC_HOR_ESTM">MPC_ACC_HOR_ESTM</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Horizontal acceleration in manual modes when te estimator speed limit is removed.
+If full stick is being applied and the estimator stops demanding a speed limit,
+which it had been before (e.g if GPS is gained while flying on optical flow/vision only),
 the vehicle will accelerate at this rate until the normal position control speed is achieved</p>    </td>
  <td style="vertical-align: top;">0.2 > 2.0 (0.1)</td>
  <td style="vertical-align: top;">0.5 </td>
@@ -4575,13 +4701,15 @@ the vehicle will accelerate at this rate until the normal position control speed
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_ALT_MODE">MPC_ALT_MODE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Altitude control mode, note mode 1 only tested with LPE</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>Altitude control mode</p><p><strong>Comment:</strong> Set to 0 to control height relative to the earth frame origin. This origin may move up and down in flight due to sensor drift. Set to 1 to control height relative to estimated distance to ground. The vehicle will move up and down with terrain height variation. Requires a distance to ground sensor. The height controller will revert to using height above origin if the distance to ground estimate becomes invalid as indicated by the local_position.distance_bottom_valid message being false. Set to 2 to control height relative to ground (requires a distance sensor) when stationary and relative to earth frame origin when moving horizontally. The speed threshold is controlled by the MPC_HOLD_MAX_XY parameter.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Altitude following</li> 
 
 <li><strong>1:</strong> Terrain following</li> 
+
+<li><strong>2:</strong> Terrain hold</li> 
 </ul>
    </td>
- <td style="vertical-align: top;">0 > 1 </td>
+ <td style="vertical-align: top;">0 > 2 </td>
  <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;"></td>
 </tr>
@@ -4620,6 +4748,13 @@ is 90 degrees. It should be lower than MPC_XY_CRUISE</p><p><strong>Comment:</str
  <td style="vertical-align: top;">0.0 > 3.0 </td>
  <td style="vertical-align: top;">0.6 </td>
  <td style="vertical-align: top;">m/s</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="MPC_IDLE_TKO">MPC_IDLE_TKO</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Delay from idle state to arming state</p><p><strong>Comment:</strong> For altitude controlled modes, the transition from idle to armed state is delayed by MPC_IDLE_TKO time to ensure that the propellers have reached idle speed before attempting a takeoff. This delay is particularly useful for vehicles with large propellers.</p>    </td>
+ <td style="vertical-align: top;">0 > 10 </td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">sec</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_JERK_MAX">MPC_JERK_MAX</strong> (FLOAT)</td>
@@ -4663,14 +4798,14 @@ towards MPC_ACC_HOR_MAX/MPC_ACC_UP_MAX with jerk limit</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_MANTHR_MAX">MPC_MANTHR_MAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum manual thrust</p><p><strong>Comment:</strong> Limit max allowed thrust. Setting a value of one can put the system into actuator saturation as no spread between the motors is possible any more. A value of 0.8 - 0.9 is recommended.</p>    </td>
+ <td style="vertical-align: top;"><p>Maximum manual thrust</p><p><strong>Comment:</strong> Limit max allowed thrust for Manual mode.</p>    </td>
  <td style="vertical-align: top;">0.0 > 1.0 (0.01)</td>
- <td style="vertical-align: top;">0.9 </td>
+ <td style="vertical-align: top;">1.0 </td>
  <td style="vertical-align: top;">norm</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_MANTHR_MIN">MPC_MANTHR_MIN</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Minimum manual thrust</p><p><strong>Comment:</strong> Minimum vertical thrust. It's recommended to set it > 0 to avoid free fall with zero thrust.</p>    </td>
+ <td style="vertical-align: top;"><p>Minimum manual thrust</p><p><strong>Comment:</strong> Minimum vertical thrust. It's recommended to set it > 0 to avoid free fall with zero thrust. With MC_AIRMODE set to 1, this can safely be set to 0.</p>    </td>
  <td style="vertical-align: top;">0.0 > 1.0 (0.01)</td>
  <td style="vertical-align: top;">0.08 </td>
  <td style="vertical-align: top;">norm</td>
@@ -4690,6 +4825,28 @@ towards MPC_ACC_HOR_MAX/MPC_ACC_UP_MAX with jerk limit</p>    </td>
  <td style="vertical-align: top;">deg/s</td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="MPC_OBS_AVOID">MPC_OBS_AVOID</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Flag to enable obstacle avoidance
+Temporary Parameter to enable interface testing</p>    </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="MPC_POS_MODE">MPC_POS_MODE</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Manual-Position control sub-mode</p><p><strong>Comment:</strong> The supported sub-modes are: 0 Default position control where sticks map to position/velocity directly. Maximum speeds is MPC_VEL_MANUAL. 1 Smooth position control where setpoints are adjusted based on acceleration limits and jerk limits. 2 Sport mode that is the same Default position control but with velocity limits set to the maximum allowed speeds (MPC_XY_VEL_MAX)</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Default position control</li> 
+
+<li><strong>1:</strong> Smooth position control</li> 
+
+<li><strong>2:</strong> Sport position control</li> 
+</ul>
+   </td>
+ <td style="vertical-align: top;">0 > 2 </td>
+ <td style="vertical-align: top;">1 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="MPC_THR_HOVER">MPC_THR_HOVER</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Hover thrust</p><p><strong>Comment:</strong> Vertical thrust required to hover. This value is mapped to center stick for manual throttle control. With this value set to the thrust required to hover, transition from manual to ALTCTL mode while hovering will occur with the throttle stick near center, which is then interpreted as (near) zero demand for vertical speed.</p>    </td>
  <td style="vertical-align: top;">0.2 > 0.8 (0.01)</td>
@@ -4698,9 +4855,9 @@ towards MPC_ACC_HOR_MAX/MPC_ACC_UP_MAX with jerk limit</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_THR_MAX">MPC_THR_MAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum thrust in auto thrust control</p><p><strong>Comment:</strong> Limit max allowed thrust. Setting a value of one can put the system into actuator saturation as no spread between the motors is possible any more. A value of 0.8 - 0.9 is recommended.</p>    </td>
- <td style="vertical-align: top;">0.0 > 0.95 (0.01)</td>
- <td style="vertical-align: top;">0.9 </td>
+ <td style="vertical-align: top;"><p>Maximum thrust in auto thrust control</p><p><strong>Comment:</strong> Limit max allowed thrust</p>    </td>
+ <td style="vertical-align: top;">0.0 > 1.0 (0.01)</td>
+ <td style="vertical-align: top;">1.0 </td>
  <td style="vertical-align: top;">norm</td>
 </tr>
 <tr>
@@ -4804,6 +4961,13 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="MPC_YAW_EXPO">MPC_YAW_EXPO</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Manual control stick yaw rotation exponential curve</p><p><strong>Comment:</strong> The higher the value the less sensitivity the stick has around zero while still reaching the maximum value with full stick deflection. 0 Purely linear input curve (default) 1 Purely cubic input curve</p>    </td>
+ <td style="vertical-align: top;">0 > 1 </td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="MPC_Z_MAN_EXPO">MPC_Z_MAN_EXPO</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Manual control stick vertical exponential curve</p><p><strong>Comment:</strong> The higher the value the less sensitivity the stick has around zero while still reaching the maximum value with full stick deflection. 0 Purely linear input curve (default) 1 Purely cubic input curve</p>    </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -4863,8 +5027,21 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
  </thead>
 <tbody>
 <tr>
+ <td style="vertical-align: top;"><strong id="MOT_ORDERING">MOT_ORDERING</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Motor Ordering</p><p><strong>Comment:</strong> Determines the motor ordering. This can be used for example in combination with a 4-in-1 ESC that assumes a motor ordering which is different from PX4. ONLY supported for Quads. ONLY supported for fmu output (Pixracer or Omnibus F4). When changing this, make sure to test the motor response without props first.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> PX4</li> 
+
+<li><strong>1:</strong> Betaflight / Cleanflight</li> 
+</ul>
+   <p><b>Module:</b> drivers/px4fmu</p>
+</td>
+ <td style="vertical-align: top;">0 > 1 </td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="MOT_SLEW_MAX">MOT_SLEW_MAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Minimum motor rise time (slew rate limit)</p><p><strong>Comment:</strong> Minimum time allowed for the motor input signal to pass through a range of 1000 PWM units. A value x means that the motor signal can only go from 1000 to 2000 PWM in maximum x seconds. Zero means that slew rate limiting is disabled.</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Minimum motor rise time (slew rate limit)</p><p><strong>Comment:</strong> Minimum time allowed for the motor input signal to pass through a range of 1000 PWM units. A value x means that the motor signal can only go from 1000 to 2000 PWM in maximum x seconds. Zero means that slew rate limiting is disabled.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">0.0 > ? </td>
  <td style="vertical-align: top;">0.0 </td>
@@ -4872,7 +5049,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_DIS1">PWM_AUX_DIS1</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Set the disarmed PWM for the AUX 1 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Set the disarmed PWM for the auxiliary 1 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-1 > 2200 </td>
@@ -4881,7 +5058,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_DIS2">PWM_AUX_DIS2</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Set the disarmed PWM for the AUX 2 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Set the disarmed PWM for the auxiliary 2 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-1 > 2200 </td>
@@ -4890,7 +5067,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_DIS3">PWM_AUX_DIS3</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Set the disarmed PWM for the AUX 3 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Set the disarmed PWM for the auxiliary 3 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-1 > 2200 </td>
@@ -4899,7 +5076,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_DIS4">PWM_AUX_DIS4</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Set the disarmed PWM for the AUX 4 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Set the disarmed PWM for the auxiliary 4 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-1 > 2200 </td>
@@ -4908,7 +5085,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_DIS5">PWM_AUX_DIS5</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Set the disarmed PWM for the AUX 5 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Set the disarmed PWM for the auxiliary 5 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-1 > 2200 </td>
@@ -4917,7 +5094,25 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_DIS6">PWM_AUX_DIS6</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Set the disarmed PWM for the AUX 6 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Set the disarmed PWM for the auxiliary 6 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
+ <p><b>Module:</b> modules/sensors</p>
+</td>
+ <td style="vertical-align: top;">-1 > 2200 </td>
+ <td style="vertical-align: top;">-1 </td>
+ <td style="vertical-align: top;">us</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="PWM_AUX_DIS7">PWM_AUX_DIS7</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Set the disarmed PWM for the auxiliary 7 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
+ <p><b>Module:</b> modules/sensors</p>
+</td>
+ <td style="vertical-align: top;">-1 > 2200 </td>
+ <td style="vertical-align: top;">-1 </td>
+ <td style="vertical-align: top;">us</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="PWM_AUX_DIS8">PWM_AUX_DIS8</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Set the disarmed PWM for the auxiliary 8 output</p><p><strong>Comment:</strong> This is the PWM pulse the autopilot is outputting if not armed. When set to -1 the value for PWM_AUX_DISARMED will be used</p>   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-1 > 2200 </td>
@@ -4935,7 +5130,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_MAX">PWM_AUX_MAX</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Set the maximum PWM for the auxiliary outputs</p><p><strong>Comment:</strong> Set to 2000 for default or 2100 to increase servo travel</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Set the maximum PWM for the auxiliary outputs</p><p><strong>Comment:</strong> Set to 2000 for industry default or 2100 to increase servo travel.</p>   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">1600 > 2200 </td>
@@ -4944,7 +5139,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_MIN">PWM_AUX_MIN</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Set the minimum PWM for the auxiliary outputs</p><p><strong>Comment:</strong> Set to 1000 for default or 900 to increase servo travel</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Set the minimum PWM for the auxiliary outputs</p><p><strong>Comment:</strong> Set to 1000 for industry default or 900 to increase servo travel.</p>   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">800 > 1400 </td>
@@ -4952,8 +5147,17 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
  <td style="vertical-align: top;">us</td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="PWM_AUX_RATE">PWM_AUX_RATE</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Set the PWM output frequency for the auxiliary outputs</p><p><strong>Comment:</strong> Set to 400 for industry default or 1000 for high frequency ESCs. Set to 0 for Oneshot125.</p>   <p><b>Reboot required:</b> true</p>
+ <p><b>Module:</b> modules/sensors</p>
+</td>
+ <td style="vertical-align: top;">-1 > 2000 </td>
+ <td style="vertical-align: top;">50 </td>
+ <td style="vertical-align: top;">Hz</td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_REV1">PWM_AUX_REV1</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of aux output channel 1</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Invert direction of auxiliary output channel 1</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -4961,7 +5165,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_REV2">PWM_AUX_REV2</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of aux output channel 2</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Invert direction of auxiliary output channel 2</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -4969,7 +5173,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_REV3">PWM_AUX_REV3</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of aux output channel 3</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Invert direction of auxiliary output channel 3</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -4977,7 +5181,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_REV4">PWM_AUX_REV4</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of aux output channel 4</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Invert direction of auxiliary output channel 4</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -4985,7 +5189,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_REV5">PWM_AUX_REV5</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of aux output channel 5</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Invert direction of auxiliary output channel 5</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -4993,7 +5197,23 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_REV6">PWM_AUX_REV6</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of aux output channel 6</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Invert direction of auxiliary output channel 6</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="PWM_AUX_REV7">PWM_AUX_REV7</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Invert direction of auxiliary output channel 7</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="PWM_AUX_REV8">PWM_AUX_REV8</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Invert direction of auxiliary output channel 8</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -5001,7 +5221,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_TRIM1">PWM_AUX_TRIM1</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for FMU PWM output channel 1</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Trim value for auxiliary output channel 1</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5009,7 +5229,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_TRIM2">PWM_AUX_TRIM2</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for FMU PWM output channel 2</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Trim value for auxiliary output channel 2</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5017,7 +5237,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_TRIM3">PWM_AUX_TRIM3</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for FMU PWM output channel 3</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Trim value for auxiliary output channel 3</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5025,7 +5245,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_TRIM4">PWM_AUX_TRIM4</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for FMU PWM output channel 4</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Trim value for auxiliary output channel 4</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5033,7 +5253,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_TRIM5">PWM_AUX_TRIM5</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for FMU PWM output channel 5</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Trim value for auxiliary output channel 5</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5041,7 +5261,23 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_AUX_TRIM6">PWM_AUX_TRIM6</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for FMU PWM output channel 6</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Trim value for auxiliary output channel 6</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
+</td>
+ <td style="vertical-align: top;">-0.2 > 0.2 </td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="PWM_AUX_TRIM7">PWM_AUX_TRIM7</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Trim value for auxiliary output channel 7</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
+</td>
+ <td style="vertical-align: top;">-0.2 > 0.2 </td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="PWM_AUX_TRIM8">PWM_AUX_TRIM8</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Trim value for auxiliary output channel 8</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5130,7 +5366,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_REV1">PWM_MAIN_REV1</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of main output channel 1</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Invert direction of main output channel 1</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -5138,7 +5374,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_REV2">PWM_MAIN_REV2</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of main output channel 2</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Invert direction of main output channel 2</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -5146,7 +5382,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_REV3">PWM_MAIN_REV3</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of main output channel 3</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Invert direction of main output channel 3</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -5154,7 +5390,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_REV4">PWM_MAIN_REV4</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of main output channel 4</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Invert direction of main output channel 4</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -5162,7 +5398,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_REV5">PWM_MAIN_REV5</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of main output channel 5</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Invert direction of main output channel 5</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -5170,7 +5406,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_REV6">PWM_MAIN_REV6</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of main output channel 6</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Invert direction of main output channel 6</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -5178,7 +5414,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_REV7">PWM_MAIN_REV7</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of main output channel 7</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Invert direction of main output channel 7</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -5186,7 +5422,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_REV8">PWM_MAIN_REV8</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Invert direction of main output channel 8</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Invert direction of main output channel 8</p><p><strong>Comment:</strong> Enable to invert the channel.</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -5194,7 +5430,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_TRIM1">PWM_MAIN_TRIM1</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for main output channel 1</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Trim value for main output channel 1</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5202,7 +5438,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_TRIM2">PWM_MAIN_TRIM2</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for main output channel 2</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Trim value for main output channel 2</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5210,7 +5446,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_TRIM3">PWM_MAIN_TRIM3</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for main output channel 3</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Trim value for main output channel 3</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5218,7 +5454,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_TRIM4">PWM_MAIN_TRIM4</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for main output channel 4</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Trim value for main output channel 4</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5226,7 +5462,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_TRIM5">PWM_MAIN_TRIM5</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for main output channel 5</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Trim value for main output channel 5</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5234,7 +5470,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_TRIM6">PWM_MAIN_TRIM6</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for main output channel 6</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Trim value for main output channel 6</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5242,7 +5478,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_TRIM7">PWM_MAIN_TRIM7</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for main output channel 7</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Trim value for main output channel 7</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5250,7 +5486,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="PWM_MAIN_TRIM8">PWM_MAIN_TRIM8</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Trim value for main output channel 8</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> drivers/px4io</p>
+ <td style="vertical-align: top;"><p>Trim value for main output channel 8</p><p><strong>Comment:</strong> Set to normalized offset</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">-0.2 > 0.2 </td>
  <td style="vertical-align: top;">0 </td>
@@ -5293,7 +5529,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="THR_MDL_FAC">THR_MDL_FAC</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Thrust to PWM model parameter</p><p><strong>Comment:</strong> Parameter used to model the relationship between static thrust and motor input PWM. Model is: thrust = (1-factor)*PWM + factor * PWM^2</p>    <p><b>Module:</b> drivers/px4fmu</p>
+ <td style="vertical-align: top;"><p>Thrust to PWM model parameter</p><p><strong>Comment:</strong> Parameter used to model the relationship between static thrust and motor input PWM. Model is: thrust = (1-factor)*PWM + factor * PWM^2</p>    <p><b>Module:</b> modules/sensors</p>
 </td>
  <td style="vertical-align: top;">0.0 > 1.0 </td>
  <td style="vertical-align: top;">0.0 </td>
@@ -7304,7 +7540,7 @@ The module where these parameters are defined is: *modules/sensors*.
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_ARM_SW">RC_MAP_ARM_SW</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Arm switch channel</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>Arm switch channel</p><p><strong>Comment:</strong> Use it to arm/disarm via switch instead of default throttle stick. If this is assigned, arming and disarming via stick is disabled.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Unassigned</li> 
 
 <li><strong>1:</strong> Channel 1</li> 
@@ -7990,7 +8226,7 @@ The module where these parameters are defined is: *modules/sensors*.
 </tr>
 </tbody></table>
 
-## Return To Land
+## Return Mode
 
 
 The module where these parameters are defined is: *modules/navigator*.
@@ -8003,29 +8239,17 @@ The module where these parameters are defined is: *modules/navigator*.
 <tbody>
 <tr>
  <td style="vertical-align: top;"><strong id="RTL_DESCEND_ALT">RTL_DESCEND_ALT</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>RTL loiter altitude</p><p><strong>Comment:</strong> Stay at this altitude above home position after RTL descending. Land (i.e. slowly descend) from this altitude if autolanding allowed.</p>    </td>
+ <td style="vertical-align: top;"><p>Return mode loiter altitude</p><p><strong>Comment:</strong> Stay at this altitude above home position after RTL descending. Land (i.e. slowly descend) from this altitude if autolanding allowed.</p>    </td>
  <td style="vertical-align: top;">2 > 100 (0.5)</td>
  <td style="vertical-align: top;">30 </td>
  <td style="vertical-align: top;">m</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="RTL_LAND_DELAY">RTL_LAND_DELAY</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>RTL delay</p><p><strong>Comment:</strong> Delay after descend before landing in RTL mode. If set to -1 the system will not land but loiter at RTL_DESCEND_ALT.</p>    </td>
+ <td style="vertical-align: top;"><p>Return mode delay</p><p><strong>Comment:</strong> Delay after descend before landing in Return mode. If set to -1 the system will not land but loiter at RTL_DESCEND_ALT.</p>    </td>
  <td style="vertical-align: top;">-1 > 300 (0.5)</td>
  <td style="vertical-align: top;">-1.0 </td>
  <td style="vertical-align: top;">s</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="RTL_LAND_TYPE">RTL_LAND_TYPE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>RTL land location</p><p><strong>Comment:</strong> Land at the home location or planned mission landing</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Home Position</li> 
-
-<li><strong>1:</strong> Planned Landing (Mission)</li> 
-</ul>
-   </td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="RTL_MIN_DIST">RTL_MIN_DIST</strong> (FLOAT)</td>
@@ -8040,6 +8264,33 @@ The module where these parameters are defined is: *modules/navigator*.
  <td style="vertical-align: top;">0 > 150 (0.5)</td>
  <td style="vertical-align: top;">60 </td>
  <td style="vertical-align: top;">m</td>
+</tr>
+</tbody></table>
+
+## Return To Land
+
+
+The module where these parameters are defined is: *modules/navigator*.
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+ <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
+ <thead>
+   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+ </thead>
+<tbody>
+<tr>
+ <td style="vertical-align: top;"><strong id="RTL_TYPE">RTL_TYPE</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Return type</p><p><strong>Comment:</strong> Fly straight to the home location or planned mission landing and land there or use the planned mission to get to those points.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Return home via direct path</li> 
+
+<li><strong>1:</strong> Return to a planned mission landing, if available, via direct path, else return to home via direct path</li> 
+
+<li><strong>2:</strong> Return to a planned mission landing, if available, using the mission path, else return to home via the reverse mission path</li> 
+</ul>
+   </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
 </tr>
 </tbody></table>
 
@@ -8132,6 +8383,9 @@ to takeoff is reached</p>    </td>
 
 ## SD Logging
 
+
+The module where these parameters are defined is: *modules/logger*.
+
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
  <thead>
@@ -8141,33 +8395,9 @@ to takeoff is reached</p>    </td>
 <tr>
  <td style="vertical-align: top;"><strong id="SDLOG_DIRS_MAX">SDLOG_DIRS_MAX</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Maximum number of log directories to keep</p><p><strong>Comment:</strong> If there are more log directories than this value, the system will delete the oldest directories during startup. In addition, the system will delete old logs if there is not enough free space left. The minimum amount is 300 MB. If this is set to 0, old directories will only be removed if the free space falls below the minimum.</p>   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/logger</p>
-</td>
+ </td>
  <td style="vertical-align: top;">0 > 1000 </td>
  <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SDLOG_EXT">SDLOG_EXT</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Extended logging mode</p><p><strong>Comment:</strong> A value of -1 indicates the command line argument should be obeyed. A value of 0 disables extended logging mode, a value of 1 enables it. This parameter is only read out before logging starts (which commonly is before arming).</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> Command Line</li> 
-
-<li><strong>0:</strong> Disable</li> 
-
-<li><strong>1:</strong> Enable</li> 
-</ul>
-   <p><b>Module:</b> modules/sdlog2</p>
-</td>
- <td style="vertical-align: top;">-1 > 1 </td>
- <td style="vertical-align: top;">-1 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SDLOG_GPSTIME">SDLOG_GPSTIME</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Use timestamps only if GPS 3D fix is available</p><p><strong>Comment:</strong> Constrain the log folder creation to only use the time stamp if a 3D GPS lock is present.</p>    <p><b>Module:</b> modules/sdlog2</p>
-</td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">1 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
@@ -8180,28 +8410,9 @@ to takeoff is reached</p>    </td>
 <li><strong>2:</strong> from boot until shutdown</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/logger</p>
-</td>
+ </td>
  <td style="vertical-align: top;">0 > 2 </td>
  <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SDLOG_PRIO_BOOST">SDLOG_PRIO_BOOST</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Give logging app higher thread priority to avoid data loss.
-This is used for gathering replay logs for the ekf2 module</p><p><strong>Comment:</strong> A value of 0 indicates that the default priority is used. Increasing the parameter in steps of one increases the priority.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Low priority</li> 
-
-<li><strong>1:</strong> Default priority</li> 
-
-<li><strong>2:</strong> Medium priority</li> 
-
-<li><strong>3:</strong> Max priority</li> 
-</ul>
-   <p><b>Module:</b> modules/sdlog2</p>
-</td>
- <td style="vertical-align: top;">0 > 3 </td>
- <td style="vertical-align: top;">2 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
@@ -8215,32 +8426,21 @@ This is used for gathering replay logs for the ekf2 module</p><p><strong>Comment
   <li><strong>6:</strong> sensor comparison</li> 
 </ul>
  <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/logger</p>
-</td>
+ </td>
  <td style="vertical-align: top;">0 > 127 </td>
  <td style="vertical-align: top;">3 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="SDLOG_RATE">SDLOG_RATE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Logging rate</p><p><strong>Comment:</strong> A value of -1 indicates the commandline argument should be obeyed. A value of 0 sets the minimum rate, any other value is interpreted as rate in Hertz. This parameter is only read out before logging starts (which commonly is before arming).</p>    <p><b>Module:</b> modules/sdlog2</p>
-</td>
- <td style="vertical-align: top;">-1 > 250 </td>
- <td style="vertical-align: top;">-1 </td>
- <td style="vertical-align: top;">Hz</td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="SDLOG_UTC_OFFSET">SDLOG_UTC_OFFSET</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>UTC offset (unit: min)</p><p><strong>Comment:</strong> the difference in hours and minutes from Coordinated Universal Time (UTC) for a your place and date. for example, In case of South Korea(UTC+09:00), UTC offset is 540 min (9*60) refer to https://en.wikipedia.org/wiki/List_of_UTC_time_offsets</p>    <p><b>Module:</b> modules/logger</p>
-</td>
+ <td style="vertical-align: top;"><p>UTC offset (unit: min)</p><p><strong>Comment:</strong> the difference in hours and minutes from Coordinated Universal Time (UTC) for a your place and date. for example, In case of South Korea(UTC+09:00), UTC offset is 540 min (9*60) refer to https://en.wikipedia.org/wiki/List_of_UTC_time_offsets</p>    </td>
  <td style="vertical-align: top;">-1000 > 1000 </td>
  <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;">min</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="SDLOG_UUID">SDLOG_UUID</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Log UUID</p><p><strong>Comment:</strong> If set to 1, add an ID to the log, which uniquely identifies the vehicle</p>    <p><b>Module:</b> modules/logger</p>
-</td>
+ <td style="vertical-align: top;"><p>Log UUID</p><p><strong>Comment:</strong> If set to 1, add an ID to the log, which uniquely identifies the vehicle</p>    </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">1 </td>
  <td style="vertical-align: top;"></td>
@@ -9168,11 +9368,28 @@ The module where these parameters are defined is: *modules/sensors*.
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="SENS_FLOW_MINRNG">SENS_FLOW_MINRNG</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Optical Flow minimum focus distance</p><p><strong>Comment:</strong> This parameter defines the minimum distance from ground required for the optical flow sensor to operate reliably. The sensor may be usable below this height, but accuracy will progressively reduce to loss of focus. *</p>    </td>
- <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;"><strong id="SENS_FLOW_MAXHGT">SENS_FLOW_MAXHGT</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Maximum height above ground when reliant on optical flow</p><p><strong>Comment:</strong> This parameter defines the maximum distance from ground at which the optical flow sensor operates reliably. The height setpoint will be limited to be no greater than this value when the navigation system is completely reliant on optical flow data and the height above ground estimate is valid. The sensor may be usable above this height, but accuracy will progressively degrade.</p>    </td>
+ <td style="vertical-align: top;">1.0 > 25.0 (0.1)</td>
+ <td style="vertical-align: top;">3.0 </td>
+ <td style="vertical-align: top;">m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SENS_FLOW_MAXR">SENS_FLOW_MAXR</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Magnitude of maximum angular flow rate reliably measurable by the optical flow sensor.
+Optical flow data will not fused by the estimators if the magnitude of the flow rate exceeds this value and
+control loops will be instructed to limit ground speed such that the flow rate produced by movement over ground
+is less than 50% of this value</p>    </td>
+ <td style="vertical-align: top;">1.0 > ? </td>
+ <td style="vertical-align: top;">2.5 </td>
+ <td style="vertical-align: top;">rad/s</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SENS_FLOW_MINHGT">SENS_FLOW_MINHGT</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Minimum height above ground when reliant on optical flow</p><p><strong>Comment:</strong> This parameter defines the minimum distance from ground at which the optical flow sensor operates reliably. The sensor may be usable below this height, but accuracy will progressively reduce to loss of focus.</p>    </td>
+ <td style="vertical-align: top;">0.0 > 1.0 (0.1)</td>
  <td style="vertical-align: top;">0.7 </td>
- <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">m</td>
 </tr>
 </tbody></table>
 
@@ -9356,7 +9573,7 @@ The module where these parameters are defined is: *modules/sensors*.
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_EN_MB12XX">SENS_EN_MB12XX</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Maxbotix Soanr (mb12xx)</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Maxbotix Sonar (mb12xx)</p>   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> drivers/distance_sensor/mb12xx</p>
 </td>
  <td style="vertical-align: top;"></td>
@@ -9438,7 +9655,9 @@ The module where these parameters are defined is: *modules/sensors*.
 
 <li><strong>2:</strong> TROne</li> 
 
-<li><strong>3:</strong> TREvo</li> 
+<li><strong>3:</strong> TREvo60m</li> 
+
+<li><strong>4:</strong> TREvo600Hz</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> drivers/distance_sensor/teraranger</p>
@@ -9727,11 +9946,13 @@ The module where these parameters are defined is: *modules/syslink*.
 <li><strong>3115200:</strong> Normal Telemetry (115200 baud, 8N1)</li> 
 
 <li><strong>5115200:</strong> Minimal Telemetry (115200 baud, 8N1)</li> 
+
+<li><strong>6460800:</strong> RTPS Client (460800 baud)</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
  <p><b>Module:</b> modules/systemlib</p>
 </td>
- <td style="vertical-align: top;">0 > 1921600 </td>
+ <td style="vertical-align: top;">0 > 6460800 </td>
  <td style="vertical-align: top;">157600 </td>
  <td style="vertical-align: top;"></td>
 </tr>
@@ -9741,7 +9962,25 @@ The module where these parameters are defined is: *modules/syslink*.
  <p><b>Module:</b> drivers/px4fmu</p>
 </td>
  <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;">1 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SYS_HAS_BARO">SYS_HAS_BARO</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Control if the vehicle has a barometer</p><p><strong>Comment:</strong> Disable this if the board has no barometer, such as some of the the Omnibus F4 SD variants. If disabled, the preflight checks will not check for the presence of a barometer.</p>   <p><b>Reboot required:</b> true</p>
+ <p><b>Module:</b> modules/systemlib</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">1 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SYS_HAS_MAG">SYS_HAS_MAG</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Control if the vehicle has a magnetometer</p><p><strong>Comment:</strong> Disable this if the board has no magnetometer, such as the Omnibus F4 SD. If disabled, the preflight checks will not check for the presence of a magnetometer.</p>   <p><b>Reboot required:</b> true</p>
+ <p><b>Module:</b> modules/systemlib</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">1 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
@@ -9751,20 +9990,6 @@ The module where these parameters are defined is: *modules/syslink*.
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SYS_LOGGER">SYS_LOGGER</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>SD logger</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> sdlog2 (legacy)</li> 
-
-<li><strong>1:</strong> logger (default)</li> 
-</ul>
-  <p><b>Reboot required:</b> true</p>
- <p><b>Module:</b> modules/systemlib</p>
-</td>
- <td style="vertical-align: top;">0 > 1 </td>
- <td style="vertical-align: top;">1 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
@@ -11224,7 +11449,7 @@ to accelerate forward if necessary</p>    </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="VT_FW_ALT_ERR">VT_FW_ALT_ERR</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Adaptive QuadChute</p><p><strong>Comment:</strong> Maximum negative altitude error, when in fixed wing the altitude drops below this copared to the altitude setpoint the vehicle will transition back to MC mode and enter failsafe RTL</p>    </td>
+ <td style="vertical-align: top;"><p>Adaptive QuadChute</p><p><strong>Comment:</strong> Maximum negative altitude error for fixed wing flight. If the altitude drops below this value below the altitude setpoint the vehicle will transition back to MC mode and enter failsafe RTL.</p>    </td>
  <td style="vertical-align: top;">0.0 > 200.0 </td>
  <td style="vertical-align: top;">0.0 </td>
  <td style="vertical-align: top;"></td>
@@ -11316,13 +11541,6 @@ tailsitter, tiltrotor: main throttle</p>    </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="VT_OPT_RECOV_EN">VT_OPT_RECOV_EN</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Optimal recovery strategy for pitch-weak tailsitters</p>    </td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="VT_PSHER_RMP_DT">VT_PSHER_RMP_DT</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Defines the time window during which the pusher throttle will be ramped up linearly to VT_F_TRANS_THR during a transition
 to fixed wing mode. Zero or negative values will produce an instant throttle rise to VT_F_TRANS_THR</p>    </td>
@@ -11392,6 +11610,61 @@ to fixed wing mode. Zero or negative values will produce an instant throttle ris
  <td style="vertical-align: top;">0.0 > 1.0 (0.01)</td>
  <td style="vertical-align: top;">0.15 </td>
  <td style="vertical-align: top;"></td>
+</tr>
+</tbody></table>
+
+## Wind Estimator
+
+
+The module where these parameters are defined is: *modules/wind_estimator*.
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+ <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
+ <thead>
+   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+ </thead>
+<tbody>
+<tr>
+ <td style="vertical-align: top;"><strong id="WEST_BETA_GATE">WEST_BETA_GATE</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Gate size for true sideslip fusion</p><p><strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.</p>    </td>
+ <td style="vertical-align: top;">1 > 5 </td>
+ <td style="vertical-align: top;">1 </td>
+ <td style="vertical-align: top;">SD</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="WEST_BETA_NOISE">WEST_BETA_NOISE</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Wind estimator sideslip measurement noise</p>    </td>
+ <td style="vertical-align: top;">0 > 1 </td>
+ <td style="vertical-align: top;">0.3 </td>
+ <td style="vertical-align: top;">rad</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="WEST_SC_P_NOISE">WEST_SC_P_NOISE</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Wind estimator true airspeed scale process noise</p>    </td>
+ <td style="vertical-align: top;">0 > 0.1 </td>
+ <td style="vertical-align: top;">0.0001 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="WEST_TAS_GATE">WEST_TAS_GATE</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Gate size for true airspeed fusion</p><p><strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.</p>    </td>
+ <td style="vertical-align: top;">1 > 5 </td>
+ <td style="vertical-align: top;">3 </td>
+ <td style="vertical-align: top;">SD</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="WEST_TAS_NOISE">WEST_TAS_NOISE</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Wind estimator true airspeed measurement noise</p>    </td>
+ <td style="vertical-align: top;">0 > 4 </td>
+ <td style="vertical-align: top;">1.4 </td>
+ <td style="vertical-align: top;">m/s</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="WEST_W_P_NOISE">WEST_W_P_NOISE</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Wind estimator wind process noise</p>    </td>
+ <td style="vertical-align: top;">0 > 1 </td>
+ <td style="vertical-align: top;">0.1 </td>
+ <td style="vertical-align: top;">m/s/s</td>
 </tr>
 </tbody></table>
 

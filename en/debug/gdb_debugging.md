@@ -6,10 +6,8 @@ The autopilots running PX4 support debugging via GDB or LLDB.
 
 The command below will list the largest static allocations:
 
-<div class="host-code"></div>
-
 ```bash
-arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
+arm-none-eabi-nm --size-sort --print-size --radix=dec build/nuttx_px4fmu-v2_default/nuttx_px4fmu-v2_default.elf | grep " [bBdD] "
 ```
 
 This NSH command provides the remaining free memory:
@@ -27,9 +25,11 @@ top
 Stack usage is calculated with stack coloring and thus is not the current usage, but the maximum since the start of the task.
 
 ### Heap allocations
+
 Dynamic heap allocations can be traced on POSIX in SITL with [gperftools](https://github.com/gperftools/gperftools).
 
 #### Install Instructions
+
 ##### Ubuntu:
 ```bash
 sudo apt-get install google-perftools libgoogle-perftools-dev
@@ -51,6 +51,7 @@ export HEAP_PROFILE_TIME_INTERVAL=30
 ```
 
 Enter this depending on your system:
+
 ##### Fedora:
 ```bash
 env LD_PRELOAD=/lib64/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
@@ -73,8 +74,8 @@ See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gper
 
 A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted. A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
 
-  * NuttX maintains two stacks: The IRQ stack for interrupt processing and the user stack
-  * The stack grows downward. So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
+* NuttX maintains two stacks: The IRQ stack for interrupt processing and the user stack
+* The stack grows downward. So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
 
 ```bash
 Assertion failed at file:armv7-m/up_hardfault.c line: 184 task: ekf_att_pos_estimator
@@ -125,23 +126,17 @@ EXC_RETURN: ffffffe9
 
 To decode the hard fault, load the *exact* binary into the debugger:
 
-<div class="host-code"></div>
-
 ```bash
-arm-none-eabi-gdb build/px4fmu-v2_default/nuttx_px4fmu-v2_default.elf
+arm-none-eabi-gdb build/nuttx_px4fmu-v2_default/nuttx_px4fmu-v2_default.elf
 ```
 
 Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
-
-<div class="host-code"></div>
 
 ```gdb
 (gdb) info line *0x0808439f
 Line 77 of "../src/modules/systemlib/mavlink_log.c" starts at address 0x8084398 <mavlink_vasprintf+36>
    and ends at 0x80843a0 <mavlink_vasprintf+44>.
 ```
-
-<div class="host-code"></div>
 
 ```gdb
 (gdb) info line *0x08087c4e

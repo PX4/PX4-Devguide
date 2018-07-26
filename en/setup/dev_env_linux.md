@@ -36,7 +36,15 @@ To install the development toolchain:
 1. Restart the computer on completion.
 
 
-### Snapdragon Flight or Raspberry Pi
+### Snapdragon Flight
+
+Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
+* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+
+   
+### Raspberry Pi
 
 To install the development toolchain:
 1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
@@ -45,9 +53,7 @@ To install the development toolchain:
    source ubuntu_sim_common_deps.sh
    ```
    You may need to acknowledge some prompts as the script progresses.
-1. Follow the platform-specific instructions in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md) for your target:
-   * [Snapdragon Flight](../setup/dev_env_linux_ubuntu.md#snapdragon-flight)
-   * [Raspberry Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware)
+1. Follow setup instructions in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md) for [Raspberry Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
 
 ### Parrot Bepop
 
@@ -67,6 +73,8 @@ To install the Gazebo and jMAVSim simulators:
 
 > **Tip** If you just need jMAVSim, instead download and run <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
 
+<span><span>
+> **Note** PX4 works with Gazebo 7, 8, and 9. The script installs Gazebo 9.
 
 ### Gazebo with ROS
 
@@ -80,27 +88,8 @@ To install the development toolchain:
    You may need to acknowledge some prompts as the script progresses.
 
 Note: 
-* ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 to simplify ROS development).
+* ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 or Gazebo9 to simplify ROS development).
 * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
 
-
-<!-- Additional DevTools Common to all Platforms -->
-
-## Ground Control Software
-
-Download and install the [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html).
-
-![QGroundControl](../../assets/qgc_goto.jpg)
-
-
-## Editor / IDE
-
-The development team often use:
-
-* [Sublime Text](https://www.sublimetext.com): a fast and lean text editor. 
-* [Qt Creator](http://www.qt.io/download-open-source/#section-6): A popular open-source IDE.
-  > **Note** The installation scripts automatically install *Qt Creator* as part of the common dependencies. You can launch it by entering `qtcreator` in a bash terminal.
-
-## Next Steps
-
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+<!-- import docs for other tools and next steps. -->
+{% include "_addition_dev_tools.txt" %}

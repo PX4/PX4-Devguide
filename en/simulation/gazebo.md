@@ -166,7 +166,7 @@ make posix gazebo
 
 ### Using a Joystick
 
-Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here] here](../simulation/README.md#joystickgamepad-integration)).
+Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
 
 
 ### Simulating GPS Noise

@@ -176,8 +176,6 @@ $HOME/Qualcomm/Hexagon_SDK/2.0/tools/mini-dm/Linux_Debug/mini-dm
 
 树莓派开发者应该从下面地址下载树莓派Linux工具链。安装脚本会自动安装交叉编译工具链。如果想要用原生树莓派工具链在树莓派上直接编译，参见[这里](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#native-builds-optional)。
 
-<div class="host-code"></div>
-
 ```sh
 git clone https://github.com/pixhawk/rpi_toolchain.git
 cd rpi_toolchain
@@ -186,7 +184,15 @@ cd rpi_toolchain
 
 在工具链安装过程中需要输入密码。
 
-如果不想把工具链安装在默认位置```/opt/rpi_toolchain```，可以执行``` ./install_cross.sh <PATH>```向安装脚本传入其它地址。安装脚本会自动配置需要的环境变量。
+如果不想把工具链安装在默认位置
+```
+/opt/rpi_toolchain
+```
+，可以执行
+```
+./install_cross.sh <PATH>
+```
+向安装脚本传入其它地址。安装脚本会自动配置需要的环境变量。
 
 最后，运行以下命令更新环境变量：
 

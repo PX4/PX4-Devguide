@@ -4,8 +4,8 @@ Test flights are important for quality assurance. The Dronecode test team can he
 
 ## How to Request Test Flights
 
-* Assign the test team [@PX4/testflights](https://github.com/orgs/PX4/teams/testflights) as a reviewer to the pull request or issue
-* Add a complete and thorough description of your changes
+* Add a complete and thorough description of your changes in the pull request
+* Tag the test team in a comment using **@PX4/testflight** 
 * Wait for feedback from the test team
 * The test team will [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
 

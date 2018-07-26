@@ -1,7 +1,7 @@
 # ULog File Format
 
-ULog is the file format used for logging system data. The format is
-self-describing, i.e. it contains the format and message types that are logged.
+ULog is the file format used for logging system data. 
+The format is self-describing, i.e. it contains the format and message types that are logged.
 
 It can be used for logging device inputs (sensors, etc.), internal states (cpu
 load, attitude, etc.) and printf log messages.
@@ -22,9 +22,8 @@ The following binary types are used. They all correspond to the types in C:
 |double             |  8            |
 |bool, char         |  1            |
 
-Additionally all can be used as an array, eg. `float[5]`. In general all
-strings (`char[length]`) do not contain a `'\0'` at the end. String comparisons
-are case sensitive.
+Additionally all can be used as an array, eg. `float[5]`. 
+In general all strings (`char[length]`) do not contain a `'\0'` at the end. String comparisons are case sensitive.
 
 
 ## File structure
@@ -41,6 +40,7 @@ The file consists of three sections:
 ```
 
 ### Header Section
+
 The header is a fixed-size section and has the following format (16 bytes):
 ```
 ----------------------------------------------------------------------
@@ -48,26 +48,27 @@ The header is a fixed-size section and has the following format (16 bytes):
 | File magic (7B)                    | Version (1B) | Timestamp (8B) |
 ----------------------------------------------------------------------
 ```
-Version is the file format version, currently 1. Timestamp is an
-uint64_t integer, denotes the start of the logging in microseconds.
+
+Version is the file format version, currently 1. Timestamp is a `uint64_t` integer, 
+denotes the start of the logging in microseconds.
 
 
 ### Definitions Section
-Variable length section, contains version information, format definitions, and
-(initial) parameter values.
 
-The Definitions and Data sections consist of a stream of messages. Each
-starts with this header:
+Variable length section, contains version information, format definitions, 
+and (initial) parameter values.
+
+The Definitions and Data sections consist of a stream of messages. 
+Each starts with this header:
 ```
 struct message_header_s {
 	uint16_t msg_size;
 	uint8_t msg_type
 };
 ```
-`msg_size` is the size of the message in bytes without the header
-(`hdr_size`= 3 bytes). `msg_type` defines the content and is one of the
-following:
 
+`msg_size` is the size of the message in bytes without the header (`hdr_size`= 3 bytes). 
+`msg_type` defines the content and is one of the following:
 
 - 'B': Flag bitset message.
 ```
@@ -158,22 +159,23 @@ struct message_info_s {
 
   Predefined information messages are:
 
-| `key`                        | Description               | Example for value |
-| -----                        | -----------               | ----------------- |
-| char[value_len] sys_name     | Name of the system        |  "PX4"            |
-| char[value_len] ver_hw       | Hardware version          |  "PX4FMU_V4"      |
-| char[value_len] ver_sw       | Software version (git tag)|  "7f65e01"        |
-| char[value_len] ver_sw_branch| git branch                |  "master"         |
-| uint32_t ver_sw_release      | Software version (see below)|  0x010401ff     |
-| char[value_len] sys_os_name  | Operating System Name     |  "Linux"          |
-| char[value_len] sys_os_ver   | OS version (git tag)      |  "9f82919"        |
-| uint32_t ver_os_release      | OS version (see below)    |  0x010401ff       |
-| char[value_len] sys_toolchain| Toolchain Name            |  "GNU GCC"        |
-| char[value_len] sys_toolchain_ver| Toolchain Version     |  "6.2.1"          |
-| char[value_len] sys_mcu      | Chip name and revision    |  "STM32F42x, rev A"|
-| char[value_len] sys_uuid     | Unique identifier for vehicle (eg. MCU ID) |  "392a93e32fa3"...|
-| char[value_len] replay       | File name of replayed log if in replay mode | "log001.ulg" |
-| int32_t time_ref_utc         | UTC Time offset in seconds |  -3600        |
+key | Description | Example for value
+--- | ---  | ---
+char[value_len] sys_name | Name of the system |  "PX4"
+char[value_len] ver_hw | Hardware version (board) |  "PX4FMU_V4"
+char[value_len] ver_hw_subtype| Board subversion (variation)|  "V2"
+char[value_len] ver_sw | Software version (git tag)|  "7f65e01"
+char[value_len] ver_sw_branch| git branch |  "master"
+uint32_t ver_sw_release | Software version (see below)|  0x010401ff
+char[value_len] sys_os_name | Operating System Name |  "Linux"
+char[value_len] sys_os_ver | OS version (git tag) |  "9f82919"
+uint32_t ver_os_release | OS version (see below) |  0x010401ff
+char[value_len] sys_toolchain | Toolchain Name |  "GNU GCC"
+char[value_len] sys_toolchain_ver | Toolchain Version |  "6.2.1"
+char[value_len] sys_mcu | Chip name and revision |  "STM32F42x, rev A"
+char[value_len] sys_uuid | Unique identifier for vehicle (eg. MCU ID) |  "392a93e32fa3"...
+char[value_len] replay | File name of replayed log if in replay mode | "log001.ulg" 
+int32_t time_ref_utc | UTC Time offset in seconds | -3600 |
 
   The format of `ver_sw_release` and `ver_os_release` is: 0xAABBCCTT, where AA
   is major, BB is minor, CC is patch and TT is the type. Type is defined as
@@ -302,6 +304,7 @@ struct message_dropout_s {
 
 
 ## Requirements for Parsers
+
 A valid ULog parser must fulfill the following requirements:
 - Must ignore unknown messages (but it can print a warning).
 - Parse future/unknown file format versions as well (but it can print a warning).
@@ -317,6 +320,7 @@ A valid ULog parser must fulfill the following requirements:
 
 
 ## Known Implementations
+
 - PX4 Firmware: C++
   - [logger module](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
   - [replay module](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
@@ -325,6 +329,8 @@ A valid ULog parser must fulfill the following requirements:
 - [pyulog](https://github.com/PX4/pyulog): python, ULog parser library with CLI
   scripts.
 - [FlightPlot](https://github.com/PX4/FlightPlot): Java, log plotter.
+- [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis): Python, log 
+  plotter and 3D visualization tool based on pyulog.
 - [MAVLink](https://github.com/mavlink/mavlink): Messages for ULog streaming via
   MAVLink (note that appending data is not supported, at least not for cut off
   messages).
@@ -337,7 +343,9 @@ A valid ULog parser must fulfill the following requirements:
 
 
 ## File Format Version History
+
 ### Changes in version 2
+
 Addition of `ulog_message_info_multiple_header_s` and `ulog_message_flag_bits_s`
 messages and the ability to append data to a log. This is used to add crash data
 to an existing log. If data is appended to a log that is cut in the middle of a

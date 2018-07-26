@@ -197,9 +197,20 @@ The following *PX4 User Guide* topics explain how to tune the parameters that wi
 * [VTOL Configuration](https://docs.px4.io/en/config_vtol/)
 
 
+## Add New Airframe to QGroundControl
 
-## Getting a New Airframe to Show in QGroundControl
+To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/en/config/airframe.html):
 
-The airframe meta data is bundled in the .px4 firmware file (which is a zipped JSON file).
+1. Make a clean build (e.g. by running `make clean` and then `make px4fmu-v5_default`)
+1. Open QGC and select **Custom firmware file...** as shown below:
 
-> **Note** Flash the resulting **.px4** file in *QGroundControl* (custom file option) to load the meta data into the application. The new airframe will then be available in the user interface once you restart *QGroundControl*.
+  ![QGC flash custom firmware](../../assets/gcs/qgc_flash_custom_firmware.png)
+  
+  You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata). 
+1. Navigate to the build folder and select the firmware file (e.g. **Firmware/build/nuttx_px4fmu-v5_default/px4fmu-v5_default.px4**).
+1. Press **OK** to start flashing the firmware.
+1. Restart *QGroundControl*.
+
+The new airframe will then be available for selection in *QGroundControl*.
+
+

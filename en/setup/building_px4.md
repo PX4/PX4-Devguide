@@ -26,16 +26,31 @@ The steps to fork and clone the project source code are:
    ```
    git clone https://github.com/<youraccountname>/Firmware.git
    ```
-   Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
+   
+   > **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown:
+   >  ```sh
+   >  git clone https://github.com/PX4/Firmware.git
+   >  ```
+   
+   Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). 
+   You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
 
-This will copy *most* of PX4 onto your computer (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
+<span id="specific_version_source"></span>
+This will copy *most* of the *very latest* version of PX4 source code onto your computer 
+(the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
 
-
-> **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown:
+> **Tip** To get the source for a *specific older release*, you could then:
 > ```sh
-  git clone https://github.com/PX4/Firmware.git
-  cd Firmware
-  ```
+>  # Navigate into Firmware directory
+>  cd Firmware
+>
+>  # list the releases (tags)
+>  git tag –l
+>  
+>  # Checkout code for particular tag (e.g. for tag 1.7.4beta)
+>  git checkout -b tags/v1.7.4beta
+>  ```
+
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
 
@@ -66,45 +81,42 @@ Flying the simulation with the ground control station is closer to the real oper
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
 
-
 ## NuttX / Pixhawk Based Boards
 
 ### Building {#building_nuttx}
 
 To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board. 
 
-> **Note** In the example below the first part of the build target `px4fmu-v2` is the autopilot hardware version and `default` is the configuration name (in this case the "default" configuration). All PX4 build targets follow this logic).
+> **Note** In the example below the first part of the build target `px4fmu-v4` is the autopilot hardware version and `default` is the configuration name (in this case the "default" configuration). All PX4 build targets follow this logic).
 
-For example, to build for *Pixhawk 1* you would use the following command:
+For example, to build for *Pixracer* you would use the following command:
 ```sh
 cd Firmware
-make px4fmu-v2_default
+make px4fmu-v4_default
 ```
-A successful run will end with this output:
+A successful run will end with similar output to:
 ```sh
-[100%] Linking CXX executable firmware_nuttx
-[100%] Built target firmware_nuttx
-Scanning dependencies of target build/firmware_px4fmu-v2
-[100%] Generating nuttx-px4fmu-v2-default.px4
-[100%] Built target build/firmware_px4fmu-v2
+-- Build files have been written to: /home/youruser/src/Firmware/build/nuttx_px4fmu-v4_default
+[954/954] Creating /home/youruser/src/Firmware/build/nuttx_px4fmu-v4_default/px4fmu-v4_default.px4
 ```
 
 The following list shows the build commands for common boards:
-* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default`
+* Pixhawk 4: `make px4fmu-v5_default`
+* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
+* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4fmu-v4pro_default`
+* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4fmu-v3_default`
+* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
+* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
 * [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4fmu-v2_default`
 * [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4fmu-v2_default`
 * [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4fmu-v2_default`
-* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
-* [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav-x21_default` 
-* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
-* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
 * [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make mindpx-v2_default`
-* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4fmu-v3_default`
-* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4fmu-v4pro_default`
+* [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav-x21_default` 
 * [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make crazyflie_default`
 * [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make aerofc-v1_default`
-* Pixhawk 4: `make px4fmu-v5_default`
-* [AUAV-X2 (Discontinued)](https://docs.px4.io/en/flight_controller/auav_x2.html): `make px4fmu-v2_default`
+* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default`
+  > **Warning** You **must** use a [supported version of GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware) to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. Building with an unsupported GCC may fail, as PX4 is close to the board's 1MB flash limit.
+* Pixhawk 1 with 2 MB flash: `make px4fmu-v3_default`
 
 
 ### Uploading Firmware (Flashing the board)
@@ -112,7 +124,7 @@ The following list shows the build commands for common boards:
 Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
 
 ```sh
-make px4fmu-v2_default upload
+make px4fmu-v4_default upload
 ```
 
 A successful run will end with this output:
@@ -197,6 +209,7 @@ pxh>
 ```
 
 #### Autostart
+
 To autostart px4, add the following to the file **/etc/rc.local** (adjust it
 accordingly if you use native build), right before the `exit 0` line:
 ```sh
@@ -410,11 +423,12 @@ cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 
 Then load the CMakeLists.txt in the root firmware folder via File -> Open File or Project -> Select the CMakeLists.txt file.
 
-After loading, the 'play' button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
+After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
 ### Qt Creator on Windows
 
-> ** Windows has not been tested with Qt creator yet. **
+> **Note** Windows has not been tested for PX4 development with Qt Creator.
+
 
 ### Qt Creator on Mac OS
 
@@ -427,6 +441,6 @@ cd build/creator
 cmake ../.. -G "CodeBlocks - Unix Makefiles"
 ```
 
-That's it! Start Qt Creator, then complete the steps in the video below to set up the project to build.
+That's it! Start *Qt Creator*, then complete the steps in the video below to set up the project to build.
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}

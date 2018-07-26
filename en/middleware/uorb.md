@@ -5,14 +5,18 @@
 The uORB is an asynchronous `publish()` / `subscribe()` messaging API used for
 inter-thread/inter-process communication.
 
-Look at the [tutorial](../tutorials/tutorial_hello_sky.md) to learn how to use it in C++.
+Look at the [tutorial](../apps/hello_sky.md) to learn how to use it in C++.
 
 uORB is automatically started early on bootup as many applications depend on it.
 It is started with `uorb start`. Unit tests can be started with `uorb_tests`.
 
 ## Adding a new topic
 
-To add a new topic, you need to create a new `.msg` file in the `msg/`
+New uORB topics can be added either within the main PX4/Firmware repository, or can be added
+in an out-of-tree message definitions. For information on adding out-of-tree uORB message 
+definitions, please see [this section](../advanced/out_of_tree_modules.md#uorb_message_definitions).
+
+To add a new topic, you need to create a new **.msg** file in the `msg/`
 directory and add the file name to the `msg/CMakeLists.txt` list. From this,
 the needed C/C++ code is automatically generated.
 

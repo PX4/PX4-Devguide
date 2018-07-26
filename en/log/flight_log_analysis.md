@@ -37,9 +37,82 @@ Key features:
 ![Flight Review Charts](../../assets/flight_log_analysis/flight-review-example.png)
 
 
+### pyulog
+
+[pyulog](https://github.com/PX4/pyulog) is a python package to parse ULog files, along with a set of command-line scripts to extract/display ULog information and convert them to other file formats. 
+
+Key features:
+* Python library for parsing ULog files. Base library used by a number of other ULog analysis and visualisation tools.
+* Scripts to extract/display ULog information:
+  * *ulog_info*: display information from an ULog file.
+  * *ulog_messages*: display logged messages from an ULog file.
+  * *ulog_params*: extract parameters from an ULog file.
+* Scripts to convert ULog files to other formats:
+  * *ulog2csv*: convert ULog to (several) CSV files.
+  * *ulog2kml*: convert ULog to (several) KML files.
+
+All scripts are installed as system-wide applications (i.e. they be called on the command line - provided Python is installed), and support the `-h` flag for getting usage instructions. For example:
+```
+$ ulog_info -h
+usage: ulog_info [-h] [-v] file.ulg
+
+Display information from an ULog file
+
+positional arguments:
+  file.ulg       ULog input file
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -v, --verbose  Verbose output
+```
+
+Below we see the kind of information exported from a sample file using *ulog_info*.
+```
+$ ulog_info sample.ulg
+Logging start time: 0:01:52, duration: 0:01:08
+Dropouts: count: 4, total duration: 0.1 s, max: 62 ms, mean: 29 ms
+Info Messages:
+ sys_name: PX4
+ time_ref_utc: 0
+ ver_hw: AUAV_X21
+ ver_sw: fd483321a5cf50ead91164356d15aa474643aa73
+
+Name (multi id, message size in bytes)    number of data points, total bytes
+ actuator_controls_0 (0, 48)                 3269     156912
+ actuator_outputs (0, 76)                    1311      99636
+ commander_state (0, 9)                       678       6102
+ control_state (0, 122)                      3268     398696
+ cpuload (0, 16)                               69       1104
+ ekf2_innovations (0, 140)                   3271     457940
+ estimator_status (0, 309)                   1311     405099
+ sensor_combined (0, 72)                    17070    1229040
+ sensor_preflight (0, 16)                   17072     273152
+ telemetry_status (0, 36)                      70       2520
+ vehicle_attitude (0, 36)                    6461     232596
+ vehicle_attitude_setpoint (0, 55)           3272     179960
+ vehicle_local_position (0, 123)              678      83394
+ vehicle_rates_setpoint (0, 24)              6448     154752
+ vehicle_status (0, 45)                       294      13230
+```
+
+
+
+### pyFlightAnalysis
+
+[pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis) is a cross-platform PX4 flight log (ULog) visual analysis tool, inspired by [FlightPlot](https://github.com/DrTon/FlightPlot).
+
+Key features:
+* Dynamic filter for displaying data
+* 3D visualization for attitude and position of drone
+* Easily replay with pyqtgraph's ROI (Region Of Interest)
+* Python based, cross-platform.
+
+![pyFlightAnalysis 1.0.1b1](../../assets/flight_log_analysis/pyflightanalysis.png)
+
+
 ### FlightPlot (Desktop)
 
-[FlightPlot](https://github.com/PX4/FlightPlot) is a desktop based tool for log analysis. It can be downloaded from [FlightPlot Downloads](https://github.com/PX4/FlightPlot/releases) (Linux, MacOS Windows).
+[FlightPlot](https://github.com/PX4/FlightPlot) is a desktop based tool for log analysis. It can be downloaded from [FlightPlot Downloads](https://github.com/PX4/FlightPlot/releases) (Linux, MacOS, Windows).
 
 Key features:
 * Java based, cross-platform.

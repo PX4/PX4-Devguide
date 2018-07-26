@@ -12,6 +12,7 @@
         "page-toc-button",
         "mermaid",
         "-mermaid-2",
+        "ga",
         "language-picker",
         "custom-favicon",
         "bulk-redirect@git+https://github.com/Dronecode/gitbook-plugin-bulk-redirect.git",
@@ -32,6 +33,9 @@
                 "picto": "fa-thumbs-o-up"
             }
 
+        },
+        "ga": {
+            "token": "UA-33658859-3"
         },
         "language-redirect": {
             "baseurl": "https://dev.px4.io/"

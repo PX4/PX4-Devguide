@@ -5,7 +5,7 @@
 ##
 ## Installs:
 ## - Common dependencies libraries and tools as defined in `ubuntu_sim_common_deps.sh`
-## - Gazebo8 simulator
+## - Gazebo9 simulator
 
 echo "Downloading dependent script 'ubuntu_sim_common_deps.sh'"
 # Source the ubuntu_sim_common_deps.sh script directly from github
@@ -16,18 +16,22 @@ if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'ubuntu_sim_commo
 # Otherwise, source the downloaded script.
 . <(echo "${common_deps}")
 
-# Gazebo simulator dependencies
-echo "Installing Gazebo8"
+
+###
+# Gazebo (9) simulator dependencies
+echo "Installing Gazebo9"
 sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
 ## Setup keys
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 ## Update the debian database:
 sudo apt-get update -y
-## Install Gazebo8
-sudo apt-get install gazebo8 -y
+## Install Gazebo9
+sudo apt-get install gazebo9 -y
 ## For developers (who work on top of Gazebo) one extra package
-sudo apt-get install libgazebo8-dev -y
+sudo apt-get install libgazebo9-dev -y
+
+
 
 # Go to the firmware directory
 cd $clone_dir/Firmware

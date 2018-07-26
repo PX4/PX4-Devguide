@@ -188,9 +188,10 @@ inputs and their scaling, in the form:
 S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
 ```
 
-The `<group>` value identifies the control group from which the scaler will read,
-and the `<index>` value an offset within that group.  These values are specific to
-the device reading the mixer definition.
+> **Note** The `S:` lines must be below the `O:` line.
+
+The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group.  
+These values are specific to the device reading the mixer definition.
 
 When used to mix vehicle controls, mixer group zero is the vehicle attitude
 control group, and index values zero through three are normally roll, pitch,

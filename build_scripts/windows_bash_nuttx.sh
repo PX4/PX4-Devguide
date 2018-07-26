@@ -45,7 +45,8 @@ sudo -H pip install pandas jinja2
 pip install pyserial
 # optional python tools
 pip install pyulog
-
+echo "Installing jMAVSim simulator dependencies"
+sudo apt-get install ant -y
 
 # NuttX
 sudo apt-get install python-serial openocd \
