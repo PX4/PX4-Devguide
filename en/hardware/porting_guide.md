@@ -72,3 +72,11 @@ This section describes the various middleware components, and the configuration 
   * [Autopilot Hardware](https://docs.px4.io/en/flight_controller/) (PX4 User Guide)
   * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
 * [Supported Peripherals](https://docs.px4.io/en/peripherals/) (PX4 User Guide)
+
+
+## RC UART Wiring Recommendations
+
+It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. 
+If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. 
+This is done via board config and manifest files. 
+One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c).

@@ -26,16 +26,31 @@ The steps to fork and clone the project source code are:
    ```
    git clone https://github.com/<youraccountname>/Firmware.git
    ```
-   Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
+   
+   > **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown:
+   >  ```sh
+   >  git clone https://github.com/PX4/Firmware.git
+   >  ```
+   
+   Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). 
+   You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
 
-This will copy *most* of PX4 onto your computer (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
+<span id="specific_version_source"></span>
+This will copy *most* of the *very latest* version of PX4 source code onto your computer 
+(the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
 
-
-> **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown:
+> **Tip** To get the source for a *specific older release*, you could then:
 > ```sh
-  git clone https://github.com/PX4/Firmware.git
-  cd Firmware
-  ```
+>  # Navigate into Firmware directory
+>  cd Firmware
+>
+>  # list the releases (tags)
+>  git tag –l
+>  
+>  # Checkout code for particular tag (e.g. for tag 1.7.4beta)
+>  git checkout -b tags/v1.7.4beta
+>  ```
+
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
 
@@ -81,8 +96,8 @@ make px4fmu-v4_default
 ```
 A successful run will end with similar output to:
 ```sh
--- Build files have been written to: /home/youruser/src/Firmware/build/px4fmu-v4_default
-[954/954] Creating /home/youruser/src/Firmware/build/px4fmu-v4_default/px4fmu-v4_default.px4
+-- Build files have been written to: /home/youruser/src/Firmware/build/nuttx_px4fmu-v4_default
+[954/954] Creating /home/youruser/src/Firmware/build/nuttx_px4fmu-v4_default/px4fmu-v4_default.px4
 ```
 
 The following list shows the build commands for common boards:
@@ -101,7 +116,7 @@ The following list shows the build commands for common boards:
 * [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make aerofc-v1_default`
 * [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default`
   > **Warning** You **must** use a [supported version of GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware) to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. Building with an unsupported GCC may fail, as PX4 is close to the board's 1MB flash limit.
-* [AUAV-X2 (Discontinued)](https://docs.px4.io/en/flight_controller/auav_x2.html): `make px4fmu-v2_default`
+* Pixhawk 1 with 2 MB flash: `make px4fmu-v3_default`
 
 
 ### Uploading Firmware (Flashing the board)

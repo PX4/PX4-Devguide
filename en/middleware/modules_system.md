@@ -208,7 +208,7 @@ Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules
 
 ### Description
 Background process running periodically on the LP work queue to perform housekeeping tasks.
-It is currently only responsible for temperature calibration.
+It is currently only responsible for temperature calibration and tone alarm on RC Loss.
 
 The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
 

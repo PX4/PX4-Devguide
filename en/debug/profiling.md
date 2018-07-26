@@ -45,13 +45,13 @@ pointing to the location of the currently executing ELF.
 Usage example:
 
 ```bash
-./poor-mans-profiler.sh --elf=build/px4fmu-v4_default/src/firmware/nuttx/firmware_nuttx --nsamples=30000
+./poor-mans-profiler.sh --elf=build/nuttx_px4fmu-v4_default/nuttx_px4fmu-v4_default.elf --nsamples=30000
 ```
 
 Note that every launch of the script will overwrite the old stacks. Should you want to append to the old stacks rather than overwrite them, use the option `--append`:
 
 ```bash
-./poor-mans-profiler.sh --elf=build/px4fmu-v4_default/src/firmware/nuttx/firmware_nuttx --nsamples=30000 --append
+./poor-mans-profiler.sh --elf=build/nuttx_px4fmu-v4_default/nuttx_px4fmu-v4_default.elf --nsamples=30000 --append
 ```
 
 As one might suspect, `--append` with `--nsamples=0` will instruct the script to only
