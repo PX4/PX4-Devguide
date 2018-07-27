@@ -1,10 +1,16 @@
 # Windows Cygwin Toolchain
 
-This is the newest (and best!) toolchain for developing PX4 on Windows.
+This toolchain is portable, easy to install, and easy to use. 
+It is the newest and best performing toolchain for developing PX4 on Windows.
 
-The toolchain is portable, easy to install, and easy to use. 
-It supports build/upload of PX4 to NuttX targets (Pixhawk series controllers) and can run the JMAVSim/SITL simulator with significantly better performance than the other Windows toolchains. 
+> **Tip** This is the only officially supported toolchain for building PX4 on Windows (i.e. it is tested in our continuous integration system).
 
+The toolchain supports:
+* Build/upload of PX4 to NuttX targets (Pixhawk series controllers)
+* JMAVSim/SITL simulator with significantly better performance than the other Windows toolchains.
+* Style check, portable installer, command line completion and many [other features](#features).
+
+This topic explains how download and use the environment, and how it can be extended and updated if needed (for example, to use a different compiler).
 
 <!--
 ## Ready to use MSI Installer Download {#installation}
@@ -19,21 +25,7 @@ Legacy Versions (**deprecated**):
 * [PX4 Windows Cygwin Toolchain 0.1 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.1.msi) (23.02.2018)
 -->
 
-## Features / Issues
 
-The following features are known to work (version 2.0):
-
-* Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
-* Building and uploading NuttX builds (e.g.: px4fmu-v2 and px4fmu-v4)
-* Style check with *astyle* (supports the command: `make format`)
-* Command line auto completion
-* Non-invasive installer! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4\** and uses a temporary local path).
-* The installer supports updating to a new version keeping your personal changes inside the toolchain folder
-
-Omissions:
-* Simulation: Gazebo and ROS are not supported
-* Only NuttX and JMAVSim/SITL builds are supported.
-* [Known problems / Report your issue](https://github.com/orgs/PX4/projects/6)
 
 ## Installation Instructions
 
@@ -125,7 +117,28 @@ new mode 100755
 
 We recommend disabling this functionality by executing `git config core.fileMode false` in every repo where you use with this toolchain.
 
-## Shell Script Installation {#script_setup} 
+
+## Additional Information
+
+### Features / Issues {#features}
+
+The following features are known to work (version 2.0):
+
+* Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
+* Building and uploading NuttX builds (e.g.: px4fmu-v2 and px4fmu-v4)
+* Style check with *astyle* (supports the command: `make format`)
+* Command line auto completion
+* Non-invasive installer! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4\** and uses a temporary local path).
+* The installer supports updating to a new version keeping your personal changes inside the toolchain folder
+
+Omissions:
+* Simulation: Gazebo and ROS are not supported
+* Only NuttX and JMAVSim/SITL builds are supported.
+* [Known problems / Report your issue](https://github.com/orgs/PX4/projects/6)
+
+### Shell Script Installation {#script_setup}
+
+You can also install the environment using shell scripts in the Github project.
 
 1. Make sure you have [Git for Windows](https://git-scm.com/download/win) installed.
 1. Clone the repository https://github.com/MaEtUgR/PX4Toolchain to the location you want to install the toolchain. Default location and naming is achieved by opening the `Git Bash` and executing:
@@ -137,7 +150,7 @@ git clone https://github.com/MaEtUgR/PX4Toolchain PX4
 1. Continue with [Getting Started](#getting_started) (or [Usage Instructions](#usage_instructions)) 
 
 
-## Manual Installation (for Toolchain Developers) {#manual_setup}
+### Manual Installation (for Toolchain Developers) {#manual_setup}
 
 This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 

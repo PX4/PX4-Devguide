@@ -1,6 +1,6 @@
 # Windows Msys Toolchain
 
-> **Note** This solution is currently broken.
+> **Note** This solution is currently broken. The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the officially supported toolchain for Windows development.
 
 ## Instructions
 

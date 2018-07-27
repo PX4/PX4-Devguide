@@ -1,5 +1,7 @@
 # Bash on Windows Toolchain
 
+> **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.
+
 Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to:
 * Build firmware for NuttX/Pixhawk targets. 
 * Run the PX4 JMAVSim simulation (using a Windows-hosted X-Windows app to display the UI)
