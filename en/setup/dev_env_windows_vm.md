@@ -1,5 +1,7 @@
 # Windows Virtual Machine-Hosted Toolchain
 
+> **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.
+
 Windows developers can run the PX4 toolchain in a virtual machine (VM) with Linux as the guest operating system. After setting up the virtual machine, the installation and setup of PX4 within the VM is exactly the same as on a native Linux computer.
 
 > **Tip** Allocate as many CPU cores and memory resources to the VM as possible.
