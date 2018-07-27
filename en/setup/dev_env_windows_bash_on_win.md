@@ -4,6 +4,9 @@ Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 d
 * Build firmware for NuttX/Pixhawk targets. 
 * Run the PX4 JMAVSim simulation (using a Windows-hosted X-Windows app to display the UI)
 
+> **Note** This mechanism only works on Windows 10. It essentially runs the toolchain in a virtual machine, and is relatively slow compared to other solutions.
+
+
 ### Setup Environment
 
 The easiest way to setup the environment is to use the <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a></strong> script (details for script are [given below](#build_script_details)).

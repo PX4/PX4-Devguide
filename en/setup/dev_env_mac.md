@@ -37,6 +37,11 @@ sudo easy_install pip
 sudo -H pip install pyserial empy toml numpy pandas jinja2
 ```
 
-<!-- import docs for other tools and next steps. -->
-{% include "_addition_dev_tools.txt" %}
+## Additional Tools
+
+After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
+
+## Next Steps
+
+Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
 

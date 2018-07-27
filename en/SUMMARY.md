@@ -16,6 +16,7 @@
       * [Bash on Windows Toolchain](setup/dev_env_windows_bash_on_win.md)
       * [Msys Toolchain](setup/dev_env_windows_msys.md)
     * [Fast RTPS installation](setup/fast-rtps-installation.md)
+    * [Additional Tools](setup/generic_dev_tools.md)
   * [Building the Code](setup/building_px4.md)
   * [Writing your First Application](apps/hello_sky.md)
   * [Application/Module Template](apps/module_template.md)

@@ -6,6 +6,8 @@ The following instructions explain how to *manually* set up a development enviro
 
 > **Tip** We recommend that you use the [Convenience bash scripts](#convenience-bash-scripts) to install the Simulators and/or NuttX toolchain (this is easier than typing in the instructions below). Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etc.)
 
+<span></span>
+> **Tip** After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
 
 
 ## Convenience Bash Scripts
@@ -316,5 +318,10 @@ Next, install ADB.
 sudo apt-get install android-tools-adb -y
 ```
 
-<!-- import docs for other tools and next steps. -->
-{% include "_addition_dev_tools.txt" %}
+## Additional Tools
+
+After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
+
+## Next Steps
+
+Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
