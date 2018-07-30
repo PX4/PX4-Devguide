@@ -8,8 +8,8 @@ It demonstrates an example setup that opens the Gazebo client GUI showing two Ir
 
 ## Required
 
-* Current [PX4 ROS/Gazebo development evironment](../setup/dev_env_linux.md#gazebo-with-ros) 
-  (at time of writing this is Ubuntu 16.04, ROS Kinetic/Gazebo 7 - see [Gazebo Simulation](/simulation/gazebo.md)\)
+* Current [PX4 ROS/Gazebo development evironment](../setup/dev_env_linux.md#gazebo-with-ros)
+  > **Note** At time of writing this is Ubuntu 16.04 with ROS Kinetic/Gazebo 7. See also [Gazebo Simulation](/simulation/gazebo.md).
 * [MAVROS package](http://wiki.ros.org/mavros)
 * a clone of latest [PX4/Firmware](https://github.com/PX4/Firmware)
 
