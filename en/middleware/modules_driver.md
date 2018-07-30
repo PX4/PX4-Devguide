@@ -15,6 +15,7 @@ In addition it does the RC input parsing and auto-selecting the method. Supporte
 - DSM
 - SUMD
 - ST24
+- TBS Crossfire (CRSF)
 
 The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy.
 By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder
