@@ -8,9 +8,9 @@ It demonstrates an example setup that opens the Gazebo client GUI showing two Ir
 
 ## Required
 
-* ROS indigo or higher 
+* Current [PX4 ROS/Gazebo development evironment](../setup/dev_env_linux.md#gazebo-with-ros) 
+  (at time of writing this is Ubuntu 16.04, ROS Kinetic/Gazebo 7 - see [Gazebo Simulation](/simulation/gazebo.md)\)
 * [MAVROS package](http://wiki.ros.org/mavros)
-* Gazebo 7 \(see [Gazebo Simulation](/simulation/gazebo.md)\)
 * a clone of latest [PX4/Firmware](https://github.com/PX4/Firmware)
 
 ## Build and test
