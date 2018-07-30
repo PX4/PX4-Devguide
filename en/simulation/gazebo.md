@@ -29,7 +29,7 @@ graph LR;
 
 Gazebo 8 setup is included in our standard build instructions:
 - **macOS:** [Development Environment on Mac](../setup/dev_env_mac.md)
-- **Linux:** [Development Environment on Linux > jMAVSim/Gazebo Simulation](../setup/dev_env_linux.md#jmavsimgazebo-simulation)
+- **Linux:** [Development Environment on Linux (Ubuntu 16.04) > jMAVSim/Gazebo Simulation](../setup/dev_env_linux.md#jmavsimgazebo-simulation)
 - **Windows:** Not supported.
 
 Additional installation instructions can be found on [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1).
