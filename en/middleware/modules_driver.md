@@ -9,13 +9,6 @@ This module is responsible for driving the output and reading the input pins. Fo
 px4io driver is used for main ones.
 
 It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
-In addition it does the RC input parsing and auto-selecting the method. Supported methods are:
-- PPM
-- SBUS
-- DSM
-- SUMD
-- ST24
-- TBS Crossfire (CRSF)
 
 The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy.
 By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder
@@ -60,8 +53,6 @@ fmu <command> [arguments...]
 
    mode_gpio
 
-   mode_rcin     Only do RC input, no PWM outputs
-
    mode_pwm      Select all available pins as PWM
 
    mode_pwm1
@@ -77,8 +68,6 @@ fmu <command> [arguments...]
    mode_pwm2cap2
 
    mode_pwm6
-
-   bind          Send a DSM bind command (module must be running)
 
    sensor_reset  Do a sensor reset (SPI bus)
      [<ms>]      Delay time in ms between reset and re-enabling
@@ -200,6 +189,38 @@ pwm_out_sim <command> [arguments...]
    mode_pwm      use 8 PWM outputs
 
    mode_pwm16    use 16 PWM outputs
+
+   stop
+
+   status        print status info
+```
+## rc_input
+Source: [drivers/rc_input](https://github.com/PX4/Firmware/tree/master/src/drivers/rc_input)
+
+
+### Description
+This module does the RC input parsing and auto-selecting the method. Supported methods are:
+- PPM
+- SBUS
+- DSM
+- SUMD
+- ST24
+- TBS Crossfire (CRSF)
+
+### Implementation
+By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread,
+specified via start flag -t, to reduce latency.
+When running on the work queue, it schedules at a fixed frequency.
+
+### Usage {#rc_input_usage}
+```
+rc_input <command> [arguments...]
+ Commands:
+   start         Start the task (without any mode set, use any of the mode_*
+                 cmds)
+     [-t]        Run as separate task instead of the work queue
+
+   bind          Send a DSM bind command (module must be running)
 
    stop
 
