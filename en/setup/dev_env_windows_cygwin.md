@@ -39,9 +39,9 @@ Legacy Versions (**deprecated**):
 
 ## Getting Started {#getting_started}
 
-The toolchain uses a specially configured PX console window (started by running the **run-console.bat** script) from which you can call the normal PX4 build commands:
+The toolchain uses a specially configured console window (started by running the **run-console.bat** script) from which you can call the normal PX4 build commands:
 
-1. Browse to the toolchain installation directory (default `**C:\PX4\**)
+1. Browse to the toolchain installation directory (default **C:\PX4\**)
 1. Run **run-console.bat** (double click) to start the Cygwin bash console
 1. Clone the PX4 Firmware repository from within the console:
 
@@ -141,10 +141,10 @@ Omissions:
 You can also install the environment using shell scripts in the Github project.
 
 1. Make sure you have [Git for Windows](https://git-scm.com/download/win) installed.
-1. Clone the repository https://github.com/MaEtUgR/PX4Toolchain to the location you want to install the toolchain. Default location and naming is achieved by opening the `Git Bash` and executing:
+1. Clone the repository https://github.com/PX4/windows-toolchain to the location you want to install the toolchain. Default location and naming is achieved by opening the `Git Bash` and executing:
 ```
 cd /c/
-git clone https://github.com/MaEtUgR/PX4Toolchain PX4
+git clone https://github.com/PX4/windows-toolchain PX4
 ```
 1. If you want to install all components navigate to the freshly cloned folder and double click on the script `install-all-components.bat` located in the folder `toolchain`. If you only need certain components and want to safe Internet traffic and or disk space you can navigate to the different component folders like e.g. `toolchain\cygwin64` and click on the **install-XXX.bat** scripts to only fetch something specific.
 1. Continue with [Getting Started](#getting_started) (or [Usage Instructions](#usage_instructions)) 
