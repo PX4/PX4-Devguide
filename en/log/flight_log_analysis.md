@@ -4,7 +4,7 @@ This topic outlines approaches and software packages that can be used to analyze
 
 ## Reporting Flights
 
-[Flight Reporting](https://docs.px4.io/en/flight-reporting.html) (PX4 User Guide) explains how to download a log and report/discuss issues with a flight.
+[Flight Reporting](https://docs.px4.io/en/getting_started/flight_reporting.html) (PX4 User Guide) explains how to download a log and report/discuss issues with a flight.
 
 ## Structured Analysis
 
