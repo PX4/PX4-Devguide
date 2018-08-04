@@ -1,7 +1,6 @@
 # System-wide Replay
 Based on ORB messages, it's possible to record and replay arbitrary parts of the
-system. For this to work, the new logger needs to be enabled (`SYS_LOGGER` set
-to 1).
+system.
 
 Replay is useful to test the effect of different parameter values based on real
 data, compare different estimators, etc.
