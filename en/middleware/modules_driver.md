@@ -1,4 +1,74 @@
 # Modules Reference: Driver
+## batt_smbus
+Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
+
+
+### Description
+Smart battery driver for the BQ40Z50 fuel gauge IC.
+
+### Examples
+To write to flash to set parameters. address, number_of_bytes, byte0, ... , byteN
+```
+batt_smbus -X write_flash 19069 2 27 0
+```
+
+
+### Usage {#batt_smbus_usage}
+```
+batt_smbus <command> [arguments...]
+ Commands:
+   start
+     [-X <val>]  ullpt
+                 default: BATT_SMBUS_BUS_I2C_EXTERNAL
+     [-I <val>]  ullpt
+                 default: BATT_SMBUS_BUS_I2C_INTERNAL
+     [-A <val>]  ullpt
+                 default: BATT_SMBUS_BUS_ALL
+
+   stop          Stops the driver.
+
+   suspend       Suspends the drive but does stop it completely.
+
+   resume        Resumes the driver from the suspended state.
+
+   man_nam       Prints the name of the manufacturer.
+
+   man_date      Prints the date of manufacture.
+
+   serial_num    Prints the serial number.
+
+   sbs_info      Prints the manufacturer name, date, and serial number.
+
+   info          Prints the last report.
+
+   unseal        Unseals the devices flash memory to enable write_flash
+                 commands.
+
+   read_word     Uses the SMbus read-word command.
+     [command code] The SMbus command .
+
+   man_read      Uses the SMbus block-read with ManufacturerAccess().
+     [command code] The SMbus command .
+     [number of bytes] Number of bytes to read.
+
+   read_flash    Reads 32 bytes from flash starting from the address specified.
+     [address]   The address to start reading from. .
+
+   write_flash   Writes to flash. The device must first be unsealed with the
+                 unseal command.
+     [address]   The address to start writing.
+     [number of bytes] Number of bytes to send.
+     [data[0]...data[n]] One byte of data at a time separated by spaces.
+
+   block_read    Performs a SMBus block read.
+     [command code] The SMbus command .
+     [number of bytes] Number of bytes to read.
+
+   block_write   Performs a SMBus block write.
+     [command code] The SMbus command code.
+     [number of bytes] Number of bytes to send.
+     [data[0]...data[n]] One byte of data at a time separated by spaces.
+```
 ## fmu
 Source: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
 

@@ -157,14 +157,17 @@ Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/
 
 Utility to listen on uORB topics and print the data to the console.
 
-Limitation: it can only listen to the first instance of a topic.
-
-
 ### Usage {#listener_usage}
 ```
-listener [arguments...]
-     <topic_name> [<num_msgs>] uORB topic name and optionally number of messages
-                 (default=1)
+listener <command> [arguments...]
+ Commands:
+     <topic_name> uORB topic name
+     [-i <val>]  Topic instance
+                 default: 0
+     [-n <val>]  Number of messages
+                 default: 1
+     [-r <val>]  Subscription rate (unlimited if 0)
+                 default: 0
 ```
 ## mixer
 Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
