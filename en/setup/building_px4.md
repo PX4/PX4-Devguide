@@ -172,7 +172,7 @@ make posix_rpi_cross upload # for cross-compiler build
 Then, connect over ssh and run it with (as root):
 
 ```sh
-sudo ./px4 px4.config
+sudo ./bin/px4 -s px4.config
 ```
 
 #### Native Build
@@ -213,7 +213,7 @@ pxh>
 To autostart px4, add the following to the file **/etc/rc.local** (adjust it
 accordingly if you use native build), right before the `exit 0` line:
 ```sh
-cd /home/pi && ./px4 -d px4.config > px4.log
+cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 ```
 
 
