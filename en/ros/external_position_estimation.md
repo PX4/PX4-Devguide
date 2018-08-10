@@ -85,13 +85,13 @@ Regarding the orientation, keep the scalar part *w* of the quaternion the same a
 
 ### OptiTrack MOCAP
 
-The following steps explain how to feed position estimates from an OptiTrack system to PX4. It is assumed that the MOCAP system is calibrated.
+The following steps explain how to feed position estimates from an [OptiTrack](http://optitrack.com/systems/#robotics) system to PX4. It is assumed that the MOCAP system is calibrated. See [this video](https://www.youtube.com/watch?v=cNZaFEghTBU) for a tutorial on the calibration process.
 
 **Steps to do on the MOCAP software, Motive**
 
-* Align your robot's forward direction with the the system +x-axis
-* Define a rigid body in the Motive software. Give the robot a name that does not contain spaces, e.g. `robot1` instead of `Rigidbody 1`
-* Enable Frame Brodacst and VRPN streaming
+* Align your robot's forward direction with the the [system +x-axis](https://v20.wiki.optitrack.com/index.php?title=Template:Coordinate_System)
+* [Define a rigid body in the Motive software](https://www.youtube.com/watch?v=1e6Qqxqe-k0). Give the robot a name that does not contain spaces, e.g. `robot1` instead of `Rigidbody 1`
+* [Enable Frame Broadacst and VRPN streaming](https://www.youtube.com/watch?v=yYRNG58zPFo)
 * Set the Up axis to be the Z axis (the default is Y)
 
 **Getting pose data into ROS**
