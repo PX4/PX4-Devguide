@@ -10,7 +10,46 @@ Once sampling is finished (which normally takes about an hour or more), the coll
 The result of *folding* is another text file that contains the same stack traces, except that all similar stack traces (i.e. those that were obtained at the same point in the program) are joined together, and the number of their occurrences is recorded.
 The folded stacks are then fed into the visualization script, for which purpose we employ [FlameGraph - an open source stack trace visualizer](http://www.brendangregg.com/flamegraphs.html).
 
-## Implementation
+## Basic Usage
+
+Basic usage of the profiler is available through the build system. 
+For example, the following command builds and profiles px4fmu-v4pro target with 10000 samples (fetching FlameGraph and adding it to the path as needed).
+
+```
+make px4fmu-v4pro_default profile
+```
+
+For more control over the build process, including setting the number of samples, see the [Implementation](#implementation).
+
+## Understanding the Output
+
+A screenshot of an example output is provided below (note that it is not interactive here):
+
+![FlameGraph Example](../../assets/flamegraph-example.png)
+
+On the flame graph, the horizontal levels represent stack frames, whereas the width of each frame is proportional to the number of times it was sampled.
+In turn, the number of times a function ended up being sampled is proportional to the duration times frequency of its execution.
+
+## Possible Issues
+
+The script was developed as an ad-hoc solution, so it has some issues.
+Please watch out for them while using it:
+
+* If GDB is malfunctioning, the script may fail to detect that, and continue running.
+  In this case, obviously, no usable stacks will be produced.
+  In order to avoid that, the user should periodically check the file `/tmp/pmpn-gdberr.log`, which contains the stderr output of the most recent invocation of GDB.
+  In the future the script should be modified to invoke GDB in quiet mode, where it will indicate issues via its exit code.
+
+* Sometimes GDB just sticks forever while sampling the stack trace.
+  During this failure, the target will be halted indefinitely.
+  The solution is to manually abort the script and re-launch it again with the `--append` option.
+  In the future the script should be modified to enforce a timeout for every GDB invocation.
+
+* Multithreaded environments are not supported.
+  This does not affect single core embedded targets, since they always execute in one thread, but this limitation makes the profiler incompatible with many other applications.
+  In the future the stack folder should be modified to support multiple stack traces per sample.
+
+## Implementation {#implementation}
 
 The script is located at `Debug/poor-mans-profiler.sh`.
 Once launched, it will perform the specified number of samples with the specified time interval.
@@ -44,34 +83,6 @@ Should you want to append to the old stacks rather than overwrite them, use the 
 As one might suspect, `--append` with `--nsamples=0` will instruct the script to only regenerate the SVG without accessing the target at all.
 
 Please read the script for a more in depth understanding of how it works.
-
-## Understanding the Output
-
-A screenshot of an example output is provided below (note that it is not interactive here):
-
-![FlameGraph Example](../../assets/flamegraph-example.png)
-
-On the flame graph, the horizontal levels represent stack frames, whereas the width of each frame is proportional to the number of times it was sampled.
-In turn, the number of times a function ended up being sampled is proportional to the duration times frequency of its execution.
-
-## Possible Issues
-
-The script was developed as an ad-hoc solution, so it has some issues.
-Please watch out for them while using it:
-
-* If GDB is malfunctioning, the script may fail to detect that, and continue running.
-  In this case, obviously, no usable stacks will be produced.
-  In order to avoid that, the user should periodically check the file `/tmp/pmpn-gdberr.log`, which contains the stderr output of the most recent invocation of GDB.
-  In the future the script should be modified to invoke GDB in quiet mode, where it will indicate issues via its exit code.
-
-* Sometimes GDB just sticks forever while sampling the stack trace.
-  During this failure, the target will be halted indefinitely.
-  The solution is to manually abort the script and re-launch it again with the `--append` option.
-  In the future the script should be modified to enforce a timeout for every GDB invocation.
-
-* Multithreaded environments are not supported.
-  This does not affect single core embedded targets, since they always execute in one thread, but this limitation makes the profiler incompatible with many other applications.
-  In the future the stack folder should be modified to support multiple stack traces per sample.
 
 ## Credits
 
