@@ -75,6 +75,8 @@ mavlink <command> [arguments...]
      [-m <val>]  Mode: sets default streams and rates
                  values: custom|camera|onboard|osd|magic|config|iridium|minimal,
                  default: normal
+     [-n <val>]  wifi/ethernet interface name
+                 values: <interface_name>
      [-f]        Enable message forwarding to other Mavlink instances
      [-w]        Wait to send, until first message received
      [-x]        Enable FTP
