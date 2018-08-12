@@ -42,13 +42,13 @@ pipeline {
       steps {
         sh('export')
         unstash('gitbook')
-        withCredentials([usernamePassword(credentialsId: 'px4buildbot_github', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
+        withCredentials([usernamePassword(credentialsId: 'px4buildbot_github_personal_token', passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USER')]) {
           sh('git clone https://${GIT_USER}:${GIT_PASS}@github.com/PX4/dev.px4.io.git')
+          sh('rm -rf dev.px4.io/*')
+          sh('cp -r _book/* dev.px4.io/')
+          sh('cd dev.px4.io; git add .; git commit -a -m "gitbook build update `date`"')
+          sh('cd dev.px4.io; git push origin master')
         }
-        sh('rm -rf dev.px4.io/*')
-        sh('cp -r _book/* dev.px4.io/')
-        sh('cd dev.px4.io; git add .; git commit -a -m "gitbook build update `date`"')
-        sh('cd dev.px4.io; git push origin master')
       }
 
       when {
