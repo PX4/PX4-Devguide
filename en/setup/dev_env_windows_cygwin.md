@@ -46,7 +46,7 @@ The toolchain uses a specially configured console window (started by running the
 1. Clone the PX4 Firmware repository from within the console:
 
    > **Note** Cloning only needs to be done once! 
-     Stkip this step if you ticked the installer option to *clone the PX4 repository, build and run simulation with jMAVSim*.
+     Skip this step if you ticked the installer option to *clone the PX4 repository, build and run simulation with jMAVSim*.
 
    ```bash
    # Clone PX4 Firmware repository into the home folder & loads submodules in parallel
