@@ -317,6 +317,7 @@ param <command> [arguments...]
 
    show          Show parameter values
      [-c]        Show only changed params
+     [-q]        quiet mode, print only param value (name needs to be exact)
      [<filter>]  Filter by param name (wildcard at end allowed, eg. sys_*)
 
    set           Set parameter to a value
