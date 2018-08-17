@@ -38,8 +38,8 @@ Container | Description
 ---|---
 px4-dev-base | Base setup common to all containers
 &emsp;px4-dev-nuttx | NuttX toolchain
-&emsp;&emsp;px4-dev-simulation | NuttX toolchain + simulation (jMAVSim, Gazebo)
-&emsp;&emsp;&emsp;px4-dev-ros | NuttX toolchain, simulation + ROS (incl. MAVROS)
+&emsp;px4-dev-simulation | NuttX toolchain + simulation (jMAVSim, Gazebo)
+&emsp;&emsp;px4-dev-ros | NuttX toolchain, simulation + ROS (incl. MAVROS)
 &emsp;px4-dev-raspi | Raspberry Pi toolchain
 &emsp;px4-dev-snapdragon | Qualcomm Snapdragon Flight toolchain
 &emsp;px4-dev-clang | Clang tools
