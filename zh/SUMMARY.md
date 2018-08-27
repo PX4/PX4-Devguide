@@ -43,10 +43,8 @@
       * [UAVCAN 的各种笔记](uavcan/notes.md)
     * [UART](sensor_bus/uart.md)
       * [uLanding Radar](sensor/uart_ulanding_radar.md)
-    * [相机触发器](tutorials/camera_trigger.md)
     * [设置云台控制](advanced/gimbal_control.md)
 <!--  * [RTK GPS](advanced/rtk_gps.md) -->
-    * [카메라 트리거](tutorials/camera_trigger.md)
   * [协同电脑](companion_computer/pixhawk_companion.md)
 * [仿真](simulation/README.md)
   * [基本仿真](simulation/jmavsim.md)
