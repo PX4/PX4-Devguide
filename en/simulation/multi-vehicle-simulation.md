@@ -1,10 +1,11 @@
-# Multi-Vehicle Simulation
+# Multi-Vehicle Simulation with Gazebo
 
-This tutorial explains how to simulate multiple UAV vehicles using Gazebo and SITL.
+This topic explains how to simulate multiple UAV vehicles using Gazebo and SITL (Linux only).
 
-It demonstrates an example setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world. You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle. 
+> **Tip** If you don't need a feature provided by Gazebo or ROS, [Multi-Vehicle Simulation with JMAVSim](../simulation/multi_vehicle_jmavsim.md) is easier to set up.
 
-> **Note** This is tested only in Linux.
+It demonstrates an example setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world. 
+You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle. 
 
 ## Required
 
@@ -13,7 +14,7 @@ It demonstrates an example setup that opens the Gazebo client GUI showing two Ir
 * [MAVROS package](http://wiki.ros.org/mavros)
 * a clone of latest [PX4/Firmware](https://github.com/PX4/Firmware)
 
-## Build and test
+## Build and Test
 
 To build an example setup, follow the step below:
 
@@ -47,7 +48,7 @@ You can control the vehicles with *QGroundControl* or MAVROS in a similar way to
    
 
    
-## What's happening?
+## What's Happening?
 
 For each simulated vehicle, the following is required:
 
