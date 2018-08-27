@@ -96,6 +96,9 @@ make broadcast jmavsim
 
 The simulator broadcasts its address on the local network as a real drone would do.
 
+## Multi-Vehicle Simulation
+
+JMAVSim can be used for multi-vehicle simulation: [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
 
 ## Extending and Customizing
 
