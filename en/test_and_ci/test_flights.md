@@ -1,6 +1,7 @@
 # Tests Flights
 
-Test flights are important for quality assurance. The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
+Test flights are important for quality assurance. 
+The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
 
 ## How to Request Test Flights
 
@@ -14,10 +15,17 @@ Test flights are important for quality assurance. The Dronecode test team can he
 * Multi-Copter: up to 48 hours (typically within 24 hours)
 * VTOL, Fixed Wing: up to 4 days (typically 2 days)
 
+## Test Cards
+
+The tests performed for each platform are linked below: 
+
+* [MC_01 - Manual modes](../test_cards/mc_01_manual_modes.md)
+
+
 ## Test Vehicles/Autopilots
 
 * [DJI F450](http://px4.io/portfolio/dji-flamewheel-450/)
-  * Pixhawk mini
+  * Pixhawk Mini
   * Pixhawk 3 Pro
   * Pixhawk 2.1 Cube
   * Pixracer
