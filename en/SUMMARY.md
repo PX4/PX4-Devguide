@@ -51,7 +51,6 @@
       * [UAVCAN Various Notes](uavcan/notes.md)
     * [UART](sensor_bus/uart.md)
   * [RTK GPS](advanced/rtk_gps.md)
-  * [Camera Trigger](tutorials/camera_trigger.md)
   * [Gimbal \(Mount\) Control Setup](advanced/gimbal_control.md)
   * [Companion Computers](companion_computer/pixhawk_companion.md)
 * [Middleware](middleware/README.md)

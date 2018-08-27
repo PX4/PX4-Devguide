@@ -53,7 +53,6 @@
     * [UART](sensor_bus/uart.md)
       * [uLanding Radar](sensor/uart_ulanding_radar.md)
   * [RTK GPS](advanced/rtk_gps.md)
-  * [Camera Trigger](tutorials/camera_trigger.md)
   * [짐벌 \(마운트\) 제어 셋업](advanced/gimbal_control.md)
   * [컴패니온 컴퓨터](companion_computer/pixhawk_companion.md)
 * [미들웨어와 아키텍쳐](middleware/README.md)

@@ -1,6 +1,10 @@
 {
     "redirects": [
-
+    
+            {
+                "from": "en/tutorials/camera_trigger.html",
+                "to": "https://docs.px4.io/en/peripherals/camera.html"
+            },
             {
                 "from": "en/debug/porting-guide.html",
                 "to": "https://docs.px4.io/en/hardware/porting_guide.html"
