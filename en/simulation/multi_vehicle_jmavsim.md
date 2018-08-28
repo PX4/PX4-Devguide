@@ -1,13 +1,19 @@
 # Multi-Vehicle Simulation with JMAVSim
 
 This topic explains how to simulate multiple UAV (multicopter) vehicles using JMAVSim and SITL.
+All vehicle instances are started at the same position in the simulation.
 
-> **Tip** This is the easiest way to simulate multiple vehicles running PX4. 
-  It works on PX4 v1.8.0 and later.
+> **Tip** This is the easiest way to simulate multiple vehicles running PX4.
+  It is suitable for testing multi-vehicle support in *QGroundControl* (or the [Dronecode SDK](https://sdk.dronecode.org/en/), etc.).
+  [Multi-Vehicle Simulation with Gazebo](../simulation/multi-vehicle-simulation.md) should be used for swarm simulations with many vehicles, or for testing features like computer vision that are only supported by Gazebo.
 
-## Instances on Separate Ports
+<span></span>
+> **Note** JMAVSim multi-vehicle simulation works on PX4 v1.8.0 and later.
 
-To start multiple instances on separate ports:
+
+## How to Start Multiple Instances
+
+To start multiple instances (on separate ports):
 
 1. Build PX4
    ```
@@ -27,24 +33,6 @@ To start multiple instances on separate ports:
    ```
    The port should be set to `14560+i` for `i` in `[0, N-1]`.
 
-## Instances on Same Port
-
-To have multiple (two in this case) instances of PX4 connect on the *same* port, you can modify **init.d-posix/rcS** as shown:
-```
-diff --git a/ROMFS/px4fmu_common/init.d-posix/rcS b/ROMFS/px4fmu_common/init.d-posix/rcS
-index 91c9cb7c8f..f276357d90 100644
---- a/ROMFS/px4fmu_common/init.d-posix/rcS
-+++ b/ROMFS/px4fmu_common/init.d-posix/rcS
-@@ -83,7 +83,7 @@ fi
- param set MAV_SYS_ID $((1+px4_instance))
- simulator_udp_port=$((14560+px4_instance))
- udp_offboard_port_local=$((14557+px4_instance))
--udp_offboard_port_remote=$((14540+px4_instance))
-+udp_offboard_port_remote=$((14540))
- udp_gcs_port_local=$((14556+px4_instance))
- 
- if [ $AUTOCNF == yes ]
-```
 
 
 ## Additional Resources
