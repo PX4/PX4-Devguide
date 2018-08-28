@@ -20,6 +20,7 @@ The Dronecode test team can help review (test flight) your pull requests and pro
 The tests performed for each platform are linked below: 
 
 * [MC_01 - Manual modes](../test_cards/mc_01_manual_modes.md)
+* [MC_02 - Full Autonomous](../test_cards/mc_02_full_autonomous.md)
 
 
 ## Test Vehicles/Autopilots

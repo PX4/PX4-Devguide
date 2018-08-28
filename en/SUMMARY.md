@@ -109,6 +109,7 @@
 * [Platform Testing and CI](test_and_ci/README.md)
   * [Test Flights](test_and_ci/test_flights.md)
     * [Test MC_01 - Manual Modes](test_cards/mc_01_manual_modes.md)
+    * [Test MC_02 - Full Autonomous](test_cards/mc_02_full_autonomous.md)
   * [Unit Tests](test_and_ci/unit_tests.md)
   * [Continuous Integration](test_and_ci/continous_integration.md)
   * [Jenkins Continuous Integration](test_and_ci/jenkins_ci.md)
