@@ -23,8 +23,11 @@
 ❏ Once mission has completed, switch back to Position mode
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Horizontal position should hold current value with stick centered
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Vertical position should hold current value with stick centere
+
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Vertical position should hold current value with stick centered
+
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response set to Climbs/Descend rate
+
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response set to Pitch/Roll/Yaw rates
 
 ❏ Engage RTL

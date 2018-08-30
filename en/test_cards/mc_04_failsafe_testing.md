@@ -1,4 +1,4 @@
-# Test MC_04 Failsafe Testing
+# Test MC_04 - Failsafe Testing
 
 ❏ Verify RC Loss action is Return to Land
 
@@ -7,8 +7,11 @@
 ❏ Verify Battery failsafe
  
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Action is Return to Land
+
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Battery Warn Level is 25%
+
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Battery Failsafe Level is 20%
+
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Battery Emergency Level is 15%
 
 ❏ Take off in Altitude mode
