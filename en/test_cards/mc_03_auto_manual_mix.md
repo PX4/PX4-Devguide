@@ -1,29 +1,26 @@
-# Test MC_01 - Manual Modes
+# Test MC_03 - Auto Manual Mix
 
-## Arm and Take-off
+## Create and Upload Mission
 
-❏ Set flight mode to stabilize and Arm
+❏ Mission Criteria
 
-❏ Take-off by raising the throttle
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Changes in Altitude throughout the mission
 
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Mission should end in the air and NOT Land/RTL
+
+&nbsp;&nbsp;&nbsp;&nbsp;❏ Duration of 3 to 4 minutes
+
+❏ Upload mission to vehicle using *QGroundControl*
 
 ## Flight
 
-❏ Stabilized
+❏ Arm and take-off in Position mode
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response 1:1
+❏ Engage Auto
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response 1:1
+❏ Observe tracking and cornering
 
-❏ Altitude
-
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Vertical position should hold current value with stick centered
-
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response 1:1
-
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response set to Climbs/Descend rate
-
-❏ Position
+❏ Once mission has completed, switch back to Position mode
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Horizontal position should hold current value with stick centered
 
@@ -33,11 +30,8 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response set to Pitch/Roll/Yaw rates
 
+❏ Engage RTL
 
-## Landing
-
-❏ Land in Position mode with the throttle below 40%
-  
 ❏ Upon touching ground, copter should disarm automatically within 2 seconds (disarm time set by parameter: [COM_DISARM_LAND](../advanced/parameter_reference.md#COM_DISARM_LAND))
 
 
@@ -46,3 +40,4 @@
 * Take-off should be smooth as throttle is raised
 * No oscillations should present in any of the above flight modes
 * Upon landing, copter should not bounce on the ground
+
