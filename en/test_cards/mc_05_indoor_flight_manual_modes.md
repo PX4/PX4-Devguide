@@ -1,11 +1,17 @@
-# Test MC_01 - Manual Modes
+# Test MC_05 - Indoor Flight (Manual Modes)
+
+## When to Use This Test Card
+
+* New build maiden flight
+* When required to replicate an issue in a confined area
+* Experimental builds that might have stability issues
+* Testing hardware that has been replaced and/or modified
 
 ## Arm and Take-off
 
 ❏ Set flight mode to stabilize and Arm
 
 ❏ Take-off by raising the throttle
-
 
 ## Flight
 
@@ -23,23 +29,11 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response set to Climbs/Descend rate
 
-❏ Position
-
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Horizontal position should hold current value with stick centered
-
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Vertical position should hold current value with stick centered
-
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response set to Climbs/Descend rate
-
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response set to Pitch/Roll/Yaw rates
-
-
 ## Landing
 
-❏ Land in Position mode with the throttle below 40%
-  
-❏ Upon touching ground, copter should disarm automatically within 2 seconds (disarm time set by parameter: [COM_DISARM_LAND](../advanced/parameter_reference.md#COM_DISARM_LAND))
+❏ Land in either Stabilized or Altitude mode with the throttle below 40%
 
+❏ Upon touching ground, copter should disarm automatically within 2 seconds (disarm time set by parameter: [COM_DISARM_LAND](../advanced/parameter_reference.md#COM_DISARM_LAND))
 
 ## Expected Results
 
