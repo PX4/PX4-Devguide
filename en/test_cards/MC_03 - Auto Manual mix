@@ -1,6 +1,6 @@
-MC_03 - Auto Manual mix
+# MC_03 - Auto Manual mix
 
-##Create and upload mission
+## Create and upload mission
 
 ❏ Mission Criteria
 
@@ -12,7 +12,7 @@ MC_03 - Auto Manual mix
 
 ❏ Upload mission to vehicle using QGroundControl
 
-##Flight
+## Flight
 
 ❏ Arm and take-off in Position mode
 
@@ -32,7 +32,7 @@ MC_03 - Auto Manual mix
 ❏ Upon touching ground, copter should disarm automatically within 2 seconds
 *disarm time set by parameter: COM_DISARM_LAND
 
-##Expected Results
+## Expected Results
 *Take-off should be smooth as throttle is raised
 *No oscillations should present in any of the above flight modes
 *Upon landing, copter should not bounce on the ground
