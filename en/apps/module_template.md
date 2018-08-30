@@ -14,7 +14,7 @@ The template demonstrates the following additional features/aspects that are req
   [startup script](../advanced/system_startup.md).
 - Command-line argument parsing.
 - Documentation: the `PRINT_MODULE_*` methods serve two purposes (the API is
-  documented [in the source code](https://github.com/PX4/Firmware/blob/master/src/platforms/px4_module.h#L387)):
+  documented [in the source code](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381)):
   - They are used to print the command-line usage when entering `module help` on the console.
   - They are automatically extracted via script to generate the [Modules & Commands Reference](../middleware/modules_main.md) page.
 

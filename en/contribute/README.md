@@ -112,6 +112,24 @@ PX4 uses [astyle](http://astyle.sourceforge.net/) for code formatting. Valid ver
 
 Once installed, formatting can be checked with `./Tools/astyle/check_code_style_all.sh`. The output should be `Format checks passed` on a clean master. If that worked, `make format` can be used in the future to check and format all files automatically.
 
+### In-Source Documentation
+
+PX4 developers are encouraged to create appropriate in-source documentation.
+
+> **Note** Source-code documentation standards are not enforced, and the code is currently inconsistently documented.
+  We'd like to do better!
+  
+Currently we have two types of source-based documentation:
+- `PRINT_MODULE_*` methods are used for both module run time usage instructions and this guide.
+  - The API is documented [in the source code here](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381).
+  - The docs are published in [Modules & Commands Reference](../middleware/modules_main.md). 
+  - Good examples of usage include the [Application/Module Template](../apps/module_template.md) and the files linked from the modules reference.
+* [Doxgyen](http://www.doxygen.nl/) commenting is [published here](https://px4.github.io/Firmware-Doxygen/index.html)
+  - A good example of usage is [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h), which is [published here](https://px4.github.io/Firmware-Doxygen/d4/dc6/structevents_1_1_send_event.html)
+  - We encourage documentation of classes, files (for multi-class files), methods/functions, members etc., 
+    using tags: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`.
+  - Do not document default constructors or destructors.
+
 
 ### Commits and Commit Messages
 
