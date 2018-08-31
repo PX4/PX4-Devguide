@@ -120,16 +120,16 @@ PX4 developers are encouraged to create appropriate in-source documentation.
   We'd like to do better!
   
 Currently we have two types of source-based documentation:
-- `PRINT_MODULE_*` methods are used for both module run time usage instructions and this guide.
-  - The API is documented [in the source code here](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381).
-  - The docs are published in [Modules & Commands Reference](../middleware/modules_main.md). 
+- `PRINT_MODULE_*` methods are used for both module run time usage instructions and for the [Modules & Commands Reference](../middleware/modules_main.md) in this guide.
+  - The API is documented [in the source code here](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381). 
   - Good examples of usage include the [Application/Module Template](../apps/module_template.md) and the files linked from the modules reference.
-* [Doxgyen](http://www.doxygen.nl/) commenting is [published here](https://px4.github.io/Firmware-Doxygen/index.html)
-  - A good example of usage is [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h), which is [published here](https://px4.github.io/Firmware-Doxygen/d4/dc6/structevents_1_1_send_event.html)
-  - We encourage documentation of classes, files (for multi-class files), methods/functions, members etc., 
-    using tags: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`.
-  - Do not document default constructors or destructors.
+* We encourage other in-source documentation *where it adds value/is not redundant*. 
 
+  > **Tip** Developers should name C++ entities (classes, functions, variables etc.) such that their purpose can be inferred - reducing the need for explicit documentation.
+  
+  - Do not add documentation that can trivially be assumed from C++ entity names.
+  - Commonly you may want to add information about corner cases and error handling.
+  - [Doxgyen](http://www.doxygen.nl/) tags should be used if documentation is needed: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`. A good example of usage is [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h).
 
 ### Commits and Commit Messages
 
