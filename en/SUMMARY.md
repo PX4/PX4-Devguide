@@ -100,7 +100,7 @@
   * [Motion Capture \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
   * [S.Bus Driver for Linux](tutorials/linux_sbus.md)
 * [Advanced Topics](advanced/README.md)
-  * [System Boot](advanced/system_startup.md)
+  * [System Startup](advanced/system_startup.md)
   * [Parameters & Configs](advanced/parameters_and_configurations.md)
   * [Parameter Reference](advanced/parameter_reference.md)
   * [Installing driver for Intel RealSense R200](advanced/realsense_intel_driver.md)
