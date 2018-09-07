@@ -1,45 +1,118 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/architecture.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# PX4 Architectural Overview
 
-# 结构预览
+PX4 consists of two main layers: the [flight stack](#flight-stack) is an estimation and flight control system, and the [middleware](#middleware) is a general robotics layer that can support any type of autonomous robot, providing internal/external communications and hardware integration.
 
-PX4由两个层次组成：一是[飞行控制栈(flight stack)](../concept/flight_stack.md)，即自驾仪的软件解决方案，二是[中间件](../concept/middleware.md)，一种可以支持任意类型自主机器人的通用机器人中间件。
+All PX4 [airframes](../airframes/README.md) share a single codebase (this includes other robotic systems like boats, rovers, submarines etc.). The complete system design is [reactive](http://www.reactivemanifesto.org), which means that:
 
+- All functionality is divided into exchangeable and reusable components
+- Communication is done by asynchronous message passing
+- The system can deal with varying workload
 
-所有的[无人机机型](../airframes/architecture.md)，事实上所有的包括船舶在内的机器人系统，都具有同一代码库。整个系统设计是[反应式(reactive)](http://www.reactivemanifesto.org)的，这意味着：
+## High-Level Software Architecture{#architecture}
 
-- 所有的功能被划分为可替换部件
-- 通过异步消息传递进行通信
-- 该系统可以应对不同的工作负载
+The diagram below provides a detailed overview of the building blocks of PX4. The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
 
-除了这些运行时考虑之外，其模块化最大限度地提高了系统的[可重用性](https://en.wikipedia.org/wiki/Reusability)。
+![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
 
-## 顶层软件结构
+<!-- This diagram can be updated from 
+[here](https://drive.google.com/file/d/0B1TDW9ajamYkaGx3R0xGb1NaeU0/view?usp=sharing) 
+and opened with draw.io Diagrams. You might need to request access if you
+don't have a px4.io Google account.
+Caution: it can happen that after exporting some of the arrows are wrong. In
+that case zoom into the graph until the arrows are correct, and then export
+again. -->
 
-下面每一块都是单独的模块，不论是在代码，依赖性甚至是在运行时都是独立的。每个箭头是一种通过 [uORB](../middleware/uorb.md)进行发布/订阅调用的连接。
+The source code is split into self-contained modules/programs (shown in `monospace` in the diagram). Usually a building block corresponds to exactly one module.
 
-> ** 须知：** PX4结构允许其即使是在运行时，也可以快速方便地交换各个单独的模块。
+> **Tip** At runtime, you can inspect which modules are executed with the `top` command in shell, and each module can be started/stopped individually via `<module_name> start/stop`. While `top` command is specific to NuttX shell, the other commands can be used in the SITL shell (pxh>) as well. For more information about each of these modules see the [Modules & Commands Reference](../middleware/modules_main.md).
 
+The arrows show the information flow for the *most important* connections between the modules. In reality, there are many more connections than shown, and some data (e.g. for parameters) is accessed by most of the modules.
 
-控制器/混控器是针对于特定机型的（如多旋翼，垂直起降或其他飞机），但是顶层任务管理模块如`commander` 和`navigator` 是可以在不同平台共享的。
+Modules communicate with each other through a publish-subscribe message bus named [uORB](../middleware/uorb.md). The use of the publish-subscribe scheme means that:
 
-![Architecture](../../assets/diagrams/PX4_Architecture.png)
+- The system is reactive — it is asynchronous and will update instantly when new data is available
+- All operations and communication are fully parallelized
+- A system component can consume data from anywhere in a thread-safe fashion
 
-> ** Info ** This flow chart can be updated from [here](https://drive.google.com/file/d/0Byq0TIV9P8jfbVVZOVZ0YzhqYWs/view?usp=sharing) and open it with draw.io Diagrams.
+> **Info** This architecture allows every single one of these blocks to be rapidly and easily replaced, even at runtime.
 
-## 地面站通讯结构
+### Flight Stack {#flight-stack}
 
+The flight stack is a collection of guidance, navigation and control algorithms for autonomous drones. It includes controllers for fixed wing, multirotor and VTOL airframes as well as estimators for attitude and position.
 
-与地面站（GCS）之间的交互是通过一种“商业逻辑”应用程序来处理的，包括如 commander( 一般命令与控制，例如解锁 ) ， navigator ( 接受任务并将其转为底层导航的原始数据 ) 和 mavlink 应用， mavlink 用于接受 MAVLink 数据包并将其转换为板载 uORB 数据结构。这种隔离方式使架构更为清晰，可以避免系统对 MAVLink  过于依赖 。 MAVLink 应用也会获取大量的传感器数据和状态估计值，并将其发送到地面站。
+The following diagram shows an overview of the building blocks of the flight stack. It contains the full pipeline from sensors, RC input and autonomous flight control (Navigator), down to the motor or servo control (Actuators).
 
+![PX4 High-Level Flight Stack](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
+[here](https://drive.google.com/a/px4.io/file/d/15J0eCL77fHbItA249epT3i2iOx4VwJGI/view?usp=sharing) 
+and opened with draw.io Diagrams. You might need to request access if you
+don't have a px4.io Google account.
+Caution: it can happen that after exporting some of the arrows are wrong. In
+that case zoom into the graph until the arrows are correct, and then export
+again. -->
 
-{% mermaid %}
-graph TD;
-  mavlink---commander;
-  mavlink---navigator;
-  position_estimator-->mavlink;
-  attitude_estimator-->mavlink;
-  mixer-->mavlink;
-{% endmermaid %}
+An **estimator** takes one or more sensor inputs, combines them, and computes a vehicle state (for example the attitude from IMU sensor data).
+
+A **controller** is a component that takes a setpoint and a measurement or estimated state (process variable) as input. Its goal is to adjust the value of the process variable such that it matches the setpoint. The output is a correction to eventually reach that setpoint. For example the position controller takes position setpoints as inputs, the process variable is the currently estimated position, and the output is an attitude and thrust setpoint that move the vehicle towards the desired position.
+
+A **mixer** takes force commands (e.g. turn right) and translates them into individual motor commands, while ensuring that some limits are not exceeded. This translation is specific for a vehicle type and depends on various factors, such as the motor arrangements with respect to the center of gravity, or the vehicle's rotational inertia.
+
+### Middleware {#middleware}
+
+The [middleware](../middleware/README.md) consists primarily of device drivers for embedded sensors, communication with the external world (companion computer, GCS, etc.) and the uORB publish-subscribe message bus.
+
+In addition, the middleware includes a [simulation layer](../simulation/README.md) that allows PX4 flight code to run on a desktop operating system and control a computer modeled vehicle in a simulated "world".
+
+## Update Rates
+
+Since the modules wait for message updates, typically the drivers define how fast a module updates. Most of the IMU drivers sample the data at 1kHz, integrate it and publish with 250Hz. Other parts of the system, such as the `navigator`, don't need such a high update rate, and thus run considerably slower.
+
+The message update rates can be [inspected](../middleware/uorb.md#urb-top-command) in real-time on the system by running `uorb top`.
+
+## Runtime Environment
+
+PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT). It should also have some form of real-time scheduling (e.g. FIFO).
+
+The inter-module communication (using [uORB](../middleware/uorb.md)) is based on shared memory. The whole PX4 middleware runs in a single address space, i.e. memory is shared between all modules.
+
+> **Info** The system is designed such that with minimal effort it would be possible to run each module in separate address space (parts that would need to be changed include `uORB`, `parameter interface`, `dataman` and `perf`).
+
+There are 2 different ways that a module can be executed:
+
+- **Tasks**: The module runs in its own task with its own stack and process priority (this is the more common way). 
+- **Work queues**: The module runs on a shared task, meaning that it does not own a stack. Multiple tasks run on the same stack with a single priority per work queue.
+    
+    A task is scheduled by specifying a fixed time in the future. The advantage is that it uses less RAM, but the task is not allowed to sleep or poll on a message.
+    
+    Work queues are used for periodic tasks, such as sensor drivers or the land detector.
+
+> **Note** Tasks running on a work queue do not show up in `top` (only the work queues themselves can be seen - e.g. as `lpwork`).
+
+### Background Tasks
+
+`px4_task_spawn_cmd()` is used to launch new tasks (NuttX) or threads (POSIX - Linux/macOS) that run independently from the calling (parent) task:
+
+```cpp
+independent_task = px4_task_spawn_cmd(
+    "commander",                    // Process name
+    SCHED_DEFAULT,                  // Scheduling type (RR or FIFO)
+    SCHED_PRIORITY_DEFAULT + 40,    // Scheduling priority
+    3600,                           // Stack size of the new task or thread
+    commander_thread_main,          // Task (or thread) main function
+    (char * const *)&argv[0]        // Void pointer to pass to the new task
+                                    // (here the commandline arguments).
+    );
+```
+
+### OS-Specific Information
+
+#### NuttX
+
+[NuttX](http://nuttx.org/) is the primary RTOS for running PX4 on a flight-control board. It is open source (BSD license), light-weight, efficient and very stable.
+
+Modules are executed as tasks: they have their own file descriptor lists, but they share a single address space. A task can still start one or more threads that share the file descriptor list.
+
+Each task/thread has a fixed-size stack, and there is a periodic task which checks that all stacks have enough free space left (based on stack coloring).
+
+#### Linux/macOS
+
+On Linux or macOS, PX4 runs in a single process, and the modules run in their own threads (there is no distinction between tasks and threads as on NuttX).
