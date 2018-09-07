@@ -1,194 +1,194 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/mixing.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Mixing and Actuators
 
-# 混控和执行器
+The PX4 architecture ensures that the airframe layout does not require special case handling in the core controllers.
 
-PX4架构保证了核心控制器中不需要针对机身布局做特别处理。
+Mixing means to take force commands (e.g. `turn right`) and translate them to actuator commands which control motors or servos. For a plane with one servo per aileron this means to command one of them high and the other low. The same applies for multicopters: Pitching forward requires changing the speed of all motors.
 
-混控指的是把输入指令（例如：遥控器打`右转`）分配到电机以及舵机的执行器（如电调或舵机PWM）指令。对于固定翼的副翼控制而言，每个副翼由一个舵机控制，那么混控的意义就是控制其中一个副翼抬起而另一个副翼落下。同样的，对多旋翼而言，俯仰操作需要改变所有电机的转速。 
+Separating the mixer logic from the actual attitude controller greatly improves reusability.
 
-将混控逻辑从实际姿态控制器中分离出来可以大大提高复用性。 
+## Control Pipeline
 
-## 控制流程
+A particular controller sends a particular normalized force or torque demand (scaled from -1..+1) to the mixer, which then sets individual actuators accordingly. The output driver (e.g. UART, UAVCAN or PWM) then scales it to the actuators native units, e.g. a PWM value of 1300.
 
-一个特定的控制器（如姿态控制器）发送特定的归一化（-1..+1）的命令到给混合（mixing）,然后混合后输出独立的PWM到执行器（电调，舵机等）.在经过输出驱动如（串口，UAVCAN，PWM）等将归一化的值再转回特性的值（如输出1300的PWM等）。
+{% mermaid %} graph LR; att_ctrl[Attitude Controller] --> act_group0[Actuator Control Group 0] gimbal_ctrl[Gimbal Controller] --> act_group2[Actuator Control Group 2] act_group0 --> output_group5[Actuator 5] act_group0 --> output_group6[Actuator 6] act_group2[Actuator Control Group 2] --> output_group0[Actuator 5] {% endmermaid %}
 
-{% mermaid %}
-graph LR;
-  att_ctrl[Attitude Controller] --> act_group0[Actuator Control Group 0]
-  gimbal_ctrl[Gimbal Controller] --> act_group2[Actuator Control Group 2]
-  act_group0 --> output_group5[Actuator 5]
-  act_group0 --> output_group6[Actuator 6]
-  act_group2[Actuator Control Group 2] --> output_group0[Actuator 5]
-{% endmermaid %}
+## Control Groups
 
-## 控制组
+PX4 uses control groups (inputs) and output groups. Conceptually they are very simple: A control group is e.g. `attitude`, for the core flight controls, or `gimbal` for payload. An output group is one physical bus, e.g. the first 8 PWM outputs for servos. Each of these groups has 8 normalized (-1..+1) command ports, which can be mapped and scaled through the mixer. A mixer defines how each of these 8 signals of the controls are connected to the 8 outputs.
 
-PX4 有输入组和输出组的概念，顾名思义：控制输入组（如： `attitude`），就是用于核心的飞行姿态控制，（如： `gimbal` ）就是用于挂载控制. 一个输出组就是一个物理总线，如前8个PWM组成的总线用于舵机控制，组内带8个归一化（-1..+1）值,一个混合就是用于输入和输出连接方式（如:对于四轴来说,输入组有俯仰，翻滚，偏航等，对于于向前打俯仰操作，就需要改变输出组中的4个电调的PWM输出值，前俩个降低转速，后两个增加转速，飞机就向前）。
+For a simple plane control 0 (roll) is connected straight to output 0 (aileron). For a multicopter things are a bit different: control 0 (roll) is connected to all four motors and combined with throttle.
 
-对于简单的固定翼来说，输入0（roll），就直接连接到输出的0（副翼）。对于多旋翼来说就不同了，输入0（roll）需要连接到所有的4个电机。
+### Control Group #0 (Flight Control)
 
-#### Control Group #0 (Flight Control)
+* 0: roll (-1..1)
+* 1: pitch (-1..1)
+* 2: yaw (-1..1)
+* 3: throttle (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 4: flaps (-1..1)
+* 5: spoilers (-1..1)
+* 6: airbrakes (-1..1)
+* 7: landing gear (-1..1)
 
- * 0: roll (-1..1)
- * 1: pitch (-1..1)
- * 2: yaw (-1..1)
- * 3: throttle (0..1 normal range, -1..1 for variable pitch / thrust reversers)
- * 4: flaps (-1..1)
- * 5: spoilers (-1..1)
- * 6: airbrakes (-1..1)
- * 7: landing gear (-1..1)
+### Control Group #1 (Flight Control VTOL/Alternate)
 
-#### Control Group #1 (Flight Control VTOL/Alternate)
+* 0: roll ALT (-1..1)
+* 1: pitch ALT (-1..1)
+* 2: yaw ALT (-1..1)
+* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 4: reserved / aux0
+* 5: reserved / aux1
+* 6: reserved / aux2
+* 7: reserved / aux3
 
- * 0: roll ALT (-1..1)
- * 1: pitch ALT (-1..1)
- * 2: yaw ALT (-1..1)
- * 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
- * 4: reserved / aux0
- * 5: reserved / aux1
- * 6: reserved / aux2
- * 7: reserved / aux3
+### Control Group #2 (Gimbal)
 
-#### Control Group #2 (Gimbal)
+* 0: gimbal roll
+* 1: gimbal pitch
+* 2: gimbal yaw
+* 3: gimbal shutter
+* 4: reserved
+* 5: reserved
+* 6: reserved
+* 7: reserved (parachute, -1..1)
 
- * 0: gimbal roll
- * 1: gimbal pitch
- * 2: gimbal yaw
- * 3: gimbal shutter
- * 4: reserved
- * 5: reserved
- * 6: reserved
- * 7: reserved (parachute, -1..1)
+### Control Group #3 (Manual Passthrough)
 
-#### Control Group #3 (Manual Passthrough)
+* 0: RC roll
+* 1: RC pitch
+* 2: RC yaw
+* 3: RC throttle
+* 4: RC mode switch
+* 5: RC aux1
+* 6: RC aux2
+* 7: RC aux3
 
- * 0: RC roll
- * 1: RC pitch
- * 2: RC yaw
- * 3: RC throttle
- * 4: RC mode switch
- * 5: RC aux1
- * 6: RC aux2
- * 7: RC aux3
+### Control Group #6 (First Payload)
 
-#### Control Group #6 (First Payload)
+* 0: function 0 (default: parachute)
+* 1: function 1
+* 2: function 2
+* 3: function 3
+* 4: function 4
+* 5: function 5
+* 6: function 6
+* 7: function 7
 
- * 0: function 0 (default: parachute)
- * 1: function 1
- * 2: function 2
- * 3: function 3
- * 4: function 4
- * 5: function 5
- * 6: function 6
- * 7: function 7
-
-### Virtual Control Groups
+## Virtual Control Groups
 
 These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing and multicopter controller outputs into the VTOL governor module.
 
-#### Control Group #4 (Flight Control MC VIRTUAL)
+### Control Group #4 (Flight Control MC VIRTUAL)
 
- * 0: roll ALT (-1..1)
- * 1: pitch ALT (-1..1)
- * 2: yaw ALT (-1..1)
- * 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
- * 4: reserved / aux0
- * 5: reserved / aux1
- * 6: reserved / aux2
- * 7: reserved / aux3
+* 0: roll ALT (-1..1)
+* 1: pitch ALT (-1..1)
+* 2: yaw ALT (-1..1)
+* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 4: reserved / aux0
+* 5: reserved / aux1
+* 6: reserved / aux2
+* 7: reserved / aux3
 
-#### Control Group #5 (Flight Control FW VIRTUAL)
+### Control Group #5 (Flight Control FW VIRTUAL)
 
- * 0: roll ALT (-1..1)
- * 1: pitch ALT (-1..1)
- * 2: yaw ALT (-1..1)
- * 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
- * 4: reserved / aux0
- * 5: reserved / aux1
- * 6: reserved / aux2
- * 7: reserved / aux3
+* 0: roll ALT (-1..1)
+* 1: pitch ALT (-1..1)
+* 2: yaw ALT (-1..1)
+* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 4: reserved / aux0
+* 5: reserved / aux1
+* 6: reserved / aux2
+* 7: reserved / aux3
 
-## 映射
+## Mapping
 
-因为存在许多控制组（例如飞行控制组，载荷组等）和许多输出组（例如基本8路PWM输出组，UAVCAN组等），所以一个控制组可以向多个输出组发送指令。
+Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (first 8 PWM outpus, UAVCAN, etc.), one control group can send command to multiple output groups.
 
-{% mermaid %}
-graph TD;
-  actuator_group_0-->output_group_5
-  actuator_group_0-->output_group_6
-  actuator_group_1-->output_group_0
-{% endmermaid %}
+{% mermaid %} graph TD; actuator_group_0-->output_group_5 actuator_group_0-->output_group_6 actuator_group_1-->output_group_0 {% endmermaid %}
 
-## PX4混控器定义
+## PX4 Mixer Definitions
 
-`ROMFS/px4fmu_common/mixers`中的文件实现了预定义机架所使用的混控器。它们可以用于自定义机架或者一般的测试。 
+Files in **ROMFS/px4fmu_common/mixers** implement mixers that are used for predefined airframes. They can be used as a basis for customisation, or for general testing purposes.
 
-### 语法
+### Mixer File Names
 
-mixer通过文本文件定义；以单个大写字母加一个冒号开始的行是有效的。其它的行则会被忽略，这意味着注释可以自由地在定义中穿插使用。 
+A mixer file must be named **XXXX.*main*.mix** if it is responsible for the mixing of MAIN outputs or **XXXX.*aux*.mix** if it mixes AUX outputs.
 
-每个文件可以定义多个混控器；混控器与作动器的分配关系由读取混控器定义的设备决定，作动器输出数目则由混控器决定。
+### Syntax
 
-例如：每个简单混控器或者空混控器按照它们在混控器文件中出现的顺序对应到输出1到输出x。
+Mixer definitions are text files; lines beginning with a single capital letter followed by a colon are significant. All other lines are ignored, meaning that explanatory text can be freely mixed with the definitions.
 
-一个混控器定义通常具有如下形式：
+Each file may define more than one mixer; the allocation of mixers to actuators is specific to the device reading the mixer definition, and the number of actuator outputs generated by a mixer is specific to the mixer.
 
-	<tag>: <mixer arguments>
+For example: each simple or null mixer is assigned to outputs 1 to x in the order they appear in the mixer file.
 
-tag标签决定混控器的类型；`M`对应简单求和混控器，`R`对应多旋翼混控器，等等。
+A mixer begins with a line of the form
 
-#### 空混控器 ####
+    <tag>: <mixer arguments>
+    
 
-空混控器不接受控制输入并产生单个作动器输出，其输出值恒为零。空混控器的典型用法是在一组定义作动器特定输出模式的混控器组中占位。
+The tag selects the mixer type; 'M' for a simple summing mixer, 'R' for a multirotor mixer, etc.
 
-空混控器定义形式如下：
+#### Null Mixer
 
-	Z:
+A null mixer consumes no controls and generates a single actuator output whose value is always zero. Typically a null mixer is used as a placeholder in a collection of mixers in order to achieve a specific pattern of actuator outputs.
 
-#### 简单混控器 ####
+The null mixer definition has the form:
 
-简单混控器将0个或多个控制输入混合为单个作动器输出。所有输入被缩放后，经过混合函数得到混合后的输入，最后再经过输出缩放产生输出信号。
+    Z:
+    
 
-简单混控器定义如下：
+#### Simple Mixer
 
-	M: <control count>
-	O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
+A simple mixer combines zero or more control inputs into a single actuator output. Inputs are scaled, and the mixing function sums the result before applying an output scaler.
 
-如果 `<control count>` 为0，那么混合结果实际上为0，混控器将输出一个定值，这个值是在`<lower limit>`和`<upper limit>`限制下的`<offset>`。
+A simple mixer definition begins with:
 
-第二行用前文讨论过的缩放参数定义了输出缩放器。计算以浮点操作被执行，存储在定义文件中的值经过了因子10000的缩放，即偏移量-0.5会被存储为-5000。
+    M: <control count>
+    O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
+    
 
-紧跟在`<control count>`词目之后的定义描述了控制输入以及它们的缩放，形式如下：
+If `<control count>` is zero, the sum is effectively zero and the mixer will output a fixed value that is `<offset>` constrained by `<lower limit>` and `<upper limit>`.
 
-	S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
-`<group>`值标示了控制输入来源，缩放器从中读取控制量，`<index>`值则是控制量在组内的序号。这些值对读取混控器定义的设备而言都是特定的。
+The second line defines the output scaler with scaler parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
 
-当用来混合载体控制时，控制组0是载体姿态控制组，序号0到3通常对应滚转，俯仰，偏航和油门。
+The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
 
-混控器定义行中剩下的域则用来配置缩放器，参数如前文讨论。计算以浮点操作被执行，存储在定义文件中的值经过了因子10000的缩放，即偏移量-0.5会被存储为-5000。
+    S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
+    
 
-#### 多旋翼混控器 ####
+> **Note** The `S:` lines must be below the `O:` line.
 
-多旋翼混控器将4个控制输入（滚转，俯仰，偏航，油门）混合至一组作动器输出，这些作动器用来驱动电机转速控制器。
+The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group.  
+These values are specific to the device reading the mixer definition.
 
-多旋翼混控器定义如下所示：
+When used to mix vehicle controls, mixer group zero is the vehicle attitude control group, and index values zero through three are normally roll, pitch, yaw and thrust respectively.
 
-	R: <geometry> <roll scale> <pitch scale> <yaw scale> <deadband>
+The remaining fields on the line configure the control scaler with parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
 
-支持的构型包括：
+An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
 
- * 4x - X型布局四旋翼
-* 4+ - +型布局四旋翼
-* 6x - X型布局六旋翼
-* 6+ - +型布局六旋翼
-* 8x - X型布局八旋翼
-* 8+ - +型布局八旋翼
+#### Multirotor Mixer
 
-每个滚转，俯仰，偏航缩放值定义了滚转，俯仰，偏航控制相对于油门控制的缩放。计算以浮点操作被执行，存储在定义文件中的值经过了因子10000的缩放，即偏移量-0.5会被存储为-5000。
+The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust) into a set of actuator outputs intended to drive motor speed controllers.
 
-滚转，俯仰和偏航输入的范围为-1.0到1.0，而油门输入的范围为0.0到1.0，执行器输出范围为-1.0到1.0。
+The mixer definition is a single line of the form:
 
-当某个执行器饱和时，为保证该执行器值不超出范围，所有的执行器值都会被重新缩放，使得执行器的饱和上限被限制到1.0以内。
+    R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
+    
+
+The supported geometries include:
+
+* 4x - quadrotor in X configuration
+* 4+ - quadrotor in + configuration
+* 6x - hexacopter in X configuration
+* 6+ - hexacopter in + configuration
+* 8x - octocopter in X configuration
+* 8+ - octocopter in + configuration
+
+Each of the roll, pitch and yaw scale values determine scaling of the roll, pitch and yaw controls relative to the thrust control. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an factor of 0.5 is encoded as 5000.
+
+Roll, pitch and yaw inputs are expected to range from -1.0 to 1.0, whilst the thrust input ranges from 0.0 to 1.0. Output for each actuator is in the range -1.0 to 1.0.
+
+Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed of motors and it is the speed at which the motors are commanded to rotate when all control inputs are zero.
+
+In the case where an actuator saturates, all actuator values are rescaled so that the saturating actuator is limited to 1.0.
