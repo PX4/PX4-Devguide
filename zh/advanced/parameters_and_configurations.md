@@ -1,27 +1,22 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/advanced/parameters_and_configurations.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Parameters & Configurations
 
-# 参数 & 配置
+The PX4 platform uses the param subsystem (a flat table of float and int32_t values) and text files (for mixers and startup scripts) to store its configuration.
 
-PX4使用参数子系统（实际就是浮点和整型数据的列表）和文本文件（用来配置Mixer混合器和启动脚本）来储存相关配置。
+The [system startup](../advanced/system_startup.md) and how [airframe configurations](../airframes/adding_a_new_frame.md) work are detailed on other pages. This section discusses the param subsystem in detail
 
-关于[系统启动](../advanced/system_startup.md) 和[机体参数配置](../airframes/adding_a_new_frame.md)的实现在其他章节有详细讲述。这部分主要是详细讨论参数子系统。
+## Command Line usage
 
-## 命令行的使用
+The PX4 [system console](../debug/system_console.md) offers the *param* tool, which allows to set parameters, read their value, save them and export and restore to and from files.
 
-PX4[系统控制台](../debug/system_console.md) 提供了 ```param``` 命令,可以对参数进行设置、访问、保存，以及从文件中导入和保存到文件。 
+### Getting and Setting Parameters
 
-### 访问和设置参数
-
-命令行param show 可以列出所有系统参数:
+The param show command lists all system parameters:
 
 ```sh
 param show
 ```
 
-参数名+字符可以选择对应的参数进行操作:
+To be more selective a partial parameter name with wildcard can be used:
 
 ```sh
 nsh> param show RC_MAP_A*
@@ -34,33 +29,29 @@ x   RC_MAP_ACRO_SW [375,514] : 0
  723 parameters total, 532 used.
 ```
 
-### 导出和加载参数
+### Exporting and Loading Parameters
 
-一般的保存命令可以保存参数到默认的文件中:
+The standard save command will store the parameters in the current default file:
 
 ```sh
 param save
 ```
 
-如果保存后面加上路径，将会保存参数到新的位置
+If provided with an argument, it will store the parameters instead to this new location:
 
 ```sh
 param save /fs/microsd/vtol_param_backup
 ```
 
-加载参数有两种方法:
- ```param load``` 
-加载文件并用文件中的数据代替现有参数设置，最终把以前某个状态储存的数据一一复制过来
-```param import``` 
-这个命令更为精妙，它只改变与默认设置不同的参数。这个命令有重要的作用，比如在进行最初校准但不进行其他配置时，导入之前校准的参数就可以只改变校准数据而不对其他配置操作。
+There are two different commands to load parameters: `param load` will load a file and replace the current parameters with what is in this file, resulting in a 1:1 copy of the state that was present when these parameters were stored. `param import` is more subtle: It will only change parameter values which have been changed from the default. This is great to e.g. initially calibrate a board (without configuring it further), then importing the calibration data without overwriting the rest of the system configuration.
 
-覆盖现有参数:
+Overwrite the current parameters:
 
 ```sh
 param load /fs/microsd/vtol_param_backup
 ```
 
-合并现有参数和储存的参数 (储存文件中与默认参数不同的参数覆盖默认参数):
+Merge the current parameters with stored parameters (stored values which are non-default take precedence):
 
 ```sh
 param import /fs/microsd/vtol_param_backup
@@ -68,26 +59,22 @@ param import /fs/microsd/vtol_param_backup
 
 ## C / C++ API
 
-PX4还有独立的C和C++接口访问配置数据。
+There is also a C and a separate C++ API which can be used to access parameter values.
 
-<aside class="todo">
-Discuss param C / C++ API.
-</aside>
-
-<div class="host-code"></div>
+> **Todo** Discuss param C / C++ API.
 
 ```C
 int32_t param = 0;
 param_get(param_find("PARAM_NAME"), &param);
 ```
 
-##参数数据元
+## Parameter Meta Data
 
-PX4使用一个参数数据元系统把参数展示给用户。正确的合适的数据元对地面站的用户体验有重要意义。
+PX4 uses an extensive parameter meta data system to drive the user-facing presentation of parameters. Correct meta data is critical for good user experience in the ground station.
 
-一段传统的数据元如下所示：
+A typical parameter metadata section will look like this:
 
-```C++
+```cpp
 /**
  * Pitch P gain
  *
@@ -104,21 +91,21 @@ PX4使用一个参数数据元系统把参数展示给用户。正确的合适�
 PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
 ```
 
-各行的作用：
+Where each line has this use:
 
-```C++
+```cpp
 /**
  * <title>
  *
  * <longer description, can be multi-line>
  *
  * @unit <the unit, e.g. m for meters>
- * @min <the minimum sane value. Can be overriden by the user>
- * @max <the maximum sane value. Can be overriden by the user>
- * @decimal <the minimum sane value. Can be overriden by the user>
- * @increment <the "ticks" in which this value will increment in the UI> 
+ * @min <the minimum sane value. Can be overridden by the user>
+ * @max <the maximum sane value. Can be overridden by the user>
+ * @decimal <the minimum sane value. Can be overridden by the user>
+ * @increment <the "ticks" in which this value will increment in the UI>
+ * @reboot_required true <add this if changing the param requires a system restart>
  * @group <a title for parameters which form a group>
  */
 PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
 ```
-
