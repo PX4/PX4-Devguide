@@ -1,34 +1,33 @@
 # System Startup
 
 The PX4 startup is controlled by shell scripts.
-On NuttX they reside in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder.
-A portion of these is also used on Posix and the ones that are only used on Posix are located in [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix).
+On NuttX they reside in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder - some of these are also used on Posix (Linux/MacOS). The scripts that are only used on Posix are located in [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix).
 
 All files starting with a number and underscore (e.g. `10000_airplane`) are canned airframe configurations. They are exported at build-time into an `airframes.xml` file which is parsed by [QGroundControl](http://qgroundcontrol.com) for the airframe selection UI. Adding a new configuration is covered [here](../airframes/adding_a_new_frame.md).
 
-The remaining files are part of the general startup logic, and the first executed file is the [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) (or [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on Posix) script, which calls all other scripts.
+The remaining files are part of the general startup logic. The first executed file is the [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) script (or [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on Posix), which calls all other scripts.
 
 
 ## Script Execution
 
-NuttX has a shell interpreter already integrated.
-On Posix (Linux/MacOS), the system shell is used as script interpreter (e.g. bash).
+NuttX has an integrated shell interpreter.
+On Posix, the system shell is used as script interpreter (e.g. bash).
 For that to work, a few things are required:
 - PX4 modules need to look like individual executables to the system. This is done via symbolic links.
-  For each module a symbolic link `px4-<module> -> px4` in the `bin` directory of the build folder is created.
+  For each module a symbolic link `px4-<module> -> px4` is created in the `bin` directory of the build folder.
   When executed, the binary path is checked (`argv[0]`), and if it is a module (starts with `px4-`), it sends the command to the main px4 instance (see below).
-  The `px4-` prefix is used to avoid conflicts with system commands, such as `shutdown`, and it also allows for simple tab completion by typing `px4-<TAB>`.
+  > **Tip** The `px4-` prefix is used to avoid conflicts with system commands (e.g. `shutdown`), and it also allows for simple tab completion by typing `px4-<TAB>`.
 - The shell needs to know where to find the symbolic links. For that the `bin` directory with the symbolic links is added to the `PATH` variable right before executing the startup scripts.
-- The shell starts each module as a new process. This client process needs to communicate with the main running instance of px4 (the server), where the actual modules are running as threads.
+- The shell starts each module as a new (client) process. Each client process needs to communicate with the main instance of px4 (the server), where the actual modules are running as threads.
   This is done with [FIFOs (also called named pipes)](http://man7.org/linux/man-pages/man7/fifo.7.html).
   The server has a FIFO opened, on which clients can send commands.
   In addition each client opens its own FIFO, which the server then uses to send information to the client (strings printed to the console for example).
 - The startup scripts do not use the `px4-` prefix, but they call the module directly, e.g. `commander start`. This works via aliases: for each module an alias in the form of `alias <module>=px4-<module>` is created in the file `bin/px4-alias.sh`.
 - The `rcS` script is executed from the main px4 instance.
-  It does not start any modules but first updates the `PATH` variable and then simply runs a shell with the `rcS` file as argument.
+  It does not start any modules, but first updates the `PATH` variable and then simply runs a shell with the `rcS` file as argument.
 - In addition to that, multiple server instances can be started for multi-vehicle simulations. A client selects the instance via `--instance`. The instance is available in the script via `$px4_instance` variable.
 
-The modules can be executed from any terminal when PX4 is already running. For example:
+The modules can be executed from any terminal when PX4 is already running on a system. For example:
 ```
 cd <Firmware>/build/posix_sitl_default/bin
 ./px4-commander takeoff
@@ -91,11 +90,12 @@ The following example shows how to start custom applications:
 
 ### Starting a custom mixer
 
-By default the system loads the mixer from `/etc/mixers`. If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
+By default the system loads the mixer from `/etc/mixers`. 
+If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
+
 #### Example
 The following example shows how to add a custom aux mixer:
-  * Create a file on the SD card, `etc/mixers/gimbal.aux.mix` with your mixer
-	content.
+  * Create a file on the SD card, `etc/mixers/gimbal.aux.mix` with your mixer content.
   * Then to use it, create an additional file `etc/config.txt` with this content:
     ```
     set MIXER_AUX gimbal
