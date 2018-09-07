@@ -1,83 +1,75 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/simulation/gazebo_octomap.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
-
 # OctoMap 3D Models with ROS/Gazebo
 
+The [OctoMap library](http://octomap.github.io/) is an open source library for generating volumetric 3D environment models from sensor data. This model data can then be used by a drone for navigation and obstacle avoidance.
 
-[OctoMap库](http://octomap.github.io/)实现了一个三维占据栅格地图的方法。本文介绍如何在[RotorS仿真](https://github.com/ethz-asl/rotors_simulator/wiki/RotorS-Simulator)中使用它。
+This guide covers how to use *OctoMap* with the Gazebo [Rotors Simulator](https://github.com/ethz-asl/rotors_simulator/wiki/RotorS-Simulator) and ROS.
 
-## 安装
+## Installation
 
-需要预先安装ROS，Gazebo和Rotors Simulator插件，按照Rotors Simulator中的[指南](https://github.com/ethz-asl/rotors_simulator)安装这些。
+The installation requires ROS, Gazebo and the Rotors Simulator plugin. Follow the [Rotors Simulator instructions](https://github.com/ethz-asl/rotors_simulator) to install.
 
-接着，安装OctoMap库
-
-```sh
-	sudo apt-get install ros-indigo-octomap ros-indigo-octomap-mapping
-	rosdep install octomap_mapping
-	rosmake octomap_mapping
-```
-
-现在，打开`~/catkin_ws/src/rotors_simulator/rotors_gazebo/CMakeLists.txt`并在文件底部添加下面内容：
+Next, install the *OctoMap* library:
 
 ```sh
-	find_package(octomap REQUIRED)
-	include_directories(${OCTOMAP_INCLUDE_DIRS})
-	link_libraries(${OCTOMAP_LIBRARIES})
+sudo apt-get install ros-indigo-octomap ros-indigo-octomap-mapping
+rosdep install octomap_mapping
+rosmake octomap_mapping
 ```
 
-打开`~/catkin_ws/src/rotors_simulator/rotors_gazebo/package.xml`添加下面内容：
+Now, open ~/catkin_ws/src/rotors_simulator/rotors_gazebo/CMakeLists.txt and add the following lines to the bottom of the file
 
 ```sh
-	<build/depend>octomap</build/depend>
-	<run_depend>octomap</run_depend>
+find_package(octomap REQUIRED)
+include_directories(${OCTOMAP_INCLUDE_DIRS})
+link_libraries(${OCTOMAP_LIBRARIES})
 ```
 
-执行下面两行
-
-> 提示:第一行是将默认的shell编辑器（vim）修改为gedit。推荐不熟悉vim的用户使用，如果熟悉的话，可以忽略。
+Open ~/catkin_ws/src/rotors_simulator/rotors_gazebo/package.xml and add the following lines
 
 ```sh
-	export EDITOR='gedit'
-	rosed octomap_server octomap_tracking_server.launch
+<build_depend>octomap</build_depend>
+<run_depend>octomap</run_depend>
 ```
 
-将下面两行
+Run the following two lines:
+
+> **Note** The first line changes your default shell editor to *gedit*. This is recommended for users who have little experience with *vim* (the default editor), but can otherwise be omitted.
 
 ```sh
-	<param name="frame_id" type="string" value="map" />	
-	...
-	<!--remap from="cloud_in" to="/rgbdslam/batch_clouds" /-->
+export EDITOR='gedit'
+rosed octomap_server octomap_tracking_server.launch
 ```
 
-修改为
+and change the two following lines:
 
 ```sh
-	<param name="frame_id" type="string" value="world" />	
-	...
-	<remap from="cloud_in" to="/firefly/vi_sensor/camera_depth/depth/points" />
+<param name="frame_id" type="string" value="map" />
+...
+<!--remap from="cloud_in" to="/rgbdslam/batch_clouds" /-->
 ```
 
-## 运行仿真
-
-
-现在，在三个不同的终端窗口中执行下面三行。这将打开Gazebo，Rviz和octomap服务器。
-
+to:
 
 ```sh
-	roslaunch rotors_gazebo mav_hovering_example_with_vi_sensor.launch  mav_name:=firefly
-	rviz
-	roslaunch octomap_server octomap_tracking_server.launch
+<param name="frame_id" type="string" value="world" />
+...
+<remap from="cloud_in" to="/firefly/vi_sensor/camera_depth/depth/points" />
 ```
 
-在Rviz窗口的左上方，修改域`Fixed Frame`，将`map`改为`world`，然后在窗口左下方单击add按钮并选择MarkerArray，最后双击MarkerArray，并将`Marker Topic`从`/free_cells_vis_array`修改为`/occupied_cells_vis_array`。
+## Running the Simulation
 
-现在，你应该看到地面的一部分。
+Run the following three lines in *separate* terminal windows. This opens up [Gazebo](../simulation/gazebo.md), *Rviz* and an octomap server.
 
-在Gazebo窗口的红色旋翼飞行器前方插入一个立方体，此时你应该可以在Rviz中看到它。
+```sh
+roslaunch rotors_gazebo mav_hovering_example_with_vi_sensor.launch  mav_name:=firefly
+rviz
+roslaunch octomap_server octomap_tracking_server.launch
+```
 
+In *Rviz*, change the field 'Fixed Frame' from 'map' to 'world' in the top left of the window. Now click the add button in the bottom left and select MarkerArray. Then double click the MarkerArray and change 'Marker Topic' from '/free_cells_vis_array' to '/occupied_cells_vis_array'
+
+Now you should see a part of the floor.
+
+In the *Gazebo* window, insert a cube in front of the red rotors and you should see it in *Rviz*.
 
 ![OctoMap Example in Gazebo](../../assets/simulation/octomap.png)
-
