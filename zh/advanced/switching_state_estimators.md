@@ -1,51 +1,26 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/advanced/switching_state_estimators.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Switching State Estimators
 
-# 切换状态估计器
+This page shows you which state estimators are available and how you can switch between them.
 
+> **Tip** EKF2 is highly recommended for all purposes (LPE is no longer maintained).
 
-本文主要介绍PX4中有哪些可用的状态估计器以及用户该如何在不同的估计器间进行切换。
+## Available Estimators
 
-## 可用的估计器
+The available estimators are:
 
+- **Q attitude estimator** - The attitude Q estimator is a very simple, quaternion based complementary filter for attitude.
+- **INAV position estimator** - The INAV position estimator is a complementary filter for 3D position and velocity states.
+- **LPE position estimator** - The LPE position estimator is an extended kalman filter for 3D position and velocity states.
+- **EKF2 attitude, position and wind states estimator** - EKF2 is an extended kalman filter estimating attitude, 3D position / velocity and wind states.
 
-**1. Q attitude estimator(四元数姿态估计)**
+## How to Enable Different Estimators
 
-四元数姿态估计方法非常简单，就是基于四元数的姿态互补滤波器。
+For multirotors and VTOL use the parameter [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) to choose between the following configurations (LPE is not supported for Fixed Wing).
 
-**2. INAV position estimator(惯导位置估计)**
+| SYS_MC_EST_GROUP | Q Estimator | INAV    | LPE     | EKF2    |
+| ------------------ | ----------- | ------- | ------- | ------- |
+| 0                  | enabled     | enabled |         |         |
+| 1                  | enabled     |         | enabled |         |
+| 2                  |             |         |         | enabled |
 
-惯导位置估计使用互补滤波器对三维位置以及速度进行估计。。
-
-**3. LPE position estimator(LPE位置估计)**
-
-LPE (Local Position Estimator) 位置估计使用扩展卡尔曼滤波器对三维位置以及速度进行估计。
-
-**4. EKF2 attitude, position and wind states estimator (EKF2姿态，位置以及风速估计)**
-
-EKF2使用扩展卡尔曼滤波器进行三维的姿态，位置/速度以及风的状态进行估计。
-
-**5. EKF attitude, position and wind states estimator (depricated)**(EKF姿态，位置以及风速估计(已过时))
-（即固件参数列表中的[Attitude EKF estimator](../advanced/parameter_reference.md#attitude-ekf-estimator)和[Position Estimator](../advanced/parameter_reference.md#position-estimator))
-
-这是一个类似于EKF2的扩展卡尔曼滤波器。然而，很快它就将完全由EKF2代替。
-
-此滤波器仅用于固定翼。
-
-## **如何使能不同的估计器**
-
-对于多旋翼和垂直起降飞行器，使用参数**SYS_MC_EST_GROUP**在下列配置中进行选择。
-
-
-> 目前只有已过时的EKF估计器被用于非垂直起降的飞行器。它将很快被EKF2代替。
-
-
-
-| SYS_MC_EST_GROUP | Q Estimator | INAV | LPE  | EKF2 |
-| ---------------- | ----------- | ---- | ---- | ---- |
-| 0                | 使能          | 使能   |      |      |
-| 1                | 使能          |      | 使能   |      |
-| 2                |             |      |      | 使能   |
-
+> **Note** For FMU-v2 (only) you will also need to build PX4 to specifically include required estimator (e.g. EKF2: `make px4fmu-v2`, LPE: `make px4fmu-v2_lpe`). This is required because FMU-v2 is too resource constrained to include both estimators. Other Pixhawk FMU versions include both.
