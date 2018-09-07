@@ -47,7 +47,6 @@ Disable automatic generation of bridge code (as part of the PX4 build process) b
 set(GENERATE_RTPS_BRIDGE off)
 ```
 
-
 ## Generate the bridge code
 
 Manually generate bridge code using *generate_microRTPS_bridge.py* (the code will send and receive "just" our `throughput_256` uORB topic):
@@ -91,12 +90,9 @@ while (!_should_exit_task)
 ...
 ```
 
-
 > **Note** You may recall this is intended to be a *bidirectional* throughput test, where messages must also be sent from the *Agent* to the *Client*. You do not need to modify the Agent code to make this happen. As the *Agent* is an RTPS publisher and subscriber, it will automatically get notified of the RTPS messages it sends, and will then mirror these back to the client.
 
-
 [Compile and launch](../middleware/micrortps_manual_code_generation.md#build-and-use-the-code) both the *Client* and the *Agent*.
-
 
 ## Result
 
