@@ -1,30 +1,29 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/airframes/adding_a_new_frame.md
-translated_sha: f7d0be49d427db1a07e35167f8fe7e861d577b27
----
+# Adding a New Airframe Configuration
 
-# 添加一个新的机型
+PX4 uses canned airframe configurations as starting point for airframes. The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
+Adding a configuration is straightforward: create a new config file in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (prepend the filename with an unused autostart ID), then [build and upload](../setup/building_px4.md) the software.
 
-PX4使用存储的配置作为机型的起始点。添加配置是非常简单的：在[init.d文件夹](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)创建一个新的文件，这个文件需要以一个没有使用的自动启动ID作为文件名的前缀，然后[构建并上传](../setup/building_px4.md)固件即可。
+Developers who do not want to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../advanced/system_startup.md) page.
 
-如果不想创建自己的配置文件，也可以用SD卡上的文本文件替换掉已有的自定义配置文件，具体细节请查看[自定义系统启动](../advanced/system_startup.md)页。
+## Configuration File Overview
 
-## 机型配置
+The configuration in the config and mixer files consists of several main blocks:
 
-一个机型配置包括3项基本内容：
+* Airframe documentation (used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*).
+* Vehicle-specific parameter settings, including [tuning gains](#tuning-gains).
+* The controllers and apps it should start, e.g. multicopter or fixed wing controllers, land detectors etc.
+* The physical configuration of the system (e.g. a plane, wing or multicopter). This is called a [mixer](../concept/mixing.md).
 
-- 应该启动的应用，例如多旋翼或者固定翼的控制器
-- 系统（固定翼，飞翼或者多旋翼）的物理配置，这叫做混控器
-- 参数整定
+These aspects are mostly independent, which means that many configurations share the same physical layout of the airframe, start the same applications and differ most in their tuning gains.
 
-这三方面大多数时候是独立的，也就是说，许多配置会共享相同的机型物理布局以及启动相同的应用，它们之间最大的不同在参数整定部分。
+> **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
 
-所有的配置存储在[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)文件夹。所有的混控器存储在[ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers)文件夹。
+### Config File {#config-file}
 
-### 配置文件
+A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/3033_wingwing)) .
 
-如下所示，是一个典型的配置文件：
+The first section is the airframe documentation. This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
 
 ```bash
 #!nsh
@@ -46,68 +45,91 @@ PX4使用存储的配置作为机型的起始点。添加配置是非常简单�
 #
 # @maintainer Lorenz Meier <lorenz@px4.io>
 #
+```
 
+The next section specifies vehicle-specific parameters, including [tuning gains](#tuning-gains):
+
+```bash
 sh /etc/init.d/rc.fw_defaults
 
 if [ $AUTOCNF == yes ]
 then
-	param set BAT_N_CELLS 2
-	param set FW_AIRSPD_MAX 15
-	param set FW_AIRSPD_MIN 10
-	param set FW_AIRSPD_TRIM 13
-	param set FW_R_TC 0.3
-	param set FW_P_TC 0.3
-	param set FW_L1_DAMPING 0.74
-	param set FW_L1_PERIOD 16
-	param set FW_LND_ANG 15
-	param set FW_LND_FLALT 5
-	param set FW_LND_HHDIST 15
-	param set FW_LND_HVIRT 13
-	param set FW_LND_TLALT 5
-	param set FW_THR_LND_MAX 0
-	param set FW_PR_FF 0.35
-	param set FW_RR_FF 0.6
-	param set FW_RR_P 0.04
+    param set BAT_N_CELLS 2
+    param set FW_AIRSPD_MAX 15
+    param set FW_AIRSPD_MIN 10
+    param set FW_AIRSPD_TRIM 13
+    param set FW_R_TC 0.3
+    param set FW_P_TC 0.3
+    param set FW_L1_DAMPING 0.74
+    param set FW_L1_PERIOD 16
+    param set FW_LND_ANG 15
+    param set FW_LND_FLALT 5
+    param set FW_LND_HHDIST 15
+    param set FW_LND_HVIRT 13
+    param set FW_LND_TLALT 5
+    param set FW_THR_LND_MAX 0
+    param set FW_PR_FF 0.35
+    param set FW_RR_FF 0.6
+    param set FW_RR_P 0.04
 fi
+```
 
+Set frame type ([MAV_TYPE](https://mavlink.io/en/messages/common.html#MAV_TYPE)):
+
+```bash
 # Configure this as plane
 set MAV_TYPE 1
+```
+
+Set the [mixer](#mixer-file) to use:
+
+```bash
 # Set mixer
 set MIXER wingwing
+```
+
+Configure PWM outputs (specify the outputs to drive/activate, and the levels).
+
+```bash
 # Provide ESC a constant 1000 us pulse
 set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
-> **Warning** 如果要反转通道，请勿在RC遥控器发射器或者RC1_REV上进行。通道只会在以手动模式飞行时反转，当你切换到一个自驾仪飞行模式时，通道输出仍然会出错(只会反转遥控器信号)。因此，为了正确地分配通道，可以使用PWM_MAIN_REV1(例如通道1)改变PWM的值，或者更改相应混控器中输出缩放值和输出 范围的符号(如下图)。
 
-### 混控器文件
+> **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
-一个典型的混控器文件会像下面这样：
+### Mixer File {#mixer-file}
 
-> **注意：** 舵机/电机的接口顺序和这个文件中的混控器顺序一致。
+> **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
 
+A typical mixer file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). A mixer filename, in this case `wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
 
-所以MAIN1对应左副翼，MAIN2对应右副翼，MAIN3置空（注意：Z即为空混控器），MAIN4则对应油门（对于一般固定翼配置，保持油门和输出4对应）。
+The mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code.
 
-混控器被编码为从-10000到10000的标准单位，对应-1到+1。
+> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
-```
-M: 2
-O:      10000  10000      0 -10000  10000
-S: 0 0  -6000  -6000      0 -10000  10000
-S: 0 1   6500   6500      0 -10000  10000
-```
+So MAIN1 would be the left aileron, MAIN2 the right aileron, MAIN3 is empty (note the Z: zero mixer) and MAIN4 is throttle (to keep throttle on output 4 for common fixed wing configurations).
 
-从左到右每个数字代表的意思如下：
+A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1..+1.
 
-- M：代表有2个缩放系数（对应着两个输入）
-- O：代表输出缩放系数（负输入量缩放系数为1，正输入量缩放系数为1），偏移量（这里是0），输出范围（这里-1到+1）
-- S：代表第一个输入量的缩放系数：输入量来自控制组#0（姿态控制）的第一个输入（滚转），缩放系数为0.6，并且符号取反（-0.6换算到标准单位是-6000），没有偏移量（0），输出为全范围（-1到+1）
-- S：代表第二个输入量的缩放系数：输入量来自控制组#0（姿态控制）的第二个输入（俯仰），缩放系数为0.65（0.65换算到标准单位是6500），没有偏移量（0），输出为全范围（-1到+1）
+    M: 2
+    O:      10000  10000      0 -10000  10000
+    S: 0 0  -6000  -6000      0 -10000  10000
+    S: 0 1   6500   6500      0 -10000  10000
+    
 
-所有的缩放器结果累加，对飞翼而言，控制面偏移量取滚转信号的60%和俯仰信号的65%。如果俯仰信号和滚转信号都取最大值，那么偏移量将达到125%，超出了输出范围，这就意味着第一个通道（滚转）比第二个通道（俯仰）优先级高。
+Where each number from left to right means:
 
-完整的混控器定义如下：
+* M: Indicates two scalers for two control inputs. It indicates the number of control inputs the mixer will receive.
+* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here). If you want to invert your PWM signal, the signs of the output scalings have to be changed. (```O:      -10000  -10000      0 -10000  10000```)
+* S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll). It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
+* S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
+
+> **Note** In short, the output of this mixer would be SERVO = ( (roll input * -0.6 + 0) + (pitch input * 0.65 + 0) ) * 1 + 0
+
+Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch.
+
+The complete mixer looks like this:
 
 ```bash
 Delta-wing mixer for PX4FMU
@@ -129,21 +151,24 @@ Elevon mixers
 -------------
 Three scalers total (output, roll, pitch).
 
-On the assumption that the two elevon servos are physically reversed, the pitch
-input is inverted between the two servos.
-
 The scaling factor for roll inputs is adjusted to implement differential travel
-for the elevons.
+for the elevons. 
+
+This first block of code is for Servo 0...
 
 M: 2
 O:      10000  10000      0 -10000  10000
 S: 0 0  -6000  -6000      0 -10000  10000
 S: 0 1   6500   6500      0 -10000  10000
 
+And this is for Servo 1...
+
 M: 2
 O:      10000  10000      0 -10000  10000
 S: 0 0  -6000  -6000      0 -10000  10000
 S: 0 1  -6500  -6500      0 -10000  10000
+
+Note that in principle, you could implement left/right wing asymmetric mixing, but in general the two blocks of code will be numerically equal, and just differ by the sign of the third line (S: 0 1), since to roll the plane, the two ailerons must move in OPPOSITE directions. The signs of the second lines (S: 0 0) are indentical, since to pitch the plane, both servos need to move in the SAME direction. 
 
 Output 2
 --------
@@ -161,10 +186,31 @@ range.  Inputs below zero are treated as zero.
 M: 1
 O:      10000  10000      0 -10000  10000
 S: 0 3      0  20000 -10000 -10000  10000
+
 ```
 
-### 让新的机型在QGroundControl中显示
+## Tuning Gains
 
-机型的元数据捆绑在.px4固件文件中（这是一个压缩的JSON文件）。
+The following *PX4 User Guide* topics explain how to tune the parameters that will be specified in the config file:
 
-> **注意：** 确保在QGroundControl（自定义文件选项）中刷写生成的.px4文件以将元数据加载到应用程序中。 然后，新的机型将在用户界面中可用。
+* [Multicopter PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
+* [Fixed Wing PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
+* [VTOL Configuration](https://docs.px4.io/en/config_vtol/)
+
+## Add New Airframe to QGroundControl
+
+To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/en/config/airframe.html):
+
+1. Make a clean build (e.g. by running `make clean` and then `make px4fmu-v5_default`)
+2. Open QGC and select **Custom firmware file...** as shown below:
+    
+    ![QGC flash custom firmware](../../assets/gcs/qgc_flash_custom_firmware.png)
+    
+    You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata).
+
+3. Navigate to the build folder and select the firmware file (e.g. **Firmware/build/nuttx_px4fmu-v5_default/px4fmu-v5_default.px4**).
+
+4. Press **OK** to start flashing the firmware.
+5. Restart *QGroundControl*.
+
+The new airframe will then be available for selection in *QGroundControl*.
