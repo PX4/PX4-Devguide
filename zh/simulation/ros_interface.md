@@ -1,82 +1,80 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/simulation/ros_interface.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# ROS with Gazebo Simulation
 
-# ROS仿真接口
+[ROS](../ros/README.md) (Robot Operating System) can be used with PX4 and the [Gazebo simulator](../simulation/gazebo.md). It uses the [MAVROS](../ros/mavros_installation.md) MAVLink node to communicate with PX4.
 
+The ROS/Gazebo integration with PX4 follows the pattern in the diagram below (this shows the *generic* [PX4 simulation environment](../simulation/README.md#sitl-simulation-environment)). PX4 communicates with the simulator (e.g. Gazebo) to receive sensor data from the simulated world and send motor and actuator values. It communicates with the GCS and an Offboard API (e.g. ROS) to send telemetry from the simulated environment and receive commands.
 
-模拟自驾仪会在端口14557开放第二个MAVLink接口。将MAVROS连接到这个端口将会接收到实际飞行中发出的所有数据。
+![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
-## 启动MAVROS
+> **Note** The only *slight* difference to "normal behaviour" is that ROS initiates the connection on port 14557, while it is more typical for an offboard API to listen for connections on UDP port 14540.
 
-如果需要ROS接口，那么已经在运行的次级(secondary)MAVLink实例可以通过[mavros](../ros/mavros_offboard.md)连接到ROS。若要连接到一个特定的IP(`fcu_url`是SITL的IP/端口)，请使用一个如下形式的URL:
+## Installing ROS and Gazebo
 
-<div class="host-code"></div>
+> **Note** *ROS* is only supported on Linux (not macOS or Windows).
+
+The easiest way to setup PX4 simulation with ROS on Ubuntu Linux is to use the standard installation script that can be found at [Development Environment on Linux > Gazebo with ROS](../setup/dev_env_linux.md#gazebo-with-ros). The script installs everything you need: PX4, ROS "Kinetic", the Gazebo 7 simulator, and [MAVROS](../ros/mavros_installation.md).
+
+> **Note** The script follows the [standard ROS "Kinetic" installation instructions](http://wiki.ros.org/kinetic/Installation/Ubuntu), which include Gazebo 7. Installation of ROS Kinetic for other platforms is covered in the [ROS Wiki here](http://wiki.ros.org/kinetic/Installation).
+
+## Launching ROS/Simulation
+
+The command below can be used to launch the simulation and connect ROS to it via [MAVROS](../ros/mavros_installation.md), where `fcu_url` is the IP / port of the computer running the simulation:
 
 ```sh
 roslaunch mavros px4.launch fcu_url:="udp://:14540@192.168.1.36:14557"
 ```
 
-若要链接到本地，请使用这种形式的URL：
-
-<div class="host-code"></div>
+To connect to localhost, use this URL:
 
 ```sh
 roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 ```
 
-## 为ROS安装Gazebo
+> **Tip** It can be useful to call *roslaunch* with the `-w` (warn) and/or `-v` (verbose) in order to get warnings about missing dependencies in your setup. For example: 
+> 
+>     sh
+>       roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 
-Gazebo ROS SITL仿真可以在Gazebo 6和Gazebo 7上正常运行，可以通过如下方式安装：
+## Launching Gazebo with ROS Wrappers
 
-```sh
-sudo apt-get install ros-$(ROS_DISTRO)-gazebo7-ros-pkgs    //Recommended
-```
+The Gazebo simulation can be modified to integrate sensors publishing directly to ROS topics e.g. the Gazebo ROS laser plugin. To support this feature, Gazebo must be launched with the appropriate ROS wrappers.
 
-或者
+There are ROS launch scripts available to run the simulation wrapped in ROS:
 
-```sh
-sudo apt-get install ros-$(ROS_DISTRO)-gazebo6-ros-pkgs
-```
+* [posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch): plain SITL launch
+* [mavros_posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch): SITL and MAVROS 
 
-## 使用ROS装饰器启动Gazebo
+To run SITL wrapped in ROS the ROS environment needs to be updated, then launch as usual:
 
-如果想要修改Gazebo仿真，使其能够将额外的传感器信息直接发布到ROS主题，例如Gazebo ROS激光传感器信息，那么必须通过适当的ROS包装器来启动Gazebo。
-
-下面是一些可用的ROS启动脚本，这些脚本可以在ROS中运行包装过的仿真。
-
-- [posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch): 简单SITL
-- [mavros_posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch): SITL和MAVROS
-
-为了在ROS中运行包装过的SITL，需要升级ROS环境，然后正常启动：
+(optional): only source the catkin workspace if you compiled MAVROS or other ROS packages from source:
 
 ```sh
-cd <Firmware_clone> 
-make posix_sitl_default 
-source ~/catkin_ws/devel/setup.bash 
-source Tools/setup_gazebo.bash $(pwd) build/posix_sitl_default 
-export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd) 
+cd <Firmware_clone>
+make posix_sitl_default gazebo
+source ~/catkin_ws/devel/setup.bash    // (optional)
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 posix_sitl.launch
-
 ```
 
-在自己的启动文件中包含上面提到的启动文件中的任意一个就可以在仿真中运行自己的ROS应用。
+Include one of the above mentioned launch files in your own launch file to run your ROS application in the simulation.
 
-### 背后的细节
+## What's Happening Behind the Scenes
 
-(或者如何手动运行)
+This section shows how the *roslaunch* instructions provided previously actually work (you can follow them to manually launch the simulation and ROS).
+
+First start the simulator using the command below:
 
 ```sh
 no_sim=1 make posix_sitl_default gazebo
 ```
 
-这将启动仿真器，控制台看上去是这样的：
+The console will look like this:
 
 ```sh
 [init] shell id: 46979166467136
-[init] task name: mainapp
+[init] task name: px4
 
 ______  __   __    ___
 | ___ \ \ \ / /   /   |
@@ -97,17 +95,15 @@ INFO  Not using /dev/ttyACM0 for radio control input. Assuming joystick input vi
 INFO  Waiting for initial data on UDP. Please start the flight simulator to proceed..
 ```
 
-现在，在一个新的终端中确保你可以通过Gazebo菜单插入Iris模型，这需要设置环境变量，在其中包含适当的`sitl_gazebo`文件夹。
+Now in a new terminal make sure you will be able to insert the Iris model through the Gazebo menus, to do this set your environment variables to include the appropriate `sitl_gazebo` folders.
 
 ```sh
 cd <Firmware_clone>
-source Tools/setup_gazebo.bash $(pwd) <Firmware_clone/build/posix_sitl_default>
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
 ```
-> 这里`Firmware_clone`指的就是你下载Firmware时的文件夹.可以具体查看Tools下的README.md以及setup_gazebo.bash文件.
 
-现在，就像在ROS中做过的那样启动Gazebo，并在其中插入Iris四旋翼模型。一旦Iris模型载入，它将会自动连接到px4应用。
+Now start Gazebo like you would when working with ROS and insert the Iris quadcopter model. Once the Iris is loaded it will automatically connect to the px4 app.
 
 ```sh
 roslaunch gazebo_ros empty_world.launch world_name:=$(pwd)/Tools/sitl_gazebo/worlds/iris.world
 ```
-> 如果遇到模型无法载入的情况,尝试将sitl_gazebo文件夹下的models中的模型复制到home文件夹下的.gazebo/models中.
