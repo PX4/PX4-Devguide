@@ -1,83 +1,255 @@
-# 模块参考：系统
+# Modules Reference: System
+
+## dataman
+
+Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
+
+### Description
+
+Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
+
+- a file (eg. on the SD card)
+- FLASH (if the board supports it)
+- FRAM
+- RAM (this is obviously not persistent)
+
+It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
+
+### Implementation
+
+Reading and writing a single item is always atomic. If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
+
+**DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
+
+### Usage {#dataman_usage}
+
+    dataman <command> [arguments...]
+     Commands:
+       start
+         [-f <val>]  Storage file
+                     values: <file>
+         [-r]        Use RAM backend (NOT persistent)
+         [-i]        Use FLASH backend
+    
+     The options -f, -r and -i are mutually exclusive. If nothing is specified, a
+     file 'dataman' is used
+    
+       poweronrestart Restart dataman (on power on)
+    
+       inflightrestart Restart dataman (in flight)
+    
+       stop
+    
+       status        print status info
+    
+
+## land_detector
+
+Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
+
+### Description
+
+Module to detect the freefall and landed state of the vehicle, and publishing the `vehicle_land_detected` topic. Each vehicle type (multirotor, fixedwing, vtol, ...) provides its own algorithm, taking into account various states, such as commanded thrust, arming state and vehicle motion.
+
+### Implementation
+
+Every type is implemented in its own class with a common base class. The base class maintains a state (landed, maybe_landed, ground_contact). Each possible state is implemented in the derived classes. A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
+
+#### Multicopter Land Detector
+
+**ground_contact**: thrust setpoint and velocity in z-direction must be below a defined threshold for time GROUND_CONTACT_TRIGGER_TIME_US. When ground_contact is detected, the position controller turns off the thrust setpoint in body x and y.
+
+**maybe_landed**: it requires ground_contact together with a tighter thrust setpoint threshold and no velocity in the horizontal direction. The trigger time is defined by MAYBE_LAND_TRIGGER_TIME. When maybe_landed is detected, the position controller sets the thrust setpoint to zero.
+
+**landed**: it requires maybe_landed to be true for time LAND_DETECTOR_TRIGGER_TIME_US.
+
+The module runs periodically on the HP work queue.
+
+### Usage {#land_detector_usage}
+
+    land_detector <command> [arguments...]
+     Commands:
+       start         Start the background task
+         fixedwing|multicopter|vtol|ugv Select vehicle type
+    
+       stop
+    
+       status        print status info
+    
+
+## load_mon
+
+Source: [modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modules/load_mon)
+
+### Description
+
+Background process running periodically with 1 Hz on the LP work queue to calculate the CPU load and RAM usage and publish the `cpuload` topic.
+
+On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output, which will also appear in the log file.
+
+### Usage {#load_mon_usage}
+
+    load_mon <command> [arguments...]
+     Commands:
+       start         Start the background task
+    
+       stop
+    
+       status        print status info
+    
+
 ## logger
-源代码: [modules/logger](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
 
+Source: [modules/logger](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
 
-### 说明
-系统日志，记录一组可配置的uORB主题和系统打印消息（`PX4_WARN`和`PX4_ERR`）到ULog文件。这些可用于系统和飞行性能评估，调整，再现和意外分析。
+### Description
 
-它支持2个后端：
-- 文件：将ULog文件写入文件系统（SD卡）
-- MAVLink：通过MAVLink向客户端传输ULog数据（客户端必须支持此功能）
+System logger which logs a configurable set of uORB topics and system printf messages (`PX4_WARN` and `PX4_ERR`) to ULog files. These can be used for system and flight performance evaluation, tuning, replay and crash analysis.
 
-两个后端可以同时启用和使用。
+It supports 2 backends:
 
-### 实现
-实现使用两个线程：
-- 主线程以固定速率运行（如果以-p参数启动的话，则轮询主题），并检查数据更新
-- 写入线程，将数据写入文件
+- Files: write ULog files to the file system (SD card)
+- MAVLink: stream ULog data via MAVLink to a client (the client must support this)
 
-两个线程之间有一个可配置大小的写入缓存区。写入缓存应该足够大，以避免数据丢失。
+Both backends can be enabled and used at the same time.
 
-### 示例
-立即启动日志的典型用法
-```
-logger start -e -t
-```
+### Implementation
 
-如果已经在运行状态：
-```
-logger on
-```
+The implementation uses two threads:
 
-### 用法
-```
-logger <命令> [参数...]
- 命令:
-   start
-     [-m <val>]  后端模式
-                 可选: file|mavlink|all, 缺省: all
-     [-e]        启动后立即开始记录，直到上锁(否则只在解锁后开始记录)
-     [-f]        记录直到关闭为止(包含 -e)
-     [-t]        使用日期/时间命名日志目录和文件
-     [-r <val>]  记录速率，单位：Hz，值为0则不限速
-                 缺省: 280
-     [-b <val>]  记录缓存大小，单位：KiB
-                 缺省: 12
-     [-q <val>]  mavlink模式下uORB队列大小
-                 缺省: 14
-     [-p <val>]  轮询主题而不是以固定速率运行(记录速率和主题间隔将被忽略)
-                 可选: <topic_name>
+- The main thread, running at a fixed rate (or polling on a topic if started with -p) and checking for data updates
+- The writer thread, writing data to the file
 
-   on            立即开始记录，覆盖解锁(日志系统必须在运行中)
+In between there is a write buffer with configurable size. It should be large to avoid dropouts.
 
-   off           立即停止记录，覆盖锁定(日志系统必须在运行中)
+### Examples
 
-   stop
+Typical usage to start logging immediately:
 
-   status        打印状态信息
-```
+    logger start -e -t
+    
+
+Or if already running:
+
+    logger on
+    
+
+### Usage {#logger_usage}
+
+    logger <command> [arguments...]
+     Commands:
+       start
+         [-m <val>]  Backend mode
+                     values: file|mavlink|all, default: all
+         [-e]        Enable logging right after start until disarm (otherwise only
+                     when armed)
+         [-f]        Log until shutdown (implies -e)
+         [-t]        Use date/time for naming log directories and files
+         [-r <val>]  Log rate in Hz, 0 means unlimited rate
+                     default: 280
+         [-b <val>]  Log buffer size in KiB
+                     default: 12
+         [-q <val>]  uORB queue size for mavlink mode
+                     default: 14
+         [-p <val>]  Poll on a topic instead of running with fixed rate (Log rate
+                     and topic intervals are ignored if this is set)
+                     values: <topic_name>
+    
+       on            start logging now, override arming (logger must be running)
+    
+       off           stop logging now, override arming (logger must be running)
+    
+       stop
+    
+       status        print status info
+    
+
+## replay
+
+Source: [modules/replay](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
+
+### Description
+
+This module is used to replay ULog files.
+
+There are 2 environment variables used for configuration: `replay`, which must be set to an ULog file name - it's the log file to be replayed. The second is the mode, specified via `replay_mode`:
+
+- `replay_mode=ekf2`: specific EKF2 replay mode. It can only be used with the ekf2 module, but allows the replay to run as fast as possible.
+- Generic otherwise: this can be used to replay any module(s), but the replay will be done with the same speed as the log was recorded.
+
+The module is typically used together with uORB publisher rules, to specify which messages should be replayed. The replay module will just publish all messages that are found in the log. It also applies the parameters from the log.
+
+The replay procedure is documented on the [System-wide Replay](https://dev.px4.io/en/debug/system_wide_replay.html) page.
+
+### Usage {#replay_usage}
+
+    replay <command> [arguments...]
+     Commands:
+       start         Start replay, using log file from ENV variable 'replay'
+    
+       trystart      Same as 'start', but silently exit if no log file given
+    
+       tryapplyparams Try to apply the parameters from the log file
+    
+       stop
+    
+       status        print status info
+    
+
 ## send_event
-源代码: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules/events)
 
+Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules/events)
 
-### 说明
-后台进程在低优先级工作队列上定期运行以执行内部处理任务。目前只负责温度校准。
+### Description
 
-这些任务可以通过CLI或uORB主题（来自MAVLink的vehicle_command等）启动。
+Background process running periodically on the LP work queue to perform housekeeping tasks. It is currently only responsible for temperature calibration and tone alarm on RC Loss.
 
-### 用法
-```
-send_event <命令> [参数...]
- 命令:
-   start         启动后台任务
+The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
 
-   temperature_calibration 运行温度校准程序
-     [-g]        校准陀螺仪
-     [-a]        校准加速度计
-     [-b]        校准磁罗盘(如果没有给出这些参数，将会校准所有)
+### Usage {#send_event_usage}
 
-   stop
+    send_event <command> [arguments...]
+     Commands:
+       start         Start the background task
+    
+       temperature_calibration Run temperature calibration process
+         [-g]        calibrate the gyro
+         [-a]        calibrate the accel
+         [-b]        calibrate the baro (if none of these is given, all will be
+                     calibrated)
+    
+       stop
+    
+       status        print status info
+    
 
-   status        打印状态信息
-```
+## sensors
+
+Source: [modules/sensors](https://github.com/PX4/Firmware/tree/master/src/modules/sensors)
+
+### Description
+
+The sensors module is central to the whole system. It takes low-level output from drivers, turns it into a more usable form, and publishes it for the rest of the system.
+
+The provided functionality includes:
+
+- Read the output from the sensor drivers (`sensor_gyro`, etc.). If there are multiple of the same type, do voting and failover handling. Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the topics is `sensor_combined`, used by many parts of the system.
+- Do RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
+- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
+- Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
+- Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
+
+### Implementation
+
+It runs in its own thread and polls on the currently selected gyro topic.
+
+### Usage {#sensors_usage}
+
+    sensors <command> [arguments...]
+     Commands:
+       start
+         [-h]        Start in HIL mode
+    
+       stop
+    
+       status        print status info
