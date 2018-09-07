@@ -1,9 +1,8 @@
 # Manually Generate Client and Agent Code
 
-This topic shows how to manually generate the code for the client and the agent (instead of [automatically generating](../middleware/micrortps.md) it when the PX4 Firmware is compiled). 
+This topic shows how to manually generate the code for the client and the agent (instead of [automatically generating](../middleware/micrortps.md) it when the PX4 Firmware is compiled).
 
 The code is generated using the python script: **/Tools/generate_microRTPS_bridge.py**.
-
 
 ## Disable automatic bridge code generation
 
@@ -62,13 +61,12 @@ $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor
 
 ## Generated code
 
-Code is generated for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages (IDL files). 
+Code is generated for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages (IDL files).
 
 Manually generated code for the bridge can be found here (by default):
 
 - *Client*: **src/modules/micrortps_bridge/micrortps_client/**
 - *Agent*: **src/modules/micrortps_bridge/micrortps_agent/**
-
 
 ### uORB serialization code
 
@@ -87,12 +85,12 @@ IDL files are generated from the uORB **.msg** files ([for selected uORB topics]
 
 > **Note** IDL files are compiled to C++ by the *fastrtpsgen* tool.
 
-
 ## Verify code generation
 
 You can verify successful code generation by checking that the output directories match the listing shown below (On Linux, the `tree` command can be used for listing the file structure).
 
 Agent directory:
+
 ```sh
 $ tree src/modules/micrortps_bridge/micrortps_agent
 src/modules/micrortps_bridge/micrortps_agent
@@ -122,6 +120,7 @@ src/modules/micrortps_bridge/micrortps_agent
 ```
 
 Client directory:
+
 ```sh
 $ tree src/modules/micrortps_bridge/micrortps_client
 src/modules/micrortps_bridge/micrortps_client
@@ -138,7 +137,7 @@ src/modules/micrortps_bridge/micrortps_client
 
 The manually generated *Client* code is built and used in *exactly* the same way as [automatically generated Client code](../middleware/micrortps.md#client-px4-firmware).
 
-Specifically, once manually generated, the *Client* source code is compiled and built into the PX4 firmware as part of the normal build process. For example, to compile the code and include it in firmware for NuttX/Pixhawk targets: 
+Specifically, once manually generated, the *Client* source code is compiled and built into the PX4 firmware as part of the normal build process. For example, to compile the code and include it in firmware for NuttX/Pixhawk targets:
 
 ```sh
 make px4fmu-v4_default upload
@@ -146,4 +145,4 @@ make px4fmu-v4_default upload
 
 > **Note** You must first [disable automatic bridge code generation](#disable-automatic-bridge-code-generation) so that the toolchain uses the manually generated source code (and does not attempt to regenerate it).
 
-The manually generated *Agent* code is also compiled and used in the same way as the [automatically generated code](../middleware/micrortps.md#agent-off-board-fastrtps-interface). The only difference is that the manually source code is created in **src/modules/micrortps_bridge/micrortps_agent** instead of <strong><emphasis>build/BUILDPLATFORM</emphasis></strong>**/src/modules/micrortps_bridge/micrortps_agent/**.
+The manually generated *Agent* code is also compiled and used in the same way as the [automatically generated code](../middleware/micrortps.md#agent-off-board-fastrtps-interface). The only difference is that the manually source code is created in **src/modules/micrortps_bridge/micrortps_agent** instead of **<emphasis>build/BUILDPLATFORM</emphasis>****/src/modules/micrortps_bridge/micrortps_agent/**.
