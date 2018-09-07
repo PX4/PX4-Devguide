@@ -1,17 +1,12 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/test_and_ci/continous_integration.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
-
 # PX4 Continuous Integration
 
-PX4 builds and testing are spread out over multiple continuous integration services. 
+PX4 builds and testing are spread out over multiple continuous integration services.
 
 ## [Travis-ci](https://travis-ci.org/PX4/Firmware)
 
-Travis-ci is responsible for the official stable/beta/development binaries that are flashable through [QGroundControl](http://qgroundcontrol.com/). It currently uses GCC 4.9.3 included in the docker image [px4io/px4-dev-base](https://hub.docker.com/r/px4io/px4-dev-base/) and compiles px4fmu-{v1, v2, v4}, mindpx-v2, tap-v1 with makefile target qgc_firmware.
+Travis-ci is responsible for the official stable/beta/development binaries that are flashable through [QGroundControl](http://qgroundcontrol.com/). It currently uses GCC 4.9.3 included in the docker image [px4io/px4-dev-base](https://hub.docker.com/r/px4io/px4-dev-base/) and compiles px4fmu-{v2, v4}, mindpx-v2, tap-v1 with makefile target qgc_firmware.
 
-Travis-ci also has a MacOS posix sitl build which includes testing.
+Travis-ci also has a macOS posix sitl build which includes testing.
 
 ## [Semaphore](https://semaphoreci.com/px4/firmware)
 
@@ -20,4 +15,3 @@ Semaphore is primarily used to compile changes for the Qualcomm Snapdragon platf
 ## [CircleCI](https://circleci.com/gh/PX4/Firmware)
 
 CircleCI tests the proposed next version of GCC to be used for stable firmware releases using the docker image [px4io/px4-dev-nuttx-gcc_next](https://hub.docker.com/r/px4io/px4-dev-nuttx-gcc_next/). It uses the makefile target quick_check which compiles px4fmu-v4_default, posix_sitl_default, runs testing, and verifies code style.
-
