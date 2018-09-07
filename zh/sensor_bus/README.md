@@ -1,6 +1,3 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/sensor_bus/README.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Sensor and Actuator I/O
 
-# Sensor and Actuator Busses
+This section contains topics about integrating sensors and actuators into PX4. It covers both sensor busses ([I2C](../sensor_bus/i2c.md), [UAVCAN ](../uavcan/README.md), [UART](../sensor_bus/uart.md), SPI) and also the main PWM ports.
