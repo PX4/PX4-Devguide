@@ -1,34 +1,25 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/pwm_limit.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# PWM_limit State Machine
 
-# PWM_limit状态机
+[PWM_limit State Machine] Controls PWM outputs as a function of pre-armed and armed inputs. Provides a delay between assertion of "armed" and a ramp-up of throttle on assertion of the armed signal.
 
-PWM_limit 状态机根据解锁前和解锁后的输入控制PWM输出。并在”解锁“、油门加速和解锁信号的断言之间提供延迟。
+## Quick Summary
 
+**Inputs**
 
+- armed: asserted to enable dangerous behaviors such as spinning propellers
+- pre-armed: asserted to enable benign behaviors such as moving control surfaces 
+    - this input overrides the current state
+    - assertion of pre-armed immediately forces behavior of state ON, regardless of current state ** deassertion of pre-armed reverts behavior to current state
 
-## 快速概要
+**States**
 
-**输入**
+- INIT and OFF 
+    - pwm outputs set to disarmed values.
+- RAMP 
+    - pwm ouputs ramp from disarmed values to min values.
+- ON 
+    - pwm outputs set according to control values.
 
-* armed: 置1使能诸如旋转螺旋桨的危险行为。
-* pre-armed: 置1使能诸如移动控制面的良性行为。
-  * 这个输入覆盖当前状态。
-  * pre-aremd置1无视当前状态，立即强制转移到状态ON，值0则回复到当前状态。
+## State Transition Diagram
 
-
-**状态**
-
-* INIT和OFF
-  * pwm输出值设定为未解锁值。
-
-* RAMP
-  * pwm输出值从未解锁值上升到最小值。
-
-* ON
-  * pwm输出值根据控制量设定。
-
-## 状态转移图
 ![](../../assets/diagrams/pwm_limit_state_diagram.png)
