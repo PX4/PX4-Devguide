@@ -1,214 +1,124 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/dev_env_linux.md
-translated_sha: 23bf0248facb1ab7d0dd58003c3234a95f479931
-translated_note: NEEDS_FULL_RE-TRANSLATION
----
+# Development Environment on Linux
 
-# Linux开发环境
-我们使用Debian / Ubuntu LTS 作为Linux的标准支持版本，但是也支持[Cent OS 和 Arch Linux的发行版本](../setup/dev_env_linux_boutique.md)。
+Linux allows you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation, ROS).
 
-## 权限设置
+> **Tip** We have standardized on Debian / [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) (16.04) as the supported Linux distribution. Instructions are also provided for [CentOS](../setup/dev_env_linux_centos.md) and [Arch Linux](../setup/dev_env_linux_arch.md).
 
+The following instructions explain how to set up a development environment on Ubuntu LTS using convenience bash scripts. Instructions for *manually installing* these and additional targets can be found in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md).
 
-> 警告：永远不要使用`sudo`来修复权限问题，否则会带来更多的权限问题，需要重装系统来解决。
+## Development Toolchain
 
+The instructions below show how you can use our [convenience bash scripts](../setup/dev_env_linux_ubuntu.md#convenience-bash-scripts) to setup the developer toolchain on Ubuntu LTS. All the scripts install the *Qt Creator IDE*, [Ninja Build System](https://ninja-build.org/), [Common Dependencies](../setup/dev_env_linux_ubuntu.md#common-dependencies), [FastRTPS](../setup/dev_env_linux_ubuntu.md#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**).
 
-把用户添加到用户组　"dialout":
+> **Tip** The scripts have been tested on a clean Ubuntu LTS 16.04 installation. They *may* not work as expected if installed on top of an existing system or on another Ubuntu release. If you have any problems then follow the [manual installation instructions](../setup/dev_env_linux_ubuntu.md).
 
-<div class="host-code"></div>
+First make the user a member of the group "dialout"
 
-```sh
-sudo usermod -a -G dialout $USER
-```
+1. On the command prompt enter: 
+        sh
+        sudo usermod -a -G dialout $USER
 
-然后注销后，重新登录，因为重新登录后所做的改变才会有效。
+2. Logout and login again (the change is only made after a new login).
 
-## 安装
+Then follow the instructions for your development target in the sections below.
 
-更新包列表，安装下面编译PX4的依赖包。PX4主要支持的系列：
+### Pixhawk/NuttX (and jMAVSim)
 
-* NuttX based hardware: [Pixhawk series](https://docs.px4.io/en/flight_controller/pixhawk_series.html), [Crazyflie](https://docs.px4.io/en/flight_controller/crazyflie2.html),
-  [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html)
-* [Qualcomm Snapdragon Flight hardware](https://docs.px4.io/en/flight_controller/snapdragon_flight.html)
-* Linux-based hardware: [Raspberry Pi 2/3](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html), Parrot Bebop
-* Host simulation: [jMAVSim SITL](../simulation/jmavsim.md) and [Gazebo SITL](../simulation/gazebo.md)
+To install the development toolchain:
 
-> 提示：安装[Ninja Build System](../setup/dev_env_linux_boutique.md#ninja-build-system)可以比make更快进行编译。如果安装了它就会自动选择使用它进行编译。
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
+2. Run the script in a bash shell: 
+        bash
+        source ubuntu_sim_nuttx.sh You may need to acknowledge some prompts as the script progresses.
 
+3. Restart the computer on completion.
 
-```sh
-sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
-sudo apt-get update
-# 必备软件
-sudo apt-get install python-argparse git-core wget zip \
-    python-empy qtcreator cmake build-essential genromfs -y
-# 仿真工具
-sudo add-apt-repository ppa:openjdk-r/ppa
-sudo apt-get update
-sudo apt-get install openjdk-8-jre
-sudo apt-get install ant protobuf-compiler libeigen3-dev libopencv-dev openjdk-8-jdk openjdk-8-jre clang-3.5 lldb-3.5 -y
-```
+### Snapdragon Flight
 
-### 基于NuttX的硬件
+Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 
-Ubuntu配备了一系列代理管理，这会严重干扰任何机器人相关的串口（或usb串口），卸载掉它也不会有什么影响:
+* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
 
-```sh
-sudo apt-get remove modemmanager
-```
+### Raspberry Pi
 
-更新包列表和安装下面的依赖包。务必安装指定的版本的包
+To install the development toolchain:
 
-```sh
-sudo apt-get install python-serial openocd \
-    flex bison libncurses5-dev autoconf texinfo build-essential \
-    libftdi-dev libtool zlib1g-dev \
-    python-empy  -y
-```
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
+2. Run the script in a bash shell: 
+        bash
+        source ubuntu_sim_common_deps.sh You may need to acknowledge some prompts as the script progresses.
 
-在添加arm-none-eabi工具链之前，请确保删除残余。
+3. Follow setup instructions in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md) for [Raspberry Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
 
-```sh
-sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
-sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
-```
+### Parrot Bepop
 
-如果`gcc-arm-none-eabi`版本导致PX4/Firmware编译错误，请参考[the bare metal installation instructions](../setup/dev_env_linux_boutique.md#toolchain-installation)手动安装4.9或者5.4版本的arm-none-eabi工具链。
+Follow the (manual) instructions here: [Ubuntu/Debian Linux > Parrot Bebop](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
 
-### 骁龙
+### jMAVSim/Gazebo Simulation
 
-#### 工具链安装
+To install the Gazebo and jMAVSim simulators:
 
-```sh
-sudo apt-get install android-tools-adb android-tools-fastboot \
-    fakechroot fakeroot unzip xz-utils wget python python-empy -y
-```
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
+2. Run the script in a bash shell: 
+        bash
+        source ubuntu_sim.sh You may need to acknowledge some prompts as the script progresses.
 
-Please follow the instructions on https://github.com/ATLFlight/cross_toolchain for the toolchain installation.
+> **Tip** If you just need jMAVSim, instead download and run <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
 
-Load the new configuration:
+<span><span></p> 
 
-```sh
-source ~/.bashrc
-```
+<blockquote>
+  <p>
+    <strong>Note</strong> PX4 works with Gazebo 7, 8, and 9. The script installs Gazebo 9.
+  </p>
+</blockquote>
 
+<h3>
+  Gazebo with ROS
+</h3>
 
-需要登录到QDN。如果你还没有帐户，必须先注册一个。
+<p>
+  To install the development toolchain:
+</p>
 
+<ol start="1">
+  <li>
+    Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>.
+  </li>
+  
+  <li>
+    Run the script in a bash shell: <pre><code>bash
+source ubuntu_sim_ros_gazebo.sh</code></pre> You may need to acknowledge some prompts as the script progresses.
+  </li>
+</ol>
 
+<p>
+  Note:
+</p>
 
-将以下文件移动到交叉工具链的下载文件夹中：
-
-```sh
-mv ~/Downloads/hexagon-sdk-v3-linux.bin cross_toolchain/downloads
-```
-
-安装工具链和SDK，如下所示：
-
-```sh
-cd cross_toolchain
-./installv3.sh
-cd ..
-```
-
-按照说明配置开发环境。如果你接受默认安装选项，则可以在之后随时重新运行下面的命令来配置开发环境。它只会安装缺少的组件。
-
-
-
-执行后工具和SDK将被安装到`$HOME/Qualcomm/...`。 将以下内容添加到` ~/.bashrc`:
-
-```sh
-export HEXAGON_SDK_ROOT="${HOME}/Qualcomm/Hexagon_SDK/3.0"
-export HEXAGON_TOOLS_ROOT="${HOME}/Qualcomm/HEXAGON_Tools/7.2.12/Tools"
-export PATH="${HEXAGON_SDK_ROOT}/gcc-linaro-4.9-2014.11-x86_64_arm-linux-gnueabihf_linux/bin:$PATH"
-```
-
-加载新的配置：
-
-```sh
-source ~/.bashrc
-```
-
-#### Sysroot安装
-
-需要一个sysroot来提供交叉编译骁龙飞控应用处理器应用程序所需的库和头文件。
-
-qrlSDK sysroot提供了摄像头、GPU等需要的头文件和链接库。
-
-下载 [Flight_3.1.3_qrlSDK.tgz](https://support.intrinsyc.com/attachments/download/1515/Flight_3.1.3_qrlSDK.tgz) 并保存到`cross_toolchain/download/`。
-
-```sh
-cd cross_toolchain
-unset HEXAGON_ARM_SYSROOT
-./qrlinux_sysroot.sh
-```
-
-将以下内容添加到` ~/.bashrc`：
-
-```sh
-export HEXAGON_ARM_SYSROOT=${HOME}/Qualcomm/qrlinux_v3.1.1_sysroot
-```
-
-加载新的配置：
-
-```sh
-source ~/.bashrc
-```
-
-有关sysroot的更多选项，请参见[Sysroot安装](https://github.com/ATLFlight/cross_toolchain/blob/sdk3/README.md#sysroot-installation)。
-
-#### 升级ADSP固件
-
-在构建，烧写以及运行代码之前，还需要升级[ADSP固件](https://docs.px4.io/en/flight_controller/snapdragon_flight_advanced.html#updating-the-adsp-firmware)。
-
-#### 参考
-
-[GettingStarted](https://github.com/ATLFlight/ATLFlightDocs/blob/master/GettingStarted.md)是另外一个工具链安装向导。[HelloWorld](https://github.com/ATLFlight/HelloWorld)和[DSPAL tests](https://github.com/ATLFlight/dspal/tree/master/test/dspal_tester)可以用来验证工具链安装和DSP镜像。
-
-DSP的信息可以通过mini-dm查看。
-
-```sh
-$HOME/Qualcomm/Hexagon_SDK/2.0/tools/mini-dm/Linux_Debug/mini-dm
-```
-> **提示**: 在MAC上也可以使用[nano-dm](https://github.com/kevinmehall/nano-dm)。
-
-### 树莓派
-
-树莓派开发者应该从下面地址下载树莓派Linux工具链。安装脚本会自动安装交叉编译工具链。如果想要用原生树莓派工具链在树莓派上直接编译，参见[这里](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#native-builds-optional)。
-
-```sh
-git clone https://github.com/pixhawk/rpi_toolchain.git
-cd rpi_toolchain
-./install_cross.sh
-```
-
-在工具链安装过程中需要输入密码。
-
-如果不想把工具链安装在默认位置
-```
-/opt/rpi_toolchain
-```
-，可以执行
-```
-./install_cross.sh <PATH>
-```
-向安装脚本传入其它地址。安装脚本会自动配置需要的环境变量。
-
-最后，运行以下命令更新环境变量：
-
-```
-source ~/.profile
-```
-
-### Parrot Bebop
-
-Parrot Bebop的开发者应该安装树莓派的Linux工具链。请跟随([这里](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html))的介绍进行安装。
-
-接下来安装ADB。
-
-``sh      
-sudo apt-get install android-tools-adb -y` ``
-
-## 完成
-
-继续，进行[第一次代码编译](../setup/building_px4.md)!
+<ul>
+  <li>
+    ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 or Gazebo9 to simplify ROS development).
+  </li>
+  <li>
+    Your catkin (ROS build system) workspace is created at <strong>~/catkin_ws/</strong>.
+  </li>
+</ul>
+
+<h2>
+  Additional Tools
+</h2>
+
+<p>
+  After setting up the build/simulation toolchain, see <a href="../setup/generic_dev_tools.md">Additional Tools</a> for information about other useful tools.
+</p>
+
+<h2>
+  Next Steps
+</h2>
+
+<p>
+  Once you have finished setting up the environment, continue to the <a href="../setup/building_px4.md">build instructions</a>.
+</p>
