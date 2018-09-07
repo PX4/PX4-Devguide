@@ -7,10 +7,11 @@ All files starting with a number and underscore (e.g. `10000_airplane`) are cann
 
 The remaining files are part of the general startup logic. The first executed file is the [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) script (or [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on Posix), which calls all other scripts.
 
+The following sections are split according to the operating system that PX4 runs on.
 
-## Script Execution
 
-NuttX has an integrated shell interpreter.
+## Posix (Linux/MacOS)
+
 On Posix, the system shell is used as script interpreter (e.g. bash).
 For that to work, a few things are required:
 - PX4 modules need to look like individual executables to the system. This is done via symbolic links.
@@ -34,25 +35,25 @@ cd <Firmware>/build/posix_sitl_default/bin
 ./px4-listener sensor_accel
 ```
 
-## Debugging the System Boot
+## NuttX
+NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
 
-A failure of a driver of software component can lead to an aborted boot.
+### Debugging the System Boot
 
-> **Tip** An incomplete boot often materializes as missing parameters in the ground control stations, because the non-started applications did not initialize their parameters.
+A failure of a driver of software component will not lead to an aborted boot. This is controlled via `set +e` in the startup script.
 
-The right approach to debug the boot sequence is to connect the [system console](../debug/system_console.md) and power-cycle the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
+The boot sequence can be debugged by connecting the [system console](../debug/system_console.md) and power-cycling the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
-### Common boot failure causes
+#### Common boot failure causes
 
-  * A required sensor failed to start
   * For custom applications: The system was out of RAM. Run the `free` command to see the amount of free RAM.
   * A software fault or assertion resulting in a stack trace
 
-## Replacing the System Startup
+### Replacing the System Startup
 
 In most cases customizing the default boot is the better approach, which is documented below. If the complete boot should be replaced, create a file `/fs/microsd/etc/rc.txt`, which is located in the `etc` folder on the microSD card. If this file is present nothing in the system will be auto-started.
 
-## Customizing the System Startup
+### Customizing the System Startup
 
 The best way to customize the system startup is to introduce a [new airframe configuration](../airframes/adding_a_new_frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
 
@@ -64,11 +65,11 @@ There are three main hooks. Note that the root folder of the microsd card is ide
   * /fs/microsd/etc/extras.txt
   * /fs/microsd/etc/mixers/NAME_OF_MIXER
 
-### Customizing the Configuration (config.txt)
+#### Customizing the Configuration (config.txt)
 
 The `config.txt` file is loaded after the main system has been configured and *before* it is booted and allows to modify shell variables.
 
-### Starting additional applications
+#### Starting additional applications
 
 The `extras.txt` can be used to start additional applications after the main system boot. Typically these would be payload controllers or similar optional custom components.
 
@@ -88,12 +89,12 @@ The following example shows how to start custom applications:
     mandatory_app start     # Will abort boot if mandatory_app is unknown or fails
     ```  
 
-### Starting a custom mixer
+#### Starting a custom mixer
 
 By default the system loads the mixer from `/etc/mixers`. 
 If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
 
-#### Example
+##### Example
 The following example shows how to add a custom aux mixer:
   * Create a file on the SD card, `etc/mixers/gimbal.aux.mix` with your mixer content.
   * Then to use it, create an additional file `etc/config.txt` with this content:
