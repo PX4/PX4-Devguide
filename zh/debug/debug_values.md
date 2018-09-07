@@ -1,32 +1,34 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/debug/debug_values.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Send and Receive Debug Values
 
-# 发送调试的字符串/浮点数对
+It is often necessary during software development to output individual important numbers. This is where the generic `NAMED_VALUE_FLOAT`, `DEBUG` and `DEBUG_VECT` packets of MAVLink come in.
 
-在软件开发期间通常需要输出单个重要的数字。
-这时候就要用到MAVLink的`NAMED_VALUE`包。 
+## Mapping between MAVLink Debug Messages and uORB Topics
 
-## Files
+MAVLink debug messages are translated to/from uORB topics. In order to send or receive a MAVLink debug message, you have to respectively publish or subscribe to the corresponding topic. Here is a table that summarizes the mapping between MAVLink debug messages and uORB topics:
 
-这个教程的代码可以从这里获取:
+| MAVLink message     | uORB topic        |
+| ------------------- | ----------------- |
+| NAMED_VALUE_FLOAT | debug_key_value |
+| DEBUG               | debug_value       |
+| DEBUG_VECT          | debug_vect        |
 
-* [调试教程代码](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.c)
-* [使能教程应用](https://github.com/PX4/Firmware/tree/master/cmake/configs) 通过取消掉板子中配置文件中对 mavlink debug app 的注释来使能这个应用。
+## Tutorial: Send String / Float Pairs
 
-配置一个调试发布（debug publication）只需要这个代码片段，先加入头文件：
+This tutorial shows how to send the MAVLink message `NAMED_VALUE_FLOAT` using the associated uORB topic `debug_key_value`.
 
-<div class="host-code"></div>
+The code for this tutorial is available here:
+
+* [Debug Tutorial Code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.c)
+* [Enable the tutorial app](https://github.com/PX4/Firmware/tree/master/cmake/configs) by uncommenting / enabling the mavlink debug app in the config of your board
+
+All required to set up a debug publication is this code snippet. First add the header file:
 
 ```C
 #include <uORB/uORB.h>
 #include <uORB/topics/debug_key_value.h>
 ```
 
-然后公告（advertise）调试值主题 (不同发布名称（published names）一个公告就足够了).把这个放到主循环的前面:
-
-<div class="host-code"></div>
+Then advertise the debug value topic (one advertisement for different published names is sufficient). Put this in front of your main loop:
 
 ```C
 /* advertise debug value */
@@ -34,18 +36,65 @@ struct debug_key_value_s dbg = { .key = "velx", .value = 0.0f };
 orb_advert_t pub_dbg = orb_advertise(ORB_ID(debug_key_value), &dbg);
 ```
 
-在主循环里的发送甚至更简单：
-
-<div class="host-code"></div>
+And sending in the main loop is even simpler:
 
 ```C
 dbg.value = position[0];
 orb_publish(ORB_ID(debug_key_value), pub_dbg, &dbg);
 ```
 
-> **注意：** 多个调试消息必须在它们各自的发布之间有足够的时间以供Mavlink处理它们。这意味着代码必须在发布多个调试消息之间等待，或者在每个函数调用迭代上交替消息。
+> **Caution** Multiple debug messages must have enough time between their respective publishings for Mavlink to process them. This means that either the code must wait between publishing multiple debug messages, or alternate the messages on each function call iteration.
 
+The result in QGroundControl then looks like this on the real-time plot:
 
-在QGroundControl中的结果实时绘图：
+![QGC debugvalue plot](../../assets/gcs/qgc-debugval-plot.jpg)
 
-![](../../assets/gcs/qgc-debugval-plot.jpg)
+## Tutorial: Receive String / Float Pairs
+
+The following code snippets show how to receive the `velx` debug variable that was sent in the previous tutorial.
+
+First, subscribe to the topic `debug_key_value`:
+
+```C
+#include <poll.h>
+#include <uORB/topics/debug_key_value.h>
+
+int debug_sub_fd = orb_subscribe(ORB_ID(debug_key_value));
+[...]
+```
+
+Then poll on the topic:
+
+```C
+[...]
+/* one could wait for multiple topics with this technique, just using one here */
+px4_pollfd_struct_t fds[] = {
+    { .fd = debug_sub_fd,   .events = POLLIN },
+};
+
+while (true) {
+    /* wait for debug_key_value for 1000 ms (1 second) */
+    int poll_ret = px4_poll(fds, 1, 1000);
+
+    [...]
+```
+
+When a new message is available on the `debug_key_value` topic, do not forget to filter it based on its key attribute in order to discard the messages with key different than `velx`:
+
+```C
+    [...]
+    if (fds[0].revents & POLLIN) {
+        /* obtained data for the first file descriptor */
+        struct debug_key_value_s dbg;
+
+        /* copy data into local buffer */
+        orb_copy(ORB_ID(debug_key_value), debug_sub_fd, &dbg);
+
+        /* filter message based on its key attribute */
+        if (strcmp(_sub_debug_vect.get().key, "velx") == 0) {
+            PX4_INFO("velx:\t%8.4f", dbg.value);
+        }
+    }
+}
+
+```
