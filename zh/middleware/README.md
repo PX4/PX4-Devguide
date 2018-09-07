@@ -1,12 +1,5 @@
-# 中间件及架构
+# Middleware
 
-This section explains the PX4 middleware and architecture, 
-including device drivers, mechanisms for communicating 
-with offboard companion computers and GCS (e.g. MAVLink, RTPS), 
-and the uORB publish-subscribe message bus. 
+This section contains topics about PX4 middleware, including PX4 internal communication mechanisms ([uORB](../middleware/uorb.md)), and between PX4 and offboard systems like companion computers and GCS (e.g. [MAVLink](../middleware/mavlink.md), [RTPS](../middleware/micrortps.md)).
 
-It also contains the [Modules & Commands Reference](../middleware/modules_main.md), 
-which documents most PX4 modules, drivers and commands. 
-
-> **Tip** For a detailed overview of the platform architecture see the 
-> [Architectural Overview](../concept/architecture.md).
+> **Tip** For a detailed overview of the platform architecture see the [Architectural Overview](../concept/architecture.md).
