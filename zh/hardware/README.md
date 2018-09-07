@@ -1,6 +1,8 @@
 # Hardware
 
-This section contains developer topics about modifying PX4 to work with *new* hardware, including airfames, autopilots, companion computers, sensors, and other peripherals. 
-It also contains high level information about hardware that PX4 already supports.
+This section contains topics about:
 
-> **Tip** The [PX4 User Guide](https://docs.px4.io/en/) contains more detailed information about using and configuring hardware that is already supported.
+* Modifying PX4 to work with *new* [flight controller hardware](../hardware/porting_guide.md) and [vehicles/airframes](../airframes/README.md)
+* Integrating new [sensors and actuators](../sensor_bus/README.md), [telemetry radio](../data_links/telemetry.md), and other peripherals. 
+
+> **Tip** The [PX4 User Guide](https://docs.px4.io/en/) contains topics about using and configuring *existing/supported* hardware.
