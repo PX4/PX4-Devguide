@@ -1,8 +1,3 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/test_and_ci/integration_testing.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
-
 # Integration Testing
 
 This is about end to end integration testing. Tests are executed automatically ([Jenkins CI](../test_and_ci/jenkins_ci.md))
@@ -11,9 +6,9 @@ This is about end to end integration testing. Tests are executed automatically (
 
 Prerequisites:
 
-  * [JMAVSim Simulation](../simulation/jmavsim.md)
-  * [Gazebo](../simulation/gazebo.md)
-  * [ROS and MAVROS](../simulation/ros_interface.md)
+- [jMAVSim Simulator](../simulation/jmavsim.md)
+- [Gazebo Simulator](../simulation/gazebo.md)
+- [ROS and MAVROS](../simulation/ros_interface.md)
 
 ### Execute Tests
 
@@ -35,10 +30,9 @@ rostest px4 mavros_posix_tests_iris.launch gui:=true headless:=false
 
 > **Note** Currently in early stages, more streamlined support for testing (helper classes/methods etc.) to come.
 
-####1.) Create a new test script
+#### 1.) Create a new test script
 
 Test scripts are located in `integrationtests/python_src/px4_it/mavros/`. See other existing scripts for examples. Also please consult the official ROS documentation on how to use [unittest](http://wiki.ros.org/unittest).
-
 
 Empty test skeleton:
 
@@ -93,7 +87,7 @@ if __name__ == '__main__':
     rostest.rosrun(PKG, 'mavros_new_test', MavrosNewTest)
 ```
 
-####2.) Run the new test only
+#### 2.) Run the new test only
 
 ```sh
 # Start simulation
@@ -107,13 +101,13 @@ source integrationtests/setup_gazebo_ros.bash $(pwd)
 rosrun px4 mavros_new_test.py
 ```
 
-####3.) Add new test node to launch file
+#### 3.) Add new test node to launch file
 
 In `launch/mavros_posix_tests_irisl.launch` add new entry in test group:
 
 ```xml
-	<group ns="$(arg ns)">
-		[...]
+    <group ns="$(arg ns)">
+        [...]
         <test test-name="mavros_new_test" pkg="px4" type="mavros_new_test.py" />
     </group>
 ```
