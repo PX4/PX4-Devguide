@@ -1,100 +1,84 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/middleware/mavlink.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# MAVLink Messaging
 
-# MAVLink消息
+An overview of all messages can be found [here](https://mavlink.io/en/messages/).
 
-所有消息的概述可以在[这里](https://mavlink.io/en/messages/)找到.
+## Create Custom MAVLink Messages
 
-## 创建自定义MAVLink消息
+This tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h` (see [here](http://qgroundcontrol.org/mavlink/create_new_mavlink_message) how to create a custom MAVLink message and header).
 
-这篇教程是假设你已经在 `msg/ca_trajectory.msg` 有了一个[自定义uORB](../middleware/uorb.md) `ca_trajectory`
-消息，并且在 `mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h` 有了一个自定义mavlink
-`ca_trajectory` 消息（点击[此处](http://qgroundcontrol.org/mavlink/create_new_mavlink_message)查看如何建立一个自定义mavlink消息以及头文件）。
+## Sending Custom MAVLink Messages
 
+This section explains how to use a custom uORB message and send it as a MAVLink message.
 
+Add the headers of the MAVLink and uORB messages to [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
 
-## 发送自定义MAVLink消息
-
-
-这部分介绍如何使用一个自定义uORB消息并且作为mavlink消息发送。
-添加`mavlink`的头文件和uorb消息到[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)中创建一个新的类
+Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
+
 ```C
 class MavlinkStreamCaTrajectory : public MavlinkStream
 {
 public:
-	const char *get_name() const
-	{
-		return MavlinkStreamCaTrajectory::get_name_static();
-	}
-
-	static const char *get_name_static()
-	{
-		return "CA_TRAJECTORY";
-	}
-
-    static uint8_t get_id_static()
-	{
-		return MAVLINK_MSG_ID_CA_TRAJECTORY;
-	}
-
+    const char *get_name() const
+    {
+        return MavlinkStreamCaTrajectory::get_name_static();
+    }
+    static const char *get_name_static()
+    {
+        return "CA_TRAJECTORY";
+    }
     uint8_t get_id()
     {
-        return get_id_static();
+        return MAVLINK_MSG_ID_CA_TRAJECTORY;
+    }
+    static MavlinkStream *new_instance(Mavlink *mavlink)
+    {
+        return new MavlinkStreamCaTrajectory(mavlink);
+    }
+    unsigned get_size()
+    {
+        return MAVLINK_MSG_ID_CA_TRAJECTORY_LEN + MAVLINK_NUM_NON_PAYLOAD_BYTES;
     }
 
-	static MavlinkStream *new_instance(Mavlink *mavlink)
-	{
-		return new MavlinkStreamCaTrajectory(mavlink);
-	}
-
-	unsigned get_size()
-	{
-		return MAVLINK_MSG_ID_CA_TRAJECTORY_LEN + MAVLINK_NUM_NON_PAYLOAD_BYTES;
-	}
-	
 private:
-	MavlinkOrbSubscription *_sub;
-	uint64_t _ca_traj_time;
+    MavlinkOrbSubscription *_sub;
+    uint64_t _ca_traj_time;
 
-	/* do not allow top copying this class */
-	MavlinkStreamCaTrajectory(MavlinkStreamCaTrajectory &);
-	MavlinkStreamCaTrajectory& operator = (const MavlinkStreamCaTrajectory &);
+    /* do not allow top copying this class */
+    MavlinkStreamCaTrajectory(MavlinkStreamCaTrajectory &);
+    MavlinkStreamCaTrajectory& operator = (const MavlinkStreamCaTrajectory &);
 
 protected:
-	explicit MavlinkStreamCaTrajectory(Mavlink *mavlink) : MavlinkStream(mavlink),
-		_sub(_mavlink->add_orb_subscription(ORB_ID(ca_trajectory))),  // make sure you enter the name of your uorb topic here
-		_ca_traj_time(0)
-	{}
+    explicit MavlinkStreamCaTrajectory(Mavlink *mavlink) : MavlinkStream(mavlink),
+        _sub(_mavlink->add_orb_subscription(ORB_ID(ca_trajectory))),  // make sure you enter the name of your uORB topic here
+        _ca_traj_time(0)
+    {}
 
-	void send(const hrt_abstime t)
-	{
-		struct ca_trajectory_s _ca_trajectory;    //make sure ca_trajectory_s is the definition of your uorb topic
+    void send(const hrt_abstime t)
+    {
+        struct ca_traj_struct_s _ca_trajectory;    //make sure ca_traj_struct_s is the definition of your uORB topic
 
-		if (_sub->update(&_ca_traj_time, &_ca_trajectory)) {
+        if (_sub->update(&_ca_traj_time, &_ca_trajectory)) {
+            mavlink_ca_trajectory_t _msg_ca_trajectory;  //make sure mavlink_ca_trajectory_t is the definition of your custom MAVLink message
 
-			mavlink_ca_trajectory_t msg;//make sure mavlink_ca_trajectory_t is the definition of your custom mavlink message 
+            _msg_ca_trajectory.timestamp = _ca_trajectory.timestamp;
+            _msg_ca_trajectory.time_start_usec = _ca_trajectory.time_start_usec;
+            _msg_ca_trajectory.time_stop_usec  = _ca_trajectory.time_stop_usec;
+            _msg_ca_trajectory.coefficients =_ca_trajectory.coefficients;
+            _msg_ca_trajectory.seq_id = _ca_trajectory.seq_id;
 
-           	msg.timestamp = _ca_trajectory.timestamp;
-            msg.time_start_usec = _ca_trajectory.time_start_usec;
-            msg.time_stop_usec  = _ca_trajectory.time_stop_usec;
-		    msg.coefficients =_ca_trajectory.coefficients;
-            msg.seq_id = _ca_trajectory.seq_id;
-
-            mavlink_msg_ca_trajectory_send_struct(_mavlink->get_channel(), &msg);
-		}
-	}
+            _mavlink->send_message(MAVLINK_MSG_ID_CA_TRAJECTORY, &_msg_ca_trajectory);
+        }
+    }
 };
 ```
 
-最后附加流类`streams_list`的到[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)底部
+Finally append the stream class to the `streams_list` at the bottom of [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
+
 ```C
 StreamListItem *streams_list[] = {
 ...
@@ -103,90 +87,97 @@ nullptr
 };
 ```
 
-然后确保启用流，例如通过在启动脚本中添加以下行（`-r`配置流速率，`-u`标识UDP端口14556上的mavlink通道）：
+Then make sure to enable the stream, for example by adding the following line to the startup script (`-r` configures the streaming rate, `-u` identifies the MAVLink channel on UDP port 14556):
 
-```
-mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
-```
+    mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
+    
 
-## 接收自定义MAVLink消息
+## Receiving Custom MAVLink Messages
 
-这部分解释如何通过mavlink接收消息并将其发布到uORB。
+This section explains how to receive a message over MAVLink and publish it to uORB.
 
-
-在[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)中增加一个用来处理接收信息得函数
+Add a function that handles the incoming MAVLink message in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-
-在 [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)中增加一个处理类`MavlinkReceiver` 中的输入mavlink消息的函数
-
+Add a function that handles the incoming MAVLink message in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)
 
 ```C
 void handle_message_ca_trajectory_msg(mavlink_message_t *msg);
 ```
 
-在 [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)中加入一个类`MavlinkReceiver`中的uORB消息发布者
-
+Add an uORB publisher in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)
 
 ```C
 orb_advert_t _ca_traj_msg_pub;
 ```
 
-在[mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)中实现`handle_message_ca_trajectory_msg`功能
+Implement the `handle_message_ca_trajectory_msg` function in [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)
+
 ```C
-void
-MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
+void MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
 {
-	mavlink_ca_trajectory_t traj;
-	mavlink_msg_ca_trajectory_decode(msg, &traj);
+    mavlink_ca_trajectory_t traj;
+    mavlink_msg_ca_trajectory_decode(msg, &traj);
 
-	struct ca_trajectory_s f;
-	memset(&f, 0, sizeof(f));
+    struct ca_traj_struct_s f;
+    memset(&f, 0, sizeof(f));
 
-	f.timestamp = hrt_absolute_time();
-	f.seq_id = traj.seq_id;
-	f.time_start_usec = traj.time_start_usec;
-	f.time_stop_usec = traj.time_stop_usec;
-	for(int i=0;i<28;i++)
-		f.coefficients[i] = traj.coefficients[i];
+    f.timestamp = hrt_absolute_time();
+    f.seq_id = traj.seq_id;
+    f.time_start_usec = traj.time_start_usec;
+    f.time_stop_usec = traj.time_stop_usec;
+    for(int i=0;i<28;i++)
+        f.coefficients[i] = traj.coefficients[i];
 
-	if (_ca_traj_msg_pub == nullptr) {
-		_ca_traj_msg_pub = orb_advertise(ORB_ID(ca_trajectory), &f);
+    if (_ca_traj_msg_pub == nullptr) {
+        _ca_traj_msg_pub = orb_advertise(ORB_ID(ca_trajectory), &f);
 
-	} else {
-		orb_publish(ORB_ID(ca_trajectory), _ca_traj_msg_pub, &f);
-	}
+    } else {
+        orb_publish(ORB_ID(ca_trajectory), _ca_traj_msg_pub, &f);
+    }
 }
 ```
 
-最后确定函数在[MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)中被调用
+and finally make sure it is called in [MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)
 
 ```C
 MavlinkReceiver::handle_message(mavlink_message_t *msg)
  {
- 	switch (msg->msgid) {
+    switch (msg->msgid) {
         ...
-	case MAVLINK_MSG_ID_CA_TRAJECTORY:
-		handle_message_ca_trajectory_msg(msg);
-		break;
-		...
- 	}
+    case MAVLINK_MSG_ID_CA_TRAJECTORY:
+        handle_message_ca_trajectory_msg(msg);
+        break;
+        ...
+    }
 ```
 
-## 一般情况
+## Alternative to Creating Custom MAVLink Messages
 
-### 设置流速率
+Sometimes there is the need for a custom MAVLink message with content that is not fully defined.
 
-有时，增加单个主题的流速率（例如，为例在QGC中检查）是有用的。这可以通过下面这行代码来实现
+For example when using MAVLink to interface PX4 with an embedded device, the messages that are exchanged between the autopilot and the device may go through several iterations before they are stabilized. In this case, it can be time-consuming and error-prone to regenerate the MAVLink headers, and make sure both devices use the same version of the protocol.
+
+An alternative - and temporary - solution is to re-purpose debug messages. Instead of creating a custom MAVLink message `CA_TRAJECTORY`, you can send a message `DEBUG_VECT` with the string key `CA_TRAJ` and data in the `x`, `y` and `z` fields. See [this tutorial](../debug/debug_values.md). for an example usage of debug messages.
+
+> **Note** This solution is not efficient as it sends character string over the network and involves comparison of strings. It should be used for development only!
+
+## General
+
+### Set streaming rate
+
+Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by typing the following line in the shell:
+
 ```sh
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>
 ```
 
-你可以通过`mavlink status`找到端口号，相应地将输出（在其他消息之间）`transport protocol: UDP (<port number>)`。例如你可能得到
+You can get the port number with `mavlink status` which will output (amongst others) `transport protocol: UDP (<port number>)`. An example would be
+
 ```sh
 mavlink stream -u 14556 -s OPTICAL_FLOW_RAD -r 300
 ```
