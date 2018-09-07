@@ -1,17 +1,12 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/test_and_ci/jenkins_ci.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
-
 # Jenkins CI
 
-Jenkins continuous integration server on [SITL01](http://sitl01.dronetest.io/) is used to automatically run integration tests against PX4 SITL.
+Jenkins continuous integration server on [ci.px4.io](http://ci.px4.io/) is used to automatically run integration tests against PX4 SITL.
 
 ## Overview
 
-  * Involved components: Jenkins, Docker, PX4 POSIX SITL
-  * Tests run inside [Docker Containers](../test_and_ci/docker.md)
-  * Jenkins executes 2 jobs: one to check each PR against master, and the other to check every push on master
+- Involved components: Jenkins, Docker, PX4 POSIX SITL
+- Tests run inside [Docker Containers](../test_and_ci/docker.md)
+- Jenkins executes 2 jobs: one to check each PR against master, and the other to check every push on master
 
 ## Test Execution
 
@@ -32,12 +27,12 @@ See setup [script/log](https://github.com/PX4/containers/tree/master/scripts/jen
 
 ### Configuration
 
-  * Jenkins security enabled
-  * Installed plugins
-    * github
-    * github pull request builder
-    * embeddable build status plugin
-    * s3 plugin
-    * notification plugin
-    * collapsing console sections
-    * postbuildscript
+- Jenkins security enabled
+- Installed plugins 
+    - github
+    - github pull request builder
+    - embeddable build status plugin
+    - s3 plugin
+    - notification plugin
+    - collapsing console sections
+    - postbuildscript
