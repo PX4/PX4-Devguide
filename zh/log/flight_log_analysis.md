@@ -1,98 +1,134 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/log/flight_log_analysis.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
-
 # Flight Log Analysis
 
+This topic outlines approaches and software packages that can be used to analyze PX4 flight logs.
 
-这里有几个分析PX4飞行日志的软件，描述如下：
+## Reporting Flights
 
-## [Log Muncher](http://logs.uaventure.com)
+[Flight Reporting](https://docs.px4.io/en/getting_started/flight_reporting.html) (PX4 User Guide) explains how to download a log and report/discuss issues with a flight.
 
-> **注意：** Log Muncher只可以被用来查看先前`.px4log`格式的日志。
+## Structured Analysis
 
-### 上传
+Before analyzing a flight log it is important to establish its context:
 
-用户可直接访问网站并直接上传log: [http://logs.uaventure.com/](http://logs.uaventure.com/)
+* If the analysis is done after a malfunction, did the log capture the crash or did it stop mid-air?
+* Did all controllers track their references? The easiest way to establish this is to compare attitude roll and pitch rates to their set points.
+* Does the sensor data look valid? Was there very strong vibration \(a reasonable threshold for strong vibration is anything with a peak-to-peak of more than 2-3 m/s/s\).
+* If the root cause is not specific to the vehicle make sure to report it with a link to the log file \(and video if one exists\) on the [PX4 issue tracker](https://github.com/px4/firmware/issues/new).
 
-![](../../assets/flight_log_analysis/logmuncher.png)
+## Ruling Out Power Failures
 
-### 结果
+If a log file ends mid-air, two main causes are possible: a power failure *or* a hard fault of the operating system.
 
-![](../../assets/flight_log_analysis/log-muncher-result.png)
+On autopilots based on the [STM32 series](http://www.st.com/en/microcontrollers/stm32-32-bit-arm-cortex-mcus.html?querycriteria=productId=SC1169), hard faults of the operating system are logged to the SD card. These are located on the top level of the SD card and named *fault\_date.log*, e.g. **fault\_2017\_04\_03\_00\_26\_05.log**. Please always check for the presence of this file if a flight log ends abruptly.
 
-[Example Log](http://logs.uaventure.com/view/KwTFDaheRueMNmFRJQ3huH)
+## Analysis Tools
 
-### 优点
+### Flight Review (Online Tool)
 
-* 基于网页，便于终端用户
+[Flight Review](http://logs.px4.io) is the successor of *Log Muncher*. It is used in combination with the new [ULog](../log/ulog_file_format.md) logging format.
 
-* 用户可以上传日志并和别人分享
+Key features:
 
-### 缺点
+* Web based, great for end-users.
+* User can upload, load and then share report with others.
+* Interactive plots.
 
-* 分析非常有限，没有定制功能
+![Flight Review Charts](../../assets/flight_log_analysis/flight-review-example.png)
 
-## [Flight Review](http://logs.px4.io)
+### pyulog
 
-Flight Review是Log Muncher的继任者，与新的ULog记录格式结合使用。
+[pyulog](https://github.com/PX4/pyulog) is a python package to parse ULog files, along with a set of command-line scripts to extract/display ULog information and convert them to other file formats.
 
-### 示例
-![](../../assets/flight_log_analysis/flight-review-example.png)
+Key features:
 
-### 优点
+* Python library for parsing ULog files. Base library used by a number of other ULog analysis and visualisation tools.
+* Scripts to extract/display ULog information: 
+  * *ulog_info*: display information from an ULog file.
+  * *ulog_messages*: display logged messages from an ULog file.
+  * *ulog_params*: extract parameters from an ULog file.
+* Scripts to convert ULog files to other formats: 
+  * *ulog2csv*: convert ULog to (several) CSV files.
+  * *ulog2kml*: convert ULog to (several) KML files.
 
-* 基于网页，便于终端用户
+All scripts are installed as system-wide applications (i.e. they be called on the command line - provided Python is installed), and support the `-h` flag for getting usage instructions. For example:
 
-* 用户可以上传并和别人分享
+    $ ulog_info -h
+    usage: ulog_info [-h] [-v] file.ulg
+    
+    Display information from an ULog file
+    
+    positional arguments:
+      file.ulg       ULog input file
+    
+    optional arguments:
+      -h, --help     show this help message and exit
+      -v, --verbose  Verbose output
+    
 
-* 交互式的画图体验
+Below we see the kind of information exported from a sample file using *ulog_info*.
 
-### 缺点
+    $ ulog_info sample.ulg
+    Logging start time: 0:01:52, duration: 0:01:08
+    Dropouts: count: 4, total duration: 0.1 s, max: 62 ms, mean: 29 ms
+    Info Messages:
+     sys_name: PX4
+     time_ref_utc: 0
+     ver_hw: AUAV_X21
+     ver_sw: fd483321a5cf50ead91164356d15aa474643aa73
+    
+    Name (multi id, message size in bytes)    number of data points, total bytes
+     actuator_controls_0 (0, 48)                 3269     156912
+     actuator_outputs (0, 76)                    1311      99636
+     commander_state (0, 9)                       678       6102
+     control_state (0, 122)                      3268     398696
+     cpuload (0, 16)                               69       1104
+     ekf2_innovations (0, 140)                   3271     457940
+     estimator_status (0, 309)                   1311     405099
+     sensor_combined (0, 72)                    17070    1229040
+     sensor_preflight (0, 16)                   17072     273152
+     telemetry_status (0, 36)                      70       2520
+     vehicle_attitude (0, 36)                    6461     232596
+     vehicle_attitude_setpoint (0, 55)           3272     179960
+     vehicle_local_position (0, 123)              678      83394
+     vehicle_rates_setpoint (0, 24)              6448     154752
+     vehicle_status (0, 45)                       294      13230
+    
 
-* 没有定制功能
+### pyFlightAnalysis
 
-## [FlightPlot](https://github.com/DrTon/FlightPlot)
+[pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis) is a cross-platform PX4 flight log (ULog) visual analysis tool, inspired by [FlightPlot](https://github.com/DrTon/FlightPlot).
 
-![](https://pixhawk.org/_media/dev/flightplot-0.2.16-screenshot.png)
+Key features:
 
-### 优点
+* Dynamic filter for displaying data
+* 3D visualization for attitude and position of drone
+* Easily replay with pyqtgraph's ROI (Region Of Interest)
+* Python based, cross-platform.
 
-* 基于JAVA,跨平台
+![pyFlightAnalysis 1.0.1b1](../../assets/flight_log_analysis/pyflightanalysis.png)
 
-* 直观的用户界面，没有编程知识的要求
+### FlightPlot (Desktop)
 
-### 缺点
+[FlightPlot](https://github.com/PX4/FlightPlot) is a desktop based tool for log analysis. It can be downloaded from [FlightPlot Downloads](https://github.com/PX4/FlightPlot/releases) (Linux, MacOS, Windows).
 
-* 分析受限于系统内置的一些特性
+Key features:
 
-## [PX4Tools](https://github.com/dronecrew/px4tools)
+* Java based, cross-platform.
+* Intuitive GUI, no programming knowledge required.
+* Supports both new and old PX4 log formats (.ulg, .px4log, .bin)
+* Allows saving plots as images.
 
+![FlightPlot Charts](../../assets/flight_log_analysis/flightplot_0.2.16.png)
 
-![](../../assets/flight_log_analysis/px4tools.png)
+### PX4Tools
 
-### 安装
+[PX4Tools](https://github.com/dronecrew/px4tools) is a log analysis toolbox for the PX4 autopilot written in Python. The recommended installation procedure is to use [anaconda3](https://conda.io/docs/index.html). See [px4tools github page](https://github.com/dronecrew/px4tools) for details.
 
-* 建议的方法是使用anaconda3. 详情见 [px4tools github page](https://github.com/dronecrew/px4tools) .
+Key features:
 
-```bash
-conda install -c https://conda.anaconda.org/dronecrew px4tools
-```
+* Easy to share, users can view notebooks on Github \(e.g. [https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb](https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30 Kabir Log.ipynb)\)
+* Python based, cross platform, works witn anaconda 2 and anaconda3
+* iPython/ jupyter notebooks can be used to share analysis easily
+* Advanced plotting capabilities to allow detailed analysis
 
-### 优点
-
-* 便于分享，用户可以查看笔记在github\(e.g. [https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb](https://github.com/jgoppert/lpe-analysis/blob/master/15-09-30%20Kabir%20Log.ipynb)\)
-
-* 基于python,跨平台，产品有anaconda 2 and anaconda3
-
-* ipython/ jupyter 笔记容易分享和分析
-
-* 高级绘图能力允许做细节的分析
-
-
-### 缺点
-
-* 要求用户懂python
-
-* 目前需要使用sdlog2_dump.py或px4tools嵌入的px42csv程序将日志文件转换为csv才能使用
+![PX4Tools-based analysis](../../assets/flight_log_analysis/px4tools.png)
