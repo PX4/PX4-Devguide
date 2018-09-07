@@ -1,89 +1,84 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/debug/gdb_debugging.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Embedded Debugging
 
-# 嵌入式调试
+The autopilots running PX4 support debugging via GDB or LLDB.
 
-运行PX4的自驾仪支持通过GDB或者LLDB的调试。
+## Identifying large memory consumers
 
-## 识别消耗大内存的程序
-
-以下命令会列出最大静态内存分配的程序：
-
-<div class="host-code"></div>
+The command below will list the largest static allocations:
 
 ```bash
-arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
+arm-none-eabi-nm --size-sort --print-size --radix=dec build/nuttx_px4fmu-v2_default/nuttx_px4fmu-v2_default.elf | grep " [bBdD] "
 ```
 
-这个NSH命令提供了剩余的空闲内存：
+This NSH command provides the remaining free memory:
 
 ```bash
 free
 ```
 
-top命令显示出每个应用的栈使用量：
+And the top command shows the stack usage per application:
 
-```
-top
-```
+    top
+    
 
+Stack usage is calculated with stack coloring and thus is not the current usage, but the maximum since the start of the task.
 
+### Heap allocations
 
-堆栈使用是使用堆栈着色计算的，因此不是当前使用的量，而是任务开始以来的最大值。
+Dynamic heap allocations can be traced on POSIX in SITL with [gperftools](https://github.com/gperftools/gperftools).
 
-### 堆分配
-动态堆分配可以在符合POSIX系统上的SITL追踪得到  用的是 [gperftools](https://github.com/gperftools/gperftools)。
+#### Install Instructions
 
-#### 安装指导
 ##### Ubuntu:
+
 ```bash
 sudo apt-get install google-perftools libgoogle-perftools-dev
 ```
 
-#### 启动堆分析
+#### Start heap profiling
 
-首先，用如下指令编译固件：
+First of all, build the firmware as follows:
+
 ```bash
 make posix_sitl_default
 ```
-启动 jmavsim仿真：`./Tools/jmavsim_run.sh`
 
-在另一个中断，输入：
+Start jmavsim: `./Tools/jmavsim_run.sh`
+
+In another terminal, type:
+
 ```bash
 cd build/posix_sitl_default/tmp
 export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
 
-对于不同的系统，输入如下:
+Enter this depending on your system:
 
 ##### Fedora:
+
 ```bash
 env LD_PRELOAD=/lib64/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
 pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
 ##### Ubuntu:
+
 ```bash
 env LD_PRELOAD=/usr/lib/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
 google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
-这将生成一个具有堆分配图的PDF。
+It will generate a pdf with a graph of the heap allocations. The numbers in the graph will all be zero, because they are in MB. Just look at the percentages instead. They show the live memory (of the node and the subtree), meaning the memory that was still in use at the end.
 
-图中的数字全部为零，因为它们以MB为单位。 我们只需要看百分比。 它们显示实时内存（节点和子树），意味着最后仍在使用的内存。
+See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html) for more information.
 
-有关详细信息，请参阅[gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html)文档。
+## Debugging Hard Faults in NuttX
 
+A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted. A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
 
-## 调试NuttX中的硬故障
-
-硬故障(hard fault)是这样一种状态：操作系统检测到没有有效的指令执行。 通常情况下，这是因为RAM中的关键区域已损坏。 典型的情况是：不正确内存获取破坏了堆栈，并且处理器发现内存中的地址不是微处理器RAM的有效地址。
-
-  * NuttX保留了两个堆栈：用于中断处理的IRQ堆栈和用户堆栈。
-  * 栈向下生长。所以以下例子的最高地址是 0x20021060, 大小是 0x11f4 (4596 bytes)， 因此最低地址是 0x2001fe6c.
+* NuttX maintains two stacks: The IRQ stack for interrupt processing and the user stack
+* The stack grows downward. So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
 
 ```bash
 Assertion failed at file:armv7-m/up_hardfault.c line: 184 task: ekf_att_pos_estimator
@@ -132,26 +127,19 @@ xPSR: 61000000 BASEPRI: 00000000 CONTROL: 00000000
 EXC_RETURN: ffffffe9
 ```
 
-要解码硬故障，请将*精确的*二进制码加载到调试器中：
-
-<div class="host-code"></div>
+To decode the hard fault, load the *exact* binary into the debugger:
 
 ```bash
-arm-none-eabi-gdb build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx
+arm-none-eabi-gdb build/nuttx_px4fmu-v2_default/nuttx_px4fmu-v2_default.elf
 ```
 
-
-然后在GDB提示符中，从R8中的最后一个指令开始，用闪存中的第一个地址（可识别，因为它以0x080开头，第一个为0x0808439f）。执行是从左到右。 所以在硬错误之前的最后一步是在```mavlink_log.c``试图发布一些东西，
-
-<div class="host-code"></div>
+Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
 
 ```gdb
 (gdb) info line *0x0808439f
 Line 77 of "../src/modules/systemlib/mavlink_log.c" starts at address 0x8084398 <mavlink_vasprintf+36>
    and ends at 0x80843a0 <mavlink_vasprintf+44>.
 ```
-
-<div class="host-code"></div>
 
 ```gdb
 (gdb) info line *0x08087c4e
