@@ -1,41 +1,68 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/advanced/out_of_tree_modules.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# External Modules (Out-of-Tree)
 
-# 外部模块
+External modules provide a convenient mechanism for developers to manage/group proprietary modules that they want add to (or update in) PX4 firmware. External modules can use the same includes as internal modules and can interact with internal modules via uORB.
 
+This topic explains how to add an external ("out of tree") module to the PX4 build.
 
-本教程描述了向PX4构建中添加外部模块的可能性。
+> **Tip** We encourage you to contribute your changes into PX4, where possible!
 
-外部模块可以使用与内部模块相同的模块，并且可以通过$\mu$ORB与内部模块交互
+## Usage
 
-## 使用
+To create an external module:
 
-- `EXTERNAL_MODULES_LOCATION` 需要指向一个与原生固件Firmware具有相同结构的目录(因此需包含一个称为`src`的目录)。
-- 有两种方法：将现有模块(如examples/px4_simple_app)复制到外部目录，或者直接创建一个新的模块 。
-- 重命名模块(包括CMakeLists.txt中的`MODULE`)或将其从现有的Firmware/cmake//config中移除。这是为了避免与内部模块发生冲突。
-- 添加一个文件`$EXTERNAL_MODULES_LOCATION/CMakeLists.txt`，其内容包括：
-```
-set(config_module_list_external
-    modules/<new_module>
-    PARENT_SCOPE
-    )
-```
-- 添加一行 `EXTERNAL` 到`modules/<new_module>/CMakeLists.txt`下的`px4_add_module`函数中, 例如像这样：
+- Create an *external directory* directory for grouping the external modules: 
+  - This can be located anywhere outside of the **Firmware** tree.
+  - It must have the same structure as **Firmware** (i.e. it must contain a directory called **src**).
+  - Later we refer to this directory using `EXTERNAL_MODULES_LOCATION`.
+- Copy an existing module (e.g. **examples/px4_simple_app**) to the external directory, or directly create a new module.
+- Rename the module (including `MODULE` in **CMakeLists.txt**) or remove it from the existing Firmware *cmake* build config. This is to avoid conflicts with internal modules.
+- Add a file **CMakeLists.txt** in the external directory with content: 
+      set(config_module_list_external
+          modules/<new_module>
+          PARENT_SCOPE
+          )
 
-```
-px4_add_module(
-	MODULE modules__test_app
-	MAIN test_app
-	STACK_MAIN 2000
-	SRCS
-		px4_simple_app.c
-	DEPENDS
-		platforms__common
-	EXTERNAL
-	)
+- Add a line `EXTERNAL` to the `modules/<new_module>/CMakeLists.txt` within `px4_add_module()`, for example like this:
+  
+      px4_add_module(
+        MODULE modules__test_app
+        MAIN test_app
+        STACK_MAIN 2000
+        SRCS
+          px4_simple_app.c
+        DEPENDS
+          platforms__common
+        EXTERNAL
+        )
+      
 
-```
+## Out-of-Tree uORB Message Definitions {#uorb_message_definitions}
 
-- 执行 `make posix EXTERNAL_MODULES_LOCATION=<path>`。可以使用任何其他的构建目标，但是构建目录必须是不存在的。如果它已经存在，你也可以在build文件夹中设置cmake变量。对于以后要增加的构建，就不需要再指定`EXTERNAL_MODULES_LOCATION`了。
+uORB messages can also be defined out-of-tree. For this, the `$EXTERNAL_MODULES_LOCATION/msg` folder must exist.
+
+- Place all new message definitions within the `$EXTERNAL_MODULES_LOCATION/msg` directory. The format of these new out-of-tree message definitions are the same as for any other [uORB message definition](../middleware/uorb.md#adding-a-new-topic).
+- Add a file `$EXTERNAL_MODULES_LOCATION/msg/CMakeLists.txt` with content:
+  
+      set(config_msg_list_external
+          <message1>.msg
+          <message2>.msg
+          <message3>.msg
+          PARENT_SCOPE
+          )
+      
+  
+  where `<message#>.msg` is the name of the uORB message definition file to be processed and used for uORB message generation.
+
+The out-of-tree uORB messages will be generated in the same locations as the normal uORB messages. The uORB topic headers are generated in `<build_dir>/uORB/topics/`, and the message source files are generated in `<build_dir>/msg/topics_sources/`.
+
+The new uORB messages can be used like any other uORB message as described [here](../middleware/uorb.md#adding-a-new-topic).
+
+> **Warning** The out-of-tree uORB message definitions cannot have the same name as any of the normal uORB messages.
+
+## Building External Modules and uORB Messages {#building}
+
+Execute `make posix EXTERNAL_MODULES_LOCATION=<path>`.
+
+Any other build target can be used, but the build directory must not yet exist. If it already exists, you can also just set the *cmake* variable in the build folder.
+
+For subsequent incremental builds `EXTERNAL_MODULES_LOCATION` does not need to be specified.
