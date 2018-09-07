@@ -1,359 +1,345 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/tutorials/tuning_the_ecl_ekf.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Using the ecl EKF
 
-# 使用 ecl EKF
+This tutorial answers common questions about use of the ECL EKF algorithm.
 
-本教程旨在解答一些关于ECL EKF算法使用的常见问题。
+## What is the ecl EKF?
 
-## 什么是 ecl EKF?
+The Estimation and Control Library (ECL) uses an Extended Kalman Filter (EKF) algorithm to process sensor measurements and provide an estimate of the following states:
 
-ECL(Estimation and Control Library，估计与控制库）使用EKF(Extended Kalman Filter，扩展卡尔曼滤波器)算法来处理传感器测量信息并为下面的状态提供估计：
+* Quaternion defining the rotation from North, East, Down local earth frame to X,Y,Z body frame
+* Velocity at the IMU - North,East,Down \(m/s\)
+* Position at the IMU - North,East,Down \(m\)
+* IMU delta angle bias estimates - X,Y,Z \(rad\)
+* IMU delta velocity bias estimates - X,Y,Z\(m/s\)
+* Earth Magnetic field components - North,East,Down \(gauss\)
+* Vehicle body frame magnetic field bias - X,Y,Z \(gauss\)
+* Wind velocity - North,East \(m/s\)
 
-* 四元数，定义为从地球NED(北东地)坐标系到机体坐标系X,Y,Z的旋转四元数
-* 速度，关于IMU - 北，东，地 (m/s)
-* 位置，关于IMU - 北，东，地 (m)
-* 角速度偏移估计，关于IMU - X,Y,Z (rad)
-* 速度偏移估计，关于IMU - X,Y,Z (m/s)
-* 地磁分量 - 北，东，地 (gauss)
-* 磁偏量，关于飞行器本身 - X,Y,Z (gauss)
-* 风速 - 北，东 (m/s)
+The EKF runs on a delayed 'fusion time horizon' to allow for different time delays on each measurement relative to the IMU. Data for each sensor is FIFO buffered and retrieved from the buffer by the EKF to be used at the correct time. The delay compensation for each sensor is controlled by the [EKF2_*_DELAY](../advanced/parameter_reference.md#ekf2) parameters.
 
-EKF在一个延迟的`fusion time horizon`上运行，以允许传感器在每次测量时相对于IMU存在不同的时间延迟。 每个传感器的数据都是FIFO缓存的并由EKF从缓存中检索，得以在正确的时候使用。每个传感器的延迟补偿由参数`EKF2_*_DELAY`控制。
+A complementary filter is used to propagate the states forward from the 'fusion time horizon' to current time using the buffered IMU data. The time constant for this filter is controlled by the [EKF2_TAU_VEL](../advanced/parameter_reference.md#EKF2_TAU_VEL) and [EKF2_TAU_POS](../advanced/parameter_reference.md#EKF2_TAU_POS) parameters.
 
-互补滤波器用于利用缓存好的IMU数据将状态从`fusion time horizon`向前传播到当前时间。该滤波器的时间常数由参数`EKF2_TAU_VEL `和`EKF2_TAU_POS`控制。
+> **Note** The 'fusion time horizon' delay and length of the buffers is determined by the largest of the EKF2\_\*\_DELAY parameters. If a sensor is not being used, it is recommended to set its time delay to zero. Reducing the 'fusion time horizon' delay reduces errors in the complementary filter used to propagate states forward to current time.
 
-> **注意：**`fusion time horizon`延迟和缓冲区的长度由参数`EKF2_*_DELAY`的最大值确定。如果未使用某传感器，建议将其时间延迟设置为零。降低`fusion time horizon`延迟会减少互补滤波器中用于将状态向前传播到当前时间的误差
+The position and velocity states are adjusted to account for the offset between the IMU and the body frame before they are output to the control loops. The position of the IMU relative to the body frame is set by the `EKF2\_IMU\_POS\_X,Y,Z` parameters.
 
-调整位置和速度状态以消除IMU和机体坐标系之间由于安装误差所产生的偏移，避免其输出到控制回路。 IMU相对于机体坐标系的位置由参数`EKF2_IMU_POS_X，Y，Z`设置。
+The EKF uses the IMU data for state prediction only. IMU data is not used as an observation in the EKF derivation. The algebraic equations for the covariance prediction, state update and covariance update were derived using the Matlab symbolic toolbox and can be found here: [Matlab Symbolic Derivation](https://github.com/PX4/ecl/blob/master/EKF/matlab/scripts/Inertial Nav EKF/GenerateNavFilterEquations.m).
 
-EKF仅使用IMU的数据进行状态预测。IMU的数据不会用作EKF推导过程中的量测值。协方差预测、状态更新以及协方差更新的代数方程都是使用Matlab符号工具箱导出的，可以在这里找到：[Matlab Symbolic Derivation](https://github.com/PX4/ecl/blob/master/matlab/scripts/Inertial%20Nav%20EKF/GenerateNavFilterEquations.m)
+## What sensor measurements does it use?
 
-## ecl EKF使用何种传感器测量值？
+The EKF has different modes of operation that allow for different combinations of sensor measurements. On start-up the filter checks for a minimum viable combination of sensors and after initial tilt, yaw and height alignment is completed, enters a mode that provides rotation, vertical velocity, vertical position, IMU delta angle bias and IMU delta velocity bias estimates.
 
-根据传感器测量值的不同组合，EKF具有不同的操作模式。在启动时，滤波器会检查传感器的最小可行组合，并在初始倾斜、偏航以及高度对准完成后进入一个提供旋转、垂直速度、垂直位置、IMU角增量误差和IMU速度增量误差估计的模式。
+This mode requires IMU data, a source of yaw \(magnetometer or external vision\) and a source of height data. This minimum data set is required for all EKF modes of operation. Other sensor data can then be used to estimate additional states.
 
-此模式需要有传感器的数据，例如偏航数据源（由磁力计或者外部视觉设备提供）和高度数据源。所有的EKF操作模式都需要这个最小的数据集。然后可以使用其他传感器数据来估计附加的状态。
+### IMU
 
-### 惯性测量单元（IMU）
+* Three axis body fixed Inertial Measurement unit delta angle and delta velocity data at a minimum rate of 100Hz. Note: Coning corrections should be applied to the IMU delta angle data before it is used by the EKF.
 
-* 惯性测量单元的三轴位置固定，用于采集单位角增量和速度增量数据，最低采样频率为100Hz。
+### Magnetometer
 
-> 注意：在EKF使用IMU角增量数据之前应对其进行校正修正。
+Three axis body fixed magnetometer data \(or external vision system pose data\) at a minimum rate of 5Hz is required. Magnetometer data can be used in two ways:
 
-### 磁力计
+* Magnetometer measurements are converted to a yaw angle using the tilt estimate and magnetic declination. This yaw angle is then used as an observation by the EKF. This method is less accurate and does not allow for learning of body frame field offsets, however it is more robust to magnetic anomalies and large start-up gyro biases. It is the default method used during start-up and on ground.
+* The XYZ magnetometer readings are used as separate observations. This method is more accurate and allows body frame offsets to be learned, but assumes the earth magnetic field environment only changes slowly and performs less well when there are significant external magnetic anomalies. It is the default method when the vehicle is airborne and has climbed past 1.5 m altitude.
 
-三轴磁力计（或者是外部视觉系统）的最低采样率为5Hz。磁力计数据可以以两种方式使用：
+The logic used to select the mode is set by the [EKF2_MAG_TYPE](../advanced/parameter_reference.md#EKF2_MAG_TYPE) parameter.
 
-* 使用倾斜估计和磁偏角将磁力计测量值转换为偏航角。该偏航角被用作EKF的观测量。这种方法不太准确并且没有考虑机体坐标系的磁场偏移，然而其对于磁异常和大的陀螺仪初始偏移更加鲁棒。它是飞行器刚启动还停留在地面上时使用的默认方法。
-* 磁力计的XYZ三轴读数用作单独测观测值。这种方法更准确，并且允许机体坐标系的偏移。但假定地磁场环境只是缓慢变化，这种方法在存在巨大的外部磁异常时性能较差。这是当飞行器在空中并爬升超过1.5米高度时的默认方法。
+### Height
 
-用于选择模式的逻辑由EKF2_MAG_TYPE参数设置。
+A source of height data - either GPS, barometric pressure, range finder or external vision at a minimum rate of 5Hz is required. Note: The primary source of height data is controlled by the [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) parameter.
 
-### 高度
-
-高度的数据源——GPS，气压，测距仪或外部视觉（最低采样频率5Hz）。注意：高度数据的主要来源由EKF2\_HGT\_MODE参数控制。
-
-如果这些测量不存在，EKF将不会启动。当检测到这些测量时，EKF将初始化状态并完成倾斜和偏航对准。当倾斜和偏航对准完成时，EKF可以转换到其他的操作模式，使得能够使用附加的传感器数据：
+If these measurements are not present, the EKF will not start. When these measurements have been detected, the EKF will initialise the states and complete the tilt and yaw alignment. When tilt and yaw alignment is complete, the EKF can then transition to other modes of operation enabling use of additional sensor data:
 
 ### GPS
 
-如果满足以下条件，则GPS测量将用于位置和速度：
+GPS measurements will be used for position and velocity if the following conditions are met:
 
-* 通过设置EKF2\_AID\_MASK参数使能GPS的使用
-* GPS通过质量检查。这些检查由EKF2_GPS_CHECK和 EKF2_REQ<>参数控制
-* 通过EKF2_HGT_MODE参数的设置，EKF可以直接使用GPS高度。
+* GPS use is enabled via setting of the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter.
+* GPS quality checks have passed. These checks are controlled by the [EKF2_GPS_CHECK](../advanced/parameter_reference.md#EKF2_GPS_CHECK) and `EKF2\_REQ\_\*` parameters. 
+* GPS height can be used directly by the EKF via setting of the [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) parameter.
 
-### 测距仪
+### Range Finder
 
-测距仪到地面的距离由单个状态滤波器使用，用于估计地形相对于高度基准的垂直位置。
+Range finder distance to ground is used by a single state filter to estimate the vertical position of the terrain relative to the height datum.
 
-如果在可用作零高度基准的平坦表面上操作，测距仪数据也可以直接由EKF使用，以通过将EKF2_HGT_MODE参数设置为2来估计高度。
+If operating over a flat surface that can be used as a zero height datum, the range finder data can also be used directly by the EKF to estimate height by setting the [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) parameter to 2.
 
-### 空速
+### Airspeed
 
-通过将EKF2_ARSP_THR设置为正值，等效空速（EAS）数据可用于估计风速并减少GPS丢失时的漂移。 当超过由EKF2_ARSP_THR设置的阈值并且飞行器不是旋翼时，将使用空速数据。
+Equivalent Airspeed \(EAS\) data can be used to estimate wind velocity and reduce drift when GPS is lost by setting [EKF2_ARSP_THR](../advanced/parameter_reference.md#EKF2_ARSP_THR) to a positive value. Airspeed data will be used when it exceeds the threshold set by a positive value for [EKF2_ARSP_THR](../advanced/parameter_reference.md#EKF2_ARSP_THR) and the vehicle type is not rotary wing.
 
 ### Synthetic Sideslip
 
-固定翼平台可以利用假设的边缘观测零点来改进风速估计，并且还能够在没有空速传感器的情况下实现风速估计。可以通过将EKF2_FUSE_BETA参数设置为1来启用此项。
+Fixed wing platforms can take advantage of an assumed sideslip observation of zero to improve wind speed estimation and also enable wind speed estimation without an airspeed sensor. This is enabled by setting the [EKF2_FUSE_BETA](../advanced/parameter_reference.md#EKF2_FUSE_BETA) parameter to 1.
 
-### 光流
+### Drag Specific Forces
 
-如果满足以下条件，将使用光流数据：
+Multi-rotor platforms can take advantage of the relationship between airspeed and drag force along the X and Y body axes to estimate North/East components of wind velocity. This is enabled by setting bit position 5 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter to true. The relationship between airspeed and specific force \(IMU acceleration\) along the X and Y body axes is controlled by the [EKF2_BCOEF_X](../advanced/parameter_reference.md#EKF2_BCOEF_X) and [EKF2_BCOEF_Y](../advanced/parameter_reference.md#EKF2_BCOEF_Y) parameters which set the ballistic coefficients for flight in the X and Y directions respectively. The amount of specific force observation noise is set by the [EKF2_DRAG_NOISE](../advanced/parameter_reference.md#EKF2_DRAG_NOISE) parameter.
 
-* 有效的测距仪数据可用。
-* EKF2_AID_MASK参数中第1位为真。
-* 光流传感器返回的质量度量大于由EKF2_OF_QMIN参数设置的最小要求
+### Optical Flow
 
-### 外部视觉系统
+Optical flow data will be used if the following conditions are met:
 
-位置和姿态可以使用外部视觉系统（例如Vicon）进行测量：
+* Valid range finder data is available.
+* Bit position 1 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter is true.
+* The quality metric returned by the flow sensor is greater than the minimum requirement set by the [EKF2_OF_QMIN](../advanced/parameter_reference.md#EKF2_OF_QMIN) parameter.
 
-* 如果EKF2_AID_MASK参数中的第3位为真，则将使用外部视觉系统水平位置数据。
-* 如果EKF2_HGT_MODE参数设置为3，则将使用外部视觉系统垂直位置数据。
-* 如果EKF2_AID_MASK参数中的第4位为真，则外部视觉系统的姿态数据将用于偏航估计。
+### External Vision System
 
-## 如何使用ecl EKF?
+Position and Pose Measurements from an external vision system, e.g. Vicon, can be used:
 
-将SYS\_MC\_EST\_GROUP参数设置为2可使用ecl EKF.
+* External vision system horizontal position data will be used if bit position 3 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter is true.
+* External vision system vertical position data will be used if the [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) parameter is set to 3.
+* External vision system pose data will be used for yaw estimation if bit position 4 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter is true.
 
-## 相比其他估计器ecl EKF有什么优缺点?
+## How do I use the 'ecl' library EKF?
 
-与所有估计器一样，大多数性能需要进行调参以匹配传感器特性。调参是在精度和鲁棒性之间的折衷，尽管我们试图提供满足大多数用户需求的参数，但是仍将存在需要进行参数调节的应用。
+Set the [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) parameter to 2 to use the ecl EKF.
 
-出于这个原因，相对于attitude\_estimator\_q + local\_position\_estimator的传统估计器组合，ecl EKF没有精度方面的要求(claim)，估计器的最优选取将取决于应用以及参数调节。
+## What are the advantages and disadvantages of the ecl EKF over other estimators?
 
-### 缺点
+Like all estimators, much of the performance comes from the tuning to match sensor characteristics. Tuning is a compromise between accuracy and robustness and although we have attempted to provide a tune that meets the needs of most users, there will be applications where tuning changes are required.
 
-* ecl EKF是一个复杂的算法，需要很好地了解扩展卡尔曼滤波理论及其在导航问题中的应用才能更好的进行参数调节。因此，对于没有获得良好效果地用户来说，知道要改变什么则更为困难。
+For this reason, no claims for accuracy relative to the legacy combination of attitude\_estimator\_q + local\_position\_estimator have been made and the best choice of estimator will depend on the application and tuning.
 
+### Disadvantages
 
-* ecl EKF使用更多的RAM和闪存空间
-* ecl EKF使用更多的日志空间
-* ecl EKF具有较少的飞行时间
+* The ecl EKF is a complex algorithm that requires a good understanding of extended Kalman filter theory and its application to navigation problems to tune successfully. It is therefore more difficult for users that are not achieving good results to know what to change.
+* The ecl EKF uses more RAM and flash space
+* The ecl EKF uses more logging space.
+* The ecl EKF has had less flight time
 
-### 优点
+### Advantages
 
-* ecl EKF能够以数学上一致的方式融合来自具有不同时间延迟和采样频率的传感器的数据，在正确地设置了时间延迟参数的情况下，该算法将提高动态操纵精度。
-* ecl EKF能够融合大范围的不同传感器类型。
-* ecl EKF检测并报告传感器数据统计中显著的不一致情况，可协助诊断传感器错误。
-* 对于固定翼操作，无论是否使用空速传感器，ecl EKF都能够用于估计风速，并且能够使用估计的风速结合空速测量以及侧滑假设来延长可用的航位推算时间(如果在飞行中丢失GPS信号)。
-* ecl EKF估计3轴加速度计偏差，这提高了立式起落飞行器(tailsitters)和其他飞行器在飞行阶段经历大的姿态变化时的精度。
-* The federated architecture \(combined attitude and position/velocity estimation\) means that attitude estimation benefits from all sensor measurements. This should provide the potential for improved attitude estimation if tuned correctly.
-* 联合架构（将姿态和位置/速度估计结合起来）意味着姿态估计会受益于所有传感器测量。 如果适当调节，这将提供改进姿态估计的潜力。
+* The ecl EKF is able to fuse data from sensors with different time delays and data rates in a mathematically consistent way which improves accuracy during dynamic manoeuvres once time delay parameters are set correctly.
+* The ecl EKF is capable of fusing a large range of different sensor types.
+* The ecl EKF detects and reports statistically significant inconsistencies in sensor data, assisting with diagnosis of sensor errors.
+* For fixed wing operation, the ecl EKF estimates wind speed with or without an airspeed sensor and is able to use the estimated wind in combination with airspeed measurements and sideslip assumptions to extend the dead-reckoning time available if GPS is lost in flight.
+* The ecl EKF estimates 3-axis accelerometer bias which improves accuracy for tailsitters and other vehicles that experience large attitude changes between flight phases.
+* The federated architecture \(combined attitude and position/velocity estimation\) means that attitude estimation benefits from all sensor measurements. This should provide the potential for improved attitude estimation if tuned correctly. 
 
-## 我需要如何检查EKF的执行效果？
+## How do I check the EKF performance?
 
-在飞行过程中，EKF 的输出（outputs）, 状态（states） 以及状态数据（status data）会发布到许多uORB话题（Topic）中，这些话题会存储到SD卡中。
-下面的介绍假设数据已经以.ulog文件的形式被记录，为了使用.ulog格式，需要将 SYS\_LOGGER 参数置1。
+EKF outputs, states and status data are published to a number of uORB topics which are logged to the SD card during flight. The following guide assumes that data has been logged using the .ulog file format. To use the .ulog format, set the SYS\_LOGGER parameter to 1.
 
-.ulog格式文件可以在python中使用[PX4 pyulog library](https://github.com/PX4/pyulog)来进行分析。
+The .ulog format data can be parsed in python by using the [PX4 pyulog library](https://github.com/PX4/pyulog).
 
-大部分 EKF 数据都在.ulog文件中的 [ekf2_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)和 [estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 这两个uORB消息里面。
+Most of the EKF data is found in the [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) and [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) uORB messages that are logged to the .ulog file.
 
-### Output Data（输出数据）
+A python script that automatically generates analysis plots and metadata can be found [here](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/process_logdata_ekf.py). To use this script file, cd to the `Tools/ecl_ekf` directory and enter `python process_logdata_ekf.py <log_file.ulg>`. This saves performance metadata in a csv file named `<log_file>.mdat.csv` and plots in a pdf file named `<log_file>.pdf`.
 
-* 姿态输出数据在 [vehicle\_attitude](https://github.com/PX4/Firmware/blob/master/msg/vehicle_attitude.msg) 消息中。
-* 本地位置输出在 [vehicle\_local\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_local_position.msg) 消息中。
-* 全局 \(WGS-84\) 输出数据在 [vehicle\_global\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_global_position.msg) 消息中。
-* 风速输出数据在 [wind\_estimate](https://github.com/PX4/Firmware/blob/master/msg/wind_estimate.msg) mess消息中。
+Multiple log files in a directory can be analysed using the [batch\_process\_logdata\_ekf.py](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_logdata_ekf.py) script. When this has been done, the performance metadata files can be processed to provide a statistical assessment of the estimator performance across the population of logs using the [batch\_process\_metadata\_ekf.py](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_metadata_ekf.py) script.
 
-### States（状态）
+### Output Data
 
-查看[estimator_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg)中的states\[32\]。状态的索引如下：
+* Attitude output data is found in the [vehicle\_attitude](https://github.com/PX4/Firmware/blob/master/msg/vehicle_attitude.msg) message.
+* Local position output data is found in the [vehicle\_local\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_local_position.msg) message.
+* Global \(WGS-84\) output data is found in the [vehicle\_global\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_global_position.msg) message.
+* Wind velocity output data is found in the [wind\_estimate](https://github.com/PX4/Firmware/blob/master/msg/wind_estimate.msg) message.
 
-* \[0 ... 3\] 四元数
-* \[4 ... 6\] 速度 NED \(m/s\)
-* \[7 ... 9\] 位置 NED \(m\)
-* \[10 ... 12\] IMU 角度增量偏差 XYZ \(rad\)
-* \[13 ... 15\] IMU 速度增量偏差 XYZ \(m/s\)
-* \[16 ... 18\] 地球磁场 NED \(gauss\)
-* \[19 ... 21\] 机体磁场 XYZ \(gauss\)
-* \[22 ... 23\] 风速 NE \(m/s\)
-* \[24 ... 32\] 未使用
+### States
 
-### State Variances（状态方差）
+Refer to states\[32\] in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg). The index map for states\[32\] is as follows:
 
-参考 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的covariances\[28\]（协方差）。 covariances\[28\]的索引图如下:
+* \[0 ... 3\] Quaternions
+* \[4 ... 6\] Velocity NED \(m/s\)
+* \[7 ... 9\] Position NED \(m\)
+* \[10 ... 12\] IMU delta angle bias XYZ \(rad\)
+* \[13 ... 15\] IMU delta velocity bias XYZ \(m/s\)
+* \[16 ... 18\] Earth magnetic field NED \(gauss\)
+* \[19 ... 21\] Body magnetic field XYZ \(gauss\)
+* \[22 ... 23\] Wind velocity NE \(m/s\)
+* \[24 ... 32\] Not Used
 
-* \[0 ... 3\] 四元数
-* \[4 ... 6\] 速度 NED \(m/s\)^2
-* \[7 ... 9\] 位置 NED \(m^2\)
-* \[10 ... 12\] IMU 角度增量偏差 XYZ \(rad^2\)
-* \[13 ... 15\] IMU 速度增量偏差 XYZ \(m/s\)^2
-* \[16 ... 18\] 地球磁场 NED \(gauss^2\)
-* \[19 ... 21\] 机体磁场 XYZ \(gauss^2\)
-* \[22 ... 23\] 风速 NE \(m/s\)^2
-* \[24 ... 28\] 未使用
+### State Variances
 
-### 观测新息（Observation Innovations）
+Refer to covariances\[28\] in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg). The index map for covariances\[28\] is as follows:
 
-* 磁力计 XYZ \(gauss\) : 参考 mag\_innov\[3\] ，位于 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
-* 偏航角 \(rad\) : 参考 heading\_innov ，位于 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* 速度和位置新息 : 参考 vel\_pos\_innov\[6\] ，位于 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。vel\_pos\_innov\[6\] 的索引图如下:
-  * \[0 ... 2\] 速度 NED \(m/s\)
-  * \[3 ... 5\] 位置 NED \(m\)
-* 真实风速 \(m/s\) : 参考 airspeed\_innov ，位于 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
-* 合成侧滑 \(rad\) : 参考 beta\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
-* 光流 XY \(rad/sec\) : 参考 flow\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
-* 地面上方高度 \(m\) : 参考 hagl\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
+* \[0 ... 3\] Quaternions
+* \[4 ... 6\] Velocity NED \(m/s\)^2
+* \[7 ... 9\] Position NED \(m^2\)
+* \[10 ... 12\] IMU delta angle bias XYZ \(rad^2\)
+* \[13 ... 15\] IMU delta velocity bias XYZ \(m/s\)^2
+* \[16 ... 18\] Earth magnetic field NED \(gauss^2\)
+* \[19 ... 21\] Body magnetic field XYZ \(gauss^2\)
+* \[22 ... 23\] Wind velocity NE \(m/s\)^2
+* \[24 ... 28\] Not Used
 
-### 观测信息方差
+### Observation Innovations
 
-* 磁力计 XYZ \(gauss^2\) : 参考 mag\_innov\_var\[3\] ，位于 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
-* 偏航角 \(rad^2\) : 参考 heading\_innov\_var，位于the ekf2\_innovations message.
-* 速度和位置新息 : 参考 vel\_pos\_innov\_var\[6\]，位于[ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。 vel\_pos\_innov\[6\] 的索引图如下:
-  * \[0 ... 2\] 速度 NED \(m/s\)^2
-  * \[3 ... 5\] 位置 NED \(m^2\)
-* 真实风速 \(m/s\)^2 : 参考 airspeed\_innov\_var ，位于 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
-* 合成侧滑 \(rad^2\) : 参考 beta\_innov\_var ，位于 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
-* 光流 XY \(rad/sec\)^2 : 参考 flow\_innov\_var ，位于 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
-* 地面上方高度 \(m^2\) : 参考 hagl\_innov\_var ，位于 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg)。
+* Magnetometer XYZ \(gauss\) : Refer to mag\_innov\[3\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Yaw angle \(rad\) : Refer to heading\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Velocity and position innovations : Refer to vel\_pos\_innov\[6\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg). The index map for vel\_pos\_innov\[6\] is as follows: 
+  * \[0 ... 2\] Velocity NED \(m/s\)
+  * \[3 ... 5\] Position NED \(m\)
+* True Airspeed \(m/s\) : Refer to airspeed\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Synthetic sideslip \(rad\) : Refer to beta\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Optical flow XY \(rad/sec\) : Refer to flow\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Height above ground \(m\) : Refer to hagl\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 
-### Output Complementary Filter（输出互补滤波器）
+### Observation Innovation Variances
 
-输出互补滤波用于将状态从融合时间范围推进到当前时间。要查看融合时间范围内测量的角度、速度和位置追踪误差量级（magnitude），参考 ekf2\_innovations 中的 output\_tracking\_error\[3\]索引图如下：
+* Magnetometer XYZ \(gauss^2\) : Refer to mag\_innov\_var\[3\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Yaw angle \(rad^2\) : Refer to heading\_innov\_var in the ekf2\_innovations message.
+* Velocity and position innovations : Refer to vel\_pos\_innov\_var\[6\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg). The index map for vel\_pos\_innov\_var\[6\] is as follows: 
+  * \[0 ... 2\] Velocity NED \(m/s\)^2
+  * \[3 ... 5\] Position NED \(m^2\)
+* True Airspeed \(m/s\)^2 : Refer to airspeed\_innov\_var in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Synthetic sideslip \(rad^2\) : Refer to beta\_innov\_var in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Optical flow XY \(rad/sec\)^2 : Refer to flow\_innov\_var in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* Height above ground \(m^2\) : Refer to hagl\_innov\_var in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 
-* \[0\] 角度追踪误差量级 \(rad\)
-* \[1\] 速度追踪误差量级 \(m/s\)。 可以通过调整参数 EKF2\_TAU\_VEL来调整速度追踪时间常数。降低这个参数会降低稳态误差，但是会增加NED速度输出的观测噪声数量。
-* \[2\] 位置追踪误差量级 \(m\)。   可以通过调整参数 EKF2\_TAU\_POS来调整位置追踪时间常数。降低这个参数会降低稳态误差，但是会增加NED位置输出的观测噪声数量。
+### Output Complementary Filter
 
-### EKF 误差
+The output complementary filter is used to propagate states forward from the fusion time horizon to current time. To check the magnitude of the angular, velocity and position tracking errors measured at the fusion time horizon, refer to output\_tracking\_error\[3\] in the ekf2\_innovations message. The index map is as follows:
 
-EKF对于恶劣状态下的状态和协方差更新内置了误差检测。 参考 filter\_fault\_flags ，位于 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg)。
+* \[0\] Angular tracking error magnitude \(rad\)
+* \[1\] Velocity tracking error magnitude \(m/s\). The velocity tracking time constant can be adjusted using the [EKF2_TAU_VEL](../advanced/parameter_reference.md#EKF2_TAU_VEL) parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the NED velocity outputs.
+* \[2\] Position tracking error magnitude \(m\). The position tracking time constant can be adjusted using the [EKF2_TAU_POS](../advanced/parameter_reference.md#EKF2_TAU_POS) parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the NED position outputs.
 
-### 观测误差
+### EKF Errors
 
-有两种类型的观测错误:
+The EKF contains internal error checking for badly conditioned state and covariance updates. Refer to the filter\_fault\_flags in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).
 
-* 数据丢失。一个例子就是测距仪不能提供返回值。
-* 新息，就是状态估计和传感器观测之间的差异超出了。一个例子就是过多的震动导致大的垂直位置误差，导致气压高度测量值被拒绝。
+### Observation Errors
 
-这些都会导致观测数据被拒绝足够长时间而导致EKF尝试使用传感器观测值重置状态。所有的观测都有一个统计置信度检测应用于新息。检测的标准差的数目受到每种观测类型的参数 EKF2\_&lt;&gt;\_GATE 的控制。
+There are two categories of observation faults:
 
-测试水平（Test levels）在 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中，如下所示:
+* Loss of data. An example of this is a range finder failing to provide a return.
+* The innovation, which is the difference between the state prediction and sensor observation is excessive. An example of this is excessive vibration causing a large vertical position error, resulting in the barometer height measurement being rejected.
 
-* mag\_test\_ratio : 最大磁力计新息分量与新息测试限制之比
-* vel\_test\_ratio : 最大速度新息分量与新息测试限制之比
-* pos\_test\_ratio : 最大水平位置新息分量与新息测试限制之比
-* hgt\_test\_ratio : 最大垂直位置新息分量与新息测试限制之比
-* tas\_test\_ratio : 最大真实风速新息分量与新息测试限制之比
-* hagl\_test\_ratio : 最大地面上方高度新息分量与新息测试限制之比
+Both of these can result in observation data being rejected for long enough to cause the EKF to attempt a reset of the states using the sensor observations. All observations have a statistical confidence checks applied to the innovations. The number of standard deviations for the check are controlled by the EKF2\_\*\_GATE parameter for each observation type.
 
-对于每个传感器的二进制 pass/fail 汇总, 参考 innovation\_check\_flags ，位于 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg)。
+Test levels are available in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) as follows:
 
-### GPS 质量检测
+* mag\_test\_ratio : ratio of the largest magnetometer innovation component to the innovation test limit
+* vel\_test\_ratio : ratio of the largest velocity innovation component to the innovation test limit
+* pos\_test\_ratio : ratio of the largest horizontal position innovation component to the innovation test limit
+* hgt\_test\_ratio : ratio of the vertical position innovation to the innovation test limit
+* tas\_test\_ratio : ratio of the true airspeed innovation to the innovation test limit
+* hagl\_test\_ratio : ratio of the height above ground innovation to the innovation test limit
 
-开始GPS辅助之前，EKF进行了一系列的GPS质量检测。这些检测由参数 EKF2\_GPS\_CHECK 和 EKF2\_REQ&lt;&gt;控制。这些检测的 pass/fail 状态记录在 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).gps\_check\_fail\_flags 消息中。当所有要求的GPS检测通过，这个整数将为0。如果EKF没有开始GPS校准，查看 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的 gps\_check\_fail\_flags 位掩码的定义。
+For a binary pass/fail summary for each sensor, refer to innovation\_check\_flags in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).
 
-### EKF 数值误差
+### GPS Quality Checks
 
-为了降低对处理器的要求，对所有的运算EKF使用单精度浮点类型，对协方差预测和更新方程使用一阶近似。这意味着当重新调试EKF时有可能遇到异常情况，在其中协方差矩阵操作条件变得很恶劣以至于导致状态估计中产生发散或者明显的误差。
+The EKF applies a number of GPS quality checks before commencing GPS aiding. These checks are controlled by the [EKF2_GPS_CHECK](../advanced/parameter_reference.md#EKF2_GPS_CHECK) and `EKF2_REQ_*` parameters. The pass/fail status for these checks is logged in the [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).gps\_check\_fail\_flags message. This integer will be zero when all required GPS checks have passed. If the EKF is not commencing GPS alignment, check the value of the integer against the bitmask definition gps\_check\_fail\_flags in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).
 
-为了阻止这个，每一个协方差和状态更新步骤包含以下误差检测和修正步骤：
+### EKF Numerical Errors
 
-* 如果新息方差小于观测方差（这要求一个负的状态方差，这是不可能的）或者协方差更新将对任何状态产生负的方差：
-  * 状态和协方差更新被跳过
-  * 协方差矩阵中相应的行和列被重置
-  * 失败被记录在 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) filter\_fault\_flags 消息中
+The EKF uses single precision floating point operations for all of its computations and first order approximations for derivation of the covariance prediction and update equations in order to reduce processing requirements. This means that it is possible when re-tuning the EKF to encounter conditions where the covariance matrix operations become badly conditioned enough to cause divergence or significant errors in the state estimates.
 
+To prevent this, every covariance and state update step contains the following error detection and correction steps:
 
-* 状态方差 \(协方差矩阵中的对角线\) 被限制成非负值
-* 上限被应用到状态方差中去
-* 协方差矩阵强制对称
+* If the innovation variance is less than the observation variance \(this requires a negative state variance which is impossible\) or the covariance update will produce a negative variance for any of the states, then: 
+  * The state and covariance update is skipped
+  * The corresponding rows and columns in the covariance matrix are reset
+  * The failure is recorded in the [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) filter\_fault\_flags message
+* State variances \(diagonals in the covariance matrix\) are constrained to be non-negative.
+* An upper limit is applied to state variances.
+* Symmetry is forced on the covariance matrix.
 
-重新调试滤波器后，像降低噪声变量、estimator\_status.gps\_check\_fail\_flags 的数值这样的部分重新调试应该再次检测以确保仍然为零。
+After re-tuning the filter, particularly re-tuning that involve reducing the noise variables, the value of estimator\_status.gps\_check\_fail\_flags should be checked to ensure that it remains zero.
 
-## 如果高度估计发散该怎么办？
+## What should I do if the height estimate is diverging?
 
-EKF高度在飞行中远离GPS和高度计测量值，最常见原因是震动导致的IMU限幅（clipping）和/或混淆（aliasing）。如果种种情况出现，以下迹象在数据中应该很明显：
+The most common cause of EKF height diverging away from GPS and altimeter measurements during flight is clipping and/or aliasing of the IMU measurements caused by vibration. If this is occurring, then the following signs should be evident in the data
 
-* [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).vel\_pos\_innov\[3\] and  [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).vel\_pos\_innov\[5\] 都将有同样的迹象。
-* [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt\_test\_ratio 将大于1.0
+* [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).vel\_pos\_innov\[3\] and [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).vel\_pos\_innov\[5\] will both have the same sign.
+* [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt\_test\_ratio will be greater than 1.0
 
+The recommended first step is to ensure that the autopilot is isolated from the airframe using an effective isolation mounting system. An isolation mount has 6 degrees of freedom, and therefore 6 resonant frequencies. As a general rule, the 6 resonant frequencies of the autopilot on the isolation mount should be above 25Hz to avoid interaction with the autopilot dynamics and below the frequency of the motors.
 
-推荐第一步使用一个有效的隔离安装系统确保飞控与机架隔离。一个隔离底座具有6个自由度，因此有6个共振频率。作为通用规则，安装在隔离底座上的飞控的的6个共振频率应该大于25Hz以避免与飞控动力学的交叉，并且低于点击的频率。
+An isolation mount can make vibration worse if the resonant frequencies coincide with motor or propeller blade passage frequencies.
 
-如果共振频率与点击或螺旋桨的转动频率重合，隔离底座只会使得振动情况更加恶劣。
+The EKF can be made more resistant to vibration induced height divergence by making the following parameter changes:
 
-通过进行以下参数修改，EKF可以变得对于震动引起的高度发散更加具有抵抗力：
+* Double the value of the innovation gate for the primary height sensor. If using barometric height this is [EKF2_BARO_GATE](../advanced/parameter_reference.md#EKF2_BARO_GATE).
+* Increase the value of [EKF2_ACC_NOISE](../advanced/parameter_reference.md#EKF2_ACC_NOISE) to 0.5 initially. If divergence is still occurring, increase in further increments of 0.1 but do not go above 1.0
 
-* 加倍主要高度传感器的新息阈值。如果使用的是气压计高度对应的就是EK2\_EKF2\_BARO\_GATE。
-* 开始时提高EKF2\_ACC\_NOISE的数值到0.5。如果发散还是会出现，每次增加0.1，但是不要超过1.0。
+Note that the effect of these changes will make the EKF more sensitive to errors in GPS vertical velocity and barometric pressure.
 
-注意这些改变会使得EKF对于GPS垂直速度和气压更加敏感。
+## What should I do if the position estimate is diverging?
 
-## 如果位置估计发散该怎么办？
+The most common causes of position divergence are:
 
-位置发散最常见的原因如下：
+* High vibration levels. 
+  * Fix by improving mechanical isolation of the autopilot.
+  * Increasing the value of [EKF2_ACC_NOISE](../advanced/parameter_reference.md#EKF2_ACC_NOISE) and [EKF2_GYR_NOISE](../advanced/parameter_reference.md#EKF2_GYR_NOISE) can help, but does make the EKF more vulnerable to GPS glitches.
+* Large gyro bias offsets. 
+  * Fix by re-calibrating the gyro. Check for excessive temperature sensitivity \(&gt; 3 deg/sec bias change during warm-up from a cold start and replace the sensor if affected of insulate to to slow the rate of temperature change.
+* Bad yaw alignment 
+  * Check the magnetometer calibration and alignment.
+  * Check the heading shown QGC is within within 15 deg truth
+* Poor GPS accuracy 
+  * Check for interference
+  * Improve separation and shielding
+  * Check flying location for GPS signal obstructions and reflectors \(nearby tall buildings\)
+* Loss of GPS
 
-* 高振动水平。
-  * 通过提升飞控的机械隔离水平。
-  * 提高 EKF2\_ACC\_NOISE 和 EKF2\_GYR\_NOISE 的数值会有效，但是会使得EKF更易受小故障的干扰。
+Determining which of these is the primary cause requires a methodical approach to analysis of the EKF log data:
 
-* 大的陀螺仪偏差的偏移。
-  * 通过重新校准陀螺仪来修正。检查过量的温度灵敏性（在从冷启动逐渐加热的过程中存在&gt; 3 deg/sec的偏差变化），并且如果收到影响就替换传感器以降低随着温度变化的变化速率。
+* Plot the velocity innovation test ratio - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio
+* Plot the horizontal position innovation test ratio - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).pos\_test\_ratio
+* Plot the height innovation test ratio - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt\_test\_ratio
+* Plot the magnetometer innovation test ratio - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).mag\_test\_ratio
+* Plot the GPS receiver reported speed accuracy - [vehicle\_gps\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_gps_position.msg).s\_variance\_m\_s
+* Plot the IMU delta angle state estimates - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).states\[10\], states\[11\] and states\[12\]
+* Plot the EKF internal high frequency vibration metrics: 
+  * Delta angle coning vibration - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe\[0\]
+  * High frequency delta angle vibration - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe\[1\]
+  * High frequency delta velocity vibration - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe\[2\]
 
-* 糟糕的偏航校准
-  * 检查磁力计的校正和对齐。
-  * 检查QGC中显示朝向与真实朝向偏差在15度以内。
-
-* 质量很差的GPS精度
-  * 检查干扰
-  * 提升隔离和屏蔽
-  * 检查飞行位置是否有GPS信号阻碍或者反射（接近高楼大厦）
-
-
-* GPS信号丢失
-
-确定哪一个是主要因需需要系统的方法来分析EKF日志数据:
-
-* 画出速度新息测试比曲线 - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio
-
-* 画出水平位置新息比曲线 - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg)。pos\_test\_ratio
-
-* 画出高度新息比曲线 - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt\_test\_ratio
-
-* 画出磁力计新息比曲线 - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).mag\_test\_ratio
-
-* 画出GPS报告的速度精度曲线 - [vehicle\_gps\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_gps_position.msg).s\_variance\_m\_s
-
-* 画出IMU角度增量状态估计曲线 - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).states\[10\], states\[11\] and states\[12\]
-
-* 画出EKF内置的高频振动度量：
-  * 角度增量锥进振动 - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe\[0\]
-  * 高频角度增量振动 - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe\[1\]
-  * 高频速度增量振动 - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe\[2\]
-
-
-常规操作期间，搜所有的测试比例应该保持在0.5以下，只是偶尔会出现尖峰，如下面一次顺利的飞行中的例子所示：
+During normal operation, all the test ratios should remain below 0.5 with only occasional spikes above this as shown in the example below from a successful flight:
 
 ![Position, Velocity, Height and Magnetometer Test Ratios](../../assets/ecl/test_ratios_-_successful.png)
 
-下图显示了一台减震良好的多轴飞行器的EKF振动度量。可以看到起飞和降落过程中的着陆冲击和升高的振动。要提供关于最大阈值的相关建议，这些数据还不足够。
+The following plot shows the EKF vibration metrics for a multirotor with good isolation. The landing shock and the increased vibration during takeoff and landing can be seen. Insufficient data has been gathered with these metrics to provide specific advice on maximum thresholds.
 
 ![](../../assets/ecl/vibration_metrics_-_successful.png)
 
-以上振动度量价值有限，因为振动出现在了IMU采样频率（对于大多数飞控板而言是1 kHz）附近，这将导致高频振动度量中不会出现的偏移出现在数据之中。唯一的探测混淆误差的方式是在观察到它们影响惯性导航系统精度和导致新息水平提升。
+The above vibration metrics are of limited value as the presence of vibration at a frequency close to the IMU sampling frequency \(1 kHz for most boards\) will cause offsets to appear in the data that do not show up in the high frequency vibration metrics. The only way to detect aliasing errors is in their effect on inertial navigation accuracy and the rise in innovation levels.
 
-除了产生&gt; 1.0的位置和速度测试比，不同的误差机理也会以不同的方式影响其他测试比：
+In addition to generating large position and velocity test ratios of &gt; 1.0, the different error mechanisms affect the other test ratios in different ways:
 
-### 确定超量振动
+### Determination of Excessive Vibration
 
-高振动水平通常影响垂直位置和速度新息还有水平分量。磁力计测试水平只受到很小程度的影响。
+High vibration levels normally affect vertical position and velocity innovations as well as the horizontal components. Magnetometer test levels are only affected to a small extent.
 
-\(此处需要插入显示恶劣振动的示意图/insert example plots showing bad vibration here\)
+\(insert example plots showing bad vibration here\)
 
-### 确定过量的陀螺仪偏差
+### Determination of Excessive Gyro Bias
 
-大的陀螺仪偏差偏移量通常特征是飞行中角度增量偏差的数值大于5E-4（相当于~3 deg/sec），如果偏航轴受到影响也会导致磁力计测试比的大大提高。除非是极端情形，高度通常不会受到影响。如果滤波器在飞行前有时间收敛，把偏差值提高至5 deg/sec也是可以承受的。如果位置发散，commander进行的飞行前检查应当阻止解锁。
+Large gyro bias offsets are normally characterised by a change in the value of delta angle bias greater than 5E-4 during flight \(equivalent to ~3 deg/sec\) and can also cause a large increase in the magnetometer test ratio if the yaw axis is affected. Height is normally unaffected other than extreme cases. Switch on bias value of up to 5 deg/sec can be tolerated provided the filter is given time time settle before flying . Pre-flight checks performed by the commander should prevent arming if the position is diverging.
 
-\(此处需要插入显示恶劣陀螺仪偏差的示意图/insert example plots showing bad gyro bias here\)
+\(insert example plots showing bad gyro bias here\)
 
-### 确定糟糕的偏航精度
+### Determination of Poor Yaw Accuracy
 
-当飞行器开始在惯导系统和GPS测量值计算出来的速度方向内不连续的移动时，恶劣的偏航校准导致速度测试比迅速增加。磁力计新息受到轻微影响。高度通常不受影响。
+Bad yaw alignment causes a velocity test ratio that increases rapidly when the vehicle starts moving due inconsistency in the direction of velocity calculated by the inertial nav and the GPS measurement. Magnetometer innovations are slightly affected. Height is normally unaffected.
 
-\(此处需要插入显示恶劣的偏航校准的示意图/insert example plots showing bad yaw alignment here\)
+\(insert example plots showing bad yaw alignment here\)
 
-### 确定糟糕的GPS精度
+### Determination of Poor GPS Accuracy
 
-糟糕的GPS精度通常伴随着GPS接收器的报告速度误差的上升，连同新息的上升。多路径、遮蔽、干扰导致的瞬态误差是更常见的原因。这里有一个GPS精度突然丢失的示例，此时多旋翼开始漂移远离悬停位置且必须使用摇杆进行修正。 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio 上升到大于1暗示GPS速度与其他测量量不连续并已经被拒绝。
+Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver in conjunction with a rise in innovations. Transient errors due to multipath, obscuration and interference are more common causes. Here is an example of a temporary loss of GPS accuracy where the multi-rotor started drifting away from its loiter location and had to be corrected using the sticks. The rise in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio to greater than 1 indicates the GPs velocity was inconsistent with other measurements and has been rejected.
 
 ![](../../assets/ecl/gps_glitch_-_test_ratios.png)
 
-这里伴随着GPS接收器报告速度精度的增加，这暗示着可能是一个GPS错误。
+This is accompanied with rise in the GPS receivers reported velocity accuracy which indicates that it was likely a GPS error.
 
 ![](../../assets/ecl/gps_glitch_-_reported_receiver_accuracy.png)
 
-如果我们也看看GPS水平速度新息和新息方差，就能看到伴随着GPS '失灵（glitch）' 事件，大的尖峰出现在北向速度新息。
+If we also look at the GPS horizontal velocity innovations and innovation variances, we can see the large spike in North velocity innovation that accompanies this GPS 'glitch' event.
 
 ![](../../assets/ecl/gps_glitch_-_velocity_innovations.png)
 
-### 确定GPS数据丢失
+### Determination of GPS Data Loss
 
-GPS数据丢失将被速度和位置新息测试比'一蹶不振（flat-lining）'地显示出来。如果这个出现，检查 vehicle\_gps\_position 中的其他GPS状态数据找到更深入的信息。
+Loss of GPS data will be shown by the velocity and position innovation test ratios 'flat-lining'. If this occurs, check the other GPS status data in `vehicle_gps_position` for further information.
 
-\(此处插入显示GPS数据丢失的示例图/insert example plots showing loss of GPS data here\)
+The following plot shows the NED GPS velocity innovations `ekf2_innovations_0.vel_pos_innov[0 ... 2]`, the GPS NE position innovations `ekf2_innovations_0.vel_pos_innov[3 ... 4]` and the Baro vertical position innovation `ekf2_innovations_0.vel_pos_innov[5]` generated from a simulated VTOL flight using SITL Gazebo.
+
+The simulated GPS was made to lose lock at 73 seconds. Note the NED velocity innovations and NE position innovations 'flat-line' after GPs is lost. Note that after 10 seconds without GPS data, the EKF reverts back to a static position mode using the last known position and the NE position innovations start to change again.
+
+![GPS Data Loss - in SITL](../../assets/ecl/gps_data_loss_-_velocity_innovations.png)
