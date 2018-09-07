@@ -1,5 +1,9 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/getting_started.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Getting Started
 
+This section contains topics about getting started with PX4 development:
+
+* [Initial Setup](../setup/config_initial.md)
+* [Toolchain Installation](../setup/dev_env.md)
+* [Building the Code](../setup/building_px4.md)
+* [Writing an Application](../apps/hello_sky.md)
+* [Application/Module Template](../apps/module_template.md)
