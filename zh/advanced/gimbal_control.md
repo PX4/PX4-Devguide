@@ -1,57 +1,73 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/advanced/gimbal_control.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Gimbal Control Setup
 
-# 设置云台控制
+If you want to control a gimbal with a camera (or any other payload) attached to the vehicle, you need to configure how you want to control it and how PX4 can command it. This page explains the setup.
 
+PX4 contains a generic mount/gimbal control driver with different input and output methods. The input defines how you control the gimbal: via RC or via MAVLink commands (for example in missions or surveys). The output defines how the gimbal is connected: some support MAVLink commands, others use PWM (described as AUX output in the following). Any input method can be selected to drive any output. Both have to be configured via parameters.
 
-PX4包含一个通用的安装/云台控制驱动程序，具有不同的输入和输出模式。可以选择任何输入模式来驱动任何输出。
+## Parameters
 
-首先，确认驱动运行，运行 `vmount start`, 然后配置其参数。
+[These parameters](../advanced/parameter_reference.md#mount) are used to setup the mount driver. The most important ones are the input (`MNT_MODE_IN`) and the output (`MNT_MODE_OUT`) mode. By default, the input is disabled and the driver does not run. After selecting the input mode, reboot the vehicle so that the mount driver starts.
 
-## 参数
-参数描述在[src/drivers/vmount/vmount_params.c](https://github.com/PX4/Firmware/blob/master/src/drivers/vmount/vmount_params.c)中。 其中，最重要的参数是输入 (`MNT_MODE_IN`)和输出 (`MNT_MODE_OUT`)模式。默认情况下，禁用输入。可以选择任何输入方式来驱动任何可用的输出。
-如果选择了mavlink输入模式，则可以另外启动手动RC输入 (`MNT_MAN_CONTROL`)。只要没有收到mavlink消息，或mavlink明确请求RC模式，参数都是有用的。
+If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from mavlink to RC, a large stick motion is required.
 
+## AUX output
 
+If the output mode is set to `AUX`, a mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (overriding any aux mixer provided by the airframe configuration).
 
-### 配置云台混控器的AUX输出
-云台使用控制组#2(请参阅混控和执行器篇)，这是混控器设置：
+The output assignment is as following:
 
-```
-# roll
-M: 1
-O:      10000  10000      0 -10000  10000
-S: 2 0  10000  10000      0 -10000  10000
+- **AUX1**: Pitch
+- **AUX2**: Roll
+- **AUX3**: Yaw
+- **AUX4**: Shutter/retract
 
-# pitch
-M: 1
-O:      10000  10000      0 -10000  10000
-S: 2 1  10000  10000      0 -10000  10000
+### Customizing the mixer configuration
 
-# yaw
-M: 1
-O:      10000  10000      0 -10000  10000
-S: 2 2  10000  10000      0 -10000  10000
-```
+> **Note** Read [Mixing and Actuators](../concept/mixing.md) for an explanation of how mixers work and the format of the mixer file.
 
-将所需要的配置添加到主混控器或者辅混控器。
+The outputs can be customized by [creating a mixer file](../advanced/system_startup.md#starting-a-custom-mixer) on the SD card with name `etc/mixers/mount.aux.mix`.
 
-## 测试
-驱动程序提供了一些简单的测试命令。需要先运行`vmount stop`停止。以下描述了SITL中的测试，但是这些命令行也可在真是设备上运行。
+A basic basic mixer configuration for a mount is shown below.
 
-开启仿真(无需为此更改参数):
-```
-make posix gazebo_typhoon_h480
-```
-先确认已开桨，比如使用命令 `commander takeoff`，然后运行：
-```
-vmount test yaw 30
-```
-以控制云台。请注意，仿真中云台本身会增稳，因此，如果你发送mavlink命令，请将 `stabilize`  标志位置为false。
+    # roll
+    M: 1
+    O:      10000  10000      0 -10000  10000
+    S: 2 0  10000  10000      0 -10000  10000
+    
+    # pitch
+    M: 1
+    O:      10000  10000      0 -10000  10000
+    S: 2 1  10000  10000      0 -10000  10000
+    
+    # yaw
+    M: 1
+    O:      10000  10000      0 -10000  10000
+    S: 2 2  10000  10000      0 -10000  10000
+    
+
+## SITL
+
+The Typhoon H480 model comes with a preconfigured simulated gimbal. To run it, use:
+
+    make posix gazebo_typhoon_h480
+    
+
+To just test the mount driver on other models or simulators, make sure the driver runs, using `vmount start`, then configure its parameters.
+
+## Testing
+
+The driver provides a simple test command - it needs to be stopped first with `vmount stop`. The following describes testing in SITL, but the commands also work on a real device.
+
+Start the simulation with (no parameter needs to be changed for that):
+
+    make posix gazebo_typhoon_h480
+    
+
+Make sure it's armed, eg. with `commander takeoff`, then use for example
+
+    vmount test yaw 30
+    
+
+to control the gimbal. Note that the simulated gimbal stabilizes itself, so if you send mavlink commands, set the `stabilize` flags to false.
 
 ![Gazebo Gimbal Simulation](../../assets/gazebo/gimbal-simulation.png)
-
-
-
