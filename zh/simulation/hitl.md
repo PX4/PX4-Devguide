@@ -1,61 +1,177 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/simulation/hitl.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Hardware in the Loop Simulation \(HITL\)
 
-# 硬件在环仿真
+Hardware-in-the-Loop (HITL or HIL) is a simulation mode in which normal PX4 firmware is run on real flight controller hardware. This approach has the benefit of testing most of the actual flight code on the real hardware.
 
+PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and fixed wing (using Gazebo or X-Plane demo/full version).
 
-硬件在环仿真指的自驾仪与仿真器相连并且所有的代码运行在自驾仪上的仿真。这种方法的优点是可以测试代码在实际处理器中的运行情况。
+## HITL-Compatible Airframes {#compatible_airframe}
 
-## 配置硬件在环仿真系统
+The current set of compatible airframes vs Simulators is:
 
-PX4支持多旋翼（使用jMAVSim）和固定翼（使用X-Plane demo或者full）的硬件在环仿真。虽然支持Flightgear，但是推荐使用X-Plane。通过机架菜单配置来使用硬件在环仿真。
+| Airframe                                                                                                | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim |
+| ------------------------------------------------------------------------------------------------------- | --------------- | ------- | ------ | ------- |
+| <a href="../airframes/airframe_reference.md#plane_simulation_(plane)_hilstar_(xplane)">HILStar (X-Plane)</a>                                                                               | 1000            | Y       |        |         |
+| <a href="../airframes/airframe_reference.md#copter_simulation_(copter)_hil_quadcopter_x">HIL Quadcopter X</a>                                                                               | 1001            |         | Y      | Y       |
+| <a href="../airframes/airframe_reference.md#vtol_standard_vtol_hil_standard_vtol_quadplane">HIL Standard VTOL QuadPlane</a>                                                                               | 1002            |         | Y      |         |
+| [Standard planes](../airframes/airframe_reference.md#plane_standard_plane_standard_plane)               | 2100            | Y       |        |         |
+| [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadrotor_x) copter | 4001            |         | Y      | Y       |
+| [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450)      | 4011            |         | Y      | Y       |
 
-![](../../assets/gcs/qgc_hil_config.png)
+## HITL Simulation Environment {#simulation_environment}
 
+With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL configuration is slightly different for Gazebo, jMAVSim and X-Plane.
 
-## 使用jMAVSim (四旋翼)
+> **Tip** For more information see: [Simulation](../simulation/README.md).
 
-- 确保QGroundControl没有运行（或通过串口访问设备）
+### JMAVSim/Gazebo HITL Environment
 
-- 在HITL模式下运行jMAVSim(必要时更换串口):
-  ```
-  ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
-  ```
+JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*.
 
-- 控制台将显示从自驾仪发出的mavlink信息。
+> **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable). For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)).
 
-- 然后运行QGroundControl并通过默认UDP配置进行连接。
+<span></span>
 
+> **Tip** Gazebo can additionally share MAVLink data with an offboard API!
 
-## 使用X-Plane
-#### 启用X-Plane的远程接口
+The diagram below shows the simulation environment:
 
-在X-Plane中必须进行两项关键设置：在Settings -&gt; Data Input and Output中，参照图中复选框设置：
+* A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
+* *jMAVSim* or *Gazebo* are connected to the flight controller via USB.
+* The simulator is connected to *QGroundControl* via UDP and bridges its MAVLink messages to PX4.
+* (Optional) A serial connection can be used to connect Joystick/Gamepad hardware via *QGroundControl*.
+* (Optional - Gazebo only) Gazebo can also connect to an offboard API and bridge MAVLink messages to PX4.
 
-![](../../assets/gcs/xplane_data_config.png)
+![HITL Setup - jMAVSim and Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
 
-在Settings -&gt; Net Connections的Data选项卡中，设置localhost以及端口49005作为IP地址，如下图所示：
+### X-Plane HITL Environment
 
-![](../../assets/gcs/xplane_net_config.png)
+*QGroundControl* is connected to the flight controller hardware via USB, and acts as a gateway to forward data between the X-Plane simulator running on a development computer, PX4, and any offboard API. The diagram below shows the simulation environment:
 
-### 在QGroundControl中启用HITL
+* A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
+* *QGroundControl* is connected to the flight controller via USB.
+* *QGroundControl* is connected to the simulator and offboard API via UDP.
+* A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
-在Widgets -&gt; HIL Config中，选中下拉菜单中的X-Plane 10，点击'connect'。一旦系统成功连接，电池状态，GPS状态和飞行器位置应该变为有效：
+![HITL Setup - X-Plane](../../assets/simulation/px4_hitl_overview_xplane.png)
 
-![](../../assets/gcs/qgc_sim_run.png)
+## HITL vs SITL
 
-## 切换到Joystick输入
+SITL runs on a development computer in a simulated environment, and uses firmware specifically generated for that environment. Other than simulation drivers to provide fake environmental data from the simulator the system behaves normally.
 
-如果相比遥控器更喜欢使用joystick，那么可以设置参数`COM_RC_IN_MODE`为1来启用joystick。可以在Command参数组中找到这个参数。
+By contrast, HITL runs normal PX4 firmware in "HITL mode", on normal hardware. The simulation data enters the system at a different point than for SITL. Core modules like commander and sensors have HIL modes at startup that bypass some of the normal functionality.
 
-## 在HITL中执行自动飞行任务
+In summary, HITL runs PX4 on the actual hardware using standard firmware, but SITL actually executes more of the standard system code.
 
-切换到flight planning页面，在飞机前面放置一个路径点。点击同步图标向自驾仪发送路径点。
+## Setting up HITL
 
-接下来在工具栏的飞行模式菜单中选择MISSION模式，点击'DISARMED'解锁飞机。飞机将起飞并围绕起飞点盘旋。
+### PX4 Configuration
 
+1. Connect the autopilot directly to *QGroundControl* via USB.
+2. Enable HITL Mode
+    
+    1. Open **Setup > Safety** section.
+    2. Enable HITL mode by selecting **Enabled** from the *HITL Enabled* list:
+        
+        ![QGroundControl HITL configuration](../../assets/gcs/qgc_hitl_config.png)
 
-![](../../assets/gcs/qgc_sim_mission.png)
+3. Select Airframe
+    
+    1. Open **Setup > Airframes**
+    2. Select a [compatible airframe](#compatible_airframe) you want to test. Generally you'll select *HILStar* for Fixed Wing/X-Plane simulator and a *HIL QuadCopter* option for copters (and jMAVSim or Gazebo). Then click "Apply and Restart" on top-right of the Airframe Setup page.
+        
+        ![Select Airframe](../../assets/gcs/qgc_hil_config.png)
 
+4. Calibrate your RC or Joystick, if needed.
+
+5. Setup UDP
+    
+    1. Under the *General* tab of the settings menu, uncheck all *AutoConnect* boxes except for **UDP**.
+        
+        ![QGC Auto-connect settings for HITL](../../assets/gcs/qgc_hitl_autoconnect.png)
+
+6. (Gazebo only) Set the `SYS_COMPANION` parameter to `921600` (see [PX4 User Guide > Parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) for instructions on how to change parameters).
+
+7. (Optional) Configure Joystick and Failsafe. Set the following [parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) in order to use a joystick instead of an RC remote control transmitter:
+    
+    * [COM_RC_IN_MODE](../advanced/parameter_reference.md#COM_RC_IN_MODE) to "Joystick/No RC Checks". This allows joystick input and disables RC input checks.
+    * [NAV_DLL_ACT](../advanced/parameter_reference.md#NAV_DLL_ACT) to "Disabled". This ensures that no RC failsafe actions interfere when not running HITL with a radio control.
+    
+    > **Tip** The *QGroundControl User Guide* also has instructions on [Joystick](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) and [Virtual Joystick](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html) setup.
+
+Once configuration is complete, **close** *QGroundControl* and disconnect the flight controller hardware from the computer.
+
+### Simulator Setup
+
+Follow the appropriate setup steps for your simulator in the following sections.
+
+#### Gazebo
+
+> **Note** Make sure *QGroundControl* is not running!
+
+1. Update the environment variables:
+    
+    ```sh
+    cd <Firmware_clone>
+    make posix_sitl_default gazebo
+    ```
+    
+    In a new terminal, run:
+    
+    ```sh
+    source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
+    ```
+
+2. Open the vehicle model's sdf file (e.g. **Tools/sitl_gazebo/models/iris/iris.sdf**).
+
+3. Under the `mavlink_interface plugin` section, change the `serialEnabled` and `hil_mode` parameters to `true`.
+    
+    ![HIL Parameters](../../assets/simulation/gazebo_sdf_model_hil_params.png)
+
+4. Replace the `serialDevice` parameter (`/dev/ttyACM0`) if necessary.
+    
+    > **Note** The serial device depends on what port is used to connect the vehicle to the computer (this is usually `/dev/ttyACM0`). An easy way to check on Ubuntu is to plug in the autopilot, open up a terminal, and type `dmesg | grep "tty"`. The correct device will be the last one shown.
+
+5. Close Gazebo, connect the flight controller to the computer and wait for it to boot.
+
+6. Run Gazebo in HITL mode 
+        sh
+        gazebo Tools/sitl_gazebo/worlds/iris.world
+
+7. Start *QGroundControl*. It should autoconnect to PX4 and Gazebo.
+
+#### jMAVSim (Quadrotor only)
+
+> **Note** Make sure *QGroundControl* is not running!
+
+1. Connect the flight controller to the computer and wait for it to boot.
+2. Run jMAVSim in HITL mode (replace the serial port name `/dev/ttyACM0` if necessary - e.g. on Mac OS this would be `/dev/tty.usbmodem1`): 
+        sh
+        ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
+
+3. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
+
+#### Using X-Plane (Fixed Wing only)
+
+> **Note** X-Plane is currently not recommended. Among other issues, the frame update rate is too slow to run the system realistically.
+
+To set up X-Plane:
+
+1. Open X-Plane
+2. In **Settings > Data Input and Output**, set these checkboxes:
+    
+    ![X-Plane data configuration](../../assets/gcs/xplane_data_config.png)
+
+3. In **Settings > Net Connections**, in the *Data* tab, set localhost and port 49005 as IP address, as shown below:
+    
+    ![X-Plane network configuration](../../assets/gcs/xplane_net_config.png)
+
+4. Enable X-Plane HITL in *QGroundControl*:
+    
+    1. Open *QGroundControl*
+    2. Open **Widgets > HIL Config**. Select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
+        
+        ![](../../assets/gcs/qgc_sim_run.png)
+
+## Fly an Autonomous Mission in HITL
+
+You should be able to use *QGroundControl* to [run missions](../qgc/README.md#planning-missions) and otherwise control the vehicle.
