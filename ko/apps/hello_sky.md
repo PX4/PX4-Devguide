@@ -304,7 +304,7 @@ Your app will display 5 sensor values in the console and then exit:
 [px4_simple_app] Accelerometer:   0.0489          0.0804          0.0328
 ```
 
-> **Tip** The [Firmware/src/examples/px4_daemon_app](https://github.com/PX4/Firmware/tree/master/src/examples/px4_daemon_app) example shows how to write a daemon (background process) that can be controlled from the command line.
+> **Tip** The [Module Template for Full Applications](../apps/module_template.md) can be used to write background process that can be controlled from the command line.
 
 ## Publishing Data
 
