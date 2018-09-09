@@ -12,18 +12,18 @@ PX4는 다른 입력과 출력 방법을 갖는 일반적인 마운트/짐벌 �
 
 ## AUX 출력
 
-If the output mode is set to `AUX`, a mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (overriding any aux mixer provided by the airframe configuration).
+출력 모드가 `AUTO`로 설정되어 있으면, 믹서 파일은 출력 핀들에 대한 관계 설정 정의가 필요하고 [설치된 믹서](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix)는 (기체 구성시 정의된 모든 AUX 믹서를 무시하고) 자동으로 선택됩니다.
 
-The output assignment is as following:
+출력 할당은 다음과 같습니다:
 
 - **AUX1**: Pitch
 - **AUX2**: Roll
 - **AUX3**: Yaw
-- **AUX4**: Shutter/retract
+- **AUX4**: 셔터/원상복귀
 
-### Customizing the mixer configuration
+### 믹서 구성 커스터마이징
 
-> **Note** Read [Mixing and Actuators](../concept/mixing.md) for an explanation of how mixers work and the format of the mixer file.
+> **주의** 믹서의 작동 및 믹서 파일의 형식에 대한 설명은 [혼합과 구동기](../concept/mixing.md)를 보세요.
 
 The outputs can be customized by [creating a mixer file](../advanced/system_startup.md#starting-a-custom-mixer) on the SD card with name `etc/mixers/mount.aux.mix`.
 
