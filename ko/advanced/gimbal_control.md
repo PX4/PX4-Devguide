@@ -52,18 +52,18 @@ Typhoon H480 모델은 미리 설정모의된 짐벌과 함께 제공됩니다. 
     make posix gazebo_typhoon_h480
     
 
-To just test the mount driver on other models or simulators, make sure the driver runs, using `vmount start`, then configure its parameters.
+다른 모델이나 시뮬레이터에 설치된 드라이버를 시험하려면, 설치된 드라이버가 `vmount start`를 사용해 작동하는지를 확인하고 난 후, 매개 변수들을 구성하십시오.
 
-## Testing
+## 시험하기
 
-The driver provides a simple test command - it needs to be stopped first with `vmount stop`. The following describes testing in SITL, but the commands also work on a real device.
+이 드라이버는 간단한 시험 명령어를 제공하는데 먼저 `vmount stop`으로 정지시키세요. 다음은 SITL에서의 시험 방법을 설명합니다. 하지만 실제 장비에서도 이 명령어들은 작동합니다.
 
-Start the simulation with (no parameter needs to be changed for that):
+이를 위해 매개변수가 변경될 필요는 없습니다. 아래 명령어로 시뮬레이션을 시작하세요.
 
     make posix gazebo_typhoon_h480
     
 
-Make sure it's armed, eg. with `commander takeoff`, then use for example
+Armed되어 있는지 확인하세요. 예를 들면, with `commander takeoff`, then use for example
 
     vmount test yaw 30
     
