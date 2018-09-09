@@ -4,17 +4,17 @@
 
 ## 기본 장비
 
-> **Tip** PX4 can be used with a much wider range of equipment than described here, but new developers will benefit from going with one of the standard setups. A Taranis RC plus a Note 4 tablet make up for a very inexpensive field kit.
+> **팁** PX4는 여기 설명된 것보다 훨씬 더 광범위한 장비로 사용되지만, 초보 개발자들은 표준 설정 중 하나를 사용하는 것이 좋습니다. 아주 저렴한 필트 키트로 Taranis RC와 노트 4 구성이 있습니다.
 
-The equipment below is highly recommended:
+아래는 강력 추천 장비입니다:
 
-* A Taranis Plus remote control for the safety pilot (or equivalent)
-* A development computer: 
-  * MacBook Pro (early 2015 and later) with OSX 10.13 or later
-  * Lenovo Thinkpad 450 (i5) with Ubuntu Linux 16.04 or later
-* A ground control station device: 
-  * iPad (requires Wifi telemetry adapter)
-  * Any MacBook or Ubuntu Linux laptop (can be the development computer)
+* 안전 조종을 위해 Taranis Plus 원격 조종기 (또는 동급)
+* 개발 컴퓨터: 
+  * OSX 10.13 또는 그 이후 운영체제가 설치된 MacBook Pro (2015 초기 버전 이후)
+  * 우분투 16.04 또는 그 이후 운영체제가 설치된 Lenovo Thinkpad 450 (i5)
+* 지상통제소 장비: 
+  * iPad(Wifi 텔레메트리 어댑터 필요)
+  * 모든 MacBook 또는 Ubuntu Linux 랩톱(은 개발용 컴퓨터가 될 수 있음)
   * Samsung Note 4 or equivalent (any recent Android tablet or phone with a large enough screen to run *QGroundControl* effectively).
 * Safety glasses
 * For multicopters - tether for more risky tests
