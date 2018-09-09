@@ -44,6 +44,7 @@ PX4는 다른 입력과 출력 방법을 갖는 일반적인 마운트/짐벌 �
     O:      10000  10000      0 -10000  10000
     S: 2 2  10000  10000      0 -10000  10000
     
+    
 
 ## SITL
 
@@ -68,6 +69,6 @@ Armed되어 있는지 확인하세요. 예를 들면, `commander takeoff`를 입
     vmount test yaw 30
     
 
-그럼 짐벌을 제어하게 됩니다. 주의할 것은 모의된 짐벌은 자동으로 안정화되므로 Mavlink 명령어들을 보내 `stabilize` 플래그를 false로 설정하세요.
+짐벌이 제어됩니다. 주의할 것은 모의된 짐벌은 자동으로 안정화되므로 Mavlink 명령어들을 통해 `stabilize` 플래그를 false로 설정하세요.
 
 ![Gazebo 짐벌 모의](../../assets/gazebo/gimbal-simulation.png)
