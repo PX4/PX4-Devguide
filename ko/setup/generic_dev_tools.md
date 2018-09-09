@@ -17,4 +17,4 @@
 * [Sublime Text](https://www.sublimetext.com): 빠르고 군더더기 없는 텍스트 에디터 
 * [Qt Creator](http://www.qt.io/download-open-source/#section-6): 인기있는 오픈소스 IDE
 
-> **Note** On linux the installation scripts automatically install *Qt Creator* as part of the common dependencies. You can launch it by entering `qtcreator` in a bash terminal.
+> **주의** Linux에서 설치 스크립트는 공유하는 의존성 때문에 *Qt Creator*를 자동으로 설치합니다. Bash 터미널에서 `qtcreator`를 입력하여 실행할 수 있습니다.
