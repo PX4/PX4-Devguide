@@ -15,16 +15,16 @@
 * 지상통제소 장비: 
   * iPad(Wifi 텔레메트리 어댑터 필요)
   * 모든 MacBook 또는 Ubuntu Linux 랩톱(은 개발용 컴퓨터가 될 수 있음)
-  * Samsung Note 4 or equivalent (any recent Android tablet or phone with a large enough screen to run *QGroundControl* effectively).
-* Safety glasses
-* For multicopters - tether for more risky tests
+  * 삼성 Note 4 또는 동급 (*QGroundControl*를 효과적으로 실행하는 충분히 큰 화면을 갖는 모든 최신 Android 태블릿 또는 휴대폰)
+* 보안경
+* 보다 위험한 시험을 위한 멀티콥터용 끈
 
-## Vehicle Configuration
+## 비행기 구성
 
-> **Tip** *QGroundControl* for a **desktop OS** is required for vehicle configuration. You should use (and regularly update) the daily build in order to take advantage of the latest features in PX4.
+> **팁** **데스크탑용** *QGroundControl*이 비행기 구성에 필요합니다. PX4의 최신 기능을 이용하려면 데일리 빌드를 사용(하고 주기적으로 업데이트) 해야합니다.
 
-To configure the vehicle:
+비행기를 구성하려면:
 
-1. Download the [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) for your development platform.
+1. 개발 플랫폼을 위해 [QGroundControl 데일리 빌드](https://docs.qgroundcontrol.com/en/releases/daily_builds.html)를 다운로드 하십시오.
 2. [Basic Configuration](https://docs.px4.io/en/config/) (PX4 User Guide) explains how to to perform basic configuration. 
 3. [Parameter Configuration](https://docs.px4.io/en/advanced_config/parameters.html) (PX4 User Guide) explains how you can find and modify individual parameters.
