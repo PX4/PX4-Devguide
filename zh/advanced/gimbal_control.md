@@ -25,7 +25,7 @@ The output assignment is as following:
 
 > **Note** Read [Mixing and Actuators](../concept/mixing.md) for an explanation of how mixers work and the format of the mixer file.
 
-The outputs can be customized by [creating a mixer file](../advanced/system_startup.md#starting-a-custom-mixer) on the SD card with name `etc/mixers/mount.aux.mix`.
+The outputs can be customized by [creating a mixer file](../concept/system_startup.md#starting-a-custom-mixer) on the SD card with name `etc/mixers/mount.aux.mix`.
 
 A basic basic mixer configuration for a mount is shown below.
 
