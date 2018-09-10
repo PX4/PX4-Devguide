@@ -76,7 +76,7 @@ If you use the normal build system SITL `make` configuration targets (see next s
 
 The build system makes it very easy to build and start PX4 on SITL, launch a simulator, and connect them. For example, you can launch a SITL version of PX4 that uses the EKF2 estimator and simulate a plane in Gazebo with just the following command (provided all the build and gazebo dependencies are present!):
 ```
-make posix_sitl_ekf2 gazebo_plane
+make posix_sitl_default gazebo_plane
 ```
 
 > **Tip** It is also possible to separately build and start SITL and the various simulators, but this is nowhere near as "turnkey".
@@ -88,11 +88,11 @@ make [CONFIGURATION_TARGET] [VIEWER_MODEL_DEBUGGER]
 ```
 
 where:
-* **CONFIGURATION_TARGET:** has the format `[OS][_PLATFORM][_FEATURE]`
+* **CONFIGURATION_TARGET:** has the format `[OS_][PLATFORM][_FEATURE]`
 
   * **OS:** posix, nuttx, qurt
-  * **PLATFORM:** SITL (or in principle any platform supported among the different OS: bebop, eagle, excelsior, etc.)
-  * **FEATURE:** A particular high level feature - for example which estimator to use (ekf2, lpe) or to run tests or simulate using a replay.
+  * **PLATFORM:** sitl (or in principle any platform supported among the different OS: bebop, eagle, excelsior, etc.)
+  * **FEATURE:** A particular high level feature - for example to cross-compile or to run tests. In most cases this is `default`.
 
   > **Tip** You can get a list of all available configuration targets using the command:
   ```
@@ -102,7 +102,7 @@ where:
 * **VIEWER_MODEL_DEBUGGER:** has the format `[SIMULATOR]_[MODEL][_DEBUGGER]`
   
   * **SIMULATOR:** This is the simulator ("viewer") to launch and connect: `gazebo`, `jmavsim` <!-- , ?airsim -->
-  * **MODEL:** The vehicle model to use (e.g. `iris`, `rover`, `tailsitter`, etc). This corresponds to a specific [initialisation file](#init_file) that will be used to configure PX4. This might define the start up for a particular vehicle, or allow simulation of multiple vehicles (we explain how to find available init files in the next section).
+  * **MODEL:** The vehicle model to use (e.g. `iris`, `rover`, `tailsitter`, etc). The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](#scripts) to select appropriate parameters. It also ensures that the simulator (gazebo) loads the correct model (we explain how to find available options in the next section).
   * **DEBUGGER:** Debugger to (optionally) use: `none`, `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. For more information see [Simulation Debugging](../debug/simulation_debugging.md).
 
   > **Tip** You can get a list of all available `VIEWER_MODEL_DEBUGGER` options using the command:
@@ -119,106 +119,17 @@ Notes:
   For example start PX4 using `make posix_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
 
 
-### Init File Location {#init_file}
+### Additional Options
 
-The settings for each configuration target are defined in appropriately named files in [/Firmware/cmake/configs](https://github.com/PX4/Firmware/tree/master/cmake/configs). Within each file there is a setting `config_sitl_rcS_dir` that defines the location of the folder where the configuration stores its init files.
-
-In the cmake config file for [posix_sitl_ekf2](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_sitl_ekf2.cmake) you can see that the init file will be stored in the folder: **Firmware/posix-configs/SITL/init/ekf2/**.
-```bash
-set(config_sitl_rcS_dir
-    posix-configs/SITL/init/ekf2
-    )
-```    
-
-> **Note** Generally the init files are located using a consistent folder naming convention. For example, `make posix_sitl_ekf2 gazebo_iris` corresponds to the following folder structure:
-```
-Firmware/
-  posix-configs/  (os=posix)
-    SITL/         (platform=sitl)
-      init/       
-        ekf2/     (feature=ekf2)
-          iris    (init file name)
-```
+The simulation can be further configured via environment variables:
+- `PX4_ESTIMATOR`: This variable configures which estimator to use.
+  Possible options are: `ekf2` (default), `lpe`, `inav`. It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
 
 
-### Example Startup File
+### Startup Scripts {#scripts}
 
-A slightly reduced version of the startup file for `make posix_sitl_ekf2 gazebo_iris` ([/Firmware/posix-configs/SITL/init/ekf2/iris](https://github.com/PX4/Firmware/blob/master/posix-configs/SITL/init/ekf2/iris)) is shown below.
-
-```bash
-uorb start
-param load
-dataman start
-param set BAT_N_CELLS 3
-param set CAL_ACC0_ID 1376264
-param set CAL_ACC0_XOFF 0.01
-...
-...
-param set SYS_MC_EST_GROUP 2
-param set SYS_RESTART_TYPE 2
-replay tryapplyparams
-simulator start -s
-tone_alarm start
-gyrosim start
-accelsim start
-barosim start
-adcsim start
-gpssim start
-pwm_out_sim mode_pwm
-sensors start
-commander start
-land_detector start multicopter
-navigator start
-ekf2 start
-mc_pos_control start
-mc_att_control start
-mixer load /dev/pwm_output0 ROMFS/px4fmu_common/mixers/quad_dc.main.mix
-mavlink start -u 14556 -r 4000000
-mavlink start -u 14557 -r 4000000 -m onboard -o 14540
-mavlink stream -r 50 -s POSITION_TARGET_LOCAL_NED -u 14556
-mavlink stream -r 50 -s LOCAL_POSITION_NED -u 14556
-mavlink stream -r 50 -s GLOBAL_POSITION_INT -u 14556
-mavlink stream -r 50 -s ATTITUDE -u 14556
-mavlink stream -r 50 -s ATTITUDE_QUATERNION -u 14556
-mavlink stream -r 50 -s ATTITUDE_TARGET -u 14556
-mavlink stream -r 50 -s SERVO_OUTPUT_RAW_0 -u 14556
-mavlink stream -r 20 -s RC_CHANNELS -u 14556
-mavlink stream -r 250 -s HIGHRES_IMU -u 14556
-mavlink stream -r 10 -s OPTICAL_FLOW_RAD -u 14556
-logger start -e -t
-mavlink boot_complete
-replay trystart
-```
-
-Note the sections that set parameters, start simulator drivers and other modules. A few of the more relevant lines for simulation are highlighted below. 
-
-1. Simulator being started:
-   ```
-   simulator start -s
-   ```
-1. PWM out mode being set for simulator:
-   ```
-   pwm_out_sim mode_pwm
-   ```
-1. Set MAVLink ports:
-
-   * This line starts the MAVLink instance for connecting to offboard APIs. It broadcasts on 14540 and listens for responses on 14557. The `-m onboard` flag specifies a set of messages that will be streamed over the interface.
-      ```bash
-      mavlink start -u 14557 -r 4000000 -m onboard -o 14540
-      ```
-   * This line starts MAVLink instance for connecting to *QGroundControl*/GCSs. PX4 listens for messages on port 14556. 
-   ```bash
-   mavlink start -u 14556 -r 4000000
-   ```
-      * The broadcast port is not explicitly set (the default is used: 14550). 
-      * The messages that are streamed over this interface are specified using `mavlink stream` as shown below:
-        ```
-        mavlink stream -r 50 -s POSITION_TARGET_LOCAL_NED -u 14556
-        mavlink stream -r 50 -s LOCAL_POSITION_NED -u 14556
-        ...
-        ```
-
-For more information about using the MAVLink module see [Modules Reference: Communication > MAVLink](../middleware/modules_communication.md#mavlink).
+Scripts are used to control which parameter settings to use or which modules to start.
+They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) directory, the `rcS` file is the main entry point. See [System Startup](../concept/system_startup.md) for more information.
 
 
 ## HITL Simulation Environment

@@ -11,7 +11,7 @@ The template demonstrates the following additional features/aspects that are req
 - uORB subscriptions and waiting for topic updates.
 - Controlling the task that runs in the background via `start`/`stop`/`status`.
   The `module start [<arguments>]` command can then be directly added to the
-  [startup script](../advanced/system_startup.md).
+  [startup script](../concept/system_startup.md).
 - Command-line argument parsing.
 - Documentation: the `PRINT_MODULE_*` methods serve two purposes (the API is
   documented [in the source code](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381)):

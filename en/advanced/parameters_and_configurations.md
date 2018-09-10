@@ -2,7 +2,7 @@
 
 The PX4 platform uses the param subsystem (a flat table of float and int32_t values) and text files (for mixers and startup scripts) to store its configuration.
 
-The [system startup](../advanced/system_startup.md) and how [airframe configurations](../airframes/adding_a_new_frame.md) work are detailed on other pages. This section discusses the param subsystem in detail
+The [system startup](../concept/system_startup.md) and how [airframe configurations](../airframes/adding_a_new_frame.md) work are detailed on other pages. This section discusses the param subsystem in detail
 
 ## Command Line usage
 

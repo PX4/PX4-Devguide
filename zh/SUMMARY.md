@@ -100,7 +100,7 @@
   * [着陆检测](tutorials/land_detector.md)
   * [Linux系统下使用S.Bus驱动](tutorials/linux_sbus.md)
 * [Advanced Topics](advanced/README.md)
-  * [系统启动](advanced/system_startup.md)
+  * [系统启动](concept/system_startup.md)
   * [参数&配置](advanced/parameters_and_configurations.md)
   * [参考参数](advanced/parameter_reference.md)
   * [安装Intel RealSense R200的驱动](advanced/realsense_intel_driver.md)
