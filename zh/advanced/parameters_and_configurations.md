@@ -7,7 +7,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 PX4使用参数子系统（实际就是浮点和整型数据的列表）和文本文件（用来配置Mixer混合器和启动脚本）来储存相关配置。
 
-关于[系统启动](../advanced/system_startup.md) 和[机体参数配置](../airframes/adding_a_new_frame.md)的实现在其他章节有详细讲述。这部分主要是详细讨论参数子系统。
+关于[系统启动](../concept/system_startup.md) 和[机体参数配置](../airframes/adding_a_new_frame.md)的实现在其他章节有详细讲述。这部分主要是详细讨论参数子系统。
 
 ## 命令行的使用
 

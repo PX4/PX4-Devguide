@@ -27,7 +27,7 @@
   * [Flight Modes](concept/flight_modes.md)
   * [Mixing and Actuators](concept/mixing.md)
   * [PWM limit state machine](concept/pwm_limit.md)
-  * [System Startup](advanced/system_startup.md)
+  * [System Startup](concept/system_startup.md)
 * [Simulation](simulation/README.md)
   * [jMAVSim Simulation](simulation/jmavsim.md)
   * [Gazebo Simulation](simulation/gazebo.md)

@@ -129,7 +129,7 @@ The simulation can be further configured via environment variables:
 ### Startup Scripts {#scripts}
 
 Scripts are used to control which parameter settings to use or which modules to start.
-They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) directory, the `rcS` file is the main entry point. See [System Startup](../advanced/system_startup.md) for more information.
+They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) directory, the `rcS` file is the main entry point. See [System Startup](../concept/system_startup.md) for more information.
 
 
 ## HITL Simulation Environment

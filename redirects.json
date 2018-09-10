@@ -1,6 +1,11 @@
 {
     "redirects": [
-    
+
+
+            {
+                "from": "en/advanced/system_startup.html",
+                "to": "https://dev.px4.io/en/concept/system_startup.html"
+            },
             {
                 "from": "en/tutorials/camera_trigger.html",
                 "to": "https://docs.px4.io/en/peripherals/camera.html"

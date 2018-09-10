@@ -2,7 +2,7 @@
 
 PX4는 airframe을 시작 시점에 설정을 이용합니다. 설정을 추가하는 것은 직관적입니다. : [init.d 폴더](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 내에 free autosart ID를 가지는 새로운 파일을 생성하고 소프트웨어를 [빌드 및 업로드](../setup/building_px4.md)합니다.
 
-자신만의 설정을 새로 만드는 것을 원치 않는 개발자라면 microSD 카드에서 텍스트파일을 이용해서 기존 설정을 대신 수정할 수 있습니다. 상세한 내용은 [커스텀 시스템 startup](../advanced/system_startup.md)을 참고하세요.
+자신만의 설정을 새로 만드는 것을 원치 않는 개발자라면 microSD 카드에서 텍스트파일을 이용해서 기존 설정을 대신 수정할 수 있습니다. 상세한 내용은 [커스텀 시스템 startup](../concept/system_startup.md)을 참고하세요.
 
 ## Airframe 설정
 

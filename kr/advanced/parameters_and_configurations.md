@@ -2,7 +2,7 @@
 
 PX4 플랫폼은 파라미터 서브시스템(float과 int32_t 값의 일반 테이블)과 텍스트 파일(믹서와 startup 스크립트용)을 사용해서 설정을 저장합니다.
 
-[시스템 startup](../advanced/system_startup.md)과 [airframe 설정](../airframes/adding_a_new_frame.md) 동작 방법은 다른 페이지에서 설명합니다. 이 섹션에서는 파라미터 서브시스템에 대해서 상세히 알아봅니다.
+[시스템 startup](../concept/system_startup.md)과 [airframe 설정](../airframes/adding_a_new_frame.md) 동작 방법은 다른 페이지에서 설명합니다. 이 섹션에서는 파라미터 서브시스템에 대해서 상세히 알아봅니다.
 
 ## 커맨드 라인 사용법
 

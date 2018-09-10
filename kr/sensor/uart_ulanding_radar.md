@@ -14,7 +14,7 @@ drivers/ulanding
 
 ## 드라이버 구동시키기
 sytem이 시작되는 동안 radar를 위해 driver를 구동시키라고 sytem에게 알려야만 합니다.
-SD 카드에 위치한 [extras.txt](../advanced/system_startup.md) 파일에 간단하게 다음 라인을 추가합니다.
+SD 카드에 위치한 [extras.txt](../concept/system_startup.md) 파일에 간단하게 다음 라인을 추가합니다.
 ```
 ulanding_radar start /dev/serial_port
 ```
