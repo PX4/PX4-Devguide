@@ -25,7 +25,7 @@ PX4는 다른 입력과 출력 방법을 갖는 일반적인 마운트/짐벌 �
 
 > **주의** 믹서의 작동 및 믹서 파일의 형식에 대한 설명은 [혼합과 구동기](../concept/mixing.md)를 보세요.
 
-출력은 [믹서 파일 생성하기](../advanced/system_startup.md#starting-a-custom-mixer)로 SD 카드의 `etc/mixers/mount.aux.mix`이라는 이름으로 맞춤설정될 수 있습니다.
+The outputs can be customized by [creating a mixer file](../concept/system_startup.md#starting-a-custom-mixer) on the SD card with name `etc/mixers/mount.aux.mix`.
 
 설치를 위한 기본 믹서 구성은 아래과 같습니다.
 
