@@ -23,7 +23,7 @@ For that to work, a few things are required:
   This is done with [FIFOs (also called named pipes)](http://man7.org/linux/man-pages/man7/fifo.7.html).
   The server has a FIFO opened, on which clients can send commands.
   In addition each client opens its own FIFO, which the server then uses to send information to the client (strings printed to the console for example).
-- The startup scripts do not use the `px4-` prefix, but they call the module directly, e.g. `commander start`. This works via aliases: for each module an alias in the form of `alias <module>=px4-<module>` is created in the file `bin/px4-alias.sh`.
+- The startup scripts call the module directly, e.g. `commander start`, rather than using the `px4-` prefix. This works via aliases: for each module an alias in the form of `alias <module>=px4-<module>` is created in the file `bin/px4-alias.sh`.
 - The `rcS` script is executed from the main px4 instance.
   It does not start any modules, but first updates the `PATH` variable and then simply runs a shell with the `rcS` file as argument.
 - In addition to that, multiple server instances can be started for multi-vehicle simulations. A client selects the instance via `--instance`. The instance is available in the script via `$px4_instance` variable.
@@ -67,7 +67,7 @@ There are three main hooks. Note that the root folder of the microsd card is ide
 
 #### Customizing the Configuration (config.txt)
 
-The `config.txt` file is loaded after the main system has been configured and *before* it is booted and allows to modify shell variables.
+The `config.txt` file can be used to modify shell variables. It is loaded after the main system has been configured and *before* it is booted.
 
 #### Starting additional applications
 

@@ -1,55 +1,108 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/system_startup.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# System Startup
 
-# 系统启动
+The PX4 startup is controlled by shell scripts.
+On NuttX they reside in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder - some of these are also used on Posix (Linux/MacOS). The scripts that are only used on Posix are located in [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix).
+
+All files starting with a number and underscore (e.g. `10000_airplane`) are canned airframe configurations. They are exported at build-time into an `airframes.xml` file which is parsed by [QGroundControl](http://qgroundcontrol.com) for the airframe selection UI. Adding a new configuration is covered [here](../airframes/adding_a_new_frame.md).
+
+The remaining files are part of the general startup logic. The first executed file is the [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) script (or [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on Posix), which calls all other scripts.
+
+The following sections are split according to the operating system that PX4 runs on.
 
 
-该PX4启动是由 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)文件夹下的shell脚本控制。
+## Posix (Linux/MacOS)
 
-所有以数字和下划线（例如`10000_airplane`）开头的文件的都是内置的机型配置。他们在编译时被导出成一个`airframes.xml`文件，它被 [QGroundControl](http://qgroundcontrol.org)解析后提供给机身选择界面使用。添加新的配置参照[此处](../airframes/adding_a_new_frame.md)。
+On Posix, the system shell is used as script interpreter (e.g. bash).
+For that to work, a few things are required:
+- PX4 modules need to look like individual executables to the system. This is done via symbolic links.
+  For each module a symbolic link `px4-<module> -> px4` is created in the `bin` directory of the build folder.
+  When executed, the binary path is checked (`argv[0]`), and if it is a module (starts with `px4-`), it sends the command to the main px4 instance (see below).
+  > **Tip** The `px4-` prefix is used to avoid conflicts with system commands (e.g. `shutdown`), and it also allows for simple tab completion by typing `px4-<TAB>`.
+- The shell needs to know where to find the symbolic links. For that the `bin` directory with the symbolic links is added to the `PATH` variable right before executing the startup scripts.
+- The shell starts each module as a new (client) process. Each client process needs to communicate with the main instance of px4 (the server), where the actual modules are running as threads.
+  This is done with [FIFOs (also called named pipes)](http://man7.org/linux/man-pages/man7/fifo.7.html).
+  The server has a FIFO opened, on which clients can send commands.
+  In addition each client opens its own FIFO, which the server then uses to send information to the client (strings printed to the console for example).
+- The startup scripts call the module directly, e.g. `commander start`, rather than using the `px4-` prefix. This works via aliases: for each module an alias in the form of `alias <module>=px4-<module>` is created in the file `bin/px4-alias.sh`.
+- The `rcS` script is executed from the main px4 instance.
+  It does not start any modules, but first updates the `PATH` variable and then simply runs a shell with the `rcS` file as argument.
+- In addition to that, multiple server instances can be started for multi-vehicle simulations. A client selects the instance via `--instance`. The instance is available in the script via `$px4_instance` variable.
 
-剩余的文件是常规启动逻辑的一部分，并且第一执行文件是[rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS)脚本，它调用所有其它的脚本。
+The modules can be executed from any terminal when PX4 is already running on a system. For example:
+```
+cd <Firmware>/build/posix_sitl_default/bin
+./px4-commander takeoff
+./px4-listener sensor_accel
+```
 
-## 调试系统启动
+## NuttX
+NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
 
-软件组件的驱动程序故障会导致启动中止。
+### Debugging the System Boot
 
-> **Tip** 一个不完整的启动往往表现为地面站中参数丢失，因为无法启动的应用程序没有初始化它们的参数。
+A failure of a driver of software component will not lead to an aborted boot. This is controlled via `set +e` in the startup script.
 
-调试启动序列正确的方法是连接[系统控制台](../debug/system_console.md) 和为电路板供电。由此产生的启动日志包含引导序列的详细信息，而且应该包含引导中止得原因。
+The boot sequence can be debugged by connecting the [system console](../debug/system_console.md) and power-cycling the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
-### 常见启动故障的原因
+#### Common boot failure causes
 
-- 一个必须的传感器发生故障
-- 对于自定义的应用程序: 该系统内存不足。运行 `free` 命令来查看可用内存量。
-  - 软件故障或断言导致堆栈跟踪
+  * For custom applications: The system was out of RAM. Run the `free` command to see the amount of free RAM.
+  * A software fault or assertion resulting in a stack trace
 
-## 更换系统启动
+### Replacing the System Startup
 
-在大多数情况下，自定义修改默认的启动是更好的方法，这在后面介绍。如果要替换完整的boot，创建一个`/fs/microsd/etc/rc.txt`文件，它在microSD卡上的`etc`文件夹中。如果这个文件存在，系统中没有什么会自动启动。
+In most cases customizing the default boot is the better approach, which is documented below. If the complete boot should be replaced, create a file `/fs/microsd/etc/rc.txt`, which is located in the `etc` folder on the microSD card. If this file is present nothing in the system will be auto-started.
 
-## 自定义系统启动
+### Customizing the System Startup
 
-自定义系统启动的最好的方式是引进新的 [机身配置](../airframes/adding_a_new_frame.md)。如果仅仅进行微调（如多启动一个应用程序或只是使用不同的混合器），启动时可以使用特别的hook。
+The best way to customize the system startup is to introduce a [new airframe configuration](../airframes/adding_a_new_frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
 
-> **Warning** 该系统启动文件是UNIX文件，这需要UNIX形式的行结尾。如果在Windows上编辑，请使用合适的编辑器。
+> **Caution** The system boot files are UNIX FILES which require UNIX LINE ENDINGS. If editing on Windows use a suitable editor.
 
-主要有三个hook。需要注意的是microSD卡的根目录文件夹路径是 `/fs/microsd`。
+There are three main hooks. Note that the root folder of the microsd card is identified by the path `/fs/microsd`.
 
-- /fs/microsd/etc/config.txt
-- /fs/microsd/etc/extras.txt
-  - /fs/microsd/mixers/NAME_OF_MIXER
+  * /fs/microsd/etc/config.txt
+  * /fs/microsd/etc/extras.txt
+  * /fs/microsd/etc/mixers/NAME_OF_MIXER
 
-### 自定义配置 (config.txt)
+#### Customizing the Configuration (config.txt)
 
-主系统配置完成后，且在启动前，加载`config.txt` 文件，此时允许修改shell变量。
+The `config.txt` file can be used to modify shell variables. It is loaded after the main system has been configured and *before* it is booted.
 
-### 启动其他应用程序
+#### Starting additional applications
 
- `extras.txt`可用于在主系统引导后启动额外的应用程序。通常，这些将是载荷控制器或类似的可选自定义组件。
+The `extras.txt` can be used to start additional applications after the main system boot. Typically these would be payload controllers or similar optional custom components.
 
-### 启动一个自定义的mixer {#starting-a-custom-mixer}
+> **Caution** Calling an unknown command in system boot files may result in boot failure. Typically the system does not stream mavlink messages after boot failure, in this case check the error messages that are printed on the system console.
 
-系统默认从 `/etc/mixers`加载mixer。如果在 `/fs/microsd/etc/mixers`有相同名称的文件中存在，那么将加载该文件来代替。这允许定制混合器文件，而不需要重新编译固件。
+The following example shows how to start custom applications:
+  * Create a file on the SD card `etc/extras.txt` with this content:
+    ```
+    custom_app start
+    ```
+  * A command can be made optional by gating it with the `set +e` and `set -e` commands:
+    ```
+    set +e
+    optional_app start      # Will not result in boot failure if optional_app is unknown or fails
+    set -e
+
+    mandatory_app start     # Will abort boot if mandatory_app is unknown or fails
+    ```  
+
+#### Starting a custom mixer
+
+By default the system loads the mixer from `/etc/mixers`. 
+If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
+
+##### Example
+The following example shows how to add a custom aux mixer:
+  * Create a file on the SD card, `etc/mixers/gimbal.aux.mix` with your mixer content.
+  * Then to use it, create an additional file `etc/config.txt` with this content:
+    ```
+    set MIXER_AUX gimbal
+    set PWM_AUX_OUT 1234
+    set PWM_AUX_DISARMED 1500
+    set PWM_AUX_MIN 1000
+    set PWM_AUX_MAX 2000
+    set PWM_AUX_RATE 50
+    ```

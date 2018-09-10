@@ -1,73 +1,103 @@
 # System Startup
 
-The PX4 부트는 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 있는 쉘 스크립트가 제어합니다.
+The PX4 startup is controlled by shell scripts.
+On NuttX they reside in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder - some of these are also used on Posix (Linux/MacOS). The scripts that are only used on Posix are located in [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix).
 
-숫자와 밑줄로 시작하는 모든 파일은 airframe 설정과 관련되어 있습니다.(예 `10000_airplane`) 빌드하는 과정에서 `airframes.xml`로 export되며 airframe 선택하는 UI에서 사용하기 위해 [QGroundControl](http://qgroundcontrol.com)에서 파싱됩니다. 새로운 설정을 추가하는 방법은 [여기](../airframes/adding_a_new_frame.md)를 참고하세요.
+All files starting with a number and underscore (e.g. `10000_airplane`) are canned airframe configurations. They are exported at build-time into an `airframes.xml` file which is parsed by [QGroundControl](http://qgroundcontrol.com) for the airframe selection UI. Adding a new configuration is covered [here](../airframes/adding_a_new_frame.md).
 
-나머지 파일들은 일반적인 startup 로직의 일부로 사용되며 처음 실행되는 파일은 [rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) 스크립트이며 이 스크립트에서 다른 스크립트를 호출하게 됩니다.
+The remaining files are part of the general startup logic. The first executed file is the [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) script (or [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on Posix), which calls all other scripts.
 
-## 시스템 부팅 디버깅하기
+The following sections are split according to the operating system that PX4 runs on.
 
-소프트웨어 컴포넌트 드라이버 중에 하나라도 실패하면 부팅이 실패하게 됩니다.
 
-> **Tip** 불완전하게 부팅되는 경우 ground control station에서 파라미터가 제대로 설정되지 않게 됩니다. 이는 실행되지 않은 application에서 파라미터를 초기화하지 않았기 때문입니다.
+## Posix (Linux/MacOS)
 
-부팅 순서를 디버깅하는 올바른 방법은 [system console](../debug/system_console.md)에 연결하여 보드에 전원이 들어오는 과정을 살펴봐야 합니다. 부팅 로그를 보면 부팅 순서에 대해서 상세한 정보를 얻을 수 있기에 왜 부팅에 문제가 있었는지 힌트를 얻을 수 있습니다.
+On Posix, the system shell is used as script interpreter (e.g. bash).
+For that to work, a few things are required:
+- PX4 modules need to look like individual executables to the system. This is done via symbolic links.
+  For each module a symbolic link `px4-<module> -> px4` is created in the `bin` directory of the build folder.
+  When executed, the binary path is checked (`argv[0]`), and if it is a module (starts with `px4-`), it sends the command to the main px4 instance (see below).
+  > **Tip** The `px4-` prefix is used to avoid conflicts with system commands (e.g. `shutdown`), and it also allows for simple tab completion by typing `px4-<TAB>`.
+- The shell needs to know where to find the symbolic links. For that the `bin` directory with the symbolic links is added to the `PATH` variable right before executing the startup scripts.
+- The shell starts each module as a new (client) process. Each client process needs to communicate with the main instance of px4 (the server), where the actual modules are running as threads.
+  This is done with [FIFOs (also called named pipes)](http://man7.org/linux/man-pages/man7/fifo.7.html).
+  The server has a FIFO opened, on which clients can send commands.
+  In addition each client opens its own FIFO, which the server then uses to send information to the client (strings printed to the console for example).
+- The startup scripts call the module directly, e.g. `commander start`, rather than using the `px4-` prefix. This works via aliases: for each module an alias in the form of `alias <module>=px4-<module>` is created in the file `bin/px4-alias.sh`.
+- The `rcS` script is executed from the main px4 instance.
+  It does not start any modules, but first updates the `PATH` variable and then simply runs a shell with the `rcS` file as argument.
+- In addition to that, multiple server instances can be started for multi-vehicle simulations. A client selects the instance via `--instance`. The instance is available in the script via `$px4_instance` variable.
 
-### 일반적인 부팅 실패 원인
+The modules can be executed from any terminal when PX4 is already running on a system. For example:
+```
+cd <Firmware>/build/posix_sitl_default/bin
+./px4-commander takeoff
+./px4-listener sensor_accel
+```
 
-  * 필요한 센서의 구동 실패
-  * 커스텀 application의 경우 : 시스템의 RAM 메모리가 부족한 경우. `free` 명령을 통해 남은 RAM 메모리 공간을 확인.
-  * 소프트웨어 문제나 assertion의 경우 stack trace로 확인 가능
+## NuttX
+NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
 
-## 시스템 Startup 바꿔치기
+### Debugging the System Boot
 
-일반적으로 기본 부팅에서 바꾸는 것이 좋은 접근법입니다. 이와 관련해서 아래 문서를 참고하세요. 만약 완전히 부팅을 바꿔치기하고자 한다면, `/fs/microsd/etc/rc.txt` 파일을 생성합니다. 이 파일은 마이크로SD 카드의 `etc` 폴더에 위치하고 있습니다. 이 파일이 존재하는 경우 시스템에서 자동으로 시작되는 것이 없어집니다.
+A failure of a driver of software component will not lead to an aborted boot. This is controlled via `set +e` in the startup script.
 
-## 시스템 Startup 수정하기
+The boot sequence can be debugged by connecting the [system console](../debug/system_console.md) and power-cycling the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
-시스템 startup을 수정하는 가장 좋은 방법은 [new airframe configuration](../airframes/adding_a_new_frame.md)을 참고합니다. 몇 가지 수정을 하고 싶다면(1개 이상 application을 시작시킨다던가 다른 mixer를 사용하는 경우) 해당 startup에서 수정해서 사용할 수 있습니다.
+#### Common boot failure causes
 
-> **Caution** 시스템 부트 파일은 UNIX 포맷의 파일로 각 라인의 끝에는 UNIX LINED ENDING이 들어가야 합니다. 만약 윈도우에서 수정하는 경우 이를 지원하는 편집기를 이용하도록 합니다.
+  * For custom applications: The system was out of RAM. Run the `free` command to see the amount of free RAM.
+  * A software fault or assertion resulting in a stack trace
 
-가지 주요 수정지점이 있습니다. microSD 카드의 루트 폴더는 `/fs/microsd`로 나타냅니다.
+### Replacing the System Startup
+
+In most cases customizing the default boot is the better approach, which is documented below. If the complete boot should be replaced, create a file `/fs/microsd/etc/rc.txt`, which is located in the `etc` folder on the microSD card. If this file is present nothing in the system will be auto-started.
+
+### Customizing the System Startup
+
+The best way to customize the system startup is to introduce a [new airframe configuration](../airframes/adding_a_new_frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
+
+> **Caution** The system boot files are UNIX FILES which require UNIX LINE ENDINGS. If editing on Windows use a suitable editor.
+
+There are three main hooks. Note that the root folder of the microsd card is identified by the path `/fs/microsd`.
 
   * /fs/microsd/etc/config.txt
   * /fs/microsd/etc/extras.txt
   * /fs/microsd/etc/mixers/NAME_OF_MIXER
 
-### 설정 변경하기 (config.txt)
+#### Customizing the Configuration (config.txt)
 
-`config.txt`파일이 로드는 것은 main 시스템이 구성을 마치고 난 후고 부트가 되기 *전* 으로 쉘 변수를 수정하는 것이 가능합니다.
+The `config.txt` file can be used to modify shell variables. It is loaded after the main system has been configured and *before* it is booted.
 
-### 추가 application 구동시키기
+#### Starting additional applications
 
-`extras.txt`는 main 시스템이 부팅되고 나서 추가로 application을 구동시키는데 사용할 수 있습니다. 일반적으로 여기에 해당되는 것은 payload controller나 유사한 선택가능한 커스텀 컴포넌트들입니다.
+The `extras.txt` can be used to start additional applications after the main system boot. Typically these would be payload controllers or similar optional custom components.
 
-> **Caution** 시스템 부트 파일에서 알수 없는 명령을 호출하면 부트 실패가 됩니다. 일반적으로 부트 실패가 되면 mavlink 메시지를 내보내지 않습니다. 이 경우 시스템 콘솔에 출력되는 에러 메시지를 확인합니다.
+> **Caution** Calling an unknown command in system boot files may result in boot failure. Typically the system does not stream mavlink messages after boot failure, in this case check the error messages that are printed on the system console.
 
-다음 예제에서는 커스텀 어플리케이션을 구동하는 방법에 대해서 알아봅니다:
-  * SD 카드 `etc/extras.txt`에 다음과 같은 내용의 파일을 생성:
+The following example shows how to start custom applications:
+  * Create a file on the SD card `etc/extras.txt` with this content:
     ```
     custom_app start
     ```
-  * `set +e` 와 `set -e` 명령으로
-  A command can be made optional by gating it with the `set +e` and `set -e` commands:
+  * A command can be made optional by gating it with the `set +e` and `set -e` commands:
     ```
     set +e
-    optional_app start      # optional_app이 없거나 실패하는 경우 부트 실패로 이어지지 않는다
+    optional_app start      # Will not result in boot failure if optional_app is unknown or fails
     set -e
 
-    mandatory_app start     # mandatory_app이 없거나 실패하는 경우 부트가 취소된다
+    mandatory_app start     # Will abort boot if mandatory_app is unknown or fails
     ```  
 
-### 커스텀 믹서 구동시키기 {#starting-a-custom-mixer}
+#### Starting a custom mixer
 
-기본적으로 `/etc/mixers`에서 시스템이 믹서를 로드합니다. `/fs/microsd/etc/mixers`에 동일한 이름의 파일이 있는 경우, 이 파일이 대신 로드될 것입니다. 펌웨어를 다시 컴파일할 필요없이 믹서 파일을 수정하는 것이 가능합니다.
-#### 예제
-다음 예제는 커스텀 aux 믹서를 추가하는 방법을 보여줍니다 :
-  * 믹서 관련 내용이 있는 `etc/mixers/gimbal.aux.mix` SD카드에 파일을 생성합니다.
-  * 다음으로 이를 이용하기 위해서 아래 내용을 `etc/config.txt` 파일 추가하여 생성합니다.:
+By default the system loads the mixer from `/etc/mixers`. 
+If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
+
+##### Example
+The following example shows how to add a custom aux mixer:
+  * Create a file on the SD card, `etc/mixers/gimbal.aux.mix` with your mixer content.
+  * Then to use it, create an additional file `etc/config.txt` with this content:
     ```
     set MIXER_AUX gimbal
     set PWM_AUX_OUT 1234
