@@ -54,23 +54,23 @@ sh /etc/init.d/rc.fw_defaults
 
 if [ $AUTOCNF == yes ]
 then
-    param set BAT_N_CELLS 2
-    param set FW_AIRSPD_MAX 15
-    param set FW_AIRSPD_MIN 10
-    param set FW_AIRSPD_TRIM 13
-    param set FW_R_TC 0.3
-    param set FW_P_TC 0.3
-    param set FW_L1_DAMPING 0.74
-    param set FW_L1_PERIOD 16
-    param set FW_LND_ANG 15
-    param set FW_LND_FLALT 5
-    param set FW_LND_HHDIST 15
-    param set FW_LND_HVIRT 13
-    param set FW_LND_TLALT 5
-    param set FW_THR_LND_MAX 0
-    param set FW_PR_FF 0.35
-    param set FW_RR_FF 0.6
-    param set FW_RR_P 0.04
+  param set BAT_N_CELLS 2
+  param set FW_AIRSPD_MAX 15
+  param set FW_AIRSPD_MIN 10
+  param set FW_AIRSPD_TRIM 13
+  param set FW_R_TC 0.3
+  param set FW_P_TC 0.3
+  param set FW_L1_DAMPING 0.74
+  param set FW_L1_PERIOD 16
+  param set FW_LND_ANG 15
+  param set FW_LND_FLALT 5
+  param set FW_LND_HHDIST 15
+  param set FW_LND_HVIRT 13
+  param set FW_LND_TLALT 5
+  param set FW_THR_LND_MAX 0
+  param set FW_PR_FF 0.35
+  param set FW_RR_FF 0.6
+  param set FW_RR_P 0.04
 fi
 ```
 
@@ -121,7 +121,9 @@ A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1
 Where each number from left to right means:
 
 * M: Indicates two scalers for two control inputs. It indicates the number of control inputs the mixer will receive.
-* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here). If you want to invert your PWM signal, the signs of the output scalings have to be changed. (```O:      -10000  -10000      0 -10000  10000```)
+* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  
+  * If you want to invert your PWM signal, the signs of the output scalings have to be changed. (```O:      -10000  -10000      0 -10000  10000```)
+  * This line can (and should) be omitted completely if it specifies the default scaling: ```O:      10000  10000   0 -10000  10000```
 * S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll). It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
 * S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
 
@@ -203,10 +205,10 @@ To make a new airframe available for section in the *QGroundControl* [airframe c
 
 1. Make a clean build (e.g. by running `make clean` and then `make px4fmu-v5_default`)
 2. Open QGC and select **Custom firmware file...** as shown below:
-    
-    ![QGC flash custom firmware](../../assets/gcs/qgc_flash_custom_firmware.png)
-    
-    You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata).
+  
+  ![QGC flash custom firmware](../../assets/gcs/qgc_flash_custom_firmware.png)
+  
+  You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata).
 
 3. Navigate to the build folder and select the firmware file (e.g. **Firmware/build/nuttx_px4fmu-v5_default/px4fmu-v5_default.px4**).
 
