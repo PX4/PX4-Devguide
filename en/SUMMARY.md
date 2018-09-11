@@ -52,6 +52,7 @@
       * [UAVCAN Configuration](uavcan/node_enumeration.md)
       * [UAVCAN Various Notes](uavcan/notes.md)
     * [UART](sensor_bus/uart.md)
+    * [PWM ESCs and Servos](hardware/pwm_escs_and_servo.md)
   * [RTK GPS](advanced/rtk_gps.md)
   * [Gimbal \(Mount\) Control Setup](advanced/gimbal_control.md)
   * [Companion Computers](companion_computer/pixhawk_companion.md)
