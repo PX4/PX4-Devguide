@@ -40,3 +40,12 @@ There are Chinese and Korean [translations](contribute/docs.md#translation) of t
 ## Licence
 
 The code is free to use and modify under terms of the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause). The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). For more information see: [Licences](contribute/licenses.md).
+
+## Governance
+
+The PX4 flight stack is hosted under the governance of the [Dronecode Project](https://www.dronecode.org/).
+
+<a href="https://www.dronecode.org/" style="padding:20px"><img src="https://mavlink.io/assets/site/logo_dronecode.png" alt="Dronecode Logo" width="110px"/></a>
+<a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="Linux Foundation Logo" width="80px" /></a>
+
+<div style="padding:10px">&nbsp</div>
