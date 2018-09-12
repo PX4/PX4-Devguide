@@ -1,6 +1,6 @@
-# Installing Files and Code
+# 파일 및 코드 설치
 
-PX4 code can be developed on [Linux](../setup/dev_env_linux.md) or [Mac OS](../setup/dev_env_mac.md). We recommend [Ubuntu Linux LTS edition](https://wiki.ubuntu.com/LTS) as this enables building [all PX4 targets](#supported-targets), and using most [simulators](../simulation/README.md) and [ROS](../ros/README.md).
+PX4 코드는 [Linux](../setup/dev_env_linux.md) 또는 [Mac OS](../setup/dev_env_mac.md)에서 개발할 수 있습니다. [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 에디션을 권장합니다. [모든 PX4 타겟](#supported-targets)을 구축하고 대부분의 [시뮬레이터](../simulation/README.md)와 [ROS](../ros/README.md)를 사용할 수 있기 때문입니다.
 
 ## Supported Targets
 
