@@ -26,30 +26,30 @@ Fast RTPS는 아래와 같은 일부 플랫폼에서 PX4 개발자 환경의 일
 
 *eProsima Fast RTPS*는 작동을 위해 아래의 패키지들을 필요로 합니다.
 
-### Run Dependencies
+### 의존성 실행
 
 #### Java
 
-Java is required to use our built-in code generation tool - *fastrtpsgen*. [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) is recommended.
+Java는 내장된 코드 생성 도구인 *fastrtpsgen*을 사용해야합니다. [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)이 권장됩니다.
 
-### Windows 7 32-bit and 64-bit
+### Windows 7 32-bit와 64-bit
 
-#### Visual C++ 2013 or 2015 Redistributable Package
+#### Visual C ++ 2013 또는 2015 재배포 가능 패키지
 
-*eProsima Fast RTPS* requires the Visual C++ Redistributable packages for the Visual Studio version you chose during the installation or compilation. The installer gives you the option of downloading and installing them.
+*eProsima Fast RTPS*는 설치 또는 컴파일 중에 선택한 Visual Studio 버전에 대한 Visual C ++ 재배포 가능 패키지가 필요합니다. 이 설치 프로그램은 다운로드 및 설치 옵션을 제공합니다.
 
-## Installation from Sources
+## 소스로 설치
 
-Clone the project from Github:
+Github에서 프로젝트를 복사십시오.
 
 ```sh
 $ git clone https://github.com/eProsima/Fast-RTPS
 $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 ```
 
-> **Note** You may need to [install Gradle](https://gradle.org/install/) to build the source (e.g. this is true on vanilla Fedora Linux). A build warning will be displayed if this is the case.
+> **참고** 소스를 빌드하려면 [Gradle을 설치](https://gradle.org/install/)해야 할 수도 있습니다(예: vanilla Fedora Linux의 경우에 해당). 이 경우 빌드 경고가 표시됩니다.
 
-If you are on Linux, execute:
+Linux를 사용하는 경우 다음을 실행하십시오.
 
 ```sh
 $ cmake -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
@@ -57,7 +57,7 @@ $ make
 $ sudo make install
 ```
 
-This will install Fast RTPS to `/usr/local`. You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location. Afterwards make sure the `fastrtpsgen` application is in your `PATH`. You can check with `which
+이렇게하면 Fast RTPS가 `/usr/local`에 설치됩니다. `DCMAKE_INSTALL_PREFIX = <path>`를 사용하여 사용자 지정 위치에 설치할 수 있습니다. 그런 다음 `fastrtpsgen` 응용 프로그램이 `PATH`에 있는지 확인하십시오. You can check with `which
 fastrtpsgen`.
 
 If you are on Windows, choose your version of *Visual Studio*:
