@@ -141,6 +141,16 @@ pxh> commander takeoff
 
 ## Usage/Configuration Options
 
+### Headless Mode
+
+Gazebo can be run in a *headless* mode in which the Gazebo UI is not launched. This starts up more quickly and uses less system resources (i.e. it is a more "lightweight" way to run the simulation).
+
+Simply prefix the normal *make* command with `HEADLESS=1` as shown:
+
+```bash
+HEADLESS=1 make posix gazebo_plane
+```
+
 ### Set Custom Takeoff Location
 
 The default takeoff location in SITL Gazebo can be overridden using environment variables.
