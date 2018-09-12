@@ -17,14 +17,14 @@ Fast RTPS는 PX4에서 RTPS 인터페이스가 활성화되도록 사용되어 P
 Fast RTPS는 아래와 같은 일부 플랫폼에서 PX4 개발자 환경의 일부로 설치됩니다.
 
 * [Mac에서의 개발 환경](../setup/dev_env_mac.md) (Fast RTPS는 공통 도구에 포함되어 있음.)
-* [Development Environment on Linux](../setup/dev_env_linux.md) (FastRTPS included in install scripts)
-* [Development Environment on Windows > Bash on Windows](/setup/dev_env_windows.md#bash-on-windows-new) (FastRTPS included in install script)
+* [리눅스에서의 개발 환경](../setup/dev_env_linux.md) (Fast RTPS는 설치 스크립트에 포함되어 있음)
+* [Windows > Windows의 Bash에서의 개발 환경](/setup/dev_env_windows.md#bash-on-windows-new) (Fast RTPS는 설치 스크립트에 포함되어 있음.) 
 
-The instruction below are useful for adding FastRTPS support in other environments.
+아래의 설치 방법은 다른 환경에서 Fast RTPS 지원을 추가할 때 유용합니다.
 
-## Requirements
+## 요구사항
 
-*eProsima Fast RTPS* requires the following packages to work.
+*eProsima Fast RTPS*는 작동을 위해 아래의 패키지들을 필요로 합니다.
 
 ### Run Dependencies
 
