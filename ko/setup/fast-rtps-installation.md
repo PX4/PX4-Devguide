@@ -57,56 +57,55 @@ $ make
 $ sudo make install
 ```
 
-이렇게하면 Fast RTPS가 `/usr/local`에 설치됩니다. `DCMAKE_INSTALL_PREFIX = <path>`를 사용하여 사용자 지정 위치에 설치할 수 있습니다. 그런 다음 `fastrtpsgen` 응용 프로그램이 `PATH`에 있는지 확인하십시오. You can check with `which
-fastrtpsgen`.
+이렇게하면 Fast RTPS가 `/usr/local`에 설치됩니다. `DCMAKE_INSTALL_PREFIX = <path>`를 사용하여 사용자 지정 위치에 설치할 수 있습니다. 그런 다음 `fastrtpsgen` 응용 프로그램이 `PATH`에 있는지 확인하십시오. `which fastrtpsgen`으로 확인할 수 있습니다.
 
-If you are on Windows, choose your version of *Visual Studio*:
+Windows 사용자 인 경우 다음 *Visual Studio* 버전을 선택하십시오.
 
 ```sh
 > cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
 > cmake --build . --target install
 ```
 
-If you want to compile the examples, you will need to add the argument `-DCOMPILE_EXAMPLES=ON` when calling *CMake*.
+예제를 컴파일하려면, *CMake*를 호출 할 때 `-DCOMPILE_EXAMPLES = ON` 인수를 추가해야합니다.
 
-If you want to compile the performance tests, you will need to add the argument `-DPERFORMANCE_TESTS=ON` when calling *CMake*.
+성능 테스트를 컴파일하려면 *CMake*를 호출 할 때 `-DPERFORMANCE_TESTS = ON` 인수를 추가해야합니다.
 
-## Installation from Binaries
+## 바이너리로 설치
 
-You can always download the latest binary release of *eProsima Fast RTPS* from the [company website](http://www.eprosima.com/).
+*eProsima Fast RTPS*의 최신 바이너리 릴리즈는 [회사 웹 사이트](http://www.eprosima.com/)에서 항상 다운로드 할 수 있습니다.
 
-Documentation on how to do this can be found here: [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries) (*eProsima Fast RTPS* official documentation)
+이를 수행하는 방법에 대한 문서는 [바이너리로 설치](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)(*eProsima Fast RTPS 공식 문서*)에서 찾을 수 있습니다
 
-### Windows 7 32-bit and 64-bit
+### Windows 7 32-bit 와 64-bit
 
-Execute the installer and follow the instructions, choosing your preferred *Visual Studio* version and architecture when prompted.
+설치 관리자를 실행하고 지침에 따라 원하는 *Visual Studio* 버전 및 아키텍처를 선택하십시오.
 
-#### Environmental Variables
+#### 환경 변수
 
-*eProsima Fast RTPS* requires the following environmental variable setup in order to function properly
+*eProsima Fast RTPS*는 제대로 작동하려면 다음 환경 변수 설정이 필요합니다.
 
-* `FASTRTPSHOME`: Root folder where *eProsima Fast RTPS* is installed.
-* Additions to the `PATH`: the **/bin** folder and the subfolder for your Visual Studio version of choice should be appended to the PATH.
+* `FASTRTPSHOME`: *eProsima Fast RTPS*가 설치된 루트 폴더.
+* `PATH`에 추가: Visual Studio 버전의 **/bin** 폴더와 하위 폴더를 PATH에 추가해야합니다.
 
-These variables are set automatically by checking the corresponding box during the installation process.
+이러한 변수는 설치 과정에서 해당 상자를 체크하여 자동으로 설정됩니다.
 
 ### Linux
 
-Extract the contents of the package. It will contain both *eProsima Fast RTPS* and its required package *eProsima Fast CDR*. You will have follow the same procedure for both packages, starting with *Fast CDR*.
+패키지의 내용을 추출하십시오. *eProsima Fast RTPS*와 필요한 패키지 *eProsima Fast CDR*을 모두 포함합니다. *Fast CDR*부터 두 패키지 모두 동일한 절차를 따라야합니다.
 
-Configure the compilation:
+컴파일을 구성합니다.
 
 ```sh
 $ ./configure --libdir=/usr/lib
 ```
 
-If you want to compile with debug symbols (which also enables verbose mode):
+디버그 기호로 컴파일하려면 다음과 같이하십시오(verbose mode도 활성화됨).
 
 ```sh
 $ ./configure CXXFLAGS="-g -D__DEBUG"  --libdir=/usr/lib
 ```
 
-After configuring the project compile and install the library:
+프로젝트를 구성한 후 라이브러리를 컴파일하고 설치하십시오.
 
 ```sh
 $ sudo make install
