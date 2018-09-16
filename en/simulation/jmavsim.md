@@ -96,6 +96,14 @@ make broadcast jmavsim
 
 The simulator broadcasts its address on the local network as a real drone would do.
 
+### Start JMAVSim and PX4 Separately
+
+You can start JMAVSim and PX4 separately, as shown below:
+```
+./Tools/jmavsim_run.sh
+make posix none
+```
+
 ## Multi-Vehicle Simulation
 
 JMAVSim can be used for multi-vehicle simulation: [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
