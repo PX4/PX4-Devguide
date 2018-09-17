@@ -1,8 +1,8 @@
 # Windows Cygwin 工具链
 
-该工具链非常轻便，而且容易安装和使用 它是目前Windows环境下用于PX4开发的最新和最好的工具
+该工具链非常轻便，而且容易安装和使用。 它是目前Windows环境下用于PX4开发的最新和最好的工具。
 
-> **提示**这是官方唯一支持的在Windows环境下开发PX4的工具链（它已经在集成测试系统中经过测试）
+> **提示** 这是官方唯一支持的在Windows环境下开发PX4的工具链（它已经在集成测试系统中经过测试）
 
 该工具链支持：
 
@@ -25,13 +25,13 @@ Legacy Versions (**deprecated**):
 * [PX4 Windows Cygwin Toolchain 0.1 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.1.msi) (23.02.2018)
 -->
 
-## 安装指南
+## 安装说明
 
-1. Download the latest version of the ready to use MSI installer: [PX4 Windows Cygwin Toolchain 0.3 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.3.msi) (25.07.2018)
-2. Run it, choose your desired installation location, let it install ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
-3. Tick the box at the end of the installation to *clone the PX4 repository, build and run simulation with jMAVSim* (this simplifies the process to get you started).
+1. 下载最新的MSI安装文件：[PX4 Windows Cygwin Toolchain 0.3 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.3.msi)(25.07.2018)
+2. 运行它，选择你需要的安装路径，执行安装 ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
+3. 在安装结束后勾选*clone the PX4 repository, build and run simulation with jMAVSim*(这简化了你的开始准备工作)
     
-    > **Note** If you missed this step will need to [clone the PX4 Firmware repository manually](#getting_started).
+    > **注意**如果你错过了这一步，你需要[手动克隆PX4 Firmware库](#getting_started)
 
 ## Getting Started {#getting_started}
 
