@@ -4,7 +4,7 @@
 
 > **Info**: 本手册主要面向软件开发人员及(新) 硬件集成商。 想要使用支持飞行、编译和更改的飞行器，请参阅[ PX4 用户手册 ](https://docs.px4.io/en/)
 
-This guide explains how to:
+本指南介绍了如下内容：
 
 * Get a [minimum developer setup](setup/config_initial.md), [build PX4 from source](setup/building_px4.md) and deploy on [numerous supported autopilots](https://docs.px4.io/en/flight_controller/).
 * Understand the [PX4 System Architecture](concept/architecture.md) and other core concepts.
