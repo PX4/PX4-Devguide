@@ -11,18 +11,18 @@
 * 学习如何更改飞行栈及中间层： 
   * 更改飞行算法和添加新的[飞行模式](concept/flight_modes.md)。
   * 支持新的[飞行器](airframes/README.md)。
-* Learn how to integrate PX4 with new hardware: 
-  * Support new sensors and actuators, including cameras, rangefinders, etc.
-  * Modify PX4 to run on new autopilot hardware.
-* [Simulate](simulation/README.md), [test](test_and_ci/README.md) and [debug/log](debug/README.md) PX4.
-* Communicate/integrate with external robotics APIs.
+* 学到如何在新的硬件上集成PX4： 
+  * 支持新的传感器和执行器, 包括摄像头、测距仪等。
+  * 修改PX4使之能够在新的自驾仪硬件上运行。
+* 对PX4进行[ 仿真 ](simulation/README.md)、[ 测试 ](test_and_ci/README.md) 和 [ 调试/查看日志 ](debug/README.md)。
+* 与外部机器人的api 进行联调通信/集成。
 
-## Forums and Chat {#support}
+## 论坛和聊天 {#support}
 
-The core development team and community are active on the following forums and chat channels.
+核心开发团队和社区活跃与以下论坛和聊天频道。
 
-* [PX4 Discuss](http://discuss.px4.io/) (*recommended*)
-* [Slack](http://slack.px4.io) (sign up)
+* [ PX4 Discuss ](http://discuss.px4.io/)(* 推荐 *)
+* [ Slack ](http://slack.px4.io)(注册)
 * [Google+](https://plus.google.com/117509651030855307398)
 
 > **Tip** Developers who want to [contribute](contribute/README.md) to the platform are also most welcome to attend the [weekly dev call](contribute/README.md#dev_call) and our other [developer events](contribute/README.md#calendar).
