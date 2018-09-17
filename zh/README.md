@@ -2,11 +2,11 @@
 
 [![版本发布](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![讨论](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
-> **Info**: 本手册主要面向软件开发人员及(新) 硬件集成商。 想要使用支持飞行、编译和更改的飞行器，请参阅[ PX4 用户手册 ](https://docs.px4.io/en/)
+> **Info**: 本手册主要面向软件开发人员及(新) 硬件集成商。 想要使用支持飞行、编译和更改的飞行器，请参阅[PX4用户手册](https://docs.px4.io/en/)
 
 本指南介绍了如下内容：
 
-* 了解到 [配置最小开发环境](setup/config_initial.md), [用源码编译PX4](setup/building_px4.md) 以及部署[众多支持的自动驾驶仪](https://docs.px4.io/en/flight_controller/).
+* 了解到[配置最小开发环境](setup/config_initial.md), [用源码编译PX4](setup/building_px4.md) 以及部署[众多支持的自动驾驶仪](https://docs.px4.io/en/flight_controller/).
 * 理解[PX4系统架构](concept/architecture.md)以及核心概念。
 * 学习如何更改飞行栈及中间层： 
   * 更改飞行算法和添加新的[飞行模式](concept/flight_modes.md)。
@@ -21,8 +21,8 @@
 
 核心开发团队和社区活跃与以下论坛和聊天频道。
 
-* [ PX4 Discuss ](http://discuss.px4.io/)(* 推荐 *)
-* [ Slack ](http://slack.px4.io)(注册)
+* [PX4 Discuss](http://discuss.px4.io/)（*推荐*）
+* [Slack](http://slack.px4.io)（注册链接）
 * [Google+](https://plus.google.com/117509651030855307398)
 
 > ** 提示 **希望为平台做 [ 贡献 ](contribute/README.md)的开发人员来参加 [ 周开发交流 ](contribute/README.md#dev_call) 和我们的其他 [ 开发人员活动 ](contribute/README.md#calendar) 也是最受欢迎的 。
