@@ -39,7 +39,7 @@
 
 ## 授权条款
 
-在[BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause)的条款许可下，该代码可以自由使用和修改。 文档已获得[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)许可。 更多信息请参见:[许可证](contribute/licenses.md)。
+在[BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause)的条款许可下，该代码可以自由使用和修改。 文档在[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)下获得许可。 更多信息请参见：[许可证](contribute/licenses.md)。
 
 ## 管理
 
