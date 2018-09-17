@@ -1,6 +1,6 @@
 # PX4 开发指南
 
-[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
+[![版本发布](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![讨论](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
 > **Info**: 本手册主要面向软件开发人员及(新) 硬件集成商。 想要使用支持飞行、编译和更改的飞行器，请参阅[ PX4 用户手册 ](https://docs.px4.io/en/)
 
@@ -25,27 +25,27 @@
 * [ Slack ](http://slack.px4.io)(注册)
 * [Google+](https://plus.google.com/117509651030855307398)
 
-> **Tip** Developers who want to [contribute](contribute/README.md) to the platform are also most welcome to attend the [weekly dev call](contribute/README.md#dev_call) and our other [developer events](contribute/README.md#calendar).
+> ** 提示 **希望为平台做 [ 贡献 ](contribute/README.md)的开发人员来参加 [ 周开发交流 ](contribute/README.md#dev_call) 和我们的其他 [ 开发人员活动 ](contribute/README.md#calendar) 也是最受欢迎的 。
 
-## Contributing
+## 贡献
 
-[Contributing & Dev Call](contribute/README.md) explains how to work with our source codelines. [Documentation](contribute/docs.md) explains how and where documentation changes can be made.
+[ 贡献 & 开发人员交流 ](contribute/README.md) 解释了如何用我们的源代码工作。 [ 文档 ](contribute/docs.md) 解释了文档更改的方法和位置。
 
-## Translations
+## 翻译
 
-There are Chinese and Korean [translations](contribute/docs.md#translation) of this guide. You can you can access these by clicking the language-switcher icon:
+本指南中有中文和韩文 [ 翻译 ](contribute/docs.md#translation)。 您可以通过单击语言切换器图标来访问这些内容:
 
-![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
+![Gitbook 语言选择器](../assets/gitbook/gitbook_language_selector.png)
 
-## Licence
+## 授权条款
 
-The code is free to use and modify under terms of the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause). The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). For more information see: [Licences](contribute/licenses.md).
+根据[ BSD 3 子句许可证 ](https://opensource.org/licenses/BSD-3-Clause) 的条款， 该代码可以自由使用和修改。 文档已获得 [ CC 4.0 ](https://creativecommons.org/licenses/by/4.0/) 许可。 更多信息请参见: [ 许可证 ](contribute/licenses.md)。
 
-## Governance
+## 管理
 
-The PX4 flight stack is hosted under the governance of the [Dronecode Project](https://www.dronecode.org/).
+PX4 飞行堆栈承载于 [ Dronecode 项目 ](https://www.dronecode.org/) 。
 
-<a href="https://www.dronecode.org/" style="padding:20px"><img src="https://mavlink.io/assets/site/logo_dronecode.png" alt="Dronecode Logo" width="110px"/></a>
-<a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="Linux Foundation Logo" width="80px" /></a>
+<a href="https://www.dronecode.org/" style="padding:20px"><img src="https://mavlink.io/assets/site/logo_dronecode.png" alt="Dronecode 徽标" width="110px"/></a>
+<a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="Linux 基金会徽标" width="80px" /></a>
 
 <div style="padding:10px">&nbsp;</div>
