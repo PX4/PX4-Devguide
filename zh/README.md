@@ -39,11 +39,11 @@
 
 ## 授权条款
 
-根据[ BSD 3 子句许可证 ](https://opensource.org/licenses/BSD-3-Clause) 的条款， 该代码可以自由使用和修改。 文档已获得 [ CC 4.0 ](https://creativecommons.org/licenses/by/4.0/) 许可。 更多信息请参见: [ 许可证 ](contribute/licenses.md)。
+在[BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause)的条款许可下，该代码可以自由使用和修改。 文档已获得[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)许可。 更多信息请参见: [ 许可证 ](contribute/licenses.md)。
 
 ## 管理
 
-PX4 飞行堆栈承载于 [ Dronecode 项目 ](https://www.dronecode.org/) 。
+PX4飞行栈受[Dronecode项目](https://www.dronecode.org/)管理。
 
 <a href="https://www.dronecode.org/" style="padding:20px"><img src="https://mavlink.io/assets/site/logo_dronecode.png" alt="Dronecode Logo" width="110px"/></a>
 <a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="Linux Foundation Logo" width="80px" /></a>
