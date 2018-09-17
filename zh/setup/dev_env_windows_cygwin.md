@@ -1,13 +1,13 @@
-# Windows Cygwin Toolchain
+# Windows Cygwin 工具链
 
-This toolchain is portable, easy to install, and easy to use. It is the newest and best performing toolchain for developing PX4 on Windows.
+该工具链可移植，而且非常容易安装和使用 它是目前Windows环境下用于PX4开发的最新和最好的工具
 
-> **Tip** This is the only officially supported toolchain for building PX4 on Windows (i.e. it is tested in our continuous integration system).
+> **提示**这是官方唯一支持的在Windows环境下开发PX4的工具链（它已经在集成测试系统中经过测试）
 
-The toolchain supports:
+该工具链支持：
 
-* Build/upload of PX4 to NuttX targets (Pixhawk series controllers)
-* JMAVSim/SITL simulator with significantly better performance than the other Windows toolchains.
+* 编译/上传 PX4到Nuttx目标(Pixhawk系列飞控)
+* JMAVSim/SITL 仿真会获得比其他Windows工具链更好的性能
 * Style check, portable installer, command line completion and many [other features](#features).
 
 This topic explains how download and use the environment, and how it can be extended and updated if needed (for example, to use a different compiler).
