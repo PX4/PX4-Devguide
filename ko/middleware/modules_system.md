@@ -43,6 +43,52 @@ Reading and writing a single item is always atomic. If multiple items need to be
        status        print status info
     
 
+## heater
+
+Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
+
+### Description
+
+Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
+
+This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
+
+### Usage {#heater_usage}
+
+    heater <command> [arguments...]
+     Commands:
+       controller_period Reports the heater driver cycle period value, (us), and
+                     sets it if supplied an argument.
+    
+       duty_cycle    Reports the heater duty cycle (%).
+    
+       feed_forward  Sets the feedforward value if supplied an argument and reports
+                     the current value.
+    
+       integrator    Sets the integrator gain value if supplied an argument and
+                     reports the current value.
+    
+       proportional  Sets the proportional gain value if supplied an argument and
+                     reports the current value.
+    
+       sensor_id     Reports the current IMU the heater is temperature controlling.
+    
+       setpoint      Reports the current IMU temperature.
+    
+       start         Starts the IMU heater driver as a background task
+    
+       status        Reports the current IMU temperature, temperature setpoint, and
+                     heater on/off status.
+    
+       stop          Stops the IMU heater driver.
+    
+       temp          Reports the current IMU temperature.
+    
+       stop
+    
+       status        print status info
+    
+
 ## land_detector
 
 Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
