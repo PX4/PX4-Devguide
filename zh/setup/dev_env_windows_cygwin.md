@@ -1,6 +1,6 @@
 # Windows Cygwin 工具链
 
-该工具链可移植，而且非常容易安装和使用 它是目前Windows环境下用于PX4开发的最新和最好的工具
+该工具链非常轻便，而且容易安装和使用 它是目前Windows环境下用于PX4开发的最新和最好的工具
 
 > **提示**这是官方唯一支持的在Windows环境下开发PX4的工具链（它已经在集成测试系统中经过测试）
 
@@ -8,9 +8,9 @@
 
 * 编译/上传 PX4到Nuttx目标(Pixhawk系列飞控)
 * JMAVSim/SITL 仿真会获得比其他Windows工具链更好的性能
-* Style check, portable installer, command line completion and many [other features](#features).
+* 类型校验，轻便安装，完整的命令行支持和许多[其他特性](#features)
 
-This topic explains how download and use the environment, and how it can be extended and updated if needed (for example, to use a different compiler).
+这篇文章将解释怎样下载和使用该环境，并且在需要的时候怎样扩展和更新(比如，使用其他的编译器)。
 
 <!--
 ## Ready to use MSI Installer Download {#installation}
@@ -25,7 +25,7 @@ Legacy Versions (**deprecated**):
 * [PX4 Windows Cygwin Toolchain 0.1 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.1.msi) (23.02.2018)
 -->
 
-## Installation Instructions
+## 安装指南
 
 1. Download the latest version of the ready to use MSI installer: [PX4 Windows Cygwin Toolchain 0.3 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.3.msi) (25.07.2018)
 2. Run it, choose your desired installation location, let it install ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
