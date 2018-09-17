@@ -6,11 +6,11 @@
 
 本指南介绍了如下内容：
 
-* Get a [minimum developer setup](setup/config_initial.md), [build PX4 from source](setup/building_px4.md) and deploy on [numerous supported autopilots](https://docs.px4.io/en/flight_controller/).
-* Understand the [PX4 System Architecture](concept/architecture.md) and other core concepts.
-* Learn how to modify the flight stack and middleware: 
-  * Modify flight algorithms and add new [flight modes](concept/flight_modes.md).
-  * Support new [airframes](airframes/README.md).
+* 了解到 [配置最小开发环境](setup/config_initial.md), [用源码编译PX4](setup/building_px4.md) 以及部署[众多支持的自动驾驶仪](https://docs.px4.io/en/flight_controller/).
+* 理解[PX4系统架构](concept/architecture.md)以及核心概念。
+* 学习如何更改飞行栈及中间层： 
+  * 更改飞行算法和添加新的[飞行模式](concept/flight_modes.md)。
+  * 支持新的[飞行器](airframes/README.md)。
 * Learn how to integrate PX4 with new hardware: 
   * Support new sensors and actuators, including cameras, rangefinders, etc.
   * Modify PX4 to run on new autopilot hardware.
