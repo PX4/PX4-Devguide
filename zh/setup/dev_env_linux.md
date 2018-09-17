@@ -1,8 +1,8 @@
-# Development Environment on Linux
+# Linux环境下的开发
 
-Linux allows you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation, ROS).
+Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基于NuttX的硬件、高通骁龙飞行硬件、基于Linux的硬件、仿真、ROS)。
 
-> **Tip** We have standardized on Debian / [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) (16.04) as the supported Linux distribution. Instructions are also provided for [CentOS](../setup/dev_env_linux_centos.md) and [Arch Linux](../setup/dev_env_linux_arch.md).
+> **Tip** 我们已经标准化了Debian/[Ubuntu (16.04)](https://wiki.ubuntu.com/LTS)作为支持的linux发行版， 也为[CentOS](../setup/dev_env_linux_centos.md)和[Arch Linux](../setup/dev_env_linux_arch.md)提供了说明。
 
 The following instructions explain how to set up a development environment on Ubuntu LTS using convenience bash scripts. Instructions for *manually installing* these and additional targets can be found in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md).
 
