@@ -1,6 +1,6 @@
 # Using Vision or Motion Capture Systems
 
-> 在开始下面这段教程之前，请确保你的飞控是一个使能了LPE模块的固件版本 The LPE version of the PX4 firmware can be found inside the zip file of the latest PX4 release or it can be built from source using a build command such as `make px4fmu-v2_lpe`. See [Building the Code](../setup/building_px4.md) for more details.
+> 在开始下面这段教程之前，请确保你的飞控是一个使能了LPE模块的固件版本 PX4 固件的 LPE 版本可以在最新的 PX4 发行版的 zip 文件中找到, 也可以使用生成命令 (如 ` build px4fmu-v2_lpe `) 从源生成。 有关详细信息, 请参阅 [ Building the code ](../setup/building_px4.md)。
 
 This page aims at getting a PX4 based system using position data from sources other than GPS (such as motion capture systems like VICON and Optitrack and vision based estimation systems like [ROVIO](https://github.com/ethz-asl/rovio), [SVO](https://github.com/uzh-rpg/rpg_svo) or [PTAM](https://github.com/ethz-asl/ethzasl_ptam) )
 
