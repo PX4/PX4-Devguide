@@ -33,7 +33,7 @@ Legacy Versions (**deprecated**):
     
     > **注意**如果你错过了这一步，你需要[手动克隆PX4 Firmware库](#getting_started)
 
-## Getting Started {#getting_started}
+## 入门指南 {#getting_started}
 
 The toolchain uses a specially configured console window (started by running the **run-console.bat** script) from which you can call the normal PX4 build commands:
 
