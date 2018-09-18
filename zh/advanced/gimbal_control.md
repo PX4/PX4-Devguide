@@ -45,7 +45,7 @@ A basic basic mixer configuration for a mount is shown below.
     S: 2 2  10000  10000      0 -10000  10000
     
 
-## SITL
+## 软件在环仿真
 
 The Typhoon H480 model comes with a preconfigured simulated gimbal. To run it, use:
 
