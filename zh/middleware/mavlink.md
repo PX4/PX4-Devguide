@@ -10,14 +10,14 @@ This tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajec
 
 此章节旨在说明：如何使用一条自定义uORB消息，并将其作为一条MAVLink消息发送出去。
 
-Add the headers of the MAVLink and uORB messages to [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
+Step1. 首先，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)中添加MAVLink消息和uORB消息的头文件：
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
+Step2. 然后，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)中新建一个类：
 
 ```C
 class MavlinkStreamCaTrajectory : public MavlinkStream
