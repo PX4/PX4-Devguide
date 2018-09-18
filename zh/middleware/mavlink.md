@@ -109,7 +109,7 @@ Step2. 在[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/m
 void handle_message_ca_trajectory_msg(mavlink_message_t *msg);
 ```
 
-Add an uORB publisher in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)
+Step3. 在[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)中，向类`MavlinkReceiver`中添加uORB发布者类型的成员变量：
 
 ```C
 orb_advert_t _ca_traj_msg_pub;
