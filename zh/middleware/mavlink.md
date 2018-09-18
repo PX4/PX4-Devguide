@@ -87,14 +87,14 @@ nullptr
 };
 ```
 
-Then make sure to enable the stream, for example by adding the following line to the startup script (`-r` configures the streaming rate, `-u` identifies the MAVLink channel on UDP port 14556):
+Step4. 最后，确保使能了此消息流：比如，添加如下内容至启动脚本文件（`-r`+n 命令可设置串流速率，`-u`命令可将MAVLink通道映射到UDP端口14556）
 
     mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
     
 
-## Receiving Custom MAVLink Messages
+## 接收自定义MAVLink消息
 
-This section explains how to receive a message over MAVLink and publish it to uORB.
+此章节旨在说明：如何接收一条MAVLink消息，并将其发布至uORB。
 
 Add a function that handles the incoming MAVLink message in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)
 
