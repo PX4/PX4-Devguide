@@ -46,7 +46,7 @@ LPE中会默认融合视觉信息。 你利用QGC可以设置参数`LPE_FUSION` 
 
 各坐标系如下图所示，NED在左边，ENU在右边。
 
-![Reference frames](../../assets/lpe/ref_frames.png)
+![参考机架](../../assets/lpe/ref_frames.png)
 
 当使用外部信息作为航向标准时，地磁北将会被忽略。注意：你可以轻易设置外部的偏航角0度值，这时X轴会指向你自定义的X轴。
 
