@@ -40,21 +40,21 @@ LPE中会默认融合视觉信息。 你利用QGC可以设置参数`LPE_FUSION` 
 
 本节演示如何使用适当的参考坐标系。 关于坐标系有各种各样的表示, 但我们将使用其中两个: ENU 和 NED。
 
-* ENU系：X轴指向东，Y指向北，Z指向天。 Robot frame is *x* towards the front, *z* up and *y* accordingly.
+* ENU系：X轴指向东，Y指向北，Z指向天。 相应的机体系：X指向前，Z指向上，Y则顺应右手法则。
 
-* NED has *x* towards North, *y* East and *z* down. Robot frame is *x* towards the front, *z* down and *y* accordingly.
+* NED系：X轴指向北，Y轴指向东，Z指向地。 相应的机体系：X指向前，Z指向下，Y则顺应右手法则。
 
-Frames are shown in the image below: NED on the left while ENU on the right.
+各坐标系如下图所示，NED在左边，ENU在右边。
 
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
-With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration); yaw angle will be given with respect to local *x*.
+当使用外部信息作为航向标准时，地磁北将会被忽略。注意：你可以轻易设置外部的偏航角0度值，这时X轴会指向你自定义的X轴。
 
-> **Info** When creating the rigid body in the mocap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise yaw estimation will have an initial offset.
+> ** 信息 **在 mocap系统的地面站 软件中创建刚体时, 请记住首先将机器人的本地 * x * 轴与世界 * x * 轴对齐, 否则偏航估计将具有初始偏移量。
 
-### Using Mavros
+### MAVROS的使用
 
-With MAVROS this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and mavros will take care of NED conversions.
+利用MAVROS功能包，以上操作会十分简单。 ROS 默认使用 ENU 系, 因此你在MAVROS中所有代码必须遵循ENU系。 If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and mavros will take care of NED conversions.
 
 ### Without Mavros
 
