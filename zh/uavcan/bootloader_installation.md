@@ -4,7 +4,7 @@
 
 ## 概述
 
-The PX4 project includes a standard UAVCAN bootloader for STM32 devices.
+PX4 项目包含一个用于 STM32 设备的标准 UAVCAN 引导程序。
 
 The bootloader occupies the first 8–16 KB of flash, and is the first code executed on power-up. Typically, the bootloader performs low-level device initialization, automatically determines the CAN bus baud rate, acts as a UAVCAN dynamic node ID client to obtain a unique node ID, and waits for confirmation from the flight controller before proceeding with application boot.
 
