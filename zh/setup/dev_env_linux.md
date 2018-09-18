@@ -10,11 +10,11 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
 
 下问说明了如何使用[bash脚本](../setup/dev_env_linux_ubuntu.md#convenience-bash-scripts)在Ubuntu上设置开发工具链。 以下脚本作用分别是安装*Qt Creator IDE*、[ Ninja构建系统](https://ninja-build.org/)、[通用依赖项](../setup/dev_env_linux_ubuntu.md#common-dependencies)、[FastRTPS](../setup/dev_env_linux_ubuntu.md#fastrtps-installation), 以及将PX4源下载到您的目录(**~/src/Firmware**)。
 
-> **Tip** 该脚本已经在全新Ubuntu 16.04安装测试过 They *may* not work as expected if installed on top of an existing system or on another Ubuntu release. If you have any problems then follow the [manual installation instructions](../setup/dev_env_linux_ubuntu.md).
+> **Tip** 该脚本已经在全新Ubuntu 16.04安装测试过 如果安装在除上述提到的系统或其他Ubuntu版本上, 则它们*可能*无法正常工作。 如果您遇到任何问题, 请参照[手动安装说明](../setup/dev_env_linux_ubuntu.md)操作。
 
-First make the user a member of the group "dialout"
+首先将用户加入组"dialout"
 
-1. On the command prompt enter: 
+1. 在命令提示符下输入: 
         sh
         sudo usermod -a -G dialout $USER
 
