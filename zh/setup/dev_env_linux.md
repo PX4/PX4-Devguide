@@ -90,20 +90,20 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
   
   <li>
     在bash shell中运行脚本: <pre><code>bash
-源 ubuntu_sim_ros_gazebo. sh</code></pre> 你可能需要承认一些随着脚本的进展而提示.
+source ubuntu_sim_ros_gazebo. sh</code></pre> 你可能需要承认一些随着脚本的进展而提示.
   </li>
 </ol>
 
 <p>
-  注意:
+  Note:
 </p>
 
 <ul>
   <li>
-    ROS 默认安装 Gazebo7 (我们选择使用默认值而不是Gazebo8 或 Gazebo9, 以简化 ROS 的发展).
+    ROS默认安装Gazebo7 (我们选择使用默认值而不是Gazebo8或Gazebo9, 以简化ROS的开发).
   </li>
   <li>
-    您的柔荑 (ROS 生成系统) 工作区创建于 <strong> catkin_ws/</strong>.
+    Catkin(ROS 生成系统)工作区创建于<strong>～/catkin_ws/</strong>.
   </li>
 </ul>
 
@@ -112,7 +112,7 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
 </h2>
 
 <p>
-  设置生成/模拟工具链后, 请参阅 <a href="../setup/generic_dev_tools.md"> 其他工具 </a> 以了解有关其他有用的工具.
+  设置生成/模拟工具链后, 请参阅<a href="../setup/generic_dev_tools.md">其他工具</a>以了解有关其他有用的工具.
 </p>
 
 <h2>
