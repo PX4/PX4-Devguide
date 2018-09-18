@@ -2,9 +2,9 @@
 
 > 在开始下面这段教程之前，请确保你的飞控是一个使能了LPE模块的固件版本 PX4 固件的 LPE 版本可以在最新的 PX4 发行版的 zip 文件中找到, 也可以使用生成命令 (如 ` build px4fmu-v2_lpe `) 从源生成。 有关详细信息, 请参阅 [ Building the code ](../setup/building_px4.md)。
 
-This page aims at getting a PX4 based system using position data from sources other than GPS (such as motion capture systems like VICON and Optitrack and vision based estimation systems like [ROVIO](https://github.com/ethz-asl/rovio), [SVO](https://github.com/uzh-rpg/rpg_svo) or [PTAM](https://github.com/ethz-asl/ethzasl_ptam) )
+本页的目的是为了让PX4固件获得除 GPS 以外的位置数据 (比如像VICON和 Optitrack 等动作捕捉系统和基于视觉的位置估计系统 (如 [ ROVIO ](https://github.com/ethz-asl/rovio)、[ SVO ](https://github.com/uzh-rpg/rpg_svo) 或 [ PTAM ](https://github.com/ethz-asl/ethzasl_ptam))）
 
-Position estimates can be sent both from an onboard computer as well as from offboard (example : VICON). This data is used to update its local position estimate relative to the local origin. Heading from the vision/motion capture system can also be optionally integrated by the attitude estimator.
+位置信息可以来自一个机载电脑或者板外设备（比如VICON） 这些数据用来更新飞控相对于原点的本地位置信息 Heading from the vision/motion capture system can also be optionally integrated by the attitude estimator.
 
 The system can then be used for applications such as position hold indoors or waypoint navigation based on vision.
 
