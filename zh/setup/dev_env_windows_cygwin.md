@@ -38,34 +38,34 @@ Legacy Versions (**deprecated**):
 工具链使用专门配置的控制台(通过运行**run-console.bat**脚本)从而可以使用PX4编译命令
 
 1. 进入到工具链的安装目录(默认**C:\PX4**)
-2. Run **run-console.bat** (double click) to start the Cygwin bash console
-3. Clone the PX4 Firmware repository from within the console:
+2. 运行**run-console.bat**(双击)启动Cygwin bash控制台
+3. 在控制台中运行克隆PX4 Firmware仓库命令
     
-    > **Note** Cloning only needs to be done once! Skip this step if you ticked the installer option to *clone the PX4 repository, build and run simulation with jMAVSim*.
+    > **注意**只需要克隆一次 如果你在安装程序最后选择了*clone the PX4 repository, build and run simulation with jMAVSim*，则可以跳过这一步。
     
     ```bash
-    # Clone PX4 Firmware repository into the home folder & loads submodules in parallel
+    克隆PX4 Firmware仓库到home目录& 同时并行加载子模块
     git clone --recursive -j8 https://github.com/PX4/Firmware.git
     ```
     
-    You can now use the console/Firmware repository to build PX4.
+    你现在可以使用控制台中的Firmware仓库代码来编译PX4
 
-4. For example, to run JMAVSim:
+4. 举例，要运行JMAVSim:
     
     ```bash
-    # Navigate to Firmware repo
-    cd Firmware
-    # Build and runs SITL simulation with jMAVSim to test the setup
+    # 进入Firmware仓库目录
+    cd Firmware 
+    # 使用JMAVSim编译并运行SITL模拟器来验证 
     make posix jmavsim
     ```
     
-    The console will then display:
+    控制台将会显示：
     
     ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.PNG)
 
-Continue next to [the detailed instructions on how to build PX4](../setup/building_px4.md) (or see the section below for more general usage instructions).
+下面[ 有关如何生成 PX4 的详细说明 ](../setup/building_px4.md) (或参阅下面的部分以了解更多常规用法说明)。
 
-## Usage Instructions {#usage_instructions}
+## 使用说明 {#usage_instructions}
 
 The installation directory (default: **C:\PX4**) contains batch scripts for launching console windows and starting different IDEs inside the Cygwin toolchain environment. The full list of scripts provided is.
 
