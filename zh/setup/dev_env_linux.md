@@ -27,98 +27,98 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
 安装开发工具链:
 
 1. 下载<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx</a>。
+2. 在bash shell中运行脚本: 
+        bash
+        source ubuntu_sim_nuttx.sh 随着脚本的运行，可能需要确认一些提示。
+
+3. 完成后重新启动计算机。
+
+### 高通骁龙飞控
+
+在*PX4用户指南*中提供了高通骁龙飞控的安装说明:
+
+* [开发环境](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [软件安装](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [配置](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+
+### 树莓派
+
+安装开发工具链:
+
+1. 下载<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps</a>(包含jMAVSim模拟器和常见工具链依赖)。
 2. 在 bash shell 中运行脚本: 
         bash
-        source ubuntu_sim_nuttx.sh You may need to acknowledge some prompts as the script progresses.
+        source ubuntu_sim_common_deps.sh 随着脚本的运行，可能需要确认一些提示。
 
-3. Restart the computer on completion.
-
-### Snapdragon Flight
-
-Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
-
-* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
-* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
-* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
-
-### Raspberry Pi
-
-To install the development toolchain:
-
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
-2. Run the script in a bash shell: 
-        bash
-        source ubuntu_sim_common_deps.sh You may need to acknowledge some prompts as the script progresses.
-
-3. Follow setup instructions in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md) for [Raspberry Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
+3. 按照[树莓Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware)在[Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md)中的安装说明进行。
 
 ### Parrot Bepop
 
-Follow the (manual) instructions here: [Ubuntu/Debian Linux > Parrot Bebop](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
+请按照此处的(手动)说明操作: [ Ubuntu/Debian Linux >Parrot Bebop](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware)。
 
-### jMAVSim/Gazebo Simulation
+### jMAVSim/Gazebo 模拟
 
-To install the Gazebo and jMAVSim simulators:
+安装Gazebo和jMAVSim模拟器:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
-2. Run the script in a bash shell: 
+1. 下载<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>。
+2. 在bash shell中运行脚本: 
         bash
-        source ubuntu_sim.sh You may need to acknowledge some prompts as the script progresses.
+        source ubuntu_sim.sh 随着脚本的运行，可能需要确认一些提示。
 
-> **Tip** If you just need jMAVSim, instead download and run <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
+> **Tip** 如果您只需要jMAVSim，请下载并运行<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps</a>。
 
 <span><span></p> 
 
 <blockquote>
   <p>
-    <strong>Note</strong> PX4 works with Gazebo 7, 8, and 9. The script installs Gazebo 9.
+    <strong>Note</strong> PX4兼容Gazebo7、8和9。 该脚本安装Gazebo 9.
   </p>
 </blockquote>
 
 <h3>
-  Gazebo with ROS
+  Gazebo与 ROS
 </h3>
 
 <p>
-  To install the development toolchain:
+  安装开发工具链:
 </p>
 
 <ol start="1">
   <li>
-    Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>.
+    下载 <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download> ubuntu_sim_ros_gazebo</a>
   </li>
   
   <li>
-    Run the script in a bash shell: <pre><code>bash
-source ubuntu_sim_ros_gazebo.sh</code></pre> You may need to acknowledge some prompts as the script progresses.
+    在bash shell中运行脚本: <pre><code>bash
+源 ubuntu_sim_ros_gazebo. sh</code></pre> 你可能需要承认一些随着脚本的进展而提示.
   </li>
 </ol>
 
 <p>
-  Note:
+  注意:
 </p>
 
 <ul>
   <li>
-    ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 or Gazebo9 to simplify ROS development).
+    ROS 默认安装 Gazebo7 (我们选择使用默认值而不是Gazebo8 或 Gazebo9, 以简化 ROS 的发展).
   </li>
   <li>
-    Your catkin (ROS build system) workspace is created at <strong>~/catkin_ws/</strong>.
+    您的柔荑 (ROS 生成系统) 工作区创建于 <strong> catkin_ws/</strong>.
   </li>
 </ul>
 
 <h2>
-  Additional Tools
+  其他工具
 </h2>
 
 <p>
-  After setting up the build/simulation toolchain, see <a href="../setup/generic_dev_tools.md">Additional Tools</a> for information about other useful tools.
+  设置生成/模拟工具链后, 请参阅 <a href="../setup/generic_dev_tools.md"> 其他工具 </a> 以了解有关其他有用的工具.
 </p>
 
 <h2>
-  Next Steps
+  下一步
 </h2>
 
 <p>
-  Once you have finished setting up the environment, continue to the <a href="../setup/building_px4.md">build instructions</a>.
+  在完成环境设置后, 请继续执行<a href="../setup/building_px4.md">生成说明</a>.
 </p>
