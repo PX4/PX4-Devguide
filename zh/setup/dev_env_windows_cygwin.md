@@ -35,9 +35,9 @@ Legacy Versions (**deprecated**):
 
 ## 入门指南 {#getting_started}
 
-The toolchain uses a specially configured console window (started by running the **run-console.bat** script) from which you can call the normal PX4 build commands:
+工具链使用专门配置的控制台(通过运行**run-console.bat**脚本)从而可以使用PX4编译命令
 
-1. Browse to the toolchain installation directory (default **C:\PX4**)
+1. 进入到工具链的安装目录(默认**C:\PX4**)
 2. Run **run-console.bat** (double click) to start the Cygwin bash console
 3. Clone the PX4 Firmware repository from within the console:
     
