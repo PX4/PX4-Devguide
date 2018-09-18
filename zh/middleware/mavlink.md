@@ -1,14 +1,14 @@
 # MAVLink通讯
 
-点击[这里](https://mavlink.io/en/messages/)查看关于所有系统默认Mavlink消息的概述。
+点击[这里](https://mavlink.io/en/messages/)查看关于所有的系统默认Mavlink消息的概述。
 
 ## 创建自定义MAVLink消息
 
 This tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h` (see [here](http://qgroundcontrol.org/mavlink/create_new_mavlink_message) how to create a custom MAVLink message and header).
 
-## Sending Custom MAVLink Messages
+## 发送自定义MAVLink消息
 
-This section explains how to use a custom uORB message and send it as a MAVLink message.
+此章节旨在说明：如何使用一条自定义uORB消息，并将其作为一条MAVLink消息发送出去。
 
 Add the headers of the MAVLink and uORB messages to [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
 
