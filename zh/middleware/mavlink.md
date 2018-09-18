@@ -1,6 +1,6 @@
 # MAVLink通讯
 
-点击[这里](https://mavlink.io/en/messages/)查看关于所有malink消息的概述。
+点击[这里](https://mavlink.io/en/messages/)查看关于所有系统默认Mavlink消息的概述。
 
 ## 创建自定义MAVLink消息
 
