@@ -52,41 +52,41 @@ LPE中会默认融合视觉信息。 你利用QGC可以设置参数`LPE_FUSION` 
 
 > ** 信息 **在 mocap系统的地面站 软件中创建刚体时, 请记住首先将机器人的本地 * x * 轴与世界 * x * 轴对齐, 否则偏航估计将具有初始偏移量。
 
-### MAVROS的使用
+### 利用MAVROS来实现这些
 
-利用MAVROS功能包，以上操作会十分简单。 ROS 默认使用 ENU 系, 因此你在MAVROS中所有代码必须遵循ENU系。 If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and mavros will take care of NED conversions.
+利用MAVROS功能包，以上操作会十分简单。 ROS 默认使用 ENU 系, 因此你在MAVROS中所有代码必须遵循ENU系。 如果您有一个 Optitrack 系统, 则可以使用 [ mocap_optitrack ](https://github.com/ros-drivers/mocap_optitrack) 节点, 其已经发布了一个关于刚体位姿的一个ROS话题。 通过重新映射（方向转换）, 您可以直接利用` mocap_pose_estimate ` 插件来发布它, 请注意你需要遵循ENU系。
 
-### Without Mavros
+### 不使用MAVROS的方法
 
-If you do not use MAVROS or ROS in general, you need to stream data over MAVLink with `ATT_POS_MOCAP` message. In this case you will need to apply a custom transformation depending on the system in order to obtain NED convention.
+如果你不想使用MAVROS或者ROS，你需要发送`ATT_POS_MOCAP` 这条MAVLINK消息给飞控。 这种情况下，请注意方向问题，请遵循飞控内部的NED系。
 
-Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. A simple trick is swapping axis in order to obtained NED convention.
+让我们以 Optitrack 为例;如果我们设置optitrack的坐标系设置为x指向前方，z指向右，y竖直向上 通过如下转换我们可以转换optrack坐标系到NED系中。
 
-We call *x_{mav}*, *y_{mav}* and *z_{mav}* the coordinates that are sent through MAVLink as position feedback, then we obtain:
+* x_{mav}*, * y_{mav}* 和 * z_{mav}* 是我们将通过 MAVLink 发送的位置量, 然后我们得到:
 
 *x_{mav}* = *x_{mocap}* *y_{mav}* = *z_{mocap}* *z_{mav}* = - *y_{mocap}*
 
-Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
+Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. 上述的转换技巧你可以应用于任何系统：对比一下NED系和你的外部消息的坐标系你就会知道该如何转换。
 
-## First Flight
+## 第一次飞行
 
-At this point, if you followed those steps, you are ready to test your setup.
+首先你需要检查你的各项设置。
 
-Be sure to perform the following checks:
+请检查
 
 * **Before** creating the rigid body, align the robot with world x axis
-* Stream over MAVLink and check the MAVLink inspector with QGroundControl, the local pose topic should be in NED
-* Move the robot around by hand and see if the estimated local position is consistent (always in NED)
-* Rotate the robot on the vertical axis and check the yaw with the MAVLink inspector
+* 通过MAVLINK发送相应的消息，并在QGC监控该消息。
+* 用手简单移动无人机来检查估计器发布的位置方向是否正确。
+* 旋转无人机来检查偏航角方向是否正确。
 
-If those steps are consistent, you can try your first flight.
+如果以上步骤没问题，你可以开始你的第一次飞行。
 
-Put the robot on the ground and start streaming mocap feedback. Lower your left (throttle) stick and arm the motors.
+将无人机摆放在地面，并启用mocap系统。 油门杆推到最低并解锁。
 
-At this point, with the left stick at the lowest position, switch to position control. You should have a green light. The green light tells you that position feedback is available and position control is now activated.
+此时，设置为位置控制模式。 如果切换成功，飞控会闪绿灯。 绿灯代表：你的外部位置信息已经注入到飞控中，并且位置控制模式已经切换成功。
 
-Put your left stick at the middle, this is the dead zone. With this stick value, the robot maintains its altitude; raising the stick will increase the reference altitude while lowering the value will decrease it. Same for right stick on x and y.
+油门杆居中，这是油门控制死区。 如果在死区中，则无人机会保持其当前高度。往上推杆，则会上升，往下推杆，则会下降。 同理对于另一个杆。
 
-Increase the value of the left stick and the robot will take off, put it back to the middle right after. Check if it is able to keep its position.
+推油门杆，则无人机会起飞，起飞后，立即将其拉回中位。 检查此时无人机能否悬停。
 
-If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
+如果这一切都没问题，那么你可以开始进行offboard模式下的试验了（发布自行设定的位置期望值给飞控）。
