@@ -18,16 +18,16 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
         sh
         sudo usermod -a -G dialout $USER
 
-2. Logout and login again (the change is only made after a new login).
+2. 注销并重新登录(更改后重新登录生效)。
 
-Then follow the instructions for your development target in the sections below.
+请对应以下各部分中的开发目标说明进行操作。
 
-### Pixhawk/NuttX (and jMAVSim)
+### Pixhawk/NuttX(和jMAVSim)
 
-To install the development toolchain:
+安装开发工具链:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
-2. Run the script in a bash shell: 
+1. 下载<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx</a>。
+2. 在 bash shell 中运行脚本: 
         bash
         source ubuntu_sim_nuttx.sh You may need to acknowledge some prompts as the script progresses.
 
