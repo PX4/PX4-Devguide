@@ -98,11 +98,14 @@ The simulator broadcasts its address on the local network as a real drone would 
 
 ### Start JMAVSim and PX4 Separately
 
-You can start JMAVSim and PX4 separately, as shown below:
+You can start JMAVSim and PX4 separately:
+
 ```
 ./Tools/jmavsim_run.sh
 make posix none
 ```
+
+This allows a faster testing cycle (restarting jMAVSim takes significantly more time).
 
 ## Multi-Vehicle Simulation
 
