@@ -115,7 +115,7 @@ Step3. 在[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/m
 orb_advert_t _ca_traj_msg_pub;
 ```
 
-Implement the `handle_message_ca_trajectory_msg` function in [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)
+Step4. 在[mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)中给出函数`handle_message_ca_trajectory_msg`的具体实现：
 
 ```C
 void MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
@@ -142,7 +142,7 @@ void MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
 }
 ```
 
-and finally make sure it is called in [MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)
+Step5. 最后，确保上述自定义函数在[MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)中被调用：
 
 ```C
 MavlinkReceiver::handle_message(mavlink_message_t *msg)
