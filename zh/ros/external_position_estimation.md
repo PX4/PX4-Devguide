@@ -10,7 +10,7 @@
 
 对于视觉, 用于发送姿势数据的 MAVLink 消息是 [ VISION_POSITION_ESTIMATE ](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE), 而对于运动捕获系统的发送的的 MAVLink 消息是 [ ATT_POS_MOCAP ](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) 。
 
-The mavros ROS-MAVLink interface has default implementations to send these messages. 这些消息也可以直接使用MAVLINK库并编写C/C++代码来发送和接收。 The ROS topics are: `mocap_pose_estimate` for mocap systems and `vision_pose_estimate` for vision. 有关详细信息, 请检查 [ mavros_extras ](http://wiki.ros.org/mavros_extras)。
+mavros功能包中已经包含了这些mavlink消息的发送和接收接口。 这些消息也可以直接使用MAVLINK库并编写C/C++代码来发送和接收。 对应的ROS 主题是: 用于 mocap 系统的 ` mocap_pose_estimate ` 和用于视觉的 ` vision_pose_estimate `。 有关详细信息, 请检查 [ mavros_extras ](http://wiki.ros.org/mavros_extras)。
 
 **此功能只能与 LPE 估计器一起使用。**
 
@@ -18,29 +18,29 @@ The mavros ROS-MAVLink interface has default implementations to send these messa
 
 ### 使能外部位置和姿态输入
 
-You need to set a few parameters (from QGroundControl or the NSH shell) to enable or disable vision/mocap usage in the system.
+你需要去设置一些参数（利用QGC或者NSH）去启用或关闭是否使用Vision/mocap提供的信息的功能。
 
-Set the system parameter `ATT_EXT_HDG_M` to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables mocap heading use.
+参看系统参数`ATT_EXT_HDG_M`设置为1或2来使能融合外部航向角。 设置为1则会使能融合视觉信息，设置为2则会使能mocap信息。
 
-Vision integration is enabled by default in LPE. You can control this using the`LPE_FUSION` parameter in QGroundControl. Make sure that "fuse vision position" is checked.
+LPE中会默认融合视觉信息。 你利用QGC可以设置参数`LPE_FUSION` 。 并且请确认检查过了fuse vision position。
 
-#### Disabling barometer fusion
+#### 关闭气压计数据融合
 
-If a highly accurate altitude is already available from vision or mocap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
+如果从视觉或 mocap 信息中可以获得准确的高度信息, 则在 LPE 中禁用融合气压计数据以减少 Z 轴上的漂移。
 
-There is a bit field for this in the parameter `LPE_FUSION`, which you can set from QGroundControl. Just uncheck "fuse baro".
+同样，通过QGC来设置`LPE_FUSION`中的一个位来实现。 Just uncheck "fuse baro".
 
-#### Tuning Noise Parameters
+#### 滤波噪声参数调参
 
-If your vision or mocap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters, `LPE_VIS_XY` and `LPE_VIS_Z` (for vision) or `LPE_VIC_P` (for motion capture). Reducing them will cause the estimator to trust the incoming pose estimate more. You may need to set them lower than the allowed minimum and force-save.
+如果您的视觉或 mocap 数据非常准确, 并且您只希望估计器对其进行严格跟踪, 则应减少标准偏差参数、` LPE_VIS_XY ` 和 ` LPE_VIS_Z ` (用于视觉) 或 ` LPE_VIC_P ` (用于运动捕获)。 减小它们会使估计器更加信任外部传入的位姿信息。 您可能需要将它们设置为允许的最小值。
 
-> **Tip**If performance is still poor, try increasing the `LPE_PN_V` parameter. This will cause the estimator to trust measurements more during velocity estimation..
+> ** 提示 **如果性能仍然较差, 请尝试增大` LPE_PN_V ` 参数。 这将使估计器在估计速度时更信任测量值。
 
-## Asserting on Reference Frames
+## 关于坐标系
 
-This section shows how to setup the system with the proper reference frames. There are various representations but we will use two of them: ENU and NED.
+本节演示如何使用适当的参考坐标系。 关于坐标系有各种各样的表示, 但我们将使用其中两个: ENU 和 NED。
 
-* ENU has a ground-fixed frame where *x* axis points East, *y* points North and *z* up. Robot frame is *x* towards the front, *z* up and *y* accordingly.
+* ENU系：X轴指向东，Y指向北，Z指向天。 Robot frame is *x* towards the front, *z* up and *y* accordingly.
 
 * NED has *x* towards North, *y* East and *z* down. Robot frame is *x* towards the front, *z* down and *y* accordingly.
 
