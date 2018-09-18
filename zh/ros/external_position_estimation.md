@@ -1,22 +1,22 @@
 # Using Vision or Motion Capture Systems
 
-> 在开始下面这段教程之前，请确保你的飞控是一个使能了LPE模块的固件版本 PX4 固件的 LPE 版本可以在最新的 PX4 发行版的 zip 文件中找到, 也可以使用生成命令 (如 ` build px4fmu-v2_lpe `) 从源生成。 有关详细信息, 请参阅 [ Building the code ](../setup/building_px4.md)。
+> 在开始下面这段教程之前，请确保你的飞控是一个使能了LPE模块的固件版本。 PX4 固件的 LPE 版本可以在最新的 PX4 发行版的 zip 文件中找到, 也可以使用生成命令 (如 ` build px4fmu-v2_lpe `) 从源生成。 有关详细信息, 请参阅 [ Building the code ](../setup/building_px4.md)。
 
 本页的目的是为了让PX4固件获得除 GPS 以外的位置数据 (比如像VICON和 Optitrack 等动作捕捉系统和基于视觉的位置估计系统 (如 [ ROVIO ](https://github.com/ethz-asl/rovio)、[ SVO ](https://github.com/uzh-rpg/rpg_svo) 或 [ PTAM ](https://github.com/ethz-asl/ethzasl_ptam))）
 
-位置信息可以来自一个机载电脑或者板外设备（比如VICON） 这些数据用来更新飞控相对于原点的本地位置信息 Heading from the vision/motion capture system can also be optionally integrated by the attitude estimator.
+位置信息可以来自一个机载电脑或者板外设备（比如VICON） 这些数据用来更新飞控相对于原点的本地位置信息。 来自视觉估计或运动捕捉系统的偏航角也可以用于姿态估计器中。
 
-The system can then be used for applications such as position hold indoors or waypoint navigation based on vision.
+这一套系统可用于室内悬停或基于视觉的航点导航等应用。
 
-For vision, the MAVLink message used to send the pose data is [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE) and the message for all motion capture systems is [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) messages.
+对于视觉, 用于发送姿势数据的 MAVLink 消息是 [ VISION_POSITION_ESTIMATE ](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE), 而对于运动捕获系统的发送的的 MAVLink 消息是 [ ATT_POS_MOCAP ](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) 。
 
-The mavros ROS-MAVLink interface has default implementations to send these messages. They can also be sent using pure C/C++ code and direct use of the MAVLink library. The ROS topics are: `mocap_pose_estimate` for mocap systems and `vision_pose_estimate` for vision. Check [mavros_extras](http://wiki.ros.org/mavros_extras) for further info.
+The mavros ROS-MAVLink interface has default implementations to send these messages. 这些消息也可以直接使用MAVLINK库并编写C/C++代码来发送和接收。 The ROS topics are: `mocap_pose_estimate` for mocap systems and `vision_pose_estimate` for vision. 有关详细信息, 请检查 [ mavros_extras ](http://wiki.ros.org/mavros_extras)。
 
-**This feature has only been tested to work with the LPE estimator.**
+**此功能只能与 LPE 估计器一起使用。**
 
-## LPE Tuning for Vision or Mocap
+## 针对Vision和Mocap的LPE模块调参
 
-### Enabling external pose input
+### 使能外部位置和姿态输入
 
 You need to set a few parameters (from QGroundControl or the NSH shell) to enable or disable vision/mocap usage in the system.
 
