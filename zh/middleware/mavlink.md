@@ -17,7 +17,7 @@ Step1. 首先，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/m
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Step2. 然后，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)中新建一个类：
+Step2. 然后，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)中新建一个消息流的类：
 
 ```C
 class MavlinkStreamCaTrajectory : public MavlinkStream
@@ -77,7 +77,7 @@ protected:
 };
 ```
 
-Finally append the stream class to the `streams_list` at the bottom of [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
+Step3. 接下来，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)的文件末尾，将这个消息流的类追加到`treams_list`。
 
 ```C
 StreamListItem *streams_list[] = {
