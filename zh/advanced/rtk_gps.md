@@ -1,12 +1,12 @@
-# RTK GPS (Background)
+# RTK GPS(背景)
 
-[Real Time Kinematic](https://en.wikipedia.org/wiki/Real_Time_Kinematic) (RTK) provides centimeter-level GPS accuracy. This page explains how RTK is integrated into PX4.
+实时载波相位差分定位能够提供厘米级的定位信息。 这一章节将介绍RTK是如何集成到PX4中的。
 
-> **Note** Instructions for *using* RTK GPS are provided in the [PX4 User Guide](https://docs.px4.io/en/advanced_features/rtk-gps.html).
+> 注意：RTK的使用说明可以在PX4的用户指南中找到。
 
 ## Overview
 
-RTK uses measurements of the phase of the signal's carrier wave, rather than the information content of the signal. It relies on a single reference station to provide real-time corrections, which can work with multiple mobile stations.
+RTK是使用导航信号的载波相位来进行测距的，而不是使用导航信号所搭载的信息。 It relies on a single reference station to provide real-time corrections, which can work with multiple mobile stations.
 
 Two RTK GPS modules and a datalink are required to setup RTK with PX4. The fixed-position ground-based GPS unit is called the *Base* and the in-air unit is called the *Rover*. The Base unit connects to *QGroundControl* (via USB) and uses the datalink to stream RTCM corrections to the vehicle (using the MAVLink `GPS_RTCM_DATA` message). On the autopilot, the MAVLink packets are unpacked and sent to the Rover unit, where they are processed to get the RTK solution.
 
