@@ -10,7 +10,7 @@ This tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajec
 
 此章节旨在说明：如何使用一条自定义uORB消息，并将其作为一条MAVLink消息发送出去。
 
-Step1. 首先，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)中添加MAVLink消息和uORB消息的头文件：
+Step1. 首先，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)中添加自定义MAVLink消息和uORB消息的头文件：
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
@@ -96,14 +96,14 @@ Step4. 最后，确保使能了此消息流：比如，添加如下内容至启�
 
 此章节旨在说明：如何接收一条MAVLink消息，并将其发布至uORB。
 
-Add a function that handles the incoming MAVLink message in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)
+Step1. 在[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)中添加自定义MAVLink消息和uORB消息的头文件：
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Add a function that handles the incoming MAVLink message in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)
+Step2. 在[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)中添加处理自定义MAVLink消息的函数：
 
 ```C
 void handle_message_ca_trajectory_msg(mavlink_message_t *msg);
