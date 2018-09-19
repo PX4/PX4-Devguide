@@ -2,26 +2,26 @@
 
 [ mavros ](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) 功能包提供了 一台能够运行ros的机载电脑、支持MAVLINK协议的飞控和支持MAVLINK的地面站这三者之间的通讯功能。
 
-> **Note** *MAVROS* is the "official" supported bridge between ROS and the MAVLink protocol. It is currently being extended to enable [fast-RTPS messaging](../middleware/micrortps.md), including a layer to translate PX4 [uORB messages](../middleware/uorb.md) to common ROS idioms.
+> ** 注意 *** MAVROS * 是 ROS 与 MAVLink 协议之间的 有"官方" 支持的ROS功能包。 它当前正在扩展以启用 [ fast-RTPS messaging ](../middleware/micrortps.md), 包括将 PX4 [ uORB 消息 ](../middleware/uorb.md) 转换为常见 ROS 话题的代码。
 
-While MAVROS can be used to communicate with any MAVLink enabled autopilot this documentation will be in the context of enabling communication between the PX4 flight stack and a ROS enabled companion computer.
+虽然 MAVROS 可用于与任何支持 MAVLink 协议的自动驾驶仪进行通信, 但此文档主要针对 PX4 飞控固件与运行ROS 的机载电脑之间的通讯问题。
 
-## Installation
+## 安装
 
-MAVROS can be installed either from source or binary. Developers working with ROS are advised to use the source installation.
+MAVROS功能包可以用源代码或二进制方式安装。（这是ROS功能包常见的两种安装方式，源代码安装可以修改源码，二进制方式安装则不行，只能直接调用源码） 建议有ROS基础的开发者使用源代码方式安装。
 
-> **Tip** These instructions are a simplified version of the [official installation guide](https://github.com/mavlink/mavros/tree/master/mavros#installation). They cover the *ROS Kinetic* release.
+> ** 提示 **这些安装说明是 [ 官方安装指南 ](https://github.com/mavlink/mavros/tree/master/mavros#installation) 的简化版本。（官方安装指南请参见mavros功能包的github主页） 它们涵盖了 * ROS kinetic * 的版本。
 
-### Binary Installation (Debian / Ubuntu)
+### 二进制安装 (Debian/Ubuntu)
 
-The ROS repository has binary packages for Ubuntu x86, amd64 (x86\_64) and armhf (ARMv7). Kinetic also supports Debian Jessie amd64 and arm64 (ARMv8).
+ROS 代码库有针对 Ubuntu x86、amd64 (x86\_64) 和 armhf (ARMv7) 的二进制安装包。 Kinetic also supports Debian Jessie amd64 and arm64 (ARMv8).
 
-Use `apt-get` for installation:
+使用 ` apt-get` 进行安装:
 
     sudo apt-get install ros-kinetic-mavros ros-kinetic-mavros-extras
     
 
-Then install [GeographicLib](https://geographiclib.sourceforge.io/) datasets by running the `install_geographiclib_datasets.sh` script:
+然后通过运行 ` install_geographiclib_datasets.sh ` 脚本来安装 [ GeographicLib ](https://geographiclib.sourceforge.io/) 数据集:(译者注：注意这一步需要在命令前加sudo才会安装成功)
 
     wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
     ./install_geographiclib_datasets.sh
