@@ -131,14 +131,14 @@ ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>("m
 ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mavros/set_mode");
 ```
 
-We instantiate a publisher to publish the commanded local position and the appropriate clients to request arming and mode change. Note that for your own system, the "mavros" prefix might be different as it will depend on the name given to the node in it's launch file.
+我们初始化了一个发布句柄来发布本地的控制指令，还初始化了请求解锁和更改模式的服务。 请注意, 对于您自己的系统, "mavros" 前缀可能不同, 因为它将取决于给它的启动文件中的节点指定的名称。
 
 ```cpp
 //the setpoint publishing rate MUST be faster than 2Hz
 ros::Rate rate(20.0);
 ```
 
-The px4 flight stack has a timeout of 500ms between two *Offboard* commands. If this timeout is exceeded, the commander will fall back to the last mode the vehicle was in before entering *Offboard* mode. This is why the publishing rate **must** be faster than 2 Hz to also account for possible latencies. This is also the same reason why it is recommended to enter *Offboard* mode from *Position* mode, this way if the vehicle drops out of *Offboard* mode it will stop in its tracks and hover.
+PX4固件内部会检查是否持续受到offboard模式下的控制命令（周期：500ms）。 如果飞控超过500ms没有接收到对应的指令，则飞控会立即切换回无人机进入offboard模式前的那个飞行模式。 这就是为什么发布频率必须大于2Hz的原因。 这样是为什么我们推荐从位置控制模式切换到offboard模式，因为这样的话，通讯如果出现问题，则无人机会返回位置控制模式悬停于当前位置。
 
 ```cpp
 // wait for FCU connection
@@ -148,7 +148,7 @@ while(ros::ok() && !current_state.connected){
 }
 ```
 
-Before publishing anything, we wait for the connection to be established between MAVROS and the autopilot. This loop should exit as soon as a heartbeat message is received.
+在发布对应消息之前，我们需要等待飞控和MAVROS模块的连接。 在收到心跳包之后，代码便会跳出这个循环。
 
 ```cpp
 geometry_msgs::PoseStamped pose;
@@ -157,7 +157,7 @@ pose.pose.position.y = 0;
 pose.pose.position.z = 2;
 ```
 
-Even though the PX4 Pro Flight Stack operates in the aerospace NED coordinate frame, MAVROS translates these coordinates to the standard ENU frame and vice-versa. This is why we set `z` to positive 2.
+尽管PX4飞控在NED坐标系下操控飞机，但MAVROS是在ENU系下进行指令传输的。 这也就是为什么我们设置`z`为+2。
 
 ```cpp
 //send a few setpoints before starting
@@ -168,14 +168,14 @@ for(int i = 100; ros::ok() && i > 0; --i){
 }
 ```
 
-Before entering *Offboard* mode, you must have already started streaming setpoints. Otherwise the mode switch will be rejected. Here, `100` was chosen as an arbitrary amount.
+在切换到offboard模式之前，你必须先发送一些期望点信息到飞控中。 不然飞控会拒绝切换到offboard模式。 在这里, ` 100 ` 可以被选择为任意数量。
 
 ```cpp
 mavros_msgs::SetMode offb_set_mode;
 offb_set_mode.request.custom_mode = "OFFBOARD";
 ```
 
-We set the custom mode to `OFFBOARD`. A list of [supported modes](http://wiki.ros.org/mavros/CustomModes#PX4_native_flight_stack) is available for reference.
+我们现在设置要切换的模式为`OFFBOARD`。 A list of [supported modes](http://wiki.ros.org/mavros/CustomModes#PX4_native_flight_stack) is available for reference.
 
 ```cpp
 mavros_msgs::CommandBool arm_cmd;
