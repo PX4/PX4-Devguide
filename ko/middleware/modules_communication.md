@@ -77,6 +77,10 @@ Start mavlink on UDP port 14556 and enable the HIGHRES_IMU message with 50Hz:
                      default: normal
          [-n <val>]  wifi/ethernet interface name
                      values: <interface_name>
+         [-c <val>]  Multicast address (multicasting can be enabled via
+                     MAV_BROADCAST param)
+                     values: Multicast address in the range
+                     [239.0.0.0,239.255.255.255]
          [-f]        Enable message forwarding to other Mavlink instances
          [-w]        Wait to send, until first message received
          [-x]        Enable FTP
