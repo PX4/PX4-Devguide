@@ -1,6 +1,6 @@
-# MAVROS *Offboard* control example
+# Macros功能包的offboard模式控制例程
 
-> **Caution** *Offboard* control is dangerous. If you are operating on a real vehicle be sure to have a way of gaining back manual control in case something goes wrong.
+> ** 警告 **使用* Offboard * 模式来控制无人机有危险性的。 如果你是在一个真正的实物平台上进行试验，请保证你已经设置了切换回手动的开关来防止紧急情况的发生。
 
 The following tutorial will run through the basics of *Offboard* control through MAVROS as applied to an Iris quadcopter simulated in Gazebo with SITL running. At the end of the tutorial, you should see the same behaviour as in the video below, i.e. a slow takeoff to an altitude of 2 meters.
 
