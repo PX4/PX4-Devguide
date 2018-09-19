@@ -2,15 +2,15 @@
 
 > ** 警告 **使用* Offboard * 模式来控制无人机有危险性的。 如果你是在一个真正的实物平台上进行试验，请保证你已经设置了切换回手动的开关来防止紧急情况的发生。
 
-The following tutorial will run through the basics of *Offboard* control through MAVROS as applied to an Iris quadcopter simulated in Gazebo with SITL running. At the end of the tutorial, you should see the same behaviour as in the video below, i.e. a slow takeoff to an altitude of 2 meters.
+下面的教程将利用 * Offboard * 控制的基本操作, 通过 MAVROS 在Gazebo的仿真环境来控制一个Iris 无人机。 在教程的末尾, 你应该看到与下面的视频相同的行为, 即缓慢起飞到2米的高度。
 
 <video width="100%" autoplay="true" controls="true">
     <source src="../../assets/simulation/gazebo_offboard.webm" type="video/webm">
 </video>
 
-## Code
+## 代码
 
-Create the `offb_node.cpp` file in your ROS package (by also adding it to your `CMakeList.txt` so it is compiled), and paste the following inside it:
+首先，在你的MAVROS包中创建`offb_node.cpp`文件（并且添加到对应的`CMakeList.txt`中去编译它），然后复制粘贴以下内容到文件中：
 
 ```cpp
 /**
@@ -103,7 +103,7 @@ int main(int argc, char **argv)
 
 ```
 
-## Code explanation
+## 代码解释
 
 ```cpp
 #include <ros/ros.h>
@@ -113,7 +113,7 @@ int main(int argc, char **argv)
 #include <mavros_msgs/State.h>
 ```
 
-The `mavros_msgs` package contains all of the custom messages required to operate services and topics provided by the MAVROS package. All services and topics as well as their corresponding message types are documented in the [mavros wiki](http://wiki.ros.org/mavros).
+` mavros_msgs ` 功能包中包含操作 mavros 包中服务和主题所需的自定义消息文件。 所有服务和主题及其相应的消息类型都可以在 [ mavros wiki ](http://wiki.ros.org/mavros) 中找到。
 
 ```cpp
 mavros_msgs::State current_state;
@@ -122,7 +122,7 @@ void state_cb(const mavros_msgs::State::ConstPtr& msg){
 }
 ```
 
-We create a simple callback which will save the current state of the autopilot. This will allow us to check connection, arming and *Offboard* flags.
+我们创建了一个简单的回调函数来储存飞控当前的状态。 这将使得我们可以检查飞机的各项状态，如是否连接上mavros功能包、是否解锁、当前飞行模式。
 
 ```cpp
 ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>("mavros/state", 10, state_cb);
