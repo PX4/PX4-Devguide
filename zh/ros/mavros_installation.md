@@ -27,9 +27,9 @@ ROS 代码库有针对 Ubuntu x86、amd64 (x86\_64) 和 armhf (ARMv7) 的二进�
     ./install_geographiclib_datasets.sh
     
 
-### Source Installation
+### 源码方式安装
 
-This installation assumes you have a catkin workspace located at `~/catkin_ws` If you don't create one with:
+本安装方式假设你已经拥有了一个catkin_ws，如果没有您则需要按照以下指令创建一个：
 
 ```sh
 mkdir -p ~/catkin_ws/src
@@ -38,27 +38,27 @@ catkin init
 wstool init src
 ```
 
-You will be using the ROS Python tools: *wstool* (for retrieving sources), *rosinstall*, and *catkin_tools* (building) for this installation. While they may have been installed during your installation of ROS you can also install them with:
+你需要利用ROS的Python工具，如*wstool* (for retrieving sources), *rosinstall*, and *catkin_tools* (building) for this installation. 按照以下命令来安装：
 
 ```sh
 sudo apt-get install python-catkin-tools python-rosinstall-generator -y
 ```
 
-> **Tip** While the package can be built using **catkin_make** the preferred method is using **catkin_tools** as it is a more versatile and "friendly" build tool.
+> ** 提示 **虽然可以使用 ** catkin_make ** 来编译MAVROS包, 但首选方法还是使用 ** catkin_tools **, 因为它是一种更通用、更 "友好" 的编译工具。
 
-If this is your first time using wstool you will need to initialize your source space with:
+如果这是你第一次使用wstool你需要初始化你的代码文件夹。
 
 ```sh
 $ wstool init ~/catkin_ws/src
 ```
 
-Now you are ready to do the build
+现在你已经准备好去编译。
 
-1. Install MAVLink: 
+1. 安装Mavlink 
         # We use the Kinetic reference for all ROS distros as it's not distro-specific and up to date
         rosinstall_generator --rosdistro kinetic mavlink | tee /tmp/mavros.rosinstall
 
-2. Install MAVROS from source using either released or latest version:
+2. 安装MAVROS最新的版本：
     
     - Released/stable ```rosinstall_generator --upstream mavros | tee -a /tmp/mavros.rosinstall```
     - Latest source 
@@ -87,10 +87,10 @@ Now you are ready to do the build
         catkin build
         
 
-6. Make sure that you use setup.bash or setup.zsh from workspace.
+6. 保证你已经source过你的工作空间了
     
         #Needed or rosrun can't find nodes from this workspace.
         source devel/setup.bash
         
 
-In the case of error, there are addition installation and troubleshooting notes in the [mavros repo](https://github.com/mavlink/mavros/tree/master/mavros#installation).
+如果有任何问题，这还有另外一种方式和解决问题的途径在mavros功能包的主页。 （译者注：1、最好使用kinetic版本的电脑 2、不要用虚拟机 3、不需要看这里，直接去mavros github主页安装步骤一步一步装，装的时候确认每一步没有报错，网络好一点的话会顺利一点）
