@@ -67,23 +67,23 @@ Legacy Versions (**deprecated**):
 
 ## 使用说明 {#usage_instructions}
 
-The installation directory (default: **C:\PX4**) contains batch scripts for launching console windows and starting different IDEs inside the Cygwin toolchain environment. The full list of scripts provided is.
+安装目录(默认：**C:\PX4**)包含了用于启动控制台窗口和包含Cygwin工具链的其他开发工具的脚本。 下面是脚本列表。
 
-* **run-console.bat** - Start the POSIX (linux like) bash console.
-* **run-eclipse.bat** - Start the build in portable [eclipse for C++ IDE](http://www.eclipse.org/downloads/eclipse-packages/).
-* **run-vscode.bat** - Start the [Visual Studio Code IDE](https://code.visualstudio.com/) (this must be installed separately) from its default install directory: `C:\Program Files\Microsoft VS Code`
+* ** 运行控制台. bat **-启动 POSIX (类似 linux) bash 控制台。
+* ** 运行 eclipse **-启动基于 [ eclipse 的 c++ IDE ](http://www.eclipse.org/downloads/eclipse-packages/)。
+* ** 运行 vscode **-从默认安装目录: ` C:\Program File \ Microsoft VS Code `启动 [ Visual Studio Code IDE ](https://code.visualstudio.com/) (必须单独安装),
 
-> **Tip** The [Manual Setup](#manual_setup) section explains why you need to use the scripts and how it all works.
+> ** 提示 **[ 手动设置 ](#manual_setup) 部分解释了为什么需要使用脚本以及它的工作原理。
 
 <span></span>
 
-> **Tip** You can create desktop shortcuts to the batch scripts to have easier access, the installer does not yet create them for you (as of toolchain version 0.2).
+> ** 提示 **您可以为批处理脚本创建桌面快捷方式, 以便更方便地访问, 因为安装程序可能未能为您创建它们 (如0.2的工具链版本)。
 
-The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands. Developers who prefer an IDE can start it with the corresponding **run-XXX.bat** script to edit code/run builds.
+普通工作流程包括通过双击 ** run-console. bat ** 脚本来手动运行终端命令来启动控制台窗口。 更喜欢 IDE开发环境 的开发人员可以使用相应的 ** run- XXX. bat ** 脚本启动它, 以编辑代码/运行生成。
 
-### Windows & Git Special Cases
+### Windows & Git 特殊情况
 
-#### Windows CR+LF vs Unix LF Line Endings
+#### Windows CR + LF 对比 Unix LF 行结尾
 
 We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
 
