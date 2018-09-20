@@ -100,20 +100,20 @@ Legacy Versions (**deprecated**):
 
 #### Unix 执行权限
 
-Under Unix there's a flag in the permissions of each file which tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though Windows has a different permission system). This often results in *git* finding differences in permissions even if there is no real diff which looks like this:
+在 Unix 下, 每个文件的权限中都有一个标志, 它告诉操作系统是否允许执行该文件。 Cygwin 下的 * git * 支持并遵守该标识位 (尽管 Windows 具有不同的权限系统)。 这通常会导致 * git * 发现权限上的差异, 即使没有真正的区别, 这看起来是这样的:
 
     diff --git ...
     old mode 100644
     new mode 100755
     
 
-We recommend disabling this functionality by executing `git config core.fileMode false` in every repo where you use with this toolchain.
+我们建议通过在每个代码仓库中执行 ` git config core.fileMode false ` 来禁用此功能, 并可以使用此工具链。
 
-## Additional Information
+## 附加信息
 
-### Features / Issues {#features}
+### 特性/问题 {#features}
 
-The following features are known to work (version 2.0):
+以下已知正常功能 (版本 2.0):
 
 * Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
 * Building and uploading NuttX builds (e.g.: px4fmu-v2 and px4fmu-v4)
