@@ -85,20 +85,20 @@ Legacy Versions (**deprecated**):
 
 #### Windows CR + LF 对比 Unix LF 行结尾
 
-We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
+我们建议您所有的代码仓库都强制使用Unix的LF行结尾，并以此运行工具链(并且使用编辑器可以按照此格式保存您所做的修改 - 譬如 Eclipse 或者 VS Code) 源文件也可以兼容 CR+LF 行结尾并保存在本地, 但在 Cygwin (如 shell 脚本的执行) 中需要 Unix 行结尾 (否则您会收到类似 ` $ ' \r ': 未找到命令的错误. `。 幸运的是, 当您在代码仓库的根目录中执行两个命令时, git 可以为您强制转换:
 
     git config core.autocrlf false
     git config core.eol lf
     
 
-If you work with this toolchain on multiple repositories you can also set these two configurations globally for your machine:
+如果您在多个代码仓库中使用此工具链, 还可以为您的计算机在全局范围内设置这两种配置:
 
     git config --global ...
     
 
-This is not recommended because it may affect any other (unrelated) git use on your Windows machine.
+建议不要这样做, 因为它可能会影响 Windows 计算机上的任何其他 (无关) git 使用。
 
-#### Unix Permissions Execution Bit
+#### Unix 执行权限
 
 Under Unix there's a flag in the permissions of each file which tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though Windows has a different permission system). This often results in *git* finding differences in permissions even if there is no real diff which looks like this:
 
