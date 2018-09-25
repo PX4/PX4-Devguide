@@ -61,7 +61,7 @@ Start mavlink on UDP port 14556 and enable the HIGHRES_IMU message with 50Hz:
        start         Start a new instance
          [-d <val>]  Select Serial Device
                      values: <file:dev>, default: /dev/ttyS1
-         [-b <val>]  Baudrate
+         [-b <val>]  Baudrate (can also be p:<param_name>)
                      default: 57600
          [-r <val>]  Maximum sending data rate in B/s (if 0, use baudrate / 20)
                      default: 0
@@ -116,7 +116,7 @@ Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmw
                      values: UART|UDP, default: UART
          [-d <val>]  Select Serial Device
                      values: <file:dev>, default: /dev/ttyACM0
-         [-b <val>]  Baudrate
+         [-b <val>]  Baudrate (can also be p:<param_name>)
                      default: 460800
          [-p <val>]  Poll timeout for UART in ms
                      default: 1
