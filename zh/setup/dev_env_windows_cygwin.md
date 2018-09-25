@@ -110,11 +110,11 @@
 
 以下已知正常功能 (版本 2.0):
 
-* Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
-* Building and uploading NuttX builds (e.g.: px4fmu-v2 and px4fmu-v4)
-* Style check with *astyle* (supports the command: `make format`)
-* Command line auto completion
-* Non-invasive installer! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4** and uses a temporary local path).
+* 使用 jMAVSim 编译和运行 SITL, 其性能明显优于虚拟机 (它生成一个本机 windows 二进制 ** px4.exe **)。
+* 编译和上载 NuttX 二进制文件 (例如: px4fmu-v2 和 px4fmu-v4)
+* 使用 * astyle * 进行格式检查 (支持命令: ` 设置格式 `)
+* 命令行自动补全
+* 绿色安装 安装程序不会影响您的系统和全局路径 (它只修改选定的安装目录, 例如 ** C:\PX4 \ ** 并使用临时本地路径)。
 * The installer supports updating to a new version keeping your personal changes inside the toolchain folder
 
 Omissions:
