@@ -331,6 +331,9 @@ param <command> [arguments...]
                  greater than the value
      <param_name> <value> Parameter name and value to compare
 
+   touch         Mark a parameter as used
+     [<param_name1> [<param_name2>]] Parameter name (one or more)
+
    reset         Reset params to default
      [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
                  allowed)

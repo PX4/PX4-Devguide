@@ -213,6 +213,8 @@ For testing it can be useful to fake a GPS signal (it will signal the system tha
 gps stop
 gps start -f
 ```
+Starting 2 GPS devices (the main GPS on /dev/ttyS3 and the secondary on /dev/ttyS4):
+gps start -d /dev/ttyS3 -e /dev/ttyS4
 
 ### Usage {#gps_usage}
 ```
@@ -221,8 +223,12 @@ gps <command> [arguments...]
    start
      [-d <val>]  GPS device
                  values: <file:dev>, default: /dev/ttyS3
+     [-b <val>]  Baudrate (can also be p:<param_name>)
+                 default: 0
      [-e <val>]  Optional secondary GPS device
                  values: <file:dev>
+     [-g <val>]  Baudrate (secondary GPS, can also be p:<param_name>)
+                 default: 0
      [-f]        Fake a GPS signal (useful for testing)
      [-s]        Enable publication of satellite info
      [-i <val>]  GPS interface
