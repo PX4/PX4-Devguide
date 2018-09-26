@@ -115,20 +115,20 @@
 * 使用 * astyle * 进行格式检查 (支持命令: ` 设置格式 `)
 * 命令行自动补全
 * 绿色安装 安装程序不会影响您的系统和全局路径 (它只修改选定的安装目录, 例如 ** C:\PX4 \ ** 并使用临时本地路径)。
-* The installer supports updating to a new version keeping your personal changes inside the toolchain folder
+* 安装程序支持更新到最新版本, 同时保持您的个人更改在工具链文件夹中
 
-Omissions:
+补充:
 
-* Simulation: Gazebo and ROS are not supported
-* Only NuttX and JMAVSim/SITL builds are supported.
-* [Known problems / Report your issue](https://github.com/orgs/PX4/projects/6)
+* 仿真: 不支持Gazebo 和 ROS
+* 仅支持 NuttX 和 JMAVSim/SITL 编译。
+* [已知问题/报告您的问题](https://github.com/orgs/PX4/projects/6)
 
-### Shell Script Installation {#script_setup}
+### Shell 脚本安装 {#script_setup}
 
-You can also install the environment using shell scripts in the Github project.
+还可以使用 Github 项目中的 shell 脚本安装环境。
 
-1. Make sure you have [Git for Windows](https://git-scm.com/download/win) installed.
-2. Clone the repository https://github.com/PX4/windows-toolchain to the location you want to install the toolchain. Default location and naming is achieved by opening the `Git Bash` and executing:
+1. 请确保安装了 [ Windows Git ](https://git-scm.com/download/win)。
+2. 将代码仓库 https://github.com/PX4/windows-toolchain 克隆到要安装工具链的位置。 打开 ` Git Bash ` 并执行以下操作，打开后会自动进入默认的安装目录:
 
     cd /c/
     git clone https://github.com/PX4/windows-toolchain PX4
