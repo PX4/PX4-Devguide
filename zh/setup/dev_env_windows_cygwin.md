@@ -139,11 +139,11 @@
 
 ### 手动安装 (对于工具链开发人员) {#manual_setup}
 
-This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
+本节介绍如何在从基于脚本安装目录中通过相应的脚本手动安装 Cygwin 工具链。 结果应与使用脚本或 MSI 安装程序相同。
 
-> **Note** The toolchain gets maintained and hence these instructions might not cover every detail of all the future changes.
+> ** 注意 **因为工具链的更新, 因此这些指令可能无法涵盖未来所有更改的每个细节。
 
-1. Create the *folders*: **C:\PX4**, **C:\PX4\toolchain** and **C:\PX4\home**
+1. 创建 * 文件夹 *: ** C:\PX4 \ **、** C:\PX4\toolchain \ ** 和 ** C:\PX4\home \ **
 2. Download the *Cygwin installer* file [setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe) from the [official Cygwin website](https://cygwin.com/install.html)
 3. Run the downloaded setup file
 4. In the wizard choose to install into the folder: **C:\PX4\toolchain\cygwin64**
