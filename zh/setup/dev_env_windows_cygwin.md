@@ -26,7 +26,7 @@
 2. 运行它，选择你需要的安装路径，执行安装 ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 3. 在安装结束后勾选*clone the PX4 repository, build and run simulation with jMAVSim*(这简化了你的开始准备工作)
     
-    > **注意**如果你错过了这一步，你需要[手动克隆PX4 Firmware库](#getting_started)
+    > **注意**如果你错过了这一步，你需要[手动克隆PX4 Firmware代码仓库](#getting_started)
 
 ## 入门指南 {#getting_started}
 
@@ -134,10 +134,10 @@
     git clone https://github.com/PX4/windows-toolchain PX4
     
 
-1. If you want to install all components navigate to the freshly cloned folder and double click on the script `install-all-components.bat` located in the folder `toolchain`. If you only need certain components and want to safe Internet traffic and or disk space you can navigate to the different component folders like e.g. `toolchain\cygwin64` and click on the **install-XXX.bat** scripts to only fetch something specific.
-2. Continue with [Getting Started](#getting_started) (or [Usage Instructions](#usage_instructions)) 
+1. 如果要安装所有组件, 请进入到新克隆的代码仓库文件夹, 然后双击位于文件夹 `toolchain`目录中的脚本 ` install-all-components.bat`。 如果您只需要某些组件并希望占用有限的Internet 数据和磁盘空间, 则可以进入到不同的组件文件夹, 如 ` toolchain\cygwin64 `, 然后单击 ** install-XXX.bat ** 脚本以获取特定的内容。
+2. 继续 [ 入门指南 ](#getting_started) (或 [ 使用说明 ](#usage_instructions)) 
 
-### Manual Installation (for Toolchain Developers) {#manual_setup}
+### 手动安装 (对于工具链开发人员) {#manual_setup}
 
 This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 
