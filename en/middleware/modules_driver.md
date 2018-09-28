@@ -125,19 +125,27 @@ fmu <command> [arguments...]
 
    mode_pwm      Select all available pins as PWM
 
-   mode_pwm1
+   mode_pwm8
+
+   mode_pwm6
+
+   mode_pwm5
+
+   mode_pwm5cap1
 
    mode_pwm4
 
-   mode_pwm2
+   mode_pwm4cap1
 
    mode_pwm3
 
    mode_pwm3cap1
 
+   mode_pwm2
+
    mode_pwm2cap2
 
-   mode_pwm6
+   mode_pwm1
 
    sensor_reset  Do a sensor reset (SPI bus)
      [<ms>]      Delay time in ms between reset and re-enabling
