@@ -144,20 +144,20 @@
 > ** 注意 **因为工具链的更新, 因此这些指令可能无法涵盖未来所有更改的每个细节。
 
 1. 创建 * 文件夹 *: ** C:\PX4 \ **、** C:\PX4\toolchain \ ** 和 ** C:\PX4\home \ **
-2. Download the *Cygwin installer* file [setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe) from the [official Cygwin website](https://cygwin.com/install.html)
-3. Run the downloaded setup file
-4. In the wizard choose to install into the folder: **C:\PX4\toolchain\cygwin64**
-5. Select to install the default Cygwin base and the newest available version of the following additional packages:
+2. 从 [ Cygwin 官方网站 ](https://cygwin.com/install.html) 下载 * Cygwin 安装程序 * 文件 [ official Cygwin website ](https://cygwin.com/setup-x86_64.exe)
+3. 运行下载的安装程序文件
+4. 在安装向导中选择安装到文件夹中: ** C:\PX4\toolchain\cygwin64 \ **
+5. 选择安装默认的 Cygwin 基础包和以下附加包的最新可用版本:
 
 * **Category:Packagename**
-* Devel:cmake (3.3.2 gives no deprecated warnings, 3.6.2 works but has the warnings)
+* Devel:cmake (3.3.2 正常工作无告警, 3.6.2有告警但能够正常工作)
 * Devel:gcc-g++
 * Devel:git
 * Devel:make
 * Devel:ninja
 * Devel:patch
 * Editors:xxd
-* Editors:nano (unless you're the vim pro)
+* Editors:nano (除非你精通vim)
 * Python:python2
 * Python:python2-pip
 * Python:python2-numpy
