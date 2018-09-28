@@ -137,7 +137,7 @@
 1. 如果要安装所有组件, 请进入到新克隆的代码仓库文件夹, 然后双击位于文件夹 `toolchain`目录中的脚本 ` install-all-components.bat`。 如果您只需要某些组件并希望占用有限的Internet 数据和磁盘空间, 则可以进入到不同的组件文件夹, 如 ` toolchain\cygwin64 `, 然后单击 ** install-XXX.bat ** 脚本以获取特定的内容。
 2. 继续 [ 入门指南 ](#getting_started) (或 [ 使用说明 ](#usage_instructions)) 
 
-### 手动安装 (对于工具链开发人员) {#manual_setup}
+### 手动安装 (对于开发人员) {#manual_setup}
 
 本节介绍如何在从基于脚本安装目录中通过相应的脚本手动安装 Cygwin 工具链。 结果应与使用脚本或 MSI 安装程序相同。
 
