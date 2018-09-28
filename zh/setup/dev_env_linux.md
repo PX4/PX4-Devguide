@@ -62,7 +62,7 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
 
 1. 下载<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>。
 2. 在bash shell中运行脚本: 
-        bash
+        bash 
         source ubuntu_sim.sh 随着脚本的运行，可能需要确认一些提示。
 
 > **Tip** 如果您只需要jMAVSim，请下载并运行<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps</a>。
