@@ -11,9 +11,9 @@ PX4使用存储的配置作为机型的起始点 机体的配置在[ROMFS/px4fmu
 配置和混控文件中的机型配置包括包括如下几个主要模块：
 
 * 机架说明文档(被[Airframes Reference](../airframes/airframe_reference.md)和*QGroundControl*) 使用。
-* Vehicle-specific parameter settings, including [tuning gains](#tuning-gains).
-* The controllers and apps it should start, e.g. multicopter or fixed wing controllers, land detectors etc.
-* The physical configuration of the system (e.g. a plane, wing or multicopter). This is called a [mixer](../concept/mixing.md).
+* 飞机特定的参数设置，包括[tuning gains](#tuning-gains)。
+* 应该启动的应用，例如多旋翼或者固定翼的控制器，着陆检测等等。
+* 系统（固定翼，飞翼或者多旋翼）的物理配置。 这叫[混控器](../concept/mixing.md)。
 
 These aspects are mostly independent, which means that many configurations share the same physical layout of the airframe, start the same applications and differ most in their tuning gains.
 
