@@ -1,4 +1,4 @@
-# Gimbal Control Setup
+# 云台控制安装设置
 
 如果你想要去控制一个装在飞机上的带相机的云台（或者是其他任何的载荷），并且想通过PX4去控制它，你需要配置一些参数， 本页内容就是讲解如何去安装，以及配置。
 
@@ -8,20 +8,20 @@ PX4包含了一个通用的云台/挂载设备的控制驱动器，它含有多�
 
 这些[参数](../advanced/parameter_reference.md#mount) 被用作去安装一个挂载设备驱动。 最重要的 是输入 (` MNT_MODE_IN `) 和输出 (` MNT_MODE_OUT `) 模式。 默认情况下，输入是没有被使能的，并且这个驱动没有运行。 在选择了输入模式后，重启飞机以便挂在设备驱动运行起来。
 
-If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from mavlink to RC, a large stick motion is required.
+如果输入模式设置为 ` AUTO `, 则模式将根据最新输入进行自动切换 。 去切换MAVLINK到RC，需要一个较大的杆量动作。
 
-## AUX output
+## 辅助输出
 
-If the output mode is set to `AUX`, a mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (overriding any aux mixer provided by the airframe configuration).
+如果输出模式设置为`AUX`，需要定义混控器文件去重新映射输出引脚和自动选择的[mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix)（覆盖机型配置文件提供的辅助通道混控器）
 
-The output assignment is as following:
+输出分配如下所示:
 
 - **AUX1**: Pitch
 - **AUX2**: Roll
 - **AUX3**: Yaw
 - **AUX4**: Shutter/retract
 
-### Customizing the mixer configuration
+### 自定义混控器配置
 
 > **Note** Read [Mixing and Actuators](../concept/mixing.md) for an explanation of how mixers work and the format of the mixer file.
 
