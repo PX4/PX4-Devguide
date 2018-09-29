@@ -1,16 +1,16 @@
-# Adding a New Airframe Configuration
+# 添加一个新的机型
 
 PX4使用存储的配置作为机型的起始点 机体的配置在[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)文件夹下的[配置文件](#config-file)中定义。 配置文件中引用[混控文件](#mixer-file)，混控文件是用来描述机体的物理结构，存储在[ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers)文件夹
 
-Adding a configuration is straightforward: create a new config file in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (prepend the filename with an unused autostart ID), then [build and upload](../setup/building_px4.md) the software.
+添加配置是非常简单的：在[init.d文件夹](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)创建一个新的文件(使用未使用的autostart ID作为文件名的前缀)，然后[构建并上传](../setup/building_px4.md)固件即可。
 
-Developers who do not want to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../concept/system_startup.md) page.
+如果不想创建自己的配置文件，也可以用SD卡上的文本文件替换掉已有的自定义配置文件，具体细节请查看[自定义系统启动页。](../concept/system_startup.md)
 
-## Configuration File Overview
+## 配置文件概述
 
-The configuration in the config and mixer files consists of several main blocks:
+配置和混控文件中的机型配置包括包括如下几个主要模块：
 
-* Airframe documentation (used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*).
+* 机架说明文档(被[Airframes Reference](../airframes/airframe_reference.md)和*QGroundControl*) 使用。
 * Vehicle-specific parameter settings, including [tuning gains](#tuning-gains).
 * The controllers and apps it should start, e.g. multicopter or fixed wing controllers, land detectors etc.
 * The physical configuration of the system (e.g. a plane, wing or multicopter). This is called a [mixer](../concept/mixing.md).
