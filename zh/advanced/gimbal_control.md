@@ -2,7 +2,7 @@
 
 如果你想要去控制一个装在飞机上的带相机的云台（或者是其他任何的载荷），并且想通过PX4去控制它，你需要配置一些参数， 本页内容就是讲解如何去安装，以及配置。
 
-PX4包含了一个通用的云台/挂载设备的控制驱动器，它含有多种输入输出方式 The input defines how you control the gimbal: via RC or via MAVLink commands (for example in missions or surveys). The output defines how the gimbal is connected: some support MAVLink commands, others use PWM (described as AUX output in the following). Any input method can be selected to drive any output. Both have to be configured via parameters.
+PX4包含了一个通用的云台/挂载设备的控制驱动器，它含有多种输入输出方式 输入方式的意思是你想通过什么方式去控制云台：可以用过RC（遥控器）或者通过MAVLINK命令（一般是地面站里面的任务模式或者是航域模式） The output defines how the gimbal is connected: some support MAVLink commands, others use PWM (described as AUX output in the following). Any input method can be selected to drive any output. Both have to be configured via parameters.
 
 ## Parameters
 
