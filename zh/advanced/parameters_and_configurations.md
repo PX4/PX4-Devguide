@@ -1,4 +1,4 @@
-# Parameters & Configurations
+# 参数设置
 
 The PX4 platform uses the param subsystem (a flat table of float and int32_t values) and text files (for mixers and startup scripts) to store its configuration.
 
