@@ -1,8 +1,8 @@
 # Gimbal Control Setup
 
-If you want to control a gimbal with a camera (or any other payload) attached to the vehicle, you need to configure how you want to control it and how PX4 can command it. This page explains the setup.
+如果你想要去控制一个装在飞机上的带相机的云台（或者是其他任何的载荷），并且想通过PX4去控制它，你需要配置一些参数， 本页内容就是讲解如何去安装，以及配置。
 
-PX4 contains a generic mount/gimbal control driver with different input and output methods. The input defines how you control the gimbal: via RC or via MAVLink commands (for example in missions or surveys). The output defines how the gimbal is connected: some support MAVLink commands, others use PWM (described as AUX output in the following). Any input method can be selected to drive any output. Both have to be configured via parameters.
+PX4包含了一个通用的云台/挂载设备的控制驱动器，它含有多种输入输出方式 The input defines how you control the gimbal: via RC or via MAVLink commands (for example in missions or surveys). The output defines how the gimbal is connected: some support MAVLink commands, others use PWM (described as AUX output in the following). Any input method can be selected to drive any output. Both have to be configured via parameters.
 
 ## Parameters
 
