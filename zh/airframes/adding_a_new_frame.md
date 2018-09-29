@@ -8,7 +8,7 @@ PX4使用存储的配置作为机型的起始点 机体的配置在[ROMFS/px4fmu
 
 ## 配置文件概述
 
-配置和混控文件中的机型配置包括包括如下几个主要模块：
+配置和混控文件中的机型配置包括如下几个主要模块：
 
 * 机架说明文档(被[Airframes Reference](../airframes/airframe_reference.md)和*QGroundControl*) 使用。
 * 飞机特定的参数设置，包括[tuning gains](#tuning-gains)。
