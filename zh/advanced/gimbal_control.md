@@ -2,11 +2,11 @@
 
 如果你想要去控制一个装在飞机上的带相机的云台（或者是其他任何的载荷），并且想通过PX4去控制它，你需要配置一些参数， 本页内容就是讲解如何去安装，以及配置。
 
-PX4包含了一个通用的云台/挂载设备的控制驱动器，它含有多种输入输出方式 输入方式的意思是你想通过什么方式去控制云台：可以用过RC（遥控器）或者通过MAVLINK命令（一般是地面站里面的任务模式或者是航域模式） The output defines how the gimbal is connected: some support MAVLink commands, others use PWM (described as AUX output in the following). Any input method can be selected to drive any output. Both have to be configured via parameters.
+PX4包含了一个通用的云台/挂载设备的控制驱动器，它含有多种输入输出方式。 输入方式的意思是你想通过什么方式去控制云台：可以用过RC（遥控器）或者通过MAVLINK命令（一般是地面站里面的任务模式或者是航域模式）。 输出的定义是怎么去连接云台：一些云台支持MAVLINK命令，还有一些云台用PWM方式（下面描述的是AUX辅助输出方式）。 任何的输入可以被选择去驱动任何的输出。 两种方式都需要去通过参数配置。
 
-## Parameters
+## 参数
 
-[These parameters](../advanced/parameter_reference.md#mount) are used to setup the mount driver. The most important ones are the input (`MNT_MODE_IN`) and the output (`MNT_MODE_OUT`) mode. By default, the input is disabled and the driver does not run. After selecting the input mode, reboot the vehicle so that the mount driver starts.
+这些[参数](../advanced/parameter_reference.md#mount) 被用作去安装一个挂载设备驱动。 最重要的 是输入 (` MNT_MODE_IN `) 和输出 (` MNT_MODE_OUT `) 模式。 默认情况下，输入是没有被使能的，并且这个驱动没有运行。 在选择了输入模式后，重启飞机以便挂在设备驱动运行起来。
 
 If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from mavlink to RC, a large stick motion is required.
 
