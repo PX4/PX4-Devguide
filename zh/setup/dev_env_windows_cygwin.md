@@ -177,24 +177,24 @@
     
     之所以能够通过准备好的批处理脚本启动对应的开发工具的原因是, 这些脚本预配置启动程序引用了本地、可移植的 Cygwin 环境而不是工具链文件夹内的对应程序。 这是通过始终首先调用脚本 [** setup-environment-variables.bat **](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) 和所需的应用程序 (如控制台) 来完成的。
     
-    The script [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
+    脚本 [` setup-environment-variables.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) 用于设置工作区根目录的环境变量 ` PX4_DIR `、所有可执行程序 ` 路径 ` 和 unix 环境的HOME目录` HOME `。
 
-2. Add necessary **python packages** to your setup by opening the Cygwin toolchain console (double clicking **run-console.bat**) and executing
+2. 通过执行 Cygwin 工具链控制台 (双击 ** run-console.bat **) 脚本, 向安装程序添加必要的 ** python 包 **
     
-        pip2 install toml
-        pip2 install pyserial
+        pip2 install toml 
+        pip2 install pyserial 
         pip2 install pyulog
         
     
-    > **Note** That's what [cygwin64/install-cygwin-python-packages.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) does.
+    > ** 注意 **这就是 [ cygwin64/install-cygwin-pxbat ](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) 所做的工作。
 
-3. Download the [**ARM GCC compiler**](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads) as zip archive of the binaries for Windows and unpack the content to the folder `C:\PX4\toolchain\gcc-arm`.
+3. 下载 [** ARM GCC 编译器 **](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads) zip 存档, 并将内容解压缩到文件夹 ` C:\PX4\toolchain\gcc-arm `。
     
-    > **Note** This is what the toolchain does in: [gcc-arm/install-gcc-arm.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat).
+    > ** 注意 **这就是工具链在 [ gcc-arm/install-gcc-arm.bat ](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat) 脚本中所做的工作。
 
-4. Install the JDK:
+4. 安装 JDK
     
-    * Download the [**Java Development Kit Installer**](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+    * 下载 [** Java Development Kit Installer **](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。
     * Because sadly there is no portable archive containing the binaries directly you have to install it.
     * Find the binaries and move/copy them to **C:\PX4\toolchain\jdk**.
     * You can uninstall the Kit from your Windows system again, we only needed the binaries for the toolchain.
