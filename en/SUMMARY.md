@@ -100,6 +100,7 @@
   * [Land Detector](tutorials/land_detector.md)
   * [Motion Capture \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
   * [S.Bus Driver for Linux](tutorials/linux_sbus.md)
+  * [Adding a Serial Port Driver](tutorials/adding_serial_driver.md)
 * [Advanced Topics](advanced/README.md)
   * [Parameters & Configs](advanced/parameters_and_configurations.md)
   * [Parameter Reference](advanced/parameter_reference.md)

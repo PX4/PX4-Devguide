@@ -16,9 +16,8 @@ Although this step isn't mandatory since you can activate offboard mode using a 
 
 ### 2. Enable the companion computer interface
 
-Look for the [SYS_COMPANION](../advanced/parameter_reference.md#SYS_COMPANION) parameter and set it to either 921600 (Recommended) or 57600. This parameter will activate a MAVLink stream on the Telem2 port with data streams specific to onboard mode with the appropriate baud rate (921600 8N1 or 57600 8N1). 
-
-For more information on these data streams, look for "MAVLINK_MODE_ONBOARD" in the [source code](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp).
+Enable MAVLink on the serial port that you connect to the companion computer
+(see [Companion computer setup](../companion_computer/pixhawk_companion.md)).
 
 ## Hardware setup
 
