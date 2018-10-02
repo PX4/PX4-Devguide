@@ -167,6 +167,8 @@ This section describes how to setup the Cygwin toolchain manually yourself while
    * Python:python2-pip
    * Python:python2-numpy
    * Python:python2-jinja2
+   * Python:python2-pyyaml
+   * Python:python2-cerberus
    * Archive:unzip
    * Utils:astyle
    * Shells:bash-completion

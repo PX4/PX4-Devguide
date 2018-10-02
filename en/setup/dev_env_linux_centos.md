@@ -18,6 +18,8 @@ yum install python-setuptools python-numpy
 easy_install pyserial
 easy_install pexpect
 easy_install toml
+easy_install pyyaml
+easy_install cerberus
 yum install openocd libftdi-devel libftdi-python python-argparse flex bison-devel ncurses-devel ncurses-libs autoconf texinfo libtool zlib-devel cmake
 ```
 
