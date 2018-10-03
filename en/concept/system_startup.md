@@ -12,7 +12,7 @@ The following sections are split according to the operating system that PX4 runs
 
 ## Posix (Linux/MacOS)
 
-On Posix, the system shell is used as script interpreter (e.g. /bin/sh, being symlinked to dash in Ubuntu).
+On Posix, the system shell is used as script interpreter (e.g. /bin/sh, being symlinked to dash on Ubuntu).
 For that to work, a few things are required:
 - PX4 modules need to look like individual executables to the system. This is done via symbolic links.
   For each module a symbolic link `px4-<module> -> px4` is created in the `bin` directory of the build folder.
