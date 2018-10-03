@@ -4,10 +4,10 @@ PX4有一个灵活的[混合系统](../concept/mixing.md), 它允许通过单个
 
 * **固定翼飞机:**普通飞机, 飞翼, 倒V尾飞机等。
 * **多旋翼:**直升机,三轴,四轴,六轴,dodecarotors等许多不同的几何图形。
-* **VTOL Airframes:** VTOL configurations including: Tailsitters, Tiltrotors, and QuadPlanes (plane + quad).
-* **UGVs/Rovers:** Basic support has been added for Unmanned Ground Vehicles, enabling both manual and mission-based control.
+* **VTOL机体:**VTOL配置包括:Tailsitters、Tiltrotors和QuadPlanes(平面+四)。
+* **UGVs/Rovers:**为无人驾驶地面车辆提供了基本支助, 既能实现手动操作, 也能进行基于任务的控制。
 
-You can find a list of all supported frame types and motor outputs in the [Airframes Reference](../airframes/airframe_reference.md).
+您可以在[机体参考](../airframes/airframe_reference.md)中找到所有受支持的框架类型和马达输出的列表。
 
 This section provides information that is relevant to developers who want to add support for new vehicles or vehicle types to PX4, including build logs for vehicles that are still being developed.
 
