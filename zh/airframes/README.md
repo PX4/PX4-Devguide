@@ -1,6 +1,6 @@
 # 机架
 
-PX4 has a flexible [mixing system](../concept/mixing.md) that allows it to support almost any imaginable vehicle type/frame through a single codebase:
+PX4有一个灵活的[混合系统](../concept/mixing.md), 它允许通过单个代码库支持任何可以想象到的飞行器类型/帧:
 
 * **Planes:** Normal planes, flying wings, inverted V-tail planes, etc.
 * **Multicopters:** Helicopters, tricopters, quadcopters, hexarotors, dodecarotors in many different geometries.
