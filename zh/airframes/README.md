@@ -2,8 +2,8 @@
 
 PX4有一个灵活的[混合系统](../concept/mixing.md), 它允许通过单个代码库支持任何可以想象到的飞行器类型/帧:
 
-* **Planes:** Normal planes, flying wings, inverted V-tail planes, etc.
-* **Multicopters:** Helicopters, tricopters, quadcopters, hexarotors, dodecarotors in many different geometries.
+* **固定翼飞机:**普通飞机, 飞翼, 倒V尾飞机等。
+* **多旋翼:**直升机,三轴,四轴,六轴,dodecarotors等许多不同的几何图形。
 * **VTOL Airframes:** VTOL configurations including: Tailsitters, Tiltrotors, and QuadPlanes (plane + quad).
 * **UGVs/Rovers:** Basic support has been added for Unmanned Ground Vehicles, enabling both manual and mission-based control.
 
