@@ -207,21 +207,21 @@
     
     <span></span>
     
-    > **Note** This is what the toolchain does in: [apache-ant/install-apache-ant.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/apache-ant/install-apache-ant.bat).
+    > ** 注意 **这就是工具链在 [ gcc-arm/install-apache-ant.bat ](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/apache-ant/install-apache-ant.bat) 脚本中所做的工作。
 
-6. Download, build and add *genromfs* to the path:
+6. 下载、编译并将 * genromfs *添加到环境变量:
     
-    * Clone the source code to the folder **C:\PX4\toolchain\genromfs\genromfs-src** with 
+    * 将源代码克隆到文件夹 ** C:\PX4\toolchain\genromfs\genromfs-src ** 中, 
             cd /c/toolchain/genromfs
             git clone https://github.com/chexum/genromfs.git genromfs-src
 
-* Compile it with: 
+* 编译: 
     
         cd genromfs-src
          make all
     
-    * Copy the resulting binary **genromfs.exe** one folder level out to: **C:\PX4\toolchain\genromfs**
+    * 将包含有生成的二进制 ** genromfs.exe ** 的这个文件夹复制到: ** C:\PX4\toolchain\genromfs **
     
-    > **Note** This is what the toolchain does in: [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat).
+    > ** 注意 **这就是工具链在 [ gcc-arm/install-genromfs.bat ](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat) 脚本中所做的工作。
 
 1. Make sure all the binary folders of all the installed components are correctly listed in the `PATH` variable configured by [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
