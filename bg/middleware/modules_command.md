@@ -560,9 +560,7 @@ Tool to print various version information
     
        bdate         Build date and time
     
-       uid           UUID
-    
-       mfguid        Manufacturer UUID
+       px4guid       PX4 GUID
     
        uri           Build URI
     
