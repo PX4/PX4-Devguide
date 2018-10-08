@@ -225,14 +225,7 @@ Turn on your Bebop and connect your host machine with the Bebop's wifi. Then, pr
 make posix_bebop_default upload
 ```
 
-This will upload the PX4 mainapp into /usr/bin and create the file /home/root/parameters if not already present. In addition, we need the Bebop's mixer file and the px4.config. Currently, both files have to be copied manually using the following commands.
-
-```sh
-adb connect 192.168.42.1:9050
-adb push ROMFS/px4fmu_common/mixers/bebop.main.mix /home/root
-adb push posix-configs/bebop/px4.config /home/root
-adb disconnect
-```
+This will upload the PX4 mainapp into /data/ftp/internal_000/ and create the file /home/root/parameters if not already present. This also uploads the mixer file and the px4.config file into the /home/root/ directory.
 
 #### Run
 
@@ -251,7 +244,7 @@ kk
 and start the PX4 mainapp with:
 
 ```sh
-px4 /home/root/px4.config
+/data/ftp/internal_000/px4 -s /home/root/px4.config
 ```
 
 In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both, the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors and setup your joystick device.
@@ -265,7 +258,8 @@ To auto-start PX4 on the Bebop at boot, modify the init script `/etc/init.d/rcS_
 
 Replace it with:
 
-    px4 -d /home/root/px4.config > /home/root/px4.log
+    echo 1 > /sys/class/gpio/gpio85/value # enables the fan
+    /data/ftp/internal_000/px4 -d -s /home/root/px4.config > /home/root/px4.log &
     
 
 Enable adb server by pressing the power button 4 times and connect to adb server as described before:
@@ -280,7 +274,7 @@ Re-mount the system partition as writeable:
 adb shell mount -o remount,rw /
 ```
 
-In order to avoid editing the file manually, you can use this one : https://gist.github.com/mhkabir/b0433f0651f006e3c7ac4e1cbd83f1e8
+In order to avoid editing the file manually, you can use this one : https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
 
 Save the original one and push this one to the Bebop
 
