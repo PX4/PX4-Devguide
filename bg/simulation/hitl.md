@@ -89,9 +89,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
         
         ![QGC Auto-connect settings for HITL](../../assets/gcs/qgc_hitl_autoconnect.png)
 
-6. (Gazebo only) Set the `SYS_COMPANION` parameter to `921600` (see [PX4 User Guide > Parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) for instructions on how to change parameters).
-
-7. (Optional) Configure Joystick and Failsafe. Set the following [parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) in order to use a joystick instead of an RC remote control transmitter:
+6. (Optional) Configure Joystick and Failsafe. Set the following [parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) in order to use a joystick instead of an RC remote control transmitter:
     
     * [COM_RC_IN_MODE](../advanced/parameter_reference.md#COM_RC_IN_MODE) to "Joystick/No RC Checks". This allows joystick input and disables RC input checks.
     * [NAV_DLL_ACT](../advanced/parameter_reference.md#NAV_DLL_ACT) to "Disabled". This ensures that no RC failsafe actions interfere when not running HITL with a radio control.
