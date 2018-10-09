@@ -43,7 +43,7 @@ sudo pacman -Sy --noconfirm \
     ninja python-pip tar unzip zip vim wget
 
 # Install Python dependencies
-pip install serial empy numpy toml jinja2
+pip install serial empy numpy toml jinja2 pyyaml cerberus
 
 # Install genromfs
 wget https://sourceforge.net/projects/romfs/files/genromfs/0.5.2/genromfs-0.5.2.tar.gz
