@@ -162,16 +162,18 @@
 * Python:python2-pip
 * Python:python2-numpy
 * Python:python2-jinja2
+* Python:python2-pyyaml
+* Python:python2-cerberus
 * Archive:unzip
 * Utils:astyle
 * Shells:bash-completion
 * Web:wget
     
-    > ** 注意 **不要在列表外选择尽可能多的包, 其中有一些可能会引起冲突并中断编译。
+    > **Note** Do not select as many packages as possible which are not on this list, there are some which conflict and break the builds.
     
     <span></span>
     
-    > ** 注意 **这就是 [ cygwin64/install-cygwin-px4.bat ](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) 所做的工作。
+    > **Note** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
 
 1. 编写或复制 ** 批处理脚本 ** [` run-console.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) 和 [` setup-environment-variables.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat)。
     
