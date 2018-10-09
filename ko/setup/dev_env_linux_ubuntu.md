@@ -76,10 +76,10 @@ sudo apt-get install git zip qtcreator cmake \
     build-essential genromfs ninja-build exiftool -y
 # Required python packages
 sudo apt-get install python-argparse \
-    python-empy python-toml python-numpy \
+    python-empy python-toml python-numpy python-yaml \
     python-dev python-pip -y
 sudo -H pip install --upgrade pip 
-sudo -H pip install pandas jinja2 pyserial
+sudo -H pip install pandas jinja2 pyserial cerberus
 ```
 
 You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). This is is a useful python package that contains scripts to parse *ULog* files and display them.
