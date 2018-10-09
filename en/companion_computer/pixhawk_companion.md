@@ -1,18 +1,25 @@
-# Companion Computer for Pixhawk class
+# Companion Computer for Pixhawk Series
 
-Interfacing a companion computer (Raspberry Pi, Odroid, Tegra K1) to Pixhawk-family boards always works the same way: They are interfaced using a serial port to `TELEM2`, the port intended for this purpose. The message format on this link is [MAVLink](https://mavlink.io/en/).
+Interfacing a companion computer (Raspberry Pi, Odroid, Tegra K1) to Pixhawk-family boards always works the same way: They are interfaced using a serial port to `TELEM 2`, the port intended for this purpose. The message format on this link is [MAVLink](https://mavlink.io/en/).
 
-## Pixhawk setup
+## Pixhawk Setup
 
-Enable MAVLink on the TELEM2 port (any other serial port can be used as well, but TELEM2 is typically used for the companion):
-<!-- TODO: link to serial port setup on the user-guide, with the following settings -->
-- generally MAV_1_CONFIG is used for TELEM2
-- MAV_1_MODE: set to Onboard
-- Recommended baudrate: 921600 or higher
+Enable MAVLink on any [configurable serial port](https://docs.px4.io/en/peripherals/serial_configuration.html).
 
-## Companion computer setup
+> **Tip** Typically the `TELEM 2` port is used for a companion computer.
 
-In order to receive MAVLink, the companion computer needs to run some software talking to the serial port. The most common options are:
+To set up the default companion computer message stream on `TELEM 2`, set the following parameters:
+* [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) = `TELEM 2` (`MAV_1_CONFIG` is often used to map the `TELEM 2` port)
+* [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) = `Onboard`
+* [MAV_X_RATE](../advanced/parameter_reference.md#MAV_X_RATE) = `921600` (or higher)
+
+For more information see [MAVLink Peripherals (GCS/OSD/Companion)](https://docs.px4.io/en/peripherals/mavlink_peripherals.html).
+
+
+## Companion Computer Setup
+
+In order to receive MAVLink, the companion computer needs to run some software talking to the serial port. 
+The most common options are:
 
   * [MAVROS](../ros/mavros_installation.md) to communicate to ROS nodes
   * [C/C++ example code](https://github.com/mavlink/c_uart_interface_example) to connect custom code
