@@ -52,7 +52,7 @@
       * [UAVCAN Configuration](uavcan/node_enumeration.md)
       * [UAVCAN Various Notes](uavcan/notes.md)
     * [UART/Serial Ports](uart/README.md)
-      * [Port-Configurable Serial Drivers](uart/adding_serial_driver.md)
+      * [Port-Configurable Serial Drivers](uart/user_configurable_serial_driver.md)
   * [RTK GPS](advanced/rtk_gps.md)
   * [Gimbal \(Mount\) Control Setup](advanced/gimbal_control.md)
   * [Companion Computers](companion_computer/pixhawk_companion.md)
