@@ -29,7 +29,7 @@ This state is reached if following conditions are true for 0.35 seconds:
 
 - no vertical movement ([LNDMC_Z_VEL_MAX](../advanced/parameter_reference.md#LNDMC_Z_VEL_MAX))
 - no horizontal movement ([LNDMC_XY_VEL_MAX](../advanced/parameter_reference.md#LNDMC_XY_VEL_MAX))
-- low thrust `MPC_THR_MIN + (MPC_THR_HOVER - MPC_THR_MIN) * 0.3f` or velocity setpoint is 0.9 of land speed but vehicle has no vertical movement.
+- low thrust `MPC_THR_MIN + (MPC_THR_HOVER - MPC_THR_MIN) * 0.3` or velocity setpoint is 0.9 of land speed but vehicle has no vertical movement.
 
 If the vehicle is in position- or velocity-control and ground contact was detected, 
 the position controller will set the thrust vector along the body x-y-axis to zero.
@@ -41,7 +41,7 @@ This state is reached if following conditions are true for 0.25 seconds:
 
 - all conditions of ground contact are true
 - is not rotating ([LNDMC_ROT_MAX](../advanced/parameter_reference.md#LNDMC_ROT_MAX))
-- has low thrust `MPC_THR_MIN + (MPC_THR_HOVER - MPC_THR_MIN) * LNDMC_THR_RANGE`; 
+- has low thrust `MPC_THR_MIN + (MPC_THR_HOVER - MPC_THR_MIN) * 0.1`
 
 If the vehicle only has knowledge of thrust and angular rate, 
 in order to proceed to the next state the vehicle has to have low thrust and no rotation for 8.0 seconds. 
