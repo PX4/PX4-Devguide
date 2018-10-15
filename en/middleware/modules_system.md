@@ -309,3 +309,44 @@ sensors <command> [arguments...]
 
    status        print status info
 ```
+## tune_control
+Source: [systemcmds/tune_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tune_control)
+
+
+### Description
+
+Command-line tool to control & test the (external) tunes.
+
+Tunes are used to provide audible notification and warnings (e.g. when the system arms, gets position lock, etc.).
+The tool requires that a driver is running that can handle the tune_control uorb topic.
+
+Information about the tune format and predefined system tunes can be found here:
+https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
+
+### Examples
+
+Play system tune #2:
+```
+tune_control play -t 2
+```
+
+### Usage {#tune_control_usage}
+```
+tune_control <command> [arguments...]
+ Commands:
+   play          Play system tune, tone, or melody
+     [-t <val>]  Play predefined system tune
+                 default: 1
+     [-f <val>]  Frequency of tone in Hz (0-22kHz)
+                 default: 0
+     [-d <val>]  Duration of tone in us
+                 default: 1
+     [-s <val>]  Strength of tone (0-100)
+                 default: 40
+     [-m <val>]  Melody in string form
+                 values: <string> - e.g. "MFT200e8a8a"
+
+   libtest       Test library
+
+   stop          Stop playback (use for repeated tunes)
+```
