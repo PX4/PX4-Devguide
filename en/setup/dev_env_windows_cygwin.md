@@ -107,7 +107,16 @@ old mode 100644
 new mode 100755
 ```
 
-We recommend disabling this functionality by executing `git config core.fileMode false` in every repo folder you use with this toolchain.
+Because the Windows file system NTFS doesn't support the unix execution bit and you will therefore independent of this toolchain always get the above pointless diff on Windows, we recommend globally disabling this functionality by executing:
+```
+git config --global core.fileMode false # disable exectuion bit check globally for the machine
+```
+
+And for existing repositories that have this problem caused by a local configuration:
+```
+git config --unset core.filemode # remove the local option for this repository to apply the global one
+git submodule foreach --recursive git config --unset core.filemode # remove the local option for all submodules
+```
 
 
 ## Additional Information
