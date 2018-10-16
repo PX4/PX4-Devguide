@@ -102,13 +102,22 @@
     new mode 100755
     
 
-我们建议通过在每个代码仓库中执行 ` git config core.fileMode false ` 来禁用此功能, 并可以使用此工具链。
+Because the Windows file system NTFS doesn't support the unix execution bit and you will therefore independent of this toolchain always get the above pointless diff on Windows, we recommend globally disabling this functionality by executing:
+
+    git config --global core.fileMode false # disable exectuion bit check globally for the machine
+    
+
+And for existing repositories that have this problem caused by a local configuration:
+
+    git config --unset core.filemode # remove the local option for this repository to apply the global one
+    git submodule foreach --recursive git config --unset core.filemode # remove the local option for all submodules
+    
 
 ## 附加信息
 
 ### 特性/问题 {#features}
 
-以下已知正常功能 (版本 2.0):
+The following features are known to work (version 2.0):
 
 * 使用 jMAVSim 编译和运行 SITL, 其性能明显优于虚拟机 (它生成一个本机 windows 二进制 ** px4.exe **)。
 * 编译和上载 NuttX 二进制文件 (例如: px4fmu-v2 和 px4fmu-v4)
@@ -117,7 +126,7 @@
 * 绿色安装 安装程序不会影响您的系统和全局路径 (它只修改选定的安装目录, 例如 ** C:\PX4 \ ** 并使用临时本地路径)。
 * 安装程序支持更新到最新版本, 同时保持您的个人更改在工具链文件夹中
 
-补充:
+Omissions:
 
 * 仿真: 不支持Gazebo 和 ROS
 * 仅支持 NuttX 和 JMAVSim/SITL 编译。
@@ -125,7 +134,7 @@
 
 ### Shell 脚本安装 {#script_setup}
 
-还可以使用 Github 项目中的 shell 脚本安装环境。
+You can also install the environment using shell scripts in the Github project.
 
 1. 请确保安装了 [ Windows Git ](https://git-scm.com/download/win)。
 2. 将代码仓库 https://github.com/PX4/windows-toolchain 克隆到要安装工具链的位置。 打开 ` Git Bash ` 并执行以下操作，打开后会自动进入默认的安装目录:
@@ -139,7 +148,7 @@
 
 ### 手动安装 (对于开发人员) {#manual_setup}
 
-本节介绍如何在从基于脚本安装目录中通过相应的脚本手动安装 Cygwin 工具链。 结果应与使用脚本或 MSI 安装程序相同。
+This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 
 > ** 注意 **因为工具链的更新, 因此这些指令可能无法涵盖未来所有更改的每个细节。
 
