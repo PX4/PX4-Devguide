@@ -98,21 +98,22 @@ This is not recommended because it may affect any other (unrelated) git use on y
 
 #### Unix Permissions Execution Bit
 
-Under Unix there's a flag in the permissions of each file which tells the OS whether or not the file is allowed to be executed. 
-*git* under Cygwin supports and cares about that bit (even though Windows has a different permission system). 
-This often results in *git* finding differences in permissions even if there is no real diff which looks like this:
+Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. 
+*git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). 
+This often results in *git* finding "false-positive" differences in permissions. 
+The resulting diff might look like this:
 ```
 diff --git ...
 old mode 100644
 new mode 100755
 ```
 
-Because the Windows file system NTFS doesn't support the unix execution bit and you will therefore independent of this toolchain always get the above pointless diff on Windows, we recommend globally disabling this functionality by executing:
+We recommend globally disabling the permission check on Windows to avoid the problem:
 ```
-git config --global core.fileMode false # disable exectuion bit check globally for the machine
+git config --global core.fileMode false # disable execution bit check globally for the machine
 ```
 
-And for existing repositories that have this problem caused by a local configuration:
+For existing repositories that have this problem caused by a local configuration, additionally:
 ```
 git config --unset core.filemode # remove the local option for this repository to apply the global one
 git submodule foreach --recursive git config --unset core.filemode # remove the local option for all submodules
