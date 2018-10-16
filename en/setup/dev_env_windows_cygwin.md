@@ -107,7 +107,7 @@ old mode 100644
 new mode 100755
 ```
 
-We recommend disabling this functionality by executing `git config core.fileMode false` in every repo where you use with this toolchain.
+We recommend disabling this functionality by executing `git config core.fileMode false` in every repo folder you use with this toolchain.
 
 
 ## Additional Information
