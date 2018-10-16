@@ -820,14 +820,10 @@ This page lists all supported airframes and types including
 </tr>
 </tbody></table>
 
-## Plane
-The Mini Talon does not have a wheel and
-no flaps. I leave them here because the mixer
-computes also wheel and flap controls.
-
 ### Plane V-Tail
 
 <div>
+<img src="../../assets/airframes/types/PlaneVTail.svg" width="29%" style="max-height: 180px;"/>
 <table style="float: right; width: 70%; font-size:1.5rem;">
  <colgroup><col></colgroup>
  <thead>
@@ -846,10 +842,7 @@ computes also wheel and flap controls.
    <tr><th>Name</th><th></th></tr>
  </thead>
 <tbody>
-<tr id="plane
-the_mini_talon_does_not_have_a_wheel_and
-no_flaps._i_leave_them_here_because_the_mixer
-computes_also_wheel_and_flap_controls._plane_v-tail_x-uav_mini_talon">
+<tr id="plane_plane_v-tail_x-uav_mini_talon">
  <td style="vertical-align: top;">X-UAV Mini Talon</td>
  <td style="vertical-align: top;"><p>Maintainer: Friedrich Beckmann <friedrich.beckmann@hs-augsburg.de></p><p><code>SYS_AUTOSTART</code> = 2200</p></td>
 
