@@ -3,6 +3,10 @@
 
 
             {
+                "from": "/en/tutorials/land_detector.html",
+                "to": "https://docs.px4.io/en/advanced_config/land_detector.html"
+            },
+            {
                 "from": "en/advanced/system_startup.html",
                 "to": "https://dev.px4.io/en/concept/system_startup.html"
             },
