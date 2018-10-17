@@ -98,7 +98,6 @@
   * [Video Streaming in QGC](qgc/video_streaming.md)
   * [Long-distance Video Streaming](qgc/video_streaming_wifi_broadcast.md)
   * [ecl EKF](tutorials/tuning_the_ecl_ekf.md)
-  * [Land Detector](tutorials/land_detector.md)
   * [Motion Capture \(VICON, Optitrack\)](tutorials/motion-capture-vicon-optitrack.md)
   * [S.Bus Driver for Linux](tutorials/linux_sbus.md)
 * [Advanced Topics](advanced/README.md) 
