@@ -192,6 +192,27 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ```
 
+## Introducing a new airframe group with a new image
+
+When you introduce a new airframe group like "Plane V-Tail" with a new
+image like "PlaneVTail.svg", then this image will be shown via
+
+* [QGroundControl - /src/AutoPilotPlugins/PX4/AirframeFactMetaData.xml](https://github.com/mavlink/qgroundcontrol/blob/master/src/AutoPilotPlugins/PX4/AirframeFactMetaData.xml)
+* [Userguide - en/airframes/airframe_reference.md](https://github.com/PX4/px4_user_guide/blob/master/en/airframes/airframe_reference.md)
+* [Development guide - /en/airframes/airframe_reference.md](https://github.com/PX4/Devguide/blob/master/en/airframes/airframe_reference.md)
+
+The files are generated via a botscript from the airframe description
+which is located at
+[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d),
+but the image itself has to be checked in at each repository.
+
+* [QGroundControl: src/AutopilotPlugins/Common/images](https://github.com/mavlink/qgroundcontrol/tree/master/src/AutoPilotPlugins/Common/Images)
+* [Development Guide: assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
+* [User Guide: assets/airframes/types](https://github.com/PX4/px4_user_guide/tree/master/assets/airframes/types)
+
+The image name has to be added in the botscript in
+
+* [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py)
 
 ## Tuning Gains
 
