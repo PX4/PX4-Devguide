@@ -192,27 +192,22 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ```
 
-## Introducing a new airframe group with a new image
+## Adding a New Airframe Group
 
-When you introduce a new airframe group like "Plane V-Tail" with a new
-image like "PlaneVTail.svg", then this image will be shown via
+Airframe "groups" are used to group similar airframes for selection in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) and in the *Airframe Reference* documentation ([PX4 DevGuide](../airframes/airframe_reference.md) and [PX4 UserGuide](https://docs.px4.io/en/airframes/airframe_reference.html)).
+Every group has a name, and an associated svg image which shows the common geometry, number of motors, and direction of motor rotation for the grouped airframes.
 
-* [QGroundControl - /src/AutoPilotPlugins/PX4/AirframeFactMetaData.xml](https://github.com/mavlink/qgroundcontrol/blob/master/src/AutoPilotPlugins/PX4/AirframeFactMetaData.xml)
-* [Userguide - en/airframes/airframe_reference.md](https://github.com/PX4/px4_user_guide/blob/master/en/airframes/airframe_reference.md)
-* [Development guide - /en/airframes/airframe_reference.md](https://github.com/PX4/Devguide/blob/master/en/airframes/airframe_reference.md)
+The airframe metadata files used by *QGroundControl* and the documentation source code are generated from the airframe description, via a script, using the build command: `make airframe_metadata`
 
-The files are generated via a botscript from the airframe description
-which is located at
-[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d),
-but the image itself has to be checked in at each repository.
+For a new airframe belonging to an existing group, you don't need to do anything more than provide documentation in the airframe description located at
+[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d).
 
-* [QGroundControl: src/AutopilotPlugins/Common/images](https://github.com/mavlink/qgroundcontrol/tree/master/src/AutoPilotPlugins/Common/Images)
-* [Development Guide: assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
-* [User Guide: assets/airframes/types](https://github.com/PX4/px4_user_guide/tree/master/assets/airframes/types)
-
-The image name has to be added in the botscript in
-
-* [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py)
+If the airframe is for a **new group** you additionally need to:
+1. Add the svg image for the group into each repository (if no image is provided a placeholder image is displayed):
+   * QGroundControl: [src/AutopilotPlugins/Common/images](https://github.com/mavlink/qgroundcontrol/tree/master/src/AutoPilotPlugins/Common/Images)
+   * PX4 Development Guide: [assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
+   * PX4 User Guide: [assets/airframes/types](https://github.com/PX4/px4_user_guide/tree/master/assets/airframes/types)
+1. Add a mapping between the new group name and image filename in [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py).
 
 ## Tuning Gains
 
