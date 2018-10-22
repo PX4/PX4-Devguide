@@ -176,7 +176,7 @@ It listens on the vehicle_status and battery_status topics and provides visual a
 
 ### Implementation
 
-The module runs on the work queue. It schedules at a fixed frequency or 5 Hz
+The module runs on the work queue. It schedules at a fixed frequency of 5 Hz
 
 ### Examples
 
