@@ -16,6 +16,8 @@ The code for the PX4 bootloader is available from the Github [Bootloader](https:
 ```bash
 git clone https://github.com/PX4/Bootloader.git
 cd Bootloader
+git submodule init
+git submodule update
 make
 ```
 
