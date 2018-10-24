@@ -236,3 +236,33 @@ Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed 
 
 In the case where an actuator saturates, all actuator values are rescaled so that 
 the saturating actuator is limited to 1.0.
+
+#### Helicopter Mixer
+
+The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs ( swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
+
+The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points. This allows for more complex behavior.
+
+The mixer definition begins with:
+
+```
+H: <number of swash-plate servos, either 3 or 4>
+T: <throttle setting at 0% thrust> <25%> <50%> <75%> <100%>
+P: <collective pitch at 0% thrust> <25%> <50%> <75%> <100%>
+```
+This is followed by either 3 or 4 lines for the swash-plate servos in the following form:
+```
+S: <angle> <arm length> <scale> <offset> <lower limit> <upper limit>
+```
+
+The throttle- and pitch-curves define five points in the range between -10000 to +10000. For simple linear behavior, the five values for a curve should be `-10000 -5000 0 5000 10000`.
+
+The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
+
+The servo output is scaled by `<scale> / 10000`. After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
+
+The tail rotor can be controller by adding a simple mixer:
+```
+M: 1
+S: 0 2  10000  10000      0 -10000  10000
+```
