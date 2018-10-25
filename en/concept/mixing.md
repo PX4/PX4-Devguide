@@ -247,22 +247,27 @@ The mixer definition begins with:
 
 ```
 H: <number of swash-plate servos, either 3 or 4>
-T: <throttle setting at 0% thrust> <25%> <50%> <75%> <100%>
-P: <collective pitch at 0% thrust> <25%> <50%> <75%> <100%>
+T: <throttle setting at thrust: 0%> <25%> <50%> <75%> <100%>
+P: <collective pitch at thrust: 0%> <25%> <50%> <75%> <100%>
 ```
-This is followed by either 3 or 4 lines for the swash-plate servos in the following form:
+`T:` defines the points for the throttle-curve. `P:`  defines the points for the pitch-curve.
+Both curves contain five points in the range between 0 and 10000. For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
+
+This is followed by lines for each of the swash-plate servos (either 3 or 4) in the following form:
 ```
 S: <angle> <arm length> <scale> <offset> <lower limit> <upper limit>
 ```
-
-The throttle- and pitch-curves define five points in the range between -10000 to +10000. For simple linear behavior, the five values for a curve should be `-10000 -5000 0 5000 10000`.
 
 The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
 
 The servo output is scaled by `<scale> / 10000`. After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
 
-The tail rotor can be controller by adding a simple mixer:
+The tail rotor can be controller by adding a [simple mixer](#simple-mixer):
 ```
 M: 1
 S: 0 2  10000  10000      0 -10000  10000
 ```
+By doing so, the tail rotor setting is directly mapped to the yaw command. This works for both servo-controlled tail-rotors, as well as for tail rotors with a dedicated motor.
+
+The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) can be viewed as an example. The throttle-curve starts with a slightly steeper slope to reach 6000 (0.6) at 50% thrust. It continues with a less steep slope to reach 10000 (1.0) at 100% thrust. The pitch-curve is linear, but does not use the entire range. At 0% throttle, the collective pitch setting is already at 500 (0.05). At maximum throttle, the collective pitch is only 4500 (0.45). Using higher values for this type of helicopter would stall the blades.
+The swash-plate servos for this helicopter are located at angles of 0, 140 and 220 degrees. The servo arm-lenghts are not equal. The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo. The servos are limited at -8000 and 8000 because they are mechanically constrained.
