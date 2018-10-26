@@ -159,6 +159,8 @@ It supports 2 backends:
 
 Both backends can be enabled and used at the same time.
 
+The file backend supports 2 types of log files: full (the normal log) and a mission log. The mission log is a reduced ulog file and can be used for example for geotagging or vehicle management. It can be enabled and configured via SDLOG_MISSION parameter. The normal log is always a superset of the mission log.
+
 ### Implementation
 
 The implementation uses two threads:
@@ -166,7 +168,7 @@ The implementation uses two threads:
 - The main thread, running at a fixed rate (or polling on a topic if started with -p) and checking for data updates
 - The writer thread, writing data to the file
 
-In between there is a write buffer with configurable size. It should be large to avoid dropouts.
+In between there is a write buffer with configurable size (and another fixed-size buffer for the mission log). It should be large to avoid dropouts.
 
 ### Examples
 
