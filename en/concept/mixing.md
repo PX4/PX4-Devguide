@@ -241,7 +241,12 @@ the saturating actuator is limited to 1.0.
 
 The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs ( swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
 
-The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points. This allows for more complex behavior.
+The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points.
+
+> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). 
+  This allows the flight characteristics to be tuned for different types of flying. 
+  An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html)
+  (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
 
 The mixer definition begins with:
 
