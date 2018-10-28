@@ -236,3 +236,43 @@ Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed 
 
 In the case where an actuator saturates, all actuator values are rescaled so that 
 the saturating actuator is limited to 1.0.
+
+#### Helicopter Mixer
+
+The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs ( swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
+
+The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points.
+
+> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). 
+  This allows the flight characteristics to be tuned for different types of flying. 
+  An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html)
+  (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
+
+The mixer definition begins with:
+
+```
+H: <number of swash-plate servos, either 3 or 4>
+T: <throttle setting at thrust: 0%> <25%> <50%> <75%> <100%>
+P: <collective pitch at thrust: 0%> <25%> <50%> <75%> <100%>
+```
+`T:` defines the points for the throttle-curve. `P:`  defines the points for the pitch-curve.
+Both curves contain five points in the range between 0 and 10000. For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
+
+This is followed by lines for each of the swash-plate servos (either 3 or 4) in the following form:
+```
+S: <angle> <arm length> <scale> <offset> <lower limit> <upper limit>
+```
+
+The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
+
+The servo output is scaled by `<scale> / 10000`. After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
+
+The tail rotor can be controller by adding a [simple mixer](#simple-mixer):
+```
+M: 1
+S: 0 2  10000  10000      0 -10000  10000
+```
+By doing so, the tail rotor setting is directly mapped to the yaw command. This works for both servo-controlled tail-rotors, as well as for tail rotors with a dedicated motor.
+
+The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) can be viewed as an example. The throttle-curve starts with a slightly steeper slope to reach 6000 (0.6) at 50% thrust. It continues with a less steep slope to reach 10000 (1.0) at 100% thrust. The pitch-curve is linear, but does not use the entire range. At 0% throttle, the collective pitch setting is already at 500 (0.05). At maximum throttle, the collective pitch is only 4500 (0.45). Using higher values for this type of helicopter would stall the blades.
+The swash-plate servos for this helicopter are located at angles of 0, 140 and 220 degrees. The servo arm-lenghts are not equal. The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo. The servos are limited at -8000 and 8000 because they are mechanically constrained.
