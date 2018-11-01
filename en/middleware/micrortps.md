@@ -565,7 +565,40 @@ $ micrortps_agent -t UDP
 > micrortps_client start -t UDP
 ```
 
-Now you will be able to see the data being printed on the terminal/console where you launched the ROS listener.
+Now you will be able to see the data being printed on the terminal/console where you launched the ROS listener:
+
+```sh
+RECEIVED DATA FROM SENSOR COMBINED
+================================
+gyro_rad[0]: 0.00341645
+gyro_rad[1]: 0.00626475
+gyro_rad[2]: -0.000515705
+gyro_integral_dt: 4739
+accelerometer_timestamp_relative: 0
+accelerometer_m_s2[0]: -0.273381
+accelerometer_m_s2[1]: 0.0949186
+accelerometer_m_s2[2]: -9.76044
+accelerometer_integral_dt: 4739
+
+Publishing back...
+```
+
+You can also verify the rate of the message using `rostopic hz`. For the case of `sensor_combined`:
+
+```sh
+average rate: 248.187
+	min: 0.000s max: 0.012s std dev: 0.00147s window: 2724
+average rate: 248.006
+	min: 0.000s max: 0.012s std dev: 0.00147s window: 2972
+average rate: 247.330
+	min: 0.000s max: 0.012s std dev: 0.00148s window: 3212
+average rate: 247.497
+	min: 0.000s max: 0.012s std dev: 0.00149s window: 3464
+average rate: 247.458
+	min: 0.000s max: 0.012s std dev: 0.00149s window: 3712
+average rate: 247.485
+	min: 0.000s max: 0.012s std dev: 0.00148s window: 3960
+```
 
 6. If on wants, it can also give a try to the `sensor_combined` ROS2 listener by typing in a terminal:
 
