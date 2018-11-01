@@ -20,52 +20,31 @@ batt_smbus <command> [arguments...]
    start
      [-X <val>]  ullpt
                  default: BATT_SMBUS_BUS_I2C_EXTERNAL
+     [-T <val>]  ullpt
+                 default: BATT_SMBUS_BUS_I2C_EXTERNAL1
+     [-R <val>]  ullpt
+                 default: BATT_SMBUS_BUS_I2C_EXTERNAL2
      [-I <val>]  ullpt
                  default: BATT_SMBUS_BUS_I2C_INTERNAL
      [-A <val>]  ullpt
                  default: BATT_SMBUS_BUS_ALL
 
-   stop          Stops the driver.
+   man_info      Prints manufacturer info.
 
-   suspend       Suspends the drive but does stop it completely.
-
-   resume        Resumes the driver from the suspended state.
-
-   man_nam       Prints the name of the manufacturer.
-
-   man_date      Prints the date of manufacture.
-
-   serial_num    Prints the serial number.
-
-   sbs_info      Prints the manufacturer name, date, and serial number.
-
-   info          Prints the last report.
+   report        Prints the last report.
 
    unseal        Unseals the devices flash memory to enable write_flash
                  commands.
 
-   read_word     Uses the SMbus read-word command.
-     [command code] The SMbus command .
+   seal          Seals the devices flash memory to disbale write_flash commands.
 
-   man_read      Uses the SMbus block-read with ManufacturerAccess().
-     [command code] The SMbus command .
-     [number of bytes] Number of bytes to read.
+   suspend       Suspends the driver from rescheduling the cycle.
 
-   read_flash    Reads 32 bytes from flash starting from the address specified.
-     [address]   The address to start reading from. .
+   resume        Resumes the driver from suspension.
 
    write_flash   Writes to flash. The device must first be unsealed with the
                  unseal command.
      [address]   The address to start writing.
-     [number of bytes] Number of bytes to send.
-     [data[0]...data[n]] One byte of data at a time separated by spaces.
-
-   block_read    Performs a SMBus block read.
-     [command code] The SMbus command .
-     [number of bytes] Number of bytes to read.
-
-   block_write   Performs a SMBus block write.
-     [command code] The SMbus command code.
      [number of bytes] Number of bytes to send.
      [data[0]...data[n]] One byte of data at a time separated by spaces.
 ```
