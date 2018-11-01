@@ -537,9 +537,10 @@ Bellow it is presented a fast way of testing the package, using PX4 SITL with Ga
 make posix_sitl_rtps gazebo`
 ```
 
-2. On one terminal, source the workspace of the ROS2 workspace and launch the `ros1_bridge`, which will allow ROS2 and ROS nodes to communicate with each other. It also requires stating what is the `ROS_MASTER_URI` where the `roscore` is/will be running:
+2. On one terminal, source the ROS2 environment and workspace and launch the `ros1_bridge`, which will allow ROS2 and ROS nodes to communicate with each other. It also requires stating what is the `ROS_MASTER_URI` where the `roscore` is/will be running:
 
 ```sh
+$ source /opt/ros/ardent/setup.bash
 $ source ~/px4_ros_com_ros2/install/setup.bash
 $ export ROS_MASTER_URI=http://localhost:11311
 $ ros2 run ros1_bridge dynamic_bridge
