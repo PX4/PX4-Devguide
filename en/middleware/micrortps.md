@@ -1,14 +1,14 @@
 # RTPS/ROS2 Interface: PX4-FastRTPS Bridge
 
-The *PX4-FastRTPS Bridge* adds a Real Time Publish Subscribe (RTPS) interface to PX4, enabling the exchange of [uORB messages](../middleware/uorb.md) between PX4 components and (offboard) *Fast-RTPS* applications, including ones built over the ROS2/ROS frameworks.
+The *PX4-FastRTPS Bridge* adds a Real Time Publish Subscribe (RTPS) interface to PX4, enabling the exchange of [uORB messages](../middleware/uorb.md) between PX4 components and (offboard) *FastRTPS* applications (including those built over the ROS2/ROS frameworks).
 
-> **Note** RTPS is the underlying protocol of the Object Management Group's (OMG) Data Distribution Service (DDS) standard. It aims to enable scalable, real-time, dependable, high-performance and interoperable data communication using the publish/subscribe pattern. *Fast-RTPS* is a very lightweight cross-platform implementation of the latest version of the RTPS protocol and a minimum DDS API.
+> **Note** RTPS is the underlying protocol of the Object Management Group's (OMG) Data Distribution Service (DDS) standard. It aims to enable scalable, real-time, dependable, high-performance and interoperable data communication using the publish/subscribe pattern. *FastRTPS* is a very lightweight cross-platform implementation of the latest version of the RTPS protocol and a minimum DDS API.
 
 RTPS has been adopted as the middleware for the ROS2 (Robot Operating System). The bridge allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
 
 This topic describes the bridge architecture, how it is compiled, and how to:
-1. Write a simple FastRTSP application to subscribe to PX4 changes;
-2. Or, if your application is on the ROS2/ROS1 side, understand how the `px4_ros_com` package works and how to use it to bridge your ROS nodes with PX4.
+1. Write a simple FastRTPS application to subscribe to PX4 changes;
+1. For ROS2/ROS1 applications, understand how the `px4_ros_com` package works and how to use it to bridge ROS nodes with PX4.
 
 
 ## When should RTPS be used?
@@ -17,7 +17,7 @@ RTPS should be used in circumstances where there is a need to reliably share tim
 
 Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control.
 
-> **Note** Fast-RTPS is not intended as a replacement for MAVLink. MAVLink remains the most appropriate protocol for communicating with ground stations, gimbals, cameras, etc. (although Fast-RTPS may open other opportunities for working with some peripherals).
+> **Note** FastRTPS is not intended as a replacement for MAVLink. MAVLink remains the most appropriate protocol for communicating with ground stations, gimbals, cameras, etc. (although FastRTPS may open other opportunities for working with some peripherals).
 
 <span></span>
 > **Tip** RTPS can be used over slower links (e.g. like radio telemetry, but care should be taken not to overload the channel.
@@ -32,21 +32,21 @@ The main elements of the architecture are the client and agent processes shown i
 - The *Client* is PX4 middleware daemon process that runs on the flight controller. It subscribes to uORB topics published by other PX4 components and sends any updates to the *Agent* (via a UART or UDP port). It also receives messages from the *Agent* and publishes them as uORB message on PX4.
 - The *Agent* runs as a daemon process on an offboard computer. It watches for uORB update messages from the *Client* and (re)publishes them over RTPS. It also subscribes to "uORB" RTPS messages from other RTPS applications and forwards them to the *Client*.
 - The *Agent* and *Client* are connected via a serial link (UART) or UDP network. The uORB information is [CDR serialized](https://en.wikipedia.org/wiki/Common_Data_Representation) for sending (*CDR serialization* provides a common format for exchanging serial data between different platforms).
-- The *Agent* and any *Fast-RTPS* applications are connected via UDP, and may be on the same or another device. In a typical configuration they will both be on the same system (e.g. a development computer, Linux companion computer or compute board), connected to the *Client* over a Wifi link or via USB.
+- The *Agent* and any *FastRTPS* applications are connected via UDP, and may be on the same or another device. In a typical configuration they will both be on the same system (e.g. a development computer, Linux companion computer or compute board), connected to the *Client* over a Wifi link or via USB.
 
 
 ## Architectural overview for a ROS2/ROS application pipeline
 
 <!--![basic example flow](../../assets/middleware/micrortps/architecture_ros.png)-->
 
-ROS2 has been developed on top of the DDS/RTPS, which is what composes its middleware. This same middleware serves as the end-to-end architecture for plugging different applications that rely on distributed discovery, serialization and QoS control over the transportation layer.
+ROS2 has been developed on top of the DDS/RTPS, which is what composes its middleware. This same middleware serves as the end-to-end architecture for plugging different applications that rely on distributed discovery, serialization and QoS control over the transportation layer. So, since RTPS is the ROS2 native communications middleware, this makes it easy to integrate with PX4.
 
-So one is able to publish and subscribe to uORB data from PX4 using ROS2 (and ROS1 if using the [`ros1_bridge`](https://github.com/ros2/ros1_bridge), it just needs to create it's own listener our advertiser nodes in the respective frameworks. The only consideration to take into account is that the msg types, headers and source files being used on both client and agent side (and consequently, on the ROS side) need to be the same and generated from the same IDL (Interface Description Language).
+So one is able to publish and subscribe to uORB data using ROS2, it just needs to create a listener and/or advertiser ROS nodes. ROS1 integration with is also supported via the [ros1_bridge](https://github.com/ros2/ros1_bridge). It should be taken into account that the message types, headers and source files being used on both client and agent side (and consequently, on the ROS nodes) need to be the same and generated from the same IDL (Interface Description Language) files.
 
 
 ## Code generation
 
-### Code generation for ROS-independent applications
+### ROS-independent applications
 
 All the code needed to create, build and use the bridge is automatically generated when the PX4 Firmware is compiled.
 
@@ -55,22 +55,27 @@ The *Client* application is also compiled and built into the firmware as part of
 > **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
 
 <span></span>
-> **Tip** The bridge code can also be [manually generated](micrortps_manual_code_generation.md). Most users will not need to do
-so, but the linked topic provides a more detailed overview of the build process and can be useful for troubleshooting.
+> **Tip** The bridge code can also be [manually generated](micrortps_manual_code_generation.md). Most users will not need to do so, but the linked topic provides a more detailed overview of the build process and can be useful for troubleshooting.
 
-### Code generation for ROS2/ROS applications - `px4_ros_com`
+### ROS2/ROS applications - `px4_ros_com`
 
-The [`px4_ros_com`](https://github.com/PX4/px4_ros_com) package allows the developer to generate all the required ROS2/ROS message headers and sources, but also the agent application which will bridge the client with the RTPS middleware on the ROS2 side. The package is basically composed by two separate branches, where the `master` branch generates all the required ROS2 messages and IDL files, besides some listener and advertiser example nodes, in order to bridge PX4 with ROS2 nodes, and a `ros1` branch, which similarly to the `master` branch, generates the ROS(1) message headers and source files, besides the ROS nodes examples, that allow, by using the `ros1_bridge`, share data between PX4 and ROS.
+The [px4_ros_com](https://github.com/PX4/px4_ros_com) package allows the developer to generate all the required ROS2/ROS message headers and sources, and the agent application that will bridge the client with the RTPS middleware on the ROS2 side.
 
-The `px4_ros_com` package build structure is structured in a way that, when one builds the package, it automatically generates all the required components of the bridge that allow the developer to use the generated messages on its own nodes, being it on the ROS2 or in the ROS side.
+The package has two separate branches:
+- a `master` branch, used with ROS2. It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
+- `ros1` is used with ROS(1). It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
+
+Both branches additionally include some example listener and advertiser example nodes.
+
+The `px4_ros_com` package is structured such that when one builds the package it automatically generates all the required components of the bridge that allow the developer to use the generated messages on its own nodes, being it on the ROS2 or in the ROS side. Those components include the IDL files, required by the `micrortps_agent`, the `micrortps_agent` itself and the sources and headers of the ROS messages, so these can be used to interface with the microRTPS agent through the RTPS middleware.
 
 ## Supported uORB messages
 
 The generated bridge code will enable a specified subset of uORB topics to be published/subscribed via RTPS. This applicable on both ROS or non-ROS applications.
 
-For *automatic code generation* (via the normal PX4 Firmware build process or, in the case of the `px4_ros_com`, through the build process of the package), there's a yaml definition file on the PX4 Firmware directory called `uorb_rtps_message_ids.yaml`, found in **/path/to/PX4/Firmware/msg/tools/** dir, where all the uORB messages (RTPS) ID's are set and where is also set which messages should be set to be sent, received, or both, in the RTPS stream.
+For *automatic code generation* there's a yaml definition file in the PX4 **Firmware/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
 
-> **Caution** All new uORB messages which one adds to the Firmware side should have a respective RTPS ID set when one wants the data to be published and/or subscribed in the RTPS stream.
+> **Caution** All new uORB messages which one adds to the Firmware side should have a respective RTPS ID set when one wants the data to be published and/or subscribed in the RTPS stream. This means that any message that one want to be used on the RTPS middleware should have an ID set on the **uorb_rtps_message_ids.yaml** file.
 
 ```yaml
 rtps:
@@ -90,18 +95,24 @@ rtps:
   - msg: camera_trigger
     id: 8
     receive: true
+  - ...
+  - msg: sensor_baro
+    id: 63
+    receive: true
+    send: true
 ```
 
-In the case of `px4_ros_com`, the `uorb_rtps_message_ids.yaml` is transformed in a way that the message names become PascalCased and there's a swap between the received and the sent messages. The logic behind this is that if a message is sent from the client side, then it's received on the agent side, and vice-versa. The naming of the message is indifferent on the client-agent communication, but it is critical on the ROS2 side, since the message naming has to follow the the PascalCase convention, which means that the generated IDL files also need to follow this same convention.
+> **Note** In the case of `px4_ros_com`, and only during its build process, the `uorb_rtps_message_ids.yaml` is transformed in a way that the message names become PascalCased and there's a swap between the received and the sent messages. The logic behind this is that if a message is sent from the client side, then it's received on the agent side, and vice-versa. The naming of the message is indifferent on the client-agent communication, but it is critical on the ROS2 side, since the message naming has to follow the the PascalCase convention, which means that the generated IDL files also need to follow this same convention.
 
-This simply means that, between agent and client, there are IDL files which are generated on the build process of PX4 Firmware and which are used only for communicate between each other, and from the agent side to the ROS2 RTPS middleware, there's another set of IDL files generated that are compatible with the ROS2 conventions. In the end, what really matters is that the generated IDL keep the same ID's and fields for each message.
+> **Note** The PX4 Firmware includes a template for the IDL file generation, which is only used during the PX4 build process. For the ROS2 case, the build process runs the CMake macro `rosidl_generate_interfaces()` to generate, not only the IDL files, but also all the source and header files for each message.
 
 
 ## Client (PX4 Firmware)
 
 The *Client* source code is generated, compiled and built into the PX4 firmware as part of the normal build process.
 
-To build the firmware for NuttX/Pixhawk flight controllers:
+To build the firmware for NuttX/Pixhawk flight controllers use the `_rtps` feature in the configuration target.
+For example, to build RTPS for px4fmu-v4:
 ```sh
 make px4fmu-v4_rtps
 ```
@@ -126,7 +137,7 @@ The *Client* application can be launched from [NuttShell/System Console](../debu
   -s <sending port>       UDP port for sending. Default 2020
 ```
 
-> **Note** By default the *Client* runs as a daemon, but you will need to start it manually. The PX4 Firmware initialization code may in future automatically start the *Client* as a permanent daemon process.
+> **Note** By default the *Client* runs as a daemon, but you will need to start it manually. The PX4 Firmware initialisation code may in future automatically start the *Client* as a permanent daemon process.
 
 For example, in order to run the *Client* daemon with SITL, and since the data is being shared through UDP, it's required that the daemon is started using the UDP as the transport protocol:
 
@@ -134,7 +145,7 @@ For example, in order to run the *Client* daemon with SITL, and since the data i
 micrortps_client start -t UDP
 ```
 
-## Agent in a ROS-independent Offboard Fast-RTPS interface
+## Agent in a ROS-independent Offboard FastRTPS interface
 
 The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
 
@@ -147,7 +158,7 @@ cmake ..
 make
 ```
 
-> **Note** To cross-compile for the *Qualcomm Snapdragon Flight* platform see [this link](https://github.com/eProsima/PX4-Fast-RTPS-PoC-Snapdragon-UDP#how-to-use).
+> **Note** To cross-compile for the *Qualcomm Snapdragon Flight* platform see [this link](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use).
 
 
 The command syntax for the *Agent* is listed below:
@@ -173,7 +184,7 @@ As an example, to start the *micrortps_agent* with connection through UDP, issue
 
 ## Agent interfacing with a ROS2 middleware
 
-`px4_ros_com` build structure allows to automatically generate and build the agent application. Since it is also installed using the [`colcon`](http://design.ros2.org/articles/build_tool.html) build tools, running it works exactly the same way as the above. Check the **Building the `px4_ros_com` package** for details about the build structure.
+Building `px4_ros_com` automatically generates and builds the agent application. Since it is also installed using the [`colcon`](http://design.ros2.org/articles/build_tool.html) build tools, running it works exactly the same way as the above. Check the **Building the `px4_ros_com` package** for details about the build structure.
 
 
 ## Building the `px4_ros_com` package
@@ -281,21 +292,21 @@ source ~/px4_ros_com_ros1/install/setup.bash
 source ~/px4_ros_com_ros2/install/setup.bash
 ```
 
-7. At last, build the `ros1_bridge`. Note that the build process may consume a lot of memory resources, so if one is using a resource limited machine, reduce the number of jobs being processed in parallel, by for example, setting the environmental variable `MAKEFLAGS=-j1`. For more details on the build process, one can consult the build instructions on the [`ros1_bridge`](https://github.com/ros2/ros1_bridge) package page.
+7. At last, build the `ros1_bridge`. Note that the build process may consume a lot of memory resources, so if one is using a resource limited machine, reduce the number of jobs being processed in parallel, by for example, setting the environmental variable `MAKEFLAGS=-j1`. For more details on the build process, one can consult the build instructions on the [ros1_bridge](https://github.com/ros2/ros1_bridge) package page.
 
 ```sh
 cd ~/px4_ros_com_ros2 && colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure --event-handlers console_direct+
 ```
 
-## Creating a Fast-RTPS Listener application
+## Creating a FastRTPS Listener application
 
-Once the *Client* (on the flight controller) and the *Agent* (on an offboard computer) are running and connected, *Fast-RTPS* applications can publish and subscribe to uORB topics on PX4 using RTPS.
+Once the *Client* (on the flight controller) and the *Agent* (on an offboard computer) are running and connected, *FastRTPS* applications can publish and subscribe to uORB topics on PX4 using RTPS.
 
-This example shows how to create a *Fast-RTPS* "listener" application that subscribes to the `sensor_combined` topic and prints out updates (from PX4). A connected RTPS application can run on any computer on the same network as the *Agent*. For this example the *Agent* and *Listener application* will be on the same computer.
+This example shows how to create a *FastRTPS* "listener" application that subscribes to the `sensor_combined` topic and prints out updates (from PX4). A connected RTPS application can run on any computer on the same network as the *Agent*. For this example the *Agent* and *Listener application* will be on the same computer.
 
 The *fastrtpsgen* script can be used to generate a simple RTPS application from an IDL message file.
 
-> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a Fast-RTPS application to communicate with PX4.
+> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a FastRTPS application to communicate with PX4.
 
 Enter the following commands to create the application:
 
@@ -578,7 +589,7 @@ If the selected UART port is busy, it's possible that the MAVLink application is
 
 ### Agent not built/fastrtpsgen is not found
 
-The *Agent* code is generated using a *Fast-RTPS* tool called *fastrtpsgen*.
+The *Agent* code is generated using a *FastRTPS* tool called *fastrtpsgen*.
 
 If you haven't installed Fast RTPS in the default path then you must specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
 
@@ -622,6 +633,6 @@ sudo usermod -a -G dialout pi
 
 ## Additional information
 
-* [Fast-RTPS Installation](../setup/fast-rtps-installation.md)
+* [FastRTPS Installation](../setup/fast-rtps-installation.md)
 * [Manually Generate Client and Agent Code](micrortps_manual_code_generation.md)
 * [DDS and ROS middleware implementations](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
