@@ -37,7 +37,7 @@ The main elements of the architecture are the client and agent processes shown i
 
 ## Architectural overview for a ROS2/ROS application pipeline
 
-<!--![basic example flow](../../assets/middleware/micrortps/architecture_ros.png)-->
+![Architecture with ROS](../../assets/middleware/micrortps/architecture_ros.png)
 
 ROS2 has been developed on top of the DDS/RTPS, which is what composes its middleware. This same middleware serves as the end-to-end architecture for plugging different applications that rely on distributed discovery, serialization and QoS control over the transportation layer. So, since RTPS is the ROS2 native communications middleware, this makes it easy to integrate with PX4.
 
