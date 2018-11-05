@@ -6,12 +6,13 @@ The *PX4-FastRTPS Bridge* adds a Real Time Publish Subscribe (RTPS) interface to
   It aims to enable scalable, real-time, dependable, high-performance and inter-operable data communication using the publish/subscribe pattern. *Fast RTPS* is a very lightweight cross-platform implementation of the latest version of the RTPS protocol and a minimum DDS API.
 
 RTPS has been adopted as the middleware for the ROS2 (Robot Operating System).
-The bridge allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
+The *Fast RTPS bridge* allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
 
 This topic describes the RTPS bridge architecture (and how it is used within the ROS2/ROS application pipeline).
 It also shows how to compile needed code to:
 1. Write a simple *Fast RTPS* application to subscribe to PX4 changes
-1. Connect ROS2 and ROS1 nodes with PX4 (via the RTPS Bridge, and using the `px4_ros_com` package)
+1. Connect ROS2 nodes with PX4 (via the RTPS Bridge, and using the `px4_ros_com` package)
+1. Connect ROS (ROS "version 1") nodes with PX4 by additionally using the `ros1_bridge` package to bridge ROS2 and ROS.
 
 
 ## When should RTPS be used?
@@ -59,12 +60,12 @@ Because ROS2 uses DDS/RTPS as its native communications middleware, you can crea
 
 ![Architecture with ROS2](../../assets/middleware/micrortps/architecture_ros2.png)
 
-The architecture for integrating ROS version 1 applications with PX4 is shown below.
+The architecture for integrating ROS applications with PX4 is shown below.
 
-![Architecture with ROS1](../../assets/middleware/micrortps/architecture_ros.png)
+![Architecture with ROS](../../assets/middleware/micrortps/architecture_ros.png)
 
-Note the use of [ros1_bridge](https://github.com/ros2/ros1_bridge), which bridges messages between ROS2 and ROS1.
-This is needed because ROSv1 does not support RTPS.
+Note the use of [ros1_bridge](https://github.com/ros2/ros1_bridge), which bridges messages between ROS2 and ROS.
+This is needed because the first version of ROS does not support RTPS.
  
 
 ## Code generation
@@ -84,12 +85,12 @@ The *Agent* must be separately/manually compiled for the target computer.
 
 ### ROS2/ROS applications {#px4_ros_com}
 
-The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS1 you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)).
+The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)).
 This includes all the required components of the *PX4 RTPS bridge, including the IDL files (required by the `micrortps_agent`), the `micrortps_agent` itself and the sources and headers of the ROS messages.
 
 The package has two separate branches:
 - a `master` branch, used with ROS2. It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
-- a `ros1` branch, used with ROS(1). It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
+- a `ros1` branch, used with ROS. It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
 
 Both branches additionally include some example listener and advertiser example nodes.
 
@@ -133,7 +134,7 @@ rtps:
 > 
 > The `px4_ros_com` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). 
 > The **uorb_rtps_message_ids.yaml** is transformed in a way that the message names become *PascalCased*
-> (the name change is irrelevant to the client-agent communication, but is critical on the ROS2 side, since the message naming must follow the PascalCase convention). 
+> (the name change is irrelevant to the client-agent communication, but is critical for ROS2, since the message naming must follow the PascalCase convention). 
 > The new IDL files also reverse the messages that are sent and received 
 > (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa). 
 
@@ -230,6 +231,7 @@ Before building `px4_ros_com` you will first need to clone the PX4 Firmware repo
 Then install and setup both ROS2 and ROS environments on your development machine
 and separately clone the `px4_ros_com` repo for both the `master` and `ros1` branches (see [above for more information](#px4_ros_com)).
 
+> **Note** Only the master branch is needed for ROS2 (both are needed to target ROS). 
 
 ### Installing ROS and ROS2 and respective dependencies
 
@@ -271,7 +273,7 @@ As an example:
    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com # clones the master branch
    ```
 
-1. For ROS (v1), follow exactly the same process, but create a different directory and clone a different branch:
+1. For ROS, follow exactly the same process, but create a different directory and clone a different branch:
    ```sh
    mkdir -p ~/px4_ros_com_ros1/src
    ```
@@ -316,7 +318,7 @@ The steps below show how to *manually* build the packages (provided for your inf
    source /opt/ros/bouncy/setup.bash
    ```
 
-1. Build the `px4_ros_com` package on the ROS (1) end:
+1. Build the `px4_ros_com` package on the ROS end:
 
    ```sh
    cd ~/px4_ros_com_ros1 && colcon build --symlink-install --event-handlers console_direct+
@@ -503,7 +505,7 @@ The instantiation of the `SensorCombinedListener` class as a ROS node is done on
 
 ## Creating a ROS2 advertiser
 
-An ROS advertiser node publishes data into the DDS/RTPS network (and hence to PX4).
+A ROS2 advertiser node publishes data into the DDS/RTPS network (and hence to PX4).
 
 Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/listeners`:
 
@@ -568,7 +570,8 @@ The instantiation of the `DebugVectAdvertiser` class as a ROS node is done on th
 
 ## Creating a ROS listener
 
-The creation of ROS nodes is a well known and documented process. An example of a ROS listener for `sensor_combined` messages can be found in the `ros1` branch repo, under `px4_ros_com/src/listeners`.
+The creation of ROS nodes is a well known and documented process. 
+An example of a ROS listener for `sensor_combined` messages can be found in the `ros1` branch repo, under `px4_ros_com/src/listeners`.
 
 ## Examples/tests of ROS-independent apps
 
