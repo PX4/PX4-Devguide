@@ -14,7 +14,7 @@ RTK是使用导航信号的载波相位来进行测距的，而不是使用导�
 
 ## 支持的RTK GPS模式
 
-PX4 currently only supports the single-frequency (L1) u-blox M8P based GNSS receivers for RTK.
+PX4目前仅支持u-blox M8P单频（L1频点）RTK接收机。
 
 A number of manufacturers have created products using this receiver. The list of devices that we have tested can be found [in the user guide](https://docs.px4.io/en/advanced_features/rtk-gps.html#supported-rtk-devices).
 
