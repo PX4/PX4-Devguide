@@ -36,6 +36,7 @@ Key features:
 
 ![Flight Review Charts](../../assets/flight_log_analysis/flight-review-example.png)
 
+See [here](flight_review.md) for an introduction.
 
 ### pyulog
 

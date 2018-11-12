@@ -92,6 +92,7 @@
   * [Profiling](debug/profiling.md)
   * [Logging](log/logging.md)
   * [Flight Log Analysis](log/flight_log_analysis.md)
+    * [Flight Review](log/flight_review.md)
   * [ULog File Format](log/ulog_file_format.md)
 * [Tutorials](tutorials/tutorials.md)
   * [Ground Control Station](qgc/README.md)
