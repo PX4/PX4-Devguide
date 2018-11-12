@@ -35,7 +35,7 @@ PX4 provides a simple base [Unittest-class](https://github.com/PX4/Firmware/blob
        ...
     };
     
-    bool [Desciption]Test::run_tests()
+    bool [Description]Test::run_tests()
     {
        ut_run_test(test1)
        ut_run_test(test2)
@@ -44,7 +44,7 @@ PX4 provides a simple base [Unittest-class](https://github.com/PX4/Firmware/blob
        return (_tests_failed == 0);
     }
     
-    bool [Desciption]Test::test1()
+    bool [Description]Test::test1()
     {
        ut_[name of one of the unit test functions](...
        ut_[name of one of the unit test functions](...
@@ -53,7 +53,7 @@ PX4 provides a simple base [Unittest-class](https://github.com/PX4/Firmware/blob
        return true;
     }
     
-    bool [Desciption]Test::test2()
+    bool [Description]Test::test2()
     {
        ut_[name of one of the unit test functions](...
        ut_[name of one of the unit test functions](...
