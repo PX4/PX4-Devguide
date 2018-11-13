@@ -164,8 +164,7 @@ This is at the limit where it starts to negatively affect flight performance.
 ![Borderline vibration S500 x, y - raw accel. plot](../../assets/flight_log_analysis/flight_review/vibrations_s500_accel.png)
 
 
-This example shows a peak in frequency close to 50 Hz. 
-In that case the cause was a landing gear that had a bit of play.
+Vibration too high. Note how the graph of the z-axis overlaps with the x/y-axis graph:
 
 ![Vibrations in landing gear - raw accel. plot](../../assets/flight_log_analysis/flight_review/vibrations_landing_gear_accel.png)
 
