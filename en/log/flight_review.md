@@ -117,7 +117,11 @@ The strong yellow lines at around 100Hz indicate a potential issue that requires
 
 ![High vibration in spectral density plot](../../assets/flight_log_analysis/flight_review/vibrations_too_high_spectral.png)
 
-This example shows a peak in frequency close to 50 Hz (in this case due to "loose" landing gear).
+This plot below shows a peak in frequency close to 50 Hz (in this case due to "loose" landing gear).
+
+> **Tip** This indicates a possible problem because it is a strong single low frequency that is close to the vehicle dynamics.
+  With the default filter settings of 80 Hz vibrations at 50 Hz will not be filtered.
+
 ![Vibrations in landing gear - spectral density plot](../../assets/flight_log_analysis/flight_review/vibrations_landing_gear_spectral.png)
 
 
