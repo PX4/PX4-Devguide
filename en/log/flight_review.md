@@ -301,7 +301,7 @@ The sampling regularity plot provides insights into problems with the logging sy
 
 The amount of **logging dropouts** start to increase if the log buffer is too small, the logging rate is too high or a low-quality SD card is used.
 
-> **Note** Occasional dropouts *are* expected.
+> **Note** Occasional dropouts can be expected on medium quality cards.
 
 The **delta t** shows the time difference between two logged IMU samples.
 It should be close to 4 ms because the data publishing rate is 250Hz.
@@ -329,3 +329,63 @@ For example they show when a task becomes low on stack size.
 The messages need to be examined individually, and not all of them indicate a problem.
 For example the following shows a kill-switch test:
 ![Logged Messages](../../assets/flight_log_analysis/flight_review/logged_messages.png)
+
+
+## Flight/Frame Log Review Examples
+
+It is often worth looking at multiple charts for a particular flight when analyzing vehicle condition (different charts can better highlight some issues).
+This is particularly important when reviewing for possible vibration problems.
+
+The section below groups a few (previously presented) charts by flight/vehicle.
+
+### QAV-R 5" Racer
+
+These charts are all from the same flight of a [QAV-R 5" Racer](https://docs.px4.io/en/frames_multicopter/qav_r_5_kiss_esc_racer.html).
+<!-- https://logs.px4.io/plot_app?log=cd88b091-ec89-457c-85f6-e63e4fa0f51d -->
+
+They show a vehicle that has very low vibration:
+- Actuator Controls FFT shows only a single peak at the lowest end, with the rest low and flat.
+- Spectral density is mostly green, with only a little yellow at the low frequencies.
+- Raw Acceleration has z-axis trace well separated from the x/y-axis traces.
+
+![Low vibration QAV-R 5 Racer - FFT plot](../../assets/flight_log_analysis/flight_review/vibrations_good_actuator_controls_fft.png)
+
+![Low vibration QAV-R 5 Racer - spectral density plot](../../assets/flight_log_analysis/flight_review/vibrations_good_spectral.png)
+
+![Low vibration QAV-R 5 Racer - raw accel. plot](../../assets/flight_log_analysis/flight_review/vibrations_good_accel.png)
+
+
+### DJI F450
+
+These charts are all from the same flight of a *DJI F450*.
+<!-- https://logs.px4.io/plot_app?log=cd88b091-ec89-457c-85f6-e63e4fa0f51d -->
+
+They show a vehicle that has low vibration (but not as low as the QAV-R above!):
+- Actuator Controls FFT shows a peak at the lowest end. 
+  Most of the rest is flat, except for a bump at around 100Hz (this is the blade passing frequency of the propellers).
+- Spectral density is mostly green. The blade passing frequency is again visible.
+- Raw Acceleration has z-axis trace well separated from the x/y-axis traces.
+
+![Low vibration DJI F450 - FFT plot](../../assets/flight_log_analysis/flight_review/vibrations_f450_actuator_controls_fft.png)
+
+![Low vibration DJI F450 - spectral density plot](../../assets/flight_log_analysis/flight_review/vibrations_f450_spectral.png)
+
+![Low vibration DJI F450 - raw accel. plot](../../assets/flight_log_analysis/flight_review/vibrations_f450_accel.png)
+
+
+### S500
+
+These charts are all from the same flight of an S500.
+
+They show a vehicle that has borderline-acceptable vibration:
+- Actuator Controls FFT shows a peak at the lowest end. 
+  Most of the rest is flat, except for a bump at around 100Hz.
+- Spectral density is mostly green, but more yellow than for the DJI F450 at 100Hz.
+- Raw Acceleration has z-axis trace fairly close to the x/y-axis traces. 
+  This is at the limit where it starts to negatively affect flight performance.
+
+![Low vibration S500 actuator controls - FFT plot](../../assets/flight_log_analysis/flight_review/vibrations_s500_actuator_controls_fft.png)
+
+![Vibration S500 - spectral density plot](../../assets/flight_log_analysis/flight_review/vibrations_s500_spectral.png)
+
+![Borderline vibration S500 x, y - raw accel. plot](../../assets/flight_log_analysis/flight_review/vibrations_s500_accel.png)
