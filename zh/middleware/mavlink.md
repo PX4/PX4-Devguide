@@ -1,23 +1,34 @@
 # MAVLink通讯
 
-点击[这里](https://mavlink.io/en/messages/)查看关于所有的系统默认Mavlink消息的概述。
+[MAVLink](https://mavlink.io/en/) is a very lightweight messaging protocol that has been designed for the drone ecosystem.
 
-## 创建自定义MAVLink消息
+PX4 uses *MAVLink* to communicate with *QGroundControl* (and other ground stations), as the integration mechanism for connecting to drone components outside of the flight controller: companion computers, MAVLink enabled cameras etc.
 
-在阅读此教程前，请确保如下事项：（1）`msg/ca_trajectory.msg`中已存在[自定义 uORB消息](../middleware/uorb.md)`ca_trajectory`；（2）头文件`mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h`中已存在自定义MAVLink消息`ca_trajectory`（点击[这里](http://qgroundcontrol.org/mavlink/create_new_mavlink_message)查看：如何创建自定义MAVLink消息和头文件）。
+The protocol defines a number of standard [messages](https://mavlink.io/en/messages/) and [microservices](https://mavlink.io/en/services/) for exchanging data (many, but not all, messages/services have been implemented in PX4).
+
+This tutorial explains how you can add PX4 support for your own new "custom" messages.
+
+## Defining Custom MAVLink Messages
+
+The MAVLink developer guide explains how to define new messages and build them into new programming-specific libraries:
+
+- [How to Define MAVLink Messages & Enums](https://mavlink.io/en/guide/define_xml_element.html)
+- [Generating MAVLink Libraries](https://mavlink.io/en/getting_started/generate_libraries.html)
+
+The tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h`.
 
 ## 发送自定义MAVLink消息
 
-此章节旨在说明：如何使用一条自定义uORB消息，并将其作为一条MAVLink消息发送出去。
+This section explains how to use a custom uORB message and send it as a MAVLink message.
 
-Step1. 首先，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)中添加自定义MAVLink消息和uORB消息的头文件：
+Add the headers of the MAVLink and uORB messages to [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Step2. 然后，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)中新建一个消息流的类：
+Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
 
 ```C
 class MavlinkStreamCaTrajectory : public MavlinkStream
@@ -77,7 +88,7 @@ protected:
 };
 ```
 
-Step3. 接下来，在[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)的文件末尾，将这个消息流的类追加到`treams_list`。
+Finally append the stream class to the `streams_list` at the bottom of [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
 
 ```C
 StreamListItem *streams_list[] = {
@@ -87,35 +98,35 @@ nullptr
 };
 ```
 
-Step4. 最后，确保使能了此消息流：比如，添加如下内容至启动脚本文件（`-r`+n 命令可设置串流速率，`-u`命令可将MAVLink通道映射到UDP端口14556）
+Then make sure to enable the stream, for example by adding the following line to the startup script (`-r` configures the streaming rate, `-u` identifies the MAVLink channel on UDP port 14556):
 
     mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
     
 
 ## 接收自定义MAVLink消息
 
-此章节旨在说明：如何接收一条MAVLink消息，并将其发布至uORB。
+This section explains how to receive a message over MAVLink and publish it to uORB.
 
-Step1. 在[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)中添加自定义MAVLink消息和uORB消息的头文件：
+Add a function that handles the incoming MAVLink message in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Step2. 在[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)中添加处理自定义MAVLink消息的函数：
+Add a function that handles the incoming MAVLink message in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)
 
 ```C
 void handle_message_ca_trajectory_msg(mavlink_message_t *msg);
 ```
 
-Step3. 在[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)中，向类`MavlinkReceiver`中添加uORB发布者类型的成员变量：
+Add an uORB publisher in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)
 
 ```C
 orb_advert_t _ca_traj_msg_pub;
 ```
 
-Step4. 在[mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)中给出函数`handle_message_ca_trajectory_msg`的具体实现：
+Implement the `handle_message_ca_trajectory_msg` function in [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)
 
 ```C
 void MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
@@ -142,7 +153,7 @@ void MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
 }
 ```
 
-Step5. 最后，确保上述自定义函数在[MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)中被调用：
+and finally make sure it is called in [MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)
 
 ```C
 MavlinkReceiver::handle_message(mavlink_message_t *msg)
@@ -176,7 +187,7 @@ Sometimes it is useful to increase the streaming rate of individual topics (e.g.
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>
 ```
 
-You can get the port number with `mavlink status` which will output (amongst others) `transport protocol: UDP (<port number>)`. An example would be
+You can get the port number with `mavlink status` which will output (amongst others) `transport protocol: UDP (<port number>)`. An example would be:
 
 ```sh
 mavlink stream -u 14556 -s OPTICAL_FLOW_RAD -r 300
