@@ -1,10 +1,21 @@
 # MAVLink Messaging
 
-An overview of all messages can be found [here](https://mavlink.io/en/messages/).
+[MAVLink](https://mavlink.io/en/) is a very lightweight messaging protocol that has been designed for the drone ecosystem.
 
-## Create Custom MAVLink Messages
+PX4 uses *MAVLink* to communicate with *QGroundControl* (and other ground stations), as the integration mechanism for connecting to drone components outside of the flight controller: companion computers, MAVLink enabled cameras etc.
 
-This tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h` (see [here](http://qgroundcontrol.org/mavlink/create_new_mavlink_message) how to create a custom MAVLink message and header).
+The protocol defines a number of standard [messages](https://mavlink.io/en/messages/) and [microservices](https://mavlink.io/en/services/) for exchanging data (many, but not all, messages/services have been implemented in PX4).
+
+This tutorial explains how you can add PX4 support for your own new "custom" messages.
+
+## Defining Custom MAVLink Messages
+
+The MAVLink developer guide explains how to define new messages and build them into new programming-specific libraries:
+
+- [How to Define MAVLink Messages & Enums](https://mavlink.io/en/guide/define_xml_element.html)
+- [Generating MAVLink Libraries](https://mavlink.io/en/getting_started/generate_libraries.html)
+
+The tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h`.
 
 ## Sending Custom MAVLink Messages
 
@@ -176,7 +187,7 @@ Sometimes it is useful to increase the streaming rate of individual topics (e.g.
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>
 ```
 
-You can get the port number with `mavlink status` which will output (amongst others) `transport protocol: UDP (<port number>)`. An example would be
+You can get the port number with `mavlink status` which will output (amongst others) `transport protocol: UDP (<port number>)`. An example would be:
 
 ```sh
 mavlink stream -u 14556 -s OPTICAL_FLOW_RAD -r 300
