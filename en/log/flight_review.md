@@ -1,6 +1,6 @@
 # Flight Review 101
 
-The [Flight Review](http://logs.px4.io) plots can be used to analyze vehicle condition in a specific flight.
+The [Flight Review](http://logs.px4.io) plots for a flight be used to analyze general vehicle condition.
 
 The plots are meant to be self-explanatory, but it takes some experience to know what ranges are acceptable and what a plot should look like.
 This page explains how to interpret the plots and identify common problems.
@@ -48,7 +48,7 @@ This range depends on a number of factors, including vehicle size - as larger ve
 
 The following paragraphs and sections provide information about what plots to use for checking vibration levels, and how to analyse them.
 
-> **Tip** It is worth looking at multiple charts when analysing vibration (different charts can better highlight some issues).
+> **Tip** It is worth looking at multiple charts when analyzing vibration (different charts can better highlight some issues).
 
 
 ### Actuator Controls FFT
@@ -57,19 +57,19 @@ The following paragraphs and sections provide information about what plots to us
 
 This graph shows a frequency plot for the roll, pitch and yaw axis based on the actuator controls signal (the PID output from the rate controller). 
 It helps to identify frequency peaks and configuring the software filters.
-There should only be a single peak at the lowest end up to a few Hz, the rest should be low and flat.
+There should only be a single peak at the lowest end (below around 20 Hz), the rest should be low and flat.
 
 Note that the y-axis scaling is different for different vehicles, but logs from the same vehicle can be directly compared to each other.
 
 #### Examples: Good Vibration
 
 [QAV-R 5" Racer](https://docs.px4.io/en/frames_multicopter/qav_r_5_kiss_esc_racer.html) frame (excellent vibration).
+
 Note that this allows us to considerably increase the cutoff frequency of the software filters
 
 ![Low vibration QAV-R 5 Racer - FFT plot](../../assets/flight_log_analysis/flight_review/vibrations_good_actuator_controls_fft.png)
 
 DJI F450 frame (good vibration).
-Note the blade passing frequency of the propellers around 100 Hz.
 
 ![Low vibration DJI F450 - FFT plot](../../assets/flight_log_analysis/flight_review/vibrations_f450_actuator_controls_fft.png)
 
@@ -82,8 +82,7 @@ S500 frame:
 
 #### Examples: Bad Vibration
 
-This example shows a peak in frequency close to 50 Hz. 
-In this case the cause was a landing gear that had a bit of play.
+This example shows a peak in frequency close to 50 Hz (in this case due to "loose" landing gear).
 
 ![Vibrations in landing gear - FFT plot](../../assets/flight_log_analysis/flight_review/vibrations_landing_gear_actuator_controls_fft.png)
 
@@ -104,25 +103,21 @@ Ideally only the lowest part up to a few Hz is yellow, and the rest is mostly gr
 <!-- https://logs.px4.io/plot_app?log=cd88b091-ec89-457c-85f6-e63e4fa0f51d -->
 
 DJI F450 frame (good vibration).
-Note the blade passing frequency of the propellers around 100 Hz.
 ![Low vibration DJI F450 - spectral density plot](../../assets/flight_log_analysis/flight_review/vibrations_f450_spectral.png)
 
-S500 frame: <!-- the Actuator Controls FFT plot looks good, whereas the vibration levels are a bit high for x and y in the Raw Acceleration plot (which is typical for an S500 airframe). This is at the limit where it starts to negatively affect flight performance.
-GOOD or bad?
--->
+> **Note** Above you can see the blade passing frequency of the propellers at around 100 Hz.
 
+S500 frame:
 ![Vibration S500 - spectral density plot](../../assets/flight_log_analysis/flight_review/vibrations_s500_spectral.png)
 
 
 #### Examples: Bad Vibration
 
-? <!-- In this log the vibration levels are too high, apparent in the Raw Acceleration plot - the graph of the z-axis overlaps with the x/y-axis graph: -->
-
+The strong yellow lines at around 100Hz indicate a potential issue that requires further investigation (starting with a review of the other charts).
 
 ![High vibration in spectral density plot](../../assets/flight_log_analysis/flight_review/vibrations_too_high_spectral.png)
 
-This example shows a peak in frequency close to 50 Hz. 
-In that case the cause was a landing gear that had a bit of play.
+This example shows a peak in frequency close to 50 Hz (in this case due to "loose" landing gear).
 ![Vibrations in landing gear - spectral density plot](../../assets/flight_log_analysis/flight_review/vibrations_landing_gear_spectral.png)
 
 
