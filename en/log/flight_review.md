@@ -65,9 +65,9 @@ Note that the y-axis scaling is different for different vehicles, but logs from 
 
 [QAV-R 5" Racer](https://docs.px4.io/en/frames_multicopter/qav_r_5_kiss_esc_racer.html) frame (excellent vibration).
 
-Note that this allows us to considerably increase the cutoff frequency of the software filters
-
 ![Low vibration QAV-R 5 Racer - FFT plot](../../assets/flight_log_analysis/flight_review/vibrations_good_actuator_controls_fft.png)
+
+> **Note** The excellent vibration characteristics of the above frame mean that we can considerably increase the cutoff frequency of the [software filters](https://docs.px4.io/en/config_mc/racer_setup.html#filters) (reducing control latency).
 
 DJI F450 frame (good vibration).
 
