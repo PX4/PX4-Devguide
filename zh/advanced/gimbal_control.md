@@ -58,7 +58,7 @@ The outputs can be customized by [creating a mixer file](../concept/system_start
 
 驱动程序提供了一个简单的测试指令。他需要首先使用“vmount stop”指令来停止。 接下来描述了在SITL中的测试方式，但是这些指令也可以在真实的设备中运行。
 
-Start the simulation with (no parameter needs to be changed for that):
+使用下面这条指令开始仿真：（没有参数需要被修改）
 
     make posix gazebo_typhoon_h480
     
