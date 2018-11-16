@@ -27,7 +27,7 @@ PX4包含了一个通用的云台/挂载设备的控制驱动器，它含有多�
 
 The outputs can be customized by [creating a mixer file](../concept/system_startup.md#starting-a-custom-mixer) on the SD card with name `etc/mixers/mount.aux.mix`.
 
-A basic basic mixer configuration for a mount is shown below.
+下面列举的是一针对挂载设备的基本的混控器配置：
 
     # roll
     M: 1
@@ -47,14 +47,14 @@ A basic basic mixer configuration for a mount is shown below.
 
 ## 软件在环仿真
 
-The Typhoon H480 model comes with a preconfigured simulated gimbal. To run it, use:
+台风H480的模型带有一个预先配置的模拟云台。 要运行它的话，使用下面的make语句：
 
     make posix gazebo_typhoon_h480
     
 
-To just test the mount driver on other models or simulators, make sure the driver runs, using `vmount start`, then configure its parameters.
+要在其他模型或模拟器上测试挂载驱动程序，请确保驱动程序运行，使用vmount start，然后配置其参数。
 
-## Testing
+## 测试
 
 The driver provides a simple test command - it needs to be stopped first with `vmount stop`. The following describes testing in SITL, but the commands also work on a real device.
 
