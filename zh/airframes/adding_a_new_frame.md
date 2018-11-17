@@ -23,7 +23,7 @@ These aspects are mostly independent, which means that many configurations share
 
 下面列举了一个典型的配置(原始文件在这里<0>)</p> 
 
-The first section is the airframe documentation. This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
+第一部分是关于机身框架的文档说明。 This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
 
 ```bash
 #!nsh
@@ -47,7 +47,7 @@ The first section is the airframe documentation. This is used in the [Airframes 
 #
 ```
 
-The next section specifies vehicle-specific parameters, including [tuning gains](#tuning-gains):
+接下来的一部分指定车辆特定的参数，包括调参系数。
 
 ```bash
 sh /etc/init.d/rc.fw_defaults
@@ -74,21 +74,21 @@ then
 fi
 ```
 
-Set frame type ([MAV_TYPE](https://mavlink.io/en/messages/common.html#MAV_TYPE)):
+设置机身框架类型（MAV_TYPE）
 
 ```bash
 # Configure this as plane
 set MAV_TYPE 1
 ```
 
-Set the [mixer](#mixer-file) to use:
+设置需要使用的混控器:
 
 ```bash
 # Set mixer
 set MIXER wingwing
 ```
 
-Configure PWM outputs (specify the outputs to drive/activate, and the levels).
+配置PWM输出(指定驱动/激活的输出和级别)。
 
 ```bash
 # Provide ESC a constant 1000 us pulse
