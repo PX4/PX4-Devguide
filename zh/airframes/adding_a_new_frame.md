@@ -96,44 +96,47 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-> 警告: 如果你想将某一个通道反相, 千万不要在你的遥控器上这样做或者改变例如RC1_REV这样的参数. 这些参数只会在你使用手动模式飞行的时候才会反相, 当你切换到飞控控制的飞行模式时, 这些通道输出依然是错误的(它只会改变你的遥控器的信号) Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
+> 警告: 如果你想将某一个通道反相, 千万不要在你的遥控器上这样做或者改变例如RC1_REV这样的参数. 这些参数只会在你使用手动模式飞行的时候才会反相, 当你切换到飞控控制的飞行模式时, 这些通道输出依然是错误的(它只会改变你的遥控器的信号) 因此，对于一个正确的通道分配，要么改变PWM信号与`PWM_MAIN_REV1(例如，对于通道1)，要么改变相应混控器的输出缩放标志(见下文)。</p>
+</blockquote>
 
-### Mixer File {#mixer-file}
+<h3 id="mixer-file">混控器文件</h3>
 
-> **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
+<blockquote>
+  <p><strong>Note</strong> First read <a href="../concept/mixing.md">Concepts > Mixing</a>. This provides background information required to interpret this mixer file.</p>
+</blockquote>
 
-A typical mixer file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). A mixer filename, in this case `wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
-
-The mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code.
-
-> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
-
-So MAIN1 would be the left aileron, MAIN2 the right aileron, MAIN3 is empty (note the Z: zero mixer) and MAIN4 is throttle (to keep throttle on output 4 for common fixed wing configurations).
-
-A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1..+1.
-
-    M: 2
-    O:      10000  10000      0 -10000  10000
-    S: 0 0  -6000  -6000      0 -10000  10000
-    S: 0 1   6500   6500      0 -10000  10000
-    
-
-Where each number from left to right means:
-
-* M: Indicates two scalers for two control inputs. It indicates the number of control inputs the mixer will receive.
-* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  
-  * If you want to invert your PWM signal, the signs of the output scalings have to be changed. (```O:      -10000  -10000      0 -10000  10000```)
-  * This line can (and should) be omitted completely if it specifies the default scaling: ```O:      10000  10000   0 -10000  10000```
-* S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll). It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
-* S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
-
-> **Note** In short, the output of this mixer would be SERVO = ( (roll input * -0.6 + 0) + (pitch input * 0.65 + 0) ) * 1 + 0
-
-Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch.
-
-The complete mixer looks like this:
-
-```bash
+<p>A typical mixer file is shown below (<a href="https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix">original file here</a>). A mixer filename, in this case <code>wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
+> 
+> The mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code.
+> 
+> > **Note** The plugs of the servos / motors go in the order of the mixers in this file.
+> 
+> So MAIN1 would be the left aileron, MAIN2 the right aileron, MAIN3 is empty (note the Z: zero mixer) and MAIN4 is throttle (to keep throttle on output 4 for common fixed wing configurations).
+> 
+> A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1..+1.
+> 
+>     M: 2
+>     O:      10000  10000      0 -10000  10000
+>     S: 0 0  -6000  -6000      0 -10000  10000
+>     S: 0 1   6500   6500      0 -10000  10000
+>     
+> 
+> Where each number from left to right means:
+> 
+> * M: Indicates two scalers for two control inputs. It indicates the number of control inputs the mixer will receive.
+> * O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  
+>   * If you want to invert your PWM signal, the signs of the output scalings have to be changed. (```O:      -10000  -10000      0 -10000  10000```)
+>   * This line can (and should) be omitted completely if it specifies the default scaling: ```O:      10000  10000   0 -10000  10000```
+> * S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll). It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
+> * S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
+> 
+> > **Note** In short, the output of this mixer would be SERVO = ( (roll input * -0.6 + 0) + (pitch input * 0.65 + 0) ) * 1 + 0
+> 
+> Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch.
+> 
+> The complete mixer looks like this:
+> 
+> ```bash
 Delta-wing mixer for PX4FMU
 ===========================
 
