@@ -16,11 +16,11 @@ RTK是使用导航信号的载波相位来进行测距的，而不是使用导�
 
 PX4目前仅支持u-blox M8P单频（L1频点）RTK接收机。
 
-A number of manufacturers have created products using this receiver. The list of devices that we have tested can be found [in the user guide](https://docs.px4.io/en/advanced_features/rtk-gps.html#supported-rtk-devices).
+许多制造商都用这种接收器来制造产品。 下面列举的这些设备是经过我们测试的可以[在用户手册中](https://docs.px4.io/en/advanced_features/rtk-gps.html#supported-rtk-devices)找到。
 
-> **Note** u-blox has two variants of the M8P chip, the M8P-0 and the M8P-2. The M8P-0 can only be used as Rover, not as Base, whereas the M8P-2 can be used both as Rover or as Base.
+> **注意**u-blox有两种基于M8P芯片的衍生型号：M8P-0 和 M8P-2。 M8P-0只能作为移动端使用，不能作为基站。而M8P-2既可以作为移动端也可以作为基站使用。
 
-## Automatic Configuration
+## 自动配置
 
 The PX4 GPS stack automatically sets up the u-blox M8P modules to send and receive the correct messages over the UART or USB, depending on where the module is connected (to *QGroundControl* or the autopilot).
 
