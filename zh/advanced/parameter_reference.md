@@ -768,11 +768,11 @@
       </p>
       
       <p>
-        <strong>说明:</strong>这个隐式定义了对最大电流比的内阻，并假设是线性关系。 比较好的值是测量并计算在5C负载时的压降和20~25C负载时的压降的差值. Not used if BAT_R_INTERNAL is set.
+        <strong>说明:</strong>这个隐式定义了对最大电流比的内阻，并假设是线性关系。 比较好的值是测量并计算在5C负载时的压降和20~25C负载时的压降的差值. 当参数BAT_R_INTERNAL被设置的时候会不使用此参数.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
@@ -796,11 +796,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Offset in volt as seen by the ADC input of the current sensor
+        电流传感器ADC通道输入电压偏移
       </p>
       
       <p>
-        <strong>Comment:</strong> This offset will be subtracted before calculating the battery current based on the voltage.
+        <strong>说明:</strong>在根据电压计算电池电流之前，这个偏移量将被减去。
       </p>
     </td>
     
@@ -816,16 +816,16 @@
   </tr>
 </table>
 
-## Camera Control
+## 相机控制
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      Name
+      参数名
     </th>
     
     <th>
-      Description
+      参数描述
     </th>
     
     <th>
@@ -833,11 +833,11 @@
     </th>
     
     <th>
-      Default
+      默认值
     </th>
     
     <th>
-      Units
+      单位
     </th>
   </tr>
   
@@ -848,21 +848,21 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera feedback mode
+        相机反馈模式
       </p>
       
       <p>
-        <strong>Comment:</strong> Sets the camera feedback mode.
+        <strong>说明:</strong>设置相机反馈模式
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数说明:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong> Disabled
+          <strong>0:</strong>禁用相机反馈
         </li>
         <li>
-          <strong>1:</strong> Feedback on trigger
+          <strong>1:</strong>使用相机快门反馈
         </li>
       </ul>
     </td>
@@ -880,16 +880,16 @@
   </tr>
 </table>
 
-## Camera trigger
+## 相机触发
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      Name
+      参数名
     </th>
     
     <th>
-      Description
+      参数描述
     </th>
     
     <th>
@@ -897,11 +897,11 @@
     </th>
     
     <th>
-      Default
+      默认值
     </th>
     
     <th>
-      Units
+      单位
     </th>
   </tr>
   
@@ -912,11 +912,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger activation time
+        相机触发激活时间
       </p>
       
       <p>
-        <strong>Comment:</strong> This parameter sets the time the trigger needs to pulled high or low.
+        <strong>说明:</strong>此参数设置了快门触发信号需要被拉高或置低的持续时间.
       </p>
     </td>
     
@@ -940,7 +940,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger distance
+        相机定距触发的间距
       </p>
       
       <p>
