@@ -558,30 +558,30 @@
           <strong>9:</strong>9S电池
         </li>
         <li>
-          <strong>10:</strong> 10S Battery
+          <strong>10:</strong>10S电池
         </li>
         <li>
-          <strong>11:</strong> 11S Battery
+          <strong>11:</strong>11S电池
         </li>
         <li>
-          <strong>12:</strong> 12S Battery
+          <strong>12:</strong>12S电池
         </li>
         <li>
-          <strong>13:</strong> 13S Battery
+          <strong>13:</strong>13S电池
         </li>
         <li>
-          <strong>14:</strong> 14S Battery
+          <strong>14:</strong>14S电池
         </li>
         <li>
-          <strong>15:</strong> 15S Battery
+          <strong>15:</strong>15S电池
         </li>
         <li>
-          <strong>16:</strong> 16S Battery
+          <strong>16:</strong>16S电池
         </li>
       </ul>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
@@ -604,15 +604,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        Explicitly defines the per cell internal resistance
+        明确的定义每节电芯的内部阻抗
       </p>
       
       <p>
-        <strong>Comment:</strong> If non-negative, then this will be used in place of BAT_V_LOAD_DROP for all calculations.
+        <strong>说明:</strong>如果是非负值, 则会用于在所有计算中替换BAT_V_LOAD_DROP.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
