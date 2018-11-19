@@ -636,21 +636,21 @@
     
     <td style="vertical-align: top;">
       <p>
-        Battery monitoring source
+        电池电压检测器源
       </p>
       
       <p>
-        <strong>Comment:</strong> This parameter controls the source of battery data. The value 'Power Module' means that measurements are expected to come from a power module. If the value is set to 'External' then the system expects to receive mavlink battery status messages.
+        <strong>说明:</strong>此参数决定了电池监测数据的来源. 参数''0'' 表示测量信号来源于一个电源模块. 参数"1"表示系统从外部接收到的Mavlink消息中获取电池状态信息.
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数值:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong> Power Module
+          <strong>0:</strong>电源模块
         </li>
         <li>
-          <strong>1:</strong> External
+          <strong>1:</strong>外部信息
         </li>
       </ul>
     </td>
@@ -674,15 +674,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        Full cell voltage (5C load)
+        满电电压(5C load)
       </p>
       
       <p>
-        <strong>Comment:</strong> Defines the voltage where a single cell of the battery is considered full under a mild load. This will never be the nominal voltage of 4.2V
+        <strong>说明:</strong>定义一个电池单元在轻度负载下被认为是满的电压. 这永远不会是标称电压4.2V.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
@@ -706,7 +706,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Battery voltage divider (V divider)
+        电池电压分压器(电压分压器)
       </p>
       
       <p>
