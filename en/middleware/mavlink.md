@@ -8,6 +8,8 @@ The protocol defines a number of standard [messages](https://mavlink.io/en/messa
 
 This tutorial explains how you can add PX4 support for your own new "custom" messages.
 
+> **Note** The tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h`.
+
 
 ## Defining Custom MAVLink Messages
 
@@ -15,9 +17,16 @@ The MAVLink developer guide explains how to define new messages and build them i
 - [How to Define MAVLink Messages & Enums](https://mavlink.io/en/guide/define_xml_element.html)
 - [Generating MAVLink Libraries](https://mavlink.io/en/getting_started/generate_libraries.html)
 
-The tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory`
-message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in
-`mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h`.
+Your message needs to be generated as a C-library for MAVLink 2.
+Once you've [installed MAVLink](https://mavlink.io/en/getting_started/installation.html) you can do this on the command line using the command:
+```sh
+python -m pymavlink.tools.mavgen --lang=C --wire-protocol=2.0 --output=generated/include/mavlink/v2.0 message_definitions/v1.0/custom_messages.xml
+```
+
+For your own use/testing you can just copy the generated headers into **Firmware/mavlink/include/mavlink/v2.0**.
+
+To make it easier for others to test your changes, a better approach is to add your generated headers to a fork of https://github.com/mavlink/c_library_v2.
+PX4 developers can then update the submodule to your fork in the Firmware repo before building.
 
 
 ## Sending Custom MAVLink Messages
@@ -29,7 +38,7 @@ Add the headers of the MAVLink and uORB messages to
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
-#include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
+#include <v2.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
 Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
@@ -127,7 +136,7 @@ Add a function that handles the incoming MAVLink message in
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
-#include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
+#include <v2.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
 Add a function that handles the incoming MAVLink message in the `MavlinkReceiver` class in
