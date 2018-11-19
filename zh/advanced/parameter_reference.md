@@ -456,15 +456,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        Emergency threshold
+        危险紧急阈值
       </p>
       
       <p>
-        <strong>Comment:</strong> Sets the threshold when the battery will be reported as dangerously low. This has to be lower than the critical threshold. This threshold commonly will trigger landing.
+        <strong>说明:</strong>设置低电压危险报警阈值. 这个值必须低于严重低电压报警阈值. 此阈值一般会触发LAND.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
@@ -488,15 +488,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        Low threshold
+        低电压阈值
       </p>
       
       <p>
-        <strong>Comment:</strong> Sets the threshold when the battery will be reported as low. This has to be higher than the critical threshold.
+        <strong>说明:</strong>此为触发低电压报警的阈值. 这个值必须高于严重低电压报警阈值.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
@@ -520,42 +520,42 @@
     
     <td style="vertical-align: top;">
       <p>
-        Number of cells
+        电芯串联数
       </p>
       
       <p>
-        <strong>Comment:</strong> Defines the number of cells the attached battery consists of.
+        <strong>说明:</strong>定义所安装的电池内部包含的串联电芯数量.
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数值:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong> Unconfigured
+          <strong>0:</strong>未配置
         </li>
         <li>
-          <strong>2:</strong> 2S Battery
+          <strong>2:</strong>2S电池
         </li>
         <li>
-          <strong>3:</strong> 3S Battery
+          <strong>3:</strong>3S电池
         </li>
         <li>
-          <strong>4:</strong> 4S Battery
+          <strong>4:</strong>4S电池
         </li>
         <li>
-          <strong>5:</strong> 5S Battery
+          <strong>5:</strong>5S电池
         </li>
         <li>
-          <strong>6:</strong> 6S Battery
+          <strong>6:</strong>6S电池
         </li>
         <li>
-          <strong>7:</strong> 7S Battery
+          <strong>7:</strong>7S电池
         </li>
         <li>
-          <strong>8:</strong> 8S Battery
+          <strong>8:</strong>8S电池
         </li>
         <li>
-          <strong>9:</strong> 9S Battery
+          <strong>9:</strong>9S电池
         </li>
         <li>
           <strong>10:</strong> 10S Battery
