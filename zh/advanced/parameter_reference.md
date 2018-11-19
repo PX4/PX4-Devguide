@@ -372,11 +372,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Scaling from ADC counts to volt on the ADC input (battery current)
+        从ADC输入通道(电池电流测量通道) 得到的原始值转换成电压对应的系数.
       </p>
       
       <p>
-        <strong>说明:</strong>这个不是电池电流，而是中间ADC电压。 A value of -1 signifies that the board defaults are used, which is highly recommended.
+        <strong>说明:</strong>这个不是电池电流，而是中间ADC电压。 值为-1 表示使用主板默认值, 这是强烈建议的。
       </p>
     </td>
     
@@ -398,11 +398,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Scaling from ADC counts to volt on the ADC input (battery voltage)
+        从ADC输入通道(电池电压测量通道) 得到的原始值转换成电压对应的系数.
       </p>
       
       <p>
-        <strong>Comment:</strong> This is not the battery voltage, but the intermediate ADC voltage. A value of -1 signifies that the board defaults are used, which is highly recommended.
+        <strong>说明:</strong>这个不是电池电压，而是中间ADC电压。 值为-1 表示使用主板默认值, 这是强烈建议的。
       </p>
     </td>
     
@@ -424,15 +424,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        Critical threshold
+        临界阈值
       </p>
       
       <p>
-        <strong>Comment:</strong> Sets the threshold when the battery will be reported as critically low. This has to be lower than the low threshold. This threshold commonly will trigger RTL.
+        <strong>说明:</strong>设置提示严重低电压报警的阈值. 这个值设置必须低于低电压报警阈值. 此阈值通常会触发 RTL。
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>要求重启:</b>是
       </p>
     </td>
     
