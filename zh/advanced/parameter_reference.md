@@ -736,11 +736,11 @@
       </p>
       
       <p>
-        <strong>说明:</strong>定义了单节电池认为为空的时候的电压值. The voltage should be chosen before the steep dropoff to 2.8V. A typical lithium battery can only be discharged down to 10% before it drops off to a voltage level damaging the cells.
+        <strong>说明:</strong>定义了单节电池认为为空的时候的电压值. 该电压应该选择设置在陡降至2.8V之前， 一个典型的锂电池只能放电到10%，在它陡降至会损坏电芯的电压之前。
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
@@ -764,11 +764,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Voltage drop per cell on full throttle
+        在全油门工作时每节电芯的压降
       </p>
       
       <p>
-        <strong>Comment:</strong> This implicitely defines the internal resistance to maximum current ratio and assumes linearity. A good value to use is the difference between the 5C and 20-25C load. Not used if BAT_R_INTERNAL is set.
+        <strong>说明:</strong>这个隐式定义了对最大电流比的内阻，并假设是线性关系。 比较好的值是测量并计算在5C负载时的压降和20~25C负载时的压降的差值. Not used if BAT_R_INTERNAL is set.
       </p>
       
       <p>
