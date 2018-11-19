@@ -1094,7 +1094,7 @@
       </p>
       
       <p>
-        <strong>说明:</strong>选择使用哪一个引脚, 范围从1到6(对应AUX1~AUX6在px4fmu-V2上, and the rail pins on px4fmu-v4) PWM接口在每个摄像机上使用两个引脚，而在每个引脚上分别使用继电器触发器. 例如: 设置参数值56会在pin5和pin6上产生触发信号. For GPIO mode Pin 6 will be triggered followed by 5. With a value of 65 pin 5 will be triggered followed by 6. Pins may be non contiguous. I.E. 16 or 61. In GPIO mode the delay pin to pin is < .2 uS.
+        <strong>说明:</strong>选择使用哪一个引脚, 范围从1到6(对应AUX1~AUX6在px4fmu-V2上, and the rail pins on px4fmu-v4) PWM接口在每个摄像机上使用两个引脚，而在每个引脚上分别使用继电器触发器. 例如: 设置参数值56会在pin5和pin6上产生触发信号. 在GPIO模式时, Pin6会在Pin5之后产生触发信号. 设置参数65则表示Pin5会在Pin6之后产生触发信号. 引脚可能是非连续的。 例如:16或61(也是可以的). In GPIO mode the delay pin to pin is < .2 uS.
       </p>
       
       <p>
