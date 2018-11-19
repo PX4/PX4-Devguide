@@ -83,17 +83,17 @@
         外部模块航向使用模式（运动捕捉/视觉）。设置为1则使用视觉模块相关航向数据; 设置为 2则使用从运动捕捉的相关航向数据.
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数对照:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong> None
+          <strong>0:</strong>无
         </li>
         <li>
-          <strong>1:</strong> Vision
+          <strong>1:</strong>使用视觉模块数据
         </li>
         <li>
-          <strong>2:</strong> Motion Capture
+          <strong>2:</strong>使用运动捕捉模块数据
         </li>
       </ul>
     </td>
@@ -117,11 +117,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Magnetic declination, in degrees
+        磁偏角, 以角度为单位
       </p>
       
       <p>
-        <strong>Comment:</strong> This parameter is not used in normal operation, as the declination is looked up based on the GPS coordinates of the vehicle.
+        <strong>说明:</strong> 在常规操作中不使用此参数, 因为磁偏角是基于无人机所在GPS坐标位置进行检索得到的.
       </p>
     </td>
     
@@ -144,7 +144,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Automatic GPS based declination compensation
+        基于GPS的自动磁偏角补偿
       </p>
     </td>
     
@@ -166,7 +166,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Complimentary filter accelerometer weight
+        互补滤波器加速度计权重值
       </p>
     </td>
     
@@ -189,7 +189,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Complimentary filter external heading weight
+        互补滤波器外部航向权重值
       </p>
     </td>
     
@@ -212,7 +212,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Complimentary filter gyroscope bias weight
+        互补滤波器陀螺仪偏置权重值
       </p>
     </td>
     
@@ -235,11 +235,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Complimentary filter magnetometer weight
+        互补滤波器磁罗盘权重值
       </p>
       
       <p>
-        <strong>Comment:</strong> Set to 0 to avoid using the magnetometer.
+        <strong>注意: </strong>设为0时，不使用磁罗盘数据
       </p>
     </td>
     
@@ -256,16 +256,16 @@
   </tr>
 </table>
 
-## Battery Calibration
+## 电池校准
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      Name
+      参数名
     </th>
     
     <th>
-      Description
+      参数描述
     </th>
     
     <th>
@@ -273,11 +273,11 @@
     </th>
     
     <th>
-      Default
+      默认值
     </th>
     
     <th>
-      Units
+      单位
     </th>
   </tr>
   
@@ -288,11 +288,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Battery ADC Channel
+        电池电压测量ADC通道
       </p>
       
       <p>
-        <strong>Comment:</strong> This parameter specifies the ADC channel used to monitor voltage of main power battery. A value of -1 means to use the board default.
+        <strong>注意:</strong>此参数指定用于监视主电源电池电压的 ADC 通道, A value of -1 means to use the board default.
       </p>
     </td>
     
