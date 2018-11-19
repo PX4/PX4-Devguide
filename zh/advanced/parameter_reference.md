@@ -1094,11 +1094,11 @@
       </p>
       
       <p>
-        <strong>说明:</strong>选择使用哪一个引脚, 范围从1到6(对应AUX1~AUX6在px4fmu-V2上, and the rail pins on px4fmu-v4) PWM接口在每个摄像机上使用两个引脚，而在每个引脚上分别使用继电器触发器. 例如: 设置参数值56会在pin5和pin6上产生触发信号. 在GPIO模式时, Pin6会在Pin5之后产生触发信号. 设置参数65则表示Pin5会在Pin6之后产生触发信号. 引脚可能是非连续的。 例如:16或61(也是可以的). In GPIO mode the delay pin to pin is < .2 uS.
+        <strong>说明:</strong>选择使用哪一个引脚, 范围从1到6(对应AUX1~AUX6在px4fmu-V2上, and the rail pins on px4fmu-v4) PWM接口在每个摄像机上使用两个引脚，而在每个引脚上分别使用继电器触发器. 例如: 设置参数值56会在pin5和pin6上产生触发信号. 在GPIO模式时, Pin6会在Pin5之后产生触发信号. 设置参数65则表示Pin5会在Pin6之后产生触发信号. 引脚可能是非连续的。 例如:16或61(也是可以的). 在GPIO模式下,两个引脚之间的触发信号时间差＜0.2us.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
@@ -1121,21 +1121,21 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger polarity
+        相机触发极性
       </p>
       
       <p>
-        <strong>Comment:</strong> This parameter sets the polarity of the trigger (0 = active low, 1 = active high )
+        <strong>说明:</strong>此参数设置相机触发的极性(0表示低电平触发, 1表示高电平触发)
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数值:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong> Active low
+          <strong>0:</strong>低电平有效
         </li>
         <li>
-          <strong>1:</strong> Active high
+          <strong>1:</strong>高电平有效
         </li>
       </ul>
     </td>
