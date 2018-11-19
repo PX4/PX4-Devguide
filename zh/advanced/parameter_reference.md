@@ -1,6 +1,6 @@
-# Parameter Reference
+# 参数对照表
 
-> **Note** **This list is auto-generated from the source code** (using `make parameters_metadata`) and contains the most recent parameter documentation.
+> **注意：****这个清单是从源代码中自动生成的** (使用`make parameters_metadata`) 并且包含了最新的参数文档.
 
 ## Attitude Q estimator
 
