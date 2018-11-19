@@ -292,7 +292,7 @@
       </p>
       
       <p>
-        <strong>注意:</strong>此参数指定用于监视主电源电池电压的 ADC 通道, A value of -1 means to use the board default.
+        <strong>注意:</strong>此参数指定用于监视主电源电池电压的 ADC 通道, 当此值为-1时，使用板载默认设定值
       </p>
     </td>
     
@@ -314,11 +314,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Battery current per volt (A/V)
+        电池电流和检测电压对应关系(A/V)
       </p>
       
       <p>
-        <strong>Comment:</strong> The voltage seen by the 3.3V ADC multiplied by this factor will determine the battery current. A value of -1 means to use the board default.
+        <strong>说明:</strong>通过3.3V ADC采样得到的电压值乘以当前设定系数将确定电池电流. 当此值为-1时，使用板载默认设定值.
       </p>
     </td>
     
@@ -340,15 +340,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        Battery capacity
+        电池容量
       </p>
       
       <p>
-        <strong>Comment:</strong> Defines the capacity of the attached battery.
+        <strong>说明:</strong>参数描述了当前安装的安装的电池的容量.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>要求重启:</b>是
       </p>
     </td>
     
@@ -376,7 +376,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> This is not the battery current, but the intermediate ADC voltage. A value of -1 signifies that the board defaults are used, which is highly recommended.
+        <strong>说明:</strong>这个不是电池电流，而是中间ADC电压。 A value of -1 signifies that the board defaults are used, which is highly recommended.
       </p>
     </td>
     
