@@ -111,9 +111,12 @@ MAVLink channel on UDP port 14556):
 mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
 ```
 
-> **Tip** You can use uLog [Logging](../log/logging.md) to verify that your uORB message is being emitted correctly. 
-  In order to verify that the message is being sent "end to end" you will need to [Rebuild QGroundControl](https://dev.qgroundcontrol.com/en/getting_started/) with your MAVLink library, 
-  and then verify that the message is received using [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html) (or some other MAVLink tool).
+> **Tip** You can use the `uorb top [<message_name>]` command to verify in real-time that your message is published and the rate (see [uORB Messaging](../middleware/uorb.md#uorb-top-command)). 
+  This approach can also be used to test incoming messages that publish a uORB topic (for other messages you might use `printf` in your code and test in SITL).
+>
+> To see the message on *QGroundControl* you will need to [build it with your MAVLink library](https://dev.qgroundcontrol.com/en/getting_started/),
+> and then verify that the message is received using [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html) (or some other MAVLink tool).
+
 
 ## Receiving Custom MAVLink Messages
 
