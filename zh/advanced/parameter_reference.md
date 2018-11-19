@@ -944,7 +944,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Sets the distance at which to trigger the camera.
+        <strong>说明:</strong>设置相隔多远触发一次相机快门.
       </p>
     </td>
     
@@ -968,32 +968,32 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger Interface
+        相机触发接口
       </p>
       
       <p>
-        <strong>Comment:</strong> Selects the trigger interface
+        <strong>说明:</strong>选择相机触发接口
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数值:</strong>
       
       <ul>
         <li>
-          <strong>1:</strong> GPIO
+          <strong>1:</strong>使用GPIO触发
         </li>
         <li>
           <strong>2:</strong> Seagull MAP2 (over PWM)
         </li>
         <li>
-          <strong>3:</strong> MAVLink (forward via MAV_CMD_IMAGE_START_CAPTURE)
+          <strong>3:</strong>使用Mavlink消息触发(通过MAV_CMD_IMAGE_START_CAPTURE指令)
         </li>
         <li>
-          <strong>4:</strong> Generic PWM (IR trigger, servo)
+          <strong>4:</strong>使用通用PWM信号触发(红外快门控制器，舵机)
         </li>
       </ul>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
@@ -1015,11 +1015,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger interval
+        相机触发间隔
       </p>
       
       <p>
-        <strong>Comment:</strong> This parameter sets the time between two consecutive trigger events
+        <strong>说明:</strong>此参数设置两个连续触发事件之间的时间间隔.
       </p>
     </td>
     
@@ -1043,31 +1043,31 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger mode
+        相机触发模式
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数值:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong> Disable
+          <strong>0:</strong>禁用相机触发功能
         </li>
         <li>
-          <strong>1:</strong> Time based, on command
+          <strong>1:</strong>基于时间, 使用指令控制
         </li>
         <li>
-          <strong>2:</strong> Time based, always on
+          <strong>2:</strong>基于时间, 持续触发
         </li>
         <li>
-          <strong>3:</strong> Distance based, always on
+          <strong>3:</strong>基于距离, 持续触发
         </li>
         <li>
-          <strong>4:</strong> Distance based, on command (Survey mode)
+          <strong>4:</strong>基于距离, 使用指令控制(航测模式)
         </li>
       </ul>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求:</b>是
       </p>
     </td>
     
@@ -1090,11 +1090,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger pin
+        相机触发引脚
       </p>
       
       <p>
-        <strong>Comment:</strong> Selects which pin is used, ranges from 1 to 6 (AUX1-AUX6 on px4fmu-v2 and the rail pins on px4fmu-v4). The PWM interface takes two pins per camera, while relay triggers on every pin individually. Example: Value 56 would trigger on pins 5 and 6. For GPIO mode Pin 6 will be triggered followed by 5. With a value of 65 pin 5 will be triggered followed by 6. Pins may be non contiguous. I.E. 16 or 61. In GPIO mode the delay pin to pin is < .2 uS.
+        <strong>说明:</strong>选择使用哪一个引脚, 范围从1到6(对应AUX1~AUX6在px4fmu-V2上, and the rail pins on px4fmu-v4) PWM接口在每个摄像机上使用两个引脚，而在每个引脚上分别使用继电器触发器. 例如: 设置参数值56会在pin5和pin6上产生触发信号. For GPIO mode Pin 6 will be triggered followed by 5. With a value of 65 pin 5 will be triggered followed by 6. Pins may be non contiguous. I.E. 16 or 61. In GPIO mode the delay pin to pin is < .2 uS.
       </p>
       
       <p>
