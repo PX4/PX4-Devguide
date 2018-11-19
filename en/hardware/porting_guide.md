@@ -80,3 +80,24 @@ It is generally recommended to connect RC via separate RX and TX pins to the mic
 If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. 
 This is done via board config and manifest files. 
 One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c).
+
+
+## Accepting a Board into PX4 Codelines
+
+Manufacturers may wish to contribute board ports to the PX4 project codeline in order more closely align with the project
+(accepted boards are more regularly and rigorously tested as part of the regular flight testing and continuous build process, and any software compatibility issues are therefore discovered earlier).
+
+> **Note** The sole responsibility for maintaining an accepted board lies with the manufacturer!
+  Failure to maintain a board will lead to its removal from upstream support.
+  
+The PX4 project provides free support for the Pixhawk-series FMU standard reference hardware (and by extension, other boards that are 100% compatible with the standard).
+We do not have resource for ongoing maintenance for deviations or other board variants.
+Therefore, before being accepted into our codelines, manufacturers must commit to any recurring maintenance costs, including hardware testing.
+
+In order to be considered for acceptance, the board must be:
+* Available in the market.
+* Supplied to the PX4 dev/test team for testing (contact lorenz@px4.io for guidance on where to ship hardware).
+* Pass full test suite and flight testing.
+
+The project reserves the right to refuse acceptance for boards, in particular if deviations from the FMU standard are too great.
+The project will also remove boards that are not adequately maintained by their sponsor.
