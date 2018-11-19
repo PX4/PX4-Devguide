@@ -2,16 +2,16 @@
 
 > **注意：****这个清单是从源代码中自动生成的** (使用`make parameters_metadata`) 并且包含了最新的参数文档.
 
-## Attitude Q estimator
+## 姿态 Q 估计器
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      Name
+      参数名
     </th>
     
     <th>
-      Description
+      参数描述
     </th>
     
     <th>
@@ -19,11 +19,11 @@
     </th>
     
     <th>
-      Default
+      默认值
     </th>
     
     <th>
-      Units
+      单位
     </th>
   </tr>
   
@@ -34,7 +34,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Acceleration compensation based on GPS velocity
+        基于 GPS速度的加速度补偿
       </p>
     </td>
     
@@ -56,7 +56,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Gyro bias limit
+        陀螺仪偏置范围
       </p>
     </td>
     
@@ -80,7 +80,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        External heading usage mode (from Motion capture/Vision) Set to 1 to use heading estimate from vision. Set to 2 to use heading from motion capture
+        外部模块航向使用模式（运动捕捉/视觉）。设置为1则使用视觉模块相关航向数据; 设置为 2则使用从运动捕捉的相关航向数据.
       </p>
       
       <strong>Values:</strong>
