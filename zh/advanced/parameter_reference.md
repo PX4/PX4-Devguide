@@ -674,7 +674,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        满电电压(5C load)
+        满电电压(5C 负载)
       </p>
       
       <p>
@@ -710,7 +710,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> This is the divider from battery voltage to 3.3V ADC voltage. If using e.g. Mauch power modules the value from the datasheet can be applied straight here. A value of -1 means to use the board default.
+        <strong>说明:</strong>这是电池电压到3.3V ADC电压的分压器。 如果使用Mauch 电源模块，数据表中的值可以在这里直接应用。 参数值为-1表示使用板载默认值。
       </p>
     </td>
     
@@ -732,11 +732,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Empty cell voltage (5C load)
+        空电电压(5C负载)
       </p>
       
       <p>
-        <strong>Comment:</strong> Defines the voltage where a single cell of the battery is considered empty. The voltage should be chosen before the steep dropoff to 2.8V. A typical lithium battery can only be discharged down to 10% before it drops off to a voltage level damaging the cells.
+        <strong>说明:</strong>定义了单节电池认为为空的时候的电压值. The voltage should be chosen before the steep dropoff to 2.8V. A typical lithium battery can only be discharged down to 10% before it drops off to a voltage level damaging the cells.
       </p>
       
       <p>
