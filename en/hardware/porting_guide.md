@@ -84,7 +84,8 @@ One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drive
 
 ## Accepting a Board into PX4 Codelines
 
-Manufacturers may wish to contribute board ports to the PX4 project codeline in order more closely align with the project.
+The PX4 project supports and maintains the [FMU standard](../debug/reference-design.md) reference hardware and any boards that are compatible with the standard.
+This includes the [Pixhawk-series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of supported hardware](https://docs.px4.io/en/flight_controller/)).
 
 We encourage board manufacturers to aim for full compatibility with the [FMU spec](https://pixhawk.org/).
 With full compatibility you benefit from the ongoing day-to-day development of PX4, but have none of the maintenance costs that come from supporting deviations from the specification.
@@ -109,3 +110,5 @@ In summary, if you want to have your board officially supported in PX4:
 * The board must pass full [test suite](../test_and_ci/README.md) and [flight testing](../test_and_ci/test_flights.md).
 
 **The PX4 project reserves the right to refuse acceptance of new ports (or remove current ports) for failure to meet the requirements set by the project.**
+
+
