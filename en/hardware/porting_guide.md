@@ -111,4 +111,5 @@ In summary, if you want to have your board officially supported in PX4:
 
 **The PX4 project reserves the right to refuse acceptance of new ports (or remove current ports) for failure to meet the requirements set by the project.**
 
+You can reach out to the core developer team and community on the official [Forums and Chat](../README.md#support).
 
