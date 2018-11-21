@@ -50,6 +50,25 @@ make px4fmu-v5_default menuconfig
 make px4fmu-v5_default qconfig
 ```
 
+If you are starting just now and only used the Ubuntu installation script ([ubuntu_sim_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh) from https://dev.px4.io/en/setup/dev_env_linux.html) - you might need to build and install one of the kconfig tools from [NuttX tools](https://bitbucket.org/nuttx/tools/src/master/).
+
+It does not matter in which directory you run the following commands.
+
+```sh
+git clone https://bitbucket.org/nuttx/tools.git
+cd tools/kconfig-frontends
+sudo apt install gperf
+./configure --enable-mconf --disable-nconf --disable-gconf --enable-qconf --prefix=/usr
+make
+sudo make install
+```
+
+The `--prefix=/usr` is very essential as it determins a specific installation location where the PX4 is hardcoded to look for `kconfig-tools`. The `--enable-mconf` and `--enable-qconf` options will enable the `menuconfig` and `qconfig` options respectively.
+
+In case of `qconfig` you might need to get the qt dependencies installed as well.
+
+Alternatively you can use the px4-dev-nuttx docker container which has kconfig-mconf preinstalled. https://hub.docker.com/r/px4io/px4-dev-nuttx/
+
 ### Linux
 
 Linux boards do not include the OS and kernel configuration. These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
