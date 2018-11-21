@@ -50,7 +50,7 @@ param save /fs/microsd/vtol_param_backup
 
 There are two different commands to load parameters: 
 - `param load` replaces all the current parameters, duplicating the state when the parameters were stored.
-   parameters are not automatically saved by this operation (it is assumed they are already saved).
+   Parameters are not automatically saved by this operation (it is assumed that they are already saved).
 - `param import` only updates parameter values that have been *changed from the default*.
   The parameters are automatically saved to the default location when loading.
   
@@ -79,11 +79,14 @@ The name must match in both code and [parameter metadata](#parameter_metadata) t
 
 There are separate C and C++ APIs that can be used to access parameter values from within PX4 modules and drivers.
 
-The most important difference between the APIs is that the C++ version has a more efficient standardized mechanism to synchronize with changes to parameter values (i.e. from a GCS).
+One important difference between the APIs is that the C++ version has a more efficient standardized mechanism to synchronize with changes to parameter values (i.e. from a GCS).
 
 Synchronization is important because a parameter can be changed to another value at any time.
 Your code should *always* use the current value from the parameter store.
 If getting the latest version is not possible, then a reboot will be required after the parameter is changed (set this requirement using the `@reboot_required` metadata).
+
+In addition, the C++ version has also better type-safety and less overhead in terms of RAM. 
+The drawback is that the parameter name must be known at compile-time, while the C API can take a dynamically created name as a string.
 
 
 ### C++ API
@@ -111,9 +114,8 @@ private:
 	/**
 	 * Check for parameter changes and update them if needed.
 	 * @param parameter_update_sub uorb subscription to parameter_update
-	 * @param force for a parameter update
 	 */
-	void parameters_update(int parameter_update_sub, bool force = false);
+	void parameters_update(int parameter_update_sub);
 
 	DEFINE_PARAMETERS(
 		(ParamInt<px4::params::SYS_AUTOSTART>) _sys_autostart,   /**< example parameter */
@@ -138,9 +140,9 @@ int parameter_update_sub = orb_subscribe(ORB_ID(parameter_update));
 orb_unsubscribe(parameter_update_sub);
 ```
 
-Call `parameters_update(parameter_update_sub, true);` periodically in code to check if there has been an update (this is boilerplate):
+Call `parameters_update(parameter_update_sub);` periodically in code to check if there has been an update (this is boilerplate):
 ```cpp
-void Module::parameters_update(int parameter_update_sub, bool force)
+void Module::parameters_update(int parameter_update_sub)
 {
 	bool updated;
 	struct parameter_update_s param_upd;
@@ -151,19 +153,17 @@ void Module::parameters_update(int parameter_update_sub, bool force)
 	// If any parameter updated copy it to: param_upd
 	if (updated) {
 		orb_copy(ORB_ID(parameter_update), parameter_update_sub, &param_upd);
-	}
 
-	// If any parameter updated, call updateParams() to check if
-    // this class attributes need updating (and do so). 
-	if (force || updated) {
+		// If any parameter updated, call updateParams() to check if
+		// this class attributes need updating (and do so). 
 		updateParams();
 	}
 }
 ```
 In the above method:
 - `orb_check()` tells us if there is *any* update to the `param_update` uORB message (but not what parameter is affected) and sets the `updated` bool.
-- If there has been "some" parameter updated, we then copy the update into a `parameter_update_s` (`param_upd`)
-- Last of all we call `ModuleParams::updateParams()`.
+- If there has been "some" parameter updated, we copy the update into a `parameter_update_s` (`param_upd`)
+- Then we call `ModuleParams::updateParams()`.
   This "under the hood" checks if the specific parameter attributes listed in our `DEFINE_PARAMETERS` list need updating, and then does so if needed.
 
 The parameter attributes (`_sys_autostart` and `_att_bias_max` in this case) can then be used to represent the parameters, and will be updated whenever the parameter value changes.
@@ -193,7 +193,7 @@ param_get(param_find("PARAM_NAME"), &my_param);
 If you're going to read the parameter multiple times, you may cache the handle and use it in `param_get()` when needed
 ```cpp
 # Get the handle to the parameter
-int32_t my_param_handle = 0;
+param_t my_param_handle = PARAM_INVALID;
 my_param_handle = param_find("PARAM_NAME");
 
 # Query the value of the parameter when needed
