@@ -2048,11 +2048,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        First flightmode slot (1000-1160)
+        飞行模式1(1000-1160)
       </p>
       
       <p>
-        <strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.
+        <strong>说明: </strong>如果主开关控制通道值在此范围内 (1000-1160) 则应用此参数对应的飞行模式.
       </p>
       
       <strong>参数值</strong>
@@ -2121,11 +2121,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Second flightmode slot (1160-1320)
+        飞行模式2 (1160-1320)
       </p>
       
       <p>
-        <strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.
+        <strong>说明: </strong>如果主开关控制通道值在此范围内 (1160-1320) 则应用此参数对应的飞行模式.
       </p>
       
       <strong>Values:</strong>
@@ -2598,27 +2598,27 @@
     
     <td style="vertical-align: top;">
       <p>
-        Battery failsafe mode
+        低电安全保护模式
       </p>
       
       <p>
-        <strong>Comment:</strong> Action the system takes on low battery. Defaults to off
+        <strong>说明: </strong>系统在低电状态时采取的策略. 默认关闭.
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数值:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong> Warning
+          <strong>0: </strong>报警
         </li>
         <li>
-          <strong>1:</strong> Return mode
+          <strong>1: </strong>返航模式
         </li>
         <li>
-          <strong>2:</strong> Land mode
+          <strong>2: </strong>降落模式
         </li>
         <li>
-          <strong>3:</strong> Return mode at critically low level, Land mode at current position if reaching dangerously low levels
+          <strong>3: </strong>低于严重低电量阈值时进入返航模式, 低于危险低电量阈值时进入降落模式.
         </li>
       </ul>
     </td>
@@ -2814,11 +2814,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        RC input arm/disarm command duration
+        遥控器输入 解锁/锁定 指令的持续时间
       </p>
       
       <p>
-        <strong>Comment:</strong> The default value of 1000 requires the stick to be held in the arm or disarm position for 1 second.
+        <strong>说明: </strong>默认值1000表示摇杆需要保持解锁或锁定动作状态持续1秒钟.
       </p>
     </td>
     
