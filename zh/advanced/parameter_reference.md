@@ -1158,11 +1158,11 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      Name
+      参数名
     </th>
     
     <th>
-      Description
+      参数描述
     </th>
     
     <th>
@@ -1170,11 +1170,11 @@
     </th>
     
     <th>
-      Default
+      默认值
     </th>
     
     <th>
-      Units
+      单位
     </th>
   </tr>
   
@@ -1185,15 +1185,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        Circuit breaker for airspeed sensor
+        空速计检查开关
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 162128 will disable the check for an airspeed sensor. WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>说明:</strong>将此参数设置为162128将禁用空速计检查. 警告: 启用这个开关是有风险的
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1216,11 +1216,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Circuit breaker for disabling buzzer
+        蜂鸣器使能开关
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 782097 will disable the buzzer audio notification. WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>说明: </strong>将此参数设置为782097将禁用蜂鸣器音频通知 WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
       </p>
       
       <p>
