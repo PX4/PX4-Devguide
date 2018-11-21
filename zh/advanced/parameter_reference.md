@@ -2841,14 +2841,14 @@
     
     <td style="vertical-align: top;">
       <p>
-        RC control input mode
+        遥控器信号输入模式
       </p>
       
       <p>
-        <strong>Comment:</strong> The default value of 0 requires a valid RC transmitter setup. Setting this to 1 allows joystick control and disables RC input handling and the associated checks. A value of 2 will generate RC control data from manual input received via MAVLink instead of directly forwarding the manual input data.
+        <strong>说明: </strong>默认值0表示需要安装一个可用的遥控器. 设置为1允许操纵杆控制(连接到地面站软件的游戏摇杆) 和禁用RC输入处理和相关检查。 A value of 2 will generate RC control data from manual input received via MAVLink instead of directly forwarding the manual input data.
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数值:</strong>
       
       <ul>
         <li>
@@ -2882,11 +2882,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        RC loss time threshold
+        遥控器失效时间阈值
       </p>
       
       <p>
-        <strong>Comment:</strong> After this amount of seconds without RC connection the rc lost flag is set to true
+        <strong>说明: </strong>超过这个参数对应的时间没有接收到遥控信号, 那么遥控器失联标志会被置位.
       </p>
     </td>
     
