@@ -1189,7 +1189,7 @@
       </p>
       
       <p>
-        <strong>说明:</strong>将此参数设置为162128将禁用空速计检查. 警告: 启用这个开关是有风险的
+        <strong>说明:</strong>将此参数设置为162128将禁用空速计检查. 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
@@ -1220,11 +1220,11 @@
       </p>
       
       <p>
-        <strong>说明: </strong>将此参数设置为782097将禁用蜂鸣器音频通知 WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>说明: </strong>将此参数设置为782097将禁用蜂鸣器音频通知. 警告: 启用这个开关是有风险的
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1247,15 +1247,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        Circuit breaker for engine failure detection
+        用于发动机故障检测的断路器
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 284953 will disable the engine failure detection. If the aircraft is in engine failure mode the engine failure flag will be set to healthy WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>说明: </strong>将此参数设置为284953将禁用发送机故障检测. 如果飞机处于引擎故障模式，引擎故障标志将设置为健康状态. 警告: 启用此开关是有风险的.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1286,7 +1286,7 @@
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1313,11 +1313,11 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 240024 will disable the GPS failure detection. If this check is enabled, then the sensor check will fail if the GPS module is missing. It will also check for excessive signal noise on the GPS receiver and warn the user if detected. WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>Comment:</strong> Setting this parameter to 240024 will disable the GPS failure detection. If this check is enabled, then the sensor check will fail if the GPS module is missing. It will also check for excessive signal noise on the GPS receiver and warn the user if detected. 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1344,11 +1344,11 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 22027 will disable IO safety. WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>Comment:</strong> Setting this parameter to 22027 will disable IO safety. 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1375,11 +1375,11 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 140253 will disable the rate controller uORB publication. WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>Comment:</strong> Setting this parameter to 140253 will disable the rate controller uORB publication. 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1406,11 +1406,11 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 894281 will disable the power valid checks in the commander. WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>Comment:</strong> Setting this parameter to 894281 will disable the power valid checks in the commander. 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1437,11 +1437,11 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 197848 will disable the USB connected checks in the commander. WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>Comment:</strong> Setting this parameter to 197848 will disable the USB connected checks in the commander. 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1468,11 +1468,11 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 201607 will disable the position and velocity accuracy checks in the commander. WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>Comment:</strong> Setting this parameter to 201607 will disable the position and velocity accuracy checks in the commander. 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1494,11 +1494,11 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      Name
+      参数名
     </th>
     
     <th>
-      Description
+      参数描述
     </th>
     
     <th>
@@ -1506,11 +1506,11 @@
     </th>
     
     <th>
-      Default
+      默认值
     </th>
     
     <th>
-      Units
+      单位
     </th>
   </tr>
   
@@ -1827,11 +1827,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Allow arming without GPS
+        允许在无GPS的状态下解锁
       </p>
       
       <p>
-        <strong>Comment:</strong> The default allows to arm the vehicle without GPS signal.
+        <strong>说明: </strong>默认允许在无GPS信号的状态下解锁自驾仪.
       </p>
     </td>
     
