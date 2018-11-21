@@ -2,7 +2,7 @@
 
 [MAVLink](https://mavlink.io/en/) is a very lightweight messaging protocol that has been designed for the drone ecosystem.
 
-PX4 uses *MAVLink* to communicate with *QGroundControl* (and other ground stations), as the integration mechanism for connecting to drone components outside of the flight controller: companion computers, MAVLink enabled cameras etc. 
+PX4 uses *MAVLink* to communicate with *QGroundControl* (and other ground stations), and as the integration mechanism for connecting to drone components outside of the flight controller: companion computers, MAVLink enabled cameras etc. 
 
 The protocol defines a number of standard [messages](https://mavlink.io/en/messages/) and [microservices](https://mavlink.io/en/services/) for exchanging data (many, but not all, messages/services have been implemented in PX4).
 
