@@ -1853,7 +1853,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Time-out for auto disarm after landing
+        降落后自动锁定超时时间
       </p>
       
       <p>
@@ -1881,11 +1881,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Datalink loss time threshold
+        数据链路失效时间阈值
       </p>
       
       <p>
-        <strong>Comment:</strong> After this amount of seconds without datalink the data link lost mode triggers
+        <strong>说明: </strong>超过此设定参数对应的时间没有数据传输时会启动数据链路失效模式.
       </p>
     </td>
     
@@ -1909,7 +1909,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Datalink regain time threshold
+        数据链路重连时间阈值
       </p>
       
       <p>
@@ -2055,29 +2055,29 @@
         <strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数值</strong>
       
       <ul>
         <li>
-          <strong>-1:</strong> Unassigned
+          <strong>-1: </strong>未定义
         </li>
         <li>
-          <strong>0:</strong> Manual
+          <strong>0: </strong>手动
         </li>
         <li>
-          <strong>1:</strong> Altitude
+          <strong>1: </strong>定高
         </li>
         <li>
-          <strong>2:</strong> Position
+          <strong>2: </strong>定点
         </li>
         <li>
-          <strong>3:</strong> Mission
+          <strong>3: </strong>自动任务
         </li>
         <li>
           <strong>4:</strong> Hold
         </li>
         <li>
-          <strong>5:</strong> Return
+          <strong>5: </strong>返航
         </li>
         <li>
           <strong>6:</strong> Acro
@@ -2086,19 +2086,19 @@
           <strong>7:</strong> Offboard
         </li>
         <li>
-          <strong>8:</strong> Stabilized
+          <strong>8: </strong>自稳
         </li>
         <li>
           <strong>9:</strong> Rattitude
         </li>
         <li>
-          <strong>10:</strong> Takeoff
+          <strong>10: </strong>起飞
         </li>
         <li>
-          <strong>11:</strong> Land
+          <strong>11: </strong>降落
         </li>
         <li>
-          <strong>12:</strong> Follow Me
+          <strong>12: </strong>跟随
         </li>
       </ul>
     </td>
