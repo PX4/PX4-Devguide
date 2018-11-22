@@ -42,7 +42,7 @@ This will copy *most* of the *very latest* version of PX4 source code onto your 
 
 > **Tip** To get the source for a *specific older release*, you could then: ```sh # Navigate into Firmware directory cd Firmware
 > 
-> # list the releases (tags) git tag -l # Checkout code for particular tag (e.g. for tag 1.7.4beta) git checkout -b tags/v1.7.4beta ```
+> # list the releases (tags) git tag -l # Checkout code for particular tag (e.g. for tag 1.7.4beta) git checkout v1.7.4beta ```
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
 
