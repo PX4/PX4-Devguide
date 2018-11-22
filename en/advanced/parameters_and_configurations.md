@@ -38,6 +38,8 @@ param show -c
 
 ### Exporting and Loading Parameters
 
+You can save any parameters that have been *touched* since all parameters were last reset to their firmware-defined defaults (this includes any parameters that have changed been changed, even if they have been changed back to their default).
+
 The standard `param save` command will store the parameters in the current default file:
 ```sh
 param save
@@ -48,23 +50,28 @@ If provided with an argument, it will store the parameters instead to this new l
 param save /fs/microsd/vtol_param_backup
 ```
 
-There are two different commands to load parameters: 
-- `param load` replaces all the current parameters, duplicating the state when the parameters were stored.
-   Parameters are not automatically saved by this operation (it is assumed that they are already saved).
-- `param import` only updates parameter values that have been *changed from the default*.
-  The parameters are automatically saved to the default location when loading.
-  
-  This can be used, for example, to just import calibration data without overwriting the rest of the system configuration (i.e. first calibrate a board that is otherwise unconfigured and save the parameters; this file can then be imported on another system to *just* update the calibration parameters).
-  
-Both loading options are shown below:
-```sh
-# Overwrite the current parameters
-param load /fs/microsd/vtol_param_backup
-param save  # Params not automatically saved on load
+There are two different commands to *load* parameters: 
+- `param load` first does a full reset of all parameters to their defaults, and then overwrites parameter values with any values stored in the file.
+- `param import` just overwrites parameter values with the values from the file and then saves the result (i.e. effectively calls `param save`).
 
-# Merge the current parameters with stored non-default parameters
+The `load` effectively resets the parameters to the state when the parameters were saved (we say "effectively" because any parameters saved in the file will be updated, but other parameters may have different firmware-defined default values than when the parameters file was created). 
+
+By contrast, `import` merges the parameters in the file with the current state of the vehicle.
+This can be used, for example, to just import a parameter file containing calibration data, without overwriting the rest of the system configuration.
+
+Examples for both cases are shown below:
+
+```sh
+# Reset the parameters to when file was saved
+param load /fs/microsd/vtol_param_backup
+# Optionally save params (not done automatically with load)
+param save
+```
+```sh
+# Merge the saved parameters with current parameters
 param import /fs/microsd/vtol_param_backup  
 ```
+
 
 ## Parameter Names
 
