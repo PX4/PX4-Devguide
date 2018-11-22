@@ -122,7 +122,7 @@ private:
 	 * Check for parameter changes and update them if needed.
 	 * @param parameter_update_sub uorb subscription to parameter_update
 	 */
-	void parameters_update(int parameter_update_sub);
+	void parameters_update(int parameter_update_sub, bool force = false);
 
 	DEFINE_PARAMETERS(
 		(ParamInt<px4::params::SYS_AUTOSTART>) _sys_autostart,   /**< example parameter */
@@ -149,7 +149,7 @@ orb_unsubscribe(parameter_update_sub);
 
 Call `parameters_update(parameter_update_sub);` periodically in code to check if there has been an update (this is boilerplate):
 ```cpp
-void Module::parameters_update(int parameter_update_sub)
+void Module::parameters_update(int parameter_update_sub, bool force)
 {
 	bool updated;
 	struct parameter_update_s param_upd;
@@ -160,7 +160,9 @@ void Module::parameters_update(int parameter_update_sub)
 	// If any parameter updated copy it to: param_upd
 	if (updated) {
 		orb_copy(ORB_ID(parameter_update), parameter_update_sub, &param_upd);
+	}
 
+	if (force || updated) {
 		// If any parameter updated, call updateParams() to check if
 		// this class attributes need updating (and do so). 
 		updateParams();
@@ -172,6 +174,8 @@ In the above method:
 - If there has been "some" parameter updated, we copy the update into a `parameter_update_s` (`param_upd`)
 - Then we call `ModuleParams::updateParams()`.
   This "under the hood" checks if the specific parameter attributes listed in our `DEFINE_PARAMETERS` list need updating, and then does so if needed.
+- This example doesn't call `Module::parameters_update()` with `force=True`.
+  If you had other values that needed to be set up a common pattern is to include them in the function, and call it once with `force=True` during initialisation.
 
 The parameter attributes (`_sys_autostart` and `_att_bias_max` in this case) can then be used to represent the parameters, and will be updated whenever the parameter value changes.
 
