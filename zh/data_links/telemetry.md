@@ -1,6 +1,6 @@
-# Telemetry Radios/Modems
+# 无线数传
 
-Telemetry Radios can (optionally) be used to provide a wireless MAVLink connection between a ground control station like *QGroundControl* and a vehicle running PX4. This section contains topics about advanced use of supported radios and integrating new telemetry systems into PX4.
+无线数传 (选配) 可以用于建立 *QGroundControl* 地面站与PX4飞控之间的无线MAVLink连接。 This section contains topics about advanced use of supported radios and integrating new telemetry systems into PX4.
 
 ## Supported Radio Systems
 
