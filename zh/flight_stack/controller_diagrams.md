@@ -1,18 +1,18 @@
 # 控制器图解
 
-This section contains diagrams for the main PX4 controllers.
+本节包括PX4主要控制器的图解。
 
-The diagrams use the standard [PX4 notation](../contribute/notation.md) (and each have an annotated legend).
+图解使用标准的 [PX4 符号](../contribute/notation.md) (附有详细图例注解)。
 
-## Multicopter Position Controller
+## 多旋翼位置控制器
 
 ![MC Position Controller Diagram](../../assets/diagrams/px4_mc_position_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
 
-* Estimates come from [EKF2](../tutorials/tuning_the_ecl_ekf.md).
-* This is a standard cascaded position-velocity loop.
+* 状态估计来自[EKF2](../tutorials/tuning_the_ecl_ekf.md)模块。
+* 这是一个标准的位置-速度级联控制回路。
 * Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
 * The integrator in the inner loop (velocity) controller includes an anti-reset windup (ARW) using a clamping method.
 
