@@ -6,6 +6,7 @@ The whole hardware setup is shown in the figure below. It consists of the follow
 * Odroid C1
 * Logitech camera C920
 * WiFi module TP-LINK TL-WN722N
+  > **Note** The [TP-LINK WN821N](https://www.conrad-electronic.co.uk/ce/en/product/995310/TP-LINK-TL-WN821N-WiFi-dongle-USB-20-300-Mbps) can also be used (without modification to the instructions). This is smaller and has a better range.
 
 ![Setup](../../assets/videostreaming/setup_whole.jpg)
 
