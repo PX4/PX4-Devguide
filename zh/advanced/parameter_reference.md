@@ -2194,11 +2194,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Third flightmode slot (1320-1480)
+        飞行模式3(1320-1480)
       </p>
       
       <p>
-        <strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.
+        <strong>说明: </strong>如果主开关控制通道值在此范围内 (1320-1480) 则应用此参数对应的飞行模式.
       </p>
       
       <strong>Values:</strong>
@@ -2267,11 +2267,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Fourth flightmode slot (1480-1640)
+        飞行模式4(1480-1640)
       </p>
       
       <p>
-        <strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.
+        <strong>说明: </strong>如果主开关控制通道值在此范围内 (1480-1640) 则应用此参数对应的飞行模式.
       </p>
       
       <strong>Values:</strong>
@@ -2340,11 +2340,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Fifth flightmode slot (1640-1800)
+        飞行模式5(1640-1800)
       </p>
       
       <p>
-        <strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.
+        <strong>说明: </strong>如果主开关控制通道值在此范围内 (1640-1800) 则应用此参数对应的飞行模式.
       </p>
       
       <strong>Values:</strong>
@@ -2413,11 +2413,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Sixth flightmode slot (1800-2000)
+        飞行模式6(1800-2000)
       </p>
       
       <p>
-        <strong>Comment:</strong> If the main switch channel is in this range the selected flight mode will be applied.
+        <strong>说明: </strong>如果主开关控制通道值在此范围内 (1800-2000) 则应用此参数对应的飞行模式.
       </p>
       
       <strong>Values:</strong>
