@@ -48,6 +48,25 @@ Dump file utility. Prints file size and contents in binary mode (don't replace L
 dumpfile [arguments...]
      <file>      File to dump
 ```
+## dyn
+Source: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
+
+
+### Description
+Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
+
+### Example
+```
+dyn ./hello.px4mod start
+```
+
+
+### Usage {#dyn_usage}
+```
+dyn [arguments...]
+     <file>      File containing the module
+     [arguments...] Arguments to the module
+```
 ## esc_calib
 Source: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
