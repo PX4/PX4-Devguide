@@ -1,4 +1,4 @@
-# Companion Computer for Pixhawk Series
+# Pixhawk系列的配套计算机
 
 Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只有一种：通过串口2 `TELEM 2`。这个串口设计目的即是此。 消息格式是MAVLINK。
 
@@ -68,18 +68,18 @@ Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只�
     
     The Pixhawk is `Bus 003 Device 005: ID 26ac:0011`
     
-    > **Note** If you do not find your device, unplug it, execute `lsusb`, plug it, execute `lsusb` again and see the added device.
+    > **Note**如果你没找到你是设备，拔掉，执行 `lsusb`，再插上， 再次执行`lsusb`，查看增加的设备。
     
-    Therefore, we can create a new UDEV rule in a file called `/etc/udev/rules.d/99-pixhawk.rules` with the following content, changing the idVendor and idProduct to yours.
+    最终，我们可以在文件中创建一个新的UDEV规则，文件名是`/etc/udev/rules.d/99-pixhawk.rules` 。文件能把idVendor和idProduct改成你的。
     
     ```sh
     SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="ttyArduino"
     SUBSYSTEM=="tty", ATTRS{idVendor}=="26ac", ATTRS{idProduct}=="0011", SYMLINK+="ttyPixhawk"
     ```
     
-    Finally, after a **reboot** you can be sure to know which device is what and put `/dev/ttyPixhawk` instead of `/dev/ttyUSB0` in your scripts.
+    最后, 在 **reboot** 后, 您可以确定您的设备名, 并将 `/dev/ttyPixhawk`替换掉在脚本中的 `/dev/ttyUSB0`。
     
-    > **Note** Be sure to add yourself in the `tty` and `dialout` groups via `usermod` to avoid to have to execute scripts as root.
+    > **注意**请务必通过 `usermod` 将自己添加到 `tty`和`dialout` 组, 以避免必须以 root 身份执行脚本。
     
     ```sh
     usermod -a -G tty ros-user
