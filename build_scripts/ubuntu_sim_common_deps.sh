@@ -24,7 +24,7 @@ sudo apt-get install git zip qtcreator cmake build-essential genromfs ninja-buil
 # Required python packages
 sudo apt-get install python-argparse python-empy python-toml python-numpy python-dev python-pip -y
 sudo -H pip install --upgrade pip
-sudo -H pip install pandas jinja2 pyserial
+sudo -H pip install pandas jinja2 pyserial pyyaml
 # optional python tools
 sudo -H pip install pyulog
 
