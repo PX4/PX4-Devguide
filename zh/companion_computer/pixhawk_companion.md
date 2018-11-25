@@ -25,19 +25,19 @@ Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只�
     
     * [MAVProxy](http://mavproxy.org) 在串行和 udp 之间转换 mavlink</ul> 
     
-    ## Hardware setup
+    ## 硬件设置
     
-    Wire the serial port according to the instructions below. All Pixhawk serial ports operate at 3.3V and are 5V level compatible.
+    按照以下说明连接串行端口。 所有 pixhawk 串行端口都以 3.3 v 电平工作，同时与5v 电平兼容。
     
-    > **Warning** Many modern companion computers only support 1.8V levels on their hardware UART and can be damaged by 3.3V levels. Use a level shifter. In most cases the accessible hardware serial ports already have some function (modem or console) associated with them and need to be *reconfigured in Linux* before they can be used.
+    > **Warning**许多现代配套计算机在其硬件 uart 上只支持 1.8 v 级别，3.3 v 电平可能会损坏配套计算机。 推荐使用一个电平转换器。 在大多数情况下， 可访问的硬件串行端口已经具有与之关联的一些功能 (调制解调器或控制台)，并且需要在 linux*重新配置*， 然后才能使用它们。
     
-    The safe bet is to use an FTDI Chip USB-to-serial adapter board and the wiring below. This always works and is easy to set up.
+    安全的选择是使用 ftdi 芯片 usb 到串行适配器板和下面的接线方式。 这种方式有效且容易设置。
     
     |  | TELEM2 |           | FTDI |                        |
     |  | ------ | --------- | ---- | ---------------------- |
-    |  | 1      | +5V (red) |      | DO NOT CONNECT!        |
-    |  | 2      | Tx (out)  | 5    | FTDI RX (yellow) (in)  |
-    |  | 3      | Rx (in)   | 4    | FTDI TX (orange) (out) |
+    |  | 1      | + 5v (红色) |      | 请勿连接！                  |
+    |  | 2      | Tx (输出)   | 5    | FTDI RX (黄色) (输入)      |
+    |  | 3      | Rx（输入）    | 4    | FTDI TX (橙色) (输出)      |
     |  | 4      | CTS (in)  | 6    | FTDI RTS (green) (out) |
     |  | 5      | RTS (out) | 2    | FTDI CTS (brown) (in)  |
     |  | 6      | GND       | 1    | FTDI GND (black)       |
