@@ -33,25 +33,24 @@ Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只�
     
     安全的选择是使用 ftdi 芯片 usb 到串行适配器板和下面的接线方式。 这种方式有效且容易设置。
     
-    |  | TELEM2 |           | FTDI |                        |
-    |  | ------ | --------- | ---- | ---------------------- |
-    |  | 1      | + 5v (红色) |      | 请勿连接！                  |
-    |  | 2      | Tx (输出)   | 5    | FTDI RX (黄色) (输入)      |
-    |  | 3      | Rx（输入）    | 4    | FTDI TX (橙色) (输出)      |
-    |  | 4      | CTS (in)  | 6    | FTDI RTS (green) (out) |
-    |  | 5      | RTS (out) | 2    | FTDI CTS (brown) (in)  |
-    |  | 6      | GND       | 1    | FTDI GND (black)       |
+    |  | TELEM2 |           | FTDI |                    |
+    |  | ------ | --------- | ---- | ------------------ |
+    |  | 1      | + 5v (红色) |      | 请勿连接！              |
+    |  | 2      | Tx (输出)   | 5    | FTDI RX (黄色) (输入)  |
+    |  | 3      | Rx（输入）    | 4    | FTDI TX (橙色) (输出)  |
+    |  | 4      | CTS（输入）   | 6    | FTDI RTS (绿色) (输出) |
+    |  | 5      | RTS（输出）   | 2    | FTDI RTS (棕色) (输出) |
+    |  | 6      | GND       | 1    | FTDI GND (黑色)      |
     
-    ## Software setup on Linux
+    ## Linux系统上的软件设置
     
-    On Linux the default name of a USB FTDI would be like `\dev\ttyUSB0`. If you have a second FTDI linked on the USB or an Arduino, it will registered as `\dev\ttyUSB1`. To avoid the confusion between the first plugged and the second plugged, we recommend you to create a symlink from `ttyUSBx` to a friendly name, depending on the Vendor and Product ID of the USB device.
+    在 linux 上, usb ftdi 的默认名称将类似于 `\dev\ttyUSB0`。 如果您在 usb 或 arduino 上连接了第二个 ftdi, 它将注册为 `\dev\ttyUSB1`。 为了避免第一次插入和第二个插头之间的混淆, 我们建议您创建一个从 `ttyUSBx` 到友好名称的符号链接, 具体取决于 usb 设备的供应商和产品 ID。
     
-    Using `lsusb` we can get the vendor and product IDs.
+    使用 `lsusb`指令，我们可以获得供应商和产品 ID。
     
     ```sh
-    $ lsusb
-    
-    Bus 006 Device 002: ID 0bda:8153 Realtek Semiconductor Corp.
+    $lsusb
+    总线006 设备002：ID 0BDA:8153 Realtek 半导体公司
     Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
     Bus 005 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
     Bus 004 Device 002: ID 05e3:0616 Genesys Logic, Inc.
@@ -65,7 +64,7 @@ Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只�
     Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
     ```
     
-    The Arduino is `Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC ACM)`
+    Arduino 是 `Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC ACM)`
     
     The Pixhawk is `Bus 003 Device 005: ID 26ac:0011`
     
