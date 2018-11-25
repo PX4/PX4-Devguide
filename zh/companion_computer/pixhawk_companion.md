@@ -1,12 +1,12 @@
 # Companion Computer for Pixhawk Series
 
-Interfacing a companion computer (Raspberry Pi, Odroid, Tegra K1) to Pixhawk-family boards always works the same way: They are interfaced using a serial port to `TELEM 2`, the port intended for this purpose. The message format on this link is [MAVLink](https://mavlink.io/en/).
+Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只有一种：通过串口2 `TELEM 2`。这个串口设计目的即是此。 消息格式是MAVLINK。
 
-## Pixhawk Setup
+## Pixhawk设置
 
-Enable MAVLink on any [configurable serial port](https://docs.px4.io/en/peripherals/serial_configuration.html).
+在 任何 [可配置的串口 ](https://docs.px4.io/en/peripherals/serial_configuration.html)上使能MAVLink消息。
 
-> **Tip** Typically the `TELEM 2` port is used for a companion computer.
+> **提示** `TELEM 2` 一般用作与配套计算机通信。
 
 To set up the default companion computer message stream on `TELEM 2`, set the following parameters:
 
