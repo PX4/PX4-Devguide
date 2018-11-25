@@ -1,8 +1,8 @@
 # 基于gazebo的多飞行器仿真
 
-This topic explains how to simulate multiple UAV vehicles using Gazebo and SITL (Linux only).
+本主题介绍如何使用 gazebo 和 sitl (仅限 linux) 模拟多架无人机/车辆。
 
-> **Tip** If you don't need a feature provided by Gazebo or ROS, [Multi-Vehicle Simulation with JMAVSim](../simulation/multi_vehicle_jmavsim.md) is easier to set up.
+> **Tip**如果您不需要 gazebo 或 ros 提供的功能， [ jmavsim的 Multi-车辆仿真](../simulation/multi_vehicle_jmavsim.md)更容易设置。
 
 It demonstrates an example setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world. You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle.
 
