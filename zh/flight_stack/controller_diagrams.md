@@ -47,7 +47,7 @@ $$\bar{q} = \frac{1}{2} \rho V_T^2$$,
 
 $$\rho$$ 代表空气密度，$$V_T$$ 代表真实空速 (TAS)。
 
-Taking the roll axis for the rest of this section as an example, the dimensional roll moment can be written
+以滚转轴为例，带量纲的滚转轴力矩可以表示为：
 
 $$\ell = \frac{1}{2}\rho V_T^2 S b C_\ell = \bar{q} S b C_\ell$$,
 
