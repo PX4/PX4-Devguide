@@ -57,7 +57,7 @@ $$\ell$$ 代表滚转力矩，$$b$$ 代表飞机翼展，$$S$$ 代表参考面�
 
 $$C_\ell = C_{\ell_0} + C_{\ell_\beta}\:\beta + C_{\ell_p}\:\frac{b}{2V_T}\:p + C_{\ell_{\delta_a}} \:\delta_a$$,
 
-where $$\beta$$ is the sideslip angle, $$p$$ the body roll rate and $$\delta_a$$ the aileron deflection.
+$$\beta$$ 代表侧滑角，$$p$$ 代表滚转角速率，$$\delta_a$$ 代表副翼偏转角。
 
 Assuming a symmetric ($$C_{\ell_0} = 0$$) and coordinated ($$\beta = 0$$) aircraft, the equation can be simplified using only the rollrate damping and the roll moment produced by the ailerons
 
