@@ -546,7 +546,7 @@ ver <command> [arguments...]
    all           Print all versions
 
    hwcmp         Compare hardware version (returns 0 on match)
-     <hw> [<hw2>] Hardware to compare against (eg. PX4FMU_V4). An OR comparison
+     <hw> [<hw2>] Hardware to compare against (eg. PX4_FMU_V4). An OR comparison
                  is used if multiple are specified
 
    hwtypecmp     Compare hardware type (returns 0 on match)
