@@ -11,7 +11,7 @@ Enable MAVLink on any [configurable serial port](https://docs.px4.io/en/peripher
 To set up the default companion computer message stream on `TELEM 2`, set the following parameters:
 * [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) = `TELEM 2` (`MAV_1_CONFIG` is often used to map the `TELEM 2` port)
 * [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) = `Onboard`
-* [MAV_X_RATE](../advanced/parameter_reference.md#MAV_X_RATE) = `921600` (or higher)
+* [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) = `921600` (or higher)
 
 For more information see [MAVLink Peripherals (GCS/OSD/Companion)](https://docs.px4.io/en/peripherals/mavlink_peripherals.html).
 
