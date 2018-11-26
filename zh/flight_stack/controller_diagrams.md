@@ -53,7 +53,7 @@ $$\ell = \frac{1}{2}\rho V_T^2 S b C_\ell = \bar{q} S b C_\ell$$,
 
 $$\ell$$ 代表滚转力矩，$$b$$ 代表飞机翼展，$$S$$ 代表参考面。
 
-The nondimensional roll moment derivative $$C_\ell$$ can be modeled using the aileron effectiveness derivative $$C_{\ell_{\delta_a}}$$, the roll damping derivative $$C_{\ell_p}$$ and the dihedral derivative $$C_{\ell_\beta}$$
+无量纲的滚转力矩倒数 $$C_\ell$$ 可以通过通过以下几个系数建模得到：副翼效应导数 $$C_{\ell_{\delta_a}}$$，滚转阻尼导数 $$C_{\ell_p}$$ 和二面角系数 $$C_{\ell_\beta}$$。
 
 $$C_\ell = C_{\ell_0} + C_{\ell_\beta}\:\beta + C_{\ell_p}\:\frac{b}{2V_T}\:p + C_{\ell_{\delta_a}} \:\delta_a$$,
 
