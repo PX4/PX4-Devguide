@@ -39,13 +39,13 @@ Request access from dev team. -->
 
 如上所示的固定翼姿态控制器，角速率控制器输出角加速度设定值，传递给控制分配器 (这里叫“混控”)。 为了达到期望的角加速度，混控必须利用气动控制面 (例如：典型的飞机有两个副翼，两个水平尾翼和一个垂直尾翼) 产生力矩。 气动控制面产生的力矩受以下因素影响最大：飞机的相对空速和空气密度，更准确的说，是气动压力。 如果没有针对空速的缩放处理，在某一特定巡航速度下调参的控制器，将会使飞机在高速下发生振荡，或者在在低速下达不到理想的随动效果。
 
-The reader should be aware of the difference between the [true airspeed (TAS)](https://en.wikipedia.org/wiki/True_airspeed) and the [indicated airspeed (IAS)](https://en.wikipedia.org/wiki/Indicated_airspeed) as their values are significantly different when not flying at sea level.
+读者们首先必须明白 [真实空速 (TAS)](https://en.wikipedia.org/wiki/True_airspeed) 和 [指示空速 (IAS)](https://en.wikipedia.org/wiki/Indicated_airspeed) 这二者的读数差别很大，除非你在海平面上飞行。
 
-The definition of the dynamic pressure is
+气动压力的定义是
 
 $$\bar{q} = \frac{1}{2} \rho V_T^2$$,
 
-where $$\rho$$ is the air density and $$V_T$$ the true airspeed (TAS).
+$$\rho$$ 代表空气密度，$$V_T$$ 代表真实空速 (TAS)。
 
 Taking the roll axis for the rest of this section as an example, the dimensional roll moment can be written
 
