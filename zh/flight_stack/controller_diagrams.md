@@ -51,7 +51,7 @@ $$\rho$$ 代表空气密度，$$V_T$$ 代表真实空速 (TAS)。
 
 $$\ell = \frac{1}{2}\rho V_T^2 S b C_\ell = \bar{q} S b C_\ell$$,
 
-where $$\ell$$ is the roll moment, $$b$$ the wing span and $$S$$ the reference surface.
+$$\ell$$ 代表滚转力矩，$$b$$ 代表飞机翼展，$$S$$ 代表参考面。
 
 The nondimensional roll moment derivative $$C_\ell$$ can be modeled using the aileron effectiveness derivative $$C_{\ell_{\delta_a}}$$, the roll damping derivative $$C_{\ell_p}$$ and the dihedral derivative $$C_{\ell_\beta}$$
 
