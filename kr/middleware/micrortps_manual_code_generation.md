@@ -141,7 +141,7 @@ src/modules/micrortps_bridge/micrortps_client
 특히 한번 수동으로 생성되면, *Client* 소스 코드가 컴파일되고 일반 빌드 프로세스로 PX4 펌웨어로 빌드됩니다. 예제로 코드를 컴파일하려면 펌웨어에 Nuttx/Pixhawk 타겟에 include합니다.:
 
 ```sh
-make px4fmu-v4_default upload
+make px4_fmu-v4_default upload
 ```
 
 > **Note** 먼저 [자동 bridge 코드 생성 비활성화](#disable-automatic-bridge-code-generation)시켜서 툴체인이 수동으로 생성한 소스 코드를 사용하도록 합니다. (그리고 재생성하지 않도록 합니다)

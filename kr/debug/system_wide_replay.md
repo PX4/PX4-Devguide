@@ -17,11 +17,11 @@ ORB 메시지를 바탕으로 시스템 특정 부분의 동작을 기록하고 
 - 먼저 재연할 파일을 선택하고 타겟(Firmware 디렉토리 내에 있는)을 빌드합니다:
 ```sh
 export replay=<absolute_path_to_log_file.ulg>
-make posix_sitl_default
+make px4_sitl_default
 ```
-  여기서는 `build/posix_sitl_default_replay`라는 별도의 빌드 디렉토리에 결과물을 생성합니다. (이 파라미터는 일반 빌드에 영향을 주지 않음) 재연을 위해 posix SITL build target을 선택하는 것이 가능합니다. 빌드 시스템은 `replay` 환경변수를 통해 현재 재연 모드에 있는지 알 수 있습니다.
+  여기서는 `build/px4_sitl_default_replay`라는 별도의 빌드 디렉토리에 결과물을 생성합니다. (이 파라미터는 일반 빌드에 영향을 주지 않음) 재연을 위해 posix SITL build target을 선택하는 것이 가능합니다. 빌드 시스템은 `replay` 환경변수를 통해 현재 재연 모드에 있는지 알 수 있습니다.
 - ORB publisher rule 파일을
-  `build/posix_sitl_default_replay/tmp/rootfs/orb_publisher.rules`에 추가합니다.
+  `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules`에 추가합니다.
   이 파일은 어떤 모듈이 어떤 메시지를 publish하도록 허용하는지 정의합니다.
   다음과 같은 포맷으로 :
 ```
@@ -41,7 +41,7 @@ ignore_others: true
   이렇게 하는 경우, 일반적으로 여기 topic들을 publish하는 module이 replay에 대해서 disable하지 않아도 됩니다.
 
 - Optional: setup parameter를 아래 파일에 덮어쓴다.
-  `build/posix_sitl_default_replay/tmp/rootfs/replay_params.txt`.
+  `build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt`.
   이 파일은 `<param_name> <value>`의 목록을 포함해야만 한다. 다음과 같다. :
 ```
 EKF2_GB_NOISE 0.001
@@ -51,7 +51,7 @@ EKF2_GB_NOISE 0.001
 - Optional: SD 카드에 있는 `dataman` mission 파일을 해당 build 디렉토리에 복사. mission이 replay인 경우에만 필요.
 - replay 시작하기:
 ```sh
-  make posix_sitl_default jmavsim
+  make px4_sitl_default jmavsim
 ```
   이렇게 하면 자동으로 log 파일을 열어서 paramter를 적용하고 replay를 시작합니다. 일단 완료되면, 결과를 리포팅하고 해당 process는 종료됩니다. 다음으로 새로 생성된 log 파일은 분석하고 `_replayed`가 파일이름에 추가됩니다.
 
@@ -91,7 +91,7 @@ INFO  [replay] Replay done (published 9917 msgs, 2.136 s)
 파라미터도 조절할 수 있습니다. \(먼저 pyulog 설치 `sudo pip install pyulog`\)하고 log로부터 추출할 수 있습니다 :
 
 ```
-ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build/posix_sitl_default_replay/tmp/rootfs/replay_params.txt
+ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
 ```
 다음으로는 필요하면 파일에 있는 파라미터를 수정하고 `make posix none`로 replay 프로세스를 재시작합니다. 이렇게하면 새로운 로그 파일이 생성됩니다.
 

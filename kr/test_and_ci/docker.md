@@ -39,7 +39,7 @@ docker run -it --privileged \
 
 ```sh
 cd <container_src>
-make posix_sitl_default gazebo
+make px4_sitl_default gazebo
 ```
 
 ### 그래픽 드라이버 문제

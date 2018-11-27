@@ -6,10 +6,8 @@ PX4를 실행하는 autopilot에서 GDB나 LLDB를 통한 디버깅이 가능합
 
 아래에서 이 명령을 이용하면 가장 많이 정적 메모리 할당한 목록을 보여줍니다. :
 
-<div class="host-code"></div>
-
 ```bash
-arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
+arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4_fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
 ```
 
 NSH 명령은 남은 메모리의 양을 알려줍니다.:
@@ -39,13 +37,13 @@ sudo apt-get install google-perftools libgoogle-perftools-dev
 
 무엇보다 먼저 펌웨어를 다음과 같이 빌드 :
 ```bash
-make posix_sitl_default
+make px4_sitl_default
 ```
 jmavsim 시작하기: `./Tools/jmavsim_run.sh`
 
 다른 터미널에서 다음을 입력:
 ```bash
-cd build/posix_sitl_default/tmp
+cd build/px4_sitl_default/tmp
 export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
@@ -128,7 +126,7 @@ EXC_RETURN: ffffffe9
 <div class="host-code"></div>
 
 ```bash
-arm-none-eabi-gdb build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx
+arm-none-eabi-gdb build/px4_fmu-v2_default/src/firmware/nuttx/firmware_nuttx
 ```
 
 GDB 프롬프트에서, R8에서 마지막 명령과 flash에서 첫번째 주소로 시작합니다.(`0x080`로 시작하고 첫번째 주소는 `0x0808439f`임) 하드폴트가 있기 전에 마지막 동작 중에 하나는 ```mavlink_log.c```가 뭔가를 publish를 시도했다는 것입니다.

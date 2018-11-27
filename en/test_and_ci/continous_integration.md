@@ -14,5 +14,6 @@ Semaphore is primarily used to compile changes for the Qualcomm Snapdragon platf
 
 ## [CircleCI](https://circleci.com/gh/PX4/Firmware)
 
-CircleCI tests the proposed next version of GCC to be used for stable firmware releases using the docker image [px4io/px4-dev-nuttx-gcc_next](https://hub.docker.com/r/px4io/px4-dev-nuttx-gcc_next/). It uses the makefile target quick_check which compiles px4fmu-v4_default, posix_sitl_default, runs testing, and verifies code style.
+CircleCI tests the proposed next version of GCC to be used for stable firmware releases using the docker image [px4io/px4-dev-nuttx-gcc_next](https://hub.docker.com/r/px4io/px4-dev-nuttx-gcc_next/). 
+It uses the makefile target `quick_check` which compiles `px4_fmu-v4_default`, `px4_sitl_default`, runs testing, and verifies code style.
 

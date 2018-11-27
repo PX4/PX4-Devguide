@@ -13,7 +13,7 @@ The Clang address sanitizer can help to find alignment (bus) errors and other me
 
 ```sh
 make clean # only required on first address sanitizer run after a normal build
-PX4_ASAN=1 make posix jmavsim
+PX4_ASAN=1 make px4_sitl jmavsim
 ```
 
 ## Valgrind
@@ -35,13 +35,13 @@ sudo apt-get install valgrind
 SITL can be launched with and without debugger attached and with either jMAVSim or Gazebo as simulation backend. This results in the start options below:
 
 ```sh
-make posix_sitl_default jmavsim
-make posix_sitl_default jmavsim___gdb
-make posix_sitl_default jmavsim___lldb
+make px4_sitl_default jmavsim
+make px4_sitl_default jmavsim___gdb
+make px4_sitl_default jmavsim___lldb
 
-make posix_sitl_default gazebo
-make posix_sitl_default gazebo___gdb
-make posix_sitl_default gazebo___lldb
+make px4_sitl_default gazebo
+make px4_sitl_default gazebo___gdb
+make px4_sitl_default gazebo___lldb
 
 make posix_sitl_lpe jmavsim
 make posix_sitl_lpe jmavsim___gdb
@@ -49,7 +49,7 @@ make posix_sitl_lpe jmavsim___lldb
 
 make posix_sitl_lpe gazebo
 make posix_sitl_lpe gazebo___gdb
-make posix_sitl_lpe gazebo___lldb
+make posix_sitl_lpe gazebo___lldb 
 ```
 
 where the last parameter is the &lt;viewer\_model\_debugger&gt; triplet (using three underscores implies the default &#39;iris&#39; model).

@@ -42,7 +42,7 @@ PX4 펌웨어의 소스 디렉토리내에서 airframe 중에 하나로(Quads, p
 
 ```sh
 cd ~/src/Firmware
-make posix_sitl_default gazebo
+make px4_sitl_default gazebo
 ```
 
 ### Quadrotor with Optical Flow
@@ -70,7 +70,7 @@ make posix gazebo_plane
 ### 표준 VTOL
 
 ```sh
-make posix_sitl_default gazebo_standard_vtol
+make px4_sitl_default gazebo_standard_vtol
 ```
 
 ![](../../assets/gazebo/standard_vtol.png)
@@ -78,7 +78,7 @@ make posix_sitl_default gazebo_standard_vtol
 ### Tailsitter VTOL
 
 ```sh
-make posix_sitl_default gazebo_tailsitter
+make px4_sitl_default gazebo_tailsitter
 ```
 
 ![](../../assets/gazebo/tailsitter.png)
@@ -156,7 +156,7 @@ px4가 `sitl_run.sh` 를 실행시키는 기존 cmake 타겟에 추가하는데 
 
   * 터미널을 통해서 gazebo(다른 시뮬레이터) 서버와 클라이언트 뷰어 실행:
 ```
-make posix_sitl_default gazebo_none_ide
+make px4_sitl_default gazebo_none_ide
 ```
   * IDE에서 디버깅하기를 원하는 `px4_<mode>` 타겟을 선택 (예로 `px4_iris`)
   * IDE에서 바로 디버깅 세션을 시작

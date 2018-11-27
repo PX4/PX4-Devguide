@@ -63,7 +63,7 @@ set(config_rtps_receive_topics
    )
 ```
 
-> **Caution** At time of writing (August 2017), only the small set of uORB topics listed above are included in our cmake files: **posix_sitl_default.cmake**, **nuttx_px4fmu-v4_default.cmake**, **posix_sdflight_default.cmake**. It is likely you will need to edit your *cmake* file and add additional uORB topics. In future we hope to define a larger standard set. 
+> **Caution** At time of writing (August 2017), only the small set of uORB topics listed above are included in our cmake files: **PX4/Firmware/boards/px4/sitl/default.cmake**, **PX4/Firmware/boards/px4/fmu-v4/default.cmake**, **posix_sdflight_default.cmake**. It is likely you will need to edit your *cmake* file and add additional uORB topics. In future we hope to define a larger standard set. 
 
 For *manual code generation* the uORB topics that will be supported by the bridge are specified when you call **generate_microRTPS_bridge.py** (using the `-s`/`--send` and `-r`/`--receive` flags). See [Manual Generation of the Code](../middleware/micrortps_manual_code_generation.md) for more information.
 
@@ -74,7 +74,7 @@ The *Client* source code is generated, compiled and built into the PX4 firmware 
 
 To build and upload the firmware for NuttX/Pixhawk flight controllers:
 ```sh
-make px4fmu-v4_default upload
+make px4_fmu-v4_default upload
 ```
 
 To build and upload the firmware for Qualcomm Snapdragon Flight:

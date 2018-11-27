@@ -17,7 +17,7 @@ To start multiple instances (on separate ports):
 
 1. Build PX4
    ```
-   make posix_sitl_default
+   make px4_sitl_default
    ```
 1. Run **sitl_multiple_run.sh**, specifying the number of instances to start (e.g. 2):
    ```

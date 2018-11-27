@@ -22,13 +22,13 @@ To build an example setup, follow the step below:
    ```
    cd Firmware_clone
    git submodule update --init --recursive
-   make posix_sitl_default
-   make posix_sitl_default sitl_gazebo
+   make px4_sitl_default
+   make px4_sitl_default sitl_gazebo
    ```
 1. Source your environment:
 
    ```
-   source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
+   source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
    export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd):$(pwd)/Tools/sitl_gazebo
    ```
 

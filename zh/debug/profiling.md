@@ -33,13 +33,13 @@ PMSP使用GDB收集堆栈踪迹。目前使用的是 `arm-none-eabi-gdb` ,未来
 用法示例:
 
 ```bash
-./poor-mans-profiler.sh --elf=build/px4fmu-v4_default/src/firmware/nuttx/firmware_nuttx --nsamples=30000
+./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/src/firmware/nuttx/firmware_nuttx --nsamples=30000
 ```
 
 注意每次运行脚本都会覆盖旧的堆栈。如果你想向旧的堆栈追加而不是重写，使用选项 `--append` ：
 
 ```bash
-./poor-mans-profiler.sh --elf=build/px4fmu-v4_default/src/firmware/nuttx/firmware_nuttx --nsamples=30000 --append
+./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/src/firmware/nuttx/firmware_nuttx --nsamples=30000 --append
 ```
 
 正如人们怀疑的那样， `--append` 加上 `--nsamples=0` 会指示脚本在不访问目标的情况下重新生成SVG。

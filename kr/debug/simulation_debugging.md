@@ -8,7 +8,7 @@ Clag address sanitizer는 세그멘테이션 폴트와 같이 alignment 에러�
 
 ```sh
 make clean # only required on first address sanitizer run after a normal build
-PX4_ASAN=1 make posix jmavsim
+PX4_ASAN=1 make px4_sitl jmavsim
 ```
 
 ## Valgrind
@@ -30,13 +30,13 @@ sudo apt-get install valgrind
 SITL은 디버거가 연결과 상관없이 jMAVSIm이나 Gazebo와 같은 백엔드 시뮬레이션과 함께 실행할 수 있습니다. 다음과 같은 시작 옵션들로 :
 
 ```sh
-make posix_sitl_default jmavsim
-make posix_sitl_default jmavsim___gdb
-make posix_sitl_default jmavsim___lldb
+make px4_sitl_default jmavsim
+make px4_sitl_default jmavsim___gdb
+make px4_sitl_default jmavsim___lldb
 
-make posix_sitl_default gazebo
-make posix_sitl_default gazebo___gdb
-make posix_sitl_default gazebo___lldb
+make px4_sitl_default gazebo
+make px4_sitl_default gazebo___gdb
+make px4_sitl_default gazebo___lldb
 
 make posix_sitl_lpe jmavsim
 make posix_sitl_lpe jmavsim___gdb

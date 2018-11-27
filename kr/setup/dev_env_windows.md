@@ -38,9 +38,9 @@ To use the build script:
 1. Test the script by building the firmware:
   ```
   cd $src/Firmware
-  make px4fmu-v2_default
+  make px4_fmu-v2_default
   ```
-  On successful completion you'll find the firmware here: `Firmware/build/px4fmu-v2/src/firmware/nuttx/px4fmu-v2_default.px4`
+  On successful completion you'll find the firmware here: `Firmware/build/px4_fmu-v2/px4_fmu-v2_default.px4`
 1. You can flash the custom firmware on Windows using *QGroundControl* or *Mission Planner* (it is not yet possible to directly flash the firmware from within the bash shell).
 
 #### Build script details

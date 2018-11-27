@@ -141,7 +141,7 @@ The manually generated *Client* code is built and used in *exactly* the same way
 Specifically, once manually generated, the *Client* source code is compiled and built into the PX4 firmware as part of the normal build process. For example, to compile the code and include it in firmware for NuttX/Pixhawk targets: 
 
 ```sh
-make px4fmu-v4_default upload
+make px4_fmu-v4_default upload
 ```
 
 > **Note** You must first [disable automatic bridge code generation](#disable-automatic-bridge-code-generation) so that the toolchain uses the manually generated source code (and does not attempt to regenerate it).

@@ -13,10 +13,10 @@ The folded stacks are then fed into the visualization script, for which purpose 
 ## Basic Usage
 
 Basic usage of the profiler is available through the build system. 
-For example, the following command builds and profiles px4fmu-v4pro target with 10000 samples (fetching FlameGraph and adding it to the path as needed).
+For example, the following command builds and profiles px4_fmu-v4pro target with 10000 samples (fetching *FlameGraph* and adding it to the path as needed).
 
 ```
-make px4fmu-v4pro_default profile
+make px4_fmu-v4pro_default profile
 ```
 
 For more control over the build process, including setting the number of samples, see the [Implementation](#implementation).
@@ -70,14 +70,14 @@ This is done with the help of the option `--elf=<file>`, which expects a path (r
 Usage example:
 
 ```bash
-./poor-mans-profiler.sh --elf=build/nuttx_px4fmu-v4_default/nuttx_px4fmu-v4_default.elf --nsamples=30000
+./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000
 ```
 
 Note that every launch of the script will overwrite the old stacks. 
 Should you want to append to the old stacks rather than overwrite them, use the option `--append`:
 
 ```bash
-./poor-mans-profiler.sh --elf=build/nuttx_px4fmu-v4_default/nuttx_px4fmu-v4_default.elf --nsamples=30000 --append
+./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000 --append
 ```
 
 As one might suspect, `--append` with `--nsamples=0` will instruct the script to only regenerate the SVG without accessing the target at all.

@@ -53,9 +53,9 @@ sudo apt-get install ros-$(ROS_DISTRO)-gazebo6-ros-pkgs
 
 ```sh
 cd <Firmware_clone> 
-make posix_sitl_default 
+make px4_sitl_default 
 source ~/catkin_ws/devel/setup.bash 
-source Tools/setup_gazebo.bash $(pwd) build/posix_sitl_default 
+source Tools/setup_gazebo.bash $(pwd) build/px4_sitl_default 
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd) 
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 posix_sitl.launch
@@ -69,7 +69,7 @@ roslaunch px4 posix_sitl.launch
 (或者如何手动运行)
 
 ```sh
-no_sim=1 make posix_sitl_default gazebo
+no_sim=1 make px4_sitl_default gazebo
 ```
 
 这将启动仿真器，控制台看上去是这样的：
@@ -101,7 +101,7 @@ INFO  Waiting for initial data on UDP. Please start the flight simulator to proc
 
 ```sh
 cd <Firmware_clone>
-source Tools/setup_gazebo.bash $(pwd) <Firmware_clone/build/posix_sitl_default>
+source Tools/setup_gazebo.bash $(pwd) <Firmware_clone/build/px4_sitl_default>
 ```
 > 这里`Firmware_clone`指的就是你下载Firmware时的文件夹.可以具体查看Tools下的README.md以及setup_gazebo.bash文件.
 

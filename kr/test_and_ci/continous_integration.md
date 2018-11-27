@@ -14,4 +14,4 @@ Travis-ci는 테스팅을 포함한 MacOS posix sitl 빌드가 있습니다.
 
 ## [CircleCI](https://circleci.com/gh/PX4/Firmware)
 
-CircleCI는 [px4io/px4-dev-nuttx-gcc_next](https://hub.docker.com/r/px4io/px4-dev-nuttx-gcc_next/) docker 이미지를 사용해서 릴리즈되는 안정 펌웨어에 사용할 GCC의 차기 버전을 테스트합니다. makefile target quick_check를 사용해서 px4fmu-v4_default, posix_sitl_default을 컴파일하고 테스팅을 실행하고 코드 스타일을 검증합니다.
+CircleCI는 [px4io/px4-dev-nuttx-gcc_next](https://hub.docker.com/r/px4io/px4-dev-nuttx-gcc_next/) docker 이미지를 사용해서 릴리즈되는 안정 펌웨어에 사용할 GCC의 차기 버전을 테스트합니다. makefile target quick_check를 사용해서 px4_fmu-v4_default, px4_sitl_default을 컴파일하고 테스팅을 실행하고 코드 스타일을 검증합니다.

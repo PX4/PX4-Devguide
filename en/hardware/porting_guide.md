@@ -13,7 +13,7 @@ This guide is focused only on the host OS and middleware as the applications/fli
 In addition to the host operating system specific configuration files described below, there are several groups of configuration files for each board located throughout the code base:
 * Board startup and configuration files are located in: [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards).
   * This folder contains bus mappings, GPIO mappings, and the initialization code for each board.
-  * FMUv5 example: [src/drivers/boards/px4fmu-v5](https://github.com/PX4/Firmware/tree/master/src/drivers/boards/px4fmu-v5).
+  * FMUv5 example: [src/drivers/boards/px4fmu-v5](https://github.com/PX4/Firmware/tree/master/src/drivers/boards/px4fmu-v5). 
 * The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
 * The board specific build configurations are located in: [cmake/configs/](https://github.com/PX4/Firmware/blob/master/cmake/configs/).
 * Driver files are located in: [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers).
@@ -31,11 +31,11 @@ For all NuttX based flight controllers (e.g. the Pixhawk series) the OS is loade
 The configuration files for NuttX based boards, including linker scripts and other required settings are located under [platforms/nuttx/nuttx-configs](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/nuttx-configs).
 
 The following example uses FMUv5 as it is a recent [reference configuration](../debug/reference-design.md) for NuttX based flight controllers:
-* Running `make px4fmu-v5_default` from the `src/Firmware` directory will build the FMUv5 config
+* Running `make px4_fmu-v5_default` from the **Firmware** directory will build the FMUv5 config
 * The base FMUv5 configuration files are located in: [platforms/nuttx/nuttx-configs/px4fmu-v5](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/nuttx-configs/px4fmu-v5).
 * Board specific header: [platforms/nuttx/nuttx-configs/px4fmu-v5/include/board.h](https://github.com/PX4/Firmware/blob/master/platforms/nuttx/nuttx-configs/px4fmu-v5/include/board.h).
 * NuttX OS config (created with Nuttx menuconfig): [nuttx-configs/px4fmu-v5/nsh/defconfig](https://github.com/PX4/Firmware/blob/master/platforms/nuttx/nuttx-configs/px4fmu-v5/nsh/defconfig).
-* Build configuration: [cmake/configs/nuttx\_px4fmu-v5\_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v5_default.cmake).
+* Build configuration: [PX4/Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
 
 The function of each of these files, and perhaps more, will need to be duplicated for a new flight controller board.
 
@@ -43,8 +43,8 @@ The function of each of these files, and perhaps more, will need to be duplicate
 
 If you need to modify the NuttX OS configuration, you can do this via [menuconfig](https://bitbucket.org/nuttx/nuttx) using the PX4 shortcuts:
 ```sh
-make px4fmu-v5_default menuconfig
-make px4fmu-v5_default qconfig
+make px4_fmu-v5_default menuconfig
+make px4_fmu-v5_default qconfig
 ```
 
 For fresh installs of PX4 onto Ubuntu using [ubuntu_sim_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh) you will also need to install *kconfig* tools from [NuttX tools](https://bitbucket.org/nuttx/tools/src/master/).

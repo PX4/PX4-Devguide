@@ -23,7 +23,7 @@ PX4는 [reactive system](../concept/architecture.md)으로 pub/sub을 사용해�
   * OS 설정은 [nuttx-configs](https://github.com/PX4/Firmware/tree/master/nuttx-configs)에 있습니다. OS는 application 빌드의 일부로 로드됩니다.
   * PX4 미들웨어 설정은 [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards)에 있습니다. 여기에는 bus와 GPIO 매핑 그리고 보드 초기화 코드가 있습니다.
   * Driver는 [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)에 위치하고 있습니다.
-  * Reference config: 'make px4fmu-v4_default'를 실행하면 FMUv4 config를 빌드합니다. 현재 NuttX를 참조하는 설정입니다.
+  * Reference config: 'make px4_fmu-v4_default'를 실행하면 FMUv4 config를 빌드합니다. 현재 NuttX를 참조하는 설정입니다.
 
 ### QuRT / Hexagon
 

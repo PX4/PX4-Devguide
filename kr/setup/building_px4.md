@@ -1,92 +1,135 @@
-# PX4 Software 빌드하기
+# Building PX4 Software
 
-PX4는 콘솔이나 IDE 개발환경에서 빌드할 수 있습니다.
+PX4 can be built on the console or in an IDE, for both simulated and hardware targets. 
 
-## 소프트웨어 다운로드와 처음 빌드하기
+## Downloading PX4 Source Code {#get_px4_code}
 
-콘솔 환경을 이용해서 시뮬레이트 타겟용으로 처음 빌드를 해봅시다. 실제 하드웨어나 IDE에서 진행하기 전에 시스템 셋업이 제대로 되었는지를 확인할 수 있습니다.
+The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
 
-먼저 터미널 띄우기
-* OS X의 경우 ⌘-space를 누르고 'terminal' 찾기
-* Ubuntu의 경우, 런치바를 클릭하고 'terminal' 찾기
-* Windows의 경우, 시작 메뉴에서 PX4 폴더 찾은 후에 'PX4 Console' 클릭하기
+> **Tip** Forking the repository allows you to better manage your custom code. Later on you will be able to use *git* to share changes with the main project.
 
-PX4/Firmware 저장소를 clone하고 jMAVSim 타겟으로 빌드합니다. 아래와 같습니다. 숙련된 개발자는 [자신의 fork](https://help.github.com/articles/fork-a-repo/)를 clone합니다.
+The steps to fork and clone the project source code are:
 
+1. [Sign up](https://github.com/) to Github.
+1. Go to the [Firmware](https://github.com/PX4/Firmware) repository and click the **Fork** button near the upper right corner.
+   This will create and open the forked repository.
+
+   ![Github Fork button](../../assets/toolchain/github_fork.png)
+1. Copy the repository URL for your *Firmware* repository fork. The easiest way to do this is to click the **Clone or download** button and then copy the URL:
+
+   ![Github Clone or download button](../../assets/toolchain/github_clone_or_download.png)
+1. Open a command prompt/terminal on your computer
+   * On OS X, hit ⌘-space and search for 'terminal'. 
+   * On Ubuntu, click the launch bar and search for 'terminal'. 
+   * On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'. 
+1. Clone the repository fork using the copied URL. This will look something like:
+   ```
+   git clone https://github.com/<youraccountname>/Firmware.git
+   ```
+   
+   > **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown:
+   >  ```sh
+   >  git clone https://github.com/PX4/Firmware.git
+   >  ```
+   
+   Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). 
+   You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
+
+<span id="specific_version_source"></span>
+This will copy *most* of the *very latest* version of PX4 source code onto your computer 
+(the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
+
+> **Tip** To get the source for a *specific older release*, you could then:
+> ```sh
+>  # Navigate into Firmware directory
+>  cd Firmware
+>
+>  # list the releases (tags)
+>  git tag -l
+>  
+>  # Checkout code for particular tag (e.g. for tag 1.7.4beta)
+>  git checkout v1.7.4beta
+>  ```
+
+
+## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
+
+For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
+
+Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 ```sh
-mkdir -p ~/src
-cd ~/src
-git clone https://github.com/PX4/Firmware.git
-cd Firmware
-make posix jmavsim
+make px4_sitl jmavsim
 ```
 
-아래와 같이 PX4 콘솔이 뜨고:
+This will bring up the PX4 console below:
 
-![](../../assets/console_jmavsim.png)
+![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
 
-다음과 같이 입력하면 드론이 이륙:
+The drone can be flown by typing:
 ```sh
 pxh> commander takeoff
 ```
 
-![](../../assets/jmavsim_first_takeoff.png)
+![jMAVSim UI](../../assets/jmavsim_first_takeoff.png)
 
-**CTRL-C** 를 누르면 시뮬레이션과 시뮬레이션되는 flight code가 멈추게 됩니다. 시뮬레이션 셋업의 상세한 내용은 다음을 참고 : [jMAVSim Simulation](../simulation/jmavsim.md).
+The drone can be landed by typing `commander land` and the whole simulation can be stopped by doing **CTRL+C** (or by entering `shutdown`). 
 
-그라운드 컨트롤 스테이션으로 시뮬레이션 비행은 실제 비행체로 동작하는 것과 유사합니다. 비행체가 비행 중일때 지도에서 위치를 클릭하고 슬라이더를 활성화시킵니다. 이렇게 하면 비행체가 이동하게 됩니다.
+> **Tip** The simulation setup is documented in full detail here: [jMAVSim Simulation](../simulation/jmavsim.md).
 
-![](../../assets/qgc_goto.jpg)
+Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
+
+![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
 
-## NuttX / Pixhawk 기반 보드
+## NuttX / Pixhawk Based Boards
 
-### 빌드하기
+### Building {#building_nuttx}
 
-NuttX- 나 Pixhawk- 기반 보드용으로 빌드하기 위해서는 **Firmware** 디렉토리로 가서 여러분이 가진 보드에 적합한 빌드를 위해서 `make`를 호출합니다.
+To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board. 
 
-> **Note** 아래 예제에서 빌드 타겟 `px4fmu-v2`의 첫번째 부분은 autopilot 하드웨어 버전이고 `default`는 설정 이름입니다.(이경우 "default" 설정) PX4의 모든 빌드 타겟은 다음과 같은 로직을 따릅니다.
+> **Note** In the example below the first part of the build target `px4_fmu-v4` is the autopilot hardware version and `default` is the configuration name (in this case the "default" configuration). All PX4 build targets follow this logic).
 
-예제로 *Pixhawk 1* 용으로 빌드하는 경우 다음과 같은 명령을 사용:
+For example, to build for *Pixracer* you would use the following command:
 ```sh
 cd Firmware
-make px4fmu-v2_default
+make px4_fmu-v4_default
 ```
-성공적으로 실행되면 다음과 같이 출력:
+A successful run will end with similar output to:
 ```sh
-[100%] Linking CXX executable firmware_nuttx
-[100%] Built target firmware_nuttx
-Scanning dependencies of target build/firmware_px4fmu-v2
-[100%] Generating nuttx-px4fmu-v2-default.px4
-[100%] Built target build/firmware_px4fmu-v2
+-- Build files have been written to: /home/youruser/src/Firmware/build/px4_fmu-v4_default
+[954/954] Creating /home/youruser/src/Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
 ```
 
-보드들에 대한 빌드 명령 목록:
-* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default`
-* [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4fmu-v2_default`
-* [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4fmu-v2_default`
-* [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4fmu-v2_default`
-* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
-* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
-* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
-* [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make px4fmu-v4_default`
-* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4fmu-v3_default`
-* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4fmu-v4pro_default`
-* [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make crazyflie_default`
-* [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make aerofc-v1_default`
-* Pixhawk 4: `make px4fmu-v5_default`
-* [AUAV-X2 (Discontinued)](https://docs.px4.io/en/flight_controller/auav_x2.html): `make px4fmu-v2_default`
+The following list shows the build commands for common boards:
+* Pixhawk 4: `make px4_fmu-v5_default`
+* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4_fmu-v4_default`
+* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4_fmu-v4pro_default`
+* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4_fmu-v3_default`
+* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4_fmu-v3_default`
+* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4_fmu-v3_default` (supports 2MB Flash)
+* [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4_fmu-v2_default`
+* [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4_fmu-v2_default`
+* [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4_fmu-v2_default`
+* [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make airmind_mindpx-v2_default`
+* [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav_x21_default` 
+* [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make bitcraze_crazyflie_default`
+* [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make intel_aerofc-v1_default`
+* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default`
+  > **Warning** You **must** use a [supported version of GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware) to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. Building with an unsupported GCC may fail, as PX4 is close to the board's 1MB flash limit.
+* Pixhawk 1 with 2 MB flash: `make px4_fmu-v3_default`
+
+> **Note** Generally the `_default` suffix is optional (i.e. you can also build using `make px4_fmu-v4`, `make bitcraze_crazyflie`, etc.).
 
 
-### 펌웨어 업로드 (보드에 flash)
+### Uploading Firmware (Flashing the board)
 
-컴파일된 바이너리를 USB로 하드웨어에 업로드하기 위해 `upload`를 make 명령에 추가합니다.
+Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
 
 ```sh
-make px4fmu-v2_default upload
+make px4_fmu-v4_default upload
 ```
 
-성공적으로 실행되면 다음과 같이 출력:
+A successful run will end with this output:
 
 ```sh
 Erase  : [====================] 100.0%
@@ -97,60 +140,60 @@ Rebooting.
 [100%] Built target upload
 ```
 
-## 기타 보드들
+## Other Boards
 
-다음 보드들에 대해서 빌드와 배포는 좀더 복잡합니다.
+The following boards have more complicated build and/or deployment instructions.
 
+### Raspberry Pi 2/3 Boards
 
-### Raspberry Pi 2/3 보드
-아래 명령은 Raspbian용으로 타겟을 빌드합니다.
+The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 
-#### 크로스-컴파일러 빌드
+#### Cross-compiler Build
 
 ```sh
 cd Firmware
-make posix_rpi_cross # for cross-compiler build
+make emlid_navio2_cross # for cross-compiler build
 ```
 
-build/posix_rpi_cross/src/firmware/posix 디렉토리에 실행가능한 "px4" 파일이 있습니다.
-RPi를 ssh로 연결할 수 있는지 확인합니다. [RPi에 접근하는 방법](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start)를 참고합니다.
+The "px4" executable file is in the directory **build/emlid_navio2_cross/**.
+Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
-다음으로 RPi의 IP(혹은 hostname)를 다음과 같이 설정 :
+Then set the IP (or hostname) of your RPi using:
 
 ```sh
 export AUTOPILOT_HOST=192.168.X.X
 ```
 
-그리고 upload :
+And upload it with:
 
 ```sh
 cd Firmware
-make posix_rpi_cross upload # for cross-compiler build
+make emlid_navio2_cross upload # for cross-compiler build
 ```
 
-다음으로 ssh에서 연결하고 root 권한으로 실행 :
+Then, connect over ssh and run it with (as root):
 
 ```sh
-sudo ./px4 px4.config
+sudo ./bin/px4 -s px4.config
 ```
 
-#### Native build
+#### Native Build
 
-Pi에서 *직접* 빌드를 하는 경우에 native build target(posix_rpi_native)이 필요합니다.
+If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
 
 ```sh
 cd Firmware
-make posix_rpi_native # for native build
+make emlid_navio2_native # for native build
 ```
 
-build/posix_rpi_native/src/firmware/posix 디렉토리에 실행가능한 "px4" 파일이 있습니다.
-직접 실행하기 :
+The "px4" executable file is in the directory **build/emlid_navio2_native/**.
+Run it directly with:
 
 ```sh
-sudo ./build/posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
+sudo ./build/emlid_navio2_native/px4 ./posix-configs/rpi/px4.config 
 ```
 
-px4 실행이 성공적으로 되면 다음과 같은 메시지가 나옵니다 :
+A successful build followed by executing px4 will give you something like this:
 
 ```sh
 
@@ -167,78 +210,82 @@ px4 starting.
 pxh>
 ```
 
-#### 자동시작
-px4 자동구동시키려면 `/etc/rc.local` 파일에 다음을 추가합니다.(native build를 사용하고 있다면 적절히 수정) 위치는 `exit 0` 바로 직전입니다. :
+#### Autostart
+
+To autostart px4, add the following to the file **/etc/rc.local** (adjust it
+accordingly if you use native build), right before the `exit 0` line:
+```sh
+cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 ```
-cd /home/pi && ./px4 -d px4.config > px4.log
-```
 
 
-### 패롯 비밥
+### Parrot Bebop
 
-Bebop 지원은 아직 초기 단계로 주의해서 사용해야 합니다.
+Support for the [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.html) is at an early stage and should be used very carefully.
 
-#### 빌드하기
+#### Build
+
 ```sh
 cd Firmware
-make posix_bebop_default
+make parrot_bebop_default
 ```
 
-Bebop을 켜고 호스트 머신을 Bebop의 wifi와 연결합니다. 다음으로 파워 버튼을 4번 눌러서 ADB를 활성화 시키고 telnet daemon을 구동시킵니다.
+Turn on your Bebop and connect your host machine with the Bebop's wifi. 
+Then, press the power button
+four times to enable ADB and to start the telnet daemon.
 
 ```sh
-make posix_bebop_default upload
+make parrot_bebop_default upload
 ```
 
-이렇게 하면 PX4 mainapp을 /usr/bin에 업로드시키고 /home/root/parameters가 없다면 이를 생성합니다. 추가로 Bebop의 mixer 파일과 px4.config가 필요합니다. 현재 이 두 파일은 다음 명령을 통해 수동으로 복사합니다.
-```sh
-adb connect 192.168.42.1:9050
-adb push ROMFS/px4fmu_common/mixers/bebop.main.mix /home/root
-adb push posix-configs/bebop/px4.config /home/root
-adb disconnect
-```
+This will upload the PX4 mainapp into /data/ftp/internal_000/ and create the file /home/root/parameters if not already
+present. This also uploads the mixer file and the px4.config file into the /home/root/ directory.
 
-#### 실행하기
-Bebop의 wifi에 연결하고 파워 버튼을 4번 누릅니다. 다음으로 Bebop에 telnet이나 adb sehll로 연결하고 아래 명령을 실행합니다.
+#### Run
+Connect to the Bebop's wifi and press the power button four times. 
+Next,
+connect with the Bebop via telnet or adb shell and run the commands bellow.
 
 ```sh
 telnet 192.168.42.1
 ```
 
-Bebop의 원래 드라이버를 kill 하기 :
+Kill the Bebop's proprietary driver with
 ```sh
 kk
 ```
-
-그리고 PX4 mainapp을 구동시키기 :
+and start the PX4 mainapp with:
 ```sh
-px4 /home/root/px4.config
+/data/ftp/internal_000/px4 -s /home/root/px4.config
 ```
 
-Bebop을 날리기 위해서는 호스트 머신에 조이스틱 장치를 연결하고 QGroundControl를 시작합니다. Bebop과 조이스틱 둘다 인식되어야 합니다. 지시를 따라서 센서를 칼리브레이션하고 조이스틱 장치를 셋업합니다.
+In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both,
+the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors
+and setup your joystick device.
 
-#### 자동시작
+#### Autostart
 
-비밥에서 부팅시에 자동으로 PX4를 시작되게 하려면, init 스크립트 `/etc/init.d/rcS_mode_default`를 수정해야합니다. 다음 라인을 커맨트 처리합니다 :
+To auto-start PX4 on the Bebop at boot, modify the init script `/etc/init.d/rcS_mode_default`. Comment the following line:
 ```
 DragonStarter.sh -out2null &
 ```
-다음으로 교체합니다:
+Replace it with:
 ```
-px4 -d /home/root/px4.config > /home/root/px4.log
+echo 1 > /sys/class/gpio/gpio85/value # enables the fan
+/data/ftp/internal_000/px4 -d -s /home/root/px4.config > /home/root/px4.log &
 ```
 
-위에서 설명한 것처럼 파워 버튼을 4번 눌러서 adb server를 활성화시키고 adb server에 연결합니다. :
+Enable adb server by pressing the power button 4 times and connect to adb server as described before:
 ```sh
 adb connect 192.168.42.1:9050
 ```
-쓰기가 가능하도록 시스템 파티션을 다시 마운트시킵니다 :
+Re-mount the system partition as writeable:
 ```sh
 adb shell mount -o remount,rw /
 ```
-파일을 수동으로 수정하는 것을 막기 위해서 다음을 사용할 수 있습니다: https://gist.github.com/mhkabir/b0433f0651f006e3c7ac4e1cbd83f1e8
+In order to avoid editing the file manually, you can use this one : https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
 
-원본을 저장하고 비밥에 집어 넣습니다.
+Save the original one and push this one to the Bebop
 ```sh
 adb shell cp /etc/init.d/rcS_mode_default /etc/init.d/rcS_mode_default_backup
 adb push rcS_mode_default /etc/init.d/
@@ -251,75 +298,77 @@ adb shell reboot
 
 ### OcPoC-Zynq Mini
 
-[OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html)에 관련된 빌드 :
-* [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 사용자 가이드)
-* [OcPoC PX4 Setup 페이지](https://aerotenna.readme.io/docs/px4-setup)
+Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html) are covered in:
+* [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
+* [OcPoC PX4 Setup Page](https://aerotenna.readme.io/docs/px4-setup)
 
 
-### QuRT / Snapdragon 기반 보드
+### QuRT / Snapdragon Based Boards
 
-#### 빌드하기
+This section shows how to build for the [Qualcomm Snapdragon Flight](https://docs.px4.io/en/flight_controller/snapdragon_flight.html).
 
-NOTE: [Qualcomm ESC 보드](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-기반)을 사용하고 있다면, [여기](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md) 지시를 참고하세요. 일반 PWM 기반 ESC 보드를 사용하는 경우에는 이 페이지의 내용을 계속 따라하면 됩니다.
+#### Build
 
-아래 명령으로 Linux와 DSP쪽에 대해서 타겟을 빌드합니다. 실행되면 [muORB](../middleware/uorb.md)를 통해 서로 통신합니다.
+> **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
+
+The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](../middleware/uorb.md).
 
 ```sh
 cd Firmware
-make eagle_default
+make atlflight_eagle_default
 ```
 
-장치에 SW를 로드하기 위해서 USB 케이블을 연결하고 장치가 부팅되는지 확인합니다. 새로운 터미널에서 이를 실행합니다 :
+To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
 
 ```sh
 adb shell
 ```
 
-이전 터미널로 돌아가서 업로드 :
+Go back to previous terminal and upload:
 
 ```sh
-make eagle_default upload
+make atlflight_eagle_default upload
 ```
 
-[mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) 와 [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) 2개 설정 파일을 장치로 복사하게 됩니다. 장치에 있는 시작 스크립트를 직접 수정하고자 한다면 이 파일들은 /usr/share/data/adsp/px4.config 와 /home/linaro/mainapp.config 내에 각각 저장되어 있습니다.
+Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle. 
 
-믹서는 현재 수동으로 복사해야 합니다:
+The mixer currently needs to be copied manually:
 
 ```sh
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 ```
 
-#### 실행하기
+#### Run
 
-DSP 디버그 모니터 실행:
+Run the DSP debug monitor:
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
-Note: Mac에서는 [nano-dm](https://github.com/kevinmehall/nano-dm)를 사용할 수 있습니다.
+Note: alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
 
-ADB 쉘로 돌아가서 px4를 실행:
+Go back to ADB shell and run px4:
 
 ```sh
 cd /home/linaro
 ./px4 mainapp.config
 ```
 
-px4는 USB 케이블 연결을 끊자마자 멈추게 됩니다.(혹은 ssh 세션이 종료되거나) 비행을 위해서 px4가 부팅뒤에 자동으로 시작되도록 해야 합니다.
+Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
 
-#### 자동시작
+#### Autostart
 
-Snapdragon가 부팅되고 px4를 실행시키려면 `rc.local`에 시작시키는 부분을 추가할 수 있습니다 :
+To run the px4 as soon as the Snapdragon has booted, you can add the startup to `rc.local`:
 
-아니면 Snapdragon에 직접 `/etc/rc.local`을 수정:
+Either edit the file `/etc/rc.local` directly on the Snapdragon:
 
 ```sh
 adb shell
 vim /etc/rc.local
 ```
 
-이 파일을 여러분의 컴퓨터에 복사하고 수정한 후에 다시 복사:
+Or copy the file to your computer, edit it locally, and copy it back:
 
 ```sh
 adb pull /etc/rc.local
@@ -327,7 +376,7 @@ gedit rc.local
 adb push rc.local /etc/rc.local
 ```
 
-자동 시작을 위해서 `exit 0`전에 다음 라인을 추가합니다 :
+For the auto-start, add the following line before `exit 0`:
 
 ```sh
 (cd /home/linaro && ./px4 mainapp.config > mainapp.log)
@@ -335,34 +384,34 @@ adb push rc.local /etc/rc.local
 exit 0
 ```
 
-`rc.local`가 실행되는지 확인:
+Make sure that the `rc.local` is executable:
 
 ```sh
 adb shell
 chmod +x /etc/rc.local
 ```
 
-다음으로 Snapdragon을 리부팅:
+Then reboot the Snapdragon:
 
 ```sh
 adb reboot
 ```
 
-## IDE에서 컴파일하기
+## Compiling in a Graphical IDE
 
-PX4 시스템은 Qt Creator, Eclipse, Sublime Text를 지원합니다. Qt Creator가 가장 사용자를 위한 기능이 많아서 유일하게 공식적으로 지원하는 IDE입니다. Eclipse와 Sublime의 경우 전문가가 아니라면 사용하기 쉽지 않습니다. 하드코어 사용자는 [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project)와 [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project)를 소스 트리에서 찾을 수 있습니다.
+The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
-## Qt Creator 기능
+## Qt Creator Functionality
 
-Qt creator는 클릭가능한 심볼, 자동완성기능, 빌드, 펌웨어 flash 기능을 제공합니다.
+Qt creator offers clickable symbols, auto-completion of the complete codebase and building and flashing firmware.
 
 ![](../../assets/toolchain/qtcreator.png)
 
-### Qt Creator (리눅스에서)
+### Qt Creator on Linux
 
-Qt Creator를 시작하기 전에, [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator)이 있어야 합니다. :
+Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
 
 ```sh
 cd ~/src/Firmware
@@ -371,25 +420,26 @@ cd ../Firmware-build
 cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 ```
 
-File -> Open File나 Project -> Select CMakeLists.txt를 통해서 root 펌웨어 폴더에 있는 CMakeLists.txt 파일을 로드합니다.
+Then load the CMakeLists.txt in the root firmware folder via **File > Open File or Project** (Select the CMakeLists.txt file).
 
-로딩을 마치면 'play' 버튼으로 프로젝트를 실행하도록 설정할 수 있습니다. 설정하는 방법은 run target configuration에서 'custom executable'을 선택하고 'make'를 실행하면서 'upload'을 인자로 입력합니다.
+After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
-### Qt Creator (윈도우즈에서)
+### Qt Creator on Windows
 
-> ** 아직 Windows에서는 Qt Creator를 테스트하지 않았습니다. **
+> **Note** Windows has not been tested for PX4 development with Qt Creator.
 
-### Qt Creator (Mac OS에서)
 
-Qt Creator를 시작하기 전에, [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator)이 필요합니다. :
+### Qt Creator on Mac OS
+
+Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
 
 ```sh
 cd ~/src/Firmware
-mkdir build/creator
+mkdir -p build/creator
 cd build/creator
-cmake .. -G "CodeBlocks - Unix Makefiles"
+cmake ../.. -G "CodeBlocks - Unix Makefiles"
 ```
 
-이게 끝났습니다! Qt Creator를 구동시키고 아래 비디오를 참고하여 프로젝트를 빌드하기 위한 단계를 완료합니다.
+That's it! Start *Qt Creator*, then complete the steps in the video below to set up the project to build.
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}

@@ -76,12 +76,10 @@ PX4 SITL使用Gazebo仿真软件，但不依赖ROS。但是也可以像普通飞
 
 ```sh
 cd ~/src/Firmware
-make posix_sitl_default gazebo
+make px4_sitl_default gazebo
 ```
 
 ### 四旋翼带光流模块
-
-<div class="host-code"></div>
 
 ```sh
 cd ~/src/Firmware
@@ -108,7 +106,7 @@ make posix gazebo_plane
 ### 标准垂直起降飞机
 
 ```sh
-make posix_sitl_default gazebo_standard_vtol
+make px4_sitl_default gazebo_standard_vtol
 ```
 
 ![](../../assets/gazebo/standard_vtol.png)
@@ -116,7 +114,7 @@ make posix_sitl_default gazebo_standard_vtol
 ### 立式垂直起降
 
 ```sh
-make posix_sitl_default gazebo_tailsitter
+make px4_sitl_default gazebo_tailsitter
 ```
 
 ![](../../assets/gazebo/tailsitter.png)
@@ -194,7 +192,7 @@ make posix gazebo
 ### 如何使用
 * 通过终端运行gazebo（或任何其他模拟器）服务器(server)和客户端(client)查看器：
 ```
-make posix_sitl_default gazebo_none_ide
+make px4_sitl_default gazebo_none_ide
 ```
 * 在您的IDE中选择您要调试的px4_ <mode>目标（例如`px4_iris`）
 * 直接从IDE启动调试会话(session)
