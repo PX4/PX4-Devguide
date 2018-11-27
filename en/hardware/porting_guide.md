@@ -10,12 +10,14 @@ This guide is focused only on the host OS and middleware as the applications/fli
 
 ## Flight Controller Configuration File Layout
 
-In addition to the host operating system specific configuration files described below, there are several groups of configuration files for each board located throughout the code base:
-* Board startup and configuration files are located in: [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards).
-  * This folder contains bus mappings, GPIO mappings, and the initialization code for each board.
-  * FMUv5 example: [src/drivers/boards/px4fmu-v5](https://github.com/PX4/Firmware/tree/master/src/drivers/boards/px4fmu-v5). 
+Board startup and configuration files are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in each board's vendor-specific directory (i.e. **boards/_VENDOR_/_MODEL_/**)).
+
+For example, for FMUv5:
+* (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5). 
+* Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
+  
+In addition there are several groups of configuration files for each board located throughout the code base:
 * The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
-* The board specific build configurations are located in: [cmake/configs/](https://github.com/PX4/Firmware/blob/master/cmake/configs/).
 * Driver files are located in: [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers).
 
 ## Host Operating System Configuration
@@ -28,13 +30,13 @@ In order to port PX4 on NuttX to a new hardware target, that hardware target mus
 
 For all NuttX based flight controllers (e.g. the Pixhawk series) the OS is loaded as part of the application build.
 
-The configuration files for NuttX based boards, including linker scripts and other required settings are located under [platforms/nuttx/nuttx-configs](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/nuttx-configs).
+The configuration files for all boards, including linker scripts and other required settings, are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in a vendor- and board-specific directory (i.e. **boards/_VENDOR_/_MODEL_/**)).
 
 The following example uses FMUv5 as it is a recent [reference configuration](../debug/reference-design.md) for NuttX based flight controllers:
 * Running `make px4_fmu-v5_default` from the **Firmware** directory will build the FMUv5 config
-* The base FMUv5 configuration files are located in: [platforms/nuttx/nuttx-configs/px4fmu-v5](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/nuttx-configs/px4fmu-v5).
-* Board specific header: [platforms/nuttx/nuttx-configs/px4fmu-v5/include/board.h](https://github.com/PX4/Firmware/blob/master/platforms/nuttx/nuttx-configs/px4fmu-v5/include/board.h).
-* NuttX OS config (created with Nuttx menuconfig): [nuttx-configs/px4fmu-v5/nsh/defconfig](https://github.com/PX4/Firmware/blob/master/platforms/nuttx/nuttx-configs/px4fmu-v5/nsh/defconfig).
+* The base FMUv5 configuration files are located in: [[/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5).
+* Board specific header: [/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h). 
+* NuttX OS config (created with Nuttx menuconfig): [/boards/px4/fmu-v5/nuttx-config/nsh/defconfig](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/nsh/defconfig).
 * Build configuration: [PX4/Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
 
 The function of each of these files, and perhaps more, will need to be duplicated for a new flight controller board.
