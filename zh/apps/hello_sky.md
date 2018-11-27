@@ -132,10 +132,10 @@ In this section we create a *minimal application* that just prints out `Hello Sk
 
 The application is now complete. In order to run it you first need to make sure that it is built as part of PX4. Applications are added to the build/firmware in the appropriate board-level *cmake* file for your target:
 
-* Posix SITL (Simulator): [Firmware/cmake/configs/posix_sitl_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_sitl_default.cmake)
-* Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
-* Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
-* *cmake* files for other boards can be found in [Firmware/cmake/configs/](https://github.com/PX4/Firmware/blob/master/cmake/configs/)
+* PX4 SITL (Simulator): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
+* Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
+* Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
+* *cmake* files for other boards can be found in [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)
 
 To enable the compilation of the application into the firmware create a new line for your application somewhere in the *cmake* file:
 
@@ -146,9 +146,9 @@ To enable the compilation of the application into the firmware create a new line
 
 Build the example using the board-specific command:
 
-* jMAVSim Simulator: `make posix_sitl_default jmavsim`
-* Pixhawk v1/2: `make px4fmu-v2_default`
-* Pixhawk v3: `make px4fmu-v4_default`
+* jMAVSim Simulator: `make px4_sitl_default jmavsim`
+* Pixhawk v1/2: `make px4_fmu-v2_default` (or just `make px4_fmu-v2`)
+* Pixhawk v3: `make px4_fmu-v4_default`
 * Other boards: [Building the Code](../setup/building_px4.md#building_nuttx)
 
 ## Test App (Hardware)
@@ -157,8 +157,8 @@ Build the example using the board-specific command:
 
 Enable the uploader and then reset the board:
 
-* Pixhawk v1/2: `make px4fmu-v2_default upload`
-* Pixhawk v3: `make px4fmu-v4_default upload`
+* Pixhawk v1/2: `make px4_fmu-v2_default upload`
+* Pixhawk v3: `make px4_fmu-v4_default upload`
 
 It should print before you reset the board a number of compile messages and at the end:
 
