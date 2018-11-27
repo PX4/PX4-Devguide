@@ -21,7 +21,7 @@ On Posix, the system shell is used as script interpreter (e.g. /bin/sh, being sy
 
 The modules can be executed from any terminal when PX4 is already running on a system. For example:
 
-    cd <Firmware>/build/posix_sitl_default/bin
+    cd <Firmware>/build/px4_sitl_default/bin
     ./px4-commander takeoff
     ./px4-listener sensor_accel
     
