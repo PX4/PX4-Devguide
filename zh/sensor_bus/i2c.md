@@ -21,7 +21,7 @@ To include a driver in firmware you must add the driver to the [cmake config fil
     drivers/sf1xx
     
 
-> **Tip** For example, you can see/search for this driver in the [px4fmu-v4_default](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake) configuration.
+> **Tip** For example, you can see/search for this driver in the [px4_fmu-v4_default](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake) configuration.
 
 ## I2C Driver Examples
 
