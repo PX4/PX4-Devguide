@@ -39,25 +39,25 @@ The easiest way to do this is to open a terminal in the root directory of the PX
 
 <span></span>
 
-> **Tip** For the full list of build targets run `make posix list_vmd_make_targets` (and filter on those that start with `gazebo_`).
+> **Tip** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
 
 ### Quadrotor
 
 ```sh
 cd ~/src/Firmware
-make px4_sitl_default gazebo
+make px4_sitl gazebo
 ```
 
 ### Quadrotor with Optical Flow
 
 ```sh
-make posix gazebo_iris_opt_flow
+make px4_sitl gazebo_iris_opt_flow
 ```
 
 ### 3DR Solo
 
 ```sh
-make posix gazebo_solo
+make px4_sitl gazebo_solo
 ```
 
 ![3DR Solo in Gazebo](../../assets/gazebo/solo.png)
@@ -65,7 +65,7 @@ make posix gazebo_solo
 ### Standard Plane
 
 ```sh
-make posix gazebo_plane
+make px4_sitl gazebo_plane
 ```
 
 ![Plane in Gazebo](../../assets/gazebo/plane.png)
@@ -73,7 +73,7 @@ make posix gazebo_plane
 ### Standard VTOL
 
 ```sh
-make px4_sitl_default gazebo_standard_vtol
+make px4_sitl gazebo_standard_vtol
 ```
 
 ![Standard VTOL in Gazebo](../../assets/gazebo/standard_vtol.png)
@@ -81,7 +81,7 @@ make px4_sitl_default gazebo_standard_vtol
 ### Tailsitter VTOL
 
 ```sh
-make px4_sitl_default gazebo_tailsitter
+make px4_sitl gazebo_tailsitter
 ```
 
 ![Tailsitter VTOL in Gazebo](../../assets/gazebo/tailsitter.png)
@@ -89,7 +89,7 @@ make px4_sitl_default gazebo_tailsitter
 ### Ackerman vehicle (UGV/Rover) {#ugv}
 
 ```sh
-make posix gazebo_rover
+make px4_sitl gazebo_rover
 ```
 
 ![Rover in Gazebo](../../assets/gazebo/rover.png)
@@ -97,7 +97,7 @@ make posix gazebo_rover
 ### HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#uuv}
 
 ```sh
-make px4_sitl_default gazebo_hippocampus
+make px4_sitl gazebo_hippocampus
 ```
 
 ![Submarine/UUV](../../assets/gazebo/hippocampus.png)
@@ -148,7 +148,7 @@ Gazebo can be run in a *headless* mode in which the Gazebo UI is not launched. T
 Simply prefix the normal *make* command with `HEADLESS=1` as shown:
 
 ```bash
-HEADLESS=1 make posix gazebo_plane
+HEADLESS=1 make px4_sitl gazebo_plane
 ```
 
 ### Set Custom Takeoff Location
@@ -162,7 +162,7 @@ As an example:
     export PX4_HOME_LAT=28.452386
     export PX4_HOME_LON=-13.867138
     export PX4_HOME_ALT=28.5
-    make posix gazebo
+    make px4_sitl gazebo
     
 
 ### Using a Joystick
@@ -177,7 +177,7 @@ GPS noise is enabled if the target vehicle's SDF file contains a value for the `
 
 To enable/disable GPS noise:
 
-1. Build any gazebo target in order to generate SDF files (for all vehicles). For example: ```make px4_sitl_default gazebo_iris``` > **Tip** The SDF files are not overwritten on subsequent builds. 
+1. Build any gazebo target in order to generate SDF files (for all vehicles). For example: ```make px4_sitl gazebo_iris``` > **Tip** The SDF files are not overwritten on subsequent builds. 
 2. Open the SDF file for your target vehicle (e.g. **./Tools/sitl_gazebo/models/iris/iris.sdf**).
 3. Search for the `gpsNoise` element: 
         xml
@@ -199,7 +199,7 @@ In addition to the existing cmake targets that run `sitl_run.sh` with parameters
 
 To start Gazebo and PX4 separately:
 
-* Run gazebo (or any other sim) server and client viewers via the terminal: ```make px4_sitl_default gazebo_none_ide```
+* Run gazebo (or any other sim) server and client viewers via the terminal: ```make px4_sitl gazebo_none_ide```
 * In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
 * Start the debug session directly from IDE
 
@@ -230,7 +230,7 @@ Enable the *GStreamer Plugin* (if disabled) by changing the `BUILD_GSTREAMER_PLU
 Once the plugin is enabled you can run SITL with Gazebo in the normal way:
 
     make clean
-    make posix gazebo_typhoon_h480
+    make px4_sitl gazebo_typhoon_h480
     
 
 ### How to View Gazebo Video
@@ -283,7 +283,7 @@ To enable the button:
 3. Rebuild SITL:
     
         make clean
-        make posix gazebo_typhoon_h480
+        make px4_sitl gazebo_typhoon_h480
         
 
 ## Extending and Customizing
