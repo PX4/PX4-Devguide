@@ -37,14 +37,6 @@ make px4_sitl_default jmavsim___lldb
 make px4_sitl_default gazebo
 make px4_sitl_default gazebo___gdb
 make px4_sitl_default gazebo___lldb
-
-make posix_sitl_lpe jmavsim
-make posix_sitl_lpe jmavsim___gdb
-make posix_sitl_lpe jmavsim___lldb
-
-make posix_sitl_lpe gazebo
-make posix_sitl_lpe gazebo___gdb
-make posix_sitl_lpe gazebo___lldb
 ```
 
 마지막 parameter에 &lt;viewer\_model\_debugger&gt; 3개가 들어갑니다.(밑줄 3개는 기본으로 &#39;iris&#39; 모델을 의미)
@@ -79,14 +71,14 @@ libsystem_kernel.dylib`__read_nocancel:
 마지막 파라미터 &lt;viewer\_model\_debugger&gt; 3개는 실제로 빌드 디렉토리에 있는 make로 전달됩니다. 따라서
 
 ```sh
-make posix_sitl_lpe jmavsim___gdb
+make px4_sitl_default jmavsim___gdb
 ```
 
 는 다음과 동일합니다.
 
 ```sh
-make posix_sitl_lpe	# Configure with cmake
-make -C build/posix_sitl_lpe jmavsim___gdb
+make px4_sitl_default	# Configure with cmake
+make -C build/px4_sitl_default jmavsim___gdb
 ```
 
 빌드 디렉토리에서 make target 가능한 모든 목록을 보고 싶다면 :
