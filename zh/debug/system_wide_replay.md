@@ -69,13 +69,13 @@ unset replay
 
 This is a specialization of the system-wide replay for fast EKF2 replay. It will automatically create the ORB publisher rules and works as following:
 
-- Optionally set`SDLOG_MODE` to 1 to start logging from boot
+- Optionally set `SDLOG_MODE` to 1 to start logging from boot
 - Record the log
 - To replay:
 
     export replay_mode=ekf2
     export replay=<abs_path_to_log.ulg>
-    make posix none
+    make px4_sitl none
     
 
 You can stop it after there's an output like:
@@ -88,7 +88,7 @@ The parameters can be adjusted as well. They can be extracted from the log with 
     ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
     
 
-Then edit the parameters in the file as needed and restart the replay process with `make posix none`. This will create a new log file.
+Then edit the parameters in the file as needed and restart the replay process with `make px4_sitl none`. This will create a new log file.
 
 The location of the generated log is printed with a message like this:
 
