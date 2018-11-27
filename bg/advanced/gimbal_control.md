@@ -8,7 +8,7 @@ PX4 contains a generic mount/gimbal control driver with different input and outp
 
 [These parameters](../advanced/parameter_reference.md#mount) are used to setup the mount driver. The most important ones are the input (`MNT_MODE_IN`) and the output (`MNT_MODE_OUT`) mode. By default, the input is disabled and the driver does not run. After selecting the input mode, reboot the vehicle so that the mount driver starts.
 
-If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from mavlink to RC, a large stick motion is required.
+If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from MAVLink to RC, a large stick motion is required.
 
 ## AUX output
 
@@ -49,7 +49,7 @@ A basic basic mixer configuration for a mount is shown below.
 
 The Typhoon H480 model comes with a preconfigured simulated gimbal. To run it, use:
 
-    make posix gazebo_typhoon_h480
+    make px4_sitl gazebo_typhoon_h480
     
 
 To just test the mount driver on other models or simulators, make sure the driver runs, using `vmount start`, then configure its parameters.
@@ -60,7 +60,7 @@ The driver provides a simple test command - it needs to be stopped first with `v
 
 Start the simulation with (no parameter needs to be changed for that):
 
-    make posix gazebo_typhoon_h480
+    make px4_sitl gazebo_typhoon_h480
     
 
 Make sure it's armed, eg. with `commander takeoff`, then use for example
