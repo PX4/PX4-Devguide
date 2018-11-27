@@ -107,14 +107,14 @@ unset replay
 This is a specialization of the system-wide replay for fast EKF2 replay. It will
 automatically create the ORB publisher rules and works as following:
 
-* Optionally set`SDLOG_MODE` to 1 to start logging from boot
+* Optionally set `SDLOG_MODE` to 1 to start logging from boot
 * Record the log
 * To replay:
 
 ```
 export replay_mode=ekf2
 export replay=<abs_path_to_log.ulg>
-make posix none
+make px4_sitl none
 ```
 
 You can stop it after there's an output like:
@@ -123,14 +123,13 @@ You can stop it after there's an output like:
 INFO  [replay] Replay done (published 9917 msgs, 2.136 s)
 ```
 
-The parameters can be adjusted as well. They can be extracted from the log with
-\(install pyulog with `sudo pip install pyulog` first\):
+The parameters can be adjusted as well. They can be extracted from the log with \(install pyulog with `sudo pip install pyulog` first\):
 
 ```
 ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
 ```
-Then edit the parameters in the file as needed and restart the replay process
-with `make posix none`. This will create a new log file.
+Then edit the parameters in the file as needed and restart the replay process with `make px4_sitl none`. 
+This will create a new log file.
 
 The location of the generated log is printed with a message like this:
 
@@ -147,19 +146,12 @@ Replay is split into 3 components:
 - ORB publisher rules
 - time handling
 
-The replay module reads the log and publishes the messages with the same speed
-as they were recorded. A constant offset is added to the timestamp of each
-message to match the current system time (this is the reason why all other
-timestamps need to be relative). The command `replay tryapplyparams` is executed
-before all other modules are loaded and applies the parameters from the log and
-user-set parameters. Then as the last command, `replay trystart` will again
-apply the parameters and start the actual replay. Both commands do nothing if
-the environment variable `replay` is not set.
+The replay module reads the log and publishes the messages with the same speed as they were recorded. 
+A constant offset is added to the timestamp of each message to match the current system time (this is the reason why all other timestamps need to be relative). 
+The command `replay tryapplyparams` is executed before all other modules are loaded and applies the parameters from the log and user-set parameters. 
+Then as the last command, `replay trystart` will again apply the parameters and start the actual replay. 
+Both commands do nothing if the environment variable `replay` is not set.
 
-
-The ORB publisher rules allow to select which part of the system is replayed, as
-described above. They are only compiled for the posix SITL targets.
-
+The ORB publisher rules allow to select which part of the system is replayed, as described above. They are only compiled for the posix SITL targets.
 
 The **time handling** is still an **open point**, and needs to be implemented.
-

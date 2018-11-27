@@ -69,7 +69,7 @@ The new uORB messages can be used like any other uORB message as described [here
 
 ## Building External Modules and uORB Messages {#building}
 
-Execute `make posix EXTERNAL_MODULES_LOCATION=<path>`.
+Execute `make px4_sitl EXTERNAL_MODULES_LOCATION=<path>`.
  
 Any other build target can be used, but the build directory must not yet exist. 
 If it already exists, you can also just set the *cmake* variable in the build folder.

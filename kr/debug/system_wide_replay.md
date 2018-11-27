@@ -19,7 +19,7 @@ ORB 메시지를 바탕으로 시스템 특정 부분의 동작을 기록하고 
 export replay=<absolute_path_to_log_file.ulg>
 make px4_sitl_default
 ```
-  여기서는 `build/px4_sitl_default_replay`라는 별도의 빌드 디렉토리에 결과물을 생성합니다. (이 파라미터는 일반 빌드에 영향을 주지 않음) 재연을 위해 posix SITL build target을 선택하는 것이 가능합니다. 빌드 시스템은 `replay` 환경변수를 통해 현재 재연 모드에 있는지 알 수 있습니다.
+  여기서는 `build/px4_sitl_default_replay`라는 별도의 빌드 디렉토리에 결과물을 생성합니다. (이 파라미터는 일반 빌드에 영향을 주지 않음) 재연을 위해 PX4 SITL build target을 선택하는 것이 가능합니다. 빌드 시스템은 `replay` 환경변수를 통해 현재 재연 모드에 있는지 알 수 있습니다.
 - ORB publisher rule 파일을
   `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules`에 추가합니다.
   이 파일은 어떤 모듈이 어떤 메시지를 publish하도록 허용하는지 정의합니다.
@@ -79,7 +79,7 @@ unset replay
 ```
 export replay_mode=ekf2
 export replay=<abs_path_to_log.ulg>
-make posix none
+make px4_sitl none
 ```
 
 다음과 같은 output이 있고나서 정지할 수 있습니다 :
@@ -93,7 +93,7 @@ INFO  [replay] Replay done (published 9917 msgs, 2.136 s)
 ```
 ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
 ```
-다음으로는 필요하면 파일에 있는 파라미터를 수정하고 `make posix none`로 replay 프로세스를 재시작합니다. 이렇게하면 새로운 로그 파일이 생성됩니다.
+다음으로는 필요하면 파일에 있는 파라미터를 수정하고 `make px4_sitl none`로 replay 프로세스를 재시작합니다. 이렇게하면 새로운 로그 파일이 생성됩니다.
 
 생성한 로그의 위치는 다음과 같이 메시지와 함께 출력 :
 
@@ -112,6 +112,6 @@ Replay는 3개 컴포넌트로 분리 :
 
 replay 모듈은 log를 읽고 record될 때와 동일한 속도로 message를 publish 합니다. 일정한 offset을 각 message의 timestamp에 추가하여 현재 system time과 매치(모든 timestamp가 상대적인 값인 이유)시킵니다. `replay tryapplyparams` 명령은 다른 모든 module들이 load되기 전에 실행해야하며 log에 있는 parameter와 user-set parameter를 적용합니다. 다음으로 마지막 명령 `replay trystart`은 다시 parameter를 적용하고 실제 replay를 시작시킵니다. 이 두가지 명령 모두 환경변수 `replay`가 설정되어 있지 않으면 아무런 일도 수행하지 않습니다.
 
-ORB publisher rule은 위에 설명한 것처럼 system의 어느 부분이 replay될 것인지 선택합니다. posix SITL target에서만 컴파일됩니다.
+ORB publisher rule은 위에 설명한 것처럼 system의 어느 부분이 replay될 것인지 선택합니다. PX4 SITL target에서만 컴파일됩니다.
 
 **time 처리** 는 향후 구현이 필요합니다.

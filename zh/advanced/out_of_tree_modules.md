@@ -38,4 +38,4 @@ px4_add_module(
 
 ```
 
-- 执行 `make posix EXTERNAL_MODULES_LOCATION=<path>`。可以使用任何其他的构建目标，但是构建目录必须是不存在的。如果它已经存在，你也可以在build文件夹中设置cmake变量。对于以后要增加的构建，就不需要再指定`EXTERNAL_MODULES_LOCATION`了。
+- 执行 `make px4_sitl EXTERNAL_MODULES_LOCATION=<path>`。可以使用任何其他的构建目标，但是构建目录必须是不存在的。如果它已经存在，你也可以在build文件夹中设置cmake变量。对于以后要增加的构建，就不需要再指定`EXTERNAL_MODULES_LOCATION`了。

@@ -120,7 +120,7 @@ automatically create the ORB publisher rules and works as following:
 ```
 export replay_mode=ekf2
 export replay=<abs_path_to_log.ulg>
-make posix none
+make px4_sitl none
 ```
 
 You can stop it after there's an output like:
@@ -136,7 +136,7 @@ The parameters can be adjusted as well. They can be extracted from the log with
 ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
 ```
 Then edit the parameters in the file as needed and restart the replay process
-with `make posix none`. This will create a new log file.
+with `make px4_sitl none`. This will create a new log file.
 
 The location of the generated log is printed with a message like this:
 
@@ -164,7 +164,7 @@ the environment variable `replay` is not set.
 
 
 The ORB publisher rules allow to select which part of the system is replayed, as
-described above. They are only compiled for the posix SITL targets.
+described above. They are only compiled for the SITL targets.
 
 
 The **time handling** is still an **open point**, and needs to be implemented.

@@ -11,7 +11,7 @@ PX4提供大量的测试和持续集成。 本页提供概述。
 下面这条命令足够打开一个带有运行中的PX4端口的新shell。
 
 ```
-make posix_sitl_shell none
+make px4_sitl_shell none
 ```
 
 shell可以用这个例子运行单元测试:

@@ -42,19 +42,19 @@ PX4 펌웨어의 소스 디렉토리내에서 airframe 중에 하나로(Quads, p
 
 ```sh
 cd ~/src/Firmware
-make px4_sitl_default gazebo
+make px4_sitl gazebo
 ```
 
 ### Quadrotor with Optical Flow
 
 ```sh
-make posix gazebo_iris_opt_flow
+make px4_sitl gazebo_iris_opt_flow
 ```
 
 ### 3DR Solo
 
 ```sh
-make posix gazebo_solo
+make px4_sitl gazebo_solo
 ```
 
 ![](../../assets/gazebo/solo.png)
@@ -62,7 +62,7 @@ make posix gazebo_solo
 ### 표준 Plane
 
 ```sh
-make posix gazebo_plane
+make px4_sitl gazebo_plane
 ```
 
 ![](../../assets/gazebo/plane.png)
@@ -70,7 +70,7 @@ make posix gazebo_plane
 ### 표준 VTOL
 
 ```sh
-make px4_sitl_default gazebo_standard_vtol
+make px4_sitl gazebo_standard_vtol
 ```
 
 ![](../../assets/gazebo/standard_vtol.png)
@@ -78,7 +78,7 @@ make px4_sitl_default gazebo_standard_vtol
 ### Tailsitter VTOL
 
 ```sh
-make px4_sitl_default gazebo_tailsitter
+make px4_sitl gazebo_tailsitter
 ```
 
 ![](../../assets/gazebo/tailsitter.png)
@@ -86,7 +86,7 @@ make px4_sitl_default gazebo_tailsitter
 ### Ackerman vehicle (UGV/Rover) {#ugv}
 
 ```sh
-make posix gazebo_rover
+make px4_sitl gazebo_rover
 ```
 
 ![](../../assets/gazebo/rover.png)
@@ -143,7 +143,7 @@ SITL에서 디폴트 takeoff 위치는 환경변수로 바꿀수 있습니다.
 export PX4_HOME_LAT=28.452386
 export PX4_HOME_LON=-13.867138
 export PX4_HOME_ALT=28.5
-make posix gazebo
+make px4_sitl gazebo
 ```
 
 ## Gazebo와 PX4를 별도로 구동시키기

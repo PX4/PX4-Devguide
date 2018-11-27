@@ -7,7 +7,7 @@ PX4는 확장 단위 테스트와 지속통합을 제공합니다. 이 페이지
 PX4 posix 포트를 실행시킬 새로운 쉘을 시작시키는 것만으로 충분합니다.
 
 ```
-make posix_sitl_shell none
+make px4_sitl_shell none
 ```
 
 쉘은 단위 테스트를 실행하는데 사용할 수 있습니다.:

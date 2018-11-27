@@ -32,5 +32,5 @@ px4_add_module(
 	)
 
 ```
-- `make posix EXTERNAL_MODULES_LOCATION=<path>` 실행. 다른 build target도 사용할 수 있지만 build 디렉토리는 없는 상태여야만 합니다. 만약 기존에 있다면 build 폴더에 cmake 변수만 설정해 줄수도 있습니다.
+- `make px4_sitl EXTERNAL_MODULES_LOCATION=<path>` 실행. 다른 build target도 사용할 수 있지만 build 디렉토리는 없는 상태여야만 합니다. 만약 기존에 있다면 build 폴더에 cmake 변수만 설정해 줄수도 있습니다.
   다음 추가 빌드에서 `EXTERNAL_MODULES_LOCATION`를 더이상 지정할 필요가 없습니다.

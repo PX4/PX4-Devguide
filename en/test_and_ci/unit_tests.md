@@ -99,7 +99,7 @@ PX4 provides a simple base [Unittest-class](https://github.com/PX4/Firmware/blob
 The following command is sufficient to start a minimal new shell with the PX4 posix port running.
 
 ```bash
-make posix_sitl_shell none
+make px4_sitl_shell none
 ```
 
 The shell can then be used to e.g. execute unit tests:
