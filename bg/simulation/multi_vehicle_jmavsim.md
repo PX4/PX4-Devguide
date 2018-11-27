@@ -12,7 +12,7 @@ This topic explains how to simulate multiple UAV (multicopter) vehicles using JM
 
 To start multiple instances (on separate ports):
 
-1. Build PX4 ```make posix_sitl_default```
+1. Build PX4 ```make px4_sitl_default```
 2. Run **sitl_multiple_run.sh**, specifying the number of instances to start (e.g. 2): ```./Tools/sitl_multiple_run.sh 2```
 3. Start the first instance: ```./Tools/jmavsim_run.sh```
 4. Start subsequent instances, specifying the *simulation* UDP port for the instance: ```./Tools/jmavsim_run.sh -p 14561``` The port should be set to `14560+i` for `i` in `[0, N-1]`.
