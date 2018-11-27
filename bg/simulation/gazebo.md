@@ -45,7 +45,7 @@ The easiest way to do this is to open a terminal in the root directory of the PX
 
 ```sh
 cd ~/src/Firmware
-make posix_sitl_default gazebo
+make px4_sitl_default gazebo
 ```
 
 ### Quadrotor with Optical Flow
@@ -73,7 +73,7 @@ make posix gazebo_plane
 ### Standard VTOL
 
 ```sh
-make posix_sitl_default gazebo_standard_vtol
+make px4_sitl_default gazebo_standard_vtol
 ```
 
 ![Standard VTOL in Gazebo](../../assets/gazebo/standard_vtol.png)
@@ -81,7 +81,7 @@ make posix_sitl_default gazebo_standard_vtol
 ### Tailsitter VTOL
 
 ```sh
-make posix_sitl_default gazebo_tailsitter
+make px4_sitl_default gazebo_tailsitter
 ```
 
 ![Tailsitter VTOL in Gazebo](../../assets/gazebo/tailsitter.png)
@@ -97,7 +97,7 @@ make posix gazebo_rover
 ### HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#uuv}
 
 ```sh
-make posix_sitl_default gazebo_hippocampus
+make px4_sitl_default gazebo_hippocampus
 ```
 
 ![Submarine/UUV](../../assets/gazebo/hippocampus.png)
@@ -177,7 +177,7 @@ GPS noise is enabled if the target vehicle's SDF file contains a value for the `
 
 To enable/disable GPS noise:
 
-1. Build any gazebo target in order to generate SDF files (for all vehicles). For example: ```make posix_sitl_default gazebo_iris``` > **Tip** The SDF files are not overwritten on subsequent builds. 
+1. Build any gazebo target in order to generate SDF files (for all vehicles). For example: ```make px4_sitl_default gazebo_iris``` > **Tip** The SDF files are not overwritten on subsequent builds. 
 2. Open the SDF file for your target vehicle (e.g. **./Tools/sitl_gazebo/models/iris/iris.sdf**).
 3. Search for the `gpsNoise` element: 
         xml
@@ -199,7 +199,7 @@ In addition to the existing cmake targets that run `sitl_run.sh` with parameters
 
 To start Gazebo and PX4 separately:
 
-* Run gazebo (or any other sim) server and client viewers via the terminal: ```make posix_sitl_default gazebo_none_ide```
+* Run gazebo (or any other sim) server and client viewers via the terminal: ```make px4_sitl_default gazebo_none_ide```
 * In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
 * Start the debug session directly from IDE
 
