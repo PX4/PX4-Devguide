@@ -73,8 +73,8 @@ JLinkGDBServer -select USB=0 -device STM32F427VI -if SWD-DP -speed 20000
 The `--device`/SoC for common targets is:
 
 * **FMUv2, FMUv3, FMUv4, aerofc-v1, mindpx-v2:** STM32F427VI
-* **px4fmu-v4pro:** STM32F469II
-* **px4fmu-v5:** STM32F765II
+* **px4_fmu-v4pro:** STM32F469II
+* **px4_fmu-v5:** STM32F765II
 * **crazyflie:** STM32F405RG
 
 

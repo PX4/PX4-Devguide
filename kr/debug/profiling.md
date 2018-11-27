@@ -33,13 +33,13 @@ PMSP는 GDB를 사용하여 stack trace를 수집합니다.
 사용 예제:
 
 ```bash
-./poor-mans-profiler.sh --elf=build/px4fmu-v4_default/src/firmware/nuttx/firmware_nuttx --nsamples=30000
+./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000
 ```
 
 스크립트를 매번 실행은 기존 stack을 덮어쓰게 된다는 것을 명심하세요. 기존 stack을 추가하기를 원한다면 `--append` 옵션을 사용하세요 :
 
 ```bash
-./poor-mans-profiler.sh --elf=build/px4fmu-v4_default/src/firmware/nuttx/firmware_nuttx --nsamples=30000 --append
+./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000 --append
 ```
 
 `--append`을 `--nsamples=0`와 함께 사용하면 스크립트는 타겟에 접근하지 않고 SVG를 다시 생성하라는 명령이 됩니다.

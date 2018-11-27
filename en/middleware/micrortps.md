@@ -144,9 +144,9 @@ rtps:
 The *Client* source code is generated, compiled and built into the PX4 firmware as part of the normal build process.
 
 To build the firmware for NuttX/Pixhawk flight controllers use the `_rtps` feature in the configuration target.
-For example, to build RTPS for px4fmu-v4:
+For example, to build RTPS for px4_fmu-v4:
 ```sh
-make px4fmu-v4_rtps
+make px4_fmu-v4_rtps
 ```
 
 To build the firmware for a SITL POSIX target:

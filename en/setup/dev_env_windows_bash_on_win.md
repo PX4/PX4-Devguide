@@ -27,13 +27,13 @@ To setup the development environment:
   
 ### Build Firmware
 
-To build the firmware (i.e. for px4fmu-v4):
+To build the firmware (i.e. for px4_fmu-v4):
 1. Enter the following commands in the bash shell:
    ```
    cd ~/src/Firmware
-   make px4fmu-v4_default
+   make px4_fmu-v4_default
    ```
-   On successful completion you'll find the firmware here: `Firmware/build/nuttx_px4fmu-v4_default/px4fmu-v4_default.px4`
+   On successful completion you'll find the firmware here: `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
    
    > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx--pixhawk-based-boards)
    
@@ -53,7 +53,7 @@ To run JMAVSim:
    > **Tip** Add this line to the Ubuntu **.bashrc** file if you don't want to enter it every session.
 1. Start PX4 and jMAVSim in the bash shell:
    ```sh
-   make posix jmavsim
+   make px4_sitl jmavsim
    ```
    The JMAVSim UI is then displayed in XMing as shown below:
    

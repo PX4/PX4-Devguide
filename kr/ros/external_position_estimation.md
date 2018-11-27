@@ -1,6 +1,6 @@
 # 비젼 혹은 모션 캡쳐 시스템 사용하기
 
-> **Info** 아래 내용을 따라하기 전에, 여러분의 autopilot의 펌웨어 버전이 LPE 모듈이 활성화되어 있는지 확인합니다. PX4 펌웨어의 LPE 버전은 최신 PX4 릴리즈의 zip 파일 내부 혹은 `make px4fmu-v2_lpe`와 같은 빌드명령으로 소스를 빌드하면 볼수 있습니다. 상세한 내용은 [코드 빌드하기](../setup/building_px4.md)를 참고하세요.
+> **Info** 아래 내용을 따라하기 전에, 여러분의 autopilot의 펌웨어 버전이 LPE 모듈이 활성화되어 있는지 확인합니다. PX4 펌웨어의 LPE 버전은 최신 PX4 릴리즈의 zip 파일 내부 혹은 `make px4_fmu-v2_lpe`와 같은 빌드명령으로 소스를 빌드하면 볼수 있습니다. 상세한 내용은 [코드 빌드하기](../setup/building_px4.md)를 참고하세요.
 
 이 페이지의 목적은 GPS이 아닌 소스로부터(VICON과 Optitrack 같은 모션 캡쳐 시스템 그리고 [ROVIO](https://github.com/ethz-asl/rovio), [SVO](https://github.com/uzh-rpg/rpg_svo) 혹은 [PTAM](https://github.com/ethz-asl/ethzasl_ptam) )와 같은 비젼 기반 estimation 시스템) 위치 데이터를 사용하는 PX4 기반 시스템을 구성하는 것입니다.
 

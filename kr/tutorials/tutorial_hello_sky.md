@@ -102,9 +102,10 @@ int px4_simple_app_main(int argc, char *argv[])
 
 이제 이 application은 완성되어 실행할 수 있습니다. 하지만 NuttShell command로 등록하지는 않았습니다. firmware 내부로 컴파일 가능하도록 하기 위해, build 대상 module 목록에 추가합니다. 위치는 아래와 같습니다. :
 
-  * Posix SITL: [Firmware/cmake/configs/posix_sitl_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_sitl_default.cmake)
-  * Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
-  * Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
+* jMAVSim Simulator: `make px4_sitl_default jmavsim`
+* Pixhawk v1/2: `make px4_fmu-v2_default` (or just `make px4_fmu-v2`)
+* Pixhawk v3: `make px4_fmu-v4_default`
+* Other boards: [Building the Code](../setup/building_px4.md#building_nuttx)
 
 파일내에서 특정 위치에 여러분이 작성한 application을 위해 한 줄 추가합니다.
 
@@ -112,15 +113,15 @@ int px4_simple_app_main(int argc, char *argv[])
 
 빌드하기:
 
-  * Pixhawk v1/2: `make px4fmu-v2_default`
-  * Pixhawk v3: `make px4fmu-v4_default`
+* Pixhawk v1/2: `make px4_fmu-v2_default upload`
+* Pixhawk v3: `make px4_fmu-v4_default upload`
 
 ## Step 4: app을 업로드하고 테스트하기
 
 uploader를 활성화시키고 board를 리셋 :
 
-  * Pixhawk v1/2: `make px4fmu-v2_default upload`
-  * Pixhawk v3: `make px4fmu-v4_default upload`
+  * Pixhawk v1/2: `make px4_fmu-v2_default upload`
+  * Pixhawk v3: `make px4_fmu-v4_default upload`
 
 보드를 리셋하기 전에 많은 컴파일 메시지를 프린트해야 하며 마지막에는 :
 

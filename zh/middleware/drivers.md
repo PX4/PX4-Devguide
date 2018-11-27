@@ -24,7 +24,7 @@ PX4 是一个反应式系统[reactive system](../concept/architecture.md) ，使
 - 系统配置文件位于[nuttx-configs](https://github.com/PX4/Firmware/tree/master/nuttx-configs). 作为应用的一部分被构建并被操作系统加载。
 - PX4中间件配置位于[src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards).其中包括总线和GPIO映射还有硬件平台初始化代码。
 - 驱动位于[src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)
-- 参考配置:运行使px4fmu-v4_default构建FMUv4配置,这是当前NuttX参考配置。
+- 参考配置:运行使px4_fmu-v4_default构建FMUv4配置,这是当前NuttX参考配置。
 
 ### QuRT / Hexagon
 - 启动脚本位于 [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs)

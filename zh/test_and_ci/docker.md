@@ -44,7 +44,7 @@ If everything went well you should be in a new bash shell now. Verify if everyth
 
 ```sh
 cd <container_src>
-make posix_sitl_default gazebo
+make px4_sitl_default gazebo
 ```
 
 ### Graphics driver issues
