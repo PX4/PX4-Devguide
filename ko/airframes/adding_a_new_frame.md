@@ -201,11 +201,34 @@ For a new airframe belonging to an existing group, you don't need to do anything
 
 If the airframe is for a **new group** you additionally need to:
 
-1. Add the svg image for the group into each repository (if no image is provided a placeholder image is displayed): 
-  * QGroundControl: [src/AutopilotPlugins/Common/images](https://github.com/mavlink/qgroundcontrol/tree/master/src/AutoPilotPlugins/Common/Images)
+1. Add the svg image for the group into documentation repos (if no image is provided a placeholder image is displayed): 
   * PX4 Development Guide: [assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
   * PX4 User Guide: [assets/airframes/types](https://github.com/PX4/px4_user_guide/tree/master/assets/airframes/types)
-2. Add a mapping between the new group name and image filename in [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py).
+2. Add a mapping between the new group name and image filename in the [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py) method `GetImageName()` (follow the pattern below): 
+      def GetImageName(self):
+           """
+           Get parameter group image base name (w/o extension)
+           """
+           if (self.name == "Standard Plane"):
+               return "Plane"
+           elif (self.name == "Flying Wing"):
+               return "FlyingWing"
+            ...
+      ...
+           return "AirframeUnknown"
+
+3. Update *QGroundControl*: 
+  * Add the svg image for the group into: [src/AutopilotPlugins/Common/images](https://github.com/mavlink/qgroundcontrol/tree/master/src/AutoPilotPlugins/Common/Images)
+  * Add reference to the svg image into [qgcresources.qrc](https://github.com/mavlink/qgroundcontrol/blob/master/qgcresources.qrc), following the pattern below: 
+        <qresource prefix="/qmlimages">
+            ...
+            <file alias="Airframe/AirframeSimulation">src/AutoPilotPlugins/Common/Images/AirframeSimulation.svg</file>
+            <file alias="Airframe/AirframeUnknown">src/AutoPilotPlugins/Common/Images/AirframeUnknown.svg</file>
+            <file alias="Airframe/Boat">src/AutoPilotPlugins/Common/Images/Boat.svg</file>
+            <file alias="Airframe/FlyingWing">src/AutoPilotPlugins/Common/Images/FlyingWing.svg</file>
+            ... > 
+    
+    **Note** The remaining airframe metadata should be automatically included in the firmware (once **srcparser.py** is updated). 
 
 ## Tuning Gains
 
