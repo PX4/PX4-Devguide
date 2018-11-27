@@ -74,56 +74,33 @@ If you use the normal build system SITL `make` configuration targets (see next s
 
 ### Starting/Building SITL Simulation
 
-The build system makes it very easy to build and start PX4 on SITL, launch a simulator, and connect them. For example, you can launch a SITL version of PX4 that uses the EKF2 estimator and simulate a plane in Gazebo with just the following command (provided all the build and gazebo dependencies are present!):
+The build system makes it very easy to build and start PX4 on SITL, launch a simulator, and connect them.
+The syntax (simplified) looks like this:
 ```
-make px4_sitl_default gazebo_plane
+make px4_sitl simulator[_vehicle-model]
 ```
+where `simulator` is `gazebo`, `jmavsim` or some other simulator, and vehicle-model is a particular vehicle type supported by that simulator ([jMAVSim](../simulation/jmavsim.md) only supports multicopters, while [Gazebo](../simulation/gazebo.md) supports many different types).
 
-> **Tip** It is also possible to separately build and start SITL and the various simulators, but this is nowhere near as "turnkey".
+A number of examples are shown below, and there are many more in the individual pages for each of the simulators:
 
-The syntax to call `make` with a particular configuration and initialisation file is:
+```sh
+# Start Gazebo with plane
+make px4_sitl gazebo_plane
 
-```bash
-make [CONFIGURATION_TARGET] [VIEWER_MODEL_DEBUGGER]
+# Start Gazebo with iris and optical flow
+make px4_sitl gazebo_iris_opt_flow
+
+# Start JMavSim with iris (default vehicle model)
+make px4_sitl jmavsim
 ```
-
-where:
-* **CONFIGURATION_TARGET:** has the format `[VENDOR_][MODEL][_VARIANT]`
-
-  * **VENDOR:** aerotenna, airmind, atlflight, auav, beaglebone, intel, nxp, parrot, px4 etc.
-  * **MODEL:** sitl, fmu-v2, fmu-v3, fmu-v4, fmu-v5, navio2, etc.
-  * **VARIANT:** Most commonly this is `default`, and may be omitted. This is used to indicate alternative configurations (most commonly a new configuration is created when not everything can be fitted into the `default` configuration). 
-
-  > **Tip** You can get a list of all available configuration targets using the command:
-    ```
-    make list_config_targets
-    ```
-  
-* **VIEWER_MODEL_DEBUGGER:** has the format `[SIMULATOR]_[MODEL][_DEBUGGER]`
-  
-  * **SIMULATOR:** This is the simulator ("viewer") to launch and connect: `gazebo`, `jmavsim` <!-- , ?airsim -->
-  * **MODEL:** The vehicle model to use (e.g. `iris`, `rover`, `tailsitter`, etc). The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](#scripts) to select appropriate parameters. It also ensures that the simulator (gazebo) loads the correct model (we explain how to find available options in the next section).
-  * **DEBUGGER:** Debugger to (optionally) use: `none`, `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. For more information see [Simulation Debugging](../debug/simulation_debugging.md).
-
-  > **Tip** You can get a list of all available `VIEWER_MODEL_DEBUGGER` options using the command:
-    ```
-    make posix list_vmd_make_targets
-    ```
-  
-Notes:
-- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. 
-  For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`. 
-- You can use three underscores if you want to specify a default value between two other settings. 
-  For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
-- You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. 
-  For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
-
-
-### Additional Options
 
 The simulation can be further configured via environment variables:
 - `PX4_ESTIMATOR`: This variable configures which estimator to use.
-  Possible options are: `ekf2` (default), `lpe`, `inav`. It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
+  Possible options are: `ekf2` (default), `lpe`, `inav`. 
+  It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
+
+The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: 
+[Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
 
 ### Startup Scripts {#scripts}

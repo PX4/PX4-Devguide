@@ -1,6 +1,8 @@
 # Building PX4 Software
 
-PX4 can be built on the console or in an IDE, for both simulated and hardware targets. 
+PX4 can be built on the console or in an IDE, for both simulated and hardware targets.
+
+> **Note** Before following these instructions you must first install the [Developer Toolchain](../setup/dev_env.md) for your host operating system and target hardware.
 
 ## Downloading PX4 Source Code {#get_px4_code}
 
@@ -35,21 +37,27 @@ The steps to fork and clone the project source code are:
    Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). 
    You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
 
-<span id="specific_version_source"></span>
 This will copy *most* of the *very latest* version of PX4 source code onto your computer 
 (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
 
-> **Tip** To get the source for a *specific older release*, you could then:
-> ```sh
->  # Navigate into Firmware directory
->  cd Firmware
->
->  # list the releases (tags)
->  git tag -l
->  
->  # Checkout code for particular tag (e.g. for tag 1.7.4beta)
->  git checkout v1.7.4beta
->  ```
+<span id="specific_version_source"></span>
+
+### Get a Specific Release
+
+To get the source code for a *specific older release*:
+1. Clone the Firmware repo and navigate into Firmware directory:
+   ```sh
+   git clone https://github.com/PX4/Firmware.git
+   cd Firmware
+   ```
+1. List all releases (tags)
+   ```sh
+   git tag -l
+   ```
+1. Checkout code for particular tag (e.g. for tag 1.7.4beta)
+   ```sh
+   git checkout v1.7.4beta
+   ```
 
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
@@ -74,12 +82,15 @@ pxh> commander takeoff
 
 The drone can be landed by typing `commander land` and the whole simulation can be stopped by doing **CTRL+C** (or by entering `shutdown`). 
 
-> **Tip** The simulation setup is documented in full detail here: [jMAVSim Simulation](../simulation/jmavsim.md).
-
 Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
 
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
+> **Tip** PX4 can be used with a number of other [Simulators](../simulation/README.md), including [Gazebo Simulation](../simulation/gazebo.md) and [AirSim Simulation](../simulation/airsim.md). 
+  These are also started with *make* - e.g.
+  ```
+  make px4_sitl gazebo
+  ```
 
 ## NuttX / Pixhawk Based Boards
 
@@ -87,13 +98,18 @@ Flying the simulation with the ground control station is closer to the real oper
 
 To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board. 
 
-> **Note** In the example below the first part of the build target `px4_fmu-v4` is the autopilot hardware version and `default` is the configuration name (in this case the "default" configuration). All PX4 build targets follow this logic).
-
 For example, to build for *Pixracer* you would use the following command:
 ```sh
 cd Firmware
 make px4_fmu-v4_default
 ```
+
+> **Note** In the example above the first part of the build target `px4_fmu-v4` is the firmware for a particular flight controller hardware and `default` is the configuration name (in this case the "default" configuration). 
+  The `default` is optional so you could instead do: 
+  ```
+  make px4_fmu-v4
+  ```
+
 A successful run will end with similar output to:
 ```sh
 -- Build files have been written to: /home/youruser/src/Firmware/build/px4_fmu-v4_default
@@ -242,9 +258,9 @@ This will upload the PX4 mainapp into /data/ftp/internal_000/ and create the fil
 present. This also uploads the mixer file and the px4.config file into the /home/root/ directory.
 
 #### Run
+
 Connect to the Bebop's wifi and press the power button four times. 
-Next,
-connect with the Bebop via telnet or adb shell and run the commands bellow.
+Next, connect with the Bebop via telnet or adb shell and run the commands below.
 
 ```sh
 telnet 192.168.42.1
@@ -259,13 +275,14 @@ and start the PX4 mainapp with:
 /data/ftp/internal_000/px4 -s /home/root/px4.config
 ```
 
-In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both,
-the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors
-and setup your joystick device.
+In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. 
+Both the Bebop and the joystick should be recognized. 
+Follow the instructions to calibrate the sensors and setup your joystick device.
 
 #### Autostart
 
-To auto-start PX4 on the Bebop at boot, modify the init script `/etc/init.d/rcS_mode_default`. Comment the following line:
+To auto-start PX4 on the Bebop at boot, modify the init script `/etc/init.d/rcS_mode_default`.
+Comment the following line:
 ```
 DragonStarter.sh -out2null &
 ```
@@ -443,3 +460,53 @@ cmake ../.. -G "CodeBlocks - Unix Makefiles"
 That's it! Start *Qt Creator*, then complete the steps in the video below to set up the project to build.
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
+
+
+## PX4 Make Build Targets {#make_targets}
+
+The previous sections showed how you can call *make* to build a number of different targets, start simulators, use IDEs etc.
+This section shows how *make* options are constructed and how to find the available choices.
+
+The full syntax to call *make* with a particular configuration and initialization file is:
+```sh
+make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
+```
+
+**VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
+
+- **VENDOR:** The manufacturer of the board: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp`, `parrot`, etc.
+    The vendor name for Pixhawk series boards is `px4`.
+- **MODEL:** The *board model* "model": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2`, etc.
+- **VARIANT:** Indicates particular configurations: e.g. `rtps`, `lpe`, which contain components that are not present in the `default` configuration. Most commonly this is `default`, and may be omitted.
+
+> **Tip** You can get a list of *all* available `CONFIGURATION_TARGET` options using the command below:
+  ```sh
+  make list_config_targets
+  ```
+
+**VIEWER_MODEL_DEBUGGER:**
+  
+- **VIEWER:** This is the simulator ("viewer") to launch and connect: `gazebo`, `jmavsim` <!-- , ?airsim -->
+- **MODEL:** The *vehicle* model to use (e.g. `iris` (*default*), `rover`, `tailsitter`, etc), which will be loaded by the simulator.
+  The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](#scripts) to select appropriate parameters. 
+- **DEBUGGER:** Debugger to use: `none` (*default*), `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. 
+  For more information see [Simulation Debugging](../debug/simulation_debugging.md).
+
+> **Tip** You can get a list of *all* available `VIEWER_MODEL_DEBUGGER` options using the command below:
+  ```sh
+  make px4_sitl list_vmd_make_targets
+  ```
+
+Notes:
+- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. 
+  For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`. 
+- You can use three underscores if you want to specify a default value between two other settings. 
+  For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
+- You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. 
+  For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
+
+
+The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory.
+Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake**
+(e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
+
