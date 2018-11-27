@@ -6,7 +6,7 @@ PX4 builds and testing are spread out over multiple continuous integration servi
 
 Travis-ci is responsible for the official stable/beta/development binaries that are flashable through [QGroundControl](http://qgroundcontrol.com/). It currently uses GCC 4.9.3 included in the docker image [px4io/px4-dev-base](https://hub.docker.com/r/px4io/px4-dev-base/) and compiles px4fmu-{v2, v4}, mindpx-v2, tap-v1 with makefile target qgc_firmware.
 
-Travis-ci also has a macOS posix sitl build which includes testing.
+Travis-ci also has a macOS px4_sitl build which includes testing.
 
 ## [Semaphore](https://semaphoreci.com/px4/firmware)
 
