@@ -69,7 +69,7 @@ S: 2 2  10000  10000      0 -10000  10000
 The Typhoon H480 model comes with a preconfigured simulated gimbal. To run it,
 use:
 ```
-make posix gazebo_typhoon_h480
+make px4_sitl gazebo_typhoon_h480
 ```
 
 To just test the mount driver on other models or simulators, make sure the
@@ -81,7 +81,7 @@ The driver provides a simple test command - it needs to be stopped first with `v
 
 Start the simulation with (no parameter needs to be changed for that):
 ```
-make posix gazebo_typhoon_h480
+make px4_sitl gazebo_typhoon_h480
 ```
 Make sure it's armed, eg. with `commander takeoff`, then use for example
 ```

@@ -149,9 +149,9 @@ For example, to build RTPS for px4_fmu-v4:
 make px4_fmu-v4_rtps
 ```
 
-To build the firmware for a SITL POSIX target:
+To build the firmware for a SITL target:
 ```sh
-make posix_sitl_rtps
+make px4_sitl_rtps
 ```
 
 The *Client* application can be launched from [NuttShell/System Console](../debug/system_console.md).
@@ -585,7 +585,7 @@ To quickly test the package (using PX4 SITL with Gazebo):
 
 1. Start the PX4 SITL with Gazebo using:
    ```sh
-   make posix_sitl_rtps gazebo`
+   make px4_sitl_rtps gazebo`
    ```
 
 1. On one terminal, source the ROS2 environment and workspace and launch the `ros1_bridge` (this allows ROS2 and ROS nodes to communicate with each other). 

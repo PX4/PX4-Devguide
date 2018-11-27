@@ -40,13 +40,9 @@ graph LR;
 
 Mac OS需要安装Gazebo 7，相应的需要安装xquartz，并且在没有OpenCV时无法运行。
 
-<div class="host-code"></div>
-
 ```sh
 brew cask install xquartz
-
 brew install opencv
-
 brew install gazebo7
 ```
 
@@ -72,25 +68,23 @@ PX4 SITL使用Gazebo仿真软件，但不依赖ROS。但是也可以像普通飞
 
 ### 四旋翼
 
-<div class="host-code"></div>
-
 ```sh
 cd ~/src/Firmware
-make px4_sitl_default gazebo
+make px4_sitl gazebo
 ```
 
 ### 四旋翼带光流模块
 
 ```sh
 cd ~/src/Firmware
-make posix gazebo_iris_opt_flow
+make px4_sitl gazebo_iris_opt_flow
 ```
 
 ### 3DR Solo
 
 ```sh
 cd ~/src/Firmware
-make posix gazebo_solo
+make px4_sitl gazebo_solo
 ```
 
 ![](../../assets/gazebo/solo.png)
@@ -98,7 +92,7 @@ make posix gazebo_solo
 ### 标准直升机
 
 ```sh
-make posix gazebo_plane
+make px4_sitl gazebo_plane
 ```
 
 ![](../../assets/gazebo/plane.png)
@@ -106,7 +100,7 @@ make posix gazebo_plane
 ### 标准垂直起降飞机
 
 ```sh
-make px4_sitl_default gazebo_standard_vtol
+make px4_sitl gazebo_standard_vtol
 ```
 
 ![](../../assets/gazebo/standard_vtol.png)
@@ -114,7 +108,7 @@ make px4_sitl_default gazebo_standard_vtol
 ### 立式垂直起降
 
 ```sh
-make px4_sitl_default gazebo_tailsitter
+make px4_sitl gazebo_tailsitter
 ```
 
 ![](../../assets/gazebo/tailsitter.png)
@@ -122,7 +116,7 @@ make px4_sitl_default gazebo_tailsitter
 ### Ackerman车
 
 ```sh
-make posix gazebo_rover
+make px4_sitl gazebo_rover
 ```
 
 ![](../../assets/gazebo/rover.png)
@@ -180,7 +174,7 @@ SITL Gazebo中的默认起飞位置可以使用环境变量来覆盖。
 export PX4_HOME_LAT=28.452386
 export PX4_HOME_LON=-13.867138
 export PX4_HOME_ALT=28.5
-make posix gazebo
+make px4_sitl gazebo
 ```
 
 ## 单独启动Gazebo和PX4

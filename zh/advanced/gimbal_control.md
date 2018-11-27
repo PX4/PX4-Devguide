@@ -43,7 +43,7 @@ S: 2 2  10000  10000      0 -10000  10000
 
 开启仿真(无需为此更改参数):
 ```
-make posix gazebo_typhoon_h480
+make px4_sitl gazebo_typhoon_h480
 ```
 先确认已开桨，比如使用命令 `commander takeoff`，然后运行：
 ```

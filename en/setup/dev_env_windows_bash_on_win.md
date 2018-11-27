@@ -63,7 +63,7 @@ To run JMAVSim:
   ```sh
   export DISPLAY=:0
   export GAZEBO_IP=127.0.0.1
-  make posix gazebo
+  make px4_sitl gazebo
  ```
 
 

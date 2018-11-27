@@ -4,7 +4,7 @@
 
 ## 개요
 
-  * 관련 컴포넌트: Jenkins, Docker, PX4 POSIX SITL
+  * 관련 컴포넌트: Jenkins, Docker, PX4 SITL
   * [Docker Containers](../test_and_ci/docker.md) 내부에서 테스트 수행
   * Jenkins가 수행하는 2개 작업 : master에 대해서 각 PR를 검사, master로 들어오는 모든 push를 검사
 

@@ -102,7 +102,7 @@ You can start JMAVSim and PX4 separately:
 
 ```
 ./Tools/jmavsim_run.sh
-make posix none
+make px4_sitl none
 ```
 
 This allows a faster testing cycle (restarting jMAVSim takes significantly more time).
