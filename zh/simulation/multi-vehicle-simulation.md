@@ -2,21 +2,21 @@
 
 本主题介绍如何使用 gazebo 和 sitl (仅限 linux) 模拟多架无人机/车辆。
 
-> **Tip**如果您不需要 gazebo 或 ros 提供的功能， [ jmavsim的 Multi-车辆仿真](../simulation/multi_vehicle_jmavsim.md)更容易设置。
+> **注意**如果您不需要 gazebo 或 ros 提供的功能， [ jmavsim的 Multi-车辆仿真](../simulation/multi_vehicle_jmavsim.md)更容易设置。
 
-It demonstrates an example setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world. You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle.
+本文演示了一个示例设置, 该设置打开了 gazebo 客户端 界面, 在一个空旷的世界中显示了两个Iris无人机。 然后, 您可以使用 *QGroundControl地面站* 和MAVROS 控制多机, 其方式类似于您控制单机。
 
-## Required
+## 要求
 
-* Current [PX4 ROS/Gazebo development evironment](../setup/dev_env_linux.md#gazebo-with-ros) > **Note** At time of writing this is Ubuntu 16.04 with ROS Kinetic/Gazebo 7. See also [Gazebo Simulation](/simulation/gazebo.md).
-* [MAVROS package](http://wiki.ros.org/mavros)
-* a clone of latest [PX4/Firmware](https://github.com/PX4/Firmware)
+* 当前的 [PX4 ros/gazebo 开发环境](../setup/dev_env_linux.md#gazebo-with-ros)。**注意** 在编写本报告时是 ubuntu 16.04 与 ros kinetic/gazebo 7。 另见 [Gazebo 模拟](/simulation/gazebo.md)。
+* [MAVROS 包](http://wiki.ros.org/mavros)
+* 最新 [PX4/Firmware](https://github.com/PX4/Firmware) 的克隆
 
-## Build and Test
+## 编译和测试
 
-To build an example setup, follow the step below:
+若要编译示例设置, 请按照以下步骤操作:
 
-1. Clone the PX4/Firmware code, then build the SITL code 
+1. 克隆 px4固件代码, 然后编译 sitl 代码 
       cd Firmware_clone
        git submodule update --init --recursive
        make px4_sitl_default
@@ -27,11 +27,11 @@ To build an example setup, follow the step below:
       source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
        export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd):$(pwd)/Tools/sitl_gazebo
 
-3. Run launch file:
+3. 运行启动文件:
   
       roslaunch px4 multi_uav_mavros_sitl.launch
   
-  > **Tip** You can specify `gui:=false` in the above *roslaunch* to launch Gazebo without its UI.
+  > **注意**您可以在上述 *roslaunch* 中指定 `gui:=false`, 以便在没有 ui 的情况下启动 gazebo。
 
 The tutorial example opens the Gazebo client GUI showing two Iris vehicles in an empty world.
 
