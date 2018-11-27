@@ -66,7 +66,7 @@ The easiest way to use the containers is via the [docker_run.sh](https://github.
 For example, to build SITL you would call (from within the **/Firmware** directory):
 
 ```sh
-sudo ./Tools/docker_run.sh 'make posix_sitl_default'
+sudo ./Tools/docker_run.sh 'make px4_sitl_default'
 ```
 
 Or to start a bash session using the NuttX toolchain:
@@ -122,7 +122,7 @@ If everything went well you should be in a new bash shell now. Verify if everyth
 
 ```sh
 cd src/firmware    #This is <container_src>
-make posix_sitl_default gazebo
+make px4_sitl_default gazebo
 ```
 
 ### Re-enter the Container
