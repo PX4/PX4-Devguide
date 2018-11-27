@@ -21,7 +21,7 @@ Software in the Loop Simulation runs the complete system on the host machine and
 After ensuring that the [simulation prerequisites](../setup/dev_env.md) are installed on the system, just launch: The convenience make target will compile the POSIX host build and run the simulation.
 
 ```sh
-make posix_sitl_default jmavsim
+make px4_sitl_default jmavsim
 ```
 
 This will bring up the PX4 shell:
@@ -70,7 +70,7 @@ For example, to set the latitude, longitude and altitude:
     export PX4_HOME_LAT=28.452386
     export PX4_HOME_LON=-13.867138
     export PX4_HOME_ALT=28.5
-    make posix_sitl_default jmavsim
+    make px4_sitl_default jmavsim
     
 
 ### Using a Joystick {#joystick}
@@ -114,4 +114,4 @@ The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the sa
 ## Important Files
 
 * The startup script is in the [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) folder and named `rcS_SIM_AIRFRAME`, the default is `rcS_jmavsim_iris`.
-* The root file system (the equivalent of `/` as seen by the) is located inside the build directory: `build/posix_sitl_default/src/firmware/posix/rootfs/`
+* The root file system (the equivalent of `/` as seen by the) is located inside the build directory: `build/px4_sitl_default/src/firmware/posix/rootfs/`
