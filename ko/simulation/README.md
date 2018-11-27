@@ -89,7 +89,7 @@ If you use the normal build system SITL `make` configuration targets (see next s
 
 The build system makes it very easy to build and start PX4 on SITL, launch a simulator, and connect them. For example, you can launch a SITL version of PX4 that uses the EKF2 estimator and simulate a plane in Gazebo with just the following command (provided all the build and gazebo dependencies are present!):
 
-    make posix_sitl_default gazebo_plane
+    make px4_sitl_default gazebo_plane
     
 
 > **Tip** It is also possible to separately build and start SITL and the various simulators, but this is nowhere near as "turnkey".
@@ -102,11 +102,11 @@ make [CONFIGURATION_TARGET] [VIEWER_MODEL_DEBUGGER]
 
 where:
 
-* **CONFIGURATION_TARGET:** has the format `[OS_][PLATFORM][_FEATURE]`
+* **CONFIGURATION_TARGET:** has the format `[VENDOR_][MODEL][_VARIANT]`
     
-    * **OS:** posix, nuttx, qurt
-    * **PLATFORM:** sitl (or in principle any platform supported among the different OS: bebop, eagle, excelsior, etc.)
-    * **FEATURE:** A particular high level feature - for example to cross-compile or to run tests. In most cases this is `default`.
+    * **VENDOR:** aerotenna, airmind, atlflight, auav, beaglebone, intel, nxp, parrot, px4 etc.
+    * **MODEL:** sitl, fmu-v2, fmu-v3, fmu-v4, fmu-v5, navio2, etc.
+    * **VARIANT:** Most commonly this is `default`, and may be omitted. This is used to indicate alternative configurations (most commonly a new configuration is created when not everything can be fitted into the `default` configuration). 
     
     > **Tip** You can get a list of all available configuration targets using the command:
     
@@ -130,7 +130,7 @@ Notes:
 
 * Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`. 
 * You can use three underscores if you want to specify a default value between two other settings. For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
-* You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. For example start PX4 using `make posix_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
+* You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
 
 ### Additional Options
 
