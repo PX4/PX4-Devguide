@@ -88,11 +88,11 @@ make [CONFIGURATION_TARGET] [VIEWER_MODEL_DEBUGGER]
 ```
 
 where:
-* **CONFIGURATION_TARGET:** has the format `[OEM_][PLATFORM][_FEATURE]`
+* **CONFIGURATION_TARGET:** has the format `[VENDOR_][MODEL][_VARIANT]`
 
-  * **OEM:** (manufacturer) aerotenna, airmind, atlflight, auav, beaglebone, intel, nxp, parrot, px4 etc.
-  * **PLATFORM:** sitl, fmu-v2, fmu-v3, fmu-v4, fmu-v5, navio2, etc.)
-  * **FEATURE:** A particular high level feature - for example to cross-compile or to run tests. In most cases this is `default`.
+  * **VENDOR:** aerotenna, airmind, atlflight, auav, beaglebone, intel, nxp, parrot, px4 etc.
+  * **MODEL:** sitl, fmu-v2, fmu-v3, fmu-v4, fmu-v5, navio2, etc.
+  * **VARIANT:** Most commonly this is `default`, and may be omitted. This is used to indicate alternative configurations (most commonly a new configuration is created when not everything can be fitted into the `default` configuration). 
 
   > **Tip** You can get a list of all available configuration targets using the command:
     ```
