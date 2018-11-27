@@ -51,7 +51,7 @@ The toolchain uses a specially configured console window (started by running the
     # Navigate to Firmware repo
     cd Firmware
     # Build and runs SITL simulation with jMAVSim to test the setup
-    make posix jmavsim
+    make px4_sitl jmavsim
     ```
     
     The console will then display:
@@ -120,7 +120,7 @@ For existing repositories that have this problem caused by a local configuration
 The following features are known to work (version 2.0):
 
 * Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
-* Building and uploading NuttX builds (e.g.: px4fmu-v2 and px4fmu-v4)
+* Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
 * Style check with *astyle* (supports the command: `make format`)
 * Command line auto completion
 * Non-invasive installer! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4** and uses a temporary local path).
