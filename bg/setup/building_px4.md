@@ -51,7 +51,7 @@ For the first build we'll build for a simulated target using a console environme
 Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 
 ```sh
-make posix jmavsim
+make px4_sitl jmavsim
 ```
 
 This will bring up the PX4 console below:
@@ -80,46 +80,48 @@ Flying the simulation with the ground control station is closer to the real oper
 
 To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board.
 
-> **Note** In the example below the first part of the build target `px4fmu-v4` is the autopilot hardware version and `default` is the configuration name (in this case the "default" configuration). All PX4 build targets follow this logic).
+> **Note** In the example below the first part of the build target `px4_fmu-v4` is the autopilot hardware version and `default` is the configuration name (in this case the "default" configuration). All PX4 build targets follow this logic).
 
 For example, to build for *Pixracer* you would use the following command:
 
 ```sh
 cd Firmware
-make px4fmu-v4_default
+make px4_fmu-v4_default
 ```
 
 A successful run will end with similar output to:
 
 ```sh
--- Build files have been written to: /home/youruser/src/Firmware/build/nuttx_px4fmu-v4_default
-[954/954] Creating /home/youruser/src/Firmware/build/nuttx_px4fmu-v4_default/px4fmu-v4_default.px4
+-- Build files have been written to: /home/youruser/src/Firmware/build/px4_fmu-v4_default
+[954/954] Creating /home/youruser/src/Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
 ```
 
 The following list shows the build commands for common boards:
 
-* Pixhawk 4: `make px4fmu-v5_default`
-* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4fmu-v4_default`
-* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4fmu-v4pro_default`
-* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4fmu-v3_default`
-* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4fmu-v3_default`
-* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4fmu-v3_default` (supports 2MB Flash)
-* [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4fmu-v2_default`
-* [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4fmu-v2_default`
-* [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4fmu-v2_default`
-* [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make mindpx-v2_default`
-* [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav-x21_default` 
-* [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make crazyflie_default`
-* [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make aerofc-v1_default`
-* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4fmu-v2_default` > **Warning** You **must** use a [supported version of GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware) to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. Building with an unsupported GCC may fail, as PX4 is close to the board's 1MB flash limit.
-* Pixhawk 1 with 2 MB flash: `make px4fmu-v3_default`
+* Pixhawk 4: `make px4_fmu-v5_default`
+* [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4_fmu-v4_default`
+* [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4_fmu-v4pro_default`
+* [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4_fmu-v3_default`
+* [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4_fmu-v3_default`
+* [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4_fmu-v3_default` (supports 2MB Flash)
+* [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4_fmu-v2_default`
+* [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4_fmu-v2_default`
+* [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4_fmu-v2_default`
+* [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make airmind_mindpx-v2_default`
+* [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav_x21_default` 
+* [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make bitcraze_crazyflie_default`
+* [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make intel_aerofc-v1_default`
+* [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** You **must** use a [supported version of GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware) to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. Building with an unsupported GCC may fail, as PX4 is close to the board's 1MB flash limit.
+* Pixhawk 1 with 2 MB flash: `make px4_fmu-v3_default`
+
+> **Note** Generally the `_default` suffix is optional (i.e. you can also build using `make px4_fmu-v4`, `make bitcraze_crazyflie`, etc.).
 
 ### Uploading Firmware (Flashing the board)
 
 Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
 
 ```sh
-make px4fmu-v4_default upload
+make px4_fmu-v4_default upload
 ```
 
 A successful run will end with this output:
@@ -145,10 +147,10 @@ The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.p
 
 ```sh
 cd Firmware
-make posix_rpi_cross # for cross-compiler build
+make emlid_navio2_cross # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory **build/posix_rpi_cross/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
+The "px4" executable file is in the directory **build/emlid_navio2_cross/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
 Then set the IP (or hostname) of your RPi using:
 
@@ -160,7 +162,7 @@ And upload it with:
 
 ```sh
 cd Firmware
-make posix_rpi_cross upload # for cross-compiler build
+make emlid_navio2_cross upload # for cross-compiler build
 ```
 
 Then, connect over ssh and run it with (as root):
@@ -171,17 +173,17 @@ sudo ./bin/px4 -s px4.config
 
 #### Native Build
 
-If you're building *directly* on the Pi, you will want the native build target (posix_rpi_native).
+If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
 
 ```sh
 cd Firmware
-make posix_rpi_native # for native build
+make emlid_navio2_native # for native build
 ```
 
-The "px4" executable file is in the directory **build/posix_rpi_native/**. Run it directly with:
+The "px4" executable file is in the directory **build/emlid_navio2_native/**. Run it directly with:
 
 ```sh
-sudo ./build/posix_rpi_native/px4 ./posix-configs/rpi/px4.config
+sudo ./build/emlid_navio2_native/px4 ./posix-configs/rpi/px4.config 
 ```
 
 A successful build followed by executing px4 will give you something like this:
@@ -216,13 +218,13 @@ Support for the [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.ht
 
 ```sh
 cd Firmware
-make posix_bebop_default
+make parrot_bebop_default
 ```
 
 Turn on your Bebop and connect your host machine with the Bebop's wifi. Then, press the power button four times to enable ADB and to start the telnet daemon.
 
 ```sh
-make posix_bebop_default upload
+make parrot_bebop_default upload
 ```
 
 This will upload the PX4 mainapp into /data/ftp/internal_000/ and create the file /home/root/parameters if not already present. This also uploads the mixer file and the px4.config file into the /home/root/ directory.
@@ -309,7 +311,7 @@ The commands below build the targets for the Linux and the DSP side. Both execut
 
 ```sh
 cd Firmware
-make eagle_default
+make atlflight_eagle_default
 ```
 
 To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
@@ -321,7 +323,7 @@ adb shell
 Go back to previous terminal and upload:
 
 ```sh
-make eagle_default upload
+make atlflight_eagle_default upload
 ```
 
 Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle.
@@ -414,7 +416,7 @@ cd ../Firmware-build
 cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 ```
 
-Then load the CMakeLists.txt in the root firmware folder via File -> Open File or Project -> Select the CMakeLists.txt file.
+Then load the CMakeLists.txt in the root firmware folder via **File > Open File or Project** (Select the CMakeLists.txt file).
 
 After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
