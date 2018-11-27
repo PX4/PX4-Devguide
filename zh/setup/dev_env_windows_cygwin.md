@@ -48,10 +48,10 @@
 4. 举例，要运行JMAVSim:
     
     ```bash
-    # 进入Firmware仓库目录
-    cd Firmware 
-    # 使用JMAVSim编译并运行SITL模拟器来验证 
-    make posix jmavsim
+    # Navigate to Firmware repo
+    cd Firmware
+    # Build and runs SITL simulation with jMAVSim to test the setup
+    make px4_sitl jmavsim
     ```
     
     控制台将会显示：
@@ -120,7 +120,7 @@ For existing repositories that have this problem caused by a local configuration
 The following features are known to work (version 2.0):
 
 * 使用 jMAVSim 编译和运行 SITL, 其性能明显优于虚拟机 (它生成一个本机 windows 二进制 ** px4.exe **)。
-* 编译和上载 NuttX 二进制文件 (例如: px4fmu-v2 和 px4fmu-v4)
+* Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
 * 使用 * astyle * 进行格式检查 (支持命令: ` 设置格式 `)
 * 命令行自动补全
 * 绿色安装 安装程序不会影响您的系统和全局路径 (它只修改选定的安装目录, 例如 ** C:\PX4 \ ** 并使用临时本地路径)。
