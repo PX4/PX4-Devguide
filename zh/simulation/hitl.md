@@ -110,13 +110,13 @@ Follow the appropriate setup steps for your simulator in the following sections.
     
     ```sh
     cd <Firmware_clone>
-    make posix_sitl_default gazebo
+    make px4_sitl_default gazebo
     ```
     
     In a new terminal, run:
     
     ```sh
-    source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
+    source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
     ```
 
 2. Open the vehicle model's sdf file (e.g. **Tools/sitl_gazebo/models/iris/iris.sdf**).
