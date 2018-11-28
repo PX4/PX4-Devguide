@@ -6,7 +6,7 @@
 
 ## 多旋翼位置控制器
 
-![MC Position Controller Diagram](../../assets/diagrams/px4_mc_position_controller_diagram.png)
+![多旋翼位置控制器图解](../../assets/diagrams/px4_mc_position_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
@@ -18,7 +18,7 @@ Request access from dev team. -->
 
 ## 固定翼姿态控制器
 
-![FW Attitude Controller Diagram](../../assets/diagrams/px4_fw_attitude_controller_diagram.png)
+![固定翼姿态控制器图解](../../assets/diagrams/px4_fw_attitude_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/file/d/1ibxekmtc6Ljq60DvNMplgnnU-JOvKYLQ/view?usp=sharing
 Request access from dev team. -->
@@ -115,14 +115,14 @@ $$\delta_{a} = \frac{V_{I_0}^2}{V_I^2} \delta_{a_{PI}} + \frac{V_{T_0}}{V_T} \de
 
 $$V_{I_0}$$ 和 $$V_{T_0}$$ 分别代表 IAS 和 TAS。
 
-Finally, since the actuator outputs are normalized and that the mixer and the servo blocks are assumed to be linear, we can rewrite this last equation as follows
+最终，由于执行器的输出是归一化的，并且假定混控和伺服模块是线性的，我们可以将上述方程重写如下
 
 $$\dot{\mathbf{\omega}}*{sp}^b = \frac{V*{I_0}^2}{V_I^2} \dot{\mathbf{\omega}}*{sp*{PI}}^b + \frac{V_{T_0}}{V_T} \dot{\mathbf{\omega}}*{sp*{FF}}^b$$,
 
-and implement it directly in the rollrate, pitchrate and yawrate controllers.
+该方程可以直接在滚转速率，俯仰速率和偏航速率控制器中实现
 
-#### Tuning recommendations
+#### 调参建议
 
-The beauty of this airspeed scaling algorithm is that it does not require any specific tuning. However, the quality of the airspeed measurements directly influences its performance.
+这套空速刻度化算法的巧妙之处就是它不需要特别的调参 但是对空速传感器的输出质量将直接影响它的性能
 
-Furthermore, to get the largest stable flight envelope, one should tune the attitude controllers at an airspeed value centered between the stall speed and the maximum airspeed of the vehicle (e.g.: an airplane that can fly between 15 and 25m/s should be tuned at 20m/s). This "tuning" airspeed should be set in the [FW_AIRSPD_TRIM](../advanced/parameter_reference.md#FW_AIRSPD_TRIM) parameter.
+进一步讲，如果要将稳定飞行包线最大化，你应该在最小飞行速度和最大飞行速度的中点进行调参 (例如： 一架飞机的飞行速度在15 ~ 25m/s 之间，则应在20m/s调参)。 [FW_AIRSPD_TRIM](../advanced/parameter_reference.md#FW_AIRSPD_TRIM) 参数. 必须被置为这个 "调参" 空速。
