@@ -105,15 +105,15 @@ $$- C_{\ell_{\delta_a}} \:\delta_a = C_{\ell_p} \frac{b}{2 V_T} \: p$$.
 
 $$\delta_a = -\frac{b \: C_{\ell_p}}{2 \: C_{\ell_{\delta_a}}} \frac{1}{V_T} \: p$$.
 
-The first fraction gives the value of the ideal feedforward and we can see that the scaling is linear to the TAS. Note that the negative sign is then absorbed by the roll damping derivative which is also negative.
+第一项给出了理想的前馈值，我们可以看到刻度因数相对TAS是线性的。 请注意那个负号，之后会与滚转阻尼系数的负号相互抵消。
 
-#### Conclusion
+#### 总结
 
-The output of the rate PI controller has to be scaled with the indicated airspeed (IAS) squared and the output of the rate feedforward (FF) has to be scaled with the true airspeed (TAS)
+角速率回路PI控制器的输出必须由指示空速 (IAS) 的平方刻度化，角速率回路前馈通道 (FF) 必须由真实空速 (TAS) 刻度化。
 
 $$\delta_{a} = \frac{V_{I_0}^2}{V_I^2} \delta_{a_{PI}} + \frac{V_{T_0}}{V_T} \delta_{a_{FF}}$$,
 
-where $$V_{I_0}$$ and $$V_{T_0}$$ are the IAS and TAS at trim conditions.
+$$V_{I_0}$$ 和 $$V_{T_0}$$ 分别代表 IAS 和 TAS。
 
 Finally, since the actuator outputs are normalized and that the mixer and the servo blocks are assumed to be linear, we can rewrite this last equation as follows
 
