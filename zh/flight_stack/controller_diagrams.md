@@ -97,11 +97,11 @@ $$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}\rho_0} \frac{1}{V_I^2} \ell$$.
 
 #### 角速率回路 (FF) 刻度化
 
-角速率控制器前馈通道的主要作用是补偿转动阻尼。 Starting again from the baseline dimensional equation but this time, during a roll at constant speed, the torque produced by the ailerons should exactly compensate for the damping such as
+角速率控制器前馈通道的主要作用是补偿转动阻尼。 回到我们的基线方程，这次在匀速滚转的条件下做简化，副翼产生的力矩必须恰好可以补偿阻尼项
 
 $$- C_{\ell_{\delta_a}} \:\delta_a = C_{\ell_p} \frac{b}{2 V_T} \: p$$.
 
-Rearranging to extract the ideal ailerons deflection gives
+公式重组后，得到理想的副翼偏转角方程
 
 $$\delta_a = -\frac{b \: C_{\ell_p}}{2 \: C_{\ell_{\delta_a}}} \frac{1}{V_T} \: p$$.
 
