@@ -28,13 +28,22 @@ The tests performed for each platform are linked below:
 
 * [DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) 
   * Pixhawk Mini
-  * Pixhawk 3 Pro
-  * Pixhawk 2.1 Cube
   * Pixracer
   * Pixhawk 1
+  * Pixhawk 2.1 Cube
+  * Pixhawk 3 Pro
+  * Pixhawk 4
+  * Pixhawk 4 Mini 
   * Aerotenna OcPoc
 * [Flyingwings Falcon Vertigo VTOL](http://px4.io/portfolio/falcon-vertigo-hybrid-vtol/) 
   * Pixhawk
+* NXPhlite
+* MRO Nano Talon 
+  * X2.1
+* Convergence VTOL 
+  * Pixhawk 4 Mini
+* Delta Quad Pro 
+  * Dropix
 * [QAV 250](http://px4.io/portfolio/multicopter-portfolio/) (PWM-ESC) 
   * Snapdragon 
 * 200qx (UART-ESC) 
