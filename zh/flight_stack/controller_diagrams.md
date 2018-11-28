@@ -91,13 +91,13 @@ $$\bar{q} = \frac{1}{2} \rho V_T^2 = \frac{1}{2} V_I^2 \rho_0$$.
 
 $$\bar{q} \propto V_I^2$$.
 
-The scaler previously containing TAS and the air density can finally be written using IAS only
+之前用TAS和空气密度表示的刻度因数，最终可以用IAS重写成以下形式
 
 $$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}\rho_0} \frac{1}{V_I^2} \ell$$.
 
-#### Rate (FF) scaling
+#### 角速率回路 (FF) 刻度化
 
-The main use of the feedforward of the rate controller is to compensate for the natural rate damping. Starting again from the baseline dimensional equation but this time, during a roll at constant speed, the torque produced by the ailerons should exactly compensate for the damping such as
+角速率控制器前馈通道的主要作用是补偿转动阻尼。 Starting again from the baseline dimensional equation but this time, during a roll at constant speed, the torque produced by the ailerons should exactly compensate for the damping such as
 
 $$- C_{\ell_{\delta_a}} \:\delta_a = C_{\ell_p} \frac{b}{2 V_T} \: p$$.
 
