@@ -77,11 +77,11 @@ $$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}} \frac{1}{\rho V_T^2} \ell = \frac{b
 
 观察上面的公式可以知道，第一项是个常值，第二项则取决于空气密度和真实空速的平方。
 
-Furthermore, instead of scaling with the air density and the TAS, it can be shown that the indicated airspeed (IAS, $$V_I$$) is inherently adjusted by the air density since at low altitude and speed, IAS can be converted to TAS using a simple density error factor
+更进一步，先不用空气密度和TAS做刻度化，可以发现指示空速 (IAS, $$V_I$$) 在本质上是受空气密度影响的，在低空低速情况下，IAS可以乘以一个简单的密度误差因子转换成TAS
 
 $$V_T = V_I \sqrt{\frac{\rho_0}{\rho}}$$,
 
-where $$\rho_o$$ is the air density as sea level, 15°C.
+$$\rho_o$$ 代表海平面15°C下的空气密度。
 
 Squaring, rearranging and adding a 1/2 factor to both sides makes the dynamic pressure $$\bar{q}$$ expression appear
 
