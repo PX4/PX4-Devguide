@@ -122,7 +122,7 @@ sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
 The columns are: topic name, multi-instance index, number of subscribers,
-publishing frequency in Hz, number of lost messages (all subscribers combined), and
+publishing frequency in Hz, number of lost messages per second (for all subscribers combined), and
 queue size.
 
 
