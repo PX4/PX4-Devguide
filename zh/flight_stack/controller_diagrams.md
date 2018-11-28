@@ -83,11 +83,11 @@ $$V_T = V_I \sqrt{\frac{\rho_0}{\rho}}$$,
 
 $$\rho_o$$ 代表海平面15°C下的空气密度。
 
-Squaring, rearranging and adding a 1/2 factor to both sides makes the dynamic pressure $$\bar{q}$$ expression appear
+经过一系列重组变换，得到 $$\bar{q}$$ 的表达式如下
 
 $$\bar{q} = \frac{1}{2} \rho V_T^2 = \frac{1}{2} V_I^2 \rho_0$$.
 
-We can now easily see that the dynamic pressure is proportional to the IAS squared
+现在我们能清楚地看到气动压力与IAS的平方成正比
 
 $$\bar{q} \propto V_I^2$$.
 
