@@ -18,6 +18,7 @@ The technique uses [Visual Odometry](https://en.wikipedia.org/wiki/Visual_odomet
 
 For information about VIO see:
 - [External Position Estimation](../ros/external_position_estimation.md)
+- [Flying with Motion Capture (VICON, Optitrack)](../tutorials/motion-capture-vicon-optitrack.md)
 - [EKF > External Vision System](../tutorials/tuning_the_ecl_ekf.md#external-vision-system)
 - [Snapdragon > Installation > Install Snap VIO](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
 
