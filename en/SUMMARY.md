@@ -103,6 +103,7 @@
 * [Advanced Topics](advanced/README.md)
   * [Parameters & Configs](advanced/parameters_and_configurations.md)
   * [Parameter Reference](advanced/parameter_reference.md)
+  * [Computer Vision](advanced/computer_vision.md)
   * [Installing driver for Intel RealSense R200](advanced/realsense_intel_driver.md)
   * [Switching State Estimators](advanced/switching_state_estimators.md)
   * [Out-of-Tree Modules](advanced/out_of_tree_modules.md)
