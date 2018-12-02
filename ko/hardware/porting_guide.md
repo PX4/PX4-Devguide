@@ -102,3 +102,33 @@ This section describes the various middleware components, and the configuration 
 ## RC UART Wiring Recommendations
 
 It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. This is done via board config and manifest files. One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c).
+
+## Officially Supported Hardware
+
+The PX4 project supports and maintains the [FMU standard reference hardware](../debug/reference-design.md) and any boards that are compatible with the standard. This includes the [Pixhawk-series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/en/flight_controller/)).
+
+Every officially supported board benefits from:
+
+* PX4 Port available in the PX4 repository
+* Automatic firmware builds that are accessible from *QGroundControl*
+* Compatibility with the rest of the ecosystem
+* Automated checks via CI - safety remains paramount to this community
+* [Flight testing](../test_and_ci/test_flights.md)
+  
+  We encourage board manufacturers to aim for full compatibility with the [FMU spec](https://pixhawk.org/). With full compatibility you benefit from the ongoing day-to-day development of PX4, but have none of the maintenance costs that come from supporting deviations from the specification.
+  
+  > **Tip** Manufacturers should carefully consider the cost of maintenance before deviating from the specification (the cost to the manufacturer is proportional to the level of divergence).
+
+We welcome any individual or company to submit their port for inclusion in our supported hardware, provided they are willing to follow our [Code of Conduct](../contribute/README.md#code-of-conduct) and work with the Dev Team to provide a safe and fulfilling PX4 experience to their customers.
+
+It's also important to note that the PX4 dev team has a responsibility to release safe software, and as such we require any board manufacturer to commit any resources necessary to keep their port up-to-date, and in a working state.
+
+If you want to have your board officially supported in PX4:
+
+* Your hardware must be available in the market (i.e. it can be purchased by any developer without restriction).
+* Hardware must be made available to the PX4 Dev Team so that they can validate the port (contact <lorenz@px4.io> for guidance on where to ship hardware for testing).
+* The board must pass full [test suite](../test_and_ci/README.md) and [flight testing](../test_and_ci/test_flights.md).
+
+**The PX4 project reserves the right to refuse acceptance of new ports (or remove current ports) for failure to meet the requirements set by the project.**
+
+You can reach out to the core developer team and community on the official [Forums and Chat](../README.md#support).
