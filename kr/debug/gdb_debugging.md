@@ -123,23 +123,17 @@ EXC_RETURN: ffffffe9
 
 하드폴트를 디코딩하기 위해서 *정확히 일치하는* binary를 디버거로 로드합니다. :
 
-<div class="host-code"></div>
-
 ```bash
-arm-none-eabi-gdb build/px4_fmu-v2_default/src/firmware/nuttx/firmware_nuttx
+arm-none-eabi-gdb build/px4_fmu-v2_default/px4_fmu-v2_default.elf
 ```
 
 GDB 프롬프트에서, R8에서 마지막 명령과 flash에서 첫번째 주소로 시작합니다.(`0x080`로 시작하고 첫번째 주소는 `0x0808439f`임) 하드폴트가 있기 전에 마지막 동작 중에 하나는 ```mavlink_log.c```가 뭔가를 publish를 시도했다는 것입니다.
-
-<div class="host-code"></div>
 
 ```gdb
 (gdb) info line *0x0808439f
 Line 77 of "../src/modules/systemlib/mavlink_log.c" starts at address 0x8084398 <mavlink_vasprintf+36>
    and ends at 0x80843a0 <mavlink_vasprintf+44>.
 ```
-
-<div class="host-code"></div>
 
 ```gdb
 (gdb) info line *0x08087c4e
