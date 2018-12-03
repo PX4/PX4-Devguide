@@ -2542,11 +2542,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Home set horizontal threshold
+        Home点水平阈值
       </p>
       
       <p>
-        <strong>Comment:</strong> The home position will be set if the estimated positioning accuracy is below the threshold.
+        <strong>说明:</strong>如果估计的定位精度低于阈值，则设置home位置。
       </p>
     </td>
     
@@ -2570,11 +2570,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Home set vertical threshold
+        Home点垂直阈值
       </p>
       
       <p>
-        <strong>Comment:</strong> The home position will be set if the estimated positioning accuracy is below the threshold.
+        <strong>说明:</strong>如果估计的定位精度低于阈值，则设置home位置。
       </p>
     </td>
     
