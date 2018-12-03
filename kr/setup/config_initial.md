@@ -1,21 +1,30 @@
-# 초기 설정
+# 초기 설정 및 구성
 
-PX4에서 개발을 시작하기 전에, 하드웨어가 제대로 셋업되어 있는지 확인하기 위해서 시스템은 디폴트 설정으로 초기화 되어야 합니다. 아래 비디오는 [Pixhawk 하드웨어](https://docs.px4.io/en/flight_controller/pixhawk_series.html) 와 [QGroundControl](../qgc/README.md)의 셋업 프로세스를 설명합니다. 지원하는 에어프레임 레퍼런스의 목록은 [여기](../airframes/architecture.md)를 참고하세요.
+개발자는 아래에 설명된 기본적인 (또는 이와 유사한) 장비를 취득하여 기본적인 [기체 (airframe)](../airframes/airframe_reference.md)) 구성을 사용할 것을 권장합니다.
 
-> **Info** [DAILY BUILD of QGroundControl](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) 다운받기와 아래 비디오를 따라서 여러분의 비행체를 셋업합니다. mission planning, 비행, 파라미터 셋팅에 대해서 보다 상세한 내용을 위해서는 [QGroundControl 튜터리얼](../qgc/README.md)을 참고하세요.
+## 기본 장비
 
-셋업 옵션의 목록은 아래 비디오를 참고하세요.
+> **Tip** PX4는 여기에 설명된 것보다 훨씬 넓은 범위의 장비와 함께 사용할 수 있지만, 초보 개발자는 표준 설정 중 하나를 사용함으로 이점을 얻을 수 있습니다. Taranis RC와 Note 4 태블렛은 매우 저렴한 필드 킷을 구성합니다.
 
-{% youtube %}https://www.youtube.com/watch?v=91VGmdSlbo4&rel=0&vq=hd720{% endyoutube %}
+아래의 장비를 강력히 추천합니다.
 
-## 라디오 컨트롤 옵션
+* 안전 비행을 위한 Taranis Plus 원격 조종장치 (또는 이와 동등한 장비)
+* 개발 컴퓨터:
+  * OSX 10.13 또는 그 이후 버전이 설치된 맥북 프로(2015년 이후) 
+  * 우분투 리눅스 16.06 버전 이후가 설치된 Lenovo Thinkpad 450 (i5) with Ubuntu Linux 16.04 or later
+* 그라운드 컨트롤 스테이션 장비:
+  * iPad (Wifi 텔레메트리 어뎁터 필요)
+  * 모든 종류의 맥북 또는 우분투 리눅스 랩톱 컴퓨터 (개발이 가능한) 
+  * 삼성 노트 4 또는 이와 동등한 장비 (*QGroundControl*을 무리없이 잘 동작시키며 충분히 큰 화면을 갖는) 
+* 보안경
+* 멀티콥터의 위험한 테스트를 위한 고정 끈
 
-PX4 flight stack은 라디오 컨트롤 시스템을 강제하지 않습니다. 비행 모드를 선택하는 개발 스위치에 대해서도 강제사항은 없습니다.
+## 이동체의 구성
 
-### 라디오 컨트롤 없이 비행
+> **Tip** **데스크탑 OS**를 위한 *QGroundControl*이 이동체 구성에 필요합니다. PX4의 최신 기능을 활용하려면 데일리 빌드(daily build)를 사용하시고 정기적으로 업데이트를 해야합니다. 
 
-모든 라디오 컨트롤 셋업 체크는 `COM_RC_IN_MODE` 파라미터를 `1`로 설정해서 비활성화시킬 수 있습니다. 이렇게 하면 비행 중인 경우를 제외하고 수동 비행을 허용하지 않습니다.
+이동체를 구성하기 위해
 
-### 단일 채널 모드 스위치
-
-여러 스위치를 사용하는 대신에 이 모드에서 시스템은 한개 채널만 모드 스위치로 받아들입니다. 이와 관련해서는 [기존 위키](https://pixhawk.org/peripherals/radio-control/opentx/single_channel_mode_switch)를 참고하세요.
+1. 개발 플랫폼 구성을 위해 [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html)를 다운로드하세요.
+2. [기본 구성](https://docs.px4.io/en/config/) (PX4 사용자 가이드)는 어떻게 기본 구성을 수행하는지 설명합니다. 
+3. [파라미터 구성](https://docs.px4.io/en/advanced_config/parameters.html)(PX4 사용자 가이드)은 어떻게 개별 파라미터를 찾고 수정하는지 설명합니다. 
