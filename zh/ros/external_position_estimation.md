@@ -10,83 +10,127 @@
 
 对于视觉, 用于发送姿势数据的 MAVLink 消息是 [ VISION_POSITION_ESTIMATE ](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE), 而对于运动捕获系统的发送的的 MAVLink 消息是 [ ATT_POS_MOCAP ](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) 。
 
-mavros功能包中已经包含了这些mavlink消息的发送和接收接口。 这些消息也可以直接使用MAVLINK库并编写C/C++代码来发送和接收。 对应的ROS 主题是: 用于 mocap 系统的 ` mocap_pose_estimate ` 和用于视觉的 ` vision_pose_estimate `。 有关详细信息, 请检查 [ mavros_extras ](http://wiki.ros.org/mavros_extras)。
+mavros功能包中已经包含了这些mavlink消息的发送和接收接口。 这些消息也可以直接使用MAVLINK库并编写C/C++代码来发送和接收。 The ROS topics are: `/mavros/mocap/pose` for mocap systems and `/mavros/vision_pose/pose` for vision. 有关详细信息, 请检查 [ mavros_extras ](http://wiki.ros.org/mavros_extras)。
 
-**此功能只能与 LPE 估计器一起使用。**
+## EKF2 Tuning for External Position Estimate
 
-## 针对Vision和Mocap的LPE模块调参
+A set of parameters need to be set in order for EKF2 to use the external position estimation. You can use QGroundContorl (QGC) to easily adjust these parameters. All of the following parameters can be found in the EKF2 tab in QGC.
+
+* External position estimate can be enabled by setting the `EKF_AID_MASK` to enable vision position and yaw fusion
+* To use the external height estimate for altitude estimation, set `EKF2_HGT_MODE` to use vision
+* Adjust the `EKF2_EV_DELAY` parameter. This value actually represents how far off the timestamp of the measurement is off from the "actual" time it was captured at. It can technically be set to 0 if there is correct timestamping (not just arrival time) and timesync (e.g NTP) between mocap and ROS computers. In reality, this needs some empirical tuning since delays in the entire Mocap->PX4 chain are very setup specific and there is rarely a well setup system with an entirely synchronised chain.
+
+* Use `EKF2_EV_POS_X`, `EKF2_EV_POS_Y`, `EKF2_EV_POS_Z` to set the position of the vision sensor (or mocap markers) with respect to the robot's body frame.
+
+* Reboot the flight controller in order for the parameters to take effect.
+
+Now, you will need to feed the external position data to the flight controller using the [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE). MAVROS provides an easy interface to do this through the `vision_pose_estimate` plugin.
+
+## LPE Tuning for Vision or Mocap
 
 ### 使能外部位置和姿态输入
 
-你需要去设置一些参数（利用QGC或者NSH）去启用或关闭是否使用Vision/mocap提供的信息的功能。
+You need to set a few parameters (from QGroundControl or the NSH shell) to enable or disable vision/mocap usage in the system.
 
-参看系统参数`ATT_EXT_HDG_M`设置为1或2来使能融合外部航向角。 设置为1则会使能融合视觉信息，设置为2则会使能mocap信息。
+Set the system parameter `ATT_EXT_HDG_M` to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables mocap heading use.
 
-LPE中会默认融合视觉信息。 你利用QGC可以设置参数`LPE_FUSION` 。 并且请确认检查过了fuse vision position。
+Vision integration is enabled by default in LPE. You can control this using the`LPE_FUSION` parameter in QGroundControl. Make sure that "fuse vision position" is checked.
 
 #### 关闭气压计数据融合
 
-如果从视觉或 mocap 信息中可以获得准确的高度信息, 则在 LPE 中禁用融合气压计数据以减少 Z 轴上的漂移。
+If a highly accurate altitude is already available from vision or mocap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
 
-同样，通过QGC来设置`LPE_FUSION`中的一个位来实现。 Just uncheck "fuse baro".
+There is a bit field for this in the parameter `LPE_FUSION`, which you can set from QGroundControl. Just uncheck "fuse baro".
 
 #### 滤波噪声参数调参
 
-如果您的视觉或 mocap 数据非常准确, 并且您只希望估计器对其进行严格跟踪, 则应减少标准偏差参数、` LPE_VIS_XY ` 和 ` LPE_VIS_Z ` (用于视觉) 或 ` LPE_VIC_P ` (用于运动捕获)。 减小它们会使估计器更加信任外部传入的位姿信息。 您可能需要将它们设置为允许的最小值。
+If your vision or mocap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters, `LPE_VIS_XY` and `LPE_VIS_Z` (for vision) or `LPE_VIC_P` (for motion capture). Reducing them will cause the estimator to trust the incoming pose estimate more. You may need to set them lower than the allowed minimum and force-save.
 
 > ** 提示 **如果性能仍然较差, 请尝试增大` LPE_PN_V ` 参数。 这将使估计器在估计速度时更信任测量值。
 
-## 关于坐标系
+## Asserting on Reference Frames
 
-本节演示如何使用适当的参考坐标系。 关于坐标系有各种各样的表示, 但我们将使用其中两个: ENU 和 NED。
+This section shows how to setup the system with the proper reference frames. There are various representations but we will use two of them: ENU and NED.
 
-* ENU系：X轴指向东，Y指向北，Z指向天。 相应的机体系：X指向前，Z指向上，Y则顺应右手法则。
+* ENU has a ground-fixed frame where *x* axis points East, *y* points North and *z* up. Robot frame is *x* towards the front, *z* up and *y* accordingly.
 
-* NED系：X轴指向北，Y轴指向东，Z指向地。 相应的机体系：X指向前，Z指向下，Y则顺应右手法则。
+* NED has *x* towards North, *y* East and *z* down. Robot frame is *x* towards the front, *z* down and *y* accordingly.
 
-各坐标系如下图所示，NED在左边，ENU在右边。
+Frames are shown in the image below: NED on the left while ENU on the right.
 
-![参考机架](../../assets/lpe/ref_frames.png)
+![Reference frames](../../assets/lpe/ref_frames.png)
 
-当使用外部信息作为航向标准时，地磁北将会被忽略。注意：你可以轻易设置外部的偏航角0度值，这时X轴会指向你自定义的X轴。
+With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at mocap calibration); yaw angle will be given with respect to local *x*.
 
 > ** 信息 **在 mocap系统的地面站 软件中创建刚体时, 请记住首先将机器人的本地 * x * 轴与世界 * x * 轴对齐, 否则偏航估计将具有初始偏移量。
 
 ### 利用MAVROS来实现这些
 
-利用MAVROS功能包，以上操作会十分简单。 ROS 默认使用 ENU 系, 因此你在MAVROS中所有代码必须遵循ENU系。 如果您有一个 Optitrack 系统, 则可以使用 [ mocap_optitrack ](https://github.com/ros-drivers/mocap_optitrack) 节点, 其已经发布了一个关于刚体位姿的一个ROS话题。 通过重新映射（方向转换）, 您可以直接利用` mocap_pose_estimate ` 插件来发布它, 请注意你需要遵循ENU系。
+With MAVROS this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and mavros will take care of NED conversions.
 
 ### 不使用MAVROS的方法
 
-如果你不想使用MAVROS或者ROS，你需要发送`ATT_POS_MOCAP` 这条MAVLINK消息给飞控。 这种情况下，请注意方向问题，请遵循飞控内部的NED系。
+If you do not use MAVROS or ROS in general, you need to stream data over MAVLink with `ATT_POS_MOCAP` message. In this case you will need to apply a custom transformation depending on the system in order to obtain NED convention.
 
-让我们以 Optitrack 为例;如果我们设置optitrack的坐标系设置为x指向前方，z指向右，y竖直向上 通过如下转换我们可以转换optrack坐标系到NED系中。
+Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. A simple trick is swapping axis in order to obtained NED convention.
 
-* x_{mav}*, * y_{mav}* 和 * z_{mav}* 是我们将通过 MAVLink 发送的位置量, 然后我们得到:
+We call *x_{mav}*, *y_{mav}* and *z_{mav}* the coordinates that are sent through MAVLink as position feedback, then we obtain:
 
 *x_{mav}* = *x_{mocap}* *y_{mav}* = *z_{mocap}* *z_{mav}* = - *y_{mocap}*
 
-Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. 上述的转换技巧你可以应用于任何系统：对比一下NED系和你的外部消息的坐标系你就会知道该如何转换。
+Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
 
-## 第一次飞行
+## Specific System Setups
 
-首先你需要检查你的各项设置。
+### OptiTrack MOCAP
 
-请检查
+The following steps explain how to feed position estimates from an [OptiTrack](http://optitrack.com/systems/#robotics) system to PX4. It is assumed that the MOCAP system is calibrated. See [this video](https://www.youtube.com/watch?v=cNZaFEghTBU) for a tutorial on the calibration process.
+
+**Steps to do on the MOCAP software, Motive**
+
+* Align your robot's forward direction with the the [system +x-axis](https://v20.wiki.optitrack.com/index.php?title=Template:Coordinate_System)
+* [Define a rigid body in the Motive software](https://www.youtube.com/watch?v=1e6Qqxqe-k0). Give the robot a name that does not contain spaces, e.g. `robot1` instead of `Rigidbody 1`
+* [Enable Frame Broadacst and VRPN streaming](https://www.youtube.com/watch?v=yYRNG58zPFo)
+* Set the Up axis to be the Z axis (the default is Y)
+
+**Getting pose data into ROS**
+
+* Install the `vrpn_client_ros` package
+* You can get each rigid body pose on an individual topic by running
+
+```bash
+roslaunch vrpn_client_ros sample.launch server:=<mocap machine ip>
+```
+
+If you named the rigidbody as `robot1`, you will get a topic like `/vrpn_client_node/robot1/pose`
+
+**Relaying pose data to PX4**
+
+MAVROS provides a plugin to relay pose data published on `/mavros/vision_pose/pose` to PX4. Assuming that MAVROS is running, you just need to **remap** the pose topic that you get from MOCAP `/vrpn_client_node/<rigid_body_name>/pose` directly to `/mavros/vision_pose/pose`. Note that there is also a mocap topic that MAVROS provides to feed `ATT_POS_MOCAP` to PX4, but it is not applicable for EKF2. However, it is applicable with LPE.
+
+Assuming that you have configured EKF2 paramters as described above, PX4 now is set and fusing MOCAP data.
+
+You are now set to proceed to the first flight.
+
+## First Flight
+
+At this point, if you followed those steps, you are ready to test your setup.
+
+Be sure to perform the following checks:
 
 * **Before** creating the rigid body, align the robot with world x axis
-* 通过MAVLINK发送相应的消息，并在QGC监控该消息。
-* 用手简单移动无人机来检查估计器发布的位置方向是否正确。
-* 旋转无人机来检查偏航角方向是否正确。
+* Stream over MAVLink and check the MAVLink inspector with QGroundControl, the local pose topic should be in NED
+* Move the robot around by hand and see if the estimated local position is consistent (always in NED)
+* Rotate the robot on the vertical axis and check the yaw with the MAVLink inspector
 
-如果以上步骤没问题，你可以开始你的第一次飞行。
+If those steps are consistent, you can try your first flight.
 
-将无人机摆放在地面，并启用mocap系统。 油门杆推到最低并解锁。
+Put the robot on the ground and start streaming mocap feedback. Lower your left (throttle) stick and arm the motors.
 
-此时，设置为位置控制模式。 如果切换成功，飞控会闪绿灯。 绿灯代表：你的外部位置信息已经注入到飞控中，并且位置控制模式已经切换成功。
+At this point, with the left stick at the lowest position, switch to position control. You should have a green light. The green light tells you that position feedback is available and position control is now activated.
 
-油门杆居中，这是油门控制死区。 如果在死区中，则无人机会保持其当前高度。往上推杆，则会上升，往下推杆，则会下降。 同理对于另一个杆。
+Put your left stick at the middle, this is the dead zone. With this stick value, the robot maintains its altitude; raising the stick will increase the reference altitude while lowering the value will decrease it. Same for right stick on x and y.
 
-推油门杆，则无人机会起飞，起飞后，立即将其拉回中位。 检查此时无人机能否悬停。
+Increase the value of the left stick and the robot will take off, put it back to the middle right after. Check if it is able to keep its position.
 
-如果这一切都没问题，那么你可以开始进行offboard模式下的试验了（发布自行设定的位置期望值给飞控）。
+If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
