@@ -10,9 +10,21 @@ The system can then be used for applications such as position hold indoors or wa
 
 For vision, the MAVLink message used to send the pose data is [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE) and the message for all motion capture systems is [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) messages.
 
-The mavros ROS-MAVLink interface has default implementations to send these messages. They can also be sent using pure C/C++ code and direct use of the MAVLink library. The ROS topics are: `mocap_pose_estimate` for mocap systems and `vision_pose_estimate` for vision. Check [mavros_extras](http://wiki.ros.org/mavros_extras) for further info.
+The mavros ROS-MAVLink interface has default implementations to send these messages. They can also be sent using pure C/C++ code and direct use of the MAVLink library. The ROS topics are: `/mavros/mocap/pose` for mocap systems and `/mavros/vision_pose/pose` for vision. Check [mavros_extras](http://wiki.ros.org/mavros_extras) for further info.
 
-**This feature has only been tested to work with the LPE estimator.**
+## EKF2 Tuning for External Position Estimate
+
+A set of parameters need to be set in order for EKF2 to use the external position estimation. You can use QGroundContorl (QGC) to easily adjust these parameters. All of the following parameters can be found in the EKF2 tab in QGC.
+
+* External position estimate can be enabled by setting the `EKF_AID_MASK` to enable vision position and yaw fusion
+* To use the external height estimate for altitude estimation, set `EKF2_HGT_MODE` to use vision
+* Adjust the `EKF2_EV_DELAY` parameter. This value actually represents how far off the timestamp of the measurement is off from the "actual" time it was captured at. It can technically be set to 0 if there is correct timestamping (not just arrival time) and timesync (e.g NTP) between mocap and ROS computers. In reality, this needs some empirical tuning since delays in the entire Mocap->PX4 chain are very setup specific and there is rarely a well setup system with an entirely synchronised chain.
+
+* Use `EKF2_EV_POS_X`, `EKF2_EV_POS_Y`, `EKF2_EV_POS_Z` to set the position of the vision sensor (or mocap markers) with respect to the robot's body frame.
+
+* Reboot the flight controller in order for the parameters to take effect.
+
+Now, you will need to feed the external position data to the flight controller using the [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE). MAVROS provides an easy interface to do this through the `vision_pose_estimate` plugin.
 
 ## LPE Tuning for Vision or Mocap
 
@@ -67,6 +79,38 @@ We call *x_{mav}*, *y_{mav}* and *z_{mav}* the coordinates that are sent through
 *x_{mav}* = *x_{mocap}* *y_{mav}* = *z_{mocap}* *z_{mav}* = - *y_{mocap}*
 
 Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. You can apply this trick with every system; you need to obtain a NED frame, look at your mocap output and swap axis accordingly.
+
+## Specific System Setups
+
+### OptiTrack MOCAP
+
+The following steps explain how to feed position estimates from an [OptiTrack](http://optitrack.com/systems/#robotics) system to PX4. It is assumed that the MOCAP system is calibrated. See [this video](https://www.youtube.com/watch?v=cNZaFEghTBU) for a tutorial on the calibration process.
+
+**Steps to do on the MOCAP software, Motive**
+
+* Align your robot's forward direction with the the [system +x-axis](https://v20.wiki.optitrack.com/index.php?title=Template:Coordinate_System)
+* [Define a rigid body in the Motive software](https://www.youtube.com/watch?v=1e6Qqxqe-k0). Give the robot a name that does not contain spaces, e.g. `robot1` instead of `Rigidbody 1`
+* [Enable Frame Broadacst and VRPN streaming](https://www.youtube.com/watch?v=yYRNG58zPFo)
+* Set the Up axis to be the Z axis (the default is Y)
+
+**Getting pose data into ROS**
+
+* Install the `vrpn_client_ros` package
+* You can get each rigid body pose on an individual topic by running
+
+```bash
+roslaunch vrpn_client_ros sample.launch server:=<mocap machine ip>
+```
+
+If you named the rigidbody as `robot1`, you will get a topic like `/vrpn_client_node/robot1/pose`
+
+**Relaying pose data to PX4**
+
+MAVROS provides a plugin to relay pose data published on `/mavros/vision_pose/pose` to PX4. Assuming that MAVROS is running, you just need to **remap** the pose topic that you get from MOCAP `/vrpn_client_node/<rigid_body_name>/pose` directly to `/mavros/vision_pose/pose`. Note that there is also a mocap topic that MAVROS provides to feed `ATT_POS_MOCAP` to PX4, but it is not applicable for EKF2. However, it is applicable with LPE.
+
+Assuming that you have configured EKF2 paramters as described above, PX4 now is set and fusing MOCAP data.
+
+You are now set to proceed to the first flight.
 
 ## First Flight
 
