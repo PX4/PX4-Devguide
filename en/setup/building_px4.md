@@ -537,9 +537,9 @@ If building your own branch, it is possibly you have increased the firmware size
 In this case you will need to remove any drivers/modules that you don't need from the build. 
 
 
-### macOS: Too many open files
+### macOS: Too many open files {#macos_open_files}
 
-MacOS allows a default maximum of 256 open files in any running processes.
+MacOS allows a default maximum of 256 open files in all running processes.
 The PX4 build system opens a large number of files, so you may exceed this number.
 
 The build toolchain will then report `Too many open files` for many files, as shown below:
@@ -547,10 +547,7 @@ The build toolchain will then report `Too many open files` for many files, as sh
 /usr/local/Cellar/gcc-arm-none-eabi/20171218/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/bin/ld: cannot find NuttX/nuttx/fs/libfs.a: Too many open files
 ```
 
-The solution is to increase the maximum allowed number of open files, using the macOS *Terminal* command:
+The solution is to increase the maximum allowed number of open files (e.g. to 300), using the macOS *Terminal* command:
 ```sh
 ulimit -S -n 300
 ```
-
-> **Note** At time of writing (December 2018) the master branch always fails due to this error.
-  Increasing the number of allowed open files to 300 should fix most problems.
