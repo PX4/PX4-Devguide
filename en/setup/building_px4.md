@@ -4,6 +4,9 @@ PX4 can be built on the console or in an IDE, for both simulated and hardware ta
 
 > **Note** Before following these instructions you must first install the [Developer Toolchain](../setup/dev_env.md) for your host operating system and target hardware.
 
+<span></span>
+> **Tip** If you have a problem with the build, see the [Troubleshooting](#troubleshooting) section at the end of this topic. 
+
 ## Downloading PX4 Source Code {#get_px4_code}
 
 The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
@@ -510,3 +513,44 @@ The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files
 Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake**
 (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
 
+
+## Troubleshooting
+
+### General Build Errors
+
+Many build problems are caused by either mismatching submodules or an incompletely cleaned-up build environment.
+Updating the submodules and doing a `distclean` can fix these kinds of errors:
+```
+git submodule update --recursive
+make distclean
+```
+
+### Flash overflowed by XXX bytes
+
+The `region 'flash' overflowed by XXXX bytes` error indicates that the firmware is too large for the target hardware platform.
+This is common for `make px4_fmu-v2_default` builds, where the flash size is limited to 1MB.
+
+If you're building the *vanilla* master branch, the most likely cause is using an unsupported version of GCC.
+In this case, install the version specified in the [Developer Toolchain](../setup/dev_env.md) instructions.
+
+If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. 
+In this case you will need to remove any drivers/modules that you don't need from the build. 
+
+
+### macOS: Too many open files
+
+MacOS allows a default maximum of 256 open files in any running processes.
+The PX4 build system opens a large number of files, so you may exceed this number.
+
+The build toolchain will then report `Too many open files` for many files, as shown below:
+```sh
+/usr/local/Cellar/gcc-arm-none-eabi/20171218/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/bin/ld: cannot find NuttX/nuttx/fs/libfs.a: Too many open files
+```
+
+The solution is to increase the maximum allowed number of open files, using the macOS *Terminal* command:
+```sh
+ulimit -S -n 300
+```
+
+> **Note** At time of writing (December 2018) the master branch always fails due to this error.
+  Increasing the number of allowed open files to 300 should fix most problems.
