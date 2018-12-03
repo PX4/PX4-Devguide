@@ -1715,7 +1715,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Maximum rate gyro inconsistency between IMU units that will allow arming
+        解锁允许的各个IMU单元之间最大的陀螺仪不一致性.
       </p>
     </td>
     
@@ -1739,7 +1739,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Maximum magnetic field inconsistency between units that will allow arming
+        解锁允许的各个IMU单元之间最大的磁罗盘不一致性.
       </p>
     </td>
     
@@ -1763,11 +1763,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Require valid mission to arm
+        需要有效的任务才能解锁
       </p>
       
       <p>
-        <strong>Comment:</strong> The default allows to arm the vehicle without a valid mission.
+        <strong>说明:</strong>默认允许不需要一个有效任务也可以解锁.
       </p>
     </td>
     
