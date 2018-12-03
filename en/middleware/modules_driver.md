@@ -144,40 +144,6 @@ fmu <command> [arguments...]
 
    status        print status info
 ```
-## gpio_led
-Source: [modules/gpio_led](https://github.com/PX4/Firmware/tree/master/src/modules/gpio_led)
-
-
-### Description
-This module is responsible for drving a single LED on one of the FMU AUX pins.
-
-It listens on the vehicle_status and battery_status topics and provides visual annunciation on the LED.
-
-### Implementation
-The module runs on the work queue. It schedules at a fixed frequency of 5 Hz
-
-### Examples
-It is started with:
-```
- gpio_led start
-```
-To drive an LED connected AUX1 pin.
-
-OR with any of the avaliabel AUX pins
-```
- gpio_led start -p 5
-```
-To drive an LED connected AUX5 pin.
-
-### Usage {#gpio_led_usage}
-```
-gpio_led <command> [arguments...]
- Commands:
-   start         annunciation on AUX OUT pin
-     [-p]        Use specified AUX OUT pin number (default: 1)
-
-   stop
-```
 ## gps
 Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
 
