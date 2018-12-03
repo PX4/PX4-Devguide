@@ -14,14 +14,14 @@ The mavros ROS-MAVLink interface has default implementations to send these messa
 
 ## EKF2 Tuning for External Position Estimate
 
-A set of paramters need to be set in order for EKF2 to use the external position estimation. You can use QGroundContorl (QGC) to easily adjust these paramters. All of the following paramters can be found in the EKF2 tab in QGC.
+A set of parameters need to be set in order for EKF2 to use the external position estimation. You can use QGroundContorl (QGC) to easily adjust these parameters. All of the following parameters can be found in the EKF2 tab in QGC.
 
 * External position estimate can be enabled by setting the `EKF_AID_MASK` to enable vision position and yaw fusion
 * To use the external height estimate for altitude estimation, set `EKF2_HGT_MODE` to use vision
-* Adjust the `EKF2_EV_DELAY` paramter. This value actually represents how far off the timestamp of the measurement is off from the "actual" time it was captured at. It can technically be set to 0 if there is correct timestamping (not just arrival time) and timesync (e.g NTP) between mocap and ROS computers. In reality, this needs some empirical tuning since delays in the entire Mocap->PX4 chain are very setup specific and there is rarely a well setup system with an entirely synchronised chain.
+* Adjust the `EKF2_EV_DELAY` parameter. This value actually represents how far off the timestamp of the measurement is off from the "actual" time it was captured at. It can technically be set to 0 if there is correct timestamping (not just arrival time) and timesync (e.g NTP) between mocap and ROS computers. In reality, this needs some empirical tuning since delays in the entire Mocap->PX4 chain are very setup specific and there is rarely a well setup system with an entirely synchronised chain.
 
 * Use `EKF2_EV_POS_X`, `EKF2_EV_POS_Y`, `EKF2_EV_POS_Z` to set the position of the vision sensor (or mocap markers) with respect to the robot's body frame.
-* Reboot the flight controller in order for the paramters to take effect.
+* Reboot the flight controller in order for the parameters to take effect.
 
 Now, you will need to feed the external position data to the flight controller using the [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE). MAVROS provides an easy interface to do this through the `vision_pose_estimate` plugin.
 
@@ -106,7 +106,7 @@ If you named the rigidbody as `robot1`, you will get a topic like `/vrpn_client_
 
 **Relaying pose data to PX4**
 
-MAVROS provies a plugin to relay pose data published on `/mavros/vision_pose/pose` to PX4. Assuming that MAVROS is running, you just need to **remap** the pose topic that you get from MOCAP `/vrpn_client_node/<rigid_body_name>/pose` directly to `/mavros/vision_pose/pose`.
+MAVROS provides a plugin to relay pose data published on `/mavros/vision_pose/pose` to PX4. Assuming that MAVROS is running, you just need to **remap** the pose topic that you get from MOCAP `/vrpn_client_node/<rigid_body_name>/pose` directly to `/mavros/vision_pose/pose`. Note that there is also a mocap topic that MAVROS provides to feed `ATT_POS_MOCAP` to PX4, but it is not applicable for EKF2. However, it is applicable with LPE.
 
 Assuming that you have configured EKF2 paramters as described above, PX4 now is set and fusing MOCAP data.
 
