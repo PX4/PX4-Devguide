@@ -1691,7 +1691,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Maximum accelerometer inconsistency between IMU units that will allow arming
+        解锁允许的各个IMU单元之间最大的加速度不一致性.
       </p>
     </td>
     
