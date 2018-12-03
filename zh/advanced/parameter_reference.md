@@ -2486,11 +2486,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        High Latency Datalink loss time threshold
+        高延迟数据链路丢失时间阈值
       </p>
       
       <p>
-        <strong>Comment:</strong> After this amount of seconds without datalink the data link lost mode triggers
+        <strong>说明: </strong>在数据连接断开时间超过此参数对应的秒数后就会触发数据链丢失模式.
       </p>
     </td>
     
@@ -2514,7 +2514,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        High Latency Datalink regain time threshold
+        高延迟数据链恢复时间阈值
       </p>
       
       <p>
