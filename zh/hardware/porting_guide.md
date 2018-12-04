@@ -16,6 +16,10 @@ For example, for FMUv5:
 
 * (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5). 
 * Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
+* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board) 
+  * A board-specific initialisation file is automatically included in startup scripts if found under the boards directory at **init/rc.board**.
+  * The file is used to start sensors (and other things) that only exist on a particular board. It may also be used to set a board's default parameters, UART mappings, and any other special cases.
+  * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF, and in AUTOCNF section (fresh setups) it sets the [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) parameter.
 
 In addition there are several groups of configuration files for each board located throughout the code base:
 
@@ -90,15 +94,6 @@ This section describes the various middleware components, and the configuration 
 * Drivers: [DriverFramework](https://github.com/px4/DriverFramework).
 * Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
 
-## Related Information
-
-* [Device Drivers](../middleware/drivers.md) - How to support new peripheral hardware (device drivers)
-* [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
-* Supported Flight Controllers: 
-  * [Autopilot Hardware](https://docs.px4.io/en/flight_controller/) (PX4 User Guide)
-  * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
-* [Supported Peripherals](https://docs.px4.io/en/peripherals/) (PX4 User Guide)
-
 ## RC UART Wiring Recommendations
 
 It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. This is done via board config and manifest files. One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c).
@@ -114,10 +109,10 @@ Every officially supported board benefits from:
 * Compatibility with the rest of the ecosystem
 * Automated checks via CI - safety remains paramount to this community
 * [Flight testing](../test_and_ci/test_flights.md)
-  
-  We encourage board manufacturers to aim for full compatibility with the [FMU spec](https://pixhawk.org/). With full compatibility you benefit from the ongoing day-to-day development of PX4, but have none of the maintenance costs that come from supporting deviations from the specification.
-  
-  > **Tip** Manufacturers should carefully consider the cost of maintenance before deviating from the specification (the cost to the manufacturer is proportional to the level of divergence).
+
+We encourage board manufacturers to aim for full compatibility with the [FMU spec](https://pixhawk.org/). With full compatibility you benefit from the ongoing day-to-day development of PX4, but have none of the maintenance costs that come from supporting deviations from the specification.
+
+> **Tip** Manufacturers should carefully consider the cost of maintenance before deviating from the specification (the cost to the manufacturer is proportional to the level of divergence).
 
 We welcome any individual or company to submit their port for inclusion in our supported hardware, provided they are willing to follow our [Code of Conduct](../contribute/README.md#code-of-conduct) and work with the Dev Team to provide a safe and fulfilling PX4 experience to their customers.
 
@@ -132,3 +127,12 @@ If you want to have your board officially supported in PX4:
 **The PX4 project reserves the right to refuse acceptance of new ports (or remove current ports) for failure to meet the requirements set by the project.**
 
 You can reach out to the core developer team and community on the official [Forums and Chat](../README.md#support).
+
+## Related Information
+
+* [Device Drivers](../middleware/drivers.md) - How to support new peripheral hardware (device drivers)
+* [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
+* Supported Flight Controllers: 
+  * [Autopilot Hardware](https://docs.px4.io/en/flight_controller/) (PX4 User Guide)
+  * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
+* [Supported Peripherals](https://docs.px4.io/en/peripherals/) (PX4 User Guide)
