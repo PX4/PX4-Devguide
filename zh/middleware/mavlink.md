@@ -45,7 +45,7 @@ public:
 		return MAVLINK_MSG_ID_CA_TRAJECTORY;
 	}
 
-    uint8_t get_id()
+    uint16_t get_id()
     {
         return get_id_static();
     }
@@ -90,6 +90,8 @@ protected:
 
             mavlink_msg_ca_trajectory_send_struct(_mavlink->get_channel(), &msg);
 		}
+
+	return true;
 	}
 };
 ```
