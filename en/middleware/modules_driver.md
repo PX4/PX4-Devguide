@@ -350,7 +350,7 @@ tap_esc <command> [arguments...]
                  default: 4
 ```
 ## vmount
-Source: [drivers/vmount](https://github.com/PX4/Firmware/tree/master/src/drivers/vmount)
+Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
 
 ### Description
