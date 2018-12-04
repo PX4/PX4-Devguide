@@ -2,7 +2,7 @@
 
 [ mavros ](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) 功能包提供了 一台能够运行ros的机载电脑、支持MAVLINK协议的飞控和支持MAVLINK的地面站这三者之间的通讯功能。
 
-> ** 注意 *** MAVROS * 是 ROS 与 MAVLink 协议之间的 有"官方" 支持的ROS功能包。 它当前正在扩展以启用 [ fast-RTPS messaging ](../middleware/micrortps.md), 包括将 PX4 [ uORB 消息 ](../middleware/uorb.md) 转换为常见 ROS 话题的代码。
+> **Note** *MAVROS* 是 ROS 与 MAVLink 协议之间的 有"官方" 支持的ROS功能包。 它当前正在扩展以启用 [ fast-RTPS messaging ](../middleware/micrortps.md), 包括将 PX4 [ uORB 消息 ](../middleware/uorb.md) 转换为常见 ROS 话题的代码。
 
 虽然 MAVROS 可用于与任何支持 MAVLink 协议的自动驾驶仪进行通信, 但此文档主要针对 PX4 飞控固件与运行ROS 的机载电脑之间的通讯问题。
 
