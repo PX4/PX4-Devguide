@@ -352,7 +352,7 @@ The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
 
 ## vmount
 
-Source: [drivers/vmount](https://github.com/PX4/Firmware/tree/master/src/drivers/vmount)
+Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
 ### Description
 
