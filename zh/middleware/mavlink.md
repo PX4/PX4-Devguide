@@ -45,7 +45,7 @@ public:
 		return MAVLINK_MSG_ID_CA_TRAJECTORY;
 	}
 
-    uint8_t get_id()
+    uint16_t get_id()
     {
         return get_id_static();
     }
@@ -74,7 +74,7 @@ protected:
 		_ca_traj_time(0)
 	{}
 
-	void send(const hrt_abstime t)
+	bool send(const hrt_abstime t)
 	{
 		struct ca_trajectory_s _ca_trajectory;    //make sure ca_trajectory_s is the definition of your uorb topic
 
@@ -90,6 +90,8 @@ protected:
 
             mavlink_msg_ca_trajectory_send_struct(_mavlink->get_channel(), &msg);
 		}
+
+	return true;
 	}
 };
 ```

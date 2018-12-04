@@ -55,9 +55,13 @@ public:
     {
         return "CA_TRAJECTORY";
     }
-    uint8_t get_id()
+    uint16_t get_id_static()
     {
         return MAVLINK_MSG_ID_CA_TRAJECTORY;
+    }
+    uint16_t get_id()
+    {
+        return get_id_static();
     }
     static MavlinkStream *new_instance(Mavlink *mavlink)
     {
@@ -82,7 +86,7 @@ protected:
         _ca_traj_time(0)
     {}
 
-    void send(const hrt_abstime t)
+    bool send(const hrt_abstime t)
     {
         struct ca_traj_struct_s _ca_trajectory;    //make sure ca_traj_struct_s is the definition of your uORB topic
 
@@ -95,8 +99,10 @@ protected:
             _msg_ca_trajectory.coefficients =_ca_trajectory.coefficients;
             _msg_ca_trajectory.seq_id = _ca_trajectory.seq_id;
 
-            _mavlink->send_message(MAVLINK_MSG_ID_CA_TRAJECTORY, &_msg_ca_trajectory);
+            mavlink_msg_ca_trajectory_send_struct(_mavlink->get_channel(), &_msg_ca_trajectory)
         }
+
+        return true;
     }
 };
 ```
