@@ -15,7 +15,12 @@ Board startup and configuration files are located under [/boards](https://github
 For example, for FMUv5:
 * (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5). 
 * Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
-  
+* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board)
+  - A board-specific initialisation file is automatically included in startup scripts if found under the boards directory at **init/rc.board**.
+  - The file is used to start sensors (and other things) that only exist on a particular board. 
+    It may also be used to set a board's default parameters, UART mappings, and any other special cases.
+  - For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF, and in AUTOCNF section (fresh setups) it sets the [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) parameter.
+
 In addition there are several groups of configuration files for each board located throughout the code base:
 * The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
 * Driver files are located in: [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers).
@@ -26,7 +31,8 @@ This section describes the purpose and location of the configuration files requi
 
 ### NuttX
 
-In order to port PX4 on NuttX to a new hardware target, that hardware target must be supported by NuttX.  The NuttX project maintains an excellent [porting guide](http://www.nuttx.org/Documentation/NuttxPortingGuide.html) for porting NuttX to a new computing platform.
+In order to port PX4 on NuttX to a new hardware target, that hardware target must be supported by NuttX.
+The NuttX project maintains an excellent [porting guide](http://www.nuttx.org/Documentation/NuttxPortingGuide.html) for porting NuttX to a new computing platform.
 
 For all NuttX based flight controllers (e.g. the Pixhawk series) the OS is loaded as part of the application build.
 
@@ -71,7 +77,8 @@ To run `qconfig` you may need to install additional Qt dependencies.
 
 ### Linux
 
-Linux boards do not include the OS and kernel configuration. These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
+Linux boards do not include the OS and kernel configuration. 
+These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
 
 * [cmake/configs/posix\_rpi\_cross.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_rpi_cross.cmake) - RPI cross-compilation.
 
@@ -87,15 +94,6 @@ This section describes the various middleware components, and the configuration 
 * Drivers: [DriverFramework](https://github.com/px4/DriverFramework).
 * Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
 
-## Related Information
-
-* [Device Drivers](../middleware/drivers.md) - How to support new peripheral hardware (device drivers)
-* [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
-* Supported Flight Controllers:
-  * [Autopilot Hardware](https://docs.px4.io/en/flight_controller/) (PX4 User Guide)
-  * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
-* [Supported Peripherals](https://docs.px4.io/en/peripherals/) (PX4 User Guide)
-
 
 ## RC UART Wiring Recommendations
 
@@ -110,17 +108,17 @@ One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drive
 The PX4 project supports and maintains the [FMU standard reference hardware](../debug/reference-design.md) and any boards that are compatible with the standard.
 This includes the [Pixhawk-series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/en/flight_controller/)).
 
- Every officially supported board benefits from:
+Every officially supported board benefits from:
 * PX4 Port available in the PX4 repository
 * Automatic firmware builds that are accessible from *QGroundControl*
 * Compatibility with the rest of the ecosystem
 * Automated checks via CI - safety remains paramount to this community
 * [Flight testing](../test_and_ci/test_flights.md)
 
- We encourage board manufacturers to aim for full compatibility with the [FMU spec](https://pixhawk.org/).
+We encourage board manufacturers to aim for full compatibility with the [FMU spec](https://pixhawk.org/).
 With full compatibility you benefit from the ongoing day-to-day development of PX4, but have none of the maintenance costs that come from supporting deviations from the specification.
 
- > **Tip** Manufacturers should carefully consider the cost of maintenance before deviating from the specification
+> **Tip** Manufacturers should carefully consider the cost of maintenance before deviating from the specification
   (the cost to the manufacturer is proportional to the level of divergence).
 
 We welcome any individual or company to submit their port for inclusion in our supported hardware, provided they are willing to follow our [Code of Conduct](../contribute/README.md#code-of-conduct) and work with the Dev Team to provide a safe and fulfilling PX4 experience to their customers.
@@ -135,3 +133,13 @@ If you want to have your board officially supported in PX4:
 **The PX4 project reserves the right to refuse acceptance of new ports (or remove current ports) for failure to meet the requirements set by the project.**
 
 You can reach out to the core developer team and community on the official [Forums and Chat](../README.md#support).
+
+
+## Related Information
+
+* [Device Drivers](../middleware/drivers.md) - How to support new peripheral hardware (device drivers)
+* [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
+* Supported Flight Controllers:
+  * [Autopilot Hardware](https://docs.px4.io/en/flight_controller/) (PX4 User Guide)
+  * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
+* [Supported Peripherals](https://docs.px4.io/en/peripherals/) (PX4 User Guide)
