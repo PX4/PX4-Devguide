@@ -113,7 +113,7 @@ Finally append the stream class to the `streams_list` at the bottom of
 ```C
 StreamListItem *streams_list[] = {
 ...
-new StreamListItem(&MavlinkStreamCaTrajectory::new_instance, &MavlinkStreamCaTrajectory::get_name_static),
+new StreamListItem(&MavlinkStreamCaTrajectory::new_instance, &MavlinkStreamCaTrajectory::get_name_static, &MavlinkStreamCaTrajectory::get_id_static),
 nullptr
 };
 ```
