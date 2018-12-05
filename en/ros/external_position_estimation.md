@@ -1,29 +1,48 @@
 # Using Vision or Motion Capture Systems
 
-This page aims at getting a PX4 based system using position data from sources other than GPS (such as motion capture systems like VICON and Optitrack and vision based estimation systems like [ROVIO](https://github.com/ethz-asl/rovio), [SVO](https://github.com/uzh-rpg/rpg_svo) or [PTAM](https://github.com/ethz-asl/ethzasl_ptam)).
+Visual Inertial Odometry (VIO) and and Motion Capture (MoCap) systems allow vehicles to navigate when a global position source is unavailable or unreliable (e.g. indoors, or when flying under a bridge. etc.).
 
-Position estimates can be sent both from an onboard computer as well as from offboard (example : VICON).
-This data is used to update its local position estimate relative to the local origin. 
-Heading from the vision/motion capture system can also be optionally integrated by the attitude estimator.
+Both VIO and MoCap determine a vehicle's *pose* (position and attitude) from "visual" information.
+The main difference between them is the frame perspective: 
+- VIO uses *onboard sensors* to get pose data from the vehicle's perspective (see [egomotion](https://en.wikipedia.org/wiki/Visual_odometry#Egomotion)).
+- MoCap uses a system of *off-board cameras* to get vehicle pose data in a 3D space (i.e. it is an external system that tells the vehicle its pose).
 
-The system can then be used for applications such as position hold indoors or waypoint navigation based on vision.
+Pose data from either type of system can be used to update a PX4-based autopilot's local position estimate (relative to the local origin) and also can optionally also be fused into the vehicle attitude estimation.
 
-For vision, the MAVLink message used to send the pose data is [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE) and the message for all motion capture systems is [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) messages.
+This topic explains how to configure a PX4-based system to get data from MoCap/VIO systems (either via ROS or some other MAVLink system) and more specifically how to set up MoCap systems like VICON and Optitrack, and vision-based estimation systems like [ROVIO](https://github.com/ethz-asl/rovio), [SVO](https://github.com/uzh-rpg/rpg_svo) and [PTAM](https://github.com/ethz-asl/ethzasl_ptam)).
 
-[ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) can be used to share MoCap data with PX4. 
-This can be done using the odom plugin of MAVROS.
+> **Note** The instructions differ depending on whether you are using the EKF2 or LPE estimator.
 
-The MAVROS ROS-MAVLink interface has default implementations to send these messages. 
-They can also be sent using pure C/C++ code and direct use of the MAVLink library. 
-The ROS topics are: `/mavros/mocap/pose` for MoCap systems and `/mavros/vision_pose/pose` for vision. 
-Check [mavros_extras](http://wiki.ros.org/mavros_extras) for further info.
 
-## EKF2 Tuning for External Position Estimate
+## PX4 MAVLink Integration
 
-A set of parameters need to be set in order for EKF2 to use the external position estimation. 
-Adjust the parameters in *QGroundControl* (**Vehicle Setup > Parameters > EKF2**).
+PX4 uses the following MAVLink messages for getting external position information, and maps them to [uORB topics](http://dev.px4.io/en/middleware/uorb.html):
 
-Parameter | Setting for Vision/MoCap Systems
+MAVLink | uORB 
+--- | ---
+[VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE) | `vehicle_visual_odometry`
+[ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_VISION_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_VISION_NED)) | `vehicle_visual_odometry`
+[ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) | `vehicle_mocap_odometry`
+[ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_MOCAP_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_MOCAP_NED)) | `vehicle_mocap_odometry`
+
+EKF2 only subscribes to `vehicle_visual_odometry` topics and can hence only process the first two messages
+(a MoCap system must generate these messages to work with EKF2).
+The LPE estimator subscribes to both topics, and can hence process all the above messages.
+
+> **Tip** EFK2 is the default estimator used by PX4.
+  It is better tested and supported than LPE, and should be used by preference.
+
+The following MAVLink "vision" messages are not currently supported by PX4: 
+[GLOBAL_VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#GLOBAL_VISION_POSITION_ESTIMATE), 
+[VISION_SPEED_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_SPEED_ESTIMATE), 
+[VICON_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VICON_POSITION_ESTIMATE)
+
+
+## EKF2 Tuning/Configuration
+
+The following parameters must be set to use external position information with EKF2 (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > EKF2**).
+
+Parameter | Setting for External Position Estimation
 --- | ---
 [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) | Set *vision position fusion* and *vision yaw fusion*
 [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) | Set to *Vision* to use the vision a primary source for altitude estimation.
@@ -31,9 +50,6 @@ Parameter | Setting for Vision/MoCap Systems
 [EKF2_EV_POS_X](../advanced/parameter_reference.md#EKF2_EV_POS_X), [EKF2_EV_POS_Y](../advanced/parameter_reference.md#EKF2_EV_POS_Y), [EKF2_EV_POS_Z](../advanced/parameter_reference.md#EKF2_EV_POS_Z) | Set the position of the vision sensor (or MoCap markers) with respect to the robot's body frame.
 
 > **Tip** Reboot the flight controller in order for parameter changes to take effect.
-
-Now, you will need to feed the external position data to the flight controller using the [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE). 
-MAVROS provides an easy interface to do this through the `vision_pose_estimate` plugin.
 
 
 #### Tuning EKF2_EV_DELAY {#tuning-EKF2_EV_DELAY}
@@ -52,20 +68,19 @@ A rough estimate of the delay can be obtained from logs by checking the offset b
 
 The value can further be tuned by varying the parameter to find the value that yields the lowest EKF innovations during dynamic maneuvers.
 
-## LPE Tuning for Vision or MoCap
+## LPE Tuning/Configuration
 
-You will first need to [switching to the LPE estimator](advanced/switching_state_estimators.md) by setting the [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) parameter.
+You will first need to [switch to the LPE estimator](../advanced/switching_state_estimators.md) by setting the [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) parameter.
 
-> **Note** If targeting `px4_fmu-v2` hardware you will need to use a firmware version that includes the LPE module (firmware for other FMU-series hardware includes both LPE and and EKF).
-  The LPE version can be found in the zip file for each PX4 release or it can be built from source using the build command  `make px4_fmu-v2_lpe`.
+> **Note** If targeting `px4_fmu-v2` hardware you will also need to use a firmware version that includes the LPE module (firmware for other FMU-series hardware includes both LPE and and EKF).
+  The LPE version can be found in the zip file for each PX4 release or it can be built from source using the build command `make px4_fmu-v2_lpe`.
   See [Building the Code](../setup/building_px4.md) for more details.
 
 #### Enabling External Pose Input
 
-A set of parameters need to be set in order for LPE to use the external pose input. 
-Adjust the parameters in *QGroundControl* (**Vehicle Setup > Parameters > Local Position Estimator**).
+The following parameters must be set to use external position information with LPE (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**).
 
-Parameter | Setting for Vision/MoCap Systems
+Parameter | Setting for External Position Estimation
 --- | ---
 [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) | Vision integration is enabled if *fuse vision position* is checked (it is enabled by default).
 [ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | Set to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables MoCap heading use. 
@@ -73,27 +88,66 @@ Parameter | Setting for Vision/MoCap Systems
 
 #### Disabling Barometer Fusion
 
-If a highly accurate altitude is already available from vision or MoCap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
+If a highly accurate altitude is already available from VIO or MoCap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
 
 This can be done by in *QGroundControl* by unchecking the *fuse baro* option in the [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) parameter.
 
 #### Tuning Noise Parameters
 
-If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters, [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for vision) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for motion capture). 
+If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters: [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for VIO) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for MoCap). 
 Reducing them will cause the estimator to trust the incoming pose estimate more. 
 You may need to set them lower than the allowed minimum and force-save. 
 
-> **Tip** If performance is still poor, try increasing the [LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) parameter. This will cause the estimator to trust measurements more during velocity estimation.
+> **Tip** If performance is still poor, try increasing the [LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) parameter. 
+  This will cause the estimator to trust measurements more during velocity estimation.
 
-## Asserting on Reference Frames
+  
+## Working with ROS
+
+ROS is not *required* for supplying external pose information, but is highly recommended as it already comes with good integrations with VIO and MoCap systems.
+PX4 must already have been set up as above.
+
+### Getting pose data into ROS
+
+* Install the `vrpn_client_ros` package
+* You can get each rigid body pose on an individual topic by running
+  ```bash
+  roslaunch vrpn_client_ros sample.launch server:=<mocap machine ip>
+  ```
+
+If you named the rigidbody as `robot1`, you will get a topic like `/vrpn_client_node/robot1/pose`
+
+
+### Relaying Pose Data to PX4
+
+MAVROS has plugins to relay a visual estimation from a VIO or MoCap system using the following pipelines:
+
+ROS | MAVLink | uORB 
+--- | --- | ---
+/mavros/vision_pose/pose | [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE) | `vehicle_visual_odometry`
+/mavros/odometry/odom | [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_VISION_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_VISION_NED)) | `vehicle_visual_odometry`
+/mavros/mocap/pose | [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) | `vehicle_mocap_odometry`
+/mavros/odometry/odom | [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_MOCAP_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_MOCAP_NED)) | `vehicle_mocap_odometry`
+
+You can use any of the above pipelines with LPE. 
+
+If you're working with EKF2, only the "vision" pipelines are supported. 
+To use MoCap data with EKF2 you will have to [remap](http://wiki.ros.org/roslaunch/XML/remap) the pose topic that you get from MoCap:
+- MoCap ROS topics of type `geometry_msgs/PoseStamped` or `geometry_msgs/PoseWithCovarianceStamped` must be remapped to `/mavros/vision_pose/pose`. 
+  The `geometry_msgs/PoseStamped` topic is most common as MoCap doesn't usually have associated covariances to the data.
+- If you get data through a `nav_msgs/Odometry` ROS message then you will need to remap it to `/mavros/odometry/odom`.
+- TBD from `/vrpn_client_node/<rigid_body_name>/pose` to `/mavros/vision_pose/pose`. 
+
+
+## Asserting on Reference Frames 
 
 This section shows how to setup the system with the proper reference frames. 
 There are various representations but we will use two of them: ENU and NED. 
 
-* ENU has a ground-fixed frame where *x* axis points East, *y* points North and *z* up. 
-  Robot frame is *x* towards the front, *z* up and *y* accordingly.
-* NED has *x* towards North, *y* East and *z* down. 
-  Robot frame is *x* towards the front, *z* down and *y* accordingly.
+* ENU has a ground-fixed frame where *x* axis points East, *y* points North and *z* up.
+  Robot body frame is *x* towards the front, *z* up and *y* accordingly.
+* NED has *x* towards North, *y* East and *z* down.
+  Robot body frame is *x* towards the front, *z* down and *y* accordingly.
 
 Frames are shown in the image below: NED on the left while ENU on the right.
 
@@ -171,10 +225,10 @@ At this point, if you followed those steps, you are ready to test your setup.
 
 Be sure to perform the following checks:
 
-* **Before** creating the rigid body, align the robot with world x axis
-* Stream over MAVLink and check the MAVLink inspector with *QGroundControl*, the local pose topic should be in NED
-* Move the robot around by hand and see if the estimated local position is consistent (always in NED)
-* Rotate the robot on the vertical axis and check the yaw with the MAVLink inspector
+* **Before** creating the rigid body, align the robot with world x axis.
+* Stream over MAVLink and check the MAVLink inspector with *QGroundControl*, the local pose topic should be in NED.
+* Move the robot around by hand and see if the estimated local position is consistent (always in NED).
+* Rotate the robot on the vertical axis and check the yaw with the MAVLink inspector.
 
 If those steps are consistent, you can try your first flight.
 
