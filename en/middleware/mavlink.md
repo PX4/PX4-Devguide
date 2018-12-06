@@ -38,7 +38,7 @@ Add the headers of the MAVLink and uORB messages to
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
-#include <v2.0/custom_messages/mavlink_msg_ca_trajectory.h>
+#include <mavlink/v2.0/custom_messages/mavlink.h>
 ```
 
 Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
