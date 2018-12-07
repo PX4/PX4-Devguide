@@ -54,8 +54,11 @@ amount of dropouts:
   being logged (`info.py <file>` is useful for this).
 
 ## SD Cards
+
 The following provides performance results for different SD cards.
 Tests were done on a Pixracer; the results are applicable to Pixhawk as well.
+
+> **Tip** The maximum supported SD card size for NuttX is 32GB (SD Memory Card Specifications Version 2.0).
 
 | SD Card | Mean Seq. Write Speed [KB/s] | Max Write Time / Block (average) [ms] |
 | -- | -- | -- |
@@ -68,10 +71,9 @@ Tests were done on a Pixracer; the results are applicable to Pixhawk as well.
 | Sandisk Pixtor Class 10 16GB | 334 | 250 |
 | Sandisk Extreme PLUS Class 10 32GB | 332 | 150 |
 
-More important than the mean write speed is the maximum write time per block (of
-4 KB). This defines the minimum buffer size: the larger this maximum, the larger
-the log buffer needs to be to avoid dropouts. Logging bandwidth with the default
-topics is around 50 KB/s, which all of the SD cards satisfy.
+More important than the mean write speed is the maximum write time per block (of 4 KB). 
+This defines the minimum buffer size: the larger this maximum, the larger the log buffer needs to be to avoid dropouts. 
+Logging bandwidth with the default topics is around 50 KB/s, which all of the SD cards satisfy.
 
 By far the best card we know so far is the **SanDisk Extreme U3 32GB**. This
 card is recommended, because it does not exhibit write time spikes (and thus
