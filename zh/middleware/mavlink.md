@@ -35,7 +35,7 @@ Add the headers of the MAVLink and uORB messages to [mavlink_messages.cpp](https
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
-#include <v2.0/custom_messages/mavlink_msg_ca_trajectory.h>
+#include <v2.0/custom_messages/mavlink.h>
 ```
 
 Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
@@ -52,9 +52,13 @@ public:
     {
         return "CA_TRAJECTORY";
     }
-    uint8_t get_id()
+    uint16_t get_id_static()
     {
         return MAVLINK_MSG_ID_CA_TRAJECTORY;
+    }
+    uint16_t get_id()
+    {
+        return get_id_static();
     }
     static MavlinkStream *new_instance(Mavlink *mavlink)
     {
@@ -79,7 +83,7 @@ protected:
         _ca_traj_time(0)
     {}
 
-    void send(const hrt_abstime t)
+    bool send(const hrt_abstime t)
     {
         struct ca_traj_struct_s _ca_trajectory;    //make sure ca_traj_struct_s is the definition of your uORB topic
 
@@ -92,8 +96,10 @@ protected:
             _msg_ca_trajectory.coefficients =_ca_trajectory.coefficients;
             _msg_ca_trajectory.seq_id = _ca_trajectory.seq_id;
 
-            _mavlink->send_message(MAVLINK_MSG_ID_CA_TRAJECTORY, &_msg_ca_trajectory);
+            mavlink_msg_ca_trajectory_send_struct(_mavlink->get_channel(), &_msg_ca_trajectory)
         }
+
+        return true;
     }
 };
 ```
@@ -103,7 +109,7 @@ Finally append the stream class to the `streams_list` at the bottom of [mavlink_
 ```C
 StreamListItem *streams_list[] = {
 ...
-new StreamListItem(&MavlinkStreamCaTrajectory::new_instance, &MavlinkStreamCaTrajectory::get_name_static),
+new StreamListItem(&MavlinkStreamCaTrajectory::new_instance, &MavlinkStreamCaTrajectory::get_name_static, &MavlinkStreamCaTrajectory::get_id_static),
 nullptr
 };
 ```
