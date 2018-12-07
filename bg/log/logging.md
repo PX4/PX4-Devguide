@@ -43,6 +43,8 @@ Logging dropouts are undesired and there are a few factors that influence the am
 
 The following provides performance results for different SD cards. Tests were done on a Pixracer; the results are applicable to Pixhawk as well.
 
+> **Tip** The maximum supported SD card size for NuttX is 32GB (SD Memory Card Specifications Version 2.0).
+
 | SD Card                                                       | Mean Seq. Write Speed [KB/s] | Max Write Time / Block (average) [ms] |
 | ------------------------------------------------------------- | ---------------------------- | ------------------------------------- |
 | SanDisk Extreme U3 32GB                                       | 461                          | **15**                                |
