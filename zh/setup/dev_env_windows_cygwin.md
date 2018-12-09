@@ -48,10 +48,10 @@
 4. 举例，要运行JMAVSim:
     
     ```bash
-    # Navigate to Firmware repo
-    cd Firmware
-    # Build and runs SITL simulation with jMAVSim to test the setup
-    make px4_sitl jmavsim
+    # 进入Firmware仓库目录
+    cd Firmware 
+    # 使用JMAVSim编译并运行SITL模拟器来验证 
+    make posix jmavsim
     ```
     
     控制台将会显示：
@@ -117,16 +117,16 @@ For existing repositories that have this problem caused by a local configuration
 
 ### 特性/问题 {#features}
 
-The following features are known to work (version 2.0):
+以下已知正常功能（版本 2.0）：
 
 * 使用 jMAVSim 编译和运行 SITL, 其性能明显优于虚拟机 (它生成一个本机 windows 二进制 ** px4.exe **)。
-* Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
+* 编译和上传 NuttX 二进制文件（例如：px4_fmu-v2 和 px4_fmu-v4）
 * 使用 * astyle * 进行格式检查 (支持命令: ` 设置格式 `)
 * 命令行自动补全
 * 绿色安装 安装程序不会影响您的系统和全局路径 (它只修改选定的安装目录, 例如 ** C:\PX4 \ ** 并使用临时本地路径)。
 * 安装程序支持更新到最新版本, 同时保持您的个人更改在工具链文件夹中
 
-Omissions:
+补充：
 
 * 仿真: 不支持Gazebo 和 ROS
 * 仅支持 NuttX 和 JMAVSim/SITL 编译。
@@ -134,7 +134,7 @@ Omissions:
 
 ### Shell 脚本安装 {#script_setup}
 
-You can also install the environment using shell scripts in the Github project.
+还可以使用 Github 项目中的 shell 脚本安装环境。
 
 1. 请确保安装了 [ Windows Git ](https://git-scm.com/download/win)。
 2. 将代码仓库 https://github.com/PX4/windows-toolchain 克隆到要安装工具链的位置。 打开 ` Git Bash ` 并执行以下操作，打开后会自动进入默认的安装目录:
@@ -148,9 +148,9 @@ You can also install the environment using shell scripts in the Github project.
 
 ### 手动安装 (对于开发人员) {#manual_setup}
 
-This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
+本节介绍如何在从基于脚本安装目录中通过相应的脚本手动安装 Cygwin 工具链。 结果应与使用脚本或 MSI 安装程序相同。
 
-> ** 注意 **因为工具链的更新, 因此这些指令可能无法涵盖未来所有更改的每个细节。
+> **Note** 因为工具链的更新，因此这些指令可能无法涵盖未来所有更改的每个细节。
 
 1. 创建 * 文件夹 *: ** C:\PX4 \ **、** C:\PX4\toolchain \ ** 和 ** C:\PX4\home \ **
 2. 从 [ Cygwin 官方网站 ](https://cygwin.com/install.html) 下载 * Cygwin 安装程序 * 文件 [ official Cygwin website ](https://cygwin.com/setup-x86_64.exe)
@@ -178,11 +178,11 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 * Shells:bash-completion
 * Web:wget
     
-    > **Note** Do not select as many packages as possible which are not on this list, there are some which conflict and break the builds.
+    > **Note** 不要在列表外选择尽可能多的包, 其中有一些可能会引起冲突并中断编译。
     
     <span></span>
     
-    > **Note** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
+    > **Note** 这就是 [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) 所做的工作。
 
 1. 编写或复制 ** 批处理脚本 ** [` run-console.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) 和 [` setup-environment-variables.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat)。
     
