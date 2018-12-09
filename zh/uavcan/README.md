@@ -34,18 +34,18 @@
     > 
     > 接下来, 按照 [UAVCAN配置](../uavcan/node_enumeration.md)中的说明激活固件中的uavcan功能。 断电重连。 上电后, orel 20电调会发出蜂鸣声表示确认检测到所有uavcan设备。 现在, 您可以继续进行常规设置和校准。
     > 
-    > Depending on the used hardware, it can be reasonable to perform an update of the firmware on the UAVCAN devices. This can be done via the UAVCAN itself and the PX4 firmware. For more details please refer to the instructions in [UAVCAN Firmware](../uavcan/node_firmware.md).
+    > 根据使用的硬件, 在uavcan设备上执行固件更新是合理的。 这可以通过uavcan本身和px4固件来完成。 有关详细信息, 请参阅 [UAVCAN firmware](../uavcan/node_firmware.md) 中的说明。
     > 
-    > ## Upgrading Node Firmware
+    > ## 升级节点固件
     > 
-    > The PX4 middleware will automatically upgrade firmware on UAVCAN nodes if the matching firmware is supplied. The process and requirements are described on the [UAVCAN Firmware](../uavcan/node_firmware.md) page.
+    > 如果提供了匹配的固件, px4中间件将自动升级uavcan节点上的固件。 过程和要求在[UAVCAN firmware](../uavcan/node_firmware.md)页面上进行了描述。
     > 
-    > ## Enumerating and Configuring Motor Controllers
+    > ## 枚举和配置电机控制器
     > 
-    > The ID and rotational direction of each motor controller can be assigned after installation in a simple setup routine: [UAVCAN Node Enumeration](../uavcan/node_enumeration.md). The routine can be started by the user through QGroundControl.
+    > 每个电机控制器的id和旋转方向可以在安装后在一个简单的设置例程中分配:[UAVCAN节点枚举](../uavcan/node_enumeration.md)。 用户可以通过QGroundControl启动该例程。
     > 
-    > ## Useful links
+    > ## 相关链接
     > 
-    > * [Homepage](http://uavcan.org)
-    > * [Specification](http://uavcan.org/Specification)
-    > * [Implementations and tutorials](http://uavcan.org/Implementations)
+    > * [首页](http://uavcan.org)
+    > * [技术规范](http://uavcan.org/Specification)
+    > * [实现和教程](http://uavcan.org/Implementations)
