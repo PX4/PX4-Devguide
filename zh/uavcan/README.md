@@ -20,11 +20,11 @@
     > 
     > ## 初始设置
     > 
-    > The following instructions provide a step-by-step guide to connect and setup a quadcopter with ESCs and GPS connected via UAVCAN. The hardware of choice is a Pixhawk 2.1, Zubax Orel 20 ESCs and a Zubax GNSS GPS module.
+    > 以下说明提供了一个分步指南, 用于连接和设置通过uavcan连接的电调和GPS的四轮车。 选择的硬件是Pixhawk 2.1、Zubax orrel 20电调和Zubax GNSS GPS模块。
     > 
-    > ### Wiring
+    > ### 布线
     > 
-    > The first step is to connect all UAVCAN enabled devices with the flight controller. The following diagram displays how to wire all components. The used Zubax devices all support a redundant CAN interface in which the second bus is optional but increases the robustness of the connection.
+    > 第一步是将所有启用uavcan的设备与飞行控制器连接。 下图显示了如何连接所有组件。 The used Zubax devices all support a redundant CAN interface in which the second bus is optional but increases the robustness of the connection.
     > 
     > ![](../../assets/UAVCAN_wiring.png)
     > 
