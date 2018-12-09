@@ -2,7 +2,7 @@
 
 ![](../../assets/uavcan-logo-transparent.png)
 
-[UAVCAN](http://uavcan.org) is an onboard network which allows the autopilot to connect to avionics. It supports hardware like:
+[UAVCAN](http://uavcan.org)是一个板载网络, 它允许自动驾驶仪连接到航空电子设备。 它支持如下硬件:
 
 * Motor controllers
   
