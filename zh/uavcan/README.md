@@ -24,15 +24,15 @@
     > 
     > ### 布线
     > 
-    > 第一步是将所有启用uavcan的设备与飞行控制器连接。 下图显示了如何连接所有组件。 The used Zubax devices all support a redundant CAN interface in which the second bus is optional but increases the robustness of the connection.
+    > 第一步是将所有启用uavcan的设备与飞行控制器连接。 下图显示了如何连接所有组件。 使用Zubex的设备全部支持一条冗余的CAN接口，其中第二条是可选的，增加了连接的可靠性。
     > 
     > ![](../../assets/UAVCAN_wiring.png)
     > 
-    > It is important to mention that some devices require an external power supply \(e.g. Zubax Orel 20\) and others can be powered by the CAN connection \(e.g Zubax GNSS\) itself. Please refer to the documentation of your hardware before continuing with the setup.
+    > 要点提及, 有些设备需要外部电源\(例如Zubax orrel 20\), 而其他设备可以由CAN连接\(例如 zubax gnss\) 本身供电。 在继续安装之前, 请参考硬件的文档。
     > 
-    > ### Firmware Setup
+    > ### 固件设置
     > 
-    > Next, follow the instructions in [UAVCAN Configuration](../uavcan/node_enumeration.md) to activate the UAVCAN functionalities in the firmware. Disconnect your power supply and reconnect it. After the power cycle all UAVCAN devices should be detected which is confirmed by a beeping motor on the Orel 20 ESCs. You can now continue with the general setup and calibration.
+    > 接下来, 按照 [UAVCAN配置](../uavcan/node_enumeration.md)中的说明激活固件中的uavcan功能。 断电重连。 上电后, orel 20电调会发出蜂鸣声表示确认检测到所有uavcan设备。 现在, 您可以继续进行常规设置和校准。
     > 
     > Depending on the used hardware, it can be reasonable to perform an update of the firmware on the UAVCAN devices. This can be done via the UAVCAN itself and the PX4 firmware. For more details please refer to the instructions in [UAVCAN Firmware](../uavcan/node_firmware.md).
     > 
