@@ -124,6 +124,7 @@
 * [Contributing & Dev Call](contribute/README.md) 
   * [GIT Examples](contribute/git_examples.md)
   * [Documentation](contribute/docs.md)
+  * [Translation](contribute/translation.md)
   * [Terminology/Notation](contribute/notation.md)
   * [Licenses](contribute/licenses.md)
 
