@@ -430,10 +430,12 @@ pwm <command> [arguments...]
 
    info          Print current configuration of all channels
 
-   forcefail     Force Failsafe mode
+   forcefail     Force Failsafe mode. PWM outputs are set to failsafe values.
      on|off      Turn on or off
 
-   terminatefail Force Termination Failsafe mode
+   terminatefail Enable Termination Failsafe mode. While this is true, any
+                 failsafe that occurs will be unrecoverable (even if recovery
+                 conditions are met).
      on|off      Turn on or off
 
    rate          Configure PWM rates
