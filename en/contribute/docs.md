@@ -1,6 +1,7 @@
 # Contributing to Documentation
 
-Contributions to the Dronecode guides, including the PX4 developer and user guides are very welcome!
+Contributions to the guides for all parts of the Dronecode project are very welcome. 
+This includes the PX4 and QGroundControl developer and user guides, and the MAVLink guide. 
 This article explains how you can make changes, add content, and create translations.
 
 > **Note** You will need a (free) [Github](http://github.com) account to contribute to the guide.
@@ -142,73 +143,8 @@ In overview:
 
 ## Translations {#translation}
 
-We have recently started adding translated versions of all the PX4/Dronecode guides! 
-If you would like to help, contact us on [our support channels](../README.md#support). 
-
-Gitbook supports translation [as described here](https://toolchain.gitbook.com/languages.html):
-* Each language is independent and keeps all its documents in its own directory \(named using it's international code - "en" for English, "es" for Spanish, etc.\) 
-* The **LANGS.md** file in the root directory lists the language folders that Gitbook must build.
-
-In order to keep all language-versions of the guide up to date and synchronised, we have the following policy/guidelines:
-
-* This is an **English-first** book.
-
-  * Any _technical_ changes should be made in the English tree _first_ \(including both updates and new pages\). After the English change has been accepted in the main repo then submit the translation. This approach ensures that changes will propagate through to all the other translations!
-  * Improvements to translations that don't change "technical information" won't need to be made in the English tree.
-
-* The structure and documents should be the same for all languages \(i.e. based on the English version\).
-* All languages share the same images by default \(do not duplicate the _/image_ folder, unless you're changing/translating the image\).
-* Translation changes are submitted to the repo in the same way as any other changes \(fork the repo, make a branch for your changes, and create PRs of the branches to submit them into this repo\).
-* Translation teams can organise themselves however they like as long as PRs are submitted using the above approach.
-
-
-### Starting a new language translation
-
-The process straightforward:
-
-1. Fork the documentation repo.
-1. Create and checkout a new branch for your language.
-   ```
-   checkout -b add_translation_language_yourlanguagename
-   ```
-1. Copy the whole English folder \(/en\) and rename it to the appropriate language code \(e.g. "es" for Spanish\).
-
-   > **Note** This ensures that you keep the same structure and documents as the original version.
-
-1. Update **\LANGS.md** with your language.
-1. Translate the content in your language tree.
-
-   > **Tip** Minimally complete the home page and the **SUMMARY.md** before submitting any PR request. Ideally do more!
-
-1. Commit the changes and push them back to your own fork repo.
-   ```
-   git add *
-   git commit -m "Created a your_new_language translation"
-   git push origin add_translation_language_yourlanguagename
-   ```
-
-1. On the Github interface, create a PR to submit your branch back to the master repo \(a banner appears on Github that you can click when you visit the repo\).
-
-### Updating translations
-
-Translations can be updated like any other change to documentation: fork the repo, create a branch for your changes in your fork, then submit them back to the main repo as PRs.
-
-### Tracking changes
-
-We hope that translation owners will track changes in the English version and propagate them through to their translations.
-
-Git/Github have excellent mechanisms for tracking changes. We recommend that when you add [document front matter](https://toolchain.gitbook.com/pages.html#front-matter) to your translation with the commit information for the page you translated. This allows anyone to go back later and find out whether the text has changed since it was last translated. For example:
-
-```md
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/config_initial.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
-translated: false
----
-```
-
-> **Note** The *translated_sha* is the full SHA of the commit that you translated. Find this by opening the source page on github, press the **History** button. Find the commit of the document you are translating from (ideally the most recent) and press the "Copy the full SHA" icon associated with that commit.
-
+We'd love your help to translate *QGroundControl* and our guides for PX4, *QGroundControl* and MAVLink.
+For more information see: [Translation](../contribute/translation.md).
 
 ## Licence
 
