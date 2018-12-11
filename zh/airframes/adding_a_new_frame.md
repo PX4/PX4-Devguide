@@ -21,7 +21,7 @@ These aspects are mostly independent, which means that many configurations share
 
 ### Config File {#config-file}
 
-下面列举了一个典型的配置(原始文件在这里<0>)</p> 
+A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)) .
 
 第一部分是关于机身框架的文档说明。 This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
 
