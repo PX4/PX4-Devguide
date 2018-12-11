@@ -33,11 +33,11 @@
 
 ## 翻译
 
-本指南中有中文和韩文[翻译](contribute/docs.md#translation)。 您可以通过单击语言切换器图标来访问这些内容:
+本指南中有中文和韩文[翻译](contribute/docs.md#translation)。 您可以通过单击语言切换器图标来访问这些内容：
 
 ![Gitbook 语言选择器](../assets/gitbook/gitbook_language_selector.png)
 
-## 授权条款
+## 许可证
 
 在[BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause)的条款许可下，该代码可以自由使用和修改。 文档在[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)下获得许可。 更多信息请参见：[许可证](contribute/licenses.md)。
 
