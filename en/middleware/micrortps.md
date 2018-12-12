@@ -70,14 +70,14 @@ This is needed because the first version of ROS does not support RTPS.
 
 ## Code generation
 
+> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
+
 ### ROS-independent applications
 
 All the code needed to create, build and use the bridge is automatically generated when the PX4 Firmware is compiled.
 
 The *Client* application is also compiled and built into the firmware as part of the normal build process.
 The *Agent* must be separately/manually compiled for the target computer.
-
-> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
 
 <span></span>
 > **Tip** The bridge code can also be [manually generated](micrortps_manual_code_generation.md).
