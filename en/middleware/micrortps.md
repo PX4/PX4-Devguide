@@ -240,11 +240,13 @@ In order to install ROS Melodic and ROS2 Bouncy on a Ubuntu 18.04 machine, follo
 1. [Install ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
 2. [Install ROS2 Bouncy](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
 
-Install the following component to ensure that the package properly generates the IDL files:
+Install the following component to ensure that the package properly generates the IDL files (only required if one is using the ROS2 Bouncy release):
 
 ```sh
 sudo apt install ros-bouncy-rmw-opensplice-cpp
 ```
+
+> **Note** The requirement for this package should soon be deprecated, as `rosidl_generate_dds_interfaces` CMake tools will be used to generate the required IDL files (instead of only using `rosidl_generate_interfaces`).
 
 The install process should also install the `colcon` build tools, but in case that doesn't happen, you can install the tools manually:
 
