@@ -278,9 +278,9 @@ As an example:
    mkdir -p ~/px4_ros_com_ros1/src
    ```
 
-   Then, clone the respective ROS2 (`master`) branch to the `/src` directory:
+   Then, clone the respective ROS2 (`ros1`) branch to the `/src` directory:
    ```sh
-   $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com # clones the 'ros1' branch
+   $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com -b ros1 # clones the 'ros1' branch
    ```
 
 ### Building the workspaces
