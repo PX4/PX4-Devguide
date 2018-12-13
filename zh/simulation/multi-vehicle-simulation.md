@@ -66,9 +66,9 @@
         </include>
     
 
-* for each vehicle,
+* 对于每个飞行器来说
   
-  * creates urdf model from xacro, loads gazebo model and runs PX4 SITL app instance
+  * 从 xacro 创建 urdf 模型, 加载gazebo模型并运行 px4 sitl 应用程序实例
           <!-- PX4 SITL and vehicle spawn -->
           <include file="$(find px4)/launch/single_vehicle_spawn.launch">
               <arg name="x" value="0"/>
@@ -84,7 +84,7 @@
           </include>
       
   
-  * runs a mavros node
+  * 运行mavros节点
           <!-- MAVROS -->
           <include file="$(find mavros)/launch/px4.launch">
               <arg name="fcu_url" value="$(arg fcu_url)"/>
@@ -94,28 +94,28 @@
           </include>
       
   
-  > **Note** The complete block for each vehicle is enclosed in a set of `<group>` tags to separate the ROS namespaces of the vehicles.
+  > **Note**每个飞行器的完整块都包含在一组 `<group>` 标签中, 以区分飞行器的 ros 空间命名。
 
-To add a third iris to this simulation there are two main components to consider:
+要在此模拟中添加第三个iris四旋翼, 需要考虑两个主要部分：
 
-* add `UAV3` to **multi_uav_mavros_sitl.launch** 
-  * duplicate the group of either existing vehicle (`UAV1` or `UAV2`)
-  * increment the `ID` arg to `3`
-  * select a different port for `mavlink_udp_port` arg for communication with Gazebo
-  * selects ports for MAVROS communication by modifying both port numbers in the `fcu_url` arg
+* 把`UAV3` 添加到**multi_uav_mavros_sitl.launch** 
+  * 复制已经存在的四旋翼(`UAV1` 或者 `UAV2`)
+  * 把 `ID` 改为 `3`
+  * 与gazebo的通信，选择一个不同的 `mavlink_udp_port`端口
+  * MAVROS通信端口选择是通过在`fcu_url` 中修改两个端口号。
 
-* create a startup file, and change the file as follows:
+* 创建一个开始文件，并按照如下方式修改：
   
-  * make a copy of an existing iris rcS startup file (`iris_1` or `iris_2`) and rename it `iris_3`
-  * `MAV_SYS_ID` value to `3`
-  * `SITL_UDP_PRT` value to match that of the `mavlink_udp_port` launch file arg
-  * the first `mavlink start` port and the `mavlink stream` port values to the same values, which is to be used for QGC communication
-  * the second `mavlink start` ports need to match those used in the launch file `fcu_url` arg
+  * 复制已存在的iris rcs启动文件，(`iris_1` 或 `iris_2`) ，重命名为`iris_3`
+  * `MAV_SYS_ID` 值改为`3`
+  * `SITL_UDP_PRT` 的值与 `mavlink_udp_port`相一致。
+  * 第一个`mavlink start` 端口和`mavlink stream`端口值设置为相同值，用于和QGC通信。
+  * 第二个`mavlink start` 端口值应与启动文件 `fcu_url` 中的值一致。
     
-    > **Note** Be aware of which port is `src` and `dst` for the different endpoints.
+    > **Note**注意端口 `src` 和`dst`是不同的
 
-## Additional Resources
+## 其他资源
 
-* See [Simulation](../simulation/README.md) for a description of the UDP port configuration.
-* See [URDF in Gazebo](http://gazebosim.org/tutorials/?tut=ros_urdf) for more information about spawning the model with xacro.
-* See [RotorS](https://github.com/ethz-asl/rotors_simulator/tree/master/rotors_description/urdf) for more xacro models.
+* 更多UDP端口配置请参考 [Simulation](../simulation/README.md)。
+* 更多关于xacro多模型的信息请参考 [URDF in Gazebo](http://gazebosim.org/tutorials/?tut=ros_urdf)
+* 更过xacro模型请参考[RotorS](https://github.com/ethz-asl/rotors_simulator/tree/master/rotors_description/urdf)。
