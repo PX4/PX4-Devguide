@@ -52,9 +52,9 @@
 
 * **MAVROS node**（可选）: 如果要通过 ros 控制车辆, 可以在启动文件中运行一个单独的 mavros 节点， 请参阅 [here](https://github.com/PX4/Firmware/blob/4d0964385b84dc91189f377aafb039d10850e5d6/launch/multi_uav_mavros_sitl.launch#L41), 以便连接到 px4 sitl 应用程序。 您需要在启动文件中一些特殊的端口上启动 mavlink 流, 请参阅 [这里](https://github.com/PX4/Firmware/blob/4d0964385b84dc91189f377aafb039d10850e5d6/posix-configs/SITL/init/ekf2/iris_1#L68)。 这些特殊端口需要与launch文件中为MAVROS节点设置的相符合。参考[这里](https://github.com/PX4/Firmware/blob/4d0964385b84dc91189f377aafb039d10850e5d6/launch/multi_uav_mavros_sitl.launch#L26)。
 
-The launch file `multi_uav_mavros_sitl.launch`does the following,
+启动文件 `multi_uav_mavros_sitl.launch`做了以下内容,
 
-* loads a world in gazebo,
+* 在gazebo中加载一个世界
 
         <!-- Gazebo sim -->
         <include file="$(find gazebo_ros)/launch/empty_world.launch">
