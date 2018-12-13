@@ -55,13 +55,13 @@ Note the use of [ros1_bridge](https://github.com/ros2/ros1_bridge), which bridge
 
 ## Code generation
 
+> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
+
 ### ROS-independent applications
 
 All the code needed to create, build and use the bridge is automatically generated when the PX4 Firmware is compiled.
 
 The *Client* application is also compiled and built into the firmware as part of the normal build process. The *Agent* must be separately/manually compiled for the target computer.
-
-> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
 
 <span></span>
 
@@ -206,17 +206,24 @@ In order to install ROS Melodic and ROS2 Bouncy on a Ubuntu 18.04 machine, follo
 
 1. [Install ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
 2. [Install ROS2 Bouncy](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
-
-Install the following component to ensure that the package properly generates the IDL files:
+3. Install the following component to ensure that the package properly generates the IDL files (only required if one is using the ROS2 Bouncy release):
 
 ```sh
 sudo apt install ros-bouncy-rmw-opensplice-cpp
 ```
 
+> **Note** The requirement for this package should soon be deprecated, as `rosidl_generate_dds_interfaces` CMake tools will be used to generate the required IDL files (instead of only using `rosidl_generate_interfaces`).
+
 The install process should also install the `colcon` build tools, but in case that doesn't happen, you can install the tools manually:
 
 ```sh
 sudo apt install python3-colcon-common-extensions
+```
+
+4. `setuptools` is also required to be installed (using pip or apt):
+
+```sh
+sudo pip3 install -U setuptools
 ```
 
 > **Note** This install and build guide is also applicable in an environment with Ubuntu 16.04, ROS Kinetic and ROS2 Ardent installed.
@@ -247,15 +254,27 @@ Since the ROS2 and ROS require different environments you will need a separate w
     mkdir -p ~/px4_ros_com_ros1/src
     ```
     
-    Then, clone the respective ROS2 (`master`) branch to the `/src` directory:
+    Then, clone the respective ROS2 (`ros1`) branch to the `/src` directory:
     
     ```sh
-    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com # clones the 'ros1' branch
+    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com -b ros1 # clones the 'ros1' branch
     ```
 
 ### Building the workspaces
 
-To build the workspace, just run `build_ros2_side.bash` (in directory `px4_ros_com/scripts`).
+The directory `px4_ros_com/scripts` contains multiple scripts that can be used to build both workspaces.
+
+To build both workspaces with a single script, use the `build_all.bash`. Check the usage with `source build_all.bash --help`. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4 Firmware directory path:
+
+```sh
+$ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws> --px4_firmware_dir <path/to/PX4/Firmware>
+```
+
+One can also use the following individual scripts in order to build the individual parts:
+
+* `build_ros1_bridge.bash`, to build the `ros1_bridge`;
+* `build_ros2_workspace.bash` (only the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` `ros1` branch was cloned;
+* `build_ros2_workspace.bash`, to build the ROS2 workspace to where the `px4_ros_com` `master` branch was cloned;
 
 The steps below show how to *manually* build the packages (provided for your information/better understanding only):
 
@@ -304,6 +323,18 @@ The steps below show how to *manually* build the packages (provided for your inf
     ```sh
     cd ~/px4_ros_com_ros2 && colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure --event-handlers console_direct+
     ```
+
+### Cleaning the workspaces
+
+After building the workspaces, which also does generate some source and message files that are required to build the full pipeline, there are multiple places where the files can only be manually deleted if one wants to do clean fresh build after a change. Also, `colcon` does not currently have a way of cleaning the generated `build`, `install` and `log` directories, so after a build, and if one wants to clean it, it needs to delete these directories manually.
+
+In order to ease the process of cleaning a build to the developer, one can use the `clean_all.bash` script, also in `px4_ros_com/scripts`. The most common way of using it is by also passing the the ROS(1) workspace directory path (since it's usually not on the default path):
+
+```sh
+$ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
+```
+
+If one wants to also delete the cloned `ros1_bridge` from the workspace, `--delete_ros1_bridge` argument can be passed as well.
 
 ## Creating a Fast RTPS Listener application
 
