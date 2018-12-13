@@ -70,7 +70,8 @@ This is needed because the first version of ROS does not support RTPS.
 
 ## Code generation
 
-> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
+> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! 
+> *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) or [Ubuntu](../setup/dev_env_linux_ubuntu.md).
 
 ### ROS-independent applications
 
@@ -86,7 +87,7 @@ The *Agent* must be separately/manually compiled for the target computer.
 ### ROS2/ROS applications {#px4_ros_com}
 
 The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)).
-This includes all the required components of the *PX4 RTPS bridge, including the IDL files (required by the `micrortps_agent`), the `micrortps_agent` itself and the sources and headers of the ROS messages.
+This includes all the required components of the *PX4 RTPS bridge*, including the IDL files (required by the `micrortps_agent`), the `micrortps_agent` itself and the sources and headers of the ROS messages.
 
 The package has two separate branches:
 - a `master` branch, used with ROS2. It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
@@ -238,32 +239,32 @@ and separately clone the `px4_ros_com` repo for both the `master` and `ros1` bra
 In order to install ROS Melodic and ROS2 Bouncy on a Ubuntu 18.04 machine, follow the links below, respectively:
 
 1. [Install ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-2. [Install ROS2 Bouncy](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
-3. Install the following component to ensure that the package properly generates the IDL files (only required if one is using the ROS2 Bouncy release):
+1. [Install ROS2 Bouncy](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
+1. Install the following component to ensure that the package properly generates the IDL files (only required if one is using the ROS2 Bouncy release):
 
-```sh
-sudo apt install ros-bouncy-rmw-opensplice-cpp
-```
+   ```sh
+   sudo apt install ros-bouncy-rmw-opensplice-cpp
+   ```
 
-> **Note** The requirement for this package should soon be deprecated, as `rosidl_generate_dds_interfaces` CMake tools will be used to generate the required IDL files (instead of only using `rosidl_generate_interfaces`).
+   > **Note** The requirement for this package should soon be deprecated, as `rosidl_generate_dds_interfaces` CMake tools will be used to generate the required IDL files (instead of only using `rosidl_generate_interfaces`).
 
-The install process should also install the `colcon` build tools, but in case that doesn't happen, you can install the tools manually:
+   The install process should also install the *colcon* build tools, but in case that doesn't happen, you can install the tools manually:
 
-```sh
-sudo apt install python3-colcon-common-extensions
-```
+   ```sh
+   sudo apt install python3-colcon-common-extensions
+   ```
 
-4. `setuptools` is also required to be installed (using pip or apt):
+1. *setuptools* must also be installed (using *pip* or *apt*):
 
-```sh
-sudo pip3 install -U setuptools
-```
+   ```sh
+   sudo pip3 install -U setuptools
+   ```
 
-> **Note** This install and build guide is also applicable in an environment with Ubuntu 16.04, ROS Kinetic and ROS2 Ardent installed.
+   > **Note** This install and build guide is also applicable in an environment with Ubuntu 16.04, ROS Kinetic and ROS2 Ardent installed.
 
-<span></span>
-> **Caution** Do not install the `ros1_bridge` package through the deb repository.
-  The package must be built from source.
+   <span></span>
+   > **Caution** Do not install the `ros1_bridge` package through the deb repository.
+     The package must be built from source.
 
 ### Setting up the workspaces
 
@@ -360,15 +361,17 @@ The steps below show how to *manually* build the packages (provided for your inf
 
 ### Cleaning the workspaces
 
-After building the workspaces, which also does generate some source and message files that are required to build the full pipeline, there are multiple places where the files can only be manually deleted if one wants to do clean fresh build after a change. Also, `colcon` does not currently have a way of cleaning the generated `build`, `install` and `log` directories, so after a build, and if one wants to clean it, it needs to delete these directories manually.
+After building the workspaces there are many files that must be deleted before you can do a clean/fresh build (for example, after you have changed some code and want to rebuild). 
+Unfortunately *colcon* does not currently have a way of cleaning the generated **build**, **install** and **log** directories, so these directories must be deleted manually.
 
-In order to ease the process of cleaning a build to the developer, one can use the `clean_all.bash` script, also in `px4_ros_com/scripts`. The most common way of using it is by also passing the the ROS(1) workspace directory path (since it's usually not on the default path):
+The **clean_all.bash** script (in **px4_ros_com/scripts**) is provided to ease this cleaning process. 
+The most common way of using it is by passing it the ROS(1) workspace directory path (since it's usually not on the default path):
 
 ```sh
 $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
-If one wants to also delete the cloned `ros1_bridge` from the workspace, `--delete_ros1_bridge` argument can be passed as well.
+To also delete the cloned `ros1_bridge` from the workspace, additionally pass the following argument: `--delete_ros1_bridge`.
 
 ## Creating a Fast RTPS Listener application
 
@@ -614,9 +617,9 @@ The following examples provide additional real-world demonstrations of how to us
 
 To quickly test the package (using PX4 SITL with Gazebo):
 
-1. Start the PX4 SITL with Gazebo using:
+1. Start PX4 SITL with Gazebo using:
    ```sh
-   make px4_sitl_rtps gazebo`
+   make px4_sitl_rtps gazebo
    ```
 
 1. On one terminal, source the ROS2 environment and workspace and launch the `ros1_bridge` (this allows ROS2 and ROS nodes to communicate with each other).
