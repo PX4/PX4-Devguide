@@ -262,7 +262,7 @@ The video from Gazebo should then display in *QGroundControl* just as it would f
   
 It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
 ```
-gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264'
+gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
 ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
 ```
   
