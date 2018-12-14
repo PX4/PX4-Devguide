@@ -22,18 +22,18 @@
 核心开发团队和社区活跃与以下论坛和聊天频道。
 
 * [PX4 Discuss](http://discuss.px4.io/)（*推荐*）
-* [Slack](http://slack.px4.io)（注册链接）
+* [Slack](http://slack.px4.io) （注册链接，注册时加载验证码可能需要翻墙）
 * [Google+](https://plus.google.com/117509651030855307398)
 
 > **Tip** 来参加[周开发交流](contribute/README.md#dev_call)和我们其他[开发人员活动](contribute/README.md#calendar)中，最受欢迎的是希望为平台做[贡献](contribute/README.md)的开发人员 。
 
 ## 贡献
 
-[贡献&开发人员交流](contribute/README.md)解释了如何用我们的源代码工作。 [文档](contribute/docs.md)解释了文档更改的方法和位置。
+[贡献 & 开发者通讯（Dev Call）](contribute/README.md) 页面解释了如何用我们的源代码工作。 [文档页面](contribute/docs.md) 解释了文档的更改的方法和可以修改的位置。
 
 ## 翻译
 
-本指南中有中文和韩文[翻译](contribute/docs.md#translation)。 您可以通过单击语言切换器图标来访问这些内容：
+本指南中有中文和韩文 [翻译](contribute/docs.md#translation)。 您可以通过单击语言切换器图标来访问这些内容：
 
 ![Gitbook 语言选择器](../assets/gitbook/gitbook_language_selector.png)
 
@@ -43,9 +43,9 @@
 
 ## 管理
 
-PX4飞行栈受[Dronecode项目](https://www.dronecode.org/)管理。
+PX4飞行栈受 [Dronecode项目](https://www.dronecode.org/) 管理。
 
-<a href="https://www.dronecode.org/" style="padding:20px"><img src="https://mavlink.io/assets/site/logo_dronecode.png" alt="Dronecode Logo" width="110px"/></a>
-<a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="Linux Foundation Logo" width="80px" /></a>
+<a href="https://www.dronecode.org/" style="padding:20px"><img src="https://mavlink.io/assets/site/logo_dronecode.png" alt="Dronecode 徽标" width="110px"/></a>
+<a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="Linux 基金会徽标" width="80px" /></a>
 
 <div style="padding:10px">&nbsp;</div>
