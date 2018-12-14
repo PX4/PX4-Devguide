@@ -1,6 +1,6 @@
-# Building PX4 Software
+# 构建PX4软件
 
-PX4 can be built on the console or in an IDE, for both simulated and hardware targets.
+对于模拟目标和硬件目标，可以在控制台上或IDE中生成PX4。
 
 > **Note** Before following these instructions you must first install the [Developer Toolchain](../setup/dev_env.md) for your host operating system and target hardware.
 
