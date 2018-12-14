@@ -8,12 +8,12 @@
 
 PX4 源代码存储在 [PX4/Firmware](https://github.com/PX4/Firmware) 存储库中的 GitHub 上。 我们建议您 [fork](https://help.github.com/articles/fork-a-repo/) 此存储库（创建与您自己的 Github 帐户关联的副本），然后将源 [clone](https://help.github.com/articles/cloning-a-repository/) 到本地计算机。
 
-> **Tip** 通过从存储库建立分支，您可以更好地管理自定义代码。 Later on you will be able to use *git* to share changes with the main project.
+> **Tip** 通过从存储库建立分支，您可以更好地管理自定义代码。 稍后, 您将能够使用 *git* 与主项目共享更改。
 
-The steps to fork and clone the project source code are:
+建立分支及克隆项目源代码的步骤如下：
 
-1. [Sign up](https://github.com/) to Github.
-2. Go to the [Firmware](https://github.com/PX4/Firmware) repository and click the **Fork** button near the upper right corner. This will create and open the forked repository.
+1. 在GitHub上 [注册](https://github.com/)。
+2. 转到 [Firmware](https://github.com/PX4/Firmware) 存储库，然后单击右上角附近的 **Fork** 按钮。 这将创建并打开分叉存储库。
     
     ![Github Fork button](../../assets/toolchain/github_fork.png)
 
