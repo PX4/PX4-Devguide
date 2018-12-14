@@ -17,14 +17,14 @@ PX4 源代码存储在 [PX4/Firmware](https://github.com/PX4/Firmware) 存储库
     
     ![Github Fork button](../../assets/toolchain/github_fork.png)
 
-3. Copy the repository URL for your *Firmware* repository fork. The easiest way to do this is to click the **Clone or download** button and then copy the URL:
+3. 复制 *Firmware* 存储库分叉的存储库URl。 最简单的方法是单击 **Clone 或下载** 按钮，然后复制URL：
     
     ![Github Clone or download button](../../assets/toolchain/github_clone_or_download.png)
 
-4. Open a command prompt/terminal on your computer
+4. 在计算机上打开命令提示终端
     
-    - On OS X, hit ⌘-space and search for 'terminal'. 
-    - On Ubuntu, click the launch bar and search for 'terminal'. 
+    - 在 OS X 上，点击 ⌘-space 并搜索 “terminal” 。 
+    - 在 Ubuntu 上，单击运行栏并搜索 “terminal”。 
     - On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'. 
 
 5. Clone the repository fork using the copied URL. This will look something like:
