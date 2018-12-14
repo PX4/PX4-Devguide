@@ -1,14 +1,14 @@
 # 构建PX4软件
 
-对于模拟目标和硬件目标，可以在控制台上或IDE中生成PX4。
+对于模拟目标和硬件目标，可以在控制台上或 IDE 中生成 PX4。
 
-> **Note** Before following these instructions you must first install the [Developer Toolchain](../setup/dev_env.md) for your host operating system and target hardware.
+> **Note** 在执行这些说明之前，必须首先为主机操作系统和目标硬件安装 [开发者工具链](../setup/dev_env.md)。
 
-## Downloading PX4 Source Code {#get_px4_code}
+## 下载 PX4 源代码 {#get_px4_code}
 
-The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
+PX4 源代码存储在 [PX4/Firmware](https://github.com/PX4/Firmware) 存储库中的 GitHub 上。 我们建议您 [fork](https://help.github.com/articles/fork-a-repo/) 此存储库（创建与您自己的 Github 帐户关联的副本），然后将源 [clone](https://help.github.com/articles/cloning-a-repository/) 到本地计算机。
 
-> **Tip** Forking the repository allows you to better manage your custom code. Later on you will be able to use *git* to share changes with the main project.
+> **Tip** 通过从存储库建立分支，您可以更好地管理自定义代码。 Later on you will be able to use *git* to share changes with the main project.
 
 The steps to fork and clone the project source code are:
 
