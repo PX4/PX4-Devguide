@@ -36,42 +36,42 @@ PX4 源代码存储在 [PX4/Firmware](https://github.com/PX4/Firmware) 存储库
     
     Windows 用户 [参考 github 帮助 ](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/)。 您可以使用 *git* 命令行客户端，如上所示，也可以使用 *Windows的Github * 应用程序执行相同的操作。
 
-This will copy *most* of the *very latest* version of PX4 source code onto your computer (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
+这将在计算机上复制 *大部分* *非常新的* PX4 源代码（在构建 PX4 时，代码的其余部分会自动从其他 [git 子模块](https://git-scm.com/book/en/v2/Git-Tools-Submodules) 中获取）。
 
 <span id="specific_version_source"></span>
 
-### Get a Specific Release
+### 获取特定发行版本
 
-To get the source code for a *specific older release*:
+要获取 *特定的旧发布* 的源代码：
 
-1. Clone the Firmware repo and navigate into Firmware directory: 
+1. 克隆固件存储库并导航到固件目录： 
         sh
         git clone https://github.com/PX4/Firmware.git
         cd Firmware
 
-2. List all releases (tags) 
+2. 列出所有发行版本（标签） 
         sh
         git tag -l
 
-3. Checkout code for particular tag (e.g. for tag 1.7.4beta) 
+3. 迁出特定tag的代码（比如 tag为 1.7.4的beta版本） 
         sh
         git checkout v1.7.4beta
 
-## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
+## 初次编译（使用 jMAVSim 模拟器） {#jmavsim_build}
 
-For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
+初次编译之前，我们会使用终端环境编译一个模拟目标。 这使我们能够在进入真正的硬件和 IDE 之前验证系统设置。
 
-Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
+导航到 **Firmware** 目录，并使用以下命令启动 [jMAVSim](../simulation/jmavsim.md)：
 
 ```sh
 make px4_sitl jmavsim
 ```
 
-This will bring up the PX4 console below:
+这将在下面显示 PX4 控制台：
 
 ![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
 
-The drone can be flown by typing:
+无人机可以通过键入：
 
 ```sh
 pxh> commander takeoff
