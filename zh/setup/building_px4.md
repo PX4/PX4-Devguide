@@ -32,7 +32,7 @@ PX4 源代码存储在 [PX4/Firmware](https://github.com/PX4/Firmware) 存储库
         git clone https://github.com/<youraccountname>/Firmware.git
         
     
-    > **提示** 如果您只是在尝试（并且不想进行任何永久性更改），则只需克隆主固件存储库，如下所示： ```git clone https://github.com/PX4/Firmware.git```
+    > **Tip** 如果您只是在尝试（并且不想进行任何永久性更改），则只需克隆主固件存储库，如下所示： ```git clone https://github.com/PX4/Firmware.git```
     
     Windows 用户 [参考 github 帮助 ](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/)。 您可以使用 *git* 命令行客户端，如上所示，也可以使用 *Windows的Github * 应用程序执行相同的操作。
 
@@ -81,11 +81,11 @@ pxh> commander takeoff
 
 无人机可以通过输入 `commander land` 着陆, 整个模拟可以通过 **CTRL+C**（或输入 `shutdown`）来停止。
 
-与地面控制站一起飞行模拟更接近飞机的实际运行。 Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
+与地面控制站一起飞行模拟更接近飞机的实际运行。 在飞机飞行时，单击地图上的某个位置（起飞飞行模式）并启用滑块。 这将重新定位飞机。
 
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
-> **Tip** PX4 can be used with a number of other [Simulators](../simulation/README.md), including [Gazebo Simulation](../simulation/gazebo.md) and [AirSim Simulation](../simulation/airsim.md). These are also started with *make* - e.g. ```make px4_sitl gazebo```
+> **Tip** PX4 可用于其他许多 [Simulators](../simulation/README.md)，包括 [Gazebo 模拟](../simulation/gazebo.md) 和 [AirSim 模拟](../simulation/airsim.md)。 这些也是从 *make* 开始的\----例如。 ```make px4_sitl gazebo```
 
 ## NuttX / Pixhawk Based Boards
 
