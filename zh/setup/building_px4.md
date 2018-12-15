@@ -240,23 +240,23 @@ make parrot_bebop_default
 make parrot_bebop_default upload
 ```
 
-This will upload the PX4 mainapp into /data/ftp/internal_000/ and create the file /home/root/parameters if not already present. This also uploads the mixer file and the px4.config file into the /home/root/ directory.
+这将把 PX4 mainapp 上传到 /data/ftp/internal_000/ 并创建文件 /home/root/ 参数（如果尚未存在）。 这也将混频器文件和 px4.config 文件上传到 /homep/root/tol。
 
-#### Run
+#### 运行
 
-Connect to the Bebop's wifi and press the power button four times. Next, connect with the Bebop via telnet or adb shell and run the commands below.
+连接到 bebop 的 wifi，然后按下电源按钮四次。 接下来，通过 telnet 或 adb 外壳连接到 Bebop，并运行下面的命令。
 
 ```sh
 telnet 192.168.42.1
 ```
 
-Kill the Bebop's proprietary driver with
+使用命令杀死Bebop的专属驱动进程：
 
 ```sh
 kk
 ```
 
-and start the PX4 mainapp with:
+启动 PX4 主机：
 
 ```sh
 /data/ftp/internal_000/px4 -s /home/root/px4.config
