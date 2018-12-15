@@ -234,7 +234,7 @@ cd Firmware
 make parrot_bebop_default
 ```
 
-Turn on your Bebop and connect your host machine with the Bebop's wifi. Then, press the power button four times to enable ADB and to start the telnet daemon.
+打开Bebop，使用WiFi与上位机连接。 然后，按四次电源键开启 ADB，启动 Telnet 进程。
 
 ```sh
 make parrot_bebop_default upload
