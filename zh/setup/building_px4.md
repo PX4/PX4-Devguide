@@ -1,4 +1,4 @@
-# 构建PX4软件
+# 编译 PX4 软件
 
 对于模拟目标和硬件目标，可以在控制台上或 IDE 中生成 PX4。
 
@@ -109,7 +109,7 @@ make px4_fmu-v4_default
 [954/954] Creating /home/youruser/src/Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
 ```
 
-The following list shows the build commands for common boards:
+下面的列表是常见飞控板的生成命令：
 
 - Pixhawk 4: `make px4_fmu-v5_default`
 - [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4_fmu-v4_default`
