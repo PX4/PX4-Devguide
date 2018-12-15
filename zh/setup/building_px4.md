@@ -154,9 +154,9 @@ The following boards have more complicated build and/or deployment instructions.
 
 ### Raspberry Pi 2/3
 
-The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+以下是 [Raspberry Pi 2/3 Navio2](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html) 构建目标的命令。
 
-#### Cross-compiler Build
+#### 跨编译器生成
 
 ```sh
 cd Firmware
