@@ -186,20 +186,20 @@ sudo ./bin/px4 -s px4.config
 
 #### 本机生成
 
-If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
+如果要在 Pi 上生成 *directly*，则需要本机生成目标（emlid_navio2_native）。
 
 ```sh
 cd Firmware
 make emlid_navio2_native # for native build
 ```
 
-The "px4" executable file is in the directory **build/emlid_navio2_native/**. Run it directly with:
+"PX4" 可执行文件位于目录 **build/emlid_navio2_native/** 中。 直接运行:
 
 ```sh
 sudo ./build/emlid_navio2_native/px4 ./posix-configs/rpi/px4.config 
 ```
 
-A successful build followed by executing px4 will give you something like this:
+成功生成,，然后执行 PX4 将会看到如下内容：
 
 ```sh
 <br />______  __   __    ___
@@ -217,7 +217,7 @@ pxh&gt;
 
 #### 自动启动
 
-To autostart px4, add the following to the file **/etc/rc.local** (adjust it accordingly if you use native build), right before the `exit 0` line:
+要自动启动 PX4，请将以下内容添加到文件 **/etc/rc.local**（如果使用本机生成，请相应地调整），在 `exit 0` 之前：
 
 ```sh
 cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
@@ -225,9 +225,9 @@ cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 
 ### Parrot Bebop
 
-Support for the [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.html) is at an early stage and should be used very carefully.
+[Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.html)的支持还处于早期阶段，应当格外小心。
 
-#### Build
+#### 编译
 
 ```sh
 cd Firmware
