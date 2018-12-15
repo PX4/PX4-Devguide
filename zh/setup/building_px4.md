@@ -116,7 +116,7 @@ make px4_fmu-v4_default
 - [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4_fmu-v4pro_default`
 - [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4_fmu-v3_default`
 - [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4_fmu-v3_default`
-- [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4_fmu-v3_default` (supports 2MB Flash)
+- [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4_fmu-v3_default`（支持 2MB 闪存）
 - [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4_fmu-v2_default`
 - [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4_fmu-v2_default`
 - [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4_fmu-v2_default`
@@ -124,20 +124,20 @@ make px4_fmu-v4_default
 - [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav_x21_default` 
 - [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make bitcraze_crazyflie_default`
 - [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make intel_aerofc-v1_default`
-- [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** You **must** use a [supported version of GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware) to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. Building with an unsupported GCC may fail, as PX4 is close to the board's 1MB flash limit.
-- Pixhawk 1 with 2 MB flash: `make px4_fmu-v3_default`
+- [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** 您 **必须** 使用 [版本支持的GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware)编译（比如，和用于[CI/docker](../test_and_ci/docker.md)一样）或者从构建中删除模块。 使用不受支持的 GCC 构建可能会失败，因为 PX4 对飞控板有 1MB 的闪存限制。
+- Pixhawk 1 的 2 MB 闪存版: `make px4_fmu-v3_default`
 
-> **Note** Generally the `_default` suffix is optional (i.e. you can also build using `make px4_fmu-v4`, `make bitcraze_crazyflie`, etc.).
+> **Note** 通常，`_default` 后缀是可选的（即，您也可以使用 `make px4_fmu-v4`、`make bitcraze_crazyflie` 等）生成。
 
-### Uploading Firmware (Flashing the board)
+### 将固件烧录到飞控板
 
-Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
+附加 `upload` 到 make 命令，通过 USB 将编译的二进制文件烧录到自动驾驶仪硬件。 例如
 
 ```sh
 make px4_fmu-v4_default upload
 ```
 
-A successful run will end with this output:
+运行成功后将以如下结束：
 
 ```sh
 Erase  : [====================] 100.0%
@@ -148,11 +148,11 @@ Rebooting.
 [100%] Built target upload
 ```
 
-## Other Boards
+## 其他飞控板
 
 The following boards have more complicated build and/or deployment instructions.
 
-### Raspberry Pi 2/3 Boards
+### Raspberry Pi 2/3
 
 The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 
@@ -215,7 +215,7 @@ px4 starting.
 pxh&gt;
 ```
 
-#### Autostart
+#### 自动启动
 
 To autostart px4, add the following to the file **/etc/rc.local** (adjust it accordingly if you use native build), right before the `exit 0` line:
 
@@ -312,7 +312,7 @@ Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_contr
 - [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
 - [OcPoC PX4 Setup Page](https://aerotenna.readme.io/docs/px4-setup)
 
-### QuRT / Snapdragon Based Boards
+### 基于 QuRT / Snapdragon 的飞控板
 
 This section shows how to build for the [Qualcomm Snapdragon Flight](https://docs.px4.io/en/flight_controller/snapdragon_flight.html).
 
