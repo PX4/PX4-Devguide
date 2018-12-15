@@ -87,13 +87,13 @@ pxh> commander takeoff
 
 > **Tip** PX4 可用于其他许多 [Simulators](../simulation/README.md)，包括 [Gazebo 模拟](../simulation/gazebo.md) 和 [AirSim 模拟](../simulation/airsim.md)。 这些也是从 *make* 开始的\----例如。 ```make px4_sitl gazebo```
 
-## NuttX / Pixhawk Based Boards
+## 基于NuttX / Pixhawk 的飞控板
 
-### Building {#building_nuttx}
+### 构建 {#building_nuttx}
 
-To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board.
+要构建基于 Nuttx 或 Pixhawk 的飞控板，请跳转到 **Firmware** 目录，然后调用 `make` 构建。
 
-For example, to build for *Pixracer* you would use the following command:
+例如，要生成 *Pixracer* 您将使用以下命令：
 
 ```sh
 cd Firmware
