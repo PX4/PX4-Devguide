@@ -163,28 +163,28 @@ cd Firmware
 make emlid_navio2_cross # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory **build/emlid_navio2_cross/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
+"PX4" 可执行文件位于目录 **build/emlid_navio2_cross/** 中。 请确保您可以通过 ssh 连接到 RPi，请参阅 [介绍如何访问您的 RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start)。
 
-Then set the IP (or hostname) of your RPi using:
+然后使用以下方法设置 RPi 的 IP（或主机名）。
 
 ```sh
 export AUTOPILOT_HOST=192.168.X.X
 ```
 
-And upload it with:
+并上传：
 
 ```sh
 cd Firmware
 make emlid_navio2_cross upload # for cross-compiler build
 ```
 
-Then, connect over ssh and run it with (as root):
+然后，通过 ssh 连接并运行（以 root 身份）：
 
 ```sh
 sudo ./bin/px4 -s px4.config
 ```
 
-#### Native Build
+#### 本机生成
 
 If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
 
