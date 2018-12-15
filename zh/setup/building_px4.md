@@ -100,9 +100,9 @@ cd Firmware
 make px4_fmu-v4_default
 ```
 
-> **Note** In the example above the first part of the build target `px4_fmu-v4` is the firmware for a particular flight controller hardware and `default` is the configuration name (in this case the "default" configuration). The `default` is optional so you could instead do: ```make px4_fmu-v4```
+> **Note** 在上面的生成目标的第一部分中 `px4_fmu-v4` 是特定飞行控制器硬件的固件，`默认` 是配置名称 （在本例中为 "默认" 配置）。 `默认` 是可选的，因此您可以改为执行以下操作： ```make px4_fmu-v4```
 
-A successful run will end with similar output to:
+运行成功后将输出类似结束：
 
 ```sh
 -- Build files have been written to: /home/youruser/src/Firmware/build/px4_fmu-v4_default
