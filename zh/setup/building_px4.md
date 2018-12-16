@@ -495,22 +495,22 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
     
     `VENDOR_MODEL_VARIANT` 选项映射到 [/boards](https://github.com/PX4/Firmware/tree/master/boards) 目录下的 PX4 特定的 *cmake* 配置文件。 具体而言 `VENDOR_MODEL_VARIANT` 映射到配置文件 **boards/VENDOR/MODEL/VARIANT.cmake**（例如 `px4_fmu-v5_default` 对应于 [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)）。
     
-    Additional make targets are discussed in the following sections (list is not exhaustive):
+    以下各节讨论了其他目标生成的问题（包括但不限于）：
     
-    ### Binary Size Profiling {#bloaty_compare_master}
+    ### 二进制文件大小剖析 {#bloaty_compare_master}
     
-    The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
+    `bloaty_compare_master` 构建目标使您能够更好地了解更改对代码大小的影响。当使用时，工具链会下载特定固件的最新的 master 版本并将其与本地生成进行比较（使用二进制文件的 [bloaty](https://github.com/google/bloaty) 大小探查器）。
     
-    > **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
+    > **Tip** 这有助于分析（可能）导致 `px4_fmu-v2_default` 达到1MB 闪存限制的更改。
     
-    *Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_nuttx) install *bloaty* as shown:
+    *Bloaty* 必须在您的路径中，并且在 *cmake* 配置时找到。 PX4 [docker 文件 ](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_nuttx) 安装 *bloaty* 如下所示：
     
         git clone --recursive https://github.com/google/bloaty.git /tmp/bloaty \
             && cd /tmp/bloaty && cmake -GNinja . && ninja bloaty && cp bloaty /usr/local/bin/ \
             && rm -rf /tmp/*
         
     
-    The example below shows how you might see the impact of removing the *mpu9250* driver from `px4_fmu-v2_default`. First it locally sets up a build without the driver:
+    下面的示例演示如何查看从 `px4_fmu-v2_default` 中删除 *mpu9250* 驱动程序的影响。 首先，它在本地构建一个没有驱动程序的生成：
     
     ```sh
      % git diff
@@ -530,7 +530,7 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
                     #magnetometer # all available magnetometer drivers
     ```
     
-    Then use the make target, specifying the target build to compare (`px4_fmu-v2_default` in this case):
+    然后使用 make ，编译一个特殊版本进行比较（本例中为 `px4_fmu-v2_default`）：
     
     ```sh
     % make px4_fmu-v2_default bloaty_compare_master
