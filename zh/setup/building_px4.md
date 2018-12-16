@@ -77,7 +77,7 @@ make px4_sitl jmavsim
 pxh> commander takeoff
 ```
 
-![jMAVSim UI](../../assets/jmavsim_first_takeoff.png)
+![jMAVSim 界面](../../assets/jmavsim_first_takeoff.png)
 
 无人机可以通过输入 `commander land` 着陆, 整个模拟可以通过 **CTRL+C**（或输入 `shutdown`）来停止。
 
