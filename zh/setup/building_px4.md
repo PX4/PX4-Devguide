@@ -314,9 +314,9 @@ adb shell reboot
 
 ### 基于 QuRT / Snapdragon 的飞控板
 
-This section shows how to build for the [Qualcomm Snapdragon Flight](https://docs.px4.io/en/flight_controller/snapdragon_flight.html).
+该部分介绍 [高通骁龙飞控](https://docs.px4.io/en/flight_controller/snapdragon_flight.html) 如何编译：
 
-#### Build
+#### 编译
 
 > **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
 
