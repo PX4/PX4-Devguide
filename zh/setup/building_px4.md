@@ -262,43 +262,43 @@ kk
 /data/ftp/internal_000/px4 -s /home/root/px4.config
 ```
 
-要驾驶 Bebop，将操纵杆设备与主机连接，然后启动 QGroundControl。 Both the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors and setup your joystick device.
+要驾驶 Bebop，将操纵杆设备与主机连接，然后启动 QGroundControl。 Bebop 和操纵杆都应该被识别。 按照说明校准传感器并设置操纵杆设备。
 
-#### Autostart
+#### 自动启动
 
-To auto-start PX4 on the Bebop at boot, modify the init script `/etc/init.d/rcS_mode_default`. Comment the following line:
+要在启动 Bebop 上自动启动 PX4，请修改 init 脚本 `/etc/init.d/rcS_mode_default`。 请对以下行进行注释：
 
     DragonStarter.sh -out2null &
     
 
-Replace it with:
+替换为：
 
     echo 1 > /sys/class/gpio/gpio85/value # enables the fan
     /data/ftp/internal_000/px4 -d -s /home/root/px4.config > /home/root/px4.log &
     
 
-Enable adb server by pressing the power button 4 times and connect to adb server as described before:
+按四次电源键开启 adb 服务，用如下方式连接到 adb 服务：
 
 ```sh
 adb connect 192.168.42.1:9050
 ```
 
-Re-mount the system partition as writeable:
+把系统分区重新挂载成可读可写：
 
 ```sh
 adb shell mount -o remount,rw /
 ```
 
-In order to avoid editing the file manually, you can use this one : https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
+为了避免手动编辑文件，可以直接使用如下文件： https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
 
-Save the original one and push this one to the Bebop
+备份原始文件，并将下载的文件传到 Bebop
 
 ```sh
 adb shell cp /etc/init.d/rcS_mode_default /etc/init.d/rcS_mode_default_backup
 adb push rcS_mode_default /etc/init.d/
 ```
 
-Sync and reboot:
+同步后重启：
 
 ```sh
 adb shell sync
@@ -307,10 +307,10 @@ adb shell reboot
 
 ### OcPoC-Zynq Mini
 
-Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html) are covered in:
+[OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html) 的编译说明参见：
 
-- [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
-- [OcPoC PX4 Setup Page](https://aerotenna.readme.io/docs/px4-setup)
+- [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)（PX4 用户手册）
+- [OcPoC PX4 构建页](https://aerotenna.readme.io/docs/px4-setup)
 
 ### 基于 QuRT / Snapdragon 的飞控板
 
