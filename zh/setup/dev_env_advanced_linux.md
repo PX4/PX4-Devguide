@@ -1,8 +1,8 @@
-# Advanced Linux Installation Use-Cases
+# 高级 Linux 安装用例
 
-## Using JTAG Programming Adapters
+## 使用 JTAG 编程调试器
 
-Linux users need to explicitly allow access to the USB bus for JTAG programming adapters.
+Linux 用户需要为 JTAG 调试器接入 USB 总线开放权限。
 
 > **Note** For Archlinux: replace the group plugdev with uucp in the following commands
 
