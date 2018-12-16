@@ -262,7 +262,7 @@ kk
 /data/ftp/internal_000/px4 -s /home/root/px4.config
 ```
 
-In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors and setup your joystick device.
+要驾驶 Bebop，将操纵杆设备与主机连接，然后启动 QGroundControl。 Both the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors and setup your joystick device.
 
 #### Autostart
 
