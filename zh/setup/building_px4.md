@@ -364,20 +364,20 @@ cd /home/linaro
 ./px4 mainapp.config
 ```
 
-Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
+请注意, 断开 USB 后，PX4 将立即停止（或者如果您的 ssh 会话已断开连接）。 要飞行，您应该使 PX4 上电后自动启动。
 
-#### Autostart
+#### 自动启动
 
-To run the px4 as soon as the Snapdragon has booted, you can add the startup to `rc.local`:
+要在骁龙启动后立即运行 PX4，您可以将启动添加到 `rc.local`：
 
-Either edit the file `/etc/rc.local` directly on the Snapdragon:
+请直接在骁龙上编辑文件 `/etc/rc.local`：
 
 ```sh
 adb shell
 vim /etc/rc.local
 ```
 
-Or copy the file to your computer, edit it locally, and copy it back:
+或者将文件复制到计算机，在本地编辑，然后将其复制回：
 
 ```sh
 adb pull /etc/rc.local
@@ -385,7 +385,7 @@ gedit rc.local
 adb push rc.local /etc/rc.local
 ```
 
-For the auto-start, add the following line before `exit 0`:
+对于自动启动，请在 `exit 0 ` 之前添加以下行：
 
 ```sh
 (cd /home/linaro && ./px4 mainapp.config > mainapp.log)
@@ -393,22 +393,22 @@ For the auto-start, add the following line before `exit 0`:
 exit 0
 ```
 
-Make sure that the `rc.local` is executable:
+确保 `rc.local` 是可执行的：
 
 ```sh
 adb shell
 chmod +x /etc/rc.local
 ```
 
-Then reboot the Snapdragon:
+然后重新启动骁龙：
 
 ```sh
 adb reboot
 ```
 
-## Compiling in a Graphical IDE
+## 用图形界面 IDE 编译
 
-The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
+PX4 支持 Qt Creator，Eclipse 和 Sublime Text。 Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
