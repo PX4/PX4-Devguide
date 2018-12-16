@@ -318,46 +318,46 @@ adb shell reboot
 
 #### 编译
 
-> **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
+> **Note** 如果您使用的是 [高通电调主板](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board)（基于串口），请移步 [这里](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md)。 如果您使用正常的基于 PWM 的电调板，则可以继续按照此页上的说明进行操作。
 
-The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](../middleware/uorb.md).
+下面的命令构建了 Linux 和 DSP 端的目标。 两个可执行文件都通过 [muORB](../middleware/uorb.md) 进行通信。
 
 ```sh
 cd Firmware
 make atlflight_eagle_default
 ```
 
-To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
+要在设备上加载 SW，请通过 usb 连接线进行连接，并确保设备已启动。 在新的终端窗口中运行此操作：
 
 ```sh
 adb shell
 ```
 
-Go back to previous terminal and upload:
+到上一个终端并上传：
 
 ```sh
 make atlflight_eagle_default upload
 ```
 
-Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle.
+请注意，这也将覆盖两个配置文件 [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) 并 [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) 到设备。 如果你想编辑飞机的启动脚本，这些文件分别保存在 /usr/share/data/adsp/px4.config 和 /home/linaro/mainapp.config。
 
-The mixer currently needs to be copied manually:
+混频器现在需要手动复制:
 
 ```sh
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 ```
 
-#### Run
+#### 运行脚本
 
-Run the DSP debug monitor:
+运行 DSP 调试监控器：
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
-Note: alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+注意：在 Mac 上可以使用 [nano-dm](https://github.com/kevinmehall/nano-dm)。
 
-Go back to ADB shell and run px4:
+继续使用 ADB shell 运行 PX4：
 
 ```sh
 cd /home/linaro
