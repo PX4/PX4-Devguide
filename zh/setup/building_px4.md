@@ -465,92 +465,93 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
 **VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
 
 - **VENDOR:** 飞控板制造商：`px4`，`aerotenna`，`airmind`，`atlflight`，`auav`，`beaglebone`，`intel`，`nxp`，`parrot`等。 Pixhawk 系列飞控板对应 `PX4`。
-- **MODEL:** The *board model* "model": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2`, etc.
-- **VARIANT:** Indicates particular configurations: e.g. `rtps`, `lpe`, which contain components that are not present in the `default` configuration. Most commonly this is `default`, and may be omitted.
-
-> **Tip** You can get a list of *all* available `CONFIGURATION_TARGET` options using the command below: 
-> 
->     sh
->       make list_config_targets
-
-**VIEWER_MODEL_DEBUGGER:**
-
-- **VIEWER:** This is the simulator ("viewer") to launch and connect: `gazebo`, `jmavsim` <!-- , ?airsim -->
-
-- **MODEL:** The *vehicle* model to use (e.g. `iris` (*default*), `rover`, `tailsitter`, etc), which will be loaded by the simulator. The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](#scripts) to select appropriate parameters.
-
-- **DEBUGGER:** Debugger to use: `none` (*default*), `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. For more information see [Simulation Debugging](../debug/simulation_debugging.md).
-
-> **Tip** You can get a list of *all* available `VIEWER_MODEL_DEBUGGER` options using the command below: 
-> 
->     sh
->       make px4_sitl list_vmd_make_targets
-
-Notes:
-
-- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`. 
-- You can use three underscores if you want to specify a default value between two other settings. For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
-- You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
-
-The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
-
-Additional make targets are discussed in the following sections (list is not exhaustive):
-
-### Binary Size Profiling {#bloaty_compare_master}
-
-The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
-
-> **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
-
-*Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_nuttx) install *bloaty* as shown:
-
-    git clone --recursive https://github.com/google/bloaty.git /tmp/bloaty \
-        && cd /tmp/bloaty && cmake -GNinja . && ninja bloaty && cp bloaty /usr/local/bin/ \
-        && rm -rf /tmp/*
+- **MODEL：** *飞控板模型</1 >"模型 "：`sitl`、`fmu-v2`、`fmu-v3`、`fmu-v4`、`fmu-v5`、`navio2` 等。</li> 
     
-
-The example below shows how you might see the impact of removing the *mpu9250* driver from `px4_fmu-v2_default`. First it locally sets up a build without the driver:
-
-```sh
- % git diff
-diff --git a/boards/px4/fmu-v2/default.cmake b/boards/px4/fmu-v2/default.cmake
-index 40d7778..2ce7972 100644
---- a/boards/px4/fmu-v2/default.cmake
-+++ b/boards/px4/fmu-v2/default.cmake
-@@ -36,7 +36,7 @@ px4_add_board(
-                imu/l3gd20
-                imu/lsm303d
-                imu/mpu6000
-
--               imu/mpu9250
-+               #imu/mpu9250
-                #iridiumsbd
-                #irlock
-                #magnetometer # all available magnetometer drivers
-```
-
-Then use the make target, specifying the target build to compare (`px4_fmu-v2_default` in this case):
-
-```sh
-% make px4_fmu-v2_default bloaty_compare_master
-...
-...
-...
-     VM SIZE                                                                                        FILE SIZE
- --------------                                                                                  --------------
-  [DEL]     -52 MPU9250::check_null_data(unsigned int*, unsigned char)                               -52  [DEL]
-  [DEL]     -52 MPU9250::test_error()                                                                -52  [DEL]
-  [DEL]     -52 MPU9250_gyro::MPU9250_gyro(MPU9250*, char const*)                                    -52  [DEL]
-  [DEL]     -56 mpu9250::info(MPU9250_BUS)                                                           -56  [DEL]
-  [DEL]     -56 mpu9250::regdump(MPU9250_BUS)                                                        -56  [DEL]
-...                                        -336  [DEL]
-  [DEL]    -344 MPU9250_mag::_measure(ak8963_regs)                                                  -344  [DEL]
-  [DEL]    -684 MPU9250::MPU9250(device::Device*, device::Device*, char const*, char const*, cha    -684  [DEL]
-  [DEL]    -684 MPU9250::init()                                                                     -684  [DEL]
-  [DEL]   -1000 MPU9250::measure()                                                                 -1000  [DEL]
- -41.3%   -1011 [43 Others]                                                                        -1011 -41.3%
-  -1.0% -1.05Ki [Unmapped]                                                                       +24.2Ki  +0.2%
-  -1.0% -10.3Ki TOTAL                                                                            +14.9Ki  +0.1%
-```
-
-This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
+    - **VARIANT:**特定配置：例如 `rtps`、`lpe`，其中包含 `默认` 配置中不存在的组件。 最常见的是 `default`，可以省略。</ul> 
+    
+    > **Tip** 您可以使用下面的命令获取 *所有* 可用的 `CONFIGURATION_TARGET` 选项的列表： 
+    > 
+    >     sh
+    >       make list_config_targets
+    
+    **VIEWER_MODEL_DEBUGGER:**
+    
+    - **VIEWER:**这是启动和连接的模拟器（"查看器"）：`gazebo`, `jmavsim` <!-- , ?airsim -->
+    
+    - **MODEL:**要使用的 *载具* 模型（例如 `iris` (*default*)、`rover`、`tailsitter` 等），该模型将由模拟器加载。 环境变量 `PX4_SIM_MODEL` 将设置为所选模型。然后在 [启动脚本 ](#scripts) 中使用该模型来选择适当的参数。
+    
+    - **DEBUGGER:**要使用的调试器：`none` (*default*)、`ide`、`gdb`、`lldb`、`ddd`、`valgrind`、`callgrind`。 有关详细信息，请参阅 < 0>Simulation 调试 </0 >。
+    
+    > **Tip** 您可以使用下面的命令获取 *所有* 可用的 `VIEWER_MODEL_DEBUGGER` 选项的列表： 
+    > 
+    >     sh
+    >       make px4_sitl list_vmd_make_targets
+    
+    备注：
+    
+    - Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`. 
+    - You can use three underscores if you want to specify a default value between two other settings. For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
+    - You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
+    
+    The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
+    
+    Additional make targets are discussed in the following sections (list is not exhaustive):
+    
+    ### Binary Size Profiling {#bloaty_compare_master}
+    
+    The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
+    
+    > **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
+    
+    *Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_nuttx) install *bloaty* as shown:
+    
+        git clone --recursive https://github.com/google/bloaty.git /tmp/bloaty \
+            && cd /tmp/bloaty && cmake -GNinja . && ninja bloaty && cp bloaty /usr/local/bin/ \
+            && rm -rf /tmp/*
+        
+    
+    The example below shows how you might see the impact of removing the *mpu9250* driver from `px4_fmu-v2_default`. First it locally sets up a build without the driver:
+    
+    ```sh
+     % git diff
+    diff --git a/boards/px4/fmu-v2/default.cmake b/boards/px4/fmu-v2/default.cmake
+    index 40d7778..2ce7972 100644
+    --- a/boards/px4/fmu-v2/default.cmake
+    +++ b/boards/px4/fmu-v2/default.cmake
+    @@ -36,7 +36,7 @@ px4_add_board(
+                    imu/l3gd20
+                    imu/lsm303d
+                    imu/mpu6000
+    
+    -               imu/mpu9250
+    +               #imu/mpu9250
+                    #iridiumsbd
+                    #irlock
+                    #magnetometer # all available magnetometer drivers
+    ```
+    
+    Then use the make target, specifying the target build to compare (`px4_fmu-v2_default` in this case):
+    
+    ```sh
+    % make px4_fmu-v2_default bloaty_compare_master
+    ...
+    ...
+    ...
+         VM SIZE                                                                                        FILE SIZE
+     --------------                                                                                  --------------
+      [DEL]     -52 MPU9250::check_null_data(unsigned int*, unsigned char)                               -52  [DEL]
+      [DEL]     -52 MPU9250::test_error()                                                                -52  [DEL]
+      [DEL]     -52 MPU9250_gyro::MPU9250_gyro(MPU9250*, char const*)                                    -52  [DEL]
+      [DEL]     -56 mpu9250::info(MPU9250_BUS)                                                           -56  [DEL]
+      [DEL]     -56 mpu9250::regdump(MPU9250_BUS)                                                        -56  [DEL]
+    ...                                        -336  [DEL]
+      [DEL]    -344 MPU9250_mag::_measure(ak8963_regs)                                                  -344  [DEL]
+      [DEL]    -684 MPU9250::MPU9250(device::Device*, device::Device*, char const*, char const*, cha    -684  [DEL]
+      [DEL]    -684 MPU9250::init()                                                                     -684  [DEL]
+      [DEL]   -1000 MPU9250::measure()                                                                 -1000  [DEL]
+     -41.3%   -1011 [43 Others]                                                                        -1011 -41.3%
+      -1.0% -1.05Ki [Unmapped]                                                                       +24.2Ki  +0.2%
+      -1.0% -10.3Ki TOTAL                                                                            +14.9Ki  +0.1%
+    ```
+    
+    This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
