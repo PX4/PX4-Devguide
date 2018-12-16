@@ -431,15 +431,15 @@ cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 
 然后通过 **文件 > 打开项目** 加载根目录下的 CMakeLists.txt。
 
-After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
+加载后，可以将 **play** 按钮配置为运行目标配置中选择 "自定义可执行文件"，并输入 "make" 作为执行命令， "upload" 作为参数。
 
-### Qt Creator on Windows
+### 在 Windows 上使用 Qt creator
 
-> **Note** Windows has not been tested for PX4 development with Qt Creator.
+> **Note** Windows 平台下尚未测试。
 
-### Qt Creator on Mac OS
+### 在 Mac OS 上使用 Qt creator
 
-Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
+开启 Qt creator 之前，需要新建 [项目文件](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator)。
 
 ```sh
 cd ~/src/Firmware
@@ -448,15 +448,15 @@ cd build/creator
 cmake ../.. -G "CodeBlocks - Unix Makefiles"
 ```
 
-That's it! Start *Qt Creator*, then complete the steps in the video below to set up the project to build.
+设置完成！ 启动 *Qt Creator</0 >，然后完成下面视频中的步骤，以设置要生成的项目。</p> 
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
 
-## PX4 Make Build Targets {#make_targets}
+## PX4 创建生成目标 {#make_targets}
 
-The previous sections showed how you can call *make* to build a number of different targets, start simulators, use IDEs etc. This section shows how *make* options are constructed and how to find the available choices.
+前面的部分演示了如何调用 *make* 来构建多个不同的目标、启动模拟器、使用 IDE 等。 本节介绍如何构造 *make* 选项以及如何查找可用选项。
 
-The full syntax to call *make* with a particular configuration and initialization file is:
+使用特定的配置和初始化文件调用 *make* 的完整语法是：
 
 ```sh
 make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
@@ -464,7 +464,7 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
 
 **VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
 
-- **VENDOR:** The manufacturer of the board: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp`, `parrot`, etc. The vendor name for Pixhawk series boards is `px4`.
+- **VENDOR:** 飞控板制造商：`px4`，`aerotenna`，`airmind`，`atlflight`，`auav`，`beaglebone`，`intel`，`nxp`，`parrot`等。 Pixhawk 系列飞控板对应 `PX4`。
 - **MODEL:** The *board model* "model": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2`, etc.
 - **VARIANT:** Indicates particular configurations: e.g. `rtps`, `lpe`, which contain components that are not present in the `default` configuration. Most commonly this is `default`, and may be omitted.
 
