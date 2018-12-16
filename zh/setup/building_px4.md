@@ -408,19 +408,19 @@ adb reboot
 
 ## 用图形界面 IDE 编译
 
-PX4 支持 Qt Creator，Eclipse 和 Sublime Text。 Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
+PX4 支持 Qt Creator，Eclipse 和 Sublime Text。 Qt Creator 是最用户友好的，因此是唯一官方支持的 IDE。 除非是 Eclipse 或者 Sublime Text 的专家，否则不推荐。 硬核玩家会在源码目录里找到 [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) 和 [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project)。
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
-## Qt Creator Functionality
+## Qt Creator 功能
 
-Qt creator offers clickable symbols, auto-completion of the complete codebase and building and flashing firmware.
+Qt creator 提供符号跳转、自动补全和编译固件的功能。
 
 ![](../../assets/toolchain/qtcreator.png)
 
-### Qt Creator on Linux
+### 在 Linux 上使用 Qt creator
 
-Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
+开启 Qt creator 之前，需要新建 [项目文件](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator)。
 
 ```sh
 cd ~/src/Firmware
@@ -429,7 +429,7 @@ cd ../Firmware-build
 cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 ```
 
-Then load the CMakeLists.txt in the root firmware folder via **File > Open File or Project** (Select the CMakeLists.txt file).
+然后通过 **文件 > 打开项目** 加载根目录下的 CMakeLists.txt。
 
 After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
