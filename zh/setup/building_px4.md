@@ -15,11 +15,11 @@ PX4 源代码存储在 [PX4/Firmware](https://github.com/PX4/Firmware) 存储库
 1. 在GitHub上 [注册](https://github.com/)。
 2. 转到 [Firmware](https://github.com/PX4/Firmware) 存储库，然后单击右上角附近的 **Fork** 按钮。 这将创建并打开分叉存储库。
     
-    ![Github Fork button](../../assets/toolchain/github_fork.png)
+    ![Github 分支按钮](../../assets/toolchain/github_fork.png)
 
 3. 复制 *Firmware* 存储库分叉的存储库URl。 最简单的方法是单击 **Clone 或下载** 按钮，然后复制URL：
     
-    ![Github Clone or download button](../../assets/toolchain/github_clone_or_download.png)
+    ![Github 克隆或下载按钮](../../assets/toolchain/github_clone_or_download.png)
 
 4. 在计算机上打开命令提示终端
     
@@ -69,7 +69,7 @@ make px4_sitl jmavsim
 
 这将在下面显示 PX4 控制台：
 
-![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
+![PX4 控制台（jMAVSim）](../../assets/console_jmavsim.png)
 
 无人机可以通过键入：
 
@@ -83,7 +83,7 @@ pxh> commander takeoff
 
 与地面控制站一起飞行模拟更接近飞机的实际运行。 在飞机飞行时，单击地图上的某个位置（起飞飞行模式）并启用滑块。 这将重新定位飞机。
 
-![QGroundControl GoTo](../../assets/qgc_goto.jpg)
+![QGroundControl 跳转](../../assets/qgc_goto.jpg)
 
 > **Tip** PX4 可用于其他许多 [Simulators](../simulation/README.md)，包括 [Gazebo 模拟](../simulation/gazebo.md) 和 [AirSim 模拟](../simulation/airsim.md)。 这些也是从 *make* 开始的\----例如。 ```make px4_sitl gazebo```
 
@@ -554,4 +554,4 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
       -1.0% -10.3Ki TOTAL                                                                            +14.9Ki  +0.1%
     ```
     
-    This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
+    可以看出，从 `px4_fmu-v2_default` 删除 *mpu9250* 驱动，可以节省 10.3KB 的 flash 空间。 它还显示了 *mpu9250* 驱动程序的不同部件的大小。
