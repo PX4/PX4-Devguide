@@ -58,67 +58,67 @@ Siga las instrucciones (manuales) aquí: [Ubuntu/Debian Linux > Parrot Bebop](..
 
 ### Simulación jMAVSim/Gazebo
 
-To install the Gazebo and jMAVSim simulators:
+Para instalar los simuladores Gazebo y jMAVSim:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
-2. Run the script in a bash shell: 
+1. Descargar <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
+2. Ejecutar el script en un shell de bash: 
         bash
-        source ubuntu_sim.sh You may need to acknowledge some prompts as the script progresses.
+        source ubuntu_sim.sh Podría necesitar reconocer algunas indicaciones de como avanza el script.
 
-> **Tip** If you just need jMAVSim, instead download and run <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
+> **Nota** Si solo necesita jMAVSim, en su lugar descarga y ejecuta <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
 
 <span><span></p> 
 
 <blockquote>
   <p>
-    <strong>Note</strong> PX4 works with Gazebo 7, 8, and 9. The script installs Gazebo 9.
+    <strong>Nota</strong> PX4 funciona con Gazebo 7, 8, and 9. El script installa Gazebo 9.
   </p>
 </blockquote>
 
 <h3>
-  Gazebo with ROS
+  Gazebo con ROS
 </h3>
 
 <p>
-  To install the development toolchain:
+  Para instalar la toolchain de desarrollo:
 </p>
 
 <ol start="1">
   <li>
-    Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>.
+    Descargue <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>.
   </li>
   
   <li>
-    Run the script in a bash shell: <pre><code>bash
-source ubuntu_sim_ros_gazebo.sh</code></pre> You may need to acknowledge some prompts as the script progresses.
+    Ejecute el script en un shell de bash: <pre><code>bash
+source ubuntu_sim_ros_gazebo.sh</code></pre> Podría necesitar reconocer algunas indicaciones de como avanza el script.
   </li>
 </ol>
 
 <p>
-  Note:
+  Nota:
 </p>
 
 <ul>
   <li>
-    ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 or Gazebo9 to simplify ROS development).
+    ROS esta instalado con Gazebo7 por defecto (hemos elegido usar el que usa por defecto además de Gazebo8 o Gazebo9 para simplificar el desarrollo en ROS).
   </li>
   <li>
-    Your catkin (ROS build system) workspace is created at <strong>~/catkin_ws/</strong>.
+    Tu catkin (ROS build system) workspace es creado en <strong>~/catkin_ws/</strong>.
   </li>
 </ul>
 
 <h2>
-  Additional Tools
+  Herramientas adicionales
 </h2>
 
 <p>
-  After setting up the build/simulation toolchain, see <a href="../setup/generic_dev_tools.md">Additional Tools</a> for information about other useful tools.
+  Después de configurar la toolchain de compilación/simulación, ver <a href="../setup/generic_dev_tools.md">Herramientas adicionales</a> para más información sobre otras herramientas útiles.
 </p>
 
 <h2>
-  Next Steps
+  Siguientes pasos
 </h2>
 
 <p>
-  Once you have finished setting up the environment, continue to the <a href="../setup/building_px4.md">build instructions</a>.
+  Una vez haya terminado de configurar el entorno, continúe en <a href="../setup/building_px4.md">Compilando el código</a>.
 </p>
