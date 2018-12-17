@@ -14,15 +14,15 @@ Esta guía explica cómo:
 * Integrar PX4 en un nuevo hardware: 
   * Soportar nuevos sensores y actuadores, incluyendo cámaras, telémetros, etc.
   * Modificar PX4 para que funcione en un nuevo hardware autopiloto.
-* [Simulate](simulation/README.md), [test](test_and_ci/README.md) and [debug/log](debug/README.md) PX4.
-* Communicate/integrate with external robotics APIs.
+* [Simular](simulation/README.md), [probar](test_and_ci/README.md) y [depurar](debug/README.md) PX4.
+* Comunicar/integrar con APIs externas.
 
-## Forums and Chat {#support}
+## Foros y Chat {#support}
 
-The core development team and community are active on the following forums and chat channels.
+El equipo principal de desarrollo y la comunidad son activas en los siguientes foros y canales de chat.
 
-* [PX4 Discuss](http://discuss.px4.io/) (*recommended*)
-* [Slack](http://slack.px4.io) (sign up)
+* [PX4 Discuss](http://discuss.px4.io/) (*recomendado*)
+* [Slack](http://slack.px4.io) (regístrate)
 * [Google+](https://plus.google.com/117509651030855307398)
 
 > **Tip** Developers who want to [contribute](contribute/README.md) to the platform are also most welcome to attend the [weekly dev call](contribute/README.md#dev_call) and our other [developer events](contribute/README.md#calendar).
