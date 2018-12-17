@@ -88,7 +88,7 @@
   * [Sensor/Topic Debugging](debug/sensor_uorb_topic_debugging.md)
   * [Simulation Debugging](debug/simulation_debugging.md)
   * [Envío de valores de depuración](debug/debug_values.md)
-  * [System-wide Replay](debug/system_wide_replay.md)
+  * [Repetición de sistema completo](debug/system_wide_replay.md)
   * [Perfiles](debug/profiling.md)
   * [Logging](log/logging.md)
   * [Análisis de registro de vuelo](log/flight_log_analysis.md)
