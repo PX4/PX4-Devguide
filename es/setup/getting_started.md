@@ -1,9 +1,9 @@
-# Getting Started
+# Primeros pasos
 
-This section contains topics about getting started with PX4 development:
+Esta sección contiene información sobre cómo empezar en el desarrollo de PX4:
 
-* [Initial Setup](../setup/config_initial.md)
-* [Toolchain Installation](../setup/dev_env.md)
-* [Building the Code](../setup/building_px4.md)
-* [Writing an Application](../apps/hello_sky.md)
-* [Application/Module Template](../apps/module_template.md)
+* [Configuración inicial](../setup/config_initial.md)
+* [Instalación de la Toolchain](../setup/dev_env.md)
+* [Compilando el código](../setup/building_px4.md)
+* [Escribiendo una aplicación](../apps/hello_sky.md)
+* [Plantilla de Aplicación/Módulo](../apps/module_template.md)
