@@ -6,20 +6,20 @@ Recomendamos que los desarrolladores obtengan el equipo básico descrito a conti
 
 > **Nota** PX4 puede ser usado con una gama de equipos mucho más amplia que la que se describe aquí, pero los nuevos desarrolladores se beneficiarán de ir con una de las configuraciones estándar. Un RC de Taranis además de una tablet Note 4 constituyen un kit muy barato.
 
-The equipment below is highly recommended:
+Se recomienda encarecidamente el siguiente equipo:
 
-* A Taranis Plus remote control for the safety pilot (or equivalent)
-* A development computer: 
-  * MacBook Pro (early 2015 and later) with OSX 10.13 or later
-  * Lenovo Thinkpad 450 (i5) with Ubuntu Linux 16.04 or later
-* A ground control station device: 
-  * iPad (requires Wifi telemetry adapter)
-  * Any MacBook or Ubuntu Linux laptop (can be the development computer)
-  * Samsung Note 4 or equivalent (any recent Android tablet or phone with a large enough screen to run *QGroundControl* effectively).
-* Safety glasses
-* For multicopters - tether for more risky tests
+* Un RC de Taranis Plus para la seguridad del piloto (o equivalente)
+* Un equipo de desarrollo: 
+  * MacBook Pro (principios 2015 y posterior) con OSX 10.13 o posterior
+  * Lenovo Thinkpad T450 (i5) con Ubuntu Linux 16.04 o posterior
+* Un dispositivo de estación de control de tierra: 
+  * iPad (requiere adaptador de telemetría)
+  * Cualquier portátil MacBook o Ubuntu Linux (puede ser el equipo de desarrollo)
+  * Samsung Note 4 o equivalente (cualquier tablet o teléfono Android reciente con una pantalla lo suficientemente grande como para ejecutar adecuadamente *QGroundControl*).
+* Gafas de seguridad
+* Para multicopteros - tether para pruebas más arriesgadas
 
-## Vehicle Configuration
+## Configuración del vehículo
 
 > **Tip** *QGroundControl* for a **desktop OS** is required for vehicle configuration. You should use (and regularly update) the daily build in order to take advantage of the latest features in PX4.
 
