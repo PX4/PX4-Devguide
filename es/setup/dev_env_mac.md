@@ -1,6 +1,6 @@
-# Development Environment on Mac
+# Entorno de desarrollo en Mac
 
-MacOS is a supported development platform for PX4. The following instructions set up an environment for building:
+MacOS es una plataforma de desarrollo compatible para PX4. The following instructions set up an environment for building:
 
 * NuttX-based hardware (Pixhawk, etc.)
 * jMAVSim Smulation
