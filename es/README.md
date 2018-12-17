@@ -25,21 +25,21 @@ El equipo principal de desarrollo y la comunidad son activas en los siguientes f
 * [Slack](http://slack.px4.io) (regístrate)
 * [Google+](https://plus.google.com/117509651030855307398)
 
-> **Nota** Los desarrolladores que quieran [contribuir](contribute/README.md) a la plataforma son también bienvenidos a asistir a la [dev call semanal](contribute/README.md#dev_call) y a nuestros otros [eventos para desarrolladores](contribute/README.md#calendar).
+> **Nota** Los desarrolladores que quieran [aportar](contribute/README.md) a la plataforma son también bienvenidos a asistir a la [dev call semanal](contribute/README.md#dev_call) y a nuestros otros [eventos para desarrolladores](contribute/README.md#calendar).
 
-## Contributing
+## Aportaciones
 
-[Contributing & Dev Call](contribute/README.md) explains how to work with our source codelines. [Documentation](contribute/docs.md) explains how and where documentation changes can be made.
+[Aportaciones & Dev Call](contribute/README.md) explica cómo trabajar con nuestro código fuente. [Documentación](contribute/docs.md) explica cómo y dónde se pueden hacer cambios en la documentación.
 
-## Translations
+## Traducciones
 
-There are Chinese and Korean [translations](contribute/docs.md#translation) of this guide. You can you can access these by clicking the language-switcher icon:
+Hay [traducciones](contribute/docs.md#translation) del inglés, chino y coreano de esta guía. Puedes acceder a ellos haciendo clic en el icono del selector de idioma:
 
 ![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
 
-## Licence
+## Licencia
 
-The code is free to use and modify under terms of the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause). The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). For more information see: [Licences](contribute/licenses.md).
+El código es libre de usar y modificar bajo términos de la [cláusula de licencia BSD 3](https://opensource.org/licenses/BSD-3-Clause). The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). For more information see: [Licences](contribute/licenses.md).
 
 ## Governance
 
