@@ -25,7 +25,7 @@ El equipo principal de desarrollo y la comunidad son activas en los siguientes f
 * [Slack](http://slack.px4.io) (regístrate)
 * [Google+](https://plus.google.com/117509651030855307398)
 
-> **Tip** Developers who want to [contribute](contribute/README.md) to the platform are also most welcome to attend the [weekly dev call](contribute/README.md#dev_call) and our other [developer events](contribute/README.md#calendar).
+> **Nota** Los desarrolladores que quieran [contribuir](contribute/README.md) a la plataforma son también bienvenidos a asistir a la [dev call semanal](contribute/README.md#dev_call) y a nuestros otros [eventos para desarrolladores](contribute/README.md#calendar).
 
 ## Contributing
 
