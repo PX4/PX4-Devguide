@@ -1,45 +1,45 @@
 # Entorno de desarrollo en Mac
 
-MacOS es una plataforma de desarrollo compatible para PX4. The following instructions set up an environment for building:
+MacOS es una plataforma de desarrollo compatible para PX4. Las siguientes instrucciones configuran un entorno para la compilación:
 
-* NuttX-based hardware (Pixhawk, etc.)
-* jMAVSim Smulation
-* Gazebo 8 Simulation
+* Hardware basado en NuttX (Pixhawk, etcetera.)
+* Simulación en jMAVSim
+* Simulación en Gazebo 8
 
-> **Tip** To build other targets see: [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets).
+> **Nota** Para compilar para otros objetivos véase: [Instalación de la Toolchain > Objetivos compatibles](../setup/dev_env.md#supported-targets).
 
-## Homebrew Installation
+## Instalación de Homebrew
 
-The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
+La instalación de Homebrew es rápido y fácil: [instrucciones de instalación](https://brew.sh).
 
-## Common Tools
+## Herramientas comunes
 
-After installing Homebrew, run these commands in your shell to install the common tools:
+Después de instalar Homebrew, ejecuta estos comandos en la shell para instalar las herramientas comunes:
 
 ```sh
 brew tap PX4/px4
 brew install px4-dev
-# Optional, but recommended additional simulation tools:
+# Opcional, pero recomendadas herramientas adicionales de simulación:
 brew install px4-sim
 ```
 
-If the installation outputs an error message about missing requirements follow the instructions. Your system will be missing Java and Quartz:
+Si durante la instalación resulta un mensaje de error acerca de que faltan requisitos, siga las instrucciones. A su sistema le falta Java y Quartz:
 
 ```sh
 brew cask install xquartz java
 ```
 
-Install pip if you don't already have it and use it to install the required packages:
+Instala pip si no lo estaba ya y usalo para instalar los paquetes requeridos:
 
 ```sh
 sudo easy_install pip
 sudo -H pip install pyserial empy toml numpy pandas jinja2 pyyaml
 ```
 
-## Additional Tools
+## Herramientas adicionales
 
-After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
+Después de configurar la toolchain de compilación/simulación, consulte [Herramientas adicionales](../setup/generic_dev_tools.md) para obtener información sobre otras herramientas útiles.
 
-## Next Steps
+## Siguientes Pasos
 
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+Una vez que haya terminado de configurar el entorno, continúe a [Compilando el código](../setup/building_px4.md).
