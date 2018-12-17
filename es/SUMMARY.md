@@ -85,8 +85,8 @@
   * [Preguntas frecuentes (FAQ)](debug/faq.md)
   * [Consola del sistema](debug/system_console.md)
   * [Depuración del Autopiloto](debug/gdb_debugging.md)
-  * [Sensor/Topic Debugging](debug/sensor_uorb_topic_debugging.md)
-  * [Simulation Debugging](debug/simulation_debugging.md)
+  * [Depuración de Sensor/Topic](debug/sensor_uorb_topic_debugging.md)
+  * [Depuración en simulación](debug/simulation_debugging.md)
   * [Envío de valores de depuración](debug/debug_values.md)
   * [Repetición de sistema completo](debug/system_wide_replay.md)
   * [Perfiles](debug/profiling.md)
@@ -101,7 +101,7 @@
   * [S.Bus Driver para Linux](tutorials/linux_sbus.md)
 * [Temas Avanzados](advanced/README.md) 
   * [Parámetros & Configuraciones](advanced/parameters_and_configurations.md)
-  * [Parameter Reference](advanced/parameter_reference.md)
+  * [Parámetros de referencia](advanced/parameter_reference.md)
   * [Visión por computador](advanced/computer_vision.md) 
     * [Captura de movimiento (VICON, Optitrack)](tutorials/motion-capture-vicon-optitrack.md)
   * [Instalando driver para Intel RealSense R200](advanced/realsense_intel_driver.md)
@@ -128,7 +128,7 @@
   * [Terminología/Notación](contribute/notation.md)
   * [Licencias](contribute/licenses.md)
 
-## Dronecode Shortcuts
+## Accesos directos Dronecode
 
 * [Guía del usuario de PX4](https://docs.px4.io/en/)
 * [Guía del usuario de QGroundControl](https://docs.qgroundcontrol.com/en/)
