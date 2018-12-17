@@ -8,12 +8,12 @@ Esta guía explica cómo:
 
 * Obtener una [configuración minima de desarrollo](setup/config_initial.md), [compilar el código fuente de PX4 ](setup/building_px4.md) y desplegar en los [numerosos autopilotos soportados](https://docs.px4.io/en/flight_controller/).
 * Entender la [Arquitectura del sistema PX4](concept/architecture.md) y otros conceptos básicos.
-* Learn how to modify the flight stack and middleware: 
-  * Modify flight algorithms and add new [flight modes](concept/flight_modes.md).
-  * Support new [airframes](airframes/README.md).
-* Learn how to integrate PX4 with new hardware: 
-  * Support new sensors and actuators, including cameras, rangefinders, etc.
-  * Modify PX4 to run on new autopilot hardware.
+* Aprender a modificar el flight stack y el middleware: 
+  * Modificar algoritmos de vuelo y añadir nuevos [modos de vuelo](concept/flight_modes.md).
+  * Soportar nuevos [fuselajes](airframes/README.md).
+* Integrar PX4 en un nuevo hardware: 
+  * Soportar nuevos sensores y actuadores, incluyendo cámaras, telémetros, etc.
+  * Modificar PX4 para que funcione en un nuevo hardware autopiloto.
 * [Simulate](simulation/README.md), [test](test_and_ci/README.md) and [debug/log](debug/README.md) PX4.
 * Communicate/integrate with external robotics APIs.
 
