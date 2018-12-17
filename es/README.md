@@ -1,13 +1,13 @@
-# PX4 Development Guide
+# Guía de Desarrollo de PX4
 
 [![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
-> **Info** This guide is for primarily for software developers and (new) hardware integrators. To fly, build and modify vehicles using supported hardware see the [PX4 User Guide](https://docs.px4.io/en/).
+> **Información** Esta guía es principalmente para los desarrolladores de software e integradores de hardware. Para volar, construir y modificar vehículos usando el hardware soportado ver la [Guía del usuario de PX4](https://docs.px4.io/en/).
 
-This guide explains how to:
+Esta guía explica cómo:
 
-* Get a [minimum developer setup](setup/config_initial.md), [build PX4 from source](setup/building_px4.md) and deploy on [numerous supported autopilots](https://docs.px4.io/en/flight_controller/).
-* Understand the [PX4 System Architecture](concept/architecture.md) and other core concepts.
+* Obtener una [configuración minima de desarrollo](setup/config_initial.md), [compilar el código fuente de PX4 ](setup/building_px4.md) y desplegar en los [numerosos autopilotos soportados](https://docs.px4.io/en/flight_controller/).
+* Entender la [Arquitectura del sistema PX4](concept/architecture.md) y otros conceptos básicos.
 * Learn how to modify the flight stack and middleware: 
   * Modify flight algorithms and add new [flight modes](concept/flight_modes.md).
   * Support new [airframes](airframes/README.md).
