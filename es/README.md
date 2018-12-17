@@ -39,13 +39,13 @@ Hay [traducciones](contribute/docs.md#translation) del inglés, chino y coreano 
 
 ## Licencia
 
-El código es libre de usar y modificar bajo términos de la [cláusula de licencia BSD 3](https://opensource.org/licenses/BSD-3-Clause). The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). For more information see: [Licences](contribute/licenses.md).
+El código es libre de usar y modificar bajo términos de la [cláusula de licencia BSD 3](https://opensource.org/licenses/BSD-3-Clause). La documentación está registrada a través de [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Para más información ver: [Licencias](contribute/licenses.md).
 
-## Governance
+## Gobierno
 
-The PX4 flight stack is hosted under the governance of the [Dronecode Project](https://www.dronecode.org/).
+El flight stack de PX4 está gestiónado a través del [Proyecto Dronecode](https://www.dronecode.org/).
 
 <a href="https://www.dronecode.org/" style="padding:20px"><img src="https://mavlink.io/assets/site/logo_dronecode.png" alt="Dronecode Logo" width="110px"/></a>
-<a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="Linux Foundation Logo" width="80px" /></a>
+<a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="Logotipo de la Fundación de Linux" width="80px" /></a>
 
 <div style="padding:10px">&nbsp;</div>
