@@ -25,30 +25,30 @@
 
 * **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>**: **ubuntu_sim_common_deps.sh** + [Gazebo8](#gazebo) 模拟器。
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>**: **ubuntu_sim.sh** + NuttX tools. 
-  * *This requires computer restart on completion.*
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>**：**ubuntu_sim.sh** + NuttX 工具。 
+  * *完成安装后需要重启。*
 * **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>**: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo and MAVROS](#rosgazebo). 
-  * ROS Kinetic is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo 8 to simplify ROS development).
-  * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
+  * ROS Kinetic 默认与 Gazebo 7 一起安装（为了简化 ROS 的开发，我们使用的默认而不是 Gazebo 8）。
+  * 你的 catkin （ROS 构建系统）工作目录生成在**~/catkin_ws/**。
 
-### How to use the scripts
+### 如何使用脚本
 
-To use the scripts:
+使用脚本：
 
-1. Make the user a member of the group "dialout" (this only has to be done once): 
-  1. Open a terminal and enter the following command: 
+1. 将用户添加到 ”dialout“ 组中（只需做一次）： 
+  1. 打开终端输入： 
         sh
           sudo usermod -a -G dialout $USER
   
-  2. Logout and login again (the change is only made after a new login).
-2. Download the desired script
-3. Run the script in a bash shell (e.g. to run **ubuntu_sim.sh**): 
+  2. 注销重新登录（必须重新登录后才能生效）。
+2. 下载脚本
+3. 运行 bash 脚本（比如运行 **ubuntu_sim.sh** ）： 
       bash
-       source ubuntu_sim.sh Acknowledge any prompts as the scripts progress.
+       source ubuntu_sim.sh 所有弹出的提示均确认通过。
 
-## Permission Setup
+## 权限设置
 
-> **Warning** Never ever fix permission problems by using `sudo`. It will create more permission problems in the process and require a system re-installation to fix them.
+> **Warning** 绝对不要用 `sudo` 试图解决权限问题！！！ 这会带来更多的权限问题甚至需要重装系统来解决！！！
 
 The user needs to be part of the group "dialout":
 
