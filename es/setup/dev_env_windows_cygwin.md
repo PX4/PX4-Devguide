@@ -74,9 +74,9 @@ El directorio de instalación (por defecto: **C:\PX4**) contiene scripts batch p
 
 > **Nota** Puede crear accesos directos de escritorio para los scripts batch para un acceso más rápido, el instalador todavía no los crea (a partir de la versión 0.2 de la toolchain).
 
-The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands. Developers who prefer an IDE can start it with the corresponding **run-XXX.bat** script to edit code/run builds.
+El flujo de trabajo habitual consiste iniciar una consola de windows haciendo doble clic en el script **run-console.bat** para ejecutar manualmente comandos de terminal. Los desarrolladores que prefieran un IDE puede iniciarlo con el script correspondiente **run-XXX.bat** para editar código/ejecutar compilados.
 
-### Windows & Git Special Cases
+### Windows & Casos especiales en Git
 
 #### Windows CR+LF vs Unix LF Line Endings
 
