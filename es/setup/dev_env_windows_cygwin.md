@@ -65,14 +65,14 @@ Continúe en las [instrucciones que detallan cómo compilar PX4](../setup/buildi
 El directorio de instalación (por defecto: **C:\PX4**) contiene scripts batch para iniciar las ventanas de la consola e inicar diferentes IDEs dentro del entorno de la toolchain Cygwin. La lista completa de scripts proporcionados es:
 
 * **run-console.bat** - iniciar la consola de bash POSIX (tipo linux).
-* **run-eclipse.bat** - Start the build in portable [eclipse for C++ IDE](http://www.eclipse.org/downloads/eclipse-packages/).
-* **run-vscode.bat** - Start the [Visual Studio Code IDE](https://code.visualstudio.com/) (this must be installed separately) from its default install directory: `C:\Program Files\Microsoft VS Code`
+* **run-eclipse.bat** - iniciar la compilación en [eclipse portable para C++ IDE](http://www.eclipse.org/downloads/eclipse-packages/).
+* **run-vscode.bat** - Inicia el [IDE de Visual Studio Code](https://code.visualstudio.com/) (esto debe ser instalado por separado) desde su directorio de instalación por defecto: `C:\Program Files\Microsoft VS Code`
 
-> **Tip** The [Manual Setup](#manual_setup) section explains why you need to use the scripts and how it all works.
+> **Nota** La sección de [Configuración Manual](#manual_setup) explica por qué es necesario utilizar los scripts y cómo funciona todo.
 
 <span></span>
 
-> **Tip** You can create desktop shortcuts to the batch scripts to have easier access, the installer does not yet create them for you (as of toolchain version 0.2).
+> **Nota** Puede crear accesos directos de escritorio para los scripts batch para un acceso más rápido, el instalador todavía no los crea (a partir de la versión 0.2 de la toolchain).
 
 The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands. Developers who prefer an IDE can start it with the corresponding **run-XXX.bat** script to edit code/run builds.
 
