@@ -1,6 +1,6 @@
-# Windows Cygwin Toolchain
+# Toolchain Windows Cygwin
 
-This toolchain is portable, easy to install, and easy to use. It is the newest and best performing toolchain for developing PX4 on Windows.
+Esta toolchain es portable, fácil de instalar, y fácil de usar. It is the newest and best performing toolchain for developing PX4 on Windows.
 
 > **Tip** This is the only officially supported toolchain for building PX4 on Windows (i.e. it is tested in our continuous integration system).
 
