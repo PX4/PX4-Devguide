@@ -4,38 +4,38 @@
 
 Las siguientes instrucciones explican cómo configurar *manualmente* un entorno de desarrollo para cada uno de los objetivos compatibles.
 
-> **Nota** Te recomendamos que uses el conveniente[scripts bash](#convenience-bash-scripts) para instalar los simuladores y/o toolchain de NuttX (esto es más fácil que escribir en las instrucciones a continuación). Siga simplemente las instrucciones adicionales para otros objetivos (por ejemplo Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etcetera)
+> **Nota** Te recomendamos que uses el conveniente [scripts bash](#convenience-bash-scripts) para instalar los simuladores y/o toolchain de NuttX (esto es más fácil que escribir en las instrucciones a continuación). Siga simplemente las instrucciones adicionales para otros objetivos (por ejemplo Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etcetera)
 
 <span></span>
 
-> **Tip** After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
+> **Nota** Después de configurar la toolchain de compilación/simulación, consulte [Herramientas adicionales](../setup/generic_dev_tools.md) para obtener información sobre otras herramientas útiles.
 
-## Convenience Bash Scripts
+## Scripts de Bash
 
-We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts install the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**).
+Hemos creado una serie de scripts de bash que se pueden utilizar para instalar los simuladores y/o toolchain de NuttX. Todos los scripts instalan *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [dependencias comunes](#common-dependencies), [FastRTPS](#fastrtps-installation) y también descargan el código fuente de PX4 en tu ordenador (**~/src/Firmware**).
 
-> **Tip** The scripts have been tested on a clean Ubuntu 16.04 LTS installation. They *may* not work as expected if installed on top of an existing system.
+> **Nota** Los scripts han sido probados en una instalación limpia de Ubuntu LTS 16.04. *Podrían* no funcionar como se esperaba si se ha instalado sobre un sistema ya existente.
 
-The scripts are:
+Los scripts son:
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>**: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>**: [dependencias comunes](#common-dependencies), simulador de [jMAVSim](#jmavsim)
   
-  * This script contains the common dependencies for all PX4 build targets. It is automatically downloaded and run when you call any of the other scripts.
-  * You can run this before installing the remaining dependencies for [Qualcomm Snapdragon Flight](#snapdragon-flight) or [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
+  * Este script contiene las dependencias comunes para todos los objetivos de compilación de PX4. Es automáticamente descargado y se ejecuta cuando se llama a cualquiera de los otros scripts.
+  * Puedes ejecutar este antes de instalar las dependencias restantes para [Qualcomm Snapdragon Flight](#snapdragon-flight) o [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>**: **ubuntu_sim_common_deps.sh** + [Gazebo8](#gazebo) simulator.
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>**: **ubuntu_sim_common_deps.sh** + simulador [Gazebo8](#gazebo).
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>**: **ubuntu_sim.sh** + NuttX tools. 
-  * *This requires computer restart on completion.*
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>**: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo and MAVROS](#rosgazebo). 
-  * ROS Kinetic is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo 8 to simplify ROS development).
-  * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>**: **ubuntu_sim.sh** + herramientas de NuttX. 
+  * *Requiere reiniciar el ordenador completamente.*
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>**: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo y MAVROS](#rosgazebo). 
+  * ROS Kinetic es instalado con Gazebo7 por defecto (hemos elegido usarlo antes que Gazebo 8 para simplificar el desarrollo en ROS).
+  * Catkin (ROS build system) workspace es creado en **~/catkin_ws/**.
 
-### How to use the scripts
+### Cómo usar los scripts
 
-To use the scripts:
+Para usar los scripts:
 
-1. Make the user a member of the group "dialout" (this only has to be done once): 
+1. Hacer al usuario miembro del grupo "dialout" (esto solo hay que hacerlo una vez): 
   1. Open a terminal and enter the following command: 
         sh
           sudo usermod -a -G dialout $USER
