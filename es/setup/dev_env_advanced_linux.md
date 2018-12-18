@@ -1,4 +1,4 @@
-# Advanced Linux Installation Use-Cases
+# Instalación avanzada en Linux - Casos de Uso
 
 ## Using JTAG Programming Adapters
 
