@@ -269,9 +269,9 @@ export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-ras
 
 Para usar clang, también es necesario GCC.
 
-Descarga clang para tu distribución específica desde [LLVM Download page](http://releases.llvm.org/download.html) y descomprímelo. Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
+Descarga clang para tu distribución específica desde [LLVM Download page](http://releases.llvm.org/download.html) y descomprímelo. Asumiendo que has extraído el contenido de clang a `CLANG_DIR`, y el binario de `clang` esta disponible en `CLANG_DIR/bin`, y tienes el compilador cruzado de GCC en `GCC_DIR`, necesitarás configurar los symlinks para clang en el directorio de binario `GCC_DIR`, y agregar `GCC_DIR/bin` a `PATH`.
 
-Example below for building PX4 firmware out of tree, using CMake.
+Ejemplo a continuación de compilación del firmware de PX4, usando CMake.
 
 ```sh
 ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
@@ -289,24 +289,24 @@ cmake \
 ..
 ```
 
-### Native Builds
+### Compilación Nativa
 
-Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+Información adicional para desarrollador para usar PX4 en Raspberry Pi (incluyendo compilación nativa de PX4) puede ser encontrado aquí: [Autopiloto Raspberry Pi 2/3 Navio2](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 
 ## Parrot Bebop
 
-Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the description under [Raspberry Pi hardware](#raspberry-pi-hardware).
+Los desarrolladores que trabajen con el Parrot Bebop deberían instalar la RPi Linux Toolchain. Siga la descripción bajo [Hardware Raspberry Pi](#raspberry-pi-hardware).
 
-Next, install ADB.
+Despueés instale ADB.
 
 ```sh
 sudo apt-get install android-tools-adb -y
 ```
 
-## Additional Tools
+## Herramientas adicionales
 
-After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
+Después de configurar la toolchain de compilación/simulación, consulte [Herramientas adicionales](../setup/generic_dev_tools.md) para obtener información sobre otras herramientas útiles.
 
-## Next Steps
+## Siguientes Pasos
 
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+Una vez que haya terminado de configurar el entorno, continúe a [Compilando el código](../setup/building_px4.md).
