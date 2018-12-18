@@ -2,9 +2,9 @@
 
 [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) (16.04) es el SO de desarrollo Linux estándar/preferido. Le permite compilar para [todos los posibles objetivos de PX4](../setup/dev_env.md#supported-targets) (hardware basado en NuttX, hardware Qualcomm Snapdragon Flight, hardware basado en Linux, simulación, ROS).
 
-The following instructions explain how to *manually* set up a development environment each of the supported targets.
+Las siguientes instrucciones explican cómo configurar *manualmente* un entorno de desarrollo para cada uno de los objetivos compatibles.
 
-> **Tip** We recommend that you use the [Convenience bash scripts](#convenience-bash-scripts) to install the Simulators and/or NuttX toolchain (this is easier than typing in the instructions below). Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etc.)
+> **Nota** Te recomendamos que uses el conveniente[scripts bash](#convenience-bash-scripts) para instalar los simuladores y/o toolchain de NuttX (esto es más fácil que escribir en las instrucciones a continuación). Siga simplemente las instrucciones adicionales para otros objetivos (por ejemplo Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etcetera)
 
 <span></span>
 
