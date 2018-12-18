@@ -86,12 +86,12 @@ We recommend that you force Unix style LF endings for every repository you're wo
     git config core.eol lf
     
 
-If you work with this toolchain on multiple repositories you can also set these two configurations globally for your machine:
+Si trabaja con este toolchain en múltiples repositorios también puede establecer estas dos configuraciones a nivel global para su máquina:
 
     git config --global ...
     
 
-This is not recommended because it may affect any other (unrelated) git use on your Windows machine.
+No es recomendable porque puede afectar a cualquier otro uso de git (sin relación) en su equipo Windows.
 
 #### Unix Permissions Execution Bit
 
