@@ -26,17 +26,17 @@ En esta página se explica cómo descargar y usar el entorno y cómo puede ser a
 2. Ejecútalo, elige el lugar de instalación deseado, instálalo ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 3. Marque la casilla al final de la instalación para *clonar el repositorio PX4, compilar y ejecuta la simulación con jMAVSim* (Esto simplifica el proceso para empezar).
     
-    > **Nota** Si te perdiste este paso será necesario [clonar el repositorio PX4 Firmware manualmente](#getting_started).
+    > **Nota** Si no hiciste este paso será necesario [clonar el repositorio PX4 Firmware manualmente](#getting_started).
 
 ## Primeros pasos {#getting_started}
 
-The toolchain uses a specially configured console window (started by running the **run-console.bat** script) from which you can call the normal PX4 build commands:
+La toolchain utiliza una ventana de consola especialmente configurada (iniciada ejecutando el script **run-console.bat**) desde el que se puede llamar a los comandos de compilación de PX4:
 
-1. Browse to the toolchain installation directory (default **C:\PX4**)
-2. Run **run-console.bat** (double click) to start the Cygwin bash console
-3. Clone the PX4 Firmware repository from within the console:
+1. Busque el directorio de instalación de la toolchain (por defecto **C:\PX4**)
+2. Ejecute **run-console.bat** (doble click) para iniciar la consola de bash de Cygwin
+3. Clone el repositorio de la PX4 Firmware desde la consola:
     
-    > **Note** Cloning only needs to be done once! Skip this step if you ticked the installer option to *clone the PX4 repository, build and run simulation with jMAVSim*.
+    > **Nota** ¡La clonación solo necesita hacerse una vez! Skip this step if you ticked the installer option to *clone the PX4 repository, build and run simulation with jMAVSim*.
     
     ```bash
     # Clone PX4 Firmware repository into the home folder & loads submodules in parallel
