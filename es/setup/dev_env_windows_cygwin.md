@@ -58,13 +58,13 @@ La toolchain utiliza una ventana de consola especialmente configurada (iniciada 
     
     ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.PNG)
 
-Continue next to [the detailed instructions on how to build PX4](../setup/building_px4.md) (or see the section below for more general usage instructions).
+Continúe en las [instrucciones que detallan cómo compilar PX4](../setup/building_px4.md)(o consulte la siguiente sección para obtener instrucciones de uso más general).
 
-## Usage Instructions {#usage_instructions}
+## Instrucciones de uso {#usage_instructions}
 
-The installation directory (default: **C:\PX4**) contains batch scripts for launching console windows and starting different IDEs inside the Cygwin toolchain environment. The full list of scripts provided is.
+El directorio de instalación (por defecto: **C:\PX4**) contiene scripts batch para iniciar las ventanas de la consola e inicar diferentes IDEs dentro del entorno de la toolchain Cygwin. La lista completa de scripts proporcionados es:
 
-* **run-console.bat** - Start the POSIX (linux like) bash console.
+* **run-console.bat** - iniciar la consola de bash POSIX (tipo linux).
 * **run-eclipse.bat** - Start the build in portable [eclipse for C++ IDE](http://www.eclipse.org/downloads/eclipse-packages/).
 * **run-vscode.bat** - Start the [Visual Studio Code IDE](https://code.visualstudio.com/) (this must be installed separately) from its default install directory: `C:\Program Files\Microsoft VS Code`
 
