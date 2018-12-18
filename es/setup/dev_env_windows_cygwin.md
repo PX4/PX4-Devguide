@@ -8,9 +8,9 @@ La toolchain soporta:
 
 * Compilar/subir código de PX4 a objetivoss NuttX (controladores de la serie Pixhawk)
 * Simulador JMAVSim/SITL con un rendimiento significativamente mejor que otros toolchain para Windows.
-* Style check, portable installer, command line completion and many [other features](#features).
+* Verificación de estilo, instalador portable, autocompletado de línea de comandos y muchas [otras características](#features).
 
-This topic explains how download and use the environment, and how it can be extended and updated if needed (for example, to use a different compiler).
+En esta página se explica cómo descargar y usar el entorno y cómo puede ser ampliado y actualizado si es necesario (por ejemplo, para utilizar un compilador diferente).
 
 <!-- Legacy Versions (**deprecated**):
 
@@ -20,10 +20,10 @@ This topic explains how download and use the environment, and how it can be exte
 * [PX4 Windows Cygwin Toolchain 0.1 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.1.msi) (23.02.2018)
 -->
 
-## Installation Instructions {#installation}
+## Instrucciones de Instalación {#installation}
 
-1. Download the latest version of the ready-to-use MSI installer from [Github](https://github.com/PX4/windows-toolchain/releases) or [S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.5.msi)
-2. Run it, choose your desired installation location, let it install ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
+1. Descarga la última versión del instalador MSI ready-to-use desde [Github](https://github.com/PX4/windows-toolchain/releases) o [S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.5.msi)
+2. Ejecútalo, elige el lugar de instalación deseado, instálalo ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 3. Tick the box at the end of the installation to *clone the PX4 repository, build and run simulation with jMAVSim* (this simplifies the process to get you started).
     
     > **Note** If you missed this step will need to [clone the PX4 Firmware repository manually](#getting_started).
