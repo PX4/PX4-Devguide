@@ -1,26 +1,26 @@
 # Instalación avanzada en Linux - Casos de Uso
 
-## Using JTAG Programming Adapters
+## Usando Adaptadores de Programación JTAG
 
-Linux users need to explicitly allow access to the USB bus for JTAG programming adapters.
+Los usuarios de Linux necesitan explícitamente permitir acceso al bus USB para los adaptadores de programación JTAG.
 
-> **Note** For Archlinux: replace the group plugdev with uucp in the following commands
+> **Nota** Para Archlinux: reemplace el grupo plugdev con uucp en los siguientes comandos
 
-Run a simple `ls` in `sudo` mode to ensure the commands below succeed:
+Ejecute un simple `ls` en modo `sudo` para asegurar que los comandos de acontinuación funcionan correctamente:
 
 ```sh
 sudo ls
 ```
 
-Then with `sudo` rights temporarily granted, run this command:
+Con `sudo` garantizando temporalmente derechos, ejecute este comando:
 
 ```sh
 cat > $HOME/rule.tmp <<_EOF
-# All 3D Robotics (includes PX4) devices
+# Todos los dispositivos 3D Robotics (incluido PX4)
 SUBSYSTEM=="usb", ATTR{idVendor}=="26AC", GROUP="plugdev"
-# FTDI (and Black Magic Probe) Devices
+# Dispositivos FTDI (y Black Magic Probe) 
 SUBSYSTEM=="usb", ATTR{idVendor}=="0483", GROUP="plugdev"
-# Olimex Devices
+# Dispositivos Olimex
 SUBSYSTEM=="usb",  ATTR{idVendor}=="15ba", GROUP="plugdev"
 _EOF
 sudo mv $HOME/rule.tmp /etc/udev/rules.d/10-px4.rules
