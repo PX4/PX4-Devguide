@@ -1,13 +1,13 @@
 # Toolchain Windows Cygwin
 
-Esta toolchain es portable, fácil de instalar, y fácil de usar. It is the newest and best performing toolchain for developing PX4 on Windows.
+Esta toolchain es portable, fácil de instalar, y fácil de usar. Es la toolchain más reciente y con mejor rendimiento para el desarrollo de la PX4 en Windows.
 
-> **Tip** This is the only officially supported toolchain for building PX4 on Windows (i.e. it is tested in our continuous integration system).
+> **Nota** Esta es la única toolchain oficialmente soportada para la compilación de PX4 en Windows (es decir, se prueba en nuestro sistema de integración continua).
 
-The toolchain supports:
+La toolchain soporta:
 
-* Build/upload of PX4 to NuttX targets (Pixhawk series controllers)
-* JMAVSim/SITL simulator with significantly better performance than the other Windows toolchains.
+* Compilar/subir código de PX4 a objetivoss NuttX (controladores de la serie Pixhawk)
+* Simulador JMAVSim/SITL con un rendimiento significativamente mejor que otros toolchain para Windows.
 * Style check, portable installer, command line completion and many [other features](#features).
 
 This topic explains how download and use the environment, and how it can be extended and updated if needed (for example, to use a different compiler).
