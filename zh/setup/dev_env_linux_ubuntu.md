@@ -1,10 +1,10 @@
-# Development Environment on Ubuntu LTS / Debian Linux
+# Ubuntu LTS/Debian Linux 的开发环境
 
-[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) (16.04) is the standard/preferred Linux development OS. It allows you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation, ROS).
+< 0>Ubuntu linux lts</a>（16.04）是标准的/首选的 Linux 开发操作系统。 Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)（基于NuttX的硬件、高通骁龙飞行硬件、基于Linux的硬件、仿真、ROS）。
 
-The following instructions explain how to *manually* set up a development environment each of the supported targets.
+以下说明说明了如何 *手动* 设置每个受支持的目标的开发环境。
 
-> **Tip** We recommend that you use the [Convenience bash scripts](#convenience-bash-scripts) to install the Simulators and/or NuttX toolchain (this is easier than typing in the instructions below). Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etc.)
+> **Tip** 我们建议您使用 [一键安装脚本 ](#convenience-bash-scripts) 来安装模拟器和/或 Nuttx 工具链（这比在下面的说明中键入更容易）。 Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etc.)
 
 <span></span>
 
