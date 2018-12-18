@@ -92,9 +92,9 @@ Podrías también desear instalar [pyulog](https://github.com/PX4/pyulog#pyulog)
 
 ## Instalación de FastRTPS
 
-[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
+[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) es una implementación de C++ de protocolo RTPS (Real Time Publish Subscribe). FastRTPS es usado, a través de la [interfaz RTPS/ROS2: PX4-FastRTPS Bridge](../middleware/micrortps.md), para permitir a los topic uORB de PX4 ser compartidos con componentes externos.
 
-The following instructions can be used to install the FastRTPS 1.5 binaries to your home directory.
+Las siguientes instrucciones pueden ser usadas para instalar los binarios de FastRTPS 1.5 en tu directorio home.
 
 ```sh
 wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz -O eprosima_fastrtps-1-5-0-linux.tar.gz
@@ -103,7 +103,7 @@ tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
 tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
 ```
 
-> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
+> **Nota** En las siguientes líneas donde compilamos las librerías FastCDR y FastRTPS, el comando `make` es ejecutado con la opción `-j2`. Esta opción define el número de hilos paralelos (o `j`obs) que son usados para compilar el código fuente. Cambia `-j2` a `-j<number_of_cpu_cores_in_your_system>` para acelerar la compilación de las librerías.
 
 ```sh
 cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
@@ -113,15 +113,15 @@ cd ..
 rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
 ```
 
-> **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
+> **Nota** Instrucciones más "generic", que adicionalmente cubren la instalación del código fuente, pueden ser encontradas aquí: [Instalación de Fast RTPS](../setup/fast-rtps-installation.md).
 
-## Simulation Dependencies
+## Dependencias de simulación
 
-The dependencies for the Gazebo and jMAVSim simulators listed below. You should minimally install jMAVSim to make it easy to test the installation. Additional information about these and other supported simulators is covered in: [Simulation](../simulation/README.md).
+Las dependencias para los simuladores Gazebo y jMAVSim son listadas abajo. Se debería instalar como mínimo jMAVSim para hacer más sencillo probar la instalación. Información adicional sobre esas y otros simuladores soportados se comenta en: [Simulación](../simulation/README.md).
 
 ### jMAVSim
 
-Install the dependencies for [jMAVSim Simulation](../simulation/jmavsim.md).
+Instala las dependencias para [Simulación jMAVSim](../simulation/jmavsim.md).
 
     # jMAVSim simulator
     sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
