@@ -212,18 +212,18 @@ rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
 ```sh
 ## Compila!
 catkin build
-## Re-source environment to reflect new packages/build environment
+## Re-lanza el archivo de configuración para reflejar nuevos paquetes/compilaciones en el entorno de trabajo
 catkin_ws_source="source ~/catkin_ws/devel/setup.bash"
 if grep -Fxq "$catkin_ws_source" ~/.bashrc; then echo ROS catkin_ws setup.bash already in .bashrc;
 else echo "$catkin_ws_source" >> ~/.bashrc; fi
 source ~/.bashrc
 ```
 
-## NuttX-based Hardware
+## Hardware basado en NuttX
 
-Install the following dependencies to build for NuttX based hardware: Pixhawk, Pixfalcon, Pixracer, Pixhawk 3, Intel® Aero Ready to Fly Drone.
+Instala las siguientes dependencias para compilar para hardware basado en NuttX: Pixhawk, Pixfalcon, Pixracer, Pixhawk 3, Intel® Aero Ready to Fly Drone.
 
-> **Note** Packages with specified versions should be installed with the specified package version.
+> **Nota** Paquetes con versiones específicas deberían ser instalados con la versión específica del paquete.
 
 ```sh
 sudo apt-get install python-serial openocd \
@@ -231,7 +231,7 @@ sudo apt-get install python-serial openocd \
     libftdi-dev libtool zlib1g-dev -y
 ```
 
-Remove any old versions of the arm-none-eabi toolchain.
+Elimina cualquier versión antigua de la toolchain de arm-none-eabi.
 
 ```sh
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
@@ -242,34 +242,34 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 ## Snapdragon Flight
 
-Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
+Las instrucciones de configuración para Snapdragon Flight se proporcionan en la *Guía del usuario de PX4*:
 
-* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
-* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
-* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+* [Entorno de desarrollo](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [Instalación del software](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [Configuración](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
 
 ## Raspberry Pi Hardware
 
-Developers working on Raspberry Pi hardware need to download a ARMv7 cross-compiler, either GCC or clang. The current recommended toolchain for raspbian can be cloned from `https://github.com/raspberrypi/tools.git` (at time of writing 4.9.3). The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
+Los desarrolladores que trabajan en hardware Raspberry Pi necesitan descargar un compilador cruzado de ARMv7, ya sea para GCC o clang. La herramienta actualmente recomendada para raspbian puede ser clonada de `https://github.com/raspberrypi/tools.git`. La variable de entorno `PATH` debería incluir la ruta a la colección de herramientas de compilador cruzado de gcc (por ejemplo gcc, g++, strip) prefijado con `arm-linux-gnueabihf-`.
 
 ```sh
 git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
 
-# test compiler
+# test compilador
 $HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
 
-# permanently update PATH variable by modifying ~/.profile
+# permanentemente actualiza la variable PATH modificando ~/.profile
 echo 'export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin' >> ~/.profile
 
-# update PATH variable only for this session
+# actualiza la variable PATH solo para esta sesión
 export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ```
 
 ### clang
 
-In order to use clang, you also need GCC.
+Para usar clang, también es necesario GCC.
 
-Download clang for your specific distribution from [LLVM Download page](http://releases.llvm.org/download.html) and unpack it. Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
+Descarga clang para tu distribución específica desde [LLVM Download page](http://releases.llvm.org/download.html) y descomprímelo. Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
 
 Example below for building PX4 firmware out of tree, using CMake.
 
