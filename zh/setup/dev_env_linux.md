@@ -22,11 +22,11 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
 
 请对应以下各部分中的开发目标说明进行操作。
 
-### Pixhawk/NuttX(和jMAVSim)
+### Pixhawk/NuttX（和jMAVSim）
 
 安装开发工具链:
 
-1. 下载<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx</a>。
+1. 下载 <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx</a>。
 2. 在bash shell中运行脚本: 
         bash
         source ubuntu_sim_nuttx.sh 随着脚本的运行，可能需要确认一些提示。
