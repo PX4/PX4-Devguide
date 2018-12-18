@@ -36,45 +36,45 @@ Los scripts son:
 Para usar los scripts:
 
 1. Hacer al usuario miembro del grupo "dialout" (esto solo hay que hacerlo una vez): 
-  1. Open a terminal and enter the following command: 
+  1. Abrir una terminal e introducir el siguiente comando: 
         sh
           sudo usermod -a -G dialout $USER
   
-  2. Logout and login again (the change is only made after a new login).
-2. Download the desired script
-3. Run the script in a bash shell (e.g. to run **ubuntu_sim.sh**): 
+  2. Cierra sesión y accede de nuevo (el cambio sólo es efectivo después de un nuevo inicio de sesión).
+2. Descarga el script deseado
+3. Ejecuta el script en un shell bash (por ejemplo para ejecutar **ubuntu_sim.sh**): 
       bash
-       source ubuntu_sim.sh Acknowledge any prompts as the scripts progress.
+       source ubuntu_sim.sh Reconozca cualquier mensaje a medida que progresen los scripts.
 
-## Permission Setup
+## Configuración de permisos
 
-> **Warning** Never ever fix permission problems by using `sudo`. It will create more permission problems in the process and require a system re-installation to fix them.
+> **Precaución** Nunca arreglar problemas de permiso usando `sudo`. Creará mas problemas de permiso en el proceso y requerirá reinstalación del sistema para arreglarlos.
 
-The user needs to be part of the group "dialout":
+El usuario necesita ser parte del grupo "dialout":
 
 ```sh
 sudo usermod -a -G dialout $USER
 ```
 
-Then logout and login again (the change is only made after a new login).
+Cierra sesión y accede de nuevo (el cambio sólo es efectivo después de un nuevo inicio de sesión).
 
-## Remove the modemmanager
+## Eliminar el modemmanager
 
-Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port \(or USB serial\). It can removed/deinstalled without side effects:
+Ubuntu incluye un serial modem manager que interfiere agresivamente con cualquier uso de un puerto serie \(o serial USB\). Puede ser eliminado/desinstalado sin efectos secundarios:
 
 ```sh
 sudo apt-get remove modemmanager
 ```
 
-## Common Dependencies
+## Dependencias comunes
 
-Update the package list and install the following dependencies for all PX4 build targets.
+Actualiza la lista de paquetes e instala las siguientes dependencias para todos los objetivos de compilación de PX4.
 
 ```sh
 sudo apt-get update -y
 sudo apt-get install git zip qtcreator cmake \
     build-essential genromfs ninja-build exiftool vim-common -y
-# Required python packages
+# Paquetes de python requeridos
 sudo apt-get install python-argparse \
     python-empy python-toml python-numpy python-yaml \
     python-dev python-pip -y
@@ -82,15 +82,15 @@ sudo -H pip install --upgrade pip
 sudo -H pip install pandas jinja2 pyserial cerberus
 ```
 
-You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). This is is a useful python package that contains scripts to parse *ULog* files and display them.
+Podrías también desear instalar [pyulog](https://github.com/PX4/pyulog#pyulog). Este es un útil paquete de python que contiene scripts para analizar archivos *ULog* y mostrar su contenido.
 
-    # optional python tools
+    # herramientas optionales de python
     sudo -H pip install pyulog
     
 
 <!-- import docs ninja build system --> {% include "_ninja_build_system.txt" %}
 
-## FastRTPS installation
+## Instalación de FastRTPS
 
 [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
 
