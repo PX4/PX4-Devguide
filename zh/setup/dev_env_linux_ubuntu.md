@@ -50,25 +50,25 @@
 
 > **Warning** 绝对不要用 `sudo` 试图解决权限问题！！！ 这会带来更多的权限问题甚至需要重装系统来解决！！！
 
-The user needs to be part of the group "dialout":
+用户应先加入组 ”dialout“：
 
 ```sh
 sudo usermod -a -G dialout $USER
 ```
 
-Then logout and login again (the change is only made after a new login).
+注销重新登录（必须重新登录后才能生效）。
 
-## Remove the modemmanager
+## 删除 modemmanager
 
-Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port \(or USB serial\). It can removed/deinstalled without side effects:
+Ubuntu 自带串口调试解调器管理器，这会和很多机器人使用的串口（或 USB 串口）发生冲突。 卸载并不会产生边际效应：
 
 ```sh
 sudo apt-get remove modemmanager
 ```
 
-## Common Dependencies
+## 通用依赖
 
-Update the package list and install the following dependencies for all PX4 build targets.
+更新包列表，并且安装以下依赖：
 
 ```sh
 sudo apt-get update -y
@@ -82,7 +82,7 @@ sudo -H pip install --upgrade pip
 sudo -H pip install pandas jinja2 pyserial cerberus
 ```
 
-You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). This is is a useful python package that contains scripts to parse *ULog* files and display them.
+或许你会希望安装 [pyulog](https://github.com/PX4/pyulog#pyulog)。 它是一个实用的 Python 包，可以解析 *ULog* 文件并显示。
 
     # optional python tools
     sudo -H pip install pyulog
@@ -90,11 +90,11 @@ You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). Thi
 
 <!-- import docs ninja build system --> {% include "_ninja_build_system.txt" %}
 
-## FastRTPS installation
+## FastRTPS 安装
 
-[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
+[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) 是 RTPS协议的 C++ 实现库。 通过 [RTPS/ROS2 接口: px4-frtps bridge ](../middleware/micrortps.md) 使用 FastRTPS，允许与离板组件共享 PX4 uORB 话题。
 
-The following instructions can be used to install the FastRTPS 1.5 binaries to your home directory.
+以下说明可用于将 FastRTPS 1.5 二进制文件安装到您的主目录中。
 
 ```sh
 wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz -O eprosima_fastrtps-1-5-0-linux.tar.gz
@@ -103,7 +103,7 @@ tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
 tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
 ```
 
-> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
+> **Note** 在下面的行中，我们编译 FastCDR 和 FastRTPS 库，`make` 命令将发出 `-j2` 选项。 此选项定义用于编译源代码的并行线程 （或 `j` 线程）的数量。 将 `-j2` 更改为 `-j<number_of_cpu_cores_in_your_system>` 以加快库的编译。
 
 ```sh
 cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
@@ -113,50 +113,50 @@ cd ..
 rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
 ```
 
-> **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
-
-## Simulation Dependencies
-
-The dependencies for the Gazebo and jMAVSim simulators listed below. You should minimally install jMAVSim to make it easy to test the installation. Additional information about these and other supported simulators is covered in: [Simulation](../simulation/README.md).
-
-### jMAVSim
-
-Install the dependencies for [jMAVSim Simulation](../simulation/jmavsim.md).
-
-    # jMAVSim simulator
-    sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
-    
-
-### Gazebo
-
-> **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation).
-
-Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
-
-    # Gazebo simulator
-    sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
-    sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
-    ## Setup keys
-    wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-    ## Update the debian database:
-    sudo apt-get update -y
-    ## Install Gazebo9
-    sudo apt-get install gazebo9 -y
-    ## For developers (who work on top of Gazebo) one extra package
-    sudo apt-get install libgazebo9-dev -y
-    
-
-> **Tip** PX4 works with Gazebo 7, 8, and 9. The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
-
-<!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
+> **Note** 更多的 "通用" 说明，另外包括从源安装，可以在这里找到：Fast RTPS 安装 </1 >。</p> </blockquote> 
+> 
+> ## 模拟器依赖
+> 
+> 下面列出的 Gazebo 和 jMAVSim 模拟器的依赖关系。 你可以先将 jMAVSim 最小安装以验证安装是否成功。 更多信息及模拟器支持参见：[模拟器](../simulation/README.md)。
+> 
+> ### jMAVSim
+> 
+> 为 [jMAVSim Simulation](../simulation/jmavsim.md) 安装依赖。
+> 
+>     # jMAVSim simulator
+>     sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
+>     
+> 
+> ### Gazebo
+> 
+> > **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation).
+> 
+> Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
+> 
+>     # Gazebo simulator
+>     sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
+>     sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+>     ## Setup keys
+>     wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+>     ## Update the debian database:
+>     sudo apt-get update -y
+>     ## Install Gazebo9
+>     sudo apt-get install gazebo9 -y
+>     ## For developers (who work on top of Gazebo) one extra package
+>     sudo apt-get install libgazebo9-dev -y
+>     
+> 
+> > **Tip** PX4 works with Gazebo 7, 8, and 9. The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
+> 
+> <!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
 sudo apt-get install clang-3.5 lldb-3.5 -y
 -->
-
-### ROS/Gazebo
-
-Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Kinetic"). These include Gazebo7 (at time of writing, the default version that comes with ROS). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
-
-```sh
+> 
+> ### ROS/Gazebo
+> 
+> Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Kinetic"). These include Gazebo7 (at time of writing, the default version that comes with ROS). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+> 
+> ```sh
 # ROS Kinetic/Gazebo
 ## Gazebo dependencies
 sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
