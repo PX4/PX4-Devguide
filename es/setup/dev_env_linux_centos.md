@@ -1,12 +1,12 @@
-# Development Environment on CentOS
+# Entorno de desarrollo en CentOS
 
-> **Note** These instructions have not been tested with recent builds of PX4. We hope to provide fully tested instructions with the supported toolchain in the near future.
+> **Nota** Estas instrucciones no han sido probadas en recientes compilaciones de PX4. Esperamos proveer completas instrucciones probadas con el toolchain soportado en un futuro cercano.
 
-The build requires Python 2.7.5. Therefore as of this writing Centos 7 should be used. (For earlier Centos releases a side-by-side install of python v2.7.5 may be done. But it is not recommended because it can break yum.)
+La compilación requiere Python 2.7.5. Por lo tanto debería utilizar Centos 7. (Para versiones de CentOS anteriores una instalación "side-by-side" de python v2.7.5 podría hacerse. Pero no es recomendable porque podría romper yum.)
 
-## Common Dependencies
+## Dependencias Comunes
 
-The EPEL repositories are required for openocd libftdi-devel libftdi-python
+Los repositorios EPEL son requeridos para openocd libftdi-devel libftdi-python
 
 ```sh
 wget https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
