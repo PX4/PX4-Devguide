@@ -129,24 +129,24 @@ Instala las dependencias para [Simulación jMAVSim](../simulation/jmavsim.md).
 
 ### Gazebo
 
-> **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation).
+> **Nota** Si vas a trabajar con ROS entonces sigue las instrucciones de [ROS/Gazebo](#rosgazebo) en la siguiente sección (en ellas se instala Gazebo automáticamente, como parte de la instalación de ROS).
 
-Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
+Instala las dependencias para [simulación en Gazebo](../simulation/gazebo.md).
 
-    # Gazebo simulator
+    # Simulador Gazebo
     sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
     sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
-    ## Setup keys
+    ## Configura las claves
     wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-    ## Update the debian database:
+    ## Actualiza la base de datos de debian:
     sudo apt-get update -y
-    ## Install Gazebo9
+    ## Instala Gazebo9
     sudo apt-get install gazebo9 -y
-    ## For developers (who work on top of Gazebo) one extra package
+    ## Para desarrolladores (quienes trabajen directamente con Gazebo) un paquete extra
     sudo apt-get install libgazebo9-dev -y
     
 
-> **Tip** PX4 works with Gazebo 7, 8, and 9. The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
+> **Nota**PX4 funciona con Gazebo 7, 8, and 9. Las [instrucciones de instalación](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) de arriba son para instalar Gazebo 9.
 
 <!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
 sudo apt-get install clang-3.5 lldb-3.5 -y
@@ -154,63 +154,63 @@ sudo apt-get install clang-3.5 lldb-3.5 -y
 
 ### ROS/Gazebo
 
-Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Kinetic"). These include Gazebo7 (at time of writing, the default version that comes with ROS). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+Instala las dependencias para [ROS/Gazebo](../ros/README.md)("Kinetic"). Éste incluye Gazebo7 (la versión por defecto que viene con ROS). Las instrucciones vienen de la Wiki de ROS sobre [Ubuntu](http://wiki.ros.org/kinetic/Installation/Ubuntu).
 
 ```sh
 # ROS Kinetic/Gazebo
-## Gazebo dependencies
+## Dependencias de Gazebo
 sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
 
 ## ROS Gazebo: http://wiki.ros.org/kinetic/Installation/Ubuntu
-## Setup keys
+## Configura claves
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-## For keyserver connection problems substitute hkp://pgp.mit.edu:80 or hkp://keyserver.ubuntu.com:80 above.
+## Para problemas de conexión con el servidor de claves sustituye hkp://pgp.mit.edu:80 o hkp://keyserver.ubuntu.com:80 de arriba.
 sudo apt-get update
-## Get ROS/Gazebo
+## Instala ROS/Gazebo
 sudo apt-get install ros-kinetic-desktop-full -y
-## Initialize rosdep
+## Inicializa rosdep
 sudo rosdep init
 rosdep update
-## Setup environment variables
+## Configura variables de entorno
 rossource="source /opt/ros/kinetic/setup.bash"
 if grep -Fxq "$rossource" ~/.bashrc; then echo ROS setup.bash already in .bashrc;
 else echo "$rossource" >> ~/.bashrc; fi
 source ~/.bashrc
-## Get rosinstall
+## Instala rosinstall
 sudo apt-get install python-rosinstall -y
 ```
 
-Install the [MAVROS \(MAVLink on ROS\)](../ros/mavros_installation.md) package. This enables MAVLink communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.
+Instala el paquete [MAVROS \(MAVLink en ROS\)](../ros/mavros_installation.md). Esto habilita comunicación MAVLink entre ordenadores que ejecuten ROS, MAVLink habilita autopilotos, y MAVLink habilita GCS.
 
-> **Tip** MAVROS can be installed as an ubuntu package or from source. Source is recommended for developers.
+> **Nota** MAVROS puede ser instalado como un paquete de ubuntu o compilando desde el código fuente. Desde el código fuente es recomendado para desarrolladores.
 
 ```sh
-## Create catkin workspace (ROS build system)
+## Crea workspace de catkin (ROS build system)
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
 
-## Install dependencies
+## Instala dependencias
 sudo apt-get install python-wstool python-rosinstall-generator python-catkin-tools -y
 
-## Initialise wstool
+## Inicializa wstool
 wstool init ~/catkin_ws/src
 
-## Build MAVROS
-### Get source (upstream - released)
+## Compila MAVROS
+### Instala desde el código fuente (upstream - released)
 rosinstall_generator --upstream mavros | tee /tmp/mavros.rosinstall
-### Get latest released mavlink package
+### Instala latest released mavlink package
 rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
-### Setup workspace & install deps
+### Configura workspace & instala dependencias
 wstool merge -t src /tmp/mavros.rosinstall
 wstool update -t src
 rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
 ```
 
-> **Note** If you use an ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
+> **Nota** Si usas una distribución basada en ubuntu y el comando `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` falla, puedes intentar forzar que funcione el comando ejecutando `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
 
 ```sh
-## Build!
+## Compila!
 catkin build
 ## Re-source environment to reflect new packages/build environment
 catkin_ws_source="source ~/catkin_ws/devel/setup.bash"
