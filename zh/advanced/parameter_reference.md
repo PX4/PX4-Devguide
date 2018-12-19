@@ -1094,7 +1094,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Selects which pin is used, ranges from 1 to 6 (AUX1-AUX6 on px4_fmu-v2 and the rail pins on px4_fmu-v4). PWM接口在每个摄像机上使用两个引脚，而在每个引脚上分别使用继电器触发器. 例如: 设置参数值56会在pin5和pin6上产生触发信号. 在GPIO模式时, Pin6会在Pin5之后产生触发信号. 设置参数65则表示Pin5会在Pin6之后产生触发信号. 引脚可能是非连续的。 例如:16或61(也是可以的). 在GPIO模式下,两个引脚之间的触发信号时间差＜0.2us.
+        <strong>说明:</strong>选择使用哪一个引脚,范围从1至6(在px4_fmu-V2上对应的是AUX1~AUX6 and the rail pins on px4_fmu-v4) PWM接口在每个摄像机上使用两个引脚，而在每个引脚上分别使用继电器触发器. 例如: 设置参数值56会在pin5和pin6上产生触发信号. 在GPIO模式时, Pin6会在Pin5之后产生触发信号. 设置参数65则表示Pin5会在Pin6之后产生触发信号. 引脚可能是非连续的。 例如:16或61(也是可以的). 在GPIO模式下,两个引脚之间的触发信号时间差＜0.2us.
       </p>
       
       <p>
@@ -1313,7 +1313,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 240024 will disable the GPS failure detection. If this check is enabled, then the sensor check will fail if the GPS module is missing. It will also check for excessive signal noise on the GPS receiver and warn the user if detected. 警告: 启用这个开关是有风险的.
+        <strong>说明:</strong>设置这个参数为240024会关闭GPS失效检测功能 If this check is enabled, then the sensor check will fail if the GPS module is missing. It will also check for excessive signal noise on the GPS receiver and warn the user if detected. 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
