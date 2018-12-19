@@ -80,7 +80,7 @@ El flujo de trabajo habitual consiste iniciar una consola de windows haciendo do
 
 #### Finales de linea Windows CR+LF vs Unix LF
 
-We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Por suerte git puede hacer esto por usted al ejecutar los dos comandos en el directorio raíz de tu repo:
+Recomendamos forzar los finales de estilo LF Unix para cada repositorio en lo que se está trabajando usando esta toolchain (y usa un editor que los mantenga al guardar los cambios - por ejemplo, Eclipse o VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Por suerte git puede hacer esto por usted al ejecutar los dos comandos en el directorio raíz de tu repo:
 
     git config core.autocrlf false
     git config core.eol lf
