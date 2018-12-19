@@ -143,12 +143,12 @@ También puede instalar el entorno usando scripts de shell en el proyecto de Git
     git clone https://github.com/PX4/windows-toolchain PX4
     
 
-1. Si desea instalar todos los componentes navegue a la carpeta recién clonada y haga doble clic en el script `install-all-components.bat` ubicado en la carpeta `toolchain`. If you only need certain components and want to safe Internet traffic and or disk space you can navigate to the different component folders like e.g. `toolchain\cygwin64` and click on the **install-XXX.bat** scripts to only fetch something specific.
+1. Si desea instalar todos los componentes navegue a la carpeta recién clonada y haga doble clic en el script `install-all-components.bat` ubicado en la carpeta `toolchain`. Si solo necesitas ciertos componentes y quieres ahorrar tráfico de internet o espacio en disco puedes navegar a la carpeta de componente, como por ejemplo `toolchain\cygwin64`, y hacer click en el script **install-XXX.bat** para solo tener encuenta ese específico.
 2. Continúe con [Introducción](#getting_started) (o [Instrucciones de Uso](#usage_instructions)) 
 
 ### Manual de instalación (para desarrolladores de Toolchain) {#manual_setup}
 
-This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
+Esta sección describe cómo configurar la toolchain de Cygwin manualmente por ti mismo mientras destaca los correspondientes scripts desde el repo de instalación basado en script. Los resultados deberían ser los mismos usando los scripts o el instalador de MSI.
 
 > **Nota** La toolchain va mejorando y por lo tanto, estas instrucciones no podrían cubrir cada detalle de todos los cambios futuros.
 
