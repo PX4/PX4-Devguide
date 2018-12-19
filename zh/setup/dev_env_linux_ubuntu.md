@@ -289,24 +289,24 @@ cmake \
 ..
 ```
 
-### Native Builds
+### 本地编译
 
-Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+有关在树莓派上使用 PX4（包括本地构建 PX4）的其他开发人员信息，请参见此处：[Raspberry pi 2/navio2 autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html)。
 
 ## Parrot Bebop
 
-Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the description under [Raspberry Pi hardware](#raspberry-pi-hardware).
+使用 Parrot Bebop 开发应该安装 RPi Linux 工具链。 参见 [树莓派硬件](#raspberry-pi-hardware) 描述。
 
-Next, install ADB.
+接下来，安装 ADB。
 
 ```sh
 sudo apt-get install android-tools-adb -y
 ```
 
-## Additional Tools
+## 其他工具
 
-After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
+在设置构建/模拟工具链之后，有关其他有用工具的信息，请参阅 其他工具</0 >。</p> 
 
-## Next Steps
+## 下一步
 
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+设置完环境后，请继续执行 构建说明</0 >。</p>
