@@ -206,23 +206,23 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 4. Instala el JDK:
     
     * Descargar el [**Instalador de Kit de desarrollo Java**](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
-    * Because sadly there is no portable archive containing the binaries directly you have to install it.
-    * Find the binaries and move/copy them to **C:\PX4\toolchain\jdk**.
-    * You can uninstall the Kit from your Windows system again, we only needed the binaries for the toolchain.
+    * Porque lamentablemente no hay ningún archivo portable que contenga los binarios directamente, tienes que instalarlos.
+    * Encuentra los binarios y muevelos/copialos a **C:\PX4\toolchain\jdk**.
+    * Puede desinstalar el Kit de su sistema Windows otra vez, sólo necesitábamos los binarios para la toolchain.
     
-    > **Note** This is what the toolchain does in: [jdk/install-jdk.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/jdk/install-jdk.bat).
+    > **Nota** Esto es lo que hace la toolchain: [jdk/install-jdk.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/jdk/install-jdk.bat).
 
-5. Download [**Apache Ant**](https://ant.apache.org/bindownload.cgi) as zip archive of the binaries for Windows and unpack the content to the folder `C:\PX4\toolchain\apache-ant`.
+5. Descarga [**Apache Ant**](https://ant.apache.org/bindownload.cgi) como archivo zip de los binarios para Windows y descomprime el contenido a la carpeta `C:\PX4\toolchain\apache-ant`.
     
-    > **Tip** Make sure you don't have an additional folder layer from the folder which is inside the downloaded archive.
+    > **Nota** Asegúrate de que no tienes una capa de carpeta adicional desde la carpeta donde esta el archivo descargado.
     
     <span></span>
     
-    > **Note** This is what the toolchain does in: [apache-ant/install-apache-ant.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/apache-ant/install-apache-ant.bat).
+    > **Nota** Esto es lo que hace la toolchain: [apache-ant/install-apache-ant.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/apache-ant/install-apache-ant.bat).
 
 6. Descarga, compila y añade *genromfs* a la ruta:
     
-    * Clone the source code to the folder **C:\PX4\toolchain\genromfs\genromfs-src** with 
+    * Clona el código fuente en la carpeta **C:\PX4\toolchain\genromfs\genromfs-src** con 
             cd /c/toolchain/genromfs
             git clone https://github.com/chexum/genromfs.git genromfs-src
 
@@ -231,8 +231,8 @@ This section describes how to setup the Cygwin toolchain manually yourself while
         cd genromfs-src
          make all
     
-    * Copy the resulting binary **genromfs.exe** one folder level out to: **C:\PX4\toolchain\genromfs**
+    * Copia el binario resultante **genromfs.exe** un nivel de carpeta por encima a: **C:\PX4\toolchain\genromfs**
     
-    > **Note** This is what the toolchain does in: [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat).
+    > **Nota** Esto es lo que hace la toolchain en: [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat).
 
-1. Make sure all the binary folders of all the installed components are correctly listed in the `PATH` variable configured by [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
+1. Asegúrate de que todas las carpetas de binarios de todos los componentes instalados son correctamente listados en la variable `PATH` configurada por [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
