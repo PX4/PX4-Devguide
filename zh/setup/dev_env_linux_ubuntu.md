@@ -250,7 +250,7 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 ## 树莓派硬件
 
-使用树莓派硬件的开发人员需要下载 ARMv7 交叉编译器，可以是 gcc，也可以是 clang。 The current recommended toolchain for raspbian can be cloned from `https://github.com/raspberrypi/tools.git` (at time of writing 4.9.3). The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
+使用树莓派硬件的开发人员需要下载 ARMv7 交叉编译器，可以是 gcc，也可以是 clang。 当前推荐的树莓工具链可以从 `https://github.com/raspberrypi/tools.git` 下载（在编写4.9.3 时）。 `PATH` 环境变量应包括以 `arm-linux-gnueabihf-` 为前缀的 gcc 跨编译器工具集合的路径 （例如 gcc、g ++、strip）。
 
 ```sh
 git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
@@ -267,11 +267,11 @@ export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-ras
 
 ### clang
 
-In order to use clang, you also need GCC.
+为了使用 clang，您还需要 GCC。
 
-Download clang for your specific distribution from [LLVM Download page](http://releases.llvm.org/download.html) and unpack it. Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
+从 [LLVM 下载页面](http://releases.llvm.org/download.html) 下载您的特定发行版并将其解包。 假设您已解压缩 clang 到 `CLANG_DIR`，并且 `clang` 二进制文件在 `CLANG_DIR/bin` 中可用, 并且您在 `GCC_DIR` 中有 GCC 交叉编译器，则需要在 `GCC_DIR` bin dir 中设置 clang 的符号链接, 并添加 `GCC_DIR/bin</0 > 到 <code>PATH`。
 
-Example below for building PX4 firmware out of tree, using CMake.
+下面的示例，用于使用 CMake 构建 PX4 固件。
 
 ```sh
 ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
