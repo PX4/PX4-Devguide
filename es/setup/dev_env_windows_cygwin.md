@@ -93,7 +93,7 @@ Si trabaja con este toolchain en múltiples repositorios también puede establec
 
 No es recomendable porque puede afectar a cualquier otro uso de git (sin relación) en su equipo Windows.
 
-#### Unix Permissions Execution Bit
+#### Bit de permisos de ejecución Unix
 
 Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
 
