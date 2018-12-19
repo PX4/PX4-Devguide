@@ -1,10 +1,10 @@
-# Windows Msys Toolchain
+# Toolchain Windows Msys
 
-> **Note** This solution is currently broken. The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the officially supported toolchain for Windows development.
+> **Nota** Esta solución esta actualmente sin soporte. La [Toolchain Windows Cygwin](../setup/dev_env_windows_cygwin.md) es la Toolchain oficial soportada para desarrollo en Windows.
 
-## Instructions
+## Instrucciones
 
-Download and install the following on your system:
+Descarga e instala lo siguiente en el sistema:
 
-* [PX4 Toolchain Installer v14 for Windows Download](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (32/64 bit systems, complete build system, drivers)
-* [PX4 USB Drivers](https://github.com/mavlink/qgroundcontrol/raw/master/deploy/px4driver.msi) (32/64 bit systems)
+* [PX4 Toolchain Installer v14 para Windows](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (sistema 32/64 bit, sistema completo de compilación, drivers)
+* [PX4 controladores USB](https://github.com/mavlink/qgroundcontrol/raw/master/deploy/px4driver.msi) (sistemas de 32/64 bits)
