@@ -32516,11 +32516,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Baudrate for the GPS 2 Serial Port
+        GPS2串口波特率
       </p>
       
       <p>
-        <strong>Comment:</strong> Configure the Baudrate for the GPS 2 Serial Port. Note: certain drivers such as the GPS can determine the Baudrate automatically.
+        <strong>说明:</strong>配置GPS2串口的波特率. Note: certain drivers such as the GPS can determine the Baudrate automatically.
       </p>
       
       <strong>Values:</strong>
@@ -32629,7 +32629,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Baudrate for the TELEM 1 Serial Port
+        TELE1串口波特率参数
       </p>
       
       <p>
@@ -32742,7 +32742,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Baudrate for the TELEM 2 Serial Port
+        TELE2串口波特率参数
       </p>
       
       <p>
@@ -32855,7 +32855,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Baudrate for the TELEM 3 Serial Port
+        TELE3串口波特率参数
       </p>
       
       <p>
@@ -32968,7 +32968,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Baudrate for the TELEM/SERIAL 4 Serial Port
+        TELE4串口波特率参数
       </p>
       
       <p>
@@ -33081,11 +33081,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Baudrate for the UART 6 Serial Port
+        UART6串口波特率参数
       </p>
       
       <p>
-        <strong>Comment:</strong> Configure the Baudrate for the UART 6 Serial Port. Note: certain drivers such as the GPS can determine the Baudrate automatically.
+        <strong>说明:</strong>配置UART6串行口的波特率 Note: certain drivers such as the GPS can determine the Baudrate automatically.
       </p>
       
       <strong>Values:</strong>
@@ -36058,7 +36058,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Barometer calibration maximum temperature
+        气压计校准最高温度
       </p>
     </td>
     
@@ -36080,7 +36080,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Barometer calibration minimum temperature
+        气压计校准最低温度
       </p>
     </td>
     
@@ -36102,7 +36102,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Barometer calibration reference temperature
+        气压计校准参考温度
       </p>
     </td>
     
