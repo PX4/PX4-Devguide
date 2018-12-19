@@ -1,4 +1,4 @@
-# Using Vision or Motion Capture Systems
+# Using Vision or Motion Capture Systems for Position Estimation
 
 Visual Inertial Odometry (VIO) and and Motion Capture (MoCap) systems allow vehicles to navigate when a global position source is unavailable or unreliable (e.g. indoors, or when flying under a bridge. etc.).
 
@@ -66,6 +66,8 @@ A rough estimate of the delay can be obtained from logs by checking the offset b
 
 ![ekf2_ev_delay log](../../assets/ekf2/ekf2_ev_delay_tuning.png)
 
+> **Note** A plot of external data vs. onboard estimate (as above) can be generated using [FlightPlot](https://docs.px4.io/en/log/flight_log_analysis.html#flightplot-desktop) or similar flight analysis tools.
+
 The value can further be tuned by varying the parameter to find the value that yields the lowest EKF innovations during dynamic maneuvers.
 
 ## LPE Tuning/Configuration
@@ -107,18 +109,15 @@ You may need to set them lower than the allowed minimum and force-save.
 ROS is not *required* for supplying external pose information, but is highly recommended as it already comes with good integrations with VIO and MoCap systems.
 PX4 must already have been set up as above.
 
-### Getting pose data into ROS
+### Getting Pose Data Into ROS
 
-* Install the `vrpn_client_ros` package
-* You can get each rigid body pose on an individual topic by running
-  ```bash
-  roslaunch vrpn_client_ros sample.launch server:=<mocap machine ip>
-  ```
+VIO and MoCap systems have different ways of obtaining pose data, and have their own setup and topics.
 
-If you named the rigidbody as `robot1`, you will get a topic like `/vrpn_client_node/robot1/pose`
+The setup for specific systems is covered [below](#setup_specific_systems). 
+For other systems consult the vendor setup documentation.
 
 
-### Relaying Pose Data to PX4
+### Relaying Pose Data to PX4 {#relaying_pose_data_to_px4}
 
 MAVROS has plugins to relay a visual estimation from a VIO or MoCap system using the following pipelines:
 
@@ -136,7 +135,6 @@ To use MoCap data with EKF2 you will have to [remap](http://wiki.ros.org/roslaun
 - MoCap ROS topics of type `geometry_msgs/PoseStamped` or `geometry_msgs/PoseWithCovarianceStamped` must be remapped to `/mavros/vision_pose/pose`. 
   The `geometry_msgs/PoseStamped` topic is most common as MoCap doesn't usually have associated covariances to the data.
 - If you get data through a `nav_msgs/Odometry` ROS message then you will need to remap it to `/mavros/odometry/odom`.
-- TBD from `/vrpn_client_node/<rigid_body_name>/pose` to `/mavros/vision_pose/pose`. 
 
 
 ## Asserting on Reference Frames 
@@ -153,7 +151,7 @@ Frames are shown in the image below: NED on the left while ENU on the right.
 
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
-With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at MoCap calibration); 
+With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at Vision/MoCap calibration); 
 yaw angle will be given with respect to local *x*.
 
 > **Note** When creating the rigid body in the MoCap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise yaw estimation will have an initial offset.
@@ -183,7 +181,7 @@ Regarding the orientation, keep the scalar part *w* of the quaternion the same a
 You can apply this trick with every system; 
 you need to obtain a NED frame, look at your MoCap output and swap axis accordingly.
 
-## Specific System Setups
+## Specific System Setups {#setup_specific_systems}
 
 ### OptiTrack MoCap
 
@@ -208,11 +206,15 @@ See [this video](https://www.youtube.com/watch?v=cNZaFEghTBU) for a tutorial on 
   
 If you named the rigidbody as `robot1`, you will get a topic like `/vrpn_client_node/robot1/pose`
 
-#### Relaying pose data to PX4
+#### Relaying/remapping Pose Data
 
 MAVROS provides a plugin to relay pose data published on `/mavros/vision_pose/pose` to PX4. 
 Assuming that MAVROS is running, you just need to **remap** the pose topic that you get from MoCap `/vrpn_client_node/<rigid_body_name>/pose` directly to `/mavros/vision_pose/pose`. 
-Note that there is also a `mocap` topic that MAVROS provides to feed `ATT_POS_MOCAP` to PX4, but it is not applicable for EKF2. However, it is applicable with LPE.
+Note that there is also a `mocap` topic that MAVROS provides to feed `ATT_POS_MOCAP` to PX4, but it is not applicable for EKF2. 
+However, it is applicable with LPE.
+
+> **Note** Remapping pose topics is covered above [Relaying pose data to PX4](#relaying_pose_data_to_px4)
+  (`/vrpn_client_node/<rigid_body_name>/pose` is of type `geometry_msgs/PoseStamped`).
 
 Assuming that you have configured EKF2 parameters as described above, PX4 now is set and fusing MoCap data.
 
@@ -221,7 +223,10 @@ You are now set to proceed to the first flight.
 
 ## First Flight
 
-At this point, if you followed those steps, you are ready to test your setup. 
+After setting up one of the (specific) systems described above you should now be ready to test.
+The instructions below show how to do so for MoCap and VIO systems 
+
+### MoCap First Flight
 
 Be sure to perform the following checks:
 
@@ -248,3 +253,7 @@ Increase the value of the left stick and the robot will take off,
 put it back to the middle right after. Check if it is able to keep its position.
 
 If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
+
+### VIO First Flight
+
+TBD.
