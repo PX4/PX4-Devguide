@@ -181,9 +181,9 @@ source ~/.bashrc
 sudo apt-get install python-rosinstall -y
 ```
 
-Install the [MAVROS \(MAVLink on ROS\)](../ros/mavros_installation.md) package. This enables MAVLink communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.
+安装 [MAVROS （运行于 ROS 的 MAVLink ）](../ros/mavros_installation.md) 包。 这启动了运行 ROS 电脑之间的 MAVLink 连接， MAVLink 启动飞控，并且启动 QCS。
 
-> **Tip** MAVROS can be installed as an ubuntu package or from source. Source is recommended for developers.
+> **TIp** MAVROS 可以作为 Ubuntu 的一个包，通过源码安装。 源码推荐给开发者。
 
 ```sh
 ## Create catkin workspace (ROS build system)
