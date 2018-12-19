@@ -79,7 +79,7 @@
     * [ROS con simulación de Gazebo](simulation/ros_interface.md)
     * [Modelos de OctoMap con ROS](simulation/gazebo_octomap.md)
     * [Instalación de ROS en RPi](ros/raspberrypi_installation.md)
-    * [Estimación de la posición externa](ros/external_position_estimation.md)
+    * [External Position Estimation (Vision/Motion based)](ros/external_position_estimation.md)
   * [DroneKit](robotics/dronekit.md)
 * [Depuración/Logging](debug/README.md) 
   * [Preguntas frecuentes (FAQ)](debug/faq.md)
