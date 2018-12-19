@@ -38,6 +38,28 @@ The following MAVLink "vision" messages are not currently supported by PX4:
 [VICON_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VICON_POSITION_ESTIMATE)
 
 
+## Reference Frames
+
+PX4 uses FRD (X **F**orward, Y **R**ight and Z **D**own) for the local body frame, and NED (X **N**orth, Y **E**ast, Z **D**own) for the local world frame - set in MAVLink using [MAV_FRAME_BODY_OFFSET_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_BODY_OFFSET_NED) and [MAV_FRAME_LOCAL_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_LOCAL_NED), respectively.
+
+Depending on your source your source system reference frame you will need to apply a custom transformation to obtain the appropriate NED convention when sending the MAVLink Vision/MoCap messages.
+
+> **Tip** ROS users can find more detailed instructions below in [Reference Frames and ROS](#ros_reference_frames).
+
+For example, if using the Optitrack framework the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. 
+A simple trick is swapping axis in order to obtained NED convention. 
+
+If `x_{mav}`, `y_{mav}` and `z_{mav}` are the coordinates that are sent through MAVLink as position feedback, then we obtain:
+```
+x_{mav} = x_{mocap}
+y_{mav} = z_{mocap}
+z_{mav} = - y_{mocap}
+```
+
+Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. 
+You can apply this trick with every system - if you need to obtain a NED frame, look at your MoCap output and swap axis accordingly.
+
+
 ## EKF2 Tuning/Configuration
 
 The following parameters must be set to use external position information with EKF2 (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > EKF2**).
@@ -78,7 +100,7 @@ You will first need to [switch to the LPE estimator](../advanced/switching_state
   The LPE version can be found in the zip file for each PX4 release or it can be built from source using the build command `make px4_fmu-v2_lpe`.
   See [Building the Code](../setup/building_px4.md) for more details.
 
-#### Enabling External Pose Input
+### Enabling External Pose Input
 
 The following parameters must be set to use external position information with LPE (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**).
 
@@ -88,13 +110,13 @@ Parameter | Setting for External Position Estimation
 [ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | Set to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables MoCap heading use. 
  
 
-#### Disabling Barometer Fusion
+### Disabling Barometer Fusion
 
 If a highly accurate altitude is already available from VIO or MoCap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
 
 This can be done by in *QGroundControl* by unchecking the *fuse baro* option in the [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) parameter.
 
-#### Tuning Noise Parameters
+### Tuning Noise Parameters
 
 If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters: [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for VIO) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for MoCap). 
 Reducing them will cause the estimator to trust the incoming pose estimate more. 
@@ -103,7 +125,7 @@ You may need to set them lower than the allowed minimum and force-save.
 > **Tip** If performance is still poor, try increasing the [LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) parameter. 
   This will cause the estimator to trust measurements more during velocity estimation.
 
-  
+
 ## Working with ROS
 
 ROS is not *required* for supplying external pose information, but is highly recommended as it already comes with good integrations with VIO and MoCap systems.
@@ -137,49 +159,30 @@ To use MoCap data with EKF2 you will have to [remap](http://wiki.ros.org/roslaun
 - If you get data through a `nav_msgs/Odometry` ROS message then you will need to remap it to `/mavros/odometry/odom`.
 
 
-## Asserting on Reference Frames 
+### Reference Frames and ROS {#ros_reference_frames}
 
-This section shows how to setup the system with the proper reference frames. 
-There are various representations but we will use two of them: ENU and NED. 
+The local/world and world frames used by ROS and PX4 are different.
 
-* ENU has a ground-fixed frame where *x* axis points East, *y* points North and *z* up.
-  Robot body frame is *x* towards the front, *z* up and *y* accordingly.
-* NED has *x* towards North, *y* East and *z* down.
-  Robot body frame is *x* towards the front, *z* down and *y* accordingly.
+Frame | ROS | PX4
+--- | ---
+Body | FLU (X **F**orward, Y **L**eft, Z **U**p), usually named `base_link` | FRD (X **F**orward, Y **R**ight and Z **D**own)
+World | ENU (X **E**ast, Y **N**orth and Z Up), with the naming being `odom` or `map` | NED (X **N**orth, Y **E**ast, Z **D**own)
 
-Frames are shown in the image below: NED on the left while ENU on the right.
+> **Tip** See [REP105: Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html) for more information about ROS frames.
+
+Both frames are shown in the image below (NED on left/ENU on right).
 
 ![Reference frames](../../assets/lpe/ref_frames.png)
 
-With the external heading estimation, however, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely at Vision/MoCap calibration); 
-yaw angle will be given with respect to local *x*.
+When using external heading estimation, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely during Vision/MoCap calibration). Yaw angle is therefore given with respect to local *x*.
 
 > **Note** When creating the rigid body in the MoCap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise yaw estimation will have an initial offset.
 
-### Using MAVROS
-
-With MAVROS this operation is straightforward. 
+Using MAVROS, this operation is straightforward. 
 ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. 
 If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. 
 With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and MAVROS will take care of NED conversions.
 
-### Without MAVROS
-
-If you do not use MAVROS or ROS in general, you need to stream data over MAVLink with [ATT_POS_MOCAP](../advanced/parameter_reference.md#ATT_POS_MOCAP) message. 
-In this case you will need to apply a custom transformation depending on the system in order to obtain NED convention.
-
-Let us take as an example the Optitrack framework; in this case the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. 
-A simple trick is swapping axis in order to obtained NED convention. 
-
-We call *x_{mav}*, *y_{mav}* and *z_{mav}* the coordinates that are sent through MAVLink as position feedback, then we obtain:
-
-*x_{mav}* = *x_{mocap}*
-*y_{mav}* = *z_{mocap}*
-*z_{mav}* = - *y_{mocap}*
-
-Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. 
-You can apply this trick with every system; 
-you need to obtain a NED frame, look at your MoCap output and swap axis accordingly.
 
 ## Specific System Setups {#setup_specific_systems}
 
