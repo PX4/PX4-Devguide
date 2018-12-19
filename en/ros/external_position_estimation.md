@@ -31,6 +31,8 @@ The LPE estimator subscribes to both topics, and can hence process all the above
 
 > **Tip** EFK2 is the default estimator used by PX4.
   It is better tested and supported than LPE, and should be used by preference.
+  
+The messages should be streamed at between 30Hz (if containing covariances) and 50 Hz.
 
 The following MAVLink "vision" messages are not currently supported by PX4: 
 [GLOBAL_VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#GLOBAL_VISION_POSITION_ESTIMATE), 
