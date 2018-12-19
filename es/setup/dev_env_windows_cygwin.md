@@ -117,13 +117,13 @@ Y para repositorios existentes que tienen este problema causado por una configur
 
 ### Features / Issues {#features}
 
-The following features are known to work (version 2.0):
+Se sabe que funcionan las siguientes funcionalidades (versión 2.0):
 
-* Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
-* Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
-* Style check with *astyle* (supports the command: `make format`)
-* Command line auto completion
-* ¡Instalador no-invasivo! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4** and uses a temporary local path).
+* Compilar y ejecutar SITL con jMAVSim con un rendimiento significativamente mejor que una MV (genera un binario nativo de windows **px4.exe**).
+* Compilar y cargar compilaciones NuttX (por ejemplo: px4_fmu-v2 and px4_fmu-v4)
+* Comprobar estilo con *astyle* (soporta el comando: `make format`)
+* Autocompletado de linea de comandos
+* ¡Instalador no-invasivo! El programa de instalación NO afecta a tu sistema ni a la ruta global (sólo modifica el directorio de instalación seleccionado, por ejemplo, **C:\PX4** y utiliza una ruta de acceso local temporal).
 * El instalador puede actualizar a una nueva versión manteniendo los cambios personales dentro de la carpeta de la toolchain
 
 Omisiones:
@@ -132,12 +132,12 @@ Omisiones:
 * Sólo compilaciones NuttX y JMAVSim/SITL son compatibles.
 * [Problemas conocidos / informe de su problema](https://github.com/orgs/PX4/projects/6)
 
-### Shell Script Installation {#script_setup}
+### Instalación Shell Script {#script_setup}
 
-You can also install the environment using shell scripts in the Github project.
+También puede instalar el entorno usando scripts de shell en el proyecto de Github.
 
-1. Make sure you have [Git for Windows](https://git-scm.com/download/win) installed.
-2. Clone the repository https://github.com/PX4/windows-toolchain to the location you want to install the toolchain. Default location and naming is achieved by opening the `Git Bash` and executing:
+1. Asegúrese de que tener [Git para Windows](https://git-scm.com/download/win) instalado.
+2. Clone el repositorio https://github.com/PX4/windows-toolchain en la ubicación que desea instalar el toolchain. La nomenclatura y ubicación predeterminada se logra abriendo `Git Bash` y ejecutando:
 
     cd /c/
     git clone https://github.com/PX4/windows-toolchain PX4
@@ -203,7 +203,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
     
     > **Note** This is what the toolchain does in: [gcc-arm/install-gcc-arm.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat).
 
-4. Install the JDK:
+4. Instala el JDK:
     
     * Download the [**Java Development Kit Installer**](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
     * Because sadly there is no portable archive containing the binaries directly you have to install it.
@@ -220,13 +220,13 @@ This section describes how to setup the Cygwin toolchain manually yourself while
     
     > **Note** This is what the toolchain does in: [apache-ant/install-apache-ant.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/apache-ant/install-apache-ant.bat).
 
-6. Download, build and add *genromfs* to the path:
+6. Descarga, compila y añade *genromfs* a la ruta:
     
     * Clone the source code to the folder **C:\PX4\toolchain\genromfs\genromfs-src** with 
             cd /c/toolchain/genromfs
             git clone https://github.com/chexum/genromfs.git genromfs-src
 
-* Compile it with: 
+* Compílalo con: 
     
         cd genromfs-src
          make all
