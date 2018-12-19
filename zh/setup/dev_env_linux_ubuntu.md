@@ -207,7 +207,7 @@ wstool update -t src
 rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
 ```
 
-> **Note** If you use an ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
+> **Note** 如果您使用的是基于 Ubuntu 的发行版并且如下命令 `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` 失败，您可以使用命令强制运行 `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
 
 ```sh
 ## Build!
@@ -219,11 +219,11 @@ else echo "$catkin_ws_source" >> ~/.bashrc; fi
 source ~/.bashrc
 ```
 
-## NuttX-based Hardware
+## 基于 Nuttx 的硬件
 
-Install the following dependencies to build for NuttX based hardware: Pixhawk, Pixfalcon, Pixracer, Pixhawk 3, Intel® Aero Ready to Fly Drone.
+安装以下依赖项，以构建基于 Nuttx 的硬件：Pixhawk、Pixfalcon、Pixracer、Pixhawk 3、Intel® Aero Ready to Fly Drone。
 
-> **Note** Packages with specified versions should be installed with the specified package version.
+> **Note** 具有指定版本的包应与指定的包版本一起安装。
 
 ```sh
 sudo apt-get install python-serial openocd \
@@ -231,7 +231,7 @@ sudo apt-get install python-serial openocd \
     libftdi-dev libtool zlib1g-dev -y
 ```
 
-Remove any old versions of the arm-none-eabi toolchain.
+删除任何旧版本的 arm-none-eabi 工具链。
 
 ```sh
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
@@ -240,17 +240,17 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 <!-- import GCC toolchain common documentation --> {% include "_gcc_toolchain_installation.txt" %}
 
-## Snapdragon Flight
+## 高通骁龙飞控
 
-Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
+在 *PX4用户指南* 中提供了高通骁龙飞控的安装说明:
 
-* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
-* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
-* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+* [开发环境](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [软件安装](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [配置](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
 
-## Raspberry Pi Hardware
+## 树莓派硬件
 
-Developers working on Raspberry Pi hardware need to download a ARMv7 cross-compiler, either GCC or clang. The current recommended toolchain for raspbian can be cloned from `https://github.com/raspberrypi/tools.git` (at time of writing 4.9.3). The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
+使用树莓派硬件的开发人员需要下载 ARMv7 交叉编译器，可以是 gcc，也可以是 clang。 The current recommended toolchain for raspbian can be cloned from `https://github.com/raspberrypi/tools.git` (at time of writing 4.9.3). The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
 
 ```sh
 git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
