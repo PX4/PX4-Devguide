@@ -37269,7 +37269,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Gyro calibration maximum temperature
+        陀螺仪校准最高温度
       </p>
     </td>
     
@@ -37291,7 +37291,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Gyro calibration minimum temperature
+        陀螺仪校准最低温度
       </p>
     </td>
     
@@ -37313,7 +37313,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Gyro calibration reference temperature
+        陀螺仪校准的参考温度
       </p>
     </td>
     
