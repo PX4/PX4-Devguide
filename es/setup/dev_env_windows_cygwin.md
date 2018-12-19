@@ -143,22 +143,22 @@ También puede instalar el entorno usando scripts de shell en el proyecto de Git
     git clone https://github.com/PX4/windows-toolchain PX4
     
 
-1. If you want to install all components navigate to the freshly cloned folder and double click on the script `install-all-components.bat` located in the folder `toolchain`. If you only need certain components and want to safe Internet traffic and or disk space you can navigate to the different component folders like e.g. `toolchain\cygwin64` and click on the **install-XXX.bat** scripts to only fetch something specific.
-2. Continue with [Getting Started](#getting_started) (or [Usage Instructions](#usage_instructions)) 
+1. Si desea instalar todos los componentes navegue a la carpeta recién clonada y haga doble clic en el script `install-all-components.bat` ubicado en la carpeta `toolchain`. If you only need certain components and want to safe Internet traffic and or disk space you can navigate to the different component folders like e.g. `toolchain\cygwin64` and click on the **install-XXX.bat** scripts to only fetch something specific.
+2. Continúe con [Introducción](#getting_started) (o [Instrucciones de Uso](#usage_instructions)) 
 
-### Manual Installation (for Toolchain Developers) {#manual_setup}
+### Manual de instalación (para desarrolladores de Toolchain) {#manual_setup}
 
 This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 
-> **Note** The toolchain gets maintained and hence these instructions might not cover every detail of all the future changes.
+> **Nota** La toolchain va mejorando y por lo tanto, estas instrucciones no podrían cubrir cada detalle de todos los cambios futuros.
 
-1. Create the *folders*: **C:\PX4**, **C:\PX4\toolchain** and **C:\PX4\home**
-2. Download the *Cygwin installer* file [setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe) from the [official Cygwin website](https://cygwin.com/install.html)
-3. Run the downloaded setup file
-4. In the wizard choose to install into the folder: **C:\PX4\toolchain\cygwin64**
-5. Select to install the default Cygwin base and the newest available version of the following additional packages:
+1. Cree las *carpetas*: **C:\PX4**, **C:\PX4\toolchain** y **C:\PX4\home**
+2. Descargar el archivo *instalador Cygwin* [setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe) desde la [Web oficial de Cygwin](https://cygwin.com/install.html)
+3. Ejecute el archivo de instalación descargado
+4. En el asistente elija instalar en la carpeta: **C:\PX4\toolchain\cygwin64**
+5. Seleccione instalar el Cygwin base por defecto y la última versión disponible de los siguientes paquetes adicionales:
 
-* **Category:Packagename**
+* **Categoría: Packagename**
 * Devel:cmake (3.3.2 gives no deprecated warnings, 3.6.2 works but has the warnings)
 * Devel:gcc-g++
 * Devel:git
@@ -166,7 +166,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 * Devel:ninja
 * Devel:patch
 * Editors:xxd
-* Editors:nano (unless you're the vim pro)
+* Editors:nano (a no ser que seas un pro en vim)
 * Python:python2
 * Python:python2-pip
 * Python:python2-numpy
