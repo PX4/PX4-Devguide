@@ -104,13 +104,13 @@ Under Unix there's a flag in the permissions of each file that tells the OS whet
 
 We recommend globally disabling the permission check on Windows to avoid the problem:
 
-    git config --global core.fileMode false # disable execution bit check globally for the machine
+    git config --global core.fileMode false # deshabilita el bit de comprobación de ejecución globalmente para la máquina
     
 
 For existing repositories that have this problem caused by a local configuration, additionally:
 
-    git config --unset core.filemode # remove the local option for this repository to apply the global one
-    git submodule foreach --recursive git config --unset core.filemode # remove the local option for all submodules
+    git config --unset core.filemode # elimina la opción local para este repositorio de aplicarlo globalmente
+    git submodule foreach --recursive git config --unset core.filemode # elimina la opción local para todos los submódulos
     
 
 ## Additional Information
