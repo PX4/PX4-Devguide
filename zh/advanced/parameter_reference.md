@@ -32403,7 +32403,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Baudrate for the GPS 1 Serial Port
+        GPS1串口波特率
       </p>
       
       <p>
@@ -32520,7 +32520,7 @@
       </p>
       
       <p>
-        <strong>说明:</strong>配置GPS2串口的波特率. Note: certain drivers such as the GPS can determine the Baudrate automatically.
+        <strong>说明:</strong>配置GPS2串口的波特率. 注意: 某些驱动程序，如GPS，可以自动确定波特率
       </p>
       
       <strong>Values:</strong>
