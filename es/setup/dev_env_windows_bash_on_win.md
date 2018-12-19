@@ -1,23 +1,23 @@
-# Bash on Windows Toolchain
+# Toolchain Bash on Windows
 
-> **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.
+> **Nota** [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) es el (único) toolchain que cuenta con soporte para desarrollo en Windows.
 
-Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to:
+Los usuarios de Windows también pueden instalar un entorno de desarrollo PX4 Ubuntu Linux *ligeramente modificados* en [Bash on Windows](https://github.com/Microsoft/BashOnWindows) y utilizarlo para:
 
-* Build firmware for NuttX/Pixhawk targets. 
-* Run the PX4 JMAVSim simulation (using a Windows-hosted X-Windows app to display the UI)
+* Compilar el firmware para objetivos NuttX/Pixhawk. 
+* Ejecutar la simulación PX4 JMAVSim (usando una aplicación alojada en Windows X-Windows para mostrar la interfaz de usuario)
 
-> **Note** This mechanism only works on Windows 10. It essentially runs the toolchain in a virtual machine, and is relatively slow compared to other solutions.
+> **Nota** Este mecanismo sólo funciona en Windows 10. Esencialmente funciona el toolchain en una máquina virtual y es relativamente lento en comparación con otras soluciones.
 
-### Setup Environment
+### Configura el entorno
 
-The easiest way to setup the environment is to use the **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** script (details for script are [given below](#build_script_details)).
+La forma más fácil de configurar el entorno es utilizar el script **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** (los detalles del script están [más abajo](#build_script_details)).
 
-To setup the development environment:
+Para configurar el entorno de desarrollo:
 
-1. Install [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
-2. Open the bash shell. 
-3. Download the **windows_bash_nuttx.sh**: ```wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh```
+1. Instala [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
+2. Abre el shell de bash. 
+3. Descarga el **windows_bash_nuttx.sh**: ```wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh```
 4. Run the script using the command below (acknowledging any prompts as required): 
         sh
         source windows_bash_nuttx.sh
