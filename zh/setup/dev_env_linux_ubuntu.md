@@ -129,9 +129,9 @@ rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
 > 
 > ### Gazebo
 > 
-> > **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation).
+> > **Note** 如果您要使用 ros，请按照以下部分中的 [ROS/Gazebo](#rosgazebo) 说明操作（这些操作将自动安装 gazebo，作为 ros 安装的一部分）。
 > 
-> Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
+> 为 [jMAVSim Simulation](../simulation/gazebo.md) 安装依赖。
 > 
 >     # Gazebo simulator
 >     sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
@@ -146,7 +146,7 @@ rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
 >     sudo apt-get install libgazebo9-dev -y
 >     
 > 
-> > **Tip** PX4 works with Gazebo 7, 8, and 9. The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
+> > ** Note** PX4兼容Gazebo7、8和9。 上面的 [安装说明](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) 是关于安装 Gazebo 9 的。
 > 
 > <!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
 sudo apt-get install clang-3.5 lldb-3.5 -y
@@ -154,7 +154,7 @@ sudo apt-get install clang-3.5 lldb-3.5 -y
 > 
 > ### ROS/Gazebo
 > 
-> Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Kinetic"). These include Gazebo7 (at time of writing, the default version that comes with ROS). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+> 安装 [ROS/Gazebo](../ros/README.md) 的依赖项（"Kinetic"）。 其中包括 Gazebo7（行文时，ros 附带的默认版本）。 这些说明来自 ROS Wiki [Ubuntu 页 ](http://wiki.ros.org/kinetic/Installation/Ubuntu)。
 > 
 > ```sh
 # ROS Kinetic/Gazebo
