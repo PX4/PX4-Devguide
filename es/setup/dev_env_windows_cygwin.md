@@ -178,34 +178,34 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 * Shells:bash-completion
 * Web:wget
     
-    > **Note** Do not select as many packages as possible which are not on this list, there are some which conflict and break the builds.
+    > **Nota** No seleccione tantos paquetes como sea posible que no estén en esta lista, hay algunos que entran en conflicto e interrumpe la compilación.
     
     <span></span>
     
     > **Note** Eso es lo que hace [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat).
 
-1. Write up or copy the **batch scripts** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) and [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
+1. Escribir o copiar los **scripts de bash** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) y [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
     
-    The reason to start all the development tools through the prepared batch scripts is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. This is done by always first calling the script [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) and the desired application like the console after that.
+    La razón para iniciar todas las herramientas de desarrollo a través de los script batch preparados es que preconfiguran el programa al inicio para usar el entorno Cygwin portable dentro de la carpeta de la toolchain. Esto se hace llamando siempre llamando primero a los scripts [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) y la aplicación deseada como la consola después de eso.
     
-    The script [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
+    El script de [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) localmente establece variables de entorno para el directorio de raíz del espacio de trabajo `PX4_DIR`, todas las ubicaciones de binarios, `PATH` y el directorio home del entorno unix `HOME`.
 
-2. Add necessary **python packages** to your setup by opening the Cygwin toolchain console (double clicking **run-console.bat**) and executing
+2. Añade los **paquetes de python** necesarios para la configuración abriendo la consola de la toolchain de Cygwin (doble clic en **run-console.bat**) y ejecutandolo
     
         pip2 install toml
         pip2 install pyserial
         pip2 install pyulog
         
     
-    > **Note** That's what [cygwin64/install-cygwin-python-packages.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) does.
+    > **Nota** Es lo que hace [cygwin64/install-cygwin-python-packages.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat).
 
-3. Download the [**ARM GCC compiler**](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads) as zip archive of the binaries for Windows and unpack the content to the folder `C:\PX4\toolchain\gcc-arm`.
+3. Descargar el [**compilador ARM GCC**](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads) como archivo zip de los binarios para Windows y descomprime el contenido a la carpeta `C:\PX4\toolchain\gcc-arm`.
     
-    > **Note** This is what the toolchain does in: [gcc-arm/install-gcc-arm.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat).
+    > **Nota** Esto es lo que hace la toolchain hace en: [gcc-arm/install-gcc-arm.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat).
 
 4. Instala el JDK:
     
-    * Download the [**Java Development Kit Installer**](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+    * Descargar el [**Instalador de Kit de desarrollo Java**](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
     * Because sadly there is no portable archive containing the binaries directly you have to install it.
     * Find the binaries and move/copy them to **C:\PX4\toolchain\jdk**.
     * You can uninstall the Kit from your Windows system again, we only needed the binaries for the toolchain.
