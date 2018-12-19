@@ -18,49 +18,49 @@ Para configurar el entorno de desarrollo:
 1. Instala [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
 2. Abre el shell de bash. 
 3. Descarga el **windows_bash_nuttx.sh**: ```wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh```
-4. Run the script using the command below (acknowledging any prompts as required): 
+4. Ejecuta el script usando el siguiente comando (reconociendo cualquier mensaje que sea necesario): 
         sh
         source windows_bash_nuttx.sh
 
-### Build Firmware
+### Compila el Firmware
 
-To build the firmware (i.e. for px4_fmu-v4):
+Para compilar el firmware (por ejemplo para px4_fmu-v4):
 
-1. Enter the following commands in the bash shell:
+1. Introduzca los siguientes comandos en el shell de bash:
     
         cd ~/src/Firmware
         make px4_fmu-v4_default
         
     
-    On successful completion you'll find the firmware here: `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
+    Una vez se haya completado encontrarás el firmware aquí: `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
     
-    > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx--pixhawk-based-boards)
+    > **Nota** Los comandos `make` para compilar el firmware para otras plataformas se encuentra en [Compilando el código](../setup/building_px4.md#nuttx--pixhawk-based-boards)
 
-2. You can flash the custom firmware on Windows using *QGroundControl* or *Mission Planner* (it is not possible to directly flash the firmware from within the bash shell using the `upload` command).
+2. Puedes flashear el firmware custom en Windows usando *QGroundControl* o *Mission Planner* (no es posible flashear directamente desde el shell bash usando el comando `upload`).
 
-### Simulation (JMAVSim)
+### Simulación (jMAVSim)
 
-Bash on Windows does not include support for UI libraries. In order to display the jMAVSim UI you will first need to install an X-Window application like [XMing](https://sourceforge.net/projects/xming/) into Windows.
+Bash on Windows no incluye soporte para librerías de interfaces de usuario. Para mostrar la UI de jMAVSim primero necesitarás instalar una aplicación X-Window como [XMing](https://sourceforge.net/projects/xming/) en Windows.
 
-To run JMAVSim:
+Para ejecutar JMAVSim:
 
-1. Install and start [XMing](https://sourceforge.net/projects/xming/) on Windows.
-2. Enter the following command in the bash shell: 
+1. Instala y ejecuta [XMing](https://sourceforge.net/projects/xming/) en Windows.
+2. Introduzca los siguientes comandos en el shell de bash: 
         sh
         export DISPLAY=:0 > 
     
-    **Tip** Add this line to the Ubuntu **.bashrc** file if you don't want to enter it every session.
-3. Start PX4 and jMAVSim in the bash shell:
+    **Nota** Agrega esta linea al archivo de Ubuntu **.bashrc** si no quieres tener que ejecutarla en cada sesión.
+3. Inicia PX4 y jMAVSim en el shell de bash:
     
     ```sh
     make px4_sitl jmavsim
     ```
     
-    The JMAVSim UI is then displayed in XMing as shown below:
+    La UI de JMAVSim se mostrará en XMing tal como se muestra a continuación:
     
     ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
 
-> **Caution** Gazebo can similarly be run within Ubuntu Bash for Windows, but too slow to be useful. To try this, follow the [ROS kinetic install guide](http://wiki.ros.org/kinetic/Installation/Ubuntu) and run Gazebo in the Bash shell as shown: 
+> **Advertencia** Gazebo can similarly be run within Ubuntu Bash for Windows, but too slow to be useful. To try this, follow the [ROS kinetic install guide](http://wiki.ros.org/kinetic/Installation/Ubuntu) and run Gazebo in the Bash shell as shown: 
 > 
 >     sh
 >       export DISPLAY=:0
