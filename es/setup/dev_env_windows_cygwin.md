@@ -80,7 +80,7 @@ El flujo de trabajo habitual consiste iniciar una consola de windows haciendo do
 
 #### Finales de linea Windows CR+LF vs Unix LF
 
-Recomendamos forzar los finales de estilo LF Unix para cada repositorio en lo que se está trabajando usando esta toolchain (y usa un editor que los mantenga al guardar los cambios - por ejemplo, Eclipse o VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Por suerte git puede hacer esto por usted al ejecutar los dos comandos en el directorio raíz de tu repo:
+Recomendamos forzar los finales de estilo LF Unix para cada repositorio en lo que se está trabajando usando esta toolchain (y usa un editor que los mantenga al guardar los cambios - por ejemplo, Eclipse o VS Code). También funciona con terminaciones CR+LF extraídos localmente, pero hay casos en Cygwin (por ejemplo, ejecución de scripts de shell) que requieren terminaciones de línea de Unix (de lo contrario se obtienen errores como `$' \r': comando no encontrado.`). Por suerte git puede hacer esto por usted al ejecutar los dos comandos en el directorio raíz de tu repo:
 
     git config core.autocrlf false
     git config core.eol lf
@@ -95,25 +95,25 @@ No es recomendable porque puede afectar a cualquier otro uso de git (sin relaci�
 
 #### Bit de permisos de ejecución Unix
 
-Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
+En Unix hay una bandera en los permisos de cada archivo que le dice al SO cuándo está permitida o no la ejecución del archivo. *git* a través de Cygwin soporta y está preparado para ese bit (incluso pensando que el sistema de archivos Windows NTFS no lo usa). Esto resulta a veces en que *git* encuentre diferencias "falso-positivo" en los permisos. El diff resultante sería algo como esto:
 
     diff --git ...
     old mode 100644
     new mode 100755
     
 
-We recommend globally disabling the permission check on Windows to avoid the problem:
+Recomendamos deshabilitar globalmente la comprobación de permisos en Windows para evitar el problema:
 
     git config --global core.fileMode false # deshabilita el bit de comprobación de ejecución globalmente para la máquina
     
 
-For existing repositories that have this problem caused by a local configuration, additionally:
+Y para repositorios existentes que tienen este problema causado por una configuración local, agregar también:
 
     git config --unset core.filemode # elimina la opción local para este repositorio de aplicarlo globalmente
     git submodule foreach --recursive git config --unset core.filemode # elimina la opción local para todos los submódulos
     
 
-## Additional Information
+## Información adicional
 
 ### Features / Issues {#features}
 
@@ -123,14 +123,14 @@ The following features are known to work (version 2.0):
 * Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
 * Style check with *astyle* (supports the command: `make format`)
 * Command line auto completion
-* Non-invasive installer! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4** and uses a temporary local path).
-* The installer supports updating to a new version keeping your personal changes inside the toolchain folder
+* ¡Instalador no-invasivo! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4** and uses a temporary local path).
+* El instalador puede actualizar a una nueva versión manteniendo los cambios personales dentro de la carpeta de la toolchain
 
-Omissions:
+Omisiones:
 
-* Simulation: Gazebo and ROS are not supported
-* Only NuttX and JMAVSim/SITL builds are supported.
-* [Known problems / Report your issue](https://github.com/orgs/PX4/projects/6)
+* Simulación: Gazebo y ROS no son compatibles
+* Sólo compilaciones NuttX y JMAVSim/SITL son compatibles.
+* [Problemas conocidos / informe de su problema](https://github.com/orgs/PX4/projects/6)
 
 ### Shell Script Installation {#script_setup}
 
