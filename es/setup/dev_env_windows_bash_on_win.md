@@ -60,27 +60,27 @@ Para ejecutar JMAVSim:
     
     ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
 
-> **Advertencia** Gazebo can similarly be run within Ubuntu Bash for Windows, but too slow to be useful. To try this, follow the [ROS kinetic install guide](http://wiki.ros.org/kinetic/Installation/Ubuntu) and run Gazebo in the Bash shell as shown: 
+> **Advertencia** Gazebo puede ejecutarse de igual forma en Ubuntu Bash for Windows, pero demasiado lento como par ser útil. Para intentarlo, siguie la [Guia de instalación de ROS kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) y ejecuta Gazebo en el shell de la siguiente forma: 
 > 
 >     sh
 >       export DISPLAY=:0
 >       export GAZEBO_IP=127.0.0.1
 >       make px4_sitl gazebo
 
-### Build Script Details {#build_script_details}
+### Detalles de script de compilación {#build_script_details}
 
-The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
+El script de compilación [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh) modifica las instrucciones de compilación de Ubuntu para eliminar los componentes específicos de Ubuntu y dependientes de interfaz de usuario, incluyendo el IDE *Qt Creator* y los simuladores.
 
-In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) since BashOnWindows doesn't run 32 bit ELF programs (and the default compiler from `https://launchpad.net/gcc-arm-embedded` is 32 bit).
+Además, usa un [compilador de 64 bit arm-none-eabi](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) desde que BashOnWindows no funciona en programas ELF de 32 bit (y el compilador por defecto de `https://launchpad.net/gcc-arm-embedded` es de 32 bit).
 
-To add this compiler to your environment manually:
+Para agregar este compilador a tu entorno manualmente:
 
-1. Download the compiler: 
+1. Descarga el compilador: 
         sh
         wget https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-/raw/master/gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
 
-2. Unpack it using this command line in the Bash On Windows console: 
+2. Descomprímelo usando este comando en la consola Bash On Windows: 
         sh
-        tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2 This will unpack the arm gcc cross-compiler to: ```gcc-arm-none-eabi-5_4-2017q2/bin```
+        tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2 Esto descomprimirá el gcc cross-compiler en: ```gcc-arm-none-eabi-5_4-2017q2/bin```
 
-3. Add the to the environment (add the line to your bash profile to make the change permanent) ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH```
+3. Agrégalo al entorno (agrega la linea a tu bash profile para hacer el cambio permanente) ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH```
