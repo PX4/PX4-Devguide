@@ -1313,7 +1313,7 @@
       </p>
       
       <p>
-        <strong>说明:</strong>设置这个参数为240024会关闭GPS失效检测功能 If this check is enabled, then the sensor check will fail if the GPS module is missing. It will also check for excessive signal noise on the GPS receiver and warn the user if detected. 警告: 启用这个开关是有风险的.
+        <strong>说明:</strong>设置这个参数为240024会关闭GPS失效检测功能 如果打开了这个检查项，那么当GPS模块丢失时，传感器检查功能会失效。 它还会检查GPS接收器上是否有过大的信号噪音，如果发现，它会警告用户。 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
@@ -1344,7 +1344,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 22027 will disable IO safety. 警告: 启用这个开关是有风险的.
+        <strong>说明:</strong>将这个参数设置为22027会关闭IO安全开关。 警告: 启用这个开关是有风险的.
       </p>
       
       <p>
