@@ -240,7 +240,7 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 <!-- import GCC toolchain common documentation --> {% include "_gcc_toolchain_installation.txt" %}
 
-## 高通骁龙飞控
+## 高通骁龙飞控（Snapdragon Flight）
 
 在 *PX4用户指南* 中提供了高通骁龙飞控的安装说明:
 
