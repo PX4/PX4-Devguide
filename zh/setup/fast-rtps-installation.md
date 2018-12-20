@@ -85,27 +85,27 @@ $ sudo make install
 *eProsima Fast RTPS* 功能配置完善，需要如下的环境变量配置生效。
 
 * `FASTRTPSHOME`： *eProsima Fast RTPS* 根目录已安装。
-* Additions to the `PATH`: the **/bin** folder and the subfolder for your Visual Studio version of choice should be appended to the PATH.
+* 添加到 `PATH`：所选 Visual Studio 版本的 **/bin** 文件夹和子文件夹应追加到 PATH 中。
 
-These variables are set automatically by checking the corresponding box during the installation process.
+这些变量是通过在安装过程中选中相应的框自动设置的。
 
 ### Linux
 
-Extract the contents of the package. It will contain both *eProsima Fast RTPS* and its required package *eProsima Fast CDR*. You will have follow the same procedure for both packages, starting with *Fast CDR*.
+提取包的内容。 它将包含 *eProsima Fast RTPS*及其所需的软件包 *eProsima Fast CDR*。 对于这两个包，您将遵循相同的过程，从 *Fast CDR* 开始。
 
-Configure the compilation:
+配置编译：
 
 ```sh
 $ ./configure --libdir=/usr/lib
 ```
 
-If you want to compile with debug symbols (which also enables verbose mode):
+如果要使用调试符号进行编译（这也启用了verbose模式）：
 
 ```sh
 $ ./configure CXXFLAGS="-g -D__DEBUG"  --libdir=/usr/lib
 ```
 
-After configuring the project compile and install the library:
+配置项目后，编译并安装库：
 
 ```sh
 $ sudo make install
