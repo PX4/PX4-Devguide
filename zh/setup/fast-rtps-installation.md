@@ -18,36 +18,36 @@ PX4 使用 FastRTPS，使 RTPS 接口能够与板外组件（包括机器人和�
 
 * [Mac 的开发环境（FastRTPS中包括常用工具）](../setup/dev_env_mac.md)
 * [Linux 的开发环境（FastRTPS中包括安装脚本）](../setup/dev_env_linux.md)
-* [Development Environment on Windows > Bash on Windows](/setup/dev_env_windows.md#bash-on-windows-new) (FastRTPS included in install script)
+* [Windows Bash 开发环境（FastRTPS中包括安装脚本）](/setup/dev_env_windows.md#bash-on-windows-new)
 
-The instruction below are useful for adding FastRTPS support in other environments.
+下面的说明对于在其他环境中添加 FastRTPS 支持非常有用。
 
-## Requirements
+## 要求
 
-*eProsima Fast RTPS* requires the following packages to work.
+*eProsima Fast RTPS* 需要以下软件包才能正常工作。
 
-### Run Dependencies
+### 依赖
 
 #### Java
 
-Java is required to use our built-in code generation tool - *fastrtpsgen*. [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) is recommended.
+Java 需要使用我们内置的代码生成工具-*fastrtpsgen*。 建议使用 [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。
 
 ### Windows 7 32-bit and 64-bit
 
 #### Visual C++ 2013 or 2015 Redistributable Package
 
-*eProsima Fast RTPS* requires the Visual C++ Redistributable packages for the Visual Studio version you chose during the installation or compilation. The installer gives you the option of downloading and installing them.
+*eProsima Fast RTPS</0 > 需要在安装或编译过程中选择的 Visual Studio 版本的 Visual C++ 可再发行包。 安装程序为您提供下载和安装它们的选项。</p> 
 
-## Installation from Sources
+## 源码安装
 
-Clone the project from Github:
+在 Github 上下载项目：
 
 ```sh
 $ git clone https://github.com/eProsima/Fast-RTPS
 $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 ```
 
-> **Note** You may need to [install Gradle](https://gradle.org/install/) to build the source (e.g. this is true on vanilla Fedora Linux). A build warning will be displayed if this is the case.
+> **Note** 您可能需要 [install Gradle](https://gradle.org/install/) 来构建源代码（例如，在vanilla Fedora Linux 上确实如此）。 A build warning will be displayed if this is the case.
 
 If you are on Linux, execute:
 
