@@ -17,7 +17,7 @@ PX4 使用 FastRTPS，使 RTPS 接口能够与板外组件（包括机器人和�
 在某些平台上，RTPS 作为 PX4 开发环境的一部分安装：
 
 * [Mac 的开发环境（FastRTPS中包括常用工具）](../setup/dev_env_mac.md)
-* [Development Environment on Linux](../setup/dev_env_linux.md) (FastRTPS included in install scripts)
+* [Linux 的开发环境（FastRTPS中包括安装脚本）](../setup/dev_env_linux.md)
 * [Development Environment on Windows > Bash on Windows](/setup/dev_env_windows.md#bash-on-windows-new) (FastRTPS included in install script)
 
 The instruction below are useful for adding FastRTPS support in other environments.
