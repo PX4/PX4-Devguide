@@ -82,9 +82,9 @@ $ sudo make install
 
 #### 环境变量
 
-*eProsima Fast RTPS* requires the following environmental variable setup in order to function properly
+*eProsima Fast RTPS* 功能配置完善，需要如下的环境变量配置生效。
 
-* `FASTRTPSHOME`: Root folder where *eProsima Fast RTPS* is installed.
+* `FASTRTPSHOME`： *eProsima Fast RTPS* 根目录已安装。
 * Additions to the `PATH`: the **/bin** folder and the subfolder for your Visual Studio version of choice should be appended to the PATH.
 
 These variables are set automatically by checking the corresponding box during the installation process.
