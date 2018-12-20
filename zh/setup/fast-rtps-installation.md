@@ -1,18 +1,18 @@
 # FastRTPS 安装
 
-<img src="../../assets/fastrtps/eprosima_logo.png" style="float:left;" /> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) 是 RTPS（实时发布订阅者）协议的 C++ 实现，它在不可靠的传输（如 UDP）上提供发布者-订阅者通信，由对象管理组（omg）定义和维护社区。 RTPS is also the wire interoperability protocol defined for the Data Distribution Service (DDS) standard, again by the OMG.
+<img src="../../assets/fastrtps/eprosima_logo.png" style="float:left;" /> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) 是 RTPS（实时发布订阅者）协议的 C++ 实现，它在不可靠的传输（如 UDP）上提供发布者-订阅者通信，由对象管理组（OMG）定义和维护社区。 RTPS 也是为数据分发服务（DDS）标准定义的有线互操作性协议，也是由 OMG 定义的。
 
-Fast RTPS is used by PX4 to enable an RTPS interface allowing PX4 uORB topics to be shared with offboard components, including robotics and simulator tools. RTPS is the underlying protocol of DDS, a standard from the OMG (Object Management Group) providing a real-time publish/subscribe middleware that is widely used in aerospace, defense and IoT applications. It has also been adopted as the middleware for the ROS2 robotics toolkit. For more information see: [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md).
+PX4 使用 FastRTPS，使 RTPS 接口能够与板外组件（包括机器人和模拟器工具）共享 PX4 uORB 主题。 RTPS 是 DDS 的基本协议，是 OMG（对象管理组）提供实时发布/订阅中间件的标准，广泛应用于航空航天、国防和物联网应用。 它也被用作 ROS2 机器人工具包的中间件。 有关详细信息，请参阅：[RTPS/ROS2 接口：PX4-FastRTPS Bridge](../middleware/micrortps.md)。
 
 <span></span>
 
-> **Note** This topic is derived from the official [*eProsima Fast RTPS* documentation](http://eprosima-fast-rtps.readthedocs.io/en/latest/). For more information see:
+> **Note** 本主题来源于官方的 [*eProsima Fast RTPS* 文件](http://eprosima-fast-rtps.readthedocs.io/en/latest/)。 有关详细信息，请参阅︰
 
-* [Requirements](http://eprosima-fast-rtps.readthedocs.io/en/latest/requirements.html#requirements)
-* [Installation from Sources](http://eprosima-fast-rtps.readthedocs.io/en/latest/sources.html#installation-from-sources)
-* [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)
+* [要求](http://eprosima-fast-rtps.readthedocs.io/en/latest/requirements.html#requirements)
+* [源码安装](http://eprosima-fast-rtps.readthedocs.io/en/latest/sources.html#installation-from-sources)
+* [二进制安装](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)
 
-## Standard Installations
+## 标准安装
 
 Fast RTPS is installed as part of the PX4 developer environment on some platforms:
 
