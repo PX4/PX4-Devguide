@@ -47,9 +47,9 @@ $ git clone https://github.com/eProsima/Fast-RTPS
 $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 ```
 
-> **Note** 您可能需要 [install Gradle](https://gradle.org/install/) 来构建源代码（例如，在vanilla Fedora Linux 上确实如此）。 A build warning will be displayed if this is the case.
+> **Note** 您可能需要 [install Gradle](https://gradle.org/install/) 来构建源代码（例如，在vanilla Fedora Linux 上确实如此）。 如果是这种情况，将显示生成警告。
 
-If you are on Linux, execute:
+如果您在 Linux 上，请执行：
 
 ```sh
 $ cmake -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
@@ -57,31 +57,30 @@ $ make
 $ sudo make install
 ```
 
-This will install Fast RTPS to `/usr/local`. You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location. Afterwards make sure the `fastrtpsgen` application is in your `PATH`. You can check with `which
-fastrtpsgen`.
+这会将 FastRTPS 安装在 `/usr/local`。 您可以使用 `-DCMAKE_INSTALL_PREFIX=<path>` 定义自己的安装路径。 然后确保 `fastrtpsgen` 已经在你的 `PATH`。 使用 `which fastrtpsgen` 验证。
 
-If you are on Windows, choose your version of *Visual Studio*:
+如果你是在 Windows，选择 *Visual Studio* 的版本：
 
 ```sh
 > cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
 > cmake --build . --target install
 ```
 
-If you want to compile the examples, you will need to add the argument `-DCOMPILE_EXAMPLES=ON` when calling *CMake*.
+如果你想编译例程，那么请在调用 *CMake* 时，添加参数 `-DCOMPILE_EXAMPLES=ON`。
 
-If you want to compile the performance tests, you will need to add the argument `-DPERFORMANCE_TESTS=ON` when calling *CMake*.
+如果你想编译性能测试程序，那么请在调用 *CMake* 时，添加参数 `-DPERFORMANCE_TESTS=ON`。
 
-## Installation from Binaries
+## 二进制安装
 
-You can always download the latest binary release of *eProsima Fast RTPS* from the [company website](http://www.eprosima.com/).
+你可以从 [官网](http://www.eprosima.com/) 下载最新发布的 *eProsima Fast RTPS* 的可执行文件。
 
-Documentation on how to do this can be found here: [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries) (*eProsima Fast RTPS* official documentation)
+操作文档请参见： [二进制安装](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)（*eProsima Fast RTPS* 官方文档）
 
 ### Windows 7 32-bit and 64-bit
 
-Execute the installer and follow the instructions, choosing your preferred *Visual Studio* version and architecture when prompted.
+执行说明的 installer，收到提示后选择 *Visual Studio*版本。
 
-#### Environmental Variables
+#### 环境变量
 
 *eProsima Fast RTPS* requires the following environmental variable setup in order to function properly
 
