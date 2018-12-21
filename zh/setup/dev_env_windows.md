@@ -1,18 +1,18 @@
-# Windows Installation Instructions
+# Windows 安装指南
 
-To develop for PX4 on Windows, follow the instructions in [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md).
+如果希望在Windows平台进行PX4的开发，请参考： [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md)进行工具链的安装。
 
-> **Tip** The *Cygwin toolchain* supports building for NuttX/Pixhawk and jMAVSim simulator targets. If you want to build for [other targets](/setup/dev_env.md#supported-targets), consider setting up a dual boot system with [Ubuntu Linux](http://ubuntu.com).
+> **Tip** The *Cygwin 工具链* 仅支持NuttX/Pixhawk 平台和 jMAVSim仿真平台。 如果你想编译用于 [其他硬件平台](/setup/dev_env.md#supported-targets)的代码，可以考虑额外安装一个 [Ubuntu Linux](http://ubuntu.com)组成双系统环境。
 
-## Additional Tools
+## 额外工具
 
-After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful "general development" tools.
+完成编译/仿真开发环境设置后，你可以从 [额外工具](../setup/generic_dev_tools.md) 找到一些有用的“通用”开发工具。
 
-## Next Steps
+## 后续步骤
 
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+设置完环境后，请转至 构建说明</0 > 进行编译测试。</p> 
 
-## Other Windows Toolchains
+## 其他 windows 工具链
 
 There are a number of other legacy/alternative solutions that may be of interest to some developers. A comparison of the options is provided below.
 
