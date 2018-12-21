@@ -1,4 +1,4 @@
-# Hardware
+# 硬件
 
 This section contains topics about:
 
