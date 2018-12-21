@@ -8,9 +8,9 @@
 
 ![QGroundControl](../../assets/qgc_goto.jpg)
 
-## 编辑器/IDE
+## 编辑器 / IDE
 
-开发团队通常使用:
+开发团队通常使用：
 
 * [Visual Studio Code](https://code.visualstudio.com/)：相当新的、流行的开源 IDE
 * [Eclipse C/C++](https://www.eclipse.org/downloads/eclipse-packages/)：功能非常丰富的基于 JAVA 的 IDE
