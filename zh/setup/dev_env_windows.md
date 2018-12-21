@@ -30,25 +30,25 @@
 | 备注:                     |                                                             |                                          |                                                                |                                              |
 
 - New in 2018
-- Slim setup
-- Portable
+- 安装配置轻巧
+- 便携
 
 |
 
-- Full Linux features
-- CPU & RAM intensive
-- Disk space intensive
+- 可获得齐全的Linux特性
+- CPU、内存的负荷较高
+- 占用较多的存储空间
 
 |
 
 - Simulation UI is a "hack".
-- Windows 10 only
-- Essentially a VM
+- 仅支持Windows10
+- 本质上仍是虚拟机
 
 |
 
-- No support
-- No documentation
-- No simulation
+- 无技术支持
+- 无帮助文档
+- 无法进行仿真模拟
 
 |
