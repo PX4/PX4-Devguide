@@ -32,7 +32,7 @@ PX4 使用 FastRTPS，使 RTPS 接口能够与板外组件（包括机器人和�
 
 Java 需要使用我们内置的代码生成工具-*fastrtpsgen*。 建议使用 [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。
 
-### Windows 7 32-bit and 64-bit
+### Windows 7 32位和64位
 
 #### Visual C++ 2013 or 2015 Redistributable Package
 
@@ -76,7 +76,7 @@ $ sudo make install
 
 操作文档请参见： [二进制安装](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)（*eProsima Fast RTPS* 官方文档）
 
-### Windows 7 32-bit and 64-bit
+### Windows 7 32位和64位
 
 执行说明的 installer，收到提示后选择 *Visual Studio*版本。
 
