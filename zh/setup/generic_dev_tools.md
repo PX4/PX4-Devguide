@@ -1,10 +1,10 @@
-# General Development Tools
+# 通用开发工具
 
-This section lists useful additional development tools that are not part of the core PX4 build toolchain.
+本节列出了不属于核心 PX4 构建工具链的实用的其他开发工具。
 
-## Ground Control Software
+## 地面控制软件
 
-Download and install the [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html).
+下载并安装 [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html)。
 
 ![QGroundControl](../../assets/qgc_goto.jpg)
 
