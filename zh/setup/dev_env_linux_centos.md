@@ -1,6 +1,6 @@
 # Centos 上的开发环境
 
-> **Note** These instructions have not been tested with recent builds of PX4. We hope to provide fully tested instructions with the supported toolchain in the near future.
+> **注意：**本指南尚未针对最近版本的 PX4 进行测试。 We hope to provide fully tested instructions with the supported toolchain in the near future.
 
 The build requires Python 2.7.5. Therefore as of this writing Centos 7 should be used. (For earlier Centos releases a side-by-side install of python v2.7.5 may be done. But it is not recommended because it can break yum.)
 
