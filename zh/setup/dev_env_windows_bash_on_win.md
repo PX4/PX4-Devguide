@@ -16,23 +16,23 @@ Windows 用户还可以选择在 [Bash on Windows](https://github.com/Microsoft/
 要设置开发环境, 请执行以下操作:
 
 1. 在Windows 10上启用、安装 [Bash on Windows](https://github.com/Microsoft/BashOnWindows)。
-2. 打开 bash 命令行界面。 
+2. 打开 bash shell 命令行界面。 
 3. 下载 **windows_bash_nuttx.sh** 脚本文件: ```wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh```
-4. Run the script using the command below (acknowledging any prompts as required): 
+4. 使用如下命令运行安装脚本 (根据需要确认任何提示)： 
         sh
         source windows_bash_nuttx.sh
 
-### Build Firmware
+### 编译固件
 
-To build the firmware (i.e. for px4_fmu-v4):
+固件编译流程（以编译 px4_fmu-v4 的固件为例）：
 
-1. Enter the following commands in the bash shell:
+1. 在 bash shell 命令行界面输入如下指令：
     
         cd ~/src/Firmware
         make px4_fmu-v4_default
         
     
-    On successful completion you'll find the firmware here: `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
+    成功完成编译后可以在 `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4` 文件夹下找到编译好的固件。
     
     > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx--pixhawk-based-boards)
 
