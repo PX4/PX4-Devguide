@@ -69,18 +69,18 @@ JMAVSim 运行流程：
 
 ### 开发环境安装脚本详情 {#build_script_details}
 
-The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
+Bash on Windows开发环境的 [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh) 安装脚本在 Ubuntu 开发环境搭建脚本的基础上进行了修改，移除了包括包括 *Qt Creator* IDE 和模拟器仿真程序在内的所有 Ubuntu 独有的以及与UI界面相关的程序组件。
 
-In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) since BashOnWindows doesn't run 32 bit ELF programs (and the default compiler from `https://launchpad.net/gcc-arm-embedded` is 32 bit).
+此外， 由于 Bash on Windows 不支持运行32位 ELF 程序，该脚本弃用了来自 `https://launchpad.net/gcc-arm-embedded` 的默认32位编译器，改用 [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) 。
 
-To add this compiler to your environment manually:
+手动将此编译器添加到您的环境中请执行以下操作:
 
-1. Download the compiler: 
+1. 下载编译器: 
         sh
         wget https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-/raw/master/gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
 
-2. Unpack it using this command line in the Bash On Windows console: 
+2. Bash On Windows 控制台中使用命令行进行解压： 
         sh
-        tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2 This will unpack the arm gcc cross-compiler to: ```gcc-arm-none-eabi-5_4-2017q2/bin```
+        tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2 该命令会将 arm gcc cross-compiler 解压至： ```gcc-arm-none-eabi-5_4-2017q2/bin```
 
-3. Add the to the environment (add the line to your bash profile to make the change permanent) ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH```
+3. 将下面这行命令添加到环境中（将该行添加到 bash 配置文件中完成永久性更改） ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH```
