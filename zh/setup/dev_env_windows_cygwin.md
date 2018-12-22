@@ -95,22 +95,22 @@
 
 #### Unix 执行权限
 
-Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
+在 Unix 下, 每个文件的权限中都有一个标志位, 它会告诉操作系统是否允许执行该文件。 Cygwin 下的 * git * 支持并遵守该标识位 (尽管 Windows 平台的NTFS文件系统并不适用该标志位)。 这一差异通常会导致 *git* 发现权限中的 "假阳性（false-positive）" 差异。 生成的差异可能如下所示:
 
     diff --git ...
     old mode 100644
     new mode 100755
     
 
-We recommend globally disabling the permission check on Windows to avoid the problem:
+我们建议在 windows 平台上全局禁用权该限检查以避免这个问题：
 
     git config --global core.fileMode false # disable execution bit check globally for the machine
     
 
-For existing repositories that have this problem caused by a local configuration, additionally:
+对于由局部配置引起此问题的现有存储库，你可以使用如下命令：
 
-    git config --unset core.filemode # remove the local option for this repository to apply the global one
-    git submodule foreach --recursive git config --unset core.filemode # remove the local option for all submodules
+    git config --unset core.filemode # 移除当前存储库的局部配置，改用全局配置
+    git submodule foreach --recursive git config --unset core.filemode # 移除所有子模块的局部配置
     
 
 ## 附加信息
