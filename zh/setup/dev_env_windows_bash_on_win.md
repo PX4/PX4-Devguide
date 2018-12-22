@@ -7,7 +7,7 @@ Windows 用户还可以选择在 [Bash on Windows](https://github.com/Microsoft/
 * 编译针对 NuttX/Pixhawk 平台的固件。 
 * 使用 JMAVSim 进行PX4仿真 (需要搭配一个基于Windows的 X-Windows 应用来显示仿真UI界面)。
 
-> **注意** 本特性仅可在Windows 10上实现， 它本质上仍是在虚拟机中运行工具链, 与其他解决方案相比运行相对缓慢。
+> **注意：** 本特性仅可在Windows 10上实现， 它本质上仍是在虚拟机中运行工具链, 与其他解决方案相比运行相对缓慢。
 
 ### 设置开发环境
 
@@ -34,18 +34,18 @@ Windows 用户还可以选择在 [Bash on Windows](https://github.com/Microsoft/
     
     成功完成编译后可以在 `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4` 文件夹下找到编译好的固件。
     
-    > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx--pixhawk-based-boards)
+    > **注意：** 为其它飞控板编译固件的 `make` 指令参见 [编译代码](../setup/building_px4.md#nuttx--pixhawk-based-boards)
 
-2. You can flash the custom firmware on Windows using *QGroundControl* or *Mission Planner* (it is not possible to directly flash the firmware from within the bash shell using the `upload` command).
+2. 在 Windows 平台上无法直接在 bash shell 中使用 `upload` 命令完成固件的烧写，你可以使用 *QGroundControl* 或者 *Mission Planner* 烧写自定义的固件。
 
-### Simulation (JMAVSim)
+### 仿真模拟 （JMAVSim）
 
-Bash on Windows does not include support for UI libraries. In order to display the jMAVSim UI you will first need to install an X-Window application like [XMing](https://sourceforge.net/projects/xming/) into Windows.
+Bash on Windows 并不包括任何UI库的支持。 为了显示 jMAVSim 的UI界面，在进行仿真之前你需要在 Windows 平台上安装 X-Window 图形用户接口应用，比如： [XMing](https://sourceforge.net/projects/xming/)。
 
-To run JMAVSim:
+JMAVSim 运行流程：
 
-1. Install and start [XMing](https://sourceforge.net/projects/xming/) on Windows.
-2. Enter the following command in the bash shell: 
+1. 在 Windows 平台安装并启动 [XMing](https://sourceforge.net/projects/xming/)。
+2. 在 bash shell 命令行界面输入如下指令： 
         sh
         export DISPLAY=:0 > 
     
