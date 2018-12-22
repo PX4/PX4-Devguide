@@ -2,12 +2,12 @@
 
 > **注意：** [Windows Cygwin 工具链](../setup/dev_env_windows_cygwin.md) 是Windows平台唯一获得官方支持的开发环境。
 
-Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to:
+Windows 用户还可以选择在 [Bash on Windows](https://github.com/Microsoft/BashOnWindows) 中安装经过 *少许修改* 的基于Ubuntu Linux的PX4 开发环境 ，该开发环境可用于：
 
-* Build firmware for NuttX/Pixhawk targets. 
-* Run the PX4 JMAVSim simulation (using a Windows-hosted X-Windows app to display the UI)
+* 编译针对 NuttX/Pixhawk 平台的固件。 
+* 使用 JMAVSim 进行PX4仿真 (需要搭配一个基于Windows的 X-Windows 应用来显示仿真UI界面)。
 
-> **Note** This mechanism only works on Windows 10. It essentially runs the toolchain in a virtual machine, and is relatively slow compared to other solutions.
+> **注意** 本特性仅可在Windows 10上实现， 它本质上仍是在虚拟机中运行工具链, 与其他解决方案相比运行相对缓慢。
 
 ### Setup Environment
 
