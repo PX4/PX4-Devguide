@@ -60,7 +60,7 @@ $ wstool init ~/catkin_ws/src
 
 2. 安装MAVROS最新的版本：
     
-    - Released/stable ```rosinstall_generator --upstream mavros | tee -a /tmp/mavros.rosinstall```
+    - 发行版 / 稳定版 ```rosinstall_generator --upstream mavros | tee -a /tmp/mavros.rosinstall```
     - Latest source 
             sh
             rosinstall_generator --upstream-development mavros | tee -a /tmp/mavros.rosinstall
