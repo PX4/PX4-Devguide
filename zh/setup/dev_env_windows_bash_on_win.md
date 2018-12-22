@@ -49,25 +49,25 @@ JMAVSim 运行流程：
         sh
         export DISPLAY=:0 > 
     
-    **Tip** Add this line to the Ubuntu **.bashrc** file if you don't want to enter it every session.
-3. Start PX4 and jMAVSim in the bash shell:
+    **提示：** 将上一行命令加入 Ubuntu 的 **.bashrc** 文件末尾可避免在新的 bash 会话中重复输入该命令。
+3. 在 bash shell 界面中启动 px4 和 jmavsim：
     
     ```sh
     make px4_sitl jmavsim
     ```
     
-    The JMAVSim UI is then displayed in XMing as shown below:
+    JMAVSim 的UI界面会显示在 XMing 程序中，如下所示：
     
     ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
 
-> **Caution** Gazebo can similarly be run within Ubuntu Bash for Windows, but too slow to be useful. To try this, follow the [ROS kinetic install guide](http://wiki.ros.org/kinetic/Installation/Ubuntu) and run Gazebo in the Bash shell as shown: 
+> **注意！** Gazebo 也可以以类似方式在 Ubuntu Bash for Windows 中运行，但运行速度太慢以至于没有实用价值。 如要尝试运行，请遵循 [ROS kinetic install guide](http://wiki.ros.org/kinetic/Installation/Ubuntu) 的指示然后在 Bash shell 界面中使用如下命令运行Gazebo： 
 > 
 >     sh
 >       export DISPLAY=:0
 >       export GAZEBO_IP=127.0.0.1
 >       make px4_sitl gazebo
 
-### Build Script Details {#build_script_details}
+### 开发环境安装脚本详情 {#build_script_details}
 
 The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
 
