@@ -9,15 +9,15 @@ Windows 用户还可以选择在 [Bash on Windows](https://github.com/Microsoft/
 
 > **注意** 本特性仅可在Windows 10上实现， 它本质上仍是在虚拟机中运行工具链, 与其他解决方案相比运行相对缓慢。
 
-### Setup Environment
+### 设置开发环境
 
-The easiest way to setup the environment is to use the **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** script (details for script are [given below](#build_script_details)).
+设置开发环境的最简单的方法是使用 **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** 安装脚本 （脚本文件的详细说明见 [下文](#build_script_details)）。
 
-To setup the development environment:
+要设置开发环境, 请执行以下操作:
 
-1. Install [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
-2. Open the bash shell. 
-3. Download the **windows_bash_nuttx.sh**: ```wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh```
+1. 在Windows 10上启用、安装 [Bash on Windows](https://github.com/Microsoft/BashOnWindows)。
+2. 打开 bash 命令行界面。 
+3. 下载 **windows_bash_nuttx.sh** 脚本文件: ```wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh```
 4. Run the script using the command below (acknowledging any prompts as required): 
         sh
         source windows_bash_nuttx.sh
