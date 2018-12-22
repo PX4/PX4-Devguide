@@ -8,18 +8,18 @@ Windows 平台开发者可以在运行Linux的虚拟机中运行 PX4 工具链�
 
 虽然使用虚拟机进行开发环境的安装、测试非常简单，但用户们仍应知晓：
 
-1. Firmware building will be slower than native building on Linux.
-2. The JMAVSim frame rate be much slower than on native Linux. In some cases the vehicle may crash due to issues related to insufficient VM resources.
-3. Gazebo and ROS can be installed, but are unusably slow.
+1. 固件的编译速度比原生 Linux 要更慢一些。
+2. JMAVSim 模拟器的帧率比原生 Linux更低。 虚拟机运行资源不足可能导致特定情况下无人机坠毁。
+3. 可以安装 Gazebo 和 ros，但运行速度非常慢。
 
-## Instructions
+## 操作说明
 
-There are multiple ways to setup a VM which is capable of executing the PX4 environment on your system. This guide walks you through a VMWare setup. VMWare performance is acceptable for basic usage (building Firmware) but not for running ROS or Gazebo.
+有很多种方法在你的系统上设定一个可以运行 PX4 开发环境的虚拟机。 本指南将引导你使用 VMWare 完成虚拟机的设置。 VMWare 虚拟机的表现于基本使用 (构建固件) 是可以接受的，但对于运行 ROS 和 Gazebo 来说则不可接受。
 
-1. Download [VMWare Player Freeware](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)
-2. Install it on your Windows system
-3. Download the desired version of [Ubuntu Desktop ISO Image](https://www.ubuntu.com/download/desktop). (see [Linux Instructions Page](../setup/dev_env_linux.md) for recommended Ubuntu version).
-4. Open *VMWare Player* and select the option to create a new virtual machine
+1. 下载 [VMWare Player Freeware](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)。
+2. 将其安装在 Windows 系统上。
+3. 下载所需版本的 < 0>Ubuntu Desktop ISO 镜像文件 </0 >。 (参阅 [Linux Instructions Page](../setup/dev_env_linux.md) 以获取推荐的 Ubuntu 版本)。
+4. 打开 *VMWare Player* 并选择创建新虚拟机的选项。
 5. In the VM creation wizard choose the downloaded Ubuntu ISO image as your installation medium and will automatically detect the operating system you want to use
 6. Also in the wizard, select the resources you want to allocate to your virtual machine while it is running. Allocate as much memory and as many CPU cores as you can without rendering your host Windows system unusable.
 7. Run your new VM at the end of the wizard and let it install Ubuntu following the setup instructions. Remember all settings are only for within your host operating system usage and hence you can disable any screen saver and local workstation security features which do not increase risk of a network attack.
