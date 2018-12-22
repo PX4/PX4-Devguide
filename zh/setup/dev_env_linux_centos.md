@@ -1,4 +1,4 @@
-# CentOS 平台下的开发环境搭建
+# Centos 上的开发环境
 
 > **Note** These instructions have not been tested with recent builds of PX4. We hope to provide fully tested instructions with the supported toolchain in the near future.
 
