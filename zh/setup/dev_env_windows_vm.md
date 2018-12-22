@@ -1,12 +1,12 @@
-# Windows Virtual Machine-Hosted Toolchain
+# Windows 平台基于虚拟机的工具链
 
-> **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.
+> **注意：** [Windows Cygwin 工具链](../setup/dev_env_windows_cygwin.md) 是Windows平台唯一获得官方支持的开发环境。
 
-Windows developers can run the PX4 toolchain in a virtual machine (VM) with Linux as the guest operating system. After setting up the virtual machine, the installation and setup of PX4 within the VM is exactly the same as on a native Linux computer.
+Windows 平台开发者可以在运行Linux的虚拟机中运行 PX4 工具链。 设置好虚拟机后，在虚拟机内进行 PX4 开发环境的安装、设置的流程与原生 Linux 电脑没有任何差别。
 
-> **Tip** Allocate as many CPU cores and memory resources to the VM as possible.
+> **提示：**尽量为虚拟机分配尽更多的 cpu 内核和内存资源。
 
-While using a VM is a very easy way to set up and test an environment for building firmware, users should be aware:
+虽然使用虚拟机进行开发环境的安装、测试非常简单，但用户们仍应知晓：
 
 1. Firmware building will be slower than native building on Linux.
 2. The JMAVSim frame rate be much slower than on native Linux. In some cases the vehicle may crash due to issues related to insufficient VM resources.
