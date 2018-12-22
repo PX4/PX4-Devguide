@@ -18,7 +18,7 @@
 > 
 > Enable MAVLink on the serial port that you connect to the companion computer (see [Companion computer setup](../companion_computer/pixhawk_companion.md)).
 > 
-> ## Hardware setup
+> ## 硬件安装
 > 
 > Usually, there are three ways of setting up offboard communication.
 > 
