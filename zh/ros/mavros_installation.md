@@ -82,7 +82,7 @@ $ wstool init ~/catkin_ws/src
         ./src/mavros/mavros/scripts/install_geographiclib_datasets.sh
         
 
-5. Build source
+5. 构建源码
     
         catkin build
         
