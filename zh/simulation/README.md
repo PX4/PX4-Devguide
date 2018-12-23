@@ -1,4 +1,4 @@
-# Simulation
+# 仿真
 
 Simulators allow PX4 flight code to control a computer modeled vehicle in a simulated "world". You can interact with this vehicle just as you might with a real vehicle, using *QGroundControl*, an offboard API, or a radio controller/gamepad.
 
@@ -8,7 +8,7 @@ PX4 supports both *Software In the Loop (SITL)* simulation, where the flight sta
 
 Information about available simulators and how to set them up are provided in the next section. The other sections provide general information about how the simulator works, and are not required to *use* the simulators.
 
-## Supported Simulators
+## 支持的仿真器
 
 The following simulators work with PX4 for HITL and/or SITL simulation.
 
