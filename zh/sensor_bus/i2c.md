@@ -1,16 +1,16 @@
-# I2C Bus Overview
+# I2C 总线概述
 
-I2C is a packet-switched serial communication protocol that allows multiple master devices to connect to multiple slave devices using only 2 wires per connection. It is intended for attaching lower-speed peripheral ICs to processors and microcontrollers in short-distance, intra-board communication.
+I2C 是一种分组交换串行通信协议，允许多个主设备连接到多个从属设备，每个连接只需使用2根电线。 它用于在短距离、板内通信中将低速外设 IC 连接到处理器和微控制器。
 
-Pixhawk/PX4 support it for:
+Pixhawk/PX4 支持：
 
-* Connecting off board components that require greater data rates than provided by a strict serial UART: e.g. rangefinders.
-* Compatibility with peripheral devices that only support I2C.
-* Allowing multiple devices to attach to a single bus (useful for conserving ports). For example, LEDs, Compass, rangefinders etc.
+* 连接需要比严格的串行 UART 更高数据速率的板载组件：例如测距仪。
+* 与仅支持 I2C 的外围设备兼容。
+* 允许多个设备连接到单个总线（有效保护端口）。 例如，LED、指南针、测距仪等。
 
-> **Tip** IMUs (accelerometers/gyroscopes) should not be attached via I2C (typically the [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus) bus is used). The bus is not fast enough even with a single device attached to allow vibration filtering (for instance), and the performance degrades further with every additional device on the bus.
+> **Tip** IMU（加速度计/陀螺仪）不应通过 I2C 连接（通常使用 [SPI](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus) 总线）。 即使连一个设备可以进行振动过滤（实例），总线的速度也不够快，并且总线上的每一个额外设备都会进一步降低性能。
 
-## Integrating I2C Devices
+## 集成 I2C 设备
 
 Drivers should `#include <drivers/device/i2c.h>` and then provide an implementation of the abstract base class `I2C` defined in **I2C.hpp** for the target hardware (i.e. for NuttX [here](https://github.com/PX4/Firmware/blob/master/src/drivers/device/nuttx/I2C.hpp)).
 
