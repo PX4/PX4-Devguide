@@ -1,4 +1,4 @@
-# Embedded Debugging
+# 嵌入式调试
 
 The autopilots running PX4 support debugging via GDB or LLDB.
 
