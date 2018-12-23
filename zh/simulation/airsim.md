@@ -4,4 +4,4 @@ AirSim 是一款开源、跨平台的无人机仿真器，基于虚幻引擎开�
 
 文档的主要切入点是 [Github AirSim README](https://github.com/Microsoft/AirSim/blob/master/README.md)。
 
-The main entry point for documentation on working with PX4 is [PX4 Setup for AirSim](https://github.com/Microsoft/AirSim/blob/master/docs/px4_setup.md) (covering both HITL and SITL).
+使用 PX4 的文档主要切入点为 [PX4 Setup for AirSim](https://github.com/Microsoft/AirSim/blob/master/docs/px4_setup.md)（涵盖 HITL 与 SITL）。
