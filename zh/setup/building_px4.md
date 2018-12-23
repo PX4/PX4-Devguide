@@ -150,7 +150,7 @@ Rebooting.
 
 ## 其他飞控板
 
-The following boards have more complicated build and/or deployment instructions.
+下列飞控板有一些更复杂的构建和部署说明。
 
 ### Raspberry Pi 2/3
 
