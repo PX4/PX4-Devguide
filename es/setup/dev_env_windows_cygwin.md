@@ -62,52 +62,44 @@ Continúe en las [instrucciones que detallan cómo compilar PX4](../setup/buildi
 
 ## Instrucciones de uso {#usage_instructions}
 
-El directorio de instalación (por defecto: **C:\PX4**) contiene scripts batch para iniciar las ventanas de la consola e inicar diferentes IDEs dentro del entorno de la toolchain Cygwin. La lista completa de scripts proporcionados es:
+The installation directory (default: **C:\PX4**) contains a batch script for launching the PX4 SITL (linux like) bash console: **run-console.bat**
 
-* **run-console.bat** - iniciar la consola de bash POSIX (tipo linux).
-* **run-eclipse.bat** - iniciar la compilación en [eclipse portable para C++ IDE](http://www.eclipse.org/downloads/eclipse-packages/).
-* **run-vscode.bat** - Inicia el [IDE de Visual Studio Code](https://code.visualstudio.com/) (esto debe ser instalado por separado) desde su directorio de instalación por defecto: `C:\Program Files\Microsoft VS Code`
+> **Tip** The [Manual Setup](#manual_setup) section explains why you need to use the script and how it all works.
 
-> **Nota** La sección de [Configuración Manual](#manual_setup) explica por qué es necesario utilizar los scripts y cómo funciona todo.
-
-<span></span>
-
-> **Nota** Puede crear accesos directos de escritorio para los scripts batch para un acceso más rápido, el instalador todavía no los crea (a partir de la versión 0.2 de la toolchain).
-
-El flujo de trabajo habitual consiste iniciar una consola de windows haciendo doble clic en el script **run-console.bat** para ejecutar manualmente comandos de terminal. Los desarrolladores que prefieran un IDE puede iniciarlo con el script correspondiente **run-XXX.bat** para editar código/ejecutar compilados.
+The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands.
 
 ### Windows & Casos especiales en Git
 
 #### Finales de linea Windows CR+LF vs Unix LF
 
-Recomendamos forzar los finales de estilo LF Unix para cada repositorio en lo que se está trabajando usando esta toolchain (y usa un editor que los mantenga al guardar los cambios - por ejemplo, Eclipse o VS Code). También funciona con terminaciones CR+LF extraídos localmente, pero hay casos en Cygwin (por ejemplo, ejecución de scripts de shell) que requieren terminaciones de línea de Unix (de lo contrario se obtienen errores como `$' \r': comando no encontrado.`). Por suerte git puede hacer esto por usted al ejecutar los dos comandos en el directorio raíz de tu repo:
+We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
 
     git config core.autocrlf false
     git config core.eol lf
     
 
-Si trabaja con este toolchain en múltiples repositorios también puede establecer estas dos configuraciones a nivel global para su máquina:
+If you work with this toolchain on multiple repositories you can also set these two configurations globally for your machine:
 
     git config --global ...
     
 
-No es recomendable porque puede afectar a cualquier otro uso de git (sin relación) en su equipo Windows.
+This is not recommended because it may affect any other (unrelated) git use on your Windows machine.
 
 #### Bit de permisos de ejecución Unix
 
-En Unix hay una bandera en los permisos de cada archivo que le dice al SO cuándo está permitida o no la ejecución del archivo. *git* a través de Cygwin soporta y está preparado para ese bit (incluso pensando que el sistema de archivos Windows NTFS no lo usa). Esto resulta a veces en que *git* encuentre diferencias "falso-positivo" en los permisos. El diff resultante sería algo como esto:
+Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
 
     diff --git ...
     old mode 100644
     new mode 100755
     
 
-Recomendamos deshabilitar globalmente la comprobación de permisos en Windows para evitar el problema:
+We recommend globally disabling the permission check on Windows to avoid the problem:
 
     git config --global core.fileMode false # deshabilita el bit de comprobación de ejecución globalmente para la máquina
     
 
-Y para repositorios existentes que tienen este problema causado por una configuración local, agregar también:
+For existing repositories that have this problem caused by a local configuration, additionally:
 
     git config --unset core.filemode # elimina la opción local para este repositorio de aplicarlo globalmente
     git submodule foreach --recursive git config --unset core.filemode # elimina la opción local para todos los submódulos
@@ -117,24 +109,24 @@ Y para repositorios existentes que tienen este problema causado por una configur
 
 ### Features / Issues {#features}
 
-Se sabe que funcionan las siguientes funcionalidades (versión 2.0):
+The following features are known to work (version 2.0):
 
-* Compilar y ejecutar SITL con jMAVSim con un rendimiento significativamente mejor que una MV (genera un binario nativo de windows **px4.exe**).
-* Compilar y cargar compilaciones NuttX (por ejemplo: px4_fmu-v2 and px4_fmu-v4)
-* Comprobar estilo con *astyle* (soporta el comando: `make format`)
-* Autocompletado de linea de comandos
-* ¡Instalador no-invasivo! El programa de instalación NO afecta a tu sistema ni a la ruta global (sólo modifica el directorio de instalación seleccionado, por ejemplo, **C:\PX4** y utiliza una ruta de acceso local temporal).
-* El instalador puede actualizar a una nueva versión manteniendo los cambios personales dentro de la carpeta de la toolchain
+* Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
+* Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
+* Style check with *astyle* (supports the command: `make format`)
+* Command line auto completion
+* Non-invasive installer! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4** and uses a temporary local path).
+* The installer supports updating to a new version keeping your personal changes inside the toolchain folder
 
-Omisiones:
+Omissions:
 
-* Simulación: Gazebo y ROS no son compatibles
-* Sólo compilaciones NuttX y JMAVSim/SITL son compatibles.
-* [Problemas conocidos / informe de su problema](https://github.com/orgs/PX4/projects/6)
+* Simulation: Gazebo and ROS are not supported
+* Only NuttX and JMAVSim/SITL builds are supported.
+* [Known problems / Report your issue](https://github.com/orgs/PX4/projects/6)
 
 ### Instalación Shell Script {#script_setup}
 
-También puede instalar el entorno usando scripts de shell en el proyecto de Github.
+You can also install the environment using shell scripts in the Github project.
 
 1. Asegúrese de que tener [Git para Windows](https://git-scm.com/download/win) instalado.
 2. Clone el repositorio https://github.com/PX4/windows-toolchain en la ubicación que desea instalar el toolchain. La nomenclatura y ubicación predeterminada se logra abriendo `Git Bash` y ejecutando:
@@ -148,9 +140,9 @@ También puede instalar el entorno usando scripts de shell en el proyecto de Git
 
 ### Manual de instalación (para desarrolladores de Toolchain) {#manual_setup}
 
-Esta sección describe cómo configurar la toolchain de Cygwin manualmente por ti mismo mientras destaca los correspondientes scripts desde el repo de instalación basado en script. Los resultados deberían ser los mismos usando los scripts o el instalador de MSI.
+This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 
-> **Nota** La toolchain va mejorando y por lo tanto, estas instrucciones no podrían cubrir cada detalle de todos los cambios futuros.
+> **Note** The toolchain gets maintained and hence these instructions might not cover every detail of all the future changes.
 
 1. Cree las *carpetas*: **C:\PX4**, **C:\PX4\toolchain** y **C:\PX4\home**
 2. Descargar el archivo *instalador Cygwin* [setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe) desde la [Web oficial de Cygwin](https://cygwin.com/install.html)
@@ -158,7 +150,7 @@ Esta sección describe cómo configurar la toolchain de Cygwin manualmente por t
 4. En el asistente elija instalar en la carpeta: **C:\PX4\toolchain\cygwin64**
 5. Seleccione instalar el Cygwin base por defecto y la última versión disponible de los siguientes paquetes adicionales:
 
-* **Categoría: Packagename**
+* **Category:Packagename**
 * Devel:cmake (3.3.2 gives no deprecated warnings, 3.6.2 works but has the warnings)
 * Devel:gcc-g++
 * Devel:git
@@ -166,7 +158,7 @@ Esta sección describe cómo configurar la toolchain de Cygwin manualmente por t
 * Devel:ninja
 * Devel:patch
 * Editors:xxd
-* Editors:nano (a no ser que seas un pro en vim)
+* Editors:nano (unless you're the vim pro)
 * Python:python2
 * Python:python2-pip
 * Python:python2-numpy
@@ -178,17 +170,17 @@ Esta sección describe cómo configurar la toolchain de Cygwin manualmente por t
 * Shells:bash-completion
 * Web:wget
     
-    > **Nota** No seleccione tantos paquetes como sea posible que no estén en esta lista, hay algunos que entran en conflicto e interrumpe la compilación.
+    > **Note** Do not select as many packages as possible which are not on this list, there are some which conflict and break the builds.
     
     <span></span>
     
-    > **Note** Eso es lo que hace [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat).
+    > **Note** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
 
 1. Escribir o copiar los **scripts de bash** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) y [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
     
-    La razón para iniciar todas las herramientas de desarrollo a través de los script batch preparados es que preconfiguran el programa al inicio para usar el entorno Cygwin portable dentro de la carpeta de la toolchain. Esto se hace llamando siempre llamando primero a los scripts [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) y la aplicación deseada como la consola después de eso.
+    The reason to start all the development tools through the prepared batch script is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. Esto se hace llamando siempre llamando primero a los scripts [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) y la aplicación deseada como la consola después de eso.
     
-    El script de [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) localmente establece variables de entorno para el directorio de raíz del espacio de trabajo `PX4_DIR`, todas las ubicaciones de binarios, `PATH` y el directorio home del entorno unix `HOME`.
+    The script [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
 
 2. Añade los **paquetes de python** necesarios para la configuración abriendo la consola de la toolchain de Cygwin (doble clic en **run-console.bat**) y ejecutandolo
     
@@ -226,13 +218,13 @@ Esta sección describe cómo configurar la toolchain de Cygwin manualmente por t
             cd /c/toolchain/genromfs
             git clone https://github.com/chexum/genromfs.git genromfs-src
 
-* Compílalo con: 
+* Compile it with: 
     
         cd genromfs-src
          make all
     
-    * Copia el binario resultante **genromfs.exe** un nivel de carpeta por encima a: **C:\PX4\toolchain\genromfs**
+    * Copy the resulting binary **genromfs.exe** one folder level out to: **C:\PX4\toolchain\genromfs**
     
-    > **Nota** Esto es lo que hace la toolchain en: [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat).
+    > **Note** This is what the toolchain does in: [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat).
 
 1. Asegúrate de que todas las carpetas de binarios de todos los componentes instalados son correctamente listados en la variable `PATH` configurada por [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
