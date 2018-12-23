@@ -62,19 +62,11 @@ Continue next to [the detailed instructions on how to build PX4](../setup/buildi
 
 ## Usage Instructions {#usage_instructions}
 
-The installation directory (default: **C:\PX4**) contains batch scripts for launching console windows and starting different IDEs inside the Cygwin toolchain environment. The full list of scripts provided is.
+The installation directory (default: **C:\PX4**) contains a batch script for launching the PX4 SITL (linux like) bash console: **run-console.bat**
 
-* **run-console.bat** - Start the POSIX (linux like) bash console.
-* **run-eclipse.bat** - Start the build in portable [eclipse for C++ IDE](http://www.eclipse.org/downloads/eclipse-packages/).
-* **run-vscode.bat** - Start the [Visual Studio Code IDE](https://code.visualstudio.com/) (this must be installed separately) from its default install directory: `C:\Program Files\Microsoft VS Code`
+> **Tip** The [Manual Setup](#manual_setup) section explains why you need to use the script and how it all works.
 
-> **Tip** The [Manual Setup](#manual_setup) section explains why you need to use the scripts and how it all works.
-
-<span></span>
-
-> **Tip** You can create desktop shortcuts to the batch scripts to have easier access, the installer does not yet create them for you (as of toolchain version 0.2).
-
-The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands. Developers who prefer an IDE can start it with the corresponding **run-XXX.bat** script to edit code/run builds.
+The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands.
 
 ### Windows & Git Special Cases
 
@@ -186,7 +178,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 
 1. Write up or copy the **batch scripts** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) and [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
     
-    The reason to start all the development tools through the prepared batch scripts is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. This is done by always first calling the script [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) and the desired application like the console after that.
+    The reason to start all the development tools through the prepared batch script is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. This is done by always first calling the script [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) and the desired application like the console after that.
     
     The script [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
 
