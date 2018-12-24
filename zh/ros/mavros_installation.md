@@ -70,7 +70,7 @@ $ wstool init ~/catkin_ws/src
             # just add '--deps' to the above scripts, E.g.:
             #   rosinstall_generator --upstream mavros --deps | tee -a /tmp/mavros.rosinstall
 
-3. Create workspace & deps
+3. 创建工作区 & 安装依赖
     
         wstool merge -t src /tmp/mavros.rosinstall
         wstool update -t src -j4
