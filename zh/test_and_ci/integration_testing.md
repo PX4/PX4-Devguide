@@ -90,12 +90,12 @@ if __name__ == '__main__':
 #### 2.) Run the new test only
 
 ```sh
-# Start simulation
+# 开始仿真
 cd <Firmware_clone>
 source integrationtests/setup_gazebo_ros.bash $(pwd)
 roslaunch px4 mavros_posix_sitl.launch
 
-# Run test (in a new shell):
+# 运行测试（在新的 shell 中）：
 cd <Firmware_clone>
 source integrationtests/setup_gazebo_ros.bash $(pwd)
 rosrun px4 mavros_new_test.py
