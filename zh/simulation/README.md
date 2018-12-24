@@ -1,8 +1,8 @@
 # 仿真
 
-在仿真领域中模拟器允许 px4 飞行代码来控制计算机建模工具。 您可以与此工具进行交互, 就像您可以使用 *QGroundControl*、非机载 api 或无线电控制器/游戏板与真正的车辆进行交互一样。
+在仿真领域中模拟器允许 px4 飞行代码来控制计算机建模工具。 您可以与此工具进行交互，就像您可以使用 *QGroundControl*、非机载 api 或无线电控制器/游戏板与真正的车辆进行交互一样。
 
-> **Tip**仿真是一种快速、简单、最重要的方法, *safe* 的方法来测试对 px4 代码的更改, 然后再尝试在现实世界中飞行。 It is also a good way to start flying with PX4 when you haven't yet got a vehicle to experiment with.
+> **Tip**仿真是一种快速、简单、最重要的方法，*safe* 的方法来测试对 px4 代码的更改，然后再尝试在现实世界中飞行。 当你还没有飞行器可以试验的时候，使用 px4 来模拟飞行的就是一种好方法。
 
 PX4 supports both *Software In the Loop (SITL)* simulation, where the flight stack runs on computer (either the same computer or another computer on the same network) and *Hardware In the Loop (HITL)* simulation using a simulation firmware on a real flight controller board.
 
