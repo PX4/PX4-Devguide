@@ -150,7 +150,7 @@
 4. 在安装向导中选择安装到文件夹中: ** C:\PX4\toolchain\cygwin64 \ **
 5. 选择安装默认的 Cygwin 基础包和以下附加包的最新可用版本:
 
-* **Category:Packagename**
+* **目录:安装包名**
 * Devel:cmake (3.3.2 正常工作无告警, 3.6.2有告警但能够正常工作)
 * Devel:gcc-g++
 * Devel:git
