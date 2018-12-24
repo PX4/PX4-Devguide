@@ -1,4 +1,4 @@
-# PX4 Continuous Integration
+# PX4 持续集成
 
 PX4 builds and testing are spread out over multiple continuous integration services.
 
