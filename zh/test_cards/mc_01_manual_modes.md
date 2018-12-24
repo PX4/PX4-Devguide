@@ -1,12 +1,12 @@
-# Test MC_01 - Manual Modes
+# 测试 MC_01 - 手动模式
 
-## Arm and Take-off
+## 解锁并起飞
 
 ❏ Set flight mode to stabilize and Arm
 
 ❏ Take-off by raising the throttle
 
-## Flight
+## 飞行
 
 ❏ Stabilized
 
