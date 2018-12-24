@@ -62,17 +62,17 @@
 
 ## 使用说明 {#usage_instructions}
 
-The installation directory (default: **C:\PX4**) contains a batch script for launching the PX4 SITL (linux like) bash console: **run-console.bat**
+安装目录 （默认位置： **C:\PX4**） 用于开启PX4 SITL（类Linux）命令行窗口的脚本文件： **run-console.bat**
 
-> **Tip** The [Manual Setup](#manual_setup) section explains why you need to use the script and how it all works.
+> ** 提示 **[ Manual Setup ](#manual_setup) 部分解释了为什么需要使用该脚本以及它的工作原理。
 
-The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands.
+普遍的工作流程都通过双击 ** run-console. bat ** 脚本来手动运行终端命令来启动控制台窗口。
 
 ### Windows & Git 特殊情况
 
 #### Windows CR + LF 对比 Unix LF 行结尾
 
-We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
+我们建议您所有的代码仓库都强制使用Unix的LF行结尾，并以此运行工具链（并且使用编辑器可以按照此格式保存您所做的修改 - 譬如 Eclipse 或者 VS Code）。 Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
 
     git config core.autocrlf false
     git config core.eol lf
