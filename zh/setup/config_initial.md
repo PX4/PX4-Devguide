@@ -1,4 +1,4 @@
-# Initial Setup & Configuration
+# 初始配置
 
 We recommend that developers obtain the basic equipment described below (or similar) and use a "default" [airframe](../airframes/airframe_reference.md) configuration.
 
