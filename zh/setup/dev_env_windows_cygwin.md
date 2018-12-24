@@ -111,18 +111,18 @@
 
 以下已知正常功能 (版本 2.0):
 
-* Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
-* Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
-* Style check with *astyle* (supports the command: `make format`)
-* Command line auto completion
-* Non-invasive installer! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4** and uses a temporary local path).
-* The installer supports updating to a new version keeping your personal changes inside the toolchain folder
+* 使用 jMAVSim 编译和运行 SITL, 其性能明显优于虚拟机 (Cygwin会生成一个本机 windows 二进制文件 ** px4.exe **)。
+* 编译和上传 NuttX 二进制文件（例如：px4_fmu-v2 和 px4_fmu-v4）。
+* 使用 * astyle * 进行格式检查 (支持命令: ` make format `)。
+* 命令行自动补全。
+* 绿色安装！ 安装程序不会影响您的系统和全局路径设置 (它只修改选定的安装目录, 例如 ** C:\PX4 \ ** 并使用临时本地路径变量)。
+* 安装程序支持更新到最新版本, 同时保持您的个人更改在工具链文件夹中。
 
-Omissions:
+补充:
 
-* Simulation: Gazebo and ROS are not supported
-* Only NuttX and JMAVSim/SITL builds are supported.
-* [Known problems / Report your issue](https://github.com/orgs/PX4/projects/6)
+* 仿真模拟：暂不支持Gazebo 和 ROS。
+* 仅支持 NuttX 和 JMAVSim/SITL 编译。
+* [已知问题/报告您的问题](https://github.com/orgs/PX4/projects/6)
 
 ### Shell 脚本安装 {#script_setup}
 
@@ -140,9 +140,9 @@ Omissions:
 
 ### 手动安装 (对于开发人员) {#manual_setup}
 
-This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
+本节介绍如何在从基于脚本安装目录中通过相应的脚本手动安装 Cygwin 工具链。 使用脚本进行开发环境安装的结果与使用 MSI 安装程序进行安装的结果是一致的。
 
-> **Note** The toolchain gets maintained and hence these instructions might not cover every detail of all the future changes.
+> **注意：** 因为工具链的更新，下述指令可能无法涵盖未来所有更改的每个细节。
 
 1. 创建 * 文件夹 *: ** C:\PX4 \ **、** C:\PX4\toolchain \ ** 和 ** C:\PX4\home \ **
 2. 从 [ Cygwin 官方网站 ](https://cygwin.com/install.html) 下载 * Cygwin 安装程序 * 文件 [ official Cygwin website ](https://cygwin.com/setup-x86_64.exe)
@@ -151,7 +151,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 5. 选择安装默认的 Cygwin 基础包和以下附加包的最新可用版本:
 
 * **Category:Packagename**
-* Devel:cmake (3.3.2 gives no deprecated warnings, 3.6.2 works but has the warnings)
+* Devel:cmake (3.3.2 正常工作无告警, 3.6.2有告警但能够正常工作)
 * Devel:gcc-g++
 * Devel:git
 * Devel:make
@@ -170,11 +170,11 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 * Shells:bash-completion
 * Web:wget
     
-    > **Note** Do not select as many packages as possible which are not on this list, there are some which conflict and break the builds.
+    > **注意：** 尽量不要选择太多不在上述列表中的附加包，Cygwin源中部分附加程序包可能会引发冲突并导致编译中断。
     
     <span></span>
     
-    > **Note** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
+    > **注意：** 这就是 [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) 所做的工作。
 
 1. 编写或复制 ** 批处理脚本 ** [` run-console.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) 和 [` setup-environment-variables.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat)。
     
