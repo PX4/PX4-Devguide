@@ -1,25 +1,25 @@
-# Development Environment on Mac
+# Mac 上的开发环境
 
-MacOS is a supported development platform for PX4. The following instructions set up an environment for building:
+MacOS 是受支持的 PX4 开发平台。 根据本文的指示构建的开发环境可以用构建：
 
-* NuttX-based hardware (Pixhawk, etc.)
-* jMAVSim Smulation
-* Gazebo 8 Simulation
+* 基于 NuttX 的硬件 (Pixhawk等)
+* jMAVSim 仿真模拟
+* Gazebo 8 仿真模拟
 
-> **Tip** To build other targets see: [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets).
+> **提示：** 若需要为其他平台进行编译请参考： [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets)。
 
-## Homebrew Installation
+## Homebrew 安装
 
-The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
+Homebrew 的安装非常简单迅速：[installation instructions](https://brew.sh)。
 
 ## Common Tools
 
-After installing Homebrew, run these commands in your shell to install the common tools:
+Homebrew 安装完毕后，在你的 shell 界面输入如下命令安装 common tools：
 
 ```sh
 brew tap PX4/px4
 brew install px4-dev
-# Optional, but recommended additional simulation tools:
+# 可选，但建议安装额外的仿真模拟用工具
 brew install px4-sim
 ```
 
