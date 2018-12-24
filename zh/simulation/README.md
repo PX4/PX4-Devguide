@@ -67,19 +67,19 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 默认情况下，PX4通常使用建立的 UDP 端口与地面控制站（例如*QGroundControl*），外部 API（例如DroneCore，MAVROS）和仿真器 APIs（例如 Gazebo）进行 MAVLink 通信。 这些端口是：
 
-* 端口**14540**用于与外接 APIs 通信。 期望外接 APIs 监听此端口上的连接。
-* 端口**14550**用于与地面控制站通信。 期望 GCS 将侦听此端口上的连接。 *QGroundControl*默认侦听此端口。
-* 端口**14560**用于与外接 APIs 通信。 PX4 侦听此端口，仿真器应通过向该端口广播数据来启动通信。
+* 端口** 14540 **用于与外接 APIs 通信。 期望外接 APIs 监听此端口上的连接。
+* 端口** 14550 **用于与地面控制站通信。 期望 GCS 将侦听此端口上的连接。 *QGroundControl*默认侦听此端口。
+* 端口** 14560 **用于与外接 APIs 通信。 PX4 侦听此端口，仿真器应通过向该端口广播数据来启动通信。
 
-> **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module.
+> **注意**GCS 和外置 API 的端口设置在配置文件中，而仿真器广播端口在模拟 MAVlink 模块中硬编码．
 
-## SITL Simulation Environment
+## SITL 仿真环境
 
-The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
+下面显示了适用于任何受支持仿真器的典型 SITL 仿真环境。 系统的不同部分通过 UDP 连接，并且可以在同一台计算机上运行，也可以在同一网络上的另一台计算机上运行。
 
-* PX4 uses a simulation-specific module to listen on UDP port 14560. Simulators connect to this port, then exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. PX4 on SITL and the simulator can run on either the same computer or different computers on the same network.
-* PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like DroneCore or ROS (which listen on port 14540).
-* A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
+* PX4 使用一个特定仿真的模块来侦听 UDP 端口 14560。 模拟器连接到此端口，然后使用上面描述的 [Simulator mavlink API](#simulator-mavlink-api) 交换信息。 SITL 和模拟器上的 PX4 可以在同一台计算机上运行，也可以在同一网络上运行不同的计算机。
+* PX4 使用普通的 MAVlink 模块连接到地面站（在 14550 号端口上侦听）和外部开发人员 APIs， 如 DroneCore 或 ROS （在 14550 端口侦听）。
+* 串行连接用于通过 *QGroundControl* 连接 Joystick/Gamepad 硬件。
 
 ![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
