@@ -14,12 +14,12 @@
   * Lenovo Thinkpad 450 (i5)，Ubuntu Linux 16.04 或者更高版本
 * 一个地面控制站设备: 
   * iPad （需要 Wifi 无线适配器）
-  * Any MacBook or Ubuntu Linux laptop (can be the development computer)
-  * Samsung Note 4 or equivalent (any recent Android tablet or phone with a large enough screen to run *QGroundControl* effectively).
-* Safety glasses
-* For multicopters - tether for more risky tests
+  * 任意 MacBook 或者 Ubuntu Linux 笔记本电脑（可使用开发用计算机兼任）
+  * Samsung Note 4 或者等效设备 （任意最近发布的 Android 平板或者有足够大屏幕可以有效运行 *QGroundControl* 的手机）。
+* 安全眼镜
+* 针对多轴无人机 - 束缚绳（用于高风险的飞行测试）
 
-## Vehicle Configuration
+## 载具配置
 
 > **Tip** *QGroundControl* for a **desktop OS** is required for vehicle configuration. You should use (and regularly update) the daily build in order to take advantage of the latest features in PX4.
 
