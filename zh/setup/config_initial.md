@@ -19,12 +19,12 @@
 * 安全眼镜
 * 针对多轴无人机 - 束缚绳（用于高风险的飞行测试）
 
-## 载具配置
+## 飞机配置
 
-> **Tip** *QGroundControl* for a **desktop OS** is required for vehicle configuration. You should use (and regularly update) the daily build in order to take advantage of the latest features in PX4.
+> **提示：** 进行飞机配置时需要使用运行在 **桌面操作系统** 上的 *QGroundControl* 。 您应该使用 (并定期更新) daily build版本的 QGroundControl，以便使用 PX4 的最新功能。
 
-To configure the vehicle:
+飞机配置流程：
 
-1. Download the [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) for your development platform.
-2. [Basic Configuration](https://docs.px4.io/en/config/) (PX4 User Guide) explains how to to perform basic configuration. 
-3. [Parameter Configuration](https://docs.px4.io/en/advanced_config/parameters.html) (PX4 User Guide) explains how you can find and modify individual parameters.
+1. 下载并安装 [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html)。
+2. < 0>Basic Configuration</0 > （PX4 用户指南）对如何执行飞机基本配置进行了说明。 
+3. [Parameter Configuration](https://docs.px4.io/en/advanced_config/parameters.html) （PX4 用户指南）说明了如何查找和修改单个的参数。
