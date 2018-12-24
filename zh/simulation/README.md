@@ -4,9 +4,9 @@
 
 > **Tip**仿真是一种快速、简单、最重要的方法，*safe* 的方法来测试对 px4 代码的更改，然后再尝试在现实世界中飞行。 当你还没有飞行器可以试验的时候，使用 px4 来模拟飞行的就是一种好方法。
 
-PX4 supports both *Software In the Loop (SITL)* simulation, where the flight stack runs on computer (either the same computer or another computer on the same network) and *Hardware In the Loop (HITL)* simulation using a simulation firmware on a real flight controller board.
+Px4 支持 *软件在环(SITL)</0 > 仿真，其中飞行堆栈在计算机上运行 (同一台计算机或同一网络上的另一台计算机)，也支持 *硬件在环(HITL)</0 > 仿真，即使用真实飞行电路板来运行仿真。</p> 
 
-Information about available simulators and how to set them up are provided in the next section. The other sections provide general information about how the simulator works, and are not required to *use* the simulators.
+下一节将提供有关可用仿真器以及如何配置仿真仿真器的信息。 其他部分提供了有关仿真器如何工作的普通信息, 并且不需要 *use* 模拟器。
 
 ## 支持的仿真器
 
