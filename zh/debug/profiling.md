@@ -6,7 +6,7 @@ This section describes how to assess performance of the PX4 system by means of p
 
 PMSP is a shell script that operates by interrupting execution of the firmware periodically in order to sample the current stack trace. Sampled stack traces are appended into a text file. Once sampling is finished (which normally takes about an hour or more), the collected stack traces are *folded*. The result of *folding* is another text file that contains the same stack traces, except that all similar stack traces (i.e. those that were obtained at the same point in the program) are joined together, and the number of their occurrences is recorded. The folded stacks are then fed into the visualization script, for which purpose we employ [FlameGraph - an open source stack trace visualizer](http://www.brendangregg.com/flamegraphs.html).
 
-## Basic Usage
+## 基本用法
 
 Basic usage of the profiler is available through the build system. For example, the following command builds and profiles px4_fmu-v4pro target with 10000 samples (fetching *FlameGraph* and adding it to the path as needed).
 
@@ -15,7 +15,7 @@ Basic usage of the profiler is available through the build system. For example, 
 
 For more control over the build process, including setting the number of samples, see the [Implementation](#implementation).
 
-## Understanding the Output
+## 理解输出
 
 A screenshot of an example output is provided below (note that it is not interactive here):
 
@@ -23,7 +23,7 @@ A screenshot of an example output is provided below (note that it is not interac
 
 On the flame graph, the horizontal levels represent stack frames, whereas the width of each frame is proportional to the number of times it was sampled. In turn, the number of times a function ended up being sampled is proportional to the duration times frequency of its execution.
 
-## Possible Issues
+## 可能的问题
 
 The script was developed as an ad-hoc solution, so it has some issues. Please watch out for them while using it:
 
@@ -59,6 +59,6 @@ As one might suspect, `--append` with `--nsamples=0` will instruct the script to
 
 Please read the script for a more in depth understanding of how it works.
 
-## Credits
+## 鸣谢
 
 Credits for the idea belong to [Mark Callaghan and Domas Mituzas](https://dom.as/2009/02/15/poor-mans-contention-profiling/).
