@@ -6,7 +6,7 @@ It is often necessary during software development to output individual important
 
 MAVLink debug messages are translated to/from uORB topics. In order to send or receive a MAVLink debug message, you have to respectively publish or subscribe to the corresponding topic. Here is a table that summarizes the mapping between MAVLink debug messages and uORB topics:
 
-| MAVLink message     | uORB topic        |
+| MAVLink 消息          | uORB topic        |
 | ------------------- | ----------------- |
 | NAMED_VALUE_FLOAT | debug_key_value |
 | DEBUG               | debug_value       |
@@ -31,7 +31,7 @@ All required to set up a debug publication is this code snippet. First add the h
 Then advertise the debug value topic (one advertisement for different published names is sufficient). Put this in front of your main loop:
 
 ```C
-/* advertise debug value */
+/* 广播调试值 */
 struct debug_key_value_s dbg = { .key = "velx", .value = 0.0f };
 orb_advert_t pub_dbg = orb_advertise(ORB_ID(debug_key_value), &dbg);
 ```
@@ -73,7 +73,7 @@ px4_pollfd_struct_t fds[] = {
 };
 
 while (true) {
-    /* wait for debug_key_value for 1000 ms (1 second) */
+    /* 等待 debug_key_value 等待时间 1000 ms (1 秒) */
     int poll_ret = px4_poll(fds, 1, 1000);
 
     [...]
@@ -84,13 +84,13 @@ When a new message is available on the `debug_key_value` topic, do not forget to
 ```C
     [...]
     if (fds[0].revents & POLLIN) {
-        /* obtained data for the first file descriptor */
+        /* 获取数据用于第一文件描述符 */
         struct debug_key_value_s dbg;
 
-        /* copy data into local buffer */
+        /* 拷贝数据至本地缓存 */
         orb_copy(ORB_ID(debug_key_value), debug_sub_fd, &dbg);
 
-        /* filter message based on its key attribute */
+        /* 基于 key attribute 的消息过滤器 */
         if (strcmp(_sub_debug_vect.get().key, "velx") == 0) {
             PX4_INFO("velx:\t%8.4f", dbg.value);
         }
