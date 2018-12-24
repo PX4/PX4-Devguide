@@ -1,4 +1,4 @@
-# Development Environment on ArchLinux
+# ArchLinux 上的开发环境
 
 > **Note** These instructions allow you to build PX4 (without RTPS) for NuttX targets, using an unsupported version of GCCE from the package manager. The instructions have been tested on Antergos (an Arch Linux based distribution) as it is easier to set up than Arch Linux. We hope to provide fully tested instructions with the supported toolchain in the near future.
 
@@ -32,12 +32,12 @@ source ./archlinux_install_script.sh
 
 ## Manual Installation
 
-### Common Dependencies
+### 通用依赖
 
 To install the dependencies manually, enter the following lines into a terminal.
 
 ```sh
-# 所有目标的共同依赖包
+# 所有目标的通用依赖包
 sudo pacman -Sy --noconfirm \
     base-devel make cmake ccache git \
     ninja python-pip tar unzip zip vim wget
@@ -57,7 +57,7 @@ rm genromfs-0.5.2.tar.gz genromfs-0.5.2 -r
 >     sh
 >       yaourt -S genromfs
 
-### GCCE Compiler
+### GCCE 编译器
 
 A GCC compiler is required to build for NuttX targets. Enter the command below to install the latest version from the package manager (unsupported).
 
