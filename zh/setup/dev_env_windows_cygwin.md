@@ -39,7 +39,7 @@
     > **注意**只需要克隆一次 如果你在安装程序最后选择了*clone the PX4 repository, build and run simulation with jMAVSim*，则可以跳过这一步。
     
     ```bash
-    克隆PX4 Firmware仓库到home目录& 同时并行加载子模块
+    # 克隆 PX4 Firmware 仓库到 home 目录 & 同时并行加载子模块
     git clone --recursive -j8 https://github.com/PX4/Firmware.git
     ```
     
@@ -51,7 +51,7 @@
     # 进入Firmware仓库目录
     cd Firmware 
     # 使用JMAVSim编译并运行SITL模拟器来验证 
-    make posix jmavsim
+    make px4_sitl jmavsim
     ```
     
     控制台将会显示：
@@ -64,13 +64,13 @@
 
 安装目录 （默认位置： **C:\PX4**） 用于开启PX4 SITL（类Linux）命令行窗口的脚本文件： **run-console.bat**
 
-> ** 提示 **[ Manual Setup ](#manual_setup) 部分解释了为什么需要使用该脚本以及它的工作原理。
+> **Tip** [Manual Setup](#manual_setup) 部分解释了为什么需要使用该脚本以及它的工作原理。
 
-普遍的工作流程都通过双击 ** run-console. bat ** 脚本来手动运行终端命令来启动控制台窗口。
+普遍的工作流程都通过双击 **run-console. bat** 脚本来手动运行终端命令来启动控制台窗口。
 
 ### Windows & Git 特殊情况
 
-#### Windows CR + LF 对比 Unix LF 行结尾
+#### Windows CR+LF 对比 Unix LF 行结尾
 
 我们建议您所有的代码仓库都强制使用Unix的LF行结尾，并以此运行工具链（并且使用编辑器可以按照此格式保存您所做的修改 - 譬如 Eclipse 或者 VS Code）。 虽然编译以 CR+LF 行为结尾的本地源代码也是可行的， 但 Cygwin在某些情况下（如执行 shell 脚本）仍要求文件以 Unix 行结尾 (否则你会收到类似 `$'\r': Command not found.` 的错误信息）。 幸运的是, 只需要在代码仓库的根目录执行以下两条命令就可以让 git 自动为你完成此操作：
 
@@ -191,7 +191,7 @@
     
     > ** 注意 **这就是 [ cygwin64/install-cygwin-pxbat ](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) 所做的工作。
 
-3. 下载 [** ARM GCC 编译器 **](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads) zip 存档, 并将内容解压缩到文件夹 ` C:\PX4\toolchain\gcc-arm `。
+3. 下载 [**ARM GCC 编译器**](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads) zip 存档，并将内容解压缩到文件夹 `C:\PX4\toolchain\gcc-arm`。
     
     > ** 注意 **这就是工具链在 [ gcc-arm/install-gcc-arm.bat ](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat) 脚本中所做的工作。
 
