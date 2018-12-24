@@ -27,9 +27,9 @@ Stack usage is calculated with stack coloring and thus is not the current usage,
 
 Dynamic heap allocations can be traced on POSIX in SITL with [gperftools](https://github.com/gperftools/gperftools).
 
-#### Install Instructions
+#### 安装说明
 
-##### Ubuntu:
+##### Ubuntu：
 
 ```bash
 sudo apt-get install google-perftools libgoogle-perftools-dev
@@ -55,14 +55,14 @@ export HEAP_PROFILE_TIME_INTERVAL=30
 
 Enter this depending on your system:
 
-##### Fedora:
+##### Fedora：
 
 ```bash
 env LD_PRELOAD=/lib64/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
 pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
-##### Ubuntu:
+##### Ubuntu：
 
 ```bash
 env LD_PRELOAD=/usr/lib/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
