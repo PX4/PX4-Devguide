@@ -42,11 +42,11 @@ The image below shows the connections on a breadboard.
 
 ![Signal inverter breadboard](../../assets/driver_sbus_signal_inverter_breadboard.png)
 
-## Source code
+## 源代码
 
 * [Firmware/src/drivers/linux_sbus](https://github.com/PX4/Firmware/tree/master/src/drivers/linux_sbus)
 
-## Usage
+## 用法
 
 The command syntax is:
 
