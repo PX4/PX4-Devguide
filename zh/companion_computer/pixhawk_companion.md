@@ -12,7 +12,7 @@ Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只�
 
 * [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) = `TELEM 2` (`MAV_1_CONFIG`总是配置为 `TELEM 2` 端口)
 * [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) = `Onboard`
-* [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) = `921600` (921600 or higher recommended for applications like log streaming or FastRTPS)
+* [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) = `921600`（建议在像日志流或FastRTPS之类的应用，使用 921600 或更高）
 
 更多信息，请参考 [MAVLink Peripherals (GCS/OSD/Companion)](https://docs.px4.io/en/peripherals/mavlink_peripherals.html)。
 
