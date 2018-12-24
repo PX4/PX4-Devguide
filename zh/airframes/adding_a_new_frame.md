@@ -77,14 +77,14 @@ fi
 设置机身框架类型（MAV_TYPE）
 
 ```bash
-# Configure this as plane
+# 配置此为固定翼
 set MAV_TYPE 1
 ```
 
 设置需要使用的混控器:
 
 ```bash
-# Set mixer
+# 设定混控
 set MIXER wingwing
 ```
 
