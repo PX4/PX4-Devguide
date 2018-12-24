@@ -20,7 +20,7 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 它具有功能强大的 3D 仿真环境, 特别适用于测试对象避障和计算机视觉。 它还可用于 [多工具仿真](../simulation/multi-vehicle-simulation.md)，通常用于 [ROS](../simulation/ros_interface.md)，这是一种用于自动控制的工具集。 
 
-**支持机型：**四旋翼 ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) 和 [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo))，六旋翼 (Typhoon h480)，[通用四旋翼 delta VTOL 无人机](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol)，尾翼，飞机，探测车，潜艇（即将推出！） 
+**支持机型： </0 >四旋翼 （[Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) 和 [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo)），六旋翼 （Typhoon h480），[通用四旋翼 delta VTOL 无人机](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol)，尾翼，飞机，探测车，潜艇 （即将推出！） </p> 
 
 [jMAVSim](../simulation/jmavsim.md) | 一个简单的多旋翼仿真器，允许在仿真机中使用 *copter* 型无人机。
 
@@ -30,9 +30,9 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 [AirSim](../simulation/airsim.md) | 提供物理和视觉逼真模拟的跨平台仿真器。 这个模拟器需要大量的资源，需要一台比这里描述的其他仿真器更强大的计算机。
 
-**支持机型: </0 >Iris (多转子模型和 x 配置中 px4 quadrotor 的配置)。</p> 
+**支持机型: </0 >Iris （多转子模型和 x 配置中 px4 quadrotor 的配置）。</p> 
 
-[XPlane](../simulation/hitl.md)(仅限海量交易日志)| 一个全面而强大的固定翼飞行仿真器，提供非常逼真的飞行模型。  
+[XPlane](../simulation/hitl.md)（仅硬件在环）| 一个全面而强大的固定翼飞行仿真器，提供非常逼真的飞行模型。  
 
 
 **支持机型： **四旋翼
@@ -51,12 +51,12 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 > **注意** PX4 的 SITL 版本使用[仿真器 mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp)来处理这些消息，而在HITL模式下的硬件构建使用[mavlink receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)。 模拟器中的传感器数据将写入 PX4 uORB 主题。 所有电机/执行器都被卡停，但内部软件可以完全正常运行。
 
-下面介绍了这些消息 (有关特定详细信息, 请参阅链接)。
+下面介绍了这些消息 （有关特定详细信息, 请参阅链接）。
 
 | 消息                                                                                                             | 方向         | 描述                                                                                                                                                                                                                                            |
 | -------------------------------------------------------------------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [MAV_MODE:MAV_MODE_FLAG_HIL_ENABLED](https://mavlink.io/en/messages/common.html#MAV_MODE_FLAG_HIL_ENABLED) | 不可用        | 使用模拟时的模式标志。 所有电机/执行器都被卡停，但内部软件可以完全正常运行。                                                                                                                                                                                                       |
-| [HIL_ACTUATOR_CONTROLS](https://mavlink.io/en/messages/common.html#HIL_ACTUATOR_CONTROLS)                    | PX4 至 Sim  | PX4 控制输出 (电机、执行器)。                                                                                                                                                                                                                            |
+| [HIL_ACTUATOR_CONTROLS](https://mavlink.io/en/messages/common.html#HIL_ACTUATOR_CONTROLS)                    | PX4 至 Sim  | PX4 控制输出 （电机、执行器）。                                                                                                                                                                                                                            |
 | [HIL_SENSOR](https://mavlink.io/en/messages/common.html#HIL_SENSOR)                                            | Sim 至 PX4  | 在 NED 体框架中以 SI 单位模拟 IMU 读数。                                                                                                                                                                                                                   |
 | [HIL_GPS](https://mavlink.io/en/messages/common.html#HIL_GPS)                                                  | Sim 至 PX4  | 模拟的 GPS RAW 传感器值。                                                                                                                                                                                                                             |
 | [HIL_OPTICAL_FLOW](https://mavlink.io/en/messages/common.html#HIL_OPTICAL_FLOW)                              | Sim 至 PX4  | 来自流量传感器的模拟光流 (例如 PX4FLOW 或光学鼠标传感器)。                                                                                                                                                                                                           |
