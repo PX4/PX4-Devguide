@@ -2,7 +2,7 @@
 
 > **Note** These instructions allow you to build PX4 (without RTPS) for NuttX targets, using an unsupported version of GCCE from the package manager. The instructions have been tested on Antergos (an Arch Linux based distribution) as it is easier to set up than Arch Linux. We hope to provide fully tested instructions with the supported toolchain in the near future.
 
-## Permissions
+## 权限
 
 The user needs to be added to the group "uucp":
 
@@ -37,15 +37,15 @@ source ./archlinux_install_script.sh
 To install the dependencies manually, enter the following lines into a terminal.
 
 ```sh
-# Common dependencies for all targets
+# 所有目标的共同依赖包
 sudo pacman -Sy --noconfirm \
     base-devel make cmake ccache git \
     ninja python-pip tar unzip zip vim wget
 
-# Install Python dependencies
+# 安装 Python 依赖包
 pip install serial empy numpy toml jinja2 pyyaml cerberus
 
-# Install genromfs
+# 安装 genromfs
 wget https://sourceforge.net/projects/romfs/files/genromfs/0.5.2/genromfs-0.5.2.tar.gz
 tar zxvf genromfs-0.5.2.tar.gz
 cd genromfs-0.5.2 && make && make install && cd ..
