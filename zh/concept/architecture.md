@@ -56,7 +56,7 @@ A **controller** is a component that takes a setpoint and a measurement or estim
 
 A **mixer** takes force commands (e.g. turn right) and translates them into individual motor commands, while ensuring that some limits are not exceeded. This translation is specific for a vehicle type and depends on various factors, such as the motor arrangements with respect to the center of gravity, or the vehicle's rotational inertia.
 
-### Middleware {#middleware}
+### 中间件 {#middleware}
 
 The [middleware](../middleware/README.md) consists primarily of device drivers for embedded sensors, communication with the external world (companion computer, GCS, etc.) and the uORB publish-subscribe message bus.
 
