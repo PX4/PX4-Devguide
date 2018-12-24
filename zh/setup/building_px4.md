@@ -462,7 +462,7 @@ cmake ../.. -G "CodeBlocks - Unix Makefiles"
 make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
 ```
 
-**VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
+**VENDOR_MODEL_VARIANT**: (也称为 `CONFIGURATION_TARGET`)
 
 - **VENDOR:** 飞控板制造商：`px4`，`aerotenna`，`airmind`，`atlflight`，`auav`，`beaglebone`，`intel`，`nxp`，`parrot`等。 Pixhawk 系列飞控板对应 `PX4`。
 - **MODEL：** *飞控板模型</1 >"模型 "：`sitl`、`fmu-v2`、`fmu-v3`、`fmu-v4`、`fmu-v5`、`navio2` 等。</li> 
