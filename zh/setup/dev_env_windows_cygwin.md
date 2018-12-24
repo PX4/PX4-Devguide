@@ -204,7 +204,7 @@
     
     > ** 注意 **这就是工具链在 [ gcc-arm/install-jdk.bat ](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/jdk/install-jdk.bat) 脚本中所做的工作。
 
-5. 下载 [** Apache Ant **](https://ant.apache.org/bindownload.cgi) zip 存档, 并将内容解压缩到文件夹 ` C:\PX4\toolchain\apache-ant `。
+5. 下载 [**Apache Ant**](https://ant.apache.org/bindownload.cgi) zip 存档, 并将内容解压缩到文件夹 `C:\PX4\toolchain\apache-ant`。
     
     > ** 提示 **请确保您没有从下载的归档文件内的文件夹中添加其他文件夹层。
     
