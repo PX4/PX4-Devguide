@@ -72,34 +72,34 @@
 
 #### Windows CR + LF 对比 Unix LF 行结尾
 
-我们建议您所有的代码仓库都强制使用Unix的LF行结尾，并以此运行工具链（并且使用编辑器可以按照此格式保存您所做的修改 - 譬如 Eclipse 或者 VS Code）。 Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
+我们建议您所有的代码仓库都强制使用Unix的LF行结尾，并以此运行工具链（并且使用编辑器可以按照此格式保存您所做的修改 - 譬如 Eclipse 或者 VS Code）。 虽然编译以 CR+LF 行为结尾的本地源代码也是可行的， 但 Cygwin在某些情况下（如执行 shell 脚本）仍要求文件以 Unix 行结尾 (否则你会收到类似 `$'\r': Command not found.` 的错误信息）。 幸运的是, 只需要在代码仓库的根目录执行以下两条命令就可以让 git 自动为你完成此操作：
 
     git config core.autocrlf false
     git config core.eol lf
     
 
-If you work with this toolchain on multiple repositories you can also set these two configurations globally for your machine:
+如果需要在多个代码仓库中使用此工具链,，你可以为你的计算机在全局范围内设置这两种配置：
 
     git config --global ...
     
 
-This is not recommended because it may affect any other (unrelated) git use on your Windows machine.
+但我们并不建议这样做, 因为它可能会影响 Windows 计算机上的任何其他 (无关) git 使用。
 
 #### Unix 执行权限
 
-Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
+在 Unix 下, 每个文件的权限中都有一个标志位, 它会告诉操作系统是否允许执行该文件。 Cygwin 下的 * git * 支持并遵守该标识位 (尽管 Windows 平台的NTFS文件系统并不使用该标志位)。 这一差异通常会导致 *git* 发现权限中的 "假阳性（false-positive）" 差异。 生成的差异可能如下所示:
 
     diff --git ...
     old mode 100644
     new mode 100755
     
 
-We recommend globally disabling the permission check on Windows to avoid the problem:
+我们建议在 windows 平台上全局禁用权该限检查以避免这个问题：
 
     git config --global core.fileMode false # disable execution bit check globally for the machine
     
 
-For existing repositories that have this problem caused by a local configuration, additionally:
+对于由局部配置引起此问题的现有存储库，你可以使用如下命令：
 
     git config --unset core.filemode # 移除当前存储库的局部配置，改用全局配置
     git submodule foreach --recursive git config --unset core.filemode # 移除所有子模块的局部配置
@@ -109,7 +109,7 @@ For existing repositories that have this problem caused by a local configuration
 
 ### 特性/问题 {#features}
 
-The following features are known to work (version 2.0):
+以下已知正常功能 (版本 2.0):
 
 * Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
 * Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
@@ -126,7 +126,7 @@ Omissions:
 
 ### Shell 脚本安装 {#script_setup}
 
-You can also install the environment using shell scripts in the Github project.
+你还可以使用 Github 项目中的 shell 脚本进行开发环境的安装。
 
 1. 请确保安装了 [ Windows Git ](https://git-scm.com/download/win)。
 2. 将代码仓库 https://github.com/PX4/windows-toolchain 克隆到要安装工具链的位置。 打开 ` Git Bash ` 并执行以下操作，打开后会自动进入默认的安装目录:
