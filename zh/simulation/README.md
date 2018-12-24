@@ -10,15 +10,15 @@ Px4 支持 *软件在环(SITL)</0 > 仿真，其中飞行堆栈在计算机上�
 
 ## 支持的仿真器
 
-The following simulators work with PX4 for HITL and/or SITL simulation.
+以下仿真器与 px4 一起工作，用于 HITL 和/或 SITL 仿真。
 
 | 仿真器                               | 描述 |
 | --------------------------------- | -- |
 | [Gazebo](../simulation/gazebo.md) |    |
 
-**This simulator is highly recommended.**
+**强烈建议使用此仿真器。**
 
-A powerful 3D simulation environment that is particularly suitable for testing object-avoidance and computer vision. It can also be used for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md) and is commonly used with [ROS](../simulation/ros_interface.md), a collection of tools for automating vehicle control. 
+它具有功能强大的 3D 仿真环境, 特别适用于测试对象避障和计算机视觉。 它还可用于 [多工具仿真](../simulation/multi-vehicle-simulation.md)，通常用于 [ROS](../simulation/ros_interface.md)，这是一种用于自动控制的工具集。 
 
 **Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) and [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo)), Hex (Typhoon H480), [Generic quad delta VTOL](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), Tailsitter, Plane, Rover, Submarine (coming soon!) 
 
