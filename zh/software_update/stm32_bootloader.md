@@ -2,7 +2,7 @@
 
 The code for the PX4 bootloader is available from the Github [Bootloader](https://github.com/px4/bootloader) repository.
 
-## Supported Boards
+## 支持的飞控板
 
 * FMUv2 (Pixhawk 1, STM32F4)
 * FMUv3 (Pixhawk 2, STM32F4)
