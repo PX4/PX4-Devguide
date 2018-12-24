@@ -1,4 +1,4 @@
-# Simulation Debugging
+# 仿真调试
 
 As the simulation is running on the host machine, all the desktop development tools are available.
 
