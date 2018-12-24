@@ -1,10 +1,10 @@
-# Windows 平台基于虚拟机的工具链
+# Windows 虚拟机托管的工具链
 
-> **注意：** [Windows Cygwin 工具链](../setup/dev_env_windows_cygwin.md) 是Windows平台唯一获得官方支持的开发环境。
+> **Note** [Windows Cygwin 工具链](../setup/dev_env_windows_cygwin.md) 是 Windows 平台唯一获得官方支持的开发环境。
 
 Windows 平台开发者可以在运行Linux的虚拟机中运行 PX4 工具链。 设置好虚拟机后，在虚拟机内进行 PX4 开发环境的安装、设置的流程与原生 Linux 电脑没有任何差别。
 
-> **提示：**尽量为虚拟机分配尽更多的 cpu 内核和内存资源。
+> **Tip** 尽量为虚拟机分配尽更多的 cpu 内核和内存资源。
 
 虽然使用虚拟机进行开发环境的安装、测试非常简单，但用户们仍应知晓：
 
@@ -18,15 +18,16 @@ Windows 平台开发者可以在运行Linux的虚拟机中运行 PX4 工具链�
 
 1. 下载 [VMWare Player Freeware](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)。
 2. 将其安装在 Windows 系统上。
-3. 下载所需版本的 < 0>Ubuntu Desktop ISO 镜像文件 </0 >。 (参阅 [Linux Instructions Page](../setup/dev_env_linux.md) 以获取推荐的 Ubuntu 版本)。
-4. 打开 *VMWare Player* 并选择创建新虚拟机的选项。
-5. 在 VM 虚拟机创建向导中选择下载好的 Ubuntu ISO 镜像作为虚拟机操作系统的安装介质， VM 将自动检测你要使用的操作系统。
-6. 还是在虚拟机创建向导中，设定好所有你要给虚拟机分配的运行资源。 在你的 Windows 主机的允许范围内给你的虚拟机分配尽可能多的内存和 CPU 资源。
-7. 虚拟机创建向导结束后开启你的虚拟机，然后按照安装指南进行 Ubuntu 系统的安装。 Remember all settings are only for within your host operating system usage and hence you can disable any screen saver and local workstation security features which do not increase risk of a network attack.
-8. 新虚拟机进入操作系统后, 请确保在系统中安装 *VMWare tools drivers and tools extension* 。 该工具包可以提高虚拟机使用的性能和可用性: 
-    - 显著增强的图形性能
-    - 适当的硬件设备的支持，如 USB 端口分配（对上传固件很重要）、正确的鼠标滚动、声音支持等
-    - 从系统显示分辨率适应窗口大小
-    - 主系统剪贴板共享
-    - 与主系统进行文件共享
-9. 继续进行 [PX4 environment setup for Linux](../setup/dev_env_linux.md)
+3. 下载所需版本的 Ubuntu Desktop ISO 镜像文件</0 >。 (参阅 [Linux Instructions Page](../setup/dev_env_linux.md) 以获取推荐的 Ubuntu 版本)。</li> 
+    
+    - 打开 *VMWare Player* 并选择创建新虚拟机的选项。
+    - 在 VM 虚拟机创建向导中选择下载好的 Ubuntu ISO 镜像作为虚拟机操作系统的安装介质， VM 将自动检测你要使用的操作系统。
+    - 还是在虚拟机创建向导中，设定好所有你要给虚拟机分配的运行资源。 在你的 Windows 主机的允许范围内给你的虚拟机分配尽可能多的内存和 CPU 资源。
+    - 虚拟机创建向导结束后开启你的虚拟机，然后按照安装指南进行 Ubuntu 系统的安装。 请记住，所有的设置仅在你托管的操作系统使用，因此你可以禁用所有的屏幕保护程序和安全选项，并不会增加被网络攻击的风险。
+    - 新虚拟机进入操作系统后, 请确保在系统中安装 *VMWare tools drivers and tools extension* 。 该工具包可以提高虚拟机使用的性能和可用性: 
+        - 显著增强的图形性能
+        - 适当的硬件设备的支持，如 USB 端口分配（对上传固件很重要）、正确的鼠标滚动、声音支持等
+        - 从系统显示分辨率适应窗口大小
+        - 主系统剪贴板共享
+        - 与主系统进行文件共享
+    - 继续进行 [PX4 environment setup for Linux](../setup/dev_env_linux.md)</ol>
