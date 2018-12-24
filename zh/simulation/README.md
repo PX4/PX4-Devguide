@@ -12,9 +12,9 @@ Information about available simulators and how to set them up are provided in th
 
 The following simulators work with PX4 for HITL and/or SITL simulation.
 
-| Simulator                         | Description |
-| --------------------------------- | ----------- |
-| [Gazebo](../simulation/gazebo.md) |             |
+| 仿真器                               | 描述 |
+| --------------------------------- | -- |
+| [Gazebo](../simulation/gazebo.md) |    |
 
 **This simulator is highly recommended.**
 
