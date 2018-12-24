@@ -7,7 +7,7 @@ As the simulation is running on the host machine, all the desktop development to
 The Clang address sanitizer can help to find alignment (bus) errors and other memory faults like segmentation faults. The command below sets the right compile options.
 
 ```sh
-make clean # only required on first address sanitizer run after a normal build
+make clean # 仅需在常规编译后，第一次运行 address sanitizer 时使用
 PX4_ASAN=1 make px4_sitl jmavsim
 ```
 
@@ -17,7 +17,7 @@ PX4_ASAN=1 make px4_sitl jmavsim
 brew install valgrind
 ```
 
-or
+或
 
 ```sh
 sudo apt-get install valgrind
@@ -75,7 +75,7 @@ make px4_sitl_default jmavsim___gdb
 is equivalent with
 
 ```sh
-make px4_sitl_default   # Configure with cmake
+make px4_sitl_default   # 通过 cmake 配置
 make -C build/px4_sitl_default jmavsim___gdb
 ```
 
