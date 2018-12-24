@@ -1,8 +1,8 @@
 # 初始配置
 
-We recommend that developers obtain the basic equipment described below (or similar) and use a "default" [airframe](../airframes/airframe_reference.md) configuration.
+我们建议开发者们获取下文描述的基本配置的硬件设备（或者相似的设备）并使用"默认" [机架](../airframes/airframe_reference.md) 构型。 
 
-## Basic Equipment
+## 基本设备
 
 > **Tip** PX4 can be used with a much wider range of equipment than described here, but new developers will benefit from going with one of the standard setups. A Taranis RC plus a Note 4 tablet make up for a very inexpensive field kit.
 
