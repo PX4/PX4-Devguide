@@ -1,6 +1,6 @@
 # 仿真
 
-在仿真领域中模拟器允许 px4 飞行代码来控制计算机建模工具。 您可以与此工具进行交互，就像您可以使用 *QGroundControl*、非机载 api 或无线电控制器/游戏板与真正的车辆进行交互一样。
+在仿真机中模拟器允许 px4 飞行代码来控制计算机建模工具。 您可以与此工具进行交互，就像您可以使用 *QGroundControl*、非机载 api 或无线电控制器/游戏板与真正的车辆进行交互一样。
 
 > **Tip**仿真是一种快速、简单、最重要的方法，*safe* 的方法来测试对 px4 代码的更改，然后再尝试在现实世界中飞行。 当你还没有飞行器可以试验的时候，使用 px4 来模拟飞行的就是一种好方法。
 
@@ -20,9 +20,9 @@ Px4 支持 *软件在环(SITL)</0 > 仿真，其中飞行堆栈在计算机上�
 
 它具有功能强大的 3D 仿真环境, 特别适用于测试对象避障和计算机视觉。 它还可用于 [多工具仿真](../simulation/multi-vehicle-simulation.md)，通常用于 [ROS](../simulation/ros_interface.md)，这是一种用于自动控制的工具集。 
 
-**支持机型： </0 >四旋翼 ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) 和 [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo))，六旋翼 (Typhoon h480)，[通用四旋翼 delta VTOL 无人机](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol)，尾翼，飞机，探测车，潜艇 ( 即将推出！) </p> 
+**支持机型： </0 >四旋翼 ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) 和 [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo))，六旋翼 (Typhoon h480)，[通用四旋翼 delta VTOL 无人机](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol)，尾翼，飞机，探测车，潜艇 (即将推出！) </p> 
 
-[jMAVSim](../simulation/jmavsim.md) | 一个简单的多旋翼仿真器，允许在模拟领域中使用 *copter* 型无人机。
+[jMAVSim](../simulation/jmavsim.md) | 一个简单的多旋翼仿真器，允许在仿真机中使用 *copter* 型无人机。
 
 它易设置，可以用来测试您的工具是否可以起飞、飞行、降落、并对各种故障条件 (例如 gps 故障) 做出适当的反应。 它也可用于 多机仿真 </0 >。</p> 
 
@@ -32,20 +32,20 @@ Px4 支持 *软件在环(SITL)</0 > 仿真，其中飞行堆栈在计算机上�
 
 **支持机型: </0 >Iris (多转子模型和 x 配置中 px4 quadrotor 的配置)。</p> 
 
-[XPlane](../simulation/hitl.md) (HITL only)| A comprehensive and powerful fixed-wing flight simulator that offers very realistic flight models.  
+[XPlane](../simulation/hitl.md)(仅限海量交易日志)| 一个全面而强大的固定翼飞行仿真器，提供非常逼真的飞行模型。  
 
 
-**Supported Vehicles:** Plane
+**支持机型: **四旋翼
 
-Instructions for how to setup and use the simulators are in the topics linked above.
+有关如何设置和使用仿真器的说明，请参见上面链接的主题。
 
 * * *
 
-The remainder of this topic is a "somewhat generic" description of how the simulation infrastructure works. It is not required to *use* the simulators.
+本主题的其余部分是对仿真基础结构如何工作的 "有点笼统" 的描述。 它不需要 *use* 仿真器。
 
-## Simulator MAVLink API
+## 仿真器 MAVLink API
 
-All simulators communicate with PX4 using the Simulator MAVLink API. This API defines a set of MAVLink messages that supply sensor data from the simulated world to PX4 and return motor and actuator values from the flight code that will be applied to the simulated vehicle. The image below shows the message flow.
+所有模拟器都使用 Simulator MAVLink API 与 PX4 进行通信。 该 API 定义了一组 MAVLink 消息，这些消息将仿真机的传感器数据提供给 PX4，并从将应用于仿真机的飞行代码返回电机和执行器值。 下面图表描述了消息。
 
 ![Simulator MAVLink API](../../assets/simulation/px4_simulator_messages.png)
 
