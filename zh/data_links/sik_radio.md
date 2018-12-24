@@ -1,4 +1,4 @@
-# SiK Radio
+# SiK 电台
 
 [SiK radio](https://github.com/LorenzMeier/SiK) is a collection of firmware and tools for telemetry radios.
 
@@ -6,7 +6,7 @@ Information about *using* SiK Radio can be found it the *PX4 User Guide*: [Telem
 
 The ("developer") information below explains how to build SiK firmware from source and configure it using AT commands.
 
-## Build Instructions
+## 构建说明
 
 You will need to install the required 8051 compiler, as this is not included in the default PX4 Build toolchain.
 
@@ -31,7 +31,7 @@ Upload it to the radio \(**change the serial port name**\):
     tools/uploader.py --port /dev/tty.usbserial-CHANGETHIS dst/radio~hm_trp.ihx
     
 
-## Configuration Instructions
+## 配置说明
 
 The radio supports AT commands for configuration.
 
