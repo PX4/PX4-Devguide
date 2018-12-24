@@ -65,11 +65,11 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 ## 默认 PX4 MAVLink UDP 端口
 
-By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. DroneCore, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
+默认情况下，PX4通常使用建立的 UDP 端口与地面控制站（例如*QGroundControl*），外部 API（例如DroneCore，MAVROS）和仿真器 APIs（例如 Gazebo）进行 MAVLink 通信。 这些端口是：
 
-* Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
-* Port **14550** is used for communication with ground control stations. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
-* Port **14560** is used for communication with simulators. PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
+* 端口**14540**用于与外接 APIs 通信。 期望外接 APIs 监听此端口上的连接。
+* 端口**14550**用于与地面控制站通信。 期望 GCS 将侦听此端口上的连接。 *QGroundControl*默认侦听此端口。
+* 端口**14560**用于与外接 APIs 通信。 PX4 侦听此端口，仿真器应通过向该端口广播数据来启动通信。
 
 > **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module.
 
