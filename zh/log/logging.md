@@ -1,10 +1,10 @@
-# Logging
+# 日志记录
 
 The logger is able to log any ORB topic with all included fields. Everything necessary is generated from the `.msg` file, so that only the topic name needs to be specified. An optional interval parameter specifies the maximum logging rate of a certain topic. All existing instances of a topic are logged.
 
 The output log format is [ULog](../log/ulog_file_format.md).
 
-## Usage
+## 用法
 
 By default, logging is automatically started when arming, and stopped when disarming. A new log file is created for each arming session on the SD card. To display the current state, use `logger status` on the console. If you want to start logging immediately, use `logger on`. This overrides the arming state, as if the system was armed. `logger off` undoes this.
 
@@ -15,7 +15,7 @@ Use
 
 for a list of all supported logger commands and parameters.
 
-## Configuration
+## 配置
 
 The list of logged topics can be customized with a file on the SD card. Create a file `etc/logging/logger_topics.txt` on the card with a list of topics (For SITL, it's `build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`):
 
@@ -26,7 +26,7 @@ The `<interval>` is optional, and if specified, defines the minimum interval in 
 
 The topics in this file replace all of the default logged topics.
 
-## Scripts
+## 脚本
 
 There are several scripts to analyze and convert logging files in the [pyulog](https://github.com/PX4/pyulog) repository.
 
@@ -39,22 +39,22 @@ Logging dropouts are undesired and there are a few factors that influence the am
 - Increasing the log buffer helps.
 - Decrease the logging rate of selected topics or remove unneeded topics from being logged (`info.py <file>` is useful for this).
 
-## SD Cards
+## SD 卡
 
 The following provides performance results for different SD cards. Tests were done on a Pixracer; the results are applicable to Pixhawk as well.
 
 > **Tip** The maximum supported SD card size for NuttX is 32GB (SD Memory Card Specifications Version 2.0).
 
-| SD Card                                                       | Mean Seq. Write Speed [KB/s] | Max Write Time / Block (average) [ms] |
-| ------------------------------------------------------------- | ---------------------------- | ------------------------------------- |
-| SanDisk Extreme U3 32GB                                       | 461                          | **15**                                |
-| Sandisk Ultra Class 10 8GB                                    | 348                          | 40                                    |
-| Sandisk Class 4 8GB                                           | 212                          | 60                                    |
-| SanDisk Class 10 32 GB (High Endurance Video Monitoring Card) | 331                          | 220                                   |
-| Lexar U1 (Class 10), 16GB High-Performance                    | 209                          | 150                                   |
-| Sandisk Ultra PLUS Class 10 16GB                              | 196                          | 500                                   |
-| Sandisk Pixtor Class 10 16GB                                  | 334                          | 250                                   |
-| Sandisk Extreme PLUS Class 10 32GB                            | 332                          | 150                                   |
+| SD 卡                                                          | Mean Seq. 写入速度 [KB/s] | 最大写入时间 / 块（平均） [ms] |
+| ------------------------------------------------------------- | --------------------- | ------------------- |
+| SanDisk Extreme U3 32GB                                       | 461                   | **15**              |
+| Sandisk Ultra Class 10 8GB                                    | 348                   | 40                  |
+| Sandisk Class 4 8GB                                           | 212                   | 60                  |
+| SanDisk Class 10 32 GB (High Endurance Video Monitoring Card) | 331                   | 220                 |
+| Lexar U1 (Class 10), 16GB High-Performance                    | 209                   | 150                 |
+| Sandisk Ultra PLUS Class 10 16GB                              | 196                   | 500                 |
+| Sandisk Pixtor Class 10 16GB                                  | 334                   | 250                 |
+| Sandisk Extreme PLUS Class 10 32GB                            | 332                   | 150                 |
 
 More important than the mean write speed is the maximum write time per block (of 4 KB). This defines the minimum buffer size: the larger this maximum, the larger the log buffer needs to be to avoid dropouts. Logging bandwidth with the default topics is around 50 KB/s, which all of the SD cards satisfy.
 
@@ -71,10 +71,10 @@ The requirement is that the link provides at least ~50KB/s, so for example a WiF
 There are different clients that support ulog streaming:
 
 - `mavlink_ulog_streaming.py` script in Firmware/Tools.
-- QGroundControl: ![](../../assets/gcs/qgc-log-streaming.png)
+- QGroundControl： ![](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 
-### Diagnostics
+### 诊断
 
 - If log streaming does not start, make sure the `logger` is running (see above), and inspect the console output while starting.
 - If it still does not work, make sure that Mavlink 2 is used. Enforce it by setting `MAV_PROTO_VER` to 2.
