@@ -1,8 +1,8 @@
-# Frequently Asked Questions
+# 常见问题
 
-## Build Errors
+## 编译错误
 
-### Flash Overflow
+### 闪存溢出
 
 > **Tip** Use the FMUv4 architecture to obtain double the flash. The first available board from this generation is the [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html).
 
@@ -18,11 +18,11 @@ To remedy it, either use more recent hardware or remove modules from the build w
 #drivers/trone
 ```
 
-## USB Errors
+## USB 错误
 
-### The upload never succeeds
+### 上传从不成功
 
-On Ubuntu, uninstall the modem manager:
+在 Ubuntu 上，卸载modem manager：
 
 ```sh
 sudo apt-get remove modemmanager
