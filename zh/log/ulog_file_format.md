@@ -1,4 +1,4 @@
-# ULog File Format
+# ULog 文件格式
 
 ULog is the file format used for logging system data. The format is self-describing, i.e. it contains the format and message types that are logged.
 
@@ -6,19 +6,19 @@ It can be used for logging device inputs (sensors, etc.), internal states (cpu l
 
 The format uses Little Endian for all binary types.
 
-## Data types
+## 数据类型
 
 The following binary types are used. They all correspond to the types in C:
 
-| Type                | Size in Bytes |
-| ------------------- | ------------- |
-| int8_t, uint8_t   | 1             |
-| int16_t, uint16_t | 2             |
-| int32_t, uint32_t | 4             |
-| int64_t, uint64_t | 8             |
-| float               | 4             |
-| double              | 8             |
-| bool, char          | 1             |
+| 类型                  | 大小（以字节为单位） |
+| ------------------- | ---------- |
+| int8_t, uint8_t   | 1          |
+| int16_t, uint16_t | 2          |
+| int32_t, uint32_t | 4          |
+| int64_t, uint64_t | 8          |
+| float               | 4          |
+| double              | 8          |
+| bool, char          | 1          |
 
 Additionally all can be used as an array, eg. `float[5]`. In general all strings (`char[length]`) do not contain a `'\0'` at the end. String comparisons are case sensitive.
 
