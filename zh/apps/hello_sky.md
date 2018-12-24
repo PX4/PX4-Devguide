@@ -146,19 +146,19 @@ To enable the compilation of the application into the firmware create a new line
 
 Build the example using the board-specific command:
 
-* jMAVSim Simulator: `make px4_sitl_default jmavsim`
-* Pixhawk v1/2: `make px4_fmu-v2_default` (or just `make px4_fmu-v2`)
-* Pixhawk v3: `make px4_fmu-v4_default`
-* Other boards: [Building the Code](../setup/building_px4.md#building_nuttx)
+* jMAVSim 仿真器：`make px4_sitl_default jmavsim`
+* Pixhawk v1/2：`make px4_fmu-v2_default`（或只用 `make px4_fmu-v2`）
+* Pixhawk v3：`make px4_fmu-v4_default`
+* 其他飞控板：[构建代码](../setup/building_px4.md#building_nuttx)
 
-## Test App (Hardware)
+## 测试应用（硬件）
 
 ### Upload the firmware to your board
 
 Enable the uploader and then reset the board:
 
-* Pixhawk v1/2: `make px4_fmu-v2_default upload`
-* Pixhawk v3: `make px4_fmu-v4_default upload`
+* Pixhawk v1/2：`make px4_fmu-v2_default upload`
+* Pixhawk v3：`make px4_fmu-v4_default upload`
 
 It should print before you reset the board a number of compile messages and at the end:
 
