@@ -209,39 +209,39 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 用于 Gazebo 的 PX4 SITL 支持来自连接到设备型号的 Gazebo 相机传感器的 UDP 视频流。 您可以从* QGroundControl *（在 UDP 端口 5600 上）连接到此流，并从模拟设备查看 Gazebo 环境的视频 - 就像您从真实摄像机那样。 使用* gstreamer *流水线流式传输视频。
 
-> **Note** Video streaming from Gazebo and the Gazebo widget to turn streaming on/off are not enabled by default. This article explains how to enable them. In the near future we expect these features to be enabled by default.
+> **Note**默认情况下，来自 Gazebo 和 Gazebo 小部件中的视频流以打开/关闭流式传输是未启用的。 本文介绍了如何启用它们。 在不久的将来，我们希望默认情况下启用这些功能。
 
-### Prerequisites
+### 系统必备组件
 
-Install *Gstreamer 1.0* and its dependencies:
+安装* Gstreamer 1.0 *及其依赖项：
 
     sudo apt-get install $(apt-cache --names-only search ^gstreamer1.0-* | awk '{ print $1 }' | grep -v gstreamer1.0-hybris) -y
     
 
-### Enable GStreamer Plugin
+### 启用 GStreamer 插件
 
-> **Note** This step will not be required once video streaming is enabled by default.
+> **Note**默认情况下启用视频流后，不需要执行此步骤。
 
 Enable the *GStreamer Plugin* (if disabled) by changing the `BUILD_GSTREAMER_PLUGIN` option to `"ON"` in [&lt;Firmware&gt;/Tools/sitl_gazebo/CMakeLists.txt](https://github.com/PX4/sitl_gazebo/blob/master/CMakeLists.txt) (as shown below):
 
     option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "ON")
     
 
-Once the plugin is enabled you can run SITL with Gazebo in the normal way:
+启用插件后，您可以正常方式使用 Gazebo 运行 SITL：
 
     make clean
     make px4_sitl gazebo_typhoon_h480
     
 
-### How to View Gazebo Video
+### 如何查看 Gazebo 视频
 
-The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Settings > General** and set **Video Source** to *UDP Video Stream* and **UDP Port** to *5600*:
+查看 SITL / Gazebo 相机视频流的最简单方法是在* QGroundControl *中。 只需打开** Settings > General **并将** Video Source **设置为* UDP视频流*，将** UDP 端口**设置为* 5600 *：
 
 ![QGC Video Streaming Settings for Gazebo](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
 
-The video from Gazebo should then display in *QGroundControl* just as it would from a real camera.
+来自 Gazebo 的视频应该像从真实相机那样显示在* QGroundControl *中。
 
-It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
+也可以使用* Gstreamer Pipeline *查看视频。 Simply enter the following terminal command:
 
     gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
     ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
