@@ -129,7 +129,7 @@ px4 starting.
 pxh>
 ```
 
-> **Note** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
+> **Note** 右键单击四旋翼模型允许从上下文菜单启用跟随模式，这样可以方便地将其保持在视图中。
 
 ![Gazebo UI](../../assets/simulation/gazebo.png)
 
@@ -141,11 +141,11 @@ pxh> commander takeoff
 
 ## 使用/配置选项
 
-### Headless Mode
+### Headless 模式
 
-Gazebo can be run in a *headless* mode in which the Gazebo UI is not launched. This starts up more quickly and uses less system resources (i.e. it is a more "lightweight" way to run the simulation).
+Gazebo 可以在* headless *模式下运行，其中 Gazebo UI 未启动。 这样可以更快地启动并使用更少的系统资源（即，它是运行模拟的更“轻量级”方式）。
 
-Simply prefix the normal *make* command with `HEADLESS=1` as shown:
+只需在正常的* make *命令前加上` HEADLESS=1 `，如下所示：
 
 ```bash
 HEADLESS=1 make px4_sitl gazebo_plane
