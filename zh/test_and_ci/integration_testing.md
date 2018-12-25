@@ -4,7 +4,7 @@ This is about end to end integration testing. Tests are executed automatically (
 
 ## ROS / MAVROS Tests
 
-Prerequisites:
+系统必备组件:
 
 - [jMAVSim Simulator](../simulation/jmavsim.md)
 - [Gazebo Simulator](../simulation/gazebo.md)
