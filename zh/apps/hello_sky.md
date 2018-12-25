@@ -466,20 +466,20 @@ int px4_simple_app_main(int argc, char *argv[])
 }
 ```
 
-## Running the Complete Example
+## 运行完整的示例
 
-And finally run your app:
+最后运行你的 app ：
 
 ```sh
 px4_simple_app
 ```
 
-If you start *QGroundControl*, you can check the sensor values in the real time plot (**Widgets > Analyze**).
+如果启动了 *QGroundControl* ，你还可以在实时曲线图中检查传感器数据 （**Widgets > Analyze**）。
 
-## Wrap-Up
+## 总结
 
-This tutorial covered everything needed to develop a basic PX4 autopilot application. Keep in mind that the full list of uORB messages/topics is [available here](https://github.com/PX4/Firmware/tree/master/msg/) and that the headers are well documented and serve as reference.
+本教程介绍了开发一个基本的 PX4 自动驾驶仪应用程序需要涉及的一切内容。 请记住， uORB 消息/topic 的完整列表 [在这里](https://github.com/PX4/Firmware/tree/master/msg/) ，并且在文件头部注释中有详细的文档记录可以作为参考。
 
-Further information and troubleshooting/common pitfalls can be found here: [uORB](../middleware/uorb.md).
+更多信息和故障排除 /常见的陷阱等可以在这里找到： [uORB](../middleware/uorb.md)。
 
-The next page presents a template for writing a full application with start and stop functionality.
+下一页提供了一个可用于编写具备启动和停止功能的完整应用程序的模版文件。
