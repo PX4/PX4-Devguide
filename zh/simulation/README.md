@@ -97,13 +97,13 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 下面显示了许多示例，每个模拟器的各个页面中还有更多示例：
 
 ```sh
-# Start Gazebo with plane
+# 启动固定翼机型的 Gazebo
 make px4_sitl gazebo_plane
 
-# Start Gazebo with iris and optical flow
+# 启动有光流的Iris机型的 Gazebo
 make px4_sitl gazebo_iris_opt_flow
 
-# Start JMavSim with iris (default vehicle model)
+# 启动Iris（默认机型）的 JMavSim
 make px4_sitl jmavsim
 ```
 
