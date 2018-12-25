@@ -222,7 +222,7 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 > **Note**默认情况下启用视频流后，不需要执行此步骤。
 
-Enable the *GStreamer Plugin* (if disabled) by changing the `BUILD_GSTREAMER_PLUGIN` option to `"ON"` in [&lt;Firmware&gt;/Tools/sitl_gazebo/CMakeLists.txt](https://github.com/PX4/sitl_gazebo/blob/master/CMakeLists.txt) (as shown below):
+通过在[ &lt;Firmware&gt; /Tools/sitl_gazebo/CMakeLists.txt ](https://github.com/PX4/sitl_gazebo/blob/master/CMakeLists.txt)中将` BUILD_GSTREAMER_PLUGIN `选项更改为`“ON”`来启用* GStreamer Plugin*（如果禁用的话）（如下部分所示）：
 
     option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "ON")
     
@@ -235,30 +235,30 @@ Enable the *GStreamer Plugin* (if disabled) by changing the `BUILD_GSTREAMER_PLU
 
 ### 如何查看 Gazebo 视频
 
-查看 SITL / Gazebo 相机视频流的最简单方法是在* QGroundControl *中。 只需打开** Settings > General **并将** Video Source **设置为* UDP视频流*，将** UDP 端口**设置为* 5600 *：
+查看 SITL / Gazebo 相机视频流的最简单方法是在* QGroundControl *中。 只需打开** Settings > General **并将** Video Source **设置为* UDP 视频流*，将** UDP 端口**设置为* 5600 *：
 
 ![QGC Video Streaming Settings for Gazebo](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
 
 来自 Gazebo 的视频应该像从真实相机那样显示在* QGroundControl *中。
 
-也可以使用* Gstreamer Pipeline *查看视频。 Simply enter the following terminal command:
+也可以使用* Gstreamer Pipeline *查看视频。 只需输入以下终端命令：
 
     gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
-    ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
+    ! rtph264depay ! avdec_h264 videoconvert ! autovideosink fps-update-interval=1000 sync=false
     
 
-### Gazebo GUI to Start/Stop Video Streaming
+### 用于启动/停止视频流的 Gazebo GUI
 
-> **Note** This feature is supported for Gazebo version 7.
+> **Note** Gazebo 版本 7 支持此功能。
 
-Video streaming can be enabled/disabled using the Gazebo UI *Video ON/OFF* button.
+可以使用 Gazebo UI * Video ON/OFF *按钮来启用/禁用视频流。
 
 ![Video ON/OFF button](../../assets/gazebo/sitl_video_stream.png)
 
-To enable the button:
+启用按钮：
 
-1. Open the "world" file to be modified (e.g. [&lt;Firmware>/Tools/sitl_gazebo/worlds/typhoon_h480.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world)).
-2. Within the default `world name="default"` section, add the `gui` section for the `libgazebo_video_stream_widget` (as shown below):
+1. 打开要修改的“ world ”文件（例如[&lt;Firmware>/Tools/sitl_gazebo/worlds/typhoon_h480.world ](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world)）。
+2. 在默认的` world name =“default”`部分中，为` libgazebo_video_stream_widge `添加` gui `部分（如下所示）：
     
     ```xml
     <?xml version="1.0" ?>
@@ -278,15 +278,15 @@ To enable the button:
     ...
     ```
     
-    > **Tip** This section present in **typhoon_h480.world** - you just need to uncomment the section.
+    > **Tip** 此部分出现在** typhoon_h480.world **中 - 您只需要取消注释该部分。
 
-3. Rebuild SITL:
+3. 重建 SITL：
     
         make clean
         make px4_sitl gazebo_typhoon_h480
         
 
-## Extending and Customizing
+## 扩展和定制
 
 To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
 
