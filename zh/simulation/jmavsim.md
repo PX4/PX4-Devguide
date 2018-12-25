@@ -97,11 +97,11 @@ You can start JMAVSim and PX4 separately:
 
 This allows a faster testing cycle (restarting jMAVSim takes significantly more time).
 
-## Multi-Vehicle Simulation
+## 多飞行器仿真
 
 JMAVSim can be used for multi-vehicle simulation: [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
 
-## Extending and Customizing
+## 扩展和定制
 
 To extend or customize the simulation interface, edit the files in the **Tools/jMAVSim** folder. The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
 
