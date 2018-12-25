@@ -36,7 +36,7 @@ Modules communicate with each other through a publish-subscribe message bus name
 
 > **Info** This architecture allows every single one of these blocks to be rapidly and easily replaced, even at runtime.
 
-### Flight Stack {#flight-stack}
+### 飞行栈 {#flight-stack}
 
 The flight stack is a collection of guidance, navigation and control algorithms for autonomous drones. It includes controllers for fixed wing, multirotor and VTOL airframes as well as estimators for attitude and position.
 
