@@ -6,7 +6,7 @@
 
 该页列出所有PX4支持的机架型号，包括电机分配和序号。 **绿色**为顺时针转动的电机，**蓝色**为逆时针转动的电机。
 
-## Copter
+## 旋翼机
 
 ### 共轴双桨直升机
 
@@ -545,7 +545,7 @@
   
   <tr id="copter_quadrotor_wide_3dr_iris_quadrotor">
     <td style="vertical-align: top;">
-      3DR Iris Quadrotor
+      3DR Iris 四旋翼
     </td>
     
     <td style="vertical-align: top;">
@@ -695,7 +695,7 @@
 </tr>
 </tbody></table>
 
-### Quadrotor x
+### X 型四旋翼（Quadrotor x）
 
 <div>
 <img src="../../assets/airframes/types/QuadRotorX.svg" width="29%" style="max-height: 180px;"/>
@@ -713,7 +713,7 @@
   
   <tr id="copter_quadrotor_x_generic_quadrotor_x">
     <td style="vertical-align: top;">
-      Generic Quadrotor x
+      通用 X 型四旋翼（Generic Quadrotor x）
     </td>
     
     <td style="vertical-align: top;">
@@ -1125,7 +1125,7 @@
   </tr>
 </table>
 
-### Simulation (Copter)
+### 仿真（旋翼机）
 
 <div>
 <img src="../../assets/airframes/types/AirframeUnknown.svg" width="29%" style="max-height: 180px;"/>
@@ -1177,7 +1177,7 @@
 <tbody>
 <tr id="copter_tilt-quad_tilt-quadrotor">
  <td style="vertical-align: top;"><a href="http://www.alivaero.com/the-project.html">Tilt-Quadrotor</a></td>
- <td style="vertical-align: top;"><p>Maintainer: Ricardo Marques <marques.ricardo17@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4100</p></td>
+ <td style="vertical-align: top;"><p>维护者：Ricardo Marques <marques.ricardo17@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4100</p></td>
 
 </tr>
 </tbody></table>
@@ -1250,9 +1250,9 @@
 </tr>
 </tbody></table>
 
-## Plane
+## 飞机
 
-### Flying Wing
+### 固定翼
 
 <div>
   <img src="../../assets/airframes/types/FlyingWing.svg" width="29%" style="max-height: 180px;" /> 
