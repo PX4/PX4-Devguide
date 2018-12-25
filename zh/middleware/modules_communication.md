@@ -6,7 +6,7 @@ Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree
 
 FrSky Telemetry support. Auto-detects D or S.PORT protocol.
 
-### Usage {#frsky_telemetry_usage}
+### 用法 {#frsky_telemetry_usage}
 
     frsky_telemetry <command> [arguments...]
      Commands:
@@ -27,7 +27,7 @@ FrSky Telemetry support. Auto-detects D or S.PORT protocol.
 
 Source: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
 
-### Description
+### 描述
 
 This module implements the MAVLink protocol, which can be used on a Serial link or UDP network connection. It communicates with the system via uORB: some messages are directly handled in the module (eg. mission protocol), others are published via uORB (eg. vehicle_command).
 
@@ -54,7 +54,7 @@ Start mavlink on UDP port 14556 and enable the HIGHRES_IMU message with 50Hz:
     mavlink stream -u 14556 -s HIGHRES_IMU -r 50
     
 
-### Usage {#mavlink_usage}
+### 用法 {#mavlink_usage}
 
     mavlink <command> [arguments...]
      Commands:
@@ -107,7 +107,7 @@ Start mavlink on UDP port 14556 and enable the HIGHRES_IMU message with 50Hz:
 
 Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
 
-### Usage {#micrortps_client_usage}
+### 用法 {#micrortps_client_usage}
 
     micrortps_client <command> [arguments...]
      Commands:
@@ -142,7 +142,7 @@ Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmw
 
 Source: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
 
-### Description
+### 描述
 
 uORB is the internal pub-sub messaging system, used for communication between modules.
 
@@ -167,7 +167,7 @@ Monitor topic publication rates. Besides `top`, this is an important command for
     uorb top
     
 
-### Usage {#uorb_usage}
+### 用法 {#uorb_usage}
 
     uorb <command> [arguments...]
      Commands:
