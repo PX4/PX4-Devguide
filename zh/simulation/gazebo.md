@@ -68,7 +68,7 @@ make px4_sitl gazebo_solo
 make px4_sitl gazebo_plane
 ```
 
-![Plane in Gazebo](../../assets/gazebo/plane.png)
+![飞行器](../../assets/gazebo/plane.png)
 
 ### 标准构型的 VTOL
 
@@ -76,7 +76,7 @@ make px4_sitl gazebo_plane
 make px4_sitl gazebo_standard_vtol
 ```
 
-![Standard VTOL in Gazebo](../../assets/gazebo/standard_vtol.png)
+![标准构型的 VTOL](../../assets/gazebo/standard_vtol.png)
 
 ### 尾座式 VTOL
 
@@ -84,7 +84,7 @@ make px4_sitl gazebo_standard_vtol
 make px4_sitl gazebo_tailsitter
 ```
 
-![Tailsitter VTOL in Gazebo](../../assets/gazebo/tailsitter.png)
+![尾座式 VTOL](../../assets/gazebo/tailsitter.png)
 
 ### 阿克曼车 （UGV/Rover） {#ugv}
 
@@ -92,7 +92,7 @@ make px4_sitl gazebo_tailsitter
 make px4_sitl gazebo_rover
 ```
 
-![Rover in Gazebo](../../assets/gazebo/rover.png)
+![探测车](../../assets/gazebo/rover.png)
 
 ### 海马体 TUHH (UUV: 无人水下航行器) {#uuv}
 
@@ -288,15 +288,15 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 ## 扩展和定制
 
-To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
+要扩展或自定义仿真界面，请编辑` Tools/sitl_gazebo `文件夹中的文件。 该代码可在 Github 上的[ sitl_gazebo repository ](https://github.com/px4/sitl_gazebo)上获得。
 
-> **Note** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
+> **Note** 建系统强制执行正确的 GIT 子模块，包括模拟器。 它不会覆盖目录中文件的更改。
 
-## Interfacing to ROS
+## 与 ROS 对接交互
 
-The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.
+通过[interfaced to ROS](../simulation/ros_interface.md)，模拟器可以与真实飞行器上逼真。
 
-## Further Information
+## 更多信息：
 
-* [ROS with Gazebo Simulation](../simulation/ros_interface.md)
+* [另见 Gazebo 模拟。](../simulation/ros_interface.md)
 * [Gazebo Octomap](../simulation/gazebo_octomap.md)
