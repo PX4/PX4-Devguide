@@ -4,7 +4,7 @@
 
 Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
 
-### Description
+### 描述
 
 Smart battery driver for the BQ40Z50 fuel gauge IC.
 
@@ -15,7 +15,7 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
     batt_smbus -X write_flash 19069 2 27 0
     
 
-### Usage {#batt_smbus_usage}
+### 用法 {#batt_smbus_usage}
 
     batt_smbus <command> [arguments...]
      Commands:
@@ -55,7 +55,7 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
 
 Source: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
 
-### Description
+### 描述
 
 This module is responsible for driving the output and reading the input pins. For boards without a separate IO chip (eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
 
@@ -88,7 +88,7 @@ This will enable capturing on the 4th pin. Then do:
 
 Use the `pwm` command for further configurations (PWM rate, levels, ...), and the `mixer` command to load mixer files.
 
-### Usage {#fmu_usage}
+### 用法 {#fmu_usage}
 
     fmu <command> [arguments...]
      Commands:
@@ -147,7 +147,7 @@ Use the `pwm` command for further configurations (PWM rate, levels, ...), and th
 
 Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
 
-### Description
+### 描述
 
 GPS driver module that handles the communication with the device and publishes the position via uORB. It supports multiple protocols (device vendors) and by default automatically selects the correct one.
 
@@ -167,7 +167,7 @@ For testing it can be useful to fake a GPS signal (it will signal the system tha
 
 Starting 2 GPS devices (the main GPS on /dev/ttyS3 and the secondary on /dev/ttyS4): gps start -d /dev/ttyS3 -e /dev/ttyS4
 
-### Usage {#gps_usage}
+### 用法 {#gps_usage}
 
     gps <command> [arguments...]
      Commands:
@@ -196,7 +196,7 @@ Starting 2 GPS devices (the main GPS on /dev/ttyS3 and the secondary on /dev/tty
 
 Source: [drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
 
-### Description
+### 描述
 
 Ultrasonic range finder driver that handles the communication with the device and publishes the distance via uORB.
 
@@ -204,7 +204,7 @@ Ultrasonic range finder driver that handles the communication with the device an
 
 This driver is implented as a NuttX task. This Implementation was chosen due to the need for polling on a message via UART, which is not supported in the work_queue. This driver continuously takes range measurements while it is running. A simple algorithm to detect false readings is implemented at the driver levelin an attemptto improve the quality of data that is being published. The driver will not publish data at all if it deems the sensor data to be invalid or unstable.
 
-### Usage {#pga460_usage}
+### 用法 {#pga460_usage}
 
     pga460 <command> [arguments...]
      Commands:
@@ -222,7 +222,7 @@ This driver is implented as a NuttX task. This Implementation was chosen due to 
 
 Source: [drivers/pwm_out_sim](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_out_sim)
 
-### Description
+### 描述
 
 Driver for simulated PWM outputs.
 
@@ -230,7 +230,7 @@ Its only function is to take `actuator_control` uORB messages, mix them with any
 
 It is used in SITL and HITL.
 
-### Usage {#pwm_out_sim_usage}
+### 用法 {#pwm_out_sim_usage}
 
     pwm_out_sim <command> [arguments...]
      Commands:
@@ -251,7 +251,7 @@ It is used in SITL and HITL.
 
 Source: [drivers/rc_input](https://github.com/PX4/Firmware/tree/master/src/drivers/rc_input)
 
-### Description
+### 描述
 
 This module does the RC input parsing and auto-selecting the method. Supported methods are:
 
@@ -266,7 +266,7 @@ This module does the RC input parsing and auto-selecting the method. Supported m
 
 By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread, specified via start flag -t, to reduce latency. When running on the work queue, it schedules at a fixed frequency.
 
-### Usage {#rc_input_usage}
+### 用法 {#rc_input_usage}
 
     rc_input <command> [arguments...]
      Commands:
@@ -285,7 +285,7 @@ By default the module runs on the work queue, to reduce RAM usage. It can also b
 
 Source: [drivers/distance_sensor/sf1xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf1xx)
 
-### Description
+### 描述
 
 I2C bus driver for Lightware SFxx series LIDAR rangefinders: SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20.
 
@@ -303,7 +303,7 @@ Stop driver
     sf1xx stop
     
 
-### Usage {#sf1xx_usage}
+### 用法 {#sf1xx_usage}
 
     sf1xx <command> [arguments...]
      Commands:
@@ -327,7 +327,7 @@ Stop driver
 
 Source: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
 
-### Description
+### 描述
 
 This module controls the TAP_ESC hardware via UART. It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
 
@@ -339,7 +339,7 @@ Currently the module is implementd as a threaded version only, meaning that it r
 
 The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
 
-### Usage {#tap_esc_usage}
+### 用法 {#tap_esc_usage}
 
     tap_esc <command> [arguments...]
      Commands:
@@ -354,7 +354,7 @@ The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
 
 Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
-### Description
+### 描述
 
 Mount (Gimbal) control driver. It maps several different input methods (eg. RC or MAVLink) to a configured output (eg. AUX channels or MAVLink).
 
@@ -372,7 +372,7 @@ Test the output by setting a fixed yaw angle (and the other axes to 0):
     vmount test yaw 30
     
 
-### Usage {#vmount_usage}
+### 用法 {#vmount_usage}
 
     vmount <command> [arguments...]
      Commands:
