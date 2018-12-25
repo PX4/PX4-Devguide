@@ -12,7 +12,7 @@ All PX4 [airframes](../airframes/README.md) share a single codebase (this includ
 
 The diagram below provides a detailed overview of the building blocks of PX4. The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
 
-![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
+![PX4 架构](../../assets/diagrams/PX4_Architecture.svg)
 
 <!-- This diagram can be updated from 
 [here](https://drive.google.com/file/d/0B1TDW9ajamYkaGx3R0xGb1NaeU0/view?usp=sharing) 
@@ -93,17 +93,17 @@ There are 2 different ways that a module can be executed:
 
 ```cpp
 independent_task = px4_task_spawn_cmd(
-    "commander",                    // Process name
-    SCHED_DEFAULT,                  // Scheduling type (RR or FIFO)
-    SCHED_PRIORITY_DEFAULT + 40,    // Scheduling priority
-    3600,                           // Stack size of the new task or thread
-    commander_thread_main,          // Task (or thread) main function
-    (char * const *)&argv[0]        // Void pointer to pass to the new task
-                                    // (here the commandline arguments).
+    "commander",                    // 进程名称
+    SCHED_DEFAULT,                  // 调度类型（RR 或 FIFO）
+    SCHED_PRIORITY_DEFAULT + 40,    // 调度优先级
+    3600,                           // 新任务或线程的堆栈大小
+    commander_thread_main,          // 任务（或线程的主函数）
+    (char * const *)&argv[0]        // Void 指针传递到新任务
+                                    // （这里是命令行参数）
     );
 ```
 
-### OS-Specific Information
+### 操作系统相关的信息
 
 #### NuttX
 
