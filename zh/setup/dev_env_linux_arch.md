@@ -61,7 +61,7 @@ rm genromfs-0.5.2.tar.gz genromfs-0.5.2 -r
 
 A GCC compiler is required to build for NuttX targets. Enter the command below to install the latest version from the package manager (unsupported).
 
-    # Compiler from package manager (unsupported)
+    # 从包管理器安装编译器（不支持）
     sudo pacman -Sy --noconfirm \
         arm-none-eabi-gcc arm-none-eabi-newlib
     
