@@ -17,8 +17,8 @@
 3. 启动第一个实例: ```./Tools/jmavsim_run.sh```
 4. 启动后续实例，并为该实例指定 *仿真* UDP 端口（所有命令应在同一行输入，以空格键隔开，完成输入后直接回车运行，此时由于所有实例的启动位置都相同所以无法分辨启动的实例个数，可通过查看端口号进行查询）： ```./Tools/jmavsim_run.sh -p 14561``` 端口号应设置为 `14560+i` for `i` in `[0, N-1]`。
 
-*QGroundControl* and developer APIs (e.g. Dronecode SDK) connect to all instances using the normal/default ports (14550 and 14540, respectively).
+*QGroundControl* 和开发者 APIs (比如 Dronecode SDK) 可以通过代码默认端口连接到所有实例（分别为14550 和 14540）。
 
-## Additional Resources
+## 额外资源
 
-* See [Simulation](../simulation/README.md) for more information about the UDP port configuration.
+* 更多UDP端口配置请参考 [Simulation](../simulation/README.md)。
