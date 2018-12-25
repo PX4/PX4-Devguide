@@ -16,7 +16,7 @@
 
 ❏ Upload mission to vehicle using *QGroundControl*
 
-## Arm and Take-off
+## 解锁并起飞
 
 ❏ Arm in any manual mode
 
