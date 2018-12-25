@@ -45,7 +45,7 @@ pxh>
 
 此外，它还会唤起一个显示 [jMAVSim](https://github.com/PX4/jMAVSim) 模拟器的3D视图的窗口。
 
-![jMAVSim 3d View](../../assets/simulation/jmavsim.jpg)
+![jMAVSim 3d 视图](../../assets/simulation/jmavsim.jpg)
 
 ## 把飞机飞上天
 
@@ -63,9 +63,9 @@ pxh> commander takeoff
 
 ### 指定起飞位置
 
-The default takeoff location in can be overridden using the environment variables: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
+通过设定环境变量可以覆盖默认的起飞地点设定： `PX4_HOME_LAT`, `PX4_HOME_LON`, 以及 `PX4_HOME_ALT` 。
 
-For example, to set the latitude, longitude and altitude:
+举个例子，使用如下命令设定无人机起飞点的维度、经度和高度：
 
     export PX4_HOME_LAT=28.452386
     export PX4_HOME_LON=-13.867138
@@ -75,31 +75,31 @@ For example, to set the latitude, longitude and altitude:
 
 ### 使用操纵杆 {#joystick}
 
-Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
+通过 *QGroundControl* 可引入操纵杆或者拇指操纵杆（[如何进行设置看这里](../simulation/README.md#joystickgamepad-integration)）。
 
 ### 模拟一个 Wifi 无人机
 
-There is a special target to simulate a drone connected via Wifi on the local network:
+有一个特殊的平台可以模拟一个通过 Wifi 进行连接的无人机。
 
 ```sh
 make broadcast jmavsim
 ```
 
-The simulator broadcasts its address on the local network as a real drone would do.
+模拟器会跟真实的该类无人机一样在当地网络中广播自己的位置信息等。
 
 ### 单独启动 JMAVSim 和 PX4
 
-You can start JMAVSim and PX4 separately:
+你可以单独启动 JMAVSim 和 PX4:
 
     ./Tools/jmavsim_run.sh
     make px4_sitl none
     
 
-This allows a faster testing cycle (restarting jMAVSim takes significantly more time).
+此举可以缩短测试循环时间（重启 jMAVSim 需要耗费非常多的时间）。
 
 ## 多飞行器仿真
 
-JMAVSim can be used for multi-vehicle simulation: [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
+JMAVSim 也可用来进行多飞行器仿真： [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
 
 ## 扩展和定制
 
@@ -107,11 +107,11 @@ To extend or customize the simulation interface, edit the files in the **Tools/j
 
 > **Info** The build system enforces the correct submodule to be checked out for all dependencies, including the simulator. It will not overwrite changes in files in the directory, however, when these changes are committed the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/jMAVSim` and commit the change. This will update the GIT hash of the simulator.
 
-## Interfacing to ROS
+## 与 ROS 对接交互
 
 The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.
 
-## Important Files
+## 重要的文件
 
 * The startup script is in the [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) folder and named `rcS_SIM_AIRFRAME`, the default is `rcS_jmavsim_iris`.
 * The root file system (the equivalent of `/` as seen by the) is located inside the build directory: `build/px4_sitl_default/src/firmware/posix/rootfs/`
