@@ -191,23 +191,23 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 下次构建/重新启动 Gazebo 时，它将使用新的 GPS 噪声设置。
 
-## 分别启动 Gazebo 和 PX4 {#start_px4_sim_separately}
+## 单独启动 Gazebo 和 PX4 {#start_px4_sim_separately}
 
-For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
+对于扩展开发会话，单独启动 Gazebo 和 PX4 可能更方便，甚至可以在 IDE 中启动。
 
-In addition to the existing cmake targets that run `sitl_run.sh` with parameters for px4 to load the correct model it creates a launcher targets named `px4_<mode>` that is a thin wrapper around original sitl px4 app. This thin wrapper simply embeds app arguments like current working directories and the path to the model file.
+除了运行` sitl_run.sh `的现有 cmake 目标以及 px4 的参数加载正确的模型之外，它还会创建一个名为` px4_ <mode> `的启动器目标，这是一个包装器，围绕原始 sitl px4 应用程序。 这个包装器只是嵌入应用程序参数，如当前工作目录和模型文件的路径。
 
-To start Gazebo and PX4 separately:
+单独启动 Gazebo 和 PX4:
 
-* Run gazebo (or any other sim) server and client viewers via the terminal: ```make px4_sitl gazebo_none_ide```
-* In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
-* Start the debug session directly from IDE
+* 通过终端运行 gazebo（或任何其他 sim）服务器和客户端查看器： ```make px4_sitl gazebo_none_ide```
+* 在 IDE 中选择要调试的` px4_ <mode> `目标（例如` px4_iris `）
+* 直接从 IDE 启动调试会话
 
-This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
+这种方法显着缩短了调试周期时间，因为模拟器（例如 gazebo）总是在后台运行，而你只重新运行 px4 进程是非常轻松的。
 
-## Video Streaming
+## 视频流
 
-PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor attached to a vehicle model. You can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera. The video is streamed using a *gstreamer* pipeline.
+用于 Gazebo 的 PX4 SITL 支持来自连接到设备型号的 Gazebo 相机传感器的 UDP 视频流。 您可以从* QGroundControl *（在 UDP 端口 5600 上）连接到此流，并从模拟设备查看 Gazebo 环境的视频 - 就像您从真实摄像机那样。 使用* gstreamer *流水线流式传输视频。
 
 > **Note** Video streaming from Gazebo and the Gazebo widget to turn streaming on/off are not enabled by default. This article explains how to enable them. In the near future we expect these features to be enabled by default.
 
