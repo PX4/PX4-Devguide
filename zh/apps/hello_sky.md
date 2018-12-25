@@ -312,7 +312,7 @@ px4_simple_app &
 
 > **Note** 这里我们选取 `attitude` topic 是因为 *mavlink* app 会自动将该 topic 中的数据转发至地面控制站，这样可以方便我们查看这些结果。
 
-The interface is pretty simple: initialize the `struct` of the topic to be published and advertise the topic:
+数据的交互非常简单： 初始化想要发布的 topic 的 `结构体` 然后告诉这个 topic ：
 
 ```c
 #include <uORB/topics/vehicle_attitude.h>
@@ -323,15 +323,15 @@ memset(&att, 0, sizeof(att));
 orb_advert_t att_pub_fd = orb_advertise(ORB_ID(vehicle_attitude), &att);
 ```
 
-In the main loop, publish the information whenever its ready:
+在主循环中完成了信息的处理之后就可以将其发布了：
 
 ```c
 orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
 ```
 
-## Full Example Code
+## 完整的示例代码
 
-The [complete example code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_simple_app/px4_simple_app.c) is now:
+[完整的示例代码](https://github.com/PX4/Firmware/blob/master/src/examples/px4_simple_app/px4_simple_app.c) 现在如下：
 
 ```c
 /****************************************************************************
