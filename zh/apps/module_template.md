@@ -8,8 +8,8 @@ PX4 固件中包含了一个模版文件： [src/templates/module](https://githu
 
 - 访问参数并对参数更新做出反应。
 - 订阅、等待 topic 更新。
-- 通过 `start`/`stop`/`status` 控制后台运行的任务。 The `module start [<arguments>]` command can then be directly added to the [startup script](../concept/system_startup.md).
-- Command-line argument parsing.
-- Documentation: the `PRINT_MODULE_*` methods serve two purposes (the API is documented [in the source code](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381)): 
-    - They are used to print the command-line usage when entering `module help` on the console.
-    - They are automatically extracted via script to generate the [Modules & Commands Reference](../middleware/modules_main.md) page.
+- 通过 `start`/`stop`/`status` 控制后台运行的任务。 `module start [<arguments>]` 命令可以直接加入 [启动脚本](../concept/system_startup.md) 中。
+- 命令行参数解析。
+- 文档记录：`PRINT_MODULE_*` 方法有两个用处（该 API 在 [源代码](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381) 中有详细记录）： 
+    - 它们可用于在控制台键入 `module help ` 指令后输出命令行指令的用法。
+    - 可通过脚本提取该部分内容以自动生成 [Modules & Commands Reference](../middleware/modules_main.md) 页面。
