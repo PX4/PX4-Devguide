@@ -18,13 +18,13 @@ jMAVSim是一个简单的多旋翼/四旋翼仿真软件，它可以允许你在
 
 ## 运行 SITL
 
-After ensuring that the [simulation prerequisites](../setup/dev_env.md) are installed on the system, just launch: The convenience make target will compile the POSIX host build and run the simulation.
+在确保 [仿真必备条件](../setup/dev_env.md) 已经安装在电脑系统上了之后直接运行命令：便捷的 make target 命令会完成 POSIX 平台的交叉编译并启动仿真。
 
 ```sh
 make px4_sitl_default jmavsim
 ```
 
-This will bring up the PX4 shell:
+该命令最终将得到如下 PX4 控制台显示界面：
 
 ```sh
 [init] shell id: 140735313310464
@@ -43,25 +43,25 @@ Ready to fly.
 pxh>
 ```
 
-It will also bring up a window showing a 3D view of the [jMAVSim](https://github.com/PX4/jMAVSim) simulator:
+此外，它还会唤起一个显示 [jMAVSim](https://github.com/PX4/jMAVSim) 模拟器的3D视图的窗口。
 
 ![jMAVSim 3d View](../../assets/simulation/jmavsim.jpg)
 
-## Taking it to the Sky
+## 把飞机飞上天
 
-The system will start printing status information. You will be able to start flying once you have a position lock (shortly after the console displays the message: *EKF commencing GPS fusion*).
+系统将开始输出状态信息。 飞机完成位置锁定之后（控制台提示： *EKF commencing GPS fusion* 信息之后不久）你就可以开始飞行了。
 
-To takeoff enter the following into the console:
+在控制台输入以下命令进行起飞：
 
 ```sh
 pxh> commander takeoff
 ```
 
-You can use *QGroundControl* to fly a mission or to connect to a [joystick](#joystick).
+你可以使用 *QGroundControl* 制定一个飞行计划，或者连接一个 [操纵杆](#joystick) 。
 
-## Usage/Configuration Options
+## 使用/配置选项
 
-### Set Custom Takeoff Location
+### 指定起飞位置
 
 The default takeoff location in can be overridden using the environment variables: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
 
@@ -73,11 +73,11 @@ For example, to set the latitude, longitude and altitude:
     make px4_sitl_default jmavsim
     
 
-### Using a Joystick {#joystick}
+### 使用操纵杆 {#joystick}
 
 Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
 
-### Simulating a Wifi Drone
+### 模拟一个 Wifi 无人机
 
 There is a special target to simulate a drone connected via Wifi on the local network:
 
@@ -87,7 +87,7 @@ make broadcast jmavsim
 
 The simulator broadcasts its address on the local network as a real drone would do.
 
-### Start JMAVSim and PX4 Separately
+### 单独启动 JMAVSim 和 PX4
 
 You can start JMAVSim and PX4 separately:
 
