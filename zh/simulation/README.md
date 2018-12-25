@@ -109,17 +109,17 @@ make px4_sitl jmavsim
 
 可以通过环境变量进一步仿真机：
 
-* `PX4_ESTIMATOR`：此变量配置要使用的估算器。 Possible options are: `ekf2` (default), `lpe`, `inav`. It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
+* `PX4_ESTIMATOR`：此变量配置要使用的估算器。 可能的选项有：`ekf2` （默认）、`lpe`、`inav`。 在运行模拟之前，可以通过 `export PX4_ESTIMATOR=lpe` 进行设置。
 
-The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
+这里描述的语法是简化的，您可以通过 *make* 配置许多其他选项，例如，设置要连接到 IDE 或调试器的选项。 有关详细信息，请参阅： [Building 代码 > PX4 使生成 Targets](../setup/building_px4.md#make_targets)。
 
-### Startup Scripts {#scripts}
+### 启动脚本 {#scripts}
 
-Scripts are used to control which parameter settings to use or which modules to start. They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) directory, the `rcS` file is the main entry point. See [System Startup](../concept/system_startup.md) for more information.
+脚本被用于控制要使用的参数设置或要启动的模块。 它们位于 [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) 目录中，`rcS` 文件是主要入口点。 有关详细信息，请参阅 [System startup](../concept/system_startup.md)。
 
-## HITL Simulation Environment
+## HITL 仿真环境
 
-With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL Simulation Environment in documented in: [HITL Simulation](../simulation/hitl.md).
+通过硬件在环（HITL）仿真使正常的 PX4 固件在真正的硬件上运行。 HITL 仿真环境记录于： [HITL 模拟](../simulation/hitl.md)。
 
 ## Joystick/Gamepad Integration
 
