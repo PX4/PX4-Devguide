@@ -103,9 +103,9 @@ JMAVSim 也可用来进行多飞行器仿真： [Multi-Vehicle Sim with JMAVSim]
 
 ## 扩展和定制
 
-To extend or customize the simulation interface, edit the files in the **Tools/jMAVSim** folder. The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
+如果想扩展或者定制仿真接口，你可以编辑 **Tools/jMAVSim** 文件夹下的文件： 源代码可以从 Github 上的 [jMAVSim 软件仓库](https://github.com/px4/jMAVSim) 获取。
 
-> **Info** The build system enforces the correct submodule to be checked out for all dependencies, including the simulator. It will not overwrite changes in files in the directory, however, when these changes are committed the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/jMAVSim` and commit the change. This will update the GIT hash of the simulator.
+> **Info** 编译系统会强制检查所有依赖项的子模块正确无误，其中就包括了模拟器。 It will not overwrite changes in files in the directory, however, when these changes are committed the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/jMAVSim` and commit the change. This will update the GIT hash of the simulator.
 
 ## 与 ROS 对接交互
 
