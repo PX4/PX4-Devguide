@@ -100,7 +100,7 @@ make px4_sitl gazebo_rover
 make px4_sitl gazebo_hippocampus
 ```
 
-![Submarine/UUV](../../assets/gazebo/hippocampus.png)
+![潜艇 /UUV](../../assets/gazebo/hippocampus.png)
 
 ## 改变仿真环境中的世界
 
@@ -237,7 +237,7 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 查看 SITL / Gazebo 相机视频流的最简单方法是在* QGroundControl *中。 只需打开** Settings > General **并将** Video Source **设置为* UDP 视频流*，将** UDP 端口**设置为* 5600 *：
 
-![QGC Video Streaming Settings for Gazebo](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
+![Gazebo 的 QGC 视频流设置](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
 
 来自 Gazebo 的视频应该像从真实相机那样显示在* QGroundControl *中。
 
@@ -253,7 +253,7 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 可以使用 Gazebo UI * Video ON/OFF *按钮来启用/禁用视频流。
 
-![Video ON/OFF button](../../assets/gazebo/sitl_video_stream.png)
+![视频 ON / OFF 按钮](../../assets/gazebo/sitl_video_stream.png)
 
 启用按钮：
 
