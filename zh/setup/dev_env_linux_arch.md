@@ -12,7 +12,7 @@ sudo usermod -a -G uucp $USER
 
 Then log out and log in for changes to take effect.
 
-## Script-based Installation
+## 基于脚本的安装
 
 > **Note** This script installs the (unsupported) latest GCCE from the package manager. MicroRTPS is not built.
 
@@ -30,7 +30,7 @@ source ./archlinux_install_script.sh
 > Follow the instructions [below](#gcc-toolchain-installation) to install the supported version.
 -->
 
-## Manual Installation
+## 手动安装
 
 ### 通用依赖
 
