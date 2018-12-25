@@ -249,7 +249,7 @@ int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 
 `sensor_sub_fd` 是一个 topic 句柄（handle），它可以高效地执行阻断以等待新数据。 待新数据抵达后调度程序会自动将当前进程从休眠中唤醒，线程在等待期间不会占用任何 CPU 周期。 为了实现这一功能，我们使用了 POSIX 系统调用函数 [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) 。
 
-将 `poll()` 加入订阅的实现过程如下 (*伪代码实现，完整的代码实现见下文*) ：
+将 `poll()` 加入消息订阅的实现过程如下 (*伪代码实现，完整的代码实现见下文*) ：
 
 ```cpp
 #include <poll.h>
@@ -279,21 +279,21 @@ uORBint poll_ret = px4_poll(fds, 1, 1000);
 }
 ```
 
-Compile the app again by entering:
+使用下面的命令重新编译 app ：
 
 ```sh
 make
 ```
 
-### Testing the uORB Subscription
+### 测试 uORB 消息订阅
 
-The final step is to start your application as a background process/task by typing the following in the nsh shell:
+最后一步就是将你的应用程序作为后台进程/任务进行启动，在 nsh shell 界面输入：
 
 ```sh
 px4_simple_app &
 ```
 
-Your app will display 5 sensor values in the console and then exit:
+你的 app 会在控制台界面输出 5 组传感器数据然后退出：
 
 ```sh
 [px4_simple_app] Accelerometer:   0.0483          0.0821          0.0332
@@ -304,11 +304,11 @@ Your app will display 5 sensor values in the console and then exit:
 [px4_simple_app] Accelerometer:   0.0489          0.0804          0.0328
 ```
 
-> **Tip** The [Module Template for Full Applications](../apps/module_template.md) can be used to write background process that can be controlled from the command line.
+> **Tip** 编写可使用命令行直接进行控制的后台进程请参阅： [Module Template for Full Applications](../apps/module_template.md) 。
 
-## Publishing Data
+## 发布数据
 
-To use the calculated outputs, the next step is to *publish* the results. Below we show how to publish the attitude topic.
+为了使用你的 app 计算好的输出量，接下来我们需要将这些结果 *发布* 出去。 接下来我们展示一下如何发布 attitude （姿态） topic 中的数据。
 
 > **Note** We've chosen `attitude` because we know that the *mavlink* app forwards it to the ground control station - providing an easy way to look at the results.
 
