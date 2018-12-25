@@ -60,30 +60,30 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 
 相比之下， HITL 在正常飞控硬件平台上运行正常的处于 ”HITL 模式“ 的 PX4 固件。 仿真数据进入整个仿真系统的时间点与 SITL 有所不同。 指令器和传感器等有 HIL 模式的核心模块在启动时被绕过了一些正常的功能。
 
-In summary, HITL runs PX4 on the actual hardware using standard firmware, but SITL actually executes more of the standard system code.
+总而言之， HITL 在真实硬件上运行标准 PX4 固件，而 SITL 实际上要比标准 PX4 系统执行更多的代码。
 
-## Setting up HITL
+## 配置 HITL
 
-### PX4 Configuration
+### PX4 配置
 
-1. Connect the autopilot directly to *QGroundControl* via USB.
-2. Enable HITL Mode
+1. 通过 USB 将自动驾驶仪直接连接到 *QGroundControl*。
+2. 激活 HITL 模式
     
-    1. Open **Setup > Safety** section.
-    2. Enable HITL mode by selecting **Enabled** from the *HITL Enabled* list:
+    1. 打开 **Setup > Safety** 选项卡。
+    2. 在 *HITL Enabled* 下拉框中选择 **Enabled** 完成 HITL 模式的激活。
         
         ![QGroundControl HITL configuration](../../assets/gcs/qgc_hitl_config.png)
 
-3. Select Airframe
+3. 选择机架
     
-    1. Open **Setup > Airframes**
-    2. Select a [compatible airframe](#compatible_airframe) you want to test. Generally you'll select *HILStar* for Fixed Wing/X-Plane simulator and a *HIL QuadCopter* option for copters (and jMAVSim or Gazebo). Then click "Apply and Restart" on top-right of the Airframe Setup page.
+    1. 打开 **Setup > Airframes** 选项卡。
+    2. 选择一个你想要进行测试的 [兼容的机架](#compatible_airframe) 。 通常情况下选择 *HILStar* 作为固定翼平台/X-Plane 模拟器，选择 *HIL QuadCopter* 作为旋翼平台 ( jMAVSim 或 Gazebo) 。 然后单击 "机身设置" 页面右上角的 "Apply and Restart"。
         
         ![Select Airframe](../../assets/gcs/qgc_hil_config.png)
 
-4. Calibrate your RC or Joystick, if needed.
+4. 如有必要, 校准您的 RC 遥控器 或操纵杆。
 
-5. Setup UDP
+5. 设置 UDP
     
     1. Under the *General* tab of the settings menu, uncheck all *AutoConnect* boxes except for **UDP**.
         
@@ -98,7 +98,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
 
 Once configuration is complete, **close** *QGroundControl* and disconnect the flight controller hardware from the computer.
 
-### Simulator Setup
+### 模拟器配置
 
 Follow the appropriate setup steps for your simulator in the following sections.
 
@@ -137,7 +137,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
 7. Start *QGroundControl*. It should autoconnect to PX4 and Gazebo.
 
-#### jMAVSim (Quadrotor only)
+#### jMAVSim (仅适用于四旋翼无人机)
 
 > **Note** Make sure *QGroundControl* is not running!
 
@@ -148,7 +148,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
 3. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
 
-#### Using X-Plane (Fixed Wing only)
+#### 使用 X-Plane (仅适用于固定翼无人机)
 
 > **Note** X-Plane is currently not recommended. Among other issues, the frame update rate is too slow to run the system realistically.
 
@@ -170,6 +170,6 @@ To set up X-Plane:
         
         ![](../../assets/gcs/qgc_sim_run.png)
 
-## Fly an Autonomous Mission in HITL
+## 在 HITL 仿真中执行自主飞行任务
 
 You should be able to use *QGroundControl* to [run missions](../qgc/README.md#planning-missions) and otherwise control the vehicle.
