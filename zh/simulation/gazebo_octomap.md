@@ -4,7 +4,7 @@ The [OctoMap library](http://octomap.github.io/) is an open source library for g
 
 This guide covers how to use *OctoMap* with the Gazebo [Rotors Simulator](https://github.com/ethz-asl/rotors_simulator/wiki/RotorS-Simulator) and ROS.
 
-## Installation
+## 安装
 
 The installation requires ROS, Gazebo and the Rotors Simulator plugin. Follow the [Rotors Simulator instructions](https://github.com/ethz-asl/rotors_simulator) to install.
 
@@ -56,7 +56,7 @@ to:
 <remap from="cloud_in" to="/firefly/vi_sensor/camera_depth/depth/points" />
 ```
 
-## Running the Simulation
+## 运行仿真
 
 Run the following three lines in *separate* terminal windows. This opens up [Gazebo](../simulation/gazebo.md), *Rviz* and an octomap server.
 
