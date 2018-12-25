@@ -47,7 +47,7 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 所有模拟器都使用 Simulator MAVLink API 与 PX4 进行通信。 该 API 定义了一组 MAVLink 消息，这些消息将仿真机的传感器数据提供给 PX4，并从将应用于仿真机的飞行代码返回电机和执行器值。 下面图表描述了消息。
 
-![Simulator MAVLink API](../../assets/simulation/px4_simulator_messages.png)
+![仿真器 MAVLink API](../../assets/simulation/px4_simulator_messages.png)
 
 > **注意** PX4 的 SITL 版本使用[仿真器 mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp)来处理这些消息，而在HITL模式下的硬件构建使用[mavlink receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)。 模拟器中的传感器数据将写入 PX4 uORB 主题。 所有电机/执行器都被卡停，但内部软件可以完全正常运行。
 
@@ -81,7 +81,7 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 * PX4 使用普通的 MAVlink 模块连接到地面站（在 14550 号端口上侦听）和外部开发人员 APIs， 如 DroneCore 或 ROS （在 14550 端口侦听）。
 * 串行连接用于通过 *QGroundControl* 连接 Joystick/Gamepad 硬件。
 
-![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
+![PX4 SITL 概述](../../assets/simulation/px4_sitl_overview.png)
 
 如果使用正常的生成系统 SITL `make` 配置目标 （请参阅下一节），则 SITL 和模拟器都将在同一台计算机上启动，并自动配置上述端口。 您可以配置其他 MAVLink UDP 连接，并以其他方式修改生成配置和初始化文件中的模拟环境。
 
@@ -139,6 +139,6 @@ PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图�
 这个模拟相机是一个实现 [MAVLink 相机协议的 gazebo 插件](https://mavlink.io/en/protocol/camera.html)。 PX4 与这个相机以 *exactly the same way* 连接／集成，与任何其他 MAVLink 相机一样：
 
 1. [ TRIG_INTERFACE ](../advanced/parameter_reference.md#TRIG_INTERFACE)必须设置为` 3 `以配置相机触发驱动程序以与 MAVLink 相机一起使用 > **Tip**在此模式下，只要请求图像捕获，驱动程序就会发送[ CAMERA_TRIGGER ](https://mavlink.io/en/messages/common.html#CAMERA_TRIGGER)消息。 更多信息请参见：[Camera](https://docs.px4.io/en/peripherals/camera.html)。
-2. PX4 必须在 GCS 和（模拟器）MAVLink Camera 之间转发所有摄像机命令。 You can do this by starting [mavlink](../middleware/modules_communication.md#mavlink) with the `-f` flag as shown, specifying the UDP ports for the new connection. ```mavlink start -u 14558 -o 14530 -r 4000 -f -m camera``` > **Note** More than just the camera MAVLink messages will be forwarded, but the camera will ignore those that it doesn't consider relevant.
-
-The same approach can be used by other simulators to implement camera support.
+2. PX4 必须在 GCS 和（模拟器）MAVLink Camera 之间转发所有摄像机命令。 您可以通过使用` -f `标志启动[ mavlink ](../middleware/modules_communication.md#mavlink)来执行此操作，如下所示，指定新连接的UDP端口。 ```mavlink start -u 14558 -o 14530 -r 4000 -f -m camera``` > **Note</ 0>不仅仅是摄像机将转发 MAVLink 消息，但摄像机将忽略它们认为不相关的消息。</li> </ol> 
+    
+    其他模拟器可以使用相同的方法来实现相机支持。
