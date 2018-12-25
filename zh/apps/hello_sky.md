@@ -1,15 +1,15 @@
-# First Application Tutorial (Hello Sky)
+# 搭建你的第一个应用（Hello Shy）
 
-This topic explains how to create and run your first onboard application. It covers all the basic concepts and APIs required for app development on PX4.
+本文主要说明如何创建并运行你的第一个板载应用程序。 它涵盖了 PX4 应用程序开发所需的所有基本概念和 API。
 
-> **Note** For simplicity, more advanced features like start/stop functionality and command-line arguments are omitted. These are covered in [Application/Module Template](../apps/module_template.md).
+> **Note** 简单起见，这里略过了功能的开启/关闭、命令行参数等更高级的特性。 这些内容将会在 [Application/Module Template](../apps/module_template.md) 中进行介绍。
 
-## Prerequisites
+## 系统必备组件
 
-You will require the following:
+你需要具备如下组件：
 
-* [PX4 SITL Simulator](../simulation/README.md) *or* a [PX4-compatible flight controller](https://docs.px4.io/en/flight_controller/#documented-boards).
-* [PX4 Development Toolchain](../setup/dev_env.md) for the desired target.
+* [PX4 SITL 模拟器](../simulation/README.md) *或者* 一个 [兼容 PX4 的飞行控制器](https://docs.px4.io/en/flight_controller/#documented-boards) 。
+* 适用于期望平台的 [PX4 开发工具链](../setup/dev_env.md) 。
 * [Download the PX4 Source Code](../setup/building_px4.md#get_px4_code) from Github
 
 The source code [Firmware/src/examples/px4_simple_app](https://github.com/PX4/Firmware/tree/master/src/examples/px4_simple_app) directory contains a completed version of this tutorial that you can review if you get stuck.
