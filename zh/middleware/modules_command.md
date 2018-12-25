@@ -6,7 +6,7 @@ Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/s
 
 Utility to flash the bootloader from a file
 
-### Usage {#bl_update_usage}
+### 用法 {#bl_update_usage}
 
     bl_update [arguments...]
        setopt        Set option bits to unlock the FLASH (only needed if in locked
@@ -21,7 +21,7 @@ Source: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/syst
 
 Configure a sensor driver (sampling & publication rate, range, etc.)
 
-### Usage {#config_usage}
+### 用法 {#config_usage}
 
     config <command> [arguments...]
      Commands:
@@ -52,7 +52,7 @@ Source: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/sy
 
 Dump file utility. Prints file size and contents in binary mode (don't replace LF with CR LF) to stdout.
 
-### Usage {#dumpfile_usage}
+### 用法 {#dumpfile_usage}
 
     dumpfile [arguments...]
          <file>      File to dump
@@ -62,7 +62,7 @@ Dump file utility. Prints file size and contents in binary mode (don't replace L
 
 Source: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
 
-### Description
+### 描述
 
 Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
 
@@ -71,7 +71,7 @@ Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
     dyn ./hello.px4mod start
     
 
-### Usage {#dyn_usage}
+### 用法 {#dyn_usage}
 
     dyn [arguments...]
          <file>      File containing the module
@@ -91,7 +91,7 @@ Calibration procedure (running the command will guide you through it):
 - Make sure safety is off
 - Run this command
 
-### Usage {#esc_calib_usage}
+### 用法 {#esc_calib_usage}
 
     esc_calib [arguments...]
          [-d <val>]  Select PWM output device
@@ -115,7 +115,7 @@ Hardfault utility
 
 Used in startup scripts to handle hardfaults
 
-### Usage {#hardfault_log_usage}
+### 用法 {#hardfault_log_usage}
 
     hardfault_log <command> [arguments...]
      Commands:
@@ -139,7 +139,7 @@ Used in startup scripts to handle hardfaults
 
 Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
 
-### Description
+### 描述
 
 Command-line tool to control & test the (external) LED's.
 
@@ -154,7 +154,7 @@ Blink the first LED 5 times in blue:
     led_control blink -c blue -l 0 -n 5
     
 
-### Usage {#led_control_usage}
+### 用法 {#led_control_usage}
 
     led_control <command> [arguments...]
      Commands:
@@ -192,7 +192,7 @@ Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/
 
 Utility to listen on uORB topics and print the data to the console.
 
-### Usage {#listener_usage}
+### 用法 {#listener_usage}
 
     listener <command> [arguments...]
      Commands:
@@ -209,13 +209,13 @@ Utility to listen on uORB topics and print the data to the console.
 
 Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
 
-### Description
+### 描述
 
 Load or append mixer files to the ESC driver.
 
 Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
 
-### Usage {#mixer_usage}
+### 用法 {#mixer_usage}
 
     mixer <command> [arguments...]
      Commands:
@@ -230,7 +230,7 @@ Note that the driver must support the used ioctl's, which is the case on NuttX, 
 
 Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
 
-### Description
+### 描述
 
 Application to test motor ramp up.
 
@@ -249,7 +249,7 @@ Note: this command currently only supports the `/dev/pwm_output0` output.
     motor_ramp sine 1100 0.5
     
 
-### Usage {#motor_ramp_usage}
+### 用法 {#motor_ramp_usage}
 
     motor_ramp [arguments...]
          ramp|sine|square mode
@@ -266,7 +266,7 @@ Utility to test motors.
 
 Note: this can only be used for drivers which support the motor_test uorb topic (currently uavcan and tap_esc)
 
-### Usage {#motor_test_usage}
+### 用法 {#motor_test_usage}
 
     motor_test <command> [arguments...]
      Commands:
@@ -287,7 +287,7 @@ Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
 
-### Usage {#mtd_usage}
+### 用法 {#mtd_usage}
 
     mtd <command> [arguments...]
      Commands:
@@ -315,7 +315,7 @@ Start an NSH shell on a given port.
 
 This was previously used to start a shell on the USB serial port. Now there runs mavlink, and it is possible to use a shell over mavlink.
 
-### Usage {#nshterm_usage}
+### 用法 {#nshterm_usage}
 
     nshterm [arguments...]
          <file:dev>  Device on which to start the shell (eg. /dev/ttyACM0)
@@ -325,7 +325,7 @@ This was previously used to start a shell on the USB serial port. Now there runs
 
 Source: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
 
-### Description
+### 描述
 
 Command to access and manipulate parameters via shell or script.
 
@@ -346,7 +346,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
     reboot
     
 
-### Usage {#param_usage}
+### 用法 {#param_usage}
 
     param <command> [arguments...]
      Commands:
@@ -406,7 +406,7 @@ Source: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/system
 
 Tool to print performance counters
 
-### Usage {#perf_usage}
+### 用法 {#perf_usage}
 
     perf [arguments...]
        reset         Reset all counters
@@ -420,7 +420,7 @@ Tool to print performance counters
 
 Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
 
-### Description
+### 描述
 
 This command is used to configure PWM outputs for servo and ESC control.
 
@@ -449,7 +449,7 @@ Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
     pwm test -c 13 -p 1200
     
 
-### Usage {#pwm_usage}
+### 用法 {#pwm_usage}
 
     pwm <command> [arguments...]
      Commands:
@@ -514,7 +514,7 @@ Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/syst
 
 Reboot the system
 
-### Usage {#reboot_usage}
+### 用法 {#reboot_usage}
 
     reboot [arguments...]
          [-b]        Reboot into bootloader
@@ -527,7 +527,7 @@ Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/sy
 
 Test the speed of an SD Card
 
-### Usage {#sd_bench_usage}
+### 用法 {#sd_bench_usage}
 
     sd_bench [arguments...]
          [-b <val>]  Block size for each read/write
@@ -545,7 +545,7 @@ Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Monitor running processes and their CPU, stack usage, priority and state
 
-### Usage {#top_usage}
+### 用法 {#top_usage}
 
     top [arguments...]
        once          print load only once
@@ -557,7 +557,7 @@ Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/s
 
 Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
 
-### Usage {#usb_connected_usage}
+### 用法 {#usb_connected_usage}
 
     usb_connected [arguments...]
     
@@ -568,7 +568,7 @@ Source: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Tool to print various version information
 
-### Usage {#ver_usage}
+### 用法 {#ver_usage}
 
     ver <command> [arguments...]
      Commands:
