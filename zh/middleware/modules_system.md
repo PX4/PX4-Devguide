@@ -115,12 +115,12 @@ The module runs periodically on the HP work queue.
 
     land_detector <command> [arguments...]
      Commands:
-       start         Start the background task
-         fixedwing|multicopter|vtol|ugv Select vehicle type
+       start         启动后台任务
+         fixedwing|multicopter|vtol|ugv 选择飞机类型
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## load_mon
@@ -137,11 +137,11 @@ On NuttX it also checks the stack usage of each process and if it falls below 30
 
     load_mon <command> [arguments...]
      Commands:
-       start         Start the background task
+       start         启动后台任务
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## logger
@@ -296,11 +296,11 @@ It runs in its own thread and polls on the currently selected gyro topic.
     sensors <command> [arguments...]
      Commands:
        start
-         [-h]        Start in HIL mode
+         [-h]        在 HIL 模式下启动
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## tune_control
@@ -315,7 +315,7 @@ Tunes are used to provide audible notification and warnings (e.g. when the syste
 
 Information about the tune format and predefined system tunes can be found here: https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
 
-### Examples
+### 示例
 
 Play system tune #2:
 
