@@ -220,16 +220,16 @@ The application is now correctly registered with the system and can be extended 
 
 ## 测试应用（SITL）
 
-If you're using SITL the *PX4 console* is automatically started (see [Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build)). As with the *nsh console* (see previous section) you can type `help` to see the list of built-in apps.
+如果你使用的是 SITL 仿真，那么 *PX4 控制台* 会默认启动（参见 [Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build) ）。 与 *nsh 控制台* (见上一节) 一样，您可以键入 `help` 以查看内置应用的列表。
 
-Enter `px4_simple_app` to run the minimal app.
+输入 `px4_simple_app` 以运行该最小的应用程序。
 
 ```sh
 pxh> px4_simple_app
 INFO  [px4_simple_app] Hello Sky!
 ```
 
-The application can now be extended to actually perform useful tasks.
+现在可以扩展应用程序以实际执行有用的任务。
 
 ## Subscribing to Sensor Data
 
