@@ -151,13 +151,13 @@ Gazebo 可以在* headless *模式下运行，其中 Gazebo UI 未启动。 这�
 HEADLESS=1 make px4_sitl gazebo_plane
 ```
 
-### Set Custom Takeoff Location
+### 设置自定义起飞位置
 
-The default takeoff location in SITL Gazebo can be overridden using environment variables.
+可以使用环境变量重写 SITL Gazebo 中的默认起飞位置。
 
-The variables to set are: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
+要设置的变量有：`PX4_HOME_LAT`、`PX4_HOME_LON` 和 `PX4_HOME_ALT`。
 
-As an example:
+下面是一个例子：
 
     export PX4_HOME_LAT=28.452386
     export PX4_HOME_LON=-13.867138
@@ -165,17 +165,17 @@ As an example:
     make px4_sitl gazebo
     
 
-### Using a Joystick
+### 使用操纵杆
 
-Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
+通过 *QGroundControl* 可引入操纵杆或者拇指操纵杆（[如何进行设置看这里](../simulation/README.md#joystickgamepad-integration)）。
 
-### Simulating GPS Noise
+### 模拟 GPS 噪声
 
-Gazebo can simulate GPS noise that is similar to that typically found in real systems (otherwise reported GPS values will be noise-free/perfect). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
+Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告的GPS值将是无噪声/完美的）。 这在处理可能受 GPS 噪声影响的应用时非常有用，例如精度定位。
 
-GPS noise is enabled if the target vehicle's SDF file contains a value for the `gpsNoise` element (i.e. it has the line: `<gpsNoise>true</gpsNoise>`). It is enabled by default in many vehicle SDF files: **solo.sdf**, **iris.sdf**, **standard_vtol.sdf**, **delta_wing.sdf**, **plane.sdf**, **typhoon_h480**, **tailsitter.sdf**.
+果目标设备的 SDF 文件包含` gpsNoise `元素的值（即，它具有行：`<gpsNoise>true</gpsNoise>`），则启用GPS噪声。 默认情况下, 它在许多设备 SDF 文件中启用：**solo.sdf**、**iris.sdf**、**standard_vtol.sdf**、**delta_wing.sdf**、**plane.sdf**、**typhoon_h480** **tailsitter.sdf**。
 
-To enable/disable GPS noise:
+启用/禁用GPS噪音：
 
 1. Build any gazebo target in order to generate SDF files (for all vehicles). For example: ```make px4_sitl gazebo_iris``` > **Tip** The SDF files are not overwritten on subsequent builds. 
 2. Open the SDF file for your target vehicle (e.g. **./Tools/sitl_gazebo/models/iris/iris.sdf**).
