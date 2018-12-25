@@ -25,13 +25,13 @@ Gazebo 8 设置包含在我们的标准构建说明中：
 
 * ** macOS：** [ Mac 上的开发环境](../setup/dev_env_mac.md)
 * ** Linux：** [ Linux 上的开发环境（Ubuntu 16.04）> jMAVSim / Gazebo Simulation ](../setup/dev_env_linux.md#jmavsimgazebo-simulation)
-* **Windows:** Not supported.
+* ** Windows：**不支持。
 
-Additional installation instructions can be found on [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1).
+其他安装说明可在 [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1) 上找到。
 
-## Running the Simulation
+## 运行仿真
 
-You can run a simulation by starting PX4 SITL and gazebo with the airframe configuration to load (multicopters, planes, VTOL, optical flow and multi-vehicle simulations are supported).
+您可以通过启动 PX4 SITL和 Gazebo 来运行模拟，并加载机身配置（支持多旋翼飞机，飞机，VTOL，光流和多机仿真）。
 
 The easiest way to do this is to open a terminal in the root directory of the PX4 *Firmware* repository and call `make` for the targets as shown in the following sections.
 
@@ -41,14 +41,14 @@ The easiest way to do this is to open a terminal in the root directory of the PX
 
 > **Tip** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
 
-### Quadrotor
+### 四旋翼
 
 ```sh
 cd ~/src/Firmware
 make px4_sitl gazebo
 ```
 
-### Quadrotor with Optical Flow
+### 带光流的四旋翼
 
 ```sh
 make px4_sitl gazebo_iris_opt_flow
