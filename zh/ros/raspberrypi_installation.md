@@ -2,12 +2,12 @@
 
 This is a guide on how to install ROS-indigo on a Raspberry Pi 2 serving as a companion computer for Pixhawk.
 
-## Prerequisites
+## 系统必备组件
 
 * A working Raspberry Pi with monitor, keyboard, or configured SSH connection
 * This guide assumes that you have Raspbian "JESSIE" installed on your RPi. If not: [install it](https://www.raspberrypi.org/downloads/raspbian/) or [upgrade](http://raspberrypi.stackexchange.com/questions/27858/upgrade-to-raspbian-jessie) your Raspbian Wheezy to Jessie.
 
-## Installation
+## 安装
 
 Follow [this guide](http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi) for the actual installation of ROS Indigo. Note: Install the "ROS-Comm" variant. The Desktop variant is too heavyweight.
 
