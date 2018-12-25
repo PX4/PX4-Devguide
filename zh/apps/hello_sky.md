@@ -237,9 +237,9 @@ INFO  [px4_simple_app] Hello Sky!
 
 > **Tip** PX4 对硬件层进行抽象化的好处在这里发挥了作用！ 我们在构建应用程序时无需直接与传感器驱动进行任何的交互，且即便对飞控板或者传感器硬件进行更新后也不需要对你的应用程序进行任何更新。
 
-Individual message channels between applications are called [topics](../middleware/uorb.md). For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) topic, which holds the synchronized sensor data of the complete system.
+Individual message channels between applications are called [topics](../middleware/uorb.md). 在本教程中, 我们主要关注名为 [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) 的 topic, 该 topic 负责同步整个系统的传感器数据。
 
-Subscribing to a topic is straightforward:
+订阅一个 topic 非常简单直接：
 
 ```cpp
 #include <uORB/topics/sensor_combined.h>
@@ -247,9 +247,9 @@ Subscribing to a topic is straightforward:
 int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 ```
 
-The `sensor_sub_fd` is a topic handle and can be used to very efficiently perform a blocking wait for new data. The current thread goes to sleep and is woken up automatically by the scheduler once new data is available, not consuming any CPU cycles while waiting. To do this, we use the [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) POSIX system call.
+`sensor_sub_fd` 是一个 topic 句柄（handle），它可以高效地执行阻断以等待新数据。 待新数据抵达后调度程序会自动将当前进程从休眠中唤醒，线程在等待期间不会占用任何 CPU 周期。 为了实现这一功能，我们使用了 POSIX 系统调用函数 [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) 。
 
-Adding `poll()` to the subscription looks like (*pseudocode, look for the full implementation below*):
+将 `poll()` 加入订阅的实现过程如下 (*伪代码实现，完整的代码实现见下文*) ：
 
 ```cpp
 #include <poll.h>
