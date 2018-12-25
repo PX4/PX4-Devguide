@@ -87,14 +87,14 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 ### 启动/构建 SITL 模拟
 
-构建系统使在 SITL 上构建和启动 PX4、启动模拟器并连接它们变得非常容易。 The syntax (simplified) looks like this:
+构建系统使在 SITL 上构建和启动 PX4、启动模拟器并连接它们变得非常容易。 语法 （简化）如下所示：
 
     make px4_sitl simulator[_vehicle-model]
     
 
-where `simulator` is `gazebo`, `jmavsim` or some other simulator, and vehicle-model is a particular vehicle type supported by that simulator ([jMAVSim](../simulation/jmavsim.md) only supports multicopters, while [Gazebo](../simulation/gazebo.md) supports many different types).
+其中 `simulator` 是 `gazebo`、`jmavsim` 或其他一些模拟器，该设备模型是该模拟器支持的特殊的无人机类型 （[jMAVSim](../simulation/jmavsim.md) 仅支持多路光台，而 [Gazebo](../simulation/gazebo.md) 支持许多不同类型）。
 
-A number of examples are shown below, and there are many more in the individual pages for each of the simulators:
+下面显示了许多示例，每个模拟器的各个页面中还有更多示例：
 
 ```sh
 # Start Gazebo with plane
@@ -107,9 +107,9 @@ make px4_sitl gazebo_iris_opt_flow
 make px4_sitl jmavsim
 ```
 
-The simulation can be further configured via environment variables:
+可以通过环境变量进一步仿真机：
 
-* `PX4_ESTIMATOR`: This variable configures which estimator to use. Possible options are: `ekf2` (default), `lpe`, `inav`. It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
+* `PX4_ESTIMATOR`：此变量配置要使用的估算器。 Possible options are: `ekf2` (default), `lpe`, `inav`. It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
 
 The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
