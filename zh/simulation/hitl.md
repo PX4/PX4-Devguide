@@ -139,34 +139,34 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 
 #### jMAVSim (仅适用于四旋翼无人机)
 
-> **Note** Make sure *QGroundControl* is not running!
+> **Note** 确保 *QGroundControl* 没有运行！
 
-1. Connect the flight controller to the computer and wait for it to boot.
-2. Run jMAVSim in HITL mode (replace the serial port name `/dev/ttyACM0` if necessary - e.g. on Mac OS this would be `/dev/tty.usbmodem1`): 
+1. 将飞行控制器连接到计算机, 并等待其启动。
+2. 在 HITL 模式下运行 jMAVSim (r如有必要，修改串口号名称 `/dev/ttyACM0` - 比如，在 Mac OS 上该参数应为 `/dev/tty.usbmodem1`)： 
         sh
         ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
 
-3. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
+3. 开启 *QGroundControl*。 它应该会自动连接 PX4 和 Gazebo 。
 
 #### 使用 X-Plane (仅适用于固定翼无人机)
 
-> **Note** X-Plane is currently not recommended. Among other issues, the frame update rate is too slow to run the system realistically.
+> **Note** 当前情况下不建议使用 X-Plane 。 除其他问题外，帧率太慢使得基于该平台进行仿真不太现实。
 
-To set up X-Plane:
+遵循以下流程进行 X-Plane 模拟器的配置：
 
-1. Open X-Plane
-2. In **Settings > Data Input and Output**, set these checkboxes:
+1. 打开 X-Plane
+2. 在 **Settings > Data Input and Output** 界面中勾选以下选项：
     
     ![X-Plane data configuration](../../assets/gcs/xplane_data_config.png)
 
-3. In **Settings > Net Connections**, in the *Data* tab, set localhost and port 49005 as IP address, as shown below:
+3. 在 **Settings > Net Connections** 界面的 *Data* 选项卡，将 localhost 和 49005 端口设定为 IP 地址，如下图所示：
     
     ![X-Plane 网络配置](../../assets/gcs/xplane_net_config.png)
 
-4. Enable X-Plane HITL in *QGroundControl*:
+4. 在 *QGroundControl* 中启用 X-Plane HITL ：
     
-    1. Open *QGroundControl*
-    2. Open **Widgets > HIL Config**. Select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
+    1. 开启 *QGroundControl*。
+    2. 打开 **Widgets > HIL Config** 界面， 在下拉列表中选择 X-Plane 10 并点击连接。 Once the system is connected, battery status, GPS status and aircraft position should all become valid:
         
         ![](../../assets/gcs/qgc_sim_run.png)
 
