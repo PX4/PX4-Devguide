@@ -63,7 +63,7 @@ These instructions are for the [J-Link GDB server](https://www.segger.com/jlink-
 
 [Download the J-Link software](https://www.segger.com/downloads/jlink) from the Segger website and install it according to their instructions.
 
-#### Run the JLink GDB server
+#### 运行 JLink GDB 服务器
 
 The command below is used to run the server for flight controllers that use the STM32F427VI SoC:
 
