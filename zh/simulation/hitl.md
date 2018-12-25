@@ -41,7 +41,7 @@ JMAVSim 或 Gazebo (运行在开发计算机上) 通过 USB/UART 完成与飞行
 * (可选) 通过串口可将操纵杆/游戏手柄通过 *QGroundControl* 连接至仿真回路中。
 * (可选 - 仅适用于Gazebo) Gazebo 还可以连接到一个 offboard API ，并将 MAVLink 数据桥接到 PX4 。
 
-![HITL Setup - jMAVSim and Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
+![HITL 配置 - jMAVSim 和 Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
 
 ### X-Plane HITL 仿真环境
 
@@ -52,7 +52,7 @@ JMAVSim 或 Gazebo (运行在开发计算机上) 通过 USB/UART 完成与飞行
 * *QGroundControl* 通过 UDP 连接到模拟器和offboard API。
 * 通过串口将操纵杆/游戏手柄通过 *QGroundControl* 连接至仿真回路中。
 
-![HITL Setup - X-Plane](../../assets/simulation/px4_hitl_overview_xplane.png)
+![HITL 配置 - X-Plane](../../assets/simulation/px4_hitl_overview_xplane.png)
 
 ## HITL vs SITL
 
@@ -72,14 +72,14 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
     1. 打开 **Setup > Safety** 选项卡。
     2. 在 *HITL Enabled* 下拉框中选择 **Enabled** 完成 HITL 模式的激活。
         
-        ![QGroundControl HITL configuration](../../assets/gcs/qgc_hitl_config.png)
+        ![QGroundControl HITL 配置](../../assets/gcs/qgc_hitl_config.png)
 
 3. 选择机架
     
     1. 打开 **Setup > Airframes** 选项卡。
     2. 选择一个你想要进行测试的 [兼容的机架](#compatible_airframe) 。 通常情况下选择 *HILStar* 作为固定翼平台/X-Plane 模拟器，选择 *HIL QuadCopter* 作为旋翼平台 ( jMAVSim 或 Gazebo) 。 然后单击 "机身设置" 页面右上角的 "Apply and Restart"。
         
-        ![Select Airframe](../../assets/gcs/qgc_hil_config.png)
+        ![选择机架](../../assets/gcs/qgc_hil_config.png)
 
 4. 如有必要, 校准您的 RC 遥控器 或操纵杆。
 
@@ -87,7 +87,7 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
     
     1. 在设置菜单的 "*General*" 选项卡下, 取消选中 *AutoConnect* 一栏中除 **UDP** 外的所有复选框。
         
-        ![QGC Auto-connect settings for HITL](../../assets/gcs/qgc_hitl_autoconnect.png)
+        ![GITL 模式 QGC 自动连接设置](../../assets/gcs/qgc_hitl_autoconnect.png)
 
 6. (可选) 配置操纵杆和故障保护。 设置以下 [parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) 以便使用操纵杆而不是 RC 遥控器：
     
@@ -123,7 +123,7 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 
 3. 找到文件的 `mavlink_interface plugin` 分区，将 `serialEnabled` 和 `hil_mode` 参数更改为 `true` 。
     
-    ![HIL Parameters](../../assets/simulation/gazebo_sdf_model_hil_params.png)
+    ![HIL 参数](../../assets/simulation/gazebo_sdf_model_hil_params.png)
 
 4. 如有必要的话替换掉 `serialDevice` 参数 (`/dev/ttyACM0`) 。
     
@@ -157,7 +157,7 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 1. 打开 X-Plane
 2. 在 **Settings > Data Input and Output** 界面中勾选以下选项：
     
-    ![X-Plane data configuration](../../assets/gcs/xplane_data_config.png)
+    ![X-Plane 数据配置](../../assets/gcs/xplane_data_config.png)
 
 3. 在 **Settings > Net Connections** 界面的 *Data* 选项卡，将 localhost 和 49005 端口设定为 IP 地址，如下图所示：
     
@@ -166,10 +166,10 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 4. 在 *QGroundControl* 中启用 X-Plane HITL ：
     
     1. 开启 *QGroundControl*。
-    2. 打开 **Widgets > HIL Config** 界面， 在下拉列表中选择 X-Plane 10 并点击连接。 Once the system is connected, battery status, GPS status and aircraft position should all become valid:
+    2. 打开 **Widgets > HIL Config** 界面， 在下拉列表中选择 X-Plane 10 并点击连接。 系统完成连接后，电池状态、 GPS 状态及飞机位置信息应变为有效：
         
         ![](../../assets/gcs/qgc_sim_run.png)
 
 ## 在 HITL 仿真中执行自主飞行任务
 
-You should be able to use *QGroundControl* to [run missions](../qgc/README.md#planning-missions) and otherwise control the vehicle.
+你可以使用 *QGroundControl* 实现对飞机的控制并令其 [执行飞行任务](../qgc/README.md#planning-missions) 。
