@@ -19,7 +19,7 @@ The high level benefits of *Wifibroadcast* include:
 
 Additional information is provided in the [FAQ](#faq) below.
 
-## Hardware Setup
+## 硬件安装
 
 The hardware setup consists of the following parts:
 
@@ -87,7 +87,7 @@ Copy `rx.key` to RX host and `tx.key` to TX host.
 2. Run qgroundcontrol or
     
         gst-launch-1.0 udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
-                 ! rtph264depay ! avdec_h264 ! clockoverlay valignment=bottom ! autovideosink fps-update-interval=1000 sync=false
+                 ! rtph264depay ! avdec_h264 clockoverlay valignment=bottom ! autovideosink fps-update-interval=1000 sync=false
         
     
     to decode video.
