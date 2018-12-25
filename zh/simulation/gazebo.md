@@ -33,9 +33,9 @@ Gazebo 8 设置包含在我们的标准构建说明中：
 
 您可以通过启动 PX4 SITL和 Gazebo 来运行模拟，并加载机身配置（支持多旋翼飞机，飞机，VTOL，光流和多机仿真）。
 
-最简单的实现方式是在 PX4 *固件* 仓库的根目录开启一个命令终端，然后使用 `make` 命令唤起下面各个小节提到的载具平台进行仿真。
+最简单的方法是在 PX4 * Firmware *存储库的根目录中打开一个终端，并为目标调用` make `，如以下部分所示。
 
-> **Tip** 你可以使用 [下文的指南](#start_px4_sim_separately) 来保持 Gazebo 在后台运行然后只重启 PX4。 这样比同时重启两者要快一些。
+> **Tip** 你可以使用 [ instructions below ](#start_px4_sim_separately) 来保持 Gazebo 在后台运行然后只重启 PX4。 这样比同时重启两者要快一些。
 
 <span></span>
 
