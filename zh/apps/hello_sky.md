@@ -137,14 +137,14 @@
 * Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
 * *cmake* files for other boards can be found in [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)
 
-To enable the compilation of the application into the firmware create a new line for your application somewhere in the *cmake* file:
+要启用将应用程序编译到固件中, 请在 *cmake* 文件中的某个位置为应用程序创建新行：
 
     examples/px4_simple_app
     
 
-> **Note** The line will already be present for most files, because the examples are included in firmware by default.
+> **Note** 大多数 cmake 文件都已经添加好了这一行内容，因为固件中默认包含了所有的示例应用程序。
 
-Build the example using the board-specific command:
+针对不同的平台使用相应的代码进行示例程序的编译：
 
 * jMAVSim 仿真器：`make px4_sitl_default jmavsim`
 * Pixhawk v1/2：`make px4_fmu-v2_default`（或只用 `make px4_fmu-v2`）
@@ -153,7 +153,7 @@ Build the example using the board-specific command:
 
 ## 测试应用（硬件）
 
-### Upload the firmware to your board
+### 将固件上传至飞控板
 
 Enable the uploader and then reset the board:
 
@@ -218,7 +218,7 @@ Hello Sky!
 
 The application is now correctly registered with the system and can be extended to actually perform useful tasks.
 
-## Test App (SITL)
+## 测试应用（SITL）
 
 If you're using SITL the *PX4 console* is automatically started (see [Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build)). As with the *nsh console* (see previous section) you can type `help` to see the list of built-in apps.
 
