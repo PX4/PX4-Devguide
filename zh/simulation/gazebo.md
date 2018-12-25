@@ -33,9 +33,9 @@ Gazebo 8 设置包含在我们的标准构建说明中：
 
 您可以通过启动 PX4 SITL和 Gazebo 来运行模拟，并加载机身配置（支持多旋翼飞机，飞机，VTOL，光流和多机仿真）。
 
-The easiest way to do this is to open a terminal in the root directory of the PX4 *Firmware* repository and call `make` for the targets as shown in the following sections.
+最简单的实现方式是在 PX4 *固件* 仓库的根目录开启一个命令终端，然后使用 `make` 命令唤起下面各个小节提到的载具平台进行仿真。
 
-> **Tip** You can use the [instructions below](#start_px4_sim_separately) to keep Gazebo running and only re-launch PX4. This is quicker than restarting both.
+> **Tip** 你可以使用 [下文的指南](#start_px4_sim_separately) 来保持 Gazebo 在后台运行然后只重启 PX4。 这样比同时重启两者要快一些。
 
 <span></span>
 
@@ -62,7 +62,7 @@ make px4_sitl gazebo_solo
 
 ![3DR Solo in Gazebo](../../assets/gazebo/solo.png)
 
-### Standard Plane
+### 标准构型的固定翼飞机
 
 ```sh
 make px4_sitl gazebo_plane
@@ -70,7 +70,7 @@ make px4_sitl gazebo_plane
 
 ![Plane in Gazebo](../../assets/gazebo/plane.png)
 
-### Standard VTOL
+### 标准构型的 VTOL
 
 ```sh
 make px4_sitl gazebo_standard_vtol
@@ -78,7 +78,7 @@ make px4_sitl gazebo_standard_vtol
 
 ![Standard VTOL in Gazebo](../../assets/gazebo/standard_vtol.png)
 
-### Tailsitter VTOL
+### 尾座式 VTOL
 
 ```sh
 make px4_sitl gazebo_tailsitter
@@ -86,7 +86,7 @@ make px4_sitl gazebo_tailsitter
 
 ![Tailsitter VTOL in Gazebo](../../assets/gazebo/tailsitter.png)
 
-### Ackerman vehicle (UGV/Rover) {#ugv}
+### 阿克曼车 （UGV/Rover） {#ugv}
 
 ```sh
 make px4_sitl gazebo_rover
@@ -94,7 +94,7 @@ make px4_sitl gazebo_rover
 
 ![Rover in Gazebo](../../assets/gazebo/rover.png)
 
-### HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#uuv}
+### 海马体 TUHH (UUV: 无人水下航行器) {#uuv}
 
 ```sh
 make px4_sitl gazebo_hippocampus
@@ -106,11 +106,11 @@ make px4_sitl gazebo_hippocampus
 
 The current default world is the **iris.world** located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds). The default surrounding in the **iris.world** uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
 
-## Taking it to the Sky
+## 把飞机飞上天
 
 > **Note** Please refer to the [Installing Files and Code](../setup/dev_env.md) guide if you run into any errors.
 
-This will bring up the PX4 shell:
+该命令最终将得到如下 PX4 控制台显示界面：
 
 ```sh
 [init] shell id: 140735313310464
@@ -139,7 +139,7 @@ The system will print the home position once it finished intializing (`telem> ho
 pxh> commander takeoff
 ```
 
-## Usage/Configuration Options
+## 使用/配置选项
 
 ### Headless Mode
 
