@@ -237,7 +237,7 @@ INFO  [px4_simple_app] Hello Sky!
 
 > **Tip** PX4 对硬件层进行抽象化的好处在这里发挥了作用！ 我们在构建应用程序时无需直接与传感器驱动进行任何的交互，且即便对飞控板或者传感器硬件进行更新后也不需要对你的应用程序进行任何更新。
 
-Individual message channels between applications are called [topics](../middleware/uorb.md). 在本教程中, 我们主要关注名为 [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) 的 topic, 该 topic 负责同步整个系统的传感器数据。
+各应用之间的消息通道被称为 [topics](../middleware/uorb.md) 。 在本教程中, 我们主要关注名为 [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) 的 topic, 该 topic 负责同步整个系统的传感器数据。
 
 订阅一个 topic 非常简单直接：
 
