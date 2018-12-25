@@ -121,20 +121,20 @@ make px4_sitl jmavsim
 
 通过硬件在环（HITL）仿真使正常的 PX4 固件在真正的硬件上运行。 HITL 仿真环境记录于： [HITL 模拟](../simulation/hitl.md)。
 
-## Joystick/Gamepad Integration
+## 操纵杆／手柄集成
 
-*QGroundControl* desktop versions can connect to a USB Joystick/Gamepad and send its movement commands and button presses to PX4 over MAVLink. This works on both SITL and HITL simulations, and allows you to directly control the simulated vehicle. If you don't have a joystick you can alternatively control the vehicle using QGroundControl's onscreen virtual thumbsticks.
+*QGroundControl* 台式机版本可以连接到 USB Joystick/Gamepad，并通过 MAVLink 将其移动指令和按钮发送到 PX4。 这适用于 SITL 和 HITL 仿真，并允许直接控制仿真机。 如果你没有操纵杆，你也可以使用地面控制站的屏幕虚拟拇指杆来控制无人机。
 
-For setup information see the *QGroundControl User Guide*:
+有关设置信息，请参阅 *QGroundControl 用户指南 *：
 
-* [Joystick Setup](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
-* [Virtual Joystick](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
+* [操纵杆设置](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
+* [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
 
 <!-- FYI Airsim info on this setting up remote controls: https://github.com/Microsoft/AirSim/blob/master/docs/remote_controls.md -->
 
-## Camera Simulation
+## 相机模拟
 
-PX4 supports capture of both still images and video from within the [Gazebo](../simulation/gazebo.md) simulated environment. This can be enabled/set up as described in [Gazebo > Video Streaming](../simulation/gazebo.md#video-streaming).
+PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图像和视频。 This can be enabled/set up as described in [Gazebo > Video Streaming](../simulation/gazebo.md#video-streaming).
 
 The simulated camera is a gazebo plugin that implements the [MAVLink Camera Protocol](https://mavlink.io/en/protocol/camera.html)<!-- **Firmware/Tools/sitl_gazebo/src/gazebo_geotagged_images_plugin.cpp -->. PX4 connects/integrates with this camera in 
 
