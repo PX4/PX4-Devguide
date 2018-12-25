@@ -10,7 +10,7 @@ PX4 项目包含一个用于 STM32 设备的标准 UAVCAN 引导程序。
 
 此过程确保 UAVCAN 设备可以从无效或损坏的应用程序固件中恢复, 而无需用户干预, 并且还允许自动固件更新。
 
-## Prerequisites
+## 系统必备组件
 
 Installing or updating the UAVCAN bootloader requires:
 
@@ -22,7 +22,7 @@ Installing or updating the UAVCAN bootloader requires:
 
 如果无法使用下面的说明连接到设备, 则该设备上已存在的固件可能已禁用 MCU 的调试针脚。 要从中恢复, 您需要将接口的 NRST 或 nSRST pin (标准20针连接器上的 15引脚) 连接到 MCU 的 NRST 引脚。 获取设备示意图和 PCB 布局, 或与制造商联系以了解详细信息。
 
-## Installation
+## 安装
 
 在编译或获取设备的引导程序映像后 (有关详细信息, 请参阅设备文档), 引导加载程序必须复制到设备闪存的开头。
 
