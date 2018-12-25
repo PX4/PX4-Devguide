@@ -1,14 +1,14 @@
-# Offboard Control
+# 离板控制
 
-> **Warning** 使用 [Offboard 模式控制](https://docs.px4.io/en/flight_modes/offboard.html) 无人机是有危险的。 It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
+> **Warning** 使用 [Offboard 模式控制](https://docs.px4.io/en/flight_modes/offboard.html) 无人机是有危险的。 开发者有责任确保在离机前采取充分的准备、测试和安全预防措施。
 
-The idea behind off-board control is to be able to control the PX4 flight stack using software running outside of the autopilot. This is done through the Mavlink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) messages.
+离板控制背后的想法是能够使用在自动驾驶仪外运行的软件来控制 PX4 飞控。 这是通过 Mavlink 协议完成的, 特别是 [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) 和 [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) 消息。
 
-## Offboard Control Firmware Setup
+## 离板控制固件设置
 
-There are two things you want to setup on the firmware side before starting offboard development.
+在开始离板开发之前，您需要在固件端做两个安装。
 
-### 1. Map an RC switch to offboard mode activation
+### 1. 将遥控开关映射到离板模式激活
 
 To do this, load up the parameters in *QGroundControl* and look for the RC_MAP_OFFB_SW parameter to which you can assign the RC channel you want to use to activate offboard mode. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
 
