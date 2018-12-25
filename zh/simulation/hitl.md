@@ -25,18 +25,18 @@ HITL 模式下 PX4 支持多旋翼 (使用 jMAVSim 或者 Gazebo) 和固定翼 (
 
 ### JMAVSim/Gazebo HITL 仿真环境
 
-JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*.
+JMAVSim 或 Gazebo (运行在开发计算机上) 通过 USB/UART 完成与飞行控制器硬件平台的连接。 模拟器充当在 PX4 和 *QGroundControl* 之间共享 MAVLink 数据的网关。
 
-> **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable). For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)).
+> **Note** 如果飞行控制器支持网络连接且使用的是稳定、低延迟的连接（如有线以太网，WIFI 通常不太稳定），那么模拟器也可以使用 UDP 完成通讯连接。 例如，该配置已经使用一台运行 PX4 且通过以太网连接到开发计算机的 Raspberry Pi 进行了验证测试 (包括 jMAVSim 运行命令的启动配置在 [这里](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config))。
 
 <span></span>
 
-> **Tip** Gazebo can additionally share MAVLink data with an offboard API!
+> **Tip** Gazebo 还支持与offboard API 共享 MAVLink 数据！
 
-The diagram below shows the simulation environment:
+下图展示了仿真模拟的环境：
 
-* A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
-* *jMAVSim* or *Gazebo* are connected to the flight controller via USB.
+* 飞控板 HITL 模式被激活 (通过 *QGroundControl*) ，该模式下不会启动飞控板上任何传感器。
+* *jMAVSim* 或者 *Gazebo* 通过 USB 连接到飞控板。
 * The simulator is connected to *QGroundControl* via UDP and bridges its MAVLink messages to PX4.
 * (Optional) A serial connection can be used to connect Joystick/Gamepad hardware via *QGroundControl*.
 * (Optional - Gazebo only) Gazebo can also connect to an offboard API and bridge MAVLink messages to PX4.
