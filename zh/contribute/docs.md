@@ -149,10 +149,10 @@ In overview:
 * Don't add any style to headings.
 * Don't translate the *first part* of a note, tip or warning declaration (e.g. `> **Note**`) as this precise text is required to render the note properly.
 
-## Translations {#translation}
+## 翻译 {#translation}
 
 We'd love your help to translate *QGroundControl* and our guides for PX4, *QGroundControl* and MAVLink. For more information see: [Translation](../contribute/translation.md).
 
-## Licence
+## 许可证
 
 All PX4/Dronecode documentation is free to use and modify under terms of the permissive [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence.
