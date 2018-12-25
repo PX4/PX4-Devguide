@@ -1,22 +1,22 @@
-# jMAVSim with SITL
+# jMAVSim 进行 SITL 仿真
 
-jMAVSim is a simple multirotor/Quad simulator that allows you to fly *copter* type vehicles running PX4 around a simulated world. It is easy to set up and can be used to test that your vehicle can take off, fly, land, and responds appropriately to various fail conditions (e.g. GPS failure).
+jMAVSim是一个简单的多旋翼/四旋翼仿真软件，它可以允许你在仿真环境中飞行运行着 PX4 的 *旋翼* 无人机。 它很容易设置，可以用来测试您的工具是否可以起飞、飞行、降落、并对各种故障条件 (例如 gps 故障) 做出适当的反应。
 
-<strong>Supported Vehicles:</strong>
+<strong>支持机型：</strong>
 
-* Quad
+* 四旋翼
 
-This topic shows how to set up jMAVSim to connect with a SITL version of PX4.
+本问主要演示如何设置 jMAVSim 以连接到 SITL 版本的 PX4 。
 
-> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#using-jmavsim-quadrotor)).
+> **Tip** jMAVSim 也可以用来进行 HITL 仿真 ([看这里](../simulation/hitl.md#using-jmavsim-quadrotor)).
 
-## Simulation Environment
+## 仿真环境
 
-Software in the Loop Simulation runs the complete system on the host machine and simulates the autopilot. It connects via local network to the simulator. The setup looks like this:
+软件在环仿真在主机上运行仿真系统的全部组件，使用软件来模拟真实飞控， 并通过当地网络实现与仿真软件的连接。 整套仿真方案设置如下：
 
-{% mermaid %} graph LR; Simulator-->MAVLink; MAVLink-->SITL; {% endmermaid %}
+{% mermaid %} graph LR; 仿真软件-->MAVLink; MAVLink-->SITL; {% endmermaid %}
 
-## Running SITL
+## 运行 SITL
 
 After ensuring that the [simulation prerequisites](../setup/dev_env.md) are installed on the system, just launch: The convenience make target will compile the POSIX host build and run the simulation.
 
