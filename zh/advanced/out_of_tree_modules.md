@@ -6,7 +6,7 @@ This topic explains how to add an external ("out of tree") module to the PX4 bui
 
 > **Tip** We encourage you to contribute your changes into PX4, where possible!
 
-## Usage
+## 用法
 
 To create an external module:
 
