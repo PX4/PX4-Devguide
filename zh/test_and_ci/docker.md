@@ -6,7 +6,7 @@ This topic shows how to use the [available docker containers](#px4_containers) t
 
 > **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/tree/master/docker/px4-dev). They are built automatically on [Docker Hub](https://hub.docker.com/u/px4io/).
 
-## Prerequisites
+## 系统必备组件
 
 > **Note** PX4 containers are currently only supported on Linux (if you don't have Linux you can run the container [inside a virtual machine](#virtual_machine)). Do not use `boot2docker` with the default Linux image because it contains no X-Server.
 
@@ -33,7 +33,7 @@ sudo usermod -aG docker $USER
 
 The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)):
 
-| Container                       | Description                                      |
+| Container                       | 描述                                               |
 | ------------------------------- | ------------------------------------------------ |
 | px4-dev-base                    | Base setup common to all containers              |
 | &emsp;px4-dev-nuttx             | NuttX toolchain                                  |
