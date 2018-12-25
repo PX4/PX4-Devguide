@@ -130,12 +130,12 @@
 
 ## 编译应用程序/固件
 
-应用程序的编写至此完成。 为了保证改程序可以被运行，你首先需要确保编译器会将它作为 PX4 固件的一部分进行编译。 Applications are added to the build/firmware in the appropriate board-level *cmake* file for your target:
+应用程序的编写至此完成。 为了保证改程序可以被运行，你首先需要确保编译器会将它作为 PX4 固件的一部分进行编译。 应用程序将根据与你的硬件平台相对应的 *cmake* 文件被添加到 build/firmware 文件夹下。
 
-* PX4 SITL (Simulator): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
+* PX4 SITL (模拟器): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
 * Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
 * Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
-* *cmake* files for other boards can be found in [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)
+* 针对其他平台的 *cmake* 文件见： [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards) 。
 
 要启用将应用程序编译到固件中, 请在 *cmake* 文件中的某个位置为应用程序创建新行：
 
@@ -155,18 +155,18 @@
 
 ### 将固件上传至飞控板
 
-Enable the uploader and then reset the board:
+启用固件上传程序, 然后重置飞控板：
 
 * Pixhawk v1/2：`make px4_fmu-v2_default upload`
 * Pixhawk v3：`make px4_fmu-v4_default upload`
 
-It should print before you reset the board a number of compile messages and at the end:
+在你完成飞控板的重置之前应该会输出一些编译消息，并最终出现：
 
 ```sh
 Loaded firmware for X,X, waiting for the bootloader...
 ```
 
-Once the board is reset, and uploads, it prints:
+一旦飞控板被重置并完成了固件的上传，命令行界面将输出：
 
 ```sh
 Erase  : [====================] 100.0%
@@ -177,15 +177,15 @@ Rebooting.
 [100%] Built target upload
 ```
 
-### Connect the Console
+### 连接至控制台
 
-Now connect to the [system console](../debug/system_console.md) either via serial or USB. Hitting **ENTER** will bring up the shell prompt:
+现在，通过串口或者 USB 连接至 [PX4 系统控制台](../debug/system_console.md) 。 敲击 **ENTER** 键然后会出现控制台 shell 界面提示符：
 
 ```sh
 nsh>
 ```
 
-Type ''help'' and hit ENTER
+键入 "help" 并回车：
 
 ```sh
 nsh> help
@@ -209,7 +209,7 @@ Builtin Apps:
   serdis
 ```
 
-Note that `px4_simple_app` is now part of the available commands. Start it by typing `px4_simple_app` and ENTER:
+请注意，此时 `px4_simple_app` 已经是一个可用的命令了。 键入 `px4_simple_app` 并回车以运行该程序：
 
 ```sh
 nsh> px4_simple_app
