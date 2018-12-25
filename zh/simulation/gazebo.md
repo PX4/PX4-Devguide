@@ -177,21 +177,21 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 启用/禁用GPS噪音：
 
-1. Build any gazebo target in order to generate SDF files (for all vehicles). For example: ```make px4_sitl gazebo_iris``` > **Tip** The SDF files are not overwritten on subsequent builds. 
-2. Open the SDF file for your target vehicle (e.g. **./Tools/sitl_gazebo/models/iris/iris.sdf**).
-3. Search for the `gpsNoise` element: 
+1. 构建任何 gazebo 目标以生成 SDF 文件（适用于所有机型）。 例如： ```make px4_sitl gazebo_iris``` >**Tip**在后续版本中不会覆盖 SDF 文件。 
+2. 打开目标车辆的 SDF 文件（例如**./Tools/sitl_gazebo/models/iris/iris.sdf **）。
+3. 搜索 `gpsNoise` 元素： 
         xml
         <plugin name='gps_plugin' filename='libgazebo_gps_plugin.so'>
          <robotNamespace/>
          <gpsNoise>true</gpsNoise>
         </plugin>
     
-    * If it is present, GPS is enabled. You can disable it by deleting the line: `<gpsNoise>true</gpsNoise>`
-    * If it is not preset GPS is disabled. You can enable it by adding the `gpsNoise` element to the `gps_plugin` section (as shown above).
+    * 如果存在，则启用 GPS。 您可以通过删除以下行来禁用它：`<gpsNoise> true </gpsNoise>`
+    * 如果未预设，则禁用 GPS 。 您可以通过将` gpsNoise `元素添加到` gps_plugin `部分来启用它（如上所示）。
 
-The next time you build/restart Gazebo it will use the new GPS noise setting.
+下次构建/重新启动 Gazebo 时，它将使用新的 GPS 噪声设置。
 
-## Starting Gazebo and PX4 Separately {#start_px4_sim_separately}
+## 分别启动 Gazebo 和 PX4 {#start_px4_sim_separately}
 
 For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
 
