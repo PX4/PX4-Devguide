@@ -1,4 +1,4 @@
-# Translation
+# 参与翻译
 
 We'd love your help to translate *QGroundControl*, and our guides for PX4, *QGroundControl* and MAVLink!
 
@@ -12,18 +12,18 @@ Crowdin exports the translated documents back out to Github as a "Pull Request" 
 
 > **Note** The benefit of this system is that the translation closely tracks the source documents. Readers will not be mislead by old and out of date translations.
 
-## Getting Started
+## 由此开始
 
 The steps to join our translation tream are:
 
 1. Join Crowdin: https://crowdin.com/join
 2. Open the translation project you want to join: 
     - [QGroundControl](https://crowdin.com/project/qgroundcontrol)
-    - [PX4 User Guide](https://crowdin.com/project/px4-user-guide)
-    - [PX4 Developer Guide](https://crowdin.com/project/px4-developer-guide)
-    - [QGroundControl Developer Guide](https://crowdin.com/project/qgroundcontrol-developer-guide)
-    - [QGroundControl User Guide](https://crowdin.com/project/qgroundcontrol-user-guide)
-    - [MAVLink Guide](https://crowdin.com/project/mavlink)
+    - [PX4用户指南](https://crowdin.com/project/px4-user-guide)
+    - [PX4 开发人员指南](https://crowdin.com/project/px4-developer-guide)
+    - [QGroundControl 开发人员指南](https://crowdin.com/project/qgroundcontrol-developer-guide)
+    - [QGroundControl用户指南](https://crowdin.com/project/qgroundcontrol-user-guide)
+    - [MAVLink指南](https://crowdin.com/project/mavlink)
 3. Select the language you want to translate
 4. Click the **Join** button (next to the text *You must join the translators team to be able to participate in this project*) > **Note** You will be notified once your application to join is accepted.
 5. Start translating!
