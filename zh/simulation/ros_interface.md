@@ -1,4 +1,4 @@
-# ROS with Gazebo Simulation
+# 另见 Gazebo 模拟。
 
 [ROS](../ros/README.md) (Robot Operating System) can be used with PX4 and the [Gazebo simulator](../simulation/gazebo.md). It uses the [MAVROS](../ros/mavros_installation.md) MAVLink node to communicate with PX4.
 
@@ -30,7 +30,7 @@ To connect to localhost, use this URL:
 roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 ```
 
-> **Tip** It can be useful to call *roslaunch* with the `-w` (warn) and/or `-v` (verbose) in order to get warnings about missing dependencies in your setup. For example: 
+> **Tip** It can be useful to call *roslaunch* with the `-w` (warn) and/or `-v` (verbose) in order to get warnings about missing dependencies in your setup. 例如： 
 > 
 >     sh
 >       roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
