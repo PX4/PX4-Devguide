@@ -59,7 +59,7 @@ arm-none-eabi-gdb
 
 These instructions are for the [J-Link GDB server](https://www.segger.com/jlink-gdb-server.html).
 
-#### Prerequisites
+#### 系统必备组件
 
 [Download the J-Link software](https://www.segger.com/downloads/jlink) from the Segger website and install it according to their instructions.
 
