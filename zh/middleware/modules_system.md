@@ -4,7 +4,7 @@
 
 Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
-### Description
+### 描述
 
 Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
 
@@ -21,7 +21,7 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 **DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
 
-### Usage {#dataman_usage}
+### 用法 {#dataman_usage}
 
     dataman <command> [arguments...]
      Commands:
@@ -47,13 +47,13 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
-### Description
+### 描述
 
 Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 
 This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
 
-### Usage {#heater_usage}
+### 用法 {#heater_usage}
 
     heater <command> [arguments...]
      Commands:
@@ -93,7 +93,7 @@ This task can be started at boot from the startup scripts by setting SENS_EN_THE
 
 Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
 
-### Description
+### 描述
 
 Module to detect the freefall and landed state of the vehicle, and publishing the `vehicle_land_detected` topic. Each vehicle type (multirotor, fixedwing, vtol, ...) provides its own algorithm, taking into account various states, such as commanded thrust, arming state and vehicle motion.
 
@@ -111,7 +111,7 @@ Every type is implemented in its own class with a common base class. The base cl
 
 The module runs periodically on the HP work queue.
 
-### Usage {#land_detector_usage}
+### 用法 {#land_detector_usage}
 
     land_detector <command> [arguments...]
      Commands:
@@ -127,13 +127,13 @@ The module runs periodically on the HP work queue.
 
 Source: [modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modules/load_mon)
 
-### Description
+### 描述
 
 Background process running periodically with 1 Hz on the LP work queue to calculate the CPU load and RAM usage and publish the `cpuload` topic.
 
 On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output, which will also appear in the log file.
 
-### Usage {#load_mon_usage}
+### 用法 {#load_mon_usage}
 
     load_mon <command> [arguments...]
      Commands:
@@ -148,7 +148,7 @@ On NuttX it also checks the stack usage of each process and if it falls below 30
 
 Source: [modules/logger](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
 
-### Description
+### 描述
 
 System logger which logs a configurable set of uORB topics and system printf messages (`PX4_WARN` and `PX4_ERR`) to ULog files. These can be used for system and flight performance evaluation, tuning, replay and crash analysis.
 
@@ -182,7 +182,7 @@ Or if already running:
     logger on
     
 
-### Usage {#logger_usage}
+### 用法 {#logger_usage}
 
     logger <command> [arguments...]
      Commands:
@@ -216,7 +216,7 @@ Or if already running:
 
 Source: [modules/replay](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
 
-### Description
+### 描述
 
 This module is used to replay ULog files.
 
@@ -229,7 +229,7 @@ The module is typically used together with uORB publisher rules, to specify whic
 
 The replay procedure is documented on the [System-wide Replay](https://dev.px4.io/en/debug/system_wide_replay.html) page.
 
-### Usage {#replay_usage}
+### 用法 {#replay_usage}
 
     replay <command> [arguments...]
      Commands:
@@ -248,13 +248,13 @@ The replay procedure is documented on the [System-wide Replay](https://dev.px4.i
 
 Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules/events)
 
-### Description
+### 描述
 
 Background process running periodically on the LP work queue to perform housekeeping tasks. It is currently only responsible for temperature calibration and tone alarm on RC Loss.
 
 The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
 
-### Usage {#send_event_usage}
+### 用法 {#send_event_usage}
 
     send_event <command> [arguments...]
      Commands:
@@ -275,7 +275,7 @@ The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, e
 
 Source: [modules/sensors](https://github.com/PX4/Firmware/tree/master/src/modules/sensors)
 
-### Description
+### 描述
 
 The sensors module is central to the whole system. It takes low-level output from drivers, turns it into a more usable form, and publishes it for the rest of the system.
 
@@ -291,7 +291,7 @@ The provided functionality includes:
 
 It runs in its own thread and polls on the currently selected gyro topic.
 
-### Usage {#sensors_usage}
+### 用法 {#sensors_usage}
 
     sensors <command> [arguments...]
      Commands:
@@ -307,7 +307,7 @@ It runs in its own thread and polls on the currently selected gyro topic.
 
 Source: [systemcmds/tune_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tune_control)
 
-### Description
+### 描述
 
 Command-line tool to control & test the (external) tunes.
 
@@ -322,7 +322,7 @@ Play system tune #2:
     tune_control play -t 2
     
 
-### Usage {#tune_control_usage}
+### 用法 {#tune_control_usage}
 
     tune_control <command> [arguments...]
      Commands:
