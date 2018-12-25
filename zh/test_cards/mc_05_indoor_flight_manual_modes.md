@@ -7,15 +7,15 @@
 * Experimental builds that might have stability issues
 * Testing hardware that has been replaced and/or modified
 
-## Arm and Take-off
+## 解锁并起飞
 
 ❏ Set flight mode to stabilize and Arm
 
 ❏ Take-off by raising the throttle
 
-## Flight
+## 飞行
 
-❏ Stabilized
+❏ 自稳
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response 1:1
 
