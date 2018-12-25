@@ -56,9 +56,9 @@ JMAVSim 或 Gazebo (运行在开发计算机上) 通过 USB/UART 完成与飞行
 
 ## HITL vs SITL
 
-SITL runs on a development computer in a simulated environment, and uses firmware specifically generated for that environment. Other than simulation drivers to provide fake environmental data from the simulator the system behaves normally.
+SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生成的固件。 除了仿真程序从模拟器中获取虚假的环境数据外，系统的行为也很正常。
 
-By contrast, HITL runs normal PX4 firmware in "HITL mode", on normal hardware. The simulation data enters the system at a different point than for SITL. Core modules like commander and sensors have HIL modes at startup that bypass some of the normal functionality.
+相比之下， HITL 在正常飞控硬件平台上运行正常的处于 ”HITL 模式“ 的 PX4 固件。 仿真数据进入整个仿真系统的时间点与 SITL 有所不同。 指令器和传感器等有 HIL 模式的核心模块在启动时被绕过了一些正常的功能。
 
 In summary, HITL runs PX4 on the actual hardware using standard firmware, but SITL actually executes more of the standard system code.
 
