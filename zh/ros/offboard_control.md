@@ -36,15 +36,15 @@
 
 ### 2. 板载处理器
 
-在飞机上部署一台小型电脑，用 UART 转 USB 适配器连接飞控。 There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
+在飞机上部署一台小型电脑，用 UART 转 USB 适配器连接飞控。 此处有多种可能性，除了向飞控发命令，这取决于你想在板上增加增加怎样的处理。
 
-Small low power examples:
+小的低功耗设备如：
 
 * [Odroid C1+](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143703355573) 或 [Odroid XU4](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143452239825)
 * [Raspberry Pi](https://www.raspberrypi.org/)
 * [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
 
-Larger high power examples:
+更高功率设备如：
 
 * [Intel NUC](http://www.intel.com/content/www/us/en/nuc/overview.html)
 * [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
@@ -52,8 +52,8 @@ Larger high power examples:
 
 {% mermaid %} graph TD; comp[Companion Computer] --MAVLink--> uart[UART Adapter]; uart --MAVLink--> Autopilot; {% endmermaid %}
 
-### 3. On-board processor and wifi link to ROS (***Recommended***)
+### 3. 板载处理器和 WIFI 链接到 ROS（***推荐***）
 
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. This can be any of the computers from the above section coupled with a WiFi adapter. For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accommodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
+在飞机上部署小型计算机，通过 UART 连接到 USB 适配器连接到自动驾驶仪，同时还具有与运行 ROS 的地面站的 WIFI 连接。 这可以是上述部分中的任何一台计算机，加上 WiFi 适配器。 例如，英特尔 NUC D34010WYB 有一个 PCI 快速半迷你连接器，它可以容纳一个 [Intel wifi 链接 5000 ](http://www.intel.com/products/wireless/adapters/5000/) 适配器。
 
 {% mermaid %} graph TD subgraph Ground Station gnd[ROS Enabled Computer] \--- qgc[qGroundControl] end gnd --MAVLink/UDP--> w[WiFi]; qgc --MAVLink--> w; subgraph Vehicle comp[Companion Computer] --MAVLink--> uart[UART Adapter] uart \--- Autopilot end w \--- comp {% endmermaid %}
