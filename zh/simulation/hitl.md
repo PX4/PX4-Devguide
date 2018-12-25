@@ -37,20 +37,20 @@ JMAVSim 或 Gazebo (运行在开发计算机上) 通过 USB/UART 完成与飞行
 
 * 飞控板 HITL 模式被激活 (通过 *QGroundControl*) ，该模式下不会启动飞控板上任何传感器。
 * *jMAVSim* 或者 *Gazebo* 通过 USB 连接到飞控板。
-* The simulator is connected to *QGroundControl* via UDP and bridges its MAVLink messages to PX4.
-* (Optional) A serial connection can be used to connect Joystick/Gamepad hardware via *QGroundControl*.
-* (Optional - Gazebo only) Gazebo can also connect to an offboard API and bridge MAVLink messages to PX4.
+* 模拟器通过 UDP 连接到 *QGroundControl* 并将 MAVLink 数据传输至 PX4 。
+* (可选) 通过串口可将操纵杆/游戏手柄通过 *QGroundControl* 连接至仿真回路中。
+* (可选 - 仅适用于Gazebo) Gazebo 还可以连接到一个 offboard API ，并将 MAVLink 数据桥接到 PX4 。
 
 ![HITL Setup - jMAVSim and Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
 
-### X-Plane HITL Environment
+### X-Plane HITL 仿真环境
 
-*QGroundControl* is connected to the flight controller hardware via USB, and acts as a gateway to forward data between the X-Plane simulator running on a development computer, PX4, and any offboard API. The diagram below shows the simulation environment:
+*QGroundControl* 通过 USB 连接至飞控板硬件平台，并作为一个网关为在开发计算机上运行着的X-Plane 模拟器、 PX4 和任意 offboard API 三个平台进行数据中转。 下图展示了仿真模拟的环境：
 
-* A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
-* *QGroundControl* is connected to the flight controller via USB.
-* *QGroundControl* is connected to the simulator and offboard API via UDP.
-* A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
+* 飞控板 HITL 模式被激活 (通过 *QGroundControl*) ，该模式下不会启动飞控板上任何传感器。
+* *QGroundControl* 通过 USB 连接到飞行控制器。
+* *QGroundControl* 通过 UDP 连接到模拟器和offboard API。
+* 通过串口将操纵杆/游戏手柄通过 *QGroundControl* 连接至仿真回路中。
 
 ![HITL Setup - X-Plane](../../assets/simulation/px4_hitl_overview_xplane.png)
 
@@ -161,7 +161,7 @@ To set up X-Plane:
 
 3. In **Settings > Net Connections**, in the *Data* tab, set localhost and port 49005 as IP address, as shown below:
     
-    ![X-Plane network configuration](../../assets/gcs/xplane_net_config.png)
+    ![X-Plane 网络配置](../../assets/gcs/xplane_net_config.png)
 
 4. Enable X-Plane HITL in *QGroundControl*:
     
