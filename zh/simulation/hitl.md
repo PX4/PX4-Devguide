@@ -121,21 +121,21 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 
 2. 打开载具模型的 sdf 文件（例如 **Tools/sitl_gazebo/models/iris/iris.sdf**）。
 
-3. Under the `mavlink_interface plugin` section, change the `serialEnabled` and `hil_mode` parameters to `true`.
+3. 找到文件的 `mavlink_interface plugin` 分区，将 `serialEnabled` 和 `hil_mode` 参数更改为 `true` 。
     
     ![HIL Parameters](../../assets/simulation/gazebo_sdf_model_hil_params.png)
 
-4. Replace the `serialDevice` parameter (`/dev/ttyACM0`) if necessary.
+4. 如有必要的话替换掉 `serialDevice` 参数 (`/dev/ttyACM0`) 。
     
-    > **Note** The serial device depends on what port is used to connect the vehicle to the computer (this is usually `/dev/ttyACM0`). An easy way to check on Ubuntu is to plug in the autopilot, open up a terminal, and type `dmesg | grep "tty"`. The correct device will be the last one shown.
+    > **Note** 串口设备参数取决于载具与计算机使用哪个端口完成连接 (通常情况下都是 `/dev/ttyACM0`)。 在 Ubuntu 上最简单的一个检测办法就是将自驾仪插入电脑，然后打开终端窗口输入 `dmesg | grep "tty"` 命令。 命令执行结果中最后一个显示的设备就是我们关心的。
 
-5. Close Gazebo, connect the flight controller to the computer and wait for it to boot.
+5. 关闭 Gazebo ，将飞控板连接至计算机并等待其启动。
 
-6. Run Gazebo in HITL mode 
+6. 在 HITL 模式下运行 Gazebo ： 
         sh
         gazebo Tools/sitl_gazebo/worlds/iris.world
 
-7. Start *QGroundControl*. It should autoconnect to PX4 and Gazebo.
+7. 开启 *QGroundControl*。 它应该会自动连接 PX4 和 Gazebo 。
 
 #### jMAVSim (仅适用于四旋翼无人机)
 
