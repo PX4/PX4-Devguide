@@ -83,11 +83,11 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 ![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
-If you use the normal build system SITL `make` configuration targets (see next section) then both SITL and the Simulator will be launched on the same computer and the ports above will automatically be configured. You can configure additional MAVLink UDP connections and otherwise modify the simulation environment in the build configuration and initialisation files.
+如果使用正常的生成系统 SITL `make` 配置目标 （请参阅下一节），则 SITL 和模拟器都将在同一台计算机上启动，并自动配置上述端口。 您可以配置其他 MAVLink UDP 连接，并以其他方式修改生成配置和初始化文件中的模拟环境。
 
-### Starting/Building SITL Simulation
+### 启动/构建 SITL 模拟
 
-The build system makes it very easy to build and start PX4 on SITL, launch a simulator, and connect them. The syntax (simplified) looks like this:
+构建系统使在 SITL 上构建和启动 PX4、启动模拟器并连接它们变得非常容易。 The syntax (simplified) looks like this:
 
     make px4_sitl simulator[_vehicle-model]
     
