@@ -115,7 +115,7 @@ Note that an information message with a certain key must occur at most once in t
 
 Predefined information messages are:
 
-| key                                 | Description                                 | Example for value  |
+| 键                                   | 描述                                          | Example for value  |
 | ----------------------------------- | ------------------------------------------- | ------------------ |
 | char[value_len] sys_name          | Name of the system                          | "PX4"              |
 | char[value_len] ver_hw            | Hardware version (board)                    | "PX4FMU_V4"        |
@@ -200,7 +200,7 @@ The following messages belong to this section:
 
 `timestamp`: in microseconds, `log_level`: same as in the Linux kernel:
 
-| Name    | Level value | Meaning                          |
+| 名称      | Level value | Meaning                          |
 | ------- | ----------- | -------------------------------- |
 | EMERG   | '0'         | System is unusable               |
 | ALERT   | '1'         | Action must be taken immediately |
