@@ -1,4 +1,4 @@
-# Modules Reference: System
+# 模块参考：系统
 
 ## dataman
 
@@ -170,7 +170,7 @@ The implementation uses two threads:
 
 In between there is a write buffer with configurable size (and another fixed-size buffer for the mission log). It should be large to avoid dropouts.
 
-### Examples
+### 示例
 
 Typical usage to start logging immediately:
 
