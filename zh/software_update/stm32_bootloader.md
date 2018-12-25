@@ -11,7 +11,7 @@ The code for the PX4 bootloader is available from the Github [Bootloader](https:
 * TAPv1 (TBA, STM32F4)
 * ASCv1 (TBA, STM32F4)
 
-## Building the Bootloader
+## 构建 Bootloader
 
 ```bash
 git clone https://github.com/PX4/Bootloader.git
@@ -23,13 +23,13 @@ make
 
 After this step a range of elf files for all supported boards are present in the Bootloader directory.
 
-## Flashing the Bootloader
+## 刷写 Bootloader
 
 > **Important** The right power sequence is critical for some boards to allow JTAG / SWD access. Follow these steps exactly as described.
 
 The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
 
-The sequence is
+顺序为：
 
 1. Disconnect the JTAG cable
 2. Connect the USB power cable
@@ -37,9 +37,9 @@ The sequence is
 
 ### Black Magic / Dronecode Probe
 
-#### Using the right serial port
+#### 使用正确的串行端口
 
-* On LINUX: ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
+* 在 Linux 上： ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
 * On MAC OS: Make sure to use the cu.xxx port, not the tty.xxx port: ```tar ext /dev/tty.usbmodemDDEasdf```
 
 ```bash
@@ -73,12 +73,12 @@ JLinkGDBServer -select USB=0 -device STM32F427VI -if SWD-DP -speed 20000
 
 The `--device`/SoC for common targets is:
 
-* **FMUv2, FMUv3, FMUv4, aerofc-v1, mindpx-v2:** STM32F427VI
-* **px4_fmu-v4pro:** STM32F469II
-* **px4_fmu-v5:** STM32F765II
-* **crazyflie:** STM32F405RG
+* **FMUv2、FMUv3、FMUv4、aerofc-v1、mindpx-v2：**STM32F427VI
+* **px4_fmu-v4pro：**STM32F469II
+* **px4_fmu-v5：** STM32F765II
+* **crazyflie：**STM32F405RG
 
-#### Connect GDB
+#### 连接 GDB
 
 ```bash
 arm-none-eabi-gdb
@@ -86,7 +86,7 @@ arm-none-eabi-gdb
   (gdb) load aerofcv1_bl.elf
 ```
 
-### Troubleshooting
+### 故障处理
 
 If any of the commands above are not found, you are either not using a Blackmagic probe or its software is outdated. Upgrade the on-probe software first.
 
