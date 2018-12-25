@@ -8,7 +8,7 @@
 
 ## 飞行
 
-❏ Stabilized
+❏ 自稳
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response 1:1
 
@@ -22,7 +22,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response set to Climbs/Descend rate
 
-❏ Position
+❏ 定点
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Horizontal position should hold current value with stick centered
 
