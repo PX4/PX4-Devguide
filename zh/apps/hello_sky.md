@@ -310,7 +310,7 @@ px4_simple_app &
 
 为了使用你的 app 计算好的输出量，接下来我们需要将这些结果 *发布* 出去。 接下来我们展示一下如何发布 attitude （姿态） topic 中的数据。
 
-> **Note** We've chosen `attitude` because we know that the *mavlink* app forwards it to the ground control station - providing an easy way to look at the results.
+> **Note** 这里我们选取 `attitude` topic 是因为 *mavlink* app 会自动将该 topic 中的数据转发至地面控制站，这样可以方便我们查看这些结果。
 
 The interface is pretty simple: initialize the `struct` of the topic to be published and advertise the topic:
 
