@@ -10,33 +10,33 @@
 
 ### 1. 将遥控开关映射到离板模式激活
 
-To do this, load up the parameters in *QGroundControl* and look for the RC_MAP_OFFB_SW parameter to which you can assign the RC channel you want to use to activate offboard mode. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
+为此，请在 *QGroundControl* 中加载参数，并查找 RC_MAP_OFFB_SW 参数，您可以将要用于激活离板模式的遥控通道分配给该参数。 当你从板外模式进入位置控制，它会是有用的映射方式。
 
-Although this step isn't mandatory since you can activate offboard mode using a MAVLink message. We consider this method much safer.
+虽然此步骤不是强制性的，因为您可以使用 Mavlink 消息激活非板载模式。 我们认为这种方法安全多了。
 
-### 2. Enable the companion computer interface
+### 2. 启用配套的计算机接口
 
-Enable MAVLink on the serial port that you connect to the companion computer (see [Companion computer setup](../companion_computer/pixhawk_companion.md)).
+启动串口的 MAVLink ，连接地面站电脑（参见 [地面站电脑设置](../companion_computer/pixhawk_companion.md)）。
 
 ## 硬件安装
 
-Usually, there are three ways of setting up offboard communication.
+通常，有三种方式设置离板模式的通信。
 
-### 1. Serial radios
+### 1. 串口电台
 
-1. One connected to a UART port of the autopilot
-2. One connected to a ground station computer
+1. 一端连接飞控的 UART
+2. 一端连接地面站电脑
 
-Example radios include:
+参考电台包括：
 
 * [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
 * [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
 {% mermaid %} graph TD; gnd[Ground Station] --MAVLink--> rad1[Ground Radio]; rad1 --RadioProtocol--> rad2[Vehicle Radio]; rad2 --MAVLink--> a[Autopilot]; {% endmermaid %}
 
-### 2. On-board processor
+### 2. 板载处理器
 
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter. There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
+在飞机上部署一台小型电脑，用 UART 转 USB 适配器连接飞控。 There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
 
 Small low power examples:
 
