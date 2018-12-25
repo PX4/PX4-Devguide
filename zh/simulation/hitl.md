@@ -1,14 +1,14 @@
-# Hardware in the Loop Simulation \(HITL\)
+# 硬件在环仿真（HITL）
 
 Hardware-in-the-Loop (HITL or HIL) is a simulation mode in which normal PX4 firmware is run on real flight controller hardware. This approach has the benefit of testing most of the actual flight code on the real hardware.
 
 PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and fixed wing (using Gazebo or X-Plane demo/full version).
 
-## HITL-Compatible Airframes {#compatible_airframe}
+## HITL兼容机架 {#compatible_airframe}
 
 The current set of compatible airframes vs Simulators is:
 
-| Airframe                                                                                                | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim |
+| 机架                                                                                                      | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim |
 | ------------------------------------------------------------------------------------------------------- | --------------- | ------- | ------ | ------- |
 | <a href="../airframes/airframe_reference.md#plane_simulation_(plane)_hilstar_(xplane)">HILStar (X-Plane)</a>                                                                               | 1000            | Y       |        |         |
 | <a href="../airframes/airframe_reference.md#copter_simulation_(copter)_hil_quadcopter_x">HIL Quadcopter X</a>                                                                               | 1001            |         | Y      | Y       |
@@ -17,7 +17,7 @@ The current set of compatible airframes vs Simulators is:
 | [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadrotor_x) copter | 4001            |         | Y      | Y       |
 | [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450)      | 4011            |         | Y      | Y       |
 
-## HITL Simulation Environment {#simulation_environment}
+## HITL 仿真环境 {#simulation_environment}
 
 With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL configuration is slightly different for Gazebo, jMAVSim and X-Plane.
 
