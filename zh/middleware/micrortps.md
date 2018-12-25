@@ -174,12 +174,12 @@ The command syntax for the *Agent* is listed below:
 ```sh
 $ ./micrortps_agent [options]
   -t <transport>          [UART|UDP] Default UART.
-  -d <device>             UART device. Default /dev/ttyACM0.
-  -w <sleep_time_us>      Time in us for which each iteration sleep. Default 1ms.
-  -b <baudrate>           UART device baudrate. Default 460800.
-  -p <poll_ms>            Time in ms to poll over UART. Default 1ms.
-  -r <reception port>     UDP port for receiving. Default 2019.
-  -s <sending port>       UDP port for sending. Default 2020.
+  -d <device>             UART device. 默认 /dev/ttyACM0。
+  -w <sleep_time_us>      Time in us for which each iteration sleep. 默认 1ms。
+  -b <baudrate>           UART device baudrate. 默认 460800。
+  -p <poll_ms>            Time in ms to poll over UART. 默认 1ms。
+  -r <reception port>     UDP port for receiving. 默认 2019。
+  -s <sending port>       UDP port for sending. 默认 2020。
 ```
 
 To launch the *Agent*, run `micrortps_agent` with appropriate options for specifying the connection to the *Client* (the default options connect from a Linux device to the *Client* over a UART port).
@@ -245,7 +245,7 @@ Since the ROS2 and ROS require different environments you will need a separate w
     Then, clone the respective ROS2 (`master`) branch to the `/src` directory:
     
     ```sh
-    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com # clones the master branch
+    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com # 克隆 master 分支
     ```
 
 2. For ROS, follow exactly the same process, but create a different directory and clone a different branch:
@@ -257,7 +257,7 @@ Since the ROS2 and ROS require different environments you will need a separate w
     Then, clone the respective ROS2 (`ros1`) branch to the `/src` directory:
     
     ```sh
-    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com -b ros1 # clones the 'ros1' branch
+    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com -b ros1 # 克隆 'ros1' 分支
     ```
 
 ### Building the workspaces
