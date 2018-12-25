@@ -1,12 +1,12 @@
 # 硬件在环仿真（HITL）
 
-Hardware-in-the-Loop (HITL or HIL) is a simulation mode in which normal PX4 firmware is run on real flight controller hardware. This approach has the benefit of testing most of the actual flight code on the real hardware.
+硬件在环仿真模式 (HITL 或 HIL) 下 PX4 固件代码运行在真实的飞行控制器硬件平台上。 这种方法的优点是可以在实际硬件上测试大多数的实际飞行代码。
 
-PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and fixed wing (using Gazebo or X-Plane demo/full version).
+HITL 模式下 PX4 支持多旋翼 (使用 jMAVSim 或者 Gazebo) 和固定翼 (使用 Gazebo 或者 X-Plane demo/full version) 无人机的仿真。
 
 ## HITL兼容机架 {#compatible_airframe}
 
-The current set of compatible airframes vs Simulators is:
+目前兼容的机架构型和模拟器的情况如下：
 
 | 机架                                                                                                      | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim |
 | ------------------------------------------------------------------------------------------------------- | --------------- | ------- | ------ | ------- |
@@ -19,11 +19,11 @@ The current set of compatible airframes vs Simulators is:
 
 ## HITL 仿真环境 {#simulation_environment}
 
-With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL configuration is slightly different for Gazebo, jMAVSim and X-Plane.
+硬件在环仿真（HITL）模式下标准的 PX4 固件在真实的硬件上运行。 使用Gazebo, jMAVSim 和 X-Plane 仿真平台进行 HITL 仿真的配置设定稍有不同。
 
-> **Tip** For more information see: [Simulation](../simulation/README.md).
+> **Tip** 更多有关信息请参阅： [仿真模拟](../simulation/README.md) 。
 
-### JMAVSim/Gazebo HITL Environment
+### JMAVSim/Gazebo HITL 仿真环境
 
 JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*.
 
