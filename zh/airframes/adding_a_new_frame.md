@@ -236,7 +236,7 @@ The following *PX4 User Guide* topics explain how to tune the parameters that wi
 
 * [Multicopter PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
 * [Fixed Wing PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
-* [VTOL Configuration](https://docs.px4.io/en/config_vtol/)
+* [垂直起降（VTOL）配置](https://docs.px4.io/en/config_vtol/)
 
 ## Add New Airframe to QGroundControl
 
