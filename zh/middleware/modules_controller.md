@@ -1,32 +1,32 @@
-# Modules Reference: Controller
+# 模块参考：控制器
 
 ## fw_att_control
 
 Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
 
-### Description
+### 描述
 
 fw_att_control is the fixed wing attitude controller.
 
-### Usage {#fw_att_control_usage}
+### 用法 {#fw_att_control_usage}
 
     fw_att_control <command> [arguments...]
      Commands:
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## fw_pos_control_l1
 
 Source: [modules/fw_pos_control_l1](https://github.com/PX4/Firmware/tree/master/src/modules/fw_pos_control_l1)
 
-### Description
+### 描述
 
 fw_pos_control_l1 is the fixed wing position controller.
 
-### Usage {#fw_pos_control_l1_usage}
+### 用法 {#fw_pos_control_l1_usage}
 
     fw_pos_control_l1 <command> [arguments...]
      Commands:
@@ -34,14 +34,14 @@ fw_pos_control_l1 is the fixed wing position controller.
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## mc_att_control
 
 Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
 
-### Description
+### 描述
 
 This implements the multicopter attitude and rate controller. It takes attitude setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
 
@@ -55,7 +55,7 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
 
-### Usage {#mc_att_control_usage}
+### 用法 {#mc_att_control_usage}
 
     mc_att_control <command> [arguments...]
      Commands:
@@ -63,20 +63,20 @@ To reduce control latency, the module directly polls on the gyro topic published
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## mc_pos_control
 
 Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_pos_control)
 
-### Description
+### 描述
 
 The controller has two loops: a P loop for position error and a PID loop for velocity error. Output of the velocity controller is thrust vector that is split to thrust direction (i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
 
 The controller doesn't use Euler angles for its work, they are generated only for more human-friendly control and logging.
 
-### Usage {#mc_pos_control_usage}
+### 用法 {#mc_pos_control_usage}
 
     mc_pos_control <command> [arguments...]
      Commands:
@@ -84,14 +84,14 @@ The controller doesn't use Euler angles for its work, they are generated only fo
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## navigator
 
 Source: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modules/navigator)
 
-### Description
+### 描述
 
 Module that is responsible for autonomous flight modes. This includes missions (read from dataman), takeoff and RTL. It is also responsible for geofence violation checking.
 
@@ -101,7 +101,7 @@ The different internal modes are implemented as separate classes that inherit fr
 
 Navigator publishes position setpoint triplets (`position_setpoint_triplet_s`), which are then used by the position controller.
 
-### Usage {#navigator_usage}
+### 用法 {#navigator_usage}
 
     navigator <command> [arguments...]
      Commands:
