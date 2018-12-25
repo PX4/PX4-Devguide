@@ -62,13 +62,13 @@ The [middleware](../middleware/README.md) consists primarily of device drivers f
 
 In addition, the middleware includes a [simulation layer](../simulation/README.md) that allows PX4 flight code to run on a desktop operating system and control a computer modeled vehicle in a simulated "world".
 
-## Update Rates
+## 更新速率
 
 Since the modules wait for message updates, typically the drivers define how fast a module updates. Most of the IMU drivers sample the data at 1kHz, integrate it and publish with 250Hz. Other parts of the system, such as the `navigator`, don't need such a high update rate, and thus run considerably slower.
 
 The message update rates can be [inspected](../middleware/uorb.md#urb-top-command) in real-time on the system by running `uorb top`.
 
-## Runtime Environment
+## 运行时环境
 
 PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT). It should also have some form of real-time scheduling (e.g. FIFO).
 
@@ -87,7 +87,7 @@ There are 2 different ways that a module can be executed:
 
 > **Note** Tasks running on a work queue do not show up in `top` (only the work queues themselves can be seen - e.g. as `lpwork`).
 
-### Background Tasks
+### 后台任务
 
 `px4_task_spawn_cmd()` is used to launch new tasks (NuttX) or threads (POSIX - Linux/macOS) that run independently from the calling (parent) task:
 
@@ -113,6 +113,6 @@ Modules are executed as tasks: they have their own file descriptor lists, but th
 
 Each task/thread has a fixed-size stack, and there is a periodic task which checks that all stacks have enough free space left (based on stack coloring).
 
-#### Linux/macOS
+#### Linux/MacOS
 
 On Linux or macOS, PX4 runs in a single process, and the modules run in their own threads (there is no distinction between tasks and threads as on NuttX).
