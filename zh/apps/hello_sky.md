@@ -10,18 +10,18 @@
 
 * [PX4 SITL 模拟器](../simulation/README.md) *或者* 一个 [兼容 PX4 的飞行控制器](https://docs.px4.io/en/flight_controller/#documented-boards) 。
 * 适用于期望平台的 [PX4 开发工具链](../setup/dev_env.md) 。
-* [Download the PX4 Source Code](../setup/building_px4.md#get_px4_code) from Github
+* 从 Github [下载 PX4 源代码](../setup/building_px4.md#get_px4_code) 。
 
-The source code [Firmware/src/examples/px4_simple_app](https://github.com/PX4/Firmware/tree/master/src/examples/px4_simple_app) directory contains a completed version of this tutorial that you can review if you get stuck.
+源代码 [Firmware/src/examples/px4_simple_app](https://github.com/PX4/Firmware/tree/master/src/examples/px4_simple_app) 文件夹下包含了本教程的完整版代码，如果你卡住了可以前去查看该文件夹下的内容。
 
-* Rename (or delete) the **px4_simple_app** directory. 
+* 重命名 (或删除) **px4_simple_app** 目录。 
 
-## Minimal Application
+## 最小的应用程序
 
-In this section we create a *minimal application* that just prints out `Hello Sky!`. This consists of a single *C* file and a *cmake* definition (which tells the toolchain how to build the application).
+在本节中, 我们将创建一个仅打印出 `Hello Sky!` 的 *最小应用程序* 。 该程序由一个 *C* 和一个 *cmake* 定义文件（该定义文件负责告诉工具链应该如何编译应用程序）组成。
 
-1. Create a new directory **Firmware/src/examples/px4_simple_app**.
-2. Create a new C file in that directory named **px4_simple_app.c**:
+1. 新建如下文件夹： **Firmware/src/examples/px4_simple_app**。
+2. 在该目录中新建一个名为 **px4_simple_app.c** 的 C 文件：
 
 * Copy in the default header to the top of the page. This should be present in all contributed files!
     
