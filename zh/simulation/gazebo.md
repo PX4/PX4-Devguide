@@ -39,7 +39,7 @@ Gazebo 8 设置包含在我们的标准构建说明中：
 
 <span></span>
 
-> **Tip** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
+> **Tip** 使用命令 `make px4_sitl list_vmd_make_targets` 获取所有支持的平台（你还可以过滤掉以 `gazebo_` 开头的平台）。
 
 ### 四旋翼
 
@@ -102,13 +102,13 @@ make px4_sitl gazebo_hippocampus
 
 ![Submarine/UUV](../../assets/gazebo/hippocampus.png)
 
-## Change World
+## 改变仿真环境中的世界
 
-The current default world is the **iris.world** located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds). The default surrounding in the **iris.world** uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
+当前的默认世界是位于目录 [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds) 中的 **iris.world**。 **iris.world** 中默认使用高程图生成地面景物。 这样生成的地面可能会导致使用距离传感器时较为困难， 如果使用高程图会导致任何出乎意料的结果，我们建议你将 **iris.model** 中的模型设定从 `uneven_ground` 改为 `asphalt_plane`.
 
 ## 把飞机飞上天
 
-> **Note** Please refer to the [Installing Files and Code](../setup/dev_env.md) guide if you run into any errors.
+> **Note** 如遇到任何错误请参考： [Installing Files and Code](../setup/dev_env.md) 。
 
 该命令最终将得到如下 PX4 控制台显示界面：
 
@@ -133,7 +133,7 @@ pxh>
 
 ![Gazebo UI](../../assets/simulation/gazebo.png)
 
-The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
+完成初始化后系统将输出 home 点的位置 (`telem> home: 55.7533950, 37.6254270, -0.00`)。 现在你可以输入如下命令让飞机起飞了：
 
 ```sh
 pxh> commander takeoff
