@@ -1,4 +1,4 @@
-# UAVCAN Enumeration and Configuration
+# UAVCAN 列举与配置
 
 > **Note** Enable UAVCAN as the default motor output bus by ticking the 'Enable UAVCAN' checkbox as shown below. Alternatively the UAVCAN_ENABLE parameter can be set to '3' in the *QGroundControl* parameter editor. Set it to '2' to enable CAN, but leave motor outputs on PWM.
 
