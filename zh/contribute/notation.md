@@ -23,7 +23,7 @@ The following terms, symbols, and decorators are used in text and diagrams throu
 
 ## Symbols
 
-| Variable                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Variable                               | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | $$x,y,z$$                              | Translation along coordinate axis x,y and z respectively.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | $$\boldsymbol{\mathrm{r}}$$          | Position vector $$\boldsymbol{\mathrm{r}} = [x \quad y \quad z]^{T}$$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -60,7 +60,7 @@ $$\boldsymbol{\mathrm{\tilde{q}}}$$ describes the attitude relative to the local
 
 ### Subscripts / Indices
 
-| Subscripts / Indices | Description                                                      |
+| Subscripts / Indices | 描述                                                               |
 | -------------------- | ---------------------------------------------------------------- |
 | $$a$$                | Aileron.                                                         |
 | $$e$$                | Elevator.                                                        |
@@ -73,7 +73,7 @@ $$\boldsymbol{\mathrm{\tilde{q}}}$$ describes the attitude relative to the local
 
 ### Superscripts / Indices {#superscripts}
 
-| Superscripts / Indices | Description                                     |
+| Superscripts / Indices | 描述                                              |
 | ---------------------- | ----------------------------------------------- |
 | $$\ell$$              | Local-frame. Default for PX4 related variables. |
 | $$b$$                  | Body-frame.                                     |
@@ -81,7 +81,7 @@ $$\boldsymbol{\mathrm{\tilde{q}}}$$ describes the attitude relative to the local
 
 ## Decorators
 
-| Decorator       | Description        |
+| Decorator       | 描述                 |
 | --------------- | ------------------ |
 | $$()^*$$        | Complex conjugate. |
 | $$\dot{()}$$   | Time derivative.   |
