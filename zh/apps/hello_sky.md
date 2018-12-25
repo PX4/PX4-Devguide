@@ -23,7 +23,7 @@
 1. 新建如下文件夹： **Firmware/src/examples/px4_simple_app**。
 2. 在该目录中新建一个名为 **px4_simple_app.c** 的 C 文件：
 
-* Copy in the default header to the top of the page. This should be present in all contributed files!
+* 将下面的默认头部注释复制到文件页面的顶部， 该注释应出现在所有贡献的文件中！
     
     ```c /**************************************************************************** *
     
@@ -57,7 +57,7 @@
     * POSSIBILITY OF SUCH DAMAGE.
     * ****************************************************************************/ ```
 
-* Copy the following code below the default header. This code style should be used for all files.
+* 将下面的代码复制到头部注释的下方， 所有文件都应使用这样的代码样式。
     
     ```c /**
     
@@ -72,11 +72,11 @@
         
         int px4_simple_app_main(int argc, char *argv[]) { PX4_INFO("Hello Sky!"); return OK; } ```
         
-        > **Tip** The main function must be named `<module_name>_main` and exported from the module as shown.
+        > **Tip** 主函数必须跟上述代码一样以 `<module_name>_main` 的形式进行命名并完成从模块中导出。
         
         <span></span>
         
-        > **Tip** `PX4_INFO` is the equivalent of `printf` for the PX4 shell (included from **px4_log.h**). There are different log levels: `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`. Warnings and errors are additionally added to the [ULog](../log/ulog_file_format.md) and shown on [Flight Review](https://logs.px4.io/).
+        > **Tip** `PX4_INFO` （通过 **px4_log.h** 文件引入）在PX4 命令行中相当于 `printf` 。 有以下不同的日志级别： `PX4_INFO`、`PX4_WARN`、`PX4_ERR`、`PX4_DEBUG`。 Warnings and errors are additionally added to the [ULog](../log/ulog_file_format.md) and shown on [Flight Review](https://logs.px4.io/).
 
 1. Create and open a new *cmake* definition file named **CMakeLists.txt**. Copy in the text below:
     
