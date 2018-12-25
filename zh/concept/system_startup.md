@@ -19,7 +19,7 @@ On Posix, the system shell is used as script interpreter (e.g. /bin/sh, being sy
 - The `rcS` script is executed from the main px4 instance. It does not start any modules, but first updates the `PATH` variable and then simply runs a shell with the `rcS` file as argument.
 - In addition to that, multiple server instances can be started for multi-vehicle simulations. A client selects the instance via `--instance`. The instance is available in the script via `$px4_instance` variable.
 
-The modules can be executed from any terminal when PX4 is already running on a system. For example:
+The modules can be executed from any terminal when PX4 is already running on a system. 例如：
 
     cd <Firmware>/build/px4_sitl_default/bin
     ./px4-commander takeoff
