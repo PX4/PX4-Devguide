@@ -4,7 +4,7 @@
 
 Source: [templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module)
 
-### Description
+### 描述
 
 Section that describes the provided module functionality.
 
@@ -21,7 +21,7 @@ CLI usage example:
     module start -f -p 42
     
 
-### Usage {#module_usage}
+### 用法 {#module_usage}
 
     module <command> [arguments...]
      Commands:
