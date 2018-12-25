@@ -4,13 +4,13 @@
 
 ## 权限
 
-The user needs to be added to the group "uucp":
+将当前用户加入用户组 “uucp” ：
 
 ```sh
 sudo usermod -a -G uucp $USER
 ```
 
-Then log out and log in for changes to take effect.
+然后注销并重新登录以使上述改动生效。
 
 ## 基于脚本的安装
 
@@ -34,7 +34,7 @@ source ./archlinux_install_script.sh
 
 ### 通用依赖
 
-To install the dependencies manually, enter the following lines into a terminal.
+在终端输入以下命令进行依赖项的手动安装：
 
 ```sh
 # 所有目标的通用依赖包
