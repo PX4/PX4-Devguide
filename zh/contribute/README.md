@@ -1,8 +1,8 @@
-# Contributing
+# 贡献
 
 Contact information for the core dev team and community can be [found here](../README.md#support). Developers are also most welcome to attend the [weekly dev call](#dev_call) and other [developer events](#calendar).
 
-## Support
+## 支持
 
 ### Weekly Dev Call {#dev_call}
 
@@ -80,11 +80,11 @@ The *Dronecode Calendar* shows important events for platform developers and user
 
 {% endraw %}
 
-## Contribution
+## 贡献
 
 ### Code of Conduct
 
-We pledge to adhere to the [PX4 code of conduct](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md). This code aims to foster an open and welcoming environment.
+We pledge to adhere to the [PX4 code of conduct](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md). 该守则旨在营造一个开放和热情的环境。
 
 ### Source Code Management
 
