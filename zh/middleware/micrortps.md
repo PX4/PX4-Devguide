@@ -234,7 +234,7 @@ In order to install ROS Melodic and ROS2 Bouncy on a Ubuntu 18.04 machine, follo
 
 ### Setting up the workspaces
 
-Since the ROS2 and ROS require different environments you will need a separate workspace for each ROS version. As an example:
+Since the ROS2 and ROS require different environments you will need a separate workspace for each ROS version. 下面是一个例子：
 
 1. For ROS2, create a workspace using:
     
@@ -708,6 +708,6 @@ For UART transport on a Raspberry Pi or any other OBC you will have to enable th
 
 ## Additional information
 
-* [Fast RTPS Installation](../setup/fast-rtps-installation.md)
+* [FastRTPS 安装](../setup/fast-rtps-installation.md)
 * [Manually Generate Client and Agent Code](micrortps_manual_code_generation.md)
 * [DDS and ROS middleware implementations](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
