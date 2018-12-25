@@ -40,7 +40,7 @@ Depending on your source your source system reference frame you will need to app
 
 > **Tip** ROS users can find more detailed instructions below in [Reference Frames and ROS](#ros_reference_frames).
 
-For example, if using the Optitrack framework the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. A simple trick is swapping axis in order to obtained NED convention.
+For example, if using the Optitrack framework the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. 通过如下转换我们可以转换optrack坐标系到NED系中。
 
 If `x_{mav}`, `y_{mav}` and `z_{mav}` are the coordinates that are sent through MAVLink as position feedback, then we obtain:
 
@@ -55,7 +55,7 @@ Regarding the orientation, keep the scalar part *w* of the quaternion the same a
 
 The following parameters must be set to use external position information with EKF2 (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > EKF2**).
 
-| Parameter                                                                                                                                                                                                     | Setting for External Position Estimation                                                                                                               |
+| 参数                                                                                                                                                                                                            | Setting for External Position Estimation                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK)                                                                                                                                           | Set *vision position fusion* and *vision yaw fusion*                                                                                                   |
 | [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE)                                                                                                                                           | Set to *Vision* to use the vision a primary source for altitude estimation.                                                                            |
@@ -84,13 +84,13 @@ The value can further be tuned by varying the parameter to find the value that y
 
 You will first need to [switch to the LPE estimator](../advanced/switching_state_estimators.md) by setting the [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) parameter.
 
-> **Note** If targeting `px4_fmu-v2` hardware you will also need to use a firmware version that includes the LPE module (firmware for other FMU-series hardware includes both LPE and and EKF). The LPE version can be found in the zip file for each PX4 release or it can be built from source using the build command `make px4_fmu-v2_lpe`. See [Building the Code](../setup/building_px4.md) for more details.
+> **Note** If targeting `px4_fmu-v2` hardware you will also need to use a firmware version that includes the LPE module (firmware for other FMU-series hardware includes both LPE and and EKF). The LPE version can be found in the zip file for each PX4 release or it can be built from source using the build command `make px4_fmu-v2_lpe`. 有关详细信息, 请参阅 [ Building the code ](../setup/building_px4.md)。
 
 ### Enabling External Pose Input
 
 The following parameters must be set to use external position information with LPE (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**).
 
-| Parameter                                                           | Setting for External Position Estimation                                                                                               |
+| 参数                                                                  | Setting for External Position Estimation                                                                                               |
 | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION)         | Vision integration is enabled if *fuse vision position* is checked (it is enabled by default).                                         |
 | [ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | Set to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables MoCap heading use. |
@@ -101,9 +101,9 @@ If a highly accurate altitude is already available from VIO or MoCap information
 
 This can be done by in *QGroundControl* by unchecking the *fuse baro* option in the [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) parameter.
 
-### Tuning Noise Parameters
+### 滤波噪声参数调参
 
-If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters: [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for VIO) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for MoCap). Reducing them will cause the estimator to trust the incoming pose estimate more. You may need to set them lower than the allowed minimum and force-save.
+If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters: [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for VIO) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for MoCap). 减小它们会使估计器更加信任外部传入的位姿信息。 您可能需要将它们设置为允许的最小值。
 
 > **Tip** If performance is still poor, try increasing the [LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) parameter. This will cause the estimator to trust measurements more during velocity estimation.
 
@@ -148,13 +148,13 @@ The local/world and world frames used by ROS and PX4 are different.
 
 Both frames are shown in the image below (NED on left/ENU on right).
 
-![Reference frames](../../assets/lpe/ref_frames.png)
+![参考机架](../../assets/lpe/ref_frames.png)
 
 When using external heading estimation, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely during Vision/MoCap calibration). Yaw angle is therefore given with respect to local *x*.
 
 > **Note** When creating the rigid body in the MoCap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise yaw estimation will have an initial offset.
 
-Using MAVROS, this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and MAVROS will take care of NED conversions.
+Using MAVROS, this operation is straightforward. ROS 默认使用 ENU 系, 因此你在MAVROS中所有代码必须遵循ENU系。 如果您有一个 Optitrack 系统, 则可以使用 [ mocap_optitrack ](https://github.com/ros-drivers/mocap_optitrack) 节点, 其已经发布了一个关于刚体位姿的一个ROS话题。 With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and MAVROS will take care of NED conversions.
 
 ## Specific System Setups {#setup_specific_systems}
 
@@ -188,30 +188,30 @@ Assuming that you have configured EKF2 parameters as described above, PX4 now is
 
 You are now set to proceed to the first flight.
 
-## First Flight
+## 第一次飞行
 
 After setting up one of the (specific) systems described above you should now be ready to test. The instructions below show how to do so for MoCap and VIO systems
 
 ### MoCap First Flight
 
-Be sure to perform the following checks:
+请检查
 
 * **Before** creating the rigid body, align the robot with world x axis.
 * Stream over MAVLink and check the MAVLink inspector with *QGroundControl*, the local pose topic should be in NED.
 * Move the robot around by hand and see if the estimated local position is consistent (always in NED).
 * Rotate the robot on the vertical axis and check the yaw with the MAVLink inspector.
 
-If those steps are consistent, you can try your first flight.
+如果以上步骤没问题，你可以开始你的第一次飞行。
 
-Put the robot on the ground and start streaming MoCap feedback. Lower your left (throttle) stick and arm the motors.
+Put the robot on the ground and start streaming MoCap feedback. 油门杆推到最低并解锁。
 
-At this point, with the left stick at the lowest position, switch to position control. You should have a green light. The green light tells you that position feedback is available and position control is now activated.
+此时，设置为位置控制模式。 如果切换成功，飞控会闪绿灯。 绿灯代表：你的外部位置信息已经注入到飞控中，并且位置控制模式已经切换成功。
 
-Put your left stick at the middle, this is the dead zone. With this stick value, the robot maintains its altitude; raising the stick will increase the reference altitude while lowering the value will decrease it. Same for right stick on x and y.
+油门杆居中，这是油门控制死区。 如果在死区中，则无人机会保持其当前高度。往上推杆，则会上升，往下推杆，则会下降。 同理对于另一个杆。
 
-Increase the value of the left stick and the robot will take off, put it back to the middle right after. Check if it is able to keep its position.
+推油门杆，则无人机会起飞，起飞后，立即将其拉回中位。 检查此时无人机能否悬停。
 
-If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
+如果这一切都没问题，那么你可以开始进行offboard模式下的试验了（发布自行设定的位置期望值给飞控）。
 
 ### VIO First Flight
 
