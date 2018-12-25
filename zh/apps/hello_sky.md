@@ -76,9 +76,9 @@
         
         <span></span>
         
-        > **Tip** `PX4_INFO` （通过 **px4_log.h** 文件引入）在PX4 命令行中相当于 `printf` 。 有以下不同的日志级别： `PX4_INFO`、`PX4_WARN`、`PX4_ERR`、`PX4_DEBUG`。 Warnings and errors are additionally added to the [ULog](../log/ulog_file_format.md) and shown on [Flight Review](https://logs.px4.io/).
+        > **Tip** `PX4_INFO` （通过 **px4_log.h** 文件引入）在PX4 命令行中相当于 `printf` 。 有以下不同的日志级别： `PX4_INFO`、`PX4_WARN`、`PX4_ERR`、`PX4_DEBUG`。 其中警告和错误会被额外添加到 [ULog](../log/ulog_file_format.md) 中，且还会在 [Flight Review](https://logs.px4.io/) 中显示。
 
-1. Create and open a new *cmake* definition file named **CMakeLists.txt**. Copy in the text below:
+1. 创建并打开一个名为 **CMakeLists.txt** 的新的 *cmake* 定义文件。 复制下面的文本：
     
     ```cmake
     ############################################################################
@@ -124,13 +124,13 @@
     )
     ```
     
-    The `px4_add_module()` method builds a static library from a module description. The `MAIN` block lists the name of the module - this registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
+    `px4_add_module()` 方法从模块描述生成静态库。 `MAIN` 块列出了模块的名称 — 该名称将会作为 NuttX 的注册命令以便可以从 PX4 命令行或 SITL 控制台调用该命令。
     
-    > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/common/px4_base.cmake](https://github.com/PX4/Firmware/blob/master/cmake/common/px4_base.cmake).
+    > **Tip** The `px4_add_module()` 方法的调用格式可以查阅 [Firmware/cmake/common/px4_base.cmake](https://github.com/PX4/Firmware/blob/master/cmake/common/px4_base.cmake) 中的注释记录。
 
-## Build the Application/Firmware
+## 编译应用程序/固件
 
-The application is now complete. In order to run it you first need to make sure that it is built as part of PX4. Applications are added to the build/firmware in the appropriate board-level *cmake* file for your target:
+应用程序的编写至此完成。 为了保证改程序可以被运行，你首先需要确保编译器会将它作为 PX4 固件的一部分进行编译。 Applications are added to the build/firmware in the appropriate board-level *cmake* file for your target:
 
 * PX4 SITL (Simulator): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
 * Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
