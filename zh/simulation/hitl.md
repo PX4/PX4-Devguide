@@ -85,41 +85,41 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 
 5. 设置 UDP
     
-    1. Under the *General* tab of the settings menu, uncheck all *AutoConnect* boxes except for **UDP**.
+    1. 在设置菜单的 "*General*" 选项卡下, 取消选中 *AutoConnect* 一栏中除 **UDP** 外的所有复选框。
         
         ![QGC Auto-connect settings for HITL](../../assets/gcs/qgc_hitl_autoconnect.png)
 
-6. (Optional) Configure Joystick and Failsafe. Set the following [parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) in order to use a joystick instead of an RC remote control transmitter:
+6. (可选) 配置操纵杆和故障保护。 设置以下 [parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) 以便使用操纵杆而不是 RC 遥控器：
     
-    * [COM_RC_IN_MODE](../advanced/parameter_reference.md#COM_RC_IN_MODE) to "Joystick/No RC Checks". This allows joystick input and disables RC input checks.
-    * [NAV_DLL_ACT](../advanced/parameter_reference.md#NAV_DLL_ACT) to "Disabled". This ensures that no RC failsafe actions interfere when not running HITL with a radio control.
+    * [COM_RC_IN_MODE](../advanced/parameter_reference.md#COM_RC_IN_MODE) 更改为 "Joystick/No RC Checks". 这允许操纵杆输入并禁用 RC 输入检查。
+    * [NAV_DLL_ACT](../advanced/parameter_reference.md#NAV_DLL_ACT) 更改为 "Disabled"。 这可确保在没有无线遥控的情况下运行 HITL 时 RC 失控保护不会介入。
     
-    > **Tip** The *QGroundControl User Guide* also has instructions on [Joystick](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) and [Virtual Joystick](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html) setup.
+    > **Tip** *QGroundControl User Guide* 中也有如何配置 [操纵杆](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) 和 [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html) 的说明。
 
-Once configuration is complete, **close** *QGroundControl* and disconnect the flight controller hardware from the computer.
+完成所有的配置设定后 **关闭** *QGroundControl* 并断开飞控板与计算机的连接。
 
 ### 模拟器配置
 
-Follow the appropriate setup steps for your simulator in the following sections.
+按照下面的小节对你的模拟器进行合理的设置。
 
 #### Gazebo
 
-> **Note** Make sure *QGroundControl* is not running!
+> **Note** 确保 *QGroundControl* 没有运行！
 
-1. Update the environment variables:
+1. 更新环境变量：
     
     ```sh
     cd <Firmware_clone>
     make px4_sitl_default gazebo
     ```
     
-    In a new terminal, run:
+    在新的终端窗口运行：
     
     ```sh
     source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
     ```
 
-2. Open the vehicle model's sdf file (e.g. **Tools/sitl_gazebo/models/iris/iris.sdf**).
+2. 打开载具模型的 sdf 文件（例如 **Tools/sitl_gazebo/models/iris/iris.sdf**）。
 
 3. Under the `mavlink_interface plugin` section, change the `serialEnabled` and `hil_mode` parameters to `true`.
     
