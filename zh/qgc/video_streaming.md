@@ -5,8 +5,8 @@ This page shows how to set up a a companion computer (Odroid C1) with a camera (
 The whole hardware setup is shown in the figure below. It consists of the following parts:
 
 * Odroid C1
-* Logitech camera C920
-* WiFi module TP-LINK TL-WN722N
+* Logitech 摄像头 C920
+* WiFi 模块 TP-LINK TL-WN722N
 
 ![Setup](../../assets/videostreaming/setup_whole.jpg)
 
