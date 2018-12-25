@@ -17,9 +17,9 @@
 
 {% mermaid %} graph LR; Gazebo-->Plugin; Plugin-->MAVLink; MAVLink-->SITL; {% endmermaid %}
 
-> **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment and available simulation configuration (e.g. supported vehicles).
+> **Note**有关模拟器，模拟环境和可用模拟配置（例如支持的机型）的一般信息，请参见[Simulation](/simulation/README.md)。
 
-## Installation
+## 安装
 
 Gazebo 8 setup is included in our standard build instructions:
 
