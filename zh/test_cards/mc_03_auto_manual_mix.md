@@ -12,7 +12,7 @@
 
 ❏ Upload mission to vehicle using *QGroundControl*
 
-## Flight
+## 飞行
 
 ❏ Arm and take-off in Position mode
 
