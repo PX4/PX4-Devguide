@@ -216,7 +216,7 @@ nsh> px4_simple_app
 Hello Sky!
 ```
 
-The application is now correctly registered with the system and can be extended to actually perform useful tasks.
+该应用程序现在已经被正确地注册到了 Px4 系统中，并且可以通过对其进行扩展来执行更有用的任务了。
 
 ## 测试应用（SITL）
 
@@ -231,11 +231,11 @@ INFO  [px4_simple_app] Hello Sky!
 
 现在可以扩展应用程序以实际执行有用的任务。
 
-## Subscribing to Sensor Data
+## 订阅传感器数据
 
-To do something useful, the application needs to subscribe inputs and publish outputs (e.g. motor or servo commands).
+为了做一些更有用的事情，应用程序需要订阅一些输入量并发布输出指令（比如电机或者舵机指令）。
 
-> **Tip** The benefits of the PX4 hardware abstraction comes into play here! There is no need to interact in any way with sensor drivers and no need to update your app if the board or sensors are updated.
+> **Tip** PX4 对硬件层进行抽象化的好处在这里发挥了作用！ 我们在构建应用程序时无需直接与传感器驱动进行任何的交互，且即便对飞控板或者传感器硬件进行更新后也不需要对你的应用程序进行任何更新。
 
 Individual message channels between applications are called [topics](../middleware/uorb.md). For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) topic, which holds the synchronized sensor data of the complete system.
 
