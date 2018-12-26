@@ -25,17 +25,17 @@ usage: generate_microRTPS_bridge.py [-h] [-s *.msg [*.msg ...]]
                                     [-f FASTRTPSGEN]
 
 optional arguments:
-  -h, --help            show this help message and exit
+  -h, --help            显示这个帮助信息并退出
   -s *.msg [*.msg ...], --send *.msg [*.msg ...]
-                        Topics to be sent
+                        要发送的 Topic
   -r *.msg [*.msg ...], --receive *.msg [*.msg ...]
-                        Topics to be received
-  -a, --agent           Flag to generate the agent. Default is true.
-  -c, --client          Flag to generate the client. Default is true.
+                        要接收的 Topic
+  -a, --agent           生成 agent 的参数。 默认值为 true。
+  -c, --client          Flag to generate the client. 默认值为 true。
   -t MSGDIR, --topic-msg-dir MSGDIR
-                        Topics message dir. Default is: msg/
+                        Topics message dir. 默认为： msg/
   -o AGENTDIR, --agent-outdir AGENTDIR
-                        Agent output dir. Default is:
+                        Agent 输出目录。 Default is:
                         src/modules/micrortps_bridge/micrortps_agent
   -u CLIENTDIR, --client-outdir CLIENTDIR
                         Client output dir. Default is:
@@ -59,7 +59,7 @@ $ cd /path/to/PX4/Firmware
 $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor_combined.msg
 ```
 
-## Generated code
+## 生成代码
 
 Code is generated for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages (IDL files).
 
@@ -119,7 +119,7 @@ src/modules/micrortps_bridge/micrortps_agent
  2 directories, 20 files
 ```
 
-Client directory:
+客户端目录：
 
 ```sh
 $ tree src/modules/micrortps_bridge/micrortps_client
@@ -133,7 +133,7 @@ src/modules/micrortps_bridge/micrortps_client
  0 directories, 4 files
 ```
 
-## Build and use the code
+## 构建并使用代码
 
 The manually generated *Client* code is built and used in *exactly* the same way as [automatically generated Client code](../middleware/micrortps.md#client-px4-firmware).
 
