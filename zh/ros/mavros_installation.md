@@ -61,7 +61,7 @@ $ wstool init ~/catkin_ws/src
 2. 安装MAVROS最新的版本：
     
     - 发行版 / 稳定版 ```rosinstall_generator --upstream mavros | tee -a /tmp/mavros.rosinstall```
-    - Latest source 
+    - 最新源码 
             sh
             rosinstall_generator --upstream-development mavros | tee -a /tmp/mavros.rosinstall
         
@@ -77,7 +77,7 @@ $ wstool init ~/catkin_ws/src
         rosdep install --from-paths src --ignore-src -y
         
 
-4. Install [GeographicLib](https://geographiclib.sourceforge.io/) datasets:
+4. 安装 [GeographicLib](https://geographiclib.sourceforge.io/) 数据集：
     
         ./src/mavros/mavros/scripts/install_geographiclib_datasets.sh
         
@@ -87,7 +87,7 @@ $ wstool init ~/catkin_ws/src
         catkin build
         
 
-6. 保证你已经source过你的工作空间了
+6. 确保从工作区中使用 setup. bash 或 setup. zsh。
     
         #Needed or rosrun can't find nodes from this workspace.
         source devel/setup.bash
