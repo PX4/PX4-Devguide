@@ -1,10 +1,10 @@
-# PWM_limit State Machine
+# PWM_limit 状态机
 
-[PWM_limit State Machine] Controls PWM outputs as a function of pre-armed and armed inputs. Provides a delay between assertion of "armed" and a ramp-up of throttle on assertion of the armed signal.
+[PWM_limit 状态机] 根据锁定（pre-armed）和解锁（armed）状态作为输入量控制飞控的 PWM 输出， 并且会在解锁指令发出后、飞机油门增加之前引入一个延时。
 
 ## 总览
 
-**Inputs**
+**输入**
 
 - armed: asserted to enable dangerous behaviors such as spinning propellers
 - pre-armed: asserted to enable benign behaviors such as moving control surfaces 
