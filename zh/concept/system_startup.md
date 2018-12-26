@@ -17,9 +17,9 @@ PX4 系统的启动由 shell 脚本文件控制。 在 NuttX 平台上这些脚�
 - Shell 将每个模块作为一个新的 (客户端) 进程进行启动， 每个客户端进程都需要与 PX4 主实例（服务器）进行通讯，在该实例中实际的模块以线程的形式运行。 该过程通过 [UNIX socket](http://man7.org/linux/man-pages/man7/unix.7.html) 完成实现。 服务器侦听一个 socket，然后客户端将连接该 socket 并通过它发送指令。 服务器收到客户端的指令后将指令运行的输出结果及返回代码重新发送给客户端。
 - 启动脚本直接调用各模块，例如 `commander start`, 而不使用 `px4-` 这个前缀。 这一点可以通过设置别名（aliase）来实现：`bin/px4-alias.sh` 文件会给每一个模块以 `alias <module>=px4-<module>` 的形式设置好模块的别名。
 - `rcS` 脚本由 PX4 主实例调用执行。 该脚本并不开启任何模块，它仅仅首先更新 `PATH` 环境变量然后以 `rcS` 文件作为值参数开启操作系统的 shell 。
-- 除此之外，在进行多飞行器仿真时还可以启动多个服务器实例。 客户端可通过 `--instance` 选择服务器实例。 The instance is available in the script via `$px4_instance` variable.
+- 除此之外，在进行多飞行器仿真时还可以启动多个服务器实例。 客户端可通过 `--instance` 选择服务器实例。 该实例可通过 `$px4_instance` 变量在脚本中使用。
 
-The modules can be executed from any terminal when PX4 is already running on a system. 例如：
+当 PX4 在操作系统上处于运行状态时可以从任意终端直接运行各个模块。 例如：
 
     cd <Firmware>/build/px4_sitl_default/bin
     ./px4-commander takeoff
@@ -30,22 +30,22 @@ The modules can be executed from any terminal when PX4 is already running on a s
 
 NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
 
-### Debugging the System Boot
+### 调试系统的启动过程
 
 A failure of a driver of software component will not lead to an aborted boot. This is controlled via `set +e` in the startup script.
 
 The boot sequence can be debugged by connecting the [system console](../debug/system_console.md) and power-cycling the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
-#### Common boot failure causes
+#### 启动失败的常见原因
 
 - For custom applications: The system was out of RAM. Run the `free` command to see the amount of free RAM.
 - A software fault or assertion resulting in a stack trace
 
-### Replacing the System Startup
+### 替换系统的启动文件
 
 In most cases customizing the default boot is the better approach, which is documented below. If the complete boot should be replaced, create a file `/fs/microsd/etc/rc.txt`, which is located in the `etc` folder on the microSD card. If this file is present nothing in the system will be auto-started.
 
-### Customizing the System Startup
+### 自定义系统的启动文件
 
 The best way to customize the system startup is to introduce a [new airframe configuration](../airframes/adding_a_new_frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
 
@@ -57,11 +57,11 @@ There are three main hooks. Note that the root folder of the microsd card is ide
 - /fs/microsd/etc/extras.txt
 - /fs/microsd/etc/mixers/NAME_OF_MIXER
 
-#### Customizing the Configuration (config.txt)
+#### 自定义配置（config.txt）
 
 The `config.txt` file can be used to modify shell variables. It is loaded after the main system has been configured and *before* it is booted.
 
-#### Starting additional applications
+#### 启动额外的应用
 
 The `extras.txt` can be used to start additional applications after the main system boot. Typically these would be payload controllers or similar optional custom components.
 
@@ -79,11 +79,11 @@ The following example shows how to start custom applications:
         mandatory_app start     # Will abort boot if mandatory_app is unknown or fails
         
 
-#### Starting a custom mixer
+#### 启动自定义的混控器
 
 By default the system loads the mixer from `/etc/mixers`. If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
 
-##### Example
+##### 示例
 
 The following example shows how to add a custom aux mixer:
 
