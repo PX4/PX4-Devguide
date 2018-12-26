@@ -24,11 +24,11 @@ again. -->
 
 源代码被拆分为许多相互独立的模块/程序 (图中使用 `monospace` 字体表示)。 通常来说一个图中的积木块对应一个功能模块。
 
-> **Tip** 在运行期间，你可以在 shell 命令行界面执行 `top` 命令检查哪些模块已经被执行了， 每个模块都可以通过 `<module_name> start/stop` 命令单独进行启动/停止。 While `top` command is specific to NuttX shell, the other commands can be used in the SITL shell (pxh>) as well. For more information about each of these modules see the [Modules & Commands Reference](../middleware/modules_main.md).
+> **Tip** 在运行期间，你可以在 shell 命令行界面执行 `top` 命令检查哪些模块已经被执行了， 每个模块都可以通过 `<module_name> start/stop` 命令单独进行启动/停止。 虽然 `top` 命令仅针对 NuttX shell，但其他命令是可以在 SITL shell (pxh>) 中使用的。 如果想获取每个模块的详细信息，请参阅 [Modules & Commands Reference](../middleware/modules_main.md) 。
 
-The arrows show the information flow for the *most important* connections between the modules. In reality, there are many more connections than shown, and some data (e.g. for parameters) is accessed by most of the modules.
+上图中的箭头表示的是各个模块之间 *最重要的* 信息流连接。 实际运行时各模块之间信息流的连接数目比图中展示出来的要多很多，且部分数据（比如：配置参数）会被大部分模块访问。
 
-Modules communicate with each other through a publish-subscribe message bus named [uORB](../middleware/uorb.md). The use of the publish-subscribe scheme means that:
+PX4 系统通过一个名为 [uORB](../middleware/uorb.md) 的发布-订阅消息总线实现模块之间的相互通讯。 使用发布-订阅消息总线这个方案意味着：
 
 - The system is reactive — it is asynchronous and will update instantly when new data is available
 - All operations and communication are fully parallelized
