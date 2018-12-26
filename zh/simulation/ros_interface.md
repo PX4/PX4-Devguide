@@ -95,14 +95,14 @@ INFO  Not using /dev/ttyACM0 for radio control input. Assuming joystick input vi
 INFO  Waiting for initial data on UDP. Please start the flight simulator to proceed..
 ```
 
-Now in a new terminal make sure you will be able to insert the Iris model through the Gazebo menus, to do this set your environment variables to include the appropriate `sitl_gazebo` folders.
+现在在新终端中确保您可以通过 Gazebo 菜单插入 Iris 模型，为此设置环境变量以包含相应的` sitl_gazebo `文件夹。
 
 ```sh
 cd <Firmware_clone>
 source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
 ```
 
-Now start Gazebo like you would when working with ROS and insert the Iris quadcopter model. Once the Iris is loaded it will automatically connect to the px4 app.
+现在就像使用 ROS 并插入 Iris 四轴飞行器模型一样启动 Gazebo。 Once the Iris is loaded it will automatically connect to the px4 app.
 
 ```sh
 roslaunch gazebo_ros empty_world.launch world_name:=$(pwd)/Tools/sitl_gazebo/worlds/iris.world
