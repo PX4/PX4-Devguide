@@ -4,18 +4,18 @@
 
 需要注意的是并非所有类型的飞机都具备全部的飞行模式，同时部分模式在不同类型的飞机上的行为模式也不相同（见下文）。 最后，部分飞行模式仅在飞行前或者飞行中某些特定条件下才有意义（如 GPS锁定，空速传感器，飞机扰一个轴进行姿态感知）。 除非满足合适的条件，都则系统不会允许切换到这些模式下。
 
-The sections below provide an overview of the modes, followed by a [flight mode evaluation diagram](#flight-mode-evaluation-diagram) that shows the conditions under which PX4 will transition into a new mode.
+下面的各小节对所以的飞行模式进行了一个概述，随后给出了一张 [飞行模式评价图](#flight-mode-evaluation-diagram) ，改图展示了 PX4 在何种条件下会切换至一个新的飞行模式。
 
-## Flight Mode Summary
+## 飞行模式概要
 
-### Manual flight modes
+### 手动飞行模式
 
-"Manual" modes are those where the user has direct control over the vehicle via the RC control (or joystick). Vehicle movement always follows stick movement, but the level/type of response changes depending on the mode. For example, experienced fliers can use modes that provide direct passthrough of stick positions to actuators, while beginners will often choose modes that are less responsive to sudden stick-position changes.
+“手动”飞行模式下用户可通过 RC 遥控器（或操纵杆）实现对飞机的直接控制。 飞机的运动总是跟锁着摇杆的运行，但响应的级别/类型会根据模式的不同而发生变化。 例如，有经验的飞手可以使用直接将摇杆位置传递给执行器的模式，而新手则通常选择一些对杆位突变反应不是很灵敏的飞行模式。
 
-* **Fixed wing aircraft/ rovers / boats:**
+* **固定翼飞机/无人车/无人船：**
   
-  * **MANUAL:** The pilot's control inputs (raw user inputs from RC transmitter) are passed directly to the output mixer.
-  * **STABILIZED:** The pilot's pitch and roll inputs are passed as angle commands to the autopilot, while the yaw input is sent directly via the output mixer to the rudder (manual control). If the RC roll and pitch sticks are centered, the autopilot regulates the roll and pitch angles to zero, hence stabilizing (leveling-out) the attitude against any wind disturbances. However, in this mode the position of the aircraft is not controlled by the autopilot, hence the position can drift due to wind. With nonzero roll input the vehicle does a coordinated turn to achieve zero sideslip (the acceleration in y-direction (sidewards) is zero). During a coordinated turn, the rudder is used to control the sideslip and any manual yaw input is added to that.
+  * **MANUAL：** 飞行员的控制输入（来自 RC 控制器的原始用户输入）直接传递给输出混控器
+  * **STABILIZED：** 飞行员的俯仰和滚转输入将作为角度指令传递给自动驾驶仪，而偏航输入则由输出混控器直接传递给方向舵（手动控制）。 If the RC roll and pitch sticks are centered, the autopilot regulates the roll and pitch angles to zero, hence stabilizing (leveling-out) the attitude against any wind disturbances. However, in this mode the position of the aircraft is not controlled by the autopilot, hence the position can drift due to wind. With nonzero roll input the vehicle does a coordinated turn to achieve zero sideslip (the acceleration in y-direction (sidewards) is zero). During a coordinated turn, the rudder is used to control the sideslip and any manual yaw input is added to that.
   * **ACRO:** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot. The autopilot controls the angular rates. 油门直接传递到输出混频器。
 
 * **Multirotors:**
