@@ -2,15 +2,15 @@
 
 PX4 由两个主要部分组成：一是 [飞行控制栈（flight stack）](#flight-stack) ，该部分主要包括状态估计和飞行控制系统；另一个是 [中间件](#middleware) ，该部分是一个通用的机器人应用层，可支持任意类型的自主机器人，主要负责机器人的内部/外部通讯和硬件整合。
 
-All PX4 [airframes](../airframes/README.md) share a single codebase (this includes other robotic systems like boats, rovers, submarines etc.). The complete system design is [reactive](http://www.reactivemanifesto.org), which means that:
+所有的 PX4 支持的 [无人机机型](../airframes/README.md) （包括其他诸如无人船、无人车、无人水下航行器等平台）均共用同一个代码库。 整个系统采用了 [响应式（reactive）](http://www.reactivemanifesto.org) 设计，这意味着：
 
-- All functionality is divided into exchangeable and reusable components
-- Communication is done by asynchronous message passing
-- The system can deal with varying workload
+- 所有的功能都可以被分割成若干可替换、可重复使用的部件。
+- 通过异步消息传递进行通信。
+- 系统可以应对不同的工作负载。
 
-## High-Level Software Architecture{#architecture}
+## 顶层软件架构 {#architecture}
 
-The diagram below provides a detailed overview of the building blocks of PX4. The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
+下面的架构图对 PX4 的各个积木模块以及各模块之间的联系进行了一个详细的概述。 The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
 
 ![PX4 架构](../../assets/diagrams/PX4_Architecture.svg)
 
