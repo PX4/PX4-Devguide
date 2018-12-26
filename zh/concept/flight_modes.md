@@ -15,12 +15,12 @@
 * **固定翼飞机/无人车/无人船：**
   
   * **MANUAL：** 飞行员的控制输入（来自 RC 控制器的原始用户输入）直接传递给输出混控器
-  * **STABILIZED：** 飞行员的俯仰和滚转输入将作为角度指令传递给自动驾驶仪，而偏航输入则由输出混控器直接传递给方向舵（手动控制）。 If the RC roll and pitch sticks are centered, the autopilot regulates the roll and pitch angles to zero, hence stabilizing (leveling-out) the attitude against any wind disturbances. However, in this mode the position of the aircraft is not controlled by the autopilot, hence the position can drift due to wind. With nonzero roll input the vehicle does a coordinated turn to achieve zero sideslip (the acceleration in y-direction (sidewards) is zero). During a coordinated turn, the rudder is used to control the sideslip and any manual yaw input is added to that.
-  * **ACRO:** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot. The autopilot controls the angular rates. 油门直接传递到输出混频器。
+  * **STABILIZED：** 飞行员的俯仰和滚转输入将作为角度指令传递给自动驾驶仪，而偏航输入则由输出混控器直接传递给方向舵（手动控制）。 如果 RC 遥控器的滚转和俯仰摇杆处于居中位置，那么自动驾驶仪会将飞机的滚转角和俯仰角调整为零，因此可以在风的扰动下稳定飞机姿态（平飞）。 但是。在此模式下飞机的位置不受自驾仪的控制，因此飞机的位置可能会由于风的存在而发生漂移。 非零滚转角输入的情况下飞机会进行协调转弯以实现无侧滑（y方向的（侧向）加速度为零）。 在协调转弯时，方向舵用于控制侧滑角，任何手动的偏航输入都会叠加在该舵面上。
+  * **ACRO：** 飞行员的输入将作为滚转、俯仰和偏航 *角速率* 指令传递给自动驾驶仪 自动驾驶仪控制非机动角速度。 油门将直接传递到输出混控器上。
 
-* **Multirotors:**
+* **多旋翼：**
   
-  * **MANUAL/STABILIZED** The pilot's inputs are passed as roll and pitch *angle* commands and a yaw *rate* command. 油门直接传递到输出混频器。 The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered, consequently leveling-out the attitude. However, in this mode the position of the vehicle is not controlled by the autopilot, hence the position can drift due to wind.
+  * **MANUAL/STABILIZED：** 飞行员的输入将作为滚转、俯仰 *角度* 指令和一个偏航 *角速度* 指令传递给自动驾驶仪， 油门将直接传递到输出混控器上。 The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered, consequently leveling-out the attitude. However, in this mode the position of the vehicle is not controlled by the autopilot, hence the position can drift due to wind.
     
     > **Note** For Multirotors, Manual and Stabilized modes are the same.
   
