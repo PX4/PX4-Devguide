@@ -1,4 +1,4 @@
-# uORB Messaging
+# uORB 消息
 
 ## 简介
 
@@ -124,4 +124,4 @@ uORB 提供了一种通过 `orb_advertise_multi` 发布同一主题的多个独�
 - 一定要清理：使用 `orb_unsubscribe` 和 `orb_unadvertise`。
 - 成功的 `orb_check()` 或 `px4_poll()` 调用需要 `orb_copy()`，否则下一次 poll 将立即返回。
 - 在广播主题之前调用 `orb_subscribe` 是完全可以的。
-- 对于 `orb_subscribe()` 后发布的消息，`orb_check()` 和 `px4_poll()` 将仅返回 true。 主题消息不要经常发布。 If a subscriber needs the previous data, it should just do an unconditional `orb_copy()` right after `orb_subscribe()` (note that `orb_copy()` will fail if there is no advertiser yet).
+- 对于 `orb_subscribe()` 后发布的消息，`orb_check()` 和 `px4_poll()` 将仅返回 true。 主题消息不要经常发布。 如果有订阅者需要之前的数据，应该在`orb_subscribe()` 之后无条件的调用 `orb_copy()`（注意，如果没有广播， `orb_copy()` 会失败）。
