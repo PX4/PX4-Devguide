@@ -60,17 +60,17 @@ roslaunch px4 posix_sitl.launch
 
 在您自己的启动文件中包含上述启动文件之一，以在模拟中运行 ROS 应用程序。
 
-## What's Happening Behind the Scenes
+## 事件之后发生了什么
 
 本节显示了之前提供的* roslaunch *指令实际上是如何工作的（您可以按照它们手动启动模拟和 ROS 系统）。
 
-First start the simulator using the command below:
+首先使用以下命令启动模拟器：
 
 ```sh
 no_sim=1 make px4_sitl_default gazebo
 ```
 
-The console will look like this:
+控制台将如下所示：
 
 ```sh
 [init] shell id: 46979166467136
