@@ -1,14 +1,14 @@
 # 具有 ROS/Gazebo 的 OctoMap 3D 模型
 
-The [OctoMap library](http://octomap.github.io/) is an open source library for generating volumetric 3D environment models from sensor data. This model data can then be used by a drone for navigation and obstacle avoidance.
+[ OctoMap 库 ](http://octomap.github.io/)是一个开源库，用于根据传感器数据生成体积 3D 环境模型。 然后，该模型数据可由无人机用于导航和避障。
 
-This guide covers how to use *OctoMap* with the Gazebo [Rotors Simulator](https://github.com/ethz-asl/rotors_simulator/wiki/RotorS-Simulator) and ROS.
+本指南介绍了如何使用 *OctoMap* 与 Gazebo [Rotors Simulato ](https://github.com/ethz-asl/rotors_simulator/wiki/RotorS-Simulator) 和 ROS。
 
 ## 安装
 
-The installation requires ROS, Gazebo and the Rotors Simulator plugin. Follow the [Rotors Simulator instructions](https://github.com/ethz-asl/rotors_simulator) to install.
+安装需要 ROS，Gazebo 和 Rotors Simulator 插件。 按照[ Rotors Simulator instructions ](https://github.com/ethz-asl/rotors_simulator)进行安装。
 
-Next, install the *OctoMap* library:
+接下来，安装 *OctoMap* 库：
 
 ```sh
 sudo apt-get install ros-indigo-octomap ros-indigo-octomap-mapping
@@ -16,7 +16,7 @@ rosdep install octomap_mapping
 rosmake octomap_mapping
 ```
 
-Now, open ~/catkin_ws/src/rotors_simulator/rotors_gazebo/CMakeLists.txt and add the following lines to the bottom of the file
+现在，打开 ~/catkin_ws/src/rotors_simulator/rotors_gazebo/CMakeLists.txt 并在文件底部添加以下行
 
 ```sh
 find_package(octomap REQUIRED)
@@ -24,23 +24,23 @@ include_directories(${OCTOMAP_INCLUDE_DIRS})
 link_libraries(${OCTOMAP_LIBRARIES})
 ```
 
-Open ~/catkin_ws/src/rotors_simulator/rotors_gazebo/package.xml and add the following lines
+打开 ~/catkin_ws/src/rotors_simulator/rotors_gazebo/package.xml 并添加以下行
 
 ```sh
 <build_depend>octomap</build_depend>
 <run_depend>octomap</run_depend>
 ```
 
-Run the following two lines:
+运行以下两行：
 
-> **Note** The first line changes your default shell editor to *gedit*. This is recommended for users who have little experience with *vim* (the default editor), but can otherwise be omitted.
+> **Note**第一行将默认 shell 编辑器更改为 *gedit*。 对于* vim *（默认编辑器）经验不足的用户，建议使用此方法，但可以省略。
 
 ```sh
 export EDITOR='gedit'
 rosed octomap_server octomap_tracking_server.launch
 ```
 
-and change the two following lines:
+并更改以下两行：
 
 ```sh
 <param name="frame_id" type="string" value="map" />
@@ -48,7 +48,7 @@ and change the two following lines:
 <!--remap from="cloud_in" to="/rgbdslam/batch_clouds" /-->
 ```
 
-to:
+到：
 
 ```sh
 <param name="frame_id" type="string" value="world" />
@@ -58,7 +58,7 @@ to:
 
 ## 运行仿真
 
-Run the following three lines in *separate* terminal windows. This opens up [Gazebo](../simulation/gazebo.md), *Rviz* and an octomap server.
+在 *separate* 终端窗口中运行以下三行。 This opens up [Gazebo](../simulation/gazebo.md), *Rviz* and an octomap server.
 
 ```sh
 roslaunch rotors_gazebo mav_hovering_example_with_vi_sensor.launch  mav_name:=firefly
