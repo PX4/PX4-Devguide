@@ -6,7 +6,7 @@ Mixing means to take force commands (e.g. `turn right`) and translate them to ac
 
 Separating the mixer logic from the actual attitude controller greatly improves reusability.
 
-## Control Pipeline
+## 控制通道
 
 A particular controller sends a particular normalized force or torque demand (scaled from -1..+1) to the mixer, which then sets individual actuators accordingly. The output driver (e.g. UART, UAVCAN or PWM) then scales it to the actuators native units, e.g. a PWM value of 1300.
 
@@ -99,13 +99,13 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 * 6: reserved / aux2
 * 7: reserved / aux3
 
-## Mapping
+## 映射
 
 Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (first 8 PWM outpus, UAVCAN, etc.), one control group can send command to multiple output groups.
 
 {% mermaid %} graph TD; actuator_group_0-->output_group_5 actuator_group_0-->output_group_6 actuator_group_1-->output_group_0 {% endmermaid %}
 
-## PX4 Mixer Definitions
+## PX4 混控器定义
 
 Files in **ROMFS/px4fmu_common/mixers** implement mixers that are used for predefined airframes. They can be used as a basis for customisation, or for general testing purposes.
 
