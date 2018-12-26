@@ -37,12 +37,12 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 
 ## 用 ROS Wrappers 启动 Gazebo
 
-The Gazebo simulation can be modified to integrate sensors publishing directly to ROS topics e.g. the Gazebo ROS laser plugin. To support this feature, Gazebo must be launched with the appropriate ROS wrappers.
+可以对 Gazebo 模拟进行修改，以直接集成发布到 ROS 主题 （如 Gazebo ROS 激光插件）的传感器。 要支持此功能，必须使用适当的 ROS wrappers 启动 Gazebo。
 
-There are ROS launch scripts available to run the simulation wrapped in ROS:
+有 ROS 启动脚本可用于运行包含在 ROS 中的模拟：
 
-* [posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch): plain SITL launch
-* [mavros_posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch): SITL and MAVROS 
+* [ posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch)：简单的 SITL 发布
+* [ mavros_posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch)：SITL 和 MAVROS 
 
 To run SITL wrapped in ROS the ROS environment needs to be updated, then launch as usual:
 
