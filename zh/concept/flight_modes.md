@@ -1,6 +1,6 @@
 # 飞行模式
 
-*飞行模式* 定义自动驾驶仪如何响应用户输入并控制飞机移动。 可以根据自动驾驶仪介入的程度将飞行模式粗略地分为 *manual*, *assisted* 和 *auto* 三大模式。 飞行员使用遥控器上的开关或者 [ground control station](../qgc/README.md) 在飞行模式之间进行切换。
+*飞行模式* 定义自动驾驶仪如何响应用户输入并控制飞机移动。 可以根据自动驾驶仪介入的程度将飞行模式粗略地分为 *手动 （manual）*, *辅助 （assisted）* 和 *自动 （auto）* 三大模式。 飞行员使用遥控器上的开关或者 [ground control station](../qgc/README.md) 在飞行模式之间进行切换。
 
 需要注意的是并非所有类型的飞机都具备全部的飞行模式，同时部分模式在不同类型的飞机上的行为模式也不相同（见下文）。 最后，部分飞行模式仅在飞行前或者飞行中某些特定条件下才有意义（如 GPS锁定，空速传感器，飞机扰一个轴进行姿态感知）。 除非满足合适的条件，都则系统不会允许切换到这些模式下。
 
@@ -28,18 +28,18 @@
   
   * **RATTITUDE：** 飞行员的输入如超过了模式设定的阈值则将作为滚转、俯仰和偏航 *角速率* 指令传递自驾仪，例如当 RC 摇杆位置偏离中立位置特定距离后。 反之，输入将作为滚转、俯仰 *角度* 指令和一个偏航 *角速率* 指令传递给自驾仪。 油门将直接传递到输出混控器上。 简单地说，当 RC 摇杆里中立位置较远的时候自驾仪相当于一个角速率控制器（与 ACRO 模式相似），而当 RC 摇杆居中时自驾仪相当于一个姿态角控制器（与 Stabilized 模式相似）。
 
-### Assisted flight modes
+### 辅助飞行模式
 
-"Assisted" modes are also user controlled but offer some level of "automatic" assistance - for example, automatically holding position/direction, against wind. Assisted modes often make it much easier to gain or restore controlled flight.
+“辅助”飞行模式下也是用户进行控制，但该模式会提供一定程度的“自动”辅助 - 比如说在风的干扰下自动保持飞机的位置/指向。 辅助模式使得获取或恢复受控飞行变得更容易。
 
-* **ALTCTL** (Altitude Control) 
-  * **Fixed wing aircraft:** When the roll, pitch and yaw (RPY) RC sticks are all centered (or less than some specified deadband range) the aircraft will return to straight and level flight and keep its current altitude. Its x and y position will drift with the wind.
-  * **Multirotors:** Roll, pitch and yaw inputs are as in Stabilised mode. Throttle inputs indicate climb or sink at a predetermined maximum rate. Throttle has large deadzone. Centered Throttle holds altitude steady. The autopilot only controls altitude so the x,y position of the vehicle can drift due to wind. 
-* **POSCTL** (Position Control) 
+* **ALTCTL：** （高度控制） 
+  * **固定翼飞机：** 当滚转、俯仰和偏航（PRY）摇杆都处于居中位置（或处于特定死区范围内）时飞机将保持当前高度进行定直平飞。 飞机的 X 和 Y 方向的位置会跟着风发生漂移。
+  * **多旋翼：** 滚转、俯仰和偏航输入与 Stabilised 模式相同。 油门输入表示以预设的最大速率爬升或下降， 油门有很大的死区。 油门居中表示保持当前高度。 自驾仪仅控制高度，所以飞机的 X、Y 位置会跟着风发生漂移。 
+* **POSCTL：** （位置控制） 
   * **Fixed wing aircraft:** Neutral inputs (centered RC sticks) give level flight and it will crab against the wind if needed to maintain a straight line.
   * **Multirotors** Roll controls left-right speed, pitch controls front-back speed over ground. Yaw controls yaw rate as in MANUAL mode. Throttle controls climb/descent rate as in ALTCTL mode. This means that the x, y, z position of the vehicle is held steady by the autopilot against any wind disturbances, when the roll, pitch and throttle sticks are centered.
 
-### Auto flight modes
+### 自动飞行模式
 
 "Auto" modes are those where the controller requires little to no user input (e.g. to takeoff, land and fly missions).
 
