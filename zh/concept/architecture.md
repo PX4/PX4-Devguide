@@ -30,17 +30,17 @@ again. -->
 
 PX4 系统通过一个名为 [uORB](../middleware/uorb.md) 的发布-订阅消息总线实现模块之间的相互通讯。 使用发布-订阅消息总线这个方案意味着：
 
-- The system is reactive — it is asynchronous and will update instantly when new data is available
-- All operations and communication are fully parallelized
-- A system component can consume data from anywhere in a thread-safe fashion
+- 系统是 “响应式” 的 — 系统异步运行，新数据抵达时系统立即进行更新。
+- 系统所有的活动和通信都是完全并行的。
+- 系统组件在任何地方都可以在保证线程安全的情况下使用数据。
 
-> **Info** This architecture allows every single one of these blocks to be rapidly and easily replaced, even at runtime.
+> **Info** 这种体系架构使得系统中每一个组件都可以快速、轻松地实现替换，即便系统此时正在运行。
 
-### 飞行栈 {#flight-stack}
+### 飞行控制栈 {#flight-stack}
 
-The flight stack is a collection of guidance, navigation and control algorithms for autonomous drones. It includes controllers for fixed wing, multirotor and VTOL airframes as well as estimators for attitude and position.
+飞行控制栈是针对自主无人机设计的导航、制导和控制算法的集合。 它包括了为固定翼、旋翼和 VTOL 无人机设计的控制器，以及相应的姿态、位置估计器。
 
-The following diagram shows an overview of the building blocks of the flight stack. It contains the full pipeline from sensors, RC input and autonomous flight control (Navigator), down to the motor or servo control (Actuators).
+下图展示了飞行控制栈的整体架构， It contains the full pipeline from sensors, RC input and autonomous flight control (Navigator), down to the motor or servo control (Actuators).
 
 ![PX4 高级飞行栈](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
 [here](https://drive.google.com/a/px4.io/file/d/15J0eCL77fHbItA249epT3i2iOx4VwJGI/view?usp=sharing) 
