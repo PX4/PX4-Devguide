@@ -88,7 +88,7 @@ NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/N
 下面的示例演示了如何添加一个辅助（AUX）混控器：
 
 - 在 SD 卡中创建文件 `etc/mixers/gimbal.aux.mix` ，并将你的混控器设定内容写入该文件内。
-- Then to use it, create an additional file `etc/config.txt` with this content: 
+- 为了使用该混控器，再创建一个额外的文件 `etc/config.txt` ，该文件的内容如下： 
         set MIXER_AUX gimbal
         set PWM_AUX_OUT 1234
         set PWM_AUX_DISARMED 1500
