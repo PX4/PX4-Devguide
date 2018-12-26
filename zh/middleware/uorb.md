@@ -106,22 +106,22 @@ sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
 
-列分别是：主题名字，索引值，订阅者数量，发布频率（Hz），每秒丢失的信息数（对所有订阅者）和队列大小。
+列分别是：主题名字，多实例索引值，订阅者数量，发布频率（Hz），每秒丢失的信息数（对所有订阅者）和队列大小。
 
-## Multi-instance
+## 多实例
 
-uORB provides a mechanism to publish multiple independent instances of the same topic through `orb_advertise_multi`. It will return an instance index to the publisher. A subscriber will then have to choose to which instance to subscribe to using `orb_subscribe_multi` (`orb_subscribe` subscribes to the first instance). Having multiple instances is useful for example if the system has several sensors of the same type.
+uORB 提供了一种通过 `orb_advertise_multi` 发布同一主题的多个独立实例的机制。 它将实例索引返回到发布者。 然后, 订阅者必须选择订阅以使用 `orb_subscribe_multi`（`orb_subscribe` 订阅第一个 实例）。 例如，如果系统具有多个相同类型的传感器, 则具有多个实例非常有用。
 
-Make sure not to mix `orb_advertise_multi` and `orb_advertise` for the same topic.
+请确保不要为同一主题混合 `orb_advertise_multi` 和 `orb_advertise`。
 
-The full API is documented in [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp).
+完整的 API 记录在 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp) 中。
 
-## Troubleshooting and common Pitfalls
+## 故障排除和常见的陷阱
 
-The following explains some common pitfalls and corner cases:
+下面解释了一些常见的陷阱和边界案例：
 
-- The topic is not published: make sure the `ORB_ID()`'s of each call match. It is also important that `orb_subscribe` and `orb_unsubscribe` are **called from the same task** as `orb_check` and `orb_copy`. This applies to `px4_task_spawn_cmd()`, but also when using work queues (`work_queue()`).
-- Make sure to clean up: use `orb_unsubscribe` and `orb_unadvertise`.
-- A successful `orb_check()` or `px4_poll()` call requires an `orb_copy()`, otherwise the next poll will return immediately.
-- It is perfectly ok to call `orb_subscribe` before anyone advertised the topic.
-- `orb_check()` and `px4_poll()` will only return true for publications that are done after `orb_subscribe()`. This is important for topics that are not published regularly. If a subscriber needs the previous data, it should just do an unconditional `orb_copy()` right after `orb_subscribe()` (note that `orb_copy()` will fail if there is no advertiser yet).
+- 未发布该主题：确保每个调用匹配的 `ORB_ID()`。 同样重要的是 `orb_subscribe` 和 `orb_unsubscribe` 作为 `orb_check` 和 `orb_copy`， **从相同的任务调用 ** 。 这适用于 `px4_task_spawn_cmd()`，但在使用工作队列时也适用于 `work_queue()`。
+- 一定要清理：使用 `orb_unsubscribe` 和 `orb_unadvertise`。
+- 成功的 `orb_check()` 或 `px4_poll()` 调用需要 `orb_copy()`，否则下一次 poll 将立即返回。
+- 在广播主题之前调用 `orb_subscribe` 是完全可以的。
+- 对于 `orb_subscribe()` 后发布的消息，`orb_check()` 和 `px4_poll()` 将仅返回 true。 主题消息不要经常发布。 If a subscriber needs the previous data, it should just do an unconditional `orb_copy()` right after `orb_subscribe()` (note that `orb_copy()` will fail if there is no advertiser yet).
