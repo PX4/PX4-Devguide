@@ -58,7 +58,7 @@ rosed octomap_server octomap_tracking_server.launch
 
 ## 运行仿真
 
-在 *separate* 终端窗口中运行以下三行。 This opens up [Gazebo](../simulation/gazebo.md), *Rviz* and an octomap server.
+在 *separate* 终端窗口中运行以下三行。 这将打开 [Gazebo](../simulation/gazebo.md)、*Rviz* 和一个 octomap 服务器。
 
 ```sh
 roslaunch rotors_gazebo mav_hovering_example_with_vi_sensor.launch  mav_name:=firefly
@@ -66,10 +66,10 @@ rviz
 roslaunch octomap_server octomap_tracking_server.launch
 ```
 
-In *Rviz*, change the field 'Fixed Frame' from 'map' to 'world' in the top left of the window. Now click the add button in the bottom left and select MarkerArray. Then double click the MarkerArray and change 'Marker Topic' from '/free_cells_vis_array' to '/occupied_cells_vis_array'
+在* Rviz *中，将“固定帧”字段从“地图”更改为窗口左上角的“世界”。 现在单击左下角的添加按钮，然后选择 MarkerArray。 然后双击 MarkerArray 并将 'Marker Topic' 从 '/free_cells_vis_array' 更改为 '/occupied_cells_vis_array'
 
-Now you should see a part of the floor.
+现在你应该看到这一层的一部分了。
 
-In the *Gazebo* window, insert a cube in front of the red rotors and you should see it in *Rviz*.
+在* Gazebo *窗口中，在红色转子前插入一个立方体，您应该在* Rviz *中看到它。
 
-![OctoMap Example in Gazebo](../../assets/simulation/octomap.png)
+![Gazebo 中的 OctoMap 示例](../../assets/simulation/octomap.png)
