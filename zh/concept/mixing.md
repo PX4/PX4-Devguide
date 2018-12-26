@@ -128,7 +128,7 @@ A mixer begins with a line of the form
 
 The tag selects the mixer type; 'M' for a simple summing mixer, 'R' for a multirotor mixer, etc.
 
-#### 空的混控器
+#### 空的混控器（Null）
 
 A null mixer consumes no controls and generates a single actuator output whose value is always zero. Typically a null mixer is used as a placeholder in a collection of mixers in order to achieve a specific pattern of actuator outputs.
 
@@ -137,7 +137,7 @@ The null mixer definition has the form:
     Z:
     
 
-#### 简单的混控器
+#### 一个简单的混控器
 
 A simple mixer combines zero or more control inputs into a single actuator output. Inputs are scaled, and the mixing function sums the result before applying an output scaler.
 
