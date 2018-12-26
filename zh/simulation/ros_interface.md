@@ -102,7 +102,7 @@ cd <Firmware_clone>
 source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
 ```
 
-现在就像使用 ROS 并插入 Iris 四轴飞行器模型一样启动 Gazebo。 Once the Iris is loaded it will automatically connect to the px4 app.
+现在就像使用 ROS 并插入 Iris 四轴飞行器模型一样启动 Gazebo。 一旦 Iris 被加载，它将自动连接到 Px4 应用程序。
 
 ```sh
 roslaunch gazebo_ros empty_world.launch world_name:=$(pwd)/Tools/sitl_gazebo/worlds/iris.world
