@@ -2,13 +2,13 @@
 
 [ ROS](../ros/README.md)（机器人操作系统）可与 PX4 和[ Gazebo 模拟器](../simulation/gazebo.md)一起使用。 它使用[ MAVROS](../ros/mavros_installation.md) MAVLink 节点与 PX4 通信。
 
-ROS/Gazebo 与 PX4 的集成遵循下图中的模式（这显示了* generic * [ PX4 simulation environment ](../simulation/README.md#sitl-simulation-environment)）。 PX4 与模拟器（例如 Gazebo）通信以从模拟世界接收传感器数据并发送电机和执行器值。 It communicates with the GCS and an Offboard API (e.g. ROS) to send telemetry from the simulated environment and receive commands.
+ROS/Gazebo 与 PX4 的集成遵循下图中的模式（这显示了* generic * [ PX4 simulation environment ](../simulation/README.md#sitl-simulation-environment)）。 PX4 与模拟器（例如 Gazebo）通信以从模拟世界接收传感器数据并发送电机和执行器值。 它与 GCS 和 Offboard API（例如 ROS）通信，以从模拟环境发送遥测数据并接收命令。
 
 ![PX4 SITL 概述](../../assets/simulation/px4_sitl_overview.png)
 
-> **Note** The only *slight* difference to "normal behaviour" is that ROS initiates the connection on port 14557, while it is more typical for an offboard API to listen for connections on UDP port 14540.
+> **Note **与“正常行为”的唯一* slight *差异是 ROS 在端口 14557 上启动连接，而外部 API 更典型地侦听 UDP 端口上的连接 14540。
 
-## Installing ROS and Gazebo
+## 安装 ROS 和 Gazebo
 
 > **Note** *ROS* is only supported on Linux (not macOS or Windows).
 
