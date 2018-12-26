@@ -28,7 +28,7 @@ PX4 系统的启动由 shell 脚本文件控制。 在 NuttX 平台上这些脚�
 
 ## NuttX
 
-NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
+NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/NuttShell.html))，因此可以直接执行启动脚本。
 
 ### 调试系统的启动过程
 
@@ -73,10 +73,10 @@ The following example shows how to start custom applications:
 - A command can be made optional by gating it with the `set +e` and `set -e` commands:
     
         set +e
-        optional_app start      # Will not result in boot failure if optional_app is unknown or fails
+        optional_app start      # 即便 optional_app 未知或者失效也不会导致系统启动失败
         set -e
         
-        mandatory_app start     # Will abort boot if mandatory_app is unknown or fails
+        mandatory_app start     # 如果 mandatory_app 未知或者失效则会导致系统启动中断
         
 
 #### 启动自定义的混控器
