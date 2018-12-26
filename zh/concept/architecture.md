@@ -60,11 +60,11 @@ again. -->
 
 [中间件](../middleware/README.md) 主要包由载嵌入式传感器驱动、与外界的通讯（配套计算机， GCS 等）以及 uORB 发布-订阅 消息总线三部分组成。
 
-In addition, the middleware includes a [simulation layer](../simulation/README.md) that allows PX4 flight code to run on a desktop operating system and control a computer modeled vehicle in a simulated "world".
+此外，中间件还包括一个 [仿真应用层](../simulation/README.md) 以实现在桌面操作系统运行 PX4 飞行代码并在计算机的模拟“世界”中控制由计算机建模得到的无人机。
 
 ## 更新速率
 
-Since the modules wait for message updates, typically the drivers define how fast a module updates. Most of the IMU drivers sample the data at 1kHz, integrate it and publish with 250Hz. Other parts of the system, such as the `navigator`, don't need such a high update rate, and thus run considerably slower.
+由于各模块都需要等待消息的更新，所以通常而言硬件的驱动程序决定着模块的更新速度。 大部分 IMU 驱动以 1kHz 的速率进行采样，以 250Hz 的速率发布传感器数据。 Other parts of the system, such as the `navigator`, don't need such a high update rate, and thus run considerably slower.
 
 The message update rates can be [inspected](../middleware/uorb.md#urb-top-command) in real-time on the system by running `uorb top`.
 
