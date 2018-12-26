@@ -89,7 +89,7 @@ PX4 可以在提供 POSIX-API 接口的各种操作系统上运行 （比如说 
 
 ### 后台任务
 
-`px4_task_spawn_cmd()` is used to launch new tasks (NuttX) or threads (POSIX - Linux/macOS) that run independently from the calling (parent) task:
+`px4_task_spawn_cmd()` 用于启动与父任务独立运行的新任务（NuttX）或者新线程（POSIX - Linux/macOS）：
 
 ```cpp
 independent_task = px4_task_spawn_cmd(
@@ -107,11 +107,11 @@ independent_task = px4_task_spawn_cmd(
 
 #### NuttX
 
-[NuttX](http://nuttx.org/) is the primary RTOS for running PX4 on a flight-control board. It is open source (BSD license), light-weight, efficient and very stable.
+[NuttX](http://nuttx.org/) 是在飞控板上运行 PX4 的首选 RTOS 。 它是一个开源软件（BSD 许可）， 非常轻量化，运行高效且稳定。
 
-Modules are executed as tasks: they have their own file descriptor lists, but they share a single address space. A task can still start one or more threads that share the file descriptor list.
+各模块以任务（Task）模式运行：他们有各自的文件描述列表，但共用一个地址空间。 单个任务可以使用同一个文件描述列表启动单个或者多个线程。
 
-Each task/thread has a fixed-size stack, and there is a periodic task which checks that all stacks have enough free space left (based on stack coloring).
+每一个任务/线程都有一个固定大小的栈堆，并且有一个周期性的任务会定期检查所有栈堆都有足够的可用空间（基于 stack coloring）。
 
 #### Linux/MacOS
 
