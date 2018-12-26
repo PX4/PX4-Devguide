@@ -78,7 +78,7 @@ PX4 可以在提供 POSIX-API 接口的各种操作系统上运行 （比如说 
 
 有 2 种不同的模块执行方式：
 
-- **Tasks**: The module runs in its own task with its own stack and process priority (this is the more common way). 
+- **Tasks**: 模块在它自己的任务中运行, 具有自己的堆栈和进程优先级（这是更常见的方法）。 
 - **Work queues**: The module runs on a shared task, meaning that it does not own a stack. Multiple tasks run on the same stack with a single priority per work queue.
     
     A task is scheduled by specifying a fixed time in the future. The advantage is that it uses less RAM, but the task is not allowed to sleep or poll on a message.
