@@ -16,26 +16,26 @@ ROS/Gazebo 与 PX4 的集成遵循下图中的模式（这显示了* generic * [
 
 > **Note** 该脚本遵循 [standard ROS "Kinetic" installation instructions](http://wiki.ros.org/kinetic/Installation/Ubuntu)，其中包括 Gazebo 7。 其他平台的 ROS Kinetic 的安装在[ ROS Wiki here ](http://wiki.ros.org/kinetic/Installation)中进行了介绍。
 
-## Launching ROS/Simulation
+## 启动 ROS/Simulation
 
-The command below can be used to launch the simulation and connect ROS to it via [MAVROS](../ros/mavros_installation.md), where `fcu_url` is the IP / port of the computer running the simulation:
+以下命令可用于启动仿真并通过[ MAVROS ](../ros/mavros_installation.md)将 ROS 连接到它，其中` fcu_url `是运行仿真的计算机的 IP /端口：
 
 ```sh
 roslaunch mavros px4.launch fcu_url:="udp://:14540@192.168.1.36:14557"
 ```
 
-To connect to localhost, use this URL:
+要连接到本地主机，请使用以下 URL：
 
 ```sh
 roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 ```
 
-> **Tip** It can be useful to call *roslaunch* with the `-w` (warn) and/or `-v` (verbose) in order to get warnings about missing dependencies in your setup. 例如： 
+> **Tip** 使用` -w `（警告）和/或` -v `（详细）调用* roslaunch *以获取有关设置中缺少依赖项的警告可能会很有用。 例如： 
 > 
 >     sh
 >       roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 
-## Launching Gazebo with ROS Wrappers
+## 用 ROS Wrappers 启动 Gazebo
 
 The Gazebo simulation can be modified to integrate sensors publishing directly to ROS topics e.g. the Gazebo ROS laser plugin. To support this feature, Gazebo must be launched with the appropriate ROS wrappers.
 
