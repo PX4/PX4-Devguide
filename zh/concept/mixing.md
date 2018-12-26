@@ -109,11 +109,11 @@ Since there are multiple control groups (like flight controls, payload, etc.) an
 
 Files in **ROMFS/px4fmu_common/mixers** implement mixers that are used for predefined airframes. They can be used as a basis for customisation, or for general testing purposes.
 
-### Mixer File Names
+### 混控器描述文件命名
 
 A mixer file must be named **XXXX.*main*.mix** if it is responsible for the mixing of MAIN outputs or **XXXX.*aux*.mix** if it mixes AUX outputs.
 
-### Syntax
+### 语法
 
 Mixer definitions are text files; lines beginning with a single capital letter followed by a colon are significant. All other lines are ignored, meaning that explanatory text can be freely mixed with the definitions.
 
@@ -128,7 +128,7 @@ A mixer begins with a line of the form
 
 The tag selects the mixer type; 'M' for a simple summing mixer, 'R' for a multirotor mixer, etc.
 
-#### Null Mixer
+#### 空的混控器
 
 A null mixer consumes no controls and generates a single actuator output whose value is always zero. Typically a null mixer is used as a placeholder in a collection of mixers in order to achieve a specific pattern of actuator outputs.
 
@@ -137,7 +137,7 @@ The null mixer definition has the form:
     Z:
     
 
-#### Simple Mixer
+#### 简单的混控器
 
 A simple mixer combines zero or more control inputs into a single actuator output. Inputs are scaled, and the mixing function sums the result before applying an output scaler.
 
@@ -167,7 +167,7 @@ The remaining fields on the line configure the control scaler with parameters as
 
 An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
 
-#### Multirotor Mixer
+#### 针对多旋翼的混控器
 
 The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust) into a set of actuator outputs intended to drive motor speed controllers.
 
@@ -193,7 +193,7 @@ Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed 
 
 In the case where an actuator saturates, all actuator values are rescaled so that the saturating actuator is limited to 1.0.
 
-#### Helicopter Mixer
+#### 针对直升机的混控器
 
 The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs ( swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
 
