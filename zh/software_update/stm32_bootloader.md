@@ -1,6 +1,6 @@
 # STM32 Bootloader
 
-The code for the PX4 bootloader is available from the Github [Bootloader](https://github.com/px4/bootloader) repository.
+PX4 引导加载程序的代码可从 Github [ Bootloader ](https://github.com/px4/bootloader)存储库获得。
 
 ## 支持的飞控板
 
@@ -21,26 +21,26 @@ git submodule update
 make
 ```
 
-After this step a range of elf files for all supported boards are present in the Bootloader directory.
+在此步骤之后，所有支持的主板的 elf 文件范围都出现在引导 Bootloader 目录中。
 
 ## 刷写 Bootloader
 
-> **Important** The right power sequence is critical for some boards to allow JTAG / SWD access. Follow these steps exactly as described.
+> **Important** 正确的电源序列对于某些电路板允来许 JTAG/SWD 访问至关重要。 请完全按照所述步骤操作。
 
-The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
+以下说明适用于 Blackmagic/Dronecode 探测器。 其他 JTAG 探针需要不同但相似的步骤。 试图刷新引导加载程序的开发人员应具备所需的知识。 如果您不知道如何执行此操作，您可能应该重新考虑是否确实需要更改引导加载程序的任何内容。
 
 顺序为：
 
-1. Disconnect the JTAG cable
-2. Connect the USB power cable
-3. Connect the JTAG cable
+1. 断开 JTAG 电缆的连接
+2. 连接 USB 电源线
+3. 连接 JTAG 电缆
 
-### Black Magic / Dronecode Probe
+### 黑魔法/无人机探测器
 
 #### 使用正确的串行端口
 
 * 在 Linux 上： ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
-* On MAC OS: Make sure to use the cu.xxx port, not the tty.xxx port: ```tar ext /dev/tty.usbmodemDDEasdf```
+* 在 MAC OS 上：确保使用 cu.xxx 端口，而不是 tty.xxx 端口： ```tar ext /dev/tty.usbmodemDDEasdf```
 
 ```bash
 arm-none-eabi-gdb
