@@ -43,14 +43,14 @@
 
 "自动" 模式下控制器几乎不需要或者完全不需要用户的输入 (例如执行起飞、降落和飞行任务)。
 
-* **AUTO_LOITER：** (Loiter) 
-  * **Fixed wing aircraft:** The aircraft loiters around the current position at the current altitude (or possibly slightly above the current altitude, good for 'I'm losing it'). 
-  * **Multirotors:** The multirotor hovers / loiters at the current position and altitude.
-* **AUTO_RTL** (Return to Land) 
-  * **Fixed wing aircraft:** The aircraft returns to the home position and loiters in a circle above the home position. 
-  * **Multirotors:** The multirotor returns in a straight line on the current altitude (if the current altitude is higher than the home position + [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT)) or on the [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) (if the [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) is higher than the current altitude), then lands automatically.
-* **AUTO_MISSION** (Mission) 
-  * **All system types:** The aircraft obeys the programmed mission sent by the ground control station (GCS). If no mission received, aircraft will LOITER at current position instead.
+* **AUTO_LOITER：** （留待） 
+  * **固定翼飞机：** 飞机将在当前高度的当前位置附近盘旋（或者比当前高度稍高一点的高度，对“我看不见飞机了”的情况比较有用）。 
+  * **多旋翼：** 多旋翼将在当前位置和高度悬停/盘旋。
+* **AUTO_RTL：** （返回并降落） 
+  * **固定翼飞机：** 飞机返回 home 位置并在 home 位置上空盘旋。 
+  * **多旋翼：** 多旋翼在当前高度直线返回 home 位置（如果当前高度大于 home 位置高度 + [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT)）或者从 [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) 高度返回（如果 [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) 比当前高度要高），然后无人机将自动降落。
+* **AUTO_MISSION：** （任务） 
+  * **所有类型的系统：**飞机执行由地面控制站 (GCS) 发送的预规划飞行任务。 如果没有收到任务, 飞机将改为在目前的位置上留待。
   * ***OFFBOARD*** (Offboard) In this mode the position, velocity or attitude reference / target / setpoint is provided by a companion computer connected via serial cable and MAVLink. The offboard setpoint can be provided by APIs like [MAVROS](https://github.com/mavlink/mavros) or [Dronekit](http://dronekit.io).
 
 ## Flight Mode Evaluation Diagram
