@@ -46,7 +46,7 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 
 要运行包含在 ROS 中的 SITL，需要更新 ROS 环境，然后像往常一样启动：
 
-(optional): only source the catkin workspace if you compiled MAVROS or other ROS packages from source:
+（可选）：如果您从源代码编译 MAVROS 或其他 ROS 包，则仅获取 catkin 工作区：
 
 ```sh
 cd <Firmware_clone>
@@ -58,11 +58,11 @@ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 posix_sitl.launch
 ```
 
-Include one of the above mentioned launch files in your own launch file to run your ROS application in the simulation.
+在您自己的启动文件中包含上述启动文件之一，以在模拟中运行 ROS 应用程序。
 
 ## What's Happening Behind the Scenes
 
-This section shows how the *roslaunch* instructions provided previously actually work (you can follow them to manually launch the simulation and ROS).
+本节显示了之前提供的* roslaunch *指令实际上是如何工作的（您可以按照它们手动启动模拟和 ROS 系统）。
 
 First start the simulator using the command below:
 
