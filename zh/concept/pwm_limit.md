@@ -1,25 +1,25 @@
 # PWM_limit 状态机
 
-[PWM_limit 状态机] 根据锁定（pre-armed）和解锁（armed）状态作为输入量控制飞控的 PWM 输出， 并且会在解锁指令发出后、飞机油门增加之前引入一个延时。
+[PWM_limit 状态机] 以锁定（pre-armed）和解锁（armed）模式作为功能函数的输入量对飞控的 PWM 输出进行控制， 并且会在解锁指令发出后、飞机油门增加之前引入一个延时。
 
 ## 总览
 
 **输入**
 
-- 解锁（armed）状态：宣告允许执行危险的动作指令，如转动螺旋桨。
-- 锁定（pre-armed）状态：宣告允许执行温和的动作指令，如移动控制舵面。 
-    - this input overrides the current state
+- 解锁（armed）模式：宣告允许执行危险的动作指令，如转动螺旋桨。
+- 锁定（pre-armed）模式：宣告允许执行温和的动作指令，如移动控制舵面。 
+    - 该输入会覆盖当前状态。
     - assertion of pre-armed immediately forces behavior of state ON, regardless of current state ** deassertion of pre-armed reverts behavior to current state
 
-**States**
+**状态**
 
-- INIT and OFF 
-    - pwm outputs set to disarmed values.
+- INIT 和 OFF 
+    - pwm 输出设置为锁定状态的值。
 - RAMP 
-    - pwm ouputs ramp from disarmed values to min values.
+    - pwm 输出从锁定状态的值上升到解锁状态的最小值。
 - ON 
-    - pwm outputs set according to control values.
+    - 根据实际控制量设定 pwm 的输出值。
 
-## State Transition Diagram
+## 状态转移图
 
 ![](../../assets/diagrams/pwm_limit_state_diagram.png)
