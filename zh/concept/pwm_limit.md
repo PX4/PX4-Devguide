@@ -6,8 +6,8 @@
 
 **输入**
 
-- armed: asserted to enable dangerous behaviors such as spinning propellers
-- pre-armed: asserted to enable benign behaviors such as moving control surfaces 
+- 解锁（armed）状态：宣告允许执行危险的动作指令，如转动螺旋桨。
+- 锁定（pre-armed）状态：宣告允许执行温和的动作指令，如移动控制舵面。 
     - this input overrides the current state
     - assertion of pre-armed immediately forces behavior of state ON, regardless of current state ** deassertion of pre-armed reverts behavior to current state
 
