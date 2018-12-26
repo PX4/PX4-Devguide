@@ -78,14 +78,14 @@ PX4 可以在提供 POSIX-API 接口的各种操作系统上运行 （比如说 
 
 有 2 种不同的模块执行方式：
 
-- **Tasks**: 模块在它自己的任务中运行, 具有自己的堆栈和进程优先级（这是更常见的方法）。 
-- **Work queues**: The module runs on a shared task, meaning that it does not own a stack. Multiple tasks run on the same stack with a single priority per work queue.
+- **任务 （Tasks）**: 模块在它自己的任务中运行, 具有自己的堆栈和进程优先级（这是更常见的方法）。 
+- **工作队列 （Work queues）**：模块在共享任务上运行, 这意味着它没有自己的堆栈。 多个任务在同一堆栈上运行, 每个工作队列只有一个优先级。
     
-    A task is scheduled by specifying a fixed time in the future. The advantage is that it uses less RAM, but the task is not allowed to sleep or poll on a message.
+    任务 （Task）模式下通过设定未来时间段的一个固定时间点完成任务的规划。 这种方式的优点是 RAM 占用更少，但任务不能休眠，也不能轮训消息。
     
-    Work queues are used for periodic tasks, such as sensor drivers or the land detector.
+    工作队列（work Queue）用于执行周期性任务， 如传感器驱动程序或触地检测器。
 
-> **Note** Tasks running on a work queue do not show up in `top` (only the work queues themselves can be seen - e.g. as `lpwork`).
+> **Note** 在工作队列中的任务不会显示在 `top` 中（你尽能看见工作队列本身，比如 `lpwork`）。
 
 ### 后台任务
 
