@@ -1,4 +1,4 @@
-# Mixing and Actuators
+# 混控器和执行器
 
 The PX4 architecture ensures that the airframe layout does not require special case handling in the core controllers.
 
