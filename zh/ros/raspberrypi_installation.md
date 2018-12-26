@@ -1,4 +1,4 @@
-# Raspberry Pi - ROS installation
+# Raspberry Pi - ROS 安装
 
 This is a guide on how to install ROS-indigo on a Raspberry Pi 2 serving as a companion computer for Pixhawk.
 
