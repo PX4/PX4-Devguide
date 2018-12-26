@@ -57,21 +57,21 @@ arm-none-eabi-gdb
 
 ### J-Link
 
-These instructions are for the [J-Link GDB server](https://www.segger.com/jlink-gdb-server.html).
+这些指令适用于[ J-Link GDB server](https://www.segger.com/jlink-gdb-server.html)。
 
 #### 系统必备组件
 
-[Download the J-Link software](https://www.segger.com/downloads/jlink) from the Segger website and install it according to their instructions.
+[ Download the J-Link software ](https://www.segger.com/downloads/jlink)并按照 Segger 网站的说明进行安装。
 
 #### 运行 JLink GDB 服务器
 
-The command below is used to run the server for flight controllers that use the STM32F427VI SoC:
+以下命令用于为使用 STM32F427VI SoC 的飞行控制器运行服务器：
 
 ```bash
 JLinkGDBServer -select USB=0 -device STM32F427VI -if SWD-DP -speed 20000
 ```
 
-The `--device`/SoC for common targets is:
+常见目标的 `--device`/SoC是：
 
 * **FMUv2、FMUv3、FMUv4、aerofc-v1、mindpx-v2：**STM32F427VI
 * **px4_fmu-v4pro：**STM32F469II
@@ -88,11 +88,11 @@ arm-none-eabi-gdb
 
 ### 故障处理
 
-If any of the commands above are not found, you are either not using a Blackmagic probe or its software is outdated. Upgrade the on-probe software first.
+如果找不到上述任何命令，则表示您未使用 Blackmagic 探针或其软件已过期。 首先更新 on-probe 软件。
 
-If this error message occurs: ```Error erasing flash with vFlashErase packet```
+如果出现此错误消息： ```Error erasing flash with vFlashErase packet```
 
-Disconnect the target (while leaving JTAG connected) and run
+断开目标连接（同时保持 JTAG 连接）并运行
 
 ```bash
 mon tpwr disable
@@ -101,4 +101,4 @@ attach 1
 load tapv1_bl.elf
 ```
 
-This will disable target powering and attempt another flash cycle.
+这将禁用目标供电并尝试另一个闪光周期。
