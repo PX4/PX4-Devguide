@@ -1,16 +1,16 @@
 # 系统启动
 
-PX4 系统的启动由 shell 脚本文件控制。 On NuttX they reside in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder - some of these are also used on Posix (Linux/MacOS). The scripts that are only used on Posix are located in [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix).
+PX4 系统的启动由 shell 脚本文件控制。 在 NuttX 平台上这些脚本文件位于 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 文件夹下 - 该文件夹下的部分脚本文件也适用于 Posix (Linux/MacOS) 平台。 仅适用于 Posix 平台的启动脚本文件可以在 [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) 文件夹下找到。
 
-All files starting with a number and underscore (e.g. `10000_airplane`) are canned airframe configurations. They are exported at build-time into an `airframes.xml` file which is parsed by [QGroundControl](http://qgroundcontrol.com) for the airframe selection UI. Adding a new configuration is covered [here](../airframes/adding_a_new_frame.md).
+上述文件夹中以数字和下划线为文件名开头的脚本文件（例如，`10000_airplane`）都是封装好的机架构型配置文件。 这些文件在编译时会被导出至 `airframes.xml` 文件中，[QGroundControl](http://qgroundcontrol.com) 通过解析该 xml 文件得到可以在 UI 界面上进行选择的机架构型。 如何添加一个新的配置请参阅 [这里](../airframes/adding_a_new_frame.md)。
 
-The remaining files are part of the general startup logic. The first executed file is the [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) script (or [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on Posix), which calls all other scripts.
+其它的文件则是系统常规启动逻辑的一部分。 在启动过程中第一个被系统执行的脚本文件是 [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) （Posix 平台则为 [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on Posix)），该脚本会调用所有的其它脚本。
 
-The following sections are split according to the operating system that PX4 runs on.
+根据 PX4 运行的操作系统将本文后续内容分成了如下各小节。
 
 ## Posix (Linux/MacOS)
 
-On Posix, the system shell is used as script interpreter (e.g. /bin/sh, being symlinked to dash on Ubuntu). For that to work, a few things are required:
+在 Posix 操作系统上，系统的 shell 将会作为脚本文件的解释器（例如， 在 Ubuntu 中 /bin/sh 与 Dash 建立了符号链接）。 For that to work, a few things are required:
 
 - PX4 modules need to look like individual executables to the system. This is done via symbolic links. For each module a symbolic link `px4-<module> -> px4` is created in the `bin` directory of the build folder. When executed, the binary path is checked (`argv[0]`), and if it is a module (starts with `px4-`), it sends the command to the main px4 instance (see below). > **Tip** The `px4-` prefix is used to avoid conflicts with system commands (e.g. `shutdown`), and it also allows for simple tab completion by typing `px4-<TAB>`.
 - The shell needs to know where to find the symbolic links. For that the `bin` directory with the symbolic links is added to the `PATH` variable right before executing the startup scripts.
