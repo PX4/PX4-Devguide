@@ -20,13 +20,13 @@
 
 * **多旋翼：**
   
-  * **MANUAL/STABILIZED：** 飞行员的输入将作为滚转、俯仰 *角度* 指令和一个偏航 *角速度* 指令传递给自动驾驶仪， 油门将直接传递到输出混控器上。 The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered, consequently leveling-out the attitude. However, in this mode the position of the vehicle is not controlled by the autopilot, hence the position can drift due to wind.
+  * **MANUAL/STABILIZED：** 飞行员的输入将作为滚转、俯仰 *角度* 指令和一个偏航 *角速度* 指令传递给自动驾驶仪， 油门将直接传递到输出混控器上。 自动驾驶仪控制着飞机的姿态角，这意味着当 RC 摇杆居中时自驾仪调整飞机的滚转和俯仰角为零，从而实现飞机姿态的改平。 但是。在此模式下飞机的位置不受自驾仪的控制，因此飞机的位置可能会由于风的存在而发生漂移。
     
-    > **Note** For Multirotors, Manual and Stabilized modes are the same.
+    > **Note** 对于多旋翼而言，Manual 和 Stabilized 模式是等同的。
   
-  * **ACRO:** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot. The autopilot controls the angular rates, but not the attitude. Hence, if the RC sticks are centered the vehicle will not level-out. This allows the multirotor to become completely inverted. 油门直接传递到输出混频器。
+  * **ACRO：** 飞行员的输入将作为滚转、俯仰和偏航 *角速率* 指令传递给自动驾驶仪 自动驾驶仪控制的是飞机的角速度, 而不是姿态角。 因此即便 RC 摇杆处于居中位置飞机也不会改平， 这一特性使得多旋翼可以完全翻转过来。 油门将直接传递到输出混控器上。
   
-  * **RATTITUDE** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot if they are greater than the mode's threshold, i.e. if the RC sticks are a certain distance away from the center position. If not the inputs are passed as roll and pitch *angle* commands and a yaw *rate* command. 油门直接传递到输出混频器。 In short, the autopilot acts as an angular rate controller when the RC sticks are away from center (like in the ACRO mode), whereas when the RC sticks are centered, the autopilot acts as an attitude controller (like in the Stabilized mode).
+  * **RATTITUDE：** 飞行员的输入如超过了模式设定的阈值则将作为滚转、俯仰和偏航 *角速率* 指令传递自驾仪，例如当 RC 摇杆位置偏离中立位置特定距离后。 反之，输入将作为滚转、俯仰 *角度* 指令和一个偏航 *角速率* 指令传递给自驾仪。 油门将直接传递到输出混控器上。 简单地说，当 RC 摇杆里中立位置较远的时候自驾仪相当于一个角速率控制器（与 ACRO 模式相似），而当 RC 摇杆居中时自驾仪相当于一个姿态角控制器（与 Stabilized 模式相似）。
 
 ### Assisted flight modes
 
