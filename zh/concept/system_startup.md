@@ -32,24 +32,24 @@ NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/N
 
 ### 调试系统的启动过程
 
-A failure of a driver of software component will not lead to an aborted boot. This is controlled via `set +e` in the startup script.
+软件组件的失效可以不中止 PX4 系统的启动， 这一特性可以在启动脚本中使用 `set +e` 来实现。
 
-The boot sequence can be debugged by connecting the [system console](../debug/system_console.md) and power-cycling the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
+连接至 [系统控制台（system console）](../debug/system_console.md) 后重启飞控板可以进行对系统启动引导序列进行调试。 由此生成的启动引导日志文件中包含了引导序列的详细信息，同时也应包含了解释启动中止的线索。
 
 #### 启动失败的常见原因
 
-- For custom applications: The system was out of RAM. Run the `free` command to see the amount of free RAM.
-- A software fault or assertion resulting in a stack trace
+- 对于自定义的应用程序：系统用尽了 RAM 资源。 运行 `free` 命令以查看可用 RAM 的大小。
+- 引发堆栈跟踪的软件故障或者断言。
 
 ### 替换系统的启动文件
 
-In most cases customizing the default boot is the better approach, which is documented below. If the complete boot should be replaced, create a file `/fs/microsd/etc/rc.txt`, which is located in the `etc` folder on the microSD card. If this file is present nothing in the system will be auto-started.
+在大多数情况下自定义默认启动项是更好的做法，实现方法见下文。 如果需要替换整个引导文件，请创建文件： `/fs/microsd/etc/rc.txt` ，该文件位于 microSD 卡的根目录下的 `etc` 文件夹下。 如果此文件存在，系统中的任何内容都不会自动启动。
 
 ### 自定义系统的启动文件
 
-The best way to customize the system startup is to introduce a [new airframe configuration](../airframes/adding_a_new_frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
+自定义系统启动的最佳方法是引入 [新的机架配置](../airframes/adding_a_new_frame.md) 。 如果只需要一些小的调整（比如多启动一个应用程序，或只是启用一个不同的混控器)，那么你可以在启动过程中使用特殊的钩子（hook）来达成目的。
 
-> **Caution** The system boot files are UNIX FILES which require UNIX LINE ENDINGS. If editing on Windows use a suitable editor.
+> **Caution** 系统的启动文件是 UNIX 系统文件，该文件要求以 UNIX 规范的 LF 作为行结束符。 If editing on Windows use a suitable editor.
 
 There are three main hooks. Note that the root folder of the microsd card is identified by the path `/fs/microsd`.
 
