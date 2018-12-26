@@ -40,7 +40,7 @@ PX4 系统通过一个名为 [uORB](../middleware/uorb.md) 的发布-订阅消�
 
 飞行控制栈是针对自主无人机设计的导航、制导和控制算法的集合。 它包括了为固定翼、旋翼和 VTOL 无人机设计的控制器，以及相应的姿态、位置估计器。
 
-下图展示了飞行控制栈的整体架构， It contains the full pipeline from sensors, RC input and autonomous flight control (Navigator), down to the motor or servo control (Actuators).
+下图展示了飞行控制栈的整体架构， 它包含了从传感器数据、 RC 控制量输入 到自主飞行控制（制导控制器，Navigator ），再到电机、舵机控制（执行器，Actuators）的全套通路。
 
 ![PX4 高级飞行栈](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
 [here](https://drive.google.com/a/px4.io/file/d/15J0eCL77fHbItA249epT3i2iOx4VwJGI/view?usp=sharing) 
@@ -50,9 +50,9 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
-An **estimator** takes one or more sensor inputs, combines them, and computes a vehicle state (for example the attitude from IMU sensor data).
+**估计器 （estimator）** 取一个或者多个传感器数据作为输入量，并进行数据融合进而计算出无人机的状态（例如：从 IMU 传感器数据计算得到无人机的姿态角）。
 
-A **controller** is a component that takes a setpoint and a measurement or estimated state (process variable) as input. Its goal is to adjust the value of the process variable such that it matches the setpoint. The output is a correction to eventually reach that setpoint. For example the position controller takes position setpoints as inputs, the process variable is the currently estimated position, and the output is an attitude and thrust setpoint that move the vehicle towards the desired position.
+**控制器 （controller）** 组件以一个期望设定值和一个测量值或状态估计量（过程变量）作为输入， 它的目标是将过程变量的实际值调整到与期望设定值相一致， 得到的输出量实现对状态变量的矫正以使其最终抵达期望的设定值。 For example the position controller takes position setpoints as inputs, the process variable is the currently estimated position, and the output is an attitude and thrust setpoint that move the vehicle towards the desired position.
 
 A **mixer** takes force commands (e.g. turn right) and translates them into individual motor commands, while ensuring that some limits are not exceeded. This translation is specific for a vehicle type and depends on various factors, such as the motor arrangements with respect to the center of gravity, or the vehicle's rotational inertia.
 
