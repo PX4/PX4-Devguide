@@ -28,29 +28,29 @@ uORB 会在启动时自动启动，因为许多应用程序都依赖于它。 �
     # TOPICS mission offboard_mission onboard_mission
     
 
-Then in the code, use them as topic id: `ORB_ID(offboard_mission)`.
+然后在代码中，将它们用作主题 id: `ORB_ID(offboard_mission)`。
 
-## Publishing
+## 发布
 
-Publishing a topic can be done from anywhere in the system, including interrupt context (functions called by the `hrt_call` API). However, advertising a topic is only possible outside of interrupt context. A topic has to be advertised in the same process as it's later published.
+发布主题可以在系统中的任何位置完成，包括中断上下文（由 `hrt_call` API 调用的函数）。 但是，仅在中断上下文之外才能为主题做广播。 一个主题必须与以后发布的过程相同。
 
-## Listing Topics and Listening in
+## 主题列表和监听（Listener）
 
-> **Note** The `listener` command is only available on Pixracer (FMUv4) and Linux / OS X.
+> **Note** `listener` 命令仅适用于 Pixracer (FMUv4) 和 Linux/OS X。
 
-To list all topics, list the file handles:
+要列出所有主题，列出文件句柄：
 
 ```sh
 ls /obj
 ```
 
-To listen to the content of one topic for 5 messages, run the listener:
+要监听五条信息中的一个主题内容，运行监听器：
 
 ```sh
 listener sensor_accel 5
 ```
 
-The output is n-times the content of the topic:
+输出主题内容如下：
 
 ```sh
 TOPIC: sensor_accel #3
