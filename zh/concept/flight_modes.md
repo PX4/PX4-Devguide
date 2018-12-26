@@ -4,7 +4,7 @@
 
 需要注意的是并非所有类型的飞机都具备全部的飞行模式，同时部分模式在不同类型的飞机上的行为模式也不相同（见下文）。 最后，部分飞行模式仅在飞行前或者飞行中某些特定条件下才有意义（如 GPS锁定，空速传感器，飞机扰一个轴进行姿态感知）。 除非满足合适的条件，都则系统不会允许切换到这些模式下。
 
-下面的各小节对所以的飞行模式进行了一个概述，随后给出了一张 [飞行模式评价图](#flight-mode-evaluation-diagram) ，改图展示了 PX4 在何种条件下会切换至一个新的飞行模式。
+下面的各小节对所以的飞行模式进行了一个概述，随后给出了一张 [飞行模式评估图](#flight-mode-evaluation-diagram) ，改图展示了 PX4 在何种条件下会切换至一个新的飞行模式。
 
 ## 飞行模式概要
 
@@ -51,8 +51,8 @@
   * **多旋翼：** 多旋翼在当前高度直线返回 home 位置（如果当前高度大于 home 位置高度 + [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT)）或者从 [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) 高度返回（如果 [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) 比当前高度要高），然后无人机将自动降落。
 * **AUTO_MISSION：** （任务） 
   * **所有类型的系统：**飞机执行由地面控制站 (GCS) 发送的预规划飞行任务。 如果没有收到任务, 飞机将改为在目前的位置上留待。
-  * ***OFFBOARD*** (Offboard) In this mode the position, velocity or attitude reference / target / setpoint is provided by a companion computer connected via serial cable and MAVLink. The offboard setpoint can be provided by APIs like [MAVROS](https://github.com/mavlink/mavros) or [Dronekit](http://dronekit.io).
+  * ***OFFBOARD*** (Offboard) 此模式下位置、速度和姿态角的 参考值/目标值/期望设定值 由通过串口或者 MAVLink连接的配套计算机提供。 Offboard 期望设定值可以由诸如 [MAVROS](https://github.com/mavlink/mavros) 或者 [Dronekit](http://dronekit.io) 等 API 接口提供。
 
-## Flight Mode Evaluation Diagram
+## 飞行模式评估图
 
 ![](../../assets/diagrams/commander-flow-diagram.png)
