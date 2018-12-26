@@ -42,7 +42,7 @@ PX4 系统通过一个名为 [uORB](../middleware/uorb.md) 的 发布-订阅 消
 
 下图展示了飞行控制栈的整体架构， 它包含了从传感器数据、 RC 控制量输入 到自主飞行控制（制导控制器，Navigator ），再到电机、舵机控制（执行器，Actuators）的全套通路。
 
-![PX4 高级飞行栈](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
+![PX4 顶层飞行控制栈](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
 [here](https://drive.google.com/a/px4.io/file/d/15J0eCL77fHbItA249epT3i2iOx4VwJGI/view?usp=sharing) 
 and opened with draw.io Diagrams. You might need to request access if you
 don't have a px4.io Google account.
@@ -115,4 +115,4 @@ independent_task = px4_task_spawn_cmd(
 
 #### Linux/MacOS
 
-On Linux or macOS, PX4 runs in a single process, and the modules run in their own threads (there is no distinction between tasks and threads as on NuttX).
+在 Linux 或者 macOS 系统上， PX4 在一个单独的进程中运行，各个模块在各自线程中运行（在 NuttX 中任务和线程没有任何区别）。
