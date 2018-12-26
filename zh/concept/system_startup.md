@@ -49,9 +49,9 @@ NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/N
 
 自定义系统启动的最佳方法是引入 [新的机架配置](../airframes/adding_a_new_frame.md) 。 如果只需要一些小的调整（比如多启动一个应用程序，或只是启用一个不同的混控器)，那么你可以在启动过程中使用特殊的钩子（hook）来达成目的。
 
-> **Caution** 系统的启动文件是 UNIX 系统文件，该文件要求以 UNIX 规范的 LF 作为行结束符。 If editing on Windows use a suitable editor.
+> **Caution** 系统的启动文件是 UNIX 系统文件，该文件要求以 UNIX 规范的 LF 作为行结束符。 在 Windows 平台上编辑系统的启动文件应该使用一个合适的文本编辑器。
 
-There are three main hooks. Note that the root folder of the microsd card is identified by the path `/fs/microsd`.
+主要有三类钩子（hook）， 需要注意的是 microsd 的根目录是挂载在操作系统中的 `/fs/microsd` 目录下的。
 
 - /fs/microsd/etc/config.txt
 - /fs/microsd/etc/extras.txt
@@ -59,15 +59,15 @@ There are three main hooks. Note that the root folder of the microsd card is ide
 
 #### 自定义配置（config.txt）
 
-The `config.txt` file can be used to modify shell variables. It is loaded after the main system has been configured and *before* it is booted.
+`config.txt` 文件可用于修改 shell 变量。 该文件会在主系统完成配置后、 进行启动*前*进行加载。
 
 #### 启动额外的应用
 
-The `extras.txt` can be used to start additional applications after the main system boot. Typically these would be payload controllers or similar optional custom components.
+`extras.txt` 可用于在主系统启动后启动额外的应用程序。 通常这些额外应用程序可以载荷控制器或类似的可选自定义组件。
 
-> **Caution** Calling an unknown command in system boot files may result in boot failure. Typically the system does not stream mavlink messages after boot failure, in this case check the error messages that are printed on the system console.
+> **Caution**在系统启动文件中调用未知命令可能会导致系统引导失败。 通常情况下系统在引导失败后不会发送 mavlink 消息，所以在这种情况下请检查系统在控制台上输出的的错误消息。
 
-The following example shows how to start custom applications:
+下面的示例演示了如何启动自定义应用程序:
 
 - Create a file on the SD card `etc/extras.txt` with this content: ```custom_app start```
 - A command can be made optional by gating it with the `set +e` and `set -e` commands:
