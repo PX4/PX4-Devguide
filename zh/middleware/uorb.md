@@ -82,11 +82,11 @@ range_m_s2: 78
 scaling: 0
 ```
 
-> **Tip** On NuttX-based systems (Pixhawk, Pixracer, etc) the `listener` command can be called from within the *QGroundControl* MAVLink Console to inspect the values of sensors and other topics. This is a powerful debugging tool because it can be used even when QGC is connected over a wireless link (e.g. when the vehicle is flying). For more information see: [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md).
+> **Tip** 在基于 NuttX 的系统上（如 Pixhawk， Pixracer等），监听器可以用 *QGroundControl* 内部的 MAVLink 终端监视传感器的值和其他主题。 之所以是非常有用的调试工具是因为可以在 QGC 上通过无线连接（比如飞机在飞行过程中）。 有关详细信息，请参阅 [传感器/主题调试 ](../debug/sensor_uorb_topic_debugging.md)。
 
-### uorb top Command
+### uorb top 命令
 
-The command `uorb top` shows the publishing frequency of each topic in real-time:
+uorb top 命令实时显示每个主题的发布频率。
 
 ```sh
 update: 1s, num topics: 77
@@ -106,7 +106,7 @@ sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
 
-The columns are: topic name, multi-instance index, number of subscribers, publishing frequency in Hz, number of lost messages per second (for all subscribers combined), and queue size.
+列分别是：主题名字，索引值，订阅者数量，发布频率（Hz），每秒丢失的信息数（对所有订阅者）和队列大小。
 
 ## Multi-instance
 
