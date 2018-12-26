@@ -28,7 +28,7 @@ again. -->
 
 上图中的箭头表示的是各个模块之间 *最重要的* 信息流连接。 实际运行时各模块之间信息流的连接数目比图中展示出来的要多很多，且部分数据（比如：配置参数）会被大部分模块访问。
 
-PX4 系统通过一个名为 [uORB](../middleware/uorb.md) 的发布-订阅消息总线实现模块之间的相互通讯。 使用发布-订阅消息总线这个方案意味着：
+PX4 系统通过一个名为 [uORB](../middleware/uorb.md) 的 发布-订阅 消息总线实现模块之间的相互通讯。 使用 发布-订阅 消息总线这个方案意味着：
 
 - 系统是 “响应式” 的 — 系统异步运行，新数据抵达时系统立即进行更新。
 - 系统所有的活动和通信都是完全并行的。
@@ -52,13 +52,13 @@ again. -->
 
 **估计器 （estimator）** 取一个或者多个传感器数据作为输入量，并进行数据融合进而计算出无人机的状态（例如：从 IMU 传感器数据计算得到无人机的姿态角）。
 
-**控制器 （controller）** 组件以一个期望设定值和一个测量值或状态估计量（过程变量）作为输入， 它的目标是将过程变量的实际值调整到与期望设定值相一致， 得到的输出量实现对状态变量的矫正以使其最终抵达期望的设定值。 For example the position controller takes position setpoints as inputs, the process variable is the currently estimated position, and the output is an attitude and thrust setpoint that move the vehicle towards the desired position.
+**控制器 （controller）** 组件以一个期望设定值和一个测量值或状态估计量（过程变量）作为输入， 它的目标是将过程变量的实际值调整到与期望设定值相一致， 得到的输出量实现对状态变量的矫正以使其最终抵达期望的设定值。 以位置控制器为例，该控制器以期望位置作为输入，过程变量是当前位置的估计值，控制器最终输出的是将引导无人机前往期望位置的姿态、油门指令。
 
-A **mixer** takes force commands (e.g. turn right) and translates them into individual motor commands, while ensuring that some limits are not exceeded. This translation is specific for a vehicle type and depends on various factors, such as the motor arrangements with respect to the center of gravity, or the vehicle's rotational inertia.
+**混合器 （mixer）** 响应力的指令（例如右转），并将其转换为单独的电机指令并保证产生的指令不超限。 每一类飞机都有特定的指令转换方式且受许多因素的影响，例如：电机关于重心的安装位置，飞机的惯性矩参数等。
 
 ### 中间件 {#middleware}
 
-The [middleware](../middleware/README.md) consists primarily of device drivers for embedded sensors, communication with the external world (companion computer, GCS, etc.) and the uORB publish-subscribe message bus.
+[中间件](../middleware/README.md) 主要包由载嵌入式传感器驱动、与外界的通讯（配套计算机， GCS 等）以及 uORB 发布-订阅 消息总线三部分组成。
 
 In addition, the middleware includes a [simulation layer](../simulation/README.md) that allows PX4 flight code to run on a desktop operating system and control a computer modeled vehicle in a simulated "world".
 
