@@ -64,19 +64,19 @@ again. -->
 
 ## 更新速率
 
-由于各模块都需要等待消息的更新，所以通常而言硬件的驱动程序决定着模块的更新速度。 大部分 IMU 驱动以 1kHz 的速率进行采样，以 250Hz 的速率发布传感器数据。 Other parts of the system, such as the `navigator`, don't need such a high update rate, and thus run considerably slower.
+由于各模块都需要等待消息的更新，所以通常而言硬件的驱动程序决定着模块的更新速度。 大部分 IMU 驱动以 1kHz 的速率进行采样，以 250Hz 的速率发布传感器数据。 而系统的其它部分，比如说 `制导控制器 （navigator）`， 并不需要这么高的更新速率，因而运行的更新速度要慢的多。
 
-The message update rates can be [inspected](../middleware/uorb.md#urb-top-command) in real-time on the system by running `uorb top`.
+消息的更新速率可以使用 `uorb top` 命令实时 [查看](../middleware/uorb.md#urb-top-command) 。
 
-## 运行时环境
+## 运行时的环境
 
-PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT). It should also have some form of real-time scheduling (e.g. FIFO).
+PX4 可以在提供 POSIX-API 接口的各种操作系统上运行 （比如说 Linux, macOS, NuttX 和 QuRT）。 操作系统应该还具备某种形式的实时调度能力（例如 FIFO ）。
 
-The inter-module communication (using [uORB](../middleware/uorb.md)) is based on shared memory. The whole PX4 middleware runs in a single address space, i.e. memory is shared between all modules.
+模块间通信 (使用 [uORB](../middleware/uorb.md)) 是基于贡献内存实现的。 整个 PX4 中间件在同一个地址空间内运行，即内存在所有模块之间共享。
 
-> **Info** The system is designed such that with minimal effort it would be possible to run each module in separate address space (parts that would need to be changed include `uORB`, `parameter interface`, `dataman` and `perf`).
+> **Info** 整个系统被设计成仅需要很小的工作量就可以实现在单独的地址空间内运行各个模块（需要进行改动的部分主要包括 `uORB`，`parameter interface`，`dataman` 以及 `perf`）。
 
-There are 2 different ways that a module can be executed:
+有 2 种不同的模块执行方式：
 
 - **Tasks**: The module runs in its own task with its own stack and process priority (this is the more common way). 
 - **Work queues**: The module runs on a shared task, meaning that it does not own a stack. Multiple tasks run on the same stack with a single priority per work queue.
