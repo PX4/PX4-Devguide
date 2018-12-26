@@ -28,14 +28,14 @@ The steps to join our translation tream are:
 4. Click the **Join** button (next to the text *You must join the translators team to be able to participate in this project*) > **Note** You will be notified once your application to join is accepted.
 5. Start translating!
 
-## Special Notes
+## 特别注意事项
 
-### Do not modify Note, Tip, Warning Text
+### 不要修改句首的 Note, Tip, Warning 字样
 
 Gitbook uses special prefix text to indicate Notes, Tips and Warnings (e.g. `> **Note**`, `> **Tip**`, `> **Warning**`). This is displayed in Crowdin as shown:
 
 ```html
-<0>Note</0> The text for the note.
+&lt;0&gt;Note&lt;/0&gt; note的文本。
 ```
 
 It is important that you do not translate the text inside the `<0>Note</0>` tags as this will stop the note from rendering properly.
