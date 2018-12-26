@@ -10,7 +10,7 @@ PX4 由两个主要部分组成：一是 [飞行控制栈（flight stack）](#fl
 
 ## 顶层软件架构 {#architecture}
 
-下面的架构图对 PX4 的各个积木模块以及各模块之间的联系进行了一个详细的概述。 The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
+下面的架构图对 PX4 的各个积木模块以及各模块之间的联系进行了一个详细的概述。 图的上半部分包括了中间件模块，而下半部分展示的则是飞行控制栈的组件。
 
 ![PX4 架构](../../assets/diagrams/PX4_Architecture.svg)
 
@@ -22,9 +22,9 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
-The source code is split into self-contained modules/programs (shown in `monospace` in the diagram). Usually a building block corresponds to exactly one module.
+源代码被拆分为许多相互独立的模块/程序 (图中使用 `monospace` 字体表示)。 通常来说一个图中的积木块对应一个功能模块。
 
-> **Tip** At runtime, you can inspect which modules are executed with the `top` command in shell, and each module can be started/stopped individually via `<module_name> start/stop`. While `top` command is specific to NuttX shell, the other commands can be used in the SITL shell (pxh>) as well. For more information about each of these modules see the [Modules & Commands Reference](../middleware/modules_main.md).
+> **Tip** 在运行期间，你可以在 shell 命令行界面执行 `top` 命令检查哪些模块已经被执行了， 每个模块都可以通过 `<module_name> start/stop` 命令单独进行启动/停止。 While `top` command is specific to NuttX shell, the other commands can be used in the SITL shell (pxh>) as well. For more information about each of these modules see the [Modules & Commands Reference](../middleware/modules_main.md).
 
 The arrows show the information flow for the *most important* connections between the modules. In reality, there are many more connections than shown, and some data (e.g. for parameters) is accessed by most of the modules.
 
