@@ -69,8 +69,8 @@ NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/N
 
 下面的示例演示了如何启动自定义应用程序:
 
-- Create a file on the SD card `etc/extras.txt` with this content: ```custom_app start```
-- A command can be made optional by gating it with the `set +e` and `set -e` commands:
+- 在 SD 卡上创建一个文件 `etc/extras.txt` ，该文件应包含如下内容： ```custom_app start```
+- 搭配使用 `set +e` 和 `set -e` 可以将命令设置为可选命令：
     
         set +e
         optional_app start      # 即便 optional_app 未知或者失效也不会导致系统启动失败
@@ -81,13 +81,13 @@ NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/N
 
 #### 启动自定义的混控器
 
-By default the system loads the mixer from `/etc/mixers`. If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
+默认情况下系统将从 `/etc/mixers` 文件夹下载入混控器。 如果在 `/fs/microsd/etc/mixers` 文件夹下存在一个同名文件，则后者将会替代默认的混控器被系统载入。 这就使得我们可以在不重新编译固件的情况下对混控器文件进行自定义修改。
 
 ##### 示例
 
-The following example shows how to add a custom aux mixer:
+下面的示例演示了如何添加一个辅助（AUX）混控器：
 
-- Create a file on the SD card, `etc/mixers/gimbal.aux.mix` with your mixer content.
+- 在 SD 卡中创建文件 `etc/mixers/gimbal.aux.mix` ，并将你的混控器设定内容写入该文件内。
 - Then to use it, create an additional file `etc/config.txt` with this content: 
         set MIXER_AUX gimbal
         set PWM_AUX_OUT 1234
