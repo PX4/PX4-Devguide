@@ -1,6 +1,6 @@
-# GIT Examples
+# GIT 示例
 
-## Contributing code to PX4
+## 为 PX4 贡献代码
 
 Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 
@@ -96,7 +96,7 @@ git push origin <your feature branch name>
 * Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
-## Update Submodule
+## 更新子模块
 
 There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#Contributing-code-to-PX4).
 
