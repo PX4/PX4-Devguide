@@ -36,14 +36,14 @@
   * **固定翼飞机：** 当滚转、俯仰和偏航（PRY）摇杆都处于居中位置（或处于特定死区范围内）时飞机将保持当前高度进行定直平飞。 飞机的 X 和 Y 方向的位置会跟着风发生漂移。
   * **多旋翼：** 滚转、俯仰和偏航输入与 Stabilised 模式相同。 油门输入表示以预设的最大速率爬升或下降， 油门有很大的死区。 油门居中表示保持当前高度。 自驾仪仅控制高度，所以飞机的 X、Y 位置会跟着风发生漂移。 
 * **POSCTL：** （位置控制） 
-  * **Fixed wing aircraft:** Neutral inputs (centered RC sticks) give level flight and it will crab against the wind if needed to maintain a straight line.
-  * **Multirotors** Roll controls left-right speed, pitch controls front-back speed over ground. Yaw controls yaw rate as in MANUAL mode. Throttle controls climb/descent rate as in ALTCTL mode. This means that the x, y, z position of the vehicle is held steady by the autopilot against any wind disturbances, when the roll, pitch and throttle sticks are centered.
+  * **固定翼飞机：** 中立的输入（RC 摇杆居中）会令飞机保持平飞，且如果需要保持直线飞行的话飞控将会根据情况产生偏航指令以应对风的影响。
+  * **多旋翼：** 滚转控制左右向速度，俯仰控制飞机相对地面的前后向速度。 偏航与 MANUAL 模式一样，控制的是偏航角速率。 油门与 ALTCTL 模式一样控制飞机的爬升/下降速率。 这意味着当滚动、俯仰和油门杆居中时，自动驾驶仪会在任意风的干扰下稳定地保持飞机的X、Y、Z 位置。
 
 ### 自动飞行模式
 
-"Auto" modes are those where the controller requires little to no user input (e.g. to takeoff, land and fly missions).
+"自动" 模式下控制器几乎不需要或者完全不需要用户的输入 (例如执行起飞、降落和飞行任务)。
 
-* **AUTO_LOITER** (Loiter) 
+* **AUTO_LOITER：** (Loiter) 
   * **Fixed wing aircraft:** The aircraft loiters around the current position at the current altitude (or possibly slightly above the current altitude, good for 'I'm losing it'). 
   * **Multirotors:** The multirotor hovers / loiters at the current position and altitude.
 * **AUTO_RTL** (Return to Land) 
