@@ -2,28 +2,28 @@
 
 ## 简介
 
-The uORB is an asynchronous `publish()` / `subscribe()` messaging API used for inter-thread/inter-process communication.
+uORB 是用于进程间通信的异步 `publish()`/`subscribe()` 消息传递 API。
 
-Look at the [tutorial](../apps/hello_sky.md) to learn how to use it in C++.
+查看 [教程](../apps/hello_sky.md) 以了解如何在 C++ 中使用它。
 
-uORB is automatically started early on bootup as many applications depend on it. It is started with `uorb start`. Unit tests can be started with `uorb_tests`.
+uORB 会在启动时自动启动，因为许多应用程序都依赖于它。 它以 `uorb start</0 > 开头。 单元测试可以从 <code>uorb_tests` 开始。
 
-## Adding a new topic
+## 添加新 Topic（主题）
 
-New uORB topics can be added either within the main PX4/Firmware repository, or can be added in an out-of-tree message definitions. For information on adding out-of-tree uORB message definitions, please see [this section](../advanced/out_of_tree_modules.md#uorb_message_definitions).
+可以在主 PX4/Firmware 存储库中添加新的 uORB 主题，也可以在树外消息定义中添加。 有关添加树外 uORB 消息定义的信息，请参阅 [本节](../advanced/out_of_tree_modules.md#uorb_message_definitions)。
 
-To add a new topic, you need to create a new **.msg** file in the `msg/` directory and add the file name to the `msg/CMakeLists.txt` list. From this, the needed C/C++ code is automatically generated.
+若要添加新主题，需要在 `msg/` 目录中创建一个新的 **.msg** 文件，并将文件名添加到 `msg/CMakeLists.txt` 列表中。 由此，将自动生成所需的 C/C++ 代码。
 
-Have a look at the existing `msg` files for supported types. A message can also be used nested in other messages.
+查看支持类型的现有 `msg` 文件。 消息还可以在其他消息中嵌套使用。
 
-To each generated C/C++ struct, a field `uint64_t timestamp` will be added. This is used for the logger, so make sure to fill it in when publishing the message.
+对于每个生成的 C/C + 结构，将添加一个字段 `uint64_t timestamp `。 此用于记录日志，因此请确保在发布时填充数据。
 
-To use the topic in the code, include the header:
+若要在代码中使用该主题，请包括头文件：
 
     #include <uORB/topics/topic_name.h>
     
 
-By adding a line like the following in the `.msg` file, a single message definition can be used for multiple independent topics:
+通过在 `.msg` 文件中添加如下内容的行，可以将一条消息定义用于多个独立主题：
 
     # TOPICS mission offboard_mission onboard_mission
     
