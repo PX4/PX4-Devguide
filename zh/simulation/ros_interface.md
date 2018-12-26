@@ -10,11 +10,11 @@ ROS/Gazebo 与 PX4 的集成遵循下图中的模式（这显示了* generic * [
 
 ## 安装 ROS 和 Gazebo
 
-> **Note** *ROS* is only supported on Linux (not macOS or Windows).
+> **Note ** * ROS *仅在 Linux（不是 macOS 或 Windows）上受支持。
 
-The easiest way to setup PX4 simulation with ROS on Ubuntu Linux is to use the standard installation script that can be found at [Development Environment on Linux > Gazebo with ROS](../setup/dev_env_linux.md#gazebo-with-ros). The script installs everything you need: PX4, ROS "Kinetic", the Gazebo 7 simulator, and [MAVROS](../ros/mavros_installation.md).
+在 Ubuntu Linux 上使用 ROS 设置 PX4 仿真的最简单方法是使用标准安装脚本，可以在[ Development Environment on Linux > Gazebo with ROS ](../setup/dev_env_linux.md#gazebo-with-ros)中找到。 该脚本安装了您需要的一切：PX4，ROS“Kinetic”，Gazebo 7 模拟器和[ MAVROS ](../ros/mavros_installation.md)。
 
-> **Note** The script follows the [standard ROS "Kinetic" installation instructions](http://wiki.ros.org/kinetic/Installation/Ubuntu), which include Gazebo 7. Installation of ROS Kinetic for other platforms is covered in the [ROS Wiki here](http://wiki.ros.org/kinetic/Installation).
+> **Note** 该脚本遵循 [standard ROS "Kinetic" installation instructions](http://wiki.ros.org/kinetic/Installation/Ubuntu)，其中包括 Gazebo 7。 其他平台的 ROS Kinetic 的安装在[ ROS Wiki here ](http://wiki.ros.org/kinetic/Installation)中进行了介绍。
 
 ## Launching ROS/Simulation
 
