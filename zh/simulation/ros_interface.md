@@ -44,7 +44,7 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 * [ posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch)：简单的 SITL 发布
 * [ mavros_posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch)：SITL 和 MAVROS 
 
-To run SITL wrapped in ROS the ROS environment needs to be updated, then launch as usual:
+要运行包含在 ROS 中的 SITL，需要更新 ROS 环境，然后像往常一样启动：
 
 (optional): only source the catkin workspace if you compiled MAVROS or other ROS packages from source:
 
