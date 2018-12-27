@@ -130,7 +130,7 @@ Currently we have two types of source-based documentation:
   * Commonly you may want to add information about corner cases and error handling.
   * [Doxgyen](http://www.doxygen.nl/) tags should be used if documentation is needed: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`. A good example of usage is [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h).
 
-### Commits and Commit Messages
+### Commit 与 Commit 信息
 
 Please use descriptive, multi-paragraph commit messages for all non-trivial changes. Structure them well so they make sense in the one-line summary but also provide full detail.
 
@@ -140,9 +140,9 @@ Please use descriptive, multi-paragraph commit messages for all non-trivial chan
     line, either by the module name or a description of it.
     (e.g. "mc_att_ctrl" or "multicopter attitude controller").
     
-    If the issue number is appended as <Fixes #1234>, Github
-    will automatically close the issue when the commit is
-    merged to the master branch.
+    如果 issue 编号添加到了 &lt;Fixes #1234&gt;，当 commit 
+    merged 到 master 分支时
+    Github 会自动关闭 issue。
     
     The body of the message can contain several paragraphs.
     Describe in detail what you changed. Link issues and flight
@@ -154,7 +154,7 @@ Please use descriptive, multi-paragraph commit messages for all non-trivial chan
     safety check for vehicles with low quality GPS reception".
     Bad: "Add gps_reception_check() function").
     
-    Reported-by: Name <email@px4.io>
+    Reported-by: Name &lt;email@px4.io&gt;
     
 
 **Use **`git commit -s`** to sign off on all of your commits.** This will add `signed-off-by:` with your name and email as the last line.
