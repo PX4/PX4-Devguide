@@ -1,6 +1,6 @@
 # 机架参考
 
-> **Note****该列表是从源码自动生成的**。
+> **Note** **该列表是从源码自动生成的**。
 > 
 > **AUX** 通道仅在Pixhawk飞控板上可用 (标签为 **AUX OUT**)。
 
@@ -20,7 +20,7 @@
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b> MAIN1 </b>: 左旋转斜盘伺服电机, 俯仰轴</li><li><b>MAIN2</b>: 右旋转斜盘伺服电机，滚转轴</li><li><b>MAIN3</b>: 上转子 (CCW)</li><li><b>MAIN4</b>: 下转子 (CW)</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b> MAIN1 </b>: 左旋转斜盘伺服电机, 俯仰轴</li><li><b>MAIN2</b>: 右旋转斜盘伺服电机，滚转轴</li><li><b>MAIN3</b>：上旋翼（逆时针）</li><li><b>MAIN4</b>：下旋翼（顺时针）</li></ul></td>
 </tr>
   </table>
 </div>
@@ -122,7 +122,7 @@
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 电机1</li><li><b>MAIN2</b>: 电机2</li><li><b>MAIN3</b>: 电机3</li><li><b>MAIN4</b>: 电机4</li><li><b>MAIN5</b>: 电机5</li><li><b>MAIN6</b>: 电机6</li><li><b>AUX1</b>: RC遥控器的AUX1反馈通道</li><li><b>AUX2</b>: RC遥控器的AUX2反馈通道</li><li><b>AUX3</b>: RC遥控器的AUX3反馈通道</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 电机1</li><li><b>MAIN2</b>: 电机2</li><li><b>MAIN3</b>: 电机3</li><li><b>MAIN4</b>: 电机4</li><li><b>MAIN5</b>: 电机5</li><li><b>MAIN6</b>: 电机6</li><li><b>AUX1</b>：遥控直通 AUX1 通道</li><li><b>AUX2</b>：遥控直通 AUX2 通道</li><li><b>AUX3</b>：遥控直通 AUX3 通道</li></ul></td>
 </tr>
   </table>
 </div>
@@ -258,7 +258,7 @@
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 电机1</li><li><b>MAIN2</b>: 电机 2</li><li><b>MAIN3</b>: 电机 3</li><li><b>MAIN4</b>: 电机 4</li><li><b>MAIN5</b>: 电机 5</li><li><b>MAIN6</b>: 电机 6</li><li><b>MAIN7</b>：电机 7</li><li><b>MAIN8</b>：电机 8</li><li><b>AUX1</b>: RC遥控器的AUX1反馈通道</li><li><b>AUX2</b>: RC遥控器的AUX2反馈通道</li><li><b>AUX3</b>: RC遥控器的AUX3反馈通道</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 电机1</li><li><b>MAIN2</b>: 电机 2</li><li><b>MAIN3</b>: 电机 3</li><li><b>MAIN4</b>: 电机 4</li><li><b>MAIN5</b>: 电机 5</li><li><b>MAIN6</b>: 电机 6</li><li><b>MAIN7</b>：电机 7</li><li><b>MAIN8</b>：电机 8</li><li><b>AUX1</b>：遥控直通 AUX1 通道</li><li><b>AUX2</b>：遥控直通 AUX2 通道</li><li><b>AUX3</b>：遥控直通 AUX3 通道</li></ul></td>
 </tr>
   </table>
 </div>
@@ -280,7 +280,7 @@
 </tr>
 </tbody></table>
 
-### Octorotor Coaxial
+### 共轴双桨八旋翼（Octorotor Coaxial）
 
 <div>
   <img src="../../assets/airframes/types/OctoRotorXCoaxial.svg" width="29%" style="max-height: 180px;" /> 
