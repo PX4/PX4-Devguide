@@ -23,7 +23,7 @@ PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种
 
 ### 自定义混控器配置
 
-> **Note** Read [Mixing and Actuators](../concept/mixing.md) for an explanation of how mixers work and the format of the mixer file.
+> **注意** 阅读 [混控与执行器](../concept/mixing.md) 去理解混控器的工作方式与混控器文件的格式。
 
 The outputs can be customized by [creating a mixer file](../concept/system_startup.md#starting-a-custom-mixer) on the SD card with name `etc/mixers/mount.aux.mix`.
 
@@ -56,18 +56,18 @@ The outputs can be customized by [creating a mixer file](../concept/system_start
 
 ## 测试
 
-驱动程序提供了一个简单的测试指令。首先它需要使用</code>vmount stop</0>指令来停止。 接下来描述了在SITL中的测试方式，但是这些指令也可以在真实的设备中运行。
+驱动程序提供了一个简单的测试指令。首先它需要使用</code>vmount stop</0>指令来停止。 接下来描述了在SITL中的测试方式，但是这些指令也可以在真实的设备中使用。
 
 使用下面这条指令开始仿真：（没有参数需要被修改）
 
     make px4_sitl gazebo_typhoon_h480
     
 
-确保已经解锁，例如 输入 `commander takeoff`， 然后使用
+确保已经解锁，例如 输入 `commander takeoff`。 然后使用下面的指令作为例子控制云台。
 
     vmount test yaw 30
     
 
-to control the gimbal. Note that the simulated gimbal stabilizes itself, so if you send mavlink commands, set the `stabilize` flags to false.
+请注意, 模拟的云台会自行稳定。因此，如果发送 mavlink 命令，请将 `stabilize` 标志设置为 false。
 
 ![Gazebo Gimbal Simulation](../../assets/gazebo/gimbal-simulation.png)
