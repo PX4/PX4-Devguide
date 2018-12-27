@@ -17,13 +17,13 @@ Crowdin exports the translated documents back out to Github as a "Pull Request" 
 The steps to join our translation tream are:
 
 1. 注册 Crowdin：https://crowdin.com/join
-2. Open the translation project you want to join: 
+2. 打开要加入的翻译项目： 
     - [QGroundControl](https://crowdin.com/project/qgroundcontrol)
-    - [PX4用户指南](https://crowdin.com/project/px4-user-guide)
+    - [PX4 用户手册](https://crowdin.com/project/px4-user-guide)
     - [PX4 开发人员指南](https://crowdin.com/project/px4-developer-guide)
     - [QGroundControl 开发人员指南](https://crowdin.com/project/qgroundcontrol-developer-guide)
-    - [QGroundControl用户指南](https://crowdin.com/project/qgroundcontrol-user-guide)
-    - [MAVLink指南](https://crowdin.com/project/mavlink)
+    - [QGroundControl 用户指南](https://crowdin.com/project/qgroundcontrol-user-guide)
+    - [MAVLink 指南](https://crowdin.com/project/mavlink)
 3. Select the language you want to translate
 4. Click the **Join** button (next to the text *You must join the translators team to be able to participate in this project*) > **Note** You will be notified once your application to join is accepted.
 5. Start translating!
