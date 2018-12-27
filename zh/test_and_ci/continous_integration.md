@@ -1,10 +1,10 @@
 # PX4 持续集成
 
-PX4 builds and testing are spread out over multiple continuous integration services.
+PX4 构建和测试分布在多个持续集成服务上。
 
 ## [Travis-ci](https://travis-ci.org/PX4/Firmware)
 
-Travis-ci is responsible for the official stable/beta/development binaries that are flashable through [QGroundControl](http://qgroundcontrol.com/). It currently uses GCC 4.9.3 included in the docker image [px4io/px4-dev-base](https://hub.docker.com/r/px4io/px4-dev-base/) and compiles px4fmu-{v2, v4}, mindpx-v2, tap-v1 with makefile target qgc_firmware.
+Travis-ci 负责通过[ QGroundControl ](http://qgroundcontrol.com/)刷新的官方稳定/测试/开发二进制文件。 It currently uses GCC 4.9.3 included in the docker image [px4io/px4-dev-base](https://hub.docker.com/r/px4io/px4-dev-base/) and compiles px4fmu-{v2, v4}, mindpx-v2, tap-v1 with makefile target qgc_firmware.
 
 Travis-ci also has a macOS px4_sitl build which includes testing.
 
