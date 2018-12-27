@@ -2,7 +2,7 @@
 
 *PX4-fastps桥接* 在 PX4 中添加了一个实时发布订阅 (RTPS) 接口, 从而能够在PX4组件和 (offboard) *Fast RTPS* 应用程序 (包括使用 ROS2/ROS 框架构建的应用程序) 之间进行 [uORB 消息](../middleware/uorb.md) 交换。
 
-> **Note**RTPS是对象管理组 (OMG) 数据分发服务(DDS) 标准的基础协议。 其目的是利用发布/订阅模式实现可扩展、实时、可靠、高性能和可互操作的数据通信。 *Fast RTPS* is a very lightweight cross-platform implementation of the latest version of the RTPS protocol and a minimum DDS API.
+> **Note**RTPS是对象管理组 (OMG) 数据分发服务(DDS) 标准的基础协议。 其目的是利用发布/订阅模式实现可扩展、实时、可靠、高性能和可互操作的数据通信。 *Fast RTPS* 是最新版本的RTPS协议和最小DDS API的一个非常轻量级的跨平台实现。
 
 RTPS has been adopted as the middleware for the ROS2 (Robot Operating System). The *Fast RTPS bridge* allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
 
