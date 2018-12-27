@@ -149,14 +149,14 @@ Since there are multiple control groups (like flight controls, payload, etc.) an
 
 如果 `&lt;control count&gt;` 为零，那么计算的结果也为零，混控器将输出 `&lt;offset&gt;` 这一固定值，该值的取值范围受 `&lt;lower limit&gt;` 和 `&lt;upper limit&gt;` 的限制。
 
-上面的第二行还使用在之前讨论中提到的缩放参数对混控器输出结果的缩放因子进行的定义。 Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+上面的第二行还使用在之前讨论中提到的缩放参数对混控器输出结果的缩放因子进行的定义。 同时，结果的计算是以浮点计算的形式进行的，在混控器定义文件中的值都将缩小 10000 倍，比如：实际中 -0.5 的偏移量（offset）在定义文件中保存为 -5000 。
 
-The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
+定义文件将持续进行 `&lt;control count&gt;` 次定义，并以如下形式完成对各个控制输入量机器相应的缩放因子的描述：
 
     S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-> **Note** The `S:` lines must be below the `O:` line.
+> **Note** `S:` l行必须处于 `O:` 的下面。
 
 The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group.  
 These values are specific to the device reading the mixer definition.
