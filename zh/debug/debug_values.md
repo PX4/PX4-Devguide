@@ -4,7 +4,7 @@
 
 ## 在 MAVLink 调试消息和 uORB 主题之间进行映射
 
-MAVLink debug messages are translated to/from uORB topics. In order to send or receive a MAVLink debug message, you have to respectively publish or subscribe to the corresponding topic. Here is a table that summarizes the mapping between MAVLink debug messages and uORB topics:
+MAVLink调试消息转换为/自 uORB 主题。 为了发送或接收 MAVLink 调试消息，您必须分别发布或订阅相应的主题。 下面是一个表，其中总结了 MAVLink 调试消息和 uORB 主题之间的映射：
 
 | MAVLink 消息          | uORB topic        |
 | ------------------- | ----------------- |
@@ -12,16 +12,16 @@ MAVLink debug messages are translated to/from uORB topics. In order to send or r
 | DEBUG               | debug_value       |
 | DEBUG_VECT          | debug_vect        |
 
-## Tutorial: Send String / Float Pairs
+## 教程：发送字符串/浮点配对
 
-This tutorial shows how to send the MAVLink message `NAMED_VALUE_FLOAT` using the associated uORB topic `debug_key_value`.
+本教程演示如何使用关联的 uORB 主题 `debug_key_value` `NAMED_VALUE_FLOAT` 发送 MAVLink 消息。
 
-The code for this tutorial is available here:
+本教程的代码可在此处找到：
 
-* [Debug Tutorial Code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.c)
-* [Enable the tutorial app](https://github.com/PX4/Firmware/tree/master/cmake/configs) by uncommenting / enabling the mavlink debug app in the config of your board
+* [调试教程代码](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.c)
+* [开启教程 app](https://github.com/PX4/Firmware/tree/master/cmake/configs)，方法是在你配置的主板上的 mavlink 调试应用程序来取消/开启
 
-All required to set up a debug publication is this code snippet. First add the header file:
+设置调试发布所需的只是此代码段。 首先添加头文件：
 
 ```C
 #include <uORB/uORB.h>
