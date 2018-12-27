@@ -1,4 +1,4 @@
-# PX4 Docker Containers
+# PX4 Docker 容器
 
 Docker containers are provided for the complete [PX4 development toolchain](../setup/dev_env.md#supported-targets) including NuttX and Linux based hardware, [Gazebo Simulation](../simulation/gazebo.md) and [ROS](../simulation/ros_interface.md).
 
@@ -33,16 +33,16 @@ sudo usermod -aG docker $USER
 
 The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)):
 
-| 容器                              | 描述                                               |
-| ------------------------------- | ------------------------------------------------ |
-| px4-dev-base                    | Base setup common to all containers              |
-| &emsp;px4-dev-nuttx             | NuttX 工具链                                        |
-| &emsp;px4-dev-simulation        | NuttX 工具链 + 仿真（jMAVSim，Gazebo）                   |
-| &emsp;&emsp;px4-dev-ros         | NuttX toolchain, simulation + ROS (incl. MAVROS) |
-| &emsp;px4-dev-raspi             | Raspberry Pi toolchain                           |
-| &emsp;px4-dev-snapdragon        | Qualcomm Snapdragon Flight toolchain             |
-| &emsp;px4-dev-clang             | Clang tools                                      |
-| &emsp;&emsp;px4-dev-nuttx-clang | Clang and NuttX tools                            |
+| 容器                              | 描述                                  |
+| ------------------------------- | ----------------------------------- |
+| px4-dev-base                    | Base setup common to all containers |
+| &emsp;px4-dev-nuttx             | NuttX 工具链                           |
+| &emsp;px4-dev-simulation        | NuttX 工具链 + 仿真（jMAVSim，Gazebo）      |
+| &emsp;&emsp;px4-dev-ros         | NuttX 工具链，仿真 + ROS（包括 MAVROS）       |
+| &emsp;px4-dev-raspi             | 树莓派工具链                              |
+| &emsp;px4-dev-snapdragon        | 高通 Snapdragon Flight 工具链            |
+| &emsp;px4-dev-clang             | C 语言工具                              |
+| &emsp;&emsp;px4-dev-nuttx-clang | C 语言与 NuttX 工具                      |
 
 The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-ros:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-ros/tags/)).
 
@@ -160,9 +160,9 @@ When running a simulation instance e.g. SITL inside the docker container and con
 
 In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL) e.g. port 14557 for the SITL iris config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network.
 
-### Troubleshooting
+### 故障处理
 
-#### Permission Errors
+#### 权限错误
 
 The container creates files as needed with a default user - typically "root". This can lead to permission errors where the user on the host computer is not able to access files created by the container.
 
@@ -184,7 +184,7 @@ In that case the native graphics driver for your host system must be installed. 
 
 More information on this can be found [here](http://gernotklingler.com/blog/howto-get-hardware-accelerated-opengl-support-docker/).
 
-## Virtual Machine Support {#virtual_machine}
+## 虚拟机支持 {#virtual_machine}
 
 Any recent Linux distribution should work.
 
@@ -223,6 +223,6 @@ export DOCKER_HOST=tcp://<ip of your VM>:2375
 docker ps
 ```
 
-## Legacy
+## 旧版
 
 The ROS multiplatform containers are not maintained anymore: https://github.com/PX4/containers/tree/master/docker/ros-indigo
