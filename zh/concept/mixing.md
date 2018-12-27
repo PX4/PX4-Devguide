@@ -130,7 +130,7 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 #### 空的混控器（Null）
 
-一个空的混控器不需要任何控制输入，并始终生成一个值为零的执行器输出。 通常情况下在一个混控器几何中使用空的混控器作为占位符号，以实现某种特定的执行器输出模式。
+一个空的混控器不需要任何控制输入，并始终生成一个值为零的执行器输出。 通常情况下在一个混控器集合中使用空的混控器作为占位符号，以实现某种特定的执行器输出模式。
 
 空的混控器使用如下形式定义：
 
@@ -161,15 +161,15 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 `&lt;group&gt;` 参数指定了缩放器从哪个控制组中读取数据，而 `&lt;index&gt;` 参数则是定义了该控制组的偏移值。  
 这些参数的设定值会随着读取混控器定义文件的设备的不同而发生改变。
 
-当将混控器用于混合飞机的控制量时，编号为 0 的混控器组为飞机的姿态控制组，该控制组内编号 0 - 3 的选项通常分别便是滚转、俯仰、偏航和油门。
+当将混控器用于混合飞机的控制量时，编号为 0 的混控器组为飞机的姿态控制组，该控制组内编号 0 - 3 的选项通常分别便是滚转、俯仰、偏航和推力。
 
-改行剩下的字段则是使用上文提及的缩放参数对控制量的缩放器进行了设定。 同时，结果的计算是以浮点计算的形式进行的，在混控器定义文件中的值都将缩小 10000 倍，比如：实际中 -0.5 的偏移量（offset）在定义文件中保存为 -5000 。
+剩下的字段则是使用上文提及的缩放参数对控制量的缩放器进行了设定。 同时，结果的计算是以浮点计算的形式进行的，在混控器定义文件中的值都将缩小 10000 倍，比如：实际中 -0.5 的偏移量（offset）在定义文件中保存为 -5000 。
 
 [这里](../airframes/adding_a_new_frame.md#mixer-file) 是一个典型混控器的示例文件。
 
 #### 针对多旋翼的混控器
 
-多旋翼的混控器将四组控制输入（俯仰、滚转、偏航和油门）整合到一组用于驱动电机转速控制器的执行器输出指令中。
+多旋翼的混控器将四组控制输入（俯仰、滚转、偏航和推力）整合到一组用于驱动电机转速控制器的执行器输出指令中。
 
 该混控器使用如下形式的行进行定义：
 
@@ -185,9 +185,9 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 * 8x - X 构型的八旋翼
 * 8+ - + 构型的八旋翼
 
-滚转、俯仰和偏航的缩放因子大小都分别表示滚转、俯仰和边行控制相对于油门控制的比例。 同时，结果的计算是以浮点计算的形式进行的，在混控器定义文件中的值都将缩小 10000 倍，比如：实际中 0.5 的偏移量（offset）在定义文件中保存为 5000 。
+滚转、俯仰和偏航的缩放因子大小都分别表示滚转、俯仰和边行控制相对于推力控制的比例。 同时，结果的计算是以浮点计算的形式进行的，在混控器定义文件中的值都将缩小 10000 倍，比如：实际中 0.5 的偏移量（offset）在定义文件中保存为 5000 。
 
-滚转、俯仰和偏航输入量的范围应在 -1.0 到 1.0 之间，油门输入应该在 0.0 到 1.0 之间。每一个执行器的输出量应在 -1.0 到 1.0 之间。
+滚转、俯仰和偏航输入量的范围应在 -1.0 到 1.0 之间，推力输入应该在 0.0 到 1.0 之间。每一个执行器的输出量应在 -1.0 到 1.0 之间。
 
 怠速（Idlespeed）的设定值应在 0.0 到 1.0 之间。在这里怠速的值表示的是相对电机最大转速的百分比，当所有控制输入均为 0 的时候电机应在该转速下运行。
 
@@ -195,9 +195,9 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 #### 针对直升机的混控器
 
-直升机的混控器将三组控制输入（滚转、俯仰和油门）整合到四个输出中（倾斜盘舵机和主电机 ESC 设定）。 直升机混控器的第一个输出量是主电机的油门设定。 随后才是倾斜盘舵机的指令。 尾桨的控制可以通过额外添加一个简单的混控器来实现。
+直升机的混控器将三组控制输入（滚转、俯仰和推力）整合到四个输出中（倾斜盘舵机和主电机 ESC 设定）。 直升机混控器的第一个输出量是主电机的油门设定。 随后才是倾斜盘舵机的指令。 尾桨的控制可以通过额外添加一个简单的混控器来实现。
 
-The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points.
+推力控制输入同时用于设定直升机的主电机和倾斜盘的总距。 在运行时它会使用一条油门曲线和一条总距曲线，这两条曲线都由 5 个控制点组成。
 
 > **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
 
