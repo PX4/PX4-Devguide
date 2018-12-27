@@ -4,12 +4,12 @@
 
 > **Note**RTPS是对象管理组 (OMG) 数据分发服务(DDS) 标准的基础协议。 其目的是利用发布/订阅模式实现可扩展、实时、可靠、高性能和可互操作的数据通信。 *Fast RTPS* 是最新版本的RTPS协议和最小DDS API的一个非常轻量级的跨平台实现。
 
-RTPS has been adopted as the middleware for the ROS2 (Robot Operating System). The *Fast RTPS bridge* allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
+RTPS 已被采用为 ROS2 (机器人操作系统) 的中间件。 *Fast RTPS桥接 * 使我们能够更好地与 ROS2 集成, 从而轻松共享传感器值、命令和其他车辆信息。
 
-This topic describes the RTPS bridge architecture (and how it is used within the ROS2/ROS application pipeline). It also shows how to compile needed code to:
+本主题介绍RTPS桥接体系结构 (以及如何在 ROS2/ROS 应用程序管道中使用它)。 还演示了如何编译所需的代码, 以便:
 
-1. Write a simple *Fast RTPS* application to subscribe to PX4 changes
-2. Connect ROS2 nodes with PX4 (via the RTPS Bridge, and using the `px4_ros_com` package)
+1. 编写一个简单的 *Fast rtps * 应用程序来订阅PX4消息
+2. 在PX4上连接ROS2节点 (通过RTPS桥接, 并使用 `px4_ros_com` 包)
 3. Connect ROS (ROS "version 1") nodes with PX4 by additionally using the `ros1_bridge` package to bridge ROS2 and ROS.
 
 ## When should RTPS be used?
