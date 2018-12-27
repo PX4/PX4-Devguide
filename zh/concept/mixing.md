@@ -64,7 +64,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 
 ### Control Group #6 (First Payload)
 
-* 0: function 0 (default: parachute)
+* 0: function 0 (默认：降落伞)
 * 1: function 1
 * 2: function 2
 * 3: function 3
@@ -75,29 +75,29 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 
 ## 虚拟控制组
 
-These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing and multicopter controller outputs into the VTOL governor module.
+虚拟控制组并不作为混控器的输入量使用，它们将作为元通道（meta-channels）将固定翼控制器和多旋翼控制器的输出传递给 VOTL 调节器模块（VTOL governor module）。
 
-### Control Group #4 (Flight Control MC VIRTUAL)
+### 控制组 #4 (Flight Control MC VIRTUAL)
 
 * 0: roll ALT (-1..1)
 * 1: pitch ALT (-1..1)
 * 2: yaw ALT (-1..1)
 * 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-* 4: reserved / aux0
-* 5: reserved / aux1
-* 6: reserved / aux2
-* 7: reserved / aux3
+* 4：保留 / aux0
+* 5：保留 / aux1
+* 6：保留 / aux2
+* 7：保留 / aux3
 
 ### Control Group #5 (Flight Control FW VIRTUAL)
 
 * 0: roll ALT (-1..1)
 * 1: pitch ALT (-1..1)
 * 2: yaw ALT (-1..1)
-* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-* 4: reserved / aux0
+* 3: throttle ALT （正常范围为 0..1，变距螺旋桨和反推动力情况下范围为 -1..1）
+* 4：保留 / aux0
 * 5: reserved / aux1
-* 6: reserved / aux2
-* 7: reserved / aux3
+* 6：保留 / aux2
+* 7：保留 / aux3
 
 ## 映射
 
@@ -227,4 +227,4 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 完成上述工作后，直升机的尾桨设定直接映射到了飞机的偏航指令上。 该设置同时适用于舵机控制的尾桨和使用专用电机控制的尾桨。
 
-以 [Blade 130 直升机混控器](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) 为例。 它的油门曲线刚开始时斜率很陡，在 50% 油门位置便达到了 6000（0.6）。 随后油门曲线会以一个稍平缓的斜率实现在 100% 油门位置时到达 10000（1.0）。 总距曲线是线性的，但没有用到全部的控制指令区间。 At 0% throttle, the collective pitch setting is already at 500 (0.05). At maximum throttle, the collective pitch is only 4500 (0.45). Using higher values for this type of helicopter would stall the blades. The swash-plate servos for this helicopter are located at angles of 0, 140 and 220 degrees. The servo arm-lenghts are not equal. The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo. The servos are limited at -8000 and 8000 because they are mechanically constrained.
+以 [Blade 130 直升机混控器](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) 为例。 它的油门曲线刚开始时斜率很陡，在 50% 油门位置便达到了 6000（0.6）。 随后油门曲线会以一个稍平缓的斜率实现在 100% 油门位置时到达 10000（1.0）。 总距曲线是线性的，但没有用到全部的控制指令区间。 0% 油门位置时总距设置就已经是 500（0.05）了。 油门处于最大位置时总距仅仅为 4500（0.45）。 对于该型直升机而言使用更高的值会导致主桨叶失速。 该直升机的倾斜盘舵机分别位于 0°、140°、和 220° 的相位位置上。 舵机摇臂的长度并不相等。 第二个和第三个舵机的摇臂更长，其长度大约为第一个舵机的摇臂长度的 1.3054 倍。 由于机械结构限制，所有舵机均被限制在 -8000 和 8000 之间。
