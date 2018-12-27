@@ -119,9 +119,9 @@ Since there are multiple control groups (like flight controls, payload, etc.) an
 
 每一个文件可以定义多个混控器，混控器以何种形式分配给启动器完全取决于读取混控器定义文件的设备，混控器生成的执行器输出的数量则完全取决于混控器本身。
 
-For example: each simple or null mixer is assigned to outputs 1 to x in the order they appear in the mixer file.
+例如：每一个简单的或者空的混控器都会根据它在混控器描述文件中的出现顺序依次分配给输出 1 至 x 。
 
-A mixer begins with a line of the form
+混控器定义以如下形式的行作为开头：
 
     <tag>: <mixer arguments>
     
