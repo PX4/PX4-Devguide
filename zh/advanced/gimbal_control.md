@@ -1,14 +1,14 @@
-# 云台控制安装设置
+# 云台控制设置
 
-如果你想要去控制一个装在飞机上的带相机的云台（或者是其他的负载），你需要配置怎样去控制它和 PX4 如何去命令它。 本页内容就是讲解如何去配置。
+如果你想要去控制一个装在飞机上带相机的云台（或者是其他的挂载设备），你需要配置怎样去控制它和 PX4 怎样才能命令它。 本页内容就是讲解这些设置。
 
-PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种输入输出方式。 输入就是你想怎样去控制云台：通过遥控器或者 MAVLink 命令（例如处在任务模式或者搜索模式）。 输出就是云台是怎样与飞机连接的：一些支持 MAVLink命令， 其他则可以通过PWM连接（下文定义为AUX输出）。 任何的输入方式都可以配置去驱动任何的输出。 两种方式都需要去通过参数配置。
+PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种输入输出方式。 输入就是你想怎样去控制云台：通过遥控器或者 MAVLink 命令（例如处在任务模式或者搜索模式时）。 输出就是云台是怎样与飞机连接的：一些支持 MAVLink 命令， 其他则可以通过 PWM 连接（下文定义为AUX输出）。 任何的输入方式都可以配置去驱动任何的输出。 两种方式都需要通过参数配置。
 
 ## 参数
 
-</a>这些参数</0>被用于配置挂载设备的驱动。 其中最重要的是输入 (` MNT_MODE_IN `) 和输出 (` MNT_MODE_OUT `) 模式。 默认情况下，输入是没有被使能的，并且这个驱动没有运行。 After selecting the input mode, reboot the vehicle so that the mount driver starts.
+[这些参数](../advanced/parameter_reference.md#mount) 被用于配置挂载设备的驱动。 其中最重要的是输入模式 (` MNT_MODE_IN `) 和输出模式 (` MNT_MODE_OUT `) 。 默认情况下，输入是没有被使能的，所以这个驱动没有运行。 选择了输入模式之后，重启飞机便可以使设备驱动开始工作。
 
-If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from MAVLink to RC, a large stick motion is required.
+如果输入模式设置为 ` AUTO `，则模式将根据最新输入进行自动切换。 如果需要从 MAVLink 切换为 RC 输入，则需要一个较大的杆量。
 
 ## AUX 输出
 
