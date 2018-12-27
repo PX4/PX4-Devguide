@@ -1,6 +1,6 @@
 # 混控器和执行器
 
-The PX4 architecture ensures that the airframe layout does not require special case handling in the core controllers.
+PX4 的系统构架可确保不需要在核心控制器中对不同的机身布局进行任何特殊的处理。
 
 Mixing means to take force commands (e.g. `turn right`) and translate them to actuator commands which control motors or servos. For a plane with one servo per aileron this means to command one of them high and the other low. The same applies for multicopters: Pitching forward requires changing the speed of all motors.
 
@@ -18,40 +18,40 @@ PX4 uses control groups (inputs) and output groups. Conceptually they are very s
 
 For a simple plane control 0 (roll) is connected straight to output 0 (aileron). For a multicopter things are a bit different: control 0 (roll) is connected to all four motors and combined with throttle.
 
-### Control Group #0 (Flight Control)
+### 控制组 #0 (Flight Control)
 
-* 0: roll (-1..1)
-* 1: pitch (-1..1)
-* 2: yaw (-1..1)
-* 3: throttle (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-* 4: flaps (-1..1)
-* 5: spoilers (-1..1)
-* 6: airbrakes (-1..1)
-* 7: landing gear (-1..1)
+* 0：roll (-1..1)
+* 1：pitch (-1..1)
+* 2：yaw (-1..1)
+* 3：throttle （正常范围为 0..1，变距螺旋桨和反推动力情况下范围为 -1..1）
+* 4：flaps (-1..1)
+* 5：spoilers (-1..1)
+* 6：airbrakes (-1..1)
+* 7：landing gear (-1..1)
 
-### Control Group #1 (Flight Control VTOL/Alternate)
+### 控制组 #1 (Flight Control VTOL/Alternate)
 
-* 0: roll ALT (-1..1)
-* 1: pitch ALT (-1..1)
-* 2: yaw ALT (-1..1)
-* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-* 4: reserved / aux0
-* 5: reserved / aux1
-* 6: reserved / aux2
-* 7: reserved / aux3
+* 0：roll ALT (-1..1)
+* 1：pitch ALT (-1..1)
+* 2：yaw ALT (-1..1)
+* 3：throttle ALT （正常范围为 0..1，变距螺旋桨和反推动力情况下范围为 -1..1）
+* 4：保留 / aux0
+* 5：reserved / aux1
+* 6：保留 / aux2
+* 7：保留 / aux3
 
-### Control Group #2 (Gimbal)
+### 控制组 #2 （Gimbal）
 
-* 0: gimbal roll
-* 1: gimbal pitch
+* 0：gimbal roll
+* 1：gimbal pitch
 * 2: gimbal yaw
 * 3: gimbal shutter
-* 4: reserved
-* 5: reserved
-* 6: reserved
-* 7: reserved (parachute, -1..1)
+* 4：保留
+* 5：保留
+* 6：保留
+* 7：保留 (降落伞, -1..1)
 
-### Control Group #3 (Manual Passthrough)
+### 控制组 #3 (Manual Passthrough)
 
 * 0: RC roll
 * 1: RC pitch
@@ -62,7 +62,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 * 6: RC aux2
 * 7: RC aux3
 
-### Control Group #6 (First Payload)
+### 控制组 #6 (First Payload)
 
 * 0: function 0 (默认：降落伞)
 * 1: function 1
@@ -82,13 +82,13 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 * 0: roll ALT (-1..1)
 * 1: pitch ALT (-1..1)
 * 2: yaw ALT (-1..1)
-* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 3: throttle ALT （正常范围为 0..1，变距螺旋桨和反推动力情况下范围为 -1..1）
 * 4：保留 / aux0
 * 5：保留 / aux1
 * 6：保留 / aux2
 * 7：保留 / aux3
 
-### Control Group #5 (Flight Control FW VIRTUAL)
+### 控制组 #5 (Flight Control FW VIRTUAL)
 
 * 0: roll ALT (-1..1)
 * 1: pitch ALT (-1..1)
