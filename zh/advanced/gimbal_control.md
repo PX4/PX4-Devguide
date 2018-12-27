@@ -70,4 +70,4 @@ PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种
 
 请注意, 模拟的云台会自行稳定。因此，如果发送 mavlink 命令，请将 `stabilize` 标志设置为 false。
 
-![Gazebo Gimbal Simulation](../../assets/gazebo/gimbal-simulation.png)
+![Gazebo 云台仿真](../../assets/gazebo/gimbal-simulation.png)
