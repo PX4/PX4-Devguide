@@ -12,7 +12,7 @@ A particular controller sends a particular normalized force or torque demand (sc
 
 {% mermaid %} graph LR; att_ctrl[Attitude Controller] --> act_group0[Actuator Control Group 0] gimbal_ctrl[Gimbal Controller] --> act_group2[Actuator Control Group 2] act_group0 --> output_group5[Actuator 5] act_group0 --> output_group6[Actuator 6] act_group2[Actuator Control Group 2] --> output_group0[Actuator 5] {% endmermaid %}
 
-## Control Groups
+## 控制组
 
 PX4 uses control groups (inputs) and output groups. Conceptually they are very simple: A control group is e.g. `attitude`, for the core flight controls, or `gimbal` for payload. An output group is one physical bus, e.g. the first 8 PWM outputs for servos. Each of these groups has 8 normalized (-1..+1) command ports, which can be mapped and scaled through the mixer. A mixer defines how each of these 8 signals of the controls are connected to the 8 outputs.
 
@@ -73,7 +73,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 * 6: function 6
 * 7: function 7
 
-## Virtual Control Groups
+## 虚拟控制组
 
 These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing and multicopter controller outputs into the VTOL governor module.
 
@@ -185,13 +185,13 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 * 8x - X 构型的八旋翼
 * 8+ - + 构型的八旋翼
 
-Each of the roll, pitch and yaw scale values determine scaling of the roll, pitch and yaw controls relative to the thrust control. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an factor of 0.5 is encoded as 5000.
+滚转、俯仰和偏航的缩放因子大小都分别表示滚转、俯仰和边行控制相对于油门控制的比例。 同时，结果的计算是以浮点计算的形式进行的，在混控器定义文件中的值都将缩小 10000 倍，比如：实际中 0.5 的偏移量（offset）在定义文件中保存为 5000 。
 
-Roll, pitch and yaw inputs are expected to range from -1.0 to 1.0, whilst the thrust input ranges from 0.0 to 1.0. Output for each actuator is in the range -1.0 to 1.0.
+滚转、俯仰和偏航输入量的范围应在 -1.0 到 1.0 之间，油门输入应该在 0.0 到 1.0 之间。每一个执行器的输出量应在 -1.0 到 1.0 之间。
 
-Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed of motors and it is the speed at which the motors are commanded to rotate when all control inputs are zero.
+怠速（Idlespeed）的设定值应在 0.0 到 1.0 之间。在这里怠速的值表示的是相对电机最大转速的百分比，当所有控制输入均为 0 的时候电机应在该转速下运行。
 
-In the case where an actuator saturates, all actuator values are rescaled so that the saturating actuator is limited to 1.0.
+当有一个执行器出现饱和后，所有执行器的值都将被重新缩放以使得饱和执行器的输出被限制在 1.0 。
 
 #### 针对直升机的混控器
 
