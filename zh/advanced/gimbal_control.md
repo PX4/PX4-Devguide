@@ -47,16 +47,16 @@ The outputs can be customized by [creating a mixer file](../concept/system_start
 
 ## 软件在环仿真
 
-台风H480的模型带有一个预先配置的模拟云台。 若要运行它，请使用：
+台风H480的模型带有一个预先配置的仿真云台。 若要运行它，请使用：
 
     make px4_sitl gazebo_typhoon_h480
     
 
-To just test the mount driver on other models or simulators, make sure the driver runs, using `vmount start`, then configure its parameters.
+为了能够测试其他模型或者仿真器件的挂载驱动，请使用 `vmount start`去确保驱动正在运行。然后在配置它的参数。
 
 ## 测试
 
-驱动程序提供了一个简单的测试指令。他需要首先使用“vmount stop”指令来停止。 接下来描述了在SITL中的测试方式，但是这些指令也可以在真实的设备中运行。
+驱动程序提供了一个简单的测试指令。首先它需要使用</code>vmount stop</0>指令来停止。 接下来描述了在SITL中的测试方式，但是这些指令也可以在真实的设备中运行。
 
 使用下面这条指令开始仿真：（没有参数需要被修改）
 
