@@ -12,7 +12,7 @@ PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种
 
 ## AUX 输出
 
-If the output mode is set to `AUX`, a mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (overriding any aux mixer provided by the airframe configuration).
+如果输出模式设置为`AUX`，需要定义混控器文件去重新映射输出引脚，[mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix)会被自动选择（机型配置文件提供覆盖的 AUX 混控器）。
 
 输出分配如下所示:
 
