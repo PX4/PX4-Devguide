@@ -14,7 +14,7 @@ jMAVSim是一个简单的多旋翼/四旋翼仿真软件，它可以允许你在
 
 软件在环仿真在主机上运行仿真系统的全部组件，使用软件来模拟真实飞控， 并通过当地网络实现与仿真软件的连接。 整套仿真方案设置如下：
 
-{% mermaid %} graph LR; 仿真软件-->MAVLink; MAVLink-->SITL; {% endmermaid %}
+{% mermaid %} graph LR; Simulator-->MAVLink; MAVLink-->SITL; {% endmermaid %}
 
 ## 运行 SITL
 
