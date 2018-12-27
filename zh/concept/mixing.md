@@ -126,11 +126,11 @@ Since there are multiple control groups (like flight controls, payload, etc.) an
     <tag>: <mixer arguments>
     
 
-The tag selects the mixer type; 'M' for a simple summing mixer, 'R' for a multirotor mixer, etc.
+上一行中的 tag 标签用于设定混控器类型：例如， 'M' 表示简单的求和混控器， 'R' 表示一个多旋翼的混控器。
 
 #### 空的混控器（Null）
 
-A null mixer consumes no controls and generates a single actuator output whose value is always zero. Typically a null mixer is used as a placeholder in a collection of mixers in order to achieve a specific pattern of actuator outputs.
+一个空的混控器不需要任何控制量，并始终生成一个值为零的执行器输出。 Typically a null mixer is used as a placeholder in a collection of mixers in order to achieve a specific pattern of actuator outputs.
 
 The null mixer definition has the form:
 
