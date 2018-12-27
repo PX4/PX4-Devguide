@@ -1,22 +1,22 @@
-# Test MC_03 - Auto Manual Mix
+# 测试 MC_03 - 自动手动混合
 
-## Create and Upload Mission
+## 创建和上传任务
 
-❏ Mission Criteria
+❏ 任务标准
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Changes in Altitude throughout the mission
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 整个任务期间高度的变化
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Mission should end in the air and NOT Land/RTL
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 任务应该在空中结束，而不是Land/RTL
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Duration of 3 to 4 minutes
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 持续时间为 3 到 4 分钟
 
-❏ Upload mission to vehicle using *QGroundControl*
+❏ 使用* QGroundControl *将任务上传到无人机
 
 ## 飞行
 
-❏ Arm and take-off in Position mode
+❏ 位置模式下的摆臂和起飞
 
-❏ Engage Auto
+❏ 参与自动模式
 
 ❏ Observe tracking and cornering
 
