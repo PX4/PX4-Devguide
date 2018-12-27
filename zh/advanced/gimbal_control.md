@@ -25,9 +25,9 @@ PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种
 
 > **注意** 阅读 [混控与执行器](../concept/mixing.md) 去理解混控器的工作方式与混控器文件的格式。
 
-The outputs can be customized by [creating a mixer file](../concept/system_startup.md#starting-a-custom-mixer) on the SD card with name `etc/mixers/mount.aux.mix`.
+输出能够使用在 SD 卡上 [创建一个混控器文件](../concept/system_startup.md#starting-a-custom-mixer) 进行配置。文件名字可为`etc/mixers/mount.aux.mix`。
 
-下面列举的是一针对挂载设备的基本的混控器配置：
+下面列举的是针对挂载设备的基本的混控器配置：
 
     # roll
     M: 1
