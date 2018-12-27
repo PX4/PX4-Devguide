@@ -1,31 +1,31 @@
 # 嵌入式调试
 
-The autopilots running PX4 support debugging via GDB or LLDB.
+运行 PX4 的自动驾驶仪支持通过 GDB 或 LLDB 进行调试。
 
-## Identifying large memory consumers
+## 识别大型内存使用者
 
-The command below will list the largest static allocations:
+下面的命令将列出最大的静态分配：
 
 ```bash
 arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4_fmu-v2_default/px4_fmu-v2_default.elf | grep " [bBdD] "
 ```
 
-This NSH command provides the remaining free memory:
+此 NSH 命令提供剩余的可用内存：
 
 ```bash
 free
 ```
 
-And the top command shows the stack usage per application:
+顶部命令显示每个应用程序的堆栈使用情况：
 
     top
     
 
-Stack usage is calculated with stack coloring and thus is not the current usage, but the maximum since the start of the task.
+堆栈使用情况是使用堆栈着色计算的，因此不是当前的使用情况，而是任务开始以来的最大值。
 
-### Heap allocations
+### 堆分配
 
-Dynamic heap allocations can be traced on POSIX in SITL with [gperftools](https://github.com/gperftools/gperftools).
+动态堆分配可以在 SITL 中的 POSIX 上跟踪，[gperftools](https://github.com/gperftools/gperftools)。
 
 #### 安装说明
 
@@ -35,9 +35,9 @@ Dynamic heap allocations can be traced on POSIX in SITL with [gperftools](https:
 sudo apt-get install google-perftools libgoogle-perftools-dev
 ```
 
-#### Start heap profiling
+#### 启动堆分析
 
-First of all, build the firmware as follows:
+首先，构建固件，如下所示：
 
 ```bash
 make px4_sitl_default
@@ -45,7 +45,7 @@ make px4_sitl_default
 
 启动 jmavsim：`./Tools/jmavsim_run.sh`
 
-In another terminal, type:
+在另一个终端输入：
 
 ```bash
 cd build/px4_sitl_default/tmp
@@ -53,7 +53,7 @@ export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
 
-Enter this depending on your system:
+输入内容取决于你的系统：
 
 ##### Fedora：
 
@@ -69,7 +69,7 @@ env LD_PRELOAD=/usr/lib/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-con
 google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
-It will generate a pdf with a graph of the heap allocations. The numbers in the graph will all be zero, because they are in MB. Just look at the percentages instead. They show the live memory (of the node and the subtree), meaning the memory that was still in use at the end.
+这会生成一个带堆分配示意图的 Pdf。 图中的数字回一直是0，因为单位是 MB。 可以看百分比。 They show the live memory (of the node and the subtree), meaning the memory that was still in use at the end.
 
 See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html) for more information.
 
