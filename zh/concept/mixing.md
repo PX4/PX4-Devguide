@@ -158,10 +158,10 @@ Since there are multiple control groups (like flight controls, payload, etc.) an
 
 > **Note** `S:` l行必须处于 `O:` 的下面。
 
-The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group.  
-These values are specific to the device reading the mixer definition.
+`&lt;group&gt;` 参数指定了缩放器从哪个 control group 中读取数据，而 `&lt;index&gt;` 参数则是定义了该 group 的偏移值。  
+这些参数的设定值会随着读取混控器定义文件的设备的不同而发生改变。
 
-When used to mix vehicle controls, mixer group zero is the vehicle attitude control group, and index values zero through three are normally roll, pitch, yaw and thrust respectively.
+当将混控器用于混合飞机的控制量时，编号为 0 的混控器组为飞机的姿态控制组，该控制组内编号 0 - 3 的选项通常分别便是滚转、俯仰、偏航和油门。
 
 The remaining fields on the line configure the control scaler with parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
 
