@@ -101,7 +101,7 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 ## 映射
 
-Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (first 8 PWM outpus, UAVCAN, etc.), one control group can send command to multiple output groups.
+由于同时存在多个控制组（比如说飞行控制、载荷等）和多个输出组（最开始 8 个 PWM 端口， UAVCAN 等），一个控制组可以向多个输出组发送指令。
 
 {% mermaid %} graph TD; actuator_group_0-->output_group_5 actuator_group_0-->output_group_6 actuator_group_1-->output_group_0 {% endmermaid %}
 
@@ -158,7 +158,7 @@ Since there are multiple control groups (like flight controls, payload, etc.) an
 
 > **Note** `S:` l行必须处于 `O:` 的下面。
 
-`&lt;group&gt;` 参数指定了缩放器从哪个 control group 中读取数据，而 `&lt;index&gt;` 参数则是定义了该 group 的偏移值。  
+`&lt;group&gt;` 参数指定了缩放器从哪个控制组中读取数据，而 `&lt;index&gt;` 参数则是定义了该控制组的偏移值。  
 这些参数的设定值会随着读取混控器定义文件的设备的不同而发生改变。
 
 当将混控器用于混合飞机的控制量时，编号为 0 的混控器组为飞机的姿态控制组，该控制组内编号 0 - 3 的选项通常分别便是滚转、俯仰、偏航和油门。
@@ -169,21 +169,21 @@ Since there are multiple control groups (like flight controls, payload, etc.) an
 
 #### 针对多旋翼的混控器
 
-The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust) into a set of actuator outputs intended to drive motor speed controllers.
+多旋翼的混控器将四组控制输入（俯仰、滚转、偏航和油门）整合到一组用于驱动电机转速控制器的执行器输出指令中。
 
-The mixer definition is a single line of the form:
+该混控器使用如下形式的行进行定义：
 
     R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
     
 
-The supported geometries include:
+支持的多旋翼类型为：
 
-* 4x - quadrotor in X configuration
-* 4+ - quadrotor in + configuration
-* 6x - hexacopter in X configuration
-* 6+ - hexacopter in + configuration
-* 8x - octocopter in X configuration
-* 8+ - octocopter in + configuration
+* 4x - X 构型的四旋翼
+* 4+ - + 构型的四旋翼
+* 6x - X 构型的六旋翼
+* 6+ - + 构型的六旋翼
+* 8x - X 构型的八旋翼
+* 8+ - + 构型的八旋翼
 
 Each of the roll, pitch and yaw scale values determine scaling of the roll, pitch and yaw controls relative to the thrust control. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an factor of 0.5 is encoded as 5000.
 
