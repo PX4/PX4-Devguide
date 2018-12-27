@@ -178,7 +178,7 @@
 </tr>
 </tbody></table>
 
-### Hexarotor x
+### X型六旋翼（Hexarotor x）
 
 <div>
   <img src="../../assets/airframes/types/HexaRotorX.svg" width="29%" style="max-height: 180px;" /> 
