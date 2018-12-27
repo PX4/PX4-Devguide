@@ -2,15 +2,15 @@
 
 如果你想要去控制一个装在飞机上的带相机的云台（或者是其他的负载），你需要配置怎样去控制它和 PX4 如何去命令它。 本页内容就是讲解如何去配置。
 
-PX4 contains a generic mount/gimbal control driver with different input and output methods. 输入就是你想怎样去控制云台：通过遥控器或者 MAVLink 命令（例如处在任务模式或者搜索模式）。 输出就是云台是怎样与飞机连接的：一些支持 MAVLink命令， 其他则可以通过PWM连接（下文定义为AUX输出）。 任何的输入方式都可以配置去驱动任何的输出。 两种方式都需要去通过参数配置。
+PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种输入输出方式。 输入就是你想怎样去控制云台：通过遥控器或者 MAVLink 命令（例如处在任务模式或者搜索模式）。 输出就是云台是怎样与飞机连接的：一些支持 MAVLink命令， 其他则可以通过PWM连接（下文定义为AUX输出）。 任何的输入方式都可以配置去驱动任何的输出。 两种方式都需要去通过参数配置。
 
 ## 参数
 
-</a>这些参数</0>被用于配置挂载设备的驱动。 The most important ones are the input (`MNT_MODE_IN`) and the output (`MNT_MODE_OUT`) mode. 默认情况下，输入是没有被使能的，并且这个驱动没有运行。 After selecting the input mode, reboot the vehicle so that the mount driver starts.
+</a>这些参数</0>被用于配置挂载设备的驱动。 其中最重要的是输入 (` MNT_MODE_IN `) 和输出 (` MNT_MODE_OUT `) 模式。 默认情况下，输入是没有被使能的，并且这个驱动没有运行。 After selecting the input mode, reboot the vehicle so that the mount driver starts.
 
 If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from MAVLink to RC, a large stick motion is required.
 
-## 辅助输出
+## AUX 输出
 
 If the output mode is set to `AUX`, a mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (overriding any aux mixer provided by the airframe configuration).
 
@@ -63,7 +63,7 @@ To just test the mount driver on other models or simulators, make sure the drive
     make px4_sitl gazebo_typhoon_h480
     
 
-Make sure it's armed, eg. with `commander takeoff`, then use for example
+确保已经解锁，例如 输入 `commander takeoff`， 然后使用
 
     vmount test yaw 30
     
