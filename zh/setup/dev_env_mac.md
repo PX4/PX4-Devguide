@@ -42,4 +42,4 @@ sudo -H pip install pyserial empy toml numpy pandas jinja2 pyyaml
 
 ## 后续步骤
 
-设置完环境后，请转至 build instructions</0 > 。</p>
+设置完环境后，请转至 [build instructions](../setup/building_px4.md) 。
