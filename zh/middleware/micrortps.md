@@ -16,9 +16,9 @@ RTPS 已被采用为 ROS2 (机器人操作系统) 的中间件。 *Fast RTPS桥�
 
 当您需要在飞行控制器和offboard部件之间可靠地共享时间敏感/实时信息时, 应使用RTPS。 特别是, 在off-board软件需要 (通过发送和接收 uORB主题) 成为 px4 中运行的软件组件的 *伙伴* 的情况下，它非常有用。
 
-Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control.
+可能的使用案例包括为实现机器视觉与机器人库进行的通信, 还使用在其它对实时性要求高的领域，比如向执行器发送数据和从传感器获取数据，这对于飞机控制是必需的。
 
-> **Note** *Fast RTPS* is not intended as a replacement for MAVLink. MAVLink remains the most appropriate protocol for communicating with ground stations, gimbals, cameras, and other offboard components (although *Fast RTPS* may open other opportunities for working with some peripherals).
+> **Note** *Fast RTPS* 并无取代MAVLink之意。 MAVLink 仍然是与地面站、云台、摄像机和其他offboard组件进行通信的首选协议 (尽管 *Fast rtps* 为使用某些外设提供了第二个选择)。
 
 <span></span>
 
