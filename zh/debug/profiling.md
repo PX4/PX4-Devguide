@@ -39,7 +39,7 @@ The script is located at `Debug/poor-mans-profiler.sh`. Once launched, it will p
 
 The FlameGraph script must reside in the `PATH`, otherwise PMSP will refuse to launch.
 
-PMSP uses GDB to collect the stack traces. Currently it uses `arm-none-eabi-gdb`, other toolchains may be added in the future.
+PMSP 使用 GDB 收集堆栈跟踪。 Currently it uses `arm-none-eabi-gdb`, other toolchains may be added in the future.
 
 In order to be able to map memory locations to symbols, the script needs to be referred to the executable file that is currently running on the target. This is done with the help of the option `--elf=<file>`, which expects a path (relative to the root of the repository) pointing to the location of the currently executing ELF.
 
