@@ -199,23 +199,23 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 推力控制输入同时用于设定直升机的主电机和倾斜盘的总距。 在运行时它会使用一条油门曲线和一条总距曲线，这两条曲线都由 5 个控制点组成。
 
-> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
+> **Note** 油门曲线及总距曲线将 “推力” 摇杆输入位置映射到一个油门值和总距值（单独地）。 这就使得我们可以针对不同类型的飞行对飞机的飞行特性进行调整。 如何调整这些映射曲线可以参考 [这篇指南](https://www.rchelicopterfun.com/rc-helicopter-radios.html) （搜索 *Programmable Throttle Curves* 和 *Programmable Pitch Curves*）。
 
-The mixer definition begins with:
+混控器的定义的开头如下：
 
     H: <number of swash-plate servos, either 3 or 4>
     T: <throttle setting at thrust: 0%> <25%> <50%> <75%> <100%>
     P: <collective pitch at thrust: 0%> <25%> <50%> <75%> <100%>
     
 
-`T:` defines the points for the throttle-curve. `P:` defines the points for the pitch-curve. Both curves contain five points in the range between 0 and 10000. For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
+`T：` 定义了油门曲线的控制点。 `P：` 定义了总距曲线的控制点。 两条去年都包含了 5 个控制点，每个点的取值都在 0 - 10000 这个范围内。 对于简单的线性特性而言，这五个点的取值应该为 `0 2500 5000 7500 10000` 。
 
-This is followed by lines for each of the swash-plate servos (either 3 or 4) in the following form:
+后面的各行则是对每个倾斜盘舵机（ 3 个或者 4 个）进行设定，文本行的形式如下：
 
     S: &lt;angle&gt; &lt;arm length&gt; &lt;scale&gt; &lt;offset&gt; &lt;lower limit&gt; &lt;upper limit&gt;
     
 
-The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
+`&lt;angle&gt;` 是角度制， 0 ° 表示的倾斜盘的朝向与机鼻的方向相同。 Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
 
 The servo output is scaled by `<scale> / 10000`. After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
 
