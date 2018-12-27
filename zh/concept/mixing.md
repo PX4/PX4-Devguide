@@ -130,18 +130,18 @@ Since there are multiple control groups (like flight controls, payload, etc.) an
 
 #### 空的混控器（Null）
 
-一个空的混控器不需要任何控制量，并始终生成一个值为零的执行器输出。 Typically a null mixer is used as a placeholder in a collection of mixers in order to achieve a specific pattern of actuator outputs.
+一个空的混控器不需要任何控制输入，并始终生成一个值为零的执行器输出。 通常情况下在一个混控器几何中使用空的混控器作为占位符号，以实现某种特定的执行器输出模式。
 
-The null mixer definition has the form:
+空的混控器使用如下形式定义：
 
     Z:
     
 
 #### 一个简单的混控器
 
-A simple mixer combines zero or more control inputs into a single actuator output. Inputs are scaled, and the mixing function sums the result before applying an output scaler.
+一个简单的混控器会将零个或者多个控制输入组合成一个执行器输出。 控制输入首先会被缩放，然后混合函数在进行输出缩放时会对结果进行求和。
 
-A simple mixer definition begins with:
+一个简单的混控器的定义的开头如下：
 
     M: <control count>
     O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
