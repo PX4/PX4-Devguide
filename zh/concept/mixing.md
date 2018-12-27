@@ -215,11 +215,11 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
     S: &lt;angle&gt; &lt;arm length&gt; &lt;scale&gt; &lt;offset&gt; &lt;lower limit&gt; &lt;upper limit&gt;
     
 
-`&lt;angle&gt;` 是角度制， 0 ° 表示的倾斜盘的朝向与机鼻的方向相同。 Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
+`&lt;angle&gt;` 是角度制， 0 ° 表示的倾斜盘的朝向与机鼻的方向相同。 从飞机上方往下看，倾斜盘顺时针旋转为正。 `&lt;arm length&gt;` 表示的是归一化的长度，文件中若值为 10000 则实际表示 1。 如果所有的舵机摇臂的长度都一致，那么这个值应该设置为 10000 。 更长的摇臂意味着舵机的偏转量更少，而较短的摇臂则意味着更多的舵机偏转量。
 
-The servo output is scaled by `<scale> / 10000`. After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
+舵机的输出按照比例 `&lt;scale&gt; / 10000` 进行缩放。 完成缩放后会应用 `&lt;offset&gt;` ，该参数的取值介于 -10000 和 10000 之间。 `&lt;lower limit&gt;` 和 `&lt;upper limit&gt;` 应分别设置为 -10000 和 +10000 以使得舵机可以实现全行程。
 
-The tail rotor can be controller by adding a [simple mixer](#simple-mixer):
+尾桨的控制可以通过额外添加一个 [简单的混控器](#simple-mixer) 来实现：
 
     M: 1
     S: 0 2  10000  10000      0 -10000  10000
