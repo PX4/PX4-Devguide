@@ -195,7 +195,7 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 #### 针对直升机的混控器
 
-The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs ( swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
+直升机的混控器将三组控制输入（滚转、俯仰和油门）整合到四个输出中（倾斜盘舵机和主电机 ESC 设定）。 直升机混控器的第一个输出量是主电机的油门设定。 随后才是倾斜盘舵机的指令。 尾桨的控制可以通过额外添加一个简单的混控器来实现。
 
 The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points.
 
