@@ -33,11 +33,11 @@ sudo usermod -aG docker $USER
 
 The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)):
 
-| Container                       | 描述                                               |
+| 容器                              | 描述                                               |
 | ------------------------------- | ------------------------------------------------ |
 | px4-dev-base                    | Base setup common to all containers              |
-| &emsp;px4-dev-nuttx             | NuttX toolchain                                  |
-| &emsp;px4-dev-simulation        | NuttX toolchain + simulation (jMAVSim, Gazebo)   |
+| &emsp;px4-dev-nuttx             | NuttX 工具链                                        |
+| &emsp;px4-dev-simulation        | NuttX 工具链 + 仿真（jMAVSim，Gazebo）                   |
 | &emsp;&emsp;px4-dev-ros         | NuttX toolchain, simulation + ROS (incl. MAVROS) |
 | &emsp;px4-dev-raspi             | Raspberry Pi toolchain                           |
 | &emsp;px4-dev-snapdragon        | Qualcomm Snapdragon Flight toolchain             |
