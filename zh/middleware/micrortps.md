@@ -22,11 +22,11 @@ RTPS 已被采用为 ROS2 (机器人操作系统) 的中间件。 *Fast RTPS桥�
 
 <span></span>
 
-> **Tip** RTPS can be used over slower links (e.g. radio telemetry), but care should be taken not to overload the channel.
+> **Tip**RTPS可以用于较慢的链接 (例如无线数传), 但应注意不要使通道过载。
 
-## Architectural overview
+## 架构概述
 
-### RTPS Bridge
+### RTPS桥接
 
 The RTPS bridge exchanges messages between PX4 and RTPS applications, seamlessly converting between the [uORB](../middleware/uorb.md) and RTPS messages used by each system.
 
