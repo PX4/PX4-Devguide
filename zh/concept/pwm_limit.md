@@ -9,7 +9,8 @@
 - 解锁（armed）模式：宣告允许执行危险的动作指令，如转动螺旋桨。
 - 锁定（pre-armed）模式：宣告允许执行温和的动作指令，如移动控制舵面。 
     - 该输入会覆盖当前状态。
-    - 激活 锁定（pre-armed）模式后无论飞控当前处于什么状态，飞控都会立刻镇压、终止状态 ON 的运转。 ** 取消 锁定（pre-armed）模式会使飞控返回到当前状态。
+    - assertion of pre-armed immediately forces behavior of state ON, regardless of current state
+    - deassertion of pre-armed reverts behavior to current state
 
 **状态**
 
