@@ -47,7 +47,7 @@ The outputs can be customized by [creating a mixer file](../concept/system_start
 
 ## 软件在环仿真
 
-台风H480的模型带有一个预先配置的模拟云台。 To run it, use:
+台风H480的模型带有一个预先配置的模拟云台。 若要运行它，请使用：
 
     make px4_sitl gazebo_typhoon_h480
     
