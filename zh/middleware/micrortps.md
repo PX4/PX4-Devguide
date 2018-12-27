@@ -10,11 +10,11 @@ RTPS 已被采用为 ROS2 (机器人操作系统) 的中间件。 *Fast RTPS桥�
 
 1. 编写一个简单的 *Fast rtps * 应用程序来订阅PX4消息
 2. 在PX4上连接ROS2节点 (通过RTPS桥接, 并使用 `px4_ros_com` 包)
-3. Connect ROS (ROS "version 1") nodes with PX4 by additionally using the `ros1_bridge` package to bridge ROS2 and ROS.
+3. 如果要在PX4上连接ROS (ROS "1代")，需要额外使用 `ros1_bridge` 包在ROS2和ROS之间做桥接。
 
-## When should RTPS be used?
+## 什么时候应该使用 RTPS？
 
-RTPS should be used when you need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a *peer* of software components running in PX4 (by sending and receiving uORB topics).
+当您需要在飞行控制器和offboard部件之间可靠地共享时间敏感/实时信息时, 应使用RTPS。 特别是, 在off-board软件需要 (通过发送和接收 uORB主题) 成为 px4 中运行的软件组件的 *伙伴* 的情况下，它非常有用。
 
 Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control.
 
