@@ -1,8 +1,8 @@
-# Send and Receive Debug Values
+# 发送和接收调试值
 
-It is often necessary during software development to output individual important numbers. This is where the generic `NAMED_VALUE_FLOAT`, `DEBUG` and `DEBUG_VECT` packets of MAVLink come in.
+在软件开发过程中，输出单个重要数字通常是必要的。 这就是 MAVLink 的通用 `NAMED_VALUE_FLOAT`、`DEBUG` 和 `DEBUG_VECT` 数据包的来源。
 
-## Mapping between MAVLink Debug Messages and uORB Topics
+## 在 MAVLink 调试消息和 uORB 主题之间进行映射
 
 MAVLink debug messages are translated to/from uORB topics. In order to send or receive a MAVLink debug message, you have to respectively publish or subscribe to the corresponding topic. Here is a table that summarizes the mapping between MAVLink debug messages and uORB topics:
 
