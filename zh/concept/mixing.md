@@ -212,7 +212,7 @@ The mixer definition begins with:
 
 This is followed by lines for each of the swash-plate servos (either 3 or 4) in the following form:
 
-    S: <angle> <arm length> <scale> <offset> <lower limit> <upper limit>
+    S: &lt;angle&gt; &lt;arm length&gt; &lt;scale&gt; &lt;offset&gt; &lt;lower limit&gt; &lt;upper limit&gt;
     
 
 The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
