@@ -147,9 +147,9 @@ Since there are multiple control groups (like flight controls, payload, etc.) an
     O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-If `<control count>` is zero, the sum is effectively zero and the mixer will output a fixed value that is `<offset>` constrained by `<lower limit>` and `<upper limit>`.
+如果 `&lt;control count&gt;` 为零，那么计算的结果也为零，混控器将输出 `&lt;offset&gt;` 这一固定值，该值的取值范围受 `&lt;lower limit&gt;` 和 `&lt;upper limit&gt;` 的限制。
 
-The second line defines the output scaler with scaler parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+上面的第二行还使用在之前讨论中提到的缩放参数对混控器输出结果的缩放因子进行的定义。 Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
 
 The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
 
