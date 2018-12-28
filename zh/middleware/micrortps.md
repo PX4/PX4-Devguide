@@ -117,9 +117,9 @@ rtps:
 
 ## 客户端 (PX4固件) {#client_firmware}
 
-The *Client* source code is generated, compiled and built into the PX4 firmware as part of the normal build process.
+标准的编译流程将 *Client* 自动生成，并编译到PX4固件中。
 
-To build the firmware for NuttX/Pixhawk flight controllers use the `_rtps` feature in the configuration target. For example, to build RTPS for px4_fmu-v4:
+要构建 NuttX/Pixhawk 飞行控制器的固件, 请配置目标中的 `_rtps` 特性。 For example, to build RTPS for px4_fmu-v4:
 
 ```sh
 make px4_fmu-v4_rtps
