@@ -82,9 +82,9 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 生成的桥接代码将允许通过 RTPS 发布/订阅部分 uORB 主题。 这对于 ROS 或非 ROS 应用程序都是适用的。
 
-为了 *自动生成代码*，在 PX4 **Firmware/msg/tools/** 目录下有一个 *yaml* 定义文件 —— **uorb_rtps_message_ids.yaml**。 This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
+为了 *自动生成代码*，在 PX4 **Firmware/msg/tools/** 目录下有一个 *yaml* 定义文件 —— **uorb_rtps_message_ids.yaml**。 该文件定义了 RTPS 可以使用的 uORB 消息子集，以及是用于发送、用于接收还是双向皆可，以及用于 DDS/RTPS 中间件的 RTPS ID。
 
-> **Note** An RTPS ID must be set for all messages.
+> **Note** 所有消息都必须分配一个 RTPS ID 。
 
 ```yaml
 rtps:
@@ -111,9 +111,9 @@ rtps:
     send: true
 ```
 
-> **Note** The `px4_ros_com` build process (only) runs the CMake macro `rosidl_generate_interfaces()` to generate ROS2 IDL files and all the source and header files for each message. The PX4 Firmware includes a template for the IDL file generation, which is only used during the PX4 build process.
+> **Note** `px4_ros_com`编译过程 (只) 运行 CMake 宏 `rosidl_generate_interfaces()` 来生成 ROS2 IDL 文件和每个消息的头文件与源文件。 PX4固件中又一个IDL文件模板，只在PX4编译过程中才使用。
 > 
-> The `px4_ros_com` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). The **uorb_rtps_message_ids.yaml** is transformed in a way that the message names become *PascalCased* (the name change is irrelevant to the client-agent communication, but is critical for ROS2, since the message naming must follow the PascalCase convention). The new IDL files also reverse the messages that are sent and received (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa).
+> `px4_ros_com` 为 ROS2/ROS 编译生成的IDL文件只有 *少许不同* (但为PX4固件编译的就很不一样了)。 The **uorb_rtps_message_ids.yaml** is transformed in a way that the message names become *PascalCased* (the name change is irrelevant to the client-agent communication, but is critical for ROS2, since the message naming must follow the PascalCase convention). The new IDL files also reverse the messages that are sent and received (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa).
 
 ## Client (PX4 Firmware) {#client_firmware}
 
