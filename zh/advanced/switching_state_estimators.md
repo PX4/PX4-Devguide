@@ -2,7 +2,7 @@
 
 此页显示了可用的状态估计器以及如何在它们之间切换。
 
-> **提示**强烈建议将 ekf2 用于所有用途 （不再维护 lpe）。
+> **提示**强烈建议使用 ekf2 （不再维护 lpe）。
 
 ## 可用的估计器
 
@@ -23,4 +23,4 @@
 | 1                  | enabled     |         | enabled |         |
 | 2                  |             |         |         | enabled |
 
-> **Note** For FMU-v2 (only) you will also need to build PX4 to specifically include required estimator (e.g. EKF2: `make px4_fmu-v2`, LPE: `make px4_fmu-v2_lpe`). This is required because FMU-v2 is too resource constrained to include both estimators. Other Pixhawk FMU versions include both.
+> **注意** 对于 FMU-v2 （只有它）你需要编译 PX4时指定使用哪个需要的估计器（例如使用 EKF2： `make px4_fmu-v2`，使用 LPE: `make px4_fmu-v2_lpe`）。 这是因为 FMU-v2 不具有足够的资源去包含这两个估计器。 其他的 Pixhawk FMU 版本同时拥有2个估计器。
