@@ -1,8 +1,8 @@
-# Maintenance notes
+# 维护说明
 
-This picks and describes some tools to help analyze the state of the codebase and support its maintenance.
+这选择并描述了一些工具来帮助分析代码库的状态并支持其维护。
 
-## Analyze churn
+## 分析 churn
 
 The amount of churn, so the number of changes done to a file can be an indicator which files/parts might need refactoring.
 
