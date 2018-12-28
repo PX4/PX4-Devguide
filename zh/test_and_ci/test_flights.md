@@ -19,12 +19,12 @@
 针对每个平台执行的测试链接如下：
 
 * [测试 MC_01 - 手动模式](../test_cards/mc_01_manual_modes.md)
-* [MC_02 - Full Autonomous](../test_cards/mc_02_full_autonomous.md)
-* [MC_03 - Auto Manual Mix](../test_cards/mc_03_auto_manual_mix.md)
-* [MC_04 - Failsafe Testing](../test_cards/mc_04_failsafe_testing.md)
-* [MC_05 - Indoor Flight (Manual Modes)](../test_cards/mc_05_indoor_flight_manual_modes.md)
+* [MC_02 - 完全自主](../test_cards/mc_02_full_autonomous.md)
+* [测试 MC_03 - 自动手动混合](../test_cards/mc_03_auto_manual_mix.md)
+* [MC_04 - 故障安全测试](../test_cards/mc_04_failsafe_testing.md)
+* [MC_05 - 室内飞行（手动模式）](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
-## Test Vehicles/Autopilots
+## 测试设备/自动驾驶仪
 
 * [DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) 
   * Pixhawk Mini
@@ -40,13 +40,13 @@
 * NXPhlite
 * MRO Nano Talon 
   * X2.1
-* Convergence VTOL 
+* 融合 VTOL 
   * Pixhawk 4 Mini
 * Delta Quad Pro 
   * Dropix
-* [QAV 250](http://px4.io/portfolio/multicopter-portfolio/) (PWM-ESC) 
+* [QAV 250](http://px4.io/portfolio/multicopter-portfolio/) （PWM-ESC） 
   * Snapdragon 
-* 200qx (UART-ESC) 
+* 200 qx（UART-ESC） 
   * Snapdragon 
 * [Intel Aero Ready To Fly Drone](http://px4.io/portfolio/intel-aero-ready-fly-drone/)
 * [Booole Phantom FPV Flying Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html?___store=en_us) 
