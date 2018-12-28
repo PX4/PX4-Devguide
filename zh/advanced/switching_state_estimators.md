@@ -8,14 +8,14 @@
 
 可用的估计器如下：
 
-- **Q attitude estimator** - The attitude Q estimator is a very simple, quaternion based complementary filter for attitude.
-- **INAV position estimator** - The INAV position estimator is a complementary filter for 3D position and velocity states.
-- **LPE position estimator** - The LPE position estimator is an extended kalman filter for 3D position and velocity states.
-- **EKF2 attitude, position and wind states estimator** - EKF2 is an extended kalman filter estimating attitude, 3D position / velocity and wind states.
+- ** Q attitude estimator ** - attitude Q estimator 是一种用于姿态的、简单的、基于四元数的互补滤波器。
+- **INAV position estimator** - INAV position estimator 是一种用于三维位置与速度状态的互补滤波器。
+- **LPE position estimator** - LPE position estimator 是一种用于三维位置与速度状态的扩展卡尔曼估计器。
+- **EKF2 attitude, position and wind states estimator** - EKF2 是一种用于估计姿态、三维速度/速度与风的状态的扩展卡尔曼滤波器。
 
-## How to Enable Different Estimators
+## 如何使能不同的估计器
 
-For multirotors and VTOL use the parameter [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) to choose between the following configurations (LPE is not supported for Fixed Wing).
+对于多旋翼和 VTOL ，使用参数 [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) 来选择下面的配置（ LPE 不再支持固定翼飞机）。
 
 | SYS_MC_EST_GROUP | Q Estimator | INAV    | LPE     | EKF2    |
 | ------------------ | ----------- | ------- | ------- | ------- |
