@@ -82,7 +82,7 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 生成的桥接代码将允许通过 RTPS 发布/订阅部分 uORB 主题。 这对于 ROS 或非 ROS 应用程序都是适用的。
 
-For *automatic code generation* there's a *yaml* definition file in the PX4 **Firmware/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
+为了 *自动生成代码*，在 PX4 **Firmware/msg/tools/** 目录下有一个 *yaml* 定义文件 —— **uorb_rtps_message_ids.yaml**。 This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
 
 > **Note** An RTPS ID must be set for all messages.
 
