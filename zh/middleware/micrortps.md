@@ -119,13 +119,13 @@ rtps:
 
 标准的编译流程将 *Client* 自动生成，并编译到PX4固件中。
 
-要构建 NuttX/Pixhawk 飞行控制器的固件, 请配置目标中的 `_rtps` 特性。 For example, to build RTPS for px4_fmu-v4:
+要构建 NuttX/Pixhawk 飞行控制器的固件, 请选择带有 `_rtps` 的配置文件。 例如，要为 px4_fmu-v4 构建 RTPS：
 
 ```sh
 make px4_fmu-v4_rtps
 ```
 
-To build the firmware for a SITL target:
+如果要构建 SITL 固件:
 
 ```sh
 make px4_sitl_rtps
