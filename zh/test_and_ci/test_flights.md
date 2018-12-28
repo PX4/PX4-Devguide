@@ -1,24 +1,24 @@
-# Tests Flights
+# 测试飞行
 
-Test flights are important for quality assurance. The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
+测试飞行对于质量保证很重要。 Dronecode 测试团队可以帮助您检查（测试飞行）您的拉取请求并提供反馈和日志。
 
-## How to Request Test Flights
+## 如何申请测试飞行
 
-* Add a complete and thorough description of your changes in the pull request
-* Tag the test team in a comment using **@PX4/testflight** 
-* Wait for feedback from the test team
-* The test team will [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
+* 在拉取请求中添加对更改的完整而全面的描述
+* 使用 **@PX4/testflight** 在评论中标记测试团队 
+* 等待测试团队的反馈
+* 测试团队将 [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
 
-## Response Times
+## 响应速度
 
-* Multi-Copter: up to 48 hours (typically within 24 hours)
-* VTOL, Fixed Wing: up to 4 days (typically 2 days)
+* Multi-Copter：最多 48 小时（通常在 24 小时内）
+* VTOL，固定翼：最多 4 天（通常为 2 天）
 
-## Test Cards
+## 测试卡
 
-The tests performed for each platform are linked below:
+针对每个平台执行的测试链接如下：
 
-* [MC_01 - Manual modes](../test_cards/mc_01_manual_modes.md)
+* [测试 MC_01 - 手动模式](../test_cards/mc_01_manual_modes.md)
 * [MC_02 - Full Autonomous](../test_cards/mc_02_full_autonomous.md)
 * [MC_03 - Auto Manual Mix](../test_cards/mc_03_auto_manual_mix.md)
 * [MC_04 - Failsafe Testing](../test_cards/mc_04_failsafe_testing.md)
