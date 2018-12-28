@@ -12,7 +12,7 @@ PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种
 
 ## AUX 输出
 
-如果输出模式设置为`AUX`，需要定义混控器文件去重新映射输出引脚，[mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix)会被自动选择（机型配置文件提供覆盖的 AUX 混控器）。
+如果输出模式设置为` AUX `，需要定义混控器文件去重新映射输出引脚，[挂载混控器](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix)会被自动选择（机型配置文件提供了覆盖任何一款的 AUX 混控器）。
 
 输出分配如下所示:
 
@@ -25,9 +25,9 @@ PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种
 
 > **注意** 阅读 [混控与执行器](../concept/mixing.md) 去理解混控器的工作方式与混控器文件的格式。
 
-输出能够使用在 SD 卡上 [创建一个混控器文件](../concept/system_startup.md#starting-a-custom-mixer) 进行配置。文件名字可为`etc/mixers/mount.aux.mix`。
+输出能够使用在 SD 卡上 [创建一个混控器文件](../concept/system_startup.md#starting-a-custom-mixer) 进行配置。文件名字为`etc/mixers/mount.aux.mix`。
 
-下面列举的是针对挂载设备的基本的混控器配置：
+下面举例的是挂载设备的基本混控器配置：
 
     # roll
     M: 1
@@ -45,25 +45,25 @@ PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种
     S: 2 2  10000  10000      0 -10000  10000
     
 
-## 软件在环仿真
+## 软件在环仿真（ SITL ）
 
-台风H480的模型带有一个预先配置的仿真云台。 若要运行它，请使用：
+台风 H480 的模型带有一个预先配置的仿真云台。 若要运行它，请使用：
 
     make px4_sitl gazebo_typhoon_h480
     
 
-为了能够测试其他模型或者仿真器件的挂载驱动，请使用 `vmount start`去确保驱动正在运行。然后在配置它的参数。
+为了能够在其他模型或者仿真器件下测试挂载驱动，请使用 `vmount start` 去确保驱动正在运行。然后再配置它的参数。
 
 ## 测试
 
-驱动程序提供了一个简单的测试指令。首先它需要使用</code>vmount stop</0>指令来停止。 接下来描述了在SITL中的测试方式，但是这些指令也可以在真实的设备中使用。
+驱动程序提供了一个简单的测试指令。首先它需要使用 </code>vmount stop</0> 指令来停止。 接下来描述了在SITL中的测试方式，但是这些指令也可以在真实的设备中使用。
 
-使用下面这条指令开始仿真：（没有参数需要被修改）
+使用下面这条指令开始仿真（不需要修改任何参数）：
 
     make px4_sitl gazebo_typhoon_h480
     
 
-确保已经解锁，例如 输入 `commander takeoff`。 然后使用下面的指令作为例子控制云台。
+先确保飞机已经解锁，例如 输入 `commander takeoff`。 然后使用下面的指令作为例子控制云台。
 
     vmount test yaw 30
     
