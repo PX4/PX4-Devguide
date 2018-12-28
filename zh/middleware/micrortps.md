@@ -41,17 +41,17 @@ RTPS 桥接在 PX4 和 RTPS 应用程序之间交换消息, 在每个系统使�
 
 ### ROS2/ROS 应用处理流程
 
-ROS2 的应用程序流程非常简单直接! Because ROS2 uses DDS/RTPS as its native communications middleware, you can create a ROS2 listener or advertiser node to publish and subscribe to uORB data on PX4, via the *PX4 Fast RTPS Bridge*. This is shown below.
+ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 作为其原生通信中间件, 因此您可以直接创建 ROS2 监听或广播节点, 通过 *PX4 Fast RTPS 桥接* 订阅或发布PX4上的 uORB 数据。 正如下图所示。
 
-> **Note** You do need to make sure that the message types, headers and source files used on both client and agent side (and consequently, on the ROS nodes) are generated from the same Interface Description Language (IDL) files. The `px4_ros_com` package provides the needed infrastructure for generating messages and headers needed by ROS2.
+> **Note**您需要确保客户端和代理端 (以及 ROS 节点上) 的消息类型、头文件和源文件是从相同的接口描述语言 (IDL) 文件生成的。 `px4_ros_com` 包提供了生成 ROS2 所需的消息和头文件所需的必要工具。
 
 ![Architecture with ROS2](../../assets/middleware/micrortps/architecture_ros2.png)
 
-The architecture for integrating ROS applications with PX4 is shown below.
+将 ROS 应用程序与 PX4 集成的体系结构如下所示。
 
 ![Architecture with ROS](../../assets/middleware/micrortps/architecture_ros.png)
 
-Note the use of [ros1_bridge](https://github.com/ros2/ros1_bridge), which bridges messages between ROS2 and ROS. This is needed because the first version of ROS does not support RTPS.
+请注意 [ros1_bridge](https://github.com/ros2/ros1_bridge)的使用, 它在 ROS2 和 ROS 之间进行消息桥接。 This is needed because the first version of ROS does not support RTPS.
 
 ## Code generation
 
