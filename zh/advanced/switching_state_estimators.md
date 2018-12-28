@@ -1,12 +1,12 @@
-# Switching State Estimators
+# 切换状态估计器
 
-This page shows you which state estimators are available and how you can switch between them.
+此页显示了可用的状态估计器以及如何在它们之间切换。
 
-> **Tip** EKF2 is highly recommended for all purposes (LPE is no longer maintained).
+> **提示**强烈建议将 ekf2 用于所有用途 （不再维护 lpe）。
 
-## Available Estimators
+## 可用的估计器
 
-The available estimators are:
+可用的估计器如下：
 
 - **Q attitude estimator** - The attitude Q estimator is a very simple, quaternion based complementary filter for attitude.
 - **INAV position estimator** - The INAV position estimator is a complementary filter for 3D position and velocity states.
