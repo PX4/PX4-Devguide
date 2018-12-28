@@ -4,25 +4,25 @@ Contact information for the core dev team and community can be [found here](../R
 
 ## 支持
 
-### Weekly Dev Call {#dev_call}
+### 每周开发通讯 {#dev_call}
 
 The PX4 dev team syncs up on platform technical details and in-depth analysis. There is also space in the agenda to discuss pull requests, major impacting issues and Q&A.
 
-#### Who should attend:
+#### 谁应该参加：
 
-* Core project maintainers
-* Component maintainers
+* 核心项目维护者
+* 组件维护者
 * Test team lead
-* Dronecode members
-* Community members
+* Dronecode 会员
+* 社区成员
 
 > **Tip** The dev call is open to all interested developers (not just the core dev team). This is a great opportunity to meet the team and contribute to the ongoing development of the platform.
 
-#### Schedule
+#### 日程
 
 * TIME: Wednesday 5PM CET, 11AM EST, 8AM PST \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
-* **Join the call**: https://zoom.us/j/625711763
-* **Meeting ID**: 625 711 763
+* **加入通讯**：https://zoom.us/j/625711763
+* **会议 ID**：625 711 763
 * **Dial(for higher quality, dial a number based on your current location)**:
   
   * **Switzerland**: +41 (0) 31 528 0988 
@@ -33,19 +33,19 @@ The PX4 dev team syncs up on platform technical details and in-depth analysis. T
   * **United Kingdom**: +44 (0) 20 3695 0088 
   * **South Korea**: +82 (0) 2 6022 2322 
   * **Spain**: +34 91 198 0188 
-  * [**International numbers available**](https://zoom.us/zoomconference?m=bMNcJolpnXMOL_qSf2svkR7Yow6FqceS)
+  * [**可用的国际号码**](https://zoom.us/zoomconference?m=bMNcJolpnXMOL_qSf2svkR7Yow6FqceS)
 
 * Agenda is published before the call on [PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)
 
 * To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/Firmware/labels/devcall) label to flag them for discussion.
 
-### Tests Flights
+### 测试飞行
 
 The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
 
 See [Test Flights](../test_and_ci/test_flights.md) for information about available test vehicles/autopilots, how to request flights, and response times.
 
-### Have a problem?
+### 遇到问题？
 
 #### Help diagnosing problems
 
@@ -55,26 +55,26 @@ If you are unsure what the problem is and you need help diagnosing
 * Open a discussion on [PX4 Discuss](http://discuss.px4.io/) with a flight report and links to logs.
 * If you find an issue or bug with PX4 [open a Github Issue](https://github.com/PX4/Devguide/issues)
 
-#### Issue & Bug reporting
+#### 问题 & Bug 报告
 
 * Upload logs to [Flight Log Review](http://logs.px4.io/)
 * [Open a Github Issue](https://github.com/PX4/Devguide/issues) with a flight report with as much detail as possible and links to logs.
 
-#### General support
+#### 一般支持
 
-* [Join our Slack community](http://slack.px4.io/)
-* [Open a discussion](http://discuss.px4.io)
-* [Open Github Issue](https://github.com/PX4/Devguide/issues)
+* [加入我们的 Slack 社区](http://slack.px4.io/)
+* [发布一条讨论](http://discuss.px4.io)
+* [开启 Github Issue](https://github.com/PX4/Devguide/issues)
 
-### Calendar & Events {#calendar}
+### 日历 & 活动 {#calendar}
 
 The *Dronecode Calendar* shows important events for platform developers and users. Select the links below to display the calendar in your timezone (and to add it to your own calendar):
 
 * [Switzerland – Zurich](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Europe%2FZurich)
-* [Pacific Time – Tijuana](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=America%2FTijuana)
+* [太平洋时间 – Tijuana](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=America%2FTijuana)
 * [Australia – Melbourne/Sydney/Hobart](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Australia%2FSydney)
 
-**Note:** calendar defaults to CET.
+**Note:** 日历默认为 CET 时间。
 
 {% raw %} <iframe src="https://calendar.google.com/calendar/embed?title=Dronecode%20Calendar&amp;mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Europe%2FZurich" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no" mark="crwd-mark"></iframe> 
 
@@ -86,7 +86,7 @@ The *Dronecode Calendar* shows important events for platform developers and user
 
 We pledge to adhere to the [PX4 code of conduct](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md). 该守则旨在营造一个开放和热情的环境。
 
-### Source Code Management
+### 源代码管理
 
 The PX4 project uses a three-branch Git branching model:
 
@@ -104,13 +104,13 @@ All code contributions have to be under the permissive [BSD 3-clause license](ht
 
 PX4 uses [astyle](http://astyle.sourceforge.net/) for code formatting. Valid versions are
 
-* [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/) (recommended)
+* [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/)（推荐）
 * [astyle 3.0](https://sourceforge.net/projects/astyle/files/astyle/astyle%203.0/)
 * [astyle 3.01](https://sourceforge.net/projects/astyle/files/)
 
 Once installed, formatting can be checked with `./Tools/astyle/check_code_style_all.sh`. The output should be `Format checks passed` on a clean master. If that worked, `make format` can be used in the future to check and format all files automatically.
 
-### In-Source Documentation
+### 在源码中的文档
 
 PX4 developers are encouraged to create appropriate in-source documentation.
 
