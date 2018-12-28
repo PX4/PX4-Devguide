@@ -28,11 +28,11 @@ RTPS 已被采用为 ROS2 (机器人操作系统) 的中间件。 *Fast RTPS桥�
 
 ### RTPS桥接
 
-The RTPS bridge exchanges messages between PX4 and RTPS applications, seamlessly converting between the [uORB](../middleware/uorb.md) and RTPS messages used by each system.
+RTPS 桥接在 PX4 和 RTPS 应用程序之间交换消息, 在每个系统使用的 [uORB](../middleware/uorb.md) 和 RTPS 消息之间无缝转换。
 
 ![basic example flow](../../assets/middleware/micrortps/architecture.png)
 
-The main elements of the architecture are the client and agent processes shown in the diagram above.
+该体系结构的主要元素是上面图中所示的客户端和代理进程。
 
 * The *Client* is PX4 middleware daemon process that runs on the flight controller. It subscribes to uORB topics published by other PX4 components and sends any updates to the *Agent* (via a UART or UDP port). It also receives messages from the *Agent* and publishes them as uORB message on PX4.
 * The *Agent* runs as a daemon process on an offboard computer. It watches for uORB update messages from the *Client* and (re)publishes them over RTPS. It also subscribes to "uORB" RTPS messages from other RTPS applications and forwards them to the *Client*.
