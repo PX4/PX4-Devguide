@@ -10,9 +10,9 @@
 
 ## Test Execution
 
-Jenkins uses [run_container.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_container.bash) to start the container which in turn executes [run_tests.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_tests.bash) to compile and run the tests.
+Jenkins 使用 [run_container.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_container.bash) 来启动 container，而 container 又执行 [ run_tests.bash ](https://github.com/PX4/Firmware/blob/master/integrationtests/run_tests.bash) 来编译和运行测试。
 
-If Docker is installed the same method can be used locally:
+如果安装了 Docker，则可以在本地使用相同的方法：
 
 ```sh
 cd <directory_where_firmware_is_cloned>
@@ -23,16 +23,16 @@ sudo WORKSPACE=$(pwd) ./Firmware/integrationtests/run_container.bash
 
 ### 安装
 
-See setup [script/log](https://github.com/PX4/containers/tree/master/scripts/jenkins) for details on how Jenkins got installed and maintained.
+有关如何安装和维护 Jenkins 的详细信息，请参阅 setup [script/log](https://github.com/PX4/containers/tree/master/scripts/jenkins) 。
 
 ### 配置
 
-- Jenkins security enabled
-- Installed plugins 
+- Jenkins 安全性已启用
+- 已安装的插件 
     - github
-    - github pull request builder
-    - embeddable build status plugin
-    - s3 plugin
-    - notification plugin
-    - collapsing console sections
+    - github 请求构建器
+    - 嵌入式构建状态插件
+    - s3 插件
+    - 通知插件
+    - 折叠控制台部分
     - postbuildscript
