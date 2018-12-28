@@ -4,14 +4,14 @@
 
 ## 分析 churn
 
-The amount of churn, so the number of changes done to a file can be an indicator which files/parts might need refactoring.
+改动的数量，因此对文件所做的更改次数可以指示哪些文件/部件可能需要重构。
 
-To find churn metrics a tool such as [Churn](https://github.com/danmayer/churn) can be used:
+要查找流失指标，可以使用 [Churn](https://github.com/danmayer/churn) 等工具：
 
     gem install churn
     
 
-An example output as of `v1.6.0-rc2` would be:
+从 `v1.6.0-rc2` 开始的示例输出将是：
 
     cd src/Firmware
     churn --start_date "6 months ago"
