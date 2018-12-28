@@ -1,14 +1,14 @@
-# Integration Testing
+# 集成测试
 
-This is about end to end integration testing. Tests are executed automatically ([Jenkins CI](../test_and_ci/jenkins_ci.md))
+这是关于端到端集成测试。 测试自动执行（[Jenkins CI](../test_and_ci/jenkins_ci.md)）
 
-## ROS / MAVROS Tests
+## ROS / MAVROS 测试
 
 系统必备组件:
 
-- [jMAVSim Simulator](../simulation/jmavsim.md)
-- [Gazebo Simulator](../simulation/gazebo.md)
-- [ROS and MAVROS](../simulation/ros_interface.md)
+- [jMAVSim 仿真模拟](../simulation/jmavsim.md)
+- [Gazebo 仿真模拟](../simulation/gazebo.md)
+- [ROS 和 MAVROS](../simulation/ros_interface.md)
 
 ### Execute Tests
 
