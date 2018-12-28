@@ -10,9 +10,9 @@
 - [Gazebo 仿真模拟](../simulation/gazebo.md)
 - [ROS 和 MAVROS](../simulation/ros_interface.md)
 
-### Execute Tests
+### 执行测试
 
-To run the complete MAVROS test suite:
+要运行完整的 MAVROS 测试套件：
 
 ```sh
 cd <Firmware_clone>
@@ -20,17 +20,17 @@ source integrationtests/setup_gazebo_ros.bash $(pwd)
 rostest px4 mavros_posix_tests_iris.launch
 ```
 
-Or with GUI to see what's happening:
+或者使用 GUI 来查看发生的情况：
 
 ```sh
 rostest px4 mavros_posix_tests_iris.launch gui:=true headless:=false
 ```
 
-### Write a new MAVROS test (Python)
+### 写一个新的 MAVROS 测试（Python）
 
-> **Note** Currently in early stages, more streamlined support for testing (helper classes/methods etc.) to come.
+> **Note** 目前处于早期阶段，更加精简的测试支持（辅助类/方法等）即将到来。
 
-#### 1.) Create a new test script
+#### 1.）创建一个新的测试脚本
 
 Test scripts are located in `integrationtests/python_src/px4_it/mavros/`. See other existing scripts for examples. Also please consult the official ROS documentation on how to use [unittest](http://wiki.ros.org/unittest).
 
