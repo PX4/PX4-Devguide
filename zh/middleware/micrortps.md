@@ -51,17 +51,17 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 ![Architecture with ROS](../../assets/middleware/micrortps/architecture_ros.png)
 
-请注意 [ros1_bridge](https://github.com/ros2/ros1_bridge)的使用, 它在 ROS2 和 ROS 之间进行消息桥接。 This is needed because the first version of ROS does not support RTPS.
+请注意 [ros1_bridge](https://github.com/ros2/ros1_bridge)的使用, 它在 ROS2 和 ROS 之间进行消息桥接。 因为 ROS 一代不支持 RTPS，所以只能这样做。
 
-## Code generation
+## 代码生成
 
-> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) or [Ubuntu](../setup/dev_env_linux_ubuntu.md).
+> **Note** 要生成所需代码 [必须安装 Fast RTPS](../setup/fast-rtps-installation.md)! 如果你使用为[macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) 或 [Ubuntu](../setup/dev_env_linux_ubuntu.md)平台编写的标准安装程序/脚本，*Fast RTPS* 是 *默认* 安装的。
 
-### ROS-independent applications
+### 独立于 ROS 的应用程序
 
-All the code needed to create, build and use the bridge is automatically generated when the PX4 Firmware is compiled.
+编译 PX4 固件时, 将自动生成创建、编译和使用该桥接所需的所有代码。
 
-The *Client* application is also compiled and built into the firmware as part of the normal build process. The *Agent* must be separately/manually compiled for the target computer.
+*Client* 应用程序也被编译成为固件的一部分，这是标准编译过程的一部分。 The *Agent* must be separately/manually compiled for the target computer.
 
 <span></span>
 
