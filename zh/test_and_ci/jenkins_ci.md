@@ -1,12 +1,12 @@
 # Jenkins CI
 
-Jenkins continuous integration server on [ci.px4.io](http://ci.px4.io/) is used to automatically run integration tests against PX4 SITL.
+[ci.px4.io](http://ci.px4.io/) 上的 Jenkins 持续集成服务器用于自动运行针对 PX4 SITL 的集成测试。
 
 ## 概述
 
-- Involved components: Jenkins, Docker, PX4 POSIX SITL
-- Tests run inside [Docker Containers](../test_and_ci/docker.md)
-- Jenkins executes 2 jobs: one to check each PR against master, and the other to check every push on master
+- 涉及的组件：Jenkins，Docker，PX4 POSIX SITL
+- 测试在 [Docker Containers](../test_and_ci/docker.md) 内运行
+- Jenkins 执行了 2 个工作：一个用于检查每个 PR 与主控，另一个用于检查主控上的每次推送
 
 ## Test Execution
 
