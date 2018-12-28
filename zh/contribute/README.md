@@ -82,7 +82,7 @@ The *Dronecode Calendar* shows important events for platform developers and user
 
 ## 贡献
 
-### Code of Conduct
+### 行为准则
 
 We pledge to adhere to the [PX4 code of conduct](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md). 该守则旨在营造一个开放和热情的环境。
 
