@@ -113,9 +113,9 @@ rtps:
 
 > **Note** `px4_ros_com`编译过程 (只) 运行 CMake 宏 `rosidl_generate_interfaces()` 来生成 ROS2 IDL 文件和每个消息的头文件与源文件。 PX4固件中又一个IDL文件模板，只在PX4编译过程中才使用。
 > 
-> `px4_ros_com` 为 ROS2/ROS 编译生成的IDL文件只有 *少许不同* (但为PX4固件编译的就很不一样了)。 The **uorb_rtps_message_ids.yaml** is transformed in a way that the message names become *PascalCased* (the name change is irrelevant to the client-agent communication, but is critical for ROS2, since the message naming must follow the PascalCase convention). The new IDL files also reverse the messages that are sent and received (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa).
+> `px4_ros_com` 为 ROS2/ROS 编译生成的IDL文件只有 *少许不同* (但为PX4固件编译的就很不一样了)。 **uorb_rtps_message_ids.yaml** 文件将消息改名使之符合*PascalCased*标准 (改名这事儿与客户端-代理端之间的通信没有任何关系，但是对于 ROS2 是至关重要的，因为 ROS2 的消息命名必须符合 PascalCase 约定)。 新的IDL文件还反转了消息的发送/接收状态 (这是必须的，因为同一个消息在客户端是发送，在代理端的状态就是接收，反之亦然)。
 
-## Client (PX4 Firmware) {#client_firmware}
+## 客户端 (PX4固件) {#client_firmware}
 
 The *Client* source code is generated, compiled and built into the PX4 firmware as part of the normal build process.
 
