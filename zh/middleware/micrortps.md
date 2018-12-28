@@ -61,17 +61,17 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 编译 PX4 固件时, 将自动生成创建、编译和使用该桥接所需的所有代码。
 
-*Client* 应用程序也被编译成为固件的一部分，这是标准编译过程的一部分。 The *Agent* must be separately/manually compiled for the target computer.
+*Client* 应用程序也被编译成为固件的一部分，这是标准编译过程的一部分。 但是*Agent* 必须为目标机单独/手动编译。
 
 <span></span>
 
-> **Tip** The bridge code can also be [manually generated](micrortps_manual_code_generation.md). Most users will not need to do so, but the linked topic provides a more detailed overview of the build process and can be useful for troubleshooting.
+> **Tip**桥接的代码也可以 [手动生成](micrortps_manual_code_generation.md)。 大多数用户不需要这样做, 但链接的主题提供了编译过程的更详细的描述, 排故的时候也许有用。
 
-### ROS2/ROS applications {#px4_ros_com}
+### ROS2/ROS 应用 {#px4_ros_com}
 
-The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)). This includes all the required components of the *PX4 RTPS bridge*, including the IDL files (required by the `micrortps_agent`), the `micrortps_agent` itself and the sources and headers of the ROS messages.
+完成编译的 [px4_ros_com](https://github.com/PX4/px4_ros_com) 包可以生成从一个ROS2节点获取 PX4 uORB消息所需的所有组件 (如果使用 ROS一代，还需要 [ros1_bridge](https://github.com/ros2/ros1_bridge))。 这包括所有 *PX4 RTPS bridge* 必需的组件, 包括 IDL 文件 (`micrortps_agent`必需), `micrortps_agent` 本身以及ROS消息的源文件和头文件。
 
-The package has two separate branches:
+这个包有两个分支：
 
 * a `master` branch, used with ROS2. It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
 * a `ros1` branch, used with ROS. It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
