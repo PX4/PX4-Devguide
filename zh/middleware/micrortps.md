@@ -32,10 +32,10 @@ RTPS 桥接在 PX4 和 RTPS 应用程序之间交换消息, 在每个系统使�
 
 ![basic example flow](../../assets/middleware/micrortps/architecture.png)
 
-该体系结构的主要元素是上面图中所示的客户端和代理进程。
+该体系结构的主要元素是上面图中所示的客户端 (client) 和代理 (agent) 进程。
 
-* *客户端* 是在飞行控制器上运行的 PX4 中间件守护进程。 It subscribes to uORB topics published by other PX4 components and sends any updates to the *Agent* (via a UART or UDP port). It also receives messages from the *Agent* and publishes them as uORB message on PX4.
-* The *Agent* runs as a daemon process on an offboard computer. It watches for uORB update messages from the *Client* and (re)publishes them over RTPS. It also subscribes to "uORB" RTPS messages from other RTPS applications and forwards them to the *Client*.
+* *Client* 是在飞行控制器上运行的 PX4 中间件守护进程。 它订阅由其他 PX4 组件发布的 uORB 主题, 并将更新发送给 *Agent* (通过 UART 或 UDP 端口)。 它还接收来自 *Agent* 的消息, 转换为 PX4 上的 uORB 消息并重新发布。
+* *Agent* 在Offboard计算机上作为守护进程运行。 它监视来自 *Client* 的 uORB 消息更新, 并通过RTPS (重新) 发布这些消息。 It also subscribes to "uORB" RTPS messages from other RTPS applications and forwards them to the *Client*.
 * The *Agent* and *Client* are connected via a serial link (UART) or UDP network. The uORB information is [CDR serialized](https://en.wikipedia.org/wiki/Common_Data_Representation) for sending (*CDR serialization* provides a common format for exchanging serial data between different platforms).
 * The *Agent* and any *Fast RTPS* applications are connected via UDP, and may be on the same or another device. In a typical configuration they will both be on the same system (e.g. a development computer, Linux companion computer or compute board), connected to the *Client* over a Wifi link or via USB.
 
