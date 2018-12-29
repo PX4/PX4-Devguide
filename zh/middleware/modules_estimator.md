@@ -1,4 +1,4 @@
-# Modules Reference: Estimator
+# 模块参考：估计器
 
 ## ekf2
 
@@ -14,14 +14,14 @@ ekf2 can be started in replay mode (`-r`): in this mode it does not access the s
 
 ### 用法 {#ekf2_usage}
 
-    ekf2 <command> [arguments...]
+    ekf2 &lt;command&gt; [arguments...]
      Commands:
        start
-         [-r]        Enable replay mode
+         [-r]        启用 replay 模式
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## local_position_estimator
@@ -34,13 +34,13 @@ Attitude and position estimator using an Extended Kalman Filter.
 
 ### 用法 {#local_position_estimator_usage}
 
-    local_position_estimator <command> [arguments...]
+    local_position_estimator &lt;command&gt; [arguments...]
      Commands:
        start
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## wind_estimator
@@ -53,10 +53,10 @@ This module runs a combined wind and airspeed scale factor estimator. If provide
 
 ### 用法 {#wind_estimator_usage}
 
-    wind_estimator <command> [arguments...]
+    wind_estimator &lt;command&gt; [arguments...]
      Commands:
        start
     
        stop
     
-       status        print status info
+       status        打印状态信息
