@@ -43,7 +43,7 @@ RTPS 桥接在 PX4 和 RTPS 应用程序之间交换消息, 在每个系统使�
 
 ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 作为其原生通信中间件, 因此您可以直接创建 ROS2 监听或广播节点, 通过 *PX4 Fast RTPS 桥接* 订阅或发布PX4上的 uORB 数据。 正如下图所示。
 
-> **Note**您需要确保客户端和代理端 (以及 ROS 节点上) 的消息类型、头文件和源文件是从相同的接口描述语言 (IDL) 文件生成的。 `px4_ros_com` 包提供了生成 ROS2 所需的消息和头文件所需的必要工具。
+> **Note** 您需要确保客户端和代理端（以及 ROS 节点上）的消息类型、头文件和源文件是从相同的接口描述语言（IDL）文件生成的。 `px4_ros_com` 包提供了生成 ROS2 所需的消息和头文件所需的必要工具。
 
 ![Architecture with ROS2](../../assets/middleware/micrortps/architecture_ros2.png)
 
@@ -135,15 +135,15 @@ make px4_sitl_rtps
 
 ```sh
 > micrortps_client start|stop [options]
-  -t < transport>          [UART|UDP] 缺省为 UART
-  -d < device>             UART 设备. 缺省为 /dev/ttyACM0
-  -u < update_time_ms>     订阅的 uORB 消息的刷新时间，单位ms。 缺省为 0
-  -l < loops>              该程序将循环执行多少次。 -1 表示无限循环， 缺省为 -1。
-  -w < sleep_time_ms>     每个循环的休眠时间，单位ms， 缺省为 1ms
-  -b < baudrate>           UART 设备波特率 缺省为 460800
-  -p < poll_ms>            UART设备轮询时间，单位ms， 缺省为 1ms
-  -r < reception port>     UDP接收端口号， 缺省为 2019
-  -s < sending port>       UDP 发送端口号， 缺省为 2020
+  -t &lt;transport&gt;          [UART|UDP] 缺省为 UART
+  -d &lt;device&gt;             UART 设备. 缺省为 /dev/ttyACM0
+  -u &lt;update_time_ms&gt;     订阅的 uORB 消息的刷新时间，单位ms。 缺省为 0
+  -l &lt;loops&gt;              该程序将循环执行多少次。 -1 表示无限循环， 缺省为 -1。
+  -w &lt;sleep_time_ms&gt;      每个循环的休眠时间，单位ms， 缺省为 1ms
+  -b &lt;baudrate&gt;           UART 设备波特率 缺省为 460800
+  -p &lt;poll_ms&gt;            UART设备轮询时间，单位ms， 缺省为 1ms
+  -r &lt;reception port&gt;     UDP接收端口号， 缺省为 2019
+  -s &lt;sending port&gt;       UDP 发送端口号， 缺省为 2020
 ```
 
 > **Note**默认情况下*Client* 作为守护进程运行, 但您需要手动启动它。 PX4 固件的初始化代码将来可能会自动启动 *Client* 作为一个永久的守护进程。
