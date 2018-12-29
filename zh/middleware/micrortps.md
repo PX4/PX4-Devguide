@@ -1,4 +1,4 @@
-# RTPS/ROS2 接口: PX4-FastRTPS桥接
+# RTPS/ROS2 接口：PX4-FastRTPS桥接
 
 *PX4-fastps桥接* 在 PX4 中添加了一个实时发布订阅 (RTPS) 接口, 从而能够在PX4组件和 (offboard) *Fast RTPS* 应用程序 (包括使用 ROS2/ROS 框架构建的应用程序) 之间进行 [uORB 消息](../middleware/uorb.md) 交换。
 
@@ -331,7 +331,7 @@ After building the workspaces there are many files that must be deleted before y
 The **clean_all.bash** script (in **px4_ros_com/scripts**) is provided to ease this cleaning process. The most common way of using it is by passing it the ROS(1) workspace directory path (since it's usually not on the default path):
 
 ```sh
-$ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
+$ source clean_all.bash --ros1_ws_dir &lt;path/to/px4_ros_com_ros1/ws&gt;
 ```
 
 To also delete the cloned `ros1_bridge` from the workspace, additionally pass the following argument: `--delete_ros1_bridge`.
