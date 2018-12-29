@@ -135,15 +135,15 @@ make px4_sitl_rtps
 
 ```sh
 > micrortps_client start|stop [options]
-  -t <transport>          [UART|UDP] Default UART
-  -d <device>             UART device. Default /dev/ttyACM0
-  -u <update_time_ms>     Time in ms for uORB subscribed topics update. Default 0
-  -l <loops>              How many iterations will this program have. -1 for infinite. Default -1.
-  -w <sleep_time_ms>      Time in ms for which each iteration sleep. Default 1ms
-  -b <baudrate>           UART device baudrate. Default 460800
-  -p <poll_ms>            Time in ms to poll over UART. Default 1ms
-  -r <reception port>     UDP port for receiving. Default 2019
-  -s <sending port>       UDP port for sending. Default 2020
+  -t < transport>          [UART|UDP] 缺省为 UART
+  -d < device>             UART 设备. 缺省为 /dev/ttyACM0
+  -u < update_time_ms>     订阅的 uORB 消息的刷新时间，单位ms。 缺省为 0
+  -l < loops>              该程序将循环执行多少次。 -1 表示无限循环， 缺省为 -1。
+  -w < sleep_time_ms>     每个循环的休眠时间，单位ms， 缺省为 1ms
+  -b < baudrate>           UART 设备波特率 缺省为 460800
+  -p < poll_ms>            UART设备轮询时间，单位ms， 缺省为 1ms
+  -r < reception port>     UDP接收端口号， 缺省为 2019
+  -s < sending port>       UDP 发送端口号， 缺省为 2020
 ```
 
 > **Note**默认情况下*Client* 作为守护进程运行, 但您需要手动启动它。 PX4 固件的初始化代码将来可能会自动启动 *Client* 作为一个永久的守护进程。
@@ -158,7 +158,7 @@ micrortps_client start -t UDP
 
 编译PX4固件时，相关的*Agent*代码会自动被 *生成*。 生成的源代码在这个目录下: **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
 
-To build the *Agent* application, compile the code:
+为了构建 *Agent* 应用, 运行如下编译命令:
 
 ```sh
 cd build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent
@@ -167,14 +167,14 @@ cmake ..
 make
 ```
 
-> **Note** To cross-compile for the *Qualcomm Snapdragon Flight* platform see [this link](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use).
+> **Note** 如果要交叉编译 *Qualcomm Snapdragon Flight* 平台，请参考 [这个链接](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use)。
 
-The command syntax for the *Agent* is listed below:
+和 *Agent* 有关的命令语法如下:
 
 ```sh
 $ ./micrortps_agent [options]
-  -t <transport>          [UART|UDP] Default UART.
-  -d <device>             UART device. 默认 /dev/ttyACM0。
+  -t &lt;transport&gt;          [UART|UDP] 缺省为UART.
+  -d &lt;device&gt;             默认 device. 默认 /dev/ttyACM0。
   -w <sleep_time_us>      Time in us for which each iteration sleep. 默认 1ms。
   -b <baudrate>           UART device baudrate. 默认 460800。
   -p <poll_ms>            Time in ms to poll over UART. 默认 1ms。
