@@ -11,13 +11,13 @@ PX4 提供了一个简单的基础 [Unittest-class](https://github.com/PX4/Firmw
 5. 在 `[Description]Test` 类中，声明测试相关特征所需的所有私有方法（` test1（）`，` test2（）`，...）。
 6. 在 **test_ [description].cpp** 中实现 `run_tests（）` 方法，其中将运行每个测试[1,2，...]。
 7. 在 **test_ [description].cpp** 中，实现各种测试。
-8. At the bottom within **test_[description].cpp** declare the test.
+8. 在 **test_ [description].cpp** 的底部声明测试。
     
     ```cpp
     ut_declare_test_c(test_[description], [Description]Test)
     ```
     
-    Here is a template:
+    下面是一个模板：
     
     ```cpp
     #include <unit_test.h>
@@ -66,15 +66,15 @@ PX4 提供了一个简单的基础 [Unittest-class](https://github.com/PX4/Firmw
     ut_declare_test_c(test_[description], [Description]Test)
     ```
     
-    Note that `ut_[name of one of the unit test functions]` corresponds to one of the unittest functions defined within [unit_test.h](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h).
+    注意，`ut_[name of one of the unit test functions]` 对应于 [unit_test.h ](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h) 中定义的单元测试函数之一。
 
-9. Within [tests_main.h](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.h) define the new test:
+9. 在 [tests_main.h](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.h) 中定义新测试：
     
     ```cpp
     extern int test_[description](int argc, char *argv[]);
     ```
 
-10. Within [tests_main.c](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.c) add description name, test function and option:
+10. 在 [tests_main.c](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.c) 中添加描述名称，测试功能和选项：
     
     ```cpp ... } tests[] = { {... {"[description]", test_[description], OPTION}, ... }
 
@@ -90,30 +90,30 @@ PX4 提供了一个简单的基础 [Unittest-class](https://github.com/PX4/Firmw
        ```
        If a test has option `OPT_NOALLTEST`, then that test will be excluded when calling `tests all`. The same is true for `OPT_NOJITEST` when command `test jig` is called. Option `0` means that the test is never excluded, which is what most developer want to use. 
     
-    1. Add the test `test_[desciption].cpp` to the [CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/CMakeLists.txt).
+    1. 将测试`test_ [desciption].cpp`添加到 [CMakeLists.txt]（https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/CMakeLists.txt）。
     
     
-    ## Testing on the local machine
+    ## 在本地计算机上进行测试
     
-    The following command is sufficient to start a minimal new shell with the PX4 posix port running.
+    以下命令足以启动运行 PX4 posix 端口的最小新 shell。
     
     ```bash
     make px4_sitl_shell none
     
 
-The shell can then be used to e.g. execute unit tests:
+然后可以将 shell 用于测试，例如：执行单元测试：
 
 ```bash
 pxh> tests [description]
 ```
 
-Alternatively it is also possible to run the complete unit-tests right from bash:
+或者，也可以直接从 bash 运行完整的单元测试：
 
 ```bash
 make tests
 ```
 
-To see a full list of available tests write within px4 shell:
+要查看 px4 shell 中可用测试的完整列表，请执行以下操作：
 
 ```bash
 pxh> tests help
