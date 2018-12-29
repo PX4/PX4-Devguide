@@ -476,7 +476,7 @@ private:
 };
 ```
 
-The above create a subscription to the `sensor_combined_topic` which can be matched with one or more compatible ROS publishers.
+上面这段代码创建了 `sensor_combined_topic` 主题的订阅，可以匹配到一个或多个该消息的 ROS 广播者上。
 
 ```c++
 int main(int argc, char *argv[])
@@ -491,9 +491,9 @@ int main(int argc, char *argv[])
 }
 ```
 
-The instantiation of the `SensorCombinedListener` class as a ROS node is done on the `main` function.
+在 `main` 函数中将 `SensorCombinedListener`类作为一个 ROS 节点实例化。
 
-## Creating a ROS2 advertiser
+## 创建一个ROS2广播器
 
 A ROS2 advertiser node publishes data into the DDS/RTPS network (and hence to PX4).
 
