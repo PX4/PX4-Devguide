@@ -131,7 +131,7 @@ make px4_fmu-v4_rtps
 make px4_sitl_rtps
 ```
 
-The *Client* application can be launched from [NuttShell/System Console](../debug/system_console.md). The command syntax is shown below (you can specify a variable number of arguments):
+*Client* 应用程序可以从 [NuttShell/System Console](../debug/system_console.md) 启动。 命令语法如下所示 (您可以指定任意个参数):
 
 ```sh
 > micrortps_client start|stop [options]
@@ -146,17 +146,17 @@ The *Client* application can be launched from [NuttShell/System Console](../debu
   -s <sending port>       UDP port for sending. Default 2020
 ```
 
-> **Note** By default the *Client* runs as a daemon, but you will need to start it manually. The PX4 Firmware initialization code may in future automatically start the *Client* as a permanent daemon process.
+> **Note**默认情况下*Client* 作为守护进程运行, 但您需要手动启动它。 PX4 固件的初始化代码将来可能会自动启动 *Client* 作为一个永久的守护进程。
 
-For example, in order to run the *Client* daemon with SITL connecting to the Agent via UDP, start the daemon as shown:
+例如, 为了启动通过 UDP 连接到代理的 SITL 的 *Client* 守护进程, 请运行如下命令:
 
 ```sh
 micrortps_client start -t UDP
 ```
 
-## Agent in a ROS-independent Offboard Fast RTPS interface
+## 与 ROS 无关的 Offboard Fast RTPS 接口中的代理端
 
-The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
+编译PX4固件时，相关的*Agent*代码会自动被 *生成*。 生成的源代码在这个目录下: **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
 
 To build the *Agent* application, compile the code:
 
