@@ -262,23 +262,23 @@ $ ./micrortps_agent [options]
 
 ### 构建工作空间
 
-The directory `px4_ros_com/scripts` contains multiple scripts that can be used to build both workspaces.
+`px4_ros_com/scripts` 目录下有几个脚本可以用来构建这两个工作空间。
 
-To build both workspaces with a single script, use the `build_all.bash`. Check the usage with `source build_all.bash --help`. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4 Firmware directory path:
+`build_all.bash` 这个脚本可以一次性编译两个工作空间。 使用命令 `source build_all.bash --help` 查看脚本的用法。 最常用的使用方式是把 ROS(1) 工作区目录路径和 PX4 固件目录路径作为参数:
 
 ```sh
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws> --px4_firmware_dir <path/to/PX4/Firmware>
 ```
 
-One can also use the following individual scripts in order to build the individual parts:
+您也可以用一下脚本分别构建每一个工作空间：
 
-* `build_ros1_bridge.bash`, to build the `ros1_bridge`;
-* `build_ros2_workspace.bash` (only the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` `ros1` branch was cloned;
-* `build_ros2_workspace.bash`, to build the ROS2 workspace to where the `px4_ros_com` `master` branch was cloned;
+* `build_ros1_bridge.bash` 可以构建 `ros1_bridge`;
+* `build_ros2_workspace.bash` (只构建 `px4_ros_com` 的 `ros1` 分支) 可以构建 `px4_ros_com` `ros1` 分支所在的 ROS1 工作空间;
+* `build_ros2_workspace.bash` 可以构建 `px4_ros_com` `master` 分支所在的工作空间;
 
-The steps below show how to *manually* build the packages (provided for your information/better understanding only):
+以下步骤将详述怎样 *手动* 构建这些程序包 (只是为了加深您的理解):
 
-1. `cd` into `px4_ros_com_ros2` dir and source the ROS2 environment. Don't mind if it tells you that a previous workspace was set before:
+1. `cd` 到 `px4_ros_com_ros2` 目录并 source 一下 ROS2 的环境变量。 Don't mind if it tells you that a previous workspace was set before:
     
     ```sh
     source /opt/ros/bouncy/setup.bash
