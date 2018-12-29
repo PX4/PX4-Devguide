@@ -23,7 +23,7 @@ $ cd ~/ros_catkin_ws
 $ rosinstall_generator ros_tutorials --rosdistro indigo --deps --wet-only --exclude roslisp --tar > indigo-custom_ros.rosinstall
 ```
 
-Next, update your workspace with wstool.
+接下来，使用 wstool 更新您的工作区。
 
 ```sh
 $ wstool merge -t src indigo-custom_ros.rosinstall
@@ -31,7 +31,7 @@ $ wstool merge -t src indigo-custom_ros.rosinstall
 $ wstool update -t src
 ```
 
-Next (still in your workspace folder), source and make your files.
+下一步（仍在工作区文件夹中），source 并创建文件。
 
 ```sh
 $ source /opt/ros/indigo/setup.bash
