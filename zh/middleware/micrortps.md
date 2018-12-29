@@ -1,6 +1,6 @@
 # RTPS/ROS2 接口：PX4-FastRTPS桥接
 
-*PX4-fastps桥接* 在 PX4 中添加了一个实时发布订阅 (RTPS) 接口, 从而能够在PX4组件和 (offboard) *Fast RTPS* 应用程序 (包括使用 ROS2/ROS 框架构建的应用程序) 之间进行 [uORB 消息](../middleware/uorb.md) 交换。
+*PX4-fastRTPS 桥接* 在 PX4 中添加了一个实时发布订阅 (RTPS) 接口, 从而能够在PX4组件和 (offboard) *Fast RTPS* 应用程序 (包括使用 ROS2/ROS 框架构建的应用程序) 之间进行 [uORB 消息](../middleware/uorb.md) 交换。
 
 > **Note**RTPS是对象管理组 (OMG) 数据分发服务(DDS) 标准的基础协议。 其目的是利用发布/订阅模式实现可扩展、实时、可靠、高性能和可互操作的数据通信。 *Fast RTPS* 是最新版本的RTPS协议和最小DDS API的一个非常轻量级的跨平台实现。
 
@@ -26,7 +26,7 @@ RTPS 已被采用为 ROS2 (机器人操作系统) 的中间件。 *Fast RTPS桥�
 
 ## 架构概述
 
-### RTPS桥接
+### RTPS 桥接
 
 RTPS 桥接在 PX4 和 RTPS 应用程序之间交换消息, 在每个系统使用的 [uORB](../middleware/uorb.md) 和 RTPS 消息之间无缝转换。
 
@@ -65,7 +65,7 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 <span></span>
 
-> **Tip**桥接的代码也可以 [手动生成](micrortps_manual_code_generation.md)。 大多数用户不需要这样做, 但链接的主题提供了编译过程的更详细的描述, 排故的时候也许有用。
+> **Tip** 桥接的代码也可以 [手动生成](micrortps_manual_code_generation.md)。 大多数用户不需要这样做, 但链接的主题提供了编译过程的更详细的描述, 排故的时候也许有用。
 
 ### ROS2/ROS 应用 {#px4_ros_com}
 
@@ -177,7 +177,7 @@ $ ./micrortps_agent [options]
   -d &lt;device&gt;             UART设备， 缺省为 /dev/ttyACM0。
   -w &lt;sleep_time_us&gt;      每次循环的休眠时间，单位us。 默认 1ms。
   -b &lt;baudrate&gt;           UART设备波特率。 默认 460800。
-  -p &lt;poll_ms&gt;           UART设备轮询时间，单位ms， 缺省为 1ms。
+  -p &lt;poll_ms&gt;            UART设备轮询时间，单位ms， 缺省为 1ms。
   -r &lt;reception port&gt;     UDP 接收端口， 缺省为 2019。
   -s &lt;sending port&gt;       UDP发送端口， 缺省为 2020。
 ```
