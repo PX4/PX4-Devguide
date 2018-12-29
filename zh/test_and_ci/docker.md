@@ -29,20 +29,20 @@ sudo usermod -aG docker $ USER
 ＃在使用 docker 之前再次登录/注销！
 ```
 
-## Container Hierarchy {#px4_containers}
+## 本地编辑层次结构 {#px4_containers}
 
-The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)):
+下面列出了可用的本地编辑（来自[Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)）：
 
-| 容器                              | 描述                                  |
-| ------------------------------- | ----------------------------------- |
-| px4-dev-base                    | Base setup common to all containers |
-| &emsp;px4-dev-nuttx             | NuttX 工具链                           |
-| &emsp;px4-dev-simulation        | NuttX 工具链 + 仿真（jMAVSim，Gazebo）      |
-| &emsp;&emsp;px4-dev-ros         | NuttX 工具链，仿真 + ROS（包括 MAVROS）       |
-| &emsp;px4-dev-raspi             | 树莓派工具链                              |
-| &emsp;px4-dev-snapdragon        | 高通 Snapdragon Flight 工具链            |
-| &emsp;px4-dev-clang             | C 语言工具                              |
-| &emsp;&emsp;px4-dev-nuttx-clang | C 语言与 NuttX 工具                      |
+| 容器                              | 描述                             |
+| ------------------------------- | ------------------------------ |
+| px4-dev-base                    | 所有本地共有的基本设置                    |
+| &emsp;px4-dev-nuttx             | NuttX 工具链                      |
+| &emsp;px4-dev-simulation        | NuttX 工具链 + 仿真（jMAVSim，Gazebo） |
+| &emsp;&emsp;px4-dev-ros         | NuttX 工具链，仿真 + ROS（包括 MAVROS）  |
+| &emsp;px4-dev-raspi             | 树莓派工具链                         |
+| &emsp;px4-dev-snapdragon        | 高通 Snapdragon Flight 工具链       |
+| &emsp;px4-dev-clang             | C 语言工具                         |
+| &emsp;&emsp;px4-dev-nuttx-clang | C 语言与 NuttX 工具                 |
 
 The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-ros:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-ros/tags/)).
 
