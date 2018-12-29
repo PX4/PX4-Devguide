@@ -1,10 +1,10 @@
 # PX4 Docker 容器
 
-Docker containers are provided for the complete [PX4 development toolchain](../setup/dev_env.md#supported-targets) including NuttX and Linux based hardware, [Gazebo Simulation](../simulation/gazebo.md) and [ROS](../simulation/ros_interface.md).
+Docker 容器被提供用于完整的 [PX4 开发工具链](../setup/dev_env.md#supported-targets)，包括基于 NuttX 和 Linux 的硬件，[Gazebo Simulation](../simulation/gazebo.md) 和 [ROS](../simulation/ros_interface.md)。
 
-This topic shows how to use the [available docker containers](#px4_containers) to access the build environment in a local Linux computer.
+本主题说明如何使用 [available docker containers](#px4_containers) 访问本地 Linux 计算机中的构建环境。
 
-> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/tree/master/docker/px4-dev). They are built automatically on [Docker Hub](https://hub.docker.com/u/px4io/).
+> **Note** Dockerfiles 和 README 可以在 [Github here](https://github.com/PX4/containers/tree/master/docker/px4-dev)。 它们是在 [Docker Hub](https://hub.docker.com/u/px4io/) 上自动构建的。
 
 ## 系统必备组件
 
