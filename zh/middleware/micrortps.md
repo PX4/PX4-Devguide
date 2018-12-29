@@ -174,25 +174,25 @@ make
 ```sh
 $ ./micrortps_agent [options]
   -t &lt;transport&gt;          [UART|UDP] 缺省为UART.
-  -d &lt;device&gt;             默认 device. 默认 /dev/ttyACM0。
-  -w <sleep_time_us>      Time in us for which each iteration sleep. 默认 1ms。
-  -b <baudrate>           UART device baudrate. 默认 460800。
-  -p <poll_ms>            Time in ms to poll over UART. 默认 1ms。
-  -r <reception port>     UDP port for receiving. 默认 2019。
-  -s <sending port>       UDP port for sending. 默认 2020。
+  -d &lt;device&gt;             UART设备， 缺省为 /dev/ttyACM0。
+  -w &lt;sleep_time_us&gt;      每次循环的休眠时间，单位us。 默认 1ms。
+  -b &lt;baudrate&gt;           UART设备波特率。 默认 460800。
+  -p &lt;poll_ms&gt;           UART设备轮询时间，单位ms， 缺省为 1ms。
+  -r &lt;reception port&gt;     UDP 接收端口， 缺省为 2019。
+  -s &lt;sending port&gt;       UDP发送端口， 缺省为 2020。
 ```
 
-To launch the *Agent*, run `micrortps_agent` with appropriate options for specifying the connection to the *Client* (the default options connect from a Linux device to the *Client* over a UART port).
+要启动 *Agent*, 运行 `micrortps_agent` 并在参数中指定连接到 *Client* 的方式 ( 一个Linux设备连接到 *Client* 的缺省方式是通过 UART 端口)。
 
-As an example, to start the *micrortps_agent* with connection through UDP, issue:
+如果要选择UDP连接，如下启动 *micrortps_agent*:
 
 ```sh
 ./micrortps_agent -t UDP
 ```
 
-## Agent interfacing with a ROS2 middleware
+## 面向 ROS2 中间件的代理端接口
 
-Building `px4_ros_com` automatically generates and builds the agent application. Since it is also installed using the [`colcon`](http://design.ros2.org/articles/build_tool.html) build tools, running it works exactly the same way as the above. Check the **Building the `px4_ros_com` package** for details about the build structure.
+构建 `px4_ros_com` 将自动生成并编译代理端应用。 也可以使用 [`colcon`](http://design.ros2.org/articles/build_tool.html) 构建工具, 效果与上相同。 欲知构建详情，请参考 **Building the `px4_ros_com` package** 章节。
 
 ## Building the `px4_ros_com` package
 
