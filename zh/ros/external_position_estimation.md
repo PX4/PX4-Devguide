@@ -34,22 +34,22 @@ EKF2 只订阅 `vehicle_visual_odometry` 主题，因此只能处理前两个消
 
 ## 参考机架
 
-PX4 uses FRD (X **F**orward, Y **R**ight and Z **D**own) for the local body frame, and NED (X **N**orth, Y **E**ast, Z **D**own) for the local world frame - set in MAVLink using [MAV_FRAME_BODY_OFFSET_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_BODY_OFFSET_NED) and [MAV_FRAME_LOCAL_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_LOCAL_NED), respectively.
+在 MAVLink中，PX4 使用 FRD（X **F**orward, Y **R**ight and Z **D**own）机体坐标系，NED（X **N**orth, Y **E**ast, Z **D**own）世界坐标系；分别对应[MAV_FRAME_BODY_OFFSET_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_BODY_OFFSET_NED) 和 [MAV_FRAME_LOCAL_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_LOCAL_NED)。
 
-Depending on your source your source system reference frame you will need to apply a custom transformation to obtain the appropriate NED convention when sending the MAVLink Vision/MoCap messages.
+根据您的源系统参考框架，您需要在发送 MAVLink Vision/MoCap 消息时应用自定义转换以获得适当的 NED 约定。
 
-> **Tip** ROS users can find more detailed instructions below in [Reference Frames and ROS](#ros_reference_frames).
+> **Tip** ROS 用户可以在下面的 [参考机架和 ROS](#ros_reference_frames) 中找到更详细的说明。
 
-For example, if using the Optitrack framework the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. 通过如下转换我们可以转换optrack坐标系到NED系中。
+例如，如果使用 optitrack 框架，则本地框架在水平面上具有 $$x$$ 和 $$z$$（*x* 正面和 *z* 右），而 *y* 轴是垂直的，指向上方。 通过如下转换我们可以转换optrack坐标系到NED系中。
 
-If `x_{mav}`, `y_{mav}` and `z_{mav}` are the coordinates that are sent through MAVLink as position feedback, then we obtain:
+` x_{mav}`，` y_{mav}` 和 ` z_{mav}` 是我们将通过 MAVLink 发送的位置量，然后我们得到：
 
     x_{mav} = x_{mocap}
     y_{mav} = z_{mocap}
     z_{mav} = - y_{mocap}
     
 
-Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. You can apply this trick with every system - if you need to obtain a NED frame, look at your MoCap output and swap axis accordingly.
+在方向方面，保持标量部分 *w* 四元数，并以相同的方式交换矢量部分 *x*、*y* 和 *z*。 You can apply this trick with every system - if you need to obtain a NED frame, look at your MoCap output and swap axis accordingly.
 
 ## EKF2 Tuning/Configuration
 
