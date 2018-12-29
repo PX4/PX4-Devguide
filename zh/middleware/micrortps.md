@@ -192,11 +192,11 @@ $ ./micrortps_agent [options]
 
 ## 面向 ROS2 中间件的代理端接口
 
-构建 `px4_ros_com` 将自动生成并编译代理端应用。 也可以使用 [`colcon`](http://design.ros2.org/articles/build_tool.html) 构建工具, 效果与上相同。 欲知构建详情，请参考 **Building the `px4_ros_com` package** 章节。
+构建 `px4_ros_com` 将自动生成并编译代理端应用。 也可以使用 [`colcon`](http://design.ros2.org/articles/build_tool.html) 构建工具, 效果与上相同。 欲知构建详情，请参考 ** 构建 `px4_ros_com` 程序包 ** 章节。
 
-## Building the `px4_ros_com` package
+## 构建 `px4_ros_com` 程序包
 
-Before building `px4_ros_com` you will first need to clone the PX4 Firmware repository (this is normally placed at the same tree level as the ROS workspaces). Then install and setup both ROS2 and ROS environments on your development machine and separately clone the `px4_ros_com` repo for both the `master` and `ros1` branches (see [above for more information](#px4_ros_com)).
+构建 `px4_ros_com` 之前，请先克隆 PX4 固件的代码仓库 (通常可以放置在 ROS 的工作空间目录下)。 然后在你的开发机上安装并配置 ROS2 和 ROS 的开发环境，并分别克隆 `px4_ros_com` 代码仓库的 `master` 分支和 `ros1` 分支 ([更多详情惨见上文](#px4_ros_com))。
 
 > **Note** Only the master branch is needed for ROS2 (both are needed to target ROS).
 
