@@ -2,15 +2,15 @@
 
 PX4 提供了一个简单的基础 [Unittest-class](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h)。 鼓励每个开发人员在向 PX4 框架添加新功能的过程中编写单元测试。
 
-## Writing a Test
+## 编写测试
 
-1. Create a new .cpp file within [tests](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tests) with name **test_[description].cpp**. 
-2. Within **test_[description].cpp** include the base unittest-class `<unit_test.h>` and all files required to write a test for the new feature. 
-3. Within **test_[description].cpp** create a class `[Description]Test` that inherits from `UnitTest`.
-4. Within `[Description]Test` class declare the public method `virtual bool run_tests()`.
-5. Within `[Description]Test` class declare all private methods required to test the feature in question (`test1()`, `test2()`,...).
-6. Within **test_[description].cpp** implement the `run_tests()` method where each test[1,2,...] will be run.
-7. Within **test_[description].cpp**, implement the various tests.
+1. 在 [tests](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tests) 中创建名为 **test_ [description] .cpp** 的新 .cpp 文件。 
+2. 在 **test_[description].cpp** 中包括基本 unittest-class`&lt;unit_test.h&gt;` 以及为新功能编写测试所需的所有文件。 
+3. 在 **test_[description].cpp** 中创建一个继承自 `UnitTest` 的类 `[Description]Test`。
+4. 在 `[Description]Test` 类中，声明公共方法 `virtual bool run_tests（）`。
+5. 在 `[Description]Test` 类中，声明测试相关特征所需的所有私有方法（` test1（）`，` test2（）`，...）。
+6. 在 **test_ [description].cpp** 中实现 `run_tests（）` 方法，其中将运行每个测试[1,2，...]。
+7. 在 **test_ [description].cpp** 中，实现各种测试。
 8. At the bottom within **test_[description].cpp** declare the test.
     
     ```cpp
