@@ -1,4 +1,4 @@
-# Terminology
+# 术语
 
 The following terms, symbols, and decorators are used in text and diagrams throughout this guide.
 
