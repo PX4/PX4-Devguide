@@ -72,11 +72,11 @@ EKF2 只订阅 `vehicle_visual_odometry` 主题，因此只能处理前两个消
 
 从技术上讲，如果 MoCap 和（例如）ROS 计算机之间有正确的时间戳（而不仅仅是到达时间）和时间同步（例如 NTP），则可以将其设置为0。 在现实中，这需要一些经验调整，因为整个 MoCap->PX4 链中的延迟是非常特定的。 系统设置完全同步链的情况很少见!
 
-A rough estimate of the delay can be obtained from logs by checking the offset between IMU rates and the EV rates:
+通过检查 IMU 速率和 EV 速率之间的偏移量，可以从日志中获得延迟的粗略估计：
 
 ![ekf2_ev_delay log](../../assets/ekf2/ekf2_ev_delay_tuning.png)
 
-> **Note** A plot of external data vs. onboard estimate (as above) can be generated using [FlightPlot](https://docs.px4.io/en/log/flight_log_analysis.html#flightplot-desktop) or similar flight analysis tools.
+> **Note** A plot of external data vs. 可使用 [FlightPlot](https://docs.px4.io/en/log/flight_log_analysis.html#flightplot-desktop) 或类似的飞行分析工具生成机载估计（如上）。
 
 The value can further be tuned by varying the parameter to find the value that yields the lowest EKF innovations during dynamic maneuvers.
 
