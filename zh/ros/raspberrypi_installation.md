@@ -4,18 +4,18 @@
 
 ## 系统必备组件
 
-* A working Raspberry Pi with monitor, keyboard, or configured SSH connection
-* This guide assumes that you have Raspbian "JESSIE" installed on your RPi. If not: [install it](https://www.raspberrypi.org/downloads/raspbian/) or [upgrade](http://raspberrypi.stackexchange.com/questions/27858/upgrade-to-raspbian-jessie) your Raspbian Wheezy to Jessie.
+* 具有显示器、键盘或配置 ssh 连接的工作树莓派
+* 本指南假定您的 RPi 上安装了 Raspbian "JESSIE"。 否则：[安装](https://www.raspberrypi.org/downloads/raspbian/) 或 [升级](http://raspberrypi.stackexchange.com/questions/27858/upgrade-to-raspbian-jessie) 你的 Raspbian Wheezy 到 Jessie。
 
 ## 安装
 
-Follow [this guide](http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi) for the actual installation of ROS Indigo. Note: Install the "ROS-Comm" variant. The Desktop variant is too heavyweight.
+按照 [本指南 ](http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi) 实际安装 ROS Indigo。 注意：安装 "ROS-Comm" 变体。 桌面变体太臃肿了。
 
-### Errors when installing packages
+### 安装程序包时出错
 
-If you want to download packages (e.g. `sudo apt-get install ros-indigo-ros-tutorials`), you might get an error saying: "unable to locate package ros-indigo-ros-tutorials".
+如果你想下载软件包（例如，`sudo apt-get install ros-indigo-ros-tutorials`），你可能会得到一个错误，说："无法找到 ros-indigo-ros-tutorials"。
 
-If so, proceed as follows: Go to your catkin workspace (e.g. ~/ros_catkin_ws) and change the name of the packages.
+如果是这样，请按以下步骤操作：转到您的 catkin 工作区（例如 ~/ros_catkin_ws）并更改包的名称。
 
 ```sh
 $ cd ~/ros_catkin_ws
