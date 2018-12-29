@@ -305,30 +305,30 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws> --px4_firmwa
     source /opt/ros/bouncy/setup.bash
     ```
 
-5. Build the `px4_ros_com` package on the ROS end:
+5. 在 ROS 这一端构建 `px4_ros_com` 程序包：
     
     ```sh
     cd ~/px4_ros_com_ros1 && colcon build --symlink-install --event-handlers console_direct+
     ```
 
-6. Then source the workspaces:
+6. 然后 source 一下工作空间：
     
     ```sh
     source ~/px4_ros_com_ros1/install/setup.bash
     source ~/px4_ros_com_ros2/install/setup.bash
     ```
 
-7. Finally, build the `ros1_bridge`. Note that the build process may consume a lot of memory resources. On a resource limited machine, reduce the number of jobs being processed in parallel (e.g. set environment variable `MAKEFLAGS=-j1`). For more details on the build process, see the build instructions on the [ros1_bridge](https://github.com/ros2/ros1_bridge) package page.
+7. 最后，编译 `ros1_bridge`。 请注意, 构建过程可能会占用大量内存资源。 在内存较小的机器上, 减少并行编译的线程数目 (比如可以设置环境变量 `MAKEFLAGS=-j1`)。 要查看编译过程的更详细信息，请移步 [ros1_bridge](https://github.com/ros2/ros1_bridge)程序包的网页。
     
     ```sh
     cd ~/px4_ros_com_ros2 && colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure --event-handlers console_direct+
     ```
 
-### Cleaning the workspaces
+### 清理工作空间
 
-After building the workspaces there are many files that must be deleted before you can do a clean/fresh build (for example, after you have changed some code and want to rebuild). Unfortunately *colcon* does not currently have a way of cleaning the generated **build**, **install** and **log** directories, so these directories must be deleted manually.
+在一次构建之后，如果想要再做一次干净的/新鲜的编译 (比如，你更改了一些代码然后想要一次 rebuild)，有些文件是必须要删除的。 不幸的是 *colcon* 目前无法自动清除 **build**, **install** 和 **log** 目录, 所以这三个目录必须被手动删除。
 
-The **clean_all.bash** script (in **px4_ros_com/scripts**) is provided to ease this cleaning process. The most common way of using it is by passing it the ROS(1) workspace directory path (since it's usually not on the default path):
+**clean_all.bash** 脚本 (在 **px4_ros_com/scripts** 目录下) 可以帮你完成这个清理工作。 The most common way of using it is by passing it the ROS(1) workspace directory path (since it's usually not on the default path):
 
 ```sh
 $ source clean_all.bash --ros1_ws_dir &lt;path/to/px4_ros_com_ros1/ws&gt;
