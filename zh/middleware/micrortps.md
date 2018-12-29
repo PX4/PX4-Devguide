@@ -226,41 +226,41 @@ $ ./micrortps_agent [options]
     sudo pip3 install -U setuptools
     ```
     
-    > **Note** This install and build guide is also applicable in an environment with Ubuntu 16.04, ROS Kinetic and ROS2 Ardent installed.
+    > **Note**以上安装和构建指南也适用于 Ubuntu 16.04, ROS Kinetic 或 ROS2 Ardent 开发环境。
     
     <span></span>
     
-    > **Caution** Do not install the `ros1_bridge` package through the deb repository. The package must be built from source.
+    > **Caution** 不要通过deb仓库安装 `ros1_bridge` 。 该程序包必须从源码构建。
 
-### Setting up the workspaces
+### 配置工作空间
 
-Since the ROS2 and ROS require different environments you will need a separate workspace for each ROS version. 下面是一个例子：
+由于 ROS2 和 ROS 环境变量的配置不同，你需要为每个 ROS 版本分配独立的工作空间。 下面是一个例子：
 
-1. For ROS2, create a workspace using:
+1. 对于 ROS2, 如下创建工作空间:
     
     ```sh
     mkdir -p ~/px4_ros_com_ros2/src
     ```
     
-    Then, clone the respective ROS2 (`master`) branch to the `/src` directory:
+    然后，把 ROS2 (`master`) 分支克隆到 `/src` 目录:
     
     ```sh
     $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com # 克隆 master 分支
     ```
 
-2. For ROS, follow exactly the same process, but create a different directory and clone a different branch:
+2. 对于 ROS, 遵循同样的流程, 但是要另建一个目录并克隆另一个分支:
     
     ```sh
     mkdir -p ~/px4_ros_com_ros1/src
     ```
     
-    Then, clone the respective ROS2 (`ros1`) branch to the `/src` directory:
+    然后，克隆 ROS2 (`ros1`) 分支到 `/src` 目录:
     
     ```sh
     $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com -b ros1 # 克隆 'ros1' 分支
     ```
 
-### Building the workspaces
+### 构建工作空间
 
 The directory `px4_ros_com/scripts` contains multiple scripts that can be used to build both workspaces.
 
