@@ -344,9 +344,9 @@ $ source clean_all.bash --ros1_ws_dir &lt;path/to/px4_ros_com_ros1/ws&gt;
 
 *fastrtpsgen* 脚本可以从 IDL 消息文件创建一个简单的 RTPS 应用。
 
-> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a *Fast RTPS* application to communicate with PX4.
+> **Note** RTPS 消息在 IDL 文件中定义并被 *fastrtpsgen* 编译成 C++ 代码。 作为桥接组件构建过程的一部分,自动为用于发送/接收的 uORB 消息文件生成了 IDL 文件 (见 **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl** 目录)。 当你创建一个 *Fast RTPS* 应用并与 PX4 通信时，这些 IDL 文件是必需的。
 
-Enter the following commands to create the application:
+输入以下命令来创建应用：
 
 ```sh
 cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
@@ -355,7 +355,7 @@ cd micrortps_listener
 fastrtpsgen -example x64Linux2.6gcc ../micrortps_agent/idl/sensor_combined_.idl
 ```
 
-This creates a basic subscriber and publisher, and a main-application to run them. To print out the data from the `sensor_combined` topic, modify the `onNewDataMessage()` method in **sensor_combined_Subscriber.cxx**:
+这段代码创建了一个基本的订阅器和广播器，和一个运行它们的主程序。 要打印来自 `sensor_combined` 主题的数据, 修改 **sensor_combined_Subscriber.cxx** 文件中的 `onNewDataMessage()` 方法。
 
 ```c++
 void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
@@ -394,14 +394,14 @@ void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
 }
 ```
 
-To build and run the application on Linux:
+要在Linux上构建并运行该应用：
 
 ```sh
 make -f makefile_x64Linux2.6gcc
 bin/*/sensor_combined_PublisherSubscriber subscriber
 ```
 
-Now you should see the sensor information being printed out:
+然后就可以看到打印出的传感器信息：
 
 ```sh
 Sample received, count=10119
@@ -419,9 +419,9 @@ baro_alt_meter: 368.647
 baro_temp_celcius: 43.93
 ```
 
-> **Note** If the *Listener application* does not print anything, make sure the *Client* is running.
+> **Note** 如果 *监听应用* 没有打印任何信息, 检查一下 *Client* 是不是没有运行。
 
-## Creating a ROS2 listener
+## 创建一个 ROS2 监听器
 
 With the `px4_ros_com` built successfully, one can now take advantage of the generated *micro-RTPS* agent app and also from the generated sources and headers of the ROS2 msgs, which represent a one-to-one matching with the uORB counterparts.
 
