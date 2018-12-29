@@ -328,21 +328,21 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws> --px4_firmwa
 
 在一次构建之后，如果想要再做一次干净的/新鲜的编译 (比如，你更改了一些代码然后想要一次 rebuild)，有些文件是必须要删除的。 不幸的是 *colcon* 目前无法自动清除 **build**, **install** 和 **log** 目录, 所以这三个目录必须被手动删除。
 
-**clean_all.bash** 脚本 (在 **px4_ros_com/scripts** 目录下) 可以帮你完成这个清理工作。 The most common way of using it is by passing it the ROS(1) workspace directory path (since it's usually not on the default path):
+**clean_all.bash** 脚本 (在 **px4_ros_com/scripts** 目录下) 可以帮你完成这个清理工作。 最常用的用法就是把 ROS(1) 的工作空间路径作为参数 (因为这个路径通常不是缺省路径)：
 
 ```sh
 $ source clean_all.bash --ros1_ws_dir &lt;path/to/px4_ros_com_ros1/ws&gt;
 ```
 
-To also delete the cloned `ros1_bridge` from the workspace, additionally pass the following argument: `--delete_ros1_bridge`.
+如果还要从工作空间中删除克隆的 `ros1_bridge` ，再加上参数 `--delete_ros1_bridge` 即可。
 
-## Creating a Fast RTPS Listener application
+## 创建一个 Fast RTPS 监听应用
 
-Once the *Client* (on the flight controller) and the *Agent* (on an offboard computer) are running and connected, *Fast RTPS* applications can publish and subscribe to uORB topics on PX4 using RTPS.
+一旦 *Client* (在飞行控制器上) 和 *Agent* (在一台 offboard 计算机上) 同时运行并且成功互联, *Fast RTPS* 应用就可以通过 RTPS 发布或订阅PX4 上的 uORB 消息。
 
-This example shows how to create a *Fast RTPS* "listener" application that subscribes to the `sensor_combined` topic and prints out updates (from PX4). A connected RTPS application can run on any computer on the same network as the *Agent*. For this example the *Agent* and *Listener application* will be on the same computer.
+下面这个例子演示了怎样创建一个订阅了 `sensor_combined` 主题并打印 (来自PX4) 的消息更新的 *Fast RTPS* "监听" 应用。 一个已连接的 RTPS 应用可以在与 *Agent* 同一网段的任何计算机上运行。 在这个例子中 *Agent* and *监听应用* 在同一台计算机上运行。
 
-The *fastrtpsgen* script can be used to generate a simple RTPS application from an IDL message file.
+*fastrtpsgen* 脚本可以从 IDL 消息文件创建一个简单的 RTPS 应用。
 
 > **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a *Fast RTPS* application to communicate with PX4.
 
