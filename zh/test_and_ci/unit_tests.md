@@ -1,6 +1,6 @@
 # 单元测试
 
-PX4 provides a simple base [Unittest-class](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h). Each developer is encouraged to write unit tests in the process of adding a new feature to the PX4 framework.
+PX4 提供了一个简单的基础 [Unittest-class](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h)。 鼓励每个开发人员在向 PX4 框架添加新功能的过程中编写单元测试。
 
 ## Writing a Test
 
