@@ -198,29 +198,29 @@ $ ./micrortps_agent [options]
 
 构建 `px4_ros_com` 之前，请先克隆 PX4 固件的代码仓库 (通常可以放置在 ROS 的工作空间目录下)。 然后在你的开发机上安装并配置 ROS2 和 ROS 的开发环境，并分别克隆 `px4_ros_com` 代码仓库的 `master` 分支和 `ros1` 分支 ([更多详情惨见上文](#px4_ros_com))。
 
-> **Note** Only the master branch is needed for ROS2 (both are needed to target ROS).
+> **Note** ROS2只需要master分支 (但ROS两个分支都需要)。
 
-### Installing ROS and ROS2 and respective dependencies
+### 分别安装 ROS 和 ROS2
 
-In order to install ROS Melodic and ROS2 Bouncy on a Ubuntu 18.04 machine, follow the links below, respectively:
+要在一台 Ubuntu 18.04 机器上安装 ROS Melodic 和 ROS2 Bouncy, 分别参考如下链接:
 
-1. [Install ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-2. [Install ROS2 Bouncy](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
-3. Install the following component to ensure that the package properly generates the IDL files (only required if one is using the ROS2 Bouncy release):
+1. [安装 ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
+2. [安装 ROS2 Bouncy](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
+3. 要正常地生成 IDL 文件还要安装以下组件 (仅 ROS2 Bouncy 发行版需要):
     
     ```sh
     sudo apt install ros-bouncy-rmw-opensplice-cpp
     ```
     
-    > **Note** The requirement for this package should soon be deprecated, as `rosidl_generate_dds_interfaces` CMake tools will be used to generate the required IDL files (instead of only using `rosidl_generate_interfaces`).
+    > **Note** 这个依赖项应该很快就不需要了, 因为 `rosidl_generate_dds_interfaces` CMake 工具将被用于生成 IDL 文件 (可以取代 `rosidl_generate_interfaces` 工具)。
     
-    The install process should also install the *colcon* build tools, but in case that doesn't happen, you can install the tools manually:
+    安装过程应该会自动安装 *colcon* 构建工具，万一没有，也可手动安装:
     
     ```sh
     sudo apt install python3-colcon-common-extensions
     ```
 
-4. *setuptools* must also be installed (using *pip* or *apt*):
+4. *setuptools*也必须被安装 (使用 *pip* 或 *apt*工具):
     
     ```sh
     sudo pip3 install -U setuptools
