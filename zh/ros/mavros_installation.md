@@ -14,7 +14,7 @@ MAVROS功能包可以用源代码或二进制方式安装。（这是ROS功能�
 
 ### 二进制安装 (Debian/Ubuntu)
 
-ROS 代码库有针对 Ubuntu x86、amd64 (x86\_64) 和 armhf (ARMv7) 的二进制安装包。 Kinetic also supports Debian Jessie amd64 and arm64 (ARMv8).
+ROS 代码库有针对 Ubuntu x86、amd64 (x86\_64) 和 armhf (ARMv7) 的二进制安装包。 Kinetic 同样支持 Debian Jessie amd64 和 arm64（ARMv8）。
 
 使用 ` apt-get` 进行安装:
 
