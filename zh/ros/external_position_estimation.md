@@ -9,13 +9,13 @@ VIO 和 MOCAP 都从“视觉”信息中确定飞机的 *pose* （位置和姿�
 
 任何类型系统的 Pose 数据都可用于更新基于 PX4 自动驾驶仪的局部位置估计（相对于本地源），也可以选择融合到飞机姿态估计中。
 
-This topic explains how to configure a PX4-based system to get data from MoCap/VIO systems (either via ROS or some other MAVLink system) and more specifically how to set up MoCap systems like VICON and Optitrack, and vision-based estimation systems like [ROVIO](https://github.com/ethz-asl/rovio), [SVO](https://github.com/uzh-rpg/rpg_svo) and [PTAM](https://github.com/ethz-asl/ethzasl_ptam)).
+本主题介绍如何配置基于 px4 的系统，以便从 MoCap/VIO 系统（通过 ROS 或其他 MAVLink 系统）获取数据，更具体地说明如何设置 MoCap 系统，如 VICON 和 Optitrack，以及基于视觉的估计系统（如 [ROVIO](https://github.com/ethz-asl/rovio)、[SVO](https://github.com/uzh-rpg/rpg_svo) 和 [PTAM](https://github.com/ethz-asl/ethzasl_ptam)）。
 
-> **Note** The instructions differ depending on whether you are using the EKF2 or LPE estimator.
+> **Note** 说明因您使用的是 EKF2 还是 LPE 估计器而异。
 
-## PX4 MAVLink Integration
+## PX4 MAVLink 集成
 
-PX4 uses the following MAVLink messages for getting external position information, and maps them to [uORB topics](http://dev.px4.io/en/middleware/uorb.html):
+PX4 使用以下 MAVLink 消息获取外部位置信息，并将其映射到 [uORB 主题](http://dev.px4.io/en/middleware/uorb.html)：
 
 | MAVLink                                                                                                                                                                  | uORB                      |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
@@ -24,9 +24,9 @@ PX4 uses the following MAVLink messages for getting external position informatio
 | [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP)                                                                                              | `vehicle_mocap_odometry`  |
 | [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_MOCAP_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_MOCAP_NED))   | `vehicle_mocap_odometry`  |
 
-EKF2 only subscribes to `vehicle_visual_odometry` topics and can hence only process the first two messages (a MoCap system must generate these messages to work with EKF2). The LPE estimator subscribes to both topics, and can hence process all the above messages.
+EKF2 只订阅 `vehicle_visual_odometry` 主题，因此只能处理前两个消息（MoCap 系统必须生成这些消息才能与 EKF2 配合使用）。 LPE 估计订阅所有主题，并且可以增强上面信息的所有进程。
 
-> **Tip** EFK2 is the default estimator used by PX4. It is better tested and supported than LPE, and should be used by preference.
+> **Tip** PX4 默认使用 EKF2 估计。 相比 LPE 得到更好的测试和支持，更得到推荐。
 
 The messages should be streamed at between 30Hz (if containing covariances) and 50 Hz.
 
