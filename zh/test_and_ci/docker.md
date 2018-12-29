@@ -22,11 +22,11 @@ sudo sh get-docker.sh
 默认安装要求您以 root 用户身份调用 * Docker*（即使用` sudo `）。 如果您希望 [use Docker as a non-root user](https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user)，您可以选择将用户添加到“docker”组，然后注销或者登陆：
 
 ```sh
-# Create docker group (may not be required)
+＃创建 docker 组（可能不是必需的）
 sudo groupadd docker
-# Add your user to the docker group.
-sudo usermod -aG docker $USER
-# Log in/out again before using docker!
+＃将您的用户添加到 docker 组。
+sudo usermod -aG docker $ USER
+＃在使用 docker 之前再次登录/注销！
 ```
 
 ## Container Hierarchy {#px4_containers}
