@@ -19,7 +19,7 @@ curl -fsSL get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-The default installation requires that you invoke *Docker* as the root user (i.e. using `sudo`). If you would like to [use Docker as a non-root user](https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user), you can optionally add the user to the "docker" group and then log out/in:
+默认安装要求您以 root 用户身份调用 * Docker*（即使用` sudo `）。 如果您希望 [use Docker as a non-root user](https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user)，您可以选择将用户添加到“docker”组，然后注销或者登陆：
 
 ```sh
 # Create docker group (may not be required)
