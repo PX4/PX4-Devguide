@@ -278,27 +278,27 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws> --px4_firmwa
 
 以下步骤将详述怎样 *手动* 构建这些程序包 (只是为了加深您的理解):
 
-1. `cd` 到 `px4_ros_com_ros2` 目录并 source 一下 ROS2 的环境变量。 Don't mind if it tells you that a previous workspace was set before:
+1. `cd` 到 `px4_ros_com_ros2` 目录并 source 一下 ROS2 的环境变量。 不用管是否提示您该工作空间已经设置过：
     
     ```sh
     source /opt/ros/bouncy/setup.bash
     ```
 
-2. Clone the `ros1_bridge` package so it can be built on the ROS2 workspace:
+2. 克隆 `ros1_bridge` 程序包到 ROS2 工作空间:
     
     ```sh
     git clone https://github.com/ros2/ros1_bridge.git ~/px4_ros_com_ros2/src/ros1_bridge
     ```
 
-3. Build the `px4_ros_com` package, excluding the `ros1_bridge` package:
+3. 构建 `px4_ros_com` 程序包, 并排除 `ros1_bridge` 程序包：
     
     ```sh
     colcon build --symlink-install --packages-skip ros1_bridge --event-handlers console_direct+
     ```
     
-    > **Note** `--event-handlers console_direct+` only serves the purpose of adding verbosity to the `colcon` build process and can be removed if one wants a more "quiet" build.
+    > **Note** `--event-handlers console_direct+` 参数只是为了让 `colcon` 将构建过程的详细信息打印出来，如果想要 "安静的" 构建过程，可以去掉该参数。
 
-4. Then, follows the process of building the ROS(1) packages side. For that, one requires to source the environments so when the `ros1_bridge` is built with support for any messages that are on PATH and have an associated mapping between ROS1 and ROS2:
+4. 然后，按照 ROS(1) 程序包的构建流程进行编译。 为此，您必须先 source 一下环境变量，使 `ros1_bridge` 在构建过程中能够在 PATH 变量下找到 ROS1 和 ROS2 所设置的路径：
     
     ```sh
     source /opt/ros/melodic/setup.bash
