@@ -19,7 +19,7 @@ PMSP 是一种 shell 脚本,它通过定期中断固件的执行来运行，便�
 
 下面提供了一个示例输出的屏幕截图（请注意，它在这里不是交互式的）：
 
-![FlameGraph Example](../../assets/flamegraph-example.png)
+![FlameGraph 实例](../../assets/flamegraph-example.png)
 
 在火焰图上，水平水平表示堆叠帧，而每个帧的宽度与采样次数成正比。 反过来，函数最终被采样的次数也与其执行的持续时间频率成正比。
 
@@ -41,7 +41,7 @@ FlameGraph 脚本必须驻留在 `PATH`，否则 PMSP 将拒绝启动。
 
 PMSP 使用 GDB 收集堆栈跟踪。 目前，它使用 `arm-none-eabi-gdb`，今后可能会添加其他工具链。
 
-为了能够映射内存地址到符号，脚本需要被当前运行的文件中提及。 可以通过帮助选项中的 `--elf=&lt;file&gt;` ，需要指派一个路径（与 root 的库相关） 到当前运行的 ELF来实现。
+为了能够映射内存地址到符号，脚本需要被当前运行的文件中提及。 这个是在 `--elf=&lt;file&gt;` 的选项帮助下完成的，该选项需要一个指向当前执行ELF位置的路径来执行（相对于储存库的root）。
 
 用法示例：
 
@@ -49,16 +49,16 @@ PMSP 使用 GDB 收集堆栈跟踪。 目前，它使用 `arm-none-eabi-gdb`，�
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000
 ```
 
-请注意，每次启动脚本都会覆盖旧堆栈。 Should you want to append to the old stacks rather than overwrite them, use the option `--append`:
+请注意，每次启动脚本都会覆盖旧堆栈。 如果你希望在后以前的栈后面追加而不是覆盖的话，使用选项 `--append`：
 
 ```bash
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000 --append
 ```
 
-As one might suspect, `--append` with `--nsamples=0` will instruct the script to only regenerate the SVG without accessing the target at all.
+正如人们可能会怀疑的那样，`--append` 带 `--nsamples=0` 将指示脚本只重新生成 SVG 而根本不访问目标。
 
-Please read the script for a more in depth understanding of how it works.
+请阅读脚本，以更深入地了解其工作原理。
 
 ## 鸣谢
 
-Credits for the idea belong to [Mark Callaghan and Domas Mituzas](https://dom.as/2009/02/15/poor-mans-contention-profiling/).
+该想法的功劳归属 [Mark Callaghan and Domas Mituzas](https://dom.as/2009/02/15/poor-mans-contention-profiling/)。
