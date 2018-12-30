@@ -41,15 +41,15 @@ FlameGraph 脚本必须驻留在 `PATH`，否则 PMSP 将拒绝启动。
 
 PMSP 使用 GDB 收集堆栈跟踪。 目前，它使用 `arm-none-eabi-gdb`，今后可能会添加其他工具链。
 
-In order to be able to map memory locations to symbols, the script needs to be referred to the executable file that is currently running on the target. This is done with the help of the option `--elf=<file>`, which expects a path (relative to the root of the repository) pointing to the location of the currently executing ELF.
+为了能够映射内存地址到符号，脚本需要被当前运行的文件中提及。 可以通过帮助选项中的 `--elf=&lt;file&gt;` ，需要指派一个路径（与 root 的库相关） 到当前运行的 ELF来实现。
 
-Usage example:
+用法示例：
 
 ```bash
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000
 ```
 
-Note that every launch of the script will overwrite the old stacks. Should you want to append to the old stacks rather than overwrite them, use the option `--append`:
+请注意，每次启动脚本都会覆盖旧堆栈。 Should you want to append to the old stacks rather than overwrite them, use the option `--append`:
 
 ```bash
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000 --append
