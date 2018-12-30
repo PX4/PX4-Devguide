@@ -35,7 +35,7 @@ PMSP 是一种 shell 脚本,它通过定期中断固件的执行来运行，便�
 
 ## 实现 {#implementation}
 
-该脚本位于 `Debug/poor-mans-profiler.sh`。 一旦启动，它将执行指定的时间间隔的样本数。 Collected samples will be stored in a text file in the system temp directory (typically `/tmp`). Once sampling is finished, the script will automatically invoke the stack folder, the output of which will be stored in an adjacent file in the temp directory. If the stacks were folded successfully, the script will invoke the *FlameGraph* script and store the result in an interactive SVG file. Please note that not all image viewers support interactive images; it is recommended to open the resulting SVG in a web browser.
+该脚本位于 `Debug/poor-mans-profiler.sh`。 一旦启动，它将执行指定的时间间隔的样本数。 收集采样会保存在系统临时文件夹的文本文件（典型如`tmp`）。 一旦采样完成，脚本会自动调用栈文件夹，将输出内容保存在 temp 文件夹下的文件中。 如果栈成功收集，脚本会调用 *FlameGraph* 脚本并且将结果保存在 SVG 文件。 Please note that not all image viewers support interactive images; it is recommended to open the resulting SVG in a web browser.
 
 The FlameGraph script must reside in the `PATH`, otherwise PMSP will refuse to launch.
 
