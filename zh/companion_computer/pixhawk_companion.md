@@ -23,7 +23,7 @@ Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只�
 * [MAVROS](../ros/mavros_installation.md) 与ros 节点通信
 * C/C++ example code </0 > 连接自定义代码</li> 
     
-    * [MAVProxy](http://mavproxy.org) 在串行和 udp 之间转换 mavlink</ul> 
+    * [MAVLink Router](https://github.com/intel/mavlink-router) (recommended) or [MAVProxy](http://mavproxy.org) to route MAVLink between serial and UDP</ul> 
     
     ## 硬件设置
     
