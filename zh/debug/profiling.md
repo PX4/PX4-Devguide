@@ -29,13 +29,13 @@ PMSP 是一种 shell 脚本,它通过定期中断固件的执行来运行，便�
 
 * 如果 GDB 出现故障，脚本可能无法检测到该问题，并继续运行。 在这种情况下，显然不会产生可用的堆栈。 为了避免这种情况，用户应定期检查文件 `/tmp/pmpn-gdberr.log`，其中包含最近调用 GDB 的 stderr 输出。 将来，应修改脚本以在安静模式下调用 GDB，在安静模式下，它将通过其退出代码指示问题。
 
-* Sometimes GDB just sticks forever while sampling the stack trace. During this failure, the target will be halted indefinitely. The solution is to manually abort the script and re-launch it again with the `--append` option. In the future the script should be modified to enforce a timeout for every GDB invocation.
+* 有时 GDB 一直运行，同时采样堆栈跟踪。 在此失败期间，目标将无限期停止。 解决方案是手动中止脚本，然后使用 `--append` 选项再次重新启动它。 将来，应修改脚本以对每次 GDB 调用强制执行超时。
 
-* Multithreaded environments are not supported. This does not affect single core embedded targets, since they always execute in one thread, but this limitation makes the profiler incompatible with many other applications. In the future the stack folder should be modified to support multiple stack traces per sample.
+* 不支持多线程环境。 这不会影响单个核心嵌入式目标，因为它们总是在一个线程中执行，但这一限制使探查器与许多其他应用程序不兼容。 将来，应修改堆栈文件夹以支持每个示例的多个堆栈跟踪。
 
-## Implementation {#implementation}
+## 实现 {#implementation}
 
-The script is located at `Debug/poor-mans-profiler.sh`. Once launched, it will perform the specified number of samples with the specified time interval. Collected samples will be stored in a text file in the system temp directory (typically `/tmp`). Once sampling is finished, the script will automatically invoke the stack folder, the output of which will be stored in an adjacent file in the temp directory. If the stacks were folded successfully, the script will invoke the *FlameGraph* script and store the result in an interactive SVG file. Please note that not all image viewers support interactive images; it is recommended to open the resulting SVG in a web browser.
+该脚本位于 `Debug/poor-mans-profiler.sh`。 一旦启动，它将执行指定的时间间隔的样本数。 Collected samples will be stored in a text file in the system temp directory (typically `/tmp`). Once sampling is finished, the script will automatically invoke the stack folder, the output of which will be stored in an adjacent file in the temp directory. If the stacks were folded successfully, the script will invoke the *FlameGraph* script and store the result in an interactive SVG file. Please note that not all image viewers support interactive images; it is recommended to open the resulting SVG in a web browser.
 
 The FlameGraph script must reside in the `PATH`, otherwise PMSP will refuse to launch.
 
