@@ -8,16 +8,16 @@ PMSP 是一种 shell 脚本,它通过定期中断固件的执行来运行，便�
 
 ## 基本用法
 
-Basic usage of the profiler is available through the build system. For example, the following command builds and profiles px4_fmu-v4pro target with 10000 samples (fetching *FlameGraph* and adding it to the path as needed).
+探查器的基本用法可通过生成系统使用。 例如，下面的命令生成和探查出 px4_fmu-v4pro 目标的10000个样本（提取 *FlameGraph* 并根据需要将其添加到路径中）。
 
     make px4_fmu-v4pro_default profile
     
 
-For more control over the build process, including setting the number of samples, see the [Implementation](#implementation).
+有关对生成过程的更多控制，包括设置样本数，请参阅 [Implementation](#implementation)。
 
 ## 理解输出
 
-A screenshot of an example output is provided below (note that it is not interactive here):
+下面提供了一个示例输出的屏幕截图（请注意，它在这里不是交互式的）：
 
 ![FlameGraph Example](../../assets/flamegraph-example.png)
 
