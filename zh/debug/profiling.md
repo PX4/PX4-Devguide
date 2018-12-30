@@ -35,11 +35,11 @@ PMSP 是一种 shell 脚本,它通过定期中断固件的执行来运行，便�
 
 ## 实现 {#implementation}
 
-该脚本位于 `Debug/poor-mans-profiler.sh`。 一旦启动，它将执行指定的时间间隔的样本数。 收集采样会保存在系统临时文件夹的文本文件（典型如`tmp`）。 一旦采样完成，脚本会自动调用栈文件夹，将输出内容保存在 temp 文件夹下的文件中。 如果栈成功收集，脚本会调用 *FlameGraph* 脚本并且将结果保存在 SVG 文件。 Please note that not all image viewers support interactive images; it is recommended to open the resulting SVG in a web browser.
+该脚本位于 `Debug/poor-mans-profiler.sh`。 一旦启动，它将执行指定的时间间隔的样本数。 收集采样会保存在系统临时文件夹的文本文件（典型如`tmp`）。 一旦采样完成，脚本会自动调用栈文件夹，将输出内容保存在 temp 文件夹下的文件中。 如果栈成功收集，脚本会调用 *FlameGraph* 脚本并且将结果保存在 SVG 文件。 请注意，不是所有的镜像工具都支持：推荐使用网页浏览器打开 SVG 文件。
 
-The FlameGraph script must reside in the `PATH`, otherwise PMSP will refuse to launch.
+FlameGraph 脚本必须驻留在 `PATH`，否则 PMSP 将拒绝启动。
 
-PMSP 使用 GDB 收集堆栈跟踪。 Currently it uses `arm-none-eabi-gdb`, other toolchains may be added in the future.
+PMSP 使用 GDB 收集堆栈跟踪。 目前，它使用 `arm-none-eabi-gdb`，今后可能会添加其他工具链。
 
 In order to be able to map memory locations to symbols, the script needs to be referred to the executable file that is currently running on the target. This is done with the help of the option `--elf=<file>`, which expects a path (relative to the root of the repository) pointing to the location of the currently executing ELF.
 
