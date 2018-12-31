@@ -26,6 +26,6 @@ yum install openocd libftdi-devel libftdi-python python-argparse flex bison-deve
 
 ## GCC 工具链安装
 
-<!-- import GCC toolchain common documentation --> {% include "_gcc_toolchain_installation.txt" %}
+<!-- import GCC toolchain common documentation --> {% include "_gcc_toolchain_installation.md" %}
 
-<!-- import docs ninja build system --> {% include "_ninja_build_system.txt" %}
+<!-- import docs ninja build system --> {% include "_ninja_build_system.md" %}
