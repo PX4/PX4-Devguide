@@ -88,7 +88,7 @@ sudo -H pip install pandas jinja2 pyserial cerberus
     sudo -H pip install pyulog
     
 
-<!-- import docs ninja build system --> {% include "_ninja_build_system.txt" %}
+<!-- import docs ninja build system --> {% include "_ninja_build_system.md" %}
 
 ## FastRTPS 安装
 
@@ -238,7 +238,7 @@ sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi g
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 
-<!-- import GCC toolchain common documentation --> {% include "_gcc_toolchain_installation.txt" %}
+<!-- import GCC toolchain common documentation --> {% include "_gcc_toolchain_installation.md" %}
 
 ## 高通骁龙飞控（Snapdragon Flight）
 
