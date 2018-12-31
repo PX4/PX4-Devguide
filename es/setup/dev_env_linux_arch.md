@@ -72,4 +72,4 @@ Un compilador GCC es requerido para compilar objetivos NuttX. Introduzca los sig
 
 <!-- import GCC toolchain common documentation -->
 
-{% include "_gcc_toolchain_installation.txt" %}
+{% include "_gcc_toolchain_installation.md" %}
