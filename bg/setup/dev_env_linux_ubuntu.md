@@ -88,7 +88,7 @@ You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). Thi
     sudo -H pip install pyulog
     
 
-<!-- import docs ninja build system --> {% include "_ninja_build_system.txt" %}
+<!-- import docs ninja build system --> {% include "_ninja_build_system.md" %}
 
 ## FastRTPS installation
 
@@ -238,7 +238,7 @@ sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi g
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 
-<!-- import GCC toolchain common documentation --> {% include "_gcc_toolchain_installation.txt" %}
+<!-- import GCC toolchain common documentation --> {% include "_gcc_toolchain_installation.md" %}
 
 ## Snapdragon Flight
 
