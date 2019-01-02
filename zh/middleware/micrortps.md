@@ -686,28 +686,28 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
     sudo usermod -a -G dialout pi
     ```
 
-2. For the Raspberry Pi in particular, you need to stop the GPIO serial console that is using the port:
+2. 特别针对树莓派，你需要关闭使用该端口的GPIO串行控制台：
     
     ```sh
     sudo raspi-config
     ```
     
-    In the menu showed go to **Interfacing options > Serial**. Select **NO** for *Would you like a login shell to be accessible over serial?*. Valid and reboot.
+    在显示的菜单中进入 **Interfacing options > Serial** 选项。 为 *Would you like a login shell to be accessible over serial?* 选择 **NO** 。 重启使之生效。
 
-3. Check UART in kernel:
+3. 在内核中查看UART：
     
     ```sh
     sudo vi /boot/config.txt
     ```
     
-    And make sure that the `enable_uart` value is set to 1:
+    确保 `enable_uart` 被设置为 1：
     
     ```txt
     enable_uart=1
     ```
 
-## Additional information
+## 更多信息
 
 * [FastRTPS 安装](../setup/fast-rtps-installation.md)
-* [Manually Generate Client and Agent Code](micrortps_manual_code_generation.md)
-* [DDS and ROS middleware implementations](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
+* [手动生成客户端和代理端代码](micrortps_manual_code_generation.md)
+* [DDS 和 ROS 中间件的实现](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
