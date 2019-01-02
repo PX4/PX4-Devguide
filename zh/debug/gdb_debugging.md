@@ -69,16 +69,16 @@ env LD_PRELOAD=/usr/lib/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-con
 google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
-这会生成一个带堆分配示意图的 Pdf。 图中的数字回一直是0，因为单位是 MB。 可以看百分比。 They show the live memory (of the node and the subtree), meaning the memory that was still in use at the end.
+这会生成一个带堆分配示意图的 Pdf。 图中的数字会一直是0，因为单位是 MB。 可以看百分比。 这显示出（节点及子树的）活动内存，意味着最终内存依然在使用。
 
-See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html) for more information.
+更多详情参见 [gperftools 文档](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html)。
 
-## Debugging Hard Faults in NuttX
+## 调试 Nuttx 的硬件故障
 
-A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted. A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
+硬件故障是当操作系统检测不到有效说明而导致的终止运行。 这是一个内存关键区域被损坏而导致错误的典型案例。 比如典型的情况是：错误的内存访问已破坏了堆栈，并且处理器看到内存中的地址不是微处理器 RAM 的有效地址。
 
-* NuttX maintains two stacks: The IRQ stack for interrupt processing and the user stack
-* The stack grows downward. So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
+* Nuttx 维护两个堆栈：用于中断处理的 IRQ 堆栈和用户堆栈
+* 堆栈向下增长。 So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
 
 ```bash
 Assertion failed at file:armv7-m/up_hardfault.c line: 184 task: ekf_att_pos_estimator
