@@ -654,7 +654,7 @@ int main(int argc, char *argv[])
 
 ### 客户端报告串口已被占用
 
-If the selected UART port is busy, it's possible that the MAVLink application is already being used. If both MAVLink and RTPS connections are required you will have to either move the connection to use another port or configure the port so that it can be shared. <!-- https://github.com/PX4/Devguide/issues/233 -->
+如果被选串口已被占用，可能是MAVLink应用已经在运行。 如果MAVLink和RTPS连接需要同时运行，你必须为RTPS连接指定另一个端口或者将这个端口配置为可以共享。 <!-- https://github.com/PX4/Devguide/issues/233 -->
 
 > **Tip** A quick/temporary fix to allow bridge testing during development is to stop MAVLink from *NuttShell*: 
 > 
