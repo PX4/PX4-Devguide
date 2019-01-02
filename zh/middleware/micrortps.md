@@ -648,11 +648,11 @@ int main(int argc, char *argv[])
     $ sensor_combined_listener # or ros2 run px4_ros_com sensor_combined_listener
     ```
 
-And it should also get data being printed to the console output.
+也会有数据被打印到控制台输出。
 
-## Troubleshooting
+## 故障处理
 
-### Client reports that selected UART port is busy
+### 客户端报告串口已被占用
 
 If the selected UART port is busy, it's possible that the MAVLink application is already being used. If both MAVLink and RTPS connections are required you will have to either move the connection to use another port or configure the port so that it can be shared. <!-- https://github.com/PX4/Devguide/issues/233 -->
 
