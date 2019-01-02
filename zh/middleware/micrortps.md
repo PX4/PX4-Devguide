@@ -652,34 +652,34 @@ int main(int argc, char *argv[])
 
 ## 故障处理
 
-### 客户端报告串口已被占用
+### Client reports that selected UART port is busy
 
-如果被选串口已被占用，可能是MAVLink应用已经在运行。 如果MAVLink和RTPS连接需要同时运行，你必须为RTPS连接指定另一个端口或者将这个端口配置为可以共享。 <!-- https://github.com/PX4/Devguide/issues/233 -->
+如果所选串口已被占用，可能是MAVLink应用已经在运行。 如果MAVLink和RTPS连接需要同时运行，你必须为RTPS连接指定另一个端口或者将这个端口配置为可以共享。 <!-- https://github.com/PX4/Devguide/issues/233 -->
 
-> **Tip** A quick/temporary fix to allow bridge testing during development is to stop MAVLink from *NuttShell*: 
+> **Tip** 在开发过程中最好的即刻/临时的补救措施就是从 *NuttShell* 关闭MAVLink： 
 > 
 >     sh
 >       mavlink stop-all
 
 ### Agent not built/fastrtpsgen is not found
 
-The *Agent* code is generated using a *Fast RTPS* tool called *fastrtpsgen*.
+*Agent*代码是由一个叫做 *fastrtpsgen* 的 *Fast RTPS* 工具生成的。
 
-If you haven't installed Fast RTPS in the default path then you must specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
+如果你没有将 Fast RTPS 安装到默认路径，那就必须在执行 *make*之前，将环境变量 `FASTRTPSGEN_DIR` 设置为你的安装路径。
 
-On Linux/Mac this is done as shown below:
+在 Linux/Mac 平台上可以这样：
 
 ```sh
 export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 ```
 
-> **Note** This should not be a problem if [Fast RTPS is installed in the default location](../setup/fast-rtps-installation.md).
+> **Note** 如果 [Fast RTPS 安装在默认路径](../setup/fast-rtps-installation.md) 就不会发生此类问题。
 
 ### Enable UART on an OBC (onboard computer)
 
-For UART transport on a Raspberry Pi or any other OBC you will have to enable the serial port:
+要在树莓派或其它OBC上使用UART传输，你必须首先使能所有串口：
 
-1. Make sure the `userid` (default is pi on a Raspberry Pi) is a member of the `dialout` group:
+1. 确保 `userid` (在树莓派上默认用户是 pi) 是 `dialout` 用户组的成员：
     
     ```sh
     groups pi
