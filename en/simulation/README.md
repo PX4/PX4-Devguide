@@ -140,7 +140,7 @@ The simulated camera is a gazebo plugin that implements the [MAVLink Camera Prot
 
 The same approach can be used by other simulators to implement camera support.
 
-## Running Simulation On The Remote Server 
+## Running Simulation on the Remote Server 
 
 As had been mentioned at the beginning the simulation environment can be run on multiple computers on the same network. Unfortunately, it is a slightly complicated situation, because of the out of box configuration of Ubuntu computer does not broadcast the PX4 UDP packets to external interfaces and packets are routed internally by default. 
 A solution is to modify system routes to broadcast UDP packets to the network or use a tunnel to connect computers together. 
