@@ -563,21 +563,21 @@ int main(int argc, char *argv[])
 
 ## 与ROS无关的应用程序的示例/测试
 
-The following examples provide additional real-world demonstrations of how to use the features described in this topic.
+下面是PX4-FastRTPS桥接在实际应用中的更多示例。
 
-* [Throughput test](../middleware/micrortps_throughput_test.md): A simple test to measure the throughput of the bridge.
+* [吞吐量测试](../middleware/micrortps_throughput_test.md): 一个测试PX4-FastRTPS桥接吞吐量的简单示例。
 
-## Testing the PX4-FastRPTS bridge with ROS2 and ROS
+## PX4-FastRPTS桥接与 ROS2 和 ROS 的联合测试
 
-To quickly test the package (using PX4 SITL with Gazebo):
+快速测试该模块的流程如下 (使用 PX4 SITL 和 Gazebo)：
 
-1. Start PX4 SITL with Gazebo using:
+1. 启动 PX4 SITL 和 Gazebo：
     
     ```sh
     make px4_sitl_rtps gazebo
     ```
 
-2. On one terminal, source the ROS2 environment and workspace and launch the `ros1_bridge` (this allows ROS2 and ROS nodes to communicate with each other). Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
+2. 在一个终端里，source 一下 ROS2 工作空间的环境变量，然后启动 `ros1_bridge` (这样 ROS2 和 ROS 节点就可以互相通信了)。 Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
     
     ```sh
     $ source /opt/ros/ardent/setup.bash
