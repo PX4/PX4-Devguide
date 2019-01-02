@@ -495,9 +495,9 @@ int main(int argc, char *argv[])
 
 ## 创建一个ROS2广播器
 
-A ROS2 advertiser node publishes data into the DDS/RTPS network (and hence to PX4).
+ROS2 广播器节点将数据发布到 DDS/RTPS 网络 (再转发至 PX4)。
 
-Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/listeners`:
+以 `px4_ros_com/src/listeners` 目录下的 `debug_vect_advertiser.cpp` 为例：
 
 ```c++
 #include <chrono>
@@ -507,7 +507,7 @@ Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/list
 using namespace std::chrono_literals;
 ```
 
-Bring in the required headers, including the `debug_vect` msg header.
+包含必要的头文件，包括 `debug_vect` 消息头文件。
 
 ```c++
 class DebugVectAdvertiser : public rclcpp::Node
