@@ -78,7 +78,7 @@ google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > 
 硬件故障是当操作系统检测不到有效说明而导致的终止运行。 这是一个内存关键区域被损坏而导致错误的典型案例。 比如典型的情况是：错误的内存访问已破坏了堆栈，并且处理器看到内存中的地址不是微处理器 RAM 的有效地址。
 
 * Nuttx 维护两个堆栈：用于中断处理的 IRQ 堆栈和用户堆栈
-* 堆栈向下增长。 So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
+* 堆栈向下增长。 所以下面示例中的最高地址是 0x20021060，大小为 0x11f4 （4596 字节），因而最低地址为0x2001f6c。
 
 ```bash
 Assertion failed at file:armv7-m/up_hardfault.c line: 184 task: ekf_att_pos_estimator
@@ -127,13 +127,13 @@ xPSR: 61000000 BASEPRI: 00000000 CONTROL: 00000000
 EXC_RETURN: ffffffe9
 ```
 
-To decode the hard fault, load the *exact* binary into the debugger:
+要解码硬件故障，需要加载 *exact* 二进制文件到调试器中。
 
 ```bash
 arm-none-eabi-gdb build/px4_fmu-v2_default/px4_fmu-v2_default.elf
 ```
 
-Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
+然后在 GDB 提示中，从 R8 中的最后一个指令开始，从闪存中的第一个地址开始（因为它以 `0x080` 开头，第一个地址 `0x0808439f`）。 执行从左到右。 因此，硬件故障之前的最后一步是当 ```mavlink_log.c``` 尝试 publish 消息时
 
 ```gdb
 (gdb) info line *0x0808439f
