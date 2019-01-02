@@ -514,7 +514,7 @@ class DebugVectAdvertiser : public rclcpp::Node
 {
 ```
 
-The above creates a `DebugVectAdvertiser` class that subclasses the generic `rclcpp::Node` base class.
+上面这行代码创建了一个 `DebugVectAdvertiser` 类，继承自 `rclcpp::Node` 基类。
 
 ```c++
 public:
@@ -540,7 +540,7 @@ private:
 };
 ```
 
-This creates a function for when messages are to be sent. The messages are sent based on a timed callback, which sends two messages per second based on a timer.
+这段代码创建了一个用来发送消息的回调函数。 发送消息的回调函数由定时器触发的，每秒钟发送两次消息。
 
 ```c++
 int main(int argc, char *argv[])
@@ -555,13 +555,13 @@ int main(int argc, char *argv[])
 }
 ```
 
-The instantiation of the `DebugVectAdvertiser` class as a ROS node is done on the `main` function.
+这段代码在 `main` 函数中将 `DebugVectAdvertiser` 类实例化成一个ROS节点。
 
-## Creating a ROS listener
+## 创建一个ROS监听器
 
-The creation of ROS nodes is a well known and documented process. An example of a ROS listener for `sensor_combined` messages can be found in the `ros1` branch repo, under `px4_ros_com/src/listeners`.
+创建ROS节点的方法有详细的文档供参考，不在赘述。 在 `ros1` 分支的代码的 `px4_ros_com/src/listeners` 目录下，有一个关于 `sensor_combined` 消息的ROS 监听器的例子。
 
-## Examples/tests of ROS-independent apps
+## 与ROS无关的应用程序的示例/测试
 
 The following examples provide additional real-world demonstrations of how to use the features described in this topic.
 
