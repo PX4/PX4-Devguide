@@ -106,10 +106,8 @@ tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
 > **Note** 在下面的行中，我们编译 FastCDR 和 FastRTPS 库，`make` 命令将发出 `-j2` 选项。 此选项定义用于编译源代码的并行线程 （或 `j` 线程）的数量。 将 `-j2` 更改为 `-j<number_of_cpu_cores_in_your_system>` 以加快库的编译。
 
 ```sh
-cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
-cd ..
-cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
-cd ..
+(cd eProsima_FastCDR-1.0.7-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
+(cd eProsima_FastRTPS-1.5.0-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
 rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
 ```
 
