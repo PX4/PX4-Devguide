@@ -65,7 +65,7 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 ## 默认 PX4 MAVLink UDP 端口
 
-默认情况下，PX4通常使用建立的 UDP 端口与地面控制站（例如*QGroundControl*），外部 API（例如DroneCore，MAVROS）和仿真器 APIs（例如 Gazebo）进行 MAVLink 通信。 这些端口是：
+By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. Dronecode SDK, MAVROS) and simulator APIs (e.g. Gazebo). 这些端口是：
 
 * 端口** 14540 **用于与外接 APIs 通信。 期望外接 APIs 监听此端口上的连接。
 * 端口** 14550 **用于与地面控制站通信。 期望 GCS 将侦听此端口上的连接。 *QGroundControl*默认侦听此端口。
@@ -78,7 +78,7 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 下面显示了适用于任何受支持仿真器的典型 SITL 仿真环境。 系统的不同部分通过 UDP 连接，并且可以在同一台计算机上运行，也可以在同一网络上的另一台计算机上运行。
 
 * PX4 使用一个特定仿真的模块来侦听 UDP 端口 14560。 模拟器连接到此端口，然后使用上面描述的 [Simulator mavlink API](#simulator-mavlink-api) 交换信息。 SITL 和模拟器上的 PX4 可以在同一台计算机上运行，也可以在同一网络上运行不同的计算机。
-* PX4 使用普通的 MAVlink 模块连接到地面站（在 14550 号端口上侦听）和外部开发人员 APIs， 如 DroneCore 或 ROS （在 14550 端口侦听）。
+* PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like Dronecode SDK or ROS (which listen on port 14540).
 * 串行连接用于通过 *QGroundControl* 连接 Joystick/Gamepad 硬件。
 
 ![PX4 SITL 概述](../../assets/simulation/px4_sitl_overview.png)
