@@ -106,10 +106,8 @@ tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
 > **Nota** En las siguientes líneas donde compilamos las librerías FastCDR y FastRTPS, el comando `make` es ejecutado con la opción `-j2`. Esta opción define el número de hilos paralelos (o `j`obs) que son usados para compilar el código fuente. Cambia `-j2` a `-j<number_of_cpu_cores_in_your_system>` para acelerar la compilación de las librerías.
 
 ```sh
-cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
-cd ..
-cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
-cd ..
+(cd eProsima_FastCDR-1.0.7-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
+(cd eProsima_FastRTPS-1.5.0-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
 rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
 ```
 
