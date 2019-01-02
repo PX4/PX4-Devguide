@@ -1,10 +1,10 @@
-# PX4 Reference Flight Controller Design
+# PX4 参考飞行控制器设计
 
-The PX4 reference design is the [Pixhawk series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) of flight controllers. First released in 2011, this design is now in its 5th [generation](#reference_design_generations) (with the 6th generation board design in progress).
+PX4 参考设计是飞行控制器的 [Pixhawk 系列 ](https://docs.px4.io/en/flight_controller/pixhawk_series.html)。 该设计于2011年首次发布，现已进入第5 [代](#reference_design_generations)（第六代电路板设计正在进行中）。
 
-## Binary Compatibility
+## 二进制兼容性
 
-All boards manufactured to a particular design are expected to be binary compatible (i.e. can run the same firmware). From 2018 we will offer a binary compatibility test suite that will allow us to verify and certify this compatibility.
+所有按照特定设计制造的主板预计与二进制兼容（即可以运行相同的固件）。 从2018年起，我们将提供一个二进制兼容性测试套件，使我们能够验证兼容性。
 
 FMU generations 1-3 were designed as open hardware, while FMU generations 4 and 5 provided only pinout and power supply specifications (schematics were created by individual manufacturers). In order to better ensure compatibility, FMUv6 and onward will return to a complete reference design model.
 
