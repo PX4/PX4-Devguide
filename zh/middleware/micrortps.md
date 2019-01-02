@@ -577,7 +577,7 @@ int main(int argc, char *argv[])
     make px4_sitl_rtps gazebo
     ```
 
-2. 在一个终端里，source 一下 ROS2 工作空间的环境变量，然后启动 `ros1_bridge` (这样 ROS2 和 ROS 节点就可以互相通信了)。 Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
+2. 在一个终端里，source 一下 ROS2 工作空间的环境变量，然后启动 `ros1_bridge` (这样 ROS2 和 ROS 节点就可以互相通信了)。 还要将 `ROS_MASTER_URI` 设置为 `roscore` 正在/即将运行的IP。
     
     ```sh
     $ source /opt/ros/ardent/setup.bash
@@ -586,27 +586,27 @@ int main(int argc, char *argv[])
     $ ros2 run ros1_bridge dynamic_bridge
     ```
 
-3. On another terminal, source the ROS workspace and launch the `sensor_combined` listener node. Since you are launching through `roslaunch`, this will also automatically start the `roscore`:
+3. 在另一个终端里，source 一下 ROS 工作空间的环境变量，然后启动 `sensor_combined` 监听器节点。 使用 `roslaunch` 启动应用程序时，首先会自动启动 `roscore` ：
     
     ```sh
     $ source ~/px4_ros_com_ros1/install/setup.bash
     $ roslaunch px4_ros_com sensor_combined_listener.launch
     ```
 
-4. On a terminal, source the ROS2 workspace and then start the `micrortps_agent` daemon with UDP as the transport protocol:
+4. 在一个终端里，source 一下 ROS2 工作空间的环境变量，然后启动 `micrortps_agent` 守护程序并使用UDP传输协议：
     
     ```sh
     $ source ~/px4_ros_com_ros2/install/setup.bash
     $ micrortps_agent -t UDP
     ```
 
-5. On the [NuttShell/System Console](../debug/system_console.md), start the `micrortps_client` daemon also in UDP:
+5. 在 [NuttShell/System 控制台](../debug/system_console.md) 里， 启动 `micrortps_client` 守护进程，也使用UDP协议：
     
     ```sh
     > micrortps_client start -t UDP
     ```
     
-    Now you will be able to see the data being printed on the terminal/console where you launched the ROS listener:
+    现在启动 ROS 监听器，你就可以在终端/控制台上看到数据被打印出来：
     
     ```sh
     RECEIVED DATA FROM SENSOR COMBINED
@@ -624,7 +624,7 @@ int main(int argc, char *argv[])
     Publishing back...
     ```
     
-    You can also verify the rate of the message using `rostopic hz`. For the case of `sensor_combined`:
+    你还可以使用 `rostopic hz` 命令来检查消息的发送频率。 例如 `sensor_combined` 消息：
     
     ```sh
     average rate: 248.187
@@ -641,7 +641,7 @@ int main(int argc, char *argv[])
     min: 0.000s max: 0.012s std dev: 0.00148s window: 3960
     ```
 
-6. You can also test the `sensor_combined` ROS2 listener by typing in a terminal:
+6. 在一个终端里，你也可以使用以下命令来测试 `sensor_combined` ROS2 监听器：
     
     ```sh
     $ source ~/px4_ros_com_ros2/install/setup.bash
