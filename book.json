@@ -1,24 +1,24 @@
 {
     "gitbook": ">= 3.2.2",
-    "title": "PX4 Developer Guide",
+    "title": "PX4 v1.8.2 Developer Guide",
     "variables": {
         "logo": "./assets/site/logo_pro_small.png"
     },
     "plugins": [
         "youtube",
-        "richquotes",
+        "richquotes@git+https://github.com/Dronecode/gitbook-plugin-richquotes.git",
         "collapsible-menu",
-        "-anchors",
+        "anchors",
         "page-toc-button",
-        "mermaid",
-        "-mermaid-2",
         "ga",
         "language-picker",
         "custom-favicon",
         "bulk-redirect@git+https://github.com/Dronecode/gitbook-plugin-bulk-redirect.git",
         "toolbar@git+https://github.com/hamishwillee/gitbook-plugin-toolbar.git",
         "validate-links",
+        "versions",
         "mathjax@git+https://github.com/Dronecode/plugin-mathjax.git#update_cdn",
+        "mermaid",
         "-stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git",
         "theme-dronecode@git+https://github.com/dronecode/theme-dronecode.git"
 
@@ -37,9 +37,6 @@
         "ga": {
             "token": "UA-33658859-3"
         },
-        "language-redirect": {
-            "baseurl": "https://dev.px4.io/"
-        },
         "favicon": "favicon.ico",
         "bulk-redirect": {
             "basepath": "/",
@@ -52,7 +49,7 @@
                     "label": "Bug tracker",
                     "icon": "fa fa-bug",
                     "position" : "left",
-                    "url": "https://github.com/PX4/Devguide/issues/new?title=Doc+Bug:+{{title}}&body=DESCRIBE+PROBLEM+WITH+DOCS+HERE%0A%0ABug+Page:+[{{title}}]({{url}})"
+                    "url": "https://github.com/PX4/Devguide/issues/new?title=Doc+Bugv1.8.2:+{{title}}&body=DESCRIBE+PROBLEM+WITH+DOCS+HERE%0A%0ABug+Page:+[{{title}}]({{url}})"
                     
                 },
                 {
@@ -66,6 +63,11 @@
                     "position" : "left",
                     "url": "https://github.com/PX4/Devguide/edit/master/{{filepath_lang}}"
                 }
+            ]
+        },
+        
+        "versions": {
+            "gitbookConfigURL": "https://raw.githubusercontent.com/PX4/Devguide/master/book.json"
             ]
         }
         
