@@ -78,7 +78,7 @@ sudo ./Tools/docker_run.sh 'make px4_sitl_default'
 
 ### 手动调用 Docker {#manual_start}
 
-The syntax of a typical command is shown below. This runs a Docker container that has support for X forwarding (makes the simulation GUI available from inside the container). It maps the directory `<host_src>` from your computer to `<container_src>` inside the container and forwards the UDP port needed to connect *QGroundControl*. With the `-–privileged` option it will automatically have access to the devices on your host (e.g. a joystick and GPU). If you connect/disconnect a device you have to restart the container.
+典型命令的语法如下所示。 这将运行一个支持 X 指令的 Docker 容器（使容器内部的模拟 GUI 可用）。 它将目录 `&lt;host_src&gt;`from your computer to`&lt;container_src&gt;` 容器内，并转发连接 *QGroundControl* 所需的 UDP 端口。 使用 `-–privileged` 选项，它将自动访问主机上的设备（例如操纵杆和 GPU）。 If you connect/disconnect a device you have to restart the container.
 
 ```sh
 # enable access to xhost from the container
