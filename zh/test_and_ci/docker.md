@@ -225,4 +225,4 @@ docker ps
 
 ## 旧版
 
-ROS多平台容器不再维护：https：//github.com/PX4/containers/tree/master/docker/ros-indigo
+ROS 多平台容器不再维护：https://github.com/PX4/containers/tree/master/docker/ros-indigo
