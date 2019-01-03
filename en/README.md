@@ -1,4 +1,4 @@
-# PX4 Development Guide
+# PX4 Development Guide (v1.8.0)
 
 [![Release 1.8.0](https://img.shields.io/badge/release-v1.8.0-blue.svg)](https://github.com/PX4/Firmware/releases/tag/v1.8.0) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
