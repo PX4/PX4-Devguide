@@ -74,9 +74,9 @@ sudo ./Tools/docker_run.sh 'make px4_sitl_default'
     sudo ./Tools/docker_run.sh 'bash'
     
 
-> **Tip** 脚本很简单，因为您不需要了解 *Docker* 或者考虑使用哪个容器。 However it is not particularly robust! The manual approach discussed in the [section below](#manual_start) is more flexible and should be used if you have any problems with the script.
+> **Tip** 脚本很简单，因为您不需要了解 *Docker* 或者考虑使用哪个容器。 但它不是特别准确！ 下面讨论的 [section below](#manual_start) 方法更灵活，如果您对脚本有任何问题，应该使用它。
 
-### Calling Docker Manually {#manual_start}
+### 手动调用 Docker {#manual_start}
 
 The syntax of a typical command is shown below. This runs a Docker container that has support for X forwarding (makes the simulation GUI available from inside the container). It maps the directory `<host_src>` from your computer to `<container_src>` inside the container and forwards the UDP port needed to connect *QGroundControl*. With the `-–privileged` option it will automatically have access to the devices on your host (e.g. a joystick and GPU). If you connect/disconnect a device you have to restart the container.
 
