@@ -85,7 +85,7 @@ IDL files are generated from the uORB **.msg** files ([for selected uORB topics]
 
 > **Note** IDL files are compiled to C++ by the *fastrtpsgen* tool.
 
-## Verify code generation
+## 代码生成验证
 
 You can verify successful code generation by checking that the output directories match the listing shown below (On Linux, the `tree` command can be used for listing the file structure).
 
