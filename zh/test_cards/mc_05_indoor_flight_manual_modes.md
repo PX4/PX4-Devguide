@@ -1,8 +1,8 @@
-# Test MC_05 - Indoor Flight (Manual Modes)
+# 测试 MC_05-室内飞行（手动模式）
 
-## When to Use This Test Card
+## 何时使用此测试卡
 
-* New build maiden flight
+* 新建初次飞行
 * When required to replicate an issue in a confined area
 * Experimental builds that might have stability issues
 * Testing hardware that has been replaced and/or modified
