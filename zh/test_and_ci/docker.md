@@ -190,15 +190,15 @@ libGL error: failed to load driver: swrast
 
 测试以下配置：
 
-* OS X with VMWare Fusion and Ubuntu 14.04 (Docker container with GUI support on Parallels make the X-Server crash).
+* OS X 与 VMWare Fusion 和 Ubuntu 14.04（Parallels 上支持 GUI 的 Docker 容器使 X-Server 崩溃）。
 
-**Memory**
+**内存**
 
-Use at least 4GB memory for the virtual machine.
+为虚拟机使用至少 4GB 内存。
 
-**Compilation problems**
+**编译方案**
 
-If compilation fails with errors like this:
+如果编译失败，则出现以下错误：
 
 ```sh
 The bug is not reproducible, so it is likely a hardware or OS problem.
