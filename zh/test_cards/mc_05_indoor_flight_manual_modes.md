@@ -33,10 +33,10 @@
 
 ❏ 以稳定或高度模式着陆，油门低于 40％
 
-❏ Upon touching ground, copter should disarm automatically within 2 seconds (disarm time set by parameter: [COM_DISARM_LAND](../advanced/parameter_reference.md#COM_DISARM_LAND))
+❏ 接地后，直升机应在 2 秒内自动撤防（撤防时间由参数设置：[COM_DISARM_LAND](../advanced/parameter_reference.md#COM_DISARM_LAND)）
 
-## Expected Results
+## 期待的结果
 
-* Take-off should be smooth as throttle is raised
-* No oscillations should present in any of the above flight modes
-* Upon landing, copter should not bounce on the ground
+* 当油门升高时，起飞应该是平稳的
+* 在上述任何飞行模式中都不应出现振荡
+* 着陆时，直升机不应在地面上反弹
