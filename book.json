@@ -2,7 +2,8 @@
     "gitbook": ">= 3.2.2",
     "title": "PX4 Developer Guide",
     "variables": {
-        "logo": "./assets/site/logo_pro_small.png"
+        "logo": "./assets/site/logo_pro_small.png",
+        "px4_version": "master"
     },
     "plugins": [
         "youtube",
@@ -37,9 +38,6 @@
         "ga": {
             "token": "UA-33658859-3"
         },
-        "language-redirect": {
-            "baseurl": "https://dev.px4.io/"
-        },
         "favicon": "favicon.ico",
         "bulk-redirect": {
             "basepath": "/",
@@ -73,9 +71,17 @@
             "gitbookConfigURL": "https://raw.githubusercontent.com/PX4/Devguide/master/book.json",
             "options": [
                 {
-                    "value": "https://dev.px4.io/en/",
-                    "text": "Master",
+                    "value": "https://dev.px4.io/v1.8.2/en/",
+                    "text": "stable (1.8.2)",
                     "selected": true
+                },
+                {
+                    "value": "https://dev.px4.io/master/en/",
+                    "text": "master"
+                },
+                {
+                    "value": "https://dev.px4.io/v1.8.0/en/",
+                    "text": "1.8.0"
                 }
             ]
         }
