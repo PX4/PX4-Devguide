@@ -63,18 +63,18 @@ cd Firmware
 
 使用容器的最简单方法是通过 [docker_run.sh](https://github.com/PX4/Firmware/blob/master/Tools/docker_run.sh) 帮助程序脚本。 此脚本将 PX4 构建命令作为参数（例如 `make tests`）。 它使用适当容器和合理环境设置的最新版本（硬编码）启动 docker。
 
-For example, to build SITL you would call (from within the **/Firmware** directory):
+例如，要构建 SITL，您将调用（从 **/Firmware** 目录中）：
 
 ```sh
 sudo ./Tools/docker_run.sh 'make px4_sitl_default'
 ```
 
-Or to start a bash session using the NuttX toolchain:
+或者使用 NuttX 工具链启动 bash 会话：
 
     sudo ./Tools/docker_run.sh 'bash'
     
 
-> **Tip** The script is easy because you don't need to know anything much about *Docker* or think about what container to use. However it is not particularly robust! The manual approach discussed in the [section below](#manual_start) is more flexible and should be used if you have any problems with the script.
+> **Tip** 脚本很简单，因为您不需要了解 *Docker* 或者考虑使用哪个容器。 However it is not particularly robust! The manual approach discussed in the [section below](#manual_start) is more flexible and should be used if you have any problems with the script.
 
 ### Calling Docker Manually {#manual_start}
 
