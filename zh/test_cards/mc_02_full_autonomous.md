@@ -1,8 +1,8 @@
-# Test MC_02 - Full Autonomous
+# 测试 MC_02-完全自主
 
-## Create and upload mission
+## 创建和上传任务
 
-❏ Mission Criteria
+❏ 任务标准
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Auto take-off
 
