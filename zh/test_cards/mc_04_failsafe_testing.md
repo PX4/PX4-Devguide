@@ -26,24 +26,24 @@
 
 ❏ 断开遥测，车辆应在 10 秒后返回原位，等待下降并重新连接遥测无线电
 
-## 切换到海拔高度模式
+## 切换到高度模式
 
-❏ 确保侧倾，俯仰和偏航杆像稳定模式一样响应
+❏ 确保横滚，俯仰和偏航杆像稳定模式一样响应
 
-❏ Throttle should control altitude, and when the stick is centered it must maintain altitude
+❏ 节流阀应控制高度，当操纵杆居中时，必须保持高度
 
-## Switch to Position Mode
+## 切换到位置模式
 
-❏ When the sticks are centered, it must maintain position
+❏ 当棒居中时，它必须保持位置
 
-❏ Move roll, pitch and yaw and check the vehicle is moving according to the inputs
+❏移动横滚，俯仰和偏航，并根据输入检查无人机是否在移动
 
-❏ Center the sticks again and check the vehicle maintains position
+❏ 再次将木棒对中并检查无人机是否保持位置
 
-## Wait for Battery Failsafe to Trigger
+## 电量故障保护触发器
 
-❏ Confirm the warning message is received in QGC
+❏ 确认 QGC 收到警告信息
 
-❏ Confirm the vehicle returns to land
+❏ 确认无人机返回降落状态
 
-❏ Confirm the vehicle lands.
+❏ 确认车辆着陆。
