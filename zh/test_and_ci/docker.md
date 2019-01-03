@@ -118,16 +118,16 @@ sudo docker run -it --privileged \
 --name=mycontainer px4io/px4-dev-ros:2017-10-23 bash
 ```
 
-If everything went well you should be in a new bash shell now. Verify if everything works by running, for example, SITL:
+如果一切顺利，你现在应该在一个新的 bash shell 中。 通过运行验证一切是否正常，例如，SITL：
 
 ```sh
-cd src/firmware    #This is <container_src>
+cd src/firmware    #This is &lt;container_src&gt;
 make px4_sitl_default gazebo
 ```
 
-### Re-enter the Container
+### 重新进入容器
 
-The `docker run` command can only be used to create a new container. To get back into this container (which will retain your changes) simply do:
+`docker run` 命令只能用于创建新容器。 要重新进入此容器（将保留您的更改），只需执行以下操作：
 
 ```sh
 # start the container
@@ -136,17 +136,17 @@ sudo docker start container_name
 sudo docker exec -it container_name bash
 ```
 
-If you need multiple shells connected to the container, just open a new shell and execute that last command again.
+如果需要连接到容器的多个 shell，只需打开一个新 shell 并再次执行最后一个命令。
 
-### Clearing the Container
+### 清理容器
 
-Sometimes you may need to clear a container altogether. You can do so using its name:
+有时您可能需要完全清除容器。 您可以使用其名称来执行此操作：
 
 ```sh
 $ sudo docker rm mycontainer
 ```
 
-If you can't remember the name, then you can list inactive container ids and then delete them, as shown below:
+如果您忘记了名称，则可以列出非活动容器 Id，然后将其删除，如下所示：
 
 ```sh
 $ sudo docker ps -a -q
@@ -156,9 +156,9 @@ $ sudo docker rm 45eeb98f1dd9
 
 ### QGroundControl
 
-When running a simulation instance e.g. SITL inside the docker container and controlling it via *QGroundControl* from the host, the communication link has to be set up manually. The autoconnect feature of *QGroundControl* does not work here.
+运行模拟实例时，例如在 docker 容器内的 SITL 并通过 *QGroundControl* 从主机控制它，必须手动设置通信链接。 *QGroundControl* 的自动连接功能在此处不起作用。
 
-In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL) e.g. port 14557 for the SITL iris config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network.
+在 *QGroundControl* 中，导航至 [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) 并选择“通信链接”。 创建使用 UDP 协议的新链接。 端口取决于使用的 [configuration](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL)，例如 端口 14557 用于 SITL iris 配置。 IP 地址是您的 docker 容器之一，使用默认网络时通常为 172.17.0.1/16。
 
 ### 故障处理
 
