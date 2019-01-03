@@ -68,7 +68,6 @@
         
         "versions": {
             "gitbookConfigURL": "https://raw.githubusercontent.com/PX4/Devguide/master/book.json"
-            ]
         }
         
     }
