@@ -31,7 +31,7 @@ sudo usermod -aG docker $ USER
 
 ## 本地编辑层次结构 {#px4_containers}
 
-下面列出了可用的本地编辑（来自[Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)）：
+下面列出了可用的本地编辑（来自 [Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)）：
 
 | 容器                              | 描述                             |
 | ------------------------------- | ------------------------------ |
@@ -44,13 +44,13 @@ sudo usermod -aG docker $ USER
 | &emsp;px4-dev-clang             | C 语言工具                         |
 | &emsp;&emsp;px4-dev-nuttx-clang | C 语言与 NuttX 工具                 |
 
-The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-ros:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-ros/tags/)).
+可以使用 `latest` 标记访问最新版本：`px4io/px4-dev-ros:latest`（为 *hub.docker.com* 上的每个容器列出可用标记。 例如，*px4-dev-ros* 标签可以在 [here](https://hub.docker.com/r/px4io/px4-dev-ros/tags/)）。
 
-> **Tip** Typically you should use a recent container, but not necessarily the latest (as this changes too often).
+> **Tip** 通常，您应该使用最近的模式，但不一定是最新的模式（因为这经常更改）。
 
-## Use the Docker Container
+## 使用 Docker 容器
 
-The following instructions show how to build PX4 source code on the host computer using a toolchain running in a docker container. The information assumes that you have already downloaded the PX4 source code to **src/Firmware**, as shown:
+以下说明显示如何使用在 docker 容器中运行的工具链在主机上构建 PX4 源代码。 该信息假定您已将 PX4 源代码下载到 **src/Firmware**，如下所示：
 
 ```sh
 mkdir src
@@ -59,9 +59,9 @@ git clone https://github.com/PX4/Firmware.git
 cd Firmware
 ```
 
-### Helper Script (docker_run.sh)
+### 助手脚本（docker_run.sh）
 
-The easiest way to use the containers is via the [docker_run.sh](https://github.com/PX4/Firmware/blob/master/Tools/docker_run.sh) helper script. This script takes a PX4 build command as an argument (e.g. `make tests`). It starts up docker with a recent version (hard coded) of the appropriate container and sensible environment settings.
+使用容器的最简单方法是通过 [docker_run.sh](https://github.com/PX4/Firmware/blob/master/Tools/docker_run.sh) 帮助程序脚本。 此脚本将 PX4 构建命令作为参数（例如 `make tests`）。 它使用适当容器和合理环境设置的最新版本（硬编码）启动 docker。
 
 For example, to build SITL you would call (from within the **/Firmware** directory):
 
