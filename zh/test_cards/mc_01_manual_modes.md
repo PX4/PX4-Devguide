@@ -2,21 +2,21 @@
 
 ## 解锁并起飞
 
-❏ Set flight mode to stabilize and Arm
+❏ 设置飞行模式以稳定和布防
 
-❏ Take-off by raising the throttle
+❏ 升高油门起飞
 
 ## 飞行
 
 ❏ 自稳
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response 1:1
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 俯仰/滚转/偏航响应 1：1
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response 1:1
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 节气门响应 1：1
 
 ❏ Altitude
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Vertical position should hold current value with stick centered
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 垂直位置应以棒为中心保持当前值
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response 1:1
 
