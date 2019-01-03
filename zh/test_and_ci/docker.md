@@ -205,24 +205,24 @@ The bug is not reproducible, so it is likely a hardware or OS problem.
 c++: internal compiler error: Killed (program cc1plus)
 ```
 
-Try disabling parallel builds.
+尝试禁用并行构建。
 
-**Allow Docker Control from the VM Host**
+**允许从 VM 主机控制 Docker**
 
-Edit `/etc/defaults/docker` and add this line:
+编辑 `/etc/defaults/docker` 并添加以下行：
 
 ```sh
 DOCKER_OPTS="${DOCKER_OPTS} -H unix:///var/run/docker.sock -H 0.0.0.0:2375"
 ```
 
-You can then control docker from your host OS:
+然后，您可以从主机操作系统控制 docker：
 
 ```sh
-export DOCKER_HOST=tcp://<ip of your VM>:2375
+export DOCKER_HOST=tcp://&lt;ip of your VM&gt;:2375
 # run some docker command to see if it works, e.g. ps
 docker ps
 ```
 
 ## 旧版
 
-The ROS multiplatform containers are not maintained anymore: https://github.com/PX4/containers/tree/master/docker/ros-indigo
+ROS多平台容器不再维护：https：//github.com/PX4/containers/tree/master/docker/ros-indigo
