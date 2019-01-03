@@ -78,7 +78,7 @@ sudo ./Tools/docker_run.sh 'make px4_sitl_default'
 
 ### 手动调用 Docker {#manual_start}
 
-典型命令的语法如下所示。 这将运行一个支持 X 指令的 Docker 容器（使容器内部的模拟 GUI 可用）。 它将目录 `&lt;host_src&gt;`from your computer to`&lt;container_src&gt;` 容器内，并转发连接 *QGroundControl* 所需的 UDP 端口。 使用 `-–privileged` 选项，它将自动访问主机上的设备（例如操纵杆和 GPU）。 If you connect/disconnect a device you have to restart the container.
+典型命令的语法如下所示。 这将运行一个支持 X 指令的 Docker 容器（使容器内部的模拟 GUI 可用）。 它将目录 `&lt;host_src&gt;`from your computer to`&lt;container_src&gt;` 容器内，并转发连接 *QGroundControl* 所需的 UDP 端口。 使用 `-–privileged` 选项，它将自动访问主机上的设备（例如操纵杆和 GPU）。 如果连接/断开设备，则必须重新启动容器。
 
 ```sh
 # enable access to xhost from the container
@@ -87,18 +87,18 @@ xhost +
 # Run docker
 docker run -it --privileged \
     --env=LOCAL_USER_ID="$(id -u)" \
-    -v <host_src>:<container_src>:rw \
+    -v &lt;host_src&gt;:&lt;container_src&gt;:rw \
     -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
     -e DISPLAY=:0 \
     -p 14556:14556/udp \
-    --name=<local_container_name> <container>:<tag> <build_command>
+    --name=&lt;local_container_name&gt; &lt;container&gt;:&lt;tag&gt; &lt;build_command&gt;
 ```
 
-Where,
+位置：
 
-* `<host_src>`: The host computer directory to be mapped to `<container_src>` in the container. This should normally be the **Firmware** directory.
-* `<container_src>`: The location of the shared (source) directory when inside the container.
-* `<local_container_name>`: A name for the docker container being created. This can later be used if we need to reference the container again.
+* `&lt;host_src&gt;`：要映射到容器中的 `&lt;container_src&gt;` 的主计算机目录。 这通常应该是 **Firmware** 目录。
+* `&lt;container_src&gt;`：容器内的共享（源）目录的位置。
+* `&lt;local_container_name&gt;`：正在创建的 docker 容器的名称 This can later be used if we need to reference the container again.
 * `<container>:<tag>`: The container with version tag to start - e.g.: `px4io/px4-dev-ros:2017-10-23`.
 * `<build_command>`: The command to invoke on the new container. E.g. `bash` is used to open a bash shell in the container.
 
