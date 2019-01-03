@@ -98,11 +98,11 @@ docker run -it --privileged \
 
 * `&lt;host_src&gt;`：要映射到容器中的 `&lt;container_src&gt;` 的主计算机目录。 这通常应该是 **Firmware** 目录。
 * `&lt;container_src&gt;`：容器内的共享（源）目录的位置。
-* `&lt;local_container_name&gt;`：正在创建的 docker 容器的名称 This can later be used if we need to reference the container again.
-* `<container>:<tag>`: The container with version tag to start - e.g.: `px4io/px4-dev-ros:2017-10-23`.
-* `<build_command>`: The command to invoke on the new container. E.g. `bash` is used to open a bash shell in the container.
+* `&lt;local_container_name&gt;`：正在创建的 docker 容器的名称 如果我们需要再次引用容器，以后可以使用它。
+* `&lt;container&gt;：&lt;tag&gt;`：具有版本标签的容器 - 例如：`px4io/px4-dev-ros：2017-10-23`。
+* `&lt;build_command&gt;`：要在新容器上调用的命令。 例如. `bash` 用于打开容器中的 bash shell。
 
-The concrete example below shows how to open a bash shell and share the directory **~/src/Firmware** on the host computer.
+下面的具体示例显示了如何打开 bash shell 并在主机上共享目录 **〜/src/Firmware**。
 
 ```sh
 # enable access to xhost from the container
