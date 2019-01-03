@@ -142,8 +142,8 @@ The same approach can be used by other simulators to implement camera support.
 
 ## Running Simulation on the Remote Server 
 
-As had been mentioned at the beginning the simulation environment can be run on multiple computers on the same network. Unfortunately, it is a slightly complicated situation, because of the out of box configuration of Ubuntu computer does not broadcast the PX4 UDP packets to external interfaces and packets are routed internally by default. 
-A solution is to modify system routes to broadcast UDP packets to the network or use a tunnel to connect computers together. 
+As had been mentioned at the beginning the simulation environment can be run on multiple computers on the same network. Unfortunately, it is a slightly complicated, because of the out of box configuration does not broadcast the PX4 UDP packets to external interfaces and packets are routed internally by default. 
+A solution is to enable brodcasting by [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) parameter to allow broadcast UDP packets to the local network or use a tunnel to connect computers together. 
 
 Using the tunnel is a more flexible option because the computers are not required to sit on the same network and remote powerful simulation server can be used for example. 
 
