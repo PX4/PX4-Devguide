@@ -164,31 +164,31 @@ $ sudo docker rm 45eeb98f1dd9
 
 #### 权限错误
 
-The container creates files as needed with a default user - typically "root". This can lead to permission errors where the user on the host computer is not able to access files created by the container.
+容器根据需要使用默认用户创建文件-通常为“root”。 这可能导致权限错误，其中主机上的用户无法访问容器创建的文件。
 
-The example above uses the line `--env=LOCAL_USER_ID="$(id -u)"` to create a user in the container with the same UID as the user on the host. This ensures that all files created within the container will be accessible on the host.
+上面的示例使用行 `-env=LOCAL_USER_ID=“$（id-u）”` 在容器中创建具有与主机上的用户相同的 UID 的用户。 这可确保在主机上可以访问容器中创建的所有文件。
 
-#### Graphics Driver Issues
+#### 图形驱动问题
 
-It's possible that running Gazebo will result in a similar error message like the following:
+运行 Gazebo 可能会导致类似以下错误消息：
 
 ```sh
 libGL error: failed to load driver: swrast
 ```
 
-In that case the native graphics driver for your host system must be installed. Download the right driver and install it inside the container. For Nvidia drivers the following command should be used (otherwise the installer will see the loaded modules from the host and refuse to proceed):
+在这种情况下，必须安装主机系统的本机图形驱动程序。 下载正确的驱动程序并将其安装在容器中。 对于 Nvidia 驱动程序，应使用以下命令（否则安装程序将从主机中看到已加载的模块并拒绝继续）：
 
 ```sh
 ./NVIDIA-DRIVER.run -a -N --ui=none --no-kernel-module
 ```
 
-More information on this can be found [here](http://gernotklingler.com/blog/howto-get-hardware-accelerated-opengl-support-docker/).
+有关此内容的更多信息，请参见 [here](http://gernotklingler.com/blog/howto-get-hardware-accelerated-opengl-support-docker/)。
 
 ## 虚拟机支持 {#virtual_machine}
 
-Any recent Linux distribution should work.
+任何最新的 Linux 发行版应该可行。
 
-The following configuration is tested:
+测试以下配置：
 
 * OS X with VMWare Fusion and Ubuntu 14.04 (Docker container with GUI support on Parallels make the X-Server crash).
 
