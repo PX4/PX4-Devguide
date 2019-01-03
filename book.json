@@ -37,9 +37,6 @@
         "ga": {
             "token": "UA-33658859-3"
         },
-        "language-redirect": {
-            "baseurl": "https://dev.px4.io/"
-        },
         "favicon": "favicon.ico",
         "bulk-redirect": {
             "basepath": "/",
@@ -74,7 +71,7 @@
             "options": [
                 {
                     "value": "https://dev.px4.io/v1.8.2/en/",
-                    "text": "stable (1.8.2)"
+                    "text": "stable (1.8.2)",
                     "selected": true
                 },
                 {
