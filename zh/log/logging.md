@@ -56,15 +56,15 @@
 | Sandisk Pixtor Class 10 16GB                                  | 334                | 250                 |
 | Sandisk Extreme PLUS Class 10 32GB                            | 332                | 150                 |
 
-比平均写入速度更重要的是每个块的最大写入时间（4KB）。 这决定了最小缓冲区大小：这个值越大，日志缓冲区就要越大，以避免丢帧。 Logging bandwidth with the default topics is around 50 KB/s, which all of the SD cards satisfy.
+比平均写入速度更重要的是每个块的最大写入时间（4KB）。 这决定了最小缓冲区大小：这个值越大，日志缓冲区就要越大，以避免丢帧。 默认主题的日志记录带宽约为 50 KB/s，所有 SD 卡都满足这一点。
 
-By far the best card we know so far is the **SanDisk Extreme U3 32GB**. This card is recommended, because it does not exhibit write time spikes (and thus virtually no dropouts). Different card sizes might work equally well, but the performance is usually different.
+到目前为止，我们知道的性能最好的卡是 **SanDisk Extreme U3 32GB**。 建议使用这种卡，因为它存在写入时间峰值（因此几乎没有丢帧）。 不同大小的卡可能工作的一样好，但是他们的性能通常是不同的。
 
-You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/Firmware/issues/4634.
+你可以使用 `sd_bench -r 50 ` 测试自己的 SD 卡，并将结果报告给 https://github.com/PX4/Firmware/issues/4634。
 
-## Log Streaming
+## 日志流
 
-The traditional and still fully supported way to do logging is using an SD card on the FMU. However there is an alternative, log streaming, which sends the same logging data via MAVLink. This method can be used for example in cases where the FMU does not have an SD card slot (e.g. Intel® Aero Ready to Fly Drone) or simply to avoid having to deal with SD cards. Both methods can be used independently and at the same time.
+传统的、仍然支持的日志记录方法是在 FMU 上使用 SD 卡。 但是，有一种替代方法，即日志流，它通过 mavlink 发送相同的日志记录数据。 这种方法可以用在 FMU 没有 SD 卡插槽的情况下（比如 intel@ Aero Ready to Fly Drone），或者是单纯的不想用SD卡。 Both methods can be used independently and at the same time.
 
 The requirement is that the link provides at least ~50KB/s, so for example a WiFi link. And only one client can request log streaming at the same time. The connection does not need to be reliable, the protocol is designed to handle drops.
 
