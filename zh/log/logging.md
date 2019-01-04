@@ -43,7 +43,7 @@
 
 下面提供了不同 SD 卡的性能。 测试是在 Pixracer上进行的，这个结果也适用于 Pixhawk。
 
-> **Tip** The maximum supported SD card size for NuttX is 32GB (SD Memory Card Specifications Version 2.0).
+> **提示：**Nuttx 支持的最大 SD 卡大小为 32GB（SD卡 2.0 存储规范）
 
 | SD 卡                                                          | 平均 Seq 写入速度 [KB/s] | 最大写入时间 / 块（平均） [ms] |
 | ------------------------------------------------------------- | ------------------ | ------------------- |
@@ -56,7 +56,7 @@
 | Sandisk Pixtor Class 10 16GB                                  | 334                | 250                 |
 | Sandisk Extreme PLUS Class 10 32GB                            | 332                | 150                 |
 
-More important than the mean write speed is the maximum write time per block (of 4 KB). This defines the minimum buffer size: the larger this maximum, the larger the log buffer needs to be to avoid dropouts. Logging bandwidth with the default topics is around 50 KB/s, which all of the SD cards satisfy.
+比平均写入速度更重要的是每个块的最大写入时间（4KB）。 这决定了最小缓冲区大小：这个值越大，日志缓冲区就要越大，以避免丢帧。 Logging bandwidth with the default topics is around 50 KB/s, which all of the SD cards satisfy.
 
 By far the best card we know so far is the **SanDisk Extreme U3 32GB**. This card is recommended, because it does not exhibit write time spikes (and thus virtually no dropouts). Different card sizes might work equally well, but the performance is usually different.
 
