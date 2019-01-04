@@ -2,16 +2,16 @@
 
 系统控制台允许对系统进行低级访问，调试输出和分析系统引导过程。 连接它最方便的方法是使用 [Dronecode probe](https://shop.titaneliteinc.com/index.php?route=product/product&product_id=1294)，也可以使用普通的 FTDI 电缆。
 
-## System Console vs. Shells
+## 系统控制台 vs. Shells
 
-There is just one *System Console*, which runs on one specific UART (the debug port, as configured in NuttX), and is commonly attached via FTDI cable.
+只有一个 *System Console*，它在一个特定的 Uart（在 Nuttx 中配置的调试端口）上运行，通常通过 FTDI 电缆连接。
 
-* Used for *low-level debugging/development*: bootup, NuttX, startup scripts, board bringup, development on central parts of PX4 (e.g. uORB).
-* In particular, is the only place where all boot output (including information about applications auto-started on boot) is printed.
+* 用于 *low 级调试/开发" *：启动、Nuttx、启动脚本、电路板安装、px4 核心部分 (如 uorb) 的开发。
+* 特别地，这是打印所有引导输出（包括有关在启动时自动启动的应用程序的信息）的唯一位置。
 
-Shells provide higher-level access to the system:
+Shell 提供对系统的更高级别的访问：
 
-* Used for basic module testing/running commands.
+* 用于基本模块测试运行命令。
 * Only display the output of modules you start (and therefore cannot debug the boot process).
 * Cannot display the output of tasks running on the work queue.
 
