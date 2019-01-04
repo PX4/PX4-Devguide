@@ -100,11 +100,11 @@ set PWM_DISARMED 1000
 
 ### 混控器文件 {#mixer-file}
 
-> **Note** 你应首先阅读 [概念 > 混控器](../concept/mixing.md) 页面， This provides background information required to interpret this mixer file.
+> **Note** 你应首先阅读 [概念 > 混控器](../concept/mixing.md) 页面， 该页面中的内容提供了理解如下混控器文件所需的背景知识。
 
-A typical mixer file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). A mixer filename, in this case `wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
+下面展示了一个典型的混控器文件（[原始文件在这里](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)）。 混控器文件的文件名，在这里的案例中也就是 `wingwing.main.mix`，向我们提供了包括机型类型（`wingwing`），输出类型（`.main` 或者 `.aux`）和它是一个混控器定义文件（`.mix`）这三个重要信息。
 
-The mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code.
+混频器文件包含多个代码块, 每个代码块都针对一个执行器或 ESC。 因此，如果你有两个执行器和一个 ESC，那么你的混控器文件应该包含三个代码块。
 
 > **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
