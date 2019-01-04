@@ -80,7 +80,7 @@ sudo apt-get install screen
 * 串口：pixhawk v1/pixracer 使用 57600 波特率
 * 串口：骁龙飞控使用115200波特率
 
-Connect screen at BAUDRATE baud, 8 data bits, 1 stop bit to the right serial port (use `ls /dev/tty*` and watch what changes when unplugging / replugging the USB device). Common names are `/dev/ttyUSB0` and `/dev/ttyACM0` for Linux and `/dev/tty.usbserial-ABCBD` for Mac OS.
+将 Screen 的波特率、8个数据位、1个停止位设置好，连接到正确的串行端口（使用 `ls/dev/tty*`，并观察拔下/复制 usb 设备时发生的变化）。 对于 linux 和 mac os，常见的名称 `/dev/ttyUSB0` 和 `/dev/ttyACM0`。
 
 ```bash
 screen /dev/ttyXXX BAUDRATE 8N1
@@ -88,15 +88,15 @@ screen /dev/ttyXXX BAUDRATE 8N1
 
 ### Windows: PuTTY
 
-Download [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) and start it.
+下载 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) 并启动它。
 
-Then select 'serial connection' and set the port parameters to:
+然后选择 "串行连接", 并将端口参数设置为:
 
-* 57600 baud
-* 8 data bits
-* 1 stop bit
+* 57600 波特率
+* 8 数据位
+* 1 个停止位
 
-## Getting Started on the Console
+## 控制台入门
 
 Type `ls` to view the local file system, type `free` to see the remaining free RAM. The console will also display the system boot log when power-cycling the board.
 
