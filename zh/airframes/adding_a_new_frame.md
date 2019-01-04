@@ -230,15 +230,15 @@ If the airframe is for a **new group** you additionally need to:
     
     **Note** The remaining airframe metadata should be automatically included in the firmware (once **srcparser.py** is updated). 
 
-## Tuning Gains
+## 调参
 
 The following *PX4 User Guide* topics explain how to tune the parameters that will be specified in the config file:
 
-* [Multicopter PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
-* [Fixed Wing PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
+* [多轴飞行器 PID 调参指南](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
+* [固定翼 PID 调参指南](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
 * [垂直起降（VTOL）配置](https://docs.px4.io/en/config_vtol/)
 
-## Add New Airframe to QGroundControl
+## 将新的机型加入到 QGroundControl
 
 To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/en/config/airframe.html):
 
