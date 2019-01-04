@@ -23,7 +23,7 @@ Shell 提供对系统的更高级别的访问：
 
 ## Pixracer / Pixhawk v3: 接线控制台
 
-Connect the 6-pos JST SH 1:1 cable to the Dronecode probe or connect the individual pins of the cable to a FTDI cable like this:
+将6脚 JST SH 1:1 线缆连接到飞控探测器或者按如下图示连接单独的 pin 脚：
 
 | Pixracer / Pixhawk v3 |           | FTDI |                  |
 | --------------------- | --------- | ---- | ---------------- |
@@ -34,19 +34,19 @@ Connect the 6-pos JST SH 1:1 cable to the Dronecode probe or connect the individ
 | 5                     | SWCLK     |      | N/C              |
 | 6                     | GND       | 1    | FTDI GND (黑色)    |
 
-## Pixhawk v1: Wiring the Console
+## Pixhawk v1: 接线控制台
 
-The system console can be accessed through the Dronecode probe or an FTDI cable. Both options are explained in the section below.
+系统控制台可以通过 dronecode 探头或 ftdi 电缆访问。 下面的部分对这两个选项进行了说明。
 
-### Connecting via Dronecode Probe
+### 使用 Dronecode 探头连接
 
-Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](http://nicadrone.com/index.php?id_product=61&controller=product) to the SERIAL4/5 port of Pixhawk.
+将 [Dronecode 探头](http://nicadrone.com/index.php?id_product=61&controller=product) 上的 6-pos df131 1:1 电缆连接到 pixhawk serial 4/5。
 
 ![](../../assets/console/dronecode_probe.jpg)
 
-### Connecting via FTDI 3.3V Cable
+### 通过 ftdi 3.3 v 电缆连接
 
-If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](http://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) will do as well.
+如果手边没有 dronecode 探头, ftdi 3.3 v (digi-key: [768-1015-ND](http://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) 也可以这样做。
 
 | Pixhawk 1/2 |           | FTDI |                  |
 | ----------- | --------- | ---- | ---------------- |
@@ -57,28 +57,28 @@ If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](http://ww
 | 5           | S5 Rx     | 4    | FTDI TX (orange) |
 | 6           | GND       | 1    | FTDI GND (黑色)    |
 
-The connector pinout is shown in the figure below.
+连接器引脚如下图所示。
 
 ![Console Connector](../../assets/console/console_connector.jpg)
 
-The complete wiring is shown below.
+完整的布线如下所示。
 
 ![Console Debug](../../assets/console/console_debug.jpg)
 
-## Opening the Console
+## 打开控制台
 
-After the console connection is wired up, use the default serial port tool of your choice or the defaults described below:
+连接控制台连接后，请使用您选择的默认串口工具或下面描述的默认工具：
 
 ### Linux / Mac OS: Screen
 
-Install screen on Ubuntu (Mac OS already has it installed):
+在 Ubuntu 上安装 screen （mac os 已经安装了它）：
 
 ```bash
 sudo apt-get install screen
 ```
 
-* Serial: Pixhawk v1 / Pixracer use 57600 baud
-* Serial: Snapdragon Flight uses 115200 baud
+* 串口：pixhawk v1/pixracer 使用 57600 波特率
+* 串口：骁龙飞控使用115200波特率
 
 Connect screen at BAUDRATE baud, 8 data bits, 1 stop bit to the right serial port (use `ls /dev/tty*` and watch what changes when unplugging / replugging the USB device). Common names are `/dev/ttyUSB0` and `/dev/ttyACM0` for Linux and `/dev/tty.usbserial-ABCBD` for Mac OS.
 
