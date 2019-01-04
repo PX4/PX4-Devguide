@@ -113,14 +113,14 @@ nsh> free
 
 # 骁龙 DSP 控制台
 
-When you are connected to your Snapdragon board via usb you have access to the px4 shell on the posix side of things. The interaction with the DSP side (QuRT) is enabled with the `qshell` posix app and its QuRT companion.
+当你通过 Usb 连接骁龙飞控时，你已经获取了 Px4 在 Posix 一方的权限。 DSP 一侧 (QuRT) 的相互作用可以通过 `qshell` 开启POSIX 应用和自身模块。
 
-With the Snapdragon connected via USB, open the mini-dm to see the output of the DSP:
+使用 USB 连接骁龙， 打开 mini-dm 查看 DSP 输出：
 
     ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
     
 
-Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+注意：在 Mac 上可以使用 [nano-dm](https://github.com/kevinmehall/nano-dm)。
 
 Run the main app on the linaro side:
 
