@@ -124,10 +124,10 @@ set PWM_DISARMED 1000
 * O: 表示输出缩放因子（一个为正，一个为负），偏移量（这里为 0 ）和输出范围（这里为 -1.. +1）。  
   * 如果你要将你的 PWM 信号反相，你应该在这里更改输出缩放因子的正负号。 (```O:      -10000  -10000      0 -10000  10000```)
   * 如果这一行设定的是如下默认值，那么我们也可以（也应该）完全省略这一行： ```O:      10000  10000   0 -10000  10000```
-* S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll). It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
-* S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
+* S：表示第一个输入的缩放器：它取控制组 #0 (Flight Control) 的第一个控制量（滚转）作为输入。 它将滚转控制输入 * 0.6 进行缩放并反转输入量的正负号（-0.6 在缩放后的单位中变成了 -6000）。 该混控器不施加任何偏移量（0）且输出量幅值在 （-1.. +1）这个范围内。
+* S：表示第二个输入的缩放器：它取控制组 #0 (Flight Control) 的第二个控制量（俯仰）作为输入。 它将对俯仰控制输入 *0.65 进行缩放， 不施加任何偏移量（0）并且输出量的幅值在 （-1.. +1）这个范围内。
 
-> **Note** In short, the output of this mixer would be SERVO = ( (roll input * -0.6 + 0) + (pitch input * 0.65 + 0) ) * 1 + 0
+> **Note** 简而言之，该混控器的输出应该为SERVO = ( (滚转输入 * -0.6 + 0) + (俯仰输入 * 0.65 + 0) ) * 1 + 0
 
 Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch.
 
