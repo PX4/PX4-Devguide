@@ -195,16 +195,16 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 机型 "组" 用于对相似的机型进行分组，以方便在 [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) 中进行选取，同时方便在 *Airframe Reference* 中进行文档记录（[PX4 DevGuide](../airframes/airframe_reference.md) 和 [PX4 UserGuide](https://docs.px4.io/en/airframes/airframe_reference.html) 文档）。 每个组都有一个名称和与之相关联的 svg 图像，该图像展示了该分组内的机型的通用几何形状、电机数量和电机旋转方向。
 
-The airframe metadata files used by *QGroundControl* and the documentation source code are generated from the airframe description, via a script, using the build command: `make airframe_metadata`
+使用编译指令 `make airframe_metadata` 可以运行脚本自动根据机型描述语句生成需要在 *QGroundControl* 中使用的机型元数据文件和文档源代码。
 
-For a new airframe belonging to an existing group, you don't need to do anything more than provide documentation in the airframe description located at [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d).
+如果新机型属于现有某一个分组，那么你只需要在向位于 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 文件夹下的机型描述文件中提供相关文档即可。
 
-If the airframe is for a **new group** you additionally need to:
+如果机型属于一个 **新的组** 那么你还需要进行如下操作：
 
-1. Add the svg image for the group into documentation repos (if no image is provided a placeholder image is displayed): 
-  * PX4 Development Guide: [assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
-  * PX4 User Guide: [assets/airframes/types](https://github.com/PX4/px4_user_guide/tree/master/assets/airframes/types)
-2. Add a mapping between the new group name and image filename in the [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py) method `GetImageName()` (follow the pattern below): 
+1. 向文档仓库添加该机型组的 svg 图像文件（如果未添加图像文件则会显示一个占位符图像）： 
+  * PX4 开发指南： [assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
+  * PX4 用户指南： [assets/airframes/types](https://github.com/PX4/px4_user_guide/tree/master/assets/airframes/types)
+2. 在 [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py) 文件的 `GetImageName()` 中添加机型组名称与图像文件名的映射关系（遵循如下模式）： 
       def GetImageName(self):
            """
            Get parameter group image base name (w/o extension)
@@ -217,9 +217,9 @@ If the airframe is for a **new group** you additionally need to:
       ...
            return "AirframeUnknown"
 
-3. Update *QGroundControl*: 
-  * Add the svg image for the group into: [src/AutopilotPlugins/Common/images](https://github.com/mavlink/qgroundcontrol/tree/master/src/AutoPilotPlugins/Common/Images)
-  * Add reference to the svg image into [qgcresources.qrc](https://github.com/mavlink/qgroundcontrol/blob/master/qgcresources.qrc), following the pattern below: 
+3. 更新 *QGroundControl*： 
+  * 将该机型组的 svg 图像文件添加至： [src/AutopilotPlugins/Common/images](https://github.com/mavlink/qgroundcontrol/tree/master/src/AutoPilotPlugins/Common/Images)
+  * 根据如下模式在 [qgcresources.qrc](https://github.com/mavlink/qgroundcontrol/blob/master/qgcresources.qrc) 文件中添加对 svg 图像的引用： 
         <qresource prefix="/qmlimages">
             ...
             <file alias="Airframe/AirframeSimulation">src/AutoPilotPlugins/Common/Images/AirframeSimulation.svg</file>
