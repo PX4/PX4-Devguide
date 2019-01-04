@@ -11,11 +11,11 @@ PX4使用存储的配置作为机型的起始点。 机体的配置在[ROMFS/px4
 配置和混控文件中的机型配置包括如下几个主要模块：
 
 * 机架说明文档(被[Airframes Reference](../airframes/airframe_reference.md)和*QGroundControl*) 使用。
-* 飞机特定的参数设置，包括[tuning gains](#tuning-gains)。
+* 飞机特定的参数设置，包括[参数整定增益](#tuning-gains)。
 * 应该启动的应用，例如多旋翼或者固定翼的控制器，着陆检测等等。
 * 系统（固定翼，飞翼或者多旋翼）的物理配置。 在这里我们称之为 [混控器](../concept/mixing.md)。
 
-These aspects are mostly independent, which means that many configurations share the same physical layout of the airframe, start the same applications and differ most in their tuning gains.
+上述几个模块在很大程度上都是相互独立的，这就意味着很多配置共用同一套机架的物理结构、启动同样的应用，仅在参数整定增益上有较大区别。
 
 > **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
 
