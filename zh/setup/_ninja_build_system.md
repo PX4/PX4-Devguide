@@ -1,6 +1,6 @@
 ## Ninja 构建系统
 
-[Ninja](https://ninja-build.org/) is a faster build system than *Make* and the PX4 *CMake* generators support it. 
+[Ninja](https://ninja-build.org/) 是一个比 *Make* 速度更快的编译系统， 且 PX4 *CMake* 生成器也支持该编译系统。 
 
 On Ubuntu Linux you can install this automatically from normal repos.
 
