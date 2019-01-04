@@ -1,12 +1,12 @@
-# Flight Controller Porting Guide
+# 飞行控制器移植指南
 
-This topic is for developers who want to port PX4 to work with *new* flight controller hardware.
+本主题主要针对希望将 PX4 移植到 *新* 飞控硬件平台上的开发人员。
 
 ## PX4 架构
 
-PX4 consists of two main layers: The [board support and middleware layer](../middleware/README.md) on top of the host OS (NuttX, Linux or any other POSIX platform like Mac OS), and the applications (Flight Stack in [src/modules](https://github.com/PX4/Firmware/tree/master/src/modules)\). Please reference the [PX4 Architectural Overview](../concept/architecture.md) for more information.
+PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或者其他 POSIX 平台，比如 Mac OS）的 [板卡支持和中间件层](../middleware/README.md) ，以及应用层（位于 [src/modules](https://github.com/PX4/Firmware/tree/master/src/modules)\ 的飞行控制栈）。 更多有关详细信息请参阅： [PX4 系统架构概述](../concept/architecture.md) 。
 
-This guide is focused only on the host OS and middleware as the applications/flight stack will run on any board target.
+本指南仅关注主机操作系统和中间件，因为 应用层/飞行控制栈 可以在任何目标平台上运行。
 
 ## 飞行控制器配置文件分布位置
 
