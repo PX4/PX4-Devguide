@@ -10,15 +10,15 @@ PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或�
 
 ## 飞行控制器配置文件分布位置
 
-Board startup and configuration files are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in each board's vendor-specific directory (i.e. **boards/*VENDOR*/*MODEL*/**)).
+飞控板的启动和配置文件位于特定于每类飞控板供应商（vendor-specific）的目录下，这些目录都位于 [/boards](https://github.com/PX4/Firmware/tree/master/boards/) 文件夹下（例如**boards/*VENDOR*/*MODEL*/**文件夹)。
 
-For example, for FMUv5:
+例如，对于 FMUv5 飞控硬件平台：
 
-* (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5). 
-* Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
-* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board) 
-  * A board-specific initialisation file is automatically included in startup scripts if found under the boards directory at **init/rc.board**.
-  * The file is used to start sensors (and other things) that only exist on a particular board. It may also be used to set a board's default parameters, UART mappings, and any other special cases.
+* （所有的）针对该飞控板的文件位于：[/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5)。 
+* 编译配置：[/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)。
+* 针对该飞控板的的初始化文件：[/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board) 
+  * 如果在飞控板平台目录下可以找到 **init/rc.board** 文件，则针对该飞控板平台的初始化文件将会自动包含在启动脚本中。
+  * 该文件用于启动仅存在于特定主板上的传感器 (和其他东西)。 它也被用于完成对飞控板的默认参数、 UART 映射关系和其它特殊情况的设定。
   * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF, and in AUTOCNF section (fresh setups) it sets the [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) parameter.
 
 In addition there are several groups of configuration files for each board located throughout the code base:
