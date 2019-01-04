@@ -1,6 +1,6 @@
 # 日志记录
 
-The logger is able to log any ORB topic with all included fields. Everything necessary is generated from the `.msg` file, so that only the topic name needs to be specified. An optional interval parameter specifies the maximum logging rate of a certain topic. All existing instances of a topic are logged.
+日志能够记录任何 orb 主题及其包含的所有字段。 Everything necessary is generated from the `.msg` file, so that only the topic name needs to be specified. An optional interval parameter specifies the maximum logging rate of a certain topic. All existing instances of a topic are logged.
 
 The output log format is [ULog](../log/ulog_file_format.md).
 
