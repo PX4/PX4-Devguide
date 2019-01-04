@@ -193,7 +193,7 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ## 增加一个新的机型组（Airframe Group）
 
-Airframe "groups" are used to group similar airframes for selection in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) and in the *Airframe Reference* documentation ([PX4 DevGuide](../airframes/airframe_reference.md) and [PX4 UserGuide](https://docs.px4.io/en/airframes/airframe_reference.html)). Every group has a name, and an associated svg image which shows the common geometry, number of motors, and direction of motor rotation for the grouped airframes.
+机型 "组" 用于对相似的机型进行分组，以方便在 [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) 中进行选取，同时方便在 *Airframe Reference* 中进行文档记录（[PX4 DevGuide](../airframes/airframe_reference.md) 和 [PX4 UserGuide](https://docs.px4.io/en/airframes/airframe_reference.html) 文档）。 每个组都有一个名称和与之相关联的 svg 图像，该图像展示了该分组内的机型的通用几何形状、电机数量和电机旋转方向。
 
 The airframe metadata files used by *QGroundControl* and the documentation source code are generated from the airframe description, via a script, using the build command: `make airframe_metadata`
 
