@@ -132,7 +132,7 @@ Note: Alternatively, especially on Mac, you can also use [nano-dm](https://githu
 Run the main app on the linaro side:
 ```
 cd /home/linaro
-./px4 px4.config
+./px4 -s px4.config
 ```
 
 You can now use all apps loaded on the DSP from the linaro shell with the following syntax:
