@@ -37,7 +37,7 @@
 - 我们测试的大多数 sd 卡每分钟都会有多个停顿。 这种停顿在写命令期间有好几个 100ms 的延迟。 如果写缓冲区在这期间被填满会引起丢帧。 这种影响取决于 SD 卡本身（见下文）。
 - 格式化 SD 卡有助于避免丢帧。
 - 增大日志缓存也有效。
-- Decrease the logging rate of selected topics or remove unneeded topics from being logged (`info.py <file>` is useful for this).
+- 减小所选主题的日志记录频率或者删除一些不必要记录的主题（`info.py&lt;file&gt;` 在这里有用）。
 
 ## SD 卡
 
@@ -45,16 +45,16 @@
 
 > **Tip** The maximum supported SD card size for NuttX is 32GB (SD Memory Card Specifications Version 2.0).
 
-| SD 卡                                                          | Mean Seq. 写入速度 [KB/s] | 最大写入时间 / 块（平均） [ms] |
-| ------------------------------------------------------------- | --------------------- | ------------------- |
-| SanDisk Extreme U3 32GB                                       | 461                   | **15**              |
-| Sandisk Ultra Class 10 8GB                                    | 348                   | 40                  |
-| Sandisk Class 4 8GB                                           | 212                   | 60                  |
-| SanDisk Class 10 32 GB (High Endurance Video Monitoring Card) | 331                   | 220                 |
-| Lexar U1 (Class 10), 16GB High-Performance                    | 209                   | 150                 |
-| Sandisk Ultra PLUS Class 10 16GB                              | 196                   | 500                 |
-| Sandisk Pixtor Class 10 16GB                                  | 334                   | 250                 |
-| Sandisk Extreme PLUS Class 10 32GB                            | 332                   | 150                 |
+| SD 卡                                                          | 平均 Seq 写入速度 [KB/s] | 最大写入时间 / 块（平均） [ms] |
+| ------------------------------------------------------------- | ------------------ | ------------------- |
+| SanDisk Extreme U3 32GB                                       | 461                | **15**              |
+| Sandisk Ultra Class 10 8GB                                    | 348                | 40                  |
+| Sandisk Class 4 8GB                                           | 212                | 60                  |
+| SanDisk Class 10 32 GB (High Endurance Video Monitoring Card) | 331                | 220                 |
+| Lexar U1 (Class 10), 16GB High-Performance                    | 209                | 150                 |
+| Sandisk Ultra PLUS Class 10 16GB                              | 196                | 500                 |
+| Sandisk Pixtor Class 10 16GB                                  | 334                | 250                 |
+| Sandisk Extreme PLUS Class 10 32GB                            | 332                | 150                 |
 
 More important than the mean write speed is the maximum write time per block (of 4 KB). This defines the minimum buffer size: the larger this maximum, the larger the log buffer needs to be to avoid dropouts. Logging bandwidth with the default topics is around 50 KB/s, which all of the SD cards satisfy.
 
