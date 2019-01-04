@@ -72,27 +72,27 @@ make
 sudo make install
 ```
 
-`--prefix=/usr` 是必不可少的，因为该选项在 PX4 中写死了 PX4 应该在哪个特定安装位置去寻找 `kconfig-tools`。 The `--enable-mconf` and `--enable-qconf` options will enable the `menuconfig` and `qconfig` options respectively.
+`--prefix=/usr` 是必不可少的，因为该选项在 PX4 中写死了 PX4 应该在哪个特定安装位置去寻找 `kconfig-tools`。 `--enable-mconf` 和 `--enable-qconf` 选项将会分别启用 `menuconfig` 和 `qconfig` 这两个选项。
 
-To run `qconfig` you may need to install additional Qt dependencies.
+想运行 `qconfig` 的话你可能还需要安装额外的 Qt 依赖项。
 
 ### Linux
 
-Linux boards do not include the OS and kernel configuration. These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
+基于 Linux 的飞控板不包含任何 操作系统和内核的配置。 这些配置已经由可用于飞控板的 Linux 镜像提供了（操作系统需要原生支持惯性传感器）。
 
-* [cmake/configs/posix\_rpi\_cross.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_rpi_cross.cmake) - RPI cross-compilation.
+* [cmake/configs/posix\_rpi\_cross.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_rpi_cross.cmake) - RPI 交叉编译。
 
 ## 中间件组件和配置
 
-This section describes the various middleware components, and the configuration file updates needed to port them to new flight controller hardware.
+本节介绍各类中间件组件，以及将它们移植到新的飞行控制器硬件所需更新的配置文件。
 
 ### QuRT / Hexagon
 
-* The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs).
-* The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions).
-* The PX4 middleware configuration is located in [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards). TODO: ADD BUS CONFIG
-* Drivers: [DriverFramework](https://github.com/px4/DriverFramework).
-* Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
+* 启动脚本位于： [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs)。
+* 操作系统配置是默认 Linux 镜像的一部分（TODO: 需要提供 LINUX 镜像文件位置和程序烧写指南）。
+* PX4 中间件配置文件位于： [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards)。 TODO: 需要添加总线配置（BUS CONFIG）。
+* 驱动：[DriverFramework](https://github.com/px4/DriverFramework)。
+* 参考配置：运行 `make eagle_default` 命令可构建 Snapdragon Flight 的参考配置文件。
 
 ## RC UART 接线建议
 
@@ -130,9 +130,9 @@ You can reach out to the core developer team and community on the official [Foru
 
 ## 相关信息
 
-* [Device Drivers](../middleware/drivers.md) - How to support new peripheral hardware (device drivers)
-* [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
-* Supported Flight Controllers: 
-  * [Autopilot Hardware](https://docs.px4.io/en/flight_controller/) (PX4 User Guide)
-  * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
-* [Supported Peripherals](https://docs.px4.io/en/peripherals/) (PX4 User Guide)
+* [Device Drivers](../middleware/drivers.md) - 如何支持新的外围硬件设备（设备驱动）
+* [构建代码](../setup/building_px4.md) - 如何编译和上传固件。 
+* 受支持的飞行控制器： 
+  * [Autopilot 硬件](https://docs.px4.io/en/flight_controller/) (PX4 用户手册)
+  * [支持硬件平台列表](https://github.com/PX4/Firmware/#supported-hardware) (Github)
+* [受支持的外围硬件](https://docs.px4.io/en/peripherals/) (PX4 用户指南)
