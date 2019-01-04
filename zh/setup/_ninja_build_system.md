@@ -1,14 +1,14 @@
 ## Ninja 构建系统
 
-[Ninja](https://ninja-build.org/) 是一个比 *Make* 速度更快的编译系统， 且 PX4 *CMake* 生成器也支持该编译系统。 
+[Ninja](https://ninja-build.org/) 是一个比 *Make* 速度更快的构建系统， 且 PX4 *CMake* 生成器也支持该构建系统。 
 
-On Ubuntu Linux you can install this automatically from normal repos.
+在 Ubuntu Linux 上你从软件仓库中自动安装该构建系统。
 
 ```sh
 sudo apt-get install ninja-build -y
 ```
 
-Other systems may not include Ninja in the package manager. In this case an alternative is to download the binary and add it to your path:
+其他 Linux 发行版系统的软件包管理器中可能并不包含 Ninja 软件包。 这种情况下你可以下载二进制文件然后将其加入操作系统的环境变量中：
 
 ```sh
 mkdir -p $HOME/ninja
