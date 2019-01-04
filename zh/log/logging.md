@@ -17,12 +17,12 @@
 
 ## 配置
 
-The list of logged topics can be customized with a file on the SD card. Create a file `etc/logging/logger_topics.txt` on the card with a list of topics (For SITL, it's `build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`):
+日志主题列表可以以 SD 卡文件的形式定制。 在 SD 卡上创建一个 `etc/logging/logger_topics.txt` 文件，其中包含主题列表(对于SITL，则是`build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`)：
 
     <topic_name>, <interval>
     
 
-The `<interval>` is optional, and if specified, defines the minimum interval in ms between two logged messages of this topic. If not specified, the topic is logged at full rate.
+`&lt;interval&gt;`是一个可选项，如果指定，则以 ms 为单位定义两条日志信息的最小记录间隔。 If not specified, the topic is logged at full rate.
 
 The topics in this file replace all of the default logged topics.
 
