@@ -107,11 +107,11 @@ nsh> free
 
 ## MAVLink Shell{#mavlink_shell}
 
-For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be accessed via MAVLink. This works via serial link (USB/Telemetry) or WiFi (UDP/TCP). Make sure that QGC is not running, then start the shell with e.g. `./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source, you may first have to install the dependencies with `sudo pip install pymavlink pyserial`). Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection. For example `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot. .
+基于 Nuttx 的系统（Pixhawk, Pixracer, ...），nsh 终端也可以连接 MAVLink。 通过串口（USB/电台）或 WiFi（UDP/TCP）实现连接。 确保 QGC 没有运行，然后开启 shell：`./Tools/mavlink_shell.py /dev/ttyACM0`（在 Firmware 源码中， 你可能需要先安装依赖 `sudo pip install pymavlink pyserial`）。 使用 `./Tools/mavlink_shell.py -h` 获取可用参数描述，其中同样显示了 WiFi 连接的 IP 地址。 比如 `./Tools/mavlink_shell.py &lt;IP address&gt;` 可用于通过 WiFi 开启 nsh shell 连接飞控。 .
 
-> **Tip** You can also use the nsh shell on [QGC directly](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html).
+> **Tip** 你也可以使用 [QGC directly](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html) 的 nsh shell。
 
-# Snapdragon DSP Console
+# 骁龙 DSP 控制台
 
 When you are connected to your Snapdragon board via usb you have access to the px4 shell on the posix side of things. The interaction with the DSP side (QuRT) is enabled with the `qshell` posix app and its QuRT companion.
 
