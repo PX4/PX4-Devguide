@@ -120,10 +120,10 @@ set PWM_DISARMED 1000
 
 上述定义中从左到右每一个数字所代表的意思是：
 
-* M: Indicates two scalers for two control inputs. It indicates the number of control inputs the mixer will receive.
-* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  
-  * If you want to invert your PWM signal, the signs of the output scalings have to be changed. (```O:      -10000  -10000      0 -10000  10000```)
-  * This line can (and should) be omitted completely if it specifies the default scaling: ```O:      10000  10000   0 -10000  10000```
+* M: 数字 2 表示该输出通道对应两个控制输入， 该参数表示混控器将接受到的控制输入的数量。
+* O: 表示输出缩放因子（一个为正，一个为负），偏移量（这里为 0 ）和输出范围（这里为 -1.. +1）。  
+  * 如果你要将你的 PWM 信号反相，你应该在这里更改输出缩放因子的正负号。 (```O:      -10000  -10000      0 -10000  10000```)
+  * 如果这一行设定的是如下默认值，那么我们也可以（也应该）完全省略这一行： ```O:      10000  10000   0 -10000  10000```
 * S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll). It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
 * S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
 
