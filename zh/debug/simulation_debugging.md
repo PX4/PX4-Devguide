@@ -1,10 +1,10 @@
 # 仿真调试
 
-As the simulation is running on the host machine, all the desktop development tools are available.
+当模拟在主机上运行时，所有桌面开发工具都可用。
 
 ## CLANG Address Sanitizer (Mac OS, Linux)
 
-The Clang address sanitizer can help to find alignment (bus) errors and other memory faults like segmentation faults. The command below sets the right compile options.
+CLANG Address Sanitizer 可以帮助查找对齐（总线）错误和其他内存错误，如段错误。 下面的命令设置了正确的编译选项。
 
 ```sh
 make clean # 仅需在常规编译后，第一次运行 address sanitizer 时使用
@@ -23,9 +23,9 @@ brew install valgrind
 sudo apt-get install valgrind
 ```
 
-> **Todo** Add instructions how to run Valgrind
+> **Todo** 添加如何运行 Valgrind 的说明
 
-## Start combinations
+## 开始组合
 
 SITL can be launched with and without debugger attached and with either jMAVSim or Gazebo as simulation backend. This results in the start options below:
 
