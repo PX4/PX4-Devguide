@@ -28,15 +28,15 @@ PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或�
 
 ## 主机操作系统配置
 
-This section describes the purpose and location of the configuration files required for each supported host operating system to port them to new flight controller hardware.
+本节介绍了移植每个受支持的主机操作系统到新的飞控板硬件平台上需要用到的配置文件的用途和所处位置。
 
 ### NuttX
 
-In order to port PX4 on NuttX to a new hardware target, that hardware target must be supported by NuttX. The NuttX project maintains an excellent [porting guide](http://www.nuttx.org/Documentation/NuttxPortingGuide.html) for porting NuttX to a new computing platform.
+为了将基于 Nuttx 的 PX4 移植到新的硬件平台上，Nuttx 必须支持该硬件平台。 NuttX 项目中维护着一个出色的 [移植指南](http://www.nuttx.org/Documentation/NuttxPortingGuide.html) 可以帮助你实现将 Nuttx 移植到一个新的计算平台上。
 
-For all NuttX based flight controllers (e.g. the Pixhawk series) the OS is loaded as part of the application build.
+对于所有的基于 Nuttx 的飞行控制器来说（例如 Pixhawk 系列），操作系统在加载时都是作为应用程序的一部分进行加载的。
 
-The configuration files for all boards, including linker scripts and other required settings, are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in a vendor- and board-specific directory (i.e. **boards/*VENDOR*/*MODEL*/**)).
+所有飞控板的配置文件，包括链接脚本和其它必需的设置都位于 [/boards](https://github.com/PX4/Firmware/tree/master/boards/) 文件夹下特定于供应商（vendor- specific）和飞控板种类（ board-specific）的目录下 (例如 **boards/*VENDOR*/*MODEL*/**)。
 
 The following example uses FMUv5 as it is a recent [reference configuration](../debug/reference-design.md) for NuttX based flight controllers:
 
