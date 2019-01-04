@@ -1,8 +1,8 @@
 # 添加一个新的机型
 
-PX4使用存储的配置作为机型的起始点>。 机体的配置在[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)文件夹下的[配置文件](#config-file)中定义。 配置文件中引用[混控文件](#mixer-file)，混控文件是用来描述机体的物理结构，存储在[ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers)文件夹
+PX4使用存储的配置作为机型的起始点。 机体的配置在[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)文件夹下的[配置文件](#config-file)中定义。 配置文件中引用了用于描述机体物理结构的[混控文件](#mixer-file)，该类文件存储在[ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers)文件夹下。
 
-添加配置是非常简单的：在[init.d文件夹](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)创建一个新的文件(使用未使用的autostart ID作为文件名的前缀)，然后[构建并上传](../setup/building_px4.md)固件即可。
+添加配置是非常简单的：在 [init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 文件夹下创建一个新的文件（使用未使用的 autostart ID 作为文件名的前缀），然后[构建并上传](../setup/building_px4.md)固件即可。
 
 如果不想创建自己的配置文件，也可以用SD卡上的文本文件替换掉已有的自定义配置文件，具体细节请查看[自定义系统启动页。](../concept/system_startup.md)
 
@@ -13,7 +13,7 @@ PX4使用存储的配置作为机型的起始点>。 机体的配置在[ROMFS/px
 * 机架说明文档(被[Airframes Reference](../airframes/airframe_reference.md)和*QGroundControl*) 使用。
 * 飞机特定的参数设置，包括[tuning gains](#tuning-gains)。
 * 应该启动的应用，例如多旋翼或者固定翼的控制器，着陆检测等等。
-* 系统（固定翼，飞翼或者多旋翼）的物理配置。 这叫[混控器](../concept/mixing.md)。
+* 系统（固定翼，飞翼或者多旋翼）的物理配置。 在这里我们称之为 [混控器](../concept/mixing.md)。
 
 These aspects are mostly independent, which means that many configurations share the same physical layout of the airframe, start the same applications and differ most in their tuning gains.
 
