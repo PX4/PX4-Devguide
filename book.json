@@ -68,6 +68,7 @@
         },
         
         "versions": {
+            "gitbookConfigURL": "https://raw.githubusercontent.com/PX4/Devguide/master/book.json",
             "options": [
                 {
                     "value": "https://dev.px4.io/master/en/",
