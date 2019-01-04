@@ -98,7 +98,7 @@ screen /dev/ttyXXX BAUDRATE 8N1
 
 ## 控制台入门
 
-Type `ls` to view the local file system, type `free` to see the remaining free RAM. The console will also display the system boot log when power-cycling the board.
+输入 ls 查看本地文件系统， 输入 `free` 查看剩余内存。 飞控板上电时，终端同样可以显示系统启动日志。
 
 ```bash
 nsh> ls
