@@ -6,14 +6,14 @@
 
 ## 用法
 
-默认情况下，日志会在解锁时自动记录，并在加锁时停止。 A new log file is created for each arming session on the SD card. To display the current state, use `logger status` on the console. If you want to start logging immediately, use `logger on`. This overrides the arming state, as if the system was armed. `logger off` undoes this.
+默认情况下，日志会在解锁时自动记录，并在加锁时停止。 每次解锁后的飞行对话将会在 SD 卡上生成一个新的日志文件。 要显示当前状态，可以在控制台上输入 `logger status` 。 如果你想立即开始日志记录, 请使用 `logger on</0 > 。 这将覆盖解锁状态，如果系统已解锁。 <code>log off` 取消日志记录。
 
-Use
+使用
 
     logger help
     
 
-for a list of all supported logger commands and parameters.
+列举所有支持的日志命令和参数。
 
 ## 配置
 
