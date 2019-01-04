@@ -17,13 +17,13 @@ PX4使用存储的配置作为机型的起始点。 机体的配置在[ROMFS/px4
 
 上述几个模块在很大程度上都是相互独立的，这就意味着很多配置共用同一套机架的物理结构、启动同样的应用，仅在参数整定增益上有较大区别。
 
-> **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
+> **Note** 新的机型配置文件仅在执行干净的构建后（运行命令 `make clean`）才会被自动添加到构建系统中。
 
-### Config File {#config-file}
+### 配置文件 {#config-file}
 
-A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)) .
+下面展示了一个典型的配置文件（[原始文件在这里](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)）
 
-第一部分是关于机身框架的文档说明。 This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
+第一部分是关于机身框架的文档说明。 [Airframes Reference](../airframes/airframe_reference.md) 和 *QGroundControl* 会用到该部分内容。
 
 ```bash
 #!nsh
@@ -47,7 +47,7 @@ A typical configuration file is shown below ([original file here](https://github
 #
 ```
 
-接下来的一部分指定车辆特定的参数，包括调参系数。
+接下来的一部分指定车辆特定的参数，包括参数整定增益：
 
 ```bash
 sh /etc/init.d/rc.fw_defaults
@@ -91,16 +91,16 @@ set MIXER wingwing
 配置PWM输出(指定驱动/激活的输出和级别)。
 
 ```bash
-# Provide ESC a constant 1000 us pulse
+# 向 ESC 提供一个常值 1000 us 脉冲
 set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-> **警告**: 如果你想将某一个通道反相, 千万不要在你的遥控器上这样做或者改变例如`RC1_REV`这样的参数. 这些参数只会在你使用手动模式飞行的时候才会反相, 当你切换到飞控控制的飞行模式时, 这些通道输出依然是错误的(它只会改变你的遥控器的信号) 因此，对于一个正确的通道分配，要么改变PWM信号与`PWM_MAIN_REV1`(例如，对于通道1)，要么改变相应混控器的输出缩放标志(见下文)。
+> **Warning**：如果你想将某一个通道反相, 千万不要在你的遥控器上这样做或者改变例如 `RC1_REV` 这样的参数. 这些参数只会在你使用手动模式飞行的时候才会反相, 当你切换到飞控控制的飞行模式时, 这些通道输出依然是错误的(它只会改变你的遥控器的信号) 因此，对于一个正确的通道分配，要么改变PWM信号与`PWM_MAIN_REV1`(例如，对于通道1)，要么改变相应混控器的输出缩放系数(见下文)。
 
 ### 混控器文件 {#mixer-file}
 
-> **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
+> **Note** 你应首先阅读 [概念 > 混控器](../concept/mixing.md) 页面， This provides background information required to interpret this mixer file.
 
 A typical mixer file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). A mixer filename, in this case `wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
 
