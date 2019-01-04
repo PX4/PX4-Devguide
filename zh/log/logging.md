@@ -2,11 +2,11 @@
 
 日志能够记录任何 orb 主题及其包含的所有字段。 所有需要的数据都是从` .msg `文件中产生的，因此只需要指定出题的名称。 可选的间隔参数指定了主题的最大日志记录 速率。 所有主题的实例将会被记录。
 
-输出的日志格式是[ Ulog ](../log/ulog_file_format.md) 。
+输出的日志格式是[ Ulog ](../log/ulog_file_format.md)。
 
 ## 用法
 
-默认情况下，日志会在解锁时自动记录，并在加锁时停止。 每次解锁后的飞行对话将会在 SD 卡上生成一个新的日志文件。 要显示当前状态，可以在控制台上输入 `logger status` 。 如果你想立即开始日志记录, 请使用 `logger on</0 > 。 这将覆盖解锁状态，如果系统已解锁。 <code>log off` 取消日志记录。
+默认情况下，日志会在解锁时自动记录，并在加锁时停止。 每次解锁后的飞行对话将会在 SD 卡上生成一个新的日志文件。 要显示当前状态，可以在控制台上输入 `logger status`。 如果你想立即开始日志记录, 请使用 `logger on</0 >。 这将覆盖解锁状态，如果系统已解锁。 <code>log off` 取消日志记录。
 
 使用
 
@@ -17,14 +17,14 @@
 
 ## 配置
 
-日志主题列表可以以 SD 卡文件的形式定制。 在 SD 卡上创建一个 `etc/logging/logger_topics.txt` 文件，其中包含主题列表(对于SITL，则是`build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`)：
+日志主题列表可以以 SD 卡文件的形式定制。 在 SD 卡上创建一个 `etc/logging/logger_topics.txt` 文件，其中包含主题列表（对于SITL，则是`build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`）：
 
     <topic_name>, <interval>
     
 
-`&lt;interval&gt;`是一个可选项，如果指定，则以 ms 为单位定义两条日志信息的最小记录间隔。 If not specified, the topic is logged at full rate.
+`&lt;interval&gt;`是一个可选项，如果指定，则以 ms 为单位定义两条日志信息的最小记录间隔。 如果未指定,，则全速率记录主题信息。
 
-The topics in this file replace all of the default logged topics.
+文件中的主题名将替换所有默认记录的主题。
 
 ## 脚本
 
