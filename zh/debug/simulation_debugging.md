@@ -39,7 +39,7 @@ make px4_sitl_default gazebo___gdb
 make px4_sitl_default gazebo___lldb
 ```
 
-其中最后一个参数是 <viewer\_model\_debugger> 三重奏（使用三个下划线表示默认的 &#39;iris&#39; 模型）。 这将启动调试器并启动 SITL 应用程序。 为了终止调试器 shell 脚本并停止执行，请点击 ```CTRL-C```:
+其中最后一个参数是 <viewer\_model\_debugger> 三元组（使用三个下划线表示默认的 &#39;iris&#39; 模型）。 这将启动调试器并启动 SITL 应用程序。 为了终止调试器 shell 脚本并停止执行，请点击 ```CTRL-C```:
 
 ```gdb
 Process 16529 stopped
@@ -64,34 +64,34 @@ libsystem_kernel.dylib`__read_nocancel:
     (gdb) handle SIGCONT noprint nostop
     
 
-After that the The lldb or gdb shells behave like normal sessions, please refer to the LLDB / GDB documentation.
+之后，lldb 或 gdb 脚本的行为类似于正常会话，请参阅 ldb/gdbb 文档。
 
-The last parameter, the &lt;viewer\_model\_debugger&gt; triplet, is actually passed to make in the build directory, so
+最后一个参数, <viewer\_model\_debugger> 三元组，实际上是传递到生成目录中，因此
 
 ```sh
 make px4_sitl_default jmavsim___gdb
 ```
 
-is equivalent with
+等价于
 
 ```sh
 make px4_sitl_default   # 通过 cmake 配置
 make -C build/px4_sitl_default jmavsim___gdb
 ```
 
-A full list of the available make targets in the build directory can be obtained with:
+使用以下方法获取生成目录中可用目标的完整列表：
 
 ```sh
 make help
 ```
 
-but for your convenience, a list with just the &lt;viewer\_model\_debugger&gt; triplets is printed with the command
+但为了您的方便，一个只有 <viewer\_model\_debugger> 三元组的列表可以用下面命令打印出来：
 
 ```sh
 make list_vmd_make_targets
 ```
 
-## Compiler optimization
+## 编译器优化
 
 It is possible to suppress compiler optimization for given executables and/or modules (as added by cmake with `add_executable` or `add_library`) when configuring for `posix_sitl_*`. This can be handy when it is necessary to step through code with a debugger or print variables that would otherwise be optimized out.
 
