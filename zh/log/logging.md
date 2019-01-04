@@ -28,20 +28,20 @@
 
 ## 脚本
 
-There are several scripts to analyze and convert logging files in the [pyulog](https://github.com/PX4/pyulog) repository.
+在 [pyulog](https://github.com/PX4/pyulog) 存储库中有几个脚本来分析和转换日志记录文件。
 
-## Dropouts
+## 丢帧
 
-Logging dropouts are undesired and there are a few factors that influence the amount of dropouts:
+日志丢帧是不希望发生的，下面有几个因素对影响丢帧的数量：
 
-- Most SD cards we tested exhibit multiple pauses per minute. This shows itself as a several 100 ms delay during a write command. It causes a dropout if the write buffer fills up during this time. This effect depends on the SD card (see below).
-- Formatting an SD card can help to prevent dropouts.
-- Increasing the log buffer helps.
+- 我们测试的大多数 sd 卡每分钟都会有多个停顿。 这种停顿在写命令期间有好几个 100ms 的延迟。 如果写缓冲区在这期间被填满会引起丢帧。 这种影响取决于 SD 卡本身（见下文）。
+- 格式化 SD 卡有助于避免丢帧。
+- 增大日志缓存也有效。
 - Decrease the logging rate of selected topics or remove unneeded topics from being logged (`info.py <file>` is useful for this).
 
 ## SD 卡
 
-The following provides performance results for different SD cards. Tests were done on a Pixracer; the results are applicable to Pixhawk as well.
+下面提供了不同 SD 卡的性能。 测试是在 Pixracer上进行的，这个结果也适用于 Pixhawk。
 
 > **Tip** The maximum supported SD card size for NuttX is 32GB (SD Memory Card Specifications Version 2.0).
 
