@@ -126,7 +126,7 @@ PX4 项目支持并维护着 [FMU 标准参考硬件](../debug/reference-design.
 
 **PX4 项目团队保留因未能满足项目规定需求而 拒绝接收新的移植平台（或者移除现有移植平台）的权利。**
 
-You can reach out to the core developer team and community on the official [Forums and Chat](../README.md#support).
+你可以在官方的 [论坛和聊天组](../README.md#support) 中与核心开发团队和开发社区取得联系。
 
 ## 相关信息
 
