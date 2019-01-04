@@ -129,9 +129,9 @@ set PWM_DISARMED 1000
 
 > **Note** 简而言之，该混控器的输出应该为SERVO = ( (滚转输入 * -0.6 + 0) + (俯仰输入 * 0.65 + 0) ) * 1 + 0
 
-Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch.
+程序后台会对两个缩放器的值进行求和，这就意味着对于这个飞翼来说该控制舵面最大从滚转信号中取 60% 的舵面偏转、从俯仰信号中最大取 65% 的舵面偏转。
 
-The complete mixer looks like this:
+完整的混控器如下所示:
 
 ```bash
 Delta-wing mixer for PX4FMU
@@ -191,7 +191,7 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ```
 
-## Adding a New Airframe Group
+## 增加一个新的机型组（Airframe Group）
 
 Airframe "groups" are used to group similar airframes for selection in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) and in the *Airframe Reference* documentation ([PX4 DevGuide](../airframes/airframe_reference.md) and [PX4 UserGuide](https://docs.px4.io/en/airframes/airframe_reference.html)). Every group has a name, and an associated svg image which shows the common geometry, number of motors, and direction of motor rotation for the grouped airframes.
 
@@ -245,7 +245,7 @@ To make a new airframe available for section in the *QGroundControl* [airframe c
 1. Make a clean build (e.g. by running `make clean` and then `make px4_fmu-v5_default`)
 2. Open QGC and select **Custom firmware file...** as shown below:
   
-  ![QGC flash custom firmware](../../assets/gcs/qgc_flash_custom_firmware.png)
+  ![QGC 烧写自定义固件](../../assets/gcs/qgc_flash_custom_firmware.png)
   
   You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata).
 
