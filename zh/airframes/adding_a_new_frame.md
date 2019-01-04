@@ -228,7 +228,7 @@ S: 0 3      0  20000 -10000 -10000  10000
             <file alias="Airframe/FlyingWing">src/AutoPilotPlugins/Common/Images/FlyingWing.svg</file>
             ... > 
     
-    **Note** The remaining airframe metadata should be automatically included in the firmware (once **srcparser.py** is updated). 
+    **Note** 剩下的机型元数据会自动包含在固件中（只要 **srcparser.py** 完成了更新）。 
 
 ## 调参
 
