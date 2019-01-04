@@ -38,15 +38,15 @@ PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或�
 
 所有飞控板的配置文件，包括链接脚本和其它必需的设置都位于 [/boards](https://github.com/PX4/Firmware/tree/master/boards/) 文件夹下特定于供应商（vendor- specific）和飞控板种类（ board-specific）的目录下 (例如 **boards/*VENDOR*/*MODEL*/**)。
 
-The following example uses FMUv5 as it is a recent [reference configuration](../debug/reference-design.md) for NuttX based flight controllers:
+下面的示例中使用了 FMUv5 飞控板平台，因为它是基于 NuttX 的飞行控制器的最新 < 0>参考配置 </a0 >：
 
-* Running `make px4_fmu-v5_default` from the **Firmware** directory will build the FMUv5 config
-* The base FMUv5 configuration files are located in: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5).
-* Board specific header: [/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h). 
-* NuttX OS config (created with Nuttx menuconfig): [/boards/px4/fmu-v5/nuttx-config/nsh/defconfig](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/nsh/defconfig).
-* Build configuration: [PX4/Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
+* 在 **Firmware** 目录下运行 `make px4_fmu-v5_default` 命令将生成 FMUv5 配置。
+* 基准的 FMUv5 配置文件位于：[/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5)。
+* 针对该飞控板的头文件位于：[/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h)。 
+* NuttX 操作系统配置（由 Nuttx 的文本配置界面（menuconfig ）生成）位于： [/boards/px4/fmu-v5/nuttx-config/nsh/defconfig](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/nsh/defconfig)。
+* 编译配置位于： [PX4/Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)。
 
-The function of each of these files, and perhaps more, will need to be duplicated for a new flight controller board.
+在移植到新的飞控板上时我们需要复现上述文件的功能，也许还会需要复现更多文件的功能。
 
 #### NuttX Menuconfig（基于文本选择的配置界面）
 
