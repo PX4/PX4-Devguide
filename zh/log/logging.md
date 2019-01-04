@@ -64,20 +64,20 @@
 
 ## 日志流
 
-传统的、仍然支持的日志记录方法是在 FMU 上使用 SD 卡。 但是，有一种替代方法，即日志流，它通过 mavlink 发送相同的日志记录数据。 这种方法可以用在 FMU 没有 SD 卡插槽的情况下（比如 intel@ Aero Ready to Fly Drone），或者是单纯的不想用SD卡。 Both methods can be used independently and at the same time.
+传统的、仍然支持的日志记录方法是在 FMU 上使用 SD 卡。 但是，有一种替代方法，即日志流，它通过 mavlink 发送相同的日志记录数据。 这种方法可以用在 FMU 没有 SD 卡插槽的情况下（比如 intel@ Aero Ready to Fly Drone），或者是单纯的不想用SD卡。 这两种方法可以同时独立使用。
 
-The requirement is that the link provides at least ~50KB/s, so for example a WiFi link. And only one client can request log streaming at the same time. The connection does not need to be reliable, the protocol is designed to handle drops.
+这个要求是链路能够提供至少 50 Kb/s 的速率，比如 Wifi 链路。 并且同一时刻只能有一个客户机可以请求日志流。 连接不需要稳定，协议能够解决这个问题。
 
-There are different clients that support ulog streaming:
+这是几种不同的支持日志流的客户机：
 
-- `mavlink_ulog_streaming.py` script in Firmware/Tools.
-- QGroundControl： ![](../../assets/gcs/qgc-log-streaming.png)
+- Firmware/Tools 中的 `mavlink_ulog_streaming.py` 脚本
+- QGroundControl ![](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 
 ### 诊断
 
-- If log streaming does not start, make sure the `logger` is running (see above), and inspect the console output while starting.
-- If it still does not work, make sure that Mavlink 2 is used. Enforce it by setting `MAV_PROTO_VER` to 2.
+- 如果日志流没有启动，确保 `logger` 进程在运行（见上文），并在启动时检查控制台输出。
+- 如果仍然没有工作，确保使用的是 Mavlink 2。 Enforce it by setting `MAV_PROTO_VER` to 2.
 - Log streaming uses a maximum of 70% of the configured mavlink rate (`-r` parameter). If more is needed, messages are dropped. The currently used percentage can be inspected with `mavlink status` (1.8% is used in this example):
 
     instance #0:
