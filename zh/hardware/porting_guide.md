@@ -50,18 +50,18 @@ PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或�
 
 #### NuttX Menuconfig（基于文本选择的配置界面）
 
-If you need to modify the NuttX OS configuration, you can do this via [menuconfig](https://bitbucket.org/nuttx/nuttx) using the PX4 shortcuts:
+如果你需要修改 NuttX 操作系统的设置，你可以通过 PX4 快捷方式调用 [menuconfig](https://bitbucket.org/nuttx/nuttx) 这个基于文本的配置界面来执行此操作：
 
 ```sh
 make px4_fmu-v5_default menuconfig
 make px4_fmu-v5_default qconfig
 ```
 
-For fresh installs of PX4 onto Ubuntu using [ubuntu_sim_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh) you will also need to install *kconfig* tools from [NuttX tools](https://bitbucket.org/nuttx/tools/src/master/).
+针对使用 [ubuntu_sim_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh) 脚本在 Ubuntu 上全新安装 PX4 的情况，你还需要从 [NuttX tools](https://bitbucket.org/nuttx/tools/src/master/) 中额外安装 *kconfig* 工具。
 
-> **Note** The following steps are not required if using the [px4-dev-nuttx](https://hub.docker.com/r/px4io/px4-dev-nuttx/) docker container or have installed to macOS using our normal instructions (as these include`kconfig-mconf`).
+> **Note** 如果使用的是 [px4-dev-nuttx](https://hub.docker.com/r/px4io/px4-dev-nuttx/) docker 容器作为开发环境或者根据我们的标准指南在 macOS 上安装的开发环境（这些情况下已经默认安装了 `kconfig-mconf` ），那么你并不需要执行下述步骤。
 
-Run the following commands from any directory:
+在任意目录运行以下命令：
 
 ```sh
 git clone https://bitbucket.org/nuttx/tools.git
