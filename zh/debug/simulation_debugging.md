@@ -27,7 +27,7 @@ sudo apt-get install valgrind
 
 ## 开始组合
 
-SITL can be launched with and without debugger attached and with either jMAVSim or Gazebo as simulation backend. This results in the start options below:
+SITL 可以在附加调试器的情况下启动，也可以不附加调试器，并将 jMAVSim 或 Gazebo 作为模拟后端。 这将生成以下开始选项：
 
 ```sh
 make px4_sitl_default jmavsim
