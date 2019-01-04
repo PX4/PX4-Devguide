@@ -19,12 +19,12 @@ PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或�
 * 针对该飞控板的的初始化文件：[/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board) 
   * 如果在飞控板平台目录下可以找到 **init/rc.board** 文件，则针对该飞控板平台的初始化文件将会自动包含在启动脚本中。
   * 该文件用于启动仅存在于特定主板上的传感器 (和其他东西)。 它也被用于完成对飞控板的默认参数、 UART 映射关系和其它特殊情况的设定。
-  * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF, and in AUTOCNF section (fresh setups) it sets the [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) parameter.
+  * 对于 FMUv5 飞控板而言你可以在该文件内看到所有的 Pixhawk 4 传感器都被启动了，该文件还设置了一个较大的 LOGGER_BUF。同时，在 AUTOCNF （初始设置）这一部分该文件还会设定 [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) 这一参数。
 
-In addition there are several groups of configuration files for each board located throughout the code base:
+此外，在整个代码库中，每个飞控板都还有一些其它的配置文件：
 
-* The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
-* Driver files are located in: [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers).
+* 引导文件系统 (启动脚本) 位于：[ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
+* 驱动程序文件位于: [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers) 。
 
 ## 主机操作系统配置
 
