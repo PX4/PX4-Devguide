@@ -1,6 +1,6 @@
-# Guía de Desarrollo de PX4
+# PX4 Development Guide ({{ book.px4_version }})
 
-[![Releases](https://img.shields.io/github/release/PX4/Firmware.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
+[![Releases](https://img.shields.io/badge/release-{{ book.px4_version }}-blue.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
 > **Información** Esta guía es principalmente para los desarrolladores de software e integradores de hardware. Para volar, construir y modificar vehículos usando el hardware soportado ver la [Guía del usuario de PX4](https://docs.px4.io/en/).
 
