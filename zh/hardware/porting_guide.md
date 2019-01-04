@@ -96,23 +96,23 @@ sudo make install
 
 ## RC UART 接线建议
 
-It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. This is done via board config and manifest files. One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c).
+通常建议使用单独的 RX 和 TX 针脚来连接 RC 遥控器和微型控制器。 如果 RX 和 TX 连在了一起，那么 UART 需要设置为单线模式以防止出现争用。 这可以用过对飞控板的配置文件和 manifest 文件进行更改来实现。 示例可见： [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c)。
 
 ## 官方支持的硬件
 
-The PX4 project supports and maintains the [FMU standard reference hardware](../debug/reference-design.md) and any boards that are compatible with the standard. This includes the [Pixhawk-series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/en/flight_controller/)).
+PX4 项目支持并维护着 [FMU 标准参考硬件](../debug/reference-design.md) 及任何与标准相兼容的飞控板平台。 这就包括了 [Pixhawk 系列](https://docs.px4.io/en/flight_controller/pixhawk_series.html) （请翻阅用户手册获取 [官方支持硬件完整列表](https://docs.px4.io/en/flight_controller/))。
 
-Every officially supported board benefits from:
+每个受官方支持的飞控板平台都将受益于：
 
-* PX4 Port available in the PX4 repository
-* Automatic firmware builds that are accessible from *QGroundControl*
-* Compatibility with the rest of the ecosystem
-* Automated checks via CI - safety remains paramount to this community
-* [Flight testing](../test_and_ci/test_flights.md)
+* PX4 项目仓库中可用的 PX4 移植
+* 可从 *QGroundControl* 中直接访问的自动固件编译
+* 与生态系统其余部分的兼容性
+* 可通过 CI 进行自动检查 — 安全仍是这个社区的重中之重
+* [飞行测试](../test_and_ci/test_flights.md)
 
-We encourage board manufacturers to aim for full compatibility with the [FMU spec](https://pixhawk.org/). With full compatibility you benefit from the ongoing day-to-day development of PX4, but have none of the maintenance costs that come from supporting deviations from the specification.
+我们鼓励飞控板制造商以与 [FMU 规格](https://pixhawk.org/) 完全兼容为目标进行生产。 通过完全兼容, 您可以从 PX4 的日常开发中受益，而不需要付出任何维护成本来支持偏离了规范的硬件规格。
 
-> **Tip** Manufacturers should carefully consider the cost of maintenance before deviating from the specification (the cost to the manufacturer is proportional to the level of divergence).
+> **Tip** 制造商们在偏离标准硬件规格前应谨慎考虑需要付出的维护成本（制造商们需要付出的成本与偏离程度成正比）。
 
 We welcome any individual or company to submit their port for inclusion in our supported hardware, provided they are willing to follow our [Code of Conduct](../contribute/README.md#code-of-conduct) and work with the Dev Team to provide a safe and fulfilling PX4 experience to their customers.
 
