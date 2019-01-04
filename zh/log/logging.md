@@ -1,12 +1,12 @@
 # 日志记录
 
-日志能够记录任何 orb 主题及其包含的所有字段。 Everything necessary is generated from the `.msg` file, so that only the topic name needs to be specified. An optional interval parameter specifies the maximum logging rate of a certain topic. All existing instances of a topic are logged.
+日志能够记录任何 orb 主题及其包含的所有字段。 所有需要的数据都是从` .msg `文件中产生的，因此只需要指定出题的名称。 可选的间隔参数指定了主题的最大日志记录 速率。 所有主题的实例将会被记录。
 
-The output log format is [ULog](../log/ulog_file_format.md).
+输出的日志格式是[ Ulog ](../log/ulog_file_format.md) 。
 
 ## 用法
 
-By default, logging is automatically started when arming, and stopped when disarming. A new log file is created for each arming session on the SD card. To display the current state, use `logger status` on the console. If you want to start logging immediately, use `logger on`. This overrides the arming state, as if the system was armed. `logger off` undoes this.
+默认情况下，日志会在解锁时自动记录，并在加锁时停止。 A new log file is created for each arming session on the SD card. To display the current state, use `logger status` on the console. If you want to start logging immediately, use `logger on`. This overrides the arming state, as if the system was armed. `logger off` undoes this.
 
 Use
 
