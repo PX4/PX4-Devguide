@@ -245,13 +245,13 @@ If the airframe is for a **new group** you additionally need to:
 1. 创建一个干净的生成（例如，先运行 `make clean` 指令，然后再运行 `make px4_fmu-v5_default`）
 2. 打开 QGC 然后如下图所示单击 **Custom firmware file...**：
   
-  ![QGC 烧写自定义固件](../../assets/gcs/qgc_flash_custom_firmware.png)
+  ![QGC 载入自定义固件](../../assets/gcs/qgc_flash_custom_firmware.png)
   
-  You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata).
+  随后你将会被要求选择需要被载入的 **.px4** 固件文件（该文件是一个被压缩的 JSON 文件，文件内包含了机型的元数据）。
 
-3. Navigate to the build folder and select the firmware file (e.g. **Firmware/build/px4_fmu-v5_default/px4_fmu-v5_default.px4**).
+3. 导航到构建文件夹然后选择相应的固件文件 （例如， **Firmware/build/px4_fmu-v5_default/px4_fmu-v5_default.px4**）。
 
-4. Press **OK** to start flashing the firmware.
-5. Restart *QGroundControl*.
+4. 单击 **OK** 开始载入固件。
+5. 重启 *QGroundControl*。
 
-The new airframe will then be available for selection in *QGroundControl*.
+新的机型现在应可以在 *QGroundControl* 中进行选择了。
