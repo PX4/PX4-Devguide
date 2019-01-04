@@ -114,17 +114,17 @@ PX4 项目支持并维护着 [FMU 标准参考硬件](../debug/reference-design.
 
 > **Tip** 制造商们在偏离标准硬件规格前应谨慎考虑需要付出的维护成本（制造商们需要付出的成本与偏离程度成正比）。
 
-We welcome any individual or company to submit their port for inclusion in our supported hardware, provided they are willing to follow our [Code of Conduct](../contribute/README.md#code-of-conduct) and work with the Dev Team to provide a safe and fulfilling PX4 experience to their customers.
+我们欢迎任何个人或者公司提交他们的移植项目以纳入我们的支持硬件列表中，前提是他们应愿意遵守我们的 [行为守则](../contribute/README.md#code-of-conduct) 并与开发团队合作，以实现为他们的客户提供安全且满意的 PX4 体验。
 
-It's also important to note that the PX4 dev team has a responsibility to release safe software, and as such we require any board manufacturer to commit any resources necessary to keep their port up-to-date, and in a working state.
+还需要注意的是 PX4 开发团队有责任发布安全的软件，因此我们要求所有飞控板制造商都应投入必要的资源来保证他们的意志平台始终处于最新状态并且可用。
 
-If you want to have your board officially supported in PX4:
+如果你想让你的飞控板被 PX4 项目正式支持：
 
-* Your hardware must be available in the market (i.e. it can be purchased by any developer without restriction).
-* Hardware must be made available to the PX4 Dev Team so that they can validate the port (contact <lorenz@px4.io> for guidance on where to ship hardware for testing).
-* The board must pass full [test suite](../test_and_ci/README.md) and [flight testing](../test_and_ci/test_flights.md).
+* 你的硬件必须在市场上可用（例如它可以被任何开发人员不受限制地购买到） 。
+* 必须向 PX4 开发团队提供硬件以便他们能够验证移植平台（联系 <lorenz@px4.io> 获取进行硬件测试的寄送地址的帮助信息）。
+* 飞控板必须通过完整的 [测试套件（test suite）](../test_and_ci/README.md) 和 [飞行测试](../test_and_ci/test_flights.md)。
 
-**The PX4 project reserves the right to refuse acceptance of new ports (or remove current ports) for failure to meet the requirements set by the project.**
+**PX4 项目团队保留因未能满足项目规定需求而 拒绝接收新的移植平台（或者移除现有移植平台）的权利。**
 
 You can reach out to the core developer team and community on the official [Forums and Chat](../README.md#support).
 
