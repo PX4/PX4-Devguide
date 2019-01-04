@@ -106,11 +106,11 @@ set PWM_DISARMED 1000
 
 混频器文件包含多个代码块, 每个代码块都针对一个执行器或 ESC。 因此，如果你有两个执行器和一个 ESC，那么你的混控器文件应该包含三个代码块。
 
-> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
+> **Note** 舵机 / 电机应按照混控器文件中的定义顺序对应地接入飞控。
 
-So MAIN1 would be the left aileron, MAIN2 the right aileron, MAIN3 is empty (note the Z: zero mixer) and MAIN4 is throttle (to keep throttle on output 4 for common fixed wing configurations).
+所以 MAIN1 应为左副翼，MAIN2 应为为右副翼 ，MAIN3 为空 （这里需要注意的是 Z: 表示混控器为空），MAIN4 为油门（在常规固定翼机型配置中应保持油门在 4 号输出位置上）。
 
-A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1..+1.
+混控器以 -10000 到 10000 这一范围进行单位化编码，其分别对应于 -1.. + 1。
 
     M: 2
     O:      10000  10000      0 -10000  10000
@@ -118,7 +118,7 @@ A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1
     S: 0 1   6500   6500      0 -10000  10000
     
 
-Where each number from left to right means:
+上述定义中从左到右每一个数字所代表的意思是：
 
 * M: Indicates two scalers for two control inputs. It indicates the number of control inputs the mixer will receive.
 * O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  
