@@ -62,7 +62,6 @@ pipeline {
         anyOf {
           branch "master";
           branch "v1.*"
-          branch "*jenkins*"
         }
       }
 
