@@ -122,20 +122,20 @@ nsh> free
 
 注意：在 Mac 上可以使用 [nano-dm](https://github.com/kevinmehall/nano-dm)。
 
-Run the main app on the linaro side:
+在 Linaro 运行主程序：
 
     cd /home/linaro
     ./px4 px4.config
     
 
-You can now use all apps loaded on the DSP from the linaro shell with the following syntax:
+用以下语法，可以通过 Linaro shell 使用已经加载到 DSP 上的所有 Apps：
 
     pxh> qshell command [args ...]
     
 
-For example, to see the available QuRT apps:
+比如，查看可用的 QuRT Apps：
 
     pxh> qshell list_tasks
     
 
-The output of the executed command is displayed on the minidm.
+执行命令输出的结果显示在 minidm。
