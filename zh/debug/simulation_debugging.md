@@ -39,7 +39,7 @@ make px4_sitl_default gazebo___gdb
 make px4_sitl_default gazebo___lldb
 ```
 
-where the last parameter is the &lt;viewer\_model\_debugger&gt; triplet (using three underscores implies the default 'iris' model). This will start the debugger and launch the SITL application. In order to break into the debugger shell and halt the execution, hit ```CTRL-C```:
+其中最后一个参数是 <viewer\_model\_debugger> 三重奏（使用三个下划线表示默认的 &#39;iris&#39; 模型）。 这将启动调试器并启动 SITL 应用程序。 为了终止调试器 shell 脚本并停止执行，请点击 ```CTRL-C```:
 
 ```gdb
 Process 16529 stopped
@@ -53,13 +53,13 @@ libsystem_kernel.dylib`__read_nocancel:
 (lldb) 
 ```
 
-In order to not have the DriverFrameworks scheduling interfere with the debugging session ```SIGCONT``` should be masked in LLDB and GDB:
+为了没有驱动框架调度干扰调试会话 ```SIGCONT``` 应在 LLDB 和 GDB 中屏蔽：
 
 ```bash
 (lldb) process handle SIGCONT -n false -p false -s false
 ```
 
-Or in the case of GDB:
+或者在 GDB 下：
 
     (gdb) handle SIGCONT noprint nostop
     
