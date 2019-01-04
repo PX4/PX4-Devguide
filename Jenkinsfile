@@ -49,6 +49,12 @@ pipeline {
           sh('cp -r _book/* dev.px4.io/${BRANCH_NAME}/')
           sh('cd dev.px4.io; git add ${BRANCH_NAME}; git commit -a -m "gitbook build update `date`"')
           sh('cd dev.px4.io; git push origin master')
+          
+        }
+        post { 
+          always { 
+            sh('rm -rf dev.px4.io')
+          }
         }
       }
 
