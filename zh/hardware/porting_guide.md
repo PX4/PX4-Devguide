@@ -82,7 +82,7 @@ Linux boards do not include the OS and kernel configuration. These are already p
 
 * [cmake/configs/posix\_rpi\_cross.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_rpi_cross.cmake) - RPI cross-compilation.
 
-## Middleware Components and Configuration
+## 中间件组件和配置
 
 This section describes the various middleware components, and the configuration file updates needed to port them to new flight controller hardware.
 
@@ -94,11 +94,11 @@ This section describes the various middleware components, and the configuration 
 * Drivers: [DriverFramework](https://github.com/px4/DriverFramework).
 * Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
 
-## RC UART Wiring Recommendations
+## RC UART 接线建议
 
 It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. This is done via board config and manifest files. One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c).
 
-## Officially Supported Hardware
+## 官方支持的硬件
 
 The PX4 project supports and maintains the [FMU standard reference hardware](../debug/reference-design.md) and any boards that are compatible with the standard. This includes the [Pixhawk-series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/en/flight_controller/)).
 
@@ -128,7 +128,7 @@ If you want to have your board officially supported in PX4:
 
 You can reach out to the core developer team and community on the official [Forums and Chat](../README.md#support).
 
-## Related Information
+## 相关信息
 
 * [Device Drivers](../middleware/drivers.md) - How to support new peripheral hardware (device drivers)
 * [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
