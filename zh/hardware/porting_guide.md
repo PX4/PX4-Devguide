@@ -72,7 +72,7 @@ make
 sudo make install
 ```
 
-The `--prefix=/usr` is essential as it determines the specific installation location where PX4 is hardcoded to look for `kconfig-tools`. The `--enable-mconf` and `--enable-qconf` options will enable the `menuconfig` and `qconfig` options respectively.
+`--prefix=/usr` 是必不可少的，因为该选项在 PX4 中写死了 PX4 应该在哪个特定安装位置去寻找 `kconfig-tools`。 The `--enable-mconf` and `--enable-qconf` options will enable the `menuconfig` and `qconfig` options respectively.
 
 To run `qconfig` you may need to install additional Qt dependencies.
 
