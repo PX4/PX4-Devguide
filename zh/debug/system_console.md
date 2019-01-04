@@ -12,16 +12,16 @@
 Shell 提供对系统的更高级别的访问：
 
 * 用于基本模块测试运行命令。
-* Only display the output of modules you start (and therefore cannot debug the boot process).
-* Cannot display the output of tasks running on the work queue.
+* 仅显示启动的模块的输出（因此无法调试引导过程）。
+* 无法显示在工作队列上运行的任务的输出。
 
-There can be several shells, either running on a dedicated UART, or via MAVLink. Since MAVLink provides more flexibility, the shell is nowadays only used [via MAVLink](#mavlink_shell).
+可以有多个 Shell，可以在专用 Uart 上运行，也可以通过 MAVLink 运行。 由于 MAVLink 提供了更大的灵活性，现在只使用 [via MAVLink](#mavlink_shell)。
 
-## Snapdragon Flight: Wiring the Console
+## 骁龙飞控：接线控制台
 
-The developer kit comes with a breakout board with three pins to access the console. Connect the bundled FTDI cable to the header and the breakout board to the expansion connector.
+开发人员套件附带了一个带有三个引脚的电路板，用于访问控制台。 将捆绑的 FTDI 电缆连接到接口，将断路板连接到扩展连接器。
 
-## Pixracer / Pixhawk v3: Wiring the Console
+## Pixracer / Pixhawk v3: 接线控制台
 
 Connect the 6-pos JST SH 1:1 cable to the Dronecode probe or connect the individual pins of the cable to a FTDI cable like this:
 
