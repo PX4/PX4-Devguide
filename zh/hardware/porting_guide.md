@@ -2,13 +2,13 @@
 
 This topic is for developers who want to port PX4 to work with *new* flight controller hardware.
 
-## PX4 Architecture
+## PX4 架构
 
 PX4 consists of two main layers: The [board support and middleware layer](../middleware/README.md) on top of the host OS (NuttX, Linux or any other POSIX platform like Mac OS), and the applications (Flight Stack in [src/modules](https://github.com/PX4/Firmware/tree/master/src/modules)\). Please reference the [PX4 Architectural Overview](../concept/architecture.md) for more information.
 
 This guide is focused only on the host OS and middleware as the applications/flight stack will run on any board target.
 
-## Flight Controller Configuration File Layout
+## 飞行控制器配置文件分布位置
 
 Board startup and configuration files are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in each board's vendor-specific directory (i.e. **boards/*VENDOR*/*MODEL*/**)).
 
@@ -26,7 +26,7 @@ In addition there are several groups of configuration files for each board locat
 * The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
 * Driver files are located in: [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers).
 
-## Host Operating System Configuration
+## 主机操作系统配置
 
 This section describes the purpose and location of the configuration files required for each supported host operating system to port them to new flight controller hardware.
 
@@ -48,7 +48,7 @@ The following example uses FMUv5 as it is a recent [reference configuration](../
 
 The function of each of these files, and perhaps more, will need to be duplicated for a new flight controller board.
 
-#### NuttX Menuconfig
+#### NuttX Menuconfig（基于文本选择的配置界面）
 
 If you need to modify the NuttX OS configuration, you can do this via [menuconfig](https://bitbucket.org/nuttx/nuttx) using the PX4 shortcuts:
 
