@@ -1,6 +1,6 @@
-# PX4 System Console
+# PX4 系统控制台
 
-The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](https://shop.titaneliteinc.com/index.php?route=product/product&product_id=1294), but a plain FTDI cable can be used as well.
+系统控制台允许对系统进行低级访问，调试输出和分析系统引导过程。 连接它最方便的方法是使用 [Dronecode probe](https://shop.titaneliteinc.com/index.php?route=product/product&product_id=1294)，也可以使用普通的 FTDI 电缆。
 
 ## System Console vs. Shells
 
