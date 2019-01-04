@@ -232,7 +232,7 @@ If the airframe is for a **new group** you additionally need to:
 
 ## 调参
 
-The following *PX4 User Guide* topics explain how to tune the parameters that will be specified in the config file:
+下面的 *PX4 User Guide* 话题解释了如何对那些需要在配置文件中明确的参数进行调整：
 
 * [多轴飞行器 PID 调参指南](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
 * [固定翼 PID 调参指南](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
@@ -240,10 +240,10 @@ The following *PX4 User Guide* topics explain how to tune the parameters that wi
 
 ## 将新的机型加入到 QGroundControl
 
-To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/en/config/airframe.html):
+为了令一个新的机型可以在 *QGroundControl* 软件的 [airframe configuration](https://docs.px4.io/en/config/airframe.html) 页面中可用，你应进行如下操作：
 
-1. Make a clean build (e.g. by running `make clean` and then `make px4_fmu-v5_default`)
-2. Open QGC and select **Custom firmware file...** as shown below:
+1. 创建一个干净的生成（例如，先运行 `make clean` 指令，然后再运行 `make px4_fmu-v5_default`）
+2. 打开 QGC 然后如下图所示单击 **Custom firmware file...**：
   
   ![QGC 烧写自定义固件](../../assets/gcs/qgc_flash_custom_firmware.png)
   
