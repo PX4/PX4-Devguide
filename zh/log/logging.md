@@ -77,8 +77,8 @@
 ### 诊断
 
 - 如果日志流没有启动，确保 `logger` 进程在运行（见上文），并在启动时检查控制台输出。
-- 如果仍然没有工作，确保使用的是 Mavlink 2。 Enforce it by setting `MAV_PROTO_VER` to 2.
-- Log streaming uses a maximum of 70% of the configured mavlink rate (`-r` parameter). If more is needed, messages are dropped. The currently used percentage can be inspected with `mavlink status` (1.8% is used in this example):
+- 如果仍然没有工作，确保使用的是 Mavlink 2。 设置 `MAV_PROTO_VER` 为 2 强制使用。
+- 日志流最大使用配置的 Mavlink 速率的 70%（`-r`参数）。 如果需要更大的速率，数据会丢失。 当前使用的百分比可以用 `mavlink status` 查看（样例中使用了 1.8%）：
 
     instance #0:
             GCS heartbeat:  160955 us ago
@@ -96,4 +96,4 @@
             transport protocol: UDP (14556)
     
 
-Also make sure `txerr` stays at 0. If this goes up, either the NuttX sending buffer is too small, the physical link is saturated or the hardware is too slow to handle the data.
+同时确保 `txerr` 一直是 0。 如果它增大了，要么是 Nuttx 发送缓冲区太小，要么是物理连接已饱和，要么是硬件处理数据太慢。
