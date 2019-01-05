@@ -51,7 +51,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 
 可变长度部分，包含版本信息、格式定义和 (初始) 参数值。
 
-The Definitions and Data sections consist of a stream of messages. Each starts with this header:
+定义和数据部分由消息流组成。 每个数据流包含此标头：
 
     struct message_header_s {
         uint16_t msg_size;
@@ -59,9 +59,9 @@ The Definitions and Data sections consist of a stream of messages. Each starts w
     };
     
 
-`msg_size` is the size of the message in bytes without the header (`hdr_size`= 3 bytes). `msg_type` defines the content and is one of the following:
+`msg_size` 是除头 (`hdr_size`= 3 bytes) 外消息的字节大小。 `msg_type` 定义内容类型，是以下的一种：
 
-- 'B': Flag bitset message.
+- 'B' ：比特消息标志
 
     struct ulog_message_flag_bits_s {
         uint8_t compat_flags[8];
@@ -70,7 +70,7 @@ The Definitions and Data sections consist of a stream of messages. Each starts w
     };
     
 
-This message **must** be the first message, right after the header section, so that it has a fixed constant offset.
+这条消息**必须**是头后面的第一条消息，这样才有固定的常数偏移量。
 
 - `compat_flags`: compatible flag bits. None of them is currently defined and all must be set to 0. These bits can be used for future ULog changes that are compatible with existing parsers. It means parsers can just ignore the bits if one of the unknown bits is set.
 - `incompat_flags`: incompatible flag bits. The LSB bit of index 0 is set to one if the log contains appended data and at lease one of the `appended_offsets` is non-zero. All other bits are undefined und must be set to 0. If a parser finds one of these bits set, it must refuse to parse the log. This can be used to introduce breaking changes that existing parsers cannot handle.
