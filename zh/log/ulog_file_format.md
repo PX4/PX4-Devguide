@@ -72,8 +72,8 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 
 这条消息**必须**是头后面的第一条消息，这样才有固定的常数偏移量。
 
-- `compat_flags`: compatible flag bits. None of them is currently defined and all must be set to 0. These bits can be used for future ULog changes that are compatible with existing parsers. It means parsers can just ignore the bits if one of the unknown bits is set.
-- `incompat_flags`: incompatible flag bits. The LSB bit of index 0 is set to one if the log contains appended data and at lease one of the `appended_offsets` is non-zero. All other bits are undefined und must be set to 0. If a parser finds one of these bits set, it must refuse to parse the log. This can be used to introduce breaking changes that existing parsers cannot handle.
+- `compat_flags`: 兼容的标志位。 它们目前都没有定义，都必须设置为 0。 这些位可用于将来的 Ulog 更改，即与现有解析器兼容。 这意味着, 如果设置了一个未知位，解析器就可以忽略。
+- `incompat_flags`: 不兼容的标志位。 The LSB bit of index 0 is set to one if the log contains appended data and at lease one of the `appended_offsets` is non-zero. All other bits are undefined und must be set to 0. If a parser finds one of these bits set, it must refuse to parse the log. This can be used to introduce breaking changes that existing parsers cannot handle.
 - `appended_offsets`: File offsets (0-based) for appended data. If no data is appended, all offsets must be zero. This can be used to reliably append data for logs that may stop in the middle of a message. A process appending data should do:
     
     - set the relevant `incompat_flags` bit,
@@ -115,23 +115,23 @@ Note that an information message with a certain key must occur at most once in t
 
 Predefined information messages are:
 
-| 键                                   | 描述                                          | 示例值                |
-| ----------------------------------- | ------------------------------------------- | ------------------ |
-| char[value_len] sys_name          | Name of the system                          | "PX4"              |
-| char[value_len] ver_hw            | Hardware version (board)                    | "PX4FMU_V4"        |
-| char[value_len] ver_hw_subtype    | Board subversion (variation)                | "V2"               |
-| char[value_len] ver_sw            | Software version (git tag)                  | "7f65e01"          |
-| char[value_len] ver_sw_branch     | git branch                                  | "master"           |
-| uint32_t ver_sw_release           | Software version (see below)                | 0x010401ff         |
-| char[value_len] sys_os_name       | Operating System Name                       | "Linux"            |
-| char[value_len] sys_os_ver        | OS version (git tag)                        | "9f82919"          |
-| uint32_t ver_os_release           | OS version (see below)                      | 0x010401ff         |
-| char[value_len] sys_toolchain     | Toolchain Name                              | "GNU GCC"          |
-| char[value_len] sys_toolchain_ver | Toolchain Version                           | "6.2.1"            |
-| char[value_len] sys_mcu           | Chip name and revision                      | "STM32F42x, rev A" |
-| char[value_len] sys_uuid          | Unique identifier for vehicle (eg. MCU ID)  | "392a93e32fa3"...  |
-| char[value_len] replay              | File name of replayed log if in replay mode | "log001.ulg"       |
-| int32_t time_ref_utc              | UTC Time offset in seconds                  | -3600              |
+| 键                                   | 描述                   | 示例值                |
+| ----------------------------------- | -------------------- | ------------------ |
+| char[value_len] sys_name          | 系统名称                 | "PX4"              |
+| char[value_len] ver_hw            | 硬件版本 (主板)            | "PX4FMU_V4"        |
+| char[value_len] ver_hw_subtype    | 主办子版本 (变化的)          | "V2"               |
+| char[value_len] ver_sw            | 软件版本 (git 标签)        | "7f65e01"          |
+| char[value_len] ver_sw_branch     | git branch           | "master"           |
+| uint32_t ver_sw_release           | 软件版本 (见下文)           | 0x010401ff         |
+| char[value_len] sys_os_name       | 操作系统名称               | "Linux"            |
+| char[value_len] sys_os_ver        | 操作系统版本 (git 标签)      | "9f82919"          |
+| uint32_t ver_os_release           | 操作系统版本 (见下文)         | 0x010401ff         |
+| char[value_len] sys_toolchain     | 工具链名称                | "GNU GCC"          |
+| char[value_len] sys_toolchain_ver | 工具链版本                | "6.2.1"            |
+| char[value_len] sys_mcu           | 芯片名称和修订              | "STM32F42x, rev A" |
+| char[value_len] sys_uuid          | 车辆的唯一标识符 (例如 MCU ID) | "392a93e32fa3"...  |
+| char[value_len] replay              | 重播日志的文件名如果处于重播模式     | "log001.ulg"       |
+| int32_t time_ref_utc              | UTC 时间的秒偏移量          | -3600              |
 
 The format of `ver_sw_release` and `ver_os_release` is: 0xAABBCCTT, where AA is major, BB is minor, CC is patch and TT is the type. Type is defined as following: `>= 0`: development, `>= 64`: alpha version, `>= 128`: beta version, `>= 192`: RC version, `== 255`: release version. So for example 0x010402ff translates into the release version v1.4.2.
 
@@ -198,18 +198,18 @@ The following messages belong to this section:
     };
     
 
-`timestamp`: in microseconds, `log_level`: same as in the Linux kernel:
+`timestamp`: 以微秒为单位，`log_level`: 和 Linux 内核一样。
 
-| 名称      | 对应值 | 含义                               |
-| ------- | --- | -------------------------------- |
-| EMERG   | '0' | System is unusable               |
-| ALERT   | '1' | Action must be taken immediately |
-| CRIT    | '2' | Critical conditions              |
-| ERR     | '3' | Error conditions                 |
-| WARNING | '4' | Warning conditions               |
-| NOTICE  | '5' | Normal but significant condition |
-| INFO    | '6' | Informational                    |
-| DEBUG   | '7' | Debug-level messages             |
+| 名称      | 对应值 | 含义       |
+| ------- | --- | -------- |
+| EMERG   | '0' | 系统无法使用   |
+| ALERT   | '1' | 操作必须立即执行 |
+| CRIT    | '2' | 紧急情况     |
+| ERR     | '3' | 错误情况     |
+| WARNING | '4' | 警告情况     |
+| NOTICE  | '5' | 正常但重要的情况 |
+| INFO    | '6' | 信息       |
+| DEBUG   | '7' | 调试级别的消息  |
 
 - 'S': synchronization message so that a reader can recover from a corrupt message by searching for the next sync message (not used currently).
 
