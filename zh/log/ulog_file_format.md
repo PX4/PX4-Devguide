@@ -1,14 +1,14 @@
 # ULog 文件格式
 
-ULog is the file format used for logging system data. The format is self-describing, i.e. it contains the format and message types that are logged.
+ULog 是用于记录系统数据的文件格式。 格式是自描述的，即它包含记录的格式和消息类型。
 
-It can be used for logging device inputs (sensors, etc.), internal states (cpu load, attitude, etc.) and printf log messages.
+它可用于记录设备输入（传感器等）、内部状态（cpu 负载、姿态等）以及打印的日志消息。
 
-The format uses Little Endian for all binary types.
+这种格式对所有的二进制类型采用小端模式。
 
 ## 数据类型
 
-The following binary types are used. They all correspond to the types in C:
+使用以下二进制类型。 它们都对应 C 语言中的类型：
 
 | 类型                  | 大小（以字节为单位） |
 | ------------------- | ---------- |
@@ -22,7 +22,7 @@ The following binary types are used. They all correspond to the types in C:
 
 Additionally all can be used as an array, eg. `float[5]`. In general all strings (`char[length]`) do not contain a `'\0'` at the end. String comparisons are case sensitive.
 
-## File structure
+## 文件结构
 
 The file consists of three sections:
 
@@ -35,7 +35,7 @@ The file consists of three sections:
     ----------------------
     
 
-### Header Section
+### 头部分
 
 The header is a fixed-size section and has the following format (16 bytes):
 
@@ -47,7 +47,7 @@ The header is a fixed-size section and has the following format (16 bytes):
 
 Version is the file format version, currently 1. Timestamp is a `uint64_t` integer, denotes the start of the logging in microseconds.
 
-### Definitions Section
+### 定义部分
 
 Variable length section, contains version information, format definitions, and (initial) parameter values.
 
@@ -153,7 +153,7 @@ The same as the information message, except that there can be multiple messages 
 
 This section ends before the start of the first `message_add_logged_s` or `message_logging_s` message, whichever comes first.
 
-### Data Section
+### 数据部分
 
 The following messages belong to this section:
 
@@ -235,7 +235,7 @@ The following messages belong to this section:
 
 - 'P': parameter message. See above.
 
-## Requirements for Parsers
+## 解析器的要求
 
 A valid ULog parser must fulfill the following requirements:
 
