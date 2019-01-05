@@ -20,7 +20,7 @@ ULog 是用于记录系统数据的文件格式。 格式是自描述的，即�
 | double              | 8          |
 | bool, char          | 1          |
 
-Additionally all can be used as an array, eg. `float[5]`. In general all strings (`char[length]`) do not contain a `'\0'` at the end. String comparisons are case sensitive.
+此外，所有的类型还可以作为数组使用，比如 `float[5]`。 通常，所有的字符串（`char[length]`）在末尾不包含 `'\0'`。 字符串比较区分大小写。
 
 ## 文件结构
 
