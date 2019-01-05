@@ -115,7 +115,7 @@ Note that an information message with a certain key must occur at most once in t
 
 Predefined information messages are:
 
-| 键                                   | 描述                                          | Example for value  |
+| 键                                   | 描述                                          | 示例值                |
 | ----------------------------------- | ------------------------------------------- | ------------------ |
 | char[value_len] sys_name          | Name of the system                          | "PX4"              |
 | char[value_len] ver_hw            | Hardware version (board)                    | "PX4FMU_V4"        |
@@ -200,16 +200,16 @@ The following messages belong to this section:
 
 `timestamp`: in microseconds, `log_level`: same as in the Linux kernel:
 
-| 名称      | Level value | Meaning                          |
-| ------- | ----------- | -------------------------------- |
-| EMERG   | '0'         | System is unusable               |
-| ALERT   | '1'         | Action must be taken immediately |
-| CRIT    | '2'         | Critical conditions              |
-| ERR     | '3'         | Error conditions                 |
-| WARNING | '4'         | Warning conditions               |
-| NOTICE  | '5'         | Normal but significant condition |
-| INFO    | '6'         | Informational                    |
-| DEBUG   | '7'         | Debug-level messages             |
+| 名称      | 对应值 | 含义                               |
+| ------- | --- | -------------------------------- |
+| EMERG   | '0' | System is unusable               |
+| ALERT   | '1' | Action must be taken immediately |
+| CRIT    | '2' | Critical conditions              |
+| ERR     | '3' | Error conditions                 |
+| WARNING | '4' | Warning conditions               |
+| NOTICE  | '5' | Normal but significant condition |
+| INFO    | '6' | Informational                    |
+| DEBUG   | '7' | Debug-level messages             |
 
 - 'S': synchronization message so that a reader can recover from a corrupt message by searching for the next sync message (not used currently).
 
@@ -247,7 +247,7 @@ A valid ULog parser must fulfill the following requirements:
     
     Appended data must be treated as if it was part of the regular Data section.
 
-## Known Implementations
+## 已知的实现
 
 - PX4 Firmware: C++ 
     - [logger module](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
@@ -261,8 +261,8 @@ A valid ULog parser must fulfill the following requirements:
 - [mavlink-router](https://github.com/01org/mavlink-router): C++, ULog streaming via MAVLink.
 - [MAVGAnalysis](https://github.com/ecmnet/MAVGCL): Java, ULog streaming via MAVLink and parser for plotting and analysis.
 
-## File Format Version History
+## 文件格式版本历史
 
-### Changes in version 2
+### 版本 2 中的改变
 
 Addition of `ulog_message_info_multiple_header_s` and `ulog_message_flag_bits_s` messages and the ability to append data to a log. This is used to add crash data to an existing log. If data is appended to a log that is cut in the middle of a message, it cannot be parsed with version 1 parsers. Other than that forward and backward compatibility is given if parsers ignore unknown messages.
