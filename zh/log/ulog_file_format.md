@@ -24,32 +24,32 @@ ULog 是用于记录系统数据的文件格式。 格式是自描述的，即�
 
 ## 文件结构
 
-The file consists of three sections:
+该文件由三个部分组成：
 
     ----------------------
-    |       Header       |
+    |         头         |
     ----------------------
-    |    Definitions     |
+    |        定义        |
     ----------------------
-    |        Data        |
+    |        数据        |
     ----------------------
     
 
 ### 头部分
 
-The header is a fixed-size section and has the following format (16 bytes):
+头是一个固定大小的部分，具有以下格式（16个字节）：
 
     ----------------------------------------------------------------------
     | 0x55 0x4c 0x6f 0x67 0x01 0x12 0x35 | 0x01         | uint64_t       |
-    | File magic (7B)                    | Version (1B) | Timestamp (8B) |
+    | File magic(7B)                     | Version (1B) |  Timestamp (8B) |
     ----------------------------------------------------------------------
     
 
-Version is the file format version, currently 1. Timestamp is a `uint64_t` integer, denotes the start of the logging in microseconds.
+Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64_t` 的整数，表示从日志开始记录的微秒数。
 
 ### 定义部分
 
-Variable length section, contains version information, format definitions, and (initial) parameter values.
+可变长度部分，包含版本信息、格式定义和 (初始) 参数值。
 
 The Definitions and Data sections consist of a stream of messages. Each starts with this header:
 
