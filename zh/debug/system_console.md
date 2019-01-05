@@ -25,14 +25,14 @@ Shell 提供对系统的更高级别的访问：
 
 将6脚 JST SH 1:1 线缆连接到飞控探测器或者按如下图示连接单独的 pin 脚：
 
-| Pixracer / Pixhawk v3 |           | FTDI |                  |
-| --------------------- | --------- | ---- | ---------------- |
-| 1                     | + 5v (红色) |      | N/C              |
-| 2                     | UART7 Tx  | 5    | FTDI RX (yellow) |
-| 3                     | UART7 Rx  | 4    | FTDI TX (orange) |
-| 4                     | SWDIO     |      | N/C              |
-| 5                     | SWCLK     |      | N/C              |
-| 6                     | GND       | 1    | FTDI GND (黑色)    |
+| Pixracer / Pixhawk v3 |           | FTDI |               |
+| --------------------- | --------- | ---- | ------------- |
+| 1                     | + 5v (红色) |      | N/C           |
+| 2                     | UART7 Tx  | 5    | FTDI RX （黄色）  |
+| 3                     | UART7 Rx  | 4    | FTDI TX （橙色）  |
+| 4                     | SWDIO     |      | N/C           |
+| 5                     | SWCLK     |      | N/C           |
+| 6                     | GND       | 1    | FTDI GND (黑色) |
 
 ## Pixhawk v1: 接线控制台
 
@@ -48,22 +48,22 @@ Shell 提供对系统的更高级别的访问：
 
 如果手边没有 dronecode 探头, ftdi 3.3 v (digi-key: [768-1015-ND](http://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) 也可以这样做。
 
-| Pixhawk 1/2 |           | FTDI |                  |
-| ----------- | --------- | ---- | ---------------- |
-| 1           | + 5v (红色) |      | N/C              |
-| 2           | S4 Tx     |      | N/C              |
-| 3           | S4 Rx     |      | N/C              |
-| 4           | S5 Tx     | 5    | FTDI RX (yellow) |
-| 5           | S5 Rx     | 4    | FTDI TX (orange) |
-| 6           | GND       | 1    | FTDI GND (黑色)    |
+| Pixhawk 1/2 |           | FTDI |               |
+| ----------- | --------- | ---- | ------------- |
+| 1           | + 5v (红色) |      | N/C           |
+| 2           | S4 Tx     |      | N/C           |
+| 3           | S4 Rx     |      | N/C           |
+| 4           | S5 Tx     | 5    | FTDI RX （黄色）  |
+| 5           | S5 Rx     | 4    | FTDI TX （橙色）  |
+| 6           | GND       | 1    | FTDI GND (黑色) |
 
 连接器引脚如下图所示。
 
-![Console Connector](../../assets/console/console_connector.jpg)
+![控制台连接器](../../assets/console/console_connector.jpg)
 
 完整的布线如下所示。
 
-![Console Debug](../../assets/console/console_debug.jpg)
+![控制台调试](../../assets/console/console_debug.jpg)
 
 ## 打开控制台
 
@@ -107,7 +107,7 @@ nsh> free
 
 ## MAVLink Shell{#mavlink_shell}
 
-基于 Nuttx 的系统（Pixhawk, Pixracer, ...），nsh 终端也可以连接 MAVLink。 通过串口（USB/电台）或 WiFi（UDP/TCP）实现连接。 确保 QGC 没有运行，然后开启 shell：`./Tools/mavlink_shell.py /dev/ttyACM0`（在 Firmware 源码中， 你可能需要先安装依赖 `sudo pip install pymavlink pyserial`）。 使用 `./Tools/mavlink_shell.py -h` 获取可用参数描述，其中同样显示了 WiFi 连接的 IP 地址。 比如 `./Tools/mavlink_shell.py &lt;IP address&gt;` 可用于通过 WiFi 开启 nsh shell 连接飞控。 .
+基于 Nuttx 的系统（Pixhawk, Pixracer, ...），nsh 终端也可以连接 MAVLink。 通过串口（USB/电台）或 WiFi（UDP/TCP）实现连接。 确保 QGC 没有运行，然后开启 shell：`./Tools/mavlink_shell.py /dev/ttyACM0`（在 Firmware 源码中， 你可能需要先安装依赖 `sudo pip install pymavlink pyserial`）。 使用 `./Tools/mavlink_shell.py -h` 获取可用参数描述，其中同样显示了 WiFi 连接的 IP 地址。 比如 `./Tools/mavlink_shell.py &lt;IP address&gt;` 可用于通过 WiFi 开启 nsh shell 连接飞控。 。
 
 > **Tip** 你也可以使用 [QGC directly](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html) 的 nsh shell。
 
