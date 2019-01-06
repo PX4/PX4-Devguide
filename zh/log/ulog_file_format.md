@@ -133,11 +133,11 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 | char[value_len] replay              | 重播日志的文件名如果处于重播模式     | "log001.ulg"       |
 | int32_t time_ref_utc              | UTC 时间的秒偏移量          | -3600              |
 
-`ver_sw_release` 和 `ver_os_release` 的类型是：0xAABBCCTT，其中 AA 是主要的，BB 是次要的，CC 是补丁，TT 是类型。 类型定义如下：`>= 0`：development 版本，`>= 64`：alpha 版本，`>= 128`：beta 版本，`>= 192`：RC 版本，`== 255`：release 版本。 So for example 0x010402ff translates into the release version v1.4.2.
+`ver_sw_release` 和 `ver_os_release` 的类型是：0xAABBCCTT，其中 AA 是主要的，BB 是次要的，CC 是补丁，TT 是类型。 类型定义如下：`>= 0`：development 版本，`>= 64`：alpha 版本，`>= 128`：beta 版本，`>= 192`：RC 版本，`== 255`：release 版本。 所以例如 0x010402ff 转换过来是 v1.4.2 的 release 版本。
 
-This message can also be used in the Data section (this is however the preferred section).
+此报文还可以用于 Data 部分 (不过这是首选部分) 。
 
-- 'M': information message multi.
+- 'M'：多报文消息。
 
     struct ulog_message_info_multiple_header_s {
         uint8_t is_continued; ///< can be used for arrays
