@@ -231,21 +231,21 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 
 - 'I'：报文消息。 见上文。
 
-- 'M': information message multi. 见上文。
+- 'M'：多报文信息。 见上文。
 
-- 'P': parameter message. 见上文。
+- 'P'：报文参数。 见上文。
 
 ## 解析器的要求
 
-A valid ULog parser must fulfill the following requirements:
+一个有效的 ULog 解析器必须满足以下要求:
 
-- Must ignore unknown messages (but it can print a warning).
-- Parse future/unknown file format versions as well (but it can print a warning).
+- 必须忽略未知消息 (但可以打印警告) 。
+- 解析未来/未知的文件格式版本 (但可以打印警告) 。
 - Must refuse to parse a log which contains unknown incompatibility bits set (`incompat_flags` of `ulog_message_flag_bits_s` message), meaning the log contains breaking changes that the parser cannot handle.
-- A parser must be able to correctly handle logs that end abruptly, in the middle of a message. The unfinished message should just be discarged.
-- For appended data: a parser can assume the Data section exists, i.e. the offset points to a place after the Definitions section.
+- 解析器必须能够正确处理报文突然结束的日志。 未完成的报文应该丢弃。
+- 对于附加数据:解析器可以假设数据部分存在，即在定义部分之后的位置有一个偏移点。
     
-    Appended data must be treated as if it was part of the regular Data section.
+    必须将附加数据视为常规数据部分的一部分。
 
 ## 已知的实现
 
