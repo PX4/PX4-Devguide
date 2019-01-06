@@ -147,11 +147,11 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
     };
     
 
-The same as the information message, except that there can be multiple messages with the same key (parsers store them as a list). The `is_continued` can be used for split-up messages: if set to 1, it is part of the previous message with the same key. Parsers can store all information multi messages as a 2D list, using the same order as the messages occur in the log.
+与报文消息相同，不同的是可以有多个具有相同密钥的消息 (解析器将它们存储为列表) 。 `is_continued` 可以用于分割报文：如果置 1，则它是具有相同键的前一条报文的一部分。 解析器可以将所有多报文信息存储为一个 2D 列表，使用与日志中报文相同的顺序。
 
-- 'P': parameter message. Same format as `message_info_s`. If a parameter dynamically changes during runtime, this message can also be used in the Data section. The data type is restricted to: `int32_t`, `float`.
+- 'P'：报文参数。 格式与 `message_info_s` 相同。 如果参数在运行时动态变化，则此报文也可用于 Data 部分。 数据类型限制为：`int32_t`，`float` 。
 
-This section ends before the start of the first `message_add_logged_s` or `message_logging_s` message, whichever comes first.
+这部分在第一个 `message_add_logged_s` 或者 `message_logging_s` 开始之前结束 (以先出现的消息为准) 。
 
 ### 数据部分
 
@@ -229,11 +229,11 @@ This section ends before the start of the first `message_add_logged_s` or `messa
     };
     
 
-- 'I': information message. See above.
+- 'I'：报文消息。 见上文。
 
-- 'M': information message multi. See above.
+- 'M': information message multi. 见上文。
 
-- 'P': parameter message. See above.
+- 'P': parameter message. 见上文。
 
 ## 解析器的要求
 
