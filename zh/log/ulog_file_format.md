@@ -97,7 +97,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 - `timestamp`：每个消息报文 (`message_add_logged_s`) 必须包含时间戳字段 (不必是第一个字段)。 它的类型可以是：`uint64_t` (目前唯一使用的)，`uint32_t`, `uint16_t` 或者是 `uint8_t` 。 它的单位一直是微秒，除了 `uint8_t`，它的单位是毫秒。 日志写入器必须确保足够频繁的写入报文使其能够检测到绕回，并且日志的读取器必须能够处理绕回 (还要把丢帧考虑在内)。 对于具有相同 `msg_id` 报文的时间戳必须是单调递增的。
 - Padding：以 `_padding` 开始的字段名应该不被显示并且必须被读取器忽略。 写入器可以通过插入这个字段确保正确对齐。
     
-    如果 Padding 字段是最后一个字段，则不会记录该字段，以避免写入不必要的数据。 这意味着 `message_data_s.data` 会因为填充大小而更短。 However the padding is still needed when the message is used in a nested definition.
+    如果 Padding 字段是最后一个字段，则不会记录该字段，以避免写入不必要的数据。 这意味着 `message_data_s.data` 会因为填充大小而更短。 但是当报文在嵌套定义中使用时任然需要填充。
     
     - 'I'：信息报文。
 
