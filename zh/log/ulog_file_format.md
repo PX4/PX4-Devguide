@@ -256,10 +256,10 @@ A valid ULog parser must fulfill the following requirements:
 - [pyulog](https://github.com/PX4/pyulog)：Python，使用 CLI 脚本的 Ulog 解析库。
 - [FlightPlot](https://github.com/PX4/FlightPlot): Java，日志绘图仪。
 - [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis)：Python，日志绘图仪和基于 pyulog 的三维可视化工具。
-- [MAVLink](https://github.com/mavlink/mavlink): Messages for ULog streaming via MAVLink (note that appending data is not supported, at least not for cut off messages).
-- [QGroundControl](https://github.com/mavlink/qgroundcontrol): C++, ULog streaming via MAVLink and minimal parsing for GeoTagging.
-- [mavlink-router](https://github.com/01org/mavlink-router): C++, ULog streaming via MAVLink.
-- [MAVGAnalysis](https://github.com/ecmnet/MAVGCL): Java, ULog streaming via MAVLink and parser for plotting and analysis.
+- [MAVLink](https://github.com/mavlink/mavlink)：通过 MAVLink 进行 ULog 流的消息 (注意，不支持追加数据，至少不支持截断消息)。
+- [QGroundControl](https://github.com/mavlink/qgroundcontrol)：C++，通过 MAVLink 的 Ulog 流和最小的 GeoTagging。
+- [mavlink-router](https://github.com/01org/mavlink-router)：C++，通过 MAVLink 的 ULog 流。
+- [MAVGAnalysis](https://github.com/ecmnet/MAVGCL)：Java，通过 MAVLink 的数据流和日志的绘制、分析。
 
 ## 文件格式版本历史
 
