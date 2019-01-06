@@ -73,7 +73,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 这条消息**必须**是头后面的第一条消息，这样才有固定的常数偏移量。
 
 - `compat_flags`: 兼容的标志位。 它们目前都没有定义，都必须设置为 0。 这些位可用于将来的 Ulog 更改，即与现有解析器兼容。 这意味着, 如果设置了一个未知位，解析器就可以忽略。
-- `incompat_flags`: 不兼容的标志位。 The LSB bit of index 0 is set to one if the log contains appended data and at lease one of the `appended_offsets` is non-zero. All other bits are undefined und must be set to 0. If a parser finds one of these bits set, it must refuse to parse the log. This can be used to introduce breaking changes that existing parsers cannot handle.
+- `incompat_flags`: 不兼容的标志位。 如果日志包含附加数据，并且至少有一个 `appended_offset`是非零的，那么索引 0 的 LSB 位被设置为 1。 其他位都是未定义的，必须将设置为 0。 If a parser finds one of these bits set, it must refuse to parse the log. This can be used to introduce breaking changes that existing parsers cannot handle.
 - `appended_offsets`: File offsets (0-based) for appended data. If no data is appended, all offsets must be zero. This can be used to reliably append data for logs that may stop in the middle of a message. A process appending data should do:
     
     - set the relevant `incompat_flags` bit,
