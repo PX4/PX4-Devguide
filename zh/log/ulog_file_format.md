@@ -45,7 +45,7 @@ ULog 是用于记录系统数据的文件格式。 格式是自描述的，即�
     ----------------------------------------------------------------------
     
 
-Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64_t` 的整数，表示从日志开始记录的微秒数。
+Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64_t` 的整数， 表示从日志开始记录的微秒数。
 
 ### 定义部分
 
@@ -61,7 +61,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 
 `msg_size` 是除头 (`hdr_size`= 3 bytes) 外消息的字节大小。 `msg_type` 定义内容类型，是以下的一种：
 
-- 'B' ：比特消息标志
+- 'B' ：标记 bitset 报文。
 
     struct ulog_message_flag_bits_s {
         uint8_t compat_flags[8];
@@ -99,7 +99,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
     
     If the padding field is the last field, then this field will not be logged, to avoid writing unnecessary data. This means the `message_data_s.data` will be shorter by the size of the padding. However the padding is still needed when the message is used in a nested definition.
     
-    - 'I'：消息的信息。
+    - 'I'：信息报文。
 
     struct message_info_s {
         struct message_header_s header;
@@ -113,7 +113,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 
 Note that an information message with a certain key must occur at most once in the entire log. Parsers can store information messages as a dictionary.
 
-预定义的信息消息有：
+预定义的信息报文有：
 
 | 键                                   | 描述                   | 示例值                |
 | ----------------------------------- | -------------------- | ------------------ |
@@ -177,7 +177,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
     };
     
 
-- 'D'：包含的日志数据。
+- 'D'：包含日志数据。
 
     struct message_data_s {
         struct message_header_s header;
