@@ -77,10 +77,10 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 - `appended_offsets`: 附加数据的文件偏移量 (基于 0)。 如果没有附加数据，则所有偏移量必须为零。 这可以用于消息中途暂停的情况下可靠的添加数据。 附加数据的过程应该做到：
     
     - 置位相关的 `incompat_flags` 位，
-    - set the first `appended_offsets` that is 0 to the length of the log file,
-    - then append any type of messages that are valid for the Data section.
+    - 设置 `append_offsets` 的第一个元素为日志文件相对于 0 的长度，
+    - 然后为数据部分添加有效的任何类型的消息。
     
-    It is possible that there are more fields appended at the end of this message in future ULog specifications. This means a parser must not assume a fixed length of this message. If the message is longer than expected (currently 40 bytes), the exceeding bytes must just be ignored.
+    这使得在将来的 Ulog 规范中在末尾添加更多的字段成为可能。 这意味着解析器必须不能假定此消息的长度是固定的。 如果消息比预期的长（当前为 40 字节），则必须忽略超过的字节。
     
     - 'F': format definition for a single (composite) type that can be logged or used in another definition as a nested type.
 
