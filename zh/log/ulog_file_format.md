@@ -82,7 +82,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
     
     这使得在将来的 Ulog 规范中在末尾添加更多的字段成为可能。 这意味着解析器必须不能假定此消息的长度是固定的。 如果消息比预期的长（当前为 40 字节），则必须忽略超过的字节。
     
-    - 'F': format definition for a single (composite) type that can be logged or used in another definition as a nested type.
+    - 'F': 可以在另一个定义中作为嵌套类型记录或使用的单个 (组合) 类型的格式定义。
 
     struct message_format_s {
         struct message_header_s header;
@@ -90,16 +90,16 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
     };
     
 
-`format`: plain-text string with the following format: `message_name:field0;field1;` There can be an arbitrary amount of fields (at least 1), separated by `;`. A field has the format: `type field_name` or `type[array_length] field_name` for arrays (only fixed size arrays are supported). `type` is one of the basic binary types or a `message_name` of another format definition (nested usage). A type can be used before it's defined. There can be arbitrary nesting but no circular dependencies.
+`format`: 具有以下格式的纯文本字符串：`message_named: field0;field1;` 可以有任意数量的字段 (至少1个) ，采用 `;` 分隔。 A field has the format: `type field_name` or `type[array_length] field_name` for arrays (only fixed size arrays are supported). `type` is one of the basic binary types or a `message_name` of another format definition (nested usage). A type can be used before it's defined. There can be arbitrary nesting but no circular dependencies.
 
-Some field names are special:
+有些字段名是特殊的：
 
 - `timestamp`: every logged message (`message_add_logged_s`) must include a timestamp field (does not need to be the first field). Its type can be: `uint64_t` (currently the only one used), `uint32_t`, `uint16_t` or `uint8_t`. The unit is always microseconds, except for `uint8_t` it's milliseconds. A log writer must make sure to log messages often enough to be able to detect wrap-arounds and a log reader must handle wrap-arounds (and take into account dropouts). The timestamp must always be monotonic increasing for a message serie with the same `msg_id`.
 - Padding: field names that start with `_padding` should not be displayed and their data must be ignored by a reader. These fields can be inserted by a writer to ensure correct alignment.
     
     If the padding field is the last field, then this field will not be logged, to avoid writing unnecessary data. This means the `message_data_s.data` will be shorter by the size of the padding. However the padding is still needed when the message is used in a nested definition.
     
-    - 'I': information message.
+    - 'I'：消息的信息。
 
     struct message_info_s {
         struct message_header_s header;
@@ -113,7 +113,7 @@ Some field names are special:
 
 Note that an information message with a certain key must occur at most once in the entire log. Parsers can store information messages as a dictionary.
 
-Predefined information messages are:
+预定义的信息消息有：
 
 | 键                                   | 描述                   | 示例值                |
 | ----------------------------------- | -------------------- | ------------------ |
@@ -155,7 +155,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
 
 ### 数据部分
 
-The following messages belong to this section:
+以下消息属于本部分：
 
 - 'A': subscribe a message by name and give it an id that is used in `message_data_s`. This must come before the first corresponding `message_data_s`.
 
@@ -177,7 +177,7 @@ The following messages belong to this section:
     };
     
 
-- 'D': contains logged data.
+- 'D'：包含日志数据。
 
     struct message_data_s {
         struct message_header_s header;
