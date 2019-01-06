@@ -157,7 +157,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
 
 以下消息属于本部分：
 
-- 'A': subscribe a message by name and give it an id that is used in `message_data_s`. This must come before the first corresponding `message_data_s`.
+- 'A'：按名称订阅消息，并给它一个在 `message_data_s` 中使用的 id。 这必须在第一个对应的 `message_data_s` 之前。
 
     struct message_add_logged_s {
         struct message_header_s header;
@@ -167,7 +167,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
     };
     
 
-`multi_id`: the same message format can have multiple instances, for example if the system has two sensors of the same type. The default and first instance must be 0. `msg_id`: unique id to match `message_data_s` data. The first use must set this to 0, then increase it. The same `msg_id` must not be used twice for different subscriptions, not even after unsubscribing. `message_name`: message name to subscribe to. Must match one of the `message_format_s` definitions.
+`multi_id`：相同的消息格式可以有多个实例，例如系统有两个相同类型的传感器。 默认值以及第一个实例一定是0. `msg_id`：匹配 `message_data_s` 数据的惟一 id。 第一次使用一定要设置为 0，然后递增。 相同的 `msg_id` 不能用于两次不同的订阅，甚至在取消订阅后也不行。 `message_name`: message name to subscribe to. Must match one of the `message_format_s` definitions.
 
 - 'R': unsubscribe a message, to mark that it will not be logged anymore (not used currently).
 
