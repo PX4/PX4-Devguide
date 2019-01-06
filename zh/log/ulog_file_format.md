@@ -167,9 +167,9 @@ This section ends before the start of the first `message_add_logged_s` or `messa
     };
     
 
-`multi_id`：相同的消息格式可以有多个实例，例如系统有两个相同类型的传感器。 默认值以及第一个实例一定是0. `msg_id`：匹配 `message_data_s` 数据的惟一 id。 第一次使用一定要设置为 0，然后递增。 相同的 `msg_id` 不能用于两次不同的订阅，甚至在取消订阅后也不行。 `message_name`: message name to subscribe to. Must match one of the `message_format_s` definitions.
+`multi_id`：相同的消息格式可以有多个实例，例如系统有两个相同类型的传感器。 默认值以及第一个实例一定是0. `msg_id`：匹配 `message_data_s` 数据的惟一 id。 第一次使用一定要设置为 0，然后递增。 相同的 `msg_id` 不能用于两次不同的订阅，甚至在取消订阅后也不行。 `msg_name`：订阅的消息名称。 必须匹配其中一个 `message_format_s` 的定义。
 
-- 'R': unsubscribe a message, to mark that it will not be logged anymore (not used currently).
+- 'R'：取消订阅一条消息，以标记它将不再被记录 (当前未使用)。
 
     struct message_remove_logged_s {
         struct message_header_s header;
@@ -177,7 +177,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
     };
     
 
-- 'D'：包含日志数据。
+- 'D'：包含的日志数据。
 
     struct message_data_s {
         struct message_header_s header;
@@ -250,12 +250,12 @@ A valid ULog parser must fulfill the following requirements:
 ## 已知的实现
 
 - PX4 Firmware: C++ 
-    - [logger module](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
-    - [replay module](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
-    - [hardfault_log module](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log): append hardfault crash data.
-- [pyulog](https://github.com/PX4/pyulog): python, ULog parser library with CLI scripts.
-- [FlightPlot](https://github.com/PX4/FlightPlot): Java, log plotter.
-- [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis): Python, log plotter and 3D visualization tool based on pyulog.
+    - [日志模块](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
+    - [回放模块](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
+    - [hardfault_log module](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)：添加硬故障崩溃的数据
+- [pyulog](https://github.com/PX4/pyulog)：Python，使用 CLI 脚本的 Ulog 解析库。
+- [FlightPlot](https://github.com/PX4/FlightPlot): Java，日志绘图仪。
+- [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis)：Python，日志绘图仪和基于 pyulog 的三维可视化工具。
 - [MAVLink](https://github.com/mavlink/mavlink): Messages for ULog streaming via MAVLink (note that appending data is not supported, at least not for cut off messages).
 - [QGroundControl](https://github.com/mavlink/qgroundcontrol): C++, ULog streaming via MAVLink and minimal parsing for GeoTagging.
 - [mavlink-router](https://github.com/01org/mavlink-router): C++, ULog streaming via MAVLink.
