@@ -109,9 +109,9 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
     };
     
 
-`key` is a plain string, as in the format message (can also be a custom type), but consists of only a single field without ending `;`, eg. `float[3] myvalues`. `value` contains the data as described by `key`.
+`key` 是纯字符串，就像报文格式 (也可以是第三方类型)，但只包含一个没有结束符 `;` 的字段。 `float[3] myvalues`. `value` 包含 `key` 所描述的字段
 
-Note that an information message with a certain key must occur at most once in the entire log. Parsers can store information messages as a dictionary.
+需要注意的是包含特定 key 的报文信息在整个日志中最多只能出现一次。 解析器可以将报文信息存储为字典。
 
 预定义的信息报文有：
 
@@ -133,7 +133,7 @@ Note that an information message with a certain key must occur at most once in t
 | char[value_len] replay              | 重播日志的文件名如果处于重播模式     | "log001.ulg"       |
 | int32_t time_ref_utc              | UTC 时间的秒偏移量          | -3600              |
 
-The format of `ver_sw_release` and `ver_os_release` is: 0xAABBCCTT, where AA is major, BB is minor, CC is patch and TT is the type. Type is defined as following: `>= 0`: development, `>= 64`: alpha version, `>= 128`: beta version, `>= 192`: RC version, `== 255`: release version. So for example 0x010402ff translates into the release version v1.4.2.
+`ver_sw_release` 和 `ver_os_release` 的类型是：0xAABBCCTT，其中 AA 是主要的，BB 是次要的，CC 是补丁，TT 是类型。 类型定义如下：`>= 0`：development 版本，`>= 64`：alpha 版本，`>= 128`：beta 版本，`>= 192`：RC 版本，`== 255`：release 版本。 So for example 0x010402ff translates into the release version v1.4.2.
 
 This message can also be used in the Data section (this is however the preferred section).
 
