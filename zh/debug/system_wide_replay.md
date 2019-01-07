@@ -27,23 +27,23 @@
     ignore_others: <true/false>
     
 
-这意味着已列出的主题只应该被 `&lt;module&gt;` （此为命令名）发布。 Publications to any of these topics from another module are silently ignored. If `ignore_others` is `true`, then publications to other topics from `<module>` are ignored.
+这意味着已列出的主题只应该被 `&lt;module&gt;` （此为命令名）发布。 从另一个模块发布到这些主题中的任何一个都将被静默忽略。 如果 `true` `ignore_others`, 则将忽略 `&lt;module&gt;` 发布到其他主题的消息。
 
-For replay, we only want the `replay` module to be able to publish the previously identified list of topics. So for replaying `ekf2`, the rules file looks like this:
+对于重播，我们只希望 `replay` 模块能够发布以前标识的主题列表。 因此，对于重播 `ekf2`，规则文件如下所示：
 
     restrict_topics: sensor_combined, vehicle_gps_position, vehicle_land_detected
     module: replay
     ignore_others: true
     
 
-This allows that the modules, which usually publish these topics, don't need to be disabled for replay.
+这将使经常发布这些主题消息的模块不需要关闭系统回放 。
 
-- Optional: setup parameter overrides in the file `build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt`. This file should contain a list of `<param_name> <value>`, like:
+- 可选：`build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt` 中的设置参数覆盖。 此文件应包含 ` &lt;param_name&gt; &lt;value&gt; ` 的列表，例如：
 
     EKF2_GB_NOISE 0.001
     
 
-By default, all parameters from the log file are applied. When a parameter changed during recording, it will be changed as well at the right time during replay. A parameter in the `replay_params.txt` will override the value and changes to it from the log file will not be applied. - Optional: copy `dataman` missions file from the SD card to the build directory. Only necessary if a mission should be replayed. - Start the replay:
+默认日志文件的所有参数将被使用。 当一个参数在录制过程中发生改变，同样会在回放时候的正确时间发生更改。 A parameter in the `replay_params.txt` will override the value and changes to it from the log file will not be applied. - Optional: copy `dataman` missions file from the SD card to the build directory. Only necessary if a mission should be replayed. - Start the replay:
 
 ```sh
   make px4_sitl_default jmavsim
