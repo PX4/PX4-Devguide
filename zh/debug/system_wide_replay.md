@@ -1,33 +1,33 @@
-# System-wide Replay
+# 全系统回放
 
-Based on ORB messages, it's possible to record and replay arbitrary parts of the system.
+基于 ORB 消息，可以记录和回放系统的任意部分。
 
-Replay is useful to test the effect of different parameter values based on real data, compare different estimators, etc.
+回放可用于基于实际数据测试不同参数值的效果，比较不同的估计值等。
 
 ## 系统必备组件
 
-The first thing that needs to be done is to identify the module or modules that should be replayed. Then, identify all the inputs to these modules, i.e. subscribed ORB topics. For system-wide replay, this consists of all hardware input: sensors, RC input, mavlink commands and file system.
+首先需要做的是确定应该回放的是一个还是多个模块。 然后, 确定这些模块的所有输入，即订阅 ORB 主题。 对于全系统回放，这包括所有硬件输入：传感器、rc 输入、mavlink 命令和文件系统。
 
-All identified topics need to be logged at full rate (see [logging](../log/logging.md)). For `ekf2` this is already the case with the default set of logged topics.
+所有已确定的主题都需要以全速率进行记录（请参阅 [logging](../log/logging.md)）。 对于 `ekf2` 默认记录的主题集已经是这种配置。
 
-It is important that all replayed topics contain only a single absolute timestamp, which is the automatically generated field `timestamp`. Should there be more timestamps, then they must be relative with respect to the main timestamp. For an example, see [sensor_combined.msg](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg). Reasons for this are given below.
+重要的是，所有重播的主题只包含一个自动生成字段 `timestamp` 绝对时间戳。 如果有是更多的时间戳，那么它们必须相对于主时间戳。 例如, 请参阅 [sensor_combined.msg](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg)。 造成这种情况的原因如下。
 
 ## 用法
 
-- First, choose the file to replay, and build the target (from within the Firmware directory): 
+- 首先，选择要重播的文件，然后生成目标（从固件目录中）： 
         sh
         export replay=<absolute_path_to_log_file.ulg>
-        make px4_sitl_default This will create the output in a separate build directory 
+        make px4_sitl_default 这将在单独的生成目录 
     
-    `build/px4_sitl_default_replay` (so that the parameters don't interfere with normal builds). It's possible to choose any posix SITL build target for replay, the build system knows through the `replay` environment variable that it's in replay mode.
-- Add ORB publisher rules file in `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules`. This file defines which module is allowed to publish which messages. It has the following format:
+    `build/px4_sitl_default_replay` 中创建输出（以便参数不会干扰正常生成）。 可以为重播选择任何位置 SITL 生成目标，生成系统通过 `replay` 环境变量知道它处于回放模式。
+- 在 `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules` 中添加 ORB 发布者规则文件。 此文件定义允许了发布消息的模块。 格式如下：
 
     restrict_topics: <topic1>, <topic2>, ..., <topicN>
     module: <module>
     ignore_others: <true/false>
     
 
-It means that the given list of topics should only be published by `<module>` (which is the command name). Publications to any of these topics from another module are silently ignored. If `ignore_others` is `true`, then publications to other topics from `<module>` are ignored.
+这意味着已列出的主题只应该被 `&lt;module&gt;` （此为命令名）发布。 Publications to any of these topics from another module are silently ignored. If `ignore_others` is `true`, then publications to other topics from `<module>` are ignored.
 
 For replay, we only want the `replay` module to be able to publish the previously identified list of topics. So for replaying `ekf2`, the rules file looks like this:
 
