@@ -61,13 +61,13 @@ unset replay
 
 ### 重要提示
 
-- 回访期间，日志文件所有遗失信息都会被上报。 这些在回放时都有负面影响，因此回访期间特别小心不要掉电。
-- It is currently only possible to replay in 'real-time', meaning as fast as the recording was done. This is planned to be extended in the future.
-- A message that has a timestamp of 0 will be considered invalid and not be replayed.
+- 在重播过程中，将报告日志文件中的所有退出。 这些在回放时都有负面影响，因此回访期间特别小心不要丢包。
+- 目前只能在 "实时" 中回放，这意味着速度与录制完成的速度一样快。 这项工作计划今后延长。
+- 时间戳为0的消息将被视为无效，并且不会回放。
 
-## EKF2 Replay
+## EKF2 回放
 
-This is a specialization of the system-wide replay for fast EKF2 replay. It will automatically create the ORB publisher rules and works as following:
+这是系统范围回放的特殊化处理，用于快速的 ekf2 回放。 它将自动创建 ORB 发布者规则，其工作方式如下：
 
 - Optionally set `SDLOG_MODE` to 1 to start logging from boot
 - Record the log
