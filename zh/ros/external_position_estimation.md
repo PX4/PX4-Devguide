@@ -105,9 +105,9 @@ EKF2 只订阅 `vehicle_visual_odometry` 主题，因此只能处理前两个消
 
 如果您的视觉或 MoCap 数据非常准确，并且您只希望估计器对其进行严格跟踪, 则应减少标准偏差参数、[ LPE_VIS_XY ](../advanced/parameter_reference.md#LPE_VIS_XY) 和 [ LPE_VIS_Z ](../advanced/parameter_reference.md#LPE_VIS_Z) (用于视觉) 或 [ LPE_VIC_P ](../advanced/parameter_reference.md#LPE_VIC_P)（用于 MoCap）。 减小它们会使估计器更加信任外部传入的位姿信息。 您可能需要将它们设置为允许的最小值。
 
-> **Tip** If performance is still poor, try increasing the [LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) parameter. This will cause the estimator to trust measurements more during velocity estimation.
+> **Tip** 如果性能仍然较差，请尝试增大 [ LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) 参数。 这将使估计器在估计速度时更信任测量值。
 
-## Working with ROS
+## 使用 ROS
 
 ROS is not *required* for supplying external pose information, but is highly recommended as it already comes with good integrations with VIO and MoCap systems. PX4 must already have been set up as above.
 
