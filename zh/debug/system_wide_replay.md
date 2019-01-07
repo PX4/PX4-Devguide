@@ -105,8 +105,8 @@ unset replay
 - ORB 发布者规则
 - 时间处理
 
-The replay module reads the log and publishes the messages with the same speed as they were recorded. A constant offset is added to the timestamp of each message to match the current system time (this is the reason why all other timestamps need to be relative). The command `replay tryapplyparams` is executed before all other modules are loaded and applies the parameters from the log and user-set parameters. Then as the last command, `replay trystart` will again apply the parameters and start the actual replay. Both commands do nothing if the environment variable `replay` is not set.
+重播模块读取日志，并以与记录的相同速度发布消息。 将常量偏移量添加到每条消息的时间戳中，以匹配当前系统时间（这就是为什么所有其他时间戳都需要是相对的原因）。 命令 `replay tryapplyparms` 在加载所有其他模块之前执行，并应用日志和用户设置参数中的参数。 然后，作为最后一个命令，`replay trystart` 将再次应用参数并开始实际回放。 如果未设置环境变量 `replay`，则这两个命令不执行任何操作。
 
-The ORB publisher rules allow to select which part of the system is replayed, as described above. They are only compiled for the posix SITL targets.
+ORB 发布者规则允许选择回放系统的哪个部分，如上所述。 只编译 posix SITL 目标。
 
-The **time handling** is still an **open point**, and needs to be implemented.
+**time handling** 依然是个 **open point**， 尚未实现。
