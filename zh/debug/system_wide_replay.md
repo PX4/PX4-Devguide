@@ -49,19 +49,19 @@
   make px4_sitl_default jmavsim
 ```
 
-这会自动打开日志文件，应用参数并开始回放。 一旦完成，将自动报告，进程也会退出。 Then the newly generated log file can be analyzed, it has `_replayed` appended to its file name.
+这会自动打开日志文件，应用参数并开始回放。 一旦完成，将自动报告，进程也会退出。 然后新生成的日志文件可以进行分析，它已 `_replayed` 追加到其文件名。
 
-Note that the above command will show the simulator as well, but depending on what is being replayed, it will not show what's actually going on. It's possible to connect via QGC and e.g. view the changing attitude during replay.
+注意，上面的命令也会显示模拟器，但是取决于回放的内容，并不会显示实际数据。 回放时，可以通过 QGC 等查看姿态改变。
 
-- Finally, unset the environment variable, so that the normal build targets are used again:
+- 最后，取消相关环境变量配置，方便正常编译目标再次使用：
 
 ```sh
 unset replay
 ```
 
-### Important Notes
+### 重要提示
 
-- During replay, all dropouts in the log file are reported. These have a negative effect on replay and thus it should be taken care that dropouts are avoided during recording.
+- 回访期间，日志文件所有遗失信息都会被上报。 这些在回放时都有负面影响，因此回访期间特别小心不要掉电。
 - It is currently only possible to replay in 'real-time', meaning as fast as the recording was done. This is planned to be extended in the future.
 - A message that has a timestamp of 0 will be considered invalid and not be replayed.
 
