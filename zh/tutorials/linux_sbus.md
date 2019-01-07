@@ -26,21 +26,21 @@ S.Bus 是 *inverted* UART 通信信号。 由于许多串行端口/飞行控制�
 
 ### 电路图/连接
 
-Connect the components as described below (and shown in the circuit diagram):
+按如下所述连接组件（并在电路图中显示）：
 
-* S.Bus signal &rarr; 1K resistor &rarr; NPN transistor base
-* NPN transistor emit &rarr; GND
-* 3.3VCC &rarr; 10K resistor &rarr; NPN transistor collection &rarr; USB-to-TTY rxd
-* 5.0VCC &rarr; S.Bus VCC
+* S.Bus 信号&rarr;1K 电阻&rarr;NPN 晶体管
+* NPN晶体管发射&rarr;GND
+* 3.3VCC＆&rarr; 10K电阻&rarr; NPN晶体管集合&rarr; USB-to-TTY rxd
+* 5.0VCC&rarr;S.Bus VCC
 * GND &rarr; S.Bus GND
 
-![Signal inverter circuit diagram](../../assets/driver_sbus_signal_inverter_circuit_diagram.png)
+![信号逆变器电路](../../assets/driver_sbus_signal_inverter_circuit_diagram.png)
 
-### Breadboard image
+### 电路板图像
 
-The image below shows the connections on a breadboard.
+下图显示了电路板上的连接。
 
-![Signal inverter breadboard](../../assets/driver_sbus_signal_inverter_breadboard.png)
+![信号逆变器电路板](../../assets/driver_sbus_signal_inverter_breadboard.png)
 
 ## 源代码
 
@@ -48,14 +48,14 @@ The image below shows the connections on a breadboard.
 
 ## 用法
 
-The command syntax is:
+命令语法是：
 
     linux_sbus start|stop|status -d <device> -c <channel>
     
 
-So for example, to automatically start the driver listening to 8 channels on device `/dev/ttyUSB0`, you would add the following line to the startup configuration file.
+因此，例如，要在设备 `/dev/ttyUSB0` 上自动启动侦听 8 个通道的驱动程序，您可以将以下行添加到启动配置文件中。
 
     linux_sbus start -d /dev/ttyUSB0 -c 8
     
 
-> **Note** The original configuration files are located in **Firmware/posix-configs**. According to the official documentation, after you finish `make upload` related operations, all posix related configuration files will be placed in **/home/pi**. You can modify the file you want to use there.
+> **Note** 原始配置文件位于 **Firmware / posix-configs** 中。 根据官方文档，在完成 `make upload` 相关操作后，所有与 posix 相关的配置文件将被放置在 **/home/pi** 中。 您可以修改要在那里使用的文件。
