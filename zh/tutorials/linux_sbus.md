@@ -1,6 +1,6 @@
 # 用于 Linux 的 S.Bus 驱动
 
-*S.Bus Driver for Linux* 允许基于 Linux 的无人机通过串行端口从 *Futaba S.Bus receiver* 访问多达 16 个通道。 驱动程序还应该与使用 S.Bus 协议的其他接收器一起工作，包括作为 FrSky，RadioLink，甚至是 S.Bus 编码器。
+*S.Bus Driver for Linux* 允许基于 Linux 的无人机通过串行端口从 *Futaba S.Bus 接收机* 访问多达 16 个通道。 驱动程序还应该与使用 S.Bus 协议的其他接收器一起工作，包括作为 FrSky，RadioLink，甚至是 S.Bus 编码器。
 
 需要信号反相器电路（如下所述）以使器件串行端口能够从接收器读取数据。
 
