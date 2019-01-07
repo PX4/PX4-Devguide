@@ -2,29 +2,29 @@
 
 *S.Bus Driver for Linux* 允许基于 Linux 的无人机通过串行端口从 *Futaba S.Bus receiver* 访问多达 16 个通道。 驱动程序还应该与使用 S.Bus 协议的其他接收器一起工作，包括作为 FrSky，RadioLink，甚至是 S.Bus 编码器。
 
-A signal inverter circuit is required (described below) to enable the device serial port to read data from the receiver.
+需要信号反相器电路（如下所述）以使器件串行端口能够从接收器读取数据。
 
-> **Note** The driver has been tested on Raspberry Pi running Rasbian Linux, when connected to the receiver through the onboard serial port or via a USB to TTY serial cable. It is expected to work on all Linux versions, and through all serial ports.
+> **Note** 当通过板载串行端口或通过 USB 转 TTL 串行电缆连接到接收器时，驱动程序已经在运行 Raspbian Linux的Raspberry Pi 上进行了测试。 它可以在所有 Linux 版本和所有串行端口上运行。
 
-## Signal inverter circuit
+## 信号逆变器电路
 
-S.Bus is an *inverted* UART communication signal. As many serial ports/flight controllers cannot read an inverted UART signal, a signal inverter circuit is required between the receiver and serial port un-invert the signal. This section shows how to create an appropriate circuit.
+S.Bus 是 *inverted* UART 通信信号。 由于许多串行端口/飞行控制器无法读取反向 UART 信号，因此接收器和串行端口之间需要信号反相器电路来反转信号。 本节介绍如何创建适当的电路。
 
-> **Tip** This circuit is required for Raspberry Pi to read S.Bus remote control signals through the serial port or USB-to-TTY serial converter. It will also be required for many other flight controllers.
+> **Tip** Raspberry Pi 需要此电路才能通过串行端口或 USB-to-TTY 串行转换器读取 S.Bus 远程控制信号。 许多其他飞行控制器也需要它。
 
-### Required components
+### 所需组件
 
-* 1x NPN transistor (e.g. NPN S9014 TO92) 
-* 1x 10K resistor
-* 1x 1K resistor
+* 1x NPN 晶体管（例如 NPN S9014 TO92） 
+* 1x 10K 电阻
+* 1x 1K 电阻
 
-> **Note** Any type/model of transistor can be used because the current drain is very low.
+> **Note** 可以使用任何类型/型号的晶体管，因为电流消耗非常低。
 
 <span></span>
 
-> **Tip** Raspberry Pi only has a single serial port. If this is already being used you can alternatively connect your S.Bus receiver to the RaPi USB port, via a USB to TTY serial cable (e.g. PL2302 USB to TTL serial converter)
+> **Tip** Raspberry Pi 只有一个串口。 如果已经使用，您可以通过 USB 转 TTY 串行电缆（例如 PL2302 USB 转 TTL 串行转换器）将 S.Bus 接收器连接到 RaPi USB 端口。
 
-### Circuit diagram/Connections
+### 电路图/连接
 
 Connect the components as described below (and shown in the circuit diagram):
 
