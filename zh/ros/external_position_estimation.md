@@ -86,24 +86,24 @@ EKF2 只订阅 `vehicle_visual_odometry` 主题，因此只能处理前两个消
 
 > **Note** 如果定位 `px4_fmu-v2` 硬件，则还需要使用包含 LPE 模块的固件版本（其他 FMU 系列硬件的固件包括 LPE 和 EKF）。 LPE 版本可以在每个 PX4 版本的 zip 文件中找到，也可以使用生成命令 `make px4_fmu-v2_lpe` 从源生成。 有关详细信息, 请参阅 [ Building the code ](../setup/building_px4.md)。
 
-### Enabling External Pose Input
+### 启用外部位置输入
 
-The following parameters must be set to use external position information with LPE (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**).
+必须将以下参数设置为将外部位置信息与 LPE 一起使用（这些信息可以在 *QGroundControl* > > **Vehicle 设置 > 参数 > 本地位置估计 </1 > 中设置）。</p> 
 
-| 参数                                                                  | Setting for External Position Estimation                                                                                               |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION)         | Vision integration is enabled if *fuse vision position* is checked (it is enabled by default).                                         |
-| [ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | Set to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables MoCap heading use. |
+| 参数                                                                  | 外部位置估计的设置                                                |
+| ------------------------------------------------------------------- | -------------------------------------------------------- |
+| [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION)         | 如果选中了 *fuse 视觉位置 *（默认情况下启用），则启用视觉集成。                     |
+| [ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | 设置为1或 2，以启用外部标题集成。 将其设置为1将启用视觉，而2则启用了 MoCap heading 的使用。 |
 
-### Disabling Barometer Fusion
+### 禁用气压计融合
 
-If a highly accurate altitude is already available from VIO or MoCap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
+如果从 VIO 或 MoCap 信息中已经提供了高度精确的高度，则禁用 LPE 中的巴洛校正以减少 z 轴上的漂移可能会很有用。
 
-This can be done by in *QGroundControl* by unchecking the *fuse baro* option in the [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) parameter.
+这可以通过 *QGroundControl* 中通过取消选中 [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) 参数中的 *fuse baro</0 > 选项来实现。</p> 
 
 ### 滤波噪声参数调参
 
-If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters: [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for VIO) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for MoCap). 减小它们会使估计器更加信任外部传入的位姿信息。 您可能需要将它们设置为允许的最小值。
+如果您的视觉或 MoCap 数据非常准确，并且您只希望估计器对其进行严格跟踪, 则应减少标准偏差参数、[ LPE_VIS_XY ](../advanced/parameter_reference.md#LPE_VIS_XY) 和 [ LPE_VIS_Z ](../advanced/parameter_reference.md#LPE_VIS_Z) (用于视觉) 或 [ LPE_VIC_P ](../advanced/parameter_reference.md#LPE_VIC_P)（用于 MoCap）。 减小它们会使估计器更加信任外部传入的位姿信息。 您可能需要将它们设置为允许的最小值。
 
 > **Tip** If performance is still poor, try increasing the [LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) parameter. This will cause the estimator to trust measurements more during velocity estimation.
 
