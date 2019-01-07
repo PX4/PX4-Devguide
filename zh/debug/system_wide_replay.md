@@ -69,41 +69,41 @@ unset replay
 
 这是系统范围回放的特殊化处理，用于快速的 ekf2 回放。 它将自动创建 ORB 发布者规则，其工作方式如下：
 
-- Optionally set `SDLOG_MODE` to 1 to start logging from boot
-- Record the log
-- To replay:
+- （可选）将 `SDLOG_MODE` 设置为 1，从启动开始日志记录
+- 记录日志
+- 回放：
 
     export replay_mode=ekf2
     export replay=<abs_path_to_log.ulg>
     make px4_sitl none
     
 
-You can stop it after there's an output like:
+您可以在有如下所示的输出后停止它：
 
     INFO  [replay] Replay done (published 9917 msgs, 2.136 s)
     
 
-The parameters can be adjusted as well. They can be extracted from the log with \(install pyulog with `sudo pip install pyulog` first\):
+参数也可以调整。 它们可以从日志中提取（先安装 pyulog： `sudo pip install pyulog` ）：
 
     ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
     
 
-Then edit the parameters in the file as needed and restart the replay process with `make px4_sitl none`. This will create a new log file.
+然后根据需要编辑文件中的参数，并使用 `make px4_sitl none` 重新启动重播过程。 这将创建一个新的日志文件。
 
-The location of the generated log is printed with a message like this:
+生成的日志的位置打印为如下消息：
 
     INFO  [logger] Opened log file: rootfs/fs/microsd/log/2017-03-01/13_30_51_replayed.ulg
     
 
-When finished, use `unset replay; unset replay_mode` to exit the replay mode.
+完成后，使用 `unset replay; unset replay_mode` 退出回放模式。
 
-## Behind the Scenes
+## 后台
 
-Replay is split into 3 components:
+回放分为3个组件:
 
-- a replay module
-- ORB publisher rules
-- time handling
+- 回放模块
+- ORB 发布者规则
+- 时间处理
 
 The replay module reads the log and publishes the messages with the same speed as they were recorded. A constant offset is added to the timestamp of each message to match the current system time (this is the reason why all other timestamps need to be relative). The command `replay tryapplyparams` is executed before all other modules are loaded and applies the parameters from the log and user-set parameters. Then as the last command, `replay trystart` will again apply the parameters and start the actual replay. Both commands do nothing if the environment variable `replay` is not set.
 
