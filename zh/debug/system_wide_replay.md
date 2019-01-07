@@ -43,13 +43,13 @@
     EKF2_GB_NOISE 0.001
     
 
-默认日志文件的所有参数将被使用。 当一个参数在录制过程中发生改变，同样会在回放时候的正确时间发生更改。 在 `replay_params.txt` 的一个参数会覆盖以前的值，同时日志文件它的变化则不会被录入。 - 可选：从 SD 卡复制 `dataman` 任务文件到编译目录。 一个任务的回放只有在必要的时候才进行。 - Start the replay:
+默认日志文件的所有参数将被使用。 当一个参数在录制过程中发生改变，同样会在回放时候的正确时间发生更改。 在 `replay_params.txt` 的一个参数会覆盖以前的值，同时日志文件它的变化则不会被录入。 - 可选：从 SD 卡复制 `dataman` 任务文件到编译目录。 一个任务的回放只有在必要的时候才进行。 - 启动回放：
 
 ```sh
   make px4_sitl_default jmavsim
 ```
 
-This will automatically open the log file, apply the parameters and start to replay. Once done, it will be reported and the process can be exited. Then the newly generated log file can be analyzed, it has `_replayed` appended to its file name.
+这会自动打开日志文件，应用参数并开始回放。 一旦完成，将自动报告，进程也会退出。 Then the newly generated log file can be analyzed, it has `_replayed` appended to its file name.
 
 Note that the above command will show the simulator as well, but depending on what is being replayed, it will not show what's actually going on. It's possible to connect via QGC and e.g. view the changing attitude during replay.
 
