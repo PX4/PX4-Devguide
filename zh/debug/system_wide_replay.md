@@ -43,7 +43,7 @@
     EKF2_GB_NOISE 0.001
     
 
-默认日志文件的所有参数将被使用。 当一个参数在录制过程中发生改变，同样会在回放时候的正确时间发生更改。 A parameter in the `replay_params.txt` will override the value and changes to it from the log file will not be applied. - Optional: copy `dataman` missions file from the SD card to the build directory. Only necessary if a mission should be replayed. - Start the replay:
+默认日志文件的所有参数将被使用。 当一个参数在录制过程中发生改变，同样会在回放时候的正确时间发生更改。 在 `replay_params.txt` 的一个参数会覆盖以前的值，同时日志文件它的变化则不会被录入。 - 可选：从 SD 卡复制 `dataman` 任务文件到编译目录。 一个任务的回放只有在必要的时候才进行。 - Start the replay:
 
 ```sh
   make px4_sitl_default jmavsim
