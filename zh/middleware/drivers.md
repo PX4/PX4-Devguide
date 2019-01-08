@@ -12,22 +12,22 @@ PX4 几乎只消耗来自 [uORB](../middleware/uorb.md) 的数据。 常见外�
 
 创建新驱动程序的最佳方法是从类似的驱动程序作为模板开始（请参阅 [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)）。
 
-> **Tip** More detailed information about working with specific I/O busses and sensors may be available in [Sensor and Actuator Buses](../sensor_bus/README.md) section.
+> **Tip** 有关使用特定 ito 总线和传感器的更多详细信息，请参见 [传感器和执行器总线](../sensor_bus/README.md) 部分。
 
 <span></span>
 
-> **Note** Publishing the correct uORB topics is the only pattern that drivers *must* follow.
+> **Note** 发布正确的 uORB 主题是驱动程序 *必须* 遵循的唯一模式。
 
 ## Core Architecture
 
-PX4 is a [reactive system](../concept/architecture.md) and uses [uORB](../middleware/uorb.md) publish/subscribe to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
+PX4 是一个 [reactive system ](../concept/architecture.md)，使用 [uORB](../middleware/uorb.md) 发布/订阅传输消息。 文件句柄不是必需或用于系统的核心操作。 使用了两个主要 API：
 
-* The publish / subscribe system which has a file, network or shared memory backend depending on the system PX4 runs on.
-* The global device registry, which can be used to enumerate devices and get/set their configuration. This can be as simple as a linked list or map to the file system.
+* Publish / subscribe 系统具有文件、网络或共享内存后端，具体取决于系统 PX4 运行。
+* 全局设备注册表，可用于枚举设备并获取其配置。 这可以像链接列表或映射到文件系统一样简单。
 
-## Device IDs
+## 设备ID
 
-PX4 uses device IDs to identify individual sensors consistently across the system. These IDs are stored in the configuration parameters and used to match sensor calibration values, as well as to determine which sensor is logged to which logfile entry.
+PX4 使用设备 ID 在整个系统中一致地识别单个传感器。 这些 ID 保存在配置参数中并且用于匹配传感器校准值，也用于决定那个传感器日志文件的入口。
 
 The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) does not determine priority - the priority is instead stored as part of the published uORB topic.
 
