@@ -1,16 +1,16 @@
-# Driver Development
+# 驱动开发
 
-NuttX device drivers are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) framework.
+Nuttx 设备驱动基于 [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) 架构。
 
-Linux and QuRT drivers are based on [DriverFramework](https://github.com/px4/DriverFramework). PX4 is currently being updated so that they can use the same drivers as NuttX.
+Linux 和 QuRT 驱动基于 [DriverFramework](https://github.com/px4/DriverFramework)。 PX4 目前正在升级以保证使用和 Nuttx 一样的驱动。
 
-> **Note** Currently (December 2017) a small number of Linux/QuRT I2C drivers have been migrated (primarily for airspeed sensors). We plan to migrate the remaining drivers in coming releases.
+> **Note**目前（2017年12月），少量 linuxsw qurt i2c 驱动器已迁移（主要用于空速传感器）。 我们计划在即将发布的版本中迁移其余的驱动程序。
 
-## Creating a Driver
+## 创建驱动程序
 
-PX4 almost exclusively consumes data from [uORB](../middleware/uorb.md). Drivers for common peripheral types must publish the correct uORB messages (for example: gyro, accelerometer, pressure sensors, etc.).
+PX4 几乎只消耗来自 [uORB](../middleware/uorb.md) 的数据。 常见外设类型的驱动程序必须发布正确的 uORB 消息（例如: 陀螺仪、加速度计、压力传感器等）。
 
-The best approach for creating a new driver is to start with a similar driver as a template (see [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)).
+创建新驱动程序的最佳方法是从类似的驱动程序作为模板开始（请参阅 [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)）。
 
 > **Tip** More detailed information about working with specific I/O busses and sensors may be available in [Sensor and Actuator Buses](../sensor_bus/README.md) section.
 
