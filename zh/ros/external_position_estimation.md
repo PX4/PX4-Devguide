@@ -74,7 +74,7 @@ EKF2 只订阅 `vehicle_visual_odometry` 主题，因此只能处理前两个消
 
 通过检查 IMU 速率和 EV 速率之间的偏移量，可以从日志中获得延迟的粗略估计：
 
-![ekf2_ev_delay log](../../assets/ekf2/ekf2_ev_delay_tuning.png)
+![ekf2_ev_delay 日志](../../assets/ekf2/ekf2_ev_delay_tuning.png)
 
 > **Note** 外部数据图表 与 可使用 [FlightPlot](https://docs.px4.io/en/log/flight_log_analysis.html#flightplot-desktop) 或类似的飞行分析工具生成机载估计（如上）。
 
@@ -141,8 +141,8 @@ ROS 和 PX4 使用的本地/世界坐标系和全局框架是不同的。
 
 | 框架    | ROS                                                                                  | PX4                                           |
 | ----- | ------------------------------------------------------------------------------------ | --------------------------------------------- |
-| Body  | FLU (x < 0>F</strong>orward、y < 0>L</strong>eft、z < 0>U</strong>p), 通常命名 `base_link` | FRD (X **F**orward, Y **R**ight 和 Z **D**own) |
-| World | Enu (x < 0>E</strong>ast、y < 0>N</strong>orth 和 z up), 命名 `odom` 或 `map`             | NED (X **N**orth, Y **E**ast, Z **D**own)     |
+| 机体    | FLU (x < 0>F</strong>orward、y < 0>L</strong>eft、z < 0>U</strong>p), 通常命名 `base_link` | FRD (X **F**orward, Y **R**ight 和 Z **D**own) |
+| 世界坐标系 | Enu (x < 0>E</strong>ast、y < 0>N</strong>orth 和 z up), 命名 `odom` 或 `map`             | NED (X **N**orth, Y **E**ast, Z **D**own)     |
 
 > **Tip** 有关 ROS 框架的详细信息，请参阅 [REP105: Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html)。
 
@@ -182,24 +182,24 @@ ROS 和 PX4 使用的本地/世界坐标系和全局框架是不同的。
 
 MAVROS 提供了一个插件来中继在 `/mavros/vision_pose/pose` 上发布的姿势数据到 px4。 假设 mavros 正在运行，您只需 **remap** 从 mcap 获得的位置主题 `/vrpn_client_node/&lt;rigid_body_name&gt;/pose` 直接到 `/mavros/vision_pose/pose`。 请注意，mavros 还提供了一个 `mocap` 主题，用于将 `ATT_POS_MOCAP` 提供给 px4，但它不适用于 ekf2。 但是，它适用于 lpe。
 
-> **Note** Remapping pose topics is covered above [Relaying pose data to PX4](#relaying_pose_data_to_px4) (`/vrpn_client_node/<rigid_body_name>/pose` is of type `geometry_msgs/PoseStamped`).
+> **Note** 上文介绍了 [Relaying 将数据设置为 px4](#relaying_pose_data_to_px4) （`/vrpn_client_node/&lt;rigid_body_name&gt;/pose` 是 `geometry_msgs/PoseStamped`的类型）。
 
-Assuming that you have configured EKF2 parameters as described above, PX4 now is set and fusing MoCap data.
+假设您已按上述方式配置了 EKF2 参数，那么现在就设置并融合了 MoCap 数据。
 
-You are now set to proceed to the first flight.
+您现在已准备好继续进行第一次飞行。
 
 ## 第一次飞行
 
-After setting up one of the (specific) systems described above you should now be ready to test. The instructions below show how to do so for MoCap and VIO systems
+在设置了上述（特定）系统之一之后，您现在应该可以进行测试了。 下面的说明显示了如何对 MoCap 和 VIO 系统执行此操作
 
-### MoCap First Flight
+### MoCap 首飞
 
 请检查
 
-* **Before** creating the rigid body, align the robot with world x axis.
-* Stream over MAVLink and check the MAVLink inspector with *QGroundControl*, the local pose topic should be in NED.
-* Move the robot around by hand and see if the estimated local position is consistent (always in NED).
-* Rotate the robot on the vertical axis and check the yaw with the MAVLink inspector.
+* 创建机体之 **前**，将飞机与世界坐标系 x 轴对齐。
+* 通过 mavlink 并检查带有 *QGroundControl* 的 mavlink 检查器，本地姿势主题在 NED 中。
+* 用手移动机器人，看看估计的本地坐标位置是否一致（总是在 NED 中）。
+* 在垂直轴上旋转机器人，并使用 mavlink 检查器检查出 yaw。
 
 如果以上步骤没问题，你可以开始你的第一次飞行。
 
@@ -213,6 +213,6 @@ After setting up one of the (specific) systems described above you should now be
 
 如果这一切都没问题，那么你可以开始进行offboard模式下的试验了（发布自行设定的位置期望值给飞控）。
 
-### VIO First Flight
+### VIO 首飞
 
-TBD.
+待定。
