@@ -144,13 +144,13 @@ ROS 和 PX4 使用的本地/全域和全域框架是不同的。
 | Body  | FLU (x < 0>F</strong>orward、y < 0>L</strong>eft、z < 0>U</strong>p), 通常命名 `base_link` | FRD (X **F**orward, Y **R**ight 和 Z **D**own) |
 | World | Enu (x < 0>E</strong>ast、y < 0>N</strong>orth 和 z up), 命名 `odom` 或 `map`             | NED (X **N**orth, Y **E**ast, Z **D**own)     |
 
-> **Tip** See [REP105: Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html) for more information about ROS frames.
+> **Tip** 有关 ROS 框架的详细信息，请参阅 [REP105: Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html)。
 
-Both frames are shown in the image below (NED on left/ENU on right).
+两个帧都显示在下图中（NED 在左/ENU 在右）。
 
 ![参考机架](../../assets/lpe/ref_frames.png)
 
-When using external heading estimation, magnetic North is ignored and faked with a vector corresponding to world *x* axis (which can be placed freely during Vision/MoCap calibration). Yaw angle is therefore given with respect to local *x*.
+在使用外部航向估计时，磁北将被忽略，并使用与世界坐标系 *x* 轴相对应的矢量进行伪造 (可在 vision/mocap 校准期间自由放置)。 因此，本地 *x* 给出了 yaw 角。
 
 > **Note** When creating the rigid body in the MoCap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise yaw estimation will have an initial offset.
 
