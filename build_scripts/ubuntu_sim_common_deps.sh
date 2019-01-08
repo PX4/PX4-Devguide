@@ -42,10 +42,8 @@ else
     tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
     tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
     cpucores=$(( $(lscpu | grep Core.*per.*socket | awk -F: '{print $2}') * $(lscpu | grep Socket\(s\) | awk -F: '{print $2}') ))
-    cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make -j$cpucores; sudo make install
-    cd ..
-    cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make -j$cpucores; sudo make install
-    cd ..
+    (cd eProsima_FastCDR-1.0.7-Linux && ./configure --libdir=/usr/lib && make -j$cpucores && sudo make install)
+    (cd eProsima_FastRTPS-1.5.0-Linux && ./configure --libdir=/usr/lib && make -j$cpucores && sudo make install)
     rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
     popd
 fi
