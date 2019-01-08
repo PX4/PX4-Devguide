@@ -132,12 +132,12 @@ MAVROS 具有插件，可使用以下管道从 VIO 或 MOCAP 系统中继可视�
 
 如果您使用的是 EKF2，则仅支持 "视觉" 管道。 要将 MoCap 数据与 EKF2 一起使用，您必须 [remap](http://wiki.ros.org/roslaunch/XML/remap) 从 mocap 获得的位置信息主题：
 
-* MoCap ROS topics of type `geometry_msgs/PoseStamped` or `geometry_msgs/PoseWithCovarianceStamped` must be remapped to `/mavros/vision_pose/pose`. The `geometry_msgs/PoseStamped` topic is most common as MoCap doesn't usually have associated covariances to the data.
-* If you get data through a `nav_msgs/Odometry` ROS message then you will need to remap it to `/mavros/odometry/odom`.
+* 必须重新映射 `geometry_msgs/PoseStamped` 或 `geometry_msgs/PoseWithCovarianceStamped` 类型的 MOCAP ROS 主题，以 `/mavros/vision_pose/pose`。 `geometry_msgs/PoseStamped` 主题是最常见的，因为 mocap 通常没有与数据相关的协方差。
+* 如果您通过 `nav_msgs/Odometry` ROS 消息获取数据，则需要重新映射数据以 `/mavros/odometry/odom`。
 
-### Reference Frames and ROS {#ros_reference_frames}
+### 参考框架和 ROS {#ros_reference_frames}
 
-The local/world and world frames used by ROS and PX4 are different.
+ROS 和 PX4 使用的本地/全域和全域框架是不同的。
 
 | Frame | ROS                                                                           | PX4                                             |
 | ----- | ----------------------------------------------------------------------------- | ----------------------------------------------- |
