@@ -29,11 +29,11 @@ PX4 是一个 [reactive system ](../concept/architecture.md)，使用 [uORB](../
 
 PX4 使用设备 ID 在整个系统中一致地识别单个传感器。 这些 ID 保存在配置参数中并且用于匹配传感器校准值，也用于决定那个传感器日志文件的入口。
 
-The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) does not determine priority - the priority is instead stored as part of the published uORB topic.
+传感器序列（比如，如果有一个 `/dev/mag0` 和一个备用的 `/dev/mag1`）并不决定优先级 — 优先级作为已发布的 uORB 主题的一部分存储。
 
-### Decoding example
+### 解码示例
 
-For the example of three magnetometers on a system, use the flight log (.px4log) to dump the parameters. The three parameters encode the sensor IDs and `MAG_PRIME` identifies which magnetometer is selected as the primary sensor. Each MAGx_ID is a 24bit number and should be padded left with zeros for manual decoding.
+对于系统上三个磁强计的示例，请使用飞行日志 (. px4log) 转储参数。 这三个参数解码传感器的 ID， 并且 `MAG_PRIME` 区分那个磁力计作为主传感器。 每个 MAGx_ID 是 24 bit 的数，手动解码的话高位补0.
 
     CAL_MAG0_ID = 73225.0
     CAL_MAG1_ID = 66826.0
@@ -41,7 +41,7 @@ For the example of three magnetometers on a system, use the flight log (.px4log)
     CAL_MAG_PRIME = 73225.0
     
 
-This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will show up in the log file as `IMU.MagX`.
+这是通过 I2C 总线1 的外部 HMC5983 连接在地址 `0x1E`：会在日志文件中以 `IMU.MagX` 格式显示出来。
 
     # device ID 73225 in 24-bit binary:
     00000001  00011110  00001 001
@@ -50,7 +50,7 @@ This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will
     HMC5883   0x1E    bus 1 I2C
     
 
-This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It will show up in the log file as `IMU1.MagX`.
+这是内部 HMC5983 连接通过 SPI 总线 1，所以选择插槽5。 它将以 `IMU1.MagX` 显示在日志文件中。
 
     # device ID 66826 in 24-bit binary:
     00000001  00000101  00001 010
