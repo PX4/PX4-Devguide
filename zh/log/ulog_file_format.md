@@ -188,7 +188,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 
 `msg_id`：由 `message_add_logged_s` 报文定义。 `data` 包含由 `message_format_s` 定义的二进制日志消息。 有关填充字段的特殊处理，请参见上文。
 
-- 'L': Logged string message, i.e. printf output.
+- 'L'：字符串日志报文，比如打印输出。
 
     struct message_logging_s {
         struct message_header_s header;
@@ -211,7 +211,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 | INFO    | '6' | 信息       |
 | DEBUG   | '7' | 调试级别的消息  |
 
-- 'S': synchronization message so that a reader can recover from a corrupt message by searching for the next sync message (not used currently).
+- 'S'：报文同步，使读取器可以通过搜索下一个同步报文 (目前没有使用) 从损坏的报文中恢复。
 
     struct message_sync_s {
         struct message_header_s header;
@@ -219,9 +219,9 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
     };
     
 
-`sync_magic`: to be defined.
+`sync_magic`：未定义。
 
-- 'O': mark a dropout (lost logging messages) of a given duration in ms. Dropouts can occur e.g. if the device is not fast enough.
+- 'O'：在给定毫秒的时间内对丢包（日志报文丢失）的标记。 例如当设备不够快的情况下会出现丢包。
 
     struct message_dropout_s {
         struct message_header_s header;
