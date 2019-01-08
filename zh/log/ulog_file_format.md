@@ -265,4 +265,4 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 
 ### 版本 2 中的改变
 
-增加 `ulog_message_info_multiple_header_s` 和 `ulog_message_flag_bits_s` 报文以及给日志增加数据的能力。 这被用来给现有的日志添加损坏的数据。 If data is appended to a log that is cut in the middle of a message, it cannot be parsed with version 1 parsers. Other than that forward and backward compatibility is given if parsers ignore unknown messages.
+增加 `ulog_message_info_multiple_header_s` 和 `ulog_message_flag_bits_s` 报文以及给日志增加数据的能力。 这被用来给现有的日志添加损坏的数据。 如果从中间切开的报文数据被附加到日志中，这不能被版本 1 解析器解析。 除此之外，如果解析器忽略未知消息，则提供向前和向后的兼容性。
