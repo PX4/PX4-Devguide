@@ -165,18 +165,18 @@ ROS 和 PX4 使用的本地/世界坐标系和全局框架是不同的。
 #### 设置 *Motive* mocap 软件
 
 * 将无人机的前进方向与 [system + x-axiss](https://v20.wiki.optitrack.com/index.php?title=Template:Coordinate_System) 对齐
-* [Define a rigid body in the Motive software](https://www.youtube.com/watch?v=1e6Qqxqe-k0)。 Give the robot a name that does not contain spaces, e.g. `robot1` instead of `Rigidbody 1`
-* [Enable Frame Broadacst and VRPN streaming](https://www.youtube.com/watch?v=yYRNG58zPFo)
-* Set the Up axis to be the Z axis (the default is Y)
+* [Define a rigid body in the Motive software](https://www.youtube.com/watch?v=1e6Qqxqe-k0)。 为机器人指定一个不包含空格的名称，例如 `robot1` 而不是 `Rigidbody 1 `
+* [启用帧广播和 VRPN 流](https://www.youtube.com/watch?v=yYRNG58zPFo)
+* 将 "向上" 轴设置为 z 轴（默认值为 y）
 
-#### Getting pose data into ROS
+#### 将数据输入 ROS
 
-* Install the `vrpn_client_ros` package
-* You can get each rigid body pose on an individual topic by running 
+* 安装 `vrpn_client_ros` 包
+* 你可以通过运行在一个单独的话题上得到每一个机体的姿势 
         bash
         roslaunch vrpn_client_ros sample.launch server:=<mocap machine ip>
 
-If you named the rigidbody as `robot1`, you will get a topic like `/vrpn_client_node/robot1/pose`
+如果你把机体命名为 `robot1`，你会得到一个主题，比如 `/vrpn_client_node/robot1/pose`
 
 #### Relaying/remapping Pose Data
 
