@@ -158,14 +158,14 @@ ROS 和 PX4 使用的本地/世界坐标系和全局框架是不同的。
 
 ## 特定的系统设置 {#setup_specific_systems}
 
-### OptiTrack MoCap
+### 光学跟踪 MoCap
 
-The following steps explain how to feed position estimates from an [OptiTrack](http://optitrack.com/systems/#robotics) system to PX4. It is assumed that the MoCap system is calibrated. See [this video](https://www.youtube.com/watch?v=cNZaFEghTBU) for a tutorial on the calibration process.
+以下步骤说明如何将位置估计从 [OptiTrack](http://optitrack.com/systems/#robotics) 系统输入到 px4。 假定 mocap 系统已校准。 有关校准过程的教程，请参阅 [this video ](https://www.youtube.com/watch?v=cNZaFEghTBU)。
 
-#### Steps on the *Motive* MoCap software
+#### 设置 *Motive* mocap 软件
 
-* Align your robot's forward direction with the the [system +x-axis](https://v20.wiki.optitrack.com/index.php?title=Template:Coordinate_System)
-* [Define a rigid body in the Motive software](https://www.youtube.com/watch?v=1e6Qqxqe-k0). Give the robot a name that does not contain spaces, e.g. `robot1` instead of `Rigidbody 1`
+* 将无人机的前进方向与 [system + x-axiss](https://v20.wiki.optitrack.com/index.php?title=Template:Coordinate_System) 对齐
+* [Define a rigid body in the Motive software](https://www.youtube.com/watch?v=1e6Qqxqe-k0)。 Give the robot a name that does not contain spaces, e.g. `robot1` instead of `Rigidbody 1`
 * [Enable Frame Broadacst and VRPN streaming](https://www.youtube.com/watch?v=yYRNG58zPFo)
 * Set the Up axis to be the Z axis (the default is Y)
 
