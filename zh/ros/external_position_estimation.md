@@ -180,7 +180,7 @@ ROS 和 PX4 使用的本地/世界坐标系和全局框架是不同的。
 
 #### 重新映射/重新映射位置数据
 
-MAVROS provides a plugin to relay pose data published on `/mavros/vision_pose/pose` to PX4. Assuming that MAVROS is running, you just need to **remap** the pose topic that you get from MoCap `/vrpn_client_node/<rigid_body_name>/pose` directly to `/mavros/vision_pose/pose`. Note that there is also a `mocap` topic that MAVROS provides to feed `ATT_POS_MOCAP` to PX4, but it is not applicable for EKF2. However, it is applicable with LPE.
+MAVROS 提供了一个插件来中继在 `/mavros/vision_pose/pose` 上发布的姿势数据到 px4。 假设 mavros 正在运行，您只需 **remap** 从 mcap 获得的位置主题 `/vrpn_client_node/&lt;rigid_body_name&gt;/pose` 直接到 `/mavros/vision_pose/pose`。 请注意，mavros 还提供了一个 `mocap` 主题，用于将 `ATT_POS_MOCAP` 提供给 px4，但它不适用于 ekf2。 但是，它适用于 lpe。
 
 > **Note** Remapping pose topics is covered above [Relaying pose data to PX4](#relaying_pose_data_to_px4) (`/vrpn_client_node/<rigid_body_name>/pose` is of type `geometry_msgs/PoseStamped`).
 
