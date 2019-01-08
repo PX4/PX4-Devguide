@@ -60,11 +60,6 @@ This task can be started at boot from the startup scripts by setting SENS_EN_THE
        controller_period Reports the heater driver cycle period value, (us), and
                      sets it if supplied an argument.
     
-       duty_cycle    Reports the heater duty cycle (%).
-    
-       feed_forward  Sets the feedforward value if supplied an argument and reports
-                     the current value.
-    
        integrator    Sets the integrator gain value if supplied an argument and
                      reports the current value.
     
