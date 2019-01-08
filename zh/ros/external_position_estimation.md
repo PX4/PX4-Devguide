@@ -139,10 +139,10 @@ MAVROS 具有插件，可使用以下管道从 VIO 或 MOCAP 系统中继可视�
 
 ROS 和 PX4 使用的本地/全域和全域框架是不同的。
 
-| Frame | ROS                                                                           | PX4                                             |
-| ----- | ----------------------------------------------------------------------------- | ----------------------------------------------- |
-| Body  | FLU (X **F**orward, Y **L**eft, Z **U**p), usually named `base_link`          | FRD (X **F**orward, Y **R**ight and Z **D**own) |
-| World | ENU (X **E**ast, Y **N**orth and Z Up), with the naming being `odom` or `map` | NED (X **N**orth, Y **E**ast, Z **D**own)       |
+| 框架    | ROS                                                                                  | PX4                                           |
+| ----- | ------------------------------------------------------------------------------------ | --------------------------------------------- |
+| Body  | FLU (x < 0>F</strong>orward、y < 0>L</strong>eft、z < 0>U</strong>p), 通常命名 `base_link` | FRD (X **F**orward, Y **R**ight 和 Z **D**own) |
+| World | Enu (x < 0>E</strong>ast、y < 0>N</strong>orth 和 z up), 命名 `odom` 或 `map`             | NED (X **N**orth, Y **E**ast, Z **D**own)     |
 
 > **Tip** See [REP105: Coordinate Frames for Mobile Platforms](http://www.ros.org/reps/rep-0105.html) for more information about ROS frames.
 
