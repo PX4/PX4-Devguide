@@ -59,7 +59,7 @@ PX4 使用设备 ID 在整个系统中一致地识别单个传感器。 这些 I
     HMC5883   dev 5   bus 1 SPI
     
 
-And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave select slot 4. It will show up in the log file as `IMU2.MagX`.
+这是通过 spi、总线1、从选择插槽4连接的内部 MPU9250 磁强计。 它将以 `IMU2.MagX` 显示在日志文件中。
 
     # device ID 263178 in 24-bit binary:
     00000100  00000100  00001 010
@@ -68,9 +68,9 @@ And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave se
     MPU9250   dev 4   bus 1 SPI
     
 
-### Device ID Encoding
+### 设备 ID 编码
 
-The device ID is a 24bit number according to this format. Note that the first fields are the least significant bits in the decoding example above.
+根据此格式，设备 ID 是一个24bit 数字。 请注意，在上面的解码示例中，第一个字段是最不重要的位。
 
 ```C
 struct DeviceStructure {
@@ -81,7 +81,7 @@ struct DeviceStructure {
 };
 ```
 
-The `bus_type` is decoded according to:
+`bus_type` 是根据以下情况解码的：
 
 ```C
 enum DeviceBusType {
@@ -92,7 +92,7 @@ enum DeviceBusType {
 };
 ```
 
-and `devtype` is decoded according to:
+`devtype` 是根据以下情况解码的：
 
 ```C
 #define DRV_MAG_DEVTYPE_HMC5883  0x01
