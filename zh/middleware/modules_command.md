@@ -1,4 +1,4 @@
-# Modules Reference: Command
+# 模块参考：命令（Command）
 
 ## bl_update
 
@@ -60,13 +60,13 @@ Dump file utility. Prints file size and contents in binary mode (don't replace L
 
 ## dyn
 
-Source: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
+源码：[systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
 
 ### 描述
 
 Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
 
-### Example
+### 示例
 
     dyn ./hello.px4mod start
     
@@ -147,7 +147,7 @@ To use it make sure there's a driver running, which handles the led_control uorb
 
 There are different priorities, such that for example one module can set a color with low priority, and another module can blink N times with high priority, and the LED's automatically return to the lower priority state after the blinking. The `reset` command can also be used to return to a lower priority.
 
-### Examples
+### 示例
 
 Blink the first LED 5 times in blue:
 
@@ -244,7 +244,7 @@ When starting, a background task is started, runs for several seconds (as specif
 
 Note: this command currently only supports the `/dev/pwm_output0` output.
 
-### Example
+### 示例
 
     motor_ramp sine 1100 0.5
     
@@ -337,7 +337,7 @@ If the FLASH-based backend is enabled (which is done at compile time, e.g. for t
 
 Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant parameters to a ground control station.
 
-### Examples
+### 示例
 
 Change the airframe and make sure the airframe's default parameters are loaded:
 
