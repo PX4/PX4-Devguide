@@ -186,7 +186,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
     };
     
 
-`msg_id`: as defined by a `message_add_logged_s` message. `data` contains the logged binary message as defined by `message_format_s`. See above for special treatment of padding fields.
+`msg_id`：由 `message_add_logged_s` 报文定义。 `data` 包含由 `message_format_s` 定义的二进制日志消息。 有关填充字段的特殊处理，请参见上文。
 
 - 'L': Logged string message, i.e. printf output.
 
