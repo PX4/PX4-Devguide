@@ -18,7 +18,7 @@ PX4 几乎只消耗来自 [uORB](../middleware/uorb.md) 的数据。 常见外�
 
 > **Note** 发布正确的 uORB 主题是驱动程序 *必须* 遵循的唯一模式。
 
-## Core Architecture
+## 核心架构
 
 PX4 是一个 [reactive system ](../concept/architecture.md)，使用 [uORB](../middleware/uorb.md) 发布/订阅传输消息。 文件句柄不是必需或用于系统的核心操作。 使用了两个主要 API：
 
@@ -33,7 +33,7 @@ PX4 使用设备 ID 在整个系统中一致地识别单个传感器。 这些 I
 
 ### 解码示例
 
-对于系统上三个磁强计的示例，请使用飞行日志 (. px4log) 转储参数。 这三个参数解码传感器的 ID， 并且 `MAG_PRIME` 区分那个磁力计作为主传感器。 每个 MAGx_ID 是 24 bit 的数，手动解码的话高位补0.
+对于系统上三个磁强计的示例，请使用飞行日志 (. px4log) 转储参数。 这三个参数解码传感器的 ID， 并且 `MAG_PRIME` 区分那个磁力计作为主传感器。 每个 MAGx_ID 是 24 bit 的数，手动解码的话高位补 0。
 
     CAL_MAG0_ID = 73225.0
     CAL_MAG1_ID = 66826.0
