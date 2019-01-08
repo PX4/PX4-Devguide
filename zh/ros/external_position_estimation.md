@@ -137,7 +137,7 @@ MAVROS 具有插件，可使用以下管道从 VIO 或 MOCAP 系统中继可视�
 
 ### 参考框架和 ROS {#ros_reference_frames}
 
-ROS 和 PX4 使用的本地/全域和全域框架是不同的。
+ROS 和 PX4 使用的本地/世界坐标系和全局框架是不同的。
 
 | 框架    | ROS                                                                                  | PX4                                           |
 | ----- | ------------------------------------------------------------------------------------ | --------------------------------------------- |
@@ -152,11 +152,11 @@ ROS 和 PX4 使用的本地/全域和全域框架是不同的。
 
 在使用外部航向估计时，磁北将被忽略，并使用与世界坐标系 *x* 轴相对应的矢量进行伪造 (可在 vision/mocap 校准期间自由放置)。 因此，本地 *x* 给出了 yaw 角。
 
-> **Note** When creating the rigid body in the MoCap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise yaw estimation will have an initial offset.
+> **Note**在 mocap 软件中创建刚体时，请记住首先将机器人的本地坐标系 *x* 轴与世界坐标系 *x* 轴对齐，否则偏航估计将有初始偏移量。
 
-Using MAVROS, this operation is straightforward. ROS 默认使用 ENU 系, 因此你在MAVROS中所有代码必须遵循ENU系。 如果您有一个 Optitrack 系统, 则可以使用 [ mocap_optitrack ](https://github.com/ros-drivers/mocap_optitrack) 节点, 其已经发布了一个关于刚体位姿的一个ROS话题。 With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and MAVROS will take care of NED conversions.
+利用MAVROS功能包，以上操作会十分简单。 ROS 默认使用 ENU 系, 因此你在MAVROS中所有代码必须遵循ENU系。 如果您有一个 Optitrack 系统, 则可以使用 [ mocap_optitrack ](https://github.com/ros-drivers/mocap_optitrack) 节点, 其已经发布了一个关于刚体位姿的一个ROS话题。 通过重新映射，您可以直接将其发布在 `mocap_pose_estimate` 因为它没有任何转换，mavros 将负责 NED 转换。
 
-## Specific System Setups {#setup_specific_systems}
+## 特定的系统设置 {#setup_specific_systems}
 
 ### OptiTrack MoCap
 
