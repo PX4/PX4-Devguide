@@ -109,17 +109,17 @@ EKF2 只订阅 `vehicle_visual_odometry` 主题，因此只能处理前两个消
 
 ## 使用 ROS
 
-ROS is not *required* for supplying external pose information, but is highly recommended as it already comes with good integrations with VIO and MoCap systems. PX4 must already have been set up as above.
+ROS 不是提供外部姿态信息的 *required*，但强烈建议使用它，因为它已经与 VIO 和 MoCap 系统进行了良好的集成。 PX4 必须已设置如上所示。
 
-### Getting Pose Data Into ROS
+### 将数据输入 ROS
 
-VIO and MoCap systems have different ways of obtaining pose data, and have their own setup and topics.
+VIO 和 MoCap 系统具有不同的获取姿势数据的方式，并且有自己的设置和主题。
 
-The setup for specific systems is covered [below](#setup_specific_systems). For other systems consult the vendor setup documentation.
+[below](#setup_specific_systems) 涵盖了特定系统的设置。 对于其他系统，请参阅供应商设置文档。
 
-### Relaying Pose Data to PX4 {#relaying_pose_data_to_px4}
+### 将数据回传给 PX4 {#relaying_pose_data_to_px4}
 
-MAVROS has plugins to relay a visual estimation from a VIO or MoCap system using the following pipelines:
+MAVROS 具有插件，可使用以下管道从 VIO 或 MOCAP 系统中继可视化估计：
 
 | ROS                      | MAVLink                                                                                                                                                                  | uORB                      |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
@@ -128,9 +128,9 @@ MAVROS has plugins to relay a visual estimation from a VIO or MoCap system using
 | /mavros/mocap/pose       | [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP)                                                                                              | `vehicle_mocap_odometry`  |
 | /mavros/odometry/odom    | [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_MOCAP_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_MOCAP_NED))   | `vehicle_mocap_odometry`  |
 
-You can use any of the above pipelines with LPE.
+您可以将上述任何管道与 LPE 一起使用。
 
-If you're working with EKF2, only the "vision" pipelines are supported. To use MoCap data with EKF2 you will have to [remap](http://wiki.ros.org/roslaunch/XML/remap) the pose topic that you get from MoCap:
+如果您使用的是 EKF2，则仅支持 "视觉" 管道。 要将 MoCap 数据与 EKF2 一起使用，您必须 [remap](http://wiki.ros.org/roslaunch/XML/remap) 从 mocap 获得的位置信息主题：
 
 * MoCap ROS topics of type `geometry_msgs/PoseStamped` or `geometry_msgs/PoseWithCovarianceStamped` must be remapped to `/mavros/vision_pose/pose`. The `geometry_msgs/PoseStamped` topic is most common as MoCap doesn't usually have associated covariances to the data.
 * If you get data through a `nav_msgs/Odometry` ROS message then you will need to remap it to `/mavros/odometry/odom`.
