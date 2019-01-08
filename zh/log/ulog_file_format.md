@@ -241,7 +241,7 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 
 - 必须忽略未知消息 (但可以打印警告) 。
 - 解析未来/未知的文件格式版本 (但可以打印警告) 。
-- Must refuse to parse a log which contains unknown incompatibility bits set (`incompat_flags` of `ulog_message_flag_bits_s` message), meaning the log contains breaking changes that the parser cannot handle.
+- 必须拒绝解析包含未知不兼容位集 (`ulog_message_flag_bits_s` 报文中的 `incompat_flags`) 的日志，这意味着日志包含解析器无法处理的突发改变。
 - 解析器必须能够正确处理报文突然结束的日志。 未完成的报文应该丢弃。
 - 对于附加数据:解析器可以假设数据部分存在，即在定义部分之后的位置有一个偏移点。
     
@@ -265,4 +265,4 @@ Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64
 
 ### 版本 2 中的改变
 
-Addition of `ulog_message_info_multiple_header_s` and `ulog_message_flag_bits_s` messages and the ability to append data to a log. This is used to add crash data to an existing log. If data is appended to a log that is cut in the middle of a message, it cannot be parsed with version 1 parsers. Other than that forward and backward compatibility is given if parsers ignore unknown messages.
+增加 `ulog_message_info_multiple_header_s` 和 `ulog_message_flag_bits_s` 报文以及给日志增加数据的能力。 这被用来给现有的日志添加损坏的数据。 If data is appended to a log that is cut in the middle of a message, it cannot be parsed with version 1 parsers. Other than that forward and backward compatibility is given if parsers ignore unknown messages.
