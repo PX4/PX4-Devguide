@@ -69,26 +69,26 @@ $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor
 
 ### uORB 序列化代码
 
-序列化函数是为所有 uORB 主题生成的，作为正常 PX4 编译过程（以及手动生成）的一部分。 For example, the following functions would be generated for the *sensor_combined.msg*:
+序列化函数是为所有 uORB 主题生成的，作为正常 PX4 编译过程（以及手动生成）的一部分。 例如，将为 *sensor_combined.msg* 生成以下函数：
 
 ```sh
 void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
 void deserialize_sensor_combined(struct sensor_combined_s *output, char *input, struct microCDR *microCDRReader);
 ```
 
-### RTPS message IDL files
+### RTPS 报文 IDL 文件
 
-IDL files are generated from the uORB **.msg** files ([for selected uORB topics](../middleware/micrortps.md#supported-uorb-messages)) in the generation of the bridge. These can be found in: **src/modules/micrortps_bridge/micrortps_agent/idl/**
+IDL 文件是从网桥生成过程中的 uORB 的 **.msg** 文件中 ([选定的 uORB 主题 ](../middleware/micrortps.md#supported-uorb-messages)) 生成的。 这些可以在 **src/modules/micrortps_bridge/micrortps_agent/idl/** 中找到。
 
-*FastRTSP* uses IDL files to define the structure of RTPS messages (in this case, RTPS messages that map to uORB topics). They are used to generate code for the *Agent*, and *FastRTSP* applications that need to publish/subscribe to uORB topics.
+*FastRTSP* 使用 IDL 文件来定义 RTPS 消息的结构（在本例中，映射到 uORB 主题的 RTPS 消息）。 它们用于生成 *Agent* 的代码，和 *FastRTSP* 需要发布/订阅 uORB 主题的应用程序。
 
-> **Note** IDL files are compiled to C++ by the *fastrtpsgen* tool.
+> **Note** IDL 文件由 *fastrtpsgen* 工具编译到 c++。
 
 ## 代码生成验证
 
-You can verify successful code generation by checking that the output directories match the listing shown below (On Linux, the `tree` command can be used for listing the file structure).
+可以通过检查输出目录是否与下面显示的列表匹配来验证成功的代码生成（在 Linux 上，`tree` 命令可用于列出文件结构）。
 
-Agent directory:
+代理目录:
 
 ```sh
 $ tree src/modules/micrortps_bridge/micrortps_agent
