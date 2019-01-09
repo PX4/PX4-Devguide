@@ -4,11 +4,11 @@
 
 ## 什么是 ecl EKF？
 
-The Estimation and Control Library (ECL) uses an Extended Kalman Filter (EKF) algorithm to process sensor measurements and provide an estimate of the following states:
+估算和控制库（ECL）使用扩展卡尔曼滤波器（EKF）算法来处理传感器测量并提供以下状态的估计：
 
-* Quaternion defining the rotation from North, East, Down local earth frame to X,Y,Z body frame
-* Velocity at the IMU - North,East,Down \(m/s\)
-* Position at the IMU - North,East,Down \(m\)
+* 四元数定义从北，东，下局部地球坐标系到 X，Y，Z 体坐标系的旋转
+* IMU 的速度 - 北，东，下\（m/s\）
+* 在 IMU 的位置 - 北，东，向下\（m\）
 * IMU delta angle bias estimates - X,Y,Z \(rad\)
 * IMU delta velocity bias estimates - X,Y,Z\(m/s\)
 * Earth Magnetic field components - North,East,Down \(gauss\)
