@@ -33,11 +33,11 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### IMU
 
-* 三轴体固定惯性测量单位 delta 角和 delta 速度数据，最小速率为 100Hz。 Note: Coning corrections should be applied to the IMU delta angle data before it is used by the EKF.
+* 三轴体固定惯性测量单位 delta 角和 delta 速度数据，最小速率为 100Hz。 在 EKF 使用之前，应将锥形校正应用于 IMU delta 角度数据。
 
-### Magnetometer
+### 磁力计
 
-Three axis body fixed magnetometer data \(or external vision system pose data\) at a minimum rate of 5Hz is required. Magnetometer data can be used in two ways:
+需要以最小 5Hz 的速率的三轴体固定磁力计数据\（或外部视觉系统姿势数据\）。 磁力计数据可以通过两种方式使用：
 
 * Magnetometer measurements are converted to a yaw angle using the tilt estimate and magnetic declination. This yaw angle is then used as an observation by the EKF. This method is less accurate and does not allow for learning of body frame field offsets, however it is more robust to magnetic anomalies and large start-up gyro biases. It is the default method used during start-up and on ground.
 * The XYZ magnetometer readings are used as separate observations. This method is more accurate and allows body frame offsets to be learned, but assumes the earth magnetic field environment only changes slowly and performs less well when there are significant external magnetic anomalies. It is the default method when the vehicle is airborne and has climbed past 1.5 m altitude.
