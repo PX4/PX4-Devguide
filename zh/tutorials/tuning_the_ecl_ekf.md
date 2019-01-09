@@ -9,11 +9,11 @@
 * 四元数定义从北，东，下局部地球坐标系到 X，Y，Z 体坐标系的旋转
 * IMU 的速度 - 北，东，下\（m/s\）
 * 在 IMU 的位置 - 北，东，向下\（m\）
-* IMU delta angle bias estimates - X,Y,Z \(rad\)
-* IMU delta velocity bias estimates - X,Y,Z\(m/s\)
-* Earth Magnetic field components - North,East,Down \(gauss\)
-* Vehicle body frame magnetic field bias - X,Y,Z \(gauss\)
-* Wind velocity - North,East \(m/s\)
+* IMU delta 角度偏差估计- X，Y，Z\（rad\）
+* IMU delta 速度偏差估计- X，Y，Z\（m/s \）
+* 地球磁场组件-北，东，下\（高斯\）
+* 车身框架磁场偏置-X，Y，Z\（高斯\）
+* 风速-北，东\（m/s\）
 
 The EKF runs on a delayed 'fusion time horizon' to allow for different time delays on each measurement relative to the IMU. Data for each sensor is FIFO buffered and retrieved from the buffer by the EKF to be used at the correct time. The delay compensation for each sensor is controlled by the [EKF2_*_DELAY](../advanced/parameter_reference.md#ekf2) parameters.
 
