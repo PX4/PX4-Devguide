@@ -66,13 +66,13 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### 空速：
 
-通过将 <E>EKF2_ARSP_THR</a> 设置为正值，等效空速\（EAS\）数据可用于估计风速并减少 GPS 丢失时的漂移。 Airspeed data will be used when it exceeds the threshold set by a positive value for [EKF2_ARSP_THR](../advanced/parameter_reference.md#EKF2_ARSP_THR) and the vehicle type is not rotary wing.
+通过将 <E>EKF2_ARSP_THR</a> 设置为正值，等效空速\（EAS\）数据可用于估计风速并减少 GPS 丢失时的漂移。 当空速超过由 [EKF2_ARSP_THR](../advanced/parameter_reference.md#EKF2_ARSP_THR) 的正值设定的阈值并且飞机类型不是旋翼时，将使用空速数据。
 
-### Synthetic Sideslip
+### 合成 Sideslip
 
-Fixed wing platforms can take advantage of an assumed sideslip observation of zero to improve wind speed estimation and also enable wind speed estimation without an airspeed sensor. This is enabled by setting the [EKF2_FUSE_BETA](../advanced/parameter_reference.md#EKF2_FUSE_BETA) parameter to 1.
+固定翼平台可以利用零假设侧滑观测来改善风速估计，并且还可以在没有空速传感器的情况下进行风速估算。 通过将 [EKF2_FUSE_BETA](../advanced/parameter_reference.md#EKF2_FUSE_BETA) 参数设置为 1 来启用此功能。
 
-### Drag Specific Forces
+### 拖动特定力量
 
 Multi-rotor platforms can take advantage of the relationship between airspeed and drag force along the X and Y body axes to estimate North/East components of wind velocity. This is enabled by setting bit position 5 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter to true. The relationship between airspeed and specific force \(IMU acceleration\) along the X and Y body axes is controlled by the [EKF2_BCOEF_X](../advanced/parameter_reference.md#EKF2_BCOEF_X) and [EKF2_BCOEF_Y](../advanced/parameter_reference.md#EKF2_BCOEF_Y) parameters which set the ballistic coefficients for flight in the X and Y directions respectively. The amount of specific force observation noise is set by the [EKF2_DRAG_NOISE](../advanced/parameter_reference.md#EKF2_DRAG_NOISE) parameter.
 
