@@ -1,18 +1,18 @@
-# Manually Generate Client and Agent Code
+# 手动生成客户端和代理端代码
 
-This topic shows how to manually generate the code for the client and the agent (instead of [automatically generating](../middleware/micrortps.md) it when the PX4 Firmware is compiled).
+本主题演示如何在编译 PX4 固件时手动生成客户端和代理的代码（而不是 [automatically generating](../middleware/micrortps.md)）。
 
-The code is generated using the python script: **/Tools/generate_microRTPS_bridge.py**.
+代码是使用 python 脚本生成的：**/Tools/generate_microRTPS_bridge.py**。
 
-## Disable automatic bridge code generation
+## 禁用自动桥接代码生成
 
-First disable automatic generation of bridge code. Set the variable `GENERATE_RTPS_BRIDGE` to *off* in the **.cmake** file for the target platform:
+首先禁用桥接代码的自动生成。 将目标平台的 **.cmake** 文件中的变量 `GENERATE_RTPS_BRIDGE` 设置为 *off*：
 
 ```sh
 set(GENERATE_RTPS_BRIDGE off)
 ```
 
-## Using generate_microRTPS_bridge.py
+## 使用 generate_microRTPS_bridge. py
 
 The *generate_microRTPS_bridge* tool's command syntax is shown below:
 
