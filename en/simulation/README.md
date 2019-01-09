@@ -107,7 +107,7 @@ The syntax described here is simplified, and there are many other options that y
 SITL can be run faster or slower than realtime. The speed factor is set using the environment variable `PX4_SIM_SPEED_FACTOR`.
 The speed factor is implemented for the jMAVSim and Gazebo SITL simulation.
 
-For instance to run the jMAVSim simulation at 2 times the real time speed, do:
+For instance to run the jMAVSim simulation at 2 times the real time speed:
 ```
 PX4_SIM_SPEED_FACTOR=2 make px4_sitl jmavsim
 ```
