@@ -14,7 +14,7 @@ set(GENERATE_RTPS_BRIDGE off)
 
 ## 使用 generate_microRTPS_bridge. py
 
-The *generate_microRTPS_bridge* tool's command syntax is shown below:
+*generate_microRTPS_bridge* 工具的命令语法如下所示:
 
 ```sh
 $ cd /path/to/PX4/Firmware/msg/tools
@@ -31,18 +31,17 @@ optional arguments:
   -r *.msg [*.msg ...], --receive *.msg [*.msg ...]
                         要接收的 Topic
   -a, --agent           生成 agent 的参数。 默认值为 true。
-  -c, --client          Flag to generate the client. 默认值为 true。
+  -c, --client          生成客户端的标志位。 默认值为 true。
   -t MSGDIR, --topic-msg-dir MSGDIR
-                        Topics message dir. 默认为： msg/
+                        主题消息目录。 默认为： msg/
   -o AGENTDIR, --agent-outdir AGENTDIR
-                        Agent 输出目录。 Default is:
-                        src/modules/micrortps_bridge/micrortps_agent
+                        Agent 输出目录。 Src/modules/micrortps_bridge/micrortps_agent
   -u CLIENTDIR, --client-outdir CLIENTDIR
-                        Client output dir. Default is:
+                        客户端输出目录。 默认是：
                         src/modules/micrortps_bridge/micrortps_client
   -f FASTRTPSGEN, --fastrtpsgen-dir FASTRTPSGEN
-                        fastrtpsgen installation dir. Default is: /bin
-  --delete-tree         Delete dir tree output dir(s)
+                        fastrtpsgen 安装目录。 默认是： /bin
+  --delete-tree         删除目录树
 ```
 
 > **Caution** Using with `--delete-tree` option erases the content of the `CLIENTDIR` and the `AGENTDIR` before creating new files and folders.
