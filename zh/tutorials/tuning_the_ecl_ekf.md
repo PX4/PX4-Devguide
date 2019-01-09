@@ -15,7 +15,7 @@
 * 车身框架磁场偏置-X，Y，Z\（高斯\）
 * 风速-北，东\（m/s\）
 
-The EKF runs on a delayed 'fusion time horizon' to allow for different time delays on each measurement relative to the IMU. Data for each sensor is FIFO buffered and retrieved from the buffer by the EKF to be used at the correct time. The delay compensation for each sensor is controlled by the [EKF2_*_DELAY](../advanced/parameter_reference.md#ekf2) parameters.
+EKF 在延迟的“融合时间范围”上运行，以允许相对于 IMU 的每次测量的不同时间延迟。 每个传感器的数据都是 FIFO 缓冲的，并由 EKF 从缓冲区中检索，以便在正确的时间使用。 每个传感器的延迟补偿由 [EKF2 _*_ DELAY](../advanced/parameter_reference.md#ekf2) 参数控制。
 
 A complementary filter is used to propagate the states forward from the 'fusion time horizon' to current time using the buffered IMU data. The time constant for this filter is controlled by the [EKF2_TAU_VEL](../advanced/parameter_reference.md#EKF2_TAU_VEL) and [EKF2_TAU_POS](../advanced/parameter_reference.md#EKF2_TAU_POS) parameters.
 
