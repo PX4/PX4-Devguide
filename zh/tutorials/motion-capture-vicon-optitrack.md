@@ -1,8 +1,8 @@
-# Flying with Motion Capture (VICON, Optitrack)
+# 使用 Motion Capture 飞行（VICON，Optitrack）
 
-> **Warning** **WORK IN PROGRESS**. This topic shares significant overlap with [External Position Estimation (ROS)](../ros/external_position_estimation.md).
+> **Warning** **WORK IN PROGRESS**. 该主题与 [External Position Estimation (ROS)](../ros/external_position_estimation.md) 是重叠的。
 
-Indoor motion capture systems like VICON and Optitrack can be used to provide position and attitude data for vehicle state estimation, orto serve as ground-truth for analysis. The motion capture data can be used to update PX4's local position estimate relative to the local origin. Heading (yaw) from the motion capture system can also be optionally integrated by the attitude estimator.
+像 VICON和Optitrack 这样的室内运动捕捉系统可用于为车辆状态估计提供位置和姿态数据，或作为分析的基础事实。 动作捕捉数据可用于更新 PX4 相对于本地原点的本地位置估计。 Heading (yaw) from the motion capture system can also be optionally integrated by the attitude estimator.
 
 Pose (position and orientation) data from the motion capture system is sent to the autopilot over MAVLink, using the [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) message. See the section below on coordinate frames for data representation conventions. The [mavros](../ros/mavros_installation.md) ROS-Mavlink interface has a default plugin to send this message. 这些消息也可以直接使用MAVLINK库并编写C/C++代码来发送和接收。
 
