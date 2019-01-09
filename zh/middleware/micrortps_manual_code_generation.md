@@ -49,9 +49,9 @@ optional arguments:
 - `--send/-s` 的参数和 `--receive/-r` 指定可以从 PX4 接收到的 uORB 主题。 将仅为指定的消息生成代码。
 - 输出显示在 `CLIENTDIR` (默认情况下 ` src/modules/micrortps_bridge/micrortps_client</0 >) 和 <code>AGENTDIR` (默认情况下 `-u src/modules/micrortps_bridge/micrortps_agent</0 >) 中。</li>
 <li>如果未指定标志 <code>-a` 或 `-c`，则将生成并安装客户端和代理。
-- The `-f` option may be needed if *Fast RTPS* was not installed in the default location (`-f /path/to/fastrtps/installation/bin`).
+- 如果未在默认位置（`-f /path/to/fastrtps/installation/bin`）安装 *Fast rtps*，则可能需要 `-f` 选项。
 
-The example below shows how you can generate bridge code to publish/subscribe just the `sensor_baro` single uORB topic.
+下面的示例演示如何生成桥接代码以发布/订阅 `sensor_baro` 单个 uORB 主题。
 
 ```sh
 $ cd /path/to/PX4/Firmware
@@ -60,9 +60,9 @@ $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor
 
 ## 生成代码
 
-Code is generated for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages (IDL files).
+为 *Client*、*Agent*、*CDR serialization/deserialization* 的 uORB 消息以及关联的 RTPS 报文 (IDL 文件) 的定义生成代码。
 
-Manually generated code for the bridge can be found here (by default):
+可以在此处找到网桥的手动生成的代码（默认情况下）：
 
 - *Client*: **src/modules/micrortps_bridge/micrortps_client/**
 - *Agent*: **src/modules/micrortps_bridge/micrortps_agent/**
