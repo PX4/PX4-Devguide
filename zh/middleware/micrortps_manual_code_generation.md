@@ -46,7 +46,7 @@ optional arguments:
 
 > **Caution** 在创建新文件和文件夹之前，使用 `--delete-tree` 选项会删除 `CLIENTDIR` 和 `AGENTDIR` 的内容。
 
-- `--send/-s` 的参数和 `--receive/-r` 指定可以从 PX4 接收到的 uORB 主题。 Code will only be generated for specified messages.
+- `--send/-s` 的参数和 `--receive/-r` 指定可以从 PX4 接收到的 uORB 主题。 将仅为指定的消息生成代码。
 - The output appears in `CLIENTDIR` (`-o src/modules/micrortps_bridge/micrortps_client`, by default) and in the `AGENTDIR` (`-u src/modules/micrortps_bridge/micrortps_agent`, by default).
 - If no flag `-a` or `-c` is specified, both the client and the agent will be generated and installed.
 - The `-f` option may be needed if *Fast RTPS* was not installed in the default location (`-f /path/to/fastrtps/installation/bin`).
