@@ -39,7 +39,7 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 需要以最小 5Hz 的速率的三轴体固定磁力计数据\（或外部视觉系统姿势数据\）。 磁力计数据可以通过两种方式使用：
 
-* Magnetometer measurements are converted to a yaw angle using the tilt estimate and magnetic declination. This yaw angle is then used as an observation by the EKF. This method is less accurate and does not allow for learning of body frame field offsets, however it is more robust to magnetic anomalies and large start-up gyro biases. It is the default method used during start-up and on ground.
+* 使用倾斜估计和磁偏角将磁强计测量值转换为偏航角。 然后将该偏航角用作 EKF 的观察。 该方法精度较低并且不允许学习体架场偏移，但是它对于磁异常和大型启动陀螺偏置更有鲁棒性。 It is the default method used during start-up and on ground.
 * The XYZ magnetometer readings are used as separate observations. This method is more accurate and allows body frame offsets to be learned, but assumes the earth magnetic field environment only changes slowly and performs less well when there are significant external magnetic anomalies. It is the default method when the vehicle is airborne and has climbed past 1.5 m altitude.
 
 The logic used to select the mode is set by the [EKF2_MAG_TYPE](../advanced/parameter_reference.md#EKF2_MAG_TYPE) parameter.
