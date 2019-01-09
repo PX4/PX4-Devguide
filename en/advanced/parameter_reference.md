@@ -10941,7 +10941,7 @@ is less than 50% of this value</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="SYS_COMPANION">SYS_COMPANION</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>TELEM2 as companion computer link (deprecated)</p><p><strong>Comment:</strong> This parameter is deprecated. Do not change it, use the more generic serial configuration parameters instead.</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>TELEM2 as companion computer link</p><p><strong>Comment:</strong> CHANGING THIS VALUE REQUIRES A RESTART. Configures the baud rate of the TELEM2 connector as companion computer interface.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Disabled</li> 
 
 <li><strong>10:</strong> FrSky Telemetry</li> 

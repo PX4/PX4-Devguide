@@ -1,25 +1,22 @@
-# Companion Computer for Pixhawk Series
+# Companion Computer for Pixhawk class
 
-Interfacing a companion computer (Raspberry Pi, Odroid, Tegra K1) to Pixhawk-family boards always works the same way: They are interfaced using a serial port to `TELEM 2`, the port intended for this purpose. The message format on this link is [MAVLink](https://mavlink.io/en/).
+Interfacing a companion computer (Raspberry Pi, Odroid, Tegra K1) to Pixhawk-family boards always works the same way: They are interfaced using a serial port to `TELEM2`, the port intended for this purpose. The message format on this link is [MAVLink](https://mavlink.io/en/).
 
-## Pixhawk Setup
+## Pixhawk setup
 
-Enable MAVLink on any [configurable serial port](https://docs.px4.io/en/peripherals/serial_configuration.html).
+Set the `SYS_COMPANION` parameter (in the System group) to one of these values.
 
-> **Tip** Typically the `TELEM 2` port is used for a companion computer.
+> **Info** Changing this parameter requires an autopilot reboot to become active.
 
-To set up the default companion computer message stream on `TELEM 2`, set the following parameters:
-* [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) = `TELEM 2` (`MAV_1_CONFIG` is often used to map the `TELEM 2` port)
-* [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) = `Onboard`
-* [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) = `921600` (or higher)
+  * `0` to disable MAVLink output on TELEM2 (default)
+  * `921600` to enable MAVLink output at 921600 baud, 8N1 (recommended)
+  * `57600` to enable MAVLink output at 57600 baud, 8N1
+  * `157600` to enable MAVLink in *OSD* mode at 57600 baud
+  * `257600` to enable MAVLink in listen-only mode at 57600 baud
 
-For more information see [MAVLink Peripherals (GCS/OSD/Companion)](https://docs.px4.io/en/peripherals/mavlink_peripherals.html).
+## Companion computer setup
 
-
-## Companion Computer Setup
-
-In order to receive MAVLink, the companion computer needs to run some software talking to the serial port. 
-The most common options are:
+In order to receive MAVLink, the companion computer needs to run some software talking to the serial port. The most common options are:
 
   * [MAVROS](../ros/mavros_installation.md) to communicate to ROS nodes
   * [C/C++ example code](https://github.com/mavlink/c_uart_interface_example) to connect custom code
