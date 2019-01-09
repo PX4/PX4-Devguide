@@ -52,21 +52,21 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### GPS
 
-GPS measurements will be used for position and velocity if the following conditions are met:
+如果满足以下条件，GPS 测量将用于位置和速度：
 
-* GPS use is enabled via setting of the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter.
-* GPS quality checks have passed. These checks are controlled by the [EKF2_GPS_CHECK](../advanced/parameter_reference.md#EKF2_GPS_CHECK) and `EKF2\_REQ\_\*` parameters. 
-* GPS height can be used directly by the EKF via setting of the [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) parameter.
+* 通过设置 [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) 参数启用 GPS 使用。
+* GPS 质量检查已通过。 这些检查由 [EKF2_GPS_CHECK](../advanced/parameter_reference.md#EKF2_GPS_CHECK) 和 `EKF2\_REQ\_\*` 参数控制。 
+* 通过设置 [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) 参数，EKF 可以直接使用 GPS 高度。
 
-### Range Finder
+### 测距仪
 
-Range finder distance to ground is used by a single state filter to estimate the vertical position of the terrain relative to the height datum.
+单个状态滤波器使用距离探测器到地面的距离来估计地形相对于高度基准的垂直位置。
 
-If operating over a flat surface that can be used as a zero height datum, the range finder data can also be used directly by the EKF to estimate height by setting the [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) parameter to 2.
+如果在可用作零高度基准面的平面上操作，则 EKF 也可以直接使用测距仪数据，通过将 [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) 参数设置为 2 来估算高度。
 
-### Airspeed
+### 空速：
 
-Equivalent Airspeed \(EAS\) data can be used to estimate wind velocity and reduce drift when GPS is lost by setting [EKF2_ARSP_THR](../advanced/parameter_reference.md#EKF2_ARSP_THR) to a positive value. Airspeed data will be used when it exceeds the threshold set by a positive value for [EKF2_ARSP_THR](../advanced/parameter_reference.md#EKF2_ARSP_THR) and the vehicle type is not rotary wing.
+通过将 <E>EKF2_ARSP_THR</a> 设置为正值，等效空速\（EAS\）数据可用于估计风速并减少 GPS 丢失时的漂移。 Airspeed data will be used when it exceeds the threshold set by a positive value for [EKF2_ARSP_THR](../advanced/parameter_reference.md#EKF2_ARSP_THR) and the vehicle type is not rotary wing.
 
 ### Synthetic Sideslip
 
