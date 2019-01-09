@@ -67,9 +67,9 @@ $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor
 - *Client*: **src/modules/micrortps_bridge/micrortps_client/**
 - *Agent*: **src/modules/micrortps_bridge/micrortps_agent/**
 
-### uORB serialization code
+### uORB 序列化代码
 
-Serialization functions are generated for all the uORB topics as part of the normal PX4 compilation process (and also for manual generation). For example, the following functions would be generated for the *sensor_combined.msg*:
+序列化函数是为所有 uORB 主题生成的，作为正常 PX4 编译过程（以及手动生成）的一部分。 For example, the following functions would be generated for the *sensor_combined.msg*:
 
 ```sh
 void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
