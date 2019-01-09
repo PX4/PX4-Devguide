@@ -39,16 +39,16 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 需要以最小 5Hz 的速率的三轴体固定磁力计数据\（或外部视觉系统姿势数据\）。 磁力计数据可以通过两种方式使用：
 
-* 使用倾斜估计和磁偏角将磁强计测量值转换为偏航角。 然后将该偏航角用作 EKF 的观察。 该方法精度较低并且不允许学习体架场偏移，但是它对于磁异常和大型启动陀螺偏置更有鲁棒性。 It is the default method used during start-up and on ground.
-* The XYZ magnetometer readings are used as separate observations. This method is more accurate and allows body frame offsets to be learned, but assumes the earth magnetic field environment only changes slowly and performs less well when there are significant external magnetic anomalies. It is the default method when the vehicle is airborne and has climbed past 1.5 m altitude.
+* 使用倾斜估计和磁偏角将磁强计测量值转换为偏航角。 然后将该偏航角用作 EKF 的观察。 该方法精度较低并且不允许学习体架场偏移，但是它对于磁异常和大型启动陀螺偏置更有鲁棒性。 它是启动期间和地面使用的默认方法。
+* XYZ 磁力计读数用作单独的观察。 该方法更精确并且允许学习体架场偏移，但是假设地球磁场环境仅缓慢变化并且当存在显着的外部磁异常时表现较差。 这是车辆在空中飞行并爬升超过 1.5 米高度时的默认方法。
 
-The logic used to select the mode is set by the [EKF2_MAG_TYPE](../advanced/parameter_reference.md#EKF2_MAG_TYPE) parameter.
+用于选择模式的逻辑由 [EKF2_MAG_TYPE](../advanced/parameter_reference.md#EKF2_MAG_TYPE) 参数设置。
 
-### Height
+### 高度
 
-A source of height data - either GPS, barometric pressure, range finder or external vision at a minimum rate of 5Hz is required. Note: The primary source of height data is controlled by the [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) parameter.
+需要高度数据源-GPS，气压，测距仪或外部视觉，最小速率为 5Hz。 [Note](../advanced/parameter_reference.md#EKF2_HGT_MODE) 高度数据的主要来源由 <0>EKF2_HGT_MODE</0> 参数控制。
 
-If these measurements are not present, the EKF will not start. When these measurements have been detected, the EKF will initialise the states and complete the tilt and yaw alignment. When tilt and yaw alignment is complete, the EKF can then transition to other modes of operation enabling use of additional sensor data:
+如果不存在这些测量值，EKF 将无法启动。 当检测到这些测量值时，EKF 将初始化状态并完成倾斜和偏航对准。 当倾斜和偏航对齐完成后，EKF 可以转换到其他操作模式，从而可以使用其他传感器数据：
 
 ### GPS
 
