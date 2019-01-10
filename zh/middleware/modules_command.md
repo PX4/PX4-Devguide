@@ -329,13 +329,13 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 在 shell 或者脚本中获取参数并对其进行操作的命令。
 
-This is used for example in the startup script to set airframe-specific parameters.
+例如，在启动脚本中使用此命令来设置特定于机型的参数。
 
-Parameters are automatically saved when changed, eg. with `param set`. They are typically stored to FRAM or to the SD card. `param select` can be used to change the storage location for subsequent saves (this will need to be (re-)configured on every boot).
+例如， 使用 `param set` 可以在对参数进行修改后自动进行保存。 这些参数通常被存储在 FRAM 或者 SD 卡中。 `param select` 可用于更改后续参数保存的存储位置（这一选项在每次启动时都需要重新进行配置）。
 
-If the FLASH-based backend is enabled (which is done at compile time, e.g. for the Intel Aero or Omnibus), `param select` has no effect and the default is always the FLASH backend. However `param save/load <file>` can still be used to write to/read from files.
+如果启用了基于 FLASH 的后端（例如， Intel Aero 或 Omnibus 在编译时完成该操作的相关设定 ），`param select` 不会产生任何作用，默认值将始终为 FLASH 后端。 然而，仍可使用 `param save/load &lt;file&gt;` 从文件中读取/写入参数。
 
-Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant parameters to a ground control station.
+每个参数都有一个 "已使用" 的标志位，如在启动过程中该参数被读取了那个该标志位将会被设置。 It is used to only show relevant parameters to a ground control station.
 
 ### 示例
 
