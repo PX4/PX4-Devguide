@@ -156,13 +156,13 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
 请参阅 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的协方差\[28\]。 协方差\[28\] 的索引图如下：
 
 * \[0 ... 3\] 四元数
-* \[4 ... 6\] 速度 NED\（m/s\）^2
-* \[7 ... 9\] 位置 NED\（m^2\）
-* \[10 ... 12\] IMU delta 角度偏差 XYZ\（rad^2\）
-* \[13 ... 15\] IMU delta 速度偏差 XYZ\（m/s\）^2
-* \[16 ... 18\] 地球磁场 NED\（gauss^2\）
-* \[19 ... 21\] 体磁场 XYZ\（gauss^2\）
-* \[22 ... 23\] 风速 NE\（m/s\）^2
+* \[4 ... 6\] 速度 NED（m/s）^2
+* \[7 ... 9\] 位置 NED（m^2）
+* \[10 ... 12\] IMU delta 角度偏差 XYZ（rad^2）
+* \[13 ... 15\] IMU delta 速度偏差 XYZ（m/s）^2
+* \[16 ... 18\] 地球磁场 NED（gauss^2）
+* \[19 ... 21\] 体磁场 XYZ（gauss^2）
+* \[22 ... 23\] 风速 NE（m/s）^2
 * \[24 ... 28\] 未使用
 
 ### 新息（ t 时刻的实际量测值 与 t-1 时刻对 t 时刻量测的估计值与之间的差）
@@ -170,32 +170,32 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
 * 磁力计 XYZ\（gauss\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 mag\_innov\[3\]。
 * 偏航角\（rad\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的标题 \_innov。
 * 速度和位置创新：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 vel\_pos\_innov\[6\]。 Vel\_pos\_innov\[6\] 的索引图如下： 
-  * \[0 ... 2\] 速度 NED\（m/s\）
-  * \[3 ... 5\] 位置 NED\（m\）
-* 真实空速\（m/s\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov。
-* 合成侧滑\（rad\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 beta \_innov。
-* 光流 XY\（rad/sec\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 flow\_innov。
-* 高于地面的高度\（m\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 hagl \_innov。
+  * \[0 ... 2\] 速度 NED（m/s）
+  * \[3 ... 5\] 位置 NED（m）
+* 真实空速（m/s）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov。
+* 合成侧滑（rad）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 beta \_innov。
+* 光流 XY（rad/sec）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 flow\_innov。
+* 高于地面的高度（m）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 hagl \_innov。
 
 ### 新息协方差
 
 * 磁力计 XYZ\（gauss^2\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 mag\_innov\_var\[3\]。
 * 偏航角\（rad^2\）：请参阅 ekf2\_innovations 消息中的标题 \_innov\_var。
 * 速度和位置创新：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 vel\_pos\_innov\_var\[6\]。 Vel\_pos\_innov\_var\[6\] 的索引映射如下： 
-  * \[0 ... 2\] 速度 NED\（m/s\）^2
-  * \[3 ... 5\] 位置 NED\（m^2\）
+  * \[0 ... 2\] 速度 NED（m/s）^2
+  * \[3 ... 5\] 位置 NED（m^2）
 * 真空速\（m/s\）^2：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov\_var。
 * 合成侧滑\（rad\）：请参阅 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的beta\_innov\_var。
 * 光流 XY\（rad/sec\）^2：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 flow\_innov\_var。
-* 高于地面的高度\（m^2\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 hagl\_innov\_var。
+* 高于地面的高度（m^2）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 hagl\_innov\_var。
 
 ### 输出互补滤波器
 
 输出互补滤波器用于将状态从融合时间范围向前传播到当前时间。 要检查在融合时间范围内测量的角度，速度和位置跟踪误差的大小，请参阅 ekf2\_innovations 消息中的 output\_tracking\_error\[3\]。 索引图如下：
 
-* \[0\] 角度跟踪误差幅度\（rad\）
-* \[1\] 速度跟踪误差幅度\（m/s\）。 可以使用 [EKF2_TAU_VEL](../advanced/parameter_reference.md#EKF2_TAU_VEL) 参数调整速度跟踪时间常数。 减小此参数可减少稳态误差，但会增加 NED 速度输出上的观察噪声量。
-* \[2\] 位置跟踪误差幅度\（m\）。 可以使用 [EKF2_TAU_POS](../advanced/parameter_reference.md#EKF2_TAU_POS) 参数调整位置跟踪时间常数。 减小此参数可减少稳态误差，但会增加 NED 位置输出上的观察噪声量。
+* \[0\] 角度跟踪误差幅度（rad）
+* \[1\] 速度跟踪误差幅度（m/s）。 可以使用 [EKF2_TAU_VEL](../advanced/parameter_reference.md#EKF2_TAU_VEL) 参数调整速度跟踪时间常数。 减小此参数可减少稳态误差，但会增加 NED 速度输出上的观察噪声量。
+* \[2\] 位置跟踪误差幅度（m）。 可以使用 [EKF2_TAU_POS](../advanced/parameter_reference.md#EKF2_TAU_POS) 参数调整位置跟踪时间常数。 减小此参数可减少稳态误差，但会增加 NED 位置输出上的观察噪声量。
 
 ### EKF 错误
 
@@ -318,7 +318,7 @@ Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更�
 
 由于惯性导航和 GPS 测量计算出的速度方向不一致，因此不良偏航对准导致无人机开始移动时速度测试比率迅速增加。 Magnetometer innovations are slightly affected. 高度通常不受影响。
 
-\（插入示例图显示错误的偏航对齐此处\）
+（插入示例图显示错误的偏航对齐此处）
 
 ### GPS 精度差的确定
 
