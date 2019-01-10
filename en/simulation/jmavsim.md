@@ -80,6 +80,14 @@ export PX4_HOME_ALT=28.5
 make px4_sitl_default jmavsim
 ```
 
+### Speed up or slow down Simulation
+
+The speed of the simulation can be adapted by the environment variable `PX4_SIM_SPEED_FACTOR`.
+
+```
+export PX4_SIM_SPEED_FACTOR=2
+make px4_sitl_default jmavsim
+```
 
 ### Using a Joystick {#joystick}
 
