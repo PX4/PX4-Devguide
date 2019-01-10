@@ -83,43 +83,43 @@ The simulation speed can be increased or decreased with respect to realtime usin
 
 For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
-### Using a Joystick {#joystick}
+### 使用游戏手柄 {#joystick}
 
-Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
+通过 *QGroundControl* 可引入游戏手柄或者拇指操纵杆（[如何进行设置看这里](../simulation/README.md#joystickgamepad-integration)）。
 
-### Simulating a Wifi Drone
+### 模拟一个 Wifi 无人机
 
-There is a special target to simulate a drone connected via Wifi on the local network:
+有一个特殊的平台可以模拟一个通过 Wifi 进行连接的无人机。
 
 ```sh
 make broadcast jmavsim
 ```
 
-The simulator broadcasts its address on the local network as a real drone would do.
+模拟器会跟真实的该类无人机一样在当地网络中广播自己的位置信息等。
 
-### Start JMAVSim and PX4 Separately
+### 分别启动 JMAVSim 和 PX4
 
-You can start JMAVSim and PX4 separately:
+你可以单独启动 JMAVSim 和 PX4:
 
     ./Tools/jmavsim_run.sh
     make px4_sitl none
     
 
-This allows a faster testing cycle (restarting jMAVSim takes significantly more time).
+此举可以缩短测试循环时间（重启 jMAVSim 需要耗费非常多的时间）。
 
 ## 多飞行器仿真
 
-JMAVSim can be used for multi-vehicle simulation: [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
+JMAVSim 也可用来进行多飞行器仿真： [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
 
 ## 扩展和定制
 
-To extend or customize the simulation interface, edit the files in the **Tools/jMAVSim** folder. The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
+如果想扩展或者定制仿真接口，你可以编辑 **Tools/jMAVSim** 文件夹下的文件： 源代码可以从 Github 上的 [jMAVSim 软件仓库](https://github.com/px4/jMAVSim) 获取。
 
 > **Info** 编译系统会强制检查所有依赖项的子模块正确无误，其中就包括了模拟器。 但是，它不会直接覆盖你对目录中文件所做的更改， 当提交这些更改时你需要在固件 repo 中重新为子模块注册新的哈希值。 为此,，使用 `git add Tools/jMAVSim` 灵敏提交你的更改。 这将更新模拟器的 GIT 哈希值。
 
 ## 与 ROS 对接交互
 
-The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.
+在仿真中可以使用跟真实飞机一样的方式实现 [与 ROS 的对接交互](../simulation/ros_interface.md) 。
 
 ## 重要的文件
 
