@@ -174,7 +174,7 @@ export PX4_HOME_ALT=28.5
 make px4_sitl gazebo
 ```
 
-### Speed up or slow down Simulation
+### Speed Up or Slow Down Simulation
 
 The speed of the simulation can be adapted by the environment variable `PX4_SIM_SPEED_FACTOR`.
 
