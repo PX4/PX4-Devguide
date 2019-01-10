@@ -368,33 +368,29 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
          &lt;param_name&gt; &lt;value&gt; 参数的名称和需要设定的值
          [fail]      如果提供了该选项的话，如果未找到参数则让命令执行失败
     
-       compare       将一个参数与一个数值进行比较。 Command will succeed if equal
-         <param_name> <value> Parameter name and value to compare
+       compare       将一个参数与一个数值进行比较。 如果相等则命令成功。
+         &lt;param_name&gt; &lt;value&gt; 参数名称和进行对比的值
     
-       greater       Compare a param with a value. Command will succeed if param is
-                     greater than the value
-         <param_name> <value> Parameter name and value to compare
+       greater       将一个参数与一个数值进行比较。 如果参数比该值要大则命令成功
+         &lt;param_name&gt; &lt;value&gt; P参数名称和进行对比的值
     
-       touch         Mark a parameter as used
-         [<param_name1> [<param_name2>]] Parameter name (one or more)
+       touch         讲一个参数表以为已使用 (used)
+         [&lt;param_name1&gt; [&lt;param_name2&gt;]] 参数名称 (一个或者多个)
     
-       reset         Reset params to default
-         [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
-                     allowed)
+       reset         将参数重置为默认值
+         [&lt;exclude1&gt; [&lt;exclude2&gt;]] 不重置相匹配的参数 (允许尾端的通配符)
     
-       reset_nostart Reset params to default, but keep SYS_AUTOSTART and
-                     SYS_AUTOCONFIG
-         [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
-                     allowed)
+       reset_nostart 将 SYS_AUTOSTART 和 SYS_AUTOCONFIG 之外的所有参数重置为默认值
+         [&lt;exclude1&gt; [&lt;exclude2&gt;]] 不重置相匹配的参数 (允许尾端的通配符)
     
-       index         Show param for a given index
-         <index>     Index: an integer >= 0
+       index         显示指定索引位置的参数的值
+         &lt;index&gt;     Index: 一个整数 >= 0
     
-       index_used    Show used param for a given index
-         <index>     Index: an integer >= 0
+       index_used    显示指定索引位置的已使用参数的值
+         &lt;index&gt;     Index: 一个整数 >= 0
     
-       find          Show index of a param
-         <param>     param name
+       find          显示一个参数的索引值
+         &lt;param&gt;     参数名称
     
 
 ## perf
