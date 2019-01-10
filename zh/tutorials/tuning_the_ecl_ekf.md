@@ -173,25 +173,25 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
   * \[0 ... 2\] 速度 NED\（m/s\）
   * \[3 ... 5\] 位置 NED\（m\）
 * 真实空速\（m/s\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov。
-* Synthetic sidelip\（rad\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 beta \_innov。
+* 合成侧滑\（rad\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 beta \_innov。
 * 光流 XY\（rad/sec\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 flow\_innov。
 * 高于地面的高度\（m\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 hagl \_innov。
 
 ### 新息协方差
 
-* Magnetometer XYZ \(gauss^2\) : Refer to mag\_innov\_var\[3\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* Yaw angle \(rad^2\) : Refer to heading\_innov\_var in the ekf2\_innovations message.
-* Velocity and position innovations : Refer to vel\_pos\_innov\_var\[6\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg). The index map for vel\_pos\_innov\_var\[6\] is as follows: 
-  * \[0 ... 2\] Velocity NED \(m/s\)^2
-  * \[3 ... 5\] Position NED \(m^2\)
-* True Airspeed \(m/s\)^2 : Refer to airspeed\_innov\_var in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* Synthetic sideslip \(rad^2\) : Refer to beta\_innov\_var in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* Optical flow XY \(rad/sec\)^2 : Refer to flow\_innov\_var in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* Height above ground \(m^2\) : Refer to hagl\_innov\_var in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* 磁力计 XYZ\（gauss^2\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 mag\_innov\_var\[3\]。
+* 偏航角\（rad^2\）：请参阅 ekf2\_innovations 消息中的标题 \_innov\_var。
+* 速度和位置创新：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 vel\_pos\_innov\_var\[6\]。 Vel\_pos\_innov\_var\[6\] 的索引映射如下： 
+  * \[0 ... 2\] 速度 NED\（m/s\）^2
+  * \[3 ... 5\] 位置 NED\（m^2\）
+* 真空速\（m/s\）^2：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov\_var。
+* 合成侧滑\（rad\）：请参阅 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的beta\_innov\_var。
+* 光流 XY\（rad/sec\）^2：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 flow\_innov\_var。
+* 高于地面的高度\（m^2\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 hagl\_innov\_var。
 
-### Output Complementary Filter
+### 输出互补滤波器
 
-The output complementary filter is used to propagate states forward from the fusion time horizon to current time. To check the magnitude of the angular, velocity and position tracking errors measured at the fusion time horizon, refer to output\_tracking\_error\[3\] in the ekf2\_innovations message. The index map is as follows:
+输出互补滤波器用于将状态从融合时间范围向前传播到当前时间。 To check the magnitude of the angular, velocity and position tracking errors measured at the fusion time horizon, refer to output\_tracking\_error\[3\] in the ekf2\_innovations message. The index map is as follows:
 
 * \[0\] Angular tracking error magnitude \(rad\)
 * \[1\] Velocity tracking error magnitude \(m/s\). The velocity tracking time constant can be adjusted using the [EKF2_TAU_VEL](../advanced/parameter_reference.md#EKF2_TAU_VEL) parameter. Reducing this parameter reduces steady state errors but increases the amount of observation noise on the NED velocity outputs.
