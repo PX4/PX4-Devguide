@@ -191,9 +191,9 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 
 有时候需要创建一个内容尚未完全定义的自定义 MAVlink 消息。
 
-例如，当使用 MAVlink 构建一个嵌入式设备与 PX4 的通讯接口时，设备与自动驾驶仪之间交换的消息的内容可能需要经过数次迭代之后才能稳定下来不发生变化。 In this case, it can be time-consuming and error-prone to regenerate the MAVLink headers, and make sure both devices use the same version of the protocol.
+例如，当使用 MAVlink 构建一个嵌入式设备与 PX4 的通讯接口时，设备与自动驾驶仪之间交换的消息的内容可能需要经过数次迭代之后才能稳定下来不发生变化。 在这种情况下重新生成 MAVlink 头文件并保证两个设备均使用同版本的协议会非常耗时且容易出错。
 
-An alternative - and temporary - solution is to re-purpose debug messages. Instead of creating a custom MAVLink message `CA_TRAJECTORY`, you can send a message `DEBUG_VECT` with the string key `CA_TRAJ` and data in the `x`, `y` and `z` fields. See [this tutorial](../debug/debug_values.md). for an example usage of debug messages.
+一个备选 - 也是临时的- 解决方案是重新使用（re-purpose）调试消息（debug messages）。 你可以发送一个以 `CA_TRAJ` 为字符串键，在`x`, `y` 和 `z` 字段中存放数据的 `DEBUG_VECT` 消息，而不需要创建一个自定义 MAVLink 消息 `CA_TRAJECTORY` 。 参阅 [这篇教程](../debug/debug_values.md) 以获取调试信息的更详细的使用方法。
 
 > **Note** This solution is not efficient as it sends character string over the network and involves comparison of strings. It should be used for development only!
 
