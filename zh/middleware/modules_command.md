@@ -430,20 +430,20 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 锁定值（disarmed value）的设置应保证电机不会转动（该取值也被应用于 kill switch），最小值（minimum value）的设定应保证电机会转动。
 
-通道被分配到一个组。 由于硬件限制, 只能为每个组设置更新速率。 使用 `pwm info` 显示所有的组。 If the `-c` argument is used, all channels of any included group must be included.
+通道被分配到一个组。 由于硬件限制, 只能为每个组设置更新速率。 使用 `pwm info` 显示所有的组。 如果使用了 `-c` 参数, 则参数后面必须跟上包含的分组中的所有通道。
 
-The parameters `-p` and `-r` can be set to a parameter instead of specifying an integer: use -p p:PWM_MIN for example.
+参数 `-p` 和 `-r` 可设置为一个参数变量而不是一个指定的证书：例如， -p p:PWM_MIN 。
 
-Note that in OneShot mode, the PWM range [1000, 2000] is automatically mapped to [125, 250].
+注意，在 OneShot 模式下， PWM 范围 [1000, 2000] 会被自动映射到 [125, 250] 。
 
-### Examples
+### 示例
 
-Set the PWM rate for all channels to 400 Hz:
+将所有通道的 PWM 速率设置为 400 Hz:
 
     pwm rate -a -r 400
     
 
-Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
+测试 channels 1 and 3, and set the PWM value to 1200 us:
 
     pwm arm
     pwm test -c 13 -p 1200
