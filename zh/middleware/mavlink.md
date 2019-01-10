@@ -1,4 +1,4 @@
-# MAVLink通讯
+# MAVLink 通讯
 
 [MAVLink](https://mavlink.io/en/) 是一个针对无人机生态系统设计的非常轻量化的消息传递协议。
 
@@ -10,7 +10,7 @@ PX4 使用 *MAVLink* 实现与 *QGroundControl* （或者其它地面站软件�
 
 > **Note** 本教程假定你在 `msg/ca_trajectory.msg` 文件中定义了一个名为 `ca_trajectory` 的 [自定义 uORB](../middleware/uorb.md) 消息，以及在 `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h` 文件中定义了一个名为 `ca_trajectory`的 自定义 MAVLink 消息。
 
-## 创建自定义MAVLink消息
+## 创建自定义 MAVLink 消息
 
 MAVlink 开发者指南介绍了如何定义新的消息并将其构建成指定的编程语言的库文件：
 
