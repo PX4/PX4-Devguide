@@ -159,32 +159,64 @@ The simulated camera is a gazebo plugin that implements the [MAVLink Camera Prot
 
 The same approach can be used by other simulators to implement camera support.
 
-## Running Simulation on the Remote Server 
+## Running Simulation on a Remote Server
 
-As had been mentioned at the beginning the simulation environment can be run on multiple computers on the same network. Unfortunately, it is a slightly complicated, because of the out of box configuration does not broadcast the PX4 UDP packets to external interfaces and packets are routed internally by default. 
-A solution is to enable brodcasting by [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) parameter to allow broadcast UDP packets to the local network or use a tunnel to connect computers together. 
+It is possible to run the simulator on one computer, and access it from another computer on the same network (or on another network with appropriate routing). 
+This might be useful, for example, if you want to test a drone application running on real companion computer hardware running against a simulated vehicle.
 
-Using the tunnel is a more flexible option because the computers are not required to sit on the same network and remote powerful simulation server can be used for example. 
+This does not work "out of the box" because PX4 does not route packets to external interfaces by default (in order to avoid spamming the network and different simulations interfering with each other). Instead it routes traffic internally - to "localhost".
 
-One, probably the easiest way to create the tunnel is the use of SSH tunneling options.  The tunnel itself could be created easily by running the following command on localhost.
+There are a number of ways to make the UDP packets available on external interfaces, as outlined below.
+ 
+
+### Enable MAV_BROADCAST
+
+Enable [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) to broadcast heartbeats on the local network.
+
+A remote computer can then connect to it by listening to the Simulation computer's IP address on the appropriate port (i.e. 14550 for *QGroundControl*).
+
+
+### Use MAVLink Router
+
+[mavlink-router](https://github.com/intel/mavlink-router) can be used to route  packets from localhost to an external interface.
+
+### Modify Configuration for External Broadcasting 
+
+The [mavlink](../middleware/modules_communication.md#mavlink_usage) module routes to *localhost* by default, but you can specify an external IP address to broadcast to using its `-t` option.
+
+This should be done in various configuration files where `mavlink start` is called. For example: [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS).
+
+
+### SSH Tunneling
+
+SSH tunneling is a flexible option because the simulation computer and the system using it need not be on the same network.
+
+> **Note** You might similarly use VPN to provide a tunnel to an external interface (on the same network or another network).
+
+One way to create the tunnel is to use SSH tunneling options.
+The tunnel itself can be created by running the following command on *localhost*, where `remote.local` is the name of a remote computer:
 ```
 ssh -C -fR 14551:localhost:14551 remote.local
-```
-Where "remote.local" is the name of a remote computer. 
+``` 
 
-Unfortunately, the SSH itself cannot route the UDP packets.  Therefore the UDP packets need to be translated to TCP packets. By [netcat](https://en.wikipedia.org/wiki/Netcat) utility separately on the local and remote side of the tunnel. 
-Local side of UDP packet translation of QGC could be implemented by running following commands.
+The UDP packets need to be translated to TCP packets so they can be routed over SSH. 
+The [netcat](https://en.wikipedia.org/wiki/Netcat) utility can be used on both sides of the tunnel - first to convert packets from UDP to TCP, and then back to UDP at the other end.
+
+> **Tip** QGC must be running before executing *netcat*.
+ 
+On the *QGroundControl* computer, UDP packet translation may be implemented by running following commands:
 ```
 mkfifo /tmp/tcp2udp
 netcat -lvp 14551 < /tmp/tcp2udp | netcat -u localhost 14550 > /tmp/tcp2udp
 ```
-For the remote side of the tunnel, the command differs. 
+On the simulator side of the SSH tunnel, the command is: 
 ```
 mkfifo /tmp/udp2tcp
 netcat -lvup 14550 < /tmp/udp2tcp | netcat localhost 14551 > /tmp/udp2tcp
 ```
-It is necessary to have QGC running before executing the netcat. 
-The tunnel could run infinitely, but netcat connections may need a restart in case of improper communication state occurs. The port number `14550` is valid for QGC software connection and should be adjusted for other possible communication channels.  
 
-The automated [bash connection script](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) is prepared for automation of QGC to simulation server running the PX4 stack. 
+The port number `14550` is valid for connecting to QGroundControl or another GCS, but should be adjusted for other endpoints (e.g. developer APIs etc.).  
 
+The tunnel may in theory run indefinitely, but *netcat* connections may need to be restarted if there is a problem.
+
+The automated [bash connection script](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) can be used to automate setup of QGC to simulation server running the PX4 stack. 
