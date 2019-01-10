@@ -7,13 +7,13 @@
 估算和控制库（ECL）使用扩展卡尔曼滤波器（EKF）算法来处理传感器测量并提供以下状态的估计：
 
 * 四元数定义从北，东，下局部地球坐标系到 X，Y，Z 体坐标系的旋转
-* IMU 的速度 - 北，东，下\（m/s\）
-* 在 IMU 的位置 - 北，东，向下\（m\）
-* IMU delta 角度偏差估计- X，Y，Z\（rad\）
-* IMU delta 速度偏差估计- X，Y，Z\（m/s \）
-* 地球磁场组件-北，东，下\（高斯\）
-* 车身框架磁场偏置-X，Y，Z\（高斯\）
-* 风速-北，东\（m/s\）
+* IMU 的速度 - 北，东，下（m/s）
+* 在 IMU 的位置 - 北，东，向下（m）
+* IMU delta 角度偏差估计- X，Y，Z（rad）
+* IMU delta 速度偏差估计- X，Y，Z（m/s）
+* 地球磁场组件-北，东，下（高斯）
+* 车身框架磁场偏置-X，Y，Z（高斯）
+* 风速-北，东（m/s）
 
 EKF 在延迟的“融合时间范围”上运行，以允许相对于 IMU 的每次测量的不同时间延迟。 每个传感器的数据都是 FIFO 缓冲的，并由 EKF 从缓冲区中检索，以便在正确的时间使用。 每个传感器的延迟补偿由 [EKF2 _*_ DELAY](../advanced/parameter_reference.md#ekf2) 参数控制。
 
@@ -29,7 +29,7 @@ EKF 仅使用 IMU 数据进行状态预测。 IMU 数据不用作 EKF 推导中�
 
 EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启动时，过滤器检查传感器的最小可行组合，并且在初始倾斜，偏航和高度对准完成之后，进入提供旋转，垂直速度，垂直位置，IMU 德角偏差和 IMU 德尔塔速度偏差估计的模式。
 
-此模式需要 IMU 数据，偏航源（磁力计或外部视觉\）和高度数据源。 所有 EKF 操作模式都需要此最小数据集。 然后可以使用其他传感器数据来估计其他状态。
+此模式需要 IMU 数据，偏航源（磁力计或外部视觉）和高度数据源。 所有 EKF 操作模式都需要此最小数据集。 然后可以使用其他传感器数据来估计其他状态。
 
 ### IMU
 
@@ -37,7 +37,7 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### 磁力计
 
-需要以最小 5Hz 的速率的三轴体固定磁力计数据\（或外部视觉系统姿势数据\）。 磁力计数据可以通过两种方式使用：
+需要以最小 5Hz 的速率的三轴体固定磁力计数据（或外部视觉系统姿势数据）。 磁力计数据可以通过两种方式使用：
 
 * 使用倾斜估计和磁偏角将磁强计测量值转换为偏航角。 然后将该偏航角用作 EKF 的观察。 该方法精度较低并且不允许学习体架场偏移，但是它对于磁异常和大型启动陀螺偏置更有鲁棒性。 它是启动期间和地面使用的默认方法。
 * XYZ 磁力计读数用作单独的观察。 该方法更精确并且允许学习体架场偏移，但是假设地球磁场环境仅缓慢变化并且当存在显着的外部磁异常时表现较差。 这是车辆在空中飞行并爬升超过 1.5 米高度时的默认方法。
@@ -46,7 +46,7 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### 高度
 
-需要高度数据源-GPS，气压，测距仪或外部视觉，最小速率为 5Hz。 [Note](../advanced/parameter_reference.md#EKF2_HGT_MODE) 高度数据的主要来源由 <0>EKF2_HGT_MODE</0> 参数控制。
+需要高度数据源 - GPS，气压，测距仪或外部视觉，最小速率为 5Hz。 [Note](../advanced/parameter_reference.md#EKF2_HGT_MODE) 高度数据的主要来源由 <0>EKF2_HGT_MODE</0> 参数控制。
 
 如果不存在这些测量值，EKF 将无法启动。 当检测到这些测量值时，EKF 将初始化状态并完成倾斜和偏航对准。 当倾斜和偏航对齐完成后，EKF 可以转换到其他操作模式，从而可以使用其他传感器数据：
 
@@ -66,7 +66,7 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### 空速：
 
-通过将 <E>EKF2_ARSP_THR</a> 设置为正值，等效空速\（EAS\）数据可用于估计风速并减少 GPS 丢失时的漂移。 当空速超过由 [EKF2_ARSP_THR](../advanced/parameter_reference.md#EKF2_ARSP_THR) 的正值设定的阈值并且飞机类型不是旋翼时，将使用空速数据。
+通过将 <E>EKF2_ARSP_THR</a> 设置为正值，等效空速（EAS）数据可用于估计风速并减少 GPS 丢失时的漂移。 当空速超过由 [EKF2_ARSP_THR](../advanced/parameter_reference.md#EKF2_ARSP_THR) 的正值设定的阈值并且飞机类型不是旋翼时，将使用空速数据。
 
 ### 合成 Sideslip
 
@@ -74,7 +74,7 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### 拖动特定力量
 
-多转子平台可以利用沿 X 和 Y 体轴的空速和阻力之间的关系来估计风速的北/东分量。 通过将 [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) 参数中的位位置5设置为 true 来启用此功能。 沿 X 和 Y 体轴的空速和特定力\（IMU 加速度\）之间的关系由 [EKF2_BCOEF_X](../advanced/parameter_reference.md#EKF2_BCOEF_X) 和 [EKF2_BCOEF_Y](../advanced/parameter_reference.md#EKF2_BCOEF_Y) 参数控制，这些参数设定了飞行中的弹道系数。 分别是 X 和 Y 方向。 特定力观察噪声的量由 [EKF2_DRAG_NOISE](../advanced/parameter_reference.md#EKF2_DRAG_NOISE) 参数设定。
+多转子平台可以利用沿 X 和 Y 体轴的空速和阻力之间的关系来估计风速的北/东分量。 通过将 [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) 参数中的位位置5设置为 true 来启用此功能。 沿 X 和 Y 体轴的空速和特定力（IMU 加速度）之间的关系由 [EKF2_BCOEF_X](../advanced/parameter_reference.md#EKF2_BCOEF_X) 和 [EKF2_BCOEF_Y](../advanced/parameter_reference.md#EKF2_BCOEF_Y) 参数控制，这些参数设定了飞行中的弹道系数。 分别是 X 和 Y 方向。 特定力观察噪声的量由 [EKF2_DRAG_NOISE](../advanced/parameter_reference.md#EKF2_DRAG_NOISE) 参数设定。
 
 ### 光流
 
@@ -116,7 +116,7 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 * Ecl EKF 检测并报告传感器数据中统计上显着的不一致性，帮助诊断传感器错误。
 * 对于固定机翼操作，ecl EKF 使用或不使用空速传感器估算风速，并且能够将估计的风与空速测量和侧滑假设结合使用，以延长 GPS 在飞行中丢失时的航位推算时间。
 * Ecl EKF估计3轴加速度计偏差，这提高了尾部和其他在飞行阶段之间经历大的姿态变化的无人机的精度。
-* 联合架构\（组合姿态和位置/速度估计\）意味着姿态估计受益于所有传感器测量。 如果调整正确，这应该提供改善态度估计的潜力。 
+* 联合架构（组合姿态和位置/速度估计）意味着姿态估计受益于所有传感器测量。 如果调整正确，这应该提供改善态度估计的潜力。 
 
 ## 如何检查 EKF 性能？
 
@@ -142,13 +142,13 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
 请参阅 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的 states\[32\]。 状态 \[32\] 的索引映射如下：
 
 * \[0 ... 3\] 四元数
-* \[4 ... 6\] 速度 NED\（m/s\）
-* \[7 ... 9\] 位置 NED\（m\）
-* \[10 ... 12\] IMU delta 角度偏差 XYZ\（rad\）
-* \[13 ... 15\] IMU delta 速度偏差 XYZ\（m/s\）
-* \[16 ... 18\] 地球磁场 NED\（gauss\）
-* \[19 ... 21\] 体磁场 XYZ \（gauss\）
-* \[22 ... 23\] 风速 NE\（m/s\）
+* \[4 ... 6\] 速度 NED（m/s）
+* \[7 ... 9\] 位置 NED（m）
+* \[10 ... 12\] IMU delta 角度偏差 XYZ（rad）
+* \[13 ... 15\] IMU delta 速度偏差 XYZ（m/s）
+* \[16 ... 18\] 地球磁场 NED（gauss）
+* \[19 ... 21\] 体磁场 XYZ （gauss）
+* \[22 ... 23\] 风速 NE（m/s）
 * \[24 ... 32\] 未使用
 
 ### 状态变量
@@ -179,14 +179,14 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
 
 ### 新息协方差
 
-* 磁力计 XYZ\（gauss^2\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 mag\_innov\_var\[3\]。
-* 偏航角\（rad^2\）：请参阅 ekf2\_innovations 消息中的标题 \_innov\_var。
+* 磁力计 XYZ（gauss^2）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 mag\_innov\_var\[3\]。
+* 偏航角（rad^2）：请参阅 ekf2\_innovations 消息中的标题 \_innov\_var。
 * 速度和位置创新：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 vel\_pos\_innov\_var\[6\]。 Vel\_pos\_innov\_var\[6\] 的索引映射如下： 
   * \[0 ... 2\] 速度 NED（m/s）^2
   * \[3 ... 5\] 位置 NED（m^2）
-* 真空速\（m/s\）^2：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov\_var。
-* 合成侧滑\（rad\）：请参阅 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的beta\_innov\_var。
-* 光流 XY\（rad/sec\）^2：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 flow\_innov\_var。
+* 真空速（m/s）^2：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov\_var。
+* 合成侧滑（rad）：请参阅 [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的beta\_innov\_var。
+* 光流 XY（rad/sec）^2：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 flow\_innov\_var。
 * 高于地面的高度（m^2）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 hagl\_innov\_var。
 
 ### 输出互补滤波器
