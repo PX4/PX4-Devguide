@@ -48,7 +48,7 @@ Start jmavsim: `./Tools/jmavsim_run.sh`
 In another terminal, type:
 
 ```bash
-cd build/px4_sitl_default/tmp
+cd build/px4_sitl_default/tmp/rootfs
 export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
@@ -58,14 +58,14 @@ Enter this depending on your system:
 ##### Fedora:
 
 ```bash
-env LD_PRELOAD=/lib64/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
+env LD_PRELOAD=/lib64/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
 pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
 ##### Ubuntu:
 
 ```bash
-env LD_PRELOAD=/usr/lib/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
+env LD_PRELOAD=/usr/lib/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
 google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
