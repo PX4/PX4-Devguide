@@ -142,25 +142,25 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
 请参阅 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的 states\[32\]。 状态 \[32\] 的索引映射如下：
 
 * \[0 ... 3\] 四元数
-* \[4 ... 6\] Velocity NED \(m/s\)
-* \[7 ... 9\] Position NED \(m\)
-* \[10 ... 12\] IMU delta angle bias XYZ \(rad\)
-* \[13 ... 15\] IMU delta velocity bias XYZ \(m/s\)
-* \[16 ... 18\] Earth magnetic field NED \(gauss\)
-* \[19 ... 21\] Body magnetic field XYZ \(gauss\)
-* \[22 ... 23\] Wind velocity NE \(m/s\)
-* \[24 ... 32\] Not Used
+* \[4 ... 6\] 速度 NED\（m/s\）
+* \[7 ... 9\] 位置 NED\（m\）
+* \[10 ... 12\] IMU delta 角度偏差 XYZ\（rad\）
+* \[13 ... 15\] IMU delta 速度偏差 XYZ\（m/s\）
+* \[16 ... 18\] 地球磁场 NED\（gauss\）
+* \[19 ... 21\] 体磁场 XYZ \（gauss\）
+* \[22 ... 23\] 风速 NE\（m/s\）
+* \[24 ... 32\] 未使用
 
-### State Variances
+### 状态变量
 
-Refer to covariances\[28\] in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg). The index map for covariances\[28\] is as follows:
+请参阅 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的协方差\[28\]。 协方差\[28\] 的索引图如下：
 
-* \[0 ... 3\] Quaternions
-* \[4 ... 6\] Velocity NED \(m/s\)^2
-* \[7 ... 9\] Position NED \(m^2\)
-* \[10 ... 12\] IMU delta angle bias XYZ \(rad^2\)
-* \[13 ... 15\] IMU delta velocity bias XYZ \(m/s\)^2
-* \[16 ... 18\] Earth magnetic field NED \(gauss^2\)
+* \[0 ... 3\] 四元数
+* \[4 ... 6\] 速度 NED\（m/s\）^2
+* \[7 ... 9\] 位置 NED\（m^2\）
+* \[10 ... 12\] IMU delta 角度偏差 XYZ\（rad^2\）
+* \[13 ... 15\] IMU delta 速度偏差 XYZ\（m/s\）^2
+* \[16 ... 18\] 地球磁场 NED\（gauss^2\）
 * \[19 ... 21\] Body magnetic field XYZ \(gauss^2\)
 * \[22 ... 23\] Wind velocity NE \(m/s\)^2
 * \[24 ... 28\] Not Used
@@ -177,7 +177,7 @@ Refer to covariances\[28\] in [estimator\_status](https://github.com/PX4/Firmwar
 * Optical flow XY \(rad/sec\) : Refer to flow\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 * Height above ground \(m\) : Refer to hagl\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 
-### Observation Innovation Variances
+### 新息协方差
 
 * Magnetometer XYZ \(gauss^2\) : Refer to mag\_innov\_var\[3\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 * Yaw angle \(rad^2\) : Refer to heading\_innov\_var in the ekf2\_innovations message.
