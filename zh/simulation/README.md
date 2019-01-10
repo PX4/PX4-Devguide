@@ -113,19 +113,37 @@ make px4_sitl jmavsim
 
 这里描述的语法是简化的，您可以通过 *make* 配置许多其他选项，例如，设置要连接到 IDE 或调试器的选项。 有关详细信息，请参阅： [Building 代码 > PX4 使生成 Targets](../setup/building_px4.md#make_targets)。
 
-### 启动脚本 {#scripts}
+### Run Simulation Faster than Realtime
 
-脚本被用于控制要使用的参数设置或要启动的模块。 它们位于 [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) 目录中，`rcS` 文件是主要入口点。 有关详细信息，请参阅 [System startup](../concept/system_startup.md)。
+SITL can be run faster or slower than realtime. The speed factor is set using the environment variable `PX4_SIM_SPEED_FACTOR`. The speed factor is implemented for the jMAVSim and Gazebo SITL simulation.
+
+For instance to run the jMAVSim simulation at 2 times the real time speed:
+
+    PX4_SIM_SPEED_FACTOR=2 make px4_sitl jmavsim
+    
+
+Or to apply to all SITL runs in the current session:
+
+    export PX4_SIM_SPEED_FACTOR=2
+    
+    make px4_sitl jmavsim
+    
+
+> **Note** At some point IO or CPU will limit the speed that is possible on your machine and it will be slowed down "automatically". Powerful desktop machines can usually run the simulation at around 6-10x, for notebooks the achieved rates can be around 3-4x.
+
+### Startup Scripts {#scripts}
+
+Scripts are used to control which parameter settings to use or which modules to start. They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) directory, the `rcS` file is the main entry point. See [System Startup](../concept/system_startup.md) for more information.
 
 ## HITL 仿真环境
 
-通过硬件在环（HITL）仿真使正常的 PX4 固件在真正的硬件上运行。 HITL 仿真环境记录于： [HITL 模拟](../simulation/hitl.md)。
+With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL Simulation Environment in documented in: [HITL Simulation](../simulation/hitl.md).
 
 ## 操纵杆／手柄集成
 
-*QGroundControl* 台式机版本可以连接到 USB Joystick/Gamepad，并通过 MAVLink 将其移动指令和按钮发送到 PX4。 这适用于 SITL 和 HITL 仿真，并允许直接控制仿真机。 如果你没有操纵杆，你也可以使用地面控制站的屏幕虚拟拇指杆来控制无人机。
+*QGroundControl* desktop versions can connect to a USB Joystick/Gamepad and send its movement commands and button presses to PX4 over MAVLink. This works on both SITL and HITL simulations, and allows you to directly control the simulated vehicle. If you don't have a joystick you can alternatively control the vehicle using QGroundControl's onscreen virtual thumbsticks.
 
-有关设置信息，请参阅 *QGroundControl 用户指南 *：
+For setup information see the *QGroundControl User Guide*:
 
 * [操纵杆设置](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
 * [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
@@ -134,11 +152,13 @@ make px4_sitl jmavsim
 
 ## 相机模拟
 
-PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图像和视频。 这可以按照[ Gazebo> Video Streaming ](../simulation/gazebo.md#video-streaming)中的描述启用/设置。
+PX4 supports capture of both still images and video from within the [Gazebo](../simulation/gazebo.md) simulated environment. This can be enabled/set up as described in [Gazebo > Video Streaming](../simulation/gazebo.md#video-streaming).
 
-这个模拟相机是一个实现 [MAVLink 相机协议的 gazebo 插件](https://mavlink.io/en/protocol/camera.html)。 PX4 与这个相机以 *exactly the same way* 连接／集成，与任何其他 MAVLink 相机一样：
+The simulated camera is a gazebo plugin that implements the [MAVLink Camera Protocol](https://mavlink.io/en/protocol/camera.html)<!-- **Firmware/Tools/sitl_gazebo/src/gazebo_geotagged_images_plugin.cpp -->. PX4 connects/integrates with this camera in 
+
+*exactly the same way* as it would with any other MAVLink camera:
 
 1. [ TRIG_INTERFACE ](../advanced/parameter_reference.md#TRIG_INTERFACE)必须设置为` 3 `以配置相机触发驱动程序以与 MAVLink 相机一起使用 > **Tip**在此模式下，只要请求图像捕获，驱动程序就会发送[ CAMERA_TRIGGER ](https://mavlink.io/en/messages/common.html#CAMERA_TRIGGER)消息。 更多信息请参见：[Camera](https://docs.px4.io/en/peripherals/camera.html)。
 2. PX4 必须在 GCS 和（模拟器）MAVLink Camera 之间转发所有摄像机命令。 您可以通过使用` -f `标志启动[ mavlink ](../middleware/modules_communication.md#mavlink)来执行此操作，如下所示，指定新连接的UDP端口。 ```mavlink start -u 14558 -o 14530 -r 4000 -f -m camera``` > **Note</ 0>不仅仅是摄像机将转发 MAVLink 消息，但摄像机将忽略它们认为不相关的消息。</li> </ol> 
     
-    其他模拟器可以使用相同的方法来实现相机支持。
+    The same approach can be used by other simulators to implement camera support.
