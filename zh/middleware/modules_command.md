@@ -335,11 +335,11 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 如果启用了基于 FLASH 的后端（例如， Intel Aero 或 Omnibus 在编译时完成该操作的相关设定 ），`param select` 不会产生任何作用，默认值将始终为 FLASH 后端。 然而，仍可使用 `param save/load &lt;file&gt;` 从文件中读取/写入参数。
 
-每个参数都有一个 "已使用" 的标志位，如在启动过程中该参数被读取了那个该标志位将会被设置。 It is used to only show relevant parameters to a ground control station.
+每个参数都有一个 "已使用" 的标志位，如在启动过程中该参数被读取了那个该标志位将会被设置。 它只是用于向地面控制站显示有关联的参数。
 
 ### 示例
 
-Change the airframe and make sure the airframe's default parameters are loaded:
+更改机型，并确保机型的默认参数被加载了：
 
     param set SYS_AUTOSTART 4001
     param set SYS_AUTOCONFIG 1
@@ -404,7 +404,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
 
 源码： [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
-Tool to print performance counters
+用于打印计数器性能的工具。
 
 ### 用法 {#perf_usage}
 
@@ -422,11 +422,11 @@ Tool to print performance counters
 
 ### 描述
 
-This command is used to configure PWM outputs for servo and ESC control.
+此命令用于配置舵机和 ESC 的 PWM 控制输出。
 
-The default device `/dev/pwm_output0` are the Main channels, AUX channels are on `/dev/pwm_output1` (`-d` parameter).
+默认设备是主通道的 `/dev/pwm_output0` ，AUX 辅助通道位于 `/dev/pwm_output1` (需要搭配 `-d` 参数)。
 
-It is used in the startup script to make sure the PWM parameters (`PWM_*`) are applied (or the ones provided by the airframe config if specified). `pwm info` shows the current settings (the trim value is an offset and configured with `PWM_MAIN_TRIMx` and `PWM_AUX_TRIMx`).
+它在启动脚本中用于确保应用了 PWM 参数 (`PWM_*`) （当机型配置中指定了参数的情况下将改用由机型配置提供的参数）。 `pwm info` 用于显示当前的设定 (配平值是一个偏移量，可使用 `PWM_MAIN_TRIMx` 和 `PWM_AUX_TRIMx` 进行设置)。
 
 The disarmed value should be set such that the motors don't spin (it's also used for the kill switch), at the minimum value they should spin.
 
@@ -566,7 +566,7 @@ Utility to check if USB is connected. Was previously used in startup scripts. A 
 
 源码： [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
 
-Tool to print various version information
+用于打印各种版本信息的工具。
 
 ### 用法 {#ver_usage}
 
