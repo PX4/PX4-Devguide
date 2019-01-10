@@ -199,7 +199,7 @@ make emlid_navio2_native # for native build
 The "px4" executable file is in the directory **build/emlid_navio2_native/**. Run it directly with:
 
 ```sh
-sudo ./build/emlid_navio2_native/px4 ./posix-configs/rpi/px4.config 
+sudo ./build/emlid_navio2_native/px4 -s ./posix-configs/rpi/px4.config
 ```
 
 A successful build followed by executing px4 will give you something like this:
@@ -364,7 +364,7 @@ Go back to ADB shell and run px4:
 
 ```sh
 cd /home/linaro
-./px4 mainapp.config
+./px4 -s mainapp.config
 ```
 
 Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
@@ -391,7 +391,7 @@ adb push rc.local /etc/rc.local
 For the auto-start, add the following line before `exit 0`:
 
 ```sh
-(cd /home/linaro && ./px4 mainapp.config > mainapp.log)
+(cd /home/linaro && ./px4 -s mainapp.config > mainapp.log)
 
 exit 0
 ```
