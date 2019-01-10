@@ -254,7 +254,7 @@ EKF 对其所有计算使用单精度浮点运算，并使用一阶近似来推�
 
 通过进行以下参数更改，可以使 EKF 更加抵抗振动引起的高度发散：
 
-* Double the value of the innovation gate for the primary height sensor. If using barometric height this is [EKF2_BARO_GATE](../advanced/parameter_reference.md#EKF2_BARO_GATE).
+* 将主要的高度传感器的创新通道的值加倍。 如果使用气压高度，则 [EKF2_BARO_GATE](../advanced/parameter_reference.md#EKF2_BARO_GATE)。
 * Increase the value of [EKF2_ACC_NOISE](../advanced/parameter_reference.md#EKF2_ACC_NOISE) to 0.5 initially. If divergence is still occurring, increase in further increments of 0.1 but do not go above 1.0
 
 Note that the effect of these changes will make the EKF more sensitive to errors in GPS vertical velocity and barometric pressure.
