@@ -23,9 +23,9 @@ MAVlink 开发者指南介绍了如何定义新的消息并将其构建成指定
 python -m pymavlink.tools.mavgen --lang=C --wire-protocol=2.0 --output=generated/include/mavlink/v2.0 message_definitions/v1.0/custom_messages.xml
 ```
 
-For your own use/testing you can just copy the generated headers into **Firmware/mavlink/include/mavlink/v2.0**.
+如果只是自己使用/测试，那么你只需要直接将生成的头文件拷贝到 **Firmware/mavlink/include/mavlink/v2.0** 文件夹下。
 
-To make it easier for others to test your changes, a better approach is to add your generated headers to a fork of https://github.com/mavlink/c_library_v2. PX4 developers can then update the submodule to your fork in the Firmware repo before building.
+如果想让其他人可以更简单地测试你的修改，更好的做法则是将你生成的头文件加入 https://github.com/mavlink/c_library_v2 的一个分支中， PX4 开发者们则可以在开始编译构建前将 固件（Firmware）仓库中的子模块更新到你的分支上。
 
 ## 发送自定义MAVLink消息
 
@@ -119,7 +119,7 @@ Step4. 最后，确保使能了此消息流：比如，添加如下内容至启�
     mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
     
 
-> **Tip** You can use the `uorb top [<message_name>]` command to verify in real-time that your message is published and the rate (see [uORB Messaging](../middleware/uorb.md#uorb-top-command)). This approach can also be used to test incoming messages that publish a uORB topic (for other messages you might use `printf` in your code and test in SITL).
+> **Tip** 你可以使用 `uorb top [&lt;message_name&gt;]` 命令来实时验证你的消息是否被发布及消息的发布频率（详情请参阅： [uORB Messaging](../middleware/uorb.md#uorb-top-command)）。 这个方法还可以用来测试发布 uORB 主题的传入消息（对于其它类型的消息你可以在代码中使用 `printf` 然后再 SITL 仿真中进行测试）。
 > 
 > To see the message on *QGroundControl* you will need to [build it with your MAVLink library](https://dev.qgroundcontrol.com/en/getting_started/), and then verify that the message is received using [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html) (or some other MAVLink tool).
 
