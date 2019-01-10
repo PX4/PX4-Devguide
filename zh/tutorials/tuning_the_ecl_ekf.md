@@ -310,15 +310,15 @@ Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更�
 
 ### 过度陀螺偏压的测定
 
-Large gyro bias offsets are normally characterised by a change in the value of delta angle bias greater than 5E-4 during flight \(equivalent to ~3 deg/sec\) and can also cause a large increase in the magnetometer test ratio if the yaw axis is affected. Height is normally unaffected other than extreme cases. Switch on bias value of up to 5 deg/sec can be tolerated provided the filter is given time time settle before flying . Pre-flight checks performed by the commander should prevent arming if the position is diverging.
+大陀螺偏置偏移通常的特征是在飞行期间 delta 角度偏差值的变化大于 5E-4（相当于~3 度/秒），并且如果偏航轴受到影响，也会导致磁强计测试比大幅增加。 除极端情况外，高度通常不受影响。 如果滤波器在飞行前给定时间稳定，则可以容忍接通最高 5 度/秒的偏置值。 如果位置发散，飞手进行的飞行前检查应防止解锁。
 
-\(insert example plots showing bad gyro bias here\)
+\（插入示例曲线显示这里的陀螺偏差\）
 
-### Determination of Poor Yaw Accuracy
+### 确定较差的偏航精度
 
-Bad yaw alignment causes a velocity test ratio that increases rapidly when the vehicle starts moving due inconsistency in the direction of velocity calculated by the inertial nav and the GPS measurement. Magnetometer innovations are slightly affected. Height is normally unaffected.
+由于惯性导航和 GPS 测量计算出的速度方向不一致，因此不良偏航对准导致无人机开始移动时速度测试比率迅速增加。 Magnetometer innovations are slightly affected. 高度通常不受影响。
 
-\(insert example plots showing bad yaw alignment here\)
+\（插入示例图显示错误的偏航对齐此处\）
 
 ### Determination of Poor GPS Accuracy
 
