@@ -1,14 +1,14 @@
 # MAVLink通讯
 
-[MAVLink](https://mavlink.io/en/) is a very lightweight messaging protocol that has been designed for the drone ecosystem.
+[MAVLink](https://mavlink.io/en/) 是一个针对无人机生态系统设计的非常轻量化的消息传递协议。
 
-PX4 uses *MAVLink* to communicate with *QGroundControl* (and other ground stations), and as the integration mechanism for connecting to drone components outside of the flight controller: companion computers, MAVLink enabled cameras etc.
+PX4 使用 *MAVLink* 实现与 *QGroundControl* （或者其它地面站软件）的通讯交流，同时也将其用于整合飞控板与飞控板之外的无人机部件：伴随计算机、支持 MAVLink 的摄像头等。
 
-The protocol defines a number of standard [messages](https://mavlink.io/en/messages/) and [microservices](https://mavlink.io/en/services/) for exchanging data (many, but not all, messages/services have been implemented in PX4).
+该协议定义了许多用于交换数据的标准 [消息报文](https://mavlink.io/en/messages/) 和 [微型服务（microservices）](https://mavlink.io/en/services/)（PX4 中用到了许多消息/服务，但不是全部）。
 
-This tutorial explains how you can add PX4 support for your own new "custom" messages.
+本教程介绍了如何为你自己新 "自定义" 的报文添加 PX4 支持。
 
-> **Note** The tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h`.
+> **Note** 本教程假定你在 `msg/ca_trajectory.msg` 文件中定义了一个名为 `ca_trajectory` 的 [自定义 uORB](../middleware/uorb.md) 报文，以及在 `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h` 文件中定义了一个名为 `ca_trajectory`的 自定义 MAVLink 报文。
 
 ## Defining Custom MAVLink Messages
 
