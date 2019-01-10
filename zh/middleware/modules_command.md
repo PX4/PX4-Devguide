@@ -111,9 +111,9 @@ ESC 校准工具。
 
 源码： [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
-Hardfault utility
+硬件错误处理程序。
 
-Used in startup scripts to handle hardfaults
+在启动脚本中用于处理硬件错误。
 
 ### 用法 {#hardfault_log_usage}
 
@@ -141,15 +141,15 @@ Used in startup scripts to handle hardfaults
 
 ### 描述
 
-Command-line tool to control & test the (external) LED's.
+用于控制 & 测试 （外部） LED's 的命令行工具。
 
-To use it make sure there's a driver running, which handles the led_control uorb topic.
+要使用该命令请确保有一个负责处理 led_control 的 uorb 主题处于运行状态。
 
-There are different priorities, such that for example one module can set a color with low priority, and another module can blink N times with high priority, and the LED's automatically return to the lower priority state after the blinking. The `reset` command can also be used to return to a lower priority.
+有不同的优先级，例如，一个模块可设置一个低优先级的颜色，然后另一个模块可设置一个高优先级的闪烁 N 次的动作，LED 在完成闪烁后会自动返回较低优先级的状态。 也可使用 `reset` 命令来返回至一个更低的优先级。
 
 ### 示例
 
-Blink the first LED 5 times in blue:
+第一个 LED 闪烁蓝光 5 次：
 
     led_control blink -c blue -l 0 -n 5
     
@@ -190,18 +190,18 @@ Blink the first LED 5 times in blue:
 
 源码： [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
 
-Utility to listen on uORB topics and print the data to the console.
+用于监听 uORB 主题并将数据输出在控制台上的工具。
 
 ### 用法 {#listener_usage}
 
-    listener <command> [arguments...]
+    listener &lt;command&gt; [arguments...]
      Commands:
-         <topic_name> uORB topic name
-         [-i <val>]  Topic instance
+         &lt;topic_name&gt; uORB 主题名称
+         [-i &lt;val&gt;]  主题实例
                      default: 0
-         [-n <val>]  Number of messages
+         [-n &lt;val&gt;]  消息数量
                      default: 1
-         [-r <val>]  Subscription rate (unlimited if 0)
+         [-r &lt;val&gt;]  订阅速率 (0 表示不限制)
                      default: 0
     
 
@@ -211,7 +211,7 @@ Utility to listen on uORB topics and print the data to the console.
 
 ### 描述
 
-Load or append mixer files to the ESC driver.
+将混控器文件加载或者附加到 ESC 驱动中。
 
 Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
 
