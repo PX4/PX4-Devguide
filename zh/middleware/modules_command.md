@@ -2,9 +2,9 @@
 
 ## bl_update
 
-Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
+源码： [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
-Utility to flash the bootloader from a file
+用于从文件中刷新飞行控制器的 引导加载程序（bootloader ）
 
 ### 用法 {#bl_update_usage}
 
@@ -17,9 +17,9 @@ Utility to flash the bootloader from a file
 
 ## config
 
-Source: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
+源码： [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
 
-Configure a sensor driver (sampling & publication rate, range, etc.)
+配置传感器的驱动（设定传感器采样 & 发布速率，量程等）
 
 ### 用法 {#config_usage}
 
@@ -48,7 +48,7 @@ Configure a sensor driver (sampling & publication rate, range, etc.)
 
 ## dumpfile
 
-Source: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
+源码： [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 
 Dump file utility. Prints file size and contents in binary mode (don't replace LF with CR LF) to stdout.
 
@@ -80,7 +80,7 @@ Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
 
 ## esc_calib
 
-Source: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
+源码： [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
 Tool for ESC calibration
 
@@ -109,7 +109,7 @@ Calibration procedure (running the command will guide you through it):
 
 ## hardfault_log
 
-Source: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
+源码： [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
 Hardfault utility
 
@@ -137,7 +137,7 @@ Used in startup scripts to handle hardfaults
 
 ## led_control
 
-Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
+源码： [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
 
 ### 描述
 
@@ -188,7 +188,7 @@ Blink the first LED 5 times in blue:
 
 ## listener
 
-Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
+源码： [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
 
 Utility to listen on uORB topics and print the data to the console.
 
@@ -207,7 +207,7 @@ Utility to listen on uORB topics and print the data to the console.
 
 ## mixer
 
-Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
+源码： [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
 
 ### 描述
 
@@ -228,7 +228,7 @@ Note that the driver must support the used ioctl's, which is the case on NuttX, 
 
 ## motor_ramp
 
-Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
+源码： [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
 
 ### 描述
 
@@ -260,7 +260,7 @@ Note: this command currently only supports the `/dev/pwm_output0` output.
 
 ## motor_test
 
-Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
+源码： [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
 Utility to test motors.
 
@@ -283,7 +283,7 @@ Note: this can only be used for drivers which support the motor_test uorb topic 
 
 ## mtd
 
-Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
+源码： [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
 Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
 
@@ -309,7 +309,7 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
 
 ## nshterm
 
-Source: [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
+源码： [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
 
 Start an NSH shell on a given port.
 
@@ -323,7 +323,7 @@ This was previously used to start a shell on the USB serial port. Now there runs
 
 ## param
 
-Source: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
+源码： [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
 
 ### 描述
 
@@ -402,7 +402,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
 
 ## perf
 
-Source: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
+源码： [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
 Tool to print performance counters
 
@@ -418,7 +418,7 @@ Tool to print performance counters
 
 ## pwm
 
-Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
+源码： [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
 
 ### 描述
 
@@ -510,7 +510,7 @@ Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
 
 ## reboot
 
-Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
+源码： [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
 
 Reboot the system
 
@@ -523,7 +523,7 @@ Reboot the system
 
 ## sd_bench
 
-Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
+源码： [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
 
 Test the speed of an SD Card
 
@@ -553,7 +553,7 @@ Monitor running processes and their CPU, stack usage, priority and state
 
 ## usb_connected
 
-Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
+源码： [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
 Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
 
@@ -564,7 +564,7 @@ Utility to check if USB is connected. Was previously used in startup scripts. A 
 
 ## ver
 
-Source: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
+源码： [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
 
 Tool to print various version information
 
