@@ -156,34 +156,34 @@ ESC 校准工具。
 
 ### 用法 {#led_control_usage}
 
-    led_control <command> [arguments...]
+    led_control &lt;command&gt; [arguments...]
      Commands:
-       test          Run a test pattern
+       test          运行一个测试范例
     
-       on            Turn LED on
+       on            点亮 LED
     
-       off           Turn LED off
+       off            熄灭 LED
     
-       reset         Reset LED priority
+       reset         重置 LED 优先级
     
-       blink         Blink LED N times
-         [-n <val>]  Number of blinks
-                     default: 3
-         [-s <val>]  Set blinking speed
-                     values: fast|normal|slow, default: normal
+       blink         闪烁 LED 灯 N 次
+         [-n &lt;val&gt;]  闪烁次数
+                     默认值： 3
+         [-s &lt;val&gt;]  设定闪烁速度
+                    取值： fast|normal|slow, 默认值：normal
     
-       breathe       Continuously fade LED in & out
+       breathe       LED 持续淡入 & 淡出（呼吸效果）
     
-       flash         Two fast blinks and then off with frequency of 1Hz
+       flash         以 1Hz 速度快速闪烁两次然后关闭 LED
     
-     The following arguments apply to all of the above commands except for 'test':
-         [-c <val>]  color
-                     values: red|blue|green|yellow|purple|amber|cyan|white, default:
+    下述参数可用于上述除  'test' 命令之外的所有命令：
+         [-c &lt;val&gt;]  color
+                     取值： red|blue|green|yellow|purple|amber|cyan|white, 默认值：
                      white
-         [-l <val>]  Which LED to control: 0, 1, 2, ... (default=all)
-                     default: -1
-         [-p <val>]  Priority
-                     default: 2
+         [-l &lt;val&gt;]  需要控制哪一个 LED： 0, 1, 2, ... (默认=all)
+                     默认值：-1
+         [-p &lt;val&gt;]  优先级
+                     默认值：2
     
 
 ## listener
@@ -217,13 +217,12 @@ ESC 校准工具。
 
 ### 用法 {#mixer_usage}
 
-    mixer <command> [arguments...]
+    mixer &lt;command&gt; [arguments...]
      Commands:
        load
-         <file:dev> <file> Output device (eg. /dev/pwm_output0) and mixer file
-    
+         &lt;file:dev&gt; &lt;file&gt; 输出装置 （例如，/dev/pwm_output0）和混控器文件
        append
-         <file:dev> <file> Output device (eg. /dev/pwm_output0) and mixer file
+         &lt;file:dev&gt; &lt;file&gt; 输出装置 （例如，/dev/pwm_output0）和混控器文件
     
 
 ## motor_ramp
@@ -268,17 +267,17 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ### 用法 {#motor_test_usage}
 
-    motor_test <command> [arguments...]
+    motor_test &lt;command&gt; [arguments...]
      Commands:
-       test          Set motor(s) to a specific output value
-         [-m <val>]  Motor to test (0...7, all if not specified)
-                     default: -1
-         [-p <val>]  Power (0...100)
-                     default: 0
+       test          设定电机为某一特定输出值
+         [-m &lt;val&gt;]  需要进行测试的电机 (0...7, 如未指定则为所有电机)
+                     默认值： -1
+         [-p &lt;val&gt;]  功率 (0...100)
+                     默认值： 0
     
-       stop          Stop all motors
+       stop          停止所有电机
     
-       iterate       Iterate all motors starting and stopping one after the other
+       iterate       遍历测试所有电机，完成一个电机的启动和停止后继续进行下一个电机的测试
     
 
 ## mtd
