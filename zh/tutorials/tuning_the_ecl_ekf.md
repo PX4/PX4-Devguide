@@ -205,19 +205,19 @@ EKF 包含针对严重条件状态和协方差更新的内部错误检查。 请
 
 有两类观察错误：
 
-* 数据丢失。 An example of this is a range finder failing to provide a return.
-* The innovation, which is the difference between the state prediction and sensor observation is excessive. An example of this is excessive vibration causing a large vertical position error, resulting in the barometer height measurement being rejected.
+* 数据丢失。 一个例子是测距仪无法提供返回。
+* 创新，即状态预测和传感器观察之间的差异是过度的。 这种情况的一个例子是过度振动导致大的垂直位置误差，导致气压计高度测量被拒绝。
 
-Both of these can result in observation data being rejected for long enough to cause the EKF to attempt a reset of the states using the sensor observations. All observations have a statistical confidence checks applied to the innovations. The number of standard deviations for the check are controlled by the EKF2\_\*\_GATE parameter for each observation type.
+这两者都可能导致观察数据被拒绝足够长的时间以使 EKF 使用传感器观察来尝试重置状态。 所有观察结果均对创新进行了统计置信度检查。 检查的标准偏差数由每种观察类型的 EKF2\_ \*\_GATE 参数控制。
 
-Test levels are available in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) as follows:
+测试级别在 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中可用，如下所示：
 
-* mag\_test\_ratio : ratio of the largest magnetometer innovation component to the innovation test limit
-* vel\_test\_ratio : ratio of the largest velocity innovation component to the innovation test limit
-* pos\_test\_ratio : ratio of the largest horizontal position innovation component to the innovation test limit
-* hgt\_test\_ratio : ratio of the vertical position innovation to the innovation test limit
-* tas\_test\_ratio : ratio of the true airspeed innovation to the innovation test limit
-* hagl\_test\_ratio : ratio of the height above ground innovation to the innovation test limit
+* mag\_test\__tio：最大磁力计创新组件与创新测试限制的比率
+* vel\_test\__tio：最大速度创新组件与创新测试限制的比率
+* pos\_test\__tio：最大水平位置创新组件与创新测试限制的比率
+* hgt\test\ratio：垂直位置创新与创新测试限制的比率
+* tas\_test\__tio：真正的空速创新与创新测试极限的比率
+* hagl\_test\__tio：地面创新高度与创新测试限制的比率
 
 For a binary pass/fail summary for each sensor, refer to innovation\_check\_flags in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).
 
