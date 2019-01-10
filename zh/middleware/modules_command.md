@@ -9,10 +9,9 @@
 ### 用法 {#bl_update_usage}
 
     bl_update [arguments...]
-       setopt        Set option bits to unlock the FLASH (only needed if in locked
-                     state)
+       setopt        设置选项字节（option bits）以解锁  FLASH (仅当其处于锁定状态时)
     
-       <file>        Bootloader bin file
+       &lt;file&gt;        Bootloader bin 文件
     
 
 ## config
@@ -23,39 +22,39 @@
 
 ### 用法 {#config_usage}
 
-    config <command> [arguments...]
+    config &lt;command&gt; [arguments...]
      Commands:
     
-     The <file:dev> argument is typically one of /dev/{gyro,accel,mag}i
-       block         Block sensor topic publication
-         <file:dev>  Sensor device file
+    &lt;file:dev&gt; 参数通常是 /dev/{gyro,accel,mag}i 中的一个
+       block         堵塞传感器话题的发布
+         &lt;file:dev&gt;  传感器设备文件
     
-       unblock       Unblock sensor topic publication
-         <file:dev>  Sensor device file
+       unblock       恢复传感器话题的发布
+         &lt;file:dev&gt;  传感器设备文件
     
-       sampling      Set sensor sampling rate
-         <file:dev> <rate> Sensor device file and sampling rate in Hz
+       sampling      设定传感器采样速率
+         &lt;file:dev&gt; &lt;rate&gt; 传感器设备文件，采样速率 Hz
     
-       rate          Set sensor publication rate
-         <file:dev> <rate> Sensor device file and publication rate in Hz
+       rate          设定传感器数据发布速率
+         &lt;file:dev&gt; &lt;rate&gt; 传感器设备文件，发布速率 Hz
     
-       range         Set sensor measurement range
-         <file:dev> <rate> Sensor device file and range
+       range         设定传感器测量量程
+         &lt;file:dev&gt; &lt;rate&gt; 传感器设备文件和量程
     
-       check         Perform sensor self-test (and print info)
-         <file:dev>  Sensor device file
+       check         执行传感器自检（并打印自检信息）
+         &lt;file:dev&gt;  传感器设备文件
     
 
 ## dumpfile
 
 源码： [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 
-Dump file utility. Prints file size and contents in binary mode (don't replace LF with CR LF) to stdout.
+转储文件应用。 将文件大小及内容以二进制模式输出值标准输出设备（不使用 LF 替换 CR LF）。
 
 ### 用法 {#dumpfile_usage}
 
     dumpfile [arguments...]
-         <file>      File to dump
+         &lt;file&gt;      需要进行转储的文件
     
 
 ## dyn
