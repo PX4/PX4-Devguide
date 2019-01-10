@@ -87,51 +87,51 @@ ESC 校准工具。
 
 - 移除螺旋桨，将 ESC 断电
 - 停止姿态控制器： mc_att_control stop， fw_att_control stop
-- Make sure safety is off
+- 确保安全设置断开（Make sure safety is off）
 - 运行这个命令
 
 ### 用法 {#esc_calib_usage}
 
     esc_calib [arguments...]
-         [-d <val>]  Select PWM output device
-                     values: <file:dev>, default: /dev/pwm_output0
-         [-l <val>]  Low PWM value in us
-                     default: 1000
-         [-h <val>]  High PWM value in us
-                     default: 2000
-         [-c <val>]  select channels in the form: 1234 (1 digit per channel,
-                     1=first)
-         [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
-                     default: 0
-         [-a]        Select all channels
+         [-d &lt;val&gt;]  选择 PWM 输出设备
+                     取值 &lt;file:dev&gt;, 默认值： /dev/pwm_output0
+         [-l &lt;val&gt;]  Low PWM 值，单位 us
+                     默认值： 1000
+         [-h &lt;val&gt;]  High PWM 值，单位 us
+                     默认值：2000
+         [-c &lt;val&gt;]  使用如下形式选取通道：1234 (1 位数字表示一个通道，
+                     1=第一个通道)
+         [-m &lt;val&gt;]  使用位掩码（bitmask）选取通道 （例如，0xF, 3）
+                     默认值： 0
+         [-a]        选择所有通道
     
 
 ## hardfault_log
 
 源码： [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
-硬件错误处理程序。
+硬错误处理程序。
 
-在启动脚本中用于处理硬件错误。
+在启动脚本中用于处理硬错误。
 
 ### 用法 {#hardfault_log_usage}
 
-    hardfault_log <command> [arguments...]
+    hardfault_log &lt;command&gt; [arguments...]
      Commands:
-       check         Check if there's an uncommited hardfault
+       check         检查是否存在未提交的硬错误（uncommited hardfault）
     
-       rearm         Drop an uncommited hardfault
+       rearm         抛下一个未提交的硬错误
     
-       fault         Generate a hardfault (this command crashes the system :)
-         [0|1]       Hardfault type: 0=divide by 0, 1=Assertion (default=0)
+       fault         生成一个硬错误 (该命令会导致系统崩溃:)
+         [0|1]       硬错误类型： 0=除 0 错误, 1=断言错误（Assertion） (默认值=0)
     
-       commit        Write uncommited hardfault to /fs/microsd/fault_%i.txt (and
-                     rearm, but don't reset)
+       commit        讲一个未提交的硬错误写入 /fs/microsd/fault_%i.txt (然后
+                     rearm但不 reset）
     
-       count         Read the reboot counter, counts the number of reboots of an
-                     uncommited hardfault (returned as the exit code of the program)
+       count         读取重启计数器，计算一个未提交的硬错误引起的重启次数
+                      (该结果将作为程序的退出代码返回)
     
-       reset         Reset the reboot counter
+       reset         重置重启计数器
     
 
 ## led_control
