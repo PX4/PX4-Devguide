@@ -255,13 +255,13 @@ EKF 对其所有计算使用单精度浮点运算，并使用一阶近似来推�
 通过进行以下参数更改，可以使 EKF 更加抵抗振动引起的高度发散：
 
 * 将主要的高度传感器的创新通道的值加倍。 如果使用气压高度，则 [EKF2_BARO_GATE](../advanced/parameter_reference.md#EKF2_BARO_GATE)。
-* Increase the value of [EKF2_ACC_NOISE](../advanced/parameter_reference.md#EKF2_ACC_NOISE) to 0.5 initially. If divergence is still occurring, increase in further increments of 0.1 but do not go above 1.0
+* 最初将 [EKF2_ACC_NOISE](../advanced/parameter_reference.md#EKF2_ACC_NOISE) 的值增加到 0.5。 如果仍然出现分歧，则进一步增加 0.1，但不要超过 1.0。
 
-Note that the effect of these changes will make the EKF more sensitive to errors in GPS vertical velocity and barometric pressure.
+Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更敏感。
 
-## What should I do if the position estimate is diverging?
+## 如果位置估计发散了应该怎么办?
 
-The most common causes of position divergence are:
+位置散度的最常见原因是：
 
 * High vibration levels. 
   * Fix by improving mechanical isolation of the autopilot.
