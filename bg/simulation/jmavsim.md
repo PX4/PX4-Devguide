@@ -73,6 +73,14 @@ For example, to set the latitude, longitude and altitude:
     make px4_sitl_default jmavsim
     
 
+### Speed up or slow down Simulation
+
+The speed of the simulation can be adapted by the environment variable `PX4_SIM_SPEED_FACTOR`.
+
+    export PX4_SIM_SPEED_FACTOR=2
+    make px4_sitl_default jmavsim
+    
+
 ### Using a Joystick {#joystick}
 
 Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
