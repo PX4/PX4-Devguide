@@ -187,11 +187,11 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
     }
 ```
 
-## 另一种自定义MAVlink消息的办法
+## 创建自定义MAVlink消息的备选方法
 
-Sometimes there is the need for a custom MAVLink message with content that is not fully defined.
+有时候需要创建一个内容尚未完全定义的自定义 MAVlink 消息。
 
-For example when using MAVLink to interface PX4 with an embedded device, the messages that are exchanged between the autopilot and the device may go through several iterations before they are stabilized. In this case, it can be time-consuming and error-prone to regenerate the MAVLink headers, and make sure both devices use the same version of the protocol.
+例如，当使用 MAVlink 构建一个嵌入式设备与 PX4 的通讯接口时，设备与自动驾驶仪之间交换的消息的内容可能需要经过数次迭代之后才能稳定下来不发生变化。 In this case, it can be time-consuming and error-prone to regenerate the MAVLink headers, and make sure both devices use the same version of the protocol.
 
 An alternative - and temporary - solution is to re-purpose debug messages. Instead of creating a custom MAVLink message `CA_TRAJECTORY`, you can send a message `DEBUG_VECT` with the string key `CA_TRAJ` and data in the `x`, `y` and `z` fields. See [this tutorial](../debug/debug_values.md). for an example usage of debug messages.
 
