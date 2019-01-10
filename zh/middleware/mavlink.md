@@ -121,7 +121,7 @@ Step4. 最后，确保使能了此消息流：比如，添加如下内容至启�
 
 > **Tip** 你可以使用 `uorb top [&lt;message_name&gt;]` 命令来实时验证你的消息是否被发布及消息的发布频率（详情请参阅： [uORB Messaging](../middleware/uorb.md#uorb-top-command)）。 这个方法还可以用来测试发布 uORB 主题的传入消息（对于其它类型的消息你可以在代码中使用 `printf` 然后再 SITL 仿真中进行测试）。
 > 
-> To see the message on *QGroundControl* you will need to [build it with your MAVLink library](https://dev.qgroundcontrol.com/en/getting_started/), and then verify that the message is received using [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html) (or some other MAVLink tool).
+> 要在 *QGroundControl* 中查看自定义消息，你需要 [使用你自己的 MAVLink 库重新构建该消息](https://dev.qgroundcontrol.com/en/getting_started/)，然后使用 [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html) （或者其它 MAVLink 工具） 验证是否收到该消息。
 
 ## 接收自定义MAVLink消息
 
@@ -195,19 +195,19 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 
 一个备选 - 也是临时的- 解决方案是重新使用（re-purpose）调试消息（debug messages）。 你可以发送一个以 `CA_TRAJ` 为字符串键，在`x`, `y` 和 `z` 字段中存放数据的 `DEBUG_VECT` 消息，而不需要创建一个自定义 MAVLink 消息 `CA_TRAJECTORY` 。 参阅 [这篇教程](../debug/debug_values.md) 以获取调试信息的更详细的使用方法。
 
-> **Note** This solution is not efficient as it sends character string over the network and involves comparison of strings. It should be used for development only!
+> **Note** 此解决方案由于通过网络发送字符串并涉及字符串的比较，所以效率并不高。 此方法应仅用于开发！
 
-## General
+## 常规信息
 
-### Set streaming rate
+### 设置流速率（streaming rate）
 
-Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by typing the following line in the shell:
+有时候提高单个主题的流速率非常有用（例如在 QGC 中进行检查时）。 这可以通过在 shell 中输入如下命令实现：
 
 ```sh
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>
 ```
 
-You can get the port number with `mavlink status` which will output (amongst others) `transport protocol: UDP (<port number>)`. An example would be:
+你可以使用 `mavlink status` 来获取上述命令中的端口号，该指令的输出结果会包含 `transport protocol: UDP (&lt;port number&gt;)` 。 一个例子是：
 
 ```sh
 mavlink stream -u 14556 -s OPTICAL_FLOW_RAD -r 300
