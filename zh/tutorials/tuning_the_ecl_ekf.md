@@ -114,19 +114,19 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 * Ecl EKF 能够以数学上一致的方式融合来自具有不同时间延迟和数据速率的传感器的数据，一旦正确设置时间延迟参数，就可以提高动态操作期间的准确性。
 * Ecl EKF 能够融合各种不同的传感器类型。
 * Ecl EKF 检测并报告传感器数据中统计上显着的不一致性，帮助诊断传感器错误。
-* For fixed wing operation, the ecl EKF estimates wind speed with or without an airspeed sensor and is able to use the estimated wind in combination with airspeed measurements and sideslip assumptions to extend the dead-reckoning time available if GPS is lost in flight.
-* The ecl EKF estimates 3-axis accelerometer bias which improves accuracy for tailsitters and other vehicles that experience large attitude changes between flight phases.
-* The federated architecture \(combined attitude and position/velocity estimation\) means that attitude estimation benefits from all sensor measurements. This should provide the potential for improved attitude estimation if tuned correctly. 
+* 对于固定机翼操作，ecl EKF 使用或不使用空速传感器估算风速，并且能够将估计的风与空速测量和侧滑假设结合使用，以延长 GPS 在飞行中丢失时的航位推算时间。
+* Ecl EKF估计3轴加速度计偏差，这提高了尾部和其他在飞行阶段之间经历大的姿态变化的无人机的精度。
+* 联合架构\（组合姿态和位置/速度估计\）意味着姿态估计受益于所有传感器测量。 如果调整正确，这应该提供改善态度估计的潜力。 
 
-## How do I check the EKF performance?
+## 如何检查 EKF 性能？
 
-EKF outputs, states and status data are published to a number of uORB topics which are logged to the SD card during flight. The following guide assumes that data has been logged using the .ulog file format. To use the .ulog format, set the SYS\_LOGGER parameter to 1.
+EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在飞行期间记录到 SD 卡。 以下指南假定已使用 .ulog 文件格式记录数据。 要使用 .ulog 格式，请将 SYS\_LOGGER 参数设置为 1。
 
-The .ulog format data can be parsed in python by using the [PX4 pyulog library](https://github.com/PX4/pyulog).
+可以使用 [PX4 pyulog library](https://github.com/PX4/pyulog) 在 python 中解析 .ulog 格式数据。
 
-Most of the EKF data is found in the [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) and [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) uORB messages that are logged to the .ulog file.
+大多数 EKF 数据位于记录到 .ulog 文件的 [ekf2\_inovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 和 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg)uORB 消息中。
 
-A python script that automatically generates analysis plots and metadata can be found [here](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/process_logdata_ekf.py). To use this script file, cd to the `Tools/ecl_ekf` directory and enter `python process_logdata_ekf.py <log_file.ulg>`. This saves performance metadata in a csv file named `<log_file>.mdat.csv` and plots in a pdf file named `<log_file>.pdf`.
+可以在 [here](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/process_logdata_ekf.py) 找到自动生成分析图和元数据的 python 脚本。 要使用此脚本文件，请 cd 到 `Tools/ecl_ekf`directory and enter`python process_logdata_ekf.py&lt;log_file.ulg&gt;`。 This saves performance metadata in a csv file named `<log_file>.mdat.csv` and plots in a pdf file named `<log_file>.pdf`.
 
 Multiple log files in a directory can be analysed using the [batch\_process\_logdata\_ekf.py](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_logdata_ekf.py) script. When this has been done, the performance metadata files can be processed to provide a statistical assessment of the estimator performance across the population of logs using the [batch\_process\_metadata\_ekf.py](https://github.com/PX4/Firmware/blob/master/Tools/ecl_ekf/batch_process_metadata_ekf.py) script.
 
