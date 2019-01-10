@@ -165,7 +165,7 @@ Refer to covariances\[28\] in [estimator\_status](https://github.com/PX4/Firmwar
 * \[22 ... 23\] Wind velocity NE \(m/s\)^2
 * \[24 ... 28\] Not Used
 
-### Observation Innovations
+### 新息（ t-1 时刻对 t 时刻状态的估计值与 t 时刻状态的实际观测值的差）
 
 * Magnetometer XYZ \(gauss\) : Refer to mag\_innov\[3\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 * Yaw angle \(rad\) : Refer to heading\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
