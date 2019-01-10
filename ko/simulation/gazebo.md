@@ -165,13 +165,15 @@ As an example:
     make px4_sitl gazebo
     
 
-### Speed up or slow down Simulation
+### Change Simulation Speed
 
-The speed of the simulation can be adapted by the environment variable `PX4_SIM_SPEED_FACTOR`.
+The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
 
     export PX4_SIM_SPEED_FACTOR=2
-    make px4_sitl_default jmavsim
+    make px4_sitl_default gazebo
     
+
+For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
 ### Using a Joystick
 
