@@ -135,13 +135,13 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
 * 姿态输出数据可在 [vehicle\_attitude](https://github.com/PX4/Firmware/blob/master/msg/vehicle_attitude.msg) 消息中找到。
 * Ocal 位置输出数据可在 [vehicle\_local\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_local_position.msg) 消息中找到。
 * Global \（WGS-84\）输出数据位于 [vehicle\_global\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_global_position.msg) 消息中。
-* Wind velocity output data is found in the [wind\_estimate](https://github.com/PX4/Firmware/blob/master/msg/wind_estimate.msg) message.
+* 风速输出数据可在 [wind\_estimate](https://github.com/PX4/Firmware/blob/master/msg/wind_estimate.msg) 消息中找到。
 
-### States
+### 状态
 
-Refer to states\[32\] in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg). The index map for states\[32\] is as follows:
+请参阅 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的 states\[32\]。 状态 \[32\] 的索引映射如下：
 
-* \[0 ... 3\] Quaternions
+* \[0 ... 3\] 四元数
 * \[4 ... 6\] Velocity NED \(m/s\)
 * \[7 ... 9\] Position NED \(m\)
 * \[10 ... 12\] IMU delta angle bias XYZ \(rad\)
@@ -165,7 +165,7 @@ Refer to covariances\[28\] in [estimator\_status](https://github.com/PX4/Firmwar
 * \[22 ... 23\] Wind velocity NE \(m/s\)^2
 * \[24 ... 28\] Not Used
 
-### 新息（ t-1 时刻对 t 时刻状态的估计值与 t 时刻状态的实际观测值的差）
+### 新息（ t 时刻的实际量测值 与 t-1 时刻对 t 时刻量测的估计值与之间的差）
 
 * Magnetometer XYZ \(gauss\) : Refer to mag\_innov\[3\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
 * Yaw angle \(rad\) : Refer to heading\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
