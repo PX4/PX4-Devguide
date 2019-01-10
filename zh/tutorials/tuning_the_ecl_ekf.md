@@ -74,14 +74,14 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### 拖动特定力量
 
-多转子平台可以利用沿 X 和 Y 体轴的空速和阻力之间的关系来估计风速的北/东分量。 通过将 [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) 参数中的位位置5设置为 true 来启用此功能。 The relationship between airspeed and specific force \(IMU acceleration\) along the X and Y body axes is controlled by the [EKF2_BCOEF_X](../advanced/parameter_reference.md#EKF2_BCOEF_X) and [EKF2_BCOEF_Y](../advanced/parameter_reference.md#EKF2_BCOEF_Y) parameters which set the ballistic coefficients for flight in the X and Y directions respectively. The amount of specific force observation noise is set by the [EKF2_DRAG_NOISE](../advanced/parameter_reference.md#EKF2_DRAG_NOISE) parameter.
+多转子平台可以利用沿 X 和 Y 体轴的空速和阻力之间的关系来估计风速的北/东分量。 通过将 [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) 参数中的位位置5设置为 true 来启用此功能。 沿 X 和 Y 体轴的空速和特定力\（IMU 加速度\）之间的关系由 [EKF2_BCOEF_X](../advanced/parameter_reference.md#EKF2_BCOEF_X) 和 [EKF2_BCOEF_Y](../advanced/parameter_reference.md#EKF2_BCOEF_Y) 参数控制，这些参数设定了飞行中的弹道系数。 分别是 X 和 Y 方向。 特定力观察噪声的量由 [EKF2_DRAG_NOISE](../advanced/parameter_reference.md#EKF2_DRAG_NOISE) 参数设定。
 
 ### 光流
 
-Optical flow data will be used if the following conditions are met:
+如果满足以下条件，将使用光流数据：
 
-* Valid range finder data is available.
-* Bit position 1 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter is true.
+* 有效的测距仪数据可用。
+* [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) 参数中的位位置 1 为真。
 * The quality metric returned by the flow sensor is greater than the minimum requirement set by the [EKF2_OF_QMIN](../advanced/parameter_reference.md#EKF2_OF_QMIN) parameter.
 
 ### External Vision System
