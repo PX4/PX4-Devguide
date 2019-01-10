@@ -73,9 +73,9 @@ pxh> commander takeoff
     make px4_sitl_default jmavsim
     
 
-### 更改仿真速度
+### 更改仿真的时间流速
 
-可以使用环境变量 `PX4_SIM_SPEED_FACTOR` 提高或者降低仿真速度相对于实际时间的大小。
+可以使用环境变量 `PX4_SIM_SPEED_FACTOR` 提高或者降低仿真环境的时间流速相对于实际时间流速的大小。
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl_default jmavsim
