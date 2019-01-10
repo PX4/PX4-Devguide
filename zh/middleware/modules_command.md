@@ -313,7 +313,7 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 在指定端口启动一个 NSH shell
 
-该命令此前被用于在 USB 串口端口开启一个 shell， Now there runs mavlink, and it is possible to use a shell over mavlink.
+该命令此前被用于在 USB 串口端口开启一个 shell， 现在它将在那个端口运行 MAVLink，而且可以通过 MAVLink 来使用一个 shell。
 
 ### 用法 {#nshterm_usage}
 
@@ -327,7 +327,7 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ### 描述
 
-Command to access and manipulate parameters via shell or script.
+在 shell 或者脚本中获取参数并对其进行操作的命令。
 
 This is used for example in the startup script to set airframe-specific parameters.
 
