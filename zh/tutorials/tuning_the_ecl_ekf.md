@@ -263,8 +263,8 @@ Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更�
 
 位置散度的最常见原因是：
 
-* High vibration levels. 
-  * Fix by improving mechanical isolation of the autopilot.
+* 高振动水平。 
+  * 通过改进无人机的机械隔离来解决。
   * Increasing the value of [EKF2_ACC_NOISE](../advanced/parameter_reference.md#EKF2_ACC_NOISE) and [EKF2_GYR_NOISE](../advanced/parameter_reference.md#EKF2_GYR_NOISE) can help, but does make the EKF more vulnerable to GPS glitches.
 * Large gyro bias offsets. 
   * Fix by re-calibrating the gyro. Check for excessive temperature sensitivity \(&gt; 3 deg/sec bias change during warm-up from a cold start and replace the sensor if affected of insulate to to slow the rate of temperature change.
