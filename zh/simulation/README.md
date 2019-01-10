@@ -113,22 +113,22 @@ make px4_sitl jmavsim
 
 这里描述的语法是简化的，您可以通过 *make* 配置许多其他选项，例如，设置要连接到 IDE 或调试器的选项。 有关详细信息，请参阅： [Building 代码 > PX4 使生成 Targets](../setup/building_px4.md#make_targets)。
 
-### Run Simulation Faster than Realtime {#simulation_speed}
+### 以比实际时间更快的流速运行仿真 {#simulation_speed}
 
-SITL can be run faster or slower than realtime when using jMAVSim or Gazebo.
+使用 jMAVSim 或者 Gazebo 进行 SITL 仿真时，我们可以以比实际时间流速更快或者更慢的时间流速运行仿真。
 
-The speed factor is set using the environment variable `PX4_SIM_SPEED_FACTOR`. For example, to run the jMAVSim simulation at 2 times the real time speed:
+时间相对流速因子可通过环境变量 `PX4_SIM_SPEED_FACTOR` 进行设定。 例如，想以相对实际时间的 2 倍流速运行 jMAVSim 仿真：
 
     PX4_SIM_SPEED_FACTOR=2 make px4_sitl jmavsim
     
 
-You can apply the factor to all SITL runs in the current session using `EXPORT`:
+你也可以在当前会话（session）中使用 `EXPORT` 来将该因子应用于所有 SITL 仿真：
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl jmavsim
     
 
-> **Note** At some point IO or CPU will limit the speed that is possible on your machine and it will be slowed down "automatically". Powerful desktop machines can usually run the simulation at around 6-10x, for notebooks the achieved rates can be around 3-4x.
+> **Note** 在某些情况下当你的电脑的 IO 或者 CPU 性能不足以支撑仿真以设定的速度运行时，该速度会 “自动”降低。 性能强劲的台式机通常可以以 6-10 倍的流速运行仿真，而笔记本测通常可以实现 3-4 倍的流速。
 
 ### 启动脚本 {#scripts}
 
