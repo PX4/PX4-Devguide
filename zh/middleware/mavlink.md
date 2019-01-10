@@ -4,20 +4,20 @@
 
 PX4 使用 *MAVLink* 实现与 *QGroundControl* （或者其它地面站软件）的通讯交流，同时也将其用于整合飞控板与飞控板之外的无人机部件：伴随计算机、支持 MAVLink 的摄像头等。
 
-该协议定义了许多用于交换数据的标准 [消息报文](https://mavlink.io/en/messages/) 和 [微型服务（microservices）](https://mavlink.io/en/services/)（PX4 中用到了许多消息/服务，但不是全部）。
+该协议定义了许多用于交换数据的标准 [消息](https://mavlink.io/en/messages/) 和 [微型服务（microservices）](https://mavlink.io/en/services/)（PX4 中用到了许多消息/服务，但不是全部）。
 
 本教程介绍了如何为你自己新 "自定义" 的报文添加 PX4 支持。
 
-> **Note** 本教程假定你在 `msg/ca_trajectory.msg` 文件中定义了一个名为 `ca_trajectory` 的 [自定义 uORB](../middleware/uorb.md) 报文，以及在 `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h` 文件中定义了一个名为 `ca_trajectory`的 自定义 MAVLink 报文。
+> **Note** 本教程假定你在 `msg/ca_trajectory.msg` 文件中定义了一个名为 `ca_trajectory` 的 [自定义 uORB](../middleware/uorb.md) 消息，以及在 `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h` 文件中定义了一个名为 `ca_trajectory`的 自定义 MAVLink 消息。
 
-## Defining Custom MAVLink Messages
+## 创建自定义MAVLink消息
 
-The MAVLink developer guide explains how to define new messages and build them into new programming-specific libraries:
+MAVlink 开发者指南介绍了如何定义新的消息并将其构建成指定的编程语言的库文件：
 
-- [How to Define MAVLink Messages & Enums](https://mavlink.io/en/guide/define_xml_element.html)
-- [Generating MAVLink Libraries](https://mavlink.io/en/getting_started/generate_libraries.html)
+- [如何定义 MAVLink 消息（Messages）& 枚举（Enums）](https://mavlink.io/en/guide/define_xml_element.html)
+- [生成 MAVLink 库文件](https://mavlink.io/en/getting_started/generate_libraries.html)
 
-Your message needs to be generated as a C-library for MAVLink 2. Once you've [installed MAVLink](https://mavlink.io/en/getting_started/installation.html) you can do this on the command line using the command:
+你需要为你的消息生成适用于 MAVLink 2 的 C 语言库文件。 只要你 [安装好了 MAVLink](https://mavlink.io/en/getting_started/installation.html) ，你可以使用如下命令执行此操作：
 
 ```sh
 python -m pymavlink.tools.mavgen --lang=C --wire-protocol=2.0 --output=generated/include/mavlink/v2.0 message_definitions/v1.0/custom_messages.xml
