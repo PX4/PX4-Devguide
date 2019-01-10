@@ -125,7 +125,7 @@ nsh> free
 在 Linaro 运行主程序：
 
     cd /home/linaro
-    ./px4 px4.config
+    ./px4 -s px4.config
     
 
 用以下语法，可以通过 Linaro shell 使用已经加载到 DSP 上的所有 Apps：
