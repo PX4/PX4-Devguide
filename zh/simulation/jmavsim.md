@@ -73,7 +73,7 @@ pxh> commander takeoff
     make px4_sitl_default jmavsim
     
 
-### Change Simulation Speed
+### 更改仿真速度
 
 The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
 
