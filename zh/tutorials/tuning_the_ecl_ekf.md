@@ -161,21 +161,21 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
 * \[10 ... 12\] IMU delta 角度偏差 XYZ\（rad^2\）
 * \[13 ... 15\] IMU delta 速度偏差 XYZ\（m/s\）^2
 * \[16 ... 18\] 地球磁场 NED\（gauss^2\）
-* \[19 ... 21\] Body magnetic field XYZ \(gauss^2\)
-* \[22 ... 23\] Wind velocity NE \(m/s\)^2
-* \[24 ... 28\] Not Used
+* \[19 ... 21\] 体磁场 XYZ\（gauss^2\）
+* \[22 ... 23\] 风速 NE\（m/s\）^2
+* \[24 ... 28\] 未使用
 
 ### 新息（ t 时刻的实际量测值 与 t-1 时刻对 t 时刻量测的估计值与之间的差）
 
-* Magnetometer XYZ \(gauss\) : Refer to mag\_innov\[3\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* Yaw angle \(rad\) : Refer to heading\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* Velocity and position innovations : Refer to vel\_pos\_innov\[6\] in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg). The index map for vel\_pos\_innov\[6\] is as follows: 
-  * \[0 ... 2\] Velocity NED \(m/s\)
-  * \[3 ... 5\] Position NED \(m\)
-* True Airspeed \(m/s\) : Refer to airspeed\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* Synthetic sideslip \(rad\) : Refer to beta\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* Optical flow XY \(rad/sec\) : Refer to flow\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
-* Height above ground \(m\) : Refer to hagl\_innov in [ekf2\_innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg).
+* 磁力计 XYZ\（gauss\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 mag\_innov\[3\]。
+* 偏航角\（rad\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的标题 \_innov。
+* 速度和位置创新：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 vel\_pos\_innov\[6\]。 Vel\_pos\_innov\[6\] 的索引图如下： 
+  * \[0 ... 2\] 速度 NED\（m/s\）
+  * \[3 ... 5\] 位置 NED\（m\）
+* 真实空速\（m/s\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov。
+* Synthetic sidelip\（rad\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 beta \_innov。
+* 光流 XY\（rad/sec\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 flow\_innov。
+* 高于地面的高度\（m\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 hagl \_innov。
 
 ### 新息协方差
 
