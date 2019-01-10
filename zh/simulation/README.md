@@ -113,19 +113,18 @@ make px4_sitl jmavsim
 
 这里描述的语法是简化的，您可以通过 *make* 配置许多其他选项，例如，设置要连接到 IDE 或调试器的选项。 有关详细信息，请参阅： [Building 代码 > PX4 使生成 Targets](../setup/building_px4.md#make_targets)。
 
-### Run Simulation Faster than Realtime
+### Run Simulation Faster than Realtime {#simulation_speed}
 
-SITL can be run faster or slower than realtime. The speed factor is set using the environment variable `PX4_SIM_SPEED_FACTOR`. The speed factor is implemented for the jMAVSim and Gazebo SITL simulation.
+SITL can be run faster or slower than realtime when using jMAVSim or Gazebo.
 
-For instance to run the jMAVSim simulation at 2 times the real time speed:
+The speed factor is set using the environment variable `PX4_SIM_SPEED_FACTOR`. For example, to run the jMAVSim simulation at 2 times the real time speed:
 
     PX4_SIM_SPEED_FACTOR=2 make px4_sitl jmavsim
     
 
-Or to apply to all SITL runs in the current session:
+You can apply the factor to all SITL runs in the current session using `EXPORT`:
 
     export PX4_SIM_SPEED_FACTOR=2
-    
     make px4_sitl jmavsim
     
 
