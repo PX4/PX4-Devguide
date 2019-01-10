@@ -161,3 +161,32 @@ The simulated camera is a gazebo plugin that implements the [MAVLink Camera Prot
 2. PX4 must forward all camera commands between the GCS and the (simulator) MAVLink Camera. You can do this by starting [mavlink](../middleware/modules_communication.md#mavlink) with the `-f` flag as shown, specifying the UDP ports for the new connection. ```mavlink start -u 14558 -o 14530 -r 4000 -f -m camera``` > **Note** More than just the camera MAVLink messages will be forwarded, but the camera will ignore those that it doesn't consider relevant.
 
 The same approach can be used by other simulators to implement camera support.
+
+## Running Simulation on the Remote Server
+
+As had been mentioned at the beginning the simulation environment can be run on multiple computers on the same network. Unfortunately, it is a slightly complicated, because of the out of box configuration does not broadcast the PX4 UDP packets to external interfaces and packets are routed internally by default. A solution is to enable brodcasting by [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) parameter to allow broadcast UDP packets to the local network or use a tunnel to connect computers together.
+
+Using the tunnel is a more flexible option because the computers are not required to sit on the same network and remote powerful simulation server can be used for example.
+
+One, probably the easiest way to create the tunnel is the use of SSH tunneling options. The tunnel itself could be created easily by running the following command on localhost.
+
+    ssh -C -fR 14551:localhost:14551 remote.local
+    
+
+Where "remote.local" is the name of a remote computer.
+
+Unfortunately, the SSH itself cannot route the UDP packets. Therefore the UDP packets need to be translated to TCP packets. By [netcat](https://en.wikipedia.org/wiki/Netcat) utility separately on the local and remote side of the tunnel. Local side of UDP packet translation of QGC could be implemented by running following commands.
+
+    mkfifo /tmp/tcp2udp
+    netcat -lvp 14551 < /tmp/tcp2udp | netcat -u localhost 14550 > /tmp/tcp2udp
+    
+
+For the remote side of the tunnel, the command differs.
+
+    mkfifo /tmp/udp2tcp
+    netcat -lvup 14550 < /tmp/udp2tcp | netcat localhost 14551 > /tmp/udp2tcp
+    
+
+It is necessary to have QGC running before executing the netcat. The tunnel could run infinitely, but netcat connections may need a restart in case of improper communication state occurs. The port number `14550` is valid for QGC software connection and should be adjusted for other possible communication channels.
+
+The automated [bash connection script](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) is prepared for automation of QGC to simulation server running the PX4 stack.
