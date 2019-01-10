@@ -265,26 +265,26 @@ Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更�
 
 * 高振动水平。 
   * 通过改进无人机的机械隔离来解决。
-  * Increasing the value of [EKF2_ACC_NOISE](../advanced/parameter_reference.md#EKF2_ACC_NOISE) and [EKF2_GYR_NOISE](../advanced/parameter_reference.md#EKF2_GYR_NOISE) can help, but does make the EKF more vulnerable to GPS glitches.
-* Large gyro bias offsets. 
-  * Fix by re-calibrating the gyro. Check for excessive temperature sensitivity \(&gt; 3 deg/sec bias change during warm-up from a cold start and replace the sensor if affected of insulate to to slow the rate of temperature change.
-* Bad yaw alignment 
-  * Check the magnetometer calibration and alignment.
-  * Check the heading shown QGC is within within 15 deg truth
-* Poor GPS accuracy 
-  * Check for interference
-  * Improve separation and shielding
-  * Check flying location for GPS signal obstructions and reflectors \(nearby tall buildings\)
-* Loss of GPS
+  * 增加 [EKF2_ACC_NOISE](../advanced/parameter_reference.md#EKF2_ACC_NOISE) 和 [EKF2_GYR_NOISE](../advanced/parameter_reference.md#EKF2_GYR_NOISE) 的值会有所帮助，但确实会使 EKF 更容易受到 GPS 故障的影响。
+* 大陀螺仪偏置偏移。 
+  * 通过重新校准陀螺仪来修复。 检查过高的温度灵敏度\（在冷启动预热期间 &gt; 3 度/秒的偏压变化，如果受到隔热影响，则更换传感器以减缓温度变化的速度。
+* 偏航偏差 
+  * 检查磁力计校准和校准。
+  * 检查显示的标题 QGC 是否在 15 度以内
+* GPS 精度差 
+  * 检查是否有干扰
+  * 改善分离和屏蔽
+  * 检查飞行位置是否有 GPS 信号障碍物和反射器\（附近的高层建筑\）
+* GPS 丢失
 
-Determining which of these is the primary cause requires a methodical approach to analysis of the EKF log data:
+确定哪些是主要原因需要有条理的方法来分析 EKF 日志数据：
 
-* Plot the velocity innovation test ratio - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio
-* Plot the horizontal position innovation test ratio - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).pos\_test\_ratio
-* Plot the height innovation test ratio - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt\_test\_ratio
-* Plot the magnetometer innovation test ratio - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).mag\_test\_ratio
-* Plot the GPS receiver reported speed accuracy - [vehicle\_gps\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_gps_position.msg).s\_variance\_m\_s
-* Plot the IMU delta angle state estimates - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).states\[10\], states\[11\] and states\[12\]
+* 绘制速度创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio
+* 绘制水平位置创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).pos\_test\_ratio
+* 绘制高度创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt\_test\_ratio
+* 绘制磁力计创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).mag\_test\_ratio
+* 绘制 GPS 接收器报告的速度精度-[vehicle\_gps\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_gps_position.msg).s\_variance\_m\_s
+* 绘制 IMU delta 角度状态估计值-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).states\[10\]，状态\[11\]和状态\[12\]
 * Plot the EKF internal high frequency vibration metrics: 
   * Delta angle coning vibration - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe\[0\]
   * High frequency delta angle vibration - [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vibe\[1\]
