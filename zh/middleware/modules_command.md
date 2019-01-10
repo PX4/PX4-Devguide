@@ -409,11 +409,11 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 ### 用法 {#perf_usage}
 
     perf [arguments...]
-       reset         Reset all counters
+       reset         重置所有计数器
     
-       latency       Print HRT timer latency histogram
+       latency       打印 HRT 计时器延时柱状体
     
-     Prints all performance counters if no arguments given
+    如未指定任何参数则打印所有计数器的性能表现。
     
 
 ## pwm
@@ -451,20 +451,17 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ### 用法 {#pwm_usage}
 
-    pwm <command> [arguments...]
+    pwm &lt;command&gt; [arguments...]
      Commands:
-       arm           Arm output
+       arm           解锁状态输出
+       disarm        锁定状态输出
     
-       disarm        Disarm output
+       info          打印当前所有通道的设定
     
-       info          Print current configuration of all channels
+       forcefail     强制进入故障保护（Failsafe） 模式。 PWM 输出将被设置为故障保护值。
+         on|off      开启或关闭
     
-       forcefail     Force Failsafe mode. PWM outputs are set to failsafe values.
-         on|off      Turn on or off
-    
-       terminatefail Enable Termination Failsafe mode. While this is true, any
-                     failsafe that occurs will be unrecoverable (even if recovery
-                     conditions are met).
+       terminatefail 启用 Termination Failsafe 模式。 该设定为真时所有故障保护都是不可恢复的（即便满足恢复条件）。
          on|off      Turn on or off
     
        rate          Configure PWM rates
@@ -517,8 +514,8 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 ### 用法 {#reboot_usage}
 
     reboot [arguments...]
-         [-b]        Reboot into bootloader
-         [lock|unlock] Take/release the shutdown lock (for testing)
+         [-b]        重启至 bootloader
+         [lock|unlock] 锁定/释放停机锁定（shutdown lock） (用于测试目的)
     
 
 ## sd_bench
@@ -530,13 +527,13 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 ### 用法 {#sd_bench_usage}
 
     sd_bench [arguments...]
-         [-b <val>]  Block size for each read/write
-                     default: 4096
-         [-r <val>]  Number of runs
-                     default: 5
-         [-d <val>]  Duration of a run in ms
-                     default: 2000
-         [-s]        Call fsync after each block (default=at end of each run)
+         [-b &lt;val&gt;]  每次读/写操作的块的大小
+                     默认值： 4096
+         [-r &lt;val&gt;]  运行次数
+                     默认值： 5
+         [-d &lt;val&gt;]  每次运行的持续时间，单位为 ms
+                     默认值： 2000
+         [-s]        完成每个块之后调用 fsync （默认值=每次运行结束时）
     
 
 ## top
