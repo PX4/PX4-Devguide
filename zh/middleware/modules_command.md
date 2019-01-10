@@ -453,8 +453,8 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
     pwm &lt;command&gt; [arguments...]
      Commands:
-       arm           解锁状态输出
-       disarm        锁定状态输出
+       arm           解锁模式输出
+       disarm        锁定模式输出
     
        info          打印当前所有通道的设定
     
@@ -462,38 +462,36 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
          on|off      开启或关闭
     
        terminatefail 启用 Termination Failsafe 模式。 该设定为真时所有故障保护都是不可恢复的（即便满足恢复条件）。
-         on|off      Turn on or off
+         on|off      开启或关闭
     
-       rate          Configure PWM rates
-         -r <val>    PWM Rate in Hz (0 = Oneshot, otherwise 50 to 400Hz)
+       rate          配置 PWM 速率
+         -r &lt;val&gt;    PWM 速率，单位为 Hz (0 = Oneshot，否则该取值应处于 50 到 400Hz之间)
     
-       oneshot       Configure Oneshot125 (rate is set to 0)
+       oneshot       配置 Oneshot125 (速率被设为 0)
     
-       failsafe      Set Failsafe PWM value
+       failsafe      设定故障保护模式的 PWM 值
     
-       disarmed      Set Disarmed PWM value
+       disarmed      设定锁定模式 PWM 值
     
-       min           Set Minimum PWM value
+       min           设定最小 PWM 值
     
-       max           Set Maximum PWM value
+       max           设定最大 PWM 值
     
-       test          Set Output to a specific value until 'q' or 'c' or 'ctrl-c'
-                     pressed
+       test          将输出设定为某一特定值直到按键 'q' 或 'c' 或 'ctrl-c'
+                     被按下
     
-       steps         Run 5 steps from 0 to 100%
+       steps         从 0 到 100% 运行 5 次阶跃
     
-     The commands 'failsafe', 'disarmed', 'min', 'max' and 'test' require a PWM
-     value:
-         -p <val>    PWM value (eg. 1100)
+      'failsafe', 'disarmed', 'min', 'max' 和 'test' 命令都需要指定一个 PWM值：
+         -p &lt;val&gt;    PWM 值 （例如，1100）
     
-     The commands 'rate', 'oneshot', 'failsafe', 'disarmed', 'min', 'max', 'test'
-     and 'steps' additionally require to specify the channels with one of the
-     following commands:
-         [-c <val>]  select channels in the form: 1234 (1 digit per channel,
-                     1=first)
-         [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
-                     default: 0
-         [-g <val>]  Select channels by group (eg. 0, 1, 2. use 'pwm info' to show
+    'rate', 'oneshot', 'failsafe', 'disarmed', 'min', 'max', 'test'
+     和 'steps' 命令还额外需要使用如下命令来指定进行设定的控制通道：
+         [-c &lt;val&gt;]  使用如下形式进行通道的选取: 1234 (1 个数字表示一个通道，
+                     1=第一个通道)
+         [-m &lt;val&gt;]  使用位掩码（bitmask）选取通道 （例如，0xF, 3）
+                     默认值： 0
+         [-g &lt;val&gt;]  使用分组进行通道的选取 （例如，0, 1, 2. use 'pwm info' to show
                      groups)
                      default: 0
          [-a]        Select all channels
