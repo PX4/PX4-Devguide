@@ -98,11 +98,11 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ## Ecl EKF 优于其他估算器的优点和缺点是什么？
 
-与所有估算器一样，大部分性能来自调整以匹配传感器特性。 Tuning is a compromise between accuracy and robustness and although we have attempted to provide a tune that meets the needs of most users, there will be applications where tuning changes are required.
+与所有估算器一样，大部分性能来自调整以匹配传感器特性。 Tuning 是准确性和鲁棒性之间的折衷，虽然我们试图提供满足大多数用户需求的调优，但是应用程序需要调整更改。
 
-For this reason, no claims for accuracy relative to the legacy combination of attitude\_estimator\_q + local\_position\_estimator have been made and the best choice of estimator will depend on the application and tuning.
+出于这个原因，没有相对于 legacy\_estimator\_q + local\_position\_estimator 的传统组合的准确性声明，并且估计器的最佳选择将取决于应用和调整。
 
-### Disadvantages
+### 缺点
 
 * The ecl EKF is a complex algorithm that requires a good understanding of extended Kalman filter theory and its application to navigation problems to tune successfully. It is therefore more difficult for users that are not achieving good results to know what to change.
 * The ecl EKF uses more RAM and flash space
