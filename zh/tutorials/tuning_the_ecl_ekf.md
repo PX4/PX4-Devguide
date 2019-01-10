@@ -104,15 +104,15 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### 缺点
 
-* The ecl EKF is a complex algorithm that requires a good understanding of extended Kalman filter theory and its application to navigation problems to tune successfully. It is therefore more difficult for users that are not achieving good results to know what to change.
-* The ecl EKF uses more RAM and flash space
-* The ecl EKF uses more logging space.
-* The ecl EKF has had less flight time
+* Ecl EKF 是一种复杂的算法，需要很好地理解扩展卡尔曼滤波器理论及其在导航问题中的应用才能成功调整。 因此，未达到良好结果的用户更难以知道要改变什么。
+* Ecl EKF 使用更多 RAM 和闪存空间。
+* Ecl EKF 使用更多的日志空间。
+* Ecl EKF 的飞行时间较短。
 
-### Advantages
+### 优势
 
-* The ecl EKF is able to fuse data from sensors with different time delays and data rates in a mathematically consistent way which improves accuracy during dynamic manoeuvres once time delay parameters are set correctly.
-* The ecl EKF is capable of fusing a large range of different sensor types.
+* Ecl EKF 能够以数学上一致的方式融合来自具有不同时间延迟和数据速率的传感器的数据，一旦正确设置时间延迟参数，就可以提高动态操作期间的准确性。
+* Ecl EKF 能够融合各种不同的传感器类型。
 * The ecl EKF detects and reports statistically significant inconsistencies in sensor data, assisting with diagnosis of sensor errors.
 * For fixed wing operation, the ecl EKF estimates wind speed with or without an airspeed sensor and is able to use the estimated wind in combination with airspeed measurements and sideslip assumptions to extend the dead-reckoning time available if GPS is lost in flight.
 * The ecl EKF estimates 3-axis accelerometer bias which improves accuracy for tailsitters and other vehicles that experience large attitude changes between flight phases.
