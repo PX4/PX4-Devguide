@@ -1,8 +1,8 @@
-# uORB Publication/Subscription Graph
+# UORB 发布/订阅 图
 
-This page provides a uORB publication/subscription graph that shows the communication between modules. It is based on information that is extracted directly from the source code. Usage instructions are provided [below](#instructions).
+本页提供了一张描述了系统各模块之间通信关系的 UORB 发布/订阅 图。 该图根据直接从源代码中提取的信息制作而成。 使用说明 [如下](#instructions) 。
 
-Search: <input id="search" type="text" /> Preset: <select id ="select-graph" name="select-graph"> <option value='graph_px4fmu-v4.json'>FMUv4 Modules</option> <option value='graph_px4fmu-v2.json'>FMUv2 Modules</option> <option value='graph_sitl.json'>SITL Modules</option> <option value='graph_runtime_sitl.json'>SITL Runtime Modules</option> <option value='graph_full.json'>All Modules</option> </select>   
+搜索： <input id="search" type="text" /> 预置： <select id ="select-graph" name="select-graph"> <option value='graph_px4fmu-v4.json'>FMUv4 Modules</option> <option value='graph_px4fmu-v2.json'>FMUv2 Modules</option> <option value='graph_sitl.json'>SITL Modules</option> <option value='graph_runtime_sitl.json'>SITL Runtime Modules</option> <option value='graph_full.json'>All Modules</option> </select>   
 <!-- use an absolute position to allow it to overflow to the left and the right -->
 <svg width="1200" height="1200" style="position: absolute; left: -9999px; right: -9999px; margin: auto;"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -486,12 +486,12 @@ initializeGraph();
 
  
 
-## Graph Properties{#instructions}
+## 图形属性{#instructions}
 
-The graph has the following properties:
+该图具备如下属性：
 
-- Modules are shown in gray with rounded corners while topics are displayed as coloured rectangular boxes.
-- Associated modules and topics are connected by lines. Dashed lines indicate that the module publishes the topic, while solid lines indicate that the module subscribes to the topic.
+- 模块以灰色圆角矩形表示，而主题则以彩色直角矩形框表示。
+- 相关联的模块和主题通过直线相连接。 虚线表示模块发布该主题，而实现则表示模块订阅了该主题。
 - Some modules and topics are excluded: 
   - Topics that are subscribed/published by many modules: `parameter_update`, `mavlink_log` and `log_message`.
   - The set of logged topics.
