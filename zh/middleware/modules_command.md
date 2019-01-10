@@ -64,7 +64,7 @@ Dump file utility. Prints file size and contents in binary mode (don't replace L
 
 ### 描述
 
-Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
+载入并运行一个未被编译至 PX4 二进制文件内的动态 PX4 模块。
 
 ### 示例
 
@@ -74,22 +74,22 @@ Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
 ### 用法 {#dyn_usage}
 
     dyn [arguments...]
-         <file>      File containing the module
-         [arguments...] Arguments to the module
+         &lt;file&gt;      包含模块的文件
+         [arguments...] 传递给模块的参数
     
 
 ## esc_calib
 
 源码： [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
-Tool for ESC calibration
+ESC 校准工具。
 
-Calibration procedure (running the command will guide you through it):
+校准流程（运行命令将会引导你完成此流程）：
 
-- Remove props, power off the ESC's
-- Stop attitude controllers: mc_att_control stop, fw_att_control stop
+- 移除螺旋桨，将 ESC 断电
+- 停止姿态控制器： mc_att_control stop， fw_att_control stop
 - Make sure safety is off
-- Run this command
+- 运行这个命令
 
 ### 用法 {#esc_calib_usage}
 
