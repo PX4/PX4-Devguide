@@ -443,7 +443,7 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
     pwm rate -a -r 400
     
 
-测试 channels 1 and 3, and set the PWM value to 1200 us:
+测试 通道的输出，例如通道1和通道3，并将 PWM 值设置为 1200us：
 
     pwm arm
     pwm test -c 13 -p 1200
@@ -512,7 +512,7 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 源码： [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
 
-Reboot the system
+重启系统
 
 ### 用法 {#reboot_usage}
 
@@ -525,7 +525,7 @@ Reboot the system
 
 源码： [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
 
-Test the speed of an SD Card
+测试 SD 卡的速度
 
 ### 用法 {#sd_bench_usage}
 
@@ -541,21 +541,21 @@ Test the speed of an SD Card
 
 ## top
 
-Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
+源码：[systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
 
-Monitor running processes and their CPU, stack usage, priority and state
+监控运行的进程机器 CPU、栈堆使用情况和优先级、运行状态。
 
 ### 用法 {#top_usage}
 
     top [arguments...]
-       once          print load only once
+       once          仅打印一次负载情况
     
 
 ## usb_connected
 
 源码： [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
-Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
+检查 USB 是否已连接的工具。 此前曾在启动脚本中使用过， 返回值为 0 表示 USB 已连接，否则返回 1 。
 
 ### 用法 {#usb_connected_usage}
 
@@ -570,30 +570,27 @@ Utility to check if USB is connected. Was previously used in startup scripts. A 
 
 ### 用法 {#ver_usage}
 
-    ver <command> [arguments...]
+    ver &lt;command&gt; [arguments...]
      Commands:
-       hw            Hardware architecture
+       hw            硬件构架
     
-       mcu           MCU info
+       mcu           MCU 信息
     
-       git           git version information
+       git           git 版本信息
     
-       bdate         Build date and time
+       bdate         构建日期和时间
+       gcc           编译器信息
     
-       gcc           Compiler info
-    
-       bdate         Build date and time
+       bdate         构建日期和时间
     
        px4guid       PX4 GUID
     
-       uri           Build URI
+       uri           构建 URI
     
-       all           Print all versions
+       all           打印所有版本
     
-       hwcmp         Compare hardware version (returns 0 on match)
-         <hw> [<hw2>] Hardware to compare against (eg. PX4_FMU_V4). An OR comparison
-                     is used if multiple are specified
+       hwcmp         比较硬件版本 (相符时返回 0)
+         &lt;hw&gt; [&lt;hw2&gt;] 需要进行比较的硬件 （例如，PX4_FMU_V4）。 如果指定了多种硬件类型将执行或比较（OR comparison）
     
-       hwtypecmp     Compare hardware type (returns 0 on match)
-         <hwtype> [<hwtype2>] Hardware type to compare against (eg. V2). An OR
-                     comparison is used if multiple are specified
+       hwtypecmp     比较硬件类型（匹配则返回 0 ）
+         &lt;hwtype&gt; [&lt;hwtype2&gt;] 需要进行比较的硬件类型 （例如 V2） 如果指定了多种硬件类型将执行或比较（OR comparison）
