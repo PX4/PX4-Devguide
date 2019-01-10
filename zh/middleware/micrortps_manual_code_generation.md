@@ -1,6 +1,6 @@
 # 手动生成客户端和代理端代码
 
-本主题演示如何在编译 PX4 固件时手动生成客户端和代理的代码（而不是 [automatically generating](../middleware/micrortps.md)）。
+本主题演示如何手动生成客户端和代理的代码（而不是编译 PX4 时[自动生成](../middleware/micrortps.md)的）。
 
 代码是使用 python 脚本生成的：**/Tools/generate_microRTPS_bridge.py**。
 
@@ -64,8 +64,8 @@ $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor
 
 可以在此处找到网桥的手动生成的代码（默认情况下）：
 
-- *Client*: **src/modules/micrortps_bridge/micrortps_client/**
-- *Agent*: **src/modules/micrortps_bridge/micrortps_agent/**
+- *客户端*: **src/modules/micrortps_bridge/micrortps_client/**
+- *代理端*: **src/modules/micrortps_bridge/micrortps_agent/**
 
 ### uORB 序列化代码
 
