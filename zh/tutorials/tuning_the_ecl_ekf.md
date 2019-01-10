@@ -219,27 +219,27 @@ EKF 包含针对严重条件状态和协方差更新的内部错误检查。 请
 * tas\_test\__tio：真正的空速创新与创新测试极限的比率
 * hagl\_test\__tio：地面创新高度与创新测试限制的比率
 
-For a binary pass/fail summary for each sensor, refer to innovation\_check\_flags in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).
+有关每个传感器的二进制通过/失败摘要，请参阅 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的 innovation\_check\__flags。
 
-### GPS Quality Checks
+### GPS 质量检查
 
-The EKF applies a number of GPS quality checks before commencing GPS aiding. These checks are controlled by the [EKF2_GPS_CHECK](../advanced/parameter_reference.md#EKF2_GPS_CHECK) and `EKF2_REQ_*` parameters. The pass/fail status for these checks is logged in the [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).gps\_check\_fail\_flags message. This integer will be zero when all required GPS checks have passed. If the EKF is not commencing GPS alignment, check the value of the integer against the bitmask definition gps\_check\_fail\_flags in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).
+在开始 GPS 辅助之前，EKF 应用了许多 GPS 质量检查。 这些检查由 [EKF2_GPS_CHECK](../advanced/parameter_reference.md#EKF2_GPS_CHECK) 和 `EKF2_REQ _ * ` 参数控制。 这些检查的通过/失败状态记录在 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).gps\_check\_fail\__flags 消息中。 所有必需的 GPS 检查通过后，此整数将为零。 如果 EKF 未开始 GPS 对齐，请根据 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的位掩码定义 gps\_check\_fail\_flags 检查整数的值。
 
-### EKF Numerical Errors
+### EKF 数值误差
 
-The EKF uses single precision floating point operations for all of its computations and first order approximations for derivation of the covariance prediction and update equations in order to reduce processing requirements. This means that it is possible when re-tuning the EKF to encounter conditions where the covariance matrix operations become badly conditioned enough to cause divergence or significant errors in the state estimates.
+EKF 对其所有计算使用单精度浮点运算，并使用一阶近似来推导协方差预测和更新方程，以降低处理要求。 这意味着当重新调整 EKF 时可能遇到协方差矩阵运算变得严重条件足以引起状态估计中的分歧或显着错误的条件。
 
-To prevent this, every covariance and state update step contains the following error detection and correction steps:
+为防止这种情况，每个协方差和状态更新步骤都包含以下错误检测和更正步骤：
 
-* If the innovation variance is less than the observation variance \(this requires a negative state variance which is impossible\) or the covariance update will produce a negative variance for any of the states, then: 
-  * The state and covariance update is skipped
-  * The corresponding rows and columns in the covariance matrix are reset
-  * The failure is recorded in the [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) filter\_fault\_flags message
-* State variances \(diagonals in the covariance matrix\) are constrained to be non-negative.
-* An upper limit is applied to state variances.
-* Symmetry is forced on the covariance matrix.
+* 如果创新方差小于观察方差\（这需要一个不可能的负状态方差）或协方差更新将为任何一个状态产生负方差，那么： 
+  * 跳过状态和协方差更新
+  * 协方差矩阵中的相应行和列被重置
+  * 失败记录在 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) filter\_fault\__flags 消息中
+* 状态方差\（协方差矩阵中的对角线\）被约束为非负的。
+* 上限应用于状态方差。
+* 协方差强制在协方差矩阵上。
 
-After re-tuning the filter, particularly re-tuning that involve reducing the noise variables, the value of estimator\_status.gps\_check\_fail\_flags should be checked to ensure that it remains zero.
+重新调整过滤器后，特别是需要减少噪声变量的重新调整，应检查 estimator\_status.gps\_check\_fail\__flags的值，以确保它保持为零。
 
 ## What should I do if the height estimate is diverging?
 
