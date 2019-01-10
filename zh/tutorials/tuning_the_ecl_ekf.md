@@ -74,7 +74,7 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 ### 拖动特定力量
 
-Multi-rotor platforms can take advantage of the relationship between airspeed and drag force along the X and Y body axes to estimate North/East components of wind velocity. This is enabled by setting bit position 5 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter to true. The relationship between airspeed and specific force \(IMU acceleration\) along the X and Y body axes is controlled by the [EKF2_BCOEF_X](../advanced/parameter_reference.md#EKF2_BCOEF_X) and [EKF2_BCOEF_Y](../advanced/parameter_reference.md#EKF2_BCOEF_Y) parameters which set the ballistic coefficients for flight in the X and Y directions respectively. The amount of specific force observation noise is set by the [EKF2_DRAG_NOISE](../advanced/parameter_reference.md#EKF2_DRAG_NOISE) parameter.
+多转子平台可以利用沿 X 和 Y 体轴的空速和阻力之间的关系来估计风速的北/东分量。 This is enabled by setting bit position 5 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter to true. The relationship between airspeed and specific force \(IMU acceleration\) along the X and Y body axes is controlled by the [EKF2_BCOEF_X](../advanced/parameter_reference.md#EKF2_BCOEF_X) and [EKF2_BCOEF_Y](../advanced/parameter_reference.md#EKF2_BCOEF_Y) parameters which set the ballistic coefficients for flight in the X and Y directions respectively. The amount of specific force observation noise is set by the [EKF2_DRAG_NOISE](../advanced/parameter_reference.md#EKF2_DRAG_NOISE) parameter.
 
 ### 光流
 
