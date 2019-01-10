@@ -113,7 +113,7 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 * Ecl EKF 能够以数学上一致的方式融合来自具有不同时间延迟和数据速率的传感器的数据，一旦正确设置时间延迟参数，就可以提高动态操作期间的准确性。
 * Ecl EKF 能够融合各种不同的传感器类型。
-* The ecl EKF detects and reports statistically significant inconsistencies in sensor data, assisting with diagnosis of sensor errors.
+* Ecl EKF 检测并报告传感器数据中统计上显着的不一致性，帮助诊断传感器错误。
 * For fixed wing operation, the ecl EKF estimates wind speed with or without an airspeed sensor and is able to use the estimated wind in combination with airspeed measurements and sideslip assumptions to extend the dead-reckoning time available if GPS is lost in flight.
 * The ecl EKF estimates 3-axis accelerometer bias which improves accuracy for tailsitters and other vehicles that experience large attitude changes between flight phases.
 * The federated architecture \(combined attitude and position/velocity estimation\) means that attitude estimation benefits from all sensor measurements. This should provide the potential for improved attitude estimation if tuned correctly. 
