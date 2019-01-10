@@ -213,7 +213,7 @@ ESC 校准工具。
 
 将混控器文件加载或者附加到 ESC 驱动中。
 
-Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
+需要注意的是驱动必须支持这个命令使用的 ioctl ，这一点在 Nuttx 上是成立的，但在其它平台上就不一定成立，如 RPI。
 
 ### 用法 {#mixer_usage}
 
@@ -232,17 +232,17 @@ Note that the driver must support the used ioctl's, which is the case on NuttX, 
 
 ### 描述
 
-Application to test motor ramp up.
+用于测试电机的加速。
 
-Before starting, make sure to stop any running attitude controller:
+在开始之前需要确保停止所有姿态控制器的运行。
 
     mc_att_control stop
     fw_att_control stop
     
 
-When starting, a background task is started, runs for several seconds (as specified), then exits.
+命令开始后将开启一个后台任务，该任务会持续若干秒（根据设定值）然后退出。
 
-Note: this command currently only supports the `/dev/pwm_output0` output.
+Note: 该命令目前只支持 `/dev/pwm_output0` 输出。
 
 ### 示例
 
@@ -253,18 +253,18 @@ Note: this command currently only supports the `/dev/pwm_output0` output.
 
     motor_ramp [arguments...]
          ramp|sine|square mode
-         <min_pwm> <time> [<max_pwm>] pwm value in us, time in sec
+         &lt;min_pwm&gt; &lt;time&gt; [&lt;max_pwm&gt;] pwm value in us, time in sec
     
-     WARNING: motors will ramp up to full speed!
+    警告：电机将加速到最大速度！
     
 
 ## motor_test
 
 源码： [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
-Utility to test motors.
+电机测试工具。
 
-Note: this can only be used for drivers which support the motor_test uorb topic (currently uavcan and tap_esc)
+Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有 uavcan 和 tap_esc）。
 
 ### 用法 {#motor_test_usage}
 
@@ -285,7 +285,7 @@ Note: this can only be used for drivers which support the motor_test uorb topic 
 
 源码： [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
-Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
+用于加载和测试分区的工具（由飞控板定义的 FRAM/EEPROM 存储）
 
 ### 用法 {#mtd_usage}
 
@@ -311,9 +311,9 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
 
 源码： [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
 
-Start an NSH shell on a given port.
+在指定端口启动一个 NSH shell
 
-This was previously used to start a shell on the USB serial port. Now there runs mavlink, and it is possible to use a shell over mavlink.
+该命令此前被用于在 USB 串口端口开启一个 shell， Now there runs mavlink, and it is possible to use a shell over mavlink.
 
 ### 用法 {#nshterm_usage}
 
