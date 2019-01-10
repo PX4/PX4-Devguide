@@ -428,9 +428,9 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 它在启动脚本中用于确保应用了 PWM 参数 (`PWM_*`) （当机型配置中指定了参数的情况下将改用由机型配置提供的参数）。 `pwm info` 用于显示当前的设定 (配平值是一个偏移量，可使用 `PWM_MAIN_TRIMx` 和 `PWM_AUX_TRIMx` 进行设置)。
 
-The disarmed value should be set such that the motors don't spin (it's also used for the kill switch), at the minimum value they should spin.
+锁定值（disarmed value）的设置应保证电机不会转动（该取值也被应用于 kill switch），最小值（minimum value）的设定应保证电机会转动。
 
-Channels are assigned to a group. Due to hardware limitations, the update rate can only be set per group. Use `pwm info` to display the groups. If the `-c` argument is used, all channels of any included group must be included.
+通道被分配到一个组。 由于硬件限制, 只能为每个组设置更新速率。 使用 `pwm info` 显示所有的组。 If the `-c` argument is used, all channels of any included group must be included.
 
 The parameters `-p` and `-r` can be set to a parameter instead of specifying an integer: use -p p:PWM_MIN for example.
 
