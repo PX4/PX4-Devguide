@@ -173,12 +173,12 @@ There are a number of ways to make the UDP packets available on external interfa
 
 Enable [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) to broadcast heartbeats on the local network.
 
-A remote computer can then connect to it by listening to the Simulation computer's IP address on the appropriate port (i.e. 14550 for *QGroundControl*).
+A remote computer can then connect to the simulator by listening to the appropriate port (i.e. 14550 for *QGroundControl*).
 
 
 ### Use MAVLink Router
 
-[mavlink-router](https://github.com/intel/mavlink-router) can be used to route  packets from localhost to an external interface.
+The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route  packets from localhost to an external interface.
 
 ### Modify Configuration for External Broadcasting 
 
@@ -219,4 +219,5 @@ The port number `14550` is valid for connecting to QGroundControl or another GCS
 
 The tunnel may in theory run indefinitely, but *netcat* connections may need to be restarted if there is a problem.
 
-The automated [bash connection script](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) can be used to automate setup of QGC to simulation server running the PX4 stack. 
+The [QGC_remote_connect.bash](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) script can be run on the QGC computer to automatically setup/run the above instructions.
+The simulation must already be running on the remote server, and you must be able to SSH into that server.
