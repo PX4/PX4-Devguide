@@ -82,23 +82,23 @@ EKF 具有不同的操作模式，允许不同的传感器测量组合。 在启
 
 * 有效的测距仪数据可用。
 * [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) 参数中的位位置 1 为真。
-* The quality metric returned by the flow sensor is greater than the minimum requirement set by the [EKF2_OF_QMIN](../advanced/parameter_reference.md#EKF2_OF_QMIN) parameter.
+* 流量传感器返回的质量度量值大于 [EKF2_OF_QMIN](../advanced/parameter_reference.md#EKF2_OF_QMIN) 参数设置的最低要求。
 
-### External Vision System
+### 外部视觉系统
 
-Position and Pose Measurements from an external vision system, e.g. Vicon, can be used:
+来自外部视觉系统的位置和姿势测量，例如， Vicon，可以使用：
 
-* External vision system horizontal position data will be used if bit position 3 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter is true.
-* External vision system vertical position data will be used if the [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) parameter is set to 3.
-* External vision system pose data will be used for yaw estimation if bit position 4 in the [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) parameter is true.
+* 如果 [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) 参数中的位位置 3 为真，则将使用外部视觉系统水平位置数据。
+* 如果 [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE) 参数设置为 3，将使用外部视觉系统垂直位置数据。
+* 如果 [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK) 参数中的位位置 4 为真，则外部视觉系统姿势数据将用于偏航估计。
 
-## How do I use the 'ecl' library EKF?
+## 如何使用'ecl'库 EKF？
 
-Set the [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) parameter to 2 to use the ecl EKF.
+将 [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) 参数设置为 2 以使用 ecl EKF。
 
-## What are the advantages and disadvantages of the ecl EKF over other estimators?
+## Ecl EKF 优于其他估算器的优点和缺点是什么？
 
-Like all estimators, much of the performance comes from the tuning to match sensor characteristics. Tuning is a compromise between accuracy and robustness and although we have attempted to provide a tune that meets the needs of most users, there will be applications where tuning changes are required.
+与所有估算器一样，大部分性能来自调整以匹配传感器特性。 Tuning is a compromise between accuracy and robustness and although we have attempted to provide a tune that meets the needs of most users, there will be applications where tuning changes are required.
 
 For this reason, no claims for accuracy relative to the legacy combination of attitude\_estimator\_q + local\_position\_estimator have been made and the best choice of estimator will depend on the application and tuning.
 
