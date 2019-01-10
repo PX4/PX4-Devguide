@@ -75,13 +75,13 @@ pxh> commander takeoff
 
 ### 更改仿真速度
 
-The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
+可以使用环境变量 `PX4_SIM_SPEED_FACTOR` 提高或者降低仿真速度相对于实际时间的大小。
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl_default jmavsim
     
 
-For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
+更多相关信息请参考：[Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
 ### 使用游戏手柄 {#joystick}
 
