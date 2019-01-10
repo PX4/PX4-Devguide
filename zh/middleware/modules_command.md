@@ -289,22 +289,21 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ### 用法 {#mtd_usage}
 
-    mtd <command> [arguments...]
+    mtd &lt;command&gt; [arguments...]
      Commands:
-       status        Print status information
+       status        打印状态信息
     
-       start         Mount partitions
+       start         挂在分区
     
-       readtest      Perform read test
+       readtest      进行读取测试
     
-       rwtest        Perform read-write test
+       rwtest        进行读写测试
     
-       erase         Erase partition(s)
+       erase         擦除分区
     
-     The commands 'start', 'readtest', 'rwtest' and 'erase' have an optional
-     parameter:
-         [<partition_name1> [<partition_name2> ...]] Partition names (eg.
-                     /fs/mtd_params), use system default if not provided
+     'start', 'readtest', 'rwtest' 和 'erase' 命令有如下可选参数：
+         [&lt;partition_name1&gt; [&lt;partition_name2&gt; ...]] 分区名称
+                     （例如，/fs/mtd_params），如未指定分区名称则可使用系统默认值。
     
 
 ## nshterm
@@ -318,7 +317,7 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 ### 用法 {#nshterm_usage}
 
     nshterm [arguments...]
-         <file:dev>  Device on which to start the shell (eg. /dev/ttyACM0)
+         &lt;file:dev&gt;  指定 shell 从哪个设备上运行 （例如，/dev/ttyACM0）
     
 
 ## param
@@ -491,16 +490,15 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
                      1=第一个通道)
          [-m &lt;val&gt;]  使用位掩码（bitmask）选取通道 （例如，0xF, 3）
                      默认值： 0
-         [-g &lt;val&gt;]  使用分组进行通道的选取 （例如，0, 1, 2. use 'pwm info' to show
-                     groups)
-                     default: 0
-         [-a]        Select all channels
+         [-g &lt;val&gt;]  使用分组进行通道的选取 （例如，0, 1, 2. 使用 'pwm info' 可以显示所有分组）
+                     默认值： 0
+         [-a]        选取所有通道
     
-     These parameters apply to all commands:
-         [-d <val>]  Select PWM output device
-                     values: <file:dev>, default: /dev/pwm_output0
-         [-v]        Verbose output
-         [-e]        Exit with 1 instead of 0 on error
+    下面的参数适用于上述所有命令：
+         [-d &lt;val&gt;]  选择 PWM 输出设备
+                     取值： &lt;file:dev&gt;, 默认值： /dev/pwm_output0
+         [-v]        详细输出
+         [-e]        遇到错误退出时返回 1 而不是 0
     
 
 ## reboot
