@@ -196,7 +196,7 @@ make emlid_navio2_native # for native build
 "PX4" 可执行文件位于目录 **build/emlid_navio2_native/** 中。 直接运行:
 
 ```sh
-sudo ./build/emlid_navio2_native/px4 ./posix-configs/rpi/px4.config 
+sudo ./build/emlid_navio2_native/px4 -s ./posix-configs/rpi/px4.config
 ```
 
 成功生成,，然后执行 PX4 将会看到如下内容：
@@ -361,7 +361,7 @@ ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 
 ```sh
 cd /home/linaro
-./px4 mainapp.config
+./px4 -s mainapp.config
 ```
 
 请注意, 断开 USB 后，PX4 将立即停止（或者如果您的 ssh 会话已断开连接）。 要飞行，您应该使 PX4 上电后自动启动。
@@ -388,7 +388,7 @@ adb push rc.local /etc/rc.local
 对于自动启动，请在 `exit 0 ` 之前添加以下行：
 
 ```sh
-(cd /home/linaro && ./px4 mainapp.config > mainapp.log)
+(cd /home/linaro && ./px4 -s mainapp.config > mainapp.log)
 
 exit 0
 ```
