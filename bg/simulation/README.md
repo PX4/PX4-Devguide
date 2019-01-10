@@ -113,19 +113,18 @@ The simulation can be further configured via environment variables:
 
 The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
-### Run Simulation Faster than Realtime
+### Run Simulation Faster than Realtime {#simulation_speed}
 
-SITL can be run faster or slower than realtime. The speed factor is set using the environment variable `PX4_SIM_SPEED_FACTOR`. The speed factor is implemented for the jMAVSim and Gazebo SITL simulation.
+SITL can be run faster or slower than realtime when using jMAVSim or Gazebo.
 
-For instance to run the jMAVSim simulation at 2 times the real time speed:
+The speed factor is set using the environment variable `PX4_SIM_SPEED_FACTOR`. For example, to run the jMAVSim simulation at 2 times the real time speed:
 
     PX4_SIM_SPEED_FACTOR=2 make px4_sitl jmavsim
     
 
-Or to apply to all SITL runs in the current session:
+You can apply the factor to all SITL runs in the current session using `EXPORT`:
 
     export PX4_SIM_SPEED_FACTOR=2
-    
     make px4_sitl jmavsim
     
 
