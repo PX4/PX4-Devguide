@@ -320,13 +320,13 @@ Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更�
 
 \（插入示例图显示错误的偏航对齐此处\）
 
-### Determination of Poor GPS Accuracy
+### GPS 精度差的确定
 
-Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver in conjunction with a rise in innovations. Transient errors due to multipath, obscuration and interference are more common causes. Here is an example of a temporary loss of GPS accuracy where the multi-rotor started drifting away from its loiter location and had to be corrected using the sticks. The rise in [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio to greater than 1 indicates the GPs velocity was inconsistent with other measurements and has been rejected.
+Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver in conjunction with a rise in innovations. 由多径，遮蔽和干扰引起的瞬态误差是更常见的原因。 下面是一个暂时失去 GPS 精度的例子，其中多旋翼开始从其游荡位置漂移并且必须使用摇杆进行校正。 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio 的上升值大于 1 表示 GPS 速度与其他测量值不一致，并且已被拒绝。
 
 ![](../../assets/ecl/gps_glitch_-_test_ratios.png)
 
-This is accompanied with rise in the GPS receivers reported velocity accuracy which indicates that it was likely a GPS error.
+这伴随着 GPS 接收器报告的速度精度的上升，这表明它可能是 GPS 误差。
 
 ![](../../assets/ecl/gps_glitch_-_reported_receiver_accuracy.png)
 
@@ -334,12 +334,12 @@ If we also look at the GPS horizontal velocity innovations and innovation varian
 
 ![](../../assets/ecl/gps_glitch_-_velocity_innovations.png)
 
-### Determination of GPS Data Loss
+### GPS 数据丢失的确定
 
-Loss of GPS data will be shown by the velocity and position innovation test ratios 'flat-lining'. If this occurs, check the other GPS status data in `vehicle_gps_position` for further information.
+Loss of GPS data will be shown by the velocity and position innovation test ratios 'flat-lining'. 如果发生这种情况，请检查 `vehicle_gps_position` 中的其他 GPS 状态数据以获取更多信息。
 
-The following plot shows the NED GPS velocity innovations `ekf2_innovations_0.vel_pos_innov[0 ... 2]`, the GPS NE position innovations `ekf2_innovations_0.vel_pos_innov[3 ... 4]` and the Baro vertical position innovation `ekf2_innovations_0.vel_pos_innov[5]` generated from a simulated VTOL flight using SITL Gazebo.
+下图显示了 NED GPS 速度创新 `ekf2_innovations_0.vel_pos_innov[0 ... 2]`，GPS NE 位置创新 `ekf2_innovations_0.vel_pos_innov[3 ... 4] `和使用 SITL Gazebo 从模拟 VTOL 生成的 Baro 垂直位置创新 `ekf2_innovations_0.vel_pos_innov [5] `。
 
-The simulated GPS was made to lose lock at 73 seconds. Note the NED velocity innovations and NE position innovations 'flat-line' after GPs is lost. Note that after 10 seconds without GPS data, the EKF reverts back to a static position mode using the last known position and the NE position innovations start to change again.
+模拟的 GPS 在 73 秒时失锁。 Note the NED velocity innovations and NE position innovations 'flat-line' after GPs is lost. Note that after 10 seconds without GPS data, the EKF reverts back to a static position mode using the last known position and the NE position innovations start to change again.
 
 ![GPS Data Loss - in SITL](../../assets/ecl/gps_data_loss_-_velocity_innovations.png)
