@@ -69,7 +69,7 @@ Copy `rx.key` to RX host and `tx.key` to TX host.
         git clone https://github.com/svpcom/wifibroadcast
         cd wifibroadcast
         make
-        ./scripts/tx_standalone.sh wlan1   # where wlan1 is your WiFi TX interface
+        ./scripts/tx_standalone.sh wlan1   # wlan1 的位置是你的 WiFi 发送界面
         
     
     This will setup wifibroadcast using `MCS #1: QPSK 1/2 40MHz Short GI` modulation (30 Mbit/s) on 149 WiFi channel (in 5GHz band) and listening on UDP port 5600 for incoming data.
@@ -81,7 +81,7 @@ Copy `rx.key` to RX host and `tx.key` to TX host.
         git clone https://github.com/svpcom/wifibroadcast
         cd wifibroadcast
         make
-        ./scripts/rx_standalone.sh wlan1  # your WiFi interface for RX
+        ./scripts/rx_standalone.sh wlan1  # 你的用于接收的 WiFi 界面
         
 
 2. Run qgroundcontrol or
