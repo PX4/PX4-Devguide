@@ -6,11 +6,11 @@
 
 ### 描述
 
-Smart battery driver for the BQ40Z50 fuel gauge IC.
+针对 BQ40Z50 电池管理 IC 的智能电池驱动。
 
 ### 示例
 
-To write to flash to set parameters. address, number_of_bytes, byte0, ... , byteN
+写入内存以对参数进行设置， 地址，字节数，byte0, ... , byteN：
 
     batt_smbus -X write_flash 19069 2 27 0
     
