@@ -6,20 +6,20 @@
 
 ## 使用 uORB 报文
 
-首先，在 **Firmware/msg/** 目录下创建一个新的 uORB 报文。 The message file will be called **throughput_256.msg** and have the following content:
+首先，在 **Firmware/msg/** 目录下创建一个新的 uORB 报文。 可以命名为 **throughput_256.msg** 并包含如下内容：
 
 ```text
 uint8[256] data
 ```
 
-This can be done with the command line below:
+可以使用如下命令：
 
 ```sh
 cd /path/to/PX4/Firmware/msg
 echo uint8[256] data > throughput_256.msg
 ```
 
-Register the new message adding it to the list of messages in the file: **/Firmware/msg/CMakeLists.txt**:
+注册新的报文，添加到如下文件中：**/Firmware/msg/CMakeLists.txt**：
 
 ```cmake
 ...
@@ -29,7 +29,7 @@ throughput_256.msg
 ...
 ```
 
-Give the message a topic id by adding a line in the **/Firmware/Tools/message_id.py** script:
+通过在脚本 **/Firmware/Tools/message_id.py** 中添加一行，制定一个该报文的话题 Id ：
 
 ```python
 ...
@@ -39,7 +39,7 @@ Give the message a topic id by adding a line in the **/Firmware/Tools/message_id
 ...
 ```
 
-## Disable automatic bridge code generation
+## 禁用自动桥接代码生成
 
 Disable automatic generation of bridge code (as part of the PX4 build process) by setting the variable `GENERATE_RTPS_BRIDGE` to `off` in the *.cmake* file for the target platform (*cmake/configs/*):
 
