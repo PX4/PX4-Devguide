@@ -4,7 +4,7 @@
 
 本主题说明如何将外部（“out of tree”）模块添加到PX4编译中。
 
-> **Tip** 我们鼓励您尽可能将更改贡献给PX4！
+> **Tip** 我们鼓励您尽可能将更改贡献给 PX4！
 
 ## 用法
 
@@ -42,15 +42,15 @@ uORB消息也可以在树外定义。 为此，必须存在` $ EXTERNAL_MODULES_
 
 - 将所有新消息定义放在` $ EXTERNAL_MODULES_LOCATION / msg </ 0>目录中。 
 这些新的树外消息定义的格式与任何其他<a href="../middleware/uorb.md#adding-a-new-topic"> uORB消息定义</a>的格式相同。</li>
-<li><p>将以下内容添加文件<code> $ EXTERNAL_MODULES_LOCATION / msg / CMakeLists.txt </ 0>：</p>
-
-<pre><code>set(config_msg_list_external
-    <message1>.msg
-    <message2>.msg
-    <message3>.msg
-    PARENT_SCOPE
-    )
-`</pre> 
+<li><p>将以下内容添加文件<code>$EXTERNAL_MODULES_LOCATION/msg/CMakeLists.txt`：</p> 
+      set(config_msg_list_external
+          <message1>.msg
+          <message2>.msg
+          <message3>.msg
+          PARENT_SCOPE
+          )
+      
+  
   其中` &lt;message#&gt;.msg `是要处理并用于生成uORB消息的uORB消息定义文件的名称。
 
 树外uORB消息将在与正常uORB消息相同的位置生成。 Uorb主题标题在` &lt;build_dir&gt; / uORB / topics / `中生成，消息源文件在` &lt;build_dir&gt; / msg / topics_sources / `中生成。
@@ -59,7 +59,7 @@ uORB消息也可以在树外定义。 为此，必须存在` $ EXTERNAL_MODULES_
 
 > **Warning** 树外的uORB消息定义不能与任何普通的uORB消息具有相同的名称。
 
-## 构建外部模块和uORB消息 {#building}
+## 构建外部模块和 uORB 消息 {#building}
 
 执行` make px4_sitl EXTERNAL_MODULES_LOCATION = &lt;path&gt; `。
 
