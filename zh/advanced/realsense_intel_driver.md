@@ -12,7 +12,7 @@
 - 扩展: 安装了 Virtual Box 的扩展包 (用于 usb3 支持)
 - 客户机操作系统: linux-ubuntu 14.04.3 lts
 
-The tutorial is ordered in the following way: In a first part it is shown how to install Ubuntu 14.04 as a guest OS in the Virtual Box. In a second part is shown how to install ROS Indigo and the camera driver. The ensuing frequently used expressions have the following meaning:
+本教程按以下方式排序: 在第一部分中, 演示如何在 Virtual Box 中安装 ubuntu 14.04 作为客户机系统。 第二部分会演示如何安装 ROS Indigo 和相机驱动程序。 The ensuing frequently used expressions have the following meaning:
 
 - Virtual Box (VB): Program that runs different Virtual Machines. In this case the Oracle VM.
 - Virtual Machine (VM): The operation system that runs in the Virtual Box as a guest system. In this case Ubuntu.
@@ -35,7 +35,7 @@ The tutorial is ordered in the following way: In a first part it is shown how to
   - Go to the settings of the Virtual Machine to the menu selection USB and choose: "USB 3.0(xHCI)". This is only possible if you have installed the extension package for the Virtual Box.
   - Start the Virtual Machine again.
 
-## Installing ROS Indigo
+## 安装 ROS Indigo
 
 - Follow instructions given at [ROS indigo installation guide](http://wiki.ros.org/indigo/Installation/Ubuntu): 
   - Install Desktop-Full version.
