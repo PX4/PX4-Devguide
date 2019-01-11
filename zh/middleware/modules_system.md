@@ -57,15 +57,15 @@
     heater &lt;command&gt; [arguments...]
      Commands:
        controller_period 报告 heater 驱动周期间隔数值，（us），若
-                     提供了参数则设置 heater 驱动的周期间隔。
+                     提供了参数值则设置 heater 驱动的周期间隔。
     
-       integrator    Sets the integrator gain value if supplied an argument and
-                     reports the current value.
+       integrator    报告当前积分增益的值，如果
+                     提供了参数值则设置积分增益。
     
-       proportional  Sets the proportional gain value if supplied an argument and
-                     reports the current value.
+       proportional  报告当前比例增益的值，如果
+                     提供了参数值则设置比例增益。
     
-       sensor_id     Reports the current IMU the heater is temperature controlling.
+       sensor_id     报告 heater 驱动当前正在进行温度控制的 IMU 传感器的 ID。
     
        setpoint      Reports the current IMU temperature.
     
