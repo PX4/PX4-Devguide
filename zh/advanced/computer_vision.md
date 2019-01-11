@@ -28,11 +28,11 @@ PX4 使用计算机视觉系统（主要在机载计算机上运行）以支持�
 
 VIO使用[视觉测距](https://en.wikipedia.org/wiki/Visual_odometry)来从视觉信息估计车辆*姿势*，结合来自IMU的惯性测量（以校正与载具快速移动导致不良的图像捕获）。
 
-> **Note** VIO和[ MoCap ](#mocap)之间的区别在于VIO摄像机/ IMU是基于载具本身的，并且还提供速度信息。
+> **Note** VIO 和 [MoCap](#mocap) 之间的区别在于 VIO 摄像机、IMU 是基于飞机本身的，并且还提供速度信息。
 
 有关VIO的信息，请参阅：
 
-- [EKF>外部视觉系统](../tutorials/tuning_the_ecl_ekf.md#external-vision-system)
+- [EKF > 外部视觉系统](../tutorials/tuning_the_ecl_ekf.md#external-vision-system)
 - [Snapdragon > 安装 > 安装 Snap VIO](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
 
 ## 光流 {#optical_flow}
