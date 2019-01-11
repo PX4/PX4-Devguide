@@ -43,11 +43,11 @@ fw_pos_control_l1 是针对固定翼飞机的位置控制器。
 
 ### 描述
 
-This implements the multicopter attitude and rate controller. It takes attitude setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+此模块实现了多旋翼无人机的姿态角和姿态角速率控制器。 该模块以姿态角期望值 (`vehicle_attitude_setpoint`) 或者姿态角速率期望值 (在竞技（acro）模式下通过`manual_control_setpoint` 主题发布该指令) 作为输入然后输出执行器控制量消息。
 
-The controller has two loops: a P loop for angular error and a PID loop for angular rate error.
+控制器有两个回路：一个针对角度误差的比例（P）控制回路和一个针对角速率误差的 PID 控制回路。
 
-Publication documenting the implemented Quaternion Attitude Control: Nonlinear Quadrocopter Attitude Control (2013) by Dario Brescianini, Markus Hehn and Raffaello D'Andrea Institute for Dynamic Systems and Control (IDSC), ETH Zurich
+记载了实现基于四元数的姿态控制的出版物：Nonlinear Quadrocopter Attitude Control (2013) by Dario Brescianini, Markus Hehn and Raffaello D'Andrea Institute for Dynamic Systems and Control (IDSC), ETH Zurich
 
 https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf
 
