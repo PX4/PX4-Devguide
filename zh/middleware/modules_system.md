@@ -67,20 +67,19 @@
     
        sensor_id     报告 heater 驱动当前正在进行温度控制的 IMU 传感器的 ID。
     
-       setpoint      Reports the current IMU temperature.
+       setpoint      报告当前 IMU 温度。
     
-       start         Starts the IMU heater driver as a background task
+       start         运行 IMU heater 驱动的后台任务
     
-       status        Reports the current IMU temperature, temperature setpoint, and
-                     heater on/off status.
+       status        报告当前 IMU 温度，温度设定值和 heater 的 on/off 状态。
     
-       stop          Stops the IMU heater driver.
+       stop          停止 IMU heater 驱动。
     
-       temp          Reports the current IMU temperature.
+       temp          报告当前 IMU 温度。
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## land_detector
@@ -89,11 +88,11 @@
 
 ### 描述
 
-Module to detect the freefall and landed state of the vehicle, and publishing the `vehicle_land_detected` topic. Each vehicle type (multirotor, fixedwing, vtol, ...) provides its own algorithm, taking into account various states, such as commanded thrust, arming state and vehicle motion.
+该模块会检测无人机的自由落体状态和触地状态，并将相关数据从 `vehicle_land_detected` 主题中发布出去。 每一个类型的无人机（多旋翼， vtol，...）都有各自的检测算法，该算法会考虑无人机的多种状态，例如指令推力、解锁状态、飞机运动状态等。
 
 ### 实现
 
-Every type is implemented in its own class with a common base class. The base class maintains a state (landed, maybe_landed, ground_contact). Each possible state is implemented in the derived classes. A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
+每一类都是基于一个公共的基类在各自独有的类中完成模块的实现。 基类中包含了一个状态量 (landed, maybe_landed, ground_contact）。 每一个可能的状态都在衍生出的子类中进行了实现。 A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
 
 #### Multicopter Land Detector
 
