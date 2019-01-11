@@ -1,6 +1,6 @@
 # Various Notes
 
-This is a collection of tips and tricks to solve issues when setting up or working with the UAVCAN.
+这是在设置或使用 UAVCAN 时解决问题的一系列提示和技巧。
 
 ### Arm but motors not spinning
 
