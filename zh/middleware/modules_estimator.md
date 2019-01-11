@@ -2,15 +2,15 @@
 
 ## ekf2
 
-Source: [modules/ekf2](https://github.com/PX4/Firmware/tree/master/src/modules/ekf2)
+源码：[modules/ekf2](https://github.com/PX4/Firmware/tree/master/src/modules/ekf2)
 
 ### 描述
 
-Attitude and position estimator using an Extended Kalman Filter. It is used for Multirotors and Fixed-Wing.
+基于扩展卡尔曼滤波器的姿态和位置估计器。 该模块同时应用于多旋翼和固定翼飞机。
 
-The documentation can be found on the [tuning_the_ecl_ekf](https://dev.px4.io/en/tutorials/tuning_the_ecl_ekf.html) page.
+更详细的记录可以在 [tuning_the_ecl_ekf](https://dev.px4.io/en/tutorials/tuning_the_ecl_ekf.html) 页面找到。
 
-ekf2 can be started in replay mode (`-r`): in this mode it does not access the system time, but only uses the timestamps from the sensor topics.
+ekf2 可以在回放（replay）模式中启动 (`-r`)：改模式下它不会访问系统时间，而是使用传感器主题中的时间戳。
 
 ### 用法 {#ekf2_usage}
 
@@ -26,11 +26,11 @@ ekf2 can be started in replay mode (`-r`): in this mode it does not access the s
 
 ## local_position_estimator
 
-Source: [modules/local_position_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/local_position_estimator)
+源码：[modules/local_position_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/local_position_estimator)
 
 ### 描述
 
-Attitude and position estimator using an Extended Kalman Filter.
+使用扩展卡尔曼滤波器估计姿态和位置信息。
 
 ### 用法 {#local_position_estimator_usage}
 
@@ -45,7 +45,7 @@ Attitude and position estimator using an Extended Kalman Filter.
 
 ## wind_estimator
 
-Source: [modules/wind_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/wind_estimator)
+源码：[modules/wind_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/wind_estimator)
 
 ### 描述
 
