@@ -352,17 +352,17 @@ GPS 驱动模块负责处理与设备的通信并且将位置信息通过 uORB �
 
 ### 描述
 
-载荷（云台）控制驱动， It maps several different input methods (eg. RC or MAVLink) to a configured output (eg. AUX channels or MAVLink).
+载荷（云台）控制驱动， 该模块将多种不同的输入手段（例如， RC 信号和 MAVLink 信号）映射到 一个配置好的输出端口上 （例如，辅助 AUX 通道或者 MAVLink）。
 
-Documentation how to use it is on the [gimbal_control](https://dev.px4.io/en/advanced/gimbal_control.html) page.
+该模块的使用方式在[gimbal_control](https://dev.px4.io/en/advanced/gimbal_control.html) 页面有记载。
 
 ### 实现
 
-Each method is implemented in its own class, and there is a common base class for inputs and outputs. They are connected via an API, defined by the `ControlData` data structure. This makes sure that each input method can be used with each output method and new inputs/outputs can be added with minimal effort.
+除了一个针对输入和输出的通用基类外，每个方法都是通过各自独有的类实现的。 各个类通过一个由 `ControlData` 数据结构定义的 API 实现相互的连接。 此举确保了每一种输入方法都可以在每一个输出方法中使用，且只需要很少的工作量就可以添加一个新的输入/输出。
 
 ### 示例
 
-Test the output by setting a fixed yaw angle (and the other axes to 0):
+通过设定一个固定的偏航角来测试输出功能（其它轴的角度设为0）：
 
     vmount stop
     vmount test yaw 30
@@ -370,14 +370,13 @@ Test the output by setting a fixed yaw angle (and the other axes to 0):
 
 ### 用法 {#vmount_usage}
 
-    vmount <command> [arguments...]
+    vmount &lt;command&gt; [arguments...]
      Commands:
        start
     
-       test          Test the output: set a fixed angle for one axis (vmount must
-                     not be running)
-         roll|pitch|yaw <angle> Specify an axis and an angle in degrees
+       test          测试输出：将某个轴的角度设定为一个定值 (vmount 不能处于运行状态)
+         roll|pitch|yaw &lt;angle&gt; 指定一个旋转轴和旋转角度，单位 °
     
        stop
     
-       status        print status info
+       status        打印状态信息
