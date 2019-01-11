@@ -38,7 +38,7 @@ This sections shows how to set up the Odroid C1 such that it is an access point.
 sudo apt-get install hostapd udhcpd
 ```
 
-配置 DHCP Edit the file `/etc/udhcpd.conf`
+配置 DHCP 编辑文件 `/etc/udhcpd.conf`
 
 ```bash
 start 192.168.2.100 # This is the range of IPs that the hotspot will give to client devices.
@@ -59,7 +59,7 @@ Edit the file `/etc/default/udhcpd` and change the line:
 DHCPD_ENABLED="no"
 ```
 
-to
+至
 
 ```bash
 #DHCPD_ENABLED="no"
@@ -98,18 +98,18 @@ If you have followed the [Odroid C1 tutorial](https://pixhawk.org/peripherals/on
 Configure HostAPD: To create a WPA-secured network, edit the file `/etc/hostapd/hostapd.conf` (create it if it does not exist) and add the following lines:
 
     auth_algs=1
-    channel=6            # Channel to use
+    channel=6            # 要使用的通道
     hw_mode=g
-    ieee80211n=1          # 802.11n assuming your device supports it
+    ieee80211n=1          # 802.11n 假设你的设备支持它
     ignore_broadcast_ssid=0
     interface=wlan0
     wpa=2
     wpa_key_mgmt=WPA-PSK
     wpa_pairwise=TKIP
     rsn_pairwise=CCMP
-    # Change the to the proper driver
+    # 更改至正确的驱动
     driver=nl80211
-    # Change these to something else if you want
+    # 如果需要的话，把下面两项改成别的名字和密码
     ssid=OdroidC1
     wpa_passphrase=QGroundControl
     
