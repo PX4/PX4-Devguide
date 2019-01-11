@@ -164,27 +164,27 @@ PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图�
     
     正如开头所提到的，模拟环境可以在同一网络上的多台计算机上运行。 但它有点复杂，因为开箱即用配置不会将 PX4 UDP 数据包广播到外部接口，并且数据包默认在内部路由。 解决方案是通过 [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) 参数启用 brodcasting 以允许广播 UDP 数据包到本地网络或使用隧道将计算机连接在一起。
     
-    Using the tunnel is a more flexible option because the computers are not required to sit on the same network and remote powerful simulation server can be used for example.
+    使用这种通道是一种更灵活的选择，因为计算机不需要位于同一网络上，例如可以使用远程强大的模拟服务器。
     
-    One, probably the easiest way to create the tunnel is the use of SSH tunneling options. The tunnel itself could be created easily by running the following command on localhost.
+    其中一个可能是创建该通道的最简单方法是使用SSH通道选项。 通过在 localhost 上运行以下命令，可以轻松创建通道本身。
     
         ssh -C -fR 14551:localhost:14551 remote.local
         
     
-    Where "remote.local" is the name of a remote computer.
+    其中“remote.local”是远程计算机的名称
     
-    Unfortunately, the SSH itself cannot route the UDP packets. Therefore the UDP packets need to be translated to TCP packets. By [netcat](https://en.wikipedia.org/wiki/Netcat) utility separately on the local and remote side of the tunnel. Local side of UDP packet translation of QGC could be implemented by running following commands.
+    但SSH本身无法发送UDP数据包。 因此，需要将 UDP 数据包转换为 TCP 数据包。 通过 [netcat](https://en.wikipedia.org/wiki/Netcat) 实用程序分别在通道的本地和远程端。 可以通过运行以下命令来实现 QGC 的 UDP 分组转换的本地端。
     
         mkfifo /tmp/tcp2udp
         netcat -lvp 14551 < /tmp/tcp2udp | netcat -u localhost 14550 > /tmp/tcp2udp
         
     
-    For the remote side of the tunnel, the command differs.
+    对于通道的远程端命令是不同的。
     
         mkfifo /tmp/udp2tcp
         netcat -lvup 14550 < /tmp/udp2tcp | netcat localhost 14551 > /tmp/udp2tcp
         
     
-    It is necessary to have QGC running before executing the netcat. The tunnel could run infinitely, but netcat connections may need a restart in case of improper communication state occurs. The port number `14550` is valid for QGC software connection and should be adjusted for other possible communication channels.
+    在执行 netcat 之前必须运行 QGC。 The tunnel could run infinitely, but netcat connections may need a restart in case of improper communication state occurs. The port number `14550` is valid for QGC software connection and should be adjusted for other possible communication channels.
     
     The automated [bash connection script](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) is prepared for automation of QGC to simulation server running the PX4 stack.
