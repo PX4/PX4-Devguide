@@ -1,8 +1,8 @@
-# Video streaming in QGroundControl
+# QGroundControl 视频流
 
-This page shows how to set up a a companion computer (Odroid C1) with a camera (Logitech C920) such that the video stream is transferred via the Odroid C1 to a network computer and displayed in the application QGroundControl that runs on this computer.
+此页演示如何设置相机 (logitech c920) 和机载计算机 (odroid c1), 以便通过 odroid c1 将视频流传输到网络计算机, 并显示在 QGC 中。
 
-The whole hardware setup is shown in the figure below. It consists of the following parts:
+下图显示了整个硬件设置。 它由以下部分组成:
 
 * Odroid C1
 * Logitech 摄像头 C920
@@ -10,17 +10,17 @@ The whole hardware setup is shown in the figure below. It consists of the follow
 
 ![Setup](../../assets/videostreaming/setup_whole.jpg)
 
-## Install Linux environment in Odroid C1
+## 在 odroid c1 中安装 linux 环境
 
-To install the Linux environment (Ubuntu 14.04), follow the instruction given in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1). In this tutorial it is also shown how to access the Odroid C1 with a UART cable and how to establish Ethernet connection.
+要安装 linux 环境 (ubuntu 14.04), 请按照 [Odroid c1 教程](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 中给出的说明进行操作。 在本教程中, 它还演示了如何使用 uart 电缆访问 odroid c1, 以及如何建立以太网连接。
 
-## Set up alternative power connection
+## 设置备用电源连接
 
-The Odroid C1 can be powered via the 5V DC jack. If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup.
+Odroid c1 可以通过 5v 直流插孔供电。 If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup.
 
 ![Power Pins](../../assets/videostreaming/power-pins.jpg)
 
-## Enable WiFi connection for Odroid C1
+## 为 Odroid C1 启用无线网络连接
 
 In this this tutorial the WiFi module TP-LINK TL-WN722N is used. To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
 
