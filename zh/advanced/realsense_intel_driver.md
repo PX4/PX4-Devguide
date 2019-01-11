@@ -1,4 +1,4 @@
-# 在 ubuntu 上安装英特尔 RealSense r200 的驱动程序
+# 在 Ubuntu 上安装英特尔 RealSense R200 的驱动程序
 
 本教程旨在提供有关如何在 linux 环境中安装英特尔实感 r200 相机头的相机驱动程序的说明, 以便可以通过机器人操作系统 (ros) 访问收集到的图像。 实感 r200 相机头如下图所示:
 
@@ -6,11 +6,11 @@
 
 驱动程序包的安装是在 Virtual Box 中作为虚拟机运行的 ubuntu 操作系统 (os) 上执行的。 运行 Virtual Box 的宿主机、虚拟机的规格如下:
 
-- 主机操作系统: Windows 8
-- 处理器: Intel(R) Core(TM) i7-4702MQ CPU @ 2.20GHz
-- 虚拟机: oracle 虚拟机。 版本 5.0.14 r105127
-- 扩展: 安装了 Virtual Box 的扩展包 (用于 usb3 支持)
-- 客户机操作系统: linux-ubuntu 14.04.3 lts
+- 主机操作系统：Windows 8
+- 处理器：Intel(R) Core(TM) i7-4702MQ CPU @ 2.20GHz
+- Virtual Box：Oracle VM。 版本 5.0.14 r105127
+- 扩展：安装了 Virtual Box 的扩展包（用于 USB3.0 支持）
+- 客户机操作系统：linux-ubuntu 14.04.3 LTS
 
 本教程按以下方式排序: 在第一部分中, 演示如何在 Virtual Box 中安装 ubuntu 14.04 作为客户机系统。 第二部分会演示如何安装 ROS Indigo 和相机驱动程序。 The ensuing frequently used expressions have the following meaning:
 
