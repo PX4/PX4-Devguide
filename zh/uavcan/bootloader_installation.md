@@ -12,7 +12,7 @@ PX4 项目包含一个用于 STM32 设备的标准 UAVCAN 引导程序。
 
 ## 系统必备组件
 
-Installing or updating the UAVCAN bootloader requires:
+安装或更新 UAVCAN 引导加载程序需要：
 
 * SWD或 JTAG 接口 (视设备而定), 例如 [ BlackMagic Probe ](http://www.blacksphere.co.nz/main/blackmagic) 或 [ ST Link v2 ](http://www.st.com/internet/evalboard/product/251168.jsp);
 * 用于将您的SWD或 JTAG 接口连接到 UAVCAN 设备的调试端口的适配器电缆;
@@ -30,19 +30,19 @@ Installing or updating the UAVCAN bootloader requires:
 
 ## BlackMagic Probe
 
-Ensure your BlackMagic Probe [firmware is up to date](https://github.com/blacksphere/blackmagic/wiki/Hacking).
+确保 BlackMagic Probe [firmware is up to date](https://github.com/blacksphere/blackmagic/wiki/Hacking)。
 
-Connect the probe to your UAVCAN device, and connect the probe to your computer.
+将探头连接到 UAVCAN 设备，然后将探头连接到计算机。
 
-Identify the probe's device name. This will typically be `/dev/ttyACM<x>` or `/dev/ttyUSB<x>`.
+识别探针的设备名称。 这通常是 `/dev/ttyACM&lt;x&gt; `或 `/dev/ttyUSB&lt;x&gt; `。
 
-Power up your UAVCAN device, and run:
+启动 UAVCAN 设备，然后运行：
 
 ```sh
 arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 ```
 
-At the `gdb` prompt, run:
+在 `gdb` 提示符下，运行：
 
 ```gdb
 target extended /dev/ttyACM0
@@ -54,7 +54,7 @@ load
 run
 ```
 
-If `monitor swdp_scan` returns an error, ensure your wiring is correct, and that you have an up-to-date version of the BlackMagic firmware.
+如果 `monitor swdp_scan` 返回错误，请确保您的接线正确，并且您拥有最新版本的 BlackMagic 固件。
 
 ## ST-Link v2
 
