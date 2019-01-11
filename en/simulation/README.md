@@ -111,6 +111,10 @@ For example, to run the jMAVSim simulation at 2 times the real time speed:
 ```
 PX4_SIM_SPEED_FACTOR=2 make px4_sitl jmavsim
 ```
+To run at half real-time:
+```
+PX4_SIM_SPEED_FACTOR=0.5 make px4_sitl jmavsim
+```
 
 You can apply the factor to all SITL runs in the current session using `EXPORT`:
 ```
