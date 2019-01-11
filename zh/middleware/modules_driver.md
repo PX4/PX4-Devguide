@@ -148,45 +148,45 @@
 
 GPS 驱动模块负责处理与设备的通信并且将位置信息通过 uORB 发布出去。 它支持多个协议 (设备供应商)，默认情况下会自动选择正确的协议。
 
-The module supports a secondary GPS device, specified via `-e` parameter. The position will be published on the second uORB topic instance, but it's currently not used by the rest of the system (however the data will be logged, so that it can be used for comparisons).
+模块支持一个辅助（secondary） GPS 设备，可使用 `-e` 参数进行指定。 辅助 GPS 的位置信息会在第二个 uORB 主题实例上发布，但目前为止系统的其它部分暂未使用该数据（但该数据会被记录下来，以方便进行对比）。
 
 ### 实现
 
-There is a thread for each device polling for data. The GPS protocol classes are implemented with callbacks so that they can be used in other projects as well (eg. QGroundControl uses them too).
+每个设备都有一个线程轮询数据。 GPS 协议类是通过回调来实现的，这使得可以在其它项目中使用该协议类 （例如，QGroundControl 也是用了 GPS 协议类）。
 
 ### 示例
 
-For testing it can be useful to fake a GPS signal (it will signal the system that it has a valid position):
+进行测试时能提供虚假的 GPS 信号是非常有用的（它可以告知系统当前已经获得了一个有效的位置）。
 
     gps stop
     gps start -f
     
 
-Starting 2 GPS devices (the main GPS on /dev/ttyS3 and the secondary on /dev/ttyS4): gps start -d /dev/ttyS3 -e /dev/ttyS4
+启动 2 个 GPS 设备 (主 GPS 在 /dev/ttyS3 ，辅助 GPS 在 /dev/ttyS4)： gps start -d /dev/ttyS3 -e /dev/ttyS4
 
 ### 用法 {#gps_usage}
 
-    gps <command> [arguments...]
+    gps &lt;command&gt; [arguments...]
      Commands:
        start
-         [-d <val>]  GPS device
-                     values: <file:dev>, default: /dev/ttyS3
-         [-b <val>]  Baudrate (can also be p:<param_name>)
-                     default: 0
-         [-e <val>]  Optional secondary GPS device
-                     values: <file:dev>
-         [-g <val>]  Baudrate (secondary GPS, can also be p:<param_name>)
-                     default: 0
-         [-f]        Fake a GPS signal (useful for testing)
-         [-s]        Enable publication of satellite info
-         [-i <val>]  GPS interface
-                     values: spi|uart, default: uart
-         [-p <val>]  GPS Protocol (default=auto select)
-                     values: ubx|mtk|ash
+         [-d &lt;val&gt;]  GPS 设别
+                     取值： &lt;file:dev&gt;, 默认值： /dev/ttyS3
+         [-b &lt;val&gt;]  波特率 (也可设为 p:&lt;param_name&gt;)
+                     默认值： 0
+         [-e &lt;val&gt;]  可选的辅助 GPS 设备
+                     取值：&lt;file:dev&gt;
+         [-g &lt;val&gt;]  波特率 (辅助 GPS, 也可设为 p:&lt;param_name&gt;)
+                     默认值： 0
+         [-f]        虚拟 GPS 信号 (对进行测试非常有用)
+         [-s]        开启公布卫星信息
+         [-i &lt;val&gt;]  GPS 接口
+                     取值： spi|uart, 默认值： uart
+         [-p &lt;val&gt;]  GPS 协议 (默认值=auto select)
+                     取值： ubx|mtk|ash
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## pga460
