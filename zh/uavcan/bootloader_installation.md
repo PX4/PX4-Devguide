@@ -58,18 +58,18 @@ run
 
 ## ST-Link v2
 
-Ensure you have a recent version—at least 0.9.0—of [OpenOCD](http://openocd.org).
+确保您拥有最新版本-至少 0.9.0-of [OpenOCD](http://openocd.org)。
 
-Connect the ST-Link to your UAVCAN device, and connect the ST-Link to your computer.
+将 ST-Link 连接到 UAVCAN 设备，然后将 ST-Link 连接到计算机。
 
-Power up your UAVCAN device, and run:
+启动 UAVCAN 设备，然后运行：
 
 ```sh
 openocd -f /path/to/your/openocd.cfg &
 arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 ```
 
-At the `gdb` prompt, run:
+在 `gdb` 提示符下，运行：
 
 ```gdb
 target extended-remote localhost:3333
@@ -79,21 +79,21 @@ load
 run
 ```
 
-## Segger J-Link Debugger
+## Segger J-Link 调试器
 
-Connect the JLink Debugger to your UAVCAN device, and connect the JLink Debugger to your computer.
+将 JLink 调试器连接到 UAVCAN 设备，并将 JLink 调试器连接到计算机。
 
-Power up your UAVCAN device, and run:
+启动 UAVCAN 设备，然后运行：
 
     JLinkGDBServer -select USB=0 -device STM32F446RE -if SWD-DP -speed 20000 -vd
     
 
-Open a second terminal, navigate to the directory that includes the px4esc_1_6-bootloader.elf for the esc and run:
+打开第二个终端，转到包含 esc 的 px4esc_1_6-bootloader.elf 的目录并运行：
 
     arm-none-eabi-gdb px4esc_1_6-bootloader.elf
     
 
-At the `gdb` prompt, run:
+在 `gdb` 提示符下，运行：
 
     tar ext :2331
     load
@@ -101,10 +101,10 @@ At the `gdb` prompt, run:
 
 ## 使用SEGGER Jink 调试器擦除Flash
 
-As a recovery method it may be useful to erase flash to factory defaults such that the firmware is using the default parameters. Go to the directory of your SEGGER installation and launch JLinkExe, then run:
+作为恢复方法，将闪存擦除为出厂默认值以使固件使用默认参数可能很有用。 转到 SEGGER 安装目录并启动 JLinkExe，然后运行：
 
-    device <name-of-device>
+    device &lt;name-of-device&gt;
     erase
     
 
-Replace `<name-of-device>` with the name of the microcontroller, e.g. STM32F446RE for the Pixhawk ESC 1.6 or STM32F302K8 for the SV2470VC ESC.
+将 `&lt;name-of-device&gt;`替换为微控制器的名称，例如 用于 Pixhawk ESC 1.6 的 STM32F446RE 或用于 SV2470VC ESC 的 STM32F302K8。
