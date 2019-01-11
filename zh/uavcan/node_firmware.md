@@ -56,17 +56,17 @@ cd firmware
 make RELEASE=1 # RELEASE is optional; omit to build the debug version
 ```
 
-请注意，一些较新版本的 GCC 会在链接期间导致段错误。 版本 4.9 在撰写本文时确实有效。 The firmware image will be located at `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`, where `<xxxxxxxx>` is an arbitrary sequence of numbers and letters. There are two hardware version of the Zubax Orel 20 (1.0 and 1.1). Make sure you copy the binary to the correct folder in the subsequent description. The ESC firmware will check the hardware version and works on both products.1
+请注意，一些较新版本的 GCC 会在链接期间导致段错误。 版本 4.9 在撰写本文时确实有效。 固件映像将位于 `firmware/build/io.px4.sapog-1.1-1.7。&lt;xxxxxxxx&gt;.application.bin`, where`&lt;xxxxxxxx&gt;`是数字和字母的任意序列。 Zubax Orel 20 有两个硬件版本（1.0 和 1.1）。 确保将二进制文件复制到后续说明中的正确文件夹中。 ESC 固件将检查硬件版本并适用于这两种产品。
 
 ## Zubax GNSS
 
-Please refer to the [project page](https://github.com/Zubax/zubax_gnss) to learn how to build and flash the firmware. Zubax GNSS comes with a UAVCAN-capable bootloader, so its firmware can be updated in a uniform fashion via UAVCAN as described below.
+请参阅 [project page](https://github.com/Zubax/zubax_gnss) 以了解如何构建和刷新固件。 Zubax GNSS 配备了支持 UAVCAN 的引导加载程序，因此可以通过 UAVCAN 以统一的方式更新其固件，如下所述。
 
-## Firmware Installation on the Autopilot
+## 无人机上的固件安装
 
-The UAVCAN node file names follow a naming convention which allows the Pixhawk to update all UAVCAN devices on the network, regardless of manufacturer. The firmware files generated in the steps above must therefore be copied to the correct locations on an SD card or the PX4 ROMFS in order for the devices to be updated.
+无论制造商如何，UAVCAN 节点文件名遵循命名约定，允许 Pixhawk 更新网络上的所有 UAVCAN 设备。 因此，必须将上述步骤中生成的固件文件复制到 SD 卡或 PX4 ROMFS 上的正确位置，以便更新设备。
 
-The convention for firmware image names is:
+固件映像名称的约定是：
 
     <uavcan name>-<hw version major>.<hw version minor>-<sw version major>.<sw version minor>.<version hash>.bin
     
