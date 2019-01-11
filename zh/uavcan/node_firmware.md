@@ -1,4 +1,4 @@
-# UAVCAN Firmware Upgrading
+# UAVCAN 固件升级
 
 ## Vectorcontrol ESC Codebase (Pixhawk ESC 1.6 and S2740VC)
 
