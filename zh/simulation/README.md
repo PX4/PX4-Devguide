@@ -122,7 +122,12 @@ make px4_sitl jmavsim
     PX4_SIM_SPEED_FACTOR=2 make px4_sitl jmavsim
     
 
-你也可以在当前会话（session）中使用 `EXPORT` 来将该因子应用于所有 SITL 仿真：
+To run at half real-time:
+
+    PX4_SIM_SPEED_FACTOR=0.5 make px4_sitl jmavsim
+    
+
+You can apply the factor to all SITL runs in the current session using `EXPORT`:
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl jmavsim
@@ -132,17 +137,17 @@ make px4_sitl jmavsim
 
 ### 启动脚本 {#scripts}
 
-脚本被用于控制要使用的参数设置或要启动的模块。 它们位于 [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) 目录中，`rcS` 文件是主要入口点。 有关详细信息，请参阅 [System startup](../concept/system_startup.md)。
+Scripts are used to control which parameter settings to use or which modules to start. They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) directory, the `rcS` file is the main entry point. See [System Startup](../concept/system_startup.md) for more information.
 
 ## HITL 仿真环境
 
-通过硬件在环（HITL）仿真使正常的 PX4 固件在真正的硬件上运行。 HITL 仿真环境记录于： [HITL 模拟](../simulation/hitl.md)。
+With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL Simulation Environment in documented in: [HITL Simulation](../simulation/hitl.md).
 
 ## 操纵杆／手柄集成
 
-*QGroundControl* 台式机版本可以连接到 USB Joystick/Gamepad，并通过 MAVLink 将其移动指令和按钮发送到 PX4。 这适用于 SITL 和 HITL 仿真，并允许直接控制仿真机。 如果你没有操纵杆，你也可以使用地面控制站的屏幕虚拟拇指杆来控制无人机。
+*QGroundControl* desktop versions can connect to a USB Joystick/Gamepad and send its movement commands and button presses to PX4 over MAVLink. This works on both SITL and HITL simulations, and allows you to directly control the simulated vehicle. If you don't have a joystick you can alternatively control the vehicle using QGroundControl's onscreen virtual thumbsticks.
 
-有关设置信息，请参阅 *QGroundControl 用户指南 *：
+For setup information see the *QGroundControl User Guide*:
 
 * [操纵杆设置](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
 * [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
@@ -151,40 +156,42 @@ make px4_sitl jmavsim
 
 ## 相机模拟
 
-PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图像和视频。 这可以按照[ Gazebo> Video Streaming ](../simulation/gazebo.md#video-streaming)中的描述启用/设置。
+PX4 supports capture of both still images and video from within the [Gazebo](../simulation/gazebo.md) simulated environment. This can be enabled/set up as described in [Gazebo > Video Streaming](../simulation/gazebo.md#video-streaming).
 
-这个模拟相机是一个实现 [MAVLink 相机协议的 gazebo 插件](https://mavlink.io/en/protocol/camera.html)。 PX4 与这个相机以 *exactly the same way* 连接／集成，与任何其他 MAVLink 相机一样：
+The simulated camera is a gazebo plugin that implements the [MAVLink Camera Protocol](https://mavlink.io/en/protocol/camera.html)<!-- **Firmware/Tools/sitl_gazebo/src/gazebo_geotagged_images_plugin.cpp -->. PX4 connects/integrates with this camera in 
+
+*exactly the same way* as it would with any other MAVLink camera:
 
 1. [ TRIG_INTERFACE ](../advanced/parameter_reference.md#TRIG_INTERFACE)必须设置为` 3 `以配置相机触发驱动程序以与 MAVLink 相机一起使用 > **Tip**在此模式下，只要请求图像捕获，驱动程序就会发送[ CAMERA_TRIGGER ](https://mavlink.io/en/messages/common.html#CAMERA_TRIGGER)消息。 更多信息请参见：[Camera](https://docs.px4.io/en/peripherals/camera.html)。
 2. PX4 必须在 GCS 和（模拟器）MAVLink Camera 之间转发所有摄像机命令。 您可以通过使用` -f `标志启动[ mavlink ](../middleware/modules_communication.md#mavlink)来执行此操作，如下所示，指定新连接的UDP端口。 ```mavlink start -u 14558 -o 14530 -r 4000 -f -m camera``` > **Note</ 0>不仅仅是摄像机将转发 MAVLink 消息，但摄像机将忽略它们认为不相关的消息。</li> </ol> 
     
-    其他模拟器可以使用相同的方法来实现相机支持。
+    The same approach can be used by other simulators to implement camera support.
     
     ## 在远程服务器上运行仿真
     
-    正如开头所提到的，模拟环境可以在同一网络上的多台计算机上运行。 但它有点复杂，因为开箱即用配置不会将 PX4 UDP 数据包广播到外部接口，并且数据包默认在内部路由。 解决方案是通过 [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) 参数启用 brodcasting 以允许广播 UDP 数据包到本地网络或使用隧道将计算机连接在一起。
+    As had been mentioned at the beginning the simulation environment can be run on multiple computers on the same network. Unfortunately, it is a slightly complicated, because of the out of box configuration does not broadcast the PX4 UDP packets to external interfaces and packets are routed internally by default. A solution is to enable brodcasting by [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) parameter to allow broadcast UDP packets to the local network or use a tunnel to connect computers together.
     
-    使用这种通道是一种更灵活的选择，因为计算机不需要位于同一网络上，例如可以使用远程强大的模拟服务器。
+    Using the tunnel is a more flexible option because the computers are not required to sit on the same network and remote powerful simulation server can be used for example.
     
-    其中一个可能是创建该通道的最简单方法是使用SSH通道选项。 通过在 localhost 上运行以下命令，可以轻松创建通道本身。
+    One, probably the easiest way to create the tunnel is the use of SSH tunneling options. The tunnel itself could be created easily by running the following command on localhost.
     
         ssh -C -fR 14551:localhost:14551 remote.local
         
     
-    其中“remote.local”是远程计算机的名称
+    Where "remote.local" is the name of a remote computer.
     
-    但SSH本身无法发送UDP数据包。 因此，需要将 UDP 数据包转换为 TCP 数据包。 通过 [netcat](https://en.wikipedia.org/wiki/Netcat) 实用程序分别在通道的本地和远程端。 可以通过运行以下命令来实现 QGC 的 UDP 分组转换的本地端。
+    Unfortunately, the SSH itself cannot route the UDP packets. Therefore the UDP packets need to be translated to TCP packets. By [netcat](https://en.wikipedia.org/wiki/Netcat) utility separately on the local and remote side of the tunnel. Local side of UDP packet translation of QGC could be implemented by running following commands.
     
         mkfifo /tmp/tcp2udp
         netcat -lvp 14551 < /tmp/tcp2udp | netcat -u localhost 14550 > /tmp/tcp2udp
         
     
-    对于通道的远程端命令是不同的。
+    For the remote side of the tunnel, the command differs.
     
         mkfifo /tmp/udp2tcp
         netcat -lvup 14550 < /tmp/udp2tcp | netcat localhost 14551 > /tmp/udp2tcp
         
     
-    在执行 netcat 之前必须运行 QGC。 通道虽然可以一直运行，但是如果发生错误的通信状态的时候 netcat 连接会重启。 端口号 `14550` 对 QGC 软件连接有效，应针对其他可能的通信通道进行调整。
+    It is necessary to have QGC running before executing the netcat. The tunnel could run infinitely, but netcat connections may need a restart in case of improper communication state occurs. The port number `14550` is valid for QGC software connection and should be adjusted for other possible communication channels.
     
-    自动 [bash connection script](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) 准备用于 QGC 自动化到运行 PX4 堆栈的模拟服务器。
+    The automated [bash connection script](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) is prepared for automation of QGC to simulation server running the PX4 stack.
