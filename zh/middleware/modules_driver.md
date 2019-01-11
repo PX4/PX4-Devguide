@@ -17,34 +17,33 @@
 
 ### 用法 {#batt_smbus_usage}
 
-    batt_smbus <command> [arguments...]
+    batt_smbus &lt;command&gt; [arguments...]
      Commands:
        start
-         [-X <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_EXTERNAL
-         [-T <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_EXTERNAL1
-         [-R <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_EXTERNAL2
-         [-I <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_INTERNAL
-         [-A <val>]  ullpt
-                     default: BATT_SMBUS_BUS_ALL
+         [-X &lt;val&gt;]  ullpt
+                     默认值：BATT_SMBUS_BUS_I2C_EXTERNAL
+         [-T &lt;val&gt;]  ullpt
+                     默认值： BATT_SMBUS_BUS_I2C_EXTERNAL1
+         [-R &lt;val&gt;]  ullpt
+                     默认值： BATT_SMBUS_BUS_I2C_EXTERNAL2
+         [-I &lt;val&gt;]  ullpt
+                     默认值： BATT_SMBUS_BUS_I2C_INTERNAL
+         [-A &lt;val&gt;]  ullpt
+                     默认值： BATT_SMBUS_BUS_ALL
     
-       man_info      Prints manufacturer info.
+       man_info      打印制造商信息
     
-       report        Prints the last report.
+       report        打印最近一次的报告。
     
-       unseal        Unseals the devices flash memory to enable write_flash
-                     commands.
+       unseal        解锁设备内存以启用 write_flash 命令
     
-       seal          Seals the devices flash memory to disbale write_flash commands.
+       seal          锁定设备内存以使 write_flash 命令无效。
     
-       suspend       Suspends the driver from rescheduling the cycle.
+       suspend       将驱动从重新安排循环挂起。
     
-       resume        Resumes the driver from suspension.
+       resume        将驱动从挂起中恢复。
     
-       write_flash   Writes to flash. The device must first be unsealed with the
+       write_flash   想内存中写入。 The device must first be unsealed with the
                      unseal command.
          [address]   The address to start writing.
          [number of bytes] Number of bytes to send.
