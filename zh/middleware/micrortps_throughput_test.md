@@ -1,6 +1,6 @@
-# Micro RTPS Throughput Test
+# Micro RTPS 吞吐量测试
 
-This a simple test to measure the throughput of the [PX4-FastRTPS Bridge](../middleware/micrortps.md). It sends and receives 256-byte messages (simultaneously) at maximum rate, and then outputs the result.
+这是一个测量 [PX4-FastRTPS Bridge](../middleware/micrortps.md) 吞吐量的简单测试。 It sends and receives 256-byte messages (simultaneously) at maximum rate, and then outputs the result.
 
 > **Tip** This example requires that you [Manually Generate Client and Agent Code](../middleware/micrortps_manual_code_generation.md).
 
