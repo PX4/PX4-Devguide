@@ -1,16 +1,16 @@
-# Installing driver on Ubuntu for Intel RealSense R200
+# 在 ubuntu 上安装英特尔 RealSense r200 的驱动程序
 
-This tutorial aims to give instructions on how to install the camera driver of the Intel RealSense R200 camera head in Linux environment such that the gathered images can be accessed via the Robot Operation System (ROS). The RealSense R200 camera head is depicted below:
+本教程旨在提供有关如何在 linux 环境中安装英特尔实感 r200 相机头的相机驱动程序的说明, 以便可以通过机器人操作系统 (ros) 访问收集到的图像。 实感 r200 相机头如下图所示:
 
 ![](../../assets/realsense_intel/realsense.png)
 
-The installation of the driver package is executed on a Ubuntu operation system (OS) that runs as a guest OS in a Virtual Box. The specifications of the host computer where the Virtual Box is running, the Virtual Box and the guest system are given below:
+驱动程序包的安装是在 Virtual Box 中作为虚拟机运行的 ubuntu 操作系统 (os) 上执行的。 运行 Virtual Box 的宿主机、虚拟机的规格如下:
 
-- Host Operation System: Windows 8
-- Processor: Intel(R) Core(TM) i7-4702MQ CPU @ 2.20GHz
-- Virtual Box: Oracle VM. Version 5.0.14 r105127
-- Extensions: Extension package for Virtual Box installed (Needed for USB3 support)
-- Guest Operation System: Linux - Ubuntu 14.04.3 LTS
+- 主机操作系统: Windows 8
+- 处理器: Intel(R) Core(TM) i7-4702MQ CPU @ 2.20GHz
+- 虚拟机: oracle 虚拟机。 版本 5.0.14 r105127
+- 扩展: 安装了 Virtual Box 的扩展包 (用于 usb3 支持)
+- 客户机操作系统: linux-ubuntu 14.04.3 lts
 
 The tutorial is ordered in the following way: In a first part it is shown how to install Ubuntu 14.04 as a guest OS in the Virtual Box. In a second part is shown how to install ROS Indigo and the camera driver. The ensuing frequently used expressions have the following meaning:
 
