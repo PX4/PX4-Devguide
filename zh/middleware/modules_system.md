@@ -48,16 +48,16 @@
 
 ### 描述
 
-Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
+此模块将以后台进程形式在 LP 工作列队中周期性运行，以实现将 IMU 的温度调节至一个设定值。
 
-This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
+此任务可以在启动脚本通过设置 SENS_EN_THERMAL 运行或者直接通过 CLI 命令行启动。
 
 ### 用法 {#heater_usage}
 
-    heater <command> [arguments...]
+    heater &lt;command&gt; [arguments...]
      Commands:
-       controller_period Reports the heater driver cycle period value, (us), and
-                     sets it if supplied an argument.
+       controller_period 报告 heater 驱动周期间隔数值，（us），若
+                     提供了参数则设置 heater 驱动的周期间隔。
     
        integrator    Sets the integrator gain value if supplied an argument and
                      reports the current value.
