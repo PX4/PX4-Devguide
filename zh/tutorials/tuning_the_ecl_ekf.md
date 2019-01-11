@@ -254,7 +254,7 @@ EKF 对其所有计算使用单精度浮点运算，并使用一阶近似来推�
 
 通过进行以下参数更改，可以使 EKF 更加抵抗振动引起的高度发散：
 
-* 将主要的高度传感器的创新通道的值加倍。 如果使用气压高度，则 [EKF2_BARO_GATE](../advanced/parameter_reference.md#EKF2_BARO_GATE)。
+* 将主要的高度传感器的创新息通道的值加倍。 如果使用气压高度，则 [EKF2_BARO_GATE](../advanced/parameter_reference.md#EKF2_BARO_GATE)。
 * 最初将 [EKF2_ACC_NOISE](../advanced/parameter_reference.md#EKF2_ACC_NOISE) 的值增加到 0.5。 如果仍然出现分歧，则进一步增加 0.1，但不要超过 1.0。
 
 Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更敏感。
@@ -279,7 +279,7 @@ Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更�
 
 确定哪些是主要原因需要有条理的方法来分析 EKF 日志数据：
 
-* 绘制速度创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio
+* 绘制速度创新息测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio
 * 绘制水平位置创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).pos\_test\_ratio
 * 绘制高度创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt\_test\_ratio
 * 绘制磁力计创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).mag\_test\_ratio
@@ -292,19 +292,19 @@ Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更�
 
 在正常操作期间，所有测试比率应保持在 0.5 以下，并且只有偶然的峰值高于此值，如下面成功飞行中的示例所示：
 
-![Position, Velocity, Height and Magnetometer Test Ratios](../../assets/ecl/test_ratios_-_successful.png)
+![位置，速度，高度和磁强计测试比率](../../assets/ecl/test_ratios_-_successful.png)
 
 下图显示了具有良好隔离的多旋翼飞行器的 EKF 振动指标。 可以看到着陆冲击和起飞和着陆期间增加的振动。 使用这些指标收集的数据不足，无法提供有关最大阈值的具体建议。
 
 ![](../../assets/ecl/vibration_metrics_-_successful.png)
 
-上述振动指标的价值有限，因为在接近 IMU 采样频率的频率下存在振动\（大多数电路板为 1kHz）将导致在高频振动指标中未显示的数据中出现偏移。 检测混叠误差的唯一方法是它们对惯性导航精度和创新水平的提高。
+上述振动指标的价值有限，因为在接近 IMU 采样频率的频率下存在振动\（大多数电路板为 1kHz）将导致在高频振动指标中未显示的数据中出现偏移。 检测混叠误差的唯一方法是它们对惯性导航精度和新息水平的提高。
 
 除了生成 &gt; 1.0 的大位置和速度测试比率外，不同的误差机制还以不同的方式影响其他测试比率：
 
 ### 振动过大的测定
 
-高振动水平通常会影响垂直位置和速度创新以及水平组件。 磁强计测试水平仅受到很小程度的影响。
+高振动水平通常会影响垂直位置和速度新息以及水平组件。 磁强计测试水平仅受到很小程度的影响。
 
 （在此处插入显示不良振动的示例图）
 
@@ -316,13 +316,13 @@ Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更�
 
 ### 确定较差的偏航精度
 
-由于惯性导航和 GPS 测量计算出的速度方向不一致，因此不良偏航对准导致无人机开始移动时速度测试比率迅速增加。 Magnetometer innovations are slightly affected. 高度通常不受影响。
+由于惯性导航和 GPS 测量计算出的速度方向不一致，因此不良偏航对准导致无人机开始移动时速度测试比率迅速增加。 磁力计的新息受到轻微影响。 高度通常不受影响。
 
 （插入示例图显示错误的偏航对齐此处）
 
 ### GPS 精度差的确定
 
-Poor GPS accuracy is normally accompanied by a rise in the reported velocity error of the receiver in conjunction with a rise in innovations. 由多径，遮蔽和干扰引起的瞬态误差是更常见的原因。 下面是一个暂时失去 GPS 精度的例子，其中多旋翼开始从其游荡位置漂移并且必须使用摇杆进行校正。 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio 的上升值大于 1 表示 GPS 速度与其他测量值不一致，并且已被拒绝。
+GPS精度差通常伴随着接收器报告的速度误差的增加以及新息的增加。 由多径，遮蔽和干扰引起的瞬态误差是更常见的原因。 下面是一个暂时失去 GPS 精度的例子，其中多旋翼开始从其游荡位置漂移并且必须使用摇杆进行校正。 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio 的上升值大于 1 表示 GPS 速度与其他测量值不一致，并且已被拒绝。
 
 ![](../../assets/ecl/gps_glitch_-_test_ratios.png)
 
@@ -330,16 +330,16 @@ Poor GPS accuracy is normally accompanied by a rise in the reported velocity err
 
 ![](../../assets/ecl/gps_glitch_-_reported_receiver_accuracy.png)
 
-If we also look at the GPS horizontal velocity innovations and innovation variances, we can see the large spike in North velocity innovation that accompanies this GPS 'glitch' event.
+如果我们还看一下 GPS 水平速度新息和新息差异，我们可以看到北部速度新息伴随着这次 GPS “故障”事件的大幅增长。
 
 ![](../../assets/ecl/gps_glitch_-_velocity_innovations.png)
 
 ### GPS 数据丢失的确定
 
-Loss of GPS data will be shown by the velocity and position innovation test ratios 'flat-lining'. 如果发生这种情况，请检查 `vehicle_gps_position` 中的其他 GPS 状态数据以获取更多信息。
+GPS 数据的丢失将通过速度和位置新息测试比率'平面衬里'来显示。 如果发生这种情况，请检查 `vehicle_gps_position` 中的其他 GPS 状态数据以获取更多信息。
 
-下图显示了 NED GPS 速度创新 `ekf2_innovations_0.vel_pos_innov[0 ... 2]`，GPS NE 位置创新 `ekf2_innovations_0.vel_pos_innov[3 ... 4] `和使用 SITL Gazebo 从模拟 VTOL 生成的 Baro 垂直位置创新 `ekf2_innovations_0.vel_pos_innov [5] `。
+下图显示了 NED GPS 速度创新 `ekf2_innovations_0.vel_pos_innov[0 ... 2]`，GPS NE 位置新息 `ekf2_innovations_0.vel_pos_innov[3 ... 4] `和使用 SITL Gazebo 从模拟 VTOL 生成的 Baro 垂直位置新息 `ekf2_innovations_0.vel_pos_innov [5] `。
 
-模拟的 GPS 在 73 秒时失锁。 Note the NED velocity innovations and NE position innovations 'flat-line' after GPs is lost. Note that after 10 seconds without GPS data, the EKF reverts back to a static position mode using the last known position and the NE position innovations start to change again.
+模拟的 GPS 在 73 秒时失锁。 <0>Note</0> GPS 丢失后，NED 速度新息和 NE 位置新息“扁平化”。 <0>Note</0>在没有 GPS 数据的 10 秒后，EKF 使用最后的已知位置恢复到静态位置模式，并且NE位置新息开始再次改变。
 
-![GPS Data Loss - in SITL](../../assets/ecl/gps_data_loss_-_velocity_innovations.png)
+![GPS 数据丢失-在 SITL 中](../../assets/ecl/gps_data_loss_-_velocity_innovations.png)
