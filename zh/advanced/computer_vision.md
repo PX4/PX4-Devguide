@@ -6,25 +6,25 @@ PX4使用计算机视觉系统（主要在Companion Computers上运行）以支�
 
 - [光流](#optical_flow)提供2D速度估计（使用向下的相机和向下的距离传感器）。
 - [运动捕捉](#mocap)使用载具*外部*的视觉系统进行3D姿态估计。 它主要用于室内导航。
-- [视觉惯性测距法](#vio)使用机载视觉系统和IMU提供3D姿势和速度估计 It is used for navigation when global position information is absent or unreliable.
-- [Obstacle Avoidance](https://docs.px4.io/en/computer_vision/obstacle_avoidance.html) provides navigation around obstacles when flying a planned path (currently missions are supported). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
-- [Collision Prevention](https://docs.px4.io/en/computer_vision/collision_prevention.html) is used to stop vehicles before they can crash into an obstacle (primarily when flying in manual modes).
+- [视觉惯性测距法](#vio)使用机载视觉系统和IMU提供3D姿势和速度估计 当 GPS 不存在或不可靠时，它用于导航。
+- [障碍避免](https://docs.px4.io/en/computer_vision/obstacle_avoidance.html)在飞行计划路径时提供绕障碍物的导航（支持当前的任务）。 这依赖机载电脑上运行的 [PX4/avoidance](https://github.com/PX4/avoidance)
+- [碰撞预防](https://docs.px4.io/en/computer_vision/collision_prevention.html)使载具在撞到障碍物之前停止（主要是在手动模式下飞行时）。
 
 ## 运动捕捉 {#mocap}
 
-Motion Capture (MoCap) is a technique for estimating the 3D *pose* (position and orientation) of a vehicle using a positioning mechanism that is *external* to the vehicle. MoCap systems most commonly detect motion using infrared cameras, but other types of cameras, Lidar, or Ultra Wideband (UWB) may also be used.
+运动捕捉（MoCap）是一种使用载具*外部*的定位机构来估计车辆的3D *姿势*（位置和姿势）的技术。 MoCap系统最常使用红外摄像机检测运动，但也可以使用其他类型的摄像机，激光雷达或Ultra Wideband (UWB)。
 
-> **Note** MoCap is commonly used to navigate a vehicle in situations where GPS is absent (e.g. indoors), and provides position relative to a a *local* co-ordinate system.
+> **Note** MoCap通常用于在GPS不存在 (例如室内) 的情况下导航车辆，并提供相对于*本地*坐标系统的位置。
 
-For information about MoCap see:
+有关MoCap的信息，请参阅：
 
-- [External Position Estimation](../ros/external_position_estimation.md)
-- [Flying with Motion Capture (VICON, Optitrack)](../tutorials/motion-capture-vicon-optitrack.md)
-- [EKF > External Vision System](../tutorials/tuning_the_ecl_ekf.md#external-vision-system)
+- [外部位置的估计](../ros/external_position_estimation.md)
+- [使用 Motion Capture 飞行（VICON，Optitrack）](../tutorials/motion-capture-vicon-optitrack.md)
+- [EKF > 外部视觉系统](../tutorials/tuning_the_ecl_ekf.md#external-vision-system)
 
-## Visual Inertial Odometry {#vio}
+## 视觉惯性测距法 {#vio}
 
-Visual Inertial Odometry (VIO) is used for estimating the 3D *pose* (position and orientation) of a moving vehicle relative to a *local* starting position. It is commonly used to navigate a vehicle in situations where GPS is absent (e.g. indoors) or unreliable (e.g. when flying under a bridge).
+视觉惯性测距（VIO）用于估计移动车辆相对于*起始点*起始位置的3D *姿势*（位置和方向）。 It is commonly used to navigate a vehicle in situations where GPS is absent (e.g. indoors) or unreliable (e.g. when flying under a bridge).
 
 VIO uses [Visual Odometry](https://en.wikipedia.org/wiki/Visual_odometry) to estimate vehicle *pose* from visual information, combined with inertial measurements from an IMU (to correct for errors associated with rapid vehicle movement resulting in poor image capture).
 
