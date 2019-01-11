@@ -294,29 +294,29 @@ GPS 驱动模块负责处理与设备的通信并且将位置信息通过 uORB �
     sf1xx start -a
     
 
-Stop driver
+停止驱动程序的运行
 
     sf1xx stop
     
 
 ### 用法 {#sf1xx_usage}
 
-    sf1xx <command> [arguments...]
+    sf1xx &lt;command&gt; [arguments...]
      Commands:
-       start         Start driver
-         [-a]        Attempt to start driver on all I2C buses
-         [-b <val>]  Start driver on specific I2C bus
-                     default: 1
-         [-R <val>]  Sensor rotation - downward facing by default
-                     default: 25
+       start         启动驱动
+         [-a]        尝试在所有 I2C 总线上启动驱动
+         [-b &lt;val&gt;]  在指定 I2C 总线上启动驱动
+                     默认值： 1
+         [-R &lt;val&gt;]  传感器朝向 - 默认为朝下（downward facing）
+                     默认值： 25
     
-       stop          Stop driver
+       stop          停止驱动
     
-       test          Test driver (basic functional tests)
+       test          测试驱动 (基础功能测试)
     
-       reset         Reset driver
+       reset         重置驱动
     
-       info          Print driver information
+       info          打印驱动信息
     
 
 ## tap_esc
@@ -325,25 +325,25 @@ Stop driver
 
 ### 描述
 
-This module controls the TAP_ESC hardware via UART. It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
+本模块通过 UART 控制 TAP_ESC 硬件。 它监听着 actuator_controls主题，执行混控并写入 PWM 输出。
 
 ### 实现
 
-Currently the module is implementd as a threaded version only, meaning that it runs in its own thread instead of on the work queue.
+目前，该模块仅以线程方式进行了实现，这就意味着它在自己的线程中运行，而不是在工作队列中运行。
 
 ### 示例
 
-The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
+模块命令通常以如下内容作为开头： tap_esc start -d /dev/ttyS2 -n <1-8>
 
 ### 用法 {#tap_esc_usage}
 
-    tap_esc <command> [arguments...]
+    tap_esc &lt;command&gt; [arguments...]
      Commands:
-       start         Start the task
-         [-d <val>]  Device used to talk to ESCs
-                     values: <device>
-         [-n <val>]  Number of ESCs
-                     default: 4
+       start         启动任务
+         [-d &lt;val&gt;]  用于与 ESC 进行沟通的设备
+                     取值： &lt;device&gt;
+         [-n &lt;val&gt;]  ESC 数量
+                     默认值： 4
     
 
 ## vmount
@@ -352,7 +352,7 @@ The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
 
 ### 描述
 
-Mount (Gimbal) control driver. It maps several different input methods (eg. RC or MAVLink) to a configured output (eg. AUX channels or MAVLink).
+载荷（云台）控制驱动， It maps several different input methods (eg. RC or MAVLink) to a configured output (eg. AUX channels or MAVLink).
 
 Documentation how to use it is on the [gimbal_control](https://dev.px4.io/en/advanced/gimbal_control.html) page.
 
