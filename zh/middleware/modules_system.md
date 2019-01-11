@@ -122,9 +122,9 @@
 
 ### 描述
 
-Background process running periodically with 1 Hz on the LP work queue to calculate the CPU load and RAM usage and publish the `cpuload` topic.
+模块在 HP 工作队列中以 1 Hz 频率周期性计算 CPU 负载、 RAM 使用情况，并将结果发布到 `cpuload` 主题。
 
-On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output, which will also appear in the log file.
+在 NuttX 平台上该模块还会检查每个进程的栈堆使用情况，如果它低于 300 字节那么模块会输出一个警告，该警告会出现在日志文件中。
 
 ### 用法 {#load_mon_usage}
 
