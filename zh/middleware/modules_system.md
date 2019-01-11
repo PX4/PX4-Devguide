@@ -274,8 +274,8 @@ Sensors 模块是整个系统的核心。 它以传感器驱动的低级别输�
 - 读取传感器驱动的输出 (例如，`sensor_gyro` 等)。 如果存在多个同类型传感器，那个模块将进行投票和容错处理。 然后应用飞控板的旋转和温度校正（如果被启用）。 最终发布传感器数据：其中名为 `sensor_combined` 的主题被系统的许多部件所使用。
 - 执行 RC 通道映射：读取通道原始输入 (`input_rc`)，应用校正并将 RC 通道映射到配置的通道 & 模式转换开关，低通滤波器，然后发布到 `rc_channels` 和 `manual_control_setpoint` 话题中。
 - 从 ADC 驱动中读取输出（通过 ioctl 接口）并发布到 `battery_status` 。
-- 当参数发生变化或者启动时，确保传感器驱动获得的矫正参数（缩放因子 & 偏移量）是最新的。 The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
-- Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
+- 当参数发生变化或者启动时，确保传感器驱动获得的矫正参数（缩放因子 & 偏移量）是最新的。 传感器驱动使用 ioctl 接口获取参数更新。 为了使这一功能正常运行，当 `sensors` 模块启动时传感器驱动必须已经处于运行状态。
+- 执行起飞前传感器一致性检查并发布到 `sensor_preflight` 主题中。
 
 ### 实现
 
@@ -299,9 +299,9 @@ Sensors 模块是整个系统的核心。 它以传感器驱动的低级别输�
 
 ### 描述
 
-Command-line tool to control & test the (external) tunes.
+控制 & 测试（外置）蜂鸣器的命令行工具。
 
-Tunes are used to provide audible notification and warnings (e.g. when the system arms, gets position lock, etc.). The tool requires that a driver is running that can handle the tune_control uorb topic.
+蜂鸣器被用于提供听觉通知和警告（例如，系统解锁、位置锁定等）。 本工具要求一个可处理 tune_control uorb 主题的驱动处于运行状态。
 
 Information about the tune format and predefined system tunes can be found here: https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
 
