@@ -265,17 +265,16 @@ GPS 驱动模块负责处理与设备的通信并且将位置信息通过 uORB �
 
 ### 用法 {#rc_input_usage}
 
-    rc_input <command> [arguments...]
+    rc_input &lt;command&gt; [arguments...]
      Commands:
-       start         Start the task (without any mode set, use any of the mode_*
-                     cmds)
-         [-t]        Run as separate task instead of the work queue
+       start         启动任务 (不执行任何模式设置，不使用任何 mode_* 命令)
+         [-t]        以单独任务的形式运行，而不是工作队列
     
-       bind          Send a DSM bind command (module must be running)
+       bind          发送一个 DSM 绑定指令 (模块必须处于运行状态)
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## sf1xx
@@ -284,13 +283,13 @@ GPS 驱动模块负责处理与设备的通信并且将位置信息通过 uORB �
 
 ### 描述
 
-I2C bus driver for Lightware SFxx series LIDAR rangefinders: SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20.
+针对 Lightware SFxx 系列 LIDAR 测距仪的 I2C 总线驱动： SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20。
 
-Setup/usage information: https://docs.px4.io/en/sensor/sfxx_lidar.html
+设置/使用 信息： https://docs.px4.io/en/sensor/sfxx_lidar.html
 
 ### 示例
 
-Attempt to start driver on any bus (start on bus where first sensor found).
+尝试在任意总线上启动驱动（在第一个发现传感器的总线上启动）。
 
     sf1xx start -a
     
