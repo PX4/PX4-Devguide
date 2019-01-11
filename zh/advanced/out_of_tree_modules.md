@@ -1,10 +1,10 @@
-# External Modules (Out-of-Tree)
+# 外置模块
 
-External modules provide a convenient mechanism for developers to manage/group proprietary modules that they want add to (or update in) PX4 firmware. External modules can use the same includes as internal modules and can interact with internal modules via uORB.
+外部模块为开发人员提供了一种便捷的机制，可以管理/分组他们想要添加（或更新）PX4固件的专有模块。 外部模块可以使用与内部模块相同的includes，并可以通过uORB与内部模块交互。
 
-This topic explains how to add an external ("out of tree") module to the PX4 build.
+本主题说明如何将外部（“out of tree”）模块添加到PX4编译中。
 
-> **Tip** We encourage you to contribute your changes into PX4, where possible!
+> **Tip** 我们鼓励您尽可能将更改贡献给PX4！
 
 ## 用法
 
