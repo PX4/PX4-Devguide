@@ -2,11 +2,11 @@
 
 ## fw_att_control
 
-Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
+源码：[modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
 
 ### 描述
 
-fw_att_control is the fixed wing attitude controller.
+fw_att_control 是固定翼姿态控制器。
 
 ### 用法 {#fw_att_control_usage}
 
@@ -20,11 +20,11 @@ fw_att_control is the fixed wing attitude controller.
 
 ## fw_pos_control_l1
 
-Source: [modules/fw_pos_control_l1](https://github.com/PX4/Firmware/tree/master/src/modules/fw_pos_control_l1)
+源码：[modules/fw_pos_control_l1](https://github.com/PX4/Firmware/tree/master/src/modules/fw_pos_control_l1)
 
 ### 描述
 
-fw_pos_control_l1 is the fixed wing position controller.
+fw_pos_control_l1 是针对固定翼飞机的位置控制器。
 
 ### 用法 {#fw_pos_control_l1_usage}
 
@@ -39,7 +39,7 @@ fw_pos_control_l1 is the fixed wing position controller.
 
 ## mc_att_control
 
-Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
+源码：[modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
 
 ### 描述
 
@@ -51,7 +51,7 @@ Publication documenting the implemented Quaternion Attitude Control: Nonlinear Q
 
 https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf
 
-### Implementation
+### 实现
 
 To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
 
@@ -68,7 +68,7 @@ To reduce control latency, the module directly polls on the gyro topic published
 
 ## mc_pos_control
 
-Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_pos_control)
+源码：[modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_pos_control)
 
 ### 描述
 
@@ -89,13 +89,13 @@ The controller doesn't use Euler angles for its work, they are generated only fo
 
 ## navigator
 
-Source: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modules/navigator)
+源码：[modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modules/navigator)
 
 ### 描述
 
 Module that is responsible for autonomous flight modes. This includes missions (read from dataman), takeoff and RTL. It is also responsible for geofence violation checking.
 
-### Implementation
+### 实现
 
 The different internal modes are implemented as separate classes that inherit from a common base class `NavigatorMode`. The member `_navigation_mode` contains the current active mode.
 
