@@ -195,18 +195,18 @@ GPS 驱动模块负责处理与设备的通信并且将位置信息通过 uORB �
 
 ### 描述
 
-Ultrasonic range finder driver that handles the communication with the device and publishes the distance via uORB.
+超声笔测距仪驱动，负责处理与设备的用心并通过 uORB 将距离信息发布出去。
 
 ### 实现
 
-This driver is implented as a NuttX task. This Implementation was chosen due to the need for polling on a message via UART, which is not supported in the work_queue. This driver continuously takes range measurements while it is running. A simple algorithm to detect false readings is implemented at the driver levelin an attemptto improve the quality of data that is being published. The driver will not publish data at all if it deems the sensor data to be invalid or unstable.
+此驱动以 NuttX 任务的形式实现。 选择这个实现方式是阴虚需要通过 UART 对消息进行轮询，而工作队列并不支持这一操作。 驱动在运行时将持续获取测距仪的测量值。 应用了一个简单的检测错误读数的算法以发布出去的数据的质量， 若驱动认为传感器数据无效或者不稳定，那么驱动将不会将数据发布出去。
 
 ### 用法 {#pga460_usage}
 
-    pga460 <command> [arguments...]
+    pga460 &lt;command&gt; [arguments...]
      Commands:
-       start <device_path>
-         [device_path] The pga460 sensor device path, (e.g: /dev/ttyS6
+       start &lt;device_path&gt;
+         [device_path] pga460 传感器设备地址 (例如： /dev/ttyS6
     
        status
     
@@ -221,27 +221,27 @@ This driver is implented as a NuttX task. This Implementation was chosen due to 
 
 ### 描述
 
-Driver for simulated PWM outputs.
+针对仿真模拟的 PWM 输出的驱动。
 
-Its only function is to take `actuator_control` uORB messages, mix them with any loaded mixer and output the result to the `actuator_output` uORB topic.
+该模块唯一的功能是取 `actuator_control` uORB 消息作为输入，根据任意已经加载了的混控器对输入进行混合然后将结果输出至 `actuator_output` uORB 主题。
 
-It is used in SITL and HITL.
+该模块在 SITL 和 HITL 仿真中使用。
 
 ### 用法 {#pwm_out_sim_usage}
 
-    pwm_out_sim <command> [arguments...]
+    pwm_out_sim &lt;command&gt; [arguments...]
      Commands:
-       start         Start the task in mode_pwm16
+       start         以 mode_pwm16 模式运行此任务
     
-     All of the mode_* commands will start the pwm sim if not running already
+     以下所有 mode_* 命令都会启动 pwm sim ，如果它不处于运行状态的话
     
-       mode_pwm      use 8 PWM outputs
+       mode_pwm      使用 8 个 PWM 输出
     
-       mode_pwm16    use 16 PWM outputs
+       mode_pwm16    使用 16 个 PWM 输出
     
        stop
     
-       status        print status info
+       status        打印输出信息
     
 
 ## rc_input
@@ -250,7 +250,7 @@ It is used in SITL and HITL.
 
 ### 描述
 
-This module does the RC input parsing and auto-selecting the method. Supported methods are:
+本模块自动选择合适的方法对 RC 输入进行解析， 受支持的方法有：
 
 - PPM
 - SBUS
@@ -261,7 +261,7 @@ This module does the RC input parsing and auto-selecting the method. Supported m
 
 ### 实现
 
-By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread, specified via start flag -t, to reduce latency. When running on the work queue, it schedules at a fixed frequency.
+默认情况下模块以工作队列的形式运行以降低内存占用。 它也可以在它自己独有的线程中运行以降低延时，使用 -t 启动标志进行指定即可。 以工作队列的方式运行时，它将以固定的频率进行调度。
 
 ### 用法 {#rc_input_usage}
 
