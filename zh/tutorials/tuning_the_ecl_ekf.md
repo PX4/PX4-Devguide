@@ -169,7 +169,7 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
 
 * 磁力计 XYZ\（gauss\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 mag\_innov\[3\]。
 * 偏航角\（rad\）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的标题 \_innov。
-* 速度和位置创新：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 vel\_pos\_innov\[6\]。 Vel\_pos\_innov\[6\] 的索引图如下： 
+* 速度和位置新息：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 vel\_pos\_innov\[6\]。 Vel\_pos\_innov\[6\] 的索引图如下： 
   * \[0 ... 2\] 速度 NED（m/s）
   * \[3 ... 5\] 位置 NED（m）
 * 真实空速（m/s）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov。
@@ -181,7 +181,7 @@ EKF 输出，状态和状态数据发布到许多 uORB 主题，这些主题在�
 
 * 磁力计 XYZ（gauss^2）：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 mag\_innov\_var\[3\]。
 * 偏航角（rad^2）：请参阅 ekf2\_innovations 消息中的标题 \_innov\_var。
-* 速度和位置创新：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 vel\_pos\_innov\_var\[6\]。 Vel\_pos\_innov\_var\[6\] 的索引映射如下： 
+* 速度和位置新息：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的 vel\_pos\_innov\_var\[6\]。 Vel\_pos\_innov\_var\[6\] 的索引映射如下： 
   * \[0 ... 2\] 速度 NED（m/s）^2
   * \[3 ... 5\] 位置 NED（m^2）
 * 真空速（m/s）^2：请参阅 [ekf2\__innovations](https://github.com/PX4/Firmware/blob/master/msg/ekf2_innovations.msg) 中的空速 \_innov\_var。
@@ -212,12 +212,12 @@ EKF 包含针对严重条件状态和协方差更新的内部错误检查。 请
 
 测试级别在 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中可用，如下所示：
 
-* mag\_test\__tio：最大磁力计创新组件与创新测试限制的比率
-* vel\_test\__tio：最大速度创新组件与创新测试限制的比率
-* pos\_test\__tio：最大水平位置创新组件与创新测试限制的比率
-* hgt\test\ratio：垂直位置创新与创新测试限制的比率
-* tas\_test\__tio：真正的空速创新与创新测试极限的比率
-* hagl\_test\__tio：地面创新高度与创新测试限制的比率
+* mag\_test\__tio：最大磁力计新息组件与创新测试限制的比率
+* vel\_test\__tio：最大速度新息组件与新息测试限制的比率
+* pos\_test\__tio：最大水平位置新息组件与新息测试限制的比率
+* hgt\test\ratio：垂直位置新息与新息测试限制的比率
+* tas\_test\__tio：真正的空速新息与新息测试极限的比率
+* hagl\_test\__tio：地面新息高度与新息测试限制的比率
 
 有关每个传感器的二进制通过/失败摘要，请参阅 [estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg) 中的 innovation\_check\__flags。
 
@@ -279,10 +279,10 @@ Note 这些变化的影响将使 EKF 对 GPS 垂直速度和气压的误差更�
 
 确定哪些是主要原因需要有条理的方法来分析 EKF 日志数据：
 
-* 绘制速度创新息测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio
-* 绘制水平位置创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).pos\_test\_ratio
-* 绘制高度创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt\_test\_ratio
-* 绘制磁力计创新测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).mag\_test\_ratio
+* 绘制速度新息测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).vel\_test\_ratio
+* 绘制水平位置新息测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).pos\_test\_ratio
+* 绘制高度新息测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).hgt\_test\_ratio
+* 绘制磁力计新息测试比率-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).mag\_test\_ratio
 * 绘制 GPS 接收器报告的速度精度-[vehicle\_gps\_position](https://github.com/PX4/Firmware/blob/master/msg/vehicle_gps_position.msg).s\_variance\_m\_s
 * 绘制 IMU delta 角度状态估计值-[estimator\_status](https://github.com/PX4/Firmware/blob/master/msg/estimator_status.msg).states\[10\]，状态\[11\]和状态\[12\]
 * 绘制 EKF 内部高频振动指标： 
