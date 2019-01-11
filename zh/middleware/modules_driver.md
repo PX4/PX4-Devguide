@@ -2,13 +2,13 @@
 
 ## batt_smbus
 
-Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
+源码：[drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
 
 ### 描述
 
 Smart battery driver for the BQ40Z50 fuel gauge IC.
 
-### Examples
+### 示例
 
 To write to flash to set parameters. address, number_of_bytes, byte0, ... , byteN
 
@@ -53,7 +53,7 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
 
 ## fmu
 
-Source: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
+源码：[drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
 
 ### 描述
 
@@ -63,11 +63,11 @@ It listens on the actuator_controls topics, does the mixing and writes the PWM o
 
 The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy. By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder driver. Alternatively, the fmu can be started in one of the capture modes, and then drivers can register a capture callback with ioctl calls.
 
-### Implementation
+### 实现
 
 By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread, specified via start flag -t, to reduce latency. When running on the work queue, it schedules at a fixed frequency, and the pwm rate limits the update rate of the actuator_controls topics. In case of running in its own thread, the module polls on the actuator_controls topic. Additionally the pwm rate defines the lower-level IO timer rates.
 
-### Examples
+### 示例
 
 It is typically started with:
 
@@ -145,7 +145,7 @@ Use the `pwm` command for further configurations (PWM rate, levels, ...), and th
 
 ## gps
 
-Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
+源码：[drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
 
 ### 描述
 
@@ -153,11 +153,11 @@ GPS driver module that handles the communication with the device and publishes t
 
 The module supports a secondary GPS device, specified via `-e` parameter. The position will be published on the second uORB topic instance, but it's currently not used by the rest of the system (however the data will be logged, so that it can be used for comparisons).
 
-### Implementation
+### 实现
 
 There is a thread for each device polling for data. The GPS protocol classes are implemented with callbacks so that they can be used in other projects as well (eg. QGroundControl uses them too).
 
-### Examples
+### 示例
 
 For testing it can be useful to fake a GPS signal (it will signal the system that it has a valid position):
 
@@ -194,13 +194,13 @@ Starting 2 GPS devices (the main GPS on /dev/ttyS3 and the secondary on /dev/tty
 
 ## pga460
 
-Source: [drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
+源码：[drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
 
 ### 描述
 
 Ultrasonic range finder driver that handles the communication with the device and publishes the distance via uORB.
 
-### Implementation
+### 实现
 
 This driver is implented as a NuttX task. This Implementation was chosen due to the need for polling on a message via UART, which is not supported in the work_queue. This driver continuously takes range measurements while it is running. A simple algorithm to detect false readings is implemented at the driver levelin an attemptto improve the quality of data that is being published. The driver will not publish data at all if it deems the sensor data to be invalid or unstable.
 
@@ -220,7 +220,7 @@ This driver is implented as a NuttX task. This Implementation was chosen due to 
 
 ## pwm_out_sim
 
-Source: [drivers/pwm_out_sim](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_out_sim)
+源码：[drivers/pwm_out_sim](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_out_sim)
 
 ### 描述
 
@@ -249,7 +249,7 @@ It is used in SITL and HITL.
 
 ## rc_input
 
-Source: [drivers/rc_input](https://github.com/PX4/Firmware/tree/master/src/drivers/rc_input)
+源码：[drivers/rc_input](https://github.com/PX4/Firmware/tree/master/src/drivers/rc_input)
 
 ### 描述
 
@@ -262,7 +262,7 @@ This module does the RC input parsing and auto-selecting the method. Supported m
 - ST24
 - TBS Crossfire (CRSF)
 
-### Implementation
+### 实现
 
 By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread, specified via start flag -t, to reduce latency. When running on the work queue, it schedules at a fixed frequency.
 
@@ -283,7 +283,7 @@ By default the module runs on the work queue, to reduce RAM usage. It can also b
 
 ## sf1xx
 
-Source: [drivers/distance_sensor/sf1xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf1xx)
+源码：[drivers/distance_sensor/sf1xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf1xx)
 
 ### 描述
 
@@ -291,7 +291,7 @@ I2C bus driver for Lightware SFxx series LIDAR rangefinders: SF10/a, SF10/b, SF1
 
 Setup/usage information: https://docs.px4.io/en/sensor/sfxx_lidar.html
 
-### Examples
+### 示例
 
 Attempt to start driver on any bus (start on bus where first sensor found).
 
@@ -325,17 +325,17 @@ Stop driver
 
 ## tap_esc
 
-Source: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
+源码：[drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
 
 ### 描述
 
 This module controls the TAP_ESC hardware via UART. It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
 
-### Implementation
+### 实现
 
 Currently the module is implementd as a threaded version only, meaning that it runs in its own thread instead of on the work queue.
 
-### Example
+### 示例
 
 The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
 
@@ -352,7 +352,7 @@ The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
 
 ## vmount
 
-Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
+源码：[modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
 ### 描述
 
@@ -360,11 +360,11 @@ Mount (Gimbal) control driver. It maps several different input methods (eg. RC o
 
 Documentation how to use it is on the [gimbal_control](https://dev.px4.io/en/advanced/gimbal_control.html) page.
 
-### Implementation
+### 实现
 
 Each method is implemented in its own class, and there is a common base class for inputs and outputs. They are connected via an API, defined by the `ControlData` data structure. This makes sure that each input method can be used with each output method and new inputs/outputs can be added with minimal effort.
 
-### Examples
+### 示例
 
 Test the output by setting a fixed yaw angle (and the other axes to 0):
 
