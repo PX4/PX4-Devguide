@@ -92,17 +92,17 @@
 
 ### 实现
 
-每一类都是基于一个公共的基类在各自独有的类中完成模块的实现。 基类中包含了一个状态量 (landed, maybe_landed, ground_contact）。 每一个可能的状态都在衍生出的子类中进行了实现。 A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
+每一类都是基于一个公共的基类在各自独有的类中完成模块的实现。 基类中包含了一个状态量 (landed, maybe_landed, ground_contact）。 每一个可能的状态都在衍生出的子类中进行了实现。 每个内部状态的迟滞和固定优先级共同决定着实际的 land_detector 的状态。
 
-#### Multicopter Land Detector
+#### 多旋翼的 Land Detector
 
-**ground_contact**: thrust setpoint and velocity in z-direction must be below a defined threshold for time GROUND_CONTACT_TRIGGER_TIME_US. When ground_contact is detected, the position controller turns off the thrust setpoint in body x and y.
+**ground_contact**: 在 GROUND_CONTACT_TRIGGER_TIME_US 时间内推力设定值和飞机 z 方向的速度必须在低于一个预设的阈值， 当检测到 ground_contact 状态时，位置控制器将关闭机体 x 方向和 y 方向上的推力设定值。
 
-**maybe_landed**: it requires ground_contact together with a tighter thrust setpoint threshold and no velocity in the horizontal direction. The trigger time is defined by MAYBE_LAND_TRIGGER_TIME. When maybe_landed is detected, the position controller sets the thrust setpoint to zero.
+**maybe_landed**: 该状态除了要求飞机处于 ground_contact 状态外，还要求满足一个更严格的推理设定值，且飞机在水平方向上没有速度。 触发时间由变量 MAYBE_LAND_TRIGGER_TIME 定义。 当检测到 maybe_landed 状态时，位置控制器会将推理设定值设置为零。
 
-**landed**: it requires maybe_landed to be true for time LAND_DETECTOR_TRIGGER_TIME_US.
+**landed**: 它要求在 LAND_DETECTOR_TRIGGER_TIME_US 时间内 maybe_landed 状态为真。
 
-The module runs periodically on the HP work queue.
+该模块在 HP 工作队列中周期性运行。
 
 ### 用法 {#land_detector_usage}
 
