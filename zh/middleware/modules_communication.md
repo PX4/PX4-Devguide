@@ -153,9 +153,9 @@ uORB 模块通常作为第一个模块启动，并且绝大多数其它模块均
 
 该接口基于文件描述符（file descriptor）实现：它在内部使用 `read`、`write` 和 `ioctl`。 唯一例外的是数据的发布，它使用了 `orb_advert_t` 句柄以使得其也可以从中断中使用（在 Nuttx 平台上）。
 
-消息在 `/msg` 文件夹下定义。 They are converted into C/C++ code at build-time.
+消息在 `/msg` 文件夹下定义。 在构建时它们会被转化为 C/C++ 代码。
 
-If compiled with ORB_USE_PUBLISHER_RULES, a file with uORB publication rules can be used to configure which modules are allowed to publish which topics. This is used for system-wide replay.
+如果使用 ORB_USE_PUBLISHER_RULES 进行编译，那么可以使用一个包含了 uORB 发布规则的文件来配置允许哪些模块发布哪些主题。 这可以用于全系统范围的回放。
 
 ### 示例
 
