@@ -4,19 +4,19 @@
 
 源码：[drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
 
-FrSky Telemetry support. Auto-detects D or S.PORT protocol.
+FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
 
 ### 用法 {#frsky_telemetry_usage}
 
-    frsky_telemetry <command> [arguments...]
+    frsky_telemetry &lt;command&gt; [arguments...]
      Commands:
        start
-         [-d <val>]  Select Serial Device
-                     values: <file:dev>, default: /dev/ttyS6
-         [-t <val>]  Scanning timeout [s] (default: no timeout)
+         [-d &lt;val&gt;]  选择串口设备
+                    取值 &lt;file:dev&gt;, 默认值： /dev/ttyS6
+         [-t &lt;val&gt;]  扫描超时时间 [s] (默认值： no timeout)
                      default: 0
-         [-m <val>]  Select protocol (default: auto-detect)
-                     values: sport|sport_single|dtype, default: auto
+         [-m &lt;val&gt;]  选择通信协议 (默认值：auto-detect)
+                     取值： sport|sport_single|dtype, 默认值： auto
     
        stop
     
