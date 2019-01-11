@@ -22,25 +22,25 @@ PX4目前仅支持u-blox M8P单频（L1频点）RTK接收机。
 
 ## 自动配置
 
-The PX4 GPS stack automatically sets up the u-blox M8P modules to send and receive the correct messages over the UART or USB, depending on where the module is connected (to *QGroundControl* or the autopilot).
+PX4 GPS堆栈自动设置u-blox M8P模块，通过UART或USB发送和接收正确的消息，具体取决于模块的连接位置（* QGroundControl *或自动驾驶仪）。
 
-As soon as the autopilot receives `GPS_RTCM_DATA` MAVLink messages, it automatically forwards the RTCM data to the attached GPS module.
+一旦自动驾驶仪接收到` GPS_RTCM_DATA ` MAVLink消息，它就会自动将RTCM数据转发到附加的GPS模块。
 
-> **Note** The U-Center RTK module configuration tool is not needed/used!
+> **Note** 不需要/使用U-Center RTK模块配置工具！
 
 <span></span>
 
-> **Note** Both *QGroundControl* and the autopilot firmware share the same [PX4 GPS driver stack](https://github.com/PX4/GpsDrivers). In practice, this means that support for new protocols and/or messages only need to be added to one place.
+> **Note** * QGroundControl *和自动驾驶仪固件共享相同的[ PX4 GPS驱动程序堆栈](https://github.com/PX4/GpsDrivers)。 实际上，这意味着只需要将新协议和/或消息的支持添加到一个地方。
 
-### RTCM messages
+### RTCM 报文
 
-QGroundControl configures the RTK base station to output the following RTCM3.2 frames, each with 1 Hz:
+QGroundControl配置RTK基站输出依据RTCM3.2框架，每帧为1 Hz：
 
 - **1005** - Station coordinates XYZ for antenna reference point (Base position).
 - **1077** - Full GPS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution).
 - **1087** - Full GLONASS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution).
 
-## Uplink datarate
+## 上行数据速率
 
 The raw RTCM messages from the base are packed into a MAVLink `GPS_RTCM_DATA` message and sent over the datalink. The maximum length of each MAVLink message is 182 bytes. Depending on the RTCM message, the MAVLink message is almost never completely filled.
 
