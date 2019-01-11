@@ -1,8 +1,8 @@
-# Modules Reference: Communication
+# 模块参考：通信（Communication）
 
 ## frsky_telemetry
 
-Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
+源码：[drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
 
 FrSky Telemetry support. Auto-detects D or S.PORT protocol.
 
@@ -25,7 +25,7 @@ FrSky Telemetry support. Auto-detects D or S.PORT protocol.
 
 ## mavlink
 
-Source: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
+源码： [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
 
 ### 描述
 
@@ -35,7 +35,7 @@ Streams are used to send periodic messages with a specific rate, such as the veh
 
 There can be multiple independent instances of the module, each connected to one serial device or network port.
 
-### Implementation
+### 实现
 
 The implementation uses 2 threads, a sending and a receiving thread. The sender runs at a fixed rate and dynamically reduces the rates of the streams if the combined bandwidth is higher than the configured rate (`-r`) or the physical link becomes saturated. This can be checked with `mavlink status`, see if `rate mult` is less than 1.
 
@@ -105,7 +105,7 @@ Start mavlink on UDP port 14556 and enable the HIGHRES_IMU message with 50Hz:
 
 ## micrortps_client
 
-Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
+源码：[modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
 
 ### 用法 {#micrortps_client_usage}
 
@@ -140,7 +140,7 @@ Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmw
 
 ## uorb
 
-Source: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
+源码：[modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
 
 ### 描述
 
@@ -148,7 +148,7 @@ uORB is the internal pub-sub messaging system, used for communication between mo
 
 It is typically started as one of the very first modules and most other modules depend on it.
 
-### Implementation
+### 实现
 
 No thread or work queue is needed, the module start only makes sure to initialize the shared global state. Communication is done via shared memory. The implementation is asynchronous and lock-free, ie. a publisher does not wait for a subscriber and vice versa. This is achieved by having a separate buffer between a publisher and a subscriber.
 
@@ -160,7 +160,7 @@ Messages are defined in the `/msg` directory. They are converted into C/C++ code
 
 If compiled with ORB_USE_PUBLISHER_RULES, a file with uORB publication rules can be used to configure which modules are allowed to publish which topics. This is used for system-wide replay.
 
-### Examples
+### 示例
 
 Monitor topic publication rates. Besides `top`, this is an important command for general system inspection:
 
