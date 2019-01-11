@@ -185,6 +185,6 @@ PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图�
         netcat -lvup 14550 < /tmp/udp2tcp | netcat localhost 14551 > /tmp/udp2tcp
         
     
-    在执行 netcat 之前必须运行 QGC。 The tunnel could run infinitely, but netcat connections may need a restart in case of improper communication state occurs. The port number `14550` is valid for QGC software connection and should be adjusted for other possible communication channels.
+    在执行 netcat 之前必须运行 QGC。 通道虽然可以一直运行，但是如果发生错误的通信状态的时候 netcat 连接会重启。 端口号 `14550` 对 QGC 软件连接有效，应针对其他可能的通信通道进行调整。
     
-    The automated [bash connection script](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) is prepared for automation of QGC to simulation server running the PX4 stack.
+    自动 [bash connection script](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) 准备用于 QGC 自动化到运行 PX4 堆栈的模拟服务器。
