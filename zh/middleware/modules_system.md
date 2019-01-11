@@ -6,18 +6,18 @@
 
 ### 描述
 
-Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
+该模块通过基于 C 语言的 API 以简单数据库的形式为系统的其它部分提供持续性存储功能。 支持多种后端：
 
-- a file (eg. on the SD card)
-- FLASH (if the board supports it)
+- 一个文件 （比如，在 SD 卡上）
+- FLASH 内存（如果飞控板支持的话）
 - FRAM
-- RAM (this is obviously not persistent)
+- 内存 RAM (显然这种方式不是持续的)
 
-It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
+该模块用来存储不同类型的结构化数据：任务航点、人物状态和地理围栏多边形等。 每种类型的数据都有一个特定的类型和一个固定的最大存储条目的数量，因此可以实现对数据的快速随机访问。
 
 ### 实现
 
-Reading and writing a single item is always atomic. If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
+读取和写入单个项目总是原子的（一条指令即可完成）。 If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
 
 **DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
 
