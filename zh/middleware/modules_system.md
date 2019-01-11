@@ -13,13 +13,13 @@
 - FRAM
 - 内存 RAM (显然这种方式不是持续的)
 
-该模块用来存储不同类型的结构化数据：任务航点、人物状态和地理围栏多边形等。 每种类型的数据都有一个特定的类型和一个固定的最大存储条目的数量，因此可以实现对数据的快速随机访问。
+该模块用来存储不同类型的结构化数据：任务航点、人物状态和地理围栏多边形。 每种类型的数据都有一个特定的类型和一个固定的最大存储条目的数量，因此可以实现对数据的快速随机访问。
 
 ### 实现
 
-读取和写入单个项目总是原子的（一条指令即可完成）。 If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
+读取和写入单个项目总是原子的。 如果需要对多个条目进行原子读取/修改，模块会使用 `dm_lock` 对每个类型的条目添加一个额外的锁定。
 
-**DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
+**DM_KEY_FENCE_POINTS** 和 **DM_KEY_SAFE_POINTS** 条目：第一个数据元素是一个 `mission_stats_entry_s` 结构体，存储着这些类型的项目的条目数量。 这些项目在每个业务中都会进行原子更新 (从 mavlink 任务管理器)。 在此期间，navigator 会尝试获取地理围栏条目的锁定，如果失败则不会检查是否超越了地理围栏。
 
 ### 用法 {#dataman_usage}
 
