@@ -27,7 +27,7 @@ BOARD=s2740vc_1_0 make && BOARD=px4esc_1_6 make
 
 这将为两个支持的电调来构建 UAVCAN 节点固件。 固件将位于 `com.thiemar.s2740vc-v1-1.0-1.0。&lt;git hash&gt;.bin` 和 `org.pixhawk.px4esc-v1-1.6-1.0。&lt;git hash&gt;.binn`。
 
-## Sapog Codebase（Pixhawk ESC 1.4和Zubax Orel 20）
+## Sapog 代码库（Pixhawk ESC 1.4和Zubax Orel 20）
 
 下载 Sapog 代码库：
 
@@ -53,7 +53,7 @@ cd ..
 
 ```sh
 cd firmware
-make RELEASE=1 # RELEASE is optional; omit to build the debug version
+make RELEASE=1 # RELEASE 是可选的；省略掉可构建调试版本
 ```
 
 请注意，一些较新版本的 GCC 会在链接期间导致段错误。 版本 4.9 在撰写本文时确实有效。 固件映像将位于 `firmware/build/io.px4.sapog-1.1-1.7。&lt;xxxxxxxx&gt;.application.bin`, where`&lt;xxxxxxxx&gt;`是数字和字母的任意序列。 Zubax Orel 20 有两个硬件版本（1.0 和 1.1）。 确保将二进制文件复制到后续说明中的正确文件夹中。 ESC 固件将检查硬件版本并适用于这两种产品。
