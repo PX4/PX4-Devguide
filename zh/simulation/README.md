@@ -160,9 +160,9 @@ PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图�
     
     其他模拟器可以使用相同的方法来实现相机支持。
     
-    ## Running Simulation on the Remote Server
+    ## 在远程服务器上运行仿真
     
-    As had been mentioned at the beginning the simulation environment can be run on multiple computers on the same network. Unfortunately, it is a slightly complicated, because of the out of box configuration does not broadcast the PX4 UDP packets to external interfaces and packets are routed internally by default. A solution is to enable brodcasting by [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) parameter to allow broadcast UDP packets to the local network or use a tunnel to connect computers together.
+    正如开头所提到的，模拟环境可以在同一网络上的多台计算机上运行。 但它有点复杂，因为开箱即用配置不会将 PX4 UDP 数据包广播到外部接口，并且数据包默认在内部路由。 解决方案是通过 [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) 参数启用 brodcasting 以允许广播 UDP 数据包到本地网络或使用隧道将计算机连接在一起。
     
     Using the tunnel is a more flexible option because the computers are not required to sit on the same network and remote powerful simulation server can be used for example.
     
