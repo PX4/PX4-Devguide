@@ -98,7 +98,7 @@ while (!_should_exit_task)
 
 测试是在 Pixracer 上运行的 PX4, 通过 UART 连接到运行 Ubuntu 16.04 的普通 PC。 默认配置用于两个客户/代理。
 
-The throughput that was observed in the client shell window on completion is shown below:
+吞吐量可以在 shell 窗口中观察到的结果如下：
 
 ```sh
 SENT:     13255 messages in 13255 LOOPS, 3512575 bytes in 30.994 seconds - 113.33KB/s
