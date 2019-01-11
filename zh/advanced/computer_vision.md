@@ -1,4 +1,4 @@
-# Computer Vision (VIO, Avoidance)
+# 计算机视觉 (VIO, 避障)
 
 [计算机视觉](https://en.wikipedia.org/wiki/Computer_vision)技术使计算机能够使用视觉数据来理解他们的环境。
 
@@ -24,23 +24,23 @@ PX4使用计算机视觉系统（主要在Companion Computers上运行）以支�
 
 ## 视觉惯性测距法 {#vio}
 
-视觉惯性测距（VIO）用于估计移动车辆相对于*起始点*起始位置的3D *姿势*（位置和方向）。 It is commonly used to navigate a vehicle in situations where GPS is absent (e.g. indoors) or unreliable (e.g. when flying under a bridge).
+视觉惯性测距（VIO）用于估计移动车辆相对于*起始点*起始位置的3D *姿势*（位置和方向）。 它通常用于在GPS不存在（例如室内）或不可靠的情况下（例如在桥下飞行时）导航载具。
 
-VIO uses [Visual Odometry](https://en.wikipedia.org/wiki/Visual_odometry) to estimate vehicle *pose* from visual information, combined with inertial measurements from an IMU (to correct for errors associated with rapid vehicle movement resulting in poor image capture).
+VIO使用[视觉测距](https://en.wikipedia.org/wiki/Visual_odometry)来从视觉信息估计车辆*姿势*，结合来自IMU的惯性测量（以校正与载具快速移动导致不良的图像捕获）。
 
-> **Note** On difference between VIO and [MoCap](#mocap) is that VIO cameras/IMU are vehicle-based, and additionally provide velocity information.
+> **Note** VIO和[ MoCap ](#mocap)之间的区别在于VIO摄像机/ IMU是基于载具本身的，并且还提供速度信息。
 
-For information about VIO see:
+有关VIO的信息，请参阅：
 
-- [EKF > External Vision System](../tutorials/tuning_the_ecl_ekf.md#external-vision-system)
-- [Snapdragon > Installation > Install Snap VIO](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
+- [EKF>外部视觉系统](../tutorials/tuning_the_ecl_ekf.md#external-vision-system)
+- [Snapdragon>安装>安装Snap VIO](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
 
-## Optical Flow {#optical_flow}
+## 光流 {#optical_flow}
 
-[Optical Flow](https://docs.px4.io/en/sensor/optical_flow.html) provides 2D velocity estimation (using a downward facing camera and a downward facing distance sensor).
+[光流](https://docs.px4.io/en/sensor/optical_flow.html)提供2D速度估计（使用向下的相机和向下的距离传感器）。
 
-For information about optical flow see:
+有关光流的信息，请参阅：
 
-- [Optical Flow](https://docs.px4.io/en/sensor/optical_flow.html) 
-  - [PX4Flow Smart Camera](https://docs.px4.io/en/sensor/px4flow.html)
-- [EKF > Optical Flow](../tutorials/tuning_the_ecl_ekf.md#optical-flow)
+- [光流](https://docs.px4.io/en/sensor/optical_flow.html) 
+  - [PX4Flow 智能摄像机](https://docs.px4.io/en/sensor/px4flow.html)
+- [EKF > 光流](../tutorials/tuning_the_ecl_ekf.md#optical-flow)
