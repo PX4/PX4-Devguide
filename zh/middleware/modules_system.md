@@ -23,24 +23,23 @@
 
 ### 用法 {#dataman_usage}
 
-    dataman <command> [arguments...]
+    dataman &lt;command&gt; [arguments...]
      Commands:
        start
-         [-f <val>]  Storage file
-                     values: <file>
-         [-r]        Use RAM backend (NOT persistent)
-         [-i]        Use FLASH backend
+         [-f &lt;val&gt;]  存储文件
+                     取值: &lt;file&gt;
+         [-r]        使用 RAM 后端 (非持续)
+         [-i]        使用 FLASH 后端
     
-     The options -f, -r and -i are mutually exclusive. If nothing is specified, a
-     file 'dataman' is used
+     -f, -r 和-i 选项是互斥的。 如果未指定后端，那么默认使用文件 'dataman' 
     
-       poweronrestart Restart dataman (on power on)
+       poweronrestart 重启 dataman (处于开机 power on 状态时)
     
-       inflightrestart Restart dataman (in flight)
+       inflightrestart 重启 dataman (处于飞行状态时)
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## heater
