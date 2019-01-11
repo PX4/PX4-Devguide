@@ -1,4 +1,4 @@
-# PX4 Development Guide ({{ book.px4_version }})
+# PX4 开发指南 ({{ book.px4_version }})
 
 [![版本发布](https://img.shields.io/badge/release-{{ book.px4_version }}-blue.svg)](https://github.com/PX4/Firmware/releases) [![讨论](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
