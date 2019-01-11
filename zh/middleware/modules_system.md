@@ -303,31 +303,31 @@ Sensors 模块是整个系统的核心。 它以传感器驱动的低级别输�
 
 蜂鸣器被用于提供听觉通知和警告（例如，系统解锁、位置锁定等）。 本工具要求一个可处理 tune_control uorb 主题的驱动处于运行状态。
 
-Information about the tune format and predefined system tunes can be found here: https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
+有关音调格式和预定义的系统蜂鸣声音可以参阅： https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
 
 ### 示例
 
-Play system tune #2:
+播放系统蜂鸣声 #2 ：
 
     tune_control play -t 2
     
 
 ### 用法 {#tune_control_usage}
 
-    tune_control <command> [arguments...]
+    tune_control &lt;command&gt; [arguments...]
      Commands:
-       play          Play system tune, tone, or melody
-         [-t <val>]  Play predefined system tune
-                     default: 1
-         [-f <val>]  Frequency of tone in Hz (0-22kHz)
-                     default: 0
-         [-d <val>]  Duration of tone in us
-                     default: 1
-         [-s <val>]  Strength of tone (0-100)
-                     default: 40
-         [-m <val>]  Melody in string form
-                     values: <string> - e.g. "MFT200e8a8a"
+       play          模仿系统蜂鸣声（tune），声调（tone）或旋律（melody）
+         [-t &lt;val&gt;]  播放预定义的系统蜂鸣声
+                     默认值：1
+         [-f &lt;val&gt;]  声调频率，单位 Hz (0-22kHz)
+                     默认值： 0
+         [-d &lt;val&gt;]  音调持续时间，单位 us
+                     默认值： 1
+         [-s &lt;val&gt;]  音调强度 (0-100)
+                     默认值： 40
+         [-m &lt;val&gt;]  字符串形式的旋律
+                     取值： &lt;string&gt; - e.g. "MFT200e8a8a"
     
-       libtest       Test library
+       libtest       测试库
     
-       stop          Stop playback (use for repeated tunes)
+       stop          停止重放 (用于处理重复播放的蜂鸣声)
