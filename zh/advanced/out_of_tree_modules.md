@@ -8,21 +8,21 @@
 
 ## 用法
 
-To create an external module:
+要创建外部模块：
 
-- Create an *external directory* directory for grouping the external modules: 
-  - This can be located anywhere outside of the **Firmware** tree.
-  - It must have the same structure as **Firmware** (i.e. it must contain a directory called **src**).
-  - Later we refer to this directory using `EXTERNAL_MODULES_LOCATION`.
-- Copy an existing module (e.g. **examples/px4_simple_app**) to the external directory, or directly create a new module.
-- Rename the module (including `MODULE` in **CMakeLists.txt**) or remove it from the existing Firmware *cmake* build config. This is to avoid conflicts with internal modules.
-- Add a file **CMakeLists.txt** in the external directory with content: 
+- 创建*外部目录*目录以对外部模块进行分组： 
+  - 它可以位于** Firmware **目录树之外的任何位置。
+  - 它必须与** Firmware **具有相同的目录结构（即它必须包含名为** src **的目录）。
+  - 稍后我们使用` EXTERNAL_MODULES_LOCATION `来引用此目录。
+- 将现有模块（例如** examples / px4_simple_app **）复制到外部目录，或直接创建新模块。
+- 重命名模块（包括** CMakeLists.txt **中的` MODULE `）或从现有的Firmware * cmake *构建配置中删除它。 这是为了避免与内部模块冲突。
+- 在外部目录中添加文件** CMakeLists.txt **，内容为： 
       set(config_module_list_external
           modules/<new_module>
           PARENT_SCOPE
           )
 
-- Add a line `EXTERNAL` to the `modules/<new_module>/CMakeLists.txt` within `px4_add_module()`, for example like this:
+- 在` modules / &lt;new_module&gt; /CMakeLists.txt `中添加一行` EXTERNAL ` ` px4_add_module（）`，例如：
   
       px4_add_module(
         MODULE modules__test_app
@@ -36,30 +36,30 @@ To create an external module:
         )
       
 
-## Out-of-Tree uORB Message Definitions {#uorb_message_definitions}
+## 树外uORB消息定义 {#uorb_message_definitions}
 
-uORB messages can also be defined out-of-tree. For this, the `$EXTERNAL_MODULES_LOCATION/msg` folder must exist.
+uORB消息也可以在树外定义。 为此，必须存在` $ EXTERNAL_MODULES_LOCATION / msg `文件夹。
 
-- Place all new message definitions within the `$EXTERNAL_MODULES_LOCATION/msg` directory. The format of these new out-of-tree message definitions are the same as for any other [uORB message definition](../middleware/uorb.md#adding-a-new-topic).
-- Add a file `$EXTERNAL_MODULES_LOCATION/msg/CMakeLists.txt` with content:
-  
-      set(config_msg_list_external
-          <message1>.msg
-          <message2>.msg
-          <message3>.msg
-          PARENT_SCOPE
-          )
-      
-  
-  where `<message#>.msg` is the name of the uORB message definition file to be processed and used for uORB message generation.
+- 将所有新消息定义放在` $ EXTERNAL_MODULES_LOCATION / msg </ 0>目录中。 
+这些新的树外消息定义的格式与任何其他<a href="../middleware/uorb.md#adding-a-new-topic"> uORB消息定义</a>的格式相同。</li>
+<li><p>将以下内容添加文件<code> $ EXTERNAL_MODULES_LOCATION / msg / CMakeLists.txt </ 0>：</p>
 
-The out-of-tree uORB messages will be generated in the same locations as the normal uORB messages. The uORB topic headers are generated in `<build_dir>/uORB/topics/`, and the message source files are generated in `<build_dir>/msg/topics_sources/`.
+<pre><code>set(config_msg_list_external
+    <message1>.msg
+    <message2>.msg
+    <message3>.msg
+    PARENT_SCOPE
+    )
+`</pre> 
+  其中` &lt;message#&gt;.msg `是要处理并用于生成uORB消息的uORB消息定义文件的名称。
 
-The new uORB messages can be used like any other uORB message as described [here](../middleware/uorb.md#adding-a-new-topic).
+树外uORB消息将在与正常uORB消息相同的位置生成。 Uorb主题标题在` &lt;build_dir&gt; / uORB / topics / `中生成，消息源文件在` &lt;build_dir&gt; / msg / topics_sources / `中生成。
 
-> **Warning** The out-of-tree uORB message definitions cannot have the same name as any of the normal uORB messages.
+新的uORB消息可以像任何其他uORB消息一样使用，如[这里](../middleware/uorb.md#adding-a-new-topic)所述。
 
-## Building External Modules and uORB Messages {#building}
+> **Warning** 树外的uORB消息定义不能与任何普通的uORB消息具有相同的名称。
+
+## 构建外部模块和uORB消息 {#building}
 
 Execute `make px4_sitl EXTERNAL_MODULES_LOCATION=<path>`.
 
