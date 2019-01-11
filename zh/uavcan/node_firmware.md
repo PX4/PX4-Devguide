@@ -66,46 +66,46 @@ make RELEASE=1 # RELEASE is optional; omit to build the debug version
 
 无论制造商如何，UAVCAN 节点文件名遵循命名约定，允许 Pixhawk 更新网络上的所有 UAVCAN 设备。 因此，必须将上述步骤中生成的固件文件复制到 SD 卡或 PX4 ROMFS 上的正确位置，以便更新设备。
 
-固件映像名称的约定是：
+固件映像名称的规则是:
 
     <uavcan name>-<hw version major>.<hw version minor>-<sw version major>.<sw version minor>.<version hash>.bin
     
 
 e.g. `com.thiemar.s2740vc-v1-1.0-1.0.68e34de6.bin`
 
-However, due to space/performance constraints (names may not exceed 28 charates), the UAVCAN firmware updater requires those filenames to be split and stored in a directory structure like the following:
+但是，由于空间/性能限制（名称可能不超过 28 个字符），UAVCAN 固件更新程序要求将这些文件名拆分并存储在如下目录结构中：
 
     /fs/microsd/fw/<node name>/<hw version major>.<hw version minor>/<hw name>-<sw version major>.<sw version minor>.<git hash>.bin
     
 
-e.g.
+例如
 
     s2740vc-v1-1.0.68e34de6.bin 
     /fs/microsd/fw/io.px4.sapog/1.1/sapog-1.7.87c7bc0.bin
     
 
-The ROMFS-based updater follows that pattern, but prepends the file name with ```_``` so you add the firmware in:
+基于 ROMFS 的更新程序遵循该模式，但在文件名前加上```_```，因此您可以在以下位置添加固件：
 
     /etc/uavcan/fw/<device name>/<hw version major>.<hw version minor>/_<hw name>-<sw version major>.<sw version minor>.<git hash>.bin
     
 
-## Placing the binaries in the PX4 ROMFS
+## 将二进制文件放置在 PX4 ROMFS 中
 
-The resulting finale file locations are:
+生成的最终文件位置是：
 
-* S2740VC ESC: `ROMFS/px4fmu_common/uavcan/fw/com.thiemar.s2740vc-v1/1.0/_s2740vc-v1-1.0.<git hash>.bin`
-* Pixhawk ESC 1.6: `ROMFS/px4fmu_common/uavcan/fw/org.pixhawk.px4esc-v1/1.6/_px4esc-v1-1.6.<git hash>.bin`
+* S2740VC ESC: `ROMFS/px4fmu_common/uavcan/fw/com.thiemar.s2740vc-v1/1.0/_s2740vc-v1-1.0.&lt;git hash&gt;.bin`
+* Pixhawk ESC 1.6: `ROMFS/px4fmu_common/uavcan/fw/org.pixhawk.px4esc-v1/1.6/_px4esc-v1-1.6.&lt;git hash&gt;.bin`
 * Pixhawk ESC 1.4: `ROMFS/px4fmu_common/uavcan/fw/org.pixhawk.sapog-v1/1.4/_sapog-v1-1.4.<git hash>.bin``
-* Zubax GNSS v1: `ROMFS/px4fmu_common/uavcan/fw/com.zubax.gnss/1.0/gnss-1.0.<git has>.bin`
-* Zubax GNSS v2: `ROMFS/px4fmu_common/uavcan/fw/com.zubax.gnss/2.0/gnss-2.0.<git has>.bin`
+* Zubax GNSS v1: `ROMFS/px4fmu_common/uavcan/fw/com.zubax.gnss/1.0/gnss-1.0.&lt;git has&gt;.bin`
+* Zubax GNSS v2: `ROMFS/px4fmu_common/uavcan/fw/com.zubax.gnss/2.0/gnss-2.0.&lt;git has&gt;.bin`
 
-Note that the ROMFS/px4fmu_common directory will be mounted to /etc on Pixhawk.
+<0>Note</0>将 ROMFS/px4fmu_common 目录挂载到 Pixhawk 上的 /etc。
 
-### Starting the Firmware Upgrade process
+### 启动固件升级过程
 
-When using the PX4 Flight Stack, enable UAVCAN in the 'Power Config' section and reboot the system before attempting an UAVCAN firmware upgrade.
+使用 PX4 Flight Stack 时，请在“Power Config”部分启用 UAVCAN，然后在尝试进行 UAVCAN 固件升级之前重新启动系统。
 
-Alternatively UAVCAN firmware upgrading can be started manually on NSH via:
+或者，可以通过以下方式在 NSH 上手动启动 UAVCAN 固件升级：
 
 ```sh
 uavcan start
