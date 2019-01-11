@@ -29,7 +29,7 @@ BOARD=s2740vc_1_0 make && BOARD=px4esc_1_6 make
 
 ## Sapog Codebase（Pixhawk ESC 1.4和Zubax Orel 20）
 
-Download the Sapog codebase:
+下载 Sapog 代码库：
 
 ```sh
 git clone https://github.com/PX4/sapog
@@ -37,9 +37,9 @@ cd sapog
 git submodule update --init --recursive
 ```
 
-### Flashing the UAVCAN Bootloader
+### 刷写 Bootloader
 
-Before updating firmware via UAVCAN, the ESC requires the UAVCAN bootloader to be flashed. The bootloader can be built as follows:
+在通过 UAVCAN 更新固件之前，ESC 需要闪存 UAVCAN 引导加载程序。 引导加载程序可以构建如下：
 
 ```sh
 cd bootloader
@@ -47,16 +47,16 @@ make clean && make -j8
 cd ..
 ```
 
-The bootloader image is located at `bootloader/firmware/bootloader.bin`, and the OpenOCD configuration is located at `openocd.cfg`. Follow [these instructions](../uavcan/bootloader_installation.md) to install the bootloader on the ESC.
+引导加载程序映像位于 `bootloader/firmware/bootloader.bin`，OpenOCD 配置位于 `openocd.cfg`。 按照 [these instructions](../uavcan/bootloader_installation.md) 在 ESC 上安装引导加载程序。
 
-### Compiling the Main Binary
+### 编译二进制文件
 
 ```sh
 cd firmware
 make RELEASE=1 # RELEASE is optional; omit to build the debug version
 ```
 
-Beware, some newer version of GCC lead to segfaults during linking. Version 4.9 did work at the time of writing. The firmware image will be located at `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`, where `<xxxxxxxx>` is an arbitrary sequence of numbers and letters. There are two hardware version of the Zubax Orel 20 (1.0 and 1.1). Make sure you copy the binary to the correct folder in the subsequent description. The ESC firmware will check the hardware version and works on both products.1
+请注意，一些较新版本的 GCC 会在链接期间导致段错误。 版本 4.9 在撰写本文时确实有效。 The firmware image will be located at `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`, where `<xxxxxxxx>` is an arbitrary sequence of numbers and letters. There are two hardware version of the Zubax Orel 20 (1.0 and 1.1). Make sure you copy the binary to the correct folder in the subsequent description. The ESC firmware will check the hardware version and works on both products.1
 
 ## Zubax GNSS
 
