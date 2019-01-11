@@ -1,12 +1,12 @@
 # Computer Vision (VIO, Avoidance)
 
-[Computer vision](https://en.wikipedia.org/wiki/Computer_vision) techniques enable computers to use visual data to make sense of their environment.
+[计算机视觉](https://en.wikipedia.org/wiki/Computer_vision)技术使计算机能够使用视觉数据来理解他们的环境。
 
-PX4 uses computer vision systems (primarily running on [Companion Computers](../companion_computer/pixhawk_companion.md)) in order to support the following features:
+PX4使用计算机视觉系统（主要在Companion Computers上运行）以支持以下功能：
 
-- [Optical Flow](#optical_flow) provides 2D velocity estimation (using a downward facing camera and a downward facing distance sensor).
-- [Motion Capture](#mocap) provides 3D pose estimation using a vision system that is *external* to the vehicle. It is primarily used for indoor navigation.
-- [Visual Inertial Odometry](#vio) provides 3D pose and velocity estimation using an onboard vision system and IMU. It is used for navigation when global position information is absent or unreliable.
+- [光流](#optical_flow)提供2D速度估计（使用向下的相机和向下的距离传感器）。
+- [运动捕捉](#mocap)使用载具*外部*的视觉系统进行3D姿态估计。 它主要用于室内导航。
+- [视觉惯性测距法](#vio)使用机载视觉系统和IMU提供3D姿势和速度估计 It is used for navigation when global position information is absent or unreliable.
 - [Obstacle Avoidance](https://docs.px4.io/en/computer_vision/obstacle_avoidance.html) provides navigation around obstacles when flying a planned path (currently missions are supported). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
 - [Collision Prevention](https://docs.px4.io/en/computer_vision/collision_prevention.html) is used to stop vehicles before they can crash into an obstacle (primarily when flying in manual modes).
 
