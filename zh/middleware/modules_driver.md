@@ -84,21 +84,20 @@
     fmu test
     
 
-Use the `pwm` command for further configurations (PWM rate, levels, ...), and the `mixer` command to load mixer files.
+使用 `pwm` 命令进行进一步的配置 (PWM 速率，级别, ...)，然后使用 `mixer` 命令来加载混控器文件。
 
 ### 用法 {#fmu_usage}
 
-    fmu <command> [arguments...]
+    fmu &lt;command&gt; [arguments...]
      Commands:
-       start         Start the task (without any mode set, use any of the mode_*
-                     cmds)
-         [-t]        Run as separate task instead of the work queue
+       start         启动任务 (不执行任何模式设置，不使用任何 mode_* 命令)
+         [-t]        以单独任务的形式运行，而不是工作队列
     
-     All of the mode_* commands will start the fmu if not running already
+     所有 mode_* 命令都启动 fum，如果 fmu 处于非运行状态的话
     
        mode_gpio
     
-       mode_pwm      Select all available pins as PWM
+       mode_pwm      选择所有可用的针脚为 PWM
     
        mode_pwm8
     
@@ -122,23 +121,23 @@ Use the `pwm` command for further configurations (PWM rate, levels, ...), and th
     
        mode_pwm1
     
-       sensor_reset  Do a sensor reset (SPI bus)
-         [<ms>]      Delay time in ms between reset and re-enabling
+       sensor_reset  执行一次传感器重置 (SPI 总线)
+         [&lt;ms&gt;]      重置和重新启用之间的延迟时间，单位 ms
     
-       peripheral_reset Reset board peripherals
-         [<ms>]      Delay time in ms between reset and re-enabling
+       peripheral_reset 重置飞控板外围设备
+         [&lt;ms&gt;]      重置和重新启用之间的延迟时间，单位 ms
     
-       i2c           Configure I2C clock rate
-         <bus_id> <rate> Specify the bus id (>=0) and rate in Hz
+       i2c           配置 I2C 时钟速率（clock rate）
+         &lt;bus_id&gt; &lt;rate&gt; 指定总线 id (>=0) 和速率，单位 Hz
     
-       test          Test inputs and outputs
+       test          测试输入和输出
     
-       fake          Arm and send an actuator controls command
-         <roll> <pitch> <yaw> <thrust> Control values in range [-100, 100]
+       fake          解锁并发送一个执行器控制信号
+         &lt;roll&gt; &lt;pitch&gt; &lt;yaw&gt; &lt;thrust&gt; 位于区间 [-100, 100] 内的控制值
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## gps
@@ -147,7 +146,7 @@ Use the `pwm` command for further configurations (PWM rate, levels, ...), and th
 
 ### 描述
 
-GPS driver module that handles the communication with the device and publishes the position via uORB. It supports multiple protocols (device vendors) and by default automatically selects the correct one.
+GPS 驱动模块负责处理与设备的通信并且将位置信息通过 uORB 发布出去。 它支持多个协议 (设备供应商)，默认情况下会自动选择正确的协议。
 
 The module supports a secondary GPS device, specified via `-e` parameter. The position will be published on the second uORB topic instance, but it's currently not used by the rest of the system (however the data will be logged, so that it can be used for comparisons).
 
