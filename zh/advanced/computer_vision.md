@@ -4,7 +4,7 @@
 
 PX4 使用计算机视觉系统（主要在机载计算机上运行）以支持以下功能：
 
-- [光流](#optical_flow)提供2D速度估计（使用向下的相机和向下的距离传感器）。
+- [光流](#optical_flow)提供 2D 速度估计（使用向下的相机和向下的距离传感器）。
 - [运动捕捉](#mocap)使用载具*外部*的视觉系统进行3D姿态估计。 它主要用于室内导航。
 - [视觉惯性测距法](#vio)使用机载视觉系统和IMU提供3D姿势和速度估计 当 GPS 不存在或不可靠时，它用于导航。
 - [障碍避免](https://docs.px4.io/en/computer_vision/obstacle_avoidance.html)在飞行计划路径时提供绕障碍物的导航（支持当前的任务）。 这依赖机载电脑上运行的 [PX4/avoidance](https://github.com/PX4/avoidance)
