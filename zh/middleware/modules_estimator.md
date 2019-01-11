@@ -30,7 +30,7 @@ ekf2 可以在回放（replay）模式中启动 (`-r`)：改模式下它不会�
 
 ### 描述
 
-使用扩展卡尔曼滤波器估计姿态和位置信息。
+基于扩展卡尔曼滤波器的姿态和位置估计器。
 
 ### 用法 {#local_position_estimator_usage}
 
@@ -49,7 +49,7 @@ ekf2 可以在回放（replay）模式中启动 (`-r`)：改模式下它不会�
 
 ### 描述
 
-This module runs a combined wind and airspeed scale factor estimator. If provided the vehicle NED speed and attitude it can estimate the horizontal wind components based on a zero sideslip assumption. This makes the estimator only suitable for fixed wing vehicles. If provided an airspeed measurement this module also estimates an airspeed scale factor based on the following model: measured_airspeed = scale_factor * real_airspeed.
+该模块运行一个综合了风速和空速缩放因子的估计器。 如果给该模块提供 NED 速度和姿态信息，该模块可以根据无侧滑假设对环境风的水平分量进行估计。 这就使得该估计器只适用于固定翼无人机。 如果提供的是空速的测量值，那么该模块还会同时根据如下模型估计一个空速的缩放因子： 测量的空速 = 缩放因子 * 实际空速。
 
 ### 用法 {#wind_estimator_usage}
 
