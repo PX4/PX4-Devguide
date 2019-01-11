@@ -59,27 +59,27 @@
 
 该模块监听 actuator_controls 主题，执行混控并写入 PWM 输出。
 
-该模块使用 mode_* 命令进行配置。 该命令会设定驱动将占用最开始的哪些 N 个针脚。 例如，通过使用 mode_pwm4，引脚 5 和 6 可被分别被相机触发驱动或者 PWM 测距仪驱动使用。 此外， fmu 还可以在 capture 模式之一中启动，然后驱动可以使用 ioctl 调用注册一个捕获回调函数（callback）。
+该模块使用 mode_* 命令进行配置。 该命令会设定驱动将占用最开始的哪些 N 个针脚。 例如，通过使用 mode_pwm4，引脚 5 和 6 可被分别被相机触发驱动或者 PWM 测距仪驱动使用。 此外， fmu 还可以以某种捕获模式启动，然后驱动可以使用 ioctl 调用注册一个捕获回调函数（callback）。
 
 ### 实现
 
-默认情况下模块以工作队列的形式运行以降低内存占用。 It can also be run in its own thread, specified via start flag -t, to reduce latency. When running on the work queue, it schedules at a fixed frequency, and the pwm rate limits the update rate of the actuator_controls topics. In case of running in its own thread, the module polls on the actuator_controls topic. Additionally the pwm rate defines the lower-level IO timer rates.
+默认情况下模块以工作队列的形式运行以降低内存占用。 它也可以在它自己独有的线程中运行以降低延时，使用 -t 启动标志进行指定即可。 以工作队列的形式运行时，该模块将以一个固定的频率进行调度，且 PWM 速率会限制着 actuator_controls 主题的更新速率。 以自己独有线程形式运行时，该模块会轮询 actuator_controls 主题。 此外， PWM 速率会影响更低级别的的 IO 计时器的速率。
 
 ### 示例
 
-It is typically started with:
+通常使用如下命令：
 
     fmu mode_pwm
     
 
-To drive all available pins.
+来驱动所有可以的引脚。
 
-Capture input (rising and falling edges) and print on the console: start the fmu in one of the capture modes:
+捕获输入（上升沿和下降沿）并在控制台上打印出来：以一种捕获模式启动 fmu：
 
     fmu mode_pwm3cap1
     
 
-This will enable capturing on the 4th pin. Then do:
+该命令将启用第 4 引脚上的捕获。 然后执行：
 
     fmu test
     
