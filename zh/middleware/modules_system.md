@@ -158,19 +158,19 @@
 
 模块的实现使用了两个线程：
 
-- The main thread, running at a fixed rate (or polling on a topic if started with -p) and checking for data updates
-- The writer thread, writing data to the file
+- 主进程以固定速率运行（如果以 -p 参数启动则会轮询一个主题），并检查数据的更新。
+- 写入线程，将数据写入文件中、
 
-In between there is a write buffer with configurable size (and another fixed-size buffer for the mission log). It should be large to avoid dropouts.
+两个线程中间有一个可配置大小的写缓冲区（有另一个固定大小的缓冲区用于任务日志的写入）。 缓冲区应大到可以避免出现数据溢出。
 
 ### 示例
 
-Typical usage to start logging immediately:
+立刻开始记录日志的典型用法：
 
     logger start -e -t
     
 
-Or if already running:
+或者当模块已经在运行时：
 
     logger on
     
