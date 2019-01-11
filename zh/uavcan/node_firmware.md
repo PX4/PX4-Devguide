@@ -2,32 +2,32 @@
 
 ## Ectorcontrol ESC 代码库（Pixhawk ESC 1.6 和 S2740VC）
 
-Download the ESC code:
+下载电调代码
 
 ```sh
 git clone https://github.com/thiemar/vectorcontrol
 cd vectorcontrol
 ```
 
-### Flashing the UAVCAN Bootloader
+### 刷写 Bootloader
 
-Before updating firmware via UAVCAN, the Pixhawk ESC 1.6 requires the UAVCAN bootloader be flashed. To build the bootloader, run:
+在通过 UAVCAN 更新固件之前，Pixhawk ESC 1.6 需要闪存 UAVCAN 引导加载程序。 要构建引导加载程序，请运行：
 
 ```sh
 make clean && BOARD=px4esc_1_6 make -j8
 ```
 
-After building, the bootloader image is located at `firmware/px4esc_1_6-bootloader.bin`, and the OpenOCD configuration is located at `openocd_px4esc_1_6.cfg`. Follow [these instructions](../uavcan/bootloader_installation.md) to install the bootloader on the ESC.
+构建之后，引导加载程序映像位于 `firmware/px4esc_1_6-bootloader.bin`，并且 OpenOCD 配置位于 `openocd_px4esc_1_6.cfg`。 按照 [these instructions](../uavcan/bootloader_installation.md) 在 ESC 上安装引导加载程序。
 
-### Compiling the Main Binary
+### 编译二进制文件
 
 ```sh
 BOARD=s2740vc_1_0 make && BOARD=px4esc_1_6 make
 ```
 
-This will build the UAVCAN node firmware for both supported ESCs. The firmware images will be located at `com.thiemar.s2740vc-v1-1.0-1.0.<git hash>.bin` and `org.pixhawk.px4esc-v1-1.6-1.0.<git hash>.binn`.
+这将为两个支持的电调来构建 UAVCAN 节点固件。 固件将位于 `com.thiemar.s2740vc-v1-1.0-1.0。&lt;git hash&gt;.bin` 和 `org.pixhawk.px4esc-v1-1.6-1.0。&lt;git hash&gt;.binn`。
 
-## Sapog Codebase (Pixhawk ESC 1.4 and Zubax Orel 20)
+## Sapog Codebase（Pixhawk ESC 1.4和Zubax Orel 20）
 
 Download the Sapog codebase:
 
