@@ -1,6 +1,6 @@
 # UAVCAN 固件升级
 
-## Vectorcontrol ESC Codebase (Pixhawk ESC 1.6 and S2740VC)
+## Ectorcontrol ESC 代码库（Pixhawk ESC 1.6 和 S2740VC）
 
 Download the ESC code:
 
