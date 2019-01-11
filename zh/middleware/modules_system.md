@@ -209,11 +209,11 @@
 
 ### 描述
 
-This module is used to replay ULog files.
+此模块用于回放 ULog 文件。
 
-There are 2 environment variables used for configuration: `replay`, which must be set to an ULog file name - it's the log file to be replayed. The second is the mode, specified via `replay_mode`:
+共有两个需要进行配置的环境变量： `replay` ，必须被设置为 ULog 文件名 - 也就是需要进行回放的日志文件。 第二个则是通过 `replay_mode` 变量对回放模式进行设定：
 
-- `replay_mode=ekf2`: specific EKF2 replay mode. It can only be used with the ekf2 module, but allows the replay to run as fast as possible.
+- `replay_mode=ekf2`: 指定 EKF2 回放模式。 该模式只能与 ekf2 模块一起使用，但它可以让回放的运行速度尽可能的快。
 - Generic otherwise: this can be used to replay any module(s), but the replay will be done with the same speed as the log was recorded.
 
 The module is typically used together with uORB publisher rules, to specify which messages should be replayed. The replay module will just publish all messages that are found in the log. It also applies the parameters from the log.
