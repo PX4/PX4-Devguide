@@ -1,12 +1,12 @@
 # Micro RTPS 吞吐量测试
 
-这是一个测量 [PX4-FastRTPS Bridge](../middleware/micrortps.md) 吞吐量的简单测试。 It sends and receives 256-byte messages (simultaneously) at maximum rate, and then outputs the result.
+这是一个测量 [PX4-FastRTPS Bridge](../middleware/micrortps.md) 吞吐量的简单测试。 最大速率下，同时收发 256 字节的报文，并且输出结果。
 
-> **Tip** This example requires that you [Manually Generate Client and Agent Code](../middleware/micrortps_manual_code_generation.md).
+> **Tip** 该示例需要你 [手动生成客户端和代理代码](../middleware/micrortps_manual_code_generation.md)。
 
-## Create the uORB message
+## 使用 uORB 报文
 
-First create a new uORB message for this test in the folder **/Firmware/msg/**. The message file will be called **throughput_256.msg** and have the following content:
+首先，在 **Firmware/msg/** 目录下创建一个新的 uORB 报文。 The message file will be called **throughput_256.msg** and have the following content:
 
 ```text
 uint8[256] data
