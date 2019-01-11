@@ -53,7 +53,7 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ### 实现
 
-To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
+为了降低控制延时，该模块会直接轮训 IMU 驱动发布的陀螺仪（gyro）主题消息。
 
 ### 用法 {#mc_att_control_usage}
 
@@ -72,9 +72,9 @@ To reduce control latency, the module directly polls on the gyro topic published
 
 ### 描述
 
-The controller has two loops: a P loop for position error and a PID loop for velocity error. Output of the velocity controller is thrust vector that is split to thrust direction (i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
+控制器有两个回路：一个针对位置误差的比例（P）控制回路和一个针对速度误差的 PID 控制回路。 速度控制器的输出是一个推力矢量，该矢量可分割成推力的方向（即，多旋翼姿态的旋转矩阵）和推力的大小（即，多旋翼推力本身）
 
-The controller doesn't use Euler angles for its work, they are generated only for more human-friendly control and logging.
+控制器实际工作中并不使用欧拉角，系统运行时使用欧拉角仅仅是为了可以更人性化地控制飞机和日志记录。
 
 ### 用法 {#mc_pos_control_usage}
 
@@ -93,24 +93,24 @@ The controller doesn't use Euler angles for its work, they are generated only fo
 
 ### 描述
 
-Module that is responsible for autonomous flight modes. This includes missions (read from dataman), takeoff and RTL. It is also responsible for geofence violation checking.
+该模块负责自主飞行模式。 这里面包括了飞行任务 (从 dataman 中读取)，起飞和 RTL。 它还负责检查飞机是否跨越了地理围栏。
 
 ### 实现
 
-The different internal modes are implemented as separate classes that inherit from a common base class `NavigatorMode`. The member `_navigation_mode` contains the current active mode.
+不同的内部模式都是以单独的类实现的，这些类都是从公共基类 `NavigatorMode` 的子类。 成员变量 `_navigation_mode` 包含了当前活跃的模式。
 
-Navigator publishes position setpoint triplets (`position_setpoint_triplet_s`), which are then used by the position controller.
+Navigator 发布位置期望值三元组 (`position_setpoint_triplet_s`)，该期望值会被位置控制器使用。
 
 ### 用法 {#navigator_usage}
 
-    navigator <command> [arguments...]
+    navigator &lt;command&gt; [arguments...]
      Commands:
        start
     
-       fencefile     load a geofence file from SD card, stored at etc/geofence.txt
+       fencefile     从 SD 卡载入地理围栏文件，文件位置：etc/geofence.txt
     
-       fake_traffic  publishes 3 fake transponder_report_s uORB messages
+       fake_traffic  发布 3 个虚假的 transponder_report_s uORB 消息
     
        stop
     
-       status        print status info
+       status        打印状态信息
