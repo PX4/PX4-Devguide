@@ -16,29 +16,29 @@
 
 ## 设置备用电源连接
 
-Odroid c1 可以通过 5v 直流插孔供电。 If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup.
+Odroid c1 可以通过 5v 直流插孔供电。 如果 Odroid 被安装在飞行器上，建议将两个跳线通过插片式的[方法](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering)焊接在电路上 在例子中，Odroid C1 通过在上图所示的红色跳线连接 DC 电源 (5 V) 和通过上图所示的黑色跳线连接地线被通电。
 
 ![Power Pins](../../assets/videostreaming/power-pins.jpg)
 
 ## 为 Odroid C1 启用无线网络连接
 
-In this this tutorial the WiFi module TP-LINK TL-WN722N is used. To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
+在这篇教程中使用的是 WiFi 模块 TP-LINK TL-WN722N. To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
 
-## Configure as WiFi Access Point
+## 配置 WiFi 为接入点
 
 This sections shows how to set up the Odroid C1 such that it is an access point. The content is taken from this [tutorial](https://pixhawk.org/peripherals/onboard_computers/access_point) with some small adaptions. To enable to stream the video from the camera via the Odroid C1 to the QGroundControl that runs on a computer it is not required to follow this section. However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion. The TP-LINK TL-WN722N is used as a WiFi module. In the ensuing steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module. Change all occurrences of wlan0 to the appropriate interface if different (e.g. wlan1).
 
-### Onboard Computer as Access Point
+### 配置机载电脑为接入点
 
-For a more in depth explanation, you can look at [RPI-Wireless-Hotspot](http://elinux.org/RPI-Wireless-Hotspot)
+有关更深入解释, 请查阅 [RPI-Wireless-Hotspot](http://elinux.org/RPI-Wireless-Hotspot)
 
-Install the necessary software
+安装必要的软件
 
 ```bash
 sudo apt-get install hostapd udhcpd
 ```
 
-Configure DHCP. Edit the file `/etc/udhcpd.conf`
+配置 DHCP Edit the file `/etc/udhcpd.conf`
 
 ```bash
 start 192.168.2.100 # This is the range of IPs that the hotspot will give to client devices.
@@ -159,7 +159,7 @@ Now edit the file /etc/network/interfaces and add the following line to the bott
 up iptables-restore < /etc/iptables.ipv4.nat
 ```
 
-# Gstreamer Installation
+# Gstreamer 安装
 
 To install gstreamer packages on the computer and on the Odroid C1 and start the stream, follow the instruction given in the [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md).
 
