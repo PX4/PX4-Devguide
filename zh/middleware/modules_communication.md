@@ -147,31 +147,31 @@ uORB 模块通常作为第一个模块启动，并且绝大多数其它模块均
 
 ### 实现
 
-No thread or work queue is needed, the module start only makes sure to initialize the shared global state. Communication is done via shared memory. The implementation is asynchronous and lock-free, ie. a publisher does not wait for a subscriber and vice versa. This is achieved by having a separate buffer between a publisher and a subscriber.
+不需要任何线程或工作队列， 该模块的启动只是确保初始化共享全局状态（shared global state）。 通信是通过共享内存（shared memory）完成的。 模块的实现是异步的，且无需进行锁定，例如， 发布者不需要等待订阅者，反之也成立。 这一特性是通过在发布者和订阅者之间建立单独的缓冲区来实现的。
 
-The code is optimized to minimize the memory footprint and the latency to exchange messages.
+我们对代码以最大限度地减少内存占用和交换消息的延迟为目标进行了优化。
 
-The interface is based on file descriptors: internally it uses `read`, `write` and `ioctl`. Except for the publications, which use `orb_advert_t` handles, so that they can be used from interrupts as well (on NuttX).
+该接口基于文件描述符（file descriptor）实现：它在内部使用 `read`、`write` 和 `ioctl`。 唯一例外的是数据的发布，它使用了 `orb_advert_t` 句柄以使得其也可以从中断中使用（在 Nuttx 平台上）。
 
-Messages are defined in the `/msg` directory. They are converted into C/C++ code at build-time.
+消息在 `/msg` 文件夹下定义。 They are converted into C/C++ code at build-time.
 
 If compiled with ORB_USE_PUBLISHER_RULES, a file with uORB publication rules can be used to configure which modules are allowed to publish which topics. This is used for system-wide replay.
 
 ### 示例
 
-Monitor topic publication rates. Besides `top`, this is an important command for general system inspection:
+监控主题发布速率。 除了 `top`命令，这也是进行常规系统检查的一个重要命令：
 
     uorb top
     
 
 ### 用法 {#uorb_usage}
 
-    uorb <command> [arguments...]
+    uorb &lt;command&gt; [arguments...]
      Commands:
        start
     
-       status        Print topic statistics
+       status        打印主题统计信息
     
-       top           Monitor topic publication rates
-         [-a]        print all instead of only currently publishing topics
-         [<filter1> [<filter2>]] topic(s) to match (implies -a)
+       top           监控主题发布速率
+         [-a]        打印所有主题，而不仅仅是打印当前正在发布的主题
+         [&lt;filter1&gt; [&lt;filter2&gt;]] 要匹配的主题（topics to match） (暗示 -a)
