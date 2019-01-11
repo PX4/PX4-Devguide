@@ -61,8 +61,8 @@ uORB消息也可以在树外定义。 为此，必须存在` $ EXTERNAL_MODULES_
 
 ## 构建外部模块和uORB消息 {#building}
 
-Execute `make px4_sitl EXTERNAL_MODULES_LOCATION=<path>`.
+执行` make px4_sitl EXTERNAL_MODULES_LOCATION = &lt;path&gt; `。
 
-Any other build target can be used, but the build directory must not yet exist. If it already exists, you can also just set the *cmake* variable in the build folder.
+可以使用任何其他构建目标，但构建目标目录必须不存在。 如果它已经存在，您还可以在构建文件夹中设置* cmake *变量。
 
-For subsequent incremental builds `EXTERNAL_MODULES_LOCATION` does not need to be specified.
+对于后续增量构建，不需要指定` EXTERNAL_MODULES_LOCATION `。
