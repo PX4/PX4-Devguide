@@ -143,20 +143,20 @@
 
 ### 描述
 
-System logger which logs a configurable set of uORB topics and system printf messages (`PX4_WARN` and `PX4_ERR`) to ULog files. These can be used for system and flight performance evaluation, tuning, replay and crash analysis.
+系统 logger 会记录一组可配置的 uORB 主题及系统 printf 消息（`PX4_WARN` 和 `PX4_ERR`）到 ULog 文件中。 该日志文件可用于系统性能和飞行表现的评估、调参、回放和事故分析。
 
-It supports 2 backends:
+该模块支持 2 个后端：
 
-- Files: write ULog files to the file system (SD card)
-- MAVLink: stream ULog data via MAVLink to a client (the client must support this)
+- 文件：写入 ULog 文件到文件系统中（SD 卡）
+- MAVLink: 通过 MAVLink 将 ULog 数据流传输到客户端上（需要客户端支持此方式）
 
-Both backends can be enabled and used at the same time.
+两种后端可同时启用。
 
-The file backend supports 2 types of log files: full (the normal log) and a mission log. The mission log is a reduced ulog file and can be used for example for geotagging or vehicle management. It can be enabled and configured via SDLOG_MISSION parameter. The normal log is always a superset of the mission log.
+文件后端支持 2 种类型的日志文件：完整日志（标准日志）和任务日志。 任务日志是一个精简的 ulog 文件，可用于地理标记或者无人机管理等用途。 可使用 SDLOG_MISSION 参数来启用和配置记录任务日志。 标准日志始终是任务日志的父集。
 
 ### 实现
 
-The implementation uses two threads:
+模块的实现使用了两个线程：
 
 - The main thread, running at a fixed rate (or polling on a topic if started with -p) and checking for data updates
 - The writer thread, writing data to the file
