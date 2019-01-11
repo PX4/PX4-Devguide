@@ -106,29 +106,29 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
 
 ### 用法 {#micrortps_client_usage}
 
-    micrortps_client <command> [arguments...]
+    micrortps_client &lt;command&gt; [arguments...]
      Commands:
        start
-         [-t <val>]  Transport protocol
-                     values: UART|UDP, default: UART
-         [-d <val>]  Select Serial Device
-                     values: <file:dev>, default: /dev/ttyACM0
-         [-b <val>]  Baudrate (can also be p:<param_name>)
-                     default: 460800
-         [-p <val>]  Poll timeout for UART in ms
-                     default: 1
-         [-u <val>]  Interval in ms to limit the update rate of all sent topics
-                     (0=unlimited)
-                     default: 0
-         [-l <val>]  Limit number of iterations until the program exits
-                     (-1=infinite)
-                     default: 10000
-         [-w <val>]  Time in ms for which each iteration sleeps
-                     default: 1
-         [-r <val>]  Select UDP Network Port for receiving (local)
-                     default: 2019
-         [-s <val>]  Select UDP Network Port for sending (remote)
-                     default: 2020
+         [-t &lt;val&gt;]  传输协议
+                     取值： UART|UDP, 默认值： UART
+         [-d &lt;val&gt;]  选择串口设备
+                      取值：&lt;file:dev&gt;, 默认值：/dev/ttyACM0
+         [-b &lt;val&gt;]  波特率 (也可设置为 p:&lt;param_name&gt;)
+                     默认值： 460800
+         [-p &lt;val&gt;]  UART设备轮询时间 ，单位 ms
+                     默认值： 1
+         [-u &lt;val&gt;]  所有发送主题更新速率限制区间，单位 ms
+                     (0=不限制)
+                     默认值： 0
+         [-l &lt;val&gt;]  程序退出前的迭代次数限制
+                     (-1=无限)
+                     默认值： 10000
+         [-w &lt;val&gt;]  每次循环的休眠时间，单位 ms
+                     默认值： 1
+         [-r &lt;val&gt;]  选择 UDP 接收端口 (local)
+                     默认值：2019
+         [-s &lt;val&gt;]  选择 UDP 发送端口 (remote)
+                     默认值： 2020
     
        stop
     
@@ -141,9 +141,9 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
 
 ### 描述
 
-uORB is the internal pub-sub messaging system, used for communication between modules.
+uORB 是各模块之间进行通讯的基于 发布-订阅 机制的内部消息传递系统。
 
-It is typically started as one of the very first modules and most other modules depend on it.
+uORB 模块通常作为第一个模块启动，并且绝大多数其它模块均依赖于它，
 
 ### 实现
 
