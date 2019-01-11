@@ -214,25 +214,25 @@
 共有两个需要进行配置的环境变量： `replay` ，必须被设置为 ULog 文件名 - 也就是需要进行回放的日志文件。 第二个则是通过 `replay_mode` 变量对回放模式进行设定：
 
 - `replay_mode=ekf2`: 指定 EKF2 回放模式。 该模式只能与 ekf2 模块一起使用，但它可以让回放的运行速度尽可能的快。
-- Generic otherwise: this can be used to replay any module(s), but the replay will be done with the same speed as the log was recorded.
+- 否则为 Generic ：该模式可用于回放任何模块，但回放速度只能与日志记录的速度相同。
 
-The module is typically used together with uORB publisher rules, to specify which messages should be replayed. The replay module will just publish all messages that are found in the log. It also applies the parameters from the log.
+该模块通常与 uORB 发布者规则配合使用以指定需要进行回放的消息。 都则的话回放模块将直接发布所有在日志中找到的消息。 这也适用于在日志文件爱你中记录的各参数。
 
-The replay procedure is documented on the [System-wide Replay](https://dev.px4.io/en/debug/system_wide_replay.html) page.
+回放步骤在 [System-wide Replay](https://dev.px4.io/en/debug/system_wide_replay.html) 页面中有详细记录。
 
 ### 用法 {#replay_usage}
 
-    replay <command> [arguments...]
+    replay &lt;command&gt; [arguments...]
      Commands:
-       start         Start replay, using log file from ENV variable 'replay'
+       start         开始回放，使用环境变量 'replay' 中指定的日志文件
     
-       trystart      Same as 'start', but silently exit if no log file given
+       trystart      与 'start' 相同，但如果未指定日志文件的话会安静地退出
     
-       tryapplyparams Try to apply the parameters from the log file
+       tryapplyparams 尝试应用日志文件中的参数
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## send_event
@@ -241,25 +241,24 @@ The replay procedure is documented on the [System-wide Replay](https://dev.px4.i
 
 ### 描述
 
-Background process running periodically on the LP work queue to perform housekeeping tasks. It is currently only responsible for temperature calibration and tone alarm on RC Loss.
+此模块将以后台进程形式在 LP 工作列队中周期性运行，以执行内部管理任务。 目前它只负责校正温度和丢失 RC 信号时发出声音警报。
 
-The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
+这些任务可以通过 CLI 命令行或者 uORB 话题（例如，来自 MAVLink 的 vehicle_command）进行启动。
 
 ### 用法 {#send_event_usage}
 
-    send_event <command> [arguments...]
+    send_event &lt;command&gt; [arguments...]
      Commands:
-       start         Start the background task
+       start         开启后台任务
     
-       temperature_calibration Run temperature calibration process
-         [-g]        calibrate the gyro
-         [-a]        calibrate the accel
-         [-b]        calibrate the baro (if none of these is given, all will be
-                     calibrated)
+       temperature_calibration 开始温度校正程序
+         [-g]        校正陀螺仪
+         [-a]        校正加速度计
+         [-b]        校正气压计 (如果未指定上述三者中的任意一个那么将校正全部三个传感器)
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## sensors
@@ -268,19 +267,19 @@ The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, e
 
 ### 描述
 
-The sensors module is central to the whole system. It takes low-level output from drivers, turns it into a more usable form, and publishes it for the rest of the system.
+Sensors 模块是整个系统的核心。 它以传感器驱动的低级别输出作为输入，将其转换为更加可用的形式并数据发布给系统的其它部分。
 
-The provided functionality includes:
+模块提供的功能包括：
 
-- Read the output from the sensor drivers (`sensor_gyro`, etc.). If there are multiple of the same type, do voting and failover handling. Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the topics is `sensor_combined`, used by many parts of the system.
-- Do RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
-- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
-- Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
+- 读取传感器驱动的输出 (例如，`sensor_gyro` 等)。 如果存在多个同类型传感器，那个模块将进行投票和容错处理。 然后应用飞控板的旋转和温度校正（如果被启用）。 最终发布传感器数据：其中名为 `sensor_combined` 的主题被系统的许多部件所使用。
+- 执行 RC 通道映射：读取通道原始输入 (`input_rc`)，应用校正并将 RC 通道映射到配置的通道 & 模式转换开关，低通滤波器，然后发布到 `rc_channels` 和 `manual_control_setpoint` 话题中。
+- 从 ADC 驱动中读取输出（通过 ioctl 接口）并发布到 `battery_status` 。
+- 当参数发生变化或者启动时，确保传感器驱动获得的矫正参数（缩放因子 & 偏移量）是最新的。 The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
 - Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
 
 ### 实现
 
-It runs in its own thread and polls on the currently selected gyro topic.
+模块在它自己的线程中运行，并且轮训当前选择的 gyro 话题。
 
 ### 用法 {#sensors_usage}
 
