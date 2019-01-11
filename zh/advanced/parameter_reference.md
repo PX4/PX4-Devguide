@@ -2722,7 +2722,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Loss of position failsafe activation delay
+        失去定位故障安全激活延迟
       </p>
       
       <p>
