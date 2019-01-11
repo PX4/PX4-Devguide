@@ -43,11 +43,10 @@
     
        resume        将驱动从挂起中恢复。
     
-       write_flash   想内存中写入。 The device must first be unsealed with the
-                     unseal command.
-         [address]   The address to start writing.
-         [number of bytes] Number of bytes to send.
-         [data[0]...data[n]] One byte of data at a time separated by spaces.
+       write_flash   想内存中写入。 运行此命令前必须使用 unseal 命令解除内存设备的锁定。
+         [address]   开始写入的地址
+         [number of bytes] 需要写入的字节数。
+         [data[0]...data[n]] 数据的各个字节，以空格分开。
     
 
 ## fmu
@@ -56,7 +55,7 @@
 
 ### 描述
 
-This module is responsible for driving the output and reading the input pins. For boards without a separate IO chip (eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
+该模快用于操纵输出和读取输入针脚。 对于没有单独 IO 芯片的飞控板 Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
 
 It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
 
