@@ -4,6 +4,6 @@
 
 使用 [QGroundControl](../qgc/README.md) 并切换到“设置”视图。 选择左侧的电源配置。 单击“开始分配”按钮。
 
-第一次发出蜂鸣声后，将第一个电调上的螺旋桨迅速转到正确的转向。 每次计算时，电调都会发出蜂鸣声。 按照 [motor map](../airframes/airframe_reference.md) 所示的顺序对所有电机控制器重复此步骤。 运行 Sapog 固件的电调需要在计算后重新启动，以便应用新的计算ID。 此步骤只需执行一次，固件升级后无需重复。
+第一次发出蜂鸣声后，将第一个电调上的螺旋桨迅速转到正确的转向。 每次列举时，电调都会发出蜂鸣声。 按照 [motor map](../airframes/airframe_reference.md) 所示的顺序对所有电机控制器重复此步骤。 运行 Sapog 固件的电调需要在列举后重新启动，以便应用新的列举ID。 此步骤只需执行一次，固件升级后无需重复。
 
-![UAVCAN Enumeration Controls (bottom right of image)](../../assets/uavcan-qgc-setup.png)
+![UAVCAN列举控件（图像右下角）](../../assets/uavcan-qgc-setup.png)
