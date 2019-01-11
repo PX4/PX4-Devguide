@@ -1,4 +1,4 @@
-# 外置模块
+# 外部模块（Out-of-Tree）
 
 外部模块为开发人员提供了一种便捷的机制，可以管理/分组他们想要添加（或更新）PX4固件的专有模块。 外部模块可以使用与内部模块相同的includes，并可以通过uORB与内部模块交互。
 
@@ -14,15 +14,15 @@
   - 它可以位于 **Firmware** 目录树之外的任何位置。
   - 它必须与** Firmware **具有相同的目录结构（即它必须包含名为** src **的目录）。
   - 稍后我们使用` EXTERNAL_MODULES_LOCATION `来引用此目录。
-- 将现有模块（例如** examples / px4_simple_app **）复制到外部目录，或直接创建新模块。
-- 重命名模块（包括** CMakeLists.txt **中的` MODULE `）或从现有的Firmware * cmake *构建配置中删除它。 这是为了避免与内部模块冲突。
+- 将现有模块（例如**examples/px4_simple_app**）复制到外部目录，或直接创建新模块。
+- 重命名模块（包括 **CMakeLists.txt** 中的 `MODULE`）或从现有的Firmware *cmake* 构建配置中删除它。 这是为了避免与内部模块冲突。
 - 在外部目录中添加文件** CMakeLists.txt **，内容为： 
       set(config_module_list_external
           modules/<new_module>
           PARENT_SCOPE
           )
 
-- 在` modules / &lt;new_module&gt; /CMakeLists.txt `中添加一行` EXTERNAL ` ` px4_add_module（）`，例如：
+- 在 `modules/&lt;new_module&gt;/CMakeLists.txt` 中添加一行 `EXTERNAL` `px4_add_module()`，例如：
   
       px4_add_module(
         MODULE modules__test_app
@@ -36,13 +36,13 @@
         )
       
 
-## 树外uORB消息定义 {#uorb_message_definitions}
+## Out-of-Tree uORB 消息定义 {#uorb_message_definitions}
 
-uORB消息也可以在树外定义。 为此，必须存在` $ EXTERNAL_MODULES_LOCATION / msg `文件夹。
+uORB消息也可以在树外定义。 为此，必须存在 `$EXTERNAL_MODULES_LOCATION/msg` 文件夹。
 
-- 将所有新消息定义放在` $ EXTERNAL_MODULES_LOCATION / msg </ 0>目录中。 
-这些新的树外消息定义的格式与任何其他<a href="../middleware/uorb.md#adding-a-new-topic"> uORB消息定义</a>的格式相同。</li>
-<li><p>将以下内容添加文件<code>$EXTERNAL_MODULES_LOCATION/msg/CMakeLists.txt`：</p> 
+- 将所有新消息定义放在 `$EXTERNAL_MODULES_LOCATION/msg` 目录中。 这些新的树外消息定义的格式与任何其他 [uORB 消息定义](../middleware/uorb.md#adding-a-new-topic) 的格式相同。
+- 将以下内容添加文件`$EXTERNAL_MODULES_LOCATION/msg/CMakeLists.txt`：
+  
       set(config_msg_list_external
           <message1>.msg
           <message2>.msg
