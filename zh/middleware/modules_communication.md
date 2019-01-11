@@ -56,51 +56,48 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
 
 ### 用法 {#mavlink_usage}
 
-    mavlink <command> [arguments...]
+    mavlink &lt;command&gt; [arguments...]
      Commands:
-       start         Start a new instance
-         [-d <val>]  Select Serial Device
-                     values: <file:dev>, default: /dev/ttyS1
-         [-b <val>]  Baudrate (can also be p:<param_name>)
-                     default: 57600
-         [-r <val>]  Maximum sending data rate in B/s (if 0, use baudrate / 20)
-                     default: 0
-         [-u <val>]  Select UDP Network Port (local)
-                     default: 14556
-         [-o <val>]  Select UDP Network Port (remote)
-                     default: 14550
-         [-t <val>]  Partner IP (broadcasting can be enabled via MAV_BROADCAST
-                     param)
-                     default: 127.0.0.1
-         [-m <val>]  Mode: sets default streams and rates
-                     values: custom|camera|onboard|osd|magic|config|iridium|minimal,
-                     default: normal
-         [-n <val>]  wifi/ethernet interface name
-                     values: <interface_name>
-         [-c <val>]  Multicast address (multicasting can be enabled via
-                     MAV_BROADCAST param)
-                     values: Multicast address in the range
+       start         开始新的实例
+         [-d &lt;val&gt;]  选择串口设备
+                     取值： &lt;file:dev&gt;, 默认值： /dev/ttyS1
+         [-b &lt;val&gt;]  波特率 (也可设置为 p:&lt;param_name&gt;)
+                     默认值： 57600
+         [-r &lt;val&gt;]  最大数据发送速率，单位 B/s (如为 0, 则使用 波特率 / 20)
+                     默认值： 0
+         [-u &lt;val&gt;]  选择 UDP 网络端口 (local)
+                     默认值：14556
+         [-o &lt;val&gt;]  选择 UDP 网络端口 (remote)
+                     默认值：14550
+         [-t &lt;val&gt;]  Partner IP (可使用 MAV_BROADCAST 参数启用广播)
+                     默认值： 127.0.0.1
+         [-m &lt;val&gt;]  模式：设置默认的流和速率
+                     取值： custom|camera|onboard|osd|magic|config|iridium|minimal,
+                     默认值： normal
+         [-n &lt;val&gt;]  wifi/以太网 接口名称
+                     取值： &lt;interface_name&gt;
+         [-c &lt;val&gt;]  组播（Multicast）地址 (可使用 MAV_BROADCAST 参数启用组播)
+                     取值： 组播地址区间
                      [239.0.0.0,239.255.255.255]
-         [-f]        Enable message forwarding to other Mavlink instances
-         [-w]        Wait to send, until first message received
-         [-x]        Enable FTP
-         [-z]        Force flow control always on
+         [-f]        启用将信息推送到其它 Mavlink 实例
+         [-w]       直到收到第一条消息才开始发送
+         [-x]        启用 FTP
+         [-z]        强制一直开启流量控制
     
-       stop-all      Stop all instances
+       stop-all      停止所有实例
     
-       status        Print status for all instances
-         [streams]   Print all enabled streams
+       status        打印所有实例的状态
+         [streams]   打印所有启用的流
     
-       stream        Configure the sending rate of a stream for a running instance
-         [-u <val>]  Select Mavlink instance via local Network Port
-                     default: 0
-         [-d <val>]  Select Mavlink instance via Serial Device
-                     values: <file:dev>
-         -s <val>    Mavlink stream to configure
-         -r <val>    Rate in Hz (0 = turn off, -1 = set to default)
+       stream        配置一个正在运行的示例的流的发送速率
+         [-u &lt;val&gt;]  通过本地网络端口选择 Mavlink 实例
+                     默认值： 0
+         [-d &lt;val&gt;]  通过串口设备选择 Mavlink 实例
+                     取值： &lt;file:dev&gt;
+         -s &lt;val&gt;    待配置的 Mavlink 流
+         -r &lt;val&gt;    速率，单位 Hz (0 = 关闭发送, -1 = 设为默认值)
     
-       boot_complete Enable sending of messages. (Must be) called as last step in
-                     startup script.
+       boot_complete 允许发送消息。 (必须) 作为启动脚本的最后一步被调用。
     
 
 ## micrortps_client
