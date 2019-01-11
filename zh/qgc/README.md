@@ -29,7 +29,7 @@ QGroundControl can be downloaded from its [website](http://qgroundcontrol.com/do
 
 > **Tip** Developers are advised to use the latest daily build instead of the stable release.
 
-## Building from source
+## 由源代码安装
 
 Firmware developers are encouraged to build from source in order to have a matching recent version to their flight code.
 
