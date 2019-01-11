@@ -39,16 +39,16 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
 
 命令的具体实现使用了两个线程，分别为数据发送线程和接收线程。 发送线程以一个固定的速率运行，并会在组合带宽（combined bandwidth）高于设定速率(`-r`)，或者物理链路出现饱和的情况下动态降低信息流的发送速率。 可使用 `mavlink status` 命令检查是否发生降速，如果 `rate mult` 小于 1 则发生了降速。
 
-**Careful**: some of the data is accessed and modified from both threads, so when changing code or extend the functionality, this needs to be take into account, in order to avoid race conditions and corrupt data.
+**Careful**: 两个线程会共同访问和修改某些数据，在修改代码或者扩展功能是需要考虑到这一点以避免出现资源竞争（race conditions）或者造成数据损坏（corrupt data）。
 
 ### 示例
 
-Start mavlink on ttyS1 serial with baudrate 921600 and maximum sending rate of 80kB/s:
+在 ttyS1 串口启动 mavlink ，并设定波特率为 921600、最大发送速率为 80kB/s：
 
     mavlink start -d /dev/ttyS1 -b 921600 -m onboard -r 80000
     
 
-Start mavlink on UDP port 14556 and enable the HIGHRES_IMU message with 50Hz:
+在 UDP 端口 14556 启动 mavlink 并启用 50Hz 的 HIGHRES_IMU 消息：
 
     mavlink start -u 14556 -r 1000000
     mavlink stream -u 14556 -s HIGHRES_IMU -r 50
