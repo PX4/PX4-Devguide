@@ -2,11 +2,11 @@
 
 ## 为 PX4 贡献代码
 
-Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
+按照定义的工作流向 px4 添加功能。 为了在 px4 上分享您的贡献, 您可以遵循此示例。
 
-* [Sign up](https://github.com/join) for github if you haven't already
-* Fork the Firmware (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
-* Clone your forked repository to your local computer  
+* 如果您还没有注册，请先[Sign up](https://github.com/join) Github 账户
+* 创建固件分支 (见 [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
+* 将分支克隆到本地计算机  
     
 
 ```sh
@@ -14,7 +14,7 @@ cd ~/wherever/
 git clone https://github.com/<your git name>/Firmware.git
 ```
 
-* Go into the new directory, initialize and update the submodules, and add the original upstream Firmware  
+* 进入新目录, 初始化和更新子模块, 并添加原始上游固件  
     
 
 ```sh
@@ -23,14 +23,14 @@ git submodule update --init --recursive
 git remote add upstream https://github.com/PX4/Firmware.git
 ```
 
-* You should have now two remote repositories: One repository is called upstream that points to the PX4 Firmware, and one repository that points to your forked repository of the PX4 repository.
-* This can be checked with the following command:
+* 现在, 您应该有两个远程存储库: 一个存储库被称为上游存储库, 指向 px4 固件, 另一个存储库指向您的 px4 存储库分支存储库。
+* 这可以通过以下命令进行检查:
 
 ```sh
 git remote -v
 ```
 
-* Make the changes that you want to add to the current master.
+* 进行要添加到当前 master 的更改。
 * Create a new branch with a meaningful name that represents your feature  
     
 
