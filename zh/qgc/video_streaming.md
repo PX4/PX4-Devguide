@@ -43,12 +43,12 @@ sudo apt-get install hostapd udhcpd
 ```bash
 start 192.168.2.100 #这是热点将为客户端设备提供的IP范围。
 end 192.168.2.200
-interface wlan0 # The device uDHCP listens on.
+interface wlan0 # 设备 uDHCP 侦听。
 remaining yes
-opt dns 8.8.8.8 4.2.2.2 # The DNS servers client devices will use (if routing through the Ethernet link).
+opt dns 8.8.8.8 4.2.2.2 # 客户端会使用的 DNS 服务器（如果路由通过以太网链接）。
 opt subnet 255.255.255.0
-opt router 192.168.2.1 # The Onboard Computer's IP address on wlan0 which we will set up shortly.
-opt lease 864000 # 10 day DHCP lease time in seconds
+opt router 192.168.2.1 # wlan0 上的机载计算机的 IP 地址， 也就是我们稍后会设置的。
+opt lease 864000 # 10 天 DHCP 租约时间，以秒为单位
 ```
 
 其他“opt”命令不应该被配置。如果您知道自己在做什么，则配置其他命令。
