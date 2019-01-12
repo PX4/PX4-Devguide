@@ -22,11 +22,11 @@ Odroid c1 可以通过 5v 直流插孔供电。 如果 Odroid 被安装在飞行
 
 ## 为 Odroid C1 启用无线网络连接
 
-在这篇教程中使用的是 WiFi 模块 TP-LINK TL-WN722N. To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
+在这篇教程中使用的是 WiFi 模块 TP-LINK TL-WN722N. 要为 odroid c1 启用 wifi 连接, 请按照 [Odroid c1 教程](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 中描述的步骤, 在 "用天线建立 wifi 连接" 一节中进行操作。
 
 ## 配置 WiFi 为接入点
 
-This sections shows how to set up the Odroid C1 such that it is an access point. The content is taken from this [tutorial](https://pixhawk.org/peripherals/onboard_computers/access_point) with some small adaptions. To enable to stream the video from the camera via the Odroid C1 to the QGroundControl that runs on a computer it is not required to follow this section. However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion. The TP-LINK TL-WN722N is used as a WiFi module. In the ensuing steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module. Change all occurrences of wlan0 to the appropriate interface if different (e.g. wlan1).
+本节演示如何设置 odroid c1, 使其成为接入点。 内容取自此[这篇教程](https://pixhawk.org/peripherals/onboard_computers/access_point), 并有一些小改动。 为了能够通过 odroid c1 将视频从相机流式传输到在计算机上运行的 QGroundControl, 并不一定需要遵循此部分。 但是, 这篇教程的意义是, 将 odroid c1 设置为接入点允许以独立的方式使用该系统。 在此使用的是 TP-LINK TL-WN722N。 在随后的步骤中, 假定 odroid c1 将 wlan0 的名称分配给您的 wifi 模块。 如果不同, 请将所有出现的 wlan0 更改为相应的接口 (例如 wlan1)。
 
 ### 配置机载电脑为接入点
 
@@ -41,7 +41,7 @@ sudo apt-get install hostapd udhcpd
 配置 DHCP 编辑文件 `/etc/udhcpd.conf`
 
 ```bash
-start 192.168.2.100 # This is the range of IPs that the hotspot will give to client devices.
+start 192.168.2.100 #这是热点将为客户端设备提供的IP范围。
 end 192.168.2.200
 interface wlan0 # The device uDHCP listens on.
 remaining yes
@@ -51,9 +51,9 @@ opt router 192.168.2.1 # The Onboard Computer's IP address on wlan0 which we wil
 opt lease 864000 # 10 day DHCP lease time in seconds
 ```
 
-All other 'opt' entries should be disabled or configured properly if you know what you are doing.
+其他“opt”命令不应该被配置。如果您知道自己在做什么，则配置其他命令。
 
-Edit the file `/etc/default/udhcpd` and change the line:
+编辑如下文件 `/etc/default/udhcpd`，修改其中的一行：
 
 ```bash
 DHCPD_ENABLED="no"
@@ -65,7 +65,7 @@ DHCPD_ENABLED="no"
 #DHCPD_ENABLED="no"
 ```
 
-You will need to give the Onboard Computer a static IP address. Edit the file `/etc/network/interfaces` and replace the line `iface wlan0 inet dhcp` (or `iface wlan0 inet manual`) to:
+您需要为机载计算机配置静态 ip 地址。 Edit the file `/etc/network/interfaces` and replace the line `iface wlan0 inet dhcp` (or `iface wlan0 inet manual`) to:
 
 ```sh
 auto wlan0
