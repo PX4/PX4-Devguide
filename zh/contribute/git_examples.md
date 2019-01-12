@@ -31,23 +31,23 @@ git remote -v
 ```
 
 * 进行要添加到当前 master 的更改。
-* Create a new branch with a meaningful name that represents your feature  
+* 使用代表您的功能的有意义的名称创建一个新分支  
     
 
 ```sh
 git checkout -b <your feature branch name>
 ```
 
-you can use the command ```git branch``` to make sure you're on the right branch. * Add your changes that you want to be part of the commit by adding the respective files  
+您可以使用命令 ```git branch``` 以确保你在正确的分支上 * 通过添加相应的文件添加您希望成为提交的一部分的更改  
 
 
 ```sh
 git add <file name>
 ```
 
-If you prefer having a GUI to add your files see [Gitk](https://git-scm.com/book/en/v2/Git-in-Other-Environments-Graphical-Interfaces) or [
+如果您希望有一个 GUI 来添加您的文件, 请参阅 [Gitk](https://git-scm.com/book/en/v2/Git-in-Other-Environments-Graphical-Interfaces) 或 [
 
-    git add -p](http://nuclearsquid.com/writings/git-add/). * Commit the added files with a meaningful message explaining your changes
+    git add -p](http://nuclearsquid.com/writings/git-add/) * 提交添加的文件, 并顺便记录一条有意义的消息, 解释您的更改
 
   
 
