@@ -102,32 +102,32 @@ git push origin <your feature branch name>
 
 ## 为子模块更新执行 PR
 
-This is required after you have done a PR for a submodule X repository and the bug-fix / feature-add is in the current master of submodule X. Since the Firmware still points to a commit before your update, a submodule pull request is required such that the submodule used by the Firmware points to the newest commit.
+这是在您为子模块 x 存储库做了 PR 之后所必需的, 并且错误修复/功能添加在子模块 x 的当前主控件中。由于固件仍指向更新之前的提交, 因此需要一个子模块拉取请求, 以便固件使用的子模块指向最新提交。
 
 ```sh
 cd Firmware
 ```
 
-* Make a new branch that describes the fix / feature for the submodule update:
+* 创建一个分支，描述子模块更新的 bug 修复/功能：
 
 ```sh
 git checkout -b pr-some-fix
 ```
 
-* Go to submodule subdirectory
+* 进入子模块的子目录
 
 ```sh
 cd <path to submodule>
 ```
 
-* PX4 submodule might not necessarily point to the newest commit. Therefore, first checkout master and pull the newest upstream code.
+* PX4 子模块可能并不一定指向最新的更新。 因此，先 checkout master 并且拉取最新的上游代码。
 
 ```sh
 git checkout master
 git pull upstream master
 ```
 
-* Go back to Firmware directory, and as usual add, commit and push the changes.
+* 回到 Firmware 目录，如往常一样添加、提交和上推更改。
 
 ```sh
 cd -
@@ -136,21 +136,21 @@ git commit -m "Update submodule to include ..."
 git push upstream pr-some-fix
 ```
 
-## Checkout pull requests
+## 查看拉取请求
 
-You can test someone's pull request (changes are not yet merged) even if the branch to merge only exists on the fork from that person. Do the following
+你可以测试某人的拉取请求（更改尚未整合），即使要整合的分支只存在于他的拷贝中。 执行以下指令：
 
 ```sh
 git fetch upstream  pull/<PR ID>/head:<branch name>
 ```
 
-    PR ID is the number right next to the PR's title (without the #) and the ```<branch name>``` can also be found right below the ```PR ID```, e.g. ```<the other persons git name>:<branch name>```. After that you can see the newly created branch locally with
+    PR ID 是 PR 标题旁边的数字 (不包括 #) 和 ```<branch name>``` 也可以在下面找到 ```PR ID```, 例如: ```<the other persons git name>:<branch name>```. 之后, 您可以看到新创建的分支在本地
 
 ```sh
 git branch
 ```
 
-Then switch to that branch
+然后切换到那个分支
 
 ```sh
 git checkout <branch name>
