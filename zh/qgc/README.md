@@ -2,8 +2,8 @@
 
 QGroundControl 是一个应用程序来配置和飞行基于 PX4 的自动驾驶仪。 跨平台支持所有主流操作系统:
 
-- 手机: 安卓和 iOS (目前专注于平板电脑)
-- 桌面: windows, linux, mac os
+- 手机：安卓和 iOS（目前专注于平板电脑）
+- 桌面：Windows，Linux，Mac OS
 
 ## 规划任务
 
@@ -25,7 +25,7 @@ QGroundControl 是一个应用程序来配置和飞行基于 PX4 的自动驾驶
 
 ## 安装
 
-QGroundControl 下载链接 [website](http://qgroundcontrol.com/downloads)。
+QGroundControl 可以从 [网站](http://qgroundcontrol.com/downloads) 下载。
 
 > **Tip** 推荐开发者使用最新编译版本替代稳定版。
 
