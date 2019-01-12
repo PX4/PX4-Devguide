@@ -1,53 +1,53 @@
 # QGroundControl 的远程视频流
 
-此页演示如何使用相机（Logitech C920 或 RaspberryPi 相机）设置配套计算机，这样的视频流从无人机传输到地面计算机并以 *QGroundControl* 显示。 This setup uses WiFi in unconnected (broadcast) mode and software from the [Wifibroadcast project](https://github.com/svpcom/wifibroadcast/wiki).
+此页演示如何使用相机（Logitech C920 或 RaspberryPi 相机）设置配套计算机，这样的视频流从无人机传输到地面计算机并以 *QGroundControl* 显示。 此设置使用未连接 (广播) 模式下的 wifi 和 [Wifibroadcast project](https://github.com/svpcom/wifibroadcast/wiki) 中的软件。
 
-## Wifibroadcast Overview
+## 无线广播概述
 
-The *Wifibroadcast project* aims to mimic the advantageous properties of using an analog link to transmit HD video (and other) data when using WiFi radios. For example, it attempts to provide a video feed that degrades gracefully with signal degradation/distance.
+*Wifibroadcast 项目 * 旨在模仿使用模拟链路传输高清视频（和其他）数据在使用 wifi 无线电时的优势特性。 例如, 它尝试提供视频馈送, 该视频馈送会随着信号的降低/距离而缓慢地降低。
 
-> **Note** Before using *Wifibroadcast* check regulators allow this kind of WiFi use in your country.
+> **Note** 在使用 *Wifibroadcast* 检查规章是否允许在您的国家使用这种 wifi。
 
-The high level benefits of *Wifibroadcast* include:
+*Wifibroadcast* 的高级别优势包括:
 
-- Minimal latency by encoding every incoming RTP packet to a single WiFi (IEEE80211) packet and immediately sending (doesn't serialize to byte stream).
-- Smart FEC support (immediately yield packet to video decoder if FEC pipeline without gaps).
-- Stream encryption and authentication ([libsodium](https://download.libsodium.org/doc/))
-- Distributed operation. It can gather data from cards on different hosts, so that bandwidth is not limited to that of a single USB bus.
+- 通过将每个传入 RTPS 数据包编码到单个 WiFi （IEEE80211） 数据包并立即发送（不序列化到字节流），最大限度地减少延迟。
+- 智能 FEC 支持（如果 FEC 管道没有间隔，立即将数据包提供给视频解码器）。
+- 流加密和身份验证 ([libsodium](https://download.libsodium.org/doc/))
+- 分布式操作。 它可以从不同主机上的卡中收集数据，以便带宽不限于单个 USB 总线。
 - Aggregation of MAVLink packets. It doesn't send WiFi packet for every MAVLink packet.
 - [Enhanced OSD for Raspberry Pi](https://github.com/svpcom/wifibroadcast_osd) (consumes 10% CPU on Pi Zero).
 
-Additional information is provided in the [FAQ](#faq) below.
+有关详细信息，请参阅 [FAQ](#faq)。
 
 ## 硬件安装
 
-The hardware setup consists of the following parts:
+硬件由如下部分组成：
 
-On TX (UAV) side:
+在发送端（无人机）：
 
-- [NanoPI NEO2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180) (and/or Raspberry Pi if use Pi camera).
-- [Logitech camera C920](https://www.logitech.com/en-us/product/hd-pro-webcam-c920?crid=34) or [Raspberry Pi camera](https://www.raspberrypi.org/products/camera-module-v2/).
-- WiFi module [ALPHA AWUS051NH v2](https://www.alfa.com.tw/products_show.php?pc=67&ps=241).
+- [NanoPI NEO2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180) (或者 Raspberry Pi 如果使用 Pi camera).
+- [Logitech camera C920](https://www.logitech.com/en-us/product/hd-pro-webcam-c920?crid=34) 或者 [Raspberry Pi camera](https://www.raspberrypi.org/products/camera-module-v2/).
+- WiFi 模块 [ALPHA AWUS051NH v2](https://www.alfa.com.tw/products_show.php?pc=67&ps=241).
 
-On RX (ground station side):
+在接收端（地面站）：
 
 - Any computer with Linux (tested on Fedora 25 x86-64).
 - WiFi module with Ralink RT5572 chipset ([CSL 300Mbit Sticks](https://www.amazon.co.uk/high-performance-gold-plated-technology-Frequency-adjustable/dp/B00RTJW1ZM) or [GWF-4M02](http://en.ogemray.com/product/product.php?t=4M02)). OEM modules are cheap but you need to order them from China. CSL stick is expensive but available on ebay. See [wifibroadcast wiki > WiFi hardware](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) for more information on supported modules.
 
-## Hardware Modification
+## 硬件设置
 
 Alpha WUS051NH is a high power card that uses too much current while transmitting. If you power it from USB it will reset the port on most ARM boards. So you need to connect it to 5V BEC directly. You can do this two ways:
 
 1. Make a custom USB cable. [You need to cut `+5V` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
 2. Cut a `+5V` wire on PCB near USB port and wire it to BEC. Don't do this if doubt. Use custom cable instead! Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29) when using several ground wires.
 
-## Software Setup
+## 软件设置
 
 1. Install **libpcap** and **libsodium** development libs.
 2. Download [wifibroadcast sources](https://github.com/svpcom/wifibroadcast).
 3. [Patch](https://github.com/svpcom/wifibroadcast/wiki/Kernel-patches) your kernel. You only need to patch the kernel on TX (except if you want to use a WiFi channel which is disabled in your region by CRDA).
 
-### Generate Encryption Keys
+### 生成加密密钥
 
     make
     keygen
