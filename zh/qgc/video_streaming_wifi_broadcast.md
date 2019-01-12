@@ -117,9 +117,9 @@ Alpha WUS051NH 是一种高功率卡, 在传输时使用大的电流。 如果�
 *Wifibroadcast* 将 wifi 卡置于监控模式。 此模式允许在没有关联的情况下发送和接收任意数据包。 通过这种方式建立了一个真正的单向连接, 它模仿了模拟链路的有利特性。 它们是:
 
 - 发射器发送其数据, 而不考虑任何关联的接收器。 Thus there is no risk of sudden video stall due to the loss of association
-- The receiver receives video as long as it is in range of the transmitter. If it gets slowly out of range the video quality degrades but does not stall.
-- The traditional scheme “single broadcaster – multiple receivers” works out of the box. If bystanders want to watch the video stream with their devices they just have to “switch to the right channel”
-- *Wifibroadcast* allows you to use several low cost receivers in parallel and combine their data to increase probability of correct data reception. This so-called software diversity allows you to use identical receivers to improve reliability as well as complementary receivers (think of one receiver with an omnidirectional antenna covering 360° and several directional antennas for high distance all working in parallel)
+- 接收器接收视频, 只要它是在发射机的范围内。 如果它慢慢超出范围, 视频质量会降低, 但不会停止。
+- 传统的 "单播音员-多个接收机" 方案开箱即用。 如果旁观者想用他们的设备观看视频流, 他们只需要 "切换到正确的频道"
+- *Wifibroadcast* 允许您并行使用多个低成本接收器, 并将其数据组合在一起, 以提高正确接收数据的可能性。 This so-called software diversity allows you to use identical receivers to improve reliability as well as complementary receivers (think of one receiver with an omnidirectional antenna covering 360° and several directional antennas for high distance all working in parallel)
 - *Wifibroadcast* uses Forward Error Correction (FEC) to archive a high reliability at low bandwidth requirements. It is able to repair lost or corrupted packets at the receiver.
 
 #### How does the new Wifibroadcast differ from the original project?
