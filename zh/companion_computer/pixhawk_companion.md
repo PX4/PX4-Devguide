@@ -1,8 +1,8 @@
-# Pixhawk系列的配套计算机
+# 用于 Pixhawk 系列的机载计算机
 
 Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只有一种：通过串口2 `TELEM 2`。这个串口设计目的即是此。 消息格式是MAVLINK。
 
-## Pixhawk设置
+## Pixhawk 设置
 
 在 任何 [可配置的串口 ](https://docs.px4.io/en/peripherals/serial_configuration.html)上使能MAVLink消息。
 
@@ -16,9 +16,9 @@ Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只�
 
 更多信息，请参考 [MAVLink Peripherals (GCS/OSD/Companion)](https://docs.px4.io/en/peripherals/mavlink_peripherals.html)。
 
-## 配套计算机设置
+## 机载计算机设置
 
-为了接收 mavlink消息, 配套计算机需要运行一些与串行端口对话的软件。 最常见的选择有:
+为了接收 mavlink消息, 配套计算机需要运行一些与串行端口对话的软件。 最常见的选择有：
 
 * [MAVROS](../ros/mavros_installation.md) 与ros 节点通信
 * C/C++ example code </0 > 连接自定义代码</li> 
@@ -49,8 +49,9 @@ Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只�
     使用 `lsusb`指令，我们可以获得供应商和产品 ID。
     
     ```sh
-    $lsusb
-    总线006 设备002：ID 0BDA:8153 Realtek 半导体公司
+    $ lsusb
+    
+    Bus 006 Device 002: ID 0bda:8153 Realtek Semiconductor Corp.
     Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
     Bus 005 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
     Bus 004 Device 002: ID 05e3:0616 Genesys Logic, Inc.
@@ -66,7 +67,7 @@ Pixhawk与配套计算机(Raspberry Pi，Odroid，Tegra K1) 的交互方式只�
     
     Arduino 是 `Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC ACM)`
     
-    The Pixhawk is `Bus 003 Device 005: ID 26ac:0011`
+    Pixhawk 是 `Bus 003 Device 005: ID 26ac:0011`
     
     > **Note** 如果你没找到你是设备，拔掉，执行 `lsusb`，再插上， 再次执行`lsusb`，查看增加的设备。
     
