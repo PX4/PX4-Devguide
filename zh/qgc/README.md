@@ -1,25 +1,25 @@
 # QGroundControl
 
-QGroundControl 是一个应用程序来配置和飞行基于 PX4 的自动驾驶仪。 It is cross platform and supports all major operating systems:
+QGroundControl 是一个应用程序来配置和飞行基于 PX4 的自动驾驶仪。 跨平台支持所有主流操作系统:
 
-- Mobile: Android and iOS (currently focused on tablet)
-- Desktop: Windows, Linux, Mac OS
+- 手机: 安卓和 iOS (目前专注于平板电脑)
+- 桌面: windows, linux, mac os
 
 ## 规划任务
 
-To plan a new mission, switch to the planning tab, click on the + icon in the top left and click on the map to create waypoints. A context menu will open on the side to adjust the waypoints. Click on the highlight transmission icon to send them to the vehicle.
+要规划新任务，请切换到规划选项卡，单击左上角的 + 图标，然后单击地图创建航点。 在侧面打开一个上下文菜单来调整航点。 点击高亮传输图标，将任务发送到飞机上。
 
 ![](../../assets/gcs/planning-mission.png)
 
 ## 执行飞行任务
 
-Switch to the flying tab. The mission should be visible on the map. Click on the current flight mode to change it to MISSION and click on DISARMED to arm the vehicle. If the vehicle is already in flight it will fly to the first leg of the mission and then follow it.
+切换到最右侧的标签页。 地图上应该可以看到任务。 点击更改当前飞行模式下发到任务中，并且解锁飞机。 如果飞机已经起飞，它会飞到任务的第一段再执行。
 
 ![](../../assets/gcs/flying-mission.png)
 
-## Setting parameters
+## 设置参数
 
-Switch to the setup tab. Scroll the menu on the left all the way to the bottom and click on the parameter icon. Parameters can be changed by double-clicking on them, which opens a context menu to edit, along with a more detailed description.
+切换到设置标签。 将左侧菜单拉到最下，点击参数图标。 Parameters can be changed by double-clicking on them, which opens a context menu to edit, along with a more detailed description.
 
 ![](../../assets/gcs/setting-parameter.png)
 
