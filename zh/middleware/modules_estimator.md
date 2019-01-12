@@ -10,7 +10,7 @@
 
 更详细的记录可以在 [tuning_the_ecl_ekf](https://dev.px4.io/en/tutorials/tuning_the_ecl_ekf.html) 页面找到。
 
-ekf2 可以在回放（replay）模式中启动 (`-r`)：改模式下它不会访问系统时间，而是使用传感器主题中的时间戳。
+ekf2 可以在回放（replay）模式中启动 (`-r`)：该模式下它不会访问系统时间，而是使用传感器主题中的时间戳。
 
 ### 用法 {#ekf2_usage}
 
