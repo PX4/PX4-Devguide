@@ -31,14 +31,14 @@
 
 在接收端（地面站）：
 
-- Any computer with Linux (tested on Fedora 25 x86-64).
-- WiFi module with Ralink RT5572 chipset ([CSL 300Mbit Sticks](https://www.amazon.co.uk/high-performance-gold-plated-technology-Frequency-adjustable/dp/B00RTJW1ZM) or [GWF-4M02](http://en.ogemray.com/product/product.php?t=4M02)). OEM modules are cheap but you need to order them from China. CSL stick is expensive but available on ebay. See [wifibroadcast wiki > WiFi hardware](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) for more information on supported modules.
+- 任何使用 linux 的计算机 (在 fedora 25 x86-64 上测试)。
+- 带有 ralink rt5572 芯片组 ([CSL 300Mbit Sticks](https://www.amazon.co.uk/high-performance-gold-plated-technology-Frequency-adjustable/dp/B00RTJW1ZM) or [GWF-4M02](http://en.ogemray.com/product/product.php?t=4M02)) 的 wifi 模块。 oem 模块价格低廉, 但您需要从中国订购。 csl 棒是昂贵的, 但可在 ebay 上购买。 更过兼容的模块请参考 [wifibroadcast wiki > WiFi hardware](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) 。
 
 ## 硬件设置
 
-Alpha WUS051NH is a high power card that uses too much current while transmitting. If you power it from USB it will reset the port on most ARM boards. So you need to connect it to 5V BEC directly. You can do this two ways:
+Alpha WUS051NH 是一种高功率卡, 在传输时使用大的电流。 如果您从 USB 供电, 它将导致大多数的 ARM 板子的端口被重置。 因此, 您需要将其直接连接到 5V BEC。 你可以通过这种方式实现：
 
-1. Make a custom USB cable. [You need to cut `+5V` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
+1. 自制 USB 电缆。 [You need to cut `+5V` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
 2. Cut a `+5V` wire on PCB near USB port and wire it to BEC. Don't do this if doubt. Use custom cable instead! Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29) when using several ground wires.
 
 ## 软件设置
@@ -92,11 +92,11 @@ Copy `rx.key` to RX host and `tx.key` to TX host.
     
     to decode video.
 
-## Enhanced setup with RX antenna array, FPV goggles and OSD
+## RX 天线阵列, fpv 眼镜和 osd 的高级设置
 
-See [wiki](https://github.com/svpcom/wifibroadcast/wiki/enhanced-setup) article. Using RX setup above (and ALPHA AWUS051NH v2 as TX) I was able to receive stable 1080p video on 1-2km in any copter pitch/roll angles.
+请参阅 [wiki](https://github.com/svpcom/wifibroadcast/wiki/enhanced-setup) 文章。 使用上面的 rx 设置 (和 alha awus05nh v2 作为 tx), 我能够在任何飞行器的俯仰横滚角度的1-2 公里距离接收稳定的1080p 视频。
 
-## FAQ
+## 常见问题
 
 #### What are the limitations of normal WiFi for long-distance video transfer?
 
