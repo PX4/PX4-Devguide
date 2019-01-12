@@ -14,8 +14,8 @@
 - 智能 FEC 支持（如果 FEC 管道没有间隔，立即将数据包提供给视频解码器）。
 - 流加密和身份验证 ([libsodium](https://download.libsodium.org/doc/))
 - 分布式操作。 它可以从不同主机上的卡中收集数据，以便带宽不限于单个 USB 总线。
-- Aggregation of MAVLink packets. It doesn't send WiFi packet for every MAVLink packet.
-- [Enhanced OSD for Raspberry Pi](https://github.com/svpcom/wifibroadcast_osd) (consumes 10% CPU on Pi Zero).
+- MAVLink 数据包聚合。 它不会为每个 MAVLink 数据包发送 WiFi 数据包。
+- [Enhanced OSD for Raspberry Pi](https://github.com/svpcom/wifibroadcast_osd) （在 Pi Zero 上消耗10% 的 CPU）。
 
 有关详细信息，请参阅 [FAQ](#faq)。
 
@@ -38,7 +38,7 @@
 
 Alpha WUS051NH 是一种高功率卡, 在传输时使用大的电流。 如果您从 USB 供电, 它将导致大多数的 ARM 板子的端口被重置。 因此, 您需要将其直接连接到 5V BEC。 你可以通过这种方式实现：
 
-1. 自制 USB 电缆。 [You need to cut `+5V` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
+1. 自制 USB 电缆。 [你需要从 USB 插头中切断 `+5V` 线，并将其连接到 BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
 2. Cut a `+5V` wire on PCB near USB port and wire it to BEC. Don't do this if doubt. Use custom cable instead! Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29) when using several ground wires.
 
 ## 软件设置
@@ -53,7 +53,7 @@ Alpha WUS051NH 是一种高功率卡, 在传输时使用大的电流。 如果�
     keygen
     
 
-Copy `rx.key` to RX host and `tx.key` to TX host.
+将 `rx.key` 复制到RX主机，将` tx.key `复制到TX主机。
 
 ### UAV Setup (TX)
 
@@ -98,15 +98,15 @@ Copy `rx.key` to RX host and `tx.key` to TX host.
 
 ## 常见问题
 
-#### What are the limitations of normal WiFi for long-distance video transfer?
+#### 普通 wifi 对远程视频传输有哪些限制？
 
-Normal WiFi has the following problems when used for long distance video transfer:
+普通 wifi 在用于远距离视频传输时存在以下问题:
 
-- **Association:** The video transmitter and receiver need to be "associated". If one device looses association (for example due to weak signal strength) then video transmission stops instantly.
+- **Association:** 视频的发射机和接收机必须配对 如果一台设备丢失关联 (例如, 由于信号强度较弱), 则视频传输会立即停止。
 
-- **Two-way communication:** Even if you are sending data only from source to sink a bi-directional data flow is required using WiFi. The reason for this is that a WiFi receiver needs to acknowledge the received packets. If the transmitter receives no acknowledgments it will drop the association. Therefore, you would need equally strong transmitters and antennas both on the aircraft and on the ground station. A setup with a strong transmitter in the air using an omni-directional antenna and a weak device on the ground using a high-gain antenna is not possible with normal WiFi.
+- **Two-way communication:**即使您仅从一个源头发射数据，WiFi连接依然会建立双向的数据流。 这样做的原因是 wifi 接收器需要确认接收到的数据包。 如果发射机没有收到任何确认, 它将删除关联。 因此，飞机和地面站都需要同样强大的发射机和天线。 使用普通WiFi无法使用高增益天线使用全向天线和地面上的弱设备在空中建立强大的发射机。
 
-- **Rate control:** Normal WiFi connections switch automatically to a lower transmission rate if signal strength is too weak. This can result in an (automatically) selected rate that is too low to transfer video data. The result is that data can queue up and introduce an unpredictable latency of up to several seconds.
+- **Rate control:** 如果信号强度太弱，普通WiFi连接会自动切换到较低的传输速率。 这可能导致（自动）选择的速率太低而无法传输视频数据。 结果是数据可以排队并引入长达几秒的不可预测的延迟。
 
 - **One to one transfers:** Unless you use broadcast frames or similar techniques, a normal WiFi data flow is a one-to-one connection. A scenario where a bystander just locks onto your "channel" to watch your stream (as is possible in analog video transmission) is not easy to accomplish using traditional WiFi.
 
