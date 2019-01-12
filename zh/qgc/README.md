@@ -1,6 +1,6 @@
 # QGroundControl
 
-QGroundControl is an app to configure and fly a PX4 based autopilot. It is cross platform and supports all major operating systems:
+QGroundControl 是一个应用程序来配置和飞行基于 PX4 的自动驾驶仪。 It is cross platform and supports all major operating systems:
 
 - Mobile: Android and iOS (currently focused on tablet)
 - Desktop: Windows, Linux, Mac OS
