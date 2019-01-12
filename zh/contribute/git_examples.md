@@ -156,20 +156,20 @@ git branch
 git checkout <branch name>
 ```
 
-## Common pitfalls
+## 常见错误
 
-### Force push to forked repository
+### 强制推送到分叉存储库
 
-After having done the first PR, people from the PX4 community will review your changes. In most cases this means that you have to fix your local branch according to the review. After changing the files locally, the feature branch needs to be rebased again with the most recent upstream/master. However, after the rebase, it is no longer possible to push the feature branch to your forked repository directly, but instead you need to use a force push:
+做完第一个 PR 后, 来自 PX4 社区的人将回顾你的更改。 在大多数情况下, 这意味着您必须根据评审来修复本地分支。 在本地更改文件后, 需要使用最新的 uperecle1 主服务器重新定位功能分支。 但是, 在重新建立基础后, 不再可能将特征分支直接推送到分叉存储库, 而是需要使用强制推送:
 
 ```sh
 git push --force-with-lease origin <your feature branch name>
 ```
 
-### Rebase merge conflicts
+### 重新建立合并冲突
 
-If a conflict occurs during a ```git rebase```, please refer to [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/).
+如果冲突发生在 ```git rebase```，请参阅 [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/)。
 
-### Pull merge conflicts
+### 拉取合并冲突
 
-If a conflict occurs during a ```git pull```, please refer to [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts).
+如果冲突发生在 ```git pull```，请参阅 [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts)。
