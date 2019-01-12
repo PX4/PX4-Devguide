@@ -93,14 +93,14 @@ git push origin <your feature branch name>
 
 * 您可以通过在浏览器中转到分叉存储库来验证推送是否成功： ```https://github.com/<your git name>/Firmware.git```  
     您应该会看到一条消息, 即一个新分支已被推送到分叉存储库。
-* 现在是时候创建一个拉取请求 (PR) 了。 在 "新分支消息" 的右侧 (请参阅前面的一个步骤), 您应该看到一个绿色按钮, 上面写着 "比较 & amp; 创建拉取请求"。 然后, 它应该列出你的更改, 你必须添加一个有意义的标题 (在一个提交 PR 的情况下, 它通常是提交消息) 和消息 (<span style="color:orange">解释你做了这些的原因 </span>。 检查 [其他拉取请求 ](https://github.com/PX4/Firmware/pulls) 进行比较)
-* You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
+* 现在是时候创建一个拉取请求 (PR) 了。 在 "新分支消息" 的右侧 (请参阅前面的一个步骤), 您应该看到一个绿色按钮, 上面写着 "比较 & amp; 创建拉取请求"。 然后, 它应该列出你的更改, 你必须添加一个有意义的标题 (在一个提交 PR 的情况下, 它通常是提交消息) 和消息 (<span style="color:orange">解释你做了这些的原因 </span>， 检查 [其他拉取请求 ](https://github.com/PX4/Firmware/pulls) 进行比较)。
+* 搞定！ PX4 负责成员现在将看看你的贡献, 并决定他们是否要整合它。 每过一段时间检查你的更改看是否会有问题。
 
 ## 更新子模块
 
-There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#Contributing-code-to-PX4).
+有几种方法可以更新子模块。 您可以克隆存储库, 也可以进入子模块目录, 并按照 [Contributing code to PX4](#Contributing-code-to-PX4) 中的步骤操作。
 
-## Do a PR for a submodule update
+## 为子模块更新执行 PR
 
 This is required after you have done a PR for a submodule X repository and the bug-fix / feature-add is in the current master of submodule X. Since the Firmware still points to a commit before your update, a submodule pull request is required such that the submodule used by the Firmware points to the newest commit.
 
