@@ -174,9 +174,9 @@ You can increase FEC block size (by default it is 8/12 - 8 data blocks and 4 FEC
 - 1Gbps Ethernet port  
 - 3 UARTs  
 - Very small form-factor  
-- Resistant to radio interference | - Small community  
+- Resistant to radio interference | - 小的社区群体  
 - 512MB SDRAM  
-- No camera interface                                                                                                                                                                                       |
+- 没有相机接口                                                                                                                                                                                                             |
 
 This article chose to use Pi Zero as camera board (encode video) and NEO2 as main UAV board (wifibroadcast, MAVLink telemetry, etc.)
 
