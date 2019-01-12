@@ -8,7 +8,7 @@
 * Logitech 摄像头 C920
 * WiFi 模块 TP-LINK TL-WN722N
 
-![Setup](../../assets/videostreaming/setup_whole.jpg)
+![设置](../../assets/videostreaming/setup_whole.jpg)
 
 ## 在 odroid c1 中安装 linux 环境
 
@@ -18,7 +18,7 @@
 
 Odroid c1 可以通过 5v 直流插孔供电。 如果 Odroid 被安装在飞行器上，建议将两个跳线通过插片式的[方法](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering)焊接在电路上 在例子中，Odroid C1 通过在上图所示的红色跳线连接 DC 电源 (5 V) 和通过上图所示的黑色跳线连接地线被通电。
 
-![Power Pins](../../assets/videostreaming/power-pins.jpg)
+![电源](../../assets/videostreaming/power-pins.jpg)
 
 ## 为 Odroid C1 启用无线网络连接
 
@@ -133,13 +133,13 @@ iface default inet dhcp
     sudo update-rc.d udhcpd enable
     
 
-这足以让板载计算机作为接入点出现，并允许您的地面站连接。 If you truly want to make it work as a real Access Point (routing the WiFi traffic to the Onboard Computer’s Ethernet connection), we need to configure the routing and network address translation (NAT). Enable IP forwarding in the kernel:
+这足以让板载计算机作为接入点出现，并允许您的地面站连接。 如果您真的希望将其作为真正的接入点（将WiFi流量路由到板载计算机的以太网连接），我们需要配置路由和网络地址转换（NAT）。 在内核中启用端口转发：
 
 ```sh
 sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 ```
 
-To enable NAT in the kernel, run the following commands:
+要做到这一点，请运行以下命令：
 
 ```sh
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -147,13 +147,13 @@ sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -
 sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
 ```
 
-To make this permanent, run the following command:
+要使其永久化，请运行以下命令：
 
 ```sh
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 ```
 
-Now edit the file /etc/network/interfaces and add the following line to the bottom of the file:
+现在，打开 /etc/network/interfaces 并在文件底部添加以下行:
 
 ```sh
 up iptables-restore < /etc/iptables.ipv4.nat
@@ -161,23 +161,23 @@ up iptables-restore < /etc/iptables.ipv4.nat
 
 # Gstreamer 安装
 
-To install gstreamer packages on the computer and on the Odroid C1 and start the stream, follow the instruction given in the [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md).
+要在计算机和Odroid C1上安装gstreamer软件包并启动流，请按照 [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md) 中给出的说明进行操作。
 
-If you cannot start the stream on the Odroid with the uvch264s plugin, you can also try to start it with the v4l2src plugin:
+如果您无法使用 uvch264s 插件启动 odroid 上的流, 您也可以尝试使用 v4l2src 插件启动它:
 
 ```sh
 gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,framerate=24/1 ! h264parse ! rtph264pay ! udpsink host=xxx.xxx.xxx.xxx port=5000
 ```
 
-Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running.
+其中 `“xxx.xxx.xxx.xxx”` 是QGC运行的IP地址
 
-> **Tip** If you get the system error: `Permission denied`, you might need to prepend `sudo` to the command above. Alternatively add the current user to the `video` group as shown below (and then logout/login): 
+> **Tip** 如果出现系统错误: `Permission denied`, 则可能需要在上述命令之前加上 `sudo`。 或者, 将当前用户添加到 `video` 组, 如下所示 (然后注销/登录): 
 > 
 >     sh
 >       sudo usermod -aG video $USER
 
-If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screenshot below.
+如果一切正常, 您应该在 QGroundControl 的飞行模式窗口中看到左下角的视频流, 如下面的屏幕截图所示。
 
 ![](../../assets/videostreaming/qgc-screenshot.png)
 
-If you click on the video stream, the satellite map is shown in the left bottom corner and the video is shown in the whole background.
+如果您单击视频流, 卫星地图将显示在左下角, 视频将显示在整个背景中。
