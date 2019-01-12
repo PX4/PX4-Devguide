@@ -19,18 +19,18 @@ QGroundControl 是一个应用程序来配置和飞行基于 PX4 的自动驾驶
 
 ## 设置参数
 
-切换到设置标签。 将左侧菜单拉到最下，点击参数图标。 Parameters can be changed by double-clicking on them, which opens a context menu to edit, along with a more detailed description.
+切换到设置标签。 将左侧菜单拉到最下，点击参数图标。 参数可以通过双击来更改，这会打开一个带有详细描述的可编辑的文本菜单。
 
 ![](../../assets/gcs/setting-parameter.png)
 
 ## 安装
 
-QGroundControl can be downloaded from its [website](http://qgroundcontrol.com/downloads).
+QGroundControl 下载链接 [website](http://qgroundcontrol.com/downloads)。
 
-> **Tip** Developers are advised to use the latest daily build instead of the stable release.
+> **Tip** 推荐开发者使用最新编译版本替代稳定版。
 
 ## 由源代码安装
 
-Firmware developers are encouraged to build from source in order to have a matching recent version to their flight code.
+为了匹配最近版本的飞控代码，鼓励固件开发者从源码编译。
 
-Follow the [QGroundControl build instructions](https://github.com/mavlink/qgroundcontrol#obtaining-source-code) to install Qt and build the source code.
+安装 Qt 和编译源码，请参照 [QGroundControl build instructions](https://github.com/mavlink/qgroundcontrol#obtaining-source-code)。
