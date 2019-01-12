@@ -74,7 +74,7 @@ Alpha WUS051NH 是一种高功率卡, 在传输时使用大的电流。 如果�
     
     This will setup wifibroadcast using `MCS #1: QPSK 1/2 40MHz Short GI` modulation (30 Mbit/s) on 149 WiFi channel (in 5GHz band) and listening on UDP port 5600 for incoming data.
 
-### Ground Station Setup (RX)
+### 地面站
 
 1. Setup *Wifibroadcast* in RX mode:
     
@@ -108,15 +108,15 @@ Alpha WUS051NH 是一种高功率卡, 在传输时使用大的电流。 如果�
 
 - **Rate control:** 如果信号强度太弱，普通WiFi连接会自动切换到较低的传输速率。 这可能导致（自动）选择的速率太低而无法传输视频数据。 结果是数据可以排队并引入长达几秒的不可预测的延迟。
 
-- **One to one transfers:** Unless you use broadcast frames or similar techniques, a normal WiFi data flow is a one-to-one connection. A scenario where a bystander just locks onto your "channel" to watch your stream (as is possible in analog video transmission) is not easy to accomplish using traditional WiFi.
+- **One to one transfers:** 除非您使用广播帧或类似的技术, 否则正常的 wifi 数据流是一对一的连接。 使用传统 wifi, 不容易有这样一种情况: 旁观者只需锁定您的 "频道" 就可以观看您的流 (在模拟视频传输中可能是可能的)。
 
-- Limited diversity: Normal WiFi limits you to the number of diversity streams that your WiFi card offers.
+- 有限的多样性: 正常的 wifi 将您限制在您的 wifi 卡提供的多样性流的数量。
 
-#### How does Wifibroadcast overcome these limitations
+#### Wifibroadcast 如何克服这些限制
 
-*Wifibroadcast* puts the WiFi cards into monitor mode. This mode allows to send and receive arbitrary packets without association. This way a true unidirectional connection is established which mimics the advantageous properties of an analog link. Those are:
+*Wifibroadcast* 将 wifi 卡置于监控模式。 此模式允许在没有关联的情况下发送和接收任意数据包。 通过这种方式建立了一个真正的单向连接, 它模仿了模拟链路的有利特性。 它们是:
 
-- The transmitter sends its data regardless of any associated receivers. Thus there is no risk of sudden video stall due to the loss of association
+- 发射器发送其数据, 而不考虑任何关联的接收器。 Thus there is no risk of sudden video stall due to the loss of association
 - The receiver receives video as long as it is in range of the transmitter. If it gets slowly out of range the video quality degrades but does not stall.
 - The traditional scheme “single broadcaster – multiple receivers” works out of the box. If bystanders want to watch the video stream with their devices they just have to “switch to the right channel”
 - *Wifibroadcast* allows you to use several low cost receivers in parallel and combine their data to increase probability of correct data reception. This so-called software diversity allows you to use identical receivers to improve reliability as well as complementary receivers (think of one receiver with an omnidirectional antenna covering 360° and several directional antennas for high distance all working in parallel)
@@ -180,10 +180,10 @@ You can increase FEC block size (by default it is 8/12 - 8 data blocks and 4 FEC
 
 This article chose to use Pi Zero as camera board (encode video) and NEO2 as main UAV board (wifibroadcast, MAVLink telemetry, etc.)
 
-## TODO
+## 待完成
 
-1. Make prebuilt packages. Pull requests are welcome.
-2. Do a flight test with different cards/antennas.
+1. 制作预编译的包。 Pull requests are welcome.
+2. 使用不同的卡天线进行飞行测试。
 3. Investigate how to set TX power without CRDA hacks.
-4. Tune FEC for optimal latency/redundancy.
-5. Inject packets with radio link RSSI to MAVLink stream
+4. 调整 fec 以获得最佳的延迟冗余。
+5. 将无线链路 rssi 值注入到 MAVLink 流的数据包
