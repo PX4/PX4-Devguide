@@ -65,7 +65,7 @@ DHCPD_ENABLED="no"
 #DHCPD_ENABLED="no"
 ```
 
-您需要为机载计算机配置静态 ip 地址。 Edit the file `/etc/network/interfaces` and replace the line `iface wlan0 inet dhcp` (or `iface wlan0 inet manual`) to:
+您需要为机载计算机配置静态 ip 地址。 编辑文件 `/etc/network/interfaces` 并将 `iface wlan0 inet dhcp` (或者 `iface wlan0 inet manual`) 行改为:
 
 ```sh
 auto wlan0
@@ -77,7 +77,7 @@ broadcast 192.168.2.255
 wireless-power off
 ```
 
-Disable the original (WiFi Client) auto configuration. Change the lines (they probably will not be all next to each other or may not even be there at all):
+禁用原始 (WiFi Client) 自动配置。 更改行 (它们可能不会全部相邻, 甚至可能根本不存在):
 
 ```sh
 allow-hotplug wlan0
@@ -85,7 +85,7 @@ wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 iface default inet dhcp
 ```
 
-to:
+至:
 
 ```sh
 #allow-hotplug wlan0
@@ -93,9 +93,9 @@ to:
 #iface default inet dhcp
 ```
 
-If you have followed the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) to set up the WiFi connection, you might have created the file `/etc/network/intefaces.d/wlan0`. Please comment out all lines in that file such that those configurations have no effect anymore.
+如果您已按照 [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 设置WiFi连接，则可能已创建文件 `/etc/network/intefaces.d/wlan0`。 请注释掉该文件中的所有行，以使这些配置不再有效。
 
-Configure HostAPD: To create a WPA-secured network, edit the file `/etc/hostapd/hostapd.conf` (create it if it does not exist) and add the following lines:
+配置HostAPD：要创建受WPA保护的网络，请编辑文件 `/etc/hostapd/hostapd.conf`（如果它不存在则创建它）并添加以下行：
 
     auth_algs=1
     channel=6            # 要使用的通道
@@ -115,25 +115,25 @@ Configure HostAPD: To create a WPA-secured network, edit the file `/etc/hostapd/
     
     
 
-Change `ssid=`, `channel=`, and `wpa_passphrase=` to values of your choice. SSID is the hotspot's name which is broadcast to other devices, channel is what frequency the hotspot will run on, wpa_passphrase is the password for the wireless network. For many more options see the file `/usr/share/doc/hostapd/examples/hostapd.conf.gz`. Look for a channel that is not in use in the area. You can use tools such as *wavemon* for that.
+更改 `ssid=`, `channel=`, 和 `wpa_passphrase=` 。 SSID是广播到其他设备的热点名称，频道是热点运行的频率，wpa_passphrase 是无线网络的密码。 有更多选项，请参阅该文件 `/usr/share/doc/hostapd/examples/hostapd.conf.gz`。 寻找该区域未使用的频道。 您可以使用 *wavemon* 等工具。
 
-Edit the file `/etc/default/hostapd` and change the line:
+编辑如下文件 `/etc/default/hostapd` ，修改其中的一行：
 
     #DAEMON_CONF=""
     
 
-to:
+至:
 
     DAEMON_CONF="/etc/hostapd/hostapd.conf"
     
 
-Your Onboard Computer should now be hosting a wireless hotspot. To get the hotspot to start on boot, run these additional commands:
+您的板载计算机现在应该有无线热点。 要使热点在启动时启动，请运行以下附加命令：
 
     sudo update-rc.d hostapd enable
     sudo update-rc.d udhcpd enable
     
 
-This is enough to have the Onboard Computer present itself as an Access Point and allow your ground station to connect. If you truly want to make it work as a real Access Point (routing the WiFi traffic to the Onboard Computer’s Ethernet connection), we need to configure the routing and network address translation (NAT). Enable IP forwarding in the kernel:
+这足以让板载计算机作为接入点出现，并允许您的地面站连接。 If you truly want to make it work as a real Access Point (routing the WiFi traffic to the Onboard Computer’s Ethernet connection), we need to configure the routing and network address translation (NAT). Enable IP forwarding in the kernel:
 
 ```sh
 sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
