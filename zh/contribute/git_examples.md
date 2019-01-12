@@ -56,44 +56,44 @@ git add <file name>
 git commit -m "<your commit message>"
 ```
 
-For a good commit message, please refer to [Contributing](../contribute/README.md) section. * Some time might have passed and the [upstream master](https://github.com/PX4/Firmware.git) has changed. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch  
+有关良好的提交消息, 请参阅 [Contributing](../contribute/README.md) 部分。 * 可能已经过去一段时间，[upstream master](https://github.com/PX4/Firmware.git) 已经改变。 PX4 更喜欢线性提交历史记录, 并使用 [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing)。 要在本地分支中包含上游的最新更改, 请切换到主分支  
 
 
 ```sh
 git checkout master
 ```
 
-Then pull the newest commits from upstream master  
+然后从上游 master 中提取最新的提交  
 
 
 ```sh
 git pull upstream master
 ```
 
-Now your local master is up to date. Switch back to your feature branch  
+现在你本地的 master 是最新的。 切换回您的功能分支  
 
 
 ```sh
 git checkout <your feature branch name>
 ```
 
-and rebase on your updated master  
+并根据您更新的母版重新定位  
 
 
 ```sh
 git rebase master
 ```
 
-* Now you can push your local commits to your forked repository  
+* 现在, 您可以将本地提交推送到分支存储库  
     
 
 ```sh
 git push origin <your feature branch name>
 ```
 
-* You can verify that the push was successful by going to your forked repository in your browser: ```https://github.com/<your git name>/Firmware.git```  
-    There you should see the message that a new branch has been pushed to your forked repository.
-* Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
+* 您可以通过在浏览器中转到分叉存储库来验证推送是否成功： ```https://github.com/<your git name>/Firmware.git```  
+    您应该会看到一条消息, 即一个新分支已被推送到分叉存储库。
+* 现在是时候创建一个拉取请求 (PR) 了。 On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
 ## 更新子模块
