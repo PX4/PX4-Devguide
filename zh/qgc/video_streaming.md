@@ -1,4 +1,4 @@
-# QGroundControl 视频流
+# QGroundControl 中的视频流
 
 此页演示如何设置相机 (logitech c920) 和机载计算机 (odroid c1), 以便通过 odroid c1 将视频流传输到网络计算机, 并显示在 QGC 中。
 
@@ -10,7 +10,7 @@
 
 ![设置](../../assets/videostreaming/setup_whole.jpg)
 
-## 在 odroid c1 中安装 linux 环境
+## 在 Odroid c1 中安装 Linux 环境
 
 要安装 linux 环境 (ubuntu 14.04), 请按照 [Odroid c1 教程](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 中给出的说明进行操作。 在本教程中, 它还演示了如何使用 uart 电缆访问 odroid c1, 以及如何建立以太网连接。
 
