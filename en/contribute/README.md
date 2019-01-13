@@ -108,8 +108,6 @@ All code contributions have to be under the permissive [BSD 3-clause license](ht
 PX4 recommends the following coding standards:
 - In-source documentation [as below](#source_docs)
 - Formatting/layout using *astyle*, [as below](#code_formatting)
-
-Other conventions:
 - All files should have standard copyright header, with date range reflecting creation to last modification date
   (note that the comment markup may change for different types of files).
   ```
