@@ -103,7 +103,81 @@ To contribute new functionality, [sign up for Github](https://help.github.com/ar
 
 All code contributions have to be under the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause) and all code must not impose any further constraints on the use.
 
-### Code Style Formatting
+### Coding Standards {#code_standards}
+
+PX4 recommends the following coding standards:
+- In-source documentation [as below](#source_docs)
+- Formatting/layout using *astyle*, [as below](#code_formatting)
+
+Other conventions:
+- All files should have standard copyright header, with date range reflecting creation to last modification date
+  (note that the comment markup may change for different types of files).
+  ```
+  /****************************************************************************
+  *
+  *   Copyright (c) 2013-2019 PX4 Development Team. All rights reserved.
+  *
+  * Redistribution and use in source and binary forms, with or without
+  * modification, are permitted provided that the following conditions
+  * are met:
+  *
+  * 1. Redistributions of source code must retain the above copyright
+  *    notice, this list of conditions and the following disclaimer.
+  * 2. Redistributions in binary form must reproduce the above copyright
+  *    notice, this list of conditions and the following disclaimer in
+  *    the documentation and/or other materials provided with the
+  *    distribution.
+  * 3. Neither the name PX4 nor the names of its contributors may be
+  *    used to endorse or promote products derived from this software
+  *    without specific prior written permission.
+  *
+  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+  * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+  * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+  * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+  * OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+  * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  * POSSIBILITY OF SUCH DAMAGE.
+  *
+  ****************************************************************************/
+  ```
+- Naming conventions:
+  - Classes
+    - Use CamelCase
+    - Start with a capitalized letter and are nouns.
+    - One class per file, with filename prefix matching classname.
+  - Methods/functions and variables
+    - Use snake case (words start with lower case letters and are separated by underscores).
+    - Files containing just functions may be named following pattern of main function.
+  - Member variables
+    - Start with an underscore and otherwise use snake case.
+- Prefer `#pragma once` over include guards
+
+
+<!-- 
+
+Include Headers
+A good practice is to include headers in the order most local to least local and alphabetized to whatever degree possible to avoid duplications. The purpose for this is to ensure that a proper dependency chain is maintained, because as projects grow, dependency driven compilation failures sometimes can be difficult to identify and resolve.
+
+This means that header files have includes (alphabetized) in the order:
+project includes
+project dependency includes
+system includes
+
+Source files have the includes (alphabetized) in the order:
+definition include
+project includes
+project dependency includes
+system includes
+-->
+
+
+### Code Formatting {#code_formatting}
 
 PX4 uses [astyle](http://astyle.sourceforge.net/) for code formatting. Valid versions are
 * [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/) (recommended)
@@ -112,7 +186,9 @@ PX4 uses [astyle](http://astyle.sourceforge.net/) for code formatting. Valid ver
 
 Once installed, formatting can be checked with `./Tools/astyle/check_code_style_all.sh`. The output should be `Format checks passed` on a clean master. If that worked, `make format` can be used in the future to check and format all files automatically.
 
-### In-Source Documentation
+
+
+### In-Source Documentation {#source_docs}
 
 PX4 developers are encouraged to create appropriate in-source documentation.
 
