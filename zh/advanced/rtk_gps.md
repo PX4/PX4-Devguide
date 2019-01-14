@@ -44,7 +44,7 @@ QGroundControl配置RTK基站输出依据RTCM3.2框架，每帧为1 Hz：
 
 来自差分基准站的RTCM信息，在MAVLink数据链中打包成GPS_RTCM_DATA数据包，并通过MAVLink数据链发播出去。 MAVLink的信息长度最大为182字节。 根据RTCM的信息类型，MAVLink信息是不会填满的。
 
-1005信息长度固定为22字节，而其他两个信息依赖于可用卫星的个数和每颗卫星的信号通道数（频点数），针对M8P只有L1即一个频点。 Since at a given time, the *maximum* number of satellites visible from any single constellation is 12, under real-world conditions, theoretically an uplink rate of 300 B/s is sufficient.
+1005信息长度固定为22字节，而其他两个信息依赖于可用卫星的个数和每颗卫星的信号通道数（频点数），针对M8P只有L1即一个频点。 在真实环境中，对于任一时刻，任何一个导航系统的可用卫星个数不超过12个，因此300B/s的上行速率就足够了。
 
 If *MAVLink 1* is used, a 182-byte `GPS_RTCM_DATA` message is sent for every RTCM message, irrespective of its length. As a result the approximate uplink requirement is around 700+ bytes per second. This can lead to link saturation on low-bandwidth half-duplex telemetry modules (e.g. 3DR Telemetry Radios).
 
