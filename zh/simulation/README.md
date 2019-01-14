@@ -169,33 +169,33 @@ PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图�
     
     可以在一台计算机上运行模拟器，并从同一网络 (或具有适当路由的另一台网络) 上的另一台计算机访问模拟器。 例如，如果要测试在模拟车辆上运行的真实配套计算机硬件上运行的无人机应用程序，这可能很有用。
     
-    This does not work "out of the box" because PX4 does not route packets to external interfaces by default (in order to avoid spamming the network and different simulations interfering with each other). Instead it routes traffic internally - to "localhost".
+    这不是 "开箱即用" 的，因为 PX4 在默认情况下不会将数据包路由到外部接口 (以避免垃圾邮件和不同的模拟相互干扰)。 相反，它将数据包路由到 "本地主机"。
     
-    There are a number of ways to make the UDP packets available on external interfaces, as outlined below.
+    有多种方法可以使 UDP 数据包在外部接口上可用，如下所述。
     
     ### 启用 MAV_BROADCAST
     
-    Enable [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) to broadcast heartbeats on the local network.
+    启用 [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) 在本地网络上广播检测信号。
     
-    A remote computer can then connect to the simulator by listening to the appropriate port (i.e. 14550 for *QGroundControl*).
+    然后，远程计算机可以通过侦听适当的端口 (即 *QGroundControl* 的14550端口) 连接到模拟器。
     
-    ### Use MAVLink Router
+    ### 使用 MAVLink 路由器
     
-    The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route packets from localhost to an external interface.
+    [mavlink-router](https://github.com/intel/mavlink-router) 可用于将数据包从本地主机路由到外部接口。
     
-    ### Modify Configuration for External Broadcasting
+    ### 修改外部广播的配置
     
-    The [mavlink](../middleware/modules_communication.md#mavlink_usage) module routes to *localhost* by default, but you can specify an external IP address to broadcast to using its `-t` option.
+    默认情况下，[mavlink](../middleware/modules_communication.md#mavlink_usage) 模块路由到 *localhost*，但您可以指定要使用其 `-t` 选项广播的外部 IP 地址。
     
-    This should be done in various configuration files where `mavlink start` is called. For example: [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS).
+    这应该在各种配置文件中完成，其中调用了 `mavlink start`。 例如：[/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)。
     
     ### SSH 通道
     
-    SSH tunneling is a flexible option because the simulation computer and the system using it need not be on the same network.
+    ssh 是一个灵活的选项，因为模拟计算机和使用它的系统不需要在同一网络上。
     
-    > **Note** You might similarly use VPN to provide a tunnel to an external interface (on the same network or another network).
+    > **Note** 您也可以使用 vpn 向外部接口 (在同一网络或其他网络上) 提供隧道。
     
-    One way to create the tunnel is to use SSH tunneling options. The tunnel itself can be created by running the following command on *localhost*, where `remote.local` is the name of a remote computer:
+    创建隧道的一种方法是使用 ssh 隧道选项。 The tunnel itself can be created by running the following command on *localhost*, where `remote.local` is the name of a remote computer:
     
         ssh -C -fR 14551:localhost:14551 remote.local
         
