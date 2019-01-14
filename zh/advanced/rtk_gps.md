@@ -38,11 +38,11 @@ QGroundControl配置RTK基站输出依据RTCM3.2框架，每帧为1 Hz：
 
 - 1005-差分基准站天线相位中心在地心地固XYZ坐标系下的坐标
 - 1077-差分基准站所有可视GPS卫星的伪距、载波相位、多普勒和信号强度
-- **1087** - Full GLONASS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution).
+- 1077-差分基准站所有可视GLONASS卫星的伪距、载波相位、多普勒和信号强度
 
 ## 上行数据速率
 
-The raw RTCM messages from the base are packed into a MAVLink `GPS_RTCM_DATA` message and sent over the datalink. The maximum length of each MAVLink message is 182 bytes. Depending on the RTCM message, the MAVLink message is almost never completely filled.
+来自差分基准站的RTCM信息，在MAVLink数据链中打包成GPS_RTCM_DATA数据包，并通过MAVLink数据链发播出去。 MAVLink的信息长度最大为182字节。 根据RTCM的信息类型，MAVLink信息是不会填满的。
 
 The RTCM Base Position message (1005) is of length 22 bytes, while the others are all of variable length depending on the number of visible satellites and the number of signals from the satellite (only 1 for L1 units like M8P). Since at a given time, the *maximum* number of satellites visible from any single constellation is 12, under real-world conditions, theoretically an uplink rate of 300 B/s is sufficient.
 
