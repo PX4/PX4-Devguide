@@ -122,7 +122,7 @@ make px4_sitl jmavsim
     PX4_SIM_SPEED_FACTOR=2 make px4_sitl jmavsim
     
 
-To run at half real-time:
+运行半速仿真：
 
     PX4_SIM_SPEED_FACTOR=0.5 make px4_sitl jmavsim
     
