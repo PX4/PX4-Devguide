@@ -6,7 +6,7 @@
 
 ## 综述
 
-RTK是使用导航信号的载波相位来进行测距的，而不是使用导航信号所搭载的信息。 多个移动的用户可以共用同一个差分基准站发播的差分修正信息，移动用户离差分基准站的距离越近，差分定位更精确。
+RTK是使用导航信号的载波相位来进行测距的，而不是使用导航信号所搭载的信息。 多个移动的用户可以共用同一个差分基准站发播的差分修正信息，移动用户离差分基准站的距离越近，差分定位越精确。
 
 在PX4系统中，为达到RTK的差分效果，需要2个RTK GPS模块和一个数据链路。 固定在地面的RTK GPS模块称作基站，另一个在空中的模块称作移动站。 基站通过USB接口与QGC地面站连接，同时利用数据链将RTCM协议修正信息发送给移动站（使用MAVLink中GPS_RTCM_DATA消息）。 在自驾仪上，MAVLink消息包被解包得到RTCM的修正信息，并把这些信息发送给移动站，移动站结合修正信息最终解算得到RTK解。
 
@@ -36,8 +36,8 @@ PX4 GPS堆栈自动设置u-blox M8P模块，通过UART或USB发送和接收正�
 
 QGroundControl配置RTK基站输出依据RTCM3.2框架，每帧为1 Hz：
 
-- **1005** - Station coordinates XYZ for antenna reference point (Base position).
-- **1077** - Full GPS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution).
+- 1005-差分基准站天线相位中心在地心地固XYZ坐标系下的坐标
+- 1077-差分基准站所有可视GPS卫星的伪距、载波相位、多普勒和信号强度
 - **1087** - Full GLONASS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution).
 
 ## 上行数据速率
