@@ -167,7 +167,7 @@ PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图�
     
     ## 在远程服务器上运行仿真
     
-    It is possible to run the simulator on one computer, and access it from another computer on the same network (or on another network with appropriate routing). This might be useful, for example, if you want to test a drone application running on real companion computer hardware running against a simulated vehicle.
+    可以在一台计算机上运行模拟器，并从同一网络 (或具有适当路由的另一台网络) 上的另一台计算机访问模拟器。 例如，如果要测试在模拟车辆上运行的真实配套计算机硬件上运行的无人机应用程序，这可能很有用。
     
     This does not work "out of the box" because PX4 does not route packets to external interfaces by default (in order to avoid spamming the network and different simulations interfering with each other). Instead it routes traffic internally - to "localhost".
     
