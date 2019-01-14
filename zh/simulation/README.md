@@ -195,29 +195,29 @@ PX4 支持在 [Gazebo](../simulation/gazebo.md) 模拟环境中捕获静止图�
     
     > **Note** 您也可以使用 vpn 向外部接口 (在同一网络或其他网络上) 提供隧道。
     
-    创建隧道的一种方法是使用 ssh 隧道选项。 The tunnel itself can be created by running the following command on *localhost*, where `remote.local` is the name of a remote computer:
+    创建隧道的一种方法是使用 ssh 隧道选项。 可以通过在 *localhost* 上运行以下命令来创建隧道，其中 `remote.local` 是远程计算机的名称：
     
         ssh -C -fR 14551:localhost:14551 remote.local
         
     
-    The UDP packets need to be translated to TCP packets so they can be routed over SSH. The [netcat](https://en.wikipedia.org/wiki/Netcat) utility can be used on both sides of the tunnel - first to convert packets from UDP to TCP, and then back to UDP at the other end.
+    UDP 数据包需要转换为 TCP 数据包，以便可以通过 ssh 对其进行路由。 [netcat](https://en.wikipedia.org/wiki/Netcat) 可以用于隧道的两边—首先转换 UDP 为 TCP 数据包，然后在另一端再转回 UDP 。
     
-    > **Tip** QGC must be running before executing *netcat*.
+    > **Tip** 执行 *netcat* 之前， QGC 必须运行起来。
     
-    On the *QGroundControl* computer, UDP packet translation may be implemented by running following commands:
+    在运行 QGC 的主机上，UDP 包的转换可以用以下命令实现：
     
         mkfifo /tmp/tcp2udp
         netcat -lvp 14551 < /tmp/tcp2udp | netcat -u localhost 14550 > /tmp/tcp2udp
         
     
-    On the simulator side of the SSH tunnel, the command is:
+    在 ssh 隧道的模拟器一端，命令是：
     
         mkfifo /tmp/udp2tcp
         netcat -lvup 14550 < /tmp/udp2tcp | netcat localhost 14551 > /tmp/udp2tcp
         
     
-    The port number `14550` is valid for connecting to QGroundControl or another GCS, but should be adjusted for other endpoints (e.g. developer APIs etc.).
+    端口号 `14550` 可以用于 QGroundControl 与其他的 GCS 连接，但应根据其他端点进行调整（比如开发者 API 等）。
     
-    The tunnel may in theory run indefinitely, but *netcat* connections may need to be restarted if there is a problem.
+    理论上，隧道可能无限期运行，但如果出现问题，可能需要重新启动 *netcat* 连接。
     
-    The [QGC_remote_connect.bash](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) script can be run on the QGC computer to automatically setup/run the above instructions. The simulation must already be running on the remote server, and you must be able to SSH into that server.
+    [QGC_remote_connect.bash](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) 脚本可以在 QGC 计算机上运行，以自动设置运行上述指令。 模拟必须已经在远程服务器上运行，并且您必须能够通过 ssh 登录到该服务器。
