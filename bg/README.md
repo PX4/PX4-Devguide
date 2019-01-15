@@ -33,7 +33,7 @@ The core development team and community are active on the following forums and c
 
 ## Translations
 
-There are Chinese and Korean [translations](contribute/docs.md#translation) of this guide. You can you can access these by clicking the language-switcher icon:
+There are Chinese and Korean [translations](contribute/docs.md#translation) of this guide. You can access these by clicking the language-switcher icon:
 
 ![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
 
