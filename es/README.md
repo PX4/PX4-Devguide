@@ -33,7 +33,7 @@ El equipo principal de desarrollo y la comunidad son activas en los siguientes f
 
 ## Traducciones
 
-Hay [traducciones](contribute/docs.md#translation) del inglés, chino y coreano de esta guía. Puedes acceder a ellos haciendo clic en el icono del selector de idioma:
+Hay [traducciones](contribute/docs.md#translation) del inglés, chino y coreano de esta guía. You can access these by clicking the language-switcher icon:
 
 ![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
 
