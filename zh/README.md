@@ -33,7 +33,7 @@
 
 ## 翻译
 
-本指南中有中文和韩文 [翻译](contribute/docs.md#translation)。 您可以通过单击语言切换器图标来访问这些内容：
+本指南中有中文和韩文 [翻译](contribute/docs.md#translation)。 You can access these by clicking the language-switcher icon:
 
 ![Gitbook 语言选择器](../assets/gitbook/gitbook_language_selector.png)
 
