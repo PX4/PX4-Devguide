@@ -39,13 +39,13 @@
 Alpha WUS051NH 是一种高功率卡, 在传输时使用大的电流。 如果您从 USB 供电, 它将导致大多数的 ARM 板子的端口被重置。 因此, 您需要将其直接连接到 5V BEC。 你可以通过这种方式实现：
 
 1. 自制 USB 电缆。 [你需要从 USB 插头中切断 `+5V` 线，并将其连接到 BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
-2. Cut a `+5V` wire on PCB near USB port and wire it to BEC. Don't do this if doubt. Use custom cable instead! Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29) when using several ground wires.
+2. 在 USB 端口附近的 PCB 上切割 `+5V` 线，并将其连接到 BEC。 如果有疑问，不要这样做。 改为使用自定义电缆! 还建议在电源和接地之间添加 470uf 低 ESR 电容器 (如电调电容器) 来过滤电压峰值。 使用多根地线时，请注意 [ground loop](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29)。
 
 ## 软件设置
 
-1. Install **libpcap** and **libsodium** development libs.
-2. Download [wifibroadcast sources](https://github.com/svpcom/wifibroadcast).
-3. [Patch](https://github.com/svpcom/wifibroadcast/wiki/Kernel-patches) your kernel. You only need to patch the kernel on TX (except if you want to use a WiFi channel which is disabled in your region by CRDA).
+1. 安装 **libpcap** 和 **libsodium** 开发库。
+2. 下载 [wifibroadcast sources](https://github.com/svpcom/wifibroadcast)。
+3. [Patch](https://github.com/svpcom/wifibroadcast/wiki/Kernel-patches) 内核。 You only need to patch the kernel on TX (except if you want to use a WiFi channel which is disabled in your region by CRDA).
 
 ### 生成加密密钥
 
