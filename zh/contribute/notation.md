@@ -1,8 +1,8 @@
 # 术语
 
-The following terms, symbols, and decorators are used in text and diagrams throughout this guide.
+本指南中的文本和图表中使用了以下术语、符号和装饰器。
 
-## Notation
+## 符号
 
 - Bold face variables indicate vectors or matrices and non-bold face variables represent scalars. 
 - The default frame for each variable is the local frame $$\ell$$. Right [superscripts](#superscripts) represent the coordinate frame. If no right superscript is present, then the default frame $$\ell$$ is assumed. An exception is given by Rotation Matrices, where the lower right subscripts indicates the current frame and the right superscripts the target frame.
