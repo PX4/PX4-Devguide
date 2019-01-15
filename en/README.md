@@ -41,7 +41,7 @@ and our other [developer events](contribute/README.md#calendar).
 ## Translations
 
 There are Chinese and Korean [translations](contribute/docs.md#translation) of this guide.
-You can you can access these by clicking the language-switcher icon:
+You can access these by clicking the language-switcher icon:
 
 ![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
 
