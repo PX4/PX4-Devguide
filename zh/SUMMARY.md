@@ -106,7 +106,7 @@
     * [运动捕获（VICON, Optitrack）](tutorials/motion-capture-vicon-optitrack.md)
   * [安装英特尔 RealSense R200 的驱动程序](advanced/realsense_intel_driver.md)
   * [切换状态估计器](advanced/switching_state_estimators.md)
-  * [外部模块](advanced/out_of_tree_modules.md)
+  * [树外模块](advanced/out_of_tree_modules.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
 * [平台测试和 CI](test_and_ci/README.md) 
   * [测试飞行](test_and_ci/test_flights.md) 
@@ -121,11 +121,11 @@
   * [整合测试](test_and_ci/integration_testing.md)
   * [Docker 容器](test_and_ci/docker.md)
   * [维护](test_and_ci/maintenance.md)
-* [Contributing & Dev Call](contribute/README.md) 
-  * [GIT Examples](contribute/git_examples.md)
+* [贡献 & 开发电话会议](contribute/README.md) 
+  * [GIT 示例](contribute/git_examples.md)
   * [文档撰写](contribute/docs.md)
   * [参与翻译](contribute/translation.md)
-  * [Terminology/Notation](contribute/notation.md)
+  * [术语/符号](contribute/notation.md)
   * [许可证](contribute/licenses.md)
 
 ## Dronecode快捷方式
