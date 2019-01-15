@@ -45,7 +45,7 @@ Alpha WUS051NH 是一种高功率卡, 在传输时使用大的电流。 如果�
 
 1. 安装 **libpcap** 和 **libsodium** 开发库。
 2. 下载 [wifibroadcast sources](https://github.com/svpcom/wifibroadcast)。
-3. [Patch](https://github.com/svpcom/wifibroadcast/wiki/Kernel-patches) 内核。 You only need to patch the kernel on TX (except if you want to use a WiFi channel which is disabled in your region by CRDA).
+3. [Patch](https://github.com/svpcom/wifibroadcast/wiki/Kernel-patches) 内核。 您只需在 TX 上修补内核 (除非您想要使用 CRDA 在您所在地区禁用的 wifi 频道)。
 
 ### 生成加密密钥
 
