@@ -1,10 +1,10 @@
 # 参数设置
 
-PX4 uses the *param subsystem* (a flat table of `float` and `int32_t` values) and text files (for mixers and startup scripts) to store its configuration.
+PX4 使用 *param subsystem *（`float` 和 `int32_t` 值的平面表）和文本文件（用于混频器和启动脚本）来存储其配置。
 
-This section discusses the *param* subsystem in detail. It covers how to list, save and load parameters, and how to define them.
+本节详细讨论 *param* 子系统。 它包括如何列出、保存和加载参数，以及如何定义它们。
 
-> **Note** [System startup](../concept/system_startup.md) and the way that [airframe configurations](../airframes/adding_a_new_frame.md) work are detailed on other pages.
+> **Note** 在其他页面上详细介绍了 [System 启动 ](../concept/system_startup.md) 和 [airframe 配置 ](../airframes/adding_a_new_frame.md) 工作方式。
 
 ## Command Line Usage
 
