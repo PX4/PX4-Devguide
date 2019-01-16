@@ -20,7 +20,7 @@ sudo apt-get remove modemmanager -y
 # Common dependencies
 echo "Installing common dependencies"
 sudo apt-get update -y
-sudo apt-get install git zip qtcreator cmake build-essential genromfs ninja-build exiftool vim-common -y
+sudo apt-get install git zip qtcreator cmake build-essential genromfs ninja-build exiftool astyle -y
 # Required python packages
 sudo apt-get install python-argparse python-empy python-toml python-numpy python-dev python-pip -y
 sudo -H pip install --upgrade pip
