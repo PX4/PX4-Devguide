@@ -12,13 +12,13 @@ PX4 system 控制台/0 > 提供了 [param](../middleware/modules_command.md#para
 
 ### 获取和设置参数
 
-The `param show` command lists all system parameters:
+`param show ` 命令列出了所有系统参数:
 
 ```sh
 param show
 ```
 
-To be more selective, a partial parameter name with wildcard "*" can be used:
+为了更有选择性，可以使用带有通配符 "*" 的部分参数名称：
 
 ```sh
 nsh> param show RC_MAP_A*
@@ -31,7 +31,7 @@ x   RC_MAP_ACRO_SW [375,514] : 0
  723 parameters total, 532 used.
 ```
 
-You can use the `-c` flag to show all parameters that have changed (from their defaults):
+可以使用 `-c` 标志显示已更改的所有参数（从其默认值）：
 
 ```sh
 param show -c
