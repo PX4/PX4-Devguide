@@ -37,7 +37,7 @@ x   RC_MAP_ACRO_SW [375,514] : 0
 param show -c
 ```
 
-### Exporting and Loading Parameters
+### 导出和加载参数
 
 You can save any parameters that have been *touched* since all parameters were last reset to their firmware-defined defaults (this includes any parameters that have changed been changed, even if they have been changed back to their default).
 
