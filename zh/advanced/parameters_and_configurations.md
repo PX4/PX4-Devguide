@@ -6,11 +6,11 @@ PX4 使用 *param subsystem *（`float` 和 `int32_t` 值的平面表）和文�
 
 > **Note** 在其他页面上详细介绍了 [System 启动 ](../concept/system_startup.md) 和 [airframe 配置 ](../airframes/adding_a_new_frame.md) 工作方式。
 
-## Command Line Usage
+## 命令行使用方法
 
-The PX4 [system console](../debug/system_console.md) offers the [param](../middleware/modules_command.md#param) tool, which can be used to set parameters, read their value, save them, and export and restore to/from files.
+PX4 system 控制台/0 > 提供了 [param](../middleware/modules_command.md#param) 工具，可用于设置参数、读取其值、保存参数以及从文件中导出和还原参数。</p> 
 
-### Getting and Setting Parameters
+### 获取和设置参数
 
 The `param show` command lists all system parameters:
 
