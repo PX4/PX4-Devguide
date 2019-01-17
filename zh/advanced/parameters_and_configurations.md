@@ -60,25 +60,25 @@ param save /fs/microsd/vtol_param_backup
 </ul>
 
 <p><code>load` 有效地将参数重置为保存参数时的状态（我们说 "有效"，因为保存在文件中的任何参数都将被更新，但其他参数可能具有与参数文件）。</p> 
-    相比之下，`import` 将文件中的参数与车辆的当前状态合并。 This can be used, for example, to just import a parameter file containing calibration data, without overwriting the rest of the system configuration.
+    相比之下，`import` 将文件中的参数与车辆的当前状态合并。 例如，这可以用来只导入包含校准数据的参数文件，而不覆盖系统配置的其余部分。
     
-    Examples for both cases are shown below:
+    这两种情况的示例如下所示:
     
     ```sh
-    # Reset the parameters to when file was saved
+    # 将参数重置为保存文件时,
     param load /fs/microsd/vtol_param_backup
-    # Optionally save params (not done automatically with load)
+    # 保存参数 (不自动完成与负载)
     param save
     ```
     
     ```sh
-    # Merge the saved parameters with current parameters
+    # 将保存的参数与当前参数合并
     param import /fs/microsd/vtol_param_backup  
     ```
     
-    ## Parameter Names
+    ## 参数名称
     
-    Parameter names must be no more than 16 ASCII characters.
+    参数名称不得超过 16个 ASCII 字符。
     
     By convention, every parameter in a group should share the same (meaningful) string prefix followed by an underscore, and `MC_` and `FW_` are used for parameters related specifically to Multicopter or Fixed wing systems. This convention is not enforced.
     
