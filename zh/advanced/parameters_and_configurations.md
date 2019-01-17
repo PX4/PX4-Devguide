@@ -174,32 +174,32 @@ param save /fs/microsd/vtol_param_backup
     - `orb_check()` 告诉我们是否有 *任何* 更新 `param_update` 的 uorb 消息 (但不是受影响的参数)，并设置 `updated` bool。
     - 如果更新了 "某些" 参数，我们会将更新复制到 `parameter_update_s` (`param_upd`)
     - 调用 `ModuleParams::updateParams()`。 在此检查 `DEFINE_PARAMETERS` 列表中列出的特定参数属性是否需要更新，然后在需要时进行更新。
-    - This example doesn't call `Module::parameters_update()` with `force=True`. If you had other values that needed to be set up a common pattern is to include them in the function, and call it once with `force=True` during initialisation.
+    - 当 `force=True` 时，此示例不调用 `Module::p arameters_update()`。 如果您有其他需要设置公共模式的值，则是将它们包含在函数中，并在初始化过程中使用 `force=True` 调用它一次。
     
-    The parameter attributes (`_sys_autostart` and `_att_bias_max` in this case) can then be used to represent the parameters, and will be updated whenever the parameter value changes.
+    然后，参数属性 (`_sys_autostart` 和 `_att_bias_max` 在本例中) 可用于表示参数，并将在参数值更改时进行更新。
     
-    > **Tip** The [Application/Module Template](../apps/module_template.md) uses the new-style C++ API but does not include [parameter metadata](#parameter_metadata).
+    > **Tip** [Application/Module templateet](../apps/module_template.md) 使用新型 C++ API，但不包括 [parameter 元目录 ](#parameter_metadata)。
     
     ### C API
     
-    The C API can be used within both modules and drivers.
+    C API 可以在模块和驱动程序中使用。
     
-    First include the parameter API:
+    首先包括参数 API:
     
     ```C
     #include <parameters/param.h>
     ```
     
-    Then retrieve the parameter and assign it to a variable (here `my_param`), as shown below for `PARAM_NAME`. The variable `my_param` can then be used in your module code.
+    然后检索该参数并将其分配给变量 (此处 `my_param`)，如下所示，用于 `PARAM_NAME`。 然后，可以在模块代码中使用变量 `my_param`。
     
     ```C
     int32_t my_param = 0;
     param_get(param_find("PARAM_NAME"), &my_param);
     ```
     
-    > **Note** If `PARAM_NAME` was declared in parameter metadata then its default value will be set, and the above call to find the parameter should always succeed.
+    > **Note** 如果在参数元数据中声明了 `PARAM_NAME`，则将设置其默认值，上述查找参数的调用应始终成功。
     
-    `param_find()` is an "expensive" operation, which returns a handle that can be used by `param_get()`. If you're going to read the parameter multiple times, you may cache the handle and use it in `param_get()` when needed
+    `param_find()` 是一个 "昂贵" 的操作，它返回可供 `param_get()` 使用的句柄。 如果要多次读取该参数，可以缓存句柄，并在需要时在 `param_get()` 中使用
     
     ```cpp
     # Get the handle to the parameter
@@ -211,13 +211,13 @@ param save /fs/microsd/vtol_param_backup
     param_get(my_param_handle, &my_param);
     ```
     
-    ## Parameter Meta Data {#parameter_metadata}
+    ## 参数元数据 {#parameter_metadata}
     
-    PX4 uses an extensive parameter metadata system to drive the user-facing presentation of parameters, and to set the default value for each parameter in firmware.
+    PX4 使用广泛的参数元数据系统来驱动面向用户的参数表示，并为固件中的每个参数设置默认值。
     
-    > **Tip** Correct meta data is critical for good user experience in a ground station.
+    > **Tip** 正确的元数据对于在地面站获得良好的用户体验至关重要。
     
-    Parameter metadata can be stored anywhere in the source tree, in a file with extension **.c**. Typically it is stored alongside its associated module.
+    参数元数据可以存储在源树中的任何位置，存储在具有扩展名的文件中 **.c**。 通常，它与关联的模块一起存储。
     
     The build system extracts the metadata (using `make parameters_metadata`) to build the [parameter reference](../advanced/parameter_reference.md) and the parameter information used by ground stations.
     
