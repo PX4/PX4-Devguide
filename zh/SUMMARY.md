@@ -50,11 +50,11 @@
       * [UAVCAN Bootloader](uavcan/bootloader_installation.md)
       * [UAVCAN 固件升级](uavcan/node_firmware.md)
       * [UAVCAN 配置](uavcan/node_enumeration.md)
-      * [UAVCAN Various Notes](uavcan/notes.md)
+      * [UAVCAN 各种注释](uavcan/notes.md)
     * [串行总线](uart/README.md) 
       * [端口-配置串行驱动](uart/user_configurable_serial_driver.md)
   * [RTK GPS](advanced/rtk_gps.md)
-  * [Gimbal \(Mount\) Control Setup](advanced/gimbal_control.md)
+  * [云台（安装）控制设置](advanced/gimbal_control.md)
   * [机载计算机设置](companion_computer/pixhawk_companion.md)
 * [中间件](middleware/README.md) 
   * [uORB 消息](middleware/uorb.md)
@@ -128,11 +128,11 @@
   * [术语/符号](contribute/notation.md)
   * [许可证](contribute/licenses.md)
 
-## Dronecode快捷方式
+## Dronecode 相关资源
 
-* [PX4用户指南](https://docs.px4.io/en/)
+* [PX4 用户指南](https://docs.px4.cc/zh/)
 * [QGroundControl用户指南](https://docs.qgroundcontrol.com/en/)
-* [QGroundControl 开发人员指南](https://dev.qgroundcontrol.com/en/)
+* [QGroundControl 开发人员指南](http://dev.qgc.dimianzhan.com/zh/)
 * [MAVLink指南](https://mavlink.io/en/)
 * [Dronecode SDK](https://sdk.dronecode.org/en/)
 * [Dronecode相机管理器](https://camera-manager.dronecode.org/en/)
