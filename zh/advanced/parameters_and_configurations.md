@@ -96,7 +96,7 @@ param save /fs/microsd/vtol_param_backup
     
     ### C++ API
     
-    The C++ API provides macros to declare parameters as *class attributes*. You add some "boilerplate" code to regularly listen for changes in the [uORB Topic](../middleware/uorb.md) associated with *any* parameter update. Framework code then (invisibly) handles tracking uORB messages that affect your parameter attributes and keeping them in sync. In the rest of the code you can just use the defined parameter attributes and they will always be up to date!
+    C++ api 提供宏将参数声明为 *class 属性*。 您可以添加一些 "样板" 代码，以定期侦听与 *any* 参数更新相关的 [uORB topic](../middleware/uorb.md) 中的更改。 Framework code then (invisibly) handles tracking uORB messages that affect your parameter attributes and keeping them in sync. In the rest of the code you can just use the defined parameter attributes and they will always be up to date!
     
     First include **px4_module_params.h** in the class header for your module or driver (to get the `DEFINE_PARAMETERS` macro):
     
