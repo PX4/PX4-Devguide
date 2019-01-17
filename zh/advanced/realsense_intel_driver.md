@@ -25,38 +25,38 @@
   - 在安装过程中，保留以下两项: 
     - 安装时下载更新 
     - 安装此第三方软件
-- After the installation you might need to enable the Virtual Box to display Ubuntu on the whole desktop: 
-  - Start VM Ubuntu and login, Click on **Devices->Insert Guest Additions CD image** in the menu bar of the Virtual Box.
-  - Click on **Run** and enter password on the windows that pop up in Ubuntu.
-  - Wait until the installation is completed and then restart. Now, it should be possible to display the VM on the whole desktop.
-  - If a window pops up in Ubuntu that asks whether to update, reject to update at this point.
-- Enable USB 3 Controller in Virtual Box: 
-  - Shut down Virtual Machine.
-  - Go to the settings of the Virtual Machine to the menu selection USB and choose: "USB 3.0(xHCI)". This is only possible if you have installed the extension package for the Virtual Box.
-  - Start the Virtual Machine again.
+- 安装完成后，您可能需要启用 Virtual Box 在整个桌面上显示 ubuntu： 
+  - 启动虚拟机 ubuntu 并登录，点击 **Devices->Insert Guest Additions CD image**。
+  - 点击 **Run** 并在 Ubuntu 弹出的窗口上输入密码。
+  - 等待安装完成，然后重新启动。 现在，应该可以在整个桌面上显示 VM。
+  - 如果 ubuntu 中弹出一个窗口, 询问是否更新, 请在此时拒绝更新。
+- 在 Virtual Box 中启用 USB 3 控制器: 
+  - 关闭虚拟机。
+  - 转到 "虚拟机" 的设置到菜单选择 USB，然后选择: "USB 3.0(xHCI)"。 只有在安装了虚拟框的扩展包时, 才有可能执行此操作。
+  - 再次启动虚拟机。
 
 ## 安装 ROS Indigo
 
-- Follow instructions given at [ROS indigo installation guide](http://wiki.ros.org/indigo/Installation/Ubuntu): 
-  - Install Desktop-Full version.
-  - Execute steps described in the sections "Initialize rosdep" and "Environment setup".
+- 按照 [ROS ndigo installation guide](http://wiki.ros.org/indigo/Installation/Ubuntu) 中给出的说明: 
+  - 安装桌面完整版。
+  - 执行 "初始化 rosdep" 和 "环境设置" 部分中描述的步骤。
 
-## Installing camera driver
+## 安装摄像头驱动
 
-- Install git:
+- 安装 Git
 
 ```bash
 sudo apt-get install git
 ```
 
-- Download and install the driver 
-  - Clone [RealSense_ROS repository](https://github.com/bestmodule/RealSense_ROS): 
+- 下载并安装驱动 
+  - 获取 [RealSense_ROS repository](https://github.com/bestmodule/RealSense_ROS)： 
         bash
         git clone https://github.com/bestmodule/RealSense_ROS.git
 
-- Follow instructions given in [here](https://github.com/bestmodule/RealSense_ROS/tree/master/r200_install).
+- 参照 [here](https://github.com/bestmodule/RealSense_ROS/tree/master/r200_install) 的介绍说明。
   
-  - Press the enter button when the questions whether to install the following installation packages show up:
+  - 无论要不要安装如下包都敲击回车：
     
         Intel Low Power Subsystem support in ACPI mode (MFD_INTEL_LPSS_ACPI) [N/m/y/?] (NEW)
         
@@ -68,20 +68,20 @@ sudo apt-get install git
         Dell Airplane Mode Switch driver (DELL_RBTN) [N/m/y/?] (NEW)
         
   
-  - The following error message that can appear at the end of the installation process should not lead to a malfunction of the driver: ```rmmod: ERROR: Module uvcvideo is not currently loaded```
+  - 进程安装结束时如下错误信息会出现，但不应该导致驱动故障： ```rmmod: ERROR: Module uvcvideo is not currently loaded```
 
-- After the installation has completed, reboot the Virtual Machine.
+- 安装结束后，重启虚拟机。
 
-- Test camera driver:
+- 测试摄像头驱动：
   
-  - Connect the Intel RealSense camera head with the computer with a USB3 cable that is plugged into a USB3 receptacle on the computer.
-  - Click on Devices->USB-> Intel Corp Intel RealSense 3D Camera R200 in the menu bar of the Virtual Box, in order to forward the camera USB connection to the Virtual Machine.
-  - Execute the file [unpacked folder]/Bin/DSReadCameraInfo: 
-    - If the following error message appears, unplug the camera (physically unplug USB cable from the computer). Plug it in again + Click on Devices->USB-> Intel Corp Intel RealSense 3D Camera R200 in the menu bar of the Virtual Box again and execute again the file [unpacked folder]/Bin/DSReadCameraInfo. ```DSAPI call failed at ReadCameraInfo.cpp:134!```
-    - If the camera driver works and recognises the Intel RealSense R200, you should see specific information about the Intel RealSense R200 camera head.
+  - 使用 USB 线缆，一头连接电脑的 USB3 接口，另一端连接　Intel RealSense 相机。
+  - 点击 Virtual Box 菜单栏中的 Devices-> USB > Intel RealSense 3D Camera R200，以便将相机 USB 连接转发到虚拟机。
+  - 执行文件 [unpacked folder]/bin/dsreadcamerainfo： 
+    - 如果出现以下错误消息，请拔下相机 (从计算机物理上拔下 usb 电缆)。 再次插入 + 点击 Devices->USB-> Intel Corp Intel RealSense 3D Camera R200， 再次在虚拟框的菜单栏中，并再次执行文件 [unpacked folder]/bin/dsredcamerainfoinfoinfoinfo。 ```DSAPI call failed at ReadCameraInfo.cpp:134!```
+    - 如果相机驱动程序工作正常并识别 Intel RealSense R200，您应该看到有关 Intel RealSense R200 相机头的特定信息。
 
-- Installation and testing of the ROS nodlet:
+- ROS 节点的安装和测试：
   
-  - Follow the installation instructions in the "Installation" section given [here](https://github.com/bestmodule/RealSense_ROS/blob/master/realsense_dist/2.3/doc/RealSense-ROS-R200-nodelet.md), to install the ROS nodlet.
-  - Follow the instructions in the "Running the R200 nodelet" section given [here](https://github.com/bestmodule/RealSense_ROS/blob/master/realsense_dist/2.3/doc/RealSense-ROS-R200-nodelet.md), to test the ROS nodlet together with the Intel RealSense R200 camera head. 
-    - If everything works, the different data streams from the Intel RealSense R200 camera are published as ROS topics.
+  - 按照 [here](https://github.com/bestmodule/RealSense_ROS/blob/master/realsense_dist/2.3/doc/RealSense-ROS-R200-nodelet.md) 提供的 "安装" 部分中的安装说明安装 ROS 节点。
+  - 按照 [here](https://github.com/bestmodule/RealSense_ROS/blob/master/realsense_dist/2.3/doc/RealSense-ROS-R200-nodelet.md) 提供的 "Running the R200 nodelet" 部分中的说明，与 Intel RealSense R200 相机头一起测试 ROS 节点。 
+    - 如果一切正常，Intel RealSense R200 相机中的不同数据流将作为 ROS 主题发布。
