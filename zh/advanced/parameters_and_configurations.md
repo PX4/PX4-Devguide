@@ -80,17 +80,17 @@ param save /fs/microsd/vtol_param_backup
     
     参数名称不得超过 16个 ASCII 字符。
     
-    By convention, every parameter in a group should share the same (meaningful) string prefix followed by an underscore, and `MC_` and `FW_` are used for parameters related specifically to Multicopter or Fixed wing systems. This convention is not enforced.
+    按照惯例，组中的每个参数都应共享相同的 (有意义的) 字符串前缀，后跟下划线，`MC_` 和 `FW_` 用于与多旋翼或固定翼系统具体相关的参数。 此惯例不强制执行。
     
-    The name must match in both code and [parameter metadata](#parameter_metadata) to correctly associate the parameter with its metadata (including default value in Firmware).
+    该名称必须在代码和 [parameter metadatata](#parameter_metadata) 中匹配，才能正确地将参数与其元数据（包括固件中的默认值）相关联。
     
     ## C / C++ API
     
-    There are separate C and C++ APIs that can be used to access parameter values from within PX4 modules and drivers.
+    有单独的 C 和 C++ 的 API 可用于从 PX4 模块和驱动程序中访问参数值。
     
-    One important difference between the APIs is that the C++ version has a more efficient standardized mechanism to synchronize with changes to parameter values (i.e. from a GCS).
+    API 之间的一个重要区别是，C++ 版本具有更有效的标准化机制，可与参数值的更改（即来自 GCS 的更改）同步。
     
-    Synchronization is important because a parameter can be changed to another value at any time. Your code should *always* use the current value from the parameter store. If getting the latest version is not possible, then a reboot will be required after the parameter is changed (set this requirement using the `@reboot_required` metadata).
+    同步很重要，因为参数可以随时更改为另一个值。 Your code should *always* use the current value from the parameter store. If getting the latest version is not possible, then a reboot will be required after the parameter is changed (set this requirement using the `@reboot_required` metadata).
     
     In addition, the C++ version has also better type-safety and less overhead in terms of RAM. The drawback is that the parameter name must be known at compile-time, while the C API can take a dynamically created name as a string.
     
