@@ -219,9 +219,9 @@ param save /fs/microsd/vtol_param_backup
     
     参数元数据可以存储在源树中的任何位置，存储在具有扩展名的文件中 **.c**。 通常，它与关联的模块一起存储。
     
-    The build system extracts the metadata (using `make parameters_metadata`) to build the [parameter reference](../advanced/parameter_reference.md) and the parameter information used by ground stations.
+    构建系统提取 metadata（使用 `make parameters_metadata`）来构建 [parameter reference ](../advanced/parameter_reference.md) 和地面站使用的参数信息。
     
-    Parameter metadata sections look like the following examples:
+    参数元数据部分如下例所示:
     
     ```cpp
     /**
@@ -251,9 +251,9 @@ param save /fs/microsd/vtol_param_backup
     PARAM_DEFINE_INT32(ATT_ACC_COMP, 1);
     ```
     
-    The `PARAM_DEFINE_*` macro at the end specifies the type of parameter (`PARAM_DEFINE_FLOAT` or `PARAM_DEFINE_INT32`), the name of the parameter (which must match the name used in code), and the default value in firmware.
+    末尾的 `PARAM_DEFINE_*` 宏指定参数的类型 (`PARAM_DEFINE_FLOAT` 或 `PARAM_DEFINE_INT32`)、参数的名称 (必须与代码中使用的名称匹配) 以及固件中的默认值。
     
-    The lines in the comment block are all optional, and are primarily used to control display and editing options within a ground station. The purpose of each line is given below (for more detail see [module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml)).
+    注释块中的行都是可选的，主要用于控制地面站内的显示和编辑选项。 下面给出了每行的用途 (有关详细信息, 请参阅 [module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml))。
     
     ```cpp
     /**
