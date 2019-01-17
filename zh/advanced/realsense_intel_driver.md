@@ -12,19 +12,19 @@
 - 扩展：安装了 Virtual Box 的扩展包（用于 USB3.0 支持）
 - 客户机操作系统：linux-ubuntu 14.04.3 LTS
 
-本教程按以下方式排序: 在第一部分中, 演示如何在 Virtual Box 中安装 ubuntu 14.04 作为客户机系统。 第二部分会演示如何安装 ROS Indigo 和相机驱动程序。 The ensuing frequently used expressions have the following meaning:
+本教程按以下方式排序: 在第一部分中, 演示如何在 Virtual Box 中安装 ubuntu 14.04 作为客户机系统。 第二部分会演示如何安装 ROS Indigo 和相机驱动程序。 随后频繁使用的短语示意如下：
 
-- Virtual Box (VB): Program that runs different Virtual Machines. In this case the Oracle VM.
-- Virtual Machine (VM): The operation system that runs in the Virtual Box as a guest system. In this case Ubuntu.
+- 虚拟框（VB）：运行不同虚拟机的程序。 此处使用 Oracle 虚拟机。
+- 虚拟机（VM）：作为来宾系统在虚拟框中运行的操作系统。 此处使用 Ubuntu。
 
-## Installing Ubuntu 14.04.3 LTS in Virtual Box
+## 在虚拟机中安装 Ubuntu 14.04.3 LTS
 
-- Create a new Virtual Machine (VM): Linux 64-Bit.
-- Download the iso file of Ubuntu 14.04.3 LTS: ([ubuntu-14.04.3-desktop-amd64.iso](http://www.ubuntu.com/download/desktop)).
-- Installation of Ubuntu: 
-  - During the installation procedure leave the following two options unchecked: 
-    - Download updates while installing 
-    - Install this third party software
+- 创建新的虚拟机 (vm): linux 64位。
+- 下载 ubuntu 14.04.3 lts 的 iso 文件: ([ubuntu-14.04.3-desktop-amd64.iso](http://www.ubuntu.com/download/desktop))。
+- Ubuntu 的安装: 
+  - 在安装过程中，保留以下两项: 
+    - 安装时下载更新 
+    - 安装此第三方软件
 - After the installation you might need to enable the Virtual Box to display Ubuntu on the whole desktop: 
   - Start VM Ubuntu and login, Click on **Devices->Insert Guest Additions CD image** in the menu bar of the Virtual Box.
   - Click on **Run** and enter password on the windows that pop up in Ubuntu.
