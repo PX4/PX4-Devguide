@@ -96,15 +96,15 @@ param save /fs/microsd/vtol_param_backup
     
     ### C++ API
     
-    C++ api 提供宏将参数声明为 *class 属性*。 您可以添加一些 "样板" 代码，以定期侦听与 *any* 参数更新相关的 [uORB topic](../middleware/uorb.md) 中的更改。 Framework code then (invisibly) handles tracking uORB messages that affect your parameter attributes and keeping them in sync. In the rest of the code you can just use the defined parameter attributes and they will always be up to date!
+    C++ api 提供宏将参数声明为 *class 属性*。 您可以添加一些 "样板" 代码，以定期侦听与 *any* 参数更新相关的 [uORB topic](../middleware/uorb.md) 中的更改。 然后，框架代码（无形地）处理跟踪影响参数属性并保持它们同步的 uORB 消息。 在代码的其余部分中，您只需使用定义的参数属性，它们将始终是最新的!
     
-    First include **px4_module_params.h** in the class header for your module or driver (to get the `DEFINE_PARAMETERS` macro):
+    首先在模块或驱动程序的类标题中包含 **px4_module_params.h**（以获取 `DEFINE_PARAMETERS` 宏）：
     
     ```cpp
     #include <px4_module_params.h>
     ```
     
-    Derive your class from `ModuleParams`, and use `DEFINE_PARAMETERS` to specify a list of parameters and their associated parameter attributes. The names of the parameters must be the same as their parameter metadata definitions.
+    从 `ModuleParams` 派生类，并使用 `DEFINE_PARAMETERS` 指定参数及其关联参数属性的列表。 参数的名称必须与其参数元数据定义相同。
     
     ```cpp
     class MyModule : ..., public ModuleParams
@@ -127,15 +127,15 @@ param save /fs/microsd/vtol_param_backup
     };
     ```
     
-    Update the cpp file with boilerplate to check for the uORB message related to parameter updates.
+    使用样板更新 CPP 文件，以检查与参数更新相关的 uORB 消息。
     
-    First include the header to access the uORB parameter_update message:
+    首先包括访问 uORB parameter_update 消息的标头:
     
     ```cpp
     #include <uORB/topics/parameter_update.h>
     ```
     
-    Subscribe to the update message when the module/driver starts and un-subscribe when it is stopped. `parameter_update_sub` returned by `orb_subscribe()` is a handle we can use to refer to this particular subscription.
+    在模块驱动程序启动时订阅更新消息，在停止时取消订阅。 `orb_subscribe()` 返回 `parameter_update_sub` 是我们可以用来引用此特定订阅的句柄。
     
     ```cpp
     # Subscribe to parameter_update message
@@ -145,7 +145,7 @@ param save /fs/microsd/vtol_param_backup
     orb_unsubscribe(parameter_update_sub);
     ```
     
-    Call `parameters_update(parameter_update_sub);` periodically in code to check if there has been an update (this is boilerplate):
+    在代码周期性调用 `parameters_update(parameter_update_sub);` ，检查是否有更新（本模板）：
     
     ```cpp
     void Module::parameters_update(int parameter_update_sub, bool force)
@@ -169,11 +169,11 @@ param save /fs/microsd/vtol_param_backup
     }
     ```
     
-    In the above method:
+    在上面的方法中：
     
-    - `orb_check()` tells us if there is *any* update to the `param_update` uORB message (but not what parameter is affected) and sets the `updated` bool.
-    - If there has been "some" parameter updated, we copy the update into a `parameter_update_s` (`param_upd`)
-    - Then we call `ModuleParams::updateParams()`. This "under the hood" checks if the specific parameter attributes listed in our `DEFINE_PARAMETERS` list need updating, and then does so if needed.
+    - `orb_check()` 告诉我们是否有 *任何* 更新 `param_update` 的 uorb 消息 (但不是受影响的参数)，并设置 `updated` bool。
+    - 如果更新了 "某些" 参数，我们会将更新复制到 `parameter_update_s` (`param_upd`)
+    - 调用 `ModuleParams::updateParams()`。 在此检查 `DEFINE_PARAMETERS` 列表中列出的特定参数属性是否需要更新，然后在需要时进行更新。
     - This example doesn't call `Module::parameters_update()` with `force=True`. If you had other values that needed to be set up a common pattern is to include them in the function, and call it once with `force=True` during initialisation.
     
     The parameter attributes (`_sys_autostart` and `_att_bias_max` in this case) can then be used to represent the parameters, and will be updated whenever the parameter value changes.
