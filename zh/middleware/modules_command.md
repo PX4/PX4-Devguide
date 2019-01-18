@@ -345,30 +345,33 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ### 用法 {#param_usage}
 
-    param &lt;command&gt; [arguments...]
+    param <command> [arguments...]
      Commands:
-       load          从一个文件中载入参数 (覆盖所有参数)
-         [&lt;file&gt;]    文件名 (如未指定则使用默认值)
+       load          Load params from a file (overwrite all)
+         [<file>]    File name (use default if not given)
     
-       import        从一个文件中导入参数
-         [&lt;file&gt;]    文件名 (如未指定则使用默认值)
+       import        Import params from a file
+         [<file>]    File name (use default if not given)
     
-       save          将参数保存到一个文件中
-         [&lt;file&gt;]    文件名 (如未指定则使用默认值)
+       save          Save params to a file
+         [<file>]    File name (use default if not given)
     
-       select        选择默认文件
-         [&lt;file&gt;]    文件名 (如未指定则使用 &lt;root&gt;/eeprom/parameters)
+       select        Select default file
+         [<file>]    File name (use <root>/eeprom/parameters if not given)
     
-       show          显示参数的值
-         [-c]        只显示有变动的参数
-         [-q]        安静模式，只打印参数的值 (需要明确参数名)
-         [&lt;filter&gt;]  根据参数名称进行过滤 （允许尾端的通配符，例如， sys_*）
+       show          Show parameter values
+         [-a]        Show all parameters (not just used)
+         [-c]        Show only changed and used params
+         [-q]        quiet mode, print only param value (name needs to be exact)
+         [<filter>]  Filter by param name (wildcard at end allowed, eg. sys_*)
     
-       set           设定参数的值
-         &lt;param_name&gt; &lt;value&gt; 参数的名称和需要设定的值
-         [fail]      如果提供了该选项的话，如果未找到参数则让命令执行失败
+       status        Print status of parameter system
     
-       compare       将一个参数与一个数值进行比较。 如果相等则命令成功。
+       set           Set parameter to a value
+         <param_name> <value> Parameter name and value to set
+         [fail]      If provided, let the command fail if param is not found
+    
+       compare       Compare a param with a value. 如果相等则命令成功。
          &lt;param_name&gt; &lt;value&gt; 参数名称和进行对比的值
     
        greater       将一个参数与一个数值进行比较。 如果参数比该值要大则命令成功
