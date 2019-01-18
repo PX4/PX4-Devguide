@@ -363,9 +363,12 @@ Change the airframe and make sure the airframe's default parameters are loaded:
          [<file>]    File name (use <root>/eeprom/parameters if not given)
     
        show          Show parameter values
-         [-c]        Show only changed params
+         [-a]        Show all parameters (not just used)
+         [-c]        Show only changed and used params
          [-q]        quiet mode, print only param value (name needs to be exact)
          [<filter>]  Filter by param name (wildcard at end allowed, eg. sys_*)
+    
+       status        Print status of parameter system
     
        set           Set parameter to a value
          <param_name> <value> Parameter name and value to set
