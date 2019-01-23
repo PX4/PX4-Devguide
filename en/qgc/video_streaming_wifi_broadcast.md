@@ -1,23 +1,26 @@
-# Long-distance Video Streaming in QGroundControl
+# Long-distance Video Streaming and telemetry via raw WiFi radio
 
-This page shows how to set up a companion computer with a camera (Logitech C920 or RaspberryPi camera) such that the video stream is transferred from the UAV to a ground computer and displayed in *QGroundControl*. This setup uses WiFi in unconnected (broadcast) mode and software from the [Wifibroadcast project](https://github.com/svpcom/wifibroadcast/wiki).
+This page shows how to set up a companion computer with a camera (Logitech C920 or RaspberryPi camera) such that the video stream is transferred from the UAV to a ground computer and displayed in *QGroundControl*. Also it provides support for bidirectional telemetry like SiK radio does. This setup uses WiFi in unconnected (broadcast) mode and software from the [Wifibroadcast project](https://github.com/svpcom/wifibroadcast/wiki).
 
 
 ## Wifibroadcast Overview
 
-The *Wifibroadcast project* aims to mimic the advantageous properties of using an analog link to transmit HD video (and other) data when using WiFi radios. For example, it attempts to provide a video feed that degrades gracefully with signal degradation/distance.
+The *Wifibroadcast project* provides video and telemetry transport which use low-level WiFi packets to avoid distance and latency limitations of ordinary ieee80211 stack.
 
 > **Note** Before using *Wifibroadcast* check regulators allow this kind of WiFi use in your country. 
 
 The high level benefits of *Wifibroadcast* include:
 
-- Minimal latency by encoding every incoming RTP packet to a single WiFi (IEEE80211) packet and immediately sending (doesn't serialize to byte stream).
-- Smart FEC support (immediately yield packet to video decoder if FEC pipeline without gaps).
-- Stream encryption and authentication ([libsodium](https://download.libsodium.org/doc/))
-- Distributed operation. It can gather data from cards on different hosts, so that bandwidth is not limited to that of a single USB bus.
-- Aggregation of MAVLink packets. It doesn't send WiFi packet for every MAVLink packet.
-- [Enhanced OSD for Raspberry Pi](https://github.com/svpcom/wifibroadcast_osd) (consumes 10% CPU on Pi Zero).
-
+ - 1:1 map RTP to IEEE80211 packets for minimum latency (doesn't serialize to byte steam)
+ - Smart FEC support (immediately yeild packet to video decoder if FEC pipeline without gaps)
+ - [Bidirectional mavlink telemetry](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO). You can use it for mavlink up/down and video down link.
+ - Automatic TX diversity (select TX card based on RX RSSI)
+ - Stream encryption and authentication ([libsodium](https://download.libsodium.org/doc/))
+ - Distributed operation. It can gather data from cards on different hosts. So you don't limited to bandwidth of single USB bus.
+ - Aggreagation of mavlink packets. Doesn't send wifi packet for every mavlink packet.
+ - Enhanced [OSD](https://github.com/svpcom/wifibroadcast_osd) for Raspberry PI (consume 10% CPU on PI Zero)
+   Compatible with any screen resolution. Supports aspect correction for PAL to HD scaling.
+   
 Additional information is provided in the [FAQ](#faq) below.
 
 
@@ -28,16 +31,17 @@ The hardware setup consists of the following parts:
 On TX (UAV) side:
 * [NanoPI NEO2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180) (and/or Raspberry Pi if use Pi camera).
 * [Logitech camera C920](https://www.logitech.com/en-us/product/hd-pro-webcam-c920?crid=34) or [Raspberry Pi camera](https://www.raspberrypi.org/products/camera-module-v2/).
-* WiFi module  [ALPHA AWUS051NH v2](https://www.alfa.com.tw/products_show.php?pc=67&ps=241).
+* WiFi module  [ALPHA AWU036ACH](https://www.alfa.com.tw/WiFi%20USB%20Antenna.html).
 
 On RX (ground station side):
 * Any computer with Linux (tested on Fedora 25 x86-64).
-* WiFi module with Ralink RT5572 chipset ([CSL 300Mbit Sticks](https://www.amazon.co.uk/high-performance-gold-plated-technology-Frequency-adjustable/dp/B00RTJW1ZM) or [GWF-4M02](http://en.ogemray.com/product/product.php?t=4M02)). OEM modules are cheap but you need to order them from China. CSL stick is expensive but available on ebay. See [wifibroadcast wiki > WiFi hardware](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) for more information on supported modules.
+* WiFi module  [ALPHA AWU036ACH](https://www.alfa.com.tw/WiFi%20USB%20Antenna.html). See [wifibroadcast wiki > WiFi hardware](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) for more information on supported modules.
 
+If you don't need high-power cards, you can use any card with **rtl8812au** chipset.
 
 ## Hardware Modification
 
-Alpha WUS051NH is a high power card that uses too much current while transmitting. If you power it from USB it will reset the port on most ARM boards.
+Alpha AWU036ACH is a high power card that uses too much current while transmitting. If you power it from USB it will reset the port on most ARM boards.
 So you need to connect it to 5V BEC directly. You can do this two ways:
 
 1. Make a custom USB cable. [You need to cut ``+5V`` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
@@ -47,123 +51,71 @@ So you need to connect it to 5V BEC directly. You can do this two ways:
    
 ## Software Setup
 
-1. Install **libpcap** and **libsodium** development libs.
+1. Install **libpcap** and **libsodium** development libs and install **python2.7** + **python-twisted** packages.
 2. Download [wifibroadcast sources](https://github.com/svpcom/wifibroadcast).
-3. [Patch](https://github.com/svpcom/wifibroadcast/wiki/Kernel-patches) your kernel. You only need to patch the kernel on TX (except if you want to use a WiFi channel which is disabled in your region by CRDA).
+3. See [Setup HOWTO](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO) how to build debian, rpm or tar.gz package and configure it.
 
-### Generate Encryption Keys
-
-```
-make
-keygen
-```
-Copy ``rx.key`` to RX host and ``tx.key`` to TX host.
-
-### UAV Setup (TX)
+### UAV Setup
 
 1. Setup camera to output RTP stream:
 
    a. Logitech camera C920 camera:
       ```
-      gst-launch-1.0 uvch264src device=/dev/video0 initial-bitrate=6000000 average-bitrate=6000000 iframe-period=1000 name=src auto-start=true \
-               src.vidsrc ! queue ! video/x-h264,width=1920,height=1080,framerate=30/1 ! h264parse ! rtph264pay ! udpsink host=localhost port=5600
+      gst-launch-1.0 uvch264src device=/dev/video0 initial-bitrate=4000000 average-bitrate=4000000 iframe-period=3000 name=src auto-start=true \
+               src.vidsrc ! queue ! video/x-h264,width=1280,height=720,framerate=30/1 ! h264parse ! rtph264pay ! udpsink host=localhost port=5602
       ```
    b. RaspberryPi camera:
       ```
-      raspivid --nopreview --awb auto -ih -t 0 -w 1920 -h 1080 -fps 30 -b 4000000 -g 30 -pf high -o - | gst-launch-1.0 fdsrc ! h264parse !  rtph264pay !  udpsink host=127.0.0.1 port=5600
+      raspivid --nopreview --awb auto -ih -t 0 -w 1280 -h 720 -fps 49 -b 4000000 -g 147 -pf high -o - | gst-launch-1.0 fdsrc ! h264parse !  rtph264pay !  udpsink host=127.0.0.1 port=5602
       ```
+ 2. Configure WFB for drone as described in [Setup HOWTO](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO) 
+ 3. Configure autopilot (px4 stack) to output telemetry stream at 1500kbps (other UART speeds doesn't match well to NEO2 frequency dividers). Setup ``malink-router`` to route mavlink packets to/from WFB:
+    ```
+    [UdpEndpoint wifibroadcast]
+    Mode = Normal
+    Address = 127.0.0.1
+    Port = 14550
+    ```
+ 
+### Ground Station Setup
 
-2. Setup *Wifibroadcast* in TX mode:
-
-   ```
-   git clone https://github.com/svpcom/wifibroadcast
-   cd wifibroadcast
-   make
-   ./scripts/tx_standalone.sh wlan1   # where wlan1 is your WiFi TX interface
-   ```
-   This will setup wifibroadcast using `MCS #1: QPSK 1/2 40MHz Short GI` modulation (30 Mbit/s) on 149 WiFi channel (in 5GHz band) and listening on UDP port 5600 for incoming data.
-
-### Ground Station Setup (RX)
-
-1. Setup *Wifibroadcast* in RX mode:
-   ```
-   git clone https://github.com/svpcom/wifibroadcast
-   cd wifibroadcast
-   make
-   ./scripts/rx_standalone.sh wlan1  # your WiFi interface for RX
-   ```
-
-2. Run qgroundcontrol or
+1. Run qgroundcontrol or
    ```
    gst-launch-1.0 udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
              ! rtph264depay ! avdec_h264 ! clockoverlay valignment=bottom ! autovideosink fps-update-interval=1000 sync=false
    ```
    to decode video.
+2. Configure WFB for ground station as described in [Setup HOWTO](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO)
 
-## Enhanced setup with RX antenna array, FPV goggles and OSD
+## Tuning radio settings
+With default settings WFB use radio channel 165 (5825 MHz), width 20MHz, MCS #1 (QPSK 1/2) with long GI. This provides ~7 mbit/s of **effective** speed (i.e. usable speed after FEC and packet encoding) for **both directions** in sum, because WiFi is half-duplex. So it is sutable for video down stream 720p@49fps (4 mbit/s) + two full-speed telemetry streams (uplink and downlink). If you need a higher bandwidth you can use other MCS index (for example 2 or greater) and/or 40MHz channel. 
 
-See [wiki](https://github.com/svpcom/wifibroadcast/wiki/enhanced-setup) article.
-Using RX setup above (and ALPHA AWUS051NH v2 as TX) I was able to receive stable 1080p video on 1-2km in any copter pitch/roll angles.
-
-
+## Antennas and diversity
+For simple cases you can use omnidirectional antennas with linear (that bundled with wifi cards) or circular (cleaver leaf) polarization. If you want to setup long distance link you can use multipe wifi adapters with directional and omnidirectional antennas. TX/RX diversity for multiple adapters supported out of box (just add multiple NICs to ``/etc/default/wifibroadcast``). If your WiFi adapter has two antennas (like Alfa AWU036ACH) TX diversity is implemented via [STBC](https://en.wikipedia.org/wiki/Space%E2%80%93time_block_code). Cards with 4 ports (like Alfa AWUS1900) are currently not supported for TX diversity (only RX is supported).
 
 ## FAQ
+Q: What is a difference from original wifibroadcast?
 
+A: Original version of wifibroadcast use a byte-stream as input and splits it to packets of fixed size (1024 by default). If radio packet was lost and this is not corrected by FEC you'll got a hole at random (unexpected) place of stream. This is especially bad if data protocol is not resistent to (was not desired for) such random erasures. So i've rewrite it to use UDP as data source and pack one source UDP packet into one radio packet. Radio packets now have variable size depends on payload size. This is reduces a video latency a lot.
 
-#### What are the limitations of normal WiFi for long-distance video transfer?
+Q: What type of data can be transmitted using wifibroadcast?
 
-Normal WiFi has the following problems when used for long distance video transfer:
+A: Any UDP with packet size <= 1466. For example x264 inside RTP or Mavlink.
 
-- **Association:** The video transmitter and receiver need to be "associated". If one device looses association (for example due to weak signal strength) then video transmission stops instantly.
+Q: What are transmission guarancies?
 
-- **Two-way communication:** Even if you are sending data only from source to sink a bi-directional data flow is required using WiFi. The reason for this is that a WiFi receiver needs to acknowledge the received packets. If the transmitter receives no acknowledgments it will drop the association. Therefore, you would need equally strong transmitters and antennas both on the aircraft and on the ground station. A setup with a strong transmitter in the air using an omni-directional antenna and a weak device on the ground using a high-gain antenna is not possible with normal WiFi.
+A: Wifibrodcast use FEC (forward error correction) which can recover 4 lost packets from 12 packets block with default settings. You can tune it (both TX and RX simultaniuosly!) to fit your needs.
 
-- **Rate control:** Normal WiFi connections switch automatically to a lower transmission rate if signal strength is too weak. This can result in an (automatically) selected rate that is too low to transfer video data. The result is that data can queue up and introduce an unpredictable latency of up to several seconds.
+> **Caution** Don't use band that the RC TX operates on! Or setup RTL properly to avoid model loss.
 
-- **One to one transfers:** Unless you use broadcast frames or similar techniques, a normal WiFi data flow is a one-to-one connection. A scenario where a bystander just locks onto your "channel" to watch your stream (as is possible in analog video transmission) is not easy to accomplish using traditional WiFi.
+Q: Is only Raspberry PI supported?
 
-- Limited diversity: Normal WiFi limits you to the number of diversity streams that your WiFi card offers.
+A: Wifibroadcast is not tied to any GPU - it operates with UDP packets. But to get RTP stream you need a video encoder (with encode raw data from camera to x264 stream). In my case RPI is only used for video encoding (becase RPI Zero is too slow to do anything else) and all other tasks (including wifibroadcast) are done by other board (NanoPI NEO2).
 
-#### How does Wifibroadcast overcome these limitations
-
-*Wifibroadcast* puts the WiFi cards into monitor mode. This mode allows to send and receive arbitrary packets without association.
-This way a true unidirectional connection is established which mimics the advantageous properties of an analog link. Those are:
-
-- The transmitter sends its data regardless of any associated receivers. Thus there is no risk of sudden video stall due to the loss of association
-- The receiver receives video as long as it is in range of the transmitter. If it gets slowly out of range the video quality degrades but does not stall.
-- The traditional scheme “single broadcaster – multiple receivers” works out of the box. If bystanders want to watch the video stream with their devices they just have to “switch to the right channel”
-- *Wifibroadcast* allows you to use several low cost receivers in parallel and combine their data to increase probability of correct data reception. This so-called software diversity allows you to use identical receivers to improve reliability as well as complementary receivers (think of one receiver with an omnidirectional antenna covering 360° and several directional antennas for high distance all working in parallel)
-- *Wifibroadcast* uses Forward Error Correction (FEC) to archive a high reliability at low bandwidth requirements. It is able to repair lost or corrupted packets at the receiver.
-
-#### How does the new Wifibroadcast differ from the original project?
-
-The [original version of wifibroadcast](https://befinitiv.wordpress.com/wifibroadcast-analog-like-transmission-of-live-video-data/) shares the same name as the [current project](https://github.com/svpcom/wifibroadcast/wiki), but does not derive any code from it.
-
-The original version used a byte-stream as input and split it to packets of fixed size (1024 by default). If a radio
-packet was lost and this was not corrected by FEC you'll got a hole at random (unexpected) place in the stream. This is especially bad if the data protocol is not resistant to (was not designed for) such random erasures. 
-
-The new version has been rewritten to use UDP as data source and pack one source UDP packet into one radio packet. Radio packets now have variable size depends on payload size. This is reduces a video latency a lot.
-
-#### What type of data can be transmitted using Wifibroadcast?
-
-Any UDP with packet size <= 1466. For example x264 inside RTP or MAVLink.
-
-#### What are transmission guarantees?
-
-*Wifibroadcast* uses Forward Error Correction (FEC) which can recover 4 lost packets from a 12 packet block with default settings.
-You can tune both TX and RX (simultaneously) to fit your needs.
-
-#### What can cause multiple frame drops and messages `XX packets lost`?
-
-This can be due to:
-1. Signal power is too low. Use high-power card or antennas with more gain. Use directed antenna on the RX side. Use additional RX card for diversity (add wlan2, wlan3, ... to RX program)
-2. Signal power is too high. Especially if you use 30dBm TX indoors. Try to reduce TX power (for example hack CRDA database inside kernel and make
-   several regions with power limit 10dBm and 20dBm).
-3. Interference with other WiFi. Try to change WiFi channel and/or WiFi band. 
-
-   > **Caution** Don't use band that the RC TX operates on! Or setup RTL properly to avoid model loss.
-
-You can increase FEC block size (by default it is 8/12 - 8 data blocks and 4 FEC blocks), at the cost of increasing latency. Use additional RX card for diversity (add wlan2, wlan3, ... to RX program)
+## Theory
+Wifibroadcast puts the wifi cards into monitor mode. This mode allows to send and receive arbitrary packets without association and waiting for ACK packets.
+[Analysis of Injection Capabilities and Media Access of IEEE 802.11 Hardware in Monitor Mode](https://github.com/svpcom/wifibroadcast/blob/master/patches/Analysis%20of%20Injection%20Capabilities%20and%20Media%20Access%20of%20IEEE%20802.11%20Hardware%20in%20Monitor%20Mode.pdf)
+[802.11 timings](https://github.com/ewa/802.11-data)
 
 
 #### What ARM Boards are recommended for the UAV?
@@ -179,8 +131,5 @@ This article chose to use Pi Zero as camera board (encode video) and NEO2 as mai
 
 ## TODO
 
-1. Make prebuilt packages. Pull requests are welcome.
+1. Make prebuilt images. Pull requests are welcome.
 2. Do a flight test with different cards/antennas.
-3. Investigate how to set TX power without CRDA hacks.
-4. Tune FEC for optimal latency/redundancy.
-5. Inject packets with radio link RSSI to MAVLink stream
