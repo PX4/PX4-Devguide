@@ -76,7 +76,11 @@ Update the package list and install the following dependencies for all PX4 build
 ```sh
 sudo apt-get update -y
 sudo apt-get install git zip qtcreator cmake \
-    build-essential genromfs ninja-build exiftool vim-common -y
+    build-essential genromfs ninja-build exiftool -y
+
+# Install xxd (package depends on version)
+which xxd || sudo apt install xxd -y || sudo apt-get install vim-common --no-install-recommends -y
+
 # Required python packages
 sudo apt-get install python-argparse \
     python-empy python-toml python-numpy python-yaml \
