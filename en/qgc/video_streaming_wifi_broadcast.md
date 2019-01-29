@@ -107,7 +107,7 @@ If you need a higher bandwidth you can use other MCS index (for example 2 or gre
 
 ## Antennas and Diversity
 
-For simple cases you can use omnidirectional antennas with linear (that bundled with wifi cards) or circular (cleaver leaf) polarization. 
+For simple cases you can use omnidirectional antennas with linear (that bundled with wifi cards) or circular leaf ([circularly polarized Coverleaf Antenna](http://www.antenna-theory.com/antennas/cloverleaf.php)) polarization. 
 If you want to setup long distance link you can use multiple wifi adapters with directional and omnidirectional antennas. TX/RX diversity for multiple adapters supported out of box (just add multiple NICs to ``/etc/default/wifibroadcast``).
 If your WiFi adapter has two antennas (like Alfa AWU036ACH) TX diversity is implemented via [STBC](https://en.wikipedia.org/wiki/Space%E2%80%93time_block_code). 
 Cards with 4 ports (like Alfa AWUS1900) are currently not supported for TX diversity (only RX is supported).
