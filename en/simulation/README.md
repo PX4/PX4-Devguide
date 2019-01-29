@@ -6,7 +6,7 @@ Simulators allow PX4 flight code to control a computer modeled vehicle in a simu
 
 PX4 supports both *Software In the Loop (SITL)* simulation, where the flight stack runs on computer (either the same computer or another computer on the same network) and *Hardware In the Loop (HITL)* simulation using a simulation firmware on a real flight controller board.
 
-Information about available simulators and how to set them up are provided in the next section. The other sections provide general information about how the simulator works, and are not required to *use* the simulators. 
+Information about available simulators and how to set them up are provided in the next section. The other sections provide general information about how the simulator works, and are not required to *use* the simulators.
 
 
 ## Supported Simulators
@@ -15,7 +15,7 @@ The following simulators work with PX4 for HITL and/or SITL simulation.
 
 Simulator |Description
 ---|---
-[Gazebo](../simulation/gazebo.md) | <p><strong>This simulator is highly recommended.</strong></p><p>A powerful 3D simulation environment that is particularly suitable for testing object-avoidance and computer vision. It can also be used for <a href="../simulation/multi-vehicle-simulation.md">multi-vehicle simulation</a> and is commonly used with <a href="../simulation/ros_interface.md">ROS</a>, a collection of tools for automating vehicle control. </p><p><strong>Supported Vehicles:</strong> Quad (<a href="../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor">Iris</a> and <a href="../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo">Solo</a>), Hex (Typhoon H480), <a href="../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol">Generic quad delta VTOL</a>, Tailsitter, Plane, Rover, Submarine (coming soon!) </p> 
+[Gazebo](../simulation/gazebo.md) | <p><strong>This simulator is highly recommended.</strong></p><p>A powerful 3D simulation environment that is particularly suitable for testing object-avoidance and computer vision. It can also be used for <a href="../simulation/multi-vehicle-simulation.md">multi-vehicle simulation</a> and is commonly used with <a href="../simulation/ros_interface.md">ROS</a>, a collection of tools for automating vehicle control. </p><p><strong>Supported Vehicles:</strong> Quad (<a href="../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor">Iris</a> and <a href="../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo">Solo</a>), Hex (Typhoon H480), <a href="../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol">Generic quad delta VTOL</a>, Tailsitter, Plane, Rover, Submarine (coming soon!) </p>
 [jMAVSim](../simulation/jmavsim.md) | A simple multirotor simulator that allows you to fly *copter* type vehicles around a simulated world. <p>It is easy to set up and can be used to test that your vehicle can take off, fly, land, and responds appropriately to various fail conditions (e.g. GPS failure). It can also be used for <a href="../simulation/multi_vehicle_jmavsim.md">multi-vehicle simulation</a>.</p><p><strong>Supported Vehicles:</strong> Quad</p>
 [AirSim](../simulation/airsim.md) | A cross platform simulator that provides physically and visually realistic simulations. This simulator is resource intensive, and requires a very significantly more powerful computer than the other simulators described here. <p><strong>Supported Vehicles:</strong> Iris (MultiRotor model and a configuration for PX4 QuadRotor in the X configuration).</p>
 [XPlane](../simulation/hitl.md) (HITL only)| A comprehensive and powerful fixed-wing flight simulator that offers very realistic flight models.<br><p><strong>Supported Vehicles:</strong> Plane</p>
@@ -52,18 +52,18 @@ Message | Direction | Description
 
 By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. Dronecode SDK, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
 
-* Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
-* Port **14550** is used for communication with ground control stations. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
-* Port **14560** is used for communication with simulators. PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
+* UDP Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
+* UDP Port **14550** is used for communication with ground control stations. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
+* TCP Port **4560** is used for communication with simulators. PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
 
-> **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module. 
+> **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module.
 
 
 ## SITL Simulation Environment
 
 The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
 
-* PX4 uses a simulation-specific module to listen on UDP port 14560. Simulators connect to this port, then exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. PX4 on SITL and the simulator can run on either the same computer or different computers on the same network.
+* PX4 uses a simulation-specific module to listen on TCP port 4560. Simulators connect to this port, then exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. PX4 on SITL and the simulator can run on either the same computer or different computers on the same network.
 * PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like Dronecode SDK or ROS (which listen on port 14540).
 * A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
@@ -96,10 +96,10 @@ make px4_sitl jmavsim
 
 The simulation can be further configured via environment variables:
 - `PX4_ESTIMATOR`: This variable configures which estimator to use.
-  Possible options are: `ekf2` (default), `lpe`, `inav`. 
+  Possible options are: `ekf2` (default), `lpe`, `inav`.
   It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
 
-The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: 
+The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see:
 [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
 ### Run Simulation Faster than Realtime {#simulation_speed}
@@ -157,7 +157,7 @@ The simulated camera is a gazebo plugin that implements the [MAVLink Camera Prot
    > **Tip** In this mode the driver just sends a [CAMERA_TRIGGER](https://mavlink.io/en/messages/common.html#CAMERA_TRIGGER) message whenever an image capture is requested. For more information see [Camera](https://docs.px4.io/en/peripherals/camera.html).
 1. PX4 must forward all camera commands between the GCS and the (simulator) MAVLink Camera. You can do this by starting [mavlink](../middleware/modules_communication.md#mavlink) with the `-f` flag as shown, specifying the UDP ports for the new connection.
    ```
-   mavlink start -u 14558 -o 14530 -r 4000 -f -m camera 
+   mavlink start -u 14558 -o 14530 -r 4000 -f -m camera
    ```
    > **Note** More than just the camera MAVLink messages will be forwarded, but the camera will ignore those that it doesn't consider relevant.
 
@@ -165,13 +165,13 @@ The same approach can be used by other simulators to implement camera support.
 
 ## Running Simulation on a Remote Server
 
-It is possible to run the simulator on one computer, and access it from another computer on the same network (or on another network with appropriate routing). 
+It is possible to run the simulator on one computer, and access it from another computer on the same network (or on another network with appropriate routing).
 This might be useful, for example, if you want to test a drone application running on real companion computer hardware running against a simulated vehicle.
 
 This does not work "out of the box" because PX4 does not route packets to external interfaces by default (in order to avoid spamming the network and different simulations interfering with each other). Instead it routes traffic internally - to "localhost".
 
 There are a number of ways to make the UDP packets available on external interfaces, as outlined below.
- 
+
 
 ### Enable MAV_BROADCAST
 
@@ -184,7 +184,7 @@ A remote computer can then connect to the simulator by listening to the appropri
 
 The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route  packets from localhost to an external interface.
 
-### Modify Configuration for External Broadcasting 
+### Modify Configuration for External Broadcasting
 
 The [mavlink](../middleware/modules_communication.md#mavlink_usage) module routes to *localhost* by default, but you can specify an external IP address to broadcast to using its `-t` option.
 
@@ -201,25 +201,25 @@ One way to create the tunnel is to use SSH tunneling options.
 The tunnel itself can be created by running the following command on *localhost*, where `remote.local` is the name of a remote computer:
 ```
 ssh -C -fR 14551:localhost:14551 remote.local
-``` 
+```
 
-The UDP packets need to be translated to TCP packets so they can be routed over SSH. 
+The UDP packets need to be translated to TCP packets so they can be routed over SSH.
 The [netcat](https://en.wikipedia.org/wiki/Netcat) utility can be used on both sides of the tunnel - first to convert packets from UDP to TCP, and then back to UDP at the other end.
 
 > **Tip** QGC must be running before executing *netcat*.
- 
+
 On the *QGroundControl* computer, UDP packet translation may be implemented by running following commands:
 ```
 mkfifo /tmp/tcp2udp
 netcat -lvp 14551 < /tmp/tcp2udp | netcat -u localhost 14550 > /tmp/tcp2udp
 ```
-On the simulator side of the SSH tunnel, the command is: 
+On the simulator side of the SSH tunnel, the command is:
 ```
 mkfifo /tmp/udp2tcp
 netcat -lvup 14550 < /tmp/udp2tcp | netcat localhost 14551 > /tmp/udp2tcp
 ```
 
-The port number `14550` is valid for connecting to QGroundControl or another GCS, but should be adjusted for other endpoints (e.g. developer APIs etc.).  
+The port number `14550` is valid for connecting to QGroundControl or another GCS, but should be adjusted for other endpoints (e.g. developer APIs etc.).
 
 The tunnel may in theory run indefinitely, but *netcat* connections may need to be restarted if there is a problem.
 
