@@ -2,15 +2,19 @@
 
 It's often useful to test safety critical behavior in simulation before taking any risk with a real world scenario. While in HITL simulation the configuration parameters of your real flight control unit is used, in SITL simulation most failsafes are disabled by default to enable quick and easy simulation usage. Also for example the virtual battery is implemented to never run out of energy.
 
-## Link Loss
-By default unavailability of any externel data via MAVLink or directly from a remote remote control (RC) is ignored to make the simulation conveniently usable without additonal dependencies.
+## Data Link Loss
+By default unavailability of external data via MAVLink is ignored to make the simulation usable without dependency on ground control station, attached SDK or offboard instance.
 
-- To test RC loss set the parameter `NAV_RCL_ACT` ...
-- To test data link loss set the parameter `NAV_DLL_ACT` ...
+To test data link loss reactions set the parameter `NAV_DLL_ACT` to the desired reaction according to the possibilities listed in the [parameter reference](advanced/parameter_reference.html) e.g. to the value `2` to make the vehicle return to launch.
 
-... to the desired reaction according to the possibilities listed in the [parameter reference](advanced/parameter_reference.html) e.g. to the value `2` to make the vehicle return to launch.
+> **Note** This parameter gets reset once SITL is restarted. To prevent that from happening remove the line `param set NAV_DLL_ACT 0` from the [SITL startup script](https://github.com/PX4/Firmware/blob/1d86b7570a75844375cb4c7d75731ec33826f173/ROMFS/px4fmu_common/init.d-posix/rcS).
 
-> **Note** These parameters get reset every time you restart SITL. To prevent that from happening remove the lines `param set NAV_DLL_ACT 0` and `param set NAV_RCL_ACT 0` from the startup script.
+## RC Link Loss
+By default unavailability of any remote remote control (RC) data is ignored to make the simulation conveniently usable without additonal dependencies.
+
+To test RC loss set the parameter `NAV_RCL_ACT` to the desired reaction according to the possibilities listed in the [parameter reference](advanced/parameter_reference.html) e.g. to the value `2` to make the vehicle return to launch.
+
+> **Note** This parameter gets reset once SITL is restarted. To prevent that from happening remove the line `param set NAV_RCL_ACT 0` from the [SITL startup script](https://github.com/PX4/Firmware/blob/1d86b7570a75844375cb4c7d75731ec33826f173/ROMFS/px4fmu_common/init.d-posix/rcS).
 
 ## Low Battery
 By default the simulated battery only depletes to 50% of its capacity to enable testing of any battery indication but not triggering any low battery reactions that might interrupt ongoing simulation testing.
