@@ -38,18 +38,18 @@ The hardware setup consists of the following parts:
 On TX (UAV) side:
 * [NanoPI NEO2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180) (and/or Raspberry Pi if using Pi camera).
 * [Logitech camera C920](https://www.logitech.com/en-us/product/hd-pro-webcam-c920?crid=34) or [Raspberry Pi camera](https://www.raspberrypi.org/products/camera-module-v2/).
-* WiFi module  [ALPHA AWU036ACH](https://www.alfa.com.tw/WiFi%20USB%20Antenna.html).
+* WiFi module  [ALPHA AWUS036ACH](https://www.alfa.com.tw/WiFi%20USB%20Antenna.html).
 
 On RX (ground station side):
 * Any computer with Linux (tested on Fedora 25 x86-64).
-* WiFi module  [ALPHA AWU036ACH](https://www.alfa.com.tw/WiFi%20USB%20Antenna.html). 
+* WiFi module  [ALPHA AWUS036ACH](https://www.alfa.com.tw/WiFi%20USB%20Antenna.html). 
   See [wifibroadcast wiki > WiFi hardware](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) for more information on supported modules.
 
 If you don't need high-power cards, you can use any card with **rtl8812au** chipset.
 
 ## Hardware Modification
 
-Alpha AWU036ACH is a high power card that uses too much current while transmitting. 
+Alpha AWUS036ACH is a high power card that uses too much current while transmitting. 
 If you power it from USB it will reset the port on most ARM boards.
 So it must be directly connected to 5V BEC in one of two ways:
 
