@@ -122,12 +122,15 @@
   * [Integration Testing](test_and_ci/integration_testing.md)
   * [Docker Containers](test_and_ci/docker.md)
   * [Maintenance](test_and_ci/maintenance.md)
-* [Contributing & Dev Call](contribute/README.md)
-  * [GIT Examples](contribute/git_examples.md)
+* [Contribution (&Dev Call)](contribute/README.md)
+  * [Dev Call](contribute/dev_call.md)
+  * [Source Code Management](contribute/code.md)
+    * [GIT Examples](contribute/git_examples.md)
   * [Documentation](contribute/docs.md)
   * [Translation](contribute/translation.md)
   * [Terminology/Notation](contribute/notation.md)
   * [Licenses](contribute/licenses.md)
+* [Support](contribute/support.md)
 
 ## Dronecode Shortcuts
 
