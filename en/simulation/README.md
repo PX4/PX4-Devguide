@@ -125,6 +125,8 @@ make px4_sitl jmavsim
 > **Note** At some point IO or CPU will limit the speed that is possible on your machine and it will be slowed down "automatically".
 > Powerful desktop machines can usually run the simulation at around 6-10x, for notebooks the achieved rates can be around 3-4x.
 
+> **Note** To avoid px4 detecting data link timeouts, set the param `COM_DL_LOSS_T` to something bigger. E.g. for 10x you would set COM_DL_LOSS_T to 100 instead of 10.
+
 
 ### Startup Scripts {#scripts}
 
