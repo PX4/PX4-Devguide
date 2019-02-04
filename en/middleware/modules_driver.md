@@ -187,7 +187,7 @@ gps <command> [arguments...]
      [-i <val>]  GPS interface
                  values: spi|uart, default: uart
      [-p <val>]  GPS Protocol (default=auto select)
-                 values: ubx|mtk|ash
+                 values: ubx|mtk|ash|eml
 
    stop
 
