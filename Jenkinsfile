@@ -51,13 +51,12 @@ pipeline {
           sh('cd dev.px4.io; git push origin master')
           
         }
-        post { 
-          always { 
-            sh('rm -rf dev.px4.io')
-          }
+      }
+      post {
+        always {
+          sh('rm -rf dev.px4.io')
         }
       }
-
       when {
         anyOf {
           branch "master";
