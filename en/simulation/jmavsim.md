@@ -134,4 +134,4 @@ The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the sa
 ## Important Files
 
 * The startup script is in the [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) folder and named `rcS_SIM_AIRFRAME`, the default is `rcS_jmavsim_iris`.
-* The simulated root file system ("`/`" directory) is created inside the build directory here: `build/px4_sitl_default/src/firmware/posix/rootfs/`
+* The simulated root file system ("`/`" directory) is created inside the build directory here: `build/px4_sitl_default/tmp/rootfs`.
