@@ -127,7 +127,6 @@ In this section we create a *minimal application* that just prints out `Hello Sk
    	SRCS
    		px4_simple_app.c
    	DEPENDS
-   		platforms__common
    	)
    ```
    The `px4_add_module()` method builds a static library from a module description. 
