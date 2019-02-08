@@ -69,6 +69,7 @@
   * [Communication](middleware/modules_communication.md)
   * [Controllers](middleware/modules_controller.md)
   * [Drivers](middleware/modules_driver.md)
+    * [Distance Sensor](middleware/modules_driver_distance_sensor.md)
   * [Estimators](middleware/modules_estimator.md)
   * [System](middleware/modules_system.md)
   * [Template](middleware/modules_template.md)

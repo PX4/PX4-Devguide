@@ -1,4 +1,5 @@
 # Modules Reference: Command
+
 ## bl_update
 Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
@@ -90,7 +91,6 @@ esc_calib [arguments...]
      [-c <val>]  select channels in the form: 1234 (1 digit per channel,
                  1=first)
      [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
-                 default: 0
      [-a]        Select all channels
 ```
 ## hardfault_log
@@ -166,7 +166,6 @@ led_control <command> [arguments...]
                  values: red|blue|green|yellow|purple|amber|cyan|white, default:
                  white
      [-l <val>]  Which LED to control: 0, 1, 2, ... (default=all)
-                 default: -1
      [-p <val>]  Priority
                  default: 2
 ```
@@ -250,7 +249,6 @@ motor_test <command> [arguments...]
  Commands:
    test          Set motor(s) to a specific output value
      [-m <val>]  Motor to test (0...7, all if not specified)
-                 default: -1
      [-p <val>]  Power (0...100)
                  default: 0
 
@@ -473,10 +471,8 @@ pwm <command> [arguments...]
      [-c <val>]  select channels in the form: 1234 (1 digit per channel,
                  1=first)
      [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
-                 default: 0
      [-g <val>]  Select channels by group (eg. 0, 1, 2. use 'pwm info' to show
                  groups)
-                 default: 0
      [-a]        Select all channels
 
  These parameters apply to all commands:

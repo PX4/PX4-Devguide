@@ -1,4 +1,5 @@
 # Modules Reference: Communication
+
 ## frsky_telemetry
 Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
 
@@ -93,7 +94,6 @@ mavlink <command> [arguments...]
 
    stream        Configure the sending rate of a stream for a running instance
      [-u <val>]  Select Mavlink instance via local Network Port
-                 default: 0
      [-d <val>]  Select Mavlink instance via Serial Device
                  values: <file:dev>
      -s <val>    Mavlink stream to configure
@@ -117,7 +117,6 @@ micrortps_client <command> [arguments...]
      [-b <val>]  Baudrate (can also be p:<param_name>)
                  default: 460800
      [-p <val>]  Poll timeout for UART in ms
-                 default: 1
      [-u <val>]  Interval in ms to limit the update rate of all sent topics
                  (0=unlimited)
                  default: 0
