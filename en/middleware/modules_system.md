@@ -1,4 +1,5 @@
 # Modules Reference: System
+
 ## dataman
 Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
@@ -339,9 +340,7 @@ tune_control <command> [arguments...]
      [-t <val>]  Play predefined system tune
                  default: 1
      [-f <val>]  Frequency of tone in Hz (0-22kHz)
-                 default: 0
      [-d <val>]  Duration of tone in us
-                 default: 1
      [-s <val>]  Strength of tone (0-100)
                  default: 40
      [-m <val>]  Melody in string form
