@@ -119,6 +119,8 @@ fmu <command> [arguments...]
 
    mode_pwm4cap1
 
+   mode_pwm4cap2
+
    mode_pwm3
 
    mode_pwm3cap1
