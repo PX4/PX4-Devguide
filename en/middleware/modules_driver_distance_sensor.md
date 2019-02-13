@@ -85,3 +85,41 @@ teraranger <command> [arguments...]
 
    info          Print driver information
 ```
+## tfmini
+Source: [drivers/distance_sensor/tfmini](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/tfmini)
+
+
+### Description
+
+Serial bus driver for the Benewake TFmini LiDAR.
+
+Most boards are configured to enable/start the driver on a specified UART using the SENS_TFMINI_CFG parameter.
+
+Setup/usage information: https://docs.px4.io/en/sensor/tfmini.html
+
+### Examples
+
+Attempt to start driver on a specified serial device.
+```
+tfmini start -d /dev/ttyS1
+```
+Stop driver
+```
+tfmini stop
+```
+
+### Usage {#tfmini_usage}
+```
+tfmini <command> [arguments...]
+ Commands:
+   start         Start driver
+     -d <val>    Serial device
+     [-R <val>]  Sensor rotation - downward facing by default
+                 default: 25
+
+   stop          Stop driver
+
+   test          Test driver (basic functional tests)
+
+   info          Print driver information
+```
