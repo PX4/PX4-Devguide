@@ -340,6 +340,8 @@ A valid ULog parser must fulfill the following requirements:
   via MAVLink.
 - [MAVGAnalysis](https://github.com/ecmnet/MAVGCL): Java, ULog streaming via
   MAVLink and parser for plotting and analysis.
+- [PlotJuggler](https://github.com/facontidavide/PlotJuggler): C++/Qt application to
+  plot logs and time series. Supports ULog since version 2.1.3.
 
 
 ## File Format Version History
