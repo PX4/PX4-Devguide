@@ -321,12 +321,12 @@ Play system tune #2:
 
     tune_control <command> [arguments...]
      Commands:
-       play          Play system tune, tone, or melody
+       play          Play system tune or single note.
          [-t <val>]  Play predefined system tune
                      default: 1
-         [-f <val>]  Frequency of tone in Hz (0-22kHz)
-         [-d <val>]  Duration of tone in us
-         [-s <val>]  Strength of tone (0-100)
+         [-f <val>]  Frequency of note in Hz (0-22kHz)
+         [-d <val>]  Duration of note in us
+         [-s <val>]  Volume level (loudness) of the note (0-100)
                      default: 40
          [-m <val>]  Melody in string form
                      values: <string> - e.g. "MFT200e8a8a"
