@@ -1,25 +1,14 @@
-# uORB Publication/Subscription Graph
+# UORB 发布/订阅 图
 
-This page provides a uORB publication/subscription graph that
-shows the communication between modules. It is based on information that is
-extracted directly from the source code. Usage instructions are provided
-[below](#instructions).
+本页提供了一张描述了系统各模块之间通信关系的 UORB 发布/订阅 图。 该图根据直接从源代码中提取的信息制作而成。 使用说明 [如下](#instructions) 。
 
-
-Search: <input id="search" type="text" >
-Preset: <select id ="select-graph" name="select-graph">
-    <option value='graph_px4fmu-v4.json'>FMUv4 Modules</option>
-    <option value='graph_px4fmu-v2.json'>FMUv2 Modules</option>
-    <option value='graph_sitl.json'>SITL Modules</option>
-    <option value='graph_runtime_sitl.json'>SITL Runtime Modules</option>
-    <option value='graph_full.json'>All Modules</option>
-</select>
-<br/>
+搜索： <input id="search" type="text" /> 预置： <select id ="select-graph" name="select-graph"> <option value='graph_px4fmu-v4.json'>FMUv4 模块</option> <option value='graph_px4fmu-v2.json'>FMUv2 模块</option> <option value='graph_sitl.json'>SITL 模块</option> <option value='graph_runtime_sitl.json'>SITL 运行时模块</option> <option value='graph_full.json'>所有模块</option> </select>   
 <!-- use an absolute position to allow it to overflow to the left and the right -->
 <svg width="1200" height="1200" style="position: absolute; left: -9999px; right: -9999px; margin: auto;"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 <!-- the position of the svg is absolute, so we add a div with the necessary spacing -->
+
 <div style="height: 1210px;"></div>
 
 <script>
@@ -495,28 +484,21 @@ initializeGraph();
 
 </script>
 
+ 
 
-## Graph Properties{#instructions}
-The graph has the following properties:
+## 图形属性{#instructions}
 
-- Modules are shown in gray with rounded corners while topics are displayed as
-  coloured rectangular boxes.
-- Associated modules and topics are connected by lines. Dashed lines indicate
-  that the module publishes the topic, while solid lines indicate that the
-  module subscribes to the topic.
-- Some modules and topics are excluded:
-  - Topics that are subscribed/published by many modules: `parameter_update`,
-	`mavlink_log` and `log_message`.
+该图具备如下属性：
+
+- 模块以灰色圆角矩形表示，而主题则以彩色直角矩形框表示。
+- 相关联的模块和主题通过直线相连接。 虚线表示模块发布该主题，而实现则表示模块订阅了该主题。
+- 部分模块和主题并未包含在图中： 
+  - 被许多模块 订阅/发布 的主题： `parameter_update`， `mavlink_log` 和 `log_message`。
   - The set of logged topics.
-  - Topics that have no subscriber or no publisher.
-  - Modules in **src/examples**.
-- Hovering over a module/topic highlights all its connections.
-- Double-clicking on a topic opens its message definition.
-- Make sure your browser window is wide enough to display the full graph (the
-  sidebar menu can be hidden with the icon in the top-left corner). You can also
-  zoom the image.
-- The *Preset* selection list allows you to refine the list of modules that are
-  shown.
-- The *Search* box can be used to find particular modules/topics (topics that
-  are not selected by the search are greyed-out).
-
+  - 未被发布或者没有被订阅的主题。
+  - 位于 **src/examples** 文件夹下的模块。
+- 鼠标停留在 模块/话题 上会高亮显示它的所有连接。
+- 双击某主题会打开该主题的消息定义文档。
+- 确保你的浏览器窗口足够宽，可以完整显示该关系图（如果图标处于左上角位置则侧边栏会被隐藏起来）。 你还可以缩放图像。
+- *预置* 下拉列表可以帮助你优化显示的模块列表。
+- *搜索* 框可用来查找特定的 模块/主题 （未被搜索的主题会变灰）。
