@@ -1,27 +1,21 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/ros/raspberrypi_installation.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Raspberry Pi - ROS 安装
 
-# 在Raspberry Pi（树莓派）上安装ROS
+这是本文指导如何在树莓派2上安装 ROS-indigo ，部署成与 Pixhawk 协同的一台地面站计算机的。
 
+## 系统必备组件
 
-本文介绍如何在一个作为Pixhawk协同计算机的树莓派2上安装ROS-indigo。
-
-## 准备
-
-- 一个可以工作的树莓派，配有监视器、键盘或者配置好的SSH连接。
-- 这份指南假定你已经在树莓派上安装好了Raspbian "JESSIE"，如果没有，[安装它](https://www.raspberrypi.org/downloads/raspbian/)或者[升级](http://raspberrypi.stackexchange.com/questions/27858/upgrade-to-raspbian-jessie)Raspbian Wheezy到Jessie。
+* 具有显示器、键盘或配置 ssh 连接的工作树莓派
+* 本指南假定您的 RPi 上安装了 Raspbian "JESSIE"。 否则：[安装](https://www.raspberrypi.org/downloads/raspbian/) 或 [升级](http://raspberrypi.stackexchange.com/questions/27858/upgrade-to-raspbian-jessie) 你的 Raspbian Wheezy 到 Jessie。
 
 ## 安装
 
-参照[指南](http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi)安装ROS Indigo。注意：安装"ROS-Comm"版本，"Desktop"版本太过庞大。
+按照 [本指南 ](http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Indigo%20on%20Raspberry%20Pi) 实际安装 ROS Indigo。 注意：安装 "ROS-Comm" 变体。 桌面变体太臃肿了。
 
-### 安装可能遇到的错误
+### 安装程序包时出错
 
-如果下载包（例如`sudo apt-get install ros-indigo-ros-tutorials`）时遇到错误"unable to locate package ros-indigo-ros-tutorials"，那么按照下面方法操作：
+如果你想下载软件包（例如，`sudo apt-get install ros-indigo-ros-tutorials`），你可能会得到一个错误，说："无法找到 ros-indigo-ros-tutorials"。
 
-进入你的catkin工作空间（例如~/ros_catkin_ws），并修改包的名字
+如果是这样，请按以下步骤操作：转到您的 catkin 工作区（例如 ~/ros_catkin_ws）并更改包的名称。
 
 ```sh
 $ cd ~/ros_catkin_ws
@@ -29,7 +23,7 @@ $ cd ~/ros_catkin_ws
 $ rosinstall_generator ros_tutorials --rosdistro indigo --deps --wet-only --exclude roslisp --tar > indigo-custom_ros.rosinstall
 ```
 
-接着，用wstool升级你的工作空间
+接下来，使用 wstool 更新您的工作区。
 
 ```sh
 $ wstool merge -t src indigo-custom_ros.rosinstall
@@ -37,7 +31,7 @@ $ wstool merge -t src indigo-custom_ros.rosinstall
 $ wstool update -t src
 ```
 
-最后 (仍然在工作空间文件夹), source并构建你的文件。
+下一步（仍在工作区文件夹中），source 并创建文件。
 
 ```sh
 $ source /opt/ros/indigo/setup.bash
