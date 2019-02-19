@@ -1,57 +1,45 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/dev_env_mac.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Mac 上的开发环境
 
-# 安装文件和代码
-第一步就是从Mac应用商店中安装Xcode。安装完成后打开一个新的终端并安装命令行工具：
+MacOS 是受支持的 PX4 开发平台。 根据本文的指示构建的开发环境可以用编译：
 
-```
-xcode-select --install
-```
+* 基于 NuttX 的硬件 (Pixhawk等)
+* jMAVSim 仿真模拟
+* Gazebo 8 仿真模拟
 
-## 安装Homebrew
+> **提示：** 若需要为其他平台进行编译请参考： [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets)。
 
-推荐使用Mac OS X的 [Homebrew 包管理器](http://mxcl.github.com/homebrew/) 进行安装. Homebrew的安装十分便捷: [安装指南](http://mxcl.github.com/homebrew/).
+## Homebrew 安装
 
-安装好Homebrew以后,拷贝以下命令到终端命令行:
+Homebrew 的安装非常简单迅速：[installation instructions](https://brew.sh)。
 
+## 常用工具
 
+Homebrew 安装完毕后，在你的 shell 界面输入如下命令安装常用工具：
 
 ```sh
 brew tap PX4/px4
-brew tap PX4/simulation
-brew update
-brew install git bash-completion genromfs kconfig-frontends gcc-arm-none-eabi
-brew install astyle cmake ninja
-# simulation tools
-brew install ant graphviz sdformat3 eigen protobuf
-brew install opencv
+brew install px4-dev
+# 可选，但建议安装额外的仿真模拟用工具
+brew install px4-sim
 ```
 
-然后安装我们需要的python包:
+如上述安装过程输出了依赖项缺失的错误，请遵循下文的指示进行操作。 你的系统应该是缺失 Java 和 Quartz ：
 
+```sh
+brew cask install xquartz java
+```
 
+如果您还没有安装 pip ，请安装并使用它来安装所需的软件包：
 
 ```sh
 sudo easy_install pip
-sudo pip install pyserial empy pandas jinja2
+sudo -H pip install pyserial empy toml numpy pandas jinja2 pyyaml
 ```
 
-### Java for jMAVSim
+## 额外工具
 
-如果你打算使用JMAVSim,需要同时安装[Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).。
+完成编译/仿真开发环境设置后，你可以从 [Additional Tools](../setup/generic_dev_tools.md) 找到一些有用的“通用”开发工具。
 
-## 骁龙飞控
+## 后续步骤
 
-高通为Ubuntu提供了可靠的工具链。因此使用骁龙飞行平台的开发者应该安装一个Ubuntu虚拟机，并参考Linux下方法进行工具链的安装。PX4开发团队使用的虚拟机软件是VMWare，尤其是在VMWare对USB有了稳定的支持以后。
-
-## 仿真
-
-OS X 预装了CLANG. 因此无需再安装其他的编译器.
-
-## 编辑器 / IDE
-
-最后下载并安装 Qt Creator: [下载](http://www.qt.io/download-open-source/#section-6)
-
-接下来进行 [第一次代码编译](../setup/building_px4.md)!
+设置完环境后，请转至 [build instructions](../setup/building_px4.md) 。
