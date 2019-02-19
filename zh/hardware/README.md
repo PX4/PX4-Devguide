@@ -1,6 +1,8 @@
-# Hardware
+# 硬件
 
-This section contains developer topics about modifying PX4 to work with *new* hardware, including airfames, autopilots, companion computers, sensors, and other peripherals. 
-It also contains high level information about hardware that PX4 already supports.
+本节包含有关以下内容的主题:
 
-> **Tip** The [PX4 User Guide](https://docs.px4.io/en/) contains more detailed information about using and configuring hardware that is already supported.
+* 修改 PX4 以使其适用于 *新的* < 1>飞控硬件平台 </1 > 和 [载具/机型](../airframes/README.md)
+* 整合新的 [传感器和驱动器](../sensor_bus/README.md)，[无线数传](../data_links/telemetry.md) 和其它外围设备。 
+
+> **Tip** The [PX4 用户手册](https://docs.px4.io/en/) 包含了有关使用和配置 *现有/受支持的* 硬件平台的相关主题。
