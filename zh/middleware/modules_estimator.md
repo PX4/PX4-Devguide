@@ -8,7 +8,7 @@
 
 基于扩展卡尔曼滤波器的姿态和位置估计器。 该模块同时应用于多旋翼和固定翼飞机。
 
-更详细的记录可以在 [tuning_the_ecl_ekf](https://dev.px4.io/en/tutorials/tuning_the_ecl_ekf.html) 页面找到。
+The documentation can be found on the [ECL/EKF Overview & Tuning](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html) page.
 
 ekf2 可以在回放（replay）模式中启动 (`-r`)：该模式下它不会访问系统时间，而是使用传感器主题中的时间戳。
 
