@@ -1,17 +1,12 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/dronekit/example.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
-
 # Using DroneKit to communicate with PX4
 
-[DroneKit](http://dronekit.io) 可以帮助创建强大的无人机应用。这些应用运行在无人机的协同计算机上，通过执行计算密集但又需要低延迟的任务（计算机视觉）来增强飞控计算机。
+[DroneKit](http://dronekit.io) helps you create powerful apps for UAVs. These apps run on a UAV’s Companion Computer, and augment the autopilot by performing tasks that are both computationally intensive and require a low-latency link (e.g. computer vision).
 
-DroneKit和PX4目前致力于获得完全兼容。截止DroneKit-python 2.2.0，仅提供任务处理和状态监控这样的基本支持。
+DroneKit and PX4 are currently working on getting full compatibility. As of DroneKit-python 2.2.0 there is basic support for mission handling and vehicle monitoring.
 
-## 配置DroneKit
+## Setting up DroneKit with PX4
 
-首先，从当前主分支安装DroneKit-python
+Start by installing DroneKit-python from the current master.
 
 ```sh
 git clone https://github.com/dronekit/dronekit-python.git
@@ -20,7 +15,7 @@ sudo python setup.py build
 sudo python setup.py install
 ```
 
-创建一个新的python文件并导入DroneKit, pymavlink和基本模块
+Create a new python file and import DroneKit, pymavlink and basic modules
 
 ```C
 # Import DroneKit-Python
@@ -30,20 +25,20 @@ import time, sys, argparse, math
 
 ```
 
-连接到无人机或模拟器的MAVLink端口
+Connect to a MAVLink port of your drone or simulation (e.g. [JMavSim](../simulation/jmavsim.md)).
 
 ```C
-# Connect to the Vehicle
+# 连接飞机
 print "Connecting"
 connection_string = '127.0.0.1:14540'
 vehicle = connect(connection_string, wait_ready=True)
 
 ```
 
-显示一些基本的状态信息
+Display some basic status information
 
 ```C
-# Display basic vehicle state
+# 显示基本飞机状态
 print " Type: %s" % vehicle._vehicle_type
 print " Armed: %s" % vehicle.armed
 print " System status: %s" % vehicle.system_status.state
@@ -51,10 +46,9 @@ print " GPS: %s" % vehicle.gps_0
 print " Alt: %s" % vehicle.location.global_relative_frame.alt
 ```
 
+## Full mission example
 
-## 完整的任务示例
-
-下面的python脚本文件给出了使用DroneKit和PX4的完整任务范例。目前还不完全支持模式切换，因此我们发送自定义的模式切换指令。
+The following python script shows a full mission example using DroneKit and PX4. Mode switching is not yet fully supported from DroneKit, we therefor send our own custom mode switching commands.
 
 ```C
 ################################################################################################
@@ -109,8 +103,7 @@ def PX4setMode(mavMode):
 def get_location_offset_meters(original_location, dNorth, dEast, alt):
     """
     Returns a LocationGlobal object containing the latitude/longitude `dNorth` and `dEast` metres from the
-    specified `original_location`. The returned Location has the same `alt` value
-    as `original_location`.
+    specified `original_location`. The returned Location adds the entered `alt` value to the altitude of the `original_location`.
     The function is useful when you want to move the vehicle around specifying locations relative to
     the current vehicle position.
     The algorithm is relatively accurate over small distances (10m within 1km) except close to the poles.
@@ -229,4 +222,5 @@ time.sleep(1)
 # Close vehicle object before exiting script
 vehicle.close()
 time.sleep(1)
+
 ```
