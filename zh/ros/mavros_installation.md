@@ -1,72 +1,96 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/ros/mavros_installation.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
-
 # MAVROS
 
-[MAVROS](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status)ROS包允许在运行ROS的计算机、支持MAVLink的飞控板以及支持MAVLink的地面站之间通讯。虽然MAVROS可以用来与任何支持MAVLink的飞控板通讯，但是本文仅就PX4飞行栈与运行ROS的协同计算机之间的通讯予以说明。
+[ mavros ](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) 功能包提供了 一台能够运行ros的机载电脑、支持MAVLINK协议的飞控和支持MAVLINK的地面站这三者之间的通讯功能。
+
+> **Note** *MAVROS* 是 ROS 与 MAVLink 协议之间的 有"官方" 支持的ROS功能包。 它当前正在扩展以启用 [ fast-RTPS messaging ](../middleware/micrortps.md), 包括将 PX4 [ uORB 消息 ](../middleware/uorb.md) 转换为常见 ROS 话题的代码。
+
+虽然 MAVROS 可用于与任何支持 MAVLink 协议的自动驾驶仪进行通信, 但此文档主要针对 PX4 飞控固件与运行ROS 的机载电脑之间的通讯问题。
 
 ## 安装
 
-MAVROS可以通过源文件或者二进制文件安装。推荐使用源文件安装。
+MAVROS功能包可以用源代码或二进制方式安装。（这是ROS功能包常见的两种安装方式，源代码安装可以修改源码，二进制方式安装则不行，只能直接调用源码） 建议有ROS基础的开发者使用源代码方式安装。
 
-### 二进制文件安装（Debian / Ubuntu）
+> ** 提示 **这些安装说明是 [ 官方安装指南 ](https://github.com/mavlink/mavros/tree/master/mavros#installation) 的简化版本。（官方安装指南请参见mavros功能包的github主页） 它们涵盖了 * ROS kinetic * 的版本。
 
-从v0.5开始有x86和amd64平台的预编译的Debian安装包，从v0.9版本开始有Ubuntu armhf平台上的ARMv7安装包。
+### 二进制安装 (Debian/Ubuntu)
 
-使用`apt-get`安装即可：
+ROS 代码库有针对 Ubuntu x86、amd64 (x86\_64) 和 armhf (ARMv7) 的二进制安装包。 Kinetic 同样支持 Debian Jessie amd64 和 arm64（ARMv8）。
 
-```sh
-$ sudo apt-get install ros-indigo-mavros ros-indigo-mavros-extras ros‐indigo‐control‐toolbox
-```
+使用 ` apt-get` 进行安装:
 
-### 源文件安装
+    sudo apt-get install ros-kinetic-mavros ros-kinetic-mavros-extras
+    
 
-**依赖**
+然后通过运行 ` install_geographiclib_datasets.sh ` 脚本来安装 [ GeographicLib ](https://geographiclib.sourceforge.io/) 数据集:(译者注：注意这一步需要在命令前加sudo才会安装成功)
 
-假定你有一个catkin工作空间位于`~/catkin_ws`，如果没有，则创建一个：
+    wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
+    ./install_geographiclib_datasets.sh
+    
 
-```sh
-$ mkdir -p ~/catkin_ws/src
-$ cd ~/catkin_ws
-$ catkin init
-```
+### 源码方式安装
 
-安装MAVROS需要用到ROS python工具`wstool`，`rosinstall`和`catkin_tools`，尽管在安装ROS时可能已经安装过这些工具，但是仍然可以重新安装一遍：
+本安装方式假设你已经拥有了一个catkin_ws，如果没有您则需要按照以下指令创建一个：
 
 ```sh
-$ sudo apt-get install python-wstool python-rosinstall-generator python-catkin-tools
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws
+catkin init
+wstool init src
 ```
 
-注意，尽管可以使用catkin_make构建这些包，但是推荐使用catkin_tools，因为它更加友好，功能更加全面。
+你需要利用ROS的Python工具，如*wstool* (for retrieving sources), *rosinstall*, and *catkin_tools* (building) for this installation. 按照以下命令来安装：
 
-如果这是第一次使用wstool，那么需要初始化你的源空间：
+```sh
+sudo apt-get install python-catkin-tools python-rosinstall-generator -y
+```
+
+> ** 提示 **虽然可以使用 ** catkin_make ** 来编译MAVROS包, 但首选方法还是使用 ** catkin_tools **, 因为它是一种更通用、更 "友好" 的编译工具。
+
+如果这是你第一次使用wstool你需要初始化你的代码文件夹。
 
 ```sh
 $ wstool init ~/catkin_ws/src
 ```
 
-现在准备构建
+现在你已经准备好去编译。
 
-```sh
-    # 1. get source (upstream - released)
-$ rosinstall_generator --upstream mavros | tee /tmp/mavros.rosinstall
-    # alternative: latest source
-$ rosinstall_generator --upstream-development mavros | tee /tmp/mavros.rosinstall
+1. 安装Mavlink 
+        # We use the Kinetic reference for all ROS distros as it's not distro-specific and up to date
+        rosinstall_generator --rosdistro kinetic mavlink | tee /tmp/mavros.rosinstall
 
-    # 2. get latest released mavlink package
-    # you may run from this line to update ros-*-mavlink package
-$ rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
+2. 安装MAVROS最新的版本：
+    
+    - 发行版 / 稳定版 ```rosinstall_generator --upstream mavros | tee -a /tmp/mavros.rosinstall```
+    - 最新源码 
+            sh
+            rosinstall_generator --upstream-development mavros | tee -a /tmp/mavros.rosinstall
+        
+            sh
+            # For fetching all the dependencies into your catkin_ws, 
+            # just add '--deps' to the above scripts, E.g.:
+            #   rosinstall_generator --upstream mavros --deps | tee -a /tmp/mavros.rosinstall
 
-    # 3. Setup workspace & install deps
-$ wstool merge -t src /tmp/mavros.rosinstall
-$ wstool update -t src
-$ rosdep install --from-paths src --ignore-src --rosdistro indigo -y
+3. 创建工作区 & 安装依赖
+    
+        wstool merge -t src /tmp/mavros.rosinstall
+        wstool update -t src -j4
+        rosdep install --from-paths src --ignore-src -y
+        
 
-    # finally - build
-$ catkin build
-```
+4. 安装 [GeographicLib](https://geographiclib.sourceforge.io/) 数据集：
+    
+        ./src/mavros/mavros/scripts/install_geographiclib_datasets.sh
+        
 
+5. 构建源码
+    
+        catkin build
+        
 
-> **提示:** 如果在树莓派上安装MAVROS，当运行`rosdep install ...`时可能会遇到和操作系统有关的错误。在rosdep命令中加上`--os=OS_NAME:OS_VERSION `，其中OS_NAME是你的操作系统名称，OS_VERSION是你的操作系统版本（例如：--os=debian:jessie）
+6. 确保从工作区中使用 setup. bash 或 setup. zsh。
+    
+        #Needed or rosrun can't find nodes from this workspace.
+        source devel/setup.bash
+        
+
+如果有任何问题，这还有另外一种方式和解决问题的途径在mavros功能包的主页。 （译者注：1、最好使用kinetic版本的电脑 2、不要用虚拟机 3、不需要看这里，直接去mavros github主页安装步骤一步一步装，装的时候确认每一步没有报错，网络好一点的话会顺利一点）
