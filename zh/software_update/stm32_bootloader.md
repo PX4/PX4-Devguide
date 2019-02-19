@@ -1,46 +1,48 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/software_update/stm32_bootloader.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# STM32 Bootloader
 
-# STM32 BootLoader
-
-PX4 bootloader的代码在Github的 [Bootloader](https://github.com/px4/bootloader) 仓库。
+PX4 引导加载程序的代码可从 Github [ Bootloader ](https://github.com/px4/bootloader)存储库获得。
 
 ## 支持的飞控板
 
-* FMUv1 \(PX4FMU, STM32F4\)
-* FMUv2 \(Pixhawk 1, STM32F4\)
-* FMUv3 \(Pixhawk 2, STM32F4\)
-* FMUv4 \(Pixracer 3 和 Pixhawk 3 Pro, STM32F4\)
-* FMUv5 \(Pixhawk 4, STM32F7\)
-* TAPv1 \(TBA, STM32F4\)
-* ASCv1 \(TBA, STM32F4\)
+* FMUv2 (Pixhawk 1, STM32F4)
+* FMUv3 (Pixhawk 2, STM32F4)
+* FMUv4 (Pixracer 3 and Pixhawk 3 Pro, STM32F4)
+* FMUv5 (Pixhawk 4, STM32F7)
+* TAPv1 (TBA, STM32F4)
+* ASCv1 (TBA, STM32F4)
 
-## 构建Bootloader
+## 构建 Bootloader
 
-```
+```bash
 git clone https://github.com/PX4/Bootloader.git
 cd Bootloader
+git submodule init
+git submodule update
 make
 ```
 
-经过这一步会为所有支持的飞控板生成一系列elf文件，这些文件都在BootLoader目录中。
+在此步骤之后，所有支持的主板的 elf 文件范围都出现在引导 Bootloader 目录中。
 
-## 刷Bootloader
+## 刷写 Bootloader
 
-> 重要提醒：对于一些飞控板来说，为了使用JTAG\/SWD接口需要采取正确的供电顺序。正是按照所描述的这些步骤。 下列的说明适用于Blackmagic\/Dronecode探针。其他的JTAG探针可能需要使用类似的不同顺序。尝试刷BootLoader的开发者应该具备相关知识。如果你不知道如何进行这些操作，或许你应该再三考虑你是否确实需要更改BootLoader中的任何东西。
+> **Important** 正确的电源序列对于某些电路板允来许 JTAG/SWD 访问至关重要。 请完全按照所述步骤操作。
 
-* 断开JTAG连线
-* 连接USB电源线
-* 连接JTAG
+以下说明适用于 Blackmagic/Dronecode probe。 其他 JTAG 仿真器需要不同但相似的步骤。 试图刷新引导加载程序的开发人员应具备所需的知识。 如果您不知道如何执行此操作，您可能应该重新考虑是否确实需要更改引导加载程序的任何内容。
 
-## 使用正确的串口
+顺序为：
 
-* LINUX: `/dev/serial/by-id/usb-Black_Sphere_XXX-if00`
-* MAC OS: 确认使用的是xxx口而不是tty.xxx口: `tar ext /dev/tty.usbmodemDDEasdf`
+1. 断开 JTAG 电缆的连接
+2. 连接 USB 电源线
+3. 连接 JTAG 电缆
 
-```
+### 黑魔法/无人机探测器
+
+#### 使用正确的串行端口
+
+* 在 Linux 上： ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
+* 在 MAC OS 上：确保使用 cu.xxx 端口，而不是 tty.xxx 端口： ```tar ext /dev/tty.usbmodemDDEasdf```
+
+```bash
 arm-none-eabi-gdb
   (gdb) tar ext /dev/serial/by-id/usb-Black_Sphere_XXX-if00
   (gdb) mon swdp_scan
@@ -52,27 +54,31 @@ arm-none-eabi-gdb
         Transfer rate: 17 KB/sec, 828 bytes/write.
   (gdb) kill
 ```
+
 ### J-Link
 
-关于 [J-Link GDB server](https://www.segger.com/jlink-gdb-server.html)的教程点进去就行了。
+这些指令适用于[ J-Link GDB server](https://www.segger.com/jlink-gdb-server.html)。
 
-#### 必备条件
+#### 系统必备组件
 
-从Segger官网下载[J-Link](https://www.segger.com/downloads/jlink) 软件并按照其教程进行安装。
+[ Download the J-Link software ](https://www.segger.com/downloads/jlink)并按照 Segger 网站的说明进行安装。
 
-#### 运行JLink GDB
+#### 运行 JLink GDB 服务器
 
-FMUv1:
+以下命令用于为使用 STM32F427VI SoC 的飞行控制器运行服务器：
+
 ```bash
-JLinkGDBServer -select USB=0 -device STM32F405RG -if SWD-DP -speed 20000
+JLinkGDBServer -select USB=0 -device STM32F427VI -if SWD-DP -speed 20000
 ```
 
-AeroFC:
-```bash
-JLinkGDBServer -select USB=0 -device STM32F429AI -if SWD-DP -speed 20000
-```
+常见目标的 `--device`/SoC是：
 
-#### 连接GDB
+* **FMUv2、FMUv3、FMUv4、aerofc-v1、mindpx-v2：**STM32F427VI
+* **px4_fmu-v4pro：**STM32F469II
+* **px4_fmu-v5：** STM32F765II
+* **crazyflie：**STM32F405RG
+
+#### 连接 GDB
 
 ```bash
 arm-none-eabi-gdb
@@ -80,20 +86,19 @@ arm-none-eabi-gdb
   (gdb) load aerofcv1_bl.elf
 ```
 
-## 故障检测
+### 故障处理
 
-如果上述任意一条指令没有找到，要么你就是没有使用Blackmagic探针，或者是软件过时了。首先尝试升级探针软件。
+如果找不到上述任何命令，则表示您未使用 Blackmagic 探针或其软件已过期。 首先更新 on-probe 软件。
 
-如果出现这个错误： `Error erasing flash with vFlashErase packet`
+如果出现此错误消息： ```Error erasing flash with vFlashErase packet```
 
-断开目标连接（同时让JTAG保持连接），进而运行下列指令
+断开目标连接（同时保持 JTAG 连接）并运行
 
-```
+```bash
 mon tpwr disable
 swdp_scan
 attach 1
 load tapv1_bl.elf
 ```
 
-此举将禁用目标连接的电源并尝试另一个刷写循环。
-
+这将禁用目标供电并尝试另一个闪光周期。
