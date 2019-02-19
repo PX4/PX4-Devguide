@@ -1,0 +1,124 @@
+# Entorno de desarrollo en Linux
+
+Linux le permite compilar para [todos los posibles objetivos de PX4](../setup/dev_env.md#supported-targets) (hardware basado en NuttX, hardware Qualcomm Snapdragon vuelo, hardware basado en Linux, simulación, ROS).
+
+> **Nota** Hemos establecido Debian / [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) (16.04) como la distribución de Linux compatible. También se proporcionan instrucciones para [CentOS](../setup/dev_env_linux_centos.md) y [Arch Linux](../setup/dev_env_linux_arch.md).
+
+Las siguientes instrucciones explican cómo configurar un entorno de desarrollo en Ubuntu LTS mediante los convenientes scripts de bash. Las instrucciones para *instalar manualmente* estos y los objetivos adicionales pueden encontrarse en [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md).
+
+## Toolchain de desarrollo
+
+Las instrucciones siguientes muestran cómo utilizar nuestra [bash scripts](../setup/dev_env_linux_ubuntu.md#convenience-bash-scripts) para configurar la toolchain de desarrollador en Ubuntu LTS. Todos los scripts instalan *Qt Creator IDE*, [Ninja Build System](https://ninja-build.org/), [dependencias comunes](../setup/dev_env_linux_ubuntu.md#common-dependencies), [FastRTPS](../setup/dev_env_linux_ubuntu.md#fastrtps-installation) y también el código fuente de la PX4 en tu ordenador (**~/src/Firmware**).
+
+> **Nota** Los scripts han sido probados en una instalación limpia de Ubuntu LTS 16.04. *Podrían* no funcionar como se esperaba si se ha instalado sobre un sistema existente o en otra versión de Ubuntu. Si tiene problemas siga las [instrucciones de instalación manual](../setup/dev_env_linux_ubuntu.md).
+
+En primer lugar haga al usuario miembro del grupo "dialout"
+
+1. En la terminal escriba: 
+        sh
+        sudo usermod -a -G dialout $USER
+
+2. Cierre sesión y entre de nuevo (el cambio se realiza sólo después de un nuevo inicio de sesión).
+
+Siga las instrucciones para su objetivo de desarrollo en las secciones a continuación.
+
+### Pixhawk/NuttX (y jMAVSim)
+
+Para instalar la toolchain de desarrollo:
+
+1. Descargar <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
+2. Ejecutar el script en un shell de bash: 
+        bash
+        source ubuntu_sim_nuttx.sh Podría necesitar reconocer algunas indicaciones de como avanza el script.
+
+3. Reinicie el equipo al finalizar.
+
+### Snapdragon Flight
+
+Las instrucciones de configuración para Snapdragon Flight se proporcionan en la *Guía del usuario de PX4*:
+
+* [Entorno de desarrollo](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [Instalación del software](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [Configuración](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+
+### Raspberry Pi
+
+Para instalar la toolchain de desarrollo:
+
+1. Descargar <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (contiene el simulador de jMAVSim y dependencias comunes de herramientas).
+2. Ejecutar el script en un shell de bash: 
+        bash
+        source ubuntu_sim_common_deps.sh Podría necesitar reconocer algunas indicaciones de como avanza el script.
+
+3. Siga las instrucciones de instalación en [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md) para [Raspberry Pi](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
+
+### Parrot Bepop
+
+Siga las instrucciones (manuales) aquí: [Ubuntu/Debian Linux > Parrot Bebop](../setup/dev_env_linux_ubuntu.md#raspberry-pi-hardware).
+
+### Simulación jMAVSim/Gazebo
+
+Para instalar los simuladores Gazebo y jMAVSim:
+
+1. Descargar <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
+2. Ejecutar el script en un shell de bash: 
+        bash
+        source ubuntu_sim.sh Podría necesitar reconocer algunas indicaciones de como avanza el script.
+
+> **Nota** Si solo necesita jMAVSim, en su lugar descarga y ejecuta <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
+
+<span><span></p> 
+
+<blockquote>
+  <p>
+    <strong>Nota</strong> PX4 funciona con Gazebo 7, 8, and 9. El script installa Gazebo 9.
+  </p>
+</blockquote>
+
+<h3>
+  Gazebo con ROS
+</h3>
+
+<p>
+  Para instalar la toolchain de desarrollo:
+</p>
+
+<ol start="1">
+  <li>
+    Descargue <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>.
+  </li>
+  
+  <li>
+    Ejecute el script en un shell de bash: <pre><code>bash
+source ubuntu_sim_ros_gazebo.sh</code></pre> Podría necesitar reconocer algunas indicaciones de como avanza el script.
+  </li>
+</ol>
+
+<p>
+  Nota:
+</p>
+
+<ul>
+  <li>
+    ROS esta instalado con Gazebo7 por defecto (hemos elegido usar el que usa por defecto además de Gazebo8 o Gazebo9 para simplificar el desarrollo en ROS).
+  </li>
+  <li>
+    Tu catkin (ROS build system) workspace es creado en <strong>~/catkin_ws/</strong>.
+  </li>
+</ul>
+
+<h2>
+  Herramientas adicionales
+</h2>
+
+<p>
+  Después de configurar la toolchain de compilación/simulación, ver <a href="../setup/generic_dev_tools.md">Herramientas adicionales</a> para más información sobre otras herramientas útiles.
+</p>
+
+<h2>
+  Siguientes pasos
+</h2>
+
+<p>
+  Una vez haya terminado de configurar el entorno, continúe en <a href="../setup/building_px4.md">Compilando el código</a>.
+</p>
