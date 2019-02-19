@@ -1,23 +1,54 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/dev_env_windows.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Windows 安装指南
 
-# Windows安装指南
+如果希望在Windows平台进行PX4的开发，请参考： [Windows Cygwin 工具链](../setup/dev_env_windows_cygwin.md)进行工具链的安装。
 
-> **警告：**虽然Windows上的工具链是可用的，但官方并不支持，我们不推荐使用Windows。Windows上固件编译的过程十分缓慢，且不支持新的板子，比如骁龙（Snapdragon Flight），它也不能运行标准机器人软件包，许多开发人员使用原型计算机视觉和导航。开始在Windows上开发之前，可以考虑安装一个双启动环境 [Ubuntu](http://www.ubuntu.com/index_kylin) 。
+> **Tip** The *Cygwin 工具链* 仅支持NuttX/Pixhawk 平台和 jMAVSim仿真平台。 如果你想编译用于 [其他硬件平台](/setup/dev_env.md#supported-targets)的代码，可以考虑额外安装一个 [Ubuntu Linux](http://ubuntu.com)组成双系统环境。
 
-## 开发环境安装
+## 额外工具
 
-下载并在系统上安装这些：
+完成编译/仿真开发环境设置后，你可以从 [额外工具](../setup/generic_dev_tools.md) 找到一些有用的“通用”开发工具。
 
-* [Qt Creator IDE](http://www.qt.io/download-open-source/#section-6)
-* [PX4 Toolchain Installer v14 for Windows Download](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (32/64位操作系统， 完整的编译系统，驱动)
-* [PX4 USB Drivers](http://pixhawk.org/static/px4driver.msi) (32/64位操作系统)
+## 后续步骤
 
-现在继续运行： [代码编译](../setup/building_px4.md)!
+设置完环境后，请转至 构建说明</0 > 进行编译测试。</p> 
 
-## 新消息!Windows上的Bash
-现在,那些想要在本地运行Bash shell进而按照Linux编译教程进行操作的Windows用户有了新的选择.请参见[BashOnWindows](https://github.com/Microsoft/BashOnWindows).我们已经进行了验证,PX4可以在此环境下成功编译.目前还无法用其刷写固件,但是你可以使用Mission Planner或者QGroundControl地面站刷固件.
+## 其他 windows 工具链
 
+除 Cygwin 外开发者们还可以使用一些替代解决方案完成开发环境的构建， 下表对这些替代解决方案进行了详细的对比。
 
+> **注意** Windows平台下仅 [Cygwin 工具链](../setup/dev_env_windows_cygwin.md) 获得了PX4开发团队的官方支持。 它作为我们持续集成系统的一部分会被定期测试，在性能方面要比其它替代方案更出色。
+
+|            | [Cygwin 工具链](../setup/dev_env_windows_cygwin.md) **(官方支持)** | [虚拟机工具链](../setup/dev_env_windows_vm.md) | [Bash on Windows 工具链](../setup/dev_env_windows_bash_on_win.md) | [Msys 工具链](../setup/dev_env_windows_msys.md) |
+| ---------- | ----------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------------------- | -------------------------------------------- |
+| 安装方式       | MSI安装包/脚本                                                   | 手动安装 (硬核玩家)                              | 脚本                                                             | NSIS安装包                                      |
+| 本机二进制执行    | 是                                                           | 否                                        | 否                                                              | 是                                            |
+| 性能         | ++                                                          | --                                       | -                                                              | ++                                           |
+| ARM平台      | ++ (速度快)                                                    | + (VM USB)                               | +                                                              | - (功能损坏)                                     |
+| jMAVSim 仿真 | ++                                                          | +                                        | +                                                              | --                                           |
+| Gazebo 仿真  | - (暂不支持)                                                    | + (速度稍慢)                                 | + (速度稍慢)                                                       | --                                           |
+| 技术支持       | +                                                           | ++ (Linux)                               | +/-                                                            | --                                           |
+| 备注         |                                                             |                                          |                                                                |                                              |
+
+- 2018年新增
+- 安装配置轻巧
+- 便携
+
+|
+
+- 可获得齐全的Linux特性
+- CPU、内存的负荷较高
+- 占用较多的存储空间
+
+|
+
+- 仿真界面是“黑”进来的
+- 仅支持 Windows10
+- 本质上仍是虚拟机
+
+|
+
+- 无技术支持
+- 无帮助文档
+- 无法进行仿真模拟
+
+|
