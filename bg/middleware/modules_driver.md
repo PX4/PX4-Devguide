@@ -4,6 +4,28 @@ Subcategories:
 
 - [Distance Sensor](modules_driver_distance_sensor.md)
 
+## atxxxx
+
+Source: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
+
+### Description
+
+OSD driver for the ATXXXX chip that is mounted on the OmnibusF4SD board for example.
+
+It can be enabled with the OSD_ATXXXX_CFG parameter.
+
+### Usage {#atxxxx_usage}
+
+    atxxxx <command> [arguments...]
+     Commands:
+       start         Start the driver
+         [-b <val>]  SPI bus (default: use board-specific bus)
+    
+       stop
+    
+       status        print status info
+    
+
 ## batt_smbus
 
 Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
