@@ -73,8 +73,9 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
                      param)
                      default: 127.0.0.1
          [-m <val>]  Mode: sets default streams and rates
-                     values: custom|camera|onboard|osd|magic|config|iridium|minimal,
-                     default: normal
+                     values:
+                     custom|camera|onboard|osd|magic|config|iridium|minimal|extvsisi
+                     on, default: normal
          [-n <val>]  wifi/ethernet interface name
                      values: <interface_name>
          [-c <val>]  Multicast address (multicasting can be enabled via
