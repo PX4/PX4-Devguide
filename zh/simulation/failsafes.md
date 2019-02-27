@@ -12,11 +12,11 @@
 
 将参数 [NAV_DLL_ACT](../advanced/parameter_reference.md#NAV_DLL_ACT) 设置为想要的故障保护操作，以改变行为。 例如，设置为 `0` 禁用它。
 
-> **Note** All parameters in SITL including this one get reset when you do `make clean`.
+> **Note** 当您执行 `make clean` 时，SITL 中的所有参数（包括此参数）都会被重置。
 
-## RC Link Loss
+## RC 链接损失
 
-The *RC Link Loss* failsafe (unavailability of data from a remote control) is enabled by default. This makes the simulation only usable with either an active MAVLink or remote control connection.
+*RC 链接损失* failslafe （来自远程控制的数据不可用） 被默认启用。 这使得模拟仿真只能使用 MAVLink 或远程控制连接。
 
 Set the parameter [NAV_RCL_ACT](../advanced/parameter_reference.md#NAV_RCL_ACT) to the desired failsafe action to change the behavior. For example, set to `0` to disable it.
 
