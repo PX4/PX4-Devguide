@@ -1,10 +1,10 @@
 # 模拟故障保护
 
-[Failsafes](https://docs.px4.io/en/config/safety.html) define the safe limits/conditions under which you can safely use PX4, and the action that will be performed if a failsafe is triggered (for example, landing, holding position, or returning to a specified point).
+[ Failsafes ](https://docs.px4.io/en/config/safety.html) 为了您可以安全地使用 PX4，定义安全限制/条件，以及触发故障安全时将执行的操作（例如，着陆，保持或返回指定点）。
 
-In SITL some failsafes are disabled by default to enable easier simulation usage. This topic explains how you can test safety-critical behavior in SITL simulation before attempting it in the real world.
+在 SITL 中，默认情况下会禁用某一些故障，以便方便模拟使用。 本主题说明如何在实际世界中尝试 SITL 仿真之前测试安全关键行为。
 
-> **Note** You can also test failsafes using [HITL simulation](../simulation/hitl.md). HITL uses the normal configuration parameters of your flight controller.
+> **Note** 您还可以使用 [ HITL 模拟](../simulation/hitl.md) 测试故障。 HITL uses the normal configuration parameters of your flight controller.
 
 ## Data Link Loss
 
