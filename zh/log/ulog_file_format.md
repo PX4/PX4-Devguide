@@ -270,7 +270,7 @@ struct message_header_s {
 - [QGroundControl](https://github.com/mavlink/qgroundcontrol)：C++，通过 MAVLink 的 Ulog 流和最小的 GeoTagging。
 - [mavlink-router](https://github.com/01org/mavlink-router)：C++，通过 MAVLink 的 ULog 流。
 - [MAVGAnalysis](https://github.com/ecmnet/MAVGCL)：Java，通过 MAVLink 的数据流和日志的绘制、分析。
-- [PlotJuggler](https://github.com/facontidavide/PlotJuggler): C++/Qt application to plot logs and time series. Supports ULog since version 2.1.3.
+- [PlotJuggler](https://github.com/facontidavide/PlotJuggler): 绘制日志和时间序列的 C++/Qt 应用。 自版本2.1.3支持 ULog。
 
 ## 文件格式版本历史
 
