@@ -4,13 +4,13 @@
 
 在 SITL 中，默认情况下会禁用某一些故障，以便方便模拟使用。 本主题说明如何在实际世界中尝试 SITL 仿真之前测试安全关键行为。
 
-> **Note** 您还可以使用 [ HITL 模拟](../simulation/hitl.md) 测试故障。 HITL uses the normal configuration parameters of your flight controller.
+> **Note** 您还可以使用 [ HITL 模拟](../simulation/hitl.md) 测试故障。 HITL 使用飞行控制器的常规配置参数。
 
-## Data Link Loss
+## 数据链路丢失
 
-The *Data Link Loss* failsafe (unavailability of external data via MAVLink) is enabled by default. This makes the simulation only usable with a connected GCS, SDK, or other MAVLink application.
+默认情况下启用 *数据链路丢失* 故障保护（无法通过 MAVLink 获取外部数据）。 这使得模拟仅适用于连接的 GCS，SDK 或其他 MAVLink 应用程序。
 
-Set the parameter [NAV_DLL_ACT](../advanced/parameter_reference.md#NAV_DLL_ACT) to the desired failsafe action to change the behavior. For example, set to `0` to disable it.
+将参数 [NAV_DLL_ACT](../advanced/parameter_reference.md#NAV_DLL_ACT) 设置为想要的故障保护操作，以改变行为。 例如，设置为 `0` 禁用它。
 
 > **Note** All parameters in SITL including this one get reset when you do `make clean`.
 
