@@ -18,20 +18,20 @@
 
 *RC 链接损失* failslafe （来自远程控制的数据不可用） 被默认启用。 这使得模拟仿真只能使用 MAVLink 或远程控制连接。
 
-Set the parameter [NAV_RCL_ACT](../advanced/parameter_reference.md#NAV_RCL_ACT) to the desired failsafe action to change the behavior. For example, set to `0` to disable it.
+将参数 [NAV_RCL_ACT](../advanced/parameter_reference.md#NAV_RCL_ACT) 设置为所需的故障保护操作，以更改行为。 例如，设置为 `0` 禁用它。
 
-> **Note** All parameters in SITL including this one get reset when you do `make clean`.
+> **Note** 当您执行 `make clean` 时，SITL 中的所有参数（包括此参数）都会被重置。
 
-## Low Battery
+## 低电量
 
-The simulated battery is implemented to never run out of energy, and by default only depletes to 50% of its capacity and hence reported voltage. This enables testing of battery indication in GCS UIs without triggering low battery reactions that might interrupt other testing.
+模拟仿真的电池永远不会耗尽电量，并且默认情况下仅耗尽其容量的 50％ 会发送电压报告。 这可以在 GCS UI 中测试电池指示，而不会触发可能中断其他测试的低电池反应。
 
-To change this minimal battery percentage value change [this line](https://github.com/PX4/Firmware/blob/9d67bbc328553bbd0891ffb8e73b8112bca33fcc/src/modules/simulator/simulator_mavlink.cpp#L330).
+要更改此最小电池百分比值，请更改 [this line](https://github.com/PX4/Firmware/blob/9d67bbc328553bbd0891ffb8e73b8112bca33fcc/src/modules/simulator/simulator_mavlink.cpp#L330)。
 
-To control how fast the battery depletes to the minimal value use the parameter [SIM_BAT_DRAIN](../advanced/parameter_reference.md#SIM_BAT_DRAIN).
+要控制电池消耗到最小值的速度，请使用参数 [SIM_BAT_DRAIN](../advanced/parameter_reference.md#SIM_BAT_DRAIN)。
 
-> **Tip** By changing this configuration in flight, you can also test regaining capacity to simulate inaccurate battery state estimation or in-air charging technology.
+> **Tip** 通过在飞行中更改此配置，您还可以测试恢复能力，以模拟不准确的电池状态估计或空中充电技术。
 
-## GPS Loss
+## GPS 损失
 
-To make simulate losing and regaining GPS information you can just stop/restart the GPS driver. This is done by running the `gpssim stop` and `gpssim start` commands on your SITL instance *pxh shell*.
+为了模拟丢失和重新获取 GPS 全球定位系统信息，您可以停止/重新启动 GPS 驱动程序。 这是通过在 SITL 实例 *pxh shell* 上运行 `gpssim stop` 和 `gpssim start` 命令来完成的。
