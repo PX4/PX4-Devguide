@@ -4,6 +4,9 @@ PX4 can be built on the console or in an IDE, for both simulated and hardware ta
 
 > **Note** Before following these instructions you must first install the [Developer Toolchain](../setup/dev_env.md) for your host operating system and target hardware.
 
+<span></span>
+> **Tip** For solutions to common build problems see [Troubleshooting](#troubleshooting) below.
+
 ## Downloading PX4 Source Code {#get_px4_code}
 
 The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
@@ -570,3 +573,13 @@ Then use the make target, specifying the target build to compare (`px4_fmu-v2_de
 ```
 This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash.
 It also shows the sizes of different pieces of the *mpu9250* driver.
+
+
+## Troubleshooting {#troubleshooting}
+
+### MacOS: Too many open files error
+
+The PX4 build process opens a large number of files, and may exceed the default macOS limits.
+
+If you get a "too many open files" error run the [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh) script in your Terminal for each session. 
+
