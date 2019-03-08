@@ -77,7 +77,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
 3. Select Airframe
     
     1. Open **Setup > Airframes**
-    2. Select a [compatible airframe](#compatible_airframe) you want to test. Generally you'll select *HILStar* for Fixed Wing/X-Plane simulator and a *HIL QuadCopter* option for copters (and jMAVSim or Gazebo). Then click "Apply and Restart" on top-right of the Airframe Setup page.
+    2. Select a [compatible airframe](#compatible_airframe) you want to test. Generally you'll select *HILStar* for Fixed Wing/X-Plane simulator and a *HIL QuadCopter* option for copters (and jMAVSim or Gazebo). Then click **Apply and Restart** on top-right of the *Airframe Setup* page.
         
         ![Select Airframe](../../assets/gcs/qgc_hil_config.png)
 
@@ -166,9 +166,7 @@ To set up X-Plane:
 4. Enable X-Plane HITL in *QGroundControl*:
     
     1. Open *QGroundControl*
-    2. Open **Widgets > HIL Config**. Select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
-        
-        ![](../../assets/gcs/qgc_sim_run.png)
+    2. Open **Widgets > HIL Config**. Select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid.
 
 ## Fly an Autonomous Mission in HITL
 
