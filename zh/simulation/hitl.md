@@ -77,7 +77,7 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 3. 选择机架
     
     1. 打开 **Setup > Airframes** 选项卡。
-    2. 选择一个你想要进行测试的 [兼容的机架](#compatible_airframe) 。 通常情况下选择 *HILStar* 作为固定翼平台/X-Plane 模拟器，选择 *HIL QuadCopter* 作为旋翼平台 ( jMAVSim 或 Gazebo) 。 然后单击 "机身设置" 页面右上角的 "Apply and Restart"。
+    2. 选择一个你想要进行测试的 [兼容的机架](#compatible_airframe) 。 通常情况下选择 *HILStar* 作为固定翼平台/X-Plane 模拟器，选择 *HIL QuadCopter* 作为旋翼平台 ( jMAVSim 或 Gazebo) 。 Then click **Apply and Restart** on top-right of the *Airframe Setup* page.
         
         ![选择机架](../../assets/gcs/qgc_hil_config.png)
 
@@ -166,9 +166,7 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 4. 在 *QGroundControl* 中启用 X-Plane HITL ：
     
     1. 开启 *QGroundControl*。
-    2. 打开 **Widgets > HIL Config** 界面， 在下拉列表中选择 X-Plane 10 并点击连接。 系统完成连接后，电池状态、 GPS 状态及飞机位置信息应变为有效：
-        
-        ![](../../assets/gcs/qgc_sim_run.png)
+    2. Open **Widgets > HIL Config**. Select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid.
 
 ## 在 HITL 仿真中执行自主飞行任务
 
