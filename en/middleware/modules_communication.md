@@ -74,8 +74,9 @@ mavlink <command> [arguments...]
                  param)
                  default: 127.0.0.1
      [-m <val>]  Mode: sets default streams and rates
-                 values: custom|camera|onboard|osd|magic|config|iridium|minimal,
-                 default: normal
+                 values:
+                 custom|camera|onboard|osd|magic|config|iridium|minimal|extvsisi
+                 on, default: normal
      [-n <val>]  wifi/ethernet interface name
                  values: <interface_name>
      [-c <val>]  Multicast address (multicasting can be enabled via
