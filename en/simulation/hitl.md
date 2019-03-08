@@ -1,6 +1,7 @@
 # Hardware in the Loop Simulation \(HITL\)
 
-Hardware-in-the-Loop (HITL or HIL) is a simulation mode in which normal PX4 firmware is run on real flight controller hardware. This approach has the benefit of testing most of the actual flight code on the real hardware.
+Hardware-in-the-Loop (HITL or HIL) is a simulation mode in which normal PX4 firmware is run on real flight controller hardware. 
+This approach has the benefit of testing most of the actual flight code on the real hardware.
 
 PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and fixed wing (using Gazebo or X-Plane demo/full version). 
 
@@ -21,16 +22,18 @@ Airframe | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim
 
 ## HITL Simulation Environment {#simulation_environment}
 
-With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL configuration is slightly different for Gazebo, jMAVSim and X-Plane.
+With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. 
+The HITL configuration is slightly different for Gazebo, jMAVSim and X-Plane.
 
 > **Tip** For more information see: [Simulation](../simulation/README.md).
 
 ### JMAVSim/Gazebo HITL Environment
 
-JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*. 
+JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. 
+The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*. 
 
 > **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable).
-For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)).
+  For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)).
 
 <span></span>
 > **Tip** Gazebo can additionally share MAVLink data with an offboard API!
@@ -61,9 +64,12 @@ The diagram below shows the simulation environment:
 
 ## HITL vs SITL
 
-SITL runs on a development computer in a simulated environment, and uses firmware specifically generated for that environment. Other than simulation drivers to provide fake environmental data from the simulator the system behaves normally.
+SITL runs on a development computer in a simulated environment, and uses firmware specifically generated for that environment. 
+Other than simulation drivers to provide fake environmental data from the simulator the system behaves normally.
 
-By contrast, HITL runs normal PX4 firmware in "HITL mode", on normal hardware. The simulation data enters the system at a different point than for SITL. Core modules like commander and sensors have HIL modes at startup that bypass some of the normal functionality. 
+By contrast, HITL runs normal PX4 firmware in "HITL mode", on normal hardware. 
+The simulation data enters the system at a different point than for SITL. 
+Core modules like commander and sensors have HIL modes at startup that bypass some of the normal functionality. 
 
 In summary, HITL runs PX4 on the actual hardware using standard firmware, but SITL actually executes more of the standard system code.
 
@@ -80,7 +86,9 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
       ![QGroundControl HITL configuration](../../assets/gcs/qgc_hitl_config.png)
 1. Select Airframe
    1. Open **Setup > Airframes**
-   1. Select a [compatible airframe](#compatible_airframe) you want to test. Generally you'll select *HILStar* for Fixed Wing/X-Plane simulator and a *HIL QuadCopter* option for copters (and jMAVSim or Gazebo). Then click "Apply and Restart" on top-right of the Airframe Setup page.
+   1. Select a [compatible airframe](#compatible_airframe) you want to test. 
+      Generally you'll select *HILStar* for Fixed Wing/X-Plane simulator and a *HIL QuadCopter* option for copters (and jMAVSim or Gazebo). 
+      Then click **Apply and Restart** on top-right of the *Airframe Setup* page.
 
       ![Select Airframe](../../assets/gcs/qgc_hil_config.png)
 1. Calibrate your RC or Joystick, if needed.
@@ -158,9 +166,10 @@ To set up X-Plane:
 
 1. Enable X-Plane HITL in *QGroundControl*:
    1. Open *QGroundControl*
-   1. Open **Widgets > HIL Config**. Select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid:
+   1. Open **Widgets > HIL Config**. 
+      Select X-Plane 10 in the drop-down and hit connect. 
+      Once the system is connected, battery status, GPS status and aircraft position should all become valid.
 
-      ![](../../assets/gcs/qgc_sim_run.png)
 
 
 ## Fly an Autonomous Mission in HITL
