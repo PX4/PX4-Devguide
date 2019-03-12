@@ -19,7 +19,7 @@ This tutorial shows how to send the MAVLink message `NAMED_VALUE_FLOAT` using th
 The code for this tutorial is available here:
 
 * [Debug Tutorial Code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.cpp)
-* [Enable the tutorial app](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake) by uncommenting / enabling the mavlink debug app in the config of your board if it's commented
+* [Enable the tutorial app](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake) by ensuring the MAVLink debug app (**px4_mavlink_debug**) is uncommented in the config of your board.
 
 All required to set up a debug publication is this code snippet. First add the header file:
 
