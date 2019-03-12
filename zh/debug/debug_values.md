@@ -12,8 +12,8 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 这个教程的代码可以从这里获取:
 
-* [调试教程代码](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.c)
-* [使能教程应用](https://github.com/PX4/Firmware/tree/master/cmake/configs) 通过取消掉板子中配置文件中对 mavlink debug app 的注释来使能这个应用。
+* [调试教程代码](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.cpp)
+* [使能教程应用](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake) 通过取消掉板子中配置文件中对 mavlink debug app 的注释来使能这个应用。
 
 配置一个调试发布（debug publication）只需要这个代码片段，先加入头文件：
 
