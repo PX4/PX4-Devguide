@@ -176,4 +176,5 @@ Monitor topic publication rates. Besides `top`, this is an important command for
     
        top           Monitor topic publication rates
          [-a]        print all instead of only currently publishing topics
+         [-1]        run only once, then exit
          [<filter1> [<filter2>]] topic(s) to match (implies -a)
