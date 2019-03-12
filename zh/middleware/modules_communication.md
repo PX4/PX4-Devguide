@@ -167,12 +167,13 @@ uORB 模块通常作为第一个模块启动，并且绝大多数其它模块均
 
 ### 用法 {#uorb_usage}
 
-    uorb &lt;command&gt; [arguments...]
+    uorb <command> [arguments...]
      Commands:
        start
     
-       status        打印主题统计信息
+       status        Print topic statistics
     
-       top           监控主题发布速率
-         [-a]        打印所有主题，而不仅仅是打印当前正在发布的主题
-         [&lt;filter1&gt; [&lt;filter2&gt;]] 要匹配的主题（topics to match） (暗示 -a)
+       top           Monitor topic publication rates
+         [-a]        print all instead of only currently publishing topics
+         [-1]        run only once, then exit
+         [<filter1> [<filter2>]] topic(s) to match (implies -a)
