@@ -14,8 +14,8 @@
 
 1. 编译 PX4 ```make px4_sitl_default```
 2. 运行 **sitl_multiple_run.sh**, 指定要启动的飞行器的实例数目 (例如 2): ```./Tools/sitl_multiple_run.sh 2```
-3. 启动第一个实例: ```./Tools/jmavsim_run.sh```
-4. Start subsequent instances, specifying the *simulation* TCP port for the instance: ```./Tools/jmavsim_run.sh -p 4561``` The port should be set to `4560+i` for `i` in `[0, N-1]`.
+3. 启动第一个实例: ```./Tools/jmavsim_run.sh -l```
+4. Start subsequent instances, specifying the *simulation* TCP port for the instance: ```./Tools/jmavsim_run.sh -p 4561 -l``` The port should be set to `4560+i` for `i` in `[0, N-1]`.
 
 *QGroundControl* 和开发者 APIs (比如 Dronecode SDK) 可以通过代码默认端口连接到所有实例（分别为14550 和 14540）。
 
