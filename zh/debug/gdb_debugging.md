@@ -43,7 +43,7 @@ sudo apt-get install google-perftools libgoogle-perftools-dev
 make px4_sitl_default
 ```
 
-启动 jmavsim：`./Tools/jmavsim_run.sh`
+Start jmavsim: `./Tools/jmavsim_run.sh -l`
 
 在另一个终端输入：
 
