@@ -161,6 +161,7 @@ char[value_len] sys_toolchain | Toolchain Name |  "GNU GCC"
 char[value_len] sys_toolchain_ver | Toolchain Version |  "6.2.1"
 char[value_len] sys_mcu | Chip name and revision |  "STM32F42x, rev A"
 char[value_len] sys_uuid | Unique identifier for vehicle (eg. MCU ID) |  "392a93e32fa3"...
+char[value_len] log_type | Type of the log (full log if not specified) | "mission"
 char[value_len] replay | File name of replayed log if in replay mode | "log001.ulg" 
 int32_t time_ref_utc | UTC Time offset in seconds | -3600 |
 
