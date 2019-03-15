@@ -503,7 +503,7 @@ Notes:
 - You can use three underscores if you want to specify a default value between two other settings. 
   For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
 - You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. 
-  For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
+  For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
 
 
 The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory.

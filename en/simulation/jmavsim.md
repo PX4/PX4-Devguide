@@ -111,7 +111,7 @@ The simulator broadcasts its address on the local network as a real drone would 
 You can start JMAVSim and PX4 separately:
 
 ```
-./Tools/jmavsim_run.sh
+./Tools/jmavsim_run.sh -l
 make px4_sitl none
 ```
 

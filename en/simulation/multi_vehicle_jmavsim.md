@@ -25,11 +25,11 @@ To start multiple instances (on separate ports):
    ```
 1. Start the first instance:
    ```
-   ./Tools/jmavsim_run.sh
+   ./Tools/jmavsim_run.sh -l
   ```
 1. Start subsequent instances, specifying the *simulation* TCP port for the instance:
    ```
-   ./Tools/jmavsim_run.sh -p 4561
+   ./Tools/jmavsim_run.sh -p 4561 -l
    ```
    The port should be set to `4560+i` for `i` in `[0, N-1]`.
 

@@ -41,7 +41,7 @@ First of all, build the firmware as follows:
 ```bash
 make px4_sitl_default
 ```
-Start jmavsim: `./Tools/jmavsim_run.sh`
+Start jmavsim: `./Tools/jmavsim_run.sh -l`
 
 In another terminal, type:
 ```bash
