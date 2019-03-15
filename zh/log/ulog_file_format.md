@@ -119,23 +119,24 @@ struct message_header_s {
   
   预定义的信息报文有：
 
-| 键                                   | 描述                   | 示例值                |
-| ----------------------------------- | -------------------- | ------------------ |
-| char[value_len] sys_name          | 系统名称                 | "PX4"              |
-| char[value_len] ver_hw            | 硬件版本 (主板)            | "PX4FMU_V4"        |
-| char[value_len] ver_hw_subtype    | 主办子版本 (变化的)          | "V2"               |
-| char[value_len] ver_sw            | 软件版本 (git 标签)        | "7f65e01"          |
-| char[value_len] ver_sw_branch     | git branch           | "master"           |
-| uint32_t ver_sw_release           | 软件版本 (见下文)           | 0x010401ff         |
-| char[value_len] sys_os_name       | 操作系统名称               | "Linux"            |
-| char[value_len] sys_os_ver        | 操作系统版本 (git 标签)      | "9f82919"          |
-| uint32_t ver_os_release           | 操作系统版本 (见下文)         | 0x010401ff         |
-| char[value_len] sys_toolchain     | 工具链名称                | "GNU GCC"          |
-| char[value_len] sys_toolchain_ver | 工具链版本                | "6.2.1"            |
-| char[value_len] sys_mcu           | 芯片名称和修订              | "STM32F42x, rev A" |
-| char[value_len] sys_uuid          | 车辆的唯一标识符 (例如 MCU ID) | "392a93e32fa3"...  |
-| char[value_len] replay              | 重播日志的文件名如果处于重播模式     | "log001.ulg"       |
-| int32_t time_ref_utc              | UTC 时间的秒偏移量          | -3600              |
+| 键                                   | 描述                                          | 示例值                |
+| ----------------------------------- | ------------------------------------------- | ------------------ |
+| char[value_len] sys_name          | 系统名称                                        | "PX4"              |
+| char[value_len] ver_hw            | 硬件版本 (主板)                                   | "PX4FMU_V4"        |
+| char[value_len] ver_hw_subtype    | 主办子版本 (变化的)                                 | "V2"               |
+| char[value_len] ver_sw            | 软件版本 (git 标签)                               | "7f65e01"          |
+| char[value_len] ver_sw_branch     | git branch                                  | "master"           |
+| uint32_t ver_sw_release           | 软件版本 (见下文)                                  | 0x010401ff         |
+| char[value_len] sys_os_name       | 操作系统名称                                      | "Linux"            |
+| char[value_len] sys_os_ver        | 操作系统版本 (git 标签)                             | "9f82919"          |
+| uint32_t ver_os_release           | 操作系统版本 (见下文)                                | 0x010401ff         |
+| char[value_len] sys_toolchain     | 工具链名称                                       | "GNU GCC"          |
+| char[value_len] sys_toolchain_ver | 工具链版本                                       | "6.2.1"            |
+| char[value_len] sys_mcu           | 芯片名称和修订                                     | "STM32F42x, rev A" |
+| char[value_len] sys_uuid          | 车辆的唯一标识符 (例如 MCU ID)                        | "392a93e32fa3"...  |
+| char[value_len] log_type          | Type of the log (full log if not specified) | "mission"          |
+| char[value_len] replay              | File name of replayed log if in replay mode | "log001.ulg"       |
+| int32_t time_ref_utc              | UTC Time offset in seconds                  | -3600              |
 
     `ver_sw_release` 和 `ver_os_release` 的类型是：0xAABBCCTT，其中 AA 是主要的，BB 是次要的，CC 是补丁，TT 是类型。 
     类型定义如下：`>= 0`：development 版本，`>= 64`：alpha 版本，`>= 128`：beta 版本，`>= 192`：RC 版本，`== 255`：release 版本。
