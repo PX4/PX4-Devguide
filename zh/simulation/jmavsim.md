@@ -101,7 +101,7 @@ make broadcast jmavsim
 
 你可以单独启动 JMAVSim 和 PX4:
 
-    ./Tools/jmavsim_run.sh
+    ./Tools/jmavsim_run.sh -l
     make px4_sitl none
     
 
