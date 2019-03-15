@@ -14,8 +14,8 @@ To start multiple instances (on separate ports):
 
 1. Build PX4 ```make px4_sitl_default```
 2. Run **sitl_multiple_run.sh**, specifying the number of instances to start (e.g. 2): ```./Tools/sitl_multiple_run.sh 2```
-3. Start the first instance: ```./Tools/jmavsim_run.sh```
-4. Start subsequent instances, specifying the *simulation* TCP port for the instance: ```./Tools/jmavsim_run.sh -p 4561``` The port should be set to `4560+i` for `i` in `[0, N-1]`.
+3. Start the first instance: ```./Tools/jmavsim_run.sh -l```
+4. Start subsequent instances, specifying the *simulation* TCP port for the instance: ```./Tools/jmavsim_run.sh -p 4561 -l``` The port should be set to `4560+i` for `i` in `[0, N-1]`.
 
 *QGroundControl* and developer APIs (e.g. Dronecode SDK) connect to all instances using the normal/default ports (14550 and 14540, respectively).
 
