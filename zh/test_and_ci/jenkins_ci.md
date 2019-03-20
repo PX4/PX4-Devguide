@@ -8,7 +8,7 @@
 - 测试在 [Docker Containers](../test_and_ci/docker.md) 内运行
 - Jenkins 执行了 2 个工作：一个用于检查每个 PR 与主控，另一个用于检查主控上的每次推送
 
-## Test Execution
+## 测试执行
 
 Jenkins 使用 [run_container.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_container.bash) 来启动 container，而 container 又执行 [ run_tests.bash ](https://github.com/PX4/Firmware/blob/master/integrationtests/run_tests.bash) 来编译和运行测试。
 
