@@ -30,7 +30,7 @@ The core team/subsystem maintainers will be available for up to 45 additional mi
 
 
 ## Schedule
-* TIME: Wednesday 5PM CET, 11AM EST, 8AM PST \([subscribe to calendar](https://www.dronecode.org/calendar/)\)
+* TIME: Wednesday 17h00 CET, 12h00 EST, 8h00 PST \([subscribe to calendar](https://www.dronecode.org/calendar/)\)
 * **Join the call**: https://zoom.us/j/946175205 
 * **Meeting ID**: 946 175 205
 * **Dial(for higher quality, dial a number based on your current location)**:
