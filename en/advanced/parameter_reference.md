@@ -253,23 +253,6 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 </tr>
 </tbody></table>
 
-## Camera Capture
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
- <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
- <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
- </thead>
-<tbody>
-<tr>
- <td style="vertical-align: top;"><strong id="CAM_CAP_DELAY">CAM_CAP_DELAY</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Camera strobe delay</p><p><strong>Comment:</strong> This parameter sets the delay between image integration start and strobe firing</p>   </td>
- <td style="vertical-align: top;">0.0 > 100.0 </td>
- <td style="vertical-align: top;">0.0 </td>
- <td style="vertical-align: top;">ms</td>
-</tr>
-</tbody></table>
-
 ## Camera Control
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
@@ -279,38 +262,14 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
  </thead>
 <tbody>
 <tr>
- <td style="vertical-align: top;"><strong id="CAM_CAP_EDGE">CAM_CAP_EDGE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Camera capture edge</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Falling edge</li> 
+ <td style="vertical-align: top;"><strong id="CAM_FBACK_MODE">CAM_FBACK_MODE</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Camera feedback mode</p><p><strong>Comment:</strong> Sets the camera feedback mode.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Disabled</li> 
 
-<li><strong>1:</strong> Rising edge</li> 
+<li><strong>1:</strong> Feedback on trigger</li> 
 </ul>
-  <p><b>Reboot required:</b> true</p>
-</td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="CAM_CAP_FBACK">CAM_CAP_FBACK</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Camera capture feedback</p><p><strong>Comment:</strong> Enables camera capture feedback</p>   <p><b>Reboot required:</b> true</p>
-</td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="CAM_CAP_MODE">CAM_CAP_MODE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Camera capture timestamping mode</p><p><strong>Comment:</strong> Change time measurement</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Get absolute timestamp</li> 
-
-<li><strong>1:</strong> Get timestamp of mid exposure (active high)</li> 
-
-<li><strong>2:</strong> Get timestamp of mid exposure (active low)</li> 
-</ul>
-  <p><b>Reboot required:</b> true</p>
-</td>
- <td style="vertical-align: top;"></td>
+  </td>
+ <td style="vertical-align: top;">0 > 1 </td>
  <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;"></td>
 </tr>
@@ -635,6 +594,13 @@ Note: ekf2 will limit the delta velocity bias estimate magnitude to be less than
  <td style="vertical-align: top;">s</td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="COM_DL_REG_T">COM_DL_REG_T</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Datalink regain time threshold</p><p><strong>Comment:</strong> After a data link loss: after this this amount of seconds with a healthy datalink the 'datalink loss' flag is set back to false</p>   </td>
+ <td style="vertical-align: top;">0 > 3 (0.5)</td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;">s</td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="COM_EF_C2T">COM_EF_C2T</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Engine Failure Current/Throttle Threshold</p><p><strong>Comment:</strong> Engine failure triggers only below this current value</p>   </td>
  <td style="vertical-align: top;">0.0 > 50.0 (1)</td>
@@ -940,7 +906,7 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_POS_FS_EPH">COM_POS_FS_EPH</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Horizontal position error threshold</p><p><strong>Comment:</strong> This is the horizontal position error (EPH) threshold that will trigger a failsafe. The default is appropriate for a multicopter. Can be increased for a fixed-wing.</p>   </td>
+ <td style="vertical-align: top;"><p>Horizontal position error threshold</p><p><strong>Comment:</strong> This is the horizontal position error (EPV) threshold that will trigger a failsafe. The default is appropriate for a multicopter. Can be increased for a fixed-wing.</p>   </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">5 </td>
  <td style="vertical-align: top;">m</td>
@@ -1769,19 +1735,10 @@ If the baro height estimate rises during forward flight, then this will be a neg
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="EKF2_PCOEF_YN">EKF2_PCOEF_YN</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Pressure position error coefficient for the negative Y axis.
-This is the ratio of static pressure error to dynamic pressure generated by a wind relative velocity along the negative Y (LH) body axis.
-If the baro height estimate rises during sideways flight to the left, then this will be a negative number</p>   </td>
- <td style="vertical-align: top;">-0.5 > 0.5 </td>
- <td style="vertical-align: top;">0.0 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="EKF2_PCOEF_YP">EKF2_PCOEF_YP</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Pressure position error coefficient for the positive Y axis.
-This is the ratio of static pressure error to dynamic pressure generated by a wind relative velocity along the positive Y (RH) body axis.
-If the baro height estimate rises during sideways flight to the right, then this will be a negative number</p>   </td>
+ <td style="vertical-align: top;"><strong id="EKF2_PCOEF_Y">EKF2_PCOEF_Y</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Pressure position error coefficient for the Y axis.
+This is the ratio of static pressure error to dynamic pressure generated by a wind relative velocity along the Y body axis.
+If the baro height estimate rises during sideways flight, then this will be a negative number</p>   </td>
  <td style="vertical-align: top;">-0.5 > 0.5 </td>
  <td style="vertical-align: top;">0.0 </td>
  <td style="vertical-align: top;"></td>
@@ -3788,8 +3745,6 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 <li><strong>5:</strong> Config</li> 
 
 <li><strong>7:</strong> Minimal</li> 
-
-<li><strong>8:</strong> External Vision</li> 
 </ul>
   <p><b>Reboot required:</b> True</p>
 </td>
@@ -3854,8 +3809,6 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 <li><strong>5:</strong> Config</li> 
 
 <li><strong>7:</strong> Minimal</li> 
-
-<li><strong>8:</strong> External Vision</li> 
 </ul>
   <p><b>Reboot required:</b> True</p>
 </td>
@@ -3920,8 +3873,6 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 <li><strong>5:</strong> Config</li> 
 
 <li><strong>7:</strong> Minimal</li> 
-
-<li><strong>8:</strong> External Vision</li> 
 </ul>
   <p><b>Reboot required:</b> True</p>
 </td>
@@ -4223,14 +4174,6 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="COM_OBS_AVOID">COM_OBS_AVOID</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Flag to enable obstacle avoidance
-Temporary Parameter to enable interface testing</p>   </td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="COM_POSCTL_NAVL">COM_POSCTL_NAVL</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Position control navigation loss response</p><p><strong>Comment:</strong> This sets the flight mode that will be used if navigation accuracy is no longer adequate for position control. Navigation accuracy checks can be disabled using the CBRK_VELPOSERR parameter, but doing so will remove protection for all flight modes.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Assume use of remote control after fallback. Switch to Altitude mode if a height estimate is available, else switch to MANUAL.</li> 
@@ -4305,13 +4248,6 @@ Temporary Parameter to enable interface testing</p>   </td>
  <td style="vertical-align: top;">0 > 80 (0.5)</td>
  <td style="vertical-align: top;">2.5 </td>
  <td style="vertical-align: top;">m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="MIS_TAKEOFF_REQ">MIS_TAKEOFF_REQ</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Take-off waypoint required</p><p><strong>Comment:</strong> If set, the mission feasibility checker will check for a takeoff waypoint on the mission.</p>   </td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MIS_YAW_ERR">MIS_YAW_ERR</strong> (FLOAT)</td>
@@ -5100,6 +5036,14 @@ is 90 degrees. It should be lower than MPC_XY_CRUISE</p><p><strong>Comment:</str
  <td style="vertical-align: top;">deg/s</td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="MPC_OBS_AVOID">MPC_OBS_AVOID</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Flag to enable obstacle avoidance
+Temporary Parameter to enable interface testing</p>   </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="MPC_POS_MODE">MPC_POS_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Manual-Position control sub-mode</p><p><strong>Comment:</strong> The supported sub-modes are: 0 Default position control where sticks map to position/velocity directly. Maximum speeds is MPC_VEL_MANUAL. 1 Smooth position control where setpoints are adjusted based on acceleration limits and jerk limits. 2 Sport mode that is the same Default position control but with velocity limits set to the maximum allowed speeds (MPC_XY_VEL_MAX) 3 Smooth position control with maximum acceleration and jerk limits (different algorithm than 1).</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Default position control</li> 
@@ -5171,8 +5115,8 @@ is 90 degrees. It should be lower than MPC_XY_CRUISE</p><p><strong>Comment:</str
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_TKO_RAMP_T">MPC_TKO_RAMP_T</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Position control smooth takeoff ramp time constant</p><p><strong>Comment:</strong> Increasing this value will make automatic and manual takeoff slower. If it's too slow the drone might scratch the ground and tip over. A time constant of 0 disables the ramp</p>   </td>
- <td style="vertical-align: top;">0 > 1 </td>
+ <td style="vertical-align: top;"><p>Position control smooth takeoff ramp time constant</p><p><strong>Comment:</strong> Increasing this value will make automatic and manual takeoff slower. If it's too slow the drone might scratch the ground and tip over.</p>   </td>
+ <td style="vertical-align: top;">0.1 > 1 </td>
  <td style="vertical-align: top;">0.4 </td>
  <td style="vertical-align: top;"></td>
 </tr>
@@ -5338,31 +5282,6 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>   </td>
  <td style="vertical-align: top;">0 > 120 </td>
  <td style="vertical-align: top;">90.0 </td>
  <td style="vertical-align: top;">deg/s</td>
-</tr>
-</tbody></table>
-
-## OSD
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
- <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
- <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
- </thead>
-<tbody>
-<tr>
- <td style="vertical-align: top;"><strong id="OSD_ATXXXX_CFG">OSD_ATXXXX_CFG</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Enable/Disable the ATXXX OSD Chip</p><p><strong>Comment:</strong> Configure the ATXXXX OSD Chip (mounted on the OmnibusF4SD board) and select the transmission standard.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
-
-<li><strong>1:</strong> NTSC</li> 
-
-<li><strong>2:</strong> PAL</li> 
-</ul>
-  <p><b>Reboot required:</b> true</p>
-</td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
 </tr>
 </tbody></table>
 
@@ -8328,7 +8247,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_KILL_SW">RC_MAP_KILL_SW</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Emergency Kill switch channel</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>Kill switch channel</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Unassigned</li> 
 
 <li><strong>1:</strong> Channel 1</li> 
@@ -8866,6 +8785,16 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>   </td>
  <td style="vertical-align: top;">60 </td>
  <td style="vertical-align: top;">m</td>
 </tr>
+</tbody></table>
+
+## Return To Land
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+ <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
+ <thead>
+   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+ </thead>
+<tbody>
 <tr>
  <td style="vertical-align: top;"><strong id="RTL_TYPE">RTL_TYPE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Return type</p><p><strong>Comment:</strong> Fly straight to the home location or planned mission landing and land there or use the planned mission to get to those points.</p> <strong>Values:</strong><ul>
@@ -10850,6 +10779,149 @@ is less than 50% of this value</p>   </td>
 </tr>
 </tbody></table>
 
+## Simulation In Hardware
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+ <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
+ <thead>
+   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+ </thead>
+<tbody>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_IXX">SIH_IXX</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Vehicle inertia about X axis</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. It represents the difficulty of the vehicle to modify its angular rate.</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.005)</td>
+ <td style="vertical-align: top;">0.025 </td>
+ <td style="vertical-align: top;">kg*m*m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_IXY">SIH_IXY</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Vehicle cross term inertia xy</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. This value can be set to 0 for a quad symmetric about its center of mass.</p>   </td>
+ <td style="vertical-align: top;">(0.005)</td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">kg*m*m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_IXZ">SIH_IXZ</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Vehicle cross term inertia xz</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. This value can be set to 0 for a quad symmetric about its center of mass.</p>   </td>
+ <td style="vertical-align: top;">(0.005)</td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">kg*m*m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_IYY">SIH_IYY</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Vehicle inertia about Y axis</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. It represents the difficulty of the vehicle to modify its angular rate.</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.005)</td>
+ <td style="vertical-align: top;">0.025 </td>
+ <td style="vertical-align: top;">kg*m*m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_IYZ">SIH_IYZ</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Vehicle cross term inertia yz</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. This value can be set to 0 for a quad symmetric about its center of mass.</p>   </td>
+ <td style="vertical-align: top;">(0.005)</td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">kg*m*m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_IZZ">SIH_IZZ</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Vehicle inertia about Z axis</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. It represents the difficulty of the vehicle to modify its angular rate.</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.005)</td>
+ <td style="vertical-align: top;">0.030 </td>
+ <td style="vertical-align: top;">kg*m*m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_KDV">SIH_KDV</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>First order drag coefficient</p><p><strong>Comment:</strong> Physical coefficient representing the friction with air particules. The greater this value, the slower the quad will move. Drag force function of velocity: D=-KDV*V. The maximum freefall velocity can be computed as V=10*MASS/KDV [m/s]</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.05)</td>
+ <td style="vertical-align: top;">1.0 </td>
+ <td style="vertical-align: top;">N/(m/s)</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_KDW">SIH_KDW</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>First order angular damper coefficient</p><p><strong>Comment:</strong> Physical coefficient representing the friction with air particules during rotations. The greater this value, the slower the quad will rotate. Aerodynamic moment function of body rate: Ma=-KDW*W_B. This value can be set to 0 if unknown.</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.005)</td>
+ <td style="vertical-align: top;">0.025 </td>
+ <td style="vertical-align: top;">Nm/(rad/s)</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_L_PITCH">SIH_L_PITCH</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Pitch arm length</p><p><strong>Comment:</strong> This is the arm length generating the pitching moment This value can be measured with a ruler. This corresponds to half the distance between the front and rear motors.</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.05)</td>
+ <td style="vertical-align: top;">0.2 </td>
+ <td style="vertical-align: top;">m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_L_ROLL">SIH_L_ROLL</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Roll arm length</p><p><strong>Comment:</strong> This is the arm length generating the rolling moment This value can be measured with a ruler. This corresponds to half the distance between the left and right motors.</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.05)</td>
+ <td style="vertical-align: top;">0.2 </td>
+ <td style="vertical-align: top;">m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_MASS">SIH_MASS</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Vehicle mass</p><p><strong>Comment:</strong> This value can be measured by weighting the quad on a scale.</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.1)</td>
+ <td style="vertical-align: top;">1.0 </td>
+ <td style="vertical-align: top;">kg</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_Q_MAX">SIH_Q_MAX</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Max propeller torque</p><p><strong>Comment:</strong> This is the maximum torque delivered by one propeller when the motor is running at full speed. This value is usually about few percent of the maximum thrust force.</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.05)</td>
+ <td style="vertical-align: top;">0.1 </td>
+ <td style="vertical-align: top;">Nm</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH_T_MAX">SIH_T_MAX</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Max propeller thrust force</p><p><strong>Comment:</strong> This is the maximum force delivered by one propeller when the motor is running at full speed. This value is usually about 5 times the mass of the quadrotor.</p>   </td>
+ <td style="vertical-align: top;">0.0 > ? (0.5)</td>
+ <td style="vertical-align: top;">5.0 </td>
+ <td style="vertical-align: top;">N</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH__H0">SIH__H0</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Initial AMSL ground altitude</p><p><strong>Comment:</strong> This value represents the Above Mean Sea Level (AMSL) altitude where the simulation begins. If using FlightGear as a visual animation, this value can be tweaked such that the vehicle lies on the ground at takeoff. LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
+ <td style="vertical-align: top;">-420.0 > 8848.0 (0.01)</td>
+ <td style="vertical-align: top;">32.34 </td>
+ <td style="vertical-align: top;">m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH__LAT0">SIH__LAT0</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Initial geodetic latitude</p><p><strong>Comment:</strong> This value represents the North-South location on Earth where the simulation begins. A value of 45 deg should be written 450000000. LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
+ <td style="vertical-align: top;">-850000000 > 850000000 </td>
+ <td style="vertical-align: top;">454671160 </td>
+ <td style="vertical-align: top;">1e-7 deg</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH__LON0">SIH__LON0</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Initial geodetic longitude</p><p><strong>Comment:</strong> This value represents the East-West location on Earth where the simulation begins. A value of 45 deg should be written 450000000. LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
+ <td style="vertical-align: top;">-1800000000 > 1800000000 </td>
+ <td style="vertical-align: top;">-737578370 </td>
+ <td style="vertical-align: top;">1e-7 deg</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH__MU_X">SIH__MU_X</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>North magnetic field at the initial location</p><p><strong>Comment:</strong> This value represents the North magnetic field at the initial location. A magnetic field calculator can be found on the NOAA website Note, the values need to be converted from nano Tesla to Gauss LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
+ <td style="vertical-align: top;">-1.0 > 1.0 (0.001)</td>
+ <td style="vertical-align: top;">0.179 </td>
+ <td style="vertical-align: top;">Gauss</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH__MU_Y">SIH__MU_Y</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>East magnetic field at the initial location</p><p><strong>Comment:</strong> This value represents the East magnetic field at the initial location. A magnetic field calculator can be found on the NOAA website Note, the values need to be converted from nano Tesla to Gauss LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
+ <td style="vertical-align: top;">-1.0 > 1.0 (0.001)</td>
+ <td style="vertical-align: top;">-0.045 </td>
+ <td style="vertical-align: top;">Gauss</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SIH__MU_Z">SIH__MU_Z</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Down magnetic field at the initial location</p><p><strong>Comment:</strong> This value represents the Down magnetic field at the initial location. A magnetic field calculator can be found on the NOAA website Note, the values need to be converted from nano Tesla to Gauss LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
+ <td style="vertical-align: top;">-1.0 > 1.0 (0.001)</td>
+ <td style="vertical-align: top;">0.504 </td>
+ <td style="vertical-align: top;">Gauss</td>
+</tr>
+</tbody></table>
+
 ## Snapdragon UART ESC
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
@@ -11074,7 +11146,14 @@ is less than 50% of this value</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="SYS_HITL">SYS_HITL</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Enable HITL mode on next boot</p><p><strong>Comment:</strong> While enabled the system will boot in HITL mode and not enable all sensors and checks. When disabled the same vehicle can be normally flown outdoors.</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Enable HITL/SIH mode on next boot</p><p><strong>Comment:</strong> While enabled the system will boot in Hardware-In-The-Loop (HITL) or Simulation-In-Hardware (SIH) mode and not enable all sensors and checks. When disabled the same vehicle can be flown normally.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> HITL and SIH disabled</li> 
+
+<li><strong>1:</strong> HITL enabled</li> 
+
+<li><strong>2:</strong> SIH enabled</li> 
+</ul>
+  <p><b>Reboot required:</b> true</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
@@ -12474,14 +12553,6 @@ is less than 50% of this value</p>   </td>
    <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
  </thead>
 <tbody>
-<tr>
- <td style="vertical-align: top;"><strong id="V19_VT_ROLLDIR">V19_VT_ROLLDIR</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Temporary parameter for the upgrade to v1.9, this is reminder to check the direction of
-fixed-wing roll control surfaces on custom VTOLs platforms</p><p><strong>Comment:</strong> This parameter is present in v1.9 to enable smooth transition, it will be removed in v1.10. In firmware versions before v1.9, the VTOL attitude controller generated reversed fixed wing roll commands. As a consequence, all VTOL mixers had to reverse roll mixing. The VTOL roll commands in fixed wing mode were fixed in v1.9! - Standard VTOL platforms should be unaffected and this parameter can be ignored. - Custom VTOL platforms may crash if no action is taken, please check the direction of deflection of roll control surfaces before flight. Fix the roll mixer if necessary. Set to 1 to disable VTOL actuator outputs and display an info message (default). Set to 0 AFTER CAREFULLY CHECKING the direction of deflection of roll control surfaces.</p>   </td>
- <td style="vertical-align: top;">0 > 1 </td>
- <td style="vertical-align: top;">1 </td>
- <td style="vertical-align: top;"></td>
-</tr>
 <tr>
  <td style="vertical-align: top;"><strong id="VT_ARSP_BLEND">VT_ARSP_BLEND</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Transition blending airspeed</p><p><strong>Comment:</strong> Airspeed at which we can start blending both fw and mc controls. Set to 0 to disable.</p>   </td>
