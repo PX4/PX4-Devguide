@@ -19,6 +19,8 @@ Furthermore, the physical parameters representing the vehicle (such as mass, ine
 
 To run the SIH, you will need a [PX4 hardware autopilot](https://docs.px4.io/en/flight_controller/). If you are planning to use a [radio control transmitter and receiver pair](https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html) you should have that too. Alternatively, using QGroundControl, a [joystick](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) can be used to emulate a radio control system.
 
+The SIH is compatible with all FMU boards except FMUv2. The SIH is available on the firmware master branch and release version v1.9.0 and above.
+
 ## Setting up SIH
 
 Running the SIH is as easy as selecting an airframe. Plug the autopilot to the desktop computer with a USB cable, let it boot, then using a ground control station select the [SIH airframe](../airframes/airframe_reference.md#simulation-copter). The autopilot will then reboot. 
