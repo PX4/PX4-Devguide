@@ -23,7 +23,7 @@ To run the SIH, you will need a [PX4 hardware autopilot](https://docs.px4.io/en/
 
 Running the SIH is as easy as selecting an airframe. Plug the autopilot to the desktop computer with a USB cable, let it boot, then using a ground control station select the [SIH airframe](../airframes/airframe_reference.md#simulation-copter). The autopilot will then reboot. 
 
-If everything works correctly, the vehicle should be displayed on the ground control station map.
+When the SIH airframe is selected, the SIH module starts by itself, the vehicle should be displayed on the ground control station map.
 
 ## Setting up the display
 

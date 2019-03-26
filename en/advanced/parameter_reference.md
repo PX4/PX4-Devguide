@@ -1366,20 +1366,6 @@ Increasing it makes the multi-rotor wind estimates adjust more slowly</p>   </td
  <td style="vertical-align: top;">rad/sec</td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="EKF2_GND_EFF_DZ">EKF2_GND_EFF_DZ</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Baro deadzone range for height fusion</p><p><strong>Comment:</strong> Sets the value of deadzone applied to negative baro innovations. Deadzone is enabled when EKF2_GND_EFF_DZ > 0.</p>   </td>
- <td style="vertical-align: top;">0.0 > 10.0 </td>
- <td style="vertical-align: top;">0.0 </td>
- <td style="vertical-align: top;">M</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="EKF2_GND_MAX_HGT">EKF2_GND_MAX_HGT</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Height above ground level for ground effect zone</p><p><strong>Comment:</strong> Sets the maximum distance to the ground level where negative baro innovations are expected.</p>   </td>
- <td style="vertical-align: top;">0.0 > 5.0 </td>
- <td style="vertical-align: top;">0.5 </td>
- <td style="vertical-align: top;">M</td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="EKF2_GPS_CHECK">EKF2_GPS_CHECK</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Integer bitmask controlling GPS checks</p><p><strong>Comment:</strong> Set bits to 1 to enable checks. Checks enabled by the following bit positions 0 : Minimum required sat count set by EKF2_REQ_NSATS 1 : Minimum required GDoP set by EKF2_REQ_GDOP 2 : Maximum allowed horizontal position error set by EKF2_REQ_EPH 3 : Maximum allowed vertical position error set by EKF2_REQ_EPV 4 : Maximum allowed speed error set by EKF2_REQ_SACC 5 : Maximum allowed horizontal position rate set by EKF2_REQ_HDRIFT. This check will only run when the vehicle is on ground and stationary. Detecton of the stationary condition is controlled by the EKF2_MOVE_TEST parameter. 6 : Maximum allowed vertical position rate set by EKF2_REQ_VDRIFT. This check will only run when the vehicle is on ground and stationary. Detecton of the stationary condition is controlled by the EKF2_MOVE_TEST parameter. 7 : Maximum allowed horizontal speed set by EKF2_REQ_HDRIFT. This check will only run when the vehicle is on ground and stationary. Detecton of the stationary condition is controlled by the EKF2_MOVE_TEST parameter. 8 : Maximum allowed vertical velocity discrepancy set by EKF2_REQ_VDRIFT</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> Min sat count (EKF2_REQ_NSATS)</li> 
   <li><strong>1:</strong> Min GDoP (EKF2_REQ_GDOP)</li> 
@@ -9014,8 +9000,6 @@ to takeoff is reached</p>   </td>
 <tr>
  <td style="vertical-align: top;"><strong id="SDLOG_MODE">SDLOG_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Logging Mode</p><p><strong>Comment:</strong> Determines when to start and stop logging. By default, logging is started when arming the system, and stopped when disarming.</p> <strong>Values:</strong><ul>
-<li><strong>-1:</strong> disabled</li> 
-
 <li><strong>0:</strong> when armed until disarm (default)</li> 
 
 <li><strong>1:</strong> from boot until disarm</li> 
@@ -10863,149 +10847,6 @@ is less than 50% of this value</p>   </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">57600 </td>
  <td style="vertical-align: top;"></td>
-</tr>
-</tbody></table>
-
-## Simulation In Hardware
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
- <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
- <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
- </thead>
-<tbody>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_IXX">SIH_IXX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Vehicle inertia about X axis</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. It represents the difficulty of the vehicle to modify its angular rate.</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.005)</td>
- <td style="vertical-align: top;">0.025 </td>
- <td style="vertical-align: top;">kg*m*m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_IXY">SIH_IXY</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Vehicle cross term inertia xy</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. This value can be set to 0 for a quad symmetric about its center of mass.</p>   </td>
- <td style="vertical-align: top;">(0.005)</td>
- <td style="vertical-align: top;">0.0 </td>
- <td style="vertical-align: top;">kg*m*m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_IXZ">SIH_IXZ</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Vehicle cross term inertia xz</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. This value can be set to 0 for a quad symmetric about its center of mass.</p>   </td>
- <td style="vertical-align: top;">(0.005)</td>
- <td style="vertical-align: top;">0.0 </td>
- <td style="vertical-align: top;">kg*m*m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_IYY">SIH_IYY</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Vehicle inertia about Y axis</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. It represents the difficulty of the vehicle to modify its angular rate.</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.005)</td>
- <td style="vertical-align: top;">0.025 </td>
- <td style="vertical-align: top;">kg*m*m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_IYZ">SIH_IYZ</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Vehicle cross term inertia yz</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. This value can be set to 0 for a quad symmetric about its center of mass.</p>   </td>
- <td style="vertical-align: top;">(0.005)</td>
- <td style="vertical-align: top;">0.0 </td>
- <td style="vertical-align: top;">kg*m*m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_IZZ">SIH_IZZ</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Vehicle inertia about Z axis</p><p><strong>Comment:</strong> The intertia is a 3 by 3 symmetric matrix. It represents the difficulty of the vehicle to modify its angular rate.</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.005)</td>
- <td style="vertical-align: top;">0.030 </td>
- <td style="vertical-align: top;">kg*m*m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_KDV">SIH_KDV</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>First order drag coefficient</p><p><strong>Comment:</strong> Physical coefficient representing the friction with air particules. The greater this value, the slower the quad will move. Drag force function of velocity: D=-KDV*V. The maximum freefall velocity can be computed as V=10*MASS/KDV [m/s]</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.05)</td>
- <td style="vertical-align: top;">1.0 </td>
- <td style="vertical-align: top;">N/(m/s)</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_KDW">SIH_KDW</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>First order angular damper coefficient</p><p><strong>Comment:</strong> Physical coefficient representing the friction with air particules during rotations. The greater this value, the slower the quad will rotate. Aerodynamic moment function of body rate: Ma=-KDW*W_B. This value can be set to 0 if unknown.</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.005)</td>
- <td style="vertical-align: top;">0.025 </td>
- <td style="vertical-align: top;">Nm/(rad/s)</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_L_PITCH">SIH_L_PITCH</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Pitch arm length</p><p><strong>Comment:</strong> This is the arm length generating the pitching moment This value can be measured with a ruler. This corresponds to half the distance between the front and rear motors.</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.05)</td>
- <td style="vertical-align: top;">0.2 </td>
- <td style="vertical-align: top;">m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_L_ROLL">SIH_L_ROLL</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Roll arm length</p><p><strong>Comment:</strong> This is the arm length generating the rolling moment This value can be measured with a ruler. This corresponds to half the distance between the left and right motors.</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.05)</td>
- <td style="vertical-align: top;">0.2 </td>
- <td style="vertical-align: top;">m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_MASS">SIH_MASS</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Vehicle mass</p><p><strong>Comment:</strong> This value can be measured by weighting the quad on a scale.</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.1)</td>
- <td style="vertical-align: top;">1.0 </td>
- <td style="vertical-align: top;">kg</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_Q_MAX">SIH_Q_MAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Max propeller torque</p><p><strong>Comment:</strong> This is the maximum torque delivered by one propeller when the motor is running at full speed. This value is usually about few percent of the maximum thrust force.</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.05)</td>
- <td style="vertical-align: top;">0.1 </td>
- <td style="vertical-align: top;">Nm</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH_T_MAX">SIH_T_MAX</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Max propeller thrust force</p><p><strong>Comment:</strong> This is the maximum force delivered by one propeller when the motor is running at full speed. This value is usually about 5 times the mass of the quadrotor.</p>   </td>
- <td style="vertical-align: top;">0.0 > ? (0.5)</td>
- <td style="vertical-align: top;">5.0 </td>
- <td style="vertical-align: top;">N</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH__H0">SIH__H0</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Initial AMSL ground altitude</p><p><strong>Comment:</strong> This value represents the Above Mean Sea Level (AMSL) altitude where the simulation begins. If using FlightGear as a visual animation, this value can be tweaked such that the vehicle lies on the ground at takeoff. LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
- <td style="vertical-align: top;">-420.0 > 8848.0 (0.01)</td>
- <td style="vertical-align: top;">32.34 </td>
- <td style="vertical-align: top;">m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH__LAT0">SIH__LAT0</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Initial geodetic latitude</p><p><strong>Comment:</strong> This value represents the North-South location on Earth where the simulation begins. A value of 45 deg should be written 450000000. LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
- <td style="vertical-align: top;">-850000000 > 850000000 </td>
- <td style="vertical-align: top;">454671160 </td>
- <td style="vertical-align: top;">1e-7 deg</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH__LON0">SIH__LON0</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Initial geodetic longitude</p><p><strong>Comment:</strong> This value represents the East-West location on Earth where the simulation begins. A value of 45 deg should be written 450000000. LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
- <td style="vertical-align: top;">-1800000000 > 1800000000 </td>
- <td style="vertical-align: top;">-737578370 </td>
- <td style="vertical-align: top;">1e-7 deg</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH__MU_X">SIH__MU_X</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>North magnetic field at the initial location</p><p><strong>Comment:</strong> This value represents the North magnetic field at the initial location. A magnetic field calculator can be found on the NOAA website Note, the values need to be converted from nano Tesla to Gauss LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
- <td style="vertical-align: top;">-1.0 > 1.0 (0.001)</td>
- <td style="vertical-align: top;">0.179 </td>
- <td style="vertical-align: top;">Gauss</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH__MU_Y">SIH__MU_Y</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>East magnetic field at the initial location</p><p><strong>Comment:</strong> This value represents the East magnetic field at the initial location. A magnetic field calculator can be found on the NOAA website Note, the values need to be converted from nano Tesla to Gauss LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
- <td style="vertical-align: top;">-1.0 > 1.0 (0.001)</td>
- <td style="vertical-align: top;">-0.045 </td>
- <td style="vertical-align: top;">Gauss</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SIH__MU_Z">SIH__MU_Z</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Down magnetic field at the initial location</p><p><strong>Comment:</strong> This value represents the Down magnetic field at the initial location. A magnetic field calculator can be found on the NOAA website Note, the values need to be converted from nano Tesla to Gauss LAT0, LON0, H0, MU_X, MU_Y, and MU_Z should ideally be consistent among each others to represent a physical ground location on Earth.</p>   </td>
- <td style="vertical-align: top;">-1.0 > 1.0 (0.001)</td>
- <td style="vertical-align: top;">0.504 </td>
- <td style="vertical-align: top;">Gauss</td>
 </tr>
 </tbody></table>
 
