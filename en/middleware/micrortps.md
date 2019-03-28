@@ -70,7 +70,7 @@ This is needed because the first version of ROS does not support RTPS.
 
 ## Code generation
 
-> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! 
+> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
 > *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) or [Ubuntu](../setup/dev_env_linux_ubuntu.md).
 
 ### ROS-independent applications
@@ -87,13 +87,15 @@ The *Agent* must be separately/manually compiled for the target computer.
 ### ROS2/ROS applications {#px4_ros_com}
 
 The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)).
-This includes all the required components of the *PX4 RTPS bridge*, including the IDL files (required by the `micrortps_agent`), the `micrortps_agent` itself and the sources and headers of the ROS messages.
+This includes all the required components of the *PX4 RTPS bridge*, including the IDL files (required by the `micrortps_agent`) and the `micrortps_agent`.
 
-The package has two separate branches:
+The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware. These are required by `px4_ros_com` when generatin the IDL files to be used by the `micrortps_agent`.
+
+Both `px4_ros_com` and `px4_msgs` packages have two separate branches:
 - a `master` branch, used with ROS2. It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
 - a `ros1` branch, used with ROS. It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
 
-Both branches additionally include some example listener and advertiser example nodes.
+Both branches in `px4_ros_com` additionally include some example listener and advertiser example nodes.
 
 
 ## Supported uORB messages
@@ -130,7 +132,7 @@ rtps:
     send: true
 ```
 
-> **Note** The `px4_ros_com` build process (only) runs the CMake macro `rosidl_generate_interfaces()` to generate ROS2 IDL files and all the source and header files for each message.
+> **Note** The `px4_msgs` build process (only) runs the CMake macro `rosidl_generate_interfaces()` to generate ROS2 message header files, while `px4_ros_com` build process generates the IDL files through the `rosidl_generate_dds_interfaces()` CMake macro.
 > The PX4 Firmware includes a template for the IDL file generation, which is only used during the PX4 build process.
 >
 > The `px4_ros_com` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware).
@@ -220,35 +222,25 @@ As an example, to start the *micrortps_agent* with connection through UDP, issue
 
 ## Agent interfacing with a ROS2 middleware
 
-Building `px4_ros_com` automatically generates and builds the agent application.
+Building `px4_ros_com` automatically generates and builds the agent application, though it requires, as a dependency, that the `px4_msgs` package also gets build on the same ROS2 workspace (or overlaid from another ROS2 workspace).
 Since it is also installed using the [`colcon`](http://design.ros2.org/articles/build_tool.html) build tools, running it works exactly the same way as the above.
 Check the **Building the `px4_ros_com` package** for details about the build structure.
 
 
-## Building the `px4_ros_com` package
+## Building the `px4_ros_com` and `px4_msgs` package
 
-Before building `px4_ros_com` you will first need to clone the PX4 Firmware repository
-(this is normally placed at the same tree level as the ROS workspaces).
-Then install and setup both ROS2 and ROS environments on your development machine
-and separately clone the `px4_ros_com` repo for both the `master` and `ros1` branches (see [above for more information](#px4_ros_com)).
+Install and setup both ROS2 and ROS environments on your development machine
+and separately clone the `px4_ros_com` and `px4_msgs` repo for both the `master` and `ros1` branches (see [above for more information](#px4_ros_com)).
 
 > **Note** Only the master branch is needed for ROS2 (both are needed to target ROS).
 
 ### Installing ROS and ROS2 and respective dependencies
 
-In order to install ROS Melodic and ROS2 Bouncy on a Ubuntu 18.04 machine, follow the links below, respectively:
+In order to install ROS Melodic and ROS2 Crystal (officially supported) or Bouncy on a Ubuntu 18.04 machine, follow the links below, respectively:
 
 1. [Install ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-1. [Install ROS2 Bouncy](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
-1. Install the following component to ensure that the package properly generates the IDL files (only required if one is using the ROS2 Bouncy release):
-
-   ```sh
-   sudo apt install ros-bouncy-rmw-opensplice-cpp
-   ```
-
-   > **Note** The requirement for this package should soon be deprecated, as `rosidl_generate_dds_interfaces` CMake tools will be used to generate the required IDL files (instead of only using `rosidl_generate_interfaces`).
-
-   The install process should also install the *colcon* build tools, but in case that doesn't happen, you can install the tools manually:
+1. [Install ROS2 Crystal](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
+1. The install process should also install the *colcon* build tools, but in case that doesn't happen, you can install the tools manually:
 
    ```sh
    sudo apt install python3-colcon-common-extensions
@@ -260,7 +252,7 @@ In order to install ROS Melodic and ROS2 Bouncy on a Ubuntu 18.04 machine, follo
    sudo pip3 install -U setuptools
    ```
 
-   > **Note** This install and build guide is also applicable in an environment with Ubuntu 16.04, ROS Kinetic and ROS2 Ardent installed.
+   > **Note** This install and build guide is not applicable to ROS2 Ardent anymore, since this has reached EOL December 2018.
 
    <span></span>
    > **Caution** Do not install the `ros1_bridge` package through the deb repository.
@@ -279,6 +271,7 @@ As an example:
    Then, clone the respective ROS2 (`master`) branch to the `/src` directory:
    ```sh
    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com # clones the master branch
+   $ git clone https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros2/src/px4_msgs
    ```
 
 1. For ROS, follow exactly the same process, but create a different directory and clone a different branch:
@@ -289,6 +282,7 @@ As an example:
    Then, clone the respective ROS2 (`ros1`) branch to the `/src` directory:
    ```sh
    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com -b ros1 # clones the 'ros1' branch
+   $ git clone https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros1/src/px4_msgs -b ros1
    ```
 
 ### Building the workspaces
@@ -298,14 +292,16 @@ The directory `px4_ros_com/scripts` contains multiple scripts that can be used t
 To build both workspaces with a single script, use the `build_all.bash`. Check the usage with `source build_all.bash --help`. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4 Firmware directory path:
 
 ```sh
-$ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws> --px4_firmware_dir <path/to/PX4/Firmware>
+$ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
+
+   > **Note** The build process will open new tabs on the console, corresponding to different stages of the build process that need to have different environment configurations sourced.
 
 One can also use the following individual scripts in order to build the individual parts:
 
 - `build_ros1_bridge.bash`, to build the `ros1_bridge`;
-- `build_ros2_workspace.bash` (only the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` `ros1` branch was cloned;
-- `build_ros2_workspace.bash`, to build the ROS2 workspace to where the `px4_ros_com` `master` branch was cloned;
+- `build_ros1_workspace.bash` (only the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` and `px4_msgs` `ros1` branches were cloned;
+- `build_ros2_workspace.bash`, to build the ROS2 workspace to where the `px4_ros_com` and `px4_msgs` `master` branches were cloned;
 
 The steps below show how to *manually* build the packages (provided for your information/better understanding only):
 
@@ -313,16 +309,16 @@ The steps below show how to *manually* build the packages (provided for your inf
    Don't mind if it tells you that a previous workspace was set before:
 
    ```sh
-   source /opt/ros/bouncy/setup.bash
+   source /opt/ros/crystal/setup.bash
    ```
 
 1. Clone the `ros1_bridge` package so it can be built on the ROS2 workspace:
 
    ```sh
-   git clone https://github.com/ros2/ros1_bridge.git ~/px4_ros_com_ros2/src/ros1_bridge
+   git clone https://github.com/ros2/ros1_bridge.git -b crystal ~/px4_ros_com_ros2/src/ros1_bridge
    ```
 
-1. Build the `px4_ros_com` package, excluding the `ros1_bridge` package:
+1. Build the `px4_ros_com` and `px4_msgs` packages, excluding the `ros1_bridge` package:
 
    ```sh
    colcon build --symlink-install --packages-skip ros1_bridge --event-handlers console_direct+
@@ -331,24 +327,23 @@ The steps below show how to *manually* build the packages (provided for your inf
    > **Note** `--event-handlers console_direct+` only serves the purpose of adding verbosity to the `colcon` build process and can be removed if one wants a more "quiet" build.
 
 1. Then, follows the process of building the ROS(1) packages side.
-   For that, one requires to source the environments so when the `ros1_bridge` is built with support for any messages that are on PATH and have an associated mapping between ROS1 and ROS2:
+   For that, one requires to open a new terminal window and source the ROS(1) environment that has installed on the system:
 
    ```sh
    source /opt/ros/melodic/setup.bash
-   source /opt/ros/bouncy/setup.bash
    ```
 
-1. Build the `px4_ros_com` package on the ROS end:
+1. On the terminal of the previous step, build the `px4_ros_com` and `px4_msgs` packages on the ROS end:
 
    ```sh
    cd ~/px4_ros_com_ros1 && colcon build --symlink-install --event-handlers console_direct+
    ```
 
-1. Then source the workspaces:
+1. Before building the `ros1_bridge`, one needs to open a new terminal and then source the environments and workspaces following the order bellow:
 
    ```sh
-   source ~/px4_ros_com_ros1/install/setup.bash
-   source ~/px4_ros_com_ros2/install/setup.bash
+   source ~/px4_ros_com_ros1/install/local_setup.bash
+   source ~/px4_ros_com_ros2/install/local_setup.bash
    ```
 
 1. Finally, build the `ros1_bridge`.
@@ -361,17 +356,15 @@ The steps below show how to *manually* build the packages (provided for your inf
 
 ### Cleaning the workspaces
 
-After building the workspaces there are many files that must be deleted before you can do a clean/fresh build (for example, after you have changed some code and want to rebuild). 
+After building the workspaces there are many files that must be deleted before you can do a clean/fresh build (for example, after you have changed some code and want to rebuild).
 Unfortunately *colcon* does not currently have a way of cleaning the generated **build**, **install** and **log** directories, so these directories must be deleted manually.
 
-The **clean_all.bash** script (in **px4_ros_com/scripts**) is provided to ease this cleaning process. 
+The **clean_all.bash** script (in **px4_ros_com/scripts**) is provided to ease this cleaning process.
 The most common way of using it is by passing it the ROS(1) workspace directory path (since it's usually not on the default path):
 
 ```sh
 $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
-
-To also delete the cloned `ros1_bridge` from the workspace, additionally pass the following argument: `--delete_ros1_bridge`.
 
 ## Creating a Fast RTPS Listener application
 
@@ -465,7 +458,7 @@ baro_temp_celcius: 43.93
 
 ## Creating a ROS2 listener
 
-With the `px4_ros_com` built successfully, one can now take advantage of the generated *micro-RTPS* agent app and also from the generated sources and headers of the ROS2 msgs, which represent a one-to-one matching with the uORB counterparts.
+With the `px4_ros_com` built successfully, one can now take advantage of the generated *micro-RTPS* agent app and also from the generated sources and headers of the ROS2 msgs from `px4_msgs`, which represent a one-to-one matching with the uORB counterparts.
 
 To create a listener node on ROS2, lets take as an example the `sensor_combined_listener.cpp` node under `px4_ros_com/src/listeners`:
 
@@ -625,8 +618,8 @@ To quickly test the package (using PX4 SITL with Gazebo):
 1. On one terminal, source the ROS2 environment and workspace and launch the `ros1_bridge` (this allows ROS2 and ROS nodes to communicate with each other).
    Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
    ```sh
-   $ source /opt/ros/ardent/setup.bash
-   $ source ~/px4_ros_com_ros2/install/setup.bash
+   $ source /opt/ros/crystal/setup.bash
+   $ source ~/px4_ros_com_ros2/install/local_setup.bash
    $ export ROS_MASTER_URI=http://localhost:11311
    $ ros2 run ros1_bridge dynamic_bridge
    ```
@@ -634,13 +627,13 @@ To quickly test the package (using PX4 SITL with Gazebo):
 1. On another terminal, source the ROS workspace and launch the `sensor_combined` listener node.
    Since you are launching through `roslaunch`, this will also automatically start the `roscore`:
    ```sh
-   $ source ~/px4_ros_com_ros1/install/setup.bash
+   $ source ~/px4_ros_com_ros1/install/local_setup.bash
    $ roslaunch px4_ros_com sensor_combined_listener.launch
    ```
 
 1. On a terminal, source the ROS2 workspace and then start the `micrortps_agent` daemon with UDP as the transport protocol:
    ```sh
-   $ source ~/px4_ros_com_ros2/install/setup.bash
+   $ source ~/px4_ros_com_ros2/install/local_setup.bash
    $ micrortps_agent -t UDP
    ```
 
@@ -686,11 +679,13 @@ To quickly test the package (using PX4 SITL with Gazebo):
 
 1. You can also test the `sensor_combined` ROS2 listener by typing in a terminal:
    ```sh
-   $ source ~/px4_ros_com_ros2/install/setup.bash
+   $ source ~/px4_ros_com_ros2/install/local_setup.bash
    $ sensor_combined_listener # or ros2 run px4_ros_com sensor_combined_listener
    ```
 
 And it should also get data being printed to the console output.
+
+> **Note** If ones uses the `build_all.bash` script, it automatically open and source all the required terminals so one just has to run the respective apps in each terminal.
 
 ## Troubleshooting
 
