@@ -23,9 +23,9 @@ PX4 源代码存储在 [PX4/Firmware](https://github.com/PX4/Firmware) 存储库
 
 4. 在计算机上打开命令提示终端
     
-    - 在 OS X 上，点击 ⌘-space 并搜索 “terminal” 。 
-    - 在 Ubuntu 上，单击运行栏并搜索 “terminal”。 
-    - 在 Windows 上，在“开始”菜单中找到 PX4 文件夹，然后单击 "PX4 Console"。 
+    - 在 OS X 上，点击 ⌘-space 并搜索 “terminal” 。
+    - 在 Ubuntu 上，单击运行栏并搜索 “terminal”。
+    - 在 Windows 上，在“开始”菜单中找到 PX4 文件夹，然后单击 "PX4 Console"。
 
 5. 使用复制的 URL 克隆存储库分支。 如下所示:
     
@@ -234,7 +234,7 @@ cd Firmware
 make parrot_bebop_default
 ```
 
-打开Bebop，使用WiFi与上位机连接。 然后，按四次电源键开启 ADB，启动 Telnet 进程。
+打开Bebop，使用WiFi与上位机连接。 Then, press the power button four times to enable ADB and to start the telnet daemon.
 
 ```sh
 make parrot_bebop_default upload
@@ -289,7 +289,7 @@ adb connect 192.168.42.1:9050
 adb shell mount -o remount,rw /
 ```
 
-为了避免手动编辑文件，可以直接使用如下文件： https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
+In order to avoid editing the file manually, you can use this one: https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
 
 备份原始文件，并将下载的文件传到 Bebop
 
@@ -489,7 +489,7 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
     
     备注：
     
-    - `CONFIGURATION_TARGET` 和 `VIEWER_MODEL_DEBUGGER` 中的大多数值都有默认值, 因此是可选的。 比如，`gazebo` 相当于 `gazebo_iris` 或 `gazebo_iris_none` 。 
+    - `CONFIGURATION_TARGET` 和 `VIEWER_MODEL_DEBUGGER` 中的大多数值都有默认值, 因此是可选的。 比如，`gazebo` 相当于 `gazebo_iris` 或 `gazebo_iris_none` 。
     - 如果要在其他两个设置之间指定默认值，可以使用三个下划线。 例如，`gazebo___gdb` 等效于 `gazebo_iris_gdb`。
     - 您可以使用 `VIEWER_MODEL_DEBUGGER` 的 `none` 值启动 PX4 并等待模拟器。 For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
     
@@ -499,7 +499,7 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
     
     ### 二进制文件大小剖析 {#bloaty_compare_master}
     
-    `bloaty_compare_master` 构建目标使您能够更好地了解更改对代码大小的影响。当使用时，工具链会下载特定固件的最新的 master 版本并将其与本地生成进行比较（使用二进制文件的 [bloaty](https://github.com/google/bloaty) 大小探查器）。
+    The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
     
     > **Tip** 这有助于分析（可能）导致 `px4_fmu-v2_default` 达到1MB 闪存限制的更改。
     
