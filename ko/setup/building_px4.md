@@ -23,9 +23,9 @@ The steps to fork and clone the project source code are:
 
 4. Open a command prompt/terminal on your computer
     
-    - On OS X, hit ⌘-space and search for 'terminal'. 
-    - On Ubuntu, click the launch bar and search for 'terminal'. 
-    - On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'. 
+    - On OS X, hit ⌘-space and search for 'terminal'.
+    - On Ubuntu, click the launch bar and search for 'terminal'.
+    - On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'.
 
 5. Clone the repository fork using the copied URL. This will look something like:
     
@@ -292,7 +292,7 @@ Re-mount the system partition as writeable:
 adb shell mount -o remount,rw /
 ```
 
-In order to avoid editing the file manually, you can use this one : https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
+In order to avoid editing the file manually, you can use this one: https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
 
 Save the original one and push this one to the Bebop
 
@@ -491,7 +491,7 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
 
 Notes:
 
-- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`. 
+- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`.
 - You can use three underscores if you want to specify a default value between two other settings. For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
 - You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
 
@@ -501,7 +501,7 @@ Additional make targets are discussed in the following sections (list is not exh
 
 ### Binary Size Profiling {#bloaty_compare_master}
 
-The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
+The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
 
 > **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
 
