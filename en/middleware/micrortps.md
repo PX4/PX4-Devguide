@@ -89,7 +89,7 @@ The *Agent* must be separately/manually compiled for the target computer.
 The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)).
 This includes all the required components of the *PX4 RTPS bridge*, including the IDL files (required by the `micrortps_agent`) and the `micrortps_agent`.
 
-The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware. These are required by `px4_ros_com` when generatin the IDL files to be used by the `micrortps_agent`.
+The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
 
 Both `px4_ros_com` and `px4_msgs` packages have two separate branches:
 - a `master` branch, used with ROS2. It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
@@ -222,7 +222,7 @@ As an example, to start the *micrortps_agent* with connection through UDP, issue
 
 ## Agent interfacing with a ROS2 middleware
 
-Building `px4_ros_com` automatically generates and builds the agent application, though it requires, as a dependency, that the `px4_msgs` package also gets build on the same ROS2 workspace (or overlaid from another ROS2 workspace).
+Building `px4_ros_com` automatically generates and builds the agent application, though it requires (as a dependency), that the `px4_msgs` package also gets build on the same ROS2 workspace (or overlaid from another ROS2 workspace).
 Since it is also installed using the [`colcon`](http://design.ros2.org/articles/build_tool.html) build tools, running it works exactly the same way as the above.
 Check the **Building the `px4_ros_com` package** for details about the build structure.
 
@@ -339,7 +339,7 @@ The steps below show how to *manually* build the packages (provided for your inf
    cd ~/px4_ros_com_ros1 && colcon build --symlink-install --event-handlers console_direct+
    ```
 
-1. Before building the `ros1_bridge`, one needs to open a new terminal and then source the environments and workspaces following the order bellow:
+1. Before building the `ros1_bridge`, one needs to open a new terminal and then source the environments and workspaces following the order below:
 
    ```sh
    source ~/px4_ros_com_ros1/install/local_setup.bash
