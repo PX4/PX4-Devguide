@@ -87,7 +87,7 @@ The *Agent* must be separately/manually compiled for the target computer.
 ### ROS2/ROS applications {#px4_ros_com}
 
 The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)).
-This includes all the required components of the *PX4 RTPS bridge*, including the IDL files (required by the `micrortps_agent`) and the `micrortps_agent`.
+This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
 
 The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
 
