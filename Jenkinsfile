@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'px4io/px4-docs:2018-06-14'
+      image 'px4io/px4-docs:2019-02-03'
     }
   }
   stages {
@@ -49,14 +49,18 @@ pipeline {
           sh('cp -r _book/* dev.px4.io/${BRANCH_NAME}/')
           sh('cd dev.px4.io; git add ${BRANCH_NAME}; git commit -a -m "gitbook build update `date`"')
           sh('cd dev.px4.io; git push origin master')
+          
         }
       }
-
+      post {
+        always {
+          sh('rm -rf dev.px4.io')
+        }
+      }
       when {
         anyOf {
           branch "master";
           branch "v1.*"
-          branch "*jenkins*"
         }
       }
 
