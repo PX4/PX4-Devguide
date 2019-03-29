@@ -69,20 +69,22 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 ### ROS2/ROS 应用 {#px4_ros_com}
 
-完成编译的 [px4_ros_com](https://github.com/PX4/px4_ros_com) 包可以生成从一个ROS2节点获取 PX4 uORB消息所需的所有组件 (如果使用 ROS一代，还需要 [ros1_bridge](https://github.com/ros2/ros1_bridge))。 这包括所有 *PX4 RTPS bridge* 必需的组件, 包括 IDL 文件 (`micrortps_agent`必需), `micrortps_agent` 本身以及ROS消息的源文件和头文件。
+完成编译的 [px4_ros_com](https://github.com/PX4/px4_ros_com) 包可以生成从一个ROS2节点获取 PX4 uORB消息所需的所有组件 (如果使用 ROS一代，还需要 [ros1_bridge](https://github.com/ros2/ros1_bridge))。 This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
 
-这个包有两个分支：
+The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
+
+Both `px4_ros_com` and `px4_msgs` packages have two separate branches:
 
 * 一个支持 ROS2 的 `master` 分支。 该分支的代码可以生成在 PX4 和 ROS2 之间桥接必需的所有 ROS2 消息和 IDL 文件。
 * 一个支持 ROS 一代的 `ros1` 分支。 该分支的代码可以生成 ROS 消息的头文件和源文件，这些文件与 `ros1_bridge` *一起* 使用，达到在PX4与ROS之间共享数据的目的。
 
-这两个分支还有几个监听和广播节点的代码示例。
+Both branches in `px4_ros_com` additionally include some example listener and advertiser example nodes.
 
 ## 支持的 uORB 消息
 
-生成的桥接代码将允许通过 RTPS 发布/订阅部分 uORB 主题。 这对于 ROS 或非 ROS 应用程序都是适用的。
+The generated bridge code will enable a specified subset of uORB topics to be published/subscribed via RTPS. This is true for both ROS or non-ROS applications.
 
-为了 *自动生成代码*，在 PX4 **Firmware/msg/tools/** 目录下有一个 *yaml* 定义文件 —— **uorb_rtps_message_ids.yaml**。 该文件定义了 RTPS 可以使用的 uORB 消息子集，以及是用于发送、用于接收还是双向皆可，以及用于 DDS/RTPS 中间件的 RTPS ID。
+For *automatic code generation* there's a *yaml* definition file in the PX4 **Firmware/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
 
 > **Note** 所有消息都必须分配一个 RTPS ID 。
 
@@ -111,27 +113,27 @@ rtps:
     send: true
 ```
 
-> **Note** `px4_ros_com`编译过程 (只) 运行 CMake 宏 `rosidl_generate_interfaces()` 来生成 ROS2 IDL 文件和每个消息的头文件与源文件。 PX4固件中又一个IDL文件模板，只在PX4编译过程中才使用。
+> **Note** The `px4_msgs` build process (only) runs the CMake macro `rosidl_generate_interfaces()` to generate ROS2 message header files, while `px4_ros_com` build process generates the IDL files through the `rosidl_generate_dds_interfaces()` CMake macro. PX4固件中又一个IDL文件模板，只在PX4编译过程中才使用。
 > 
 > `px4_ros_com` 为 ROS2/ROS 编译生成的IDL文件只有 *少许不同* (但为PX4固件编译的就很不一样了)。 **uorb_rtps_message_ids.yaml** 文件将消息改名使之符合*PascalCased*标准 (改名这事儿与客户端-代理端之间的通信没有任何关系，但是对于 ROS2 是至关重要的，因为 ROS2 的消息命名必须符合 PascalCase 约定)。 新的IDL文件还反转了消息的发送/接收状态 (这是必须的，因为同一个消息在客户端是发送，在代理端的状态就是接收，反之亦然)。
 
 ## 客户端 (PX4固件) {#client_firmware}
 
-标准的编译流程将 *Client* 自动生成，并编译到PX4固件中。
+The *Client* source code is generated, compiled and built into the PX4 firmware as part of the normal build process.
 
-要构建 NuttX/Pixhawk 飞行控制器的固件, 请选择带有 `_rtps` 的配置文件。 例如，要为 px4_fmu-v4 构建 RTPS：
+To build the firmware for NuttX/Pixhawk flight controllers use the `_rtps` feature in the configuration target. For example, to build RTPS for px4_fmu-v4:
 
 ```sh
 make px4_fmu-v4_rtps
 ```
 
-如果要构建 SITL 固件:
+To build the firmware for a SITL target:
 
 ```sh
 make px4_sitl_rtps
 ```
 
-*Client* 应用程序可以从 [NuttShell/System Console](../debug/system_console.md) 启动。 命令语法如下所示 (您可以指定任意个参数):
+The *Client* application can be launched from [NuttShell/System Console](../debug/system_console.md). The command syntax is shown below (you can specify a variable number of arguments):
 
 ```sh
 > micrortps_client start|stop [options]
@@ -148,7 +150,7 @@ make px4_sitl_rtps
 
 > **Note**默认情况下*Client* 作为守护进程运行, 但您需要手动启动它。 PX4 固件的初始化代码将来可能会自动启动 *Client* 作为一个永久的守护进程。
 
-例如, 为了启动通过 UDP 连接到代理的 SITL 的 *Client* 守护进程, 请运行如下命令:
+For example, in order to run the *Client* daemon with SITL connecting to the Agent via UDP, start the daemon as shown:
 
 ```sh
 micrortps_client start -t UDP
@@ -156,9 +158,9 @@ micrortps_client start -t UDP
 
 ## 与 ROS 无关的 Offboard Fast RTPS 接口中的代理端
 
-编译PX4固件时，相关的*Agent*代码会自动被 *生成*。 生成的源代码在这个目录下: **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
+The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
 
-为了构建 *Agent* 应用, 运行如下编译命令:
+To build the *Agent* application, compile the code:
 
 ```sh
 cd build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent
@@ -169,7 +171,7 @@ make
 
 > **Note** 如果要交叉编译 *Qualcomm Snapdragon Flight* 平台，请参考 [这个链接](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use)。
 
-和 *Agent* 有关的命令语法如下:
+The command syntax for the *Agent* is listed below:
 
 ```sh
 $ ./micrortps_agent [options]
@@ -182,9 +184,9 @@ $ ./micrortps_agent [options]
   -s &lt;sending port&gt;       UDP发送端口， 缺省为 2020。
 ```
 
-要启动 *Agent*, 运行 `micrortps_agent` 并在参数中指定连接到 *Client* 的方式 ( 一个Linux设备连接到 *Client* 的缺省方式是通过 UART 端口)。
+To launch the *Agent*, run `micrortps_agent` with appropriate options for specifying the connection to the *Client* (the default options connect from a Linux device to the *Client* over a UART port).
 
-如果要选择UDP连接，如下启动 *micrortps_agent*:
+As an example, to start the *micrortps_agent* with connection through UDP, issue:
 
 ```sh
 ./micrortps_agent -t UDP
@@ -192,29 +194,21 @@ $ ./micrortps_agent [options]
 
 ## 面向 ROS2 中间件的代理端接口
 
-构建 `px4_ros_com` 将自动生成并编译代理端应用。 也可以使用 [`colcon`](http://design.ros2.org/articles/build_tool.html) 构建工具, 效果与上相同。 欲知构建详情，请参考 ** 构建 `px4_ros_com` 程序包 ** 章节。
+Building `px4_ros_com` automatically generates and builds the agent application, though it requires (as a dependency), that the `px4_msgs` package also gets build on the same ROS2 workspace (or overlaid from another ROS2 workspace). Since it is also installed using the [`colcon`](http://design.ros2.org/articles/build_tool.html) build tools, running it works exactly the same way as the above. Check the **Building the `px4_ros_com` package** for details about the build structure.
 
-## 构建 `px4_ros_com` 程序包
+## Building the `px4_ros_com` and `px4_msgs` package
 
-构建 `px4_ros_com` 之前，请先克隆 PX4 固件的代码仓库 (通常可以放置在 ROS 的工作空间目录下)。 然后在你的开发机上安装并配置 ROS2 和 ROS 的开发环境，并分别克隆 `px4_ros_com` 代码仓库的 `master` 分支和 `ros1` 分支 ([更多详情惨见上文](#px4_ros_com))。
+Install and setup both ROS2 and ROS environments on your development machine and separately clone the `px4_ros_com` and `px4_msgs` repo for both the `master` and `ros1` branches (see [above for more information](#px4_ros_com)).
 
 > **Note** ROS2只需要master分支 (但ROS两个分支都需要)。
 
 ### 分别安装 ROS 和 ROS2
 
-要在一台 Ubuntu 18.04 机器上安装 ROS Melodic 和 ROS2 Bouncy, 分别参考如下链接:
+In order to install ROS Melodic and ROS2 Crystal (officially supported) or Bouncy on a Ubuntu 18.04 machine, follow the links below, respectively:
 
 1. [安装 ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-2. [安装 ROS2 Bouncy](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
-3. 要正常地生成 IDL 文件还要安装以下组件 (仅 ROS2 Bouncy 发行版需要):
-    
-    ```sh
-    sudo apt install ros-bouncy-rmw-opensplice-cpp
-    ```
-    
-    > **Note** 这个依赖项应该很快就不需要了, 因为 `rosidl_generate_dds_interfaces` CMake 工具将被用于生成 IDL 文件 (可以取代 `rosidl_generate_interfaces` 工具)。
-    
-    安装过程应该会自动安装 *colcon* 构建工具，万一没有，也可手动安装:
+2. [Install ROS2 Crystal](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
+3. The install process should also install the *colcon* build tools, but in case that doesn't happen, you can install the tools manually:
     
     ```sh
     sudo apt install python3-colcon-common-extensions
@@ -226,7 +220,7 @@ $ ./micrortps_agent [options]
     sudo pip3 install -U setuptools
     ```
     
-    > **Note**以上安装和构建指南也适用于 Ubuntu 16.04, ROS Kinetic 或 ROS2 Ardent 开发环境。
+    > **Note** This install and build guide is not applicable to ROS2 Ardent anymore, since this has reached EOL December 2018.
     
     <span></span>
     
@@ -234,7 +228,7 @@ $ ./micrortps_agent [options]
 
 ### 配置工作空间
 
-由于 ROS2 和 ROS 环境变量的配置不同，你需要为每个 ROS 版本分配独立的工作空间。 下面是一个例子：
+Since the ROS2 and ROS require different environments you will need a separate workspace for each ROS version. As an example:
 
 1. 对于 ROS2, 如下创建工作空间:
     
@@ -245,7 +239,8 @@ $ ./micrortps_agent [options]
     然后，把 ROS2 (`master`) 分支克隆到 `/src` 目录:
     
     ```sh
-    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com # 克隆 master 分支
+    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com # clones the master branch
+    $ git clone https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros2/src/px4_msgs
     ```
 
 2. 对于 ROS, 遵循同样的流程, 但是要另建一个目录并克隆另一个分支:
@@ -257,40 +252,43 @@ $ ./micrortps_agent [options]
     然后，克隆 ROS2 (`ros1`) 分支到 `/src` 目录:
     
     ```sh
-    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com -b ros1 # 克隆 'ros1' 分支
+    $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com -b ros1 # clones the 'ros1' branch
+    $ git clone https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros1/src/px4_msgs -b ros1
     ```
 
 ### 构建工作空间
 
-`px4_ros_com/scripts` 目录下有几个脚本可以用来构建这两个工作空间。
+The directory `px4_ros_com/scripts` contains multiple scripts that can be used to build both workspaces.
 
-`build_all.bash` 这个脚本可以一次性编译两个工作空间。 使用命令 `source build_all.bash --help` 查看脚本的用法。 最常用的使用方式是把 ROS(1) 工作区目录路径和 PX4 固件目录路径作为参数:
+To build both workspaces with a single script, use the `build_all.bash`. Check the usage with `source build_all.bash --help`. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4 Firmware directory path:
 
 ```sh
-$ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws> --px4_firmware_dir <path/to/PX4/Firmware>
+$ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
-您也可以用一下脚本分别构建每一个工作空间：
+> **Note** The build process will open new tabs on the console, corresponding to different stages of the build process that need to have different environment configurations sourced.
+
+One can also use the following individual scripts in order to build the individual parts:
 
 * `build_ros1_bridge.bash` 可以构建 `ros1_bridge`;
-* `build_ros2_workspace.bash` (只构建 `px4_ros_com` 的 `ros1` 分支) 可以构建 `px4_ros_com` `ros1` 分支所在的 ROS1 工作空间;
-* `build_ros2_workspace.bash` 可以构建 `px4_ros_com` `master` 分支所在的工作空间;
+* `build_ros1_workspace.bash` (only the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` and `px4_msgs` `ros1` branches were cloned;
+* `build_ros2_workspace.bash`, to build the ROS2 workspace to where the `px4_ros_com` and `px4_msgs` `master` branches were cloned;
 
-以下步骤将详述怎样 *手动* 构建这些程序包 (只是为了加深您的理解):
+The steps below show how to *manually* build the packages (provided for your information/better understanding only):
 
 1. `cd` 到 `px4_ros_com_ros2` 目录并 source 一下 ROS2 的环境变量。 不用管是否提示您该工作空间已经设置过：
     
     ```sh
-    source /opt/ros/bouncy/setup.bash
+    source /opt/ros/crystal/setup.bash
     ```
 
 2. 克隆 `ros1_bridge` 程序包到 ROS2 工作空间:
     
     ```sh
-    git clone https://github.com/ros2/ros1_bridge.git ~/px4_ros_com_ros2/src/ros1_bridge
+    git clone https://github.com/ros2/ros1_bridge.git -b crystal ~/px4_ros_com_ros2/src/ros1_bridge
     ```
 
-3. 构建 `px4_ros_com` 程序包, 并排除 `ros1_bridge` 程序包：
+3. Build the `px4_ros_com` and `px4_msgs` packages, excluding the `ros1_bridge` package:
     
     ```sh
     colcon build --symlink-install --packages-skip ros1_bridge --event-handlers console_direct+
@@ -298,24 +296,23 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws> --px4_firmwa
     
     > **Note** `--event-handlers console_direct+` 参数只是为了让 `colcon` 将构建过程的详细信息打印出来，如果想要 "安静的" 构建过程，可以去掉该参数。
 
-4. 然后，按照 ROS(1) 程序包的构建流程进行编译。 为此，您必须先 source 一下环境变量，使 `ros1_bridge` 在构建过程中能够在 PATH 变量下找到 ROS1 和 ROS2 所设置的路径：
+4. 然后，按照 ROS(1) 程序包的构建流程进行编译。 For that, one requires to open a new terminal window and source the ROS(1) environment that has installed on the system:
     
     ```sh
     source /opt/ros/melodic/setup.bash
-    source /opt/ros/bouncy/setup.bash
     ```
 
-5. 在 ROS 这一端构建 `px4_ros_com` 程序包：
+5. On the terminal of the previous step, build the `px4_ros_com` and `px4_msgs` packages on the ROS end:
     
     ```sh
     cd ~/px4_ros_com_ros1 && colcon build --symlink-install --event-handlers console_direct+
     ```
 
-6. 然后 source 一下工作空间：
+6. Before building the `ros1_bridge`, one needs to open a new terminal and then source the environments and workspaces following the order below:
     
     ```sh
-    source ~/px4_ros_com_ros1/install/setup.bash
-    source ~/px4_ros_com_ros2/install/setup.bash
+    source ~/px4_ros_com_ros1/install/local_setup.bash
+    source ~/px4_ros_com_ros2/install/local_setup.bash
     ```
 
 7. 最后，编译 `ros1_bridge`。 请注意, 构建过程可能会占用大量内存资源。 在内存较小的机器上, 减少并行编译的线程数目 (比如可以设置环境变量 `MAKEFLAGS=-j1`)。 要查看编译过程的更详细信息，请移步 [ros1_bridge](https://github.com/ros2/ros1_bridge)程序包的网页。
@@ -326,15 +323,13 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws> --px4_firmwa
 
 ### 清理工作空间
 
-在一次构建之后，如果想要再做一次干净的/新鲜的编译 (比如，你更改了一些代码然后想要一次 rebuild)，有些文件是必须要删除的。 不幸的是 *colcon* 目前无法自动清除 **build**, **install** 和 **log** 目录, 所以这三个目录必须被手动删除。
+After building the workspaces there are many files that must be deleted before you can do a clean/fresh build (for example, after you have changed some code and want to rebuild). Unfortunately *colcon* does not currently have a way of cleaning the generated **build**, **install** and **log** directories, so these directories must be deleted manually.
 
-**clean_all.bash** 脚本 (在 **px4_ros_com/scripts** 目录下) 可以帮你完成这个清理工作。 最常用的用法就是把 ROS(1) 的工作空间路径作为参数 (因为这个路径通常不是缺省路径)：
+The **clean_all.bash** script (in **px4_ros_com/scripts**) is provided to ease this cleaning process. The most common way of using it is by passing it the ROS(1) workspace directory path (since it's usually not on the default path):
 
 ```sh
 $ source clean_all.bash --ros1_ws_dir &lt;path/to/px4_ros_com_ros1/ws&gt;
 ```
-
-如果还要从工作空间中删除克隆的 `ros1_bridge` ，再加上参数 `--delete_ros1_bridge` 即可。
 
 ## 创建一个 Fast RTPS 监听应用
 
@@ -344,7 +339,7 @@ $ source clean_all.bash --ros1_ws_dir &lt;path/to/px4_ros_com_ros1/ws&gt;
 
 *fastrtpsgen* 脚本可以从 IDL 消息文件创建一个简单的 RTPS 应用。
 
-> **Note** RTPS 消息在 IDL 文件中定义并被 *fastrtpsgen* 编译成 C++ 代码。 作为桥接组件构建过程的一部分,自动为用于发送/接收的 uORB 消息文件生成了 IDL 文件 (见 **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl** 目录)。 当你创建一个 *Fast RTPS* 应用并与 PX4 通信时，这些 IDL 文件是必需的。
+> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a *Fast RTPS* application to communicate with PX4.
 
 输入以下命令来创建应用：
 
@@ -419,11 +414,11 @@ baro_alt_meter: 368.647
 baro_temp_celcius: 43.93
 ```
 
-> **Note** 如果 *监听应用* 没有打印任何信息, 检查一下 *Client* 是不是没有运行。
+> **Note** If the *Listener application* does not print anything, make sure the *Client* is running.
 
 ## 创建一个 ROS2 监听器
 
-如果 `px4_ros_com` 已经构建成功, 你可以利用生成的 *micro-RTPS* 代理程序和自动生成的ROS2消息源文件和头文件，这些文件与 uORB 消息是一一对应的。
+With the `px4_ros_com` built successfully, one can now take advantage of the generated *micro-RTPS* agent app and also from the generated sources and headers of the ROS2 msgs from `px4_msgs`, which represent a one-to-one matching with the uORB counterparts.
 
 要在 ROS2 上创建一个监听器, 让我们以 `sensor_combined_listener.cpp` node under `px4_ros_com/src/listeners` 作为举例：
 
@@ -580,8 +575,8 @@ int main(int argc, char *argv[])
 2. 在一个终端里，source 一下 ROS2 工作空间的环境变量，然后启动 `ros1_bridge` (这样 ROS2 和 ROS 节点就可以互相通信了)。 还要将 `ROS_MASTER_URI` 设置为 `roscore` 正在/即将运行的IP。
     
     ```sh
-    $ source /opt/ros/ardent/setup.bash
-    $ source ~/px4_ros_com_ros2/install/setup.bash
+    $ source /opt/ros/crystal/setup.bash
+    $ source ~/px4_ros_com_ros2/install/local_setup.bash
     $ export ROS_MASTER_URI=http://localhost:11311
     $ ros2 run ros1_bridge dynamic_bridge
     ```
@@ -589,14 +584,14 @@ int main(int argc, char *argv[])
 3. 在另一个终端里，source 一下 ROS 工作空间的环境变量，然后启动 `sensor_combined` 监听器节点。 使用 `roslaunch` 启动应用程序时，首先会自动启动 `roscore` ：
     
     ```sh
-    $ source ~/px4_ros_com_ros1/install/setup.bash
+    $ source ~/px4_ros_com_ros1/install/local_setup.bash
     $ roslaunch px4_ros_com sensor_combined_listener.launch
     ```
 
 4. 在一个终端里，source 一下 ROS2 工作空间的环境变量，然后启动 `micrortps_agent` 守护程序并使用UDP传输协议：
     
     ```sh
-    $ source ~/px4_ros_com_ros2/install/setup.bash
+    $ source ~/px4_ros_com_ros2/install/local_setup.bash
     $ micrortps_agent -t UDP
     ```
 
@@ -644,11 +639,13 @@ int main(int argc, char *argv[])
 6. 在一个终端里，你也可以使用以下命令来测试 `sensor_combined` ROS2 监听器：
     
     ```sh
-    $ source ~/px4_ros_com_ros2/install/setup.bash
+    $ source ~/px4_ros_com_ros2/install/local_setup.bash
     $ sensor_combined_listener # or ros2 run px4_ros_com sensor_combined_listener
     ```
 
 也会有数据被打印到控制台输出。
+
+> **Note** If ones uses the `build_all.bash` script, it automatically open and source all the required terminals so one just has to run the respective apps in each terminal.
 
 ## 故障处理
 
@@ -656,7 +653,7 @@ int main(int argc, char *argv[])
 
 如果所选串口已被占用，可能是MAVLink应用已经在运行。 如果MAVLink和RTPS连接需要同时运行，你必须为RTPS连接指定另一个端口或者将这个端口配置为可以共享。 <!-- https://github.com/PX4/Devguide/issues/233 -->
 
-> **Tip** 在开发过程中最好的即刻/临时的补救措施就是从 *NuttShell* 关闭MAVLink： 
+> **Tip** A quick/temporary fix to allow bridge testing during development is to stop MAVLink from *NuttShell*: 
 > 
 >     sh
 >       mavlink stop-all
@@ -673,7 +670,7 @@ int main(int argc, char *argv[])
 export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 ```
 
-> **Note** 如果 [Fast RTPS 安装在默认路径](../setup/fast-rtps-installation.md) 就不会发生此类问题。
+> **Note** This should not be a problem if [Fast RTPS is installed in the default location](../setup/fast-rtps-installation.md).
 
 ### Enable UART on an OBC (onboard computer)
 
