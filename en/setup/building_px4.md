@@ -583,3 +583,15 @@ Then use the make target, specifying the target build to compare (`px4_fmu-v2_de
 ```
 This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash.
 It also shows the sizes of different pieces of the *mpu9250* driver.
+
+
+## Firmware Version & Git Tags {#firmware_version}
+
+The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
+
+![Firmware info](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
+
+These are extracted at build time from the active *git tag* for your repo tree.
+The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
+
+> **Warning** If you use a different git tag format, versions information may not be displayed properly.
