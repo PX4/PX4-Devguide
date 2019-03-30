@@ -1,6 +1,8 @@
 # Development Environment on Ubuntu LTS / Debian Linux
 
-[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) (16.04) is the standard/preferred Linux development OS. It allows you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation, ROS).
+[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 16.04 is the standard/preferred Linux development OS. It allows you to build for [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation).
+
+> **Note** Ubuntu 18.04 is required if you want to work with *ROS Melodic* (which does not install on Ubuntu 16.04).
 
 The following instructions explain how to *manually* set up a development environment each of the supported targets.
 
@@ -14,7 +16,7 @@ The following instructions explain how to *manually* set up a development enviro
 
 We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts install the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**).
 
-> **Tip** The scripts have been tested on a clean Ubuntu 16.04 LTS installation. They *may* not work as expected if installed on top of an existing system.
+> **Tip** The scripts have been tested on clean Ubuntu 16.04 and 18.04 LTS installations. They *may* not work as expected if installed on top of an existing system or a different Ubuntu release.
 
 The scripts are:
 
@@ -150,13 +152,9 @@ Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
 
 > **Tip** PX4 works with Gazebo 7, 8, and 9. The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
 
-<!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
-sudo apt-get install clang-3.5 lldb-3.5 -y
--->
-
 ### ROS/Gazebo
 
-Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Kinetic"). These include Gazebo7 (at time of writing, the default version that comes with ROS). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Melodic"). These include Gazebo9 (the default version that comes with ROS Melodic). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
 
 ```sh
 # ROS Kinetic/Gazebo
