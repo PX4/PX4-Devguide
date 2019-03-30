@@ -2,7 +2,7 @@
 
 Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基于NuttX的硬件、高通骁龙飞行硬件、基于Linux的硬件、仿真、ROS)。
 
-> **Tip** 我们已经使用Debian/[Ubuntu](https://wiki.ubuntu.com/LTS) (16.04) 作为标准linux开发系统， 也为[CentOS](../setup/dev_env_linux_centos.md)和[Arch Linux](../setup/dev_env_linux_arch.md)提供了说明。
+> **Tip** [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 16.04 is the tested/supported Linux distribution for most development. Ubuntu 18.04 LTS with ROS Melodic is used for [ROS development](#ros). Instructions are also provided for [CentOS](../setup/dev_env_linux_centos.md) and [Arch Linux](../setup/dev_env_linux_arch.md).
 
 下文说明了如何使用方便的bash脚本在Ubuntu LTS上设置开发环境。 有关*手动安装*和其他目标的说明, 可参见[Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md)。
 
@@ -10,9 +10,9 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
 
 下问说明了如何使用[bash脚本](../setup/dev_env_linux_ubuntu.md#convenience-bash-scripts)在Ubuntu上设置开发工具链。 以下脚本作用分别是安装*Qt Creator IDE*、[ Ninja构建系统](https://ninja-build.org/)、[通用依赖项](../setup/dev_env_linux_ubuntu.md#common-dependencies)、[FastRTPS](../setup/dev_env_linux_ubuntu.md#fastrtps-installation), 以及将PX4源下载到您的目录(**~/src/Firmware**)。
 
-> **Tip** 该脚本已经在全新Ubuntu 16.04安装测试过 如果安装在除上述提到的系统或其他Ubuntu版本上, 则它们*可能*无法正常工作。 如果您遇到任何问题, 请参照[手动安装说明](../setup/dev_env_linux_ubuntu.md)操作。
+> **Tip** The scripts have been tested on clean Ubuntu LTS 16.04 and Ubuntu LTS 18.04 installations. 如果安装在除上述提到的系统或其他Ubuntu版本上, 则它们*可能*无法正常工作。 如果您遇到任何问题, 请参照[手动安装说明](../setup/dev_env_linux_ubuntu.md)操作。
 
-首先将用户加入组"dialout"
+First make the user a member of the group "dialout":
 
 1. 在命令提示符下输入: 
         sh
@@ -58,7 +58,7 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
 
 ### jMAVSim/Gazebo 模拟
 
-安装Gazebo和jMAVSim模拟器:
+To install the Gazebo9 and jMAVSim simulators:
 
 1. 下载<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>。
 2. 在bash shell中运行脚本: 
@@ -71,26 +71,32 @@ Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)(基
 
 <blockquote>
   <p>
-    <strong>Note</strong> PX4兼容Gazebo7、8和9。 该脚本安装Gazebo 9.
+    <strong>Note</strong> PX4兼容Gazebo7、8和9。 The script installs Gazebo 9.
   </p>
 </blockquote>
 
-<h3>
-  Gazebo与 ROS
+<h3 id="ros">
+  Gazebo with ROS Melodic
 </h3>
 
+<blockquote>
+  <p>
+    <strong>Note</strong> PX4 is tested with ROS Melodic on Ubuntu 18.04 LTS. ROS Melodic does not work on Ubuntu 16.04.
+  </p>
+</blockquote>
+
 <p>
-  安装开发工具链:
+  To install the development toolchain:
 </p>
 
 <ol start="1">
   <li>
-    下载 <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download> ubuntu_sim_ros_gazebo</a>
+    Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>.
   </li>
   
   <li>
-    在bash shell中运行脚本: <pre><code>bash
-source ubuntu_sim_ros_gazebo. sh</code></pre> 你可能需要承认一些随着脚本的进展而提示.
+    Run the script in a bash shell: <pre><code>bash
+source ubuntu_sim_ros_gazebo.sh</code></pre> You may need to acknowledge some prompts as the script progresses.
   </li>
 </ol>
 
@@ -100,25 +106,25 @@ source ubuntu_sim_ros_gazebo. sh</code></pre> 你可能需要承认一些随着�
 
 <ul>
   <li>
-    ROS默认安装Gazebo7 (我们选择使用默认值而不是Gazebo8或Gazebo9, 以简化ROS的开发).
+    ROS Melodic is installed with Gazebo9 by default.
   </li>
   <li>
-    Catkin(ROS 生成系统)工作区创建于<strong>～/catkin_ws/</strong>.
+    Your catkin (ROS build system) workspace is created at <strong>~/catkin_ws/</strong>.
   </li>
 </ul>
 
 <h2>
-  其他工具
+  Additional Tools
 </h2>
 
 <p>
-  设置生成/模拟工具链后, 请参阅<a href="../setup/generic_dev_tools.md">其他工具</a>以了解有关其他有用的工具.
+  After setting up the build/simulation toolchain, see <a href="../setup/generic_dev_tools.md">Additional Tools</a> for information about other useful tools.
 </p>
 
 <h2>
-  下一步
+  Next Steps
 </h2>
 
 <p>
-  在完成环境设置后, 请继续执行<a href="../setup/building_px4.md">生成说明</a>.
+  Once you have finished setting up the environment, continue to the <a href="../setup/building_px4.md">build instructions</a>.
 </p>
