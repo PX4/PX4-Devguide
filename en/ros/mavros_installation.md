@@ -1,6 +1,6 @@
 # MAVROS
 
-The [mavros](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) ROS package enables MAVLink extendable communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.  
+The [mavros](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) ROS package enables MAVLink extendable communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.
 
 > **Note** *MAVROS* is the "official" supported bridge between ROS and the MAVLink protocol. It is currently being extended to enable [fast-RTPS messaging](../middleware/micrortps.md), including a layer to translate PX4 [uORB messages](../middleware/uorb.md) to common ROS idioms.
 
@@ -10,7 +10,8 @@ While MAVROS can be used to communicate with any MAVLink enabled autopilot this 
 
 MAVROS can be installed either from source or binary. Developers working with ROS are advised to use the source installation.
 
-> **Tip** These instructions are a simplified version of the [official installation guide](https://github.com/mavlink/mavros/tree/master/mavros#installation).   They cover the *ROS Kinetic* release.
+> **Tip** These instructions are a simplified version of the [official installation guide](https://github.com/mavlink/mavros/tree/master/mavros#installation).
+  They cover the *ROS Melodic* release.
 
 
 ### Binary Installation (Debian / Ubuntu)
