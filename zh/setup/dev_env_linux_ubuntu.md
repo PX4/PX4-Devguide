@@ -1,20 +1,22 @@
 # Ubuntu LTS/Debian Linux 的开发环境
 
-[Ubuntu linux lts](https://wiki.ubuntu.com/LTS)（16.04）是标准的/首选的 Linux 开发操作系统。 Linux允许您构建[所有PX4目标](../setup/dev_env.md#supported-targets)（基于NuttX的硬件、高通骁龙飞控硬件、基于Linux的硬件、仿真、ROS）。
+[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 16.04 is the standard/preferred Linux development OS. It allows you to build for [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation).
+
+> **Note** Ubuntu 18.04 is required if you want to work with *ROS Melodic* (which does not install on Ubuntu 16.04).
 
 以下说明说明了如何 *手动* 设置每个受支持的目标的开发环境。
 
-> **Tip** 我们建议您使用 [一键安装脚本 ](#convenience-bash-scripts) 来安装模拟器和/或 Nuttx 工具链（这比在下面的说明中键入更容易）。 然后再参考其他目标（如高通骁龙飞控、Bebop、树莓派等的附加说明）。
+> **Tip** We recommend that you use the [Convenience bash scripts](#convenience-bash-scripts) to install the Simulators and/or NuttX toolchain (this is easier than typing in the instructions below). Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etc.)
 
 <span></span>
 
-> **Tip** 在设置构建/模拟工具链之后，有关其他有用工具的信息，请参阅 [附加工具](../setup/generic_dev_tools.md)。
+> **Tip** After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
 
 ## 一键安装脚本
 
 我们已经创建了许多 bash 脚本，您可以使用这些脚本来安装模拟器和 Nuttx 工具链。 以下脚本作用分别是安装*Qt Creator IDE*、[ Ninja构建系统](#ninja-build-system)、[通用依赖项](#common-dependencies)、[FastRTPS](#fastrtps-installation)，以及将PX4源下载到您的目录（**~/src/Firmware**）。
 
-> **Tip** 该脚本已经在全新Ubuntu 16.04安装测试通过。 如果安装在除上述提到的系统或其他Ubuntu版本上，则它们*可能*无法正常工作。
+> **Tip** The scripts have been tested on clean Ubuntu 16.04 and 18.04 LTS installations. They *may* not work as expected if installed on top of an existing system or a different Ubuntu release.
 
 这些脚本是:
 
@@ -48,7 +50,7 @@
 
 ## 权限设置
 
-> **Warning** 绝对不要用 `sudo` 试图解决权限问题！！！ 这会带来更多的权限问题甚至需要重装系统来解决！！！
+> **Warning** Never ever fix permission problems by using `sudo`. It will create more permission problems in the process and require a system re-installation to fix them.
 
 用户应先加入组 ”dialout“：
 
@@ -107,7 +109,7 @@ tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
 tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
 ```
 
-> **Note** 在下面的行中，我们编译 FastCDR 和 FastRTPS 库，`make` 命令将发出 `-j2` 选项。 此选项定义用于编译源代码的并行线程 （或 `j` 线程）的数量。 将 `-j2` 更改为 `-j<number_of_cpu_cores_in_your_system>` 以加快库的编译。
+> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
 
 ```sh
 (cd eProsima_FastCDR-1.0.7-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
@@ -115,50 +117,46 @@ tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
 rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
 ```
 
-> **Note** 更多的 "通用" 说明，另外包括从源安装，可以在这里找到：Fast RTPS 安装 </1 >。</p> </blockquote> 
-> 
-> ## 模拟器依赖
-> 
-> 下面列出的 Gazebo 和 jMAVSim 模拟器的依赖关系。 你可以先将 jMAVSim 最小安装以验证安装是否成功。 更多信息及模拟器支持参见：[模拟器](../simulation/README.md)。
-> 
-> ### jMAVSim
-> 
-> 为 [jMAVSim Simulation](../simulation/jmavsim.md) 安装依赖。
-> 
->     # jMAVSim simulator
->     sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
->     
-> 
-> ### Gazebo
-> 
-> > **Note** 如果您要使用 ros，请按照以下部分中的 [ROS/Gazebo](#rosgazebo) 说明操作（这些操作将自动安装 gazebo，作为 ros 安装的一部分）。
-> 
-> 为 [jMAVSim Simulation](../simulation/gazebo.md) 安装依赖。
-> 
->     # Gazebo simulator
->     sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
->     sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
->     ## Setup keys
->     wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
->     ## Update the debian database:
->     sudo apt-get update -y
->     ## Install Gazebo9
->     sudo apt-get install gazebo9 -y
->     ## For developers (who work on top of Gazebo) one extra package
->     sudo apt-get install libgazebo9-dev -y
->     
-> 
-> > ** Note** PX4兼容Gazebo7、8和9。 上面的 [安装说明](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) 是关于安装 Gazebo 9 的。
-> 
-> <!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
-sudo apt-get install clang-3.5 lldb-3.5 -y
--->
-> 
-> ### ROS/Gazebo
-> 
-> 安装 [ROS/Gazebo](../ros/README.md) 的依赖项（"Kinetic"）。 其中包括 Gazebo7（行文时，ros 附带的默认版本）。 这些说明来自 ROS Wiki [Ubuntu 页 ](http://wiki.ros.org/kinetic/Installation/Ubuntu)。
-> 
-> ```sh
+> **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
+
+## 模拟器依赖
+
+下面列出的 Gazebo 和 jMAVSim 模拟器的依赖关系。 你可以先将 jMAVSim 最小安装以验证安装是否成功。 更多信息及模拟器支持参见：[模拟器](../simulation/README.md)。
+
+### jMAVSim
+
+为 [jMAVSim Simulation](../simulation/jmavsim.md) 安装依赖。
+
+    # jMAVSim simulator
+    sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
+    
+
+### Gazebo
+
+> **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation).
+
+为 [jMAVSim Simulation](../simulation/gazebo.md) 安装依赖。
+
+    # Gazebo simulator
+    sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
+    sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+    ## Setup keys
+    wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+    ## Update the debian database:
+    sudo apt-get update -y
+    ## Install Gazebo9
+    sudo apt-get install gazebo9 -y
+    ## For developers (who work on top of Gazebo) one extra package
+    sudo apt-get install libgazebo9-dev -y
+    
+
+> **Tip** PX4 works with Gazebo 7, 8, and 9. The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
+
+### ROS/Gazebo
+
+Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Melodic"). These include Gazebo9 (the default version that comes with ROS Melodic). 这些说明来自 ROS Wiki [Ubuntu 页 ](http://wiki.ros.org/kinetic/Installation/Ubuntu)。
+
+```sh
 # ROS Kinetic/Gazebo
 ## Gazebo dependencies
 sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
@@ -185,7 +183,7 @@ sudo apt-get install python-rosinstall -y
 
 安装 [MAVROS （运行于 ROS 的 MAVLink ）](../ros/mavros_installation.md) 包。 这启动了运行 ROS 电脑之间的 MAVLink 连接， MAVLink 启动飞控，并且启动 QCS。
 
-> **TIp** MAVROS 可以作为 Ubuntu 的一个包，通过源码安装。 源码推荐给开发者。
+> **Tip** MAVROS can be installed as an ubuntu package or from source. Source is recommended for developers.
 
 ```sh
 ## Create catkin workspace (ROS build system)
@@ -209,7 +207,7 @@ wstool update -t src
 rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
 ```
 
-> **Note** 如果您使用的是基于 Ubuntu 的发行版并且如下命令 `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` 失败，您可以使用命令强制运行 `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
+> **Note** If you use an ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
 
 ```sh
 ## Build!
@@ -225,7 +223,7 @@ source ~/.bashrc
 
 安装以下依赖项，以构建基于 Nuttx 的硬件：Pixhawk、Pixfalcon、Pixracer、Pixhawk 3、Intel® Aero Ready to Fly Drone。
 
-> **Note** 具有指定版本的包应与指定的包版本一起安装。
+> **Note** Packages with specified versions should be installed with the specified package version.
 
 ```sh
 sudo apt-get install python-serial openocd \
