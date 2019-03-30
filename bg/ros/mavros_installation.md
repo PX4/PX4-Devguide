@@ -10,7 +10,7 @@ While MAVROS can be used to communicate with any MAVLink enabled autopilot this 
 
 MAVROS can be installed either from source or binary. Developers working with ROS are advised to use the source installation.
 
-> **Tip** These instructions are a simplified version of the [official installation guide](https://github.com/mavlink/mavros/tree/master/mavros#installation). They cover the *ROS Kinetic* release.
+> **Tip** These instructions are a simplified version of the [official installation guide](https://github.com/mavlink/mavros/tree/master/mavros#installation). They cover the *ROS Melodic* release.
 
 ### Binary Installation (Debian / Ubuntu)
 
