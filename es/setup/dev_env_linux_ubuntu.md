@@ -1,20 +1,22 @@
 # Entorno de desarrollo en Ubuntu LTS / Debian Linux
 
-[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) (16.04) es el SO de desarrollo Linux estándar/preferido. Le permite compilar para [todos los posibles objetivos de PX4](../setup/dev_env.md#supported-targets) (hardware basado en NuttX, hardware Qualcomm Snapdragon Flight, hardware basado en Linux, simulación, ROS).
+[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 16.04 is the standard/preferred Linux development OS. It allows you to build for [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation).
+
+> **Note** Ubuntu 18.04 is required if you want to work with *ROS Melodic* (which does not install on Ubuntu 16.04).
 
 Las siguientes instrucciones explican cómo configurar *manualmente* un entorno de desarrollo para cada uno de los objetivos compatibles.
 
-> **Nota** Te recomendamos que uses el conveniente [scripts bash](#convenience-bash-scripts) para instalar los simuladores y/o toolchain de NuttX (esto es más fácil que escribir en las instrucciones a continuación). Siga simplemente las instrucciones adicionales para otros objetivos (por ejemplo Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etcetera)
+> **Tip** We recommend that you use the [Convenience bash scripts](#convenience-bash-scripts) to install the Simulators and/or NuttX toolchain (this is easier than typing in the instructions below). Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etc.)
 
 <span></span>
 
-> **Nota** Después de configurar la toolchain de compilación/simulación, consulte [Herramientas adicionales](../setup/generic_dev_tools.md) para obtener información sobre otras herramientas útiles.
+> **Tip** After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
 
 ## Scripts de Bash
 
 Hemos creado una serie de scripts de bash que se pueden utilizar para instalar los simuladores y/o toolchain de NuttX. Todos los scripts instalan *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [dependencias comunes](#common-dependencies), [FastRTPS](#fastrtps-installation) y también descargan el código fuente de PX4 en tu ordenador (**~/src/Firmware**).
 
-> **Nota** Los scripts han sido probados en una instalación limpia de Ubuntu LTS 16.04. *Podrían* no funcionar como se esperaba si se ha instalado sobre un sistema ya existente.
+> **Tip** The scripts have been tested on clean Ubuntu 16.04 and 18.04 LTS installations. They *may* not work as expected if installed on top of an existing system or a different Ubuntu release.
 
 Los scripts son:
 
@@ -48,7 +50,7 @@ Para usar los scripts:
 
 ## Configuración de permisos
 
-> **Precaución** Nunca arreglar problemas de permiso usando `sudo`. Creará mas problemas de permiso en el proceso y requerirá reinstalación del sistema para arreglarlos.
+> **Warning** Never ever fix permission problems by using `sudo`. It will create more permission problems in the process and require a system re-installation to fix them.
 
 El usuario necesita ser parte del grupo "dialout":
 
@@ -107,7 +109,7 @@ tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
 tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
 ```
 
-> **Nota** En las siguientes líneas donde compilamos las librerías FastCDR y FastRTPS, el comando `make` es ejecutado con la opción `-j2`. Esta opción define el número de hilos paralelos (o `j`obs) que son usados para compilar el código fuente. Cambia `-j2` a `-j<number_of_cpu_cores_in_your_system>` para acelerar la compilación de las librerías.
+> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
 
 ```sh
 (cd eProsima_FastCDR-1.0.7-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
@@ -115,7 +117,7 @@ tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
 rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
 ```
 
-> **Nota** Instrucciones más "generic", que adicionalmente cubren la instalación del código fuente, pueden ser encontradas aquí: [Instalación de Fast RTPS](../setup/fast-rtps-installation.md).
+> **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
 
 ## Dependencias de simulación
 
@@ -131,7 +133,7 @@ Instala las dependencias para [Simulación jMAVSim](../simulation/jmavsim.md).
 
 ### Gazebo
 
-> **Nota** Si vas a trabajar con ROS entonces sigue las instrucciones de [ROS/Gazebo](#rosgazebo) en la siguiente sección (en ellas se instala Gazebo automáticamente, como parte de la instalación de ROS).
+> **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation).
 
 Instala las dependencias para [simulación en Gazebo](../simulation/gazebo.md).
 
@@ -148,15 +150,11 @@ Instala las dependencias para [simulación en Gazebo](../simulation/gazebo.md).
     sudo apt-get install libgazebo9-dev -y
     
 
-> **Nota**PX4 funciona con Gazebo 7, 8, and 9. Las [instrucciones de instalación](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) de arriba son para instalar Gazebo 9.
-
-<!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
-sudo apt-get install clang-3.5 lldb-3.5 -y
--->
+> **Tip** PX4 works with Gazebo 7, 8, and 9. The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
 
 ### ROS/Gazebo
 
-Instala las dependencias para [ROS/Gazebo](../ros/README.md)("Kinetic"). Éste incluye Gazebo7 (la versión por defecto que viene con ROS). Las instrucciones vienen de la Wiki de ROS sobre [Ubuntu](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Melodic"). These include Gazebo9 (the default version that comes with ROS Melodic). Las instrucciones vienen de la Wiki de ROS sobre [Ubuntu](http://wiki.ros.org/kinetic/Installation/Ubuntu).
 
 ```sh
 # ROS Kinetic/Gazebo
@@ -185,7 +183,7 @@ sudo apt-get install python-rosinstall -y
 
 Instala el paquete [MAVROS \(MAVLink en ROS\)](../ros/mavros_installation.md). Esto habilita comunicación MAVLink entre ordenadores que ejecuten ROS, MAVLink habilita autopilotos, y MAVLink habilita GCS.
 
-> **Nota** MAVROS puede ser instalado como un paquete de ubuntu o compilando desde el código fuente. Desde el código fuente es recomendado para desarrolladores.
+> **Tip** MAVROS can be installed as an ubuntu package or from source. Source is recommended for developers.
 
 ```sh
 ## Crea workspace de catkin (ROS build system)
@@ -209,7 +207,7 @@ wstool update -t src
 rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
 ```
 
-> **Nota** Si usas una distribución basada en ubuntu y el comando `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` falla, puedes intentar forzar que funcione el comando ejecutando `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
+> **Note** If you use an ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
 
 ```sh
 ## Compila!
@@ -225,7 +223,7 @@ source ~/.bashrc
 
 Instala las siguientes dependencias para compilar para hardware basado en NuttX: Pixhawk, Pixfalcon, Pixracer, Pixhawk 3, Intel® Aero Ready to Fly Drone.
 
-> **Nota** Paquetes con versiones específicas deberían ser instalados con la versión específica del paquete.
+> **Note** Packages with specified versions should be installed with the specified package version.
 
 ```sh
 sudo apt-get install python-serial openocd \
