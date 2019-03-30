@@ -10,7 +10,7 @@
 
 MAVROS功能包可以用源代码或二进制方式安装。（这是ROS功能包常见的两种安装方式，源代码安装可以修改源码，二进制方式安装则不行，只能直接调用源码） 建议有ROS基础的开发者使用源代码方式安装。
 
-> ** 提示 **这些安装说明是 [ 官方安装指南 ](https://github.com/mavlink/mavros/tree/master/mavros#installation) 的简化版本。（官方安装指南请参见mavros功能包的github主页） 它们涵盖了 * ROS kinetic * 的版本。
+> ** 提示 **这些安装说明是 [ 官方安装指南 ](https://github.com/mavlink/mavros/tree/master/mavros#installation) 的简化版本。（官方安装指南请参见mavros功能包的github主页） They cover the *ROS Melodic* release.
 
 ### 二进制安装 (Debian/Ubuntu)
 
