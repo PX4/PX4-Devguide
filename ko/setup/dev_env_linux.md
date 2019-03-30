@@ -2,7 +2,7 @@
 
 Linux allows you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation, ROS).
 
-> **Tip** We have standardized on Debian / [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) (16.04) as the supported Linux distribution. Instructions are also provided for [CentOS](../setup/dev_env_linux_centos.md) and [Arch Linux](../setup/dev_env_linux_arch.md).
+> **Tip** [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 16.04 is the tested/supported Linux distribution for most development. Ubuntu 18.04 LTS with ROS Melodic is used for [ROS development](#ros). Instructions are also provided for [CentOS](../setup/dev_env_linux_centos.md) and [Arch Linux](../setup/dev_env_linux_arch.md).
 
 The following instructions explain how to set up a development environment on Ubuntu LTS using convenience bash scripts. Instructions for *manually installing* these and additional targets can be found in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md).
 
@@ -10,9 +10,9 @@ The following instructions explain how to set up a development environment on Ub
 
 The instructions below show how you can use our [convenience bash scripts](../setup/dev_env_linux_ubuntu.md#convenience-bash-scripts) to setup the developer toolchain on Ubuntu LTS. All the scripts install the *Qt Creator IDE*, [Ninja Build System](https://ninja-build.org/), [Common Dependencies](../setup/dev_env_linux_ubuntu.md#common-dependencies), [FastRTPS](../setup/dev_env_linux_ubuntu.md#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**).
 
-> **Tip** The scripts have been tested on a clean Ubuntu LTS 16.04 installation. They *may* not work as expected if installed on top of an existing system or on another Ubuntu release. If you have any problems then follow the [manual installation instructions](../setup/dev_env_linux_ubuntu.md).
+> **Tip** The scripts have been tested on clean Ubuntu LTS 16.04 and Ubuntu LTS 18.04 installations. They *may* not work as expected if installed on top of an existing system or on another Ubuntu release. If you have any problems then follow the [manual installation instructions](../setup/dev_env_linux_ubuntu.md).
 
-First make the user a member of the group "dialout"
+First make the user a member of the group "dialout":
 
 1. On the command prompt enter: 
         sh
@@ -58,7 +58,7 @@ Follow the (manual) instructions here: [Ubuntu/Debian Linux > Parrot Bebop](../s
 
 ### jMAVSim/Gazebo Simulation
 
-To install the Gazebo and jMAVSim simulators:
+To install the Gazebo9 and jMAVSim simulators:
 
 1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
 2. Run the script in a bash shell: 
@@ -75,9 +75,15 @@ To install the Gazebo and jMAVSim simulators:
   </p>
 </blockquote>
 
-<h3>
-  Gazebo with ROS
+<h3 id="ros">
+  Gazebo with ROS Melodic
 </h3>
+
+<blockquote>
+  <p>
+    <strong>Note</strong> PX4 is tested with ROS Melodic on Ubuntu 18.04 LTS. ROS Melodic does not work on Ubuntu 16.04.
+  </p>
+</blockquote>
 
 <p>
   To install the development toolchain:
@@ -100,7 +106,7 @@ source ubuntu_sim_ros_gazebo.sh</code></pre> You may need to acknowledge some pr
 
 <ul>
   <li>
-    ROS is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo8 or Gazebo9 to simplify ROS development).
+    ROS Melodic is installed with Gazebo9 by default.
   </li>
   <li>
     Your catkin (ROS build system) workspace is created at <strong>~/catkin_ws/</strong>.
