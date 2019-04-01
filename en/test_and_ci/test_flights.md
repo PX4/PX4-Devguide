@@ -28,30 +28,32 @@ The tests performed for each platform are linked below:
 
 ## Test Vehicles/Autopilots
 
-* [DJI F450](http://px4.io/portfolio/dji-flamewheel-450/)
-  * Pixhawk Mini
-  * Pixracer
-  * Pixhawk 1
-  * Pixhawk 2.1 Cube
-  * Pixhawk 3 Pro
-  * Pixhawk 4
-  * Pixhawk 4 Mini 
-  * Aerotenna OcPoc
-* [Flyingwings Falcon Vertigo VTOL](http://px4.io/portfolio/falcon-vertigo-hybrid-vtol/)
-  * Pixhawk
-* NXPhlite
-* MRO Nano Talon
-  * X2.1
-* Convergence VTOL
-  * Pixhawk 4 Mini
-* Delta Quad Pro
-  * Dropix
-* [QAV 250](http://px4.io/portfolio/multicopter-portfolio/) (PWM-ESC)
-  * Snapdragon 
-* 200qx (UART-ESC)
-  * Snapdragon 
-* [Intel Aero Ready To Fly Drone](http://px4.io/portfolio/intel-aero-ready-fly-drone/)
-* [Booole Phantom FPV Flying Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html?___store=en_us)
-  * Pixhawk 1
-* [Yuneec H520](http://px4.io/portfolio/yuneec-h520-hexacopter/)
-* 3DR Iris+
+Multicopter
+
+Frame | Flight Controller | UUID
+--- | --- | ---
+[DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) | Pixhawk Mini | 002400283335510A33373538 (f450-v3)
+[DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) | Pixhawk 1 | 000100000000363533353336510900500021 (f450-v3)
+[DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) | Cube (Pixhawk 2.1) | 00010000000033343537313751050040001c (F450 Pixhawk v2 cube)
+[DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) | Pixracer | 00010000000037373430333551170037002a (F450-Pixracer)
+[DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) | Pixhawk 3 Pro | 000100000000303236353136510500180036 (Pixhawk pro)
+[DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) | Pixhack V3 | 003200293036511638363834 (f450-v5-m)
+[DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) | Pixhawk 4 | 000200000000383339333038510700320016 (F450-v5)
+[DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) | Pixhawk 4 Mini  | 0002000000003432333830385115003a0033 (F450-v5-m)
+[DJI F450](http://px4.io/portfolio/dji-flamewheel-450/) UAVCAN | Pixhawk 4 | 000200000000323634353237511800200021 (F450-Pixhawk4)
+NXP Vehicle (TBD) | RDDRONE-FMUK66 | TBD
+
+Fixed Wing
+
+Frame | Flight Controller | UUID
+--- | --- | ---
+Phantom Wing | Pixhawk 1 | 0001000000003035333330365104003c0020 (f450-v2)
+
+
+VTOL
+
+Frame | Flight Controller | UUID
+--- | --- | ---
+[Convergence VTOL](https://docs.px4.io/en/frames_vtol/vtol_tiltrotor_eflite_convergence_pixfalcon.html) | Pixhawk 4 Mini | 000200000000343233383038511500350039 (vtol-v5-m)
+[Delta Quad Pro](https://px4.io/portfolio/deltaquad-vtol/) | Dropix | 0001000000003437393931375114004c0042 (delta-v2)
+
