@@ -20,17 +20,17 @@ We've created a number of bash scripts that you can use to install the Simulator
 
 The scripts are:
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>**: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>**: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator
   
   * This script contains the common dependencies for all PX4 build targets. It is automatically downloaded and run when you call any of the other scripts.
   * You can run this before installing the remaining dependencies for [Qualcomm Snapdragon Flight](#snapdragon-flight) or [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>**: **ubuntu_sim_common_deps.sh** + [Gazebo8](#gazebo) simulator.
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>**: **ubuntu_sim_common_deps.sh** + [Gazebo8](#gazebo) simulator.
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>**: **ubuntu_sim.sh** + NuttX tools. 
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>**: **ubuntu_sim.sh** + NuttX tools. 
   * *This requires computer restart on completion.*
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>**: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo and MAVROS](#rosgazebo). 
-  * ROS Kinetic is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo 8 to simplify ROS development).
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh" target="_blank" download>ubuntu_sim_ros_melodic.sh</a>**: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo and MAVROS](#rosgazebo). 
+  * ROS Melodic is installed with Gazebo 9 by default.
   * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
 
 ### How to use the scripts
@@ -98,23 +98,34 @@ You may also wish to install [pyulog](https://github.com/PX4/pyulog#pyulog). Thi
 
 ## FastRTPS installation
 
+# Install FastRTPS 1.7.1 and FastCDR-1.0.8
+
+fastrtps_dir=$HOME/eProsima_FastRTPS-1.7.1-Linux echo "Installing FastRTPS to: $fastrtps_dir" if [ -d "$fastrtps_dir" ] then echo " FastRTPS already installed." else pushd . cd ~
+
+      cpucores=$(( $(lscpu | grep Core.*per.*socket | awk -F: '{print $2}') * $(lscpu | grep Socket\(s\) | awk -F: '{print $2}') ))
+    
+      popd
+    
+
+fi
+
 [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
 
-The following instructions can be used to install the FastRTPS 1.5 binaries to your home directory.
+The following instructions can be used to install the FastRTPS 1.7.1 binaries to your home directory.
 
 ```sh
-wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz -O eprosima_fastrtps-1-5-0-linux.tar.gz
-tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
-tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
-tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
+wget https://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-7-1/eprosima_fastrtps-1-7-1-linux-tar-gz -O eprosima_fastrtps-1-7-1-linux.tar.gz
+tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz eProsima_FastRTPS-1.7.1-Linux/
+tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz requiredcomponents
+tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
 ```
 
 > **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
 
 ```sh
-(cd eProsima_FastCDR-1.0.7-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
-(cd eProsima_FastRTPS-1.5.0-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
-rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
+(cd eProsima_FastCDR-1.0.8-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
+(cd eProsima_FastRTPS-1.7.1-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
+rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
 ```
 
 > **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
@@ -156,34 +167,36 @@ Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
 
 Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Melodic"). These include Gazebo9 (the default version that comes with ROS Melodic). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
 
+> **Note** ROS Melodic requires Ubuntu 18.04 (and later). It cannot be installed on Ubuntu 16.04.
+
 ```sh
-# ROS Kinetic/Gazebo
+# ROS Melodic/Gazebo
 ## Gazebo dependencies
 sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
 
-## ROS Gazebo: http://wiki.ros.org/kinetic/Installation/Ubuntu
+## ROS Gazebo: http://wiki.ros.org/melodic/Installation/Ubuntu
 ## Setup keys
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 ## For keyserver connection problems substitute hkp://pgp.mit.edu:80 or hkp://keyserver.ubuntu.com:80 above.
 sudo apt-get update
 ## Get ROS/Gazebo
-sudo apt-get install ros-kinetic-desktop-full -y
+sudo apt install ros-melodic-desktop-full -y
 ## Initialize rosdep
 sudo rosdep init
 rosdep update
 ## Setup environment variables
-rossource="source /opt/ros/kinetic/setup.bash"
+rossource="source /opt/ros/melodic/setup.bash"
 if grep -Fxq "$rossource" ~/.bashrc; then echo ROS setup.bash already in .bashrc;
 else echo "$rossource" >> ~/.bashrc; fi
-source ~/.bashrc
-## Get rosinstall
-sudo apt-get install python-rosinstall -y
+eval $rossource
+## Install rosinstall and other dependencies
+sudo apt install python-rosinstall build-essential -y
 ```
 
 Install the [MAVROS \(MAVLink on ROS\)](../ros/mavros_installation.md) package. This enables MAVLink communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.
 
-> **Tip** MAVROS can be installed as an ubuntu package or from source. Source is recommended for developers.
+> **Tip** MAVROS can be installed as an Ubuntu package or from source. Source is recommended for developers.
 
 ```sh
 ## Create catkin workspace (ROS build system)
@@ -204,10 +217,10 @@ rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
 ### Setup workspace & install deps
 wstool merge -t src /tmp/mavros.rosinstall
 wstool update -t src
-rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
+rosdep install --from-paths src --ignore-src --rosdistro melodic -y
 ```
 
-> **Note** If you use an ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
+> **Note** If you use a Ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro melodic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro melodic -y --os ubuntu:bionic`
 
 ```sh
 ## Build!
