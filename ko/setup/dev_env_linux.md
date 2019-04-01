@@ -26,7 +26,7 @@ Then follow the instructions for your development target in the sections below.
 
 To install the development toolchain:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
 2. Run the script in a bash shell: 
         bash
         source ubuntu_sim_nuttx.sh You may need to acknowledge some prompts as the script progresses.
@@ -45,7 +45,7 @@ Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 
 To install the development toolchain:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
 2. Run the script in a bash shell: 
         bash
         source ubuntu_sim_common_deps.sh You may need to acknowledge some prompts as the script progresses.
@@ -60,12 +60,12 @@ Follow the (manual) instructions here: [Ubuntu/Debian Linux > Parrot Bebop](../s
 
 To install the Gazebo9 and jMAVSim simulators:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
 2. Run the script in a bash shell: 
         bash
         source ubuntu_sim.sh You may need to acknowledge some prompts as the script progresses.
 
-> **Tip** If you just need jMAVSim, instead download and run <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
+> **Tip** If you just need jMAVSim, instead download and run <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>.
 
 <span><span></p> 
 
@@ -91,7 +91,7 @@ To install the Gazebo9 and jMAVSim simulators:
 
 <ol start="1">
   <li>
-    Download <a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>.
+    Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh" target="_blank" download>ubuntu_sim_ros_melodic.sh</a>.
   </li>
   
   <li>
