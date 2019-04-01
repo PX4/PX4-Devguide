@@ -555,3 +555,13 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
     ```
     
     可以看出，从 `px4_fmu-v2_default` 删除 *mpu9250* 驱动，可以节省 10.3KB 的 flash 空间。 它还显示了 *mpu9250* 驱动程序的不同部件的大小。
+    
+    ## Firmware Version & Git Tags {#firmware_version}
+    
+    The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
+    
+    ![Firmware info](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
+    
+    These are extracted at build time from the active *git tag* for your repo tree. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
+    
+    > **Warning** If you use a different git tag format, versions information may not be displayed properly.
