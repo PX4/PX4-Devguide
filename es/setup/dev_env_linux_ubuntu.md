@@ -20,17 +20,17 @@ Hemos creado una serie de scripts de bash que se pueden utilizar para instalar l
 
 Los scripts son:
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>**: [dependencias comunes](#common-dependencies), simulador de [jMAVSim](#jmavsim)
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a>**: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator
   
   * Este script contiene las dependencias comunes para todos los objetivos de compilación de PX4. Es automáticamente descargado y se ejecuta cuando se llama a cualquiera de los otros scripts.
   * Puedes ejecutar este antes de instalar las dependencias restantes para [Qualcomm Snapdragon Flight](#snapdragon-flight) o [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>**: **ubuntu_sim_common_deps.sh** + simulador [Gazebo8](#gazebo).
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>**: **ubuntu_sim_common_deps.sh** + [Gazebo8](#gazebo) simulator.
 
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>**: **ubuntu_sim.sh** + herramientas de NuttX. 
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>**: **ubuntu_sim.sh** + herramientas de NuttX. 
   * *Requiere reiniciar el ordenador completamente.*
-* **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a>**: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo y MAVROS](#rosgazebo). 
-  * ROS Kinetic es instalado con Gazebo7 por defecto (hemos elegido usarlo antes que Gazebo 8 para simplificar el desarrollo en ROS).
+* **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh" target="_blank" download>ubuntu_sim_ros_melodic.sh</a>**: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo y MAVROS](#rosgazebo). 
+  * ROS Melodic is installed with Gazebo 9 by default.
   * Catkin (ROS build system) workspace es creado en **~/catkin_ws/**.
 
 ### Cómo usar los scripts
@@ -98,34 +98,45 @@ Podrías también desear instalar [pyulog](https://github.com/PX4/pyulog#pyulog)
 
 ## Instalación de FastRTPS
 
-[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) es una implementación de C++ de protocolo RTPS (Real Time Publish Subscribe). FastRTPS es usado, a través de la [interfaz RTPS/ROS2: PX4-FastRTPS Bridge](../middleware/micrortps.md), para permitir a los topic uORB de PX4 ser compartidos con componentes externos.
+# Install FastRTPS 1.7.1 and FastCDR-1.0.8
 
-Las siguientes instrucciones pueden ser usadas para instalar los binarios de FastRTPS 1.5 en tu directorio home.
+fastrtps_dir=$HOME/eProsima_FastRTPS-1.7.1-Linux echo "Installing FastRTPS to: $fastrtps_dir" if [ -d "$fastrtps_dir" ] then echo " FastRTPS already installed." else pushd . cd ~
+
+      cpucores=$(( $(lscpu | grep Core.*per.*socket | awk -F: '{print $2}') * $(lscpu | grep Socket\(s\) | awk -F: '{print $2}') ))
+    
+      popd
+    
+
+fi
+
+[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
+
+The following instructions can be used to install the FastRTPS 1.7.1 binaries to your home directory.
 
 ```sh
-wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz -O eprosima_fastrtps-1-5-0-linux.tar.gz
-tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
-tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
-tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
+wget https://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-7-1/eprosima_fastrtps-1-7-1-linux-tar-gz -O eprosima_fastrtps-1-7-1-linux.tar.gz
+tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz eProsima_FastRTPS-1.7.1-Linux/
+tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz requiredcomponents
+tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
 ```
 
 > **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
 
 ```sh
-(cd eProsima_FastCDR-1.0.7-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
-(cd eProsima_FastRTPS-1.5.0-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
-rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
+(cd eProsima_FastCDR-1.0.8-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
+(cd eProsima_FastRTPS-1.7.1-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
+rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
 ```
 
 > **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
 
 ## Dependencias de simulación
 
-Las dependencias para los simuladores Gazebo y jMAVSim son listadas abajo. Se debería instalar como mínimo jMAVSim para hacer más sencillo probar la instalación. Información adicional sobre esas y otros simuladores soportados se comenta en: [Simulación](../simulation/README.md).
+The dependencies for the Gazebo and jMAVSim simulators listed below. You should minimally install jMAVSim to make it easy to test the installation. Additional information about these and other supported simulators is covered in: [Simulation](../simulation/README.md).
 
 ### jMAVSim
 
-Instala las dependencias para [Simulación jMAVSim](../simulation/jmavsim.md).
+Install the dependencies for [jMAVSim Simulation](../simulation/jmavsim.md).
 
     # jMAVSim simulator
     sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
@@ -135,18 +146,18 @@ Instala las dependencias para [Simulación jMAVSim](../simulation/jmavsim.md).
 
 > **Note** If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions in the following section (these install Gazebo automatically, as part of the ROS installation).
 
-Instala las dependencias para [simulación en Gazebo](../simulation/gazebo.md).
+Install the dependencies for [Gazebo Simulation](../simulation/gazebo.md).
 
-    # Simulador Gazebo
+    # Gazebo simulator
     sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
     sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
-    ## Configura las claves
+    ## Setup keys
     wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
-    ## Actualiza la base de datos de debian:
+    ## Update the debian database:
     sudo apt-get update -y
-    ## Instala Gazebo9
+    ## Install Gazebo9
     sudo apt-get install gazebo9 -y
-    ## Para desarrolladores (quienes trabajen directamente con Gazebo) un paquete extra
+    ## For developers (who work on top of Gazebo) one extra package
     sudo apt-get install libgazebo9-dev -y
     
 
@@ -154,65 +165,67 @@ Instala las dependencias para [simulación en Gazebo](../simulation/gazebo.md).
 
 ### ROS/Gazebo
 
-Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Melodic"). These include Gazebo9 (the default version that comes with ROS Melodic). Las instrucciones vienen de la Wiki de ROS sobre [Ubuntu](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Melodic"). These include Gazebo9 (the default version that comes with ROS Melodic). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+
+> **Note** ROS Melodic requires Ubuntu 18.04 (and later). It cannot be installed on Ubuntu 16.04.
 
 ```sh
-# ROS Kinetic/Gazebo
-## Dependencias de Gazebo
+# ROS Melodic/Gazebo
+## Gazebo dependencies
 sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
 
-## ROS Gazebo: http://wiki.ros.org/kinetic/Installation/Ubuntu
-## Configura claves
+## ROS Gazebo: http://wiki.ros.org/melodic/Installation/Ubuntu
+## Setup keys
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
-## Para problemas de conexión con el servidor de claves sustituye hkp://pgp.mit.edu:80 o hkp://keyserver.ubuntu.com:80 de arriba.
+## For keyserver connection problems substitute hkp://pgp.mit.edu:80 or hkp://keyserver.ubuntu.com:80 above.
 sudo apt-get update
-## Instala ROS/Gazebo
-sudo apt-get install ros-kinetic-desktop-full -y
-## Inicializa rosdep
+## Get ROS/Gazebo
+sudo apt install ros-melodic-desktop-full -y
+## Initialize rosdep
 sudo rosdep init
 rosdep update
-## Configura variables de entorno
-rossource="source /opt/ros/kinetic/setup.bash"
+## Setup environment variables
+rossource="source /opt/ros/melodic/setup.bash"
 if grep -Fxq "$rossource" ~/.bashrc; then echo ROS setup.bash already in .bashrc;
 else echo "$rossource" >> ~/.bashrc; fi
-source ~/.bashrc
-## Instala rosinstall
-sudo apt-get install python-rosinstall -y
+eval $rossource
+## Install rosinstall and other dependencies
+sudo apt install python-rosinstall build-essential -y
 ```
 
-Instala el paquete [MAVROS \(MAVLink en ROS\)](../ros/mavros_installation.md). Esto habilita comunicación MAVLink entre ordenadores que ejecuten ROS, MAVLink habilita autopilotos, y MAVLink habilita GCS.
+Install the [MAVROS \(MAVLink on ROS\)](../ros/mavros_installation.md) package. This enables MAVLink communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.
 
-> **Tip** MAVROS can be installed as an ubuntu package or from source. Source is recommended for developers.
+> **Tip** MAVROS can be installed as an Ubuntu package or from source. Source is recommended for developers.
 
 ```sh
-## Crea workspace de catkin (ROS build system)
+## Create catkin workspace (ROS build system)
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws
 
-## Instala dependencias
+## Install dependencies
 sudo apt-get install python-wstool python-rosinstall-generator python-catkin-tools -y
 
-## Inicializa wstool
+## Initialise wstool
 wstool init ~/catkin_ws/src
 
-## Compila MAVROS
-### Instala desde el código fuente (upstream - released)
+## Build MAVROS
+### Get source (upstream - released)
 rosinstall_generator --upstream mavros | tee /tmp/mavros.rosinstall
-### Instala latest released mavlink package
+### Get latest released mavlink package
 rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
-### Configura workspace & instala dependencias
+### Setup workspace & install deps
 wstool merge -t src /tmp/mavros.rosinstall
 wstool update -t src
-rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
+rosdep install --from-paths src --ignore-src --rosdistro melodic -y
 ```
 
-> **Note** If you use an ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
+> **Note** If you use a Ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro melodic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro melodic -y --os ubuntu:bionic`
 
 ```sh
-## Compila!
+## Build!
 catkin build
-## Re-lanza el archivo de configuración para reflejar nuevos paquetes/compilaciones en el entorno de trabajo
+## Re-source environment to reflect new packages/build environment
 catkin_ws_source="source ~/catkin_ws/devel/setup.bash"
 if grep -Fxq "$catkin_ws_source" ~/.bashrc; then echo ROS catkin_ws setup.bash already in .bashrc;
 else echo "$catkin_ws_source" >> ~/.bashrc; fi
@@ -221,7 +234,7 @@ source ~/.bashrc
 
 ## Hardware basado en NuttX
 
-Instala las siguientes dependencias para compilar para hardware basado en NuttX: Pixhawk, Pixfalcon, Pixracer, Pixhawk 3, Intel® Aero Ready to Fly Drone.
+Install the following dependencies to build for NuttX based hardware: Pixhawk, Pixfalcon, Pixracer, Pixhawk 3, Intel® Aero Ready to Fly Drone.
 
 > **Note** Packages with specified versions should be installed with the specified package version.
 
@@ -231,7 +244,7 @@ sudo apt-get install python-serial openocd \
     libftdi-dev libtool zlib1g-dev -y
 ```
 
-Elimina cualquier versión antigua de la toolchain de arm-none-eabi.
+Remove any old versions of the arm-none-eabi toolchain.
 
 ```sh
 sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded
@@ -242,7 +255,7 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 ## Snapdragon Flight
 
-Las instrucciones de configuración para Snapdragon Flight se proporcionan en la *Guía del usuario de PX4*:
+Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 
 * [Entorno de desarrollo](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
 * [Instalación del software](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
@@ -250,28 +263,28 @@ Las instrucciones de configuración para Snapdragon Flight se proporcionan en la
 
 ## Raspberry Pi Hardware
 
-Los desarrolladores que trabajan en hardware Raspberry Pi necesitan descargar un compilador cruzado de ARMv7, ya sea para GCC o clang. La herramienta actualmente recomendada para raspbian puede ser clonada de `https://github.com/raspberrypi/tools.git`. La variable de entorno `PATH` debería incluir la ruta a la colección de herramientas de compilador cruzado de gcc (por ejemplo gcc, g++, strip) prefijado con `arm-linux-gnueabihf-`.
+Developers working on Raspberry Pi hardware need to download a ARMv7 cross-compiler, either GCC or clang. The current recommended toolchain for raspbian can be cloned from `https://github.com/raspberrypi/tools.git` (at time of writing 4.9.3). The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
 
 ```sh
 git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
 
-# test compilador
+# test compiler
 $HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
 
-# permanentemente actualiza la variable PATH modificando ~/.profile
+# permanently update PATH variable by modifying ~/.profile
 echo 'export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin' >> ~/.profile
 
-# actualiza la variable PATH solo para esta sesión
+# update PATH variable only for this session
 export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
 ```
 
 ### clang
 
-Para usar clang, también es necesario GCC.
+In order to use clang, you also need GCC.
 
-Descarga clang para tu distribución específica desde [LLVM Download page](http://releases.llvm.org/download.html) y descomprímelo. Asumiendo que has extraído el contenido de clang a `CLANG_DIR`, y el binario de `clang` esta disponible en `CLANG_DIR/bin`, y tienes el compilador cruzado de GCC en `GCC_DIR`, necesitarás configurar los symlinks para clang en el directorio de binario `GCC_DIR`, y agregar `GCC_DIR/bin` a `PATH`.
+Download clang for your specific distribution from [LLVM Download page](http://releases.llvm.org/download.html) and unpack it. Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
 
-Ejemplo a continuación de compilación del firmware de PX4, usando CMake.
+Example below for building PX4 firmware out of tree, using CMake.
 
 ```sh
 ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
@@ -291,13 +304,13 @@ cmake \
 
 ### Compilación Nativa
 
-Información adicional para desarrollador para usar PX4 en Raspberry Pi (incluyendo compilación nativa de PX4) puede ser encontrado aquí: [Autopiloto Raspberry Pi 2/3 Navio2](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 
 ## Parrot Bebop
 
-Los desarrolladores que trabajen con el Parrot Bebop deberían instalar la RPi Linux Toolchain. Siga la descripción bajo [Hardware Raspberry Pi](#raspberry-pi-hardware).
+Developers working with the Parrot Bebop should install the RPi Linux Toolchain. Follow the description under [Raspberry Pi hardware](#raspberry-pi-hardware).
 
-Despueés instale ADB.
+Next, install ADB.
 
 ```sh
 sudo apt-get install android-tools-adb -y
@@ -305,8 +318,8 @@ sudo apt-get install android-tools-adb -y
 
 ## Herramientas adicionales
 
-Después de configurar la toolchain de compilación/simulación, consulte [Herramientas adicionales](../setup/generic_dev_tools.md) para obtener información sobre otras herramientas útiles.
+After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
 
 ## Siguientes Pasos
 
-Una vez que haya terminado de configurar el entorno, continúe a [Compilando el código](../setup/building_px4.md).
+Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
