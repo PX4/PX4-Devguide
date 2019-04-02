@@ -574,8 +574,35 @@ These are extracted at build time from the active *git tag* for your repo tree. 
 
 ## Troubleshooting {#troubleshooting}
 
-### MacOS: Too many open files error
+### General Build Errors
 
-The PX4 build process opens a large number of files, and may exceed the default macOS limits.
+Many build problems are caused by either mismatching submodules or an incompletely cleaned-up build environment. Updating the submodules and doing a `distclean` can fix these kinds of errors:
 
-If you get a "too many open files" error run the [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh) script in your Terminal for each session.
+    git submodule update --recursive
+    make distclean
+    
+
+### Flash overflowed by XXX bytes
+
+The `region 'flash' overflowed by XXXX bytes` error indicates that the firmware is too large for the target hardware platform. This is common for `make px4_fmu-v2_default` builds, where the flash size is limited to 1MB.
+
+If you're building the *vanilla* master branch, the most likely cause is using an unsupported version of GCC. In this case, install the version specified in the [Developer Toolchain](../setup/dev_env.md) instructions.
+
+If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. In this case you will need to remove any drivers/modules that you don't need from the build.
+
+### macOS: Too many open fileserror {#macos_open_files}
+
+MacOS allows a default maximum of 256 open files in all running processes. The PX4 build system opens a large number of files, so you may exceed this number.
+
+The build toolchain will then report `Too many open files` for many files, as shown below:
+
+```sh
+/usr/local/Cellar/gcc-arm-none-eabi/20171218/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/bin/ld: cannot find NuttX/nuttx/fs/libfs.a: Too many open files
+```
+
+The solution is to increase the maximum allowed number of open files (e.g. to 300). You can do this in the macOS *Terminal* for each session:
+
+- Run this script [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh), or
+- Enter this command: 
+        sh
+        ulimit -S -n 300
