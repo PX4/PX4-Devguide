@@ -8,38 +8,48 @@ MacOS 是受支持的 PX4 开发平台。 根据本文的指示构建的开发�
 
 > **提示：** 若需要为其他平台进行编译请参考： [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets)。
 
-## Homebrew 安装
+## Preconditions
 
-Homebrew 的安装非常简单迅速：[installation instructions](https://brew.sh)。
+Increase the maximum allowed number of open files on macOS using the *Terminal* command:
 
-## 常用工具
+```sh
+ulimit -S -n 300
+```
 
-Homebrew 安装完毕后，在你的 shell 界面输入如下命令安装常用工具：
+> **Note** At time of writing (December 2018) the master branch uses more than the default maximum allowed open files on macOS (256 in all running processes). As a *short term solution*, increasing the number of allowed open files to 300 should fix most problems.
+
+## Homebrew Installation
+
+The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
+
+## Common Tools
+
+After installing Homebrew, run these commands in your shell to install the common tools:
 
 ```sh
 brew tap PX4/px4
 brew install px4-dev
-# 可选，但建议安装额外的仿真模拟用工具
+# Optional, but recommended additional simulation tools:
 brew install px4-sim
 ```
 
-如上述安装过程输出了依赖项缺失的错误，请遵循下文的指示进行操作。 你的系统应该是缺失 Java 和 Quartz ：
+If the installation outputs an error message about missing requirements follow the instructions. Your system will be missing Java and Quartz:
 
 ```sh
 brew cask install xquartz java
 ```
 
-如果您还没有安装 pip ，请安装并使用它来安装所需的软件包：
+Install pip if you don't already have it and use it to install the required packages:
 
 ```sh
 sudo easy_install pip
 sudo -H pip install pyserial empy toml numpy pandas jinja2 pyyaml
 ```
 
-## 额外工具
+## Additional Tools
 
-完成编译/仿真开发环境设置后，你可以从 [Additional Tools](../setup/generic_dev_tools.md) 找到一些有用的“通用”开发工具。
+After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
 
-## 后续步骤
+## Next Steps
 
-设置完环境后，请转至 [build instructions](../setup/building_px4.md) 。
+Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
