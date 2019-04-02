@@ -4,9 +4,13 @@ PX4는 시뮬레이션된 대상과 하드웨어 대상 모두에 대해 콘솔�
 
 > **Note** Before following these instructions you must first install the [Developer Toolchain](../setup/dev_env.md) for your host operating system and target hardware.
 
+<span></span>
+
+> **Tip** For solutions to common build problems see [Troubleshooting](#troubleshooting) below.
+
 ## PX4 소스 코드 다운로드하기 {#get_px4_code}
 
-PX4 소스 코드는 [PX4 / Firmware](https://github.com/PX4/Firmware) 저장소의 Github에 저장됩니다. 이 저장소를 Github 계정과 연결된 복사본을 [만들어](https://help.github.com/articles/fork-a-repo/), 이 원본을 로컬 컴퓨터에 [복제](https://help.github.com/articles/cloning-a-repository/)하는 것이 좋습니다.
+The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
 
 > **Tip** Forking the repository allows you to better manage your custom code. Later on you will be able to use *git* to share changes with the main project.
 
@@ -567,3 +571,11 @@ The *PX4 Firmware Version* and *Custom Firmware Version* are published using the
 These are extracted at build time from the active *git tag* for your repo tree. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
 
 > **Warning** If you use a different git tag format, versions information may not be displayed properly.
+
+## Troubleshooting {#troubleshooting}
+
+### MacOS: Too many open files error
+
+The PX4 build process opens a large number of files, and may exceed the default macOS limits.
+
+If you get a "too many open files" error run the [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh) script in your Terminal for each session.
