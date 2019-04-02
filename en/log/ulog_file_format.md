@@ -106,7 +106,7 @@ struct message_header_s {
   ```
   struct message_format_s {
   	struct message_header_s header;
-  	char format[header.msg_size-hdr_size];
+  	char format[header.msg_size];
   };
   ```
   `format`: plain-text string with the following format: `message_name:field0;field1;`
@@ -135,7 +135,7 @@ struct message_header_s {
   	struct message_header_s header;
   	uint8_t key_len;
   	char key[key_len];
-  	char value[header.msg_size-hdr_size-1-key_len]
+  	char value[header.msg_size-1-key_len]
   };
   ```
   `key` is a plain string, as in the format message (can also be a custom type), but consists of only a single field without ending `;`, eg. `float[3] myvalues`. 
@@ -178,7 +178,7 @@ int32_t time_ref_utc | UTC Time offset in seconds | -3600 |
   	uint8_t is_continued; ///< can be used for arrays
   	uint8_t key_len;
   	char key[key_len];
-  	char value[header.msg_size-hdr_size-2-key_len]
+  	char value[header.msg_size-2-key_len]
   };
   ```
   The same as the information message, except that there can be multiple messages with the same key (parsers store them as a list). 
@@ -203,7 +203,7 @@ The following messages belong to this section:
   	struct message_header_s header;
   	uint8_t multi_id;
   	uint16_t msg_id;
-  	char message_name[header.msg_size-hdr_size-3];
+  	char message_name[header.msg_size-3];
   };
   ```
   `multi_id`: the same message format can have multiple instances, for example if the system has two sensors of the same type.
@@ -227,7 +227,7 @@ The following messages belong to this section:
   struct message_data_s {
   	struct message_header_s header;
   	uint16_t msg_id;
-  	uint8_t data[header.msg_size-hdr_size];
+  	uint8_t data[header.msg_size-2];
   };
   ```
   `msg_id`: as defined by a `message_add_logged_s` message. 
@@ -240,7 +240,7 @@ The following messages belong to this section:
   	struct message_header_s header;
   	uint8_t log_level;
   	uint64_t timestamp;
-  	char message[header.msg_size-hdr_size-9]
+  	char message[header.msg_size-9]
   };
   ```
   `timestamp`: in microseconds, `log_level`: same as in the Linux kernel:
