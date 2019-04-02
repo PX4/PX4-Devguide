@@ -71,6 +71,10 @@
             "gitbookConfigURL": "https://raw.githubusercontent.com/PX4/Devguide/master/book.json",
             "options": [
                 {
+                    "value": "https://dev.px4.io/en/",
+                    "text": "stable (v1.8.2)"
+                },
+                {
                     "value": "https://dev.px4.io/master/en/",
                     "text": "master"
                 },

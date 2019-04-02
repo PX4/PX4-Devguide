@@ -23,7 +23,11 @@ or
 sudo apt-get install valgrind
 ```
 
-> **Todo** Add instructions how to run Valgrind
+To use valgrind during the SITL simulation:
+
+```sh
+make px4_sitl_default jmavsim___valgrind
+```
 
 ## Start combinations
 

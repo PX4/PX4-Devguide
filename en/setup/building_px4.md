@@ -9,9 +9,11 @@ PX4 can be built on the console or in an IDE, for both simulated and hardware ta
 
 ## Downloading PX4 Source Code {#get_px4_code}
 
-The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
+The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository.
+We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
 
-> **Tip** Forking the repository allows you to better manage your custom code. Later on you will be able to use *git* to share changes with the main project.
+> **Tip** Forking the repository allows you to better manage your custom code.
+  Later on you will be able to use *git* to share changes with the main project.
 
 The steps to fork and clone the project source code are:
 
@@ -20,13 +22,14 @@ The steps to fork and clone the project source code are:
    This will create and open the forked repository.
 
    ![Github Fork button](../../assets/toolchain/github_fork.png)
-1. Copy the repository URL for your *Firmware* repository fork. The easiest way to do this is to click the **Clone or download** button and then copy the URL:
+1. Copy the repository URL for your *Firmware* repository fork.
+   The easiest way to do this is to click the **Clone or download** button and then copy the URL:
 
    ![Github Clone or download button](../../assets/toolchain/github_clone_or_download.png)
 1. Open a command prompt/terminal on your computer
-   * On OS X, hit ⌘-space and search for 'terminal'. 
-   * On Ubuntu, click the launch bar and search for 'terminal'. 
-   * On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'. 
+   * On OS X, hit ⌘-space and search for 'terminal'.
+   * On Ubuntu, click the launch bar and search for 'terminal'.
+   * On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'.
 1. Clone the repository fork using the copied URL. This will look something like:
    ```
    git clone https://github.com/<youraccountname>/Firmware.git
@@ -65,7 +68,8 @@ To get the source code for a *specific older release*:
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
 
-For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
+For the first build we'll build for a simulated target using a console environment.
+This allows us to validate the system setup before moving on to real hardware and an IDE.
 
 Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 ```sh
@@ -83,9 +87,10 @@ pxh> commander takeoff
 
 ![jMAVSim UI](../../assets/jmavsim_first_takeoff.png)
 
-The drone can be landed by typing `commander land` and the whole simulation can be stopped by doing **CTRL+C** (or by entering `shutdown`). 
+The drone can be landed by typing `commander land` and the whole simulation can be stopped by doing **CTRL+C** (or by entering `shutdown`).
 
-Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
+Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. 
+This will reposition the vehicle.
 
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
@@ -99,7 +104,7 @@ Flying the simulation with the ground control station is closer to the real oper
 
 ### Building {#building_nuttx}
 
-To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board. 
+To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board.
 
 For example, to build for *Pixracer* you would use the following command:
 ```sh
@@ -107,7 +112,7 @@ cd Firmware
 make px4_fmu-v4_default
 ```
 
-> **Note** In the example above the first part of the build target `px4_fmu-v4` is the firmware for a particular flight controller hardware and `default` is the configuration name (in this case the "default" configuration). 
+> **Note** In the example above the first part of the build target `px4_fmu-v4` is the firmware for a particular flight controller hardware and `default` is the configuration name (in this case the "default" configuration).
   The `default` is optional so you could instead do: 
   ```
   make px4_fmu-v4
@@ -142,7 +147,8 @@ The following list shows the build commands for common boards:
 
 ### Uploading Firmware (Flashing the board)
 
-Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
+Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB.
+For example
 
 ```sh
 make px4_fmu-v4_default upload
@@ -249,20 +255,20 @@ cd Firmware
 make parrot_bebop_default
 ```
 
-Turn on your Bebop and connect your host machine with the Bebop's wifi. 
-Then, press the power button
-four times to enable ADB and to start the telnet daemon.
+Turn on your Bebop and connect your host machine with the Bebop's wifi.
+Then, press the power button four times to enable ADB and to start the telnet daemon.
 
 ```sh
 make parrot_bebop_default upload
 ```
 
 This will upload the PX4 mainapp into /data/ftp/internal_000/ and create the file /home/root/parameters if not already
-present. This also uploads the mixer file and the px4.config file into the /home/root/ directory.
+present.
+This also uploads the mixer file and the px4.config file into the /home/root/ directory.
 
 #### Run
 
-Connect to the Bebop's wifi and press the power button four times. 
+Connect to the Bebop's wifi and press the power button four times.
 Next, connect with the Bebop via telnet or adb shell and run the commands below.
 
 ```sh
@@ -278,8 +284,8 @@ and start the PX4 mainapp with:
 /data/ftp/internal_000/px4 -s /home/root/px4.config
 ```
 
-In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. 
-Both the Bebop and the joystick should be recognized. 
+In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl.
+Both the Bebop and the joystick should be recognized.
 Follow the instructions to calibrate the sensors and setup your joystick device.
 
 #### Autostart
@@ -303,7 +309,7 @@ Re-mount the system partition as writeable:
 ```sh
 adb shell mount -o remount,rw /
 ```
-In order to avoid editing the file manually, you can use this one : https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
+In order to avoid editing the file manually, you can use this one: https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
 
 Save the original one and push this one to the Bebop
 ```sh
@@ -329,7 +335,8 @@ This section shows how to build for the [Qualcomm Snapdragon Flight](https://doc
 
 #### Build
 
-> **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
+> **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). 
+  If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
 
 The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](../middleware/uorb.md).
 
@@ -338,7 +345,8 @@ cd Firmware
 make atlflight_eagle_default
 ```
 
-To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
+To load the SW on the device, connect via USB cable and make sure the device is booted.
+Run this in a new terminal window:
 
 ```sh
 adb shell
@@ -350,7 +358,8 @@ Go back to previous terminal and upload:
 make atlflight_eagle_default upload
 ```
 
-Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle. 
+Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device.
+Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle.
 
 The mixer currently needs to be copied manually:
 
@@ -375,7 +384,8 @@ cd /home/linaro
 ./px4 -s mainapp.config
 ```
 
-Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
+Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). 
+To fly, you should make the px4 auto-start after boot.
 
 #### Autostart
 
@@ -419,7 +429,10 @@ adb reboot
 
 ## Compiling in a Graphical IDE
 
-The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
+The PX4 system supports Qt Creator, Eclipse and Sublime Text.
+Qt Creator is the most user-friendly variant and hence the only officially supported IDE.
+Unless an expert in Eclipse or Sublime, their use is discouraged.
+Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
@@ -501,12 +514,12 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
   ```
 
 Notes:
-- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. 
-  For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`. 
-- You can use three underscores if you want to specify a default value between two other settings. 
+- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional.
+  For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`.
+- You can use three underscores if you want to specify a default value between two other settings.
   For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
-- You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. 
-  For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh`.
+- You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator.
+  For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
 
 
 The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory.
@@ -518,7 +531,7 @@ Additional make targets are discussed in the following sections (list is not exh
 
 ### Binary Size Profiling {#bloaty_compare_master}
 
-The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size 
+The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size.
 When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
 
 > **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
@@ -573,6 +586,17 @@ Then use the make target, specifying the target build to compare (`px4_fmu-v2_de
 ```
 This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash.
 It also shows the sizes of different pieces of the *mpu9250* driver.
+
+## Firmware Version & Git Tags {#firmware_version}
+
+The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
+
+![Firmware info](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
+
+These are extracted at build time from the active *git tag* for your repo tree.
+The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
+
+> **Warning** If you use a different git tag format, versions information may not be displayed properly.
 
 
 ## Troubleshooting {#troubleshooting}

@@ -3,6 +3,10 @@
 The PX4 dev team syncs up on platform technical details and in-depth analysis. 
 There is also space in the agenda to discuss pull requests, major impacting issues and Q&A.
 
+{% if book.px4_version != 'master' %}
+> **Tip** Dev Call schedule, agenda, and call in details, [can be found here](https://dev.px4.io/master/en/contribute/dev_call.html)!
+{% else %} <!-- START: dev call details: displayed only in master -->
+
 ## Who should attend:
 
 * Core project maintainers
@@ -30,10 +34,9 @@ The core team/subsystem maintainers will be available for up to 45 additional mi
 
 
 ## Schedule
-
-* TIME: Wednesday 5PM CET, 11AM EST, 8AM PST \([subscribe to calendar](https://calendar.google.com/calendar/ical/px4.io_fs35jm7ugmvahv5juhhr3tkkf0%40group.calendar.google.com/public/basic.ics)\)
-* **Join the call**: https://zoom.us/j/625711763
-* **Meeting ID**: 625 711 763
+* TIME: Wednesday 17h00 CET, 12h00 EST, 09h00 PST \([subscribe to calendar](https://www.dronecode.org/calendar/)\)
+* **Join the call**: https://zoom.us/j/946175205 
+* **Meeting ID**: 946 175 205
 * **Dial(for higher quality, dial a number based on your current location)**:
   * **Switzerland**: +41 (0) 31 528 0988 
   * **US**: +1 646 876 9923  or +1 669 900 6833  or +1 408 740 3766 
@@ -43,9 +46,9 @@ The core team/subsystem maintainers will be available for up to 45 additional mi
   * **United Kingdom**: +44 (0) 20 3695 0088 
   * **South Korea**: +82 (0) 2 6022 2322 
   * **Spain**: +34 91 198 0188 
-  * [**International numbers available**](https://zoom.us/zoomconference?m=bMNcJolpnXMOL_qSf2svkR7Yow6FqceS)
+  * [**International numbers available**](https://zoom.us/zoomconference)
 
 * Agenda is published before the call on [PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)
 * To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/Firmware/labels/devcall) label to flag them for discussion.
 
-
+{% endif %} <!-- END: dev call details: displayed only in master -->

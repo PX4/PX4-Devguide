@@ -21,17 +21,19 @@ This tutorial shows how to send the MAVLink message `NAMED_VALUE_FLOAT` using th
 
 The code for this tutorial is available here:
 
-* [Debug Tutorial Code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.c)
-* [Enable the tutorial app](https://github.com/PX4/Firmware/tree/master/cmake/configs) by uncommenting / enabling the mavlink debug app in the config of your board
+* [Debug Tutorial Code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.cpp)
+* [Enable the tutorial app](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake) by ensuring the MAVLink debug app (**px4_mavlink_debug**) is uncommented in the config of your board.
 
-All required to set up a debug publication is this code snippet. First add the header file:
+All required to set up a debug publication is this code snippet. 
+First add the header file:
 
 ```C
 #include <uORB/uORB.h>
 #include <uORB/topics/debug_key_value.h>
 ```
 
-Then advertise the debug value topic (one advertisement for different published names is sufficient). Put this in front of your main loop:
+Then advertise the debug value topic (one advertisement for different published names is sufficient). 
+Put this in front of your main loop:
 
 ```C
 /* advertise debug value */
@@ -46,7 +48,8 @@ dbg.value = position[0];
 orb_publish(ORB_ID(debug_key_value), pub_dbg, &dbg);
 ```
 
-> **Caution** Multiple debug messages must have enough time between their respective publishings for Mavlink to process them. This means that either the code must wait between publishing multiple debug messages, or alternate the messages on each function call iteration.
+> **Caution** Multiple debug messages must have enough time between their respective publishings for Mavlink to process them. 
+  This means that either the code must wait between publishing multiple debug messages, or alternate the messages on each function call iteration.
 
 The result in QGroundControl then looks like this on the real-time plot:
 
