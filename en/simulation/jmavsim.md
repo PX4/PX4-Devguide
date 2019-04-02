@@ -80,6 +80,16 @@ export PX4_HOME_ALT=28.5
 make px4_sitl_default jmavsim
 ```
 
+### Change Simulation Speed
+
+The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
+
+```
+export PX4_SIM_SPEED_FACTOR=2
+make px4_sitl_default jmavsim
+```
+
+For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
 ### Using a Joystick {#joystick}
 
@@ -101,7 +111,7 @@ The simulator broadcasts its address on the local network as a real drone would 
 You can start JMAVSim and PX4 separately:
 
 ```
-./Tools/jmavsim_run.sh
+./Tools/jmavsim_run.sh -l
 make px4_sitl none
 ```
 
@@ -124,4 +134,4 @@ The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the sa
 ## Important Files
 
 * The startup script is in the [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) folder and named `rcS_SIM_AIRFRAME`, the default is `rcS_jmavsim_iris`.
-* The root file system (the equivalent of `/` as seen by the) is located inside the build directory: `build/px4_sitl_default/src/firmware/posix/rootfs/`
+* The simulated root file system ("`/`" directory) is created inside the build directory here: `build/px4_sitl_default/tmp/rootfs`.

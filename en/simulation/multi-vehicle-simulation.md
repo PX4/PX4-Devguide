@@ -4,8 +4,8 @@ This topic explains how to simulate multiple UAV vehicles using Gazebo and SITL 
 
 > **Tip** If you don't need a feature provided by Gazebo or ROS, [Multi-Vehicle Simulation with JMAVSim](../simulation/multi_vehicle_jmavsim.md) is easier to set up.
 
-It demonstrates an example setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world. 
-You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle. 
+It demonstrates an example setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world.
+You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle.
 
 ## Required
 
@@ -37,17 +37,17 @@ To build an example setup, follow the step below:
    ```
    roslaunch px4 multi_uav_mavros_sitl.launch
    ```
-   
+
    > **Tip** You can specify `gui:=false` in the above *roslaunch* to launch Gazebo without its UI.
 
-The tutorial example opens the Gazebo client GUI showing two Iris vehicles in an empty world. 
+The tutorial example opens the Gazebo client GUI showing two Iris vehicles in an empty world.
 
 You can control the vehicles with *QGroundControl* or MAVROS in a similar way to how you would manage a single vehicle:
 * *QGroundControl* will have a drop-down to select the vehicle that is "in focus"
 * MAVROS requires that you include the proper namespace before the topic/service path (e.g. for `<group ns="uav1">` you'll use */uav1/mavros/mission/push*).
-   
 
-   
+
+
 ## What's Happening?
 
 For each simulated vehicle, the following is required:
@@ -87,11 +87,11 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
           <arg name="Y" value="0"/>
           <arg name="vehicle" value="$(arg vehicle)"/>
           <arg name="rcS" value="$(find px4)/posix-configs/SITL/init/$(arg est)/$(arg vehicle)_$(arg ID)"/>
-          <arg name="mavlink_udp_port" value="14560"/>
+          <arg name="mavlink_tcp_port" value="4560"/>
           <arg name="ID" value="$(arg ID)"/>
       </include>
   ```
-    
+
   * runs a mavros node
   ```
       <!-- MAVROS -->
@@ -102,7 +102,7 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
           <arg name="tgt_component" value="1"/>
       </include>
   ```
-  
+
   > **Note** The complete block for each vehicle is enclosed in a set of `<group>` tags to separate the ROS namespaces of the vehicles.
 
 To add a third iris to this simulation there are two main components to consider:
@@ -116,11 +116,11 @@ To add a third iris to this simulation there are two main components to consider
   * `MAV_SYS_ID` value to `3`
   * `SITL_UDP_PRT` value to match that of the `mavlink_udp_port` launch file arg
   * the first `mavlink start` port and the `mavlink stream` port values to the same values, which is to be used for QGC communication
-  * the second `mavlink start` ports need to match those used in the launch file `fcu_url` arg 
-  
+  * the second `mavlink start` ports need to match those used in the launch file `fcu_url` arg
+
     > **Note** Be aware of which port is `src` and `dst` for the different endpoints.
 
-    
+
 ## Additional Resources
 
 * See [Simulation](../simulation/README.md) for a description of the UDP port configuration.

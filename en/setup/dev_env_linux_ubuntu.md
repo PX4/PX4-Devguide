@@ -1,10 +1,14 @@
 # Development Environment on Ubuntu LTS / Debian Linux
 
-[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) (16.04) is the standard/preferred Linux development OS. It allows you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation, ROS).
+[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 16.04 is the standard/preferred Linux development OS.
+It allows you to build for [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation).
+
+> **Note** Ubuntu 18.04 is required if you want to work with *ROS Melodic* (which does not install on Ubuntu 16.04).
 
 The following instructions explain how to *manually* set up a development environment each of the supported targets.
 
-> **Tip** We recommend that you use the [Convenience bash scripts](#convenience-bash-scripts) to install the Simulators and/or NuttX toolchain (this is easier than typing in the instructions below). Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etc.)
+> **Tip** We recommend that you use the [Convenience bash scripts](#convenience-bash-scripts) to install the Simulators and/or NuttX toolchain (this is easier than typing in the instructions below).
+  Then follow just the additional instructions for other targets (e.g. Qualcomm Snapdragon Flight, Bebop, Raspberry Pi, etc.)
 
 <span></span>
 > **Tip** After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
@@ -12,21 +16,23 @@ The following instructions explain how to *manually* set up a development enviro
 
 ## Convenience Bash Scripts
 
-We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. All the scripts install the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**). 
+We've created a number of bash scripts that you can use to install the Simulators and/or NuttX toolchain. 
+All the scripts install the *Qt Creator IDE*, [Ninja Build System](#ninja-build-system), [Common Dependencies](#common-dependencies), [FastRTPS](#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**). 
 
-> **Tip** The scripts have been tested on a clean Ubuntu 16.04 LTS installation. They *may* not work as expected if installed on top of an existing system.
+> **Tip** The scripts have been tested on clean Ubuntu 16.04 and 18.04 LTS installations.
+They *may* not work as expected if installed on top of an existing system or a different Ubuntu release.
 
 The scripts are:
 
-* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a></strong>: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator
+* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a></strong>: [Common Dependencies](#common-dependencies), [jMAVSim](#jmavsim) simulator
   * This script contains the common dependencies for all PX4 build targets. It is automatically downloaded and run when you call any of the other scripts.
   * You can run this before installing the remaining dependencies for [Qualcomm Snapdragon Flight](#snapdragon-flight) or [Raspberry Pi/Parrot Bebop](#raspberry-pi-hardware).
 
-* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a></strong>: **ubuntu_sim_common_deps.sh** + [Gazebo8](#gazebo) simulator. 
-* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a></strong>: **ubuntu_sim.sh** + NuttX tools. 
+* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a></strong>: **ubuntu_sim_common_deps.sh** + [Gazebo8](#gazebo) simulator. 
+* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a></strong>: **ubuntu_sim.sh** + NuttX tools. 
   * *This requires computer restart on completion.*
-* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_gazebo.sh" target="_blank" download>ubuntu_sim_ros_gazebo.sh</a></strong>: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo and MAVROS](#rosgazebo). 
-  * ROS Kinetic is installed with Gazebo7 by default (we have chosen to use the default rather than Gazebo 8 to simplify ROS development).
+* <strong><a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh" target="_blank" download>ubuntu_sim_ros_melodic.sh</a></strong>: **ubuntu_sim_common_deps.sh** + [ROS/Gazebo and MAVROS](#rosgazebo). 
+  * ROS Melodic is installed with Gazebo 9 by default.
   * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
 
 
@@ -49,7 +55,8 @@ To use the scripts:
 
 ## Permission Setup
 
-> **Warning** Never ever fix permission problems by using `sudo`. It will create more permission problems in the process and require a system re-installation to fix them.
+> **Warning** Never ever fix permission problems by using `sudo`.
+  It will create more permission problems in the process and require a system re-installation to fix them.
 
 The user needs to be part of the group "dialout":
 
@@ -62,7 +69,8 @@ Then logout and login again (the change is only made after a new login).
 
 ## Remove the modemmanager
 
-Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port \(or USB serial\). It can removed/deinstalled without side effects:
+Ubuntu comes with a serial modem manager which interferes heavily with any robotics related use of a serial port \(or USB serial\).
+It can removed/deinstalled without side effects:
 
 ```sh
 sudo apt-get remove modemmanager
@@ -77,6 +85,10 @@ Update the package list and install the following dependencies for all PX4 build
 sudo apt-get update -y
 sudo apt-get install git zip qtcreator cmake \
     build-essential genromfs ninja-build exiftool -y
+
+# Install xxd (package depends on version)
+which xxd || sudo apt install xxd -y || sudo apt-get install vim-common --no-install-recommends -y
+
 # Required python packages
 sudo apt-get install python-argparse \
     python-empy python-toml python-numpy python-yaml \
@@ -92,37 +104,55 @@ sudo -H pip install pyulog
 ```
 
 <!-- import docs ninja build system -->
-{% include "_ninja_build_system.txt" %}
+{% include "_ninja_build_system.md" %}
 
 
 ## FastRTPS installation
+# Install FastRTPS 1.7.1 and FastCDR-1.0.8
+fastrtps_dir=$HOME/eProsima_FastRTPS-1.7.1-Linux
+echo "Installing FastRTPS to: $fastrtps_dir"
+if [ -d "$fastrtps_dir" ]
+then
+    echo " FastRTPS already installed."
+else
+    pushd .
+    cd ~
+    
+    cpucores=$(( $(lscpu | grep Core.*per.*socket | awk -F: '{print $2}') * $(lscpu | grep Socket\(s\) | awk -F: '{print $2}') ))
 
-[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
+    popd
+fi
 
-The following instructions can be used to install the FastRTPS 1.5 binaries to your home directory.
+[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol.
+FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
+
+The following instructions can be used to install the FastRTPS 1.7.1 binaries to your home directory.
 
 ```sh
-wget http://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-5-0/eprosima_fastrtps-1-5-0-linux-tar-gz -O eprosima_fastrtps-1-5-0-linux.tar.gz
-tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
-tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
-tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
+wget https://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-7-1/eprosima_fastrtps-1-7-1-linux-tar-gz -O eprosima_fastrtps-1-7-1-linux.tar.gz
+tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz eProsima_FastRTPS-1.7.1-Linux/
+tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz requiredcomponents
+tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
 ```
 
-> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
+> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option.
+  This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. 
+  Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
 
 ```sh
-cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
-cd ..
-cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make -j2; sudo make install
-cd ..
-rm -rf requiredcomponents eprosima_fastrtps-1-5-0-linux.tar.gz
+(cd eProsima_FastCDR-1.0.8-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
+(cd eProsima_FastRTPS-1.7.1-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
+rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
 ```
 
 > **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
 
 
 ## Simulation Dependencies
-The dependencies for the Gazebo and jMAVSim simulators listed below. You should minimally install jMAVSim to make it easy to test the installation. Additional information about these and other supported simulators is covered in: [Simulation](../simulation/README.md).
+
+The dependencies for the Gazebo and jMAVSim simulators listed below.
+You should minimally install jMAVSim to make it easy to test the installation.
+Additional information about these and other supported simulators is covered in: [Simulation](../simulation/README.md).
 
 ### jMAVSim
 
@@ -153,44 +183,49 @@ sudo apt-get install gazebo9 -y
 sudo apt-get install libgazebo9-dev -y
 ```
 
-> **Tip** PX4 works with Gazebo 7, 8, and 9. The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
+> **Tip** PX4 works with Gazebo 7, 8, and 9.
+  The [installation instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) above are for installing Gazebo 9.
 
-<!-- these dependencies left over when I separated the dependencies. These appear to both be for using Clang. MOve them down?
-sudo apt-get install clang-3.5 lldb-3.5 -y
--->
 
 ### ROS/Gazebo
 
-Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Kinetic"). These include Gazebo7 (at time of writing, the default version that comes with ROS). The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+Install the dependencies for [ROS/Gazebo](../ros/README.md) ("Melodic").
+These include Gazebo9 (the default version that comes with ROS Melodic).
+The instructions come from the ROS Wiki [Ubuntu page](http://wiki.ros.org/kinetic/Installation/Ubuntu).
+
+> **Note** ROS Melodic requires Ubuntu 18.04 (and later).
+  It cannot be installed on Ubuntu 16.04.
 
 ```sh
-# ROS Kinetic/Gazebo
+# ROS Melodic/Gazebo
 ## Gazebo dependencies
 sudo apt-get install protobuf-compiler libeigen3-dev libopencv-dev -y
 
-## ROS Gazebo: http://wiki.ros.org/kinetic/Installation/Ubuntu
+## ROS Gazebo: http://wiki.ros.org/melodic/Installation/Ubuntu
 ## Setup keys
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 ## For keyserver connection problems substitute hkp://pgp.mit.edu:80 or hkp://keyserver.ubuntu.com:80 above.
 sudo apt-get update
 ## Get ROS/Gazebo
-sudo apt-get install ros-kinetic-desktop-full -y
+sudo apt install ros-melodic-desktop-full -y
 ## Initialize rosdep
 sudo rosdep init
 rosdep update
 ## Setup environment variables
-rossource="source /opt/ros/kinetic/setup.bash"
+rossource="source /opt/ros/melodic/setup.bash"
 if grep -Fxq "$rossource" ~/.bashrc; then echo ROS setup.bash already in .bashrc;
 else echo "$rossource" >> ~/.bashrc; fi
-source ~/.bashrc
-## Get rosinstall
-sudo apt-get install python-rosinstall -y
+eval $rossource
+## Install rosinstall and other dependencies
+sudo apt install python-rosinstall build-essential -y
 ```
 
-Install the [MAVROS \(MAVLink on ROS\)](../ros/mavros_installation.md) package. This enables MAVLink communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS. 
+Install the [MAVROS \(MAVLink on ROS\)](../ros/mavros_installation.md) package.
+This enables MAVLink communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.
 
-> **Tip** MAVROS can be installed as an ubuntu package or from source. Source is recommended for developers.
+> **Tip** MAVROS can be installed as an Ubuntu package or from source.
+  Source is recommended for developers.
 
 
 ```sh
@@ -212,10 +247,10 @@ rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
 ### Setup workspace & install deps
 wstool merge -t src /tmp/mavros.rosinstall
 wstool update -t src
-rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
+rosdep install --from-paths src --ignore-src --rosdistro melodic -y
 ```
 
-> **Note** If you use an ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro kinetic -y --os ubuntu:xenial`
+> **Note** If you use a Ubuntu-based distro and the command `rosdep install --from-paths src --ignore-src --rosdistro melodic -y` fails, you can try to force the command to run by executing `rosdep install --from-paths src --ignore-src --rosdistro melodic -y --os ubuntu:bionic`
 
 ```sh
 ## Build!
@@ -249,7 +284,7 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 
 <!-- import GCC toolchain common documentation -->
-{% include "_gcc_toolchain_installation.txt" %}
+{% include "_gcc_toolchain_installation.md" %}
 
 
 
@@ -259,6 +294,7 @@ Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 * [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
 * [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
 * [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+
 
 ## Raspberry Pi Hardware
 

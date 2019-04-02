@@ -80,4 +80,4 @@ sudo pacman -Sy --noconfirm \
 
 <!-- import GCC toolchain common documentation -->
 
-{% include "_gcc_toolchain_installation.txt" %}
+{% include "_gcc_toolchain_installation.md" %}

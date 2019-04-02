@@ -1,4 +1,27 @@
 # Modules Reference: Driver
+Subcategories:
+- [Distance Sensor](modules_driver_distance_sensor.md)
+
+## atxxxx
+Source: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
+
+
+### Description
+OSD driver for the ATXXXX chip that is mounted on the OmnibusF4SD board for example.
+
+It can be enabled with the OSD_ATXXXX_CFG parameter.
+
+### Usage {#atxxxx_usage}
+```
+atxxxx <command> [arguments...]
+ Commands:
+   start         Start the driver
+     [-b <val>]  SPI bus (default: use board-specific bus)
+
+   stop
+
+   status        print status info
+```
 ## batt_smbus
 Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
 
@@ -116,6 +139,8 @@ fmu <command> [arguments...]
 
    mode_pwm4cap1
 
+   mode_pwm4cap2
+
    mode_pwm3
 
    mode_pwm3cap1
@@ -144,40 +169,6 @@ fmu <command> [arguments...]
 
    status        print status info
 ```
-## gpio_led
-Source: [modules/gpio_led](https://github.com/PX4/Firmware/tree/master/src/modules/gpio_led)
-
-
-### Description
-This module is responsible for drving a single LED on one of the FMU AUX pins.
-
-It listens on the vehicle_status and battery_status topics and provides visual annunciation on the LED.
-
-### Implementation
-The module runs on the work queue. It schedules at a fixed frequency of 5 Hz
-
-### Examples
-It is started with:
-```
- gpio_led start
-```
-To drive an LED connected AUX1 pin.
-
-OR with any of the avaliabel AUX pins
-```
- gpio_led start -p 5
-```
-To drive an LED connected AUX5 pin.
-
-### Usage {#gpio_led_usage}
-```
-gpio_led <command> [arguments...]
- Commands:
-   start         annunciation on AUX OUT pin
-     [-p]        Use specified AUX OUT pin number (default: 1)
-
-   stop
-```
 ## gps
 Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
 
@@ -200,8 +191,16 @@ For testing it can be useful to fake a GPS signal (it will signal the system tha
 gps stop
 gps start -f
 ```
+
 Starting 2 GPS devices (the main GPS on /dev/ttyS3 and the secondary on /dev/ttyS4):
+```
 gps start -d /dev/ttyS3 -e /dev/ttyS4
+```
+
+Initiate warm restart of GPS device
+```
+gps reset warm
+```
 
 ### Usage {#gps_usage}
 ```
@@ -221,11 +220,14 @@ gps <command> [arguments...]
      [-i <val>]  GPS interface
                  values: spi|uart, default: uart
      [-p <val>]  GPS Protocol (default=auto select)
-                 values: ubx|mtk|ash
+                 values: ubx|mtk|ash|eml
 
    stop
 
    status        print status info
+
+   reset         Reset GPS device
+     cold|warm|hot Specify reset type
 ```
 ## pga460
 Source: [drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
@@ -316,46 +318,6 @@ rc_input <command> [arguments...]
 
    status        print status info
 ```
-## sf1xx
-Source: [drivers/distance_sensor/sf1xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf1xx)
-
-
-### Description
-
-I2C bus driver for Lightware SFxx series LIDAR rangefinders: SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20.
-
-Setup/usage information: https://docs.px4.io/en/sensor/sfxx_lidar.html
-
-### Examples
-
-Attempt to start driver on any bus (start on bus where first sensor found).
-```
-sf1xx start -a
-```
-Stop driver
-```
-sf1xx stop
-```
-
-### Usage {#sf1xx_usage}
-```
-sf1xx <command> [arguments...]
- Commands:
-   start         Start driver
-     [-a]        Attempt to start driver on all I2C buses
-     [-b <val>]  Start driver on specific I2C bus
-                 default: 1
-     [-R <val>]  Sensor rotation - downward facing by default
-                 default: 25
-
-   stop          Stop driver
-
-   test          Test driver (basic functional tests)
-
-   reset         Reset driver
-
-   info          Print driver information
-```
 ## tap_esc
 Source: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
 
@@ -384,7 +346,7 @@ tap_esc <command> [arguments...]
                  default: 4
 ```
 ## vmount
-Source: [drivers/vmount](https://github.com/PX4/Firmware/tree/master/src/drivers/vmount)
+Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
 
 ### Description

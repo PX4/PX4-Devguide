@@ -174,6 +174,17 @@ export PX4_HOME_ALT=28.5
 make px4_sitl gazebo
 ```
 
+### Change Simulation Speed
+
+The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
+
+```
+export PX4_SIM_SPEED_FACTOR=2
+make px4_sitl_default gazebo
+```
+
+For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
+
 ### Using a Joystick
 
 Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
@@ -262,7 +273,7 @@ The video from Gazebo should then display in *QGroundControl* just as it would f
   
 It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
 ```
-gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264'
+gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
 ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
 ```
   

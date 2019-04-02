@@ -1,4 +1,5 @@
 # Modules Reference: System
+
 ## dataman
 Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
@@ -60,11 +61,6 @@ heater <command> [arguments...]
  Commands:
    controller_period Reports the heater driver cycle period value, (us), and
                  sets it if supplied an argument.
-
-   duty_cycle    Reports the heater duty cycle (%).
-
-   feed_forward  Sets the feedforward value if supplied an argument and reports
-                 the current value.
 
    integrator    Sets the integrator gain value if supplied an argument and
                  reports the current value.
@@ -340,14 +336,12 @@ tune_control play -t 2
 ```
 tune_control <command> [arguments...]
  Commands:
-   play          Play system tune, tone, or melody
+   play          Play system tune or single note.
      [-t <val>]  Play predefined system tune
                  default: 1
-     [-f <val>]  Frequency of tone in Hz (0-22kHz)
-                 default: 0
-     [-d <val>]  Duration of tone in us
-                 default: 1
-     [-s <val>]  Strength of tone (0-100)
+     [-f <val>]  Frequency of note in Hz (0-22kHz)
+     [-d <val>]  Duration of note in us
+     [-s <val>]  Volume level (loudness) of the note (0-100)
                  default: 40
      [-m <val>]  Melody in string form
                  values: <string> - e.g. "MFT200e8a8a"

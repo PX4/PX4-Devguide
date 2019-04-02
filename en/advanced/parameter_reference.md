@@ -253,6 +253,23 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 </tr>
 </tbody></table>
 
+## Camera Capture
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+ <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
+ <thead>
+   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+ </thead>
+<tbody>
+<tr>
+ <td style="vertical-align: top;"><strong id="CAM_CAP_DELAY">CAM_CAP_DELAY</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Camera strobe delay</p><p><strong>Comment:</strong> This parameter sets the delay between image integration start and strobe firing</p>   </td>
+ <td style="vertical-align: top;">0.0 > 100.0 </td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">ms</td>
+</tr>
+</tbody></table>
+
 ## Camera Control
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
@@ -262,14 +279,38 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
  </thead>
 <tbody>
 <tr>
- <td style="vertical-align: top;"><strong id="CAM_FBACK_MODE">CAM_FBACK_MODE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Camera feedback mode</p><p><strong>Comment:</strong> Sets the camera feedback mode.</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> Disabled</li> 
+ <td style="vertical-align: top;"><strong id="CAM_CAP_EDGE">CAM_CAP_EDGE</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Camera capture edge</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Falling edge</li> 
 
-<li><strong>1:</strong> Feedback on trigger</li> 
+<li><strong>1:</strong> Rising edge</li> 
 </ul>
-  </td>
- <td style="vertical-align: top;">0 > 1 </td>
+  <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="CAM_CAP_FBACK">CAM_CAP_FBACK</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Camera capture feedback</p><p><strong>Comment:</strong> Enables camera capture feedback</p>   <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="CAM_CAP_MODE">CAM_CAP_MODE</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Camera capture timestamping mode</p><p><strong>Comment:</strong> Change time measurement</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Get absolute timestamp</li> 
+
+<li><strong>1:</strong> Get timestamp of mid exposure (active high)</li> 
+
+<li><strong>2:</strong> Get timestamp of mid exposure (active low)</li> 
+</ul>
+  <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;"></td>
 </tr>
@@ -359,6 +400,22 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
  <td style="vertical-align: top;">0 > 1 </td>
  <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="TRIG_PWM_NEUTRAL">TRIG_PWM_NEUTRAL</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>PWM neutral output on trigger pin</p>   <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;">1000 > 2000 </td>
+ <td style="vertical-align: top;">1500 </td>
+ <td style="vertical-align: top;">us</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="TRIG_PWM_SHOOT">TRIG_PWM_SHOOT</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>PWM output to trigger shot</p>   <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;">1000 > 2000 </td>
+ <td style="vertical-align: top;">1900 </td>
+ <td style="vertical-align: top;">us</td>
 </tr>
 </tbody></table>
 
@@ -478,7 +535,7 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
  <td style="vertical-align: top;"><p>Maximum value of EKF accelerometer delta velocity bias estimate that will allow arming.
 Note: ekf2 will limit the delta velocity bias estimate magnitude to be less than EKF2_ABL_LIM * FILTER_UPDATE_PERIOD_MS * 0.001 so this parameter must be less than that to be useful</p>   </td>
  <td style="vertical-align: top;">0.001 > 0.01 (0.0001)</td>
- <td style="vertical-align: top;">2.4e-3 </td>
+ <td style="vertical-align: top;">1.73e-3 </td>
  <td style="vertical-align: top;">m/s</td>
 </tr>
 <tr>
@@ -575,13 +632,6 @@ Note: ekf2 will limit the delta velocity bias estimate magnitude to be less than
  <td style="vertical-align: top;"><p>Datalink loss time threshold</p><p><strong>Comment:</strong> After this amount of seconds without datalink the data link lost mode triggers</p>   </td>
  <td style="vertical-align: top;">5 > 300 (0.5)</td>
  <td style="vertical-align: top;">10 </td>
- <td style="vertical-align: top;">s</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="COM_DL_REG_T">COM_DL_REG_T</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Datalink regain time threshold</p><p><strong>Comment:</strong> After a data link loss: after this this amount of seconds with a healthy datalink the 'datalink loss' flag is set back to false</p>   </td>
- <td style="vertical-align: top;">0 > 3 (0.5)</td>
- <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;">s</td>
 </tr>
 <tr>
@@ -873,6 +923,13 @@ Note: ekf2 will limit the delta velocity bias estimate magnitude to be less than
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="COM_OA_BOOT_T">COM_OA_BOOT_T</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Set avoidance system bootup timeout</p><p><strong>Comment:</strong> The avoidance system running on the companion computer is expected to boot within this time and start providing trajectory points. If no avoidance system is detected a MAVLink warning message is sent.</p>   </td>
+ <td style="vertical-align: top;">0 > 200 </td>
+ <td style="vertical-align: top;">100 </td>
+ <td style="vertical-align: top;">s</td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="COM_OF_LOSS_T">COM_OF_LOSS_T</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Time-out to wait when offboard connection is lost before triggering offboard lost action.
 See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>   </td>
@@ -890,7 +947,7 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_POS_FS_EPH">COM_POS_FS_EPH</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Horizontal position error threshold</p><p><strong>Comment:</strong> This is the horizontal position error (EPV) threshold that will trigger a failsafe. The default is appropriate for a multicopter. Can be increased for a fixed-wing.</p>   </td>
+ <td style="vertical-align: top;"><p>Horizontal position error threshold</p><p><strong>Comment:</strong> This is the horizontal position error (EPH) threshold that will trigger a failsafe. The default is appropriate for a multicopter. Can be increased for a fixed-wing.</p>   </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">5 </td>
  <td style="vertical-align: top;">m</td>
@@ -1316,6 +1373,20 @@ Increasing it makes the multi-rotor wind estimates adjust more slowly</p>   </td
  <td style="vertical-align: top;">rad/sec</td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="EKF2_GND_EFF_DZ">EKF2_GND_EFF_DZ</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Baro deadzone range for height fusion</p><p><strong>Comment:</strong> Sets the value of deadzone applied to negative baro innovations. Deadzone is enabled when EKF2_GND_EFF_DZ > 0.</p>   </td>
+ <td style="vertical-align: top;">0.0 > 10.0 </td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">M</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="EKF2_GND_MAX_HGT">EKF2_GND_MAX_HGT</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Height above ground level for ground effect zone</p><p><strong>Comment:</strong> Sets the maximum distance to the ground level where negative baro innovations are expected.</p>   </td>
+ <td style="vertical-align: top;">0.0 > 5.0 </td>
+ <td style="vertical-align: top;">0.5 </td>
+ <td style="vertical-align: top;">M</td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="EKF2_GPS_CHECK">EKF2_GPS_CHECK</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Integer bitmask controlling GPS checks</p><p><strong>Comment:</strong> Set bits to 1 to enable checks. Checks enabled by the following bit positions 0 : Minimum required sat count set by EKF2_REQ_NSATS 1 : Minimum required GDoP set by EKF2_REQ_GDOP 2 : Maximum allowed horizontal position error set by EKF2_REQ_EPH 3 : Maximum allowed vertical position error set by EKF2_REQ_EPV 4 : Maximum allowed speed error set by EKF2_REQ_SACC 5 : Maximum allowed horizontal position rate set by EKF2_REQ_HDRIFT. This check will only run when the vehicle is on ground and stationary. Detecton of the stationary condition is controlled by the EKF2_MOVE_TEST parameter. 6 : Maximum allowed vertical position rate set by EKF2_REQ_VDRIFT. This check will only run when the vehicle is on ground and stationary. Detecton of the stationary condition is controlled by the EKF2_MOVE_TEST parameter. 7 : Maximum allowed horizontal speed set by EKF2_REQ_HDRIFT. This check will only run when the vehicle is on ground and stationary. Detecton of the stationary condition is controlled by the EKF2_MOVE_TEST parameter. 8 : Maximum allowed vertical velocity discrepancy set by EKF2_REQ_VDRIFT</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> Min sat count (EKF2_REQ_NSATS)</li> 
   <li><strong>1:</strong> Min GDoP (EKF2_REQ_GDOP)</li> 
@@ -1719,10 +1790,19 @@ If the baro height estimate rises during forward flight, then this will be a neg
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="EKF2_PCOEF_Y">EKF2_PCOEF_Y</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Pressure position error coefficient for the Y axis.
-This is the ratio of static pressure error to dynamic pressure generated by a wind relative velocity along the Y body axis.
-If the baro height estimate rises during sideways flight, then this will be a negative number</p>   </td>
+ <td style="vertical-align: top;"><strong id="EKF2_PCOEF_YN">EKF2_PCOEF_YN</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Pressure position error coefficient for the negative Y axis.
+This is the ratio of static pressure error to dynamic pressure generated by a wind relative velocity along the negative Y (LH) body axis.
+If the baro height estimate rises during sideways flight to the left, then this will be a negative number</p>   </td>
+ <td style="vertical-align: top;">-0.5 > 0.5 </td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="EKF2_PCOEF_YP">EKF2_PCOEF_YP</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Pressure position error coefficient for the positive Y axis.
+This is the ratio of static pressure error to dynamic pressure generated by a wind relative velocity along the positive Y (RH) body axis.
+If the baro height estimate rises during sideways flight to the right, then this will be a negative number</p>   </td>
  <td style="vertical-align: top;">-0.5 > 0.5 </td>
  <td style="vertical-align: top;">0.0 </td>
  <td style="vertical-align: top;"></td>
@@ -3729,6 +3809,8 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 <li><strong>5:</strong> Config</li> 
 
 <li><strong>7:</strong> Minimal</li> 
+
+<li><strong>8:</strong> External Vision</li> 
 </ul>
   <p><b>Reboot required:</b> True</p>
 </td>
@@ -3793,6 +3875,8 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 <li><strong>5:</strong> Config</li> 
 
 <li><strong>7:</strong> Minimal</li> 
+
+<li><strong>8:</strong> External Vision</li> 
 </ul>
   <p><b>Reboot required:</b> True</p>
 </td>
@@ -3857,6 +3941,8 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 <li><strong>5:</strong> Config</li> 
 
 <li><strong>7:</strong> Minimal</li> 
+
+<li><strong>8:</strong> External Vision</li> 
 </ul>
   <p><b>Reboot required:</b> True</p>
 </td>
@@ -3913,6 +3999,13 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
  <td style="vertical-align: top;"><p>Hearbeat message forwarding</p><p><strong>Comment:</strong> The mavlink hearbeat message will not be forwarded if this parameter is set to 'disabled'. The main reason for disabling heartbeats to be forwarded is because they confuse dronekit.</p>   </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">1 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="MAV_ODOM_LP">MAV_ODOM_LP</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Activate ODOMETRY loopback</p><p><strong>Comment:</strong> If set, it gets the data from 'vehicle_visual_odometry' instead of 'vehicle_odometry' serving as a loopback of the received ODOMETRY messages on the Mavlink receiver.</p>   </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
@@ -4151,6 +4244,13 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="COM_OBS_AVOID">COM_OBS_AVOID</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Flag to enable obstacle avoidance</p>   </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="COM_POSCTL_NAVL">COM_POSCTL_NAVL</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Position control navigation loss response</p><p><strong>Comment:</strong> This sets the flight mode that will be used if navigation accuracy is no longer adequate for position control. Navigation accuracy checks can be disabled using the CBRK_VELPOSERR parameter, but doing so will remove protection for all flight modes.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Assume use of remote control after fallback. Switch to Altitude mode if a height estimate is available, else switch to MANUAL.</li> 
@@ -4209,7 +4309,7 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MIS_MNT_YAW_CTL">MIS_MNT_YAW_CTL</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Enable yaw control of the mount. (Only affects multicopters and ROI mission items)</p><p><strong>Comment:</strong> If enabled, yaw commands will be sent to the mount and the vehicle will follow its heading mode as specified by MIS_YAWMODE. If disabled, the vehicle will yaw towards the ROI.</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>Enable yaw control of the mount. (Only affects multicopters and ROI mission items)</p><p><strong>Comment:</strong> If enabled, yaw commands will be sent to the mount and the vehicle will follow its heading towards the flight direction. If disabled, the vehicle will yaw towards the ROI.</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Disable</li> 
 
 <li><strong>1:</strong> Enable</li> 
@@ -4225,6 +4325,13 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
  <td style="vertical-align: top;">0 > 80 (0.5)</td>
  <td style="vertical-align: top;">2.5 </td>
  <td style="vertical-align: top;">m</td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="MIS_TAKEOFF_REQ">MIS_TAKEOFF_REQ</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Take-off waypoint required</p><p><strong>Comment:</strong> If set, the mission feasibility checker will check for a takeoff waypoint on the mission.</p>   </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MIS_YAW_ERR">MIS_YAW_ERR</strong> (FLOAT)</td>
@@ -4610,7 +4717,14 @@ default 1.5 turns per second</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MC_AIRMODE">MC_AIRMODE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Multicopter air-mode</p><p><strong>Comment:</strong> The air-mode enables the mixer to increase the total thrust of the multirotor in order to keep attitude and rate control even at low and high throttle. This function should be disabled during tuning as it will help the controller to diverge if the closed-loop is unstable.</p>   </td>
+ <td style="vertical-align: top;"><p>Multicopter air-mode</p><p><strong>Comment:</strong> The air-mode enables the mixer to increase the total thrust of the multirotor in order to keep attitude and rate control even at low and high throttle. This function should be disabled during tuning as it will help the controller to diverge if the closed-loop is unstable (i.e. the vehicle is not tuned yet). Enabling air-mode for yaw requires the use of an arming switch.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Disabled</li> 
+
+<li><strong>1:</strong> Roll/Pitch</li> 
+
+<li><strong>2:</strong> Roll/Pitch/Yaw</li> 
+</ul>
+  </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;"></td>
@@ -4950,13 +5064,6 @@ is 90 degrees. It should be lower than MPC_XY_CRUISE</p><p><strong>Comment:</str
  <td style="vertical-align: top;">m/s</td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="MPC_IDLE_TKO">MPC_IDLE_TKO</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Delay from idle state to arming state</p><p><strong>Comment:</strong> For altitude controlled modes, the transition from idle to armed state is delayed by MPC_IDLE_TKO time to ensure that the propellers have reached idle speed before attempting a takeoff. This delay is particularly useful for vehicles with large propellers.</p>   </td>
- <td style="vertical-align: top;">0 > 10 </td>
- <td style="vertical-align: top;">0.0 </td>
- <td style="vertical-align: top;">sec</td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="MPC_JERK_MAX">MPC_JERK_MAX</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Maximum jerk limit</p><p><strong>Comment:</strong> Limit the maximum jerk of the vehicle (how fast the acceleration can change). A lower value leads to smoother vehicle motions, but it also limits its agility (how fast it can change directions or break). Setting this to the maximum value essentially disables the limit. Note: this is only used when MPC_POS_MODE is set to a smoothing mode.</p>   </td>
  <td style="vertical-align: top;">0.5 > 500.0 (1)</td>
@@ -5013,14 +5120,6 @@ is 90 degrees. It should be lower than MPC_XY_CRUISE</p><p><strong>Comment:</str
  <td style="vertical-align: top;">deg/s</td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="MPC_OBS_AVOID">MPC_OBS_AVOID</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Flag to enable obstacle avoidance
-Temporary Parameter to enable interface testing</p>   </td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="MPC_POS_MODE">MPC_POS_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Manual-Position control sub-mode</p><p><strong>Comment:</strong> The supported sub-modes are: 0 Default position control where sticks map to position/velocity directly. Maximum speeds is MPC_VEL_MANUAL. 1 Smooth position control where setpoints are adjusted based on acceleration limits and jerk limits. 2 Sport mode that is the same Default position control but with velocity limits set to the maximum allowed speeds (MPC_XY_VEL_MAX) 3 Smooth position control with maximum acceleration and jerk limits (different algorithm than 1).</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Default position control</li> 
@@ -5035,6 +5134,13 @@ Temporary Parameter to enable interface testing</p>   </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">1 </td>
  <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="MPC_SPOOLUP_TIME">MPC_SPOOLUP_TIME</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Enforced delay between arming and takeoff</p><p><strong>Comment:</strong> For altitude controlled modes the time from arming the motors until a takeoff is possible gets forced to be at least MPC_SPOOLUP_TIME seconds to ensure the motors and propellers can sppol up and reach idle speed before getting commanded to spin faster. This delay is particularly useful for vehicles with slow motor spin-up e.g. because of large propellers.</p>   </td>
+ <td style="vertical-align: top;">0 > 10 </td>
+ <td style="vertical-align: top;">0.0 </td>
+ <td style="vertical-align: top;">s</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_THR_CURVE">MPC_THR_CURVE</strong> (INT32)</td>
@@ -5072,21 +5178,21 @@ Temporary Parameter to enable interface testing</p>   </td>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_TILTMAX_AIR">MPC_TILTMAX_AIR</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Maximum tilt angle in air</p><p><strong>Comment:</strong> Limits maximum tilt in AUTO and POSCTRL modes during flight.</p>   </td>
- <td style="vertical-align: top;">0.0 > 90.0 </td>
+ <td style="vertical-align: top;">20.0 > 180.0 </td>
  <td style="vertical-align: top;">45.0 </td>
  <td style="vertical-align: top;">deg</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_TILTMAX_LND">MPC_TILTMAX_LND</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Maximum tilt during landing</p><p><strong>Comment:</strong> Limits maximum tilt angle on landing.</p>   </td>
- <td style="vertical-align: top;">0.0 > 180.0 </td>
+ <td style="vertical-align: top;">10.0 > 90.0 </td>
  <td style="vertical-align: top;">12.0 </td>
  <td style="vertical-align: top;">deg</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="MPC_TKO_RAMP_T">MPC_TKO_RAMP_T</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Position control smooth takeoff ramp time constant</p><p><strong>Comment:</strong> Increasing this value will make automatic and manual takeoff slower. If it's too slow the drone might scratch the ground and tip over.</p>   </td>
- <td style="vertical-align: top;">0.1 > 1 </td>
+ <td style="vertical-align: top;"><p>Position control smooth takeoff ramp time constant</p><p><strong>Comment:</strong> Increasing this value will make automatic and manual takeoff slower. If it's too slow the drone might scratch the ground and tip over. A time constant of 0 disables the ramp</p>   </td>
+ <td style="vertical-align: top;">0 > 1 </td>
  <td style="vertical-align: top;">0.4 </td>
  <td style="vertical-align: top;"></td>
 </tr>
@@ -5252,6 +5358,31 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>   </td>
  <td style="vertical-align: top;">0 > 120 </td>
  <td style="vertical-align: top;">90.0 </td>
  <td style="vertical-align: top;">deg/s</td>
+</tr>
+</tbody></table>
+
+## OSD
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+ <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
+ <thead>
+   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
+ </thead>
+<tbody>
+<tr>
+ <td style="vertical-align: top;"><strong id="OSD_ATXXXX_CFG">OSD_ATXXXX_CFG</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Enable/Disable the ATXXX OSD Chip</p><p><strong>Comment:</strong> Configure the ATXXXX OSD Chip (mounted on the OmnibusF4SD board) and select the transmission standard.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Disabled</li> 
+
+<li><strong>1:</strong> NTSC</li> 
+
+<li><strong>2:</strong> PAL</li> 
+</ul>
+  <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
 </tr>
 </tbody></table>
 
@@ -8217,7 +8348,7 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="RC_MAP_KILL_SW">RC_MAP_KILL_SW</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Kill switch channel</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>Emergency Kill switch channel</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Unassigned</li> 
 
 <li><strong>1:</strong> Channel 1</li> 
@@ -8755,16 +8886,6 @@ the setpoint will be capped to MPC_XY_VEL_MAX</p>   </td>
  <td style="vertical-align: top;">60 </td>
  <td style="vertical-align: top;">m</td>
 </tr>
-</tbody></table>
-
-## Return To Land
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
- <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
- <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
- </thead>
-<tbody>
 <tr>
  <td style="vertical-align: top;"><strong id="RTL_TYPE">RTL_TYPE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Return type</p><p><strong>Comment:</strong> Fly straight to the home location or planned mission landing and land there or use the planned mission to get to those points.</p> <strong>Values:</strong><ul>
@@ -8893,12 +9014,14 @@ to takeoff is reached</p>   </td>
   <p><b>Reboot required:</b> true</p>
 </td>
  <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">1 </td>
+ <td style="vertical-align: top;">0 </td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="SDLOG_MODE">SDLOG_MODE</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Logging Mode</p><p><strong>Comment:</strong> Determines when to start and stop logging. By default, logging is started when arming the system, and stopped when disarming.</p> <strong>Values:</strong><ul>
+<li><strong>-1:</strong> disabled</li> 
+
 <li><strong>0:</strong> when armed until disarm (default)</li> 
 
 <li><strong>1:</strong> from boot until disarm</li> 
@@ -8913,17 +9036,18 @@ to takeoff is reached</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="SDLOG_PROFILE">SDLOG_PROFILE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Logging topic profile (integer bitmask)</p><p><strong>Comment:</strong> This integer bitmask controls the set and rates of logged topics. The default allows for general log analysis and estimator replay, while keeping the log file size reasonably small. Enabling multiple sets leads to higher bandwidth requirements and larger log files. Set bits true to enable: 0 : Default set (used for general log analysis) 1 : Full rate estimator (EKF2) replay topics 2 : Topics for thermal calibration (high rate raw IMU and Baro sensor data) 3 : Topics for system identification (high rate actuator control and IMU data) 4 : Full rates for analysis of fast maneuvers (RC, attitude, rates and actuators) 5 : Debugging topics (debug_*.msg topics, for custom code) 6 : Topics for sensor comparison (low rate raw IMU, Baro and Magnetomer data)</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> Default set (general log analysis)</li> 
+ <td style="vertical-align: top;"><p>Logging topic profile (integer bitmask)</p><p><strong>Comment:</strong> This integer bitmask controls the set and rates of logged topics. The default allows for general log analysis and estimator replay, while keeping the log file size reasonably small. Enabling multiple sets leads to higher bandwidth requirements and larger log files. Set bits true to enable: 0 : Default set (used for general log analysis) 1 : Full rate estimator (EKF2) replay topics 2 : Topics for thermal calibration (high rate raw IMU and Baro sensor data) 3 : Topics for system identification (high rate actuator control and IMU data) 4 : Full rates for analysis of fast maneuvers (RC, attitude, rates and actuators) 5 : Debugging topics (debug_*.msg topics, for custom code) 6 : Topics for sensor comparison (low rate raw IMU, Baro and Magnetomer data) 7 : Topics for computer vision and collision avoidance</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> Default set (general log analysis)</li> 
   <li><strong>1:</strong> Estimator replay (EKF2)</li> 
   <li><strong>2:</strong> Thermal calibration</li> 
   <li><strong>3:</strong> System identification</li> 
   <li><strong>4:</strong> High rate</li> 
   <li><strong>5:</strong> Debug</li> 
   <li><strong>6:</strong> Sensor comparison</li> 
+  <li><strong>7:</strong> Computer Vision and Avoidance</li> 
 </ul>
  <p><b>Reboot required:</b> true</p>
 </td>
- <td style="vertical-align: top;">0 > 127 </td>
+ <td style="vertical-align: top;">0 > 255 </td>
  <td style="vertical-align: top;">3 </td>
  <td style="vertical-align: top;"></td>
 </tr>
@@ -10022,6 +10146,39 @@ is less than 50% of this value</p>   </td>
  <td style="vertical-align: top;">deg</td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="SENS_CM8JL65_CFG">SENS_CM8JL65_CFG</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Serial Configuration for Lanbao PSK-CM8JL65-CC5</p><p><strong>Comment:</strong> Configure on which serial port to run Lanbao PSK-CM8JL65-CC5.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Disabled</li> 
+
+<li><strong>6:</strong> UART 6</li> 
+
+<li><strong>101:</strong> TELEM 1</li> 
+
+<li><strong>102:</strong> TELEM 2</li> 
+
+<li><strong>103:</strong> TELEM 3</li> 
+
+<li><strong>104:</strong> TELEM/SERIAL 4</li> 
+
+<li><strong>201:</strong> GPS 1</li> 
+
+<li><strong>202:</strong> GPS 2</li> 
+</ul>
+  <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SENS_EN_BATT">SENS_EN_BATT</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>SMBUS Smart battery driver (BQ40Z50)</p>   <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="SENS_EN_LL40LS">SENS_EN_LL40LS</strong> (INT32)</td>
  <td style="vertical-align: top;"><p>Lidar-Lite (LL40LS)</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Disabled</li> 
@@ -10156,13 +10313,6 @@ is less than 50% of this value</p>   </td>
  <td style="vertical-align: top;">C</td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="SENS_IMU_TEMP_FF">SENS_IMU_TEMP_FF</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>IMU heater controller feedforward value</p>   </td>
- <td style="vertical-align: top;">0 > 1.0 </td>
- <td style="vertical-align: top;">0.0 </td>
- <td style="vertical-align: top;">microseconds</td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="SENS_IMU_TEMP_I">SENS_IMU_TEMP_I</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>IMU heater controller integrator gain value</p>   </td>
  <td style="vertical-align: top;">0 > 1.0 </td>
@@ -10172,8 +10322,8 @@ is less than 50% of this value</p>   </td>
 <tr>
  <td style="vertical-align: top;"><strong id="SENS_IMU_TEMP_P">SENS_IMU_TEMP_P</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>IMU heater controller proportional gain value</p>   </td>
- <td style="vertical-align: top;">0 > 1.0 </td>
- <td style="vertical-align: top;">0.25 </td>
+ <td style="vertical-align: top;">0 > 2.0 </td>
+ <td style="vertical-align: top;">1.0 </td>
  <td style="vertical-align: top;">microseconds/C</td>
 </tr>
 <tr>
@@ -10781,68 +10931,6 @@ is less than 50% of this value</p>   </td>
 </tr>
 </tbody></table>
 
-## Subscriber Example
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
- <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
- <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
- </thead>
-<tbody>
-<tr>
- <td style="vertical-align: top;"><strong id="SUB_INTERV">SUB_INTERV</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Interval of one subscriber in the example in ms</p>   </td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">100 </td>
- <td style="vertical-align: top;">ms</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SUB_TESTF">SUB_TESTF</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Float Demonstration Parameter in the Example</p>   </td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">3.14 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-</tbody></table>
-
-## Syslink
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
- <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup>
- <thead>
-   <tr><th>Name</th><th>Description</th><th>Min > Max (Incr.)</th><th>Default</th><th>Units</th></tr>
- </thead>
-<tbody>
-<tr>
- <td style="vertical-align: top;"><strong id="SLNK_RADIO_ADDR1">SLNK_RADIO_ADDR1</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Operating address of the NRF51 (most significant byte)</p>   </td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">231 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SLNK_RADIO_ADDR2">SLNK_RADIO_ADDR2</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Operating address of the NRF51 (least significant 4 bytes)</p>   </td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">3890735079 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SLNK_RADIO_CHAN">SLNK_RADIO_CHAN</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Operating channel of the NRF51</p>   </td>
- <td style="vertical-align: top;">0 > 125 </td>
- <td style="vertical-align: top;">80 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="SLNK_RADIO_RATE">SLNK_RADIO_RATE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Operating datarate of the NRF51</p>   </td>
- <td style="vertical-align: top;">0 > 2 </td>
- <td style="vertical-align: top;">2 </td>
- <td style="vertical-align: top;"></td>
-</tr>
-</tbody></table>
-
 ## System
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
@@ -10937,7 +11025,7 @@ is less than 50% of this value</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="SYS_COMPANION">SYS_COMPANION</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>TELEM2 as companion computer link (deprecated)</p><p><strong>Comment:</strong> This parameter is deprecated. Do not change it, use the more generic serial configuration parameters instead.</p> <strong>Values:</strong><ul>
+ <td style="vertical-align: top;"><p>TELEM2 as companion computer link (deprecated)</p><p><strong>Comment:</strong> This parameter is deprecated and will be removed after 1.9.0. Use the generic serial configuration parameters instead (e.g. MAV_0_CONFIG, MAV_0_MODE, etc.).</p> <strong>Values:</strong><ul>
 <li><strong>0:</strong> Disabled</li> 
 
 <li><strong>10:</strong> FrSky Telemetry</li> 
@@ -12409,6 +12497,14 @@ is less than 50% of this value</p>   </td>
  </thead>
 <tbody>
 <tr>
+ <td style="vertical-align: top;"><strong id="V19_VT_ROLLDIR">V19_VT_ROLLDIR</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Temporary parameter for the upgrade to v1.9, this is reminder to check the direction of
+fixed-wing roll control surfaces on custom VTOLs platforms</p><p><strong>Comment:</strong> This parameter is present in v1.9 to enable smooth transition, it will be removed in v1.10. In firmware versions before v1.9, the VTOL attitude controller generated reversed fixed wing roll commands. As a consequence, all VTOL mixers had to reverse roll mixing. The VTOL roll commands in fixed wing mode were fixed in v1.9! - Standard VTOL platforms should be unaffected and this parameter can be ignored. - Custom VTOL platforms may crash if no action is taken, please check the direction of deflection of roll control surfaces before flight. Fix the roll mixer if necessary. Set to 1 to disable VTOL actuator outputs and display an info message (default). Set to 0 AFTER CAREFULLY CHECKING the direction of deflection of roll control surfaces.</p>   </td>
+ <td style="vertical-align: top;">0 > 1 </td>
+ <td style="vertical-align: top;">1 </td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="VT_ARSP_BLEND">VT_ARSP_BLEND</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Transition blending airspeed</p><p><strong>Comment:</strong> Airspeed at which we can start blending both fw and mc controls. Set to 0 to disable.</p>   </td>
  <td style="vertical-align: top;">0.00 > 30.00 (1)</td>
@@ -12455,7 +12551,7 @@ Airbrakes need to be enables for your selected model/mixer</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="VT_B_TRANS_RAMP">VT_B_TRANS_RAMP</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Back transition MC motor ramp up time</p><p><strong>Comment:</strong> This sets the duration during wich the MC motors ramp up to the commanded thrust during the back transition stage.</p>   </td>
+ <td style="vertical-align: top;"><p>Back transition MC motor ramp up time</p><p><strong>Comment:</strong> This sets the duration during which the MC motors ramp up to the commanded thrust during the back transition stage.</p>   </td>
  <td style="vertical-align: top;">0.0 > 20.0 </td>
  <td style="vertical-align: top;">3.0 </td>
  <td style="vertical-align: top;">s</td>

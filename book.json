@@ -2,7 +2,8 @@
     "gitbook": ">= 3.2.2",
     "title": "PX4 Developer Guide",
     "variables": {
-        "logo": "./assets/site/logo_pro_small.png"
+        "logo": "./assets/site/logo_pro_small.png",
+        "px4_version": "master"
     },
     "plugins": [
         "youtube",
@@ -16,7 +17,7 @@
         "bulk-redirect@git+https://github.com/Dronecode/gitbook-plugin-bulk-redirect.git",
         "toolbar@git+https://github.com/hamishwillee/gitbook-plugin-toolbar.git",
         "validate-links",
-        "versions",
+        "versions-select@git+https://github.com/Dronecode/gitbook-plugin-versions-select.git",
         "mathjax@git+https://github.com/Dronecode/plugin-mathjax.git#update_cdn",
         "mermaid",
         "-stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git",
@@ -36,9 +37,6 @@
         },
         "ga": {
             "token": "UA-33658859-3"
-        },
-        "language-redirect": {
-            "baseurl": "https://dev.px4.io/"
         },
         "favicon": "favicon.ico",
         "bulk-redirect": {
@@ -74,8 +72,20 @@
             "options": [
                 {
                     "value": "https://dev.px4.io/en/",
-                    "text": "Master",
-                    "selected": true
+                    "text": "stable (v1.8.2)"
+                },
+                {
+                    "value": "https://dev.px4.io/master/en/",
+                    "text": "master"
+                },
+                {
+                    "value": "https://dev.px4.io/v1.8.2/en/",
+                    "text": "1.8.2"
+                },
+
+                {
+                    "value": "https://dev.px4.io/v1.8.0/en/",
+                    "text": "1.8.0"
                 }
             ]
         }

@@ -1,4 +1,5 @@
 # Modules Reference: Command
+
 ## bl_update
 Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
@@ -90,7 +91,6 @@ esc_calib [arguments...]
      [-c <val>]  select channels in the form: 1234 (1 digit per channel,
                  1=first)
      [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
-                 default: 0
      [-a]        Select all channels
 ```
 ## hardfault_log
@@ -166,7 +166,6 @@ led_control <command> [arguments...]
                  values: red|blue|green|yellow|purple|amber|cyan|white, default:
                  white
      [-l <val>]  Which LED to control: 0, 1, 2, ... (default=all)
-                 default: -1
      [-p <val>]  Priority
                  default: 2
 ```
@@ -250,7 +249,6 @@ motor_test <command> [arguments...]
  Commands:
    test          Set motor(s) to a specific output value
      [-m <val>]  Motor to test (0...7, all if not specified)
-                 default: -1
      [-p <val>]  Power (0...100)
                  default: 0
 
@@ -307,6 +305,10 @@ Parameters are automatically saved when changed, eg. with `param set`. They are 
 or to the SD card. `param select` can be used to change the storage location for subsequent saves (this will
 need to be (re-)configured on every boot).
 
+If the FLASH-based backend is enabled (which is done at compile time, e.g. for the Intel Aero or Omnibus),
+`param select` has no effect and the default is always the FLASH backend. However `param save/load <file>`
+can still be used to write to/read from files.
+
 Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant
 parameters to a ground control station.
 
@@ -335,9 +337,12 @@ param <command> [arguments...]
      [<file>]    File name (use <root>/eeprom/parameters if not given)
 
    show          Show parameter values
-     [-c]        Show only changed params
+     [-a]        Show all parameters (not just used)
+     [-c]        Show only changed and used params
      [-q]        quiet mode, print only param value (name needs to be exact)
      [<filter>]  Filter by param name (wildcard at end allowed, eg. sys_*)
+
+   status        Print status of parameter system
 
    set           Set parameter to a value
      <param_name> <value> Parameter name and value to set
@@ -430,10 +435,12 @@ pwm <command> [arguments...]
 
    info          Print current configuration of all channels
 
-   forcefail     Force Failsafe mode
+   forcefail     Force Failsafe mode. PWM outputs are set to failsafe values.
      on|off      Turn on or off
 
-   terminatefail Force Termination Failsafe mode
+   terminatefail Enable Termination Failsafe mode. While this is true, any
+                 failsafe that occurs will be unrecoverable (even if recovery
+                 conditions are met).
      on|off      Turn on or off
 
    rate          Configure PWM rates
@@ -464,10 +471,8 @@ pwm <command> [arguments...]
      [-c <val>]  select channels in the form: 1234 (1 digit per channel,
                  1=first)
      [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
-                 default: 0
      [-g <val>]  Select channels by group (eg. 0, 1, 2. use 'pwm info' to show
                  groups)
-                 default: 0
      [-a]        Select all channels
 
  These parameters apply to all commands:

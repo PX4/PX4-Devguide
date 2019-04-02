@@ -1,4 +1,5 @@
 # Modules Reference: Communication
+
 ## frsky_telemetry
 Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
 
@@ -73,8 +74,9 @@ mavlink <command> [arguments...]
                  param)
                  default: 127.0.0.1
      [-m <val>]  Mode: sets default streams and rates
-                 values: custom|camera|onboard|osd|magic|config|iridium|minimal,
-                 default: normal
+                 values:
+                 custom|camera|onboard|osd|magic|config|iridium|minimal|extvsisi
+                 on, default: normal
      [-n <val>]  wifi/ethernet interface name
                  values: <interface_name>
      [-c <val>]  Multicast address (multicasting can be enabled via
@@ -93,7 +95,6 @@ mavlink <command> [arguments...]
 
    stream        Configure the sending rate of a stream for a running instance
      [-u <val>]  Select Mavlink instance via local Network Port
-                 default: 0
      [-d <val>]  Select Mavlink instance via Serial Device
                  values: <file:dev>
      -s <val>    Mavlink stream to configure
@@ -117,7 +118,6 @@ micrortps_client <command> [arguments...]
      [-b <val>]  Baudrate (can also be p:<param_name>)
                  default: 460800
      [-p <val>]  Poll timeout for UART in ms
-                 default: 1
      [-u <val>]  Interval in ms to limit the update rate of all sent topics
                  (0=unlimited)
                  default: 0
@@ -176,5 +176,6 @@ uorb <command> [arguments...]
 
    top           Monitor topic publication rates
      [-a]        print all instead of only currently publishing topics
+     [-1]        run only once, then exit
      [<filter1> [<filter2>]] topic(s) to match (implies -a)
 ```

@@ -101,9 +101,8 @@ mv eprosima_fastrtps-1-5-0-linux-tar-gz eprosima_fastrtps-1-5-0-linux.tar.gz
 tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz eProsima_FastRTPS-1.5.0-Linux/
 tar -xzf eprosima_fastrtps-1-5-0-linux.tar.gz requiredcomponents
 tar -xzf requiredcomponents/eProsima_FastCDR-1.0.7-Linux.tar.gz
-cd eProsima_FastCDR-1.0.7-Linux; ./configure --libdir=/usr/lib; make; sudo make install
-cd ..
-cd eProsima_FastRTPS-1.5.0-Linux; ./configure --libdir=/usr/lib; make; sudo make install
+(cd eProsima_FastCDR-1.0.7-Linux && ./configure --libdir=/usr/lib && make && sudo make install)
+(cd eProsima_FastRTPS-1.5.0-Linux && ./configure --libdir=/usr/lib && make && sudo make install)
 ```
 
 > **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
