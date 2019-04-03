@@ -2,6 +2,12 @@
 
 测试飞行对于质量保证很重要。 Dronecode 测试团队可以帮助您检查（测试飞行）您的拉取请求并提供反馈和日志。
 
+{% if book.px4_version != 'master' %}
+
+> **Tip** Test flight process and fleet information may change over time. The most current information [can be found in the head revision/master docs](https://dev.px4.io/master/en/test_and_ci/test_flights.html)!
+
+{% endif %}
+
 ## 如何申请测试飞行
 
 * 在拉取请求中添加对更改的完整而全面的描述
@@ -16,7 +22,7 @@
 
 ## 测试卡
 
-针对每个平台执行的测试链接如下：
+The tests performed for each platform are linked below:
 
 * [测试 MC_01 - 手动模式](../test_cards/mc_01_manual_modes.md)
 * [MC_02 - 完全自主](../test_cards/mc_02_full_autonomous.md)
@@ -24,7 +30,7 @@
 * [MC_04 - 故障安全测试](../test_cards/mc_04_failsafe_testing.md)
 * [MC_05 - 室内飞行（手动模式）](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
-## 测试设备/自动驾驶仪
+## Test Vehicles/Autopilots {#fleet}
 
 Multicopter
 
