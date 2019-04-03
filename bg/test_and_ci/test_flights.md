@@ -2,6 +2,12 @@
 
 Test flights are important for quality assurance. The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
 
+{% if book.px4_version != 'master' %}
+
+> **Tip** Test flight process and fleet information may change over time. The most current information [can be found in the head revision/master docs](https://dev.px4.io/master/en/test_and_ci/test_flights.html)!
+
+{% endif %}
+
 ## How to Request Test Flights
 
 * Add a complete and thorough description of your changes in the pull request
@@ -24,7 +30,7 @@ The tests performed for each platform are linked below:
 * [MC_04 - Failsafe Testing](../test_cards/mc_04_failsafe_testing.md)
 * [MC_05 - Indoor Flight (Manual Modes)](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
-## Test Vehicles/Autopilots
+## Test Vehicles/Autopilots {#fleet}
 
 Multicopter
 
