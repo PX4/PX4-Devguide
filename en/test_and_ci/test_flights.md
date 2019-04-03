@@ -6,6 +6,7 @@ The Dronecode test team can help review (test flight) your pull requests and pro
 {% if book.px4_version != 'master' %}
 > **Tip** Test flight process and fleet information may change over time. 
   The most current information [can be found in the head revision/master docs](https://dev.px4.io/master/en/test_and_ci/test_flights.html)!
+
 {% endif %}
 
 ## How to Request Test Flights
