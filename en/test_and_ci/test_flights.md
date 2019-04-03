@@ -37,7 +37,7 @@ Multicopter
 
 Frame | Flight Controller | UUID
 --- | --- | ---
-[DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html) | [Pixhawk 4 Mini](https://docs.px4.io/en/flight_controller/pixhawk4_mini.html) | 002400283335510A33373538 (f450-v3)
+[DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html) | [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html) | 002400283335510A33373538 (f450-v3)
 [DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html) | [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html) | 000100000000363533353336510900500021 (f450-v3)
 [DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html) | [Cube](https://docs.px4.io/en/flight_controller/pixhawk-2.html) (Pixhawk 2.1) | 00010000000033343537313751050040001c (F450 Pixhawk v2 cube)
 [DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html) | [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html) | 00010000000037373430333551170037002a (F450-Pixracer)
