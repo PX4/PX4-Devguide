@@ -2,6 +2,10 @@
 
 [ci.px4.io](http://ci.px4.io/) 上的 Jenkins 持续集成服务器用于自动运行针对 PX4 SITL 的集成测试。
 
+{% if book.px4_version != 'master' %}
+
+> **Tip** Test processes/tools change over time. Current information [can be found in the head revision/master docs](https://dev.px4.io/master/en/test_and_ci/)! {% else %} <!-- START: details below displayed only in master -->
+
 ## 概述
 
 - 涉及的组件：Jenkins，Docker，PX4 POSIX SITL
@@ -10,9 +14,9 @@
 
 ## 测试执行
 
-Jenkins 使用 [run_container.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_container.bash) 来启动 container，而 container 又执行 [ run_tests.bash ](https://github.com/PX4/Firmware/blob/master/integrationtests/run_tests.bash) 来编译和运行测试。
+Jenkins uses [run_container.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_container.bash) to start the container which in turn executes [run_tests.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_tests.bash) to compile and run the tests.
 
-如果安装了 Docker，则可以在本地使用相同的方法：
+If Docker is installed the same method can be used locally:
 
 ```sh
 cd <directory_where_firmware_is_cloned>
@@ -23,7 +27,7 @@ sudo WORKSPACE=$(pwd) ./Firmware/integrationtests/run_container.bash
 
 ### 安装
 
-有关如何安装和维护 Jenkins 的详细信息，请参阅 setup [script/log](https://github.com/PX4/containers/tree/master/scripts/jenkins) 。
+See setup [script/log](https://github.com/PX4/containers/tree/master/scripts/jenkins) for details on how Jenkins got installed and maintained.
 
 ### 配置
 
@@ -36,3 +40,5 @@ sudo WORKSPACE=$(pwd) ./Firmware/integrationtests/run_container.bash
     - 通知插件
     - 折叠控制台部分
     - postbuildscript
+
+{% endif %} <!-- END: details above displayed only in master -->
