@@ -25,7 +25,7 @@ make
 
 ## 刷写 Bootloader
 
-> **Important** 正确的电源序列对于某些电路板允来许 JTAG/SWD 访问至关重要。 请完全按照所述步骤操作。
+> **Warning** The right power sequence is critical for some boards to allow JTAG / SWD access. 请完全按照所述步骤操作。
 
 以下说明适用于 Blackmagic/Dronecode probe。 其他 JTAG 仿真器需要不同但相似的步骤。 试图刷新引导加载程序的开发人员应具备所需的知识。 如果您不知道如何执行此操作，您可能应该重新考虑是否确实需要更改引导加载程序的任何内容。
 
@@ -39,8 +39,8 @@ make
 
 #### 使用正确的串行端口
 
-* 在 Linux 上： ```/dev/serial/by-id/usb-Black_Sphere_XXX-if00```
-* 在 MAC OS 上：确保使用 cu.xxx 端口，而不是 tty.xxx 端口： ```tar ext /dev/tty.usbmodemDDEasdf```
+* On LINUX: `/dev/serial/by-id/usb-Black_Sphere_XXX-if00`
+* On MAC OS: Make sure to use the cu.xxx port, not the tty.xxx port: `tar ext /dev/tty.usbmodemDDEasdf`
 
 ```bash
 arm-none-eabi-gdb
@@ -90,7 +90,10 @@ arm-none-eabi-gdb
 
 如果找不到上述任何命令，则表示您未使用 Blackmagic 探针或其软件已过期。 首先更新 on-probe 软件。
 
-如果出现此错误消息： ```Error erasing flash with vFlashErase packet```
+If this error message occurs:
+
+    Error erasing flash with vFlashErase packet
+    
 
 断开目标连接（同时保持 JTAG 连接）并运行
 
