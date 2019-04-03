@@ -2,6 +2,10 @@
 
 Jenkins continuous integration server on [ci.px4.io](http://ci.px4.io/) is used to automatically run integration tests against PX4 SITL.
 
+{% if book.px4_version != 'master' %}
+
+> **Tip** Test processes/tools change over time. Current information [can be found in the head revision/master docs](https://dev.px4.io/master/en/test_and_ci/)! {% else %} <!-- START: details below displayed only in master -->
+
 ## Overview
 
 - Involved components: Jenkins, Docker, PX4 POSIX SITL
@@ -36,3 +40,5 @@ See setup [script/log](https://github.com/PX4/containers/tree/master/scripts/jen
     - notification plugin
     - collapsing console sections
     - postbuildscript
+
+{% endif %} <!-- END: details above displayed only in master -->
