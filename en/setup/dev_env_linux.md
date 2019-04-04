@@ -94,7 +94,7 @@ To install the development toolchain:
 1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh" target="_blank" download>ubuntu_sim_ros_melodic.sh</a>.
 1. Run the script in a bash shell:
    ```bash
-   source ubuntu_sim_ros_gazebo.sh
+   source ubuntu_sim_ros_melodic.sh
    ```
    You may need to acknowledge some prompts as the script progresses.
 
