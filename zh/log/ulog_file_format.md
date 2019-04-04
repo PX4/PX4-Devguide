@@ -89,7 +89,7 @@ struct message_header_s {
   
       struct message_format_s {
         struct message_header_s header;
-        char format[header.msg_size-hdr_size];
+        char format[header.msg_size];
       };
       
   
@@ -109,7 +109,7 @@ struct message_header_s {
     struct message_header_s header;
     uint8_t key_len;
     char key[key_len];
-    char value[header.msg_size-hdr_size-1-key_len]
+    char value[header.msg_size-1-key_len]
   };
   ```
   
@@ -152,7 +152,7 @@ struct message_header_s {
     uint8_t is_continued; ///< can be used for arrays
     uint8_t key_len;
     char key[key_len];
-    char value[header.msg_size-hdr_size-2-key_len]
+    char value[header.msg_size-2-key_len]
   };
   ```
   
@@ -173,7 +173,7 @@ struct message_header_s {
     struct message_header_s header;
     uint8_t multi_id;
     uint16_t msg_id;
-    char message_name[header.msg_size-hdr_size-3];
+    char message_name[header.msg_size-3];
   };
   ```
   
@@ -193,7 +193,7 @@ struct message_header_s {
       struct message_data_s {
         struct message_header_s header;
         uint16_t msg_id;
-        uint8_t data[header.msg_size-hdr_size];
+        uint8_t data[header.msg_size-2];
       };
       
   
@@ -205,7 +205,7 @@ struct message_header_s {
         struct message_header_s header;
         uint8_t log_level;
         uint64_t timestamp;
-        char message[header.msg_size-hdr_size-9]
+        char message[header.msg_size-9]
       };
       
   
