@@ -96,7 +96,7 @@ To install the Gazebo9 and jMAVSim simulators:
   
   <li>
     Run the script in a bash shell: <pre><code>bash
-source ubuntu_sim_ros_gazebo.sh</code></pre> You may need to acknowledge some prompts as the script progresses.
+source ubuntu_sim_ros_melodic.sh</code></pre> You may need to acknowledge some prompts as the script progresses.
   </li>
 </ol>
 
