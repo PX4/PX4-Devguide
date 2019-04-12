@@ -20,5 +20,6 @@
 - [控制器](modules_controller.md)
 - [驱动](modules_driver.md)
 - [估计器](modules_estimator.md)
-- [系统](modules_system.md)
-- [模板](modules_template.md)
+- [Simulation](modules_simulation.md)
+- [System](modules_system.md)
+- [Template](modules_template.md)
