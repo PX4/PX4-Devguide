@@ -26,5 +26,6 @@ The generated files will be written to the `modules` directory.
 - [Controller](modules_controller.md)
 - [Driver](modules_driver.md)
 - [Estimator](modules_estimator.md)
+- [Simulation](modules_simulation.md)
 - [System](modules_system.md)
 - [Template](modules_template.md)
