@@ -1170,7 +1170,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger mode
+        相机触发模式
       </p>
       
       <strong>Values:</strong>
@@ -1217,7 +1217,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger pin
+        相机触发引脚
       </p>
       
       <p>
@@ -1248,7 +1248,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera trigger polarity
+        相机触发极性
       </p>
       
       <p>
