@@ -902,22 +902,22 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera capture edge
+        相机拍照捕获边沿类型
       </p>
       
-      <strong>Values:</strong>
+      <strong>参数值:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong> Falling edge
+          <strong>0:</strong>下降沿
         </li>
         <li>
-          <strong>1:</strong> Rising edge
+          <strong>1:</strong> 上升沿
         </li>
       </ul>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -939,15 +939,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        Camera capture feedback
+        相机捕获反馈
       </p>
       
       <p>
-        <strong>Comment:</strong> Enables camera capture feedback
+        <strong>说明:</strong>使能相机捕获反馈
       </p>
       
       <p>
-        <b>Reboot required:</b> true
+        <b>重启要求: </b>是
       </p>
     </td>
     
