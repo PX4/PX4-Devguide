@@ -262,9 +262,9 @@ px4_pollfd_struct_t fds[] = {
 };
 
 while (true) {
-uORB/* wait for sensor update of 1 file descriptor for 1000 ms (1 second) */
-uORBint poll_ret = px4_poll(fds, 1, 1000);
-..
+    /* wait for sensor update of 1 file descriptor for 1000 ms (1 second) */
+    int poll_ret = px4_poll(fds, 1, 1000);
+    ..
     if (fds[0].revents & POLLIN) {
         /* obtained data for the first file descriptor */
         struct sensor_combined_s raw;
