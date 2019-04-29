@@ -145,7 +145,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 1. Connect the flight controller to the computer and wait for it to boot.
 1. Run jMAVSim in HITL mode (replace the serial port name `/dev/ttyACM0` if necessary - e.g. on Mac OS this would be `/dev/tty.usbmodem1`):
    ```sh
-   ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
+   ./Tools/jmavsim_run.sh -q -s -d /dev/ttyACM0 -b 921600 -r 250
    ```
 1. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
 
