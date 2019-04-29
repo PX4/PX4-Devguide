@@ -97,6 +97,26 @@ The roll and pitch controllers have the same structure and the longitudinal and 
 The yaw controller, however, generates its yaw rate setpoint using the turn coordination constraint in order to minimize lateral acceleration, generated when the aircraft is slipping. 
 The yaw rate controller also helps to counteract adverse yaw effects (https://youtu.be/sNV_SDDxuWk) and to damp the [Dutch roll mode](https://en.wikipedia.org/wiki/Dutch_roll) by providing extra directional damping.
 
+
+## VTOL Flight Controller 
+
+![VTOL Attitude Controller Diagram](../../assets/diagrams/VTOL_controller_diagram.png)
+
+<!-- The drawing is on draw.io: https://drive.google.com/file/d/1tVpmFhLosYjAtVI46lfZkxBz_vTNi8VH/view?usp=sharing
+Request access from dev team. -->
+
+This section gives a short overview on the control structure of Vertical Take-off and Landing (VTOL) aircraft. 
+Both the multicopter and fixed-wing controllers are used, either seperatly in the corresponding flight modes, or together during transitions. 
+The diagram above presents a simplified control diagram from the attitude setpoint $\Psi_{sp}$ to the actuator setpoints. 
+For a standard and tilt-motor VTOL (link to airframes), during transition the fixed-wing attitude controller produces the rates setpoint, which are then fed into the seperate rate controllers, resulting in torque commands for the multicopter and fixed-wing actuators. 
+Other than in normal multicopter or fixed-wing flight, in a VTOL these are then passed through an additional module (VTOL attitude controller), which handles most of the logic necessary during a transition. 
+The output of this module are seperate torque and force commands for the multicopter (actuator_control_0) and fixed-wing (actutor_controls_1) actuators. 
+These are handled in an airframe specific mixer file (see mixing). 
+For more information on the internal functionality of the VTOL attitude controller block, see (ref to docs VTOL).
+
+
+
+
 ### Airspeed Scaling
 
 The objective of this section is to explain with the help of equations why and how the output of the rate PI and feedforward (FF) controllers can be scaled with airspeed to improve the control performance. 
