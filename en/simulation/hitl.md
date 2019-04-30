@@ -42,8 +42,8 @@ The diagram below shows the simulation environment:
 * A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
 * *jMAVSim* or *Gazebo* are connected to the flight controller via USB.
 * The simulator is connected to *QGroundControl* via UDP and bridges its MAVLink messages to PX4.
+* *Gazebo* and *jMAVSim* can also connect to an offboard API and bridge MAVLink messages to PX4.
 * (Optional) A serial connection can be used to connect Joystick/Gamepad hardware via *QGroundControl*.
-* (Optional - Gazebo only) Gazebo can also connect to an offboard API and bridge MAVLink messages to PX4.
 
 ![HITL Setup - jMAVSim and Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
 
