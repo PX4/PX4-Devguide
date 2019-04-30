@@ -110,26 +110,24 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
 > **Note** Make sure *QGroundControl* is not running!
 
-1. Update the environment variables: 
+1. Build PX4 with the Gazebo plugins although we only need the Gazebo part:
    ```sh
    cd <Firmware_clone>
-   make px4_sitl_default gazebo
+   DONT_RUN=1 make px4_sitl_default gazebo
    ```
-   In a new terminal, run:
-   ```sh
-   source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
-   ```
-  
 1. Open the vehicle model's sdf file (e.g. **Tools/sitl_gazebo/models/iris/iris.sdf**).
-1. Under the `mavlink_interface plugin` section, change the `serialEnabled` and `hil_mode` parameters to `true`. 
+1. Under the `mavlink_interface plugin` section, change the `serialEnabled` and `hil_mode` parameters to `true`.
 
    ![HIL Parameters](../../assets/simulation/gazebo_sdf_model_hil_params.png)
 1. Replace the `serialDevice` parameter (`/dev/ttyACM0`) if necessary.
 
    > **Note** The serial device depends on what port is used to connect the vehicle to the computer (this is usually `/dev/ttyACM0`). An easy way to check on Ubuntu is to plug in the autopilot, open up a terminal, and type `dmesg | grep "tty"`. The correct device will be the last one shown.
 
-1. Close Gazebo, connect the flight controller to the computer and wait for it to boot.
-1. Run Gazebo in HITL mode 
+1. Set up the environment variables:
+   ```sh
+   source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
+   ```
+   and run Gazebo in HITL mode:
    ```sh
    gazebo Tools/sitl_gazebo/worlds/iris.world
    ```
