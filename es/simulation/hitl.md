@@ -29,17 +29,13 @@ JMAVSim or Gazebo (running on a development computer) are connected to the fligh
 
 > **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable). For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)).
 
-<span></span>
-
-> **Tip** Gazebo can additionally share MAVLink data with an offboard API!
-
 The diagram below shows the simulation environment:
 
 * A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.
 * *jMAVSim* or *Gazebo* are connected to the flight controller via USB.
 * The simulator is connected to *QGroundControl* via UDP and bridges its MAVLink messages to PX4.
+* *Gazebo* and *jMAVSim* can also connect to an offboard API and bridge MAVLink messages to PX4.
 * (Optional) A serial connection can be used to connect Joystick/Gamepad hardware via *QGroundControl*.
-* (Optional - Gazebo only) Gazebo can also connect to an offboard API and bridge MAVLink messages to PX4.
 
 ![HITL Setup - jMAVSim and Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
 
@@ -144,7 +140,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 1. Connect the flight controller to the computer and wait for it to boot.
 2. Run jMAVSim in HITL mode (replace the serial port name `/dev/ttyACM0` if necessary - e.g. on Mac OS this would be `/dev/tty.usbmodem1`): 
         sh
-        ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
+        ./Tools/jmavsim_run.sh -q -s -d /dev/ttyACM0 -b 921600 -r 250
 
 3. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
 
