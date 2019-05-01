@@ -29,38 +29,34 @@ JMAVSim 或 Gazebo (运行在开发计算机上) 通过 USB/UART 完成与飞行
 
 > **Note** 如果飞行控制器支持网络连接且使用的是稳定、低延迟的连接（如有线以太网，WIFI 通常不太稳定），那么模拟器也可以使用 UDP 完成通讯连接。 例如，该配置已经使用一台运行 PX4 且通过以太网连接到开发计算机的 Raspberry Pi 进行了验证测试 (包括 jMAVSim 运行命令的启动配置在 [这里](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config))。
 
-<span></span>
-
-> **Tip** Gazebo 还支持与offboard API 共享 MAVLink 数据！
-
-下图展示了仿真模拟的环境：
+The diagram below shows the simulation environment:
 
 * 飞控板 HITL 模式被激活 (通过 *QGroundControl*) ，该模式下不会启动飞控板上任何传感器。
 * *jMAVSim* 或者 *Gazebo* 通过 USB 连接到飞控板。
 * 模拟器通过 UDP 连接到 *QGroundControl* 并将 MAVLink 数据传输至 PX4 。
-* (可选) 通过串口可将操纵杆/游戏手柄通过 *QGroundControl* 连接至仿真回路中。
-* (可选 - 仅适用于Gazebo) Gazebo 还可以连接到一个 offboard API ，并将 MAVLink 数据桥接到 PX4 。
+* *Gazebo* and *jMAVSim* can also connect to an offboard API and bridge MAVLink messages to PX4.
+* (Optional) A serial connection can be used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
-![HITL 配置 - jMAVSim 和 Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
+![HITL Setup - jMAVSim and Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
 
 ### X-Plane HITL 仿真环境
 
-*QGroundControl* 通过 USB 连接至飞控板硬件平台，并作为一个网关为在开发计算机上运行着的X-Plane 模拟器、 PX4 和任意 offboard API 三个平台进行数据中转。 下图展示了仿真模拟的环境：
+*QGroundControl* is connected to the flight controller hardware via USB, and acts as a gateway to forward data between the X-Plane simulator running on a development computer, PX4, and any offboard API. The diagram below shows the simulation environment:
 
 * 飞控板 HITL 模式被激活 (通过 *QGroundControl*) ，该模式下不会启动飞控板上任何传感器。
 * *QGroundControl* 通过 USB 连接到飞行控制器。
 * *QGroundControl* 通过 UDP 连接到模拟器和offboard API。
 * 通过串口将操纵杆/游戏手柄通过 *QGroundControl* 连接至仿真回路中。
 
-![HITL 配置 - X-Plane](../../assets/simulation/px4_hitl_overview_xplane.png)
+![HITL Setup - X-Plane](../../assets/simulation/px4_hitl_overview_xplane.png)
 
 ## HITL vs SITL
 
-SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生成的固件。 除了仿真程序从模拟器中获取虚假的环境数据外，系统的行为也很正常。
+SITL runs on a development computer in a simulated environment, and uses firmware specifically generated for that environment. Other than simulation drivers to provide fake environmental data from the simulator the system behaves normally.
 
-相比之下， HITL 在正常飞控硬件平台上运行正常的处于 ”HITL 模式“ 的 PX4 固件。 仿真数据进入整个仿真系统的时间点与 SITL 有所不同。 指令器和传感器等有 HIL 模式的核心模块在启动时被绕过了一些正常的功能。
+By contrast, HITL runs normal PX4 firmware in "HITL mode", on normal hardware. The simulation data enters the system at a different point than for SITL. Core modules like commander and sensors have HIL modes at startup that bypass some of the normal functionality.
 
-总而言之， HITL 在真实硬件上运行标准 PX4 固件，而 SITL 实际上要比标准 PX4 系统执行更多的代码。
+In summary, HITL runs PX4 on the actual hardware using standard firmware, but SITL actually executes more of the standard system code.
 
 ## 配置 HITL
 
@@ -96,15 +92,15 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
     
     > **Tip** *QGroundControl User Guide* 中也有如何配置 [操纵杆](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) 和 [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html) 的说明。
 
-完成所有的配置设定后 **关闭** *QGroundControl* 并断开飞控板与计算机的连接。
+Once configuration is complete, **close** *QGroundControl* and disconnect the flight controller hardware from the computer.
 
 ### 模拟器配置
 
-按照下面的小节对你的模拟器进行合理的设置。
+Follow the appropriate setup steps for your simulator in the following sections.
 
 #### Gazebo
 
-> **Note** 确保 *QGroundControl* 没有运行！
+> **Note** Make sure *QGroundControl* is not running!
 
 1. 更新环境变量：
     
@@ -144,15 +140,15 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 1. 将飞行控制器连接到计算机, 并等待其启动。
 2. 在 HITL 模式下运行 jMAVSim (r如有必要，修改串口号名称 `/dev/ttyACM0` - 比如，在 Mac OS 上该参数应为 `/dev/tty.usbmodem1`)： 
         sh
-        ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250
+        ./Tools/jmavsim_run.sh -q -s -d /dev/ttyACM0 -b 921600 -r 250
 
 3. 开启 *QGroundControl*。 它应该会自动连接 PX4 和 Gazebo 。
 
 #### 使用 X-Plane (仅适用于固定翼无人机)
 
-> **Note** 当前情况下不建议使用 X-Plane 。 除其他问题外，帧率太慢使得基于该平台进行仿真不太现实。
+> **Note** X-Plane is currently not recommended. Among other issues, the frame update rate is too slow to run the system realistically.
 
-遵循以下流程进行 X-Plane 模拟器的配置：
+To set up X-Plane:
 
 1. 打开 X-Plane
 2. 在 **Settings > Data Input and Output** 界面中勾选以下选项：
@@ -170,4 +166,4 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 
 ## 在 HITL 仿真中执行自主飞行任务
 
-你可以使用 *QGroundControl* 实现对飞机的控制并令其 [执行飞行任务](../qgc/README.md#planning-missions) 。
+You should be able to use *QGroundControl* to [run missions](../qgc/README.md#planning-missions) and otherwise control the vehicle.
