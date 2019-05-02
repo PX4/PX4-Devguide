@@ -20,7 +20,7 @@ PX4 使用计算机视觉系统（主要在机载计算机上运行）以支持�
 
 - [外部位置的估计](../ros/external_position_estimation.md)
 - [使用 Motion Capture 飞行（VICON，Optitrack）](../tutorials/motion-capture-vicon-optitrack.md)
-- [EKF > 外部视觉系统](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html#external-vision-system)
+- [EKF > 外部视觉系统](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#external-vision-system)
 
 ## 视觉惯性测距法 {#vio}
 
@@ -32,8 +32,8 @@ VIO使用[视觉测距](https://en.wikipedia.org/wiki/Visual_odometry)来从视�
 
 有关VIO的信息，请参阅：
 
-- [EKF > 外部视觉系统](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html#external-vision-system)
-- [Snapdragon > 安装 > 安装 Snap VIO](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
+- [EKF > 外部视觉系统](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#external-vision-system)
+- [Snapdragon > 安装 > 安装 Snap VIO](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
 
 ## 光流 {#optical_flow}
 
@@ -43,4 +43,4 @@ VIO使用[视觉测距](https://en.wikipedia.org/wiki/Visual_odometry)来从视�
 
 - [光流](https://docs.px4.io/en/sensor/optical_flow.html) 
   - [PX4Flow 智能摄像机](https://docs.px4.io/en/sensor/px4flow.html)
-- [EKF > 光流](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html#optical-flow)
+- [EKF > 光流](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#optical-flow)
