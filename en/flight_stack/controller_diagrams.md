@@ -109,12 +109,12 @@ This section gives a short overview on the control structure of Vertical Take-of
 The VTOL flight controller consists of both the multicopter and fixed-wing controllers, either running separately in the corresponding VTOL modes, or together during transitions. 
 The diagram above presents a simplified control diagram. 
 Note the VTOL attitude controller block, which mainly facilitates the necessary switching and blending logic for the different VTOL modes, as well as VTOL-type-specific control actions during transitions (e.g. ramping up the pusher motor of a standard VTOL during forward transition). 
-The inputs into this block are called "virtual" as depending on the current VTOL mode, some are ignored by the controller. 
+The inputs into this block are called "virtual" as, depending on the current VTOL mode, some are ignored by the controller. 
 
-For a standard and tilt-rotor VTOL, during transition the fixed-wing attitude controller produces the rates setpoint, which are then fed into the separate rate controllers, resulting in torque commands for the multicopter and fixed-wing actuators.
+For a standard and tilt-rotor VTOL, during transition the fixed-wing attitude controller produces the rate setpoints, which are then fed into the separate rate controllers, resulting in torque commands for the multicopter and fixed-wing actuators.
 For tailsitters, during transition the multicopter attitude controller is running. 
 
-The outputs of the VTOL attitude block are separate torque and force commands for the multicopter (actuator_control_0) and fixed-wing (actutor_controls_1) actuators. 
+The outputs of the VTOL attitude block are separate torque and force commands for the multicopter (typically `actuator_controls_0`) and fixed-wing (typically `actuator_controls_1`) actuators. 
 These are handled in an airframe-specific mixer file (see [Mixing](../concept/mixing.md)). 
 
 For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/en/config_vtol/).
