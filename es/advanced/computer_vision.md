@@ -20,7 +20,7 @@ For information about MoCap see:
 
 - [External Position Estimation](../ros/external_position_estimation.md)
 - [Flying with Motion Capture (VICON, Optitrack)](../tutorials/motion-capture-vicon-optitrack.md)
-- [EKF > External Vision System](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html#external-vision-system)
+- [EKF > External Vision System](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#external-vision-system)
 
 ## Visual Inertial Odometry {#vio}
 
@@ -32,8 +32,8 @@ VIO uses [Visual Odometry](https://en.wikipedia.org/wiki/Visual_odometry) to est
 
 For information about VIO see:
 
-- [EKF > External Vision System](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html#external-vision-system)
-- [Snapdragon > Installation > Install Snap VIO](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
+- [EKF > External Vision System](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#external-vision-system)
+- [Snapdragon > Installation > Install Snap VIO](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
 
 ## Optical Flow {#optical_flow}
 
@@ -43,4 +43,4 @@ For information about optical flow see:
 
 - [Optical Flow](https://docs.px4.io/en/sensor/optical_flow.html) 
   - [PX4Flow Smart Camera](https://docs.px4.io/en/sensor/px4flow.html)
-- [EKF > Optical Flow](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html#optical-flow)
+- [EKF > Optical Flow](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#optical-flow)
