@@ -110,7 +110,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
 > **Note** Make sure *QGroundControl* is not running!
 
-1. Build PX4 with the Gazebo plugins although we only need the Gazebo part:
+1. Build PX4 with Gazebo (in order to to build the Gazebo plugins).
    ```sh
    cd <Firmware_clone>
    DONT_RUN=1 make px4_sitl_default gazebo
