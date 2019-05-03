@@ -37,21 +37,26 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 **支持机型： **四旋翼
 
-有关如何设置和使用仿真器的说明，请参见上面链接的主题。
+[Simulation-In-Hardware](../simulation/simulation-in-hardware.md) (SIH) | An alternative to HITL that offers a hard real-time simulation directly on the hardware autopilot.  
+
+
+**Supported Vehicles:** Quad
+
+Instructions for how to setup and use the simulators are in the topics linked above.
 
 * * *
 
-本主题的其余部分是对仿真基础结构如何工作的 "有点笼统" 的描述。 它不需要 *use* 仿真器。
+The remainder of this topic is a "somewhat generic" description of how the simulation infrastructure works. It is not required to *use* the simulators.
 
 ## 仿真器 MAVLink API
 
-所有模拟器都使用 Simulator MAVLink API 与 PX4 进行通信。 该 API 定义了一组 MAVLink 消息，这些消息将仿真机的传感器数据提供给 PX4，并从将应用于仿真机的飞行代码返回电机和执行器值。 下面图表描述了消息。
+All simulators communicate with PX4 using the Simulator MAVLink API. This API defines a set of MAVLink messages that supply sensor data from the simulated world to PX4 and return motor and actuator values from the flight code that will be applied to the simulated vehicle. The image below shows the message flow.
 
-![仿真器 MAVLink API](../../assets/simulation/px4_simulator_messages.png)
+![Simulator MAVLink API](../../assets/simulation/px4_simulator_messages.png)
 
 > **注意** PX4 的 SITL 版本使用[仿真器 mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp)来处理这些消息，而在HITL模式下的硬件构建使用[mavlink receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)。 模拟器中的传感器数据将写入 PX4 uORB 主题。 所有电机/执行器都被卡停，但内部软件可以完全正常运行。
 
-下面介绍了这些消息 （有关特定详细信息, 请参阅链接）。
+The messages are described below (see links for specific detail).
 
 | 消息                                                                                                             | 方向        | 描述                                                                              |
 | -------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------- |
@@ -65,7 +70,7 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 ## 默认 PX4 MAVLink UDP 端口
 
-默认情况下，PX4 使用通常建立的 UDP 端口与地面控制站（例如，*QGroundControl*），外部 API（例如Dronecode SDK，MAVROS）和模拟器 API（例如 Gazebo）进行 MAVLink 通信。 这些端口是：
+By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. Dronecode SDK, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
 
 * UDP Port **14540** is used for communication with offboard APIs. 期望外接 APIs 监听此端口上的连接。
 * UDP Port **14550** is used for communication with ground control stations. 期望 GCS 将侦听此端口上的连接。 *QGroundControl*默认侦听此端口。
@@ -75,26 +80,26 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 ## SITL 仿真环境
 
-下面显示了适用于任何受支持仿真器的典型 SITL 仿真环境。 系统的不同部分通过 UDP 连接，并且可以在同一台计算机上运行，也可以在同一网络上的另一台计算机上运行。
+The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
 
 * PX4 uses a simulation-specific module to listen on TCP port 4560. 模拟器连接到此端口，然后使用上面描述的 [Simulator mavlink API](#simulator-mavlink-api) 交换信息。 SITL 和模拟器上的 PX4 可以在同一台计算机上运行，也可以在同一网络上运行不同的计算机。
 * PX4 使用普通的 MAVLink 模块连接到 GroundStations（侦听端口 14550）和外部开发人员 API，如Dronecode SDK 或 ROS（侦听端口 14540）。
 * 串行连接用于通过 *QGroundControl* 连接 Joystick/Gamepad 硬件。
 
-![PX4 SITL 概述](../../assets/simulation/px4_sitl_overview.png)
+![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
-如果使用正常的生成系统 SITL `make` 配置目标 （请参阅下一节），则 SITL 和模拟器都将在同一台计算机上启动，并自动配置上述端口。 您可以配置其他 MAVLink UDP 连接，并以其他方式修改生成配置和初始化文件中的模拟环境。
+If you use the normal build system SITL `make` configuration targets (see next section) then both SITL and the Simulator will be launched on the same computer and the ports above will automatically be configured. You can configure additional MAVLink UDP connections and otherwise modify the simulation environment in the build configuration and initialisation files.
 
 ### 启动/构建 SITL 模拟
 
-构建系统使在 SITL 上构建和启动 PX4、启动模拟器并连接它们变得非常容易。 语法 （简化）如下所示：
+The build system makes it very easy to build and start PX4 on SITL, launch a simulator, and connect them. The syntax (simplified) looks like this:
 
     make px4_sitl simulator[_vehicle-model]
     
 
-其中 `simulator` 是 `gazebo`、`jmavsim` 或其他一些模拟器，该设备模型是该模拟器支持的特殊的无人机类型 （[jMAVSim](../simulation/jmavsim.md) 仅支持多路光台，而 [Gazebo](../simulation/gazebo.md) 支持许多不同类型）。
+where `simulator` is `gazebo`, `jmavsim` or some other simulator, and vehicle-model is a particular vehicle type supported by that simulator ([jMAVSim](../simulation/jmavsim.md) only supports multicopters, while [Gazebo](../simulation/gazebo.md) supports many different types).
 
-下面显示了许多示例，每个模拟器的各个页面中还有更多示例：
+A number of examples are shown below, and there are many more in the individual pages for each of the simulators:
 
 ```sh
 # 启动固定翼机型的 Gazebo
@@ -107,27 +112,27 @@ make px4_sitl gazebo_iris_opt_flow
 make px4_sitl jmavsim
 ```
 
-可以通过环境变量进一步仿真机：
+The simulation can be further configured via environment variables:
 
 * `PX4_ESTIMATOR`：此变量配置要使用的估算器。 可能的选项有：`ekf2` （默认）、`lpe`、`inav`。 在运行模拟之前，可以通过 `export PX4_ESTIMATOR=lpe` 进行设置。
 
-这里描述的语法是简化的，您可以通过 *make* 配置许多其他选项，例如，设置要连接到 IDE 或调试器的选项。 For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
+The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
 ### 以比实际时间更快的流速运行仿真 {#simulation_speed}
 
-使用 jMAVSim 或者 Gazebo 进行 SITL 仿真时，我们可以以比实际时间流速更快或者更慢的时间流速运行仿真。
+SITL can be run faster or slower than realtime when using jMAVSim or Gazebo.
 
-时间相对流速因子可通过环境变量 `PX4_SIM_SPEED_FACTOR` 进行设定。 例如，想以相对实际时间的 2 倍流速运行 jMAVSim 仿真：
+The speed factor is set using the environment variable `PX4_SIM_SPEED_FACTOR`. For example, to run the jMAVSim simulation at 2 times the real time speed:
 
     PX4_SIM_SPEED_FACTOR=2 make px4_sitl jmavsim
     
 
-运行半速仿真：
+To run at half real-time:
 
     PX4_SIM_SPEED_FACTOR=0.5 make px4_sitl jmavsim
     
 
-你也可以在当前会话（session）中使用 `EXPORT` 来将该因子应用于所有 SITL 仿真：
+You can apply the factor to all SITL runs in the current session using `EXPORT`:
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl jmavsim
