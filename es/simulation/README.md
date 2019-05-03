@@ -37,6 +37,11 @@ It is easy to set up and can be used to test that your vehicle can take off, fly
 
 **Supported Vehicles:** Plane
 
+[Simulation-In-Hardware](../simulation/simulation-in-hardware.md) (SIH) | An alternative to HITL that offers a hard real-time simulation directly on the hardware autopilot.  
+
+
+**Supported Vehicles:** Quad
+
 Instructions for how to setup and use the simulators are in the topics linked above.
 
 * * *
