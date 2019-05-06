@@ -40,80 +40,78 @@ The *User Guide*, by contrast, is *primarily* for users who want to:
 
 ### Gitbook Documentation Toolchain
 
-The guide uses the [Gitbook](https://www.gitbook.com/about) toolchain. Change requests can be either done on the Gitbook website using the [Gitbook editor](https://gitbookio.gitbooks.io/documentation/content/editor/index.html) or locally (more flexible, but less user-friendly).
+The guide uses the [Legacy Gitbook Toolchain](https://legacy.gitbook.com/) toolchain.
+
+Change requests can be either done on the Gitbook website using the [Gitbook editor](https://gitbookio.gitbooks.io/documentation/content/editor/index.html) or locally (more flexible, but less user-friendly).
 
 In order to contribute many changes to the documentation, it is recommended that you follow these steps to add the changes locally and then create a pull request:
 
 * [Sign up](https://github.com/join) for github if you haven't already
 * Fork the PX4 user guide from [here](https://github.com/PX4/px4_user_guide) or Dev guide from [here](https://github.com/PX4/Devguide). For instructions to fork a git repository, see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository).
 * Clone your forked repository to your local computer  
-    
-
-```sh
-cd ~/wherever/
-git clone https://github.com/<your git name>/px4_user_guide.git
-```
+        sh
+        cd ~/wherever/
+        git clone https://github.com/<your git name>/px4_user_guide.git
 
 * Install gitbook via NPM. At the terminal prompt, simply run the following command to install GitBook:
-
-```sh
-npm install gitbook-cli -g
-```
-
-> **Note** Everything you need to install and build Gitbook locally is also explained in the [toolchain documentation](https://toolchain.gitbook.com/setup.html).
+    
+    ```sh
+    npm install gitbook-cli -g
+    ```
+    
+    > **Note** Everything you need to install and build Gitbook locally is also explained in the [toolchain documentation](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md).
 
 * Navigate to your local repository and add original upstream:
-
-```sh
-cd ~/wherever/px4_user_guide
-git remote add upstream https://github.com/PX4/px4_user_guide.git
-```
+    
+    ```sh
+    cd ~/wherever/px4_user_guide
+    git remote add upstream https://github.com/PX4/px4_user_guide.git
+    ```
 
 * Now you can checkout a new branch and add your changes. To build your book, run:
-
-```sh
-gitbook build
-```
-
-> **Note** If you run into an error: `/usr/bin/env: node: No such file or directory`, run `ln -s /usr/bin/nodejs /usr/bin/node`
+    
+    ```sh
+    gitbook build
+    ```
+    
+    > **Note** If you run into an error: `/usr/bin/env: node: No such file or directory`, run `ln -s /usr/bin/nodejs /usr/bin/node`
 
 * To preview and serve your book, run:
-
-```sh
-gitbook serve
-```
-
-> **Note** run `gitbook install` to install missing plugins.
+    
+    ```sh
+    gitbook serve
+    ```
+    
+    > **Note** run `gitbook install` to install missing plugins.
 
 * Now you can browse your local book on http://localhost:4000/
+
 * Exit serving using `CTRL+c` in the terminal prompt.
 
 * You can also serve on a different port instead of 4000:
+    
+    ```sh
+    gitbook serve --port 4003
+    ```
 
-```sh
-gitbook serve --port 4003
-```
-
-* You can also output as html, pdf, epub or mobi:
-
-```sh
-gitbook help
-```
+* You can also output as html, pdf, epub or mobi: 
+        sh
+        gitbook help
 
 * Once you are satisfied with your changes after previewing them, you can add and commit them:
-
-```sh
-git add <file name>
-git commit -m "<your commit message>"
-```
-
-For a good commit message, please refer to [Contributing](../contribute/README.md) section.
+    
+    ```sh
+    git add <file name>
+    git commit -m "<your commit message>"
+    ```
+    
+    For a good commit message, please refer to [Contributing](../contribute/README.md) section.
 
 * Now you can push your local commits to your forked repository
-
-```sh
-git push origin <your feature branch name>
-```
+    
+    ```sh
+    git push origin <your feature branch name>
+    ```
 
 * You can verify that the push was successful by going to your forked repository in your browser: ```https://github.com/<your git name>/px4_user_guide.git```  
     There you should see the message that a new branch has been pushed to your forked repository.
