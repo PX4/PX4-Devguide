@@ -15,6 +15,7 @@
       * [Virtual Machine Toolchain](setup/dev_env_windows_vm.md)
       * [Bash on Windows Toolchain](setup/dev_env_windows_bash_on_win.md)
       * [Msys Toolchain](setup/dev_env_windows_msys.md)
+    * [Visual Studio Code IDE](setup/vscode.md)
     * [Fast RTPS installation](setup/fast-rtps-installation.md)
     * [Additional Tools](setup/generic_dev_tools.md)
   * [Building the Code](setup/building_px4.md)
