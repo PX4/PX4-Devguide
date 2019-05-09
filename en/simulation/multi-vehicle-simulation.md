@@ -22,8 +22,7 @@ To build an example setup, follow the step below:
    ```
    cd Firmware_clone
    git submodule update --init --recursive
-   make px4_sitl_default
-   make px4_sitl_default sitl_gazebo
+   DONT_RUN=1 make px4_sitl_default gazebo
    ```
 1. Source your environment:
 
