@@ -96,8 +96,7 @@ git push upstream pr-some-fix
 
 You can test someone's pull request (changes are not yet merged) even if the branch to merge only exists on the fork from that person. Do the following:
 ```sh
-git fetch upstream
-git pull/<PR ID>/head:<branch name>
+git fetch upstream  pull/<PR ID>/head:<branch name>
 ```
 `PR ID` is the number right next to the PR's title (without the #) and the `<branch name>` can also be found right below the `PR ID`, e.g. `<the other persons git name>:<branch name>`. After that you can see the newly created branch locally with
 ```sh
