@@ -141,8 +141,7 @@ git push upstream pr-some-fix
 你可以测试某人的拉取请求（更改尚未整合），即使要整合的分支只存在于他的拷贝中。 Do the following:
 
 ```sh
-git fetch upstream
-git pull/<PR ID>/head:<branch name>
+git fetch upstream  pull/<PR ID>/head:<branch name>
 ```
 
 `PR ID` is the number right next to the PR's title (without the #) and the `<branch name>` can also be found right below the `PR ID`, e.g. `<the other persons git name>:<branch name>`. After that you can see the newly created branch locally with
