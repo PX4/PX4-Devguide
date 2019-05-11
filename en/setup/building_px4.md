@@ -315,6 +315,7 @@ Save the original one and push this one to the Bebop
 ```sh
 adb shell cp /etc/init.d/rcS_mode_default /etc/init.d/rcS_mode_default_backup
 adb push rcS_mode_default /etc/init.d/
+adb shell chmod 755 /etc/init.d/rcS_mode_default
 ```
 Sync and reboot:
 ```sh
