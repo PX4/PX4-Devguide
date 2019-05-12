@@ -252,17 +252,17 @@ Support for the [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.ht
 
 ```sh
 cd Firmware
-make parrot_bebop_default
+make parrot_bebop
 ```
 
 Turn on your Bebop and connect your host machine with the Bebop's wifi.
 Then, press the power button four times to enable ADB and to start the telnet daemon.
 
 ```sh
-make parrot_bebop_default upload
+make parrot_bebop upload
 ```
 
-This will upload the PX4 mainapp into /data/ftp/internal_000/ and create the file /home/root/parameters if not already
+This will upload the PX4 mainapp into /data/ftp/internal_000/px4/ and create the file /home/root/parameters if not already
 present.
 This also uploads the mixer file and the px4.config file into the /home/root/ directory.
 
@@ -281,7 +281,7 @@ kk
 ```
 and start the PX4 mainapp with:
 ```sh
-/data/ftp/internal_000/px4 -s /home/root/px4.config
+/data/ftp/internal_000/px4/px4 -s /home/root/px4.config /data/ftp/internal_000/px4/
 ```
 
 In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl.
@@ -298,7 +298,7 @@ DragonStarter.sh -out2null &
 Replace it with:
 ```
 echo 1 > /sys/class/gpio/gpio85/value # enables the fan
-/data/ftp/internal_000/px4 -d -s /home/root/px4.config > /home/root/px4.log &
+/data/ftp/internal_000/px4/px4 -d -s /home/root/px4.config /data/ftp/internal_000/px4/ >/dev/null &
 ```
 
 Enable adb server by pressing the power button 4 times and connect to adb server as described before:
@@ -315,6 +315,7 @@ Save the original one and push this one to the Bebop
 ```sh
 adb shell cp /etc/init.d/rcS_mode_default /etc/init.d/rcS_mode_default_backup
 adb push rcS_mode_default /etc/init.d/
+adb shell chmod 755 /etc/init.d/rcS_mode_default
 ```
 Sync and reboot:
 ```sh
