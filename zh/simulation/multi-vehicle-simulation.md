@@ -19,8 +19,7 @@
 1. 克隆 px4固件代码, 然后编译 sitl 代码 
       cd Firmware_clone
        git submodule update --init --recursive
-       make px4_sitl_default
-       make px4_sitl_default sitl_gazebo
+       DONT_RUN=1 make px4_sitl_default gazebo
 
 2. Source your environment:
   
