@@ -17,7 +17,9 @@ To start multiple instances (on separate ports):
 3. Start the first instance: ```./Tools/jmavsim_run.sh -l```
 4. Start subsequent instances, specifying the *simulation* TCP port for the instance: ```./Tools/jmavsim_run.sh -p 4561 -l``` The port should be set to `4560+i` for `i` in `[0, N-1]`.
 
-*QGroundControl* and developer APIs (e.g. Dronecode SDK) connect to all instances using the normal/default ports (14550 and 14540, respectively).
+Ground stations such as *QGroundControl* connect to all instances using the normal UDP port 14550 (all traffic goes to the same port).
+
+Developer APIs such as *Dronecode SDK* or *MAVROS* connect on the UDP port 14540 (first instance), UDP port 14541 (second instance), and so on.
 
 ## Additional Resources
 
