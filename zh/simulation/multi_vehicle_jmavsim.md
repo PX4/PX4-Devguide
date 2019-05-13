@@ -17,7 +17,9 @@
 3. 启动第一个实例: ```./Tools/jmavsim_run.sh -l```
 4. Start subsequent instances, specifying the *simulation* TCP port for the instance: ```./Tools/jmavsim_run.sh -p 4561 -l``` The port should be set to `4560+i` for `i` in `[0, N-1]`.
 
-*QGroundControl* 和开发者 APIs (比如 Dronecode SDK) 可以通过代码默认端口连接到所有实例（分别为14550 和 14540）。
+Ground stations such as *QGroundControl* connect to all instances using the normal UDP port 14550 (all traffic goes to the same port).
+
+Developer APIs such as *Dronecode SDK* or *MAVROS* connect on the UDP port 14540 (first instance), UDP port 14541 (second instance), and so on.
 
 ## 额外资源
 
