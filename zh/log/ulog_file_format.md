@@ -149,6 +149,7 @@ struct message_header_s {
   
   ```c
   struct ulog_message_info_multiple_header_s {
+    struct message_header_s header;
     uint8_t is_continued; ///< can be used for arrays
     uint8_t key_len;
     char key[key_len];
