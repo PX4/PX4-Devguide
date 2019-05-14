@@ -175,6 +175,7 @@ int32_t time_ref_utc | UTC Time offset in seconds | -3600 |
 - 'M': information message multi.
   ```c
   struct ulog_message_info_multiple_header_s {
+  	struct message_header_s header;
   	uint8_t is_continued; ///< can be used for arrays
   	uint8_t key_len;
   	char key[key_len];
