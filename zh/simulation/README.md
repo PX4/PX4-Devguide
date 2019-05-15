@@ -144,7 +144,31 @@ You can apply the factor to all SITL runs in the current session using `EXPORT`:
 
 > **Note** To avoid PX4 detecting data link timeouts, increase the value of param [COM_DL_LOSS_T](../advanced/parameter_reference.md#COM_DL_LOSS_T) proportional to the simulation rate. For example, if `COM_DL_LOSS_T` is 10 in realtime, at 10x simulation rate increase to 100.
 
-### 启动脚本 {#scripts}
+### Lockstep Simulation
+
+PX4 SITL and the simulators (jMAVSim or Gazebo) have been set up to run in *lockstep*. What this means is that PX4 and the simulator wait on each other for sensor and actuator messages, rather than running at their own speeds.
+
+> **Note** Lockstep makes it possible to [run the simulation faster or slower than realtime](#simulation_speed), and also to pause it in order to step through code.
+
+The sequence of steps for lockstep are:
+
+1. The simulation sends a sensor message [HIL_SENSOR](https://mavlink.io/en/messages/common.html#HIL_SENSOR) including a timestamp `time_usec` to update the sensor state and time of PX4.
+2. PX4 receives this and does one iteration of state estimation, controls, etc. and eventually sends an actuator message [HIL_ACTUATOR_CONTROLS](https://mavlink.io/en/messages/common.html#HIL_ACTUATOR_CONTROLS).
+3. The simulation waits until it receives the actuator/motor message, then simulates the physics and calculates the next sensor message to send to PX4 again.
+
+The system starts with a "freewheeling" period where the simulation sends sensor messages including time and therefore runs PX4 until it has initialized and responds with an actautor message.
+
+#### Disable Lockstep Simulation
+
+The lockstep simulation can be disabled if, for example, SITL is to be used with a simulator that does not support this feature. In this case the simulator and PX4 use the host system time and do not wait on each other.
+
+To disable lockstep in PX4, use `set(ENABLE_LOCKSTEP_SCHEDULER no)` in the [SITL board config](https://github.com/PX4/Firmware/blob/77097b6adc70afbe7e5d8ff9797ed3413e96dbf6/boards/px4/sitl/default.cmake#L104).
+
+To disable lockstep in Gazebo, edit [the model SDF file](https://github.com/PX4/sitl_gazebo/blob/3062d287c322fabf1b41b8e33518eb449d4ac6ed/models/plane/plane.sdf#L449) and set `<enable_lockstep>false</enable_lockstep>` (or for Iris edit the [xacro file](https://github.com/PX4/sitl_gazebo/blob/3062d287c322fabf1b41b8e33518eb449d4ac6ed/models/rotors_description/urdf/iris_base.xacro#L22).
+
+To disable lockstep in jMAVSim, remove `-l` in [jmavsim_run.sh](https://github.com/PX4/Firmware/blob/77097b6adc70afbe7e5d8ff9797ed3413e96dbf6/Tools/sitl_run.sh#L75), or make sure otherwise that the java binary is started without the `-lockstep` flag.
+
+### Startup Scripts {#scripts}
 
 Scripts are used to control which parameter settings to use or which modules to start. They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) directory, the `rcS` file is the main entry point. See [System Startup](../concept/system_startup.md) for more information.
 
@@ -171,64 +195,64 @@ The simulated camera is a gazebo plugin that implements the [MAVLink Camera Prot
 
 *exactly the same way* as it would with any other MAVLink camera:
 
-1. [ TRIG_INTERFACE ](../advanced/parameter_reference.md#TRIG_INTERFACE)必须设置为` 3 `以配置相机触发驱动程序以与 MAVLink 相机一起使用 > **Tip**在此模式下，只要请求图像捕获，驱动程序就会发送[ CAMERA_TRIGGER ](https://mavlink.io/en/messages/common.html#CAMERA_TRIGGER)消息。 更多信息请参见：[Camera](https://docs.px4.io/en/peripherals/camera.html)。
-2. PX4 必须在 GCS 和（模拟器）MAVLink Camera 之间转发所有摄像机命令。 您可以通过使用` -f `标志启动[ mavlink ](../middleware/modules_communication.md#mavlink)来执行此操作，如下所示，指定新连接的UDP端口。 ```mavlink start -u 14558 -o 14530 -r 4000 -f -m camera``` > **Note</ 0>不仅仅是摄像机将转发 MAVLink 消息，但摄像机将忽略它们认为不相关的消息。</li> </ol> 
+1. [TRIG_INTERFACE](../advanced/parameter_reference.md#TRIG_INTERFACE) must be set to `3` to configure the camera trigger driver for use with a MAVLink camera > **Tip** In this mode the driver just sends a [CAMERA_TRIGGER](https://mavlink.io/en/messages/common.html#CAMERA_TRIGGER) message whenever an image capture is requested. For more information see [Camera](https://docs.px4.io/en/peripherals/camera.html).
+2. PX4 must forward all camera commands between the GCS and the (simulator) MAVLink Camera. You can do this by starting [mavlink](../middleware/modules_communication.md#mavlink) with the `-f` flag as shown, specifying the UDP ports for the new connection. ```mavlink start -u 14558 -o 14530 -r 4000 -f -m camera``` > **Note** More than just the camera MAVLink messages will be forwarded, but the camera will ignore those that it doesn't consider relevant.
+
+The same approach can be used by other simulators to implement camera support.
+
+## 在远程服务器上运行仿真
+
+It is possible to run the simulator on one computer, and access it from another computer on the same network (or on another network with appropriate routing). This might be useful, for example, if you want to test a drone application running on real companion computer hardware running against a simulated vehicle.
+
+This does not work "out of the box" because PX4 does not route packets to external interfaces by default (in order to avoid spamming the network and different simulations interfering with each other). Instead it routes traffic internally - to "localhost".
+
+There are a number of ways to make the UDP packets available on external interfaces, as outlined below.
+
+### Enable MAV_BROADCAST
+
+Enable [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) to broadcast heartbeats on the local network.
+
+A remote computer can then connect to the simulator by listening to the appropriate port (i.e. 14550 for *QGroundControl*).
+
+### Use MAVLink Router
+
+The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route packets from localhost to an external interface.
+
+### Modify Configuration for External Broadcasting
+
+The [mavlink](../middleware/modules_communication.md#mavlink_usage) module routes to *localhost* by default, but you can specify an external IP address to broadcast to using its `-t` option.
+
+This should be done in various configuration files where `mavlink start` is called. For example: [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS).
+
+### SSH Tunneling
+
+SSH tunneling is a flexible option because the simulation computer and the system using it need not be on the same network.
+
+> **Note** You might similarly use VPN to provide a tunnel to an external interface (on the same network or another network).
+
+One way to create the tunnel is to use SSH tunneling options. The tunnel itself can be created by running the following command on *localhost*, where `remote.local` is the name of a remote computer:
+
+    ssh -C -fR 14551:localhost:14551 remote.local
     
-    The same approach can be used by other simulators to implement camera support.
+
+The UDP packets need to be translated to TCP packets so they can be routed over SSH. The [netcat](https://en.wikipedia.org/wiki/Netcat) utility can be used on both sides of the tunnel - first to convert packets from UDP to TCP, and then back to UDP at the other end.
+
+> **Tip** QGC must be running before executing *netcat*.
+
+On the *QGroundControl* computer, UDP packet translation may be implemented by running following commands:
+
+    mkfifo /tmp/tcp2udp
+    netcat -lvp 14551 < /tmp/tcp2udp | netcat -u localhost 14550 > /tmp/tcp2udp
     
-    ## 在远程服务器上运行仿真
+
+On the simulator side of the SSH tunnel, the command is:
+
+    mkfifo /tmp/udp2tcp
+    netcat -lvup 14550 < /tmp/udp2tcp | netcat localhost 14551 > /tmp/udp2tcp
     
-    It is possible to run the simulator on one computer, and access it from another computer on the same network (or on another network with appropriate routing). This might be useful, for example, if you want to test a drone application running on real companion computer hardware running against a simulated vehicle.
-    
-    This does not work "out of the box" because PX4 does not route packets to external interfaces by default (in order to avoid spamming the network and different simulations interfering with each other). Instead it routes traffic internally - to "localhost".
-    
-    There are a number of ways to make the UDP packets available on external interfaces, as outlined below.
-    
-    ### 启用 MAV_BROADCAST
-    
-    Enable [MAV_BROADCAST](../advanced/parameter_reference.md#MAV_BROADCAST) to broadcast heartbeats on the local network.
-    
-    A remote computer can then connect to the simulator by listening to the appropriate port (i.e. 14550 for *QGroundControl*).
-    
-    ### 使用 MAVLink 路由器
-    
-    The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route packets from localhost to an external interface.
-    
-    ### 修改外部广播的配置
-    
-    The [mavlink](../middleware/modules_communication.md#mavlink_usage) module routes to *localhost* by default, but you can specify an external IP address to broadcast to using its `-t` option.
-    
-    This should be done in various configuration files where `mavlink start` is called. For example: [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS).
-    
-    ### SSH 通道
-    
-    SSH tunneling is a flexible option because the simulation computer and the system using it need not be on the same network.
-    
-    > **Note** You might similarly use VPN to provide a tunnel to an external interface (on the same network or another network).
-    
-    One way to create the tunnel is to use SSH tunneling options. The tunnel itself can be created by running the following command on *localhost*, where `remote.local` is the name of a remote computer:
-    
-        ssh -C -fR 14551:localhost:14551 remote.local
-        
-    
-    The UDP packets need to be translated to TCP packets so they can be routed over SSH. The [netcat](https://en.wikipedia.org/wiki/Netcat) utility can be used on both sides of the tunnel - first to convert packets from UDP to TCP, and then back to UDP at the other end.
-    
-    > **Tip** QGC must be running before executing *netcat*.
-    
-    On the *QGroundControl* computer, UDP packet translation may be implemented by running following commands:
-    
-        mkfifo /tmp/tcp2udp
-        netcat -lvp 14551 < /tmp/tcp2udp | netcat -u localhost 14550 > /tmp/tcp2udp
-        
-    
-    On the simulator side of the SSH tunnel, the command is:
-    
-        mkfifo /tmp/udp2tcp
-        netcat -lvup 14550 < /tmp/udp2tcp | netcat localhost 14551 > /tmp/udp2tcp
-        
-    
-    The port number `14550` is valid for connecting to QGroundControl or another GCS, but should be adjusted for other endpoints (e.g. developer APIs etc.).
-    
-    The tunnel may in theory run indefinitely, but *netcat* connections may need to be restarted if there is a problem.
-    
-    The [QGC_remote_connect.bash](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) script can be run on the QGC computer to automatically setup/run the above instructions. The simulation must already be running on the remote server, and you must be able to SSH into that server.
+
+The port number `14550` is valid for connecting to QGroundControl or another GCS, but should be adjusted for other endpoints (e.g. developer APIs etc.).
+
+The tunnel may in theory run indefinitely, but *netcat* connections may need to be restarted if there is a problem.
+
+The [QGC_remote_connect.bash](https://raw.githubusercontent.com/ThunderFly-aerospace/sitl_gazebo/autogyro-sitl/scripts/QGC_remote_connect.bash) script can be run on the QGC computer to automatically setup/run the above instructions. The simulation must already be running on the remote server, and you must be able to SSH into that server.
