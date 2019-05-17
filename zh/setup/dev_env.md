@@ -1,6 +1,6 @@
 # 安装文件和代码
 
-可以在 [Linux](../setup/dev_env_linux.md) 或者 [Mac OS](../setup/dev_env_mac.md) 平台上进行 PX4 代码的开发。 我们建议使用 [Ubuntu Linux LTS edition](https://wiki.ubuntu.com/LTS) ，因为它支持编译 [所有 PX4 平台](#supported-targets) 的固件，且可以使用 [ROS](../ros/README.md) 和大部分的 [模拟器](../simulation/README.md) 。
+PX4 code can be developed on [Linux](../setup/dev_env_linux.md), [Mac OS](../setup/dev_env_mac.md), or [Windows](../setup/dev_env_windows.md). 我们建议使用 [Ubuntu Linux LTS edition](https://wiki.ubuntu.com/LTS) ，因为它支持编译 [所有 PX4 平台](#supported-targets) 的固件，且可以使用 [ROS](../ros/README.md) 和大部分的 [模拟器](../simulation/README.md) 。
 
 ## 支持的编译目标
 
