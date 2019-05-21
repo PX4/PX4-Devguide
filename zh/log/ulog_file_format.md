@@ -1,14 +1,16 @@
 # ULog 文件格式
 
-ULog 是用于记录系统数据的文件格式。 格式是自描述的，即它包含记录的格式和消息类型。
+ULog is the file format used for logging system data.
 
-它可用于记录设备输入（传感器等）、内部状态（cpu 负载、姿态等）以及打印的日志消息。
+The format is self-describing, i.e. it contains the format and message types that are logged (note that the [system logger](../log/logging.md) allows the *default set* of logged topics to be replaced from an SD card).
 
-这种格式对所有的二进制类型采用小端模式。
+It can be used for logging device inputs (sensors, etc.), internal states (cpu load, attitude, etc.) and `printf` log messages.
+
+The format uses Little Endian for all binary types.
 
 ## 数据类型
 
-使用以下二进制类型。 它们都对应 C 语言中的类型：
+The following binary types are used. They all correspond to the types in C:
 
 | 类型                  | 大小（以字节为单位） |
 | ------------------- | ---------- |
@@ -20,11 +22,11 @@ ULog 是用于记录系统数据的文件格式。 格式是自描述的，即�
 | double              | 8          |
 | bool, char          | 1          |
 
-此外，所有的类型还可以作为数组使用，比如 `float[5]`。 通常，所有的字符串（`char[length]`）在末尾不包含 `'\0'`。 字符串比较区分大小写。
+Additionally all can be used as an array, eg. `float[5]`. In general all strings (`char[length]`) do not contain a `'\0'` at the end. String comparisons are case sensitive.
 
 ## 文件结构
 
-该文件由三个部分组成：
+The file consists of three sections:
 
     ----------------------
     |         头         |
@@ -37,7 +39,7 @@ ULog 是用于记录系统数据的文件格式。 格式是自描述的，即�
 
 ### 头部分
 
-头是一个固定大小的部分，具有以下格式（16个字节）：
+The header is a fixed-size section and has the following format (16 bytes):
 
     ----------------------------------------------------------------------
     | 0x55 0x4c 0x6f 0x67 0x01 0x12 0x35 | 0x01         | uint64_t       |
@@ -45,13 +47,13 @@ ULog 是用于记录系统数据的文件格式。 格式是自描述的，即�
     ----------------------------------------------------------------------
     
 
-Version 是文件的格式的版本，目前是 1。 Timestamp 是一个 `uint64_t` 的整数，表示从日志开始记录的微秒数。
+Version is the file format version, currently 1. Timestamp is a `uint64_t` integer, denotes the start of the logging in microseconds.
 
 ### 定义部分
 
-可变长度部分，包含版本信息、格式定义和 (初始) 参数值。
+Variable length section, contains version information, format definitions, and (initial) parameter values.
 
-定义和数据部分由消息流组成。 每个数据流包含此标头：
+The Definitions and Data sections consist of a stream of messages. Each starts with this header:
 
 ```c
 struct message_header_s {
@@ -60,7 +62,7 @@ struct message_header_s {
 };
 ```
 
-`msg_size` 是除头 (`hdr_size`= 3 bytes) 外消息的字节大小。 `msg_type` 定义内容类型，是以下的一种：
+`msg_size` is the size of the message in bytes without the header (`hdr_size`= 3 bytes). `msg_type` defines the content and is one of the following:
 
 - 'B' ：标记 bitset 报文。
   
@@ -161,11 +163,11 @@ struct message_header_s {
 
 - 'P'：报文参数。 格式与 `message_info_s` 相同。 如果参数在运行时动态变化，则此报文也可用于 Data 部分。 数据类型限制为：`int32_t`，`float` 。
 
-这部分在第一个 `message_add_logged_s` 或者 `message_logging_s` 开始之前结束 (以先出现的消息为准) 。
+This section ends before the start of the first `message_add_logged_s` or `message_logging_s` message, whichever comes first.
 
 ### 数据部分
 
-以下消息属于本部分：
+The following messages belong to this section:
 
 - 'A'：按名称订阅消息，并给它一个在 `message_data_s` 中使用的 id。 这必须在第一个对应的 `message_data_s` 之前。
   
@@ -249,7 +251,7 @@ struct message_header_s {
 
 ## 解析器的要求
 
-一个有效的 ULog 解析器必须满足以下要求:
+A valid ULog parser must fulfill the following requirements:
 
 - 必须忽略未知消息 (但可以打印警告) 。
 - 解析未来/未知的文件格式版本 (但可以打印警告) 。
@@ -278,4 +280,4 @@ struct message_header_s {
 
 ### 版本 2 中的改变
 
-增加 `ulog_message_info_multiple_header_s` 和 `ulog_message_flag_bits_s` 报文以及给日志增加数据的能力。 这被用来给现有的日志添加损坏的数据。 如果从中间切开的报文数据被附加到日志中，这不能被版本 1 解析器解析。 除此之外，如果解析器忽略未知消息，则提供向前和向后的兼容性。
+Addition of `ulog_message_info_multiple_header_s` and `ulog_message_flag_bits_s` messages and the ability to append data to a log. This is used to add crash data to an existing log. If data is appended to a log that is cut in the middle of a message, it cannot be parsed with version 1 parsers. Other than that forward and backward compatibility is given if parsers ignore unknown messages.
