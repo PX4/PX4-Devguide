@@ -1,15 +1,17 @@
 # ULog File Format
 
 ULog is the file format used for logging system data.
-The format is self-describing, i.e. it contains the format and message types that are logged.
 
-It can be used for logging device inputs (sensors, etc.), internal states (cpu load, attitude, etc.) and printf log messages.
+The format is self-describing, i.e. it contains the format and message types that are logged (note that the [system logger](../log/logging.md) allows the *default set* of logged topics to be replaced from an SD card).
+
+It can be used for logging device inputs (sensors, etc.), internal states (cpu load, attitude, etc.) and `printf` log messages.
 
 The format uses Little Endian for all binary types.
 
 ## Data types
 
-The following binary types are used. They all correspond to the types in C:
+The following binary types are used. 
+They all correspond to the types in C:
 
 | Type              | Size in Bytes |
 | ----              | ------------- |
