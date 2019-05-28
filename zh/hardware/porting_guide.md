@@ -114,7 +114,7 @@ PX4 项目支持并维护着 [FMU 标准参考硬件](../debug/reference-design.
 
 > **Tip** 制造商们在偏离标准硬件规格前应谨慎考虑需要付出的维护成本（制造商们需要付出的成本与偏离程度成正比）。
 
-我们欢迎任何个人或者公司提交他们的移植项目以纳入我们的支持硬件列表中，前提是他们应愿意遵守我们的 [行为守则](../contribute/README.md#code-of-conduct) 并与开发团队合作，以实现为他们的客户提供安全且满意的 PX4 体验。
+We welcome any individual or company to submit their port for inclusion in our supported hardware, provided they are willing to follow our [Code of Conduct](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md) and work with the Dev Team to provide a safe and fulfilling PX4 experience to their customers.
 
 还需要注意的是 PX4 开发团队有责任发布安全的软件，因此我们要求所有飞控板制造商都应投入必要的资源来保证他们的意志平台始终处于最新状态并且可用。
 
