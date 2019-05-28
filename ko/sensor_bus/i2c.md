@@ -12,7 +12,7 @@ Pixhawk/PX4 support it for:
 
 ## Integrating I2C Devices
 
-Drivers should `#include <drivers/device/i2c.h>` and then provide an implementation of the abstract base class `I2C` defined in **I2C.hpp** for the target hardware (i.e. for NuttX [here](https://github.com/PX4/Firmware/blob/master/src/drivers/device/nuttx/I2C.hpp)).
+Drivers should `#include <drivers/device/i2c.h>` and then provide an implementation of the abstract base class `I2C` defined in **I2C.hpp** for the target hardware (i.e. for NuttX [here](https://github.com/PX4/Firmware/blob/master/src/lib/drivers/device/nuttx/I2C.hpp)).
 
 Drivers will also need to include headers for their type of device (**drv_*.h**) in [/src/drivers/](https://github.com/PX4/Firmware/tree/master/src/drivers) - e.g. [drv_baro.h](https://github.com/PX4/Firmware/blob/master/src/drivers/drv_baro.h).
 
