@@ -6,9 +6,9 @@ jMAVSim is a simple multirotor/Quad simulator that allows you to fly *copter* ty
 
 * Quad
 
-This topic shows how to set up jMAVSim to connect with a SITL version of PX4. 
+This topic shows how to set up jMAVSim to connect with a SITL version of PX4.
 
-> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#using-jmavsim-quadrotor)).
+> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#jmavsimgazebo-hitl-environment).
 
 
 ## Simulation Environment
