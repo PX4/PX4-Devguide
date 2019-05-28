@@ -120,9 +120,9 @@
 
 补充:
 
-* 仿真模拟：暂不支持Gazebo 和 ROS。
+* Simulation: Gazebo and ROS are not supported.
 * 仅支持 NuttX 和 JMAVSim/SITL 编译。
-* [已知问题/报告您的问题](https://github.com/orgs/PX4/projects/6)
+* [Known problems](https://github.com/orgs/PX4/projects/6) (Also use to report issues).
 
 ### Shell 脚本安装 {#script_setup}
 
@@ -178,9 +178,9 @@
 
 1. 编写或复制 ** 批处理脚本 ** [` run-console.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) 和 [` setup-environment-variables.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat)。
     
-    使用预先准备好的批处理脚本启动开发环境的原因是，这些脚本预配置了程序使用工具链所在目录下的绿色版 Cygwin 环境变量。 这是通过始终首先调用脚本 [** setup-environment-variables.bat **](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) 和所需的应用程序 (如控制台) 来完成的。
+    使用预先准备好的批处理脚本启动开发环境的原因是，这些脚本预配置了程序使用工具链所在目录下的绿色版 Cygwin 环境变量。 This is done by always first calling the script [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) and the desired application like the console after that.
     
-    脚本 [` setup-environment-variables.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat)用于设置工作区根目录的环境变量 ` PX4_DIR `、所有可执行程序 ` PATH ` 和 unix 环境的HOME目录` HOME `。
+    The script [setup-environment.bat](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
 
 2. 通过执行 Cygwin 工具链控制台 (双击 ** run-console.bat **) 脚本, 向安装程序添加必要的 ** python 包 **
     
