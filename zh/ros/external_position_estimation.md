@@ -76,7 +76,7 @@ EKF2 只订阅 `vehicle_visual_odometry` 主题，因此只能处理前两个消
 
 ![ekf2_ev_delay 日志](../../assets/ekf2/ekf2_ev_delay_tuning.png)
 
-> **Note** 外部数据图表 与 可使用 [FlightPlot](https://docs.px4.io/en/log/flight_log_analysis.html#flightplot-desktop) 或类似的飞行分析工具生成机载估计（如上）。
+> **Note** 外部数据图表 与 onboard estimate (as above) can be generated using [FlightPlot](https://docs.px4.io/master/en/log/flight_log_analysis.html#flightplot) or similar flight analysis tools.
 
 该值可以通过不同的参数一起调整，在动态变化中来保证最低 EKF 。
 
@@ -160,7 +160,7 @@ ROS 和 PX4 使用的本地/世界坐标系和全局框架是不同的。
 
 ### 光学跟踪 MoCap
 
-以下步骤说明如何将位置估计从 [OptiTrack](http://optitrack.com/systems/#robotics) 系统输入到 px4。 假定 mocap 系统已校准。 有关校准过程的教程，请参阅 [this video ](https://www.youtube.com/watch?v=cNZaFEghTBU)。
+The following steps explain how to feed position estimates from an [OptiTrack](https://optitrack.com/motion-capture-robotics/) system to PX4. 假定 mocap 系统已校准。 有关校准过程的教程，请参阅 [this video ](https://www.youtube.com/watch?v=cNZaFEghTBU)。
 
 #### 设置 *Motive* mocap 软件
 
