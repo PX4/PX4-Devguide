@@ -6,7 +6,7 @@ uORB 是用于进程间通信的异步 `publish()`/`subscribe()` 消息传递 AP
 
 <span></span>
 
-> **Note** `listener` 命令也可通过 [System 控制台](../debug/system_console.md) 和 [MAVLink shell](../debug/system_console.md#mavlink-shell)。
+> **Note** The `listener` command is also available through the [System Console](../debug/system_console.md) and the [MAVLink Shell](../debug/system_console.md#mavlink_shell).
 
 <span></span>
 
