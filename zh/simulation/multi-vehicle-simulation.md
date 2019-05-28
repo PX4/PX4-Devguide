@@ -8,7 +8,7 @@
 
 ## 要求
 
-* 当前的 [PX4 ros/gazebo 开发环境](../setup/dev_env_linux.md#gazebo-with-ros)。**注意** 在编写本报告时是 ubuntu 16.04 与 ros kinetic/gazebo 7。 另见 [Gazebo 模拟](/simulation/gazebo.md)。
+* Current [PX4 ROS/Gazebo development evironment](../setup/dev_env_linux.md#ros) > **Note** At time of writing this is Ubuntu 18.04 with ROS Melodic/Gazebo 9. See also [Gazebo Simulation](../simulation/gazebo.md).
 * [MAVROS 包](http://wiki.ros.org/mavros)
 * 最新 [PX4/Firmware](https://github.com/PX4/Firmware) 的克隆
 
