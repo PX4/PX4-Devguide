@@ -134,7 +134,7 @@ src/modules/micrortps_bridge/micrortps_client
 
 ## 构建并使用代码
 
-手动生成的 *Client* 代码的生成和使用方式与 [automatically generated Client code ](../middleware/micrortps.md#client-px4-firmware) 相同。
+The manually generated *Client* code is built and used in *exactly* the same way as [automatically generated Client code](../middleware/micrortps.md#client_firmware).
 
 特别的，一旦手动生成，*Client* 代码就被编译并构建作为 PX4 固件的一个正常编译的一部分。 例如，编译代码，将其加入 NuttX/Pixhawk 固件：
 
@@ -144,4 +144,4 @@ make px4_fmu-v4_default upload
 
 > **Note** 必须首先 [disable automatic bridge code generation ](#disable-automatic-bridge-code-generation)，以便工具链使用手动生成的源代码（并且不尝试重新生成）。
 
-手动生成的 *Agent* 代码的编译和使用方式与 [automatically generated code](../middleware/micrortps.md#agent-off-board-fastrtps-interface) 相同。 唯一的区别是手动源代码是以 **src/modules/micrortps_bridge/micrortps_agent** 而不是 **<emphasis>build/BUILDPLATFORM</emphasis>****/src/modules/micrortps_bridge/micrortps_agent/** 创建的。
+The manually generated *Agent* code is also compiled and used in the same way as the [automatically generated code](../middleware/micrortps.md#agent-in-a-ros-independent-offboard-fast-rtps-interface). 唯一的区别是手动源代码是以 **src/modules/micrortps_bridge/micrortps_agent** 而不是 **<emphasis>build/BUILDPLATFORM</emphasis>****/src/modules/micrortps_bridge/micrortps_agent/** 创建的。
