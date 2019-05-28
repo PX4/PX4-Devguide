@@ -110,7 +110,7 @@ integrate it and publish with 250Hz. Other parts of the system, such
 as the `navigator`, don't need such a high update rate, and thus run
 considerably slower.
 
-The message update rates can be [inspected](../middleware/uorb.md#urb-top-command)
+The message update rates can be [inspected](../middleware/uorb.md)
 in real-time on the system by running `uorb top`.
 
 ## Runtime Environment

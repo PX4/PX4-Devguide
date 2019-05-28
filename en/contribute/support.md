@@ -2,7 +2,7 @@
 
 This section shows how you can get help from the core dev team and the wider community.
 
-> **Tip** Developers are most welcome to attend the [weekly dev call](../contribute/dev_call.md) and other [developer events](#calendar) to engage more deeply with the project.
+> **Tip** Developers are most welcome to attend the [weekly dev call](../contribute/dev_call.md) and other [developer events](../README.md#calendar) to engage more deeply with the project.
 
 ## Forums and Chat {#support}
 
@@ -32,7 +32,7 @@ The [Dev Call](../contribute/dev_call.md) is a weekly meeting attended by the PX
 
 There is also space in the agenda to discuss pull requests, major impacting issues and Q&A.
 
-> **Tip** For other developer events see: [Contribution > Calendar & Events](../contribute/README.md#calendar).
+> **Tip** For other developer events see: [Contribution > Calendar & Events](../README.md#calendar).
 
 
 ## Tests Flights
