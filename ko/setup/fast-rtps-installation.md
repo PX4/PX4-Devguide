@@ -18,7 +18,7 @@ Fast RTPS는 아래와 같은 일부 플랫폼에서 PX4 개발자 환경의 일
 
 * [Mac에서의 개발 환경](../setup/dev_env_mac.md) (Fast RTPS는 공통 도구에 포함되어 있음.)
 * [리눅스에서의 개발 환경](../setup/dev_env_linux.md) (Fast RTPS는 설치 스크립트에 포함되어 있음)
-* [Windows > Windows의 Bash에서의 개발 환경](/setup/dev_env_windows.md#bash-on-windows-new) (Fast RTPS는 설치 스크립트에 포함되어 있음.) 
+* [Development Environment on Windows > Bash on Windows](../setup/dev_env_windows_bash_on_win.md) (FastRTPS included in install script)
 
 아래의 설치 방법은 다른 환경에서 Fast RTPS 지원을 추가할 때 유용합니다.
 
