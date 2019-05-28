@@ -12,7 +12,7 @@ Pixhawk/PX4 支持：
 
 ## 集成 I2C 设备
 
-驱动程序应 `#include<drivers/device/i2c.h>`，然后提供在目标硬件（即 Nuttx 的[这里](https://github.com/PX4/Firmware/blob/master/src/drivers/device/nuttx/I2C.hpp)）的 **I2C.hpp** 中定义的抽象基类 `I2C` 的实现。
+Drivers should `#include <drivers/device/i2c.h>` and then provide an implementation of the abstract base class `I2C` defined in **I2C.hpp** for the target hardware (i.e. for NuttX [here](https://github.com/PX4/Firmware/blob/master/src/lib/drivers/device/nuttx/I2C.hpp)).
 
 驱动程序还需要在 [/src/drivers/](https://github.com/PX4/Firmware/tree/master/src/drivers) 中包括其设备类型（**drv_*.h**）的标头--例如 [drv_baro.h](https://github.com/PX4/Firmware/blob/master/src/drivers/drv_baro.h)。
 
