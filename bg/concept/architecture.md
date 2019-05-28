@@ -66,7 +66,7 @@ In addition, the middleware includes a [simulation layer](../simulation/README.m
 
 Since the modules wait for message updates, typically the drivers define how fast a module updates. Most of the IMU drivers sample the data at 1kHz, integrate it and publish with 250Hz. Other parts of the system, such as the `navigator`, don't need such a high update rate, and thus run considerably slower.
 
-The message update rates can be [inspected](../middleware/uorb.md#urb-top-command) in real-time on the system by running `uorb top`.
+The message update rates can be [inspected](../middleware/uorb.md) in real-time on the system by running `uorb top`.
 
 ## Runtime Environment
 
