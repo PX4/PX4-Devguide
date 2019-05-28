@@ -120,9 +120,9 @@ The following features are known to work (version 2.0):
 
 Omissions:
 
-* Simulation: Gazebo and ROS are not supported
+* Simulation: Gazebo and ROS are not supported.
 * Only NuttX and JMAVSim/SITL builds are supported.
-* [Known problems / Report your issue](https://github.com/orgs/PX4/projects/6)
+* [Known problems](https://github.com/orgs/PX4/projects/6) (Also use to report issues).
 
 ### Instalación Shell Script {#script_setup}
 
@@ -178,9 +178,9 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 
 1. Escribir o copiar los **scripts de bash** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) y [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
     
-    The reason to start all the development tools through the prepared batch script is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. Esto se hace llamando siempre llamando primero a los scripts [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) y la aplicación deseada como la consola después de eso.
+    The reason to start all the development tools through the prepared batch script is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. This is done by always first calling the script [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) and the desired application like the console after that.
     
-    The script [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
+    The script [setup-environment.bat](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
 
 2. Añade los **paquetes de python** necesarios para la configuración abriendo la consola de la toolchain de Cygwin (doble clic en **run-console.bat**) y ejecutandolo
     
