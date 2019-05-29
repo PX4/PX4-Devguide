@@ -1,5 +1,3 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/README.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# 概念
 
+本节包含有关[PX4系统体系结构](../concept/architecture.md)和其他核心概念的主题。

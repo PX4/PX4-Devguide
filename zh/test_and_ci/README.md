@@ -1,31 +1,11 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/test_and_ci/README.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# 平台测试和持续集成
 
-# 测试与持续集成
+PX4 提供广泛的测试和测试设施，包括通过持续集成运行的单元和集成测试以及由我们的专业测试团队进行的“实时”飞行测试。 此页面提供概述。
 
-PX4提供大量的测试和持续集成。 本页提供概述。
-
-## 在本地机器上测试
-下面这条命令足够打开一个带有运行中的PX4端口的新shell。
-
-```
-make px4_sitl_shell none
-```
-
-shell可以用这个例子运行单元测试:
-
-```
-pxh> tests mixer
-```
-
-另一种选择也可以从bash中运行以下命令运行完整的单元测试:
-
-```
-make tests
-```
-
-## 在云端测试和持续集成
-
-
+* [测试飞行](../test_and_ci/test_flights.md)
+* [单元测试](../test_and_ci/unit_tests.md)
+* [持续集成测试（CI）](../test_and_ci/continous_integration.md)
+* [Jenkins CI](../test_and_ci/jenkins_ci.md)
+* [集成测试](../test_and_ci/integration_testing.md)
+* [工具面板](../test_and_ci/docker.md)
+* [系统维护](../test_and_ci/maintenance.md)

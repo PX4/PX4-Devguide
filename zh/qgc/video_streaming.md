@@ -1,85 +1,71 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/qgc/video_streaming.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# QGroundControl 中的视频流
 
-# QGC的视频流
-这页面说明如何建立一台带一个镜头(Logitech C920) 的配套工业计算机Odroid C1  ，视频流通过Odroid C1（ODROID　C1）传输到网络计算机和在计算机上的QDC应用显示运行。 
+此页演示如何设置相机 (logitech c920) 和机载计算机 (odroid c1), 以便通过 odroid c1 将视频流传输到网络计算机, 并显示在 QGC 中。
 
+下图显示了整个硬件设置。 它由以下部分组成:
 
-整个硬件设置如下所示。 它由以下几个部分组成：
+* Odroid C1
+* Logitech 摄像头 C920
+* WiFi 模块 TP-LINK TL-WN722N
 
-- Odroid C1
-- 罗技镜头 C920
-- WiFi module TP-LINK TL-WN722N
+![设置](../../assets/videostreaming/setup_whole.jpg)
 
-![](../../assets/videostreaming/setup-whole.png)
+## 在 Odroid c1 中安装 Linux 环境
 
-## 安装Odroid C1　Linux的环境
-
-按照Odroid C1安装教程，安装Ubuntu 14.04)的运行环境, 在本教程中 [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1). 还说明如何用串口电缆接入Odroid C1（ODROID　C1 ）以及如何建立以太网连接。
+要安装 linux 环境 (ubuntu 14.04), 请按照 [Odroid c1 教程](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 中给出的说明进行操作。 在本教程中, 它还演示了如何使用 uart 电缆访问 odroid c1, 以及如何建立以太网连接。
 
 ## 设置备用电源连接
 
-Odroid C1 能够通过5V DC电源插孔。如果ODROID是安装在无人机的，建议采用焊接两引脚通孔焊接5V直流插孔固定的[方法](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering)，如下图所示。电源与Odroid C1的连接如上图所示，上图中红色的线为5V电压，黑色的线为地线。
+Odroid c1 可以通过 5v 直流插孔供电。 如果 Odroid 被安装在飞行器上，建议将两个跳线通过插片式的[方法](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering)焊接在电路上 在例子中，Odroid C1 通过在上图所示的红色跳线连接 DC 电源 (5 V) 和通过上图所示的黑色跳线连接地线被通电。
 
+![电源](../../assets/videostreaming/power-pins.jpg)
 
-![](../../assets/videostreaming/power-pins.png)
+## 为 Odroid C1 启用无线网络连接
 
-## 启用ODROID C1 WiFi连接 
+在这篇教程中使用的是 WiFi 模块 TP-LINK TL-WN722N. 要为 odroid c1 启用 wifi 连接, 请按照 [Odroid c1 教程](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 中描述的步骤, 在 "用天线建立 wifi 连接" 一节中进行操作。
 
-在这本教程的WiFi模块采用TP-LINK tl-wn722n。 要启用的ODROID C1的WiFi连接，按照 [ODROID C1教程](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 的步骤描述用WiFi天线建立网络连接。 
+## 配置 WiFi 为接入点
 
-## 配置WiFi接入点 
+本节演示如何设置 odroid c1, 使其成为接入点。 内容取自此[这篇教程](https://pixhawk.org/peripherals/onboard_computers/access_point), 并有一些小改动。 为了能够通过 odroid c1 将视频从相机流式传输到在计算机上运行的 QGroundControl, 并不一定需要遵循此部分。 但是, 这篇教程的意义是, 将 odroid c1 设置为接入点允许以独立的方式使用该系统。 在此使用的是 TP-LINK TL-WN722N。 在随后的步骤中, 假定 odroid c1 将 wlan0 的名称分配给您的 wifi 模块。 如果不同, 请将所有出现的 wlan0 更改为相应的接口 (例如 wlan1)。
 
-本节说明如何设置ODROID C1一个数据接入点。内容在原有 [教程](https://pixhawk.org/peripherals/onboard_computers/access_point) 上作一些小的改进。 启动视频流从摄像头的通过到地面站，运行在计算机则不需要遵循本节。然而，这里表示是因为建立ODROID C1像允许以一个独立的方式使用系统的数据接入点。TP-LINK TL-WN722N使用像WiFi模块。在随后的步骤它是假定指定名称的ODROID系列C1 WLAN 0到你的WiFi模块。改变WLAN 0的所有事件如果相应接口不同（如wlan1）。 
+### 配置机载电脑为接入点
 
-### 机载计算机作为接入点
-
-在深入的解释更多，你可以看看 [RPI-Wireless-Hotspot](http://elinux.org/RPI-Wireless-Hotspot)
+有关更深入解释, 请查阅 [RPI-Wireless-Hotspot](http://elinux.org/RPI-Wireless-Hotspot)
 
 安装必要的软件
-
-<div class="host-code"></div>
 
 ```bash
 sudo apt-get install hostapd udhcpd
 ```
 
-配置 DHCP. 编辑文件 `/etc/udhcpd.conf`
-
-<div class="host-code"></div>
+配置 DHCP 编辑文件 `/etc/udhcpd.conf`
 
 ```bash
-start 192.168.2.100 # This is the range of IPs that the hostspot will give to client devices.
+start 192.168.2.100 #这是热点将为客户端设备提供的IP范围。
 end 192.168.2.200
-interface wlan0 # The device uDHCP listens on.
+interface wlan0 # 设备 uDHCP 侦听。
 remaining yes
-opt dns 8.8.8.8 4.2.2.2 # The DNS servers client devices will use (if routing through the ethernet link).
+opt dns 8.8.8.8 4.2.2.2 # 客户端会使用的 DNS 服务器（如果路由通过以太网链接）。
 opt subnet 255.255.255.0
-opt router 192.168.2.1 # The Onboard Computer's IP address on wlan0 which we will set up shortly.
-opt lease 864000 # 10 day DHCP lease time in seconds
+opt router 192.168.2.1 # wlan0 上的机载计算机的 IP 地址， 也就是我们稍后会设置的。
+opt lease 864000 # 10 天 DHCP 租约时间，以秒为单位
 ```
 
-所有其他的“选择”条目应该被禁用或如果你知道你在做如何配置正确。
+其他“opt”命令不应该被配置。如果您知道自己在做什么，则配置其他命令。
 
-编辑文件 `/etc/default/udhcpd` 和修改行:
-
-<div class="host-code"></div>
+编辑如下文件 `/etc/default/udhcpd`，修改其中的一行：
 
 ```bash
 DHCPD_ENABLED="no"
 ```
 
-为
-
-<div class="host-code"></div>
+至
 
 ```bash
 #DHCPD_ENABLED="no"
 ```
 
-您需要给机载计算机一个静态的IP地址 编辑文件 `/etc/network/interfaces` 和代替行 `iface wlan0 inet dhcp` (or `iface wlan0 inet manual`) 为:
+您需要为机载计算机配置静态 ip 地址。 编辑文件 `/etc/network/interfaces` 并将 `iface wlan0 inet dhcp` (或者 `iface wlan0 inet manual`) 行改为:
 
 ```sh
 auto wlan0
@@ -91,9 +77,7 @@ broadcast 192.168.2.255
 wireless-power off
 ```
 
-停用原有（无线客户端）自动配置。 修改行 (注意：它们可能不会全部在同一个地方，也许是分开的，甚至可能根本不存在):
-
-<div class="host-code"></div>
+禁用原始 (WiFi Client) 自动配置。 更改行 (它们可能不会全部相邻, 甚至可能根本不存在):
 
 ```sh
 allow-hotplug wlan0
@@ -101,9 +85,7 @@ wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 iface default inet dhcp
 ```
 
-为:
-
-<div class="host-code"></div>
+至:
 
 ```sh
 #allow-hotplug wlan0
@@ -111,66 +93,53 @@ iface default inet dhcp
 #iface default inet dhcp
 ```
 
-如果你遵循 [Odroid C1 教程](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 建立无线网络连接， 您已经创建的文件 `/etc/network/intefaces.d/wlan0`. 请注释在该文件中的所有行，使得这些配置不再有任何效果。
+如果您已按照 [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 设置WiFi连接，则可能已创建文件 `/etc/network/intefaces.d/wlan0`。 请注释掉该文件中的所有行，以使这些配置不再有效。
 
-配置 HostAPD: 创建 WPA-secured 网络, 编辑文件 `/etc/hostapd/hostapd.conf` (如果它不存在就新创建) 和 加上跟随行: 
+配置HostAPD：要创建受WPA保护的网络，请编辑文件 `/etc/hostapd/hostapd.conf`（如果它不存在则创建它）并添加以下行：
 
-```
-auth_algs=1
-channel=6            # Channel to use
-hw_mode=g
-ieee80211n=1          # 802.11n assuming your device supports it
-ignore_broadcast_ssid=0
-interface=wlan0
-wpa=2
-wpa_key_mgmt=WPA-PSK
-wpa_pairwise=TKIP
-rsn_pairwise=CCMP
-# Change the to the proper driver
-driver=nl80211
-# Change these to something else if you want
-ssid=OdroidC1
-wpa_passphrase=QGroundControl
+    auth_algs=1
+    channel=6            # 要使用的通道
+    hw_mode=g
+    ieee80211n=1          # 802.11n 假设你的设备支持它
+    ignore_broadcast_ssid=0
+    interface=wlan0
+    wpa=2
+    wpa_key_mgmt=WPA-PSK
+    wpa_pairwise=TKIP
+    rsn_pairwise=CCMP
+    # 更改至正确的驱动
+    driver=nl80211
+    # 如果需要的话，把下面两项改成别的名字和密码
+    ssid=OdroidC1
+    wpa_passphrase=QGroundControl
+    
+    
 
-```
+更改 `ssid=`, `channel=`, 和 `wpa_passphrase=` 。 SSID是广播到其他设备的热点名称，频道是热点运行的频率，wpa_passphrase 是无线网络的密码。 有更多选项，请参阅该文件 `/usr/share/doc/hostapd/examples/hostapd.conf.gz`。 寻找该区域未使用的频道。 您可以使用 *wavemon* 等工具。
 
-改变 `ssid=`, `channel=`, 和 `wpa_passphrase=` 你选的值. SSID 是传播到其他设配热点名, 通道是热点运行在什么频率，wpa_passphrase是无线网络密码。为更多的选项看到文件。  `/usr/share/doc/hostapd/examples/hostapd.conf.gz`.
-寻找一个在这个区域没有使用的通道， 你可以使用的工具如wavemon。 
+编辑如下文件 `/etc/default/hostapd` ，修改其中的一行：
 
-E编辑文件 `/etc/default/hostapd` 修改行:
+    #DAEMON_CONF=""
+    
 
-<div class="host-code"></div>
+至:
 
-```
-#DAEMON_CONF=""
-```
+    DAEMON_CONF="/etc/hostapd/hostapd.conf"
+    
 
-为:
+您的板载计算机现在应该有无线热点。 要使热点在启动时启动，请运行以下附加命令：
 
-```
-DAEMON_CONF="/etc/hostapd/hostapd.conf"
-```
+    sudo update-rc.d hostapd enable
+    sudo update-rc.d udhcpd enable
+    
 
-你的机载电脑现在应该是主持一个无线热点。 要获得启动启动的热点，运行这些额外的命令： 
-
-<div class="host-code"></div>
-
-```
-sudo update-rc.d hostapd enable
-sudo update-rc.d udhcpd enable
-```
-
-作为一个数据接入点要有足够同时接入机载计算机和允许你的地面站连接. 如果你真的想让它作为一个真正的接入点 (WiFi机载计算机的以太网连接路由的流), 我们需要配置路由和网络地址翻译（NAT）。启用内核中的IP转发： 
-
-<div class="host-code"></div>
+这足以让板载计算机作为接入点出现，并允许您的地面站连接。 如果您真的希望将其作为真正的接入点（将WiFi流量路由到板载计算机的以太网连接），我们需要配置路由和网络地址转换（NAT）。 在内核中启用端口转发：
 
 ```sh
 sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 ```
 
-启动内核，运行下面命令:
-
-<div class="host-code"></div>
+要做到这一点，请运行以下命令：
 
 ```sh
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -178,39 +147,37 @@ sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -
 sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
 ```
 
-调整参数, 运行下面命令:
-
-<div class="host-code"></div>
+要使其永久化，请运行以下命令：
 
 ```sh
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 ```
 
-编辑文件 /etc/network/interfaces 和在文件最下方加上这一行: 
-
-<div class="host-code"></div>
+现在，打开 /etc/network/interfaces 并在文件底部添加以下行:
 
 ```sh
 up iptables-restore < /etc/iptables.ipv4.nat
 ```
 
-# gstreamer 安装
+# Gstreamer 安装
 
-在电脑上和Odroid C1 安装 gstreamer 包 和 启动流, 按照指令获取 [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md). 
+要在计算机和Odroid C1上安装gstreamer软件包并启动流，请按照 [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md) 中给出的说明进行操作。
 
-如果你不能启动Odroid与uvch264s插件, 也可以尝试与v4l2src插件启动:
-
-<div class="host-code"></div>
+如果您无法使用 uvch264s 插件启动 odroid 上的流, 您也可以尝试使用 v4l2src 插件启动它:
 
 ```sh
- gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,framerate=24/1 ! h264parse ! rtph264pay ! udpsink host=xxx.xxx.xxx.xxx port=5000
+gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,framerate=24/1 ! h264parse ! rtph264pay ! udpsink host=xxx.xxx.xxx.xxx port=5000
 ```
 
-当 `xxx.xxx.xxx.xxx`  QGC地面站IP地址正在运行， 如果看到系统错误 `Permission denied`, 你可以下面这个命令 `sudo`。
+其中 `“xxx.xxx.xxx.xxx”` 是QGC运行的IP地址
 
-如果一切正常，你应该看到在底部的左上角OGC视频流在飞行模式下screeenshot显示窗口。 
+> **Tip** 如果出现系统错误: `Permission denied`, 则可能需要在上述命令之前加上 `sudo`。 或者, 将当前用户添加到 `video` 组, 如下所示 (然后注销/登录): 
+> 
+>     sh
+>       sudo usermod -aG video $USER
+
+如果一切正常, 您应该在 QGroundControl 的飞行模式窗口中看到左下角的视频流, 如下面的屏幕截图所示。
 
 ![](../../assets/videostreaming/qgc-screenshot.png)
 
-如果你点击了视频流，卫星地图将在整个背景左下角的显示和视频显示。
-
+如果您单击视频流, 卫星地图将显示在左下角, 视频将显示在整个背景中。
