@@ -177,30 +177,33 @@
 
 ### 用法 {#logger_usage}
 
-    logger &lt;command&gt; [arguments...]
+    logger <command> [arguments...]
      Commands:
        start
-         [-m &lt;val&gt;]  后端模式
-                     取值： file|mavlink|all, 默认值： all
-         [-e]        完成启动后立刻启用日志记录，直至锁定飞机(否则仅当处于解锁状态才会开始日志记录)
-         [-f]        进行日志记录直到关机 (implies -e)
-         [-t]        使用日期/时间来命名日志文件夹和文件
-         [-r &lt;val&gt;]  日志记录速率，单位 Hz, 0 表示不限制速率
-                     默认值： 280
-         [-b &lt;val&gt;]  日志缓冲区大小，单位 KiB
-                     默认值： 12
-         [-q &lt;val&gt;]  mavlink 模式下 uORB 队列的大小
-                     默认值：14
-         [-p &lt;val&gt;]  轮询一个主题而不是以一个固定速率去检查 （进行了此项设定后日志记录速率和主题周期会被忽略）
-                     取值： &lt;topic_name&gt;
+         [-m <val>]  Backend mode
+                     values: file|mavlink|all, default: all
+         [-x]        Enable/disable logging via Aux1 RC channel
+         [-e]        Enable logging right after start until disarm (otherwise only
+                     when armed)
+         [-f]        Log until shutdown (implies -e)
+         [-t]        Use date/time for naming log directories and files
+         [-r <val>]  Log rate in Hz, 0 means unlimited rate
+                     default: 280
+         [-b <val>]  Log buffer size in KiB
+                     default: 12
+         [-q <val>]  uORB queue size for mavlink mode
+                     default: 14
+         [-p <val>]  Poll on a topic instead of running with fixed rate (Log rate
+                     and topic intervals are ignored if this is set)
+                     values: <topic_name>
     
-       on            立刻开始日志记录，覆盖解锁飞机指令 (logger 必须处于运行状态)
+       on            start logging now, override arming (logger must be running)
     
-       off           立刻停止日志记录，覆盖解锁飞机指令 (logger 必须处于运行状态)
+       off           stop logging now, override arming (logger must be running)
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## replay
