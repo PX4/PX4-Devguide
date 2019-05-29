@@ -1,65 +1,62 @@
-# Modules Reference: Estimator
+# 模块参考：估计器
+
 ## ekf2
-Source: [modules/ekf2](https://github.com/PX4/Firmware/tree/master/src/modules/ekf2)
 
+源码：[modules/ekf2](https://github.com/PX4/Firmware/tree/master/src/modules/ekf2)
 
-### Description
-Attitude and position estimator using an Extended Kalman Filter. It is used for Multirotors and Fixed-Wing.
+### 描述
 
-The documentation can be found on the [tuning_the_ecl_ekf](https://dev.px4.io/en/tutorials/tuning_the_ecl_ekf.html) page.
+基于扩展卡尔曼滤波器的姿态和位置估计器。 该模块同时应用于多旋翼和固定翼飞机。
 
-ekf2 can be started in replay mode (`-r`): in this mode it does not access the system time, but only uses the
-timestamps from the sensor topics.
+The documentation can be found on the [ECL/EKF Overview & Tuning](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html) page.
 
+ekf2 可以在回放（replay）模式中启动 (`-r`)：该模式下它不会访问系统时间，而是使用传感器主题中的时间戳。
 
-### Usage {#ekf2_usage}
-```
-ekf2 <command> [arguments...]
- Commands:
-   start
-     [-r]        Enable replay mode
+### 用法 {#ekf2_usage}
 
-   stop
+    ekf2 &lt;command&gt; [arguments...]
+     Commands:
+       start
+         [-r]        启用 replay 模式
+    
+       stop
+    
+       status        打印状态信息
+    
 
-   status        print status info
-```
 ## local_position_estimator
-Source: [modules/local_position_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/local_position_estimator)
 
+源码：[modules/local_position_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/local_position_estimator)
 
-### Description
-Attitude and position estimator using an Extended Kalman Filter.
+### 描述
 
+基于扩展卡尔曼滤波器的姿态和位置估计器。
 
-### Usage {#local_position_estimator_usage}
-```
-local_position_estimator <command> [arguments...]
- Commands:
-   start
+### 用法 {#local_position_estimator_usage}
 
-   stop
+    local_position_estimator &lt;command&gt; [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        打印状态信息
+    
 
-   status        print status info
-```
 ## wind_estimator
-Source: [modules/wind_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/wind_estimator)
 
+源码：[modules/wind_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/wind_estimator)
 
-### Description
-This module runs a combined wind and airspeed scale factor estimator.
-If provided the vehicle NED speed and attitude it can estimate the horizontal wind components based on a zero
-sideslip assumption. This makes the estimator only suitable for fixed wing vehicles.
-If provided an airspeed measurement this module also estimates an airspeed scale factor based on the following model:
-measured_airspeed = scale_factor * real_airspeed.
+### 描述
 
+该模块运行一个综合了风速和空速缩放因子的估计器。 如果给该模块提供 NED 速度和姿态信息，该模块可以根据无侧滑假设对环境风的水平分量进行估计。 这就使得该估计器只适用于固定翼无人机。 如果提供的是空速的测量值，那么该模块还会同时根据如下模型估计一个空速的缩放因子： 测量的空速 = 缩放因子 * 实际空速。
 
-### Usage {#wind_estimator_usage}
-```
-wind_estimator <command> [arguments...]
- Commands:
-   start
+### 用法 {#wind_estimator_usage}
 
-   stop
-
-   status        print status info
-```
+    wind_estimator &lt;command&gt; [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        打印状态信息

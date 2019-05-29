@@ -1,52 +1,11 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/uavcan/notes.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# 各种说明
 
-# 各种笔记
+这是在设置或使用 UAVCAN 时解决问题的一系列提示和技巧。
 
+### 解锁，但电机不旋转
 
-这是一个提示和技巧的集合，以解决在设置或使用UAVCAN时的问题。
+如果 px4 固件解锁，但电机无法开始旋转，请检查参数 **UAVCAN\_ENABLE**。 它应该设置为 3，以便使用通过 UAVCAN 连接的电调作为输出。 此外，如果电机在增加推力之前没有开始旋转，请检查 **UAVCAN\_ESC\_IDLT** 并将其设置为 1。
 
-### 启动但电机不旋转
+### 用 Zubax Babel 进行调试
 
-如果PX4固件启动，但电机没有开始旋转，请检查参数**UAVCAN_ENABLE**（应将其设置为`3`，以便使用通过UAVCAN连接的ESC作为输出）。此外，如果电机在推力增加之前不开始旋转，请检查参数**UAVCAN_ESC_IDLT，**并将其设置为`1`。
-
-### 使用Zubax Babel进行调试
-
-
-调试UAVCAN总线上的数据传输的一个好方法是[Zubax Babel](https://docs.zubax.com/zubax_babel)与[GUI工具](http://uavcan.org/GUI_Tool/Overview/)的组合使用。它们也可以独立于Pixhawk硬件使用，以便测试节点或手动控制启用了UAVCAN的ESC。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+在 UAVCAN 总线上调试传输的一个很好的工具是 [Zubax Babel](https://docs.zubax.com/zubax_babel) 与 [GUI tool ](http://uavcan.org/GUI_Tool/Overview/) 的组合。 它们还可以独立于 Pixhawk 硬件使用，以测试节点或手动控制启用了 UAVCAN 的电调。

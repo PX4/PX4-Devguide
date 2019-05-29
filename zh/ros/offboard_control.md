@@ -1,89 +1,59 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/ros/offboard_control.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# 离板控制
 
-# 外部控制
+> **Warning** 使用 [Offboard 模式控制](https://docs.px4.io/en/flight_modes/offboard.html) 无人机是有危险的。 开发者有责任确保在离板飞行前采取充分的准备、测试和安全预防措施。
 
+离板控制背后的想法是能够使用在自动驾驶仪外运行的软件来控制 PX4 飞控。 这是通过 Mavlink 协议完成的, 特别是 [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) 和 [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) 消息。
 
-> **警告：** 外部控制是很危险的。在进行外部控制飞行之前，开发者需要保证有充分的准备、测试以及安全预防措施。
+## 离板控制固件设置
 
+在开始离板开发之前，您需要在固件端做两个安装。
 
-外部控制允许使用运行在飞控板外部的软件去控制px4飞行控制栈。通过MAVLink协议完成这些操作，特别是[SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED)和[SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET)消息.
+### 1. 将遥控开关映射到离板模式激活
 
-## 外部控制固件设置
+为此，请在 *QGroundControl* 中加载参数，并查找 RC_MAP_OFFB_SW 参数，您可以将要用于激活离板模式的遥控通道分配给该参数。 当你从板外模式进入位置控制，它会是有用的映射方式。
 
-在开始外部控制开发之前，固件方面需要做两项设置。
+虽然此步骤不是强制性的，因为您可以使用 Mavlink 消息激活非板载模式。 我们认为这种方法安全多了。
 
-### 1. 映射一个RC切换开关为外部模式激活开关
+### 2. 启用配套的计算机接口
 
-在QGroundcontrol中载入参数，并设置RC_MAP_OFFB_SW参数为想要控制外部模式激活的RC通道。这样做是非常有用的，当在外部模式出现问题时可以切换到位置控制模式。
+启动串口的 MAVLink ，连接地面站电脑（参见 [地面站电脑设置](../companion_computer/pixhawk_companion.md)）。
 
-尽管这一步并不是强制的，因为通过MAVLink消息同样可以激活外部模式。但是我们认为这种方式更加安全。
+## 硬件安装
 
-### 2. 使能协同计算机接口
+通常，有三种方式设置离板模式的通信。
 
-将参数[SYS_COMPANION](../advanced/parameter_reference.md#system)设置为921600（推荐）或者57600。这个参数将会以合适的波特率(921600 8N1或者57600 8N1)激活TELEM2端口上的MAVLink消息流，这与内部模式的数据流是相同的。
+### 1. 串口电台
 
-有关这些数据流的更多信息，参考[source code](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_main.cpp)中的"MAVLINK_MODE_ONBOARD"。
+1. 一端连接飞控的 UART
+2. 一端连接地面站电脑
 
-## 硬件设置
+参考电台包括：
 
-通常，有3种方式配置板外通讯
+* [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
+* [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
-### 1. 数传
+{% mermaid %} graph TD; gnd[Ground Station] --MAVLink--> rad1[Ground Radio]; rad1 --RadioProtocol--> rad2[Vehicle Radio]; rad2 --MAVLink--> a[Autopilot]; {% endmermaid %}
 
-1. 一个连接到飞控板的UART端口
-2. 一个连接到地面站计算机
+### 2. 板载处理器
 
-参考数传包括：
+在飞机上部署一台小型电脑，用 UART 转 USB 适配器连接飞控。 此处有多种可能性，除了向飞控发命令，这取决于你想在板上增加增加怎样的处理。
 
-- [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
-- [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
+小的低功耗设备如：
 
-{% mermaid %}
-graph TD;
-  gnd[Ground Station] --MAVLink--> rad1[Ground Radio];
-  rad1 --RadioProtocol--> rad2[Vehicle Radio];
-  rad2 --MAVLink--> a[Autopilot];
-{% endmermaid %}
+* [Odroid C1+](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143703355573) 或 [Odroid XU4](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143452239825)
+* [Raspberry Pi](https://www.raspberrypi.org/)
+* [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
 
-### 2. 机载协同计算机
+更高功率设备如：
 
-一个挂载在飞行器上的小型计算机，通过串口转USB适配器连接到飞控板。有许多可用的选择，主要取决于除了向飞控板发送指令外还想要进行的额外操作。
+* [Intel NUC](http://www.intel.com/content/www/us/en/nuc/overview.html)
+* [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
+* [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
 
-低性能机载计算机:
+{% mermaid %} graph TD; comp[Companion Computer] --MAVLink--> uart[UART Adapter]; uart --MAVLink--> Autopilot; {% endmermaid %}
 
-- [Odroid C1+](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143703355573) or [Odroid XU4](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143452239825)
-- [Raspberry Pi](https://www.raspberrypi.org/)
-- [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
+### 3. 板载处理器和 WIFI 链接到 ROS（***推荐***）
 
-高性能机载计算机：
+在飞机上部署小型计算机，通过 UART 连接到 USB 适配器连接到自动驾驶仪，同时还具有与运行 ROS 的地面站的 WIFI 连接。 这可以是上述部分中的任何一台计算机，加上 WiFi 适配器。 例如，英特尔 NUC D34010WYB 有一个 PCI 快速半迷你连接器，它可以容纳一个 [Intel wifi 链接 5000 ](http://www.intel.com/products/wireless/adapters/5000/) 适配器。
 
-- [Intel NUC](http://www.intel.com/content/www/us/en/nuc/overview.html)
-- [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
-- [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
-
-{% mermaid %}
-graph TD;
-  comp[Companion Computer] --MAVLink--> uart[UART Adapter];
-  uart --MAVLink--> Autopilot;
-{% endmermaid %}
-
-### 3. 机载计算机和到ROS的WIFI连接（***推荐***）
-
-一个挂载在飞行器上的小型计算机，通过串口转USB适配器连接到飞控板，同时提供到运行ROS的地面站的WIFI连接。可以是上一部分的任意一个机载计算机，同时再加一个WIFI适配器。例如：Intel NUC D34010WYB有一个PCI Express Half-Mini接口，可以连接一个[Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/)适配器。
-{% mermaid %}
-graph TD
-subgraph Ground  Station
-gnd[ROS Enabled Computer] --- qgc[qGroundControl]
-end
-gnd --MAVLink/UDP--> w[WiFi];
-qgc --MAVLink--> w;
-subgraph Vehicle
-comp[Companion Computer] --MAVLink--> uart[UART Adapter]
-uart --- Autopilot
-end
-w --- comp
-{% endmermaid %}
-
+{% mermaid %} graph TD subgraph Ground Station gnd[ROS Enabled Computer] \--- qgc[qGroundControl] end gnd --MAVLink/UDP--> w[WiFi]; qgc --MAVLink--> w; subgraph Vehicle comp[Companion Computer] --MAVLink--> uart[UART Adapter] uart \--- Autopilot end w \--- comp {% endmermaid %}
