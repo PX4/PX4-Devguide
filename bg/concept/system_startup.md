@@ -26,6 +26,13 @@ The modules can be executed from any terminal when PX4 is already running on a s
     ./px4-listener sensor_accel
     
 
+### Dynamic modules
+
+Normally, all modules are compiled into a single PX4 executable. However, on Posix, there's the option of compiling a module into a separate file, which can be loaded into PX4 using the `dyn` command.
+
+    dyn ./test.px4mod
+    
+
 ## NuttX
 
 NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
