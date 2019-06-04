@@ -43,6 +43,28 @@ Reading and writing a single item is always atomic. If multiple items need to be
        status        print status info
     
 
+## dmesg
+
+Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
+
+### Description
+
+Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
+
+### Examples
+
+Keep printing all messages in the background:
+
+    dmesg -f &
+    
+
+### Usage {#dmesg_usage}
+
+    dmesg <command> [arguments...]
+     Commands:
+         [-f]        Follow: wait for new messages
+    
+
 ## heater
 
 Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
