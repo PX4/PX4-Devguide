@@ -42,140 +42,163 @@
        status        打印状态信息
     
 
-## heater
+## dmesg
 
-源码：[drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
+Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
 
 ### 描述
 
-此模块将以后台进程形式在 LP 工作列队中周期性运行，以实现将 IMU 的温度调节至一个设定值。
+Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
 
-此任务可以在启动脚本通过设置 SENS_EN_THERMAL 运行或者直接通过 CLI 命令行启动。
+### Examples
 
-### 用法 {#heater_usage}
+Keep printing all messages in the background:
 
-    heater &lt;command&gt; [arguments...]
+    dmesg -f &
+    
+
+### Usage {#dmesg_usage}
+
+    dmesg <command> [arguments...]
      Commands:
-       controller_period 报告 heater 驱动周期间隔数值，（us），若
-                     提供了参数值则设置 heater 驱动的周期间隔。
+         [-f]        Follow: wait for new messages
     
-       integrator    报告当前积分增益的值，如果
-                     提供了参数值则设置积分增益。
+
+## heater
+
+Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
+
+### Description
+
+Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
+
+This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
+
+### Usage {#heater_usage}
+
+    heater <command> [arguments...]
+     Commands:
+       controller_period Reports the heater driver cycle period value, (us), and
+                     sets it if supplied an argument.
     
-       proportional  报告当前比例增益的值，如果
-                     提供了参数值则设置比例增益。
+       integrator    Sets the integrator gain value if supplied an argument and
+                     reports the current value.
     
-       sensor_id     报告 heater 驱动当前正在进行温度控制的 IMU 传感器的 ID。
+       proportional  Sets the proportional gain value if supplied an argument and
+                     reports the current value.
     
-       setpoint      报告当前 IMU 温度。
+       sensor_id     Reports the current IMU the heater is temperature controlling.
     
-       start         运行 IMU heater 驱动的后台任务
+       setpoint      Reports the current IMU temperature.
     
-       status        报告当前 IMU 温度，温度设定值和 heater 的 on/off 状态。
+       start         Starts the IMU heater driver as a background task
     
-       stop          停止 IMU heater 驱动。
+       status        Reports the current IMU temperature, temperature setpoint, and
+                     heater on/off status.
     
-       temp          报告当前 IMU 温度。
+       stop          Stops the IMU heater driver.
+    
+       temp          Reports the current IMU temperature.
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## land_detector
 
-源码：[modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
+Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
 
 ### 描述
 
-该模块会检测无人机的自由落体状态和触地状态，并将相关数据从 `vehicle_land_detected` 主题中发布出去。 每一个类型的无人机（多旋翼， vtol，...）都有各自的检测算法，该算法会考虑无人机的多种状态，例如指令推力、解锁状态、飞机运动状态等。
+Module to detect the freefall and landed state of the vehicle, and publishing the `vehicle_land_detected` topic. Each vehicle type (multirotor, fixedwing, vtol, ...) provides its own algorithm, taking into account various states, such as commanded thrust, arming state and vehicle motion.
 
-### 实现
+### Implementation
 
-每一类都是基于一个公共的基类在各自独有的类中完成模块的实现。 基类中包含了一个状态量 (landed, maybe_landed, ground_contact）。 每一个可能的状态都在衍生出的子类中进行了实现。 每个内部状态的迟滞和固定优先级共同决定着实际的 land_detector 的状态。
+Every type is implemented in its own class with a common base class. The base class maintains a state (landed, maybe_landed, ground_contact). Each possible state is implemented in the derived classes. A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
 
 #### 多旋翼的 Land Detector
 
-**ground_contact**: 在 GROUND_CONTACT_TRIGGER_TIME_US 时间内推力设定值和飞机 z 方向的速度必须在低于一个预设的阈值， 当检测到 ground_contact 状态时，位置控制器将关闭机体 x 方向和 y 方向上的推力设定值。
+**ground_contact**: thrust setpoint and velocity in z-direction must be below a defined threshold for time GROUND_CONTACT_TRIGGER_TIME_US. When ground_contact is detected, the position controller turns off the thrust setpoint in body x and y.
 
-**maybe_landed**: 该状态除了要求飞机处于 ground_contact 状态外，还要求满足一个更严格的推理设定值，且飞机在水平方向上没有速度。 触发时间由变量 MAYBE_LAND_TRIGGER_TIME 定义。 当检测到 maybe_landed 状态时，位置控制器会将推理设定值设置为零。
+**maybe_landed**: it requires ground_contact together with a tighter thrust setpoint threshold and no velocity in the horizontal direction. The trigger time is defined by MAYBE_LAND_TRIGGER_TIME. When maybe_landed is detected, the position controller sets the thrust setpoint to zero.
 
-**landed**: 它要求在 LAND_DETECTOR_TRIGGER_TIME_US 时间内 maybe_landed 状态为真。
+**landed**: it requires maybe_landed to be true for time LAND_DETECTOR_TRIGGER_TIME_US.
 
-该模块在 HP 工作队列中周期性运行。
+The module runs periodically on the HP work queue.
 
-### 用法 {#land_detector_usage}
+### Usage {#land_detector_usage}
 
     land_detector <command> [arguments...]
      Commands:
-       start         启动后台任务
-         fixedwing|multicopter|vtol|ugv 选择飞机类型
+       start         Start the background task
+         fixedwing|multicopter|vtol|ugv Select vehicle type
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## load_mon
 
-源码：[modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modules/load_mon)
+Source: [modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modules/load_mon)
 
-### 描述
+### Description
 
-模块在 HP 工作队列中以 1 Hz 频率周期性计算 CPU 负载、 RAM 使用情况，并将结果发布到 `cpuload` 主题。
+Background process running periodically with 1 Hz on the LP work queue to calculate the CPU load and RAM usage and publish the `cpuload` topic.
 
-在 NuttX 平台上该模块还会检查每个进程的栈堆使用情况，如果它低于 300 字节那么模块会输出一个警告，该警告会出现在日志文件中。
+On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output, which will also appear in the log file.
 
-### 用法 {#load_mon_usage}
+### Usage {#load_mon_usage}
 
     load_mon <command> [arguments...]
      Commands:
-       start         启动后台任务
+       start         Start the background task
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## logger
 
-源码：[modules/logger](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
+Source: [modules/logger](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
 
-### 描述
+### Description
 
-系统 logger 会记录一组可配置的 uORB 主题及系统 printf 消息（`PX4_WARN` 和 `PX4_ERR`）到 ULog 文件中。 该日志文件可用于系统性能和飞行表现的评估、调参、回放和事故分析。
+System logger which logs a configurable set of uORB topics and system printf messages (`PX4_WARN` and `PX4_ERR`) to ULog files. These can be used for system and flight performance evaluation, tuning, replay and crash analysis.
 
-该模块支持 2 个后端：
+It supports 2 backends:
 
 - 文件：写入 ULog 文件到文件系统中（SD 卡）
 - MAVLink: 通过 MAVLink 将 ULog 数据流传输到客户端上（需要客户端支持此方式）
 
-两种后端可同时启用。
+Both backends can be enabled and used at the same time.
 
-文件后端支持 2 种类型的日志文件：完整日志（标准日志）和任务日志。 任务日志是一个精简的 ulog 文件，可用于地理标记或者无人机管理等用途。 可使用 SDLOG_MISSION 参数来启用和配置记录任务日志。 标准日志始终是任务日志的父集。
+The file backend supports 2 types of log files: full (the normal log) and a mission log. The mission log is a reduced ulog file and can be used for example for geotagging or vehicle management. It can be enabled and configured via SDLOG_MISSION parameter. The normal log is always a superset of the mission log.
 
-### 实现
+### Implementation
 
-模块的实现使用了两个线程：
+The implementation uses two threads:
 
 - 主进程以固定速率运行（如果以 -p 参数启动则会轮询一个主题），并检查数据的更新。
 - 写入线程，将数据写入文件中、
 
-两个线程中间有一个可配置大小的写缓冲区（有另一个固定大小的缓冲区用于任务日志的写入）。 缓冲区应大到可以避免出现数据溢出。
+In between there is a write buffer with configurable size (and another fixed-size buffer for the mission log). It should be large to avoid dropouts.
 
-### 示例
+### Examples
 
-立刻开始记录日志的典型用法：
+Typical usage to start logging immediately:
 
     logger start -e -t
     
 
-或者当模块已经在运行时：
+Or if already running:
 
     logger on
     
 
-### 用法 {#logger_usage}
+### Usage {#logger_usage}
 
     logger <command> [arguments...]
      Commands:
@@ -208,71 +231,72 @@
 
 ## replay
 
-源码： [modules/replay](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
+Source: [modules/replay](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
 
-### 描述
+### Description
 
-此模块用于回放 ULog 文件。
+This module is used to replay ULog files.
 
-共有两个需要进行配置的环境变量： `replay` ，必须被设置为 ULog 文件名 - 也就是需要进行回放的日志文件。 第二个则是通过 `replay_mode` 变量对回放模式进行设定：
+There are 2 environment variables used for configuration: `replay`, which must be set to an ULog file name - it's the log file to be replayed. The second is the mode, specified via `replay_mode`:
 
 - `replay_mode=ekf2`: 指定 EKF2 回放模式。 该模式只能与 ekf2 模块一起使用，但它可以让回放的运行速度尽可能的快。
 - 否则为 Generic ：该模式可用于回放任何模块，但回放速度只能与日志记录的速度相同。
 
-该模块通常与 uORB 发布者规则配合使用以指定需要进行回放的消息。 都则的话回放模块将直接发布所有在日志中找到的消息。 这也适用于在日志文件爱你中记录的各参数。
+The module is typically used together with uORB publisher rules, to specify which messages should be replayed. The replay module will just publish all messages that are found in the log. It also applies the parameters from the log.
 
-回放步骤在 [System-wide Replay](https://dev.px4.io/en/debug/system_wide_replay.html) 页面中有详细记录。
+The replay procedure is documented on the [System-wide Replay](https://dev.px4.io/en/debug/system_wide_replay.html) page.
 
-### 用法 {#replay_usage}
+### Usage {#replay_usage}
 
-    replay &lt;command&gt; [arguments...]
+    replay <command> [arguments...]
      Commands:
-       start         开始回放，使用环境变量 'replay' 中指定的日志文件
+       start         Start replay, using log file from ENV variable 'replay'
     
-       trystart      与 'start' 相同，但如果未指定日志文件的话会安静地退出
+       trystart      Same as 'start', but silently exit if no log file given
     
-       tryapplyparams 尝试应用日志文件中的参数
+       tryapplyparams Try to apply the parameters from the log file
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## send_event
 
-源码： [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules/events)
+Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules/events)
 
-### 描述
+### Description
 
-此模块将以后台进程形式在 LP 工作列队中周期性运行，以执行内部管理任务。 目前它只负责校正温度和丢失 RC 信号时发出声音警报。
+Background process running periodically on the LP work queue to perform housekeeping tasks. It is currently only responsible for temperature calibration and tone alarm on RC Loss.
 
-这些任务可以通过 CLI 命令行或者 uORB 话题（例如，来自 MAVLink 的 vehicle_command）进行启动。
+The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
 
-### 用法 {#send_event_usage}
+### Usage {#send_event_usage}
 
-    send_event &lt;command&gt; [arguments...]
+    send_event <command> [arguments...]
      Commands:
-       start         开启后台任务
+       start         Start the background task
     
-       temperature_calibration 开始温度校正程序
-         [-g]        校正陀螺仪
-         [-a]        校正加速度计
-         [-b]        校正气压计 (如果未指定上述三者中的任意一个那么将校正全部三个传感器)
+       temperature_calibration Run temperature calibration process
+         [-g]        calibrate the gyro
+         [-a]        calibrate the accel
+         [-b]        calibrate the baro (if none of these is given, all will be
+                     calibrated)
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## sensors
 
-源码： [modules/sensors](https://github.com/PX4/Firmware/tree/master/src/modules/sensors)
+Source: [modules/sensors](https://github.com/PX4/Firmware/tree/master/src/modules/sensors)
 
 ### 描述
 
-Sensors 模块是整个系统的核心。 它以传感器驱动的低级别输出作为输入，将其转换为更加可用的形式并数据发布给系统的其它部分。
+The sensors module is central to the whole system. It takes low-level output from drivers, turns it into a more usable form, and publishes it for the rest of the system.
 
-模块提供的功能包括：
+The provided functionality includes:
 
 - 读取传感器驱动的输出 (例如，`sensor_gyro` 等)。 如果存在多个同类型传感器，那个模块将进行投票和容错处理。 然后应用飞控板的旋转和温度校正（如果被启用）。 最终发布传感器数据：其中名为 `sensor_combined` 的主题被系统的许多部件所使用。
 - 执行 RC 通道映射：读取通道原始输入 (`input_rc`)，应用校正并将 RC 通道映射到配置的通道 & 模式转换开关，低通滤波器，然后发布到 `rc_channels` 和 `manual_control_setpoint` 话题中。
@@ -280,42 +304,42 @@ Sensors 模块是整个系统的核心。 它以传感器驱动的低级别输�
 - 当参数发生变化或者启动时，确保传感器驱动获得的矫正参数（缩放因子 & 偏移量）是最新的。 传感器驱动使用 ioctl 接口获取参数更新。 为了使这一功能正常运行，当 `sensors` 模块启动时传感器驱动必须已经处于运行状态。
 - 执行起飞前传感器一致性检查并发布到 `sensor_preflight` 主题中。
 
-### 实现
+### Implementation
 
-模块在它自己的线程中运行，并且轮训当前选择的 gyro 话题。
+It runs in its own thread and polls on the currently selected gyro topic.
 
-### 用法 {#sensors_usage}
+### Usage {#sensors_usage}
 
     sensors <command> [arguments...]
      Commands:
        start
-         [-h]        在 HIL 模式下启动
+         [-h]        Start in HIL mode
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## tune_control
 
-源码：[systemcmds/tune_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tune_control)
+Source: [systemcmds/tune_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tune_control)
 
-### 描述
+### Description
 
-控制 & 测试（外置）蜂鸣器的命令行工具。
+Command-line tool to control & test the (external) tunes.
 
-蜂鸣器被用于提供听觉通知和警告（例如，系统解锁、位置锁定等）。 本工具要求一个可处理 tune_control uorb 主题的驱动处于运行状态。
+Tunes are used to provide audible notification and warnings (e.g. when the system arms, gets position lock, etc.). The tool requires that a driver is running that can handle the tune_control uorb topic.
 
-有关音调格式和预定义的系统蜂鸣声音可以参阅： https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
+Information about the tune format and predefined system tunes can be found here: https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
 
-### 示例
+### Examples
 
-播放系统蜂鸣声 #2 ：
+Play system tune #2:
 
     tune_control play -t 2
     
 
-### 用法 {#tune_control_usage}
+### Usage {#tune_control_usage}
 
     tune_control <command> [arguments...]
      Commands:
