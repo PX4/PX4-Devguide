@@ -189,6 +189,8 @@ ESC 校准工具。
 
 用于监听 uORB 主题并将数据输出在控制台上的工具。
 
+The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
+
 ### 用法 {#listener_usage}
 
     listener &lt;command&gt; [arguments...]
@@ -204,13 +206,13 @@ ESC 校准工具。
 
 ## mixer
 
-源码： [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
+Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
 
 ### 描述
 
-将混控器文件加载或者附加到 ESC 驱动中。
+Load or append mixer files to the ESC driver.
 
-需要注意的是驱动必须支持这个命令使用的 ioctl ，这一点在 Nuttx 上是成立的，但在其它平台上就不一定成立，如 RPI。
+Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
 
 ### 用法 {#mixer_usage}
 
@@ -224,21 +226,21 @@ ESC 校准工具。
 
 ## motor_ramp
 
-源码： [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
+Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
 
 ### 描述
 
-用于测试电机的加速。
+Application to test motor ramp up.
 
-在开始之前需要确保停止所有姿态控制器的运行。
+Before starting, make sure to stop any running attitude controller:
 
     mc_att_control stop
     fw_att_control stop
     
 
-命令开始后将开启一个后台任务，该任务会持续若干秒（根据设定值）然后退出。
+When starting, a background task is started, runs for several seconds (as specified), then exits.
 
-Note: 该命令目前只支持 `/dev/pwm_output0` 输出。
+Note: this command currently only supports the `/dev/pwm_output0` output.
 
 ### 示例
 
@@ -256,11 +258,11 @@ Note: 该命令目前只支持 `/dev/pwm_output0` 输出。
 
 ## motor_test
 
-源码： [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
+Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
-电机测试工具。
+Utility to test motors.
 
-Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有 uavcan 和 tap_esc）。
+Note: this can only be used for drivers which support the motor_test uorb topic (currently uavcan and tap_esc)
 
 ### 用法 {#motor_test_usage}
 
@@ -278,9 +280,9 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## mtd
 
-源码： [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
+Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
-用于加载和测试分区的工具（由飞控板定义的 FRAM/EEPROM 存储）
+Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
 
 ### 用法 {#mtd_usage}
 
@@ -303,11 +305,11 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## nshterm
 
-源码： [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
+Source: [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
 
-在指定端口启动一个 NSH shell
+Start an NSH shell on a given port.
 
-该命令此前被用于在 USB 串口端口开启一个 shell， 现在它将在那个端口运行 MAVLink，而且可以通过 MAVLink 来使用一个 shell。
+This was previously used to start a shell on the USB serial port. Now there runs mavlink, and it is possible to use a shell over mavlink.
 
 ### 用法 {#nshterm_usage}
 
@@ -317,23 +319,23 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## param
 
-源码： [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
+Source: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
 
 ### 描述
 
-在 shell 或者脚本中获取参数并对其进行操作的命令。
+Command to access and manipulate parameters via shell or script.
 
-例如，在启动脚本中使用此命令来设置特定于机型的参数。
+This is used for example in the startup script to set airframe-specific parameters.
 
-例如， 使用 `param set` 可以在对参数进行修改后自动进行保存。 这些参数通常被存储在 FRAM 或者 SD 卡中。 `param select` 可用于更改后续参数保存的存储位置（这一选项在每次启动时都需要重新进行配置）。
+Parameters are automatically saved when changed, eg. with `param set`. They are typically stored to FRAM or to the SD card. `param select` can be used to change the storage location for subsequent saves (this will need to be (re-)configured on every boot).
 
-如果启用了基于 FLASH 的后端（例如， Intel Aero 或 Omnibus 在编译时完成该操作的相关设定 ），`param select` 不会产生任何作用，默认值将始终为 FLASH 后端。 然而，仍可使用 `param save/load &lt;file&gt;` 从文件中读取/写入参数。
+If the FLASH-based backend is enabled (which is done at compile time, e.g. for the Intel Aero or Omnibus), `param select` has no effect and the default is always the FLASH backend. However `param save/load <file>` can still be used to write to/read from files.
 
-每个参数都有一个 "已使用" 的标志位，如在启动过程中该参数被读取了那个该标志位将会被设置。 它只是用于向地面控制站显示有关联的参数。
+Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant parameters to a ground control station.
 
 ### 示例
 
-更改机型，并确保机型的默认参数被加载了：
+Change the airframe and make sure the airframe's default parameters are loaded:
 
     param set SYS_AUTOSTART 4001
     param set SYS_AUTOCONFIG 1
@@ -395,9 +397,9 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## perf
 
-源码： [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
+Source: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
-用于打印计数器性能的工具。
+Tool to print performance counters
 
 ### 用法 {#perf_usage}
 
@@ -411,32 +413,32 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## pwm
 
-源码： [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
+Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
 
 ### 描述
 
-此命令用于配置舵机和 ESC 的 PWM 控制输出。
+This command is used to configure PWM outputs for servo and ESC control.
 
-默认设备是主通道的 `/dev/pwm_output0` ，AUX 辅助通道位于 `/dev/pwm_output1` (需要搭配 `-d` 参数)。
+The default device `/dev/pwm_output0` are the Main channels, AUX channels are on `/dev/pwm_output1` (`-d` parameter).
 
-它在启动脚本中用于确保应用了 PWM 参数 (`PWM_*`) （当机型配置中指定了参数的情况下将改用由机型配置提供的参数）。 `pwm info` 用于显示当前的设定 (配平值是一个偏移量，可使用 `PWM_MAIN_TRIMx` 和 `PWM_AUX_TRIMx` 进行设置)。
+It is used in the startup script to make sure the PWM parameters (`PWM_*`) are applied (or the ones provided by the airframe config if specified). `pwm info` shows the current settings (the trim value is an offset and configured with `PWM_MAIN_TRIMx` and `PWM_AUX_TRIMx`).
 
-锁定值（disarmed value）的设置应保证电机不会转动（该取值也被应用于 kill switch），最小值（minimum value）的设定应保证电机会转动。
+The disarmed value should be set such that the motors don't spin (it's also used for the kill switch), at the minimum value they should spin.
 
-通道被分配到一个组。 由于硬件限制, 只能为每个组设置更新速率。 使用 `pwm info` 显示所有的组。 如果使用了 `-c` 参数, 则参数后面必须跟上包含的分组中的所有通道。
+Channels are assigned to a group. Due to hardware limitations, the update rate can only be set per group. Use `pwm info` to display the groups. If the `-c` argument is used, all channels of any included group must be included.
 
-参数 `-p` 和 `-r` 可设置为一个参数变量而不是一个指定的证书：例如， -p p:PWM_MIN 。
+The parameters `-p` and `-r` can be set to a parameter instead of specifying an integer: use -p p:PWM_MIN for example.
 
-注意，在 OneShot 模式下， PWM 范围 [1000, 2000] 会被自动映射到 [125, 250] 。
+Note that in OneShot mode, the PWM range [1000, 2000] is automatically mapped to [125, 250].
 
 ### 示例
 
-将所有通道的 PWM 速率设置为 400 Hz:
+Set the PWM rate for all channels to 400 Hz:
 
     pwm rate -a -r 400
     
 
-测试 通道的输出，例如通道1和通道3，并将 PWM 值设置为 1200us：
+Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
 
     pwm arm
     pwm test -c 13 -p 1200
@@ -496,9 +498,9 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## reboot
 
-源码： [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
+Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
 
-重启系统
+Reboot the system
 
 ### 用法 {#reboot_usage}
 
@@ -509,9 +511,9 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## sd_bench
 
-源码： [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
+Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
 
-测试 SD 卡的速度
+Test the speed of an SD Card
 
 ### 用法 {#sd_bench_usage}
 
@@ -527,9 +529,9 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## top
 
-源码：[systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
+Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
 
-监控运行的进程机器 CPU、栈堆使用情况和优先级、运行状态。
+Monitor running processes and their CPU, stack usage, priority and state
 
 ### 用法 {#top_usage}
 
@@ -539,9 +541,9 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## usb_connected
 
-源码： [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
+Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
-检查 USB 是否已连接的工具。 此前曾在启动脚本中使用过， 返回值为 0 表示 USB 已连接，否则返回 1 。
+Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
 
 ### 用法 {#usb_connected_usage}
 
@@ -550,9 +552,9 @@ Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有
 
 ## ver
 
-源码： [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
+Source: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
 
-用于打印各种版本信息的工具。
+Tool to print various version information
 
 ### 用法 {#ver_usage}
 
