@@ -33,7 +33,7 @@ Then follow the instructions for your development target in the sections below.
 
 To install the development toolchain:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>. It's best to use `wget`.
 1. Run the script in a bash shell:
    ```bash
    source ubuntu_sim_nuttx.sh
@@ -53,7 +53,7 @@ Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 ### Raspberry Pi
 
 To install the development toolchain:
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies). It's best to use `wget`.
 1. Run the script in a bash shell:
    ```bash
    source ubuntu_sim_common_deps.sh
@@ -70,7 +70,7 @@ Follow the (manual) instructions here: [Ubuntu/Debian Linux > Parrot Bebop](../s
 
 To install the Gazebo9 and jMAVSim simulators:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>. It's best to use `wget`.
 1. Run the script in a bash shell:
    ```bash
    source ubuntu_sim.sh
@@ -91,7 +91,7 @@ To install the Gazebo9 and jMAVSim simulators:
 
 To install the development toolchain:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh" target="_blank" download>ubuntu_sim_ros_melodic.sh</a>.
+1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh" target="_blank" download>ubuntu_sim_ros_melodic.sh</a>. It's best to use `wget`.
 1. Run the script in a bash shell:
    ```bash
    source ubuntu_sim_ros_melodic.sh
