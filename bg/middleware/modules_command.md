@@ -190,6 +190,8 @@ Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/
 
 Utility to listen on uORB topics and print the data to the console.
 
+The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
+
 ### Usage {#listener_usage}
 
     listener <command> [arguments...]
