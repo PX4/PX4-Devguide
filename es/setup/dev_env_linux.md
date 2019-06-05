@@ -26,8 +26,11 @@ Siga las instrucciones para su objetivo de desarrollo en las secciones a continu
 
 Para instalar la toolchain de desarrollo:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
-2. Ejecutar el script en un shell de bash: 
+1. Download the script in a bash shell: 
+        bash
+        wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh
+
+2. Run the script: 
         bash
         source ubuntu_sim_nuttx.sh Podría necesitar reconocer algunas indicaciones de como avanza el script.
 
@@ -45,8 +48,11 @@ Las instrucciones de configuración para Snapdragon Flight se proporcionan en la
 
 Para instalar la toolchain de desarrollo:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
-2. Ejecutar el script en un shell de bash: 
+1. Download the script in a bash shell (this contains the jMAVSim simulator and common toolchain dependencies): 
+        bash
+        wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh
+
+2. Run the script: 
         bash
         source ubuntu_sim_common_deps.sh Podría necesitar reconocer algunas indicaciones de como avanza el script.
 
@@ -60,8 +66,11 @@ Siga las instrucciones (manuales) aquí: [Ubuntu/Debian Linux > Parrot Bebop](..
 
 To install the Gazebo9 and jMAVSim simulators:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
-2. Ejecutar el script en un shell de bash: 
+1. Download the script in a bash shell: 
+        bash
+        wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh
+
+2. Run the script: 
         bash
         source ubuntu_sim.sh Podría necesitar reconocer algunas indicaciones de como avanza el script.
 
@@ -91,11 +100,12 @@ To install the Gazebo9 and jMAVSim simulators:
 
 <ol start="1">
   <li>
-    Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh" target="_blank" download>ubuntu_sim_ros_melodic.sh</a>.
+    Download the script in a bash shell: <pre><code>bash
+wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_melodic.sh</code></pre>
   </li>
   
   <li>
-    Run the script in a bash shell: <pre><code>bash
+    Run the script: <pre><code>bash
 source ubuntu_sim_ros_melodic.sh</code></pre> You may need to acknowledge some prompts as the script progresses.
   </li>
 </ol>
