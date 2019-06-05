@@ -26,8 +26,11 @@ First make the user a member of the group "dialout":
 
 安装开发工具链:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_nuttx.sh" target="_blank" download>ubuntu_sim_nuttx.sh</a>.
-2. 在bash shell中运行脚本: 
+1. Download the script in a bash shell: 
+        bash
+        wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh
+
+2. Run the script: 
         bash
         source ubuntu_sim_nuttx.sh 随着脚本的运行，可能需要确认一些提示。
 
@@ -45,8 +48,11 @@ First make the user a member of the group "dialout":
 
 安装开发工具链:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_common_deps.sh" target="_blank" download>ubuntu_sim_common_deps.sh</a> (this contains the jMAVSim simulator and common toolchain dependencies).
-2. 在 bash shell 中运行脚本: 
+1. Download the script in a bash shell (this contains the jMAVSim simulator and common toolchain dependencies): 
+        bash
+        wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_common_deps.sh
+
+2. Run the script: 
         bash
         source ubuntu_sim_common_deps.sh 随着脚本的运行，可能需要确认一些提示。
 
@@ -60,8 +66,11 @@ First make the user a member of the group "dialout":
 
 To install the Gazebo9 and jMAVSim simulators:
 
-1. Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim.sh" target="_blank" download>ubuntu_sim.sh</a>.
-2. 在bash shell中运行脚本: 
+1. Download the script in a bash shell: 
+        bash
+        wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh
+
+2. Run the script: 
         bash 
         source ubuntu_sim.sh 随着脚本的运行，可能需要确认一些提示。
 
@@ -91,11 +100,12 @@ To install the Gazebo9 and jMAVSim simulators:
 
 <ol start="1">
   <li>
-    Download <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh" target="_blank" download>ubuntu_sim_ros_melodic.sh</a>.
+    Download the script in a bash shell: <pre><code>bash
+wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_ros_melodic.sh</code></pre>
   </li>
   
   <li>
-    Run the script in a bash shell: <pre><code>bash
+    Run the script: <pre><code>bash
 source ubuntu_sim_ros_melodic.sh</code></pre> You may need to acknowledge some prompts as the script progresses.
   </li>
 </ol>
