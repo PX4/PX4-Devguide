@@ -299,16 +299,12 @@ Now you are ready to build all your work!
 
 ### Build for PX4
 
-1. Build your firmware
-   ```sh
-   cd Firmware
-   make px4fmu-v2_default
-   ```
+Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx--pixhawk-based-boards).
 
-1. Uploading your firmware on your Pixhawk (also in "Firmware" directory).
-   ```sh
-   make px4fmu-v2_default upload
-   ```
+For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the Firmware directory:
+```sh
+make px4fmu-v5_default upload
+```
 
 ## Running the Code
 
