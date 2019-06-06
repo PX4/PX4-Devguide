@@ -26,13 +26,16 @@ MAVLink调试消息转换为/自 uORB 主题。 为了发送或接收 MAVLink �
 ```C
 #include <uORB/uORB.h>
 #include <uORB/topics/debug_key_value.h>
+#include <string.h>
 ```
 
 然后广播调试值主题（一个针对不同发布名称的广播就足够了）。 把这个放在你的主循环前面：
 
 ```C
-/* 广播调试值 */
-struct debug_key_value_s dbg = { .key = "velx", .value = 0.0f };
+/* advertise debug value */
+struct debug_key_value_s dbg;
+strncpy(dbg.key, "velx", sizeof(dbg.key));
+dbg.value = 0.0f;
 orb_advert_t pub_dbg = orb_advertise(ORB_ID(debug_key_value), &dbg);
 ```
 
