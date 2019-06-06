@@ -5,7 +5,7 @@
   - **ROS:** Melodic
   - **PX4 Firmware:** 1.9.0
 
-  However these steps are fairly general and so it should other distros/versions with little to no modifications.
+  However these steps are fairly general and so it should work with other distros/versions with little to no modifications.
 
 <!-- Content reproduced with permission from @JoonmoAhn in https://github.com/JoonmoAhn/Sending-Custom-Message-from-MAVROS-to-PX4/issues/1 -->
 
@@ -61,14 +61,14 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    PLUGINLIB_EXPORT_CLASS(mavros::extra_plugins::KeyboardCommandPlugin, mavros::plugin::PluginBase)
    ```
 
-1. Edit **mavros_plugins.xml** (in **workspace/src/mavros/mavros_extras**) and add following lines:
+1. Edit **mavros_plugins.xml** (in **workspace/src/mavros/mavros_extras**) and add the following lines:
    ```xml
    <class name="keyboard_command" type="mavros::extra_plugins::KeyboardCommandPlugin" base_class_type="mavros::plugin::PluginBase">
         <description>Accepts keyboard command.</description>
    </class>
    ```
 
-1. Edit **CMakeLists.txt** (in **workspace/src/mavros/mavros_extras**) and add following line in `add_library`.
+1. Edit **CMakeLists.txt** (in **workspace/src/mavros/mavros_extras**) and add the following line in `add_library`.
    ```cmake
    add_library( 
    ...
@@ -76,7 +76,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    )
    ```
 
-1. Inside **common.xml** in (**workspace/src/mavlink/message_definitions/v1.0**), add your MAVLink message:
+1. Inside **common.xml** in (**workspace/src/mavlink/message_definitions/v1.0**), copy the following lines to add your MAVLink message:
    ```xml
    ...
      <message id="229" name="KEY_COMMAND">
