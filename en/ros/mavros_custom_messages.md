@@ -1,10 +1,11 @@
-# Sending Custom Message from MAVROS to PX4
+# Sending a Custom Message from MAVROS to PX4
 
-> **Warning** This article is not compatible with current development environment/stable versions. 
-  It has been tested against:
-  - **Ubuntu:** 14.04
-  - **ROS:** Kinetic
-  - **PX4 Firmware:** 1.6.2 dev, px4fmu-v2_default
+> **Warning** This article has been tested against:
+  - **Ubuntu:** 18.04
+  - **ROS:** Melodic
+  - **PX4 Firmware:** 1.9.0
+
+  However these steps are fairly general and so it should other distros/versions with little to no modifications.
 
 <!-- Content reproduced with permission from @JoonmoAhn in https://github.com/JoonmoAhn/Sending-Custom-Message-from-MAVROS-to-PX4/issues/1 -->
 
@@ -12,62 +13,58 @@
 
 Follow *Source Installation* instructions from [mavlink/mavros](https://github.com/mavlink/mavros/blob/master/mavros/README.md) to install "ROS Kinetic".
 
-## MAVROS Changes
+## MAVROS
 
-1. Create **keyboard_command.cpp** as a mavros plugin (in **workspace/src/mavros/mavros_extras/src/plugins**) and copy in the code below.
+1. We start by creating a new MAVROS plugin, in this example named **keyboard_command.cpp** (in **workspace/src/mavros/mavros_extras/src/plugins**) by using the code below:
+
    The code subscribes a 'char' message from ROS topic `/mavros/keyboard_command/keyboard_sub` and sends it as a MAVLink message.
    ```c
-   #include <mavros/mavros_plugin.h>
-   #include <pluginlib/class_list_macros.h>
-   #include <iostream>
-   #include <std_msgs/Char.h>
+    #include <mavros/mavros_plugin.h>
+    #include <pluginlib/class_list_macros.h>
+    #include <iostream>
+    #include <std_msgs/Char.h>
 
-   namespace mavplugin {
+    namespace mavros {
+    namespace extra_plugins{
 
-   class KeyboardCommandPlugin : public MavRosPlugin {
-   public:
-       KeyboardCommandPlugin() :
-           nh("~keyboard_command"),
-           uas(nullptr)
+    class KeyboardCommandPlugin : public plugin::PluginBase {
+    public:
+        KeyboardCommandPlugin() : PluginBase(),
+            nh("~keyboard_command")
+
        { };
 
-       void initialize(UAS &uas_)
-       {
-           uas = &uas_;
-           keyboard_sub = nh.subscribe("keyboard_sub", 10, &KeyboardCommandPlugin::keyboard_cb, this);
-       };
+        void initialize(UAS &uas_)
+        {
+            PluginBase::initialize(uas_);
+            keyboard_sub = nh.subscribe("keyboard_sub", 10, &KeyboardCommandPlugin::keyboard_cb, this);
+        };
 
-       const message_map get_rx_handlers() {
-           return {/* RX disabled */ };
-       }
+        Subscriptions get_subscriptions()
+        {
+            return {/* RX disabled */ };
+        }
 
-   private:
-       ros::NodeHandle nh;
-       UAS *uas;
-       ros::Subscriber keyboard_sub;
-
-       void send_to_pixhawk(char cmd)
-       {
-           mavlink_message_t msg;
-           mavlink_msg_key_command_pack_chan(UAS_PACK_CHAN(uas), &msg, cmd);
-           UAS_FCU(uas)->send_message(&msg);
-       }
+    private:
+        ros::NodeHandle nh;
+        ros::Subscriber keyboard_sub;
 
        void keyboard_cb(const std_msgs::Char::ConstPtr &req)
-       {
-           std::cout << "Got Char : " << req->data <<  std::endl;
-           send_to_pixhawk(req->data);
-       }
-   };
-   };
+        {
+            std::cout << "Got Char : " << req->data <<  std::endl;
+            UAS_FCU(m_uas)->send_message_ignore_drop(req->data);
+        }
+    };
+    }   // namespace extra_plugins
+    }   // namespace mavros
 
-   PLUGINLIB_EXPORT_CLASS(mavplugin::KeyboardCommandPlugin, mavplugin::MavRosPlugin)
+   PLUGINLIB_EXPORT_CLASS(mavros::extra_plugins::KeyboardCommandPlugin, mavros::plugin::PluginBase)
    ```
 
 1. Edit **mavros_plugins.xml** (in **workspace/src/mavros/mavros_extras**) and add following lines:
    ```xml
-   <class name="keyboard_command" type="mavplugin::KeyboardCommandPlugin" base_class_type="mavplugin::MavRosPlugin">
-        <description>Accepts Keyboard Command </description>
+   <class name="keyboard_command" type="mavros::extra_plugins::KeyboardCommandPlugin" base_class_type="mavros::plugin::PluginBase">
+        <description>Accepts keyboard command.</description>
    </class>
    ```
 
@@ -83,7 +80,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    ```xml
    ...
      <message id="229" name="KEY_COMMAND">
-        <description> mavlink message creating test </description>
+        <description>Keyboard char command.</description>
         <field type="char" name="command"> </field>
       </message>
    ...
