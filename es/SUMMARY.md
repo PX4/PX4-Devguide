@@ -84,6 +84,7 @@
     * [Modelos de OctoMap con ROS](simulation/gazebo_octomap.md)
     * [Instalación de ROS en RPi](ros/raspberrypi_installation.md)
     * [External Position Estimation (Vision/Motion based)](ros/external_position_estimation.md)
+    * [Sending Custom Messages from MAVROS](ros/mavros_custom_messages.md)
   * [DroneKit](robotics/dronekit.md)
 * [Depuración/Logging](debug/README.md) 
   * [Preguntas frecuentes (FAQ)](debug/faq.md)
