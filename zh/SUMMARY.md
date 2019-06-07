@@ -84,6 +84,7 @@
     * [具有 ROS 的 OctoMap 模型](simulation/gazebo_octomap.md)
     * [在 RPi 上安装 ROS](ros/raspberrypi_installation.md)
     * [外部位置估计（基于视觉/运动）](ros/external_position_estimation.md)
+    * [Sending Custom Messages from MAVROS](ros/mavros_custom_messages.md)
   * [DroneKit](robotics/dronekit.md)
 * [调试日志](debug/README.md) 
   * [常见问题](debug/faq.md)
