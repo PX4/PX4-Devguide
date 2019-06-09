@@ -259,6 +259,29 @@ The following messages belong to this section:
 | INFO       |      '6'     | Informational                        |
 | DEBUG      |      '7'     | Debug-level messages                 |
 
+- 'C': Tagged Logged string message
+  ```
+  struct message_logging_tagged_s {
+    struct message_header_s header;
+    uint8_t log_level;
+    uint16_t tag;
+    uint64_t timestamp;
+    char message[header.msg_size-9]
+  };
+  ```
+  `tag`: id representing source of log string, `timestamp`: in microseconds, `log_level`: same as in the Linux kernel:
+
+| Name       | Level value  | Meaning                              |
+| ----       | -----------  | -------                              |
+| EMERG      |      '0'     | System is unusable                   |
+| ALERT      |      '1'     | Action must be taken immediately     |
+| CRIT       |      '2'     | Critical conditions                  |
+| ERR        |      '3'     | Error conditions                     |
+| WARNING    |      '4'     | Warning conditions                   |
+| NOTICE     |      '5'     | Normal but significant condition     |
+| INFO       |      '6'     | Informational                        |
+| DEBUG      |      '7'     | Debug-level messages                 |
+
 - 'S': synchronization message so that a reader can recover from a corrupt message by searching for the next sync message (not used currently).
   ```
   struct message_sync_s {
