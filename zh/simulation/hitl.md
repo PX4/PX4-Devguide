@@ -141,7 +141,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
         sh
         ./Tools/jmavsim_run.sh -q -s -d /dev/ttyACM0 -b 921600 -r 250 > 
     
-    **Note** Replace the serial port name `/dev/ttyACM0` as appropriate. On macOS this port would be `/dev/tty.usbmodem1`. On Windows it would be the COM1 or another port (check the connection in the Windows Device Manager).
+    **Note** Replace the serial port name `/dev/ttyACM0` as appropriate. On macOS this port would be `/dev/tty.usbmodem1`. On Windows (including Cygwin) it would be the COM1 or another port - check the connection in the Windows Device Manager.
 3. 开启 *QGroundControl*。 它应该会自动连接 PX4 和 Gazebo 。
 
 #### 使用 X-Plane (仅适用于固定翼无人机)
