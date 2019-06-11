@@ -145,7 +145,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
    ```
    > **Note** Replace the serial port name `/dev/ttyACM0` as appropriate.
      On macOS this port would be `/dev/tty.usbmodem1`.
-     On Windows it would be the COM1 or another port (check the connection in the Windows Device Manager).
+     On Windows (including Cygwin) it would be the COM1 or another port - check the connection in the Windows Device Manager.
 1. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
 
 #### Using X-Plane (Fixed Wing only)
@@ -168,7 +168,6 @@ To set up X-Plane:
    1. Open **Widgets > HIL Config**. 
       Select X-Plane 10 in the drop-down and hit connect. 
       Once the system is connected, battery status, GPS status and aircraft position should all become valid.
-
 
 
 ## Fly an Autonomous Mission in HITL
