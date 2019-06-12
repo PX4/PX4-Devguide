@@ -282,14 +282,14 @@ The following messages belong to this section:
 | INFO       |      '6'     | Informational                        |
 | DEBUG      |      '7'     | Debug-level messages                 |
 
-- 'S': synchronization message so that a reader can recover from a corrupt message by searching for the next sync message (not used currently).
+- 'S': synchronization message so that a reader can recover from a corrupt message by searching for the next sync message.
   ```
   struct message_sync_s {
   	struct message_header_s header;
   	uint8_t sync_magic[8];
   };
   ```
-  `sync_magic`: to be defined.
+  `sync_magic`: [0x2F, 0x73, 0x13, 0x20, 0x25, 0x0C, 0xBB, 0x12]
 
 - 'O': mark a dropout (lost logging messages) of a given duration in ms.
   Dropouts can occur e.g. if the device is not fast enough.
