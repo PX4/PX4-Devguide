@@ -269,7 +269,27 @@ The following messages belong to this section:
     char message[header.msg_size-9]
   };
   ```
-  `tag`: id representing source of log string, `timestamp`: in microseconds, `log_level`: same as in the Linux kernel:
+  `tag`: id representing source of logged message string. It could represent a process, thread or a class depending upon the system architecture.
+  For example, a reference implementation for an onboard computer running multiple processes to control different payloads, external disks, serial devices etc
+  can encode these process identifiers using a `uint16_t enum` into the tag attribute of `message_logging_tagged_s` struct as follows:
+
+  ```
+enum class ulog_tag : uint16_t {
+    unassigned,
+    mavlink_handler,
+    ppk_handler,
+    camera_handler,
+    ptp_handler,
+    serial_handler,
+    watchdog,
+    io_service,
+    cbuf,
+    ulg
+};
+  ```
+
+  `timestamp`: in microseconds
+  `log_level`: same as in the Linux kernel:
 
 | Name       | Level value  | Meaning                              |
 | ----       | -----------  | -------                              |
