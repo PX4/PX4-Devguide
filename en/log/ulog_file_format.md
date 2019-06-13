@@ -270,8 +270,7 @@ The following messages belong to this section:
   };
   ```
   `tag`: id representing source of logged message string. It could represent a process, thread or a class depending upon the system architecture.
-  For example, a reference implementation for an onboard computer running multiple processes to control different payloads, external disks, serial devices etc
-  can encode these process identifiers using a `uint16_t enum` into the tag attribute of `message_logging_tagged_s` struct as follows:
+  For example, a reference implementation for an onboard computer running multiple processes to control different payloads, external disks, serial devices etc can encode these process identifiers using a `uint16_t enum` into the tag attribute of `message_logging_tagged_s` struct as follows:
 
   ```
 enum class ulog_tag : uint16_t {
