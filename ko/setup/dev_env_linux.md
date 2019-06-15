@@ -1,12 +1,12 @@
 # 리눅스 개발환경
 
-Linux allows you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation, ROS).
+리눅스에서는 [모든 PX4 타겟](../setup/dev_env.md#supported-targets)에 대한 빌드가 가능합니다.(NuttX 기반 하드웨어, Qualcomm Snapdracon 비행제어보드, 리눅스 기반 기기, 시뮬레이션, ROS).
 
-> **Tip** [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 16.04 is the tested/supported Linux distribution for most development. Ubuntu 18.04 LTS with ROS Melodic is used for [ROS development](#ros). Instructions are also provided for [CentOS](../setup/dev_env_linux_centos.md) and [Arch Linux](../setup/dev_env_linux_arch.md).
+> **Tip** Ubuntu 버젼 16.04가 현재 지원/검증된 리눅스 디스트리뷰션입니다. Ubuntu 18.04 LTS with ROS Melodic is used for [ROS development](#ros). Instructions are also provided for [CentOS](../setup/dev_env_linux_centos.md) and [Arch Linux](../setup/dev_env_linux_arch.md).
 
 The following instructions explain how to set up a development environment on Ubuntu LTS using convenience bash scripts. Instructions for *manually installing* these and additional targets can be found in [Ubuntu/Debian Linux](../setup/dev_env_linux_ubuntu.md).
 
-## Development Toolchain
+## 개발 툴체인
 
 The instructions below show how you can use our [convenience bash scripts](../setup/dev_env_linux_ubuntu.md#convenience-bash-scripts) to setup the developer toolchain on Ubuntu LTS. All the scripts install the *Qt Creator IDE*, [Ninja Build System](https://ninja-build.org/), [Common Dependencies](../setup/dev_env_linux_ubuntu.md#common-dependencies), [FastRTPS](../setup/dev_env_linux_ubuntu.md#fastrtps-installation), and also download the PX4 source to your computer (**~/src/Firmware**).
 
@@ -30,7 +30,7 @@ To install the development toolchain:
         bash
         wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh
 
-2. Run the script: 
+2. 스크립트 실행: 
         bash
         source ubuntu_sim_nuttx.sh You may need to acknowledge some prompts as the script progresses.
 
@@ -41,10 +41,10 @@ To install the development toolchain:
 Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 
 * [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
-* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
-* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+* [소프트웨어 설치](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [설정](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
 
-### Raspberry Pi
+### 라즈베리파이
 
 To install the development toolchain:
 
