@@ -30,6 +30,7 @@ First add the header file:
 ```C
 #include <uORB/uORB.h>
 #include <uORB/topics/debug_key_value.h>
+#include <string.h>
 ```
 
 Then advertise the debug value topic (one advertisement for different published names is sufficient). 
@@ -37,7 +38,9 @@ Put this in front of your main loop:
 
 ```C
 /* advertise debug value */
-struct debug_key_value_s dbg = { .key = "velx", .value = 0.0f };
+struct debug_key_value_s dbg;
+strncpy(dbg.key, "velx", sizeof(dbg.key));
+dbg.value = 0.0f;
 orb_advert_t pub_dbg = orb_advertise(ORB_ID(debug_key_value), &dbg);
 ```
 

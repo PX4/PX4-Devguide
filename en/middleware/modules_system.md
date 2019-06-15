@@ -46,6 +46,28 @@ dataman <command> [arguments...]
 
    status        print status info
 ```
+## dmesg
+Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
+
+
+### Description
+
+Command-line tool to show bootup console messages.
+Note that output from NuttX's work queues and syslog are not captured.
+
+### Examples
+
+Keep printing all messages in the background:
+```
+dmesg -f &
+```
+
+### Usage {#dmesg_usage}
+```
+dmesg <command> [arguments...]
+ Commands:
+     [-f]        Follow: wait for new messages
+```
 ## heater
 Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
@@ -117,7 +139,7 @@ The module runs periodically on the HP work queue.
 land_detector <command> [arguments...]
  Commands:
    start         Start the background task
-     fixedwing|multicopter|vtol|ugv Select vehicle type
+     fixedwing|multicopter|vtol|rover Select vehicle type
 
    stop
 
