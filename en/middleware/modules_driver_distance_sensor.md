@@ -153,9 +153,11 @@ tfmini <command> [arguments...]
      [-R <val>]  Sensor rotation - downward facing by default
                  default: 25
 
+   status        Driver status
+
    stop          Stop driver
 
    test          Test driver (basic functional tests)
 
-   info          Print driver information
+   status        Print driver status
 ```
