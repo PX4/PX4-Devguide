@@ -15,7 +15,7 @@ Board startup and configuration files are located under [/boards](https://github
 For example, for FMUv5:
 * (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5). 
 * Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
-* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board)
+* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board_defaults)
   - A board-specific initialisation file is automatically included in startup scripts if found under the boards directory at **init/rc.board**.
   - The file is used to start sensors (and other things) that only exist on a particular board. 
     It may also be used to set a board's default parameters, UART mappings, and any other special cases.
