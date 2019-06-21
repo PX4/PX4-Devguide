@@ -88,11 +88,11 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
 
 ## PX4 Changes
 
-1. Inside **common.xml** (in **Firmware/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (as for MAVROS section above):
+1. Inside **common.xml** (in **Firmware/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (same procedure as for MAVROS section above):
    ```xml
    ...
      <message id="229" name="KEY_COMMAND">
-        <description> mavlink message creating test </description>
+        <description>Keyboard char command.</description>
         <field type="char" name="command"> </field>
       </message>
    ...
@@ -103,7 +103,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    rm -r common
    rm -r standard
    ```
-1. Git clone "mavlink_generator" in your home directory (or any directory you want) and execute it.
+1. Git clone "mavlink_generator" to any directory you want and execute it.
    ```sh
    git clone https://github.com/mavlink/mavlink mavlink-generator
    cd mavlink-generator
@@ -120,7 +120,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    Then, press **Generate**.
    You will see *common*, and *standard* directories created in **/Firmware/mavlink/include/mavlink/v2.0/**.
 
-1. Make your own uORB message file **key_command.msg** in (Firmware/msg). My "key_command.msg" has only the code:
+1. Make your own uORB message file **key_command.msg** in (Firmware/msg). For this example the "key_command.msg" has only the code:
    ```
    char cmd
    ```
@@ -144,17 +144,13 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    private:
        void handle_message_key_command(mavlink_message_t *msg);
    ...
-       orb_advert_t _key_command_pub;
+       orb_advert_t _key_command_pub{nullptr};
    }
    ```
 
 1. Edit **mavlink_receiver.cpp** (in **Firmware/src/modules/mavlink**).
    This is where PX4 receives the MAVLink message sent from ROS, and publishes it as a uORB topic.
    ```cpp
-   ...
-   MavlinkReceiver::MavlinkReceiver(Mavlink *parent) :
-   ...
-    _key_command_pub(nullptr)
    ...
    void MavlinkReceiver::handle_message(mavlink_message_t *msg)
    {
@@ -185,15 +181,15 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    }
    ```
 
-1. Make your own uORB topic subscriber just like any example subscriber module. In my case, I made my own module in (/Firmware/src/inrol/key_receiver). 
-   In this directory, I have two files **CMakeLists.txt**, **key_receiver.cpp**.
+1. Make your own uORB topic subscriber just like any example subscriber module. For this example lets create the model in (/Firmware/src/modules/key_receiver). 
+   In this directory, create two files **CMakeLists.txt**, **key_receiver.cpp**.
    Each one looks like following.
 
    -CMakeLists.txt
 
    ```cmake
    px4_add_module(
-       MODULE inrol__key_receiver
+       MODULE modules__key_receiver
        MAIN key_receiver
        STACK_MAIN 2500
        STACK_MAX 4000
@@ -220,7 +216,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    #include <uORB/uORB.h>
    #include <uORB/topics/key_command.h>
 
-   extern "C" {__EXPORT int key_receiver_main(int argc, char **argv);}
+   extern "C" __EXPORT int key_receiver_main(int argc, char **argv);
 
    int key_receiver_main(int argc, char **argv)
    {
@@ -232,7 +228,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
 
        int error_counter = 0;
 
-       while(1)
+       while(true)
        {
            int poll_ret = px4_poll(fds, 1, 1000);
 
@@ -265,13 +261,15 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    }
    ```
 
-1. Add your module in **nuttx_px4fmu-v2_default.cmake** (in **Firmware/cmake/configs**).
+   For a more detailed explanation please see the documentation for [Writing your first application](https://dev.px4.io/en/apps/hello_sky.html).
+
+1. Lastly add your module in the **default.cmake** file correspondent to your board in **Firmware/boards/**. For example for the Pixhawk 4 add the following code in **Firmware/boards/px4/fmu-v5/default.cmake**:
    ```cmake
-   set(config_module_list
-   ...
-   inrol/key_receiver
-   )
-   ```
+    MODULES
+        ...
+        key_receiver
+        ...
+    ```
 
 Now you are ready to build all your work!
 
@@ -296,12 +294,12 @@ Now you are ready to build all your work!
 
 ### Build for PX4
 
-Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx--pixhawk-based-boards).
+1. Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx--pixhawk-based-boards). 
 
-For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the Firmware directory:
-```sh
-make px4fmu-v5_default upload
-```
+    For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the Firmware directory:
+    ```sh
+    make px4_fmu-v5_default upload
+    ```
 
 ## Running the Code
 
@@ -321,16 +319,17 @@ Next test if the MAVROS message is sent to PX4.
 
 ### Running PX4
 
-1. Go into the Pixhawk nutshell through UDP.
-   Write your IP at xxx.xx.xxx.xxx.
+1. Enter the Pixhawk nutshell through UDP.
+   Replace xxx.xx.xxx.xxx with your IP.
    ```sh
    cd Firmware/Tools
    ./mavlink_shell.py xxx.xx.xxx.xxx:14557 --baudrate 57600
    ```
 
-1. After few seconds, press **Enter** several times.
+1. After few seconds, press **Enter** a couple of times.
    You should see a prompt in the terminal as below:
    ```sh
+   nsh>
    nsh>
    ```
    Type "key_receiver", to run your subscriber module.
