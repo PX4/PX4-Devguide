@@ -39,7 +39,19 @@ When the SIH airframe is selected, the SIH module starts by itself, the vehicle 
 
 ## Setting up the Display
 
-The simulated quadrotor can be displayed in jMAVSim (coming soon).
+The simulated quadrotor can be displayed in [jMAVSim](https://github.com/PX4/jMAVSim). For that, start by [installing](https://github.com/PX4/jMAVSim#installation) the last jMAVSim version. 
+Then, 
+1. Plug the autopilot hardware to the computer. The airframe should be configured as **SIH Quadcopter X**.
+1. Close QGroundControl (or any ground control station).
+1. Execute jMAVSim with the `-disponly` flag. The full command line should look like 
+   - `java -cp lib/\*:out/production/jmavsim.jar me.drton.jmavsim.Simulator -disponly` 
+   - (on Windows replace `:` by `;`). 
+   - Use `-h` to display the help. 
+   - You may need to specify the serial port name and speed, such as `-serial /dev/ttyACM0 230400` for instance.
+
+> **Note** If you want to use QGroundControl alongside jMAVSim, this is possible, but jMAVSim needs to be started first. You may also need to add the `-qgc` flag when executing jMAVSim.
+
+jMAVSim should display the vehicle starting on the ground. You can then arm and fly normally.
 
 ## Credits
 
