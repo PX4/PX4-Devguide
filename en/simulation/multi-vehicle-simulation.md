@@ -120,6 +120,8 @@ To add a third iris to this simulation there are two main components to consider
     > **Note** Be aware of which port is `src` and `dst` for the different endpoints.
 
 
+If you like to use the `SDF` models in the repository, you need to specify the UDP and TCP communication ports manually for each `SDF` file. So if you want to add multiple UAV's of the same model, you need to create a seperate `SDF` file for every UAV with its custom UDP and TCP ports. To add the TCP port in the `SDF` file, add `<mavlink_tcp_port>4560</mavlink_tcp_port>` under `<mavlink_udp_port>14561</mavlink_udp_port>`. The [mavros_posix_sitl.launch](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch) is a good starting point to use `SDF` files in the launch.
+
 ## Additional Resources
 
 * See [Simulation](../simulation/README.md) for a description of the UDP port configuration.
