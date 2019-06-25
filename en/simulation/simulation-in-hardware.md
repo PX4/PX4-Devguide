@@ -39,7 +39,7 @@ When the SIH airframe is selected, the SIH module starts by itself, the vehicle 
 
 ## Setting up the Display
 
-The simulated quadrotor can be displayed in [jMAVSim](https://github.com/PX4/jMAVSim). For that, start by [installing](https://github.com/PX4/jMAVSim#installation) the last jMAVSim version. 
+The simulated quadrotor can be displayed in [jMAVSim](https://github.com/PX4/jMAVSim). For that, start by [installing](https://github.com/PX4/jMAVSim#installation) the latest jMAVSim version. 
 Then, 
 1. Plug the autopilot hardware to the computer. The airframe should be configured as **SIH Quadcopter X**.
 1. Close QGroundControl (or any ground control station).
