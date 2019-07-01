@@ -35,9 +35,7 @@ sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31
 ## For keyserver connection problems substitute hkp://pgp.mit.edu:80 or hkp://keyserver.ubuntu.com:80 above.
 sudo apt-get update
 ## Get ROS/Gazebo
-sudo apt install ros-melodic-desktop-full
-## Find available packages
-apt search ros-melodic
+sudo apt install ros-melodic-desktop-full -y
 ## Initialize rosdep
 sudo rosdep init
 rosdep update
