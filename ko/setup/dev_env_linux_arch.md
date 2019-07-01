@@ -39,7 +39,7 @@ To install the dependencies manually, enter the following lines into a terminal.
 ```sh
 # Common dependencies for all targets
 sudo pacman -Sy --noconfirm \
-    base-devel make cmake ccache git \
+    base-devel make cmake ccache git ant \
     ninja python-pip tar unzip zip vim wget
 
 # Install Python dependencies
