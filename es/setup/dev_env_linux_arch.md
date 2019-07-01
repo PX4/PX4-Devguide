@@ -37,15 +37,15 @@ source ./archlinux_install_script.sh
 Para instalar las dependencias manualmente, introduzca las siguientes líneas en una terminal.
 
 ```sh
-# Dependencias comunes para todos los objetivos
+# Common dependencies for all targets
 sudo pacman -Sy --noconfirm \
-    base-devel make cmake ccache git \
+    base-devel make cmake ccache git ant \
     ninja python-pip tar unzip zip vim wget
 
-# Instala dependencias de Python
+# Install Python dependencies
 pip install serial empy numpy toml jinja2 pyyaml cerberus
 
-# Instala genromfs
+# Install genromfs
 wget https://sourceforge.net/projects/romfs/files/genromfs/0.5.2/genromfs-0.5.2.tar.gz
 tar zxvf genromfs-0.5.2.tar.gz
 cd genromfs-0.5.2 && make && make install && cd ..
