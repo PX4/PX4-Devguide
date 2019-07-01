@@ -37,15 +37,15 @@ source ./archlinux_install_script.sh
 在终端输入以下命令进行依赖项的手动安装：
 
 ```sh
-# 所有目标的通用依赖包
+# Common dependencies for all targets
 sudo pacman -Sy --noconfirm \
-    base-devel make cmake ccache git \
+    base-devel make cmake ccache git ant \
     ninja python-pip tar unzip zip vim wget
 
-# 安装 Python 依赖包
+# Install Python dependencies
 pip install serial empy numpy toml jinja2 pyyaml cerberus
 
-# 安装 genromfs
+# Install genromfs
 wget https://sourceforge.net/projects/romfs/files/genromfs/0.5.2/genromfs-0.5.2.tar.gz
 tar zxvf genromfs-0.5.2.tar.gz
 cd genromfs-0.5.2 && make && make install && cd ..
