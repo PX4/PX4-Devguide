@@ -26,7 +26,7 @@ which xxd || sudo apt install xxd -y || sudo apt-get install vim-common --no-ins
 # Required python packages
 sudo apt-get install python-argparse python-empy python-toml python-numpy python-dev python-pip -y
 sudo -H pip install --upgrade pip
-sudo -H pip install pandas jinja2 pyserial pyyaml
+sudo -H pip install pandas jinja2 pyserial pyyaml==3.13
 # optional python tools
 sudo -H pip install pyulog
 
