@@ -207,7 +207,7 @@ MAVROS 提供了一个插件来中继在 `/mavros/vision_pose/pose` 上发布的
 
 此时，设置为位置控制模式。 如果切换成功，飞控会闪绿灯。 绿灯代表：你的外部位置信息已经注入到飞控中，并且位置控制模式已经切换成功。
 
-油门杆居中，这是油门控制死区。 如果在死区中，则无人机会保持其当前高度。往上推杆，则会上升，往下推杆，则会下降。 同理对于另一个杆。
+油门杆居中，这是油门控制死区。 With this stick value, the robot maintains its altitude; raising the stick will increase the reference altitude while lowering the value will decrease it. 同理对于另一个杆。
 
 推油门杆，则无人机会起飞，起飞后，立即将其拉回中位。 检查此时无人机能否悬停。
 
