@@ -1,29 +1,30 @@
 # Offboard Control
 
-> **Warning** [Offboard control](https://docs.px4.io/en/flight_modes/offboard.html) is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
+> **Warning** [Offboard control](https://docs.px4.io/en/flight_modes/offboard.html) is dangerous.
+  It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
 
-The idea behind off-board control is to be able to control the PX4 flight stack using software running outside of the autopilot. This is done through the Mavlink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) messages.
+The idea behind off-board control is to be able to control the PX4 flight stack using software running outside of the autopilot. This is done through the MAVLink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) messages.
 
 ## Offboard Control Firmware Setup
 
 There are two things you want to setup on the firmware side before starting offboard development.
 
-### 1. Map an RC switch to offboard mode activation
+### Map an RC switch to offboard mode activation
 
-To do this, load up the parameters in *QGroundControl* and look for the RC_MAP_OFFB_SW parameter to which you can assign the RC channel you want to use to activate offboard mode. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
+To do this, load up the parameters in *QGroundControl* and look for the RC_MAP_OFFB_SW parameter to which you can assign the RC channel you want to use to activate offboard mode.
+It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
 
 Although this step isn't mandatory since you can activate offboard mode using a MAVLink message. We consider this method much safer.
 
-### 2. Enable the companion computer interface
+### Enable the companion computer interface
 
-Enable MAVLink on the serial port that you connect to the companion computer
-(see [Companion computer setup](../companion_computer/pixhawk_companion.md)).
+Enable MAVLink on the serial port that you connect to the companion computer (see [Companion computer setup](../companion_computer/pixhawk_companion.md)).
 
 ## Hardware setup
 
 Usually, there are three ways of setting up offboard communication.
 
-### 1. Serial radios
+### Serial radios
 
 1. One connected to a UART port of the autopilot
 2. One connected to a ground station computer
@@ -39,7 +40,7 @@ graph TD;
   rad2 --MAVLink--> a[Autopilot];
 {% endmermaid %}
 
-### 2. On-board processor
+### On-board processor
 
 A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter. 
 There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
@@ -60,10 +61,10 @@ graph TD;
   uart --MAVLink--> Autopilot;
 {% endmermaid %}
 
-### 3. On-board processor and wifi link to ROS (***Recommended***)
+### On-board processor and wifi link to ROS (***Recommended***)
 
 A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. 
-This can be any of the computers from the above section coupled with a WiFi adapter. 
+This can be any of the computers from the above section coupled with a WiFi adapter.
 For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accommodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
 
 

@@ -242,16 +242,16 @@ Be sure to perform the following checks:
 
 If those steps are consistent, you can try your first flight.
 
-Put the robot on the ground and start streaming MoCap feedback. 
+Put the robot on the ground and start streaming MoCap feedback.
 Lower your left (throttle) stick and arm the motors.
 
 At this point, with the left stick at the lowest position, switch to position control. 
 You should have a green light. 
 The green light tells you that position feedback is available and position control is now activated. 
 
-Put your left stick at the middle, this is the dead zone. 
-With this stick value, the robot maintains its altitude; 
-raising the stick will increase the reference altitude while lowering the value will decrease it. 
+Put your left stick at the middle, this is the dead zone.
+With this stick value, the robot maintains its altitude;
+raising the stick will increase the reference altitude while lowering the value will decrease it.
 Same for right stick on x and y. 
 
 Increase the value of the left stick and the robot will take off, 

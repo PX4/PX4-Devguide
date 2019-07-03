@@ -69,7 +69,7 @@ To just test the mount driver on other models or simulators, make sure the drive
 
 
 ## Testing
-The driver provides a simple test command - it needs to be stopped first with `vmount stop`. 
+The driver provides a simple test command - it needs to be stopped first with `vmount stop`.
 The following describes testing in SITL, but the commands also work on a real device.
 
 Start the simulation with (no parameter needs to be changed for that):
@@ -81,7 +81,7 @@ Make sure it's armed, eg. with `commander takeoff`, then use for example
 vmount test yaw 30
 ```
 to control the gimbal.
-Note that the simulated gimbal stabilizes itself, so if you send mavlink commands, set the `stabilize` flags to false.
+Note that the simulated gimbal stabilizes itself, so if you send MAVLink commands, set the `stabilize` flags to false.
 
 ![Gazebo Gimbal Simulation](../../assets/gazebo/gimbal-simulation.png)
 
