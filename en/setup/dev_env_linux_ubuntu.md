@@ -242,7 +242,7 @@ wstool init ~/catkin_ws/src
 ## Build MAVROS
 ### Get source (upstream - released)
 rosinstall_generator --upstream mavros | tee /tmp/mavros.rosinstall
-### Get latest released mavlink package
+### Get latest released MAVLink package
 rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall
 ### Setup workspace & install deps
 wstool merge -t src /tmp/mavros.rosinstall
