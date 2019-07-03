@@ -69,6 +69,6 @@ Armed되어 있는지 확인하세요. 예를 들면, `commander takeoff`를 입
     vmount test yaw 30
     
 
-짐벌이 제어됩니다. 주의할 것은 모의된 짐벌은 자동으로 안정화되므로 Mavlink 명령어들을 통해 `stabilize` 플래그를 false로 설정하세요.
+짐벌이 제어됩니다. Note that the simulated gimbal stabilizes itself, so if you send MAVLink commands, set the `stabilize` flags to false.
 
 ![Gazebo 짐벌 모의](../../assets/gazebo/gimbal-simulation.png)
