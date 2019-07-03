@@ -71,29 +71,27 @@ The requirement is that the link provides at least ~50KB/s, so for example a WiF
 There are different clients that support ulog streaming:
 
 - `mavlink_ulog_streaming.py` script in Firmware/Tools.
-- QGroundControl: ![](../../assets/gcs/qgc-log-streaming.png)
+- QGroundControl: ![QGC Log Streaming](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 
 ### Diagnostics
 
 - If log streaming does not start, make sure the `logger` is running (see above), and inspect the console output while starting.
-- If it still does not work, make sure that Mavlink 2 is used. Enforce it by setting `MAV_PROTO_VER` to 2.
-- Log streaming uses a maximum of 70% of the configured mavlink rate (`-r` parameter). If more is needed, messages are dropped. The currently used percentage can be inspected with `mavlink status` (1.8% is used in this example):
-
-    instance #0:
-            GCS heartbeat:  160955 us ago
-            mavlink chan: #0
-            type:           GENERIC LINK OR RADIO
-            flow control:   OFF
-            rates:
-            tx: 95.781 kB/s
-            txerr: 0.000 kB/s
-            rx: 0.021 kB/s
-            rate mult: 1.000
-            ULog rate: 1.8% of max 70.0%
-            accepting commands: YES
-            MAVLink version: 2
-            transport protocol: UDP (14556)
+- If it still does not work, make sure that MAVLink 2 is used. Enforce it by setting `MAV_PROTO_VER` to 2.
+- Log streaming uses a maximum of 70% of the configured MAVLink rate (`-r` parameter). If more is needed, messages are dropped. The currently used percentage can be inspected with `mavlink status` (1.8% is used in this example): 
+        instance #0:
+              GCS heartbeat:  160955 us ago
+              mavlink chan: #0
+              type:           GENERIC LINK OR RADIO
+              flow control:   OFF
+              rates:
+              tx: 95.781 kB/s
+              txerr: 0.000 kB/s
+              rx: 0.021 kB/s
+              rate mult: 1.000
+              ULog rate: 1.8% of max 70.0%
+              accepting commands: YES
+              MAVLink version: 2
+              transport protocol: UDP (14556) Also make sure 
     
-
-Also make sure `txerr` stays at 0. If this goes up, either the NuttX sending buffer is too small, the physical link is saturated or the hardware is too slow to handle the data.
+    `txerr` stays at 0. If this goes up, either the NuttX sending buffer is too small, the physical link is saturated or the hardware is too slow to handle the data.
