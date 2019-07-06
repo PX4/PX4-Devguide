@@ -119,6 +119,16 @@ hardfault_log <command> [arguments...]
 
    reset         Reset the reboot counter
 ```
+## i2cdetect
+Source: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
+
+Utility to scan for I2C devices on a particular bus.
+### Usage {#i2cdetect_usage}
+```
+i2cdetect [arguments...]
+     [-b <val>]  I2C bus
+                 default: 1
+```
 ## led_control
 Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
 
