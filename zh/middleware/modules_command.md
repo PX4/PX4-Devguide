@@ -133,74 +133,87 @@ ESC 校准工具。
        reset         重置重启计数器
     
 
+## i2cdetect
+
+Source: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
+
+Utility to scan for I2C devices on a particular bus.
+
+### Usage {#i2cdetect_usage}
+
+    i2cdetect [arguments...]
+         [-b <val>]  I2C bus
+                     default: 1
+    
+
 ## led_control
 
-源码： [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
+Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
 
-### 描述
+### Description
 
-用于控制 & 测试 （外部） LED's 的命令行工具。
+Command-line tool to control & test the (external) LED's.
 
-要使用该命令请确保有一个负责处理 led_control 的 uorb 主题处于运行状态。
+To use it make sure there's a driver running, which handles the led_control uorb topic.
 
-有不同的优先级，例如，一个模块可设置一个低优先级的颜色，然后另一个模块可设置一个高优先级的闪烁 N 次的动作，LED 在完成闪烁后会自动返回较低优先级的状态。 也可使用 `reset` 命令来返回至一个更低的优先级。
+There are different priorities, such that for example one module can set a color with low priority, and another module can blink N times with high priority, and the LED's automatically return to the lower priority state after the blinking. The `reset` command can also be used to return to a lower priority.
 
-### 示例
+### Examples
 
-第一个 LED 闪烁蓝光 5 次：
+Blink the first LED 5 times in blue:
 
     led_control blink -c blue -l 0 -n 5
     
 
-### 用法 {#led_control_usage}
+### Usage {#led_control_usage}
 
-    led_control &lt;command&gt; [arguments...]
+    led_control <command> [arguments...]
      Commands:
-       test          运行一个测试范例
+       test          Run a test pattern
     
-       on            点亮 LED
+       on            Turn LED on
     
-       off            熄灭 LED
+       off           Turn LED off
     
-       reset         重置 LED 优先级
+       reset         Reset LED priority
     
-       blink         闪烁 LED 灯 N 次
-         [-n &lt;val&gt;]  闪烁次数
-                     默认值： 3
-         [-s &lt;val&gt;]  设定闪烁速度
-                    取值： fast|normal|slow, 默认值：normal
+       blink         Blink LED N times
+         [-n <val>]  Number of blinks
+                     default: 3
+         [-s <val>]  Set blinking speed
+                     values: fast|normal|slow, default: normal
     
-       breathe       LED 持续淡入 & 淡出（呼吸效果）
+       breathe       Continuously fade LED in & out
     
-       flash         以 1Hz 速度快速闪烁两次然后关闭 LED
+       flash         Two fast blinks and then off with frequency of 1Hz
     
-    下述参数可用于上述除  'test' 命令之外的所有命令：
-         [-c &lt;val&gt;]  color
-                     取值： red|blue|green|yellow|purple|amber|cyan|white, 默认值：
+     The following arguments apply to all of the above commands except for 'test':
+         [-c <val>]  color
+                     values: red|blue|green|yellow|purple|amber|cyan|white, default:
                      white
-         [-l &lt;val&gt;]  需要控制哪一个 LED： 0, 1, 2, ... (default=all)
+         [-l <val>]  Which LED to control: 0, 1, 2, ... (default=all)
          [-p <val>]  Priority
                      default: 2
     
 
 ## listener
 
-源码： [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
+Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
 
-用于监听 uORB 主题并将数据输出在控制台上的工具。
+Utility to listen on uORB topics and print the data to the console.
 
 The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
 
-### 用法 {#listener_usage}
+### Usage {#listener_usage}
 
-    listener &lt;command&gt; [arguments...]
+    listener <command> [arguments...]
      Commands:
-         &lt;topic_name&gt; uORB 主题名称
-         [-i &lt;val&gt;]  主题实例
+         <topic_name> uORB topic name
+         [-i <val>]  Topic instance
                      default: 0
-         [-n &lt;val&gt;]  消息数量
+         [-n <val>]  Number of messages
                      default: 1
-         [-r &lt;val&gt;]  订阅速率 (0 表示不限制)
+         [-r <val>]  Subscription rate (unlimited if 0)
                      default: 0
     
 
@@ -208,27 +221,28 @@ The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
 
 Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
 
-### 描述
+### Description
 
 Load or append mixer files to the ESC driver.
 
 Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
 
-### 用法 {#mixer_usage}
+### Usage {#mixer_usage}
 
-    mixer &lt;command&gt; [arguments...]
+    mixer <command> [arguments...]
      Commands:
        load
-         &lt;file:dev&gt; &lt;file&gt; 输出装置 （例如，/dev/pwm_output0）和混控器文件
+         <file:dev> <file> Output device (eg. /dev/pwm_output0) and mixer file
+    
        append
-         &lt;file:dev&gt; &lt;file&gt; 输出装置 （例如，/dev/pwm_output0）和混控器文件
+         <file:dev> <file> Output device (eg. /dev/pwm_output0) and mixer file
     
 
 ## motor_ramp
 
 Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
 
-### 描述
+### Description
 
 Application to test motor ramp up.
 
@@ -242,18 +256,18 @@ When starting, a background task is started, runs for several seconds (as specif
 
 Note: this command currently only supports the `/dev/pwm_output0` output.
 
-### 示例
+### Example
 
     motor_ramp sine 1100 0.5
     
 
-### 用法 {#motor_ramp_usage}
+### Usage {#motor_ramp_usage}
 
     motor_ramp [arguments...]
          ramp|sine|square mode
-         &lt;min_pwm&gt; &lt;time&gt; [&lt;max_pwm&gt;] pwm value in us, time in sec
+         <min_pwm> <time> [<max_pwm>] pwm value in us, time in sec
     
-    警告：电机将加速到最大速度！
+     WARNING: motors will ramp up to full speed!
     
 
 ## motor_test
@@ -264,7 +278,7 @@ Utility to test motors.
 
 Note: this can only be used for drivers which support the motor_test uorb topic (currently uavcan and tap_esc)
 
-### 用法 {#motor_test_usage}
+### Usage {#motor_test_usage}
 
     motor_test <command> [arguments...]
      Commands:
@@ -284,23 +298,24 @@ Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
 
-### 用法 {#mtd_usage}
+### Usage {#mtd_usage}
 
-    mtd &lt;command&gt; [arguments...]
+    mtd <command> [arguments...]
      Commands:
-       status        打印状态信息
+       status        Print status information
     
-       start         挂在分区
+       start         Mount partitions
     
-       readtest      进行读取测试
+       readtest      Perform read test
     
-       rwtest        进行读写测试
+       rwtest        Perform read-write test
     
-       erase         擦除分区
+       erase         Erase partition(s)
     
-     'start', 'readtest', 'rwtest' 和 'erase' 命令有如下可选参数：
-         [&lt;partition_name1&gt; [&lt;partition_name2&gt; ...]] 分区名称
-                     （例如，/fs/mtd_params），如未指定分区名称则可使用系统默认值。
+     The commands 'start', 'readtest', 'rwtest' and 'erase' have an optional
+     parameter:
+         [<partition_name1> [<partition_name2> ...]] Partition names (eg.
+                     /fs/mtd_params), use system default if not provided
     
 
 ## nshterm
@@ -311,17 +326,17 @@ Start an NSH shell on a given port.
 
 This was previously used to start a shell on the USB serial port. Now there runs mavlink, and it is possible to use a shell over mavlink.
 
-### 用法 {#nshterm_usage}
+### Usage {#nshterm_usage}
 
     nshterm [arguments...]
-         &lt;file:dev&gt;  指定 shell 从哪个设备上运行 （例如，/dev/ttyACM0）
+         <file:dev>  Device on which to start the shell (eg. /dev/ttyACM0)
     
 
 ## param
 
 Source: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
 
-### 描述
+### Description
 
 Command to access and manipulate parameters via shell or script.
 
@@ -333,7 +348,7 @@ If the FLASH-based backend is enabled (which is done at compile time, e.g. for t
 
 Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant parameters to a ground control station.
 
-### 示例
+### Examples
 
 Change the airframe and make sure the airframe's default parameters are loaded:
 
@@ -342,7 +357,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
     reboot
     
 
-### 用法 {#param_usage}
+### Usage {#param_usage}
 
     param <command> [arguments...]
      Commands:
@@ -370,29 +385,33 @@ Change the airframe and make sure the airframe's default parameters are loaded:
          <param_name> <value> Parameter name and value to set
          [fail]      If provided, let the command fail if param is not found
     
-       compare       Compare a param with a value. 如果相等则命令成功。
-         &lt;param_name&gt; &lt;value&gt; 参数名称和进行对比的值
+       compare       Compare a param with a value. Command will succeed if equal
+         <param_name> <value> Parameter name and value to compare
     
-       greater       将一个参数与一个数值进行比较。 如果参数比该值要大则命令成功
-         &lt;param_name&gt; &lt;value&gt; P参数名称和进行对比的值
+       greater       Compare a param with a value. Command will succeed if param is
+                     greater than the value
+         <param_name> <value> Parameter name and value to compare
     
-       touch         讲一个参数表以为已使用 (used)
-         [&lt;param_name1&gt; [&lt;param_name2&gt;]] 参数名称 (一个或者多个)
+       touch         Mark a parameter as used
+         [<param_name1> [<param_name2>]] Parameter name (one or more)
     
-       reset         将参数重置为默认值
-         [&lt;exclude1&gt; [&lt;exclude2&gt;]] 不重置相匹配的参数 (允许尾端的通配符)
+       reset         Reset params to default
+         [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
+                     allowed)
     
-       reset_nostart 将 SYS_AUTOSTART 和 SYS_AUTOCONFIG 之外的所有参数重置为默认值
-         [&lt;exclude1&gt; [&lt;exclude2&gt;]] 不重置相匹配的参数 (允许尾端的通配符)
+       reset_nostart Reset params to default, but keep SYS_AUTOSTART and
+                     SYS_AUTOCONFIG
+         [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
+                     allowed)
     
-       index         显示指定索引位置的参数的值
-         &lt;index&gt;     Index: 一个整数 >= 0
+       index         Show param for a given index
+         <index>     Index: an integer >= 0
     
-       index_used    显示指定索引位置的已使用参数的值
-         &lt;index&gt;     Index: 一个整数 >= 0
+       index_used    Show used param for a given index
+         <index>     Index: an integer >= 0
     
-       find          显示一个参数的索引值
-         &lt;param&gt;     参数名称
+       find          Show index of a param
+         <param>     param name
     
 
 ## perf
@@ -401,21 +420,21 @@ Source: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/system
 
 Tool to print performance counters
 
-### 用法 {#perf_usage}
+### Usage {#perf_usage}
 
     perf [arguments...]
-       reset         重置所有计数器
+       reset         Reset all counters
     
-       latency       打印 HRT 计时器延时柱状体
+       latency       Print HRT timer latency histogram
     
-    如未指定任何参数则打印所有计数器的性能表现。
+     Prints all performance counters if no arguments given
     
 
 ## pwm
 
 Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
 
-### 描述
+### Description
 
 This command is used to configure PWM outputs for servo and ESC control.
 
@@ -431,7 +450,7 @@ The parameters `-p` and `-r` can be set to a parameter instead of specifying an 
 
 Note that in OneShot mode, the PWM range [1000, 2000] is automatically mapped to [125, 250].
 
-### 示例
+### Examples
 
 Set the PWM rate for all channels to 400 Hz:
 
@@ -444,48 +463,53 @@ Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
     pwm test -c 13 -p 1200
     
 
-### 用法 {#pwm_usage}
+### Usage {#pwm_usage}
 
-    pwm &lt;command&gt; [arguments...]
+    pwm <command> [arguments...]
      Commands:
-       arm           解锁模式输出
-       disarm        锁定模式输出
+       arm           Arm output
     
-       info          打印当前所有通道的设定
+       disarm        Disarm output
     
-       forcefail     强制进入故障保护（Failsafe） 模式。 PWM 输出将被设置为故障保护值。
-         on|off      开启或关闭
+       info          Print current configuration of all channels
     
-       terminatefail 启用 Termination Failsafe 模式。 该设定为真时所有故障保护都是不可恢复的（即便满足恢复条件）。
-         on|off      开启或关闭
+       forcefail     Force Failsafe mode. PWM outputs are set to failsafe values.
+         on|off      Turn on or off
     
-       rate          配置 PWM 速率
-         -r &lt;val&gt;    PWM 速率，单位为 Hz (0 = Oneshot，否则该取值应处于 50 到 400Hz之间)
+       terminatefail Enable Termination Failsafe mode. While this is true, any
+                     failsafe that occurs will be unrecoverable (even if recovery
+                     conditions are met).
+         on|off      Turn on or off
     
-       oneshot       配置 Oneshot125 (速率被设为 0)
+       rate          Configure PWM rates
+         -r <val>    PWM Rate in Hz (0 = Oneshot, otherwise 50 to 400Hz)
     
-       failsafe      设定故障保护模式的 PWM 值
+       oneshot       Configure Oneshot125 (rate is set to 0)
     
-       disarmed      设定锁定模式 PWM 值
+       failsafe      Set Failsafe PWM value
     
-       min           设定最小 PWM 值
+       disarmed      Set Disarmed PWM value
     
-       max           设定最大 PWM 值
+       min           Set Minimum PWM value
     
-       test          将输出设定为某一特定值直到按键 'q' 或 'c' 或 'ctrl-c'
-                     被按下
+       max           Set Maximum PWM value
     
-       steps         从 0 到 100% 运行 5 次阶跃
+       test          Set Output to a specific value until 'q' or 'c' or 'ctrl-c'
+                     pressed
     
-      'failsafe', 'disarmed', 'min', 'max' 和 'test' 命令都需要指定一个 PWM值：
-         -p &lt;val&gt;    PWM 值 （例如，1100）
+       steps         Run 5 steps from 0 to 100%
     
-    'rate', 'oneshot', 'failsafe', 'disarmed', 'min', 'max', 'test'
-     和 'steps' 命令还额外需要使用如下命令来指定进行设定的控制通道：
-         [-c &lt;val&gt;]  使用如下形式进行通道的选取: 1234 (1 个数字表示一个通道，
-                     1=第一个通道)
-         [-m &lt;val&gt;]  使用位掩码（bitmask）选取通道 0xF, 3)
-         [-g <val>]  Select channels by group (eg. （例如，0, 1, 2. use 'pwm info' to show
+     The commands 'failsafe', 'disarmed', 'min', 'max' and 'test' require a PWM
+     value:
+         -p <val>    PWM value (eg. 1100)
+    
+     The commands 'rate', 'oneshot', 'failsafe', 'disarmed', 'min', 'max', 'test'
+     and 'steps' additionally require to specify the channels with one of the
+     following commands:
+         [-c <val>]  select channels in the form: 1234 (1 digit per channel,
+                     1=first)
+         [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
+         [-g <val>]  Select channels by group (eg. 0, 1, 2. use 'pwm info' to show
                      groups)
          [-a]        Select all channels
     
@@ -502,11 +526,11 @@ Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/syst
 
 Reboot the system
 
-### 用法 {#reboot_usage}
+### Usage {#reboot_usage}
 
     reboot [arguments...]
-         [-b]        重启至 bootloader
-         [lock|unlock] 锁定/释放停机锁定（shutdown lock） (用于测试目的)
+         [-b]        Reboot into bootloader
+         [lock|unlock] Take/release the shutdown lock (for testing)
     
 
 ## sd_bench
@@ -515,16 +539,16 @@ Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/sy
 
 Test the speed of an SD Card
 
-### 用法 {#sd_bench_usage}
+### Usage {#sd_bench_usage}
 
     sd_bench [arguments...]
-         [-b &lt;val&gt;]  每次读/写操作的块的大小
-                     默认值： 4096
-         [-r &lt;val&gt;]  运行次数
-                     默认值： 5
-         [-d &lt;val&gt;]  每次运行的持续时间，单位为 ms
-                     默认值： 2000
-         [-s]        完成每个块之后调用 fsync （默认值=每次运行结束时）
+         [-b <val>]  Block size for each read/write
+                     default: 4096
+         [-r <val>]  Number of runs
+                     default: 5
+         [-d <val>]  Duration of a run in ms
+                     default: 2000
+         [-s]        Call fsync after each block (default=at end of each run)
     
 
 ## top
@@ -533,10 +557,10 @@ Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Monitor running processes and their CPU, stack usage, priority and state
 
-### 用法 {#top_usage}
+### Usage {#top_usage}
 
     top [arguments...]
-       once          仅打印一次负载情况
+       once          print load only once
     
 
 ## usb_connected
@@ -545,7 +569,7 @@ Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/s
 
 Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
 
-### 用法 {#usb_connected_usage}
+### Usage {#usb_connected_usage}
 
     usb_connected [arguments...]
     
@@ -556,29 +580,32 @@ Source: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Tool to print various version information
 
-### 用法 {#ver_usage}
+### Usage {#ver_usage}
 
-    ver &lt;command&gt; [arguments...]
+    ver <command> [arguments...]
      Commands:
-       hw            硬件构架
+       hw            Hardware architecture
     
-       mcu           MCU 信息
+       mcu           MCU info
     
-       git           git 版本信息
+       git           git version information
     
-       bdate         构建日期和时间
-       gcc           编译器信息
+       bdate         Build date and time
     
-       bdate         构建日期和时间
+       gcc           Compiler info
+    
+       bdate         Build date and time
     
        px4guid       PX4 GUID
     
-       uri           构建 URI
+       uri           Build URI
     
-       all           打印所有版本
+       all           Print all versions
     
-       hwcmp         比较硬件版本 (相符时返回 0)
-         &lt;hw&gt; [&lt;hw2&gt;] 需要进行比较的硬件 （例如，PX4_FMU_V4）。 如果指定了多种硬件类型将执行或比较（OR comparison）
+       hwcmp         Compare hardware version (returns 0 on match)
+         <hw> [<hw2>] Hardware to compare against (eg. PX4_FMU_V4). An OR comparison
+                     is used if multiple are specified
     
-       hwtypecmp     比较硬件类型（匹配则返回 0 ）
-         &lt;hwtype&gt; [&lt;hwtype2&gt;] 需要进行比较的硬件类型 （例如 V2） 如果指定了多种硬件类型将执行或比较（OR comparison）
+       hwtypecmp     Compare hardware type (returns 0 on match)
+         <hwtype> [<hwtype2>] Hardware type to compare against (eg. V2). An OR
+                     comparison is used if multiple are specified
