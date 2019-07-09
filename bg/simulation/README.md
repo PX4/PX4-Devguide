@@ -72,9 +72,9 @@ The messages are described below (see links for specific detail).
 
 By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. MAVSDK, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
 
-* UDP Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
-* UDP Port **14550** is used for communication with ground control stations. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
-* TCP Port **4560** is used for communication with simulators. PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
+- UDP Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
+- UDP Port **14550** is used for communication with ground control stations. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
+- TCP Port **4560** is used for communication with simulators. PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
 
 > **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module.
 
@@ -82,9 +82,9 @@ By default, PX4 uses commonly established UDP ports for MAVLink communication wi
 
 The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
 
-* PX4 uses a simulation-specific module to listen on TCP port 4560. Simulators connect to this port, then exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. PX4 on SITL and the simulator can run on either the same computer or different computers on the same network.
-* PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like MAVSDK or ROS (which listen on port 14540).
-* A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
+- PX4 uses a simulation-specific module to listen on TCP port 4560. Simulators connect to this port, then exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. PX4 on SITL and the simulator can run on either the same computer or different computers on the same network.
+- PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like MAVSDK or ROS (which listen on port 14540).
+- A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
 ![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
@@ -114,7 +114,7 @@ make px4_sitl jmavsim
 
 The simulation can be further configured via environment variables:
 
-* `PX4_ESTIMATOR`: This variable configures which estimator to use. Possible options are: `ekf2` (default), `lpe`, `inav`. It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
+- `PX4_ESTIMATOR`: This variable configures which estimator to use. Possible options are: `ekf2` (default), `lpe`, `inav`. It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
 
 The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
@@ -182,8 +182,8 @@ With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on re
 
 For setup information see the *QGroundControl User Guide*:
 
-* [Joystick Setup](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
-* [Virtual Joystick](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
+- [Joystick Setup](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
+- [Virtual Joystick](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
 
 <!-- FYI Airsim info on this setting up remote controls: https://github.com/Microsoft/AirSim/blob/master/docs/remote_controls.md -->
 
@@ -217,6 +217,24 @@ A remote computer can then connect to the simulator by listening to the appropri
 ### Use MAVLink Router
 
 The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route packets from localhost to an external interface.
+
+To route packets between SITL running on one computer (sending MAVLink traffic to localhost on UDP port 14550), and QGC running on another computer (e.g. at address `10.73.41.30`) you could:
+
+- Start *mavlink-router* with the following command: ```mavlink-routerd -e 10.73.41.30:14550 127.0.0.1:14550```
+- Use a *mavlink-router* conf file.
+    
+        [UdpEndpoint QGC]
+        Mode = Normal
+        Address = 10.73.41.30
+        Port = 14550
+        
+        [UdpEndpoint SIM]
+        Mode = Eavesdropping
+        Address = 127.0.0.1
+        Port = 14550
+        
+
+> **Note** More information about *mavlink-router* configuration can be found [here](https://github.com/intel/mavlink-router/#running).
 
 ### Modify Configuration for External Broadcasting
 
