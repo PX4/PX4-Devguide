@@ -213,7 +213,29 @@ A remote computer can then connect to the simulator by listening to the appropri
 
 ### Use MAVLink Router
 
-The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route  packets from localhost to an external interface.
+The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route packets from localhost to an external interface.
+
+To route packets between SITL running on one computer (sending MAVLink traffic to localhost on UDP port 14550), and QGC running on another computer (e.g. at address `10.73.41.30`) you could:
+
+- Start *mavlink-router* with the following command: 
+  ```
+  mavlink-routerd -e 10.73.41.30:14550 127.0.0.1:14550
+  ```
+- Use a *mavlink-router* conf file.
+  ```
+  [UdpEndpoint QGC]
+  Mode = Normal
+  Address = 10.73.41.30
+  Port = 14550
+
+  [UdpEndpoint SIM]
+  Mode = Eavesdropping
+  Address = 127.0.0.1
+  Port = 14550
+  ```
+
+> **Note** More information about *mavlink-router* configuration can be found [here](https://github.com/intel/mavlink-router/#running).
+
 
 ### Modify Configuration for External Broadcasting
 
