@@ -219,7 +219,7 @@ To route packets between SITL running on one computer (sending MAVLink traffic t
 
 - Start *mavlink-router* with the following command: 
   ```
-  mavlink-routerd -e 10.73.41.30:14550 -e 127.0.0.1:14550
+  mavlink-routerd -e 10.73.41.30:14550 127.0.0.1:14550
   ```
 - Use a *mavlink-router* conf file.
   ```
