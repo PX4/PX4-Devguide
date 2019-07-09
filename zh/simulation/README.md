@@ -72,9 +72,9 @@ The messages are described below (see links for specific detail).
 
 By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. MAVSDK, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
 
-* UDP Port **14540** is used for communication with offboard APIs. 期望外接 APIs 监听此端口上的连接。
-* UDP Port **14550** is used for communication with ground control stations. 期望 GCS 将侦听此端口上的连接。 *QGroundControl*默认侦听此端口。
-* TCP Port **4560** is used for communication with simulators. PX4 侦听此端口，仿真器应通过向该端口广播数据来启动通信。
+- UDP Port **14540** is used for communication with offboard APIs. 期望外接 APIs 监听此端口上的连接。
+- UDP Port **14550** is used for communication with ground control stations. 期望 GCS 将侦听此端口上的连接。 *QGroundControl*默认侦听此端口。
+- TCP Port **4560** is used for communication with simulators. PX4 侦听此端口，仿真器应通过向该端口广播数据来启动通信。
 
 > **注意**GCS 和外置 API 的端口设置在配置文件中，而仿真器广播端口在模拟 MAVlink 模块中硬编码．
 
@@ -82,9 +82,9 @@ By default, PX4 uses commonly established UDP ports for MAVLink communication wi
 
 The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
 
-* PX4 uses a simulation-specific module to listen on TCP port 4560. 模拟器连接到此端口，然后使用上面描述的 [Simulator mavlink API](#simulator-mavlink-api) 交换信息。 SITL 和模拟器上的 PX4 可以在同一台计算机上运行，也可以在同一网络上运行不同的计算机。
-* PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like MAVSDK or ROS (which listen on port 14540).
-* 串行连接用于通过 *QGroundControl* 连接 Joystick/Gamepad 硬件。
+- PX4 uses a simulation-specific module to listen on TCP port 4560. 模拟器连接到此端口，然后使用上面描述的 [Simulator mavlink API](#simulator-mavlink-api) 交换信息。 SITL 和模拟器上的 PX4 可以在同一台计算机上运行，也可以在同一网络上运行不同的计算机。
+- PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like MAVSDK or ROS (which listen on port 14540).
+- 串行连接用于通过 *QGroundControl* 连接 Joystick/Gamepad 硬件。
 
 ![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
@@ -114,7 +114,7 @@ make px4_sitl jmavsim
 
 The simulation can be further configured via environment variables:
 
-* `PX4_ESTIMATOR`：此变量配置要使用的估算器。 可能的选项有：`ekf2` （默认）、`lpe`、`inav`。 在运行模拟之前，可以通过 `export PX4_ESTIMATOR=lpe` 进行设置。
+- `PX4_ESTIMATOR`：此变量配置要使用的估算器。 可能的选项有：`ekf2` （默认）、`lpe`、`inav`。 在运行模拟之前，可以通过 `export PX4_ESTIMATOR=lpe` 进行设置。
 
 The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
@@ -182,8 +182,8 @@ With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on re
 
 For setup information see the *QGroundControl User Guide*:
 
-* [操纵杆设置](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
-* [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
+- [操纵杆设置](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
+- [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
 
 <!-- FYI Airsim info on this setting up remote controls: https://github.com/Microsoft/AirSim/blob/master/docs/remote_controls.md -->
 
@@ -217,6 +217,24 @@ A remote computer can then connect to the simulator by listening to the appropri
 ### Use MAVLink Router
 
 The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route packets from localhost to an external interface.
+
+To route packets between SITL running on one computer (sending MAVLink traffic to localhost on UDP port 14550), and QGC running on another computer (e.g. at address `10.73.41.30`) you could:
+
+- Start *mavlink-router* with the following command: ```mavlink-routerd -e 10.73.41.30:14550 127.0.0.1:14550```
+- Use a *mavlink-router* conf file.
+    
+        [UdpEndpoint QGC]
+        Mode = Normal
+        Address = 10.73.41.30
+        Port = 14550
+        
+        [UdpEndpoint SIM]
+        Mode = Eavesdropping
+        Address = 127.0.0.1
+        Port = 14550
+        
+
+> **Note** More information about *mavlink-router* configuration can be found [here](https://github.com/intel/mavlink-router/#running).
 
 ### Modify Configuration for External Broadcasting
 
