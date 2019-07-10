@@ -113,6 +113,24 @@ To add a third iris to this simulation there are two main components to consider
     
     > **Note** Be aware of which port is `src` and `dst` for the different endpoints.
 
+## Multiple Vehicles using SDF Models
+
+Developers can alternatively simulate multiple vehicles using vehicle models defined in Gazebp SDF files (instead of using models defined in the ROS Xacro file, as discussed in the rest of this topic).
+
+The steps are:
+
+1. Install xmlstarlet from your Linux terminal `sudo apt install xmlstarlet`
+2. Use roslaunch with the multi_uav_mavros_sitl_sdf.launch launch file: `roslaunch multi_uav_mavros_sitl_sdf.launch vehicle:=<model_file_name>`
+
+> **Note** that the vehicle model file name argument is optional; the [plane model](https://github.com/PX4/sitl_gazebo/tree/master/models/plane) will be used by default.
+
+This method is similar to using the xacro except that the SITL/Gazebo port number is automatically inserted by *xmstarlet* for each spawned vehicle, and does not need to be specified in the SDF file.
+
+To add a new vehicle, you need to make sure the model can be found in order to spawn it in Gazebo and PX4 needs to have an approperate startup script corresponding to it.
+
+1. You can choose to either modify the `single_vehicle_spawn_sdf.launch` file to point to the location of your model by changing the line containing: `$(find px4)/Tools/sitl_gazebo/models/$(arg vehicle)/$(arg vehicle).sdf` to point to your model or copy your model in to the folder above (following the same path convention). Be sure to set the `vehicle` argument even if you hardcode the path to your model.
+2. The `vehicle` argument is used to set the `PX4_SIM_MODEL` environment variable, which is used by the default rCS (startup script) to find the corresponding startup settings file for the model. Within PX4 these startup files can be found in the `Firmware/ROMFS/px4fmu_common/init.d-posix/` directory. For example, here is the plane model's [startup script](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/1030_plane). For this to work, the PX4 node in the launch file is passed arguemnts that specify the rCS file (`etc/init.d/rcS`) and the location of the rootfs directory (`$(find px4)/ROMFS/px4fmu_common`). For simplicity, it is suggested that the startup file for the model be placed alongside PX4's in `Firmware/ROMFS/px4fmu_common/init.d-posix/`.
+
 ## Additional Resources
 
 * See [Simulation](../simulation/README.md) for a description of the UDP port configuration.
