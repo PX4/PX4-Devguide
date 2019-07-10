@@ -8,7 +8,7 @@
   * pre-armed: asserted to enable benign behaviors such as moving control surfaces
    * this input overrides the current state
    * assertion of pre-armed immediately forces behavior of state ON, regardless of current state
-   ** deassertion of pre-armed reverts behavior to current state
+   * deassertion of pre-armed reverts behavior to current state
 
 **States**
   * INIT and OFF

@@ -1,23 +1,18 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/test_and_ci/integration_testing.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# 集成测试
 
-# Integration Testing
+这是关于端到端集成测试。 测试自动执行（[Jenkins CI](../test_and_ci/jenkins_ci.md)）
 
-This is about end to end integration testing. Tests are executed automatically ([Jenkins CI](../test_and_ci/jenkins_ci.md))
+## ROS / MAVROS 测试
 
-## ROS / MAVROS Tests
+系统必备组件:
 
-Prerequisites:
+- [jMAVSim 仿真模拟](../simulation/jmavsim.md)
+- [Gazebo 仿真模拟](../simulation/gazebo.md)
+- [ROS 和 MAVROS](../simulation/ros_interface.md)
 
-  * [JMAVSim Simulation](../simulation/jmavsim.md)
-  * [Gazebo](../simulation/gazebo.md)
-  * [ROS and MAVROS](../simulation/ros_interface.md)
+### 执行测试
 
-### Execute Tests
-
-To run the complete MAVROS test suite:
+要运行完整的 MAVROS 测试套件：
 
 ```sh
 cd <Firmware_clone>
@@ -25,22 +20,21 @@ source integrationtests/setup_gazebo_ros.bash $(pwd)
 rostest px4 mavros_posix_tests_iris.launch
 ```
 
-Or with GUI to see what's happening:
+或者使用 GUI 来查看发生的情况：
 
 ```sh
 rostest px4 mavros_posix_tests_iris.launch gui:=true headless:=false
 ```
 
-### Write a new MAVROS test (Python)
+### 写一个新的 MAVROS 测试（Python）
 
-> **Note** Currently in early stages, more streamlined support for testing (helper classes/methods etc.) to come.
+> **Note** 目前处于早期阶段，更加精简的测试支持（辅助类/方法等）即将到来。
 
-####1.) Create a new test script
+#### 1.）创建一个新的测试脚本
 
-Test scripts are located in `integrationtests/python_src/px4_it/mavros/`. See other existing scripts for examples. Also please consult the official ROS documentation on how to use [unittest](http://wiki.ros.org/unittest).
+测试脚本位于 `integrationtests/python_src/px4_it/mavros/` 中。 有关示例，请参阅其他现有脚本 另请参阅官方 ROS 文档，了解如何使用 [unittest](http://wiki.ros.org/unittest) 。
 
-
-Empty test skeleton:
+空测试骨架：
 
 ```python
 #!/usr/bin/env python
@@ -93,29 +87,29 @@ if __name__ == '__main__':
     rostest.rosrun(PKG, 'mavros_new_test', MavrosNewTest)
 ```
 
-####2.) Run the new test only
+#### 2.）仅运行新测试
 
 ```sh
-# Start simulation
+# 开始仿真
 cd <Firmware_clone>
 source integrationtests/setup_gazebo_ros.bash $(pwd)
 roslaunch px4 mavros_posix_sitl.launch
 
-# Run test (in a new shell):
+# 运行测试（在新的 shell 中）：
 cd <Firmware_clone>
 source integrationtests/setup_gazebo_ros.bash $(pwd)
 rosrun px4 mavros_new_test.py
 ```
 
-####3.) Add new test node to launch file
+#### 3.）添加新测试节点以启动文件
 
-In `launch/mavros_posix_tests_irisl.launch` add new entry in test group:
+在 `launch/mavros_posix_tests_irisl.launch` 中添加测试组中的新条目：
 
 ```xml
-	<group ns="$(arg ns)">
-		[...]
+    <group ns="$(arg ns)">
+        [...]
         <test test-name="mavros_new_test" pkg="px4" type="mavros_new_test.py" />
     </group>
 ```
 
-Run the comlpete test suite as described above.
+如上所述运行完整的测试套件。

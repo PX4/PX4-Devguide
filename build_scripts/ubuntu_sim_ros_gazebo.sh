@@ -82,6 +82,7 @@ if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'install_geograph
 sudo bash -c "$install_geo"
 
 # Go to the firmware directory
+clone_dir=~/src
 cd $clone_dir/Firmware
 
 if [[ ! -z $unsupported_os ]]; then

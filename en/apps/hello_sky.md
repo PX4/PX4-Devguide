@@ -83,7 +83,7 @@ In this section we create a *minimal application* that just prints out `Hello Sk
      > **Tip** The main function must be named `<module_name>_main` and exported from the module as shown.
      
      <span></span>
-     > **Tip** `PX4_INFO` is the equivalent of `printf` for the PX4 shell (included from **px4_log.h**). There are different log levels: `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`. Warnings and errors are additionally added to the [ULog](../log/ulog_file_format.md) and shown on [Flight Review](../log/flight_log_analysis.md).
+     > **Tip** `PX4_INFO` is the equivalent of `printf` for the PX4 shell (included from **px4_log.h**). There are different log levels: `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`. Warnings and errors are additionally added to the [ULog](../log/ulog_file_format.md) and shown on [Flight Review](https://logs.px4.io/).
 
 1. Create and open a new *cmake* definition file named **CMakeLists.txt**. 
    Copy in the text below:
@@ -127,23 +127,27 @@ In this section we create a *minimal application* that just prints out `Hello Sk
    	SRCS
    		px4_simple_app.c
    	DEPENDS
-   		platforms__common
    	)
    ```
    The `px4_add_module()` method builds a static library from a module description. 
    The `MAIN` block lists the name of the module - this registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
    
-   > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/common/px4_base.cmake](https://github.com/PX4/Firmware/blob/master/cmake/common/px4_base.cmake).
+   > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
    
+   > **Note**
+   > If you specify `DYNAMIC` as an option to `px4_add_module`, a *shared library* is created instead of a static library on POSIX platforms (these can be loaded without having to recompile PX4, and shared to others as binaries rather than source code).
+   > Your app will not become a builtin command, but ends up in a separate file called `examples__px4_simple_app.px4mod`.
+   > You can then run your command by loading the file at runtime using the `dyn` command: `dyn ./examples__px4_simple_app.px4mod`
 
 ## Build the Application/Firmware
 
-The application is now complete. In order to run it you first need to make sure that it is built as part of PX4. Applications are added to the build/firmware in the appropriate board-level *cmake* file for your target: 
+The application is now complete. In order to run it you first need to make sure that it is built as part of PX4. 
+Applications are added to the build/firmware in the appropriate board-level *cmake* file for your target: 
 
-* Posix SITL (Simulator): [Firmware/cmake/configs/posix_sitl_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_sitl_default.cmake)
-* Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
-* Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
-* *cmake* files for other boards can be found in [Firmware/cmake/configs/](https://github.com/PX4/Firmware/blob/master/cmake/configs/)
+* PX4 SITL (Simulator): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
+* Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
+* Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
+* *cmake* files for other boards can be found in [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)
 
 To enable the compilation of the application into the firmware create a new line for your application somewhere in the *cmake* file:
 
@@ -155,9 +159,9 @@ examples/px4_simple_app
 
 Build the example using the board-specific command:
 
-* jMAVSim Simulator: `make posix_sitl_default jmavsim`
-* Pixhawk v1/2: `make px4fmu-v2_default`
-* Pixhawk v3: `make px4fmu-v4_default`
+* jMAVSim Simulator: `make px4_sitl_default jmavsim`
+* Pixhawk v1/2: `make px4_fmu-v2_default` (or just `make px4_fmu-v2`)
+* Pixhawk v3: `make px4_fmu-v4_default`
 * Other boards: [Building the Code](../setup/building_px4.md#building_nuttx)
 
 
@@ -167,8 +171,8 @@ Build the example using the board-specific command:
 
 Enable the uploader and then reset the board:
 
-* Pixhawk v1/2: `make px4fmu-v2_default upload`
-* Pixhawk v3: `make px4fmu-v4_default upload`
+* Pixhawk v1/2: `make px4_fmu-v2_default upload`
+* Pixhawk v3: `make px4_fmu-v4_default upload`
 
 It should print before you reset the board a number of compile messages and at the end:
 
@@ -189,7 +193,8 @@ Rebooting.
 
 ### Connect the Console
 
-Now connect to the [system console](../debug/system_console.md) either via serial or USB. Hitting **ENTER** will bring up the shell prompt:
+Now connect to the [system console](../debug/system_console.md) either via serial or USB. 
+Hitting **ENTER** will bring up the shell prompt:
 
 ```sh
 nsh>
@@ -230,7 +235,8 @@ The application is now correctly registered with the system and can be extended 
 
 ## Test App (SITL)
 
-If you're using SITL the *PX4 console* is automatically started (see [Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build)). As with the *nsh console* (see previous section) you can type `help` to see the list of built-in apps.
+If you're using SITL the *PX4 console* is automatically started (see [Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build)). 
+As with the *nsh console* (see previous section) you can type `help` to see the list of built-in apps.
 
 Enter `px4_simple_app` to run the minimal app.
 
@@ -274,9 +280,9 @@ px4_pollfd_struct_t fds[] = {
 };
 
 while (true) {
-uORB/* wait for sensor update of 1 file descriptor for 1000 ms (1 second) */
-uORBint poll_ret = px4_poll(fds, 1, 1000);
-..
+	/* wait for sensor update of 1 file descriptor for 1000 ms (1 second) */
+	int poll_ret = px4_poll(fds, 1, 1000);
+	..
 	if (fds[0].revents & POLLIN) {
 		/* obtained data for the first file descriptor */
 		struct sensor_combined_s raw;
@@ -315,7 +321,7 @@ Your app will display 5 sensor values in the console and then exit:
 [px4_simple_app] Accelerometer:   0.0489          0.0804          0.0328
 ```
 
-> **Tip** The [Firmware/src/examples/px4_daemon_app](https://github.com/PX4/Firmware/tree/master/src/examples/px4_daemon_app) example shows how to write a daemon (background process) that can be controlled from the command line.
+> **Tip** The [Module Template for Full Applications](../apps/module_template.md) can be used to write background process that can be controlled from the command line.
 
 ## Publishing Data
 

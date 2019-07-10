@@ -1,69 +1,147 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/building_px4.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# 编译 PX4 软件
 
-# 编译px４软件
+对于模拟目标和硬件目标，可以在控制台上或 IDE 中生成 PX4。
 
+> **Note** 在执行这些说明之前，必须首先为主机操作系统和目标硬件安装 [开发者工具链](../setup/dev_env.md)。
 
-PX4可以在控制台或者图形界面/IDE开发
+<span></span>
 
-## 在控制台编译
-在去到图形界面或者IDE前，验证系统设置的正确性非常重要，因此打开控制台。在 OS X, 敲击 ⌘-space ，并搜索'terminal'。在Ubuntu，单击启动栏，搜索“terminal”（或者trl+alt+T）。在windows平台，在开始菜菜单找到px4文件夹，单击'PX4 Console'
+> **Tip** For solutions to common build problems see [Troubleshooting](#troubleshooting) below.
 
-![](../../assets/toolchain/terminal.png)
+## 下载 PX4 源代码 {#get_px4_code}
 
-终端在Home目录启动，我们默认去到'~/src/Firmware' 然后，克隆顶层资源库。有经验的开发者可以克隆自己的复制的[资源库](https://help.github.com/articles/fork-a-repo/) 
+The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
 
-<div class="host-code"></div>
+> **Tip** Forking the repository allows you to better manage your custom code. Later on you will be able to use *git* to share changes with the main project.
+
+The steps to fork and clone the project source code are:
+
+1. 在GitHub上 [注册](https://github.com/)。
+2. 转到 [Firmware](https://github.com/PX4/Firmware) 存储库，然后单击右上角附近的 **Fork** 按钮。 这将创建并打开分叉存储库。
+    
+    ![Github 分支按钮](../../assets/toolchain/github_fork.png)
+
+3. 复制 *Firmware* 存储库分叉的存储库URl。 最简单的方法是单击 **Clone 或下载** 按钮，然后复制URL：
+    
+    ![Github 克隆或下载按钮](../../assets/toolchain/github_clone_or_download.png)
+
+4. 在计算机上打开命令提示终端
+    
+    - 在 OS X 上，点击 ⌘-space 并搜索 “terminal” 。
+    - 在 Ubuntu 上，单击运行栏并搜索 “terminal”。
+    - 在 Windows 上，在“开始”菜单中找到 PX4 文件夹，然后单击 "PX4 Console"。
+
+5. 使用复制的 URL 克隆存储库分支。 如下所示:
+    
+        git clone https://github.com/<youraccountname>/Firmware.git
+        
+    
+    > **Tip** 如果您只是在尝试（并且不想进行任何永久性更改），则只需克隆主固件存储库，如下所示： ```git clone https://github.com/PX4/Firmware.git```
+    
+    Windows 用户 [参考 github 帮助 ](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/)。 您可以使用 *git* 命令行客户端，如上所示，也可以使用 *Windows的Github * 应用程序执行相同的操作。
+
+This will copy *most* of the *very latest* version of PX4 source code onto your computer (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
+
+<span id="specific_version_source"></span>
+
+### 获取特定发行版本
+
+To get the source code for a *specific older release*:
+
+1. 克隆固件存储库并导航到固件目录： 
+        sh
+        git clone https://github.com/PX4/Firmware.git
+        cd Firmware
+
+2. 列出所有发行版本（标签） 
+        sh
+        git tag -l
+
+3. 迁出特定tag的代码（比如 tag为 1.7.4的beta版本） 
+        sh
+        git checkout v1.7.4beta
+
+## 初次编译（使用 jMAVSim 模拟器） {#jmavsim_build}
+
+For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
+
+Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 
 ```sh
-mkdir -p ~/src
-cd ~/src
-git clone https://github.com/PX4/Firmware.git
+make px4_sitl jmavsim
+```
+
+This will bring up the PX4 console below:
+
+![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
+
+The drone can be flown by typing:
+
+```sh
+pxh> commander takeoff
+```
+
+![jMAVSim UI](../../assets/jmavsim_first_takeoff.png)
+
+The drone can be landed by typing `commander land` and the whole simulation can be stopped by doing **CTRL+C** (or by entering `shutdown`).
+
+Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
+
+![QGroundControl GoTo](../../assets/qgc_goto.jpg)
+
+> **Tip** PX4 can be used with a number of other [Simulators](../simulation/README.md), including [Gazebo Simulation](../simulation/gazebo.md) and [AirSim Simulation](../simulation/airsim.md). These are also started with *make* - e.g. ```make px4_sitl gazebo```
+
+## 基于NuttX / Pixhawk 的飞控板
+
+### 构建 {#building_nuttx}
+
+To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board.
+
+For example, to build for *Pixracer* you would use the following command:
+
+```sh
 cd Firmware
-git submodule update --init --recursive
-cd ..
+make px4_fmu-v4_default
 ```
 
+> **Note** In the example above the first part of the build target `px4_fmu-v4` is the firmware for a particular flight controller hardware and `default` is the configuration name (in this case the "default" configuration). The `default` is optional so you could instead do: ```make px4_fmu-v4```
 
-现在可以通过编译源代码来构建二进制文件。在直接使用硬件前，推荐先[进行仿真](../simulation/jmavsim.md)。喜欢在图形界面开发环境工作的用户也应该继续完成下面部分。
-
-
-###基于NuttX / Pixhawk的硬件板
-
-<div class="host-code"></div>
+A successful run will end with similar output to:
 
 ```sh
-cd Firmware
-make px4fmu-v2_default
+-- Build files have been written to: /home/youruser/src/Firmware/build/px4_fmu-v4_default
+[954/954] Creating /home/youruser/src/Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
 ```
 
-注意到“make”是一个字符命令编译工具，“px4fmu-v2”是硬件/ardupilot版本，“default”是默认配置，所有的PX4编译目标遵循这个规则。 
+The following list shows the build commands for common boards:
 
-成功编译的最后输出是这样的：
+- Pixhawk 4: `make px4_fmu-v5_default`
+- [Pixracer](https://docs.px4.io/en/flight_controller/pixracer.html): `make px4_fmu-v4_default`
+- [Pixhawk 3 Pro](https://docs.px4.io/en/flight_controller/pixhawk3_pro.html): `make px4_fmu-v4pro_default`
+- [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html): `make px4_fmu-v3_default`
+- [Pixhawk 2](https://docs.px4.io/en/flight_controller/pixhawk-2.html): `make px4_fmu-v3_default`
+- [mRo Pixhawk](https://docs.px4.io/en/flight_controller/mro_pixhawk.html): `make px4_fmu-v3_default`（支持 2MB 闪存）
+- [HKPilot32](https://docs.px4.io/en/flight_controller/HKPilot32.html): `make px4_fmu-v2_default`
+- [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4_fmu-v2_default`
+- [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4_fmu-v2_default`
+- [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make airmind_mindpx-v2_default`
+- [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav_x21_default` 
+- [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make bitcraze_crazyflie_default`
+- [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make intel_aerofc-v1_default`
+- [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** 您 **必须** 使用 [版本支持的GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware)编译（比如，和用于[CI/docker](../test_and_ci/docker.md)一样）或者从构建中删除模块。 使用不受支持的 GCC 构建可能会失败，因为 PX4 对飞控板有 1MB 的闪存限制。
+- Pixhawk 1 的 2 MB 闪存版: `make px4_fmu-v3_default`
 
-<div class="host-code"></div>
+> **Note** Generally the `_default` suffix is optional (i.e. you can also build using `make px4_fmu-v4`, `make bitcraze_crazyflie`, etc.).
+
+### 将固件烧录到飞控板
+
+Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
 
 ```sh
-[100%] Linking CXX executable firmware_nuttx
-[100%] Built target firmware_nuttx
-Scanning dependencies of target build/firmware_px4fmu-v2
-[100%] Generating nuttx-px4fmu-v2-default.px4
-[100%] Built target build/firmware_px4fmu-v2
+make px4_fmu-v4_default upload
 ```
 
-通过在命令后面添加‘upload’，编译的二进制程序就会通过USB上传到飞控硬件:
-
-<div class="host-code"></div>
-
-```sh
-make px4fmu-v2_default upload
-```
-
-上传成功时输出情况如下：
-
-<div class="host-code"></div>
+A successful run will end with this output:
 
 ```sh
 Erase  : [====================] 100.0%
@@ -74,60 +152,61 @@ Rebooting.
 [100%] Built target upload
 ```
 
-### Raspberry Pi 2 开发板
+## 其他飞控板
 
+The following boards have more complicated build and/or deployment instructions.
 
-以下命令编译生成Raspbian（posix_pi2_release）版本的固件。
+### Raspberry Pi 2/3
 
+The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+
+#### 跨编译器生成
 
 ```sh
 cd Firmware
-make posix_rpi2_release # for cross-compiler build
+make emlid_navio2_cross # for cross-compiler build
 ```
 
-"mainapp"可执行文件位于目录build/posix_rpi2_release/src/firmware/posix下。 将其复制到RPi（用你的RPi的IP或主机名替换YOUR_PI，关于如何访问你的RPi，查看[介绍](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start))
+The "px4" executable file is in the directory **build/emlid_navio2_cross/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
-然后使用以下命令设置你的RPi的IP（或主机名）：
+Then set the IP (or hostname) of your RPi using:
 
 ```sh
 export AUTOPILOT_HOST=192.168.X.X
 ```
 
-并上传：
+And upload it with:
 
 ```sh
 cd Firmware
-make posix_rpi_cross upload # for cross-compiler build
+make emlid_navio2_cross upload # for cross-compiler build
 ```
 
-然后，通过ssh连接并运行它（以root权限）：
+Then, connect over ssh and run it with (as root):
 
 ```sh
-sudo ./px4 px4.config
+sudo ./bin/px4 -s px4.config
 ```
 
-#### 本地构建
+#### 本机生成
 
-
-如果你要直接在Pi上编译，则需要在本地编译固件（posix_rpi_native）。
+If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
 
 ```sh
 cd Firmware
-make posix_rpi_native # for native build
+make emlid_navio2_native # for native build
 ```
 
-“px4”可执行文件位于目录build/posix_rpi_native/src/firmware/posix中。直接运行：
-
+The "px4" executable file is in the directory **build/emlid_navio2_native/**. Run it directly with:
 
 ```sh
-sudo ./build/posix_rpi_native/src/firmware/posix/px4 ./posix-configs/rpi/px4.config
+sudo ./build/emlid_navio2_native/px4 -s ./posix-configs/rpi/px4.config
 ```
 
-px4成功执行的情况如下：
+A successful build followed by executing px4 will give you something like this:
 
 ```sh
-
-______  __   __    ___
+<br />______  __   __    ___
 | ___ \ \ \ / /   /   |
 | |_/ /  \ V /   / /| |
 |  __/   /   \  / /_| |
@@ -137,171 +216,173 @@ ______  __   __    ___
 px4 starting.
 
 
-pxh>
+pxh&gt;
 ```
 
-#### 自启动
+#### 自动启动
 
-要自动启动px4，在`exit 0`之前，请将以下内容添加到文件`/etc/rc.local`中（如果使用本机构建，请相应调整）：
+To autostart px4, add the following to the file **/etc/rc.local** (adjust it accordingly if you use native build), right before the `exit 0` line:
 
+```sh
+cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 ```
-cd /home/pi && ./px4 -d px4.config > px4.log
-```
-
 
 ### Parrot Bebop
 
-支持的Bebop是非常早期的版本，使用前请特别注意。
+Support for the [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.html) is at an early stage and should be used very carefully.
 
 #### 编译
 
 ```sh
 cd Firmware
-make posix_bebop_default
+make parrot_bebop
 ```
 
-打开你的Bebop，通过Bebop的wifi连接你的主机。 然后，按下电源按钮四次以启用ADB并启动telnet守护程序。
+Turn on your Bebop and connect your host machine with the Bebop's wifi. Then, press the power button four times to enable ADB and to start the telnet daemon.
 
 ```sh
-make posix_bebop_default upload
+make parrot_bebop upload
 ```
 
-以上操作会将PX4 mainapp上传到/usr/bin并创建文件/home/root/parameters（如果尚未存在）。 此外，我们需要Bebop的mixer文件和px4.config。 当前这两个文件必须使用以下命令手动复制。
-
-```sh
-adb connect 192.168.42.1:9050
-adb push ROMFS/px4fmu_common/mixers/bebop.main.mix /home/root
-adb push posix-configs/bebop/px4.config /home/root
-adb disconnect
-```
+This will upload the PX4 mainapp into /data/ftp/internal_000/px4/ and create the file /home/root/parameters if not already present. This also uploads the mixer file and the px4.config file into the /home/root/ directory.
 
 #### 运行
 
-连接Bebop的wifi，然后按电源按钮四次。 接下来，通过telnet或adb shell与Bebop连接，并运行以下命令。
+Connect to the Bebop's wifi and press the power button four times. Next, connect with the Bebop via telnet or adb shell and run the commands below.
 
 ```sh
 telnet 192.168.42.1
 ```
 
-通过以下命令关闭Bebop的所有驱动。
+Kill the Bebop's proprietary driver with
 
 ```sh
 kk
 ```
 
-启动PX4 mainapp：
+and start the PX4 mainapp with:
 
 ```sh
-px4 /home/root/px4.config
+/data/ftp/internal_000/px4/px4 -s /home/root/px4.config /data/ftp/internal_000/px4/
 ```
 
-为了飞行Bebop，将操纵杆设备与主机连接并启动QGroundControl。 Bebop和操纵杆都应该被识别。按照说明校准传感器并设置操纵杆设备。
+In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors and setup your joystick device.
 
-#### 自启动
+#### 自动启动
 
+To auto-start PX4 on the Bebop at boot, modify the init script `/etc/init.d/rcS_mode_default`. Comment the following line:
 
-要使启动时在Bebop上自动启动PX4，请修改init脚本`/etc/init.d/rcS_mode_default`。 添加下行：
+    DragonStarter.sh -out2null &
+    
 
-```
-DragonStarter.sh -out2null &
-```
+Replace it with:
 
-替换为：
+    echo 1 > /sys/class/gpio/gpio85/value # enables the fan
+    /data/ftp/internal_000/px4/px4 -d -s /home/root/px4.config /data/ftp/internal_000/px4/ >/dev/null &
+    
 
-```
-px4 -d /home/root/px4.config > /home/root/px4.log
-```
-
-通过按电源按钮4次启用adb服务器，并按照上述方式连接到adb服务器：
-
+Enable adb server by pressing the power button 4 times and connect to adb server as described before:
 
 ```sh
 adb connect 192.168.42.1:9050
 ```
 
-将系统分区重新挂载为可写：
+Re-mount the system partition as writeable:
+
 ```sh
 adb shell mount -o remount,rw /
 ```
-为了避免手动配置文件，可以使用下面链接： https://gist.github.com/mhkabir/b0433f0651f006e3c7ac4e1cbd83f1e8
 
-保存原来的，并将其推送到Bebop
+In order to avoid editing the file manually, you can use this one: https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
+
+Save the original one and push this one to the Bebop
 
 ```sh
 adb shell cp /etc/init.d/rcS_mode_default /etc/init.d/rcS_mode_default_backup
 adb push rcS_mode_default /etc/init.d/
+adb shell chmod 755 /etc/init.d/rcS_mode_default
 ```
 
-同步并重启
+Sync and reboot:
+
 ```sh
 adb shell sync
 adb shell reboot
 ```
 
-### 基于QuRT / Snapdragon的开发板
+### OcPoC-Zynq Mini
+
+Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html) are covered in:
+
+- [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)（PX4 用户手册）
+- [OcPoC PX4 构建页](https://aerotenna.readme.io/docs/px4-setup)
+
+### 基于 QuRT / Snapdragon 的飞控板
+
+This section shows how to build for the [Qualcomm Snapdragon Flight](https://docs.px4.io/en/flight_controller/snapdragon_flight.html).
 
 #### 编译
 
-以下命令编译Linux和DSP端的固件。 两个可执行机构通过[muORB](../middleware/uorb.md)进行通信。
+> **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
+
+The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](../middleware/uorb.md).
 
 ```sh
 cd Firmware
-make eagle_default
+make atlflight_eagle_default
 ```
 
-要将SW加载到设备上，通过USB数据线进行连接，并确保设备已启动。 在新的终端窗口中运行：
+To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
 
 ```sh
 adb shell
 ```
 
-返回上一个终端并上传：
+Go back to previous terminal and upload:
 
 ```sh
-make eagle_default upload
+make atlflight_eagle_default upload
 ```
 
+Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle.
 
-请注意，这也将复制（并覆盖）[mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config)和[px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config)这两个配置文件到设备。 如果你要直接编辑启动脚本，文件路径分别为/usr/share/data/adsp/px4.config和/home/linaro/mainapp.config。
-
-当前需要手动复制mixer
+The mixer currently needs to be copied manually:
 
 ```sh
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 ```
 
-#### 运行
+#### 运行脚本
 
-运行DSP调试监视器：
+Run the DSP debug monitor:
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
-注意：如果是在Mac上，你也可以使用[nano-dm](https://github.com/kevinmehall/nano-dm)。 
+Note: alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
 
-回到ADB shell并运行px4：
-
+Go back to ADB shell and run px4:
 
 ```sh
 cd /home/linaro
-./px4 mainapp.config
+./px4 -s mainapp.config
 ```
 
-请注意，只要断开USB数据线（或者ssh会话断开连接），px4就会停止。 如果要飞行，你应该在启动后使px4自动启动。
+Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
 
-#### 自启动
+#### 自动启动
 
+To run the px4 as soon as the Snapdragon has booted, you can add the startup to `rc.local`:
 
-要在Snapdragon启动时一直运行px4，可以将启动添加到`rc.local`中： 或者直接编辑文件`/etc/rc.local`：
-
+Either edit the file `/etc/rc.local` directly on the Snapdragon:
 
 ```sh
 adb shell
 vim /etc/rc.local
 ```
 
-或将文件复制到你的电脑，在本地进行编辑，然后将其复制回来：
+Or copy the file to your computer, edit it locally, and copy it back:
 
 ```sh
 adb pull /etc/rc.local
@@ -309,93 +390,218 @@ gedit rc.local
 adb push rc.local /etc/rc.local
 ```
 
-对于自动启动，在 `exit 0`之前添加以下行：
+For the auto-start, add the following line before `exit 0`:
 
 ```sh
-(cd /home/linaro && ./px4 mainapp.config > mainapp.log)
+(cd /home/linaro && ./px4 -s mainapp.config > mainapp.log)
 
 exit 0
 ```
 
-确保`rc.local`是可执行的：
+Make sure that the `rc.local` is executable:
 
 ```sh
 adb shell
 chmod +x /etc/rc.local
 ```
 
-然后重新启动Snapdragon：
+Then reboot the Snapdragon:
 
 ```sh
 adb reboot
 ```
 
+## 用图形界面 IDE 编译
 
-##图形IDE界面下编译
-PX4 支持Qt Creator, Eclipse 和Sublime Text三种集成式开发环境。  Qt Creator是最友好的开发环境，所以被是唯一官方支持的IDE。除非资深的Eclipse 或Sublime开发者，否则一般不推荐使用Eclipse或Sublime进行二次开发。硬件底层开发可以在 [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) 和 a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) 找到源码。
+The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
 
-{% raw %}
-<video id="my-video" class="video-js" controls preload="auto" width="100%" 
-poster="http://docs.huihoo.com/qt/qtcreator/1.3/images/qtcreator-screenshots.png" data-setup='{"aspectRatio":"16:9"}'>
-  <source src="http://7xvob5.com1.z0.glb.clouddn.com/PX4%20Flight%20Stack%20Build%20Experience.mp4" type='video/mp4' >
-  <p class="vjs-no-js">
-    To view this video please enable JavaScript, and consider upgrading to a web browser that
-    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-  </p>
-</video>
-{% endraw %}
+{% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
 ## Qt Creator 功能
-Qt creator 提供单击选择变量、代码自动补全、代码编译和固件上传等功能。
+
+Qt creator offers clickable symbols, auto-completion of the complete codebase and building and flashing firmware.
 
 ![](../../assets/toolchain/qtcreator.png)
 
-### Linux 平台的 Qt Creator 
+### 在 Linux 上使用 Qt creator
 
-在启动Qt creator之前,  需要先创建[工程文件](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) :
-
-<div class="host-code"></div>
+Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
 
 ```sh
 cd ~/src/Firmware
 mkdir ../Firmware-build
 cd ../Firmware-build
-cmake ../Firmware -G "CodeBlocks - Unix Makefiles" -DCONFIG=nuttx_px4fmu-v2_default
+cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 ```
-接着启动Qt creator（如果系统没安装Qt Creator 百度一下linux下安装Qt Creator，然后再启动Qt Creator）并加载 Firmware 根目录下 CMakeLists.txt 文件，步骤：点击工具栏 File -> Open File or Project -> Select the CMakeLists.txt file 。
-如果加载提示ninja没有安装，请按照“高级Linux”章节进行ninja编译工具的安装，安装完成后，log out（登出）并log in（登入）。
 
-加载了文件后，点击左侧projects按钮，在run onfiguration栏选择'custom executable',在executable 栏里输入'make'， argument栏输入 'upload'，将‘play’按钮配置成运行工程。
+Then load the CMakeLists.txt in the root firmware folder via **File > Open File or Project** (Select the CMakeLists.txt file).
 
+After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
-### Windows平台的 Qt Creator 
+### 在 Windows 上使用 Qt creator
 
-<aside class="todo">
-Windows平台下的Qt Creator开发目前也没经过详细测试。
-</aside>
+> **Note** Windows has not been tested for PX4 development with Qt Creator.
 
-### Mac OS 平台的  Qt Creator 
+### 在 Mac OS 上使用 Qt creator
 
-启动 Qt Creator 之前，需要先创建 [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) ：
-
-<div class="host-code"></div>
+Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
 
 ```sh
 cd ~/src/Firmware
-mkdir build/creator
+mkdir -p build/creator
 cd build/creator
-cmake .. -G "CodeBlocks - Unix Makefiles"
+cmake ../.. -G "CodeBlocks - Unix Makefiles"
 ```
 
-完成上述步骤以后，启动 Qt Creator, 完成下面视频中的步骤，就可以进行工程文件的编译了。
+That's it! Start *Qt Creator*, then complete the steps in the video below to set up the project to build.
 
-{% raw %}
-<video id="my-video" class="video-js" controls preload="auto" width="100%" 
-poster="https://qt-wiki-uploads.s3.amazonaws.com/images/6/67/Qtcreator-welcome.png" data-setup='{"aspectRatio":"16:9"}'>
-  <source src="http://7xvob5.com2.z0.glb.qiniucdn.com/PX4%20Cmake%20Project%20Setup%20on%20Mac%20OS.mp4" type='video/mp4' >
-  <p class="vjs-no-js">
-    To view this video please enable JavaScript, and consider upgrading to a web browser that
-    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-  </p>
-</video>
-{% endraw %}
+{% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
+
+## PX4 创建生成目标 {#make_targets}
+
+The previous sections showed how you can call *make* to build a number of different targets, start simulators, use IDEs etc. This section shows how *make* options are constructed and how to find the available choices.
+
+The full syntax to call *make* with a particular configuration and initialization file is:
+
+```sh
+make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
+```
+
+**VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
+
+- **VENDOR:** 飞控板制造商：`px4`，`aerotenna`，`airmind`，`atlflight`，`auav`，`beaglebone`，`intel`，`nxp`，`parrot`等。 Pixhawk 系列飞控板对应 `PX4`。
+- **MODEL：** *飞控板模型</1 >"模型 "：`sitl`、`fmu-v2`、`fmu-v3`、`fmu-v4`、`fmu-v5`、`navio2` 等。</li> 
+    
+    - **VARIANT:**特定配置：例如 `rtps`、`lpe`，其中包含 `默认` 配置中不存在的组件。 最常见的是 `default`，可以省略。</ul> 
+    
+    > **Tip** You can get a list of *all* available `CONFIGURATION_TARGET` options using the command below: 
+    > 
+    >     sh
+    >       make list_config_targets
+    
+    **VIEWER_MODEL_DEBUGGER:**
+    
+    - **VIEWER:**这是启动和连接的模拟器（"查看器"）：`gazebo`, `jmavsim` <!-- , ?airsim -->
+    
+    - **MODEL:**要使用的 *载具* 模型（例如 `iris` (*default*)、`rover`、`tailsitter` 等），该模型将由模拟器加载。 The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](..\simulation\README.md#scripts) to select appropriate parameters.
+    
+    - **DEBUGGER:**要使用的调试器：`none` (*default*)、`ide`、`gdb`、`lldb`、`ddd`、`valgrind`、`callgrind`。 有关详细信息，请参阅 < 0>Simulation 调试 </0 >。
+    
+    > **Tip** You can get a list of *all* available `VIEWER_MODEL_DEBUGGER` options using the command below: 
+    > 
+    >     sh
+    >       make px4_sitl list_vmd_make_targets
+    
+    Notes:
+    
+    - `CONFIGURATION_TARGET` 和 `VIEWER_MODEL_DEBUGGER` 中的大多数值都有默认值, 因此是可选的。 比如，`gazebo` 相当于 `gazebo_iris` 或 `gazebo_iris_none` 。
+    - 如果要在其他两个设置之间指定默认值，可以使用三个下划线。 例如，`gazebo___gdb` 等效于 `gazebo_iris_gdb`。
+    - 您可以使用 `VIEWER_MODEL_DEBUGGER` 的 `none` 值启动 PX4 并等待模拟器。 For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
+    
+    The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
+    
+    Additional make targets are discussed in the following sections (list is not exhaustive):
+    
+    ### 二进制文件大小剖析 {#bloaty_compare_master}
+    
+    The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
+    
+    > **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
+    
+    *Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_nuttx) install *bloaty* as shown:
+    
+        git clone --recursive https://github.com/google/bloaty.git /tmp/bloaty \
+            && cd /tmp/bloaty && cmake -GNinja . && ninja bloaty && cp bloaty /usr/local/bin/ \
+            && rm -rf /tmp/*
+        
+    
+    The example below shows how you might see the impact of removing the *mpu9250* driver from `px4_fmu-v2_default`. First it locally sets up a build without the driver:
+    
+    ```sh
+     % git diff
+    diff --git a/boards/px4/fmu-v2/default.cmake b/boards/px4/fmu-v2/default.cmake
+    index 40d7778..2ce7972 100644
+    --- a/boards/px4/fmu-v2/default.cmake
+    +++ b/boards/px4/fmu-v2/default.cmake
+    @@ -36,7 +36,7 @@ px4_add_board(
+                    imu/l3gd20
+                    imu/lsm303d
+                    imu/mpu6000
+    
+    -               imu/mpu9250
+    +               #imu/mpu9250
+                    #iridiumsbd
+                    #irlock
+                    #magnetometer # all available magnetometer drivers
+    ```
+    
+    Then use the make target, specifying the target build to compare (`px4_fmu-v2_default` in this case):
+    
+    ```sh
+    % make px4_fmu-v2_default bloaty_compare_master
+    ...
+    ...
+    ...
+         VM SIZE                                                                                        FILE SIZE
+     --------------                                                                                  --------------
+      [DEL]     -52 MPU9250::check_null_data(unsigned int*, unsigned char)                               -52  [DEL]
+      [DEL]     -52 MPU9250::test_error()                                                                -52  [DEL]
+      [DEL]     -52 MPU9250_gyro::MPU9250_gyro(MPU9250*, char const*)                                    -52  [DEL]
+      [DEL]     -56 mpu9250::info(MPU9250_BUS)                                                           -56  [DEL]
+      [DEL]     -56 mpu9250::regdump(MPU9250_BUS)                                                        -56  [DEL]
+    ...                                        -336  [DEL]
+      [DEL]    -344 MPU9250_mag::_measure(ak8963_regs)                                                  -344  [DEL]
+      [DEL]    -684 MPU9250::MPU9250(device::Device*, device::Device*, char const*, char const*, cha    -684  [DEL]
+      [DEL]    -684 MPU9250::init()                                                                     -684  [DEL]
+      [DEL]   -1000 MPU9250::measure()                                                                 -1000  [DEL]
+     -41.3%   -1011 [43 Others]                                                                        -1011 -41.3%
+      -1.0% -1.05Ki [Unmapped]                                                                       +24.2Ki  +0.2%
+      -1.0% -10.3Ki TOTAL                                                                            +14.9Ki  +0.1%
+    ```
+    
+    This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
+    
+    ## Firmware Version & Git Tags {#firmware_version}
+    
+    The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
+    
+    ![Firmware info](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
+    
+    These are extracted at build time from the active *git tag* for your repo tree. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
+    
+    > **Warning** If you use a different git tag format, versions information may not be displayed properly.
+    
+    ## Troubleshooting {#troubleshooting}
+    
+    ### General Build Errors
+    
+    Many build problems are caused by either mismatching submodules or an incompletely cleaned-up build environment. Updating the submodules and doing a `distclean` can fix these kinds of errors:
+    
+        git submodule update --recursive
+        make distclean
+        
+    
+    ### Flash overflowed by XXX bytes
+    
+    The `region 'flash' overflowed by XXXX bytes` error indicates that the firmware is too large for the target hardware platform. This is common for `make px4_fmu-v2_default` builds, where the flash size is limited to 1MB.
+    
+    If you're building the *vanilla* master branch, the most likely cause is using an unsupported version of GCC. In this case, install the version specified in the [Developer Toolchain](../setup/dev_env.md) instructions.
+    
+    If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. In this case you will need to remove any drivers/modules that you don't need from the build.
+    
+    ### macOS: Too many open fileserror {#macos_open_files}
+    
+    MacOS allows a default maximum of 256 open files in all running processes. The PX4 build system opens a large number of files, so you may exceed this number.
+    
+    The build toolchain will then report `Too many open files` for many files, as shown below:
+    
+    ```sh
+    /usr/local/Cellar/gcc-arm-none-eabi/20171218/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/bin/ld: cannot find NuttX/nuttx/fs/libfs.a: Too many open files
+    ```
+    
+    The solution is to increase the maximum allowed number of open files (e.g. to 300). You can do this in the macOS *Terminal* for each session:
+    
+    - Run this script [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh), or
+    - Enter this command: 
+            sh
+            ulimit -S -n 300

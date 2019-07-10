@@ -1,19 +1,21 @@
 # PX4 System Console
 
-The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](http://nicadrone.com/index.php?id_product=61&controller=product), but a plain FTDI cable can be used as well.
+The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](https://shop.titaneliteinc.com/index.php?route=product/product&product_id=1294), but a plain FTDI cable can be used as well.
 
-## System Console vs. Shell
+## System Console vs. Shells
 
-There are multiple shells, but only one console: The system console is the location where all boot output (and applications auto-started on boot) is printed.
+There is just one *System Console*, which runs on one specific UART (the debug port, as configured in NuttX), and is commonly attached via FTDI cable.
+- Used for *low-level debugging/development*: bootup, NuttX, startup scripts, board bringup, development on central parts of PX4 (e.g. uORB).
+- In particular, is the only place where all boot output (including information about applications auto-started on boot) is printed.
 
-  * System console (first shell): Hardware serial port
-  * Additional shells: Pixhawk on USB (e.g. lists as /dev/tty.usbmodem1 on Mac OS)
+Shells provide higher-level access to the system:
+- Used for basic module testing/running commands.
+- Only display the output of modules you start (and therefore cannot debug the boot process).
+- Cannot display the output of tasks running on the work queue.
 
-> **Info**
-> USB shell: To just run a few quick commands or test an application connecting to the USB
-> shell is sufficient. The Mavlink shell can be used for this, see below.
-> The hardware serial console is only needed for boot debugging or when USB should be used
-> for MAVLink to connect a [GCS](../qgc/README.md).
+There can be several shells, either running on a dedicated UART, or via MAVLink.
+Since MAVLink provides more flexibility, the shell is nowadays only used [via MAVLink](#mavlink_shell).
+
 
 ## Snapdragon Flight: Wiring the Console
 
@@ -103,12 +105,17 @@ nsh> ls
 nsh> free
 ```
 
-## MAVLink Shell
+## MAVLink Shell{#mavlink_shell}
 
 For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be
-accessed via mavlink. This works via serial link or WiFi (UDP/TCP). Make sure
+accessed via MAVLink. This works via serial link (USB/Telemetry) or WiFi (UDP/TCP). Make sure
 that QGC is not running, then start the shell with e.g.
-`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source). Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection. For e.g `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot. You can also start nsh shell on QGC directly: **Analyze > Mavlink Console**. You may first have to install the dependencies with `sudo pip install pymavlink pyserial`.
+`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source, you may first have to install the dependencies with `sudo pip install pymavlink pyserial`).
+Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection.
+For example `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot.
+.
+
+> **Tip** You can also use the nsh shell on [QGC directly](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html).
 
 # Snapdragon DSP Console
 
@@ -125,7 +132,7 @@ Note: Alternatively, especially on Mac, you can also use [nano-dm](https://githu
 Run the main app on the linaro side:
 ```
 cd /home/linaro
-./px4 px4.config
+./px4 -s px4.config
 ```
 
 You can now use all apps loaded on the DSP from the linaro shell with the following syntax:

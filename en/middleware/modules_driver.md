@@ -1,4 +1,76 @@
 # Modules Reference: Driver
+Subcategories:
+- [Distance Sensor](modules_driver_distance_sensor.md)
+
+## atxxxx
+Source: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
+
+
+### Description
+OSD driver for the ATXXXX chip that is mounted on the OmnibusF4SD board for example.
+
+It can be enabled with the OSD_ATXXXX_CFG parameter.
+
+### Usage {#atxxxx_usage}
+```
+atxxxx <command> [arguments...]
+ Commands:
+   start         Start the driver
+     [-b <val>]  SPI bus (default: use board-specific bus)
+
+   stop
+
+   status        print status info
+```
+## batt_smbus
+Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
+
+
+### Description
+Smart battery driver for the BQ40Z50 fuel gauge IC.
+
+### Examples
+To write to flash to set parameters. address, number_of_bytes, byte0, ... , byteN
+```
+batt_smbus -X write_flash 19069 2 27 0
+```
+
+
+### Usage {#batt_smbus_usage}
+```
+batt_smbus <command> [arguments...]
+ Commands:
+   start
+     [-X <val>]  ullpt
+                 default: BATT_SMBUS_BUS_I2C_EXTERNAL
+     [-T <val>]  ullpt
+                 default: BATT_SMBUS_BUS_I2C_EXTERNAL1
+     [-R <val>]  ullpt
+                 default: BATT_SMBUS_BUS_I2C_EXTERNAL2
+     [-I <val>]  ullpt
+                 default: BATT_SMBUS_BUS_I2C_INTERNAL
+     [-A <val>]  ullpt
+                 default: BATT_SMBUS_BUS_ALL
+
+   man_info      Prints manufacturer info.
+
+   report        Prints the last report.
+
+   unseal        Unseals the devices flash memory to enable write_flash
+                 commands.
+
+   seal          Seals the devices flash memory to disbale write_flash commands.
+
+   suspend       Suspends the driver from rescheduling the cycle.
+
+   resume        Resumes the driver from suspension.
+
+   write_flash   Writes to flash. The device must first be unsealed with the
+                 unseal command.
+     [address]   The address to start writing.
+     [number of bytes] Number of bytes to send.
+     [data[0]...data[n]] One byte of data at a time separated by spaces.
+```
 ## fmu
 Source: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
 
@@ -9,12 +81,6 @@ This module is responsible for driving the output and reading the input pins. Fo
 px4io driver is used for main ones.
 
 It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
-In addition it does the RC input parsing and auto-selecting the method. Supported methods are:
-- PPM
-- SBUS
-- DSM
-- SUMD
-- ST24
 
 The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy.
 By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder
@@ -59,25 +125,31 @@ fmu <command> [arguments...]
 
    mode_gpio
 
-   mode_rcin     Only do RC input, no PWM outputs
-
    mode_pwm      Select all available pins as PWM
 
-   mode_pwm1
+   mode_pwm8
+
+   mode_pwm6
+
+   mode_pwm5
+
+   mode_pwm5cap1
 
    mode_pwm4
 
-   mode_pwm2
+   mode_pwm4cap1
+
+   mode_pwm4cap2
 
    mode_pwm3
 
    mode_pwm3cap1
 
+   mode_pwm2
+
    mode_pwm2cap2
 
-   mode_pwm6
-
-   bind          Send a DSM bind command (module must be running)
+   mode_pwm1
 
    sensor_reset  Do a sensor reset (SPI bus)
      [<ms>]      Delay time in ms between reset and re-enabling
@@ -96,40 +168,6 @@ fmu <command> [arguments...]
    stop
 
    status        print status info
-```
-## gpio_led
-Source: [modules/gpio_led](https://github.com/PX4/Firmware/tree/master/src/modules/gpio_led)
-
-
-### Description
-This module is responsible for drving a single LED on one of the FMU AUX pins.
-
-It listens on the vehicle_status and battery_status topics and provides visual annunciation on the LED.
-
-### Implementation
-The module runs on the work queue. It schedules at a fixed frequency or 5 Hz
-
-### Examples
-It is started with:
-```
- gpio_led start
-```
-To drive an LED connected AUX1 pin.
-
-OR with any of the avaliabel AUX pins
-```
- gpio_led start -p 5
-```
-To drive an LED connected AUX5 pin.
-
-### Usage {#gpio_led_usage}
-```
-gpio_led <command> [arguments...]
- Commands:
-   start         annunciation on AUX OUT pin
-     [-p]        Use specified AUX OUT pin number (default: 1)
-
-   stop
 ```
 ## gps
 Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
@@ -154,6 +192,16 @@ gps stop
 gps start -f
 ```
 
+Starting 2 GPS devices (the main GPS on /dev/ttyS3 and the secondary on /dev/ttyS4):
+```
+gps start -d /dev/ttyS3 -e /dev/ttyS4
+```
+
+Initiate warm restart of GPS device
+```
+gps reset warm
+```
+
 ### Usage {#gps_usage}
 ```
 gps <command> [arguments...]
@@ -161,18 +209,52 @@ gps <command> [arguments...]
    start
      [-d <val>]  GPS device
                  values: <file:dev>, default: /dev/ttyS3
+     [-b <val>]  Baudrate (can also be p:<param_name>)
+                 default: 0
      [-e <val>]  Optional secondary GPS device
                  values: <file:dev>
+     [-g <val>]  Baudrate (secondary GPS, can also be p:<param_name>)
+                 default: 0
      [-f]        Fake a GPS signal (useful for testing)
      [-s]        Enable publication of satellite info
      [-i <val>]  GPS interface
                  values: spi|uart, default: uart
      [-p <val>]  GPS Protocol (default=auto select)
-                 values: ubx|mtk|ash
+                 values: ubx|mtk|ash|eml
 
    stop
 
    status        print status info
+
+   reset         Reset GPS device
+     cold|warm|hot Specify reset type
+```
+## pga460
+Source: [drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
+
+
+### Description
+Ultrasonic range finder driver that handles the communication with the device and publishes the distance via uORB.
+
+### Implementation
+This driver is implented as a NuttX task. This Implementation was chosen due to the need for polling on a message
+via UART, which is not supported in the work_queue. This driver continuously takes range measurements while it is
+running. A simple algorithm to detect false readings is implemented at the driver levelin an attemptto improve
+the quality of data that is being published. The driver will not publish data at all if it deems the sensor data
+to be invalid or unstable.
+
+### Usage {#pga460_usage}
+```
+pga460 <command> [arguments...]
+ Commands:
+   start <device_path>
+     [device_path] The pga460 sensor device path, (e.g: /dev/ttyS6
+
+   status
+
+   stop
+
+   help
 ```
 ## pwm_out_sim
 Source: [drivers/pwm_out_sim](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_out_sim)
@@ -199,6 +281,38 @@ pwm_out_sim <command> [arguments...]
    mode_pwm      use 8 PWM outputs
 
    mode_pwm16    use 16 PWM outputs
+
+   stop
+
+   status        print status info
+```
+## rc_input
+Source: [drivers/rc_input](https://github.com/PX4/Firmware/tree/master/src/drivers/rc_input)
+
+
+### Description
+This module does the RC input parsing and auto-selecting the method. Supported methods are:
+- PPM
+- SBUS
+- DSM
+- SUMD
+- ST24
+- TBS Crossfire (CRSF)
+
+### Implementation
+By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread,
+specified via start flag -t, to reduce latency.
+When running on the work queue, it schedules at a fixed frequency.
+
+### Usage {#rc_input_usage}
+```
+rc_input <command> [arguments...]
+ Commands:
+   start         Start the task (without any mode set, use any of the mode_*
+                 cmds)
+     [-t]        Run as separate task instead of the work queue
+
+   bind          Send a DSM bind command (module must be running)
 
    stop
 
@@ -232,7 +346,7 @@ tap_esc <command> [arguments...]
                  default: 4
 ```
 ## vmount
-Source: [drivers/vmount](https://github.com/PX4/Firmware/tree/master/src/drivers/vmount)
+Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
 
 ### Description

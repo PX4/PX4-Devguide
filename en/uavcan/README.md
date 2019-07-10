@@ -5,9 +5,10 @@
 [UAVCAN](http://uavcan.org) is an onboard network which allows the autopilot to connect to avionics. It supports hardware like:
 
 * Motor controllers
-  * [Pixhawk ESC](https://pixhawk.org/modules/pixhawk_esc)
-  * [SV2740 ESC](https://github.com/thiemar/vectorcontrol)
   * [Zubax Orel 20](https://zubax.com/product/zubax-orel-20)
+  
+    > **Note** Runs [Sapog Firmware](https://github.com/px4/sapog) (open source).
+      Based on [Sapog Reference Hardware]( https://github.com/PX4/Hardware/tree/master/sapog_reference_hardware).
 * Airspeed sensors
   * [Thiemar airspeed sensor](https://github.com/thiemar/airspeed)
 * GNSS receivers for GPS and GLONASS

@@ -1,4 +1,5 @@
 # Modules Reference: Controller
+
 ## fw_att_control
 Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
 
@@ -59,6 +60,28 @@ To reduce control latency, the module directly polls on the gyro topic published
 ### Usage {#mc_att_control_usage}
 ```
 mc_att_control <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
+## mc_pos_control
+Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_pos_control)
+
+
+### Description
+The controller has two loops: a P loop for position error and a PID loop for velocity error.
+Output of the velocity controller is thrust vector that is split to thrust direction
+(i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
+
+The controller doesn't use Euler angles for its work, they are generated only for more human-friendly control and
+logging.
+
+### Usage {#mc_pos_control_usage}
+```
+mc_pos_control <command> [arguments...]
  Commands:
    start
 

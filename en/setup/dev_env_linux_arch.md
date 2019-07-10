@@ -1,6 +1,8 @@
 # Development Environment on ArchLinux
 
-> **Note** These instructions allow you to build PX4 (without RTPS) for NuttX targets, using an unsupported version of GCCE from the package manager. The instructions have been tested on Antergos (an Arch Linux based distribution) as it is easier to set up than Arch Linux. We hope to provide fully tested instructions with the supported toolchain in the near future.
+> **Note** These instructions allow you to build PX4 (without RTPS) for NuttX targets, using an unsupported version of GCCE from the package manager.
+The instructions have been tested on Antergos (an Arch Linux based distribution) as it is easier to set up than Arch Linux.
+We hope to provide fully tested instructions with the supported toolchain in the near future.
 
 ## Permissions
 
@@ -42,11 +44,11 @@ To install the dependencies manually, enter the following lines into a terminal.
 ```sh
 # Common dependencies for all targets
 sudo pacman -Sy --noconfirm \
-    base-devel make cmake ccache git \
+    base-devel make cmake ccache git ant \
     ninja python-pip tar unzip zip vim wget
     
 # Install Python dependencies
-pip install serial empy numpy toml jinja2
+pip install serial empy numpy toml jinja2 pyyaml cerberus
 
 # Install genromfs
 wget https://sourceforge.net/projects/romfs/files/genromfs/0.5.2/genromfs-0.5.2.tar.gz
@@ -80,4 +82,4 @@ sudo pacman -Sy --noconfirm \
 
 <!-- import GCC toolchain common documentation -->
 
-{% include "_gcc_toolchain_installation.txt" %}
+{% include "_gcc_toolchain_installation.md" %}

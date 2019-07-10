@@ -1,492 +1,582 @@
-# 模块参考：命令
+# 模块参考：命令（Command）
+
 ## bl_update
-源代码: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
-从文件烧写引导程序的实用程序
-### 用法
-```
-bl_update [参数...]
-   setopt        设置可选位来解锁FLASH（仅在锁定状态时需要）
+源码： [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
-   <file>        引导程序的二进制文件
-```
+用于从文件中刷新飞行控制器的 引导加载程序（bootloader ）
+
+### 用法 {#bl_update_usage}
+
+    bl_update [arguments...]
+       setopt        设置选项字节（option bits）以解锁  FLASH (仅当其处于锁定状态时)
+    
+       &lt;file&gt;        Bootloader bin 文件
+    
+
 ## config
-源代码: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
 
-配置传感器驱动器（采样率、发布频率以及范围等等）
-### 用法
-```
-config <命令> [参数...]
- 命令:
+源码： [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
 
-<file:dev> 参数通常是/dev/{gyro,accel,mag}i之一
-   block         锁定传感器主题发布
-     <file:dev>  传感器驱动文件
+配置传感器的驱动（设定传感器采样 & 发布速率，量程等）
 
-   unblock       解锁传感器主题发布
-     <file:dev>  传感器驱动文件
+### 用法 {#config_usage}
 
-   sampling      设置传感器采样率
-     <file:dev> <rate> 传感器驱动文件和采样频率，单位Hz
+    config &lt;command&gt; [arguments...]
+     Commands:
+    
+    &lt;file:dev&gt; 参数通常是 /dev/{gyro,accel,mag}i 中的一个
+       block         堵塞传感器话题的发布
+         &lt;file:dev&gt;  传感器设备文件
+    
+       unblock       恢复传感器话题的发布
+         &lt;file:dev&gt;  传感器设备文件
+    
+       sampling      设定传感器采样速率
+         &lt;file:dev&gt; &lt;rate&gt; 传感器设备文件，采样速率 Hz
+    
+       rate          设定传感器数据发布速率
+         &lt;file:dev&gt; &lt;rate&gt; 传感器设备文件，发布速率 Hz
+    
+       range         设定传感器测量量程
+         &lt;file:dev&gt; &lt;rate&gt; 传感器设备文件和量程
+    
+       check         执行传感器自检（并打印自检信息）
+         &lt;file:dev&gt;  传感器设备文件
+    
 
-   rate          设置传感器发布频率
-     <file:dev> <rate> 传感器驱动文件和发布频率，单位Hz
-
-   range         设置传感器测量范围
-     <file:dev> <rate> 传感器驱动文件和范围
-
-   check         执行传感器自检（并打印信息）
-     <file:dev>  传感器驱动文件
-```
 ## dumpfile
-源代码: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 
-转储文件实用程序。 以二进制模式打印文件大小和内容（不要用CR LF替换LF）到stdout。
-### 用法
-```
-dumpfile [参数...]
-     <file>      转储文件
-```
+源码： [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
+
+转储文件应用。 将文件大小及内容以二进制模式输出值标准输出设备（不使用 LF 替换 CR LF）。
+
+### 用法 {#dumpfile_usage}
+
+    dumpfile [arguments...]
+         &lt;file&gt;      需要进行转储的文件
+    
+
+## dyn
+
+源码：[systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
+
+### 描述
+
+载入并运行一个未被编译至 PX4 二进制文件内的动态 PX4 模块。
+
+### 示例
+
+    dyn ./hello.px4mod start
+    
+
+### 用法 {#dyn_usage}
+
+    dyn [arguments...]
+         &lt;file&gt;      包含模块的文件
+         [arguments...] 传递给模块的参数
+    
+
 ## esc_calib
-源代码: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
-电调校准工具
+源码： [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
-校准流程（运行此命令将引导完成）：
-- 移除螺旋桨，电调断电
-- 关闭姿态控制器：mc_att_control stop，fw_att_control stop
-- 确保安全开关关闭
-- 运行此命令
+ESC 校准工具。
 
-### 用法
-```
-esc_calib [参数...]
-     [-d <val>]  选择PWM输出设备
-                 可选: <file:dev>, 缺省: /dev/pwm_output0
-     [-l <val>]  最低PWM值，单位，us
-                 缺省: 1000
-     [-h <val>]  最高PWM值，单位，us
-                 缺省: 2000
-     [-c <val>]  以这种形式选择通道：1234 (每一位代表一个通道，1为第一通道)
-     [-m <val>]  通过位掩码的形式选择通道(例如，0xF为第三通道))
-                 缺省: 0
-     [-a]        选择所有通道
-```
+校准流程（运行命令将会引导你完成此流程）：
+
+- 移除螺旋桨，将 ESC 断电
+- 停止姿态控制器： mc_att_control stop， fw_att_control stop
+- 确保安全设置断开（Make sure safety is off）
+- 运行这个命令
+
+### 用法 {#esc_calib_usage}
+
+    esc_calib [arguments...]
+         [-d &lt;val&gt;]  选择 PWM 输出设备
+                     取值 &lt;file:dev&gt;, 默认值： /dev/pwm_output0
+         [-l &lt;val&gt;]  Low PWM 值，单位 us
+                     默认值： 1000
+         [-h &lt;val&gt;]  High PWM 值，单位 us
+                     默认值：2000
+         [-c &lt;val&gt;]  使用如下形式选取通道：1234 (1 位数字表示一个通道，
+                     1=第一个通道)
+         [-m &lt;val&gt;]  使用位掩码（bitmask）选取通道 0xF, 3)
+         [-a]        Select all channels
+    
+
 ## hardfault_log
-源代码: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
-硬故障实用程序 
+源码： [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
-在启动脚本中使用来处理硬故障
+硬错误处理程序。
 
-### 用法
-```
-hardfault_log <命令> [参数...]
- 命令:
-   check         检查是否存在未提交的硬故障
+在启动脚本中用于处理硬错误。
 
-   rearm         抛掉一个未提交的硬故障
+### 用法 {#hardfault_log_usage}
 
-   fault         抛出一个硬故障 (这个命令会让系统崩溃：)
-     [0|1]       硬故障类型: 0=除零, 1=断言 (缺省值为0)
+    hardfault_log &lt;command&gt; [arguments...]
+     Commands:
+       check         检查是否存在未提交的硬错误（uncommited hardfault）
+    
+       rearm         抛下一个未提交的硬错误
+    
+       fault         生成一个硬错误 (该命令会导致系统崩溃:)
+         [0|1]       硬错误类型： 0=除 0 错误, 1=断言错误（Assertion） (默认值=0)
+    
+       commit        讲一个未提交的硬错误写入 /fs/microsd/fault_%i.txt (然后
+                     rearm但不 reset）
+    
+       count         读取重启计数器，计算一个未提交的硬错误引起的重启次数
+                      (该结果将作为程序的退出代码返回)
+    
+       reset         重置重启计数器
+    
 
-   commit        将未提交的硬故障写入/fs/microsd/fault_%i.txt
-                 (并执行rearm，但不会执行reset)
-
-   count         读取重启计数器，统计一个未提交的硬故障的重启次数
-                （作为程序的退出码返回）
-
-   reset         重置重启计数器
-```
 ## led_control
-源代码: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
 
-### 说明
-控制和测试（外部）LED的命令行工具。
+源码： [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
 
-要使用它，请确保有一个处理led_control uorb主题的驱动程序运行。
+### 描述
 
-可以设置不同的优先级，例如一个模块可以以低优先级设置颜色，另一个模块可以以高优先级闪烁N次，那么LED将在闪烁后自动返回到较低优先级的状态。 `reset`命令也可以用于返回较低的优先级。
+用于控制 & 测试 （外部） LED's 的命令行工具。
+
+要使用该命令请确保有一个负责处理 led_control 的 uorb 主题处于运行状态。
+
+有不同的优先级，例如，一个模块可设置一个低优先级的颜色，然后另一个模块可设置一个高优先级的闪烁 N 次的动作，LED 在完成闪烁后会自动返回较低优先级的状态。 也可使用 `reset` 命令来返回至一个更低的优先级。
 
 ### 示例
-第一个LED以蓝色闪烁5次
-```
-led_control blink -c blue -l 0 -n 5
-```
 
+第一个 LED 闪烁蓝光 5 次：
 
-### 用法
-```
-led_control <命令> [参数...]
- 命令:
-   test          运行测试模式
+    led_control blink -c blue -l 0 -n 5
+    
 
-   on            点亮LED
+### 用法 {#led_control_usage}
 
-   off           熄灭LED
+    led_control &lt;command&gt; [arguments...]
+     Commands:
+       test          运行一个测试范例
+    
+       on            点亮 LED
+    
+       off            熄灭 LED
+    
+       reset         重置 LED 优先级
+    
+       blink         闪烁 LED 灯 N 次
+         [-n &lt;val&gt;]  闪烁次数
+                     默认值： 3
+         [-s &lt;val&gt;]  设定闪烁速度
+                    取值： fast|normal|slow, 默认值：normal
+    
+       breathe       LED 持续淡入 & 淡出（呼吸效果）
+    
+       flash         以 1Hz 速度快速闪烁两次然后关闭 LED
+    
+    下述参数可用于上述除  'test' 命令之外的所有命令：
+         [-c &lt;val&gt;]  color
+                     取值： red|blue|green|yellow|purple|amber|cyan|white, 默认值：
+                     white
+         [-l &lt;val&gt;]  需要控制哪一个 LED： 0, 1, 2, ... (default=all)
+         [-p <val>]  Priority
+                     default: 2
+    
 
-   reset         重置LED的优先级
-
-   blink         闪烁LED
-     [-n <val>]  闪烁次数
-                 缺省: 3
-     [-s <val>]  设置闪烁速度
-                 可选: fast|normal|slow, 默认: normal
-
-   breathe       持续地淡入淡出（呼吸灯）
-
- 以下参数适用于除'test'之外的所有上述命令：
-     [-c <val>]  颜色
-                 可选: red|blue|green|yellow|purple|amber|cyan|white
-                 缺省: white
-     [-l <val>]  指定控制的LED: 0, 1, 2, ... 
-                 缺省: -1(所有)
-     [-p <val>]  优先级
-                 缺省: 2
-```
 ## listener
-源代码: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
 
-用于监听uORB主题并将数据打印到控制台的实用程序。
+源码： [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
 
-限制：只能监听一个主题的第一个实例。
+用于监听 uORB 主题并将数据输出在控制台上的工具。
 
+### 用法 {#listener_usage}
 
-### 用法
-```
-listener [参数...]
-     <topic_name> [<num_msgs>] uORB主题名称以及消息数目(可选，缺省为1)
-```
+    listener &lt;command&gt; [arguments...]
+     Commands:
+         &lt;topic_name&gt; uORB 主题名称
+         [-i &lt;val&gt;]  主题实例
+                     default: 0
+         [-n &lt;val&gt;]  消息数量
+                     default: 1
+         [-r &lt;val&gt;]  订阅速率 (0 表示不限制)
+                     default: 0
+    
+
 ## mixer
-源代码: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
 
-### 说明
-加载或附加混控器文件到ESC驱动程序。
+源码： [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
 
-注意，驱动程序必须支持所用的ioctl函数，例如NuttX支持，但RPi不支持。
-### 用法
-```
-mixer <命令> [参数...]
- 命令:
-   load
-     <file:dev> <file> 输出设备(例如：/dev/pwm_output0)和混控器文件
+### 描述
 
-   append
-     <file:dev> <file> 输出设备(例如：/dev/pwm_output0)和混控器文件
-```
+将混控器文件加载或者附加到 ESC 驱动中。
+
+需要注意的是驱动必须支持这个命令使用的 ioctl ，这一点在 Nuttx 上是成立的，但在其它平台上就不一定成立，如 RPI。
+
+### 用法 {#mixer_usage}
+
+    mixer &lt;command&gt; [arguments...]
+     Commands:
+       load
+         &lt;file:dev&gt; &lt;file&gt; 输出装置 （例如，/dev/pwm_output0）和混控器文件
+       append
+         &lt;file:dev&gt; &lt;file&gt; 输出装置 （例如，/dev/pwm_output0）和混控器文件
+    
+
 ## motor_ramp
-源代码: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
 
+源码： [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
 
-### 说明
-测试电机加速的应用
+### 描述
 
-开始前，请务必关闭所有运行中的姿态控制器：
-```
-mc_att_control stop
-fw_att_control stop
-```
+用于测试电机的加速。
 
-启动时，作为后台任务启动，运行指定时间，然后退出。
+在开始之前需要确保停止所有姿态控制器的运行。
 
-注意：此命令目前只支持`/dev/pwm_output0`输出。
+    mc_att_control stop
+    fw_att_control stop
+    
+
+命令开始后将开启一个后台任务，该任务会持续若干秒（根据设定值）然后退出。
+
+Note: 该命令目前只支持 `/dev/pwm_output0` 输出。
 
 ### 示例
-```
-motor_ramp sine 1100 0.5
-```
 
-### 用法
-```
-motor_ramp [参数...]
-     ramp|sine|square 模式
-     <min_pwm> <time> [<max_pwm>] pwm值单位为us，时间单位为sec
+    motor_ramp sine 1100 0.5
+    
 
- 警告：电机将加速到全速！
-```
+### 用法 {#motor_ramp_usage}
+
+    motor_ramp [arguments...]
+         ramp|sine|square mode
+         &lt;min_pwm&gt; &lt;time&gt; [&lt;max_pwm&gt;] pwm value in us, time in sec
+    
+    警告：电机将加速到最大速度！
+    
+
 ## motor_test
-源代码: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
-测试电机的实用程序
+源码： [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
-注意：这只能用于支持motor_test uorb主题的驱动程序（目前有uavcan和tap_esc）
-### 用法
-```
-motor_test <命令> [参数...]
- 命令:
-   test          设置电机到指定输出值
-     [-m <val>]  待测试电机(0...7，如不指定，则为全部)
-                 缺省: -1
-     [-p <val>]  以百分比设置输出值 (0...100)
-                 缺省: 0
+电机测试工具。
 
-   stop          停止所有电机
+Note: 该命令只能用于支持 motor_test uorb 主题的驱动（目前仅有 uavcan 和 tap_esc）。
 
-   iterate       依次启动并停止所有电机
-```
+### 用法 {#motor_test_usage}
+
+    motor_test <command> [arguments...]
+     Commands:
+       test          Set motor(s) to a specific output value
+         [-m <val>]  Motor to test (0...7, all if not specified)
+         [-p <val>]  Power (0...100)
+                     default: 0
+    
+       stop          Stop all motors
+    
+       iterate       Iterate all motors starting and stopping one after the other
+    
+
 ## mtd
-源代码: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
-挂载并测试分区（基于飞控板定义的FRAM / EEPROM存储）的实用程序
-### 用法
-```
-mtd <命令> [参数...]
- 命令:
-   status        打印状态信息
+源码： [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
-   start         挂载分区
+用于加载和测试分区的工具（由飞控板定义的 FRAM/EEPROM 存储）
 
-   readtest      执行读取测试
+### 用法 {#mtd_usage}
 
-   rwtest        执行读写测试
+    mtd &lt;command&gt; [arguments...]
+     Commands:
+       status        打印状态信息
+    
+       start         挂在分区
+    
+       readtest      进行读取测试
+    
+       rwtest        进行读写测试
+    
+       erase         擦除分区
+    
+     'start', 'readtest', 'rwtest' 和 'erase' 命令有如下可选参数：
+         [&lt;partition_name1&gt; [&lt;partition_name2&gt; ...]] 分区名称
+                     （例如，/fs/mtd_params），如未指定分区名称则可使用系统默认值。
+    
 
-   erase         擦除分区
-
- 命令 'start'、'readtest'、'rwtest'和'erase'有可选参数： 
-     [<partition_name1> [<partition_name2> ...]] 
-     分区名称 (例如，/fs/mtd_params), 如果未指定的话，该参数为系统默认值
-```
 ## nshterm
-源代码: [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
 
-在给定端口上启动NSH shell。
+源码： [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
 
-以前用于在USB串行端口上启动shell，现在运行mavlink，可以在mavlink上使用shell。
-### 用法
-```
-nshterm [参数...]
-     <file:dev>  运行shell的设备(例如，/dev/ttyACM0)
-```
+在指定端口启动一个 NSH shell
+
+该命令此前被用于在 USB 串口端口开启一个 shell， 现在它将在那个端口运行 MAVLink，而且可以通过 MAVLink 来使用一个 shell。
+
+### 用法 {#nshterm_usage}
+
+    nshterm [arguments...]
+         &lt;file:dev&gt;  指定 shell 从哪个设备上运行 （例如，/dev/ttyACM0）
+    
+
 ## param
-源代码: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
 
-### 说明
-通过shell或脚本访问和操作参数的命令。
+源码： [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
 
-例如，用于在启动脚本中设置与机型相关的参数。
+### 描述
 
-当参数更改时可以自动保存，例如，`param set`。参数通常存储在FRAM或SD卡中。 `param select`可以用于更改存储位置以供后续保存（需要在每次启动时重新配置）。
+在 shell 或者脚本中获取参数并对其进行操作的命令。
 
-每个参数都有一个'used'标志，它在引导过程中被读取时设置。 它只用于向地面控制站显示相关参数。
+例如，在启动脚本中使用此命令来设置特定于机型的参数。
+
+例如， 使用 `param set` 可以在对参数进行修改后自动进行保存。 这些参数通常被存储在 FRAM 或者 SD 卡中。 `param select` 可用于更改后续参数保存的存储位置（这一选项在每次启动时都需要重新进行配置）。
+
+如果启用了基于 FLASH 的后端（例如， Intel Aero 或 Omnibus 在编译时完成该操作的相关设定 ），`param select` 不会产生任何作用，默认值将始终为 FLASH 后端。 然而，仍可使用 `param save/load &lt;file&gt;` 从文件中读取/写入参数。
+
+每个参数都有一个 "已使用" 的标志位，如在启动过程中该参数被读取了那个该标志位将会被设置。 它只是用于向地面控制站显示有关联的参数。
 
 ### 示例
-更改机型并确保机型的默认参数被加载：
-```
-param set SYS_AUTOSTART 4001
-param set SYS_AUTOCONFIG 1
-reboot
-```
 
-### 用法
-```
-param <命令> [参数...]
- 命令:
-   load          从文件中载入参数（覆盖所有）
-     [<file>]    文件名 (如未给出，则使用缺省值)
+更改机型，并确保机型的默认参数被加载了：
 
-   import        从文件中导入参数
-     [<file>]    文件名 (如未给出，则使用缺省值)
+    param set SYS_AUTOSTART 4001
+    param set SYS_AUTOCONFIG 1
+    reboot
+    
 
-   save          保存参数到文件
-     [<file>]    文件名 (如未给出，则使用缺省值)
+### 用法 {#param_usage}
 
-   select        选择缺省文件
-     [<file>]    文件名 (如未给出，则使用<root>/eeprom/parameters)
+    param <command> [arguments...]
+     Commands:
+       load          Load params from a file (overwrite all)
+         [<file>]    File name (use default if not given)
+    
+       import        Import params from a file
+         [<file>]    File name (use default if not given)
+    
+       save          Save params to a file
+         [<file>]    File name (use default if not given)
+    
+       select        Select default file
+         [<file>]    File name (use <root>/eeprom/parameters if not given)
+    
+       show          Show parameter values
+         [-a]        Show all parameters (not just used)
+         [-c]        Show only changed and used params
+         [-q]        quiet mode, print only param value (name needs to be exact)
+         [<filter>]  Filter by param name (wildcard at end allowed, eg. sys_*)
+    
+       status        Print status of parameter system
+    
+       set           Set parameter to a value
+         <param_name> <value> Parameter name and value to set
+         [fail]      If provided, let the command fail if param is not found
+    
+       compare       Compare a param with a value. 如果相等则命令成功。
+         &lt;param_name&gt; &lt;value&gt; 参数名称和进行对比的值
+    
+       greater       将一个参数与一个数值进行比较。 如果参数比该值要大则命令成功
+         &lt;param_name&gt; &lt;value&gt; P参数名称和进行对比的值
+    
+       touch         讲一个参数表以为已使用 (used)
+         [&lt;param_name1&gt; [&lt;param_name2&gt;]] 参数名称 (一个或者多个)
+    
+       reset         将参数重置为默认值
+         [&lt;exclude1&gt; [&lt;exclude2&gt;]] 不重置相匹配的参数 (允许尾端的通配符)
+    
+       reset_nostart 将 SYS_AUTOSTART 和 SYS_AUTOCONFIG 之外的所有参数重置为默认值
+         [&lt;exclude1&gt; [&lt;exclude2&gt;]] 不重置相匹配的参数 (允许尾端的通配符)
+    
+       index         显示指定索引位置的参数的值
+         &lt;index&gt;     Index: 一个整数 >= 0
+    
+       index_used    显示指定索引位置的已使用参数的值
+         &lt;index&gt;     Index: 一个整数 >= 0
+    
+       find          显示一个参数的索引值
+         &lt;param&gt;     参数名称
+    
 
-   show          显示参数值
-     [-c]        仅显示有变动的参数
-     [<filter>]  参数名过滤器(允许在参数名的最后使用通配符，例如sys_*)
-
-   set           设置参数
-     <param_name> <value> 参数名和参数值
-     [fail]      如果设置了该参数，那么如果没有找到参数，则命令失败
-
-   compare       比较参数，如果相等，则命令成功
-     <param_name> <value> 参数名和待比较的值
-
-   greater       比较参数，如果参数大于待比较值，则命令成功
-     <param_name> <value> 参数名和待比较的值
-
-   reset         重置参数到缺省值
-     [<exclude1> [<exclude2>]] 不重置匹配到的参数(允许在参数名的最后使用通配符)
-
-   reset_nostart 重置除过SYS_AUTOSTART和SYS_AUTOCONFIG以外的参数到缺省值 
-     [<exclude1> [<exclude2>]] 不重置匹配到的参数(允许在参数名的最后使用通配符)
-
-   index         显示给定序号的参数
-     <index>     序号: 大于等于0的整数
-
-   index_used    显示给定序号的已用参数
-     <index>     序号: 大于等于0的整数
-
-   find          显示给定参数的序号
-     <param>     参数名
-```
 ## perf
-源代码: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
-打印性能计数器的工具
-### 用法
-```
-perf [参数...]
-   reset         重置所有计数器
+源码： [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
-   latency       打印HRT定时器延迟直方图
+用于打印计数器性能的工具。
 
- 如果没有给出，则打印所有性能计数器
-```
+### 用法 {#perf_usage}
+
+    perf [arguments...]
+       reset         重置所有计数器
+    
+       latency       打印 HRT 计时器延时柱状体
+    
+    如未指定任何参数则打印所有计数器的性能表现。
+    
+
 ## pwm
-源代码: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
 
-### 说明
-该命令用于配置舵机和电调的PWM输出。
+源码： [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
 
-默认设备`/dev/pwm_output0`是主通道，辅助通道为`/dev/pwm_output1`（`-d`参数指定）。
+### 描述
 
-在启动脚本中使用来确保PWM参数(`PWM_*`)被正确配置（如果指定机型配置，则由机型配置文件提供PWM参数）。
+此命令用于配置舵机和 ESC 的 PWM 控制输出。
 
- `pwm info`显示当前设置（修正值是一个偏移量并由`PWM_MAIN_TRIMx`和`PWM_AUX_TRIMx`配置）。
+默认设备是主通道的 `/dev/pwm_output0` ，AUX 辅助通道位于 `/dev/pwm_output1` (需要搭配 `-d` 参数)。
 
-应该设置锁定值，使得电机在最小值时不会旋转（同样用于终止开关）。
+它在启动脚本中用于确保应用了 PWM 参数 (`PWM_*`) （当机型配置中指定了参数的情况下将改用由机型配置提供的参数）。 `pwm info` 用于显示当前的设定 (配平值是一个偏移量，可使用 `PWM_MAIN_TRIMx` 和 `PWM_AUX_TRIMx` 进行设置)。
 
-通道被分配成组。由于硬件限制，更新速率只能以组为单位设置。使用`pwm info`显示组。如果使用`-c`参数，则必须包括该组的所有通道。
+锁定值（disarmed value）的设置应保证电机不会转动（该取值也被应用于 kill switch），最小值（minimum value）的设定应保证电机会转动。
 
-可以将参数`-p`和`-r`设置为参数，而不是指定一个整数：例如，使用-p p:PWM_MIN。
+通道被分配到一个组。 由于硬件限制, 只能为每个组设置更新速率。 使用 `pwm info` 显示所有的组。 如果使用了 `-c` 参数, 则参数后面必须跟上包含的分组中的所有通道。
 
-注意，在OneShot模式下，PWM范围[1000, 2000]自动映射到[125, 250]。
+参数 `-p` 和 `-r` 可设置为一个参数变量而不是一个指定的证书：例如， -p p:PWM_MIN 。
+
+注意，在 OneShot 模式下， PWM 范围 [1000, 2000] 会被自动映射到 [125, 250] 。
 
 ### 示例
-设置所有通道的PWM速率为400Hz：
-```
-pwm rate -a -r 400
-```
 
-测试例如通道1和通道3的输出，将PWM值设置为1200 us：
-```
-pwm arm
-pwm test -c 13 -p 1200
-```
+将所有通道的 PWM 速率设置为 400 Hz:
 
+    pwm rate -a -r 400
+    
 
-### 用法
-```
-pwm <命令> [参数...]
- 命令:
-   arm           解锁输出
+测试 通道的输出，例如通道1和通道3，并将 PWM 值设置为 1200us：
 
-   disarm        锁定输出
+    pwm arm
+    pwm test -c 13 -p 1200
+    
 
-   info          打印所有通道的当前配置信息
+### 用法 {#pwm_usage}
 
-   forcefail     强制切换Failsafe模式
-     on|off      打开|关闭
+    pwm &lt;command&gt; [arguments...]
+     Commands:
+       arm           解锁模式输出
+       disarm        锁定模式输出
+    
+       info          打印当前所有通道的设定
+    
+       forcefail     强制进入故障保护（Failsafe） 模式。 PWM 输出将被设置为故障保护值。
+         on|off      开启或关闭
+    
+       terminatefail 启用 Termination Failsafe 模式。 该设定为真时所有故障保护都是不可恢复的（即便满足恢复条件）。
+         on|off      开启或关闭
+    
+       rate          配置 PWM 速率
+         -r &lt;val&gt;    PWM 速率，单位为 Hz (0 = Oneshot，否则该取值应处于 50 到 400Hz之间)
+    
+       oneshot       配置 Oneshot125 (速率被设为 0)
+    
+       failsafe      设定故障保护模式的 PWM 值
+    
+       disarmed      设定锁定模式 PWM 值
+    
+       min           设定最小 PWM 值
+    
+       max           设定最大 PWM 值
+    
+       test          将输出设定为某一特定值直到按键 'q' 或 'c' 或 'ctrl-c'
+                     被按下
+    
+       steps         从 0 到 100% 运行 5 次阶跃
+    
+      'failsafe', 'disarmed', 'min', 'max' 和 'test' 命令都需要指定一个 PWM值：
+         -p &lt;val&gt;    PWM 值 （例如，1100）
+    
+    'rate', 'oneshot', 'failsafe', 'disarmed', 'min', 'max', 'test'
+     和 'steps' 命令还额外需要使用如下命令来指定进行设定的控制通道：
+         [-c &lt;val&gt;]  使用如下形式进行通道的选取: 1234 (1 个数字表示一个通道，
+                     1=第一个通道)
+         [-m &lt;val&gt;]  使用位掩码（bitmask）选取通道 0xF, 3)
+         [-g <val>]  Select channels by group (eg. （例如，0, 1, 2. use 'pwm info' to show
+                     groups)
+         [-a]        Select all channels
+    
+     These parameters apply to all commands:
+         [-d <val>]  Select PWM output device
+                     values: <file:dev>, default: /dev/pwm_output0
+         [-v]        Verbose output
+         [-e]        Exit with 1 instead of 0 on error
+    
 
-   terminatefail 强制切换Termination Failsafe模式
-     on|off      打开|关闭
-
-   rate          配置PWM速率
-     -r <val>    PWM速率单位为Hz(0为Oneshot模式，其它50到400Hz)
-
-   oneshot       配置Oneshot125 (速率设置为0)
-
-   failsafe      设置Failsafe模式的PWM值
-
-   disarmed      设置锁定PWM值
-
-   min           设置最小PWM值
-
-   max           设置最大PWM值
-
-   test          设置输出为指定值直到'q'或'c'或'ctrl-c'被按下
-
-   steps         从0到100%分5步运行
-
- 命令'failsafe'、'disarmed'、'min'、'max'和'test'需要指定PWM值：
-     -p <val>    PWM值 (例如1100)
-
- 命令'rate'、'oneshot'、'failsafe'、'disarmed'、'min'、'max'、'test'和'steps'
- 需要额外以下列参数中的一个指定通道：
-     [-c <val>]  以这种形式选择通道：1234 (每一位代表一个通道，
-                 1代表第一个通道)
-     [-m <val>]  以位掩码的形式选择通道(例如，0xF, 3)
-                 缺省: 0
-     [-g <val>]  通过组来选择通道(例如，0, 1, 2. 使用'pwm info'显示组)
-                 缺省: 0
-     [-a]        选择所有通道
-
- 这些参数可用于所有命令：
-     [-d <val>]  选择PWM输出设备
-                 可选: <file:dev>, 缺省: /dev/pwm_output0
-     [-v]        详细输出
-     [-e]        发生错误时以1退出，而不是0
-```
 ## reboot
-源代码: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
+
+源码： [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
 
 重启系统
-### 用法
-```
-reboot [参数...]
-     [-b]        重启进入引导程序
-```
+
+### 用法 {#reboot_usage}
+
+    reboot [arguments...]
+         [-b]        重启至 bootloader
+         [lock|unlock] 锁定/释放停机锁定（shutdown lock） (用于测试目的)
+    
+
 ## sd_bench
-源代码: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
 
-测试SD卡的速度
-### 用法
-```
-sd_bench [参数...]
-     [-b <val>]  一次读写的块大小
-                 缺省: 4096
-     [-r <val>]  运行次数
-                 缺省: 5
-     [-d <val>]  运行持续时间，单位：ms
-                 缺省: 2000
-     [-s]        每块运行结束后调用fsync(缺省，每次运行完成后调用)
-```
+源码： [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
+
+测试 SD 卡的速度
+
+### 用法 {#sd_bench_usage}
+
+    sd_bench [arguments...]
+         [-b &lt;val&gt;]  每次读/写操作的块的大小
+                     默认值： 4096
+         [-r &lt;val&gt;]  运行次数
+                     默认值： 5
+         [-d &lt;val&gt;]  每次运行的持续时间，单位为 ms
+                     默认值： 2000
+         [-s]        完成每个块之后调用 fsync （默认值=每次运行结束时）
+    
+
 ## top
-源代码: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
 
-监控运行进程及其CPU占用，堆栈使用情况，优先级和状态
-### 用法
-```
-top [参数...]
-   once          仅仅打印一次
-```
+源码：[systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
+
+监控运行的进程机器 CPU、栈堆使用情况和优先级、运行状态。
+
+### 用法 {#top_usage}
+
+    top [arguments...]
+       once          仅打印一次负载情况
+    
+
 ## usb_connected
-源代码: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
-检查USB是否连接的实用程序。以前在启动脚本中使用。 返回0表示USB已连接，否则为1。
-### 用法
-```
-usb_connected [参数...]
-```
+源码： [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
+
+检查 USB 是否已连接的工具。 此前曾在启动脚本中使用过， 返回值为 0 表示 USB 已连接，否则返回 1 。
+
+### 用法 {#usb_connected_usage}
+
+    usb_connected [arguments...]
+    
+
 ## ver
-源代码: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
 
-打印各种版本信息的工具
-### 用法
-```
-ver <命令> [参数...]
- 命令:
-   hw            硬件架构
+源码： [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
 
-   mcu           MCU信息
+用于打印各种版本信息的工具。
 
-   git           git版本信息
+### 用法 {#ver_usage}
 
-   bdate         构建日期和时间
-
-   gcc           编译器信息
-
-   uid           UUID
-
-   mfguid        制造商UUID
-
-   uri           构建URI
-
-   all           打印所有版本信息
-
-   hwcmp         比较硬件版本(匹配的话返回0)
-     <hw>        待比较的硬件(例如，PX4FMU_V4)
-```
+    ver &lt;command&gt; [arguments...]
+     Commands:
+       hw            硬件构架
+    
+       mcu           MCU 信息
+    
+       git           git 版本信息
+    
+       bdate         构建日期和时间
+       gcc           编译器信息
+    
+       bdate         构建日期和时间
+    
+       px4guid       PX4 GUID
+    
+       uri           构建 URI
+    
+       all           打印所有版本
+    
+       hwcmp         比较硬件版本 (相符时返回 0)
+         &lt;hw&gt; [&lt;hw2&gt;] 需要进行比较的硬件 （例如，PX4_FMU_V4）。 如果指定了多种硬件类型将执行或比较（OR comparison）
+    
+       hwtypecmp     比较硬件类型（匹配则返回 0 ）
+         &lt;hwtype&gt; [&lt;hwtype2&gt;] 需要进行比较的硬件类型 （例如 V2） 如果指定了多种硬件类型将执行或比较（OR comparison）

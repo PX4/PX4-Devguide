@@ -18,15 +18,17 @@ yum install python-setuptools python-numpy
 easy_install pyserial
 easy_install pexpect
 easy_install toml
-yum install openocd libftdi-devel libftdi-python python-argparse flex bison-devel ncurses-devel ncurses-libs autoconf texinfo libtool zlib-devel cmake
+easy_install pyyaml
+easy_install cerberus
+yum install openocd libftdi-devel libftdi-python python-argparse flex bison-devel ncurses-devel ncurses-libs autoconf texinfo libtool zlib-devel cmake vim-common
 ```
 
 > **Note** You may want to also install  python-pip and screen
 
 ## GCC Toolchain Installation
 <!-- import GCC toolchain common documentation -->
-{% include "_gcc_toolchain_installation.txt" %}
+{% include "_gcc_toolchain_installation.md" %}
 
 
 <!-- import docs ninja build system -->
-{% include "_ninja_build_system.txt" %}
+{% include "_ninja_build_system.md" %}

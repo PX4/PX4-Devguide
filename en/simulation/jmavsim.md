@@ -6,9 +6,9 @@ jMAVSim is a simple multirotor/Quad simulator that allows you to fly *copter* ty
 
 * Quad
 
-This topic shows how to set up jMAVSim to connect with a SITL version of PX4. 
+This topic shows how to set up jMAVSim to connect with a SITL version of PX4.
 
-> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#using-jmavsim-quadrotor)).
+> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#jmavsimgazebo-hitl-environment).
 
 
 ## Simulation Environment
@@ -26,7 +26,7 @@ graph LR;
 After ensuring that the [simulation prerequisites](../setup/dev_env.md) are installed on the system, just launch: The convenience make target will compile the POSIX host build and run the simulation.
 
 ```sh
-make posix_sitl_default jmavsim
+make px4_sitl_default jmavsim
 ```
 
 This will bring up the PX4 shell:
@@ -77,9 +77,19 @@ For example, to set the latitude, longitude and altitude:
 export PX4_HOME_LAT=28.452386
 export PX4_HOME_LON=-13.867138
 export PX4_HOME_ALT=28.5
-make posix_sitl_default jmavsim
+make px4_sitl_default jmavsim
 ```
 
+### Change Simulation Speed
+
+The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
+
+```
+export PX4_SIM_SPEED_FACTOR=2
+make px4_sitl_default jmavsim
+```
+
+For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
 ### Using a Joystick {#joystick}
 
@@ -96,6 +106,20 @@ make broadcast jmavsim
 
 The simulator broadcasts its address on the local network as a real drone would do.
 
+### Start JMAVSim and PX4 Separately
+
+You can start JMAVSim and PX4 separately:
+
+```
+./Tools/jmavsim_run.sh -l
+make px4_sitl none
+```
+
+This allows a faster testing cycle (restarting jMAVSim takes significantly more time).
+
+## Multi-Vehicle Simulation
+
+JMAVSim can be used for multi-vehicle simulation: [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
 
 ## Extending and Customizing
 
@@ -110,4 +134,4 @@ The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the sa
 ## Important Files
 
 * The startup script is in the [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) folder and named `rcS_SIM_AIRFRAME`, the default is `rcS_jmavsim_iris`.
-* The root file system (the equivalent of `/` as seen by the) is located inside the build directory: `build/posix_sitl_default/src/firmware/posix/rootfs/`
+* The simulated root file system ("`/`" directory) is created inside the build directory here: `build/px4_sitl_default/tmp/rootfs`.

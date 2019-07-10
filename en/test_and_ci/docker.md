@@ -1,6 +1,6 @@
 # PX4 Docker Containers
 
-Docker containers are provided for the complete [PX4 development toolchain](http://localhost:4000/en/setup/dev_env.html#supported-targets) including NuttX and Linux based hardware, [Gazebo Simulation](../simulation/gazebo.md) and [ROS](../simulation/ros_interface.md).
+Docker containers are provided for the complete [PX4 development toolchain](../setup/dev_env.md#supported-targets) including NuttX and Linux based hardware, [Gazebo Simulation](../simulation/gazebo.md) and [ROS](../simulation/ros_interface.md).
 
 This topic shows how to use the [available docker containers](#px4_containers) to access the build environment in a local Linux computer.
 
@@ -13,14 +13,14 @@ This topic shows how to use the [available docker containers](#px4_containers) t
 
 [Install Docker](https://docs.docker.com/installation/) for your Linux computer, preferably using one of the Docker-maintained package repositories to get the latest stable version. You can use either the *Enterprise Edition* or (free) *Community Edition*.
 
-For local installation of non-production setups on *Ubuntu*, the quickest and easiest way to install Docker is to use the [convenience script](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-convenience-script) as shown below (alternative installation methods are found on the same page):
+For local installation of non-production setups on *Ubuntu*, the quickest and easiest way to install Docker is to use the [convenience script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script) as shown below (alternative installation methods are found on the same page):
 
 ```sh
 curl -fsSL get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-The default installation requires that you invoke *Docker* as the root user (i.e. using `sudo`). If you would like to [use Docker as a non-root user](https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user), you can optionally add the user to the "docker" group and then log out/in:
+The default installation requires that you invoke *Docker* as the root user (i.e. using `sudo`). If you would like to [use Docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user), you can optionally add the user to the "docker" group and then log out/in:
 ```sh
 # Create docker group (may not be required)
 sudo groupadd docker
@@ -38,8 +38,8 @@ Container | Description
 ---|---
 px4-dev-base | Base setup common to all containers
 &emsp;px4-dev-nuttx | NuttX toolchain
-&emsp;&emsp;px4-dev-simulation | NuttX toolchain + simulation (jMAVSim, Gazebo)
-&emsp;&emsp;&emsp;px4-dev-ros | NuttX toolchain, simulation + ROS (incl. MAVROS)
+&emsp;px4-dev-simulation | NuttX toolchain + simulation (jMAVSim, Gazebo)
+&emsp;&emsp;px4-dev-ros | NuttX toolchain, simulation + ROS (incl. MAVROS)
 &emsp;px4-dev-raspi | Raspberry Pi toolchain
 &emsp;px4-dev-snapdragon | Qualcomm Snapdragon Flight toolchain
 &emsp;px4-dev-clang | Clang tools
@@ -69,7 +69,7 @@ The easiest way to use the containers is via the [docker_run.sh](https://github.
 For example, to build SITL you would call (from within the **/Firmware** directory):
 
 ```sh
-sudo ./Tools/docker_run.sh 'make posix_sitl_default'
+sudo ./Tools/docker_run.sh 'make px4_sitl_default'
 ```
 Or to start a bash session using the NuttX toolchain:
 ```
@@ -122,7 +122,7 @@ If everything went well you should be in a new bash shell now. Verify if everyth
 
 ```sh
 cd src/firmware    #This is <container_src>
-make posix_sitl_default gazebo
+make px4_sitl_default gazebo
 ```
 
 

@@ -1,8 +1,13 @@
 # Bash on Windows Toolchain
 
+> **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.
+
 Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to:
 * Build firmware for NuttX/Pixhawk targets. 
 * Run the PX4 JMAVSim simulation (using a Windows-hosted X-Windows app to display the UI)
+
+> **Note** This mechanism only works on Windows 10. It essentially runs the toolchain in a virtual machine, and is relatively slow compared to other solutions.
+
 
 ### Setup Environment
 
@@ -22,13 +27,13 @@ To setup the development environment:
   
 ### Build Firmware
 
-To build the firmware (i.e. for px4fmu-v4):
+To build the firmware (i.e. for px4_fmu-v4):
 1. Enter the following commands in the bash shell:
    ```
    cd ~/src/Firmware
-   make px4fmu-v4_default
+   make px4_fmu-v4_default
    ```
-   On successful completion you'll find the firmware here: `Firmware/build/px4fmu-v4_default/px4fmu-v4_default.px4`
+   On successful completion you'll find the firmware here: `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
    
    > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx--pixhawk-based-boards)
    
@@ -48,7 +53,7 @@ To run JMAVSim:
    > **Tip** Add this line to the Ubuntu **.bashrc** file if you don't want to enter it every session.
 1. Start PX4 and jMAVSim in the bash shell:
    ```sh
-   make posix jmavsim
+   make px4_sitl jmavsim
    ```
    The JMAVSim UI is then displayed in XMing as shown below:
    
@@ -58,7 +63,7 @@ To run JMAVSim:
   ```sh
   export DISPLAY=:0
   export GAZEBO_IP=127.0.0.1
-  make posix gazebo
+  make px4_sitl gazebo
  ```
 
 
@@ -87,7 +92,3 @@ To add this compiler to your environment manually:
    ```
    export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH
    ```
-
-
-<!-- import docs for other tools and next steps. -->
-{% include "_addition_dev_tools.txt" %}

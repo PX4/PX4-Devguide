@@ -1,8 +1,6 @@
 # Installing Files and Code
 
-PX4 code can be developed on [Linux](../setup/dev_env_linux.md) or [Mac OS](../setup/dev_env_mac.md). We recommend [Ubuntu Linux LTS edition](https://wiki.ubuntu.com/LTS) as this enables building [all PX4 targets](#supported-targets), and using most [simulators](../simulation/README.md) and [ROS](../ros/README.md).
-
-> **Warning** A [Windows](../setup/dev_env_windows.md) toolchain also exists but is not officially supported (we highly discourage its use). It is possible to build PX4 on Windows using a virtual machine running Ubuntu Linux, but this may not provide a reliable platform for Simulation. Before starting to develop on Windows, consider installing a dual-boot environment with [Ubuntu](http://ubuntu.com). 
+PX4 code can be developed on [Linux](../setup/dev_env_linux.md), [Mac OS](../setup/dev_env_mac.md), or [Windows](../setup/dev_env_windows.md). We recommend [Ubuntu Linux LTS edition](https://wiki.ubuntu.com/LTS) as this enables building [all PX4 targets](#supported-targets), and using most [simulators](../simulation/README.md) and [ROS](../ros/README.md).
 
 ## Supported Targets
 
@@ -24,6 +22,6 @@ The installation of the development environment is covered below:
 
   * [Mac OS](../setup/dev_env_mac.md)
   * [Linux](../setup/dev_env_linux.md)
-  * [Windows](../setup/dev_env_windows.md) (not recommended!)
+  * [Windows](../setup/dev_env_windows.md)
 
 If you're familiar with Docker you can also use one of the prepared containers: [Docker Containers](../test_and_ci/docker.md)

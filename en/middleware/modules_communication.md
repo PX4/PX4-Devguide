@@ -1,4 +1,5 @@
 # Modules Reference: Communication
+
 ## frsky_telemetry
 Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
 
@@ -10,6 +11,10 @@ frsky_telemetry <command> [arguments...]
    start
      [-d <val>]  Select Serial Device
                  values: <file:dev>, default: /dev/ttyS6
+     [-t <val>]  Scanning timeout [s] (default: no timeout)
+                 default: 0
+     [-m <val>]  Select protocol (default: auto-detect)
+                 values: sport|sport_single|dtype, default: auto
 
    stop
 
@@ -57,7 +62,7 @@ mavlink <command> [arguments...]
    start         Start a new instance
      [-d <val>]  Select Serial Device
                  values: <file:dev>, default: /dev/ttyS1
-     [-b <val>]  Baudrate
+     [-b <val>]  Baudrate (can also be p:<param_name>)
                  default: 57600
      [-r <val>]  Maximum sending data rate in B/s (if 0, use baudrate / 20)
                  default: 0
@@ -69,25 +74,31 @@ mavlink <command> [arguments...]
                  param)
                  default: 127.0.0.1
      [-m <val>]  Mode: sets default streams and rates
-                 values: custom|camera|onboard|osd|magic|config|iridium|minimal,
-                 default: normal
+                 values:
+                 custom|camera|onboard|osd|magic|config|iridium|minimal|extvsisi
+                 on, default: normal
+     [-n <val>]  wifi/ethernet interface name
+                 values: <interface_name>
+     [-c <val>]  Multicast address (multicasting can be enabled via
+                 MAV_BROADCAST param)
+                 values: Multicast address in the range
+                 [239.0.0.0,239.255.255.255]
      [-f]        Enable message forwarding to other Mavlink instances
      [-w]        Wait to send, until first message received
      [-x]        Enable FTP
      [-z]        Force flow control always on
-     [on|off]    Enable/disable
 
    stop-all      Stop all instances
 
    status        Print status for all instances
+     [streams]   Print all enabled streams
 
    stream        Configure the sending rate of a stream for a running instance
      [-u <val>]  Select Mavlink instance via local Network Port
-                 default: 0
      [-d <val>]  Select Mavlink instance via Serial Device
                  values: <file:dev>
      -s <val>    Mavlink stream to configure
-     -r <val>    Rate in Hz (0 = turn off)
+     -r <val>    Rate in Hz (0 = turn off, -1 = set to default)
 
    boot_complete Enable sending of messages. (Must be) called as last step in
                  startup script.
@@ -104,10 +115,9 @@ micrortps_client <command> [arguments...]
                  values: UART|UDP, default: UART
      [-d <val>]  Select Serial Device
                  values: <file:dev>, default: /dev/ttyACM0
-     [-b <val>]  Baudrate
+     [-b <val>]  Baudrate (can also be p:<param_name>)
                  default: 460800
      [-p <val>]  Poll timeout for UART in ms
-                 default: 1
      [-u <val>]  Interval in ms to limit the update rate of all sent topics
                  (0=unlimited)
                  default: 0
@@ -166,5 +176,6 @@ uorb <command> [arguments...]
 
    top           Monitor topic publication rates
      [-a]        print all instead of only currently publishing topics
+     [-1]        run only once, then exit
      [<filter1> [<filter2>]] topic(s) to match (implies -a)
 ```

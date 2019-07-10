@@ -1,4 +1,5 @@
 # Modules Reference: System
+
 ## dataman
 Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
@@ -45,6 +46,67 @@ dataman <command> [arguments...]
 
    status        print status info
 ```
+## dmesg
+Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
+
+
+### Description
+
+Command-line tool to show bootup console messages.
+Note that output from NuttX's work queues and syslog are not captured.
+
+### Examples
+
+Keep printing all messages in the background:
+```
+dmesg -f &
+```
+
+### Usage {#dmesg_usage}
+```
+dmesg <command> [arguments...]
+ Commands:
+     [-f]        Follow: wait for new messages
+```
+## heater
+Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
+
+
+### Description
+Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
+
+This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
+
+### Usage {#heater_usage}
+```
+heater <command> [arguments...]
+ Commands:
+   controller_period Reports the heater driver cycle period value, (us), and
+                 sets it if supplied an argument.
+
+   integrator    Sets the integrator gain value if supplied an argument and
+                 reports the current value.
+
+   proportional  Sets the proportional gain value if supplied an argument and
+                 reports the current value.
+
+   sensor_id     Reports the current IMU the heater is temperature controlling.
+
+   setpoint      Reports the current IMU temperature.
+
+   start         Starts the IMU heater driver as a background task
+
+   status        Reports the current IMU temperature, temperature setpoint, and
+                 heater on/off status.
+
+   stop          Stops the IMU heater driver.
+
+   temp          Reports the current IMU temperature.
+
+   stop
+
+   status        print status info
+```
 ## land_detector
 Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
 
@@ -77,7 +139,7 @@ The module runs periodically on the HP work queue.
 land_detector <command> [arguments...]
  Commands:
    start         Start the background task
-     fixedwing|multicopter|vtol|ugv Select vehicle type
+     fixedwing|multicopter|vtol|rover Select vehicle type
 
    stop
 
@@ -119,13 +181,19 @@ It supports 2 backends:
 
 Both backends can be enabled and used at the same time.
 
+The file backend supports 2 types of log files: full (the normal log) and a mission
+log. The mission log is a reduced ulog file and can be used for example for geotagging or
+vehicle management. It can be enabled and configured via SDLOG_MISSION parameter.
+The normal log is always a superset of the mission log.
+
 ### Implementation
 The implementation uses two threads:
 - The main thread, running at a fixed rate (or polling on a topic if started with -p) and checking for
   data updates
 - The writer thread, writing data to the file
 
-In between there is a write buffer with configurable size. It should be large to avoid dropouts.
+In between there is a write buffer with configurable size (and another fixed-size buffer for
+the mission log). It should be large to avoid dropouts.
 
 ### Examples
 Typical usage to start logging immediately:
@@ -145,6 +213,7 @@ logger <command> [arguments...]
    start
      [-m <val>]  Backend mode
                  values: file|mavlink|all, default: all
+     [-x]        Enable/disable logging via Aux1 RC channel
      [-e]        Enable logging right after start until disarm (otherwise only
                  when armed)
      [-f]        Log until shutdown (implies -e)
@@ -208,7 +277,7 @@ Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules
 
 ### Description
 Background process running periodically on the LP work queue to perform housekeeping tasks.
-It is currently only responsible for temperature calibration.
+It is currently only responsible for temperature calibration and tone alarm on RC Loss.
 
 The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
 
@@ -264,4 +333,43 @@ sensors <command> [arguments...]
    stop
 
    status        print status info
+```
+## tune_control
+Source: [systemcmds/tune_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tune_control)
+
+
+### Description
+
+Command-line tool to control & test the (external) tunes.
+
+Tunes are used to provide audible notification and warnings (e.g. when the system arms, gets position lock, etc.).
+The tool requires that a driver is running that can handle the tune_control uorb topic.
+
+Information about the tune format and predefined system tunes can be found here:
+https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
+
+### Examples
+
+Play system tune #2:
+```
+tune_control play -t 2
+```
+
+### Usage {#tune_control_usage}
+```
+tune_control <command> [arguments...]
+ Commands:
+   play          Play system tune or single note.
+     [-t <val>]  Play predefined system tune
+                 default: 1
+     [-f <val>]  Frequency of note in Hz (0-22kHz)
+     [-d <val>]  Duration of note in us
+     [-s <val>]  Volume level (loudness) of the note (0-100)
+                 default: 40
+     [-m <val>]  Melody in string form
+                 values: <string> - e.g. "MFT200e8a8a"
+
+   libtest       Test library
+
+   stop          Stop playback (use for repeated tunes)
 ```

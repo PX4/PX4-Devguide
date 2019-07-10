@@ -2,6 +2,26 @@
     "redirects": [
 
             {
+                "from": "/en/tutorials/tuning_the_ecl_ekf.html",
+                "to": "https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html"
+            },
+            {
+                "from": "/en/tutorials/land_detector.html",
+                "to": "https://docs.px4.io/en/advanced_config/land_detector.html"
+            },
+            {
+                "from": "en/advanced/system_startup.html",
+                "to": "https://dev.px4.io/en/concept/system_startup.html"
+            },
+            {
+                "from": "en/tutorials/camera_trigger.html",
+                "to": "https://docs.px4.io/en/peripherals/camera.html"
+            },
+            {
+                "from": "en/debug/porting-guide.html",
+                "to": "https://docs.px4.io/en/hardware/porting_guide.html"
+            },
+            {
                 "from": "en/tutorials/pre_flight_checks.html",
                 "to": "https://docs.px4.io/en/flying/pre_flight_checks.html"
             },

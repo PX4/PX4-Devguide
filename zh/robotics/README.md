@@ -1,6 +1,5 @@
-# Robotics
+# 机器人
 
-Robotics APIs allow you to control PX4 from outside the flight stack computing environment (flight controller) using a [companion computer](../companion_computer/pixhawk_companion.md) or other computing environment. The APIs communicate with PX4 using [MAVLink](../middleware/mavlink.md) or [RTPS](../middleware/micrortps.md).
+机器人系统 API 允许通过飞行栈外的电脑环境，使用 [companion computer](../companion_computer/pixhawk_companion.md) 或其他环境 对 PX4 进行控制。 API 通过 [MAVLink](../middleware/mavlink.md) 或 [RTPS](../middleware/micrortps.md) 实现与 PX4 的通信。
 
-PX4 can be used with robotics APIs including [DroneCore](http://dronecore.io/) and [ROS](../ros/README.md). 
-[DroneKit](../robotics/dronekit.md) can also be used, but is not optimised for use with PX4. 
+Px4 可使用包括 [Dronecode SDK](https://www.dronecode.org/sdk/) 和 [ROS](../ros/README.md) 的机器人 API。 [DroneKit](../robotics/dronekit.md) 也可以用，但是优化不够好。

@@ -1,31 +1,24 @@
-# SiK Radio
+# SiK 电台
 
 [SiK radio](https://github.com/LorenzMeier/SiK) is a collection of firmware and tools for telemetry radios.
 
-The hardware for the SiK radio can be obtained from various stores.
+Information about *using* SiK Radio can be found it the *PX4 User Guide*: [Telemetry > SiK Radio](http://docs.px4.io/en/telemetry/sik_radio.html)
 
-### Vendors
+The ("developer") information below explains how to build SiK firmware from source and configure it using AT commands.
 
-* 3DR Radio \(small\) - [US (915MHz)](https://store.3dr.com/products/915-mhz-telemetry-radio) / [European (433MHz)](https://store.3dr.com/products/433-mhz-telemetry-radio)
-* [HK Radio](http://www.hobbyking.com/hobbyking/store/uh_viewitem.asp?idproduct=55559) \(small\)
-* [RFD900u](http://rfdesign.com.au/products/rfd900u-modem/) \(small\)
-* [RFD900](http://rfdesign.com.au/products/rfd900-modem/) \(long range\)
+## 构建说明
 
-![](../../assets/sik_radio.jpg)
-
-## Build Instructions
-
-The PX4 toolchain does not install the required 8051 compiler by default.
+You will need to install the required 8051 compiler, as this is not included in the default PX4 Build toolchain.
 
 ### Mac OS
 
-Install the toolchain
+Install the toolchain:
 
-```
+```sh
 brew install sdcc
 ```
 
-build the image for the standard SiK Radio / 3DR Radio:
+Build the image for the standard SiK Radio / 3DR Radio:
 
 ```sh
 git clone https://github.com/LorenzMeier/SiK.git
@@ -33,17 +26,16 @@ cd SiK/Firmware
 make install
 ```
 
-upload it to the radio \(**change the serial port name**\):
+Upload it to the radio \(**change the serial port name**\):
 
-```
-tools/uploader.py --port /dev/tty.usbserial-CHANGETHIS dst/radio~hm_trp.ihx
-```
+    tools/uploader.py --port /dev/tty.usbserial-CHANGETHIS dst/radio~hm_trp.ihx
+    
 
-## Configuration Instructions
+## 配置说明
 
 The radio supports AT commands for configuration.
 
-```
+```sh
 screen /dev/tty.usbserial-CHANGETHIS 57600 8N1
 ```
 
@@ -51,23 +43,19 @@ Then start command mode:
 
 > **Note** DO NOT TYPE ANYTHING ONE SECOND BEFORE AND AFTER
 
-```
-+++
-```
+    +++
+    
 
 List the current settings:
 
-```
-ATI5
-```
+    ATI5
+    
 
 Then set the net ID, write settings and reboot radio:
 
-```
-ATS3=55
-AT&W
-ATZ
-```
+    ATS3=55
+    AT&W
+    ATZ
+    
 
-> **Note** You might have to power-cycle the radio to connect it to the 2nd radio
-
+> **Note** You might have to power-cycle the radio to connect it to the 2nd radio.

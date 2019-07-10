@@ -1,89 +1,84 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/debug/gdb_debugging.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
-
 # 嵌入式调试
 
-运行PX4的自驾仪支持通过GDB或者LLDB的调试。
+运行 PX4 的自动驾驶仪支持通过 GDB 或 LLDB 进行调试。
 
-## 识别消耗大内存的程序
+## 识别大型内存使用者
 
-以下命令会列出最大静态内存分配的程序：
-
-<div class="host-code"></div>
+下面的命令将列出最大的静态分配：
 
 ```bash
-arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
+arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4_fmu-v2_default/px4_fmu-v2_default.elf | grep " [bBdD] "
 ```
 
-这个NSH命令提供了剩余的空闲内存：
+此 NSH 命令提供剩余的可用内存：
 
 ```bash
 free
 ```
 
-top命令显示出每个应用的栈使用量：
+顶部命令显示每个应用程序的堆栈使用情况：
 
-```
-top
-```
+    top
+    
 
-
-
-堆栈使用是使用堆栈着色计算的，因此不是当前使用的量，而是任务开始以来的最大值。
+堆栈使用情况是使用堆栈着色计算的，因此不是当前的使用情况，而是任务开始以来的最大值。
 
 ### 堆分配
-动态堆分配可以在符合POSIX系统上的SITL追踪得到  用的是 [gperftools](https://github.com/gperftools/gperftools)。
 
-#### 安装指导
-##### Ubuntu:
+动态堆分配可以在 SITL 中的 POSIX 上跟踪，[gperftools](https://github.com/gperftools/gperftools)。
+
+#### 安装说明
+
+##### Ubuntu：
+
 ```bash
 sudo apt-get install google-perftools libgoogle-perftools-dev
 ```
 
 #### 启动堆分析
 
-首先，用如下指令编译固件：
-```bash
-make posix_sitl_default
-```
-启动 jmavsim仿真：`./Tools/jmavsim_run.sh`
+首先，构建固件，如下所示：
 
-在另一个中断，输入：
 ```bash
-cd build/posix_sitl_default/tmp
+make px4_sitl_default
+```
+
+Start jmavsim: `./Tools/jmavsim_run.sh -l`
+
+在另一个终端输入：
+
+```bash
+cd build/px4_sitl_default/tmp/rootfs
 export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
 
-对于不同的系统，输入如下:
+输入内容取决于你的系统：
 
-##### Fedora:
+##### Fedora：
+
 ```bash
-env LD_PRELOAD=/lib64/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
+env LD_PRELOAD=/lib64/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
 pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
-##### Ubuntu:
+##### Ubuntu：
+
 ```bash
-env LD_PRELOAD=/usr/lib/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
+env LD_PRELOAD=/usr/lib/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
 google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
-这将生成一个具有堆分配图的PDF。
+这会生成一个带堆分配示意图的 Pdf。 图中的数字会一直是0，因为单位是 MB。 可以看百分比。 这显示出（节点及子树的）活动内存，意味着最终内存依然在使用。
 
-图中的数字全部为零，因为它们以MB为单位。 我们只需要看百分比。 它们显示实时内存（节点和子树），意味着最后仍在使用的内存。
+更多详情参见 [gperftools 文档](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html)。
 
-有关详细信息，请参阅[gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html)文档。
+## 调试 Nuttx 的硬件故障
 
+硬件故障是当操作系统检测不到有效说明而导致的终止运行。 这是一个内存关键区域被损坏而导致错误的典型案例。 比如典型的情况是：错误的内存访问已破坏了堆栈，并且处理器看到内存中的地址不是微处理器 RAM 的有效地址。
 
-## 调试NuttX中的硬故障
-
-硬故障(hard fault)是这样一种状态：操作系统检测到没有有效的指令执行。 通常情况下，这是因为RAM中的关键区域已损坏。 典型的情况是：不正确内存获取破坏了堆栈，并且处理器发现内存中的地址不是微处理器RAM的有效地址。
-
-  * NuttX保留了两个堆栈：用于中断处理的IRQ堆栈和用户堆栈。
-  * 栈向下生长。所以以下例子的最高地址是 0x20021060, 大小是 0x11f4 (4596 bytes)， 因此最低地址是 0x2001fe6c.
+* Nuttx 维护两个堆栈：用于中断处理的 IRQ 堆栈和用户堆栈
+* 堆栈向下增长。 所以下面示例中的最高地址是 0x20021060，大小为 0x11f4 （4596 字节），因而最低地址为0x2001f6c。
 
 ```bash
 Assertion failed at file:armv7-m/up_hardfault.c line: 184 task: ekf_att_pos_estimator
@@ -132,26 +127,19 @@ xPSR: 61000000 BASEPRI: 00000000 CONTROL: 00000000
 EXC_RETURN: ffffffe9
 ```
 
-要解码硬故障，请将*精确的*二进制码加载到调试器中：
-
-<div class="host-code"></div>
+要解码硬件故障，需要加载 *exact* 二进制文件到调试器中。
 
 ```bash
-arm-none-eabi-gdb build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx
+arm-none-eabi-gdb build/px4_fmu-v2_default/px4_fmu-v2_default.elf
 ```
 
-
-然后在GDB提示符中，从R8中的最后一个指令开始，用闪存中的第一个地址（可识别，因为它以0x080开头，第一个为0x0808439f）。执行是从左到右。 所以在硬错误之前的最后一步是在```mavlink_log.c``试图发布一些东西，
-
-<div class="host-code"></div>
+然后在 GDB 提示中，从 R8 中的最后一个指令开始，从闪存中的第一个地址开始（因为它以 `0x080` 开头，第一个地址 `0x0808439f`）。 执行从左到右。 因此，硬件故障之前的最后一步是当 ```mavlink_log.c``` 尝试 publish 消息时
 
 ```gdb
 (gdb) info line *0x0808439f
 Line 77 of "../src/modules/systemlib/mavlink_log.c" starts at address 0x8084398 <mavlink_vasprintf+36>
    and ends at 0x80843a0 <mavlink_vasprintf+44>.
 ```
-
-<div class="host-code"></div>
 
 ```gdb
 (gdb) info line *0x08087c4e

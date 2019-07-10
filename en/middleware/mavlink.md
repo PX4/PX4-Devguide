@@ -1,14 +1,33 @@
 # MAVLink Messaging
 
-An overview of all messages can be found [here](https://mavlink.io/en/messages/).
+[MAVLink](https://mavlink.io/en/) is a very lightweight messaging protocol that has been designed for the drone ecosystem.
 
-## Create Custom MAVLink Messages
+PX4 uses *MAVLink* to communicate with *QGroundControl* (and other ground stations), and as the integration mechanism for connecting to drone components outside of the flight controller: companion computers, MAVLink enabled cameras etc. 
 
-This tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory`
-message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in
-`mavlink/include/mavlink/v1.0/custom_messages/mavlink_msg_ca_trajectory.h` (see
-[here](http://qgroundcontrol.org/mavlink/create_new_mavlink_message) how to
-create a custom MAVLink message and header).
+The protocol defines a number of standard [messages](https://mavlink.io/en/messages/) and [microservices](https://mavlink.io/en/services/) for exchanging data (many, but not all, messages/services have been implemented in PX4).
+
+This tutorial explains how you can add PX4 support for your own new "custom" messages.
+
+> **Note** The tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h`.
+
+
+## Defining Custom MAVLink Messages
+
+The MAVLink developer guide explains how to define new messages and build them into new programming-specific libraries:
+- [How to Define MAVLink Messages & Enums](https://mavlink.io/en/guide/define_xml_element.html)
+- [Generating MAVLink Libraries](https://mavlink.io/en/getting_started/generate_libraries.html)
+
+Your message needs to be generated as a C-library for MAVLink 2.
+Once you've [installed MAVLink](https://mavlink.io/en/getting_started/installation.html) you can do this on the command line using the command:
+```sh
+python -m pymavlink.tools.mavgen --lang=C --wire-protocol=2.0 --output=generated/include/mavlink/v2.0 message_definitions/v1.0/custom_messages.xml
+```
+
+For your own use/testing you can just copy the generated headers into **Firmware/mavlink/include/mavlink/v2.0**.
+
+To make it easier for others to test your changes, a better approach is to add your generated headers to a fork of https://github.com/mavlink/c_library_v2.
+PX4 developers can then update the submodule to your fork in the Firmware repo before building.
+
 
 ## Sending Custom MAVLink Messages
 
@@ -19,7 +38,7 @@ Add the headers of the MAVLink and uORB messages to
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
-#include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
+#include <v2.0/custom_messages/mavlink.h>
 ```
 
 Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
@@ -36,9 +55,13 @@ public:
     {
         return "CA_TRAJECTORY";
     }
-    uint8_t get_id()
+    uint16_t get_id_static()
     {
         return MAVLINK_MSG_ID_CA_TRAJECTORY;
+    }
+    uint16_t get_id()
+    {
+        return get_id_static();
     }
     static MavlinkStream *new_instance(Mavlink *mavlink)
     {
@@ -63,7 +86,7 @@ protected:
         _ca_traj_time(0)
     {}
 
-    void send(const hrt_abstime t)
+    bool send(const hrt_abstime t)
     {
         struct ca_traj_struct_s _ca_trajectory;    //make sure ca_traj_struct_s is the definition of your uORB topic
 
@@ -76,8 +99,10 @@ protected:
             _msg_ca_trajectory.coefficients =_ca_trajectory.coefficients;
             _msg_ca_trajectory.seq_id = _ca_trajectory.seq_id;
 
-            _mavlink->send_message(MAVLINK_MSG_ID_CA_TRAJECTORY, &_msg_ca_trajectory);
+            mavlink_msg_ca_trajectory_send_struct(_mavlink->get_channel(), &_msg_ca_trajectory)
         }
+
+        return true;
     }
 };
 ```
@@ -88,7 +113,7 @@ Finally append the stream class to the `streams_list` at the bottom of
 ```C
 StreamListItem *streams_list[] = {
 ...
-new StreamListItem(&MavlinkStreamCaTrajectory::new_instance, &MavlinkStreamCaTrajectory::get_name_static),
+new StreamListItem(&MavlinkStreamCaTrajectory::new_instance, &MavlinkStreamCaTrajectory::get_name_static, &MavlinkStreamCaTrajectory::get_id_static),
 nullptr
 };
 ```
@@ -101,6 +126,12 @@ MAVLink channel on UDP port 14556):
 mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
 ```
 
+> **Tip** You can use the `uorb top [<message_name>]` command to verify in real-time that your message is published and the rate (see [uORB Messaging](../middleware/uorb.md#uorb-top-command)). 
+  This approach can also be used to test incoming messages that publish a uORB topic (for other messages you might use `printf` in your code and test in SITL).
+>
+> To see the message on *QGroundControl* you will need to [build it with your MAVLink library](https://dev.qgroundcontrol.com/en/getting_started/),
+> and then verify that the message is received using [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html) (or some other MAVLink tool).
+
 
 ## Receiving Custom MAVLink Messages
 
@@ -111,7 +142,7 @@ Add a function that handles the incoming MAVLink message in
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
-#include <v1.0/custom_messages/mavlink_msg_ca_trajectory.h>
+#include <v2.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
 Add a function that handles the incoming MAVLink message in the `MavlinkReceiver` class in
@@ -179,17 +210,20 @@ An alternative - and temporary - solution is to re-purpose debug messages.
 Instead of creating a custom MAVLink message `CA_TRAJECTORY`, you can send a message `DEBUG_VECT` with the string key `CA_TRAJ` and data in the `x`, `y` and `z` fields.
 See [this tutorial](../debug/debug_values.md). for an example usage of debug messages.
 
-> **Note** This solution is not efficient as it sends character string over the network and involves comparison of strings. It should be used for development only!
+> **Note** This solution is not efficient as it sends character string over the network and involves comparison of strings. 
+  It should be used for development only!
 
 ## General
 
 ### Set streaming rate
 
-Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by typing the following line in the shell:
+Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). 
+This can be achieved by typing the following line in the shell:
 ```sh
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>
 ```
-You can get the port number with `mavlink status` which will output (amongst others) `transport protocol: UDP (<port number>)`. An example would be
+You can get the port number with `mavlink status` which will output (amongst others) `transport protocol: UDP (<port number>)`. 
+An example would be:
 ```sh
 mavlink stream -u 14556 -s OPTICAL_FLOW_RAD -r 300
 ```

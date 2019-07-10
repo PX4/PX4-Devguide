@@ -13,9 +13,10 @@ The ROS/Gazebo integration with PX4 follows the pattern in the diagram below (th
 
 > **Note** *ROS* is only supported on Linux (not macOS or Windows).
 
-The easiest way to setup PX4 simulation with ROS on Ubuntu Linux is to use the standard installation script that can be found at [Development Environment on Linux > Gazebo with ROS](../setup/dev_env_linux.md#gazebo-with-ros). The script installs everything you need: PX4, ROS "Kinetic", the Gazebo 7 simulator, and [MAVROS](../ros/mavros_installation.md).
+The easiest way to setup PX4 simulation with ROS on Ubuntu Linux is to use the standard installation script that can be found at [Development Environment on Linux > Gazebo with ROS](../setup/dev_env_linux.md#ros). 
+The script installs everything you need: PX4, ROS "Melodic", the Gazebo 9 simulator, and [MAVROS](../ros/mavros_installation.md).
 
-> **Note** The script follows the [standard ROS "Kinetic" installation instructions](http://wiki.ros.org/kinetic/Installation/Ubuntu), which include Gazebo 7. Installation of ROS Kinetic for other platforms is covered in the [ROS Wiki here](http://wiki.ros.org/kinetic/Installation).
+> **Note** The script follows the [standard ROS "Melodic" installation instructions](http://wiki.ros.org/melodic/Installation/Ubuntu), which includes Gazebo 9.
 
 
 ## Launching ROS/Simulation
@@ -53,9 +54,9 @@ To run SITL wrapped in ROS the ROS environment needs to be updated, then launch 
 
 ```sh
 cd <Firmware_clone>
-make posix_sitl_default gazebo
-source ~/catkin_ws/devel/setup.bash    // (optional)
-source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
+DONT_RUN=1 make px4_sitl_default gazebo
+source ~/catkin_ws/devel/setup.bash    # (optional)
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)
 export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd)/Tools/sitl_gazebo
 roslaunch px4 posix_sitl.launch
@@ -70,12 +71,10 @@ This section shows how the *roslaunch* instructions provided previously actually
 First start the simulator using the command below: 
 
 ```sh
-no_sim=1 make posix_sitl_default gazebo
+no_sim=1 make px4_sitl_default gazebo
 ```
 
 The console will look like this:
-
-
 ```sh
 [init] shell id: 46979166467136
 [init] task name: px4
@@ -103,7 +102,7 @@ Now in a new terminal make sure you will be able to insert the Iris model throug
 
 ```sh
 cd <Firmware_clone>
-source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/posix_sitl_default
+source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
 ```
 
 Now start Gazebo like you would when working with ROS and insert the Iris quadcopter model. Once the Iris is loaded it will automatically connect to the px4 app.

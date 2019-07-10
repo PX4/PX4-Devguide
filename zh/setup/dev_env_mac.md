@@ -1,57 +1,55 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/setup/dev_env_mac.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# Mac 上的开发环境
 
-# 安装文件和代码
-第一步就是从Mac应用商店中安装Xcode。安装完成后打开一个新的终端并安装命令行工具：
+MacOS 是受支持的 PX4 开发平台。 根据本文的指示构建的开发环境可以用编译：
 
+* 基于 NuttX 的硬件 (Pixhawk等)
+* jMAVSim 仿真模拟
+* Gazebo 8 仿真模拟
+
+> **提示：** 若需要为其他平台进行编译请参考： [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets)。
+
+## Preconditions
+
+Increase the maximum allowed number of open files on macOS using the *Terminal* command:
+
+```sh
+ulimit -S -n 300
 ```
-xcode-select --install
-```
 
-## 安装Homebrew
+> **Note** At time of writing (December 2018) the master branch uses more than the default maximum allowed open files on macOS (256 in all running processes). As a *short term solution*, increasing the number of allowed open files to 300 should fix most problems.
 
-推荐使用Mac OS X的 [Homebrew 包管理器](http://mxcl.github.com/homebrew/) 进行安装. Homebrew的安装十分便捷: [安装指南](http://mxcl.github.com/homebrew/).
+## Homebrew Installation
 
-安装好Homebrew以后,拷贝以下命令到终端命令行:
+The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
 
+## Common Tools
 
+After installing Homebrew, run these commands in your shell to install the common tools:
 
 ```sh
 brew tap PX4/px4
-brew tap PX4/simulation
-brew update
-brew install git bash-completion genromfs kconfig-frontends gcc-arm-none-eabi
-brew install astyle cmake ninja
-# simulation tools
-brew install ant graphviz sdformat3 eigen protobuf
-brew install opencv
+brew install px4-dev
+# Optional, but recommended additional simulation tools:
+brew install px4-sim
 ```
 
-然后安装我们需要的python包:
+If the installation outputs an error message about missing requirements follow the instructions. Your system will be missing Java and Quartz:
 
+```sh
+brew cask install xquartz java
+```
 
+Install pip if you don't already have it and use it to install the required packages:
 
 ```sh
 sudo easy_install pip
-sudo pip install pyserial empy pandas jinja2
+sudo -H pip install pyserial empy toml numpy pandas jinja2 pyyaml
 ```
 
-### Java for jMAVSim
+## Additional Tools
 
-如果你打算使用JMAVSim,需要同时安装[Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).。
+After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
 
-## 骁龙飞控
+## Next Steps
 
-高通为Ubuntu提供了可靠的工具链。因此使用骁龙飞行平台的开发者应该安装一个Ubuntu虚拟机，并参考Linux下方法进行工具链的安装。PX4开发团队使用的虚拟机软件是VMWare，尤其是在VMWare对USB有了稳定的支持以后。
-
-## 仿真
-
-OS X 预装了CLANG. 因此无需再安装其他的编译器.
-
-## 编辑器 / IDE
-
-最后下载并安装 Qt Creator: [下载](http://www.qt.io/download-open-source/#section-6)
-
-接下来进行 [第一次代码编译](../setup/building_px4.md)!
+Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
