@@ -312,6 +312,8 @@ By default the module runs on the work queue, to reduce RAM usage. It can also b
        start         Start the task (without any mode set, use any of the mode_*
                      cmds)
          [-t]        Run as separate task instead of the work queue
+         [-d <val>]  RC device
+                     values: <file:dev>, default: /dev/ttyS3
     
        bind          Send a DSM bind command (module must be running)
     
