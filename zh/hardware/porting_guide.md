@@ -38,7 +38,7 @@ PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或�
 
 所有飞控板的配置文件，包括链接脚本和其它必需的设置都位于 [/boards](https://github.com/PX4/Firmware/tree/master/boards/) 文件夹下特定于供应商（vendor- specific）和飞控板种类（ board-specific）的目录下 (例如 **boards/*VENDOR*/*MODEL*/**)。
 
-下面的示例中使用了 FMUv5 飞控板平台，因为它是基于 NuttX 的飞行控制器的最新 < 0>参考配置 </a0 >：
+The following example uses FMUv5 as it is a recent [reference configuration](../hardware/reference_design.md) for NuttX based flight controllers:
 
 * 在 **Firmware** 目录下运行 `make px4_fmu-v5_default` 命令将生成 FMUv5 配置。
 * 基准的 FMUv5 配置文件位于：[/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5)。
@@ -100,7 +100,7 @@ sudo make install
 
 ## 官方支持的硬件
 
-PX4 项目支持并维护着 [FMU 标准参考硬件](../debug/reference-design.md) 及任何与标准相兼容的飞控板平台。 这就包括了 [Pixhawk 系列](https://docs.px4.io/en/flight_controller/pixhawk_series.html) （请翻阅用户手册获取 [官方支持硬件完整列表](https://docs.px4.io/en/flight_controller/))。
+The PX4 project supports and maintains the [FMU standard reference hardware](../hardware/reference_design.md) and any boards that are compatible with the standard. 这就包括了 [Pixhawk 系列](https://docs.px4.io/en/flight_controller/pixhawk_series.html) （请翻阅用户手册获取 [官方支持硬件完整列表](https://docs.px4.io/en/flight_controller/))。
 
 每个受官方支持的飞控板平台都将受益于：
 
