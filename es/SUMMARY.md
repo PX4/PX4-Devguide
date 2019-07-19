@@ -38,7 +38,7 @@
   * [HITL Simulation](simulation/hitl.md)
   * [Simulation-In-Hardware](simulation/simulation-in-hardware.md)
 * [Hardware](hardware/README.md) 
-  * [Diseño de referencia del controlador de vuelo](debug/reference-design.md)
+  * [Diseño de referencia del controlador de vuelo](hardware/reference_design.md)
   * [Guía de migración de controlador de vuelo](hardware/porting_guide.md)
   * [Fuselajes](airframes/README.md) 
     * [Referencia de fuselajes](airframes/airframe_reference.md)
