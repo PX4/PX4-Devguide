@@ -2,6 +2,10 @@
     "redirects": [
 
             {
+                "from": "/en/debug/reference-design.html",
+                "to": "https://docs.px4.io/en/hardware/reference_design.html"
+            },
+            {
                 "from": "/en/tutorials/tuning_the_ecl_ekf.html",
                 "to": "https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html"
             },
