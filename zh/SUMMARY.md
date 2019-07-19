@@ -38,7 +38,7 @@
   * [HITL Simulation](simulation/hitl.md)
   * [Simulation-In-Hardware](simulation/simulation-in-hardware.md)
 * [硬件](hardware/README.md) 
-  * [飞行控制器参考设计](debug/reference-design.md)
+  * [飞行控制器参考设计](hardware/reference_design.md)
   * [飞行控制器移植指南](hardware/porting_guide.md)
   * [机架](airframes/README.md) 
     * [机架参考](airframes/airframe_reference.md)
