@@ -21,12 +21,16 @@ FMU generations 1-3 were designed as open hardware, while FMU generations 4 and 
 
 ## Main/IO Function Breakdown
 
-The diagram below shows the division of bus and functional responsibilities between the FMU and I/O boards in a Pixhawk-series flight controller. 
+The diagram below shows the division of bus and functional responsibilities between the FMU and I/O boards in a Pixhawk-series flight controller (the boards are incorporated into a single physical module).
 
-![PX4 Main/IO Function Breakdown main and io functions](../../assets/diagrams/px4_main_io_functions.png)
+![PX4 Main/IO Functional Breakdown](../../assets/diagrams/px4_fmu_io_functions.png)
 
-Note that the I/0 board is optional; some Pixhawk-series controllers are built without the I/O board in order to save space.
+<!-- Draw.io version of file can be found here: https://drive.google.com/file/d/1H0nK7Ufo979BE9EBjJ_ccVx3fcsilPS3/view?usp=sharing -->
+
+The I/0 board is optional!
+Some Pixhawk-series controllers are built without the I/O board in order to reduce space or complexity, or to better address certain board use-cases.
+An I/O board is required for [airframes](../airframes/airframe_reference.md) that use AUX ports for motors or control surfaces; generally it is not needed for multicopters or for *fully* autonomous vehicles (without a safety pilot using RC control).
 
 > **Note** Manufacturers often create flight controller variants with and without the I/O board. 
-  The version without an I/O bard is usually a size-reduced version (e.g. for use in racing vehicles) that is named as a "diminutive" of the version that has both boards.
-  For example, _Pixhawk 4_ and _Pixhawk 4 **Mini**_, _CUAV V5+_ and _CUAV v5 **nano**_.
+  The version without an I/O board is usually a size-reduced version that is named as a "diminutive" of the version that has both boards.
+  For example, _Pixhawk 4_ **Mini**_, _CUAV v5 **nano**_.
