@@ -118,8 +118,11 @@ S: 0 1   6500   6500      0 -10000  10000
 Where each number from left to right means:
 
 * M: Indicates two scalers for two control inputs. It indicates the number of control inputs the mixer will receive.
-* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  
-  * If you want to invert your PWM signal, the signs of the output scalings have to be changed. (```O:      -10000  -10000      0 -10000  10000```)
+* O: Indicates the output scaling (\*1 in negative, \*1 in positive), offset (zero here), and output range (-1..+1 here).  
+  * If you want to invert your PWM signal, the signs of the output scalings have to be changed:
+    ```
+    O:      -10000  -10000      0 -10000  10000
+    ```
   * This line can (and should) be omitted completely if it specifies the default scaling:
     ```
     O:      10000  10000   0 -10000  10000
@@ -171,7 +174,8 @@ O:      10000  10000      0 -10000  10000
 S: 0 0  -6000  -6000      0 -10000  10000
 S: 0 1  -6500  -6500      0 -10000  10000
 
-Note that in principle, you could implement left/right wing asymmetric mixing, but in general the two blocks of code will be numerically equal, and just differ by the sign of the third line (S: 0 1), since to roll the plane, the two ailerons must move in OPPOSITE directions. The signs of the second lines (S: 0 0) are indentical, since to pitch the plane, both servos need to move in the SAME direction. 
+Note that in principle, you could implement left/right wing asymmetric mixing, but in general the two blocks of code will be numerically equal, and just differ by the sign of the third line (S: 0 1), since to roll the plane, the two ailerons must move in OPPOSITE directions. 
+The signs of the second lines (S: 0 0) are indentical, since to pitch the plane, both servos need to move in the SAME direction. 
 
 Output 2
 --------
