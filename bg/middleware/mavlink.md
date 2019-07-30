@@ -52,7 +52,7 @@ public:
     {
         return "CA_TRAJECTORY";
     }
-    uint16_t get_id_static()
+    static uint16_t get_id_static()
     {
         return MAVLINK_MSG_ID_CA_TRAJECTORY;
     }
