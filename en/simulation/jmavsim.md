@@ -140,6 +140,8 @@ The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the sa
 
 ### java.long.NoClassDefFoundError
 
+If you see an error similar to the one below, it's likely that you're using a Java version later than 8:
+
 ```
 Exception in thread "main" java.lang.NoClassDefFoundError: javax/vecmath/Tuple3d
 at java.base/java.lang.Class.forName0(Native Method)
@@ -160,9 +162,9 @@ at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:566)
 at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:499)
 ```
 
-If you see an error similar to this, it's likely that you're using a Java version later than 8 and need t use Java 8:
-
 For more info check [this GitHub issue](https://github.com/PX4/Firmware/issues/9557).
+
+The solution is to install the Java 8, as shown in the following sections.
 
 #### Ubuntu:
 
@@ -174,7 +176,7 @@ rm -rf Tools/jMAVSim/out
 
 #### macOS
 
-Either [download Oracle Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or use brew:
+Either [download Oracle Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or use Brew:
 
 ```
 brew tap caskroom/versions
@@ -210,13 +212,12 @@ at me.drton.jmavsim.Simulator.main(Simulator.java:678)
 
 If you see this error, try this workaround:
 
-Edit this file:
+Edit the **accessibility.properties** file:
 ```
 sudo gedit /etc/java-8-openjdk/accessibility.properties
 ```
 
-and comment out the following line like this:
-
+and comment out the line indicated below:
 ```
 #assistive_technologies=org.GNOME.Acessibility.AtkWrapper
 ```
