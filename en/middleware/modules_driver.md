@@ -320,6 +320,55 @@ rc_input <command> [arguments...]
 
    status        print status info
 ```
+## roboclaw
+Source: [drivers/roboclaw](https://github.com/PX4/Firmware/tree/master/src/drivers/roboclaw)
+
+
+### Description
+
+This driver communicates over UART with the [Roboclaw motor driver](http://downloads.ionmc.com/docs/roboclaw_user_manual.pdf).
+It performs two tasks:
+
+ - Control the motors based on the `actuator_controls_0` UOrb topic.
+ - Read the wheel encoders and publish the raw data in the `wheel_encoders` UOrb topic
+
+In order to use this driver, the Roboclaw should be put into Packet Serial mode (see the linked documentation), and
+your flight controller's UART port should be connected to the Roboclaw as shown in the documentation. For Pixhawk 4,
+use the `UART & I2C B` port, which corresponds to `/dev/ttyS3`.
+
+### Implementation
+
+The main loop of this module (Located in `RoboClaw.cpp::task_main()`) performs 2 tasks:
+
+ 1. Write `actuator_controls_0` messages to the Roboclaw as they become available
+ 2. Read encoder data from the Roboclaw at a constant, fixed rate.
+
+Because of the latency of UART, this driver does not write every single `actuator_controls_0` message to the Roboclaw
+immediately. Instead, it is rate limited based on the parameter `RBCLW_WRITE_PER`.
+
+On startup, this driver will attempt to read the status of the Roboclaw to verify that it is connected. If this fails,
+the driver terminates immediately.
+
+### Examples
+
+The command to start this driver is:
+
+ $ roboclaw start <device> <baud>
+
+`<device>` is the name of the UART port. On the Pixhawk 4, this is `/dev/ttyS3`.
+`<baud>` is te baud rate.
+
+All available commands are:
+
+ - `$ roboclaw start <device> <baud>`
+ - `$ roboclaw status`
+ - `$ roboclaw stop`
+	
+### Usage {#roboclaw_usage}
+```
+roboclaw <command> [arguments...]
+ Commands:
+```
 ## tap_esc
 Source: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
 
