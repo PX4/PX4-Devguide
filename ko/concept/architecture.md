@@ -2,15 +2,15 @@
 
 PX4는 2개의 주된 레이어로 구성됩니다. [비행 스택](#flight-stack)은 비행제어를 추상화한 계층입니다. [미들웨어](#middleware)는 일반적인 로토틱스 
 
-All PX4 [airframes](../airframes/README.md) share a single codebase (this includes other robotic systems like boats, rovers, submarines etc.). The complete system design is [reactive](http://www.reactivemanifesto.org), which means that:
+모든 PX4 [기체](../airframes/README.md)는 하나의 codebase(보트, 로봇, 잠수함 등의 다른 로보틱스 시스템도 포함)를 공유합니다. 완전한 시스템 디자인은 [reactive](http://www.reactivemanifesto.org)입니다. 무슨 뜻이나면
 
-- All functionality is divided into exchangeable and reusable components
-- Communication is done by asynchronous message passing
-- The system can deal with varying workload
+- 모든 기능들은 교환가능하고 재사용가능한 컴포넌트들로 나눠져 있습니다.
+- 통신은 비동기적인 메시지 전달에 의해 수행됩니다.
+- 이 시스템은 바뀌는 변화에도 잘 견딥니다.
 
-## High-Level Software Architecture{#architecture}
+## 고수준 소프트웨어 아키텍쳐{#architecture}
 
-The diagram below provides a detailed overview of the building blocks of PX4. The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
+아래의 다이어그램은 PX4를 구성하는 블럭의 개요를 자세히 보여줍니다, The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
 
 ![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
 
