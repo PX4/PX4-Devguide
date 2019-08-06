@@ -1,16 +1,16 @@
 # PX4의 구조적 개요
 
-PX4는 2개의 주된 레이어로 구성됩니다. [비행 스택](#flight-stack)은 비행제어를 추상화한 계층입니다. [미들웨어](#middleware)는 일반적인 로토틱스 
+PX4는 2개의 주된 레이어로 구성됩니다. [flight stack](#flight-stack)은 비행제어를 추상화한 계층입니다. [미들웨어](#middleware)는 자율 로봇, 내/외부 통신, 하드웨어 통합을 지원하는 일반적인 레이어입니다.
 
-모든 PX4 [기체](../airframes/README.md)는 하나의 codebase(보트, 로봇, 잠수함 등의 다른 로보틱스 시스템도 포함)를 공유합니다. 완전한 시스템 디자인은 [reactive](http://www.reactivemanifesto.org)입니다. 무슨 뜻이나면
+모든 PX4 [기체](../airframes/README.md)는 하나의 codebase (보트, 로봇, 잠수함 등의 다른 로보틱스 시스템도 포함) 를 공유합니다. 완전한 시스템 디자인은 [reactive](http://www.reactivemanifesto.org)입니다. 무슨 뜻이나면
 
-- 모든 기능들은 교환가능하고 재사용가능한 컴포넌트들로 나눠져 있습니다.
+- 모든 기능들은 교환가능하고 재사용가능한 컴포넌트들로 나뉩니다.
 - 통신은 비동기적인 메시지 전달에 의해 수행됩니다.
 - 이 시스템은 바뀌는 변화에도 잘 견딥니다.
 
 ## 고수준 소프트웨어 아키텍쳐{#architecture}
 
-아래의 다이어그램은 PX4를 구성하는 블럭의 개요를 자세히 보여줍니다, The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
+아래의 다이어그램은 PX4를 구성하는 블럭들의 개요를 자세히 보여줍니다, 최상단의 다이어그램은 미들웨어 블럭들을 포함하고, 그 아래의 컴포넌트들은 flight stack을 나타냅니다.
 
 ![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
 
@@ -22,9 +22,9 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
-The source code is split into self-contained modules/programs (shown in `monospace` in the diagram). Usually a building block corresponds to exactly one module.
+The source code is split into self-contained modules/programs (shown in `monospace` in the diagram). 대게 하나의 블럭은 하나의 모듈과 완전히 일치합니다.
 
-> **Tip** At runtime, you can inspect which modules are executed with the `top` command in shell, and each module can be started/stopped individually via `<module_name> start/stop`. While `top` command is specific to NuttX shell, the other commands can be used in the SITL shell (pxh>) as well. For more information about each of these modules see the [Modules & Commands Reference](../middleware/modules_main.md).
+> **Tip** 실행중에, 쉘에서 `top` 명령어를 통해 실행중인 모듈을 검사할 수 있고, 각각의 모듈을 `<module_name> start/stop` 명령어를 통해서 시작/중지 시킬 수 있습니다. 하지만 `top` 명령어는 NuttX 쉘에서만 사용가능하고 다른 명령어들은 SITL 쉘 (pxh >) 에서도 사용할 수 있습니다. 각 모듈들에 대한 자세한 정보는[Modules & Commands Reference](../middleware/modules_main.md)를 참고하세요.
 
 The arrows show the information flow for the *most important* connections between the modules. In reality, there are many more connections than shown, and some data (e.g. for parameters) is accessed by most of the modules.
 
