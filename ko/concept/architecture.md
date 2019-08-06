@@ -32,13 +32,13 @@ The source code is split into self-contained modules/programs (shown in `monospa
 
 - 이 시스템은 reactive 하다 - 비동기적이고 새로운 데이터가 이용가능해시면 즉시 업데이트 된다는 말입니다.
 - 모든 연산과 통신들이 완전히 병렬화 되어있다.
-- A system component can consume data from anywhere in a thread-safe fashion
+- 시스템의 컴포넌트는 thread-safe 방식으로 어디에서든 data를 사용할 수 있다.
 
-> **Info** This architecture allows every single one of these blocks to be rapidly and easily replaced, even at runtime.
+> **Info** 이 아키텍처는 이러한 블록 중 하나를 런타임시에도 빠르고 쉽게 교체 할 수 있습니다.
 
 ### Flight Stack {#flight-stack}
 
-The flight stack is a collection of guidance, navigation and control algorithms for autonomous drones. It includes controllers for fixed wing, multirotor and VTOL airframes as well as estimators for attitude and position.
+Flight Stack은 자율적인 드론을 위한 유도, 네비게이션, 컨트롤 알고리즘의 콜렉션입니다. 고정익, 멀티로터, VTOL 기체, 게다가 균형이나 위치를 위한 컨트롤러를 포함합니다.
 
 The following diagram shows an overview of the building blocks of the flight stack. It contains the full pipeline from sensors, RC input and autonomous flight control (Navigator), down to the motor or servo control (Actuators).
 
