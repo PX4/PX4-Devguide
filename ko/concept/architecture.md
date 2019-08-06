@@ -40,7 +40,7 @@ The source code is split into self-contained modules/programs (shown in `monospa
 
 Flight Stack은 자율적인 드론을 위한 유도, 네비게이션, 컨트롤 알고리즘의 콜렉션입니다. 고정익, 멀티로터, VTOL 기체, 게다가 균형이나 위치를 위한 컨트롤러를 포함합니다.
 
-The following diagram shows an overview of the building blocks of the flight stack. It contains the full pipeline from sensors, RC input and autonomous flight control (Navigator), down to the motor or servo control (Actuators).
+아래의 그림은 flight stack을 구성하는 블록들의 개요를 보여줍니다. 센서, RC 입력 및 자율 비행 제어 (네비게이터) 에서 모터 또는 서보 제어 (액추에이터) 까지의 전체 파이프라인을 포함합니다.
 
 ![PX4 High-Level Flight Stack](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
 [here](https://drive.google.com/a/px4.io/file/d/15J0eCL77fHbItA249epT3i2iOx4VwJGI/view?usp=sharing) 
