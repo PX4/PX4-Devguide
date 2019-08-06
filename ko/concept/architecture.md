@@ -26,12 +26,12 @@ The source code is split into self-contained modules/programs (shown in `monospa
 
 > **Tip** 실행중에, 쉘에서 `top` 명령어를 통해 실행중인 모듈을 검사할 수 있고, 각각의 모듈을 `<module_name> start/stop` 명령어를 통해서 시작/중지 시킬 수 있습니다. 하지만 `top` 명령어는 NuttX 쉘에서만 사용가능하고 다른 명령어들은 SITL 쉘 (pxh >) 에서도 사용할 수 있습니다. 각 모듈들에 대한 자세한 정보는[Modules & Commands Reference](../middleware/modules_main.md)를 참고하세요.
 
-The arrows show the information flow for the *most important* connections between the modules. In reality, there are many more connections than shown, and some data (e.g. for parameters) is accessed by most of the modules.
+화살표는 모듈간의 *가장 중요한* 커넥션에 대한 정보의 흐름을 보여줍니다. 실제로는 표시된 것 보다 많은 커넥션들이 있고, 일부 데이터 (e.g. 파라미터) 들은 다수의 모듈들에 의해 접근됩니다.
 
-Modules communicate with each other through a publish-subscribe message bus named [uORB](../middleware/uorb.md). The use of the publish-subscribe scheme means that:
+모듈들은 [uORB](../middleware/uorb.md)라고 불리는 publish-subscribe 메시지 버스를 통해 각각 통신합니다. Publish-subscribe 스킴의 사용은 다음을 의미합니다.
 
-- The system is reactive — it is asynchronous and will update instantly when new data is available
-- All operations and communication are fully parallelized
+- 이 시스템은 reactive 하다 - 비동기적이고 새로운 데이터가 이용가능해시면 즉시 업데이트 된다는 말입니다.
+- 모든 연산과 통신들이 완전히 병렬화 되어있다.
 - A system component can consume data from anywhere in a thread-safe fashion
 
 > **Info** This architecture allows every single one of these blocks to be rapidly and easily replaced, even at runtime.
