@@ -215,8 +215,6 @@ Or if already running:
                      default: 280
          [-b <val>]  Log buffer size in KiB
                      default: 12
-         [-q <val>]  uORB queue size for mavlink mode
-                     default: 14
          [-p <val>]  Poll on a topic instead of running with fixed rate (Log rate
                      and topic intervals are ignored if this is set)
                      values: <topic_name>
