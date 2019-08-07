@@ -1,11 +1,34 @@
 # Unit Tests
 
-PX4 provides a simple base [Unittest-class](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h). Each developer is encouraged to write unit tests in the process of adding a new feature to the PX4 framework.
+PX4 provides several methods for writing unit tests. Each developer is encouraged to write unit tests during all parts of development, including adding new features, fixing bugs, and refactoring.
 
-## Writing a Test
+1. Unit tests with GTest - tests that have minimal, internal-only dependencies
+1. Functional tests with GTest - tests that depend on parameters and uORB messages
+1. SITL unit tests. This is for tests that need to run in full SITL. These tests are much slower to run and harder to debug, so it is recommended to use GTest instead when possible.
 
-1. Create a new .cpp file within [tests](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tests) with name **test_[description].cpp**. 
-1. Within **test_[description].cpp** include the base unittest-class `<unit_test.h>` and all files required to write a test for the new feature. 
+## Writing a GTest Unit Test
+
+1. Unit tests should be arranged in three sections: setup, run, check results. Each test should test one very specific behavior or setup case, so if a test fails it is obvious what is wrong. Please try to follow these standards when possible.
+1. Copy and rename the [example unit test](https://github.com/PX4/Firmware/blob/master/src/modules/mc_att_control/AttitudeControl/AttitudeControlTest.cpp) to the directory the code to be tested is in.
+1. Add the new file the te directory's `CMakeLists.txt`. It should look something like `px4_add_unit_gtest(SRC MyNewUnitTest.cpp LINKLIBS <library_to_be_tested>)`
+1. Add the desired test functionality. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the setup, running the code to be tested and verifying that it behaves as expected.
+1. In general, if you need access to advanced GTest utilities, data structures from the STL or need to link to `parameters` or `uorb` libraries you should use the functional tests instead.
+1. Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/unit-MyNewUnit`. It can be run directly in a debugger.
+
+## Writing a GTest Functional Test
+
+1. In general (and similar to unit tests), functional tests should be arranged in three sections: setup, run, check results. Each test should test one very specific behavior or setup case, so if a test fails it is obvious what is wrong. Please try to follow these standards when possible.
+1. Copy and rename the [example functional test](https://github.com/PX4/Firmware/blob/master/src/lib/parameters/ParameterTest.cpp) to the directory the code to be tested is in.
+1. Rename the class from ParameterTest to something better representing the code being testing
+1. Add the new file to the directory's `CMakeLists.txt`. It should look something like `px4_add_functional_gtest(SRC MyNewFunctionalTest.cpp LINKLIBS <library_to_be_tested>)`
+1. Add the desired test functionality. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the test setup, running the code to be tested and verifying that it behaves as expected.
+1. All GTest utilites are available, and local usage of the STL is allowed (although be careful of platform differences between eg. macOS and Linux). If additional library dependencies are required, they should also be added to the CMakeLists after the `LINKLIBS` as shown above.
+1. Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/functional-MyNewFunctional`. It can be run directly in a debugger.
+
+## Writing a SITL Unit Test
+1. Examine the sample [Unittest-class](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h).
+1. Create a new .cpp file within [tests](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tests) with name **test_[description].cpp**.
+1. Within **test_[description].cpp** include the base unittest-class `<unit_test.h>` and all files required to write a test for the new feature.
 1. Within **test_[description].cpp** create a class `[Description]Test` that inherits from `UnitTest`.
 1. Within `[Description]Test` class declare the public method `virtual bool run_tests()`.
 1. Within `[Description]Test` class declare all private methods required to test the feature in question (`test1()`, `test2()`,...).
@@ -89,33 +112,18 @@ PX4 provides a simple base [Unittest-class](https://github.com/PX4/Firmware/blob
    ```bash
    pxh> tests jig
    ```
-   If a test has option `OPT_NOALLTEST`, then that test will be excluded when calling `tests all`. The same is true for `OPT_NOJITEST` when command `test jig` is called. Option `0` means that the test is never excluded, which is what most developer want to use. 
+   If a test has option `OPT_NOALLTEST`, then that test will be excluded when calling `tests all`. The same is true for `OPT_NOJITEST` when command `test jig` is called. Option `0` means that the test is never excluded, which is what most developer want to use.
 
 1. Add the test `test_[desciption].cpp` to the [CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/CMakeLists.txt).
 
 
 ## Testing on the local machine
 
-The following command is sufficient to start a minimal new shell with the PX4 posix port running.
-
-```bash
-make px4_sitl_shell none
-```
-
-The shell can then be used to e.g. execute unit tests:
-
-```bash
-pxh> tests [description]
-```
-
-Alternatively it is also possible to run the complete unit-tests right from bash:
+Run the complete list of GTest Unit Tests, GTest Functional Tests and SITL Unit Tests right from bash:
 
 ```bash
 make tests
 ```
 
-To see a full list of available tests write within px4 shell:
+The individual GTest test binaries are in the `build/px4_sitl_test/` directory, and can be run directly in most IDEs' debugger.
 
-```bash
-pxh> tests help
-```
