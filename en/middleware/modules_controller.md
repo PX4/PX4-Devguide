@@ -155,3 +155,19 @@ rover_pos_control <command> [arguments...]
 
    status        print status info
 ```
+## vtol_att_control
+Source: [modules/vtol_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/vtol_att_control)
+
+
+### Description
+fw_att_control is the fixed wing attitude controller.
+
+### Usage {#vtol_att_control_usage}
+```
+vtol_att_control <command> [arguments...]
+ Commands:
+
+   stop
+
+   status        print status info
+```
