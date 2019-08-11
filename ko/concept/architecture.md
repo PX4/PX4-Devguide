@@ -1,6 +1,6 @@
 # PX4의 구조적 개요
 
-PX4는 2개의 주된 레이어로 구성됩니다. [flight stack](#flight-stack)은 비행제어를 추상화한 계층입니다. [미들웨어](#middleware)는 자율 로봇, 내/외부 통신, 하드웨어 통합을 지원하는 일반적인 레이어입니다.
+PX4는 2개의 주된 레이어로 구성됩니다. [flight stack](#flight-stack)은 비행제어를 추상화한 계층입니다. [middle](#middleware)는 자율 로봇, 내/외부 통신, 하드웨어 통합을 지원하는 일반적인 레이어입니다.
 
 모든 PX4 [기체](../airframes/README.md)는 하나의 codebase (보트, 로봇, 잠수함 등의 다른 로보틱스 시스템도 포함) 를 공유합니다. 완전한 시스템 디자인은 [reactive](http://www.reactivemanifesto.org)입니다. 무슨 뜻이나면
 
@@ -115,4 +115,4 @@ ndependent_task = px4_task_spawn_cmd(
 
 #### Linux/macOS
 
-On Linux or macOS, PX4 runs in a single process, and the modules run in their own threads (there is no distinction between tasks and threads as on NuttX).
+리눅스나 macOS에서는 PX4는 하나의 프로세스 안에서 동작합니다. 그리고 각 모듈들은 자신의 스레드를 갖고 수행됩니다 (NuttX의 태스크와 스레드간에는 특별한 차이는 없습니다).
