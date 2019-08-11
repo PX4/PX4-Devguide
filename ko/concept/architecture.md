@@ -64,13 +64,13 @@ again. -->
 
 ## Update Rates
 
-Since the modules wait for message updates, typically the drivers define how fast a module updates. Most of the IMU drivers sample the data at 1kHz, integrate it and publish with 250Hz. Other parts of the system, such as the `navigator`, don't need such a high update rate, and thus run considerably slower.
+모듈들은 메시지를 업데이트를 기다리므로, 보통 드라이버는 모듈 업데이트 속도를 정의합니다. 대부분의 IMU 드라이버는 1kHZ로 데이터를 샘플링하고 합하여, 250Hz로 공표합니다. `navigator`와 같은 시스템의 다른 부분들은 빨리 업데이트할 필요가 없어서 상대적으로 느리게 수행합니다.
 
-The message update rates can be [inspected](../middleware/uorb.md) in real-time on the system by running `uorb top`.
+메시지의 업데이트 속도는 시스템의 `uORB top`에 의해 실시간으로 [검사](../middleware/uorb.md) 됩니다.
 
 ## Runtime Environment
 
-PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT). It should also have some form of real-time scheduling (e.g. FIFO).
+PX4는 POSIX-API를 지원하는 다양한 OS에서 실행됩니다 ( 리눅스, macOS, NuttX, QuRT). OS들은 반드시 실시간 스케쥴링 (예, FIFO) 형태를 갖고 있어야 합니다.
 
 The inter-module communication (using [uORB](../middleware/uorb.md)) is based on shared memory. The whole PX4 middleware runs in a single address space, i.e. memory is shared between all modules.
 
