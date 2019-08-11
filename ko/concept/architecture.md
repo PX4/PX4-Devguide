@@ -52,7 +52,7 @@ again. -->
 
 **estimator**는 하나 이상의 센서 입력을 받아들이고 결합하여 기체를 상태를 계산합니다 (예를 들어 IMU 센서의 데이터로 부터 기체의 자세를 계산하는 것).
 
-**컨트롤러**는 설정값, 측정장 또는 추정값 (측정된 값을 처리한 값) 을 입력으로 받아들이는 컴포넌트 입니다. Its goal is to adjust the value of the process variable such that it matches the setpoint. The output is a correction to eventually reach that setpoint. For example the position controller takes position setpoints as inputs, the process variable is the currently estimated position, and the output is an attitude and thrust setpoint that move the vehicle towards the desired position.
+**컨트롤러**는 설정값, 측정장 또는 추정값 (측정된 값을 처리한 값) 을 입력으로 받아들이는 컴포넌트 입니다. 이 장치의 목표는 Process variable을 조정해 설정값과 일치해지게 만다는 것입니다. 출력은 설정값에 도달하기 위해 보정된 값입니다. 예를 들어, 포지션 컨트롤러가 설정값을 입력으로 받습니다. process variable은 현재의 위치를 추정한 값입니다. 그리고 출력은 기체를 목표한 위치로 움직이기 위한 자세와 추력 설정값입니다.
 
 A **mixer** takes force commands (e.g. turn right) and translates them into individual motor commands, while ensuring that some limits are not exceeded. This translation is specific for a vehicle type and depends on various factors, such as the motor arrangements with respect to the center of gravity, or the vehicle's rotational inertia.
 
