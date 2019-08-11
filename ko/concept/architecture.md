@@ -79,13 +79,13 @@ PX4는 POSIX-API를 지원하는 다양한 OS에서 실행됩니다 ( 리눅스,
 모듈을 실행하는 2가지 방법이 있습니다.
 
 - **Tasks**: 모듈의 자신의 태스크, 스택, 프로세스 우선수위를 갖고 실행될 수 있습니다 ( 일반적인 방법입니다). 
-- **Work queues**: The module runs on a shared task, meaning that it does not own a stack. Multiple tasks run on the same stack with a single priority per work queue.
+- **Work queues**: 모듈은 자신의 스택은 가지지 않으면서 공유된 태스크에서 실행될 수 있습니다. Work queue 에서 같은 스택내의 다수의 태스크가 우선순위를 갖고 실행됩니다.
     
-    A task is scheduled by specifying a fixed time in the future. The advantage is that it uses less RAM, but the task is not allowed to sleep or poll on a message.
+    하나의 태스크는 미래의 한 시간으로 스케쥴링 됩니다. 이것의 장점은 RAM을 적게 사용하지만, sleep이나 메세지 poll하는 것을 허용하지 않습니다.
     
-    Work queues are used for periodic tasks, such as sensor drivers or the land detector.
+    Work queue는 센서 드라이버나 land detector와 같은 주기적은 태스크를 위해 사용됩니다.
 
-> **Note** Tasks running on a work queue do not show up in `top` (only the work queues themselves can be seen - e.g. as `lpwork`).
+> **Note** work queue에서 수행중인 태스크는 `top` 명령어에서 보여지지 않습니다 ( `lpwork` 같은 명령에서만 보여집니다).
 
 ### Background Tasks
 
