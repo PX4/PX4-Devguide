@@ -89,10 +89,10 @@ PX4는 POSIX-API를 지원하는 다양한 OS에서 실행됩니다 ( 리눅스,
 
 ### Background Tasks
 
-`px4_task_spawn_cmd()` is used to launch new tasks (NuttX) or threads (POSIX - Linux/macOS) that run independently from the calling (parent) task:
+`px4_task_spawn_cmd()` 는 호출하는 (부모) 태스크와 독립적으로 수행되는 새로운 태스크 (NuttX) 나 쓰레드 (POSIX - Linux/macOS) 를 시작할때 사용됩니다.
 
 ```cpp
-independent_task = px4_task_spawn_cmd(
+ndependent_task = px4_task_spawn_cmd(
     "commander",                    // Process name
     SCHED_DEFAULT,                  // Scheduling type (RR or FIFO)
     SCHED_PRIORITY_DEFAULT + 40,    // Scheduling priority
@@ -107,11 +107,11 @@ independent_task = px4_task_spawn_cmd(
 
 #### NuttX
 
-[NuttX](http://nuttx.org/) is the primary RTOS for running PX4 on a flight-control board. It is open source (BSD license), light-weight, efficient and very stable.
+[NuttX](http://nuttx.org/) 는 기체 제어 보드에서 PX4를 구동하는 주된 RTOS입니다. 오픈소스 (BSD license) 이며, 가볍고, 효율적이며 안정적입니다.
 
-Modules are executed as tasks: they have their own file descriptor lists, but they share a single address space. A task can still start one or more threads that share the file descriptor list.
+모듈들은 태스크로 실행됩니다. 그들은 자신의 파일 디스크립터 리스트를 가지지만, 하나의 주소 공간을 공유합니다. 태스크는 파일 디스크립터 리스트를 공유하면서 하나 이상의 스레드를 시작할 수 있습니다.
 
-Each task/thread has a fixed-size stack, and there is a periodic task which checks that all stacks have enough free space left (based on stack coloring).
+각가의 태스크/스레드는 고정된 크기의 스택을 갖고 있습니다. 그리고 모든 스택이 적당한 여유 공간을 갖고 있는지 검사하는 주기적인 태스트가 있습니다 (stack coloring 에 기초).
 
 #### Linux/macOS
 
