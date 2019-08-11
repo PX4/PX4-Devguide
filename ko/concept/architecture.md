@@ -8,7 +8,7 @@ PX4는 2개의 주된 레이어로 구성됩니다. [flight stack](#flight-stack
 - 통신은 비동기적인 메시지 전달에 의해 수행됩니다.
 - 이 시스템은 바뀌는 변화에도 잘 견딥니다.
 
-## 고수준 소프트웨어 아키텍쳐{#architecture}
+## High-Level Software Architecture{#architecture}
 
 아래의 다이어그램은 PX4를 구성하는 블럭들의 개요를 자세히 보여줍니다, 최상단의 다이어그램은 미들웨어 블럭들을 포함하고, 그 아래의 컴포넌트들은 flight stack을 나타냅니다.
 
@@ -22,7 +22,7 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
-The source code is split into self-contained modules/programs (shown in `monospace` in the diagram). 대게 하나의 블럭은 하나의 모듈과 완전히 일치합니다.
+소스코드는 독립적인 모듈/프로그램(다이어그램에서 블럭들로 표시) 으로 나뉩니다. 대게 하나의 블럭은 하나의 모듈과 완전히 일치합니다.
 
 > **Tip** 실행중에, 쉘에서 `top` 명령어를 통해 실행중인 모듈을 검사할 수 있고, 각각의 모듈을 `<module_name> start/stop` 명령어를 통해서 시작/중지 시킬 수 있습니다. 하지만 `top` 명령어는 NuttX 쉘에서만 사용가능하고 다른 명령어들은 SITL 쉘 (pxh >) 에서도 사용할 수 있습니다. 각 모듈들에 대한 자세한 정보는[Modules & Commands Reference](../middleware/modules_main.md)를 참고하세요.
 
@@ -58,9 +58,9 @@ again. -->
 
 ### Middleware {#middleware}
 
-The [middleware](../middleware/README.md) consists primarily of device drivers for embedded sensors, communication with the external world (companion computer, GCS, etc.) and the uORB publish-subscribe message bus.
+[middleware](../middleware/README.md) 는 주로 임베디드 센서, 외부와의 통신 (companion computer, GCS, 등), uORB publish-subscribe 메시지 버스를 위한 드바이스 드라이버들로 구성됩니다.
 
-In addition, the middleware includes a [simulation layer](../simulation/README.md) that allows PX4 flight code to run on a desktop operating system and control a computer modeled vehicle in a simulated "world".
+게다가, middleware는 [simulation layer](../simulation/README.md)를 포함합니다. simulation layer는 데스크탑 OS에서 PX4 코드의 실행과 가상으로 구현된 기체의 제어를 지원합니다.
 
 ## Update Rates
 
