@@ -72,13 +72,13 @@ again. -->
 
 PX4는 POSIX-API를 지원하는 다양한 OS에서 실행됩니다 ( 리눅스, macOS, NuttX, QuRT). OS들은 반드시 실시간 스케쥴링 (예, FIFO) 형태를 갖고 있어야 합니다.
 
-The inter-module communication (using [uORB](../middleware/uorb.md)) is based on shared memory. The whole PX4 middleware runs in a single address space, i.e. memory is shared between all modules.
+[uORB](../middleware/uorb.md)을 이용한 모듈간 통신은 공유 메모리를 기초로 합니다. PX4 middleware 전체는 하나의 주소공간에서 실행됩니다. 메모리가 모든 모듈이게 공유되는 것 입니다.
 
-> **Info** The system is designed such that with minimal effort it would be possible to run each module in separate address space (parts that would need to be changed include `uORB`, `parameter interface`, `dataman` and `perf`).
+> **Info** 이 시스템은 최소한의 노력으로 설계 되었습니다. 각 모듈은 독립된 공간에서 실행시키는 것이 가능합니다 ( `uORB`, `parameter interface`, `dataman`, `perf` 도 변경되어야 합니다).
 
-There are 2 different ways that a module can be executed:
+모듈을 실행하는 2가지 방법이 있습니다.
 
-- **Tasks**: The module runs in its own task with its own stack and process priority (this is the more common way). 
+- **Tasks**: 모듈의 자신의 태스크, 스택, 프로세스 우선수위를 갖고 실행될 수 있습니다 ( 일반적인 방법입니다). 
 - **Work queues**: The module runs on a shared task, meaning that it does not own a stack. Multiple tasks run on the same stack with a single priority per work queue.
     
     A task is scheduled by specifying a fixed time in the future. The advantage is that it uses less RAM, but the task is not allowed to sleep or poll on a message.
