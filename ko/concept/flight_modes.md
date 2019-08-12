@@ -4,15 +4,15 @@
 
 모든 종류의 기체에서 모든 비행 모드가 지원되는 것은 아니며, 어떤 모드는 기체의 종류에 따라 다르게 동작합니다 (밑에 설명한 것처럼). 그리고, 어떤 비행 모드는 특정 비행 전 및 비행 중인 상황에서만 (예. GPS lock, 풍력 센서, 축을 따라 기체의 자세를 센싱) 의미가 있습니다. 이 시스템은 올바른 조건을 만족하지 않는한 다른 모드로의 전환을 허용하지 않습니다.
 
-The sections below provide an overview of the modes, followed by a [flight mode evaluation diagram](#flight-mode-evaluation-diagram) that shows the conditions under which PX4 will transition into a new mode.
+아래의 섹션은 모드들의 개요를 보여줍니다. [flight mode evaluation diagram](#flight-mode-evaluation-diagram)는 PX4가 새로운 모드로 전환하기 위한 조건들을 보여줍니다.
 
-> **Note** More detailed user-facing flight mode documentation can be found in the [PX4 User Guide](https://docs.px4.io/master/en/flight_modes/).
+> **Note** 더 자세한 사용자용 비행 모드 문서는 [PX4 User Guide](https://docs.px4.io/master/en/flight_modes/)에서 찾을 수 있습니다.
 
 ## Flight Mode Summary
 
 ### Manual flight modes
 
-"Manual" modes are those where the user has direct control over the vehicle via the RC control (or joystick). Vehicle movement always follows stick movement, but the level/type of response changes depending on the mode. For example, experienced fliers can use modes that provide direct passthrough of stick positions to actuators, while beginners will often choose modes that are less responsive to sudden stick-position changes.
+"Manual"는 사용자가 RC 컨트롤 (또는 조이스틱) 을 통하여 기체를 직접 조종하는 모드입니다. 기체의 움직임은 항상 스틱의 움직임을 따르지만, 모드에 따라 반응의 레벨/타입은 변합니다. For example, experienced fliers can use modes that provide direct passthrough of stick positions to actuators, while beginners will often choose modes that are less responsive to sudden stick-position changes.
 
 * **Fixed wing aircraft/ rovers / boats:**
   
