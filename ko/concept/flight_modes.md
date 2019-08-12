@@ -1,8 +1,8 @@
 # Flight Modes
 
-*Flight Modes*는 사용자의 입력에 대해 어떻게 반응하고 기체를 움직일지에 대해 정의 합니다. 자동조종장치에 의해 제공되는 레벨/타입에 기초하여 *manual*, *assisted*, *auto* 모드로 나뉘어 집니다. The pilot transitions between flight modes using switches on the remote control or with a [ground control station](../qgc/README.md).
+*Flight Modes*는 사용자의 입력에 대해 어떻게 반응하고 기체를 움직일지에 대해 정의 합니다. 자동조종장치에 의해 제공되는 레벨/타입에 기초하여 *manual*, *assisted*, *auto* 모드로 나뉘어 집니다. 조종사는 원격 컨트롤러의 스위치나 [ground control station](../qgc/README.md)을 이용하여 비행 모드를 전환합니다.
 
-Not all flight modes are available on all vehicle types, and some modes behave differently on different vehicle types (as described below). Finally, some flight modes make sense only under specific pre-flight and in-flight conditions (e.g. GPS lock, airspeed sensor, vehicle attitude sensing along an axis). The system will not allow transitions to those modes until the right conditions are met.
+모든 종류의 기체에서 모든 비행 모드가 지원되는 것은 아니며, 어떤 모드는 기체의 종류에 따라 다르게 동작합니다 (밑에 설명한 것처럼). 그리고, 어떤 비행 모드는 특정 비행 전 및 비행 중인 상황에서만 (예. GPS lock, 풍력 센서, 축을 따라 기체의 자세를 센싱) 의미가 있습니다. 이 시스템은 올바른 조건을 만족하지 않는한 다른 모드로의 전환을 허용하지 않습니다.
 
 The sections below provide an overview of the modes, followed by a [flight mode evaluation diagram](#flight-mode-evaluation-diagram) that shows the conditions under which PX4 will transition into a new mode.
 
