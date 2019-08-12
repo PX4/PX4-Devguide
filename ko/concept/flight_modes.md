@@ -12,7 +12,7 @@
 
 ### Manual flight modes
 
-"Manual"는 사용자가 RC 컨트롤 (또는 조이스틱) 을 통하여 기체를 직접 조종하는 모드입니다. 기체의 움직임은 항상 스틱의 움직임을 따르지만, 모드에 따라 반응의 레벨/타입은 변합니다. For example, experienced fliers can use modes that provide direct passthrough of stick positions to actuators, while beginners will often choose modes that are less responsive to sudden stick-position changes.
+"Manual"는 사용자가 RC 컨트롤 (또는 조이스틱) 을 통하여 기체를 직접 조종하는 모드입니다. 기체의 움직임은 항상 스틱의 움직임을 따르지만, 모드에 따라 반응의 레벨/타입은 변합니다. 예를 들어, 숙력된 비행사는 스틱위 위치를 엑츄에이터에 직접전달하는 모드를 사용할 수 있지만, 초보자는 스틱위치의 갑작스런 변환에 적게 반응하는 모드를 선택할 것입니다.
 
 * **Fixed wing aircraft/ rovers / boats:**
   
