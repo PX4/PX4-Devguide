@@ -1,6 +1,6 @@
 # Flight Modes
 
-*Flight Modes* define how the autopilot responds to user input and controls vehicle movement. They are loosely grouped into *manual*, *assisted* and *auto* modes, based on the level/type of control provided by the autopilot. The pilot transitions between flight modes using switches on the remote control or with a [ground control station](../qgc/README.md).
+*Flight Modes*는 사용자의 입력에 대해 어떻게 반응하고 기체를 움직일지에 대해 정의 합니다. 자동조종장치에 의해 제공되는 레벨/타입에 기초하여 *manual*, *assisted*, *auto* 모드로 나뉘어 집니다. The pilot transitions between flight modes using switches on the remote control or with a [ground control station](../qgc/README.md).
 
 Not all flight modes are available on all vehicle types, and some modes behave differently on different vehicle types (as described below). Finally, some flight modes make sense only under specific pre-flight and in-flight conditions (e.g. GPS lock, airspeed sensor, vehicle attitude sensing along an axis). The system will not allow transitions to those modes until the right conditions are met.
 
