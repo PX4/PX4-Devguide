@@ -4,7 +4,7 @@ Developers are encouraged to write unit tests during all parts of development, i
 
 PX4 provides several methods for writing unit tests:
 
-1. Unit tests with GTest - tests that have minimal, internal-only dependencies
+1. Unit tests with [Google Test](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) ("GTest") - tests that have minimal, internal-only dependencies
 2. Functional tests with GTest - tests that depend on parameters and uORB messages
 3. SITL unit tests. This is for tests that need to run in full SITL. These tests are much slower to run and harder to debug, so it is recommended to use GTest instead when possible.
 
