@@ -28,13 +28,17 @@ The diagram below shows the division of bus and functional responsibilities betw
 <!-- Draw.io version of file can be found here: https://drive.google.com/file/d/1H0nK7Ufo979BE9EBjJ_ccVx3fcsilPS3/view?usp=sharing -->
 
 Some Pixhawk-series controllers are built without the I/O board in order to reduce space or complexity, or to better address certain board use-cases.
-An I/O board is *required* for [airframes](../airframes/airframe_reference.md) that use AUX ports for motors or control surfaces; generally it is not needed for multicopters or for *fully* autonomous vehicles (without a safety pilot using RC control).
 
 The I/O board is disabled by setting parameter [SYS_USE_IO=0](../advanced/parameter_reference.md#SYS_USE_IO).
 When the I/O board is disabled:
 - FMU outputs (usually "AUX") instead become the "MAIN" outputs.
 - RC input goes direct to the FMU.
 
-> **Note** Manufacturers often create flight controller variants with and without an I/O board. 
-  Versions without an I/O board are usually more compact and named as a "diminutive" of the version that has both boards.
-  For example, _Pixhawk 4_ **Mini**_, _CUAV v5 **nano**_.
+Flight controllers without an I/O board have `MAIN` ports, but they *do not* have `AUX` ports.
+Consequently they can only be used in [airframes](../airframes/airframe_reference.md) that do not use `AUX` ports, or that only use them for non-essential purposes (e.g. RC passthrough).
+They can be used for most multicopters and *fully* autonomous vehicles (without a safety pilot using RC control), as these typically only use `MAIN` ports for motors/essential controls.
+
+> **Warning** Flight controllers without an I/O board cannot be used in [airframes](../airframes/airframe_reference.md) that map any `AUX` ports to essential flight controls or motors (as they have no `AUX` ports).
+
+<span></span>
+> **Note** Manufacturers flight controller variants without an I/O board often named as a "diminutive" of a version that includes the I/O board: e.g. _Pixhawk 4_ **Mini**_, _CUAV v5 **nano**_.
