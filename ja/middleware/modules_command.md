@@ -255,18 +255,22 @@ Before starting, make sure to stop any running attitude controller:
 
 When starting, a background task is started, runs for several seconds (as specified), then exits.
 
-Note: this command currently only supports the `/dev/pwm_output0` output.
-
 ### Example
 
-    motor_ramp sine 1100 0.5
+    motor_ramp sine -a 1100 -r 0.5
     
 
 ### Usage {#motor_ramp_usage}
 
     motor_ramp [arguments...]
          ramp|sine|square mode
-         <min_pwm> <time> [<max_pwm>] pwm value in us, time in sec
+         [-d <val>]  Pwm output device
+                     default: /dev/pwm_output0
+         -a <val>    Select minimum pwm duty cycle in usec
+         [-b <val>]  Select maximum pwm duty cycle in usec
+                     default: 2000
+         [-r <val>]  Select motor ramp duration in sec
+                     default: 1.0
     
      WARNING: motors will ramp up to full speed!
     
