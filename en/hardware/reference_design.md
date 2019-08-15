@@ -41,4 +41,4 @@ They can be used for most multicopters and *fully* autonomous vehicles (without 
 > **Warning** Flight controllers without an I/O board cannot be used in [airframes](../airframes/airframe_reference.md) that map any `AUX` ports to essential flight controls or motors (as they have no `AUX` ports).
 
 <span></span>
-> **Note** Manufacturers flight controller variants without an I/O board often named as a "diminutive" of a version that includes the I/O board: e.g. _Pixhawk 4_ **Mini**_, _CUAV v5 **nano**_.
+> **Note** Manufacturer flight controller variants without an I/O board are often named as a "diminutive" of a version that includes the I/O board: e.g. _Pixhawk 4_ **Mini**_, _CUAV v5 **nano**_.
