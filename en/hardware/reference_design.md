@@ -30,10 +30,10 @@ The diagram below shows the division of bus and functional responsibilities betw
 Some Pixhawk-series controllers are built without the I/O board in order to reduce space or complexity, or to better address certain board use-cases.
 An I/O board is *required* for [airframes](../airframes/airframe_reference.md) that use AUX ports for motors or control surfaces; generally it is not needed for multicopters or for *fully* autonomous vehicles (without a safety pilot using RC control).
 
-The I/0 board is disabled by unsetting the [SYS_USE_IO](../advanced/parameter_reference.md#SYS_USE_IO) parameter.
+The I/O board is disabled by setting parameter [SYS_USE_IO=0](../advanced/parameter_reference.md#SYS_USE_IO).
 When the I/O board is disabled:
 - FMU outputs (usually "AUX") instead become the "MAIN" outputs.
-- Input ports `CPPMin`, `SBUS.in`, etc., become UARTs directly connected to the FMU.
+- RC input goes direct to the FMU.
 
 > **Note** Manufacturers often create flight controller variants with and without an I/O board. 
   Versions without an I/O board are usually more compact and named as a "diminutive" of the version that has both boards.
