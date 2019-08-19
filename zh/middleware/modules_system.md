@@ -1,52 +1,96 @@
 # 模块参考：系统
 
-## dataman
+## commander
 
-源码： [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
+Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
 
 ### 描述
 
-该模块通过基于 C 语言的 API 以简单数据库的形式为系统的其它部分提供持续性存储功能。 支持多种后端：
+The commander module contains the state machine for mode switching and failsafe behavior.
+
+### Usage {#commander_usage}
+
+    commander <command> [arguments...]
+     Commands:
+       start
+         [-h]        Enable HIL mode
+    
+       calibrate     Run sensor calibration
+         mag|accel|gyro|level|esc|airspeed Calibration type
+    
+       check         Run preflight checks
+    
+       arm
+         [-f]        Force arming (do not run preflight checks)
+    
+       disarm
+    
+       takeoff
+    
+       land
+    
+       transition    VTOL transition
+    
+       mode          Change flight mode
+         manual|acro|offboard|stabilized|rattitude|altctl|posctl|auto:mission|auto:l
+                     oiter|auto:rtl|auto:takeoff|auto:land|auto:precland Flight mode
+    
+       lockdown
+         [off]       Turn lockdown off
+    
+       stop
+    
+       status        print status info
+    
+
+## dataman
+
+Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
+
+### Description
+
+Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
 
 - 一个文件 （比如，在 SD 卡上）
 - FLASH 内存（如果飞控板支持的话）
 - FRAM
 - 内存 RAM (显然这种方式不是持续的)
 
-该模块用来存储不同类型的结构化数据：任务航点、人物状态和地理围栏多边形。 每种类型的数据都有一个特定的类型和一个固定的最大存储条目的数量，因此可以实现对数据的快速随机访问。
+It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
 
-### 实现
+### Implementation
 
-读取和写入单个项目总是原子的。 如果需要对多个条目进行原子读取/修改，模块会使用 `dm_lock` 对每个类型的条目添加一个额外的锁定。
+Reading and writing a single item is always atomic. If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
 
-**DM_KEY_FENCE_POINTS** 和 **DM_KEY_SAFE_POINTS** 条目：第一个数据元素是一个 `mission_stats_entry_s` 结构体，存储着这些类型的项目的条目数量。 这些项目在每个业务中都会进行原子更新 (从 mavlink 任务管理器)。 在此期间，navigator 会尝试获取地理围栏条目的锁定，如果失败则不会检查是否超越了地理围栏。
+**DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
 
-### 用法 {#dataman_usage}
+### Usage {#dataman_usage}
 
-    dataman &lt;command&gt; [arguments...]
+    dataman <command> [arguments...]
      Commands:
        start
-         [-f &lt;val&gt;]  存储文件
-                     取值: &lt;file&gt;
-         [-r]        使用 RAM 后端 (非持续)
-         [-i]        使用 FLASH 后端
+         [-f <val>]  Storage file
+                     values: <file>
+         [-r]        Use RAM backend (NOT persistent)
+         [-i]        Use FLASH backend
     
-     -f, -r 和-i 选项是互斥的。 如果未指定后端，那么默认使用文件 'dataman' 
+     The options -f, -r and -i are mutually exclusive. If nothing is specified, a
+     file 'dataman' is used
     
-       poweronrestart 重启 dataman (处于开机 power on 状态时)
+       poweronrestart Restart dataman (on power on)
     
-       inflightrestart 重启 dataman (处于飞行状态时)
+       inflightrestart Restart dataman (in flight)
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## dmesg
 
 Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
 
-### 描述
+### Description
 
 Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
 
@@ -68,7 +112,7 @@ Keep printing all messages in the background:
 
 Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
-### Description
+### 描述
 
 Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 
@@ -109,7 +153,7 @@ This task can be started at boot from the startup scripts by setting SENS_EN_THE
 
 Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
 
-### 描述
+### Description
 
 Module to detect the freefall and landed state of the vehicle, and publishing the `vehicle_land_detected` topic. Each vehicle type (multirotor, fixedwing, vtol, ...) provides its own algorithm, taking into account various states, such as commanded thrust, arming state and vehicle motion.
 
@@ -263,7 +307,7 @@ The replay procedure is documented on the [System-wide Replay](https://dev.px4.i
 
 Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules/events)
 
-### Description
+### 描述
 
 Background process running periodically on the LP work queue to perform housekeeping tasks. It is currently only responsible for temperature calibration and tone alarm on RC Loss.
 
@@ -290,7 +334,7 @@ The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, e
 
 Source: [modules/sensors](https://github.com/PX4/Firmware/tree/master/src/modules/sensors)
 
-### 描述
+### Description
 
 The sensors module is central to the whole system. It takes low-level output from drivers, turns it into a more usable form, and publishes it for the rest of the system.
 
