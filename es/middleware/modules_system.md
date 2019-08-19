@@ -1,5 +1,48 @@
 # Modules Reference: System
 
+## commander
+
+Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
+
+### Description
+
+The commander module contains the state machine for mode switching and failsafe behavior.
+
+### Usage {#commander_usage}
+
+    commander <command> [arguments...]
+     Commands:
+       start
+         [-h]        Enable HIL mode
+    
+       calibrate     Run sensor calibration
+         mag|accel|gyro|level|esc|airspeed Calibration type
+    
+       check         Run preflight checks
+    
+       arm
+         [-f]        Force arming (do not run preflight checks)
+    
+       disarm
+    
+       takeoff
+    
+       land
+    
+       transition    VTOL transition
+    
+       mode          Change flight mode
+         manual|acro|offboard|stabilized|rattitude|altctl|posctl|auto:mission|auto:l
+                     oiter|auto:rtl|auto:takeoff|auto:land|auto:precland Flight mode
+    
+       lockdown
+         [off]       Turn lockdown off
+    
+       stop
+    
+       status        print status info
+    
+
 ## dataman
 
 Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
