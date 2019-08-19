@@ -228,21 +228,6 @@ Install *Gstreamer 1.0* and its dependencies:
     sudo apt-get install $(apt-cache --names-only search ^gstreamer1.0-* | awk '{ print $1 }' | grep -v gstreamer1.0-hybris) -y
     
 
-### Enable GStreamer Plugin
-
-> **Note** This step will not be required once video streaming is enabled by default.
-
-Enable the *GStreamer Plugin* (if disabled) by changing the `BUILD_GSTREAMER_PLUGIN` option to `"ON"` in [&lt;Firmware&gt;/Tools/sitl_gazebo/CMakeLists.txt](https://github.com/PX4/sitl_gazebo/blob/master/CMakeLists.txt) (as shown below):
-
-    option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "ON")
-    
-
-Once the plugin is enabled you can run SITL with Gazebo in the normal way:
-
-    make clean
-    make px4_sitl gazebo_typhoon_h480
-    
-
 ### How to View Gazebo Video
 
 The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Settings > General** and set **Video Source** to *UDP Video Stream* and **UDP Port** to *5600*:
