@@ -42,3 +42,6 @@ They can be used for most multicopters and *fully* autonomous vehicles (without 
 
 <span></span>
 > **Note** Manufacturer flight controller variants without an I/O board are often named as a "diminutive" of a version that includes the I/O board: e.g. _Pixhawk 4_ **Mini**_, _CUAV v5 **nano**_.
+
+Most PX4 PWM outputs are mapped to either `MAIN` or `AUX` ports in mixers.
+A few specific cases, including camera triggering and Dshot ESCs, are directly mapped to the FMU pins (i.e. they will output to *either* `MAIN` or `AUX`, depending on whether or not the flight controller has an I/O board).
