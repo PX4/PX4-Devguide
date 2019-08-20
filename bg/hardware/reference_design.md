@@ -26,6 +26,19 @@ The diagram below shows the division of bus and functional responsibilities betw
 
 <!-- Draw.io version of file can be found here: https://drive.google.com/file/d/1H0nK7Ufo979BE9EBjJ_ccVx3fcsilPS3/view?usp=sharing -->
 
-The I/0 board is optional! Some Pixhawk-series controllers are built without the I/O board in order to reduce space or complexity, or to better address certain board use-cases. An I/O board is required for [airframes](../airframes/airframe_reference.md) that use AUX ports for motors or control surfaces; generally it is not needed for multicopters or for *fully* autonomous vehicles (without a safety pilot using RC control).
+Some Pixhawk-series controllers are built without the I/O board in order to reduce space or complexity, or to better address certain board use-cases.
 
-> **Note** Manufacturers often create flight controller variants with and without the I/O board. The version without an I/O board is usually a size-reduced version that is named as a "diminutive" of the version that has both boards. For example, *Pixhawk 4* **Mini**_, *CUAV v5 **nano***.
+The I/O board is disabled by setting parameter [SYS_USE_IO=0](../advanced/parameter_reference.md#SYS_USE_IO). When the I/O board is disabled:
+
+- FMU outputs (usually "AUX") instead become the "MAIN" outputs.
+- RC input goes direct to the FMU.
+
+Flight controllers without an I/O board have `MAIN` ports, but they *do not* have `AUX` ports. Consequently they can only be used in [airframes](../airframes/airframe_reference.md) that do not use `AUX` ports, or that only use them for non-essential purposes (e.g. RC passthrough). They can be used for most multicopters and *fully* autonomous vehicles (without a safety pilot using RC control), as these typically only use `MAIN` ports for motors/essential controls.
+
+> **Warning** Flight controllers without an I/O board cannot be used in [airframes](../airframes/airframe_reference.md) that map any `AUX` ports to essential flight controls or motors (as they have no `AUX` ports).
+
+<span></span>
+
+> **Note** Manufacturer flight controller variants without an I/O board are often named as a "diminutive" of a version that includes the I/O board: e.g. *Pixhawk 4* **Mini**_, *CUAV v5 **nano***.
+
+Most PX4 PWM outputs are mapped to either `MAIN` or `AUX` ports in mixers. A few specific cases, including camera triggering and Dshot ESCs, are directly mapped to the FMU pins (i.e. they will output to *either* `MAIN` or `AUX`, depending on whether or not the flight controller has an I/O board).
