@@ -70,7 +70,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 * 7: RC aux3
 
 > **Note** This group is only used to define mapping of RC inputs to specific outputs during *normal operation* (see [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7) for an example of AUX2 being scaled in a mixer).
-  In the event of manual IO failsafe override (if the PX4FMU stops communicating with the PX4IO board) the mapping/mixing defined by control group 0 inputs for roll, pitch, yaw and throttle are used instead (other mappings are ignored).
+  In the event of manual IO failsafe override (if the PX4FMU stops communicating with the PX4IO board) only the mapping/mixing defined by control group 0 inputs for roll, pitch, yaw and throttle are used (other mappings are ignored).
 
 
 ### Control Group #6 (First Payload)
