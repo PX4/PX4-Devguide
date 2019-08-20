@@ -62,6 +62,8 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 * 6: RC aux2
 * 7: RC aux3
 
+> **Note** This group is only used to define mapping of RC inputs to specific outputs during *normal operation* (see [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7) for an example of AUX2 being scaled in a mixer). In the event of manual IO failsafe override (if the PX4FMU stops communicating with the PX4IO board) only the mapping/mixing defined by control group 0 inputs for roll, pitch, yaw and throttle are used (other mappings are ignored).
+
 ### 控制组 #6 (First Payload)
 
 * 0: function 0 (默认：降落伞)
@@ -156,7 +158,7 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
     S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-> **Note** `S:` l行必须处于 `O:` 的下面。
+> **Note** The `S:` lines must be below the `O:` line.
 
 `&lt;group&gt;` 参数指定了缩放器从哪个控制组中读取数据，而 `&lt;index&gt;` 参数则是定义了该控制组的偏移值。  
 这些参数的设定值会随着读取混控器定义文件的设备的不同而发生改变。
@@ -199,7 +201,7 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 推力控制输入同时用于设定直升机的主电机和倾斜盘的总距。 在运行时它会使用一条油门曲线和一条总距曲线，这两条曲线都由 5 个控制点组成。
 
-> **Note** 油门曲线及总距曲线将 “推力” 摇杆输入位置映射到一个油门值和总距值（单独地）。 这就使得我们可以针对不同类型的飞行对飞机的飞行特性进行调整。 如何调整这些映射曲线可以参考 [这篇指南](https://www.rchelicopterfun.com/rc-helicopter-radios.html) （搜索 *Programmable Throttle Curves* 和 *Programmable Pitch Curves*）。
+> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
 
 混控器的定义的开头如下：
 
