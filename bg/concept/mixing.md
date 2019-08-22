@@ -103,7 +103,7 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 ## Mapping
 
-Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (first 8 PWM outpus, UAVCAN, etc.), one control group can send command to multiple output groups.
+Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (first 8 PWM outputs, UAVCAN, etc.), one control group can send command to multiple output groups.
 
 {% mermaid %} graph TD; actuator_group_0-->output_group_5 actuator_group_0-->output_group_6 actuator_group_1-->output_group_0 {% endmermaid %}
 
