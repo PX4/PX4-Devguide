@@ -50,7 +50,7 @@ The installer gives you the option of downloading and installing them.
 Clone the project from Github:
 
 ```sh
-$ git clone https://github.com/eProsima/Fast-RTPS
+$ git clone -b v1.8.1 https://github.com/eProsima/Fast-RTPS
 $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 ```
 
