@@ -46,7 +46,7 @@ Java is required to use our built-in code generation tool - *fastrtpsgen*. [Java
 Clone the project from Github:
 
 ```sh
-$ git clone https://github.com/eProsima/Fast-RTPS
+$ git clone -b v1.8.1 https://github.com/eProsima/Fast-RTPS
 $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 ```
 
