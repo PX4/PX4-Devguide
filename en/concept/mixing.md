@@ -117,9 +117,17 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 * 6: reserved / aux2
 * 7: reserved / aux3
 
-## Mapping
+## Output Groups/Mapping
 
-Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (first 8 PWM outputs, UAVCAN, etc.), one control group can send command to multiple output groups.
+An output group is one physical bus (e.g. FMU PWM outputs, IO PWM outputs, UAVCAN etc.) that has 8 normalized (-1..+1) command ports that can be mapped and scaled through the mixer.
+
+The mixer file does not explicitly define the actual *output group* (physical bus) where the outputs are applied.
+Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is inferred from the mixer [filename](#mixer_file_names), and mapped to the appropriate physical bus in the system [startup scripts](../concept/system_startup.md) (and in particular in [rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)).
+
+> **Note** This approach is needed because the physical bus used for MAIN outputs is not always the same; it depends on whether or not the flight controller has an IO Board (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) or uses UAVCAN for motor control.
+  The startup scripts load the mixer into the appropirate driver device for the board: `/dev/pwm_output0` (IO driver) or `/dev/pwm_output1` (FMU driver), `/dev/uavcan/esc` (uavcan driver).
+
+Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (busses), one control group can send commands to multiple output groups.
 
 {% mermaid %}
 graph TD;
@@ -133,7 +141,7 @@ graph TD;
 Files in **ROMFS/px4fmu_common/mixers** implement mixers that are used for predefined airframes.
 They can be used as a basis for customisation, or for general testing purposes. 
 
-### Mixer File Names
+### Mixer File Names {#mixer_file_names}
 
 A mixer file must be named **XXXX._main_.mix** if it is responsible for the mixing of MAIN outputs or **XXXX._aux_.mix** if it mixes AUX outputs.
 
