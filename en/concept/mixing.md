@@ -119,7 +119,7 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 
 ## Output Groups/Mapping
 
-An output group is one physical bus (e.g. FMU PWM outputs, IO PWM outputs, UAVCAN etc.) that has 8 normalized (-1..+1) command ports that can be mapped and scaled through the mixer.
+An output group is one physical bus (e.g. FMU PWM outputs, IO PWM outputs, UAVCAN etc.) that has N (usually 8) normalized (-1..+1) command ports that can be mapped and scaled through the mixer.
 
 The mixer file does not explicitly define the actual *output group* (physical bus) where the outputs are applied.
 Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is inferred from the mixer [filename](#mixer_file_names), and mapped to the appropriate physical bus in the system [startup scripts](../concept/system_startup.md) (and in particular in [rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)).
