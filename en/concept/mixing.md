@@ -125,7 +125,7 @@ The mixer file does not explicitly define the actual *output group* (physical bu
 Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is inferred from the mixer [filename](#mixer_file_names), and mapped to the appropriate physical bus in the system [startup scripts](../concept/system_startup.md) (and in particular in [rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)).
 
 > **Note** This approach is needed because the physical bus used for MAIN outputs is not always the same; it depends on whether or not the flight controller has an IO Board (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) or uses UAVCAN for motor control.
-  The startup scripts load the mixer into the appropirate driver device for the board: `/dev/pwm_output0` (IO driver) or `/dev/pwm_output1` (FMU driver), `/dev/uavcan/esc` (uavcan driver).
+  The startup scripts load the mixer into the appropriate driver device for the board: `/dev/pwm_output0` (IO driver) or `/dev/pwm_output1` (FMU driver), `/dev/uavcan/esc` (uavcan driver).
 
 Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (busses), one control group can send commands to multiple output groups.
 
