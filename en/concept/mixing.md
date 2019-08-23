@@ -125,7 +125,9 @@ The mixer file does not explicitly define the actual *output group* (physical bu
 Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is inferred from the mixer [filename](#mixer_file_names), and mapped to the appropriate physical bus in the system [startup scripts](../concept/system_startup.md) (and in particular in [rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)).
 
 > **Note** This approach is needed because the physical bus used for MAIN outputs is not always the same; it depends on whether or not the flight controller has an IO Board (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) or uses UAVCAN for motor control.
-  The startup scripts load the mixer into the appropriate driver device for the board: `/dev/pwm_output0` (IO driver) or `/dev/pwm_output1` (FMU driver), `/dev/uavcan/esc` (uavcan driver).
+  The startup scripts load the mixer files into the appropriate device driver for the board, using the abstraction of a "device".
+  The main mixer is loaded into device `/dev/uavcan/esc` (uavcan) if UAVCAN is enabled, and otherwise `/dev/pwm_output0` (this device is mapped to the IO driver on controllers with an I/O board, and the FMU driver on boards that don't).
+  The aux mixer file is loaded into device `/dev/pwm_output1`, which maps to the FMU driver on Pixhawk controllers that have an I/O board.
 
 Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (busses), one control group can send commands to multiple output groups.
 
@@ -135,6 +137,10 @@ graph TD;
   actuator_group_0-->output_group_6
   actuator_group_1-->output_group_0
 {% endmermaid %}
+
+> **Note** In practice, the startup scripts only load mixers into a single device (output group).
+  This is a configuration rather than technical limitation; you could load the main mixer into multiple drivers and have, for example, the same signal on both UAVCAN and the main pins.
+
 
 ## PX4 Mixer Definitions
 
