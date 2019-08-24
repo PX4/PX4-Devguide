@@ -369,6 +369,20 @@ All available commands are:
 roboclaw <command> [arguments...]
  Commands:
 ```
+## safety_button
+Source: [drivers/safety_button](https://github.com/PX4/Firmware/tree/master/src/drivers/safety_button)
+
+
+### Description
+This module is responsible for the safety button.
+
+
+### Usage {#safety_button_usage}
+```
+safety_button <command> [arguments...]
+ Commands:
+   start         Start the safety button driver
+```
 ## tap_esc
 Source: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
 
