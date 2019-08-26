@@ -16,25 +16,13 @@ Cierre sesión y vuelva a entrar para que los cambios tengan efecto.
 
 > **Nota** Este script instala el (no compatible) último GCCE desde el gestor de paquetes. MicroRTPS no es compilado.
 
-Una vez ArchLinux está instalado puedes usar el script de docker [archlinux_install_script.sh](https://github.com/PX4/containers/blob/master/docker/px4-dev/scripts/archlinux_install_script.sh) para instalar todas las dependencias requeridas para compilar el firmware PX4.
-
-Para instalar usando este script, introduzca lo siguiente en una terminal:
-
-```sh
-wget https://raw.githubusercontent.com/PX4/containers/master/docker/px4-dev/scripts/archlinux_install_script.sh
-sudo -s
-source ./archlinux_install_script.sh
-```
-
-<!-- 
-> Follow the instructions [below](#gcc-toolchain-installation) to install the supported version.
--->
+On Arch Linux there is currently no script to install the dependencies. You can, however, check how the [Arch Linux Dockerfile](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_base-archlinux) for reference.
 
 ## Instalación manual
 
 ### Dependencias Comunes
 
-Para instalar las dependencias manualmente, introduzca las siguientes líneas en una terminal.
+To install the dependencies manually, enter the following lines into a terminal.
 
 ```sh
 # Common dependencies for all targets
@@ -59,14 +47,14 @@ rm genromfs-0.5.2.tar.gz genromfs-0.5.2 -r
 
 ### Compilador GCCE
 
-Un compilador GCC es requerido para compilar objetivos NuttX. Introduzca los siguientes comandos para instalar la última versión desde el gestor de paquetes (no compatible).
+A GCC compiler is required to build for NuttX targets. Enter the command below to install the latest version from the package manager (unsupported).
 
-    # Compilador desde el gestor de paquetes (no compatible)
+    # Compiler from package manager (unsupported)
     sudo pacman -Sy --noconfirm \
         arm-none-eabi-gcc arm-none-eabi-newlib
     
 
-*Alternativamente*, las instrucciones estándar para instalar la versión **oficial** están listadas a continuación.
+*Alternatively*, the standard instructions for installing the **official** version are listed below.
 
 > **Nota** No estan probadas. Usalos bajo tu propia responsabilidad!
 
