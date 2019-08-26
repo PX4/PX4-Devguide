@@ -16,19 +16,7 @@ Then log out and log in for changes to take effect.
 
 > **Note** This script installs the (unsupported) latest GCCE from the package manager. MicroRTPS is not built.
 
-Once ArchLinux is installed you can use the docker script [archlinux_install_script.sh](https://github.com/PX4/containers/blob/master/docker/px4-dev/scripts/archlinux_install_script.sh) to install all dependencies required for building PX4 firmware.
-
-To install using this script, enter the following in a terminal:
-
-```sh
-wget https://raw.githubusercontent.com/PX4/containers/master/docker/px4-dev/scripts/archlinux_install_script.sh
-sudo -s
-source ./archlinux_install_script.sh
-```
-
-<!-- 
-> Follow the instructions [below](#gcc-toolchain-installation) to install the supported version.
--->
+On Arch Linux there is currently no script to install the dependencies. You can, however, check how the [Arch Linux Dockerfile](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_base-archlinux) for reference.
 
 ## Manual Installation
 
