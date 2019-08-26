@@ -16,25 +16,13 @@ sudo usermod -a -G uucp $USER
 
 > **Note** This script installs the (unsupported) latest GCCE from the package manager. MicroRTPS is not built.
 
-Once ArchLinux is installed you can use the docker script [archlinux_install_script.sh](https://github.com/PX4/containers/blob/master/docker/px4-dev/scripts/archlinux_install_script.sh) to install all dependencies required for building PX4 firmware.
-
-To install using this script, enter the following in a terminal:
-
-```sh
-wget https://raw.githubusercontent.com/PX4/containers/master/docker/px4-dev/scripts/archlinux_install_script.sh
-sudo -s
-source ./archlinux_install_script.sh
-```
-
-<!-- 
-> Follow the instructions [below](#gcc-toolchain-installation) to install the supported version.
--->
+On Arch Linux there is currently no script to install the dependencies. You can, however, check how the [Arch Linux Dockerfile](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_base-archlinux) for reference.
 
 ## 手动安装
 
 ### 通用依赖
 
-在终端输入以下命令进行依赖项的手动安装：
+To install the dependencies manually, enter the following lines into a terminal.
 
 ```sh
 # Common dependencies for all targets
@@ -61,7 +49,7 @@ rm genromfs-0.5.2.tar.gz genromfs-0.5.2 -r
 
 A GCC compiler is required to build for NuttX targets. Enter the command below to install the latest version from the package manager (unsupported).
 
-    # 从包管理器安装编译器（不支持）
+    # Compiler from package manager (unsupported)
     sudo pacman -Sy --noconfirm \
         arm-none-eabi-gcc arm-none-eabi-newlib
     
