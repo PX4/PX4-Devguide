@@ -20,7 +20,7 @@ sudo apt-get remove modemmanager -y
 # Common dependencies
 echo "Installing common dependencies"
 sudo apt-get update -y
-sudo apt-get install git zip qtcreator cmake build-essential genromfs ninja-build exiftool astyle -y
+sudo apt-get install git zip qtcreator cmake build-essential genromfs ninja-build exiftool astyle lsb-core -y
 # make sure xxd is installed, dedicated xxd package since Ubuntu 18.04 but was squashed into vim-common before
 which xxd || sudo apt install xxd -y || sudo apt-get install vim-common --no-install-recommends -y
 # Required python packages
