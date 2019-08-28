@@ -144,3 +144,13 @@ make tests
 
 The individual GTest test binaries are in the `build/px4_sitl_test/` directory, and can be run directly in most IDEs' debugger.
 
+Filter to run only a subset of tests using a regular expression for the ctest name with this command:
+
+```bash
+make tests TESTFILTER=<filter expression>
+```
+
+For example:
+- `make tests TESTFILTER=unit` only run GTest unit tests
+- `make tests TESTFILTER=sitl` only run simulation tests
+- `make tests TESTFILTER=Attitude` only run the `AttitudeControl` test
