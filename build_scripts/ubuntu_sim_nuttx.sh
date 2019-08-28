@@ -22,7 +22,7 @@ sudo apt-get install python-serial openocd \
     libftdi-dev libtool zlib1g-dev -y
 
 # Clean up old GCC
-sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded -y
+sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi gcc-arm-embedded software-properties-common -y
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa -y
 
 
