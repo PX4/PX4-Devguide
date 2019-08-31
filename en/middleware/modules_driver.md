@@ -88,11 +88,7 @@ driver. Alternatively, the fmu can be started in one of the capture modes, and t
 callback with ioctl calls.
 
 ### Implementation
-By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread,
-specified via start flag -t, to reduce latency.
-When running on the work queue, it schedules at a fixed frequency, and the pwm rate limits the update rate of
-the actuator_controls topics. In case of running in its own thread, the module polls on the actuator_controls topic.
-Additionally the pwm rate defines the lower-level IO timer rates.
+By default the module runs on a work queue with a callback on the uORB actuator_controls topic.
 
 ### Examples
 It is typically started with:
@@ -119,7 +115,6 @@ fmu <command> [arguments...]
  Commands:
    start         Start the task (without any mode set, use any of the mode_*
                  cmds)
-     [-t]        Run as separate task instead of the work queue
 
  All of the mode_* commands will start the fmu if not running already
 
