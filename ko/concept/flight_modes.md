@@ -14,10 +14,10 @@
 
 "Manual"는 사용자가 RC 컨트롤 (또는 조이스틱) 을 통하여 기체를 직접 조종하는 모드입니다. 기체의 움직임은 항상 스틱의 움직임을 따르지만, 모드에 따라 반응의 레벨/타입은 변합니다. 예를 들어, 숙력된 비행사는 스틱위 위치를 엑츄에이터에 직접전달하는 모드를 사용할 수 있지만, 초보자는 스틱위치의 갑작스런 변환에 적게 반응하는 모드를 선택할 것입니다.
 
-* **Fixed wing aircraft/ rovers / boats:**
+* **고정익 / 탐사선 / 보트**
   
-  * **MANUAL:** The pilot's control inputs (raw user inputs from RC transmitter) are passed directly to the output mixer.
-  * **STABILIZED:** The pilot's pitch and roll inputs are passed as angle commands to the autopilot, while the yaw input is sent directly via the output mixer to the rudder (manual control). If the RC roll and pitch sticks are centered, the autopilot regulates the roll and pitch angles to zero, hence stabilizing (leveling-out) the attitude against any wind disturbances. However, in this mode the position of the aircraft is not controlled by the autopilot, hence the position can drift due to wind. With nonzero roll input the vehicle does a coordinated turn to achieve zero sideslip (the acceleration in y-direction (sidewards) is zero). During a coordinated turn, the rudder is used to control the sideslip and any manual yaw input is added to that.
+  * **MANUAL:** 조종사의 컨트롤이 (리모트컨트롤러로부터 오는 가공되지 않은 사용자의 입력) 출력 믹서에 직접적으로 전달됩니다.
+  * **STABILIZED:** 조종사의 pitch, roll 입력이 angle 커맨드로 자종조종시스템에 전달됩니다. 반면에 yaw 입력은 출력 믹서를 통해 방향타에 직접적으로 전달됩니다 (수동 조종). If the RC roll and pitch sticks are centered, the autopilot regulates the roll and pitch angles to zero, hence stabilizing (leveling-out) the attitude against any wind disturbances. However, in this mode the position of the aircraft is not controlled by the autopilot, hence the position can drift due to wind. With nonzero roll input the vehicle does a coordinated turn to achieve zero sideslip (the acceleration in y-direction (sidewards) is zero). During a coordinated turn, the rudder is used to control the sideslip and any manual yaw input is added to that.
   * **ACRO:** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot. The autopilot controls the angular rates. Throttle is passed directly to the output mixer.
 
 * **Multirotors:**
