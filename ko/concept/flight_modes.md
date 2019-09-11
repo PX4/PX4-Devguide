@@ -36,8 +36,8 @@
 
 * **ALTCTL** (고도 제어) 
   * **고정익:** When the roll, pitch and yaw (RPY) RC sticks are all centered (or less than some specified deadband range) the aircraft will return to straight and level flight and keep its current altitude. x와 y의 위치는 바람에 의해 이동될 것입니다.
-  * **멀티콥터:** roll, pitch, yaw 입력은 stabilized 모드에 있게 됩니다. Throttle 입력은 미리 정의된 최대 속도에서 오르거나 내리는 신호를 보냅니다. Throttle은 큰 데드존을 갖게 됩니다. Centered Throttle holds altitude steady. The autopilot only controls altitude so the x,y position of the vehicle can drift due to wind.
-* **POSCTL** (Position Control) 
+  * **멀티콥터:** roll, pitch, yaw 입력은 stabilized 모드에 있게 됩니다. Throttle 입력은 미리 정의된 최대 속도에서 오르거나 내리는 신호를 보냅니다. Throttle은 큰 데드존을 갖게 됩니다. 가운데의 throttle은 고도를 안정되게 유지합니다. 자동조종장치는 단지 고도만을 조종합니다. 따라서 x,y는 바람에 의해 이동될 수 있습니다.
+* **POSCTL** (위치 제어) 
   * **Fixed wing aircraft:** Neutral inputs (centered RC sticks) give level flight and it will crab against the wind if needed to maintain a straight line.
   * **Multirotors** Roll controls left-right speed, pitch controls front-back speed over ground. Yaw controls yaw rate as in MANUAL mode. Throttle controls climb/descent rate as in ALTCTL mode. This means that the x, y, z position of the vehicle is held steady by the autopilot against any wind disturbances, when the roll, pitch and throttle sticks are centered.
 
