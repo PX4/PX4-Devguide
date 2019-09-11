@@ -22,15 +22,15 @@
 
 * **멀티콥터:**
   
-  * **MANUAL/STABILIZED** 조종사의 입력은 roll, pitch *angle* 명령어와 yaw *rate* 명령어로 전달됩니다. Throttle은 출력 믹서에 직접적으로 전달됩니다. The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered, consequently leveling-out the attitude. However, in this mode the position of the vehicle is not controlled by the autopilot, hence the position can drift due to wind.
+  * **MANUAL/STABILIZED** 조종사의 입력은 roll, pitch *angle* 명령어와 yaw *rate* 명령어로 전달됩니다. Throttle은 출력 믹서에 직접적으로 전달됩니다. 자동조종장치는 자세를 제어합니다. 즉, RC 스틱이 중심으로 모일때 roll 과 pitch angle을 0으로 조절합니다. 따라서 수평을 유지합니다. 그러나, 이 모드에서는 자동조종장치가 기체의 포지션을 제어하지는 않습니다. 따라서 포지션은 바람에 의해 바뀔 수 있습니다.
     
-    > **Note** For Multirotors, Manual and Stabilized modes are the same.
+    > **Note** 멀티콥터는 Manual 모드와 Stabilized 모드가 동일합니다.
   
-  * **ACRO:** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot. The autopilot controls the angular rates, but not the attitude. Hence, if the RC sticks are centered the vehicle will not level-out. This allows the multirotor to become completely inverted. Throttle is passed directly to the output mixer.
+  * **ACRO:** 조종사의 입력은 roll, pitch, yaw *rate* 명령어로 자동조종장치에 전달됩니다. 자종조종장치의 angular rate는 제어하지만 자세는 제어하지 않습니다. 따라서, RC 스틱이 중심으로 모여지면 수평이 되지 않을 것입니다. 이것은 멀티콥터가 완전히 뒤집히는 것을 허용합니다. Throttle은 출력 믹서에 직접적으로 전달됩니다.
   
-  * **RATTITUDE** The pilot's inputs are passed as roll, pitch, and yaw *rate* commands to the autopilot if they are greater than the mode's threshold, i.e. if the RC sticks are a certain distance away from the center position. If not the inputs are passed as roll and pitch *angle* commands and a yaw *rate* command. Throttle is passed directly to the output mixer. In short, the autopilot acts as an angular rate controller when the RC sticks are away from center (like in the ACRO mode), whereas when the RC sticks are centered, the autopilot acts as an attitude controller (like in the Stabilized mode).
+  * **RATTITUDE** 조종사의 입력이 threshold보다 높으면 roll, pitch, yaw *rate* 명령어로 자동조종장치에 전달됩니다. 예를 들어 RC 스틱 중심에서 확실히 멀어질 때 입니다. 그렇지 않으면 명령어가 전달되지 않습니다. Throttle은 출력 믹서에 직접적으로 전달됩니다. 다시 말해, 자동조종장치는 RC 스틱이 많이 움직이면 (ACRO모드 처럼) anulara rate 컨트롤러 역할을 하지만 그렇지 않으면 자동조종장치는 자세 컨트롤러 역할을 합니다 (Stabilized모드 처럼)
 
-### Assisted flight modes
+### 비행 보조 모드
 
 "Assisted" modes are also user controlled but offer some level of "automatic" assistance - for example, automatically holding position/direction, against wind. Assisted modes often make it much easier to gain or restore controlled flight.
 
