@@ -18,11 +18,11 @@
   
   * **MANUAL:** 조종사의 컨트롤이 (리모트컨트롤러로부터 오는 가공되지 않은 사용자의 입력) 출력 믹서에 직접적으로 전달됩니다.
   * **STABILIZED:** 조종사의 pitch, roll 입력이 angle 커맨드로 자종조종시스템에 전달됩니다. 반면에 yaw 입력은 출력 믹서를 통해 방향타에 직접적으로 전달됩니다 (수동 조종). 만약 리모트컨트롤러의 roll, pitch 스틱이 중심을 향하면, 자동조종장치는 roll과 pitch의 각을 0으로 조절합니다. 따라서 어떠한 바람의 방해에서 기체를 안정되게 합니다. 그러나 이 모드에서는 비행기의 위치가 자동조종장치에 의해서 제어되지는 않습니다. 따라서 위치는 바람때문에 이동할 될 수 있습니다. 0이 아닌 roll 입력은 기체가 옆으로 미끄러지지 않도록 균형선회 합니다. 균형선회 하는 동안, 방향타는 옆으로 미끄러지는 것을 방지하고 어떤 yaw 입력이 더해집니다.
-  * **ACRO:** 조종사의 입력이 roll, pitch, yaw *rate* 명령어로 자동조종장치에 전달됩니다. 자동조종장치는 angular rate를 제어합니다. Throttle is passed directly to the output mixer.
+  * **ACRO:** 조종사의 입력이 roll, pitch, yaw *rate* 명령어로 자동조종장치에 전달됩니다. 자동조종장치는 angular rate를 제어합니다. Throttle은 출력 믹서에 직접적으로 전달됩니다.
 
 * **멀티콥터:**
   
-  * **MANUAL/STABILIZED** The pilot's inputs are passed as roll and pitch *angle* commands and a yaw *rate* command. Throttle is passed directly to the output mixer. The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered, consequently leveling-out the attitude. However, in this mode the position of the vehicle is not controlled by the autopilot, hence the position can drift due to wind.
+  * **MANUAL/STABILIZED** 조종사의 입력은 roll, pitch *angle* 명령어와 yaw *rate* 명령어로 전달됩니다. Throttle은 출력 믹서에 직접적으로 전달됩니다. The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered, consequently leveling-out the attitude. However, in this mode the position of the vehicle is not controlled by the autopilot, hence the position can drift due to wind.
     
     > **Note** For Multirotors, Manual and Stabilized modes are the same.
   
