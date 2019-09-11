@@ -32,11 +32,11 @@
 
 ### 비행 보조 모드
 
-"Assisted" modes are also user controlled but offer some level of "automatic" assistance - for example, automatically holding position/direction, against wind. Assisted modes often make it much easier to gain or restore controlled flight.
+보조 모드 또한 사용자가 조종하는 것이지만 몇몇의 자동화된 보조를 제공합니다. 예를 들어, 바람에 맞서 기체를 자동적으로 고정하는 것입니다. 보조 모드는 비행 제어를 보다 쉽게 만들어 줍니다.
 
-* **ALTCTL** (Altitude Control) 
-  * **Fixed wing aircraft:** When the roll, pitch and yaw (RPY) RC sticks are all centered (or less than some specified deadband range) the aircraft will return to straight and level flight and keep its current altitude. Its x and y position will drift with the wind.
-  * **Multirotors:** Roll, pitch and yaw inputs are as in Stabilised mode. Throttle inputs indicate climb or sink at a predetermined maximum rate. Throttle has large deadzone. Centered Throttle holds altitude steady. The autopilot only controls altitude so the x,y position of the vehicle can drift due to wind.
+* **ALTCTL** (고도 제어) 
+  * **고정익:** When the roll, pitch and yaw (RPY) RC sticks are all centered (or less than some specified deadband range) the aircraft will return to straight and level flight and keep its current altitude. x와 y의 위치는 바람에 의해 이동될 것입니다.
+  * **멀티콥터:** roll, pitch, yaw 입력은 stabilized 모드에 있게 됩니다. Throttle 입력은 미리 정의된 최대 속도에서 오르거나 내리는 신호를 보냅니다. Throttle은 큰 데드존을 갖게 됩니다. Centered Throttle holds altitude steady. The autopilot only controls altitude so the x,y position of the vehicle can drift due to wind.
 * **POSCTL** (Position Control) 
   * **Fixed wing aircraft:** Neutral inputs (centered RC sticks) give level flight and it will crab against the wind if needed to maintain a straight line.
   * **Multirotors** Roll controls left-right speed, pitch controls front-back speed over ground. Yaw controls yaw rate as in MANUAL mode. Throttle controls climb/descent rate as in ALTCTL mode. This means that the x, y, z position of the vehicle is held steady by the autopilot against any wind disturbances, when the roll, pitch and throttle sticks are centered.
