@@ -43,9 +43,9 @@
 
 ### 자동 비행 모드
 
-"Auto" modes are those where the controller requires little to no user input (e.g. to takeoff, land and fly missions).
+"자동" 모드는 컨트롤러가 사용자의 입력을 거의 필요로 하지 않는 모드입니다(예. 이륙, 착륙과 비행 임무).
 
-* **AUTO_LOITER** (Loiter) 
+* **자동_로이터** (로이터) 
   * **Fixed wing aircraft:** The aircraft loiters around the current position at the current altitude (or possibly slightly above the current altitude, good for 'I'm losing it'). 
   * **Multirotors:** The multirotor hovers / loiters at the current position and altitude.
 * **AUTO_RTL** (Return to Land) 
