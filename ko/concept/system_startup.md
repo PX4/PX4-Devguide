@@ -4,9 +4,9 @@ PX4 시작은 쉘 스크립트에 의해 제어됩니다. 쉘 스크립트는 Nu
 
 숫자와 밑줄로 시작하는 모든 파일(예. `10000_airplane`)은 기체 설정들을 담고있습니다. 설정값들은 빌드타임에 하나의 `airframes.xml`으로 보내지고 [QGroundControl](http://qgroundcontrol.com)을 통해 기체 선택 UI에 활용됩니다. Adding a new configuration is covered [here](../airframes/adding_a_new_frame.md).
 
-The remaining files are part of the general startup logic. The first executed file is the [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) script (or [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on Posix), which calls all other scripts.
+남아 있는 파일들을 일반적인 시작 로직을 위해 사용됩니다. 처음 실행되는 파일은 [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS)로 ( 또는 Posix에서는 [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)), 다른 모든 스크립트들을 호출합니다.
 
-The following sections are split according to the operating system that PX4 runs on.
+다음의 섹션은 PX4가 실행되는 운영체제에 따라 구분되어 있습니다.
 
 ## Posix (Linux/MacOS)
 
