@@ -72,12 +72,12 @@ NuttX는 하나의 통합된 쉘 인터프리터 ([NSH](http://nuttx.org/Documen
 
 `extras.txt`는 메인 시스템 부팅이후에 추가적인 응용프로그램을 시작하기 위해 사용될 수 있습니다. 보통 이 프로그램들은 컨트롤러나 유사한 선택 커스텀 옵션에 탑재됩니다.
 
-> **Caution** 알 수 없는 명령어를 호출하면 부팅이 실패합니다. Typically the system does not stream mavlink messages after boot failure, in this case check the error messages that are printed on the system console.
+> **Caution** 알 수 없는 명령어를 호출하면 부팅이 실패합니다. 보통 시스템은 부팅 실패 이후에 mavlink 메시지를 스트림처리하지 않습니다. 이 경우에 시스템 콘솔에 출력된 에러 메시지를 확인하세요.
 
-The following example shows how to start custom applications:
+아래의 예제들은 어떻게 커스텀 응용프로그램을 시작하는지 보여줍니다.
 
-- Create a file on the SD card `etc/extras.txt` with this content: ```custom_app start```
-- A command can be made optional by gating it with the `set +e` and `set -e` commands:
+- SD 카드 내의 `/etc/extras.txt`에 다음의 내용으로 파일을 만듭니다. ```custom_app start```
+- 명령어는 `set +e`과 `set -e` 명령어에 의해 선택적이 될 수 있습니다.
     
         set +e
         optional_app start      # Will not result in boot failure if optional_app is unknown or fails
@@ -86,9 +86,9 @@ The following example shows how to start custom applications:
         mandatory_app start     # Will abort boot if mandatory_app is unknown or fails
         
 
-#### Starting a custom mixer
+#### 커스텀 믹서 시작하기
 
-By default the system loads the mixer from `/etc/mixers`. If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
+기본적으로 시스템은 `/etc/mixers`을 로드합니다. If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
 
 ##### Example
 
