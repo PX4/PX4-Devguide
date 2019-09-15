@@ -41,18 +41,18 @@ NuttX는 하나의 통합된 쉘 인터프리터 ([NSH](http://nuttx.org/Documen
 
 드라이버 하나의 실패가 부팅의 중단을 이끌지는 않습니다. 이것은 스타트업 스크립트에서 `set +e`를 통해 제어됩니다.
 
-부팅 순서는 [system console](../debug/system_console.md)을 통해 디버깅 할 수있습니다. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
+부팅 순서는 [system console](../debug/system_console.md)을 통해 디버깅 할 수있습니다. 출력되는 부팅 로그는 부팅 순서에 대한 자세한 정보를 포함하고 왜 부팅이 중단 돼었는지는 포함해야 합니다.
 
-#### Common boot failure causes
+#### 일반적인 부팅 실패 사례
 
-- For custom applications: The system was out of RAM. Run the `free` command to see the amount of free RAM.
-- A software fault or assertion resulting in a stack trace
+- 커스텀 응용프로그램: 시스템의 메모리 사용량을 벗어납니다. `free` 명령을 수행해 사용가능한 RAM이 얼마인지 확인합니다.
+- 스택 트레이스결과 소프트웨어 실패(fault)
 
-### Replacing the System Startup
+### 시스템 스타트업 바꾸기
 
-In most cases customizing the default boot is the better approach, which is documented below. If the complete boot should be replaced, create a file `/fs/microsd/etc/rc.txt`, which is located in the `etc` folder on the microSD card. If this file is present nothing in the system will be auto-started.
+대부분의 경우에서 부팅을 커스터마이징하는 것이 더 나은 방법입니다. 만약 부팅은 바꿔야 한다면, miscroSD 카드의 `etc` 폴더에 위치한 `/fs/microsd/etc/rc.txt` 파일을 만들어야 합니다. 만약 그 파일에 아무것도 없다면 auto-start가 수행될 것입니다.
 
-### Customizing the System Startup
+### 시스템 스타트업 커스터마이징하기
 
 The best way to customize the system startup is to introduce a [new airframe configuration](../airframes/adding_a_new_frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
 
