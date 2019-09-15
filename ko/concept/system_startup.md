@@ -26,22 +26,22 @@ Posix에서는 시스템 쉘이 쉘 인터프리터로 사용됩니다 (예. /bi
     ./px4-listener sensor_accel
     
 
-### Dynamic modules
+### 동적 모듈
 
-Normally, all modules are compiled into a single PX4 executable. However, on Posix, there's the option of compiling a module into a separate file, which can be loaded into PX4 using the `dyn` command.
+보통, 모든 모듈들은 하나의 PX4 실행파일에 컴파일 됩니다. 그러나 Posix에서는 모듈을 분리된 파일로 컴파일할 수 있는 옵션이 있습니다. `dyn` 명령을 통해 PX4로 로드할 수 있습니다.
 
     dyn ./test.px4mod
     
 
 ## NuttX
 
-NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
+NuttX는 하나의 통합된 쉘 인터프리터 ([NSH](http://nuttx.org/Documentation/NuttShell.html))을 갖고 있습니다. 따라서 스크립트는 바로 실행될 수 있습니다.
 
-### Debugging the System Boot
+### 시스템 부팅 디버깅
 
-A failure of a driver of software component will not lead to an aborted boot. This is controlled via `set +e` in the startup script.
+드라이버 하나의 실패가 부팅의 중단을 이끌지는 않습니다. 이것은 스타트업 스크립트에서 `set +e`를 통해 제어됩니다.
 
-The boot sequence can be debugged by connecting the [system console](../debug/system_console.md) and power-cycling the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
+부팅 순서는 [system console](../debug/system_console.md)을 통해 디버깅 할 수있습니다. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
 #### Common boot failure causes
 
