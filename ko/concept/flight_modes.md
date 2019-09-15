@@ -45,11 +45,11 @@
 
 "자동" 모드는 컨트롤러가 사용자의 입력을 거의 필요로 하지 않는 모드입니다(예. 이륙, 착륙과 비행 임무).
 
-* **자동_로이터** (로이터) 
-  * **Fixed wing aircraft:** The aircraft loiters around the current position at the current altitude (or possibly slightly above the current altitude, good for 'I'm losing it'). 
-  * **Multirotors:** The multirotor hovers / loiters at the current position and altitude.
-* **AUTO_RTL** (Return to Land) 
-  * **Fixed wing aircraft:** The aircraft returns to the home position and loiters in a circle above the home position. 
+* **자동_선회** (로이터) 
+  * **고정익:** 비행기는 자세오 고도를 유지하면서 선회한다 (또는 약간 위를 배회할 수도 있지만, 그 정도는 괜찮다). 
+  * **멀티콥터:** 멀티콥터는 자세와 고도를 유지하면서 제자리비행 하거나 선회한다.
+* **자동_착륙** (착륙) 
+  * **고정익:** 비행기는 출발지로 돌아와 그 위를 선회한다. 
   * **Multirotors:** The multirotor returns in a straight line on the current altitude (if the current altitude is higher than the home position + [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT)) or on the [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) (if the [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) is higher than the current altitude), then lands automatically.
 * **AUTO_MISSION** (Mission) 
   * **All system types:** The aircraft obeys the programmed mission sent by the ground control station (GCS). If no mission received, aircraft will LOITER at current position instead.
