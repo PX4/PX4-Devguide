@@ -54,11 +54,11 @@ NuttX는 하나의 통합된 쉘 인터프리터 ([NSH](http://nuttx.org/Documen
 
 ### 시스템 스타트업 커스터마이징하기
 
-시스템 스타트업을 커스터마이징하기 위한 최선의 방법은 [new airframe configuration](../airframes/adding_a_new_frame.md)을 제시하는 것입니다. If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
+시스템 스타트업을 커스터마이징하기 위한 최선의 방법은 [new airframe configuration](../airframes/adding_a_new_frame.md)을 제시하는 것입니다. 만약 약간의 수정만을 필요로 한다면 (응용프로그램을 하나더 실행하거나 다른 믹서를 사용) 스타트업 스크립트 내의 그것들을 위한 훅을 이용하면 됩니다.
 
-> **Caution** The system boot files are UNIX FILES which require UNIX LINE ENDINGS. If editing on Windows use a suitable editor.
+> **Caution** 시스템 부팅 파일을 UNIX LINE ENDINGS을 필요로 하는 UNIX 파일입니다. 윈도우에서 수정한다면 적절한 에디터를 사용하세요.
 
-There are three main hooks. Note that the root folder of the microsd card is identified by the path `/fs/microsd`.
+3가지의 메인 훅이 있습니다. microSD 카드의 루트 폴더는 `/fs/microsd` 입니다.
 
 - /fs/microsd/etc/config.txt
 - /fs/microsd/etc/extras.txt
