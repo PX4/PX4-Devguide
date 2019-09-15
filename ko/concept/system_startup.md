@@ -15,11 +15,11 @@ Posix에서는 시스템 쉘이 쉘 인터프리터로 사용됩니다 (예. /bi
 - PX4 모듈은 시스템에서 개별적으로 실행될 수 있어야합니다. 이것은 심볼릭 링크에 의해 수행됩니다. 각 모듈에 대해 심볼릭 링크 `px-4<module>-> px4`가 `bin` 디렉토리에 생성됩니다. 실행될 때, 바이너리의 경로가 (`argv[0]`) 확인되고, 만약 모듈이라면 (`px4-`로 시작), 메인 px4 인트턴스에게 명령을 보냅니다 (자세한건 아래로). **Tip** `px-4` 접두어는 시스템 명령어와의 충돌을 피하기 위해 사용됩니다 (예. `shutdown`), 그리고 `px-4<TAB>`를 타이핑함으로써 쉬운 탭 자동완성도 지원합니다.
 - 쉘은 심볼릭 링크를 찾기위한 위치를 알아야합니다. 따라서 스타트업 스크립트를 실행하기전에 심볼릭 링크된 `bin` 디렉토리가 `PATH` 변수에 추가되어야합니다.
 - 쉘은 각 모듈을 새로운 (클라이언트) 프로세스로 실행시킵니다. 메인 PX4 인스턴스 (서버)는 쓰레드로 동작하며, 각 클라이언트 프로세스는 메인 PX4와 통신할 수 있어야합니다. 통신은 [UNIX socker](http://man7.org/linux/man-pages/man7/unix.7.html)을 통해 이뤄집니다. 서버는 소켓으로 수신하고, 클라이언트는 소켓에 연결해 명령어를 보낼 수 있습니다. 그러면 서버는 출력과 리턴 코드를 클라이언트에게 보냅니다.
-- The startup scripts call the module directly, e.g. `commander start`, rather than using the `px4-` prefix. This works via aliases: for each module an alias in the form of `alias <module>=px4-<module>` is created in the file `bin/px4-alias.sh`.
-- The `rcS` script is executed from the main px4 instance. It does not start any modules, but first updates the `PATH` variable and then simply runs a shell with the `rcS` file as argument.
-- In addition to that, multiple server instances can be started for multi-vehicle simulations. A client selects the instance via `--instance`. The instance is available in the script via `$px4_instance` variable.
+- 스타트업 스크립트는 `px-4`로 시작하는 모듈이 대신 모듈을 직접적으로 호출합니다. 예. `commander start` 이것은 alias를 통해 수행됩니다. 각 모듈에 대해 `alias<module>=px4-<module>`의 형태로 alias가 `bin/px4-alias.sh`에 생성됩니다.
+- `rcS` 스크립트는 메인 PX4 인스턴스테 의해 실행됩니다. 이 스크립트는 다른 어떤 모듈들을 실행시키지 않습니다. `PATH` 변수를 업데이트하고 파라미터로 `rcS`을 실행시킵니다.
+- 거기에 더해, 다중서버 인스턴스는 다중-기체 시뮬레이션을 위해 수행될 수 있습니다. 클라이언트는 `--instance`를 통해 서버 인스턴스를 선택합니다. 그 인스턴스는 `$px4_instance` 변수를 통해 스크립트에서 이용가능합니다.
 
-The modules can be executed from any terminal when PX4 is already running on a system. For example:
+모듈은 PX4가 이미 실행중인 시스템이면 어느 터미널을 통해서든지 실행할 수 있습니다. 예:
 
     cd <Firmware>/build/px4_sitl_default/bin
     ./px4-commander takeoff
