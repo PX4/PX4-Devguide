@@ -41,7 +41,7 @@
   * **고정익:** 중립 입력은 (중앙 RC 스틱) 수평 비행을 제공하며 바람에 맞서 직선 비행을 해야하는 경우 똑바로 가기 힘들것입니다.
   * **멀티콥터** roll은 좌우 속력을 조절하고, pitch는 앞뒤 속력을 제어합니다. Yaw 는 MANUAL 모드처럼 yaw 속도를 조절합니다. Throttle은 ALTCTL모드 처럼 오르내림을 조절합니다. 이것은 roll, pitch, throttle 스틱이 중립적일때 자동조종장치에 의해 기체가 어떠한 바람에도 안정적으로 있을 수 있다는 것입니다.
 
-### Auto flight modes
+### 자동 비행 모드
 
 "Auto" modes are those where the controller requires little to no user input (e.g. to takeoff, land and fly missions).
 
