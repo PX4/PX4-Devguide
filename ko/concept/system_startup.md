@@ -1,10 +1,10 @@
-# 시스템 시작
+# 시스템 스타트업
 
-PX4 시작은 쉘 스크립트에 의해 제어됩니다. 쉘 스크립트는 NuttX는 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 있습니다. 몇몇의 Posix 계열(Linux/MacOS)도 동일합니다. Posix만을 위한 스크립트는 [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix)에 위치합니다.
+PX4 스타트업은 쉘 스크립트에 의해 제어됩니다. 쉘 스크립트는 NuttX는 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 있습니다. 몇몇의 Posix 계열(Linux/MacOS)도 동일합니다. Posix만을 위한 스크립트는 [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix)에 위치합니다.
 
 숫자와 밑줄로 시작하는 모든 파일(예. `10000_airplane`)은 기체 설정들을 담고있습니다. 설정값들은 빌드타임에 하나의 `airframes.xml`으로 보내지고 [QGroundControl](http://qgroundcontrol.com)을 통해 기체 선택 UI에 활용됩니다. 새로운 설정을 다루기 위해서는 [here](../airframes/adding_a_new_frame.md)을 참고하세요.
 
-남아 있는 파일들을 일반적인 시작 로직을 위해 사용됩니다. 처음 실행되는 파일은 [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS)로 ( 또는 Posix에서는 [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)), 다른 모든 스크립트들을 호출합니다.
+남아 있는 파일들을 일반적인 스타트업 로직을 위해 사용됩니다. 처음 실행되는 파일은 [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS)로 ( 또는 Posix에서는 [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)), 다른 모든 스크립트들을 호출합니다.
 
 다음의 섹션은 PX4가 실행되는 운영체제에 따라 구분되어 있습니다.
 
@@ -12,9 +12,9 @@ PX4 시작은 쉘 스크립트에 의해 제어됩니다. 쉘 스크립트는 Nu
 
 Posix에서는 시스템 쉘이 쉘 인터프리터로 사용됩니다 (예. /bin/sh는 우분에서 대시로 심볼릭링크 됨) 동작하기 위한 몇가지 조건들이 있습니다.
 
-- PX4 모듈은 시스템에서 개별적으로 실행될 수 있어야합니다. 이것은 심볼릭 링크에 의해 수행됩니다. 각 모듈에 대해 심볼릭 링크 `px-4<module>-> px4`가 `bin` 디렉토리에 생성됩니다. 실행될 때, 바이너리의 경로가 (`argv[0]`) 확인되고, 만약 모듈이라면 (`px4-`로 시작), 메인 px4 인트턴스에게 명령을 보냅니다 (자세한건 아래로). > **Tip** The `px4-` prefix is used to avoid conflicts with system commands (e.g. `shutdown`), and it also allows for simple tab completion by typing `px4-<TAB>`.
-- The shell needs to know where to find the symbolic links. For that the `bin` directory with the symbolic links is added to the `PATH` variable right before executing the startup scripts.
-- The shell starts each module as a new (client) process. Each client process needs to communicate with the main instance of px4 (the server), where the actual modules are running as threads. This is done through a [UNIX socket](http://man7.org/linux/man-pages/man7/unix.7.html). The server listens on a socket, to which clients can connect and send a command. The server then sends the output and return code back to the client.
+- PX4 모듈은 시스템에서 개별적으로 실행될 수 있어야합니다. 이것은 심볼릭 링크에 의해 수행됩니다. 각 모듈에 대해 심볼릭 링크 `px-4<module>-> px4`가 `bin` 디렉토리에 생성됩니다. 실행될 때, 바이너리의 경로가 (`argv[0]`) 확인되고, 만약 모듈이라면 (`px4-`로 시작), 메인 px4 인트턴스에게 명령을 보냅니다 (자세한건 아래로). **Tip** `px-4` 접두어는 시스템 명령어와의 충돌을 피하기 위해 사용됩니다 (예. `shutdown`), 그리고 `px-4<TAB>`를 타이핑함으로써 쉬운 탭 자동완성도 지원합니다.
+- 쉘은 심볼릭 링크를 찾기위한 위치를 알아야합니다. 따라서 스타트업 스크립트를 실행하기전에 심볼릭 링크된 `bin` 디렉토리가 `PATH` 변수에 추가되어야합니다.
+- 쉘은 각 모듈을 새로운 (클라이언트) 프로세스로 실행시킵니다. 메인 PX4 인스턴스 (서버)는 쓰레드로 동작하며, 각 클라이언트 프로세스는 메인 PX4와 통신할 수 있어야합니다. 통신은 [UNIX socker](http://man7.org/linux/man-pages/man7/unix.7.html)을 통해 이뤄집니다. 서버는 소켓으로 수신하고, 클라이언트는 소켓에 연결해 명령어를 보낼 수 있습니다. 그러면 서버는 출력과 리턴 코드를 클라이언트에게 보냅니다.
 - The startup scripts call the module directly, e.g. `commander start`, rather than using the `px4-` prefix. This works via aliases: for each module an alias in the form of `alias <module>=px4-<module>` is created in the file `bin/px4-alias.sh`.
 - The `rcS` script is executed from the main px4 instance. It does not start any modules, but first updates the `PATH` variable and then simply runs a shell with the `rcS` file as argument.
 - In addition to that, multiple server instances can be started for multi-vehicle simulations. A client selects the instance via `--instance`. The instance is available in the script via `$px4_instance` variable.
