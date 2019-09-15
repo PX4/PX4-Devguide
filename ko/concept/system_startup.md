@@ -88,14 +88,14 @@ NuttX는 하나의 통합된 쉘 인터프리터 ([NSH](http://nuttx.org/Documen
 
 #### 커스텀 믹서 시작하기
 
-기본적으로 시스템은 `/etc/mixers`을 로드합니다. If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
+기본적으로 시스템은 `/etc/mixers`에서 믹서를 로드합니다. 만약 `/fs/microsd/etc/mixers`에 동일한 이름의 믹서가 존재하면 그 믹서를 로드합니다. 이것은 펌웨어를 다시 컴파일할 필요없이 커스텀 믹서를 로드할 수 있게 해줍니다.
 
-##### Example
+##### 예
 
-The following example shows how to add a custom aux mixer:
+아래의 예제는 어떻게 커스텀 aux 믹서를 추가하는지 보여줍니다.
 
-- Create a file on the SD card, `etc/mixers/gimbal.aux.mix` with your mixer content.
-- Then to use it, create an additional file `etc/config.txt` with this content: 
+- SD 카드 내의 `/etc/mixers/gimbal.aux.mix`에 설정을 채워 파일을 만듭니다.
+- 그리고 이걸 사용하기 위해, `/etc/config.txt` 파일을 추가적으로 만들어 다음의 내용을 채워넣습니다. 
         set MIXER_AUX gimbal
         set PWM_AUX_OUT 1234
         set PWM_AUX_DISARMED 1500
