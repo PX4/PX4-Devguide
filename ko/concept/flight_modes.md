@@ -50,9 +50,9 @@
   * **멀티콥터:** 멀티콥터는 자세와 고도를 유지하면서 제자리비행 하거나 선회한다.
 * **자동_착륙** (착륙) 
   * **고정익:** 비행기는 출발지로 돌아와 그 위를 선회한다. 
-  * **Multirotors:** The multirotor returns in a straight line on the current altitude (if the current altitude is higher than the home position + [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT)) or on the [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) (if the [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) is higher than the current altitude), then lands automatically.
-* **AUTO_MISSION** (Mission) 
-  * **All system types:** The aircraft obeys the programmed mission sent by the ground control station (GCS). If no mission received, aircraft will LOITER at current position instead.
+  * **멀티콥터:** 멀티콥터의 현재의 고도에서 직선비행하여 돌아오거나(만약 출발 고도보다 높다면 [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT)) [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) 한후에 착륙한다.
+* **자동_임무** (임무) 
+  * **모든 시스템 타입:** 비행기는 GCS (Ground Control Station) 가 보낸 프로그램된 임무를 따른다. 만약 미션을 받지 않았다면, 비행기는 현재의 위치에서 순회할것이다.
   * ***OFFBOARD*** (Offboard) In this mode the position, velocity or attitude reference / target / setpoint is provided by a companion computer connected via serial cable and MAVLink. The offboard setpoint can be provided by APIs like [MAVSDK](http://mavsdk.mavlink.io) or [MAVROS](https://github.com/mavlink/mavros).
 
 ## Flight Mode Evaluation Diagram
