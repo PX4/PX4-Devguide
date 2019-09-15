@@ -64,15 +64,15 @@ NuttX는 하나의 통합된 쉘 인터프리터 ([NSH](http://nuttx.org/Documen
 - /fs/microsd/etc/extras.txt
 - /fs/microsd/etc/mixers/NAME_OF_MIXER
 
-#### Customizing the Configuration (config.txt)
+#### config.txt 커스터마이징
 
-The `config.txt` file can be used to modify shell variables. It is loaded after the main system has been configured and *before* it is booted.
+`config.txt`는 쉘 변수를 수정하기 위해 사용될 수 있습니다. 이 파일은 기본 시스템이 구성되고 부팅되기 전에 로드됩니다.
 
-#### Starting additional applications
+#### 추가적인 응용프로그램 시작하기
 
-The `extras.txt` can be used to start additional applications after the main system boot. Typically these would be payload controllers or similar optional custom components.
+`extras.txt`는 메인 시스템 부팅이후에 추가적인 응용프로그램을 시작하기 위해 사용될 수 있습니다. 보통 이 프로그램들은 컨트롤러나 유사한 선택 커스텀 옵션에 탑재됩니다.
 
-> **Caution** Calling an unknown command in system boot files may result in boot failure. Typically the system does not stream mavlink messages after boot failure, in this case check the error messages that are printed on the system console.
+> **Caution** 알 수 없는 명령어를 호출하면 부팅이 실패합니다. Typically the system does not stream mavlink messages after boot failure, in this case check the error messages that are printed on the system console.
 
 The following example shows how to start custom applications:
 
