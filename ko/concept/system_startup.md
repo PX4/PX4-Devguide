@@ -54,7 +54,7 @@ NuttX는 하나의 통합된 쉘 인터프리터 ([NSH](http://nuttx.org/Documen
 
 ### 시스템 스타트업 커스터마이징하기
 
-The best way to customize the system startup is to introduce a [new airframe configuration](../airframes/adding_a_new_frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
+시스템 스타트업을 커스터마이징하기 위한 최선의 방법은 [new airframe configuration](../airframes/adding_a_new_frame.md)을 제시하는 것입니다. If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
 
 > **Caution** The system boot files are UNIX FILES which require UNIX LINE ENDINGS. If editing on Windows use a suitable editor.
 
