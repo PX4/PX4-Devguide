@@ -53,8 +53,8 @@
   * **멀티콥터:** 멀티콥터의 현재의 고도에서 직선비행하여 돌아오거나(만약 출발 고도보다 높다면 [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT)) [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) 한후에 착륙한다.
 * **자동_임무** (임무) 
   * **모든 시스템 타입:** 비행기는 GCS (Ground Control Station) 가 보낸 프로그램된 임무를 따른다. 만약 미션을 받지 않았다면, 비행기는 현재의 위치에서 순회할것이다.
-  * ***OFFBOARD*** (Offboard) In this mode the position, velocity or attitude reference / target / setpoint is provided by a companion computer connected via serial cable and MAVLink. The offboard setpoint can be provided by APIs like [MAVSDK](http://mavsdk.mavlink.io) or [MAVROS](https://github.com/mavlink/mavros).
+  * ***오프보드*** (오프보드) 이 모드에서는 위치, 속도 또는 자세측정 / 목표물 / 설정값은 시리얼 케이블과 MAVLink를 통해 연결된 companion computer가 제공한다. 오프보드 설정값은 [ MAVSDK ](http://mavsdk.mavlink.io) 나 [MAVROS](https://github.com/mavlink/mavros)에서 제공하는 API를 통해 설정할 수 있다.
 
-## Flight Mode Evaluation Diagram
+## 비행 모드 평가 다이어그램
 
-![Commander Flow diagram.](../../assets/diagrams/commander-flow-diagram.png)
+![명령 흐름 다이어그램.](../../assets/diagrams/commander-flow-diagram.png)
