@@ -88,7 +88,7 @@ You can stop it after there's an output like:
 
 The parameters can be adjusted as well. They can be extracted from the log with \(install pyulog with `sudo pip install pyulog` first\):
 
-    ulog_params -i $replay -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
+    ulog_params -i "$replay" -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
     
 
 Then edit the parameters in the file as needed and restart the replay process with `make px4_sitl none`. This will create a new log file.
