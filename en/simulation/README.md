@@ -57,13 +57,14 @@ Message | Direction | Description
 
 ## Default PX4 MAVLink UDP Ports
 
-By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. MAVSDK, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
+By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. MAVSDK, MAVROS) and simulator APIs (e.g. Gazebo).
+These ports are:
 
 * UDP Port **14540** is used for communication with offboard APIs.
   Offboard APIs are expected to listen for connections on this port.
 * UDP Port **14550** is used for communication with ground control stations.
   GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
-* TCP Port **4560** is used for communication with simulators.
+* The simulator's local TCP Port **4560** is used for communication with PX4.
   PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
 
 > **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module.
@@ -74,10 +75,10 @@ By default, PX4 uses commonly established UDP ports for MAVLink communication wi
 The diagram below shows a typical SITL simulation environment for any of the supported simulators.
 The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
 
-* PX4 uses a simulation-specific module to listen on TCP port 4560.
-  Simulators connect to this port, then exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above.
+* PX4 uses a simulation-specific module to connect to the simulator's local TCP port 4560.
+  Simulators then exchange information with PX4 using the [Simulator MAVLink API](#simulator-mavlink-api) described above.
   PX4 on SITL and the simulator can run on either the same computer or different computers on the same network.
-* PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like MAVSDK or ROS (which listen on port 14540).
+* PX4 uses the normal MAVLink module to connect to ground stations (which listen on port 14550) and external developer APIs like MAVSDK or ROS (which listen on port 14540).
 * A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
 ![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
