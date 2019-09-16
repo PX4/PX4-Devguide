@@ -1,12 +1,15 @@
 # Simulation
 
-Simulators allow PX4 flight code to control a computer modeled vehicle in a simulated "world". You can interact with this vehicle just as you might with a real vehicle, using *QGroundControl*, an offboard API, or a radio controller/gamepad.
+Simulators allow PX4 flight code to control a computer modeled vehicle in a simulated "world".
+You can interact with this vehicle just as you might with a real vehicle, using *QGroundControl*, an offboard API, or a radio controller/gamepad.
 
-> **Tip** Simulation is a quick, easy, and most importantly, *safe* way to test changes to PX4 code before attempting to fly in the real world. It is also a good way to start flying with PX4 when you haven't yet got a vehicle to experiment with.
+> **Tip** Simulation is a quick, easy, and most importantly, *safe* way to test changes to PX4 code before attempting to fly in the real world.
+  It is also a good way to start flying with PX4 when you haven't yet got a vehicle to experiment with.
 
 PX4 supports both *Software In the Loop (SITL)* simulation, where the flight stack runs on computer (either the same computer or another computer on the same network) and *Hardware In the Loop (HITL)* simulation using a simulation firmware on a real flight controller board.
 
-Information about available simulators and how to set them up are provided in the next section. The other sections provide general information about how the simulator works, and are not required to *use* the simulators.
+Information about available simulators and how to set them up are provided in the next section.
+The other sections provide general information about how the simulator works, and are not required to *use* the simulators.
 
 
 ## Supported Simulators
@@ -30,11 +33,14 @@ The remainder of this topic is a "somewhat generic" description of how the simul
 
 ## Simulator MAVLink API
 
-All simulators communicate with PX4 using the Simulator MAVLink API. This API defines a set of MAVLink messages that supply sensor data from the simulated world to PX4 and return motor and actuator values from the flight code that will be applied to the simulated vehicle. The image below shows the message flow.
+All simulators communicate with PX4 using the Simulator MAVLink API.
+This API defines a set of MAVLink messages that supply sensor data from the simulated world to PX4 and return motor and actuator values from the flight code that will be applied to the simulated vehicle.
+The image below shows the message flow.
 
 ![Simulator MAVLink API](../../assets/simulation/px4_simulator_messages.png)
 
-> **Note** A SITL build of PX4 uses [simulator_mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp) to handle these messages while a hardware build in HIL mode uses [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp). Sensor data from the simulator is written to PX4 uORB topics. All motors / actuators are blocked, but internal software is fully operational.
+> **Note** A SITL build of PX4 uses [simulator_mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp) to handle these messages while a hardware build in HIL mode uses [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp).
+  Sensor data from the simulator is written to PX4 uORB topics. All motors / actuators are blocked, but internal software is fully operational.
 
 The messages are described below (see links for specific detail).
 
@@ -57,22 +63,27 @@ By default, PX4 uses commonly established UDP ports for MAVLink communication wi
   Offboard APIs are expected to listen for connections on this port.
 * UDP Port **14550** is used for communication with ground control stations.
   GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
-* TCP Port **4560** is used for communication with simulators. PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
+* TCP Port **4560** is used for communication with simulators.
+  PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
 
 > **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module.
 
 
 ## SITL Simulation Environment
 
-The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
+The diagram below shows a typical SITL simulation environment for any of the supported simulators.
+The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
 
-* PX4 uses a simulation-specific module to listen on TCP port 4560. Simulators connect to this port, then exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above. PX4 on SITL and the simulator can run on either the same computer or different computers on the same network.
+* PX4 uses a simulation-specific module to listen on TCP port 4560.
+  Simulators connect to this port, then exchange information using the [Simulator MAVLink API](#simulator-mavlink-api) described above.
+  PX4 on SITL and the simulator can run on either the same computer or different computers on the same network.
 * PX4 uses the normal MAVLink module to connect to GroundStations (which listen on port 14550) and external developer APIs like MAVSDK or ROS (which listen on port 14540).
 * A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
 ![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
-If you use the normal build system SITL `make` configuration targets (see next section) then both SITL and the Simulator will be launched on the same computer and the ports above will automatically be configured. You can configure additional MAVLink UDP connections and otherwise modify the simulation environment in the build configuration and initialisation files.
+If you use the normal build system SITL `make` configuration targets (see next section) then both SITL and the Simulator will be launched on the same computer and the ports above will automatically be configured.
+You can configure additional MAVLink UDP connections and otherwise modify the simulation environment in the build configuration and initialisation files.
 
 
 ### Starting/Building SITL Simulation
@@ -102,8 +113,8 @@ The simulation can be further configured via environment variables:
   Possible options are: `ekf2` (default), `lpe`, `inav`.
   It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
 
-The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see:
-[Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
+The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger.
+For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
 ### Run Simulation Faster than Realtime {#simulation_speed}
 
@@ -129,7 +140,8 @@ make px4_sitl jmavsim
 > Powerful desktop machines can usually run the simulation at around 6-10x, for notebooks the achieved rates can be around 3-4x.
 
 <span></span>
-> **Note** To avoid PX4 detecting data link timeouts, increase the value of param [COM_DL_LOSS_T](../advanced/parameter_reference.md#COM_DL_LOSS_T) proportional to the simulation rate. For example, if `COM_DL_LOSS_T` is 10 in realtime, at 10x simulation rate increase to 100.
+> **Note** To avoid PX4 detecting data link timeouts, increase the value of param [COM_DL_LOSS_T](../advanced/parameter_reference.md#COM_DL_LOSS_T) proportional to the simulation rate.
+  For example, if `COM_DL_LOSS_T` is 10 in realtime, at 10x simulation rate increase to 100.
 
 ### Lockstep Simulation
 
@@ -164,12 +176,14 @@ They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX
 
 ## HITL Simulation Environment
 
-With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL Simulation Environment in documented in: [HITL Simulation](../simulation/hitl.md).
+With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware.
+The HITL Simulation Environment in documented in: [HITL Simulation](../simulation/hitl.md).
 
 
 ## Joystick/Gamepad Integration
 
-*QGroundControl* desktop versions can connect to a USB Joystick/Gamepad and send its movement commands and button presses to PX4 over MAVLink. This works on both SITL and HITL simulations, and allows you to directly control the simulated vehicle. If you don't have a joystick you can alternatively control the vehicle using QGroundControl's onscreen virtual thumbsticks.
+*QGroundControl* desktop versions can connect to a USB Joystick/Gamepad and send its movement commands and button presses to PX4 over MAVLink. This works on both SITL and HITL simulations, and allows you to directly control the simulated vehicle.
+If you don't have a joystick you can alternatively control the vehicle using QGroundControl's onscreen virtual thumbsticks.
 
 For setup information see the *QGroundControl User Guide*:
 * [Joystick Setup](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
@@ -180,7 +194,8 @@ For setup information see the *QGroundControl User Guide*:
 
 ## Camera Simulation
 
-PX4 supports capture of both still images and video from within the [Gazebo](../simulation/gazebo.md) simulated environment. This can be enabled/set up as described in [Gazebo > Video Streaming](../simulation/gazebo.md#video-streaming).
+PX4 supports capture of both still images and video from within the [Gazebo](../simulation/gazebo.md) simulated environment.
+This can be enabled/set up as described in [Gazebo > Video Streaming](../simulation/gazebo.md#video-streaming).
 
 The simulated camera is a gazebo plugin that implements the [MAVLink Camera Protocol](https://mavlink.io/en/protocol/camera.html)<!-- **Firmware/Tools/sitl_gazebo/src/gazebo_geotagged_images_plugin.cpp -->. PX4 connects/integrates with this camera in *exactly the same way* as it would with any other MAVLink camera:
 1. [TRIG_INTERFACE](../advanced/parameter_reference.md#TRIG_INTERFACE) must be set to `3` to configure the camera trigger driver for use with a MAVLink camera
@@ -199,7 +214,8 @@ The same approach can be used by other simulators to implement camera support.
 It is possible to run the simulator on one computer, and access it from another computer on the same network (or on another network with appropriate routing).
 This might be useful, for example, if you want to test a drone application running on real companion computer hardware running against a simulated vehicle.
 
-This does not work "out of the box" because PX4 does not route packets to external interfaces by default (in order to avoid spamming the network and different simulations interfering with each other). Instead it routes traffic internally - to "localhost".
+This does not work "out of the box" because PX4 does not route packets to external interfaces by default (in order to avoid spamming the network and different simulations interfering with each other).
+Instead it routes traffic internally - to "localhost".
 
 There are a number of ways to make the UDP packets available on external interfaces, as outlined below.
 
@@ -241,7 +257,8 @@ To route packets between SITL running on one computer (sending MAVLink traffic t
 
 The [mavlink](../middleware/modules_communication.md#mavlink_usage) module routes to *localhost* by default, but you can specify an external IP address to broadcast to using its `-t` option.
 
-This should be done in various configuration files where `mavlink start` is called. For example: [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS).
+This should be done in various configuration files where `mavlink start` is called.
+For example: [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS).
 
 
 ### SSH Tunneling
