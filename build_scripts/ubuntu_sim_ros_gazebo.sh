@@ -81,10 +81,6 @@ if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'install_geograph
 # Otherwise source the downloaded script.
 sudo bash -c "$install_geo"
 
-# Go to the firmware directory
-clone_dir=~/src
-cd $clone_dir/Firmware
-
 if [[ ! -z $unsupported_os ]]; then
     >&2 echo -e "\033[31mYour OS ($unsupported_os) is unsupported. Assumed an Ubuntu 16.04 installation,"
     >&2 echo -e "and continued with the installation, but if things are not working as"
