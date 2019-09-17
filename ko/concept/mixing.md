@@ -77,20 +77,9 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 
 ## 가상 컨트롤 그룹
 
-These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing and multicopter controller outputs into the VTOL governor module.
+이 그룹들은 믹서의 입력들은 아니지만 고정익과 멀티콥터 컨트롤러의 출력을 VTOL govenor 모듈에 피드하기 위한 메타 채널을 제공합니다.
 
-### Control Group #4 (Flight Control MC VIRTUAL)
-
-* 0: roll ALT (-1..1)
-* 1: pitch ALT (-1..1)
-* 2: yaw ALT (-1..1)
-* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-* 4: reserved / aux0
-* 5: reserved / aux1
-* 6: reserved / aux2
-* 7: reserved / aux3
-
-### Control Group #5 (Flight Control FW VIRTUAL)
+### 컨트롤 그룹 #4 (비행 제어 MC VIRTUAL)
 
 * 0: roll ALT (-1..1)
 * 1: pitch ALT (-1..1)
@@ -101,11 +90,22 @@ These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing
 * 6: reserved / aux2
 * 7: reserved / aux3
 
-## Output Groups/Mapping
+### 컨트롤 그룹 #5 (비행 제어 FW VIRTUAL)
 
-An output group is one physical bus (e.g. FMU PWM outputs, IO PWM outputs, UAVCAN etc.) that has N (usually 8) normalized (-1..+1) command ports that can be mapped and scaled through the mixer.
+* 0: roll ALT (-1..1)
+* 1: pitch ALT (-1..1)
+* 2: yaw ALT (-1..1)
+* 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
+* 4: reserved / aux0
+* 5: reserved / aux1
+* 6: reserved / aux2
+* 7: reserved / aux3
 
-The mixer file does not explicitly define the actual *output group* (physical bus) where the outputs are applied. Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is inferred from the mixer [filename](#mixer_file_names), and mapped to the appropriate physical bus in the system [startup scripts](../concept/system_startup.md) (and in particular in [rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)).
+## 출력 그룹/매핑
+
+하나의 출력그룹은 믹서에 매핑되고 스케일링 될 수있는 보통 8개의 정규화된 (-1..+1) 명령 포트를 가진 물리적인 버스입니다 (예. FMU PWM 출력, IO PWM 출력, UAVCAN 등).
+
+믹서 파일은 출력이 적용되는 실제 *output group* (물리적인 버스) 를 명시적으로 정의하지는 않습니다. Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is inferred from the mixer [filename](#mixer_file_names), and mapped to the appropriate physical bus in the system [startup scripts](../concept/system_startup.md) (and in particular in [rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)).
 
 > **Note** This approach is needed because the physical bus used for MAIN outputs is not always the same; it depends on whether or not the flight controller has an IO Board (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) or uses UAVCAN for motor control. The startup scripts load the mixer files into the appropriate device driver for the board, using the abstraction of a "device". The main mixer is loaded into device `/dev/uavcan/esc` (uavcan) if UAVCAN is enabled, and otherwise `/dev/pwm_output0` (this device is mapped to the IO driver on controllers with an I/O board, and the FMU driver on boards that don't). The aux mixer file is loaded into device `/dev/pwm_output1`, which maps to the FMU driver on Pixhawk controllers that have an I/O board.
 
