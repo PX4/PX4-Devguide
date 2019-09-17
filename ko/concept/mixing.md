@@ -149,9 +149,9 @@ Null 믹서의 정의 형태는 다음과 같습니다.
 
 #### 간단한 믹서
 
-간단한 믹서는 0개 이상의 컨트롤 입력을 하나의 액추에이터 출력으로 결합합니다. Inputs are scaled, and the mixing function sums the result before applying an output scaler.
+간단한 믹서는 0개 이상의 컨트롤 입력을 하나의 액추에이터 출력으로 결합합니다. 입력을 스케일링 되고, 믹싱 함수는 출력 스케일러에 적용하기 전에 그 결과를 더합니다.
 
-A simple mixer definition begins with:
+간단한 믹서의 정의 형태는 다음과 같습니다.
 
     M: <control count>
     O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
