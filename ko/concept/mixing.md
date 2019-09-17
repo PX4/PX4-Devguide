@@ -1,8 +1,8 @@
 # 믹싱과 액추에이터
 
-The PX4 architecture ensures that the airframe layout does not require special case handling in the core controllers.
+PX4 구조는 코어 컨트롤러에서 에이프레임 레이아웃이 특별한 케이스에 처리를 필요로 하지 않는 것을 보장합니다.
 
-Mixing means to take force commands (e.g. `turn right`) and translate them to actuator commands which control motors or servos. For a plane with one servo per aileron this means to command one of them high and the other low. The same applies for multicopters: Pitching forward requires changing the speed of all motors.
+믹싱은 물리적 명령어 (예. `turn right`)를 받아들이고 그것을 모터 컨트롤이나 서보 컨트롤과 같은 액추에이터 명령어로 변환합니다. 에일러론당 하나의 서보를 가진 비행기의 경우 하나는 높게 다른 하나는 낮게 명령하는 것을 의미합니다. The same applies for multicopters: Pitching forward requires changing the speed of all motors.
 
 Separating the mixer logic from the actual attitude controller greatly improves reusability.
 
