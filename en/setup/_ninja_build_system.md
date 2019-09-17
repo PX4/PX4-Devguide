@@ -8,7 +8,8 @@ On Ubuntu Linux you can install this automatically from normal repos.
 sudo apt-get install ninja-build -y
 ```
 
-Other systems may not include Ninja in the package manager. In this case an alternative is to download the binary and add it to your path:
+Other systems may not include Ninja in the package manager.
+In this case an alternative is to download the binary and add it to your path:
 
 ```sh
 mkdir -p $HOME/ninja

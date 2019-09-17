@@ -1,8 +1,11 @@
 # Fast RTPS Installation
 
-<img src="../../assets/fastrtps/eprosima_logo.png" style="float:left;"/> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium. RTPS is also the wire interoperability protocol defined for the Data Distribution Service (DDS) standard, again by the OMG.
+<img src="../../assets/fastrtps/eprosima_logo.png" style="float:left;"/> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol, which provides publisher-subscriber communications over unreliable transports such as UDP, as defined and maintained by the Object Management Group (OMG) consortium.
+RTPS is also the wire interoperability protocol defined for the Data Distribution Service (DDS) standard, again by the OMG.
 
-Fast RTPS is used by PX4 to enable an RTPS interface allowing PX4 uORB topics to be shared with offboard components, including robotics and simulator tools. RTPS is the underlying protocol of DDS, a standard from the OMG (Object Management Group) providing a real-time publish/subscribe middleware that is widely used in aerospace, defense and IoT applications. It has also been adopted as the middleware for the ROS2 robotics toolkit. For more information see: [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md).
+Fast RTPS is used by PX4 to enable an RTPS interface allowing PX4 uORB topics to be shared with offboard components, including robotics and simulator tools.
+RTPS is the underlying protocol of DDS, a standard from the OMG (Object Management Group) providing a real-time publish/subscribe middleware that is widely used in aerospace, defense and IoT applications. It has also been adopted as the middleware for the ROS2 robotics toolkit.
+For more information see: [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md).
 
 <span></span>
 > **Note** This topic is derived from the official [*eProsima Fast RTPS* documentation](http://eprosima-fast-rtps.readthedocs.io/en/latest/). For more information see:
@@ -15,7 +18,7 @@ Fast RTPS is used by PX4 to enable an RTPS interface allowing PX4 uORB topics to
 Fast RTPS is installed as part of the PX4 developer environment on some platforms:
 
 * [Development Environment on Mac](../setup/dev_env_mac.md) (FastRTPS included in common tools)
-* [Development Environment on Linux](../setup/dev_env_linux.md) (FastRTPS included in install scripts)
+* [Development Environment on Linux](../setup/dev_env_linux.md) (FastRTPS included in install ROS install script but not NuttX/Simulator script)
 * [Development Environment on Windows > Bash on Windows](../setup/dev_env_windows_bash_on_win.md) (FastRTPS included in install script)
 
 The instruction below are useful for adding FastRTPS support in other environments.
@@ -37,7 +40,8 @@ Java is required to use our built-in code generation tool - *fastrtpsgen*. [Java
 
 #### Visual C++ 2013 or 2015 Redistributable Package
 
-*eProsima Fast RTPS* requires the Visual C++ Redistributable packages for the Visual Studio version you chose during the installation or compilation. The installer gives you the option of downloading and installing them.
+*eProsima Fast RTPS* requires the Visual C++ Redistributable packages for the Visual Studio version you chose during the installation or compilation.
+The installer gives you the option of downloading and installing them.
 
 
 
@@ -59,10 +63,10 @@ $ cmake -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
 $ make
 $ sudo make install
 ```
-This will install Fast RTPS to `/usr/local`. You can use
-`-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location. Afterwards make
-sure the `fastrtpsgen` application is in your `PATH`. You can check with `which
-fastrtpsgen`.
+This will install Fast RTPS to `/usr/local`.
+You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location.
+Afterwards make sure the `fastrtpsgen` application is in your `PATH`.
+You can check with `which fastrtpsgen`.
 
 If you are on Windows, choose your version of *Visual Studio*:
 
@@ -73,7 +77,6 @@ If you are on Windows, choose your version of *Visual Studio*:
 If you want to compile the examples, you will need to add the argument `-DCOMPILE_EXAMPLES=ON` when calling *CMake*.
 
 If you want to compile the performance tests, you will need to add the argument `-DPERFORMANCE_TESTS=ON` when calling *CMake*.
-
 
 
 
@@ -100,7 +103,8 @@ These variables are set automatically by checking the corresponding box during t
 
 ### Linux
 
-Extract the contents of the package. It will contain both *eProsima Fast RTPS* and its required package *eProsima Fast CDR*. You will have follow the same procedure for both packages, starting with *Fast CDR*.
+Extract the contents of the package.
+It will contain both *eProsima Fast RTPS* and its required package *eProsima Fast CDR*. You will have follow the same procedure for both packages, starting with *Fast CDR*.
 
 Configure the compilation:
 

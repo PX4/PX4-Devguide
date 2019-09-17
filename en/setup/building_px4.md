@@ -100,7 +100,7 @@ This will reposition the vehicle.
   make px4_sitl gazebo
   ```
 
-## NuttX / Pixhawk Based Boards
+## NuttX / Pixhawk Based Boards {#nuttx}
 
 ### Building {#building_nuttx}
 
