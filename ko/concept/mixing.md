@@ -14,11 +14,11 @@ PX4 구조는 코어 컨트롤러에서 에이프레임 레이아웃이 특별�
 
 ## 컨트롤 그룹
 
-PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은 아주 간단합니다: 예를 들어 중요 비행 컨트롤러에 대한 컨트롤 그룹은 `attitude`, 페이로드에 대한 그룹은 `gimbal` 입니다. 출력 그룹은 하나의 물리적인 버스입니다 (예. 서보로의 첫 8 PWM 출력). 이들 각 그룹에는 믹서에 매핑되고 스케일될 수 있는 8개의 정규화된 (-1..+1) 명령 포트가 있습니다. A mixer defines how each of these 8 signals of the controls are connected to the 8 outputs.
+PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은 아주 간단합니다: 예를 들어 중요 비행 컨트롤러에 대한 컨트롤 그룹은 `attitude`, 페이로드에 대한 그룹은 `gimbal` 입니다. 출력 그룹은 하나의 물리적인 버스입니다 (예. 서보로의 첫 8 PWM 출력). 이들 각 그룹에는 믹서에 매핑되고 스케일될 수 있는 8개의 정규화된 (-1..+1) 명령 포트가 있습니다. 하나의 믹서는 어떻게 8개의 제어 신호 각각을 8개의 출력으로 연결할지 정의합니다.
 
-For a simple plane control 0 (roll) is connected straight to output 0 (aileron). For a multicopter things are a bit different: control 0 (roll) is connected to all four motors and combined with throttle.
+간단한 비행기를 예로 들면, 컨트롤 0 (rolle) 은 곧바로 출력 0 (aileron) 에 연결됩니다. 멀티콥터는 조금 다릅니다. 컨트롤 0 (roll) 은 4개의 모터에 모두 연결되고 스로틀과 결합합니다.
 
-### Control Group #0 (Flight Control)
+### 컨트롤 그룹 #0 (비행 제어)
 
 * 0: roll (-1..1)
 * 1: pitch (-1..1)
@@ -29,7 +29,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 * 6: airbrakes (-1..1)
 * 7: landing gear (-1..1)
 
-### Control Group #1 (Flight Control VTOL/Alternate)
+### 컨트롤 그룹 #1 (수직이착륙기 비행제어/Alternate)
 
 * 0: roll ALT (-1..1)
 * 1: pitch ALT (-1..1)
@@ -40,7 +40,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 * 6: reserved / aux2
 * 7: reserved / aux3
 
-### Control Group #2 (Gimbal)
+### 컨트롤 그룹 #2 (Gimbal)
 
 * 0: gimbal roll
 * 1: gimbal pitch
@@ -51,7 +51,7 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 * 6: reserved
 * 7: reserved (parachute, -1..1)
 
-### Control Group #3 (Manual Passthrough)
+### 컨트롤 그룹 #3 (Manual Passthrough)
 
 * 0: RC roll
 * 1: RC pitch
