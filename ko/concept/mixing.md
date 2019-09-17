@@ -107,15 +107,15 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 
 믹서 파일은 출력이 적용되는 실제 *output group* (물리적인 버스) 를 명시적으로 정의하지는 않습니다. 대신에, 믹서의 목적은 (예. MAIN 또는 AUX 출력 컨트롤) [filename](#mixer_file_names)에서 알 수 있고, [startup scripts](../concept/system_startup.md) 에서 적절한 물리적인 버스로 매핑됩니다 ([rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface) 에서 특정지어짐).
 
-> **Note** MAIN 출력을 위해 사용되는 물리적인 버스가 항상 동일하지 않기 때문에 이 방식이 필요합니다. 물리적인 버스는 IO 보드를 가진 비행 컨트롤러에 의존하거나 모터 컨트롤을 위해 UAVCAN을 사용합니다. (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) 스타트업 스크립트는 추상화된 디바이스를 이용하여 믹서파일을 보드에 적절한 디바이스 드라이버로 로드합니다. The main mixer is loaded into device `/dev/uavcan/esc` (uavcan) if UAVCAN is enabled, and otherwise `/dev/pwm_output0` (this device is mapped to the IO driver on controllers with an I/O board, and the FMU driver on boards that don't). The aux mixer file is loaded into device `/dev/pwm_output1`, which maps to the FMU driver on Pixhawk controllers that have an I/O board.
+> **Note** MAIN 출력을 위해 사용되는 물리적인 버스가 항상 동일하지 않기 때문에 이 방식이 필요합니다. 물리적인 버스는 IO 보드를 가진 비행 컨트롤러에 의존하거나 모터 컨트롤을 위해 UAVCAN을 사용합니다. (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) 스타트업 스크립트는 추상화된 디바이스를 이용하여 믹서파일을 보드에 적절한 디바이스 드라이버로 로드합니다. UAVCAN이 활성화 되어있으면, 메인 믹서는 `/dev/uavcan/esc`에 로드됩니다. 그렇지 않으면 `/dev/pwm_output0`에 로드됩니다. (이 장치는 IO 보드의 컨트롤러에 IO 드라이버에 매핍됩니다. 그렇지 않은 보드들은 FMU 드라이버에 매핑됩니다) Aux 믹서 파일은 IO 보드를 가진 픽스호크의 FMU 드라이버를 연결하는 `/dev/pwm_output1` 장치에 로드됩니다.
 
-Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (busses), one control group can send commands to multiple output groups.
+여러개의 컨트롤 그룹과 (비행 컨트롤, 페이로드 등) 출력 그룹 (버스들) 이 있기 때문에, 하나의 컨트롤 그룹은 여러개의 출력 그룹에게 명령어를 보낼 수 있습니다.
 
 {% mermaid %} graph TD; actuator_group_0-->output_group_5 actuator_group_0-->output_group_6 actuator_group_1-->output_group_0 {% endmermaid %}
 
-> **Note** In practice, the startup scripts only load mixers into a single device (output group). This is a configuration rather than technical limitation; you could load the main mixer into multiple drivers and have, for example, the same signal on both UAVCAN and the main pins.
+> **Note** 실제로는 스타트업 스크립트만이 믹서를 하나의 장치에 로드합니다. (output group) 이것은 기술적인 한계라기보다는 설정입니다. 예를 들어 메인 믹서를 여러개의 드라이버에 로드할 수 있고, UAVCAN과 메인 핀에 같은 신호를 가질 수 있습니다.
 
-## PX4 Mixer Definitions
+## PX4 믹서 정의
 
 Files in **ROMFS/px4fmu_common/mixers** implement mixers that are used for predefined airframes. They can be used as a basis for customisation, or for general testing purposes.
 
