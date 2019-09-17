@@ -13,9 +13,10 @@
 trap "exit" INT TERM; trap "kill 0" EXIT; sudo -v || exit $?; sleep 1; while true; do sleep 60; sudo -nv; done 2>/dev/null &
 
 # Ubuntu Config
-echo "We must first remove modemmanager"
+echo "Remove modemmanager"
 sudo apt-get remove modemmanager -y
-
+echo "Add user to dialout group for serial port access (reboot required)"
+sudo usermod -a -G dialout $USER
 
 # Common dependencies
 echo "Installing common dependencies"
