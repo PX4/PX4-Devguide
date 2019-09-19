@@ -209,32 +209,32 @@ Idle 스피드의 범위는 0.0에서 1.0입니다. Idle 스피드는 모터의 
 
 추력 컨트롤 입력은 메인 모터 설정과 swash-plate를 위한 collective pitch에 활용됩니다. Throttle-curve와 pitch-curve를 사용하며 5개의 포인트로 구성되어 있습니다.
 
-> **Note** throttle-curve와 pitch-curve는 추력 스틱의 입력 위치를 스로틀와 pitch 값으로 각각 매핑합니다. 이를 통해 비행유행에 따라 비행 특성을 조정하는 것을 지원합니다. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
+> **Note** throttle-curve와 pitch-curve는 추력 스틱의 입력 위치를 스로틀와 pitch 값으로 각각 매핑합니다. 이를 통해 비행유행에 따라 비행 특성을 조정하는 것을 지원합니다. 커브를 조정하는 방법은 [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html)에서 찾을 수 있습니다. *Programmable Throttle Curves* and *Programmable Pitch Curves*를 검색해보세요.
 
-The mixer definition begins with:
+믹서의 정의는 다음과 같이 시작합니다.
 
     H: <number of swash-plate servos, either 3 or 4>
     T: <throttle setting at thrust: 0%> <25%> <50%> <75%> <100%>
     P: <collective pitch at thrust: 0%> <25%> <50%> <75%> <100%>
     
 
-`T:` defines the points for the throttle-curve. `P:` defines the points for the pitch-curve. Both curves contain five points in the range between 0 and 10000. For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
+`T:` 는 스로틀-커브를 정의합니다. `P:` 는 피치-커브를 정의합니다. 두 커브모두 0에서 10000범위의 5개 포인트를 포함합니다. 간단한 선형 동작을 위해서는 5개 포인트의 값은 다음처럼 되어야 합니다. `0 2500 5000 7500 10000`.
 
-This is followed by lines for each of the swash-plate servos (either 3 or 4) in the following form:
+다음에는 swash-plate 서보 (3 또는 4) 를 위한 라인들이 다음과 같은 형태로 옵니다.
 
     S: <angle> <arm length> <scale> <offset> <lower limit> <upper limit>
     
 
-The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
+`<angle>`은 진입 차수입니다. 0 degree는 노즈의 방향입니다. 위에서 봤듯이, 시계방향을 기준으로 합니다. `<arm length>`은 10000이 1로 정규화된 길이 입니다. 만약 모든 servo-arm이 같은 길이를 가졌다면, 그 값은 10000이 되야합니다. 더 큰 arm 길이는 서보 편차의 양을 작게만들고, 짧은 것은 크게만듭니다.
 
-The servo output is scaled by `<scale> / 10000`. After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
+서보 출력은 `<scale> / 10000`으로 스케일됩니다. 스케일링 이후의 값든은 -10000에서 +10000 사이에 있어야 합니다. `<lower limit>` 과 `<upper limit>` 모든 서보 범위를 커버하기 위해 -10000에서 +10000이 되어야 합니다.
 
-The tail rotor can be controller by adding a [simple mixer](#simple-mixer):
+Tail rote는 [simple mixer](#simple-mixer)를 하나 추가함으로써 제어할 수 있습니다.
 
     M: 1
     S: 0 2  10000  10000      0 -10000  10000
     
 
-By doing so, the tail rotor setting is directly mapped to the yaw command. This works for both servo-controlled tail-rotors, as well as for tail rotors with a dedicated motor.
+이렇게함으로써, tail rotor의 설정은 yaw 명령어에 직접적으로 전달됩니다. 이것은 서보가 컨트롤하는 tail rotor와 dedicated motor용 tail rotor 둘다에게 동작합니다.
 
 The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) can be viewed as an example. The throttle-curve starts with a slightly steeper slope to reach 6000 (0.6) at 50% thrust. It continues with a less steep slope to reach 10000 (1.0) at 100% thrust. The pitch-curve is linear, but does not use the entire range. At 0% throttle, the collective pitch setting is already at 500 (0.05). At maximum throttle, the collective pitch is only 4500 (0.45). Using higher values for this type of helicopter would stall the blades. The swash-plate servos for this helicopter are located at angles of 0, 140 and 220 degrees. The servo arm-lenghts are not equal. The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo. The servos are limited at -8000 and 8000 because they are mechanically constrained.
