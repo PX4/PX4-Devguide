@@ -157,9 +157,9 @@ Null 믹서의 정의 형태는 다음과 같습니다.
     O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-If `<control count>` is zero, the sum is effectively zero and the mixer will output a fixed value that is `<offset>` constrained by `<lower limit>` and `<upper limit>`.
+만약 `<control count>`이 0이라면, 합은 사실상 0이 되고 믹서는 `<lower limit>`와 `<upper limit>`에 의해 제한된 `<offset>`을 출력할 것입니다.
 
-The second line defines the output scaler with scaler parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+두번째 라인은 위에서 설명한 대로 출력 스케일러를 파라미터와 함께 정의합니다. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
 
 The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
 
