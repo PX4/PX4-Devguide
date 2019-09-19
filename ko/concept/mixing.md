@@ -186,7 +186,7 @@ Null 믹서의 정의 형태는 다음과 같습니다.
     R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
     
 
-The supported geometries include:
+지원하는 지오메트리는 다음과 같습니다.
 
 * 4x - quadrotor in X configuration
 * 4+ - quadrotor in + configuration
@@ -195,9 +195,9 @@ The supported geometries include:
 * 8x - octocopter in X configuration
 * 8+ - octocopter in + configuration
 
-Each of the roll, pitch and yaw scale values determine scaling of the roll, pitch and yaw controls relative to the thrust control. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an factor of 0.5 is encoded as 5000.
+Roll, pitch, yaw의 스케일 값 각각은 추력 컨트롤에 대한 roll, pitch, yaw 컨트롤에 대한 스케일링을 결정합니다. 부동소수점 계산이 이뤄지고 있는 동안에는 파일에 저장된 값은 10000으로 스케일됩니다. 예를 들면, -0.5는 -5000이 됩니다.
 
-Roll, pitch and yaw inputs are expected to range from -1.0 to 1.0, whilst the thrust input ranges from 0.0 to 1.0. Output for each actuator is in the range -1.0 to 1.0.
+Roll, pitch, yaw 입력의 범위는 -1.0에서 1.0일 것입니다. 반면에 추력의 입력 범위는 0.0에서 1.0입니다. 각 액추에이터에 대한 출력의 범위는 -1.0에서 1.0입니다.
 
 Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed of motors and it is the speed at which the motors are commanded to rotate when all control inputs are zero.
 
