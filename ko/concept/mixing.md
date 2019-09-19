@@ -159,17 +159,17 @@ Null 믹서의 정의 형태는 다음과 같습니다.
 
 만약 `<control count>`이 0이라면, 합은 사실상 0이 되고 믹서는 `<lower limit>`와 `<upper limit>`에 의해 제한된 `<offset>`을 출력할 것입니다.
 
-두번째 라인은 위에서 설명한 대로 출력 스케일러를 파라미터와 함께 정의합니다. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+두번째 라인은 위에서 설명한 대로 출력 스케일러를 파라미터와 함께 정의합니다. 부동소수점 계산이 이뤄지고 있는 동안에는 파일에 저장된 값은 10000으로 스케일됩니다. 예를 들면, -0.5는 -5000이 됩니다.
 
-The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
+컨트롤 입력과 스케일링을 설명하는`<control count>` 엔트리들의 정의가 다음과 같은 형태로 계속됩니다.
 
     S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-> **Note** The `S:` lines must be below the `O:` line.
+> **Note** `S:` 라인은 반드시 `O:` 아래에 위치해야 합니다.
 
-The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group.  
-These values are specific to the device reading the mixer definition.
+`<group>` 값은 스케일러가 읽게될 컨트롤 그룹을 확인하고, `<index>`은 해당 그룹   
+이내의 오프셋값을 나타냅니다. 이 값은 믹서의 정의를 읽는 장치에 따라 다릅니다.
 
 When used to mix vehicle controls, mixer group zero is the vehicle attitude control group, and index values zero through three are normally roll, pitch, yaw and thrust respectively.
 
