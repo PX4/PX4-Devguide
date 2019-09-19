@@ -171,17 +171,17 @@ Null 믹서의 정의 형태는 다음과 같습니다.
 `<group>` 값은 스케일러가 읽게될 컨트롤 그룹을 확인하고, `<index>`은 해당 그룹   
 이내의 오프셋값을 나타냅니다. 이 값은 믹서의 정의를 읽는 장치에 따라 다릅니다.
 
-When used to mix vehicle controls, mixer group zero is the vehicle attitude control group, and index values zero through three are normally roll, pitch, yaw and thrust respectively.
+기체 컨트롤 믹싱에 사용될 때, 0번 믹서 그룹은 기체 자세 컨트롤 그룹입니다. 그리고 인덱스 0에서 3까지의 값은 각각 roll, pitch, yaw, 추력입니다.
 
-The remaining fields on the line configure the control scaler with parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+나머지 라인들은 위에서 설명한 대로 컨트롤 스케일러와 파라미터를 설정합니다. 부동소수점 계산이 이뤄지고 있는 동안에는 파일에 저장된 값은 10000으로 스케일됩니다. 예를 들면, -0.5는 -5000이 됩니다.
 
-An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
+전형적인 믹서의 예는 [here](../airframes/adding_a_new_frame.md#mixer-file)를 참고하세요.
 
-#### Multirotor Mixer
+#### 멀티콥터 믹서
 
-The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust) into a set of actuator outputs intended to drive motor speed controllers.
+멀티콥터 믹서는 모터 스피드 컨트롤러를 조종하기위해 4개의 컨트롤 입력 (roll, pitch, yaw, thrust) 을 하나의 액추에이터 출력의 모음으로 결합합니다.
 
-The mixer definition is a single line of the form:
+믹서의 정의는 다음 형식의 한 줄입니다.
 
     R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
     
