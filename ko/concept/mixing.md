@@ -199,17 +199,17 @@ Roll, pitch, yaw의 스케일 값 각각은 추력 컨트롤에 대한 roll, pit
 
 Roll, pitch, yaw 입력의 범위는 -1.0에서 1.0일 것입니다. 반면에 추력의 입력 범위는 0.0에서 1.0입니다. 각 액추에이터에 대한 출력의 범위는 -1.0에서 1.0입니다.
 
-Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed of motors and it is the speed at which the motors are commanded to rotate when all control inputs are zero.
+Idle 스피드의 범위는 0.0에서 1.0입니다. Idle 스피드는 모터의 최고 스피드에 상대적인데, 최고스피드는 모든 컨트롤 입력이 0일대 회원하기 위해 명령을 받는 모터의 스피드입니다.
 
-In the case where an actuator saturates, all actuator values are rescaled so that the saturating actuator is limited to 1.0.
+한 액추에이터가 중점적으로 활용되고 있다면, 모든 액추에이터의 값은 중점적으로 사용되는 액추에이터의 범위를 1.0으로 제한하기 위해 다시 스케일링됩니다.
 
-#### Helicopter Mixer
+#### 헬리콥터 믹서
 
-The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs ( swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
+헬리콥터 믹서는 3개의 컨트롤 입력 (roll, pitch, thrust)를 4개의 출력 (swash-plate servos and main motor ESC setting) 으로 결합합니다. 헬리콥터 믹서의 첫번째 출력은 메인모터의 스포틀 세팅을 위한것입니다. 이후의 출력들은 swash-plate 서보를 위한 것입니다. Tail-rotor는 심플 믹서를 하나 추가함으로써 제어할 수 있습니다.
 
-The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points.
+추력 컨트롤 입력은 메인 모터 설정과 swash-plate를 위한 collective pitch에 활용됩니다. Throttle-curve와 pitch-curve를 사용하며 5개의 포인트로 구성되어 있습니다.
 
-> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
+> **Note** throttle-curve와 pitch-curve는 추력 스틱의 입력 위치를 스로틀와 pitch 값으로 각각 매핑합니다. 이를 통해 비행유행에 따라 비행 특성을 조정하는 것을 지원합니다. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
 
 The mixer definition begins with:
 
