@@ -8,13 +8,13 @@ PX4 구조는 코어 컨트롤러에서 에어프레임 레이아웃이 특별�
 
 ## 파이프라인 컨트롤
 
-특정 컨트롤러는 특정 정규화된 물리력이나 토크 (-1..+1 로 스케일 됨) 믹서로 보내고, 그러면 각각의 액추에이터들이 설정됩니다. 출력 드라이버 (예. UART, UAVCAN 또는 PWM) 은 그것을 액추에이터의 기본 단위로 변환합니다 (예. 1300의 PWM 값).
+특정 컨트롤러는 특정 정규화된 물리력이나 토크를 (-1..+1 로 스케일 됨) 믹서로 보내고, 그러면 각각의 액추에이터들이 설정됩니다. 출력 드라이버 (예. UART, UAVCAN 또는 PWM) 은 그것을 액추에이터의 기본 단위로 변환합니다 (예. 1300의 PWM 값).
 
 {% mermaid %} graph LR; att_ctrl[Attitude Controller] --> act_group0[Actuator Control Group 0] gimbal_ctrl[Gimbal Controller] --> act_group2[Actuator Control Group 2] act_group0 --> output_group5[Actuator 5] act_group0 --> output_group6[Actuator 6] act_group2[Actuator Control Group 2] --> output_group0[Actuator 5] {% endmermaid %}
 
 ## 컨트롤 그룹
 
-PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은 아주 간단합니다: 예를 들어 중요 비행 컨트롤러에 대한 컨트롤 그룹은 `attitude`, 페이로드에 대한 그룹은 `gimbal` 입니다. 출력 그룹은 하나의 물리적인 버스입니다 (예. 서보로의 첫 8 PWM 출력). 이들 각 그룹에는 믹서에 매핑되고 스케일될 수 있는 8개의 정규화된 (-1..+1) 명령 포트가 있습니다. 하나의 믹서는 어떻게 8개의 제어 신호 각각을 8개의 출력으로 연결할지 정의합니다.
+PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은 아주 간단합니다: 예를 들어 중요 비행 컨트롤러에 대한 컨트롤 그룹은 `attitude`, 페이로드에 대한 그룹은 `gimbal` 입니다. 출력 그룹은 하나의 물리적인 버스입니다 (예. 서보로의 첫 8개의 PWM 출력). 이들 각 그룹에는 믹서에 매핑되고 스케일될 수 있는 8개의 정규화된 (-1..+1) 명령 포트가 있습니다. 하나의 믹서는 어떻게 8개의 제어 신호 각각을 8개의 출력으로 연결할지 정의합니다.
 
 간단한 비행기를 예로 들면, 컨트롤 0 (rolle) 은 곧바로 출력 0 (aileron) 에 연결됩니다. 멀티콥터는 조금 다릅니다. 컨트롤 0 (roll) 은 4개의 모터에 모두 연결되고 스로틀과 결합합니다.
 
@@ -62,7 +62,7 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 * 6: RC aux2
 * 7: RC aux3
 
-> **Note** 이 그룹은 오로지 RC 입력을 *normal operation* 동안에 특정한 출력으로 매핑하기 위해 사용됩니다 ( AUX2가 믹서에서 스케일링되는 예로[quad_x.maim.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7)를 참고하세요). 수동 입출력 페일세이프 (PX4FMU가 PX4IO 보드와의 통신을 멈춘경우) 이벤트에서는 컨트롤 그룹 0 입력에 의해 정의되고 매핑된 roll, pitch, yaw, throttle 우선시 합니다 (다른 매핑들은 무시됨).
+> **Note** 이 그룹은 오로지 RC 입력을 *normal operation* 동안에 특정한 출력으로 매핑하기 위해 사용됩니다 ( AUX2가 믹서에서 스케일링되는 예로[quad_x.maim.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7)를 참고하세요). 수동 입출력 페일세이프 (PX4FMU가 PX4IO 보드와의 통신을 멈춘경우) 이벤트에서는 컨트롤 그룹 0 입력에 의해 정의되고 매핑된 roll, pitch, yaw, throttle을 우선시 합니다 (다른 매핑들은 무시됨).
 
 ### 컨트롤 그룹 #6 (첫번째 페이로드)
 
@@ -107,7 +107,7 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 
 믹서 파일은 출력이 적용되는 실제 *output group* (물리적인 버스) 를 명시적으로 정의하지는 않습니다. 대신에, 믹서의 목적은 (예. MAIN 또는 AUX 출력 컨트롤) [filename](#mixer_file_names)에서 알 수 있고, [startup scripts](../concept/system_startup.md) 에서 적절한 물리적인 버스로 매핑됩니다 ([rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface) 에서 특정지어짐).
 
-> **Note** MAIN 출력을 위해 사용되는 물리적인 버스가 항상 동일하지 않기 때문에 이 방식이 필요합니다. 물리적인 버스는 IO 보드를 가진 비행 컨트롤러에 의존하거나 모터 컨트롤을 위해 UAVCAN을 사용합니다. (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) 스타트업 스크립트는 추상화된 디바이스를 이용하여 믹서파일을 보드에 적절한 디바이스 드라이버로 로드합니다. UAVCAN이 활성화 되어있으면, 메인 믹서는 `/dev/uavcan/esc`에 로드됩니다. 그렇지 않으면 `/dev/pwm_output0`에 로드됩니다. (이 장치는 IO 보드의 컨트롤러에 IO 드라이버에 매핍됩니다. 그렇지 않은 보드들은 FMU 드라이버에 매핑됩니다) Aux 믹서 파일은 IO 보드를 가진 픽스호크의 FMU 드라이버를 연결하는 `/dev/pwm_output1` 장치에 로드됩니다.
+> **Note** MAIN 출력을 위해 사용되는 물리적인 버스가 항상 동일하지 않기 때문에 이 방식이 필요합니다. 물리적인 버스는 IO 보드를 가진 비행 컨트롤러에 의존하거나 모터 컨트롤을 위해 UAVCAN을 사용합니다. ([PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)을 참고하세요) 스타트업 스크립트는 추상화된 디바이스를 이용하여 믹서파일을 보드에 적절한 디바이스 드라이버로 로드합니다. UAVCAN이 활성화 되어있으면, 메인 믹서는 `/dev/uavcan/esc`에 로드됩니다. 그렇지 않으면 `/dev/pwm_output0`에 로드됩니다. (이 장치는 IO 보드의 컨트롤러의 IO 드라이버에 매핑됩니다. 그렇지 않은 보드들은 FMU 드라이버에 매핑됩니다) Aux 믹서 파일은 IO 보드를 가진 픽스호크의 FMU 드라이버를 연결하는 `/dev/pwm_output1` 장치에 로드됩니다.
 
 여러개의 컨트롤 그룹과 (비행 컨트롤, 페이로드 등) 출력 그룹 (버스들) 이 있기 때문에, 하나의 컨트롤 그룹은 여러개의 출력 그룹에게 명령어를 보낼 수 있습니다.
 
@@ -140,18 +140,18 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 
 #### Null 믹서
 
-Null 믹서는 제어는 안하고, 항상 0인 액추에이터 출력을 생성합니다. 일반적으로 null 믹서는 믹서의 셋들 중에서 특정한 패턴의 액추에이터 출력을 만들기 위한 플레이스홀더로 사용됩니다.
+Null 믹서는 제어는 안하고, 항상 0인 액추에이터 출력을 생성합니다. 일반적으로 null 믹서는 믹서의 집합들 중에서 특정한 패턴의 액추에이터 출력을 만들기 위한 플레이스홀더로 사용됩니다.
 
 Null 믹서의 정의 형태는 다음과 같습니다.
 
     Z:
     
 
-#### 간단한 믹서
+#### 심플 믹서
 
-간단한 믹서는 0개 이상의 컨트롤 입력을 하나의 액추에이터 출력으로 결합합니다. 입력을 스케일링 되고, 믹싱 함수는 출력 스케일러에 적용하기 전에 그 결과를 더합니다.
+심플 믹서는 0개 이상의 컨트롤 입력을 하나의 액추에이터 출력으로 결합합니다. 입력을 스케일링 되고, 믹싱 함수는 출력 스케일러에 적용하기 전에 그 결과를 더합니다.
 
-간단한 믹서의 정의 형태는 다음과 같습니다.
+심플 믹서의 정의 형태는 다음과 같습니다.
 
     M: <control count>
     O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
@@ -199,17 +199,17 @@ Roll, pitch, yaw의 스케일 값 각각은 추력 컨트롤에 대한 roll, pit
 
 Roll, pitch, yaw 입력의 범위는 -1.0에서 1.0일 것입니다. 반면에 추력의 입력 범위는 0.0에서 1.0입니다. 각 액추에이터에 대한 출력의 범위는 -1.0에서 1.0입니다.
 
-Idle 스피드의 범위는 0.0에서 1.0입니다. Idle 스피드는 모터의 최고 스피드에 상대적인데, 최고스피드는 모든 컨트롤 입력이 0일대 회원하기 위해 명령을 받는 모터의 스피드입니다.
+Idle 스피드의 범위는 0.0에서 1.0입니다. Idle 스피드는 모터의 최고 스피드에 상대적인데, 최고스피드는 모든 컨트롤 입력이 0일대 회전하기 위해 명령을 받는 모터의 스피드입니다.
 
 한 액추에이터가 중점적으로 활용되고 있다면, 모든 액추에이터의 값은 중점적으로 사용되는 액추에이터의 범위를 1.0으로 제한하기 위해 다시 스케일링됩니다.
 
 #### 헬리콥터 믹서
 
-헬리콥터 믹서는 3개의 컨트롤 입력 (roll, pitch, thrust)를 4개의 출력 (swash-plate servos and main motor ESC setting) 으로 결합합니다. 헬리콥터 믹서의 첫번째 출력은 메인모터의 스포틀 세팅을 위한것입니다. 이후의 출력들은 swash-plate 서보를 위한 것입니다. Tail-rotor는 심플 믹서를 하나 추가함으로써 제어할 수 있습니다.
+헬리콥터 믹서는 3개의 컨트롤 입력 (roll, pitch, thrust)를 4개의 출력 (swash-plate servos and main motor ESC setting) 으로 결합합니다. 헬리콥터 믹서의 첫번째 출력은 메인모터의 스로틀 세팅을 위한것입니다. 이후의 출력들은 swash-plate 서보를 위한 것입니다. Tail-rotor는 심플 믹서를 하나 추가함으로써 제어할 수 있습니다.
 
 추력 컨트롤 입력은 메인 모터 설정과 swash-plate를 위한 collective pitch에 활용됩니다. Throttle-curve와 pitch-curve를 사용하며 5개의 포인트로 구성되어 있습니다.
 
-> **Note** throttle-curve와 pitch-curve는 추력 스틱의 입력 위치를 스로틀와 pitch 값으로 각각 매핑합니다. 이를 통해 비행유행에 따라 비행 특성을 조정하는 것을 지원합니다. 커브를 조정하는 방법은 [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html)에서 찾을 수 있습니다. *Programmable Throttle Curves* and *Programmable Pitch Curves*를 검색해보세요.
+> **Note** throttle-curve와 pitch-curve는 추력 스틱의 입력 위치를 스로틀와 pitch 값으로 각각 매핑합니다. 이를 통해 비행유형에 따라 비행 특성을 조정하는 것을 지원합니다. 커브를 조정하는 방법은 [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html)에서 찾을 수 있습니다. *Programmable Throttle Curves* and *Programmable Pitch Curves*를 검색해보세요.
 
 믹서의 정의는 다음과 같이 시작합니다.
 
