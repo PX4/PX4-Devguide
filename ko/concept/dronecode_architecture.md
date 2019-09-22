@@ -1,4 +1,4 @@
-# Dronecode Platform Hardware/Software Architecture
+# 드론코드 플랫폼 하드웨어/소프트웨어 구조
 
 아래의 그림은 [Dronecode Platform](https://www.dronecode.org/platform/)의 플랜을 보여주는 추상화된 개요를 제공합니다. 왼쪽 편은 하나의 하드웨어 설정을 보여줍니다. *flight controller*(밝은 파란색)이 [RTPS](../middleware/micrortps.md)를 통해 *perception computer*(어두운 파랑) 과 연결됩니다. Perception computer는 카메라 센서 모음을 활용한 비전 컨트롤과 물체 회피를 제공하고 독립된 페이로드 카메라를 갖고 있습니다.
 
