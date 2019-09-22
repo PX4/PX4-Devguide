@@ -2,7 +2,7 @@
 
 PX4 스타트업은 쉘 스크립트에 의해 제어됩니다. 쉘 스크립트는 NuttX는 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 있습니다. 몇몇의 Posix 계열(Linux/MacOS)도 동일합니다. Posix만을 위한 스크립트는 [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix)에 위치합니다.
 
-숫자와 밑줄로 시작하는 모든 파일(예. `10000_airplane`)은 기체 설정들을 담고있습니다. 설정값들은 빌드타임에 하나의 `airframes.xml`으로 보내지고 [QGroundControl](http://qgroundcontrol.com)을 통해 기체 선택 UI에 활용됩니다. 새로운 설정을 다루기 위해서는 [here](../airframes/adding_a_new_frame.md)을 참고하세요.
+숫자와 밑줄로 시작하는 모든 파일(예. `10000_airplane`)은 기체 설정들을 담고있습니다. 설정값들은 빌드타임에 하나의 `airframes.xml`으로 보내지고 [QGroundControl](http://qgroundcontrol.com)을 통해 기체 선택 UI에 활용됩니다. 새로운 설정을 다루기 위해서는 [여기](../airframes/adding_a_new_frame.md)를 참고하세요.
 
 남아 있는 파일들을 일반적인 스타트업 로직을 위해 사용됩니다. 처음 실행되는 파일은 [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS)로 ( 또는 Posix에서는 [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)), 다른 모든 스크립트들을 호출합니다.
 
@@ -14,7 +14,7 @@ Posix에서는 시스템 쉘이 쉘 인터프리터로 사용됩니다 (예. /bi
 
 - PX4 모듈은 시스템에서 개별적으로 실행될 수 있어야합니다. 이것은 심볼릭 링크에 의해 수행됩니다. 각 모듈에 대해 심볼릭 링크 `px-4<module>-> px4`가 `bin` 디렉토리에 생성됩니다. 실행될 때, 바이너리의 경로가 (`argv[0]`) 확인되고, 만약 모듈이라면 (`px4-`로 시작), 메인 px4 인트턴스에게 명령을 보냅니다 (자세한건 아래로). **Tip** `px-4` 접두어는 시스템 명령어와의 충돌을 피하기 위해 사용됩니다 (예. `shutdown`), 그리고 `px-4<TAB>`를 타이핑함으로써 쉬운 탭 자동완성도 지원합니다.
 - 쉘은 심볼릭 링크를 찾기위한 위치를 알아야합니다. 따라서 스타트업 스크립트를 실행하기전에 심볼릭 링크된 `bin` 디렉토리가 `PATH` 변수에 추가되어야합니다.
-- 쉘은 각 모듈을 새로운 (클라이언트) 프로세스로 실행시킵니다. 메인 PX4 인스턴스 (서버)는 쓰레드로 동작하며, 각 클라이언트 프로세스는 메인 PX4와 통신할 수 있어야합니다. 통신은 [UNIX socker](http://man7.org/linux/man-pages/man7/unix.7.html)을 통해 이뤄집니다. 서버는 소켓으로 수신하고, 클라이언트는 소켓에 연결해 명령어를 보낼 수 있습니다. 그러면 서버는 출력과 리턴 코드를 클라이언트에게 보냅니다.
+- 쉘은 각 모듈을 새로운 (클라이언트) 프로세스로 실행시킵니다. 메인 PX4 인스턴스 (서버)는 쓰레드로 동작하며, 각 클라이언트 프로세스는 메인 PX4와 통신할 수 있어야합니다. 통신은 [UNIX socket](http://man7.org/linux/man-pages/man7/unix.7.html)을 통해 이뤄집니다. 서버는 클라이언트가 연결할 수 있고 명령어를 보낼 수 있는 소켓을 수신합니다. 그러면 서버는 출력과 리턴 코드를 클라이언트에게 보냅니다.
 - 스타트업 스크립트는 `px-4`로 시작하는 모듈이 대신 모듈을 직접적으로 호출합니다. 예. `commander start` 이것은 alias를 통해 수행됩니다. 각 모듈에 대해 `alias<module>=px4-<module>`의 형태로 alias가 `bin/px4-alias.sh`에 생성됩니다.
 - `rcS` 스크립트는 메인 PX4 인스턴스테 의해 실행됩니다. 이 스크립트는 다른 어떤 모듈들을 실행시키지 않습니다. `PATH` 변수를 업데이트하고 파라미터로 `rcS`을 실행시킵니다.
 - 거기에 더해, 다중서버 인스턴스는 다중-기체 시뮬레이션을 위해 수행될 수 있습니다. 클라이언트는 `--instance`를 통해 서버 인스턴스를 선택합니다. 그 인스턴스는 `$px4_instance` 변수를 통해 스크립트에서 이용가능합니다.
