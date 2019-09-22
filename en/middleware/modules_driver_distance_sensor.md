@@ -88,7 +88,6 @@ The sensor/driver must be enabled using the parameter SENS_EN_TRANGER.
 Setup/usage information: https://docs.px4.io/en/sensor/rangefinders.html#teraranger-rangefinders
 
 ### Examples
-
 Start driver on any bus (start on bus where first sensor found).
 ```
 teraranger start -a
@@ -115,11 +114,7 @@ teraranger <command> [arguments...]
 
    stop          Stop driver
 
-   test          Test driver (basic functional tests)
-
-   reset         Reset driver
-
-   info          Print driver information
+   status        Print driver information
 ```
 ## tfmini
 Source: [drivers/distance_sensor/tfmini](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/tfmini)
