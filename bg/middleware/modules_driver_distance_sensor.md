@@ -122,11 +122,7 @@ Stop driver
     
        stop          Stop driver
     
-       test          Test driver (basic functional tests)
-    
-       reset         Reset driver
-    
-       info          Print driver information
+       status        Print driver information
     
 
 ## tfmini
