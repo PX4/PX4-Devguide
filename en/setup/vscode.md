@@ -1,6 +1,9 @@
 # Visual Studio Code IDE (VSCode)
 
-Visual Studio Code is a powerful cross-platform source code editor/IDE that can be used for PX4 development on Linux and macOS (Windows support coming soon).
+Visual Studio Code is a powerful cross-platform source code editor/IDE that can be used for PX4 development on Linux 18.04 LTS and macOS (Windows support coming soon).
+
+> **Note** VSCode works on Ubuntu 18.04 configured with the [normal PX4 SITL/NuttX development environment](../setup/dev_env_linux_ubuntu.md).
+  Ubuntu 16.04 allows you to build but not debug targets.
 
 There are a number of reasons to use VSCode for PX4 development:
 - Getting setup *really* only takes a few minutes.
@@ -46,12 +49,12 @@ You must already have installed the command line [PX4 developer environment](../
 
 To build:
 1. Select your build target ("cmake build config"):
-   - The current *cmake build target* is shown on the blue *config* bar at the bottom (if already your target, skip to next step).
+   - The current *cmake build target* is shown on the blue *config* bar at the bottom (if this is already your desired target, skip to next step).
      ![Select Cmake build target](../../assets/vscode/cmake_build_config.jpg)
    - Click the target on the config bar to display other options, and select the one you want (this will replace any selected target).
    - *Cmake* will then configure your project (see notification in bottom right).
-     ![Cmake config project](../../assets/vscode/cmake_configuring_project.jpg).
-   - Wait until this completes.
+     ![Cmake config project](../../assets/vscode/cmake_configuring_project.jpg)
+   - Wait until configuration completes.
      When this is done the notification will disappear and you'll be shown the build location:
      ![Cmake config project](../../assets/vscode/cmake_configuring_project_done.jpg).
 1. You can then kick off a build from the config bar (select either **Build** or **Debug**).
@@ -67,8 +70,10 @@ To debug PX4 on SITL:
 1. Select the debug icon on the sidebar (marked in red) to display the debug panel.
    ![Run debug](../../assets/vscode/vscode_debug.jpg)
 
-1. Then choose your debug target (e.g. *Debug SITL (Gazebo Iris)*) from the top bard dropdown (shown in yellow).
-1. Start debugging by clicking the debug arrow - next to the debug target in the top bar (shown in blue).
+1. Then choose your debug target (e.g. *Debug SITL (Gazebo Iris)*) from the top bar debug dropdown (light blue markup).
+   > **Note** The debug target (light blue box) must match you build target (yellow box on the bottom bar).
+     For example, to debug SITL, your build target must include SITL.
+1. Start debugging by clicking the debug "play" arrow (next to the debug target in the top bar - marked in purple).
 
 While debugging you can set breakpoints, step over code, and otherwise develop as normal.
 
