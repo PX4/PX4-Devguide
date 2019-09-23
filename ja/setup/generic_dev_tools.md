@@ -12,9 +12,7 @@ Download and install the [QGroundControl Daily Build](https://docs.qgroundcontro
 
 The development team often use:
 
-* [Visual Studio Code](https://code.visualstudio.com/): quite new, popular open source IDE
-* [Eclipse for C/C++](https://www.eclipse.org/downloads/eclipse-packages/): very feature rich Java based IDE
-* [Sublime Text](https://www.sublimetext.com): a fast and lean text editor. 
-* [Qt Creator](http://www.qt.io/download-open-source/#section-6): A popular open-source IDE.
-
-> **Note** On linux the installation scripts automatically install *Qt Creator* as part of the common dependencies. You can launch it by entering `qtcreator` in a bash terminal.
+* [Visual Studio Code](../setup/vscode.md): Popular new open source IDE
+* [Eclipse for C/C++](https://www.eclipse.org/downloads/eclipse-packages/): Feature rich Java based IDE
+* [Sublime Text](https://www.sublimetext.com): Fast and lean text editor. 
+* [Qt Creator](http://www.qt.io/download-open-source/#section-6): Popular cross-platform open-source IDE.
