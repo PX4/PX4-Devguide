@@ -12,9 +12,7 @@
 
 开发团队通常使用：
 
-* [Visual Studio Code](https://code.visualstudio.com/)：相当新的、流行的开源 IDE
-* [Eclipse C/C++](https://www.eclipse.org/downloads/eclipse-packages/)：功能非常丰富的基于 JAVA 的 IDE
-* [Sublime text](https://www.sublimetext.com)：快速而精简的文本编辑器。 
-* [Qt Creator ](http://www.qt.io/download-open-source/#section-6)：一种流行的开源 IDE。
-
-> **Note** 在 Linux 上，安装脚本会自动安装 *Qt Creator*，作为公共依赖关系的一部分。 您可以通过在 bash 终端中输入 `qtcreator` 来启动它。
+* [Visual Studio Code](../setup/vscode.md): Popular new open source IDE
+* [Eclipse for C/C++](https://www.eclipse.org/downloads/eclipse-packages/): Feature rich Java based IDE
+* [Sublime Text](https://www.sublimetext.com): Fast and lean text editor. 
+* [Qt Creator](http://www.qt.io/download-open-source/#section-6): Popular cross-platform open-source IDE.
