@@ -66,7 +66,7 @@ Other than simulation drivers to provide fake environmental data from the simula
 
 By contrast, HITL runs normal PX4 firmware in "HITL mode", on normal hardware. 
 The simulation data enters the system at a different point than for SITL. 
-Core modules like commander and sensors have HIL modes at startup that bypass some of the normal functionality. 
+Core modules like commander and sensors have HITL modes at startup that bypass some of the normal functionality. 
 
 In summary, HITL runs PX4 on the actual hardware using standard firmware, but SITL actually executes more of the standard system code.
 
