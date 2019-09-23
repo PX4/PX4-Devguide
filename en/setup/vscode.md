@@ -1,6 +1,6 @@
 # Visual Studio Code IDE (VSCode)
 
-Visual Studio Code is a powerful cross-platform source code editor/IDE that can be used for PX4 development on Linux 18.04 LTS and macOS (Windows support coming soon).
+[Visual Studio Code](https://code.visualstudio.com/) is a powerful cross-platform source code editor/IDE that can be used for PX4 development on Linux 18.04 LTS and macOS (Windows support coming soon).
 
 > **Note** VSCode works on Ubuntu 18.04 configured with the [normal PX4 SITL/NuttX development environment](../setup/dev_env_linux_ubuntu.md).
   Ubuntu 16.04 allows you to build but not debug targets.
@@ -32,7 +32,7 @@ You must already have installed the command line [PX4 developer environment](../
 1. Press **Install All** on the *This workspace has extension recommendations* prompt (this will appear on the bottom right of the IDE).
    ![Install extensions](../../assets/vscode/prompt_install_extensions.jpg)
 
-   VSCode will open the Extensions panel on the left hand side so you can watch the progress of installation.
+   VSCode will open the *Extensions* panel on the left hand side so you can watch the progress of installation.
 
    ![PX4 loaded into VSCode Explorer](../../assets/vscode/installing_extensions.jpg)
 1. A number of notifications/prompts may appear in the bottom right corner
@@ -62,7 +62,6 @@ To build:
 
 After building at least once you can now use [code completion](#code completion) and other *VSCode* features.
 
-<!-- px4 at the bottom - select target to launch - test mixer multi_rotor or PX4 -->
 
 ## Debugging PX4 {#debugging_sitl}
 
@@ -70,10 +69,10 @@ To debug PX4 on SITL:
 1. Select the debug icon on the sidebar (marked in red) to display the debug panel.
    ![Run debug](../../assets/vscode/vscode_debug.jpg)
 
-1. Then choose your debug target (e.g. *Debug SITL (Gazebo Iris)*) from the top bar debug dropdown (light blue markup).
-   > **Note** The debug target (light blue box) must match you build target (yellow box on the bottom bar).
-     For example, to debug SITL, your build target must include SITL.
-1. Start debugging by clicking the debug "play" arrow (next to the debug target in the top bar - marked in purple).
+1. Then choose your debug target (e.g. *Debug SITL (Gazebo Iris)*) from the top bar debug dropdown (purple box).
+   > **Note** The debug targets that are offered (purple box) match your build target (yellow box on the bottom bar).
+     For example, to debug SITL targets, your build target must include SITL.
+1. Start debugging by clicking the debug "play" arrow (next to the debug target in the top bar - pink box).
 
 While debugging you can set breakpoints, step over code, and otherwise develop as normal.
 
