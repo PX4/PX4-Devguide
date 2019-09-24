@@ -94,7 +94,7 @@ Flying the simulation with the ground control station is closer to the real oper
 
 > **Tip** PX4 can be used with a number of other [Simulators](../simulation/README.md), including [Gazebo Simulation](../simulation/gazebo.md) and [AirSim Simulation](../simulation/airsim.md). These are also started with *make* - e.g. ```make px4_sitl gazebo```
 
-## NuttX / Pixhawk Based Boards
+## NuttX / Pixhawk Based Boards {#nuttx}
 
 ### Building {#building_nuttx}
 
