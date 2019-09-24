@@ -11,13 +11,14 @@ Windows 用户还可以选择在 [Bash on Windows](https://github.com/Microsoft/
 
 ### 设置开发环境
 
-设置开发环境的最简单的方法是使用 **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** 安装脚本 （脚本文件的详细说明见 [下文](#build_script_details)）。
+The easiest way to setup the environment is to use the **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** script (details for script are [given below](#build_script_details)).
 
 要设置开发环境, 请执行以下操作:
 
 1. 在Windows 10上启用、安装 [Bash on Windows](https://github.com/Microsoft/BashOnWindows)。
 2. 打开 bash shell 命令行界面。 
-3. 下载 **windows_bash_nuttx.sh** 脚本文件: ```wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh```
+3. Download the **windows_bash_nuttx.sh**:  
+    `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh`
 4. 使用如下命令运行安装脚本 (根据需要确认任何提示)： 
         sh
         source windows_bash_nuttx.sh
@@ -69,7 +70,7 @@ JMAVSim 运行流程：
 
 ### 开发环境安装脚本详情 {#build_script_details}
 
-Bash on Windows开发环境的 [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh) 安装脚本在 Ubuntu 开发环境搭建脚本的基础上进行了修改，移除了包括包括 *Qt Creator* IDE 和模拟器仿真程序在内的所有 Ubuntu 独有的以及与UI界面相关的程序组件。
+The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
 
 此外， 由于 Bash on Windows 不支持运行32位 ELF 程序，该脚本弃用了来自 `https://launchpad.net/gcc-arm-embedded` 的默认32位编译器，改用 [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) 。
 
