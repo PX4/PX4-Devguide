@@ -31,7 +31,3 @@ sudo apt-get install gazebo9 -y
 ## For developers (who work on top of Gazebo) one extra package
 sudo apt-get install libgazebo9-dev -y
 
-
-
-# Go to the firmware directory
-cd $clone_dir/Firmware

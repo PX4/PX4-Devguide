@@ -4,7 +4,7 @@
 ## It can be used for installing simulators (only) or for installing the preconditions for Snapdragon Flight or Raspberry Pi.
 ##
 ## Installs:
-## - Common dependencies and tools for all targets (including: Ninja build system, Qt Creator, pyulog)
+## - Common dependencies and tools for all targets (including: Ninja build system, pyulog)
 ## - FastRTPS and FastCDR
 ## - jMAVSim simulator dependencies
 ## - PX4/Firmware source (to ~/src/Firmware/)
@@ -21,7 +21,7 @@ sudo usermod -a -G dialout $USER
 # Common dependencies
 echo "Installing common dependencies"
 sudo apt-get update -y
-sudo apt-get install git zip qtcreator cmake build-essential genromfs ninja-build exiftool astyle -y
+sudo apt-get install git zip cmake build-essential genromfs ninja-build exiftool astyle -y
 # make sure xxd is installed, dedicated xxd package since Ubuntu 18.04 but was squashed into vim-common before
 which xxd || sudo apt install xxd -y || sudo apt-get install vim-common --no-install-recommends -y
 # Required python packages
@@ -55,14 +55,3 @@ fi
 echo "Installing jMAVSim simulator dependencies"
 sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
 
-# Clone PX4/Firmware
-clone_dir=~/src
-echo "Cloning PX4 to: $clone_dir."
-if [ -d "$clone_dir" ]
-then
-    echo " Firmware already cloned."
-else
-    mkdir -p $clone_dir
-    cd $clone_dir
-    git clone https://github.com/PX4/Firmware.git
-fi

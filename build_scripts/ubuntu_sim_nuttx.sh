@@ -44,8 +44,5 @@ else
 fi
 
 
-# Go to the firmware directory
-cd $clone_dir/Firmware
-
 #Reboot the computer (required before building)
 echo RESTART YOUR COMPUTER to complete installation of PX4 development toolchain

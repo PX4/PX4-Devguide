@@ -103,9 +103,3 @@ if grep -Fxq "$catkin_ws_source" ~/.bashrc; then echo ROS catkin_ws setup.bash a
 else echo "$catkin_ws_source" >> ~/.bashrc; fi
 eval $catkin_ws_source
 
-
-# Go to the firmware directory
-clone_dir=~/src
-cd $clone_dir/Firmware
-
-

@@ -100,19 +100,3 @@ else
     popd
 fi
 
-
-# Clone PX4/Firmware
-clone_dir=~/src
-echo "Cloning PX4 to: $clone_dir."
-if [ -d "$clone_dir" ]
-then
-    echo " Firmware already cloned."
-else
-    mkdir -p $clone_dir
-    cd $clone_dir
-    git clone https://github.com/PX4/Firmware.git
-    cd Firmware
-fi
-cd $clone_dir/Firmware
-
-
