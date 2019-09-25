@@ -12,18 +12,11 @@ The toolchain supports:
 
 This topic explains how download and use the environment, and how it can be extended and updated if needed (for example, to use a different compiler).
 
-<!-- Legacy Versions (**deprecated**):
-* [PX4 Windows Cygwin Toolchain 0.4 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.4.msi) (18.09.2018)
-* [PX4 Windows Cygwin Toolchain 0.3 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.3.msi) (25.07.2018)
-* [PX4 Windows Cygwin Toolchain 0.2 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.2.msi) (09.05.2018)
-* [PX4 Windows Cygwin Toolchain 0.1 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.1.msi) (23.02.2018)
--->
-
 ## Installation Instructions {#installation}
 
-1. Download the latest version of the ready-to-use MSI installer from [S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.6.msi) or [Github](https://github.com/PX4/windows-toolchain/releases) 
-
-1. Run it, choose your desired installation location, let it install
+1. Download the latest version of the ready-to-use MSI installer from [Github](https://github.com/PX4/windows-toolchain/releases) or
+[S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.6.msi)
+1. Run it, choose your desired installation location, let it install:
     ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 1. Tick the box at the end of the installation to *clone the PX4 repository, build and run simulation with jMAVSim* (this simplifies the process to get you started). 
 
