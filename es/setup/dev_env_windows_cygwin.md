@@ -22,7 +22,7 @@ En esta página se explica cómo descargar y usar el entorno y cómo puede ser a
 
 ## Instrucciones de Instalación {#installation}
 
-1. Descarga la última versión del instalador MSI ready-to-use desde [Github](https://github.com/PX4/windows-toolchain/releases) o [S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.5.msi)
+1. Download the latest version of the ready-to-use MSI installer from [Github](https://github.com/PX4/windows-toolchain/releases) or [S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.6.msi)
 2. Ejecútalo, elige el lugar de instalación deseado, instálalo ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 3. Marque la casilla al final de la instalación para *clonar el repositorio PX4, compilar y ejecuta la simulación con jMAVSim* (Esto simplifica el proceso para empezar).
     
