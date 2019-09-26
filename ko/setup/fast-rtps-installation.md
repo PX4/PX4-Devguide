@@ -43,7 +43,7 @@ Java는 내장된 코드 생성 도구인 *fastrtpsgen*을 사용해야합니다
 Github에서 프로젝트를 복사십시오.
 
 ```sh
-$ git clone https://github.com/eProsima/Fast-RTPS
+$ git clone -b v1.8.1 https://github.com/eProsima/Fast-RTPS
 $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 ```
 
