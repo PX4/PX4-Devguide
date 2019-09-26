@@ -4901,6 +4901,30 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="EKF2_EVP_GATE">EKF2_EVP_GATE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Gate size for vision position fusion Sets the number of standard deviations used by the innovation consistency test
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0 > ?
+    </td>
+    
+    <td style="vertical-align: top;">
+      5.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      SD
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="EKF2_EVP_NOISE">EKF2_EVP_NOISE</strong> (FLOAT)
     </td>
     
@@ -4915,11 +4939,63 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.05
+      0.1
     </td>
     
     <td style="vertical-align: top;">
       m
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="EKF2_EVV_GATE">EKF2_EVV_GATE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Gate size for vision velocity estimate fusion
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0 > ?
+    </td>
+    
+    <td style="vertical-align: top;">
+      3.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      SD
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="EKF2_EVV_NOISE">EKF2_EVV_NOISE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Measurement noise for vision velocity observations used when the vision system does not supply error estimates
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.01 > ?
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.1
+    </td>
+    
+    <td style="vertical-align: top;">
+      m/s
     </td>
   </tr>
   
@@ -4948,34 +5024,6 @@
     
     <td style="vertical-align: top;">
       ms
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="EKF2_EV_GATE">EKF2_EV_GATE</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Gate size for vision estimate fusion
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0 > ?
-    </td>
-    
-    <td style="vertical-align: top;">
-      5.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      SD
     </td>
   </tr>
   
@@ -16687,12 +16735,12 @@
   
   <tr>
     <td style="vertical-align: top;">
-      <strong id="MPC_COL_PREV_ANG">MPC_COL_PREV_ANG</strong> (FLOAT)
+      <strong id="MPC_COL_PREV_CNG">MPC_COL_PREV_CNG</strong> (FLOAT)
     </td>
     
     <td style="vertical-align: top;">
       <p>
-        Angle left/right from the commanded setpoint in which the range data is used to calculate speed limitations. All data further from the commanded direction is not considered
+        Angle left/right from the commanded setpoint by which the collision prevention algorithm can choose to change the setpoint direction
       </p>
       
       <p>
@@ -16705,7 +16753,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      45.
+      30.
     </td>
     
     <td style="vertical-align: top;">
@@ -16724,7 +16772,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Only used in Position mode. Collision avoidace is disabled by setting this parameter to a negative value
+        <strong>Comment:</strong> Only used in Position mode. Collision avoidance is disabled by setting this parameter to a negative value
       </p>
     </td>
     
@@ -16748,7 +16796,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        Average delay of the range sensor message in seconds
+        Average delay of the range sensor message plus the tracking delay of the position controller in seconds
       </p>
       
       <p>
@@ -16761,7 +16809,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.
+      0.4
     </td>
     
     <td style="vertical-align: top;">
