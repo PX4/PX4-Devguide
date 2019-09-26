@@ -216,7 +216,7 @@ A successful build followed by executing px4 will give you something like this:
 px4 starting.
 
 
-pxh&gt;
+pxh>
 ```
 
 #### 自动启动
