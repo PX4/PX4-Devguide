@@ -35,6 +35,54 @@ leddar_one <command> [arguments...]
 
    test          Test driver (basic functional tests)
 ```
+## ll40ls
+Source: [drivers/distance_sensor/ll40ls](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ll40ls)
+
+
+### Description
+
+I2C bus driver for LidarLite rangefinders.
+
+The sensor/driver must be enabled using the parameter SENS_EN_LL40LS.
+
+Setup/usage information: https://docs.px4.io/en/sensor/lidar_lite.html
+
+### Examples
+
+Start driver on any bus (start on bus where first sensor found).
+```
+ll40ls start i2c -a
+```
+Start driver on specified bus
+```
+ll40ls start i2c -b 1
+```
+Stop driver
+```
+ll40ls stop
+```
+
+### Usage {#ll40ls_usage}
+```
+ll40ls <command> [arguments...]
+ Commands:
+   print_regs    Print the register values
+
+   start         Start driver
+
+   pwm           PWM device
+
+   i2c           I2C device
+     [-a]        Attempt to start driver on all I2C buses (first one found)
+     [-b <val>]  Start driver on specific I2C bus
+                 default: 1
+     [-R <val>]  Sensor rotation - downward facing by default
+                 default: 25
+
+   status        Print driver status information
+
+   stop          Stop driver
+```
 ## sf1xx
 Source: [drivers/distance_sensor/sf1xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf1xx)
 
