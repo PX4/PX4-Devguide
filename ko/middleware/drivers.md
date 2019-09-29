@@ -12,18 +12,18 @@ PX4는 보통 데이터를 [uORB](../middleware/uorb.md)에서 데이터를 독�
 
 새로운 드라이버를 만드는 최선의 방법은 템플릿을 통해 만드는 것입니다 ([src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)를 참고하세요).
 
-> **Tip** More detailed information about working with specific I/O busses and sensors may be available in [Sensor and Actuator Buses](../sensor_bus/README.md) section.
+> **Tip** 특정 I/O 버스나 센서를 작업하기 위한 더 많은 정보들은 [Sensor and Actuator Buses](../sensor_bus/README.md) 섹션에서 얻을 수 있습니다.
 
 <span></span>
 
-> **Note** Publishing the correct uORB topics is the only pattern that drivers *must* follow.
+> **Note** 정확한 uORB 토픽을 퍼블리시하는것이 드라이버가 해야할 *유일한* 것 입니다.
 
-## Core Architecture
+## 중요 아키텍쳐
 
-PX4 is a [reactive system](../concept/architecture.md) and uses [uORB](../middleware/uorb.md) publish/subscribe to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
+PX4는 [reactive system](../concept/architecture.md)이며 데이터 Pub/Sub을 위해 [uORB](../middleware/uorb.md)을 사용합니다. 파일을 핸들링 하는 것은 시스템의 중요 작업을 필요로하거나 사용하지 않습니다. 2가지의 주된 API가 사용됩니다.
 
-* The publish / subscribe system which has a file, network or shared memory backend depending on the system PX4 runs on.
-* The global device registry, which can be used to enumerate devices and get/set their configuration. This can be as simple as a linked list or map to the file system.
+* Pub/Sub 시스템은 PX4가 실행되는 시스템에 의존하는 네트워크나 공유메모리 백엔드가 있습니다.
+* 글로벌 장치 레지스트리를 통해 디바이스 목록과 그 설정을 get/set할 수 있습니다. This can be as simple as a linked list or map to the file system.
 
 ## Device IDs
 
