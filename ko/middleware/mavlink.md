@@ -134,19 +134,19 @@ nullptr
 #include <v2.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Add a function that handles the incoming MAVLink message in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)
+Add a function that handles the incoming MAVLink message in the [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140) 에 들어오는 MAVLink 메시지를 핸들링하기 위한 함수를`MavlinkReceiver` 클래스안에 추가하세요.
 
 ```C
 void handle_message_ca_trajectory_msg(mavlink_message_t *msg);
 ```
 
-Add an uORB publisher in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)
+[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)의 `MavlinkReceiver` 클래스에 uORB 퍼블리셔를 추가하세요.
 
 ```C
 orb_advert_t _ca_traj_msg_pub;
 ```
 
-Implement the `handle_message_ca_trajectory_msg` function in [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)
+[mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)에 `handle_message_ca_trajectory_msg` 함수를 추가하세요.
 
 ```C
 void MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
@@ -187,9 +187,9 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
     }
 ```
 
-## Alternative to Creating Custom MAVLink Messages
+## 커스텀 MAVLink 메시지를 만드는 다른 방법
 
-Sometimes there is the need for a custom MAVLink message with content that is not fully defined.
+때로는 아직 완전히 정의되지 않은 내용을 포함하는 MAVLink 메시지를 만들필요가 있습니다.
 
 For example when using MAVLink to interface PX4 with an embedded device, the messages that are exchanged between the autopilot and the device may go through several iterations before they are stabilized. In this case, it can be time-consuming and error-prone to regenerate the MAVLink headers, and make sure both devices use the same version of the protocol.
 
