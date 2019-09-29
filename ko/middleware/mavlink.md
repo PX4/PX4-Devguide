@@ -114,20 +114,20 @@ nullptr
 };
 ```
 
-Then make sure to enable the stream, for example by adding the following line to the startup script (`-r` configures the streaming rate, `-u` identifies the MAVLink channel on UDP port 14556):
+그리고 스트림을 활성화 하세요. 예를 들면, 스타트업 스크립트에 다음의 라인을 추가하는 것입니다. (`-r` 스트리밍 레이트를 설정하고, `-u` MAVLink UDP 포트를 14556로 정합니다):
 
     mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
     
 
-> **Tip** You can use the `uorb top [<message_name>]` command to verify in real-time that your message is published and the rate (see [uORB Messaging](../middleware/uorb.md#uorb-top-command)). This approach can also be used to test incoming messages that publish a uORB topic (for other messages you might use `printf` in your code and test in SITL).
+> **Tip** 여러분의 메시지가 리얼타임으로 동작하는지 확인하기 위해서는 `uorb top [<message_name>]` 명령어를 사용하면됩니다([uORB Messaging](../middleware/uorb.md#uorb-top-command)를 참고하세요). 이 방법은 들어오는 uORB 토픽 메시지를 테스트할 때도 사용할 수 있습니다.(다른 메시지들을 위해서는 코드내에서 `printf` 를 사용하세요).
 > 
-> To see the message on *QGroundControl* you will need to [build it with your MAVLink library](https://dev.qgroundcontrol.com/en/getting_started/), and then verify that the message is received using [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html) (or some other MAVLink tool).
+> *QGroundControl*의 메시지를 보기위해서는 [나만의 MAVLink library](https://dev.qgroundcontrol.com/en/getting_started/)를 빌드하고, 수신하는 메시지를 [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html)를 통해 확인할 수 있습니다.
 
-## Receiving Custom MAVLink Messages
+## 커스텀 MAVLink 메시지 수신하기
 
-This section explains how to receive a message over MAVLink and publish it to uORB.
+이 섹션에서는 MAVLink의 메시지를 수신하고 uORB로 퍼블리시 하는 것을 설명합니다.
 
-Add a function that handles the incoming MAVLink message in [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)
+[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)에 들어오는 MAVLink 메시지를 핸들링하는 함수를 추가하세요.
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
