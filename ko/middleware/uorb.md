@@ -110,8 +110,8 @@ sensor_combined                      0    6  242   636 1
 
 ## 멀티-인스턴스
 
-uORB provides a mechanism to publish multiple independent instances of the same topic through `orb_advertise_multi`. It will return an instance index to the publisher. A subscriber will then have to choose to which instance to subscribe to using `orb_subscribe_multi` (`orb_subscribe` subscribes to the first instance). Having multiple instances is useful for example if the system has several sensors of the same type.
+uORB는 `orb_advertise_multi`를 통해 동일한 토픽에 대해 독립적인 여러개의 인스턴스를 퍼블리시 하는 메커니즘을 갖고 있습니다. 이 메커니즘은 퍼블리셔에게 인스턴스의 인덱스를 돌려줍니다. 그러면 Sub은 `orb_subscribe_multi`을 사용하여 어떤 인스턴스를 구독할지 선택해야만 합니다(`orb_subscribe`는 첫번째 인스턴스 구독하기). 다수의 인스턴스를 가지는 것은 동일한 타입의 센서를 여러개 가진 시스템에서 유용합니다.
 
-Make sure not to mix `orb_advertise_multi` and `orb_advertise` for the same topic.
+같은 토픽에 대해 `orb_advertise_multi`과 `orb_advertise`가 섞이지 않도록 유의하세요.
 
-The full API is documented in [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp).
+API문서는 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp)참고하세요.
