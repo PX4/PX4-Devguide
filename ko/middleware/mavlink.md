@@ -191,9 +191,9 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 
 때로는 아직 완전히 정의되지 않은 내용을 포함하는 MAVLink 메시지를 만들필요가 있습니다.
 
-For example when using MAVLink to interface PX4 with an embedded device, the messages that are exchanged between the autopilot and the device may go through several iterations before they are stabilized. In this case, it can be time-consuming and error-prone to regenerate the MAVLink headers, and make sure both devices use the same version of the protocol.
+예를 들어 PX4와 내장된 디바이스의 인터페이스를 MAVLink로 사용할 때 자동조종장치와 그 디바이스는 안전화되기 전에 여러번의 메시지를 교환할 것입니다. 이 작업은 MAVLink 헤더를 재생성하기 위해 시간도 소모되고 에러도 읽어나기 쉽습니다. 그리고 두 장치가 같은 버전의 프로토콜을 사용하는지 확인해야 합니다.
 
-An alternative - and temporary - solution is to re-purpose debug messages. Instead of creating a custom MAVLink message `CA_TRAJECTORY`, you can send a message `DEBUG_VECT` with the string key `CA_TRAJ` and data in the `x`, `y` and `z` fields. See [this tutorial](../debug/debug_values.md). for an example usage of debug messages.
+임시적이고 대안적인 방법은 repurpose 디버그 메시지입니다. Instead of creating a custom MAVLink message `CA_TRAJECTORY`, you can send a message `DEBUG_VECT` with the string key `CA_TRAJ` and data in the `x`, `y` and `z` fields. See [this tutorial](../debug/debug_values.md). for an example usage of debug messages.
 
 > **Note** This solution is not efficient as it sends character string over the network and involves comparison of strings. It should be used for development only!
 
