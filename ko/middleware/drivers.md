@@ -23,11 +23,11 @@ PX4는 보통 데이터를 [uORB](../middleware/uorb.md)에서 데이터를 독�
 PX4는 [reactive system](../concept/architecture.md)이며 데이터 Pub/Sub을 위해 [uORB](../middleware/uorb.md)을 사용합니다. 파일을 핸들링 하는 것은 시스템의 중요 작업을 필요로하거나 사용하지 않습니다. 2가지의 주된 API가 사용됩니다.
 
 * Pub/Sub 시스템은 PX4가 실행되는 시스템에 의존하는 네트워크나 공유메모리 백엔드가 있습니다.
-* 글로벌 장치 레지스트리를 통해 디바이스 목록과 그 설정을 get/set할 수 있습니다. This can be as simple as a linked list or map to the file system.
+* 글로벌 장치 레지스트리를 통해 디바이스 목록과 그 설정을 get/set할 수 있습니다. 이것은 링크리스트처럼 간단하며, 파일시스템에 매핑할 수도 있습니다.
 
-## Device IDs
+## 디바이스 ID
 
-PX4 uses device IDs to identify individual sensors consistently across the system. These IDs are stored in the configuration parameters and used to match sensor calibration values, as well as to determine which sensor is logged to which logfile entry.
+PX4는 시스템에 상관없이 각각의 센서를 구별하기 위해 디바이스 ID를 사용합니다. ID는 설정 파라미터에 저장되어 있으며 ID는 설정 파라미터에 저장되어 있으며 센서 교정값을 일치시키기 위해 사용되고, 어떤 센서가 어떤 로그파일에 기록되는지 확인하기 위해 사용됩니다.
 
 The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) does not determine priority - the priority is instead stored as part of the published uORB topic.
 
