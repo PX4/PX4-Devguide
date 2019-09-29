@@ -1,16 +1,16 @@
-# Driver Development
+# 드라이버 개발
 
-NuttX device drivers are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) framework.
+NuttX 장치 드라이버는 [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) 프레이워크에 기초합니다.
 
-Linux and QuRT drivers are based on [DriverFramework](https://github.com/px4/DriverFramework). PX4 is currently being updated so that they can use the same drivers as NuttX.
+Linux와 QuRT 드라이버는 [DriverFramework](https://github.com/px4/DriverFramework)에 기초합니다. PX4는 NuttX와 같은 드라이버를 사용할 수 있도록 업데이트하고 있습니다.
 
-> **Note** Currently (December 2017) a small number of Linux/QuRT I2C drivers have been migrated (primarily for airspeed sensors). We plan to migrate the remaining drivers in coming releases.
+> **Note** (2017년 12월) 몇몇의 Linux/QuRT I2C 드라이버가 업데이트 되었습니다 (주로 풍속 센서들). 우리는 남은 드라이버들을 계속해서 업데이트할 계획입니다.
 
-## Creating a Driver
+## 드라이버 만들기
 
-PX4 almost exclusively consumes data from [uORB](../middleware/uorb.md). Drivers for common peripheral types must publish the correct uORB messages (for example: gyro, accelerometer, pressure sensors, etc.).
+PX4는 보통 데이터를 [uORB](../middleware/uorb.md)에서 데이터를 독점적으로 가져옵니다. 일반적인 주변장치 타입의 드라이버들은 반드시 정확한 uORB 메세지들을 퍼블리시 해야합니다 ( 예: 자이로센서, 가속계, 압력 센서 등).
 
-The best approach for creating a new driver is to start with a similar driver as a template (see [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)).
+새로운 드라이버를 만드는 최선의 방법은 템플릿을 통해 만드는 것입니다 ([src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)를 참고하세요).
 
 > **Tip** More detailed information about working with specific I/O busses and sensors may be available in [Sensor and Actuator Buses](../sensor_bus/README.md) section.
 
