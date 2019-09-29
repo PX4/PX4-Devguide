@@ -493,12 +493,12 @@ initializeGraph();
 - 모듈은 회색배경에 둥근 모서리로, 토픽들은 색이있는 네모난 박스로 표시합니다.
 - 연관있는 모듈과 토픽들은 선으로 연결됩니다. 점선은 토픽을 발행하는 것을 나타내고, 실선은 토픽을 구독하는 것을 나타냅니다.
 - 몇개의 모듈과 토픽들은 제외합니다. 
-  - Topics that are subscribed/published by many modules: `parameter_update`, `mavlink_log` and `log_message`.
-  - The set of logged topics.
-  - Topics that have no subscriber or no publisher.
-  - Modules in **src/examples**.
-- Hovering over a module/topic highlights all its connections.
-- Double-clicking on a topic opens its message definition.
-- Make sure your browser window is wide enough to display the full graph (the sidebar menu can be hidden with the icon in the top-left corner). You can also zoom the image.
-- The *Preset* selection list allows you to refine the list of modules that are shown.
-- The *Search* box can be used to find particular modules/topics (topics that are not selected by the search are greyed-out).
+  - 많은 모듈들에 의해 Pub/Sub되는 토픽들: `parameter_update`, `mavlink_log`, `log_message`.
+  - 기록되는 토픽들의 집합.
+  - 퍼블리셔나 섭스크라이버가 없는 토픽들.
+  - **src/examples**에 있는 모듈들.
+- 모듈이나 토픽에 마우스 오버시 그것에 연결된 모든 것이 강조됩니다.
+- 토픽을 더블클릭해 오픈하면 메시지 정의가 보여집니다.
+- 여러분이 사용하는 브라우저가 그래프를 온전히 보여줄수 있도록 하세요. 이미지를 줌으로 확대할 수도 있습니다.
+- *프리셋* 선택 리스트에 보여지는 모듈 리스트들은 수정가능합니다.
+- *Search* 박스는 특정 모듈이나 토픽들을 찾기위해 사용할 수 있습니다(회색으로 된 토픽들은 선택되지 않습니다).
