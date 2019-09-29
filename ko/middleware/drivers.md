@@ -29,7 +29,7 @@ PX4는 [reactive system](../concept/architecture.md)이며 데이터 Pub/Sub을 
 
 PX4는 시스템에 상관없이 각각의 센서를 구별하기 위해 디바이스 ID를 사용합니다. ID는 설정 파라미터에 저장되어 있으며 ID는 설정 파라미터에 저장되어 있으며 센서 교정값을 일치시키기 위해 사용되고, 어떤 센서가 어떤 로그파일에 기록되는지 확인하기 위해 사용됩니다.
 
-The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) does not determine priority - the priority is instead stored as part of the published uORB topic.
+센서의 순서 (예. `/dev/mag0`가 있고 `/dev/mag1/`이 있을때) 는 우선수위를 결정하지 않습니다. 이 우선순위는 대신에 퍼블리시된 uORB 토픽의 일부분으로 저장됩니다.
 
 ### 디코딩 예제
 
@@ -81,7 +81,7 @@ struct DeviceStructure {
 };
 ```
 
-The `bus_type` is decoded according to:
+`bus_type`은 다음과 같이 디코딩됩니다.
 
 ```C
 enum DeviceBusType {
@@ -92,7 +92,7 @@ enum DeviceBusType {
 };
 ```
 
-and `devtype` is decoded according to:
+`devtype`는 다음과 같이 디코딩됩니다.
 
 ```C
 #define DRV_MAG_DEVTYPE_HMC5883  0x01
