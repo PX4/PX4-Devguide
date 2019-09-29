@@ -12,33 +12,33 @@ uORB는 많은 어플리케이션이 의존하고 있기 때문에 부트업시�
 
 새로운 uORB 토픽은 메인 PX4 펌웨어 저장소나 독립 브랜치의 메시지 정의에 추가하여 사용할 수 있습니다. 독립적인 브랜치에 uORB 메시지 정의에 추가하는 것은 [이 섹션](../advanced/out_of_tree_modules.md#uorb_message_definitions)을 참고하세요.
 
-새로운 토픽을 만들기 위해서는 `msg/` 디렉토리에 **.msg** 파일을 만들고 `msg/CMakeLists.txt` 리스트에 추가해야합니다. From this, the needed C/C++ code is automatically generated.
+새로운 토픽을 만들기 위해서는 `msg/` 디렉토리에 **.msg** 파일을 만들고 `msg/CMakeLists.txt` 리스트에 추가해야합니다. 필요한 C/C++ 코드는 자동적으로 생성됩니다.
 
-Have a look at the existing `msg` files for supported types. A message can also be used nested in other messages.
+지원되는 타입들을 확인하기 위해서는 이미있는 `msg` 파일들을 살펴보세요. 하나의 메시지는 다른 메시지에 포함될 수도 있습니다.
 
-To each generated C/C++ struct, a field `uint64_t timestamp` will be added. This is used for the logger, so make sure to fill it in when publishing the message.
+생성된 C/C++ 구조체에는 `uint64_t timestamp` 필드가 추가됩니다. 로깅을 위해 사용되며 메시지를 퍼블리시할때 설정해줘야 합니다.
 
-To use the topic in the code, include the header:
+만든 토픽을 사용하기 위해서는 헤더를 포함해야합니다.
 
     #include <uORB/topics/topic_name.h>
     
 
-By adding a line like the following in the `.msg` file, a single message definition can be used for multiple independent topics:
+`.msg` 파일에 한줄을 추가함으로써, 하나의 메시지 정의를 다수의 독립된 토픽들을 위해 사용할 수 있습니다.
 
     # TOPICS mission offboard_mission onboard_mission
     
 
-Then in the code, use them as topic id: `ORB_ID(offboard_mission)`.
+그리고 소스코드에서 토픽 ID `ORB_ID(offboard_mission)`로 사용하세요.
 
-## Publishing
+## 퍼블리시
 
-Publishing a topic can be done from anywhere in the system, including interrupt context (functions called by the `hrt_call` API). However, advertising a topic is only possible outside of interrupt context. A topic has to be advertised in the same process as it's later published.
+토픽을 퍼블리싱하는 것은 인터럽트 컨텐스를 포함하는 어느 시스템의 어디에서나 수행할 수 있습니다( `hrt_call` API에 의해 호출됨). 그러나, 토픽을 advertising 하는 것은 인터럽트 컨텍스트의 외부에서만 가능합니다. 토픽을 나중에 퍼블리시할때와 동일한 프로세스에서 Advertise 해야합니다.
 
-## Listing Topics and Listening in
+## 토픽 리스팅과 리스닝
 
-> **Note** The `listener` command is only available on Pixracer (FMUv4) and Linux / OS X.
+> **Note** `listener` 명령어는 Pixracer(FMUv4)와 Linux / OS X 에서만 사용가능 합니다.
 
-To list all topics, list the file handles:
+모든 토픽을 리스팅하기 위해서는 파일 핸들들을 리스팅해야 합니다.
 
 ```sh
 ls /obj
