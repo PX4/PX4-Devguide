@@ -10,9 +10,9 @@ uORB는 많은 어플리케이션이 의존하고 있기 때문에 부트업시�
 
 ## 새로운 토픽 추가하기
 
-New uORB topics can be added either within the main PX4/Firmware repository, or can be added in an out-of-tree message definitions. For information on adding out-of-tree uORB message definitions, please see [this section](../advanced/out_of_tree_modules.md#uorb_message_definitions).
+새로운 uORB 토픽은 메인 PX4 펌웨어 저장소나 독립 브랜치의 메시지 정의에 추가하여 사용할 수 있습니다. 독립적인 브랜치에 uORB 메시지 정의에 추가하는 것은 [이 섹션](../advanced/out_of_tree_modules.md#uorb_message_definitions)을 참고하세요.
 
-To add a new topic, you need to create a new **.msg** file in the `msg/` directory and add the file name to the `msg/CMakeLists.txt` list. From this, the needed C/C++ code is automatically generated.
+새로운 토픽을 만들기 위해서는 `msg/` 디렉토리에 **.msg** 파일을 만들고 `msg/CMakeLists.txt` 리스트에 추가해야합니다. From this, the needed C/C++ code is automatically generated.
 
 Have a look at the existing `msg` files for supported types. A message can also be used nested in other messages.
 
