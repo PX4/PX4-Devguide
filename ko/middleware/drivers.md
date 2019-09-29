@@ -31,9 +31,9 @@ PX4는 시스템에 상관없이 각각의 센서를 구별하기 위해 디바�
 
 The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) does not determine priority - the priority is instead stored as part of the published uORB topic.
 
-### Decoding example
+### 디코딩 예제
 
-For the example of three magnetometers on a system, use the flight log (.px4log) to dump the parameters. The three parameters encode the sensor IDs and `MAG_PRIME` identifies which magnetometer is selected as the primary sensor. Each MAGx_ID is a 24bit number and should be padded left with zeros for manual decoding.
+한 시스템에 3개의 마그넷미터에 대한 예를 위해, 파라미터 덤프를 위한 flight log (.px4log)를 사용합니다. 3개의 파라미터는 센서 ID와 주된 마그넷미터 센서를 구별하는 `MAG_PRIME`를 인코딩합니다. 각 MAGx_ID는 24비트의 넘버이고 직접적인 디코딩을 위해서는 0으로 패딩되어야 합니다.
 
     CAL_MAG0_ID = 73225.0
     CAL_MAG1_ID = 66826.0
@@ -41,7 +41,7 @@ For the example of three magnetometers on a system, use the flight log (.px4log)
     CAL_MAG_PRIME = 73225.0
     
 
-This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will show up in the log file as `IMU.MagX`.
+이것은 버스 1에 주소 `0x1E` 에 I2C를 통해 연결된 외부의 HMC5983 입니다. 이것은 `IMU.MagX`에 로그파일로 저장되어 보여질 것입니다.
 
     # device ID 73225 in 24-bit binary:
     00000001  00011110  00001 001
@@ -50,7 +50,7 @@ This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will
     HMC5883   0x1E    bus 1 I2C
     
 
-This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It will show up in the log file as `IMU1.MagX`.
+이것은 버스 1에 SPI를 통해 연결된 slot 5를 선택하는 HMC5983 입니다. 이것은 `IMU1.MagX` 로그파일에 보여질 것입니다.
 
     # device ID 66826 in 24-bit binary:
     00000001  00000101  00001 010
@@ -59,7 +59,7 @@ This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It w
     HMC5883   dev 5   bus 1 SPI
     
 
-And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave select slot 4. It will show up in the log file as `IMU2.MagX`.
+그리고 이것은 버스 1에 SPI를 통해 연결된 slot 4를 선택하는 내부의 MPU9250 입니다. `IMU2.MagX` 로그파일에 보여질 것입니다.
 
     # device ID 263178 in 24-bit binary:
     00000100  00000100  00001 010
@@ -68,9 +68,9 @@ And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave se
     MPU9250   dev 4   bus 1 SPI
     
 
-### Device ID Encoding
+### 디바이스 ID 인코딩
 
-The device ID is a 24bit number according to this format. Note that the first fields are the least significant bits in the decoding example above.
+디바이스 ID는 다음과 같은 형태의 24비트 숫자입니다. 위의 디코딩 예제에서 첫번째 필드는 LSB인것을 유의하세요.
 
 ```C
 struct DeviceStructure {
