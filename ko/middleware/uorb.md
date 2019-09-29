@@ -1,14 +1,14 @@
-# uORB Messaging
+# uORB 메시징
 
-## Introduction
+## 소개
 
-The uORB is an asynchronous `publish()` / `subscribe()` messaging API used for inter-thread/inter-process communication.
+uORB는 스레드간/프로세스간 통신을 위해 사용되는 비동기 Pub/Sub 메시징 API입니다.
 
-Look at the [tutorial](../apps/hello_sky.md) to learn how to use it in C++.
+C++에서 어떻게 사용하는지는 [여기](../apps/hello_sky.md)를 봐주세요.
 
-uORB is automatically started early on bootup as many applications depend on it. It is started with `uorb start`. Unit tests can be started with `uorb_tests`.
+uORB는 많은 어플리케이션이 의존하고 있기 때문에 부트업시에 자동적으로 시작됩니다. `uorb start` 로 시작됩니다. 단위 테스트는 `uorb_tests`를 통해 수행할 수 있습니다.
 
-## Adding a new topic
+## 새로운 토픽 추가하기
 
 New uORB topics can be added either within the main PX4/Firmware repository, or can be added in an out-of-tree message definitions. For information on adding out-of-tree uORB message definitions, please see [this section](../advanced/out_of_tree_modules.md#uorb_message_definitions).
 
