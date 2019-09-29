@@ -2,11 +2,11 @@
 
 [MAVLink](https://mavlink.io/en/)는 드론 에코시스템을 위해 설계된 아주 가벼운 메시징 프로토콜입니다.
 
-PX4 uses *MAVLink* to communicate with *QGroundControl* (and other ground stations), and as the integration mechanism for connecting to drone components outside of the flight controller: companion computers, MAVLink enabled cameras etc.
+PX4는 *QGroundControl*(그리고 다른 GS)과 통신하기 위해 *MAVLink*를 사용합니다. 그리고 비행 컨트롤러 밖에서 드론 컴포넌트에 연결하기 위한 통합 메커니즘니다(예. 회사의 컴퓨터, MAVLink가 활성화된 카메라 등).
 
-The protocol defines a number of standard [messages](https://mavlink.io/en/messages/) and [microservices](https://mavlink.io/en/services/) for exchanging data (many, but not all, messages/services have been implemented in PX4).
+이 프로토콜은 데이터 교환을 위해 다수의 [message](https://mavlink.io/en/messages/)와 [microservices](https://mavlink.io/en/services/)를 정의했습니다(다는 아니지만 많은 messages/services가 PX4에 구현되어 있습니다).
 
-This tutorial explains how you can add PX4 support for your own new "custom" messages.
+이 튜로리얼은 어떻게 여러분이 정의한 메시지를 지원하게 할 수 있는지 설명합니다.
 
 > **Note** The tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h`.
 
