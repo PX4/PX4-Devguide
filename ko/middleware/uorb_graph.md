@@ -1,8 +1,8 @@
-# uORB Publication/Subscription Graph
+# uORB Pub/Sub 그래프
 
-This page provides a uORB publication/subscription graph that shows the communication between modules. It is based on information that is extracted directly from the source code. Usage instructions are provided [below](#instructions).
+이 페이지는 모듈들간의 통신을 보여주는 uORB Pub/Sub 그래프를 제공합니다. 이 정보들은 소스코드에 기반합니다. 사용 명령어는 [아래](#instructions)에서 제공됩니다.
 
-Search: <input id="search" type="text" /> Preset: <select id ="select-graph" name="select-graph"> <option value='graph_px4fmu-v4.json'>FMUv4 Modules</option> <option value='graph_px4fmu-v2.json'>FMUv2 Modules</option> <option value='graph_sitl.json'>SITL Modules</option> <option value='graph_runtime_sitl.json'>SITL Runtime Modules</option> <option value='graph_full.json'>All Modules</option> </select>   
+검색: <input id="search" type="text" /> 프리셋: <select id ="select-graph" name="select-graph"> <option value='graph_px4fmu-v4.json'>FMUv4 Modules</option> <option value='graph_px4fmu-v2.json'>FMUv2 Modules</option> <option value='graph_sitl.json'>SITL Modules</option> <option value='graph_runtime_sitl.json'>SITL Runtime Modules</option> <option value='graph_full.json'>All Modules</option> </select>   
 <!-- use an absolute position to allow it to overflow to the left and the right -->
 <svg width="1200" height="1200" style="position: absolute; left: -9999px; right: -9999px; margin: auto;"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -486,13 +486,13 @@ initializeGraph();
 
  
 
-## Graph Properties{#instructions}
+## 그래프 특성{#instructions}
 
-The graph has the following properties:
+그래프는 다음과 같은 특성을 갖고 있습니다.
 
-- Modules are shown in gray with rounded corners while topics are displayed as coloured rectangular boxes.
-- Associated modules and topics are connected by lines. Dashed lines indicate that the module publishes the topic, while solid lines indicate that the module subscribes to the topic.
-- Some modules and topics are excluded: 
+- 모듈은 회색배경에 둥근 모서리로, 토픽들은 색이있는 네모난 박스로 표시합니다.
+- 연관있는 모듈과 토픽들은 선으로 연결됩니다. 점선은 토픽을 발행하는 것을 나타내고, 실선은 토픽을 구독하는 것을 나타냅니다.
+- 몇개의 모듈과 토픽들은 제외합니다. 
   - Topics that are subscribed/published by many modules: `parameter_update`, `mavlink_log` and `log_message`.
   - The set of logged topics.
   - Topics that have no subscriber or no publisher.
