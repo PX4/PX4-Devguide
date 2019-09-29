@@ -193,21 +193,21 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 
 예를 들어 PX4와 내장된 디바이스의 인터페이스를 MAVLink로 사용할 때 자동조종장치와 그 디바이스는 안전화되기 전에 여러번의 메시지를 교환할 것입니다. 이 작업은 MAVLink 헤더를 재생성하기 위해 시간도 소모되고 에러도 읽어나기 쉽습니다. 그리고 두 장치가 같은 버전의 프로토콜을 사용하는지 확인해야 합니다.
 
-임시적이고 대안적인 방법은 repurpose 디버그 메시지입니다. Instead of creating a custom MAVLink message `CA_TRAJECTORY`, you can send a message `DEBUG_VECT` with the string key `CA_TRAJ` and data in the `x`, `y` and `z` fields. See [this tutorial](../debug/debug_values.md). for an example usage of debug messages.
+임시적이고 대안적인 방법은 repurpose 디버그 메시지입니다. 커스텀 MAVLink 메시지를 만들기보다는 `CA_TRAJECTORY`, 여러분은 `DEBUG_VECT` 메시지를 문자열 키를 `CA_TRAJ` 에 담고 데이터는 `x`, `y`, `z`에 담아 보낼 수 있습니다. [이 튜토리얼](../debug/debug_values.md)을 참고하세요. 디버그 메시지의 사용예제입니다.
 
-> **Note** This solution is not efficient as it sends character string over the network and involves comparison of strings. It should be used for development only!
+> **Note** 이 방법은 네트워크를 통해 전송하고 문자열 비교를 포함하기 때문에 효율적이지는 않습니다. 개발용으로만 사용하는 것을 권장합니다.
 
 ## General
 
-### Set streaming rate
+### 스트리밍 레이트 설정하기
 
-Sometimes it is useful to increase the streaming rate of individual topics (e.g. for inspection in QGC). This can be achieved by typing the following line in the shell:
+때로는 개별적인 토픽들의 스트리밍 레이트를 향상시키는 것이 유용할때가 있습니다(예. QGC 감독). 쉘에 다음과 같은 명령어를 통해 수행할 수 있습니다.
 
 ```sh
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>
 ```
 
-You can get the port number with `mavlink status` which will output (amongst others) `transport protocol: UDP (<port number>)`. An example would be:
+포트넘버와 `transport protocol: UDP (<port number>)`를 출력하는 `mavlink status`를 얻을수도 있습니다. 예:
 
 ```sh
 mavlink stream -u 14556 -s OPTICAL_FLOW_RAD -r 300
