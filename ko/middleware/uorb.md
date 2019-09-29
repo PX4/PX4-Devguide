@@ -44,13 +44,13 @@ uORB는 많은 어플리케이션이 의존하고 있기 때문에 부트업시�
 ls /obj
 ```
 
-To listen to the content of one topic for 5 messages, run the listener:
+5개의 메시지에 대해 하나의 토픽에 대한 컨텐츠를 수신하고 싶다면,
 
 ```sh
 listener sensor_accel 5
 ```
 
-The output is n-times the content of the topic:
+출력은 토픽 내용의 n배 입니다.
 
 ```sh
 TOPIC: sensor_accel #3
@@ -82,11 +82,11 @@ range_m_s2: 78
 scaling: 0
 ```
 
-> **Tip** On NuttX-based systems (Pixhawk, Pixracer, etc) the `listener` command can be called from within the *QGroundControl* MAVLink Console to inspect the values of sensors and other topics. This is a powerful debugging tool because it can be used even when QGC is connected over a wireless link (e.g. when the vehicle is flying). For more information see: [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md).
+> **Tip** NuttX기반의 시스템(Pixhawk, Pixracer 등)는 `listener`를 *QGroundControl* MAVLink Console 에서 센서나 다른 토픽들을 검사하기 위해 호출할 수 있습니다. 이 방법은 QGC가 무선으로 연결되어 있을 때 (예. 비행 중 일때)에도 사용할 수 있기 때문에 강력한 디버깅 툴입니다. 더 많은 정보는 [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md)를 참고하세요.
 
 ### uorb top Command
 
-The command `uorb top` shows the publishing frequency of each topic in real-time:
+`uorb top` 명령어는 각 토픽들의 퍼블리시 주기를 리얼타임으로 보여줍니다.
 
 ```sh
 update: 1s, num topics: 77
@@ -106,9 +106,9 @@ sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
 
-The columns are: topic name, multi-instance index, number of subscribers, publishing frequency in Hz, number of lost messages per second (for all subscribers combined), and queue size.
+컬럼들: 토픽 이름, 다중-인스턴스 인덱스, 구독자 수, 퍼블리시 주기(Hz), 초당 잃어버리는 메시지 수 (모든 구독자수를 대상으로), 큐 크기.
 
-## Multi-instance
+## 멀티-인스턴스
 
 uORB provides a mechanism to publish multiple independent instances of the same topic through `orb_advertise_multi`. It will return an instance index to the publisher. A subscriber will then have to choose to which instance to subscribe to using `orb_subscribe_multi` (`orb_subscribe` subscribes to the first instance). Having multiple instances is useful for example if the system has several sensors of the same type.
 
