@@ -8,37 +8,37 @@ PX4는 *QGroundControl*(그리고 다른 GS)과 통신하기 위해 *MAVLink*를
 
 이 튜로리얼은 어떻게 여러분이 정의한 메시지를 지원하게 할 수 있는지 설명합니다.
 
-> **Note** The tutorial assumes you have a [custom uORB](../middleware/uorb.md) `ca_trajectory` message in `msg/ca_trajectory.msg` and a custom MAVLink `ca_trajectory` message in `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h`.
+> **Note** 이 튜토리얼은 여러분이 `msg/ca_trajectory.msg` 의 [custom uORB](../middleware/uorb.md) `ca_trajectory` 메시지와 `mavlink/include/mavlink/v2.0/custom_messages/mavlink_msg_ca_trajectory.h` 의 커스텀 MAVLink `ca_trajectory` 메세지를 갖고 있다고 가정합니다.
 
-## Defining Custom MAVLink Messages
+## 커스텀 MAVLink 메시지 정의하기
 
-The MAVLink developer guide explains how to define new messages and build them into new programming-specific libraries:
+MAVLink 개발자 가이드에 새로운 메시지를 어떻게 정의하고 라이브러리에 빌드할지 나와있습니다.
 
 - [How to Define MAVLink Messages & Enums](https://mavlink.io/en/guide/define_xml_element.html)
 - [Generating MAVLink Libraries](https://mavlink.io/en/getting_started/generate_libraries.html)
 
-Your message needs to be generated as a C-library for MAVLink 2. Once you've [installed MAVLink](https://mavlink.io/en/getting_started/installation.html) you can do this on the command line using the command:
+MAVLink2를 위해서는 C 라이브러리로 생성되어야 합니다. 한번 [MAVLink 설치](https://mavlink.io/en/getting_started/installation.html)하기만 하면 다음의 명령어를 통해 수행할 수 있습니다.
 
 ```sh
 python -m pymavlink.tools.mavgen --lang=C --wire-protocol=2.0 --output=generated/include/mavlink/v2.0 message_definitions/v1.0/custom_messages.xml
 ```
 
-For your own use/testing you can just copy the generated headers into **Firmware/mavlink/include/mavlink/v2.0**.
+사용하기 위해서는 생성된 헤더들을 **Firmware/mavlink/include/mavlink/v2.0**에 복사하기만 하면 됩니다.
 
-To make it easier for others to test your changes, a better approach is to add your generated headers to a fork of https://github.com/mavlink/c_library_v2. PX4 developers can then update the submodule to your fork in the Firmware repo before building.
+변경한 것을 쉽게 테스트하려면, 여러분의 헤더들은 https://github.com/mavlink/c_library_v2를 포크하여 포함하는 것이 나은방법입니다. 그러면 PX4 개발자들은 빌드하기 전에 여러분이 포크한 저장소의 서브모듈을 업데이트할 수 있을 것입니다.
 
-## Sending Custom MAVLink Messages
+## 커스텀 MAVLink 메시지 보내기
 
-This section explains how to use a custom uORB message and send it as a MAVLink message.
+이 섹션에서는 어떻게 uORB 메시지를 사용하기 MAVLink 메시지로 보낼 수 있는지 설명합니다.
 
-Add the headers of the MAVLink and uORB messages to [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
+MAVLink와 uORB 메시지의 헤더를 [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)에 추가하세요.
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v2.0/custom_messages/mavlink.h>
 ```
 
-Create a new class in [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
+[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)에 새로운 클래스를 생성하세요.
 
 ```C
 class MavlinkStreamCaTrajectory : public MavlinkStream
@@ -104,7 +104,7 @@ protected:
 };
 ```
 
-Finally append the stream class to the `streams_list` at the bottom of [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)
+마지막으로 [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)의 하단에 `streams_list`의 스트림 클래스를 추가하세요.
 
 ```C
 StreamListItem *streams_list[] = {
