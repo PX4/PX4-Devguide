@@ -55,19 +55,19 @@ ROS2와 ROS간의 메시지를 연결하는 [ros1_bridge](https://github.com/ros
 
 ## 코드 생성
 
-> **Note** 코드를 생성하기 위해서는 [Fast RTPS 가 반드시 설치](../setup/fast-rtps-installation.md) 되어야 합니다. *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) or [Ubuntu](../setup/dev_env_linux_ubuntu.md).
+> **Note** 코드를 생성하기 위해서는 [Fast RTPS 가 반드시 설치](../setup/fast-rtps-installation.md) 되어야 합니다. *Fast RTPS* 는 여러분이 [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md), [Ubuntu](../setup/dev_env_linux_ubuntu.md)를 위한 일반적인 인스톨러/스크립트를 사용했다면 *기본적*으로 설치됩니다.
 
-### ROS-independent applications
+### ROS에 독립적인 어플리케이션
 
-All the code needed to create, build and use the bridge is automatically generated when the PX4 Firmware is compiled.
+브릿지를 만들고, 빌드하고, 사용하기 위한 모든 코드들은 PX4 펌웨어가 컴파일될 때 자동적으로 생성됩니다.
 
-The *Client* application is also compiled and built into the firmware as part of the normal build process. The *Agent* must be separately/manually compiled for the target computer.
+*Client* 어플리케이션의 컴파일, 빌드 또한 일반적인 빌드 과정에서 처리됩니다. *Agent*는 타켓 컴퓨터에 맞게 독립적, 수동적으로 컴파일 되어야합니다.
 
 <span></span>
 
-> **Tip** The bridge code can also be [manually generated](micrortps_manual_code_generation.md). Most users will not need to do so, but the linked topic provides a more detailed overview of the build process and can be useful for troubleshooting.
+> **Tip** 브릿지 코드 또한 [수동적으로 생성](micrortps_manual_code_generation.md)될 수 있습니다. 대부분의 사용자들은 그럴 필요가 없습니다. 자세한 빌드 과정과 트러블슈팅을 위해서는 링크를 참고하세요.
 
-### ROS2/ROS applications {#px4_ros_com}
+### ROS2/ROS 어플리케이션 {#px4_ros_com}
 
 The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)). This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
 
