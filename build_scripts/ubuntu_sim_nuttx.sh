@@ -9,7 +9,7 @@
 
 echo "Downloading dependent script 'ubuntu_sim.sh'"
 # Source the ubuntu_sim.sh script directly from github
-ubuntu_sim=$(wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim.sh -O -)
+ubuntu_sim=$(wget https://raw.githubusercontent.com/PX4/Devguide/v1.8.2/build_scripts/ubuntu_sim.sh -O -)
 wget_return_code=$?
 # If there was an error downloading the dependent script, we must warn the user and exit at this point.
 if [[ $wget_return_code -ne 0 ]]; then echo "Error downloading 'ubuntu_sim.sh'. Sorry but I cannot proceed further :("; exit 1; fi
