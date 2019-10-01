@@ -35,13 +35,13 @@ RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게
 구조의 주된 요소들은 위에보이는 클라이언트와 에이전트 프로세스입니다.
 
 * *Client*는 flight controller에서 실행되는 PX4 미들웨어 데몬입니다. 다른 PX4 컴포넌트들이 퍼블리시하는 토픽들을 구독하고, *Agent*로 업데이트를 보냅니다(UART 또는 UDP 포트). *Agent*로 부터 메시지도 받으며 PX4로 uORB 메시지를 퍼블리시하기도 합니다.
-* *Agent*는 offboard computer에서 데몬으로 실행됩니다. It watches for uORB update messages from the *Client* and (re)publishes them over RTPS. It also subscribes to "uORB" RTPS messages from other RTPS applications and forwards them to the *Client*.
-* The *Agent* and *Client* are connected via a serial link (UART) or UDP network. The uORB information is [CDR serialized](https://en.wikipedia.org/wiki/Common_Data_Representation) for sending (*CDR serialization* provides a common format for exchanging serial data between different platforms).
-* The *Agent* and any *Fast RTPS* applications are connected via UDP, and may be on the same or another device. In a typical configuration they will both be on the same system (e.g. a development computer, Linux companion computer or compute board), connected to the *Client* over a Wifi link or via USB.
+* *Agent*는 offboard computer에서 데몬으로 실행됩니다. *Client*의 업데이트 메시지를 검사하고 그것들을 RTPS를 통해 퍼블리시합니다. RTPS 어플리케이션으로부터 오는 "uORB" RTPS 메시지들 또한 구독하며 *Client*에 전달합니다.
+* *Agent*과 *Client*는 시리얼링크(UART)나 UDP 네트워크로 연결됩니다. uORB 정보는 전송을 위해 [CDR serialized](https://en.wikipedia.org/wiki/Common_Data_Representation)됩니다. *CDR serialization*는 다른 플랫폼들과 시리얼 데이터 교환을 위한 일반적인 포맷을 제공합니다.
+* *Agent*와 *Fast RTPS* 어플리케이션은 UDP를 통해 연결되며, 다른 장치에 있을수도 있습니다. 일반적인 구성에서는 와이파이나 USB로 *Client*에 연결된 동일한 시스템에 있을 것입니다 (예. 개발 컴퓨터, 리눅스 컴퓨터 또는 컴퓨터 보드).
 
-### ROS2/ROS application pipeline
+### ROS2/ROS 어플리케이션 파이프라인
 
-The application pipeline for ROS2 is very straightforward! Because ROS2 uses DDS/RTPS as its native communications middleware, you can create a ROS2 listener or advertiser node to publish and subscribe to uORB data on PX4, via the *PX4 Fast RTPS Bridge*. This is shown below.
+ROS2를 위한 어플리케이션 파이프라인은 아주 직관적입니다. ROS2는 기본적인 통신 미들웨어로 DDS/RTPS를 사용하기 때문에, *PX4 Fast RTPS 브릿지*를 통해 PX4에 퍼블리시하거나 구독하는 ROS2 리스너나 애드벌타이저를 만들 수 있습니다. 아래의 그림과 같습니다.
 
 > **Note** You do need to make sure that the message types, headers and source files used on both client and agent side (and consequently, on the ROS nodes) are generated from the same Interface Description Language (IDL) files. The `px4_ros_com` package provides the needed infrastructure for generating messages and headers needed by ROS2.
 
