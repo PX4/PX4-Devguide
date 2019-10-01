@@ -4,17 +4,17 @@
 
 > **Note** RTPS는 OMG(Object Management Group)의 DDS(Data Distribution Service) 표준의 기본 프로토콜입니다. 이 프로토콜은 Pub/Sub을 사용하여 확장성, 실시간성, 의존성, 고성능, 상호교환성을 만족합니다. *Fast RTPS*는 최신 RTPS와 최소한의 DDS API를 크로스플랫폼 환경에서 경량화해 구현한 것입니다.
 
-RTPS는 ROS2(Robot Operating System)의 미들웨어로 채택되었습니다. The *Fast RTPS bridge* allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
+RTPS는 ROS2(Robot Operating System)의 미들웨어로 채택되었습니다. *Fast RTPS 브릿지*는 센서의 값, 명령어 그리고 다른 기체의 정보를 공유하기 쉽게하는 ROS2와의 통합을 용이하게 합니다.
 
-This topic describes the RTPS bridge architecture (and how it is used within the ROS2/ROS application pipeline). It also shows how to compile needed code to:
+이 토픽에서는 RTPS 브릿지 구조에 대해 설명할 것입니다. 그리고 그것이 ROS2/ROS 어플리케이션 파이프라인내에서 어떻게 사용되는지 살펴볼 것입니다. 그리고 필요한 코드를 어떻게 컴파일할지도 알아볼 것입니다.
 
-1. Write a simple *Fast RTPS* application to subscribe to PX4 changes
-2. Connect ROS2 nodes with PX4 (via the RTPS Bridge, and using the `px4_ros_com` package)
-3. Connect ROS (ROS "version 1") nodes with PX4 by additionally using the `ros1_bridge` package to bridge ROS2 and ROS.
+1. PX4의 변화를 구독하기 위한 간단한 *Fast RTPS* 어플리케이션 작성하기
+2. ROS2 노드들과 PX4 연결하기(RTPS 브릿지를 통해 연결되며 `px4_ros_com` 패키지를 사용함)
+3. ROS (version 1) 노드들과 PX4를 연결하기, 추가적으로 ROS2와 ROS를 연결하기 위해`ros1_bridge` 패키지를 사용하기.
 
-## When should RTPS be used?
+## RTPS는 언제 사용되어야 하나요?
 
-RTPS should be used when you need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a *peer* of software components running in PX4 (by sending and receiving uORB topics).
+비행 조종기와 오프보드 컴포넌의 간의 정보를 확실히 time-critical/real-time하게 공유하고자 한다면 RTPS가 사용되어야 한다. In particular it is useful in cases where off-board software needs to become a *peer* of software components running in PX4 (by sending and receiving uORB topics).
 
 Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control.
 
