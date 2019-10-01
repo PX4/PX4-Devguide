@@ -14,28 +14,28 @@ RTPS는 ROS2(Robot Operating System)의 미들웨어로 채택되었습니다. *
 
 ## RTPS는 언제 사용되어야 하나요?
 
-비행 조종기와 오프보드 컴포넌의 간의 정보를 확실히 time-critical/real-time하게 공유하고자 한다면 RTPS가 사용되어야 한다. In particular it is useful in cases where off-board software needs to become a *peer* of software components running in PX4 (by sending and receiving uORB topics).
+비행 조종기와 오프보드 컴포넌의 간의 정보를 확실히 time-critical/real-time하게 공유하고자 한다면 RTPS가 사용되어야 합니다. 특히 오프보드 소프트웨어가 PX4에서 구동되는 소프트웨어 컴포넌트(uORB 토픽들을 송수신)들의 *peer*가 되어야 할 때 유용합니다.
 
-Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control.
+사용가능한 경우는, 컴퓨터 비전을 위한 로보틱스 라이브러리들간의 통신, 기체 조종을 위한 액추에이터와 센서간의 실시간 데이터 통신입니다.
 
-> **Note** *Fast RTPS* is not intended as a replacement for MAVLink. MAVLink remains the most appropriate protocol for communicating with ground stations, gimbals, cameras, and other offboard components (although *Fast RTPS* may open other opportunities for working with some peripherals).
+> **Note** *Fast RTPS*는 MAVLink를 대체하기 위한 목적이 아닙니다. MAVLink는 GS, 짐벌, 카메라 그 외의 오프보드 컴포넌트들과의 통신을 위해 알맞은 프로토콜입니다.
 
 <span></span>
 
-> **Tip** RTPS can be used over slower links (e.g. radio telemetry), but care should be taken not to overload the channel.
+> **Tip** RTPS는 느린 채널(e.g. radio telemetry)에도 사용될 수 있지만 대역폭을 넘기지 않도록 조심해야 합니다.
 
-## Architectural overview
+## 아키텍쳐 개요
 
-### RTPS Bridge
+### RTPS 브릿지
 
-The RTPS bridge exchanges messages between PX4 and RTPS applications, seamlessly converting between the [uORB](../middleware/uorb.md) and RTPS messages used by each system.
+RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게 변환하여 PX4와 RTPS 어플리케이션들간의 메시지를 교환합니다.
 
 ![basic example flow](../../assets/middleware/micrortps/architecture.png)
 
-The main elements of the architecture are the client and agent processes shown in the diagram above.
+구조의 주된 요소들은 위에보이는 클라이언트와 에이전트 프로세스입니다.
 
-* The *Client* is PX4 middleware daemon process that runs on the flight controller. It subscribes to uORB topics published by other PX4 components and sends any updates to the *Agent* (via a UART or UDP port). It also receives messages from the *Agent* and publishes them as uORB message on PX4.
-* The *Agent* runs as a daemon process on an offboard computer. It watches for uORB update messages from the *Client* and (re)publishes them over RTPS. It also subscribes to "uORB" RTPS messages from other RTPS applications and forwards them to the *Client*.
+* *Client*는 flight controller에서 실행되는 PX4 미들웨어 데몬입니다. 다른 PX4 컴포넌트들이 퍼블리시하는 토픽들을 구독하고, *Agent*로 업데이트를 보냅니다(UART 또는 UDP 포트). *Agent*로 부터 메시지도 받으며 PX4로 uORB 메시지를 퍼블리시하기도 합니다.
+* *Agent*는 offboard computer에서 데몬으로 실행됩니다. It watches for uORB update messages from the *Client* and (re)publishes them over RTPS. It also subscribes to "uORB" RTPS messages from other RTPS applications and forwards them to the *Client*.
 * The *Agent* and *Client* are connected via a serial link (UART) or UDP network. The uORB information is [CDR serialized](https://en.wikipedia.org/wiki/Common_Data_Representation) for sending (*CDR serialization* provides a common format for exchanging serial data between different platforms).
 * The *Agent* and any *Fast RTPS* applications are connected via UDP, and may be on the same or another device. In a typical configuration they will both be on the same system (e.g. a development computer, Linux companion computer or compute board), connected to the *Client* over a Wifi link or via USB.
 
