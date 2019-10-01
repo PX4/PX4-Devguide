@@ -1,10 +1,10 @@
-# RTPS/ROS2 Interface: PX4-FastRTPS Bridge
+# RTPS/ROS2 인터페이스: PX4-FastRTPS 브릿지
 
-The *PX4-FastRTPS Bridge* adds a Real Time Publish Subscribe (RTPS) interface to PX4, enabling the exchange of [uORB messages](../middleware/uorb.md) between PX4 components and (offboard) *Fast RTPS* applications (including those built using the ROS2/ROS frameworks).
+*PX4-FastRTPS 브릿지*는 PX4 컴포넌트와 *Fast RTPS* 프로그램(ROS2/ROS 프레임워크를 사용하여 빌드한 것 포함)간의 [uORB messages](../middleware/uorb.md)를 교환하는 RTPS(Real Time Publish Subscribe) 인터페이스를 PX4에 추가했다.
 
-> **Note** RTPS is the underlying protocol of the Object Management Group's (OMG) Data Distribution Service (DDS) standard. It aims to enable scalable, real-time, dependable, high-performance and inter-operable data communication using the publish/subscribe pattern. *Fast RTPS* is a very lightweight cross-platform implementation of the latest version of the RTPS protocol and a minimum DDS API.
+> **Note** RTPS는 OMG(Object Management Group)의 DDS(Data Distribution Service) 표준의 기본 프로토콜입니다. 이 프로토콜은 Pub/Sub을 사용하여 확장성, 실시간성, 의존성, 고성능, 상호교환성을 만족합니다. *Fast RTPS*는 최신 RTPS와 최소한의 DDS API를 크로스플랫폼 환경에서 경량화해 구현한 것입니다.
 
-RTPS has been adopted as the middleware for the ROS2 (Robot Operating System). The *Fast RTPS bridge* allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
+RTPS는 ROS2(Robot Operating System)의 미들웨어로 채택되었습니다. The *Fast RTPS bridge* allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
 
 This topic describes the RTPS bridge architecture (and how it is used within the ROS2/ROS application pipeline). It also shows how to compile needed code to:
 
