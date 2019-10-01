@@ -43,19 +43,19 @@ RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게
 
 ROS2를 위한 어플리케이션 파이프라인은 아주 직관적입니다. ROS2는 기본적인 통신 미들웨어로 DDS/RTPS를 사용하기 때문에, *PX4 Fast RTPS 브릿지*를 통해 PX4에 퍼블리시하거나 구독하는 ROS2 리스너나 애드벌타이저를 만들 수 있습니다. 아래의 그림과 같습니다.
 
-> **Note** You do need to make sure that the message types, headers and source files used on both client and agent side (and consequently, on the ROS nodes) are generated from the same Interface Description Language (IDL) files. The `px4_ros_com` package provides the needed infrastructure for generating messages and headers needed by ROS2.
+> **Note** 클라이언트와 에이전트에서 사용되는 메시지 타입, 헤더, 소스 파일들이 동일한 IDL(Interface Description Language) 파일에서 생성됐는지 확실히 해야합니다. `px4_ros_com` 패키지는 ROS2가 필요로 하는 메시지나 헤더들을 생성하기 위한 인프라를 제공합니다.
 
 ![Architecture with ROS2](../../assets/middleware/micrortps/architecture_ros2.png)
 
-The architecture for integrating ROS applications with PX4 is shown below.
+ROS 어플리케이션과 PX4를 통합하기 위한 구조는 아래에 나왔습니다.
 
 ![Architecture with ROS](../../assets/middleware/micrortps/architecture_ros.png)
 
-Note the use of [ros1_bridge](https://github.com/ros2/ros1_bridge), which bridges messages between ROS2 and ROS. This is needed because the first version of ROS does not support RTPS.
+ROS2와 ROS간의 메시지를 연결하는 [ros1_bridge](https://github.com/ros2/ros1_bridge) 사용에 주의하세요. ROS의 첫번째 버전은 RTPS를 지원하기 않기 때문에 필요합니다.
 
-## Code generation
+## 코드 생성
 
-> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) or [Ubuntu](../setup/dev_env_linux_ubuntu.md).
+> **Note** 코드를 생성하기 위해서는 [Fast RTPS 가 반드시 설치](../setup/fast-rtps-installation.md) 되어야 합니다. *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) or [Ubuntu](../setup/dev_env_linux_ubuntu.md).
 
 ### ROS-independent applications
 
