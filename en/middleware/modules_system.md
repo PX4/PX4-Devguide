@@ -412,3 +412,22 @@ tune_control <command> [arguments...]
 
    stop          Stop playback (use for repeated tunes)
 ```
+## work_queue
+Source: [systemcmds/work_queue](https://github.com/PX4/Firmware/tree/master/src/systemcmds/work_queue)
+
+
+### Description
+
+Command-line tool to show work queue status.
+
+
+### Usage {#work_queue_usage}
+```
+work_queue <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
