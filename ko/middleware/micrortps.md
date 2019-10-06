@@ -288,15 +288,15 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
     git clone https://github.com/ros2/ros1_bridge.git -b crystal ~/px4_ros_com_ros2/src/ros1_bridge
     ```
 
-3. Build the `px4_ros_com` and `px4_msgs` packages, excluding the `ros1_bridge` package:
+3. `ros1_bridge` 패키지를 제외하고, `px4_ros_com`와 `px4_msgs` 패키지를 빌드하세요.
     
     ```sh
     colcon build --symlink-install --packages-skip ros1_bridge --event-handlers console_direct+
     ```
     
-    > **Note** `--event-handlers console_direct+` only serves the purpose of adding verbosity to the `colcon` build process and can be removed if one wants a more "quiet" build.
+    > **Note** ` --event-handlers console_direct+`는 단지 `colcon` 빌드 과정을 자세하게 보여주는 용도로만 사용되고 원하지 않으면 삭제하면 됩니다.
 
-4. Then, follows the process of building the ROS(1) packages side. For that, one requires to open a new terminal window and source the ROS(1) environment that has installed on the system:
+4. 이제 ROS 패키지를 빌드하세요. 빌드를 위해, 새 터미널을 하나열고 ROS 환경설정을 얻으세요.
     
     ```sh
     source /opt/ros/melodic/setup.bash
