@@ -86,7 +86,7 @@ ROS, ROS2의 메시지 정의 헤더와 인터페이스는 [px4_msgs](https://gi
 
 *자동 코드 생성*을 위해 **Firmware/msg/tools/** 디렉토리에 **uorb_rtps_message_ids.yaml** 파일이 있습니다(*yaml*). 이 파일은 RTPS에 사용될 uORB 메시지의 집합을 정의 합니다. 메시지의 송, 수신 여부와 DDS/RTPS 미들웨어에 사용될 RTPS ID를 정의합니다.
 
-> **Note** An RTPS ID must be set for all messages.
+> **Note** 모든 메시지들에 대해 RTPS ID가 설정해야 합니다.
 
 ```yaml
 rtps:
@@ -113,9 +113,9 @@ rtps:
     send: true
 ```
 
-> **Note** The `px4_msgs` build process (only) runs the CMake macro `rosidl_generate_interfaces()` to generate ROS2 message header files, while `px4_ros_com` build process generates the IDL files through the `rosidl_generate_dds_interfaces()` CMake macro. The PX4 Firmware includes a template for the IDL file generation, which is only used during the PX4 build process.
+> **Note** `px4_msgs`는 빌드 과정에서 ROS2 메시지 헤더 파일을 생성하기 위해, CMake 매크로 `rosidl_generate_interfaces()를 사용합니다. 반면에 <code>px4_ros_com`는 `rosidl_generate_dds_interfaces()` CMake 매크로를 통해 IDL 파일을 생성합니다. PX4 펌웨어는 빌드과정에서 사용되는 IDL 파일 생성 템플릿을 포함합니다.
 > 
-> The `px4_ros_com` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). The **uorb_rtps_message_ids.yaml** is transformed in a way that the message names become *PascalCased* (the name change is irrelevant to the client-agent communication, but is critical for ROS2, since the message naming must follow the PascalCase convention). The new IDL files also reverse the messages that are sent and received (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa).
+> `px4_ros_com`는 ROS/ROS2에 사용되는 *약간 다른* IDL 파일을 생성합니다. The **uorb_rtps_message_ids.yaml** is transformed in a way that the message names become *PascalCased* (the name change is irrelevant to the client-agent communication, but is critical for ROS2, since the message naming must follow the PascalCase convention). The new IDL files also reverse the messages that are sent and received (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa).
 
 ## Client (PX4 Firmware) {#client_firmware}
 
