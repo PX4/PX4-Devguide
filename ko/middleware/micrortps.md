@@ -321,7 +321,7 @@ The steps below show how to *manually* build the packages (provided for your inf
     cd ~/px4_ros_com_ros2 && colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure --event-handlers console_direct+
     ```
 
-### Cleaning the workspaces
+### 워크스페이스 정리하기
 
 After building the workspaces there are many files that must be deleted before you can do a clean/fresh build (for example, after you have changed some code and want to rebuild). Unfortunately *colcon* does not currently have a way of cleaning the generated **build**, **install** and **log** directories, so these directories must be deleted manually.
 
