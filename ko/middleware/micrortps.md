@@ -75,8 +75,8 @@ ROS, ROS2의 메시지 정의 헤더와 인터페이스는 [px4_msgs](https://gi
 
 `px4_ros_com`와 `px4_msgs`는 2개의 독립된 브랜치를 갖고 있습니다.
 
-* ROS2에 사용되는 `master` 브랜치 It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
-* a `ros1` branch, used with ROS. It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
+* ROS2에 사용되는 `master` 브랜치 이 브랜치는 PX4와 ROS2 노드를 연결하기 위한 ROS2 메시지와 IDL 파일을 생성하는 코드를 포함합니다.
+* ROS를 위한 `ros1` 브랜치 It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
 
 Both branches in `px4_ros_com` additionally include some example listener and advertiser example nodes.
 
