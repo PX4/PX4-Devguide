@@ -150,7 +150,7 @@ make px4_sitl_rtps
 
 > **Note** *Client*는 기본적으로 데몬으로 동작하지만, 수동으로 실행할 수도 있습니다. 나중에는 PX4 펌웨어 초기화 코드에서 *Client*를 자동적으로 영구적인 데몬으로 실행할 것입니다.
 
-For example, in order to run the *Client* daemon with SITL connecting to the Agent via UDP, start the daemon as shown:
+예를 들어 SITL에서 UDP를 통해 Agent에 연결하는 *Client*를 실행하기 위해서는 아래와 같이 실행해야 합니다.
 
 ```sh
 micrortps_client start -t UDP
@@ -158,9 +158,9 @@ micrortps_client start -t UDP
 
 ## Agent in a ROS-independent Offboard Fast RTPS interface
 
-The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
+*Agent* 코드는 PX4 펌웨어와 관련된 것을 빌드할 때 자동적으로 *생성*됩니다. 소스코드는 여기서 찾을 수 있습니다. **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
 
-To build the *Agent* application, compile the code:
+*Agent* 어플리케이션을 필드하기 위해서는 코드를 컴파일 하세요.
 
 ```sh
 cd build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent
@@ -169,9 +169,9 @@ cmake ..
 make
 ```
 
-> **Note** To cross-compile for the *Qualcomm Snapdragon Flight* platform see [this link](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use).
+> **Note** *Qualcomm Snapdragon Flight* 플랫폼을 위한 크로스 컴파일을 [여기](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use)를 참고하세요.
 
-The command syntax for the *Agent* is listed below:
+*Agent*를 위한 명령어들은 아래와 같습니다.
 
 ```sh
 $ ./micrortps_agent [options]
@@ -184,9 +184,9 @@ $ ./micrortps_agent [options]
   -s <sending port>       UDP port for sending. Default 2020.
 ```
 
-To launch the *Agent*, run `micrortps_agent` with appropriate options for specifying the connection to the *Client* (the default options connect from a Linux device to the *Client* over a UART port).
+*Agent*를 실행하려면 `micrortps_agent`를 *Client*에 연결하기 위한 적절한 옵션을 주어 실행하세요(리눅스 디바이스는 기본적으로 UART 포트를 통해 *Client*에 연결합니다).
 
-As an example, to start the *micrortps_agent* with connection through UDP, issue:
+하나의 예로, UDP로 연결하는 *micrortps_agent*을 시작하기 위해서는
 
 ```sh
 ./micrortps_agent -t UDP
