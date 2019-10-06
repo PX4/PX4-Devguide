@@ -271,18 +271,18 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 부분적으로 빌드하기 위해서는 아래의 개별적인 스크립트를 쓸 수 있습니다.
 
 * `ros1_bridge`를 빌드 하기 위해서는 `build_ros1_bridge.bash`
-* `build_ros1_workspace.bash` (only the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` and `px4_msgs` `ros1` branches were cloned;
-* `build_ros2_workspace.bash`, to build the ROS2 workspace to where the `px4_ros_com` and `px4_msgs` `master` branches were cloned;
+* `px4_ros_com`와 `px4_msgs` `ros1`브랜치가 클론된 ROS 워크스페이스를 빌드하기 위한 `build_ros1_workspace.bash` (`px4_ros_com`의 `ros1`만을 위한 것)
+* `px4_ros_com` and `px4_msgs` `master`가 클로된 ROS2 워크스페이스를 빌드 하기 위한 `build_ros2_workspace.bash`
 
-The steps below show how to *manually* build the packages (provided for your information/better understanding only):
+아래의 단계들은 어떻게 *수동으로* 패키지를 빌드할지 보여줍니다(더 나은 이해와 정보를 위해 제공함)
 
-1. `cd` into `px4_ros_com_ros2` dir and source the ROS2 environment. Don't mind if it tells you that a previous workspace was set before:
+1. `cd`로 `px4_ros_com_ros2` 디렉토리에 들어가고 ROS2 환경설정을 얻으세요. 이전에 바로 전의 워크스페이스가 설정되었다고 나와도 무시하시면 됩니다.
     
     ```sh
     source /opt/ros/crystal/setup.bash
     ```
 
-2. Clone the `ros1_bridge` package so it can be built on the ROS2 workspace:
+2. `ros1_bridge` 패키지를 ROS2 워크스페이스에서 빌드될 수 있도록 클론하세요.
     
     ```sh
     git clone https://github.com/ros2/ros1_bridge.git -b crystal ~/px4_ros_com_ros2/src/ros1_bridge
