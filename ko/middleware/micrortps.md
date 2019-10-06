@@ -214,36 +214,36 @@ ROS Melodic, ROS2 Crystal 또는 우분투 18.04 에서 Bouncy를 설치하려�
     sudo apt install python3-colcon-common-extensions
     ```
 
-4. *setuptools* must also be installed (using *pip* or *apt*):
+4. *setuptools* 또한 반드시 설치되어야 합니다. (*pip*나 *apt*를 사용하세요)
     
     ```sh
     sudo pip3 install -U setuptools
     ```
     
-    > **Note** This install and build guide is not applicable to ROS2 Ardent anymore, since this has reached EOL December 2018.
+    > **Note** 이 설치 및 빌드 가이드는 ROS2 Ardent에서 더이상 유효하지 않습니다. 2018 12월에 지원이 중단되었습니다.
     
     <span></span>
     
-    > **Caution** Do not install the `ros1_bridge` package through the deb repository. The package must be built from source.
+    > **Caution** debian 저장소를 이용해 `ros1_bridge` 패키지를 설치하지 마세요. 이 패키지는 소스로 빌드해야 합니다.
 
-### Setting up the workspaces
+### 워크스페이스 세팅하기
 
-Since the ROS2 and ROS require different environments you will need a separate workspace for each ROS version. As an example:
+ROS와 ROS2가 다른 환경을 필요로 하기 때문에 각 ROS를 위한 워크스페이스를 분리할 필요가 있습니다. 예:
 
-1. For ROS2, create a workspace using:
+1. ROS2 워킹 스페이스는 다음과 같이 만드세요
     
     ```sh
     mkdir -p ~/px4_ros_com_ros2/src
     ```
     
-    Then, clone the respective ROS2 (`master`) branch to the `/src` directory:
+    그리고 ROS2 (`master`) 브랜치를 `/src` 디렉토리에 클론하세요.
     
     ```sh
     $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com # clones the master branch
     $ git clone https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros2/src/px4_msgs
     ```
 
-2. For ROS, follow exactly the same process, but create a different directory and clone a different branch:
+2. ROS도 똑같지만, 다른 디렉토리를 생성해 다른 브랜치를 클론하세요.
     
     ```sh
     mkdir -p ~/px4_ros_com_ros1/src
