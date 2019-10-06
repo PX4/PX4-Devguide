@@ -302,20 +302,20 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
     source /opt/ros/melodic/setup.bash
     ```
 
-5. On the terminal of the previous step, build the `px4_ros_com` and `px4_msgs` packages on the ROS end:
+5. 새로운 터미널에서, `px4_ros_com`와 `px4_msgs` 패키지를 빌드하세요.
     
     ```sh
     cd ~/px4_ros_com_ros1 && colcon build --symlink-install --event-handlers console_direct+
     ```
 
-6. Before building the `ros1_bridge`, one needs to open a new terminal and then source the environments and workspaces following the order below:
+6. `ros1_bridge`를 빌드하기 전에, 새 터미널을 열고 아래에 나와있는 순서대로 환경과 워크스페이스를 설정하세요.
     
     ```sh
     source ~/px4_ros_com_ros1/install/local_setup.bash
     source ~/px4_ros_com_ros2/install/local_setup.bash
     ```
 
-7. Finally, build the `ros1_bridge`. Note that the build process may consume a lot of memory resources. On a resource limited machine, reduce the number of jobs being processed in parallel (e.g. set environment variable `MAKEFLAGS=-j1`). For more details on the build process, see the build instructions on the [ros1_bridge](https://github.com/ros2/ros1_bridge) package page.
+7. 이제 `ros1_bridge`를 빌드하세요. 참고로, 빌드 과정은 메모리를 많이 소비합니다. 리소스가 제한된 환경에서는, 병렬적으로 처리되는 수를 줄이세요 (예. `MAKEFLAGS=-j1`). 자세한 빌드 과정을 위해서는 [ros1_bridge](https://github.com/ros2/ros1_bridge) 패키지의 빌드 명령을 참고하세요.
     
     ```sh
     cd ~/px4_ros_com_ros2 && colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure --event-handlers console_direct+
