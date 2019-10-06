@@ -115,7 +115,7 @@ rtps:
 
 > **Note** `px4_msgs`는 빌드 과정에서 ROS2 메시지 헤더 파일을 생성하기 위해, CMake 매크로 `rosidl_generate_interfaces()를 사용합니다. 반면에 <code>px4_ros_com`는 `rosidl_generate_dds_interfaces()` CMake 매크로를 통해 IDL 파일을 생성합니다. PX4 펌웨어는 빌드과정에서 사용되는 IDL 파일 생성 템플릿을 포함합니다.
 > 
-> `px4_ros_com`는 ROS/ROS2에 사용되는 *약간 다른* IDL 파일을 생성합니다. The **uorb_rtps_message_ids.yaml** is transformed in a way that the message names become *PascalCased* (the name change is irrelevant to the client-agent communication, but is critical for ROS2, since the message naming must follow the PascalCase convention). The new IDL files also reverse the messages that are sent and received (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa).
+> `px4_ros_com`는 ROS/ROS2에 사용되는 *약간 다른* IDL 파일을 생성합니다. **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). The new IDL files also reverse the messages that are sent and received (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa).
 
 ## Client (PX4 Firmware) {#client_firmware}
 
