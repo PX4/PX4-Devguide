@@ -323,9 +323,9 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 
 ### 워크스페이스 정리하기
 
-After building the workspaces there are many files that must be deleted before you can do a clean/fresh build (for example, after you have changed some code and want to rebuild). Unfortunately *colcon* does not currently have a way of cleaning the generated **build**, **install** and **log** directories, so these directories must be deleted manually.
+빌드가 끝나면 클린 빌드나 새 빌드를 하기전에 삭제되어야 할 많은 파일들이 있습니다 (예. 코드의 일부를 수정하고 다시 필요하려고 할 때). *colcon*는 현재 생성된 **build**, **install**, **log** 디렉토리를 자동으로 지우는 방법이 없습니다. 직접 지우세요.
 
-The **clean_all.bash** script (in **px4_ros_com/scripts**) is provided to ease this cleaning process. The most common way of using it is by passing it the ROS(1) workspace directory path (since it's usually not on the default path):
+정리를 쉽게하기 위해 **clean_all.bash** 스크립트를 제공합니다. 사용하는 가장 일반적인 방법은 ROS 워크스페이스 디렉토리 경로를 전달하는 것입니다.
 
 ```sh
 $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
