@@ -266,11 +266,11 @@ ROS와 ROS2가 다른 환경을 필요로 하기 때문에 각 ROS를 위한 워
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
-> **Note** The build process will open new tabs on the console, corresponding to different stages of the build process that need to have different environment configurations sourced.
+> **Note** 빌드 프로세스는 다른 환경설정을 가져야 하는 단계일 때, 콘솔에서 새로운 탭을 엽니다.
 
-One can also use the following individual scripts in order to build the individual parts:
+부분적으로 빌드하기 위해서는 아래의 개별적인 스크립트를 쓸 수 있습니다.
 
-* `build_ros1_bridge.bash`, to build the `ros1_bridge`;
+* `ros1_bridge`를 빌드 하기 위해서는 `build_ros1_bridge.bash`
 * `build_ros1_workspace.bash` (only the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` and `px4_msgs` `ros1` branches were cloned;
 * `build_ros2_workspace.bash`, to build the ROS2 workspace to where the `px4_ros_com` and `px4_msgs` `master` branches were cloned;
 
