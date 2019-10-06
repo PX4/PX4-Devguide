@@ -198,17 +198,17 @@ $ ./micrortps_agent [options]
 
 ## `px4_ros_com`와 `px4_msgs` 패키지 빌드하기
 
-Install and setup both ROS2 and ROS environments on your development machine and separately clone the `px4_ros_com` and `px4_msgs` repo for both the `master` and `ros1` branches (see [above for more information](#px4_ros_com)).
+개발용 컴퓨터에 ROS2와 ROS 환경을 설치하고 세팅하세요, 그리고 `px4_ros_com`와 `px4_msgs` 저장소를 `master`와 `ros1`브랜치에 독립적으로 클론하세요([더 자세한 정보는 여기를 보세요](#px4_ros_com)).
 
-> **Note** Only the master branch is needed for ROS2 (both are needed to target ROS).
+> **Note** ROS2는 마스터 브랜치만 필요합니다(ROS는 두 브랜치 다 필요합니다).
 
-### Installing ROS and ROS2 and respective dependencies
+### ROS와 ROS2 설치와 의존성
 
-In order to install ROS Melodic and ROS2 Crystal (officially supported) or Bouncy on a Ubuntu 18.04 machine, follow the links below, respectively:
+ROS Melodic, ROS2 Crystal 또는 우분투 18.04 에서 Bouncy를 설치하려면 아래의 링크를 참고하세요.
 
-1. [Install ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-2. [Install ROS2 Crystal](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
-3. The install process should also install the *colcon* build tools, but in case that doesn't happen, you can install the tools manually:
+1. [ROS Melodic 설치하기](http://wiki.ros.org/melodic/Installation/Ubuntu)
+2. [ROS2 Crystal 설치하기](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
+3. 이 설치과정은 *colcon* 빌드 툴 설치가 필요할 것 입니다. 설치되지 않으면 수동으로 설치해주세요.
     
     ```sh
     sudo apt install python3-colcon-common-extensions
