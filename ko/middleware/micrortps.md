@@ -194,7 +194,7 @@ $ ./micrortps_agent [options]
 
 ## Agent와 ROS2 미들웨어
 
-Building `px4_ros_com` automatically generates and builds the agent application, though it requires (as a dependency), that the `px4_msgs` package also gets build on the same ROS2 workspace (or overlaid from another ROS2 workspace). Since it is also installed using the [`colcon`](http://design.ros2.org/articles/build_tool.html) build tools, running it works exactly the same way as the above. Check the **Building the `px4_ros_com` package** for details about the build structure.
+`px4_ros_com`를 빌드할때 의존성 때문에 에이전트 어플리케이션을 생성하고 빌드합니다, `px4_msgs` 패키지또한 같은 ROS2 워크스페이스나 오버레이한 ROS2 스페이스에 빌드됩니다. [`colcon`](http://design.ros2.org/articles/build_tool.html) 빌드 툴을 사용할때도 설치되기 때문에, 위에 설명한 것과 완벽히 동일하게 동작합니다. 자세한 빌드 구조에 대한 것은 ** `px4_ros_com` 패키지 빌드하기 **를 참고하세요.
 
 ## Building the `px4_ros_com` and `px4_msgs` package
 
