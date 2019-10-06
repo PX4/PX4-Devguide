@@ -69,9 +69,9 @@ ROS2와 ROS간의 메시지를 연결하는 [ros1_bridge](https://github.com/ros
 
 ### ROS2/ROS 어플리케이션 {#px4_ros_com}
 
-빌드될 때 [px4_ros_com](https://github.com/PX4/px4_ros_com) 패키지는 ROS2 노드에서 PX4 uORB 메시지에 접근하기 위한 모든 것을 생성합니다(ROS일 경우 [ros1_bridge](https://github.com/ros2/ros1_bridge)가 필요할 것입니다). This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
+빌드될 때 [px4_ros_com](https://github.com/PX4/px4_ros_com) 패키지는 ROS2 노드에서 PX4 uORB 메시지에 접근하기 위한 모든 것을 생성합니다(ROS일 경우 [ros1_bridge](https://github.com/ros2/ros1_bridge)가 필요할 것입니다). `micrortps_agent`와 `micrortps_agent`에 필요한 IDL 파일을 포함해서 *PX4 RTPS bridge*를 위한 모든 컴포넌트를 포함합니다.
 
-The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
+ROS, ROS2의 메시지 정의 헤더와 인터페이스는 [px4_msgs](https://github.com/PX4/px4_msgs) 패키지에서 생성되며 PX4 펌웨어의 uORB 메시지와 일치합니다. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
 
 Both `px4_ros_com` and `px4_msgs` packages have two separate branches:
 
