@@ -14,9 +14,9 @@ Source: [modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/si
 
 ### 구현
 
-이 시뮬레이터는 행렬 계산을 이용해 모션 방정식을 구현했습니다. Quaternion representation is used for the attitude. Forward Euler is used for integration. Most of the variables are declared global in the .hpp file to avoid stack overflow.
+이 시뮬레이터는 행렬 계산을 이용해 모션 방정식을 구현했습니다. 쿼터니언 표현은 자세에 사용됩니다. 통합을 위해서는 forward euler가 사용됩니다. 대부분의 변수들은 스택 오버플로우를 방지하기 위해 .hpp에 선언되었습니다.
 
-### Usage {#sih_usage}
+### 사용법 {#sih_usage}
 
     sih <command> [arguments...]
      Commands:
