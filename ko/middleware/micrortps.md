@@ -78,13 +78,13 @@ ROS, ROS2의 메시지 정의 헤더와 인터페이스는 [px4_msgs](https://gi
 * ROS2에 사용되는 `master` 브랜치 이 브랜치는 PX4와 ROS2 노드를 연결하기 위한 ROS2 메시지와 IDL 파일을 생성하는 코드를 포함합니다.
 * ROS를 위한 `ros1` 브랜치 이 브랜치는 PX4와 ROS간의 데이터를 공유하기 위해 사용되는 `ros1_bridge`에 사용되는 ROS 메시지 헤더와 소스파일을 생성하는 코드를 포함합니다.
 
-Both branches in `px4_ros_com` additionally include some example listener and advertiser example nodes.
+`px4_ros_com`의 두 브랜치 모두 리스너와 애드벌타이저 예제를 포함합니다.
 
-## Supported uORB messages
+## 지원하는 uORB 메시지
 
-The generated bridge code will enable a specified subset of uORB topics to be published/subscribed via RTPS. This is true for both ROS or non-ROS applications.
+생성된 브릿지 코드는 특정 토픽들에 대해 RTPS를 통해 Pub/Sub이 가능하도록 합니다. ROS와 non-ROS 어플리케이선 모두 해당됩니다.
 
-For *automatic code generation* there's a *yaml* definition file in the PX4 **Firmware/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
+*자동 코드 생성*을 위해 **Firmware/msg/tools/** 디렉토리에 **uorb_rtps_message_ids.yaml** 파일이 있습니다(*yaml*). 이 파일은 RTPS에 사용될 uORB 메시지의 집합을 정의 합니다. 메시지의 송, 수신 여부와 DDS/RTPS 미들웨어에 사용될 RTPS ID를 정의합니다.
 
 > **Note** An RTPS ID must be set for all messages.
 
