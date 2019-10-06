@@ -156,7 +156,7 @@ make px4_sitl_rtps
 micrortps_client start -t UDP
 ```
 
-## Agent in a ROS-independent Offboard Fast RTPS interface
+## Fast RTPS interface를 사용하는 ROS에 독립적인 오프보드 에이전트
 
 *Agent* 코드는 PX4 펌웨어와 관련된 것을 빌드할 때 자동적으로 *생성*됩니다. 소스코드는 여기서 찾을 수 있습니다. **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
 
@@ -192,7 +192,7 @@ $ ./micrortps_agent [options]
 ./micrortps_agent -t UDP
 ```
 
-## Agent interfacing with a ROS2 middleware
+## Agent와 ROS2 미들웨어
 
 Building `px4_ros_com` automatically generates and builds the agent application, though it requires (as a dependency), that the `px4_msgs` package also gets build on the same ROS2 workspace (or overlaid from another ROS2 workspace). Since it is also installed using the [`colcon`](http://design.ros2.org/articles/build_tool.html) build tools, running it works exactly the same way as the above. Check the **Building the `px4_ros_com` package** for details about the build structure.
 
