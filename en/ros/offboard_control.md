@@ -46,7 +46,7 @@ A small computer mounted onto the vehicle connected to the autopilot through a U
 There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
 
 Small low power examples:
-* [Odroid C1+](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143703355573) or [Odroid XU4](https://www.hardkernel.com/shop/odroid-xu4-special-price/)
+* [Odroid C1+](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G143703355573) or [Odroid XU4](https://magazine.odroid.com/odroid-xu4)
 * [Raspberry Pi](https://www.raspberrypi.org/)
 * [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
 
