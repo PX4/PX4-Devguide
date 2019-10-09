@@ -705,6 +705,6 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 
 ## 추가적인 정보
 
-* [Fast RTPS Installation](../setup/fast-rtps-installation.md)
-* [Manually Generate Client and Agent Code](micrortps_manual_code_generation.md)
-* [DDS and ROS middleware implementations](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
+* [Fast RTPS 설치](../setup/fast-rtps-installation.md)
+* [직접 Client와 Agent 코드 생성하기](micrortps_manual_code_generation.md)
+* [DDS와 ROS 미들웨어 구현](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
