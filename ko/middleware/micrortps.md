@@ -331,17 +331,17 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
-## Creating a Fast RTPS Listener application
+## Fast RTPS 리스너 어플리케이션 만들기
 
-Once the *Client* (on the flight controller) and the *Agent* (on an offboard computer) are running and connected, *Fast RTPS* applications can publish and subscribe to uORB topics on PX4 using RTPS.
+한번 *Client* (비행 컨트롤러의) 와 *Agent* (오프보드 컴퓨터의)가 동작하고 연결되기 시작하면, *Fast RTPS* 어플리케이션은 RTPS를 이용하여 uORB 토픽들을 퍼블리시하고 구독할 수 있게 됩니다.
 
-This example shows how to create a *Fast RTPS* "listener" application that subscribes to the `sensor_combined` topic and prints out updates (from PX4). A connected RTPS application can run on any computer on the same network as the *Agent*. For this example the *Agent* and *Listener application* will be on the same computer.
+이 예제는 `sensor_combined` 토픽을 구독하고 갱신결과를 출력하는 *Fast RTPS* "리스너" 어플리케이션을 어떻게 만들지 보여줍니다. 연결된 RTPS 어플리케이션은 같은 네트워크내의 어떤 컴퓨터에서는 *Agent*로 동작할 수 있습니다. 이 예제에서는 *Agent* 와 *Listener application*은 동일한 컴퓨터에서 수행됩니다.
 
-The *fastrtpsgen* script can be used to generate a simple RTPS application from an IDL message file.
+*fastrtpsgen* 스크립트는 IDL 메시지 파일을 이용해 간단한 RTPS 어플리케이션을 만드는데 사용됩니다.
 
-> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a *Fast RTPS* application to communicate with PX4.
+> **Note** RTPS 메시지들은 IDL 파일에 정의되어 있으면 *fastrtpsgen*을 사용해 C++로 컴파일 됩니다. 브릿지 코드를 빌드하는 부분에서, 송/수신할 uORB 메시지파일을 위해 IDL 파일들이 생성됩니다. (참고 **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). 이 IDL 파일들은 여러분이 PX4와 통신하기 위한 *Fast RTPS* 어플리케이션을 만들때 필요합니다.
 
-Enter the following commands to create the application:
+어플리케이션을 만들기 위해서는 다음의 명령어들을 입력하세요.
 
 ```sh
 cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
@@ -350,7 +350,7 @@ cd micrortps_listener
 fastrtpsgen -example x64Linux2.6gcc ../micrortps_agent/idl/sensor_combined_.idl
 ```
 
-This creates a basic subscriber and publisher, and a main-application to run them. To print out the data from the `sensor_combined` topic, modify the `onNewDataMessage()` method in **sensor_combined_Subscriber.cxx**:
+이 명령어는 기본적인 Subscriber와 Publisher를 만들고, 이것을 실행하기 위한 메인 어플리케이션을 만듭니다. `sensor_combined` 토픽으로 부터 오는 데이터를 출력하기 위해서는 **sensor_combined_Subscriber.cxx** 메소드의 `onNewDataMessage()`를 수정하세요.
 
 ```c++
 void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
@@ -389,14 +389,14 @@ void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
 }
 ```
 
-To build and run the application on Linux:
+리눅스에서 어플리케이션을 빌드하고 수행하기 위해서는
 
 ```sh
 make -f makefile_x64Linux2.6gcc
 bin/*/sensor_combined_PublisherSubscriber subscriber
 ```
 
-Now you should see the sensor information being printed out:
+이제 센서의 정보가 출력되는 것을 볼 수 있어야 합니다.
 
 ```sh
 Sample received, count=10119
@@ -414,9 +414,9 @@ baro_alt_meter: 368.647
 baro_temp_celcius: 43.93
 ```
 
-> **Note** If the *Listener application* does not print anything, make sure the *Client* is running.
+> **Note** 만약 *Listener application*가 아무것도 출력하지 않는다면 *Client*가 동작중인지 확인하세요.
 
-## Creating a ROS2 listener
+## ROS2 리스너 만들기
 
 With the `px4_ros_com` built successfully, one can now take advantage of the generated *micro-RTPS* agent app and also from the generated sources and headers of the ROS2 msgs from `px4_msgs`, which represent a one-to-one matching with the uORB counterparts.
 
