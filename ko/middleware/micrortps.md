@@ -658,52 +658,52 @@ ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어�
 >     sh
 >       mavlink stop-all
 
-### Agent not built/fastrtpsgen is not found
+### 에이전트 빌드 안됨, fastrtpsgen 찾을 수 없음
 
-The *Agent* code is generated using a *Fast RTPS* tool called *fastrtpsgen*.
+*Agent* 코드는 *fastrtpsgen*이라고 불리는 *Fast RTPS* 툴을 사용해 생성합니다.
 
-If you haven't installed Fast RTPS in the default path then you must specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
+만약 Fatt RTPS를 기본 경로에 설치하지 않았다면 *make*를 수행하기 이전에 `FASTRTPSGEN_DIR` 환경변수에 설치된 디렉토리를 설정해주어야 합니다.
 
-On Linux/Mac this is done as shown below:
+리눅스/Mac 에서는 아래와 같이 수행하면 됩니다.
 
 ```sh
 export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 ```
 
-> **Note** This should not be a problem if [Fast RTPS is installed in the default location](../setup/fast-rtps-installation.md).
+> **Note** [Fast RTPS가 이미 기본경로에 설치](../setup/fast-rtps-installation.md)됐다면 다른 문제입니다.
 
-### Enable UART on an OBC (onboard computer)
+### OBC(온보드 컴퓨터)에서 UART 활성화하기
 
-For UART transport on a Raspberry Pi or any other OBC you will have to enable the serial port:
+라즈페이파이나 다른 OBC에서 UART 전송을 위해서는 시리얼 포트를 활성화해야만 합니다.
 
-1. Make sure the `userid` (default is pi on a Raspberry Pi) is a member of the `dialout` group:
+1. `userid`가 `dialout` 그룹의 멤버인지 확인하세요(라즈베리파이에서는 기본값이 pi 입니다).
     
     ```sh
     groups pi
     sudo usermod -a -G dialout pi
     ```
 
-2. For the Raspberry Pi in particular, you need to stop the GPIO serial console that is using the port:
+2. 일부 라즈베리파이에서는 그 포트를 사용하고 있는 GPIO 시리얼 콘솔을 멈춰야 합니다.
     
     ```sh
     sudo raspi-config
     ```
     
-    In the menu showed go to **Interfacing options > Serial**. Select **NO** for *Would you like a login shell to be accessible over serial?*. Valid and reboot.
+    보여지는 메뉴에서 **Interfacing options > Serial**로 이동합니다. *Would you like a login shell to be accessible over serial?* 질문에 대해서는 **NO**를 선택하세요. 확인하고 재부팅하세요.
 
-3. Check UART in kernel:
+3. 커널에서 UART 확인하기
     
     ```sh
     sudo vi /boot/config.txt
     ```
     
-    And make sure that the `enable_uart` value is set to 1:
+    `enable_uart` 값이 1로 설정되어 있는지 확인하세요.
     
     ```txt
     enable_uart=1
     ```
 
-## Additional information
+## 추가적인 정보
 
 * [Fast RTPS Installation](../setup/fast-rtps-installation.md)
 * [Manually Generate Client and Agent Code](micrortps_manual_code_generation.md)
