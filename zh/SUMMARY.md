@@ -113,6 +113,7 @@
   * [切换状态估计器](advanced/switching_state_estimators.md)
   * [树外模块](advanced/out_of_tree_modules.md)
   * [STM32 Bootloader](software_update/stm32_bootloader.md)
+  * [System Tunes](advanced/system_tunes.md)
 * [平台测试和 CI](test_and_ci/README.md) 
   * [测试飞行](test_and_ci/test_flights.md) 
     * [测试 MC_01 - 手动模式](test_cards/mc_01_manual_modes.md)
