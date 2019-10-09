@@ -471,7 +471,7 @@ private:
 };
 ```
 
-The above create a subscription to the `sensor_combined_topic` which can be matched with one or more compatible ROS publishers.
+하나이상의 호환가능한 ROS 퍼블리셔와 연결될 수 있는 `sensor_combined_topic`에 대한 subsciption을 만듭니다.
 
 ```c++
 int main(int argc, char *argv[])
@@ -486,13 +486,13 @@ int main(int argc, char *argv[])
 }
 ```
 
-The instantiation of the `SensorCombinedListener` class as a ROS node is done on the `main` function.
+ROS 노드로서의 `SensorCombinedListener` 클래스의 초기화는 `main` 함수에서 수행됩니다.
 
-## Creating a ROS2 advertiser
+## ROS2 Advertise 만들기
 
-A ROS2 advertiser node publishes data into the DDS/RTPS network (and hence to PX4).
+ROS2 Advertiser 노드는 데이터를 DDS/RTPS/PX4 네트워크에 퍼블리시합니다.
 
-Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/listeners`:
+`px4_ros_com/src/listeners` 하위의 `debug_vect_advertiser.cpp`를 참고하세요.
 
 ```c++
 #include <chrono>
@@ -502,14 +502,14 @@ Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/list
 using namespace std::chrono_literals;
 ```
 
-Bring in the required headers, including the `debug_vect` msg header.
+`debug_vect` 메시지 헤더를 포함해 필요한 헤더들을 선언합니다.
 
 ```c++
 class DebugVectAdvertiser : public rclcpp::Node
 {
 ```
 
-The above creates a `DebugVectAdvertiser` class that subclasses the generic `rclcpp::Node` base class.
+`rclcpp::Node`의 서브클래스로 `DebugVectAdvertiser` 클래스를 만드는 것 입니다.
 
 ```c++
 public:
@@ -535,7 +535,7 @@ private:
 };
 ```
 
-This creates a function for when messages are to be sent. The messages are sent based on a timed callback, which sends two messages per second based on a timer.
+메시지를 송신할 때 사용할 함수를 만듭니다. 메시지들은 주기적으로 동작하는 콜백함수에 의해 송신됩니다. 타이머를 기준으로 초당 2개의 메시지를 송신합니다.
 
 ```c++
 int main(int argc, char *argv[])
@@ -550,11 +550,11 @@ int main(int argc, char *argv[])
 }
 ```
 
-The instantiation of the `DebugVectAdvertiser` class as a ROS node is done on the `main` function.
+ROS 노드로써 `DebugVectAdvertiser` 클래스 초기화는 `main` 함수에서 수행됩니다.
 
-## Creating a ROS listener
+## ROS 리스터 만들기
 
-The creation of ROS nodes is a well known and documented process. An example of a ROS listener for `sensor_combined` messages can be found in the `ros1` branch repo, under `px4_ros_com/src/listeners`.
+ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어있다. An example of a ROS listener for `sensor_combined` messages can be found in the `ros1` branch repo, under `px4_ros_com/src/listeners`.
 
 ## Examples/tests of ROS-independent apps
 
