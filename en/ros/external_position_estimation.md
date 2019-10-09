@@ -273,8 +273,4 @@ Same for right stick on x and y.
 Increase the value of the left stick and the robot will take off, 
 put it back to the middle right after. Check if it is able to keep its position.
 
-<<<<<<< HEAD
 If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
-=======
-If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
->>>>>>> 0cdbbe35... Update external pose estimate check before first flight
