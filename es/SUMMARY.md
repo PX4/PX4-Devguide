@@ -113,6 +113,7 @@
   * [Estimadores de Cambio de Estado](advanced/switching_state_estimators.md)
   * [Módulos Out-of-Tree](advanced/out_of_tree_modules.md)
   * [Bootloader STM32](software_update/stm32_bootloader.md)
+  * [System Tunes](advanced/system_tunes.md)
 * [Pruebas de plataforma y CI](test_and_ci/README.md) 
   * [Vuelos de prueba](test_and_ci/test_flights.md) 
     * [Test MC_01 - Modos Manuales](test_cards/mc_01_manual_modes.md)
