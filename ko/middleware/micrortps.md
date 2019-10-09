@@ -588,20 +588,20 @@ ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어�
     $ roslaunch px4_ros_com sensor_combined_listener.launch
     ```
 
-4. On a terminal, source the ROS2 workspace and then start the `micrortps_agent` daemon with UDP as the transport protocol:
+4. 하나의 터미널에서 ROS2 워크스페이스를 가져오고 UDP를 사용하는 `micrortps_agent` 데몬을 실행하세요.
     
     ```sh
     $ source ~/px4_ros_com_ros2/install/local_setup.bash
     $ micrortps_agent -t UDP
     ```
 
-5. On the [NuttShell/System Console](../debug/system_console.md), start the `micrortps_client` daemon also in UDP:
+5. [NuttShell/System Console](../debug/system_console.md)에서는 UDP를 사용하는 `micrortps_client`를 실행하세요.
     
     ```sh
     > micrortps_client start -t UDP
     ```
     
-    Now you will be able to see the data being printed on the terminal/console where you launched the ROS listener:
+    이제 ROS 리스너를 실행한 콘솔에서 데이터가 출력되는 것을 볼 수 있을 것입니다.
     
     ```sh
     RECEIVED DATA FROM SENSOR COMBINED
@@ -619,7 +619,7 @@ ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어�
     Publishing back...
     ```
     
-    You can also verify the rate of the message using `rostopic hz`. For the case of `sensor_combined`:
+    `rostopic hz`로 메시지의 속도를 확인할 수 있습니다. `sensor_combined`의 경우
     
     ```sh
     average rate: 248.187
@@ -636,24 +636,24 @@ ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어�
     min: 0.000s max: 0.012s std dev: 0.00148s window: 3960
     ```
 
-6. You can also test the `sensor_combined` ROS2 listener by typing in a terminal:
+6. 다음과 같이 `sensor_combined` ROS2 리스너를 테스를 할 수 있습니다.
     
     ```sh
     $ source ~/px4_ros_com_ros2/install/local_setup.bash
     $ sensor_combined_listener # or ros2 run px4_ros_com sensor_combined_listener
     ```
 
-And it should also get data being printed to the console output.
+이 작업은 콘솔로 출력되고 있는 데이터를 얻게 됩니다.
 
-> **Note** If ones uses the `build_all.bash` script, it automatically open and source all the required terminals so one just has to run the respective apps in each terminal.
+> **Note** `build_all.bash` 스크립트를 사용하면 자동적으로 터미널을 열고 필요한 설정을 얻습니다. 각 터미널에서 필요한 어플리케이션만 실행하면 됩니다.
 
-## Troubleshooting
+## 트러블슈팅
 
-### Client reports that selected UART port is busy
+### 클라이언트가 선택한 UART 포트를 사용할 수 없다고 할 때
 
-If the selected UART port is busy, it's possible that the MAVLink application is already being used. If both MAVLink and RTPS connections are required you will have to either move the connection to use another port or configure the port so that it can be shared. <!-- https://github.com/PX4/Devguide/issues/233 -->
+만약 선택한 UART 포트가 사용할 수 없는 상태이면, MAVLink 어플리케이션이 이미 실행중일 가능성이 있습니다. MAVLink와 RTPS 연결을 모두 필요로 하다면 다른 포트를 사용하도록 하거나 포트를 공유할 수 있도록 설정해야 합니다. <!-- https://github.com/PX4/Devguide/issues/233 -->
 
-> **Tip** A quick/temporary fix to allow bridge testing during development is to stop MAVLink from *NuttShell*: 
+> **Tip** 개발과정에서 브릿지 테스트를 위해 임시적인 대처방법은 *NuttShell*에서 MAVLink를 끄는 것입니다. 
 > 
 >     sh
 >       mavlink stop-all
