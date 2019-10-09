@@ -418,16 +418,16 @@ baro_temp_celcius: 43.93
 
 ## ROS2 리스너 만들기
 
-With the `px4_ros_com` built successfully, one can now take advantage of the generated *micro-RTPS* agent app and also from the generated sources and headers of the ROS2 msgs from `px4_msgs`, which represent a one-to-one matching with the uORB counterparts.
+`px4_ros_com`가 빌드되면, 생성된 *micro-RTPS* 에이전트 앱과 `px4_msgs`로 부터 생성된 ROS2 메시지 헤더, 소스를 사용할 수 있습니다. 대응하는 uORB와 1:1로 매칭됩니다.
 
-To create a listener node on ROS2, lets take as an example the `sensor_combined_listener.cpp` node under `px4_ros_com/src/listeners`:
+ROS2에서 리스너 노드를 만드려면 `px4_ros_com/src/listeners`하위의 `sensor_combined_listener.cpp` 를 참고하세요.
 
 ```c++
 #include <rclcpp/rclcpp.hpp>
 #include <px4_ros_com/msg/sensor_combined.hpp>
 ```
 
-The above brings to use the required C++ libraries to interface with the ROS2 middleware. It also includes the required message header file.
+위의 헤더들은 ROS2 미들웨어에 접속하기 위해 필요한 C++ 라이브러리들을 포함합니다. 필요한 메시지 헤더파일들 또한 포함합니다.
 
 ```c++
 /**
@@ -437,7 +437,7 @@ class SensorCombinedListener : public rclcpp::Node
 {
 ```
 
-The above creates a `SensorCombinedListener` class that subclasses the generic `rclcpp::Node` base class.
+`rclcpp::Node`의 서브클래스로 `SensorCombinedListener` 클래스를 만드는 것 입니다.
 
 ```c++
 public:
@@ -460,7 +460,7 @@ public:
         };
 ```
 
-This creates a callback function for when the `sensor_combined` messages are received. It outputs the content of the message fields each time the message is received.
+`sensor_combined` 메시지를 수신했을 때 사용할 콜백 함수를 만듭니다. 이 함수는 메시지를 받을때 마다 메시지 필드내의 내용을 출력합니다.
 
 ```c++
         subscription_ = this->create_subscription<px4_ros_com::msg::SensorCombined>("SensorCombined_topic", callback);
