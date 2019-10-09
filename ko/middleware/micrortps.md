@@ -554,25 +554,25 @@ ROS 노드로써 `DebugVectAdvertiser` 클래스 초기화는 `main` 함수에�
 
 ## ROS 리스터 만들기
 
-ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어있다. An example of a ROS listener for `sensor_combined` messages can be found in the `ros1` branch repo, under `px4_ros_com/src/listeners`.
+ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어있습니다. `sensor_combined` 메시지를 위한 ROS 리스너를 위한 예제가 `ros1` 브랜치에서 `px4_ros_com/src/listeners`에 있습니다.
 
-## Examples/tests of ROS-independent apps
+## ROS에 독립적인 어플리케이션 예제와 테스트
 
-The following examples provide additional real-world demonstrations of how to use the features described in this topic.
+아래의 예제들은 이 섹션에서 설명한 기능들을 실제로 어떻게 사용하는지에 대한 추가적인 정보를 제공합니다.
 
-* [Throughput test](../middleware/micrortps_throughput_test.md): A simple test to measure the throughput of the bridge.
+* [Throughput test](../middleware/micrortps_throughput_test.md): 브릿지의 처리량을 측적하는 간단한 테스트입니다.
 
-## Testing the PX4-FastRPTS bridge with ROS2 and ROS
+## ROS2/ROS 와 브릿지된 PX4-FastRPTS 테스트하기
 
-To quickly test the package (using PX4 SITL with Gazebo):
+패키지를 빠르게 테스트하기 위해서 (PX4 SITL와 Gazebo를 사용하세요):
 
-1. Start PX4 SITL with Gazebo using:
+1. PX4 SITL와 Gazebo를 빌드하세요.
     
     ```sh
     make px4_sitl_rtps gazebo
     ```
 
-2. On one terminal, source the ROS2 environment and workspace and launch the `ros1_bridge` (this allows ROS2 and ROS nodes to communicate with each other). Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
+2. 하나의 터미널에서 ROS2 환경설정과 워크스페이스를 가져오고 `ros1_bridge` 를 실행하세요(ROS2와 ROS가 서로 통신할 수 있게 합니다). Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
     
     ```sh
     $ source /opt/ros/crystal/setup.bash
@@ -581,7 +581,7 @@ To quickly test the package (using PX4 SITL with Gazebo):
     $ ros2 run ros1_bridge dynamic_bridge
     ```
 
-3. On another terminal, source the ROS workspace and launch the `sensor_combined` listener node. Since you are launching through `roslaunch`, this will also automatically start the `roscore`:
+3. 다른 터미널에서 ROS 워크스페이스를 가져오고 `sensor_combined` 리스너 노드를 실행하세요. 이미 여러분은 `roslaunch`를 실행하고 있기 때문에, `roscore` 또한 자동적으로 실행될 것입니다.
     
     ```sh
     $ source ~/px4_ros_com_ros1/install/local_setup.bash
