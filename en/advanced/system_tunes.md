@@ -36,7 +36,7 @@ The steps for using the software are:
    c:
    start
    ```
-1. You will then have the option to click through a few screens until *Melody Master* is displayed:
+1. You will then have the option to click through a few screens, then press **1** to display *Melody Master*:
    ![Melody Master 2.1](../../assets/tunes/tunes_melody_master_2_1.jpg)
    
    The lower half of the screen provides helpful advice on keyboard shortcuts for using the tool (arrows for moving in stave, and numbers for selecting the note length, etc.).
