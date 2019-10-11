@@ -71,6 +71,104 @@ batt_smbus <command> [arguments...]
      [number of bytes] Number of bytes to send.
      [data[0]...data[n]] One byte of data at a time separated by spaces.
 ```
+## dshot
+Source: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
+
+
+### Description
+This is the DShot output driver. It is similar to the fmu driver, and can be used as drop-in replacement
+to use DShot as ESC communication protocol instead of PWM.
+
+It supports:
+- DShot150, DShot300, DShot600, DShot1200
+- telemetry via separate UART and publishing as esc_status message
+- sending DShot commands via CLI
+
+### Examples
+Permanently reverse motor 1:
+```
+dshot reverse -m 1
+dshot save -m 1
+```
+After saving, the reversed direction will be regarded as the normal one. So to reverse again repeat the same commands.
+
+### Usage {#dshot_usage}
+```
+dshot <command> [arguments...]
+ Commands:
+   start         Start the task (without any mode set, use any of the mode_*
+                 cmds)
+
+ All of the mode_* commands will start the module if not running already
+
+   mode_gpio
+
+   mode_pwm      Select all available pins as PWM
+
+   mode_pwm8
+
+   mode_pwm6
+
+   mode_pwm5
+
+   mode_pwm5cap1
+
+   mode_pwm4
+
+   mode_pwm4cap1
+
+   mode_pwm4cap2
+
+   mode_pwm3
+
+   mode_pwm3cap1
+
+   mode_pwm2
+
+   mode_pwm2cap2
+
+   mode_pwm1
+
+   telemetry     Enable Telemetry on a UART
+     <device>    UART device
+
+   reverse       Reverse motor direction
+     [-m <val>]  Motor index (1-based, default=all)
+
+   normal        Normal motor direction
+     [-m <val>]  Motor index (1-based, default=all)
+
+   save          Save current settings
+     [-m <val>]  Motor index (1-based, default=all)
+
+   3d_on         Enable 3D mode
+     [-m <val>]  Motor index (1-based, default=all)
+
+   3d_off        Disable 3D mode
+     [-m <val>]  Motor index (1-based, default=all)
+
+   beep1         Send Beep pattern 1
+     [-m <val>]  Motor index (1-based, default=all)
+
+   beep2         Send Beep pattern 2
+     [-m <val>]  Motor index (1-based, default=all)
+
+   beep3         Send Beep pattern 3
+     [-m <val>]  Motor index (1-based, default=all)
+
+   beep4         Send Beep pattern 4
+     [-m <val>]  Motor index (1-based, default=all)
+
+   beep5         Send Beep pattern 5
+     [-m <val>]  Motor index (1-based, default=all)
+
+   esc_info      Request ESC information
+     -m <val>    Motor index (1-based)
+
+   stop
+
+   status        print status info
+```
 ## fmu
 Source: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
 
