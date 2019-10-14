@@ -1,63 +1,30 @@
-# ArchLinux 上的开发环境
+# Development Environment on Arch Linux
 
-> **Note** These instructions allow you to build PX4 (without RTPS) for NuttX targets, using an unsupported version of GCCE from the package manager. The instructions have been tested on Antergos (an Arch Linux based distribution) as it is easier to set up than Arch Linux. 我们希望在不久的将来为本工具链提供经过全面测试的安装指南。（PS：译者实测时发现 ：Epel 源链接错误、部分依赖项无法使用 easy_install 的方式安装，只能使用 pip、系统自带 cmake 版本过低需要手动升级等问题，然后就弃坑了，欢迎 CentOS 大神折腾一下）
+![Gazebo on Arch](../../assets/gazebo/arch-gazebo.png)
 
-## 权限
+> **Note** The instructions have been tested on [Manjaro](https://manjaro.org/) (Arch based distribution) as it is much easier to set up than Arch Linux.
 
-将当前用户加入用户组 “uucp” ：
+Using the the setup script provided in the Firmware repository is very convenient to set your Arch installation up for PX4 development. It installs all tools to build PX4 (without RTPS) for NuttX targets and run simulation with jMAVsim or gazebo. Here are the steps to get you started from scratch.
 
-```sh
-sudo usermod -a -G uucp $USER
-```
+## Script parameters
 
-然后注销并重新登录以使上述改动生效。
+- `--gazebo`   
+    Gazebo simulation is not installed by default, add this parameter parameter to install gazebo from the [AUR](https://aur.archlinux.org/packages/gazebo/). Note that gazebo gets compiled from source and therefore takes some time to install and requires entering the sudo password multiple times for dependencies.
+- `--no-nuttx`   
+    If you only plan to use simulation you can omit the microcontroller target toolchain with this parameter.
+- `--no-sim-tools`   
+    If you only plan to use build for microcontroller targets you can omit all simulatior tools with this parameter.
 
-## 基于脚本的安装
-
-> **Note** This script installs the (unsupported) latest GCCE from the package manager. MicroRTPS is not built.
-
-On Arch Linux there is currently no script to install the dependencies. You can, however, check how the [Arch Linux Dockerfile](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_base-archlinux) for reference.
-
-## 手动安装
-
-### 通用依赖
-
-To install the dependencies manually, enter the following lines into a terminal.
+## Option 1 Clone PX4, install Toolchain
 
 ```sh
-# Common dependencies for all targets
-sudo pacman -Sy --noconfirm \
-    base-devel make cmake ccache git ant \
-    ninja python-pip tar unzip zip vim wget
-
-# Install Python dependencies
-pip install serial empy numpy toml jinja2 pyyaml cerberus
-
-# Install genromfs
-wget https://sourceforge.net/projects/romfs/files/genromfs/0.5.2/genromfs-0.5.2.tar.gz
-tar zxvf genromfs-0.5.2.tar.gz
-cd genromfs-0.5.2 && make && make install && cd ..
-rm genromfs-0.5.2.tar.gz genromfs-0.5.2 -r 
+git clone https://github.com/PX4/Firmware.git
+source Firmware/Tools/setup/arch.sh # optionally append --gazebo
 ```
 
-> **Note** *genromfs* is also available in the [Archlinux User Repository](https://aur.archlinux.org/packages/genromfs/) (AUR). To use this package, install [yaourt](https://archlinux.fr/yaourt-en) (Yet AnOther User Repository Tool) and then use it to download, compile and install *genromfs* as shown: 
-> 
->     sh
->       yaourt -S genromfs
+## Option 2 only install Toolchain
 
-### GCCE 编译器
-
-A GCC compiler is required to build for NuttX targets. Enter the command below to install the latest version from the package manager (unsupported).
-
-    # Compiler from package manager (unsupported)
-    sudo pacman -Sy --noconfirm \
-        arm-none-eabi-gcc arm-none-eabi-newlib
-    
-
-*Alternatively*, the standard instructions for installing the **official** version are listed below.
-
-> **Note** These are untested. Attempt them at your own risk!
-
-<!-- import GCC toolchain common documentation -->
-
-{% include "_gcc_toolchain_installation.md" %}
+```sh
+wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/arch.sh
+source arch.sh # optionally append --gazebo
+```
