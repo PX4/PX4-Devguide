@@ -31,12 +31,13 @@ To install the toolchain:
 1. Restart the computer on completion.
 
 
+> **Note** You can alternatively [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place:
+  ```
+  git clone https://github.com/PX4/Firmware.git
+  source Firmware/Tools/setup/ubuntu.sh
+  ```
+
 Notes:
-- The sections above explain how you can download just the scripts.
-  You may prefer to download all the PX4 source code ([Building the Code > Downloading PX4 Source Code](../setup/building_px4.md)) and run the scripts in place:
-  ```
-  source ./Tools/setup/ubuntu.sh
-  ```
 - PX4 works with Gazebo 7, 8, and 9.
    The script uses [gazebosim.org instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) to install Gazebo9.
 - If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions instead (these install Gazebo automatically, as part of the ROS installation).

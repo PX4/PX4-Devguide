@@ -1,25 +1,30 @@
 # Development Environment on Arch Linux
 
+The Firmware repository provides a convenient script to set your Arch installation up for PX4 development: [Tools/setup/arch.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/arch.sh).
+
+The script installs (by default) all tools to build PX4 (without RTPS) for NuttX targets and run simulation with *jMAVsim*.
+You can additionally install the *Gazebo* simulator by specifying the command line argument: `--gazebo`.
+
 ![Gazebo on Arch](../../assets/gazebo/arch-gazebo.png)
 
 > **Note** The instructions have been tested on [Manjaro](https://manjaro.org/) (Arch based distribution) as it is much easier to set up than Arch Linux.
 
-Using the the setup script provided in the Firmware repository is very convenient to set your Arch installation up for PX4 development. It installs all tools to build PX4 (without RTPS) for NuttX targets and run simulation with jMAVsim or gazebo. Here are the steps to get you started from scratch.
+To get and run the scripts, do either of:
+* [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place:
+  ```
+  git clone https://github.com/PX4/Firmware.git
+  source Firmware/Tools/setup/arch.sh
+  ```
+* Download just the needed scripts and then run them:
+  ```sh
+  wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/arch.sh
+  wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/requirements.txt
+  source arch.sh
+  ```
 
-## Script parameters
-
-- `--gazebo` <br> Gazebo simulation is not installed by default, add this parameter parameter to install gazebo from the [AUR](https://aur.archlinux.org/packages/gazebo/). Note that gazebo gets compiled from source and therefore takes some time to install and requires entering the sudo password multiple times for dependencies.
-- `--no-nuttx` <br> If you only plan to use simulation you can omit the microcontroller target toolchain with this parameter.
-- `--no-sim-tools` <br> If you only plan to use build for microcontroller targets you can omit all simulatior tools with this parameter.
-
-## Option 1 Clone PX4, install Toolchain
-```sh
-git clone https://github.com/PX4/Firmware.git
-source Firmware/Tools/setup/arch.sh # optionally append --gazebo
-```
-
-## Option 2 only install Toolchain
-```sh
-wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/arch.sh
-source arch.sh # optionally append --gazebo
-```
+The script takes the following optional parameters:
+- `--gazebo`: Add this parameter parameter to install Gazebo from the [AUR](https://aur.archlinux.org/packages/gazebo/).
+  > **Note** Gazebo gets compiled from source.
+    It takes some time to install and requires entering the `sudo` password multiple times (for dependencies).
+- `--no-nuttx`: Do not install the NuttX/Pixhawk toolchain (i.e. if only using simulation).
+- `--no-sim-tools`: Do not install jMAVSim/Gazebo (i.e. if only targeting Pixhawk/NuttX targets)
