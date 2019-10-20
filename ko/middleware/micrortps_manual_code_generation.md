@@ -87,7 +87,7 @@ IDL 파일들은 브릿지 코드 생성과정에서 uORB **.msg** 파일로 부
 
 ## 코드 생성 검증하기
 
-You can verify successful code generation by checking that the output directories match the listing shown below (On Linux, the `tree` command can be used for listing the file structure).
+출력 폴더에서 아래의 목록과 일치하는지 확인함으로써 코드가 제대로 생성되었는지 검증할 수 있습니다(리눅스에서 `tree` 명령어가 도움이 될 것입니다).
 
 Agent directory:
 
@@ -133,16 +133,16 @@ src/modules/micrortps_bridge/micrortps_client
  0 directories, 4 files
 ```
 
-## Build and use the code
+## 빌드, 코드 사용하기
 
-The manually generated *Client* code is built and used in *exactly* the same way as [automatically generated Client code](../middleware/micrortps.md#client_firmware).
+수동으로 생성된 *Client* 코드는 빌드후에 *정확히* [자동으로 생성된 코드](../middleware/micrortps.md#client_firmware)와 동일한 방법으로 사용됩니다.
 
-Specifically, once manually generated, the *Client* source code is compiled and built into the PX4 firmware as part of the normal build process. For example, to compile the code and include it in firmware for NuttX/Pixhawk targets:
+특히, 수동으로 한번 생성되면 일반적인 빌드 과정에서 *Client* 소스 코드는 컴파일되고 빌드되어 PX4의 펌웨어에 포함됩니다. 예를 들어, 컴파일 하고 NuttX/Pixhawk 타켓 펌웨어에 포함하려고 하는 경우:
 
 ```sh
 make px4_fmu-v4_default upload
 ```
 
-> **Note** You must first [disable automatic bridge code generation](#disable-automatic-bridge-code-generation) so that the toolchain uses the manually generated source code (and does not attempt to regenerate it).
+> **Note** 우선 반드시 [자동 코드 생성을 비활성화](#disable-automatic-bridge-code-generation) 해야합니다. 그래야 툴체인이 수동으로 생성되 코드를 사용합니다(다시 생성하는 걸 시도하지도 않음).
 
-The manually generated *Agent* code is also compiled and used in the same way as the [automatically generated code](../middleware/micrortps.md#agent-in-a-ros-independent-offboard-fast-rtps-interface). The only difference is that the manually source code is created in **src/modules/micrortps_bridge/micrortps_agent** instead of **<emphasis>build/BUILDPLATFORM</emphasis>****/src/modules/micrortps_bridge/micrortps_agent/**.
+수동으로 생성된 *Agent* 코드는 빌드후에 [자동으로 생성된 코드](../middleware/micrortps.md#agent-in-a-ros-independent-offboard-fast-rtps-interface)와 동일한 방법으로 사용됩니다. 수동 코드생성의 유일한 차이는 **<emphasis>build/BUILDPLATFORM</emphasis>****/src/modules/micrortps_bridge/micrortps_agent/** 대신에 **src/modules/micrortps_bridge/micrortps_agent**에 생성되는 것입니다.
