@@ -47,7 +47,7 @@ optional arguments:
 
 > **Caution** `--delete-tree` 옵션을 사용하면 새로운 파일과 폴더를 생서하기 전에 `CLIENTDIR`과 `AGENTDIR`의 내용을 지웁니다.
 
-- The arguments `--send/-s` and `--receive/-r` specify the uORB topics that can be sent/received from PX4. Code will only be generated for specified messages.
+- 파라미터 `--send/-s`과 `--receive/-r`는 PX4가 송수신할 수 있는 uORB 토픽들을 설정합니다. 설정된 메시지들에 대해서만 토픽이 생성됩니다.
 - The output appears in `CLIENTDIR` (`-o src/modules/micrortps_bridge/micrortps_client`, by default) and in the `AGENTDIR` (`-u src/modules/micrortps_bridge/micrortps_agent`, by default).
 - If no flag `-a` or `-c` is specified, both the client and the agent will be generated and installed.
 - The `-f` option may be needed if *Fast RTPS* was not installed in the default location (`-f /path/to/fastrtps/installation/bin`).
