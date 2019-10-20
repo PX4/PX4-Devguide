@@ -48,18 +48,18 @@ optional arguments:
 > **Caution** `--delete-tree` 옵션을 사용하면 새로운 파일과 폴더를 생서하기 전에 `CLIENTDIR`과 `AGENTDIR`의 내용을 지웁니다.
 
 - 파라미터 `--send/-s`과 `--receive/-r`는 PX4가 송수신할 수 있는 uORB 토픽들을 설정합니다. 설정된 메시지들에 대해서만 토픽이 생성됩니다.
-- The output appears in `CLIENTDIR` (`-o src/modules/micrortps_bridge/micrortps_client`, by default) and in the `AGENTDIR` (`-u src/modules/micrortps_bridge/micrortps_agent`, by default).
-- If no flag `-a` or `-c` is specified, both the client and the agent will be generated and installed.
-- The `-f` option may be needed if *Fast RTPS* was not installed in the default location (`-f /path/to/fastrtps/installation/bin`).
+- `CLIENTDIR`과 `AGENTDIR` 디렉토리에 파일이 생성되고 (`-o src/modules/micrortps_bridge/micrortps_client`, `-u src/modules/micrortps_bridge/micrortps_agent` 가 기본값).
+- `-a`나 `-c` 플래그가 설정되지 않으면, 클라리언트와 에이전트파일이 생성되고 설치됩니다.
+- `-f` 옵션은 *Fast RTPS*가 기본 위치에 설치되어 있지 않을때 필요합니다.(`-f /path/to/fastrtps/installation/bin`).
 
-The example below shows how you can generate bridge code to publish/subscribe just the `sensor_baro` single uORB topic.
+아래의 예제는 하나의 uORB 토픽을 설정한 센서 `sensor_baro`의 브릿지 Pub/Sub 코드를 생성하는 것을 보여줍니다. 
 
 ```sh
 $ cd /path/to/PX4/Firmware
 $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor_combined.msg
 ```
 
-## Generated code
+## 생성된 코드
 
 Code is generated for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages (IDL files).
 
