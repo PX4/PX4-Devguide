@@ -1,25 +1,25 @@
-# Micro RTPS Throughput Test
+# Micro RTPS 처리량 테스트
 
-This a simple test to measure the throughput of the [PX4-FastRTPS Bridge](../middleware/micrortps.md). It sends and receives 256-byte messages (simultaneously) at maximum rate, and then outputs the result.
+이 간단한 테스트는[PX4-FastRTPS Bridge](../middleware/micrortps.md)의 처리량을 특정하는 테스트입니다. 최고 속도로 256바이트의 메시지를 동시에 주고 받는 것을 측정합니다.
 
-> **Tip** This example requires that you [Manually Generate Client and Agent Code](../middleware/micrortps_manual_code_generation.md).
+> **Tip** 이 예는 [수동으로 클라이언트와 에이전트 코드 생성](../middleware/micrortps_manual_code_generation.md)해야 합니다.
 
-## Create the uORB message
+## uORB 메시지 만들기
 
-First create a new uORB message for this test in the folder **/Firmware/msg/**. The message file will be called **throughput_256.msg** and have the following content:
+우선 이 테스트를 위해 **/Firmware/msg/** 폴더에 새로운 uORB 메시지를 만드세요. 이 메시지를 **throughput_256.msg**로 하고 아래의 내용을 가질 것입니다.
 
 ```text
 uint8[256] data
 ```
 
-This can be done with the command line below:
+아래와 같은 명령어를 통해 수행됩니다.
 
 ```sh
 cd /path/to/PX4/Firmware/msg
 echo uint8[256] data > throughput_256.msg
 ```
 
-Register the new message adding it to the list of messages in the file: **/Firmware/msg/CMakeLists.txt**:
+**/Firmware/msg/CMakeLists.txt** 파일의 메시지 목록에 새 메시지 파일을 추가합니다.
 
 ```cmake
 ...
@@ -29,7 +29,7 @@ throughput_256.msg
 ...
 ```
 
-Give the message a topic id by adding a line in the **/Firmware/Tools/message_id.py** script:
+**/Firmware/Tools/message_id.py** 스크립트에 토픽 ID를 추가하세요.
 
 ```python
 ...
@@ -39,7 +39,7 @@ Give the message a topic id by adding a line in the **/Firmware/Tools/message_id
 ...
 ```
 
-## Disable automatic bridge code generation
+## 자동 브릿지 코드 생성 비활성화하기
 
 Disable automatic generation of bridge code (as part of the PX4 build process) by setting the variable `GENERATE_RTPS_BRIDGE` to `off` in the *.cmake* file for the target platform (*cmake/configs/*):
 
