@@ -2,19 +2,19 @@
 
 이번 토픽에서는 어떻게 수동적으로 클라이언트와 에이전트 코드를 생성할지 다룰 것입니다(PX4 펌웨어가 컴파일될 때 [자동적으로 생성되는 것](../middleware/micrortps.md) 대신에)
 
-The code is generated using the python script: **/Tools/generate_microRTPS_bridge.py**.
+코드들은 파이썬 스크립트를 통해 생성됩니다: **/Tools/generate_microRTPS_bridge.py**.
 
-## Disable automatic bridge code generation
+## 자동 브릿지 코드 생성 비활성화하기
 
-First disable automatic generation of bridge code. Set the variable `GENERATE_RTPS_BRIDGE` to *off* in the **.cmake** file for the target platform:
+우선 브릿지 코드 자동생성을 비활성화 해야합니다. 설정하고자 하는 플랫폼의 **.cmake**의 `GENERATE_RTPS_BRIDGE` 변수를 *off*로 설정하세요.
 
 ```sh
 set(GENERATE_RTPS_BRIDGE off)
 ```
 
-## Using generate_microRTPS_bridge.py
+## generate_microRTPS_bridge.py 스크립트 사용하기
 
-The *generate_microRTPS_bridge* tool's command syntax is shown below:
+*generate_microRTPS_bridge* 스크립트의 사용법은 아래와 같습니다.
 
 ```sh
 $ cd /path/to/PX4/Firmware/msg/tools
@@ -45,7 +45,7 @@ optional arguments:
   --delete-tree         Delete dir tree output dir(s)
 ```
 
-> **Caution** Using with `--delete-tree` option erases the content of the `CLIENTDIR` and the `AGENTDIR` before creating new files and folders.
+> **Caution** `--delete-tree` 옵션을 사용하면 새로운 파일과 폴더를 생서하기 전에 `CLIENTDIR`과 `AGENTDIR`의 내용을 지웁니다.
 
 - The arguments `--send/-s` and `--receive/-r` specify the uORB topics that can be sent/received from PX4. Code will only be generated for specified messages.
 - The output appears in `CLIENTDIR` (`-o src/modules/micrortps_bridge/micrortps_client`, by default) and in the `AGENTDIR` (`-u src/modules/micrortps_bridge/micrortps_agent`, by default).
