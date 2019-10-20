@@ -41,28 +41,28 @@ throughput_256.msg
 
 ## 자동 브릿지 코드 생성 비활성화하기
 
-Disable automatic generation of bridge code (as part of the PX4 build process) by setting the variable `GENERATE_RTPS_BRIDGE` to `off` in the *.cmake* file for the target platform (*cmake/configs/*):
+목표하는 플랫폼(*cmake/configs/*)의 *.cmake* 파일의 `GENERATE_RTPS_BRIDGE` 변수를 `off`로 설정함으로써 PX4의 빌드 과정에서 브릿지 코드의 자동 생성을 비활성화 할 수 있습니다.
 
 ```sh
 set(GENERATE_RTPS_BRIDGE off)
 ```
 
-## Generate the bridge code
+## 브릿지 코드의 생성
 
-Manually generate bridge code using *generate_microRTPS_bridge.py* (the code will send and receive "just" our `throughput_256` uORB topic):
+*generate_microRTPS_bridge.py*를 사용하여 브릿지 코드를 수동으로 생성합니다(이 코드는 오로지 `throughput_256` uORB 토픽만 송수신함).
 
 ```sh
 cd /path/to/PX4/Firmware
 python Tools/generate_microRTPS_bridge.py --send msg/throughput_256.msg --receive msg/throughput_256.msg
 ```
 
-The *Client* source code is generated in **src/modules/micrortps_bridge/micrortps_client/** and the *Agent* in **src/modules/micrortps_bridge/micrortps_agent/**.
+*Client* 소스코드와 *Agent*는 **src/modules/micrortps_bridge/micrortps_client/**과 **src/modules/micrortps_bridge/micrortps_agent/**에 생성됩니다.
 
-### Modify the client code
+### 클라이언트 코드 수정하기
 
-Next we modify the *Client* to send a *throughput_256* message on every loop. This is required because the topic is not actually being published by PX4, and because we want to ensure that it is sent at the greatest possible rate.
+이제는 *Client*가 매 루프마다 *throughput_256* 메시지를 생성하도록 수정할 것입니다. 토픽이 사실상 PX4에 의해 퍼블리시되지 않고, 가능한 빠른 속도로 보내기 위해 이 작업이 필요합니다.
 
-Open the file **src/modules/micrortps_bridge/micrortps_client/microRTPS_client.cpp**. Update the `while` loop in the `send()` function to look like this:
+**src/modules/micrortps_bridge/micrortps_client/microRTPS_client.cpp** 파일을 여세요. `send()` 함수의 `while` 루프를 수정하세요.
 
 ```cpp
 ...
@@ -90,7 +90,7 @@ while (!_should_exit_task)
 ...
 ```
 
-> **Note** You may recall this is intended to be a *bidirectional* throughput test, where messages must also be sent from the *Agent* to the *Client*. You do not need to modify the Agent code to make this happen. As the *Agent* is an RTPS publisher and subscriber, it will automatically get notified of the RTPS messages it sends, and will then mirror these back to the client.
+> **Note** 여러분은 지금 작업이 *양방향* 처리량 테스트를 위한 것임을 알아야합니다, 메시지는 *Agent*에서 *Client*로도 송신되어야 합니다. You do not need to modify the Agent code to make this happen. As the *Agent* is an RTPS publisher and subscriber, it will automatically get notified of the RTPS messages it sends, and will then mirror these back to the client.
 
 [Compile and launch](../middleware/micrortps_manual_code_generation.md#build-and-use-the-code) both the *Client* and the *Agent*.
 
