@@ -90,15 +90,15 @@ while (!_should_exit_task)
 ...
 ```
 
-> **Note** 여러분은 지금 작업이 *양방향* 처리량 테스트를 위한 것임을 알아야합니다, 메시지는 *Agent*에서 *Client*로도 송신되어야 합니다. You do not need to modify the Agent code to make this happen. As the *Agent* is an RTPS publisher and subscriber, it will automatically get notified of the RTPS messages it sends, and will then mirror these back to the client.
+> **Note** 여러분은 지금 작업이 *양방향* 처리량 테스트를 위한 것임을 알아야합니다, 메시지는 *Agent*에서 *Client*로도 송신되어야 합니다. 그것을 위해 에이전트 코드를 수정할 필요는 없습니다. *Agent*는 하나의 RTPS 퍼블리셔이자 구독자입니다. 자동으로 공지한 RTPS 메시지를 수신하고, 클라언트로 미러링할 것입니다.
 
-[Compile and launch](../middleware/micrortps_manual_code_generation.md#build-and-use-the-code) both the *Client* and the *Agent*.
+[컴파일하고 *Client*와 *Agent*를 실행하세요.](../middleware/micrortps_manual_code_generation.md#build-and-use-the-code)
 
-## Result
+## 결과
 
-The test was executed with PX4 running on Pixracer, connected via a UART to an ordinary PC running Ubuntu 16.04. The default configuration was used for both the Client/Agent.
+이 테스트는 Pixracer에서 수행중인 PX4와 우분투 16.04의 일반적인 PC가 UART로 연결된 상태에서 수행되었습니다. Client/Agent를 위해 기본적인 설정이 사용되었습니다.
 
-The throughput that was observed in the client shell window on completion is shown below:
+끝난 후에 클라이언트 쉘창에서 관찰한 처리량은 아래와 같습니다.
 
 ```sh
 SENT:     13255 messages in 13255 LOOPS, 3512575 bytes in 30.994 seconds - 113.33KB/s
