@@ -61,31 +61,31 @@ $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor
 
 ## 생성된 코드
 
-Code is generated for the *Client*, *Agent*, *CDR serialization/deserialization* of uORB messages, and the definition of the associated RTPS messages (IDL files).
+*Client*, *Agent*, uORB메시지의 *CDR serialization/deserialization*, 연관된 RTPS 메시지들 정의(IDL 파일들)를 위한 파일들이 생성됩니다.
 
-Manually generated code for the bridge can be found here (by default):
+수동으로 생성된 브릿지 코드는 기본적으로 아래의 폴더에서 찾을 수 있습니다.
 
 - *Client*: **src/modules/micrortps_bridge/micrortps_client/**
 - *Agent*: **src/modules/micrortps_bridge/micrortps_agent/**
 
-### uORB serialization code
+### uORB serialization 코드
 
-Serialization functions are generated for all the uORB topics as part of the normal PX4 compilation process (and also for manual generation). For example, the following functions would be generated for the *sensor_combined.msg*:
+uORB 토픽들을 직렬화하기 위한 함수들은 일반적인 PX4 컴파일 과정에서 생성됩니다(물론 수동으로 만들때도 생성됨). 예를 들어, *sensor_combined.msg*를 위해 다음의 함수들이 생성됩니다.
 
 ```sh
 void serialize_sensor_combined(const struct sensor_combined_s *input, char *output, uint32_t *length, struct microCDR *microCDRWriter);
 void deserialize_sensor_combined(struct sensor_combined_s *output, char *input, struct microCDR *microCDRReader);
 ```
 
-### RTPS message IDL files
+### RTPS 메시지 IDL 파일
 
-IDL files are generated from the uORB **.msg** files ([for selected uORB topics](../middleware/micrortps.md#supported-uorb-messages)) in the generation of the bridge. These can be found in: **src/modules/micrortps_bridge/micrortps_agent/idl/**
+IDL 파일들은 브릿지 코드 생성과정에서 uORB **.msg** 파일로 부터 생성됩니다. ([선택된 uORB 토픽들](../middleware/micrortps.md#supported-uorb-messages)). 생성된 파일은**src/modules/micrortps_bridge/micrortps_agent/idl/** 에서 찾을 수 있습니다.
 
-*FastRTSP* uses IDL files to define the structure of RTPS messages (in this case, RTPS messages that map to uORB topics). They are used to generate code for the *Agent*, and *FastRTSP* applications that need to publish/subscribe to uORB topics.
+*FastRTSP*는 RTPS 메시지의 구조체를 정의하기 위핸 IDL 파일을 사용합니다. 이 파일들은 *Agent*와 *FastRTSP* 어플케이션에서 uORB 토픽들을 Pub/Sub하기 위한 코드생성에 사용됩니다.
 
-> **Note** IDL files are compiled to C++ by the *fastrtpsgen* tool.
+> **Note** IDL 파일은 *fastrtpsgen* 툴을 이용해 C++로 컴파일 됩니다.
 
-## Verify code generation
+## 코드 생성 검증하기
 
 You can verify successful code generation by checking that the output directories match the listing shown below (On Linux, the `tree` command can be used for listing the file structure).
 
