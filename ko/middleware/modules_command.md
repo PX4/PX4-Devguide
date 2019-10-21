@@ -1,10 +1,10 @@
-# Modules Reference: Command
+# 모들 레퍼런스: 명령어
 
 ## bl_update
 
 Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
-Utility to flash the bootloader from a file
+파일에서 부트로터를 플래시하기 위한 유틸리티
 
 ### Usage {#bl_update_usage}
 
@@ -19,7 +19,7 @@ Utility to flash the bootloader from a file
 
 Source: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
 
-Configure a sensor driver (sampling & publication rate, range, etc.)
+센서 드라이버 설정 (샘플링 & publication 속도, 범위 등)
 
 ### Usage {#config_usage}
 
@@ -50,7 +50,7 @@ Configure a sensor driver (sampling & publication rate, range, etc.)
 
 Source: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 
-Dump file utility. Prints file size and contents in binary mode (don't replace LF with CR LF) to stdout.
+파일을 덤프하는 유틸리티. 바이너리모드에서 파일 크기와 내용을 출력한다 (LF/CRLF를 변경하지는 않음).
 
 ### Usage {#dumpfile_usage}
 
