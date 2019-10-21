@@ -456,20 +456,20 @@ Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 해제된 값은 모터가 회전하지 않게 하기 위해 반드시 설정되어야 합니다 (kill siwtch로 사용될 수도 있음).
 
-채널은 한 그룹에 할당됩니다. 하드웨어 한계때문에, 업데이트 속도는 그룹별로만 설정될 수 있습니다. 그룹을 출력하려면 `pwm info`을 사용하세요. If the `-c` argument is used, all channels of any included group must be included.
+채널은 한 그룹에 할당됩니다. 하드웨어 한계때문에, 업데이트 속도는 그룹별로만 설정될 수 있습니다. 그룹을 출력하려면 `pwm info`을 사용하세요. `-c` 인자를 사용하면 포함되는 그룹의 모든 채널이 포함되어야 합니다.
 
-The parameters `-p` and `-r` can be set to a parameter instead of specifying an integer: use -p p:PWM_MIN for example.
+파라미터 `-p`와 `-r`는 숫자를 지정하는 것 대신에 파라미터를 설정할 수 있습니다.-p p:PWM_MIN 처럼 사용하세요.
 
-Note that in OneShot mode, the PWM range [1000, 2000] is automatically mapped to [125, 250].
+OneShot 모드일때는, PWM range [1000, 2000] 는 자동으로 [125, 250]에 매핑됩니다.
 
 ### Examples
 
-Set the PWM rate for all channels to 400 Hz:
+모든 채널의 PWM 속도를 400 Hz로 설정합니다.
 
     pwm rate -a -r 400
     
 
-Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
+출력을 테스트 하는 예. 1, 3 채널 그리고 PWM 을 1200us 로 설정
 
     pwm arm
     pwm test -c 13 -p 1200
@@ -536,20 +536,18 @@ Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
 
 Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
 
-Reboot the system
+시스템을 재부팅
 
-### Usage {#reboot_usage}
+### Reboot the system {#reboot_usage}
 
-    reboot [arguments...]
-         [-b]        Reboot into bootloader
-         [lock|unlock] Take/release the shutdown lock (for testing)
+    Usage
     
 
 ## sd_bench
 
 Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
 
-Test the speed of an SD Card
+SD 카드의 속도를 테스트
 
 ### Usage {#sd_bench_usage}
 
@@ -567,7 +565,7 @@ Test the speed of an SD Card
 
 Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
 
-Monitor running processes and their CPU, stack usage, priority and state
+실행중인 프로세스의 CPU, 스택사용, 우선순위, 상태를 모니터링
 
 ### Usage {#top_usage}
 
@@ -579,7 +577,7 @@ Monitor running processes and their CPU, stack usage, priority and state
 
 Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
-Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
+USB가 연결되어 있는지 확인합니다. 스타트업 스크립트에서 사용됩니다. 리턴값은 0은 연결되어 있음, 1은 아님입니다.
 
 ### Usage {#usb_connected_usage}
 
@@ -590,7 +588,7 @@ Utility to check if USB is connected. Was previously used in startup scripts. A 
 
 Source: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
 
-Tool to print various version information
+다양한 버전 정보를 출력하기 위한 툴
 
 ### Usage {#ver_usage}
 
