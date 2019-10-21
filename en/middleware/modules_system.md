@@ -1,5 +1,29 @@
 # Modules Reference: System
 
+## battery_status
+Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
+
+
+### Description
+
+The provided functionality includes:
+- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
+
+
+### Implementation
+It runs in its own thread and polls on the currently selected gyro topic.
+
+
+### Usage {#battery_status_usage}
+```
+battery_status <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## commander
 Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
 
@@ -352,7 +376,6 @@ The provided functionality includes:
 - Do RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels
   to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and
   `manual_control_setpoint`.
-- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
 - Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or
   on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the
   sensor drivers must already be running when `sensors` is started.
