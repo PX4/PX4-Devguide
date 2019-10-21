@@ -64,7 +64,7 @@ Source: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 ### Description
 
-Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
+PX4 바이너리에 컴파일 되지 않은 동적 PX4 모듈을 로드하고 실행한다.
 
 ### Example
 
@@ -82,14 +82,14 @@ Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
 
 Source: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
-Tool for ESC calibration
+ESC calibration을 위한 툴
 
-Calibration procedure (running the command will guide you through it):
+Calibration 과정 (명령어를 실행하면 안내가 됩니다):
 
-- Remove props, power off the ESC's
-- Stop attitude controllers: mc_att_control stop, fw_att_control stop
-- Make sure safety is off
-- Run this command
+- ESC의 프로브를 빼고 파워를 끄세요
+- 기체 컨트롤러를 중지하세요: mc_att_control stop, fw_att_control stop
+- safety가 off인지 확인하세요
+- 이 명령어를 실행하세요
 
 ### Usage {#esc_calib_usage}
 
@@ -110,9 +110,9 @@ Calibration procedure (running the command will guide you through it):
 
 Source: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
-Hardfault utility
+하드웨어 문제를 다루는 유틸리티
 
-Used in startup scripts to handle hardfaults
+하드웨어문제를 다루는 스타트업 스크립트에 사용됩니다.
 
 ### Usage {#hardfault_log_usage}
 
@@ -138,7 +138,7 @@ Used in startup scripts to handle hardfaults
 
 Source: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
 
-Utility to scan for I2C devices on a particular bus.
+특정 버스에 I2C 디바이스를 스캔하기 위한 유틸리티
 
 ### Usage {#i2cdetect_usage}
 
@@ -153,15 +153,15 @@ Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### Description
 
-Command-line tool to control & test the (external) LED's.
+(외부) LED를 제어하고 테스트하기 위한 CLI 툴
 
-To use it make sure there's a driver running, which handles the led_control uorb topic.
+사용하기 위해서는 led_control uORB 토픽을 다루는 드라이버가 수행중인지 확인해야합니다.
 
-There are different priorities, such that for example one module can set a color with low priority, and another module can blink N times with high priority, and the LED's automatically return to the lower priority state after the blinking. The `reset` command can also be used to return to a lower priority.
+우선순위가 있습니다. 예를 들어, 한 모듈이 낮은 우선 순위를 컬러를 출력하고 다른 모듈이 높은 우선 순위로 N번 깜빡이도록 한다면 LED는 깜빡인 후에 컬러가 변경될 것입니다. `reset` 명령어 또한 낮은 우선수위로 돌아가기 위해 사용될 수 있습니다.
 
 ### Examples
 
-Blink the first LED 5 times in blue:
+첫번째 LED를 파란색으로 5회 깜빡이게:
 
     led_control blink -c blue -l 0 -n 5
     
@@ -201,9 +201,9 @@ Blink the first LED 5 times in blue:
 
 Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
 
-Utility to listen on uORB topics and print the data to the console.
+uORB 토픽을 수신하고 데이터를 콘솔로 출력하기 위한 유틸리티
 
-The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
+Ctrl+C, Esc, Q를 누르면 종료됩니다.
 
 ### Usage {#listener_usage}
 
@@ -224,9 +224,9 @@ Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/syste
 
 ### Description
 
-Load or append mixer files to the ESC driver.
+ESC 드라이버에 믹서를 로그하거나 추가합니다.
 
-Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
+RPi는 상관없지만, NuttX에서는 사용되는 ioctl 드라이버가 지원되어야 합니다.
 
 ### Usage {#mixer_usage}
 
