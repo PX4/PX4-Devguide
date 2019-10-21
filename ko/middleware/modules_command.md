@@ -245,15 +245,15 @@ Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/
 
 ### Description
 
-Application to test motor ramp up.
+모터 ramp up 테스트를 위한 어플리케이션
 
-Before starting, make sure to stop any running attitude controller:
+실행하기 전에 기체 컨트롤러가 멈춰져있는지 확인해주세요
 
     mc_att_control stop
     fw_att_control stop
     
 
-When starting, a background task is started, runs for several seconds (as specified), then exits.
+시작할 때 하나의 백그라운드 작업이 시작되고 몇초(지정된만큼)간 수행된 후 종료됩니다.
 
 ### Example
 
@@ -272,18 +272,18 @@ When starting, a background task is started, runs for several seconds (as specif
          [-r <val>]  Select motor ramp duration in sec
                      default: 1.0
     
-     WARNING: motors will ramp up to full speed!
+     WARNING: 모터는 최고 속도까지 ramp up 됩니다.
     
 
 ## motor_test
 
 Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
-Utility to test motors.
+모터를 테스트하기 위한 유틸리티
 
-WARNING: remove all props before using this command.
+WARNING: 이 명령어를 수행하려면 모든 프로브를 제거하세요.
 
-Note: this can only be used for drivers which support the motor_test uorb topic (not px4io).
+Note: 이 명령어를 motor_test_uorb 토픽을 지원하는 드라이버만 사용할 수 있습니다.
 
 ### Usage {#motor_test_usage}
 
@@ -305,7 +305,7 @@ Note: this can only be used for drivers which support the motor_test uorb topic 
 
 Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
-Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
+마운트와 파티션을 테스트하기 위한 유틸리티 (보드에 정의된 대로 FRAM/EEPROM에 기초합니다)
 
 ### Usage {#mtd_usage}
 
@@ -331,9 +331,9 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
 
 Source: [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
 
-Start an NSH shell on a given port.
+주어진 포트에서 NSH 쉘을 시작합니다.
 
-This was previously used to start a shell on the USB serial port. Now there runs mavlink, and it is possible to use a shell over mavlink.
+이 명령어를 이전에 USR 시리얼 포트에서 쉘을 시작하기 위해 사용되었습니다. 이제는 mavlink가 실행되며, 쉘을 사용하는 것도 가능합니다.
 
 ### Usage {#nshterm_usage}
 
@@ -347,7 +347,7 @@ Source: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/syste
 
 ### Description
 
-Command to access and manipulate parameters via shell or script.
+쉘이나 스크립트를 통해 파라미터에 접근하고 조작하기 위한 명령어
 
 This is used for example in the startup script to set airframe-specific parameters.
 
