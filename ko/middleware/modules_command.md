@@ -450,13 +450,13 @@ Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 서보와 ESC 컨트롤에 대해 PWM 출력을 설정하기 위한 명령어
 
-The default device `/dev/pwm_output0` are the Main channels, AUX channels are on `/dev/pwm_output1` (`-d` parameter).
+기본 디바이스 `/dev/pwm_output0` 가 메인 채널이고, AUX channels 은 `/dev/pwm_output1` 입니다 (`-d` 파라미터).
 
-It is used in the startup script to make sure the PWM parameters (`PWM_*`) are applied (or the ones provided by the airframe config if specified). `pwm info` shows the current settings (the trim value is an offset and configured with `PWM_MAIN_TRIMx` and `PWM_AUX_TRIMx`).
+스타트업 스크립트에서 PWM 파라미터가 (`PWM_*`) 적용되었는지 확인하가 위해 사용됩니다 (만약 airframe에 지정되어있으면 그것으로 적용). `pwm info` 현재의 설정을 보여줍니다. (trim 값은 오프셋이며 `PWM_MAIN_TRIMx` 과 `PWM_AUX_TRIMx`로 설정됩니다).
 
-The disarmed value should be set such that the motors don't spin (it's also used for the kill switch), at the minimum value they should spin.
+해제된 값은 모터가 회전하지 않게 하기 위해 반드시 설정되어야 합니다 (kill siwtch로 사용될 수도 있음).
 
-Channels are assigned to a group. Due to hardware limitations, the update rate can only be set per group. Use `pwm info` to display the groups. If the `-c` argument is used, all channels of any included group must be included.
+채널은 한 그룹에 할당됩니다. 하드웨어 한계때문에, 업데이트 속도는 그룹별로만 설정될 수 있습니다. 그룹을 출력하려면 `pwm info`을 사용하세요. If the `-c` argument is used, all channels of any included group must be included.
 
 The parameters `-p` and `-r` can be set to a parameter instead of specifying an integer: use -p p:PWM_MIN for example.
 
