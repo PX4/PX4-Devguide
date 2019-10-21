@@ -255,9 +255,12 @@ motor_ramp [arguments...]
 ## motor_test
 Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
+
 Utility to test motors.
 
-Note: this can only be used for drivers which support the motor_test uorb topic (currently uavcan and tap_esc)
+WARNING: remove all props before using this command.
+
+Note: this can only be used for drivers which support the motor_test uorb topic (not px4io).
 
 ### Usage {#motor_test_usage}
 ```
@@ -266,6 +269,8 @@ motor_test <command> [arguments...]
    test          Set motor(s) to a specific output value
      [-m <val>]  Motor to test (0...7, all if not specified)
      [-p <val>]  Power (0...100)
+                 default: 0
+     [-i <val>]  driver instance
                  default: 0
 
    stop          Stop all motors

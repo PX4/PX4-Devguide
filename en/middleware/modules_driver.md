@@ -367,13 +367,9 @@ It is used in SITL and HITL.
 ```
 pwm_out_sim <command> [arguments...]
  Commands:
-   start         Start the task in mode_pwm16
-
- All of the mode_* commands will start the pwm sim if not running already
-
-   mode_pwm      use 8 PWM outputs
-
-   mode_pwm16    use 16 PWM outputs
+   start         Start the module
+     [-m <val>]  Mode
+                 values: hil|sim, default: sim
 
    stop
 
