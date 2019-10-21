@@ -349,17 +349,17 @@ Source: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/syste
 
 쉘이나 스크립트를 통해 파라미터에 접근하고 조작하기 위한 명령어
 
-This is used for example in the startup script to set airframe-specific parameters.
+예로 이 명령어를 스타트업 스크립트에서 airframe-specific 파라미터를 설정하기 위핸 사용됩니다.
 
-Parameters are automatically saved when changed, eg. with `param set`. They are typically stored to FRAM or to the SD card. `param select` can be used to change the storage location for subsequent saves (this will need to be (re-)configured on every boot).
+파라미터는 변경되면 자동적으로 저장하려면 `param set` 옵션을 설정해줘야 합니다. 보통 FRAM이나 SD 카드에 저장되어 있습니다. `param select`는 다음 저장을 위해 스토리지 위치를 변경할 때 사용됩니다 (부팅마다 재설정이 필요합니다).
 
-If the FLASH-based backend is enabled (which is done at compile time, e.g. for the Intel Aero or Omnibus), `param select` has no effect and the default is always the FLASH backend. However `param save/load <file>` can still be used to write to/read from files.
+만약 FLASH 기반의 백엔드가 활성화되어 있으면 (Intel Aero, Omnibus는 컴파일시 완료됨), `param select`는 효과가 없으며 항상 기본값은 FLASH 백엔드입니다. 하지만 `param save/load <file>`는 파일에서 읽기/쓰기를 위해 사용할 수 있습니다.
 
-Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant parameters to a ground control station.
+각 파라미터는 부팅시에 접근하면서 설정되는 'used' 플래그를 갖고 있습니다. GSC(Ground Control Station)과 관련있는 파라미터만 보여줍니다.
 
 ### Examples
 
-Change the airframe and make sure the airframe's default parameters are loaded:
+airframe을 변경하고 airframe의 기본 파라미터가 로드되었는지 확인합니다.
 
     param set SYS_AUTOSTART 4001
     param set SYS_AUTOCONFIG 1
@@ -430,7 +430,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
 
 Source: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
-Tool to print performance counters
+퍼포먼스를 출력하기 위한 툴
 
 ### Usage {#perf_usage}
 
@@ -448,7 +448,7 @@ Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 ### Description
 
-This command is used to configure PWM outputs for servo and ESC control.
+서보와 ESC 컨트롤에 대해 PWM 출력을 설정하기 위한 명령어
 
 The default device `/dev/pwm_output0` are the Main channels, AUX channels are on `/dev/pwm_output1` (`-d` parameter).
 
