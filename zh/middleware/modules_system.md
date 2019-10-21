@@ -1,10 +1,35 @@
 # 模块参考：系统
 
+## battery_status
+
+Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
+
+### 描述
+
+The provided functionality includes:
+
+- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
+
+### Implementation
+
+It runs in its own thread and polls on the currently selected gyro topic.
+
+### Usage {#battery_status_usage}
+
+    battery_status <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## commander
 
 Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
 
-### 描述
+### Description
 
 The commander module contains the state machine for mode switching and failsafe behavior.
 
@@ -51,10 +76,10 @@ Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/module
 
 Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
 
-- 一个文件 （比如，在 SD 卡上）
-- FLASH 内存（如果飞控板支持的话）
+- a file (eg. on the SD card)
+- FLASH (if the board supports it)
 - FRAM
-- 内存 RAM (显然这种方式不是持续的)
+- RAM (this is obviously not persistent)
 
 It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
 
@@ -90,7 +115,7 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
 
-### Description
+### 描述
 
 Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
 
@@ -112,7 +137,7 @@ Keep printing all messages in the background:
 
 Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
-### 描述
+### Description
 
 Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 
@@ -214,8 +239,8 @@ System logger which logs a configurable set of uORB topics and system printf mes
 
 It supports 2 backends:
 
-- 文件：写入 ULog 文件到文件系统中（SD 卡）
-- MAVLink: 通过 MAVLink 将 ULog 数据流传输到客户端上（需要客户端支持此方式）
+- Files: write ULog files to the file system (SD card)
+- MAVLink: stream ULog data via MAVLink to a client (the client must support this)
 
 Both backends can be enabled and used at the same time.
 
@@ -225,8 +250,8 @@ The file backend supports 2 types of log files: full (the normal log) and a miss
 
 The implementation uses two threads:
 
-- 主进程以固定速率运行（如果以 -p 参数启动则会轮询一个主题），并检查数据的更新。
-- 写入线程，将数据写入文件中、
+- The main thread, running at a fixed rate (or polling on a topic if started with -p) and checking for data updates
+- The writer thread, writing data to the file
 
 In between there is a write buffer with configurable size (and another fixed-size buffer for the mission log). It should be large to avoid dropouts.
 
@@ -281,8 +306,8 @@ This module is used to replay ULog files.
 
 There are 2 environment variables used for configuration: `replay`, which must be set to an ULog file name - it's the log file to be replayed. The second is the mode, specified via `replay_mode`:
 
-- `replay_mode=ekf2`: 指定 EKF2 回放模式。 该模式只能与 ekf2 模块一起使用，但它可以让回放的运行速度尽可能的快。
-- 否则为 Generic ：该模式可用于回放任何模块，但回放速度只能与日志记录的速度相同。
+- `replay_mode=ekf2`: specific EKF2 replay mode. It can only be used with the ekf2 module, but allows the replay to run as fast as possible.
+- Generic otherwise: this can be used to replay any module(s), but the replay will be done with the same speed as the log was recorded.
 
 The module is typically used together with uORB publisher rules, to specify which messages should be replayed. The replay module will just publish all messages that are found in the log. It also applies the parameters from the log.
 
@@ -307,7 +332,7 @@ The replay procedure is documented on the [System-wide Replay](https://dev.px4.i
 
 Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules/events)
 
-### 描述
+### Description
 
 Background process running periodically on the LP work queue to perform housekeeping tasks. It is currently only responsible for temperature calibration and tone alarm on RC Loss.
 
@@ -340,11 +365,10 @@ The sensors module is central to the whole system. It takes low-level output fro
 
 The provided functionality includes:
 
-- 读取传感器驱动的输出 (例如，`sensor_gyro` 等)。 如果存在多个同类型传感器，那个模块将进行投票和容错处理。 然后应用飞控板的旋转和温度校正（如果被启用）。 最终发布传感器数据：其中名为 `sensor_combined` 的主题被系统的许多部件所使用。
-- 执行 RC 通道映射：读取通道原始输入 (`input_rc`)，应用校正并将 RC 通道映射到配置的通道 & 模式转换开关，低通滤波器，然后发布到 `rc_channels` 和 `manual_control_setpoint` 话题中。
-- 从 ADC 驱动中读取输出（通过 ioctl 接口）并发布到 `battery_status` 。
-- 当参数发生变化或者启动时，确保传感器驱动获得的矫正参数（缩放因子 & 偏移量）是最新的。 传感器驱动使用 ioctl 接口获取参数更新。 为了使这一功能正常运行，当 `sensors` 模块启动时传感器驱动必须已经处于运行状态。
-- 执行起飞前传感器一致性检查并发布到 `sensor_preflight` 主题中。
+- Read the output from the sensor drivers (`sensor_gyro`, etc.). If there are multiple of the same type, do voting and failover handling. Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the topics is `sensor_combined`, used by many parts of the system.
+- Do RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
+- Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
+- Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
 
 ### Implementation
 
