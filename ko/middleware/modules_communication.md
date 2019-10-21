@@ -1,4 +1,4 @@
-# Modules Reference: Communication
+# 모듈 레퍼런서: 통신
 
 ## frsky_telemetry
 
