@@ -293,6 +293,8 @@ Note: 이 명령어를 motor_test_uorb 토픽을 지원하는 드라이버만 �
          [-m <val>]  Motor to test (0...7, all if not specified)
          [-p <val>]  Power (0...100)
                      default: 0
+         [-t <val>]  Timeout in seconds (default=no timeout)
+                     default: 0
          [-i <val>]  driver instance
                      default: 0
     
