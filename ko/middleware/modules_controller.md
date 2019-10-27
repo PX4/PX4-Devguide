@@ -72,7 +72,7 @@ Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### Description
 
-이 컨트롤러는 2개의 루프를 가지고 있습니다. 위치 에러에 대한 루프, 속도 에러에 대한 루프입니다. Output of the velocity controller is thrust vector that is split to thrust direction (i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
+이 컨트롤러는 2개의 루프를 가지고 있습니다. 위치 에러에 대한 루프, 속도 에러에 대한 루프입니다. 속도 컨트롤러의 출력은 추력의 방향과 (예. 멀티콥터 방향을 위한 회전 행렬) 추력의 양 (예. 멀티콥터 추력)으로 나눠지는 추려 벡터입니다.
 
 The controller doesn't use Euler angles for its work, they are generated only for more human-friendly control and logging.
 
