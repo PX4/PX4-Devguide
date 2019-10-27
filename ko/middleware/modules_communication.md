@@ -161,7 +161,7 @@ ORB_USE_PUBLISHER_RULES과 함께 컴파일 되면 어떤 모듈에게 무슨 �
 
 ### Examples
 
-Monitor topic publication rates. Besides `top`, this is an important command for general system inspection:
+토픽 발생 속도를 모니터링합니다. `top` 과 함께 전반적인 시스템을 관찰할 수 있는 중요한 명령어입니다.
 
     uorb top
     
