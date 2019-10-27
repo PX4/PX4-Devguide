@@ -160,7 +160,7 @@ Source: [modules/vtol_att_control](https://github.com/PX4/Firmware/tree/master/s
 
 ### Description
 
-fw_att_control is the fixed wing attitude controller.
+fw_att_control 고정익 자세 컨트롤러입니다.
 
 ### Usage {#vtol_att_control_usage}
 
