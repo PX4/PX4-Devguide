@@ -151,13 +151,13 @@ uORB는 모듈간의 통신을 위해 사용되는 내부적인 Pub/Sub 메시�
 
 쓰레드나 워크 큐는 필요하지 않습니다. 이 모듈을 시작하기 위해서는 공유된 글로벌 상태만 초기화 시켜주면 됩니다. 통신은 공유 메모리를 통해 수행됩니다. 비동적이고 Lock-Free 하게 구현되었습니다. 예를 들면, 퍼블리셔와 섭스크라이버는 서로를 기다릴 필요하 없습니다. 이것은 퍼블리셔와 섭스크라이버가 독립적인 버퍼를 가짐으로써 이뤄집니다.
 
-The code is optimized to minimize the memory footprint and the latency to exchange messages.
+메모리가 차지하는 공간과 메시지 교환 지연을 최소화 하도록 설계되었습니다.
 
-The interface is based on file descriptors: internally it uses `read`, `write` and `ioctl`. Except for the publications, which use `orb_advert_t` handles, so that they can be used from interrupts as well (on NuttX).
+인터페이스는 fd(file descriptor)에 기초합니다: 내부적으로 `read`, `write`,`ioctl`을 사용합니다. `orb_advert_t` 핸들을 사용하는 퍼블리시를 제외하고는 NuttX에서는 인터럽트에서도 사용할 수 있습니다.
 
-Messages are defined in the `/msg` directory. They are converted into C/C++ code at build-time.
+`/msg` 디렉토리에 메시지들이 정의되어있습니다. 빌드할때 C/C++ 코드로 변환됩니다.
 
-If compiled with ORB_USE_PUBLISHER_RULES, a file with uORB publication rules can be used to configure which modules are allowed to publish which topics. This is used for system-wide replay.
+ORB_USE_PUBLISHER_RULES과 함께 컴파일 되면 어떤 모듈에게 무슨 토픽을 허용할지 설정할 수 있습니다. 이것은 system-wide replay에 사용됩니다.
 
 ### Examples
 
