@@ -74,7 +74,7 @@ Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src
 
 이 컨트롤러는 2개의 루프를 가지고 있습니다. 위치 에러에 대한 루프, 속도 에러에 대한 루프입니다. 속도 컨트롤러의 출력은 추력의 방향과 (예. 멀티콥터 방향을 위한 회전 행렬) 추력의 양 (예. 멀티콥터 추력)으로 나눠지는 추려 벡터입니다.
 
-The controller doesn't use Euler angles for its work, they are generated only for more human-friendly control and logging.
+이 컨트롤러는 동작을 위해 오일러 앵글을 사용하지 않습니다. 더 인간친화적인 조종과 기록을 남깁니다.
 
 ### Usage {#mc_pos_control_usage}
 
@@ -93,13 +93,13 @@ Source: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modu
 
 ### Description
 
-Module that is responsible for autonomous flight modes. This includes missions (read from dataman), takeoff and RTL. It is also responsible for geofence violation checking.
+자동 비행모드를 담당하는 모듈입니다. 미션(dataman 으로부터 수신), 이륙, RTL을 포함합니다. 지오 펜스 위반 검사도 담당합니다.
 
 ### Implementation
 
-The different internal modes are implemented as separate classes that inherit from a common base class `NavigatorMode`. The member `_navigation_mode` contains the current active mode.
+공통 기본 클래스`NavigatorMode`를 상속받은 독립적인 클래스로써 다른 내부적인 모드를 구현했습니다. 멤버 `_navigation_mode` 가 현재의 활성화된 모드를 포함합니다.
 
-Navigator publishes position setpoint triplets (`position_setpoint_triplet_s`), which are then used by the position controller.
+네비게이터는 포지션 컨트롤러에 사용되는 포지션 컨트롤 트리플렛(`position_setpoint_triplet_s`)을 퍼블리시합니다.
 
 ### Usage {#navigator_usage}
 
@@ -122,17 +122,17 @@ Source: [modules/rover_pos_control](https://github.com/PX4/Firmware/tree/master/
 
 ### Description
 
-Controls the position of a ground rover using an L1 controller.
+하나의 L1 컨트롤러를 사용하는 그라운드 로버의 포지션을 컨트롤합니다.
 
-Publishes `actuator_controls_0` messages at a constant 250Hz.
+`actuator_controls_0` 메시지를 250Hz 속도로 퍼블리시합니다.
 
 ### Implementation
 
-Currently, this implementation supports only a few modes:
+현재, 몇가지 모드만 지원합니다.
 
-- Full manual: Throttle and yaw controls are passed directly through to the actuators
-- Auto mission: The rover runs missions
-- Loiter: The rover will navigate to within the loiter radius, then stop the motors
+- Full manual: Throttle, yaw가 액추에이터를 통해 직접적으로 제어됩니다.
+- Auto mission: 기체가 미션을 수행합니다
+- Loiter: 기체가 그 선회반경 이내로 들어간 후 모터를 멈춥니다.
 
 ### Examples
 
