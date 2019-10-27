@@ -4,7 +4,7 @@
 
 Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
 
-FrSky Telemetry support. Auto-detects D or S.PORT protocol.
+FrSky 통신을 지원합니다. D, S.PORT 프로토콜을 자동으로 감지합니다.
 
 ### Usage {#frsky_telemetry_usage}
 
@@ -29,11 +29,11 @@ Source: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/module
 
 ### Description
 
-This module implements the MAVLink protocol, which can be used on a Serial link or UDP network connection. It communicates with the system via uORB: some messages are directly handled in the module (eg. mission protocol), others are published via uORB (eg. vehicle_command).
+이 모듈은 시리얼통신이나 UDP 통신에 사용될 수 있는 MAVLink 프로토콜을 구현한 것입니다. uORB를 통해 시스템과 통신합니다. 몇몇의 메시지는 이 모듈에서 처리합니다. 예를 들면, mission protocol 입니다. 다른 메시지들은 uROB를 통해 퍼블리시됩니다. 예를 들면, vehicle_command 입니다.
 
-Streams are used to send periodic messages with a specific rate, such as the vehicle attitude. When starting the mavlink instance, a mode can be specified, which defines the set of enabled streams with their rates. For a running instance, streams can be configured via `mavlink stream` command.
+스트림은 특정한 속도로 주기적인 메시지(예, 기체 자세)를 보내기 위해 사용됩니다. mavlink 인스턴스를 시작할 때 특정 속도로 스트림을 활성화 할지 정의하는 모드를 설정할 수 있습니다. 인스터스가 실행중 일때는 `mavlink stream` 명령어를 통해 설정할 수 있습니다.
 
-There can be multiple independent instances of the module, each connected to one serial device or network port.
+시리얼 디바이스나 네트워크 포트에 연결된 여러개의 독립적인 인스턴스가 있을 수 있습니다. 
 
 ### Implementation
 
