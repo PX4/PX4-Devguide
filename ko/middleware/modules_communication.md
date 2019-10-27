@@ -37,18 +37,18 @@ Source: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/module
 
 ### Implementation
 
-송신하는 쓰레드, 수신하는 쓰레드 2개를 사용해 구현했습니다. The sender runs at a fixed rate and dynamically reduces the rates of the streams if the combined bandwidth is higher than the configured rate (`-r`) or the physical link becomes saturated. This can be checked with `mavlink status`, see if `rate mult` is less than 1.
+송신하는 쓰레드, 수신하는 쓰레드 2개를 사용해 구현했습니다. 송신 쓰레드는 일정한 속도로 수행되고 설정한 속도(`-r`)보다 대역폭이 높아지거나 물리적인 연결이 포화가 되면 스트림의 속도는 동적으로 줄어듭니다. `mavlink status` 명령러를 통해 확인할 수 있습니다. `rate mult`가 1보다 작은지 보세요.
 
-**Careful**: some of the data is accessed and modified from both threads, so when changing code or extend the functionality, this needs to be take into account, in order to avoid race conditions and corrupt data.
+**Careful**: 일부 데이터는 두개의 쓰레드 모두에서 접근되고 수저됩니다. 따라서 코드를 바꾸거나 기능을 확장할 때는 레이스 컨디션과 데이터가 오염되는 것을 고려해야합니다.
 
 ### Examples
 
-Start mavlink on ttyS1 serial with baudrate 921600 and maximum sending rate of 80kB/s:
+ttyS1에 baudrate 921600, 최대 전송속도 80kB/s로 mavlink를 시작합니다.
 
     mavlink start -d /dev/ttyS1 -b 921600 -m onboard -r 80000
     
 
-Start mavlink on UDP port 14556 and enable the HIGHRES_IMU message with 50Hz:
+UDP 포트 14556에 HIGHRES_IMU 메시지를 50Hz속도로 활성화해 mavlink를 시작합니다.
 
     mavlink start -u 14556 -r 1000000
     mavlink stream -u 14556 -s HIGHRES_IMU -r 50
@@ -143,13 +143,13 @@ Source: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/u
 
 ### Description
 
-uORB is the internal pub-sub messaging system, used for communication between modules.
+uORB는 모듈간의 통신을 위해 사용되는 내부적인 Pub/Sub 메시징 시스템입니다.
 
-It is typically started as one of the very first modules and most other modules depend on it.
+일반적으로 첫 번째로 시작되는 모듈이며 다른 모듈들이 이 모듈에 의존합니다.
 
 ### Implementation
 
-No thread or work queue is needed, the module start only makes sure to initialize the shared global state. Communication is done via shared memory. The implementation is asynchronous and lock-free, ie. a publisher does not wait for a subscriber and vice versa. This is achieved by having a separate buffer between a publisher and a subscriber.
+쓰레드나 워크 큐는 필요하지 않습니다. 이 모듈을 시작하기 위해서는 공유된 글로벌 상태만 초기화 시켜주면 됩니다. 통신은 공유 메모리를 통해 수행됩니다. 비동적이고 Lock-Free 하게 구현되었습니다. 예를 들면, 퍼블리셔와 섭스크라이버는 서로를 기다릴 필요하 없습니다. 이것은 퍼블리셔와 섭스크라이버가 독립적인 버퍼를 가짐으로써 이뤄집니다.
 
 The code is optimized to minimize the memory footprint and the latency to exchange messages.
 
