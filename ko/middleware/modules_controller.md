@@ -6,7 +6,7 @@ Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### Description
 
-fw_att_control is the fixed wing attitude controller.
+fw_att_control는 고정익 기체 컨트롤러입니다.
 
 ### Usage {#fw_att_control_usage}
 
@@ -24,7 +24,7 @@ Source: [modules/fw_pos_control_l1](https://github.com/PX4/Firmware/tree/master/
 
 ### Description
 
-fw_pos_control_l1 is the fixed wing position controller.
+fw_pos_control_l1는 고정익 날개 위치 컨트롤러입니다.
 
 ### Usage {#fw_pos_control_l1_usage}
 
@@ -43,17 +43,17 @@ Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### Description
 
-This implements the multicopter attitude and rate controller. It takes attitude setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+멀티콥터의 자세와 속도 컨트롤러를 구현한 것입니다. 입력으로 자세 설정값(`vehicle_attitude_setpoint`) 또는 속도 설정값 (acro 모드에서 `manual_control_setpoint` 토픽을 통해)을 받아들이고 액추테이터의 컨트롤 메시지를 출력합니다.
 
-The controller has two loops: a P loop for angular error and a PID loop for angular rate error.
+컨트롤러는 2개의 루프를 갖고 있습니다. 각도 에러에 대한 루프, 각도 속도 에러에 대한 루프입니다.
 
-Publication documenting the implemented Quaternion Attitude Control: Nonlinear Quadrocopter Attitude Control (2013) by Dario Brescianini, Markus Hehn and Raffaello D'Andrea Institute for Dynamic Systems and Control (IDSC), ETH Zurich
+Quaternion Attitude Control 구현에 대한 문서 : Nonlinear Quadrocopter Attitude Control (2013) by Dario Brescianini, Markus Hehn and Raffaello D'Andrea Institute for Dynamic Systems and Control (IDSC), ETH Zurich
 
 https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf
 
 ### Implementation
 
-To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
+이 모듈을 컨트롤 지연을 줄이기 위해 IMU 드라이버에 의해 퍼블리쉬된 gyro topic에 직접적으로 풀링합니다.
 
 ### Usage {#mc_att_control_usage}
 
@@ -72,7 +72,7 @@ Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### Description
 
-The controller has two loops: a P loop for position error and a PID loop for velocity error. Output of the velocity controller is thrust vector that is split to thrust direction (i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
+이 컨트롤러는 2개의 루프를 가지고 있습니다. 위치 에러에 대한 루프, 속도 에러에 대한 루프입니다. Output of the velocity controller is thrust vector that is split to thrust direction (i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
 
 The controller doesn't use Euler angles for its work, they are generated only for more human-friendly control and logging.
 
