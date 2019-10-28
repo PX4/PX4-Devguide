@@ -20,7 +20,8 @@ curl -fsSL get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-The default installation requires that you invoke *Docker* as the root user (i.e. using `sudo`). If you would like to [use Docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user), you can optionally add the user to the "docker" group and then log out/in:
+The default installation requires that you invoke *Docker* as the root user (i.e. using `sudo`). However, for building the PX4 firwmare we suggest to [use docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). That way, your build folder won't be owned by root after using docker.
+
 ```sh
 # Create docker group (may not be required)
 sudo groupadd docker
@@ -69,11 +70,11 @@ The easiest way to use the containers is via the [docker_run.sh](https://github.
 For example, to build SITL you would call (from within the **/Firmware** directory):
 
 ```sh
-sudo ./Tools/docker_run.sh 'make px4_sitl_default'
+./Tools/docker_run.sh 'make px4_sitl_default'
 ```
 Or to start a bash session using the NuttX toolchain:
 ```
-sudo ./Tools/docker_run.sh 'bash'
+./Tools/docker_run.sh 'bash'
 ```
 
 > **Tip** The script is easy because you don't need to know anything much about *Docker* or think about what container to use. However it is not particularly robust! The manual approach discussed in the [section below](#manual_start) is more flexible and should be used if you have any problems with the script.
@@ -109,7 +110,7 @@ The concrete example below shows how to open a bash shell and share the director
 xhost +
 
 # Run docker and open bash shell
-sudo docker run -it --privileged \
+docker run -it --privileged \
 --env=LOCAL_USER_ID="$(id -u)" \
 -v ~/src/Firmware:/src/firmware/:rw \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
@@ -132,9 +133,9 @@ The `docker run` command can only be used to create a new container. To get back
 
 ```sh
 # start the container
-sudo docker start container_name
+docker start container_name
 # open a new bash shell in this container
-sudo docker exec -it container_name bash
+docker exec -it container_name bash
 ```
 
 If you need multiple shells connected to the container, just open a new shell and execute that last command again.
@@ -143,13 +144,13 @@ If you need multiple shells connected to the container, just open a new shell an
 
 Sometimes you may need to clear a container altogether. You can do so using its name:
 ```sh
-$ sudo docker rm mycontainer
+docker rm mycontainer
 ```
 If you can't remember the name, then you can list inactive container ids and then delete them, as shown below:
 ```sh
-$ sudo docker ps -a -q
+docker ps -a -q
 45eeb98f1dd9
-$ sudo docker rm 45eeb98f1dd9
+docker rm 45eeb98f1dd9
 ```
 
 ### QGroundControl
