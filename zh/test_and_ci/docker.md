@@ -19,7 +19,7 @@ curl -fsSL get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-默认安装要求您以 root 用户身份调用 * Docker*（即使用` sudo `）。 If you would like to [use Docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user), you can optionally add the user to the "docker" group and then log out/in:
+默认安装要求您以 root 用户身份调用 * Docker*（即使用` sudo `）。 However, for building the PX4 firwmare we suggest to [use docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). That way, your build folder won't be owned by root after using docker.
 
 ```sh
 ＃创建 docker 组（可能不是必需的）
@@ -66,12 +66,12 @@ cd Firmware
 例如，要构建 SITL，您将调用（从 **/Firmware** 目录中）：
 
 ```sh
-sudo ./Tools/docker_run.sh 'make px4_sitl_default'
+./Tools/docker_run.sh 'make px4_sitl_default'
 ```
 
 或者使用 NuttX 工具链启动 bash 会话：
 
-    sudo ./Tools/docker_run.sh 'bash'
+    ./Tools/docker_run.sh 'bash'
     
 
 > **Tip** 脚本很简单，因为您不需要了解 *Docker* 或者考虑使用哪个容器。 但它不是特别准确！ 下面讨论的 [section below](#manual_start) 方法更灵活，如果您对脚本有任何问题，应该使用它。
@@ -109,7 +109,7 @@ docker run -it --privileged \
 xhost +
 
 # Run docker and open bash shell
-sudo docker run -it --privileged \
+docker run -it --privileged \
 --env=LOCAL_USER_ID="$(id -u)" \
 -v ~/src/Firmware:/src/firmware/:rw \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
@@ -131,9 +131,9 @@ make px4_sitl_default gazebo
 
 ```sh
 # start the container
-sudo docker start container_name
+docker start container_name
 # open a new bash shell in this container
-sudo docker exec -it container_name bash
+docker exec -it container_name bash
 ```
 
 如果需要连接到容器的多个 shell，只需打开一个新 shell 并再次执行最后一个命令。
@@ -143,15 +143,15 @@ sudo docker exec -it container_name bash
 有时您可能需要完全清除容器。 您可以使用其名称来执行此操作：
 
 ```sh
-$ sudo docker rm mycontainer
+docker rm mycontainer
 ```
 
 如果您忘记了名称，则可以列出非活动容器 Id，然后将其删除，如下所示：
 
 ```sh
-$ sudo docker ps -a -q
+docker ps -a -q
 45eeb98f1dd9
-$ sudo docker rm 45eeb98f1dd9
+docker rm 45eeb98f1dd9
 ```
 
 ### QGroundControl
