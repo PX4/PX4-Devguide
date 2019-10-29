@@ -131,6 +131,8 @@ Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmw
                      default: 2019
          [-s <val>]  Select UDP Network Port for sending (remote)
                      default: 2020
+         [-i <val>]  Select IP address (remote)
+                     values: <x.x.x.x>, default: 127.0.0.1
     
        stop
     
