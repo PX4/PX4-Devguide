@@ -130,6 +130,8 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
                      default: 2019
          [-s <val>]  Select UDP Network Port for sending (remote)
                      default: 2020
+         [-i <val>]  Select IP address (remote)
+                     values: <x.x.x.x>, default: 127.0.0.1
     
        stop
     
