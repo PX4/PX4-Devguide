@@ -111,10 +111,10 @@ struct message_header_s {
   	char format[header.msg_size];
   };
   ```
-  `format`: plain-text string with the following format: `message_name:field0;field1;`
+  `format`: plain-text string with the following format: `topic_name:field0;field1;`
   There can be an arbitrary amount of fields (at least 1), separated by `;`.
   A field has the format: `type field_name` or `type[array_length] field_name` for arrays (only fixed size arrays are supported).
-  `type` is one of the basic binary types or a `message_name` of another format definition (nested usage).
+  `type` is one of the basic binary types or a `topic_name` of another format definition (nested usage).
   A type can be used before it's defined. 
   There can be arbitrary nesting but no circular dependencies.
 
@@ -199,14 +199,14 @@ This section ends before the start of the first `message_add_logged_s` or `messa
 ### Data Section
 
 The following messages belong to this section:
-- 'A': subscribe a message by name and give it an id that is used in `message_data_s`. 
+- 'A': subscribe a message by is topic name and give it an id that is used in `message_data_s`. 
   This must come before the first corresponding `message_data_s`.
   ```c
   struct message_add_logged_s {
   	struct message_header_s header;
   	uint8_t multi_id;
   	uint16_t msg_id;
-  	char message_name[header.msg_size-3];
+  	char topic_name[header.msg_size-3];
   };
   ```
   `multi_id`: the same message format can have multiple instances, for example if the system has two sensors of the same type.
@@ -214,7 +214,7 @@ The following messages belong to this section:
   `msg_id`: unique id to match `message_data_s` data. 
   The first use must set this to 0, then increase it. 
   The same `msg_id` must not be used twice for different subscriptions, not even after unsubscribing.
-  `message_name`: message name to subscribe to. 
+  `topic_name`: message name to subscribe to. 
   Must match one of the `message_format_s` definitions.
 
 - 'R': unsubscribe a message, to mark that it will not be logged anymore (not used currently).
