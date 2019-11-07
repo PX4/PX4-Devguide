@@ -283,8 +283,6 @@ Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/
 
 WARNING: 이 명령어를 수행하려면 모든 프로브를 제거하세요.
 
-Note: 이 명령어를 motor_test_uorb 토픽을 지원하는 드라이버만 사용할 수 있습니다.
-
 ### Usage {#motor_test_usage}
 
     motor_test <command> [arguments...]
@@ -307,7 +305,7 @@ Note: 이 명령어를 motor_test_uorb 토픽을 지원하는 드라이버만 �
 
 Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
-마운트와 파티션을 테스트하기 위한 유틸리티 (보드에 정의된 대로 FRAM/EEPROM에 기초합니다)
+Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
 
 ### Usage {#mtd_usage}
 
@@ -333,9 +331,9 @@ Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Source: [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
 
-주어진 포트에서 NSH 쉘을 시작합니다.
+Start an NSH shell on a given port.
 
-이 명령어를 이전에 USR 시리얼 포트에서 쉘을 시작하기 위해 사용되었습니다. 이제는 mavlink가 실행되며, 쉘을 사용하는 것도 가능합니다.
+This was previously used to start a shell on the USB serial port. Now there runs mavlink, and it is possible to use a shell over mavlink.
 
 ### Usage {#nshterm_usage}
 
@@ -349,19 +347,19 @@ Source: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/syste
 
 ### Description
 
-쉘이나 스크립트를 통해 파라미터에 접근하고 조작하기 위한 명령어
+Command to access and manipulate parameters via shell or script.
 
-예로 이 명령어를 스타트업 스크립트에서 airframe-specific 파라미터를 설정하기 위핸 사용됩니다.
+This is used for example in the startup script to set airframe-specific parameters.
 
-파라미터는 변경되면 자동적으로 저장하려면 `param set` 옵션을 설정해줘야 합니다. 보통 FRAM이나 SD 카드에 저장되어 있습니다. `param select`는 다음 저장을 위해 스토리지 위치를 변경할 때 사용됩니다 (부팅마다 재설정이 필요합니다).
+Parameters are automatically saved when changed, eg. with `param set`. They are typically stored to FRAM or to the SD card. `param select` can be used to change the storage location for subsequent saves (this will need to be (re-)configured on every boot).
 
-만약 FLASH 기반의 백엔드가 활성화되어 있으면 (Intel Aero, Omnibus는 컴파일시 완료됨), `param select`는 효과가 없으며 항상 기본값은 FLASH 백엔드입니다. 하지만 `param save/load <file>`는 파일에서 읽기/쓰기를 위해 사용할 수 있습니다.
+If the FLASH-based backend is enabled (which is done at compile time, e.g. for the Intel Aero or Omnibus), `param select` has no effect and the default is always the FLASH backend. However `param save/load <file>` can still be used to write to/read from files.
 
-각 파라미터는 부팅시에 접근하면서 설정되는 'used' 플래그를 갖고 있습니다. GSC(Ground Control Station)과 관련있는 파라미터만 보여줍니다.
+Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant parameters to a ground control station.
 
 ### Examples
 
-airframe을 변경하고 airframe의 기본 파라미터가 로드되었는지 확인합니다.
+Change the airframe and make sure the airframe's default parameters are loaded:
 
     param set SYS_AUTOSTART 4001
     param set SYS_AUTOCONFIG 1
@@ -432,7 +430,7 @@ airframe을 변경하고 airframe의 기본 파라미터가 로드되었는지 �
 
 Source: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
-퍼포먼스를 출력하기 위한 툴
+Tool to print performance counters
 
 ### Usage {#perf_usage}
 
@@ -450,28 +448,28 @@ Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 ### Description
 
-서보와 ESC 컨트롤에 대해 PWM 출력을 설정하기 위한 명령어
+This command is used to configure PWM outputs for servo and ESC control.
 
-기본 디바이스 `/dev/pwm_output0` 가 메인 채널이고, AUX channels 은 `/dev/pwm_output1` 입니다 (`-d` 파라미터).
+The default device `/dev/pwm_output0` are the Main channels, AUX channels are on `/dev/pwm_output1` (`-d` parameter).
 
-스타트업 스크립트에서 PWM 파라미터가 (`PWM_*`) 적용되었는지 확인하가 위해 사용됩니다 (만약 airframe에 지정되어있으면 그것으로 적용). `pwm info` 현재의 설정을 보여줍니다. (trim 값은 오프셋이며 `PWM_MAIN_TRIMx` 과 `PWM_AUX_TRIMx`로 설정됩니다).
+It is used in the startup script to make sure the PWM parameters (`PWM_*`) are applied (or the ones provided by the airframe config if specified). `pwm info` shows the current settings (the trim value is an offset and configured with `PWM_MAIN_TRIMx` and `PWM_AUX_TRIMx`).
 
-해제된 값은 모터가 회전하지 않게 하기 위해 반드시 설정되어야 합니다 (kill siwtch로 사용될 수도 있음).
+The disarmed value should be set such that the motors don't spin (it's also used for the kill switch), at the minimum value they should spin.
 
-채널은 한 그룹에 할당됩니다. 하드웨어 한계때문에, 업데이트 속도는 그룹별로만 설정될 수 있습니다. 그룹을 출력하려면 `pwm info`을 사용하세요. `-c` 인자를 사용하면 포함되는 그룹의 모든 채널이 포함되어야 합니다.
+Channels are assigned to a group. Due to hardware limitations, the update rate can only be set per group. Use `pwm info` to display the groups. If the `-c` argument is used, all channels of any included group must be included.
 
-파라미터 `-p`와 `-r`는 숫자를 지정하는 것 대신에 파라미터를 설정할 수 있습니다.-p p:PWM_MIN 처럼 사용하세요.
+The parameters `-p` and `-r` can be set to a parameter instead of specifying an integer: use -p p:PWM_MIN for example.
 
-OneShot 모드일때는, PWM range [1000, 2000] 는 자동으로 [125, 250]에 매핑됩니다.
+Note that in OneShot mode, the PWM range [1000, 2000] is automatically mapped to [125, 250].
 
 ### Examples
 
-모든 채널의 PWM 속도를 400 Hz로 설정합니다.
+Set the PWM rate for all channels to 400 Hz:
 
     pwm rate -a -r 400
     
 
-출력을 테스트 하는 예. 1, 3 채널 그리고 PWM 을 1200us 로 설정
+Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
 
     pwm arm
     pwm test -c 13 -p 1200
@@ -538,7 +536,7 @@ OneShot 모드일때는, PWM range [1000, 2000] 는 자동으로 [125, 250]에 �
 
 Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
 
-시스템을 재부팅
+Reboot the system
 
 ### Reboot the system {#reboot_usage}
 
@@ -549,7 +547,7 @@ Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/syst
 
 Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
 
-SD 카드의 속도를 테스트
+Test the speed of an SD Card
 
 ### Usage {#sd_bench_usage}
 
@@ -567,7 +565,7 @@ SD 카드의 속도를 테스트
 
 Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
 
-실행중인 프로세스의 CPU, 스택사용, 우선순위, 상태를 모니터링
+Monitor running processes and their CPU, stack usage, priority and state
 
 ### Usage {#top_usage}
 
@@ -579,7 +577,7 @@ Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
-USB가 연결되어 있는지 확인합니다. 스타트업 스크립트에서 사용됩니다. 리턴값은 0은 연결되어 있음, 1은 아님입니다.
+Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
 
 ### Usage {#usb_connected_usage}
 
@@ -590,7 +588,7 @@ USB가 연결되어 있는지 확인합니다. 스타트업 스크립트에서 �
 
 Source: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
 
-다양한 버전 정보를 출력하기 위한 툴
+Tool to print various version information
 
 ### Usage {#ver_usage}
 
