@@ -283,8 +283,6 @@ Utility to test motors.
 
 WARNING: remove all props before using this command.
 
-Note: this can only be used for drivers which support the motor_test uorb topic (not px4io).
-
 ### Usage {#motor_test_usage}
 
     motor_test <command> [arguments...]
