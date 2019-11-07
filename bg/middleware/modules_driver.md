@@ -46,20 +46,13 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
     batt_smbus <command> [arguments...]
      Commands:
        start
-         [-X <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_EXTERNAL
-         [-T <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_EXTERNAL1
-         [-R <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_EXTERNAL2
-         [-I <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_INTERNAL
-         [-A <val>]  ullpt
-                     default: BATT_SMBUS_BUS_ALL
+         [-X]        BATT_SPARD_BUS_I2C_EXTERNAL
+         [-T]        BATT_SPARD_BUS_I2C_EXTERNAL1
+         [-R]        BATT_SPARD_BUS_I2C_EXTERNAL2
+         [-I]        BATT_SPARD_BUS_I2C_INTERNAL
+         [-A]        BATT_SPARD_BUS_ALL
     
        man_info      Prints manufacturer info.
-    
-       report        Prints the last report.
     
        unseal        Unseals the devices flash memory to enable write_flash
                      commands.
@@ -75,6 +68,10 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
          [address]   The address to start writing.
          [number of bytes] Number of bytes to send.
          [data[0]...data[n]] One byte of data at a time separated by spaces.
+    
+       stop
+    
+       status        print status info
     
 
 ## dshot
