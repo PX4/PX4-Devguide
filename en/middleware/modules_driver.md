@@ -41,11 +41,11 @@ batt_smbus -X write_flash 19069 2 27 0
 batt_smbus <command> [arguments...]
  Commands:
    start
-     [-X]        BATT_SPARD_BUS_I2C_EXTERNAL
-     [-T]        BATT_SPARD_BUS_I2C_EXTERNAL1
-     [-R]        BATT_SPARD_BUS_I2C_EXTERNAL2
-     [-I]        BATT_SPARD_BUS_I2C_INTERNAL
-     [-A]        BATT_SPARD_BUS_ALL
+     [-X]        BATT_SMBUS_BUS_I2C_EXTERNAL
+     [-T]        BATT_SMBUS_BUS_I2C_EXTERNAL1
+     [-R]        BATT_SMBUS_BUS_I2C_EXTERNAL2
+     [-I]        BATT_SMBUS_BUS_I2C_INTERNAL
+     [-A]        BATT_SMBUS_BUS_ALL
 
    man_info      Prints manufacturer info.
 
