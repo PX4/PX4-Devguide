@@ -283,8 +283,6 @@ Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/
 
 WARNING: 이 명령어를 수행하려면 모든 프로브를 제거하세요.
 
-Note: this can only be used for drivers which support the motor_test uorb topic (not px4io).
-
 ### Usage {#motor_test_usage}
 
     motor_test <command> [arguments...]
