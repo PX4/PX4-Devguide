@@ -41,20 +41,13 @@ batt_smbus -X write_flash 19069 2 27 0
 batt_smbus <command> [arguments...]
  Commands:
    start
-     [-X <val>]  ullpt
-                 default: BATT_SMBUS_BUS_I2C_EXTERNAL
-     [-T <val>]  ullpt
-                 default: BATT_SMBUS_BUS_I2C_EXTERNAL1
-     [-R <val>]  ullpt
-                 default: BATT_SMBUS_BUS_I2C_EXTERNAL2
-     [-I <val>]  ullpt
-                 default: BATT_SMBUS_BUS_I2C_INTERNAL
-     [-A <val>]  ullpt
-                 default: BATT_SMBUS_BUS_ALL
+     [-X]        BATT_SMBUS_BUS_I2C_EXTERNAL
+     [-T]        BATT_SMBUS_BUS_I2C_EXTERNAL1
+     [-R]        BATT_SMBUS_BUS_I2C_EXTERNAL2
+     [-I]        BATT_SMBUS_BUS_I2C_INTERNAL
+     [-A]        BATT_SMBUS_BUS_ALL
 
    man_info      Prints manufacturer info.
-
-   report        Prints the last report.
 
    unseal        Unseals the devices flash memory to enable write_flash
                  commands.
@@ -70,6 +63,10 @@ batt_smbus <command> [arguments...]
      [address]   The address to start writing.
      [number of bytes] Number of bytes to send.
      [data[0]...data[n]] One byte of data at a time separated by spaces.
+
+   stop
+
+   status        print status info
 ```
 ## dshot
 Source: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
