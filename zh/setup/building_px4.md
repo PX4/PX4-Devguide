@@ -128,7 +128,7 @@ The following list shows the build commands for common boards:
 - [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav_x21_default` 
 - [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make bitcraze_crazyflie_default`
 - [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make intel_aerofc-v1_default`
-- [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** 您 **必须** 使用 [版本支持的GCC](../setup/dev_env_linux_ubuntu.md#nuttx-based-hardware)编译（比如，和用于[CI/docker](../test_and_ci/docker.md)一样）或者从构建中删除模块。 使用不受支持的 GCC 构建可能会失败，因为 PX4 对飞控板有 1MB 的闪存限制。
+- [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** You **must** use a supported version of GCC to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. 使用不受支持的 GCC 构建可能会失败，因为 PX4 对飞控板有 1MB 的闪存限制。
 - Pixhawk 1 的 2 MB 闪存版: `make px4_fmu-v3_default`
 
 > **Note** Generally the `_default` suffix is optional (i.e. you can also build using `make px4_fmu-v4`, `make bitcraze_crazyflie`, etc.).
@@ -167,7 +167,7 @@ cd Firmware
 make emlid_navio2_cross # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory **build/emlid_navio2_cross/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
+The "px4" executable file is in the directory **build/emlid_navio2_cross/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
 Then set the IP (or hostname) of your RPi using:
 
@@ -314,7 +314,7 @@ adb shell reboot
 
 Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html) are covered in:
 
-- [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)（PX4 用户手册）
+- [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
 - [OcPoC PX4 构建页](https://aerotenna.readme.io/docs/px4-setup)
 
 ### 基于 QuRT / Snapdragon 的飞控板
@@ -425,7 +425,7 @@ Qt creator offers clickable symbols, auto-completion of the complete codebase an
 
 ### 在 Linux 上使用 Qt creator
 
-Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
+Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
 ```sh
 cd ~/src/Firmware
@@ -444,7 +444,7 @@ After loading, the **play** button can be configured to run the project by selec
 
 ### 在 Mac OS 上使用 Qt creator
 
-Before starting Qt Creator, the [project file](https://cmake.org/Wiki/CMake_Generator_Specific_Information#Code::Blocks_Generator) needs to be created:
+Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
 ```sh
 cd ~/src/Firmware
@@ -508,7 +508,7 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
     
     > **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
     
-    *Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/px4-dev/Dockerfile_nuttx) install *bloaty* as shown:
+    *Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/Dockerfile_nuttx) install *bloaty* as shown:
     
         git clone --recursive https://github.com/google/bloaty.git /tmp/bloaty \
             && cd /tmp/bloaty && cmake -GNinja . && ninja bloaty && cp bloaty /usr/local/bin/ \
