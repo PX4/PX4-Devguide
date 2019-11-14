@@ -19,7 +19,7 @@ For example, for FMUv5:
   - A board-specific initialisation file is automatically included in startup scripts if found under the boards directory at **init/rc.board**.
   - The file is used to start sensors (and other things) that only exist on a particular board. 
     It may also be used to set a board's default parameters, UART mappings, and any other special cases.
-  - For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF, and in AUTOCNF section (fresh setups) it sets the [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) parameter.
+  - For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF, and in AUTOCNF section (fresh setups) it sets the [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) parameter. 
 
 In addition there are several groups of configuration files for each board located throughout the code base:
 * The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
