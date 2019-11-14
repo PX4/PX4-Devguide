@@ -76,6 +76,8 @@ Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavs
 make px4_sitl jmavsim
 ```
 
+> If you are on macOS Catalina then you might have a problem with cmake. Run `xcode-select --install` then `sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /usr/local/include/` in your terminal and it should all work.
+
 This will bring up the PX4 console below:
 
 ![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
