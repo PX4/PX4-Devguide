@@ -46,7 +46,7 @@ Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](http://nicadrone.com/i
 
 ### Connecting via FTDI 3.3V Cable
 
-If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](http://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) will do as well.
+If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](https://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) will do as well.
 
 | Pixhawk 1/2  |         | FTDI    |        |
 | -- | -- | -- | -- |
