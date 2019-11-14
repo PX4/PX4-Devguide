@@ -35,7 +35,7 @@ The easiest way to setup the environment is to use the **<a href="https://raw.gi
     
     成功完成编译后可以在 `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4` 文件夹下找到编译好的固件。
     
-    > **注意：** 为其它飞控板编译固件的 `make` 指令参见 [编译代码](../setup/building_px4.md#nuttx--pixhawk-based-boards)
+    > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx)
 
 2. 在 Windows 平台上无法直接在 bash shell 中使用 `upload` 命令完成固件的烧写，你可以使用 *QGroundControl* 或者 *Mission Planner* 烧写自定义的固件。
 
