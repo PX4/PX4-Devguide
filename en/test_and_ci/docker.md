@@ -4,7 +4,8 @@ Docker containers are provided for the complete [PX4 development toolchain](../s
 
 This topic shows how to use the [available docker containers](#px4_containers) to access the build environment in a local Linux computer.
 
-> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/tree/master/docker/px4-dev). They are built automatically on [Docker Hub](https://hub.docker.com/u/px4io/).
+> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/tree/master/docker).
+  They are built automatically on [Docker Hub](https://hub.docker.com/u/px4io/).
 
 
 ## Prerequisites
@@ -33,7 +34,7 @@ sudo usermod -aG docker $USER
 
 ## Container Hierarchy {#px4_containers}
 
-The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)):
+The available containers are listed below (from [Github](https://github.com/PX4/containers/tree/master/docker#container-hierarchy)):
 
 Container | Description
 ---|---
@@ -224,6 +225,3 @@ export DOCKER_HOST=tcp://<ip of your VM>:2375
 docker ps
 ```
 
-## Legacy
-
-The ROS multiplatform containers are not maintained anymore: https://github.com/PX4/containers/tree/master/docker/ros-indigo
