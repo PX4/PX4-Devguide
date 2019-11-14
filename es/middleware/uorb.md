@@ -115,13 +115,3 @@ uORB provides a mechanism to publish multiple independent instances of the same 
 Make sure not to mix `orb_advertise_multi` and `orb_advertise` for the same topic.
 
 The full API is documented in [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp).
-
-## Troubleshooting and common Pitfalls
-
-The following explains some common pitfalls and corner cases:
-
-- The topic is not published: make sure the `ORB_ID()`'s of each call match. It is also important that `orb_subscribe` and `orb_unsubscribe` are **called from the same task** as `orb_check` and `orb_copy`. This applies to `px4_task_spawn_cmd()`, but also when using work queues (`work_queue()`).
-- Make sure to clean up: use `orb_unsubscribe` and `orb_unadvertise`.
-- A successful `orb_check()` or `px4_poll()` call requires an `orb_copy()`, otherwise the next poll will return immediately.
-- It is perfectly ok to call `orb_subscribe` before anyone advertised the topic.
-- `orb_check()` and `px4_poll()` will only return true for publications that are done after `orb_subscribe()`. This is important for topics that are not published regularly. If a subscriber needs the previous data, it should just do an unconditional `orb_copy()` right after `orb_subscribe()` (note that `orb_copy()` will fail if there is no advertiser yet).

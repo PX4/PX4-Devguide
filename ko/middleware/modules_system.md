@@ -1,5 +1,73 @@
 # Modules Reference: System
 
+## battery_status
+
+Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
+
+### Description
+
+The provided functionality includes:
+
+- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
+
+### Implementation
+
+It runs in its own thread and polls on the currently selected gyro topic.
+
+### Usage {#battery_status_usage}
+
+    battery_status <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
+## commander
+
+Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
+
+### Description
+
+The commander module contains the state machine for mode switching and failsafe behavior.
+
+### Usage {#commander_usage}
+
+    commander <command> [arguments...]
+     Commands:
+       start
+         [-h]        Enable HIL mode
+    
+       calibrate     Run sensor calibration
+         mag|accel|gyro|level|esc|airspeed Calibration type
+    
+       check         Run preflight checks
+    
+       arm
+         [-f]        Force arming (do not run preflight checks)
+    
+       disarm
+    
+       takeoff
+    
+       land
+    
+       transition    VTOL transition
+    
+       mode          Change flight mode
+         manual|acro|offboard|stabilized|rattitude|altctl|posctl|auto:mission|auto:l
+                     oiter|auto:rtl|auto:takeoff|auto:land|auto:precland Flight mode
+    
+       lockdown
+         [off]       Turn lockdown off
+    
+       stop
+    
+       status        print status info
+    
+
 ## dataman
 
 Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
@@ -41,6 +109,28 @@ Reading and writing a single item is always atomic. If multiple items need to be
        stop
     
        status        print status info
+    
+
+## dmesg
+
+Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
+
+### Description
+
+Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
+
+### Examples
+
+Keep printing all messages in the background:
+
+    dmesg -f &
+    
+
+### Usage {#dmesg_usage}
+
+    dmesg <command> [arguments...]
+     Commands:
+         [-f]        Follow: wait for new messages
     
 
 ## heater
@@ -111,7 +201,7 @@ The module runs periodically on the HP work queue.
     land_detector <command> [arguments...]
      Commands:
        start         Start the background task
-         fixedwing|multicopter|vtol|ugv Select vehicle type
+         fixedwing|multicopter|vtol|rover Select vehicle type
     
        stop
     
@@ -184,6 +274,7 @@ Or if already running:
        start
          [-m <val>]  Backend mode
                      values: file|mavlink|all, default: all
+         [-x]        Enable/disable logging via Aux1 RC channel
          [-e]        Enable logging right after start until disarm (otherwise only
                      when armed)
          [-f]        Log until shutdown (implies -e)
@@ -192,8 +283,6 @@ Or if already running:
                      default: 280
          [-b <val>]  Log buffer size in KiB
                      default: 12
-         [-q <val>]  uORB queue size for mavlink mode
-                     default: 14
          [-p <val>]  Poll on a topic instead of running with fixed rate (Log rate
                      and topic intervals are ignored if this is set)
                      values: <topic_name>
@@ -278,7 +367,6 @@ The provided functionality includes:
 
 - Read the output from the sensor drivers (`sensor_gyro`, etc.). If there are multiple of the same type, do voting and failover handling. Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the topics is `sensor_combined`, used by many parts of the system.
 - Do RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
-- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
 - Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
 - Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
 
@@ -334,3 +422,22 @@ Play system tune #2:
        libtest       Test library
     
        stop          Stop playback (use for repeated tunes)
+    
+
+## work_queue
+
+Source: [systemcmds/work_queue](https://github.com/PX4/Firmware/tree/master/src/systemcmds/work_queue)
+
+### Description
+
+Command-line tool to show work queue status.
+
+### Usage {#work_queue_usage}
+
+    work_queue <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info

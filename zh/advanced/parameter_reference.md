@@ -1,8 +1,259 @@
 # 参数对照表
 
-> **注意：****这个清单是从源代码中自动生成的** (使用`make parameters_metadata`) 并且包含了最新的参数文档.
+> **Note** **This documentation was auto-generated from the source code for this PX4 version** (using `make parameters_metadata`).
 
-## 姿态 Q 估计器
+<span></span>
+
+> **Note** If a listed parameter is missing from the Firmware see: [Finding/Updating Parameters](http://docs.px4.io/master/en/advanced_config/parameters.html#missing).
+
+## Airspeed Validator
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
+    <th>
+      参数名
+    </th>
+    
+    <th>
+      参数描述
+    </th>
+    
+    <th>
+      最小最大值 (增量)
+    </th>
+    
+    <th>
+      默认值
+    </th>
+    
+    <th>
+      单位
+    </th>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="ARSP_ARSP_SCALE">ARSP_ARSP_SCALE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Airspeed scale (scale from IAS to CAS/EAS)
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Scale can either be entered manually, or estimated in-flight by setting ARSP_SCALE_EST to 1.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.5 > 1.5
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="ARSP_BETA_GATE">ARSP_BETA_GATE</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Airspeed Selector: Gate size for true sideslip fusion
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1 > 5
+    </td>
+    
+    <td style="vertical-align: top;">
+      1
+    </td>
+    
+    <td style="vertical-align: top;">
+      SD
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="ARSP_BETA_NOISE">ARSP_BETA_NOISE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Airspeed Selector: Wind estimator sideslip measurement noise
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Sideslip measurement noise of the internal wind estimator(s) of the airspeed selector.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 1
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.3
+    </td>
+    
+    <td style="vertical-align: top;">
+      rad
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="ARSP_SCALE_EST">ARSP_SCALE_EST</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Automatic airspeed scale estimation on
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Turns the automatic airspeed scale (scale from IAS to CAS/EAS) on or off. It is recommended level (keeping altitude) while performing the estimation. Set to 1 to start estimation (best when already flying). Set to 0 to end scale estimation. The estimated scale is then saved in the ARSP_ARSP_SCALE parameter.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      Disabled (0)
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="ARSP_SC_P_NOISE">ARSP_SC_P_NOISE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Airspeed Selector: Wind estimator true airspeed scale process noise
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Airspeed scale process noise of the internal wind estimator(s) of the airspeed selector.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 0.1
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0001
+    </td>
+    
+    <td style="vertical-align: top;">
+      1/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="ARSP_TAS_GATE">ARSP_TAS_GATE</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Airspeed Selector: Gate size for true airspeed fusion
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1 > 5
+    </td>
+    
+    <td style="vertical-align: top;">
+      3
+    </td>
+    
+    <td style="vertical-align: top;">
+      SD
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="ARSP_TAS_NOISE">ARSP_TAS_NOISE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Airspeed Selector: Wind estimator true airspeed measurement noise
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> True airspeed measurement noise of the internal wind estimator(s) of the airspeed selector.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 4
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.4
+    </td>
+    
+    <td style="vertical-align: top;">
+      m/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="ARSP_W_P_NOISE">ARSP_W_P_NOISE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Airspeed Selector: Wind estimator wind process noise
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Wind process noise of the internal wind estimator(s) of the airspeed selector.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 1
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.1
+    </td>
+    
+    <td style="vertical-align: top;">
+      m/s/s
+    </td>
+  </tr>
+</table>
+
+## Attitude Q estimator
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
@@ -34,7 +285,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        基于 GPS速度的加速度补偿
+        Acceleration compensation based on GPS velocity
       </p>
     </td>
     
@@ -42,7 +293,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -56,7 +307,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        陀螺仪偏置范围
+        Gyro bias limit
       </p>
     </td>
     
@@ -80,20 +331,20 @@
     
     <td style="vertical-align: top;">
       <p>
-        外部模块航向使用模式（运动捕捉/视觉）。设置为1则使用视觉模块相关航向数据; 设置为 2则使用从运动捕捉的相关航向数据.
+        External heading usage mode (from Motion capture/Vision) Set to 1 to use heading estimate from vision. Set to 2 to use heading from motion capture
       </p>
       
-      <strong>参数对照:</strong>
+      <strong>Values:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong>无
+          <strong>0:</strong> None
         </li>
         <li>
-          <strong>1:</strong>使用视觉模块数据
+          <strong>1:</strong> Vision
         </li>
         <li>
-          <strong>2:</strong>使用运动捕捉模块数据
+          <strong>2:</strong> Motion Capture
         </li>
       </ul>
     </td>
@@ -117,11 +368,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        磁偏角, 以角度为单位
+        Magnetic declination, in degrees
       </p>
       
       <p>
-        <strong>说明:</strong> 在常规操作中不使用此参数, 因为磁偏角是基于无人机所在GPS坐标位置进行检索得到的.
+        <strong>Comment:</strong> This parameter is not used in normal operation, as the declination is looked up based on the GPS coordinates of the vehicle.
       </p>
     </td>
     
@@ -144,7 +395,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        基于GPS的自动磁偏角补偿
+        Automatic GPS based declination compensation
       </p>
     </td>
     
@@ -152,7 +403,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -166,7 +417,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        互补滤波器加速度计权重值
+        Complimentary filter accelerometer weight
       </p>
     </td>
     
@@ -189,7 +440,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        互补滤波器外部航向权重值
+        Complimentary filter external heading weight
       </p>
     </td>
     
@@ -212,7 +463,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        互补滤波器陀螺仪偏置权重值
+        Complimentary filter gyroscope bias weight
       </p>
     </td>
     
@@ -235,11 +486,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        互补滤波器磁罗盘权重值
+        Complimentary filter magnetometer weight
       </p>
       
       <p>
-        <strong>注意: </strong>设为0时，不使用磁罗盘数据
+        <strong>Comment:</strong> Set to 0 to avoid using the magnetometer.
       </p>
     </td>
     
@@ -256,7 +507,7 @@
   </tr>
 </table>
 
-## 电池校准
+## Battery Calibration
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
@@ -288,11 +539,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        电池电压测量ADC通道
+        Battery ADC Channel
       </p>
       
       <p>
-        <strong>注意:</strong>此参数指定用于监视主电源电池电压的 ADC 通道, 当此值为-1时，使用板载默认设定值
+        <strong>Comment:</strong> This parameter specifies the ADC channel used to monitor voltage of main power battery. A value of -1 means to use the board default.
       </p>
     </td>
     
@@ -314,11 +565,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        电池电流和检测电压对应关系(A/V)
+        Battery current per volt (A/V)
       </p>
       
       <p>
-        <strong>说明:</strong>通过3.3V ADC采样得到的电压值乘以当前设定系数将确定电池电流. 当此值为-1时，使用板载默认设定值.
+        <strong>Comment:</strong> The voltage seen by the 3.3V ADC multiplied by this factor will determine the battery current. A value of -1 means to use the board default.
       </p>
     </td>
     
@@ -340,15 +591,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        电池容量
+        Battery capacity
       </p>
       
       <p>
-        <strong>说明:</strong>参数描述了当前安装的安装的电池的容量.
+        <strong>Comment:</strong> Defines the capacity of the attached battery.
       </p>
       
       <p>
-        <b>要求重启:</b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -372,11 +623,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        从ADC输入通道(电池电流测量通道) 得到的原始值转换成电压对应的系数.
+        Scaling from ADC counts to volt on the ADC input (battery current)
       </p>
       
       <p>
-        <strong>说明:</strong>这个不是电池电流，而是中间ADC电压。 值为-1 表示使用主板默认值, 这是强烈建议的。
+        <strong>Comment:</strong> This is not the battery current, but the intermediate ADC voltage. A value of -1 signifies that the board defaults are used, which is highly recommended.
       </p>
     </td>
     
@@ -398,11 +649,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        从ADC输入通道(电池电压测量通道) 得到的原始值转换成电压对应的系数.
+        Scaling from ADC counts to volt on the ADC input (battery voltage)
       </p>
       
       <p>
-        <strong>说明:</strong>这个不是电池电压，而是中间ADC电压。 值为-1 表示使用主板默认值, 这是强烈建议的。
+        <strong>Comment:</strong> This is not the battery voltage, but the intermediate ADC voltage. A value of -1 signifies that the board defaults are used, which is highly recommended.
       </p>
     </td>
     
@@ -424,15 +675,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        临界阈值
+        Critical threshold
       </p>
       
       <p>
-        <strong>说明:</strong>设置提示严重低电压报警的阈值. 这个值设置必须低于低电压报警阈值. 此阈值通常会触发 RTL。
+        <strong>Comment:</strong> Sets the threshold when the battery will be reported as critically low. This has to be lower than the low threshold. This threshold commonly will trigger RTL.
       </p>
       
       <p>
-        <b>要求重启:</b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -456,15 +707,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        危险紧急阈值
+        Emergency threshold
       </p>
       
       <p>
-        <strong>说明:</strong>设置低电压危险报警阈值. 这个值必须低于严重低电压报警阈值. 此阈值一般会触发LAND.
+        <strong>Comment:</strong> Sets the threshold when the battery will be reported as dangerously low. This has to be lower than the critical threshold. This threshold commonly will trigger landing.
       </p>
       
       <p>
-        <b>重启要求:</b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -488,15 +739,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        低电压阈值
+        Low threshold
       </p>
       
       <p>
-        <strong>说明:</strong>此为触发低电压报警的阈值. 这个值必须高于严重低电压报警阈值.
+        <strong>Comment:</strong> Sets the threshold when the battery will be reported as low. This has to be higher than the critical threshold.
       </p>
       
       <p>
-        <b>重启要求:</b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -520,68 +771,68 @@
     
     <td style="vertical-align: top;">
       <p>
-        电芯串联数
+        Number of cells
       </p>
       
       <p>
-        <strong>说明:</strong>定义所安装的电池内部包含的串联电芯数量.
+        <strong>Comment:</strong> Defines the number of cells the attached battery consists of.
       </p>
       
-      <strong>参数值:</strong>
+      <strong>Values:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong>未配置
+          <strong>0:</strong> Unconfigured
         </li>
         <li>
-          <strong>2:</strong>2S电池
+          <strong>2:</strong> 2S Battery
         </li>
         <li>
-          <strong>3:</strong>3S电池
+          <strong>3:</strong> 3S Battery
         </li>
         <li>
-          <strong>4:</strong>4S电池
+          <strong>4:</strong> 4S Battery
         </li>
         <li>
-          <strong>5:</strong>5S电池
+          <strong>5:</strong> 5S Battery
         </li>
         <li>
-          <strong>6:</strong>6S电池
+          <strong>6:</strong> 6S Battery
         </li>
         <li>
-          <strong>7:</strong>7S电池
+          <strong>7:</strong> 7S Battery
         </li>
         <li>
-          <strong>8:</strong>8S电池
+          <strong>8:</strong> 8S Battery
         </li>
         <li>
-          <strong>9:</strong>9S电池
+          <strong>9:</strong> 9S Battery
         </li>
         <li>
-          <strong>10:</strong>10S电池
+          <strong>10:</strong> 10S Battery
         </li>
         <li>
-          <strong>11:</strong>11S电池
+          <strong>11:</strong> 11S Battery
         </li>
         <li>
-          <strong>12:</strong>12S电池
+          <strong>12:</strong> 12S Battery
         </li>
         <li>
-          <strong>13:</strong>13S电池
+          <strong>13:</strong> 13S Battery
         </li>
         <li>
-          <strong>14:</strong>14S电池
+          <strong>14:</strong> 14S Battery
         </li>
         <li>
-          <strong>15:</strong>15S电池
+          <strong>15:</strong> 15S Battery
         </li>
         <li>
-          <strong>16:</strong>16S电池
+          <strong>16:</strong> 16S Battery
         </li>
       </ul>
       
       <p>
-        <b>重启要求:</b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -604,15 +855,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        明确的定义每节电芯的内部阻抗
+        Explicitly defines the per cell internal resistance
       </p>
       
       <p>
-        <strong>说明:</strong>如果是非负值, 则会用于在所有计算中替换BAT_V_LOAD_DROP.
+        <strong>Comment:</strong> If non-negative, then this will be used in place of BAT_V_LOAD_DROP for all calculations.
       </p>
       
       <p>
-        <b>重启要求:</b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -636,21 +887,21 @@
     
     <td style="vertical-align: top;">
       <p>
-        电池电压检测器源
+        Battery monitoring source
       </p>
       
       <p>
-        <strong>说明:</strong>此参数决定了电池监测数据的来源. 参数''0'' 表示测量信号来源于一个电源模块. 参数"1"表示系统从外部接收到的Mavlink消息中获取电池状态信息.
+        <strong>Comment:</strong> This parameter controls the source of battery data. The value 'Power Module' means that measurements are expected to come from a power module. If the value is set to 'External' then the system expects to receive mavlink battery status messages.
       </p>
       
-      <strong>参数值:</strong>
+      <strong>Values:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong>电源模块
+          <strong>0:</strong> Power Module
         </li>
         <li>
-          <strong>1:</strong>外部信息
+          <strong>1:</strong> External
         </li>
       </ul>
     </td>
@@ -674,15 +925,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        满电电压(5C 负载)
+        Full cell voltage (5C load)
       </p>
       
       <p>
-        <strong>说明:</strong>定义一个电池单元在轻度负载下被认为是满的电压. 这永远不会是标称电压4.2V.
+        <strong>Comment:</strong> Defines the voltage where a single cell of the battery is considered full under a mild load. This will never be the nominal voltage of 4.2V
       </p>
       
       <p>
-        <b>重启要求:</b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -706,11 +957,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        电池电压分压器(电压分压器)
+        Battery voltage divider (V divider)
       </p>
       
       <p>
-        <strong>说明:</strong>这是电池电压到3.3V ADC电压的分压器。 如果使用Mauch 电源模块，数据表中的值可以在这里直接应用。 参数值为-1表示使用板载默认值。
+        <strong>Comment:</strong> This is the divider from battery voltage to 3.3V ADC voltage. If using e.g. Mauch power modules the value from the datasheet can be applied straight here. A value of -1 means to use the board default.
       </p>
     </td>
     
@@ -732,15 +983,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        空电电压(5C负载)
+        Empty cell voltage (5C load)
       </p>
       
       <p>
-        <strong>说明:</strong>定义了单节电池认为为空的时候的电压值. 该电压应该选择设置在陡降至2.8V之前， 一个典型的锂电池只能放电到10%，在它陡降至会损坏电芯的电压之前。
+        <strong>Comment:</strong> Defines the voltage where a single cell of the battery is considered empty. The voltage should be chosen before the steep dropoff to 2.8V. A typical lithium battery can only be discharged down to 10% before it drops off to a voltage level damaging the cells.
       </p>
       
       <p>
-        <b>重启要求:</b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -764,15 +1015,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        在全油门工作时每节电芯的压降
+        Voltage drop per cell on full throttle
       </p>
       
       <p>
-        <strong>说明:</strong>这个隐式定义了对最大电流比的内阻，并假设是线性关系。 比较好的值是测量并计算在5C负载时的压降和20~25C负载时的压降的差值. 当参数BAT_R_INTERNAL被设置的时候会不使用此参数.
+        <strong>Comment:</strong> This implicitely defines the internal resistance to maximum current ratio and assumes linearity. A good value to use is the difference between the 5C and 20-25C load. Not used if BAT_R_INTERNAL is set.
       </p>
       
       <p>
-        <b>重启要求:</b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -796,11 +1047,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        电流传感器ADC通道输入电压偏移
+        Offset in volt as seen by the ADC input of the current sensor
       </p>
       
       <p>
-        <strong>说明:</strong>在根据电压计算电池电流之前，这个偏移量将被减去。
+        <strong>Comment:</strong> This offset will be subtracted before calculating the battery current based on the voltage.
       </p>
     </td>
     
@@ -902,22 +1153,22 @@
     
     <td style="vertical-align: top;">
       <p>
-        相机拍照捕获边沿类型
+        Camera capture edge
       </p>
       
-      <strong>参数值:</strong>
+      <strong>Values:</strong>
       
       <ul>
         <li>
-          <strong>0:</strong>下降沿
+          <strong>0:</strong> Falling edge
         </li>
         <li>
-          <strong>1:</strong> 上升沿
+          <strong>1:</strong> Rising edge
         </li>
       </ul>
       
       <p>
-        <b>重启要求: </b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -939,15 +1190,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        相机捕获反馈
+        Camera capture feedback
       </p>
       
       <p>
-        <strong>说明:</strong>使能相机捕获反馈
+        <strong>Comment:</strong> Enables camera capture feedback
       </p>
       
       <p>
-        <b>重启要求: </b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -955,7 +1206,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -976,7 +1227,7 @@
         <strong>Comment:</strong> Change time measurement
       </p>
       
-      <strong>参数值:</strong>
+      <strong>Values:</strong>
       
       <ul>
         <li>
@@ -991,7 +1242,7 @@
       </ul>
       
       <p>
-        <b>重启要求:</b>是
+        <b>重启要求: </b>是
       </p>
     </td>
     
@@ -1120,7 +1371,7 @@
       </ul>
       
       <p>
-        <b>重启要求: </b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -1170,7 +1421,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        相机触发模式
+        Camera trigger mode
       </p>
       
       <strong>Values:</strong>
@@ -1217,15 +1468,15 @@
     
     <td style="vertical-align: top;">
       <p>
-        相机触发引脚
+        Camera trigger pin
       </p>
       
       <p>
-        <strong>Comment:</strong> Selects which pin is used, ranges from 1 to 6 (AUX1-AUX6 on px4_fmu-v2 and the rail pins on px4_fmu-v4). The PWM interface takes two pins per camera, while relay triggers on every pin individually. Example: Value 56 would trigger on pins 5 and 6. For GPIO mode Pin 6 will be triggered followed by 5. With a value of 65 pin 5 will be triggered followed by 6. Pins may be non contiguous. I.E. 16 or 61. In GPIO mode the delay pin to pin is < .2 uS.
+        <strong>Comment:</strong> Selects which FMU pin is used (range: AUX1-AUX6 on Pixhawk controllers with an I/O board, MAIN1-MAIN6 on controllers without an I/O board. The PWM interface takes two pins per camera, while relay triggers on every pin individually. Example: Value 56 would trigger on pins 5 and 6. For GPIO mode Pin 6 will be triggered followed by 5. With a value of 65 pin 5 will be triggered followed by 6. Pins may be non contiguous. I.E. 16 or 61. In GPIO mode the delay pin to pin is < .2 uS.
       </p>
       
       <p>
-        <b>重启要求: </b>是
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -1248,7 +1499,7 @@
     
     <td style="vertical-align: top;">
       <p>
-        相机触发极性
+        Camera trigger polarity
       </p>
       
       <p>
@@ -1336,69 +1587,6 @@
   </tr>
 </table>
 
-## Chip
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
-  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
-    <th>
-      参数名
-    </th>
-    
-    <th>
-      参数描述
-    </th>
-    
-    <th>
-      最小最大值 (增量)
-    </th>
-    
-    <th>
-      默认值
-    </th>
-    
-    <th>
-      单位
-    </th>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="SYS_FORCE_F7DC">SYS_FORCE_F7DC</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Force F7 D cache on and disregard errata 1259864 data corruption in a sequence of write-through stores and loads on ARM M7 silicon Fault Status: Present in r0p1, r0p2, r1p0 and r1p1. Fixed in r1p2
-      </p>
-      
-      <strong>Values:</strong>
-      
-      <ul>
-        <li>
-          <strong>0:</strong> if Eratta exits turn dcache off else leave it on
-        </li>
-        <li>
-          <strong>1:</strong> Force it off
-        </li>
-        <li>
-          <strong>2:</strong> Force it on
-        </li>
-      </ul>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0 > 2
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-</table>
-
 ## Circuit Breaker
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
@@ -1466,7 +1654,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 782097 will disable the buzzer audio notification. WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>Comment:</strong> Setting this parameter to 782097 will disable the buzzer audio notification. Setting this parameter to 782090 will disable the startup tune, while keeping all others enabled.
       </p>
       
       <p>
@@ -1528,7 +1716,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Setting this parameter to 121212 will disable the flight termination action. --> The IO driver will not do flight termination if requested by the FMU WARNING: ENABLING THIS CIRCUIT BREAKER IS AT OWN RISK
+        <strong>Comment:</strong> Setting this parameter to 121212 will disable the flight termination action if triggered by the FailureDetector logic or if FMU is lost. This circuit breaker does not affect the RC loss, data link loss and geofence safety logic.
       </p>
       
       <p>
@@ -1788,6 +1976,32 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="COM_ARM_CHK_ESCS">COM_ARM_CHK_ESCS</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Require all the ESCs to be detected to arm
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This param is specific for ESCs reporting status. Normal ESCs configurations are not affected by the change of this param.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      Enabled (1)
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="COM_ARM_EKF_AB">COM_ARM_EKF_AB</strong> (FLOAT)
     </td>
     
@@ -1980,25 +2194,25 @@
   
   <tr>
     <td style="vertical-align: top;">
-      <strong id="COM_ARM_MAG">COM_ARM_MAG</strong> (FLOAT)
+      <strong id="COM_ARM_MAG_ANG">COM_ARM_MAG_ANG</strong> (INT32)
     </td>
     
     <td style="vertical-align: top;">
       <p>
-        Maximum magnetic field inconsistency between units that will allow arming
+        Maximum magnetic field inconsistency between units that will allow arming Set -1 to disable the check
       </p>
     </td>
     
     <td style="vertical-align: top;">
-      0.05 > 0.5 (0.05)
+      3 > 180
     </td>
     
     <td style="vertical-align: top;">
-      0.15
+      30
     </td>
     
     <td style="vertical-align: top;">
-      Gauss
+      deg
     </td>
   </tr>
   
@@ -2021,7 +2235,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -2085,7 +2299,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -2204,16 +2418,42 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> A non-zero, positive value specifies the time-out period in seconds after which the vehicle will be automatically disarmed in case a landing situation has been detected during this period. The vehicle will also auto-disarm right after arming if it has not even flown, however the time will always be 10 seconds such that the pilot has enough time to take off. A negative value means that automatic disarming triggered by landing detection is disabled.
+        <strong>Comment:</strong> A non-zero, positive value specifies the time-out period in seconds after which the vehicle will be automatically disarmed in case a landing situation has been detected during this period. A zero or negative value means that automatic disarming triggered by landing detection is disabled.
       </p>
     </td>
     
     <td style="vertical-align: top;">
-      -1 > 20
     </td>
     
     <td style="vertical-align: top;">
-      -1.0
+      2.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="COM_DISARM_PRFLT">COM_DISARM_PRFLT</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Time-out for auto disarm if too slow to takeoff
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> A non-zero, positive value specifies the time after arming, in seconds, within which the vehicle must take off (after which it will automatically disarm). A zero or negative value means that automatic disarming triggered by a pre-takeoff timeout is disabled.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      10.0
     </td>
     
     <td style="vertical-align: top;">
@@ -2800,6 +3040,49 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="COM_FLT_PROFILE">COM_FLT_PROFILE</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        User Flight Profile
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Describes the intended use of the vehicle. Can be used by ground control software or log post processing. This param does not influence the behavior within the firmware. This means for example the control logic is independent of the setting of this param (but depends on other params).
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Default
+        </li>
+        <li>
+          <strong>100:</strong> Pro User
+        </li>
+        <li>
+          <strong>200:</strong> Flight Tester
+        </li>
+        <li>
+          <strong>300:</strong> Developer
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="COM_HLDL_LOSS_T">COM_HLDL_LOSS_T</strong> (INT32)
     </td>
     
@@ -2912,6 +3195,30 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="COM_KILL_DISARM">COM_KILL_DISARM</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Timeout value for disarming when kill switch is engaged
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 30.0 (0.1)
+    </td>
+    
+    <td style="vertical-align: top;">
+      5.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="COM_LOW_BAT_ACT">COM_LOW_BAT_ACT</strong> (INT32)
     </td>
     
@@ -2921,7 +3228,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Action the system takes on low battery. Defaults to off
+        <strong>Comment:</strong> Action the system takes at critical battery. See also BAT_CRIT_THR and BAT_EMERGEN_THR for definition of battery states.
       </p>
       
       <strong>Values:</strong>
@@ -2931,13 +3238,10 @@
           <strong>0:</strong> Warning
         </li>
         <li>
-          <strong>1:</strong> Return mode
-        </li>
-        <li>
           <strong>2:</strong> Land mode
         </li>
         <li>
-          <strong>3:</strong> Return mode at critically low level, Land mode at current position if reaching dangerously low levels
+          <strong>3:</strong> Return at critical level, land at emergency level
         </li>
       </ul>
     </td>
@@ -2948,6 +3252,32 @@
     
     <td style="vertical-align: top;">
       0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="COM_MOT_TEST_EN">COM_MOT_TEST_EN</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Enable Motor Testing
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> If set, enables the motor test interface via MAVLink (DO_MOTOR_TEST), that allows spinning the motors for testing purposes.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -2979,6 +3309,113 @@
     
     <td style="vertical-align: top;">
       s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="COM_OBL_ACT">COM_OBL_ACT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Set offboard loss failsafe mode
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> The offboard loss failsafe will only be entered after a timeout, set by COM_OF_LOSS_T in seconds.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>-1:</strong> Disabled
+        </li>
+        <li>
+          <strong>0:</strong> Land mode
+        </li>
+        <li>
+          <strong>1:</strong> Hold mode
+        </li>
+        <li>
+          <strong>2:</strong> Return mode
+        </li>
+        <li>
+          <strong>3:</strong> Terminate
+        </li>
+        <li>
+          <strong>4:</strong> Lockdown
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="COM_OBL_RC_ACT">COM_OBL_RC_ACT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Set offboard loss failsafe mode when RC is available
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> The offboard loss failsafe will only be entered after a timeout, set by COM_OF_LOSS_T in seconds.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>-1:</strong> Disabled
+        </li>
+        <li>
+          <strong>0:</strong> Position mode
+        </li>
+        <li>
+          <strong>1:</strong> Altitude mode
+        </li>
+        <li>
+          <strong>2:</strong> Manual
+        </li>
+        <li>
+          <strong>3:</strong> Return mode
+        </li>
+        <li>
+          <strong>4:</strong> Land mode
+        </li>
+        <li>
+          <strong>5:</strong> Hold mode
+        </li>
+        <li>
+          <strong>6:</strong> Terminate
+        </li>
+        <li>
+          <strong>7:</strong> Lockdown
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
     </td>
   </tr>
   
@@ -3024,10 +3461,10 @@
       
       <ul>
         <li>
-          <strong>0:</strong> Assume use of remote control after fallback. Switch to Altitude mode if a height estimate is available, else switch to MANUAL.
+          <strong>0:</strong> Altitude/Manual. Assume use of remote control after fallback. Switch to Altitude mode if a height estimate is available, else switch to MANUAL.
         </li>
         <li>
-          <strong>1:</strong> Assume no use of remote control after fallback. Switch to Land mode if a height estimate is available, else switch to TERMINATION.
+          <strong>1:</strong> Land/Terminate. Assume no use of remote control after fallback. Switch to Land mode if a height estimate is available, else switch to TERMINATION.
         </li>
       </ul>
     </td>
@@ -3193,6 +3630,46 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="COM_PREARM_MODE">COM_PREARM_MODE</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Condition to enter prearmed mode
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Condition to enter the prearmed state, an intermediate state between disarmed and armed in which non-throttling actuators are active.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Disabled
+        </li>
+        <li>
+          <strong>1:</strong> Safety button
+        </li>
+        <li>
+          <strong>2:</strong> Always
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      1
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="COM_RC_ARM_HYST">COM_RC_ARM_HYST</strong> (INT32)
     </td>
     
@@ -3296,13 +3773,17 @@
       <p>
         Enable RC stick override of auto modes
       </p>
+      
+      <p>
+        <strong>Comment:</strong> When an auto mode is active (except a critical battery reaction) moving the RC sticks gives control back to the pilot in manual position mode immediately. Only has an effect on multicopters and VTOLS in multicopter mode.
+      </p>
     </td>
     
     <td style="vertical-align: top;">
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -3476,6 +3957,198 @@
   </tr>
 </table>
 
+## DShot
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
+    <th>
+      名称
+    </th>
+    
+    <th>
+      描述
+    </th>
+    
+    <th>
+      最小最大值 (增量)
+    </th>
+    
+    <th>
+      默认值
+    </th>
+    
+    <th>
+      单位
+    </th>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="DSHOT_CONFIG">DSHOT_CONFIG</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Configure DShot
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This enables/disables DShot. The different modes define different speeds, for example DShot150 = 150kb/s. Not all ESCs support all modes. Note: this enables DShot on the FMU outputs. For boards with an IO it is the AUX outputs.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Disable (use PWM/Oneshot)
+        </li>
+        <li>
+          <strong>150:</strong> DShot150
+        </li>
+        <li>
+          <strong>300:</strong> DShot300
+        </li>
+        <li>
+          <strong>600:</strong> DShot600
+        </li>
+        <li>
+          <strong>1200:</strong> DShot1200
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> True
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="DSHOT_MIN">DSHOT_MIN</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Minimum DShot Motor Output
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Minimum Output Value for DShot in percent. The value depends on the ESC. Make sure to set this high enough so that the motors are always spinning while armed.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 1 (0.01)
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.055
+    </td>
+    
+    <td style="vertical-align: top;">
+      %
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="DSHOT_TEL_CFG">DSHOT_TEL_CFG</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Serial Configuration for DShot Driver
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Configure on which serial port to run DShot Driver.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Disabled
+        </li>
+        <li>
+          <strong>6:</strong> UART 6
+        </li>
+        <li>
+          <strong>101:</strong> TELEM 1
+        </li>
+        <li>
+          <strong>102:</strong> TELEM 2
+        </li>
+        <li>
+          <strong>103:</strong> TELEM 3
+        </li>
+        <li>
+          <strong>104:</strong> TELEM/SERIAL 4
+        </li>
+        <li>
+          <strong>201:</strong> GPS 1
+        </li>
+        <li>
+          <strong>202:</strong> GPS 2
+        </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="MOT_POLE_COUNT">MOT_POLE_COUNT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Number of magnetic poles of the motors
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Specify the number of magnetic poles of the motors. It is required to compute the RPM value from the eRPM returned with the ESC telemetry. Either get the number from the motor spec sheet or count the magnets on the bell of the motor (not the stator magnets). Typical motors for 5 inch props have 14 poles.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      14
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+</table>
+
 ## Data Link Loss
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
@@ -3632,7 +4305,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -4017,6 +4690,9 @@
         <li>
           <strong>7:</strong> GPS yaw fusion
         </li>
+        <li>
+          <strong>8:</strong> vision velocity fusion
+        </li>
       </ul>
       
       <p>
@@ -4025,7 +4701,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0 > 255
+      0 > 511
     </td>
     
     <td style="vertical-align: top;">
@@ -4467,6 +5143,30 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="EKF2_EVP_GATE">EKF2_EVP_GATE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Gate size for vision position fusion Sets the number of standard deviations used by the innovation consistency test
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0 > ?
+    </td>
+    
+    <td style="vertical-align: top;">
+      5.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      SD
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="EKF2_EVP_NOISE">EKF2_EVP_NOISE</strong> (FLOAT)
     </td>
     
@@ -4481,11 +5181,63 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.05
+      0.1
     </td>
     
     <td style="vertical-align: top;">
       m
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="EKF2_EVV_GATE">EKF2_EVV_GATE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Gate size for vision velocity estimate fusion
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0 > ?
+    </td>
+    
+    <td style="vertical-align: top;">
+      3.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      SD
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="EKF2_EVV_NOISE">EKF2_EVV_NOISE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Measurement noise for vision velocity observations used when the vision system does not supply error estimates
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.01 > ?
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.1
+    </td>
+    
+    <td style="vertical-align: top;">
+      m/s
     </td>
   </tr>
   
@@ -4519,29 +5271,27 @@
   
   <tr>
     <td style="vertical-align: top;">
-      <strong id="EKF2_EV_GATE">EKF2_EV_GATE</strong> (FLOAT)
+      <strong id="EKF2_EV_NOISE_MD">EKF2_EV_NOISE_MD</strong> (INT32)
     </td>
     
     <td style="vertical-align: top;">
       <p>
-        Gate size for vision estimate fusion
+        Whether to set the external vision observation noise from the parameter or from vision message
       </p>
       
       <p>
-        <strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.
+        <strong>Comment:</strong> If set to true the observation noise is set from the parameters directly, if set to false the measurement noise is taken from the vision message and the parameter are used as a lower bound.
       </p>
     </td>
     
     <td style="vertical-align: top;">
-      1.0 > ?
     </td>
     
     <td style="vertical-align: top;">
-      5.0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
-      SD
     </td>
   </tr>
   
@@ -4633,7 +5383,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -5631,7 +6381,7 @@
           <strong>2:</strong> 3-axis
         </li>
         <li>
-          <strong>3:</strong> VTOL customn
+          <strong>3:</strong> VTOL custom
         </li>
         <li>
           <strong>4:</strong> MC custom
@@ -5716,7 +6466,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Minimum valid range for the range finder
+        Expected range finder reading when on ground
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> If the vehicle is on ground, is not moving as determined by the motion test controlled by EKF2_MOVE_TEST and the range finder is returning invalid or no data, then an assumed range value of EKF2_MIN_RNG will be used by the terrain estimator so that a terrain height estimate is avilable at the start of flight in situations where the range finder may be inside its minimum measurements distance when on ground.
       </p>
     </td>
     
@@ -6382,6 +7136,7 @@
     </td>
     
     <td style="vertical-align: top;">
+      m
     </td>
   </tr>
   
@@ -6437,6 +7192,7 @@
     </td>
     
     <td style="vertical-align: top;">
+      m/s
     </td>
   </tr>
   
@@ -6838,7 +7594,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -6868,7 +7624,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -7041,7 +7797,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -7556,7 +8312,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.02
+      0.1
     </td>
     
     <td style="vertical-align: top;">
@@ -7833,7 +8589,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.01
+      0.1
     </td>
     
     <td style="vertical-align: top;">
@@ -8106,7 +8862,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -8189,7 +8945,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.01
+      0.1
     </td>
     
     <td style="vertical-align: top;">
@@ -8488,7 +9244,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -8633,7 +9389,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Set this parameter to <1.0 to make the TECS throttle loop react faster during landing than during normal flight (i.e. giving efficiency and low motor wear at high altitudes but control accuracy during landing). During landing, the TECS throttle time constant (FW_T_THRO_CONST) is multiplied by this value.
+        <strong>Comment:</strong> Set this parameter to less than 1.0 to make the TECS throttle loop react faster during landing than during normal flight (i.e. giving efficiency and low motor wear at high altitudes but control accuracy during landing). During landing, the TECS throttle time constant (FW_T_THRO_CONST) is multiplied by this value.
       </p>
     </td>
     
@@ -8696,7 +9452,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -9022,7 +9778,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -9244,6 +10000,34 @@
     
     <td style="vertical-align: top;">
       15.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      m/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="FW_GND_SPD_MIN">FW_GND_SPD_MIN</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Minimum groundspeed
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> The controller will increase the commanded airspeed to maintain this minimum groundspeed to the next waypoint.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 40 (0.5)
+    </td>
+    
+    <td style="vertical-align: top;">
+      5.0
     </td>
     
     <td style="vertical-align: top;">
@@ -9678,54 +10462,6 @@
       m/s/s
     </td>
   </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_SPEED_MAX">GND_SPEED_MAX</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Maximum ground speed
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 40 (0.5)
-    </td>
-    
-    <td style="vertical-align: top;">
-      10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      m/s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_SPEED_TRIM">GND_SPEED_TRIM</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Trim ground speed
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 40 (0.5)
-    </td>
-    
-    <td style="vertical-align: top;">
-      3.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      m/s
-    </td>
-  </tr>
 </table>
 
 ## Failure Detector
@@ -9764,12 +10500,12 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Maximum pitch angle before FailureDetector triggers the attitude_failure flag Does not affect the behavior of the vehicle for now; only for logging
+        <strong>Comment:</strong> Maximum pitch angle before FailureDetector triggers the attitude_failure flag If flight termination is enabled (@CBRK_FLIGHTTERM set to 0), the autopilot will terminate the flight and set all the outputs to their failsafe value as soon as the attitude_failure flag is set. Setting this parameter to 0 disables the check
       </p>
     </td>
     
     <td style="vertical-align: top;">
-      0 > 180
+      60 > 180
     </td>
     
     <td style="vertical-align: top;">
@@ -9778,6 +10514,34 @@
     
     <td style="vertical-align: top;">
       degrees
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="FD_FAIL_P_TTRI">FD_FAIL_P_TTRI</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Pitch failure trigger time
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Seconds (decimal) that pitch has to exceed FD_FAIL_P before being considered as a failure.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.02 > 5
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.3
+    </td>
+    
+    <td style="vertical-align: top;">
+      s
     </td>
   </tr>
   
@@ -9792,12 +10556,12 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Maximum roll angle before FailureDetector triggers the attitude_failure flag Does not affect the behavior of the vehicle for now; only for logging
+        <strong>Comment:</strong> Maximum roll angle before FailureDetector triggers the attitude_failure flag If flight termination is enabled (@CBRK_FLIGHTTERM set to 0), the autopilot will terminate the flight and set all the outputs to their failsafe value as soon as the attitude_failure flag is set. Setting this parameter to 0 disables the check
       </p>
     </td>
     
     <td style="vertical-align: top;">
-      0 > 180
+      60 > 180
     </td>
     
     <td style="vertical-align: top;">
@@ -9806,6 +10570,34 @@
     
     <td style="vertical-align: top;">
       degrees
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="FD_FAIL_R_TTRI">FD_FAIL_R_TTRI</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Roll failure trigger time
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Seconds (decimal) that roll has to exceed FD_FAIL_R before being considered as a failure.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.02 > 5
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.3
+    </td>
+    
+    <td style="vertical-align: top;">
+      s
     </td>
   </tr>
 </table>
@@ -9944,704 +10736,6 @@
   </tr>
 </table>
 
-## GND Attitude Control
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
-  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
-    <th>
-      名称
-    </th>
-    
-    <th>
-      描述
-    </th>
-    
-    <th>
-      最小最大值 (增量)
-    </th>
-    
-    <th>
-      默认值
-    </th>
-    
-    <th>
-      单位
-    </th>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_BAT_SCALE_EN">GND_BAT_SCALE_EN</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Whether to scale throttle by battery power level
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This compensates for voltage drop of the battery over time by attempting to normalize performance across the operating range of the battery. The fixed wing should constantly behave as if it was fully charged with reduced max thrust at lower battery percentages. i.e. if cruise speed is at 0.5 throttle at 100% battery, it will still be 0.5 at 60% battery.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_GSPD_SP_TRIM">GND_GSPD_SP_TRIM</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Groundspeed speed trim
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This allows to scale the turning radius depending on the speed.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > ? (0.1)
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      norm
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_MAN_Y_SC">GND_MAN_Y_SC</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Manual yaw scale
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Scale factor applied to the desired yaw actuator command in full manual mode. This parameter allows to adjust the throws of the control surfaces.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > ? (0.01)
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      norm
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_SPEED_D">GND_SPEED_D</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Speed proportional gain
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the derivative gain for the speed closed loop controller
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.00 > 50.0 (0.005)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      %m/s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_SPEED_I">GND_SPEED_I</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Speed Integral gain
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the integral gain for the speed closed loop controller
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.00 > 50.0 (0.005)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.1
-    </td>
-    
-    <td style="vertical-align: top;">
-      %m/s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_SPEED_IMAX">GND_SPEED_IMAX</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Speed integral maximum value
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the maxim value the integral can reach to prevent wind-up.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.005 > 50.0 (0.005)
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      %m/s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_SPEED_P">GND_SPEED_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Speed proportional gain
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the proportional gain for the speed closed loop controller
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.005 > 50.0 (0.005)
-    </td>
-    
-    <td style="vertical-align: top;">
-      2.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      %m/s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_SPEED_THR_SC">GND_SPEED_THR_SC</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Speed to throttle scaler
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is a gain to map the speed control output to the throttle linearly.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.005 > 50.0 (0.005)
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      %m/s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_SP_CTRL_MODE">GND_SP_CTRL_MODE</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Control mode for speed
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This allows the user to choose between closed loop gps speed or open loop cruise throttle speed
-      </p>
-      
-      <strong>Values:</strong>
-      
-      <ul>
-        <li>
-          <strong>0:</strong> open loop control
-        </li>
-        <li>
-          <strong>1:</strong> close the loop with gps speed
-        </li>
-      </ul>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0 > 1
-    </td>
-    
-    <td style="vertical-align: top;">
-      1
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_WR_D">GND_WR_D</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Wheel steering rate integrator gain
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.00 > 30 (0.005)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.00
-    </td>
-    
-    <td style="vertical-align: top;">
-      %/rad
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_WR_FF">GND_WR_FF</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Wheel steering rate feed forward
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Direct feed forward from rate setpoint to control surface output
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0 (0.05)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      %/rad/s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_WR_I">GND_WR_I</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Wheel steering rate integrator gain
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This gain defines how much control response will result out of a steady state error. It trims any constant error.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.00 > 0.5 (0.005)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.00
-    </td>
-    
-    <td style="vertical-align: top;">
-      %/rad
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_WR_IMAX">GND_WR_IMAX</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Wheel steering rate integrator limit
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> The portion of the integrator part in the control surface deflection is limited to this value
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.05)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_WR_P">GND_WR_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Wheel steering rate proportional gain
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This defines how much the wheel steering input will be commanded depending on the current body angular rate error.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.005 > 1.0 (0.005)
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      %/rad/s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_WR_TC">GND_WR_TC</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Attitude Wheel Time Constant
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This defines the latency between a steering step input and the achieved setpoint (inverse to a P gain). Half a second is a good start value and fits for most average systems. Smaller systems may require smaller values, but as this will wear out servos faster, the value should only be decreased as needed.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.4 > 1.0 (0.05)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.4
-    </td>
-    
-    <td style="vertical-align: top;">
-      s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_W_RMAX">GND_W_RMAX</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Maximum wheel steering rate
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This limits the maximum wheel steering rate the controller will output (in degrees per second). Setting a value of zero disables the limit.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 90.0 (0.5)
-    </td>
-    
-    <td style="vertical-align: top;">
-      90.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      deg/s
-    </td>
-  </tr>
-</table>
-
-## GND POS Control
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
-  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
-    <th>
-      名称
-    </th>
-    
-    <th>
-      描述
-    </th>
-    
-    <th>
-      最小最大值 (增量)
-    </th>
-    
-    <th>
-      默认值
-    </th>
-    
-    <th>
-      单位
-    </th>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_L1_DAMPING">GND_L1_DAMPING</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        L1 damping
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Damping factor for L1 control.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.6 > 0.9 (0.05)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.75
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_L1_DIST">GND_L1_DIST</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        L1 distance
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the waypoint radius
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 100.0 (0.1)
-    </td>
-    
-    <td style="vertical-align: top;">
-      5.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      m
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_L1_PERIOD">GND_L1_PERIOD</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        L1 period
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the L1 distance and defines the tracking point ahead of the rover it's following. Using values around 2-5 for a traxxas stampede. Shorten slowly during tuning until response is sharp without oscillation.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 50.0 (0.5)
-    </td>
-    
-    <td style="vertical-align: top;">
-      10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      m
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_THR_CRUISE">GND_THR_CRUISE</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Cruise throttle
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the throttle setting required to achieve the desired cruise speed. 10% is ok for a traxxas stampede vxl with ESC set to training mode
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.01)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.1
-    </td>
-    
-    <td style="vertical-align: top;">
-      norm
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_THR_IDLE">GND_THR_IDLE</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Idle throttle
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the minimum throttle while on the ground, it should be 0 for a rover
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 0.4 (0.01)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      norm
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_THR_MAX">GND_THR_MAX</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Throttle limit max
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the maximum throttle % that can be used by the controller. For a Traxxas stampede vxl with the ESC set to training, 30 % is enough
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.01)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.3
-    </td>
-    
-    <td style="vertical-align: top;">
-      norm
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="GND_THR_MIN">GND_THR_MIN</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Throttle limit min
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This is the minimum throttle % that can be used by the controller. Set to 0 for rover
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.01)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      norm
-    </td>
-  </tr>
-</table>
-
 ## GPS
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
@@ -10708,6 +10802,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -10766,6 +10863,9 @@
         </li>
         <li>
           <strong>202:</strong> GPS 2
+        </li>
+        <li>
+          <strong>300:</strong> Radio Controller
         </li>
       </ul>
       
@@ -11342,6 +11442,9 @@
         </li>
         <li>
           <strong>202:</strong> GPS 2
+        </li>
+        <li>
+          <strong>300:</strong> Radio Controller
         </li>
       </ul>
       
@@ -13126,6 +13229,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -13167,7 +13273,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -13244,7 +13350,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Configure the maximum sending rate for the MAVLink streams in Bytes/sec. If the configured streams exceed the maximum rate, the sending rate of each stream is automatically decreased. If this is set to 0, a value of <baudrate>/20 is used, which corresponds to half of the theoretical maximum bandwidth.
+        <strong>Comment:</strong> Configure the maximum sending rate for the MAVLink streams in Bytes/sec. If the configured streams exceed the maximum rate, the sending rate of each stream is automatically decreased. If this is set to 0 a value of half of the theoretical maximum bandwidth is used. This corresponds to baudrate/20 Bytes/s (baudrate/10 = maximum data rate on 8N1-configured links).
       </p>
       
       <p>
@@ -13306,6 +13412,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -13347,7 +13456,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -13424,7 +13533,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Configure the maximum sending rate for the MAVLink streams in Bytes/sec. If the configured streams exceed the maximum rate, the sending rate of each stream is automatically decreased. If this is set to 0, a value of <baudrate>/20 is used, which corresponds to half of the theoretical maximum bandwidth.
+        <strong>Comment:</strong> Configure the maximum sending rate for the MAVLink streams in Bytes/sec. If the configured streams exceed the maximum rate, the sending rate of each stream is automatically decreased. If this is set to 0 a value of half of the theoretical maximum bandwidth is used. This corresponds to baudrate/20 Bytes/s (baudrate/10 = maximum data rate on 8N1-configured links).
       </p>
       
       <p>
@@ -13486,6 +13595,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -13527,7 +13639,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -13604,7 +13716,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Configure the maximum sending rate for the MAVLink streams in Bytes/sec. If the configured streams exceed the maximum rate, the sending rate of each stream is automatically decreased. If this is set to 0, a value of <baudrate>/20 is used, which corresponds to half of the theoretical maximum bandwidth.
+        <strong>Comment:</strong> Configure the maximum sending rate for the MAVLink streams in Bytes/sec. If the configured streams exceed the maximum rate, the sending rate of each stream is automatically decreased. If this is set to 0 a value of half of the theoretical maximum bandwidth is used. This corresponds to baudrate/20 Bytes/s (baudrate/10 = maximum data rate on 8N1-configured links).
       </p>
       
       <p>
@@ -13711,7 +13823,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -13737,7 +13849,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -13763,7 +13875,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -13789,7 +13901,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -14017,7 +14129,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -14065,7 +14177,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -14159,7 +14271,7 @@
         Low pass filter frequency for Gyro
       </p>
       
-      <strong>数值：</strong>
+      <strong>Values:</strong>
       
       <ul>
         <li>
@@ -14267,95 +14379,6 @@
   
   <tr>
     <td style="vertical-align: top;">
-      <strong id="COM_OBL_ACT">COM_OBL_ACT</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Set offboard loss failsafe mode
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> The offboard loss failsafe will only be entered after a timeout, set by COM_OF_LOSS_T in seconds.
-      </p>
-      
-      <strong>Values:</strong>
-      
-      <ul>
-        <li>
-          <strong>0:</strong> Land mode
-        </li>
-        <li>
-          <strong>1:</strong> Hold mode
-        </li>
-        <li>
-          <strong>2:</strong> Return mode
-        </li>
-      </ul>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="COM_OBL_RC_ACT">COM_OBL_RC_ACT</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Set offboard loss failsafe mode when RC is available
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> The offboard loss failsafe will only be entered after a timeout, set by COM_OF_LOSS_T in seconds.
-      </p>
-      
-      <strong>Values:</strong>
-      
-      <ul>
-        <li>
-          <strong>0:</strong> Position mode
-        </li>
-        <li>
-          <strong>1:</strong> Altitude mode
-        </li>
-        <li>
-          <strong>2:</strong> Manual
-        </li>
-        <li>
-          <strong>3:</strong> Return mode
-        </li>
-        <li>
-          <strong>4:</strong> Land mode
-        </li>
-        <li>
-          <strong>5:</strong> Hold mode
-        </li>
-      </ul>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
       <strong id="COM_OBS_AVOID">COM_OBS_AVOID</strong> (INT32)
     </td>
     
@@ -14369,7 +14392,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -14620,7 +14643,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -14708,11 +14731,14 @@
         <li>
           <strong>3:</strong> along trajectory
         </li>
+        <li>
+          <strong>4:</strong> towards waypoint (yaw first)
+        </li>
       </ul>
     </td>
     
     <td style="vertical-align: top;">
-      0 > 3
+      0 > 4
     </td>
     
     <td style="vertical-align: top;">
@@ -14818,7 +14844,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -15061,6 +15087,109 @@
   </tr>
 </table>
 
+## Mixer Output
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
+    <th>
+      名称
+    </th>
+    
+    <th>
+      描述
+    </th>
+    
+    <th>
+      最小最大值 (增量)
+    </th>
+    
+    <th>
+      默认值
+    </th>
+    
+    <th>
+      单位
+    </th>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="MC_AIRMODE">MC_AIRMODE</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Multicopter air-mode
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> The air-mode enables the mixer to increase the total thrust of the multirotor in order to keep attitude and rate control even at low and high throttle. This function should be disabled during tuning as it will help the controller to diverge if the closed-loop is unstable (i.e. the vehicle is not tuned yet). Enabling air-mode for yaw requires the use of an arming switch.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Disabled
+        </li>
+        <li>
+          <strong>1:</strong> Roll/Pitch
+        </li>
+        <li>
+          <strong>2:</strong> Roll/Pitch/Yaw
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="MOT_ORDERING">MOT_ORDERING</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Motor Ordering
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Determines the motor ordering. This can be used for example in combination with a 4-in-1 ESC that assumes a motor ordering which is different from PX4. ONLY supported for Quads. When changing this, make sure to test the motor response without props first.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> PX4
+        </li>
+        <li>
+          <strong>1:</strong> Betaflight / Cleanflight
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+</table>
+
 ## Mount
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
@@ -15101,7 +15230,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -15788,46 +15917,6 @@
   
   <tr>
     <td style="vertical-align: top;">
-      <strong id="MC_AIRMODE">MC_AIRMODE</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Multicopter air-mode
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> The air-mode enables the mixer to increase the total thrust of the multirotor in order to keep attitude and rate control even at low and high throttle. This function should be disabled during tuning as it will help the controller to diverge if the closed-loop is unstable (i.e. the vehicle is not tuned yet). Enabling air-mode for yaw requires the use of an arming switch.
-      </p>
-      
-      <strong>Values:</strong>
-      
-      <ul>
-        <li>
-          <strong>0:</strong> Disabled
-        </li>
-        <li>
-          <strong>1:</strong> Roll/Pitch
-        </li>
-        <li>
-          <strong>2:</strong> Roll/Pitch/Yaw
-        </li>
-      </ul>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
       <strong id="MC_BAT_SCALE_EN">MC_BAT_SCALE_EN</strong> (INT32)
     </td>
     
@@ -15845,7 +15934,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -15954,7 +16043,34 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.05
+      0.2
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="MC_PITCHRATE_K">MC_PITCHRATE_K</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Pitch rate controller gain
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Global gain of the controller. This gain scales the P, I and D terms of the controller: output = MC_PITCHRATE_K * (MC_PITCHRATE_P * error + MC_PITCHRATE_I * error_integral + MC_PITCHRATE_D * error_derivative) Set MC_PITCHRATE_P=1 to implement a PID in the ideal form. Set MC_PITCHRATE_K=1 to implement a PID in the parallel form.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 5.0 (0.0005)
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0
     </td>
     
     <td style="vertical-align: top;">
@@ -16172,7 +16288,34 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.05
+      0.2
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="MC_ROLLRATE_K">MC_ROLLRATE_K</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Roll rate controller gain
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Global gain of the controller. This gain scales the P, I and D terms of the controller: output = MC_ROLLRATE_K * (MC_ROLLRATE_P * error + MC_ROLLRATE_I * error_integral + MC_ROLLRATE_D * error_derivative) Set MC_ROLLRATE_P=1 to implement a PID in the ideal form. Set MC_ROLLRATE_K=1 to implement a PID in the parallel form.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 5.0 (0.0005)
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0
     </td>
     
     <td style="vertical-align: top;">
@@ -16291,168 +16434,6 @@
   
   <tr>
     <td style="vertical-align: top;">
-      <strong id="MC_TPA_BREAK_D">MC_TPA_BREAK_D</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        TPA D Breakpoint
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Throttle PID Attenuation (TPA) Magnitude of throttle setpoint at which to begin attenuating roll/pitch D gain
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.1)
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="MC_TPA_BREAK_I">MC_TPA_BREAK_I</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        TPA I Breakpoint
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Throttle PID Attenuation (TPA) Magnitude of throttle setpoint at which to begin attenuating roll/pitch I gain
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.1)
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="MC_TPA_BREAK_P">MC_TPA_BREAK_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        TPA P Breakpoint
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Throttle PID Attenuation (TPA) Magnitude of throttle setpoint at which to begin attenuating roll/pitch P gain
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.1)
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="MC_TPA_RATE_D">MC_TPA_RATE_D</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        TPA Rate D
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Throttle PID Attenuation (TPA) Rate at which to attenuate roll/pitch D gain Attenuation factor is 1.0 when throttle magnitude is below the setpoint Above the setpoint, the attenuation factor is (1 - rate * (throttle - breakpoint) / (1.0 - breakpoint))
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.05)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="MC_TPA_RATE_I">MC_TPA_RATE_I</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        TPA Rate I
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Throttle PID Attenuation (TPA) Rate at which to attenuate roll/pitch I gain Attenuation factor is 1.0 when throttle magnitude is below the setpoint Above the setpoint, the attenuation factor is (1 - rate * (throttle - breakpoint) / (1.0 - breakpoint))
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.05)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="MC_TPA_RATE_P">MC_TPA_RATE_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        TPA Rate P
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Throttle PID Attenuation (TPA) Rate at which to attenuate roll/pitch P gain Attenuation factor is 1.0 when throttle magnitude is below the setpoint Above the setpoint, the attenuation factor is (1 - rate * (throttle - breakpoint) / (1.0 - breakpoint))
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0 (0.05)
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
       <strong id="MC_YAWRATE_D">MC_YAWRATE_D</strong> (FLOAT)
     </td>
     
@@ -16526,6 +16507,33 @@
     
     <td style="vertical-align: top;">
       0.1
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="MC_YAWRATE_K">MC_YAWRATE_K</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Yaw rate controller gain
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Global gain of the controller. This gain scales the P, I and D terms of the controller: output = MC_YAWRATE_K * (MC_YAWRATE_P * error + MC_YAWRATE_I * error_integral + MC_YAWRATE_D * error_derivative) Set MC_YAWRATE_P=1 to implement a PID in the ideal form. Set MC_YAWRATE_K=1 to implement a PID in the parallel form.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 5.0 (0.0005)
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0
     </td>
     
     <td style="vertical-align: top;">
@@ -16694,6 +16702,116 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="CP_DELAY">CP_DELAY</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Average delay of the range sensor message plus the tracking delay of the position controller in seconds
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Only used in Position mode.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 1
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.4
+    </td>
+    
+    <td style="vertical-align: top;">
+      seconds
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="CP_DIST">CP_DIST</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Minimum distance the vehicle should keep to all obstacles
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Only used in Position mode. Collision avoidance is disabled by setting this parameter to a negative value
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      -1 > 15
+    </td>
+    
+    <td style="vertical-align: top;">
+      -1.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      meters
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="CP_GO_NO_DATA">CP_GO_NO_DATA</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Boolean to allow moving into directions where there is no sensor data (outside FOV)
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Only used in Position mode.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      Disabled (0)
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="CP_GUIDE_ANG">CP_GUIDE_ANG</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Angle left/right from the commanded setpoint by which the collision prevention algorithm can choose to change the setpoint direction
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Only used in Position mode.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 90
+    </td>
+    
+    <td style="vertical-align: top;">
+      30.
+    </td>
+    
+    <td style="vertical-align: top;">
+      [deg]
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="MPC_ACC_DOWN_MAX">MPC_ACC_DOWN_MAX</strong> (FLOAT)
     </td>
     
@@ -16708,7 +16826,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      10.0
+      3.0
     </td>
     
     <td style="vertical-align: top;">
@@ -16736,7 +16854,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      5.0
+      3.0
     </td>
     
     <td style="vertical-align: top;">
@@ -16788,7 +16906,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      10.0
+      5.0
     </td>
     
     <td style="vertical-align: top;">
@@ -16812,7 +16930,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      10.0
+      4.0
     </td>
     
     <td style="vertical-align: top;">
@@ -16891,34 +17009,6 @@
     </td>
     
     <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="MPC_COL_PREV_D">MPC_COL_PREV_D</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Minimum distance the vehicle should keep to all obstacles
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Only used in Position mode. Collision avoidace is disabled by setting this parameter to a negative value
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      -1 > 15
-    </td>
-    
-    <td style="vertical-align: top;">
-      -1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      meters
     </td>
   </tr>
   
@@ -17281,7 +17371,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      200.0
+      150.0
     </td>
     
     <td style="vertical-align: top;">
@@ -17325,7 +17415,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      3
     </td>
     
     <td style="vertical-align: top;">
@@ -17684,7 +17774,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.0
+      0.6
     </td>
     
     <td style="vertical-align: top;">
@@ -17726,11 +17816,11 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.1 > 5.0
+      0.1 > 1.0
     </td>
     
     <td style="vertical-align: top;">
-      0.3
+      0.5
     </td>
     
     <td style="vertical-align: top;">
@@ -17858,7 +17948,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.0
+      0.6
     </td>
     
     <td style="vertical-align: top;">
@@ -17885,7 +17975,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.0
+      0.6
     </td>
     
     <td style="vertical-align: top;">
@@ -17927,7 +18017,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.1 > 5.0
+      0.1 > 1.0
     </td>
     
     <td style="vertical-align: top;">
@@ -17981,7 +18071,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0.02
+      0.1
     </td>
     
     <td style="vertical-align: top;">
@@ -18082,7 +18172,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -18231,44 +18321,6 @@
     <th>
       单位
     </th>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="MOT_ORDERING">MOT_ORDERING</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Motor Ordering
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Determines the motor ordering. This can be used for example in combination with a 4-in-1 ESC that assumes a motor ordering which is different from PX4. ONLY supported for Quads. ONLY supported for fmu output (Pixracer or Omnibus F4). When changing this, make sure to test the motor response without props first.
-      </p>
-      
-      <strong>Values:</strong>
-      
-      <ul>
-        <li>
-          <strong>0:</strong> PX4
-        </li>
-        <li>
-          <strong>1:</strong> Betaflight / Cleanflight
-        </li>
-      </ul>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0 > 1
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
   </tr>
   
   <tr>
@@ -19462,7 +19514,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -19470,7 +19522,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -19488,7 +19540,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -19496,7 +19548,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -19514,7 +19566,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -19522,7 +19574,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -19540,7 +19592,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -19548,7 +19600,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -19566,7 +19618,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -19574,7 +19626,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -19592,7 +19644,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -19600,7 +19652,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -19618,7 +19670,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -19626,7 +19678,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -19644,7 +19696,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -19652,7 +19704,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -20942,7 +20994,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -20950,7 +21002,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -20968,7 +21020,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -20976,7 +21028,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -20994,7 +21046,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -21002,7 +21054,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -21020,7 +21072,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -21028,7 +21080,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -21046,7 +21098,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -21054,7 +21106,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -21072,7 +21124,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -21080,7 +21132,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -21098,7 +21150,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -21106,7 +21158,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -21124,7 +21176,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Enable to invert the channel.
+        <strong>Comment:</strong> Enable to invert the channel. Warning: Use this parameter when connected to a servo only. For a brushless motor, invert manually two phases to reverse the direction.
       </p>
     </td>
     
@@ -21132,7 +21184,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -21470,7 +21522,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -21484,11 +21536,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        Thrust to PWM model parameter
+        Thrust to motor control signal model parameter
       </p>
       
       <p>
-        <strong>Comment:</strong> Parameter used to model the relationship between static thrust and motor input PWM. Model is: thrust = (1-factor)*PWM + factor * PWM^2
+        <strong>Comment:</strong> Parameter used to model the nonlinear relationship between motor control signal (e.g. PWM) and static thrust. The model is: rel_thrust = factor * rel_signal^2 + (1-factor) * rel_signal, where rel_thrust is the normalized thrust between 0 and 1, and rel_signal is the relative motor control signal between 0 and 1.
       </p>
     </td>
     
@@ -21697,7 +21749,7 @@
   </tr>
 </table>
 
-## Position Estimator INAV
+## Peripheral
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
@@ -21724,16 +21776,12 @@
   
   <tr>
     <td style="vertical-align: top;">
-      <strong id="CBRK_NO_VISION">CBRK_NO_VISION</strong> (INT32)
+      <strong id="LIGHT_EN_BLINKM">LIGHT_EN_BLINKM</strong> (INT32)
     </td>
     
     <td style="vertical-align: top;">
       <p>
-        Disable vision input
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Set to the appropriate key (328754) to disable vision input.
+        BlinkM LED
       </p>
       
       <p>
@@ -21742,725 +21790,10 @@
     </td>
     
     <td style="vertical-align: top;">
-      0 > 328754
     </td>
     
     <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_DELAY_GPS">INAV_DELAY_GPS</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        GPS delay
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> GPS delay compensation
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.2
-    </td>
-    
-    <td style="vertical-align: top;">
-      s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_DISAB_MOCAP">INAV_DISAB_MOCAP</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Mo-cap
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Set to 0 if using fake GPS
-      </p>
-      
-      <strong>Values:</strong>
-      
-      <ul>
-        <li>
-          <strong>0:</strong> Mo-cap enabled
-        </li>
-        <li>
-          <strong>1:</strong> Mo-cap disabled
-        </li>
-      </ul>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_FLOW_DIST_X">INAV_FLOW_DIST_X</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Flow module offset (center of rotation) in X direction
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Yaw X flow compensation
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      -1.0 > 1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      m
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_FLOW_DIST_Y">INAV_FLOW_DIST_Y</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Flow module offset (center of rotation) in Y direction
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Yaw Y flow compensation
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      -1.0 > 1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      m
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_FLOW_K">INAV_FLOW_K</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Optical flow scale factor
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Factor to scale optical flow
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.35
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_FLOW_Q_MIN">INAV_FLOW_Q_MIN</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Minimal acceptable optical flow quality
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> 0 - lowest quality, 1 - best quality.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.3
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_LAND_DISP">INAV_LAND_DISP</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Land detector altitude dispersion threshold
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Dispersion threshold for triggering land detector.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.7
-    </td>
-    
-    <td style="vertical-align: top;">
-      m
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_LAND_T">INAV_LAND_T</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Land detector time
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Vehicle assumed landed if no altitude changes happened during this time on low throttle.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      3.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_LAND_THR">INAV_LAND_THR</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Land detector throttle threshold
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Value should be lower than minimal hovering thrust. Half of it is good choice.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.2
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_LIDAR_ERR">INAV_LIDAR_ERR</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Sonar maximal error for new surface
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> If sonar measurement error is larger than this value it skiped (spike) or accepted as new surface level (if offset is stable).
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.2
-    </td>
-    
-    <td style="vertical-align: top;">
-      m
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_LIDAR_EST">INAV_LIDAR_EST</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        LIDAR for altitude estimation
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_LIDAR_OFF">INAV_LIDAR_OFF</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        LIDAR calibration offset
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> LIDAR calibration offset. Value will be added to the measured distance
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      -20 > 20
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      m
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_ACC_BIAS">INAV_W_ACC_BIAS</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Accelerometer bias estimation weight
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for accelerometer bias estimation. 0 to disable.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 0.1
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.05
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_GPS_FLOW">INAV_W_GPS_FLOW</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        XY axis weight factor for GPS when optical flow available
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> When optical flow data available, multiply GPS weights (for position and velocity) by this factor.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.1
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_MOC_P">INAV_W_MOC_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Weight for mocap system
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for mocap position measurements.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_XY_FLOW">INAV_W_XY_FLOW</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        XY axis weight for optical flow
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for optical flow (velocity) measurements.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.8
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_XY_GPS_P">INAV_W_XY_GPS_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        XY axis weight for GPS position
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for GPS position measurements.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_XY_GPS_V">INAV_W_XY_GPS_V</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        XY axis weight for GPS velocity
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for GPS velocity measurements.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      2.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_XY_RES_V">INAV_W_XY_RES_V</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        XY axis weight for resetting velocity
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> When velocity sources lost slowly decrease estimated horizontal velocity with this weight.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.5
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_XY_VIS_P">INAV_W_XY_VIS_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        XY axis weight for vision position
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for vision position measurements.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      7.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_XY_VIS_V">INAV_W_XY_VIS_V</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        XY axis weight for vision velocity
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for vision velocity measurements.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_Z_BARO">INAV_W_Z_BARO</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Z axis weight for barometer
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for barometer altitude measurements.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.5
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_Z_GPS_P">INAV_W_Z_GPS_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Z axis weight for GPS
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for GPS altitude measurements. GPS altitude data is very noisy and should be used only as slow correction for baro offset.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.005
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_Z_GPS_V">INAV_W_Z_GPS_V</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Z velocity weight for GPS
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for GPS altitude velocity measurements.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_Z_LIDAR">INAV_W_Z_LIDAR</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Z axis weight for lidar
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for lidar measurements.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      3.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="INAV_W_Z_VIS_P">INAV_W_Z_VIS_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Z axis weight for vision
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Weight (cutoff frequency) for vision altitude measurements. vision altitude data is very noisy and should be used only as slow correction for baro offset.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0 > 10.0
-    </td>
-    
-    <td style="vertical-align: top;">
-      5.0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -22779,6 +22112,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -22837,6 +22173,9 @@
         </li>
         <li>
           <strong>202:</strong> GPS 2
+        </li>
+        <li>
+          <strong>300:</strong> Radio Controller
         </li>
       </ul>
       
@@ -28856,6 +28195,57 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="RTL_CONE_ANG">RTL_CONE_ANG</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Half-angle of the return mode altitude cone
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Defines the half-angle of a cone centered around the destination position that affects the altitude at which the vehicle returns.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No cone, always climb to RTL_RETURN_ALT above destination.
+        </li>
+        <li>
+          <strong>25:</strong> 25 degrees half cone angle.
+        </li>
+        <li>
+          <strong>45:</strong> 45 degrees half cone angle.
+        </li>
+        <li>
+          <strong>65:</strong> 65 degrees half cone angle.
+        </li>
+        <li>
+          <strong>80:</strong> 80 degrees half cone angle.
+        </li>
+        <li>
+          <strong>90:</strong> Only climb to at least RTL_DESCEND_ALT above destination.
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 90
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+      degrees
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="RTL_DESCEND_ALT">RTL_DESCEND_ALT</strong> (FLOAT)
     </td>
     
@@ -28865,7 +28255,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Stay at this altitude above home position after RTL descending. Land (i.e. slowly descend) from this altitude if autolanding allowed.
+        <strong>Comment:</strong> Descend to this altitude (above destination position) after return, and wait for time defined in RTL_LAND_DELAY. Land (i.e. slowly descend) from this altitude if autolanding allowed.
       </p>
     </td>
     
@@ -28893,7 +28283,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Delay after descend before landing in Return mode. If set to -1 the system will not land but loiter at RTL_DESCEND_ALT.
+        <strong>Comment:</strong> Delay before landing (after initial descent) in Return mode. If set to -1 the system will not land but loiter at RTL_DESCEND_ALT.
       </p>
     </td>
     
@@ -28917,16 +28307,16 @@
     
     <td style="vertical-align: top;">
       <p>
-        Minimum distance to trigger rising to a safe altitude
+        Maximum horizontal distance from return destination, below which RTL_DESCEND_ALT is used as return altitude
       </p>
       
       <p>
-        <strong>Comment:</strong> If the system is horizontally closer than this distance to home it will land straight on home instead of raising to the return altitude first.
+        <strong>Comment:</strong> If the vehicle is less than this horizontal distance from the return destination when return mode is activated it will ascend to RTL_DESCEND_ALT for the return journey (rather than the altitude set by RTL_RETURN_ALT and RTL_CONE_ANG).
       </p>
     </td>
     
     <td style="vertical-align: top;">
-      0.5 > 20 (0.5)
+      0.5 > 100 (0.5)
     </td>
     
     <td style="vertical-align: top;">
@@ -28945,11 +28335,11 @@
     
     <td style="vertical-align: top;">
       <p>
-        RTL altitude
+        Return mode return altitude
       </p>
       
       <p>
-        <strong>Comment:</strong> Altitude to fly back in RTL in meters
+        <strong>Comment:</strong> Default minimum altitude above destination (e.g. home, safe point, landing pattern) for return flight. This is affected by RTL_MIN_DIST and RTL_CONE_ANG.
       </p>
     </td>
     
@@ -28977,7 +28367,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> Fly straight to the home location or planned mission landing and land there or use the planned mission to get to those points.
+        <strong>Comment:</strong> Fly straight to the return location or planned mission landing and land there or use the planned mission to get to those points.
       </p>
       
       <strong>Values:</strong>
@@ -28992,6 +28382,9 @@
         <li>
           <strong>2:</strong> Return to a planned mission landing, if available, using the mission path, else return to home via the reverse mission path
         </li>
+        <li>
+          <strong>3:</strong> Return via direct path to closest destination: home, mission landing pattern or safe point
+        </li>
       </ul>
     </td>
     
@@ -29003,6 +28396,814 @@
     </td>
     
     <td style="vertical-align: top;">
+    </td>
+  </tr>
+</table>
+
+## Roboclaw
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
+    <th>
+      名称
+    </th>
+    
+    <th>
+      描述
+    </th>
+    
+    <th>
+      最小最大值 (增量)
+    </th>
+    
+    <th>
+      默认值
+    </th>
+    
+    <th>
+      单位
+    </th>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="RBCLW_SER_CFG">RBCLW_SER_CFG</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Serial Configuration for Roboclaw Driver
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Configure on which serial port to run Roboclaw Driver.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Disabled
+        </li>
+        <li>
+          <strong>6:</strong> UART 6
+        </li>
+        <li>
+          <strong>101:</strong> TELEM 1
+        </li>
+        <li>
+          <strong>102:</strong> TELEM 2
+        </li>
+        <li>
+          <strong>103:</strong> TELEM 3
+        </li>
+        <li>
+          <strong>104:</strong> TELEM/SERIAL 4
+        </li>
+        <li>
+          <strong>201:</strong> GPS 1
+        </li>
+        <li>
+          <strong>202:</strong> GPS 2
+        </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+</table>
+
+## Roboclaw driver
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
+    <th>
+      名称
+    </th>
+    
+    <th>
+      描述
+    </th>
+    
+    <th>
+      最小最大值 (增量)
+    </th>
+    
+    <th>
+      默认值
+    </th>
+    
+    <th>
+      单位
+    </th>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="RBCLW_ADDRESS">RBCLW_ADDRESS</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Address of the Roboclaw
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> The Roboclaw can be configured to have an address from 0x80 to 0x87, inclusive. It must be configured to match this parameter.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>128:</strong> 0x80
+        </li>
+        <li>
+          <strong>129:</strong> 0x81
+        </li>
+        <li>
+          <strong>130:</strong> 0x82
+        </li>
+        <li>
+          <strong>131:</strong> 0x83
+        </li>
+        <li>
+          <strong>132:</strong> 0x84
+        </li>
+        <li>
+          <strong>133:</strong> 0x85
+        </li>
+        <li>
+          <strong>134:</strong> 0x86
+        </li>
+        <li>
+          <strong>135:</strong> 0x87
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+      128 > 135
+    </td>
+    
+    <td style="vertical-align: top;">
+      128
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="RBCLW_BAUD">RBCLW_BAUD</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Roboclaw serial baud rate
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Baud rate of the serial communication with the Roboclaw. The Roboclaw must be configured to match this rate.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>2400:</strong> 2400 baud
+        </li>
+        <li>
+          <strong>9600:</strong> 9600 baud
+        </li>
+        <li>
+          <strong>19200:</strong> 19200 baud
+        </li>
+        <li>
+          <strong>38400:</strong> 38400 baud
+        </li>
+        <li>
+          <strong>57600:</strong> 57600 baud
+        </li>
+        <li>
+          <strong>115200:</strong> 115200 baud
+        </li>
+        <li>
+          <strong>230400:</strong> 230400 baud
+        </li>
+        <li>
+          <strong>460800:</strong> 460800 baud
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      2400 > 460800
+    </td>
+    
+    <td style="vertical-align: top;">
+      2400
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="RBCLW_COUNTS_REV">RBCLW_COUNTS_REV</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Encoder counts per revolution
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Number of encoder counts for one revolution. The roboclaw treats analog encoders (potentiometers) as having 2047 counts per rev. The default value of 1200 corresponds to the default configuration of the Aion R1 rover.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1 > ?
+    </td>
+    
+    <td style="vertical-align: top;">
+      1200
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="RBCLW_READ_PER">RBCLW_READ_PER</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Encoder read period
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> How long to wait, in Milliseconds, between reading wheel encoder values over Uart from the Roboclaw
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1 > 1000
+    </td>
+    
+    <td style="vertical-align: top;">
+      10
+    </td>
+    
+    <td style="vertical-align: top;">
+      ms
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="RBCLW_WRITE_PER">RBCLW_WRITE_PER</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Uart write period
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> How long to wait, in Milliseconds, between writing actuator controls over Uart to the Roboclaw
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1 > 1000
+    </td>
+    
+    <td style="vertical-align: top;">
+      10
+    </td>
+    
+    <td style="vertical-align: top;">
+      ms
+    </td>
+  </tr>
+</table>
+
+## Rover Position Control
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
+  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
+    <th>
+      名称
+    </th>
+    
+    <th>
+      描述
+    </th>
+    
+    <th>
+      最小最大值 (增量)
+    </th>
+    
+    <th>
+      默认值
+    </th>
+    
+    <th>
+      单位
+    </th>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_L1_DAMPING">GND_L1_DAMPING</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        L1 damping
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Damping factor for L1 control.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.6 > 0.9 (0.05)
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.75
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_L1_DIST">GND_L1_DIST</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        L1 distance
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the waypoint radius
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 100.0 (0.1)
+    </td>
+    
+    <td style="vertical-align: top;">
+      5.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      m
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_L1_PERIOD">GND_L1_PERIOD</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        L1 period
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the L1 distance and defines the tracking point ahead of the rover it's following. Using values around 2-5 for a traxxas stampede. Shorten slowly during tuning until response is sharp without oscillation.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 50.0 (0.5)
+    </td>
+    
+    <td style="vertical-align: top;">
+      10.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      m
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_MAX_ANG">GND_MAX_ANG</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Maximum turn angle for Ackerman steering. At a control output of 0, the steering wheels are at 0 radians. At a control output of 1, the steering wheels are at GND_MAX_ANG radians
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 3.14159 (0.01)
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.7854
+    </td>
+    
+    <td style="vertical-align: top;">
+      rad
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_SPEED_D">GND_SPEED_D</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Speed proportional gain
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the derivative gain for the speed closed loop controller
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.00 > 50.0 (0.005)
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      %m/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_SPEED_I">GND_SPEED_I</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Speed Integral gain
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the integral gain for the speed closed loop controller
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.00 > 50.0 (0.005)
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.1
+    </td>
+    
+    <td style="vertical-align: top;">
+      %m/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_SPEED_IMAX">GND_SPEED_IMAX</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Speed integral maximum value
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the maxim value the integral can reach to prevent wind-up.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.005 > 50.0 (0.005)
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      %m/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_SPEED_MAX">GND_SPEED_MAX</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Maximum ground speed
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 40 (0.5)
+    </td>
+    
+    <td style="vertical-align: top;">
+      10.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      m/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_SPEED_P">GND_SPEED_P</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Speed proportional gain
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the proportional gain for the speed closed loop controller
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.005 > 50.0 (0.005)
+    </td>
+    
+    <td style="vertical-align: top;">
+      2.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      %m/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_SPEED_THR_SC">GND_SPEED_THR_SC</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Speed to throttle scaler
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is a gain to map the speed control output to the throttle linearly.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.005 > 50.0 (0.005)
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      %m/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_SPEED_TRIM">GND_SPEED_TRIM</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Trim ground speed
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 40 (0.5)
+    </td>
+    
+    <td style="vertical-align: top;">
+      3.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      m/s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_SP_CTRL_MODE">GND_SP_CTRL_MODE</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Control mode for speed
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This allows the user to choose between closed loop gps speed or open loop cruise throttle speed
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> open loop control
+        </li>
+        <li>
+          <strong>1:</strong> close the loop with gps speed
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 1
+    </td>
+    
+    <td style="vertical-align: top;">
+      1
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_THR_CRUISE">GND_THR_CRUISE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Cruise throttle
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the throttle setting required to achieve the desired cruise speed. 10% is ok for a traxxas stampede vxl with ESC set to training mode
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 1.0 (0.01)
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.1
+    </td>
+    
+    <td style="vertical-align: top;">
+      norm
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_THR_IDLE">GND_THR_IDLE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Idle throttle
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the minimum throttle while on the ground, it should be 0 for a rover
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 0.4 (0.01)
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      norm
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_THR_MAX">GND_THR_MAX</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Throttle limit max
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the maximum throttle % that can be used by the controller. For a Traxxas stampede vxl with the ESC set to training, 30 % is enough
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 1.0 (0.01)
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.3
+    </td>
+    
+    <td style="vertical-align: top;">
+      norm
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_THR_MIN">GND_THR_MIN</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Throttle limit min
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the minimum throttle % that can be used by the controller. Set to 0 for rover
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > 1.0 (0.01)
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      norm
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="GND_WHEEL_BASE">GND_WHEEL_BASE</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Distance from front axle to rear axle
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0.0 > ? (0.01)
+    </td>
+    
+    <td style="vertical-align: top;">
+      2.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      m
     </td>
   </tr>
 </table>
@@ -29216,6 +29417,30 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="RWTO_RAMP_TIME">RWTO_RAMP_TIME</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Throttle ramp up time for runway takeoff
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      1.0 > 15.0 (0.1)
+    </td>
+    
+    <td style="vertical-align: top;">
+      2.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      s
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="RWTO_TKOFF">RWTO_TKOFF</strong> (INT32)
     </td>
     
@@ -29229,7 +29454,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -29366,6 +29591,9 @@
         <li>
           <strong>2:</strong> from boot until shutdown
         </li>
+        <li>
+          <strong>3:</strong> depending on AUX1 RC channel
+        </li>
       </ul>
       
       <p>
@@ -29491,7 +29719,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -29547,6 +29775,30 @@
       s
     </td>
   </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SIM_BAT_MIN_PCT">SIM_BAT_MIN_PCT</strong> (FLOAT)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Simulator Battery minimal percentage. Can be used to alter the battery level during SITL- or HITL-simulation on the fly. Particularly useful for testing different low-battery behaviour
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 100 (0.1)
+    </td>
+    
+    <td style="vertical-align: top;">
+      50.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      %
+    </td>
+  </tr>
 </table>
 
 ## Sensor Calibration
@@ -29589,7 +29841,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -29765,7 +30017,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -29941,7 +30193,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -30161,7 +30413,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -30337,7 +30589,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -30513,7 +30765,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -30711,7 +30963,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -31004,7 +31256,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -31297,7 +31549,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -31590,7 +31842,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -32192,7 +32444,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> The cutoff frequency for the 2nd order butterworth filter on the accel driver. This features is currently supported by the mpu6000 and mpu9250. This only affects the signal sent to the controllers, not the estimators. 0 disables the filter.
+        <strong>Comment:</strong> The cutoff frequency for the 2nd order butterworth filter on the accel driver. This only affects the signal sent to the controllers, not the estimators. 0 disables the filter.
       </p>
       
       <p>
@@ -32224,7 +32476,7 @@
       </p>
       
       <p>
-        <strong>Comment:</strong> The cutoff frequency for the 2nd order butterworth filter on the gyro driver. This features is currently supported by the mpu6000 and mpu9250. This only affects the signal sent to the controllers, not the estimators. 0 disables the filter.
+        <strong>Comment:</strong> The cutoff frequency for the 2nd order butterworth filter on the gyro driver. This only affects the signal sent to the controllers, not the estimators. 0 disables the filter.
       </p>
       
       <p>
@@ -32238,6 +32490,61 @@
     
     <td style="vertical-align: top;">
       30.0
+    </td>
+    
+    <td style="vertical-align: top;">
+      Hz
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="IMU_GYRO_RATEMAX">IMU_GYRO_RATEMAX</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Gyro control data maximum publication rate
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This is the maximum rate the gyro control data (sensor_gyro_control) will be allowed to publish at. Set to 0 to disable and publish at the native sensor sample rate.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> 0 (no limit)
+        </li>
+        <li>
+          <strong>50:</strong> 50 Hz
+        </li>
+        <li>
+          <strong>250:</strong> 250 Hz
+        </li>
+        <li>
+          <strong>400:</strong> 400 Hz
+        </li>
+        <li>
+          <strong>1000:</strong> 1000 Hz
+        </li>
+        <li>
+          <strong>2000:</strong> 2000 Hz
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 2000
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
     </td>
     
     <td style="vertical-align: top;">
@@ -32323,6 +32630,10 @@
     <td style="vertical-align: top;">
       <p>
         QNH for barometer
+      </p>
+      
+      <p>
+        <b>Reboot required:</b> true
       </p>
     </td>
     
@@ -32460,6 +32771,9 @@
         </li>
         <li>
           <strong>34:</strong> Pitch 315°
+        </li>
+        <li>
+          <strong>35:</strong> Roll 90°, Yaw 270°
         </li>
       </ul>
       
@@ -32601,6 +32915,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -32613,6 +32930,59 @@
     
     <td style="vertical-align: top;">
       0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_CM8JL65_R_0">SENS_CM8JL65_R_0</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Distance Sensor Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Distance Sensor Rotation as MAV_SENSOR_ORIENTATION enum
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> ROTATION_FORWARD_FACING
+        </li>
+        <li>
+          <strong>2:</strong> ROTATION_RIGHT_FACING
+        </li>
+        <li>
+          <strong>6:</strong> ROTATION_LEFT_FACING
+        </li>
+        <li>
+          <strong>12:</strong> ROTATION_BACKWARD_FACING
+        </li>
+        <li>
+          <strong>24:</strong> ROTATION_UPWARD_FACING
+        </li>
+        <li>
+          <strong>25:</strong> ROTATION_DOWNWARD_FACING
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> True
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      25
     </td>
     
     <td style="vertical-align: top;">
@@ -32638,7 +33008,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -32705,6 +33075,44 @@
     </td>
     
     <td style="vertical-align: top;">
+      Disabled (0)
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_EN_MPDT">SENS_EN_MPDT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Enable Mappydot rangefinder (i2c)
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Disabled
+        </li>
+        <li>
+          <strong>1:</strong> Autodetect
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 1
+    </td>
+    
+    <td style="vertical-align: top;">
       0
     </td>
     
@@ -32731,7 +33139,59 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_EN_PMW3901">SENS_EN_PMW3901</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        PMW3901 Optical Flow
+      </p>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      Disabled (0)
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_EN_PX4FLOW">SENS_EN_PX4FLOW</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        PX4 Flow Optical Flow
+      </p>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -32813,7 +33273,10 @@
           <strong>4:</strong> SF11/c
         </li>
         <li>
-          <strong>5:</strong> SF/LW20
+          <strong>5:</strong> SF/LW20/b
+        </li>
+        <li>
+          <strong>6:</strong> SF/LW20/c
         </li>
       </ul>
       
@@ -32894,6 +33357,9 @@
         </li>
         <li>
           <strong>4:</strong> TREvo600Hz
+        </li>
+        <li>
+          <strong>5:</strong> TREvo3m
         </li>
       </ul>
       
@@ -33086,6 +33552,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -33094,6 +33563,1446 @@
     </td>
     
     <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_0_ROT">SENS_MB12_0_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 0 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_10_ROT">SENS_MB12_10_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 10 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_11_ROT">SENS_MB12_11_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 12 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_1_ROT">SENS_MB12_1_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 1 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_2_ROT">SENS_MB12_2_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 2 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_3_ROT">SENS_MB12_3_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 3 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_4_ROT">SENS_MB12_4_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 4 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_5_ROT">SENS_MB12_5_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 5 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_6_ROT">SENS_MB12_6_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 6 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_7_ROT">SENS_MB12_7_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 7 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_8_ROT">SENS_MB12_8_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 8 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MB12_9_ROT">SENS_MB12_9_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MaxBotix MB12XX Sensor 9 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT0_ROT">SENS_MPDT0_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 0 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT10_ROT">SENS_MPDT10_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 10 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT11_ROT">SENS_MPDT11_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 12 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT1_ROT">SENS_MPDT1_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 1 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT2_ROT">SENS_MPDT2_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 2 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT3_ROT">SENS_MPDT3_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 3 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT4_ROT">SENS_MPDT4_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 4 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT5_ROT">SENS_MPDT5_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 5 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT6_ROT">SENS_MPDT6_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 6 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT7_ROT">SENS_MPDT7_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 7 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT8_ROT">SENS_MPDT8_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 8 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SENS_MPDT9_ROT">SENS_MPDT9_ROT</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        MappyDot Sensor 9 Rotation
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> This parameter defines the rotation of the Mappydot sensor relative to the platform.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> No rotation
+        </li>
+        <li>
+          <strong>1:</strong> Yaw 45°
+        </li>
+        <li>
+          <strong>2:</strong> Yaw 90°
+        </li>
+        <li>
+          <strong>3:</strong> Yaw 135°
+        </li>
+        <li>
+          <strong>4:</strong> Yaw 180°
+        </li>
+        <li>
+          <strong>5:</strong> Yaw 225°
+        </li>
+        <li>
+          <strong>6:</strong> Yaw 270°
+        </li>
+        <li>
+          <strong>7:</strong> Yaw 315°
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 7
     </td>
     
     <td style="vertical-align: top;">
@@ -33144,6 +35053,9 @@
         </li>
         <li>
           <strong>202:</strong> GPS 2
+        </li>
+        <li>
+          <strong>300:</strong> Radio Controller
         </li>
       </ul>
       
@@ -33226,6 +35138,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -33285,6 +35200,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -33327,6 +35245,68 @@
     <th>
       单位
     </th>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="RC_PORT_CONFIG">RC_PORT_CONFIG</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Serial Configuration for RC Input Driver
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Configure on which serial port to run RC Input Driver. Setting this to 'Disabled' will use a board-specific default port for RC input.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Disabled
+        </li>
+        <li>
+          <strong>6:</strong> UART 6
+        </li>
+        <li>
+          <strong>101:</strong> TELEM 1
+        </li>
+        <li>
+          <strong>102:</strong> TELEM 2
+        </li>
+        <li>
+          <strong>103:</strong> TELEM 3
+        </li>
+        <li>
+          <strong>104:</strong> TELEM/SERIAL 4
+        </li>
+        <li>
+          <strong>201:</strong> GPS 1
+        </li>
+        <li>
+          <strong>202:</strong> GPS 2
+        </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      300
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
   </tr>
   
   <tr>
@@ -33454,6 +35434,119 @@
       
       <p>
         <strong>Comment:</strong> Configure the Baudrate for the GPS 2 Serial Port. Note: certain drivers such as the GPS can determine the Baudrate automatically.
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Auto
+        </li>
+        <li>
+          <strong>50:</strong> 50 8N1
+        </li>
+        <li>
+          <strong>75:</strong> 75 8N1
+        </li>
+        <li>
+          <strong>110:</strong> 110 8N1
+        </li>
+        <li>
+          <strong>134:</strong> 134 8N1
+        </li>
+        <li>
+          <strong>150:</strong> 150 8N1
+        </li>
+        <li>
+          <strong>200:</strong> 200 8N1
+        </li>
+        <li>
+          <strong>300:</strong> 300 8N1
+        </li>
+        <li>
+          <strong>600:</strong> 600 8N1
+        </li>
+        <li>
+          <strong>1200:</strong> 1200 8N1
+        </li>
+        <li>
+          <strong>1800:</strong> 1800 8N1
+        </li>
+        <li>
+          <strong>2400:</strong> 2400 8N1
+        </li>
+        <li>
+          <strong>4800:</strong> 4800 8N1
+        </li>
+        <li>
+          <strong>9600:</strong> 9600 8N1
+        </li>
+        <li>
+          <strong>19200:</strong> 19200 8N1
+        </li>
+        <li>
+          <strong>38400:</strong> 38400 8N1
+        </li>
+        <li>
+          <strong>57600:</strong> 57600 8N1
+        </li>
+        <li>
+          <strong>115200:</strong> 115200 8N1
+        </li>
+        <li>
+          <strong>230400:</strong> 230400 8N1
+        </li>
+        <li>
+          <strong>460800:</strong> 460800 8N1
+        </li>
+        <li>
+          <strong>500000:</strong> 500000 8N1
+        </li>
+        <li>
+          <strong>921600:</strong> 921600 8N1
+        </li>
+        <li>
+          <strong>1000000:</strong> 1000000 8N1
+        </li>
+        <li>
+          <strong>1500000:</strong> 1500000 8N1
+        </li>
+        <li>
+          <strong>2000000:</strong> 2000000 8N1
+        </li>
+        <li>
+          <strong>3000000:</strong> 3000000 8N1
+        </li>
+      </ul>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="SER_RC_BAUD">SER_RC_BAUD</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Baudrate for the Radio Controller Serial Port
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Configure the Baudrate for the Radio Controller Serial Port. Note: certain drivers such as the GPS can determine the Baudrate automatically.
       </p>
       
       <strong>Values:</strong>
@@ -34998,7 +37091,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0 > 99999
+      0 > 9999999
     </td>
     
     <td style="vertical-align: top;">
@@ -35032,7 +37125,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -35204,129 +37297,6 @@
   
   <tr>
     <td style="vertical-align: top;">
-      <strong id="SYS_COMPANION">SYS_COMPANION</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        TELEM2 as companion computer link (deprecated)
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This parameter is deprecated and will be removed after 1.9.0. Use the generic serial configuration parameters instead (e.g. MAV_0_CONFIG, MAV_0_MODE, etc.).
-      </p>
-      
-      <strong>Values:</strong>
-      
-      <ul>
-        <li>
-          <strong>0:</strong> Disabled
-        </li>
-        <li>
-          <strong>10:</strong> FrSky Telemetry
-        </li>
-        <li>
-          <strong>20:</strong> Crazyflie (Syslink)
-        </li>
-        <li>
-          <strong>57600:</strong> Companion Link (57600 baud, 8N1)
-        </li>
-        <li>
-          <strong>157600:</strong> OSD (57600 baud, 8N1)
-        </li>
-        <li>
-          <strong>257600:</strong> Command Receiver (57600 baud, 8N1)
-        </li>
-        <li>
-          <strong>319200:</strong> Normal Telemetry (19200 baud, 8N1)
-        </li>
-        <li>
-          <strong>338400:</strong> Normal Telemetry (38400 baud, 8N1)
-        </li>
-        <li>
-          <strong>357600:</strong> Normal Telemetry (57600 baud, 8N1)
-        </li>
-        <li>
-          <strong>519200:</strong> Minimal Telemetry (19200 baud, 8N1)
-        </li>
-        <li>
-          <strong>538400:</strong> Minimal Telemetry (38400 baud, 8N1)
-        </li>
-        <li>
-          <strong>557600:</strong> Minimal Telemetry (57600 baud, 8N1)
-        </li>
-        <li>
-          <strong>921600:</strong> Companion Link (921600 baud, 8N1)
-        </li>
-        <li>
-          <strong>1500000:</strong> Companion Link (1500000 baud, 8N1)
-        </li>
-        <li>
-          <strong>1921600:</strong> ESP8266 (921600 baud, 8N1)
-        </li>
-        <li>
-          <strong>3115200:</strong> Normal Telemetry (115200 baud, 8N1)
-        </li>
-        <li>
-          <strong>4115200:</strong> Iridium Telemetry (115200 baud, 8N1)
-        </li>
-        <li>
-          <strong>5115200:</strong> Minimal Telemetry (115200 baud, 8N1)
-        </li>
-        <li>
-          <strong>6460800:</strong> RTPS Client (460800 baud)
-        </li>
-      </ul>
-      
-      <p>
-        <b>Reboot required:</b> true
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0 > 6460800
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="SYS_FMU_TASK">SYS_FMU_TASK</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Run the FMU as a task to reduce latency
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> If true, the FMU will run in a separate task instead of on the work queue. Set this if low latency is required, for example for racing. This is a trade-off between RAM usage and latency: running as a task, it requires a separate stack and directly polls on the control topics, whereas running on the work queue, it runs at a fixed update rate.
-      </p>
-      
-      <p>
-        <b>Reboot required:</b> true
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      1
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
       <strong id="SYS_HAS_BARO">SYS_HAS_BARO</strong> (INT32)
     </td>
     
@@ -35348,7 +37318,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -35378,7 +37348,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -35452,6 +37422,9 @@
         <li>
           <strong>2:</strong> ekf2 (recommended)
         </li>
+        <li>
+          <strong>3:</strong> Q attitude estimator (no position)
+        </li>
       </ul>
       
       <p>
@@ -35460,7 +37433,6 @@
     </td>
     
     <td style="vertical-align: top;">
-      1 > 2
     </td>
     
     <td style="vertical-align: top;">
@@ -35554,7 +37526,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -35585,7 +37557,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -35616,6 +37588,36 @@
     <th>
       单位
     </th>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
+      <strong id="TEL_BST_EN">TEL_BST_EN</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Blacksheep telemetry Enable
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> If true, the FMU will try to connect to Blacksheep telemetry on start up
+      </p>
+      
+      <p>
+        <b>Reboot required:</b> true
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      Disabled (0)
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
   </tr>
   
   <tr>
@@ -35658,6 +37660,9 @@
         </li>
         <li>
           <strong>202:</strong> GPS 2
+        </li>
+        <li>
+          <strong>300:</strong> Radio Controller
         </li>
       </ul>
       
@@ -35718,6 +37723,9 @@
         <li>
           <strong>202:</strong> GPS 2
         </li>
+        <li>
+          <strong>300:</strong> Radio Controller
+        </li>
       </ul>
       
       <p>
@@ -35742,23 +37750,23 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      名称
+      Name
     </th>
     
     <th>
-      描述
+      Description
     </th>
     
     <th>
-      最小最大值 (增量)
+      Min > Max (Incr.)
     </th>
     
     <th>
-      默认值
+      Default
     </th>
     
     <th>
-      单位
+      Units
     </th>
   </tr>
   
@@ -36146,23 +38154,23 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      名称
+      Name
     </th>
     
     <th>
-      描述
+      Description
     </th>
     
     <th>
-      最小最大值 (增量)
+      Min > Max (Incr.)
     </th>
     
     <th>
-      默认值
+      Default
     </th>
     
     <th>
-      单位
+      Units
     </th>
   </tr>
   
@@ -37436,7 +39444,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -38185,7 +40193,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -39462,7 +41470,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -39475,23 +41483,23 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      名称
+      Name
     </th>
     
     <th>
-      描述
+      Description
     </th>
     
     <th>
-      最小最大值 (增量)
+      Min > Max (Incr.)
     </th>
     
     <th>
-      默认值
+      Default
     </th>
     
     <th>
-      单位
+      Units
     </th>
   </tr>
   
@@ -39690,7 +41698,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -39734,51 +41742,24 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
     <th>
-      名称
+      Name
     </th>
     
     <th>
-      描述
+      Description
     </th>
     
     <th>
-      最小最大值 (增量)
+      Min > Max (Incr.)
     </th>
     
     <th>
-      默认值
+      Default
     </th>
     
     <th>
-      单位
+      Units
     </th>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="V19_VT_ROLLDIR">V19_VT_ROLLDIR</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Temporary parameter for the upgrade to v1.9, this is reminder to check the direction of fixed-wing roll control surfaces on custom VTOLs platforms
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> This parameter is present in v1.9 to enable smooth transition, it will be removed in v1.10. In firmware versions before v1.9, the VTOL attitude controller generated reversed fixed wing roll commands. As a consequence, all VTOL mixers had to reverse roll mixing. The VTOL roll commands in fixed wing mode were fixed in v1.9! - Standard VTOL platforms should be unaffected and this parameter can be ignored. - Custom VTOL platforms may crash if no action is taken, please check the direction of deflection of roll control surfaces before flight. Fix the roll mixer if necessary. Set to 1 to disable VTOL actuator outputs and display an info message (default). Set to 0 AFTER CAREFULLY CHECKING the direction of deflection of roll control surfaces.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0 > 1
-    </td>
-    
-    <td style="vertical-align: top;">
-      1
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
   </tr>
   
   <tr>
@@ -40040,7 +42021,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1
+      Enabled (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -40224,7 +42205,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
@@ -40390,17 +42371,17 @@
   
   <tr>
     <td style="vertical-align: top;">
-      <strong id="VT_MOT_COUNT">VT_MOT_COUNT</strong> (INT32)
+      <strong id="VT_MOT_ID">VT_MOT_ID</strong> (INT32)
     </td>
     
     <td style="vertical-align: top;">
       <p>
-        VTOL number of engines
+        The channel number of motors which provide lift during hover
       </p>
     </td>
     
     <td style="vertical-align: top;">
-      0 > 8 (1)
+      0 > 12345678 (1)
     </td>
     
     <td style="vertical-align: top;">
@@ -40657,209 +42638,6 @@
   </tr>
 </table>
 
-## Wind Estimator
-
-<table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
-  <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
-    <th>
-      Name
-    </th>
-    
-    <th>
-      Description
-    </th>
-    
-    <th>
-      Min > Max (Incr.)
-    </th>
-    
-    <th>
-      Default
-    </th>
-    
-    <th>
-      Units
-    </th>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="WEST_BETA_GATE">WEST_BETA_GATE</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Gate size for true sideslip fusion
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      1 > 5
-    </td>
-    
-    <td style="vertical-align: top;">
-      1
-    </td>
-    
-    <td style="vertical-align: top;">
-      SD
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="WEST_BETA_NOISE">WEST_BETA_NOISE</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Wind estimator sideslip measurement noise
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0 > 1
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.3
-    </td>
-    
-    <td style="vertical-align: top;">
-      rad
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="WEST_EN">WEST_EN</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Enable Wind estimator
-      </p>
-      
-      <p>
-        <b>Reboot required:</b> true
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="WEST_SC_P_NOISE">WEST_SC_P_NOISE</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Wind estimator true airspeed scale process noise
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0 > 0.1
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0001
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="WEST_TAS_GATE">WEST_TAS_GATE</strong> (INT32)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Gate size for true airspeed fusion
-      </p>
-      
-      <p>
-        <strong>Comment:</strong> Sets the number of standard deviations used by the innovation consistency test.
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      1 > 5
-    </td>
-    
-    <td style="vertical-align: top;">
-      3
-    </td>
-    
-    <td style="vertical-align: top;">
-      SD
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="WEST_TAS_NOISE">WEST_TAS_NOISE</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Wind estimator true airspeed measurement noise
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0 > 4
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.4
-    </td>
-    
-    <td style="vertical-align: top;">
-      m/s
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="WEST_W_P_NOISE">WEST_W_P_NOISE</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-        Wind estimator wind process noise
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-      0 > 1
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.1
-    </td>
-    
-    <td style="vertical-align: top;">
-      m/s/s
-    </td>
-  </tr>
-</table>
-
 ## Miscellaneous
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
@@ -40950,6 +42728,40 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="MPC_LAND_RC_HELP">MPC_LAND_RC_HELP</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Enable user assisted descent speed for autonomous land routine. When enabled, descent speed will be equal to MPC_LAND_SPEED at half throttle, MPC_Z_VEL_MAX_DN at zero throttle, and 0.5 * MPC_LAND_SPEED at full throttle
+      </p>
+      
+      <strong>Values:</strong>
+      
+      <ul>
+        <li>
+          <strong>0:</strong> Fixed descent speed of MPC_LAND_SPEED
+        </li>
+        <li>
+          <strong>1:</strong> User assisted descent speed
+        </li>
+      </ul>
+    </td>
+    
+    <td style="vertical-align: top;">
+      0 > 1
+    </td>
+    
+    <td style="vertical-align: top;">
+      0
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="RV_YAW_P">RV_YAW_P</strong> (FLOAT)
     </td>
     
@@ -40963,90 +42775,6 @@
     
     <td style="vertical-align: top;">
       0.1
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="SEG_Q2V">SEG_Q2V</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      1.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="SEG_TH2V_I">SEG_TH2V_I</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="SEG_TH2V_I_MAX">SEG_TH2V_I_MAX</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      0.0
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="vertical-align: top;">
-      <strong id="SEG_TH2V_P">SEG_TH2V_P</strong> (FLOAT)
-    </td>
-    
-    <td style="vertical-align: top;">
-      <p>
-      </p>
-    </td>
-    
-    <td style="vertical-align: top;">
-    </td>
-    
-    <td style="vertical-align: top;">
-      10.0
     </td>
     
     <td style="vertical-align: top;">

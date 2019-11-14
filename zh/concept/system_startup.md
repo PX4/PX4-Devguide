@@ -26,32 +26,39 @@ PX4 系统的启动由 shell 脚本文件控制。 在 NuttX 平台上这些脚�
     ./px4-listener sensor_accel
     
 
+### Dynamic modules
+
+Normally, all modules are compiled into a single PX4 executable. However, on Posix, there's the option of compiling a module into a separate file, which can be loaded into PX4 using the `dyn` command.
+
+    dyn ./test.px4mod
+    
+
 ## NuttX
 
-NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/NuttShell.html))，因此可以直接执行启动脚本。
+NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
 
-### 调试系统的启动过程
+### Debugging the System Boot
 
-软件组件的失效可以不中止 PX4 系统的启动， 这一特性可以在启动脚本中使用 `set +e` 来实现。
+A failure of a driver of software component will not lead to an aborted boot. This is controlled via `set +e` in the startup script.
 
-连接至 [系统控制台（system console）](../debug/system_console.md) 后重启飞控板可以进行对系统启动引导序列进行调试。 由此生成的启动引导日志文件中包含了引导序列的详细信息，同时也应包含了解释启动中止的线索。
+The boot sequence can be debugged by connecting the [system console](../debug/system_console.md) and power-cycling the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
 #### 启动失败的常见原因
 
 - 对于自定义的应用程序：系统用尽了 RAM 资源。 运行 `free` 命令以查看可用 RAM 的大小。
 - 引发堆栈跟踪的软件故障或者断言。
 
-### 替换系统的启动文件
+### Replacing the System Startup
 
-在大多数情况下自定义默认启动项是更好的做法，实现方法见下文。 如果需要替换整个引导文件，请创建文件： `/fs/microsd/etc/rc.txt` ，该文件位于 microSD 卡的根目录下的 `etc` 文件夹下。 如果此文件存在，系统中的任何内容都不会自动启动。
+In most cases customizing the default boot is the better approach, which is documented below. If the complete boot should be replaced, create a file `/fs/microsd/etc/rc.txt`, which is located in the `etc` folder on the microSD card. If this file is present nothing in the system will be auto-started.
 
-### 自定义系统的启动文件
+### Customizing the System Startup
 
-自定义系统启动的最佳方法是引入 [新的机架配置](../airframes/adding_a_new_frame.md) 。 如果只需要一些小的调整（比如多启动一个应用程序，或只是启用一个不同的混控器)，那么你可以在启动过程中使用特殊的钩子（hook）来达成目的。
+The best way to customize the system startup is to introduce a [new airframe configuration](../airframes/adding_a_new_frame.md). If only tweaks are wanted (like starting one more application or just using a different mixer) special hooks in the startup can be used.
 
 > **Caution** 系统的启动文件是 UNIX 系统文件，该文件要求以 UNIX 规范的 LF 作为行结束符。 在 Windows 平台上编辑系统的启动文件应该使用一个合适的文本编辑器。
 
-主要有三类钩子（hook）， 需要注意的是 microsd 的根目录是挂载在操作系统中的 `/fs/microsd` 目录下的。
+There are three main hooks. Note that the root folder of the microsd card is identified by the path `/fs/microsd`.
 
 - /fs/microsd/etc/config.txt
 - /fs/microsd/etc/extras.txt
@@ -59,15 +66,15 @@ NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/N
 
 #### 自定义配置（config.txt）
 
-`config.txt` 文件可用于修改 shell 变量。 该文件会在主系统完成配置后、 进行启动*前*进行加载。
+The `config.txt` file can be used to modify shell variables. It is loaded after the main system has been configured and *before* it is booted.
 
 #### 启动额外的应用
 
-`extras.txt` 可用于在主系统启动后启动额外的应用程序。 通常这些额外应用程序可以载荷控制器或类似的可选自定义组件。
+The `extras.txt` can be used to start additional applications after the main system boot. Typically these would be payload controllers or similar optional custom components.
 
 > **Caution**在系统启动文件中调用未知命令可能会导致系统引导失败。 通常情况下系统在引导失败后不会发送 mavlink 消息，所以在这种情况下请检查系统在控制台上输出的的错误消息。
 
-下面的示例演示了如何启动自定义应用程序:
+The following example shows how to start custom applications:
 
 - 在 SD 卡上创建一个文件 `etc/extras.txt` ，该文件应包含如下内容： ```custom_app start```
 - 搭配使用 `set +e` 和 `set -e` 可以将命令设置为可选命令：
@@ -81,11 +88,11 @@ NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/N
 
 #### 启动自定义的混控器
 
-默认情况下系统将从 `/etc/mixers` 文件夹下载入混控器。 如果在 `/fs/microsd/etc/mixers` 文件夹下存在一个同名文件，则后者将会替代默认的混控器被系统载入。 这就使得我们可以在不重新编译固件的情况下对混控器文件进行自定义修改。
+By default the system loads the mixer from `/etc/mixers`. If a file with the same name exists in `/fs/microsd/etc/mixers` this file will be loaded instead. This allows to customize the mixer file without the need to recompile the Firmware.
 
 ##### 示例
 
-下面的示例演示了如何添加一个辅助（AUX）混控器：
+The following example shows how to add a custom aux mixer:
 
 - 在 SD 卡中创建文件 `etc/mixers/gimbal.aux.mix` ，并将你的混控器设定内容写入该文件内。
 - 为了使用该混控器，再创建一个额外的文件 `etc/config.txt` ，该文件的内容如下： 

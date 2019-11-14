@@ -126,6 +126,8 @@
     `px4_add_module()` 方法从模块描述生成静态库。 `MAIN` 块列出了模块的名称 — 该名称将会作为 NuttX 的注册命令以便可以从 PX4 命令行或 SITL 控制台调用该命令。
     
     > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
+    > 
+    > **Note** If you specify `DYNAMIC` as an option to `px4_add_module`, a *shared library* is created instead of a static library on POSIX platforms (these can be loaded without having to recompile PX4, and shared to others as binaries rather than source code). Your app will not become a builtin command, but ends up in a separate file called `examples__px4_simple_app.px4mod`. You can then run your command by loading the file at runtime using the `dyn` command: `dyn ./examples__px4_simple_app.px4mod`
 
 ## 编译应用程序/固件
 

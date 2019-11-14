@@ -21,14 +21,12 @@ To build an example setup, follow the step below:
        git submodule update --init --recursive
        DONT_RUN=1 make px4_sitl_default gazebo
 
-2. Source your environment:
+2. Source your environment: 
   
       source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
        export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd):$(pwd)/Tools/sitl_gazebo
 
-3. Run launch file:
-  
-      roslaunch px4 multi_uav_mavros_sitl.launch
+3. Run launch file: ```roslaunch px4 multi_uav_mavros_sitl.launch```
   
   > **Tip** You can specify `gui:=false` in the above *roslaunch* to launch Gazebo without its UI.
 
@@ -53,9 +51,8 @@ For each simulated vehicle, the following is required:
 
 The launch file `multi_uav_mavros_sitl.launch`does the following,
 
-* loads a world in gazebo,
-
-        <!-- Gazebo sim -->
+* loads a world in gazebo, 
+      <!-- Gazebo sim -->
         <include file="$(find gazebo_ros)/launch/empty_world.launch">
             <arg name="gui" value="$(arg gui)"/>
             <arg name="world_name" value="$(arg world)"/>
@@ -63,11 +60,11 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
             <arg name="verbose" value="$(arg verbose)"/>
             <arg name="paused" value="$(arg paused)"/>
         </include>
-    
 
 * for each vehicle,
   
   * creates urdf model from xacro, loads gazebo model and runs PX4 SITL app instance
+    
           <!-- PX4 SITL and vehicle spawn -->
           <include file="$(find px4)/launch/single_vehicle_spawn.launch">
               <arg name="x" value="0"/>
@@ -81,9 +78,10 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
               <arg name="mavlink_tcp_port" value="4560"/>
               <arg name="ID" value="$(arg ID)"/>
           </include>
-      
+        
   
   * runs a mavros node
+    
           <!-- MAVROS -->
           <include file="$(find mavros)/launch/px4.launch">
               <arg name="fcu_url" value="$(arg fcu_url)"/>
@@ -91,7 +89,7 @@ The launch file `multi_uav_mavros_sitl.launch`does the following,
               <arg name="tgt_system" value="$(arg ID)"/>
               <arg name="tgt_component" value="1"/>
           </include>
-      
+        
   
   > **Note** The complete block for each vehicle is enclosed in a set of `<group>` tags to separate the ROS namespaces of the vehicles.
 
@@ -112,6 +110,26 @@ To add a third iris to this simulation there are two main components to consider
   * the second `mavlink start` ports need to match those used in the launch file `fcu_url` arg
     
     > **Note** Be aware of which port is `src` and `dst` for the different endpoints.
+
+## Multiple Vehicles using SDF Models
+
+This section shows how developers can simulate multiple vehicles using vehicle models defined in Gazebo SDF files (instead of using models defined in the ROS Xacro file, as discussed in the rest of this topic).
+
+The steps are:
+
+1. Install *xmlstarlet* from your Linux terminal: ```sudo apt install xmlstarlet```
+2. Use *roslaunch* with the **multi_uav_mavros_sitl_sdf.launch** launch file: ```` roslaunch multi_uav_mavros_sitl_sdf.launch vehicle:=<model_file_name> ```
+  
+  > **Note** that the vehicle model file name argument is optional (`vehicle:=<model_file_name>`); if omitted the [plane model](https://github.com/PX4/sitl_gazebo/tree/master/models/plane) will be used by default.
+
+This method is similar to using the xacro except that the SITL/Gazebo port number is automatically inserted by *xmstarlet* for each spawned vehicle, and does not need to be specified in the SDF file.
+
+To add a new vehicle, you need to make sure the model can be found (in order to spawn it in Gazebo), and PX4 needs to have an appropriate corresponding startup script.
+
+1. You can choose to do either of: 
+  * modify the **single_vehicle_spawn_sdf.launch** file to point to the location of your model by changing the line below to point to your model: ```$(find px4)/Tools/sitl_gazebo/models/$(arg vehicle)/$(arg vehicle).sdf``` > **Note** Ensure you set the `vehicle` argument even if you hardcode the path to your model.
+  * copy your model into the folder indicated above (following the same path convention). 
+2. The `vehicle` argument is used to set the `PX4_SIM_MODEL` environment variable, which is used by the default rCS (startup script) to find the corresponding startup settings file for the model. Within PX4 these startup files can be found in the **Firmware/ROMFS/px4fmu_common/init.d-posix/** directory. For example, here is the plane model's [startup script](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/1030_plane). For this to work, the PX4 node in the launch file is passed arguments that specify the *rCS* file (**etc/init.d/rcS**) and the location of the rootfs directory (`$(find px4)/ROMFS/px4fmu_common`). For simplicity, it is suggested that the startup file for the model be placed alongside PX4's in **Firmware/ROMFS/px4fmu_common/init.d-posix/**.
 
 ## Additional Resources
 

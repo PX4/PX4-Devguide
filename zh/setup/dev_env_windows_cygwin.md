@@ -12,21 +12,13 @@
 
 这篇文章将解释怎样下载和使用该环境，并且在需要的时候怎样扩展和更新(比如，使用其他的编译器)。
 
-<!-- Legacy Versions (**deprecated**):
-
-* [PX4 Windows Cygwin Toolchain 0.4 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.4.msi) (18.09.2018)
-* [PX4 Windows Cygwin Toolchain 0.3 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.3.msi) (25.07.2018)
-* [PX4 Windows Cygwin Toolchain 0.2 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.2.msi) (09.05.2018)
-* [PX4 Windows Cygwin Toolchain 0.1 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.1.msi) (23.02.2018)
--->
-
 ## 安装说明 {#installation}
 
-1. 从 [Github](https://github.com/PX4/windows-toolchain/releases) 或者 [S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.5.msi) 下载最新的MSI安装文件。
-2. 运行它，选择你需要的安装路径，执行安装 ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
+1. Download the latest version of the ready-to-use MSI installer from [Github](https://github.com/PX4/windows-toolchain/releases) or [S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.6.msi)
+2. Run it, choose your desired installation location, let it install: ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 3. 在安装结束后勾选*clone the PX4 repository, build and run simulation with jMAVSim*(这简化了你的开始准备工作)
     
-    > **注意**如果你错过了这一步，你需要[手动克隆PX4 Firmware代码仓库](#getting_started)
+    > **Note** If you missed this step you will need to [clone the PX4 Firmware repository manually](#getting_started).
 
 ## 入门指南 {#getting_started}
 
@@ -153,6 +145,7 @@
 * **目录:安装包名**
 * Devel:cmake (3.3.2 正常工作无告警, 3.6.2有告警但能够正常工作)
 * Devel:gcc-g++
+* Devel:gdb
 * Devel:git
 * Devel:make
 * Devel:ninja
@@ -170,13 +163,13 @@
 * Shells:bash-completion
 * Web:wget
     
-    > **注意：** 尽量不要选择太多不在上述列表中的附加包，Cygwin源中部分附加程序包可能会引发冲突并导致编译中断。
+    > **Note** Do not select as many packages as possible which are not on this list, there are some which conflict and break the builds.
     
     <span></span>
     
-    > **注意：** 这就是 [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) 所做的工作。
+    > **Note** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
 
-1. 编写或复制 ** 批处理脚本 ** [` run-console.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) 和 [` setup-environment-variables.bat `](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat)。
+1. Write up or copy the **batch scripts** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) and [`setup-environment.bat`](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat).
     
     使用预先准备好的批处理脚本启动开发环境的原因是，这些脚本预配置了程序使用工具链所在目录下的绿色版 Cygwin 环境变量。 This is done by always first calling the script [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) and the desired application like the console after that.
     
@@ -227,4 +220,4 @@
     
     > ** 注意： **这就是工具链在 [ gcc-arm/install-genromfs.bat ](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat) 脚本中所做的工作。
 
-1. 确保所有已安装组件的二进制文件夹都正确配置在 [** setup-environment-variables.bat **](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat) 配置的 ` 环境变量 ` 中。
+1. Make sure all the binary folders of all the installed components are correctly listed in the `PATH` variable configured by [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat).

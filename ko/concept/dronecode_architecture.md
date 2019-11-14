@@ -1,10 +1,10 @@
-# Dronecode Platform Hardware/Software Architecture
+# 드론코드 플랫폼 하드웨어/소프트웨어 구조
 
-The diagram below provides a forward-looking high level overview of the [Dronecode Platform](https://www.dronecode.org/platform/). The left hand side shows one possible hardware configuration with a *flight controller* (light blue) connected to a *perception computer* (dark blue) via [RTPS](../middleware/micrortps.md). The perception computer provides vision control and object avoidance using a camera sensor array, and has a separate payload camera.
+아래의 그림은 [Dronecode Platform](https://www.dronecode.org/platform/)의 플랜을 보여주는 추상화된 개요를 제공합니다. 왼쪽 편은 하나의 하드웨어 설정을 보여줍니다. *flight controller*(밝은 파란색)이 [RTPS](../middleware/micrortps.md)를 통해 *perception computer*(어두운 파랑) 과 연결됩니다. Perception computer는 카메라 센서 모음을 활용한 비전 컨트롤과 물체 회피를 제공하고 독립된 페이로드 카메라를 갖고 있습니다.
 
-The right hand side of the diagram shows the end-to-end software stack. The stack "approximately" aligns horizontally with the hardware parts of the diagram, and is colour coded to show which software is running on the flight controller and which on the companion computer.
+오른쪽은 풀스택의 소프트웨어를 보여줍니다. 스택은 거의 하드웨어의 부품들과 수평적으로 정렬되어 있습니다. 그리고 어떤 소프트웨어가 flight controller와 companion computer에서 수행되는지 구분하기위해 색상으로 구분되어있습니다.
 
-> **Note** The [PX4 Architectural Overview](../concept/architecture.md) provides information about the flight stack and middleware. Offboard APIs are covered in [ROS](../ros/README.md) and [Dronecode SDK](https://www.dronecode.org/sdk/).
+> **Note** [PX4 Architectural Overview](../concept/architecture.md) 는 flight stack과 middleware에 대한 정보를 제공합니다. Offboard API는 [ROS](../ros/README.md) 와 [MAVSDK](https://www.dronecode.org/sdk/)에서 담당합니다.
 
 ![Dronecode Platform architecture](../../assets/diagrams/dronecode_platform_architecture.jpg)
 

@@ -70,11 +70,11 @@ The messages are described below (see links for specific detail).
 
 ## 默认 PX4 MAVLink UDP 端口
 
-By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. Dronecode SDK, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
+By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. MAVSDK, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
 
-* UDP Port **14540** is used for communication with offboard APIs. 期望外接 APIs 监听此端口上的连接。
-* UDP Port **14550** is used for communication with ground control stations. 期望 GCS 将侦听此端口上的连接。 *QGroundControl*默认侦听此端口。
-* TCP Port **4560** is used for communication with simulators. PX4 侦听此端口，仿真器应通过向该端口广播数据来启动通信。
+- UDP Port **14540** is used for communication with offboard APIs. 期望外接 APIs 监听此端口上的连接。
+- UDP Port **14550** is used for communication with ground control stations. 期望 GCS 将侦听此端口上的连接。 *QGroundControl*默认侦听此端口。
+- The simulator's local TCP Port **4560** is used for communication with PX4. PX4 侦听此端口，仿真器应通过向该端口广播数据来启动通信。
 
 > **注意**GCS 和外置 API 的端口设置在配置文件中，而仿真器广播端口在模拟 MAVlink 模块中硬编码．
 
@@ -82,9 +82,9 @@ By default, PX4 uses commonly established UDP ports for MAVLink communication wi
 
 The diagram below shows a typical SITL simulation environment for any of the supported simulators. The different parts of the system connect via UDP, and can be run on either the same computer or another computer on the same network.
 
-* PX4 uses a simulation-specific module to listen on TCP port 4560. 模拟器连接到此端口，然后使用上面描述的 [Simulator mavlink API](#simulator-mavlink-api) 交换信息。 SITL 和模拟器上的 PX4 可以在同一台计算机上运行，也可以在同一网络上运行不同的计算机。
-* PX4 使用普通的 MAVLink 模块连接到 GroundStations（侦听端口 14550）和外部开发人员 API，如Dronecode SDK 或 ROS（侦听端口 14540）。
-* 串行连接用于通过 *QGroundControl* 连接 Joystick/Gamepad 硬件。
+- PX4 uses a simulation-specific module to connect to the simulator's local TCP port 4560. Simulators then exchange information with PX4 using the [Simulator MAVLink API](#simulator-mavlink-api) described above. SITL 和模拟器上的 PX4 可以在同一台计算机上运行，也可以在同一网络上运行不同的计算机。
+- PX4 uses the normal MAVLink module to connect to ground stations (which listen on port 14550) and external developer APIs like MAVSDK or ROS (which listen on port 14540).
+- 串行连接用于通过 *QGroundControl* 连接 Joystick/Gamepad 硬件。
 
 ![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
@@ -114,7 +114,7 @@ make px4_sitl jmavsim
 
 The simulation can be further configured via environment variables:
 
-* `PX4_ESTIMATOR`：此变量配置要使用的估算器。 可能的选项有：`ekf2` （默认）、`lpe`、`inav`。 在运行模拟之前，可以通过 `export PX4_ESTIMATOR=lpe` 进行设置。
+- `PX4_ESTIMATOR`：此变量配置要使用的估算器。 可能的选项有：`ekf2` （默认）、`lpe`、`inav`。 在运行模拟之前，可以通过 `export PX4_ESTIMATOR=lpe` 进行设置。
 
 The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
@@ -182,8 +182,8 @@ With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on re
 
 For setup information see the *QGroundControl User Guide*:
 
-* [操纵杆设置](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
-* [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
+- [操纵杆设置](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)
+- [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html)
 
 <!-- FYI Airsim info on this setting up remote controls: https://github.com/Microsoft/AirSim/blob/master/docs/remote_controls.md -->
 
@@ -196,7 +196,7 @@ The simulated camera is a gazebo plugin that implements the [MAVLink Camera Prot
 *exactly the same way* as it would with any other MAVLink camera:
 
 1. [TRIG_INTERFACE](../advanced/parameter_reference.md#TRIG_INTERFACE) must be set to `3` to configure the camera trigger driver for use with a MAVLink camera > **Tip** In this mode the driver just sends a [CAMERA_TRIGGER](https://mavlink.io/en/messages/common.html#CAMERA_TRIGGER) message whenever an image capture is requested. For more information see [Camera](https://docs.px4.io/en/peripherals/camera.html).
-2. PX4 must forward all camera commands between the GCS and the (simulator) MAVLink Camera. You can do this by starting [mavlink](../middleware/modules_communication.md#mavlink) with the `-f` flag as shown, specifying the UDP ports for the new connection. ```mavlink start -u 14558 -o 14530 -r 4000 -f -m camera``` > **Note** More than just the camera MAVLink messages will be forwarded, but the camera will ignore those that it doesn't consider relevant.
+2. PX4 must forward all camera commands between the GCS and the (simulator) MAVLink Camera. You can do this by starting [MAVLink](../middleware/modules_communication.md#mavlink) with the `-f` flag as shown, specifying the UDP ports for the new connection. ```mavlink start -u 14558 -o 14530 -r 4000 -f -m camera``` > **Note** More than just the camera MAVLink messages will be forwarded, but the camera will ignore those that it doesn't consider relevant.
 
 The same approach can be used by other simulators to implement camera support.
 
@@ -217,6 +217,24 @@ A remote computer can then connect to the simulator by listening to the appropri
 ### Use MAVLink Router
 
 The [mavlink-router](https://github.com/intel/mavlink-router) can be used to route packets from localhost to an external interface.
+
+To route packets between SITL running on one computer (sending MAVLink traffic to localhost on UDP port 14550), and QGC running on another computer (e.g. at address `10.73.41.30`) you could:
+
+- Start *mavlink-router* with the following command: ```mavlink-routerd -e 10.73.41.30:14550 127.0.0.1:14550```
+- Use a *mavlink-router* conf file.
+    
+        [UdpEndpoint QGC]
+        Mode = Normal
+        Address = 10.73.41.30
+        Port = 14550
+        
+        [UdpEndpoint SIM]
+        Mode = Eavesdropping
+        Address = 127.0.0.1
+        Port = 14550
+        
+
+> **Note** More information about *mavlink-router* configuration can be found [here](https://github.com/intel/mavlink-router/#running).
 
 ### Modify Configuration for External Broadcasting
 

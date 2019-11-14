@@ -228,44 +228,29 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
     sudo apt-get install $(apt-cache --names-only search ^gstreamer1.0-* | awk '{ print $1 }' | grep -v gstreamer1.0-hybris) -y
     
 
-### 启用 GStreamer 插件
+### How to View Gazebo Video
 
-> **Note**默认情况下启用视频流后，不需要执行此步骤。
+The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Settings > General** and set **Video Source** to *UDP Video Stream* and **UDP Port** to *5600*:
 
-通过在[&lt;Firmware&gt;/Tools/sitl_gazebo/CMakeLists.txt ](https://github.com/PX4/sitl_gazebo/blob/master/CMakeLists.txt)中将` BUILD_GSTREAMER_PLUGIN `选项更改为`“ON”`来启用* GStreamer Plugin*（如果禁用的话）（如下部分所示）：
+![QGC Video Streaming Settings for Gazebo](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
 
-    option(BUILD_GSTREAMER_PLUGIN "enable gstreamer plugin" "ON")
-    
+The video from Gazebo should then display in *QGroundControl* just as it would from a real camera.
 
-启用插件后，您可以正常方式使用 Gazebo 运行 SITL：
-
-    make clean
-    make px4_sitl gazebo_typhoon_h480
-    
-
-### 如何查看 Gazebo 视频
-
-查看 SITL / Gazebo 相机视频流的最简单方法是在* QGroundControl *中。 只需打开** Settings > General **并将** Video Source **设置为* UDP 视频流*，将** UDP 端口**设置为* 5600 *：
-
-![Gazebo 的 QGC 视频流设置](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
-
-来自 Gazebo 的视频应该像从真实相机那样显示在* QGroundControl *中。
-
-也可以使用* Gstreamer Pipeline *查看视频。 只需输入以下终端命令：
+It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
 
     gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
-    ! rtph264depay ! avdec_h264 videoconvert ! autovideosink fps-update-interval=1000 sync=false
+    ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
     
 
-### 用于启动/停止视频流的 Gazebo GUI
+### Gazebo GUI to Start/Stop Video Streaming
 
-> **Note** Gazebo 版本 7 支持此功能。
+> **Note** This feature is supported for Gazebo version 7.
 
-可以使用 Gazebo UI * Video ON/OFF *按钮来启用/禁用视频流。
+Video streaming can be enabled/disabled using the Gazebo UI *Video ON/OFF* button.
 
-![视频 ON / OFF 按钮](../../assets/gazebo/sitl_video_stream.png)
+![Video ON/OFF button](../../assets/gazebo/sitl_video_stream.png)
 
-启用按钮：
+To enable the button:
 
 1. 打开要修改的“ world ”文件（例如[&lt;Firmware>/Tools/sitl_gazebo/worlds/typhoon_h480.world ](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world)）。
 2. 在默认的` world name =“default”`部分中，为` libgazebo_video_stream_widge `添加` gui `部分（如下所示）：
@@ -298,13 +283,13 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 ## 扩展和定制
 
-要扩展或自定义仿真界面，请编辑` Tools/sitl_gazebo `文件夹中的文件。 该代码可在 Github 上的[ sitl_gazebo repository ](https://github.com/px4/sitl_gazebo)上获得。
+To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
 
-> **Note** 建系统强制执行正确的 GIT 子模块，包括模拟器。 它不会覆盖目录中文件的更改。
+> **Note** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
 
 ## 与 ROS 对接交互
 
-在仿真中可以使用跟真实飞机一样的方式实现 [与 ROS 的对接交互](../simulation/ros_interface.md) 。
+The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.
 
 ## 更多信息：
 

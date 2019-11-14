@@ -54,7 +54,7 @@ The diagram below shows the simulation environment:
 
 SITL runs on a development computer in a simulated environment, and uses firmware specifically generated for that environment. Other than simulation drivers to provide fake environmental data from the simulator the system behaves normally.
 
-By contrast, HITL runs normal PX4 firmware in "HITL mode", on normal hardware. The simulation data enters the system at a different point than for SITL. Core modules like commander and sensors have HIL modes at startup that bypass some of the normal functionality.
+By contrast, HITL runs normal PX4 firmware in "HITL mode", on normal hardware. The simulation data enters the system at a different point than for SITL. Core modules like commander and sensors have HITL modes at startup that bypass some of the normal functionality.
 
 In summary, HITL runs PX4 on the actual hardware using standard firmware, but SITL actually executes more of the standard system code.
 
@@ -137,10 +137,11 @@ Follow the appropriate setup steps for your simulator in the following sections.
 > **Note** 确保 *QGroundControl* 没有运行！
 
 1. 将飞行控制器连接到计算机, 并等待其启动。
-2. 在 HITL 模式下运行 jMAVSim (r如有必要，修改串口号名称 `/dev/ttyACM0` - 比如，在 Mac OS 上该参数应为 `/dev/tty.usbmodem1`)： 
+2. Run jMAVSim in HITL mode: 
         sh
-        ./Tools/jmavsim_run.sh -q -s -d /dev/ttyACM0 -b 921600 -r 250
-
+        ./Tools/jmavsim_run.sh -q -s -d /dev/ttyACM0 -b 921600 -r 250 > 
+    
+    **Note** Replace the serial port name `/dev/ttyACM0` as appropriate. On macOS this port would be `/dev/tty.usbmodem1`. On Windows (including Cygwin) it would be the COM1 or another port - check the connection in the Windows Device Manager.
 3. 开启 *QGroundControl*。 它应该会自动连接 PX4 和 Gazebo 。
 
 #### 使用 X-Plane (仅适用于固定翼无人机)

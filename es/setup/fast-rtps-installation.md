@@ -17,7 +17,7 @@ Fast RTPS is used by PX4 to enable an RTPS interface allowing PX4 uORB topics to
 Fast RTPS is installed as part of the PX4 developer environment on some platforms:
 
 * [Development Environment on Mac](../setup/dev_env_mac.md) (FastRTPS included in common tools)
-* [Development Environment on Linux](../setup/dev_env_linux.md) (FastRTPS included in install scripts)
+* [Development Environment on Linux](../setup/dev_env_linux.md) (FastRTPS included in install ROS install script but not NuttX/Simulator script)
 * [Development Environment on Windows > Bash on Windows](../setup/dev_env_windows_bash_on_win.md) (FastRTPS included in install script)
 
 The instruction below are useful for adding FastRTPS support in other environments.
@@ -43,7 +43,7 @@ Java is required to use our built-in code generation tool - *fastrtpsgen*. [Java
 Clone the project from Github:
 
 ```sh
-$ git clone https://github.com/eProsima/Fast-RTPS
+$ git clone -b v1.8.1 https://github.com/eProsima/Fast-RTPS
 $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 ```
 
@@ -57,8 +57,7 @@ $ make
 $ sudo make install
 ```
 
-This will install Fast RTPS to `/usr/local`. You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location. Afterwards make sure the `fastrtpsgen` application is in your `PATH`. You can check with `which
-fastrtpsgen`.
+This will install Fast RTPS to `/usr/local`. You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location. Afterwards make sure the `fastrtpsgen` application is in your `PATH`. You can check with `which fastrtpsgen`.
 
 If you are on Windows, choose your version of *Visual Studio*:
 

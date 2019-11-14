@@ -1,75 +1,27 @@
-# ArchLinux 上的开发环境
+# Development Environment on Arch Linux
 
-> **Note** These instructions allow you to build PX4 (without RTPS) for NuttX targets, using an unsupported version of GCCE from the package manager. The instructions have been tested on Antergos (an Arch Linux based distribution) as it is easier to set up than Arch Linux. 我们希望在不久的将来为本工具链提供经过全面测试的安装指南。（PS：译者实测时发现 ：Epel 源链接错误、部分依赖项无法使用 easy_install 的方式安装，只能使用 pip、系统自带 cmake 版本过低需要手动升级等问题，然后就弃坑了，欢迎 CentOS 大神折腾一下）
+The Firmware repository provides a convenient script to set your Arch installation up for PX4 development: [Tools/setup/arch.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/arch.sh).
 
-## 权限
+The script installs (by default) all tools to build PX4 (without RTPS) for NuttX targets and run simulation with *jMAVsim*. You can additionally install the *Gazebo* simulator by specifying the command line argument: `--gazebo`.
 
-将当前用户加入用户组 “uucp” ：
+![Gazebo on Arch](../../assets/gazebo/arch-gazebo.png)
 
-```sh
-sudo usermod -a -G uucp $USER
-```
+> **Note** The instructions have been tested on [Manjaro](https://manjaro.org/) (Arch based distribution) as it is much easier to set up than Arch Linux.
 
-然后注销并重新登录以使上述改动生效。
+To get and run the scripts, do either of:
 
-## 基于脚本的安装
+- [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place: 
+        git clone https://github.com/PX4/Firmware.git
+        source Firmware/Tools/setup/arch.sh
 
-> **Note** This script installs the (unsupported) latest GCCE from the package manager. MicroRTPS is not built.
+- Download just the needed scripts and then run them: 
+        sh
+        wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/arch.sh
+        wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/requirements.txt
+        source arch.sh
 
-Once ArchLinux is installed you can use the docker script [archlinux_install_script.sh](https://github.com/PX4/containers/blob/master/docker/px4-dev/scripts/archlinux_install_script.sh) to install all dependencies required for building PX4 firmware.
+The script takes the following optional parameters:
 
-To install using this script, enter the following in a terminal:
-
-```sh
-wget https://raw.githubusercontent.com/PX4/containers/master/docker/px4-dev/scripts/archlinux_install_script.sh
-sudo -s
-source ./archlinux_install_script.sh
-```
-
-<!-- 
-> Follow the instructions [below](#gcc-toolchain-installation) to install the supported version.
--->
-
-## 手动安装
-
-### 通用依赖
-
-在终端输入以下命令进行依赖项的手动安装：
-
-```sh
-# 所有目标的通用依赖包
-sudo pacman -Sy --noconfirm \
-    base-devel make cmake ccache git \
-    ninja python-pip tar unzip zip vim wget
-
-# 安装 Python 依赖包
-pip install serial empy numpy toml jinja2 pyyaml cerberus
-
-# 安装 genromfs
-wget https://sourceforge.net/projects/romfs/files/genromfs/0.5.2/genromfs-0.5.2.tar.gz
-tar zxvf genromfs-0.5.2.tar.gz
-cd genromfs-0.5.2 && make && make install && cd ..
-rm genromfs-0.5.2.tar.gz genromfs-0.5.2 -r 
-```
-
-> **Note** *genromfs* is also available in the [Archlinux User Repository](https://aur.archlinux.org/packages/genromfs/) (AUR). To use this package, install [yaourt](https://archlinux.fr/yaourt-en) (Yet AnOther User Repository Tool) and then use it to download, compile and install *genromfs* as shown: 
-> 
->     sh
->       yaourt -S genromfs
-
-### GCCE 编译器
-
-A GCC compiler is required to build for NuttX targets. Enter the command below to install the latest version from the package manager (unsupported).
-
-    # 从包管理器安装编译器（不支持）
-    sudo pacman -Sy --noconfirm \
-        arm-none-eabi-gcc arm-none-eabi-newlib
-    
-
-*Alternatively*, the standard instructions for installing the **official** version are listed below.
-
-> **Note** These are untested. Attempt them at your own risk!
-
-<!-- import GCC toolchain common documentation -->
-
-{% include "_gcc_toolchain_installation.md" %}
+- `--gazebo`: Add this parameter parameter to install Gazebo from the [AUR](https://aur.archlinux.org/packages/gazebo/). > **Note** Gazebo gets compiled from source. It takes some time to install and requires entering the `sudo` password multiple times (for dependencies).
+- `--no-nuttx`: Do not install the NuttX/Pixhawk toolchain (i.e. if only using simulation).
+- `--no-sim-tools`: Do not install jMAVSim/Gazebo (i.e. if only targeting Pixhawk/NuttX targets)

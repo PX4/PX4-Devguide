@@ -16,7 +16,7 @@ PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或�
 
 * （所有的）针对该飞控板的文件位于：[/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5)。 
 * 编译配置：[/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)。
-* 针对该飞控板的的初始化文件：[/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board) 
+* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board_defaults) 
   * 如果在飞控板平台目录下可以找到 **init/rc.board** 文件，则针对该飞控板平台的初始化文件将会自动包含在启动脚本中。
   * 该文件用于启动仅存在于特定主板上的传感器 (和其他东西)。 它也被用于完成对飞控板的默认参数、 UART 映射关系和其它特殊情况的设定。
   * 对于 FMUv5 飞控板而言你可以在该文件内看到所有的 Pixhawk 4 传感器都被启动了，该文件还设置了一个较大的 LOGGER_BUF。同时，在 AUTOCNF （初始设置）这一部分该文件还会设定 [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) 这一参数。
@@ -38,7 +38,7 @@ PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或�
 
 所有飞控板的配置文件，包括链接脚本和其它必需的设置都位于 [/boards](https://github.com/PX4/Firmware/tree/master/boards/) 文件夹下特定于供应商（vendor- specific）和飞控板种类（ board-specific）的目录下 (例如 **boards/*VENDOR*/*MODEL*/**)。
 
-下面的示例中使用了 FMUv5 飞控板平台，因为它是基于 NuttX 的飞行控制器的最新 < 0>参考配置 </a0 >：
+The following example uses FMUv5 as it is a recent [reference configuration](../hardware/reference_design.md) for NuttX based flight controllers:
 
 * 在 **Firmware** 目录下运行 `make px4_fmu-v5_default` 命令将生成 FMUv5 配置。
 * 基准的 FMUv5 配置文件位于：[/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5)。
@@ -100,7 +100,7 @@ sudo make install
 
 ## 官方支持的硬件
 
-PX4 项目支持并维护着 [FMU 标准参考硬件](../debug/reference-design.md) 及任何与标准相兼容的飞控板平台。 这就包括了 [Pixhawk 系列](https://docs.px4.io/en/flight_controller/pixhawk_series.html) （请翻阅用户手册获取 [官方支持硬件完整列表](https://docs.px4.io/en/flight_controller/))。
+The PX4 project supports and maintains the [FMU standard reference hardware](../hardware/reference_design.md) and any boards that are compatible with the standard. 这就包括了 [Pixhawk 系列](https://docs.px4.io/en/flight_controller/pixhawk_series.html) （请翻阅用户手册获取 [官方支持硬件完整列表](https://docs.px4.io/en/flight_controller/))。
 
 每个受官方支持的飞控板平台都将受益于：
 

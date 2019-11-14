@@ -17,7 +17,7 @@ PX4 使用 FastRTPS，使 RTPS 接口能够与板外组件（包括机器人和�
 在某些平台上，RTPS 作为 PX4 开发环境的一部分安装：
 
 * [Mac 的开发环境（FastRTPS中包括常用工具）](../setup/dev_env_mac.md)
-* [Linux 的开发环境（FastRTPS中包括安装脚本）](../setup/dev_env_linux.md)
+* [Development Environment on Linux](../setup/dev_env_linux.md) (FastRTPS included in install ROS install script but not NuttX/Simulator script)
 * [Development Environment on Windows > Bash on Windows](../setup/dev_env_windows_bash_on_win.md) (FastRTPS included in install script)
 
 下面的说明对于在其他环境中添加 FastRTPS 支持非常有用。
@@ -43,7 +43,7 @@ Java 需要使用我们内置的代码生成工具-*fastrtpsgen*。 建议使用
 在 Github 上下载项目：
 
 ```sh
-$ git clone https://github.com/eProsima/Fast-RTPS
+$ git clone -b v1.8.1 https://github.com/eProsima/Fast-RTPS
 $ mkdir Fast-RTPS/build && cd Fast-RTPS/build
 ```
 
@@ -57,7 +57,7 @@ $ make
 $ sudo make install
 ```
 
-这会将 FastRTPS 安装在 `/usr/local`。 您可以使用 `-DCMAKE_INSTALL_PREFIX=<path>` 定义自己的安装路径。 然后确保 `fastrtpsgen` 已经在你的 `PATH`。 使用 `which fastrtpsgen` 验证。
+这会将 FastRTPS 安装在 `/usr/local`。 You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location. Afterwards make sure the `fastrtpsgen` application is in your `PATH`. You can check with `which fastrtpsgen`.
 
 如果你是在 Windows，选择 *Visual Studio* 的版本：
 

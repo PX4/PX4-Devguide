@@ -2,7 +2,7 @@
 
 本主题介绍如何使用 JMAVSim和 SITL 模拟多架 (多旋翼) 无人机。 在仿真中所有无人机实例均在同一位置启动。
 
-> **Tip** 这是模拟多架运行 PX4 无人机的最简单的方法。 可用于测试 *QGroundControl*对多无人机的支持 (或 [Dronecode SDK](https://sdk.dronecode.org/en/)) 。 [Multi-Vehicle Simulation with Gazebo](../simulation/multi-vehicle-simulation.md) 应用于使用多架无人机进行无人机蜂群模拟，或者用于测试仅有 Gazebo 仿真平台支持的一些特性，比如计算机视觉。
+> **Tip** 这是模拟多架运行 PX4 无人机的最简单的方法。 It is suitable for testing multi-vehicle support in *QGroundControl* (or the [MAVSDK](https://mavsdk.mavlink.io/), etc.). [Multi-Vehicle Simulation with Gazebo](../simulation/multi-vehicle-simulation.md) 应用于使用多架无人机进行无人机蜂群模拟，或者用于测试仅有 Gazebo 仿真平台支持的一些特性，比如计算机视觉。
 
 <span></span>
 
@@ -19,7 +19,7 @@
 
 Ground stations such as *QGroundControl* connect to all instances using the normal UDP port 14550 (all traffic goes to the same port).
 
-Developer APIs such as *Dronecode SDK* or *MAVROS* connect on the UDP port 14540 (first instance), UDP port 14541 (second instance), and so on.
+Developer APIs such as *MAVSDK* or *MAVROS* connect on the UDP port 14540 (first instance), UDP port 14541 (second instance), and so on.
 
 ## 额外资源
 

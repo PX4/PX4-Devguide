@@ -1,56 +1,56 @@
-# uORB Messaging
+# uORB 메시징
 
-## Introduction
+## 소개
 
-The uORB is an asynchronous `publish()` / `subscribe()` messaging API used for inter-thread/inter-process communication.
+uORB는 스레드간/프로세스간 통신을 위해 사용되는 비동기 Pub/Sub 메시징 API입니다.
 
-Look at the [tutorial](../apps/hello_sky.md) to learn how to use it in C++.
+C++에서 어떻게 사용하는지는 [여기](../apps/hello_sky.md)를 봐주세요.
 
-uORB is automatically started early on bootup as many applications depend on it. It is started with `uorb start`. Unit tests can be started with `uorb_tests`.
+uORB는 많은 어플리케이션이 의존하고 있기 때문에 부트업시에 자동적으로 시작됩니다. `uorb start` 로 시작됩니다. 단위 테스트는 `uorb_tests`를 통해 수행할 수 있습니다.
 
-## Adding a new topic
+## 새로운 토픽 추가하기
 
-New uORB topics can be added either within the main PX4/Firmware repository, or can be added in an out-of-tree message definitions. For information on adding out-of-tree uORB message definitions, please see [this section](../advanced/out_of_tree_modules.md#uorb_message_definitions).
+새로운 uORB 토픽은 메인 PX4 펌웨어 저장소나 독립 브랜치의 메시지 정의에 추가하여 사용할 수 있습니다. 독립적인 브랜치에 uORB 메시지 정의에 추가하는 것은 [이 섹션](../advanced/out_of_tree_modules.md#uorb_message_definitions)을 참고하세요.
 
-To add a new topic, you need to create a new **.msg** file in the `msg/` directory and add the file name to the `msg/CMakeLists.txt` list. From this, the needed C/C++ code is automatically generated.
+새로운 토픽을 만들기 위해서는 `msg/` 디렉토리에 **.msg** 파일을 만들고 `msg/CMakeLists.txt` 리스트에 추가해야합니다. 필요한 C/C++ 코드는 자동적으로 생성됩니다.
 
-Have a look at the existing `msg` files for supported types. A message can also be used nested in other messages.
+지원되는 타입들을 확인하기 위해서는 이미있는 `msg` 파일들을 살펴보세요. 하나의 메시지는 다른 메시지에 포함될 수도 있습니다.
 
-To each generated C/C++ struct, a field `uint64_t timestamp` will be added. This is used for the logger, so make sure to fill it in when publishing the message.
+생성된 C/C++ 구조체에는 `uint64_t timestamp` 필드가 추가됩니다. 로깅을 위해 사용되며 메시지를 퍼블리시할때 설정해줘야 합니다.
 
-To use the topic in the code, include the header:
+만든 토픽을 사용하기 위해서는 헤더를 포함해야합니다.
 
     #include <uORB/topics/topic_name.h>
     
 
-By adding a line like the following in the `.msg` file, a single message definition can be used for multiple independent topics:
+`.msg` 파일에 한줄을 추가함으로써, 하나의 메시지 정의를 다수의 독립된 토픽들을 위해 사용할 수 있습니다.
 
     # TOPICS mission offboard_mission onboard_mission
     
 
-Then in the code, use them as topic id: `ORB_ID(offboard_mission)`.
+그리고 소스코드에서 토픽 ID `ORB_ID(offboard_mission)`로 사용하세요.
 
-## Publishing
+## 퍼블리시
 
-Publishing a topic can be done from anywhere in the system, including interrupt context (functions called by the `hrt_call` API). However, advertising a topic is only possible outside of interrupt context. A topic has to be advertised in the same process as it's later published.
+토픽을 퍼블리싱하는 것은 인터럽트 컨텐스를 포함하는 어느 시스템의 어디에서나 수행할 수 있습니다( `hrt_call` API에 의해 호출됨). 그러나, 토픽을 advertising 하는 것은 인터럽트 컨텍스트의 외부에서만 가능합니다. 토픽을 나중에 퍼블리시할때와 동일한 프로세스에서 Advertise 해야합니다.
 
-## Listing Topics and Listening in
+## 토픽 리스팅과 리스닝
 
-> **Note** The `listener` command is only available on Pixracer (FMUv4) and Linux / OS X.
+> **Note** `listener` 명령어는 Pixracer(FMUv4)와 Linux / OS X 에서만 사용가능 합니다.
 
-To list all topics, list the file handles:
+모든 토픽을 리스팅하기 위해서는 파일 핸들들을 리스팅해야 합니다.
 
 ```sh
 ls /obj
 ```
 
-To listen to the content of one topic for 5 messages, run the listener:
+5개의 메시지에 대해 하나의 토픽에 대한 컨텐츠를 수신하고 싶다면,
 
 ```sh
 listener sensor_accel 5
 ```
 
-The output is n-times the content of the topic:
+출력은 토픽 내용의 n배 입니다.
 
 ```sh
 TOPIC: sensor_accel #3
@@ -82,11 +82,11 @@ range_m_s2: 78
 scaling: 0
 ```
 
-> **Tip** On NuttX-based systems (Pixhawk, Pixracer, etc) the `listener` command can be called from within the *QGroundControl* MAVLink Console to inspect the values of sensors and other topics. This is a powerful debugging tool because it can be used even when QGC is connected over a wireless link (e.g. when the vehicle is flying). For more information see: [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md).
+> **Tip** NuttX기반의 시스템(Pixhawk, Pixracer 등)는 `listener`를 *QGroundControl* MAVLink Console 에서 센서나 다른 토픽들을 검사하기 위해 호출할 수 있습니다. 이 방법은 QGC가 무선으로 연결되어 있을 때 (예. 비행 중 일때)에도 사용할 수 있기 때문에 강력한 디버깅 툴입니다. 더 많은 정보는 [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md)를 참고하세요.
 
 ### uorb top Command
 
-The command `uorb top` shows the publishing frequency of each topic in real-time:
+`uorb top` 명령어는 각 토픽들의 퍼블리시 주기를 리얼타임으로 보여줍니다.
 
 ```sh
 update: 1s, num topics: 77
@@ -106,22 +106,12 @@ sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
 
-The columns are: topic name, multi-instance index, number of subscribers, publishing frequency in Hz, number of lost messages per second (for all subscribers combined), and queue size.
+컬럼들: 토픽 이름, 다중-인스턴스 인덱스, 구독자 수, 퍼블리시 주기(Hz), 초당 잃어버리는 메시지 수 (모든 구독자수를 대상으로), 큐 크기.
 
-## Multi-instance
+## 멀티-인스턴스
 
-uORB provides a mechanism to publish multiple independent instances of the same topic through `orb_advertise_multi`. It will return an instance index to the publisher. A subscriber will then have to choose to which instance to subscribe to using `orb_subscribe_multi` (`orb_subscribe` subscribes to the first instance). Having multiple instances is useful for example if the system has several sensors of the same type.
+uORB는 `orb_advertise_multi`를 통해 동일한 토픽에 대해 독립적인 여러개의 인스턴스를 퍼블리시 하는 메커니즘을 갖고 있습니다. 이 메커니즘은 퍼블리셔에게 인스턴스의 인덱스를 돌려줍니다. 그러면 Sub은 `orb_subscribe_multi`을 사용하여 어떤 인스턴스를 구독할지 선택해야만 합니다(`orb_subscribe`는 첫번째 인스턴스 구독하기). 다수의 인스턴스를 가지는 것은 동일한 타입의 센서를 여러개 가진 시스템에서 유용합니다.
 
-Make sure not to mix `orb_advertise_multi` and `orb_advertise` for the same topic.
+같은 토픽에 대해 `orb_advertise_multi`과 `orb_advertise`가 섞이지 않도록 유의하세요.
 
-The full API is documented in [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp).
-
-## Troubleshooting and common Pitfalls
-
-The following explains some common pitfalls and corner cases:
-
-- The topic is not published: make sure the `ORB_ID()`'s of each call match. It is also important that `orb_subscribe` and `orb_unsubscribe` are **called from the same task** as `orb_check` and `orb_copy`. This applies to `px4_task_spawn_cmd()`, but also when using work queues (`work_queue()`).
-- Make sure to clean up: use `orb_unsubscribe` and `orb_unadvertise`.
-- A successful `orb_check()` or `px4_poll()` call requires an `orb_copy()`, otherwise the next poll will return immediately.
-- It is perfectly ok to call `orb_subscribe` before anyone advertised the topic.
-- `orb_check()` and `px4_poll()` will only return true for publications that are done after `orb_subscribe()`. This is important for topics that are not published regularly. If a subscriber needs the previous data, it should just do an unconditional `orb_copy()` right after `orb_subscribe()` (note that `orb_copy()` will fail if there is no advertiser yet).
+API문서는 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp)참고하세요.

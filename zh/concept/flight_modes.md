@@ -6,6 +6,8 @@
 
 下面的各小节对所以的飞行模式进行了一个概述，随后给出了一张 [飞行模式评估图](#flight-mode-evaluation-diagram) ，改图展示了 PX4 在何种条件下会切换至一个新的飞行模式。
 
+> **Note** More detailed user-facing flight mode documentation can be found in the [PX4 User Guide](https://docs.px4.io/master/en/flight_modes/).
+
 ## 飞行模式概要
 
 ### 手动飞行模式
@@ -26,7 +28,7 @@
   
   * **ACRO：** 飞行员的输入将作为滚转、俯仰和偏航 *角速率* 指令传递给自动驾驶仪 自动驾驶仪控制的是飞机的角速度, 而不是姿态角。 因此即便 RC 摇杆处于居中位置飞机也不会改平， 这一特性使得多旋翼可以完全翻转过来。 油门将直接传递到输出混控器上。
   
-  * **RATTITUDE：** 飞行员的输入如超过了模式设定的阈值则将作为滚转、俯仰和偏航 *角速率* 指令传递自驾仪，例如当 RC 摇杆位置偏离中立位置特定距离后。 反之，输入将作为滚转、俯仰 *角度* 指令和一个偏航 *角速率* 指令传递给自驾仪。 油门将直接传递到输出混控器上。 简单地说，当 RC 摇杆里中立位置较远的时候自驾仪相当于一个角速率控制器（与 ACRO 模式相似），而当 RC 摇杆居中时自驾仪相当于一个姿态角控制器（与 Stabilized 模式相似）。
+  * **RATTITUDE：** 飞行员的输入如超过了模式设定的阈值则将作为滚转、俯仰和偏航 *角速率* 指令传递自驾仪，例如当 RC 摇杆位置偏离中立位置特定距离后。 If not the inputs are passed as roll and pitch *angle* commands and a yaw *rate* command. 油门将直接传递到输出混控器上。 简单地说，当 RC 摇杆里中立位置较远的时候自驾仪相当于一个角速率控制器（与 ACRO 模式相似），而当 RC 摇杆居中时自驾仪相当于一个姿态角控制器（与 Stabilized 模式相似）。
 
 ### 辅助飞行模式
 
@@ -34,7 +36,7 @@
 
 * **ALTCTL：** （高度控制） 
   * **固定翼飞机：** 当滚转、俯仰和偏航（PRY）摇杆都处于居中位置（或处于特定死区范围内）时飞机将保持当前高度进行定直平飞。 飞机的 X 和 Y 方向的位置会跟着风发生漂移。
-  * **多旋翼：** 滚转、俯仰和偏航输入与 Stabilised 模式相同。 油门输入表示以预设的最大速率爬升或下降， 油门有很大的死区。 油门居中表示保持当前高度。 自驾仪仅控制高度，所以飞机的 X、Y 位置会跟着风发生漂移。 
+  * **多旋翼：** 滚转、俯仰和偏航输入与 Stabilised 模式相同。 油门输入表示以预设的最大速率爬升或下降， 油门有很大的死区。 油门居中表示保持当前高度。 自驾仪仅控制高度，所以飞机的 X、Y 位置会跟着风发生漂移。
 * **POSCTL：** （位置控制） 
   * **固定翼飞机：** 中立的输入（RC 摇杆居中）会令飞机保持平飞，且如果需要保持直线飞行的话飞控将会根据情况产生偏航指令以应对风的影响。
   * **多旋翼：** 滚转控制左右向速度，俯仰控制飞机相对地面的前后向速度。 偏航与 MANUAL 模式一样，控制的是偏航角速率。 油门与 ALTCTL 模式一样控制飞机的爬升/下降速率。 这意味着当滚动、俯仰和油门杆居中时，自动驾驶仪会在任意风的干扰下稳定地保持飞机的X、Y、Z 位置。
@@ -51,8 +53,8 @@
   * **多旋翼：** 多旋翼在当前高度直线返回 home 位置（如果当前高度大于 home 位置高度 + [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT)）或者从 [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) 高度返回（如果 [RTL_RETURN_ALT](../advanced/parameter_reference.md#RTL_RETURN_ALT) 比当前高度要高），然后无人机将自动降落。
 * **AUTO_MISSION：** （任务） 
   * **所有类型的系统：**飞机执行由地面控制站 (GCS) 发送的预规划飞行任务。 如果没有收到任务, 飞机将改为在目前的位置上留待。
-  * ***OFFBOARD*** (Offboard) 此模式下位置、速度和姿态角的 参考值/目标值/期望设定值 由通过串口或者 MAVLink连接的配套计算机提供。 Offboard 期望设定值可以由诸如 [MAVROS](https://github.com/mavlink/mavros) 或者 [Dronekit](http://dronekit.io) 等 API 接口提供。
+  * ***OFFBOARD*** (Offboard) 此模式下位置、速度和姿态角的 参考值/目标值/期望设定值 由通过串口或者 MAVLink连接的配套计算机提供。 The offboard setpoint can be provided by APIs like [MAVSDK](http://mavsdk.mavlink.io) or [MAVROS](https://github.com/mavlink/mavros).
 
 ## 飞行模式评估图
 
-![](../../assets/diagrams/commander-flow-diagram.png)
+![Commander Flow diagram.](../../assets/diagrams/commander-flow-diagram.png)

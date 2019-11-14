@@ -11,13 +11,14 @@ Los usuarios de Windows también pueden instalar un entorno de desarrollo PX4 Ub
 
 ### Configura el entorno
 
-La forma más fácil de configurar el entorno es utilizar el script **<a href="https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** (los detalles del script están [más abajo](#build_script_details)).
+The easiest way to setup the environment is to use the **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** script (details for script are [given below](#build_script_details)).
 
 Para configurar el entorno de desarrollo:
 
 1. Instala [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
 2. Abre el shell de bash. 
-3. Descarga el **windows_bash_nuttx.sh**: ```wget https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh```
+3. Download the **windows_bash_nuttx.sh**:  
+    `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh`
 4. Ejecuta el script usando el siguiente comando (reconociendo cualquier mensaje que sea necesario): 
         sh
         source windows_bash_nuttx.sh
@@ -69,7 +70,7 @@ Para ejecutar JMAVSim:
 
 ### Detalles de script de compilación {#build_script_details}
 
-El script de compilación [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/windows_bash_nuttx.sh) modifica las instrucciones de compilación de Ubuntu para eliminar los componentes específicos de Ubuntu y dependientes de interfaz de usuario, incluyendo el IDE *Qt Creator* y los simuladores.
+The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
 
 Además, usa un [compilador de 64 bit arm-none-eabi](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) desde que BashOnWindows no funciona en programas ELF de 32 bit (y el compilador por defecto de `https://launchpad.net/gcc-arm-embedded` es de 32 bit).
 

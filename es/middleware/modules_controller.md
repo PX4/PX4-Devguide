@@ -114,3 +114,59 @@ Navigator publishes position setpoint triplets (`position_setpoint_triplet_s`), 
        stop
     
        status        print status info
+    
+
+## rover_pos_control
+
+Source: [modules/rover_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/rover_pos_control)
+
+### Description
+
+Controls the position of a ground rover using an L1 controller.
+
+Publishes `actuator_controls_0` messages at a constant 250Hz.
+
+### Implementation
+
+Currently, this implementation supports only a few modes:
+
+- Full manual: Throttle and yaw controls are passed directly through to the actuators
+- Auto mission: The rover runs missions
+- Loiter: The rover will navigate to within the loiter radius, then stop the motors
+
+### Examples
+
+CLI usage example:
+
+    rover_pos_control start
+    rover_pos_control status
+    rover_pos_control stop
+    
+
+### Usage {#rover_pos_control_usage}
+
+    rover_pos_control <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
+## vtol_att_control
+
+Source: [modules/vtol_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/vtol_att_control)
+
+### Description
+
+fw_att_control is the fixed wing attitude controller.
+
+### Usage {#vtol_att_control_usage}
+
+    vtol_att_control <command> [arguments...]
+     Commands:
+    
+       stop
+    
+       status        print status info

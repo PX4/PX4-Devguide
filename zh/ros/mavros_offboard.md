@@ -142,7 +142,7 @@ ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mav
 ros::Rate rate(20.0);
 ```
 
-PX4 固件在 *Offboard* 模式下，连续两次控制命令之间有 500ms 的超时。 如果飞控超过，飞控会立即切换回进入 *Offboard* 模式之前的飞行模式。 这就是为什么发布频率 **必须** 大于2Hz的原因。 这样是为什么我们推荐从 *位置* 模式进入 *离板* 模式，因为如果飞控退出 *Offboard* 模式，无人机会会悬停于当前位置。 
+PX4 has a timeout of 500ms between two *Offboard* commands. 如果飞控超过，飞控会立即切换回进入 *Offboard* 模式之前的飞行模式。 这就是为什么发布频率 **必须** 大于2Hz的原因。 这样是为什么我们推荐从 *位置* 模式进入 *离板* 模式，因为如果飞控退出 *Offboard* 模式，无人机会会悬停于当前位置。 
 
 ```cpp
 // wait for FCU connection

@@ -8,7 +8,8 @@
 sudo apt-get install ninja-build -y
 ```
 
-其他 Linux 发行版系统的软件包管理器中可能并不包含 Ninja 软件包。 这种情况下你可以下载二进制文件然后将其加入操作系统的环境变量中：
+其他 Linux 发行版系统的软件包管理器中可能并不包含 Ninja 软件包。
+这种情况下你可以下载二进制文件然后将其加入操作系统的环境变量中：
 
 ```sh
 mkdir -p $HOME/ninja

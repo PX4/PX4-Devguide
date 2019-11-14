@@ -46,20 +46,13 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
     batt_smbus <command> [arguments...]
      Commands:
        start
-         [-X <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_EXTERNAL
-         [-T <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_EXTERNAL1
-         [-R <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_EXTERNAL2
-         [-I <val>]  ullpt
-                     default: BATT_SMBUS_BUS_I2C_INTERNAL
-         [-A <val>]  ullpt
-                     default: BATT_SMBUS_BUS_ALL
+         [-X]        BATT_SMBUS_BUS_I2C_EXTERNAL
+         [-T]        BATT_SMBUS_BUS_I2C_EXTERNAL1
+         [-R]        BATT_SMBUS_BUS_I2C_EXTERNAL2
+         [-I]        BATT_SMBUS_BUS_I2C_INTERNAL
+         [-A]        BATT_SMBUS_BUS_ALL
     
        man_info      Prints manufacturer info.
-    
-       report        Prints the last report.
     
        unseal        Unseals the devices flash memory to enable write_flash
                      commands.
@@ -76,6 +69,112 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
          [number of bytes] Number of bytes to send.
          [data[0]...data[n]] One byte of data at a time separated by spaces.
     
+       stop
+    
+       status        print status info
+    
+
+## dshot
+
+Source: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
+
+### Description
+
+This is the DShot output driver. It is similar to the fmu driver, and can be used as drop-in replacement to use DShot as ESC communication protocol instead of PWM.
+
+It supports:
+
+- DShot150, DShot300, DShot600, DShot1200
+- telemetry via separate UART and publishing as esc_status message
+- sending DShot commands via CLI
+
+### Examples
+
+Permanently reverse motor 1:
+
+    dshot reverse -m 1
+    dshot save -m 1
+    
+
+After saving, the reversed direction will be regarded as the normal one. So to reverse again repeat the same commands.
+
+### Usage {#dshot_usage}
+
+    dshot <command> [arguments...]
+     Commands:
+       start         Start the task (without any mode set, use any of the mode_*
+                     cmds)
+    
+     All of the mode_* commands will start the module if not running already
+    
+       mode_gpio
+    
+       mode_pwm      Select all available pins as PWM
+    
+       mode_pwm8
+    
+       mode_pwm6
+    
+       mode_pwm5
+    
+       mode_pwm5cap1
+    
+       mode_pwm4
+    
+       mode_pwm4cap1
+    
+       mode_pwm4cap2
+    
+       mode_pwm3
+    
+       mode_pwm3cap1
+    
+       mode_pwm2
+    
+       mode_pwm2cap2
+    
+       mode_pwm1
+    
+       telemetry     Enable Telemetry on a UART
+         <device>    UART device
+    
+       reverse       Reverse motor direction
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       normal        Normal motor direction
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       save          Save current settings
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       3d_on         Enable 3D mode
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       3d_off        Disable 3D mode
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       beep1         Send Beep pattern 1
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       beep2         Send Beep pattern 2
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       beep3         Send Beep pattern 3
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       beep4         Send Beep pattern 4
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       beep5         Send Beep pattern 5
+         [-m <val>]  Motor index (1-based, default=all)
+    
+       esc_info      Request ESC information
+         -m <val>    Motor index (1-based)
+    
+       stop
+    
+       status        print status info
+    
 
 ## fmu
 
@@ -91,7 +190,7 @@ The module is configured via mode_* commands. This defines which of the first N 
 
 ### Implementation
 
-By default the module runs on the work queue, to reduce RAM usage. It can also be run in its own thread, specified via start flag -t, to reduce latency. When running on the work queue, it schedules at a fixed frequency, and the pwm rate limits the update rate of the actuator_controls topics. In case of running in its own thread, the module polls on the actuator_controls topic. Additionally the pwm rate defines the lower-level IO timer rates.
+By default the module runs on a work queue with a callback on the uORB actuator_controls topic.
 
 ### Examples
 
@@ -120,7 +219,6 @@ Use the `pwm` command for further configurations (PWM rate, levels, ...), and th
      Commands:
        start         Start the task (without any mode set, use any of the mode_*
                      cmds)
-         [-t]        Run as separate task instead of the work queue
     
      All of the mode_* commands will start the fmu if not running already
     
@@ -235,7 +333,7 @@ Initiate warm restart of GPS device
 
 Source: [drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
 
-### Description
+### 描述
 
 Ultrasonic range finder driver that handles the communication with the device and publishes the distance via uORB.
 
@@ -261,7 +359,7 @@ This driver is implented as a NuttX task. This Implementation was chosen due to 
 
 Source: [drivers/pwm_out_sim](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_out_sim)
 
-### 描述
+### Description
 
 Driver for simulated PWM outputs.
 
@@ -273,13 +371,9 @@ It is used in SITL and HITL.
 
     pwm_out_sim <command> [arguments...]
      Commands:
-       start         Start the task in mode_pwm16
-    
-     All of the mode_* commands will start the pwm sim if not running already
-    
-       mode_pwm      use 8 PWM outputs
-    
-       mode_pwm16    use 16 PWM outputs
+       start         Start the module
+         [-m <val>]  Mode
+                     values: hil|sim, default: sim
     
        stop
     
@@ -312,12 +406,73 @@ By default the module runs on the work queue, to reduce RAM usage. It can also b
        start         Start the task (without any mode set, use any of the mode_*
                      cmds)
          [-t]        Run as separate task instead of the work queue
+         [-d <val>]  RC device
+                     values: <file:dev>, default: /dev/ttyS3
     
        bind          Send a DSM bind command (module must be running)
     
        stop
     
        status        print status info
+    
+
+## roboclaw
+
+Source: [drivers/roboclaw](https://github.com/PX4/Firmware/tree/master/src/drivers/roboclaw)
+
+### Description
+
+This driver communicates over UART with the [Roboclaw motor driver](http://downloads.ionmc.com/docs/roboclaw_user_manual.pdf). It performs two tasks:
+
+- Control the motors based on the `actuator_controls_0` UOrb topic.
+- Read the wheel encoders and publish the raw data in the `wheel_encoders` UOrb topic
+
+In order to use this driver, the Roboclaw should be put into Packet Serial mode (see the linked documentation), and your flight controller's UART port should be connected to the Roboclaw as shown in the documentation. For Pixhawk 4, use the `UART & I2C B` port, which corresponds to `/dev/ttyS3`.
+
+### Implementation
+
+The main loop of this module (Located in `RoboClaw.cpp::task_main()`) performs 2 tasks:
+
+1. Write `actuator_controls_0` messages to the Roboclaw as they become available
+2. Read encoder data from the Roboclaw at a constant, fixed rate.
+
+Because of the latency of UART, this driver does not write every single `actuator_controls_0` message to the Roboclaw immediately. Instead, it is rate limited based on the parameter `RBCLW_WRITE_PER`.
+
+On startup, this driver will attempt to read the status of the Roboclaw to verify that it is connected. If this fails, the driver terminates immediately.
+
+### Examples
+
+The command to start this driver is:
+
+$ roboclaw start <device> <baud>
+
+`<device>` is the name of the UART port. On the Pixhawk 4, this is `/dev/ttyS3`. `<baud>` is te baud rate.
+
+All available commands are:
+
+- `$ roboclaw start <device> <baud>`
+- `$ roboclaw status`
+- `$ roboclaw stop`
+
+### Usage {#roboclaw_usage}
+
+    roboclaw <command> [arguments...]
+     Commands:
+    
+
+## safety_button
+
+Source: [drivers/safety_button](https://github.com/PX4/Firmware/tree/master/src/drivers/safety_button)
+
+### Description
+
+This module is responsible for the safety button.
+
+### Usage {#safety_button_usage}
+
+    safety_button <command> [arguments...]
+     Commands:
+       start         Start the safety button driver
     
 
 ## tap_esc

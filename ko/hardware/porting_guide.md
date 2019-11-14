@@ -16,7 +16,7 @@ For example, for FMUv5:
 
 * (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5). 
 * Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
-* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board) 
+* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board_defaults) 
   * A board-specific initialisation file is automatically included in startup scripts if found under the boards directory at **init/rc.board**.
   * The file is used to start sensors (and other things) that only exist on a particular board. It may also be used to set a board's default parameters, UART mappings, and any other special cases.
   * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF, and in AUTOCNF section (fresh setups) it sets the [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) parameter.
@@ -38,7 +38,7 @@ For all NuttX based flight controllers (e.g. the Pixhawk series) the OS is loade
 
 The configuration files for all boards, including linker scripts and other required settings, are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in a vendor- and board-specific directory (i.e. **boards/*VENDOR*/*MODEL*/**)).
 
-The following example uses FMUv5 as it is a recent [reference configuration](../debug/reference-design.md) for NuttX based flight controllers:
+The following example uses FMUv5 as it is a recent [reference configuration](../hardware/reference_design.md) for NuttX based flight controllers:
 
 * Running `make px4_fmu-v5_default` from the **Firmware** directory will build the FMUv5 config
 * The base FMUv5 configuration files are located in: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5).
@@ -100,7 +100,7 @@ It is generally recommended to connect RC via separate RX and TX pins to the mic
 
 ## Officially Supported Hardware
 
-The PX4 project supports and maintains the [FMU standard reference hardware](../debug/reference-design.md) and any boards that are compatible with the standard. This includes the [Pixhawk-series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/en/flight_controller/)).
+The PX4 project supports and maintains the [FMU standard reference hardware](../hardware/reference_design.md) and any boards that are compatible with the standard. This includes the [Pixhawk-series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/en/flight_controller/)).
 
 Every officially supported board benefits from:
 

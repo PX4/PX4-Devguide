@@ -12,21 +12,13 @@ La toolchain soporta:
 
 En esta página se explica cómo descargar y usar el entorno y cómo puede ser ampliado y actualizado si es necesario (por ejemplo, para utilizar un compilador diferente).
 
-<!-- Legacy Versions (**deprecated**):
-
-* [PX4 Windows Cygwin Toolchain 0.4 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.4.msi) (18.09.2018)
-* [PX4 Windows Cygwin Toolchain 0.3 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.3.msi) (25.07.2018)
-* [PX4 Windows Cygwin Toolchain 0.2 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.2.msi) (09.05.2018)
-* [PX4 Windows Cygwin Toolchain 0.1 Download](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.1.msi) (23.02.2018)
--->
-
 ## Instrucciones de Instalación {#installation}
 
-1. Descarga la última versión del instalador MSI ready-to-use desde [Github](https://github.com/PX4/windows-toolchain/releases) o [S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.5.msi)
-2. Ejecútalo, elige el lugar de instalación deseado, instálalo ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
+1. Download the latest version of the ready-to-use MSI installer from [Github](https://github.com/PX4/windows-toolchain/releases) or [S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.6.msi)
+2. Run it, choose your desired installation location, let it install: ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 3. Marque la casilla al final de la instalación para *clonar el repositorio PX4, compilar y ejecuta la simulación con jMAVSim* (Esto simplifica el proceso para empezar).
     
-    > **Nota** Si no hiciste este paso será necesario [clonar el repositorio PX4 Firmware manualmente](#getting_started).
+    > **Note** If you missed this step you will need to [clone the PX4 Firmware repository manually](#getting_started).
 
 ## Primeros pasos {#getting_started}
 
@@ -153,6 +145,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 * **Category:Packagename**
 * Devel:cmake (3.3.2 gives no deprecated warnings, 3.6.2 works but has the warnings)
 * Devel:gcc-g++
+* Devel:gdb
 * Devel:git
 * Devel:make
 * Devel:ninja
@@ -176,7 +169,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
     
     > **Note** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
 
-1. Escribir o copiar los **scripts de bash** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) y [`setup-environment-variables.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
+1. Write up or copy the **batch scripts** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) and [`setup-environment.bat`](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat).
     
     The reason to start all the development tools through the prepared batch script is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. This is done by always first calling the script [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) and the desired application like the console after that.
     
@@ -227,4 +220,4 @@ This section describes how to setup the Cygwin toolchain manually yourself while
     
     > **Note** This is what the toolchain does in: [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat).
 
-1. Asegúrate de que todas las carpetas de binarios de todos los componentes instalados son correctamente listados en la variable `PATH` configurada por [**setup-environment-variables.bat**](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/setup-environment-variables.bat).
+1. Make sure all the binary folders of all the installed components are correctly listed in the `PATH` variable configured by [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat).

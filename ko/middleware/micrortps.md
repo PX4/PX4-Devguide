@@ -1,92 +1,92 @@
-# RTPS/ROS2 Interface: PX4-FastRTPS Bridge
+# RTPS/ROS2 인터페이스: PX4-FastRTPS 브릿지
 
-The *PX4-FastRTPS Bridge* adds a Real Time Publish Subscribe (RTPS) interface to PX4, enabling the exchange of [uORB messages](../middleware/uorb.md) between PX4 components and (offboard) *Fast RTPS* applications (including those built using the ROS2/ROS frameworks).
+*PX4-FastRTPS 브릿지*는 PX4 컴포넌트와 *Fast RTPS* 프로그램(ROS2/ROS 프레임워크를 사용하여 빌드한 것 포함)간의 [uORB messages](../middleware/uorb.md)를 교환하는 RTPS(Real Time Publish Subscribe) 인터페이스를 PX4에 추가했다.
 
-> **Note** RTPS is the underlying protocol of the Object Management Group's (OMG) Data Distribution Service (DDS) standard. It aims to enable scalable, real-time, dependable, high-performance and inter-operable data communication using the publish/subscribe pattern. *Fast RTPS* is a very lightweight cross-platform implementation of the latest version of the RTPS protocol and a minimum DDS API.
+> **Note** RTPS는 OMG(Object Management Group)의 DDS(Data Distribution Service) 표준의 기본 프로토콜입니다. 이 프로토콜은 Pub/Sub을 사용하여 확장성, 실시간성, 의존성, 고성능, 상호교환성을 만족합니다. *Fast RTPS*는 최신 RTPS와 최소한의 DDS API를 크로스플랫폼 환경에서 경량화해 구현한 것입니다.
 
-RTPS has been adopted as the middleware for the ROS2 (Robot Operating System). The *Fast RTPS bridge* allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
+RTPS는 ROS2(Robot Operating System)의 미들웨어로 채택되었습니다. *Fast RTPS 브릿지*는 센서의 값, 명령어 그리고 다른 기체의 정보를 공유하기 쉽게하는 ROS2와의 통합을 용이하게 합니다.
 
-This topic describes the RTPS bridge architecture (and how it is used within the ROS2/ROS application pipeline). It also shows how to compile needed code to:
+이 토픽에서는 RTPS 브릿지 구조에 대해 설명할 것입니다. 그리고 그것이 ROS2/ROS 어플리케이션 파이프라인내에서 어떻게 사용되는지 살펴볼 것입니다. 그리고 필요한 코드를 어떻게 컴파일할지도 알아볼 것입니다.
 
-1. Write a simple *Fast RTPS* application to subscribe to PX4 changes
-2. Connect ROS2 nodes with PX4 (via the RTPS Bridge, and using the `px4_ros_com` package)
-3. Connect ROS (ROS "version 1") nodes with PX4 by additionally using the `ros1_bridge` package to bridge ROS2 and ROS.
+1. PX4의 변화를 구독하기 위한 간단한 *Fast RTPS* 어플리케이션 작성하기
+2. ROS2 노드들과 PX4 연결하기(RTPS 브릿지를 통해 연결되며 `px4_ros_com` 패키지를 사용함)
+3. ROS (version 1) 노드들과 PX4를 연결하기, 추가적으로 ROS2와 ROS를 연결하기 위해`ros1_bridge` 패키지를 사용하기.
 
-## When should RTPS be used?
+## RTPS는 언제 사용되어야 하나요?
 
-RTPS should be used when you need to reliably share time-critical/real-time information between the flight controller and off board components. In particular it is useful in cases where off-board software needs to become a *peer* of software components running in PX4 (by sending and receiving uORB topics).
+비행 조종기와 오프보드 컴포넌의 간의 정보를 확실히 time-critical/real-time하게 공유하고자 한다면 RTPS가 사용되어야 합니다. 특히 오프보드 소프트웨어가 PX4에서 구동되는 소프트웨어 컴포넌트(uORB 토픽들을 송수신)들의 *peer*가 되어야 할 때 유용합니다.
 
-Possible use cases include communicating with robotics libraries for computer vision, and other use cases where real time data to/from actuators and sensors is essential for vehicle control.
+사용가능한 경우는, 컴퓨터 비전을 위한 로보틱스 라이브러리들간의 통신, 기체 조종을 위한 액추에이터와 센서간의 실시간 데이터 통신입니다.
 
-> **Note** *Fast RTPS* is not intended as a replacement for MAVLink. MAVLink remains the most appropriate protocol for communicating with ground stations, gimbals, cameras, and other offboard components (although *Fast RTPS* may open other opportunities for working with some peripherals).
+> **Note** *Fast RTPS*는 MAVLink를 대체하기 위한 목적이 아닙니다. MAVLink는 GS, 짐벌, 카메라 그 외의 오프보드 컴포넌트들과의 통신을 위해 알맞은 프로토콜입니다.
 
 <span></span>
 
-> **Tip** RTPS can be used over slower links (e.g. radio telemetry), but care should be taken not to overload the channel.
+> **Tip** RTPS는 느린 채널(e.g. radio telemetry)에도 사용될 수 있지만 대역폭을 넘기지 않도록 조심해야 합니다.
 
-## Architectural overview
+## 아키텍쳐 개요
 
-### RTPS Bridge
+### RTPS 브릿지
 
-The RTPS bridge exchanges messages between PX4 and RTPS applications, seamlessly converting between the [uORB](../middleware/uorb.md) and RTPS messages used by each system.
+RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게 변환하여 PX4와 RTPS 어플리케이션들간의 메시지를 교환합니다.
 
 ![basic example flow](../../assets/middleware/micrortps/architecture.png)
 
-The main elements of the architecture are the client and agent processes shown in the diagram above.
+구조의 주된 요소들은 위에보이는 클라이언트와 에이전트 프로세스입니다.
 
-* The *Client* is PX4 middleware daemon process that runs on the flight controller. It subscribes to uORB topics published by other PX4 components and sends any updates to the *Agent* (via a UART or UDP port). It also receives messages from the *Agent* and publishes them as uORB message on PX4.
-* The *Agent* runs as a daemon process on an offboard computer. It watches for uORB update messages from the *Client* and (re)publishes them over RTPS. It also subscribes to "uORB" RTPS messages from other RTPS applications and forwards them to the *Client*.
-* The *Agent* and *Client* are connected via a serial link (UART) or UDP network. The uORB information is [CDR serialized](https://en.wikipedia.org/wiki/Common_Data_Representation) for sending (*CDR serialization* provides a common format for exchanging serial data between different platforms).
-* The *Agent* and any *Fast RTPS* applications are connected via UDP, and may be on the same or another device. In a typical configuration they will both be on the same system (e.g. a development computer, Linux companion computer or compute board), connected to the *Client* over a Wifi link or via USB.
+* *Client*는 flight controller에서 실행되는 PX4 미들웨어 데몬입니다. 다른 PX4 컴포넌트들이 퍼블리시하는 토픽들을 구독하고, *Agent*로 업데이트를 보냅니다(UART 또는 UDP 포트). *Agent*로 부터 메시지도 받으며 PX4로 uORB 메시지를 퍼블리시하기도 합니다.
+* *Agent*는 offboard computer에서 데몬으로 실행됩니다. *Client*의 업데이트 메시지를 검사하고 그것들을 RTPS를 통해 퍼블리시합니다. RTPS 어플리케이션으로부터 오는 "uORB" RTPS 메시지들 또한 구독하며 *Client*에 전달합니다.
+* *Agent*과 *Client*는 시리얼링크(UART)나 UDP 네트워크로 연결됩니다. uORB 정보는 전송을 위해 [CDR serialized](https://en.wikipedia.org/wiki/Common_Data_Representation)됩니다. *CDR serialization*는 다른 플랫폼들과 시리얼 데이터 교환을 위한 일반적인 포맷을 제공합니다.
+* *Agent*와 *Fast RTPS* 어플리케이션은 UDP를 통해 연결되며, 다른 장치에 있을수도 있습니다. 일반적인 구성에서는 와이파이나 USB로 *Client*에 연결된 동일한 시스템에 있을 것입니다 (예. 개발 컴퓨터, 리눅스 컴퓨터 또는 컴퓨터 보드).
 
-### ROS2/ROS application pipeline
+### ROS2/ROS 어플리케이션 파이프라인
 
-The application pipeline for ROS2 is very straightforward! Because ROS2 uses DDS/RTPS as its native communications middleware, you can create a ROS2 listener or advertiser node to publish and subscribe to uORB data on PX4, via the *PX4 Fast RTPS Bridge*. This is shown below.
+ROS2를 위한 어플리케이션 파이프라인은 아주 직관적입니다. ROS2는 기본적인 통신 미들웨어로 DDS/RTPS를 사용하기 때문에, *PX4 Fast RTPS 브릿지*를 통해 PX4에 퍼블리시하거나 구독하는 ROS2 리스너나 애드벌타이저를 만들 수 있습니다. 아래의 그림과 같습니다.
 
-> **Note** You do need to make sure that the message types, headers and source files used on both client and agent side (and consequently, on the ROS nodes) are generated from the same Interface Description Language (IDL) files. The `px4_ros_com` package provides the needed infrastructure for generating messages and headers needed by ROS2.
+> **Note** 클라이언트와 에이전트에서 사용되는 메시지 타입, 헤더, 소스 파일들이 동일한 IDL(Interface Description Language) 파일에서 생성됐는지 확실히 해야합니다. `px4_ros_com` 패키지는 ROS2가 필요로 하는 메시지나 헤더들을 생성하기 위한 인프라를 제공합니다.
 
 ![Architecture with ROS2](../../assets/middleware/micrortps/architecture_ros2.png)
 
-The architecture for integrating ROS applications with PX4 is shown below.
+ROS 어플리케이션과 PX4를 통합하기 위한 구조는 아래에 나왔습니다.
 
 ![Architecture with ROS](../../assets/middleware/micrortps/architecture_ros.png)
 
-Note the use of [ros1_bridge](https://github.com/ros2/ros1_bridge), which bridges messages between ROS2 and ROS. This is needed because the first version of ROS does not support RTPS.
+ROS2와 ROS간의 메시지를 연결하는 [ros1_bridge](https://github.com/ros2/ros1_bridge) 사용에 주의하세요. ROS의 첫번째 버전은 RTPS를 지원하기 않기 때문에 필요합니다.
 
-## Code generation
+## 코드 생성
 
-> **Note** [Fast RTPS must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) or [Ubuntu](../setup/dev_env_linux_ubuntu.md).
+> **Note** 코드를 생성하기 위해서는 [Fast RTPS 가 반드시 설치](../setup/fast-rtps-installation.md) 되어야 합니다. *Fast RTPS* 는 여러분이 [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md), [Ubuntu](../setup/dev_env_linux_ubuntu.md)를 위한 일반적인 인스톨러/스크립트를 사용했다면 *기본적*으로 설치됩니다.
 
-### ROS-independent applications
+### ROS에 독립적인 어플리케이션
 
-All the code needed to create, build and use the bridge is automatically generated when the PX4 Firmware is compiled.
+브릿지를 만들고, 빌드하고, 사용하기 위한 모든 코드들은 PX4 펌웨어가 컴파일될 때 자동적으로 생성됩니다.
 
-The *Client* application is also compiled and built into the firmware as part of the normal build process. The *Agent* must be separately/manually compiled for the target computer.
+*Client* 어플리케이션의 컴파일, 빌드 또한 일반적인 빌드 과정에서 처리됩니다. *Agent*는 타켓 컴퓨터에 맞게 독립적, 수동적으로 컴파일 되어야합니다.
 
 <span></span>
 
-> **Tip** The bridge code can also be [manually generated](micrortps_manual_code_generation.md). Most users will not need to do so, but the linked topic provides a more detailed overview of the build process and can be useful for troubleshooting.
+> **Tip** 브릿지 코드 또한 [수동적으로 생성](micrortps_manual_code_generation.md)될 수 있습니다. 대부분의 사용자들은 그럴 필요가 없습니다. 자세한 빌드 과정과 트러블슈팅을 위해서는 링크를 참고하세요.
 
-### ROS2/ROS applications {#px4_ros_com}
+### ROS2/ROS 어플리케이션 {#px4_ros_com}
 
-The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)). This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
+빌드될 때 [px4_ros_com](https://github.com/PX4/px4_ros_com) 패키지는 ROS2 노드에서 PX4 uORB 메시지에 접근하기 위한 모든 것을 생성합니다(ROS일 경우 [ros1_bridge](https://github.com/ros2/ros1_bridge)가 필요할 것입니다). `micrortps_agent`와 `micrortps_agent`에 필요한 IDL 파일을 포함해서 *PX4 RTPS bridge*를 위한 모든 컴포넌트를 포함합니다.
 
-The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
+ROS, ROS2의 메시지 정의 헤더와 인터페이스는 [px4_msgs](https://github.com/PX4/px4_msgs) 패키지에서 생성되며 PX4 펌웨어의 uORB 메시지와 일치합니다. 이 파일들은 `px4_ros_com`가 `micrortps_agent`가 사용하는 IDL 파일을 생성하기 위해 필요로합니다.
 
-Both `px4_ros_com` and `px4_msgs` packages have two separate branches:
+`px4_ros_com`와 `px4_msgs`는 2개의 독립된 브랜치를 갖고 있습니다.
 
-* a `master` branch, used with ROS2. It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
-* a `ros1` branch, used with ROS. It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
+* ROS2에 사용되는 `master` 브랜치 이 브랜치는 PX4와 ROS2 노드를 연결하기 위한 ROS2 메시지와 IDL 파일을 생성하는 코드를 포함합니다.
+* ROS를 위한 `ros1` 브랜치 이 브랜치는 PX4와 ROS간의 데이터를 공유하기 위해 사용되는 `ros1_bridge`에 사용되는 ROS 메시지 헤더와 소스파일을 생성하는 코드를 포함합니다.
 
-Both branches in `px4_ros_com` additionally include some example listener and advertiser example nodes.
+`px4_ros_com`의 두 브랜치 모두 리스너와 애드벌타이저 예제를 포함합니다.
 
-## Supported uORB messages
+## 지원하는 uORB 메시지
 
-The generated bridge code will enable a specified subset of uORB topics to be published/subscribed via RTPS. This is true for both ROS or non-ROS applications.
+생성된 브릿지 코드는 특정 토픽들에 대해 RTPS를 통해 Pub/Sub이 가능하도록 합니다. ROS와 non-ROS 어플리케이선 모두 해당됩니다.
 
-For *automatic code generation* there's a *yaml* definition file in the PX4 **Firmware/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
+*자동 코드 생성*을 위해 **Firmware/msg/tools/** 디렉토리에 **uorb_rtps_message_ids.yaml** 파일이 있습니다(*yaml*). 이 파일은 RTPS에 사용될 uORB 메시지의 집합을 정의 합니다. 메시지의 송, 수신 여부와 DDS/RTPS 미들웨어에 사용될 RTPS ID를 정의합니다.
 
-> **Note** An RTPS ID must be set for all messages.
+> **Note** 모든 메시지들에 대해 RTPS ID가 설정해야 합니다.
 
 ```yaml
 rtps:
@@ -113,27 +113,27 @@ rtps:
     send: true
 ```
 
-> **Note** The `px4_msgs` build process (only) runs the CMake macro `rosidl_generate_interfaces()` to generate ROS2 message header files, while `px4_ros_com` build process generates the IDL files through the `rosidl_generate_dds_interfaces()` CMake macro. The PX4 Firmware includes a template for the IDL file generation, which is only used during the PX4 build process.
+> **Note** `px4_msgs`는 빌드 과정에서 ROS2 메시지 헤더 파일을 생성하기 위해, CMake 매크로 `rosidl_generate_interfaces()를 사용합니다. 반면에 <code>px4_ros_com`는 `rosidl_generate_dds_interfaces()` CMake 매크로를 통해 IDL 파일을 생성합니다. PX4 펌웨어는 빌드과정에서 사용되는 IDL 파일 생성 템플릿을 포함합니다.
 > 
-> The `px4_ros_com` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). The **uorb_rtps_message_ids.yaml** is transformed in a way that the message names become *PascalCased* (the name change is irrelevant to the client-agent communication, but is critical for ROS2, since the message naming must follow the PascalCase convention). The new IDL files also reverse the messages that are sent and received (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa).
+> `px4_ros_com`는 ROS/ROS2에 사용되는 *약간 다른* IDL 파일을 생성합니다. **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). 새로운 IDL 파일들은 송수신한 메시지들을 다시보냅니다(왜냐하면 클라이언트에서 메시지를 보내고 에이전트 에서 수신하거나 반대의 경우를 위해).
 
-## Client (PX4 Firmware) {#client_firmware}
+## 클라이언트 (PX4 펌웨어) {#client_firmware}
 
-The *Client* source code is generated, compiled and built into the PX4 firmware as part of the normal build process.
+*Client* 소스코드는 일반적인 빌드 과정을 거치면서 생성, 컴파일, 빌드되어 PX4 펌웨어에 포함됩니다.
 
-To build the firmware for NuttX/Pixhawk flight controllers use the `_rtps` feature in the configuration target. For example, to build RTPS for px4_fmu-v4:
+NuttX/Pixhawk 비행 컨트롤러의 펌웨어를 빌드하려면 설정 타켓으로 `_rtps`을 사용하세요. 예를 들어, RTPS를 px4_fmu-v4에 빌드하려면
 
 ```sh
 make px4_fmu-v4_rtps
 ```
 
-To build the firmware for a SITL target:
+SITL 타켓을 위한 펌웨어를 빌드하려면
 
 ```sh
 make px4_sitl_rtps
 ```
 
-The *Client* application can be launched from [NuttShell/System Console](../debug/system_console.md). The command syntax is shown below (you can specify a variable number of arguments):
+*Client* 어플리케이션은 [NuttShell/System Console](../debug/system_console.md)에서 실행할 수 있습니다. 명령어는 아래에 나와있습니다.
 
 ```sh
 > micrortps_client start|stop [options]
@@ -148,19 +148,19 @@ The *Client* application can be launched from [NuttShell/System Console](../debu
   -s <sending port>       UDP port for sending. Default 2020
 ```
 
-> **Note** By default the *Client* runs as a daemon, but you will need to start it manually. The PX4 Firmware initialization code may in future automatically start the *Client* as a permanent daemon process.
+> **Note** *Client*는 기본적으로 데몬으로 동작하지만, 수동으로 실행할 수도 있습니다. 나중에는 PX4 펌웨어 초기화 코드에서 *Client*를 자동적으로 영구적인 데몬으로 실행할 것입니다.
 
-For example, in order to run the *Client* daemon with SITL connecting to the Agent via UDP, start the daemon as shown:
+예를 들어 SITL에서 UDP를 통해 Agent에 연결하는 *Client*를 실행하기 위해서는 아래와 같이 실행해야 합니다.
 
 ```sh
 micrortps_client start -t UDP
 ```
 
-## Agent in a ROS-independent Offboard Fast RTPS interface
+## Fast RTPS interface를 사용하는 ROS에 독립적인 오프보드 에이전트
 
-The *Agent* code is automatically *generated* when you build the associated PX4 firmware. You can find the source here: **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
+*Agent* 코드는 PX4 펌웨어와 관련된 것을 빌드할 때 자동적으로 *생성*됩니다. 소스코드는 여기서 찾을 수 있습니다. **build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent/**.
 
-To build the *Agent* application, compile the code:
+*Agent* 어플리케이션을 필드하기 위해서는 코드를 컴파일 하세요.
 
 ```sh
 cd build/<target-platform>/src/modules/micrortps_bridge/micrortps_client/micrortps_agent
@@ -169,9 +169,9 @@ cmake ..
 make
 ```
 
-> **Note** To cross-compile for the *Qualcomm Snapdragon Flight* platform see [this link](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use).
+> **Note** *Qualcomm Snapdragon Flight* 플랫폼을 위한 크로스 컴파일을 [여기](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use)를 참고하세요.
 
-The command syntax for the *Agent* is listed below:
+*Agent*를 위한 명령어들은 아래와 같습니다.
 
 ```sh
 $ ./micrortps_agent [options]
@@ -184,164 +184,164 @@ $ ./micrortps_agent [options]
   -s <sending port>       UDP port for sending. Default 2020.
 ```
 
-To launch the *Agent*, run `micrortps_agent` with appropriate options for specifying the connection to the *Client* (the default options connect from a Linux device to the *Client* over a UART port).
+*Agent*를 실행하려면 `micrortps_agent`를 *Client*에 연결하기 위한 적절한 옵션을 주어 실행하세요(리눅스 디바이스는 기본적으로 UART 포트를 통해 *Client*에 연결합니다).
 
-As an example, to start the *micrortps_agent* with connection through UDP, issue:
+하나의 예로, UDP로 연결하는 *micrortps_agent*을 시작하기 위해서는
 
 ```sh
 ./micrortps_agent -t UDP
 ```
 
-## Agent interfacing with a ROS2 middleware
+## Agent와 ROS2 미들웨어
 
-Building `px4_ros_com` automatically generates and builds the agent application, though it requires (as a dependency), that the `px4_msgs` package also gets build on the same ROS2 workspace (or overlaid from another ROS2 workspace). Since it is also installed using the [`colcon`](http://design.ros2.org/articles/build_tool.html) build tools, running it works exactly the same way as the above. Check the **Building the `px4_ros_com` package** for details about the build structure.
+`px4_ros_com`를 빌드할때 의존성 때문에 에이전트 어플리케이션을 생성하고 빌드합니다, `px4_msgs` 패키지또한 같은 ROS2 워크스페이스나 오버레이한 ROS2 스페이스에 빌드됩니다. [`colcon`](http://design.ros2.org/articles/build_tool.html) 빌드 툴을 사용할때도 설치되기 때문에, 위에 설명한 것과 완벽히 동일하게 동작합니다. 자세한 빌드 구조에 대한 것은 ** `px4_ros_com` 패키지 빌드하기 **를 참고하세요.
 
-## Building the `px4_ros_com` and `px4_msgs` package
+## `px4_ros_com`와 `px4_msgs` 패키지 빌드하기
 
-Install and setup both ROS2 and ROS environments on your development machine and separately clone the `px4_ros_com` and `px4_msgs` repo for both the `master` and `ros1` branches (see [above for more information](#px4_ros_com)).
+개발용 컴퓨터에 ROS2와 ROS 환경을 설치하고 세팅하세요, 그리고 `px4_ros_com`와 `px4_msgs` 저장소를 `master`와 `ros1`브랜치에 독립적으로 클론하세요([더 자세한 정보는 여기를 보세요](#px4_ros_com)).
 
-> **Note** Only the master branch is needed for ROS2 (both are needed to target ROS).
+> **Note** ROS2는 마스터 브랜치만 필요합니다(ROS는 두 브랜치 다 필요합니다).
 
-### Installing ROS and ROS2 and respective dependencies
+### ROS와 ROS2 설치와 의존성
 
-In order to install ROS Melodic and ROS2 Crystal (officially supported) or Bouncy on a Ubuntu 18.04 machine, follow the links below, respectively:
+ROS Melodic, ROS2 Crystal 또는 우분투 18.04 에서 Bouncy를 설치하려면 아래의 링크를 참고하세요.
 
-1. [Install ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-2. [Install ROS2 Crystal](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
-3. The install process should also install the *colcon* build tools, but in case that doesn't happen, you can install the tools manually:
+1. [ROS Melodic 설치하기](http://wiki.ros.org/melodic/Installation/Ubuntu)
+2. [ROS2 Crystal 설치하기](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
+3. 이 설치과정은 *colcon* 빌드 툴 설치가 필요할 것 입니다. 설치되지 않으면 수동으로 설치해주세요.
     
     ```sh
     sudo apt install python3-colcon-common-extensions
     ```
 
-4. *setuptools* must also be installed (using *pip* or *apt*):
+4. *setuptools* 또한 반드시 설치되어야 합니다. (*pip*나 *apt*를 사용하세요)
     
     ```sh
     sudo pip3 install -U setuptools
     ```
     
-    > **Note** This install and build guide is not applicable to ROS2 Ardent anymore, since this has reached EOL December 2018.
+    > **Note** 이 설치 및 빌드 가이드는 ROS2 Ardent에서 더이상 유효하지 않습니다. 2018 12월에 지원이 중단되었습니다.
     
     <span></span>
     
-    > **Caution** Do not install the `ros1_bridge` package through the deb repository. The package must be built from source.
+    > **Caution** debian 저장소를 이용해 `ros1_bridge` 패키지를 설치하지 마세요. 이 패키지는 소스로 빌드해야 합니다.
 
-### Setting up the workspaces
+### 워크스페이스 세팅하기
 
-Since the ROS2 and ROS require different environments you will need a separate workspace for each ROS version. As an example:
+ROS와 ROS2가 다른 환경을 필요로 하기 때문에 각 ROS를 위한 워크스페이스를 분리할 필요가 있습니다. 예:
 
-1. For ROS2, create a workspace using:
+1. ROS2 워킹 스페이스는 다음과 같이 만드세요
     
     ```sh
     mkdir -p ~/px4_ros_com_ros2/src
     ```
     
-    Then, clone the respective ROS2 (`master`) branch to the `/src` directory:
+    그리고 ROS2 (`master`) 브랜치를 `/src` 디렉토리에 클론하세요.
     
     ```sh
     $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros2/src/px4_ros_com # clones the master branch
     $ git clone https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros2/src/px4_msgs
     ```
 
-2. For ROS, follow exactly the same process, but create a different directory and clone a different branch:
+2. ROS도 똑같지만, 다른 디렉토리를 생성해 다른 브랜치를 클론하세요.
     
     ```sh
     mkdir -p ~/px4_ros_com_ros1/src
     ```
     
-    Then, clone the respective ROS2 (`ros1`) branch to the `/src` directory:
+    ROS2 (`ros1`) 브랜치를 `/src` 디렉토리에 클론하세요.
     
     ```sh
     $ git clone https://github.com/PX4/px4_ros_com.git ~/px4_ros_com_ros1/src/px4_ros_com -b ros1 # clones the 'ros1' branch
     $ git clone https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros1/src/px4_msgs -b ros1
     ```
 
-### Building the workspaces
+### 워크스페이스 빌드하기
 
-The directory `px4_ros_com/scripts` contains multiple scripts that can be used to build both workspaces.
+`px4_ros_com/scripts` 디렉토리는 두 워킹스페이스를 빌드하기위해 사용되는 여러개의 스크립트를 포함합니다.
 
-To build both workspaces with a single script, use the `build_all.bash`. Check the usage with `source build_all.bash --help`. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4 Firmware directory path:
+두 워크스페이스를 하나의 스크립트로 빌드하기 위해서는 `build_all.bash`를 사용하세요. `source build_all.bash --help`로 사용법을 확인하세요. 사용하는 가장 일반적인 방법은 ROS 워크스페이스 디렉토리 경로와 PX4 펌웨어 디렉토리 경로를 전달하는 것입니다.
 
 ```sh
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
-> **Note** The build process will open new tabs on the console, corresponding to different stages of the build process that need to have different environment configurations sourced.
+> **Note** 빌드 프로세스는 다른 환경설정을 가져야 하는 단계일 때, 콘솔에서 새로운 탭을 엽니다.
 
-One can also use the following individual scripts in order to build the individual parts:
+부분적으로 빌드하기 위해서는 아래의 개별적인 스크립트를 쓸 수 있습니다.
 
-* `build_ros1_bridge.bash`, to build the `ros1_bridge`;
-* `build_ros1_workspace.bash` (only the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` and `px4_msgs` `ros1` branches were cloned;
-* `build_ros2_workspace.bash`, to build the ROS2 workspace to where the `px4_ros_com` and `px4_msgs` `master` branches were cloned;
+* `ros1_bridge`를 빌드 하기 위해서는 `build_ros1_bridge.bash`
+* `px4_ros_com`와 `px4_msgs` `ros1`브랜치가 클론된 ROS 워크스페이스를 빌드하기 위한 `build_ros1_workspace.bash` (`px4_ros_com`의 `ros1`만을 위한 것)
+* `px4_ros_com` and `px4_msgs` `master`가 클로된 ROS2 워크스페이스를 빌드 하기 위한 `build_ros2_workspace.bash`
 
-The steps below show how to *manually* build the packages (provided for your information/better understanding only):
+아래의 단계들은 어떻게 *수동으로* 패키지를 빌드할지 보여줍니다(더 나은 이해와 정보를 위해 제공함)
 
-1. `cd` into `px4_ros_com_ros2` dir and source the ROS2 environment. Don't mind if it tells you that a previous workspace was set before:
+1. `cd`로 `px4_ros_com_ros2` 디렉토리에 들어가고 ROS2 환경설정을 얻으세요. 이전에 바로 전의 워크스페이스가 설정되었다고 나와도 무시하시면 됩니다.
     
     ```sh
     source /opt/ros/crystal/setup.bash
     ```
 
-2. Clone the `ros1_bridge` package so it can be built on the ROS2 workspace:
+2. `ros1_bridge` 패키지를 ROS2 워크스페이스에서 빌드될 수 있도록 클론하세요.
     
     ```sh
     git clone https://github.com/ros2/ros1_bridge.git -b crystal ~/px4_ros_com_ros2/src/ros1_bridge
     ```
 
-3. Build the `px4_ros_com` and `px4_msgs` packages, excluding the `ros1_bridge` package:
+3. `ros1_bridge` 패키지를 제외하고, `px4_ros_com`와 `px4_msgs` 패키지를 빌드하세요.
     
     ```sh
     colcon build --symlink-install --packages-skip ros1_bridge --event-handlers console_direct+
     ```
     
-    > **Note** `--event-handlers console_direct+` only serves the purpose of adding verbosity to the `colcon` build process and can be removed if one wants a more "quiet" build.
+    > **Note** ` --event-handlers console_direct+`는 단지 `colcon` 빌드 과정을 자세하게 보여주는 용도로만 사용되고 원하지 않으면 삭제하면 됩니다.
 
-4. Then, follows the process of building the ROS(1) packages side. For that, one requires to open a new terminal window and source the ROS(1) environment that has installed on the system:
+4. 이제 ROS 패키지를 빌드하세요. 빌드를 위해, 새 터미널을 하나열고 ROS 환경설정을 얻으세요.
     
     ```sh
     source /opt/ros/melodic/setup.bash
     ```
 
-5. On the terminal of the previous step, build the `px4_ros_com` and `px4_msgs` packages on the ROS end:
+5. 새로운 터미널에서, `px4_ros_com`와 `px4_msgs` 패키지를 빌드하세요.
     
     ```sh
     cd ~/px4_ros_com_ros1 && colcon build --symlink-install --event-handlers console_direct+
     ```
 
-6. Before building the `ros1_bridge`, one needs to open a new terminal and then source the environments and workspaces following the order below:
+6. `ros1_bridge`를 빌드하기 전에, 새 터미널을 열고 아래에 나와있는 순서대로 환경과 워크스페이스를 설정하세요.
     
     ```sh
     source ~/px4_ros_com_ros1/install/local_setup.bash
     source ~/px4_ros_com_ros2/install/local_setup.bash
     ```
 
-7. Finally, build the `ros1_bridge`. Note that the build process may consume a lot of memory resources. On a resource limited machine, reduce the number of jobs being processed in parallel (e.g. set environment variable `MAKEFLAGS=-j1`). For more details on the build process, see the build instructions on the [ros1_bridge](https://github.com/ros2/ros1_bridge) package page.
+7. 이제 `ros1_bridge`를 빌드하세요. 참고로, 빌드 과정은 메모리를 많이 소비합니다. 리소스가 제한된 환경에서는, 병렬적으로 처리되는 수를 줄이세요 (예. `MAKEFLAGS=-j1`). 자세한 빌드 과정을 위해서는 [ros1_bridge](https://github.com/ros2/ros1_bridge) 패키지의 빌드 명령을 참고하세요.
     
     ```sh
     cd ~/px4_ros_com_ros2 && colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure --event-handlers console_direct+
     ```
 
-### Cleaning the workspaces
+### 워크스페이스 정리하기
 
-After building the workspaces there are many files that must be deleted before you can do a clean/fresh build (for example, after you have changed some code and want to rebuild). Unfortunately *colcon* does not currently have a way of cleaning the generated **build**, **install** and **log** directories, so these directories must be deleted manually.
+빌드가 끝나면 클린 빌드나 새 빌드를 하기전에 삭제되어야 할 많은 파일들이 있습니다 (예. 코드의 일부를 수정하고 다시 필요하려고 할 때). *colcon*는 현재 생성된 **build**, **install**, **log** 디렉토리를 자동으로 지우는 방법이 없습니다. 직접 지우세요.
 
-The **clean_all.bash** script (in **px4_ros_com/scripts**) is provided to ease this cleaning process. The most common way of using it is by passing it the ROS(1) workspace directory path (since it's usually not on the default path):
+정리를 쉽게하기 위해 **clean_all.bash** 스크립트를 제공합니다. 사용하는 가장 일반적인 방법은 ROS 워크스페이스 디렉토리 경로를 전달하는 것입니다.
 
 ```sh
 $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
-## Creating a Fast RTPS Listener application
+## Fast RTPS 리스너 어플리케이션 만들기
 
-Once the *Client* (on the flight controller) and the *Agent* (on an offboard computer) are running and connected, *Fast RTPS* applications can publish and subscribe to uORB topics on PX4 using RTPS.
+한번 *Client* (비행 컨트롤러의) 와 *Agent* (오프보드 컴퓨터의)가 동작하고 연결되기 시작하면, *Fast RTPS* 어플리케이션은 RTPS를 이용하여 uORB 토픽들을 퍼블리시하고 구독할 수 있게 됩니다.
 
-This example shows how to create a *Fast RTPS* "listener" application that subscribes to the `sensor_combined` topic and prints out updates (from PX4). A connected RTPS application can run on any computer on the same network as the *Agent*. For this example the *Agent* and *Listener application* will be on the same computer.
+이 예제는 `sensor_combined` 토픽을 구독하고 갱신결과를 출력하는 *Fast RTPS* "리스너" 어플리케이션을 어떻게 만들지 보여줍니다. 연결된 RTPS 어플리케이션은 같은 네트워크내의 어떤 컴퓨터에서는 *Agent*로 동작할 수 있습니다. 이 예제에서는 *Agent* 와 *Listener application*은 동일한 컴퓨터에서 수행됩니다.
 
-The *fastrtpsgen* script can be used to generate a simple RTPS application from an IDL message file.
+*fastrtpsgen* 스크립트는 IDL 메시지 파일을 이용해 간단한 RTPS 어플리케이션을 만드는데 사용됩니다.
 
-> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a *Fast RTPS* application to communicate with PX4.
+> **Note** RTPS 메시지들은 IDL 파일에 정의되어 있으면 *fastrtpsgen*을 사용해 C++로 컴파일 됩니다. 브릿지 코드를 빌드하는 부분에서, 송/수신할 uORB 메시지파일을 위해 IDL 파일들이 생성됩니다. (참고 **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). 이 IDL 파일들은 여러분이 PX4와 통신하기 위한 *Fast RTPS* 어플리케이션을 만들때 필요합니다.
 
-Enter the following commands to create the application:
+어플리케이션을 만들기 위해서는 다음의 명령어들을 입력하세요.
 
 ```sh
 cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
@@ -350,7 +350,7 @@ cd micrortps_listener
 fastrtpsgen -example x64Linux2.6gcc ../micrortps_agent/idl/sensor_combined_.idl
 ```
 
-This creates a basic subscriber and publisher, and a main-application to run them. To print out the data from the `sensor_combined` topic, modify the `onNewDataMessage()` method in **sensor_combined_Subscriber.cxx**:
+이 명령어는 기본적인 Subscriber와 Publisher를 만들고, 이것을 실행하기 위한 메인 어플리케이션을 만듭니다. `sensor_combined` 토픽으로 부터 오는 데이터를 출력하기 위해서는 **sensor_combined_Subscriber.cxx** 메소드의 `onNewDataMessage()`를 수정하세요.
 
 ```c++
 void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
@@ -389,14 +389,14 @@ void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
 }
 ```
 
-To build and run the application on Linux:
+리눅스에서 어플리케이션을 빌드하고 수행하기 위해서는
 
 ```sh
 make -f makefile_x64Linux2.6gcc
 bin/*/sensor_combined_PublisherSubscriber subscriber
 ```
 
-Now you should see the sensor information being printed out:
+이제 센서의 정보가 출력되는 것을 볼 수 있어야 합니다.
 
 ```sh
 Sample received, count=10119
@@ -414,20 +414,20 @@ baro_alt_meter: 368.647
 baro_temp_celcius: 43.93
 ```
 
-> **Note** If the *Listener application* does not print anything, make sure the *Client* is running.
+> **Note** 만약 *Listener application*가 아무것도 출력하지 않는다면 *Client*가 동작중인지 확인하세요.
 
-## Creating a ROS2 listener
+## ROS2 리스너 만들기
 
-With the `px4_ros_com` built successfully, one can now take advantage of the generated *micro-RTPS* agent app and also from the generated sources and headers of the ROS2 msgs from `px4_msgs`, which represent a one-to-one matching with the uORB counterparts.
+`px4_ros_com`가 빌드되면, 생성된 *micro-RTPS* 에이전트 앱과 `px4_msgs`로 부터 생성된 ROS2 메시지 헤더, 소스를 사용할 수 있습니다. 대응하는 uORB와 1:1로 매칭됩니다.
 
-To create a listener node on ROS2, lets take as an example the `sensor_combined_listener.cpp` node under `px4_ros_com/src/listeners`:
+ROS2에서 리스너 노드를 만드려면 `px4_ros_com/src/listeners`하위의 `sensor_combined_listener.cpp` 를 참고하세요.
 
 ```c++
 #include <rclcpp/rclcpp.hpp>
 #include <px4_ros_com/msg/sensor_combined.hpp>
 ```
 
-The above brings to use the required C++ libraries to interface with the ROS2 middleware. It also includes the required message header file.
+위의 헤더들은 ROS2 미들웨어에 접속하기 위해 필요한 C++ 라이브러리들을 포함합니다. 필요한 메시지 헤더파일들 또한 포함합니다.
 
 ```c++
 /**
@@ -437,7 +437,7 @@ class SensorCombinedListener : public rclcpp::Node
 {
 ```
 
-The above creates a `SensorCombinedListener` class that subclasses the generic `rclcpp::Node` base class.
+`rclcpp::Node`의 서브클래스로 `SensorCombinedListener` 클래스를 만드는 것 입니다.
 
 ```c++
 public:
@@ -460,7 +460,7 @@ public:
         };
 ```
 
-This creates a callback function for when the `sensor_combined` messages are received. It outputs the content of the message fields each time the message is received.
+`sensor_combined` 메시지를 수신했을 때 사용할 콜백 함수를 만듭니다. 이 함수는 메시지를 받을때 마다 메시지 필드내의 내용을 출력합니다.
 
 ```c++
         subscription_ = this->create_subscription<px4_ros_com::msg::SensorCombined>("SensorCombined_topic", callback);
@@ -471,7 +471,7 @@ private:
 };
 ```
 
-The above create a subscription to the `sensor_combined_topic` which can be matched with one or more compatible ROS publishers.
+하나이상의 호환가능한 ROS 퍼블리셔와 연결될 수 있는 `sensor_combined_topic`에 대한 subsciption을 만듭니다.
 
 ```c++
 int main(int argc, char *argv[])
@@ -486,13 +486,13 @@ int main(int argc, char *argv[])
 }
 ```
 
-The instantiation of the `SensorCombinedListener` class as a ROS node is done on the `main` function.
+ROS 노드로서의 `SensorCombinedListener` 클래스의 초기화는 `main` 함수에서 수행됩니다.
 
-## Creating a ROS2 advertiser
+## ROS2 Advertise 만들기
 
-A ROS2 advertiser node publishes data into the DDS/RTPS network (and hence to PX4).
+ROS2 Advertiser 노드는 데이터를 DDS/RTPS/PX4 네트워크에 퍼블리시합니다.
 
-Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/listeners`:
+`px4_ros_com/src/listeners` 하위의 `debug_vect_advertiser.cpp`를 참고하세요.
 
 ```c++
 #include <chrono>
@@ -502,14 +502,14 @@ Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/list
 using namespace std::chrono_literals;
 ```
 
-Bring in the required headers, including the `debug_vect` msg header.
+`debug_vect` 메시지 헤더를 포함해 필요한 헤더들을 선언합니다.
 
 ```c++
 class DebugVectAdvertiser : public rclcpp::Node
 {
 ```
 
-The above creates a `DebugVectAdvertiser` class that subclasses the generic `rclcpp::Node` base class.
+`rclcpp::Node`의 서브클래스로 `DebugVectAdvertiser` 클래스를 만드는 것 입니다.
 
 ```c++
 public:
@@ -535,7 +535,7 @@ private:
 };
 ```
 
-This creates a function for when messages are to be sent. The messages are sent based on a timed callback, which sends two messages per second based on a timer.
+메시지를 송신할 때 사용할 함수를 만듭니다. 메시지들은 주기적으로 동작하는 콜백함수에 의해 송신됩니다. 타이머를 기준으로 초당 2개의 메시지를 송신합니다.
 
 ```c++
 int main(int argc, char *argv[])
@@ -550,29 +550,29 @@ int main(int argc, char *argv[])
 }
 ```
 
-The instantiation of the `DebugVectAdvertiser` class as a ROS node is done on the `main` function.
+ROS 노드로써 `DebugVectAdvertiser` 클래스 초기화는 `main` 함수에서 수행됩니다.
 
-## Creating a ROS listener
+## ROS 리스터 만들기
 
-The creation of ROS nodes is a well known and documented process. An example of a ROS listener for `sensor_combined` messages can be found in the `ros1` branch repo, under `px4_ros_com/src/listeners`.
+ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어있습니다. `sensor_combined` 메시지를 위한 ROS 리스너를 위한 예제가 `ros1` 브랜치에서 `px4_ros_com/src/listeners`에 있습니다.
 
-## Examples/tests of ROS-independent apps
+## ROS에 독립적인 어플리케이션 예제와 테스트
 
-The following examples provide additional real-world demonstrations of how to use the features described in this topic.
+아래의 예제들은 이 섹션에서 설명한 기능들을 실제로 어떻게 사용하는지에 대한 추가적인 정보를 제공합니다.
 
-* [Throughput test](../middleware/micrortps_throughput_test.md): A simple test to measure the throughput of the bridge.
+* [Throughput test](../middleware/micrortps_throughput_test.md): 브릿지의 처리량을 측적하는 간단한 테스트입니다.
 
-## Testing the PX4-FastRPTS bridge with ROS2 and ROS
+## ROS2/ROS 와 브릿지된 PX4-FastRPTS 테스트하기
 
-To quickly test the package (using PX4 SITL with Gazebo):
+패키지를 빠르게 테스트하기 위해서 (PX4 SITL와 Gazebo를 사용하세요):
 
-1. Start PX4 SITL with Gazebo using:
+1. PX4 SITL와 Gazebo를 빌드하세요.
     
     ```sh
     make px4_sitl_rtps gazebo
     ```
 
-2. On one terminal, source the ROS2 environment and workspace and launch the `ros1_bridge` (this allows ROS2 and ROS nodes to communicate with each other). Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
+2. 하나의 터미널에서 ROS2 환경설정과 워크스페이스를 가져오고 `ros1_bridge` 를 실행하세요(ROS2와 ROS가 서로 통신할 수 있게 합니다). Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
     
     ```sh
     $ source /opt/ros/crystal/setup.bash
@@ -581,27 +581,27 @@ To quickly test the package (using PX4 SITL with Gazebo):
     $ ros2 run ros1_bridge dynamic_bridge
     ```
 
-3. On another terminal, source the ROS workspace and launch the `sensor_combined` listener node. Since you are launching through `roslaunch`, this will also automatically start the `roscore`:
+3. 다른 터미널에서 ROS 워크스페이스를 가져오고 `sensor_combined` 리스너 노드를 실행하세요. 이미 여러분은 `roslaunch`를 실행하고 있기 때문에, `roscore` 또한 자동적으로 실행될 것입니다.
     
     ```sh
     $ source ~/px4_ros_com_ros1/install/local_setup.bash
     $ roslaunch px4_ros_com sensor_combined_listener.launch
     ```
 
-4. On a terminal, source the ROS2 workspace and then start the `micrortps_agent` daemon with UDP as the transport protocol:
+4. 하나의 터미널에서 ROS2 워크스페이스를 가져오고 UDP를 사용하는 `micrortps_agent` 데몬을 실행하세요.
     
     ```sh
     $ source ~/px4_ros_com_ros2/install/local_setup.bash
     $ micrortps_agent -t UDP
     ```
 
-5. On the [NuttShell/System Console](../debug/system_console.md), start the `micrortps_client` daemon also in UDP:
+5. [NuttShell/System Console](../debug/system_console.md)에서는 UDP를 사용하는 `micrortps_client`를 실행하세요.
     
     ```sh
     > micrortps_client start -t UDP
     ```
     
-    Now you will be able to see the data being printed on the terminal/console where you launched the ROS listener:
+    이제 ROS 리스너를 실행한 콘솔에서 데이터가 출력되는 것을 볼 수 있을 것입니다.
     
     ```sh
     RECEIVED DATA FROM SENSOR COMBINED
@@ -619,7 +619,7 @@ To quickly test the package (using PX4 SITL with Gazebo):
     Publishing back...
     ```
     
-    You can also verify the rate of the message using `rostopic hz`. For the case of `sensor_combined`:
+    `rostopic hz`로 메시지의 속도를 확인할 수 있습니다. `sensor_combined`의 경우
     
     ```sh
     average rate: 248.187
@@ -636,75 +636,75 @@ To quickly test the package (using PX4 SITL with Gazebo):
     min: 0.000s max: 0.012s std dev: 0.00148s window: 3960
     ```
 
-6. You can also test the `sensor_combined` ROS2 listener by typing in a terminal:
+6. 다음과 같이 `sensor_combined` ROS2 리스너를 테스를 할 수 있습니다.
     
     ```sh
     $ source ~/px4_ros_com_ros2/install/local_setup.bash
     $ sensor_combined_listener # or ros2 run px4_ros_com sensor_combined_listener
     ```
 
-And it should also get data being printed to the console output.
+이 작업은 콘솔로 출력되고 있는 데이터를 얻게 됩니다.
 
-> **Note** If ones uses the `build_all.bash` script, it automatically open and source all the required terminals so one just has to run the respective apps in each terminal.
+> **Note** `build_all.bash` 스크립트를 사용하면 자동적으로 터미널을 열고 필요한 설정을 얻습니다. 각 터미널에서 필요한 어플리케이션만 실행하면 됩니다.
 
-## Troubleshooting
+## 트러블슈팅
 
-### Client reports that selected UART port is busy
+### 클라이언트가 선택한 UART 포트를 사용할 수 없다고 할 때
 
-If the selected UART port is busy, it's possible that the MAVLink application is already being used. If both MAVLink and RTPS connections are required you will have to either move the connection to use another port or configure the port so that it can be shared. <!-- https://github.com/PX4/Devguide/issues/233 -->
+만약 선택한 UART 포트가 사용할 수 없는 상태이면, MAVLink 어플리케이션이 이미 실행중일 가능성이 있습니다. MAVLink와 RTPS 연결을 모두 필요로 하다면 다른 포트를 사용하도록 하거나 포트를 공유할 수 있도록 설정해야 합니다. <!-- https://github.com/PX4/Devguide/issues/233 -->
 
-> **Tip** A quick/temporary fix to allow bridge testing during development is to stop MAVLink from *NuttShell*: 
+> **Tip** 개발과정에서 브릿지 테스트를 위해 임시적인 대처방법은 *NuttShell*에서 MAVLink를 끄는 것입니다. 
 > 
 >     sh
 >       mavlink stop-all
 
-### Agent not built/fastrtpsgen is not found
+### 에이전트 빌드 안됨, fastrtpsgen 찾을 수 없음
 
-The *Agent* code is generated using a *Fast RTPS* tool called *fastrtpsgen*.
+*Agent* 코드는 *fastrtpsgen*이라고 불리는 *Fast RTPS* 툴을 사용해 생성합니다.
 
-If you haven't installed Fast RTPS in the default path then you must specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
+만약 Fatt RTPS를 기본 경로에 설치하지 않았다면 *make*를 수행하기 이전에 `FASTRTPSGEN_DIR` 환경변수에 설치된 디렉토리를 설정해주어야 합니다.
 
-On Linux/Mac this is done as shown below:
+리눅스/Mac 에서는 아래와 같이 수행하면 됩니다.
 
 ```sh
 export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 ```
 
-> **Note** This should not be a problem if [Fast RTPS is installed in the default location](../setup/fast-rtps-installation.md).
+> **Note** [Fast RTPS가 이미 기본경로에 설치](../setup/fast-rtps-installation.md)됐다면 다른 문제입니다.
 
-### Enable UART on an OBC (onboard computer)
+### OBC(온보드 컴퓨터)에서 UART 활성화하기
 
-For UART transport on a Raspberry Pi or any other OBC you will have to enable the serial port:
+라즈페이파이나 다른 OBC에서 UART 전송을 위해서는 시리얼 포트를 활성화해야만 합니다.
 
-1. Make sure the `userid` (default is pi on a Raspberry Pi) is a member of the `dialout` group:
+1. `userid`가 `dialout` 그룹의 멤버인지 확인하세요(라즈베리파이에서는 기본값이 pi 입니다).
     
     ```sh
     groups pi
     sudo usermod -a -G dialout pi
     ```
 
-2. For the Raspberry Pi in particular, you need to stop the GPIO serial console that is using the port:
+2. 일부 라즈베리파이에서는 그 포트를 사용하고 있는 GPIO 시리얼 콘솔을 멈춰야 합니다.
     
     ```sh
     sudo raspi-config
     ```
     
-    In the menu showed go to **Interfacing options > Serial**. Select **NO** for *Would you like a login shell to be accessible over serial?*. Valid and reboot.
+    보여지는 메뉴에서 **Interfacing options > Serial**로 이동합니다. *Would you like a login shell to be accessible over serial?* 질문에 대해서는 **NO**를 선택하세요. 확인하고 재부팅하세요.
 
-3. Check UART in kernel:
+3. 커널에서 UART 확인하기
     
     ```sh
     sudo vi /boot/config.txt
     ```
     
-    And make sure that the `enable_uart` value is set to 1:
+    `enable_uart` 값이 1로 설정되어 있는지 확인하세요.
     
     ```txt
     enable_uart=1
     ```
 
-## Additional information
+## 추가적인 정보
 
-* [Fast RTPS Installation](../setup/fast-rtps-installation.md)
-* [Manually Generate Client and Agent Code](micrortps_manual_code_generation.md)
-* [DDS and ROS middleware implementations](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
+* [Fast RTPS 설치](../setup/fast-rtps-installation.md)
+* [직접 Client와 Agent 코드 생성하기](micrortps_manual_code_generation.md)
+* [DDS와 ROS 미들웨어 구현](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)

@@ -2,7 +2,7 @@
 
 ## 简介
 
-uORB 是用于进程间通信的异步 `publish()`/`subscribe()` 消息传递 API。
+The uORB is an asynchronous `publish()` / `subscribe()` messaging API used for inter-thread/inter-process communication.
 
 查看 [教程](../apps/hello_sky.md) 以了解如何在 C++ 中使用它。
 
@@ -10,20 +10,20 @@ uORB 会在启动时自动启动，因为许多应用程序都依赖于它。 �
 
 ## 添加新 Topic（主题）
 
-可以在主 PX4/Firmware 存储库中添加新的 uORB 主题，也可以在树外消息定义中添加。 有关添加树外 uORB 消息定义的信息，请参阅 [本节](../advanced/out_of_tree_modules.md#uorb_message_definitions)。
+New uORB topics can be added either within the main PX4/Firmware repository, or can be added in an out-of-tree message definitions. For information on adding out-of-tree uORB message definitions, please see [this section](../advanced/out_of_tree_modules.md#uorb_message_definitions).
 
-若要添加新主题，需要在 `msg/` 目录中创建一个新的 **.msg** 文件，并将文件名添加到 `msg/CMakeLists.txt` 列表中。 由此，将自动生成所需的 C/C++ 代码。
+To add a new topic, you need to create a new **.msg** file in the `msg/` directory and add the file name to the `msg/CMakeLists.txt` list. From this, the needed C/C++ code is automatically generated.
 
-查看支持类型的现有 `msg` 文件。 消息还可以在其他消息中嵌套使用。
+查看支持类型的现有 `msg` 文件。 A message can also be used nested in other messages.
 
-对于每个生成的 C/C + 结构，将添加一个字段 `uint64_t timestamp `。 此用于记录日志，因此请确保在发布时填充数据。
+对于每个生成的 C/C + 结构，将添加一个字段 `uint64_t timestamp `。 This is used for the logger, so make sure to fill it in when publishing the message.
 
 若要在代码中使用该主题，请包括头文件：
 
     #include <uORB/topics/topic_name.h>
     
 
-通过在 `.msg` 文件中添加如下内容的行，可以将一条消息定义用于多个独立主题：
+By adding a line like the following in the `.msg` file, a single message definition can be used for multiple independent topics:
 
     # TOPICS mission offboard_mission onboard_mission
     
@@ -32,7 +32,7 @@ uORB 会在启动时自动启动，因为许多应用程序都依赖于它。 �
 
 ## 发布
 
-发布主题可以在系统中的任何位置完成，包括中断上下文（由 `hrt_call` API 调用的函数）。 但是，仅在中断上下文之外才能为主题做广播。 一个主题必须与以后发布的过程相同。
+Publishing a topic can be done from anywhere in the system, including interrupt context (functions called by the `hrt_call` API). However, advertising a topic is only possible outside of interrupt context. A topic has to be advertised in the same process as it's later published.
 
 ## 主题列表和监听（Listener）
 
@@ -106,22 +106,12 @@ sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
 
-列分别是：主题名字，多实例索引值，订阅者数量，发布频率（Hz），每秒丢失的信息数（对所有订阅者）和队列大小。
+The columns are: topic name, multi-instance index, number of subscribers, publishing frequency in Hz, number of lost messages per second (for all subscribers combined), and queue size.
 
 ## 多实例
 
-uORB 提供了一种通过 `orb_advertise_multi` 发布同一主题的多个独立实例的机制。 它将实例索引返回到发布者。 然后, 订阅者必须选择订阅以使用 `orb_subscribe_multi`（`orb_subscribe` 订阅第一个 实例）。 例如，如果系统具有多个相同类型的传感器, 则具有多个实例非常有用。
+uORB provides a mechanism to publish multiple independent instances of the same topic through `orb_advertise_multi`. It will return an instance index to the publisher. A subscriber will then have to choose to which instance to subscribe to using `orb_subscribe_multi` (`orb_subscribe` subscribes to the first instance). Having multiple instances is useful for example if the system has several sensors of the same type.
 
 请确保不要为同一主题混合 `orb_advertise_multi` 和 `orb_advertise`。
 
 完整的 API 记录在 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp) 中。
-
-## 故障排除和常见的陷阱
-
-下面解释了一些常见的陷阱和边界案例：
-
-- 未发布该主题：确保每个调用匹配的 `ORB_ID()`。 同样重要的是 `orb_subscribe` 和 `orb_unsubscribe` 作为 `orb_check` 和 `orb_copy`， **从相同的任务调用 ** 。 这适用于 `px4_task_spawn_cmd()`，但在使用工作队列时也适用于 `work_queue()`。
-- 一定要清理：使用 `orb_unsubscribe` 和 `orb_unadvertise`。
-- 成功的 `orb_check()` 或 `px4_poll()` 调用需要 `orb_copy()`，否则下一次 poll 将立即返回。
-- 在广播主题之前调用 `orb_subscribe` 是完全可以的。
-- 对于 `orb_subscribe()` 后发布的消息，`orb_check()` 和 `px4_poll()` 将仅返回 true。 主题消息不要经常发布。 如果有订阅者需要之前的数据，应该在`orb_subscribe()` 之后无条件的调用 `orb_copy()`（注意，如果没有广播， `orb_copy()` 会失败）。
