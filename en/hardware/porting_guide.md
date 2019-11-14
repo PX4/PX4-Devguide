@@ -80,7 +80,7 @@ To run `qconfig` you may need to install additional Qt dependencies.
 Linux boards do not include the OS and kernel configuration. 
 These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
 
-* [cmake/configs/posix\_rpi\_cross.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_rpi_cross.cmake) - RPI cross-compilation.
+* [cmake/configs/posix\_rpi\_cross.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_rpi_cross.cmake) - RPI cross-compilation. 
 
 ## Middleware Components and Configuration
 
@@ -90,17 +90,17 @@ This section describes the various middleware components, and the configuration 
 
 * The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs).
 * The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions).
-* The PX4 middleware configuration is located in [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards). TODO: ADD BUS CONFIG
+* The PX4 middleware configuration is located in [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards). TODO: ADD BUS CONFIG 
 * Drivers: [DriverFramework](https://github.com/px4/DriverFramework).
 * Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
 
 
 ## RC UART Wiring Recommendations
 
-It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. 
+It is generally recommended to connect RC via separate RX and TX pins to the microcontroller.
 If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. 
-This is done via board config and manifest files. 
-One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c).
+This is done via board config and manifest files.
+One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c). 
 
 
 ## Officially Supported Hardware
