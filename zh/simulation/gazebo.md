@@ -21,10 +21,10 @@
 
 ## 安装
 
-Gazebo 8 设置包含在我们的标准构建说明中：
+Gazebo 9 setup is included in our standard build instructions:
 
 * ** macOS：** [ Mac 上的开发环境](../setup/dev_env_mac.md)
-* ** Linux：** [ Linux 上的开发环境（Ubuntu 16.04）> jMAVSim / Gazebo Simulation ](../setup/dev_env_linux.md#jmavsimgazebo-simulation)
+* **Linux:** [Development Environment on Linux (Ubuntu 16.04) > jMAVSim/Gazebo Simulation](../setup/dev_env_linux_ubuntu.md#sim_nuttx)
 * ** Windows：**不支持。
 
 其他安装说明可在 [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1) 上找到。
