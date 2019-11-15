@@ -90,6 +90,7 @@
 * [Debugging/Logging](debug/README.md)
   * [FAQ](debug/faq.md)
   * [System Console](debug/system_console.md)
+  * [JTAG Hardware Connections](debug/jtag_pins.md)
   * [Autopilot Debugging](debug/gdb_debugging.md)
   * [Eclipse/JLink Hardware Debugging](debug/eclipse_jlink.md)
   * [Sensor/Topic Debugging](debug/sensor_uorb_topic_debugging.md)
