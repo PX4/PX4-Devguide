@@ -25,20 +25,27 @@ The steps to fork and clone the project source code are:
     
     ![Github 克隆或下载按钮](../../assets/toolchain/github_clone_or_download.png)
 
-4. 在计算机上打开命令提示终端
+4. Install *git* (if you haven't already done so as part of setting up the development environment):
     
-    - 在 OS X 上，点击 ⌘-space 并搜索 “terminal” 。
-    - 在 Ubuntu 上，单击运行栏并搜索 “terminal”。
-    - 在 Windows 上，在“开始”菜单中找到 PX4 文件夹，然后单击 "PX4 Console"。
+    - On macOS use the terminal command: `brew install git`
+    - On Ubuntu use the terminal command: `sudo apt install git`
+    - For other platforms see the [git documentation](https://git-scm.com/downloads).
+5. Open a command prompt/terminal on your computer 
+    - On OS X, hit ⌘-space and search for 'terminal'.
+    - On Ubuntu, click the launch bar and search for 'terminal'.
+    - On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'.
 
-5. 使用复制的 URL 克隆存储库分支。 如下所示:
+6. Clone the repository fork using the copied URL. This will look something like:
     
         git clone https://github.com/<youraccountname>/Firmware.git
         
     
-    > **Tip** 如果您只是在尝试（并且不想进行任何永久性更改），则只需克隆主固件存储库，如下所示： ```git clone https://github.com/PX4/Firmware.git```
+    > **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown: 
+    > 
+    >     sh
+    >      git clone https://github.com/PX4/Firmware.git
     
-    Windows 用户 [参考 github 帮助 ](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/)。 您可以使用 *git* 命令行客户端，如上所示，也可以使用 *Windows的Github * 应用程序执行相同的操作。
+    Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
 
 This will copy *most* of the *very latest* version of PX4 source code onto your computer (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
 
