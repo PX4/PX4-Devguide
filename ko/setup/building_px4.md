@@ -25,13 +25,17 @@ The steps to fork and clone the project source code are:
     
     ![Github Clone or download button](../../assets/toolchain/github_clone_or_download.png)
 
-4. Open a command prompt/terminal on your computer
+4. Install *git* (if you haven't already done so as part of setting up the development environment):
     
+    - On macOS use the terminal command: `brew install git`
+    - On Ubuntu use the terminal command: `sudo apt install git`
+    - For other platforms see the [git documentation](https://git-scm.com/downloads).
+5. Open a command prompt/terminal on your computer 
     - On OS X, hit ⌘-space and search for 'terminal'.
     - On Ubuntu, click the launch bar and search for 'terminal'.
     - On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'.
 
-5. Clone the repository fork using the copied URL. This will look something like:
+6. Clone the repository fork using the copied URL. This will look something like:
     
         git clone https://github.com/<youraccountname>/Firmware.git
         
