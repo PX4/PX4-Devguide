@@ -18,10 +18,10 @@ The datalink should typically be able to handle an uplink rate of 300 bytes per 
 
 ## Supported RTK GPS modules
 
-PX4 currently only supports the single-frequency (L1) u-blox M8P based GNSS receivers for RTK. 
+PX4 currently only supports the single-frequency (L1) u-blox M8P based GNSS receivers for RTK.
 
-A number of manufacturers have created products using this receiver. 
-The list of devices that we have tested can be found [in the user guide](https://docs.px4.io/en/advanced_features/rtk-gps.html#supported-rtk-devices).
+A number of manufacturers have created products using this receiver.
+The list of devices that we have tested can be found [in the user guide](https://docs.px4.io/master/en/gps_compass/rtk_gps.html#supported-rtk-devices).
 
 > **Note** u-blox has two variants of the M8P chip, the M8P-0 and the M8P-2. 
   The M8P-0 can only be used as Rover, not as Base, whereas the M8P-2 can be used both as Rover or as Base.
