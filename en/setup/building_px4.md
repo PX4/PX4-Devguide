@@ -26,6 +26,10 @@ The steps to fork and clone the project source code are:
    The easiest way to do this is to click the **Clone or download** button and then copy the URL:
 
    ![Github Clone or download button](../../assets/toolchain/github_clone_or_download.png)
+1. Install *git* (if you haven't already done so as part of setting up the development environment):
+   * On macOS use the terminal command: `brew install git`
+   * On Ubuntu use the terminal command: `sudo apt install git`
+   * For other platforms see the [git documentation](https://git-scm.com/downloads).
 1. Open a command prompt/terminal on your computer
    * On OS X, hit ⌘-space and search for 'terminal'.
    * On Ubuntu, click the launch bar and search for 'terminal'.

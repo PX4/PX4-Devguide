@@ -146,27 +146,7 @@ This task can be started at boot from the startup scripts by setting SENS_EN_THE
 ```
 heater <command> [arguments...]
  Commands:
-   controller_period Reports the heater driver cycle period value, (us), and
-                 sets it if supplied an argument.
-
-   integrator    Sets the integrator gain value if supplied an argument and
-                 reports the current value.
-
-   proportional  Sets the proportional gain value if supplied an argument and
-                 reports the current value.
-
-   sensor_id     Reports the current IMU the heater is temperature controlling.
-
-   setpoint      Reports the current IMU temperature.
-
-   start         Starts the IMU heater driver as a background task
-
-   status        Reports the current IMU temperature, temperature setpoint, and
-                 heater on/off status.
-
-   stop          Stops the IMU heater driver.
-
-   temp          Reports the current IMU temperature.
+   start
 
    stop
 
