@@ -75,7 +75,7 @@ Tool for ESC calibration
 
 Calibration procedure (running the command will guide you through it):
 - Remove props, power off the ESC's
-- Stop attitude controllers: mc_att_control stop, fw_att_control stop
+- Stop attitude and rate controllers: mc_rate_control stop, fw_att_control stop
 - Make sure safety is off
 - Run this command
 
@@ -227,7 +227,7 @@ Application to test motor ramp up.
 
 Before starting, make sure to stop any running attitude controller:
 ```
-mc_att_control stop
+mc_rate_control stop
 fw_att_control stop
 ```
 
