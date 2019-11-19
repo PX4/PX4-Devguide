@@ -86,7 +86,7 @@ ESC 校准工具。
 校准流程（运行命令将会引导你完成此流程）：
 
 - 移除螺旋桨，将 ESC 断电
-- 停止姿态控制器： mc_att_control stop， fw_att_control stop
+- Stop attitude and rate controllers: mc_rate_control stop, fw_att_control stop
 - 确保安全设置断开（Make sure safety is off）
 - 运行这个命令
 
@@ -248,7 +248,7 @@ Application to test motor ramp up.
 
 Before starting, make sure to stop any running attitude controller:
 
-    mc_att_control stop
+    mc_rate_control stop
     fw_att_control stop
     
 
