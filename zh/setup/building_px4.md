@@ -613,13 +613,11 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
             sh
             ulimit -S -n 300
     
-    ### macOS Catalina: Problem running cmake.
+    ### macOS Catalina: Problem running cmake
     
-    As of macOS Catalina 10.15.1 there may be an issue when trying to build the simulator with `cmake`. If you are having issues then run
+    As of macOS Catalina 10.15.1 there may be problems when trying to build the simulator with *cmake*. If you have build problems on this platform then try run the following command in your terminal:
     
     ```sh
     xcode-select --install
     sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /usr/local/include/
     ```
-    
-    in your terminal and it should all work.
