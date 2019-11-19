@@ -46,7 +46,7 @@ Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](https://kb.zubax.com/d
 
 ### 通过 ftdi 3.3 v 电缆连接
 
-如果手边没有 dronecode 探头, ftdi 3.3 v (digi-key: [768-1015-ND](http://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) 也可以这样做。
+If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](https://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) will do as well.
 
 | Pixhawk 1/2 |           | FTDI |               |
 | ----------- | --------- | ---- | ------------- |
