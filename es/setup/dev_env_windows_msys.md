@@ -6,5 +6,5 @@
 
 Descarga e instala lo siguiente en el sistema:
 
-* [PX4 Toolchain Installer v14 para Windows](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (sistema 32/64 bit, sistema completo de compilación, drivers)
+* [PX4 Toolchain Installer v14 para Windows](http://firmware.diydrones.com/Tools/PX4-tools/px4_toolchain_installer_v14_win.exe) (sistema 32/64 bit, sistema completo de compilación, drivers) 
 * [PX4 controladores USB](https://github.com/mavlink/qgroundcontrol/raw/master/deploy/px4driver.msi) (sistemas de 32/64 bits)
