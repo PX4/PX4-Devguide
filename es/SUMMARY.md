@@ -144,5 +144,5 @@
 * [Guía del usuario de QGroundControl](https://docs.qgroundcontrol.com/en/)
 * [Guía para desarrolladores de QGroundControl](https://dev.qgroundcontrol.com/en/)
 * [Guía de MAVLink](https://mavlink.io/en/)
-* [MAVSDK](https://sdk.dronecode.org/en/)
+* [MAVSDK](https://mavsdk.mavlink.io/develop/en/index.html)
 * [Dronecode Camera Manager](https://camera-manager.dronecode.org/en/)

@@ -33,4 +33,4 @@ QGroundControl 可以从 [网站](http://qgroundcontrol.com/downloads) 下载。
 
 为了匹配最近版本的飞控代码，鼓励固件开发者从源码编译。
 
-安装 Qt 和编译源码，请参照 [QGroundControl build instructions](https://github.com/mavlink/qgroundcontrol#obtaining-source-code)。
+Follow the [QGroundControl build instructions](https://dev.qgroundcontrol.com/en/getting_started/) to install Qt and build the source code.

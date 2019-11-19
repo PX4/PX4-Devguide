@@ -19,38 +19,38 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
 1. We start by creating a new MAVROS plugin, in this example named **keyboard_command.cpp** (in **workspace/src/mavros/mavros_extras/src/plugins**) by using the code below:
     
     The code subscribes a 'char' message from ROS topic `/mavros/keyboard_command/keyboard_sub` and sends it as a MAVLink message.
-    
-    ```c
+
+   ```c
     #include <mavros/mavros_plugin.h>
     #include <pluginlib/class_list_macros.h>
     #include <iostream>
     #include <std_msgs/Char.h>
-    
+
     namespace mavros {
     namespace extra_plugins{
-    
+
     class KeyboardCommandPlugin : public plugin::PluginBase {
     public:
         KeyboardCommandPlugin() : PluginBase(),
             nh("~keyboard_command")
-    
+
        { };
-    
+
         void initialize(UAS &uas_)
         {
             PluginBase::initialize(uas_);
             keyboard_sub = nh.subscribe("keyboard_sub", 10, &KeyboardCommandPlugin::keyboard_cb, this);
         };
-    
+
         Subscriptions get_subscriptions()
         {
             return {/* RX disabled */ };
         }
-    
+
     private:
         ros::NodeHandle nh;
         ros::Subscriber keyboard_sub;
-    
+
        void keyboard_cb(const std_msgs::Char::ConstPtr &req)
         {
             std::cout << "Got Char : " << req->data <<  std::endl;
@@ -59,59 +59,59 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
     };
     }   // namespace extra_plugins
     }   // namespace mavros
-    
-    PLUGINLIB_EXPORT_CLASS(mavros::extra_plugins::KeyboardCommandPlugin, mavros::plugin::PluginBase)
-    ```
 
-2. Edit **mavros_plugins.xml** (in **workspace/src/mavros/mavros_extras**) and add the following lines:
-    
-    ```xml
-    <class name="keyboard_command" type="mavros::extra_plugins::KeyboardCommandPlugin" base_class_type="mavros::plugin::PluginBase">
+   PLUGINLIB_EXPORT_CLASS(mavros::extra_plugins::KeyboardCommandPlugin, mavros::plugin::PluginBase)
+   ```
+
+1. Edit **mavros_plugins.xml** (in **workspace/src/mavros/mavros_extras**) and add the following lines:
+
+   ```xml
+   <class name="keyboard_command" type="mavros::extra_plugins::KeyboardCommandPlugin" base_class_type="mavros::plugin::PluginBase">
         <description>Accepts keyboard command.</description>
-    </class>
-    ```
+   </class>
+   ```
 
-3. Edit **CMakeLists.txt** (in **workspace/src/mavros/mavros_extras**) and add the following line in `add_library`.
-    
-    ```cmake
-    add_library( 
-    ...
+1. Edit **CMakeLists.txt** (in **workspace/src/mavros/mavros_extras**) and add the following line in `add_library`.
+
+   ```cmake
+   add_library( 
+   ...
      src/plugins/keyboard_command.cpp 
-    )
-    ```
+   )
+   ```
 
-4. Inside **common.xml** in (**workspace/src/mavlink/message_definitions/v1.0**), copy the following lines to add your MAVLink message:
-    
-    ```xml
-    ...
+1. Inside **common.xml** in (**workspace/src/mavlink/message_definitions/v1.0**), copy the following lines to add your MAVLink message:
+
+   ```xml
+   ...
      <message id="229" name="KEY_COMMAND">
         <description>Keyboard char command.</description>
         <field type="char" name="command"> </field>
       </message>
-    ...
-    ```
+   ...
+   ```
 
 ## PX4 Changes
 
 1. Inside **common.xml** (in **Firmware/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (same procedure as for MAVROS section above):
-    
-    ```xml
-    ...
+
+   ```xml
+   ...
      <message id="229" name="KEY_COMMAND">
         <description>Keyboard char command.</description>
         <field type="char" name="command"> </field>
       </message>
-    ...
-    ```
+   ...
+   ```
 
-2. Remove *common*, *standard* directories in (**Firmware/mavlink/include/mavlink/v2.0**).
-    
-    ```sh
-    rm -r common
-    rm -r standard
-    ```
+1. Remove *common*, *standard* directories in (**Firmware/mavlink/include/mavlink/v2.0**).
 
-3. Git clone "mavlink_generator" to any directory you want and execute it.
+   ```sh
+   rm -r common
+   rm -r standard
+   ```
+
+1. Git clone "mavlink_generator" to any directory you want and execute it.
 
    ```sh
    git clone https://github.com/mavlink/mavlink mavlink-generator
@@ -130,69 +130,70 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
     Then, press **Generate**. You will see *common*, and *standard* directories created in **/Firmware/mavlink/include/mavlink/v2.0/**.
 
 2. Make your own uORB message file **key_command.msg** in (Firmware/msg). For this example the "key_command.msg" has only the code:
-    
-        char cmd
-        
-    
-    Then, in **CMakeLists.txt** (in **Firmware/msg**), include
-    
-    ```cmake
-    set(
-    ...
+
+   ```
+   char cmd
+   ```
+
+Then, in **CMakeLists.txt** (in **Firmware/msg**), include
+
+   ```cmake
+   set(
+   ...
         key_command.msg
         )
-    ```
+   ```
 
-3. Edit **mavlink_receiver.h** (in **Firmware/src/modules/mavlink**)
-    
-    ```cpp
-    ...
-    #include <uORB/topics/key_command.h>
-    ...
-    class MavlinkReceiver
-    {
-    ...
-    private:
+1. Edit **mavlink_receiver.h** (in **Firmware/src/modules/mavlink**)
+
+   ```cpp
+   ...
+   #include <uORB/topics/key_command.h>
+   ...
+   class MavlinkReceiver
+   {
+   ...
+   private:
        void handle_message_key_command(mavlink_message_t *msg);
-    ...
+   ...
        orb_advert_t _key_command_pub{nullptr};
-    }
-    ```
+   }
+   ```
 
-4. Edit **mavlink_receiver.cpp** (in **Firmware/src/modules/mavlink**). This is where PX4 receives the MAVLink message sent from ROS, and publishes it as a uORB topic.
-    
-    ```cpp
-    ...
-    void MavlinkReceiver::handle_message(mavlink_message_t *msg)
-    {
-    ...
+1. Edit **mavlink_receiver.cpp** (in **Firmware/src/modules/mavlink**). This is where PX4 receives the MAVLink message sent from ROS, and publishes it as a uORB topic.
+
+   ```cpp
+   ...
+   void MavlinkReceiver::handle_message(mavlink_message_t *msg)
+   {
+   ...
     case MAVLINK_MSG_ID_KEY_COMMAND:
            handle_message_key_command(msg);
            break;
-    ...
-    }
-    ...
-    void
-    MavlinkReceiver::handle_message_key_command(mavlink_message_t *msg)
-    {
+   ...
+   }
+   ...
+   void
+   MavlinkReceiver::handle_message_key_command(mavlink_message_t *msg)
+   {
        mavlink_key_command_t man;
        mavlink_msg_key_command_decode(msg, &man);
-    
-    struct key_command_s key = {};
-    
+
+   struct key_command_s key = {};
+
        key.timestamp = hrt_absolute_time();
        key.cmd = man.command;
-    
+
        if (_key_command_pub == nullptr) {
            _key_command_pub = orb_advertise(ORB_ID(key_command), &key);
-    
+
        } else {
            orb_publish(ORB_ID(key_command), _key_command_pub, &key);
        }
-    }
-    ```
+   }
+   ```
 
-5. Make your own uORB topic subscriber just like any example subscriber module. For this example lets create the model in (/Firmware/src/modules/key_receiver). In this directory, create two files **CMakeLists.txt**, **key_receiver.cpp**. Each one looks like following.
+1. Make your own uORB topic subscriber just like any example subscriber module. For this example lets create the model in (/Firmware/src/modules/key_receiver). In this directory, create two files **CMakeLists.txt**, **key_receiver.cpp**. Each one looks like following.
     
     -CMakeLists.txt
 
@@ -272,12 +273,14 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
 
 For a more detailed explanation please see the documentation for [Writing your first application](https://dev.px4.io/en/apps/hello_sky.html).
 
-1. Lastly add your module in the **default.cmake** file correspondent to your board in **Firmware/boards/**. For example for the Pixhawk 4 add the following code in **Firmware/boards/px4/fmu-v5/default.cmake**: 
-        cmake
-        MODULES
-            ...
-            key_receiver
-            ...
+1. Lastly add your module in the **default.cmake** file correspondent to your board in **Firmware/boards/**. For example for the Pixhawk 4 add the following code in **Firmware/boards/px4/fmu-v5/default.cmake**:
+
+   ```cmake
+    MODULES
+        ...
+        key_receiver
+        ...
+    ```
 
 Now you are ready to build all your work!
 
@@ -286,10 +289,13 @@ Now you are ready to build all your work!
 ### Build for ROS
 
 1. In your workspace enter: `catkin build`.
-2. Beforehand, you have to set your "px4.launch" in (/workspace/src/mavros/mavros/launch). Edit "px4.launch" as below. If you are using USB to connect your computer with Pixhawk, you have to set "fcu_url" as shown below. But, if you are using CP2102 to connect your computer with Pixhawk, you have to replace "ttyACM0" with "ttyUSB0". Modifying "gcs_url" is to connect your Pixhawk with UDP, because serial communication cannot accept MAVROS, and your nutshell connection simultaneously.
+1. Beforehand, you have to set your "px4.launch" in (/workspace/src/mavros/mavros/launch). 
+   Edit "px4.launch" as below.
+   If you are using USB to connect your computer with Pixhawk, you have to set "fcu_url" as shown below.
+   But, if you are using CP2102 to connect your computer with Pixhawk, you have to replace "ttyACM0" with "ttyUSB0".
+   Modifying "gcs_url" is to connect your Pixhawk with UDP, because serial communication cannot accept MAVROS, and your nutshell connection simultaneously.
 
-3. Write your IP address at "xxx.xx.xxx.xxx"
-
+1. Write your IP address at "xxx.xx.xxx.xxx"
    ```xml
    ...
      <arg name="fcu_url" default="/dev/ttyACM0:57600" />
@@ -299,7 +305,7 @@ Now you are ready to build all your work!
 
 ### Build for PX4
 
-1. Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx--pixhawk-based-boards).
+1. Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx).
     
     For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the Firmware directory:
 
@@ -335,9 +341,17 @@ This means, publish 97 ('a' in ASCII) to ROS topic "/mavros/keyboard_command/key
    ./mavlink_shell.py xxx.xx.xxx.xxx:14557 --baudrate 57600
    ```
 
-1. After few seconds, press **Enter** a couple of times. You should see a prompt in the terminal as below: 
-        sh
-        nsh>
-        nsh> Type "key_receiver", to run your subscriber module. ```nsh> key_receiver```
+1. After few seconds, press **Enter** a couple of times. You should see a prompt in the terminal as below:
+
+   ```sh
+   nsh>
+   nsh>
+   ```
+
+Type "key_receiver", to run your subscriber module.
+
+   ```
+   nsh> key_receiver
+   ```
 
 Check if it successfully receives `a` from your ROS topic.

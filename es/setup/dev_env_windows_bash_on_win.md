@@ -35,7 +35,7 @@ Para compilar el firmware (por ejemplo para px4_fmu-v4):
     
     Una vez se haya completado encontrarás el firmware aquí: `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
     
-    > **Nota** Los comandos `make` para compilar el firmware para otras plataformas se encuentra en [Compilando el código](../setup/building_px4.md#nuttx--pixhawk-based-boards)
+    > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx)
 
 2. Puedes flashear el firmware custom en Windows usando *QGroundControl* o *Mission Planner* (no es posible flashear directamente desde el shell bash usando el comando `upload`).
 

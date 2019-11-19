@@ -33,4 +33,4 @@ QGroundControl can be downloaded from its [website](http://qgroundcontrol.com/do
 
 Firmware developers are encouraged to build from source in order to have a matching recent version to their flight code.
 
-Follow the [QGroundControl build instructions](https://github.com/mavlink/qgroundcontrol#obtaining-source-code) to install Qt and build the source code.
+Follow the [QGroundControl build instructions](https://dev.qgroundcontrol.com/en/getting_started/) to install Qt and build the source code.

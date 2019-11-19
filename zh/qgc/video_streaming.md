@@ -26,7 +26,7 @@ Odroid c1 可以通过 5v 直流插孔供电。 如果 Odroid 被安装在飞行
 
 ## 配置 WiFi 为接入点
 
-本节演示如何设置 odroid c1, 使其成为接入点。 内容取自此[这篇教程](https://pixhawk.org/peripherals/onboard_computers/access_point), 并有一些小改动。 为了能够通过 odroid c1 将视频从相机流式传输到在计算机上运行的 QGroundControl, 并不一定需要遵循此部分。 但是, 这篇教程的意义是, 将 odroid c1 设置为接入点允许以独立的方式使用该系统。 在此使用的是 TP-LINK TL-WN722N。 在随后的步骤中, 假定 odroid c1 将 wlan0 的名称分配给您的 wifi 模块。 如果不同, 请将所有出现的 wlan0 更改为相应的接口 (例如 wlan1)。
+本节演示如何设置 odroid c1, 使其成为接入点。 The content is taken from the pixhawk.org "access point" tutorial (no longer available) with some small adaptions. 为了能够通过 odroid c1 将视频从相机流式传输到在计算机上运行的 QGroundControl, 并不一定需要遵循此部分。 但是, 这篇教程的意义是, 将 odroid c1 设置为接入点允许以独立的方式使用该系统。 在此使用的是 TP-LINK TL-WN722N。 在随后的步骤中, 假定 odroid c1 将 wlan0 的名称分配给您的 wifi 模块。 如果不同, 请将所有出现的 wlan0 更改为相应的接口 (例如 wlan1)。
 
 ### 配置机载电脑为接入点
 
@@ -93,7 +93,7 @@ iface default inet dhcp
 #iface default inet dhcp
 ```
 
-如果您已按照 [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 设置WiFi连接，则可能已创建文件 `/etc/network/intefaces.d/wlan0`。 请注释掉该文件中的所有行，以使这些配置不再有效。
+If you have followed the *Odroid C1 tutorial* (originally pixhawk.org) to set up the WiFi connection, you might have created the file `/etc/network/intefaces.d/wlan0`. 请注释掉该文件中的所有行，以使这些配置不再有效。
 
 配置HostAPD：要创建受WPA保护的网络，请编辑文件 `/etc/hostapd/hostapd.conf`（如果它不存在则创建它）并添加以下行：
 

@@ -225,7 +225,47 @@ The following messages belong to this section:
 | INFO    | '6' | 信息       |
 | DEBUG   | '7' | 调试级别的消息  |
 
-- 'S'：报文同步，使读取器可以通过搜索下一个同步报文 (目前没有使用) 从损坏的报文中恢复。
+- 'C': Tagged Logged string message
+  
+      struct message_logging_tagged_s {
+        struct message_header_s header;
+        uint8_t log_level;
+        uint16_t tag;
+        uint64_t timestamp;
+        char message[header.msg_size-9]
+      };
+      
+  
+  `tag`: id representing source of logged message string. It could represent a process, thread or a class depending upon the system architecture. For example, a reference implementation for an onboard computer running multiple processes to control different payloads, external disks, serial devices etc can encode these process identifiers using a `uint16_t enum` into the tag attribute of `message_logging_tagged_s` struct as follows:
+  
+      enum class ulog_tag : uint16_t {
+        unassigned,
+        mavlink_handler,
+        ppk_handler,
+        camera_handler,
+        ptp_handler,
+        serial_handler,
+        watchdog,
+        io_service,
+        cbuf,
+        ulg
+      };
+      
+  
+  `timestamp`: in microseconds `log_level`: same as in the Linux kernel:
+
+| Name    | Level value | Meaning                          |
+| ------- | ----------- | -------------------------------- |
+| EMERG   | '0'         | System is unusable               |
+| ALERT   | '1'         | Action must be taken immediately |
+| CRIT    | '2'         | Critical conditions              |
+| ERR     | '3'         | Error conditions                 |
+| WARNING | '4'         | Warning conditions               |
+| NOTICE  | '5'         | Normal but significant condition |
+| INFO    | '6'         | Informational                    |
+| DEBUG   | '7'         | Debug-level messages             |
+
+- 'S': synchronization message so that a reader can recover from a corrupt message by searching for the next sync message.
   
       struct message_sync_s {
         struct message_header_s header;
@@ -233,9 +273,9 @@ The following messages belong to this section:
       };
       
   
-  `sync_magic`：未定义。
+  `sync_magic`: [0x2F, 0x73, 0x13, 0x20, 0x25, 0x0C, 0xBB, 0x12]
 
-- 'O'：在给定毫秒的时间内对丢包（日志报文丢失）的标记。 例如当设备不够快的情况下会出现丢包。
+- 'O': mark a dropout (lost logging messages) of a given duration in ms. Dropouts can occur e.g. if the device is not fast enough.
   
       struct message_dropout_s {
         struct message_header_s header;
@@ -243,38 +283,38 @@ The following messages belong to this section:
       };
       
 
-- 'I'：信息报文。 见上文。
+- 'I': information message. See above.
 
-- 'M'：多报文信息。 见上文。
+- 'M': information message multi. See above.
 
-- 'P'：报文参数。 见上文。
+- 'P': parameter message. See above.
 
 ## 解析器的要求
 
 A valid ULog parser must fulfill the following requirements:
 
-- 必须忽略未知消息 (但可以打印警告) 。
-- 解析未来/未知的文件格式版本 (但可以打印警告) 。
-- 必须拒绝解析包含未知不兼容位集 (`ulog_message_flag_bits_s` 报文中的 `incompat_flags`) 的日志，这意味着日志包含解析器无法处理的突发改变。
-- 解析器必须能够正确处理报文突然结束的日志。 未完成的报文应该丢弃。
-- 对于附加数据:解析器可以假设数据部分存在，即在定义部分之后的位置有一个偏移点。
+- Must ignore unknown messages (but it can print a warning).
+- Parse future/unknown file format versions as well (but it can print a warning).
+- Must refuse to parse a log which contains unknown incompatibility bits set (`incompat_flags` of `ulog_message_flag_bits_s` message), meaning the log contains breaking changes that the parser cannot handle.
+- A parser must be able to correctly handle logs that end abruptly, in the middle of a message. The unfinished message should just be discarded.
+- For appended data: a parser can assume the Data section exists, i.e. the offset points to a place after the Definitions section.
   
-  必须将附加数据视为常规数据部分的一部分。
+  Appended data must be treated as if it was part of the regular Data section.
 
 ## 已知的实现
 
 - PX4 Firmware: C++ 
-  - [日志模块](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
-  - [回放模块](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
-  - [hardfault_log module](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)：添加硬故障崩溃的数据
-- [pyulog](https://github.com/PX4/pyulog)：Python，使用 CLI 脚本的 Ulog 解析库。
-- [FlightPlot](https://github.com/PX4/FlightPlot): Java，日志绘图仪。
-- [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis)：Python，日志绘图仪和基于 pyulog 的三维可视化工具。
-- [MAVLink](https://github.com/mavlink/mavlink)：通过 MAVLink 进行 ULog 流的消息 (注意，不支持追加数据，至少不支持截断消息)。
-- [QGroundControl](https://github.com/mavlink/qgroundcontrol)：C++，通过 MAVLink 的 Ulog 流和最小的 GeoTagging。
-- [mavlink-router](https://github.com/01org/mavlink-router)：C++，通过 MAVLink 的 ULog 流。
-- [MAVGAnalysis](https://github.com/ecmnet/MAVGCL)：Java，通过 MAVLink 的数据流和日志的绘制、分析。
-- [PlotJuggler](https://github.com/facontidavide/PlotJuggler): 绘制日志和时间序列的 C++/Qt 应用。 自版本2.1.3支持 ULog。
+  - [logger module](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
+  - [replay module](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
+  - [hardfault_log module](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log): append hardfault crash data.
+- [pyulog](https://github.com/PX4/pyulog): python, ULog parser library with CLI scripts.
+- [FlightPlot](https://github.com/PX4/FlightPlot): Java, log plotter.
+- [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis): Python, log plotter and 3D visualization tool based on pyulog.
+- [MAVLink](https://github.com/mavlink/mavlink): Messages for ULog streaming via MAVLink (note that appending data is not supported, at least not for cut off messages).
+- [QGroundControl](https://github.com/mavlink/qgroundcontrol): C++, ULog streaming via MAVLink and minimal parsing for GeoTagging.
+- [mavlink-router](https://github.com/01org/mavlink-router): C++, ULog streaming via MAVLink.
+- [MAVGAnalysis](https://github.com/ecmnet/MAVGCL): Java, ULog streaming via MAVLink and parser for plotting and analysis.
+- [PlotJuggler](https://github.com/facontidavide/PlotJuggler): C++/Qt application to plot logs and time series. Supports ULog since version 2.1.3.
 
 ## 文件格式版本历史
 

@@ -26,7 +26,10 @@ In this this tutorial the WiFi module TP-LINK TL-WN722N is used. To enable WiFi 
 
 ## Configure as WiFi Access Point
 
-This sections shows how to set up the Odroid C1 such that it is an access point. The content is taken from this [tutorial](https://pixhawk.org/peripherals/onboard_computers/access_point) with some small adaptions. To enable to stream the video from the camera via the Odroid C1 to the QGroundControl that runs on a computer it is not required to follow this section. However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion. The TP-LINK TL-WN722N is used as a WiFi module. In the ensuing steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module. Change all occurrences of wlan0 to the appropriate interface if different (e.g. wlan1).
+This sections shows how to set up the Odroid C1 such that it is an access point. 
+The content is taken from the pixhawk.org "access point" tutorial (no longer available) with some small adaptions.
+To enable to stream the video from the camera via the Odroid C1 to the QGroundControl that runs on a computer it is not required to follow this section. However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion. The TP-LINK TL-WN722N is used as a WiFi module.
+In the ensuing steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module. Change all occurrences of wlan0 to the appropriate interface if different (e.g. wlan1).
 
 ### Onboard Computer as Access Point
 
@@ -92,7 +95,7 @@ to:
 #iface default inet dhcp
 ```
 
-If you have followed the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) to set up the WiFi connection, you might have created the file `/etc/network/intefaces.d/wlan0`. Please comment out all lines in that file such that those configurations have no effect anymore.
+If you have followed the *Odroid C1 tutorial* (originally pixhawk.org) to set up the WiFi connection, you might have created the file `/etc/network/intefaces.d/wlan0`. Please comment out all lines in that file such that those configurations have no effect anymore.
 
 Configure HostAPD: To create a WPA-secured network, edit the file `/etc/hostapd/hostapd.conf` (create it if it does not exist) and add the following lines: 
 
