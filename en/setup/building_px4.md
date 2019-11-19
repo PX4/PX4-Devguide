@@ -644,3 +644,12 @@ You can do this in the macOS *Terminal* for each session:
   ```sh
   ulimit -S -n 300
   ```
+
+### macOS Catalina: Problem running cmake.
+
+As of macOS Catalina 10.15.1 there may be an issue when trying to build the simulator with `cmake`. If you are having issues then run 
+```sh
+xcode-select --install
+sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /usr/local/include/
+``` 
+in your terminal and it should all work.
