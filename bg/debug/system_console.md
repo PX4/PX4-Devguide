@@ -1,6 +1,6 @@
 # PX4 System Console
 
-The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](https://shop.titaneliteinc.com/index.php?route=product/product&product_id=1294), but a plain FTDI cable can be used as well.
+The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation), but a plain FTDI cable can be used as well.
 
 ## System Console vs. Shells
 
@@ -40,9 +40,9 @@ The system console can be accessed through the Dronecode probe or an FTDI cable.
 
 ### Connecting via Dronecode Probe
 
-Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](http://nicadrone.com/index.php?id_product=61&controller=product) to the SERIAL4/5 port of Pixhawk.
+Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation) to the SERIAL4/5 port of Pixhawk.
 
-![](../../assets/console/dronecode_probe.jpg)
+![Dronecode probe](../../assets/console/dronecode_probe.jpg)
 
 ### Connecting via FTDI 3.3V Cable
 
