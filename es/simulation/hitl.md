@@ -8,14 +8,14 @@ PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and fixed wing (usi
 
 The current set of compatible airframes vs Simulators is:
 
-| Airframe                                                                                                | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim |
-| ------------------------------------------------------------------------------------------------------- | --------------- | ------- | ------ | ------- |
-| <a href="../airframes/airframe_reference.md#plane_simulation_(plane)_hilstar_(xplane)">HILStar (X-Plane)</a>                                                                               | 1000            | Y       |        |         |
-| <a href="../airframes/airframe_reference.md#copter_simulation_(copter)_hil_quadcopter_x">HIL Quadcopter X</a>                                                                               | 1001            |         | Y      | Y       |
-| <a href="../airframes/airframe_reference.md#vtol_standard_vtol_hil_standard_vtol_quadplane">HIL Standard VTOL QuadPlane</a>                                                                               | 1002            |         | Y      |         |
-| [Standard planes](../airframes/airframe_reference.md#plane_standard_plane_standard_plane)               | 2100            | Y       |        |         |
-| [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadrotor_x) copter | 4001            |         | Y      | Y       |
-| [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450)      | 4011            |         | Y      | Y       |
+| Airframe                                                                                               | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim |
+| ------------------------------------------------------------------------------------------------------ | --------------- | ------- | ------ | ------- |
+| <a href="../airframes/airframe_reference.md#plane_simulation_(plane)_hilstar_(xplane)">HILStar (X-Plane)</a>                                                                              | 1000            | Y       |        |         |
+| <a href="../airframes/airframe_reference.md#copter_simulation_(copter)_hil_quadcopter_x">HIL Quadcopter X</a>                                                                              | 1001            |         | Y      | Y       |
+| <a href="../airframes/airframe_reference.md#vtol_standard_vtol_hil_standard_vtol_quadplane">HIL Standard VTOL QuadPlane</a>                                                                              | 1002            |         | Y      |         |
+| [Standard planes](../airframes/airframe_reference.md#plane_standard_plane_standard_plane)              | 2100            | Y       |        |         |
+| [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadcopter) copter | 4001            |         | Y      | Y       |
+| [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450)     | 4011            |         | Y      | Y       |
 
 ## HITL Simulation Environment {#simulation_environment}
 
@@ -85,7 +85,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
         
         ![QGC Auto-connect settings for HITL](../../assets/gcs/qgc_hitl_autoconnect.png)
 
-6. (Optional) Configure Joystick and Failsafe. Set the following [parameters](https://docs.px4.io/en/advanced_config/parameters.html#finding-a-parameter) in order to use a joystick instead of an RC remote control transmitter:
+6. (Optional) Configure Joystick and Failsafe. Set the following [parameters](https://docs.px4.io/master/en/advanced_config/parameters.html) in order to use a joystick instead of an RC remote control transmitter:
     
     * [COM_RC_IN_MODE](../advanced/parameter_reference.md#COM_RC_IN_MODE) to "Joystick/No RC Checks". This allows joystick input and disables RC input checks.
     * [NAV_RCL_ACT](../advanced/parameter_reference.md#NAV_RCL_ACT) to "Disabled". This ensures that no RC failsafe actions interfere when not running HITL with a radio control.

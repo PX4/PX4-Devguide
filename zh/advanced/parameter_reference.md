@@ -1976,6 +1976,32 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="COM_ARM_AUTH_REQ">COM_ARM_AUTH_REQ</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Require arm authorization to arm
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> The default allows to arm the vehicle without a arm authorization.
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      Disabled (0)
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="COM_ARM_CHK_ESCS">COM_ARM_CHK_ESCS</strong> (INT32)
     </td>
     
@@ -33316,6 +33342,9 @@
         <li>
           <strong>0:</strong> Thermal control off
         </li>
+        <li>
+          <strong>1:</strong> Thermal control enabled
+        </li>
       </ul>
     </td>
     
@@ -35090,7 +35119,7 @@
     </td>
     
     <td style="vertical-align: top;">
-      1442826
+      0
     </td>
     
     <td style="vertical-align: top;">

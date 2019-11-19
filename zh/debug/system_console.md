@@ -1,6 +1,6 @@
 # PX4 系统控制台
 
-系统控制台允许对系统进行低级访问，调试输出和分析系统引导过程。 连接它最方便的方法是使用 [Dronecode probe](https://shop.titaneliteinc.com/index.php?route=product/product&product_id=1294)，也可以使用普通的 FTDI 电缆。
+系统控制台允许对系统进行低级访问，调试输出和分析系统引导过程。 The most convenient way to connect it is by using a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation), but a plain FTDI cable can be used as well.
 
 ## 系统控制台 vs. Shells
 
@@ -40,13 +40,13 @@ Shell 提供对系统的更高级别的访问：
 
 ### 使用 Dronecode 探头连接
 
-将 [Dronecode 探头](http://nicadrone.com/index.php?id_product=61&controller=product) 上的 6-pos df131 1:1 电缆连接到 pixhawk serial 4/5。
+Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation) to the SERIAL4/5 port of Pixhawk.
 
-![](../../assets/console/dronecode_probe.jpg)
+![Dronecode probe](../../assets/console/dronecode_probe.jpg)
 
 ### 通过 ftdi 3.3 v 电缆连接
 
-如果手边没有 dronecode 探头, ftdi 3.3 v (digi-key: [768-1015-ND](http://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) 也可以这样做。
+If no Dronecode probe is at hand an FTDI 3.3V (Digi-Key: [768-1015-ND](https://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) will do as well.
 
 | Pixhawk 1/2 |           | FTDI |               |
 | ----------- | --------- | ---- | ------------- |

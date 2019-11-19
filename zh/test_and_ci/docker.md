@@ -4,7 +4,7 @@ Docker 容器被提供用于完整的 [PX4 开发工具链](../setup/dev_env.md#
 
 本主题说明如何使用 [available docker containers](#px4_containers) 访问本地 Linux 计算机中的构建环境。
 
-> **Note** Dockerfiles 和 README 可以在 [Github here](https://github.com/PX4/containers/tree/master/docker/px4-dev)。 它们是在 [Docker Hub](https://hub.docker.com/u/px4io/) 上自动构建的。
+> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/tree/master/docker). 它们是在 [Docker Hub](https://hub.docker.com/u/px4io/) 上自动构建的。
 
 ## 系统必备组件
 
@@ -31,7 +31,7 @@ sudo usermod -aG docker $ USER
 
 ## 本地编辑层次结构 {#px4_containers}
 
-下面列出了可用的本地编辑（来自 [Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)）：
+The available containers are listed below (from [Github](https://github.com/PX4/containers/tree/master/docker#container-hierarchy)):
 
 | 容器                              | 描述                             |
 | ------------------------------- | ------------------------------ |
@@ -222,7 +222,3 @@ export DOCKER_HOST=tcp://&lt;ip of your VM&gt;:2375
 # run some docker command to see if it works, e.g. ps
 docker ps
 ```
-
-## 旧版
-
-ROS 多平台容器不再维护：https://github.com/PX4/containers/tree/master/docker/ros-indigo

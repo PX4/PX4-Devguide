@@ -14,7 +14,7 @@ PX4 项目包含一个用于 STM32 设备的标准 UAVCAN 引导程序。
 
 安装或更新 UAVCAN 引导加载程序需要：
 
-* SWD或 JTAG 接口 (视设备而定), 例如 [ BlackMagic Probe ](http://www.blacksphere.co.nz/main/blackmagic) 或 [ ST Link v2 ](http://www.st.com/internet/evalboard/product/251168.jsp);
+* An SWD or JTAG interface (depending on device), for example the [BlackMagic Probe](https://github.com/blacksphere/blackmagic/wiki) or the [ST-Link v2](http://www.st.com/internet/evalboard/product/251168.jsp);
 * 用于将您的SWD或 JTAG 接口连接到 UAVCAN 设备的调试端口的适配器电缆;
 * [ 支持的 ARM 工具链 ](../setup/dev_env.md)。
 
