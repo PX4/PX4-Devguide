@@ -8,7 +8,7 @@
 
 你需要具备如下组件：
 
-* [PX4 SITL 模拟器](../simulation/README.md) *或者* 一个 [兼容 PX4 的飞行控制器](https://docs.px4.io/en/flight_controller/#documented-boards) 。
+* [PX4 SITL Simulator](../simulation/README.md) *or* a [PX4-compatible flight controller](https://docs.px4.io/master/en/flight_controller/#documented-boards).
 * 适用于期望平台的 [PX4 开发工具链](../setup/dev_env.md) 。
 * 从 Github [下载 PX4 源代码](../setup/building_px4.md#get_px4_code) 。
 
