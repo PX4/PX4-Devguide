@@ -87,7 +87,7 @@ ESC calibration을 위한 툴
 Calibration 과정 (명령어를 실행하면 안내가 됩니다):
 
 - ESC의 프로브를 빼고 파워를 끄세요
-- 기체 컨트롤러를 중지하세요: mc_att_control stop, fw_att_control stop
+- Stop attitude and rate controllers: mc_rate_control stop, fw_att_control stop
 - safety가 off인지 확인하세요
 - 이 명령어를 실행하세요
 
@@ -249,7 +249,7 @@ Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/
 
 실행하기 전에 기체 컨트롤러가 멈춰져있는지 확인해주세요
 
-    mc_att_control stop
+    mc_rate_control stop
     fw_att_control stop
     
 
