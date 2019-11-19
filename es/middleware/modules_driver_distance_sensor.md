@@ -141,7 +141,7 @@ I2C bus driver for TeraRanger rangefinders.
 
 The sensor/driver must be enabled using the parameter SENS_EN_TRANGER.
 
-Setup/usage information: https://docs.px4.io/en/sensor/rangefinders.html#teraranger-rangefinders
+Setup/usage information: https://docs.px4.io/master/en/sensor/teraranger.html
 
 ### Examples
 
