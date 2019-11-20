@@ -87,11 +87,11 @@ xhost +
 # Run docker
 docker run -it --privileged \
     --env=LOCAL_USER_ID="$(id -u)" \
-    -v &lt;host_src&gt;:&lt;container_src&gt;:rw \
+    -v <host_src>:<container_src>:rw \
     -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
     -e DISPLAY=:0 \
-    -p 14556:14556/udp \
-    --name=&lt;local_container_name&gt; &lt;container&gt;:&lt;tag&gt; &lt;build_command&gt;
+    -p 14570:14570/udp \
+    --name=<local_container_name> <container>:<tag> <build_command>
 ```
 
 位置：
@@ -114,7 +114,7 @@ docker run -it --privileged \
 -v ~/src/Firmware:/src/firmware/:rw \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 -e DISPLAY=:0 \
--p 14556:14556/udp \
+-p 14570:14570/udp \
 --name=mycontainer px4io/px4-dev-ros:2017-10-23 bash
 ```
 
@@ -158,7 +158,11 @@ docker rm 45eeb98f1dd9
 
 运行模拟实例时，例如在 docker 容器内的 SITL 并通过 *QGroundControl* 从主机控制它，必须手动设置通信链接。 *QGroundControl* 的自动连接功能在此处不起作用。
 
-在 *QGroundControl* 中，导航至 [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) 并选择“通信链接”。 创建使用 UDP 协议的新链接。 端口取决于使用的 [configuration](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL)，例如 端口 14557 用于 SITL iris 配置。 IP 地址是您的 docker 容器之一，使用默认网络时通常为 172.17.0.1/16。
+在 *QGroundControl* 中，导航至 [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) 并选择“通信链接”。 创建使用 UDP 协议的新链接。 The port depends on the used [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. The IP address of the docker container can be found with the following command (assuming the container name is `mycontainer`):
+
+```sh
+$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mycontainer
+```
 
 ### 故障处理
 
@@ -218,7 +222,7 @@ DOCKER_OPTS="${DOCKER_OPTS} -H unix:///var/run/docker.sock -H 0.0.0.0:2375"
 然后，您可以从主机操作系统控制 docker：
 
 ```sh
-export DOCKER_HOST=tcp://&lt;ip of your VM&gt;:2375
+export DOCKER_HOST=tcp://<ip of your VM>:2375
 # run some docker command to see if it works, e.g. ps
 docker ps
 ```
