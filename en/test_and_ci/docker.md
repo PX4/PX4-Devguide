@@ -95,7 +95,7 @@ docker run -it --privileged \
     -v <host_src>:<container_src>:rw \
     -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
     -e DISPLAY=:0 \
-    -p 14556:14556/udp \
+    -p 14570:14570/udp \
     --name=<local_container_name> <container>:<tag> <build_command>
 ```
 Where,
@@ -116,7 +116,7 @@ docker run -it --privileged \
 -v ~/src/Firmware:/src/firmware/:rw \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 -e DISPLAY=:0 \
--p 14556:14556/udp \
+-p 14570:14570/udp \
 --name=mycontainer px4io/px4-dev-ros:2017-10-23 bash
 ```
 
@@ -158,7 +158,11 @@ docker rm 45eeb98f1dd9
 
 When running a simulation instance e.g. SITL inside the docker container and controlling it via *QGroundControl* from the host, the communication link has to be set up manually. The autoconnect feature of *QGroundControl* does not work here.
 
-In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL) e.g. port 14557 for the SITL iris config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network.
+In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. The IP address of the docker container can be found with the following command (assuming the container name is `mycontainer`):
+
+```sh
+$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mycontainer
+```
 
 ### Troubleshooting
 
