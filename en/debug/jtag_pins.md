@@ -1,29 +1,33 @@
 # Hardware Debug Interfaces (Debug Port)
 
 PX4 runs on hardware that typically provides at least two interfaces for on-target (hardware) debugging:
-- **ARM Serial Wire Debug (SWD) interface**: This is an ARM-processor alternative to the JTAG interface.
+- **ARM Serial Wire Debug (SWD):** This is an ARM-processor alternative to the JTAG debug port, with lower pin count.
   It is used for debugging firmware, and can also be used to add a new bootloader and/or firmware on a completely empty board (that does not have the USB bootloader installed).
 - **[System Console](../debug/system_console.md) (UART)**: The system console provides low-level access to the system, debug output and analysis of the system boot process (other consoles are available from telemetry/USB etc, but these do not provide such early access to boot sequence information).
 
-On Pixhawk-series boards these interfaces are usually exposed through a single port (though older boards may separate them).
-On other boards, these may be separate.
+On Pixhawk-series boards these interfaces are usually exposed through a single port. (though older boards may separate them).
+On older Pixhawk boards, and on other boards, these may be separate.
 
 > **Tip** Some boards may include additional interfaces.
   For example, Pixhawk FMUv5 will support Google ARM ETM Trace through a separate interface.
   
 This topic explains how to connect the system console, SWD interface, and other interfaces on different boards (actually performing the debugging is then covered in the associated [debugging topics](#debugging_topics)).
 
-## Interface Overview
+## Debug Interface Overview
 
 ### System Console
 
 The PX4 *System Console* is simply a UART that has specifically been configured for this purpose (in NuttX) on a particular board.
 You will need to connect the TX, RX and GND to your computer, either via an FTDI cable (converts UART TX/RX to USB serial), [Dronecode Probe](#dronecode_probe), or similar adapter.
 
-### Serial Wire Debug (SWD) Interface
+### ARM Serial Wire Debug (SWD)
 
-PX4 requires the following pins for SWD.
-The pins should be connected on the corresponding pins of the flight controller board and SWD/JTAG device.
+SWD is a physical interface for JTAG debugging that has low-pin count, and which has been designed for ARM-processors.
+
+SWD is a low pin-count physical interface for JTAG debugging on ARM-processors.
+Not all pins are required, and not all of them are available on all PX4 boards.
+
+SWD/PX4 requires the following pins (these should be connected on the corresponding pins of the flight controller board and SWD/JTAG device).
 
 Pin | Signal Type | Description
 --- | --- | ---
@@ -32,7 +36,7 @@ SWDIO | I/O | Single bi-directional data pin. A pull-up resistor is required. AR
 SWCLK | Output | Clock signal to target CPU. It is recommended that this pin is pulled to a defined state on the target board. Typically connected to TCK of the target CPU.
 GND | - | Ground pin. Should be connected to GND in the target system.
 
-PX4 also supports these pins, if available (e.g. on FMUv5x).
+These pins are also supported on boards where they are present (e.g. on FMUv5x).
 
 Pin | Signal Type | Description
 --- | --- | ---
@@ -42,6 +46,7 @@ TRACECLK | Input | Input trace clock. Trace clock = 1/2 CPU clock.
 TRACEDATA[0] | Input | Input Trace data pin 0 (called TRACED0 in Pixhawk FMUv5x)
 
 >  **Note** The information above is reproduced from [J-Link / J-Trace User Guide: UM08001 > 18.1.2 Pinout for SW Mode](https://www.segger.com/downloads/jlink/UM08001) (Software Version: 6.54).
+  There is additional information about SWD in: [ARM® Debug Interface Architecture Specification: ADIv5.0 to ADIv5.2](https://static.docs.arm.com/ihi0031/d/debug_interface_v5_2_architecture_specification_IHI0031D.pdf)
 
 
 ## Adapters and Wiring {#adapters_and_wiring}
@@ -56,30 +61,29 @@ The following section outlines some of the available adaptors, and the boards yo
 [Dronecode Probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation) is a generic JTAG/SWD + UART console adapter compatible with most ARM Cortex based designs and in particular with the hardware maintained by the Dronecode project.
 
 The probe's USB interface exposes two separate virtual serial port interfaces: one for connecting to the System Console (UART) and the other for an embedded GDB server (SWD interface).
-The probe is compliant with the [Pixhawk Connector Standard](https://pixhawk.org/pixhawk-connector-standard/) and provides cabling to connect to the [Pixhawk Debug port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug), which is used on many Pixhawk flight controllers.
+The probe provides a DCD-M connector cable for attaching to the [Pixhawk Debug port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug) (a 6-pos *JST SM06B*), which is used on many Pixhawk flight controllers.
 
-This can directly be used with:
-- Dronecode connector (6-pos JST SM06B connector to DEBUG port).
+The DCD-M connector can be attached to `DEBUG` port(s) on the following boards:
   - [mRo Pixracer](https://docs.px4.io/master/en/flight_controller/pixracer.html#debug-port-jst-sm06b-connector) (FMUv4)
   - [Drotek Pixhawk v3](https://drotek.gitbook.io/pixhawk-3-pro/hardware/inputs-outputs) (FMUv4pro)
   - [Holybro Pixhawk 4](https://docs.px4.io/master/en/flight_controller/pixhawk4.html#debug-port) (FMUv5)
   - [Holybro Pixhawk 4 mini](https://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html#debug-port) (FMUv5)
-  - [CUAV V5](https://docs.px4.io/master/en/flight_controller/cuav_v5.html#debug-port)
-  
-  
-  - [CUAV V5+](https://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port)  [Using JTAG for Hardware debugging](
-  
-  - [CUAV V5 nano]()
+  - [CUAV V5](https://docs.px4.io/master/en/flight_controller/cuav_v5.html#debug-port) (FMUv5)
+  - [CUAV V5+](https://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port) (FMUv5)
+  - [CUAV V5 nano](https://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port) (FMUv5)
 
-- 6-pos DF13 1:1 cable on the Dronecode probe to the Pixhawk SERIAL4/5 port.
-  **Note** This allows you to debug the System Console only.
+The probe also provides a *6-pos DF13*m which can be attached to the Pixhawk 1 SERIAL4/5 port to debug the System Console (Not SWD).
 
 > **Note** The *Dronecode Probe* is based on the [Black Magic Probe](#black_magic_probe).
   
 ### Black Magic Probe {#black_magic_probe}
 
 The [Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki) offers similar SWD debug-functionality to the [Dronecode probe](#dronecode_probe).
-However this is not designed with Pixhawk standards in mind, so specific custom cabling will be required to interface with the SWD port (and to separately expose the *System Console*).
+However this is not designed with Pixhawk standards in mind, so additional adapters or cabling will be required to interface with the SWD port (and to separately expose the *System Console*).
+
+Black Magic Probe adapters:
+- [Drone Code Debug Adapter](https://1bitsquared.com/products/drone-code-debug-adapter) (1 BIT SQUARED).
+
 
 ### NXP Debug Adapter {#nxp_dapter}
 
@@ -94,7 +98,7 @@ This can directly be used with:
 
 ### Custom Cables
 
-You can also create or build your own cables for the board you want to use (some might have a "Pixkawk debug connector" while others might have special connectors, or just pads.
+You can also create or build your own cables for the board you want to use.
 
 ![Cables](../../assets/debug/just_cables.jpg)
 
@@ -107,7 +111,7 @@ You can also create or build your own cables for the board you want to use (some
 This can be used to load new bootloader/FMU Firmware and perform on-hardware SWD debugging on the FMU, or to access the System Console.
 
 The **DEBUG** has changed and standardised across versions (so no single connector works on all boards)
-- P  [Pixhawk debug port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug) (JST SM06B connector).
+- [Pixhawk debug port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug) (JST SM06B connector).
 
 > **Note** Many boards may also expose a separate DEBUG port for the IO board.
   This may be used to load a new bootloader or IO firmware.
@@ -183,22 +187,23 @@ If pulled apart the Cube has a 6 pin JST SUR connector (marked as J10) for both 
 
 ## FMUv2
 
-FMUv2-based boards did not have a standardised debug connector.
-Therefore access to the System Console and SWD interface is provided in different ways on different flight controller boards.
+FMUv2-based boards provide separate ports for accessing System Console and SWD interface.
+- The System Console is accessed through the `SERIAL5 pins` (on the `SERIAL4/5` port).
+  You can either use the Dronecode probe or an FTDI cable.
+- The FMU and IO SWD ports (for JTAG debugging) are usually hidden inside the case.
+  - The ports are *ARM 10-Pin JTAG connectors, which have the following pinout (pin 1 is usually indicated by a marker)
+   ![ARM 10-Pin JTAG connector pinout](../../assets/debug/arm_10pin_jtag_connector_pinout.jpg)
+  - The position of the FMU and IO ports depends on the board.
 
 
-### 3DR Pixhawk (1) {#pixhawk1}
+### 3DR Pixhawk 1 {#pixhawk1}
 
-The [3DR Pixhawk 1] exposes the System Console and SWD interface though different ports.
-- The System Console is accessed through the SERIAL5 pins (on port labeled SERIAL4/5).
-  YOu can either use the Dronecode probe or an FTDI cable.
-- The SWD interface is hidden under the cover in the port between TELEM1 and GPS.
-  This can be connected using an ARM 10-pin JTAG connector.
+The [3DR Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html) is accessed as below.
 
 
 #### System Console via Dronecode Probe
 
-Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation) to the SERIAL4/5 port of Pixhawk.
+Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](#dronecode_probe) to the SERIAL4/5 port of Pixhawk.
 
 ![Dronecode probe](../../assets/console/dronecode_probe.jpg)
 
@@ -223,7 +228,18 @@ The complete wiring is shown below.
 
 ![Console Debug](../../assets/console/console_debug.jpg)
 
+#### SWD via ARM 10-pin JTAG Connector
 
+The FMU and IO SWD (JTAG) ports are hidden under the cover (which must be removed for hardware debugging).
+
+![Pixhawk SWD](../../assets/debug/pixhawk_swd.jpg)
+
+The ports are ARM 10-pin JTAG connectors, which you will probably have to solder.
+The pinout for the ports is shown below (the square marker in the corner above indicates pin 1).
+
+![ARM 10-Pin connector pinout](../../assets/debug/arm_10pin_jtag_connector_pinout.jpg)
+
+ 
 
 ## Other Boards
 
