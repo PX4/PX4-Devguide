@@ -1,10 +1,10 @@
-# Simulation-In-Hardware (SIH)
+# 硬件仿真
 
-Simulation-In-Hardware (SIH) is an alternative to [Hardware In The Loop simulation (HITL)](../simulation/hitl.md) for a quadrotor. In this setup, everything is running on embedded hardware - the controller, the state estimator, and the simulator. The Desktop computer is only used to display the virtual vehicle.
+对于四旋翼，硬件仿真是硬件在环仿真的替代品。 在这个设置中，所有的数据处理工作都在嵌入式硬件（PIXHAWK）中完成，包括控制器、状态估计器和仿真器。 与PIXHAWK连接的电脑只用来显示虚拟的载具。
 
 ![Simulator MAVLink API](../../assets/diagrams/SIH_diagram.png)
 
-The SIH provides two benefits over the HITL:
+与硬件在环仿真相比，硬件仿真有以下两点好处：
 
 - It ensures synchronous timing by avoiding the bidirectional connection to the computer. As a result the user does not need such a powerful desktop computer.
 
