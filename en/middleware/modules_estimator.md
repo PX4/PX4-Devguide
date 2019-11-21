@@ -6,7 +6,7 @@ Source: [modules/airspeed_selector](https://github.com/PX4/Firmware/tree/master/
 
 ### Description
 This module provides a single airspeed_validated topic, containing an indicated (IAS),
-equivalend (EAS), true airspeed (TAS) and the information if the estimation currently
+equivalent (EAS), true airspeed (TAS) and the information if the estimation currently
 is invalid and if based sensor readings or on groundspeed minus windspeed.
 Supporting the input of multiple "raw" airspeed inputs, this module automatically switches
 to a valid sensor in case of failure detection. For failure detection as well as for
