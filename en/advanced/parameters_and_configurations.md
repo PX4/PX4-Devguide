@@ -274,3 +274,21 @@ The purpose of each line is given below (for more detail see [module_schema.yaml
  * @group <a title for parameters that form a group>
  */
 ```
+
+### Multi-Instance (Templated) Meta Data {#multi_instance_metadata}
+
+Templated parameter definitions are supported in [YAML parameter definitions](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml) (templated parameter code is not supported).
+
+The YAML allows you to define instance numbers in parameter names, descriptions, etc. using `${i}`.
+For example, below will generate MY_PARAM_1_RATE, MY_PARAM_2_RATE etc.
+```
+MY_PARAM_${i}_RATE:
+            description:
+                short: Maximum rate for instance ${i}
+```
+
+The following YAML definitions provide the start and end indexes. 
+- `num_instances` (default 1): Number of instances to generate (>=1)
+- `instance_start` (default 0): First instance number. If 0, `${i}` expands to [0, N-1]`.
+
+For a full example see the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml)
