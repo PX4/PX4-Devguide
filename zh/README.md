@@ -17,7 +17,7 @@
 * 对 PX4 进行 [仿真](simulation/README.md)、[测试](test_and_ci/README.md) 和 [调试/查看日志](debug/README.md)。
 * 与外部机器人的 API 进行联调通信/集成。
 
-## Support {#support}
+## 支持 {#support}
 
 [Support](contribute/support.md) provide links to the [discussion boards](http://discuss.px4.io/) and other support channels.
 
