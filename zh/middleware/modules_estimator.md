@@ -1,5 +1,24 @@
 # 模块参考：估计器
 
+## AttitudeEstimatorQ
+
+Source: [modules/attitude_estimator_q](https://github.com/PX4/Firmware/tree/master/src/modules/attitude_estimator_q)
+
+### 描述
+
+Attitude estimator q.
+
+### Usage {#AttitudeEstimatorQ_usage}
+
+    AttitudeEstimatorQ <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## airspeed_estimator
 
 Source: [modules/airspeed_selector](https://github.com/PX4/Firmware/tree/master/src/modules/airspeed_selector)
@@ -47,7 +66,7 @@ ekf2 can be started in replay mode (`-r`): in this mode it does not access the s
 
 Source: [modules/local_position_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/local_position_estimator)
 
-### 描述
+### Description
 
 Attitude and position estimator using an Extended Kalman Filter.
 
