@@ -1,5 +1,23 @@
 # Modules Reference: Estimator
 
+## AttitudeEstimatorQ
+Source: [modules/attitude_estimator_q](https://github.com/PX4/Firmware/tree/master/src/modules/attitude_estimator_q)
+
+
+### Description
+Attitude estimator q.
+
+
+### Usage {#AttitudeEstimatorQ_usage}
+```
+AttitudeEstimatorQ <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## airspeed_estimator
 Source: [modules/airspeed_selector](https://github.com/PX4/Firmware/tree/master/src/modules/airspeed_selector)
 
