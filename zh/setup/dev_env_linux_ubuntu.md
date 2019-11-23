@@ -44,7 +44,7 @@
     
     arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM/embedded-7-branch revision 255204]
     Copyright (C) 2017 Free Software Foundation, Inc.
-    This is free software; see the source for copying conditions.  There is NO
+    这是免费的软件，请参阅复制条件的源。  There is NO
     warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
     ```
 
@@ -91,9 +91,9 @@ export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-ras
 
 为了使用Clang，你同时还需要GCC。
 
-从[LLVM Download page](http://releases.llvm.org/download.html)下载你指定的发行版的Clang并解压它。 Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
+从[LLVM Download page](http://releases.llvm.org/download.html)下载你指定的发行版的Clang并解压它。 假使你已经把`Clang`解压到`CLANG_DIR`这个目录下，那么 `Clang`的二进制可执行文件在`CLANG_DIR/bin`中，同时你的`GCC`交叉编译器路径是`GCC_DIR`，你需要在`GCC_DIR`的bin目录下建立链接到Clang的符号链接，然后把GCC_DIR/bin添加到PATH中。
 
-Example below for building PX4 firmware out of tree, using CMake.
+下面的示例，用于使用 CMake 编译 PX4 固件。
 
 ```sh
 ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
@@ -111,15 +111,15 @@ cmake \
 ..
 ```
 
-### Native Builds
+### 本地编译
 
-Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+有关在树莓派上使用 PX4（包括本地构建 PX4）的其他开发人员信息，请参见此处：[Raspberry pi 2/navio2 autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html)。
 
 ## Parrot Bebop
 
-Developers working with the Parrot Bebop should first install the [Raspberry Pi Linux Toolchain](#raspberry-pi-hardware) as described above.
+开发者使用Parrot Bebop开发之前需要事先按照上面的说明安装[Raspberry Pi Linux Toolchain](#raspberry-pi-hardware)。
 
-Then install ADB:
+然后安装 ADB：
 
 ```sh
 sudo apt-get install android-tools-adb -y
