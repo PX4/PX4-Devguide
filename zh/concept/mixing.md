@@ -159,7 +159,7 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 如果 `<control count>` 为零，那么计算的结果也为零，混控器将输出 `<offset>` 这一固定值，该值的取值范围受 `<lower limit>` 和 `<upper limit>` 的限制。
 
-第二行用上文讨论的缩放参数定义了输出缩放器。 Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+第二行用上文讨论的缩放参数定义了输出缩放器。 同时，结果的计算是以浮点计算的形式进行的，在混控器定义文件中的值都将扩大 10000 倍，比如：实际中 -0.5 的偏移量（offset）在定义文件中保存为 -5000 。
 
 The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
 
