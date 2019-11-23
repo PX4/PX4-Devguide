@@ -26,20 +26,20 @@ PX4 系统的启动由 shell 脚本文件控制。 在 NuttX 平台上这些脚�
     ./px4-listener sensor_accel
     
 
-### Dynamic modules
+### 动态模块
 
-Normally, all modules are compiled into a single PX4 executable. However, on Posix, there's the option of compiling a module into a separate file, which can be loaded into PX4 using the `dyn` command.
+通常，所有模块都被编入一个 PX4 可执行程序。 然而，在Posix上，可以将模块编译成单独的文件，可以使用 `dyn` 命令加载到 PX4。
 
     dyn ./test.px4mod
     
 
 ## NuttX
 
-NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
+NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/NuttShell.html))，因此可以直接执行启动脚本。
 
-### Debugging the System Boot
+### 调试系统启动
 
-A failure of a driver of software component will not lead to an aborted boot. This is controlled via `set +e` in the startup script.
+软件组件的失效不会中止 PX4 系统的启动， 可以在启动脚本中使用 `set +e` 来控制。
 
 The boot sequence can be debugged by connecting the [system console](../debug/system_console.md) and power-cycling the board. The resulting boot log has detailed information about the boot sequence and should contain hints why the boot aborted.
 
