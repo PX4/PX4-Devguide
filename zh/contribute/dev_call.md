@@ -1,12 +1,12 @@
 # 周期性的开发调用 {#dev_call}
 
-The PX4 dev team syncs up on platform technical details and in-depth analysis. There is also space in the agenda to discuss pull requests, major impacting issues and Q&A.
+PX4开发团队会深入分析技术细节并同步到平台上。 在议程中，为重大影响的回拉请求，给与回答。
 
 {% if book.px4_version != 'master' %}
 
 > **Tip** Dev Call schedule, agenda, and call in details, [can be found here](https://dev.px4.io/master/en/contribute/dev_call.html)! {% else %} <!-- START: dev call details: displayed only in master -->
 
-## Who should attend:
+## 谁应该注意以下几点：
 
 * Core project maintainers
 * Component maintainers
