@@ -18,9 +18,9 @@
 
 3. 页面底部会提示投稿者创建一个单独的分支，然后 引导其提交一个*拉取请求*。
 
-The documentation team reviews submitted pull requests and will either merge it or work with you to update it.
+文档团队通过审核已提交的合并请求，决定直接合并文档进行更新，或是与投稿者再次沟通进行更新。
 
-## Adding New Content - Big Changes
+## 添加新内容 - 大更改
 
 ### What Goes Where?
 
