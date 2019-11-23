@@ -62,7 +62,7 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 * 6: RC aux2
 * 7: RC aux3
 
-> **Note** This group is only used to define mapping of RC inputs to specific outputs during *normal operation* (see [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7) for an example of AUX2 being scaled in a mixer). In the event of manual IO failsafe override (if the PX4FMU stops communicating with the PX4IO board) only the mapping/mixing defined by control group 0 inputs for roll, pitch, yaw and throttle are used (other mappings are ignored).
+> **备注** 此组仅用于定义在 *普通操作* 期间的 RC输入的映射到具体输出(见 [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7) 关于AUX2在混合器中缩放的示例) In the event of manual IO failsafe override (if the PX4FMU stops communicating with the PX4IO board) only the mapping/mixing defined by control group 0 inputs for roll, pitch, yaw and throttle are used (other mappings are ignored).
 
 ### 控制组 #6 (First Payload)
 
