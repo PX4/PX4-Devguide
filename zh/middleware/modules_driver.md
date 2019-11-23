@@ -98,16 +98,13 @@
 
 ### 用法 {#dshot_usage}
 
-    dshot <command> [arguments...]
-     Commands:
-       start         Start the task (without any mode set, use any of the mode_*
-                     cmds)
-    
-     All of the mode_* commands will start the module if not running already
+    dshot <命令> [参数...]
+     命令列表:
+       start         启动任务 (不带任何模式集, 使用mode_*类的命令)，所有的 mode_*类的命令都会启动这个模块，如果这个模块还没有启动的话
     
        mode_gpio
     
-       mode_pwm      Select all available pins as PWM
+       mode_pwm      选择所有可能的PWM引脚
     
        mode_pwm8
     
@@ -133,54 +130,54 @@
     
        mode_pwm1
     
-       telemetry     Enable Telemetry on a UART
-         <device>    UART device
+       telemetry     在某个串口上使能遥控功能
+         <device>    UART 设备节点
     
-       reverse       Reverse motor direction
-         [-m <val>]  Motor index (1-based, default=all)
+       reverse       反转马达方向
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       normal        Normal motor direction
-         [-m <val>]  Motor index (1-based, default=all)
+       normal        转到默认的方向
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       save          Save current settings
-         [-m <val>]  Motor index (1-based, default=all)
+       save          保存当前的设置
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       3d_on         Enable 3D mode
-         [-m <val>]  Motor index (1-based, default=all)
+       3d_on         使能3D模式
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       3d_off        Disable 3D mode
-         [-m <val>]  Motor index (1-based, default=all)
+       3d_off        关闭3D模式
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep1         Send Beep pattern 1
-         [-m <val>]  Motor index (1-based, default=all)
+       beep1         发送蜂鸣模式 1
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep2         Send Beep pattern 2
-         [-m <val>]  Motor index (1-based, default=all)
+       beep2         发送蜂鸣模式 2
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep3         Send Beep pattern 3
-         [-m <val>]  Motor index (1-based, default=all)
+       beep3         发送蜂鸣模式 3
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep4         Send Beep pattern 4
-         [-m <val>]  Motor index (1-based, default=all)
+       beep4         发送蜂鸣模式 4
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep5         Send Beep pattern 5
-         [-m <val>]  Motor index (1-based, default=all)
+       beep5         发送蜂鸣模式 5
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       esc_info      Request ESC information
-         -m <val>    Motor index (1-based)
+       esc_info      请求马达的信息
+         -m <val>    马达的编号 (从1开始)
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## fmu
 
-Source: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
+源码位置: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
 
-### Description
+### 描述
 
-This module is responsible for driving the output and reading the input pins. For boards without a separate IO chip (eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
+该模块负责驱动输出引脚或者读取输入引脚。 For boards without a separate IO chip (eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
 
 It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
 
