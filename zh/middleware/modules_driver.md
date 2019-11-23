@@ -83,20 +83,20 @@
 它支持：
 
 - DShot150, DShot300, DShot600, DShot1200
-- telemetry via separate UART and publishing as esc_status message
-- sending DShot commands via CLI
+- 通过独立的串口遥控，并且发布esc_status消息
+- 通过命令行接口发送 DShot 命令
 
-### Examples
+### 示例
 
-Permanently reverse motor 1:
+设置电机1永久反向：
 
     dshot reverse -m 1
     dshot save -m 1
     
 
-After saving, the reversed direction will be regarded as the normal one. So to reverse again repeat the same commands.
+保存之后，设置的反向之后的转向将被认为是正常时候的转向， 所以如果需要再次反转方向只需要再次重复相同的命令。
 
-### Usage {#dshot_usage}
+### 用法 {#dshot_usage}
 
     dshot <command> [arguments...]
      Commands:
