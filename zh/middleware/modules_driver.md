@@ -177,17 +177,17 @@
 
 ### 描述
 
-该模块负责驱动输出引脚或者读取输入引脚。 For boards without a separate IO chip (eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
+该模块负责驱动输出引脚或者读取输入引脚。 对于没有独立 IO 芯片的飞控板（例如 Pixracer), 它使用主通道。 On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
 
 It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
 
 The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy. By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder driver. Alternatively, the fmu can be started in one of the capture modes, and then drivers can register a capture callback with ioctl calls.
 
-### Implementation
+### 实现
 
 By default the module runs on a work queue with a callback on the uORB actuator_controls topic.
 
-### Examples
+### 示例
 
 It is typically started with:
 
@@ -463,55 +463,55 @@ Source: [drivers/safety_button](https://github.com/PX4/Firmware/tree/master/src/
 
 This module is responsible for the safety button.
 
-### Usage {#safety_button_usage}
+### 用法 {#safety_button_usage}
 
     safety_button <command> [arguments...]
-     Commands:
-       start         Start the safety button driver
+     命令列表:
+       start         启动该驱动模块
     
 
 ## tap_esc
 
-Source: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
+源码位置: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
 
-### Description
+### 描述
 
-This module controls the TAP_ESC hardware via UART. It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
+该模块通过串口来控制TAP_ESC模块。 它负责监听话题actuator_controls，执行混控并输出给调速器设备。
 
-### Implementation
+### 实现
 
-Currently the module is implementd as a threaded version only, meaning that it runs in its own thread instead of on the work queue.
+目前该模块运行在一个独立的线程中，意思就是它不是在一个工作队列中的模块。
 
-### Example
+### 示例
 
-The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
+这个模块一般使用这个命令来启动: tap_esc start -d /dev/ttyS2 -n <1-8>
 
-### Usage {#tap_esc_usage}
+### 用法 {#tap_esc_usage}
 
-    tap_esc <command> [arguments...]
-     Commands:
-       start         Start the task
-         [-d <val>]  Device used to talk to ESCs
-                     values: <device>
-         [-n <val>]  Number of ESCs
-                     default: 4
+    tap_esc <命令> [参数...]
+     命令列表:
+       start         启动该任务
+         [-d <val>]  与调速器通讯的串口设备节点
+                     值: <设备地址>
+         [-n <val>]  调速器数量
+                     默认: 4
     
 
 ## vmount
 
-Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
+源码位置: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
-### Description
+### 描述
 
 Mount (Gimbal) control driver. It maps several different input methods (eg. RC or MAVLink) to a configured output (eg. AUX channels or MAVLink).
 
 Documentation how to use it is on the [gimbal_control](https://dev.px4.io/en/advanced/gimbal_control.html) page.
 
-### Implementation
+### 实现
 
 Each method is implemented in its own class, and there is a common base class for inputs and outputs. They are connected via an API, defined by the `ControlData` data structure. This makes sure that each input method can be used with each output method and new inputs/outputs can be added with minimal effort.
 
-### Examples
+### 示例
 
 Test the output by setting a fixed yaw angle (and the other axes to 0):
 
@@ -519,7 +519,7 @@ Test the output by setting a fixed yaw angle (and the other axes to 0):
     vmount test yaw 30
     
 
-### Usage {#vmount_usage}
+### 用法 {#vmount_usage}
 
     vmount <command> [arguments...]
      Commands:
