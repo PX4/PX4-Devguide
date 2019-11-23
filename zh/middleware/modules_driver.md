@@ -62,26 +62,25 @@
     
        resume        将该设备从挂起状态恢复
     
-       write_flash   Writes to flash. The device must first be unsealed with the
-                     unseal command.
-         [address]   The address to start writing.
-         [number of bytes] Number of bytes to send.
-         [data[0]...data[n]] One byte of data at a time separated by spaces.
+       write_flash   写入flash。 必须先通过unseal 命令来解锁flash。
+         [address]   写入的起始地址
+         [number of bytes] 需要写入的字节数
+         [data[0]...data[n]] 具体的字节数据，使用空格隔开
     
-       stop
+       stop          停止设备
     
-       status        print status info
+       status        打印状态信息
     
 
 ## dshot
 
-Source: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
+源码位置: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
 
-### Description
+### 描述
 
-This is the DShot output driver. It is similar to the fmu driver, and can be used as drop-in replacement to use DShot as ESC communication protocol instead of PWM.
+这是DShot输出的驱动。 它跟fmu的驱动很相似，可以简单地替换掉，来实现使用DShot与调速器通讯而不是PWM。
 
-It supports:
+它支持：
 
 - DShot150, DShot300, DShot600, DShot1200
 - telemetry via separate UART and publishing as esc_status message
