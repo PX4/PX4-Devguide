@@ -34,15 +34,15 @@
 *用户指南*的使用者，需求为：
 
 * 使用 PX4 控制飞行器
-* Build, modify, or configure a vehicle using PX4 on a supported/existing airframe.
+* 使用 PX4，基于已支持/现存的机型，构建、修改或配置类似载具。
 
-> **Tip** For example, detailed information about how to build/configure an existing airframe are in the User Guide, while instructions for defining a *new* airframe are in the Developer Guide.
+> **T提示** 例如，关于如何构建/配置现有机架的详细信息在用户指南中，而 定义*新*机架类型的说明在开发者指南中。
 
-### Gitbook Documentation Toolchain
+### Gitbook 文档工具
 
-The guide uses the [Legacy Gitbook Toolchain](https://legacy.gitbook.com/) toolchain.
+指南使用 [旧版Gitbook 工具链](https://legacy.gitbook.com/)
 
-Change requests can be either done on the Gitbook website using the [Gitbook editor](https://gitbookio.gitbooks.io/documentation/content/editor/index.html) or locally (more flexible, but less user-friendly).
+更改请求可以使用 [Gitbook 编辑器](https://gitbookio.gitbooks.io/documentation/content/editor/index.html) 在 Gitbook 网站上完成，也可以在本地完成(更灵活，但用户友好度欠佳)。
 
 In order to contribute many changes to the documentation, it is recommended that you follow these steps to add the changes locally and then create a pull request:
 
