@@ -46,13 +46,13 @@ QGroundControl配置RTK基站输出依据RTCM3.2框架，每帧为1 Hz：
 
 1005信息长度固定为22字节，而其他两个信息依赖于可用卫星的个数和每颗卫星的信号通道数（频点数），针对M8P只有L1即一个频点。 在真实环境中，对于任一时刻，任何一个导航系统的可用卫星个数不超过12个，因此300B/s的上行速率就足够了。
 
-If *MAVLink 1* is used, a 182-byte `GPS_RTCM_DATA` message is sent for every RTCM message, irrespective of its length. As a result the approximate uplink requirement is around 700+ bytes per second. This can lead to link saturation on low-bandwidth half-duplex telemetry modules (e.g. 3DR Telemetry Radios).
+如果使用 *MAVLink 1* ，则不论其长度，每条 RTCM 消息都会发送182字节 `GPS_RTCM_DATA` 消息。 因此，大约每秒上行需求是700多个字节。 这可能导致低带宽半双轨遥测模块 (如3DR Telemetry Radios) 连接的饱和。
 
-If *MAVLink 2* is used then any empty space in the `GPS_RTCM_DATA message` is removed. The resulting uplink requirement is about the same as the theoretical value (~300 bytes per second).
+如果 *MAVLink 2* 被使用，则 `GPS_RTCM_DATA消息` 中的所有空格将被删除。 由此产生的上行链路需求与理论值 (~300 字节/秒) 大致相同。
 
-> **Tip** PX4 automatically switches to MAVLink 2 if the GCS and telemetry modules support it.
+> **Tip** 如果 GCS 和数传模块支持，PX4 会自动切换到 MAVLink 2。
 
-MAVLink 2 must be used on low-bandwidth links for good RTK performance. Care must be taken to make sure that the telemetry chain uses MAVLink 2 throughout. You can verify the protocol version by using the `mavlink status` command on the system console:
+MAVLink 2 必须用于低带宽链接以保证 RTK 性能。 必须注意确保数传链在整个过程中使用 MAVLink 2。 您可以使用系统控制台上的 `mavlink status` 命令验证协议版本：
 
     nsh> mavlink status
     instance #0:
