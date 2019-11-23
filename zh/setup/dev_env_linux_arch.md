@@ -4,7 +4,7 @@
 
 该脚本默认安装所有必需的工具，用于编译基于NuttX的PX4源码(不带RTPS)，以及运行基于*jMAVsim*的仿真器。 你也可以安装额外的*Gazebo*仿真器通过在命令行中指定一个参数： `--gazebo`。
 
-![Gazebo on Arch](../../assets/gazebo/arch-gazebo.png)
+![Arch上使用Gazebo](../../assets/gazebo/arch-gazebo.png)
 
 > **注意**所有的指令已经在[Manjaro](https://manjaro.org/)(Arch的衍生) 上做过测试，因为他比在Arch Linux上更容易搭建。
 
@@ -22,6 +22,6 @@
 
 该脚本可以加入这些可选的参数：
 
-- `--gazebo`：添加此参数从[AUR](https://aur.archlinux.org/packages/gazebo/)安装Gazebo仿真器。 **注意** Gazebo 是通过获取源码后编译得到的， It takes some time to install and requires entering the `sudo` password multiple times (for dependencies).
-- `--no-nuttx`: Do not install the NuttX/Pixhawk toolchain (i.e. if only using simulation).
-- `--no-sim-tools`: Do not install jMAVSim/Gazebo (i.e. if only targeting Pixhawk/NuttX targets)
+- `--gazebo`：添加此参数从[AUR](https://aur.archlinux.org/packages/gazebo/)安装Gazebo仿真器。 **注意** Gazebo 是通过获取源码后编译得到的， 这个过程需要花费一些时间并且需要添加`sudo`并多次输入密码（对于依赖项）。
+- `--no-nuttx`: 不要安装 NuttX/Pixhawk 的工具链 (比如你只想使用仿真器的功能)。
+- `--no-sim-tools`: 不要安装 jMAVSim/Gazebo 仿真器 (例如你只想使用或者开发调试 Pixhawk/NuttX)
