@@ -88,11 +88,11 @@ NuttX 有一个内置的 shell 解释器 ([NSH](http://nuttx.org/Documentation/N
 
 #### 启动自定义的混控器
 
-默认情况下系统将从 `/etc/mixers` 文件夹下载入混控器。 如果在`/fs/microsd/etc/mixers`中存在同名文件，则该文件将被加载。 This allows to customize the mixer file without the need to recompile the Firmware.
+默认情况下系统将从 `/etc/mixers` 文件夹下载入混控器。 如果在`/fs/microsd/etc/mixers`中存在同名文件，则该文件将被加载。 这允许自定义混音器文件，而无需重新编译Firmware。
 
 ##### 示例
 
-The following example shows how to add a custom aux mixer:
+下面的示例演示了如何添加一个自定义 aux 混控器：
 
 - 在 SD 卡中创建文件 `etc/mixers/gimbal.aux.mix` ，并将你的混控器设定内容写入该文件内。
 - 为了使用该混控器，再创建一个额外的文件 `etc/config.txt` ，该文件的内容如下： 
