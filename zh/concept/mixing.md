@@ -121,7 +121,7 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 ### 混合文件名称 {#mixer_file_names}
 
-A mixer file must be named **XXXX.*main*.mix** if it is responsible for the mixing of MAIN outputs or **XXXX.*aux*.mix** if it mixes AUX outputs.
+混控器如果负责混合 MAIN 输出端口的指令那么它的描述文件必须以 **XXXX.*main*.mix** 的形式进行命名，若其负责 AUX 输出则应该以 **XXXX.*aux*.mix** 的形式进行命名。
 
 ### 语法
 
