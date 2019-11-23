@@ -127,22 +127,22 @@ sudo apt-get install android-tools-adb -y
 
 ## ROS/Gazebo {#rosgazebo}
 
-This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") for use with PX4.
+本节解释如何安装 [ROS/Gazebo](../ros/README.md) ("Melodic") 以便与PX4一起使用。
 
-> **Note** PX4 is tested with ROS Melodic on Ubuntu 18.04 LTS. ROS Melodic does not work on Ubuntu 16.04.
+> **注：** PX4 已经跟ROS Melodic 在 Ubuntu 18.04 上一同测试过。 ROS Melodic 不适用于Ubuntu 16.04。
 
-To install the development toolchain:
+安装开发工具链：
 
-1. Download the script in a bash shell:   
+1. 在bash shell中下载脚本：   
     `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh`
-2. Run the script: 
+2. 运行脚本： 
         bash
-        source ubuntu_sim_ros_melodic.sh You may need to acknowledge some prompts as the script progresses.
+        source ubuntu_sim_ros_melodic.sh 随着脚本的运行，可能需要根据提示进行确认。
 
-Note:
+注：
 
-* ROS Melodic is installed with Gazebo9 by default.
-* Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
+* ROS Melodic 已经默认跟Gazebo9一起安装了。
+* 你的catkin（ROS编译系统）工作空间已经创建在**~/catkin_ws/**中。
 * The script uses instructions from the ROS Wiki "Melodic" [Ubuntu page](http://wiki.ros.org/melodic/Installation/Ubuntu).
 
 ## 骁龙飞行平台
@@ -178,7 +178,7 @@ rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
 
 ## 额外工具
 
-After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
+完成编译/仿真开发环境设置后，你可以从 [Additional Tools](../setup/generic_dev_tools.md) 找到一些有用的“通用”开发工具。
 
 ## 后续步骤
 
