@@ -2,26 +2,26 @@
 
 固件仓库里已经提供了一个脚本[Tools/setup/arch.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/arch.sh)方便你快速地在你的平台上搭建PX4的开发环境。
 
-该脚本默认安装所有必需的工具，用于编译基于NuttX的PX4源码(不带RTPS)，以及运行基于*jMAVsim*的仿真器。 You can additionally install the *Gazebo* simulator by specifying the command line argument: `--gazebo`.
+该脚本默认安装所有必需的工具，用于编译基于NuttX的PX4源码(不带RTPS)，以及运行基于*jMAVsim*的仿真器。 你也可以安装额外的*Gazebo*仿真器通过在命令行中指定一个参数： `--gazebo`。
 
 ![Gazebo on Arch](../../assets/gazebo/arch-gazebo.png)
 
-> **Note** The instructions have been tested on [Manjaro](https://manjaro.org/) (Arch based distribution) as it is much easier to set up than Arch Linux.
+> **注意**所有的指令已经在[Manjaro](https://manjaro.org/)(Arch的衍生) 上做过测试，因为他比在Arch Linux上更容易搭建。
 
-To get and run the scripts, do either of:
+要获取并运行这个脚本，有下面几种办法：
 
-- [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place: 
+- [下载PX4的源码，](../setup/building_px4.md) 然后运行这个目录下的脚本： 
         git clone https://github.com/PX4/Firmware.git
         source Firmware/Tools/setup/arch.sh
 
-- Download just the needed scripts and then run them: 
+- 只下载你所需的脚本并运行他们： 
         sh
         wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/arch.sh
         wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/requirements.txt
         source arch.sh
 
-The script takes the following optional parameters:
+该脚本可以加入这些可选的参数：
 
-- `--gazebo`: Add this parameter parameter to install Gazebo from the [AUR](https://aur.archlinux.org/packages/gazebo/). > **Note** Gazebo gets compiled from source. It takes some time to install and requires entering the `sudo` password multiple times (for dependencies).
+- `--gazebo`：添加此参数从[AUR](https://aur.archlinux.org/packages/gazebo/)安装Gazebo仿真器。 **注意** Gazebo 是通过获取源码后编译得到的， It takes some time to install and requires entering the `sudo` password multiple times (for dependencies).
 - `--no-nuttx`: Do not install the NuttX/Pixhawk toolchain (i.e. if only using simulation).
 - `--no-sim-tools`: Do not install jMAVSim/Gazebo (i.e. if only targeting Pixhawk/NuttX targets)
