@@ -1,10 +1,10 @@
 # 投稿指南
 
-非常欢迎大家给Dronecode项目的相关指南积极投稿。 内容包括PX4和QGroundControl 开发者和用户指南，以及MAVLink指南。 This article explains how you can make changes, add content, and create translations.
+非常欢迎大家给Dronecode项目的相关指南积极投稿。 内容包括PX4和QGroundControl 开发者和用户指南，以及MAVLink指南。 本篇章用来向投稿者们解释如何进行更改、添加内容和创建翻译。
 
-> **Note** You will need a (free) [Github](http://github.com) account to contribute to the guide.
+> **注意**你需要一个(免费的) [Github](http://github.com)帐户来为指南作出贡献。
 
-## Quick Changes
+## 快速更改
 
 Fixing typos or editing an *existing page* is easy:
 
