@@ -20,7 +20,7 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
 
 会议的第一部分也是重要的部分将持续45分钟，为项目的发展方向提供一个高质量的讨论论坛。 
 
-This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/Firmware/labels/devcall5) label. We expect the proposer and the assigned reviewer to be on the call!
+这儿是讨论贡献的地方，包含开发调用标签的观点以及回拉问题。 我们希望提议者和指定的审阅者都可以参加回访。
 
 > **Note** The main call is designed to support rapid/focused decision making. We don't expect deep technical discussions and we will not spend extended amounts of time on feature requests. Proposals are welcome, but they need a sponsor (someone willing to *implement* the work)!
 
