@@ -44,7 +44,7 @@
     
     arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM/embedded-7-branch revision 255204]
     Copyright (C) 2017 Free Software Foundation, Inc.
-    这是免费的软件，请参阅复制条件的源。  There is NO
+    This is free software; see the source for copying conditions.  There is NO
     warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
     ```
 
@@ -59,16 +59,16 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 ## Raspberry Pi {#raspberry-pi-hardware}
 
-To get the build toolchain for Raspberry Pi:
+获取基于Raspberry Pi的编译工具链：
 
-1. Download [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):   
+1. 从PX4源码仓库下载[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) 和[requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt)：   
     `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
     `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`
-2. Run **ubuntu.sh** in a terminal to get just the common dependencies: 
+2. 在终端中运行**ubuntu.sh**，获取一般的依赖模块： 
         bash
         source ubuntu.sh --no-nuttx --no-sim-tools
 
-3. Then setup an ARMv7 cross-compiler (either GCC or clang) as described in the following sections.
+3. 然后根据下面的描述安装ARMv7交叉编译器(GCC或者Clang)。
 
 ### GCC
 
@@ -145,15 +145,15 @@ Note:
 * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
 * The script uses instructions from the ROS Wiki "Melodic" [Ubuntu page](http://wiki.ros.org/melodic/Installation/Ubuntu).
 
-## Snapdragon Flight
+## 骁龙飞行平台
 
-Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
+骁龙飞控平台的安装已经在PX4的用户指南中提供：
 
-* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
-* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
-* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+* [开发环境](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [软件安装](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
+* [配置](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
 
-## FastRTPS installation {#fast_rtps}
+## FastRTPS 安装 {#fast_rtps}
 
 [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
 
