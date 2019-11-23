@@ -44,10 +44,10 @@
 
 更改请求可以使用 [Gitbook 编辑器](https://gitbookio.gitbooks.io/documentation/content/editor/index.html) 在 Gitbook 网站上完成，也可以在本地完成(更灵活，但用户友好度欠佳)。
 
-In order to contribute many changes to the documentation, it is recommended that you follow these steps to add the changes locally and then create a pull request:
+为了有助于对文档进行诸多改动， 请按照如下步骤添加本地更改，然后创建合并请求：
 
-* [Sign up](https://github.com/join) for github if you haven't already
-* Fork the PX4 user guide from [here](https://github.com/PX4/px4_user_guide) or Dev guide from [here](https://github.com/PX4/Devguide). For instructions to fork a git repository, see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository).
+* 如果您还没有注册Github，请先[注册](https://github.com/join) Github 账户
+* Fork the PX4 user guide from [here](https://github.com/PX4/px4_user_guide) or Dev guide from [here](https://github.com/PX4/Devguide). 点击[这里](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository)，查看如何分支git repository。
 * Clone your forked repository to your local computer  
         sh
         cd ~/wherever/
