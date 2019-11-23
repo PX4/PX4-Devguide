@@ -72,7 +72,7 @@ To get the build toolchain for Raspberry Pi:
 
 ### GCC
 
-The current recommended toolchain for raspbian can be cloned from `https://github.com/raspberrypi/tools.git` (at time of writing 4.9.3). The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
+目前raspbian系统推荐的工具链可以从这里克隆： `https://github.com/raspberrypi/tools.git` (文档书写时的版本是4.9.3)。 `PATH`环境变量需要把gcc交叉编译器的工具（例如gcc, g++，strip）的路径包含进去，前缀是`arm-linux-gnueabihf-`。
 
 ```sh
 git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
@@ -89,7 +89,7 @@ export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-ras
 
 ### Clang
 
-In order to use clang, you also need GCC.
+为了使用Clang，你同时还需要GCC。
 
 Download clang for your specific distribution from [LLVM Download page](http://releases.llvm.org/download.html) and unpack it. Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
 
