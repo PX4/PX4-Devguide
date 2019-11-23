@@ -62,7 +62,7 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 * 6: RC aux2
 * 7: RC aux3
 
-> **备注** 此组仅用于定义在 *普通操作* 期间的 RC输入的映射到具体输出(见 [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7) 关于AUX2在混合器中缩放的示例) In the event of manual IO failsafe override (if the PX4FMU stops communicating with the PX4IO board) only the mapping/mixing defined by control group 0 inputs for roll, pitch, yaw and throttle are used (other mappings are ignored).
+> **备注** 此组仅用于定义在 *普通操作* 期间的 RC输入的映射到具体输出(见 [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7) 关于AUX2在混合器中缩放的示例) 在手动 IO 故障安全覆盖事件中(如果 PX4FMU 停止与 PX4IO 板通信)， 只有 pitch、yaw和 throttle 这些控制组0定义的映射/混合被使用 (忽略其他映射)。
 
 ### 控制组 #6 (First Payload)
 
@@ -101,11 +101,11 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 * 6：保留 / aux2
 * 7：保留 / aux3
 
-## Output Groups/Mapping
+## 输出组/映射
 
-An output group is one physical bus (e.g. FMU PWM outputs, IO PWM outputs, UAVCAN etc.) that has N (usually 8) normalized (-1..+1) command ports that can be mapped and scaled through the mixer.
+一个产出组是一个物理总线(例如 FMU PWM 输出，IO PWM 输出，UAVCAN 等)。 具有 N (通常为8) 个规范化(-1..+1)的命令端口，可以通过混音器映射和缩放。
 
-The mixer file does not explicitly define the actual *output group* (physical bus) where the outputs are applied. Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is inferred from the mixer [filename](#mixer_file_names), and mapped to the appropriate physical bus in the system [startup scripts](../concept/system_startup.md) (and in particular in [rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)).
+混音器文件没有明确定义输出应用的实际 *输出组* (物理总线)。 相反，混合物的目的 (例如控制MAIN或 AUX 输出) 从混音器 [ filename ](#mixer_file_names) 中推断，并映射到系统中适当的物理总线 [startup scripts](../concept/system_startup.md) (尤其是[rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface))。
 
 > **Note** This approach is needed because the physical bus used for MAIN outputs is not always the same; it depends on whether or not the flight controller has an IO Board (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) or uses UAVCAN for motor control. The startup scripts load the mixer files into the appropriate device driver for the board, using the abstraction of a "device". The main mixer is loaded into device `/dev/uavcan/esc` (uavcan) if UAVCAN is enabled, and otherwise `/dev/pwm_output0` (this device is mapped to the IO driver on controllers with an I/O board, and the FMU driver on boards that don't). The aux mixer file is loaded into device `/dev/pwm_output1`, which maps to the FMU driver on Pixhawk controllers that have an I/O board.
 
