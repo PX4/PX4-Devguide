@@ -176,10 +176,10 @@ rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
 
 > **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
 
-## Additional Tools
+## 额外工具
 
 After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
 
-## Next Steps
+## 后续步骤
 
 Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
