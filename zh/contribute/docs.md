@@ -28,8 +28,8 @@
 
 * 添加或修改软件平台功能，如模块、飞行模式等。
 * 添加新硬件支持/集成，如飞行控制器、外围、机型等。
-* Communicate with the platform from an external source - e.g. a companion computer.
-* Understand the architecture
+* 从外部源与平台通信，例如一个配套的计算机。
+* 了解软件架构
 
 The *User Guide*, by contrast, is *primarily* for users who want to:
 
