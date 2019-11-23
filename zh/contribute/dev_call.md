@@ -14,7 +14,7 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
 * 无人机编码成员
 * 社区成员
 
-> **Tip** The dev call is open to all interested developers (not just the core dev team). This is a great opportunity to meet the team and contribute to the ongoing development of the platform.
+> 提示 开发调用对所有感兴趣的开发人员进行开放（不仅仅是核心开发团队）。 这是为持续可开发的平台做出贡献并与团队交流的绝佳机会。
 
 ## What gets discussed?
 
