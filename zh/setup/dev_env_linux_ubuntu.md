@@ -166,7 +166,7 @@ tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz requiredcomponents
 tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
 ```
 
-> **注：**下面的这几行命令用来编译FastCDR以及FastRTPS库，`make`命令与`-j2`选项一起执行。 This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
+> **注：**下面的这几行命令用来编译FastCDR以及FastRTPS库，`make`命令与`-j2`选项一起执行。 这个选项指定了在编译源码时使用多少个并行的线程。 修改 `-j2` 为 `-j<系统cpu的内核数目>`可以加速库的编译速度。
 
 ```sh
 (cd eProsima_FastCDR-1.0.8-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
