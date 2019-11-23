@@ -6,17 +6,17 @@
 
 ## 快速更改
 
-Fixing typos or editing an *existing page* is easy:
+如需修改错误或编辑一个*现有页面*，请按如下步骤操作：
 
-1. Click the **Edit** toolbar icon at the top of the relevant page in the guide.
+1. 点击指南相关页面顶部的工具栏图标**编辑**。
     
-    ![Gitbook: Edit Page button](../../assets/gitbook/gitbook_toolbar_icon_edit.png)
+    ![Gitbook: 编辑页面按钮](../../assets/gitbook/gitbook_toolbar_icon_edit.png)
     
-    This will open the page for editing (in Github).
+    打开编辑页面(Github)。
 
-2. Make the desired change.
+2. 进行修改。
 
-3. At the bottom of the page you'll be prompted to create a separate branch and then guided to submit a *pull request*.
+3. 页面底部会提示投稿者创建一个单独的分支，然后 引导其提交一个*拉取请求*。
 
 The documentation team reviews submitted pull requests and will either merge it or work with you to update it.
 
