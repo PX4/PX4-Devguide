@@ -7,37 +7,37 @@
 * **[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh)**: 安装 [Gazebo 9](../simulation/gazebo.md) 和 [jMAVSim](../simulation/jmavsim.md) 仿真器 以及/或者 [NuttX/Pixhawk](../setup/building_px4.md#nuttx) 工具。 不包含[FastRTPS](#fast_rtps)所依赖的工具。
 * **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**: 安装 [ROS "Melodic"](#rosgazebo) 以及 PX4 到 Ubuntu 18.04 LTS上。
 
-> **提示**这些脚本已经在纯净的Ubuntu16.04和Ubuntu18.04 LTS上测试过了。 They *may* not work as expected if installed on top of an existing system or a different Ubuntu release.
+> **提示**这些脚本已经在纯净的Ubuntu16.04和Ubuntu18.04 LTS上测试过了。 如果你在一个已经安装过这些工具的系统上或者一些其他的Ubuntu发行版上执行安装，它也有可能会安装不成功。
 
-The instructions below explain how to download and use the scripts.
+本说明将在下面解释如何下载并使用这些脚本。
 
-## Gazebo, JMAVSim and NuttX (Pixhawk) Targets {#sim_nuttx}
+## Gazebo, JMAVSim and NuttX (Pixhawk) {#sim_nuttx}
 
-Use the [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) script to set up a development environment that includes [Gazebo 9](../simulation/gazebo.md) and [jMAVSim](../simulation/jmavsim.md) simulators, and/or the [NuttX/Pixhawk](../setup/building_px4.md#nuttx) toolchain.
+使用[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh)这个脚本来安装开发环境以支持[Gazebo 9](../simulation/gazebo.md)和[jMAVSim](../simulation/jmavsim.md)仿真器，以及/或者[NuttX/Pixhawk](../setup/building_px4.md#nuttx)工具链。
 
-To install the toolchain:
+执行步骤：
 
-1. Download [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):   
+1. 从PX4的源码仓库中下载[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) 和 [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt)（在**/Tools/setup/**目录下）；   
     `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
     `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`
-2. Run the **ubuntu.sh** with no arguments (in a bash shell) to install everything: 
+2. 在bash shell中不带参数地运行ubuntu.sh来安装所有的依赖工具： 
         bash
         source ubuntu.sh
     
-    * Acknowledge any prompts as the script progress.
-    * You can use the `--no-nuttx` and `--no-sim-tools` to omit the nuttx and/or simulation tools.
-3. Restart the computer on completion.
+    * 在安装过程中确认并通过所有的提示
+    * 你可以通过传输参数`--no-nuttx` 和 `--no-sim-tools` 来跳过 nuttx 和/或 仿真器工具的安装。
+3. 完成后重新启动计算机。
 
-> **Note** You can alternatively [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place: 
+> **或者** 你也可以直接下载PX4的全部源码然后运行里面的脚本： 
 > 
 >     git clone https://github.com/PX4/Firmware.git
 >       source Firmware/Tools/setup/ubuntu.sh
 
-Notes:
+备注：
 
-* PX4 works with Gazebo 7, 8, and 9. The script uses [gazebosim.org instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) to install Gazebo9.
-* If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions instead (these install Gazebo automatically, as part of the ROS installation).
-* You can verify the the NuttX installation by confirming the gcc version as shown:
+* PX4需要跟Gazebo 7, 8, 或者 9一起工作， 该脚本使用[gazebosim.org instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)来安装Gazebo9。
+* 如果你正在使用ROS工作，那么请遵循[ROS/Gazebo](#rosgazebo)的介绍来安装（它是自动转安装的，作为ROS安装的一部分）。
+* 你可以通过确认gcc的版本来验证Nuttx的安装：
     
     ```bash
     $arm-none-eabi-gcc --version
