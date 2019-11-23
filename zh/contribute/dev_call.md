@@ -14,7 +14,7 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
 * 无人机编码成员
 * 社区成员
 
-> 提示 开发调用对所有感兴趣的开发人员进行开放（不仅仅是核心开发团队）。 这是为持续可开发的平台做出贡献并与团队交流的绝佳机会。
+> **提示** 开发调用对所有感兴趣的开发人员进行开放（不仅仅是核心开发团队）。 这是为持续可开发的平台做出贡献并与团队交流的绝佳机会。
 
 ## 讨论什么内容?
 
@@ -22,7 +22,7 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
 
 这儿是讨论贡献的地方，包含开发调用标签的观点以及回拉问题。 我们希望提议者和指定的审阅者都可以参加回访。
 
-> **Note** The main call is designed to support rapid/focused decision making. We don't expect deep technical discussions and we will not spend extended amounts of time on feature requests. Proposals are welcome, but they need a sponsor (someone willing to *implement* the work)!
+> **注意** 主要的调用被设计用来支持集中快速的做出决策。 We don't expect deep technical discussions and we will not spend extended amounts of time on feature requests. Proposals are welcome, but they need a sponsor (someone willing to *implement* the work)!
 
 The second part of the meeting is for in-depth technical discussions and open ended questions. The core team/subsystem maintainers will be available for up to 45 additional minutes.
 
