@@ -22,12 +22,12 @@
 
 ## 添加新内容 - 大更改
 
-### What Goes Where?
+### 内容分类
 
-The *Developer Guide* is for documentation that is relevant to *software developers*. This includes users who need to:
+*开发者指南*是与*软件开发者相关的文档*。 此类用户的需求为：
 
-* Add or modify platform features - modules, flight modes, etc.
-* Add support/integrate with new hardware - flight controllers, peripherals, airframes, etc.
+* 添加或修改软件平台功能，如模块、飞行模式等。
+* 添加新硬件支持/集成，如飞行控制器、外围、机型等。
 * Communicate with the platform from an external source - e.g. a companion computer.
 * Understand the architecture
 
