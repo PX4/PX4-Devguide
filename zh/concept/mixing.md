@@ -161,12 +161,12 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 第二行用上文讨论的缩放参数定义了输出缩放器。 同时，结果的计算是以浮点计算的形式进行的，在混控器定义文件中的值都将扩大 10000 倍，比如：实际中 -0.5 的偏移量（offset）在定义文件中保存为 -5000 。
 
-The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
+定义继续以 `<control count>` 条目描述控制输入及其缩放的形式：
 
     S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-> **Note** The `S:` lines must be below the `O:` line.
+> **Note** `S:` 行必须处于 `O:` 的下面。
 
 The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group.  
 These values are specific to the device reading the mixer definition.
