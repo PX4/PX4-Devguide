@@ -10,9 +10,9 @@
 
 ### 描述
 
-例如，ATXXXX的OSD驱动安装在了OmnibusF4SD板子上，
+例如，安装在OmnibusF4SD板子上的用于OSD驱动的ATXXXX芯片
 
-他就可以通过OSD_ATXXXX_CFG这个参数来使能这个模块
+他可以通过OSD_ATXXXX_CFG这个参数来使能
 
 ### 用法 {#atxxxx_usage}
 
@@ -34,17 +34,17 @@
 
 用于智能电池的BQ40Z50电量统计芯片
 
-### Examples
+### 示例
 
-To write to flash to set parameters. address, number_of_bytes, byte0, ... , byteN
+通过写入flash来设置它的参数。 地址，字节数，字节0，... ，字节N
 
     batt_smbus -X write_flash 19069 2 27 0
     
 
-### Usage {#batt_smbus_usage}
+### 用法 {#batt_smbus_usage}
 
-    batt_smbus <command> [arguments...]
-     Commands:
+    batt_smbus <命令> [参数...]
+     命令列表:
        start
          [-X]        BATT_SMBUS_BUS_I2C_EXTERNAL
          [-T]        BATT_SMBUS_BUS_I2C_EXTERNAL1
@@ -52,16 +52,15 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
          [-I]        BATT_SMBUS_BUS_I2C_INTERNAL
          [-A]        BATT_SMBUS_BUS_ALL
     
-       man_info      Prints manufacturer info.
+       man_info      打印厂商信息
     
-       unseal        Unseals the devices flash memory to enable write_flash
-                     commands.
+       unseal        解锁设备的flash来使能 write_flash 命令
     
-       seal          Seals the devices flash memory to disbale write_flash commands.
+       seal          锁住设备的flash来失能 write_flash 命令.
     
-       suspend       Suspends the driver from rescheduling the cycle.
+       suspend       从调度循环中挂起该设备
     
-       resume        Resumes the driver from suspension.
+       resume        将该设备从挂起状态恢复
     
        write_flash   Writes to flash. The device must first be unsealed with the
                      unseal command.
