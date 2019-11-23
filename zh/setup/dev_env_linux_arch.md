@@ -1,6 +1,6 @@
-# Development Environment on Arch Linux
+# ArchLinux上开发环境的搭建
 
-The Firmware repository provides a convenient script to set your Arch installation up for PX4 development: [Tools/setup/arch.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/arch.sh).
+固件仓库里已经提供了一个脚本[Tools/setup/arch.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/arch.sh)方便你快速地在你的平台上搭建PX4的开发环境
 
 The script installs (by default) all tools to build PX4 (without RTPS) for NuttX targets and run simulation with *jMAVsim*. You can additionally install the *Gazebo* simulator by specifying the command line argument: `--gazebo`.
 
