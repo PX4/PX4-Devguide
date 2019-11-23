@@ -59,7 +59,7 @@
     npm install gitbook-cli -g
     ```
     
-    > **Note** Everything you need to install and build Gitbook locally is also explained in the [toolchain documentation](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md).
+    > **注意** 在本地安装和构建Gitbook 的所需一切也会在[工具链文档](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md)中说明。
 
 * Navigate to your local repository and add original upstream:
     
