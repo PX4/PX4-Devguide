@@ -1,12 +1,12 @@
 # 参数对照表
 
-> **Note** **This documentation was auto-generated from the source code for this PX4 version** (using `make parameters_metadata`).
+> **注意****该文档是该版本PX4根据源码自动生成的**（通过执行`make parameters_metadata`）。
 
 <span></span>
 
-> **Note** If a listed parameter is missing from the Firmware see: [Finding/Updating Parameters](http://docs.px4.io/master/en/advanced_config/parameters.html#missing).
+> **注意** 如果列表中的某个参数编译后在固件中丢失，查看: [Finding/Updating Parameters](http://docs.px4.io/master/en/advanced_config/parameters.html#missing)来解决。
 
-## Airspeed Validator
+## 空速器相关参数
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
@@ -762,7 +762,7 @@
   </tr>
 </table>
 
-## Battery Calibration
+## 电池校准
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem; overflow: auto; display:block;">
   <colgroup><col style="width: 23%"><col style="width: 46%"><col style="width: 11%"><col style="width: 11%"><col style="width: 9%"></colgroup> <tr>
