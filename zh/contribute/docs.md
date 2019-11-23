@@ -1,6 +1,6 @@
-# Contributing to Documentation
+# 投稿指南
 
-Contributions to the guides for all parts of the Dronecode project are very welcome. This includes the PX4 and QGroundControl developer and user guides, and the MAVLink guide. This article explains how you can make changes, add content, and create translations.
+非常欢迎大家给Dronecode项目的相关指南积极投稿。 内容包括PX4和QGroundControl 开发者和用户指南，以及MAVLink指南。 This article explains how you can make changes, add content, and create translations.
 
 > **Note** You will need a (free) [Github](http://github.com) account to contribute to the guide.
 
