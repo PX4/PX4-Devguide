@@ -182,4 +182,4 @@ After setting up the build/simulation toolchain, see [Additional Tools](../setup
 
 ## 后续步骤
 
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+当您完成了环境建立，可以继续执行编译指令。
