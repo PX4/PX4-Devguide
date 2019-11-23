@@ -47,13 +47,13 @@
 为了有助于对文档进行诸多改动， 请按照如下步骤添加本地更改，然后创建合并请求：
 
 * 如果您还没有注册Github，请先[注册](https://github.com/join) Github 账户
-* Fork the PX4 user guide from [here](https://github.com/PX4/px4_user_guide) or Dev guide from [here](https://github.com/PX4/Devguide). 点击[这里](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository)，查看如何分支git repository。
-* Clone your forked repository to your local computer  
+* 点击[这里](https://github.com/PX4/px4_user_guide)查看PX4用户指南，点击[这里](https://github.com/PX4/Devguide)查看PX4开发者指南。 点击[这里](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository)，查看如何分支git repository。
+* 将分支克隆到本地计算机  
         sh
         cd ~/wherever/
         git clone https://github.com/<your git name>/px4_user_guide.git
 
-* Install gitbook via NPM. At the terminal prompt, simply run the following command to install GitBook:
+* 通过 NPM 安装 gitbook 在终端提示下，只需运行以下命令即可安装 GitBook：
     
     ```sh
     npm install gitbook-cli -g
