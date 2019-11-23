@@ -143,7 +143,7 @@ sudo apt-get install android-tools-adb -y
 
 * ROS Melodic 已经默认跟Gazebo9一起安装了。
 * 你的catkin（ROS编译系统）工作空间已经创建在**~/catkin_ws/**中。
-* The script uses instructions from the ROS Wiki "Melodic" [Ubuntu page](http://wiki.ros.org/melodic/Installation/Ubuntu).
+* 脚本中使用的指令来自于ROS的wiki的"Melodic" [Ubuntu page](http://wiki.ros.org/melodic/Installation/Ubuntu)。
 
 ## 骁龙飞行平台
 
@@ -155,9 +155,9 @@ sudo apt-get install android-tools-adb -y
 
 ## FastRTPS 安装 {#fast_rtps}
 
-[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
+[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/)是一个用C++实现的RTPS（实时流传输）协议。 FastRTPS 使用在[RTPS/ROS2接口：PX4-FastRTPS Bridge](../middleware/micrortps.md)上，用以允许PX4 uORB的话题可以与离板的组件共享。
 
-The following instructions can be used to install the FastRTPS 1.7.1 binaries to your home directory.
+下面的这些指令可以用来将 FastRTPS 1.7.1安装到你的home目录。
 
 ```sh
 wget https://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-7-1/eprosima_fastrtps-1-7-1-linux-tar-gz -O eprosima_fastrtps-1-7-1-linux.tar.gz
@@ -166,7 +166,7 @@ tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz requiredcomponents
 tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
 ```
 
-> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
+> **注：**下面的这几行命令用来编译FastCDR以及FastRTPS库，`make`命令与`-j2`选项一起执行。 This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
 
 ```sh
 (cd eProsima_FastCDR-1.0.8-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
@@ -174,7 +174,7 @@ tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
 rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
 ```
 
-> **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
+> **注：** 更多一般性的指令，需要额外从源安装的，可以从这里找到：[Fast RTPS installation](../setup/fast-rtps-installation.md)。
 
 ## 额外工具
 
