@@ -107,19 +107,19 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 混音器文件没有明确定义输出应用的实际 *输出组* (物理总线)。 相反，混合物的目的 (例如控制MAIN或 AUX 输出) 从混音器 [ filename ](#mixer_file_names) 中推断，并映射到系统中适当的物理总线 [startup scripts](../concept/system_startup.md) (尤其是[rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface))。
 
-> **Note** This approach is needed because the physical bus used for MAIN outputs is not always the same; it depends on whether or not the flight controller has an IO Board (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) or uses UAVCAN for motor control. The startup scripts load the mixer files into the appropriate device driver for the board, using the abstraction of a "device". The main mixer is loaded into device `/dev/uavcan/esc` (uavcan) if UAVCAN is enabled, and otherwise `/dev/pwm_output0` (this device is mapped to the IO driver on controllers with an I/O board, and the FMU driver on boards that don't). The aux mixer file is loaded into device `/dev/pwm_output1`, which maps to the FMU driver on Pixhawk controllers that have an I/O board.
+> ** Note ** 这种方法很有必要，因为用于MAIN输出的物理总线并不总是一样的； 它取决于飞行控制器是否有 IO Board(见[PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) 或使用UAVCAN 进行发动机控制。 启动脚本使用"设备"抽象将混音器文件加载到板子适当的设备驱动器。 如果 UAVCAN 已启用，主混音器将被加载到设备`/dev/uavcan/esc` (uavcan) 否则`/dev/pwm_output0` (此设备已映射给具有I/O 板的控制器的 IO 驱动，且 FMU 驱动程序已映射到未映射的板上)。 Aux 混控器 文件被加载到设备 `/dev/pwm_output1`, 它将映射到 Pixhawk 控制器上拥有 I/O 板子的 FMU 驱动程序。
 
-Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (busses), one control group can send commands to multiple output groups.
+因为有多个控制组(例如飞行控制、有效载荷等)。 和多个输出组(总线) ，一个控制组可以向多个输出组发送命令。
 
 {% mermaid %} graph TD; actuator_group_0-->output_group_5 actuator_group_0-->output_group_6 actuator_group_1-->output_group_0 {% endmermaid %}
 
-> **Note** In practice, the startup scripts only load mixers into a single device (output group). This is a configuration rather than technical limitation; you could load the main mixer into multiple drivers and have, for example, the same signal on both UAVCAN and the main pins.
+> **Note** 在实践中，启动脚本只会加载混控器到单个设备 (输出组)。 这是一个配置而不是技术限制； 您可以将主混音器加载到多个驱动器中，例如在UAVCAN 和主引脚上都有相同的信号。
 
 ## PX4 混控器定义
 
-Files in **ROMFS/px4fmu_common/mixers** implement mixers that are used for predefined airframes. They can be used as a basis for customisation, or for general testing purposes.
+**ROMFS/px4fmu_common/mixers**中的文件实现用于预定义机架的混音器。 它们可以用作定制或一般测试的基础。
 
-### Mixer File Names {#mixer_file_names}
+### 混合文件名称 {#mixer_file_names}
 
 A mixer file must be named **XXXX.*main*.mix** if it is responsible for the mixing of MAIN outputs or **XXXX.*aux*.mix** if it mixes AUX outputs.
 
