@@ -24,16 +24,16 @@
 
 ### 内容分类
 
-*开发者指南*是与*软件开发者相关的文档*。 此类用户的需求为：
+*开发者指南*是与*软件开发者相关的文档*。 使用者的需求为：
 
 * 添加或修改软件平台功能，如模块、飞行模式等。
 * 添加新硬件支持/集成，如飞行控制器、外围、机型等。
 * 从外部源与平台通信，例如一个配套的计算机。
 * 了解软件架构
 
-The *User Guide*, by contrast, is *primarily* for users who want to:
+*用户指南*的使用者，需求为：
 
-* Fly a vehicle using PX4
+* 使用 PX4 控制飞行器
 * Build, modify, or configure a vehicle using PX4 on a supported/existing airframe.
 
 > **Tip** For example, detailed information about how to build/configure an existing airframe are in the User Guide, while instructions for defining a *new* airframe are in the Developer Guide.
