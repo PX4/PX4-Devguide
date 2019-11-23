@@ -1,20 +1,20 @@
 # 模块参考：驱动
 
-Subcategories:
+子分类
 
-- [Distance Sensor](modules_driver_distance_sensor.md)
+- [距离传感器](modules_driver_distance_sensor.md)
 
 ## atxxxx
 
-Source: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
+源码位置: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
 
 ### 描述
 
-OSD driver for the ATXXXX chip that is mounted on the OmnibusF4SD board for example.
+例如，ATXXXX的OSD驱动安装在了OmnibusF4SD板子上，
 
-It can be enabled with the OSD_ATXXXX_CFG parameter.
+他就可以通过OSD_ATXXXX_CFG这个参数来使能这个模块
 
-### Usage {#atxxxx_usage}
+### 用法 {#atxxxx_usage}
 
     atxxxx <command> [arguments...]
      Commands:
@@ -28,11 +28,11 @@ It can be enabled with the OSD_ATXXXX_CFG parameter.
 
 ## batt_smbus
 
-Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
+源码位置: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
 
-### Description
+### 描述
 
-Smart battery driver for the BQ40Z50 fuel gauge IC.
+用于智能电池的BQ40Z50电量统计芯片
 
 ### Examples
 
