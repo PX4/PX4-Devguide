@@ -16,9 +16,9 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
 
 > 提示 开发调用对所有感兴趣的开发人员进行开放（不仅仅是核心开发团队）。 这是为持续可开发的平台做出贡献并与团队交流的绝佳机会。
 
-## What gets discussed?
+## 讨论什么内容?
 
-The first/main part of the meeting runs for 45 minutes and provides a high-level forum to discuss where the project is going.
+会议的第一部分也是重要的部分将持续45分钟，为项目的发展方向提供一个高质量的讨论论坛。 
 
 This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/Firmware/labels/devcall5) label. We expect the proposer and the assigned reviewer to be on the call!
 
