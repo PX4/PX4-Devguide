@@ -1,13 +1,13 @@
-# Ubuntu LTS/Debian Linux 的开发环境
+# Ubuntu LTS/Debian Linux上开发环境的搭建
 
-[Ubuntu linux LTS](https://wiki.ubuntu.com/LTS) 16.04是标准/推荐的Linux开发操作系统。 It allows you to build for the [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, *Qualcomm Snapdragon Flight* hardware, Linux-based hardware, Simulation).
+[Ubuntu linux LTS](https://wiki.ubuntu.com/LTS) 16.04是标准/推荐的Linux开发操作系统。 你可以在这上面编译所有的PX4对象（基于NuttX平台的硬件，高通骁龙飞行硬件，基于Linux平台的硬件以及仿真）
 
-Bash scripts are provided to help make it easy to install development environment for different target platforms:
+我们提供了Bash脚本来方便你根据不同的平台安装开发环境：
 
-* **[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh)**: Installs [Gazebo 9](../simulation/gazebo.md) and [jMAVSim](../simulation/jmavsim.md) simulators and/or [NuttX/Pixhawk](../setup/building_px4.md#nuttx) tools. Does not include dependencies for [FastRTPS](#fast_rtps).
-* **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**: Installs [ROS "Melodic"](#rosgazebo) and PX4 on Ubuntu 18.04 LTS.
+* **[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh)**: 安装 [Gazebo 9](../simulation/gazebo.md) 和 [jMAVSim](../simulation/jmavsim.md) 仿真器 以及/或者 [NuttX/Pixhawk](../setup/building_px4.md#nuttx) 工具。 不包含[FastRTPS](#fast_rtps)所依赖的工具。
+* **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**: 安装 [ROS "Melodic"](#rosgazebo) 以及 PX4 到 Ubuntu 18.04 LTS上。
 
-> **Tip** The scripts have been tested on clean Ubuntu 16.04 and 18.04 LTS installations. They *may* not work as expected if installed on top of an existing system or a different Ubuntu release.
+> **提示**这些脚本已经在纯净的Ubuntu16.04和Ubuntu18.04 LTS上测试过了。 They *may* not work as expected if installed on top of an existing system or a different Ubuntu release.
 
 The instructions below explain how to download and use the scripts.
 
