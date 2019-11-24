@@ -4,7 +4,7 @@
 
 Source: [modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/sih)
 
-### Description
+### 说明
 
 This module provide a simulator for quadrotors running fully inside the hardware autopilot.
 
