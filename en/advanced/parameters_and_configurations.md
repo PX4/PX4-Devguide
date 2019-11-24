@@ -219,10 +219,14 @@ PX4 uses an extensive parameter metadata system to drive the user-facing present
 
 > **Tip** Correct meta data is critical for good user experience in a ground station.
 
-Parameter metadata can be stored anywhere in the source tree, in a file with extension **.c**.
+Parameter metadata can be stored anywhere in the source tree as either **.c** or **.yaml** parameter definitions (the YAML definition is newer, and more flexible).
 Typically it is stored alongside its associated module. 
 
 The build system extracts the metadata (using `make parameters_metadata`) to build the [parameter reference](../advanced/parameter_reference.md) and the parameter information used by ground stations.
+
+### c Parameter Metadata {#c_metadata}
+
+The legacy approach for defining parameter metadata is in a file with extension **.c** (at time of writing this is the approach most commonly used in the source tree).
 
 Parameter metadata sections look like the following examples:
 
@@ -275,7 +279,17 @@ The purpose of each line is given below (for more detail see [module_schema.yaml
  */
 ```
 
-### Multi-Instance (Templated) Meta Data {#multi_instance_metadata}
+### YAML Metadata {#yaml_metadata}
+
+> **Note** At time of writing YAML parameter definitions cannot be used in *libraries*.
+
+YAML meta data is intended as a full replacement for the **.c** definitions. 
+It supports all the same metadata, along with new features like multi-instance definitions.
+
+- The YAML parameter metadata schema is here: [validation/module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml).
+- An example of YAML definitions being used can be found in the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml).
+
+#### Multi-Instance (Templated) Meta Data {#multi_instance_metadata}
 
 Templated parameter definitions are supported in [YAML parameter definitions](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml) (templated parameter code is not supported).
 
