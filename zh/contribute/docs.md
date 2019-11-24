@@ -120,8 +120,8 @@
 
 概述：
 
-* Pages are written in separate files using markdown \(almost the same syntax used by Github wiki\). 
-* The *structure* of the book is defined in a file named **SUMMARY.md**.
+* 用多个单独文件编写的页面，使用 markdown \(与Github wiki中的语法几乎一致\)。 
+* 卷册的*架构(structure)*定义，详见**SummMMARY.md**文件。
 * This is a [multilingual](https://github.com/GitbookIO/gitbook/blob/master/docs/languages.md) book, so there is a **LANGS.md** file in the root directory defining what languages are supported. Pages for each language are stored in the folder named for the associated language code \(e.g. "zh" for Chinese, "en" for English\). 
 * A file named **book.json** defines any dependencies of the build.
 * A web hook is used to track whenever files are merged into the master branch on this repository, causing the book to rebuild.
