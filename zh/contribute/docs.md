@@ -121,7 +121,7 @@
 概述：
 
 * 用多个单独文件编写的页面，使用 markdown \(与Github wiki中的语法几乎一致\)。 
-* 卷册的*架构(structure)*定义，详见**SummMMARY.md**文件。
+* 卷册的*架构*定义，详见**SummMMARY.md**文件。
 * 这是一本[多语种](https://github.com/GitbookIO/gitbook/blob/master/docs/languages.md)的卷册。 所以在根目录中有一个**LANGS.md**文件来定义支持哪些语言。 每种语言的页面都存储在用相关语言代码命名的文件夹\(例如，中文的“zh”、 英文的“en”\)。 
 * 一个名为**book.json**的文件定义了此构建的所有依赖关系。
 * 网络钩子会被用来跟踪是否有文件合并到此版本库上的主分支，如果有，卷册将重新构建。
@@ -131,17 +131,17 @@
 1. 文件/文件名
 
 * 将新文件放入相应的子文件夹
-* Use descriptive names. In particular, image filename should describe what they contain.
-* Use lower case and separate words using underscores "\_"
+* 使用描述性名称。 尤其是，图像文件名应描述其中的内容。
+* 命名中使用小写，并用下划线"\_"分割单词
 
-2. Images
+2. 图片
 
-* Use the smallest size and lowest resolution that makes the image still useful.
-* New images should be created in a sub-folder of **/assets/** by default (so they can be shared between translations).
+* 使用最小尺寸和最小分辨率使图像仍然有用。
+* 默认情况下，新图像应在 **/assets/** 的子文件夹中创建 (这样翻译之间可共享图像资源)。
 
-3. Content:
+3. 内容:
 
-* Use "style" \(bold, emphasis, etc\) consistently. **Bold** for button presses and menu definitions. *Emphasis* for tool names. Otherwise use as little as possible.
+* 始终如一地使用 "样式" (如bold, emphasis等) 按钮和菜单定义，请使用样式**Bold**。 工具名称，请使用样式*Emphasis*。 Otherwise use as little as possible.
 * Headings and page titles should use "First Letter Capitalisation"
 * The page title should be a first level heading \(\#\). All other headings should be h2 \(\#\#\) or lower.
 * Don't add any style to headings.
