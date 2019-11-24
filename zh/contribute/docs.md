@@ -141,9 +141,9 @@
 
 3. 内容:
 
-* 始终如一地使用 "样式" (如bold, emphasis等) 按钮和菜单定义，请使用样式**Bold**。 工具名称，请使用样式*Emphasis*。 Otherwise use as little as possible.
-* Headings and page titles should use "First Letter Capitalisation"
-* The page title should be a first level heading \(\#\). All other headings should be h2 \(\#\#\) or lower.
+* 始终如一地使用 "样式" (如bold, emphasis等) 按钮和菜单定义，请使用样式**Bold**。 工具名称，请使用样式*Emphasis*。 其他情况，尽量少用样式。
+* 标题和页面标题应该遵从"第一字母大写"
+* 页面标题应该是第一级标题 \(\#\)。 All other headings should be h2 \(\#\#\) or lower.
 * Don't add any style to headings.
 * Don't translate the *first part* of a note, tip or warning declaration (e.g. `> **Note**`) as this precise text is required to render the note properly.
 
