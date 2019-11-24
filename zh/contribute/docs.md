@@ -122,15 +122,15 @@
 
 * 用多个单独文件编写的页面，使用 markdown \(与Github wiki中的语法几乎一致\)。 
 * 卷册的*架构(structure)*定义，详见**SummMMARY.md**文件。
-* This is a [multilingual](https://github.com/GitbookIO/gitbook/blob/master/docs/languages.md) book, so there is a **LANGS.md** file in the root directory defining what languages are supported. Pages for each language are stored in the folder named for the associated language code \(e.g. "zh" for Chinese, "en" for English\). 
-* A file named **book.json** defines any dependencies of the build.
-* A web hook is used to track whenever files are merged into the master branch on this repository, causing the book to rebuild.
+* 这是一本[多语种](https://github.com/GitbookIO/gitbook/blob/master/docs/languages.md)的卷册。 所以在根目录中有一个**LANGS.md**文件来定义支持哪些语言。 每种语言的页面都存储在用相关语言代码命名的文件夹\(例如，中文的“zh”、 英文的“en”\)。 
+* 一个名为**book.json**的文件定义了此构建的所有依赖关系。
+* 网络钩子会被用来跟踪是否有文件合并到此版本库上的主分支，如果有，卷册将重新构建。
 
-## Style guide
+## 文档规范指南
 
-1. Files/file names
+1. 文件/文件名
 
-* Put new files in an appropriate sub-folder
+* 将新文件放入相应的子文件夹
 * Use descriptive names. In particular, image filename should describe what they contain.
 * Use lower case and separate words using underscores "\_"
 
