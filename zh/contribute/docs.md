@@ -84,28 +84,28 @@
     
     > **注意** 运行 `gitbook install` 可安装缺失的插件。
 
-* Now you can browse your local book on http://localhost:4000/
+* 现在您可以在 http://localhost:4000/ 上浏览您的本地卷册
 
-* Exit serving using `CTRL+c` in the terminal prompt.
+* 在终端提示中使用`CTRL+c`退出。
 
-* You can also serve on a different port instead of 4000:
+* 除了端口4000，您也可以在另一个端口上作业：
     
     ```sh
     gitbook serve --port 4003
     ```
 
-* You can also output as html, pdf, epub or mobi: 
+* 您也可以以 html 、pdf、epub 或 mobi 格式输出： 
         sh
         gitbook help
 
-* Once you are satisfied with your changes after previewing them, you can add and commit them:
+* 预览过您的更改后，只要您感觉满意，您便可以添加并提交这些更改：
     
     ```sh
     git add <file name>
     git commit -m "<your commit message>"
     ```
     
-    For a good commit message, please refer to [Contributing](../contribute/README.md) section.
+    需进一步了解提交信息, 请参阅 [Contributing](../contribute/README.md) 部分。
 
 * Now you can push your local commits to your forked repository
     
