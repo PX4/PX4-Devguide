@@ -145,12 +145,12 @@
 * 标题和页面标题应该遵从"第一字母大写"
 * 页面标题应该是第一级标题 \(\#\)。 所有其他标题应该是 二级\(\#\\) 或更低级别的标题。
 * 不要在标题中添加任何样式。
-* Don't translate the *first part* of a note, tip or warning declaration (e.g. `> **Note**`) as this precise text is required to render the note properly.
+* 不要翻译注释、提示或警告声明的*第一部分* （例如`**Note**` ），因为这部分是用来表达注解内容级别的。
 
 ## 翻译 {#translation}
 
-We'd love your help to translate *QGroundControl* and our guides for PX4, *QGroundControl* and MAVLink. For more information see: [Translation](../contribute/translation.md).
+我们由衷感谢您帮助翻译*QGroundControl*，以及 PX4 、*QGroundControl* 和 MAVLink的相关指南。 更多信息请参见：[Translation](../contribute/translation.md)。
 
 ## 许可证
 
-All PX4/Dronecode documentation is free to use and modify under terms of the permissive [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence.
+所有的 PX4 /Dronecode 文档均遵循 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可证，允许自由使用和修改。
