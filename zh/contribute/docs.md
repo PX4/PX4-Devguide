@@ -61,14 +61,14 @@
     
     > **注意** 在本地安装和构建Gitbook 的所需一切也会在[工具链文档](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md)中说明。
 
-* Navigate to your local repository and add original upstream:
+* 导航到您的本地版本库并添加原始的上游版本：
     
     ```sh
     cd ~/wherever/px4_user_guide
     git remote add upstream https://github.com/PX4/px4_user_guide.git
     ```
 
-* Now you can checkout a new branch and add your changes. To build your book, run:
+* 现在您可以检出一个新分支，并向其中添加您的更改。 To build your book, run:
     
     ```sh
     gitbook build
