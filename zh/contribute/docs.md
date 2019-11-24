@@ -116,9 +116,9 @@
 * 您可以通过浏览器访问分支版本库来验证推送是否成功： ```https://github.com/<your git name>/px4_user_guide.git```  
     您应该会看到一条告知消息：一个新分支已被推送到您的分支版本库。
 * 现在是时候创建一个拉取请求 (PR) 了。 在 "新分支消息" 的右侧 (请参阅前面的一个步骤), 您应该看到一个绿色按钮, 上面写着 "Compare & Create Pull Request"。 然后, 它应该列出你的更改，你必须添加一个有意义的标题 (在提交 PR 的情况下, 它通常是提交消息) 和消息 (<span style="color:orange">解释你做了这些更改的原因 </span>， 检查 [其他拉取请求 ](https://github.com/PX4/px4_user_guide/pulls) 进行比较)。
-* 搞定！ Responsible members of PX4 guides will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
+* 搞定！ PX4 指南项目的负责人现在将看到您的投稿, 并决定是否要整合稿件内容。 每过一段时间，他们会检查你的更改，以确保没有疑问。
 
-In overview:
+概述：
 
 * Pages are written in separate files using markdown \(almost the same syntax used by Github wiki\). 
 * The *structure* of the book is defined in a file named **SUMMARY.md**.
