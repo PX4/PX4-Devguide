@@ -68,21 +68,21 @@
     git remote add upstream https://github.com/PX4/px4_user_guide.git
     ```
 
-* 现在您可以检出一个新分支，并向其中添加您的更改。 To build your book, run:
+* 现在您可以检出一个新分支，并向其中添加您的更改。 要构建您的卷册，请运行：
     
     ```sh
     gitbook build
     ```
     
-    > **Note** If you run into an error: `/usr/bin/env: node: No such file or directory`, run `ln -s /usr/bin/nodejs /usr/bin/node`
+    > **注意** 如果遇到报错: `/usr/bin/env: node：No such file or directory`, 请运行 `ln -s /usr/bin/nodejs /usr/bin/node`
 
-* To preview and serve your book, run:
+* 要预览并服务您的卷册，请运行：
     
     ```sh
     gitbook serve
     ```
     
-    > **Note** run `gitbook install` to install missing plugins.
+    > **注意** 运行 `gitbook install` 可安装缺失的插件。
 
 * Now you can browse your local book on http://localhost:4000/
 
