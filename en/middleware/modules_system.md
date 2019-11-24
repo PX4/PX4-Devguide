@@ -279,6 +279,29 @@ logger <command> [arguments...]
 
    status        print status info
 ```
+## rc_update
+Source: [modules/rc_update](https://github.com/PX4/Firmware/tree/master/src/modules/rc_update)
+
+
+### Description
+The rc_update module handles RC channel mapping: read the raw input channels (`input_rc`),
+then apply the calibration, map the RC channels to the configured channels & mode switches,
+low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
+
+### Implementation
+To reduce control latency, the module is scheduled on input_rc publications.
+
+
+### Usage {#rc_update_usage}
+```
+rc_update <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## replay
 Source: [modules/replay](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
 
@@ -353,9 +376,6 @@ The provided functionality includes:
   If there are multiple of the same type, do voting and failover handling.
   Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the
   topics is `sensor_combined`, used by many parts of the system.
-- Do RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels
-  to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and
-  `manual_control_setpoint`.
 - Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or
   on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the
   sensor drivers must already be running when `sensors` is started.
