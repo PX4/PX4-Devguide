@@ -8,13 +8,13 @@ jMAVSim是一个简单的多旋翼/四旋翼仿真软件，它可以允许你在
 
 本问主要演示如何设置 jMAVSim 以连接到 SITL 版本的 PX4 。
 
-> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#jmavsimgazebo-hitl-environment).
+> **Tip**jMAVSim 也可以用 HITL 仿真([看这里](../simulation/hitl.md#jmavsimgazebo-hitl-environment)
 
 ## 仿真环境
 
 软件在环仿真在主机上运行仿真系统的全部组件，使用软件来模拟真实飞控， 并通过当地网络实现与仿真软件的连接。 整套仿真方案设置如下：
 
-{% mermaid %} graph LR; Simulator-->MAVLink; MAVLink-->SITL; {% endmermaid %}
+{% mermaid %} graph LR 仿真器-->MAVLink MAVLink-->SITL {% endmermaid %}
 
 ## 运行 SITL
 
