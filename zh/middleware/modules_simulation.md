@@ -16,12 +16,12 @@ Source: [modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/si
 
 模拟器运用矩阵代数方法实现了运动方程。 姿态采用四元数表示。 积分计算采用前向欧拉法。 为避免堆栈溢出，大部分变量在 .hpp 文件中声明为全局变量。
 
-### Usage {#sih_usage}
+### 使用 {#sih_usage}
 
     sih <command> [arguments...]
      Commands:
-       start
+      start
     
-       stop
+      stop
     
-       status        print status info
+      status        print status info
