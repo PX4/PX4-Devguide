@@ -29,11 +29,11 @@ Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src
 
 Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
 
-### Description
+### 描述
 
-The commander module contains the state machine for mode switching and failsafe behavior.
+该模块包含飞行模式切换和失效保护状态机。
 
-### Usage {#commander_usage}
+### 使用 {#commander_usage}
 
     commander <command> [arguments...]
      Commands:
