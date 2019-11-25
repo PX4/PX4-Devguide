@@ -1,4 +1,4 @@
-# Gazebo 仿真模拟
+# Gazebo 仿真
 
 <!-- Check if updates required - ie that following are fixed:
 
@@ -7,25 +7,25 @@
 - Find out actual gstreamer dependencies and update both this doc and build scripts - should be done when the camera plugin is a default.
 -->
 
-[ Gazebo ](http://gazebosim.org)是用于自主机器人的强大3D模拟环境，其特别适用于测试物体避障和计算机视觉。 本页描述了它与 SITL 和单一设备的使用。 Gazebo 也可以与[ HITL ](../simulation/hitl.md)和[多机仿真](../simulation/multi-vehicle-simulation.md)一起使用。
+[ Gazebo ](http://gazebosim.org)是用于自主机器人的强大3D模拟环境，其特别适用于测试物体避障和计算机视觉。 本文描述了如何使用它来进行单机的软件在环仿真。 Gazebo 也可以适用于 [硬件在环仿真](../simulation/hitl.md) 和 [多机仿真](../simulation/multi-vehicle-simulation.md) 。
 
 **支持机型：**四旋翼 ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) 和 [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo))，六旋翼 (Typhoon h480)，[通用四旋翼 delta VTOL 无人机](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol)，尾翼，飞机，探测车，潜艇（即将推出！）
 
-> **Tip** Gazebo 通常与 [ROS](../ros/README.md) 一起使用，该 API 是一种用于自动设备控制的工具。 如果您计划将 PX4 与 ROS 一起使用，则应该[follow the instructions here](../simulation/ros_interface.md)安装 Gazebo 作为 ROS 的一部分！
+> **Tip** Gazebo 通常与 [ROS](../ros/README.md) 一起使用，板外自动飞行控制的 API 工具包。 如果您计划将 PX4 与 ROS 一起使用，则应该先安装 Gazebo [在这看说明教程](../simulation/ros_interface.md) 。
 
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
 {% mermaid %} graph LR; Gazebo-->Plugin; Plugin-->MAVLink; MAVLink-->SITL; {% endmermaid %}
 
-> **Note**有关模拟器，模拟环境和可用模拟配置（例如支持的机型）的一般信息，请参见[Simulation](/simulation/README.md)。
+> **Note** 有关仿真器，仿真环境和仿真变量配置（例如支持的机型）的一般信息，请参见 [仿真](/simulation/README.md)。
 
 ## 安装
 
-Gazebo 9 setup is included in our standard build instructions:
+Gazebo 9 的安装在标准的环境编译已有说明。
 
 * ** macOS：** [ Mac 上的开发环境](../setup/dev_env_mac.md)
-* **Linux:** [Development Environment on Linux (Ubuntu 16.04) > jMAVSim/Gazebo Simulation](../setup/dev_env_linux_ubuntu.md#sim_nuttx)
-* ** Windows：**不支持。
+* **Linux:** [在Linux（Ubuntu 16.04）开发环境 -> jMAVSim/Gazebo 仿真](../setup/dev_env_linux_ubuntu.md#sim_nuttx)
+* ** Windows：**还不支持。
 
 其他安装说明可在 [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1) 上找到。
 
