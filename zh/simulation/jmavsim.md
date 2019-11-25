@@ -109,19 +109,19 @@ make broadcast jmavsim
 
 ### 无航向模式
 
-To start jMAVSim without the GUI, set the env variable `HEADLESS=1` as shown:
+要使用没有jMAVSim图形界面的仿真，请设置如下环境变量 `HEADLESS=1`
 
 ```bash
 HEADLESS=1 make px4_sitl jmavsim
 ```
 
-## 多飞行器仿真
+## 多机仿真
 
-JMAVSim can be used for multi-vehicle simulation: [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
+JMAVSim也常用做多机仿真，更多请参考：[JMAVSim多机当真](../simulation/multi_vehicle_jmavsim.md)
 
-## 扩展和定制
+## 扩展和自定义
 
-To extend or customize the simulation interface, edit the files in the **Tools/jMAVSim** folder. The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
+如果要扩展或自定义仿真接口，可以编辑 **Tool/jMAVSim** 里面文件。 The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
 
 > **Info** 编译系统会强制检查所有依赖项的子模块正确无误，其中就包括了模拟器。 但是，它不会直接覆盖你对目录中文件所做的更改， 当提交这些更改时你需要在固件 repo 中重新为子模块注册新的哈希值。 为此,，使用 `git add Tools/jMAVSim` 灵敏提交你的更改。 这将更新模拟器的 GIT 哈希值。
 
