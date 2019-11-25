@@ -2,7 +2,7 @@
 
 ## sih
 
-Source: [modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/sih)
+源码：[modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/sih)
 
 ### 说明
 
