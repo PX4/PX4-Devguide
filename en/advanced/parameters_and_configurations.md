@@ -219,10 +219,14 @@ PX4 uses an extensive parameter metadata system to drive the user-facing present
 
 > **Tip** Correct meta data is critical for good user experience in a ground station.
 
-Parameter metadata can be stored anywhere in the source tree, in a file with extension **.c**.
+Parameter metadata can be stored anywhere in the source tree as either **.c** or **.yaml** parameter definitions (the YAML definition is newer, and more flexible).
 Typically it is stored alongside its associated module. 
 
 The build system extracts the metadata (using `make parameters_metadata`) to build the [parameter reference](../advanced/parameter_reference.md) and the parameter information used by ground stations.
+
+### c Parameter Metadata {#c_metadata}
+
+The legacy approach for defining parameter metadata is in a file with extension **.c** (at time of writing this is the approach most commonly used in the source tree).
 
 Parameter metadata sections look like the following examples:
 
@@ -274,3 +278,31 @@ The purpose of each line is given below (for more detail see [module_schema.yaml
  * @group <a title for parameters that form a group>
  */
 ```
+
+### YAML Metadata {#yaml_metadata}
+
+> **Note** At time of writing YAML parameter definitions cannot be used in *libraries*.
+
+YAML meta data is intended as a full replacement for the **.c** definitions. 
+It supports all the same metadata, along with new features like multi-instance definitions.
+
+- The YAML parameter metadata schema is here: [validation/module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml).
+- An example of YAML definitions being used can be found in the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml).
+
+#### Multi-Instance (Templated) Meta Data {#multi_instance_metadata}
+
+Templated parameter definitions are supported in [YAML parameter definitions](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml) (templated parameter code is not supported).
+
+The YAML allows you to define instance numbers in parameter names, descriptions, etc. using `${i}`.
+For example, below will generate MY_PARAM_1_RATE, MY_PARAM_2_RATE etc.
+```
+MY_PARAM_${i}_RATE:
+            description:
+                short: Maximum rate for instance ${i}
+```
+
+The following YAML definitions provide the start and end indexes. 
+- `num_instances` (default 1): Number of instances to generate (>=1)
+- `instance_start` (default 0): First instance number. If 0, `${i}` expands to [0, N-1]`.
+
+For a full example see the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml)
