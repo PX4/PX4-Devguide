@@ -175,6 +175,20 @@ The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.p
 
 #### Cross-compiler Build
 
+Set the IP (or hostname) of your RPi using:
+
+```sh
+export AUTOPILOT_HOST=192.168.X.X
+```
+or
+```sh
+export AUTOPILOT_HOST=pi_hostname.domain
+```
+
+> **Note** The value of the environment variable should be set before the build, or `make upload` will fail to find your RPi.
+
+Build the executable file:
+
 ```sh
 cd Firmware
 make emlid_navio2_cross # for cross-compiler build
