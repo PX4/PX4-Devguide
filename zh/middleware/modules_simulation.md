@@ -10,9 +10,9 @@ Source: [modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/si
 
 该模拟器订阅了主题“actuator_outputs”，即混控器给出的控制执行器的pwm信号。
 
-This simulator publishes the sensors signals corrupted with realistic noise in order to incorporate the state estimator in the loop.
+模拟器发布了被真实噪声污染的传感器信号以便在环路中加入状态估计器。
 
-### Implementation
+### 实现
 
 The simulator implements the equations of motion using matrix algebra. Quaternion representation is used for the attitude. Forward Euler is used for integration. Most of the variables are declared global in the .hpp file to avoid stack overflow.
 
