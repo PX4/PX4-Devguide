@@ -43,8 +43,8 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
   * **Spain**: +34 91 198 0188 
   * [**International numbers available**](https://zoom.us/zoomconference)
 
-* Agenda is published before the call on [PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)
+* 议程在[PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)之前发布
 
-* To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/Firmware/labels/devcall) label to flag them for discussion.
+* 为了讨论指定的问题和回拉请求，你可以使用[devcall](https://github.com/PX4/Firmware/labels/devcall)标签来标记
 
 {% endif %} <!-- END: dev call details: displayed only in master -->
