@@ -18,7 +18,7 @@ jMAVSim是一个简单的多旋翼/四旋翼仿真软件，它可以允许你在
 
 ## 运行 SITL
 
-在确保 [仿真必备条件](../setup/dev_env.md) 已经安装在电脑系统上了之后直接运行命令：便捷的 make target 命令会完成 POSIX 平台的交叉编译并启动仿真。
+在确保 [仿真环境](../setup/dev_env.md) 已经搭建在电脑上了之后直接运行命令：便捷的 make target 命令会完成 POSIX 平台的交叉编译并启动仿真。
 
 ```sh
 make px4_sitl_default jmavsim
@@ -43,13 +43,13 @@ Ready to fly.
 pxh>
 ```
 
-此外，它还会唤起一个显示 [jMAVSim](https://github.com/PX4/jMAVSim) 模拟器的3D视图的窗口。
+此外，它还会打开一个显示 [jMAVSim](https://github.com/PX4/jMAVSim) 仿真器的3D视图的界面。
 
 ![jMAVSim 3d 视图](../../assets/simulation/jmavsim.jpg)
 
-## 把飞机飞上天
+## 简单飞上天
 
-系统将开始输出状态信息。 飞机完成位置锁定之后（控制台提示： *EKF commencing GPS fusion* 信息之后不久）你就可以开始飞行了。
+系统将开始输出状态信息。 飞机完成位置锁定之后（控制台立刻提示： *EKF commencing GPS fusion* 信息之后不久 ）就可以开始飞行了。
 
 在控制台输入以下命令进行起飞：
 
@@ -57,15 +57,15 @@ pxh>
 pxh> commander takeoff
 ```
 
-你可以使用 *QGroundControl* 制定一个飞行计划，或者连接一个 [操纵杆](#joystick) 。
+你可以使用 *QGroundControl* 规划一个飞行任务，或者连接一个 [操纵杆](#joystick) 。
 
-## 使用/配置选项
+## 可选参数配置
 
 ### 指定起飞位置
 
-通过设定环境变量可以覆盖默认的起飞地点设定： `PX4_HOME_LAT`, `PX4_HOME_LON`, 以及 `PX4_HOME_ALT` 。
+手动设定环境变量可以覆盖默认的起飞点坐标： `PX4_HOME_LAT`, `PX4_HOME_LON`, 以及 `PX4_HOME_ALT` 。
 
-举个例子，使用如下命令设定无人机起飞点的维度、经度和高度：
+例如，要设置飞机的维度、经度和海拔高度：
 
     export PX4_HOME_LAT=28.452386
     export PX4_HOME_LON=-13.867138
@@ -75,7 +75,7 @@ pxh> commander takeoff
 
 ### 更改仿真的时间流速
 
-可以使用环境变量 `PX4_SIM_SPEED_FACTOR` 提高或者降低仿真环境的时间流速相对于实际时间流速的大小。
+可以使用环境变量 `PX4_SIM_SPEED_FACTOR` 增长或者缩短仿真环境的时间流速相对于实际时间流速的大小。
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl_default jmavsim
@@ -89,7 +89,7 @@ pxh> commander takeoff
 
 ### 模拟一个 Wifi 无人机
 
-有一个特殊的平台可以模拟一个通过 Wifi 进行连接的无人机。
+有一个特殊的平台可以模拟通过本地 Wifi 网络进行连接无人机。
 
 ```sh
 make broadcast jmavsim
@@ -107,7 +107,7 @@ make broadcast jmavsim
 
 此举可以缩短测试循环时间（重启 jMAVSim 需要耗费非常多的时间）。
 
-### Headless Mode
+### 无航向模式
 
 To start jMAVSim without the GUI, set the env variable `HEADLESS=1` as shown:
 
