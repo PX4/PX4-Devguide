@@ -8,13 +8,13 @@ Source: [modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/si
 
 本模块为四旋翼提供了一个完全在飞控内部运行的模拟器。
 
-该模拟器订阅了主题“actuator_outputs”，即混控器给出的控制执行器的pwm信号。
+该模拟器订阅了主题 “actuator_outputs”，即混控器给出的控制执行器的 pwm 信号。
 
 模拟器发布了被真实噪声污染的传感器信号以便在环路中加入状态估计器。
 
 ### 实现
 
-The simulator implements the equations of motion using matrix algebra. Quaternion representation is used for the attitude. Forward Euler is used for integration. Most of the variables are declared global in the .hpp file to avoid stack overflow.
+模拟器运用矩阵代数方法实现了运动方程。 姿态采用四元数表示。 积分计算采用前向欧拉法。 为避免堆栈溢出，大部分变量在 .hpp 文件中声明为全局变量。
 
 ### Usage {#sih_usage}
 
