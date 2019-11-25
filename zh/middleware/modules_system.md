@@ -72,7 +72,7 @@ Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modu
 
 Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
-### Description
+### 描述
 
 Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
 
@@ -430,11 +430,11 @@ Play system tune #2:
 
 Source: [systemcmds/work_queue](https://github.com/PX4/Firmware/tree/master/src/systemcmds/work_queue)
 
-### Description
+### 描述
 
-Command-line tool to show work queue status.
+用于显示工作队列状态的命令行工具。
 
-### Usage {#work_queue_usage}
+### 使用 {#work_queue_usage}
 
     work_queue <command> [arguments...]
      Commands:
