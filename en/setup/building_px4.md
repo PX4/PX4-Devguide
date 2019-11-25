@@ -188,7 +188,8 @@ or
 ```sh
 export AUTOPILOT_HOST=pi_hostname.domain
 ```
-* The value of the environment variable is incorporated during the build process so it should be set before the build or 'make upload' will fail to find your RPi.
+
+> **Note** The value of the environment variable should be set before the build, or `make upload` will fail to find your RPi.
 
 Build the executable file:
 
