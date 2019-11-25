@@ -121,15 +121,15 @@ JMAVSim也常用做多机仿真，更多请参考：[JMAVSim多机当真](../sim
 
 ## 扩展和自定义
 
-如果要扩展或自定义仿真接口，可以编辑 **Tool/jMAVSim** 里面文件。 The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
+如果要扩展或自定义仿真接口，可以编辑 **Tools/jMAVSim** 里面文件。 源码可以从 Github 上的 [jMAVSim 库](https://github.com/px4/jMAVSim) 获取。
 
-> **Info** 编译系统会强制检查所有依赖项的子模块正确无误，其中就包括了模拟器。 但是，它不会直接覆盖你对目录中文件所做的更改， 当提交这些更改时你需要在固件 repo 中重新为子模块注册新的哈希值。 为此,，使用 `git add Tools/jMAVSim` 灵敏提交你的更改。 这将更新模拟器的 GIT 哈希值。
+> **Info** 编译系统会强制检查所有依赖项的子模块正确无误，其中就包括了模拟器。 但是，它不会直接覆盖你对目录中文件所做的更改， 当提交这些更改时你需要在 固件 库中重新为子模块注册新的哈希值。 为此,，使用 `git add Tools/jMAVSim` 并提交你的更改。 这就会更新仿真器中 GIT 哈希值。
 
-## 与 ROS 对接交互
+## ROS 交互
 
-The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.
+仿真器中跟真实飞机一样方式实现 [与 ROS 交互](../simulation/ros_interface.md) 。
 
-## 重要的文件
+## 值得一看的脚本文件
 
 * 启动脚本位于 [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) 文件夹下，以 `rcS_SIM_AIRFRAME` 的方式进行命名，默认值是 `rcS_jmavsim_iris` 。
 * The simulated root file system ("`/`" directory) is created inside the build directory here: `build/px4_sitl_default/tmp/rootfs`.
