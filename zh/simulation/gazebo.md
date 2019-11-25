@@ -70,7 +70,7 @@ make px4_sitl gazebo_plane
 
 ![飞行器](../../assets/gazebo/plane.png)
 
-### 标准构型的 VTOL
+### 标准垂起
 
 ```sh
 make px4_sitl gazebo_standard_vtol
@@ -78,7 +78,7 @@ make px4_sitl gazebo_standard_vtol
 
 ![标准构型的 VTOL](../../assets/gazebo/standard_vtol.png)
 
-### 尾座式 VTOL
+### 尾座式垂起
 
 ```sh
 make px4_sitl gazebo_tailsitter
@@ -86,7 +86,7 @@ make px4_sitl gazebo_tailsitter
 
 ![尾座式 VTOL](../../assets/gazebo/tailsitter.png)
 
-### 阿克曼车 （UGV/Rover） {#ugv}
+### Ackerman 车 （UGV/Rover） {#ugv}
 
 ```sh
 make px4_sitl gazebo_rover
@@ -104,11 +104,11 @@ make px4_sitl gazebo_hippocampus
 
 ## 改变仿真环境中的世界
 
-当前的默认世界是位于目录 [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds) 中的 **iris.world**。 **iris.world** 中默认使用高程图生成地面景物。 这样生成的地面可能会导致使用距离传感器时较为困难， 如果使用高程图会导致任何出乎意料的结果，我们建议你将 **iris.model** 中的模型设定从 `uneven_ground` 改为 `asphalt_plane`.
+当前的默认世界是位于目录 [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds) 中的 **iris.world**。 **iris.world** 中默认使用高度图生成地面景物。 这样生成的地面可能会导致使用距离传感器时较为困难， 如果使用高程图会导致任何出乎意料的结果，我们建议你将 **iris.model** 中的模型默认设定从 `uneven_ground` 改为 `asphalt_plane`.
 
-## 把飞机飞上天
+## 简单上天
 
-> **Note** 如遇到任何错误请参考： [Installing Files and Code](../setup/dev_env.md) 。
+> **Note** 如遇到任何错误请参考： [工具链安装](../setup/dev_env.md) 。
 
 该命令最终将得到如下 PX4 控制台显示界面：
 
@@ -129,7 +129,7 @@ px4 starting.
 pxh>
 ```
 
-> **Note** 右键单击四旋翼模型允许从上下文菜单启用跟随模式，这样可以方便地将其保持在视图中。
+> **Note** 在 gazebo 中右击四旋翼模型允许从上下文菜单启用跟随模式，这样可以方便地将其保持在视图中。
 
 ![Gazebo UI](../../assets/simulation/gazebo.png)
 
@@ -139,11 +139,11 @@ pxh>
 pxh> commander takeoff
 ```
 
-## 使用/配置选项
+## 可选配置
 
-### Headless 模式
+### 无航向模式
 
-Gazebo 可以在* headless *模式下运行，其中 Gazebo UI 未启动。 这样可以更快地启动并使用更少的系统资源（即，它是运行模拟的更“轻量级”方式）。
+Gazebo 可以在* headless *模式下运行，其中 Gazebo UI 界面未启动的。 这样可以更快地启动并使用更少的系统资源（即，它是运行模拟的更“轻量级”方式）。
 
 只需在正常的* make *命令前加上` HEADLESS=1 `，如下所示：
 
@@ -167,13 +167,13 @@ HEADLESS=1 make px4_sitl gazebo_plane
 
 ### 更改仿真的时间流速
 
-可以使用环境变量 `PX4_SIM_SPEED_FACTOR` 提高或者降低仿真环境的时间流速相对于实际时间流速的大小。
+可以设置环境变量 `PX4_SIM_SPEED_FACTOR` 增长或者缩短仿真环境的时间流速相对于实际时间流速。
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl_default gazebo
     
 
-更多相关信息请参考：[Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed)。
+更多相关信息请参考：[仿真 > 仿真速度快于实际速度](../simulation/README.md#simulation_speed)。
 
 ### 使用游戏手柄
 
@@ -228,13 +228,13 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
     sudo apt-get install $(apt-cache --names-only search ^gstreamer1.0-* | awk '{ print $1 }' | grep -v gstreamer1.0-hybris) -y
     
 
-### How to View Gazebo Video
+### 如何查看 Gazebo 视频流
 
-The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Settings > General** and set **Video Source** to *UDP Video Stream* and **UDP Port** to *5600*:
+最简单的方式就是在 *QGroundControl* 中查看 Gazebo 软件在环仿真 视频流。 只需打开 QGroundControl 中 **软件配置> 通用设置** 找到 **视频源** 选择 *UDP 视频流* 然后 **UDP 端口号** 默认设置为 *5600*：
 
 ![QGC Video Streaming Settings for Gazebo](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
 
-The video from Gazebo should then display in *QGroundControl* just as it would from a real camera.
+来自 Gazebo 的视频应该像从真实相机那样显示在* QGroundControl *中。
 
 It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
 
