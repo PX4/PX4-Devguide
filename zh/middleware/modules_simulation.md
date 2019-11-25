@@ -6,7 +6,7 @@ Source: [modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/si
 
 ### 说明
 
-This module provide a simulator for quadrotors running fully inside the hardware autopilot.
+该模块为四旋翼提供了一个完全在飞控内部运行的模拟器。
 
 This simulator subscribes to "actuator_outputs" which are the actuator pwm signals given by the mixer.
 
