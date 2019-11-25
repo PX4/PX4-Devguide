@@ -6,9 +6,9 @@ Source: [modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/si
 
 ### 说明
 
-该模块为四旋翼提供了一个完全在飞控内部运行的模拟器。
+本模块为四旋翼提供了一个完全在飞控内部运行的模拟器。
 
-This simulator subscribes to "actuator_outputs" which are the actuator pwm signals given by the mixer.
+该模拟器订阅了主题“actuator_outputs”，即混控器给出的控制执行器的pwm信号。
 
 This simulator publishes the sensors signals corrupted with realistic noise in order to incorporate the state estimator in the loop.
 
