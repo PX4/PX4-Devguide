@@ -6,11 +6,11 @@ Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src
 
 ### 描述
 
-The provided functionality includes:
+模块提供的功能包括：
 
 - Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
 
-### Implementation
+### 实现
 
 It runs in its own thread and polls on the currently selected gyro topic.
 
