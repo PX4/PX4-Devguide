@@ -4,7 +4,7 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
 
 {% if book.px4_version != 'master' %}
 
-> **Tip** Dev Call schedule, agenda, and call in details, [can be found here](https://dev.px4.io/master/en/contribute/dev_call.html)! {% else %} <!-- START: dev call details: displayed only in master -->
+> **提示** Dev Call 计划, 日程, 和细节, [可以在这儿找到](https://dev.px4.io/master/en/contribute/dev_call.html)! {% else %} <!-- START: dev call details: displayed only in master -->
 
 ## 谁应该注意以下几点：
 
@@ -28,9 +28,9 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
 
 ## 日程
 
-* TIME: Wednesday 17h00 CET, 12h00 EST, 09h00 PST \([subscribe to calendar](https://www.dronecode.org/calendar/)\)
-* **Join the call**: https://zoom.us/j/946175205 
-* **Meeting ID**: 946 175 205
+* 时间: 欧洲中部时间周二17：00, 东部标准时间12：00, 太平洋标准时间9：00 \([订阅日历](https://www.dronecode.org/calendar/)\)
+* **参加网址**: https://zoom.us/j/946175205 
+* **会议ID**: 946 175 205
 * **拨号(为了更好的质量, 拨号时请根据你现在的所在地)**:
   
   * **瑞典**: +41 (0) 31 528 0988 
