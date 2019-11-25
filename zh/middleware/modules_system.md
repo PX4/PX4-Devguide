@@ -8,13 +8,13 @@ Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src
 
 模块提供的功能包括：
 
-- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
+- 从 ADC 驱动读取电池状态（通过 ioctl 接口），并且发布到主题 `battery_status`。
 
 ### 实现
 
-It runs in its own thread and polls on the currently selected gyro topic.
+模块运行在它自己的线程中，并轮询当前选定的陀螺仪主题。
 
-### Usage {#battery_status_usage}
+### 使用 {#battery_status_usage}
 
     battery_status <command> [arguments...]
      Commands:
