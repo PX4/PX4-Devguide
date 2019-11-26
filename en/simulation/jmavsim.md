@@ -186,7 +186,7 @@ rm -rf Tools/jMAVSim/out
 Either [download Oracle Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or use Brew:
 
 ```
-brew tap caskroom/versions
+brew tap homebrew/cask-versions
 brew cask install java8
 brew install ant
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
