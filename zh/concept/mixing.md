@@ -207,9 +207,9 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 直升机的混控器将三组控制输入（滚转、俯仰和推力）整合到四个输出中（倾斜盘舵机和主电机 ESC 设定）。 直升机混控器的第一个输出量是主电机的油门设定。 随后是倾斜盘舵机的指令。 尾桨的控制可以通过添加一个 简单的混控器来实现：
 
-推力控制输入同时用于设定直升机的主电机和倾斜盘的总距。 It uses a throttle-curve and a pitch-curve, both consisting of five points.
+推力控制输入同时用于设定直升机的主电机和倾斜盘的总距。 在运行时它会使用一条油门曲线和一条总距曲线，这两条曲线都由 5 个控制点组成。
 
-> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
+> **Note** 油门曲线及总距曲线将 “推力” 摇杆输入位置映射到油门值和总距值（单独地）。 This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
 
 The mixer definition begins with:
 
