@@ -139,7 +139,7 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 ### 描述
 
-Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
+这个模块将以后台进程的形式在低优先级工作队列中周期性运行，从而实现将 IMU 的温度调节到设定值。
 
 通过设置 SENS_EN_THERMAL 参数或者命令行接口，可以使得该任务在运行启动脚本时就开始工作。
 
@@ -156,13 +156,13 @@ Background process running periodically on the LP work queue to regulate IMU tem
 
 ## land_detector
 
-Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
+源码：[modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
 
-### Description
+### 描述
 
 Module to detect the freefall and landed state of the vehicle, and publishing the `vehicle_land_detected` topic. Each vehicle type (multirotor, fixedwing, vtol, ...) provides its own algorithm, taking into account various states, such as commanded thrust, arming state and vehicle motion.
 
-### Implementation
+### 实现
 
 Every type is implemented in its own class with a common base class. The base class maintains a state (landed, maybe_landed, ground_contact). Each possible state is implemented in the derived classes. A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
 
@@ -176,7 +176,7 @@ Every type is implemented in its own class with a common base class. The base cl
 
 The module runs periodically on the HP work queue.
 
-### Usage {#land_detector_usage}
+### 使用 {#land_detector_usage}
 
     land_detector <command> [arguments...]
      Commands:
