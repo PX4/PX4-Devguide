@@ -174,7 +174,7 @@ JMAVSim也常用做多机仿真，更多请参考：[JMAVSim多机当真](../sim
 
 要么直接下载 </a>Oracle Java 8 要么使用Brew下载：</p> 
 
-    brew tap caskroom/versions
+    brew tap homebrew/cask-versions
     brew cask install java8
     brew install ant
     export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
