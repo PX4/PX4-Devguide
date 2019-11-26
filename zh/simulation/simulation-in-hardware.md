@@ -24,13 +24,13 @@ Furthermore, the physical parameters representing the vehicle (such as mass, ine
 
 ## 配置硬件仿真（SIH）
 
-运行SIH和挑选一个机架一样简单。 将飞控和电脑用USB线连接起来，让它通电启动，然后使用地面站选择[SIH 机架](../airframes/airframe_reference.md#simulation-copter) The autopilot will then reboot.
+运行SIH和挑选一个机架一样简单。 将飞控和电脑用USB线连接起来，让它通电启动，然后使用地面站选择[SIH 机架](../airframes/airframe_reference.md#simulation-copter) 飞控接下来会重启
 
-When the SIH airframe is selected, the SIH module starts by itself, the vehicle should be displayed on the ground control station map.
+当选择了SIH 机架之后，SIH模块就自动启动了，车辆应该显示在地面站的地图上
 
-## Setting up the Display
+## 设置显示
 
-The simulated quadrotor can be displayed in jMAVSim (coming soon).
+模拟的四旋翼可以在jMAVSim中显示(即将上线）。
 
 ## Credits
 
