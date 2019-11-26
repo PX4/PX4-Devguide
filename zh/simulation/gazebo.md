@@ -232,7 +232,7 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 最简单的方式就是在 *QGroundControl* 中查看 Gazebo 软件在环仿真 视频流。 只需打开 QGroundControl 中 **软件配置> 通用设置** 找到 **视频源** 选择 *UDP 视频流* 然后 **UDP 端口号** 默认设置为 *5600*：
 
-![QGC Video Streaming Settings for Gazebo](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
+![QGC 视频流在 Gazebo 中的设置](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
 
 来自 Gazebo 的视频应该像从真实相机那样显示在* QGroundControl *中。
 
@@ -248,7 +248,7 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 可以使用 Gazebo 界面中的 打开/关闭 按钮来 启用/禁用 视频流。
 
-![Video ON/OFF button](../../assets/gazebo/sitl_video_stream.png)
+![视频 打开/关闭 按钮](../../assets/gazebo/sitl_video_stream.png)
 
 如何启用该按钮：
 
@@ -275,7 +275,7 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
     
     > **Tip** 此部分出现在** typhoon_h480.world **中 - 您只需要取消注释该部分。
 
-3. 重建 SITL：
+3. 软件在环重新编译：
     
         make clean
         make px4_sitl gazebo_typhoon_h480
@@ -283,9 +283,9 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 ## 扩展和定制
 
-To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
+若要扩展或者是自定义仿真接口，编辑 `Tools/sitl_gazebo` 文件夹。 源码也可以在 [sitl_gazebo 库](https://github.com/px4/sitl_gazebo) 上获取。
 
-> **Note** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
+> **Note** 编译系统会强制使用正确的 GIT 子模块，包括仿真器。 他不会覆盖目录中修改的部分。
 
 ## 与 ROS 对接交互
 
@@ -293,5 +293,5 @@ The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the sa
 
 ## 更多信息：
 
-* [另见 Gazebo 模拟。](../simulation/ros_interface.md)
+* [ROS 与 Gazebo 仿真。](../simulation/ros_interface.md)
 * [Gazebo Octomap](../simulation/gazebo_octomap.md)
