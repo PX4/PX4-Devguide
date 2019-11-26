@@ -131,7 +131,7 @@ JMAVSim也常用做多机仿真，更多请参考：[JMAVSim多机当真](../sim
 
 ## 值得一看的脚本文件
 
-* 启动脚本位于 [posix-configs/SITL/init](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL/init) 文件夹下，以 `rcS_SIM_AIRFRAME` 的方式进行命名，默认值是 `rcS_jmavsim_iris` 。
+* The startup scripts are discussed in [System Startup](../concept/system_startup.md).
 * 已仿真的根文件系统 ("`/`" 目录) 是在编译文件里面生成的： `build/px4_sitl_default/tmp/rootfs`
 
 ## 常见问题处理
