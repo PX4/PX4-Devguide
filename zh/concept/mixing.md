@@ -168,25 +168,25 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 > **Note** `S:` 行必须处于 `O:` 的下面。
 
-The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group.  
-These values are specific to the device reading the mixer definition.
+`<group>` 指定了缩放器从哪个控制组中读取数据，而 `<index>` 则是定义了该控制组的偏移值。  
+这些参数的设定值会随着读取混控器定义文件的设备的不同而发生改变。
 
-When used to mix vehicle controls, mixer group zero is the vehicle attitude control group, and index values zero through three are normally roll, pitch, yaw and thrust respectively.
+当将混控器用于混合飞机的控制量时，编号为 0 的混控器组为飞机的姿态控制组，该控制组内编号 0 - 3 的选项通常分别便是滚转、俯仰、偏航和推力。
 
-The remaining fields on the line configure the control scaler with parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+剩下的字段则是使用上文提及的缩放参数对控制量的缩放器进行了设定。 同时，结果的计算是以浮点计算的形式进行的，在混控器定义文件中的值都将扩大 10000 倍，比如：实际中 -0.5 的偏移量（offset）在定义文件中保存为 -5000 。
 
-An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
+[这里](../airframes/adding_a_new_frame.md#mixer-file) 是一个典型混控器的示例文件。
 
 #### 针对多旋翼的混控器
 
-The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust) into a set of actuator outputs intended to drive motor speed controllers.
+多旋翼的混控器将四组控制输入（俯仰、滚转、偏航和推力）整合到一组用于驱动电机转速控制器的执行器输出指令中。
 
-The mixer definition is a single line of the form:
+该混控器使用如下形式的行进行定义：
 
     R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
     
 
-The supported geometries include:
+支持的多旋翼类型为：
 
 * 4x - X 构型的四旋翼
 * 4+ - + 构型的四旋翼
