@@ -2,7 +2,7 @@
 
 ## battery_status
 
-Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
+源码： [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
 
 ### 描述
 
@@ -22,12 +22,12 @@ Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## commander
 
-Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
+源码： [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
 
 ### 描述
 
@@ -38,15 +38,15 @@ Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modu
     commander <command> [arguments...]
      Commands:
        start
-         [-h]        Enable HIL mode
+         [-h]        使能 HIL 模式
     
-       calibrate     Run sensor calibration
+       calibrate     传感器校准
          mag|accel|gyro|level|esc|airspeed Calibration type
     
-       check         Run preflight checks
+       check         飞行前检查
     
        arm
-         [-f]        Force arming (do not run preflight checks)
+         [-f]        强制准备开始(不进行飞行前检查)
     
        disarm
     
@@ -54,23 +54,23 @@ Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modu
     
        land
     
-       transition    VTOL transition
+       transition    垂直起降转换
     
-       mode          Change flight mode
+       mode          改变飞行模式
          manual|acro|offboard|stabilized|rattitude|altctl|posctl|auto:mission|auto:l
                      oiter|auto:rtl|auto:takeoff|auto:land|auto:precland Flight mode
     
        lockdown
-         [off]       Turn lockdown off
+         [off]       关闭锁定
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## dataman
 
-Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
+源码： [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
 ### 描述
 
@@ -113,20 +113,20 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 ## dmesg
 
-Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
+源码：[systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
 
 ### 描述
 
 Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
 
-### Examples
+### 举例
 
 Keep printing all messages in the background:
 
     dmesg -f &
     
 
-### Usage {#dmesg_usage}
+### 使用 {#dmesg_usage}
 
     dmesg <command> [arguments...]
      Commands:
