@@ -242,15 +242,15 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
     ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
     
 
-### Gazebo GUI to Start/Stop Video Streaming
+### 在 Gazebo 界面中打开/停止视频流。
 
-> **Note** This feature is supported for Gazebo version 7.
+> **Note** 该特点只支持 Gazebo 7 版本。
 
-Video streaming can be enabled/disabled using the Gazebo UI *Video ON/OFF* button.
+可以使用 Gazebo 界面中的 打开/关闭 按钮来 启用/禁用 视频流。
 
 ![Video ON/OFF button](../../assets/gazebo/sitl_video_stream.png)
 
-To enable the button:
+如何启用该按钮：
 
 1. 打开要修改的“ world ”文件（例如[&lt;Firmware>/Tools/sitl_gazebo/worlds/typhoon_h480.world ](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world)）。
 2. 在默认的` world name =“default”`部分中，为` libgazebo_video_stream_widge `添加` gui `部分（如下所示）：
