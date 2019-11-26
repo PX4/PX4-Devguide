@@ -1,6 +1,6 @@
 # 硬件仿真
 
-对于四旋翼，硬件仿真是硬件在环仿真的替代品。 在这个设置中，所有的数据处理工作都在嵌入式硬件（PIXHAWK）中完成，包括控制器、状态估计器和仿真器。 与PIXHAWK连接的电脑只用来显示虚拟的载具。
+对于四旋翼，硬件仿真（SIH）是[硬件在环仿真（HITL）](../simulation/hitl.md)的替代品。 在这个设置中，所有的数据处理工作都在嵌入式硬件（PIXHAWK）中完成，包括控制器、状态估计器和仿真器。 与PIXHAWK连接的电脑只用来显示虚拟的载具。
 
 ![Simulator MAVLink API](../../assets/diagrams/SIH_diagram.png)
 
@@ -18,7 +18,7 @@ Furthermore, the physical parameters representing the vehicle (such as mass, ine
 
 ## Requirements
 
-To run the SIH, you will need a [flight controller hardware](https://docs.px4.io/en/flight_controller/) (e.g. a Pixhawk-series board). If you are planning to use a [radio control transmitter and receiver pair](https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html) you should have that too. Alternatively, using *QGroundControl*, a [joystick](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) can be used to emulate a radio control system.
+为了运行硬件仿真，你需要一个飞控板硬件（例如：Pixhawk飞控）。 如果你计划使用一对[无线电控制发射机和接收机](https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html)，你也应该安装好。 Alternatively, using *QGroundControl*, a [joystick](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) can be used to emulate a radio control system.
 
 The SIH is compatible with all Pixhawk-series boards except those based on FMUv2. It is available on the firmware master branch and release versions v1.9.0 and above.
 
