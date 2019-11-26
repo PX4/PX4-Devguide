@@ -215,4 +215,4 @@ JMAVSim也常用做多机仿真，更多请参考：[JMAVSim多机当真](../sim
     #assistive_technologies=org.GNOME.Acessibility.AtkWrapper
     
 
-For more info check [this GitHub issue](https://github.com/PX4/Firmware/issues/9557). The fix was found in [askubuntu.com](https://askubuntu.com/questions/695560).
+更多问题，请参阅 [GitHub issue](https://github.com/PX4/Firmware/issues/9557) 。 该解决方案引自于 [askubuntu.com](https://askubuntu.com/questions/695560) 。
