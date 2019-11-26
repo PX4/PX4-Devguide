@@ -236,7 +236,7 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
 
 来自 Gazebo 的视频应该像从真实相机那样显示在* QGroundControl *中。
 
-It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
+也可以使用 *Gstreamer Pipeline* 观看视频。 只需输入如下的命令：
 
     gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
     ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
