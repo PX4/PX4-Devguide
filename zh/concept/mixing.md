@@ -209,7 +209,7 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 推力控制输入同时用于设定直升机的主电机和倾斜盘的总距。 在运行时它会使用一条油门曲线和一条总距曲线，这两条曲线都由 5 个控制点组成。
 
-> **Note** 油门曲线及总距曲线将 “推力” 摇杆输入位置映射到油门值和总距值（单独地）。 这就使得我们可以为不同类型的飞行，对飞机的飞行特性进行调整。 如何调整这些映射曲线可以参考 [这篇指南](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (搜索 *Programmable Throttle Curves* 和 *Programmable Pitch Curves*)。
+> **Note** 油门曲线及螺距曲线将 “推力” 摇杆输入位置映射到一个油门值和螺距值（单独地）。 这就使得我们可以为不同类型的飞行，对飞机的飞行特性进行调整。 如何调整这些映射曲线可以参考 [这篇指南](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (搜索 *Programmable Throttle Curves* 和 *Programmable Pitch Curves*)。
 
 混控器的定义的开头如下：
 
@@ -218,23 +218,23 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
     P: <collective pitch at thrust: 0%> <25%> <50%> <75%> <100%>
     
 
-`T：` 定义了油门曲线的控制点。 `P：` 定义了总距曲线的控制点。 Both curves contain five points in the range between 0 and 10000. For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
+`T：` 定义了油门曲线的控制点。 `P：` 定义了螺距曲线的控制点。 两条曲线都含包含0到10000之间的五个点。 对于简单的线性特性而言，这五个点的取值应该为 `0 2500 5000 7500 10000` 。
 
-This is followed by lines for each of the swash-plate servos (either 3 or 4) in the following form:
+后面的各行则是对每个倾斜盘舵机 (3 个或者 4 个) 进行设定，文本行的形式如下：
 
     S: &lt;angle&gt; &lt;arm length&gt; &lt;scale&gt; &lt;offset&gt; &lt;lower limit&gt; &lt;upper limit&gt;
     
 
-The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
+`<angle>` 是角度制， 0 ° 表示的倾斜盘的朝向与机头的方向相同。 从飞机上方往下看，顺时针旋转为正。 `<arm length>` 表示的是归一化的长度，文件中若值为 10000 则实际表示 1。 如果所有的舵机摇臂的长度都一致，那么这个值应该设置为 10000 。 更长的摇臂意味着舵机的偏转量更少，而较短的摇臂则意味着更多的舵机偏转量。
 
-The servo output is scaled by `<scale> / 10000`. After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
+舵机的输出按照比例 `<scale>/10000` 进行缩放。 完成缩放后 `<offset>` 生效，该参数的取值介于 -10000 和 10000 之间。 `<lower limit>` 和 `<upper limit>` 应分别设置为 -10000 和 +10000 以使得舵机可以实现全行程。
 
-The tail rotor can be controller by adding a [simple mixer](#simple-mixer):
+尾桨的控制可以通过额外添加一个 [简单的混控器](#simple-mixer) 来实现：
 
     M: 1
     S: 0 2  10000  10000      0 -10000  10000
     
 
-By doing so, the tail rotor setting is directly mapped to the yaw command. This works for both servo-controlled tail-rotors, as well as for tail rotors with a dedicated motor.
+完成上述工作后，直升机的尾桨设定直接映射到了飞机的偏航指令上。 该设置同时适用于舵机控制的尾桨和使用专用电机控制的尾桨。
 
 The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) can be viewed as an example. The throttle-curve starts with a slightly steeper slope to reach 6000 (0.6) at 50% thrust. It continues with a less steep slope to reach 10000 (1.0) at 100% thrust. The pitch-curve is linear, but does not use the entire range. At 0% throttle, the collective pitch setting is already at 500 (0.05). At maximum throttle, the collective pitch is only 4500 (0.45). Using higher values for this type of helicopter would stall the blades. The swash-plate servos for this helicopter are located at angles of 0, 140 and 220 degrees. The servo arm-lenghts are not equal. The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo. The servos are limited at -8000 and 8000 because they are mechanically constrained.
