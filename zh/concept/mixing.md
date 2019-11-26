@@ -205,9 +205,9 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 #### 针对直升机的混控器
 
-直升机的混控器将三组控制输入（滚转、俯仰和推力）整合到四个输出中（倾斜盘舵机和主电机 ESC 设定）。 直升机混控器的第一个输出量是主电机的油门设定。 The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
+直升机的混控器将三组控制输入（滚转、俯仰和推力）整合到四个输出中（倾斜盘舵机和主电机 ESC 设定）。 直升机混控器的第一个输出量是主电机的油门设定。 随后是倾斜盘舵机的指令。 尾桨的控制可以通过添加一个 简单的混控器来实现：
 
-The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points.
+推力控制输入同时用于设定直升机的主电机和倾斜盘的总距。 It uses a throttle-curve and a pitch-curve, both consisting of five points.
 
 > **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
 
