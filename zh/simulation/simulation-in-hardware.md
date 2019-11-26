@@ -2,7 +2,7 @@
 
 对于四旋翼，硬件仿真（SIH）是[硬件在环仿真（HITL）](../simulation/hitl.md)的替代品。 在这个设置中，所有的数据处理工作都在嵌入式硬件（PIXHAWK）中完成，包括控制器、状态估计器和仿真器。 与PIXHAWK连接的电脑只用来显示虚拟的载具。
 
-![Simulator MAVLink API](../../assets/diagrams/SIH_diagram.png)
+![仿真器 MAVLink API](../../assets/diagrams/SIH_diagram.png)
 
 与硬件在环仿真相比，硬件仿真有以下两点好处：
 
@@ -32,10 +32,10 @@ Furthermore, the physical parameters representing the vehicle (such as mass, ine
 
 模拟的四旋翼可以在jMAVSim中显示(即将上线）。
 
-## Credits
+## 鸣谢
 
 SIH功能是由Coriolis g公司开发的。 一家加拿大公司开发一种新型的垂直起飞和着陆 (VTOL) 无人驾驶飞行器，并以被动的耦合系统为基础。
 
-Specialized in dynamics, control, and real-time simulation, they provide the SIH as a simple simulator for quadrotors released for free under BSD license.
+他们专注于动力学、控制和实时仿真，他们在BSD许可下把硬件仿真作为一个免费的简单的仿真器提供给四旋翼飞行器。
 
-Discover their current platform at [www.vogi-vtol.com](http://www.vogi-vtol.com/).
+在[www.vogi-vtol.com](http://www.vogi-vtol.com/)上发现他们当前的平台。
