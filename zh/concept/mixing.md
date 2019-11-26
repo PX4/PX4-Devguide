@@ -209,16 +209,16 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 推力控制输入同时用于设定直升机的主电机和倾斜盘的总距。 在运行时它会使用一条油门曲线和一条总距曲线，这两条曲线都由 5 个控制点组成。
 
-> **Note** 油门曲线及总距曲线将 “推力” 摇杆输入位置映射到油门值和总距值（单独地）。 This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
+> **Note** 油门曲线及总距曲线将 “推力” 摇杆输入位置映射到油门值和总距值（单独地）。 这就使得我们可以为不同类型的飞行，对飞机的飞行特性进行调整。 如何调整这些映射曲线可以参考 [这篇指南](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (搜索 *Programmable Throttle Curves* 和 *Programmable Pitch Curves*)。
 
-The mixer definition begins with:
+混控器的定义的开头如下：
 
     H: <number of swash-plate servos, either 3 or 4>
     T: <throttle setting at thrust: 0%> <25%> <50%> <75%> <100%>
     P: <collective pitch at thrust: 0%> <25%> <50%> <75%> <100%>
     
 
-`T:` defines the points for the throttle-curve. `P:` defines the points for the pitch-curve. Both curves contain five points in the range between 0 and 10000. For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
+`T：` 定义了油门曲线的控制点。 `P：` 定义了总距曲线的控制点。 Both curves contain five points in the range between 0 and 10000. For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
 
 This is followed by lines for each of the swash-plate servos (either 3 or 4) in the following form:
 
