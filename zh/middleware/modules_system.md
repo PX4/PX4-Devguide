@@ -141,7 +141,7 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 
-This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
+通过设置 SENS_EN_THERMAL 参数或者命令行接口，可以使得该任务在运行启动脚本时就开始工作。
 
 ### 使用 {#heater_usage}
 
