@@ -117,11 +117,11 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 ### 描述
 
-Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
+用于显示启动控制台消息的命令行工具 需要注意的是，NuttX系统的工作队列和系统日志输出都未被捕捉到。
 
 ### 举例
 
-Keep printing all messages in the background:
+持续在后台打印所有消息。
 
     dmesg -f &
     
@@ -130,20 +130,20 @@ Keep printing all messages in the background:
 
     dmesg <command> [arguments...]
      Commands:
-         [-f]        Follow: wait for new messages
+         [-f]        等待新的消息
     
 
 ## heater
 
-Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
+源码：[drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
-### Description
+### 描述
 
 Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 
 This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
 
-### Usage {#heater_usage}
+### 使用 {#heater_usage}
 
     heater <command> [arguments...]
      Commands:
@@ -151,7 +151,7 @@ This task can be started at boot from the startup scripts by setting SENS_EN_THE
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## land_detector
