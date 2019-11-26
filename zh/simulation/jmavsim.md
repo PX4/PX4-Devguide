@@ -138,7 +138,7 @@ JMAVSim也常用做多机仿真，更多请参考：[JMAVSim多机当真](../sim
 
 ### java.long.NoClassDefFoundError
 
-If you see an error similar to the one below, it's likely that you're using a Java version later than 8:
+如果你遇到如下的错误，原因可能是你的 Java 版本高于8：
 
     Exception in thread "main" java.lang.NoClassDefFoundError: javax/vecmath/Tuple3d
     at java.base/java.lang.Class.forName0(Native Method)
@@ -159,20 +159,20 @@ If you see an error similar to the one below, it's likely that you're using a Ja
     at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:499)
     
 
-For more info check [this GitHub issue](https://github.com/PX4/Firmware/issues/9557).
+更多详情，请查阅 [GitHub issue](https://github.com/PX4/Firmware/issues/9557) 。
 
-The solution is to install the Java 8, as shown in the following sections.
+解决方法是安装 Java 8 ，如下各小节所示。
 
-#### Ubuntu:
+#### Ubuntu：
 
     sudo apt install openjdk-8-jdk
-    sudo update-alternatives --config java # choose 8
+    sudo update-alternatives --config java # 选择Java 8 的指令
     rm -rf Tools/jMAVSim/out
     
 
-#### macOS
+#### Mac系统：
 
-Either [download Oracle Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or use Brew:
+要么直接下载 </a>Oracle Java 8 要么使用Brew下载：</p> 
 
     brew tap caskroom/versions
     brew cask install java8
@@ -203,14 +203,14 @@ Either [download Oracle Java 8](https://www.oracle.com/technetwork/java/javase/d
     at me.drton.jmavsim.Simulator.main(Simulator.java:678)
     
 
-If you see this error, try this workaround:
+如果遇到类似错误，可以尝试如下解决方法：
 
-Edit the **accessibility.properties** file:
+通过下面命令，修改 **accessibility.properties** 文件：
 
     sudo gedit /etc/java-8-openjdk/accessibility.properties
     
 
-and comment out the line indicated below:
+并注释下面所指示的一行：
 
     #assistive_technologies=org.GNOME.Acessibility.AtkWrapper
     
