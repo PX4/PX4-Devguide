@@ -83,13 +83,13 @@ Module to provide persistent storage for the rest of the system in form of a sim
 
 It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
 
-### Implementation
+### 实现
 
 Reading and writing a single item is always atomic. If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
 
 **DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
 
-### Usage {#dataman_usage}
+### 使用 {#dataman_usage}
 
     dataman <command> [arguments...]
      Commands:
