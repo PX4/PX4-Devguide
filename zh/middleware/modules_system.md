@@ -87,19 +87,19 @@
 
 单个数据的读取和写入是原子操作。 如果需要对多个数据进行原子操作的读取/修改，模块会使用 `dm_lock` 对每个类型的数据添加一个额外的锁定。
 
-**DM_KEY_FENCE_POINTS** 和 **DM_KEY_SAFE_POINTS**项：第一个数据元素是一个 `mission_stats_entry_s`结构体，用来存储这些类型的数据的数量。 这些项在每一次通讯过程中都会进行原子更新(与mavlink 任务管理器)。 During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
+**DM_KEY_FENCE_POINTS** 和 **DM_KEY_SAFE_POINTS**项：第一个数据元素是一个 `mission_stats_entry_s`结构体，用来存储这些类型的数据的数量。 这些项在每一次通讯过程中都会进行原子更新(与mavlink 任务管理器)。 在程序运行时，导航模块会尝试去锁定地理围栏，如果失败的话，就不会去检查是否越界了地理围栏。
 
 ### 使用 {#dataman_usage}
 
     dataman <command> [arguments...]
      Commands:
        start
-         [-f <val>]  Storage file
+         [-f <val>]  存储文件
                      values: <file>
-         [-r]        Use RAM backend (NOT persistent)
-         [-i]        Use FLASH backend
+         [-r]        使用RAM后端(非持续)
+         [-i]        使用FLASH后端
     
-     The options -f, -r and -i are mutually exclusive. If nothing is specified, a
+     -f, -r 和 -i 选项是互斥的。 If nothing is specified, a
      file 'dataman' is used
     
        poweronrestart Restart dataman (on power on)
