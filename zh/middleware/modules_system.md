@@ -99,16 +99,16 @@
          [-r]        使用RAM后端(非持续)
          [-i]        使用FLASH后端
     
-     -f, -r 和 -i 选项是互斥的。 If nothing is specified, a
-     file 'dataman' is used
+     -f, -r 和 -i 选项是互斥的。 如果未指定后端，
+    那么就默认使用文件 'dataman' 
     
-       poweronrestart Restart dataman (on power on)
+       poweronrestart 重启 dataman (处于开机 power on 状态时)
     
-       inflightrestart Restart dataman (in flight)
+       inflightrestart 重启 dataman (处于飞行状态时)
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## dmesg
