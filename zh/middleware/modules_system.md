@@ -77,11 +77,11 @@
 该模块通过基于C语言的API以简单数据库的形式为系统的其他部分提供持续性存储功能。 支持多种后端：
 
 - 文件(比如 在SD卡上)
-- FLASH(如果飞控板支持)
+- FLASH(需要飞控板支持)
 - FRAM
-- RAM (this is obviously not persistent)
+- RAM(暂时性的存储)
 
-It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
+可存储不同类型的结构化数据：任务航点、任务状态和地理围栏。 Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
 
 ### 实现
 
