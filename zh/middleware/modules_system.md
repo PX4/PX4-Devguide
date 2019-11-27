@@ -74,10 +74,10 @@
 
 ### 描述
 
-Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
+该模块通过基于C语言的API以简单数据库的形式为系统的其他部分提供持续性存储功能。 支持多种后端：
 
-- a file (eg. on the SD card)
-- FLASH (if the board supports it)
+- 文件(比如 在SD卡上)
+- FLASH(如果飞控板支持)
 - FRAM
 - RAM (this is obviously not persistent)
 
