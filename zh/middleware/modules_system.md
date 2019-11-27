@@ -81,11 +81,11 @@
 - FRAM
 - RAM(暂时性的存储)
 
-可存储不同类型的结构化数据：任务航点、任务状态和地理围栏。 Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
+可存储不同类型的结构化数据：任务航点、任务状态和地理围栏。 每种类型都有一个特定的数据类型和固定的最大存储数，从而可以实现对数据的快速随机访问。
 
 ### 实现
 
-Reading and writing a single item is always atomic. If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
+单个数据的读取和写入是原子操作。 If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
 
 **DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
 
