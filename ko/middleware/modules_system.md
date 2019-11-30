@@ -25,6 +25,23 @@ It runs in its own thread and polls on the currently selected gyro topic.
        status        print status info
     
 
+## camera_feedback
+
+Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/src/modules/camera_feedback)
+
+### Description
+
+### Usage {#camera_feedback_usage}
+
+    camera_feedback <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## commander
 
 Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
