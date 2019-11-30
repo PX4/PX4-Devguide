@@ -1,26 +1,5 @@
 # Modules Reference: Controller
 
-## ODULE_NAM
-Source: [modules/mc_rate_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_rate_control)
-
-
-### Description
-This implements the multicopter rate controller. It takes rate setpoints (in acro mode
-via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
-
-The controller has a PID loop for angular rate error.
-
-
-### Usage {#ODULE_NAM_usage}
-```
-ODULE_NAM <command> [arguments...]
- Commands:
-   start
-
-   stop
-
-   status        print status info
-```
 ## fw_att_control
 Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
 
@@ -33,6 +12,8 @@ fw_att_control is the fixed wing attitude controller.
 ```
 fw_att_control <command> [arguments...]
  Commands:
+   start
+     [vtol]      VTOL mode
 
    stop
 
@@ -51,6 +32,7 @@ fw_pos_control_l1 is the fixed wing position controller.
 fw_pos_control_l1 <command> [arguments...]
  Commands:
    start
+     [vtol]      VTOL mode
 
    stop
 
@@ -79,6 +61,7 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 mc_att_control <command> [arguments...]
  Commands:
    start
+     [vtol]      VTOL mode
 
    stop
 
@@ -101,6 +84,29 @@ logging.
 mc_pos_control <command> [arguments...]
  Commands:
    start
+     [vtol]      VTOL mode
+
+   stop
+
+   status        print status info
+```
+## mc_rate_control
+Source: [modules/mc_rate_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_rate_control)
+
+
+### Description
+This implements the multicopter rate controller. It takes rate setpoints (in acro mode
+via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+
+The controller has a PID loop for angular rate error.
+
+
+### Usage {#mc_rate_control_usage}
+```
+mc_rate_control <command> [arguments...]
+ Commands:
+   start
+     [vtol]      VTOL mode
 
    stop
 
