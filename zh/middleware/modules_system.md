@@ -25,28 +25,45 @@
        status        打印状态信息
     
 
-## commander
+## camera_feedback
 
-源码： [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
+Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/src/modules/camera_feedback)
 
 ### 描述
 
-该模块包含飞行模式切换和失效保护状态机。
+### Usage {#camera_feedback_usage}
 
-### 使用 {#commander_usage}
+    camera_feedback <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
+## commander
+
+Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
+
+### 描述
+
+The commander module contains the state machine for mode switching and failsafe behavior.
+
+### Usage {#commander_usage}
 
     commander <command> [arguments...]
      Commands:
        start
-         [-h]        使能 HIL 模式
+         [-h]        Enable HIL mode
     
-       calibrate     传感器校准
+       calibrate     Run sensor calibration
          mag|accel|gyro|level|esc|airspeed Calibration type
     
-       check         飞行前检查
+       check         Run preflight checks
     
        arm
-         [-f]        强制准备开始(不进行飞行前检查)
+         [-f]        Force arming (do not run preflight checks)
     
        disarm
     
@@ -54,96 +71,96 @@
     
        land
     
-       transition    垂直起降转换
+       transition    VTOL transition
     
-       mode          改变飞行模式
+       mode          Change flight mode
          manual|acro|offboard|stabilized|rattitude|altctl|posctl|auto:mission|auto:l
                      oiter|auto:rtl|auto:takeoff|auto:land|auto:precland Flight mode
     
        lockdown
-         [off]       关闭锁定
+         [off]       Turn lockdown off
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## dataman
 
-源码： [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
+Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
-### 描述
+### Description
 
-该模块通过基于C语言的API以简单数据库的形式为系统的其他部分提供持续性存储功能。 支持多种后端：
+Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
 
 - 文件(比如 在SD卡上)
 - FLASH(需要飞控板支持)
 - FRAM
 - RAM(暂时性的存储)
 
-可存储不同类型的结构化数据：任务航点、任务状态和地理围栏。 每种类型都有一个特定的数据类型和固定的最大存储数，从而可以实现对数据的快速随机访问。
+It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
 
-### 实现
+### Implementation
 
-单个数据的读取和写入是原子操作。 如果需要对多个数据进行原子操作的读取/修改，模块会使用 `dm_lock` 对每个类型的数据添加一个额外的锁定。
+Reading and writing a single item is always atomic. If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
 
-**DM_KEY_FENCE_POINTS** 和 **DM_KEY_SAFE_POINTS**项：第一个数据元素是一个 `mission_stats_entry_s`结构体，用来存储这些类型的数据的数量。 这些项在每一次通讯过程中都会进行原子更新(与mavlink 任务管理器)。 在程序运行时，导航模块会尝试去锁定地理围栏，如果失败的话，就不会去检查是否越界了地理围栏。
+**DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
 
-### 使用 {#dataman_usage}
+### Usage {#dataman_usage}
 
     dataman <command> [arguments...]
      Commands:
        start
-         [-f <val>]  存储文件
+         [-f <val>]  Storage file
                      values: <file>
-         [-r]        使用RAM后端(非持续)
-         [-i]        使用FLASH后端
+         [-r]        Use RAM backend (NOT persistent)
+         [-i]        Use FLASH backend
     
-     -f, -r 和 -i 选项是互斥的。 如果未指定后端，
-    那么就默认使用文件 'dataman' 
+     The options -f, -r and -i are mutually exclusive. If nothing is specified, a
+     file 'dataman' is used
     
-       poweronrestart 重启 dataman (处于开机 power on 状态时)
+       poweronrestart Restart dataman (on power on)
     
-       inflightrestart 重启 dataman (处于飞行状态时)
+       inflightrestart Restart dataman (in flight)
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## dmesg
 
-源码：[systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
+Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
 
-### 描述
+### Description
 
-用于显示启动控制台消息的命令行工具 需要注意的是，NuttX系统的工作队列和系统日志输出都未被捕捉到。
+Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
 
-### 举例
+### Examples
 
-持续在后台打印所有消息。
+Keep printing all messages in the background:
 
     dmesg -f &
     
 
-### 使用 {#dmesg_usage}
+### Usage {#dmesg_usage}
 
     dmesg <command> [arguments...]
      Commands:
-         [-f]        等待新的消息
+         [-f]        Follow: wait for new messages
     
 
 ## heater
 
-源码：[drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
+Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
 ### 描述
 
-这个模块将以后台进程的形式在低优先级工作队列中周期性运行，从而实现将 IMU 的温度调节到设定值。
+Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 
-通过设置 SENS_EN_THERMAL 参数或者命令行接口，可以使得该任务在运行启动脚本时就开始工作。
+This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
 
-### 使用 {#heater_usage}
+### Usage {#heater_usage}
 
     heater <command> [arguments...]
      Commands:
@@ -151,18 +168,18 @@
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## land_detector
 
-源码：[modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
+Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
 
-### 描述
+### Description
 
 Module to detect the freefall and landed state of the vehicle, and publishing the `vehicle_land_detected` topic. Each vehicle type (multirotor, fixedwing, vtol, ...) provides its own algorithm, taking into account various states, such as commanded thrust, arming state and vehicle motion.
 
-### 实现
+### Implementation
 
 Every type is implemented in its own class with a common base class. The base class maintains a state (landed, maybe_landed, ground_contact). Each possible state is implemented in the derived classes. A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
 
@@ -176,7 +193,7 @@ Every type is implemented in its own class with a common base class. The base cl
 
 The module runs periodically on the HP work queue.
 
-### 使用 {#land_detector_usage}
+### Usage {#land_detector_usage}
 
     land_detector <command> [arguments...]
      Commands:
@@ -430,11 +447,11 @@ Play system tune #2:
 
 Source: [systemcmds/work_queue](https://github.com/PX4/Firmware/tree/master/src/systemcmds/work_queue)
 
-### 描述
+### Description
 
-用于显示工作队列状态的命令行工具。
+Command-line tool to show work queue status.
 
-### 使用 {#work_queue_usage}
+### Usage {#work_queue_usage}
 
     work_queue <command> [arguments...]
      Commands:
