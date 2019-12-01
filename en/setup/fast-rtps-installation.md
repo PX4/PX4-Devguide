@@ -18,7 +18,6 @@ For more information see: [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middlewa
 Fast RTPS is installed as part of the PX4 developer environment on some platforms:
 
 * [Development Environment on Mac](../setup/dev_env_mac.md) (FastRTPS included in common tools)
-* [Development Environment on Linux](../setup/dev_env_linux.md) (FastRTPS included in install ROS install script but not NuttX/Simulator script)
 * [Development Environment on Windows > Bash on Windows](../setup/dev_env_windows_bash_on_win.md) (FastRTPS included in install script)
 
 The instruction below are useful for adding FastRTPS support in other environments.
