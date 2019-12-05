@@ -199,7 +199,7 @@ The same also applies for the reference frame of the external pose. You have to 
 ```
 If the reference frame has the z axis pointing upwards you can attached it without any rotation (yaw=0, pitch=0, roll=0) to the `odom` frame. The name of `external_pose_parent_frame` has to match the frame_id of the odometry message.
 
-> **Note** When using the MAVROS odometry plugin, it is important that nobody is publishing a tf transformation between the external pose's reference and child frame. This might break the tf tree.
+> **Note** When using the MAVROS *odom* plugin, it is important that no other node is publishing a transform between the external pose's reference and child frame. This might break the *tf* tree.
 
 ## Specific System Setups {#setup_specific_systems}
 
