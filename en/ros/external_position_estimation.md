@@ -185,14 +185,14 @@ ROS uses ENU frames as convention, therefore position feedback must be provided 
 If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. 
 With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and MAVROS will take care of NED conversions.
 
-The MAVROS odometry plugin makes it easy to handle the coordinate frames. It uses ROS's tf package. Your external pose system might have a completely different frame convention that does not match the one of PX4. The body frame of the external pose estimate can depend on how you set the body frame in the MOCAP software or on how you mount the VIO sensor on the drone. The MAVROS odometry plugin needs to know how the external pose's child frame is oriented with respect to either the FCU's FRD or FLU body frame known by MAVROS. You therefore have to add the external pose's body frame to the tf tree. This can be done by including an adapted version of the following line into your ROS launchfile. 
+The MAVROS odometry plugin makes it easy to handle the coordinate frames. It uses ROS's tf package. Your external pose system might have a completely different frame convention that does not match the one of PX4. The body frame of the external pose estimate can depend on how you set the body frame in the MOCAP software or on how you mount the VIO sensor on the drone. The MAVROS odometry plugin needs to know how the external pose's child frame is oriented with respect to either the airframe's FRD or FLU body frame known by MAVROS. You therefore have to add the external pose's body frame to the tf tree. This can be done by including an adapted version of the following line into your ROS launch file.
 
 ```
   <node pkg="tf" type="static_transform_publisher" name="tf_baseLink_externalPoseChildFrame"
         args="0 0 0 <yaw> <pitch> <roll> base_link <external_pose_child_frame> 1000"/>
 ```
 Make sure that you change the values of yaw, pitch and roll such that it properly attaches the external pose's body frame to the `base_link` or `base_link_frd`. Have a look at the [tf package](http://wiki.ros.org/tf#static_transform_publisher) for further help on how to specify the transformation between the frames. You can use rviz to check if you attached the frame right. The name of the `external_pose_child_frame` has to match the child_frame_id of your `nav_msgs/Odometry` message.
-The same also applies for the reference frame of the external pose. You have to attach the reference frame of the external pose as child to the either the `odom` or `odom_frd` frame. Adapt therefore the following code line accordingly.
+The same also applies for the reference frame of the external pose. You have to attach the reference frame of the external pose as child to either the `odom` or `odom_frd` frame. Adapt therefore the following code line accordingly.
 ```
   <node pkg="tf" type="static_transform_publisher" name="tf_odom_externalPoseParentFrame"
         args="0 0 0 <yaw> <pitch> <roll> odom <external_pose_parent_frame> 1000"/>
@@ -274,3 +274,5 @@ Increase the value of the left stick and the robot will take off,
 put it back to the middle right after. Check if it is able to keep its position.
 
 If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
+
+### VIO First Flight
