@@ -191,7 +191,7 @@ The MAVROS odometry plugin makes it easy to handle the coordinate frames. It use
   <node pkg="tf" type="static_transform_publisher" name="tf_baseLink_externalPoseChildFrame"
         args="0 0 0 <yaw> <pitch> <roll> base_link <external_pose_child_frame> 1000"/>
 ```
-Make sure that you change the values of yaw, pitch and roll such that it properly attaches the external pose's body frame to the `base_link` or `base_link_frd`. Have a look at the [tf package](http://wiki.ros.org/tf#static_transform_publisher) for further help on how to specify the transformation between the frames. You can use rviz to check if you attached the frame right. The name of the `external_pose_child_frame` has to match the child_frame_id of your `nav_msgs/Odometry` message.
+Make sure that you change the values of the orientation such that it properly attaches the external pose's body frame to the `base_link`. Have a look at the [tf package](http://wiki.ros.org/tf#static_transform_publisher) for further help on how to specify the transformation between the frames. You can use *Rviz* to check if you attached the frame right. The name of the `external_pose_child_frame` has to match the child_frame_id of your [`nav_msgs/Odometry`](http://docs.ros.org/melodic/api/nav_msgs/html/msg/Odometry.html) message.
 The same also applies for the reference frame of the external pose. You have to attach the reference frame of the external pose as child to the either the `odom` or `odom_frd` frame. Adapt therefore the following code line accordingly.
 ```
   <node pkg="tf" type="static_transform_publisher" name="tf_odom_externalPoseParentFrame"
