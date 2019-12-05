@@ -251,7 +251,7 @@ The instructions below show how to do so for MoCap and VIO systems
 Be sure to perform the following checks before your first flight:
 
 * Set the PX4 parameter `MAV_ODOM_LP` to 1. PX4 will therefore stream back the received external pose as MAVLink [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) messages.
-* Check this MAVLink message with e.g. the Analyze Widget of *QGroundControl*. In order to do this, yaw the vehicle until the quaternion of the ODOMETRY message is very close to a unit quaterion. (w=1, x=y=z=0)
+* It is recommended to check these MAVLink messages with e.g. the *Analyze* Widget of *QGroundControl*. In order to do this, yaw the vehicle until the quaternion of the ODOMETRY message is very close to a unit quaternion. (w=1, x=y=z=0)
 * At this point the body frame is aligned with the reference frame of the external pose system. If you do not manage to get a quaternion close to the unit quaternion without rolling or pitching your vehicle, your frame probably still have a pitch or roll offset. Do not proceed if this is the case and check your coordinate frames again.
 * Once aligned you can pick the vehicle up from the ground and you should see the position's z coordinate decrease. Moveing the vehilce in forward direction, should increase the position's x coordinate. While moving the vehicle to the right should increase the y coordinate. In the case you send also linear velocities from the external pose system, you should also check the linear velocities. Check that the linear velocities are in expressed in the FRD body frame.
 * Set the PX4 parameter `MAV_ODOM_LP` back to 0. Therefore the ODOMETRY message will contain now the fused estimate coming from the estimator.
