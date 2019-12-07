@@ -60,7 +60,7 @@ For a multicopter things are a bit different: control 0 (roll) is connected to a
 * 1: gimbal pitch
 * 2: gimbal yaw
 * 3: gimbal shutter
-* 4: reserved
+* 4: camera zoom
 * 5: reserved
 * 6: reserved
 * 7: reserved (parachute, -1..1)
