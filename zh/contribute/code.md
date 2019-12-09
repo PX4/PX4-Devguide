@@ -1,8 +1,8 @@
 # 源代码管理
 
-## Branching Model
+## 分支模型
 
-The PX4 project uses a three-branch Git branching model:
+PX4 项目使用三分支 Git 模型：
 
 - [master](https://github.com/px4/firmware/tree/master) is by default unstable and sees rapid development.
 - [beta](https://github.com/px4/firmware/tree/beta) has been thoroughly tested. It's intended for flight testers.
