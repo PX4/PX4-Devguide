@@ -48,27 +48,21 @@ PX4 使用 [asty](http://astyle.sourceforge.net/) 进行代码格式化。 有�
 
 请对所有详细的更改使用描述、多段提交消息。 即使结构安排得很好，从一行摘要中看得出，但也提供了详尽的细节。
 
-    组成部分：在一个句子中解释这一更改。 Fixes #1234
+    组成部分：在一个句子中解释这一更改。 修复 #1234
     
-    Prepend the software component to the start of the summary
-    line, either by the module name or a description of it.
-    (e.g. "mc_att_ctrl" or "multicopter attitude controller").
+    将软件组件添加到摘要行的开头，或者通过模块名称或它的描述。
+    (例如，"mc_att_ctrl" 或 "multicopter 姿态控制器")。
     
-    If the issue number is appended as <Fixes #1234>, Github
-    will automatically close the issue when the commit is
-    merged to the master branch.
+    如果问题编号作为<Fixes #1234>添加，Github 将在提交合并到主分支时自动关闭问题。
     
-    The body of the message can contain several paragraphs.
-    Describe in detail what you changed. Link issues and flight
-    logs either related to this fix or to the testing results
-    of this commit.
+    电文正文可以包含几个段落。
+    详细描述您的变更。 链接问题和飞行日志或与此项提交的测试结果有关联。
     
-    Describe the change and why you changed it, avoid to
-    paraphrase the code change (Good: "Adds an additional
-    safety check for vehicles with low quality GPS reception".
-    Bad: "Add gps_reception_check() function").
+    描述这个变化以及你为什么做了修改，而不是只有代码更改内容 (很好: "为低质量GPS 接收的车辆添加额外
+    安全检查"。
+    坏: "添加 gps_reception_check() 函数").
     
-    Reported-by: Name <email@px4.io>
+    已上报：名字 <email@px4.io>
     
 
 **Use **`git commit -s`** to sign off on all of your commits.** This will add `signed-off-by:` with your name and email as the last line.
