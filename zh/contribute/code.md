@@ -36,19 +36,19 @@ PX4 使用 [asty](http://astyle.sourceforge.net/) 进行代码格式化。 有�
   - API 记录在 [源代码](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381)。 
   - 使用的良好例子包括在 [应用程序/模块模板](../apps/module_template.md) 以及从模块引用链接的文件。
 
-- We encourage other in-source documentation *where it adds value/is not redundant*.
+- 我们鼓励其它源文档 *添加必要的值*。
   
-  > **Tip** Developers should name C++ entities (classes, functions, variables etc.) such that their purpose can be inferred - reducing the need for explicit documentation.
+  > **Tip** 开发者应命名C++ 实体 (类、函数、变量等)，从而可以推断其目的――减少对明确文档的需求。
   
-  - Do not add documentation that can trivially be assumed from C++ entity names.
-  - Commonly you may want to add information about corner cases and error handling.
-  - [Doxgyen](http://www.doxygen.nl/) tags should be used if documentation is needed: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`. A good example of usage is [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h).
+  - 不要添加可以从 C++ 实体名称零碎地推断出的文档。
+  - 通常您可能想要添加关于 corner cases 和错误处理的信息。
+  - [Doxgyen](http://www.doxygen.nl/)如果需要文件，应使用标签：`@class`，`@file`，`@param`，`@return`，`@var`，`@see`，`@note`，`@note`。 一个很好的用法例子是 [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h)。
 
-## Commits and Commit Messages
+## 提交和提交消息
 
-Please use descriptive, multi-paragraph commit messages for all non-trivial changes. Structure them well so they make sense in the one-line summary but also provide full detail.
+请对所有详细的更改使用描述、多段提交消息。 即使结构安排得很好，从一行摘要中看得出，但也提供了详尽的细节。
 
-    Component: Explain the change in one sentence. Fixes #1234
+    组成部分：在一个句子中解释这一更改。 Fixes #1234
     
     Prepend the software component to the start of the summary
     line, either by the module name or a description of it.
