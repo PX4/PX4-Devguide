@@ -169,6 +169,22 @@ The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.p
 
 #### 跨编译器生成
 
+Set the IP (or hostname) of your RPi using:
+
+```sh
+export AUTOPILOT_HOST=192.168.X.X
+```
+
+or
+
+```sh
+export AUTOPILOT_HOST=pi_hostname.domain
+```
+
+> **Note** The value of the environment variable should be set before the build, or `make upload` will fail to find your RPi.
+
+Build the executable file:
+
 ```sh
 cd Firmware
 make emlid_navio2_cross # for cross-compiler build
@@ -176,13 +192,7 @@ make emlid_navio2_cross # for cross-compiler build
 
 The "px4" executable file is in the directory **build/emlid_navio2_cross/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
-Then set the IP (or hostname) of your RPi using:
-
-```sh
-export AUTOPILOT_HOST=192.168.X.X
-```
-
-And upload it with:
+Then upload it with:
 
 ```sh
 cd Firmware
@@ -322,7 +332,7 @@ adb shell reboot
 Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html) are covered in:
 
 - [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
-- [OcPoC PX4 构建页](https://aerotenna.readme.io/docs/px4-setup)
+- [OcPoC PX4 Setup Page](https://aerotenna.readme.io/docs/px4-setup)
 
 ### 基于 QuRT / Snapdragon 的飞控板
 
@@ -476,148 +486,147 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
 
 **VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
 
-- **VENDOR:** 飞控板制造商：`px4`，`aerotenna`，`airmind`，`atlflight`，`auav`，`beaglebone`，`intel`，`nxp`，`parrot`等。 Pixhawk 系列飞控板对应 `PX4`。
-- **MODEL：** *飞控板模型</1 >"模型 "：`sitl`、`fmu-v2`、`fmu-v3`、`fmu-v4`、`fmu-v5`、`navio2` 等。</li> 
+- **VENDOR:** The manufacturer of the board: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp`, `parrot`, etc. The vendor name for Pixhawk series boards is `px4`.
+- **MODEL:** The *board model* "model": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2`, etc.
+- **VARIANT:** Indicates particular configurations: e.g. `rtps`, `lpe`, which contain components that are not present in the `default` configuration. Most commonly this is `default`, and may be omitted.
+
+> **Tip** You can get a list of *all* available `CONFIGURATION_TARGET` options using the command below: 
+> 
+>     sh
+>       make list_config_targets
+
+**VIEWER_MODEL_DEBUGGER:**
+
+- **VIEWER:** This is the simulator ("viewer") to launch and connect: `gazebo`, `jmavsim` <!-- , ?airsim -->
+
+- **MODEL:** The *vehicle* model to use (e.g. `iris` (*default*), `rover`, `tailsitter`, etc), which will be loaded by the simulator. The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](..\simulation\README.md#scripts) to select appropriate parameters.
+
+- **DEBUGGER:** Debugger to use: `none` (*default*), `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. For more information see [Simulation Debugging](../debug/simulation_debugging.md).
+
+> **Tip** You can get a list of *all* available `VIEWER_MODEL_DEBUGGER` options using the command below: 
+> 
+>     sh
+>       make px4_sitl list_vmd_make_targets
+
+Notes:
+
+- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`.
+- You can use three underscores if you want to specify a default value between two other settings. For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
+- You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
+
+The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
+
+Additional make targets are discussed in the following sections (list is not exhaustive):
+
+### 二进制文件大小剖析 {#bloaty_compare_master}
+
+The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
+
+> **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
+
+*Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/Dockerfile_nuttx) install *bloaty* as shown:
+
+    git clone --recursive https://github.com/google/bloaty.git /tmp/bloaty \
+        && cd /tmp/bloaty && cmake -GNinja . && ninja bloaty && cp bloaty /usr/local/bin/ \
+        && rm -rf /tmp/*
     
-    - **VARIANT:**特定配置：例如 `rtps`、`lpe`，其中包含 `默认` 配置中不存在的组件。 最常见的是 `default`，可以省略。</ul> 
+
+The example below shows how you might see the impact of removing the *mpu9250* driver from `px4_fmu-v2_default`. First it locally sets up a build without the driver:
+
+```sh
+ % git diff
+diff --git a/boards/px4/fmu-v2/default.cmake b/boards/px4/fmu-v2/default.cmake
+index 40d7778..2ce7972 100644
+--- a/boards/px4/fmu-v2/default.cmake
++++ b/boards/px4/fmu-v2/default.cmake
+@@ -36,7 +36,7 @@ px4_add_board(
+                imu/l3gd20
+                imu/lsm303d
+                imu/mpu6000
+
+-               imu/mpu9250
++               #imu/mpu9250
+                #iridiumsbd
+                #irlock
+                #magnetometer # all available magnetometer drivers
+```
+
+Then use the make target, specifying the target build to compare (`px4_fmu-v2_default` in this case):
+
+```sh
+% make px4_fmu-v2_default bloaty_compare_master
+...
+...
+...
+     VM SIZE                                                                                        FILE SIZE
+ --------------                                                                                  --------------
+  [DEL]     -52 MPU9250::check_null_data(unsigned int*, unsigned char)                               -52  [DEL]
+  [DEL]     -52 MPU9250::test_error()                                                                -52  [DEL]
+  [DEL]     -52 MPU9250_gyro::MPU9250_gyro(MPU9250*, char const*)                                    -52  [DEL]
+  [DEL]     -56 mpu9250::info(MPU9250_BUS)                                                           -56  [DEL]
+  [DEL]     -56 mpu9250::regdump(MPU9250_BUS)                                                        -56  [DEL]
+...                                        -336  [DEL]
+  [DEL]    -344 MPU9250_mag::_measure(ak8963_regs)                                                  -344  [DEL]
+  [DEL]    -684 MPU9250::MPU9250(device::Device*, device::Device*, char const*, char const*, cha    -684  [DEL]
+  [DEL]    -684 MPU9250::init()                                                                     -684  [DEL]
+  [DEL]   -1000 MPU9250::measure()                                                                 -1000  [DEL]
+ -41.3%   -1011 [43 Others]                                                                        -1011 -41.3%
+  -1.0% -1.05Ki [Unmapped]                                                                       +24.2Ki  +0.2%
+  -1.0% -10.3Ki TOTAL                                                                            +14.9Ki  +0.1%
+```
+
+This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
+
+## Firmware Version & Git Tags {#firmware_version}
+
+The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
+
+![Firmware info](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
+
+These are extracted at build time from the active *git tag* for your repo tree. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
+
+> **Warning** If you use a different git tag format, versions information may not be displayed properly.
+
+## Troubleshooting {#troubleshooting}
+
+### General Build Errors
+
+Many build problems are caused by either mismatching submodules or an incompletely cleaned-up build environment. Updating the submodules and doing a `distclean` can fix these kinds of errors:
+
+    git submodule update --recursive
+    make distclean
     
-    > **Tip** You can get a list of *all* available `CONFIGURATION_TARGET` options using the command below: 
-    > 
-    >     sh
-    >       make list_config_targets
-    
-    **VIEWER_MODEL_DEBUGGER:**
-    
-    - **VIEWER:**这是启动和连接的模拟器（"查看器"）：`gazebo`, `jmavsim` <!-- , ?airsim -->
-    
-    - **MODEL:**要使用的 *载具* 模型（例如 `iris` (*default*)、`rover`、`tailsitter` 等），该模型将由模拟器加载。 The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](..\simulation\README.md#scripts) to select appropriate parameters.
-    
-    - **DEBUGGER:**要使用的调试器：`none` (*default*)、`ide`、`gdb`、`lldb`、`ddd`、`valgrind`、`callgrind`。 有关详细信息，请参阅 < 0>Simulation 调试 </0 >。
-    
-    > **Tip** You can get a list of *all* available `VIEWER_MODEL_DEBUGGER` options using the command below: 
-    > 
-    >     sh
-    >       make px4_sitl list_vmd_make_targets
-    
-    Notes:
-    
-    - `CONFIGURATION_TARGET` 和 `VIEWER_MODEL_DEBUGGER` 中的大多数值都有默认值, 因此是可选的。 比如，`gazebo` 相当于 `gazebo_iris` 或 `gazebo_iris_none` 。
-    - 如果要在其他两个设置之间指定默认值，可以使用三个下划线。 例如，`gazebo___gdb` 等效于 `gazebo_iris_gdb`。
-    - 您可以使用 `VIEWER_MODEL_DEBUGGER` 的 `none` 值启动 PX4 并等待模拟器。 For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
-    
-    The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
-    
-    Additional make targets are discussed in the following sections (list is not exhaustive):
-    
-    ### 二进制文件大小剖析 {#bloaty_compare_master}
-    
-    The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
-    
-    > **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
-    
-    *Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/Dockerfile_nuttx) install *bloaty* as shown:
-    
-        git clone --recursive https://github.com/google/bloaty.git /tmp/bloaty \
-            && cd /tmp/bloaty && cmake -GNinja . && ninja bloaty && cp bloaty /usr/local/bin/ \
-            && rm -rf /tmp/*
-        
-    
-    The example below shows how you might see the impact of removing the *mpu9250* driver from `px4_fmu-v2_default`. First it locally sets up a build without the driver:
-    
-    ```sh
-     % git diff
-    diff --git a/boards/px4/fmu-v2/default.cmake b/boards/px4/fmu-v2/default.cmake
-    index 40d7778..2ce7972 100644
-    --- a/boards/px4/fmu-v2/default.cmake
-    +++ b/boards/px4/fmu-v2/default.cmake
-    @@ -36,7 +36,7 @@ px4_add_board(
-                    imu/l3gd20
-                    imu/lsm303d
-                    imu/mpu6000
-    
-    -               imu/mpu9250
-    +               #imu/mpu9250
-                    #iridiumsbd
-                    #irlock
-                    #magnetometer # all available magnetometer drivers
-    ```
-    
-    Then use the make target, specifying the target build to compare (`px4_fmu-v2_default` in this case):
-    
-    ```sh
-    % make px4_fmu-v2_default bloaty_compare_master
-    ...
-    ...
-    ...
-         VM SIZE                                                                                        FILE SIZE
-     --------------                                                                                  --------------
-      [DEL]     -52 MPU9250::check_null_data(unsigned int*, unsigned char)                               -52  [DEL]
-      [DEL]     -52 MPU9250::test_error()                                                                -52  [DEL]
-      [DEL]     -52 MPU9250_gyro::MPU9250_gyro(MPU9250*, char const*)                                    -52  [DEL]
-      [DEL]     -56 mpu9250::info(MPU9250_BUS)                                                           -56  [DEL]
-      [DEL]     -56 mpu9250::regdump(MPU9250_BUS)                                                        -56  [DEL]
-    ...                                        -336  [DEL]
-      [DEL]    -344 MPU9250_mag::_measure(ak8963_regs)                                                  -344  [DEL]
-      [DEL]    -684 MPU9250::MPU9250(device::Device*, device::Device*, char const*, char const*, cha    -684  [DEL]
-      [DEL]    -684 MPU9250::init()                                                                     -684  [DEL]
-      [DEL]   -1000 MPU9250::measure()                                                                 -1000  [DEL]
-     -41.3%   -1011 [43 Others]                                                                        -1011 -41.3%
-      -1.0% -1.05Ki [Unmapped]                                                                       +24.2Ki  +0.2%
-      -1.0% -10.3Ki TOTAL                                                                            +14.9Ki  +0.1%
-    ```
-    
-    This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
-    
-    ## Firmware Version & Git Tags {#firmware_version}
-    
-    The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
-    
-    ![Firmware info](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
-    
-    These are extracted at build time from the active *git tag* for your repo tree. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
-    
-    > **Warning** If you use a different git tag format, versions information may not be displayed properly.
-    
-    ## Troubleshooting {#troubleshooting}
-    
-    ### General Build Errors
-    
-    Many build problems are caused by either mismatching submodules or an incompletely cleaned-up build environment. Updating the submodules and doing a `distclean` can fix these kinds of errors:
-    
-        git submodule update --recursive
-        make distclean
-        
-    
-    ### Flash overflowed by XXX bytes
-    
-    The `region 'flash' overflowed by XXXX bytes` error indicates that the firmware is too large for the target hardware platform. This is common for `make px4_fmu-v2_default` builds, where the flash size is limited to 1MB.
-    
-    If you're building the *vanilla* master branch, the most likely cause is using an unsupported version of GCC. In this case, install the version specified in the [Developer Toolchain](../setup/dev_env.md) instructions.
-    
-    If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. In this case you will need to remove any drivers/modules that you don't need from the build.
-    
-    ### macOS: Too many open fileserror {#macos_open_files}
-    
-    MacOS allows a default maximum of 256 open files in all running processes. The PX4 build system opens a large number of files, so you may exceed this number.
-    
-    The build toolchain will then report `Too many open files` for many files, as shown below:
-    
-    ```sh
-    /usr/local/Cellar/gcc-arm-none-eabi/20171218/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/bin/ld: cannot find NuttX/nuttx/fs/libfs.a: Too many open files
-    ```
-    
-    The solution is to increase the maximum allowed number of open files (e.g. to 300). You can do this in the macOS *Terminal* for each session:
-    
-    - Run this script [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh), or
-    - Enter this command: 
-            sh
-            ulimit -S -n 300
-    
-    ### macOS Catalina: Problem running cmake
-    
-    As of macOS Catalina 10.15.1 there may be problems when trying to build the simulator with *cmake*. If you have build problems on this platform then try run the following command in your terminal:
-    
-    ```sh
-    xcode-select --install
-    sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /usr/local/include/
-    ```
+
+### Flash overflowed by XXX bytes
+
+The `region 'flash' overflowed by XXXX bytes` error indicates that the firmware is too large for the target hardware platform. This is common for `make px4_fmu-v2_default` builds, where the flash size is limited to 1MB.
+
+If you're building the *vanilla* master branch, the most likely cause is using an unsupported version of GCC. In this case, install the version specified in the [Developer Toolchain](../setup/dev_env.md) instructions.
+
+If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. In this case you will need to remove any drivers/modules that you don't need from the build.
+
+### macOS: Too many open fileserror {#macos_open_files}
+
+MacOS allows a default maximum of 256 open files in all running processes. The PX4 build system opens a large number of files, so you may exceed this number.
+
+The build toolchain will then report `Too many open files` for many files, as shown below:
+
+```sh
+/usr/local/Cellar/gcc-arm-none-eabi/20171218/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/bin/ld: cannot find NuttX/nuttx/fs/libfs.a: Too many open files
+```
+
+The solution is to increase the maximum allowed number of open files (e.g. to 300). You can do this in the macOS *Terminal* for each session:
+
+- Run this script [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh), or
+- Enter this command: 
+        sh
+        ulimit -S -n 300
+
+### macOS Catalina: Problem running cmake
+
+As of macOS Catalina 10.15.1 there may be problems when trying to build the simulator with *cmake*. If you have build problems on this platform then try run the following command in your terminal:
+
+```sh
+xcode-select --install
+sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /usr/local/include/
+```

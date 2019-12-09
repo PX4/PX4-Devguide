@@ -19,7 +19,7 @@ PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或�
 * Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board_defaults) 
   * 如果在飞控板平台目录下可以找到 **init/rc.board** 文件，则针对该飞控板平台的初始化文件将会自动包含在启动脚本中。
   * 该文件用于启动仅存在于特定主板上的传感器 (和其他东西)。 它也被用于完成对飞控板的默认参数、 UART 映射关系和其它特殊情况的设定。
-  * 对于 FMUv5 飞控板而言你可以在该文件内看到所有的 Pixhawk 4 传感器都被启动了，该文件还设置了一个较大的 LOGGER_BUF。同时，在 AUTOCNF （初始设置）这一部分该文件还会设定 [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) 这一参数。
+  * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF. 
 
 此外，在整个代码库中，每个飞控板都还有一些其它的配置文件：
 
@@ -44,7 +44,7 @@ The following example uses FMUv5 as it is a recent [reference configuration](../
 * 基准的 FMUv5 配置文件位于：[/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5)。
 * 针对该飞控板的头文件位于：[/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h)。 
 * NuttX 操作系统配置（由 Nuttx 的文本配置界面（menuconfig ）生成）位于： [/boards/px4/fmu-v5/nuttx-config/nsh/defconfig](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/nsh/defconfig)。
-* 编译配置位于： [PX4/Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)。
+* Build configuration: [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
 
 在移植到新的飞控板上时我们需要复现上述文件的功能，也许还会需要复现更多文件的功能。
 
@@ -80,7 +80,7 @@ sudo make install
 
 基于 Linux 的飞控板不包含任何 操作系统和内核的配置。 这些配置已经由可用于飞控板的 Linux 镜像提供了（操作系统需要原生支持惯性传感器）。
 
-* [cmake/configs/posix\_rpi\_cross.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/posix_rpi_cross.cmake) - RPI 交叉编译。
+* [boards/px4/raspberrypi/cross.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/raspberrypi/cross.cmake) - RPI cross-compilation. 
 
 ## 中间件组件和配置
 
@@ -90,13 +90,13 @@ sudo make install
 
 * 启动脚本位于： [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs)。
 * 操作系统配置是默认 Linux 镜像的一部分（TODO: 需要提供 LINUX 镜像文件位置和程序烧写指南）。
-* PX4 中间件配置文件位于： [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards)。 TODO: 需要添加总线配置（BUS CONFIG）。
+* The PX4 middleware configuration is located in [src/boards](https://github.com/PX4/Firmware/tree/master/boards). TODO: 需要添加总线配置（BUS CONFIG）。 
 * 驱动：[DriverFramework](https://github.com/px4/DriverFramework)。
 * 参考配置：运行 `make eagle_default` 命令可构建 Snapdragon Flight 的参考配置文件。
 
 ## RC UART 接线建议
 
-通常建议使用单独的 RX 和 TX 针脚来连接 RC 遥控器和微型控制器。 如果 RX 和 TX 连在了一起，那么 UART 需要设置为单线模式以防止出现争用。 这可以用过对飞控板的配置文件和 manifest 文件进行更改来实现。 示例可见： [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/src/drivers/boards/px4fmu-v5/manifest.c)。
+通常建议使用单独的 RX 和 TX 针脚来连接 RC 遥控器和微型控制器。 如果 RX 和 TX 连在了一起，那么 UART 需要设置为单线模式以防止出现争用。 这可以用过对飞控板的配置文件和 manifest 文件进行更改来实现。 One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/src/manifest.c).
 
 ## 官方支持的硬件
 

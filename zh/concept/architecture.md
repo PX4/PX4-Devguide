@@ -66,7 +66,7 @@ again. -->
 
 由于各模块都需要等待消息的更新，所以通常而言硬件的驱动程序决定着模块的更新速度。 大部分 IMU 驱动以 1kHz 的速率进行采样，以 250Hz 的速率发布传感器数据。 而系统的其它部分，比如说 `制导控制器 （navigator）`， 并不需要这么高的更新速率，因而运行的更新速度要慢的多。
 
-The message update rates can be [inspected](../middleware/uorb.md) in real-time on the system by running `uorb top`.
+消息的更新速率可以使用 `uorb top` 命令实时 [查看](../middleware/uorb.md) 。
 
 ## 运行时的环境
 

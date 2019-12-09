@@ -2,21 +2,38 @@
 
 ## battery_status
 
-Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
+源码： [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
 
 ### 描述
 
-The provided functionality includes:
+模块提供的功能包括：
 
-- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
+- 从 ADC 驱动读取电池状态（通过 ioctl 接口），并且发布到主题 `battery_status`。
 
-### Implementation
+### 实现
 
-It runs in its own thread and polls on the currently selected gyro topic.
+模块运行在它自己的线程中，并轮询当前选定的陀螺仪主题。
 
-### Usage {#battery_status_usage}
+### 使用 {#battery_status_usage}
 
     battery_status <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        打印状态信息
+    
+
+## camera_feedback
+
+Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/src/modules/camera_feedback)
+
+### 描述
+
+### Usage {#camera_feedback_usage}
+
+    camera_feedback <command> [arguments...]
      Commands:
        start
     
@@ -29,7 +46,7 @@ It runs in its own thread and polls on the currently selected gyro topic.
 
 Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
 
-### Description
+### 描述
 
 The commander module contains the state machine for mode switching and failsafe behavior.
 
@@ -76,10 +93,10 @@ Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/module
 
 Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
 
-- a file (eg. on the SD card)
-- FLASH (if the board supports it)
+- 文件(比如 在SD卡上)
+- FLASH(需要飞控板支持)
 - FRAM
-- RAM (this is obviously not persistent)
+- RAM(暂时性的存储)
 
 It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
 
@@ -115,7 +132,7 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
 
-### 描述
+### Description
 
 Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
 
@@ -137,7 +154,7 @@ Keep printing all messages in the background:
 
 Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
-### Description
+### 描述
 
 Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 
@@ -276,6 +293,29 @@ Or if already running:
        status        print status info
     
 
+## rc_update
+
+Source: [modules/rc_update](https://github.com/PX4/Firmware/tree/master/src/modules/rc_update)
+
+### Description
+
+The rc_update module handles RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
+
+### Implementation
+
+To reduce control latency, the module is scheduled on input_rc publications.
+
+### Usage {#rc_update_usage}
+
+    rc_update <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## replay
 
 Source: [modules/replay](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
@@ -346,7 +386,6 @@ The sensors module is central to the whole system. It takes low-level output fro
 The provided functionality includes:
 
 - Read the output from the sensor drivers (`sensor_gyro`, etc.). If there are multiple of the same type, do voting and failover handling. Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the topics is `sensor_combined`, used by many parts of the system.
-- Do RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
 - Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
 - Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
 

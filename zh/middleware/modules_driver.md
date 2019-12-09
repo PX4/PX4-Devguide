@@ -1,20 +1,20 @@
 # 模块参考：驱动
 
-Subcategories:
+子分类
 
-- [Distance Sensor](modules_driver_distance_sensor.md)
+- [距离传感器](modules_driver_distance_sensor.md)
 
 ## atxxxx
 
-Source: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
+源码位置: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
 
 ### 描述
 
-OSD driver for the ATXXXX chip that is mounted on the OmnibusF4SD board for example.
+例如，安装在OmnibusF4SD板子上的用于OSD驱动的ATXXXX芯片
 
-It can be enabled with the OSD_ATXXXX_CFG parameter.
+他可以通过OSD_ATXXXX_CFG这个参数来使能
 
-### Usage {#atxxxx_usage}
+### 用法 {#atxxxx_usage}
 
     atxxxx <command> [arguments...]
      Commands:
@@ -28,23 +28,23 @@ It can be enabled with the OSD_ATXXXX_CFG parameter.
 
 ## batt_smbus
 
-Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
+源码位置: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
 
-### Description
+### 描述
 
-Smart battery driver for the BQ40Z50 fuel gauge IC.
+用于智能电池的BQ40Z50电量统计芯片
 
-### Examples
+### 示例
 
-To write to flash to set parameters. address, number_of_bytes, byte0, ... , byteN
+通过写入flash来设置它的参数。 地址，字节数，字节0，... ，字节N
 
     batt_smbus -X write_flash 19069 2 27 0
     
 
-### Usage {#batt_smbus_usage}
+### 用法 {#batt_smbus_usage}
 
-    batt_smbus <command> [arguments...]
-     Commands:
+    batt_smbus <命令> [参数...]
+     命令列表:
        start
          [-X]        BATT_SMBUS_BUS_I2C_EXTERNAL
          [-T]        BATT_SMBUS_BUS_I2C_EXTERNAL1
@@ -52,64 +52,59 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
          [-I]        BATT_SMBUS_BUS_I2C_INTERNAL
          [-A]        BATT_SMBUS_BUS_ALL
     
-       man_info      Prints manufacturer info.
+       man_info      打印厂商信息
     
-       unseal        Unseals the devices flash memory to enable write_flash
-                     commands.
+       unseal        解锁设备的flash来使能 write_flash 命令
     
-       seal          Seals the devices flash memory to disbale write_flash commands.
+       seal          锁住设备的flash来失能 write_flash 命令.
     
-       suspend       Suspends the driver from rescheduling the cycle.
+       suspend       从调度循环中挂起该设备
     
-       resume        Resumes the driver from suspension.
+       resume        将该设备从挂起状态恢复
     
-       write_flash   Writes to flash. The device must first be unsealed with the
-                     unseal command.
-         [address]   The address to start writing.
-         [number of bytes] Number of bytes to send.
-         [data[0]...data[n]] One byte of data at a time separated by spaces.
+       write_flash   写入flash。 必须先通过unseal 命令来解锁flash。
+         [address]   写入的起始地址
+         [number of bytes] 需要写入的字节数
+         [data[0]...data[n]] 具体的字节数据，使用空格隔开
     
-       stop
+       stop          停止设备
     
-       status        print status info
+       status        打印状态信息
     
 
 ## dshot
 
-Source: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
+源码位置: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
 
-### Description
+### 描述
 
-This is the DShot output driver. It is similar to the fmu driver, and can be used as drop-in replacement to use DShot as ESC communication protocol instead of PWM.
+这是DShot输出的驱动。 它跟fmu的驱动很相似，可以简单地替换掉，来实现使用DShot与调速器通讯而不是PWM。
 
-It supports:
+它支持：
 
 - DShot150, DShot300, DShot600, DShot1200
-- telemetry via separate UART and publishing as esc_status message
-- sending DShot commands via CLI
+- 通过独立的串口遥控，并且发布esc_status消息
+- 通过命令行接口发送 DShot 命令
 
-### Examples
+### 示例
 
-Permanently reverse motor 1:
+设置电机1永久反向：
 
     dshot reverse -m 1
     dshot save -m 1
     
 
-After saving, the reversed direction will be regarded as the normal one. So to reverse again repeat the same commands.
+保存之后，设置的反向之后的转向将被认为是正常时候的转向， 所以如果需要再次反转方向只需要再次重复相同的命令。
 
-### Usage {#dshot_usage}
+### 用法 {#dshot_usage}
 
-    dshot <command> [arguments...]
-     Commands:
-       start         Start the task (without any mode set, use any of the mode_*
-                     cmds)
-    
-     All of the mode_* commands will start the module if not running already
+    dshot <命令> [参数...]
+     命令列表:
+       start         启动任务 (不带任何模式集, 使用mode_*类的命令)，所有的 mode_*类的命令都会启动这个模块，如果这个模块还没有启动的话
     
        mode_gpio
     
-       mode_pwm      Select all available pins as PWM
+       mode_pwm      选择所有可能的PWM引脚
     
        mode_pwm8
     
@@ -135,64 +130,64 @@ After saving, the reversed direction will be regarded as the normal one. So to r
     
        mode_pwm1
     
-       telemetry     Enable Telemetry on a UART
-         <device>    UART device
+       telemetry     在某个串口上使能遥控功能
+         <device>    UART 设备节点
     
-       reverse       Reverse motor direction
-         [-m <val>]  Motor index (1-based, default=all)
+       reverse       反转马达方向
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       normal        Normal motor direction
-         [-m <val>]  Motor index (1-based, default=all)
+       normal        转到默认的方向
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       save          Save current settings
-         [-m <val>]  Motor index (1-based, default=all)
+       save          保存当前的设置
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       3d_on         Enable 3D mode
-         [-m <val>]  Motor index (1-based, default=all)
+       3d_on         使能3D模式
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       3d_off        Disable 3D mode
-         [-m <val>]  Motor index (1-based, default=all)
+       3d_off        关闭3D模式
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep1         Send Beep pattern 1
-         [-m <val>]  Motor index (1-based, default=all)
+       beep1         发送蜂鸣模式 1
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep2         Send Beep pattern 2
-         [-m <val>]  Motor index (1-based, default=all)
+       beep2         发送蜂鸣模式 2
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep3         Send Beep pattern 3
-         [-m <val>]  Motor index (1-based, default=all)
+       beep3         发送蜂鸣模式 3
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep4         Send Beep pattern 4
-         [-m <val>]  Motor index (1-based, default=all)
+       beep4         发送蜂鸣模式 4
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       beep5         Send Beep pattern 5
-         [-m <val>]  Motor index (1-based, default=all)
+       beep5         发送蜂鸣模式 5
+         [-m <val>]  马达的编号 (从1开始，默认全部)
     
-       esc_info      Request ESC information
-         -m <val>    Motor index (1-based)
+       esc_info      请求马达的信息
+         -m <val>    马达的编号 (从1开始)
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## fmu
 
-Source: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
+源码位置: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
 
-### Description
+### 描述
 
-This module is responsible for driving the output and reading the input pins. For boards without a separate IO chip (eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
+该模块负责驱动输出引脚或者读取输入引脚。 对于没有独立 IO 芯片的飞控板（例如 Pixracer), 它使用主通道。 On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
 
 It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
 
 The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy. By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder driver. Alternatively, the fmu can be started in one of the capture modes, and then drivers can register a capture callback with ioctl calls.
 
-### Implementation
+### 实现
 
 By default the module runs on a work queue with a callback on the uORB actuator_controls topic.
 
-### Examples
+### 示例
 
 It is typically started with:
 
@@ -468,55 +463,55 @@ Source: [drivers/safety_button](https://github.com/PX4/Firmware/tree/master/src/
 
 This module is responsible for the safety button.
 
-### Usage {#safety_button_usage}
+### 用法 {#safety_button_usage}
 
     safety_button <command> [arguments...]
-     Commands:
-       start         Start the safety button driver
+     命令列表:
+       start         启动该驱动模块
     
 
 ## tap_esc
 
-Source: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
+源码位置: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
 
-### Description
+### 描述
 
-This module controls the TAP_ESC hardware via UART. It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
+该模块通过串口来控制TAP_ESC模块。 它负责监听话题actuator_controls，执行混控并输出给调速器设备。
 
-### Implementation
+### 实现
 
-Currently the module is implementd as a threaded version only, meaning that it runs in its own thread instead of on the work queue.
+目前该模块运行在一个独立的线程中，意思就是它不是在一个工作队列中的模块。
 
-### Example
+### 示例
 
-The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
+这个模块一般使用这个命令来启动: tap_esc start -d /dev/ttyS2 -n <1-8>
 
-### Usage {#tap_esc_usage}
+### 用法 {#tap_esc_usage}
 
-    tap_esc <command> [arguments...]
-     Commands:
-       start         Start the task
-         [-d <val>]  Device used to talk to ESCs
-                     values: <device>
-         [-n <val>]  Number of ESCs
-                     default: 4
+    tap_esc <命令> [参数...]
+     命令列表:
+       start         启动该任务
+         [-d <val>]  与调速器通讯的串口设备节点
+                     值: <设备地址>
+         [-n <val>]  调速器数量
+                     默认: 4
     
 
 ## vmount
 
-Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
+源码位置: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
-### Description
+### 描述
 
 Mount (Gimbal) control driver. It maps several different input methods (eg. RC or MAVLink) to a configured output (eg. AUX channels or MAVLink).
 
 Documentation how to use it is on the [gimbal_control](https://dev.px4.io/en/advanced/gimbal_control.html) page.
 
-### Implementation
+### 实现
 
 Each method is implemented in its own class, and there is a common base class for inputs and outputs. They are connected via an API, defined by the `ControlData` data structure. This makes sure that each input method can be used with each output method and new inputs/outputs can be added with minimal effort.
 
-### Examples
+### 示例
 
 Test the output by setting a fixed yaw angle (and the other axes to 0):
 
@@ -524,7 +519,7 @@ Test the output by setting a fixed yaw angle (and the other axes to 0):
     vmount test yaw 30
     
 
-### Usage {#vmount_usage}
+### 用法 {#vmount_usage}
 
     vmount <command> [arguments...]
      Commands:

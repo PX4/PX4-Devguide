@@ -1,41 +1,41 @@
-# 基于gazebo的多飞行器仿真
+# Gazebo 多机仿真
 
-本主题介绍如何使用 gazebo 和 sitl (仅限 linux) 模拟多架无人机/车辆。
+本文介绍如何使用 Gazebo 仿真器配合软件在环仿真进行多机仿真（仅适用于 Linux ）。
 
-> **注意**如果您不需要 gazebo 或 ros 提供的功能， [ jmavsim的 Multi-车辆仿真](../simulation/multi_vehicle_jmavsim.md)更容易设置。
+> **Tip** 如果您不需要 Gazebo 或 ROS 提供的功能， [ JMAVSim的多机仿真](../simulation/multi_vehicle_jmavsim.md) 更容易设置。
 
-本文演示了一个示例设置, 该设置打开了 gazebo 客户端 界面, 在一个空旷的世界中显示了两个Iris无人机。 然后, 您可以使用 *QGroundControl地面站* 和MAVROS 控制多机, 其方式类似于您控制单机。
+本文给出了演示实例, 打开了 Gazebo 仿真器，在空的的世界中显示了两个 Iris 无人机。 然后, 你可以使用 *QGroundControl* 配合 MAVROS 控制多机, 其使用方式与单机控制类似。
 
-## 要求
+## 仿真前准备
 
-* Current [PX4 ROS/Gazebo development environment](../setup/dev_env_linux_ubuntu.md#rosgazebo) > **Note** At time of writing this is Ubuntu 18.04 with ROS Melodic/Gazebo 9. See also [Gazebo Simulation](../simulation/gazebo.md).
-* [MAVROS 包](http://wiki.ros.org/mavros)
-* 最新 [PX4/Firmware](https://github.com/PX4/Firmware) 的克隆
+* [PX4 ROS/Gazebo 开发环境](../setup/dev_env_linux_ubuntu.md#rosgazebo) **Note** 编写此教程的环境为 Ubuntu 18.04 和 ROS 版本为 Melodic 以及 Gazebo版本为 Gazebo 9 。 也可以看 [Gazebo 仿真](../simulation/gazebo.md)
+* [MAVROS](http://wiki.ros.org/mavros)
+* 克隆最新的 PX4 源码固件。
 
-## 编译和测试
+## 开始仿真
 
-若要编译示例设置, 请按照以下步骤操作:
+构建一个示例设置, 请按照以下步骤操作:
 
-1. 克隆 px4固件代码, 然后编译 sitl 代码 
+1. 克隆 PX4 固件源码, 然后编译 SITL 代码 
       cd Firmware_clone
        git submodule update --init --recursive
        DONT_RUN=1 make px4_sitl_default gazebo
 
-2. Source your environment: 
+2. 配置系统环境变量： 
   
       source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
        export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$(pwd):$(pwd)/Tools/sitl_gazebo
 
-3. Run launch file: ```roslaunch px4 multi_uav_mavros_sitl.launch```
+3. 启动 launch 文件： ```roslaunch px4 multi_uav_mavros_sitl.launch```
   
-  > **注意**您可以在上述 *roslaunch* 中指定 `gui:=false`, 以便在没有 ui 的情况下启动 gazebo。
+  > **Tip** 你可以在上述 *roslaunch* 中指定 `gui:=false` ，以便不启动界面的情况下启动 gazebo。
 
-本指南设置打开了 gazebo 客户端界面, 在一个空旷的世界中显示了两个Iris无人机。
+本指南设置打开了 Gazebo 仿真器界面, 在空世界中显示了两个 Iris 无人机。
 
-然后, 您可以使用 *QGroundControl地面站* 和MAVROS 控制多机, 其方式类似于您控制单机。
+然后, 你可以使用 *QGroundControl* 和 MAVROS 控制多机，控制方式与单机类似。
 
-* *QGroundControl* 中有一个下拉菜单，你可以选择关注的飞行器。
-* MAVROS要求你在topic/servic路径之前包含合适的命名空间，（例如，你会用到*/uav1/mavros/mission/push*）。
+* *QGroundControl* 中有一个下拉选项，你可以选择指定的飞行器。
+* MAVROS 要求你在 topic/service 路径之前包含合适的命名空间，（例如，你会用到 */uav1/mavros/mission/push* ）。
 
 ## 发生了什么？
 

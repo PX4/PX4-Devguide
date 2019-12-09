@@ -12,6 +12,8 @@ fw_att_control is the fixed wing attitude controller.
 
     fw_att_control <command> [arguments...]
      Commands:
+       start
+         [vtol]      VTOL mode
     
        stop
     
@@ -31,6 +33,7 @@ fw_pos_control_l1 is the fixed wing position controller.
     fw_pos_control_l1 <command> [arguments...]
      Commands:
        start
+         [vtol]      VTOL mode
     
        stop
     
@@ -43,23 +46,20 @@ Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### Description
 
-This implements the multicopter attitude and rate controller. It takes attitude setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+This implements the multicopter attitude controller. It takes attitude setpoints (`vehicle_attitude_setpoint`) as inputs and outputs a rate setpoint.
 
-The controller has two loops: a P loop for angular error and a PID loop for angular rate error.
+The controller has a P loop for angular error
 
 Publication documenting the implemented Quaternion Attitude Control: Nonlinear Quadrocopter Attitude Control (2013) by Dario Brescianini, Markus Hehn and Raffaello D'Andrea Institute for Dynamic Systems and Control (IDSC), ETH Zurich
 
 https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf
-
-### Implementation
-
-To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
 
 ### Usage {#mc_att_control_usage}
 
     mc_att_control <command> [arguments...]
      Commands:
        start
+         [vtol]      VTOL mode
     
        stop
     
@@ -81,6 +81,29 @@ The controller doesn't use Euler angles for its work, they are generated only fo
     mc_pos_control <command> [arguments...]
      Commands:
        start
+         [vtol]      VTOL mode
+    
+       stop
+    
+       status        print status info
+    
+
+## mc_rate_control
+
+Source: [modules/mc_rate_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_rate_control)
+
+### Description
+
+This implements the multicopter rate controller. It takes rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+
+The controller has a PID loop for angular rate error.
+
+### Usage {#mc_rate_control_usage}
+
+    mc_rate_control <command> [arguments...]
+     Commands:
+       start
+         [vtol]      VTOL mode
     
        stop
     

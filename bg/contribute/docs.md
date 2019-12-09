@@ -22,6 +22,8 @@ The documentation team reviews submitted pull requests and will either merge it 
 
 ## Adding New Content - Big Changes
 
+If you want to add new pages or images that can't easily be done through the Github interface. In this case you make changes in the same way as you would for code changes: use the *git* toolchain to get the code, modify it as needed, test that it renders properly using the Gitbook client, create a branch for your changes and create a pull request (PR) to pull it back into the documentation. The following instructions explain how.
+
 ### What Goes Where?
 
 The *Developer Guide* is for documentation that is relevant to *software developers*. This includes users who need to:

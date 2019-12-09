@@ -67,6 +67,7 @@ struct message_header_s {
 - 'B' ：标记 bitset 报文。
   
       struct ulog_message_flag_bits_s {
+        struct message_header_s;
         uint8_t compat_flags[8];
         uint8_t incompat_flags[8];
         uint64_t appended_offsets[3]; ///< file offset(s) for appended data if appending bit is set

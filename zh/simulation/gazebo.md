@@ -1,4 +1,4 @@
-# Gazebo 仿真模拟
+# Gazebo 仿真
 
 <!-- Check if updates required - ie that following are fixed:
 
@@ -7,25 +7,25 @@
 - Find out actual gstreamer dependencies and update both this doc and build scripts - should be done when the camera plugin is a default.
 -->
 
-[ Gazebo ](http://gazebosim.org)是用于自主机器人的强大3D模拟环境，其特别适用于测试物体避障和计算机视觉。 本页描述了它与 SITL 和单一设备的使用。 Gazebo 也可以与[ HITL ](../simulation/hitl.md)和[多机仿真](../simulation/multi-vehicle-simulation.md)一起使用。
+[ Gazebo ](http://gazebosim.org)是用于自主机器人的强大3D模拟环境，其特别适用于测试物体避障和计算机视觉。 本文描述了如何使用它来进行单机的软件在环仿真。 Gazebo 也可以适用于 [硬件在环仿真](../simulation/hitl.md) 和 [多机仿真](../simulation/multi-vehicle-simulation.md) 。
 
 **支持机型：**四旋翼 ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) 和 [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo))，六旋翼 (Typhoon h480)，[通用四旋翼 delta VTOL 无人机](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol)，尾翼，飞机，探测车，潜艇（即将推出！）
 
-> **Tip** Gazebo 通常与 [ROS](../ros/README.md) 一起使用，该 API 是一种用于自动设备控制的工具。 如果您计划将 PX4 与 ROS 一起使用，则应该[follow the instructions here](../simulation/ros_interface.md)安装 Gazebo 作为 ROS 的一部分！
+> **Tip** Gazebo 通常与 [ROS](../ros/README.md) 一起使用，板外自动飞行控制的 API 工具包。 如果您计划将 PX4 与 ROS 一起使用，则应该先安装 Gazebo [在这看说明教程](../simulation/ros_interface.md) 。
 
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
 {% mermaid %} graph LR; Gazebo-->Plugin; Plugin-->MAVLink; MAVLink-->SITL; {% endmermaid %}
 
-> **Note**有关模拟器，模拟环境和可用模拟配置（例如支持的机型）的一般信息，请参见[Simulation](/simulation/README.md)。
+> **Note** 有关仿真器，仿真环境和仿真变量配置（例如支持的机型）的一般信息，请参见 [仿真](/simulation/README.md)。
 
 ## 安装
 
-Gazebo 9 setup is included in our standard build instructions:
+Gazebo 9 的安装在标准的环境编译已有说明。
 
 * ** macOS：** [ Mac 上的开发环境](../setup/dev_env_mac.md)
-* **Linux:** [Development Environment on Linux (Ubuntu 16.04) > jMAVSim/Gazebo Simulation](../setup/dev_env_linux_ubuntu.md#sim_nuttx)
-* ** Windows：**不支持。
+* **Linux:** [在Linux（Ubuntu 16.04）开发环境 -> jMAVSim/Gazebo 仿真](../setup/dev_env_linux_ubuntu.md#sim_nuttx)
+* ** Windows：**还不支持。
 
 其他安装说明可在 [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1) 上找到。
 
@@ -70,7 +70,7 @@ make px4_sitl gazebo_plane
 
 ![飞行器](../../assets/gazebo/plane.png)
 
-### 标准构型的 VTOL
+### 标准垂起
 
 ```sh
 make px4_sitl gazebo_standard_vtol
@@ -78,7 +78,7 @@ make px4_sitl gazebo_standard_vtol
 
 ![标准构型的 VTOL](../../assets/gazebo/standard_vtol.png)
 
-### 尾座式 VTOL
+### 尾座式垂起
 
 ```sh
 make px4_sitl gazebo_tailsitter
@@ -86,7 +86,7 @@ make px4_sitl gazebo_tailsitter
 
 ![尾座式 VTOL](../../assets/gazebo/tailsitter.png)
 
-### 阿克曼车 （UGV/Rover） {#ugv}
+### Ackerman 车 （UGV/Rover） {#ugv}
 
 ```sh
 make px4_sitl gazebo_rover
@@ -104,11 +104,11 @@ make px4_sitl gazebo_hippocampus
 
 ## 改变仿真环境中的世界
 
-当前的默认世界是位于目录 [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds) 中的 **iris.world**。 **iris.world** 中默认使用高程图生成地面景物。 这样生成的地面可能会导致使用距离传感器时较为困难， 如果使用高程图会导致任何出乎意料的结果，我们建议你将 **iris.model** 中的模型设定从 `uneven_ground` 改为 `asphalt_plane`.
+当前的默认世界是位于目录 [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds) 中的 **iris.world**。 **iris.world** 中默认使用高度图生成地面景物。 这样生成的地面可能会导致使用距离传感器时较为困难， 如果使用高程图会导致任何出乎意料的结果，我们建议你将 **iris.model** 中的模型默认设定从 `uneven_ground` 改为 `asphalt_plane`.
 
-## 把飞机飞上天
+## 简单上天
 
-> **Note** 如遇到任何错误请参考： [Installing Files and Code](../setup/dev_env.md) 。
+> **Note** 如遇到任何错误请参考： [工具链安装](../setup/dev_env.md) 。
 
 该命令最终将得到如下 PX4 控制台显示界面：
 
@@ -129,7 +129,7 @@ px4 starting.
 pxh>
 ```
 
-> **Note** 右键单击四旋翼模型允许从上下文菜单启用跟随模式，这样可以方便地将其保持在视图中。
+> **Note** 在 gazebo 中右击四旋翼模型允许从上下文菜单启用跟随模式，这样可以方便地将其保持在视图中。
 
 ![Gazebo UI](../../assets/simulation/gazebo.png)
 
@@ -139,11 +139,11 @@ pxh>
 pxh> commander takeoff
 ```
 
-## 使用/配置选项
+## 可选配置
 
-### Headless 模式
+### 无航向模式
 
-Gazebo 可以在* headless *模式下运行，其中 Gazebo UI 未启动。 这样可以更快地启动并使用更少的系统资源（即，它是运行模拟的更“轻量级”方式）。
+Gazebo 可以在* headless *模式下运行，其中 Gazebo UI 界面未启动的。 这样可以更快地启动并使用更少的系统资源（即，它是运行模拟的更“轻量级”方式）。
 
 只需在正常的* make *命令前加上` HEADLESS=1 `，如下所示：
 
@@ -167,13 +167,13 @@ HEADLESS=1 make px4_sitl gazebo_plane
 
 ### 更改仿真的时间流速
 
-可以使用环境变量 `PX4_SIM_SPEED_FACTOR` 提高或者降低仿真环境的时间流速相对于实际时间流速的大小。
+可以设置环境变量 `PX4_SIM_SPEED_FACTOR` 增长或者缩短仿真环境的时间流速相对于实际时间流速。
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl_default gazebo
     
 
-更多相关信息请参考：[Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed)。
+更多相关信息请参考：[仿真 > 仿真速度快于实际速度](../simulation/README.md#simulation_speed)。
 
 ### 使用游戏手柄
 
@@ -228,29 +228,29 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
     sudo apt-get install $(apt-cache --names-only search ^gstreamer1.0-* | awk '{ print $1 }' | grep -v gstreamer1.0-hybris) -y
     
 
-### How to View Gazebo Video
+### 如何查看 Gazebo 视频流
 
-The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Settings > General** and set **Video Source** to *UDP Video Stream* and **UDP Port** to *5600*:
+最简单的方式就是在 *QGroundControl* 中查看 Gazebo 软件在环仿真 视频流。 只需打开 QGroundControl 中 **软件配置> 通用设置** 找到 **视频源** 选择 *UDP 视频流* 然后 **UDP 端口号** 默认设置为 *5600*：
 
-![QGC Video Streaming Settings for Gazebo](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
+![QGC 视频流在 Gazebo 中的设置](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
 
-The video from Gazebo should then display in *QGroundControl* just as it would from a real camera.
+来自 Gazebo 的视频应该像从真实相机那样显示在* QGroundControl *中。
 
-It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
+也可以使用 *Gstreamer Pipeline* 观看视频。 只需输入如下的命令：
 
     gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
     ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
     
 
-### Gazebo GUI to Start/Stop Video Streaming
+### 在 Gazebo 界面中打开/停止视频流。
 
-> **Note** This feature is supported for Gazebo version 7.
+> **Note** 该特点只支持 Gazebo 7 版本。
 
-Video streaming can be enabled/disabled using the Gazebo UI *Video ON/OFF* button.
+可以使用 Gazebo 界面中的 打开/关闭 按钮来 启用/禁用 视频流。
 
-![Video ON/OFF button](../../assets/gazebo/sitl_video_stream.png)
+![视频 打开/关闭 按钮](../../assets/gazebo/sitl_video_stream.png)
 
-To enable the button:
+如何启用该按钮：
 
 1. 打开要修改的“ world ”文件（例如[&lt;Firmware>/Tools/sitl_gazebo/worlds/typhoon_h480.world ](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world)）。
 2. 在默认的` world name =“default”`部分中，为` libgazebo_video_stream_widge `添加` gui `部分（如下所示）：
@@ -275,7 +275,7 @@ To enable the button:
     
     > **Tip** 此部分出现在** typhoon_h480.world **中 - 您只需要取消注释该部分。
 
-3. 重建 SITL：
+3. 软件在环重新编译：
     
         make clean
         make px4_sitl gazebo_typhoon_h480
@@ -283,9 +283,9 @@ To enable the button:
 
 ## 扩展和定制
 
-To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
+若要扩展或者是自定义仿真接口，编辑 `Tools/sitl_gazebo` 文件夹。 源码也可以在 [sitl_gazebo 库](https://github.com/px4/sitl_gazebo) 上获取。
 
-> **Note** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
+> **Note** 编译系统会强制使用正确的 GIT 子模块，包括仿真器。 他不会覆盖目录中修改的部分。
 
 ## 与 ROS 对接交互
 
@@ -293,5 +293,5 @@ The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the sa
 
 ## 更多信息：
 
-* [另见 Gazebo 模拟。](../simulation/ros_interface.md)
+* [ROS 与 Gazebo 仿真。](../simulation/ros_interface.md)
 * [Gazebo Octomap](../simulation/gazebo_octomap.md)

@@ -118,9 +118,6 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
          [-b <val>]  Baudrate (can also be p:<param_name>)
                      default: 460800
          [-p <val>]  Poll timeout for UART in ms
-         [-u <val>]  Interval in ms to limit the update rate of all sent topics
-                     (0=unlimited)
-                     default: 0
          [-l <val>]  Limit number of iterations until the program exits
                      (-1=infinite)
                      default: 10000
