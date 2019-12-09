@@ -117,6 +117,7 @@ The **DEBUG** has changed and standardised across versions (so no single connect
   This may be used to load a new bootloader or IO firmware.
   It can also be used to debug IO (this is rare).
 
+### FMUv3
 
 ### FMUv3 Pro
 
@@ -125,7 +126,7 @@ FMUv3 Pro (and specifically the ) specifies the [Pixhawk debug port](https://pix
 You can therefore connect to it using a [Dronecode probe](#dronecode_probe) or other cabling or adapter that provides access to the interfaces.
 
 
-### FMUv3 Pro FMUv4/FMUv5
+### FMUv4/FMUv5
 
 FMUv4 and FMUv5 specify the [Pixhawk debug port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug).
 You can therefore connect to it using a [Dronecode probe](#dronecode_probe) or other cabling or adapter that provides access to the interfaces.
