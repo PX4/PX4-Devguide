@@ -65,6 +65,6 @@ PX4 使用 [asty](http://astyle.sourceforge.net/) 进行代码格式化。 有�
     已上报：名字 <email@px4.io>
     
 
-**Use **`git commit -s`** to sign off on all of your commits.** This will add `signed-off-by:` with your name and email as the last line.
+**使用** `git commit -s` ** 来登录您的所有提交。** 这将添加 `签名-退出：`，您的姓名和电子邮件作为最后一行。
 
-This commit guide is based on best practices for the Linux Kernel and other [projects maintained](https://github.com/torvalds/subsurface/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88-L115) by Linus Torvalds.
+本提交指南基于 Linux Kernel 和 Linus Torvald 维护的 [项目的最佳做法](https://github.com/torvalds/subsurface/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88-L115)。
