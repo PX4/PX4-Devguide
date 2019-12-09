@@ -4,11 +4,11 @@
 
 PX4 项目使用三分支 Git 模型：
 
-- [master](https://github.com/px4/firmware/tree/master) is by default unstable and sees rapid development.
-- [beta](https://github.com/px4/firmware/tree/beta) has been thoroughly tested. It's intended for flight testers.
-- [stable](https://github.com/px4/firmware/tree/stable) points to the last release.
+- [master](https://github.com/px4/firmware/tree/master) 默认是不稳定版本， 用于快速开发。
+- [beta](https://github.com/px4/firmware/tree/beta) 经过全面测试。 它是供飞行测试人员使用的。
+- [stable](https://github.com/px4/firmware/tree/stable) 是最新发行版本。
 
-We try to retain a [linear history through rebases](https://www.atlassian.com/git/tutorials/rewriting-history) and avoid the [Github flow](https://guides.github.com/introduction/flow/). However, due to the global team and fast moving development we might resort to merges at times.
+我们试着 [通过重置保留线性历史](https://www.atlassian.com/git/tutorials/rewriting-history)，并且避免 [Github flow](https://guides.github.com/introduction/flow/)。 However, due to the global team and fast moving development we might resort to merges at times.
 
 To contribute new functionality, [sign up for Github](https://help.github.com/articles/signing-up-for-a-new-github-account/), then [fork](https://help.github.com/articles/fork-a-repo/) the repository, [create a new branch](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/), add your changes, and finally [send a pull request](https://help.github.com/articles/using-pull-requests/). Changes will be merged when they pass our [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration) tests.
 
