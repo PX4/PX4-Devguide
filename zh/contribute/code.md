@@ -8,27 +8,27 @@ PX4 项目使用三分支 Git 模型：
 - [beta](https://github.com/px4/firmware/tree/beta) 经过全面测试。 它是供飞行测试人员使用的。
 - [stable](https://github.com/px4/firmware/tree/stable) 是最新发行版本。
 
-我们试着 [通过重置保留线性历史](https://www.atlassian.com/git/tutorials/rewriting-history)，并且避免 [Github flow](https://guides.github.com/introduction/flow/)。 However, due to the global team and fast moving development we might resort to merges at times.
+我们试着 [通过重置保留线性历史](https://www.atlassian.com/git/tutorials/rewriting-history)，并且避免 [Github flow](https://guides.github.com/introduction/flow/)。 然而，由于全球团队和快速的发展，我们可能有时会进行合并。
 
-To contribute new functionality, [sign up for Github](https://help.github.com/articles/signing-up-for-a-new-github-account/), then [fork](https://help.github.com/articles/fork-a-repo/) the repository, [create a new branch](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/), add your changes, and finally [send a pull request](https://help.github.com/articles/using-pull-requests/). Changes will be merged when they pass our [continuous integration](https://en.wikipedia.org/wiki/Continuous_integration) tests.
+要贡献新功能，[注册Github](https://help.github.com/articles/signing-up-for-a-new-github-account/)，然后 [fork](https://help.github.com/articles/fork-a-repo/) 仓库，[创建一个新分支](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/)，添加您的更改，最后 [发送拉取请求](https://help.github.com/articles/using-pull-requests/)。 更改将在通过我们的 [持续整合](https://en.wikipedia.org/wiki/Continuous_integration) 测试时合并。
 
-All code contributions have to be under the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause) and all code must not impose any further constraints on the use.
+所有代码贡献都必须在许可的 [BSD 3 条款的许可证 ](https://opensource.org/licenses/BSD-3-Clause) 下进行，不得对其使用施加任何进一步的限制。
 
-## Code Style Formatting
+## 代码样式格式
 
-PX4 uses [astyle](http://astyle.sourceforge.net/) for code formatting. Valid versions are
+PX4 使用 [asty](http://astyle.sourceforge.net/) 进行代码格式化。 有效版本是
 
-- [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/) (recommended)
+- [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/)（推荐）
 - [astyle 3.0](https://sourceforge.net/projects/astyle/files/astyle/astyle%203.0/)
 - [astyle 3.01](https://sourceforge.net/projects/astyle/files/)
 
-Once installed, formatting can be checked with `./Tools/astyle/check_code_style_all.sh`. The output should be `Format checks passed` on a clean master. If that worked, `make format` can be used in the future to check and format all files automatically.
+一旦安装完毕，格式化可以使用 `.工具/astyle/check_code_style_all.sh`。 一个干净的 master 分支的输出应该是 `格式检查通过`。 如果做到这一点，`制作格式`将来可以自动检查和格式化所有文件。
 
-## In-Source Documentation
+## 源码文档
 
-PX4 developers are encouraged to create appropriate in-source documentation.
+鼓励PX4开发者创建适当的源文档。
 
-> **Note** Source-code documentation standards are not enforced, and the code is currently inconsistently documented. We'd like to do better!
+> **Note** 源代码文件标准没有得到执行，目前该代码的文件记录不一致。 我们想做得更好！
 
 Currently we have two types of source-based documentation:
 
