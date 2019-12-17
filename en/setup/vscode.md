@@ -1,6 +1,6 @@
 # Visual Studio Code IDE (VSCode)
 
-[Visual Studio Code](https://code.visualstudio.com/) is a powerful cross-platform source code editor/IDE that can be used for PX4 development on Linux 18.04 LTS and macOS (Windows support coming soon).
+[Visual Studio Code](https://code.visualstudio.com/) is a powerful cross-platform source code editor/IDE that can be used for PX4 development on Ubuntu 18.04 LTS and macOS (Windows support coming soon).
 
 > **Note** VSCode works on Ubuntu 18.04 configured with the [normal PX4 SITL/NuttX development environment](../setup/dev_env_linux_ubuntu.md).
   Ubuntu 16.04 allows you to build but not debug targets.
