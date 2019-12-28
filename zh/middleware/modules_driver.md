@@ -324,11 +324,52 @@ Initiate warm restart of GPS device
          cold|warm|hot Specify reset type
     
 
+## ina226
+
+Source: [drivers/power_monitor/ina226](https://github.com/PX4/Firmware/tree/master/src/drivers/power_monitor/ina226)
+
+### 描述
+
+Driver for the INA226 power monitor.
+
+Multiple instances of this driver can run simultaneously, if each instance has a separate bus OR I2C address.
+
+For example, one instance can run on Bus 2, address 0x41, and one can run on Bus 2, address 0x43.
+
+If the INA226 module is not powered, then by default, initialization of the driver will fail. To change this, use the -f flag. If this flag is set, then if initialization fails, the driver will keep trying to initialize again every 0.5 seconds. With this flag set, you can plug in a battery after the driver starts, and it will work. Without this flag set, the battery must be plugged in before starting the driver.
+
+### Usage {#ina226_usage}
+
+    ina226 <command> [arguments...]
+     Commands:
+       start         Start a new instance of the driver
+         [-a]        If set, try to start the driver on each availabe I2C bus until
+                     a module is found
+         [-f]        If initialization fails, keep retrying periodically. Ignored if
+                     the -a flag is set. See full driver documentation for more info
+         [-b <val>]  I2C bus (default: use board-specific bus)
+                     default: 0
+         [-d <val>]  I2C Address (Start with '0x' for hexadecimal)
+                     default: 65
+         [-t <val>]  Which battery calibration values should be used (1 or 2)
+                     default: 1
+    
+       stop          Stop one instance of the driver
+         [-b <val>]  I2C bus (default: use board-specific bus)
+                     default: 0
+         [-d <val>]  I2C Address (Start with '0x' for hexadecimal)
+                     default: 65
+    
+       status        Status of every instance of the driver
+    
+       info          Status of every instance of the driver
+    
+
 ## pga460
 
 Source: [drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
 
-### 描述
+### Description
 
 Ultrasonic range finder driver that handles the communication with the device and publishes the distance via uORB.
 
@@ -463,55 +504,55 @@ Source: [drivers/safety_button](https://github.com/PX4/Firmware/tree/master/src/
 
 This module is responsible for the safety button.
 
-### 用法 {#safety_button_usage}
+### Usage {#safety_button_usage}
 
     safety_button <command> [arguments...]
-     命令列表:
-       start         启动该驱动模块
+     Commands:
+       start         Start the safety button driver
     
 
 ## tap_esc
 
-源码位置: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
+Source: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
 
-### 描述
+### Description
 
-该模块通过串口来控制TAP_ESC模块。 它负责监听话题actuator_controls，执行混控并输出给调速器设备。
+This module controls the TAP_ESC hardware via UART. It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
 
-### 实现
+### Implementation
 
-目前该模块运行在一个独立的线程中，意思就是它不是在一个工作队列中的模块。
+Currently the module is implementd as a threaded version only, meaning that it runs in its own thread instead of on the work queue.
 
-### 示例
+### Example
 
-这个模块一般使用这个命令来启动: tap_esc start -d /dev/ttyS2 -n <1-8>
+The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
 
-### 用法 {#tap_esc_usage}
+### Usage {#tap_esc_usage}
 
-    tap_esc <命令> [参数...]
-     命令列表:
-       start         启动该任务
-         [-d <val>]  与调速器通讯的串口设备节点
-                     值: <设备地址>
-         [-n <val>]  调速器数量
-                     默认: 4
+    tap_esc <command> [arguments...]
+     Commands:
+       start         Start the task
+         [-d <val>]  Device used to talk to ESCs
+                     values: <device>
+         [-n <val>]  Number of ESCs
+                     default: 4
     
 
 ## vmount
 
-源码位置: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
+Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
-### 描述
+### Description
 
 Mount (Gimbal) control driver. It maps several different input methods (eg. RC or MAVLink) to a configured output (eg. AUX channels or MAVLink).
 
 Documentation how to use it is on the [gimbal_control](https://dev.px4.io/en/advanced/gimbal_control.html) page.
 
-### 实现
+### Implementation
 
 Each method is implemented in its own class, and there is a common base class for inputs and outputs. They are connected via an API, defined by the `ControlData` data structure. This makes sure that each input method can be used with each output method and new inputs/outputs can be added with minimal effort.
 
-### 示例
+### Examples
 
 Test the output by setting a fixed yaw angle (and the other axes to 0):
 
@@ -519,7 +560,7 @@ Test the output by setting a fixed yaw angle (and the other axes to 0):
     vmount test yaw 30
     
 
-### 用法 {#vmount_usage}
+### Usage {#vmount_usage}
 
     vmount <command> [arguments...]
      Commands:
