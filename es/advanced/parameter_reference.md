@@ -3231,6 +3231,32 @@
   
   <tr>
     <td style="vertical-align: top;">
+      <strong id="COM_ARM_MAG_STR">COM_ARM_MAG_STR</strong> (INT32)
+    </td>
+    
+    <td style="vertical-align: top;">
+      <p>
+        Enable mag strength preflight check
+      </p>
+      
+      <p>
+        <strong>Comment:</strong> Deny arming if the estimator detects a strong magnetic disturbance (check enabled by EKF2_MAG_CHECK)
+      </p>
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+    
+    <td style="vertical-align: top;">
+      Enabled (1)
+    </td>
+    
+    <td style="vertical-align: top;">
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="vertical-align: top;">
       <strong id="COM_ARM_MIS_REQ">COM_ARM_MIS_REQ</strong> (INT32)
     </td>
     
@@ -3268,25 +3294,13 @@
       <p>
         <strong>Comment:</strong> The default uses the arm switch as real switch. If parameter set button gets handled like stick arming.
       </p>
-      
-      <strong>Values:</strong>
-      
-      <ul>
-        <li>
-          <strong>0:</strong> Arm switch is a switch that stays on when armed
-        </li>
-        <li>
-          <strong>1:</strong> Arm switch is a button that only triggers arming and disarming
-        </li>
-      </ul>
     </td>
     
     <td style="vertical-align: top;">
-      0 > 1
     </td>
     
     <td style="vertical-align: top;">
-      0
+      Disabled (0)
     </td>
     
     <td style="vertical-align: top;">
