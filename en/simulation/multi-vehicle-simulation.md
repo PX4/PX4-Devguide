@@ -7,7 +7,22 @@ This topic explains how to simulate multiple UAV vehicles using Gazebo and SITL 
 It demonstrates an example setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world.
 You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle.
 
-## Required
+## Multiple vehicles without ROS
+
+```
+   cd Firmware_clone
+   Tools/gazebo_sitl_multiple_run.sh -m <model> -n <number_of_vehicles>
+```
+
+The `<model>` flag specifies which model to spawn. Currently the following models are supported
+- iris
+- plane
+
+  > **Note** If `-m <model>` is omitted, `iris` model will be launched by deafault.
+
+
+## Launching with ROS
+### Required
 
 * Current [PX4 ROS/Gazebo development environment](../setup/dev_env_linux_ubuntu.md#rosgazebo)
   > **Note** At time of writing this is Ubuntu 18.04 with ROS Melodic/Gazebo 9.
@@ -15,7 +30,7 @@ You can then control the vehicles with *QGroundControl* and MAVROS in a similar 
 * [MAVROS package](http://wiki.ros.org/mavros)
 * a clone of latest [PX4/Firmware](https://github.com/PX4/Firmware)
 
-## Build and Test
+### Build and Test
 
 To build an example setup, follow the step below:
 
@@ -46,7 +61,7 @@ You can control the vehicles with *QGroundControl* or MAVROS in a similar way to
 
 
 
-## What's Happening?
+### What's Happening?
 
 For each simulated vehicle, the following is required:
 
