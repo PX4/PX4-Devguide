@@ -32,8 +32,6 @@ leddar_one <command> [arguments...]
                  default: 25
 
    stop          Stop driver
-
-   test          Test driver (basic functional tests)
 ```
 ## ll40ls
 Source: [drivers/distance_sensor/ll40ls](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ll40ls)
