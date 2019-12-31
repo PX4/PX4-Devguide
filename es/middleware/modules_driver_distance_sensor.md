@@ -35,8 +35,6 @@ Stop driver
     
        stop          Stop driver
     
-       test          Test driver (basic functional tests)
-    
 
 ## ll40ls
 
