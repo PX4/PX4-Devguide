@@ -13,7 +13,7 @@ MacOS is a supported development platform for PX4. The following instructions se
 Increase the maximum allowed number of open files on macOS using the *Terminal* command:
 
 ```sh
-ulimit -S -n 300
+ulimit -S -n 2048
 ```
 
 > **Note** At time of writing (December 2018) the master branch uses more than the default maximum allowed open files on macOS (256 in all running processes). As a *short term solution*, increasing the number of allowed open files to 300 should fix most problems.
