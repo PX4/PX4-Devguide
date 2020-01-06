@@ -115,23 +115,13 @@ cmake \
 
 有关在树莓派上使用 PX4（包括本地构建 PX4）的其他开发人员信息，请参见此处：[Raspberry pi 2/navio2 autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html)。
 
-## Parrot Bebop
-
-开发者使用Parrot Bebop开发之前需要事先按照上面的说明安装[Raspberry Pi Linux Toolchain](#raspberry-pi-hardware)。
-
-然后安装 ADB：
-
-```sh
-sudo apt-get install android-tools-adb -y
-```
-
 ## ROS/Gazebo {#rosgazebo}
 
-本节解释如何安装 [ROS/Gazebo](../ros/README.md) ("Melodic") 以便与PX4一起使用。
+This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") for use with PX4.
 
 > **注：** PX4 已经跟ROS Melodic 在 Ubuntu 18.04 上一同测试过。 ROS Melodic 不适用于Ubuntu 16.04。
 
-安装开发工具链：
+To install the development toolchain:
 
 1. 在bash shell中下载脚本：   
     `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh`
@@ -139,25 +129,25 @@ sudo apt-get install android-tools-adb -y
         bash
         source ubuntu_sim_ros_melodic.sh 随着脚本的运行，可能需要根据提示进行确认。
 
-注：
+Note:
 
 * ROS Melodic 已经默认跟Gazebo9一起安装了。
 * 你的catkin（ROS编译系统）工作空间已经创建在**~/catkin_ws/**中。
 * 脚本中使用的指令来自于ROS的wiki的"Melodic" [Ubuntu page](http://wiki.ros.org/melodic/Installation/Ubuntu)。
 
-## 骁龙飞行平台
+## Snapdragon Flight
 
-骁龙飞控平台的安装已经在PX4的用户指南中提供：
+Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 
 * [开发环境](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
 * [软件安装](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
 * [配置](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
 
-## FastRTPS 安装 {#fast_rtps}
+## FastRTPS installation {#fast_rtps}
 
-[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/)是一个用C++实现的RTPS（实时流传输）协议。 FastRTPS 使用在[RTPS/ROS2接口：PX4-FastRTPS Bridge](../middleware/micrortps.md)上，用以允许PX4 uORB的话题可以与离板的组件共享。
+[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
 
-下面的这些指令可以用来将 FastRTPS 1.7.1安装到你的home目录。
+The following instructions can be used to install the FastRTPS 1.7.1 binaries to your home directory.
 
 ```sh
 wget https://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-7-1/eprosima_fastrtps-1-7-1-linux-tar-gz -O eprosima_fastrtps-1-7-1-linux.tar.gz
@@ -176,10 +166,10 @@ rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
 
 > **注：** 更多一般性的指令，需要额外从源安装的，可以从这里找到：[Fast RTPS installation](../setup/fast-rtps-installation.md)。
 
-## 额外工具
+## Additional Tools
 
-完成编译/仿真开发环境设置后，你可以从 [Additional Tools](../setup/generic_dev_tools.md) 找到一些有用的“通用”开发工具。
+After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
 
-## 后续步骤
+## Next Steps
 
-当您完成了环境建立，可以继续执行编译指令。
+Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
