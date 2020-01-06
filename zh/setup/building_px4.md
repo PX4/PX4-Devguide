@@ -187,16 +187,16 @@ Build the executable file:
 
 ```sh
 cd Firmware
-make emlid_navio2_cross # for cross-compiler build
+make emlid_navio2 # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory **build/emlid_navio2_cross/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
+The "px4" executable file is in the directory **build/emlid_navio2_default/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
 Then upload it with:
 
 ```sh
 cd Firmware
-make emlid_navio2_cross upload # for cross-compiler build
+make emlid_navio2 upload # for cross-compiler build
 ```
 
 Then, connect over ssh and run it with (as root):
