@@ -6,12 +6,13 @@ A different approach is used for simulation with and without ROS.
 
 ## Multiple Vehicle with Gazebo (No ROS) {#no_ros}
 
-To launch multiple vehicles in Gazebo (without ROS) use the following commands in the terminal (from the root of the *Firmware* tree):
+To simulate (up to 10) iris or plane vehicles in Gazebo use the following commands in the terminal (from the root of the *Firmware* tree):
 ```
-Tools/gazebo_sitl_multiple_run.sh [-m <model>] -n <number_of_vehicles>
+Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>]
 ```
 
-The `<model>` flag specifies which model to spawn: `iris` (default), `plane`.
+- `<model>`: The vehicle type/model to spawn: `iris` (default), `plane`.
+- `number_of_vehicles`: The number of vehicles to spawn. Default is 3. Maximum is 10.
 
 
 ### Video: Multiple Multicopter (Iris)
