@@ -244,89 +244,6 @@ To autostart px4, add the following to the file **/etc/rc.local** (adjust it acc
 cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 ```
 
-### Parrot Bebop
-
-Support for the [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.html) is at an early stage and should be used very carefully.
-
-#### Build
-
-```sh
-cd Firmware
-make parrot_bebop
-```
-
-Turn on your Bebop and connect your host machine with the Bebop's wifi. Then, press the power button four times to enable ADB and to start the telnet daemon.
-
-```sh
-make parrot_bebop upload
-```
-
-This will upload the PX4 mainapp into /data/ftp/internal_000/px4/ and create the file /home/root/parameters if not already present. This also uploads the mixer file and the px4.config file into the /home/root/ directory.
-
-#### Run
-
-Connect to the Bebop's wifi and press the power button four times. Next, connect with the Bebop via telnet or adb shell and run the commands below.
-
-```sh
-telnet 192.168.42.1
-```
-
-Kill the Bebop's proprietary driver with
-
-```sh
-kk
-```
-
-and start the PX4 mainapp with:
-
-```sh
-/data/ftp/internal_000/px4/px4 -s /home/root/px4.config /data/ftp/internal_000/px4/
-```
-
-In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors and setup your joystick device.
-
-#### Autostart
-
-To auto-start PX4 on the Bebop at boot, modify the init script `/etc/init.d/rcS_mode_default`. Comment the following line:
-
-    DragonStarter.sh -out2null &
-    
-
-Replace it with:
-
-    echo 1 > /sys/class/gpio/gpio85/value # enables the fan
-    /data/ftp/internal_000/px4/px4 -d -s /home/root/px4.config /data/ftp/internal_000/px4/ >/dev/null &
-    
-
-Enable adb server by pressing the power button 4 times and connect to adb server as described before:
-
-```sh
-adb connect 192.168.42.1:9050
-```
-
-Re-mount the system partition as writeable:
-
-```sh
-adb shell mount -o remount,rw /
-```
-
-In order to avoid editing the file manually, you can use this one: https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
-
-Save the original one and push this one to the Bebop
-
-```sh
-adb shell cp /etc/init.d/rcS_mode_default /etc/init.d/rcS_mode_default_backup
-adb push rcS_mode_default /etc/init.d/
-adb shell chmod 755 /etc/init.d/rcS_mode_default
-```
-
-Sync and reboot:
-
-```sh
-adb shell sync
-adb shell reboot
-```
-
 ### OcPoC-Zynq Mini
 
 Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html) are covered in:
@@ -486,7 +403,7 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
 
 **VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
 
-- **VENDOR:** The manufacturer of the board: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp`, `parrot`, etc. The vendor name for Pixhawk series boards is `px4`.
+- **VENDOR:** The manufacturer of the board: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp`, etc. The vendor name for Pixhawk series boards is `px4`.
 - **MODEL:** The *board model* "model": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2`, etc.
 - **VARIANT:** Indicates particular configurations: e.g. `rtps`, `lpe`, which contain components that are not present in the `default` configuration. Most commonly this is `default`, and may be omitted.
 
