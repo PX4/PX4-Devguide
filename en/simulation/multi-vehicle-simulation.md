@@ -14,6 +14,7 @@ Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>]
 - `<model>`: The vehicle type/model to spawn: `iris` (default), `plane`.
 - `number_of_vehicles`: The number of vehicles to spawn. Default is 3. Maximum is 10.
 
+Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc) and can be accessed from a unique UDP port (14540, 14541, 14542, etc.).
 
 ### Video: Multiple Multicopter (Iris)
 
