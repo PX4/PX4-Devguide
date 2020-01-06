@@ -6,7 +6,7 @@ A different approach is used for simulation with and without ROS.
 
 ## Multiple Vehicle with Gazebo (No ROS) {#no_ros}
 
-To simulate (up to 10) iris or plane vehicles in Gazebo use the following commands in the terminal (from the root of the *Firmware* tree):
+To simulate multiple iris or plane vehicles in Gazebo use the following commands in the terminal (from the root of the *Firmware* tree):
 ```
 Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>]
 ```
@@ -14,7 +14,10 @@ Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>]
 - `<model>`: The vehicle type/model to spawn: `iris` (default), `plane`.
 - `number_of_vehicles`: The number of vehicles to spawn. Default is 3. Maximum is 10.
 
-Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc) and can be accessed from a unique UDP port (14540, 14541, 14542, etc.).
+Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.) and can be accessed from a unique remote offboard UDP port (14540, 14541, 14542, etc.).
+
+> **Note** The 10-vehicle limitation occurs because the 11th vehicle would be allocated a remote offboard UDP port 14550, which is already used for QGC.
+  The `MAV_SYS_ID` and various UDP ports are allocated in the SITL rcS: [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS#L108-L112)
 
 ### Video: Multiple Multicopter (Iris)
 
