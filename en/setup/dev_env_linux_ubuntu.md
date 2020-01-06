@@ -121,17 +121,6 @@ cmake \
 Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 
 
-
-## Parrot Bebop
-
-Developers working with the Parrot Bebop should first install the [Raspberry Pi Linux Toolchain](#raspberry-pi-hardware) as described above.
-
-Then install ADB:
-```sh
-sudo apt-get install android-tools-adb -y
-```
-
-
 ## ROS/Gazebo {#rosgazebo}
 
 This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") for use with PX4.

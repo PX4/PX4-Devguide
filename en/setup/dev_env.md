@@ -10,7 +10,7 @@ Target | Linux (Ubuntu) | Mac | Windows
 --|:--:|:--:|:--:
 **NuttX based hardware:** [Pixhawk Series](https://docs.px4.io/en/flight_controller/pixhawk_series.html), [Crazyflie](https://docs.px4.io/en/flight_controller/crazyflie2.html), [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html) | X | X | X
 [Qualcomm Snapdragon Flight hardware](https://docs.px4.io/en/flight_controller/snapdragon_flight.html) | X | | 
-**Linux-based hardware:** [Raspberry Pi 2/3](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html), [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.html)  | X | | 
+**Linux-based hardware:** [Raspberry Pi 2/3](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html) | X | | 
 **Simulation:** [jMAVSim SITL](../simulation/jmavsim.md) | X | X | X
 **Simulation:** [Gazebo SITL](../simulation/gazebo.md) | X | X | 
 **Simulation:** [ROS with Gazebo](../simulation/ros_interface.md) | X | | 
