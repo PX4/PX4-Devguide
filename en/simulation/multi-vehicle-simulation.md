@@ -1,27 +1,37 @@
 # Multi-Vehicle Simulation with Gazebo
 
 This topic explains how to simulate multiple UAV vehicles using Gazebo and SITL (Linux only).
+A different approach is used for simulation with and without ROS.
 
-> **Tip** If you don't need a feature provided by Gazebo or ROS, [Multi-Vehicle Simulation with JMAVSim](../simulation/multi_vehicle_jmavsim.md) is easier to set up.
 
-It demonstrates an example setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world.
+## Multiple Vehicle with Gazebo (No ROS) {#no_ros}
+
+To launch multiple vehicles in Gazebo (without ROS) use the following commands in the terminal (from the root of the *Firmware* tree):
+```
+Tools/gazebo_sitl_multiple_run.sh [-m <model>] -n <number_of_vehicles>
+```
+
+The `<model>` flag specifies which model to spawn: `iris` (default), `plane`.
+
+
+### Video: Multiple Multicopter (Iris)
+
+{% youtube %}
+https://youtu.be/Mskx_WxzeCk
+{% endyoutube %}
+
+### Video: Multiple Plane
+
+{% youtube %}
+https://youtu.be/aEzFKPMEfjc
+{% endyoutube %}
+
+
+## Multiple Vehicles with ROS and Gazebo {#with_ros}
+
+This example demonstrates a setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world.
 You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle.
 
-## Multiple vehicles without ROS
-
-```
-   cd Firmware_clone
-   Tools/gazebo_sitl_multiple_run.sh -m <model> -n <number_of_vehicles>
-```
-
-The `<model>` flag specifies which model to spawn. Currently the following models are supported
-- iris
-- plane
-
-  > **Note** If `-m <model>` is omitted, `iris` model will be launched by deafault.
-
-
-## Launching with ROS
 ### Required
 
 * Current [PX4 ROS/Gazebo development environment](../setup/dev_env_linux_ubuntu.md#rosgazebo)
