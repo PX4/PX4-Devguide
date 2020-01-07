@@ -297,6 +297,26 @@ logger <command> [arguments...]
 
    status        print status info
 ```
+## pwm_input
+Source: [drivers/pwm_input](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_input)
+
+
+### Description
+Measures the PWM input on AUX5 (or MAIN5) via a timer capture ISR and publishes via the uORB 'pwm_input` message.
+
+
+### Usage {#pwm_input_usage}
+```
+pwm_input <command> [arguments...]
+ Commands:
+   start
+
+   test          prints PWM capture info.
+
+   stop
+
+   status        print status info
+```
 ## rc_update
 Source: [modules/rc_update](https://github.com/PX4/Firmware/tree/master/src/modules/rc_update)
 
