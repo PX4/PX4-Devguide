@@ -4,6 +4,27 @@ Subcategories:
 
 - [Distance Sensor](modules_driver_distance_sensor.md)
 
+## adc
+
+Source: [drivers/adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc)
+
+### Description
+
+ADC driver.
+
+### Usage {#adc_usage}
+
+    adc <command> [arguments...]
+     Commands:
+       start
+    
+       test
+    
+       stop
+    
+       status        print status info
+    
+
 ## atxxxx
 
 Source: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
