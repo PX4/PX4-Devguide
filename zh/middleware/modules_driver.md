@@ -4,17 +4,38 @@
 
 - [距离传感器](modules_driver_distance_sensor.md)
 
-## atxxxx
+## adc
 
-源码位置: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
+Source: [drivers/adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc)
 
 ### 描述
 
-例如，安装在OmnibusF4SD板子上的用于OSD驱动的ATXXXX芯片
+ADC driver.
 
-他可以通过OSD_ATXXXX_CFG这个参数来使能
+### Usage {#adc_usage}
 
-### 用法 {#atxxxx_usage}
+    adc <command> [arguments...]
+     Commands:
+       start
+    
+       test
+    
+       stop
+    
+       status        print status info
+    
+
+## atxxxx
+
+Source: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
+
+### 描述
+
+OSD driver for the ATXXXX chip that is mounted on the OmnibusF4SD board for example.
+
+It can be enabled with the OSD_ATXXXX_CFG parameter.
+
+### Usage {#atxxxx_usage}
 
     atxxxx <command> [arguments...]
      Commands:
@@ -28,23 +49,23 @@
 
 ## batt_smbus
 
-源码位置: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
+Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/drivers/batt_smbus)
 
-### 描述
+### Description
 
-用于智能电池的BQ40Z50电量统计芯片
+Smart battery driver for the BQ40Z50 fuel gauge IC.
 
-### 示例
+### Examples
 
-通过写入flash来设置它的参数。 地址，字节数，字节0，... ，字节N
+To write to flash to set parameters. address, number_of_bytes, byte0, ... , byteN
 
     batt_smbus -X write_flash 19069 2 27 0
     
 
-### 用法 {#batt_smbus_usage}
+### Usage {#batt_smbus_usage}
 
-    batt_smbus <命令> [参数...]
-     命令列表:
+    batt_smbus <command> [arguments...]
+     Commands:
        start
          [-X]        BATT_SMBUS_BUS_I2C_EXTERNAL
          [-T]        BATT_SMBUS_BUS_I2C_EXTERNAL1
@@ -52,59 +73,64 @@
          [-I]        BATT_SMBUS_BUS_I2C_INTERNAL
          [-A]        BATT_SMBUS_BUS_ALL
     
-       man_info      打印厂商信息
+       man_info      Prints manufacturer info.
     
-       unseal        解锁设备的flash来使能 write_flash 命令
+       unseal        Unseals the devices flash memory to enable write_flash
+                     commands.
     
-       seal          锁住设备的flash来失能 write_flash 命令.
+       seal          Seals the devices flash memory to disbale write_flash commands.
     
-       suspend       从调度循环中挂起该设备
+       suspend       Suspends the driver from rescheduling the cycle.
     
-       resume        将该设备从挂起状态恢复
+       resume        Resumes the driver from suspension.
     
-       write_flash   写入flash。 必须先通过unseal 命令来解锁flash。
-         [address]   写入的起始地址
-         [number of bytes] 需要写入的字节数
-         [data[0]...data[n]] 具体的字节数据，使用空格隔开
+       write_flash   Writes to flash. The device must first be unsealed with the
+                     unseal command.
+         [address]   The address to start writing.
+         [number of bytes] Number of bytes to send.
+         [data[0]...data[n]] One byte of data at a time separated by spaces.
     
-       stop          停止设备
+       stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## dshot
 
-源码位置: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
+Source: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
 
-### 描述
+### Description
 
-这是DShot输出的驱动。 它跟fmu的驱动很相似，可以简单地替换掉，来实现使用DShot与调速器通讯而不是PWM。
+This is the DShot output driver. It is similar to the fmu driver, and can be used as drop-in replacement to use DShot as ESC communication protocol instead of PWM.
 
-它支持：
+It supports:
 
 - DShot150, DShot300, DShot600, DShot1200
 - 通过独立的串口遥控，并且发布esc_status消息
 - 通过命令行接口发送 DShot 命令
 
-### 示例
+### Examples
 
-设置电机1永久反向：
+Permanently reverse motor 1:
 
     dshot reverse -m 1
     dshot save -m 1
     
 
-保存之后，设置的反向之后的转向将被认为是正常时候的转向， 所以如果需要再次反转方向只需要再次重复相同的命令。
+After saving, the reversed direction will be regarded as the normal one. So to reverse again repeat the same commands.
 
-### 用法 {#dshot_usage}
+### Usage {#dshot_usage}
 
-    dshot <命令> [参数...]
-     命令列表:
-       start         启动任务 (不带任何模式集, 使用mode_*类的命令)，所有的 mode_*类的命令都会启动这个模块，如果这个模块还没有启动的话
+    dshot <command> [arguments...]
+     Commands:
+       start         Start the task (without any mode set, use any of the mode_*
+                     cmds)
+    
+     All of the mode_* commands will start the module if not running already
     
        mode_gpio
     
-       mode_pwm      选择所有可能的PWM引脚
+       mode_pwm      Select all available pins as PWM
     
        mode_pwm8
     
@@ -130,64 +156,64 @@
     
        mode_pwm1
     
-       telemetry     在某个串口上使能遥控功能
-         <device>    UART 设备节点
+       telemetry     Enable Telemetry on a UART
+         <device>    UART device
     
-       reverse       反转马达方向
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       reverse       Reverse motor direction
+         [-m <val>]  Motor index (1-based, default=all)
     
-       normal        转到默认的方向
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       normal        Normal motor direction
+         [-m <val>]  Motor index (1-based, default=all)
     
-       save          保存当前的设置
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       save          Save current settings
+         [-m <val>]  Motor index (1-based, default=all)
     
-       3d_on         使能3D模式
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       3d_on         Enable 3D mode
+         [-m <val>]  Motor index (1-based, default=all)
     
-       3d_off        关闭3D模式
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       3d_off        Disable 3D mode
+         [-m <val>]  Motor index (1-based, default=all)
     
-       beep1         发送蜂鸣模式 1
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       beep1         Send Beep pattern 1
+         [-m <val>]  Motor index (1-based, default=all)
     
-       beep2         发送蜂鸣模式 2
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       beep2         Send Beep pattern 2
+         [-m <val>]  Motor index (1-based, default=all)
     
-       beep3         发送蜂鸣模式 3
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       beep3         Send Beep pattern 3
+         [-m <val>]  Motor index (1-based, default=all)
     
-       beep4         发送蜂鸣模式 4
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       beep4         Send Beep pattern 4
+         [-m <val>]  Motor index (1-based, default=all)
     
-       beep5         发送蜂鸣模式 5
-         [-m <val>]  马达的编号 (从1开始，默认全部)
+       beep5         Send Beep pattern 5
+         [-m <val>]  Motor index (1-based, default=all)
     
-       esc_info      请求马达的信息
-         -m <val>    马达的编号 (从1开始)
+       esc_info      Request ESC information
+         -m <val>    Motor index (1-based)
     
        stop
     
-       status        打印状态信息
+       status        print status info
     
 
 ## fmu
 
-源码位置: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
+Source: [drivers/px4fmu](https://github.com/PX4/Firmware/tree/master/src/drivers/px4fmu)
 
-### 描述
+### Description
 
-该模块负责驱动输出引脚或者读取输入引脚。 对于没有独立 IO 芯片的飞控板（例如 Pixracer), 它使用主通道。 On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
+This module is responsible for driving the output and reading the input pins. For boards without a separate IO chip (eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
 
 It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
 
 The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy. By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder driver. Alternatively, the fmu can be started in one of the capture modes, and then drivers can register a capture callback with ioctl calls.
 
-### 实现
+### Implementation
 
 By default the module runs on a work queue with a callback on the uORB actuator_controls topic.
 
-### 示例
+### Examples
 
 It is typically started with:
 
@@ -328,7 +354,7 @@ Initiate warm restart of GPS device
 
 Source: [drivers/power_monitor/ina226](https://github.com/PX4/Firmware/tree/master/src/drivers/power_monitor/ina226)
 
-### 描述
+### Description
 
 Driver for the INA226 power monitor.
 
