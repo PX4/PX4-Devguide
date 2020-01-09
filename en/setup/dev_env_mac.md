@@ -48,7 +48,7 @@ Install pip if you don't already have it and use it to install the required pack
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 
-#install required packages
+# install required packages
 sudo -H pip install pyserial empy toml numpy pandas jinja2 pyyaml
 ```
 
