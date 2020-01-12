@@ -1,13 +1,43 @@
 # Multi-Vehicle Simulation with Gazebo
 
 This topic explains how to simulate multiple UAV vehicles using Gazebo and SITL (Linux only).
+A different approach is used for simulation with and without ROS.
 
-> **Tip** If you don't need a feature provided by Gazebo or ROS, [Multi-Vehicle Simulation with JMAVSim](../simulation/multi_vehicle_jmavsim.md) is easier to set up.
 
-It demonstrates an example setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world.
+## Multiple Vehicle with Gazebo (No ROS) {#no_ros}
+
+To simulate multiple iris or plane vehicles in Gazebo use the following commands in the terminal (from the root of the *Firmware* tree):
+```
+Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>]
+```
+
+- `<model>`: The vehicle type/model to spawn: `iris` (default), `plane`.
+- `number_of_vehicles`: The number of vehicles to spawn. Default is 3. Maximum is 10.
+
+Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.) and can be accessed from a unique remote offboard UDP port (14540, 14541, 14542, etc.).
+
+> **Note** The 10-vehicle limitation occurs because the 11th vehicle would be allocated a remote offboard UDP port 14550, which is already used for QGC.
+  The `MAV_SYS_ID` and various UDP ports are allocated in the SITL rcS: [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS#L108-L112)
+
+### Video: Multiple Multicopter (Iris)
+
+{% youtube %}
+https://youtu.be/Mskx_WxzeCk
+{% endyoutube %}
+
+### Video: Multiple Plane
+
+{% youtube %}
+https://youtu.be/aEzFKPMEfjc
+{% endyoutube %}
+
+
+## Multiple Vehicles with ROS and Gazebo {#with_ros}
+
+This example demonstrates a setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world.
 You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle.
 
-## Required
+### Required
 
 * Current [PX4 ROS/Gazebo development environment](../setup/dev_env_linux_ubuntu.md#rosgazebo)
   > **Note** At time of writing this is Ubuntu 18.04 with ROS Melodic/Gazebo 9.
@@ -15,7 +45,7 @@ You can then control the vehicles with *QGroundControl* and MAVROS in a similar 
 * [MAVROS package](http://wiki.ros.org/mavros)
 * a clone of latest [PX4/Firmware](https://github.com/PX4/Firmware)
 
-## Build and Test
+### Build and Test
 
 To build an example setup, follow the step below:
 
@@ -46,7 +76,7 @@ You can control the vehicles with *QGroundControl* or MAVROS in a similar way to
 
 
 
-## What's Happening?
+### What's Happening?
 
 For each simulated vehicle, the following is required:
 
