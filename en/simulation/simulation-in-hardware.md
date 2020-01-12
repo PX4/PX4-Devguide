@@ -41,23 +41,24 @@ When the SIH airframe is selected, the SIH module starts by itself, the vehicle 
 
 The simulated quadrotor can be displayed in jMAVSim from PX4 v1.11.
 
-1. Close QGroundControl if opened.
-1. Unplug and replug the hardware autopilot, allows it few seconds to boot.
-1. Start jMAVSim. See instructions below.
-1. After few seconds, QGControl can be opened again.
+1. Close *QGroundControl* (if opened).
+1. Unplug and replug the hardware autopilot (allow a few seconds for it to boot).
+1. Start jMAVSim by calling the script **jmavsim_run.sh** from a terminal:
+   ```
+   ./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250 -o
+   ```
+   where the flags are
+   - `-q` to allow the communication to *QGroundControl* (optional).
+   - `-d` to start the serial device `/dev/ttyACM0` on Linux.
+     On macOS this would be `/dev/tty.usbmodem1`.
+   - `-b` to set the serial baud rate to `921600`.
+   - `-r` to set the refresh rate to `250` Hz (optional).
+   - `-o` to start jMAVSim in *display Only* mode (i.e. the physical engine is turned off and jMAVSim only displays the trajectory given by the SIH in real-time).
+1. After few seconds, *QGroundControl* can be opened again.
 
-Call the script `jmavsim_run.sh` from a terminal
-```
-./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250 -o
-```
-where the flags are
-- `-q` to allow the communication to QGControl (optional).
-- `-d` to start the serial device `/dev/ttyACM0` on Linux. on Mac OS this would be `/dev/tty.usbmodem1`.
-- `-b` to set the serial baud rate to `921600`
-- `-r` to set the refresh rate to `250` Hz (optional).
-- `-o` to start jMAVSim in *display Only* mode. i.e. the physical engine is turned off and jMAVSim only displays the trajectory given by the SIH in real-time.
+At this point, the system can be armed and flown.
+The vehicle can be observed moving in jMAVSim, and on the QGC __Fly__ view.
 
-At this point, the system can be armed and flown. The vehicle should be seen moving in jMAVSim on the __fly__ tab in QGC (i.e. the tab with the paper airplane logo).
 
 ## Credits
 
