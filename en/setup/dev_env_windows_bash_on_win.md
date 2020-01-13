@@ -3,7 +3,7 @@
 > **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.
 
 Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to:
-* Build firmware for NuttX/Pixhawk targets. 
+* Build firmware for NuttX/Pixhawk targets.
 * Run the PX4 JMAVSim simulation (using a Windows-hosted X-Windows app to display the UI)
 
 > **Note** This mechanism only works on Windows 10. It essentially runs the toolchain in a virtual machine, and is relatively slow compared to other solutions.
@@ -15,14 +15,14 @@ The easiest way to setup the environment is to use the <strong><a href="https://
 
 To setup the development environment:
 1. Install [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
-1. Open the bash shell. 
+1. Open the bash shell.
 1. Download the **windows_bash_nuttx.sh**:<br>
    `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh`
 1. Run the script using the command below (acknowledging any prompts as required):
   ```sh
-  source windows_bash_nuttx.sh
+  bash windows_bash_nuttx.sh
   ```
-  
+
 ### Build Firmware
 
 To build the firmware (i.e. for px4_fmu-v4):
@@ -32,9 +32,9 @@ To build the firmware (i.e. for px4_fmu-v4):
    make px4_fmu-v4_default
    ```
    On successful completion you'll find the firmware here: `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
-   
+
    > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx)
-   
+
 1. You can flash the custom firmware on Windows using *QGroundControl* or *Mission Planner* (it is not possible to directly flash the firmware from within the bash shell using the `upload` command).
 
 
@@ -54,9 +54,9 @@ To run JMAVSim:
    make px4_sitl jmavsim
    ```
    The JMAVSim UI is then displayed in XMing as shown below:
-   
+
    ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
-   
+
 > **Caution** Gazebo can similarly be run within Ubuntu Bash for Windows, but too slow to be useful. To try this, follow the [ROS kinetic install guide](http://wiki.ros.org/kinetic/Installation/Ubuntu) and run Gazebo in the Bash shell as shown:
   ```sh
   export DISPLAY=:0
@@ -67,9 +67,9 @@ To run JMAVSim:
 
 ### Build Script Details {#build_script_details}
 
-The <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh">windows_bash_nuttx.sh</a> build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators. 
+The <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh">windows_bash_nuttx.sh</a> build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
 
-In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) 
+In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git)
 since BashOnWindows doesn't run 32 bit ELF programs (and the default compiler from `https://launchpad.net/gcc-arm-embedded` is 32 bit).
 
 To add this compiler to your environment manually:
