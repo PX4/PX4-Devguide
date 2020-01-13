@@ -24,7 +24,7 @@ To install the toolchain:
    <br>`wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`
 1. Run the **ubuntu.sh** with no arguments (in a bash shell) to install everything:
    ```bash
-   source ubuntu.sh
+   bash ubuntu.sh
    ```
    - Acknowledge any prompts as the script progress.
    - You can use the `--no-nuttx` and `--no-sim-tools` to omit the nuttx and/or simulation tools.
@@ -34,7 +34,7 @@ To install the toolchain:
 > **Note** You can alternatively [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place:
   ```
   git clone https://github.com/PX4/Firmware.git
-  source Firmware/Tools/setup/ubuntu.sh
+  bash Firmware/Tools/setup/ubuntu.sh
   ```
 
 Notes:
@@ -44,7 +44,7 @@ Notes:
 - You can verify the the NuttX installation by confirming the gcc version as shown:
   ```bash
    $arm-none-eabi-gcc --version
-   
+
    arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM/embedded-7-branch revision 255204]
    Copyright (C) 2017 Free Software Foundation, Inc.
    This is free software; see the source for copying conditions.  There is NO
@@ -70,10 +70,10 @@ To get the build toolchain for Raspberry Pi:
    <br>`wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`
 1. Run **ubuntu.sh** in a terminal to get just the common dependencies:
    ```bash
-   source ubuntu.sh --no-nuttx --no-sim-tools
+   bash ubuntu.sh --no-nuttx --no-sim-tools
    ```
 1. Then setup an ARMv7 cross-compiler (either GCC or clang) as described in the following sections.
- 
+
 ### GCC
 
 The current recommended toolchain for raspbian can be cloned from `https://github.com/raspberrypi/tools.git` (at time of writing 4.9.3).
@@ -134,11 +134,11 @@ To install the development toolchain:
    <br>`wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh`
 1. Run the script:
    ```bash
-   source ubuntu_sim_ros_melodic.sh
+   bash ubuntu_sim_ros_melodic.sh
    ```
    You may need to acknowledge some prompts as the script progresses.
 
-Note: 
+Note:
 * ROS Melodic is installed with Gazebo9 by default.
 * Your catkin (ROS build system) workspace is created at **~/catkin_ws/**.
 * The script uses instructions from the ROS Wiki "Melodic" [Ubuntu page](http://wiki.ros.org/melodic/Installation/Ubuntu).
@@ -168,7 +168,7 @@ tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
 ```
 
 > **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option.
-  This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. 
+  This option defines the number of parallel threads (or `j`obs) that are used to compile the source code.
   Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
 
 ```sh
