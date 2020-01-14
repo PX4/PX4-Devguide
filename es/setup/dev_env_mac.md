@@ -39,15 +39,13 @@ If the installation outputs an error message about missing requirements follow t
 brew cask install xquartz java
 ```
 
-Install pip if you don't already have it and use it to install the required packages:
+Make sure you have Python 3 installed.
 
 ```sh
-# get pip
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
+brew install python3
 
-# install required packages
-sudo -H pip install pyserial empy toml numpy pandas jinja2 pyyaml
+# install required packages using pip3
+pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg
 ```
 
 ## Additional Tools
