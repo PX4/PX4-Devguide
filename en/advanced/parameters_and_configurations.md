@@ -103,9 +103,9 @@ You add some "boilerplate" code to regularly listen for changes in the [uORB Top
 Framework code then (invisibly) handles tracking uORB messages that affect your parameter attributes and keeping them in sync. 
 In the rest of the code you can just use the defined parameter attributes and they will always be up to date!
 
-First include **px4_module_params.h** in the class header for your module or driver (to get the `DEFINE_PARAMETERS` macro):
+First include **px4_platform_common/module_params.h** in the class header for your module or driver (to get the `DEFINE_PARAMETERS` macro):
 ```cpp
-#include <px4_module_params.h>
+#include <px4_platform_common/module_params.h>
 ```
 
 Derive your class from `ModuleParams`, and use `DEFINE_PARAMETERS` to specify a list of parameters and their associated parameter attributes.
