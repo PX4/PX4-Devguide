@@ -27,7 +27,7 @@ In this section we create a *minimal application* that just prints out `Hello Sk
     
     ```c /**************************************************************************** *
     
-    * Copyright (c) 2012-2016 PX4 Development Team. All rights reserved.
+    * Copyright (c) 2012-2019 PX4 Development Team. All rights reserved.
     * 
     * Redistribution and use in source and binary forms, with or without
     * modification, are permitted provided that the following conditions
@@ -57,7 +57,7 @@ In this section we create a *minimal application* that just prints out `Hello Sk
     * POSSIBILITY OF SUCH DAMAGE.
     * ****************************************************************************/ ```
 
-* Copy the following code below the default header. This code style should be used for all files.
+* Copy the following code below the default header. This should be present in all contributed files!
     
     ```c /**
     
@@ -66,7 +66,7 @@ In this section we create a *minimal application* that just prints out `Hello Sk
     * 
     * @author Example User [&#x6d;&#97;&#105;l&#x40;&#x65;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#99;o&#x6d;](&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#x6d;&#97;&#105;l&#x40;&#x65;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#99;o&#x6d;) */
         
-        # include <px4_log.h>
+        # include <px4_platform_common>
         
         __EXPORT int px4_simple_app_main(int argc, char *argv[]);
         
@@ -76,7 +76,7 @@ In this section we create a *minimal application* that just prints out `Hello Sk
         
         <span></span>
         
-        > **Tip** `PX4_INFO` is the equivalent of `printf` for the PX4 shell (included from **px4_log.h**). There are different log levels: `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`. Warnings and errors are additionally added to the [ULog](../log/ulog_file_format.md) and shown on [Flight Review](https://logs.px4.io/).
+        > **Tip** `PX4_INFO` is the equivalent of `printf` for the PX4 shell (included from **px4_platform_common/log.h**). There are different log levels: `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`. Warnings and errors are additionally added to the [ULog](../log/ulog_file_format.md) and shown on [Flight Review](https://logs.px4.io/).
 
 1. Create and open a new *cmake* definition file named **CMakeLists.txt**. Copy in the text below:
     
@@ -126,7 +126,9 @@ In this section we create a *minimal application* that just prints out `Hello Sk
     The `px4_add_module()` method builds a static library from a module description. The `MAIN` block lists the name of the module - this registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
     
     > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
-    > 
+    
+    <span></span>
+    
     > **Note** If you specify `DYNAMIC` as an option to `px4_add_module`, a *shared library* is created instead of a static library on POSIX platforms (these can be loaded without having to recompile PX4, and shared to others as binaries rather than source code). Your app will not become a builtin command, but ends up in a separate file called `examples__px4_simple_app.px4mod`. You can then run your command by loading the file at runtime using the `dyn` command: `dyn ./examples__px4_simple_app.px4mod`
 
 ## Build the Application/Firmware
@@ -338,7 +340,7 @@ The [complete example code](https://github.com/PX4/Firmware/blob/master/src/exam
 /****************************************************************************
  *
 
- *   Copyright (c) 2012-2016 PX4 Development Team. All rights reserved.
+ *   Copyright (c) 2012-2019 PX4 Development Team. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -376,9 +378,9 @@ The [complete example code](https://github.com/PX4/Firmware/blob/master/src/exam
  * @author Example User <mail@example.com>
  */
 
-#include <px4_config.h>
-#include <px4_tasks.h>
-#include <px4_posix.h>
+#include <px4_platform_common/px4_config.h>
+#include <px4_platform_common/tasks.h>
+#include <px4_platform_common/posix.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <poll.h>
