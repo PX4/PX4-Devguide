@@ -58,7 +58,8 @@ sudo apt-get remove gcc-arm-none-eabi gdb-arm-none-eabi binutils-arm-none-eabi g
 sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 ```
 -->
-
+- You might encounter a few missing packages due to pip being stuck in python 2 (tested on WSL Ubuntu 18.04). `sudo apt-get install python-pip3` and `pip3 install --user empy numpy toml` (or `pip3 install` other potential missing packages).
+- If `make px4_sitl gazebo` fails, try a hard git reset on the latest `release/*` branch and a pull from that.
 
 
 ## Raspberry Pi {#raspberry-pi-hardware}
