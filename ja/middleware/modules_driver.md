@@ -522,13 +522,17 @@ Source: [drivers/safety_button](https://github.com/PX4/Firmware/tree/master/src/
 
 ### Description
 
-This module is responsible for the safety button.
+This module is responsible for the safety button. Pressing the safety button 3 times quickly will trigger a GCS pairing request.
 
 ### Usage {#safety_button_usage}
 
     safety_button <command> [arguments...]
      Commands:
-       start         Start the safety button driver
+       start
+    
+       stop
+    
+       status        print status info
     
 
 ## tap_esc
