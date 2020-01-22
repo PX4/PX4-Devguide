@@ -382,6 +382,42 @@ ina226 <command> [arguments...]
 
    info          Status of every instance of the driver
 ```
+## pca9685_pwm_out
+Source: [drivers/pca9685_pwm_out](https://github.com/PX4/Firmware/tree/master/src/drivers/pca9685_pwm_out)
+
+
+### Description
+This module is responsible for generate pwm pulse with PCA9685 chip.
+
+It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
+
+### Implementation
+This module depends on ModuleBase and OutputModuleInterface.
+IIC communication is based on CDev::I2C
+
+### Examples
+It is typically started with:
+```
+pca9685_pwm_out start -a 64 -b 1
+```
+
+Use the `mixer` command to load mixer files.
+`mixer load /dev/pca9685 ROMFS/px4fmu_common/mixers/quad_x.main.mix`
+
+### Usage {#pca9685_pwm_out_usage}
+```
+pca9685_pwm_out <command> [arguments...]
+ Commands:
+   start         Start the task
+     [-a <val>]  device address on this bus
+                 default: 64
+     [-b <val>]  bus that pca9685 is connected to
+                 default: 1
+
+   stop
+
+   status        print status info
+```
 ## pga460
 Source: [drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
 
