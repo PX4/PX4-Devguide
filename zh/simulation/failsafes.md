@@ -34,4 +34,4 @@
 
 ## GPS 损失
 
-为了模拟丢失和重新获取 GPS 全球定位系统信息，您可以停止/重新启动 GPS 驱动程序。 这是通过在 SITL 实例 *pxh shell* 上运行 `gpssim stop` 和 `gpssim start` 命令来完成的。
+To simulate losing and regaining GPS information you can just stop the publication of GPS messages. This is done by running the `param set SIM_GPS_BLOCK 1` and `param set SIM_GPS_BLOCK 0` commands on your SITL instance *pxh shell* to block and unblock messages respectively.
