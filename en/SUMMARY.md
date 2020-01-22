@@ -62,7 +62,6 @@
   * [Companion Computers](companion_computer/pixhawk_companion.md)
 * [Middleware](middleware/README.md)
   * [uORB Messaging](middleware/uorb.md)
-  * [uORB Graph](middleware/uorb_graph.md)
   * [MAVLink Messaging](middleware/mavlink.md)
   * [RTPS/ROS2 Interface](middleware/micrortps.md)
     * [Throughput Test](middleware/micrortps_throughput_test.md)

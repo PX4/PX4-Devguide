@@ -1,4 +1,7 @@
 # uORB Publication/Subscription Graph
+<!--
+Note: this page is disabled for now, as the graph is too incomplete and requires support for uORB::Subscription, uORB::Publication and library code
+-->
 
 This page provides a uORB publication/subscription graph that
 shows the communication between modules. It is based on information that is
