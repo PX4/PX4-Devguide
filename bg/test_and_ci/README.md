@@ -6,6 +6,7 @@ PX4 offers extensive tests and testing facilities, including unit and integratio
 * [Unit Tests](../test_and_ci/unit_tests.md)
 * [Continuous Integration (CI)](../test_and_ci/continous_integration.md)
 * [Jenkins CI](../test_and_ci/jenkins_ci.md)
-* [Integration Testing](../test_and_ci/integration_testing.md)
+* [ROS Integration Testing](../test_and_ci/integration_testing.md)
+* [MAVSDK Integration Testing](../test_and_ci/integration_testing_mavsdk.md)
 * [Docker](../test_and_ci/docker.md)
 * [Maintenance](../test_and_ci/maintenance.md)
