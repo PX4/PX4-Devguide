@@ -8,6 +8,8 @@ The tests are primarily developed against SITL for now and run in continuous int
 
 The tests need the MAVSDK C++ library installed system-wide (e.g. in `/usr/lib` or `/usr/local/lib`.
 
+MAVSDK can either be installed as a prebuilt library or alternatively be built from source and installed system-wide.
+
 ### Installation of prebuilt library
 
 #### Ubuntu
@@ -36,6 +38,22 @@ Install the library using [brew](https://brew.sh/):
 
 ```sh
 brew install mavsdk
+```
+
+### Build and install library
+
+Instead of installing the latest pre-built release, the library can also be built from sources. This enables you to build the library if there is is no prebuilt package for your platform, or because you need to use the latest [develop branch](https://github.com/mavlink/MAVSDK/tree/develop), or some custom branch or pull request. Also, you can specifiy the compile options, e.g. to select a debug build.
+
+First fetch the sources from GitHub:
+
+```sh
+git clone https://github.com/mavlink/MAVSDK.git --recursive
+```
+
+Then build and install the library:
+```
+cd MAVSDK
+cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_BACKEND=OFF -Bbuild -H. && cmake --build build -j 8 && sudo cmake --build build --target install
 ```
 
 ## Prepare PX4 code
