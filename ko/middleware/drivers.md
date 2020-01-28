@@ -1,39 +1,35 @@
 # 드라이버 개발
 
-NuttX 장치 드라이버는 [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) 프레이워크에 기초합니다.
-
-Linux와 QuRT 드라이버는 [DriverFramework](https://github.com/px4/DriverFramework)에 기초합니다. PX4는 NuttX와 같은 드라이버를 사용할 수 있도록 업데이트하고 있습니다.
-
-> **Note** (2017년 12월) 몇몇의 Linux/QuRT I2C 드라이버가 업데이트 되었습니다 (주로 풍속 센서들). 우리는 남은 드라이버들을 계속해서 업데이트할 계획입니다.
+PX4 device drivers are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) framework.
 
 ## 드라이버 만들기
 
-PX4는 보통 데이터를 [uORB](../middleware/uorb.md)에서 데이터를 독점적으로 가져옵니다. 일반적인 주변장치 타입의 드라이버들은 반드시 정확한 uORB 메세지들을 퍼블리시 해야합니다 ( 예: 자이로센서, 가속계, 압력 센서 등).
+PX4 almost exclusively consumes data from [uORB](../middleware/uorb.md). Drivers for common peripheral types must publish the correct uORB messages (for example: gyro, accelerometer, pressure sensors, etc.).
 
-새로운 드라이버를 만드는 최선의 방법은 템플릿을 통해 만드는 것입니다 ([src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)를 참고하세요).
+The best approach for creating a new driver is to start with a similar driver as a template (see [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)).
 
-> **Tip** 특정 I/O 버스나 센서를 작업하기 위한 더 많은 정보들은 [Sensor and Actuator Buses](../sensor_bus/README.md) 섹션에서 얻을 수 있습니다.
+> **Tip** More detailed information about working with specific I/O busses and sensors may be available in [Sensor and Actuator Buses](../sensor_bus/README.md) section.
 
 <span></span>
 
-> **Note** 정확한 uORB 토픽을 퍼블리시하는것이 드라이버가 해야할 *유일한* 것 입니다.
+> **Note** Publishing the correct uORB topics is the only pattern that drivers *must* follow.
 
 ## 중요 아키텍쳐
 
-PX4는 [reactive system](../concept/architecture.md)이며 데이터 Pub/Sub을 위해 [uORB](../middleware/uorb.md)을 사용합니다. 파일을 핸들링 하는 것은 시스템의 중요 작업을 필요로하거나 사용하지 않습니다. 2가지의 주된 API가 사용됩니다.
+PX4 is a [reactive system](../concept/architecture.md) and uses [uORB](../middleware/uorb.md) publish/subscribe to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
 
 * Pub/Sub 시스템은 PX4가 실행되는 시스템에 의존하는 네트워크나 공유메모리 백엔드가 있습니다.
 * 글로벌 장치 레지스트리를 통해 디바이스 목록과 그 설정을 get/set할 수 있습니다. 이것은 링크리스트처럼 간단하며, 파일시스템에 매핑할 수도 있습니다.
 
 ## 디바이스 ID
 
-PX4는 시스템에 상관없이 각각의 센서를 구별하기 위해 디바이스 ID를 사용합니다. ID는 설정 파라미터에 저장되어 있으며 ID는 설정 파라미터에 저장되어 있으며 센서 교정값을 일치시키기 위해 사용되고, 어떤 센서가 어떤 로그파일에 기록되는지 확인하기 위해 사용됩니다.
+PX4 uses device IDs to identify individual sensors consistently across the system. These IDs are stored in the configuration parameters and used to match sensor calibration values, as well as to determine which sensor is logged to which logfile entry.
 
-센서의 순서 (예. `/dev/mag0`가 있고 `/dev/mag1/`이 있을때) 는 우선수위를 결정하지 않습니다. 이 우선순위는 대신에 퍼블리시된 uORB 토픽의 일부분으로 저장됩니다.
+The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) does not determine priority - the priority is instead stored as part of the published uORB topic.
 
 ### 디코딩 예제
 
-한 시스템에 3개의 마그넷미터에 대한 예를 위해, 파라미터 덤프를 위한 flight log (.px4log)를 사용합니다. 3개의 파라미터는 센서 ID와 주된 마그넷미터 센서를 구별하는 `MAG_PRIME`를 인코딩합니다. 각 MAGx_ID는 24비트의 넘버이고 직접적인 디코딩을 위해서는 0으로 패딩되어야 합니다.
+For the example of three magnetometers on a system, use the flight log (.px4log) to dump the parameters. The three parameters encode the sensor IDs and `MAG_PRIME` identifies which magnetometer is selected as the primary sensor. Each MAGx_ID is a 24bit number and should be padded left with zeros for manual decoding.
 
     CAL_MAG0_ID = 73225.0
     CAL_MAG1_ID = 66826.0
@@ -41,7 +37,7 @@ PX4는 시스템에 상관없이 각각의 센서를 구별하기 위해 디바�
     CAL_MAG_PRIME = 73225.0
     
 
-이것은 버스 1에 주소 `0x1E` 에 I2C를 통해 연결된 외부의 HMC5983 입니다. 이것은 `IMU.MagX`에 로그파일로 저장되어 보여질 것입니다.
+This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will show up in the log file as `IMU.MagX`.
 
     # device ID 73225 in 24-bit binary:
     00000001  00011110  00001 001
@@ -50,7 +46,7 @@ PX4는 시스템에 상관없이 각각의 센서를 구별하기 위해 디바�
     HMC5883   0x1E    bus 1 I2C
     
 
-이것은 버스 1에 SPI를 통해 연결된 slot 5를 선택하는 HMC5983 입니다. 이것은 `IMU1.MagX` 로그파일에 보여질 것입니다.
+This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It will show up in the log file as `IMU1.MagX`.
 
     # device ID 66826 in 24-bit binary:
     00000001  00000101  00001 010
@@ -59,7 +55,7 @@ PX4는 시스템에 상관없이 각각의 센서를 구별하기 위해 디바�
     HMC5883   dev 5   bus 1 SPI
     
 
-그리고 이것은 버스 1에 SPI를 통해 연결된 slot 4를 선택하는 내부의 MPU9250 입니다. `IMU2.MagX` 로그파일에 보여질 것입니다.
+And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave select slot 4. It will show up in the log file as `IMU2.MagX`.
 
     # device ID 263178 in 24-bit binary:
     00000100  00000100  00001 010
@@ -70,7 +66,7 @@ PX4는 시스템에 상관없이 각각의 센서를 구별하기 위해 디바�
 
 ### 디바이스 ID 인코딩
 
-디바이스 ID는 다음과 같은 형태의 24비트 숫자입니다. 위의 디코딩 예제에서 첫번째 필드는 LSB인것을 유의하세요.
+The device ID is a 24bit number according to this format. Note that the first fields are the least significant bits in the decoding example above.
 
 ```C
 struct DeviceStructure {
@@ -81,7 +77,7 @@ struct DeviceStructure {
 };
 ```
 
-`bus_type`은 다음과 같이 디코딩됩니다.
+The `bus_type` is decoded according to:
 
 ```C
 enum DeviceBusType {
@@ -92,7 +88,7 @@ enum DeviceBusType {
 };
 ```
 
-`devtype`는 다음과 같이 디코딩됩니다.
+and `devtype` is decoded according to:
 
 ```C
 #define DRV_MAG_DEVTYPE_HMC5883  0x01
