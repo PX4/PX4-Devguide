@@ -1,5 +1,9 @@
 # UORB 发布/订阅 图
 
+<!--
+Note: this page is disabled for now, as the graph is too incomplete and requires support for uORB::Subscription, uORB::Publication and library code
+-->
+
 本页提供了一张描述了系统各模块之间通信关系的 UORB 发布/订阅 图。 该图根据直接从源代码中提取的信息制作而成。 使用说明 [如下](#instructions) 。
 
 搜索： <input id="search" type="text" /> 预置： <select id ="select-graph" name="select-graph"> <option value='graph_px4fmu-v4.json'>FMUv4 模块</option> <option value='graph_px4fmu-v2.json'>FMUv2 模块</option> <option value='graph_sitl.json'>SITL 模块</option> <option value='graph_runtime_sitl.json'>SITL 运行时模块</option> <option value='graph_full.json'>所有模块</option> </select>   
