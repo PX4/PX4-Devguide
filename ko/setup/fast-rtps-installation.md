@@ -4,9 +4,11 @@
 
 Fast RTPS는 PX4에서 RTPS 인터페이스가 활성화되도록 사용되어 PX4 uORB 주제를 허용함으로서 로봇 공학 및 시뮬레이터 도구를 포함한 보드 이외의 구성 요소와 공유되도록 합니다. RTPS는 DDS의 기반 규약으로 우주항공, 군사, 그리고 IoT 활용에 널리 사용되는 실시간 게시/가입 미들웨어를 제공하는 OMG(Object Management Group)의 표준입니다. 또한 ROS2 로봇 공학 툴킷을 위한 미들웨어로서 채택되었습니다. 더 많은 정보는 [RTPS/ROS2 인터페이스: PX4-FastRTPS 브릿지](../middleware/micrortps.md)를 보십시오.
 
+> **Tip** For Ubuntu, at time of writing, you will need to install Fast-RTPS 1.8.2 *from source*.
+
 <span></span>
 
-> **주의** 이 주제는 공식 [*eProsima Fast RTPS* 문서](http://eprosima-fast-rtps.readthedocs.io/en/latest/)에서 발췌되었습니다. 더 자세한 정보는 다음을 참고하세요.
+> **Note** This topic is derived from the official [*eProsima Fast RTPS* documentation](http://eprosima-fast-rtps.readthedocs.io/en/latest/). For more information see:
 
 * [요구사항](http://eprosima-fast-rtps.readthedocs.io/en/latest/requirements.html#requirements)
 * [소스로 설치](http://eprosima-fast-rtps.readthedocs.io/en/latest/sources.html#installation-from-sources)
@@ -42,11 +44,12 @@ Java는 내장된 코드 생성 도구인 *fastrtpsgen*을 사용해야합니다
 Github에서 프로젝트를 복사십시오.
 
 ```sh
-$ git clone -b v1.8.1 https://github.com/eProsima/Fast-RTPS
-$ mkdir Fast-RTPS/build && cd Fast-RTPS/build
+$ git clone --recursive https://github.com/eProsima/Fast-RTPS.git -b 1.8.x ~/FastRTPS-1.8.2
+$ cd ~/FastRTPS-1.8.2
+$ mkdir build && cd build
 ```
 
-> **참고** 소스를 빌드하려면 [Gradle을 설치](https://gradle.org/install/)해야 할 수도 있습니다(예: vanilla Fedora Linux의 경우에 해당). 이 경우 빌드 경고가 표시됩니다.
+> **Note** You may need to [install Gradle](https://gradle.org/install/) to build the source (e.g. this is true on vanilla Fedora Linux). A build warning will be displayed if this is the case.
 
 Linux를 사용하는 경우 다음을 실행하십시오.
 
@@ -58,53 +61,62 @@ $ sudo make install
 
 이렇게하면 Fast RTPS가 `/usr/local`에 설치됩니다. You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location. Afterwards make sure the `fastrtpsgen` application is in your `PATH`. You can check with `which fastrtpsgen`.
 
-Windows 사용자 인 경우 다음 *Visual Studio* 버전을 선택하십시오.
+Then install Fast-RTPS-Gen (Gradle is required for this):
+
+    git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git -b v1.0.2 ~/Fast-RTPS-Gen \
+        && cd ~/Fast-RTPS-Gen \
+        && gradle assemble \
+        && sudo cp share/fastrtps/fastrtpsgen.jar /usr/local/share/fastrtps/ \
+        && sudo cp scripts/fastrtpsgen /usr/local/bin/
+    
+
+If you are on Windows, choose your version of *Visual Studio*:
 
 ```sh
 > cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
 > cmake --build . --target install
 ```
 
-예제를 컴파일하려면, *CMake*를 호출 할 때 `-DCOMPILE_EXAMPLES = ON` 인수를 추가해야합니다.
+If you want to compile the examples, you will need to add the argument `-DCOMPILE_EXAMPLES=ON` when calling *CMake*.
 
-성능 테스트를 컴파일하려면 *CMake*를 호출 할 때 `-DPERFORMANCE_TESTS = ON` 인수를 추가해야합니다.
+If you want to compile the performance tests, you will need to add the argument `-DPERFORMANCE_TESTS=ON` when calling *CMake*.
 
 ## 바이너리로 설치
 
-*eProsima Fast RTPS*의 최신 바이너리 릴리즈는 [회사 웹 사이트](http://www.eprosima.com/)에서 항상 다운로드 할 수 있습니다.
+You can always download the latest binary release of *eProsima Fast RTPS* from the [company website](http://www.eprosima.com/).
 
-이를 수행하는 방법에 대한 문서는 [바이너리로 설치](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)(*eProsima Fast RTPS 공식 문서*)에서 찾을 수 있습니다
+Documentation on how to do this can be found here: [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries) (*eProsima Fast RTPS* official documentation)
 
 ### Windows 7 32-bit 와 64-bit
 
-설치 관리자를 실행하고 지침에 따라 원하는 *Visual Studio* 버전 및 아키텍처를 선택하십시오.
+Execute the installer and follow the instructions, choosing your preferred *Visual Studio* version and architecture when prompted.
 
 #### 환경 변수
 
-*eProsima Fast RTPS*는 제대로 작동하려면 다음 환경 변수 설정이 필요합니다.
+*eProsima Fast RTPS* requires the following environmental variable setup in order to function properly
 
 * `FASTRTPSHOME`: *eProsima Fast RTPS*가 설치된 루트 폴더.
 * `PATH`에 추가: Visual Studio 버전의 **/bin** 폴더와 하위 폴더를 PATH에 추가해야합니다.
 
-이러한 변수는 설치 과정에서 해당 상자를 체크하여 자동으로 설정됩니다.
+These variables are set automatically by checking the corresponding box during the installation process.
 
 ### Linux
 
-패키지의 내용을 추출하십시오. *eProsima Fast RTPS*와 필요한 패키지 *eProsima Fast CDR*을 모두 포함합니다. *Fast CDR*부터 두 패키지 모두 동일한 절차를 따라야합니다.
+Extract the contents of the package. It will contain both *eProsima Fast RTPS* and its required package *eProsima Fast CDR*. You will have follow the same procedure for both packages, starting with *Fast CDR*.
 
-컴파일을 구성합니다.
+Configure the compilation:
 
 ```sh
 $ ./configure --libdir=/usr/lib
 ```
 
-디버그 기호로 컴파일하려면 다음과 같이하십시오(verbose mode도 활성화됨).
+If you want to compile with debug symbols (which also enables verbose mode):
 
 ```sh
 $ ./configure CXXFLAGS="-g -D__DEBUG"  --libdir=/usr/lib
 ```
 
-프로젝트를 구성한 후 라이브러리를 컴파일하고 설치하십시오.
+After configuring the project compile and install the library:
 
 ```sh
 $ sudo make install
