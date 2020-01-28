@@ -4,7 +4,7 @@
 
 Windows 用户还可以选择在 [Bash on Windows](https://github.com/Microsoft/BashOnWindows) 中安装经过 *少许修改* 的基于Ubuntu Linux的PX4 开发环境 ，该开发环境可用于：
 
-* 编译针对 NuttX/Pixhawk 平台的固件。 
+* 编译针对 NuttX/Pixhawk 平台的固件。
 * 使用 JMAVSim 进行PX4仿真 (需要搭配一个基于Windows的 X-Windows 应用来显示仿真UI界面)。
 
 > **注意：** 本特性仅可在Windows 10上实现， 它本质上仍是在虚拟机中运行工具链, 与其他解决方案相比运行相对缓慢。
@@ -16,12 +16,12 @@ The easiest way to setup the environment is to use the **<a href="https://raw.gi
 要设置开发环境, 请执行以下操作:
 
 1. 在Windows 10上启用、安装 [Bash on Windows](https://github.com/Microsoft/BashOnWindows)。
-2. 打开 bash shell 命令行界面。 
+2. 打开 bash shell 命令行界面。
 3. Download the **windows_bash_nuttx.sh**:  
     `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh`
 4. 使用如下命令运行安装脚本 (根据需要确认任何提示)： 
         sh
-        source windows_bash_nuttx.sh
+        bash windows_bash_nuttx.sh
 
 ### 编译固件
 
@@ -72,7 +72,7 @@ JMAVSim 运行流程：
 
 The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
 
-此外， 由于 Bash on Windows 不支持运行32位 ELF 程序，该脚本弃用了来自 `https://launchpad.net/gcc-arm-embedded` 的默认32位编译器，改用 [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) 。
+In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) since BashOnWindows doesn't run 32 bit ELF programs (and the default compiler from `https://launchpad.net/gcc-arm-embedded` is 32 bit).
 
 手动将此编译器添加到您的环境中请执行以下操作:
 
