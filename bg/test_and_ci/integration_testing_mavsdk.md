@@ -4,13 +4,13 @@ PX4 can be tested end to end to using integration tests based on [MAVSDK](https:
 
 The tests are primarily developed against SITL for now and run in continuous integration (CI). However, they are meant to generalize to real tests eventually.
 
-## Install the MAVSDK C++ library
+## Install the MAVSDK C++ Library
 
 The tests need the MAVSDK C++ library installed system-wide (e.g. in `/usr/lib` or `/usr/local/lib`.
 
 MAVSDK can either be installed as a prebuilt library or alternatively be built from source and installed system-wide.
 
-### Installation of prebuilt library
+### Installation of Prebuilt Library
 
 #### Ubuntu
 
@@ -40,9 +40,9 @@ Install the library using [brew](https://brew.sh/):
 brew install mavsdk
 ```
 
-### Build and install library
+### Build and Install MAVSDK
 
-Instead of installing the latest pre-built release, the library can also be built from sources. This enables you to build the library if there is is no prebuilt package for your platform, or because you need to use the latest [develop branch](https://github.com/mavlink/MAVSDK/tree/develop), or some custom branch or pull request. Also, you can specifiy the compile options, e.g. to select a debug build.
+Instead of installing the latest pre-built release, MAVSDK can also be built from sources. This enables you to build the library if there is is no prebuilt package for your platform, or because you need to use the latest [develop branch](https://github.com/mavlink/MAVSDK/tree/develop), or some custom branch or pull request. Also, you can specify the compile options, e.g. to select a debug build.
 
 First fetch the sources from GitHub:
 
@@ -56,7 +56,7 @@ cd MAVSDK
 cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_BACKEND=OFF -Bbuild -H. && cmake --build build -j 8 && sudo cmake --build build --target install
 ```
 
-## Prepare PX4 code
+## Prepare PX4 Code
 
 To build the PX4 code, use:
 
@@ -64,7 +64,7 @@ To build the PX4 code, use:
 DONT_RUN=1 make px4_sitl gazebo mavsdk_tests
 ```
 
-### Run all tests
+### Run All PX4 Tests
 
 To run all tests, use:
 
