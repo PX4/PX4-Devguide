@@ -4,9 +4,11 @@
 
 PX4 使用 FastRTPS，使 RTPS 接口能够与板外组件（包括机器人和模拟器工具）共享 PX4 uORB 主题。 RTPS 是 DDS 的基本协议，是 OMG（对象管理组）提供实时发布/订阅中间件的标准，广泛应用于航空航天、国防和物联网应用。 它也被用作 ROS2 机器人工具包的中间件。 有关详细信息，请参阅：[RTPS/ROS2 接口：PX4-FastRTPS Bridge](../middleware/micrortps.md)。
 
+> **Tip** For Ubuntu, at time of writing, you will need to install Fast-RTPS 1.8.2 *from source*.
+
 <span></span>
 
-> **Note** 本主题来源于官方的 [*eProsima Fast RTPS* 文件](http://eprosima-fast-rtps.readthedocs.io/en/latest/)。 有关详细信息，请参阅︰
+> **Note** This topic is derived from the official [*eProsima Fast RTPS* documentation](http://eprosima-fast-rtps.readthedocs.io/en/latest/). For more information see:
 
 * [要求](http://eprosima-fast-rtps.readthedocs.io/en/latest/requirements.html#requirements)
 * [源码安装](http://eprosima-fast-rtps.readthedocs.io/en/latest/sources.html#installation-from-sources)
@@ -42,11 +44,12 @@ Java 需要使用我们内置的代码生成工具-*fastrtpsgen*。 建议使用
 在 Github 上下载项目：
 
 ```sh
-$ git clone -b v1.8.1 https://github.com/eProsima/Fast-RTPS
-$ mkdir Fast-RTPS/build && cd Fast-RTPS/build
+$ git clone --recursive https://github.com/eProsima/Fast-RTPS.git -b 1.8.x ~/FastRTPS-1.8.2
+$ cd ~/FastRTPS-1.8.2
+$ mkdir build && cd build
 ```
 
-> **Note** 您可能需要 [install Gradle](https://gradle.org/install/) 来构建源代码（例如，在vanilla Fedora Linux 上确实如此）。 如果是这种情况，将显示生成警告。
+> **Note** You may need to [install Gradle](https://gradle.org/install/) to build the source (e.g. this is true on vanilla Fedora Linux). A build warning will be displayed if this is the case.
 
 如果您在 Linux 上，请执行：
 
@@ -58,53 +61,62 @@ $ sudo make install
 
 这会将 FastRTPS 安装在 `/usr/local`。 You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location. Afterwards make sure the `fastrtpsgen` application is in your `PATH`. You can check with `which fastrtpsgen`.
 
-如果你是在 Windows，选择 *Visual Studio* 的版本：
+Then install Fast-RTPS-Gen (Gradle is required for this):
+
+    git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git -b v1.0.2 ~/Fast-RTPS-Gen \
+        && cd ~/Fast-RTPS-Gen \
+        && gradle assemble \
+        && sudo cp share/fastrtps/fastrtpsgen.jar /usr/local/share/fastrtps/ \
+        && sudo cp scripts/fastrtpsgen /usr/local/bin/
+    
+
+If you are on Windows, choose your version of *Visual Studio*:
 
 ```sh
 > cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
 > cmake --build . --target install
 ```
 
-如果你想编译例程，那么请在调用 *CMake* 时，添加参数 `-DCOMPILE_EXAMPLES=ON`。
+If you want to compile the examples, you will need to add the argument `-DCOMPILE_EXAMPLES=ON` when calling *CMake*.
 
-如果你想编译性能测试程序，那么请在调用 *CMake* 时，添加参数 `-DPERFORMANCE_TESTS=ON`。
+If you want to compile the performance tests, you will need to add the argument `-DPERFORMANCE_TESTS=ON` when calling *CMake*.
 
 ## 二进制安装
 
-你可以从 [官网](http://www.eprosima.com/) 下载最新发布的 *eProsima Fast RTPS* 的可执行文件。
+You can always download the latest binary release of *eProsima Fast RTPS* from the [company website](http://www.eprosima.com/).
 
-操作文档请参见： [二进制安装](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)（*eProsima Fast RTPS* 官方文档）
+Documentation on how to do this can be found here: [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries) (*eProsima Fast RTPS* official documentation)
 
 ### Windows 7 32位和64位
 
-执行说明的 installer，收到提示后选择 *Visual Studio*版本。
+Execute the installer and follow the instructions, choosing your preferred *Visual Studio* version and architecture when prompted.
 
 #### 环境变量
 
-*eProsima Fast RTPS* 功能配置完善，需要如下的环境变量配置生效。
+*eProsima Fast RTPS* requires the following environmental variable setup in order to function properly
 
 * `FASTRTPSHOME`： *eProsima Fast RTPS* 根目录已安装。
 * 添加到 `PATH`：所选 Visual Studio 版本的 **/bin** 文件夹和子文件夹应追加到 PATH 中。
 
-这些变量是通过在安装过程中选中相应的框自动设置的。
+These variables are set automatically by checking the corresponding box during the installation process.
 
 ### Linux
 
-提取包的内容。 它将包含 *eProsima Fast RTPS*及其所需的软件包 *eProsima Fast CDR*。 对于这两个包，您将遵循相同的过程，从 *Fast CDR* 开始。
+Extract the contents of the package. It will contain both *eProsima Fast RTPS* and its required package *eProsima Fast CDR*. You will have follow the same procedure for both packages, starting with *Fast CDR*.
 
-配置编译：
+Configure the compilation:
 
 ```sh
 $ ./configure --libdir=/usr/lib
 ```
 
-如果要使用调试符号进行编译（这也启用了verbose模式）：
+If you want to compile with debug symbols (which also enables verbose mode):
 
 ```sh
 $ ./configure CXXFLAGS="-g -D__DEBUG"  --libdir=/usr/lib
 ```
 
-配置项目后，编译并安装库：
+After configuring the project compile and install the library:
 
 ```sh
 $ sudo make install
