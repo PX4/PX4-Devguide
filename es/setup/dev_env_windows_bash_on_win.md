@@ -4,7 +4,7 @@
 
 Los usuarios de Windows también pueden instalar un entorno de desarrollo PX4 Ubuntu Linux *ligeramente modificados* en [Bash on Windows](https://github.com/Microsoft/BashOnWindows) y utilizarlo para:
 
-* Compilar el firmware para objetivos NuttX/Pixhawk. 
+* Compilar el firmware para objetivos NuttX/Pixhawk.
 * Ejecutar la simulación PX4 JMAVSim (usando una aplicación alojada en Windows X-Windows para mostrar la interfaz de usuario)
 
 > **Nota** Este mecanismo sólo funciona en Windows 10. Esencialmente funciona el toolchain en una máquina virtual y es relativamente lento en comparación con otras soluciones.
@@ -16,12 +16,12 @@ The easiest way to setup the environment is to use the **<a href="https://raw.gi
 Para configurar el entorno de desarrollo:
 
 1. Instala [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
-2. Abre el shell de bash. 
+2. Abre el shell de bash.
 3. Download the **windows_bash_nuttx.sh**:  
     `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh`
 4. Ejecuta el script usando el siguiente comando (reconociendo cualquier mensaje que sea necesario): 
         sh
-        source windows_bash_nuttx.sh
+        bash windows_bash_nuttx.sh
 
 ### Compila el Firmware
 
@@ -72,7 +72,7 @@ Para ejecutar JMAVSim:
 
 The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
 
-Además, usa un [compilador de 64 bit arm-none-eabi](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) desde que BashOnWindows no funciona en programas ELF de 32 bit (y el compilador por defecto de `https://launchpad.net/gcc-arm-embedded` es de 32 bit).
+In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) since BashOnWindows doesn't run 32 bit ELF programs (and the default compiler from `https://launchpad.net/gcc-arm-embedded` is 32 bit).
 
 Para agregar este compilador a tu entorno manualmente:
 
