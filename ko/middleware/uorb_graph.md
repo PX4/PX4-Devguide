@@ -1,5 +1,9 @@
 # uORB Pub/Sub 그래프
 
+<!--
+Note: this page is disabled for now, as the graph is too incomplete and requires support for uORB::Subscription, uORB::Publication and library code
+-->
+
 이 페이지는 모듈들간의 통신을 보여주는 uORB Pub/Sub 그래프를 제공합니다. 이 정보들은 소스코드에 기반합니다. 사용 명령어는 [아래](#instructions)에서 제공됩니다.
 
 검색: <input id="search" type="text" /> 프리셋: <select id ="select-graph" name="select-graph"> <option value='graph_px4fmu-v4.json'>FMUv4 Modules</option> <option value='graph_px4fmu-v2.json'>FMUv2 Modules</option> <option value='graph_sitl.json'>SITL Modules</option> <option value='graph_runtime_sitl.json'>SITL Runtime Modules</option> <option value='graph_full.json'>All Modules</option> </select>   
