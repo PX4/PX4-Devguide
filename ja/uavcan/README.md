@@ -15,6 +15,9 @@
   * [Thiemar airspeed sensor](https://github.com/thiemar/airspeed)
 * GNSS receivers for GPS and GLONASS 
   * [Zubax GNSS](http://zubax.com/product/zubax-gnss)
+* Power monitors 
+  * [Pomegranate Systems Power Module](https://p-systems.io/product/power_module)
+  * [CUAV CAN PMU Power Module](http://docs.px4.io/master/en/power_module/cuav_can_pmu.html)
 
 In contrast to hobby-grade devices it uses rugged, differential signalling and supports firmware upgrades over the bus. All motor controllers provide status feedback and implement field-oriented-control \(FOC\).
 
