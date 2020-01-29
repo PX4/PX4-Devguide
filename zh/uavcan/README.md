@@ -14,7 +14,10 @@
     >   
     >   * [Thiemar空速传感器](https://github.com/thiemar/airspeed)
     > * 用于GPS和GLONASS的GNSS接收器 
-    >   * [Zubax GNSS](http://zubax.com/product/zubax-gnss)</ul> 
+    >   * [Zubax GNSS](http://zubax.com/product/zubax-gnss)
+    > * Power monitors 
+    >   * [Pomegranate Systems Power Module](https://p-systems.io/product/power_module)
+    >   * [CUAV CAN PMU Power Module](http://docs.px4.io/master/en/power_module/cuav_can_pmu.html)</ul> 
     > 
     > 相比玩具级设备, 它使用可靠的差分信号, 并支持通过总线进行固件升级。 所有电调提供状态反馈并实现现场定向控制\(FOC\).
     > 
