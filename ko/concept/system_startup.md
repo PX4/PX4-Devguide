@@ -2,7 +2,7 @@
 
 PX4 스타트업은 쉘 스크립트에 의해 제어됩니다. 쉘 스크립트는 NuttX는 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 있습니다. 몇몇의 Posix 계열(Linux/MacOS)도 동일합니다. Posix만을 위한 스크립트는 [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix)에 위치합니다.
 
-숫자와 밑줄로 시작하는 모든 파일(예. `10000_airplane`)은 기체 설정들을 담고있습니다. 설정값들은 빌드타임에 하나의 `airframes.xml`으로 보내지고 [QGroundControl](http://qgroundcontrol.com)을 통해 기체 선택 UI에 활용됩니다. 새로운 설정을 다루기 위해서는 [여기](../airframes/adding_a_new_frame.md)를 참고하세요.
+All files starting with a number and underscore (e.g. `10000_airplane`) are predefined airframe configurations. 설정값들은 빌드타임에 하나의 `airframes.xml`으로 보내지고 [QGroundControl](http://qgroundcontrol.com)을 통해 기체 선택 UI에 활용됩니다. 새로운 설정을 다루기 위해서는 [여기](../airframes/adding_a_new_frame.md)를 참고하세요.
 
 남아 있는 파일들을 일반적인 스타트업 로직을 위해 사용됩니다. 처음 실행되는 파일은 [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS)로 ( 또는 Posix에서는 [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)), 다른 모든 스크립트들을 호출합니다.
 
