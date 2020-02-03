@@ -1,16 +1,19 @@
 # Hardware Debug Interfaces (Debug Port)
 
 PX4 runs on hardware that typically provides at least two interfaces for on-target (hardware) debugging:
-- **ARM Serial Wire Debug (SWD):** This is an ARM-processor alternative to the JTAG debug port, with lower pin count.
+- **[System Console](../debug/system_console.md) (UART)**: The system console provides low-level console access to the system.
+  It enables debug output and analysis of the system *boot process* (other consoles are available from telemetry/USB etc, but these do not provide such early access to boot sequence information).
+- **ARM Serial Wire Debug (SWD):** This is an ARM-processor alternative to the JTAG debug port that has a two pin interface (a clock pin and a bi-directional data pin).
+  It allows run, stop on breakpoints, stepping through code.
   It is used for debugging firmware, and can also be used to add a new bootloader and/or firmware on a completely empty board (that does not have the USB bootloader installed).
-- **[System Console](../debug/system_console.md) (UART)**: The system console provides low-level access to the system, debug output and analysis of the system boot process (other consoles are available from telemetry/USB etc, but these do not provide such early access to boot sequence information).
 
-On Pixhawk-series boards these interfaces are usually exposed through a single port. (though older boards may separate them).
-On older Pixhawk boards, and on other boards, these may be separate.
+Some boards additionally support:
+- **Serial Wire Output (SWO):** This is an additional pin that can be used in combination with SWD to emit real-time trace data, enabling real-time tracing in compatible ARM processors.
+- **ARM Embedded Trace Macrocell (ETM) tracing:** ETM tracing provides real time tracing from a buffer of trace instructions.
 
-> **Tip** Some boards may include additional interfaces.
-  For example, Pixhawk FMUv5 will support Google ARM ETM Trace through a separate interface.
-  
+> **Tip** Newer Pixhawk-series boards expose the System Console and SWD interfaces (and SWO if present) through a single port.
+  ETM debugging is provided through a separate port.
+
 This topic explains how to connect the system console, SWD interface, and other interfaces on different boards (actually performing the debugging is then covered in the associated [debugging topics](#debugging_topics)).
 
 ## Debug Interface Overview
@@ -47,6 +50,8 @@ TRACEDATA[0] | Input | Input Trace data pin 0 (called TRACED0 in Pixhawk FMUv5x)
 
 >  **Note** The information above is reproduced from [J-Link / J-Trace User Guide: UM08001 > 18.1.2 Pinout for SW Mode](https://www.segger.com/downloads/jlink/UM08001) (Software Version: 6.54).
   There is additional information about SWD in: [ARM® Debug Interface Architecture Specification: ADIv5.0 to ADIv5.2](https://static.docs.arm.com/ihi0031/d/debug_interface_v5_2_architecture_specification_IHI0031D.pdf)
+
+## ARM ETM Trace
 
 
 ## Adapters and Wiring {#adapters_and_wiring}
@@ -173,11 +178,12 @@ Pin | Signal | Volt
 > **Note** This board will have an additional/separate 8-pin JST SUR for ARM ETM TRACE).
 
 
+<!-- 
+
+
 ## Hex Cube
 
 TBD
-
-<!-- 
 
 Cube debug port information can be found here: [Debug ports](http://docs.px4.io/master/en/flight_controller/pixhawk-2.html#debug-ports).
 
@@ -207,6 +213,7 @@ The [3DR Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html
 Connect the 6-pos DF13 1:1 cable on the [Dronecode probe](#dronecode_probe) to the SERIAL4/5 port of Pixhawk.
 
 ![Dronecode probe](../../assets/console/dronecode_probe.jpg)
+
 
 #### System Console via FTDI 3.3V Cable
 
@@ -240,7 +247,7 @@ The pinout for the ports is shown below (the square marker in the corner above i
 
 ![ARM 10-Pin connector pinout](../../assets/debug/arm_10pin_jtag_connector_pinout.jpg)
 
- 
+
 
 ## Other Boards
 
