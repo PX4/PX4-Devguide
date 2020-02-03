@@ -21,10 +21,6 @@ For example, for FMUv5:
     It may also be used to set a board's default parameters, UART mappings, and any other special cases.
   - For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF. 
 
-In addition there are several groups of configuration files for each board located throughout the code base:
-* The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
-* Driver files are located in: [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers).
-
 ## Host Operating System Configuration
 
 This section describes the purpose and location of the configuration files required for each supported host operating system to port them to new flight controller hardware.
@@ -69,7 +65,7 @@ make
 sudo make install
 ```
 
-The `--prefix=/usr` is essential as it determines the specific installation location where PX4 is hardcoded to look for `kconfig-tools`.
+The `--prefix=/usr` determines the specific installation location (which must be in the `PATH` environment variable).
 The `--enable-mconf` and `--enable-qconf` options will enable the `menuconfig` and `qconfig` options respectively.
 
 To run `qconfig` you may need to install additional Qt dependencies.
@@ -80,7 +76,7 @@ To run `qconfig` you may need to install additional Qt dependencies.
 Linux boards do not include the OS and kernel configuration. 
 These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
 
-* [boards/px4/raspberrypi/cross.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/raspberrypi/cross.cmake) - RPI cross-compilation. 
+* [boards/px4/raspberrypi/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/raspberrypi/default.cmake) - RPI cross-compilation. 
 
 ## Middleware Components and Configuration
 
