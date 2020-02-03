@@ -27,49 +27,7 @@ This section describes the purpose and location of the configuration files requi
 
 ### NuttX
 
-In order to port PX4 on NuttX to a new hardware target, that hardware target must be supported by NuttX.
-The NuttX project maintains an excellent [porting guide](http://www.nuttx.org/Documentation/NuttxPortingGuide.html) for porting NuttX to a new computing platform.
-
-For all NuttX based flight controllers (e.g. the Pixhawk series) the OS is loaded as part of the application build.
-
-The configuration files for all boards, including linker scripts and other required settings, are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in a vendor- and board-specific directory (i.e. **boards/_VENDOR_/_MODEL_/**)).
-
-The following example uses FMUv5 as it is a recent [reference configuration](../hardware/reference_design.md) for NuttX based flight controllers:
-* Running `make px4_fmu-v5_default` from the **Firmware** directory will build the FMUv5 config
-* The base FMUv5 configuration files are located in: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5).
-* Board specific header: [/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h). 
-* NuttX OS config (created with Nuttx menuconfig): [/boards/px4/fmu-v5/nuttx-config/nsh/defconfig](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/nsh/defconfig).
-* Build configuration: [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
-
-The function of each of these files, and perhaps more, will need to be duplicated for a new flight controller board.
-
-#### NuttX Menuconfig
-
-If you need to modify the NuttX OS configuration, you can do this via [menuconfig](https://bitbucket.org/nuttx/nuttx) using the PX4 shortcuts:
-```sh
-make px4_fmu-v5_default menuconfig
-make px4_fmu-v5_default qconfig
-```
-
-For fresh installs of PX4 onto Ubuntu using [ubuntu_sim_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh) you will also need to install *kconfig* tools from [NuttX tools](https://bitbucket.org/nuttx/tools/src/master/).
-
-> **Note** The following steps are not required if using the [px4-dev-nuttx](https://hub.docker.com/r/px4io/px4-dev-nuttx/) docker container or have installed to macOS using our normal instructions (as these include`kconfig-mconf`). 
-
-Run the following commands from any directory:
-```sh
-git clone https://bitbucket.org/nuttx/tools.git
-cd tools/kconfig-frontends
-sudo apt install gperf
-./configure --enable-mconf --disable-nconf --disable-gconf --enable-qconf --prefix=/usr
-make
-sudo make install
-```
-
-The `--prefix=/usr` determines the specific installation location (which must be in the `PATH` environment variable).
-The `--enable-mconf` and `--enable-qconf` options will enable the `menuconfig` and `qconfig` options respectively.
-
-To run `qconfig` you may need to install additional Qt dependencies.
-
+See [here](porting_guide_nuttx.md) for NuttX.
 
 ### Linux
 

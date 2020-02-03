@@ -42,6 +42,7 @@
 * [Hardware](hardware/README.md)
   * [Flight Controller Reference Design](hardware/reference_design.md)
   * [Flight Controller Porting Guide](hardware/porting_guide.md)
+    * [NuttX Board Porting Guide](hardware/porting_guide_nuttx.md)
   * [Airframes](airframes/README.md)
     * [Airframes Reference](airframes/airframe_reference.md)
     * [Adding a New Airframe](airframes/adding_a_new_frame.md)
