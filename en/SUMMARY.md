@@ -95,6 +95,7 @@
   * [Consoles/Shells](debug/consoles.md)
     * [MAVLink Shell](debug/mavlink_shell.md)
     * [System Console](debug/system_console.md)
+  * [SWD/JLink Hardware Debugging](debug/swd_debug.md)
   * [Autopilot Debugging](debug/gdb_debugging.md)
   * [Eclipse/JLink Hardware Debugging](debug/eclipse_jlink.md)
   * [Sensor/Topic Debugging](debug/sensor_uorb_topic_debugging.md)
