@@ -73,9 +73,21 @@ google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > 
 
 更多详情参见 [gperftools 文档](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html)。
 
-## 调试 Nuttx 的硬件故障
+## Hard Fault Debugging
 
-硬件故障是当操作系统检测不到有效说明而导致的终止运行。 这是一个内存关键区域被损坏而导致错误的典型案例。 比如典型的情况是：错误的内存访问已破坏了堆栈，并且处理器看到内存中的地址不是微处理器 RAM 的有效地址。
+硬件故障是当操作系统检测不到有效说明而导致的终止运行。 这是一个内存关键区域被损坏而导致错误的典型案例。
+
+### Video
+
+The following video demonstrates hardfault debugging on PX4 using Eclipse and a JTAG debugger. It was presented at the PX4 Developer Conference 2019.
+
+{% youtube %} https://www.youtube.com/watch?v=KZkAM_PVOi0 {% endyoutube %}
+
+### Debugging Hard Faults in NuttX
+
+A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
+
+A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted. A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
 
 * Nuttx 维护两个堆栈：用于中断处理的 IRQ 堆栈和用户堆栈
 * 堆栈向下增长。 所以下面示例中的最高地址是 0x20021060，大小为 0x11f4 （4596 字节），因而最低地址为0x2001f6c。
@@ -127,13 +139,13 @@ xPSR: 61000000 BASEPRI: 00000000 CONTROL: 00000000
 EXC_RETURN: ffffffe9
 ```
 
-要解码硬件故障，需要加载 *exact* 二进制文件到调试器中。
+To decode the hard fault, load the *exact* binary into the debugger:
 
 ```bash
 arm-none-eabi-gdb build/px4_fmu-v2_default/px4_fmu-v2_default.elf
 ```
 
-然后在 GDB 提示中，从 R8 中的最后一个指令开始，从闪存中的第一个地址开始（因为它以 `0x080` 开头，第一个地址 `0x0808439f`）。 执行从左到右。 因此，硬件故障之前的最后一步是当 ```mavlink_log.c``` 尝试 publish 消息时
+Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
 
 ```gdb
 (gdb) info line *0x0808439f
