@@ -27,13 +27,25 @@ for a list of all supported logger commands and parameters.
 The list of logged topics can be customized with a file on the SD card.
 Create a file `etc/logging/logger_topics.txt` on the card with a list of topics (For SITL, it's `build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`):
 ```
-<topic_name>, <interval>
+<topic_name> <interval> <instance>
 ```
 The `<interval>` is optional, and if specified, defines the minimum interval in ms between two logged messages of this topic.
 If not specified, the topic is logged at full rate.
 
+The `<instance>` is optional, and if specified, defines the instance to log.
+If not specified, all instances of the topic are logged.
+To specify `<instance>`, `<interval>` must be specified. It can be set to 0 to log at full rate
+
 The topics in this file replace all of the default logged topics.
 
+Example : 
+```
+sensor_accel 0 0
+sensor_accel 100 1
+sensor_gyro 200
+sensor_mag 200 1
+```
+This configuration will log sensor_accel 0 at full rate, sensor_accel 1 at 10Hz, all sensor_gyro instances at 5Hz and sensor_mag 1 at 5Hz.
 
 ## Scripts
 There are several scripts to analyze and convert logging files in the [pyulog](https://github.com/PX4/pyulog) repository.
