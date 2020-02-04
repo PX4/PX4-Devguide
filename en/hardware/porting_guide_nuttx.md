@@ -43,6 +43,7 @@ The `--enable-mconf` and `--enable-qconf` options will enable the `menuconfig` a
 To run `qconfig` you may need to install additional Qt dependencies.
 
 ### Bootloader
+
 First you will need a bootloader, which depends on the hardware target:
 - STM32H7: the bootloader is based on NuttX, and is included in the PX4 Firmware.
   See [here](https://github.com/PX4/Firmware/tree/master/boards/holybro/durandal-v1/nuttx-config/bootloader) for an example.
@@ -50,28 +51,30 @@ First you will need a bootloader, which depends on the hardware target:
   Then checkout the [buiding and flashing instructions](../software_update/stm32_bootloader.md).
 
 ### Firmware Porting Steps
+
 1. Make sure you have a working [development setup](../setup/dev_env.md) and installed the NuttX menuconfig tool (see above).
 1. Download the source code and make sure you can build an existing target:
-  ```bash
-git clone --recursive https://github.com/PX4/Firmware.git
-cd Firmware
-make px4_fmu-v5
-  ```
+   ```bash
+   git clone --recursive https://github.com/PX4/Firmware.git
+   cd Firmware
+   make px4_fmu-v5
+   ```
 1. Find an existing target that uses the same (or a closely related) CPU type and copy it.
-  For example for STM32F7:
-  ```bash
-  mkdir boards/manufacturer
-  cp -r boards/px4/fmu-v5 boards/manufacturer/my-target-v1
-  ```
-  Change **manufacturer** to the manufacturer name and **my-target-v1** to your board name.
-  Next you need to go through all files under **boards/manufacturer/my-target-v1** and update them according to your board.
-  1. **firmware.prototype**: update the board ID and name
-  1. **default.cmake**: update the **VENDOR** and **MODEL** to match the directory names (**my-target-v1**). 
-    Configure the serial ports.
-  1. Configure NuttX (**defconfig**) via `make manufacturer_my-target-v1 menuconfig`: Adjust the CPU and chip, configure the peripherals (UART's, SPI, I2C, ADC).
-  1. **nuttx-config/include/board.h**: Configure the NuttX pins.
-    For all peripherals with multiple pin options, NuttX needs to know the pin.
-	They are defined in the chip-specific pinmap header file, for example [stm32f74xx75xx_pinmap.h](https://github.com/PX4/NuttX/blob/px4_firmware_nuttx-8.2/arch/arm/src/stm32f7/hardware/stm32f74xx75xx_pinmap.h).
-  1. **src**: go through all files under **src** and update them as needed, in particular **board_config.h**.
-  1. **init/rc.board_sensors**: start the sensors that are attached to the board.
+   For example for STM32F7:
+   ```bash
+   mkdir boards/manufacturer
+   cp -r boards/px4/fmu-v5 boards/manufacturer/my-target-v1
+   ```
+   Change **manufacturer** to the manufacturer name and **my-target-v1** to your board name.
+   
+Next you need to go through all files under **boards/manufacturer/my-target-v1** and update them according to your board.
+1. **firmware.prototype**: update the board ID and name
+1. **default.cmake**: update the **VENDOR** and **MODEL** to match the directory names (**my-target-v1**). 
+   Configure the serial ports.
+1. Configure NuttX (**defconfig**) via `make manufacturer_my-target-v1 menuconfig`: Adjust the CPU and chip, configure the peripherals (UART's, SPI, I2C, ADC).
+1. **nuttx-config/include/board.h**: Configure the NuttX pins.
+   For all peripherals with multiple pin options, NuttX needs to know the pin.
+   They are defined in the chip-specific pinmap header file, for example [stm32f74xx75xx_pinmap.h](https://github.com/PX4/NuttX/blob/px4_firmware_nuttx-8.2/arch/arm/src/stm32f7/hardware/stm32f74xx75xx_pinmap.h).
+1. **src**: go through all files under **src** and update them as needed, in particular **board_config.h**.
+1. **init/rc.board_sensors**: start the sensors that are attached to the board.
 
