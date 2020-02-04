@@ -72,9 +72,8 @@ See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gper
 
 ## Hard Fault Debugging
 
-A hard fault is a state when the operating system detects that it has no valid instructions to execute.
-This is typically the case when key areas in RAM have been corrupted.
-
+A hard fault is a state when a CPU executes an invalid instruction or accesses an invalid memory address.
+This might occur when key areas in RAM have been corrupted.
 
 ### Video
 
@@ -85,13 +84,10 @@ It was presented at the PX4 Developer Conference 2019.
 https://www.youtube.com/watch?v=KZkAM_PVOi0
 {% endyoutube %}
 
-
 ### Debugging Hard Faults in NuttX
 
-A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
-
-A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted.
-A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
+A typical scenario that can cause a hard fault is when the processor overwrites the stack and then the processor returns to an invalid address from the stack. 
+This may be caused by a bug in code were a wild pointer corrupts the stack, or another task overwrites this task's stack.
 
 * NuttX maintains two stacks: The IRQ stack for interrupt processing and the user stack
 * The stack grows downward.
