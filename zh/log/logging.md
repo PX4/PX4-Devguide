@@ -19,12 +19,24 @@ By default, logging is automatically started when arming, and stopped when disar
 
 日志主题列表可以以 SD 卡文件的形式定制。 Create a file `etc/logging/logger_topics.txt` on the card with a list of topics (For SITL, it's `build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`):
 
-    <topic_name>, <interval>
+    <topic_name> <interval> <instance>
     
 
 The `<interval>` is optional, and if specified, defines the minimum interval in ms between two logged messages of this topic. If not specified, the topic is logged at full rate.
 
-文件中的主题名将替换所有默认记录的主题。
+The `<instance>` is optional, and if specified, defines the instance to log. If not specified, all instances of the topic are logged. To specify `<instance>`, `<interval>` must be specified. It can be set to 0 to log at full rate
+
+The topics in this file replace all of the default logged topics.
+
+Example :
+
+    sensor_accel 0 0
+    sensor_accel 100 1
+    sensor_gyro 200
+    sensor_mag 200 1
+    
+
+This configuration will log sensor_accel 0 at full rate, sensor_accel 1 at 10Hz, all sensor_gyro instances at 5Hz and sensor_mag 1 at 5Hz.
 
 ## 脚本
 
@@ -32,7 +44,7 @@ There are several scripts to analyze and convert logging files in the [pyulog](h
 
 ## 丢帧
 
-日志丢帧是不希望发生的，下面有几个因素对影响丢帧的数量：
+Logging dropouts are undesired and there are a few factors that influence the amount of dropouts:
 
 - 我们测试的大多数 sd 卡每分钟都会有多个停顿。 This shows itself as a several 100 ms delay during a write command. It causes a dropout if the write buffer fills up during this time. This effect depends on the SD card (see below).
 - 格式化 SD 卡有助于避免丢帧。
@@ -41,7 +53,7 @@ There are several scripts to analyze and convert logging files in the [pyulog](h
 
 ## SD 卡
 
-下面提供了不同 SD 卡的性能。 测试是在 Pixracer上进行的，这个结果也适用于 Pixhawk。
+The following provides performance results for different SD cards. Tests were done on a Pixracer; the results are applicable to Pixhawk as well.
 
 > **提示：**Nuttx 支持的最大 SD 卡大小为 32GB（SD卡 2.0 存储规范）
 
@@ -56,9 +68,9 @@ There are several scripts to analyze and convert logging files in the [pyulog](h
 | Sandisk Pixtor Class 10 16GB                                  | 334                | 250                 |
 | Sandisk Extreme PLUS Class 10 32GB                            | 332                | 150                 |
 
-比平均写入速度更重要的是每个块的最大写入时间（4KB）。 这决定了最小缓冲区大小：这个值越大，日志缓冲区就要越大，以避免丢帧。 默认主题的日志记录带宽约为 50 KB/s，所有 SD 卡都满足这一点。
+More important than the mean write speed is the maximum write time per block (of 4 KB). This defines the minimum buffer size: the larger this maximum, the larger the log buffer needs to be to avoid dropouts. Logging bandwidth with the default topics is around 50 KB/s, which all of the SD cards satisfy.
 
-到目前为止，我们知道的性能最好的卡是 **SanDisk Extreme U3 32GB**。 This card is recommended, because it does not exhibit write time spikes (and thus virtually no dropouts). Different card sizes might work equally well, but the performance is usually different.
+By far the best card we know so far is the **SanDisk Extreme U3 32GB**. This card is recommended, because it does not exhibit write time spikes (and thus virtually no dropouts). Different card sizes might work equally well, but the performance is usually different.
 
 You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/Firmware/issues/4634.
 
@@ -66,9 +78,9 @@ You can test your own SD card with `sd_bench -r 50`, and report the results to h
 
 The traditional and still fully supported way to do logging is using an SD card on the FMU. However there is an alternative, log streaming, which sends the same logging data via MAVLink. This method can be used for example in cases where the FMU does not have an SD card slot (e.g. Intel® Aero Ready to Fly Drone) or simply to avoid having to deal with SD cards. Both methods can be used independently and at the same time.
 
-The requirement is that the link provides at least ~50KB/s, so for example a WiFi link. 并且同一时刻只能有一个客户机可以请求日志流。 The connection does not need to be reliable, the protocol is designed to handle drops.
+The requirement is that the link provides at least ~50KB/s, so for example a WiFi link. And only one client can request log streaming at the same time. The connection does not need to be reliable, the protocol is designed to handle drops.
 
-这是几种不同的支持日志流的客户机：
+There are different clients that support ulog streaming:
 
 - Firmware/Tools 中的 `mavlink_ulog_streaming.py` 脚本
 - QGroundControl ![QGC Log Streaming](../../assets/gcs/qgc-log-streaming.png)
