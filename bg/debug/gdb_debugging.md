@@ -73,7 +73,19 @@ It will generate a pdf with a graph of the heap allocations. The numbers in the 
 
 See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html) for more information.
 
-## Debugging Hard Faults in NuttX
+## Hard Fault Debugging
+
+A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted.
+
+### Video
+
+The following video demonstrates hardfault debugging on PX4 using Eclipse and a JTAG debugger. It was presented at the PX4 Developer Conference 2019.
+
+{% youtube %} https://www.youtube.com/watch?v=KZkAM_PVOi0 {% endyoutube %}
+
+### Debugging Hard Faults in NuttX
+
+A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
 
 A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted. A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
 

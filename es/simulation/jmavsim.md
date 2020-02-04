@@ -30,7 +30,7 @@ This will bring up the PX4 shell:
 [init] shell id: 140735313310464
 [init] task name: px4
 
-______  __   __    ___ 
+______  __   __    ___
 | ___ \ \ \ / /   /   |
 | |_/ /  \ V /   / /| |
 |  __/   /   \  / /_| |
@@ -172,14 +172,30 @@ The solution is to install the Java 8, as shown in the following sections.
 
 #### macOS
 
-Either [download Oracle Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or use Brew:
+We recommend to install OpenJDK 8 from [AdoptOpenJDK](https://adoptopenjdk.net/) using brew:
 
-    brew tap homebrew/cask-versions
-    brew cask install java8
+    brew tap adoptopenjdk/openjdk
+    brew cask install adoptopenjdk8
     brew install ant
     export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
     rm -rf Tools/jMAVSim/out
     
+
+Alternatively you could [download Oracle Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and install it manually.
+
+### An illegal reflective access operation has occured
+
+If you see an error similar to the one below, it's likely that you're using a Java version later than 8:
+
+    WARNING: An illegal reflective access operation has occurred
+    WARNING: Illegal reflective access by javax.media.j3d.JoglPipeline (rsrc:j3dcore.jar) to method sun.awt.AppContext.getAppContext()
+    WARNING: Please consider reporting this to the maintainers of javax.media.j3d.JoglPipeline
+    WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+    WARNING: All illegal access operations will be denied in a future release
+    Inconsistency detected by ld.so: dl-lookup.c: 112: check_match: Assertion version->filename == NULL || ! _dl_name_match_p (version->filename, map)' failed!
+    
+
+Follow the steps above to make sure Java 8 is installed and selected.
 
 ### java.awt.AWTError: Assistive Technology not found: org.GNOME.Accessibility.AtkWrapper
 

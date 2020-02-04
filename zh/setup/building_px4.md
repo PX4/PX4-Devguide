@@ -132,7 +132,7 @@ The following list shows the build commands for common boards:
 - [Pixfalcon](https://docs.px4.io/en/flight_controller/pixfalcon.html): `make px4_fmu-v2_default`
 - [Dropix](https://docs.px4.io/en/flight_controller/dropix.html): `make px4_fmu-v2_default`
 - [MindPX](https://docs.px4.io/en/flight_controller/mindpx.html)/[MindRacer](https://docs.px4.io/en/flight_controller/mindracer.html): `make airmind_mindpx-v2_default`
-- [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make auav_x21_default` 
+- [mRo X-2.1](https://docs.px4.io/en/flight_controller/mro_x2.1.html): `make mro_x21_default` 
 - [Crazyflie 2.0](https://docs.px4.io/en/flight_controller/crazyflie2.html): `make bitcraze_crazyflie_default`
 - [Intel® Aero Ready to Fly Drone](https://docs.px4.io/en/flight_controller/intel_aero.html): `make intel_aerofc-v1_default`
 - [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** You **must** use a supported version of GCC to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. 使用不受支持的 GCC 构建可能会失败，因为 PX4 对飞控板有 1MB 的闪存限制。
@@ -187,16 +187,16 @@ Build the executable file:
 
 ```sh
 cd Firmware
-make emlid_navio2_cross # for cross-compiler build
+make emlid_navio2 # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory **build/emlid_navio2_cross/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
+The "px4" executable file is in the directory **build/emlid_navio2_default/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
 
 Then upload it with:
 
 ```sh
 cd Firmware
-make emlid_navio2_cross upload # for cross-compiler build
+make emlid_navio2 upload # for cross-compiler build
 ```
 
 Then, connect over ssh and run it with (as root):
@@ -244,89 +244,6 @@ To autostart px4, add the following to the file **/etc/rc.local** (adjust it acc
 cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 ```
 
-### Parrot Bebop
-
-Support for the [Parrot Bebop](https://docs.px4.io/en/flight_controller/bebop.html) is at an early stage and should be used very carefully.
-
-#### 编译
-
-```sh
-cd Firmware
-make parrot_bebop
-```
-
-Turn on your Bebop and connect your host machine with the Bebop's wifi. Then, press the power button four times to enable ADB and to start the telnet daemon.
-
-```sh
-make parrot_bebop upload
-```
-
-This will upload the PX4 mainapp into /data/ftp/internal_000/px4/ and create the file /home/root/parameters if not already present. This also uploads the mixer file and the px4.config file into the /home/root/ directory.
-
-#### 运行
-
-Connect to the Bebop's wifi and press the power button four times. Next, connect with the Bebop via telnet or adb shell and run the commands below.
-
-```sh
-telnet 192.168.42.1
-```
-
-Kill the Bebop's proprietary driver with
-
-```sh
-kk
-```
-
-and start the PX4 mainapp with:
-
-```sh
-/data/ftp/internal_000/px4/px4 -s /home/root/px4.config /data/ftp/internal_000/px4/
-```
-
-In order to fly the Bebop, connect a joystick device with your host machine and start QGroundControl. Both the Bebop and the joystick should be recognized. Follow the instructions to calibrate the sensors and setup your joystick device.
-
-#### 自动启动
-
-To auto-start PX4 on the Bebop at boot, modify the init script `/etc/init.d/rcS_mode_default`. Comment the following line:
-
-    DragonStarter.sh -out2null &
-    
-
-Replace it with:
-
-    echo 1 > /sys/class/gpio/gpio85/value # enables the fan
-    /data/ftp/internal_000/px4/px4 -d -s /home/root/px4.config /data/ftp/internal_000/px4/ >/dev/null &
-    
-
-Enable adb server by pressing the power button 4 times and connect to adb server as described before:
-
-```sh
-adb connect 192.168.42.1:9050
-```
-
-Re-mount the system partition as writeable:
-
-```sh
-adb shell mount -o remount,rw /
-```
-
-In order to avoid editing the file manually, you can use this one: https://gist.github.com/bartslinger/8908ff07381f6ea3b06c1049c62df44e
-
-Save the original one and push this one to the Bebop
-
-```sh
-adb shell cp /etc/init.d/rcS_mode_default /etc/init.d/rcS_mode_default_backup
-adb push rcS_mode_default /etc/init.d/
-adb shell chmod 755 /etc/init.d/rcS_mode_default
-```
-
-Sync and reboot:
-
-```sh
-adb shell sync
-adb shell reboot
-```
-
 ### OcPoC-Zynq Mini
 
 Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_controller/ocpoc_zynq.html) are covered in:
@@ -334,7 +251,7 @@ Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/en/flight_contr
 - [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
 - [OcPoC PX4 Setup Page](https://aerotenna.readme.io/docs/px4-setup)
 
-### 基于 QuRT / Snapdragon 的飞控板
+### QuRT / Snapdragon Based Boards
 
 This section shows how to build for the [Qualcomm Snapdragon Flight](https://docs.px4.io/en/flight_controller/snapdragon_flight.html).
 
@@ -369,7 +286,7 @@ The mixer currently needs to be copied manually:
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 ```
 
-#### 运行脚本
+#### 运行
 
 Run the DSP debug monitor:
 
@@ -440,7 +357,7 @@ Qt creator offers clickable symbols, auto-completion of the complete codebase an
 
 ![](../../assets/toolchain/qtcreator.png)
 
-### 在 Linux 上使用 Qt creator
+### Qt Creator on Linux
 
 Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
@@ -455,11 +372,11 @@ Then load the CMakeLists.txt in the root firmware folder via **File > Open File 
 
 After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
-### 在 Windows 上使用 Qt creator
+### Qt Creator on Windows
 
 > **Note** Windows has not been tested for PX4 development with Qt Creator.
 
-### 在 Mac OS 上使用 Qt creator
+### Qt Creator on Mac OS
 
 Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
@@ -486,7 +403,7 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
 
 **VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
 
-- **VENDOR:** The manufacturer of the board: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp`, `parrot`, etc. The vendor name for Pixhawk series boards is `px4`.
+- **VENDOR:** The manufacturer of the board: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp`, etc. The vendor name for Pixhawk series boards is `px4`.
 - **MODEL:** The *board model* "model": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2`, etc.
 - **VARIANT:** Indicates particular configurations: e.g. `rtps`, `lpe`, which contain components that are not present in the `default` configuration. Most commonly this is `default`, and may be omitted.
 
@@ -518,7 +435,7 @@ The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files
 
 Additional make targets are discussed in the following sections (list is not exhaustive):
 
-### 二进制文件大小剖析 {#bloaty_compare_master}
+### Binary Size Profiling {#bloaty_compare_master}
 
 The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
 

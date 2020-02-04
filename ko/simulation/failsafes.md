@@ -34,4 +34,4 @@ To control how fast the battery depletes to the minimal value use the parameter 
 
 ## GPS Loss
 
-To make simulate losing and regaining GPS information you can just stop/restart the GPS driver. This is done by running the `gpssim stop` and `gpssim start` commands on your SITL instance *pxh shell*.
+To simulate losing and regaining GPS information you can just stop the publication of GPS messages. This is done by running the `param set SIM_GPS_BLOCK 1` and `param set SIM_GPS_BLOCK 0` commands on your SITL instance *pxh shell* to block and unblock messages respectively.

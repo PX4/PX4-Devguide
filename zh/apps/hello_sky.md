@@ -27,7 +27,7 @@
     
     ```c /**************************************************************************** *
     
-    * Copyright (c) 2012-2016 PX4 Development Team. All rights reserved.
+    * Copyright (c) 2012-2019 PX4 Development Team. All rights reserved.
     * 
     * Redistribution and use in source and binary forms, with or without
     * modification, are permitted provided that the following conditions
@@ -57,7 +57,7 @@
     * POSSIBILITY OF SUCH DAMAGE.
     * ****************************************************************************/ ```
 
-* 将下面的代码复制到头部注释的下方， 所有文件都应使用这样的代码样式。
+* 将下面的代码复制到头部注释的下方， This should be present in all contributed files!
     
     ```c /**
     
@@ -66,7 +66,7 @@
     * 
     * @author Example User [&#x6d;&#97;&#105;l&#x40;&#x65;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#99;o&#x6d;](&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#x6d;&#97;&#105;l&#x40;&#x65;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#99;o&#x6d;) */
         
-        # include <px4_log.h>
+        # include <px4_platform_common>
         
         __EXPORT int px4_simple_app_main(int argc, char *argv[]);
         
@@ -76,7 +76,7 @@
         
         <span></span>
         
-        > **Tip** `PX4_INFO` （通过 **px4_log.h** 文件引入）在PX4 命令行中相当于 `printf` 。 有以下不同的日志级别： `PX4_INFO`、`PX4_WARN`、`PX4_ERR`、`PX4_DEBUG`。 其中警告和错误会被额外添加到 [ULog](../log/ulog_file_format.md) 中，且还会在 [Flight Review](https://logs.px4.io/) 中显示。
+        > **Tip** `PX4_INFO` is the equivalent of `printf` for the PX4 shell (included from **px4_platform_common/log.h**). 有以下不同的日志级别： `PX4_INFO`、`PX4_WARN`、`PX4_ERR`、`PX4_DEBUG`。 其中警告和错误会被额外添加到 [ULog](../log/ulog_file_format.md) 中，且还会在 [Flight Review](https://logs.px4.io/) 中显示。
 
 1. 创建并打开一个名为 **CMakeLists.txt** 的新的 *cmake* 定义文件。 复制下面的文本：
     
@@ -126,7 +126,9 @@
     `px4_add_module()` 方法从模块描述生成静态库。 `MAIN` 块列出了模块的名称 — 该名称将会作为 NuttX 的注册命令以便可以从 PX4 命令行或 SITL 控制台调用该命令。
     
     > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
-    > 
+    
+    <span></span>
+    
     > **Note** If you specify `DYNAMIC` as an option to `px4_add_module`, a *shared library* is created instead of a static library on POSIX platforms (these can be loaded without having to recompile PX4, and shared to others as binaries rather than source code). Your app will not become a builtin command, but ends up in a separate file called `examples__px4_simple_app.px4mod`. You can then run your command by loading the file at runtime using the `dyn` command: `dyn ./examples__px4_simple_app.px4mod`
 
 ## 编译应用程序/固件
@@ -338,7 +340,7 @@ orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
 /****************************************************************************
  *
 
- *   Copyright (c) 2012-2016 PX4 Development Team. All rights reserved.
+ *   Copyright (c) 2012-2019 PX4 Development Team. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -376,9 +378,9 @@ orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
  * @author Example User <mail@example.com>
  */
 
-#include <px4_config.h>
-#include <px4_tasks.h>
-#include <px4_posix.h>
+#include <px4_platform_common/px4_config.h>
+#include <px4_platform_common/tasks.h>
+#include <px4_platform_common/posix.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <poll.h>

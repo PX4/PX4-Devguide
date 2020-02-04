@@ -1,6 +1,6 @@
 # Development Environment on Linux
 
-Linux allows you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Bebop, Linux-based hardware, Simulation, ROS).
+Linux allows you to build for [all PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, Qualcomm Snapdragon Flight hardware, Linux-based hardware, Simulation, ROS).
 
 > **Tip** [Ubuntu Linux LTS](../setup/dev_env_linux_ubuntu.md) 16.04 is recommended. Other environments can be made to work, but are less well tested and documented.
 

@@ -22,7 +22,7 @@ To install the toolchain:
     `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`
 2. Run the **ubuntu.sh** with no arguments (in a bash shell) to install everything: 
         bash
-        source ubuntu.sh
+        bash ubuntu.sh
     
     * Acknowledge any prompts as the script progress.
     * You can use the `--no-nuttx` and `--no-sim-tools` to omit the nuttx and/or simulation tools.
@@ -31,7 +31,7 @@ To install the toolchain:
 > **Note** You can alternatively [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place: 
 > 
 >     git clone https://github.com/PX4/Firmware.git
->       source Firmware/Tools/setup/ubuntu.sh
+>       bash Firmware/Tools/setup/ubuntu.sh
 
 Notes:
 
@@ -66,7 +66,7 @@ To get the build toolchain for Raspberry Pi:
     `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`
 2. Run **ubuntu.sh** in a terminal to get just the common dependencies: 
         bash
-        source ubuntu.sh --no-nuttx --no-sim-tools
+        bash ubuntu.sh --no-nuttx --no-sim-tools
 
 3. Then setup an ARMv7 cross-compiler (either GCC or clang) as described in the following sections.
 
@@ -115,16 +115,6 @@ cmake \
 
 Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 
-## Parrot Bebop
-
-Developers working with the Parrot Bebop should first install the [Raspberry Pi Linux Toolchain](#raspberry-pi-hardware) as described above.
-
-Then install ADB:
-
-```sh
-sudo apt-get install android-tools-adb -y
-```
-
 ## ROS/Gazebo {#rosgazebo}
 
 This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") for use with PX4.
@@ -137,7 +127,7 @@ To install the development toolchain:
     `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh`
 2. Run the script: 
         bash
-        source ubuntu_sim_ros_melodic.sh You may need to acknowledge some prompts as the script progresses.
+        bash ubuntu_sim_ros_melodic.sh You may need to acknowledge some prompts as the script progresses.
 
 Note:
 

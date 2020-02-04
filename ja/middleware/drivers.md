@@ -1,10 +1,6 @@
 # Driver Development
 
-NuttX device drivers are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) framework.
-
-Linux and QuRT drivers are based on [DriverFramework](https://github.com/px4/DriverFramework). PX4 is currently being updated so that they can use the same drivers as NuttX.
-
-> **Note** Currently (December 2017) a small number of Linux/QuRT I2C drivers have been migrated (primarily for airspeed sensors). We plan to migrate the remaining drivers in coming releases.
+PX4 device drivers are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) framework.
 
 ## Creating a Driver
 

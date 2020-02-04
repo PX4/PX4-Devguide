@@ -223,9 +223,14 @@ PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor att
 
 ### Prerequisites
 
-Install *Gstreamer 1.0* and its dependencies:
+Ubuntu: Install *Gstreamer 1.0* and its dependencies:
 
     sudo apt-get install $(apt-cache --names-only search ^gstreamer1.0-* | awk '{ print $1 }' | grep -v gstreamer1.0-hybris) -y
+    
+
+Mac OS:
+
+    brew install gstreamer gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
     
 
 ### How to View Gazebo Video

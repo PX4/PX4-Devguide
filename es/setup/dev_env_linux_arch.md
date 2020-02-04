@@ -12,13 +12,13 @@ To get and run the scripts, do either of:
 
 - [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place: 
         git clone https://github.com/PX4/Firmware.git
-        source Firmware/Tools/setup/arch.sh
+        bash Firmware/Tools/setup/arch.sh
 
 - Download just the needed scripts and then run them: 
         sh
         wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/arch.sh
         wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/requirements.txt
-        source arch.sh
+        bash arch.sh
 
 The script takes the following optional parameters:
 

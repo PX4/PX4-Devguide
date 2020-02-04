@@ -220,7 +220,7 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 3. 更新 *QGroundControl*： 
   * 将该机型组的 svg 图像文件添加至： [src/AutopilotPlugins/Common/images](https://github.com/mavlink/qgroundcontrol/tree/master/src/AutoPilotPlugins/Common/Images)
-  * 根据如下模式在 [qgcresources.qrc](https://github.com/mavlink/qgroundcontrol/blob/master/qgcresources.qrc) 文件中添加对 svg 图像的引用： 
+  * Add reference to the svg image into [qgcimages.qrc](https://github.com/mavlink/qgroundcontrol/blob/master/qgcimages.qrc), following the pattern below: 
         <qresource prefix="/qmlimages">
             ...
             <file alias="Airframe/AirframeSimulation">src/AutoPilotPlugins/Common/Images/AirframeSimulation.svg</file>

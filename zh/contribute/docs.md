@@ -2,11 +2,11 @@
 
 非常欢迎大家给Dronecode项目的相关指南积极投稿。 投稿内容包括PX4和QGroundControl 开发者和用户指南，以及MAVLink指南。 本篇章用来向投稿者们解释如何对项目指南进行更改、添加内容和创建翻译。
 
-> **Note**你需要申请一个(免费的) [Github](http://github.com)帐户来向项目指南投稿。
+> **Note** You will need a (free) [Github](http://github.com) account to contribute to the guides.
 
 ## 快速更改
 
-如需修改错误或编辑一个*现有页面*，请按如下步骤操作：
+Fixing typos or editing the text an *existing page* is easy:
 
 1. 点击指南相关页面顶部的工具栏图标**Edit**。
     
@@ -20,11 +20,22 @@
 
 The documentation team reviews submitted pull requests and will either merge it or work with you to update it.
 
-## 添加新内容 - 大更改
+> **Note** If you want to add new pages or images, then you will need to work through the git tool rather than github. Often you will want to build the library using the gitbook toolchain to test your changes.
 
-If you want to add new pages or images that can't easily be done through the Github interface. In this case you make changes in the same way as you would for code changes: use the *git* toolchain to get the code, modify it as needed, test that it renders properly using the Gitbook client, create a branch for your changes and create a pull request (PR) to pull it back into the documentation. The following instructions explain how.
+## Adding New Pages and Images - Big Changes
 
-### 内容分类
+If you want to add new pages or images that can't easily be done through the Github interface. In this case you make changes in the same way as you would for *code* changes:
+
+1. Use the *git* toolchain to get the documentation source code
+2. Modify it as needed (add, change, delete).
+3. Test that it renders properly using the Gitbook client
+4. Create a branch for your changes and create a pull request (PR) to pull it back into the documentation. 
+
+Change requests can be either done on the Gitbook website using the [Gitbook editor](https://gitbookio.gitbooks.io/documentation/content/editor/index.html) or locally (more flexible, but less user-friendly). Most of these instructions cover the local setup.
+
+### Developer or User Guide?
+
+There are different types of PX4 users, and it is important that documentation goes into the right place.
 
 The *Developer Guide* is for documentation that is relevant to *software developers*. This includes users who need to:
 
@@ -38,116 +49,143 @@ The *User Guide*, by contrast, is *primarily* for users who want to:
 * 使用 PX4 控制飞行器
 * 使用 PX4，基于已支持/现存的机型，构建、修改或配置类似载具。
 
-> **Tip** 例如，关于如何构建/配置现有机架类型的详细信息在用户指南中，而 定义*新*机架类型的说明在开发者指南中。
+> **Tip** For example, detailed information about how to build/configure an existing airframe are in the User Guide, while instructions for defining a *new* airframe are in the Developer Guide.
 
-### Gitbook 文档工具
+### Get/Push Documentation Source Code
 
-The guide uses the [Legacy Gitbook Toolchain](https://legacy.gitbook.com/) toolchain.
+To get the library(s) sources onto your local computer you will need to use the git toolchain. The instructions below explain how to get git and use it on your local computer.
 
-Change requests can be either done on the Gitbook website using the [Gitbook editor](https://gitbookio.gitbooks.io/documentation/content/editor/index.html) or locally (more flexible, but less user-friendly).
-
-In order to contribute many changes to the documentation, it is recommended that you follow these steps to add the changes locally and then create a pull request:
-
-* 如果您还没有注册Github，请先[注册](https://github.com/join) Github 账户
-* 点击[这里](https://github.com/PX4/px4_user_guide)查看PX4用户指南，点击[这里](https://github.com/PX4/Devguide)查看PX4开发者指南。 点击[这里](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository)，查看如何分支git repository。
-* 将分支克隆到本地计算机  
+1. Download git for your computer from <https://git-scm.com/downloads>
+2. [Sign up](https://github.com/join) for github if you haven't already
+3. Create a copy (Fork) of the desired library on Github ([instructions here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository)). The library repo URLs are: 
+    * PX4 User Guide: https://github.com/PX4/px4_user_guide
+    * PX4 Developer Guide: https://github.com/PX4/Devguide
+    * QGroundControl User Guide: https://github.com/mavlink/qgc-user-guide
+    * QGroundControl Developer Guide: https://github.com/mavlink/qgc-dev-guide
+    * MAVLink Developer Guide: https://github.com/mavlink/mavlink-devguide
+4. Clone (copy) your forked repository to your local computer: 
         sh
         cd ~/wherever/
-        git clone https://github.com/<your git name>/px4_user_guide.git
+        git clone https://github.com/<your git name>/<repository_name>.git For example, to clone the PX4 userguide fork for a user with github account "john_citizen_smith": 
+    
+        sh
+        git clone https://github.com/john_citizen_smith/px4_user_guide.git
 
-* 通过 NPM 安装 gitbook。 在终端提示下，只需运行以下命令即可安装 GitBook：
+5. Navigate to your local repository (px4_user_guide is used below): 
+        sh
+        cd ~/wherever/px4_user_guide
+
+6. Add a *remote* called "upstream" to point to the original library. The exmaple below shows how to do this for the user guide (note the URL format - it is the repo URL with extension ".git").
     
     ```sh
-    npm install gitbook-cli -g
+    git remote add upstream https://github.com/PX4/px4_user_guide.git
     ```
     
-    > **Note** 本地安装和构建Gitbook 的所需一切也会在[工具链文档](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md)中说明。
+    > **Tip** A "remote" is a handle to a particular repository. The remote named *origin* is created by default when you clone the repository, and points to your fork of the guide. You want to create a new remote *upstream* that points to the official version of the document.
 
-* 进入您的本地版本库并添加原始的上游版本：
+7. Create a branch for your changes:
+    
+    ```sh
+    git checkout -b <your_feature_branch_name>
+    ```
+    
+    This creates a local branch on your computer named `your_feature_branch_name`.
+
+8. Make changes to the documentation as needed (general guidance on this in following sections)
+9. Once you are satisfied with your changes, you can add them to your local branch using a "commit": 
+        sh
+        git add <file name>
+        git commit -m "<your commit message>" For a good commit message, please refer to 
+    
+    [Contributing](../contribute/README.md) section.
+10. Push your local branch (including commits added to it) to your forked repository on github 
+        sh
+        git push origin your_feature_branch_name
+
+11. Go to your forked repository on Github in a web browser, e.g.: `https://github.com/<your git name>/px4_user_guide.git`. There you should see the message that a new branch has been pushed to your forked repository.
+12. Create a pull request (PR): 
+    * On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Press it.
+    * A pull request template will be created. It will list your commits and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/px4_user_guide/pulls) for comparison)
+13. You're done! Responsible members of PX4 guides will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
+
+### Source Code Structure
+
+The guide uses the [Legacy Gitbook Toolchain](https://legacy.gitbook.com/) toolchain. Instructions for how this toolchain is setup and used can be found in the [toolchain documentation](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md).
+
+In overview:
+
+* Pages are written in separate files using markdown \(almost the same syntax used by Github wiki\). 
+* The *structure* of the book is defined in a file named **SUMMARY.md**. If you add a new page to the library you must add an entry to this file. 
+* This is a [multilingual](https://github.com/GitbookIO/gitbook/blob/master/docs/languages.md) book, so there is a **LANGS.md** file in the root directory defining what languages are supported. 
+    * Pages for each language are stored in the folder named for the associated language code \(e.g. "zh" for Chinese, "en" for English\).
+    * You should only ever edit the ENGLISH version of files. We use translation software to manage the other trees.
+* Images must be stored in a sub folder of **/assets**. This is two folders down from content folders, so if you add an image you will reference it like: ```![Image Description](../../assets/path_to_file/filename.jpg)```
+* A file named **book.json** defines any dependencies of the build.
+* A web hook is used to track whenever files are merged into the master branch on this repository, causing the book to rebuild.
+
+## 文档规范指南
+
+1. Files/file names
+
+* Put new files in an appropriate sub-folder
+* Use descriptive names. In particular, image filename should describe what they contain.
+* Use lower case and separate words using underscores "\_"
+
+2. Images
+
+* Use the smallest size and lowest resolution that makes the image still useful.
+* New images should be created in a sub-folder of **/assets/** by default (so they can be shared between translations).
+
+3. Content:
+
+* Use "style" \(bold, emphasis, etc\) consistently. **Bold** for button presses and menu definitions. *Emphasis* for tool names. Otherwise use as little as possible.
+* Headings and page titles should use "First Letter Capitalisation"
+* The page title should be a first level heading \(\#\). All other headings should be h2 \(\#\#\) or lower.
+* Don't add any style to headings.
+* Don't translate the *first part* of a note, tip or warning declaration (e.g. `> **Note**`) as this precise text is required to render the note properly.
+
+### Building the Gitbook Locally
+
+Everything you need to install and build Gitbook locally is also explained in the [toolchain documentation](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md).
+
+1. Install nodejs on your computer (version 4-6 recommended).
+2. Install gitbook via NPM. At the terminal prompt, simply run the following command to install GitBook: 
+        sh
+        npm install gitbook-cli -g
+
+3. Navigate to your local repository:
     
     ```sh
     cd ~/wherever/px4_user_guide
-    git remote add upstream https://github.com/PX4/px4_user_guide.git
     ```
+    
+    1 Install gitbook dependencies:
+    
+    ```sh
+    gitbook install
+    ```
+    
+    > **Note** If you run into an error: `/usr/bin/env: node: No such file or directory`, run `ln -s /usr/bin/nodejs /usr/bin/node`
 
-* 现在您可以检出一个新分支，并向其中添加您的更改。 要构建您的卷册，请运行：
+4. Build your book:
     
     ```sh
     gitbook build
     ```
+
+5. To preview and serve your book, run: 
+        sh
+        gitbook serve
     
-    > **Note** 如果遇到报错: `/usr/bin/env: node：No such file or directory`, 请运行 `ln -s /usr/bin/nodejs /usr/bin/node`
+    * Now you can browse your local book on http://localhost:4000/
+    * Exit serving using `CTRL+c` in the terminal prompt.
+6. You can also serve on a different port instead of 4000: 
+        sh
+        gitbook serve --port 4003
 
-* 要预览并服务您的卷册，请运行：
-    
-    ```sh
-    gitbook serve
-    ```
-    
-    > **Note** 运行 `gitbook install` 可安装缺失的插件。
-
-* 现在您可以在 http://localhost:4000/ 上浏览您的本地卷册
-
-* 在终端提示中使用`CTRL+c`退出。
-
-* 除了端口4000，您也可以在另一个端口上作业：
-    
-    ```sh
-    gitbook serve --port 4003
-    ```
-
-* 您也可以以 html 、pdf、epub 或 mobi 格式输出： 
+7. You can also output as html, pdf, epub or mobi: 
         sh
         gitbook help
-
-* 预览过您的更改后，只要您感觉满意，您便可以添加并提交这些更改：
-    
-    ```sh
-    git add <file name>
-    git commit -m "<your commit message>"
-    ```
-    
-    需进一步了解提交信息, 请参阅 [Contributing](../contribute/README.md) 部分。
-
-* 现在, 您可以将本地提交推送到分支版本库
-    
-    ```sh
-    git push origin <your feature branch name>
-    ```
-
-* 您可以通过浏览器访问分支版本库来验证推送是否成功： ```https://github.com/<your git name>/px4_user_guide.git```  
-    您应该会看到一条告知消息：一个新分支已被推送到您的分支版本库。
-* 现在是时候创建一个拉取请求 (PR) 了。 在 "新分支消息" 的右侧 (请参阅前面的一个步骤), 您应该看到一个绿色按钮, 上面写着 "Compare & Create Pull Request"。 然后, 它应该列出你的更改，你必须添加一个有意义的标题 (在提交 PR 的情况下, 它通常是提交消息) 和消息 (<span style="color:orange">解释你做了这些更改的原因 </span>， 检查 [其他拉取请求 ](https://github.com/PX4/px4_user_guide/pulls) 进行比较)。
-* 搞定！ PX4 指南项目的负责人现在将看到您的投稿, 并决定是否要整合稿件内容。 每过一段时间，他们会检查你的更改，以确保没有疑义。
-
-In overview:
-
-* 用多个单独文件编写的页面，使用 markdown \(与Github wiki中的语法几乎一致\)。 
-* 卷册的*架构*定义，详见**SummMMARY.md**文件。
-* 这是一本[多语种](https://github.com/GitbookIO/gitbook/blob/master/docs/languages.md)的卷册。 所以在根目录中有一个**LANGS.md**文件来定义支持哪些语言。 每种语言的页面都存储在用相关语言代码命名的文件夹\(例如，中文的“zh”、 英文的“en”\)。 
-* 一个名为**book.json**的文件定义了此构建的所有依赖关系。
-* 网络钩子会被用来跟踪是否有文件合并到此版本库上的主分支，如果有，卷册将重新构建。
-
-## 文档规范指南
-
-1. 文件/文件名
-
-* 将新文件放入相应的子文件夹
-* 使用描述性名称。 特别是图像类型文件，文件名应简要描述其中的内容。
-* 命名中使用小写，并用下划线"\_"分割单词
-
-2. 图片
-
-* 使用能保证图像使用价值的最小尺寸和最小分辨率。
-* 默认情况下，新图像应在 **/assets/** 的子文件夹中创建 (这样翻译之间可共享图像资源)。
-
-3. 内容:
-
-* 始终如一地使用 "样式" (如bold, emphasis等) 按钮和菜单定义，请使用样式**Bold**。 工具名称，请使用样式*Emphasis*。 其他情况，尽量少用样式。
-* 标题和页面标题应该遵从"第一字母大写"
-* 页面标题应该是一级标题 。 所有其他标题应该是二级或更低级别的标题。
-* 不要在标题中添加任何样式。
-* 不要翻译注释、提示或警告声明的*第一部分* （例如`**Note**` ），因为这部分是用来向读者表达注解内容级别的。
 
 ## 翻译 {#translation}
 
