@@ -45,7 +45,6 @@ This section describes the various middleware components, and the configuration 
 * The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs).
 * The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions).
 * The PX4 middleware configuration is located in [src/boards](https://github.com/PX4/Firmware/tree/master/boards). TODO: ADD BUS CONFIG 
-* Drivers: [DriverFramework](https://github.com/px4/DriverFramework). 
 * Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
 
 
