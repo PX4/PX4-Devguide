@@ -9,7 +9,7 @@
 
 [ Gazebo ](http://gazebosim.org)是用于自主机器人的强大3D模拟环境，其特别适用于测试物体避障和计算机视觉。 本文描述了如何使用它来进行单机的软件在环仿真。 Gazebo 也可以适用于 [硬件在环仿真](../simulation/hitl.md) 和 [多机仿真](../simulation/multi-vehicle-simulation.md) 。
 
-**支持机型：**四旋翼 ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) 和 [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo))，六旋翼 (Typhoon h480)，[通用四旋翼 delta VTOL 无人机](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol)，尾翼，飞机，探测车，潜艇（即将推出！）
+**Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) and [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo), Hex (Typhoon H480), [Generic quad delta VTOL](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), Tailsitter, Plane, Rover, Submarine/UUV (coming soon!)
 
 > **Tip** Gazebo 通常与 [ROS](../ros/README.md) 一起使用，板外自动飞行控制的 API 工具包。 如果您计划将 PX4 与 ROS 一起使用，则应该先安装 Gazebo [在这看说明教程](../simulation/ros_interface.md) 。
 
@@ -97,7 +97,7 @@ make px4_sitl gazebo_rover
 ### 海马体 TUHH (UUV: 无人水下航行器) {#uuv}
 
 ```sh
-make px4_sitl gazebo_hippocampus
+make px4_sitl gazebo_uuv_hippocampus
 ```
 
 ![潜艇 /UUV](../../assets/gazebo/hippocampus.png)
