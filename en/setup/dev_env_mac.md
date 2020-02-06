@@ -31,14 +31,22 @@ After installing Homebrew, run these commands in your shell to install the commo
 ```sh
 brew tap PX4/px4
 brew install px4-dev
-# Optional, but recommended additional simulation tools:
+```
+To support simulation you you should also install
+```sh
 brew install px4-sim
 ```
-
-If the installation outputs an error message about missing requirements follow the instructions. Your system will be missing Java and Quartz:
-
 ```sh
-brew cask install xquartz java
+# Quartz
+brew cask install xquartz
+```
+```sh
+# AdoptOpenJDK (Java8)
+brew tap adoptopenjdk/openjdk
+brew cask install adoptopenjdk8
+brew install ant
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+rm -rf Tools/jMAVSim/out
 ```
 
 Make sure you have Python 3 installed.
