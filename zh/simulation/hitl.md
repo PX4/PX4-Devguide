@@ -2,32 +2,24 @@
 
 硬件在环仿真模式 (HITL 或 HIL) 下 PX4 固件代码运行在真实的飞行控制器硬件平台上。 这种方法的优点是可以在实际硬件上测试大多数的实际飞行代码。
 
-HITL 模式下 PX4 支持多旋翼 (使用 jMAVSim 或者 Gazebo) 和固定翼 (使用 Gazebo 或者 X-Plane demo/full version) 无人机的仿真。
+PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and VTOL (using Gazebo).
 
 ## HITL兼容机架 {#compatible_airframe}
 
 目前兼容的机架构型和模拟器的情况如下：
 
-| 机架                                                                                                     | `SYS_AUTOSTART` | X-Plane | Gazebo | jMAVSim |
-| ------------------------------------------------------------------------------------------------------ | --------------- | ------- | ------ | ------- |
-| <a href="../airframes/airframe_reference.md#plane_simulation_(plane)_hilstar_(xplane)">HILStar (X-Plane)</a>                                                                              | 1000            | Y       |        |         |
-| <a href="../airframes/airframe_reference.md#copter_simulation_(copter)_hil_quadcopter_x">HIL Quadcopter X</a>                                                                              | 1001            |         | Y      | Y       |
-| <a href="../airframes/airframe_reference.md#vtol_standard_vtol_hil_standard_vtol_quadplane">HIL Standard VTOL QuadPlane</a>                                                                              | 1002            |         | Y      |         |
-| [Standard planes](../airframes/airframe_reference.md#plane_standard_plane_standard_plane)              | 2100            | Y       |        |         |
-| [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadcopter) copter | 4001            |         | Y      | Y       |
-| [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450)     | 4011            |         | Y      | Y       |
+| 机架                                                                                                     | `SYS_AUTOSTART` | Gazebo | jMAVSim |
+| ------------------------------------------------------------------------------------------------------ | --------------- | ------ | ------- |
+| <a href="../airframes/airframe_reference.md#copter_simulation_(copter)_hil_quadcopter_x">HIL Quadcopter X</a>                                                                              | 1001            | Y      | Y       |
+| <a href="../airframes/airframe_reference.md#vtol_standard_vtol_hil_standard_vtol_quadplane">HIL Standard VTOL QuadPlane</a>                                                                              | 1002            | Y      |         |
+| [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadcopter) copter | 4001            | Y      | Y       |
+| [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450)     | 4011            | Y      | Y       |
 
 ## HITL 仿真环境 {#simulation_environment}
 
-硬件在环仿真（HITL）模式下标准的 PX4 固件在真实的硬件上运行。 使用Gazebo, jMAVSim 和 X-Plane 仿真平台进行 HITL 仿真的配置设定稍有不同。
+硬件在环仿真（HITL）模式下标准的 PX4 固件在真实的硬件上运行。 JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*.
 
-> **Tip** 更多有关信息请参阅： [仿真模拟](../simulation/README.md) 。
-
-### JMAVSim/Gazebo HITL 仿真环境
-
-JMAVSim 或 Gazebo (运行在开发计算机上) 通过 USB/UART 完成与飞行控制器硬件平台的连接。 模拟器充当在 PX4 和 *QGroundControl* 之间共享 MAVLink 数据的网关。
-
-> **Note** 如果飞行控制器支持网络连接且使用的是稳定、低延迟的连接（如有线以太网，WIFI 通常不太稳定），那么模拟器也可以使用 UDP 完成通讯连接。 例如，该配置已经使用一台运行 PX4 且通过以太网连接到开发计算机的 Raspberry Pi 进行了验证测试 (包括 jMAVSim 运行命令的启动配置在 [这里](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config))。
+> **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable). For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)).
 
 The diagram below shows the simulation environment:
 
@@ -39,17 +31,6 @@ The diagram below shows the simulation environment:
 
 ![HITL Setup - jMAVSim and Gazebo](../../assets/simulation/px4_hitl_overview_jmavsim_gazebo.png)
 
-### X-Plane HITL 仿真环境
-
-*QGroundControl* is connected to the flight controller hardware via USB, and acts as a gateway to forward data between the X-Plane simulator running on a development computer, PX4, and any offboard API. The diagram below shows the simulation environment:
-
-* 飞控板 HITL 模式被激活 (通过 *QGroundControl*) ，该模式下不会启动飞控板上任何传感器。
-* *QGroundControl* 通过 USB 连接到飞行控制器。
-* *QGroundControl* 通过 UDP 连接到模拟器和offboard API。
-* 通过串口将操纵杆/游戏手柄通过 *QGroundControl* 连接至仿真回路中。
-
-![HITL Setup - X-Plane](../../assets/simulation/px4_hitl_overview_xplane.png)
-
 ## HITL vs SITL
 
 SITL runs on a development computer in a simulated environment, and uses firmware specifically generated for that environment. Other than simulation drivers to provide fake environmental data from the simulator the system behaves normally.
@@ -60,7 +41,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
 
 ## 配置 HITL
 
-### PX4 配置
+### PX4 Configuration
 
 1. 通过 USB 将自动驾驶仪直接连接到 *QGroundControl*。
 2. 激活 HITL 模式
@@ -73,7 +54,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
 3. 选择机架
     
     1. 打开 **Setup > Airframes** 选项卡。
-    2. 选择一个你想要进行测试的 [兼容的机架](#compatible_airframe) 。 通常情况下选择 *HILStar* 作为固定翼平台/X-Plane 模拟器，选择 *HIL QuadCopter* 作为旋翼平台 ( jMAVSim 或 Gazebo) 。 Then click **Apply and Restart** on top-right of the *Airframe Setup* page.
+    2. 选择一个你想要进行测试的 [兼容的机架](#compatible_airframe) 。 Then click **Apply and Restart** on top-right of the *Airframe Setup* page.
         
         ![选择机架](../../assets/gcs/qgc_hil_config.png)
 
@@ -94,9 +75,9 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
 
 Once configuration is complete, **close** *QGroundControl* and disconnect the flight controller hardware from the computer.
 
-### 模拟器配置
+### Simulator-Specific Setup
 
-Follow the appropriate setup steps for your simulator in the following sections.
+Follow the appropriate setup steps for the specific simulator in the following sections.
 
 #### Gazebo
 
@@ -134,7 +115,7 @@ Follow the appropriate setup steps for your simulator in the following sections.
 
 #### jMAVSim (仅适用于四旋翼无人机)
 
-> **Note** 确保 *QGroundControl* 没有运行！
+> **Note** Make sure *QGroundControl* is not running!
 
 1. 将飞行控制器连接到计算机, 并等待其启动。
 2. Run jMAVSim in HITL mode: 
@@ -143,26 +124,6 @@ Follow the appropriate setup steps for your simulator in the following sections.
     
     **Note** Replace the serial port name `/dev/ttyACM0` as appropriate. On macOS this port would be `/dev/tty.usbmodem1`. On Windows (including Cygwin) it would be the COM1 or another port - check the connection in the Windows Device Manager.
 3. 开启 *QGroundControl*。 它应该会自动连接 PX4 和 Gazebo 。
-
-#### 使用 X-Plane (仅适用于固定翼无人机)
-
-> **Note** X-Plane is currently not recommended. Among other issues, the frame update rate is too slow to run the system realistically.
-
-To set up X-Plane:
-
-1. 打开 X-Plane
-2. 在 **Settings > Data Input and Output** 界面中勾选以下选项：
-    
-    ![X-Plane 数据配置](../../assets/gcs/xplane_data_config.png)
-
-3. 在 **Settings > Net Connections** 界面的 *Data* 选项卡，将 localhost 和 49005 端口设定为 IP 地址，如下图所示：
-    
-    ![X-Plane 网络配置](../../assets/gcs/xplane_net_config.png)
-
-4. 在 *QGroundControl* 中启用 X-Plane HITL ：
-    
-    1. 开启 *QGroundControl*。
-    2. Open **Widgets > HIL Config**. Select X-Plane 10 in the drop-down and hit connect. Once the system is connected, battery status, GPS status and aircraft position should all become valid.
 
 ## 在 HITL 仿真中执行自主飞行任务
 
