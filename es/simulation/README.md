@@ -32,11 +32,6 @@ It is easy to set up and can be used to test that your vehicle can take off, fly
 
 **Supported Vehicles:** Iris (MultiRotor model and a configuration for PX4 QuadRotor in the X configuration).
 
-[XPlane](../simulation/hitl.md) (HITL only)| A comprehensive and powerful fixed-wing flight simulator that offers very realistic flight models.  
-
-
-**Supported Vehicles:** Plane
-
 [Simulation-In-Hardware](../simulation/simulation-in-hardware.md) (SIH) | An alternative to HITL that offers a hard real-time simulation directly on the hardware autopilot.  
 
 
