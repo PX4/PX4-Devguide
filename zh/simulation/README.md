@@ -32,11 +32,6 @@ Px4 支持 *软件在环（SITL）* 仿真，其中飞行堆栈在计算机上�
 
 **支持机型: </0 >Iris （多转子模型和 x 配置中 px4 quadrotor 的配置）。</p> 
 
-[XPlane](../simulation/hitl.md)（仅硬件在环）| 一个全面而强大的固定翼飞行仿真器，提供非常逼真的飞行模型。  
-
-
-**支持机型： **四旋翼
-
 [Simulation-In-Hardware](../simulation/simulation-in-hardware.md) (SIH) | An alternative to HITL that offers a hard real-time simulation directly on the hardware autopilot.  
 
 
