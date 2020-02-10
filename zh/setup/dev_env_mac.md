@@ -4,7 +4,7 @@ MacOS 是受支持的 PX4 开发平台。 根据本文的指示构建的开发�
 
 * 基于 NuttX 的硬件 (Pixhawk等)
 * jMAVSim 仿真模拟
-* Gazebo 8 仿真模拟
+* Gazebo Simulation
 
 > **提示：** 若需要为其他平台进行编译请参考： [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets)。
 
@@ -29,14 +29,6 @@ After installing Homebrew, run these commands in your shell to install the commo
 ```sh
 brew tap PX4/px4
 brew install px4-dev
-# Optional, but recommended additional simulation tools:
-brew install px4-sim
-```
-
-If the installation outputs an error message about missing requirements follow the instructions. Your system will be missing Java and Quartz:
-
-```sh
-brew cask install xquartz java
 ```
 
 Make sure you have Python 3 installed.
@@ -46,6 +38,28 @@ brew install python3
 
 # install required packages using pip3
 pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg
+```
+
+## Gazebo Simulation
+
+To install SITL simulation with Gazebo:
+
+```sh
+brew cask install xquartz
+brew install px4-sim-gazebo
+```
+
+## jMAVSim Simulation
+
+To install SITL simulation with jMAVSim:
+
+```sh
+brew tap AdoptOpenJDK/openjdk
+brew cask install adoptopenjdk8
+```
+
+```sh
+brew install px4-sim-jmavsim
 ```
 
 ## Additional Tools
