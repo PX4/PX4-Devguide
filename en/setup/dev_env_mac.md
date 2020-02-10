@@ -44,19 +44,16 @@ pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg
 
 ## Gazebo Simulation
 
-To install SITL (software in the loop) simulation based using Gazebo you need to install XQuartz :
+To install SITL simulation with Gazebo:
 
 ```sh
 brew cask install xquartz
-```
-
-```sh
 brew install px4-sim-gazebo
 ```
 
 ## jMAVSim Simulation
 
-To install SITL (software in the loop) simulation based using jMAVSim you need to install Java 8:
+To install SITL simulation with jMAVSim:
 
 ```sh
 brew tap AdoptOpenJDK/openjdk
