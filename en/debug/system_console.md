@@ -96,26 +96,51 @@ Then select 'serial connection' and set the port parameters to:
 * 8 data bits
 * 1 stop bit
 
-## Getting Started on the Console
 
-Type `ls` to view the local file system, type `free` to see the remaining free RAM. The console will also display the system boot log when power-cycling the board.
+## MAVLink Shell {#mavlink_shell}
+
+For NuttX-based systems (Pixhawk, Pixracer, ...), the *nsh console* can also be accessed via MAVLink over serial (USB/Telemetry) or WiFi (UDP/TCP) links.
+
+The easiest way to access the *nsh console* via MAVLink is using [QGroundControl](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html) (see **Analyze View > Mavlink Console**).
+
+You can also access the shell in a terminal using the **mavlink_shell.py** script:
+1. Shut down QGroundControl.
+1. Install dependencies:
+   ```sh
+   sudo pip3 install pymavlink pyserial
+   ```
+1. Open terminal (in Firmware directory) and start the shell:
+   ```sh
+   # For serial port
+   ./Tools/mavlink_shell.py /dev/ttyACM0
+   ```
+    ```sh
+   # For Wifi connection
+   ./Tools/mavlink_shell.py <IP address>
+   ```
+
+Use `mavlink_shell.py -h` to get a description of all available arguments.
+
+
+
+## Getting Started on the Console/Shell {#getting-started-on-the-console}
+
+The System Console will display the system boot log when power-cycling the board.
+The MAVLink shell/console and the System Console are otherwise used in much the same way.
+
+Type `ls` to view the local file system, type `free` to see the remaining free RAM.
 
 ```bash
 nsh> ls
 nsh> free
 ```
 
-## MAVLink Shell{#mavlink_shell}
+Other system commands and modules are listed in the [Modules and Command Reference](../middleware/modules_main.md) (e.g. `top`, `listener`, etc.). 
 
-For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be
-accessed via MAVLink. This works via serial link (USB/Telemetry) or WiFi (UDP/TCP). Make sure
-that QGC is not running, then start the shell with e.g.
-`./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source, you may first have to install the dependencies with `sudo pip install pymavlink pyserial`).
-Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection.
-For example `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot.
-.
+> **Tip** Some commands may be disabled on some boards (i.e. the some modules are not included in firmware for boards with RAM constraints). 
+  In this case you will see the response: `command not found`
 
-> **Tip** You can also use the nsh shell on [QGC directly](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html).
+> **Note** 
 
 # Snapdragon DSP Console
 
