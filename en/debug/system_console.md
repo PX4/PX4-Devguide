@@ -1,6 +1,9 @@
 # PX4 System Console
 
-The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation), but a plain FTDI cable can be used as well.
+The PX4 *System Console* provides low-level access to the system, debug output and analysis of the system boot process.
+The most convenient way to connect it is by using a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation), but a plain FTDI cable can be used as well.
+
+> **Tip** The [MAVLink Shell](#mavlink_shell) (accessed via *QGroundControl*) can be used for [many of the same tasks](#console_vs_shell) as the *System Console*, and is much easier to set up.
 
 ## System Console vs. Shells {#console_vs_shell}
 
@@ -122,7 +125,6 @@ You can also access the shell in a terminal using the **mavlink_shell.py** scrip
    ```
 
 Use `mavlink_shell.py -h` to get a description of all available arguments.
-
 
 
 ## Getting Started on the Console/Shell {#getting-started-on-the-console}
