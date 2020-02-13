@@ -116,7 +116,7 @@ You can also access the shell in a terminal using the **mavlink_shell.py** scrip
    ```
     ```sh
    # For Wifi connection
-   ./Tools/mavlink_shell.py <IP address>
+   ./Tools/mavlink_shell.py 0.0.0.0:14550
    ```
 
 Use `mavlink_shell.py -h` to get a description of all available arguments.
