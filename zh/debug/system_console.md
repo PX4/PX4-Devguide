@@ -1,6 +1,8 @@
 # PX4 系统控制台
 
-系统控制台允许对系统进行低级访问，调试输出和分析系统引导过程。 The most convenient way to connect it is by using a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation), but a plain FTDI cable can be used as well.
+The PX4 *System Console* provides low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation), but a plain FTDI cable can be used as well.
+
+> **Tip** The [MAVLink Shell](#mavlink_shell) (accessed via *QGroundControl*) can be used for [many of the same tasks](#console_vs_shell) as the *System Console*, and is much easier to set up.
 
 ## System Console vs. Shells {#console_vs_shell}
 
