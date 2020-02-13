@@ -6,11 +6,14 @@
 - Find out actual gstreamer dependencies and update both this doc and build scripts - should be done when the camera plugin is a default.
 -->
 
-[Gazebo](http://gazebosim.org) is a powerful 3D simulation environment for autonomous robots that is particularly suitable for testing object-avoidance and computer vision. This page describes its use with SITL and a single vehicle. Gazebo can also be used with [HITL](../simulation/hitl.md) and for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md).
+[Gazebo](http://gazebosim.org) is a powerful 3D simulation environment for autonomous robots that is particularly suitable for testing object-avoidance and computer vision.
+This page describes its use with SITL and a single vehicle.
+Gazebo can also be used with [HITL](../simulation/hitl.md) and for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md).
 
-**Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) and [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo), Hex (Typhoon H480), [Generic quad delta VTOL](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), Tailsitter, Plane, Rover, Submarine/UUV (coming soon!)
+**Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) and [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo), Hex (Typhoon H480), [Generic quad delta VTOL](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), Tailsitter, Plane, Rover, Submarine/UUV.
 
-> **Tip** Gazebo is often used with [ROS](../ros/README.md), a toolkit/offboard API for automating vehicle control.  If you plan to use PX4 with ROS you should instead [follow the instructions here](../simulation/ros_interface.md) to install Gazebo as part of ROS!
+> **Tip** Gazebo is often used with [ROS](../ros/README.md), a toolkit/offboard API for automating vehicle control.
+  If you plan to use PX4 with ROS you should instead [follow the instructions here](../simulation/ros_interface.md) to install Gazebo as part of ROS!
 
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
@@ -113,7 +116,10 @@ make px4_sitl gazebo_uuv_hippocampus
 
 ## Change World
 
-The current default world is the **iris.world** located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds). The default surrounding in the **iris.world** uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
+The current default world is the **iris.world** located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds).
+The default surrounding in the **iris.world** uses a heightmap as ground.
+This ground can cause difficulty when using a distance sensor.
+If there are unexpected results with that heightmap, we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
 
 ## Taking it to the Sky
 
@@ -142,7 +148,8 @@ pxh>
 
 ![Gazebo UI](../../assets/simulation/gazebo.png)
 
-The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
+The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`).
+You can bring it into the air by typing:
 
 ```sh
 pxh> commander takeoff
@@ -194,7 +201,8 @@ Joystick and thumb-joystick support are supported through *QGroundControl* ([set
 
 Gazebo can simulate GPS noise that is similar to that typically found in real systems (otherwise reported GPS values will be noise-free/perfect). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
 
-GPS noise is enabled if the target vehicle's SDF file contains a value for the `gpsNoise` element (i.e. it has the line: `<gpsNoise>true</gpsNoise>`). It is enabled by default in many vehicle SDF files: **solo.sdf**, **iris.sdf**, **standard_vtol.sdf**, **delta_wing.sdf**, **plane.sdf**, **typhoon_h480**, **tailsitter.sdf**.
+GPS noise is enabled if the target vehicle's SDF file contains a value for the `gpsNoise` element (i.e. it has the line: `<gpsNoise>true</gpsNoise>`).
+It is enabled by default in many vehicle SDF files: **solo.sdf**, **iris.sdf**, **standard_vtol.sdf**, **delta_wing.sdf**, **plane.sdf**, **typhoon_h480**, **tailsitter.sdf**.
 
 To enable/disable GPS noise:
 1. Build any gazebo target in order to generate SDF files (for all vehicles). For example:
@@ -210,8 +218,10 @@ To enable/disable GPS noise:
      <gpsNoise>true</gpsNoise>
    </plugin>
    ```
-   * If it is present, GPS is enabled. You can disable it by deleting the line: `<gpsNoise>true</gpsNoise>`
-   * If it is not preset GPS is disabled. You can enable it by adding the `gpsNoise` element to the `gps_plugin` section (as shown above).
+   * If it is present, GPS is enabled.
+     You can disable it by deleting the line: `<gpsNoise>true</gpsNoise>`
+   * If it is not preset GPS is disabled.
+     You can enable it by adding the `gpsNoise` element to the `gps_plugin` section (as shown above).
 
 The next time you build/restart Gazebo it will use the new GPS noise setting.
 
@@ -220,7 +230,8 @@ The next time you build/restart Gazebo it will use the new GPS noise setting.
 
 For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
 
-In addition to the existing cmake targets that run `sitl_run.sh` with parameters for px4 to load the correct model it creates a launcher targets named `px4_<mode>` that is a thin wrapper around original sitl px4 app. This thin wrapper simply embeds app arguments like current working directories and the path to the model file.
+In addition to the existing cmake targets that run `sitl_run.sh` with parameters for px4 to load the correct model it creates a launcher targets named `px4_<mode>` that is a thin wrapper around original sitl px4 app.
+This thin wrapper simply embeds app arguments like current working directories and the path to the model file.
 
 To start Gazebo and PX4 separately:
 
@@ -236,9 +247,12 @@ This approach significantly reduces the debug cycle time because simulator (e.g.
 
 ## Video Streaming
 
-PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor attached to a vehicle model. You can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera. The video is streamed using a *gstreamer* pipeline.
+PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor attached to a vehicle model.
+You can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera.
+The video is streamed using a *gstreamer* pipeline.
 
-> **Note** Video streaming from Gazebo and the Gazebo widget to turn streaming on/off are not enabled by default. This article explains how to enable them. In the near future we expect these features to be enabled by default.
+> **Note** Video streaming from Gazebo and the Gazebo widget to turn streaming on/off are not enabled by default.
+This article explains how to enable them. In the near future we expect these features to be enabled by default.
 
 ### Prerequisites
 
@@ -255,13 +269,15 @@ brew install gstreamer gst-libav gst-plugins-base gst-plugins-good gst-plugins-b
 
 ### How to View Gazebo Video
 
-The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Settings > General** and set **Video Source** to *UDP Video Stream* and **UDP Port** to *5600*:
+The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*.
+Simply open **Settings > General** and set **Video Source** to *UDP Video Stream* and **UDP Port** to *5600*:
   
 ![QGC Video Streaming Settings for Gazebo](../../assets/simulation/qgc_gazebo_video_stream_udp.png)
 
 The video from Gazebo should then display in *QGroundControl* just as it would from a real camera.
   
-It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
+It is also possible to view the video using the *Gstreamer Pipeline*.
+Simply enter the following terminal command:
 ```
 gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
 ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
@@ -308,9 +324,11 @@ To enable the button:
 
 ## Extending and Customizing
 
-To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
+To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder.
+The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
 
-> **Note** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
+> **Note** The build system enforces the correct GIT submodules, including the simulator.
+  It will not overwrite changes in files in the directory.
 
 ## Interfacing to ROS
 
