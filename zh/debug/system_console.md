@@ -2,7 +2,7 @@
 
 系统控制台允许对系统进行低级访问，调试输出和分析系统引导过程。 The most convenient way to connect it is by using a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation), but a plain FTDI cable can be used as well.
 
-## 系统控制台 vs. Shells
+## System Console vs. Shells {#console_vs_shell}
 
 只有一个 *System Console*，它在一个特定的 Uart（在 Nuttx 中配置的调试端口）上运行，通常通过 FTDI 电缆连接。
 
@@ -14,6 +14,8 @@ Shell 提供对系统的更高级别的访问：
 * 用于基本模块测试运行命令。
 * 仅显示启动的模块的输出（因此无法调试引导过程）。
 * 无法显示在工作队列上运行的任务的输出。
+
+> **Tip** The is particularly useful when the system does not boot (it displays the system boot log when power-cycling the board).
 
 可以有多个 Shell，可以在专用 Uart 上运行，也可以通过 MAVLink 运行。 由于 MAVLink 提供了更大的灵活性，现在只使用 [via MAVLink](#mavlink_shell)。
 
@@ -96,46 +98,76 @@ screen /dev/ttyXXX BAUDRATE 8N1
 * 8 数据位
 * 1 个停止位
 
-## 控制台入门
+## MAVLink Shell {#mavlink_shell}
 
-输入 ls 查看本地文件系统， 输入 `free` 查看剩余内存。 飞控板上电时，终端同样可以显示系统启动日志。
+For NuttX-based systems (Pixhawk, Pixracer, ...), the *nsh console* can also be accessed via MAVLink over serial (USB/Telemetry) or WiFi (UDP/TCP) links.
+
+The easiest way to access the *nsh console* via MAVLink is using [QGroundControl](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html) (see **Analyze View > Mavlink Console**).
+
+You can also access the shell in a terminal using the **mavlink_shell.py** script:
+
+1. Shut down QGroundControl.
+2. Install dependencies: 
+        sh
+        sudo pip3 install pymavlink pyserial
+
+3. Open terminal (in Firmware directory) and start the shell: 
+        sh
+        # For serial port
+        ./Tools/mavlink_shell.py /dev/ttyACM0
+    
+        sh
+        # For Wifi connection
+        ./Tools/mavlink_shell.py 0.0.0.0:14550
+
+Use `mavlink_shell.py -h` to get a description of all available arguments.
+
+## Getting Started on the Console/Shell {#getting-started-on-the-console}
+
+The MAVLink shell/console and the System Console are used in much the same way.
+
+> **Note** For more information about the differences see: [System Console vs. Shells](#console_vs_shell).
+
+Type `ls` to view the local file system, `free` to see the remaining free RAM, `dmesg` to look at boot output.
 
 ```bash
 nsh> ls
 nsh> free
+nsh> dmesg
 ```
 
-## MAVLink Shell{#mavlink_shell}
+Many other system commands and modules are listed in the [Modules and Command Reference](../middleware/modules_main.md) (e.g. `top`, `listener`, etc.).
 
-基于 Nuttx 的系统（Pixhawk, Pixracer, ...），nsh 终端也可以连接 MAVLink。 通过串口（USB/电台）或 WiFi（UDP/TCP）实现连接。 确保 QGC 没有运行，然后开启 shell：`./Tools/mavlink_shell.py /dev/ttyACM0`（在 Firmware 源码中， 你可能需要先安装依赖 `sudo pip install pymavlink pyserial`）。 使用 `./Tools/mavlink_shell.py -h` 获取可用参数描述，其中同样显示了 WiFi 连接的 IP 地址。 比如 `./Tools/mavlink_shell.py &lt;IP address&gt;` 可用于通过 WiFi 开启 nsh shell 连接飞控。 。
-
-> **Tip** 你也可以使用 [QGC directly](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html) 的 nsh shell。
+> **Tip** Some commands may be disabled on some boards (i.e. the some modules are not included in firmware for boards with RAM constraints). In this case you will see the response: `command not found`
 
 # 骁龙 DSP 控制台
 
-当你通过 Usb 连接骁龙飞控时，你已经获取了 Px4 在 Posix 一方的权限。 DSP 一侧 (QuRT) 的相互作用可以通过 `qshell` 开启POSIX 应用和自身模块。
+When you are connected to your Snapdragon board via usb you have access to the px4 shell on the posix side of things. The interaction with the DSP side (QuRT) is enabled with the `qshell` posix app and its QuRT companion.
 
-使用 USB 连接骁龙， 打开 mini-dm 查看 DSP 输出：
+With the Snapdragon connected via USB, open the mini-dm to see the output of the DSP:
 
     ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
     
 
-注意：在 Mac 上可以使用 [nano-dm](https://github.com/kevinmehall/nano-dm)。
+> **Note** Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
 
-在 Linaro 运行主程序：
+Run the main app on the linaro side:
 
-    cd /home/linaro
-    ./px4 -s px4.config
-    
+```sh
+cd /home/linaro
+./px4 -s px4.config
+```
 
-用以下语法，可以通过 Linaro shell 使用已经加载到 DSP 上的所有 Apps：
+You can now use all apps loaded on the DSP from the linaro shell with the following syntax:
 
-    pxh> qshell command [args ...]
-    
+```sh
+pxh> qshell command [args ...]
+```
 
-比如，查看可用的 QuRT Apps：
+For example, to see the available QuRT apps:
 
-    pxh> qshell list_tasks
-    
+```sh
+pxh> qshell list_tasks
+```
 
-执行命令输出的结果显示在 minidm。
+The output of the executed command is displayed on the minidm.
