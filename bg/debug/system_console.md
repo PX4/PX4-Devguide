@@ -2,7 +2,7 @@
 
 The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation), but a plain FTDI cable can be used as well.
 
-## System Console vs. Shells
+## System Console vs. Shells {#console_vs_shell}
 
 There is just one *System Console*, which runs on one specific UART (the debug port, as configured in NuttX), and is commonly attached via FTDI cable.
 
@@ -14,6 +14,8 @@ Shells provide higher-level access to the system:
 * Used for basic module testing/running commands.
 * Only display the output of modules you start (and therefore cannot debug the boot process).
 * Cannot display the output of tasks running on the work queue.
+
+> **Tip** The is particularly useful when the system does not boot (it displays the system boot log when power-cycling the board).
 
 There can be several shells, either running on a dedicated UART, or via MAVLink. Since MAVLink provides more flexibility, the shell is nowadays only used [via MAVLink](#mavlink_shell).
 
@@ -96,20 +98,47 @@ Then select 'serial connection' and set the port parameters to:
 * 8 data bits
 * 1 stop bit
 
-## Getting Started on the Console
+## MAVLink Shell {#mavlink_shell}
 
-Type `ls` to view the local file system, type `free` to see the remaining free RAM. The console will also display the system boot log when power-cycling the board.
+For NuttX-based systems (Pixhawk, Pixracer, ...), the *nsh console* can also be accessed via MAVLink over serial (USB/Telemetry) or WiFi (UDP/TCP) links.
+
+The easiest way to access the *nsh console* via MAVLink is using [QGroundControl](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html) (see **Analyze View > Mavlink Console**).
+
+You can also access the shell in a terminal using the **mavlink_shell.py** script:
+
+1. Shut down QGroundControl.
+2. Install dependencies: 
+        sh
+        sudo pip3 install pymavlink pyserial
+
+3. Open terminal (in Firmware directory) and start the shell: 
+        sh
+        # For serial port
+        ./Tools/mavlink_shell.py /dev/ttyACM0
+    
+        sh
+        # For Wifi connection
+        ./Tools/mavlink_shell.py 0.0.0.0:14550
+
+Use `mavlink_shell.py -h` to get a description of all available arguments.
+
+## Getting Started on the Console/Shell {#getting-started-on-the-console}
+
+The MAVLink shell/console and the System Console are used in much the same way.
+
+> **Note** For more information about the differences see: [System Console vs. Shells](#console_vs_shell).
+
+Type `ls` to view the local file system, `free` to see the remaining free RAM, `dmesg` to look at boot output.
 
 ```bash
 nsh> ls
 nsh> free
+nsh> dmesg
 ```
 
-## MAVLink Shell{#mavlink_shell}
+Many other system commands and modules are listed in the [Modules and Command Reference](../middleware/modules_main.md) (e.g. `top`, `listener`, etc.).
 
-For NuttX-based systems (Pixhawk, Pixracer, ...), the nsh console can also be accessed via MAVLink. This works via serial link (USB/Telemetry) or WiFi (UDP/TCP). Make sure that QGC is not running, then start the shell with e.g. `./Tools/mavlink_shell.py /dev/ttyACM0` (in the Firmware source, you may first have to install the dependencies with `sudo pip install pymavlink pyserial`). Use `./Tools/mavlink_shell.py -h` to get a description of all available arguments which also displays the IP address of wifi connection. For example `./Tools/mavlink_shell.py <IP address>` can be used to start nsh shell via wifi connection to the autopilot. .
-
-> **Tip** You can also use the nsh shell on [QGC directly](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html).
+> **Tip** Some commands may be disabled on some boards (i.e. the some modules are not included in firmware for boards with RAM constraints). In this case you will see the response: `command not found`
 
 # Snapdragon DSP Console
 
@@ -120,22 +149,25 @@ With the Snapdragon connected via USB, open the mini-dm to see the output of the
     ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
     
 
-Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+> **Note** Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
 
 Run the main app on the linaro side:
 
-    cd /home/linaro
-    ./px4 -s px4.config
-    
+```sh
+cd /home/linaro
+./px4 -s px4.config
+```
 
 You can now use all apps loaded on the DSP from the linaro shell with the following syntax:
 
-    pxh> qshell command [args ...]
-    
+```sh
+pxh> qshell command [args ...]
+```
 
 For example, to see the available QuRT apps:
 
-    pxh> qshell list_tasks
-    
+```sh
+pxh> qshell list_tasks
+```
 
 The output of the executed command is displayed on the minidm.
