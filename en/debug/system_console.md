@@ -2,7 +2,7 @@
 
 The system console allows low-level access to the system, debug output and analysis of the system boot process. The most convenient way to connect it is by using a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation), but a plain FTDI cable can be used as well.
 
-## System Console vs. Shells
+## System Console vs. Shells {#console_vs_shell}
 
 There is just one *System Console*, which runs on one specific UART (the debug port, as configured in NuttX), and is commonly attached via FTDI cable.
 - Used for *low-level debugging/development*: bootup, NuttX, startup scripts, board bringup, development on central parts of PX4 (e.g. uORB).
@@ -12,6 +12,8 @@ Shells provide higher-level access to the system:
 - Used for basic module testing/running commands.
 - Only display the output of modules you start (and therefore cannot debug the boot process).
 - Cannot display the output of tasks running on the work queue.
+
+> **Tip** The is particularly useful when the system does not boot (it displays the system boot log when power-cycling the board).
 
 There can be several shells, either running on a dedicated UART, or via MAVLink.
 Since MAVLink provides more flexibility, the shell is nowadays only used [via MAVLink](#mavlink_shell).
@@ -125,22 +127,22 @@ Use `mavlink_shell.py -h` to get a description of all available arguments.
 
 ## Getting Started on the Console/Shell {#getting-started-on-the-console}
 
-The System Console will display the system boot log when power-cycling the board.
-The MAVLink shell/console and the System Console are otherwise used in much the same way.
+The MAVLink shell/console and the System Console are used in much the same way.
 
-Type `ls` to view the local file system, type `free` to see the remaining free RAM.
+> **Note** For more information about the differences see: [System Console vs. Shells](#console_vs_shell).
+
+Type `ls` to view the local file system, `free` to see the remaining free RAM, `dmesg` to look at boot output.
 
 ```bash
 nsh> ls
 nsh> free
+nsh> dmesg
 ```
 
-Other system commands and modules are listed in the [Modules and Command Reference](../middleware/modules_main.md) (e.g. `top`, `listener`, etc.). 
+Many other system commands and modules are listed in the [Modules and Command Reference](../middleware/modules_main.md) (e.g. `top`, `listener`, etc.). 
 
 > **Tip** Some commands may be disabled on some boards (i.e. the some modules are not included in firmware for boards with RAM constraints). 
   In this case you will see the response: `command not found`
-
-> **Note** 
 
 # Snapdragon DSP Console
 
@@ -152,21 +154,21 @@ With the Snapdragon connected via USB, open the mini-dm to see the output of the
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
-Note: Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+> **Note** Alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
 
 Run the main app on the linaro side:
-```
+```sh
 cd /home/linaro
 ./px4 -s px4.config
 ```
 
 You can now use all apps loaded on the DSP from the linaro shell with the following syntax:
-```
+```sh
 pxh> qshell command [args ...]
 ```
 
 For example, to see the available QuRT apps:
-```
+```sh
 pxh> qshell list_tasks
 ```
 
