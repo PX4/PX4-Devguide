@@ -161,8 +161,10 @@ docker rm 45eeb98f1dd9
 在 *QGroundControl* 中，导航至 [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) 并选择“通信链接”。 创建使用 UDP 协议的新链接。 The port depends on the used [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. The IP address of the docker container can be found with the following command (assuming the container name is `mycontainer`):
 
 ```sh
-$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mycontainer
+$ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}' mycontainer
 ```
+
+> **Note** Spaces between double curly braces above should be not be present (they are needed to avoid a UI rendering problem in gitbook).
 
 ### 故障处理
 
