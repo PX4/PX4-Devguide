@@ -75,7 +75,7 @@ google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > 
 
 ## Hard Fault Debugging
 
-硬件故障是当操作系统检测不到有效说明而导致的终止运行。 这是一个内存关键区域被损坏而导致错误的典型案例。
+A hard fault is a state when a CPU executes an invalid instruction or accesses an invalid memory address. This might occur when key areas in RAM have been corrupted.
 
 ### Video
 
@@ -85,9 +85,7 @@ The following video demonstrates hardfault debugging on PX4 using Eclipse and a 
 
 ### Debugging Hard Faults in NuttX
 
-A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
-
-A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted. A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
+A typical scenario that can cause a hard fault is when the processor overwrites the stack and then the processor returns to an invalid address from the stack. This may be caused by a bug in code were a wild pointer corrupts the stack, or another task overwrites this task's stack.
 
 * Nuttx 维护两个堆栈：用于中断处理的 IRQ 堆栈和用户堆栈
 * 堆栈向下增长。 所以下面示例中的最高地址是 0x20021060，大小为 0x11f4 （4596 字节），因而最低地址为0x2001f6c。

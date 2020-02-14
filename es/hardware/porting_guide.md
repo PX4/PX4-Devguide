@@ -21,66 +21,19 @@ For example, for FMUv5:
   * The file is used to start sensors (and other things) that only exist on a particular board. It may also be used to set a board's default parameters, UART mappings, and any other special cases.
   * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF. 
 
-In addition there are several groups of configuration files for each board located throughout the code base:
-
-* The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
-* Driver files are located in: [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers).
-
 ## Host Operating System Configuration
 
 This section describes the purpose and location of the configuration files required for each supported host operating system to port them to new flight controller hardware.
 
 ### NuttX
 
-In order to port PX4 on NuttX to a new hardware target, that hardware target must be supported by NuttX. The NuttX project maintains an excellent [porting guide](http://www.nuttx.org/Documentation/NuttxPortingGuide.html) for porting NuttX to a new computing platform.
-
-For all NuttX based flight controllers (e.g. the Pixhawk series) the OS is loaded as part of the application build.
-
-The configuration files for all boards, including linker scripts and other required settings, are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in a vendor- and board-specific directory (i.e. **boards/*VENDOR*/*MODEL*/**)).
-
-The following example uses FMUv5 as it is a recent [reference configuration](../hardware/reference_design.md) for NuttX based flight controllers:
-
-* Running `make px4_fmu-v5_default` from the **Firmware** directory will build the FMUv5 config
-* The base FMUv5 configuration files are located in: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5).
-* Board specific header: [/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h). 
-* NuttX OS config (created with Nuttx menuconfig): [/boards/px4/fmu-v5/nuttx-config/nsh/defconfig](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/nsh/defconfig).
-* Build configuration: [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
-
-The function of each of these files, and perhaps more, will need to be duplicated for a new flight controller board.
-
-#### NuttX Menuconfig
-
-If you need to modify the NuttX OS configuration, you can do this via [menuconfig](https://bitbucket.org/nuttx/nuttx) using the PX4 shortcuts:
-
-```sh
-make px4_fmu-v5_default menuconfig
-make px4_fmu-v5_default qconfig
-```
-
-For fresh installs of PX4 onto Ubuntu using [ubuntu_sim_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh) you will also need to install *kconfig* tools from [NuttX tools](https://bitbucket.org/nuttx/tools/src/master/).
-
-> **Note** The following steps are not required if using the [px4-dev-nuttx](https://hub.docker.com/r/px4io/px4-dev-nuttx/) docker container or have installed to macOS using our normal instructions (as these include`kconfig-mconf`).
-
-Run the following commands from any directory:
-
-```sh
-git clone https://bitbucket.org/nuttx/tools.git
-cd tools/kconfig-frontends
-sudo apt install gperf
-./configure --enable-mconf --disable-nconf --disable-gconf --enable-qconf --prefix=/usr
-make
-sudo make install
-```
-
-The `--prefix=/usr` is essential as it determines the specific installation location where PX4 is hardcoded to look for `kconfig-tools`. The `--enable-mconf` and `--enable-qconf` options will enable the `menuconfig` and `qconfig` options respectively.
-
-To run `qconfig` you may need to install additional Qt dependencies.
+See [NuttX Board Porting Guide](porting_guide_nuttx.md).
 
 ### Linux
 
 Linux boards do not include the OS and kernel configuration. These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
 
-* [boards/px4/raspberrypi/cross.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/raspberrypi/cross.cmake) - RPI cross-compilation. 
+* [boards/px4/raspberrypi/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/raspberrypi/default.cmake) - RPI cross-compilation. 
 
 ## Middleware Components and Configuration
 
@@ -91,7 +44,6 @@ This section describes the various middleware components, and the configuration 
 * The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs).
 * The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions).
 * The PX4 middleware configuration is located in [src/boards](https://github.com/PX4/Firmware/tree/master/boards). TODO: ADD BUS CONFIG 
-* Drivers: [DriverFramework](https://github.com/px4/DriverFramework).
 * Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
 
 ## RC UART Wiring Recommendations
