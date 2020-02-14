@@ -208,7 +208,7 @@ For more information see: [Simulation > Run Simulation Faster than Realtime](../
 Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
 
 
-### Improving Distance Sensor Performance.
+### Improving Distance Sensor Performance
 
 The current default world is [PX4/sitl_gazebo/worlds/**iris.world**](https://github.com/PX4/sitl_gazebo/tree/master/worlds)), which uses a heightmap as ground.
 
