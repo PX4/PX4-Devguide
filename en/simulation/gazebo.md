@@ -288,7 +288,7 @@ For information only:
   ```
 - **Mac OS:**
   ```
-  brew install gstreamer gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
+  brew install px4-sim-gazebo
   ```
 
 ### Start/Stop Video Streaming
