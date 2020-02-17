@@ -8,23 +8,27 @@ jMAVSim是一个简单的多旋翼/四旋翼仿真软件，它可以允许你在
 
 本问主要演示如何设置 jMAVSim 以连接到 SITL 版本的 PX4 。
 
-> **Tip**jMAVSim 也可以用 HITL 仿真([看这里](../simulation/hitl.md#jmavsimgazebo-hitl-environment)
+> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#jmavsimgazebo-hitl-environment)).
 
-## 仿真环境
+## Installation
 
-软件在环仿真在主机上运行仿真系统的全部组件，使用软件来模拟真实飞控， 并通过当地网络实现与仿真软件的连接。 整套仿真方案设置如下：
+jMAVSim setup is included in our [standard build instructions](../setup/dev_env.md) (for macOS, Ubuntu Linux, Windows).
 
-{% mermaid %} graph LR 仿真器-->MAVLink MAVLink-->SITL {% endmermaid %}
+## Simulation Environment
 
-## 运行 SITL
+Software in the Loop Simulation runs the complete system on the host machine and simulates the autopilot. It connects via local network to the simulator. The setup looks like this:
 
-在确保 [仿真环境](../setup/dev_env.md) 已经搭建在电脑上了之后直接运行命令：便捷的 make target 命令会完成 POSIX 平台的交叉编译并启动仿真。
+{% mermaid %} graph LR; Simulator-->MAVLink; MAVLink-->SITL; {% endmermaid %}
+
+## Running SITL
+
+After ensuring that the [simulation prerequisites](../setup/dev_env.md) are installed on the system, just launch: The convenience make target will compile the POSIX host build and run the simulation.
 
 ```sh
 make px4_sitl_default jmavsim
 ```
 
-该命令最终将得到如下 PX4 控制台显示界面：
+This will bring up the PX4 shell:
 
 ```sh
 [init] shell id: 140735313310464
@@ -43,29 +47,29 @@ Ready to fly.
 pxh>
 ```
 
-此外，它还会打开一个显示 [jMAVSim](https://github.com/PX4/jMAVSim) 仿真器的3D视图的界面。
+It will also bring up a window showing a 3D view of the [jMAVSim](https://github.com/PX4/jMAVSim) simulator:
 
-![jMAVSim 3d 视图](../../assets/simulation/jmavsim.jpg)
+![jMAVSim 3d View](../../assets/simulation/jmavsim.jpg)
 
-## 简单飞上天
+## Taking it to the Sky
 
-系统将开始输出状态信息。 飞机完成位置锁定之后（控制台立刻提示： *EKF commencing GPS fusion* 信息之后不久 ）就可以开始飞行了。
+The system will start printing status information. You will be able to start flying once you have a position lock (shortly after the console displays the message: *EKF commencing GPS fusion*).
 
-在控制台输入以下命令进行起飞：
+To takeoff enter the following into the console:
 
 ```sh
 pxh> commander takeoff
 ```
 
-你可以使用 *QGroundControl* 规划一个飞行任务，或者连接一个 [操纵杆](#joystick) 。
+You can use *QGroundControl* to fly a mission or to connect to a [joystick](#joystick).
 
-## 可选参数配置
+## Usage/Configuration Options
 
 ### 指定起飞位置
 
-手动设定环境变量可以覆盖默认的起飞点坐标： `PX4_HOME_LAT`, `PX4_HOME_LON`, 以及 `PX4_HOME_ALT` 。
+The default takeoff location in can be overridden using the environment variables: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
 
-例如，要设置飞机的维度、经度和海拔高度：
+For example, to set the latitude, longitude and altitude:
 
     export PX4_HOME_LAT=28.452386
     export PX4_HOME_LON=-13.867138
@@ -75,70 +79,70 @@ pxh> commander takeoff
 
 ### 更改仿真的时间流速
 
-可以使用环境变量 `PX4_SIM_SPEED_FACTOR` 增长或者缩短仿真环境的时间流速相对于实际时间流速的大小。
+The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl_default jmavsim
     
 
-更多相关信息请参考：[Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
+For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
 ### 使用游戏手柄 {#joystick}
 
-通过 *QGroundControl* 可引入游戏手柄或者拇指操纵杆（[如何进行设置看这里](../simulation/README.md#joystickgamepad-integration)）。
+Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
 
 ### 模拟一个 Wifi 无人机
 
-有一个特殊的平台可以模拟通过本地 Wifi 网络进行连接无人机。
+There is a special target to simulate a drone connected via Wifi on the local network:
 
 ```sh
 make broadcast jmavsim
 ```
 
-模拟器会跟真实的该类无人机一样在当地网络中广播自己的位置信息等。
+The simulator broadcasts its address on the local network as a real drone would do.
 
 ### 分别启动 JMAVSim 和 PX4
 
-你可以单独启动 JMAVSim 和 PX4:
+You can start JMAVSim and PX4 separately:
 
     ./Tools/jmavsim_run.sh -l
     make px4_sitl none
     
 
-此举可以缩短测试循环时间（重启 jMAVSim 需要耗费非常多的时间）。
+This allows a faster testing cycle (restarting jMAVSim takes significantly more time).
 
 ### 无航向模式
 
-要使用没有jMAVSim图形界面的仿真，请设置如下环境变量 `HEADLESS=1`
+To start jMAVSim without the GUI, set the env variable `HEADLESS=1` as shown:
 
 ```bash
 HEADLESS=1 make px4_sitl jmavsim
 ```
 
-## 多机仿真
+## Multi-Vehicle Simulation
 
-JMAVSim也常用做多机仿真，更多请参考：[JMAVSim多机当真](../simulation/multi_vehicle_jmavsim.md)
+JMAVSim can be used for multi-vehicle simulation: [Multi-Vehicle Sim with JMAVSim](../simulation/multi_vehicle_jmavsim.md).
 
-## 扩展和自定义
+## Extending and Customizing
 
-如果要扩展或自定义仿真接口，可以编辑 **Tools/jMAVSim** 里面文件。 源码可以从 Github 上的 [jMAVSim 库](https://github.com/px4/jMAVSim) 获取。
+To extend or customize the simulation interface, edit the files in the **Tools/jMAVSim** folder. The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
 
 > **Info** 编译系统会强制检查所有依赖项的子模块正确无误，其中就包括了模拟器。 但是，它不会直接覆盖你对目录中文件所做的更改， 当提交这些更改时你需要在 固件 库中重新为子模块注册新的哈希值。 为此,，使用 `git add Tools/jMAVSim` 并提交你的更改。 这就会更新仿真器中 GIT 哈希值。
 
-## ROS 交互
+## Interfacing to ROS
 
-仿真器中跟真实飞机一样方式实现 [与 ROS 交互](../simulation/ros_interface.md) 。
+The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the same way as onboard a real vehicle.
 
-## 值得一看的脚本文件
+## Important Files
 
 * The startup scripts are discussed in [System Startup](../concept/system_startup.md).
 * 已仿真的根文件系统 ("`/`" 目录) 是在编译文件里面生成的： `build/px4_sitl_default/tmp/rootfs`
 
-## 常见问题处理
+## Troubleshooting
 
 ### java.long.NoClassDefFoundError
 
-如果你遇到如下的错误，原因可能是你的 Java 版本高于8：
+If you see an error similar to the one below, it's likely that you're using a Java version later than 8:
 
     Exception in thread "main" java.lang.NoClassDefFoundError: javax/vecmath/Tuple3d
     at java.base/java.lang.Class.forName0(Native Method)
@@ -159,9 +163,9 @@ JMAVSim也常用做多机仿真，更多请参考：[JMAVSim多机当真](../sim
     at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:499)
     
 
-更多详情，请查阅 [GitHub issue](https://github.com/PX4/Firmware/issues/9557) 。
+For more info check [this GitHub issue](https://github.com/PX4/Firmware/issues/9557).
 
-解决方法是安装 Java 8 ，如下各小节所示。
+The solution is to install the Java 8, as shown in the following sections.
 
 #### Ubuntu：
 
