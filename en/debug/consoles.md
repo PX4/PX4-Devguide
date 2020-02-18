@@ -15,13 +15,18 @@ There is just one *System Console*, which runs on one specific UART (the debug p
 
 Shells provide higher-level access to the system:
 - Used for basic module testing/running commands.
-- Only display the output of modules you start (and therefore cannot debug the boot process).
-- Cannot display the output of tasks running on the work queue.
+- Only *directly* display the output of modules you start.
+- Cannot *directly* display the output of tasks running on the work queue.
+- Can't debug problems when the system doesn't start (as it isn't running yet).
 
-> **Tip** The *System Console* is particularly useful when the system does not boot (it displays the system boot log when power-cycling the board).
+> **Note** The `dmesg` command is now available through the shell on some boards, enabling much lower level debugging than previously possible.
+  For example, with `dmesg -f &` you also see the output of background tasks.
 
 There can be several shells, either running on a dedicated UART, or via MAVLink.
 Since MAVLink provides more flexibility, currently only the [MAVLink Shell](../debug/mavlink_shell.md) is used.
+
+The [System Console](../debug/system_console.md) is essential when the system does not boot (it displays the system boot log when power-cycling the board).
+The [MAVLink Shell](../debug/mavlink_shell.md) is much easier to setup, and so is more generally recommended for most debugging.
 
 
 ## Using Consoles/Shells {#using_the_console}
