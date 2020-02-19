@@ -279,17 +279,10 @@ The Gazebo camera sensor is supported/enabled on the following frames:
 ### Prerequisites
 
 *Gstreamer 1.0* is required for video streaming.
-The required dependencies should already have been [installed when you set up Gazebo](#installation) (they are included in the standard PX4 installation scripts/instructions).
+The required dependencies should already have been [installed when you set up Gazebo](#installation) (they are included in the standard PX4 installation scripts/instructions for macOS and Ubuntu Linux).
 
-For information only:
-- **Ubuntu:** Install *Gstreamer 1.0* and its dependencies:
-  ```
-  sudo apt-get install $(apt-cache --names-only search ^gstreamer1.0-* | awk '{ print $1 }' | grep -v gstreamer1.0-hybris) -y
-  ```
-- **Mac OS:**
-  ```
-  brew install gstreamer gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
-  ```
+> **Note** FYI only, the dependencies include: `gstreamer1.0-plugins-base`, g`streamer1.0-plugins-good`, `gstreamer1.0-plugins-bad`, `gstreamer1.0-plugins-ugly`, `libgstreamer-plugins-base1.0-dev`.
+
 
 ### Start/Stop Video Streaming
 
