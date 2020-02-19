@@ -25,6 +25,8 @@ The sections below outline/link to the wiring and system console information for
 The System Console UART pinouts/debug ports are typically documented in [autopilot overview pages](https://docs.px4.io/master/en/flight_controller/) (some are linked below):
 - [3DR Pixhawk v1 Flight Controller](https://docs.px4.io/master/en/flight_controller/pixhawk.html#console-port) (also applies to 
 [mRo Pixhawk](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html#debug-ports), [HobbyKing HKPilot32](https://docs.px4.io/master/en/flight_controller/HKPilot32.html#debug-port))
+- [Pixhawk 3](https://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port)
+- [Pixracer](https://docs.px4.io/master/en/flight_controller/pixracer.html#debug-port)
 
 - [Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html):
   - [FTDI](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#over-ftdi)
@@ -46,23 +48,6 @@ Pixhawk Debug Port | - | FTDI | -
 4 (blk) | SWDIO | | N/C (used for SWD/JTAG debugging)
 5 (blk) | SWCLK | | N/C (used for SWD/JTAG debugging)
 6 (blk) | GND | 1 | FTDI GND (black)
- 
-
-### Pixracer / Pixhawk v3: 
-
-Connect the 6-pos JST SH 1:1 cable to the Dronecode probe or connect the individual pins of the cable to a FTDI cable like this:
-
-| Pixracer / Pixhawk v3  |         | FTDI    |        |
-| -- | -- | -- | -- |
-|1         | +5V (red)     |         | N/C    |
-|2         | UART7 Tx      | 5       | FTDI RX (yellow)  |
-|3         | UART7 Rx      | 4       | FTDI TX (orange)  |
-|4         | SWDIO      |         | N/C   |
-|5         | SWCLK      |         | N/C   |
-|6         | GND     | 1       | FTDI GND (black)   |
-
-
-
 
 ## Opening the Console
 
