@@ -64,7 +64,7 @@ brew install px4-sim-jmavsim
 
 ## Additional Tools
 
-After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful tools.
+See [Additional Tools](../setup/generic_dev_tools.md) for information about other useful development tools that are not part of the build toolchain (for example IDEs and GCSs).
 
 ## Next Steps
 
