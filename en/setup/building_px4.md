@@ -10,7 +10,13 @@ PX4 can be built on the console or in an IDE, for both simulated and hardware ta
 ## Downloading PX4 Source Code {#get_px4_code}
 
 The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository.
-We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
+If you just want to try out the latest code (and don't want to make any sort of permanent changes) you can enter the following into a terminal to clone the main Firmware repository (and then jump to [First Build](#jmavsim_build) section):
+
+```sh
+git clone https://github.com/PX4/Firmware.git --recursive
+```
+
+Developers who want to be able to customise the code should [fork](https://help.github.com/articles/fork-a-repo/) the PX4/Firmware repository (create a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
 
 > **Tip** Forking the repository allows you to better manage your custom code.
   Later on you will be able to use *git* to share changes with the main project.
@@ -38,11 +44,6 @@ The steps to fork and clone the project source code are:
    ```
    git clone https://github.com/<youraccountname>/Firmware.git
    ```
-   
-   > **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown:
-   >  ```sh
-   >  git clone https://github.com/PX4/Firmware.git
-   >  ```
    
    Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). 
    You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
