@@ -112,6 +112,13 @@ make px4_sitl gazebo_uuv_hippocampus
 
 ![Submarine/UUV](../../assets/gazebo/hippocampus.png)
 
+### Boat (USV: Unmanned Surface Vehicle) {#usv}
+
+```sh
+make px4_sitl gazebo_boat
+```
+
+![Boat/USV](../../assets/gazebo/boat.png)
 
 
 ## Change World
