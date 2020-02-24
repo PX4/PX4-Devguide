@@ -102,6 +102,14 @@ make px4_sitl gazebo_uuv_hippocampus
 
 ![Submarine/UUV](../../assets/gazebo/hippocampus.png)
 
+### Boat (USV: Unmanned Surface Vehicle) {#usv}
+
+```sh
+make px4_sitl gazebo_boat
+```
+
+![Boat/USV](../../assets/gazebo/boat.png)
+
 ## Change World
 
 The current default world is the **iris.world** located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds). The default surrounding in the **iris.world** uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
