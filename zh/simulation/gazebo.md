@@ -102,15 +102,23 @@ make px4_sitl gazebo_uuv_hippocampus
 
 ![潜艇 /UUV](../../assets/gazebo/hippocampus.png)
 
+### Boat (USV: Unmanned Surface Vehicle) {#usv}
+
+```sh
+make px4_sitl gazebo_boat
+```
+
+![Boat/USV](../../assets/gazebo/boat.png)
+
 ## 改变仿真环境中的世界
 
-当前的默认世界是位于目录 [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds) 中的 **iris.world**。 **iris.world** 中默认使用高度图生成地面景物。 这样生成的地面可能会导致使用距离传感器时较为困难， 如果使用高程图会导致任何出乎意料的结果，我们建议你将 **iris.model** 中的模型默认设定从 `uneven_ground` 改为 `asphalt_plane`.
+The current default world is the **iris.world** located in the directory [worlds](https://github.com/PX4/sitl_gazebo/tree/b59e6e78e42d50f70224d1d0e506825590754d64/worlds). The default surrounding in the **iris.world** uses a heightmap as ground. This ground can cause difficulty when using a distance sensor. If there are unexpected results with that heightmap, we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
 
 ## 简单上天
 
 > **Note** 如遇到任何错误请参考： [工具链安装](../setup/dev_env.md) 。
 
-该命令最终将得到如下 PX4 控制台显示界面：
+This will bring up the PX4 shell:
 
 ```sh
 [init] shell id: 140735313310464
@@ -133,7 +141,7 @@ pxh>
 
 ![Gazebo UI](../../assets/simulation/gazebo.png)
 
-完成初始化后系统将输出 home 点的位置 (`telem> home: 55.7533950, 37.6254270, -0.00`)。 现在你可以输入如下命令让飞机起飞了：
+The system will print the home position once it finished intializing (`telem> home: 55.7533950, 37.6254270, -0.00`). You can bring it into the air by typing:
 
 ```sh
 pxh> commander takeoff
@@ -141,23 +149,23 @@ pxh> commander takeoff
 
 ## 可选配置
 
-### 无航向模式
+### Headless Mode
 
-Gazebo 可以在* headless *模式下运行，其中 Gazebo UI 界面未启动的。 这样可以更快地启动并使用更少的系统资源（即，它是运行模拟的更“轻量级”方式）。
+Gazebo can be run in a *headless* mode in which the Gazebo UI is not launched. This starts up more quickly and uses less system resources (i.e. it is a more "lightweight" way to run the simulation).
 
-只需在正常的* make *命令前加上` HEADLESS=1 `，如下所示：
+Simply prefix the normal *make* command with `HEADLESS=1` as shown:
 
 ```bash
 HEADLESS=1 make px4_sitl gazebo_plane
 ```
 
-### 设置自定义起飞位置
+### Set Custom Takeoff Location
 
-可以使用环境变量重写 SITL Gazebo 中的默认起飞位置。
+The default takeoff location in SITL Gazebo can be overridden using environment variables.
 
-要设置的变量有：`PX4_HOME_LAT`、`PX4_HOME_LON` 和 `PX4_HOME_ALT`。
+The variables to set are: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
 
-下面是一个例子：
+As an example:
 
     export PX4_HOME_LAT=28.452386
     export PX4_HOME_LON=-13.867138
@@ -165,27 +173,27 @@ HEADLESS=1 make px4_sitl gazebo_plane
     make px4_sitl gazebo
     
 
-### 更改仿真的时间流速
+### Change Simulation Speed
 
-可以设置环境变量 `PX4_SIM_SPEED_FACTOR` 增长或者缩短仿真环境的时间流速相对于实际时间流速。
+The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
 
     export PX4_SIM_SPEED_FACTOR=2
     make px4_sitl_default gazebo
     
 
-更多相关信息请参考：[仿真 > 仿真速度快于实际速度](../simulation/README.md#simulation_speed)。
+For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
-### 使用游戏手柄
+### Using a Joystick
 
-通过 *QGroundControl* 可引入游戏手柄或者拇指操纵杆（[如何进行设置看这里](../simulation/README.md#joystickgamepad-integration)）。
+Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
 
-### 模拟 GPS 噪声
+### Simulating GPS Noise
 
-Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告的GPS值将是无噪声/完美的）。 这在处理可能受 GPS 噪声影响的应用时非常有用，例如精度定位。
+Gazebo can simulate GPS noise that is similar to that typically found in real systems (otherwise reported GPS values will be noise-free/perfect). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
 
-果目标设备的 SDF 文件包含` gpsNoise `元素的值（即，它具有行：`&lt;gpsNoise&gt;true&lt;/gpsNoise&gt;`），则启用GPS噪声。 默认情况下, 它在许多设备 SDF 文件中启用：**solo.sdf**、**iris.sdf**、**standard_vtol.sdf**、**delta_wing.sdf**、**plane.sdf**、**typhoon_h480** **tailsitter.sdf**。
+GPS noise is enabled if the target vehicle's SDF file contains a value for the `gpsNoise` element (i.e. it has the line: `<gpsNoise>true</gpsNoise>`). It is enabled by default in many vehicle SDF files: **solo.sdf**, **iris.sdf**, **standard_vtol.sdf**, **delta_wing.sdf**, **plane.sdf**, **typhoon_h480**, **tailsitter.sdf**.
 
-启用/禁用GPS噪音：
+To enable/disable GPS noise:
 
 1. 构建任何 gazebo 目标以生成 SDF 文件（适用于所有机型）。 例如： ```make px4_sitl gazebo_iris``` >**Tip**在后续版本中不会覆盖 SDF 文件。 
 2. 打开目标车辆的 SDF 文件（例如**./Tools/sitl_gazebo/models/iris/iris.sdf **）。
@@ -199,29 +207,29 @@ Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告�
     * 如果存在，则启用 GPS。 您可以通过删除以下行来禁用它：`<gpsNoise> true </gpsNoise>`
     * 如果未预设，则禁用 GPS 。 您可以通过将` gpsNoise `元素添加到` gps_plugin `部分来启用它（如上所示）。
 
-下次构建/重新启动 Gazebo 时，它将使用新的 GPS 噪声设置。
+The next time you build/restart Gazebo it will use the new GPS noise setting.
 
 ## 单独启动 Gazebo 和 PX4 {#start_px4_sim_separately}
 
-对于扩展开发会话，单独启动 Gazebo 和 PX4 可能更方便，甚至可以在 IDE 中启动。
+For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
 
 In addition to the existing cmake targets that run `sitl_run.sh` with parameters for px4 to load the correct model it creates a launcher targets named `px4_<mode>` that is a thin wrapper around original sitl px4 app. This thin wrapper simply embeds app arguments like current working directories and the path to the model file.
 
-单独启动 Gazebo 和 PX4:
+To start Gazebo and PX4 separately:
 
 * 通过终端运行 gazebo（或任何其他 sim）服务器和客户端查看器： ```make px4_sitl gazebo_none_ide```
 * 在 IDE 中选择要调试的` px4_ <mode> `目标（例如` px4_iris `）
 * 直接从 IDE 启动调试会话
 
-这种方法显着缩短了调试周期时间，因为模拟器（例如 gazebo）总是在后台运行，而你只重新运行 px4 进程是非常轻松的。
+This approach significantly reduces the debug cycle time because simulator (e.g. gazebo) is always running in background and you only re-run the px4 process which is very light.
 
 ## 视频流
 
-用于 Gazebo 的 PX4 SITL 支持来自连接到设备型号的 Gazebo 相机传感器的 UDP 视频流。 您可以从* QGroundControl *（在 UDP 端口 5600 上）连接到此流，并从模拟设备查看 Gazebo 环境的视频 - 就像您从真实摄像机那样。 使用* gstreamer *流水线流式传输视频。
+PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor attached to a vehicle model. You can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera. The video is streamed using a *gstreamer* pipeline.
 
 > **Note**默认情况下，来自 Gazebo 和 Gazebo 小部件中的视频流以打开/关闭流式传输是未启用的。 本文介绍了如何启用它们。 在不久的将来，我们希望默认情况下启用这些功能。
 
-### 系统必备组件
+### Prerequisites
 
 Ubuntu: Install *Gstreamer 1.0* and its dependencies:
 
@@ -233,7 +241,7 @@ Mac OS:
     brew install gstreamer gst-libav gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
     
 
-### 如何查看 Gazebo 视频流
+### How to View Gazebo Video
 
 The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Settings > General** and set **Video Source** to *UDP Video Stream* and **UDP Port** to *5600*:
 
@@ -247,7 +255,7 @@ It is also possible to view the video using the *Gstreamer Pipeline*. Simply ent
     ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
     
 
-### 在 Gazebo 界面中打开/停止视频流。
+### Gazebo GUI to Start/Stop Video Streaming
 
 > **Note** 该特点只支持 Gazebo 7 版本。
 
