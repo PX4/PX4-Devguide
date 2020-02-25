@@ -1,7 +1,7 @@
 # NuttX Board Porting Guide
 
 In order to port PX4 on NuttX to a new hardware target, that hardware target must be supported by NuttX.
-The NuttX project maintains an excellent [porting guide](http://www.nuttx.org/Documentation/NuttxPortingGuide.html) for porting NuttX to a new computing platform.
+The NuttX project maintains an excellent [porting guide](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide) for porting NuttX to a new computing platform.
 
 The following guide assumes you are using an already supported hardware target or have ported NuttX (including the [PX4 base layer](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/src/px4)) already.
 
