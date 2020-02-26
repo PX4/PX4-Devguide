@@ -12,13 +12,10 @@ A great tool to debug the transmission on the UAVCAN bus is the [Zubax Babel](ht
 They can also be used independently from Pixhawk hardware in order to test a node or manually control UAVCAN enabled ESCs.
 
 
+### UAVCAN devices dont get node ID/FW doesn't update
 
-
-
-
-
-
-
+PX4 requires an SD card for UAVCAN node allocation and firmware upgrade (both of which happen during boot).
+Check that there is a (working) SD card present and reboot.
 
 
 
