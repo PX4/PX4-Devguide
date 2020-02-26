@@ -2,7 +2,8 @@
 
 ![](../../assets/uavcan-logo-transparent.png)
 
-[UAVCAN](http://uavcan.org) is an onboard network which allows the autopilot to connect to avionics. It supports hardware like:
+[UAVCAN](http://uavcan.org) is an onboard network which allows the autopilot to connect to avionics.
+It supports hardware like:
 
 * Motor controllers
   * [Zubax Orel 20](https://zubax.com/product/zubax-orel-20)
@@ -17,7 +18,11 @@
   * [Pomegranate Systems Power Module](http://docs.px4.io/master/en/power_module/pomegranate_systems_pm.html)
   * [CUAV CAN PMU Power Module](http://docs.px4.io/master/en/power_module/cuav_can_pmu.html)
 
-In contrast to hobby-grade devices it uses rugged, differential signalling and supports firmware upgrades over the bus. All motor controllers provide status feedback and implement field-oriented-control \(FOC\).
+In contrast to hobby-grade devices it uses rugged, differential signalling and supports firmware upgrades over the bus.
+All motor controllers provide status feedback and implement field-oriented-control \(FOC\).
+
+> **Note** PX4 requires an SD card for UAVCAN node allocation and firmware upgrade.
+  It is not used during flight by UAVCAN.
 
 ## Initial Setup
 
