@@ -109,7 +109,7 @@ make px4_sitl jmavsim
 
 The simulation can be further configured via environment variables:
 - `PX4_ESTIMATOR`: This variable configures which estimator to use.
-  Possible options are: `ekf2` (default), `lpe`, `inav`.
+  Possible options are: `ekf2` (default), `lpe` (deprecated).
   It can be set via `export PX4_ESTIMATOR=lpe` before running the simulation.
 
 The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger.
