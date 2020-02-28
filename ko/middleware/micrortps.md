@@ -55,7 +55,7 @@ ROS2와 ROS간의 메시지를 연결하는 [ros1_bridge](https://github.com/ros
 
 ## 코드 생성
 
-> **Note** 코드를 생성하기 위해서는 [Fast RTPS 가 반드시 설치](../setup/fast-rtps-installation.md) 되어야 합니다. *Fast RTPS* 는 여러분이 [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md), [Ubuntu](../setup/dev_env_linux_ubuntu.md)를 위한 일반적인 인스톨러/스크립트를 사용했다면 *기본적*으로 설치됩니다.
+> **Note** [Fast RTPS 1.8.2 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), or [Windows Cygwin](../setup/dev_env_windows_cygwin.md) (but not [Ubuntu](../setup/dev_env_linux_ubuntu.md) at time of writing).
 
 ### ROS에 독립적인 어플리케이션
 
@@ -113,9 +113,9 @@ rtps:
     send: true
 ```
 
-> **Note** `px4_msgs`는 빌드 과정에서 ROS2 메시지 헤더 파일을 생성하기 위해, CMake 매크로 `rosidl_generate_interfaces()를 사용합니다. 반면에 <code>px4_ros_com`는 `rosidl_generate_dds_interfaces()` CMake 매크로를 통해 IDL 파일을 생성합니다. PX4 펌웨어는 빌드과정에서 사용되는 IDL 파일 생성 템플릿을 포함합니다.
+> **Note** An API change in ROS2 Dashing means that we now use the `rosidl_generate_interfaces()` CMake module (in `px4_msgs`) to generate the IDL files that we require for microRTPS agent generation (in `px4_ros_com`). PX4 펌웨어는 빌드과정에서 사용되는 IDL 파일 생성 템플릿을 포함합니다.
 > 
-> `px4_ros_com`는 ROS/ROS2에 사용되는 *약간 다른* IDL 파일을 생성합니다. **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). 새로운 IDL 파일들은 송수신한 메시지들을 다시보냅니다(왜냐하면 클라이언트에서 메시지를 보내고 에이전트 에서 수신하거나 반대의 경우를 위해).
+> The `px4_msgs` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). 새로운 IDL 파일들은 송수신한 메시지들을 다시보냅니다(왜냐하면 클라이언트에서 메시지를 보내고 에이전트 에서 수신하거나 반대의 경우를 위해).
 
 ## 클라이언트 (PX4 펌웨어) {#client_firmware}
 
@@ -136,16 +136,16 @@ make px4_sitl_rtps
 *Client* 어플리케이션은 [NuttShell/System Console](../debug/system_console.md)에서 실행할 수 있습니다. 명령어는 아래에 나와있습니다.
 
 ```sh
-> micrortps_client start|stop [options]
+> micrortps_client start|stop|status [options]
   -t <transport>          [UART|UDP] Default UART
   -d <device>             UART device. Default /dev/ttyACM0
-  -u <update_time_ms>     Time in ms for uORB subscribed topics update. Default 0
   -l <loops>              How many iterations will this program have. -1 for infinite. Default -1.
   -w <sleep_time_ms>      Time in ms for which each iteration sleep. Default 1ms
   -b <baudrate>           UART device baudrate. Default 460800
   -p <poll_ms>            Time in ms to poll over UART. Default 1ms
   -r <reception port>     UDP port for receiving. Default 2019
   -s <sending port>       UDP port for sending. Default 2020
+  -i <ip_address>         Select IP address (remote) values: <x.x.x.x>. Default: 127.0.0.1
 ```
 
 > **Note** *Client*는 기본적으로 데몬으로 동작하지만, 수동으로 실행할 수도 있습니다. 나중에는 PX4 펌웨어 초기화 코드에서 *Client*를 자동적으로 영구적인 데몬으로 실행할 것입니다.
@@ -204,27 +204,31 @@ $ ./micrortps_agent [options]
 
 ### ROS와 ROS2 설치와 의존성
 
-ROS Melodic, ROS2 Crystal 또는 우분투 18.04 에서 Bouncy를 설치하려면 아래의 링크를 참고하세요.
+> **Note** This install and build guide covers ROS Melodic and ROS2 Dashing (ROS2 Ardent, Bouncy or Crystal are not covered as they are EOL).
+
+In order to install ROS Melodic and ROS2 Dashing (officially supported) on a Ubuntu 18.04 machine, follow the links below, respectively:
 
 1. [ROS Melodic 설치하기](http://wiki.ros.org/melodic/Installation/Ubuntu)
-2. [ROS2 Crystal 설치하기](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
+2. [Install ROS2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/)
 3. 이 설치과정은 *colcon* 빌드 툴 설치가 필요할 것 입니다. 설치되지 않으면 수동으로 설치해주세요.
     
     ```sh
     sudo apt install python3-colcon-common-extensions
     ```
 
-4. *setuptools* 또한 반드시 설치되어야 합니다. (*pip*나 *apt*를 사용하세요)
+4. *eigen3_cmake_module* is also required, since Eigen3 is used on the transforms library:
+    
+    ```sh
+    sudo apt install ros-dashing-eigen3-cmake-module
+    ```
+
+5. *setuptools* must also be installed (using *pip* or *apt*):
     
     ```sh
     sudo pip3 install -U setuptools
     ```
     
-    > **Note** 이 설치 및 빌드 가이드는 ROS2 Ardent에서 더이상 유효하지 않습니다. 2018 12월에 지원이 중단되었습니다.
-    
-    <span></span>
-    
-    > **Caution** debian 저장소를 이용해 `ros1_bridge` 패키지를 설치하지 마세요. 이 패키지는 소스로 빌드해야 합니다.
+    > **Caution** Do not install the `ros1_bridge` package through the deb repository. The package must be built from source.
 
 ### 워크스페이스 세팅하기
 
@@ -266,12 +270,14 @@ ROS와 ROS2가 다른 환경을 필요로 하기 때문에 각 ROS를 위한 워
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
-> **Note** 빌드 프로세스는 다른 환경설정을 가져야 하는 단계일 때, 콘솔에서 새로운 탭을 엽니다.
+> **Note** Using the `--verbose` argument will allow you to see the full *colcon* build output.
+> 
+> **Note** The build process will open new tabs on the console, corresponding to different stages of the build process that need to have different environment configurations sourced.
 
 부분적으로 빌드하기 위해서는 아래의 개별적인 스크립트를 쓸 수 있습니다.
 
 * `ros1_bridge`를 빌드 하기 위해서는 `build_ros1_bridge.bash`
-* `px4_ros_com`와 `px4_msgs` `ros1`브랜치가 클론된 ROS 워크스페이스를 빌드하기 위한 `build_ros1_workspace.bash` (`px4_ros_com`의 `ros1`만을 위한 것)
+* `build_ros1_workspace.bash` (only on the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` and `px4_msgs` `ros1` branches were cloned;
 * `px4_ros_com` and `px4_msgs` `master`가 클로된 ROS2 워크스페이스를 빌드 하기 위한 `build_ros2_workspace.bash`
 
 아래의 단계들은 어떻게 *수동으로* 패키지를 빌드할지 보여줍니다(더 나은 이해와 정보를 위해 제공함)
@@ -279,13 +285,13 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 1. `cd`로 `px4_ros_com_ros2` 디렉토리에 들어가고 ROS2 환경설정을 얻으세요. 이전에 바로 전의 워크스페이스가 설정되었다고 나와도 무시하시면 됩니다.
     
     ```sh
-    source /opt/ros/crystal/setup.bash
+    source /opt/ros/dashing/setup.bash
     ```
 
 2. `ros1_bridge` 패키지를 ROS2 워크스페이스에서 빌드될 수 있도록 클론하세요.
     
     ```sh
-    git clone https://github.com/ros2/ros1_bridge.git -b crystal ~/px4_ros_com_ros2/src/ros1_bridge
+    git clone https://github.com/ros2/ros1_bridge.git -b dashing ~/px4_ros_com_ros2/src/ros1_bridge
     ```
 
 3. `ros1_bridge` 패키지를 제외하고, `px4_ros_com`와 `px4_msgs` 패키지를 빌드하세요.
@@ -311,8 +317,8 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 6. `ros1_bridge`를 빌드하기 전에, 새 터미널을 열고 아래에 나와있는 순서대로 환경과 워크스페이스를 설정하세요.
     
     ```sh
-    source ~/px4_ros_com_ros1/install/local_setup.bash
-    source ~/px4_ros_com_ros2/install/local_setup.bash
+    source ~/px4_ros_com_ros1/install/setup.bash
+    source ~/px4_ros_com_ros2/install/setup.bash
     ```
 
 7. 이제 `ros1_bridge`를 빌드하세요. 참고로, 빌드 과정은 메모리를 많이 소비합니다. 리소스가 제한된 환경에서는, 병렬적으로 처리되는 수를 줄이세요 (예. `MAKEFLAGS=-j1`). 자세한 빌드 과정을 위해서는 [ros1_bridge](https://github.com/ros2/ros1_bridge) 패키지의 빌드 명령을 참고하세요.
@@ -339,7 +345,7 @@ $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 
 *fastrtpsgen* 스크립트는 IDL 메시지 파일을 이용해 간단한 RTPS 어플리케이션을 만드는데 사용됩니다.
 
-> **Note** RTPS 메시지들은 IDL 파일에 정의되어 있으면 *fastrtpsgen*을 사용해 C++로 컴파일 됩니다. 브릿지 코드를 빌드하는 부분에서, 송/수신할 uORB 메시지파일을 위해 IDL 파일들이 생성됩니다. (참고 **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). 이 IDL 파일들은 여러분이 PX4와 통신하기 위한 *Fast RTPS* 어플리케이션을 만들때 필요합니다.
+> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a *Fast RTPS* application to communicate with PX4.
 
 어플리케이션을 만들기 위해서는 다음의 명령어들을 입력하세요.
 
@@ -414,7 +420,7 @@ baro_alt_meter: 368.647
 baro_temp_celcius: 43.93
 ```
 
-> **Note** 만약 *Listener application*가 아무것도 출력하지 않는다면 *Client*가 동작중인지 확인하세요.
+> **Note** If the *Listener application* does not print anything, make sure the *Client* is running.
 
 ## ROS2 리스너 만들기
 
@@ -424,7 +430,7 @@ ROS2에서 리스너 노드를 만드려면 `px4_ros_com/src/listeners`하위의
 
 ```c++
 #include <rclcpp/rclcpp.hpp>
-#include <px4_ros_com/msg/sensor_combined.hpp>
+#include <px4_msgs/msg/sensor_combined.hpp>
 ```
 
 위의 헤더들은 ROS2 미들웨어에 접속하기 위해 필요한 C++ 라이브러리들을 포함합니다. 필요한 메시지 헤더파일들 또한 포함합니다.
@@ -442,32 +448,31 @@ class SensorCombinedListener : public rclcpp::Node
 ```c++
 public:
     explicit SensorCombinedListener() : Node("sensor_combined_listener") {
-        auto callback =
-        [this](const px4_ros_com::msg::SensorCombined::SharedPtr msg)->void
-        {
+        subscription_ = this->create_subscription<px4_msgs::msg::SensorCombined>(
+            "SensorCombined_PubSubTopic", 10,
+            [this](const px4_msgs::msg::SensorCombined::UniquePtr msg) {
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-            std::cout << "RECEIVED DATA ON SENSOR COMBINED" << std::endl;
-            std::cout << "================================" << std::endl;
-            std::cout << "gyro_rad[0]: " << msg->gyro_rad[0] << std::endl;
-            std::cout << "gyro_rad[1]: " << msg->gyro_rad[1] << std::endl;
-            std::cout << "gyro_rad[2]: " << msg->gyro_rad[2] << std::endl;
+            std::cout << "RECEIVED SENSOR COMBINED DATA"   << std::endl;
+            std::cout << "============================="   << std::endl;
+            std::cout << "ts: "          << msg->timestamp    << std::endl;
+            std::cout << "gyro_rad[0]: " << msg->gyro_rad[0]  << std::endl;
+            std::cout << "gyro_rad[1]: " << msg->gyro_rad[1]  << std::endl;
+            std::cout << "gyro_rad[2]: " << msg->gyro_rad[2]  << std::endl;
             std::cout << "gyro_integral_dt: " << msg->gyro_integral_dt << std::endl;
             std::cout << "accelerometer_timestamp_relative: " << msg->accelerometer_timestamp_relative << std::endl;
             std::cout << "accelerometer_m_s2[0]: " << msg->accelerometer_m_s2[0] << std::endl;
             std::cout << "accelerometer_m_s2[1]: " << msg->accelerometer_m_s2[1] << std::endl;
             std::cout << "accelerometer_m_s2[2]: " << msg->accelerometer_m_s2[2] << std::endl;
             std::cout << "accelerometer_integral_dt: " << msg->accelerometer_integral_dt << std::endl;
-        };
+        });
+    }
 ```
 
-`sensor_combined` 메시지를 수신했을 때 사용할 콜백 함수를 만듭니다. 이 함수는 메시지를 받을때 마다 메시지 필드내의 내용을 출력합니다.
+This creates a callback function for when the `sensor_combined` uORB messages are received (now as DDS messages). 이 함수는 메시지를 받을때 마다 메시지 필드내의 내용을 출력합니다.
 
 ```c++
-        subscription_ = this->create_subscription<px4_ros_com::msg::SensorCombined>("SensorCombined_topic", callback);
-    }
-
 private:
-    rclcpp::Subscription<px4_ros_com::msg::SensorCombined>::SharedPtr subscription_;
+    rclcpp::Subscription<px4_msgs::msg::SensorCombined>::SharedPtr subscription_;
 };
 ```
 
@@ -497,7 +502,7 @@ ROS2 Advertiser 노드는 데이터를 DDS/RTPS/PX4 네트워크에 퍼블리시
 ```c++
 #include <chrono>
 #include <rclcpp/rclcpp.hpp>
-#include <px4_ros_com/msg/debug_vect.hpp>
+#include <px4_msgs/msg/debug_vect.hpp>
 
 using namespace std::chrono_literals;
 ```
@@ -514,16 +519,18 @@ class DebugVectAdvertiser : public rclcpp::Node
 ```c++
 public:
     DebugVectAdvertiser() : Node("debug_vect_advertiser") {
-        publisher_ = this->create_publisher<px4_ros_com::msg::DebugVect>("DebugVect_topic");
+        publisher_ = this->create_publisher<px4_msgs::msg::DebugVect>("DebugVect_PubSubTopic", 10);
         auto timer_callback =
         [this]()->void {
-            auto debug_vect = px4_ros_com::msg::DebugVect();
+            auto debug_vect = px4_msgs::msg::DebugVect();
             debug_vect.timestamp = this->now().nanoseconds() * 1E-3;
+            std::string name = "test";
+            std::copy(name.begin(), name.end(), debug_vect.name.begin());
             debug_vect.x = 1.0;
             debug_vect.y = 2.0;
             debug_vect.z = 3.0;
-            RCLCPP_INFO(this->get_logger(), "Publishing debug_vect: time: %f x:%f y:%f z:%f",
-                                debug_vect.timestamp, debug_vect.x, debug_vect.y, debug_vect.z)
+            RCLCPP_INFO(this->get_logger(), "\033[97m Publishing debug_vect: time: %f x:%f y:%f z:%f \033[0m",
+                                debug_vect.timestamp, debug_vect.x, debug_vect.y, debug_vect.z);
             this->publisher_->publish(debug_vect);
         };
         timer_ = this->create_wall_timer(500ms, timer_callback);
@@ -531,7 +538,7 @@ public:
 
 private:
     rclcpp::TimerBase::SharedPtr timer_;
-    rclcpp::Publisher<px4_ros_com::msg::DebugVect>::SharedPtr publisher_;
+    rclcpp::Publisher<px4_msgs::msg::DebugVect>::SharedPtr publisher_;
 };
 ```
 
@@ -552,7 +559,7 @@ int main(int argc, char *argv[])
 
 ROS 노드로써 `DebugVectAdvertiser` 클래스 초기화는 `main` 함수에서 수행됩니다.
 
-## ROS 리스터 만들기
+## Creating a ROS(1) listener
 
 ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어있습니다. `sensor_combined` 메시지를 위한 ROS 리스너를 위한 예제가 `ros1` 브랜치에서 `px4_ros_com/src/listeners`에 있습니다.
 
@@ -575,7 +582,7 @@ ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어�
 2. 하나의 터미널에서 ROS2 환경설정과 워크스페이스를 가져오고 `ros1_bridge` 를 실행하세요(ROS2와 ROS가 서로 통신할 수 있게 합니다). Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
     
     ```sh
-    $ source /opt/ros/crystal/setup.bash
+    $ source /opt/ros/dashing/setup.bash
     $ source ~/px4_ros_com_ros2/install/local_setup.bash
     $ export ROS_MASTER_URI=http://localhost:11311
     $ ros2 run ros1_bridge dynamic_bridge
@@ -584,14 +591,14 @@ ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어�
 3. 다른 터미널에서 ROS 워크스페이스를 가져오고 `sensor_combined` 리스너 노드를 실행하세요. 이미 여러분은 `roslaunch`를 실행하고 있기 때문에, `roscore` 또한 자동적으로 실행될 것입니다.
     
     ```sh
-    $ source ~/px4_ros_com_ros1/install/local_setup.bash
+    $ source ~/px4_ros_com_ros1/install/setup.bash
     $ roslaunch px4_ros_com sensor_combined_listener.launch
     ```
 
 4. 하나의 터미널에서 ROS2 워크스페이스를 가져오고 UDP를 사용하는 `micrortps_agent` 데몬을 실행하세요.
     
     ```sh
-    $ source ~/px4_ros_com_ros2/install/local_setup.bash
+    $ source ~/px4_ros_com_ros2/install/setup.bash
     $ micrortps_agent -t UDP
     ```
 
@@ -640,12 +647,12 @@ ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어�
     
     ```sh
     $ source ~/px4_ros_com_ros2/install/local_setup.bash
-    $ sensor_combined_listener # or ros2 run px4_ros_com sensor_combined_listener
+    $ ros2 launch px4_ros_com sensor_combined_listener.launch.py
     ```
 
 이 작업은 콘솔로 출력되고 있는 데이터를 얻게 됩니다.
 
-> **Note** `build_all.bash` 스크립트를 사용하면 자동적으로 터미널을 열고 필요한 설정을 얻습니다. 각 터미널에서 필요한 어플리케이션만 실행하면 됩니다.
+> **Note** If ones uses the `build_all.bash` script, it automatically open and source all the required terminals so one just has to run the respective apps in each terminal.
 
 ## 트러블슈팅
 
@@ -653,7 +660,7 @@ ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어�
 
 만약 선택한 UART 포트가 사용할 수 없는 상태이면, MAVLink 어플리케이션이 이미 실행중일 가능성이 있습니다. MAVLink와 RTPS 연결을 모두 필요로 하다면 다른 포트를 사용하도록 하거나 포트를 공유할 수 있도록 설정해야 합니다. <!-- https://github.com/PX4/Devguide/issues/233 -->
 
-> **Tip** 개발과정에서 브릿지 테스트를 위해 임시적인 대처방법은 *NuttShell*에서 MAVLink를 끄는 것입니다. 
+> **Tip** A quick/temporary fix to allow bridge testing during development is to stop MAVLink from *NuttShell*: 
 > 
 >     sh
 >       mavlink stop-all
@@ -670,7 +677,7 @@ ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어�
 export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 ```
 
-> **Note** [Fast RTPS가 이미 기본경로에 설치](../setup/fast-rtps-installation.md)됐다면 다른 문제입니다.
+> **Note** This should not be a problem if [Fast RTPS is installed in the default location](../setup/fast-rtps-installation.md).
 
 ### OBC(온보드 컴퓨터)에서 UART 활성화하기
 
