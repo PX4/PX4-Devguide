@@ -132,7 +132,7 @@ rtps:
     send: true
 ```
 
-> **Note** Currently, the `px4_msgs` build process (only) runs the CMake macro `rosidl_generate_interfaces()` to generate ROS2 message header and source files and also the required IDL files, but previously it was using the `rosidl_generate_dds_interfaces()` CMake macro for the same purpose. A change on the API between the ROS2 Crystal and Dashing versions required that the build process was also adjusted to generate different headers a source files according to the versions.
+> **Note** An API change in ROS2 Dashing means that we now use the `rosidl_generate_interfaces()` CMake module (in `px4_msgs`) to generate the IDL files that we require for microRTPS agent generation (in `px4_ros_com`).
 > The PX4 Firmware includes a template for the IDL file generation, which is only used during the PX4 build process.
 >
 > The `px4_msgs` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware).
