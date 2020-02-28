@@ -71,7 +71,7 @@ This is needed because the first version of ROS does not support RTPS.
 ## Code generation
 
 > **Note** [Fast RTPS 1.8.2 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
-> *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) or [Ubuntu](../setup/dev_env_linux_ubuntu.md).
+> *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), or [Windows Cygwin](../setup/dev_env_windows_cygwin.md) (but not [Ubuntu](../setup/dev_env_linux_ubuntu.md) at time of writing).
 
 ### ROS-independent applications
 
@@ -236,8 +236,9 @@ and separately clone the `px4_ros_com` and `px4_msgs` repo for both the `master`
 
 ### Installing ROS and ROS2 and respective dependencies
 
-In order to install ROS Melodic and ROS2 Dashing (officially supported) or Bouncy on a Ubuntu 18.04 machine, follow the links below, respectively:
+> **Note** This install and build guide covers ROS Melodic and ROS2 Dashing (ROS2 Ardent, Bouncy or Crystal are not covered as they are EOL).
 
+In order to install ROS Melodic and ROS2 Dashing (officially supported) on a Ubuntu 18.04 machine, follow the links below, respectively:
 1. [Install ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
 1. [Install ROS2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/)
 1. The install process should also install the *colcon* build tools, but in case that doesn't happen, you can install the tools manually:
@@ -257,10 +258,7 @@ In order to install ROS Melodic and ROS2 Dashing (officially supported) or Bounc
    ```sh
    sudo pip3 install -U setuptools
    ```
-
-   > **Note** This install and build guide is not applicable to ROS2 Ardent, Bouncy or Crystal anymore, since they all reached EOL.
-
-   <span></span>
+   
    > **Caution** Do not install the `ros1_bridge` package through the deb repository.
      The package must be built from source.
 
