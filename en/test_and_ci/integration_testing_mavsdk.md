@@ -33,6 +33,14 @@ Install it using `rpm`, e.g.:
 sudo rpm -U mavsdk-0.23.0-1.fc30-x86_64.rpm
 ```
 
+#### Arch Linux
+
+The library is available on [AUR](https://aur.archlinux.org/packages/mavsdk/) and can be installed e.g. using `yay`:
+
+```sh
+yay -S mavsdk
+```
+
 #### macOS
 
 Install the library using [brew](https://brew.sh/):
