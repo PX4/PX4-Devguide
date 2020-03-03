@@ -1,25 +1,25 @@
-# 系统通知
+# 系统通知声音
 
-PX4 defines a number of [standard tones/tunes](https://docs.px4.io/master/en/getting_started/tunes.html) that are used to provide audio notification for important system states and problems (e.g. system startup, arming success, battery warnings, etc.)
+PX4 定义了一些用于为系统状态和问题提供音频通知的 [standard tones/tunes](https://docs.px4.io/master/en/getting_started/tunes.html) (比如系统启动，解锁成功，电池警告等）
 
-Tunes are specified using strings (in [ANSI Music notation](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt)) and played by code using the [tunes](https://github.com/PX4/Firmware/tree/master/src/lib/tunes) library. The tunes library also contains the list of default system tunes - see [lib/tunes/tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc).
+使用字符串指定音乐 ([ANSI Music notation](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt))，并使用 [tunes](https://github.com/PX4/Firmware/tree/master/src/lib/tunes) 库播放。 声音库也包含默认系统调节列表——见 [lib/tunes/tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)。
 
-PX4 also has a module that can be used to play (test) the default tunes or a user defined tune.
+PX4还有一个模块可以用于播放 (测试) 默认或用户自定义声音。
 
-This topic provides general guidance on how to create your own tunes and add to/replace the system notification tones/tunes.
+本主题提供了如何创建您自己的声音并添加/替换系统通知音调/乐曲的通用指导。
 
 
-## Creating Tunes
+## 创建曲子
 
-Tune strings are defined using [ANSI Music notation](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt).
+乐曲字符串使用 [ANSI Music notation](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt) 定义。
 
-> **Tip** More information about the format can be found in [QBasic PLAY statement](https://en.wikibooks.org/wiki/QBasic/Appendix#PLAY) (Wikibooks) and has been reproduced in [tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc).
+> **Tip** 关于格式的更多信息见 [QBasic PLAY statement](https://en.wikibooks.org/wiki/QBasic/Appendix#PLAY) (Wikibooks) 并已转载于 [tune_definition.des](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)。
 
-The easiest way to create a new tune is to use a music editor. This allows you to edit the music and play it back on your computer, then export it to a format that can be played by PX4.
+创建新乐曲的最简单方式是使用音乐编辑器。 这允许您编辑乐曲并在您的电脑上播放， 然后导出为 PX4 可以播放的格式。
 
-ANSI music was popular in the days of ANSI BBS systems, and so the best editing tools are DOS utilities. On Windows, one option is to use *Melody Master* within *Dosbox*.
+ANSI 音乐在 ANSI BBS 系统中很受欢迎，因此最好的编辑工具是 DOS 实用工具。 在 Windows 上，一个选项是在 *Dosbox* 内使用 *Melody Master*。
 
-The steps for using the software are:
+使用软件的步骤是：
 
 1. Download [DosBox](http://www.dosbox.com/) and install the app
 1. Download [Melody Master](ftp://archives.thebbs.org/ansi_utilities/melody21.zip) and unzip into a new directory
