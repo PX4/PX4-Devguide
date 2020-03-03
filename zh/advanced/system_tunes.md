@@ -1,8 +1,8 @@
-# 系统通知音乐
+# 系统通知提示音
 
-PX4 定义了一些用于为系统状态和问题提供音频通知的 [标准音符/音乐](https://docs.px4.io/master/en/getting_started/tunes.html)（比如系统启动，解锁成功，电池警告等）
+PX4 定义了一些用于为系统状态和问题提供音频通知的 [标准音符/提示音](https://docs.px4.io/master/en/getting_started/tunes.html)（比如系统启动，解锁成功，电池警告等）
 
-使用字符串指定乐曲 ([ANSI Music notation](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt))，并使用 [tunes](https://github.com/PX4/Firmware/tree/master/src/lib/tunes) 库播放。 乐曲库也包含默认系统调节列表——见 [lib/tunes/tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)。
+提示音使用字符串来指定 ([ANSI 音乐通知](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt))，并使用 [tunes](https://github.com/PX4/Firmware/tree/master/src/lib/tunes) 库播放。 乐曲库也包含默认系统调节列表——见 [lib/tunes/tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)。
 
 PX4还有一个模块可以用于播放（测试）默认或用户自定义音乐。
 
@@ -11,9 +11,9 @@ PX4还有一个模块可以用于播放（测试）默认或用户自定义音�
 
 ## 创建乐曲
 
-乐曲字符串使用 [ANSI Music notation](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt) 定义。
+提示音字符串使用 [ANSI 音乐提示](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt) 定义。
 
-> **Tip** 关于格式的更多信息见 [QBasic PLAY statement](https://en.wikibooks.org/wiki/QBasic/Appendix#PLAY) (Wikibooks) 并已转载于 [tune_definition.des](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)
+> **Tip**关于格式的更多信息见 [QBasic PLAY 声明](https://en.wikibooks.org/wiki/QBasic/Appendix#PLAY)（Wikibooks），而且在[tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)文件里面也有说明。
 
 创建新乐曲的最简单方式是使用音乐编辑器。 这允许您编辑乐曲并在您的电脑上播放， 然后导出为 PX4 可以播放的格式。
 
