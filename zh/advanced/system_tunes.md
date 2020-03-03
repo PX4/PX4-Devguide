@@ -13,7 +13,7 @@ PX4还有一个模块可以用于播放（测试）默认或用户自定义音�
 
 提示音字符串使用 [ANSI 音乐提示](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt) 定义。
 
-> **Tip**关于格式的更多信息见 [QBasic PLAY 声明](https://en.wikibooks.org/wiki/QBasic/Appendix#PLAY)（Wikibooks），而且在[tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)文件里面也有说明。
+> **Tip** 关于格式的更多信息见 [QBasic PLAY 声明](https://en.wikibooks.org/wiki/QBasic/Appendix#PLAY)（Wikibooks），而且在[tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)文件里面也有说明。
 
 创建新乐曲的最简单方式是使用音乐编辑器。 这允许您编辑乐曲并在您的电脑上播放， 然后导出为 PX4 可以播放的格式。
 
