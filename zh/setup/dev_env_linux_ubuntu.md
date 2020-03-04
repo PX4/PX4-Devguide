@@ -17,21 +17,23 @@
 
 执行步骤：
 
-1. 从PX4的源码仓库中下载[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) 和 [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt)（在**/Tools/setup/**目录下）；   
-    `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
-    `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`
+1. [Download PX4 Source Code](../setup/building_px4.md): 
+        bash
+        git clone https://github.com/PX4/Firmware.git --recursive
+
 2. 在bash shell中不带参数地运行ubuntu.sh来安装所有的依赖工具： 
         bash
-        bash ubuntu.sh
+        bash ./Tools/setup/ubuntu.sh
     
+      
     * 在安装过程中确认并通过所有的提示
     * 你可以通过传输参数`--no-nuttx` 和 `--no-sim-tools` 来跳过 nuttx 和/或 仿真器工具的安装。
 3. 完成后重新启动计算机。
 
-> **或者** 你也可以直接下载PX4的全部源码然后运行里面的脚本： 
-> 
->     git clone https://github.com/PX4/Firmware.git
->       bash Firmware/Tools/setup/ubuntu.sh
+> **Note** You can alternatively download [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**) and run ubuntu.sh in place:   
+> `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
+> `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`   
+> `bash ubuntu.sh`
 
 备注：
 
