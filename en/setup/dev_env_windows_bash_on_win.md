@@ -88,5 +88,5 @@ To add this compiler to your environment manually:
    ```
 1. Add the to the environment (add the line to your bash profile to make the change permanent)
    ```
-   export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH
+   export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:$PATH
    ```
