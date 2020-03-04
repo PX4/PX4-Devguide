@@ -90,8 +90,9 @@ arm-linux-gnueabihf-g++ -v
 
 ### Clang
 
-In order to use clang, you also need GCC.
-We recommend you to get clang from Ubuntu software repository as following:
+First [install GCC](#gcc) (needed to use clang).
+
+We recommend you to get clang from the Ubuntu software repository as follows:
 ```
 sudo apt-get install clang
 ```
