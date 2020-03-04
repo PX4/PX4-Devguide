@@ -17,21 +17,23 @@ Use the [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/
 
 To install the toolchain:
 
-1. Download [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):   
-    `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
-    `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`
+1. [Download PX4 Source Code](../setup/building_px4.md): 
+        bash
+        git clone https://github.com/PX4/Firmware.git --recursive
+
 2. Run the **ubuntu.sh** with no arguments (in a bash shell) to install everything: 
         bash
-        bash ubuntu.sh
+        bash ./Tools/setup/ubuntu.sh
     
+      
     * Acknowledge any prompts as the script progress.
     * You can use the `--no-nuttx` and `--no-sim-tools` to omit the nuttx and/or simulation tools.
 3. Restart the computer on completion.
 
-> **Note** You can alternatively [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place: 
-> 
->     git clone https://github.com/PX4/Firmware.git
->       bash Firmware/Tools/setup/ubuntu.sh
+> **Note** You can alternatively download [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**) and run ubuntu.sh in place:   
+> `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
+> `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`   
+> `bash ubuntu.sh`
 
 Notes:
 
