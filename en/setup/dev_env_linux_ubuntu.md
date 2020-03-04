@@ -76,7 +76,10 @@ To get the build toolchain for Raspberry Pi:
 
 ### GCC
 
-PX4 has already switched to C++14 standard so the toolchains from Raspberry Pi offical is no longer supported. Ubuntu provides a set of pre-compiled toolchains and you can easily set up one of them by:
+The official Raspberry Pi toolchains are not supported as PX4 has requires C++14 (which they do not support). 
+
+Ubuntu provides a set of pre-compiled toolchains that you can use instead.
+Install these with the terminal command:
 ```
 sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 ```
