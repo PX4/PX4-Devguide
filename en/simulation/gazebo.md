@@ -256,9 +256,13 @@ This thin wrapper simply embeds app arguments like current working directories a
 
 To start Gazebo and PX4 separately:
 
-* Run gazebo (or any other sim) server and client viewers via the terminal:
+* Run gazebo (or any other sim) server and client viewers via the terminal specifing an `_ide` variant:
   ```sh
-  make px4_sitl gazebo_none_ide
+  make px4_sitl gazebo___ide
+  ```
+  or
+  ```sh
+  make px4_sitl gazebo_iris_ide
   ```
 * In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
 * Start the debug session directly from IDE
