@@ -62,6 +62,8 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 ## Raspberry Pi {#raspberry-pi-hardware}
 
+<!-- NOTE: RaPi docker toolchain (for comparison) here: https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf -->
+
 To get the build toolchain for Raspberry Pi:
 
 1. Download [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):
@@ -75,44 +77,44 @@ To get the build toolchain for Raspberry Pi:
 
 ### GCC
 
-The current recommended toolchain for raspbian can be cloned from `https://github.com/raspberrypi/tools.git` (at time of writing 4.9.3).
-The `PATH` environmental variable should include the path to the gcc cross-compiler collection of tools (e.g. gcc, g++, strip) prefixed with `arm-linux-gnueabihf-`.
+The official Raspberry Pi toolchains are not supported as PX4 has requires C++14 (which they do not support). 
 
-```sh
-git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
+Ubuntu provides a set of pre-compiled toolchains that you can use instead.
+Install these with the terminal command:
+```
+sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+```
 
-# test compiler
-$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
-
-# permanently update PATH variable by modifying ~/.profile
-echo 'export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin' >> ~/.profile
-
-# update PATH variable only for this session
-export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
+These package contains GCC/G++ 7.4.0 at time of writing.
+To test the toolchain, please execute:
+```
+arm-linux-gnueabihf-gcc -v
+arm-linux-gnueabihf-g++ -v
 ```
 
 ### Clang
 
-In order to use clang, you also need GCC.
+First [install GCC](#gcc) (needed to use clang).
 
-Download clang for your specific distribution from [LLVM Download page](http://releases.llvm.org/download.html) and unpack it.
-Assuming that you've unpacked clang to `CLANG_DIR`, and `clang` binary is available in `CLANG_DIR/bin`, and you have the GCC cross-compiler in `GCC_DIR`, you will need to setup the symlinks for clang in the `GCC_DIR` bin dir, and add `GCC_DIR/bin` to `PATH`.
+We recommend you to get clang from the Ubuntu software repository as follows:
+```
+sudo apt-get install clang
+```
 
 Example below for building PX4 firmware out of tree, using CMake.
 ```sh
-ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
-ln -s <CLANG_DIR>/bin/clang++ <GCC_DIR>/bin/clang++
-export PATH=<GCC_DIR>/bin:$PATH
-
 cd <PATH-TO-PX4-SRC>
-mkdir build/posix_rpi_cross_clang
-cd build/posix_rpi_cross_clang
+mkdir build/px4_raspberrypi_default_clang
+cd build/px4_raspberrypi_default_clang
 cmake \
 -G"Unix Makefiles" \
--DCONFIG=posix_rpi_cross \
+-DCONFIG=px4_raspberrypi_default \
+-UCMAKE_C_COMPILER \
 -DCMAKE_C_COMPILER=clang \
+-UCMAKE_CXX_COMPILER \
 -DCMAKE_CXX_COMPILER=clang++ \
-..
+../..
+make
 ```
 
 ### Native Builds
