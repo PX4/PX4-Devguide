@@ -84,4 +84,4 @@ Para agregar este compilador a tu entorno manualmente:
         sh
         tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2 Esto descomprimirá el gcc cross-compiler en: ```gcc-arm-none-eabi-5_4-2017q2/bin```
 
-3. Agrégalo al entorno (agrega la linea a tu bash profile para hacer el cambio permanente) ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:$PATH```
+3. Agrégalo al entorno (agrega la linea a tu bash profile para hacer el cambio permanente) ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH```

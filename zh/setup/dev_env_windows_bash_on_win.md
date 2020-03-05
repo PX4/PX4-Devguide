@@ -84,4 +84,4 @@ In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinG
         sh
         tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2 该命令会将 arm gcc cross-compiler 解压至： ```gcc-arm-none-eabi-5_4-2017q2/bin```
 
-3. 将下面这行命令添加到环境中（将该行添加到 bash 配置文件中完成永久性更改） ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:$PATH```
+3. 将下面这行命令添加到环境中（将该行添加到 bash 配置文件中完成永久性更改） ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:\$PATH```
