@@ -63,6 +63,8 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 ## Raspberry Pi {#raspberry-pi-hardware}
 
+<!-- NOTE: RaPi docker toolchain (for comparison) here: https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf -->
+
 To get the build toolchain for Raspberry Pi:
 
 1. Download [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):
