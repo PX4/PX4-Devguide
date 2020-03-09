@@ -30,6 +30,7 @@
   * [Mixing and Actuators](concept/mixing.md)
   * [PWM limit state machine](concept/pwm_limit.md)
   * [System Startup](concept/system_startup.md)
+  * [Microservice Versioning](concept/microservice_versioning.md)
 * [Simulation](simulation/README.md)
   * [jMAVSim Simulation](simulation/jmavsim.md)
   * [Gazebo Simulation](simulation/gazebo.md)
