@@ -55,7 +55,7 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 ## 代码生成
 
-> **Note** 要生成所需代码 [必须安装 Fast RTPS](../setup/fast-rtps-installation.md)! 如果你使用为[macOS](../setup/dev_env_mac.md), [Windows Cygwin](../setup/dev_env_windows_cygwin.md) 或 [Ubuntu](../setup/dev_env_linux_ubuntu.md)平台编写的标准安装程序/脚本，*Fast RTPS* 是 *默认* 安装的。
+> **Note** [Fast RTPS 1.8.2 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), or [Windows Cygwin](../setup/dev_env_windows_cygwin.md) (but not [Ubuntu](../setup/dev_env_linux_ubuntu.md) at time of writing).
 
 ### 独立于 ROS 的应用程序
 
@@ -113,9 +113,9 @@ rtps:
     send: true
 ```
 
-> **Note** The `px4_msgs` build process (only) runs the CMake macro `rosidl_generate_interfaces()` to generate ROS2 message header files, while `px4_ros_com` build process generates the IDL files through the `rosidl_generate_dds_interfaces()` CMake macro. PX4固件中又一个IDL文件模板，只在PX4编译过程中才使用。
+> **Note** An API change in ROS2 Dashing means that we now use the `rosidl_generate_interfaces()` CMake module (in `px4_msgs`) to generate the IDL files that we require for microRTPS agent generation (in `px4_ros_com`). PX4固件中又一个IDL文件模板，只在PX4编译过程中才使用。
 > 
-> `px4_ros_com` 为 ROS2/ROS 编译生成的IDL文件只有 *少许不同* (但为PX4固件编译的就很不一样了)。 **uorb_rtps_message_ids.yaml** 文件将消息改名使之符合*PascalCased*标准 (改名这事儿与客户端-代理端之间的通信没有任何关系，但是对于 ROS2 是至关重要的，因为 ROS2 的消息命名必须符合 PascalCase 约定)。 新的IDL文件还反转了消息的发送/接收状态 (这是必须的，因为同一个消息在客户端是发送，在代理端的状态就是接收，反之亦然)。
+> The `px4_msgs` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). **uorb_rtps_message_ids.yaml** 文件将消息改名使之符合*PascalCased*标准 (改名这事儿与客户端-代理端之间的通信没有任何关系，但是对于 ROS2 是至关重要的，因为 ROS2 的消息命名必须符合 PascalCase 约定)。 新的IDL文件还反转了消息的发送/接收状态 (这是必须的，因为同一个消息在客户端是发送，在代理端的状态就是接收，反之亦然)。
 
 ## 客户端 (PX4固件) {#client_firmware}
 
@@ -136,16 +136,16 @@ make px4_sitl_rtps
 The *Client* application can be launched from [NuttShell/System Console](../debug/system_console.md). The command syntax is shown below (you can specify a variable number of arguments):
 
 ```sh
-> micrortps_client start|stop [options]
-  -t &lt;transport&gt;          [UART|UDP] 缺省为 UART
-  -d &lt;device&gt;             UART 设备. 缺省为 /dev/ttyACM0
-  -u &lt;update_time_ms&gt;     订阅的 uORB 消息的刷新时间，单位ms。 缺省为 0
-  -l &lt;loops&gt;              该程序将循环执行多少次。 -1 表示无限循环， 缺省为 -1。
-  -w &lt;sleep_time_ms&gt;      每个循环的休眠时间，单位ms， 缺省为 1ms
-  -b &lt;baudrate&gt;           UART 设备波特率 缺省为 460800
-  -p &lt;poll_ms&gt;            UART设备轮询时间，单位ms， 缺省为 1ms
-  -r &lt;reception port&gt;     UDP接收端口号， 缺省为 2019
-  -s &lt;sending port&gt;       UDP 发送端口号， 缺省为 2020
+> micrortps_client start|stop|status [options]
+  -t <transport>          [UART|UDP] Default UART
+  -d <device>             UART device. Default /dev/ttyACM0
+  -l <loops>              How many iterations will this program have. -1 for infinite. Default -1.
+  -w <sleep_time_ms>      Time in ms for which each iteration sleep. Default 1ms
+  -b <baudrate>           UART device baudrate. Default 460800
+  -p <poll_ms>            Time in ms to poll over UART. Default 1ms
+  -r <reception port>     UDP port for receiving. Default 2019
+  -s <sending port>       UDP port for sending. Default 2020
+  -i <ip_address>         Select IP address (remote) values: <x.x.x.x>. Default: 127.0.0.1
 ```
 
 > **Note**默认情况下*Client* 作为守护进程运行, 但您需要手动启动它。 PX4 固件的初始化代码将来可能会自动启动 *Client* 作为一个永久的守护进程。
@@ -204,27 +204,31 @@ Install and setup both ROS2 and ROS environments on your development machine and
 
 ### 分别安装 ROS 和 ROS2
 
-In order to install ROS Melodic and ROS2 Crystal (officially supported) or Bouncy on a Ubuntu 18.04 machine, follow the links below, respectively:
+> **Note** This install and build guide covers ROS Melodic and ROS2 Dashing (ROS2 Ardent, Bouncy or Crystal are not covered as they are EOL).
+
+In order to install ROS Melodic and ROS2 Dashing (officially supported) on a Ubuntu 18.04 machine, follow the links below, respectively:
 
 1. [安装 ROS Melodic](http://wiki.ros.org/melodic/Installation/Ubuntu)
-2. [Install ROS2 Crystal](https://index.ros.org/doc/ros2/Linux-Install-Debians/)
+2. [Install ROS2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/)
 3. The install process should also install the *colcon* build tools, but in case that doesn't happen, you can install the tools manually:
     
     ```sh
     sudo apt install python3-colcon-common-extensions
     ```
 
-4. *setuptools*也必须被安装 (使用 *pip* 或 *apt*工具):
+4. *eigen3_cmake_module* is also required, since Eigen3 is used on the transforms library:
+    
+    ```sh
+    sudo apt install ros-dashing-eigen3-cmake-module
+    ```
+
+5. *setuptools* must also be installed (using *pip* or *apt*):
     
     ```sh
     sudo pip3 install -U setuptools
     ```
     
-    > **Note** This install and build guide is not applicable to ROS2 Ardent anymore, since this has reached EOL December 2018.
-    
-    <span></span>
-    
-    > **Caution** 不要通过deb仓库安装 `ros1_bridge` 。 该程序包必须从源码构建。
+    > **Caution** Do not install the `ros1_bridge` package through the deb repository. The package must be built from source.
 
 ### 配置工作空间
 
@@ -266,12 +270,14 @@ To build both workspaces with a single script, use the `build_all.bash`. Check t
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
+> **Note** Using the `--verbose` argument will allow you to see the full *colcon* build output.
+> 
 > **Note** The build process will open new tabs on the console, corresponding to different stages of the build process that need to have different environment configurations sourced.
 
 One can also use the following individual scripts in order to build the individual parts:
 
 * `build_ros1_bridge.bash` 可以构建 `ros1_bridge`;
-* `build_ros1_workspace.bash` (only the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` and `px4_msgs` `ros1` branches were cloned;
+* `build_ros1_workspace.bash` (only on the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` and `px4_msgs` `ros1` branches were cloned;
 * `build_ros2_workspace.bash`, to build the ROS2 workspace to where the `px4_ros_com` and `px4_msgs` `master` branches were cloned;
 
 The steps below show how to *manually* build the packages (provided for your information/better understanding only):
@@ -279,13 +285,13 @@ The steps below show how to *manually* build the packages (provided for your inf
 1. `cd` 到 `px4_ros_com_ros2` 目录并 source 一下 ROS2 的环境变量。 不用管是否提示您该工作空间已经设置过：
     
     ```sh
-    source /opt/ros/crystal/setup.bash
+    source /opt/ros/dashing/setup.bash
     ```
 
 2. 克隆 `ros1_bridge` 程序包到 ROS2 工作空间:
     
     ```sh
-    git clone https://github.com/ros2/ros1_bridge.git -b crystal ~/px4_ros_com_ros2/src/ros1_bridge
+    git clone https://github.com/ros2/ros1_bridge.git -b dashing ~/px4_ros_com_ros2/src/ros1_bridge
     ```
 
 3. Build the `px4_ros_com` and `px4_msgs` packages, excluding the `ros1_bridge` package:
@@ -311,8 +317,8 @@ The steps below show how to *manually* build the packages (provided for your inf
 6. Before building the `ros1_bridge`, one needs to open a new terminal and then source the environments and workspaces following the order below:
     
     ```sh
-    source ~/px4_ros_com_ros1/install/local_setup.bash
-    source ~/px4_ros_com_ros2/install/local_setup.bash
+    source ~/px4_ros_com_ros1/install/setup.bash
+    source ~/px4_ros_com_ros2/install/setup.bash
     ```
 
 7. 最后，编译 `ros1_bridge`。 请注意, 构建过程可能会占用大量内存资源。 在内存较小的机器上, 减少并行编译的线程数目 (比如可以设置环境变量 `MAKEFLAGS=-j1`)。 要查看编译过程的更详细信息，请移步 [ros1_bridge](https://github.com/ros2/ros1_bridge)程序包的网页。
@@ -424,7 +430,7 @@ With the `px4_ros_com` built successfully, one can now take advantage of the gen
 
 ```c++
 #include <rclcpp/rclcpp.hpp>
-#include <px4_ros_com/msg/sensor_combined.hpp>
+#include <px4_msgs/msg/sensor_combined.hpp>
 ```
 
 上面两行代码将与ROS2中间件交互的 C++ 库包含进来。 同时还包含了我们要用到的消息头文件。
@@ -442,32 +448,31 @@ class SensorCombinedListener : public rclcpp::Node
 ```c++
 public:
     explicit SensorCombinedListener() : Node("sensor_combined_listener") {
-        auto callback =
-        [this](const px4_ros_com::msg::SensorCombined::SharedPtr msg)->void
-        {
+        subscription_ = this->create_subscription<px4_msgs::msg::SensorCombined>(
+            "SensorCombined_PubSubTopic", 10,
+            [this](const px4_msgs::msg::SensorCombined::UniquePtr msg) {
             std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
-            std::cout << "RECEIVED DATA ON SENSOR COMBINED" << std::endl;
-            std::cout << "================================" << std::endl;
-            std::cout << "gyro_rad[0]: " << msg->gyro_rad[0] << std::endl;
-            std::cout << "gyro_rad[1]: " << msg->gyro_rad[1] << std::endl;
-            std::cout << "gyro_rad[2]: " << msg->gyro_rad[2] << std::endl;
+            std::cout << "RECEIVED SENSOR COMBINED DATA"   << std::endl;
+            std::cout << "============================="   << std::endl;
+            std::cout << "ts: "          << msg->timestamp    << std::endl;
+            std::cout << "gyro_rad[0]: " << msg->gyro_rad[0]  << std::endl;
+            std::cout << "gyro_rad[1]: " << msg->gyro_rad[1]  << std::endl;
+            std::cout << "gyro_rad[2]: " << msg->gyro_rad[2]  << std::endl;
             std::cout << "gyro_integral_dt: " << msg->gyro_integral_dt << std::endl;
             std::cout << "accelerometer_timestamp_relative: " << msg->accelerometer_timestamp_relative << std::endl;
             std::cout << "accelerometer_m_s2[0]: " << msg->accelerometer_m_s2[0] << std::endl;
             std::cout << "accelerometer_m_s2[1]: " << msg->accelerometer_m_s2[1] << std::endl;
             std::cout << "accelerometer_m_s2[2]: " << msg->accelerometer_m_s2[2] << std::endl;
             std::cout << "accelerometer_integral_dt: " << msg->accelerometer_integral_dt << std::endl;
-        };
+        });
+    }
 ```
 
-这段代码创建了一个回调函数，在收到 `sensor_combined` 消息时被调用。 一旦收到消息就打印出每一个字段。
+This creates a callback function for when the `sensor_combined` uORB messages are received (now as DDS messages). 一旦收到消息就打印出每一个字段。
 
 ```c++
-        subscription_ = this->create_subscription<px4_ros_com::msg::SensorCombined>("SensorCombined_topic", callback);
-    }
-
 private:
-    rclcpp::Subscription<px4_ros_com::msg::SensorCombined>::SharedPtr subscription_;
+    rclcpp::Subscription<px4_msgs::msg::SensorCombined>::SharedPtr subscription_;
 };
 ```
 
@@ -497,7 +502,7 @@ ROS2 广播器节点将数据发布到 DDS/RTPS 网络 (再转发至 PX4)。
 ```c++
 #include <chrono>
 #include <rclcpp/rclcpp.hpp>
-#include <px4_ros_com/msg/debug_vect.hpp>
+#include <px4_msgs/msg/debug_vect.hpp>
 
 using namespace std::chrono_literals;
 ```
@@ -514,16 +519,18 @@ class DebugVectAdvertiser : public rclcpp::Node
 ```c++
 public:
     DebugVectAdvertiser() : Node("debug_vect_advertiser") {
-        publisher_ = this->create_publisher<px4_ros_com::msg::DebugVect>("DebugVect_topic");
+        publisher_ = this->create_publisher<px4_msgs::msg::DebugVect>("DebugVect_PubSubTopic", 10);
         auto timer_callback =
         [this]()->void {
-            auto debug_vect = px4_ros_com::msg::DebugVect();
+            auto debug_vect = px4_msgs::msg::DebugVect();
             debug_vect.timestamp = this->now().nanoseconds() * 1E-3;
+            std::string name = "test";
+            std::copy(name.begin(), name.end(), debug_vect.name.begin());
             debug_vect.x = 1.0;
             debug_vect.y = 2.0;
             debug_vect.z = 3.0;
-            RCLCPP_INFO(this->get_logger(), "Publishing debug_vect: time: %f x:%f y:%f z:%f",
-                                debug_vect.timestamp, debug_vect.x, debug_vect.y, debug_vect.z)
+            RCLCPP_INFO(this->get_logger(), "\033[97m Publishing debug_vect: time: %f x:%f y:%f z:%f \033[0m",
+                                debug_vect.timestamp, debug_vect.x, debug_vect.y, debug_vect.z);
             this->publisher_->publish(debug_vect);
         };
         timer_ = this->create_wall_timer(500ms, timer_callback);
@@ -531,7 +538,7 @@ public:
 
 private:
     rclcpp::TimerBase::SharedPtr timer_;
-    rclcpp::Publisher<px4_ros_com::msg::DebugVect>::SharedPtr publisher_;
+    rclcpp::Publisher<px4_msgs::msg::DebugVect>::SharedPtr publisher_;
 };
 ```
 
@@ -552,7 +559,7 @@ int main(int argc, char *argv[])
 
 这段代码在 `main` 函数中将 `DebugVectAdvertiser` 类实例化成一个ROS节点。
 
-## 创建一个ROS监听器
+## Creating a ROS(1) listener
 
 创建ROS节点的方法有详细的文档供参考，不在赘述。 在 `ros1` 分支的代码的 `px4_ros_com/src/listeners` 目录下，有一个关于 `sensor_combined` 消息的ROS 监听器的例子。
 
@@ -575,7 +582,7 @@ int main(int argc, char *argv[])
 2. 在一个终端里，source 一下 ROS2 工作空间的环境变量，然后启动 `ros1_bridge` (这样 ROS2 和 ROS 节点就可以互相通信了)。 还要将 `ROS_MASTER_URI` 设置为 `roscore` 正在/即将运行的IP。
     
     ```sh
-    $ source /opt/ros/crystal/setup.bash
+    $ source /opt/ros/dashing/setup.bash
     $ source ~/px4_ros_com_ros2/install/local_setup.bash
     $ export ROS_MASTER_URI=http://localhost:11311
     $ ros2 run ros1_bridge dynamic_bridge
@@ -584,14 +591,14 @@ int main(int argc, char *argv[])
 3. 在另一个终端里，source 一下 ROS 工作空间的环境变量，然后启动 `sensor_combined` 监听器节点。 使用 `roslaunch` 启动应用程序时，首先会自动启动 `roscore` ：
     
     ```sh
-    $ source ~/px4_ros_com_ros1/install/local_setup.bash
+    $ source ~/px4_ros_com_ros1/install/setup.bash
     $ roslaunch px4_ros_com sensor_combined_listener.launch
     ```
 
 4. 在一个终端里，source 一下 ROS2 工作空间的环境变量，然后启动 `micrortps_agent` 守护程序并使用UDP传输协议：
     
     ```sh
-    $ source ~/px4_ros_com_ros2/install/local_setup.bash
+    $ source ~/px4_ros_com_ros2/install/setup.bash
     $ micrortps_agent -t UDP
     ```
 
@@ -640,7 +647,7 @@ int main(int argc, char *argv[])
     
     ```sh
     $ source ~/px4_ros_com_ros2/install/local_setup.bash
-    $ sensor_combined_listener # or ros2 run px4_ros_com sensor_combined_listener
+    $ ros2 launch px4_ros_com sensor_combined_listener.launch.py
     ```
 
 也会有数据被打印到控制台输出。

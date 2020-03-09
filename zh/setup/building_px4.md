@@ -8,69 +8,19 @@
 
 > **Tip** For solutions to common build problems see [Troubleshooting](#troubleshooting) below.
 
-## 下载 PX4 源代码 {#get_px4_code}
+## Download the PX4 Source Code {#get_px4_code}
 
-The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
+The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. To get the *very latest* version onto your computer, enter the following command into a terminal:
 
-> **Tip** Forking the repository allows you to better manage your custom code. Later on you will be able to use *git* to share changes with the main project.
+```sh
+git clone https://github.com/PX4/Firmware.git --recursive
+```
 
-The steps to fork and clone the project source code are:
-
-1. 在GitHub上 [注册](https://github.com/)。
-2. 转到 [Firmware](https://github.com/PX4/Firmware) 存储库，然后单击右上角附近的 **Fork** 按钮。 这将创建并打开分叉存储库。
-    
-    ![Github 分支按钮](../../assets/toolchain/github_fork.png)
-
-3. 复制 *Firmware* 存储库分叉的存储库URl。 最简单的方法是单击 **Clone 或下载** 按钮，然后复制URL：
-    
-    ![Github 克隆或下载按钮](../../assets/toolchain/github_clone_or_download.png)
-
-4. Install *git* (if you haven't already done so as part of setting up the development environment):
-    
-    - On macOS use the terminal command: `brew install git`
-    - On Ubuntu use the terminal command: `sudo apt install git`
-    - For other platforms see the [git documentation](https://git-scm.com/downloads).
-5. Open a command prompt/terminal on your computer 
-    - On OS X, hit ⌘-space and search for 'terminal'.
-    - On Ubuntu, click the launch bar and search for 'terminal'.
-    - On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'.
-
-6. Clone the repository fork using the copied URL. This will look something like:
-    
-        git clone https://github.com/<youraccountname>/Firmware.git
-        
-    
-    > **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown: 
-    > 
-    >     sh
-    >      git clone https://github.com/PX4/Firmware.git
-    
-    Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
-
-This will copy *most* of the *very latest* version of PX4 source code onto your computer (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
-
-<span id="specific_version_source"></span>
-
-### 获取特定发行版本
-
-To get the source code for a *specific older release*:
-
-1. 克隆固件存储库并导航到固件目录： 
-        sh
-        git clone https://github.com/PX4/Firmware.git
-        cd Firmware
-
-2. 列出所有发行版本（标签） 
-        sh
-        git tag -l
-
-3. 迁出特定tag的代码（比如 tag为 1.7.4的beta版本） 
-        sh
-        git checkout v1.7.4beta
+> **Note** This is all you need to do just to build the latest code. [GIT Examples > Contributing code to PX4](../contribute/git_examples.md#contributing-code-to-px4) provides a lot more information about using git to contribute to PX4.
 
 ## 初次编译（使用 jMAVSim 模拟器） {#jmavsim_build}
 
-For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
+First we'll build a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
 
 Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 
@@ -100,7 +50,7 @@ Flying the simulation with the ground control station is closer to the real oper
 
 ## NuttX / Pixhawk Based Boards {#nuttx}
 
-### 构建 {#building_nuttx}
+### Building {#building_nuttx}
 
 To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board.
 
@@ -140,7 +90,7 @@ The following list shows the build commands for common boards:
 
 > **Note** Generally the `_default` suffix is optional (i.e. you can also build using `make px4_fmu-v4`, `make bitcraze_crazyflie`, etc.).
 
-### 将固件烧录到飞控板
+### Uploading Firmware (Flashing the board)
 
 Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
 
@@ -163,7 +113,7 @@ Rebooting.
 
 The following boards have more complicated build and/or deployment instructions.
 
-### Raspberry Pi 2/3
+### Raspberry Pi 2/3 Boards
 
 The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 

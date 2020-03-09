@@ -21,6 +21,8 @@
     > 
     > 相比玩具级设备, 它使用可靠的差分信号, 并支持通过总线进行固件升级。 所有电调提供状态反馈并实现现场定向控制\(FOC\).
     > 
+    > > **Note** PX4 requires an SD card for UAVCAN node allocation and firmware upgrade. It is not used during flight by UAVCAN.
+    > 
     > ## 初始设置
     > 
     > 以下说明提供了一个分步指南, 用于连接和设置通过uavcan连接的电调和GPS的四轮车。 选择的硬件是Pixhawk 2.1、Zubax orrel 20电调和Zubax GNSS GPS模块。

@@ -8,69 +8,19 @@ PX4 can be built on the console or in an IDE, for both simulated and hardware ta
 
 > **Tip** For solutions to common build problems see [Troubleshooting](#troubleshooting) below.
 
-## Downloading PX4 Source Code {#get_px4_code}
+## Download the PX4 Source Code {#get_px4_code}
 
-The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. We recommend that you [fork](https://help.github.com/articles/fork-a-repo/) this repository (creating a copy associated with your own Github account), and then [clone](https://help.github.com/articles/cloning-a-repository/) the source to your local computer.
+The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. To get the *very latest* version onto your computer, enter the following command into a terminal:
 
-> **Tip** Forking the repository allows you to better manage your custom code. Later on you will be able to use *git* to share changes with the main project.
+```sh
+git clone https://github.com/PX4/Firmware.git --recursive
+```
 
-The steps to fork and clone the project source code are:
-
-1. [Sign up](https://github.com/) to Github.
-2. Go to the [Firmware](https://github.com/PX4/Firmware) repository and click the **Fork** button near the upper right corner. This will create and open the forked repository.
-    
-    ![Github Fork button](../../assets/toolchain/github_fork.png)
-
-3. Copy the repository URL for your *Firmware* repository fork. The easiest way to do this is to click the **Clone or download** button and then copy the URL:
-    
-    ![Github Clone or download button](../../assets/toolchain/github_clone_or_download.png)
-
-4. Install *git* (if you haven't already done so as part of setting up the development environment):
-    
-    - On macOS use the terminal command: `brew install git`
-    - On Ubuntu use the terminal command: `sudo apt install git`
-    - For other platforms see the [git documentation](https://git-scm.com/downloads).
-5. Open a command prompt/terminal on your computer 
-    - On OS X, hit ⌘-space and search for 'terminal'.
-    - On Ubuntu, click the launch bar and search for 'terminal'.
-    - On Windows, find the PX4 folder in the start menu and click on 'PX4 Console'.
-
-6. Clone the repository fork using the copied URL. This will look something like:
-    
-        git clone https://github.com/<youraccountname>/Firmware.git
-        
-    
-    > **Tip** If you're just experimenting (and don't want to make any sort of permanent changes) you can simply clone the main Firmware repository as shown: 
-    > 
-    >     sh
-    >      git clone https://github.com/PX4/Firmware.git
-    
-    Windows users [refer to the Github help](https://help.github.com/desktop/guides/getting-started-with-github-desktop/installing-github-desktop/). You can use a *git* command line client as above or instead perform the same actions with the *Github for Windows* app.
-
-This will copy *most* of the *very latest* version of PX4 source code onto your computer (the rest of the code is automatically fetched from other [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) when you build PX4).
-
-<span id="specific_version_source"></span>
-
-### Get a Specific Release
-
-To get the source code for a *specific older release*:
-
-1. Clone the Firmware repo and navigate into Firmware directory: 
-        sh
-        git clone https://github.com/PX4/Firmware.git
-        cd Firmware
-
-2. List all releases (tags) 
-        sh
-        git tag -l
-
-3. Checkout code for particular tag (e.g. for tag 1.7.4beta) 
-        sh
-        git checkout v1.7.4beta
+> **Note** This is all you need to do just to build the latest code. [GIT Examples > Contributing code to PX4](../contribute/git_examples.md#contributing-code-to-px4) provides a lot more information about using git to contribute to PX4.
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
 
-For the first build we'll build for a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
+First we'll build a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
 
 Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 

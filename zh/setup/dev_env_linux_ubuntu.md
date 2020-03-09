@@ -17,21 +17,23 @@
 
 执行步骤：
 
-1. 从PX4的源码仓库中下载[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) 和 [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt)（在**/Tools/setup/**目录下）；   
-    `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
-    `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`
+1. [Download PX4 Source Code](../setup/building_px4.md): 
+        bash
+        git clone https://github.com/PX4/Firmware.git --recursive
+
 2. 在bash shell中不带参数地运行ubuntu.sh来安装所有的依赖工具： 
         bash
-        bash ubuntu.sh
+        bash ./Tools/setup/ubuntu.sh
     
+      
     * 在安装过程中确认并通过所有的提示
     * 你可以通过传输参数`--no-nuttx` 和 `--no-sim-tools` 来跳过 nuttx 和/或 仿真器工具的安装。
 3. 完成后重新启动计算机。
 
-> **或者** 你也可以直接下载PX4的全部源码然后运行里面的脚本： 
-> 
->     git clone https://github.com/PX4/Firmware.git
->       bash Firmware/Tools/setup/ubuntu.sh
+> **Note** You can alternatively download [ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**) and run ubuntu.sh in place:   
+> `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
+> `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/requirements.txt`   
+> `bash ubuntu.sh`
 
 备注：
 
@@ -59,7 +61,9 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 ## Raspberry Pi {#raspberry-pi-hardware}
 
-获取基于Raspberry Pi的编译工具链：
+<!-- NOTE: RaPi docker toolchain (for comparison) here: https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf -->
+
+To get the build toolchain for Raspberry Pi:
 
 1. 从PX4源码仓库下载[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) 和[requirements.txt](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/requirements.txt)：   
     `wget https://raw.githubusercontent.com/PX4/Firmware/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
@@ -72,48 +76,48 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 ### GCC
 
-目前raspbian系统推荐的工具链可以从这里克隆： `https://github.com/raspberrypi/tools.git` (文档书写时的版本是4.9.3)。 `PATH`环境变量需要把gcc交叉编译器的工具（例如gcc, g++，strip）的路径包含进去，前缀是`arm-linux-gnueabihf-`。
+The official Raspberry Pi toolchains are not supported as PX4 has requires C++14 (which they do not support).
 
-```sh
-git clone https://github.com/raspberrypi/tools.git ${HOME}/rpi-tools
+Ubuntu provides a set of pre-compiled toolchains that you can use instead. Install these with the terminal command:
 
-# test compiler
-$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-gcc -v
+    sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+    
 
-# permanently update PATH variable by modifying ~/.profile
-echo 'export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin' >> ~/.profile
+These package contains GCC/G++ 7.4.0 at time of writing. To test the toolchain, please execute:
 
-# update PATH variable only for this session
-export PATH=$PATH:$HOME/rpi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
-```
+    arm-linux-gnueabihf-gcc -v
+    arm-linux-gnueabihf-g++ -v
+    
 
 ### Clang
 
-为了使用Clang，你同时还需要GCC。
+First [install GCC](#gcc) (needed to use clang).
 
-从[LLVM Download page](http://releases.llvm.org/download.html)下载你指定的发行版的Clang并解压它。 假使你已经把`Clang`解压到`CLANG_DIR`这个目录下，那么 `Clang`的二进制可执行文件在`CLANG_DIR/bin`中，同时你的`GCC`交叉编译器路径是`GCC_DIR`，你需要在`GCC_DIR`的bin目录下建立链接到Clang的符号链接，然后把GCC_DIR/bin添加到PATH中。
+We recommend you to get clang from the Ubuntu software repository as follows:
 
-下面的示例，用于使用 CMake 编译 PX4 固件。
+    sudo apt-get install clang
+    
+
+Example below for building PX4 firmware out of tree, using CMake.
 
 ```sh
-ln -s <CLANG_DIR>/bin/clang <GCC_DIR>/bin/clang
-ln -s <CLANG_DIR>/bin/clang++ <GCC_DIR>/bin/clang++
-export PATH=<GCC_DIR>/bin:$PATH
-
 cd <PATH-TO-PX4-SRC>
-mkdir build/posix_rpi_cross_clang
-cd build/posix_rpi_cross_clang
+mkdir build/px4_raspberrypi_default_clang
+cd build/px4_raspberrypi_default_clang
 cmake \
 -G"Unix Makefiles" \
--DCONFIG=posix_rpi_cross \
+-DCONFIG=px4_raspberrypi_default \
+-UCMAKE_C_COMPILER \
 -DCMAKE_C_COMPILER=clang \
+-UCMAKE_CXX_COMPILER \
 -DCMAKE_CXX_COMPILER=clang++ \
-..
+../..
+make
 ```
 
 ### 本地编译
 
-有关在树莓派上使用 PX4（包括本地构建 PX4）的其他开发人员信息，请参见此处：[Raspberry pi 2/navio2 autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html)。
+Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
 
 ## ROS/Gazebo {#rosgazebo}
 

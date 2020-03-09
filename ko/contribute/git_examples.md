@@ -7,94 +7,78 @@ Adding a feature to PX4 follows a defined workflow. In order to share your contr
 * [Sign up](https://github.com/join) for github if you haven't already
 * Fork the Firmware (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
 * Clone your forked repository to your local computer  
-    
-
-```sh
-cd ~/wherever/
-git clone https://github.com/<your git name>/Firmware.git
-```
+        sh
+        cd ~/wherever/
+        git clone https://github.com/<your git name>/Firmware.git
 
 * Go into the new directory, initialize and update the submodules, and add the original upstream Firmware  
-    
-
-```sh
-cd Firmware
-git submodule update --init --recursive
-git remote add upstream https://github.com/PX4/Firmware.git
-```
+        sh
+        cd Firmware
+        git submodule update --init --recursive
+        git remote add upstream https://github.com/PX4/Firmware.git
 
 * You should have now two remote repositories: One repository is called upstream that points to the PX4 Firmware, and one repository that points to your forked repository of the PX4 repository.
-* This can be checked with the following command:
-
-```sh
-git remote -v
-```
+* This can be checked with the following command: 
+        sh
+        git remote -v
 
 * Make the changes that you want to add to the current master.
 * Create a new branch with a meaningful name that represents your feature  
+        sh
+        git checkout -b <your feature branch name> you can use the command 
     
-
-```sh
-git checkout -b <your feature branch name>
-```
-
-you can use the command ```git branch``` to make sure you're on the right branch. * Add your changes that you want to be part of the commit by adding the respective files  
-
-
-```sh
-git add <file name>
-```
-
-If you prefer having a GUI to add your files see [Gitk](https://git-scm.com/book/en/v2/Git-in-Other-Environments-Graphical-Interfaces) or [
-
-    git add -p](http://nuclearsquid.com/writings/git-add/). * Commit the added files with a meaningful message explaining your changes
-
-  
-
-
-```sh
-git commit -m "<your commit message>"
-```
-
-For a good commit message, please refer to [Contributing](../contribute/README.md) section. * Some time might have passed and the [upstream master](https://github.com/PX4/Firmware.git) has changed. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch  
-
-
-```sh
-git checkout master
-```
-
-Then pull the newest commits from upstream master  
-
-
-```sh
-git pull upstream master
-```
-
-Now your local master is up to date. Switch back to your feature branch  
-
-
-```sh
-git checkout <your feature branch name>
-```
-
-and rebase on your updated master  
-
-
-```sh
-git rebase master
-```
+    `git branch` to make sure you're on the right branch.
+* Add your changes that you want to be part of the commit by adding the respective files  
+        sh
+        git add <file name> If you prefer having a GUI to add your files see 
+    
+    [Gitk](https://git-scm.com/book/en/v2/Git-in-Other-Environments-Graphical-Interfaces) or [`git add -p`](http://nuclearsquid.com/writings/git-add/).
+* Commit the added files with a meaningful message explaining your changes  
+        sh
+        git commit -m "<your commit message>" For a good commit message, please refer to 
+    
+    [Contributing](../contribute/README.md) section.
+* Some time might have passed and the [upstream master](https://github.com/PX4/Firmware.git) has changed. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch  
+        sh
+        git checkout master Then pull the newest commits from upstream master
+    
+      
+        sh
+        git pull upstream master Now your local master is up to date. Switch back to your feature branch
+    
+      
+        sh
+        git checkout <your feature branch name> and rebase on your updated master
+    
+      
+        sh
+        git rebase master
 
 * Now you can push your local commits to your forked repository  
-    
+        sh
+        git push origin <your feature branch name>
 
-```sh
-git push origin <your feature branch name>
-```
-
-* You can verify that the push was successful by going to your forked repository in your browser: ```https://github.com/<your git name>/Firmware.git```  
+* You can verify that the push was successful by going to your forked repository in your browser: `https://github.com/<your git name>/Firmware.git`  
     There you should see the message that a new branch has been pushed to your forked repository.
 * Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
+
+## Get a Specific Release
+
+To get the source code for a *specific older release*:
+
+* Clone the Firmware repo and navigate into Firmware directory: 
+        sh
+        git clone https://github.com/PX4/Firmware.git
+        cd Firmware
+
+* List all releases (tags) 
+        sh
+        git tag -l
+
+* Checkout code for particular tag (e.g. for tag 1.7.4beta) 
+        sh
+        git checkout v1.7.4beta
 
 ## Update Submodule
 
@@ -108,33 +92,25 @@ This is required after you have done a PR for a submodule X repository and the b
 cd Firmware
 ```
 
-* Make a new branch that describes the fix / feature for the submodule update:
+* Make a new branch that describes the fix / feature for the submodule update: 
+        sh
+        git checkout -b pr-some-fix
 
-```sh
-git checkout -b pr-some-fix
-```
+* Go to submodule subdirectory 
+        sh
+        cd <path to submodule>
 
-* Go to submodule subdirectory
+* PX4 submodule might not necessarily point to the newest commit. Therefore, first checkout master and pull the newest upstream code. 
+        sh
+        git checkout master
+        git pull upstream master
 
-```sh
-cd <path to submodule>
-```
-
-* PX4 submodule might not necessarily point to the newest commit. Therefore, first checkout master and pull the newest upstream code.
-
-```sh
-git checkout master
-git pull upstream master
-```
-
-* Go back to Firmware directory, and as usual add, commit and push the changes.
-
-```sh
-cd -
-git add <path to submodule>
-git commit -m "Update submodule to include ..."
-git push upstream pr-some-fix
-```
+* Go back to Firmware directory, and as usual add, commit and push the changes. 
+        sh
+        cd -
+        git add <path to submodule>
+        git commit -m "Update submodule to include ..."
+        git push upstream pr-some-fix
 
 ## Checkout pull requests
 
