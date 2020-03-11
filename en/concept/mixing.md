@@ -13,19 +13,22 @@ Separating the mixer logic from the actual attitude controller greatly improves 
 A particular controller sends a particular normalized force or torque demand (scaled from -1..+1) to the mixer, which then sets individual actuators accordingly.
 The output driver (e.g. UART, UAVCAN or PWM) then scales it to the actuators native units, e.g. a PWM value of 1300.
 
-{% mermaid %}
+![Mixer Control Pipeline](../../assets/concepts/mermaid_mixer_control_pipeline.png)
+<!--- Mermaid Live Version:
+https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIGF0dF9jdHJsW0F0dGl0dWRlIENvbnRyb2xsZXJdIC0tPiBhY3RfZ3JvdXAwW0FjdHVhdG9yIENvbnRyb2wgR3JvdXAgMF1cbiAgZ2ltYmFsX2N0cmxbR2ltYmFsIENvbnRyb2xsZXJdIC0tPiBhY3RfZ3JvdXAyW0FjdHVhdG9yIENvbnRyb2wgR3JvdXAgMl1cbiAgYWN0X2dyb3VwMCAtLT4gb3V0cHV0X2dyb3VwNVtBY3R1YXRvciA1XVxuICBhY3RfZ3JvdXAwIC0tPiBvdXRwdXRfZ3JvdXA2W0FjdHVhdG9yIDZdXG4gIGFjdF9ncm91cDJbQWN0dWF0b3IgQ29udHJvbCBHcm91cCAyXSAtLT4gb3V0cHV0X2dyb3VwMFtBY3R1YXRvciA1XVxuXHRcdCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19
 graph LR;
-  att_ctrl[Attitude Controller] --> act_group0[Actuator Control Group 0]
-  gimbal_ctrl[Gimbal Controller] --> act_group2[Actuator Control Group 2]
-  act_group0 --> output_group5[Actuator 5]
-  act_group0 --> output_group6[Actuator 6]
-  act_group2[Actuator Control Group 2] --> output_group0[Actuator 5]
-{% endmermaid %}
+  att_ctrl[Attitude Controller] dash-dash> act_group0[Actuator Control Group 0]
+  gimbal_ctrl[Gimbal Controller] dash-dash> act_group2[Actuator Control Group 2]
+  act_group0 dash-dash> output_group5[Actuator 5]
+  act_group0 dash-dash> output_group6[Actuator 6]
+  act_group2[Actuator Control Group 2] dash-dash> output_group0[Actuator 5]
+--->
 
 ## Control Groups
 
 PX4 uses control groups (inputs) and output groups.
-Conceptually they are very simple: A control group is e.g. `attitude`, for the core flight controls, or `gimbal` for payload. An output group is one physical bus, e.g. the first 8 PWM outputs for servos.
+Conceptually they are very simple: A control group is e.g. `attitude`, for the core flight controls, or `gimbal` for payload.
+An output group is one physical bus, e.g. the first 8 PWM outputs for servos.
 Each of these groups has 8 normalized (-1..+1) command ports, which can be mapped and scaled through the mixer.
 A mixer defines how each of these 8 signals of the controls are connected to the 8 outputs.
 
@@ -131,12 +134,14 @@ Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is infer
 
 Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (busses), one control group can send commands to multiple output groups.
 
-{% mermaid %}
+![Mixer Input/Output Mapping](../../assets/concepts/mermaid_mixer_inputs_outputs.png)
+<!--- Mermaid Live Version:
+https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGFjdHVhdG9yX2dyb3VwXzAtLT5vdXRwdXRfZ3JvdXBfNVxuICBhY3R1YXRvcl9ncm91cF8wLS0-b3V0cHV0X2dyb3VwXzZcbiAgYWN0dWF0b3JfZ3JvdXBfMS0tPm91dHB1dF9ncm91cF8wIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0
 graph TD;
-  actuator_group_0-->output_group_5
-  actuator_group_0-->output_group_6
-  actuator_group_1-->output_group_0
-{% endmermaid %}
+  actuator_group_0 dashdash>output_group_5
+  actuator_group_0dashdash>output_group_6
+  actuator_group_1dashdash>output_group_0
+--->
 
 > **Note** In practice, the startup scripts only load mixers into a single device (output group).
   This is a configuration rather than technical limitation; you could load the main mixer into multiple drivers and have, for example, the same signal on both UAVCAN and the main pins.
@@ -145,7 +150,7 @@ graph TD;
 ## PX4 Mixer Definitions
 
 Files in **ROMFS/px4fmu_common/mixers** implement mixers that are used for predefined airframes.
-They can be used as a basis for customisation, or for general testing purposes. 
+They can be used as a basis for customisation, or for general testing purposes.
 
 ### Mixer File Names {#mixer_file_names}
 
@@ -205,7 +210,7 @@ S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
 
 > **Note** The `S:` lines must be below the `O:` line.
 
-The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group.  
+The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group.
 These values are specific to the device reading the mixer definition.
 
 When used to mix vehicle controls, mixer group zero is the vehicle attitude control group, and index values zero through three are normally roll, pitch, yaw and thrust respectively.
@@ -248,12 +253,14 @@ In the case where an actuator saturates, all actuator values are rescaled so tha
 
 The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs ( swash-plate servos and main motor ESC setting).
 The first output of the helicopter mixer is the throttle setting for the main motor.
-The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
+The subsequent outputs are the swash-plate servos.
+The tail-rotor can be controlled by adding a simple mixer.
 
-The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points.
+The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate.
+It uses a throttle-curve and a pitch-curve, both consisting of five points.
 
-> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). 
-  This allows the flight characteristics to be tuned for different types of flying. 
+> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately).
+  This allows the flight characteristics to be tuned for different types of flying.
   An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html)
   (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
 
@@ -264,7 +271,8 @@ H: <number of swash-plate servos, either 3 or 4>
 T: <throttle setting at thrust: 0%> <25%> <50%> <75%> <100%>
 P: <collective pitch at thrust: 0%> <25%> <50%> <75%> <100%>
 ```
-`T:` defines the points for the throttle-curve. `P:`  defines the points for the pitch-curve.
+`T:` defines the points for the throttle-curve.
+`P:`  defines the points for the pitch-curve.
 Both curves contain five points in the range between 0 and 10000.
 For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
 
@@ -273,23 +281,31 @@ This is followed by lines for each of the swash-plate servos (either 3 or 4) in 
 S: <angle> <arm length> <scale> <offset> <lower limit> <upper limit>
 ```
 
-The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
+The `<angle>` is in degrees, with 0 degrees being in the direction of the nose.
+Viewed from above, a positive angle is clock-wise.
+The `<arm length>` is a normalized length with 10000 being equal to 1.
+If all servo-arms are the same length, the values should al be 10000.
+A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
 
 The servo output is scaled by `<scale> / 10000`.
-After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
+After the scaling, the `<offset>` is applied, which should be between -10000 and +10000.
+The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
 
 The tail rotor can be controller by adding a [simple mixer](#simple-mixer):
 ```
 M: 1
 S: 0 2  10000  10000      0 -10000  10000
 ```
-By doing so, the tail rotor setting is directly mapped to the yaw command. This works for both servo-controlled tail-rotors, as well as for tail rotors with a dedicated motor.
+By doing so, the tail rotor setting is directly mapped to the yaw command.
+This works for both servo-controlled tail-rotors, as well as for tail rotors with a dedicated motor.
 
 The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) can be viewed as an example.
 The throttle-curve starts with a slightly steeper slope to reach 6000 (0.6) at 50% thrust.
 It continues with a less steep slope to reach 10000 (1.0) at 100% thrust.
-The pitch-curve is linear, but does not use the entire range. At 0% throttle, the collective pitch setting is already at 500 (0.05).
-At maximum throttle, the collective pitch is only 4500 (0.45). Using higher values for this type of helicopter would stall the blades.
+The pitch-curve is linear, but does not use the entire range.
+At 0% throttle, the collective pitch setting is already at 500 (0.05).
+At maximum throttle, the collective pitch is only 4500 (0.45).
+Using higher values for this type of helicopter would stall the blades.
 The swash-plate servos for this helicopter are located at angles of 0, 140 and 220 degrees.
 The servo arm-lenghts are not equal.
 The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo.
