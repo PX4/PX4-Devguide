@@ -6,7 +6,26 @@ Information about *using* SiK Radio can be found it the *PX4 User Guide*: [Telem
 
 The ("developer") information below explains how to build SiK firmware from source and configure it using AT commands.
 
-## 构建说明
+## Supported Radio Hardware
+
+The SiK repository includes bootloaders and firmware for the following telemetry radios (2020-02-25):
+
+- HopeRF HM-TRP
+- HopeRF RF50-DEMO
+- RFD900
+- RFD900a
+- RFD900p
+- RFD900pe
+- RFD900u
+- RFD900ue
+
+> **Note** The SiK repository does not currently firmware for RFD900x or RFD900ux telemetry radios**. In order to update firmware on these radios (for instance, in order to support MAVLink v2.0), the following process is suggested:
+> 
+> 1. Download the appropriate firmware from the [RFDesign website](https://files.rfdesign.com.au/firmware/).
+> 2. On a Windows PC, download and install [RFD Modem Tools](https://files.rfdesign.com.au/tools/).
+> 3. Use the RFD Modem Tools GUI to upload the firmware to your RFD900x or RFD900ux telemetry radio.
+
+## Build Instructions
 
 You will need to install the required 8051 compiler, as this is not included in the default PX4 Build toolchain.
 
@@ -31,7 +50,7 @@ Upload it to the radio \(**change the serial port name**\):
     tools/uploader.py --port /dev/tty.usbserial-CHANGETHIS dst/radio~hm_trp.ihx
     
 
-## 配置说明
+## Configuration Instructions
 
 The radio supports AT commands for configuration.
 
