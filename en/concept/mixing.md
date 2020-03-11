@@ -149,14 +149,19 @@ graph TD;
 
 ## PX4 Mixer Definitions
 
-Files in **ROMFS/px4fmu_common/mixers** implement mixers that are used for predefined airframes.
-They can be used as a basis for customisation, or for general testing purposes.
+Mixers are defined in plain-text files using the [syntax](#mixer_syntax) below.
+
+Files for pre-defined airframes can be found in [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers).
+These can be used as a basis for customisation, or for general testing purposes.
 
 ### Mixer File Names {#mixer_file_names}
 
 A mixer file must be named **XXXX._main_.mix** if it is responsible for the mixing of MAIN outputs or **XXXX._aux_.mix** if it mixes AUX outputs.
 
-### Syntax
+> **Note** `XXXX` in the mixer file name is set in the airframe definition (e.g. see `set MIXER quad_w` in [airframes/10015_tbs_discovery](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/10015_tbs_discovery))
+
+
+### Syntax {#mixer_syntax}
 
 Mixer definitions are text files; lines beginning with a single capital letter followed by a colon are significant.
 All other lines are ignored, meaning that explanatory text can be freely mixed with the definitions.
