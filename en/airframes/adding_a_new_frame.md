@@ -1,6 +1,8 @@
 # Adding a New Airframe Configuration
 
-PX4 uses canned airframe configurations as starting point for airframes. The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
+PX4 uses canned airframe configurations as starting point for airframes.
+The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder.
+The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
 Adding a configuration is straightforward: create a new config file in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (prepend the filename with an unused autostart ID), then [build and upload](../setup/building_px4.md) the software.
 
@@ -23,7 +25,8 @@ These aspects are mostly independent, which means that many configurations share
 
 A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
 
-The first section is the airframe documentation. This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
+The first section is the airframe documentation.
+This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
 ```bash
 #!nsh
 #
@@ -96,11 +99,14 @@ set PWM_DISARMED 1000
 
 ### Mixer File {#mixer-file}
 
-> **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
+> **Note** First read [Concepts > Mixing](../concept/mixing.md).
+  This provides background information required to interpret this mixer file.
 
-A typical mixer file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). A mixer filename, in this case `wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
+A typical mixer file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)).
+A mixer filename, in this case `wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
 
-The mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code. 
+The mixer file contains several blocks of code, each of which refers to one actuator or ESC.
+So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code. 
 
 > **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
@@ -117,7 +123,8 @@ S: 0 1   6500   6500      0 -10000  10000
 
 Where each number from left to right means:
 
-* M: Indicates two scalers for two control inputs. It indicates the number of control inputs the mixer will receive.
+* M: Indicates two scalers for two control inputs.
+  It indicates the number of control inputs the mixer will receive.
 * O: Indicates the output scaling (\*1 in negative, \*1 in positive), offset (zero here), and output range (-1..+1 here).  
   * If you want to invert your PWM signal, the signs of the output scalings have to be changed:
     ```
@@ -127,8 +134,12 @@ Where each number from left to right means:
     ```
     O:      10000  10000   0 -10000  10000
     ```
-* S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll). It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
-* S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
+* S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll).
+  It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units).
+  It applies no offset (0) and outputs to the full range (-1..+1)
+* S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). \
+  It scales the pitch control input * 0.65.
+  It applies no offset (0) and outputs to the full range (-1..+1)
 
 > **Note** In short, the output of this mixer would be SERVO = ( (roll input \* -0.6 + 0)  \* 1 + (pitch input \* 0.65 + 0)  \* 1 ) \* 1 + 0
 
