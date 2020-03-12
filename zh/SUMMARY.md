@@ -30,6 +30,7 @@
   * [Mixing and Actuators](concept/mixing.md)
   * [PWM limit state machine](concept/pwm_limit.md)
   * [System Startup](concept/system_startup.md)
+  * [SD Card Layout](concept/sd_card_layout.md)
 * [仿真](simulation/README.md) 
   * [jMAVSim 仿真模拟](simulation/jmavsim.md)
   * [Gazebo 仿真模拟](simulation/gazebo.md)
