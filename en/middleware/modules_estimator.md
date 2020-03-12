@@ -84,3 +84,20 @@ local_position_estimator <command> [arguments...]
 
    status        print status info
 ```
+## mc_hover_thrust_estimator
+Source: [modules/mc_hover_thrust_estimator](https://github.com/PX4/Firmware/tree/master/src/modules/mc_hover_thrust_estimator)
+
+
+### Description
+
+
+### Usage {#mc_hover_thrust_estimator_usage}
+```
+mc_hover_thrust_estimator <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
