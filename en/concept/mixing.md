@@ -1,5 +1,7 @@
 # Mixing and Actuators
 
+<!-- there is a useful doc here that we should still mine to further improve this topic: https://docs.google.com/document/d/1xCEQh48uDWyo7TjqedW6gYxBxMtNyuYZ2Xkt2MBb2-w -->
+
 The PX4 architecture ensures that the airframe layout does not require special case handling in the core controllers.
 
 Mixing means to take force commands (e.g. `turn right`) and translate them to actuator commands which control motors or servos.
