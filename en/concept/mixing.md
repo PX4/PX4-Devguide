@@ -85,7 +85,7 @@ For a multicopter things are a bit different: control 0 (roll) is connected to a
   In the event of manual IO failsafe override (if the PX4FMU stops communicating with the PX4IO board) only the mapping/mixing defined by control group 0 inputs for roll, pitch, yaw and throttle are used (other mappings are ignored).
 
 
-### Control Group #6 (First Payload)
+### Control Group #6 (First Payload) {#control_group_6}
 
 * 0: function 0 (default: parachute)
 * 1: function 1
