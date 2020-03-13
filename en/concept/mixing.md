@@ -74,10 +74,10 @@ For a multicopter things are a bit different: control 0 (roll) is connected to a
 * 1: RC pitch
 * 2: RC yaw
 * 3: RC throttle
-* 4: RC mode switch
-* 5: RC aux1
-* 6: RC aux2
-* 7: RC aux3
+* 4: RC mode switch (Passthrough of RC channel mapped by [RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_FLAPS))
+* 5: RC aux1 (Passthrough of RC channel mapped by [RC_MAP_AUX1](../advanced/parameter_reference.md#RC_MAP_AUX1))
+* 6: RC aux2 (Passthrough of RC channel mapped by [RC_MAP_AUX2](../advanced/parameter_reference.md#RC_MAP_AUX2))
+* 7: RC aux3 (Passthrough of RC channel mapped by [RC_MAP_AUX3](../advanced/parameter_reference.md#RC_MAP_AUX3))
 
 > **Note** This group is only used to define mapping of RC inputs to specific outputs during *normal operation* (see [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7) for an example of AUX2 being scaled in a mixer).
   In the event of manual IO failsafe override (if the PX4FMU stops communicating with the PX4IO board) only the mapping/mixing defined by control group 0 inputs for roll, pitch, yaw and throttle are used (other mappings are ignored).
@@ -159,6 +159,19 @@ These can be used as a basis for customisation, or for general testing purposes.
 A mixer file must be named **XXXX._main_.mix** if it is responsible for the mixing of MAIN outputs or **XXXX._aux_.mix** if it mixes AUX outputs.
 
 > **Note** `XXXX` in the mixer file name is set in the airframe definition (e.g. see `set MIXER quad_w` in [airframes/10015_tbs_discovery](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/10015_tbs_discovery))
+
+
+### Loading a Custom Mixer {#loading_custom_mixer}
+
+PX4 loads appropriately named mixer files from the SD card directory **etc/mixers**, by preference, and then the version in Firmware.
+
+To load a custom mixer, you should give it the same name as a "normal" mixer file (that is going to be loaded by your airframe) and put it in the **etc/mixers** directory on your flight controller's SD card.
+
+Most commonly you will use the mixer file for your current airframe (**XXXX._aux_.mix**), where the `XXXX` prefix is the set in the airframe configuration file (e.g. [airframes/10015_tbs_discovery](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/10015_tbs_discovery) loads **quad_w._aux_.mix** - see `set MIXER quad_w`).
+
+**Note**
+- The airframe mixer file is preferred because it is always loaded (it is not always obvious which other mixer files are loaded, if any).
+- Mixer file loading is implemented in [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface).
 
 
 ### Syntax {#mixer_syntax}
