@@ -169,9 +169,10 @@ PX4 loads appropriately named mixer files from the SD card directory **etc/mixer
 
 To load a custom mixer, you should give it the same name as a "normal" mixer file (that is going to be loaded by your airframe) and put it in the **etc/mixers** directory on your flight controller's SD card.
 
-Most commonly you will use the mixer file for your current airframe (**XXXX._aux_.mix**), where the `XXXX` prefix is the set in the airframe configuration file (e.g. [airframes/10015_tbs_discovery](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/10015_tbs_discovery) loads **quad_w._aux_.mix** - see `set MIXER quad_w`).
+Most commonly you will override/replace the AUX mixer file for your current airframe (**XXXX._aux_.mix**), where the `XXXX` prefix is the set in the airframe configuration file (e.g. [airframes/10015_tbs_discovery](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/10015_tbs_discovery) loads **quad_w._aux_.mix** - see `set MIXER quad_w`).
 
-**Note**
+**Note:**
+- You can also override the MAIN mixer file, or any other mixer file loaded by the airframe.
 - The airframe mixer file is preferred because it is always loaded (it is not always obvious which other mixer files are loaded, if any).
 - Mixer file loading is implemented in [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface).
 
