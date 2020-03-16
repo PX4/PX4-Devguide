@@ -87,7 +87,7 @@ For a multicopter things are a bit different: control 0 (roll) is connected to a
 
 ### Control Group #6 (First Payload) {#control_group_6}
 
-* 0: function 0 (default: parachute)
+* 0: function 0
 * 1: function 1
 * 2: function 2
 * 3: function 3
