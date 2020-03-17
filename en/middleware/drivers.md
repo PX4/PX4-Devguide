@@ -112,3 +112,33 @@ and `devtype` is decoded according to:
 #define DRV_RNG_DEVTYPE_MB12XX   0x31
 #define DRV_RNG_DEVTYPE_LL40LS   0x32
 ```
+
+## Debugging
+
+For general debugging topics see: [Debugging/Logging](../debug/README.md).
+
+### Verbose Logging
+
+Drivers (and other modules) output minimally verbose logs strings by default (e.g. for `PX4_DEBUG`, `PX4_WARN`, `PX4_ERR`, etc.).
+
+Log verbosity is defined at build time using the `RELEASE_BUILD` (default), `DEBUG_BUILD` (verbose) or `TRACE_BUILD` (extremely verbose) macros.
+
+Change the logging level using `COMPILE_FLAGS` in the driver `px4_add_module` function (**CMakeLists.txt**).
+The code fragment below show the required change for the module template example ([src/templates/module/CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/src/templates/module/CMakeLists.txt)) 
+
+```
+px4_add_module(
+	MODULE templates__module
+	MAIN module
+```
+```
+	COMPILE_FLAGS
+		-DDEBUG_BUILD
+```
+```
+	SRCS
+		module.cpp
+	DEPENDS
+		modules__uORB
+	)
+```
