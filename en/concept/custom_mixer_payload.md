@@ -61,10 +61,25 @@ Remove the first section with a payload control group function input:
 Because this output is in the first position in the file it will map to the first AUX PWM output (unless UAVCAN is enabled).
 This output will now respect updates to the payload control group (6) output 1.
 
+In the code, control group 6 will need to be defined as well:
+- Add `actuator_controls_6` to the TOPICS definition in https://github.com/PX4/Firmware/blob/master/msg/actuator_controls.msg#L17
+- Increase `NUM_ACTUATOR_CONTROL_GROUPS` to 7 in the same file.
+- Subscribe to the additional control group in the output library under
+  https://github.com/PX4/Firmware/blob/master/src/lib/mixer_module/mixer_module.cpp#L52. It should look like this:
+  ```
+	{&interface, ORB_ID(actuator_controls_0)},
+	{&interface, ORB_ID(actuator_controls_1)},
+	{&interface, ORB_ID(actuator_controls_2)},
+	{&interface, ORB_ID(actuator_controls_3)},
+	{&interface, nullptr},
+	{&interface, nullptr},
+	{&interface, ORB_ID(actuator_controls_6)},
+  ```
+
 Putting an output on group 6 works by publishing actuator control group 6. First you have to create the publication.
 This should happen once when the PX4 module is initialized (look for places where this pattern is already being used):
 ```
-uORB::Publication<actuator_controls_s> _actuator_controls_pub{ORB_ID(actuator_controls_0)};
+uORB::Publication<actuator_controls_s> _actuator_controls_pub{ORB_ID(actuator_controls_6)};
 ```
 
 Then you need to publish the first message:
