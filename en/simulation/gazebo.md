@@ -294,10 +294,25 @@ make px4_sitl_default gazebo_plane_cam
 
 <span></span>
 > **Note** The simulated camera is implemented in [PX4/sitl_gazebo/src/gazebo_geotagged_images_plugin.cpp](https://github.com/PX4/sitl_gazebo/blob/master/src/gazebo_geotagged_images_plugin.cpp).
->
-> 
 
 
+## Simulated Parachute/Flight Termination {#flight_termination}
+
+*Gazebo* can be used to simulate deploying a [parachute](https://docs.px4.io/master/en/peripherals/parachute.html) during [Flight Termination](https://docs.px4.io/master/en/advanced_config/flight_termination.html) (flight termination is triggered by the PWM command that is simulated in *Gazebo*).
+
+The `if750a` target has a parachute attached to the vehicle. 
+To simulate the vehicle, run the following command:
+```
+make px4_sitl gazebo_if750a
+```
+
+To put the vehicle into flight termination state, you can force it to fail a [safety check](https://docs.px4.io/master/en/config/safety.html) that has flight termination set as the failsafe action.
+For example, you could do this by forcing a [Geofence violation](https://docs.px4.io/master/en/config/safety.html#geofence-failsafe).
+
+For more information see:
+- [Flight Termination](https://docs.px4.io/master/en/advanced_config/flight_termination.html) 
+- [Parachute](https://docs.px4.io/master/en/peripherals/parachute.html)
+- [Safety Configuration (Failsafes)](https://docs.px4.io/master/en/config/safety.html)
 
 ## Video Streaming {#video}
 
@@ -349,16 +364,6 @@ Simply enter the following terminal command:
 gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
 ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
 ```
-
-## Simulated Flight Termination
-The *Gazebo* simulation is capable of simulating a *Flight termination* and deploying a parachute. [Configuring flight termination](https://docs.px4.io/master/en/advanced_config/flight_termination.html) is used for triggering a failsafe device for many vehicles. FOr parachute triggering, the instructions can be found [here](https://docs.px4.io/master/en/peripherals/parachute.html). The flight termination is triggered by the PWM command that is simulated in *Gazebo*
-
-In the *Gazebo* simulation, `if750a` has a parachute attached to the vehicle. To simulate the vehicle, run the following command.
-```
-make px4_sitl gazebo_if750a
-```
-
-Then put the vehicle in a flight termination state following instructions following the [doc](https://docs.px4.io/master/en/peripherals/parachute.html)
 
 ## Extending and Customizing
 
