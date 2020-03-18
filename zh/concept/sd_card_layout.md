@@ -2,7 +2,7 @@
 
 The PX4 SD Card is used for storing configuration files, flight logs, mission information etc.
 
-> **Note** The default file system is FAT32. SD card formatting is not required before use.
+> **Tip** We recommend that you format the SD Card as FAT32 before first use with PX4.
 
 The directory structure/layout is shown below.
 
