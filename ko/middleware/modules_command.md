@@ -619,21 +619,3 @@ Tool to print various version information
        hwtypecmp     Compare hardware type (returns 0 on match)
          <hwtype> [<hwtype2>] Hardware type to compare against (eg. V2). An OR
                      comparison is used if multiple are specified
-    
-
-## voxlpm
-
-Source: [drivers/power_monitor/voxlpm](https://github.com/PX4/Firmware/tree/master/src/drivers/power_monitor/voxlpm)
-
-### Usage {#voxlpm_usage}
-
-    voxlpm [arguments...]
-       start         start monitoring
-    
-       info          display info
-    
-       -X            PX4_I2C_BUS_EXPANSION
-    
-       -T            PX4_I2C_BUS_EXPANSION1
-    
-       -R            PX4_I2C_BUS_EXPANSION2 (default)
