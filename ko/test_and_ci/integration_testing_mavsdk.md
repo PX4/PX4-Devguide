@@ -12,7 +12,6 @@ Install either from binaries or source:
 - [MAVSDK > Installation > C++](https://mavsdk.mavlink.io/develop/en/getting_started/installation.html#cpp): Install as a prebuilt library on supported platforms (recommended)
 - [MAVSDK > Contributing > Building from Source](https://mavsdk.mavlink.io/develop/en/contributing/build.html#build_sdk_cpp): Build  C++ library from source.
 
-
 ## Prepare PX4 Code
 
 To build the PX4 code, use:
@@ -23,10 +22,10 @@ DONT_RUN=1 make px4_sitl gazebo mavsdk_tests
 
 ### Run All PX4 Tests
 
-To run all tests, use:
+To run all SITL tests as defined in [sitl.json](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/configs/sitl.json), do:
 
 ```sh
-test/mavsdk_tests/mavsdk_test_runner.py --speed-factor 20 --gui
+test/mavsdk_tests/mavsdk_test_runner.py test/mavsdk_tests/configs/sitl.json --speed-factor 10
 ```
 
 To see all possible command line arguments, check out:
