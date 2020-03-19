@@ -59,17 +59,20 @@ optional arguments:
 ## Notes on implementation
 
 
-- The tests are invoked from the [test runner written in Python](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/mavsdk_test_runner.py). This runner also starts `px4` as well as Gazebo for SITL tests and collects the logs of these processes.
-- The test runner is a C++ binary. It contains:
+- The tests are invoked from the test runner script [mavsdk_test_runner.py](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/mavsdk_test_runner.py), which is written in Python.
+  This runner also starts `px4` as well as Gazebo for SITL tests, and collects the logs of these processes.
+- The test runner is a C++ binary
+  It contains:
   - The [main](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_main.cpp) function to parse the arguments.
-  - A abstraction around MAVSDK called [autopilot_tester](https://github.com/PX4/Firmware/blob/941a917d38d4cccb87ab6d342b0b1cee2cd03e80/test/mavsdk_tests/autopilot_tester.h).
+  - An abstraction around MAVSDK called [autopilot_tester](https://github.com/PX4/Firmware/blob/941a917d38d4cccb87ab6d342b0b1cee2cd03e80/test/mavsdk_tests/autopilot_tester.h).
   - The actual tests using the abstraction around MAVSDK as e.g. [test_multicopter_mission.cpp](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp).
-  - The tests are using the [catch2](https://github.com/catchorg/Catch2) unit testing framework. The reasons were:
-      - Asserts (`REQUIRE`) which need to abort a test can be inside of functions and not just in the top level test as it is [the case with gtest](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement).
-      - The dependency management is easier because catch2 can just be included as a header only library.
-      - Catch2 supports [tags](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md#tags) which allow for flexible composition of tests.
+  - The tests use the [catch2](https://github.com/catchorg/Catch2) unit testing framework. 
+    The reasons for using this framework are:
+      - Asserts (`REQUIRE`) which are needed to abort a test can be inside of functions (and not just in the top level test as is [the case with gtest](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)).
+      - Dependency management is easier because *catch2* can just be included as a header-only library.
+      - *Catch2* supports [tags](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md#tags), which allows for flexible composition of tests.
 
 
 Terms used:
-- "model": This is for now the Gazebo model chosen, e.g. `iris`.
+- "model": This is the selected Gazebo model, e.g. `iris`.
 - "test case": This is a [catch2 test case](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md).
