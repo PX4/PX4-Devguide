@@ -135,3 +135,6 @@ Change the logging level using `COMPILE_FLAGS` in the driver `px4_add_module` fu
         DEPENDS
             modules__uORB
         )
+    
+
+> **Tip** Verbose logging can also be enabled on a per-file basis, by adding `#define DEBUG_BUILD` at the very top of a .cpp file (before any includes).
