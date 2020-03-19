@@ -143,4 +143,4 @@ px4_add_module(
 	)
 ```
 
-> **Tip** Verbose logging can also be enabled by adding `#define DEBUG_BUILD` at the very top of a .cpp file (before any includes).
+> **Tip** Verbose logging can also be enabled on a per-file basis, by adding `#define DEBUG_BUILD` at the very top of a .cpp file (before any includes).
