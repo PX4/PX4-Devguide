@@ -45,15 +45,15 @@ optional arguments:
   -h, --help            show this help message and exit
   --log-dir LOG_DIR     Directory for log files
   --speed-factor SPEED_FACTOR
-                        How fast to run the simulation
+                        how fast to run the simulation
   --iterations ITERATIONS
-                        How often to run all tests
-  --abort-early         Abort on first unsuccessful test
-  --gui                 Display gzclient with simulation
-  --model MODEL         Only run tests for one model
-  --case CASE           Only run tests for one case
-  --debugger DEBUGGER   valgrind callgrind gdb lldb
-  --verbose             Enable more verbose output
+                        how often to run all tests
+  --abort-early         abort on first unsuccessful test
+  --gui                 display the visualization for a simulation
+  --model MODEL         only run tests for one model
+  --case CASE           only run tests for one case
+  --debugger DEBUGGER   choice from valgrind, callgrind, gdb, lldb
+  --verbose             enable more verbose output
 ```
 
 ## Notes on implementation
