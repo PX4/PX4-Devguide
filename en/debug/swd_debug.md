@@ -65,25 +65,37 @@ Autopilot | Connector
 [3DR Pixhawk](http://docs.px4.io/master/en/flight_controller/pixhawk.html#swd-port) | ARM 10-pin JTAG Connector (also used for FMUv2 boards including: *mRo Pixhawk*, *HobbyKing HKPilot32*).
 [CUAV V5nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port) | [JST BM06B](https://www.digikey.com/product-detail/en/jst-sales-america-inc/455-1806-1-ND/926877) (6-pin JST GH)
 [CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port) | [JST BM06B](https://www.digikey.com/product-detail/en/jst-sales-america-inc/455-1806-1-ND/926877) (6-pin JST GH)
-[Drotek Pixhawk 3 Pro](http://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port) | [Pixhawk Debug Port v2](#pixhawk_debug_port_v2) (6-pin JST SH)
-[Holybro Pixhawk 4](http://docs.px4.io/master/en/flight_controller/pixhawk4.html#debug_port) | [Pixhawk Debug Port v2](#pixhawk_debug_port_v2) (6-pin JST SH)
-[Holybro Pixhawk 4 Mini](http://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html#debug-port) | [Pixhawk Debug Port v2](#pixhawk_debug_port_v2) (6-pin JST SH)
+[Drotek Pixhawk 3 Pro](http://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)
+[Holybro Pixhawk 4](http://docs.px4.io/master/en/flight_controller/pixhawk4.html#debug_port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)
+[Holybro Pixhawk 4 Mini](http://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html#debug-port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh) (6-pin JST SH)
 [Holybro Kakute F7](http://docs.px4.io/master/en/flight_controller/kakutef7.html#debug-port) | Solder pads
-[Holybro Durandal](http://docs.px4.io/master/en/flight_controller/durandal.html#debug-port) | [Pixhawk Debug Port v2](#pixhawk_debug_port_v2) (6-pin JST SH)
+[Holybro Durandal](http://docs.px4.io/master/en/flight_controller/durandal.html#debug-port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)
 
 > **Tip** Check the [autopilot topics](http://docs.px4.io/master/en/flight_controller/) if your flight controller is not listed.
 
 
 ## Pixhawk Standard Debug Ports {#pixhawk_standard_debug_ports}
 
-The [Pixhawk Connector Standards](https://pixhawk.org/pixhawk-connector-standard/) define the pinout and connector type for different Pixhawk FMU releases.
+The Pixhawk project has defines a standard pinout and connector type for different Pixhawk FMU releases:
 
-At time of writing there are two debug port definitions.
+> **Tip** Check your [specific board](#port_information) to confirm the port used.
+
+FMU Version | Pixhawk Ver. | Debug Interface
+--- | --- | ---
+FMUv2 | [Pixhawk / Pixhawk 1](http://docs.px4.io/master/en/flight_controller/pixhawk.html#swd-port) | 10 pin ARM Debug
+FMUv3 | Pixhawk 2 | 6 pin SUR Debug
+FMUv4 | Pixhawk 3 | [6 pin SH Debug](#pixhawk_debug_port_6_pin_sh)
+FMUv5 | Pixhawk 4 FMUv5 | [6 pin SH Debug](#pixhawk_debug_port_6_pin_sh)
+FMUv5X | Pixhawk 5X | [10 pin SUR Debug](#pixhawk_debug_port_10_pin_sur)
+FMUv6 | Pixhawk 6 | [10 pin SUR Debug](#pixhawk_debug_port_10_pin_sur)
+FMUv6X | Pixhawk 6 | [10 pin SUR Debug](#pixhawk_debug_port_10_pin_sur)
+
+> **Note** There FMU and Pixhawk versions are (only) consistent after FMUv5X.
 
 
-### Pixhawk Debug Port v2 {#pixhawk_debug_port_v2}
+### Pixhawk 6-Pin SH Debug Port {#pixhawk_debug_port_6_pin_sh}
 
-The *Connector Standards v2* [Pixhawk Debug Port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug) (FMUv4, FMUv5) defines a pinout for both SWD and the [System Console](../debug/system_console.md), and mandates *JST SM06B* connector.
+The [Pixhawk Connector Standard ](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug) (for FMUv4 and FMUv5) specifies a *6-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md).
 
 The pinout is as shown below (SWD pins highlighted):
 
@@ -105,17 +117,17 @@ Pad | Signal | Volt
 2 | GPIO1 (free GPIO) | +3.3V
 3 | GPIO2 (free GPIO) | +3.3V
 
-The socket is a *6-pin JST SH* - Digikey number: [SM06B-SRSS-TB(LF)(SN)](https://www.digikey.com/product-detail/en/jst-sales-america-inc/455-1806-1-ND/926877).
+The socket is a *6-pin JST SH* - Digikey number: [BM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-2875-1-ND ) (vertical mount), [SM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1806-1-ND )(side mount).
 
-You can connect to the debug port using a [cable like this one](https://www.digikey.com/product-detail/en/jst-sales-america-inc/A06SR06SR30K152A/455-3003-ND/6009379).
+You can connect to the debug port using a [cable like this one](https://www.digikey.com/products/en?keywords=A06SR06SR30K152B).
 
 ![6-pin JST SH Cable](../../assets/debug/cable_6pin_jst_sh.jpg)
 
 
-### Pixhawk Debug Port v3 {#pixhawk_debug_port_v3}
+### Pixhawk 10-Pin SH Debug Port {#pixhawk_debug_port_10_pin_sur}
 
-The *Connector Standards v3* Pixhawk Debug Port (FMUv5x, FMUv6, FMUv6x) defines a pinout for both SWD and the [System Console](../debug/system_console.md), and mandates a 10-pin JST SUR connector.
-This essentially moves the solder pads from the [Pixhawk Debug Port v2](#pixhawk_debug_port_v2) into the connector, and also adds an SWO pin.
+The Pixhawk Connector Standard (for FMUv5x, FMUv6, FMUv6x) specifies a *10-Pin SUR Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md).
+This essentially moves the solder pads from beside the [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh) into the connector, and also adds an SWO pin.
 
 The pinout is as shown below (SWD pins highlighted):
 
@@ -132,16 +144,14 @@ Debug Port | Pin
 9 | nRST
 10 | `GND`
 
-The socket is a *10-pin JST SUR* - Digikey number: [SM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/product-detail/en/jst-sales-america-inc/SM10B-SRSS-TB-LF-SN/455-1810-2-ND/926716).
+The socket is a *10-pin JST SUR* - Digikey number: [BM10B-SURS-TF(LF)(SN)](https://www.digikey.com/products/en?keywords=455-3579-1-ND) (vertical mount) or [SM10B-SURS-TF(LF)(SN)](https://www.digikey.com/products/en?keywords=455-2041-1-ND) (side mount).
 
-You can connect to the debug port using a [cable like this one](https://www.digikey.com/product-detail/en/jst-sales-america-inc/455-4015-ND/6708452).
+You can connect to the debug port using a [cable like this one](https://www.digikey.com/products/en?keywords=A10SUR10SUR32W102A).
 
 ![10-pin JST SUR Cable](../../assets/debug/cable_10pin_jst_sur.jpg) <!-- better to have image showing proper connections for SWD+SWO -->
 
 
-
 ## Debug Probes {#debug_probes}
-
 
 The following section outlines some popular debug probes and adaptors for connecting them to autopilots running PX4.
 
@@ -149,11 +159,11 @@ The following section outlines some popular debug probes and adaptors for connec
 ### Segger JLink EDU Mini Debug Probe {#segger_jlink_edu_mini}
 
 The [Segger JLink EDU Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/) is an inexpensive and popular SWD debug probe. 
-The probe's connector pinout looks like this:
+The probe's connector pinout looks like the image below (connect to this using an ARM 10-pin mini connector like [FTSH-105-01-F-DV-K](https://www.digikey.com/products/en?keywords=SAM8796-ND)).
 
 ![connector_jlink_mini.png](../../assets/debug/connector_jlink_mini.png)
 
-The pin mapping to connect the J-Link Edu Mini to [Pixhawk Debug Port (v2)](#pixhawk_debug_port_v2) is shown below (note, the `-` indicates a pin that is not required for SWD).
+The pin mapping to connect the J-Link Edu Mini to [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh) is shown below (note, the `-` indicates a pin that is not required for SWD).
 
 Debug Port | J-Link Mini
 --- | ---
@@ -166,7 +176,7 @@ Debug Port | J-Link Mini
 
 > **Tip** From the table above you can infer the connections for autopilots that do not use the standard port.
 
-<!-- Image of SWD cable and connector to debug port?--> 
+<!-- Image of SWD cable and connector to debug port? --> 
 
 
 ### Dronecode Probe {#dronecode_probe}
@@ -175,7 +185,7 @@ The [Dronecode Probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+docume
 
 The probe's USB interface exposes two separate virtual serial port interfaces: one for connecting to the [System Console](../debug/system_console.md) (UART) and the other for an embedded GDB server (SWD interface).
 
-The probe provides a DCD-M connector cable for attaching to the [Pixhawk Debug Port v2](#pixhawk_debug_port_v2).
+The probe provides a DCD-M connector cable for attaching to the [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh).
 
 > **Note** The *6-pos DF13* connector that comes with the probe cannot be used for SWD debugging (it is for using the System Console).
 
