@@ -63,15 +63,16 @@ The debug port location and pinouts for a small subset of autopilots are linked 
 Autopilot | Connector 
 --- | ---
 [3DR Pixhawk](http://docs.px4.io/master/en/flight_controller/pixhawk.html#swd-port) | ARM 10-pin JTAG Connector (also used for FMUv2 boards including: *mRo Pixhawk*, *HobbyKing HKPilot32*).
-[CUAV V5nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port) | [JST BM06B](https://www.digikey.com/product-detail/en/jst-sales-america-inc/455-1806-1-ND/926877) (6-pin JST GH)
-[CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port) | [JST BM06B](https://www.digikey.com/product-detail/en/jst-sales-america-inc/455-1806-1-ND/926877) (6-pin JST GH)
+[CUAV V5nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port) | 6-pin JST GH<br>Digikey: [BM06B-GHS-TBT(LF)(SN)(N)](https://www.digikey.com/products/en?keywords=455-1582-1-ND) (vertical mount), [SM06B-GHS-TBT(LF)(SN)(N)](https://www.digikey.com/products/en?keywords=455-1568-1-ND) (side mount)
+[CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port) |  6-pin JST GH<br>Digikey: [BM06B-GHS-TBT(LF)(SN)(N)](https://www.digikey.com/products/en?keywords=455-1582-1-ND) (vertical mount), [SM06B-GHS-TBT(LF)(SN)(N)](https://www.digikey.com/products/en?keywords=455-1568-1-ND) (side mount)
 [Drotek Pixhawk 3 Pro](http://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)
 [Holybro Pixhawk 4](http://docs.px4.io/master/en/flight_controller/pixhawk4.html#debug_port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)
-[Holybro Pixhawk 4 Mini](http://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html#debug-port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh) (6-pin JST SH)
+[Holybro Pixhawk 4 Mini](http://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html#debug-port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)
 [Holybro Kakute F7](http://docs.px4.io/master/en/flight_controller/kakutef7.html#debug-port) | Solder pads
 [Holybro Durandal](http://docs.px4.io/master/en/flight_controller/durandal.html#debug-port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)
 
 > **Tip** Check the [autopilot topics](http://docs.px4.io/master/en/flight_controller/) if your flight controller is not listed.
+
 
 
 ## Pixhawk Standard Debug Ports {#pixhawk_standard_debug_ports}
