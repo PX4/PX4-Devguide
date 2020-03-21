@@ -44,7 +44,7 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 * [ posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch)：最简单的软件在环仿真launch文件
 * [ mavros_posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch)：在软件在环仿真launch多加了mavros通讯 
 
-要运行包含在 ROS 中的 SITL，需要更新 ROS 环境，然后像往常一样启动：
+要在ROS中运行软件在环仿真，需要先source你的路径
 
 （可选）：如果您从源代码编译 MAVROS 或其他 ROS 包，则仅获取 catkin 工作区：
 
