@@ -301,3 +301,8 @@ param save /fs/microsd/vtol_param_backup
     - `instance_start` (default 0): First instance number. If 0, `${i}` expands to [0, N-1]`.
     
     For a full example see the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml)
+    
+    ## Further Information
+    
+    - [Finding/Updating Parameters](https://docs.px4.io/master/en/advanced_config/parameters.html) (PX4 User Guide)
+    - [Parameter Reference](../advanced/parameter_reference.md)
