@@ -2,9 +2,6 @@
 
 [Visual Studio Code](https://code.visualstudio.com/) is a powerful cross-platform source code editor/IDE that can be used for PX4 development on Ubuntu 18.04 LTS and macOS (Windows support coming soon).
 
-> **Note** VSCode works on Ubuntu 18.04 configured with the [normal PX4 SITL/NuttX development environment](../setup/dev_env_linux_ubuntu.md).
-  Ubuntu 16.04 allows you to build but not debug targets.
-
 There are a number of reasons to use VSCode for PX4 development:
 - Getting setup *really* only takes a few minutes.
 - A rich extension ecosystem that enables a huge range of tools needed for PX4 development: C/C++ (with solid *cmake* integration), *Python*, *Jinja2*, ROS messages, and even UAVCAN dsdl.
@@ -14,6 +11,9 @@ This topic explains how to setup the IDE and start developing.
 
 > **Note** There are other powerful IDEs, but they typically take more effort to integrate with PX4.
   With *VScode*, configuration is stored in the PX4/Firmware tree ([Firmware/.vscode](https://github.com/PX4/Firmware/tree/master/.vscode)) so the setup process is as simple as adding the project folder.
+
+<span></span>
+> **Tip** On Ubuntu 16.04, VSCode can be used to build PX4 but not debug targets.
 
 ## Preconditions
 
