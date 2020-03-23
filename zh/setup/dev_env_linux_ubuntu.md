@@ -149,7 +149,7 @@ To install the development toolchain:
 
 ## FastRTPS 安装 {#fast_rtps}
 
-[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) 是 RTPS（Real Time Publish Subscribe 实时发布订阅）协议的 C++ 实现库。 FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
+[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) 是 RTPS（Real Time Publish Subscribe 实时发布订阅）协议的 C++ 实现库。 通过 [RTPS/ROS2 接口：PX4-FastRTPS 桥接](../middleware/micrortps.md) 使用 FastRTPS，允许与 Offboard 组件共享 PX4 uORB 话题。
 
 以下说明可用于将 FastRTPS 1.7.1 二进制文件安装到您的 home 目录中。
 
