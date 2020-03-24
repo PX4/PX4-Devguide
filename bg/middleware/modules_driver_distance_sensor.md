@@ -54,7 +54,7 @@ Setup/usage information: https://docs.px4.io/en/sensor/lidar_lite.html
      Commands:
        start
          [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es"
+         [-X]        External I2C bus(es)
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
@@ -78,7 +78,7 @@ Source: [drivers/distance_sensor/mappydot](https://github.com/PX4/Firmware/tree/
      Commands:
        start
          [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es"
+         [-X]        External I2C bus(es)
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
@@ -98,7 +98,7 @@ Source: [drivers/distance_sensor/mb12xx](https://github.com/PX4/Firmware/tree/ma
      Commands:
        start
          [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es"
+         [-X]        External I2C bus(es)
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
@@ -192,7 +192,7 @@ Setup/usage information: https://docs.px4.io/en/sensor/sfxx_lidar.html
      Commands:
        start
          [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es"
+         [-X]        External I2C bus(es)
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
@@ -214,7 +214,7 @@ Source: [drivers/distance_sensor/srf02](https://github.com/PX4/Firmware/tree/mas
      Commands:
        start
          [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es"
+         [-X]        External I2C bus(es)
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
@@ -244,7 +244,7 @@ Setup/usage information: https://docs.px4.io/en/sensor/rangefinders.html#teraran
      Commands:
        start
          [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es"
+         [-X]        External I2C bus(es)
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
@@ -343,7 +343,7 @@ Source: [drivers/distance_sensor/vl53lxx](https://github.com/PX4/Firmware/tree/m
      Commands:
        start
          [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es"
+         [-X]        External I2C bus(es)
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
