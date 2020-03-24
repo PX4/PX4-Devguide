@@ -87,9 +87,9 @@ FMUv2 | [Pixhawk / Pixhawk 1](http://docs.px4.io/master/en/flight_controller/pix
 FMUv3 | Pixhawk 2 | 6 pin SUR Debug
 FMUv4 | Pixhawk 3 | [6 pin SH Debug](#pixhawk_debug_port_6_pin_sh)
 FMUv5 | Pixhawk 4 FMUv5 | [6 pin SH Debug](#pixhawk_debug_port_6_pin_sh)
-FMUv5X | Pixhawk 5X | [10 pin SUR Debug](#pixhawk_debug_port_10_pin_sur)
-FMUv6 | Pixhawk 6 | [10 pin SUR Debug](#pixhawk_debug_port_10_pin_sur)
-FMUv6X | Pixhawk 6 | [10 pin SUR Debug](#pixhawk_debug_port_10_pin_sur)
+FMUv5X | Pixhawk 5X | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh)
+FMUv6 | Pixhawk 6 | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh)
+FMUv6X | Pixhawk 6 | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh)
 
 > **Note** There FMU and Pixhawk versions are (only) consistent after FMUv5X.
 
@@ -120,14 +120,14 @@ Pad | Signal | Volt
 
 The socket is a *6-pin JST SH* - Digikey number: [BM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-2875-1-ND ) (vertical mount), [SM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1806-1-ND )(side mount).
 
-You can connect to the debug port using a [cable like this one](https://www.digikey.com/products/en?keywords=A06SR06SR30K152B).
+You can connect to the debug port using a [cable like this one](https://www.digikey.com/products/en?keywords=A06SR06SR30K152A).
 
 ![6-pin JST SH Cable](../../assets/debug/cable_6pin_jst_sh.jpg)
 
 
-### Pixhawk 10-Pin SH Debug Port {#pixhawk_debug_port_10_pin_sur}
+### Pixhawk 10-Pin SH Debug Port {#pixhawk_debug_port_10_pin_sh}
 
-The Pixhawk Connector Standard (for FMUv5x, FMUv6, FMUv6x) specifies a *10-Pin SUR Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md).
+The Pixhawk Connector Standard (for FMUv5x, FMUv6, FMUv6x) specifies a *10-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md).
 This essentially moves the solder pads from beside the [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh) into the connector, and also adds an SWO pin.
 
 The pinout is as shown below (SWD pins highlighted):
@@ -145,11 +145,11 @@ Debug Port | Pin
 9 | nRST
 10 | `GND`
 
-The socket is a *10-pin JST SUR* - Digikey number: [BM10B-SURS-TF(LF)(SN)](https://www.digikey.com/products/en?keywords=455-3579-1-ND) (vertical mount) or [SM10B-SURS-TF(LF)(SN)](https://www.digikey.com/products/en?keywords=455-2041-1-ND) (side mount).
+The socket is a *10-pin JST SH* - Digikey number: [BM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1796-2-ND) (vertical mount) or [SM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1810-2-ND) (side mount).
 
-You can connect to the debug port using a [cable like this one](https://www.digikey.com/products/en?keywords=A10SUR10SUR32W102A).
+You can connect to the debug port using a [cable like this one](https://www.digikey.com/products/en?keywords=A10SR10SR30K203A).
 
-![10-pin JST SUR Cable](../../assets/debug/cable_10pin_jst_sur.jpg) <!-- better to have image showing proper connections for SWD+SWO -->
+![10-pin JST SH Cable](../../assets/debug/cable_10pin_jst_sh.jpg) <!-- better to have image showing proper connections for SWD+SWO -->
 
 
 ## Debug Probes {#debug_probes}
