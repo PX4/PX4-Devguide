@@ -10,7 +10,7 @@ The equipment below is highly recommended:
 
 * A Taranis Plus remote control for the safety pilot (or equivalent)
 * A development computer:
-  * MacBook Pro (early 2015 and later) with OSX 10.13 or later 
+  * MacBook Pro (early 2015 and later) with OSX 10.15 or later 
   * Lenovo Thinkpad 450 (i5) with Ubuntu Linux 18.04 or later 
 * A ground control station device:
   * iPad (requires Wifi telemetry adapter)
