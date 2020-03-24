@@ -31,13 +31,13 @@
 
 The code is free to use and modify under terms of the permissive [BSD 3-clause license](https://opensource.org/licenses/BSD-3-Clause). The documentation is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). For more information see: [Licences](contribute/licenses.md).
 
-## Translations
+## 翻译
 
 There are Chinese and Korean [translations](contribute/docs.md#translation) of this guide. You can access these by clicking the language-switcher icon:
 
 ![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
 
-## Calendar & Events {#calendar}
+## 日历 & 活动 {#calendar}
 
 The *Dronecode Calendar* shows important events for platform developers and users. Select the links below to display the calendar in your timezone (and to add it to your own calendar):
 

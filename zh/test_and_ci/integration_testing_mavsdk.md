@@ -6,63 +6,11 @@ The tests are primarily developed against SITL for now and run in continuous int
 
 ## Install the MAVSDK C++ Library
 
-The tests need the MAVSDK C++ library installed system-wide (e.g. in `/usr/lib` or `/usr/local/lib`.
+The tests need the MAVSDK C++ library installed system-wide (e.g. in `/usr/lib` or `/usr/local/lib`).
 
-MAVSDK can either be installed as a prebuilt library or alternatively be built from source and installed system-wide.
-
-### Installation of Prebuilt Library
-
-#### Ubuntu
-
-Download the matching .deb file (whichever is correct for your system) from [MAVSDK releases](https://github.com/mavlink/MAVSDK/releases).
-
-Install it using `dpkg`, e.g.:
-
-```sh
-sudo dpkg -i mavsdk_0.23.0_ubuntu18.04_amd64.deb
-```
-
-#### Fedora
-
-Download the matching .rpm file (whichever is correct for your system) from [MAVSDK releases](https://github.com/mavlink/MAVSDK/releases).
-
-Install it using `rpm`, e.g.:
-
-```sh
-sudo rpm -U mavsdk-0.23.0-1.fc30-x86_64.rpm
-```
-
-#### Arch Linux
-
-The library is available on [AUR](https://aur.archlinux.org/packages/mavsdk/) and can be installed e.g. using `yay`:
-
-```sh
-yay -S mavsdk
-```
-
-#### macOS
-
-Install the library using [brew](https://brew.sh/):
-
-```sh
-brew install mavsdk
-```
-
-### Build and Install MAVSDK
-
-Instead of installing the latest pre-built release, MAVSDK can also be built from sources. This enables you to build the library if there is is no prebuilt package for your platform, or because you need to use the latest [develop branch](https://github.com/mavlink/MAVSDK/tree/develop), or some custom branch or pull request. Also, you can specify the compile options, e.g. to select a debug build.
-
-First fetch the sources from GitHub:
-
-```sh
-git clone https://github.com/mavlink/MAVSDK.git --recursive
-```
-
-Then build and install the library:
-```
-cd MAVSDK
-cmake -DCMAKE_BUILD_TYPE=Debug -DBUILD_BACKEND=OFF -Bbuild -H. && cmake --build build -j 8 && sudo cmake --build build --target install
-```
+Install either from binaries or source:
+- [MAVSDK > Installation > C++](https://mavsdk.mavlink.io/develop/en/getting_started/installation.html#cpp): Install as a prebuilt library on supported platforms (recommended)
+- [MAVSDK > Contributing > Building from Source](https://mavsdk.mavlink.io/develop/en/contributing/build.html#build_sdk_cpp): Build  C++ library from source.
 
 ## Prepare PX4 Code
 
@@ -74,14 +22,53 @@ DONT_RUN=1 make px4_sitl gazebo mavsdk_tests
 
 ### Run All PX4 Tests
 
-To run all tests, use:
+To run all SITL tests as defined in [sitl.json](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/configs/sitl.json), do:
 
 ```sh
-test/mavsdk_tests/mavsdk_test_runner.py --speed-factor 20 --gui
+test/mavsdk_tests/mavsdk_test_runner.py test/mavsdk_tests/configs/sitl.json --speed-factor 10
 ```
 
 To see all possible command line arguments, check out:
 
 ```sh
 test/mavsdk_tests/mavsdk_test_runner.py -h
+
+usage: mavsdk_test_runner.py [-h] [--log-dir LOG_DIR] [--speed-factor SPEED_FACTOR] [--iterations ITERATIONS] [--abort-early] [--gui] [--model MODEL]
+                             [--case CASE] [--debugger DEBUGGER] [--verbose]
+                             config_file
+
+positional arguments:
+  config_file           JSON config file to use
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --log-dir LOG_DIR     Directory for log files
+  --speed-factor SPEED_FACTOR
+                        how fast to run the simulation
+  --iterations ITERATIONS
+                        how often to run all tests
+  --abort-early         abort on first unsuccessful test
+  --gui                 display the visualization for a simulation
+  --model MODEL         only run tests for one model
+  --case CASE           only run tests for one case
+  --debugger DEBUGGER   choice from valgrind, callgrind, gdb, lldb
+  --verbose             enable more verbose output
 ```
+
+## Notes on implementation
+
+
+- The tests are invoked from the test runner script [mavsdk_test_runner.py](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/mavsdk_test_runner.py), which is written in Python. This runner also starts `px4` as well as Gazebo for SITL tests, and collects the logs of these processes.
+- The test runner is a C++ binary It contains:
+  - The [main](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_main.cpp) function to parse the arguments.
+  - An abstraction around MAVSDK called [autopilot_tester](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/autopilot_tester.h).
+  - The actual tests using the abstraction around MAVSDK as e.g. [test_multicopter_mission.cpp](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp).
+  - The tests use the [catch2](https://github.com/catchorg/Catch2) unit testing framework. The reasons for using this framework are:
+      - Asserts (`REQUIRE`) which are needed to abort a test can be inside of functions (and not just in the top level test as is [the case with gtest](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)).
+      - Dependency management is easier because *catch2* can just be included as a header-only library.
+      - *Catch2* supports [tags](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md#tags), which allows for flexible composition of tests.
+
+
+Terms used:
+- "model": This is the selected Gazebo model, e.g. `iris`.
+- "test case": This is a [catch2 test case](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md).

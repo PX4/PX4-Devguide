@@ -477,7 +477,7 @@ int px4_simple_app_main(int argc, char *argv[])
 px4_simple_app
 ```
 
-如果启动了 *QGroundControl* ，你还可以在实时曲线图中检查传感器数据 （**Widgets > Analyze**）。
+If you start *QGroundControl*, you can check the sensor values in the real time plot ([Analyze > MAVLink Inspector](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_inspector.html)).
 
 ## 总结
 

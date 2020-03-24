@@ -10,8 +10,8 @@ Se recomienda encarecidamente el siguiente equipo:
 
 * Un RC de Taranis Plus para la seguridad del piloto (o equivalente)
 * Un equipo de desarrollo: 
-  * MacBook Pro (principios 2015 y posterior) con OSX 10.13 o posterior
-  * Lenovo Thinkpad T450 (i5) con Ubuntu Linux 16.04 o posterior
+  * MacBook Pro (early 2015 and later) with OSX 10.15 or later 
+  * Lenovo Thinkpad 450 (i5) with Ubuntu Linux 18.04 or later 
 * Un dispositivo de estación de control de tierra: 
   * iPad (requiere adaptador de telemetría)
   * Cualquier portátil MacBook o Ubuntu Linux (puede ser el equipo de desarrollo)

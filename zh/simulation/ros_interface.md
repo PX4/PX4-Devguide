@@ -12,9 +12,9 @@ ROS/Gazebo 与 PX4 的集成遵循下图中的模式（这显示了* generic * [
 
 > **Note ** * ROS *仅在 Linux（不是 macOS 或 Windows）上受支持。
 
-The easiest way to setup PX4 simulation with ROS on Ubuntu Linux is to use the standard installation script that can be found at [Development Environment on Linux > Gazebo with ROS](../setup/dev_env_linux_ubuntu.md#rosgazebo). The script installs everything you need: PX4, ROS "Melodic", the Gazebo 9 simulator, and [MAVROS](../ros/mavros_installation.md).
+在 Ubuntu Linux 上使用 ROS 进行 PX4 仿真的最简单方法是使用标准安装脚本，可以在[ Linux 开发环境安装 > Gazebo with ROS ](../setup/dev_env_linux_ubuntu.md#rosgazebo)中找到。 该脚本安装了所有的环境，包括：PX4，ROS“Melodic”，Gazebo 9 和[ MAVROS ](../ros/mavros_installation.md)。
 
-> **Note** The script follows the [standard ROS "Melodic" installation instructions](http://wiki.ros.org/melodic/Installation/Ubuntu), which includes Gazebo 9.
+> **Note** 该脚本是按照 [标准的 ROS “Melodic”的安装说明](http://wiki.ros.org/melodic/Installation/Ubuntu)，其中包括 Gazebo 9。
 
 ## 启动 ROS/Simulation
 
@@ -39,12 +39,12 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 
 可以对 Gazebo 模拟进行修改，以直接集成发布到 ROS 主题 （如 Gazebo ROS 激光插件）的传感器。 要支持此功能，必须使用适当的 ROS wrappers 启动 Gazebo。
 
-有 ROS 启动脚本可用于运行包含在 ROS 中的模拟：
+有launch文件的可以直接ROS中运行仿真
 
-* [ posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch)：简单的 SITL 发布
-* [ mavros_posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch)：SITL 和 MAVROS 
+* [ posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch)：最简单的软件在环仿真launch文件
+* [ mavros_posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch)：在软件在环仿真launch多加了mavros通讯 
 
-要运行包含在 ROS 中的 SITL，需要更新 ROS 环境，然后像往常一样启动：
+要在ROS中运行软件在环仿真，需要先source你的路径
 
 （可选）：如果您从源代码编译 MAVROS 或其他 ROS 包，则仅获取 catkin 工作区：
 

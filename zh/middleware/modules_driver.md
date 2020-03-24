@@ -2,7 +2,11 @@
 
 子分类
 
-- [距离传感器](modules_driver_distance_sensor.md)
+- [Imu](modules_driver_imu.md)
+- [Distance Sensor](modules_driver_distance_sensor.md)
+- [Airspeed Sensor](modules_driver_airspeed_sensor.md)
+- [Baro](modules_driver_baro.md)
+- [Magnetometer](modules_driver_magnetometer.md)
 
 ## adc
 
@@ -39,8 +43,15 @@ It can be enabled with the OSD_ATXXXX_CFG parameter.
 
     atxxxx <command> [arguments...]
      Commands:
-       start         Start the driver
-         [-b <val>]  SPI bus (default: use board-specific bus)
+       start
+         [-s]        Internal SPI bus(es)
+         [-S]        External SPI bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-c <val>]  chip-select index (for external SPI)
+                     default: 1
+         [-m <val>]  SPI mode
+         [-f <val>]  bus frequency in kHz
     
        stop
     
@@ -67,11 +78,13 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
     batt_smbus <command> [arguments...]
      Commands:
        start
-         [-X]        BATT_SMBUS_BUS_I2C_EXTERNAL
-         [-T]        BATT_SMBUS_BUS_I2C_EXTERNAL1
-         [-R]        BATT_SMBUS_BUS_I2C_EXTERNAL2
-         [-I]        BATT_SMBUS_BUS_I2C_INTERNAL
-         [-A]        BATT_SMBUS_BUS_ALL
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-a <val>]  I2C address
+                     default: 11
     
        man_info      Prints manufacturer info.
     
@@ -89,6 +102,60 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
          [address]   The address to start writing.
          [number of bytes] Number of bytes to send.
          [data[0]...data[n]] One byte of data at a time separated by spaces.
+    
+       stop
+    
+       status        print status info
+    
+
+## blinkm
+
+Source: [drivers/lights/blinkm](https://github.com/PX4/Firmware/tree/master/src/drivers/lights/blinkm)
+
+### Usage {#blinkm_usage}
+
+    blinkm <command> [arguments...]
+     Commands:
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-a <val>]  I2C address
+                     default: 9
+    
+       systemstate
+    
+       ledoff
+    
+       list
+    
+       script
+         -n <val>    Script file name
+                     values: <file>
+    
+       stop
+    
+       status        print status info
+    
+
+## bst
+
+Source: [drivers/telemetry/bst](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/bst)
+
+### Usage {#bst_usage}
+
+    bst <command> [arguments...]
+     Commands:
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-a <val>]  I2C address
+                     default: 118
     
        stop
     
@@ -368,27 +435,119 @@ If the INA226 module is not powered, then by default, initialization of the driv
 
     ina226 <command> [arguments...]
      Commands:
-       start         Start a new instance of the driver
-         [-a]        If set, try to start the driver on each availabe I2C bus until
-                     a module is found
-         [-f]        If initialization fails, keep retrying periodically. Ignored if
-                     the -a flag is set. See full driver documentation for more info
-         [-b <val>]  I2C bus (default: use board-specific bus)
-                     default: 0
-         [-d <val>]  I2C Address (Start with '0x' for hexadecimal)
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-a <val>]  I2C address
                      default: 65
-         [-t <val>]  Which battery calibration values should be used (1 or 2)
+         [-k]        if initialization (probing) fails, keep retrying periodically
+         [-t <val>]  battery index for calibration values (1 or 2)
                      default: 1
     
-       stop          Stop one instance of the driver
-         [-b <val>]  I2C bus (default: use board-specific bus)
+       stop
+    
+       status        print status info
+    
+
+## irlock
+
+Source: [drivers/irlock](https://github.com/PX4/Firmware/tree/master/src/drivers/irlock)
+
+### Usage {#irlock_usage}
+
+    irlock <command> [arguments...]
+     Commands:
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-a <val>]  I2C address
+                     default: 84
+    
+       test
+    
+       stop
+    
+       status        print status info
+    
+
+## lsm303agr
+
+Source: [drivers/magnetometer/lsm303agr](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/lsm303agr)
+
+### Usage {#lsm303agr_usage}
+
+    lsm303agr <command> [arguments...]
+     Commands:
+       start
+         [-s]        Internal SPI bus(es)
+         [-S]        External SPI bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-c <val>]  chip-select index (for external SPI)
+                     default: 1
+         [-m <val>]  SPI mode
+         [-f <val>]  bus frequency in kHz
+         [-R <val>]  Rotation
                      default: 0
-         [-d <val>]  I2C Address (Start with '0x' for hexadecimal)
-                     default: 65
     
-       status        Status of every instance of the driver
+       stop
     
-       info          Status of every instance of the driver
+       status        print status info
+    
+
+## paw3902
+
+Source: [drivers/optical_flow/paw3902](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/paw3902)
+
+### Usage {#paw3902_usage}
+
+    paw3902 <command> [arguments...]
+     Commands:
+       start
+         [-s]        Internal SPI bus(es)
+         [-S]        External SPI bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-c <val>]  chip-select index (for external SPI)
+                     default: 1
+         [-m <val>]  SPI mode
+         [-f <val>]  bus frequency in kHz
+         [-R <val>]  Rotation
+                     default: 0
+    
+       stop
+    
+       status        print status info
+    
+
+## pca9685
+
+Source: [drivers/pca9685](https://github.com/PX4/Firmware/tree/master/src/drivers/pca9685)
+
+### Usage {#pca9685_usage}
+
+    pca9685 <command> [arguments...]
+     Commands:
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+    
+       reset
+    
+       test          enter test mode
+    
+       stop
+    
+       status        print status info
     
 
 ## pca9685_pwm_out
@@ -429,30 +588,49 @@ Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 ROMFS/px4f
        status        print status info
     
 
-## pga460
+## pcf8583
 
-Source: [drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
+Source: [drivers/rpm/pcf8583](https://github.com/PX4/Firmware/tree/master/src/drivers/rpm/pcf8583)
 
-### Description
+### Usage {#pcf8583_usage}
 
-Ultrasonic range finder driver that handles the communication with the device and publishes the distance via uORB.
-
-### Implementation
-
-This driver is implented as a NuttX task. This Implementation was chosen due to the need for polling on a message via UART, which is not supported in the work_queue. This driver continuously takes range measurements while it is running. A simple algorithm to detect false readings is implemented at the driver levelin an attemptto improve the quality of data that is being published. The driver will not publish data at all if it deems the sensor data to be invalid or unstable.
-
-### Usage {#pga460_usage}
-
-    pga460 <command> [arguments...]
+    pcf8583 <command> [arguments...]
      Commands:
-       start <device_path>
-         [device_path] The pga460 sensor device path, (e.g: /dev/ttyS6
-    
-       status
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
     
        stop
     
-       help
+       status        print status info
+    
+
+## pmw3901
+
+Source: [drivers/optical_flow/pmw3901](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/pmw3901)
+
+### Usage {#pmw3901_usage}
+
+    pmw3901 <command> [arguments...]
+     Commands:
+       start
+         [-s]        Internal SPI bus(es)
+         [-S]        External SPI bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-c <val>]  chip-select index (for external SPI)
+                     default: 1
+         [-m <val>]  SPI mode
+         [-f <val>]  bus frequency in kHz
+         [-R <val>]  Rotation
+                     default: 0
+    
+       stop
+    
+       status        print status info
     
 
 ## pwm_out_sim
@@ -474,6 +652,30 @@ It is used in SITL and HITL.
        start         Start the module
          [-m <val>]  Mode
                      values: hil|sim, default: sim
+    
+       stop
+    
+       status        print status info
+    
+
+## px4flow
+
+Source: [drivers/optical_flow/px4flow](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/px4flow)
+
+### Usage {#px4flow_usage}
+
+    px4flow <command> [arguments...]
+     Commands:
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-a <val>]  I2C address
+                     default: 66
+         [-R <val>]  Rotation (default=downwards)
+                     default: 25
     
        stop
     
@@ -504,6 +706,28 @@ This module does the RC input parsing and auto-selecting the method. Supported m
                      values: <file:dev>, default: /dev/ttyS3
     
        bind          Send a DSM bind command (module must be running)
+    
+       stop
+    
+       status        print status info
+    
+
+## rgbled
+
+Source: [drivers/lights/rgbled_ncp5623c](https://github.com/PX4/Firmware/tree/master/src/drivers/lights/rgbled_ncp5623c)
+
+### Usage {#rgbled_usage}
+
+    rgbled <command> [arguments...]
+     Commands:
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-a <val>]  I2C address
+                     default: 57
     
        stop
     
@@ -631,6 +855,27 @@ Test the output by setting a fixed yaw angle (and the other axes to 0):
        test          Test the output: set a fixed angle for one axis (vmount must
                      not be running)
          roll|pitch|yaw <angle> Specify an axis and an angle in degrees
+    
+       stop
+    
+       status        print status info
+    
+
+## voxlpm
+
+Source: [drivers/power_monitor/voxlpm](https://github.com/PX4/Firmware/tree/master/src/drivers/power_monitor/voxlpm)
+
+### Usage {#voxlpm_usage}
+
+    voxlpm [arguments...]
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-T <val>]  Type
+                     values: VBATT|P5VDC, default: VBATT
     
        stop
     

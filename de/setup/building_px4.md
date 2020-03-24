@@ -348,7 +348,7 @@ The previous sections showed how you can call *make* to build a number of differ
 The full syntax to call *make* with a particular configuration and initialization file is:
 
 ```sh
-make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
+make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER_WORLD]
 ```
 
 **VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
@@ -362,15 +362,16 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER]
 >     sh
 >       make list_config_targets
 
-**VIEWER_MODEL_DEBUGGER:**
+**VIEWER_MODEL_DEBUGGER_WORLD:**
 
 - **VIEWER:** This is the simulator ("viewer") to launch and connect: `gazebo`, `jmavsim` <!-- , ?airsim -->
 
 - **MODEL:** The *vehicle* model to use (e.g. `iris` (*default*), `rover`, `tailsitter`, etc), which will be loaded by the simulator. The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](..\simulation\README.md#scripts) to select appropriate parameters.
 
 - **DEBUGGER:** Debugger to use: `none` (*default*), `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. For more information see [Simulation Debugging](../debug/simulation_debugging.md).
+- **WORLD:** (Gazebo only). Set a the world ([PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) that is loaded. Default is [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world). For more information see [Gazebo > Loading a Specific World](../simulation/gazebo.md#set_world).
 
-> **Tip** You can get a list of *all* available `VIEWER_MODEL_DEBUGGER` options using the command below: 
+> **Tip** You can get a list of *all* available `VIEWER_MODEL_DEBUGGER_WORLD` options using the command below: 
 > 
 >     sh
 >       make px4_sitl list_vmd_make_targets

@@ -125,7 +125,7 @@ set PWM_DISARMED 1000
   * If you want to invert your PWM signal, the signs of the output scalings have to be changed: ```O:      -10000  -10000      0 -10000  10000```
   * 如果这一行设定的是如下默认值，那么我们也可以（也应该）完全省略这一行： ```O:      10000  10000   0 -10000  10000```
 * S：表示第一个输入的缩放器：它取控制组 #0 (Flight Control) 的第一个控制量（滚转）作为输入。 它将滚转控制输入 * 0.6 进行缩放并反转输入量的正负号（-0.6 在缩放后的单位中变成了 -6000）。 该混控器不施加任何偏移量（0）且输出量幅值在 （-1.. +1）这个范围内。
-* S：表示第二个输入的缩放器：它取控制组 #0 (Flight Control) 的第二个控制量（俯仰）作为输入。 它将对俯仰控制输入 *0.65 进行缩放， 不施加任何偏移量（0）并且输出量的幅值在 （-1.. +1）这个范围内。
+* S：表示第二个输入的缩放器：它取控制组 #0 (Flight Control) 的第二个控制量（俯仰）作为输入。 \ It scales the pitch control input * 0.65. 不施加任何偏移量（0）并且输出量的幅值在 （-1.. +1）这个范围内。
 
 > **Note** In short, the output of this mixer would be SERVO = ( (roll input \* -0.6 + 0) \* 1 + (pitch input \* 0.65 + 0) \* 1 ) \* 1 + 0
 

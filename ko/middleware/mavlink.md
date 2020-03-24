@@ -114,7 +114,7 @@ nullptr
 };
 ```
 
-그리고 스트림을 활성화 하세요. 예를 들면, 스타트업 스크립트에 다음의 라인을 추가하는 것입니다. (`-r` 스트리밍 레이트를 설정하고, `-u` MAVLink UDP 포트를 14556로 정합니다):
+Then make sure to enable the stream, for example by adding the following line to the [startup script](../concept/system_startup.md) (e.g. [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on NuttX or [ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)) on SITL. Note that `-r` configures the streaming rate and `-u` identifies the MAVLink channel on UDP port 14556).
 
     mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
     

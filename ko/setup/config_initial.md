@@ -10,8 +10,8 @@
 
 * 안전 조종을 위해 Taranis Plus 원격 조종기 (또는 동급)
 * 개발 컴퓨터: 
-  * OSX 10.13 또는 그 이후 운영체제가 설치된 MacBook Pro (2015 초기 버전 이후)
-  * 우분투 16.04 또는 그 이후 운영체제가 설치된 Lenovo Thinkpad 450 (i5)
+  * MacBook Pro (early 2015 and later) with OSX 10.15 or later 
+  * Lenovo Thinkpad 450 (i5) with Ubuntu Linux 18.04 or later 
 * 지상통제소 장비: 
   * iPad(Wifi 텔레메트리 어댑터 필요)
   * 모든 MacBook 또는 Ubuntu Linux 랩톱(은 개발용 컴퓨터가 될 수 있음)

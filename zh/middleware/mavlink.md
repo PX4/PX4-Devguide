@@ -114,7 +114,7 @@ nullptr
 };
 ```
 
-Step4. 最后，确保使能了此消息流：比如，添加如下内容至启动脚本文件（`-r`+n 命令可设置串流速率，`-u`命令可将MAVLink通道映射到UDP端口14556）
+Then make sure to enable the stream, for example by adding the following line to the [startup script](../concept/system_startup.md) (e.g. [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on NuttX or [ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)) on SITL. Note that `-r` configures the streaming rate and `-u` identifies the MAVLink channel on UDP port 14556).
 
     mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
     
