@@ -51,7 +51,7 @@ ll40ls <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -73,7 +73,7 @@ mappydot <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -91,7 +91,7 @@ mb12xx <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -183,7 +183,7 @@ sf1xx <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -203,7 +203,7 @@ srf02 <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -232,7 +232,7 @@ teraranger <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -325,7 +325,7 @@ vl53lxx <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz

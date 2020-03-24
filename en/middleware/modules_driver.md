@@ -2,6 +2,7 @@
 Subcategories:
 - [Imu](modules_driver_imu.md)
 - [Distance Sensor](modules_driver_distance_sensor.md)
+- [Airspeed Sensor](modules_driver_airspeed_sensor.md)
 - [Baro](modules_driver_baro.md)
 - [Magnetometer](modules_driver_magnetometer.md)
 
@@ -72,7 +73,7 @@ batt_smbus <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -109,7 +110,7 @@ blinkm <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -139,7 +140,7 @@ bst <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -243,24 +244,6 @@ dshot <command> [arguments...]
 
    esc_info      Request ESC information
      -m <val>    Motor index (1-based)
-
-   stop
-
-   status        print status info
-```
-## ets_airspeed
-Source: [drivers/differential_pressure/ets](https://github.com/PX4/Firmware/tree/master/src/drivers/differential_pressure/ets)
-
-### Usage {#ets_airspeed_usage}
-```
-ets_airspeed <command> [arguments...]
- Commands:
-   start
-     [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
-                 (default=1))
-     [-f <val>]  bus frequency in kHz
 
    stop
 
@@ -442,7 +425,7 @@ ina226 <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -465,7 +448,7 @@ irlock <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -478,39 +461,24 @@ irlock <command> [arguments...]
 
    status        print status info
 ```
-## ms4525_airspeed
-Source: [drivers/differential_pressure/ms4525](https://github.com/PX4/Firmware/tree/master/src/drivers/differential_pressure/ms4525)
+## lsm303agr
+Source: [drivers/magnetometer/lsm303agr](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/lsm303agr)
 
-### Usage {#ms4525_airspeed_usage}
+### Usage {#lsm303agr_usage}
 ```
-ms4525_airspeed <command> [arguments...]
+lsm303agr <command> [arguments...]
  Commands:
    start
-     [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-s]        Internal SPI bus(es)
+     [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
+     [-c <val>]  chip-select index (for external SPI)
+                 default: 1
+     [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
-     [-T <val>]  Device type
-                 values: 4525|4515, default: 4525
-
-   stop
-
-   status        print status info
-```
-## ms5525_airspeed
-Source: [drivers/differential_pressure/ms5525](https://github.com/PX4/Firmware/tree/master/src/drivers/differential_pressure/ms5525)
-
-### Usage {#ms5525_airspeed_usage}
-```
-ms5525_airspeed <command> [arguments...]
- Commands:
-   start
-     [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
-                 (default=1))
-     [-f <val>]  bus frequency in kHz
+     [-R <val>]  Rotation
+                 default: 0
 
    stop
 
@@ -534,6 +502,28 @@ paw3902 <command> [arguments...]
      [-f <val>]  bus frequency in kHz
      [-R <val>]  Rotation
                  default: 0
+
+   stop
+
+   status        print status info
+```
+## pca9685
+Source: [drivers/pca9685](https://github.com/PX4/Firmware/tree/master/src/drivers/pca9685)
+
+### Usage {#pca9685_usage}
+```
+pca9685 <command> [arguments...]
+ Commands:
+   start
+     [-I]        Internal I2C bus(es)
+     [-X]        External I2C bus(es)
+     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                 (default=1))
+     [-f <val>]  bus frequency in kHz
+
+   reset
+
+   test          enter test mode
 
    stop
 
@@ -584,7 +574,7 @@ pcf8583 <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -651,7 +641,7 @@ px4flow <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -701,7 +691,7 @@ rgbled <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -780,26 +770,6 @@ safety_button <command> [arguments...]
 
    status        print status info
 ```
-## sdp3x_airspeed
-Source: [drivers/differential_pressure/sdp3x](https://github.com/PX4/Firmware/tree/master/src/drivers/differential_pressure/sdp3x)
-
-### Usage {#sdp3x_airspeed_usage}
-```
-sdp3x_airspeed <command> [arguments...]
- Commands:
-   start
-     [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
-                 (default=1))
-     [-f <val>]  bus frequency in kHz
-     [-a <val>]  I2C address
-                 default: 33
-
-   stop
-
-   status        print status info
-```
 ## tap_esc
 Source: [drivers/tap_esc](https://github.com/PX4/Firmware/tree/master/src/drivers/tap_esc)
 
@@ -871,7 +841,7 @@ Source: [drivers/power_monitor/voxlpm](https://github.com/PX4/Firmware/tree/mast
 voxlpm [arguments...]
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
