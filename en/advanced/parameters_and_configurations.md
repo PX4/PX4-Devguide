@@ -224,7 +224,7 @@ Typically it is stored alongside its associated module.
 
 The build system extracts the metadata (using `make parameters_metadata`) to build the [parameter reference](../advanced/parameter_reference.md) and the parameter information used by ground stations.
 
-> **Warning** After adding a *new* parameter file you must call `make clean` before building or the new parameters will not be generated (parameter files are added as part of the *cmake* configure step, which only happens for clean builds).
+> **Warning** After adding a *new* parameter file you should call `make clean` before building to generate the new parameters (parameter files are added as part of the *cmake* configure step, which happens for clean builds and if a cmake file is modified).
 
 
 ### c Parameter Metadata {#c_metadata}
