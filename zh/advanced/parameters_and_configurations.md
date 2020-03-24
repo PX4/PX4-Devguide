@@ -221,6 +221,8 @@ param save /fs/microsd/vtol_param_backup
     
     构建系统提取 metadata（使用 `make parameters_metadata`）来构建 [parameter reference ](../advanced/parameter_reference.md) 和地面站使用的参数信息。
     
+    > **Warning** After adding a *new* parameter file you should call `make clean` before building to generate the new parameters (parameter files are added as part of the *cmake* configure step, which happens for clean builds and if a cmake file is modified).
+    
     ### c Parameter Metadata {#c_metadata}
     
     The legacy approach for defining parameter metadata is in a file with extension **.c** (at time of writing this is the approach most commonly used in the source tree).
