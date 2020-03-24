@@ -8,7 +8,7 @@ bmp280 <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
@@ -33,7 +33,7 @@ bmp388 <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
@@ -58,7 +58,7 @@ dps310 <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
@@ -83,7 +83,7 @@ lps22hb <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
@@ -106,7 +106,7 @@ lps25h <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
@@ -129,7 +129,7 @@ mpl3115a2 <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
@@ -147,7 +147,7 @@ ms5611 <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es"
+     [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
