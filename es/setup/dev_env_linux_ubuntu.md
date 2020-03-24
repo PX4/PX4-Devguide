@@ -1,6 +1,6 @@
 # Entorno de desarrollo en Ubuntu LTS / Debian Linux
 
-[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 16.04 is the standard/preferred Linux development OS. It allows you to build for the [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, *Qualcomm Snapdragon Flight* hardware, Linux-based hardware, Simulation).
+[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 18.04 is the standard/preferred Linux development OS. It allows you to build for the [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, *Qualcomm Snapdragon Flight* hardware, Linux-based hardware, Simulation).
 
 Bash scripts are provided to help make it easy to install development environment for different target platforms:
 
