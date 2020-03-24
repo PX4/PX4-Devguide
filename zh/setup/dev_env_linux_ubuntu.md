@@ -1,6 +1,6 @@
 # Ubuntu LTS/Debian Linux上开发环境的搭建
 
-[Ubuntu linux LTS](https://wiki.ubuntu.com/LTS) 16.04是标准/推荐的Linux开发操作系统。 你可以在这上面编译所有的PX4对象（基于NuttX平台的硬件，高通骁龙飞行硬件，基于Linux平台的硬件以及仿真）
+[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 18.04 is the standard/preferred Linux development OS. 你可以在这上面编译所有的PX4对象（基于NuttX平台的硬件，高通骁龙飞行硬件，基于Linux平台的硬件以及仿真）
 
 我们提供了Bash脚本来方便你根据不同的平台安装开发环境：
 
