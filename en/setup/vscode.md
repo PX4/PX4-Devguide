@@ -12,9 +12,6 @@ This topic explains how to setup the IDE and start developing.
 > **Note** There are other powerful IDEs, but they typically take more effort to integrate with PX4.
   With *VScode*, configuration is stored in the PX4/Firmware tree ([Firmware/.vscode](https://github.com/PX4/Firmware/tree/master/.vscode)) so the setup process is as simple as adding the project folder.
 
-<span></span>
-> **Tip** On Ubuntu 16.04, VSCode can be used to build PX4 but not debug targets.
-
 ## Preconditions
 
 You must already have installed the command line [PX4 developer environment](../setup/dev_env.md) for your platform and downloaded the *Firmware* source code repo.
