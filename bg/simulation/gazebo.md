@@ -224,6 +224,19 @@ To enable/disable GPS noise:
 
 The next time you build/restart Gazebo it will use the new GPS noise setting.
 
+## Loading a Specific World {#set_world}
+
+By default Gazebo displays a flat featureless plane, as defined in [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world).
+
+You can load any of the worlds in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) by specifying them as the final option in the PX4 configuration target. For example, to load the *warehouse* world, you can append it as shown:
+
+    make px4_sitl_default gazebo_plane_cam__warehouse
+    
+
+> **Note** There are two underscores after the model (`plane_cam`) indicating that the default debugger is used (none). See [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
+
+You can also specify the full path to a world to load using the `PX4_SITL_WORLD` environment variable. This is useful if testing a new world that is not yet included with PX4.
+
 ## Starting Gazebo and PX4 Separately {#start_px4_sim_separately}
 
 For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
