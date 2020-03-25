@@ -17,7 +17,7 @@
 
 执行步骤：
 
-1. [下载 PX4 源代码](../setup/building_px4.md): 
+1. [下载 PX4 源代码](../setup/building_px4.md)： 
         bash
         git clone https://github.com/PX4/Firmware.git --recursive
 
