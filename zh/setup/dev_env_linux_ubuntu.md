@@ -5,7 +5,7 @@
 我们提供了Bash脚本来方便你根据不同的平台安装开发环境：
 
 * **[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh)**：安装 [Gazebo 9](../simulation/gazebo.md) 和 [jMAVSim](../simulation/jmavsim.md) 仿真器 以及/或者 [NuttX/Pixhawk](../setup/building_px4.md#nuttx) 工具。 不包含[FastRTPS](#fast_rtps)所依赖的工具。
-* **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**：安装 [ROS "Melodic"](#rosgazebo) 以及 PX4 到 Ubuntu 18.04 LTS上。
+* **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**：安装 [ROS "Melodic"](#rosgazebo) 以及 PX4 到 Ubuntu 18.04 LTS 上。
 
 > **Tip** 这些脚本已经在纯净的 Ubuntu 16.04 和 Ubuntu 18.04 LTS 上测试过了。 如果你在一个已经安装过这些工具的系统上或者一些其他的Ubuntu发行版上执行安装，它也有可能会安装不成功。
 
