@@ -186,6 +186,27 @@ HEADLESS=1 make px4_sitl gazebo_plane
 ```
 
 ### Set Custom Takeoff Location {#custom_takeoff_location}
+The location of the world is defined in the `.world` file by specifying the location of the origin using the `spherical_coordinates` tag. An example can be found in the [`sonoma_raceway.world`](https://github.com/PX4/sitl_gazebo/blob/master/worlds/sonoma_raceway.world):
+```
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>38.161479</latitude_deg>
+      <longitude_deg>-122.454630</longitude_deg>
+      <elevation>488.0</elevation>
+    </spherical_coordinates>
+```
+The latitude, longitude, elevation all are required to be specified to be a valid tag. Each world can be spawned using the following make command
+```
+make px4_sitl gazebo_<model_name>__<world_name>
+```
+
+For example, to spawn a rover in the sonoma raceway world, you can run the following make command. Note that the first time spawining the world it takes longer to load the world since the model needs to be downloaded from the model database
+```
+make px4_sitl gazebo_rover__sonoma_raceway
+```
+
+The video shows that the location of the environment is aligned with the gazebo world
+[![Demo](https://img.youtube.com/vi/-a2WWLni5do/0.jpg)](https://youtu.be/-a2WWLni5do)
 
 The default takeoff location in SITL Gazebo can be overridden using environment variables.
 
