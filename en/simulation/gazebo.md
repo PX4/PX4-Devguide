@@ -186,29 +186,9 @@ HEADLESS=1 make px4_sitl gazebo_plane
 ```
 
 ### Set Custom Takeoff Location {#custom_takeoff_location}
-The location of the world is defined in the `.world` file by specifying the location of the origin using the `spherical_coordinates` tag. An example can be found in the [`sonoma_raceway.world`](https://github.com/PX4/sitl_gazebo/blob/master/worlds/sonoma_raceway.world):
-```
-    <spherical_coordinates>
-      <surface_model>EARTH_WGS84</surface_model>
-      <latitude_deg>38.161479</latitude_deg>
-      <longitude_deg>-122.454630</longitude_deg>
-      <elevation>488.0</elevation>
-    </spherical_coordinates>
-```
-The latitude, longitude, elevation all are required to be specified to be a valid tag. Each world can be spawned using the following make command
-```
-make px4_sitl gazebo_<model_name>__<world_name>
-```
 
-For example, to spawn a rover in the sonoma raceway world, you can run the following make command. Note that the first time spawining the world it takes longer to load the world since the model needs to be downloaded from the model database
-```
-make px4_sitl gazebo_rover__sonoma_raceway
-```
-
-The video shows that the location of the environment is aligned with the gazebo world
-[![Demo](https://img.youtube.com/vi/-a2WWLni5do/0.jpg)](https://youtu.be/-a2WWLni5do)
-
-The default takeoff location in SITL Gazebo can be overridden using environment variables.
+The takeoff location in SITL Gazebo can be set using environment variables.
+This will override both the default takeoff location, and any value [set for the world](#set_world_location).
 
 The variables to set are: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
 
@@ -219,6 +199,7 @@ export PX4_HOME_LON=-13.867138
 export PX4_HOME_ALT=28.5
 make px4_sitl gazebo
 ```
+
 
 ### Change Simulation Speed
 
@@ -279,18 +260,57 @@ The next time you build/restart Gazebo it will use the new GPS noise setting.
 
 By default Gazebo displays a flat featureless plane, as defined in [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world).
 
-You can load any of the worlds in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) by specifying them as the final option in the PX4 configuration target.
+You can load any of the worlds in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds) by specifying them as the final option in the PX4 configuration target:
+```
+make px4_sitl gazebo_<model_name>__<world_name>
+```
+
 For example, to load the *warehouse* world, you can append it as shown:
 ```
 make px4_sitl_default gazebo_plane_cam__warehouse
 ```
 
-> **Note** There are two underscores after the model (`plane_cam`) indicating that the default debugger is used (none).
+> **Note** There are *two underscores* after the model (`plane_cam`) indicating that the default debugger is used (none).
    See [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
-
 
 You can also specify the full path to a world to load using the `PX4_SITL_WORLD` environment variable.
 This is useful if testing a new world that is not yet included with PX4.
+
+> **Tip** If the loaded world does not align with the map, you may need to [set the world location](#set_world_location). 
+  
+
+## Set World Location {#set_world_location}
+
+By default, a world is loaded at the current vehicle location.
+If using a world that simulates a real location, this can result in a mismatch between what is displayed from the vehicle camera and the what is shown on the ground station map.
+To overcome this problem you can set the location of the world as shown in this section.
+
+> **Note** You can also set a [Custom Takeoff Location](#custom_takeoff_location) that matches the real-world location of the map.
+  However adding the location to the map is easier (and can still be over-ridden if needed).
+
+The location of the world is defined in the **.world** file by specifying the location of the origin using the `spherical_coordinates` tag.
+The latitude, longitude, elevation must all be specified (for this to be a valid).
+
+An example can be found in the [sonoma_raceway.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/sonoma_raceway.world):
+```
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>38.161479</latitude_deg>
+      <longitude_deg>-122.454630</longitude_deg>
+      <elevation>488.0</elevation>
+    </spherical_coordinates>
+```
+
+You can test this by spawning a rover in the sonoma raceway world using the following `make` command (not spawning takes longer the first time as the model needs to be downloaded from the model database):
+```
+make px4_sitl gazebo_rover__sonoma_raceway
+```
+
+The video below shows that the location of the environment is aligned with the gazebo world:
+{% youtube %}
+https://youtu.be/-a2WWLni5do
+{% endyoutube %}
+
 
 
 ## Starting Gazebo and PX4 Separately {#start_px4_sim_separately}
