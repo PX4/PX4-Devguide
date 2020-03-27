@@ -531,7 +531,7 @@ mpu9250 <command> [arguments...]
    status        print status info
 ```
 ## mpu9520
-Source: [drivers/imu/invensense/mpu9250](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/mpu9250)
+Source: [drivers/imu/invensense/mpu6500](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/mpu6500)
 
 ### Usage {#mpu9520_usage}
 ```

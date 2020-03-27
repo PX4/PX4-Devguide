@@ -1,11 +1,11 @@
 # Ubuntu LTS/Debian Linux上开发环境的搭建
 
-[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 18.04 is the standard/preferred Linux development OS. 你可以在这上面编译所有的PX4对象（基于NuttX平台的硬件，高通骁龙飞行硬件，基于Linux平台的硬件以及仿真）
+[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 18.04 是标准/推荐的 Linux 开发操作系统。 你可以在这上面编译所有的PX4对象（基于NuttX平台的硬件，高通骁龙飞行硬件，基于Linux平台的硬件以及仿真）
 
 我们提供了Bash脚本来方便你根据不同的平台安装开发环境：
 
 * **[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh)**：安装 [Gazebo 9](../simulation/gazebo.md) 和 [jMAVSim](../simulation/jmavsim.md) 仿真器 以及/或者 [NuttX/Pixhawk](../setup/building_px4.md#nuttx) 工具。 不包含[FastRTPS](#fast_rtps)所依赖的工具。
-* **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**：安装 [ROS "Melodic"](#rosgazebo) 以及 PX4 到 Ubuntu 18.04 LTS上。
+* **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**：安装 [ROS "Melodic"](#rosgazebo) 以及 PX4 到 Ubuntu 18.04 LTS 上。
 
 > **Tip** 这些脚本已经在纯净的 Ubuntu 16.04 和 Ubuntu 18.04 LTS 上测试过了。 如果你在一个已经安装过这些工具的系统上或者一些其他的Ubuntu发行版上执行安装，它也有可能会安装不成功。
 
@@ -17,7 +17,7 @@
 
 执行步骤：
 
-1. [下载 PX4 源代码](../setup/building_px4.md): 
+1. [下载 PX4 源代码](../setup/building_px4.md)： 
         bash
         git clone https://github.com/PX4/Firmware.git --recursive
 
