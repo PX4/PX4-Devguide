@@ -4,7 +4,7 @@
 
 该脚本默认安装所有必需的工具，用于编译基于NuttX的PX4源码（不带RTPS），以及运行基于 *jMAVsim* 的仿真器。 你也可以安装额外的*Gazebo*仿真器通过在命令行中指定一个参数： `--gazebo`。
 
-![Arch上使用Gazebo](../../assets/gazebo/arch-gazebo.png)
+![Arch上使用Gazebo](../../assets/simulation/gazebo/arch-gazebo.png)
 
 > **Note** 所有的指令已经在[Manjaro](https://manjaro.org/)（Arch的衍生）上做过测试，因为他比在Arch Linux上更容易搭建。
 
