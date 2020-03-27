@@ -11,7 +11,7 @@ PX4 uses computer vision systems (primarily running on [Companion Computers](../
 - [Obstacle Avoidance](https://docs.px4.io/en/computer_vision/obstacle_avoidance.html) provides navigation around obstacles when flying a planned path (currently missions are supported). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
 - [Collision Prevention](https://docs.px4.io/en/computer_vision/collision_prevention.html) is used to stop vehicles before they can crash into an obstacle (primarily when flying in manual modes).
 
-> **Tip** The [PX4 Vision Autonomy Development Kit] (Holybro) is a robust and inexpensive kit for developers working with computer vision on PX4.
+> **Tip** The [PX4 Vision Autonomy Development Kit](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro) is a robust and inexpensive kit for developers working with computer vision on PX4.
   It comes with [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) software pre-installed, and can be used as the base for your own algorithms.
 
 
