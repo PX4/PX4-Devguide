@@ -35,6 +35,8 @@
 * [Simulation](simulation/README.md)
   * [jMAVSim Simulation](simulation/jmavsim.md)
   * [Gazebo Simulation](simulation/gazebo.md)
+    * [Gazebo Vehicles](simulation/gazebo_vehicles.md)
+    * [Gazebo Worlds](simulation/gazebo_worlds.md)
   * [AirSim Simulation](simulation/airsim.md)
   * [Multi-Vehicle Sim with JMAVSim](simulation/multi_vehicle_jmavsim.md)
   * [Multi-Vehicle Sim with Gazebo](simulation/multi-vehicle-simulation.md)
