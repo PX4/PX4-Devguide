@@ -24,97 +24,38 @@ Gazebo 9 的安装在标准的环境编译已有说明。
 
 ## 运行仿真
 
-您可以通过启动 PX4 SITL和 Gazebo 来运行模拟，并加载机身配置（支持多旋翼飞机，飞机，VTOL，光流和多机仿真）。
+Run a simulation by starting PX4 SITL and gazebo with the airframe configuration to load (multicopters, planes, VTOL, optical flow and multi-vehicle simulations are supported).
 
-最简单的方法是在 PX4 * Firmware *存储库的根目录中打开一个终端，并为目标调用` make `，如以下部分所示。
-
-> **Tip** 你可以使用 [ instructions below ](#start_px4_sim_separately) 来保持 Gazebo 在后台运行然后只重启 PX4。 这样比同时重启两者要快一些。 You can also run the simulation in [Headless Mode](#headless) which does not start the Gazebo UI (this uses fewer resources and is much faster).
-
-<span></span>
-
-> **Tip** 使用命令 `make px4_sitl list_vmd_make_targets` 获取所有支持的平台（你还可以过滤掉以 `gazebo_` 开头的平台）。
-
-<span></span>
-
-> **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
-
-### 四旋翼
+The easiest way to do this is to open a terminal in the root directory of the PX4 *Firmware* repository and call `make` for the desired target. For example, to start a quadrotor simulation (the default):
 
 ```sh
-cd ~/src/Firmware
+cd /path/to/Firmware
 make px4_sitl gazebo
 ```
 
-### 带光流的四旋翼
+The supported vehicles and `make` commands are listed below (click links to see vehicle images).
 
-```sh
-make px4_sitl gazebo_iris_opt_flow
-```
+> **Note** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
 
-### 3DR Solo (Quadrotor) {#3dr-solo}
+| Vehicle                                                                                                                      | Command                                |
+| ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [Quadrotor](../simulation/gazebo_vehicles.md#quadrotor)                                                                      | `make px4_sitl gazebo`                 |
+| [Quadrotor with Optical Flow](../simulation/gazebo_vehicles.md#quadrotor_optical_flow)                                       | `make px4_sitl gazebo_iris_opt_flow`   |
+| [3DR Solo (Quadrotor)](../simulation/gazebo_vehicles.md#3dr_solo)                                                            | `make px4_sitl gazebo_solo`            |
+| <span id="typhoon_h480"></span>[Typhoon H480 (Hexrotor)](../simulation/gazebo_vehicles.md#typhoon_h480) (supports video streaming) | `make px4_sitl gazebo_typhoon_h480`    |
+| [Standard Plane](../simulation/gazebo_vehicles.md#standard_plane)                                                            | `make px4_sitl gazebo_plane`           |
+| [Standard VTOL](../simulation/gazebo_vehicles.md#standard_vtol)                                                              | `make px4_sitl gazebo_standard_vtol`   |
+| [Tailsitter VTOL](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                                          | `make px4_sitl gazebo_tailsitter`      |
+| [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                                         | `make px4_sitl gazebo_rover`           |
+| [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)                                  | `make px4_sitl gazebo_uuv_hippocampus` |
+| [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                                                 | `make px4_sitl gazebo_boat`            |
 
-```sh
-make px4_sitl gazebo_solo
-```
+> **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
 
-![3DR Solo in Gazebo](../../assets/gazebo/solo.png)
+The commands above launch a single vehicle with the full UI. Other options include:
 
-### Typhoon H480 (Hexrotor) {#typhoon_h480}
-
-    make px4_sitl gazebo_typhoon_h480
-    
-
-![Typhoon H480 in Gazebo](../../assets/gazebo/typhoon.jpg)
-
-> **Note** This target also supports [video streaming simulation](#video).
-
-### Standard Plane
-
-```sh
-make px4_sitl gazebo_plane
-```
-
-![Plane in Gazebo](../../assets/gazebo/plane.png)
-
-### Standard VTOL
-
-```sh
-make px4_sitl gazebo_standard_vtol
-```
-
-![Standard VTOL in Gazebo](../../assets/gazebo/standard_vtol.png)
-
-### Tailsitter VTOL
-
-```sh
-make px4_sitl gazebo_tailsitter
-```
-
-![Tailsitter VTOL in Gazebo](../../assets/gazebo/tailsitter.png)
-
-### Ackerman vehicle (UGV/Rover) {#ugv}
-
-```sh
-make px4_sitl gazebo_rover
-```
-
-![Rover in Gazebo](../../assets/gazebo/rover.png)
-
-### HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#uuv}
-
-```sh
-make px4_sitl gazebo_uuv_hippocampus
-```
-
-![Submarine/UUV](../../assets/gazebo/hippocampus.png)
-
-### Boat (USV: Unmanned Surface Vehicle) {#usv}
-
-```sh
-make px4_sitl gazebo_boat
-```
-
-![Boat/USV](../../assets/gazebo/boat.png)
+* [Starting PX4 and Gazebo separately](#start_px4_sim_separately) so that you can keep Gazebo running and only re-launch PX4 when needed (quicker than restarting both).
+* Run the simulation in [Headless Mode](#headless), which does not start the Gazebo UI (this uses fewer resources and is much faster).
 
 ## Taking it to the Sky
 
@@ -226,9 +167,9 @@ The next time you build/restart Gazebo it will use the new GPS noise setting.
 
 ## Loading a Specific World {#set_world}
 
-By default Gazebo displays a flat featureless plane, as defined in [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world).
+PX4 supports a number of [Gazebo Worlds](../simulation/gazebo_worlds.md), which are stored in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) By default Gazebo displays a flat featureless plane, as defined in [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world).
 
-You can load any of the worlds in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) by specifying them as the final option in the PX4 configuration target. For example, to load the *warehouse* world, you can append it as shown:
+You can load any of the worlds by specifying them as the final option in the PX4 configuration target. For example, to load the *warehouse* world, you can append it as shown:
 
     make px4_sitl_default gazebo_plane_cam__warehouse
     
@@ -252,8 +193,8 @@ To start Gazebo and PX4 separately:
         sh
         make px4_sitl gazebo_iris_ide
 
-* 在 IDE 中选择要调试的` px4_ <mode> `目标（例如` px4_iris `）
-* 直接从 IDE 启动调试会话
+* In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
+* Start the debug session directly from IDE
 
 This approach significantly reduces the debug cycle time because simulator (e.g. Gazebo) is always running in background and you only re-run the px4 process which is very light.
 
@@ -314,7 +255,7 @@ Video streaming is automatically started when supported by the target vehicle. F
 
 Streaming can be paused/restarted using the Gazebo UI *Video ON/OFF* button..
 
-![Video ON/OFF button](../../assets/gazebo/sitl_video_stream.png)
+![Video ON/OFF button](../../assets/simulation/gazebo/sitl_video_stream.png)
 
 ### How to View Gazebo Video
 

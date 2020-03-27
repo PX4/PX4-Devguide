@@ -71,4 +71,4 @@ Armed되어 있는지 확인하세요. 예를 들면, `commander takeoff`를 입
 
 짐벌이 제어됩니다. Note that the simulated gimbal stabilizes itself, so if you send MAVLink commands, set the `stabilize` flags to false.
 
-![Gazebo 짐벌 모의](../../assets/gazebo/gimbal-simulation.png)
+![Gazebo 짐벌 모의](../../assets/simulation/gazebo/gimbal-simulation.png)

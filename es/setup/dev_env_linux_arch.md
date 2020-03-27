@@ -4,7 +4,7 @@ The Firmware repository provides a convenient script to set your Arch installati
 
 The script installs (by default) all tools to build PX4 (without RTPS) for NuttX targets and run simulation with *jMAVsim*. You can additionally install the *Gazebo* simulator by specifying the command line argument: `--gazebo`.
 
-![Gazebo on Arch](../../assets/gazebo/arch-gazebo.png)
+![Gazebo on Arch](../../assets/simulation/gazebo/arch-gazebo.png)
 
 > **Note** The instructions have been tested on [Manjaro](https://manjaro.org/) (Arch based distribution) as it is much easier to set up than Arch Linux.
 
