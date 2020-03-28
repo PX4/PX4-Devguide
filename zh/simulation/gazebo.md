@@ -134,26 +134,26 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     更多相关信息请参考：[Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
     
-    ### 使用游戏手柄
+    ### 使用操纵杆
     
-    Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
+    通过 *QGroundControl* 可支持操纵杆或者拇指操纵杆（[设置说明在此](../simulation/README.md#joystickgamepad-integration)）。
     
-    ### Improving Distance Sensor Performance
+    ### 提高距离传感器的性能
     
-    The current default world is [PX4/sitl_gazebo/worlds/**iris.world**](https://github.com/PX4/sitl_gazebo/tree/master/worlds)), which uses a heightmap as ground.
+    当前的默认世界是 [PX4/sitl_gazebo/worlds/**iris.world**](https://github.com/PX4/sitl_gazebo/tree/master/worlds), 它使用高度图作为地面。
     
-    This can cause difficulty when using a distance sensor. If there are unexpected results we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
+    这可能会在使用距离传感器时造成困难。 如果出现意外的结果，我们建议您将 **iris.model** 中的模型默认设定从 `uneven_ground` 改为 `asphalt_plane`。
     
-    ### Simulating GPS Noise {#gps_noise}
+    ### 模拟 GPS 噪声 {#gps_noise}
     
-    Gazebo can simulate GPS noise that is similar to that typically found in real systems (otherwise reported GPS values will be noise-free/perfect). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
+    Gazebo 可以模拟类似于实际系统中常见的 GPS 噪声（否则报告的GPS值将是无噪声/完美的）。 这在处理可能受 GPS 噪声影响的应用（例如精度定位）时非常有用。
     
-    GPS noise is enabled if the target vehicle's SDF file contains a value for the `gpsNoise` element (i.e. it has the line: `<gpsNoise>true</gpsNoise>`). It is enabled by default in many vehicle SDF files: **solo.sdf**, **iris.sdf**, **standard_vtol.sdf**, **delta_wing.sdf**, **plane.sdf**, **typhoon_h480**, **tailsitter.sdf**.
+    如果目标载具的 SDF 文件包含` gpsNoise `元素的值（值为 `<gpsNoise>true</gpsNoise>`），则GPS噪声将被模拟。 默认情况下, 它在许多载具的 SDF 文件中启用：**solo.sdf**、**iris.sdf**、**standard_vtol.sdf**、**delta_wing.sdf**、**plane.sdf**、**typhoon_h480** **tailsitter.sdf**。
     
-    To enable/disable GPS noise:
+    启用/禁用GPS噪音：
     
-    1. 构建任何 gazebo 目标以生成 SDF 文件（适用于所有机型）。 例如： ```make px4_sitl gazebo_iris``` >**Tip**在后续版本中不会覆盖 SDF 文件。
-    2. 打开目标车辆的 SDF 文件（例如**./Tools/sitl_gazebo/models/iris/iris.sdf **）。
+    1. 构建任何 gazebo 目标以生成 SDF 文件（适用于所有机型）。 例如： ```make px4_sitl gazebo_iris``` >**Tip** 在后续版本中不会覆盖 SDF 文件。
+    2. 打开目标载具的 SDF 文件（例如**./Tools/sitl_gazebo/models/iris/iris.sdf **）。
     3. 搜索 `gpsNoise` 元素： 
             xml
             <plugin name='gps_plugin' filename='libgazebo_gps_plugin.so'>
@@ -161,7 +161,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
              <gpsNoise>true</gpsNoise>
             </plugin>
         
-        * 如果存在，则启用 GPS。 您可以通过删除以下行来禁用它：`<gpsNoise> true </gpsNoise>`
+        * 如果已预设，则启用 GPS。 您可以通过删除以下行来禁用它：`<gpsNoise> true </gpsNoise>`
         * 如果未预设，则禁用 GPS 。 您可以通过将` gpsNoise `元素添加到` gps_plugin `部分来启用它（如上所示）。
     
     The next time you build/restart Gazebo it will use the new GPS noise setting.
