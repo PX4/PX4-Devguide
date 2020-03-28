@@ -58,7 +58,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     * 为了使 Gazebo 保持运行，请[分别启动 PX4 和 Gazebo](#start_px4_sim_separately)，并在需要时单独重新启动 PX4（比重新启动两者更快）。
     * 在 [无头模式](#headless) 运行仿真将不会启动 Gazebo UI（使用的资源更少，速度更快）。
     
-    ## 让飞行器升空
+    ## 让飞行器起飞
     
     上文的 `make` 指令首先构建PX4，然后同时运行 PX4 与 Gazebo 仿真器。
     
@@ -86,21 +86,21 @@ Gazebo 9 的安装在标准的环境编译已有说明。
         INFO  [ecl/EKF] 5188000: commencing GPS fusion
         
     
-    控制台将打印出“PX4”的形状，加载指定机型的初始化和参数文件，等待（并连接到）仿真器。 Once there is an INFO print that [ecl/EKF] is `commencing GPS fusion` the vehicle is ready to arm.
+    控制台将打印出“PX4”的形状，加载指定机型的初始化和参数文件，等待（并连接到）仿真器。 一旦 INFO 打印出的 [ecl/EKF] 状态为 `commencing GPS fusion` ，则表明该载具已准备就绪可以解锁。
     
-    > **Note** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
+    > **Note** 在 Gazebo 中右击四旋翼模型允许从上下文菜单启用跟随模式，这样可以方便地将其保持在视图中。
     
     ![Gazebo UI](../../assets/simulation/gazebo/gazebo_follow.jpg)
     
-    You can bring it into the air by typing:
+    你可以通过输入以下指令让飞机起飞：
     
     ```sh
     pxh> commander takeoff
     ```
     
-    ## Usage/Configuration Options
+    ## 使用/配置选项
     
-    ### Headless Mode {#headless}
+    ### 无头模式 {#headless}
     
     Gazebo can be run in a *headless* mode in which the Gazebo UI is not launched. This starts up more quickly and uses less system resources (i.e. it is a more "lightweight" way to run the simulation).
     
