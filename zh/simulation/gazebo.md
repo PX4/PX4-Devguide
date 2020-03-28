@@ -55,8 +55,8 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     以上指令启动了一个具有完整 UI 的载具。 其他选项包括：
     
-    * [Starting PX4 and Gazebo separately](#start_px4_sim_separately) so that you can keep Gazebo running and only re-launch PX4 when needed (quicker than restarting both).
-    * Run the simulation in [Headless Mode](#headless), which does not start the Gazebo UI (this uses fewer resources and is much faster).
+    * 为了使 Gazebo 保持运行，请[分别启动 PX4 和 Gazebo](#start_px4_sim_separately)，并在需要时单独重新启动 PX4（比重新启动两者更快）。
+    * 在 [无头模式](#headless) 运行仿真将不会启动 Gazebo UI（使用的资源更少，速度更快）。
     
     ## Taking it to the Sky
     
