@@ -53,7 +53,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     > **Note** 如果发生构建错误， [文件和代码安装指南](../setup/dev_env.md) 是一个有用的参考。
     
-    The commands above launch a single vehicle with the full UI. Other options include:
+    以上指令启动了一个具有完整 UI 的载具。 其他选项包括：
     
     * [Starting PX4 and Gazebo separately](#start_px4_sim_separately) so that you can keep Gazebo running and only re-launch PX4 when needed (quicker than restarting both).
     * Run the simulation in [Headless Mode](#headless), which does not start the Gazebo UI (this uses fewer resources and is much faster).
