@@ -48,10 +48,10 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     | [标准垂起](../simulation/gazebo_vehicles.md#standard_vtol)                                              | `make px4_sitl gazebo_standard_vtol`   |
     | [尾座式垂起](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                           | `make px4_sitl gazebo_tailsitter`      |
     | [Ackerman 地面车辆（UGV/Rover）](../simulation/gazebo_vehicles.md#ugv)                                    | `make px4_sitl gazebo_rover`           |
-    | [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)         | `make px4_sitl gazebo_uuv_hippocampus` |
-    | [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                        | `make px4_sitl gazebo_boat`            |
+    | [HippoCampus TUHH（UUV：无人水下航行器）](../simulation/gazebo_vehicles.md#uuv)                               | `make px4_sitl gazebo_uuv_hippocampus` |
+    | [船（USV：无人驾驶水面艇）](../simulation/gazebo_vehicles.md#usv)                                              | `make px4_sitl gazebo_boat`            |
     
-    > **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
+    > **Note** 如果发生构建错误， [文件和代码安装指南](../setup/dev_env.md) 是一个有用的参考。
     
     The commands above launch a single vehicle with the full UI. Other options include:
     
