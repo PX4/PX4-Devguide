@@ -34,9 +34,9 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     make px4_sitl gazebo
     ```
     
-    下文列出了支持的载具类型和对应的` make `指令（点击链接查看载具图像）。
+    下文列出了支持的载具类型及对应的 `make` 指令（点击链接查看载具图像）。
     
-    > **Note** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
+    > **Note** 使用指令 `make px4_sitl list_vmd_make_targets` 获取构建目标的完整列表（并过滤掉以 `gazebo_` 开头的目标）。
     
     | Vehicle                                                                                                                      | Command                                |
     | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
