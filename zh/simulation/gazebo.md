@@ -38,18 +38,18 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     > **Note** 使用指令 `make px4_sitl list_vmd_make_targets` 获取构建目标的完整列表（并过滤掉以 `gazebo_` 开头的目标）。
     
-    | Vehicle                                                                                                                      | Command                                |
-    | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-    | [Quadrotor](../simulation/gazebo_vehicles.md#quadrotor)                                                                      | `make px4_sitl gazebo`                 |
-    | [Quadrotor with Optical Flow](../simulation/gazebo_vehicles.md#quadrotor_optical_flow)                                       | `make px4_sitl gazebo_iris_opt_flow`   |
-    | [3DR Solo (Quadrotor)](../simulation/gazebo_vehicles.md#3dr_solo)                                                            | `make px4_sitl gazebo_solo`            |
-    | <span id="typhoon_h480"></span>[Typhoon H480 (Hexrotor)](../simulation/gazebo_vehicles.md#typhoon_h480) (supports video streaming) | `make px4_sitl gazebo_typhoon_h480`    |
-    | [Standard Plane](../simulation/gazebo_vehicles.md#standard_plane)                                                            | `make px4_sitl gazebo_plane`           |
-    | [标准垂起](../simulation/gazebo_vehicles.md#standard_vtol)                                                                       | `make px4_sitl gazebo_standard_vtol`   |
-    | [Tailsitter VTOL](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                                          | `make px4_sitl gazebo_tailsitter`      |
-    | [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                                         | `make px4_sitl gazebo_rover`           |
-    | [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)                                  | `make px4_sitl gazebo_uuv_hippocampus` |
-    | [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                                                 | `make px4_sitl gazebo_boat`            |
+    | 载具类型                                                                                                | 指令                                     |
+    | --------------------------------------------------------------------------------------------------- | -------------------------------------- |
+    | [四旋翼](../simulation/gazebo_vehicles.md#quadrotor)                                                   | `make px4_sitl gazebo`                 |
+    | [具有光流的四旋翼](../simulation/gazebo_vehicles.md#quadrotor_optical_flow)                                 | `make px4_sitl gazebo_iris_opt_flow`   |
+    | [3DR Solo（四旋翼）](../simulation/gazebo_vehicles.md#3dr_solo)                                          | `make px4_sitl gazebo_solo`            |
+    | <span id="typhoon_h480"></span>[Typhoon H480（六旋翼）](../simulation/gazebo_vehicles.md#typhoon_h480) （支持视频流） | `make px4_sitl gazebo_typhoon_h480`    |
+    | [标准构型的固定翼](../simulation/gazebo_vehicles.md#standard_plane)                                         | `make px4_sitl gazebo_plane`           |
+    | [标准垂起](../simulation/gazebo_vehicles.md#standard_vtol)                                              | `make px4_sitl gazebo_standard_vtol`   |
+    | [尾座式垂起](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                           | `make px4_sitl gazebo_tailsitter`      |
+    | [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                | `make px4_sitl gazebo_rover`           |
+    | [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)         | `make px4_sitl gazebo_uuv_hippocampus` |
+    | [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                        | `make px4_sitl gazebo_boat`            |
     
     > **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
     
