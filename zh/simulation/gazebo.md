@@ -164,7 +164,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
         * 如果已预设，则启用 GPS。 您可以通过删除以下行来禁用它：`<gpsNoise> true </gpsNoise>`
         * 如果未预设，则禁用 GPS 。 您可以通过将` gpsNoise `元素添加到` gps_plugin `部分来启用它（如上所示）。
     
-    The next time you build/restart Gazebo it will use the new GPS noise setting.
+    下次构建/重新启动 Gazebo 时，将使用新的 GPS 噪声设置。
     
     ## Loading a Specific World {#set_world}
     
