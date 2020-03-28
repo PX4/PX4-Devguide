@@ -112,11 +112,11 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     ### 设置自定义起飞位置 {#custom_takeoff_location}
     
-    The default takeoff location in SITL Gazebo can be overridden using environment variables.
+    可以使用环境变量重写 SITL Gazebo 中的默认起飞位置。
     
-    The variables to set are: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
+    要设置的变量有：`PX4_HOME_LAT`、`PX4_HOME_LON` 和 `PX4_HOME_ALT`。
     
-    For example:
+    例如：
     
         export PX4_HOME_LAT=28.452386
         export PX4_HOME_LON=-13.867138
@@ -124,7 +124,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
         make px4_sitl gazebo
         
     
-    ### Change Simulation Speed
+    ### 更改仿真速率
     
     The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
     
