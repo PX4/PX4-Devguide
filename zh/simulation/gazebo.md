@@ -102,15 +102,15 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     ### 无头模式 {#headless}
     
-    Gazebo can be run in a *headless* mode in which the Gazebo UI is not launched. This starts up more quickly and uses less system resources (i.e. it is a more "lightweight" way to run the simulation).
+    Gazebo 可以在 *无头* 模式下运行，在这种模式下 Gazebo UI 不会启动。 这会使 Gazebo 的启动速度更快并且使用更少的系统资源（即为一种更“轻量级”的运行仿真的方式）。
     
-    Simply prefix the normal `make` command with `HEADLESS=1` as shown:
+    只需在 `make` 指令前添加 `HEADLESS=1`，如下所示：
     
     ```bash
     HEADLESS=1 make px4_sitl gazebo_plane
     ```
     
-    ### Set Custom Takeoff Location {#custom_takeoff_location}
+    ### 设置自定义起飞位置 {#custom_takeoff_location}
     
     The default takeoff location in SITL Gazebo can be overridden using environment variables.
     
