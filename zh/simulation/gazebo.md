@@ -126,15 +126,15 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     ### 更改仿真速率
     
-    The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
+    可以通过设置环境变量 `PX4_SIM_SPEED_FACTOR` 来加快或减慢仿真环境相对于实际时间的流速。
     
         export PX4_SIM_SPEED_FACTOR=2
         make px4_sitl_default gazebo
         
     
-    For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
+    更多相关信息请参考：[Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
     
-    ### Using a Joystick
+    ### 使用游戏手柄
     
     Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
     
