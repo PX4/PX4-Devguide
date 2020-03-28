@@ -17,7 +17,7 @@
 Gazebo 9 的安装在标准的环境编译已有说明。
 
 * ** macOS：** [ Mac 上的开发环境](../setup/dev_env_mac.md)
-* **Linux：**Ubuntu LTS / Debian Linux 上安装 Gazebo \ JMAVSim 和 Nuttx（Pixhawk）的开发环境。</li> 
+* **Linux：**Ubuntu LTS/Debian Linux 上安装 Gazebo、 JMAVSim 和 Nuttx（Pixhawk）的开发环境。</li> 
     
     * ** Windows：**暂不支持。</ul> 
     
@@ -47,7 +47,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     | [标准构型的固定翼](../simulation/gazebo_vehicles.md#standard_plane)                                         | `make px4_sitl gazebo_plane`           |
     | [标准垂起](../simulation/gazebo_vehicles.md#standard_vtol)                                              | `make px4_sitl gazebo_standard_vtol`   |
     | [尾座式垂起](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                           | `make px4_sitl gazebo_tailsitter`      |
-    | [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                | `make px4_sitl gazebo_rover`           |
+    | [Ackerman 地面车辆（UGV/Rover）](../simulation/gazebo_vehicles.md#ugv)                                    | `make px4_sitl gazebo_rover`           |
     | [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)         | `make px4_sitl gazebo_uuv_hippocampus` |
     | [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                        | `make px4_sitl gazebo_boat`            |
     
