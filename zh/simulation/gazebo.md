@@ -58,11 +58,11 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     * 为了使 Gazebo 保持运行，请[分别启动 PX4 和 Gazebo](#start_px4_sim_separately)，并在需要时单独重新启动 PX4（比重新启动两者更快）。
     * 在 [无头模式](#headless) 运行仿真将不会启动 Gazebo UI（使用的资源更少，速度更快）。
     
-    ## Taking it to the Sky
+    ## 让飞行器升空
     
-    The `make` commands above first build PX4, and then run it along with the Gazebo simulator.
+    上文的 `make` 指令首先构建PX4，然后同时运行 PX4 与 Gazebo 仿真器。
     
-    Once PX4 has started it will launch the PX4 shell as shown below.
+    PX4运行后将启动如下所示的 PX4 shell 脚本。
     
         ______  __   __    ___ 
         | ___ \ \ \ / /   /   |
@@ -86,7 +86,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
         INFO  [ecl/EKF] 5188000: commencing GPS fusion
         
     
-    The console will print out status as PX4 loads the airframe-specific initialisation and parameter files, waits for (and connects to) the simulator. Once there is an INFO print that [ecl/EKF] is `commencing GPS fusion` the vehicle is ready to arm.
+    控制台将打印出“PX4”的形状，加载指定机型的初始化和参数文件，等待（并连接到）仿真器。 Once there is an INFO print that [ecl/EKF] is `commencing GPS fusion` the vehicle is ready to arm.
     
     > **Note** Right-clicking the quadrotor model allows to enable follow mode from the context menu, which is handy to keep it in view.
     
