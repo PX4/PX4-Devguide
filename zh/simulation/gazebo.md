@@ -201,9 +201,9 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     ## 模拟的航测摄影机
     
-    The *Gazebo* survey camera simulates a [MAVLink camera](https://mavlink.io/en/services/camera.html) that captures geotagged JPEG images and sends camera capture information to a connected ground station. The camera also supports video streaming. It can be used to test camera capture, in particular within survey missions.
+    *Gazebo* 的航测摄像机模拟了一台 [MAVLink 摄像机](https://mavlink.io/en/services/camera.html)，它捕捉地理标记的JPEG图像，并将摄像机捕捉到的信息发送到所连接的地面站。 该摄像机同时支持视频流。 它可用于测试摄像机的拍摄性能，特别是在航测任务中。
     
-    The camera emits the [CAMERA_IMAGE_CAPTURED](https://mavlink.io/en/messages/common.html#CAMERA_IMAGE_CAPTURED) message every time an image is captured. The captured images are saved to: **Firmware/build/px4_sitle_default/tmp/frames/DSC_n_.jpg** (where *n* starts as 00000 and is iterated by one on each capture).
+    每当捕获到图像时，相机都会发送出 [CAMERA_IMAGE_CAPTURED](https://mavlink.io/en/messages/common.html#CAMERA_IMAGE_CAPTURED) 消息。 The captured images are saved to: **Firmware/build/px4_sitle_default/tmp/frames/DSC_n_.jpg** (where *n* starts as 00000 and is iterated by one on each capture).
     
     To simulate a plane with this camera:
     
