@@ -181,7 +181,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     ## 分别启动 Gazebo 和 PX4  {#start_px4_sim_separately}
     
-    For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
+    对于扩展开发会话而言，将 Gazebo 和 PX4 分别启动或在IDE中启动可能更加方便。
     
     In addition to the existing cmake targets that run `sitl_run.sh` with parameters for px4 to load the correct model it creates a launcher targets named `px4_<mode>` that is a thin wrapper around original sitl px4 app. This thin wrapper simply embeds app arguments like current working directories and the path to the model file.
     
