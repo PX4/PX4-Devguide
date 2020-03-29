@@ -16,9 +16,9 @@ Request access from dev team. -->
 * 在某些模式，外环(位置回路) 可能会被绕过 (图中在外环之后增加一个多路开关来表示)。 只有在位置保持模式或某轴无速度请求时，位置回路才会发挥作用。
 * 内环 (速度回路) 控制器使用箝位法对积分器做了抗饱和处理 (ARW)。
 
-## Fixed-Wing Position Controller
+## 固定翼位置控制器
 
-### Total Energy Control System (TECS)
+### 通过总能量控制系统(TECS)，PX4可以持续得对固定翼飞行器的真空速和高度进行控制。这其中的代码通过一个用库（这个库是用于固定翼位置控制模块）作为接口。
 
 The PX4 implementation of the Total Energy Control System (TECS) enables simultaneous control of true airspeed and altitude of a fixed wing aircraft. The code is implemented as a library which is used in the fixed wing position control module.
 
