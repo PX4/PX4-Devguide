@@ -177,9 +177,9 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     > **Note** 模型（`plane_cam`）后面有两个下划线，表示使用默认调试器（无）。 详见 [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets)。
     
-    您也可以使用环境变量 `PX4_SITL_WORLD` 来指定要加载的世界的完整路径。 This is useful if testing a new world that is not yet included with PX4.
+    您也可以使用环境变量 `PX4_SITL_WORLD` 来指定要加载的世界的完整路径。 如果您想测试一个暂未包含在PX4中的新世界，这种方式非常有用。
     
-    ## Starting Gazebo and PX4 Separately {#start_px4_sim_separately}
+    ## 分别启动 Gazebo 和 PX4  {#start_px4_sim_separately}
     
     For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
     
