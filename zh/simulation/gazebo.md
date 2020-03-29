@@ -166,18 +166,18 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     下次构建/重新启动 Gazebo 时，将使用新的 GPS 噪声设置。
     
-    ## 加载指定的世界模型 {#set_world}
+    ## 加载指定的世界 {#set_world}
     
     PX4支持多个 [Gazebo Worlds](../simulation/gazebo_worlds.md) ，均存储在 [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds) 中。在默认情况下，Gazebo 显示的是一个平坦无特征的平面，如 [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world) 中所定义。
     
-    您可以在PX4配置目标中将它们指定为最终选项，进而加载任意世界模型。 例如，要加载 *warehouse* 世界，您可以在编译时添加如下信息：
+    您可以在PX4配置目标中将它们指定为最终选项，进而加载任意世界。 例如，要加载 *warehouse* 世界，您可以在编译时添加如下信息：
     
         make px4_sitl_default gazebo_plane_cam__warehouse
         
     
-    > **Note** There are two underscores after the model (`plane_cam`) indicating that the default debugger is used (none). See [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
+    > **Note** 模型（`plane_cam`）后面有两个下划线，表示使用默认调试器（无）。 详见 [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets)。
     
-    You can also specify the full path to a world to load using the `PX4_SITL_WORLD` environment variable. This is useful if testing a new world that is not yet included with PX4.
+    您也可以使用环境变量 `PX4_SITL_WORLD` 来指定要加载的世界的完整路径。 This is useful if testing a new world that is not yet included with PX4.
     
     ## Starting Gazebo and PX4 Separately {#start_px4_sim_separately}
     
