@@ -246,13 +246,13 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     ### 必备组件
     
-    视频流需要 *GStreamer 1.0*。 The required dependencies should already have been [installed when you set up Gazebo](#installation) (they are included in the standard PX4 installation scripts/instructions for macOS and Ubuntu Linux).
+    视频流需要 *GStreamer 1.0*。 [当您设置 Gazebo 时](#installation)，所需的依赖项应该已经安装完毕（它们包含在 macOS 和 UbuntuLinux 系统下的标准 PX4 安装脚本/说明中）。
     
-    > **Note** FYI only, the dependencies include: `gstreamer1.0-plugins-base`, g`streamer1.0-plugins-good`, `gstreamer1.0-plugins-bad`, `gstreamer1.0-plugins-ugly`, `libgstreamer-plugins-base1.0-dev`.
+    > **Note** 仅供参考，依赖项包括：`gstreamer1.0-plugins-base`，`gstreamer1.0-plugins-good`，`gstreamer1.0-plugins-bad`，`gstreamer1.0-plugins-ugly`，`libgstreamer-plugins-base1.0-dev`。
     
-    ### Start/Stop Video Streaming
+    ### 启动/停止视频流
     
-    Video streaming is automatically started when supported by the target vehicle. For example, to start streaming video on the Typhoon H480:
+    对支持的目标载具，视频流将自动启动。 例如，要在台风 Typhoon H480 上启动视频流：
     
         make px4_sitl gazebo_typhoon_h480
         
