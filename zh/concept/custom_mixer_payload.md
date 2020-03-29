@@ -31,7 +31,7 @@ M: 1
 S: 3 4  10000  10000      0 -10000  10000
 ```
 
-> **注释**文件定义了一个4输出的[简单混控器](../concept/mixing.md#simple-mixer) - `M: 1` indicates an output that is defined by one control input (the following `S` line). - `S: 3`_`n`_ indicates that the input is the n<>th<> input of [Control Group 3 (Manual Passthrough)](../concept/mixing.md#control-group-3-manual-passthrough). So for `S: 3 5` the input is called "RC aux1" (this maps to the RC channel set in parameter `RC_MAP_AUX1`). - The section declaration order defines the order of the outputs when assigned to a physical bus (e.g. the third section might be assigned to AUX3).
+> **注释**文件定义了一个4输出的[简单混控器](../concept/mixing.md#simple-mixer) - `M：1` 表示由一个控制输入定义的输出(以下的`S` 行内容)。 - `S：3`_`n`_ 表示输入的是<>th<> 输入的[控制组3(手动通过)](../concept/mixing.md#control-group-3-manual-passthrough)。 So for `S: 3 5` the input is called "RC aux1" (this maps to the RC channel set in parameter `RC_MAP_AUX1`). - The section declaration order defines the order of the outputs when assigned to a physical bus (e.g. the third section might be assigned to AUX3).
 
 
 Start by copying the mixer file and putting it onto the SD Card at: **/etc/mixers/pass.aux.mix** (see [Mixing and Actuators > Loading a Custom Mixer](../concept/mixing.md#loading_custom_mixer).
