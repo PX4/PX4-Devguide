@@ -1,6 +1,6 @@
-# 具有 ROS/Gazebo 的 OctoMap 3D 模型
+# ROS/Gazebo 中的 OctoMap 3D 模型
 
-[ OctoMap 库 ](http://octomap.github.io/)是一个开源库，用于根据传感器数据生成体积 3D 环境模型。 然后，该模型数据可由无人机用于导航和避障。
+[OctoMap 库](http://octomap.github.io/) 是一个开源库，用于根据传感器数据生成体积 3D 环境模型。 然后，该模型数据可由无人机用于导航和避障。
 
 本指南介绍了如何使用 *OctoMap* 与 Gazebo [Rotors Simulato ](https://github.com/ethz-asl/rotors_simulator/wiki/RotorS-Simulator) 和 ROS。
 
