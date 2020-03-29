@@ -1,8 +1,8 @@
-# Gazebo 载具
+# Gazebo 机型
 
-本话题列出/展示 PX4 [Gazebo](../simulation/gazebo.md) 仿真支持的载具类型以及运行这些载具所需的 `make` 指令（在 **Fimeware** 目录下开启一个终端来运行这些指令）。
+本话题列出/展示 PX4 [Gazebo](../simulation/gazebo.md) 仿真支持的机型以及运行这些机型所需的 `make` 指令（在 **Fimeware** 目录下启动一个终端来运行这些指令）。
 
-支持的载具类型包括：多旋翼、VTOL、尾座式 VTOL、固定翼、无人车、潜艇/无人水下航行器。
+支持的机型种类包括：多旋翼、VTOL、尾座式 VTOL、固定翼、无人车、潜艇/无人水下航行器。
 
 > **Tip** 使用命令 `make px4_sitl list_vmd_make_targets` 获取构建目标的完整列表（你还可以过滤掉以 `gazebo_` 开头的目标）。
 
