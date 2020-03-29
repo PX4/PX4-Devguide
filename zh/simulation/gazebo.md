@@ -197,9 +197,9 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     * 在 IDE 中选择要调试的 `px4_<mode>` 目标（例如 `px4_iris` ）。
     * 直接从 IDE 启动调试会话。
     
-    This approach significantly reduces the debug cycle time because simulator (e.g. Gazebo) is always running in background and you only re-run the px4 process which is very light.
+    这种方法可显著缩短调试周期，因为仿真器（例如 Gazebo ）总是在后台运行，而您只需重新运行 px4 这个非常轻量的进程。
     
-    ## Simulated Survey Camera
+    ## 模拟的航测摄影机
     
     The *Gazebo* survey camera simulates a [MAVLink camera](https://mavlink.io/en/services/camera.html) that captures geotagged JPEG images and sends camera capture information to a connected ground station. The camera also supports video streaming. It can be used to test camera capture, in particular within survey missions.
     
