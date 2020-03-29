@@ -16,7 +16,7 @@
 
 Gazebo 9 的安装在标准的环境编译已有说明。
 
-* ** macOS：** [ Mac 上的开发环境](../setup/dev_env_mac.md)
+* ** macOS：** [ Mac 上的开发环境](../setup/dev_env_mac.md)。
 * **Linux：**Ubuntu LTS/Debian Linux 上安装 Gazebo、 JMAVSim 和 Nuttx（Pixhawk）的开发环境。</li> 
     
     * ** Windows：**暂不支持。</ul> 
@@ -183,19 +183,19 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     对于扩展开发会话而言，将 Gazebo 和 PX4 分别启动或在IDE中启动可能更加方便。
     
-    In addition to the existing cmake targets that run `sitl_run.sh` with parameters for px4 to load the correct model it creates a launcher targets named `px4_<mode>` that is a thin wrapper around original sitl px4 app. This thin wrapper simply embeds app arguments like current working directories and the path to the model file.
+    除了现有 cmake 目标（使用 px4 的参数运行` sitl_run.sh `的以加载正确的模型）之外，它还会创建一个名为 `px4_<mode>` 的启动器目标，这是原始 sitl px4 应用程序的一个瘦包装器。这个瘦包装器只嵌入应用程序参数，如当前工作目录和模型文件的路径。
     
-    To start Gazebo and PX4 separately:
+    分别启动 Gazebo 和 PX4：
     
-    * Run gazebo (or any other sim) server and client viewers via the terminal specifing an `_ide` variant: 
+    * 通过在终端中指定环境变量 `_ide` 来运行 gazebo（或任何其他 sim 卡）服务器和客户端查看器： 
             sh
-            make px4_sitl gazebo___ide or 
+            make px4_sitl gazebo___ide 或者 
         
             sh
             make px4_sitl gazebo_iris_ide
     
-    * In your IDE select `px4_<mode>` target you want to debug (e.g. `px4_iris`)
-    * Start the debug session directly from IDE
+    * 在 IDE 中选择要调试的 `px4_<mode>` 目标（例如 `px4_iris` ）。
+    * 直接从 IDE 启动调试会话。
     
     This approach significantly reduces the debug cycle time because simulator (e.g. Gazebo) is always running in background and you only re-run the px4 process which is very light.
     
