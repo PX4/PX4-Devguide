@@ -1,11 +1,11 @@
-# Custom Payload Mixers
+# 自定义有效载荷混控器
 
-This topic shows how to add a custom [mixer](../concept/mixing.md) for programmatically controlling a custom payload (e.g., an electromagnetic gripper).
+此主题展示了如何添加一个用以可编程控制自定义载荷的自定义的[混控器](../concept/mixing.md)（比如电磁控制的机械手）
 
-The topic is intended for developers who want to support payload types that do not have existing control group definitions (e.g. gimbals have a control group, but grippers do not). You should already have read [Mixing and Actuators](../concept/mixing.md).
+此主题是为那些想要支持现在没有现成控制组定义的载荷的开发者（比如说，云台有一个现成的控制组，但是机械手没有） 您应该已经阅读过[混控和执行器](../concept/mixing.md)
 
 
-## Payload Mixer Example
+## 载荷混控器示例
 
 A payload mixer is just a [simple mixer](../concept/mixing.md#simple-mixer) that maps any of the function values from [Control Group #6 (First Payload)](../concept/mixing.md#control_group_6) to a particular output. You can then publish uORB topics to the selected control group function and their value will be mapped to the specified output.
 
