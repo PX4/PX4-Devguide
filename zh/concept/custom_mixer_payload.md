@@ -7,7 +7,7 @@
 
 ## 载荷混控器示例
 
-A payload mixer is just a [simple mixer](../concept/mixing.md#simple-mixer) that maps any of the function values from [Control Group #6 (First Payload)](../concept/mixing.md#control_group_6) to a particular output. You can then publish uORB topics to the selected control group function and their value will be mapped to the specified output.
+有效载荷混控器只是一个 [简单混控器](../concept/mixing.md#simple-mixer) 用于映射从[控制组 #6 (第一个载荷)](../concept/mixing.md#control_group_6) 到某一特定输出的任一函数值 You can then publish uORB topics to the selected control group function and their value will be mapped to the specified output.
 
 For this example, we'll create a custom mixer based on the *RC passthrough mixer* ([pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)). This mixer is commonly loaded into the AUX PWM ports on large multicopters). It passes through the values of 4 user-defined RC channels (set using the [RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) parameters) to the first four outputs on the AUX PWM output.
 
