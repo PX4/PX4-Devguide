@@ -166,7 +166,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     下次构建/重新启动 Gazebo 时，将使用新的 GPS 噪声设置。
     
-    ## Loading a Specific World {#set_world}
+    ## 加载指定的世界模型 {#set_world}
     
     PX4 supports a number of [Gazebo Worlds](../simulation/gazebo_worlds.md), which are stored in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) By default Gazebo displays a flat featureless plane, as defined in [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world).
     
