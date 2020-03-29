@@ -22,16 +22,16 @@ You can also access the shell in a terminal using the **mavlink_shell.py** scrip
    ```
 1. Open terminal (in Firmware directory) and start the shell:
    ```sh
-   # For serial port
+   # 用于串口
    ./Tools/mavlink_shell.py /dev/ttyACM0
    ```
     ```sh
-   # For Wifi connection
+   # 用于 WiFi 连接
    ./Tools/mavlink_shell.py 0.0.0.0:14550
    ```
 
 Use `mavlink_shell.py -h` to get a description of all available arguments.
 
-## Using the MAVLink Shell
+## 使用 MAVLink Shell
 
 For information see: [PX4 Consoles/Shells > Using Consoles/Shells](../debug/consoles.md#using_the_console).
