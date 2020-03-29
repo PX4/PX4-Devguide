@@ -219,11 +219,11 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     > **Note** 模拟相机的执行代码见 [PX4/sitl_gazebo/src/gazebo_geotagged_images_plugin.cpp](https://github.com/PX4/sitl_gazebo/blob/master/src/gazebo_geotagged_images_plugin.cpp)。
     
-    ## 模拟降落/飞行终止 {#flight_termination}
+    ## 仿真降落/飞行终止 {#flight_termination}
     
-    *Gazebo* can be used to simulate deploying a [parachute](https://docs.px4.io/master/en/peripherals/parachute.html) during [Flight Termination](https://docs.px4.io/master/en/advanced_config/flight_termination.html) (flight termination is triggered by the PWM command that is simulated in *Gazebo*).
+    *Gazebo* 可用于仿真在[飞行终止](https://docs.px4.io/master/en/advanced_config/flight_termination.html)期间展开[降落伞](https://docs.px4.io/master/en/peripherals/parachute.html)（飞行终止由 *Gazebo* 中模拟的 PWM 指令触发）。
     
-    The `if750a` target has a parachute attached to the vehicle. To simulate the vehicle, run the following command:
+    `IF750A` 机身上装有降落伞。 仿真该型飞行器，请运行以下指令：
     
         make px4_sitl gazebo_if750a
         
