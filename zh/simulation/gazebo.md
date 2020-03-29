@@ -238,9 +238,9 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     ## 视频流 {#video}
     
-    Gazebo 的 PX4 SITL 支持来自连接到设备模型的 Gazebo 相机传感器的 DP 视频流。 When streaming is enabled, you can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera. The video is streamed using a *gstreamer* pipeline and can be enabled/disabled using a button in the Gazebo UI.
+    Gazebo 的 PX4 SITL 支持来自连接到设备模型的 Gazebo 相机传感器的 DP 视频流。 启用视频流后，您可以从 *QGroundControl*（在UDP端口5600上）连接到它，并观看在 Gazebo 环境下该仿真载具的视频，就像从真实的摄像机观看一样。 视频使用 *GStreamer* 管道进行流式传输，并且可以使用 Gazebo UI 中的按钮进行启用/禁用。
     
-    The Gazebo camera sensor is supported/enabled on the following frames:
+    Gazebo 摄像机传感器可在以下机型上被支持/启用：
     
     * [Typhoon H480](#typhoon_h480)
     
