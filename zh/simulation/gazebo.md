@@ -228,17 +228,17 @@ Gazebo 9 的安装在标准的环境编译已有说明。
         make px4_sitl gazebo_if750a
         
     
-    To put the vehicle into flight termination state, you can force it to fail a [safety check](https://docs.px4.io/master/en/config/safety.html) that has flight termination set as the failsafe action. For example, you could do this by forcing a [Geofence violation](https://docs.px4.io/master/en/config/safety.html#geofence-failsafe).
+    要使车辆进入飞行终止状态，您可以强制使其在[安全检查](https://docs.px4.io/master/en/config/safety.html)中失败，并确保飞行终止设置为故障保护动作。 比如，您可以通过强制设置 [侵犯地理围栏](https://docs.px4.io/master/en/config/safety.html#geofence-failsafe) 来做到这一点。
     
-    For more information see:
+    获取更多信息，请见：
     
-    * [Flight Termination](https://docs.px4.io/master/en/advanced_config/flight_termination.html) 
-    * [Parachute](https://docs.px4.io/master/en/peripherals/parachute.html)
-    * [Safety Configuration (Failsafes)](https://docs.px4.io/master/en/config/safety.html)
+    * [飞行终止](https://docs.px4.io/master/en/advanced_config/flight_termination.html) 
+    * [降落伞](https://docs.px4.io/master/en/peripherals/parachute.html)
+    * [ 安全配置（故障保护） ](https://docs.px4.io/master/en/config/safety.html)
     
-    ## Video Streaming {#video}
+    ## 视频流 {#video}
     
-    PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor attached to a vehicle model. When streaming is enabled, you can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera. The video is streamed using a *gstreamer* pipeline and can be enabled/disabled using a button in the Gazebo UI.
+    Gazebo 的 PX4 SITL 支持来自连接到设备模型的 Gazebo 相机传感器的 DP 视频流。 When streaming is enabled, you can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera. The video is streamed using a *gstreamer* pipeline and can be enabled/disabled using a button in the Gazebo UI.
     
     The Gazebo camera sensor is supported/enabled on the following frames:
     
