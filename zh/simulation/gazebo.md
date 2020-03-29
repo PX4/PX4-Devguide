@@ -244,9 +244,9 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     * [Typhoon H480](#typhoon_h480)
     
-    ### Prerequisites
+    ### 必备组件
     
-    *Gstreamer 1.0* is required for video streaming. The required dependencies should already have been [installed when you set up Gazebo](#installation) (they are included in the standard PX4 installation scripts/instructions for macOS and Ubuntu Linux).
+    视频流需要 *GStreamer 1.0*。 The required dependencies should already have been [installed when you set up Gazebo](#installation) (they are included in the standard PX4 installation scripts/instructions for macOS and Ubuntu Linux).
     
     > **Note** FYI only, the dependencies include: `gstreamer1.0-plugins-base`, g`streamer1.0-plugins-good`, `gstreamer1.0-plugins-bad`, `gstreamer1.0-plugins-ugly`, `libgstreamer-plugins-base1.0-dev`.
     
