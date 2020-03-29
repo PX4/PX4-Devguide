@@ -11,7 +11,7 @@
 
 [PX4/sitl_gazebo/worlds/baylands.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/baylands.world)
 
-![Baylands World](../../assets/simulation/gazebo/worlds/baylands.jpg)
+![海湾世界](../../assets/simulation/gazebo/worlds/baylands.jpg)
 
 
 ## 船舶
@@ -37,13 +37,13 @@
 
 [PX4/sitl_gazebo/worlds/ksql_airport.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/ksql_airport.world)
 
-![KSQL Airport World](../../assets/simulation/gazebo/worlds/ksql_airport.jpg)
+![KSQL机场世界](../../assets/simulation/gazebo/worlds/ksql_airport.jpg)
 
 ## 麦克米兰机场
 
 [PX4/sitl_gazebo/worlds/mcmillan_airfield.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/mcmillan_airfield.world)
 
-![McMillan Airfield World](../../assets/simulation/gazebo/worlds/mcmillan_airfield.jpg)
+![麦克米兰机场世界](../../assets/simulation/gazebo/worlds/mcmillan_airfield.jpg)
 
 
 ## 断壁残垣
@@ -60,7 +60,7 @@
 
 [PX4/sitl_gazebo/worlds/cccc.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world)
 
-## Uneven
+## 起伏不平的地面
 
 [PX4/sitl_gazebo/worlds/uneven.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/uneven.world)
 
@@ -69,13 +69,13 @@
 
 [PX4/sitl_gazebo/worlds/uuv_hippocampus.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/uuv_hippocampus.world)
 
-## Warehouse
+## 仓库
 
 [PX4/sitl_gazebo/worlds/warehouse.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/warehouse.world)
 
-## Yosemite
+## 约塞米蒂
 
 [PX4/sitl_gazebo/worlds/yosemite.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/yosemite.world)
 
-![Yosemite](../../assets/simulation/gazebo/worlds/yosemite.jpg)
+![约塞米蒂](../../assets/simulation/gazebo/worlds/yosemite.jpg)
 
