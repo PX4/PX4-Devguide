@@ -168,9 +168,9 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     ## 加载指定的世界模型 {#set_world}
     
-    PX4 supports a number of [Gazebo Worlds](../simulation/gazebo_worlds.md), which are stored in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) By default Gazebo displays a flat featureless plane, as defined in [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world).
+    PX4支持多个 [Gazebo Worlds](../simulation/gazebo_worlds.md) ，均存储在 [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds) 中。在默认情况下，Gazebo 显示的是一个平坦无特征的平面，如 [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world) 中所定义。
     
-    You can load any of the worlds by specifying them as the final option in the PX4 configuration target. For example, to load the *warehouse* world, you can append it as shown:
+    您可以在PX4配置目标中将它们指定为最终选项，进而加载任意世界模型。 例如，要加载 *warehouse* 世界，您可以在编译时添加如下信息：
     
         make px4_sitl_default gazebo_plane_cam__warehouse
         
