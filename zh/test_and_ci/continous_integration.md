@@ -14,4 +14,4 @@ Travis-ci 还有一个包含测试的 macOS px4_sitl 版本。
 
 ## [CircleCI](https://circleci.com/gh/PX4/Firmware)
 
-CircleCI 使用 docker image [ px4io/px4-dev-nuttx-gcc_next ](https://hub.docker.com/r/px4io/px4-dev-nuttx-gcc_next/)测试建议的下一版 GCC，以用于稳定的固件版本。 它使用 makefile target `quick_check`，会编译 `px4_fmu-v4_default`，`px4_sitl_default`，运行测试，并验证代码样式。
+CircleCI 使用 Docker 镜像 [ px4io/px4-dev-nuttx-gcc_next ](https://hub.docker.com/r/px4io/px4-dev-nuttx-gcc_next/)测试建议的下一版 GCC，以用于稳定的固件版本。 它使用 makefile 目标 `quick_check`，会编译 `px4_fmu-v4_default`，`px4_sitl_default`，运行测试，并验证代码样式。
