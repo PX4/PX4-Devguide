@@ -1,28 +1,28 @@
-# Gazebo Vehicles
+# Gazebo 载具
 
-This topic lists/displays the vehicles supported by the PX4 [Gazebo](../simulation/gazebo.md) simulation and the `make` commands required to run them (the commands are run from a terminal in the **Firmware** directory).
+本话题列出/展示了 PX4 [Gazebo](../simulation/gazebo.md) 仿真支持的载具类型以及运行这些载具所需的 `make` 指令（在 **Fimeware** 目录下开启一个终端来运行这些指令）。
 
-Supported vehicle types include: mutirotors, VTOL, VTOL Tailsitter, Plane, Rover, Submarine/UUV.
+支持的载具类型包括：多旋翼、VTOL、尾座式 VTOL、固定翼、无人车、潜艇/无人水下航行器。
 
-> **Tip** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
+> **Tip** 使用命令 `make px4_sitl list_vmd_make_targets` 获取构建目标的完整列表（你还可以过滤掉以 `gazebo_` 开头的目标）。
 
 <span></span>
-> **Note** The [Gazebo](../simulation/gazebo.md) page shows how to install Gazebo, how to enable video and load custom maps, and many other configuration options.
+> **Note** [Gazebo](../simulation/gazebo.md) 页面展示了如何安装 Gazebo、如何启用视频并加载自定义地图以及许多其他的配置选项。
 
 
-## Quadrotor (Default) {#quadrotor}
+## 四旋翼（默认） {#quadrotor}
 
 ```sh
 make px4_sitl gazebo
 ```
 
-## Quadrotor with Optical Flow {#quadrotor_optical_flow)
+## 带有光流的四旋翼（#quadrotor_optical_flow）
 
 ```sh
 make px4_sitl gazebo_iris_opt_flow
 ```
 
-## 3DR Solo (Quadrotor) {#3dr_solo}
+## 3DR Solo（四旋翼） {#3dr_solo}
 
 ```sh
 make px4_sitl gazebo_solo
@@ -31,7 +31,7 @@ make px4_sitl gazebo_solo
 ![3DR Solo in Gazebo](../../assets/simulation/gazebo/vehicles/solo.png)
 
 
-## Typhoon H480 (Hexrotor) {#typhoon_h480}
+## Typhoon H480（六旋翼） {#typhoon_h480}
 
 ```
 make px4_sitl gazebo_typhoon_h480
