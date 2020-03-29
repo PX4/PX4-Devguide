@@ -1,6 +1,6 @@
-# Gazebo 世界
+# Gazebo 世界（Worlds）
 
-此话题提供 PX4 支持的 [Gazebo](../simulation/gazebo.md) 世界的有关图像/信息。
+本主题提供 PX4 支持的 [Gazebo](../simulation/gazebo.md) 世界的有关图像/信息。
 
 在默认情况下，对不同的 PX4 载具类型使用 `make` 指令会加载指定的世界。 您也可以手动指定要加载的世界：[Gazebo模拟 &#062 加载指定世界](../simulation/gazebo.md#set_world)。
 
