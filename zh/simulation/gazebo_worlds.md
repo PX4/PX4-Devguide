@@ -1,25 +1,25 @@
-# Gazebo Worlds
+# Gazebo 世界
 
-This topic provides imagery/information about the [Gazebo](../simulation/gazebo.md) worlds supported by PX4.
+此话题提供 PX4 支持的 [Gazebo](../simulation/gazebo.md) 世界的有关图像/信息。
 
-Specific worlds are loaded by default for different PX4 vehicle `make` targets. You can also manually specify the world to load: [Gazebo Simulation > Loading a Specific World](../simulation/gazebo.md#set_world).
+在默认情况下，对不同的 PX4 载具类型使用 `make` 指令会加载指定的世界。 您也可以手动指定要加载的世界：[Gazebo模拟 &#062 加载指定世界](../simulation/gazebo.md#set_world)。
 
-The source code for supported worlds can be found on GitHub here: [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds).
+所支持世界的源代码可在 GitHub 上找到：[PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)。
 
 
-## Baylands
+## 海湾
 
 [PX4/sitl_gazebo/worlds/baylands.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/baylands.world)
 
 ![Baylands World](../../assets/simulation/gazebo/worlds/baylands.jpg)
 
 
-## Boat
+## 船舶
 
 [PX4/sitl_gazebo/worlds/boat.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/boat.world)
 
 
-## Empty
+## 空白
 
 [PX4/sitl_gazebo/worlds/empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world)
 
@@ -33,24 +33,24 @@ The source code for supported worlds can be found on GitHub here: [PX4/sitl_gaze
 
 [PX4/sitl_gazebo/worlds/iris_irlock.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/iris_irlock.world)
 
-## KSQL Airport
+## KSQL 机场
 
 [PX4/sitl_gazebo/worlds/ksql_airport.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/ksql_airport.world)
 
 ![KSQL Airport World](../../assets/simulation/gazebo/worlds/ksql_airport.jpg)
 
-## McMillan Airfield
+## 麦克米兰机场
 
 [PX4/sitl_gazebo/worlds/mcmillan_airfield.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/mcmillan_airfield.world)
 
 ![McMillan Airfield World](../../assets/simulation/gazebo/worlds/mcmillan_airfield.jpg)
 
 
-## Rubble
+## 断壁残垣
 
 [PX4/sitl_gazebo/worlds/rubble.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/rubble.world)
 
-## Sonoma Raceway
+## 索诺玛赛道
 
 
 [PX4/sitl_gazebo/worlds/sonoma_raceway.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/sonoma_raceway.world)
