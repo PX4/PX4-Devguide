@@ -257,36 +257,36 @@ Gazebo 9 的安装在标准的环境编译已有说明。
         make px4_sitl gazebo_typhoon_h480
         
     
-    Streaming can be paused/restarted using the Gazebo UI *Video ON/OFF* button..
+    可以使用 Gazebo 界面中的 打开/关闭 按钮来 启用/禁用 视频流。
     
-    ![Video ON/OFF button](../../assets/simulation/gazebo/sitl_video_stream.png)
+    ![视频 打开/关闭 按钮](../../assets/simulation/gazebo/sitl_video_stream.png)
     
-    ### How to View Gazebo Video
+    ### 如何查看 Gazebo 视频
     
-    The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Application Settings > General** and set **Video Source** to *UDP h.264 Video Stream* and **UDP Port** to *5600*:
+    最简单的方式是在 *QGroundControl* 中查看 SITL/Gazebo 摄像机视频流。 只需打开 QGroundControl 中 **软件配置> 通用设置** 找到 **视频源** 选择 *UDP 视频流* 然后将 **UDP 端口号** 默认设置为 *5600*：
     
-    ![QGC Video Streaming Settings for Gazebo](../../assets/simulation/gazebo/qgc_gazebo_video_stream_udp.png)
+    ![Gazebo 的 QGC 视频流设置](../../assets/simulation/gazebo/qgc_gazebo_video_stream_udp.png)
     
-    The video from Gazebo should then display in *QGroundControl* just as it would from a real camera.
+    来自 Gazebo 的视频会像真实相机一样显示在* QGroundControl* 中。
     
-    ![QGC Video Streaming Gazebo Example](../../assets/simulation/gazebo/qgc_gazebo_video_stream_typhoon.jpg)
+    ![QGC 视频流 Gazebo 示例](../../assets/simulation/gazebo/qgc_gazebo_video_stream_typhoon.jpg)
     
-    > **Note** The Typhoon world is not very interesting.
+    > **Note** 台风世界模型不是一个好的选择。
     
-    It is also possible to view the video using the *Gstreamer Pipeline*. Simply enter the following terminal command:
+    也可以使用 *Gstreamer 管道* 观看视频。 只需在终端中输入如下指令：
     
     ```sh
     gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
     ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
     ```
     
-    ## Extending and Customizing
+    ## 扩展与定制
     
-    To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
+    若要扩展或者是自定义仿真接口，请编辑 `Tools/sitl_gazebo` 文件夹。 源码也可以在 [sitl_gazebo 库](https://github.com/px4/sitl_gazebo) 上获取。
     
-    > **Note** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
+    > **Note** 构建系统会强制执行正确的 GIT 子模块，包括仿真器。 这不会覆盖目录文件中的改动。
     
-    ## Further Information
+    ## 更多信息
     
-    * [ROS with Gazebo Simulation](../simulation/ros_interface.md)
+    * [ROS 与 Gazebo 仿真](../simulation/ros_interface.md)
     * [Gazebo Octomap](../simulation/gazebo_octomap.md)
