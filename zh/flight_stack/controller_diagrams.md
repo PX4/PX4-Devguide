@@ -132,11 +132,11 @@ $$C_\ell = C_{\ell_0} + C_{\ell_\beta}\:\beta + C_{\ell_p}\:\frac{b}{2V_T}\:p + 
 
 $$\ell = \frac{1}{2}\rho V_T^2 S b \left [C_{\ell_{\delta_a}} \:\delta_a + C_{\ell_p}\:\frac{b}{2V_T} \: p \right ]$$.
 
-This final equation is then taken as a baseline for the two next subsections to determine the airspeed scaling expression required for the PI and the FF controllers.
+最后一个方程将作为以下两个小节的基准，以推导 PI 和 FF 控制器所需的空速缩放表达式。
 
-#### Static torque (PI) scaling
+#### 静态力矩 (PI) 缩放
 
-At a zero rates condition ($$p = 0$$), the damping term vanishes and a constant - instantaneous - torque can be generated using
+在滚转角速率为0（$$p = 0$$）的情况下，阻尼项将会消失，并且可以通过以下方式生成一个恒定-瞬时力矩
 
 $$\ell = \frac{1}{2}\rho V_T^2 S b \: C_{\ell_{\delta_a}} \:\delta_a = \bar{q} S b \: C_{\ell_{\delta_a}} \:\delta_a$$.
 
