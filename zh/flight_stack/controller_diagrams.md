@@ -22,7 +22,7 @@ Request access from dev team. -->
 
 通过总能量控制系统(TECS)，PX4可以持续得对固定翼飞行器的真空速和高度进行控制。 这其中的代码通过一个用库（这个库是用于固定翼位置控制模块）作为接口。
 
-![TECS](../../assets/diagrams/tecs_in_context.svg)
+![总能量控制系统](../../assets/diagrams/tecs_in_context.svg)
 
 从上面的图表可以看出，总能量控制系统接受空速和高度需求量，然后输出油门和俯仰角控制量。 这两个输出控制量输入到固定翼的姿态控制器（姿态控制器实施姿态控制） 因此，总能量控制系统是直接受到俯仰控制逻辑环的性能影响 对飞行器俯仰角度的预测不准往往会导致对空速和高度的预测不准。
 
@@ -34,11 +34,11 @@ Request access from dev team. -->
 
 #### Total energy control loop
 
-![Energy loop](../../assets/diagrams/TECS_throttle.jpg)
+![能量回路](../../assets/diagrams/TECS_throttle.jpg)
 
 #### Total energy balance control loop
 
-![Energy balance loop](../../assets/diagrams/TECS_pitch.jpg)
+![能量平衡回路](../../assets/diagrams/TECS_pitch.jpg)
 
 The total energy of an aircraft is the sum of kinetic and potential energy:
 
@@ -72,7 +72,7 @@ $$\dot{B} = \gamma - \frac{\dot{V_T}}{g}$$.
 
 ## Fixed-Wing Attitude Controller
 
-![FW Attitude Controller Diagram](../../assets/diagrams/px4_fw_attitude_controller_diagram.png)
+![固定翼姿态控制器图解](../../assets/diagrams/px4_fw_attitude_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/file/d/1ibxekmtc6Ljq60DvNMplgnnU-JOvKYLQ/view?usp=sharing
 Request access from dev team. -->
@@ -89,7 +89,7 @@ The roll and pitch controllers have the same structure and the longitudinal and 
 
 ## VTOL 飞行控制器
 
-![VTOL Attitude Controller Diagram](../../assets/diagrams/VTOL_controller_diagram.png)
+![VTOL 姿态控制器图解](../../assets/diagrams/VTOL_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/file/d/1tVpmFhLosYjAtVI46lfZkxBz_vTNi8VH/view?usp=sharing
 Request access from dev team. -->
@@ -106,7 +106,7 @@ VTOL姿态模块的输出是多旋翼执行器（典型的 `actuator_controls_0`
 
 本节的目的是：通过公式来解释为何以及怎样根据空速调整角速率回路 (PI) 和前馈控制器 (FF) 的输出。 我们首先给出简化的滚转轴线性力矩方程，然后分析空速对直接力矩产生的影响，最后分析了空速对匀速滚转运动的影响。
 
-如上图中的固定翼姿态控制器所示，角速率控制器为控制分配器（这里称为”混控器“）输出角加速度设定值。 为了达到期望的角加速度，混控器利用可行的气动控制面 (例如：典型的飞机通常有两个副翼，两个升降舵和一个方向舵) 产生力矩。 气动控制面产生的力矩在很大程度上受飞机的相对空速和空气密度的影响，更准确地说，是受气动压力的影响。 如果不进行空速缩放，在某一特定巡航速度下调参的控制器，将会使飞机在高速下发生振荡，或者在低速下产生不良的跟踪性能。
+如上图中的固定翼姿态控制器所示，角速率控制器为控制分配器（这里称为“混控器”）输出角加速度设定值。 为了达到期望的角加速度，混控器利用可行的气动控制面 (例如：典型的飞机通常有两个副翼，两个升降舵和一个方向舵) 产生力矩。 气动控制面产生的力矩在很大程度上受飞机的相对空速和空气密度的影响，更准确地说，是受气动压力的影响。 如果不进行空速缩放，在某一特定巡航速度下调参的控制器，将会使飞机在高速下发生振荡，或者在低速下产生不良的跟踪性能。
 
 读者们应注意 [真实空速（TAS）](https://en.wikipedia.org/wiki/True_airspeed)和 [指示空速 （IAS）](https://en.wikipedia.org/wiki/Indicated_airspeed)之间的不同，因为它们的值在非海面飞行时有显著差异。
 
@@ -146,7 +146,7 @@ $$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}} \frac{1}{\rho V_T^2} \ell = \frac{b
 
 其中，第一项是常数，第二项则取决于空气密度和真实空速的平方。
 
-此外，不用空气密度和真实空速做刻度化，可以发现指示空速（IAS，$$V_I$$）在本质上是受空气密度影响的，在低空低速情况下，指示空速可以乘以一个简单的密度误差因子而转换成真实空速。
+此外，不用空气密度和真实空速进行缩放，可以发现指示空速（IAS，$$V_I$$）在本质上是受空气密度影响的，在低空低速情况下，指示空速可以乘以一个简单的密度误差因子而转换成真实空速。
 
 $$V_T = V_I \sqrt{\frac{\rho_0}{\rho}}$$,
 
@@ -160,7 +160,7 @@ $$\bar{q} = \frac{1}{2} \rho V_T^2 = \frac{1}{2} V_I^2 \rho_0$$.
 
 $$\bar{q} \propto V_I^2$$.
 
-之前用 TAS 和空气密度表示的刻度因数，最终可以用 IAS 重写成以下形式
+之前用 TAS 和空气密度表示的缩放因数，最终可以用 IAS 重写成以下形式
 
 $$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}\rho_0} \frac{1}{V_I^2} \ell$$.
 
@@ -174,7 +174,7 @@ $$- C_{\ell_{\delta_a}} \:\delta_a = C_{\ell_p} \frac{b}{2 V_T} \: p$$.
 
 $$\delta_a = -\frac{b \: C_{\ell_p}}{2 \: C_{\ell_{\delta_a}}} \frac{1}{V_T} \: p$$.
 
-第一项给出了理想的前馈值，我们可以看到刻度因数相对TAS是线性的。 请注意式中的负号，随后它会与滚转阻尼系数的负号相互抵消。
+第一项给出了理想的前馈值，我们可以看到缩放因数相对TAS是线性的。 请注意式中的负号，随后它会与滚转阻尼系数的负号相互抵消。
 
 #### 结论
 
@@ -192,6 +192,6 @@ $$\dot{\mathbf{\omega}}*{sp}^b = \frac{V*{I_0}^2}{V_I^2} \dot{\mathbf{\omega}}*{
 
 #### 调参建议
 
-这套空速缩放算法的巧妙之处就是它不需要进行特意的调参。 However, the quality of the airspeed measurements directly influences its performance.
+这套空速缩放算法的巧妙之处就是它不需要进行特意的调参。 然而，空速传感器的质量将直接影响它的性能。
 
-Furthermore, to get the largest stable flight envelope, one should tune the attitude controllers at an airspeed value centered between the stall speed and the maximum airspeed of the vehicle (e.g.: an airplane that can fly between 15 and 25m/s should be tuned at 20m/s). This "tuning" airspeed should be set in the [FW_AIRSPD_TRIM](../advanced/parameter_reference.md#FW_AIRSPD_TRIM) parameter.
+此外，如果要使稳定的飞行包络线最大化，您应该在最小飞行速度和最大飞行速度的中点位置进行调参 (例如： 一架飞机的飞行速度在 15~25 m/s 之间，则应在 20 m/s调参)。 该“调整”空速应在 [FW_AIRSPD_TRIM](../advanced/parameter_reference.md#FW_AIRSPD_TRIM) 参数中设置。
