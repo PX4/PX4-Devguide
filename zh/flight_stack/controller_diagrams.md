@@ -122,13 +122,13 @@ $$\ell = \frac{1}{2}\rho V_T^2 S b C_\ell = \bar{q} S b C_\ell$$,
 
 其中，$$\ell$$ 代表滚转力矩，$$b$$ 代表飞机翼展，$$S$$ 代表参考面。
 
-The nondimensional roll moment derivative $$C_\ell$$ can be modeled using the aileron effectiveness derivative $$C_{\ell_{\delta_a}}$$, the roll damping derivative $$C_{\ell_p}$$ and the dihedral derivative $$C_{\ell_\beta}$$
+无量纲的滚转力矩导数 $$C_\ell$$ 可以通过以下几个系数建模得到：副翼效率导数 $$C_{\ell_{\delta_a}}$$，滚转阻尼导数 $$C_{\ell_p}$$ 和二面角导数 $$C_{\ell_\beta}$$。
 
 $$C_\ell = C_{\ell_0} + C_{\ell_\beta}\:\beta + C_{\ell_p}\:\frac{b}{2V_T}\:p + C_{\ell_{\delta_a}} \:\delta_a$$,
 
-where $$\beta$$ is the sideslip angle, $$p$$ the body roll rate and $$\delta_a$$ the aileron deflection.
+其中，$$\beta$$ 代表侧滑角，$$p$$ 代表滚转角速率，$$\delta_a$$ 代表副翼偏转角。
 
-Assuming a symmetric ($$C_{\ell_0} = 0$$) and coordinated ($$\beta = 0$$) aircraft, the equation can be simplified using only the rollrate damping and the roll moment produced by the ailerons
+假设一架飞机对称 ($$C_{\ell_0} = 0$$) 且无协调（$$\beta = 0$$），则上面的方程可以简化到只用滚转率阻尼和副翼产生的滚转力矩表示。
 
 $$\ell = \frac{1}{2}\rho V_T^2 S b \left [C_{\ell_{\delta_a}} \:\delta_a + C_{\ell_p}\:\frac{b}{2V_T} \: p \right ]$$.
 
