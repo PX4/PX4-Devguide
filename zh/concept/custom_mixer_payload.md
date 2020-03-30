@@ -39,20 +39,20 @@ Start by copying the mixer file and putting it onto the SD Card at: **/etc/mixer
 删除带有载荷控制组函数输入的第一个部分：
 - 更改此项
   ```
-  # AUX1 channel (control group 3, RC CH5) (select RC channel with RC_MAP_AUX1 param)
+  # AUX1 通道(控制组 3, 遥控器5通道) ( RC_MAP_AUX1参数决定使用哪个遥控器通道)
   M: 1
   S: 3 5  10000  10000      0 -10000  10000
   ```
-- To:
+- 为：
   ```
-  # Payload 1 (control group 6) channel 1
+  # 载荷1（控制组6）通道1
   M: 1
-  S: 6 1  10000  10000      0 -10000  10000
+  S: 6 1 100001 0000 -10000 1 0000
   ```
 
-Because this output is in the first position in the file it will map to the first AUX PWM output (unless UAVCAN is enabled). This output will now respect updates to the payload control group (6) output 1.
+因为这个输出处于文件中的第一个位置，它将映射到第一个AUX PWM输出(除非启用 UAVCAN)。 此输出将遵从对载荷控制组(6)输出1的更新。
 
-Control group 6 will need to be defined in the code as well (it is missing!):
+控制组6也需要在代码中定义(缺少!):
 - Add `actuator_controls_6` to the TOPICS definition in [/msg/actuator_controls.msg](https://github.com/PX4/Firmware/blob/master/msg/actuator_controls.msg#L17):
   ```
   # TOPICS actuator_controls actuator_controls_0 actuator_controls_1 actuator_controls_2 actuator_controls_3 actuator_controls_6
