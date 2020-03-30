@@ -4,7 +4,7 @@ Docker 容器被提供用于完整的 [PX4 开发工具链](../setup/dev_env.md#
 
 本主题说明如何使用 [available docker containers](#px4_containers) 访问本地 Linux 计算机中的构建环境。
 
-> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/tree/master/docker). 它们是在 [Docker Hub](https://hub.docker.com/u/px4io/) 上自动构建的。
+> Dockerfiles 和 README 在这里可以找到 它们是在 [Docker Hub](https://hub.docker.com/u/px4io/) 上自动构建的。
 
 ## 系统必备组件
 
@@ -19,7 +19,7 @@ curl -fsSL get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-默认安装要求您以 root 用户身份调用 * Docker*（即使用` sudo `）。 However, for building the PX4 firwmare we suggest to [use docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). That way, your build folder won't be owned by root after using docker.
+默认安装要求您以 root 用户身份调用 *Docker*（用 `sudo`）。 However, for building the PX4 firwmare we suggest to [use docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). That way, your build folder won't be owned by root after using docker.
 
 ```sh
 ＃创建 docker 组（可能不是必需的）
@@ -207,7 +207,7 @@ libGL error: failed to load driver: swrast
 如果编译失败，则出现以下错误：
 
 ```sh
-The bug is not reproducible, so it is likely a hardware or OS problem.
+这个错误是不可复现的，可能是硬件或操作系统问题。
 c++: internal compiler error: Killed (program cc1plus)
 ```
 
