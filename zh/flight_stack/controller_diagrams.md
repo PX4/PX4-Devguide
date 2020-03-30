@@ -146,52 +146,52 @@ $$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}} \frac{1}{\rho V_T^2} \ell = \frac{b
 
 其中，第一项是常数，第二项则取决于空气密度和真实空速的平方。
 
-Furthermore, instead of scaling with the air density and the TAS, it can be shown that the indicated airspeed (IAS, $$V_I$$) is inherently adjusted by the air density since at low altitude and speed, IAS can be converted to TAS using a simple density error factor
+此外，不用空气密度和真实空速做刻度化，可以发现指示空速（IAS，$$V_I$$）在本质上是受空气密度影响的，在低空低速情况下，指示空速可以乘以一个简单的密度误差因子而转换成真实空速。
 
 $$V_T = V_I \sqrt{\frac{\rho_0}{\rho}}$$,
 
-where $$\rho_o$$ is the air density as sea level, 15°C.
+其中，$$\rho_o$$ 代表海平面15°C场景下的空气密度。
 
-Squaring, rearranging and adding a 1/2 factor to both sides makes the dynamic pressure $$\bar{q}$$ expression appear
+经过一系列重组变换（平方、重排列并使左右两侧同时乘以 1/2 倍），将气动压力 $$\bar{q}$$ 表示如下
 
 $$\bar{q} = \frac{1}{2} \rho V_T^2 = \frac{1}{2} V_I^2 \rho_0$$.
 
-We can now easily see that the dynamic pressure is proportional to the IAS squared
+现在我们能清楚地看到气动压力与 IAS 的平方成正比
 
 $$\bar{q} \propto V_I^2$$.
 
-The scaler previously containing TAS and the air density can finally be written using IAS only
+之前用 TAS 和空气密度表示的刻度因数，最终可以用 IAS 重写成以下形式
 
 $$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}\rho_0} \frac{1}{V_I^2} \ell$$.
 
-#### Rate (FF) scaling
+#### 角速率回路 (FF) 缩放
 
-The main use of the feedforward of the rate controller is to compensate for the natural rate damping. Starting again from the baseline dimensional equation but this time, during a roll at constant speed, the torque produced by the ailerons should exactly compensate for the damping such as
+角速率控制器前馈通道的主要作用是补偿自然速率阻尼。 回到基准方程，这次在匀速滚转的条件下做简化，副翼产生的力矩应当恰好完全补偿阻尼项
 
 $$- C_{\ell_{\delta_a}} \:\delta_a = C_{\ell_p} \frac{b}{2 V_T} \: p$$.
 
-Rearranging to extract the ideal ailerons deflection gives
+重组公式以得到理想的副翼偏转角
 
 $$\delta_a = -\frac{b \: C_{\ell_p}}{2 \: C_{\ell_{\delta_a}}} \frac{1}{V_T} \: p$$.
 
-The first fraction gives the value of the ideal feedforward and we can see that the scaling is linear to the TAS. Note that the negative sign is then absorbed by the roll damping derivative which is also negative.
+第一项给出了理想的前馈值，我们可以看到刻度因数相对TAS是线性的。 请注意式中的负号，随后它会与滚转阻尼系数的负号相互抵消。
 
-#### Conclusion
+#### 结论
 
-The output of the rate PI controller has to be scaled with the indicated airspeed (IAS) squared and the output of the rate feedforward (FF) has to be scaled with the true airspeed (TAS)
+角速率回路 PI 控制器的输出必须由指示空速（IAS）的平方进行缩放，角速率回路前馈通道（FF）必须由真实空速（TAS）进行缩放。
 
 $$\delta_{a} = \frac{V_{I_0}^2}{V_I^2} \delta_{a_{PI}} + \frac{V_{T_0}}{V_T} \delta_{a_{FF}}$$,
 
-where $$V_{I_0}$$ and $$V_{T_0}$$ are the IAS and TAS at trim conditions.
+其中，$$V_{I_0}$$ 和 $$V_{T_0}$$ 分别代表配平条件下的 IAS 和 TAS。
 
-Finally, since the actuator outputs are normalized and that the mixer and the servo blocks are assumed to be linear, we can rewrite this last equation as follows
+最后，由于执行器的输出是归一化的，且混控和伺服模块被假定为线性的，因此我们可以将上述方程重写如下
 
 $$\dot{\mathbf{\omega}}*{sp}^b = \frac{V*{I_0}^2}{V_I^2} \dot{\mathbf{\omega}}*{sp*{PI}}^b + \frac{V_{T_0}}{V_T} \dot{\mathbf{\omega}}*{sp*{FF}}^b$$,
 
-and implement it directly in the rollrate, pitchrate and yawrate controllers.
+该方程可以直接在滚转速率，俯仰速率和偏航速率控制器中实现。
 
-#### Tuning recommendations
+#### 调参建议
 
-The beauty of this airspeed scaling algorithm is that it does not require any specific tuning. However, the quality of the airspeed measurements directly influences its performance.
+这套空速缩放算法的巧妙之处就是它不需要进行特意的调参。 However, the quality of the airspeed measurements directly influences its performance.
 
 Furthermore, to get the largest stable flight envelope, one should tune the attitude controllers at an airspeed value centered between the stall speed and the maximum airspeed of the vehicle (e.g.: an airplane that can fly between 15 and 25m/s should be tuned at 20m/s). This "tuning" airspeed should be set in the [FW_AIRSPD_TRIM](../advanced/parameter_reference.md#FW_AIRSPD_TRIM) parameter.
