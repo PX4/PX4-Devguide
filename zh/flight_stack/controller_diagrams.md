@@ -100,9 +100,9 @@ Request access from dev team. -->
 
 VTOL姿态模块的输出是多旋翼执行器（典型的 `actuator_controls_0`）和固定翼（典型的 `actuator_controls_1`）执行器的独立的扭矩和力指令。 这些是在一个特定机型的混控器文件中处理的（参见[ Mixing](../concept/mixing.md)）。
 
-For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/en/config_vtol/).
+有关调整 VTOL 模块内部过渡逻辑的更多信息，请参阅 [VTOL 配置](https://docs.px4.io/en/config_vtol/)。 
 
-### Airspeed Scaling
+### 空速缩放
 
 The objective of this section is to explain with the help of equations why and how the output of the rate PI and feedforward (FF) controllers can be scaled with airspeed to improve the control performance. We will first present the simplified linear dimensional moment equation on the roll axis, then show the influence of airspeed on the direct moment generation and finally, the influence of airspeed during a constant roll.
 
