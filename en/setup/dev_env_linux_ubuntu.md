@@ -1,17 +1,16 @@
 # Development Environment on Ubuntu LTS / Debian Linux
 
-[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 18.04 is the standard/preferred Linux development OS.
-It allows you to build for the [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, *Qualcomm Snapdragon Flight* hardware, Linux-based hardware, Simulation).
+The supported/tested Linux OS versions for PX4 development are [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 18.04 (Bionic Beaver) and 20.04 (Focal Fossa).
+These allow you to build for the [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, *Qualcomm Snapdragon Flight* hardware, Linux-based hardware, Simulation).
 
 Bash scripts are provided to help make it easy to install development environment for different target platforms:
 - **[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh)**: Installs [Gazebo 9](../simulation/gazebo.md) and [jMAVSim](../simulation/jmavsim.md) simulators and/or [NuttX/Pixhawk](../setup/building_px4.md#nuttx) tools. Does not include dependencies for [FastRTPS](#fast_rtps).
 - **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**: Installs [ROS "Melodic"](#rosgazebo) and PX4 on Ubuntu 18.04 LTS.
 
-> **Tip** The scripts have been tested on clean Ubuntu 16.04 and 18.04 LTS installations.
-  They *may* not work as expected if installed on top of an existing system or a different Ubuntu release.
+> **Tip** The scripts have been tested on *clean* Ubuntu 18.04 and 20.04 LTS installations.
+  They *may* not work as expected if installed "on top" of an existing system, or on a different Ubuntu release.
 
 The instructions below explain how to download and use the scripts.
-
 
 ## Gazebo, JMAVSim and NuttX (Pixhawk) Targets {#sim_nuttx}
 
