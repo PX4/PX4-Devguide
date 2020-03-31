@@ -10,15 +10,15 @@ PX4提供了以下几种编写单元测试的方法：
 
 ## 写一个GTest单元测试
 
-**Tip**: In general, if you need access to advanced GTest utilities, data structures from the STL or need to link to `parameters` or `uorb` libraries you should use the functional tests instead.
+**提示**: 一般来说，如果你需要访问更高级的GTest工具、SITL的数据结构或者需要链接`parameters` 或 `uorb` 库，你应改用功能测试。
 
-The steps to create new unit tests are as follows:
+创建新的单元测试步骤如下：
 
-1. Unit tests should be arranged in three sections: setup, run, check results. Each test should test one very specific behavior or setup case, so if a test fails it is obvious what is wrong. Please try to follow these standards when possible.
-2. Copy and rename the example unit test [AttitudeControlTest](https://github.com/PX4/Firmware/blob/master/src/modules/mc_att_control/AttitudeControl/AttitudeControlTest.cpp) to the directory the code to be tested is in.
-3. Add the new file to the directory's `CMakeLists.txt`. It should look something like `px4_add_unit_gtest(SRC MyNewUnitTest.cpp LINKLIBS <library_to_be_tested>)`
-4. Add the desired test functionality. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the setup, running the code to be tested and verifying that it behaves as expected.
-5. If additional library dependencies are required, they should also be added to the CMakeLists after the `LINKLIBS` as shown above.
+1. 单元测试分成三个部分：设置、运行、检查结果。 每个单元测试都应该测试一个特定行为或设置案例，如果测试失败，则很明显你的测试代码有错误。 请尽可能遵循这些标准。
+2. 复制示例单元测试 [AttitudeControlTest](https://github.com/PX4/Firmware/blob/master/src/modules/mc_att_control/AttitudeControl/AttitudeControlTest.cpp) 到你测试目录，并重命名。
+3. 将新文件到该目录的`CMakeLists.txt`文件中。 文件看起来像`px4_add_unit_gtest(SRC MyNewUnitTest.cpp LINKLIBS <library_to_be_tested>)`
+4. 添加你想要的测试功能。 这包括了添加所需的头文件、新测试(每个测试都应该有单独的名称)，并加入相关逻辑，运行测试代码并验证其行为是否符合预期。
+5. 如果需要添加新的依赖库，只要在如上所说的CMakeLists文件中`LINKLIBS`后面加入库的名字。
 
 Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/unit-MyNewUnit`. It can be run directly in a debugger.
 
