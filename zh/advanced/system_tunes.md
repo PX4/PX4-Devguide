@@ -48,7 +48,7 @@ ANSI 音乐在 ANSI BBS 系统中很受欢迎，因此最好的编辑工具是 D
 
 ## 测试乐曲
 
-当您准备好在 PX4 上尝试新的乐曲时，请使用 [tune_control](../middleware/modules_system.md#tunecontrol) 库。 例如，要测试我们在上面“创建的”乐曲，您应在控制台或 shell（例如[MAVLink Shell](../debug/system_console.md#mavlink_shell)）上输入以下命令 ：
+当您准备好在 PX4 上尝试新的乐曲时，请使用 [tune_control](../middleware/modules_system.md#tunecontrol) 库。 For example, to test the tune we "created" above you would enter the following command on a console or shell (e.g. the [MAVLink Shell](../debug/mavlink_shell.md)):
 ```sh
 tune_control play -m "150L1O3DL16CL32<B>C<AEL16A"
 ```
