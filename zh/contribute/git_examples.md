@@ -1,6 +1,6 @@
 # GIT 示例
 
-## 为 PX4 贡献代码
+## Contributing Code to PX4 {#contributing_code}
 
 按照定义的工作流向 px4 添加功能。 为了在 px4 上分享您的贡献, 您可以遵循此示例。
 
@@ -82,7 +82,7 @@ To get the source code for a *specific older release*:
 
 ## Update Submodule
 
-There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#Contributing-code-to-PX4).
+There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#contributing_code).
 
 ## Do a PR for a submodule update
 
