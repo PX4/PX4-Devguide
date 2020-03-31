@@ -708,7 +708,7 @@ Source: [drivers/roboclaw](https://github.com/PX4/Firmware/tree/master/src/drive
 
 ### Description
 
-This driver communicates over UART with the [Roboclaw motor driver](http://downloads.ionmc.com/docs/roboclaw_user_manual.pdf).
+This driver communicates over UART with the [Roboclaw motor driver](http://downloads.basicmicro.com/docs/roboclaw_user_manual.pdf).
 It performs two tasks:
 
  - Control the motors based on the `actuator_controls_0` UOrb topic.
