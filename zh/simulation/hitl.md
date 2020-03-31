@@ -112,7 +112,7 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 
 6. 启动*QGroundControl*。 它应该会自动连接 PX4 和 Gazebo 。
 
-#### jMAVSim (仅适用于四旋翼无人机)
+#### jMAVSim (Quadrotor only) {#jmavsim_hitl_configuration}
 
 > **Note** 确保 *QGroundControl* 没有运行！
 
