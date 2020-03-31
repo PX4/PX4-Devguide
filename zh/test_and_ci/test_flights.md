@@ -4,7 +4,7 @@
 
 {% if book.px4_version != 'master' %}
 
-> **提示** 试飞进度和机队信息可能会随时间变化。 当前信息 [可以在 head revision/master docs中找到](https://dev.px4.io/master/en/test_and_ci/test_flights.html)! {% else %} <!-- START: details below displayed only in master -->
+> **Tip** 试飞进度和机队信息可能会随时间变化。 当前信息 [可以在 head revision/master docs中找到](https://dev.px4.io/master/en/test_and_ci/test_flights.html)! {% else %} <!-- START: details below displayed only in master -->
 
 ## 如何申请测试飞行
 
