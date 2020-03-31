@@ -24,7 +24,7 @@ PX4提供了以下几种编写单元测试的方法：
 
 ## 写一个GTest功能测试
 
-GTest functional tests should be used when the test or the components being tested depend on parameters, uORB messages and/or advanced GTest functionality. Additionally, functional tests can contain local usage of STL data structures (although be careful of platform differences between eg. macOS and Linux).
+当测试或测试的组件依赖参数、uORB 消息、或更高级的GTest功能的时候，应当使用GTest功能测试。 Additionally, functional tests can contain local usage of STL data structures (although be careful of platform differences between eg. macOS and Linux).
 
 The steps to creating new functional tests are as follows:
 
