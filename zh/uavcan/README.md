@@ -14,7 +14,7 @@
     >   
     >   * [Thiemar空速传感器](https://github.com/thiemar/airspeed)
     > * 用于GPS和GLONASS的GNSS接收器 
-    >   * [Zubax GNSS](http://zubax.com/product/zubax-gnss)
+    >   * [Zubax GNSS](https://zubax.com/products/gnss_2)
     > * Power monitors 
     >   * [Pomegranate Systems Power Module](http://docs.px4.io/master/en/power_module/pomegranate_systems_pm.html)
     >   * [CUAV CAN PMU Power Module](http://docs.px4.io/master/en/power_module/cuav_can_pmu.html)</ul> 
@@ -52,5 +52,5 @@
     > ## 相关链接
     > 
     > * [首页](http://uavcan.org)
-    > * [技术规范](http://uavcan.org/Specification)
+    > * [技术规范](https://uavcan.org/specification/)
     > * [实现和教程](http://uavcan.org/Implementations)
