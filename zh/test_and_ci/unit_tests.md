@@ -45,19 +45,19 @@ PX4提供了以下几种编写单元测试的方法：
 
 1. 检查示例 [Unittest-class](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h)。
 2. 在 [tests](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tests) 中创建名为 **test_ [description] .cpp** 的新 .cpp 文件。
-3. Within **test_[description].cpp** include the base unittest-class `<unit_test.h>` and all files required to write a test for the new feature.
-4. Within **test_[description].cpp** create a class `[Description]Test` that inherits from `UnitTest`.
-5. Within `[Description]Test` class declare the public method `virtual bool run_tests()`.
-6. Within `[Description]Test` class declare all private methods required to test the feature in question (`test1()`, `test2()`,...).
-7. Within **test_[description].cpp** implement the `run_tests()` method where each test[1,2,...] will be run.
-8. Within **test_[description].cpp**, implement the various tests.
-9. At the bottom within **test_[description].cpp** declare the test.
+3. 在 **test_[description].cpp** 中包括基本 unittest-class`<unit_test.h>` 以及为新功能编写测试所需的所有文件。
+4. 在 **test_[description].cpp** 中创建一个继承自 `UnitTest` 的类 `[Description]Test`。
+5. 在 `[Description]Test` 类中，声明公共方法 `virtual bool run_tests()`。
+6. 在 `[Description]Test` 类中，声明测试相关特征所需的所有私有方法（` test1()`，` test2()`，...）。
+7. 在 **test_ [description].cpp** 中实现 `run_tests()` 方法，其中将运行每个测试[1,2，...]。
+8. 在 **test_ [description].cpp** 中，实现各种测试。
+9. 在 **test_ [description].cpp** 的底部声明测试。
     
     ```cpp
     ut_declare_test_c(test_[description], [Description]Test)
     ```
     
-    Here is a template:
+    下面是一个模板：
     
     ```cpp
     #include <unit_test.h>
@@ -106,15 +106,15 @@ PX4提供了以下几种编写单元测试的方法：
     ut_declare_test_c(test_[description], [Description]Test)
     ```
     
-    Note that `ut_[name of one of the unit test functions]` corresponds to one of the unittest functions defined within [unit_test.h](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h).
+    注意，`ut_[name of one of the unit test functions]` 对应于 [unit_test.h ](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h) 中定义的单元测试函数之一。
 
-10. Within [tests_main.h](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.h) define the new test:
+10. 在 [tests_main.h](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.h) 中定义新测试：
     
     ```cpp
     extern int test_[description](int argc, char *argv[]);
     ```
 
-11. Within [tests_main.c](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.c) add description name, test function and option:
+11. 在 [tests_main.c](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.c) 中添加描述名称，测试功能和选项：
     
     ```cpp ... } tests[] = { {... {"[description]", test_[description], OPTION}, ... }
 
@@ -130,26 +130,26 @@ PX4提供了以下几种编写单元测试的方法：
        ```
        If a test has option `OPT_NOALLTEST`, then that test will be excluded when calling `tests all`. The same is true for `OPT_NOJITEST` when command `test jig` is called. 选项“0”表示从不排除测试，这是大多数开发人员想要使用的。
     
-    1. Add the test `test_[description].cpp` to the [CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/CMakeLists.txt).
+    1. 将测试`test_ [description].cpp`添加到 [CMakeLists.txt]（https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/CMakeLists.txt）。
     
     
-    ## Testing on the local machine
+    ## 本地机器上的测试
     
-    Run the complete list of GTest Unit Tests, GTest Functional Tests and SITL Unit Tests right from bash:
+    运行完整的 GTest 单元测试列表 GTest 功能测试和 SITL 单元测试脚本：
     
     ```bash
     make tests
     
 
-The individual GTest test binaries are in the `build/px4_sitl_test/` directory, and can be run directly in most IDEs' debugger.
+单独的 GTest 测试二进制文件处于`build/px4_sitl_test/` 目录中，可以直接在大多数IDE的调试器中运行。
 
-Filter to run only a subset of tests using a regular expression for the ctest name with this command:
+使用以下命令对ctest名称使用正则表达式对要运行的测试子集进行筛选：
 
 ```bash
 make tests TESTFILTER=<filter expression>
 ```
 
-For example:
+例如：
 
 - `make tests TESTFILTER=unit` only run GTest unit tests
 - `make tests TESTFILTER=sitl` only run simulation tests
