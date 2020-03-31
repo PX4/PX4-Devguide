@@ -6,7 +6,7 @@ The uORB is an asynchronous `publish()` / `subscribe()` messaging API used for i
 
 <span></span>
 
-> **Note** The `listener` command is also available through the [System Console](../debug/system_console.md) and the [MAVLink Shell](../debug/system_console.md#mavlink_shell).
+> **Note** The `listener` command is also available through the [System Console](../debug/system_console.md) and the [MAVLink Shell](../debug/mavlink_shell.md).
 
 <span></span>
 
