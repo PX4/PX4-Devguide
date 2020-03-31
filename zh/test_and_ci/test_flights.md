@@ -28,11 +28,11 @@
 * [MC_04 - 故障安全测试](../test_cards/mc_04_failsafe_testing.md)
 * [MC_05 - 室内飞行（手动模式）](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
-## Test Vehicles/Autopilots {#fleet}
+## 测试机型/飞控 {#fleet}
 
-Multicopter
+多旋翼
 
-| Frame                                                                                                                                                                                                                                                             | Flight Controller                                                                                                                                                                                                                                                | UUID                                                        |
+| 机型                                                                                                                                                                                                                                                                | 飞控                                                                                                                                                                                                                                                               | UUID                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | [DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html)                                                                                                                                                                                             | [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html)                                                                                                                                                                                       | 002400283335510A33373538 (f450-v3)                          |
 | [DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html)                                                                                                                                                                                             | [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html)                                                                                                                                                                                               | 000100000000363533353336510900500021 (f450-v3)              |
@@ -46,9 +46,9 @@ Multicopter
 | Holybro [QAV250](https://docs.px4.io/en/frames_multicopter/holybro_qav250_pixhawk4_mini.html)                                                                                                                                                                     | [Pixhawk 4 Mini](https://docs.px4.io/en/flight_controller/pixhawk4_mini.html)                                                                                                                                                                                    | 000200000000343233383038511500420032 (f450-v5-m)            |
 | NXP Semiconductor [KIT-HGDRONEK66](https://www.nxp.com/applications/solutions/industrial/unmanned-aerial-vehicles-uavs/uavs-drones-and-rovers/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66) ("[Hovergames](https://www.hovergames.com/)") | [RDDRONE-FMUK66](https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/kinetis-cortex-m-mcus/k-seriesperformancem4/k6x-ethernet/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66?tid=vanRDDRONE-FMUK66) | 00030016ffffffffffff4e45362050130029                        |
 
-Fixed Wing
+固定翼
 
-| Frame                                                                                               | Flight Controller                                                  | UUID                                           |
+| 机型                                                                                                  | 飞控                                                                 | UUID                                           |
 | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------- |
 | [Phantom Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html) | [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html) | 0001000000003035333330365104003c0020 (f450-v2) |
 
