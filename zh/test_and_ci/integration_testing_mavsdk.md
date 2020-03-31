@@ -1,50 +1,34 @@
-# 使用 MAVSDK 集成测试
+# 使用 MAVSDK 进行集成测试
 
-可以使用基于
- MAVSDK </ 0>的集成测试对PX4进行端到端测试。</p> 
+可以使用基于 [MAVSDK](https://mavsdk.mavlink.io) 的集成测试对 PX4 进行端到端测试。
 
 目前主要针对SITL开发测试，并在持续集成（CI）中运行。 但是，它们最终旨在推广到实际测试。
-
-
 
 ## 安装 MAVSDK C++ 库
 
 测试需要将MAVSAK C++库安装到系统目录（如： `/usr/lib` or `/usr/local/lib`）
 
 二进行安装或源码安装：
-
-- [MAVSDK > 安装 > C++](https://mavsdk.mavlink.io/develop/en/getting_started/installation.html#cpp): 以支持的系统上安装预构建库 (推荐)
-- [MAVSDK > 贡献 > 通过源码 ](https://mavsdk.mavlink.io/develop/en/contributing/build.html#build_sdk_cpp): 通过源码编译构建C++库。
-
-
+- [MAVSDK > 安装 > C++](https://mavsdk.mavlink.io/develop/en/getting_started/installation.html#cpp)：以支持的系统上安装预构建库（推荐）
+- [MAVSDK > 贡献 > 从源码构建](https://mavsdk.mavlink.io/develop/en/contributing/build.html#build_sdk_cpp)：从源码编译构建 C++ 库。
 
 ## 准备 PX4 源码
 
-使用以下命令构建PX4源码：
-
-
+使用以下命令构建 PX4 源码：
 
 ```sh
 DONT_RUN=1 make px4_sitl gazebo mavsdk_tests
 ```
 
-
-
-
 ### 运行所有PX4测试
 
-运行[sitl.json](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/configs/sitl.json)中定义的所有SITL测试，运行：
-
-
+运行 [sitl.json](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/configs/sitl.json) 中定义的所有SITL测试，执行：
 
 ```sh
 test/mavsdk_tests/mavsdk_test_runner.py test/mavsdk_tests/configs/sitl.json --speed-factor 10
 ```
 
-
 要看所有可用的命令行参数，运行：
-
-
 
 ```sh
 test/mavsdk_tests/mavsdk_test_runner.py -h
@@ -71,29 +55,20 @@ optional 参数：
   --verbose 启用更详细的输出
 ```
 
-
-
-
 ## 关于实现的说明
 
-- 使用Python编写的测试运行程序脚本 mavsdk_test_runner.py </ 0>调用这些测试。 该运行程序还启动` px4 </ 0>以及用于SITL测试的Gazebo，并收集这些进程的日志。</p></li>
-<li><p spaces-before="0">这个测试运行器是一个C++库 
-它包含了：</p>
 
-<ul>
-<li>解析参数的 <a href="https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_main.cpp">main</a> 函数。</li>
-<li>MAVSDK的抽象称为<a href="https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/autopilot_tester.h"> autopilot_tester </a>。</li>
-<li>使用围绕MAVSDK的抽象的实际测试，例如 <a href="https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp"> test_multicopter_mission.cpp </a>。</li>
-<li>测试使用 <a href="https://github.com/catchorg/Catch2">catch2</a> 单元测试框架。
-使用这个框架的原因如下：
+- 使用 Python 编写的测试运行程序脚本 [mavsdk_test_runner.py](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/mavsdk_test_runner.py) 调用这些测试。 该运行程序还启动 `px4` 以及用于 SITL 测试的 Gazebo，并收集这些进程的日志。
+- 这个测试运行器是一个 C++ 库 它包含了：
+  - 解析参数的 [main](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_main.cpp) 函数。
+  - MAVSDK的抽象称为 [autopilot_tester](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/autopilot_tester.h)。
+  - 使用围绕MAVSDK的抽象的实际测试，例如 [ test_multicopter_mission.cpp ](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp)。
+  - 测试使用 [catch2](https://github.com/catchorg/Catch2) 单元测试框架。 使用这个框架的原因如下：
+      - 终止测试所需的断言（`REQUIRE`）可以位于函数内部（而不仅仅是顶层，如 [gtest 测试所示](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)）。
+      - 依赖关系管理比较容易，因为* catch2 *可以只作为头文件库包含在内。
+      - * Catch2 *支持[ tags ](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md#tags)，从而可以灵活地组成测试。
 
-<ul>
-<li>终止测试所需的断言（<code>REQUIRE`）可以位于函数内部（而不仅仅是顶层，如 [gtest 测试所示](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)）。</li> 
-  
-        - 依赖关系管理比较容易，因为* catch2 *可以只作为头文件库包含在内。
-      - * Catch2 *支持[ tags ](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md#tags)，从而可以灵活地组成测试。</ul></li> </ul></li> </ul> 
 
 使用的术语：
-
 - "model"：这是选定的Gazebo模型，例如 `iris`。
 - "test case": 这是 [catch2 测试用例](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md)。
