@@ -1,8 +1,8 @@
 # MAVLink Shell
 
-The MAVLink Shell is an *NSH console* that can be accessed via MAVLink over serial (USB/Telemetry) or WiFi (UDP/TCP) links (in particular, on NuttX-based systems like: Pixhawk, Pixracer, etc.).
+MAVLink Shell 是一个可以通过串口（USB、数传或基于WIFI的UDP/TCP链路）使用MAVLink协议访问的 *NSH 控制台* 。只适用于基于NuttX的系统，如：Pixhawk、Pixracer等。
 
-The shell can be used for running commands and modules, and displaying their output. While the shell cannot *directly* display the output of modules that it does not start, it can do so indirectly using the `dmesg` command (`dmesg -f &` can be used to display the output of other modules and tasks running on the work queue).
+它可用于启动系统指令与模块，并得到输出信息。 While the shell cannot *directly* display the output of modules that it does not start, it can do so indirectly using the `dmesg` command (`dmesg -f &` can be used to display the output of other modules and tasks running on the work queue).
 
 > **Tip** The [QGroundControl MAVLink Console](#qgroundcontrol) is the easiest way to access the console. If the system does not start properly you should instead use the [System Console](../debug/system_console.md).
 
