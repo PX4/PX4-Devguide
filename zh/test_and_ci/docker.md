@@ -19,7 +19,7 @@ curl -fsSL get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-默认安装要求您以 root 用户身份调用 *Docker*（用 `sudo`）。 However, for building the PX4 firwmare we suggest to [use docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). That way, your build folder won't be owned by root after using docker.
+默认安装要求您以 root 用户身份调用 *Docker*（用 `sudo`）。 然后，我们建议 [使用 docker 作为一个 non-root 用户](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)来构建PX4固件。 这样一来，在使用docker之后，你构建的文件夹将不会是归root所有。
 
 ```sh
 ＃创建 docker 组（可能不是必需的）
@@ -31,7 +31,7 @@ sudo usermod -aG docker $ USER
 
 ## 本地编辑层次结构 {#px4_containers}
 
-The available containers are listed below (from [Github](https://github.com/PX4/containers/tree/master/docker#container-hierarchy)):
+下面列出了可用的容器 (来自[Github](https://github.com/PX4/containers/tree/master/docker#container-hierarchy))：
 
 | 容器                              | 描述                             |
 | ------------------------------- | ------------------------------ |
