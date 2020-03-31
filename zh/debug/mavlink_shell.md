@@ -14,24 +14,24 @@ MAVLink Shell 是一个可以通过串口（USB、数传或基于WIFI的UDP/TCP�
 
 ### mavlink_shell.py
 
-You can also access the shell in a terminal using the **mavlink_shell.py** script:
-1. Shut down *QGroundControl*.
-1. Install dependencies:
+您也可以使用 **mavlink_shell.py** 脚本从终端访问shell：
+1. 关闭 *QGroundControl*.
+1. 安装依赖项
    ```sh
    sudo pip3 install pymavlink pyserial
    ```
-1. Open terminal (in Firmware directory) and start the shell:
+1. 在 Firmware 目录中打开终端并启动 shell：
    ```sh
-   # 用于串口
+   # 通过串口
    ./Tools/mavlink_shell.py /dev/ttyACM0
    ```
     ```sh
-   # 用于 WiFi 连接
+   # 通过 WiFi 连接
    ./Tools/mavlink_shell.py 0.0.0.0:14550
    ```
 
-Use `mavlink_shell.py -h` to get a description of all available arguments.
+执行 `mavlink_shell.py -h` 获取所有可用参数的描述。
 
 ## 使用 MAVLink Shell
 
-For information see: [PX4 Consoles/Shells > Using Consoles/Shells](../debug/consoles.md#using_the_console).
+详情见：[PX4 Consoles/Shells > Using Consoles/Shells](../debug/consoles.md#using_the_console)。
