@@ -2,7 +2,8 @@
 
 This page shows how to set up a a companion computer (Odroid C1) with a camera (Logitech C920) such that the video stream is transferred via the Odroid C1 to a network computer and displayed in the application QGroundControl that runs on this computer.
 
-The whole hardware setup is shown in the figure below. It consists of the following parts:
+The whole hardware setup is shown in the figure below.
+It consists of the following parts:
 * Odroid C1
 * Logitech camera C920
 * WiFi module TP-LINK TL-WN722N
@@ -11,22 +12,25 @@ The whole hardware setup is shown in the figure below. It consists of the follow
 
 ## Install Linux environment in Odroid C1
 
-To install the Linux environment (Ubuntu 14.04), follow the instruction given in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1). In this tutorial it is also shown how to access the Odroid C1 with a UART cable and how to establish Ethernet connection.
+To install the Linux environment (Ubuntu 14.04), follow the instruction given in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1).
+In this tutorial it is also shown how to access the Odroid C1 with a UART cable and how to establish Ethernet connection.
 
 ## Set up alternative power connection
 
-The Odroid C1 can be powered via the 5V DC jack. If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup. 
+The Odroid C1 can be powered via the 5V DC jack.
+If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup. 
 
 ![Power Pins](../../assets/videostreaming/power-pins.jpg)
 
 ## Enable WiFi connection for Odroid C1
 
-In this this tutorial the WiFi module TP-LINK TL-WN722N is used. To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
+In this this tutorial the WiFi module TP-LINK TL-WN722N is used.
+To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
 
 
 ## Configure as WiFi Access Point
 
-This sections shows how to set up the Odroid C1 such that it is an access point. 
+This sections shows how to set up the Odroid C1 such that it is an access point.
 The content is taken from the pixhawk.org "access point" tutorial (no longer available) with some small adaptions.
 To enable to stream the video from the camera via the Odroid C1 to the QGroundControl that runs on a computer it is not required to follow this section. However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion. The TP-LINK TL-WN722N is used as a WiFi module.
 In the ensuing steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module. Change all occurrences of wlan0 to the appropriate interface if different (e.g. wlan1).
