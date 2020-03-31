@@ -130,9 +130,9 @@ make px4_sitl_default gazebo
 `docker run` 命令只能用于创建新容器。 要重新进入此容器（将保留您的更改），只需执行以下操作：
 
 ```sh
-# start the container
+# 启动 container
 docker start container_name
-# open a new bash shell in this container
+# 在container中打开 bash shell
 docker exec -it container_name bash
 ```
 
