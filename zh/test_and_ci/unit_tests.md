@@ -28,9 +28,9 @@ PX4提供了以下几种编写单元测试的方法：
 
 创建一个新的功能测试步骤如下：
 
-1. 一般来说（与单元测试类似）功能测试应分为三个部分：设置，运行，检查结果。 每个测试都应该包括一个特定行为或是设置案例，如果测试失败，则很明显有错误。 Please try to follow these standards when possible.
-2. Copy and rename the example functional test [ParameterTest](https://github.com/PX4/Firmware/blob/master/src/lib/parameters/ParameterTest.cpp) to the directory the code to be tested is in.
-3. Rename the class from ParameterTest to something better representing the code being testing
+1. 一般来说（与单元测试类似）功能测试应分为三个部分：设置，运行，检查结果。 每个测试都应该包括一个特定行为或是设置案例，如果测试失败，则很明显有错误。 请尽可能遵循这些标准。
+2. 复制示例功能测试 [ParameterTest](https://github.com/PX4/Firmware/blob/master/src/lib/parameters/ParameterTest.cpp) 到你测试目录，并重命名。
+3. 将ParameterTest 重命名为更符合你正在测试的代码功能。
 4. Add the new file to the directory's `CMakeLists.txt`. It should look something like `px4_add_functional_gtest(SRC MyNewFunctionalTest.cpp LINKLIBS <library_to_be_tested>)`
 5. Add the desired test functionality. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the test setup, running the code to be tested and verifying that it behaves as expected.
 6. If additional library dependencies are required, they should also be added to the CMakeLists after the `LINKLIBS` as shown above.
