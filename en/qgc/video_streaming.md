@@ -167,7 +167,7 @@ up iptables-restore < /etc/iptables.ipv4.nat
 
 # Gstreamer Installation
 
-To install gstreamer packages on the computer and on the Odroid C1 and start the stream, follow the instruction given in the [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md). 
+To install gstreamer packages on the computer and on the Odroid C1 and start the stream, follow the instruction given in the [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoReceiver/README.md). 
 
 If you cannot start the stream on the Odroid with the uvch264s plugin, you can also try to start it with the v4l2src plugin:
 

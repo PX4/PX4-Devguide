@@ -13,7 +13,7 @@ It supports hardware like:
 * Airspeed sensors
   * [Thiemar airspeed sensor](https://github.com/thiemar/airspeed)
 * GNSS receivers for GPS and GLONASS
-  * [Zubax GNSS](http://zubax.com/product/zubax-gnss)
+  * [Zubax GNSS](https://zubax.com/products/gnss_2)
 * Power monitors
   * [Pomegranate Systems Power Module](http://docs.px4.io/master/en/power_module/pomegranate_systems_pm.html)
   * [CUAV CAN PMU Power Module](http://docs.px4.io/master/en/power_module/cuav_can_pmu.html)
@@ -53,7 +53,7 @@ The ID and rotational direction of each motor controller can be assigned after i
 ## Useful links
 
 * [Homepage](http://uavcan.org)
-* [Specification](http://uavcan.org/Specification)
+* [Specification](https://uavcan.org/specification/)
 * [Implementations and tutorials](http://uavcan.org/Implementations)
 
 
