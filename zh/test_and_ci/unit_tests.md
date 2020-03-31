@@ -1,14 +1,14 @@
 # 单元测试
 
-Developers are encouraged to write unit tests during all parts of development, including adding new features, fixing bugs, and refactoring.
+我们鼓励开发人员在开发的每个模块时编写单元测试，包括添加新功能，修复错误和重构。
 
-PX4 provides several methods for writing unit tests:
+PX4提供了以下几种编写单元测试的方法：
 
-1. Unit tests with [Google Test](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) ("GTest") - tests that have minimal, internal-only dependencies
-2. Functional tests with GTest - tests that depend on parameters and uORB messages
-3. SITL unit tests. This is for tests that need to run in full SITL. These tests are much slower to run and harder to debug, so it is recommended to use GTest instead when possible.
+1. 使用[Google Test](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) ("GTest")进行单元测试 - 最小程度的内部依赖
+2. 使用GTest的功能测试 - 依赖parameters和 uORB和消息
+3. 软件在环(SITL)单元测试。 这些测试需要运行在完整的SITL环境中， 运行起来更慢，更难调试，所以建议尽可能使用GTest代替。
 
-## Writing a GTest Unit Test
+## 写一个GTest单元测试
 
 **Tip**: In general, if you need access to advanced GTest utilities, data structures from the STL or need to link to `parameters` or `uorb` libraries you should use the functional tests instead.
 
