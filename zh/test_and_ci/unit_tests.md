@@ -39,12 +39,12 @@ PX4提供了以下几种编写单元测试的方法：
 
 ## 写一个软件在环（SITL）单元测试
 
-SITL unit tests should be used when you specifically need all of the flight controller components - drivers, time, and more. These tests are slower to run (1s+ for each new module), and harder to debug, so in general they should only be used when necessary.
+当需要所有的飞行控制组件：驱动、时间或者更多时，应该SITL单元测试。 这些测试运行较慢(每个模块至少1秒+)，同时难以测试，所以仅在必要时使用它们。
 
-The steps to create new SITL unit tests are as follows:
+创建一个新的SITL单元测试步骤如下：
 
-1. Examine the sample [Unittest-class](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h).
-2. Create a new .cpp file within [tests](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tests) with name **test_[description].cpp**.
+1. 检查示例 [Unittest-class](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h)。
+2. 在 [tests](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tests) 中创建名为 **test_ [description] .cpp** 的新 .cpp 文件。
 3. Within **test_[description].cpp** include the base unittest-class `<unit_test.h>` and all files required to write a test for the new feature.
 4. Within **test_[description].cpp** create a class `[Description]Test` that inherits from `UnitTest`.
 5. Within `[Description]Test` class declare the public method `virtual bool run_tests()`.
