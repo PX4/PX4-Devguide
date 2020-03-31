@@ -24,11 +24,11 @@ PX4提供了以下几种编写单元测试的方法：
 
 ## 写一个GTest功能测试
 
-当测试或测试的组件依赖参数、uORB 消息、或更高级的GTest功能的时候，应当使用GTest功能测试。 Additionally, functional tests can contain local usage of STL data structures (although be careful of platform differences between eg. macOS and Linux).
+当测试或测试的组件依赖参数、uORB 消息、或更高级的GTest功能的时候，应当使用GTest功能测试。 此外，功能测试可以包含STL数据结构的本地用法（要小心平台之间的差异，如 macOS 和 Linux)
 
-The steps to creating new functional tests are as follows:
+创建一个新的功能测试步骤如下：
 
-1. In general (and similar to unit tests), functional tests should be arranged in three sections: setup, run, check results. Each test should test one very specific behavior or setup case, so if a test fails it is obvious what is wrong. Please try to follow these standards when possible.
+1. 一般来说（与单元测试类似）功能测试应分为三个部分：设置，运行，检查结果。 每个测试都应该包括一个特定行为或是设置案例，如果测试失败，则很明显有错误。 Please try to follow these standards when possible.
 2. Copy and rename the example functional test [ParameterTest](https://github.com/PX4/Firmware/blob/master/src/lib/parameters/ParameterTest.cpp) to the directory the code to be tested is in.
 3. Rename the class from ParameterTest to something better representing the code being testing
 4. Add the new file to the directory's `CMakeLists.txt`. It should look something like `px4_add_functional_gtest(SRC MyNewFunctionalTest.cpp LINKLIBS <library_to_be_tested>)`
