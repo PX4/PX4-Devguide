@@ -76,7 +76,7 @@ optional 参数：
 
 ## 关于实现的说明
 
-- 使用Python编写的测试运行程序脚本 mavsdk_test_runner.py </ 0>调用这些测试。 该运行程序还启动 px4 </ 0>以及用于SITL测试的Gazebo，并收集这些进程的日志。</p></li>
+- 使用Python编写的测试运行程序脚本 mavsdk_test_runner.py </ 0>调用这些测试。 该运行程序还启动` px4 </ 0>以及用于SITL测试的Gazebo，并收集这些进程的日志。</p></li>
 <li><p spaces-before="0">这个测试运行器是一个C++库 
 它包含了：</p>
 
@@ -84,20 +84,16 @@ optional 参数：
 <li>解析参数的 <a href="https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_main.cpp">main</a> 函数。</li>
 <li>MAVSDK的抽象称为<a href="https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/autopilot_tester.h"> autopilot_tester </a>。</li>
 <li>使用围绕MAVSDK的抽象的实际测试，例如 <a href="https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp"> test_multicopter_mission.cpp </a>。</li>
-<li>测试使用<a href="https://github.com/catchorg/Catch2">catch2</a>单元测试框架。
+<li>测试使用 <a href="https://github.com/catchorg/Catch2">catch2</a> 单元测试框架。
 使用这个框架的原因如下：
 
 <ul>
-<li>终止测试所需的断言（<code> REQUIRE </ 0>）可以位于函数内部（而不仅仅是顶层，如<a href="https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement"> gtest </a>测试所示）。</li>
-<li>依赖关系管理比较容易，因为<em x-id="3"> catch2 </em>可以只作为头文件库包含在内。</li>
-<li><em x-id="3"> Catch2 </em>支持<a href="https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md#tags"> tags </a>，从而可以灵活地组成测试。</li>
-</ul></li>
-</ul></li>
-</ul>
+<li>终止测试所需的断言（<code>REQUIRE`）可以位于函数内部（而不仅仅是顶层，如 [gtest 测试所示](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)）。</li> 
+  
+        - 依赖关系管理比较容易，因为* catch2 *可以只作为头文件库包含在内。
+      - * Catch2 *支持[ tags ](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md#tags)，从而可以灵活地组成测试。</ul></li> </ul></li> </ul> 
 
-<p spaces-before="0">使用的术语：</p>
+使用的术语：
 
-<ul>
-<li>“model”：这是选定的Gazebo模型，例如 <code> iris </ 0>。</li>
-<li>"test case": 这是 <a href="https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md">catch2 测试用例</a>。</li>
-</ul>
+- "model"：这是选定的Gazebo模型，例如 `iris`。
+- "test case": 这是 [catch2 测试用例](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md)。
