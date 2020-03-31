@@ -20,9 +20,9 @@ PX4提供了以下几种编写单元测试的方法：
 4. 添加你想要的测试功能。 这包括了添加所需的头文件、新测试(每个测试都应该有单独的名称)，并加入相关逻辑，运行测试代码并验证其行为是否符合预期。
 5. 如果需要添加新的依赖库，只要在如上所说的CMakeLists文件中`LINKLIBS`后面加入库的名字。
 
-Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/unit-MyNewUnit`. It can be run directly in a debugger.
+可以通用 `make tests`命令来运行所有测试，然后在 `build/px4_sitl_test/unit-MyNewUnit`目录中找到二进行制文件。 也可以直接通过调试器中运行。
 
-## Writing a GTest Functional Test
+## 写一个GTest功能测试
 
 GTest functional tests should be used when the test or the components being tested depend on parameters, uORB messages and/or advanced GTest functionality. Additionally, functional tests can contain local usage of STL data structures (although be careful of platform differences between eg. macOS and Linux).
 
