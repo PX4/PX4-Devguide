@@ -4,7 +4,7 @@ Docker 容器被提供用于完整的 [PX4 开发工具链](../setup/dev_env.md#
 
 本主题说明如何使用 [available docker containers](#px4_containers) 访问本地 Linux 计算机中的构建环境。
 
-> Dockerfiles 和 README 在这里可以找到 它们是在 [Docker Hub](https://hub.docker.com/u/px4io/) 上自动构建的。
+> **Note** Dockerfiles 和 README可以在 [Github](https://github.com/PX4/containers/tree/master/docker)找到。 它们是在 [Docker Hub](https://hub.docker.com/u/px4io/) 上自动构建的。
 
 ## 系统必备组件
 
@@ -158,13 +158,12 @@ docker rm 45eeb98f1dd9
 
 运行模拟实例时，例如在 docker 容器内的 SITL 并通过 *QGroundControl* 从主机控制它，必须手动设置通信链接。 *QGroundControl* 的自动连接功能在此处不起作用。
 
-在 *QGroundControl* 中，导航至 [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) 并选择“通信链接”。 创建使用 UDP 协议的新链接。 The port depends on the used [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. The IP address of the docker container can be found with the following command (assuming the container name is `mycontainer`):
+在 *QGroundControl* 中，导航至 [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) 并选择“通信链接”。 创建使用 UDP 协议的新链接。 端口取决于 [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)中的配置，例如： 端口14570 用于 SITL 配置，docker容器默认网络的IP 地址通常是172.17.0.1/16。 可以使用以下命令找到Docker容器的IP地址（假设容器名称为` mycontainer </ 0>）：</p>
 
-```sh
-$ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}' mycontainer
-```
+<pre><code class="sh">$ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}' mycontainer
+`</pre> 
 
-> **Note** Spaces between double curly braces above should be not be present (they are needed to avoid a UI rendering problem in gitbook).
+> **Note** 上面的两个大括号之间不应存在空格（需要使用它们以避免gitbook中的UI渲染问题）。
 
 ### 故障处理
 
@@ -225,6 +224,6 @@ DOCKER_OPTS="${DOCKER_OPTS} -H unix:///var/run/docker.sock -H 0.0.0.0:2375"
 
 ```sh
 export DOCKER_HOST=tcp://<ip of your VM>:2375
-# run some docker command to see if it works, e.g. ps
+# 运行一些 docker 命令检查是否正常工作，如：ps
 docker ps
 ```
