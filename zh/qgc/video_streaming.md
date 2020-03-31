@@ -161,7 +161,7 @@ up iptables-restore < /etc/iptables.ipv4.nat
 
 # Gstreamer 安装
 
-要在计算机和Odroid C1上安装gstreamer软件包并启动流，请按照 [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md) 中给出的说明进行操作。
+To install gstreamer packages on the computer and on the Odroid C1 and start the stream, follow the instruction given in the [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoReceiver/README.md).
 
 如果您无法使用 uvch264s 插件启动 odroid 上的流, 您也可以尝试使用 v4l2src 插件启动它:
 
@@ -176,8 +176,8 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,
 >     sh
 >       sudo usermod -aG video $USER
 
-如果一切正常, 您应该在 QGroundControl 的飞行模式窗口中看到左下角的视频流, 如下面的屏幕截图所示。
+If everything works, you should see the video stream on the bottom left corner in the flight-mode window of *QGroundControl* as shown in the screenshot below.
 
-![](../../assets/videostreaming/qgc-screenshot.png)
+![QGC displaying video stream](../../assets/videostreaming/qgc-screenshot.png)
 
 如果您单击视频流, 卫星地图将显示在左下角, 视频将显示在整个背景中。
