@@ -8,7 +8,7 @@ jMAVSim是一个简单的多旋翼/四旋翼仿真软件，它可以允许你在
 
 本问主要演示如何设置 jMAVSim 以连接到 SITL 版本的 PX4 。
 
-> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#jmavsimgazebo-hitl-environment)).
+> **Tip** jMAVSim can also be used for HITL Simulation ([as shown here](../simulation/hitl.md#jmavsim_hitl_configuration)).
 
 ## Installation
 
