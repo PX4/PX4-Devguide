@@ -9,4 +9,4 @@ PX4 提供广泛的测试和测试设施，包括通过持续集成运行的单�
 * [ROS集成测试](../test_and_ci/integration_testing.md)
 * [MAVSDK集成测试](../test_and_ci/integration_testing_mavsdk.md)
 * [容器(Docker)](../test_and_ci/docker.md)
-* [Maintenance](../test_and_ci/maintenance.md)
+* [维护测试](../test_and_ci/maintenance.md)
