@@ -7,7 +7,7 @@
 
 ## 载荷混控器示例
 
-有效载荷混控器只是一个 [简单混控器](../concept/mixing.md#simple-mixer) 用于映射从[控制组 #6 (第一个载荷)](../concept/mixing.md#control_group_6) 到某一特定输出的任一函数值 随后您可以将 uORB 主题发布到选定的控制组函数中，其值将被映射到指定的输出。
+A payload mixer is just a [summing mixer](../concept/mixing.md#summing_mixer) that maps any of the function values from [Control Group #6 (First Payload)](../concept/mixing.md#control_group_6) to a particular output. 随后您可以将 uORB 主题发布到选定的控制组函数中，其值将被映射到指定的输出。
 
 在这个例子中，我们将创建一个基于*遥控信号直穿的混控器*（[穿过辅助混控器](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)） 这个混控器通常被加载到大型多旋翼的 AUX PWM 端口)。 它将4个用户自定义的遥控信号值（使用[RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1)参数）直传到4个AUX口作为PWM输出
 
@@ -31,7 +31,7 @@ M: 1
 S: 3 4  10000  10000      0 -10000  10000
 ```
 
-> **注释**文件定义了一个4输出的[简单混控器](../concept/mixing.md#simple-mixer) - `M：1` 表示由一个控制输入定义的输出(以下的`S` 行内容)。 - `S：3`_`n`_ 表示输入的是<>th<> 输入的[控制组3(手动通过)](../concept/mixing.md#control-group-3-manual-passthrough)。 所以对于r `S: 3 5`  输入被称为"RC aux1" （这表示参数`RC_MAP_AUX1`映射到遥控器通道） - The section declaration order defines the order of the outputs when assigned to a physical bus (e.g. the third section might be assigned to AUX3).
+> **Note** The file defines four [summing mixers](../concept/mixing.md#summing_mixer) (for four outputs). - `M：1` 表示由一个控制输入定义的输出(以下的`S` 行内容)。 - `S：3`_`n`_ 表示输入的是<>th<> 输入的[控制组3(手动通过)](../concept/mixing.md#control-group-3-manual-passthrough)。 所以对于r `S: 3 5`  输入被称为"RC aux1" （这表示参数`RC_MAP_AUX1`映射到遥控器通道） - The section declaration order defines the order of the outputs when assigned to a physical bus (e.g. the third section might be assigned to AUX3).
 
 
 Start by copying the mixer file and putting it onto the SD Card at: **/etc/mixers/pass.aux.mix** (see [Mixing and Actuators > Loading a Custom Mixer](../concept/mixing.md#loading_custom_mixer).
