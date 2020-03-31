@@ -31,11 +31,11 @@ PX4提供了以下几种编写单元测试的方法：
 1. 一般来说（与单元测试类似）功能测试应分为三个部分：设置，运行，检查结果。 每个测试都应该包括一个特定行为或是设置案例，如果测试失败，则很明显有错误。 请尽可能遵循这些标准。
 2. 复制示例功能测试 [ParameterTest](https://github.com/PX4/Firmware/blob/master/src/lib/parameters/ParameterTest.cpp) 到你测试目录，并重命名。
 3. 将ParameterTest 重命名为更符合你正在测试的代码功能。
-4. Add the new file to the directory's `CMakeLists.txt`. It should look something like `px4_add_functional_gtest(SRC MyNewFunctionalTest.cpp LINKLIBS <library_to_be_tested>)`
-5. Add the desired test functionality. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the test setup, running the code to be tested and verifying that it behaves as expected.
-6. If additional library dependencies are required, they should also be added to the CMakeLists after the `LINKLIBS` as shown above.
+4. 将新文件添加到目录里面的`CMakeLists.txt`。 文件内容看起来像 `px4_add_functional_gtest(SRC MyNewFunctionalTest.cpp LINKLIBS <library_to_be_tested>)`
+5. 添加你想要的测试功能。 这包括了，添加特定的头文件、新测试（每个测试都应该使用不同的命名），并设置相关逻辑，运行测试代码并验证是否符合预期。
+6. 如果需要添加新的依赖库，只要在如上所说的CMakeLists文件中LINKLIBS后面加入库的名字。
 
-Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/functional-MyNewFunctional`. It can be run directly in a debugger, however be careful to only run one test per executable invocation using the [--gtest_filter=<regex>](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests) arguments, as some parts of the uORB and parameter libraries don't clean themselves up perfectly and may result in undefined behavior if set up multiple times.
+可以通用`make tests`命令来运行所有测试，然后在 `build/px4_sitl_test/functional-MyNewFunctional`目录中找到二进行制文件。 也可以直接通过调试器中运行。 It can be run directly in a debugger, however be careful to only run one test per executable invocation using the [--gtest_filter=<regex>](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests) arguments, as some parts of the uORB and parameter libraries don't clean themselves up perfectly and may result in undefined behavior if set up multiple times.
 
 ## Writing a SITL Unit Test
 
