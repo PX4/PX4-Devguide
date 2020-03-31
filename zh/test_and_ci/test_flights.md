@@ -48,15 +48,15 @@
 
 固定翼
 
-| 机型                                                                                                  | 飞控                                                                 | UUID                                           |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------- |
-| [Phantom Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html) | [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html) | 0001000000003035333330365104003c0020 (f450-v2) |
+| 机型                                                                                                  | 飞控                                                                    | UUID                                           |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------- |
+| [Phantom Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html) | [Phantom Wing](https://docs.px4.io/en/flight_controller/pixhawk.html) | 0001000000003035333330365104003c0020 (f450-v2) |
 
-VTOL
+垂直起降
 
-| Frame                                                                                | Flight Controller                                                             | UUID                                             |
+| 机型                                                                                   | 飞控                                                                            | UUID                                             |
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | ------------------------------------------------ |
 | [Convergence VTOL](https://www.horizonhobby.com/convergence-vtol-bnf-basic-efl11050) | [Pixhawk 4 Mini](https://docs.px4.io/en/flight_controller/pixhawk4_mini.html) | 000200000000343233383038511500350039 (vtol-v5-m) |
 | [Delta Quad Pro](https://px4.io/portfolio/deltaquad-vtol/)                           | [Dropix](https://docs.px4.io/en/flight_controller/dropix.html)                | 0001000000003437393931375114004c0042 (delta-v2)  |
 
-{% endif %} <!-- END: details above displayed only in master -->
+{% endif %}<!-- END: details above displayed only in master -->
