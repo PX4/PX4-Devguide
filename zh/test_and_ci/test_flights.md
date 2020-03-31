@@ -4,7 +4,7 @@
 
 {% if book.px4_version != 'master' %}
 
-> **Tip** Test flight process and fleet information may change over time. Current information [can be found in the head revision/master docs](https://dev.px4.io/master/en/test_and_ci/test_flights.html)! {% else %} <!-- START: details below displayed only in master -->
+> **提示** 试飞进度和机队信息可能会随时间变化。 当前信息 [可以在 head revision/master docs中找到](https://dev.px4.io/master/en/test_and_ci/test_flights.html)! {% else %} <!-- START: details below displayed only in master -->
 
 ## 如何申请测试飞行
 
@@ -20,7 +20,7 @@
 
 ## 测试卡
 
-The tests performed for each platform are linked below:
+针对每个平台的测试链接如下：
 
 * [测试 MC_01 - 手动模式](../test_cards/mc_01_manual_modes.md)
 * [MC_02 - 完全自主](../test_cards/mc_02_full_autonomous.md)
