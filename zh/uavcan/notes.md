@@ -8,7 +8,7 @@
 
 ### 用 Zubax Babel 进行调试
 
-在 UAVCAN 总线上调试传输的一个很好的工具是 [Zubax Babel](https://docs.zubax.com/zubax_babel) 与 [GUI tool ](http://uavcan.org/GUI_Tool/Overview/) 的组合。 它们还可以独立于 Pixhawk 硬件使用，以测试节点或手动控制启用了 UAVCAN 的电调。
+A great tool to debug the transmission on the UAVCAN bus is the [Zubax Babel](https://zubax.com/products/babel) in combination with the [GUI tool](http://uavcan.org/GUI_Tool/Overview/). 它们还可以独立于 Pixhawk 硬件使用，以测试节点或手动控制启用了 UAVCAN 的电调。
 
 ### UAVCAN devices dont get node ID/FW doesn't update
 
