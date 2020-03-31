@@ -1,17 +1,22 @@
 # S.Bus Driver for Linux
 
-The *S.Bus Driver for Linux* allows a Linux-based autopilot to access up to 16 channels from a *Futaba S.Bus receiver* via a serial port. The driver should also work with other receivers that use the S.Bus protocol, including as FrSky, RadioLink, and even S.Bus encoders. 
+The *S.Bus Driver for Linux* allows a Linux-based autopilot to access up to 16 channels from a *Futaba S.Bus receiver* via a serial port.
+The driver should also work with other receivers that use the S.Bus protocol, including as FrSky, RadioLink, and even S.Bus encoders.
 
 A signal inverter circuit is required (described below) to enable the device serial port to read data from the receiver.
 
-> **Note** The driver has been tested on Raspberry Pi running Rasbian Linux, when connected to the receiver through the onboard serial port or via a USB to TTY serial cable. It is expected to work on all Linux versions, and through all serial ports.
+> **Note** The driver has been tested on Raspberry Pi running Rasbian Linux, when connected to the receiver through the onboard serial port or via a USB to TTY serial cable.
+  It is expected to work on all Linux versions, and through all serial ports.
 
 
 ## Signal inverter circuit
 
-S.Bus is an *inverted* UART communication signal. As many serial ports/flight controllers cannot read an inverted UART signal, a signal inverter circuit is required between the receiver and serial port un-invert the signal. This section shows how to create an appropriate circuit.
+S.Bus is an *inverted* UART communication signal.
+As many serial ports/flight controllers cannot read an inverted UART signal, a signal inverter circuit is required between the receiver and serial port un-invert the signal.
+This section shows how to create an appropriate circuit.
 
-> **Tip** This circuit is required for Raspberry Pi to read S.Bus remote control signals through the serial port or USB-to-TTY serial converter. It will also be required for many other flight controllers.
+> **Tip** This circuit is required for Raspberry Pi to read S.Bus remote control signals through the serial port or USB-to-TTY serial converter.
+  It will also be required for many other flight controllers.
 
 ### Required components
 
@@ -47,7 +52,7 @@ The image below shows the connections on a breadboard.
 
 ## Source code
 
-* [Firmware/src/drivers/linux_sbus](https://github.com/PX4/Firmware/tree/master/src/drivers/linux_sbus)
+* [Firmware/src/drivers/linux_sbus](https://github.com/PX4/Firmware/tree/master/src/drivers/linux_sbus) 
 
 ## Usage
 
@@ -63,5 +68,6 @@ So for example, to automatically start the driver listening to 8 channels on dev
 linux_sbus start -d /dev/ttyUSB0 -c 8
 ```
 
-> **Note** The original configuration files are located in **Firmware/posix-configs**. According to the official documentation, after you finish `make upload` related operations, all posix related configuration files will be placed in **/home/pi**. You can modify the file you want to use there.
-
+> **Note** The original configuration files are located in **Firmware/posix-configs**.
+  According to the official documentation, after you finish `make upload` related operations, all posix related configuration files will be placed in **/home/pi**.
+  You can modify the file you want to use there.
