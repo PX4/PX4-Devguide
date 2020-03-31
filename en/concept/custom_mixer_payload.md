@@ -8,7 +8,7 @@ You should already have read [Mixing and Actuators](../concept/mixing.md).
 
 ## Payload Mixer Example
 
-A payload mixer is just a [simple mixer](../concept/mixing.md#simple-mixer) that maps any of the function values from [Control Group #6 (First Payload)](../concept/mixing.md#control_group_6) to a particular output.
+A payload mixer is just a [summing mixer](../concept/mixing.md#summing_mixer) that maps any of the function values from [Control Group #6 (First Payload)](../concept/mixing.md#control_group_6) to a particular output.
 You can then publish uORB topics to the selected control group function and their value will be mapped to the specified output.
 
 For this example, we'll create a custom mixer based on the *RC passthrough mixer* ([pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)).
@@ -35,7 +35,7 @@ M: 1
 S: 3 4  10000  10000      0 -10000  10000
 ```
 
-> **Note** The file defines a [simple mixer](../concept/mixing.md#simple-mixer) with four outputs.
+> **Note** The file defines four [summing mixers](../concept/mixing.md#summing_mixer) (for four outputs).
 > - `M: 1` indicates an output that is defined by one control input (the following `S` line).
 > - `S: 3 `_`n`_ indicates that the input is the n<>th<> input of [Control Group 3 (Manual Passthrough)](../concept/mixing.md#control-group-3-manual-passthrough).
 >  So for `S: 3 5` the input is called "RC aux1" (this maps to the RC channel set in parameter `RC_MAP_AUX1`).
