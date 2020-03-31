@@ -16,7 +16,7 @@
 make px4_sitl gazebo
 ```
 
-## 具有光流的四旋翼（#quadrotor_optical_flow）
+## Quadrotor with Optical Flow {#quadrotor_optical_flow}
 
 ```sh
 make px4_sitl gazebo_iris_opt_flow
