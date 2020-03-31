@@ -52,7 +52,7 @@ dyn ./test.px4mod
 ```
 
 ## NuttX
-NuttX has an integrated shell interpreter ([NSH](http://nuttx.org/Documentation/NuttShell.html)), and thus scripts can be executed directly.
+NuttX has an integrated shell interpreter ([NuttShell (NSH)](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=139629410)), and thus scripts can be executed directly.
 
 ### Debugging the System Boot
 

@@ -113,7 +113,7 @@ Follow the appropriate setup steps for the specific simulator in the following s
    ```
 1. Start *QGroundControl*. It should autoconnect to PX4 and Gazebo.
 
-#### jMAVSim (Quadrotor only)
+#### jMAVSim (Quadrotor only) {#jmavsim_hitl_configuration}
 
 > **Note** Make sure *QGroundControl* is not running!
 

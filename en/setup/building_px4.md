@@ -17,7 +17,7 @@ git clone https://github.com/PX4/Firmware.git --recursive
 ```
 
 > **Note** This is all you need to do just to build the latest code. 
-  [GIT Examples > Contributing code to PX4](../contribute/git_examples.md#contributing-code-to-px4) provides a lot more information about using git to contribute to PX4. 
+  [GIT Examples > Contributing code to PX4](../contribute/git_examples.md#contributing_code) provides a lot more information about using git to contribute to PX4. 
 
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}

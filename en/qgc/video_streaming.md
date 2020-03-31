@@ -176,13 +176,14 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,
 ```
 Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running. 
 
-> **Tip** If you get the system error: `Permission denied`, you might need to prepend `sudo` to the command above. Alternatively add the current user to the `video` group as shown below (and then logout/login): 
+> **Tip** If you get the system error: `Permission denied`, you might need to prepend `sudo` to the command above.
+  Alternatively add the current user to the `video` group as shown below (and then logout/login): 
   ```sh
   sudo usermod -aG video $USER
   ```
 
-If everything works, you should see the video stream on the bottom left corner in the flight-mode window of QGroundControl as shown in the screenshot below. 
+If everything works, you should see the video stream on the bottom left corner in the flight-mode window of *QGroundControl* as shown in the screenshot below. 
 
-![](../../assets/videostreaming/qgc-screenshot.png)
+![QGC displaying video stream](../../assets/videostreaming/qgc-screenshot.png)
 
 If you click on the video stream, the satellite map is shown in the left bottom corner and the video is shown in the whole background.
