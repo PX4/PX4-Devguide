@@ -16,10 +16,10 @@ Drivers should `#include <drivers/device/i2c.h>` and then provide an implementat
 
 Drivers will also need to include headers for their type of device (**drv_*.h**) in [/src/drivers/](https://github.com/PX4/Firmware/tree/master/src/drivers) - e.g. [drv_baro.h](https://github.com/PX4/Firmware/blob/master/src/drivers/drv_baro.h).
 
-To include a driver in firmware you must add the driver to the [cmake config file](https://github.com/PX4/Firmware/tree/master/cmake/configs) that corresponds to the target you want to build for:
+To include a driver in firmware you must add the driver to the board-specific cmake file that corresponds to the target you want to build for:
 ```
 drivers/sf1xx
-``` 
+```
 
 > **Tip** For example, you can see/search for this driver in the [px4_fmu-v4_default](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake) configuration.
 
