@@ -316,12 +316,12 @@ ulanding_radar <command> [arguments...]
 
    stop          Stop driver
 ```
-## vl53lxx
-Source: [drivers/distance_sensor/vl53lxx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/vl53lxx)
+## vl53l0x
+Source: [drivers/distance_sensor/vl53l0x](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/vl53l0x)
 
-### Usage {#vl53lxx_usage}
+### Usage {#vl53l0x_usage}
 ```
-vl53lxx <command> [arguments...]
+vl53l0x <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
