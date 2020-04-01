@@ -1,6 +1,9 @@
-# Video streaming in QGroundControl
+# Video Streaming from Odroid C1 to QGroundControl
 
-This topic shows how to set up a companion computer (Odroid C1) with a camera (Logitech C920) such that the video stream is transferred via the Odroid C1, over wifi to a computer, and then displayed on that computer in *QGroundControl*.
+> **Tip** This article is somewhat out of date. 
+  Community members are encouraged to retest the instructions on a more recent Ubuntu version, and to import Odroid setup instructions into the wiki.
+
+This topic shows how to stream video from a camera (Logitech C920) attached to a companion computer ([Odroid C1](https://magazine.odroid.com/wp-content/uploads/odroid-c1-user-manual.pdf)) to another computer (over wifi) and display in *QGroundControl*.
 
 The hardware setup is shown in the figure below.
 It consists of the following parts:
@@ -10,13 +13,12 @@ It consists of the following parts:
 
 ![Setup](../../assets/videostreaming/setup_whole.jpg)
 
-> **Note** The instructions were tested on Ubuntu 14.04 but a similar approach should work for later Ubuntu versions.
-
+The instructions were tested on Ubuntu 14.04 but a similar approach should work for later Ubuntu versions.
 
 ## Install Linux Environment in Odroid C1
 
-To install the Linux environment (Ubuntu 14.04), follow the instruction given in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1).
-In this tutorial it is also shown how to access the Odroid C1 with a UART cable and how to establish Ethernet connection.
+To install the Linux environment (Ubuntu 14.04), follow the instruction given in the [Odroid C1 tutorial](http://web.archive.org/web/20180617111122/http://pixhawk.org/peripherals/onboard_computers/odroid_c1) (wayback machine).
+The tutorial also shows how to access the Odroid C1 with a UART cable and how to establish Ethernet connection.
 
 ## Set up Alternative Power Connection
 
@@ -29,7 +31,7 @@ The power is delivered by connecting the DC voltage source (5 V) via a jumper ca
 ## Enable WiFi Connection for Odroid C1
 
 In this this tutorial the WiFi module TP-LINK TL-WN722N is used.
-To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
+To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](http://web.archive.org/web/20180617111122/http://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
 
 
 ## Configure as WiFi Access Point
@@ -39,7 +41,8 @@ The content is taken from the pixhawk.org "access point" tutorial (no longer ava
 To enable to stream the video from the camera via the Odroid C1 to the QGroundControl that runs on a computer it is not required to follow this section.
 However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion.
 The TP-LINK TL-WN722N is used as a WiFi module.
-In the ensuing steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module.
+
+In the following steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module.
 Change all occurrences of wlan0 to the appropriate interface if different (e.g. wlan1).
 
 ### Onboard Computer as Access Point
@@ -206,6 +209,5 @@ Alternatively add the current user to the `video` group as shown below (and then
 If everything works, you should see the video stream on the bottom left corner in the flight-mode window of *QGroundControl* as shown in the screenshot below. 
 
 ![QGC displaying video stream](../../assets/videostreaming/qgc-screenshot.png)
-
 
 If you click on the video stream, the satellite map is shown in the left bottom corner and the video is shown in the whole background.
