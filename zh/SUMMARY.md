@@ -114,7 +114,7 @@
   * [ULog File Format](log/ulog_file_format.md)
 * [教程](tutorials/tutorials.md) 
   * [地面控制站](qgc/README.md)
-  * [QGC 的视频流](qgc/video_streaming.md)
+  * [Video Streaming from Odroid C1 to QGC](qgc/video_streaming.md)
   * [远距离视频流](qgc/video_streaming_wifi_broadcast.md)
   * [S.Bus Driver for Linux](tutorials/linux_sbus.md)
 * [高级主题](advanced/README.md) 
