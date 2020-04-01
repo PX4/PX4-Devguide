@@ -15,7 +15,7 @@ bl_update [arguments...]
 ## config
 Source: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
 
-Configure a sensor driver (sampling & publication rate, range, etc.)
+Configure a sensor driver (sampling & publication rate, etc.)
 ### Usage {#config_usage}
 ```
 config <command> [arguments...]
@@ -33,9 +33,6 @@ config <command> [arguments...]
 
    rate          Set sensor publication rate
      <file:dev> <rate> Sensor device file and publication rate in Hz
-
-   range         Set sensor measurement range
-     <file:dev> <rate> Sensor device file and range
 
    check         Perform sensor self-test (and print info)
      <file:dev>  Sensor device file
