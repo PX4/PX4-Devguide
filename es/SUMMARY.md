@@ -114,7 +114,7 @@
   * [ULog File Format](log/ulog_file_format.md)
 * [Tutoriales](tutorials/tutorials.md) 
   * [Ground Control Station](qgc/README.md)
-  * [Video Streaming en QGC](qgc/video_streaming.md)
+  * [Video Streaming from Odroid C1 to QGC](qgc/video_streaming.md)
   * [Streaming de Video en larga distancia](qgc/video_streaming_wifi_broadcast.md)
   * [S.Bus Driver for Linux](tutorials/linux_sbus.md)
 * [Temas Avanzados](advanced/README.md) 
