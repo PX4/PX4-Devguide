@@ -22,13 +22,13 @@ A comparison of the options is provided below.
 > **Note** The [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the only one that is supported by the PX4 dev team.
 It is regularly tested as part of our continuous integration system and is known to be better performing than the other alternatives. 
 
-| | [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) **(Supported)**  | [Virtual Machine Toolchain](../setup/dev_env_windows_vm.md) | [Bash on Windows Toolchain](../setup/dev_env_windows_bash_on_win.md) | [Msys Toolchain](../setup/dev_env_windows_msys.md) |
+| | [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) **(Supported)**  | [Virtual Machine Toolchain](../setup/dev_env_windows_vm.md) | [Bash on Windows Toolchain](../setup/dev_env_windows_bash_on_win.md) |
 |---|---|---|---|---|
-| Installation | MSI installer or Script | Manual (Hard) | Script | NSIS Installer |
-| Native binary execution | yes | no | no | yes |
-| Performance | ++ | -- | - | ++ |
-| ARM Targets | ++ (quick) | + (VM USB) | + | - (broken) |
-| Simulation jMAVSim | ++ | + | + | -- |
-| Simulation gazebo | - (not yet) | + (slow) | + (slow) | -- |
-| Support | + | ++ (Linux) | +/- | -- |
-| Comments | <ul><li>New in 2018</li><li>Slim setup</li><li>Portable</li></ul> | <ul><li>Full Linux features</li><li>CPU & RAM intensive</li><li>Disk space intensive</li></ul> | <ul><li>Simulation UI is a "hack".</li><li>Windows 10 only</li><li>Essentially a VM</li></ul> | <ul><li>No support</li><li>No documentation</li><li>No simulation</li></ul> |
+| Installation | MSI installer or Script | Script | Script |
+| Native binary execution | yes | no | no |
+| Performance | ++ | -- | - |
+| ARM Targets | ++ (quick) | + (VM USB) | + |
+| Simulation jMAVSim | ++ | + | + |
+| Simulation gazebo | - (not yet) | + (slow) | + (slow) |
+| Support | + | ++ (Linux) | +/- |
+| Comments | <ul><li>New in 2018</li><li>Slim setup</li><li>Portable</li></ul> | <ul><li>Full Linux features</li><li>CPU & RAM intensive</li><li>Disk space intensive</li></ul> | <ul><li>Simulation UI is a "hack".</li><li>Windows 10 only</li><li>Essentially a VM</li></ul> |
