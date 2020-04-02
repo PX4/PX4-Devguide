@@ -24,4 +24,4 @@
     
       stop
     
-      status        print status info
+      status        打印状态信息
