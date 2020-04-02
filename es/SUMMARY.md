@@ -115,7 +115,7 @@
   * [Ground Control Station](qgc/README.md)
   * [Video Streaming from Odroid C1 to QGC](qgc/video_streaming.md)
   * [Streaming de Video en larga distancia](qgc/video_streaming_wifi_broadcast.md)
-  * [S.Bus Driver for Linux](tutorials/linux_sbus.md)
+  * [Connecting an RC Receiver on Linux](tutorials/linux_sbus.md)
 * [Temas Avanzados](advanced/README.md) 
   * [Parámetros & Configuraciones](advanced/parameters_and_configurations.md)
   * [Parámetros de referencia](advanced/parameter_reference.md)
