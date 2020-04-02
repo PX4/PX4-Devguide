@@ -56,7 +56,7 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 - 1: gimbal pitch
 - 2: gimbal yaw
 - 3: gimbal shutter
-- 4: reserved
+- 4: camera zoom
 - 5: reserved
 - 6: reserved
 - 7: reserved (parachute, -1..1)
