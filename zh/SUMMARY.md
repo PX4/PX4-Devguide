@@ -14,7 +14,6 @@
       * [Cygwin 工具链](setup/dev_env_windows_cygwin.md)
       * [Virtual Machine 工具链](setup/dev_env_windows_vm.md)
       * [Bash on Windows 工具链](setup/dev_env_windows_bash_on_win.md)
-      * [Msys 工具链](setup/dev_env_windows_msys.md)
     * [Visual Studio Code IDE](setup/vscode.md)
     * [Fast RTPS installation](setup/fast-rtps-installation.md)
     * [Additional Tools](setup/generic_dev_tools.md)
