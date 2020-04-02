@@ -56,7 +56,7 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 - 1：gimbal pitch
 - 2: gimbal yaw
 - 3: gimbal shutter
-- 4：保留
+- 4: camera zoom
 - 5：保留
 - 6：保留
 - 7：保留 (降落伞, -1..1)
