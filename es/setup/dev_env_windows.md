@@ -18,16 +18,16 @@ Hay un número de otras soluciones legacy/alternativas que podrían ser de inter
 
 > **Nota** [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) es el único que cuenta con soporte por el equipo de desarrollo de PX4. Es regularmente probado como parte de nuestro sistema de integración continua y es conocido por tener mejor funcionamiento que otras alternativas.
 
-|                          | [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) **(Soportado)** | [Virtual Machine Toolchain](../setup/dev_env_windows_vm.md) | [Bash on Windows Toolchain](../setup/dev_env_windows_bash_on_win.md) | [Msys Toolchain](../setup/dev_env_windows_msys.md) |
-| ------------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------- |
-| Instalación              | MSI installer o Script                                                 | Manual (Hard)                                               | Script                                                               | Instalador NSIS                                    |
-| Ejecución nativa binaria | sí                                                                     | no                                                          | no                                                                   | sí                                                 |
-| Rendimiento              | ++                                                                     | --                                                          | -                                                                    | ++                                                 |
-| Objetivos ARM            | ++ (rápido)                                                            | + (VM USB)                                                  | +                                                                    | - (Roto)                                           |
-| Simulación jMAVSim       | ++                                                                     | +                                                           | +                                                                    | --                                                 |
-| Simulación gazebo        | - (no aún)                                                             | + (lento)                                                   | + (lento)                                                            | --                                                 |
-| Soporte                  | +                                                                      | ++ (Linux)                                                  | +/-                                                                  | --                                                 |
-| Comentarios              |                                                                        |                                                             |                                                                      |                                                    |
+|                          | [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) **(Soportado)** | [Virtual Machine Toolchain](../setup/dev_env_windows_vm.md) | [Bash on Windows Toolchain](../setup/dev_env_windows_bash_on_win.md) |
+| ------------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------- |
+| Instalación              | MSI installer o Script                                                 | Script                                                      | Script                                                               |
+| Ejecución nativa binaria | sí                                                                     | no                                                          | no                                                                   |
+| Rendimiento              | ++                                                                     | --                                                          | -                                                                    |
+| Objetivos ARM            | ++ (rápido)                                                            | + (VM USB)                                                  | +                                                                    |
+| Simulación jMAVSim       | ++                                                                     | +                                                           | +                                                                    |
+| Simulación gazebo        | - (no aún)                                                             | + (lento)                                                   | + (lento)                                                            |
+| Soporte                  | +                                                                      | ++ (Linux)                                                  | +/-                                                                  |
+| Comentarios              |                                                                        |                                                             |                                                                      |
 
 - Nuevo en 2018
 - Slim setup
@@ -44,11 +44,5 @@ Hay un número de otras soluciones legacy/alternativas que podrían ser de inter
 - Simulación UI es un "hack".
 - Sólo Windows 10
 - Esencialmente una VM
-
-|
-
-- Sin soporte
-- Sin documentación
-- Sin simulación
 
 |
