@@ -1,14 +1,25 @@
-# Connecting an S.Bus Receiver on Linux
+# Connecting an RC Receiver on Linux (Including S.Bus)
 
-This topic shows how to setup a linux-based autopilot to use an S.Bus reciever (or encoder - e.g. from Futaba, RadioLink, etc.) via any serial port.
+This topic shows how to setup a PX4 Linux-based autopilot to connect and use a [supported RC receiver](https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html) on any serial port.
 
-The main requirements are:
-- A [signal inverter circuit](#signal_inverter_circuit) is (usually) needed to connect the receiver and device.
-- [Start the generic PX4 RC driver](#start_driver) on the device.
+For RC types other than S.Bus, you can just connect the receiver directly to the serial ports, or to USB via a USB to TTY serial cable (e.g. like PL2302 USB to Serial TTL converter).
 
-> **Note** The approach is expected to work for all Linux versions and through all serial ports, including via a USB to TTY serial cable (e.g. like PL2302 USB to Serial TTL converter).
+> **Note** For an S.Bus reciever (or encoder - e.g. from Futaba, RadioLink, etc.) you will usually need to connect the receiver and device via a [signal inverter circuit](#signal_inverter_circuit), but otherwise the setup is the same.
 
-## Signal Inverter Circuit {#signal_inverter_circuit}
+Then [Start the PX4 RC Driver](#start_driver) on the device, as shown below.
+
+
+## Starting the Driver {#start_driver}
+
+To start the RC driver on a particular UART (e.g. in this case `/dev/ttyS2`): 
+```
+rc_input start -d /dev/ttyS2
+```
+
+For other driver usage information see: [rc_input](../middleware/modules_driver.md#rcinput).
+
+
+## Signal Inverter Circuit (S.Bus only) {#signal_inverter_circuit}
 
 S.Bus is an *inverted* UART communication signal.
 
@@ -42,12 +53,3 @@ Connect the components as described below (and shown in the circuit diagram):
 The image below shows the connections on a breadboard.
 
 ![Signal inverter breadboard](../../assets/driver_sbus_signal_inverter_breadboard.png)
-
-## Starting the Driver {#start_driver}
-
-To start the RC driver on a particular UART (e.g. in this case `/dev/ttyS2`): 
-```
-rc_input start -d /dev/ttyS2
-```
-
-For other driver usage information see: [rc_input](../middleware/modules_driver.md#rcinput).
