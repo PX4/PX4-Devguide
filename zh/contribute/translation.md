@@ -35,7 +35,7 @@ The steps to join our translation tream are:
 Gitbook uses special prefix text to indicate Notes, Tips and Warnings (e.g. `> **Note**`, `> **Tip**`, `> **Warning**`). This is displayed in Crowdin as shown:
 
 ```html
-&lt;0&gt;Note&lt;/0&gt; note的文本。
+&lt;0&gt;Note&lt;/0&gt; 文本部分。
 ```
 
 It is important that you do not translate the text inside the `<0>Note</0>` tags as this will stop the note from rendering properly.

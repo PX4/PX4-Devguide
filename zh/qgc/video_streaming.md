@@ -1,8 +1,10 @@
-# QGroundControl 中的视频流
+# Video Streaming from Odroid C1 to QGroundControl
 
-此页演示如何设置相机 (logitech c920) 和机载计算机 (odroid c1), 以便通过 odroid c1 将视频流传输到网络计算机, 并显示在 QGC 中。
+> **Tip** This article is somewhat out of date. Community members are encouraged to retest the instructions on a more recent Ubuntu version, and to import Odroid setup instructions into the wiki.
 
-下图显示了整个硬件设置。 它由以下部分组成:
+This topic shows how to stream video from a camera (Logitech C920) attached to a companion computer ([Odroid C1](https://magazine.odroid.com/wp-content/uploads/odroid-c1-user-manual.pdf)) to another computer (over wifi) and display in *QGroundControl*.
+
+The hardware setup is shown in the figure below. 它由以下部分组成:
 
 * Odroid C1
 * Logitech 摄像头 C920
@@ -10,35 +12,39 @@
 
 ![设置](../../assets/videostreaming/setup_whole.jpg)
 
-## 在 Odroid c1 中安装 Linux 环境
+The instructions were tested on Ubuntu 14.04 but a similar approach should work for later Ubuntu versions.
 
-要安装 linux 环境 (ubuntu 14.04), 请按照 [Odroid c1 教程](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 中给出的说明进行操作。 在本教程中, 它还演示了如何使用 uart 电缆访问 odroid c1, 以及如何建立以太网连接。
+## Install Linux Environment in Odroid C1
 
-## 设置备用电源连接
+To install the Linux environment (Ubuntu 14.04), follow the instruction given in the [Odroid C1 tutorial](http://web.archive.org/web/20180617111122/http://pixhawk.org/peripherals/onboard_computers/odroid_c1) (wayback machine). The tutorial also shows how to access the Odroid C1 with a UART cable and how to establish Ethernet connection.
 
-Odroid c1 可以通过 5v 直流插孔供电。 如果 Odroid 被安装在飞行器上，建议将两个跳线通过插片式的[方法](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering)焊接在电路上 在例子中，Odroid C1 通过在上图所示的红色跳线连接 DC 电源 (5 V) 和通过上图所示的黑色跳线连接地线被通电。
+## Set up Alternative Power Connection
 
-![电源](../../assets/videostreaming/power-pins.jpg)
+The Odroid C1 can be powered via the 5V DC jack. If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup.
 
-## 为 Odroid C1 启用无线网络连接
+![Power Pins](../../assets/videostreaming/power-pins.jpg)
 
-在这篇教程中使用的是 WiFi 模块 TP-LINK TL-WN722N. 要为 odroid c1 启用 wifi 连接, 请按照 [Odroid c1 教程](https://pixhawk.org/peripherals/onboard_computers/odroid_c1) 中描述的步骤, 在 "用天线建立 wifi 连接" 一节中进行操作。
+## Enable WiFi Connection for Odroid C1
+
+In this this tutorial the WiFi module TP-LINK TL-WN722N is used. To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](http://web.archive.org/web/20180617111122/http://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
 
 ## 配置 WiFi 为接入点
 
-本节演示如何设置 odroid c1, 使其成为接入点。 The content is taken from the pixhawk.org "access point" tutorial (no longer available) with some small adaptions. 为了能够通过 odroid c1 将视频从相机流式传输到在计算机上运行的 QGroundControl, 并不一定需要遵循此部分。 但是, 这篇教程的意义是, 将 odroid c1 设置为接入点允许以独立的方式使用该系统。 在此使用的是 TP-LINK TL-WN722N。 在随后的步骤中, 假定 odroid c1 将 wlan0 的名称分配给您的 wifi 模块。 如果不同, 请将所有出现的 wlan0 更改为相应的接口 (例如 wlan1)。
+This sections shows how to set up the Odroid C1 such that it is an access point. The content is taken from the pixhawk.org "access point" tutorial (no longer available) with some small adaptions. To enable to stream the video from the camera via the Odroid C1 to the QGroundControl that runs on a computer it is not required to follow this section. However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion. The TP-LINK TL-WN722N is used as a WiFi module.
+
+In the following steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module. Change all occurrences of wlan0 to the appropriate interface if different (e.g. wlan1).
 
 ### 配置机载电脑为接入点
 
-有关更深入解释, 请查阅 [RPI-Wireless-Hotspot](http://elinux.org/RPI-Wireless-Hotspot)
+For a more in depth explanation, you can look at [RPI-Wireless-Hotspot](http://elinux.org/RPI-Wireless-Hotspot)
 
-安装必要的软件
+Install the necessary software
 
 ```bash
 sudo apt-get install hostapd udhcpd
 ```
 
-配置 DHCP 编辑文件 `/etc/udhcpd.conf`
+Configure DHCP. Edit the file `/etc/udhcpd.conf`
 
 ```bash
 start 192.168.2.100 #这是热点将为客户端设备提供的IP范围。
@@ -51,21 +57,21 @@ opt router 192.168.2.1 # wlan0 上的机载计算机的 IP 地址， 也就是�
 opt lease 864000 # 10 天 DHCP 租约时间，以秒为单位
 ```
 
-其他“opt”命令不应该被配置。如果您知道自己在做什么，则配置其他命令。
+All other 'opt' entries should be disabled or configured properly if you know what you are doing.
 
-编辑如下文件 `/etc/default/udhcpd`，修改其中的一行：
+Edit the file `/etc/default/udhcpd` and change the line:
 
 ```bash
 DHCPD_ENABLED="no"
 ```
 
-至
+to
 
 ```bash
 #DHCPD_ENABLED="no"
 ```
 
-您需要为机载计算机配置静态 ip 地址。 编辑文件 `/etc/network/interfaces` 并将 `iface wlan0 inet dhcp` (或者 `iface wlan0 inet manual`) 行改为:
+You will need to give the Onboard Computer a static IP address. Edit the file `/etc/network/interfaces` and replace the line `iface wlan0 inet dhcp` (or `iface wlan0 inet manual`) to:
 
 ```sh
 auto wlan0
@@ -77,7 +83,7 @@ broadcast 192.168.2.255
 wireless-power off
 ```
 
-禁用原始 (WiFi Client) 自动配置。 更改行 (它们可能不会全部相邻, 甚至可能根本不存在):
+Disable the original (WiFi Client) auto configuration. Change the lines (they probably will not be all next to each other or may not even be there at all):
 
 ```sh
 allow-hotplug wlan0
@@ -85,7 +91,7 @@ wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
 iface default inet dhcp
 ```
 
-至:
+to:
 
 ```sh
 #allow-hotplug wlan0
@@ -93,9 +99,9 @@ iface default inet dhcp
 #iface default inet dhcp
 ```
 
-If you have followed the *Odroid C1 tutorial* (originally pixhawk.org) to set up the WiFi connection, you might have created the file `/etc/network/intefaces.d/wlan0`. 请注释掉该文件中的所有行，以使这些配置不再有效。
+If you have followed the *Odroid C1 tutorial* (originally pixhawk.org) to set up the WiFi connection, you might have created the file `/etc/network/intefaces.d/wlan0`. Please comment out all lines in that file such that those configurations have no effect anymore.
 
-配置HostAPD：要创建受WPA保护的网络，请编辑文件 `/etc/hostapd/hostapd.conf`（如果它不存在则创建它）并添加以下行：
+Configure HostAPD: To create a WPA-secured network, edit the file `/etc/hostapd/hostapd.conf` (create it if it does not exist) and add the following lines:
 
     auth_algs=1
     channel=6            # 要使用的通道
@@ -113,33 +119,32 @@ If you have followed the *Odroid C1 tutorial* (originally pixhawk.org) to set up
     ssid=OdroidC1
     wpa_passphrase=QGroundControl
     
-    
 
-更改 `ssid=`, `channel=`, 和 `wpa_passphrase=` 。 SSID是广播到其他设备的热点名称，频道是热点运行的频率，wpa_passphrase 是无线网络的密码。 有更多选项，请参阅该文件 `/usr/share/doc/hostapd/examples/hostapd.conf.gz`。 寻找该区域未使用的频道。 您可以使用 *wavemon* 等工具。
+Change `ssid=`, `channel=`, and `wpa_passphrase=` to values of your choice. SSID is the hotspot's name which is broadcast to other devices, channel is what frequency the hotspot will run on, wpa_passphrase is the password for the wireless network. For many more options see the file `/usr/share/doc/hostapd/examples/hostapd.conf.gz`. Look for a channel that is not in use in the area. You can use tools such as *wavemon* for that.
 
-编辑如下文件 `/etc/default/hostapd` ，修改其中的一行：
+Edit the file `/etc/default/hostapd` and change the line:
 
     #DAEMON_CONF=""
     
 
-至:
+to:
 
     DAEMON_CONF="/etc/hostapd/hostapd.conf"
     
 
-您的板载计算机现在应该有无线热点。 要使热点在启动时启动，请运行以下附加命令：
+Your Onboard Computer should now be hosting a wireless hotspot. To get the hotspot to start on boot, run these additional commands:
 
     sudo update-rc.d hostapd enable
     sudo update-rc.d udhcpd enable
     
 
-这足以让板载计算机作为接入点出现，并允许您的地面站连接。 如果您真的希望将其作为真正的接入点（将WiFi流量路由到板载计算机的以太网连接），我们需要配置路由和网络地址转换（NAT）。 在内核中启用端口转发：
+This is enough to have the Onboard Computer present itself as an Access Point and allow your ground station to connect. If you truly want to make it work as a real Access Point (routing the WiFi traffic to the Onboard Computer’s Ethernet connection), we need to configure the routing and network address translation (NAT). Enable IP forwarding in the kernel:
 
 ```sh
 sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
 ```
 
-要做到这一点，请运行以下命令：
+To enable NAT in the kernel, run the following commands:
 
 ```sh
 sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -147,13 +152,13 @@ sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -
 sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
 ```
 
-要使其永久化，请运行以下命令：
+To make this permanent, run the following command:
 
 ```sh
 sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
 ```
 
-现在，打开 /etc/network/interfaces 并在文件底部添加以下行:
+Now edit the file /etc/network/interfaces and add the following line to the bottom of the file:
 
 ```sh
 up iptables-restore < /etc/iptables.ipv4.nat
@@ -161,23 +166,25 @@ up iptables-restore < /etc/iptables.ipv4.nat
 
 # Gstreamer 安装
 
-要在计算机和Odroid C1上安装gstreamer软件包并启动流，请按照 [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoStreaming/README.md) 中给出的说明进行操作。
+To install gstreamer packages on the computer and on the Odroid C1 and start the stream, follow the instruction given in the [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoReceiver/README.md).
 
-如果您无法使用 uvch264s 插件启动 odroid 上的流, 您也可以尝试使用 v4l2src 插件启动它:
+If you cannot start the stream on the Odroid with the uvch264s plugin, you can also try to start it with the v4l2src plugin:
 
 ```sh
 gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,framerate=24/1 ! h264parse ! rtph264pay ! udpsink host=xxx.xxx.xxx.xxx port=5000
 ```
 
-其中 `“xxx.xxx.xxx.xxx”` 是QGC运行的IP地址
+Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running.
 
-> **Tip** 如果出现系统错误: `Permission denied`, 则可能需要在上述命令之前加上 `sudo`。 或者, 将当前用户添加到 `video` 组, 如下所示 (然后注销/登录): 
-> 
->     sh
->       sudo usermod -aG video $USER
+> **Tip** If you get the system error: `Permission denied`, you might need to prepend `sudo` to the command above.
 
-如果一切正常, 您应该在 QGroundControl 的飞行模式窗口中看到左下角的视频流, 如下面的屏幕截图所示。
+Alternatively add the current user to the `video` group as shown below (and then logout/login):
 
-![](../../assets/videostreaming/qgc-screenshot.png)
+    sh
+      sudo usermod -aG video $USER
 
-如果您单击视频流, 卫星地图将显示在左下角, 视频将显示在整个背景中。
+If everything works, you should see the video stream on the bottom left corner in the flight-mode window of *QGroundControl* as shown in the screenshot below.
+
+![QGC displaying video stream](../../assets/videostreaming/qgc-screenshot.png)
+
+If you click on the video stream, the satellite map is shown in the left bottom corner and the video is shown in the whole background.

@@ -16,7 +16,7 @@ Drivers should `#include <drivers/device/i2c.h>` and then provide an implementat
 
 驱动程序还需要在 [/src/drivers/](https://github.com/PX4/Firmware/tree/master/src/drivers) 中包括其设备类型（**drv_*.h**）的标头--例如 [drv_baro.h](https://github.com/PX4/Firmware/blob/master/src/drivers/drv_baro.h)。
 
-若要在固件中包含驱动程序，必须将驱动程序添加到与要为其生成的目标相对应的 [cmake 配置文件](https://github.com/PX4/Firmware/tree/master/cmake/configs)：
+To include a driver in firmware you must add the driver to the board-specific cmake file that corresponds to the target you want to build for:
 
     drivers/sf1xx
     

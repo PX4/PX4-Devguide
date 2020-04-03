@@ -35,7 +35,7 @@ Posix에서는 시스템 쉘이 쉘 인터프리터로 사용됩니다 (예. /bi
 
 ## NuttX
 
-NuttX는 하나의 통합된 쉘 인터프리터 ([NSH](http://nuttx.org/Documentation/NuttShell.html))을 갖고 있습니다. 따라서 스크립트는 바로 실행될 수 있습니다.
+NuttX has an integrated shell interpreter ([NuttShell (NSH)](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=139629410)), and thus scripts can be executed directly.
 
 ### 시스템 부팅 디버깅
 

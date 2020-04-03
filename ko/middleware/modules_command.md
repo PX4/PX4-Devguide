@@ -19,7 +19,7 @@ Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/s
 
 Source: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
 
-센서 드라이버 설정 (샘플링 & publication 속도, 범위 등)
+Configure a sensor driver (sampling & publication rate, etc.)
 
 ### Usage {#config_usage}
 
@@ -38,9 +38,6 @@ Source: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/syst
     
        rate          Set sensor publication rate
          <file:dev> <rate> Sensor device file and publication rate in Hz
-    
-       range         Set sensor measurement range
-         <file:dev> <rate> Sensor device file and range
     
        check         Perform sensor self-test (and print info)
          <file:dev>  Sensor device file

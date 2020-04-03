@@ -16,7 +16,7 @@ Supported vehicle types include: mutirotors, VTOL, VTOL Tailsitter, Plane, Rover
 make px4_sitl gazebo
 ```
 
-## Quadrotor with Optical Flow {#quadrotor_optical_flow)
+## Quadrotor with Optical Flow {#quadrotor_optical_flow}
 
 ```sh
 make px4_sitl gazebo_iris_opt_flow

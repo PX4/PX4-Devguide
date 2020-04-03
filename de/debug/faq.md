@@ -12,10 +12,10 @@ The amount of code that can be loaded onto a board is limited by the amount of f
 region `flash' overflowed by 12456 bytes
 ```
 
-To remedy it, either use more recent hardware or remove modules from the build which are not essential to your use case. The configurations are stored [here](https://github.com/PX4/Firmware/tree/master/cmake/configs). To remove a module, just comment it out:
+To remedy it, either use more recent hardware or remove modules from the build which are not essential to your use case. The configuration is stored in **/Firmware/boards/px4** (e.g. [Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)). To remove a module, just comment it out:
 
 ```cmake
-#drivers/trone
+#tune_control
 ```
 
 ## USB Errors

@@ -1,6 +1,6 @@
 # UAVCAN Bootloader 安装
 
-> ** 警告 **UAVCAN 设备通常使用预安装的引导程序装运。 除非您正在开发 UAVCAN 设备, 否则请不要按照本节中的说明操作。
+> **Warning** UAVCAN 设备通常使用预安装的引导程序装运。 除非您正在开发 UAVCAN 设备, 否则请不要按照本节中的说明操作。
 
 ## 概述
 
@@ -14,9 +14,9 @@ PX4 项目包含一个用于 STM32 设备的标准 UAVCAN 引导程序。
 
 安装或更新 UAVCAN 引导加载程序需要：
 
-* An SWD or JTAG interface (depending on device), for example the [BlackMagic Probe](https://github.com/blacksphere/blackmagic/wiki) or the [ST-Link v2](http://www.st.com/internet/evalboard/product/251168.jsp);
-* 用于将您的SWD或 JTAG 接口连接到 UAVCAN 设备的调试端口的适配器电缆;
-* [ 支持的 ARM 工具链 ](../setup/dev_env.md)。
+* SWD 或 JTAG 接口（视设备而定），例如 [BlackMagic Probe](https://github.com/blacksphere/blackmagic/wiki) 或 [ST Link v2](http://www.st.com/internet/evalboard/product/251168.jsp)；
+* 用于将您的 SWD 或 JTAG 接口连接到 UAVCAN 设备的调试端口的适配器电缆；
+* [支持的 ARM 工具链](../setup/dev_env.md)。
 
 ## 设备准备
 
@@ -24,7 +24,7 @@ PX4 项目包含一个用于 STM32 设备的标准 UAVCAN 引导程序。
 
 ## 安装
 
-在编译或获取设备的引导程序映像后 (有关详细信息, 请参阅设备文档), 引导加载程序必须复制到设备闪存的开头。
+在编译或获取设备的引导程序映像后（有关详细信息, 请参阅设备文档），引导加载程序必须复制到设备闪存的开头。
 
 这样做的过程取决于SWD或 JTAG 的使用接口。
 

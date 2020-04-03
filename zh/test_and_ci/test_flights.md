@@ -4,7 +4,7 @@
 
 {% if book.px4_version != 'master' %}
 
-> **Tip** Test flight process and fleet information may change over time. Current information [can be found in the head revision/master docs](https://dev.px4.io/master/en/test_and_ci/test_flights.html)! {% else %} <!-- START: details below displayed only in master -->
+> **Tip** 试飞进度和机队信息可能会随时间变化。 当前信息 [可以在 head revision/master docs中找到](https://dev.px4.io/master/en/test_and_ci/test_flights.html)! {% else %} <!-- START: details below displayed only in master -->
 
 ## 如何申请测试飞行
 
@@ -20,7 +20,7 @@
 
 ## 测试卡
 
-The tests performed for each platform are linked below:
+针对每个平台的测试链接如下：
 
 * [测试 MC_01 - 手动模式](../test_cards/mc_01_manual_modes.md)
 * [MC_02 - 完全自主](../test_cards/mc_02_full_autonomous.md)
@@ -28,11 +28,11 @@ The tests performed for each platform are linked below:
 * [MC_04 - 故障安全测试](../test_cards/mc_04_failsafe_testing.md)
 * [MC_05 - 室内飞行（手动模式）](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
-## Test Vehicles/Autopilots {#fleet}
+## 测试机型/飞控 {#fleet}
 
-Multicopter
+多旋翼
 
-| Frame                                                                                                                                                                                                                                                             | Flight Controller                                                                                                                                                                                                                                                | UUID                                                        |
+| 机型                                                                                                                                                                                                                                                                | 飞控                                                                                                                                                                                                                                                               | UUID                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | [DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html)                                                                                                                                                                                             | [Pixhawk Mini](https://docs.px4.io/en/flight_controller/pixhawk_mini.html)                                                                                                                                                                                       | 002400283335510A33373538 (f450-v3)                          |
 | [DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html)                                                                                                                                                                                             | [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html)                                                                                                                                                                                               | 000100000000363533353336510900500021 (f450-v3)              |
@@ -46,17 +46,17 @@ Multicopter
 | Holybro [QAV250](https://docs.px4.io/en/frames_multicopter/holybro_qav250_pixhawk4_mini.html)                                                                                                                                                                     | [Pixhawk 4 Mini](https://docs.px4.io/en/flight_controller/pixhawk4_mini.html)                                                                                                                                                                                    | 000200000000343233383038511500420032 (f450-v5-m)            |
 | NXP Semiconductor [KIT-HGDRONEK66](https://www.nxp.com/applications/solutions/industrial/unmanned-aerial-vehicles-uavs/uavs-drones-and-rovers/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66) ("[Hovergames](https://www.hovergames.com/)") | [RDDRONE-FMUK66](https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/kinetis-cortex-m-mcus/k-seriesperformancem4/k6x-ethernet/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66?tid=vanRDDRONE-FMUK66) | 00030016ffffffffffff4e45362050130029                        |
 
-Fixed Wing
+固定翼
 
-| Frame                                                                                               | Flight Controller                                                  | UUID                                           |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------- |
-| [Phantom Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html) | [Pixhawk 1](https://docs.px4.io/en/flight_controller/pixhawk.html) | 0001000000003035333330365104003c0020 (f450-v2) |
+| 机型                                                                                                  | 飞控                                                                    | UUID                                           |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------- |
+| [Phantom Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html) | [Phantom Wing](https://docs.px4.io/en/flight_controller/pixhawk.html) | 0001000000003035333330365104003c0020 (f450-v2) |
 
-VTOL
+垂直起降
 
-| Frame                                                                                | Flight Controller                                                             | UUID                                             |
+| 机型                                                                                   | 飞控                                                                            | UUID                                             |
 | ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- | ------------------------------------------------ |
 | [Convergence VTOL](https://www.horizonhobby.com/convergence-vtol-bnf-basic-efl11050) | [Pixhawk 4 Mini](https://docs.px4.io/en/flight_controller/pixhawk4_mini.html) | 000200000000343233383038511500350039 (vtol-v5-m) |
 | [Delta Quad Pro](https://px4.io/portfolio/deltaquad-vtol/)                           | [Dropix](https://docs.px4.io/en/flight_controller/dropix.html)                | 0001000000003437393931375114004c0042 (delta-v2)  |
 
-{% endif %} <!-- END: details above displayed only in master -->
+{% endif %}<!-- END: details above displayed only in master -->

@@ -1,13 +1,13 @@
 # Ubuntu LTS/Debian Linux上开发环境的搭建
 
-[Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 18.04 是标准/推荐的 Linux 开发操作系统。 你可以在这上面编译所有的PX4对象（基于NuttX平台的硬件，高通骁龙飞行硬件，基于Linux平台的硬件以及仿真）
+The supported/tested Linux OS versions for PX4 development are [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 18.04 (Bionic Beaver) and 20.04 (Focal Fossa). These allow you to build for the [most PX4 targets](../setup/dev_env.md#supported-targets) (NuttX based hardware, *Qualcomm Snapdragon Flight* hardware, Linux-based hardware, Simulation).
 
 我们提供了Bash脚本来方便你根据不同的平台安装开发环境：
 
 * **[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh)**：安装 [Gazebo 9](../simulation/gazebo.md) 和 [jMAVSim](../simulation/jmavsim.md) 仿真器 以及/或者 [NuttX/Pixhawk](../setup/building_px4.md#nuttx) 工具。 不包含[FastRTPS](#fast_rtps)所依赖的工具。
-* **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**：安装 [ROS "Melodic"](#rosgazebo) 以及 PX4 到 Ubuntu 18.04 LTS 上。
+* **[ubuntu_sim_ros_melodic.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh)**: Installs [ROS "Melodic"](#rosgazebo) and PX4 on Ubuntu 18.04 LTS (and later).
 
-> **Tip** 这些脚本已经在纯净的 Ubuntu 16.04 和 Ubuntu 18.04 LTS 上测试过了。 如果你在一个已经安装过这些工具的系统上或者一些其他的Ubuntu发行版上执行安装，它也有可能会安装不成功。
+> **Tip** The scripts have been tested on *clean* Ubuntu 18.04 LTS and Ubuntu 20.04 LTS installations. They *may* not work as expected if installed "on top" of an existing system, or on a different Ubuntu release.
 
 本说明将在下面解释如何下载并使用这些脚本。
 
@@ -123,8 +123,6 @@ Additional developer information for using PX4 on Raspberry Pi (including buildi
 
 This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") for use with PX4.
 
-> **注：** PX4 已经跟ROS Melodic 在 Ubuntu 18.04 上一同测试过。 ROS Melodic 不适用于Ubuntu 16.04。
-
 To install the development toolchain:
 
 1. 在bash shell中下载脚本：   
@@ -160,7 +158,7 @@ tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz requiredcomponents
 tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
 ```
 
-> **注：**下面的这几行命令用来编译FastCDR以及FastRTPS库，`make`命令与`-j2`选项一起执行。 这个选项指定了在编译源码时使用多少个并行的线程。 修改 `-j2` 为 `-j<系统cpu的内核数目>`可以加速库的编译速度。
+> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
 
 ```sh
 (cd eProsima_FastCDR-1.0.8-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
@@ -168,7 +166,7 @@ tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
 rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
 ```
 
-> **Note** 更多一般性的指令，需要额外从源安装的，可以从这里找到：[Fast RTPS installation](../setup/fast-rtps-installation.md)。
+> **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
 
 ## 附加工具
 

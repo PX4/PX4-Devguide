@@ -123,7 +123,7 @@ Wifibroadcast puts the WiFi cards into monitor mode. This mode allows to send an
 - Slow CPU  
 - Only one USB bus  
 - 512MB SDRAM                                                                                                                                        |
-| [Odroid C0](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G145326484280)  | - Fast CPU  
+| [Odroid C0](https://www.hardkernel.com/shop/odroid-c0/)                                  | - Fast CPU  
 - EMMC  
 - 1GB SDRAM                                                                                                                                                                | - Very sensitive to radio interference  
 - Doesn't supported by mainline kernel  

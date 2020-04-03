@@ -10,11 +10,13 @@ PX4 使用计算机视觉系统（主要在机载计算机上运行）以支持�
 - [障碍避免](https://docs.px4.io/en/computer_vision/obstacle_avoidance.html)在飞行计划路径时提供绕障碍物的导航（支持当前的任务）。 这依赖机载电脑上运行的 [PX4/avoidance](https://github.com/PX4/avoidance)
 - [碰撞预防](https://docs.px4.io/en/computer_vision/collision_prevention.html)使载具在撞到障碍物之前停止（主要是在手动模式下飞行时）。
 
+> **Tip** The [PX4 Vision Autonomy Development Kit](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro) is a robust and inexpensive kit for developers working with computer vision on PX4. It comes with [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) software pre-installed, and can be used as the base for your own algorithms.
+
 ## 运动捕捉 {#mocap}
 
 运动捕捉（MoCap）是一种使用载具*外部*的定位机构来估计飞机的3D *姿势*（位置和姿势）的技术。 MoCap系统最常使用红外摄像机检测运动，但也可以使用其他类型的摄像机，激光雷达或Ultra Wideband (UWB)。
 
-> **Note** MoCap 通常用于在 GPS 不存在（例如室内）的情况下导航飞机，并提供相对于*本地*坐标系统的位置。
+> **Note** MoCap is commonly used to navigate a vehicle in situations where GPS is absent (e.g. indoors), and provides position relative to a a *local* co-ordinate system.
 
 有关MoCap的信息，请参阅：
 
@@ -28,7 +30,7 @@ PX4 使用计算机视觉系统（主要在机载计算机上运行）以支持�
 
 VIO使用[视觉测距](https://en.wikipedia.org/wiki/Visual_odometry)来从视觉信息估计车辆*姿势*，结合来自IMU的惯性测量（以校正与载具快速移动导致不良的图像捕获）。
 
-> **Note** VIO 和 [MoCap](#mocap) 之间的区别在于 VIO 摄像机、IMU 是基于飞机本身的，并且还提供速度信息。
+> **Note** On difference between VIO and [MoCap](#mocap) is that VIO cameras/IMU are vehicle-based, and additionally provide velocity information.
 
 有关VIO的信息，请参阅：
 

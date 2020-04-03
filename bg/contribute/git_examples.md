@@ -1,6 +1,6 @@
 # GIT Examples
 
-## Contributing code to PX4
+## Contributing Code to PX4 {#contributing_code}
 
 Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 
@@ -82,7 +82,7 @@ To get the source code for a *specific older release*:
 
 ## Update Submodule
 
-There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#Contributing-code-to-PX4).
+There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#contributing_code).
 
 ## Do a PR for a submodule update
 
