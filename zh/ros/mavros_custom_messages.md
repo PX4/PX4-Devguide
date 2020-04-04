@@ -6,19 +6,19 @@
 - **ROS:** Melodic
 - **PX4 Firmware:** 1.9.0
     
-    However these steps are fairly general and so it should work with other distros/versions with little to no modifications.
+    这些步骤普遍适用于其他发行版，或者只需要稍微修改。
 
 <!-- Content reproduced with permission from @JoonmoAhn in https://github.com/JoonmoAhn/Sending-Custom-Message-from-MAVROS-to-PX4/issues/1 -->
 
-## MAVROS Installation
+## MAVROS 安装
 
-Follow *Source Installation* instructions from [mavlink/mavros](https://github.com/mavlink/mavros/blob/master/mavros/README.md) to install "ROS Kinetic".
+按照*Source Installation*中的指导，从[mavlink/mavros](https://github.com/mavlink/mavros/blob/master/mavros/README.md)安装"ROS Kinetic”版本。
 
 ## MAVROS
 
-1. We start by creating a new MAVROS plugin, in this example named **keyboard_command.cpp** (in **workspace/src/mavros/mavros_extras/src/plugins**) by using the code below:
+1. 首先，我们创建一个新的MAVROS 插件，在**keyboard_command.cpp**(**workspace/src/mavros/mavros_extras/src/plugins**)示例中添加以下代码：
     
-    The code subscribes a 'char' message from ROS topic `/mavros/keyboard_command/keyboard_sub` and sends it as a MAVLink message.
+    代码功能是从ROS消息主题`/mavros/keyboard_command/keyboard_sub`中订阅了一个字符消息，并且将其作为MAVLink 消息发送出去。
 
    ```c
     #include <mavros/mavros_plugin.h>
@@ -63,7 +63,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    PLUGINLIB_EXPORT_CLASS(mavros::extra_plugins::KeyboardCommandPlugin, mavros::plugin::PluginBase)
    ```
 
-1. Edit **mavros_plugins.xml** (in **workspace/src/mavros/mavros_extras**) and add the following lines:
+1. 编辑**mavros_plugins.xml**(**workspace/src/mavros/mavros_extras**）文件，并添加以下内容：
 
    ```xml
    <class name="keyboard_command" type="mavros::extra_plugins::KeyboardCommandPlugin" base_class_type="mavros::plugin::PluginBase">
@@ -71,7 +71,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    </class>
    ```
 
-1. Edit **CMakeLists.txt** (in **workspace/src/mavros/mavros_extras**) and add the following line in `add_library`.
+1. 编辑 **CMakeLists.txt**（**workspace/src/mavros/mavros_extras**）文件，并在`add_library`中添加以下内容：
 
    ```cmake
    add_library( 
@@ -80,7 +80,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    )
    ```
 
-1. Inside **common.xml** in (**workspace/src/mavlink/message_definitions/v1.0**), copy the following lines to add your MAVLink message:
+1. 打开**common.xml**（**workspace/src/mavlink/message_definitions/v1.0**）文件，复制下面内容到你的MAVLink 消息中：
 
    ```xml
    ...
@@ -91,9 +91,9 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    ...
    ```
 
-## PX4 Changes
+## PX4 更改
 
-1. Inside **common.xml** (in **Firmware/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (same procedure as for MAVROS section above):
+1. 打开 **common.xml** （**Firmware/mavlink/include/mavlink/v2.0/message_definitions**）文件，并添加你的MAVLink 消息（和前面MAVROS部分相同的操作）:
 
    ```xml
    ...
@@ -104,14 +104,14 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    ...
    ```
 
-1. Remove *common*, *standard* directories in (**Firmware/mavlink/include/mavlink/v2.0**).
+1. 删除*common*,*standard*文件夹（**Firmware/mavlink/include/mavlink/v2.0**）。
 
    ```sh
    rm -r common
    rm -r standard
    ```
 
-1. Git clone "mavlink_generator" to any directory you want and execute it.
+1. git 克隆"mavlink_generator"到你想要的文件夹下并执行。
 
    ```sh
    git clone https://github.com/mavlink/mavlink mavlink-generator
@@ -119,15 +119,15 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    python mavgenerate.py
    ```
 
-1. You will see a "MAVLink Generator" popup:
+1. 你会看到一个“MAVLink Generator”应用程序窗口：
     
-    - For *XML*, "Browse" to **/Firmware/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**.
-    - For Out, "Browse" to **/Firmware/mavlink/include/mavlink/v2.0/**.
-    - Select Language **C**
-    - Select Protocol **2.0**
-    - Check *Validate*
+    - *XML*一栏选择**/Firmware/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**。
+    - 输出一栏选择**/Firmware/mavlink/include/mavlink/v2.0/**
+    - 语言一栏选择**C**
+    - 选择**2.0**协议
+    - 勾选*Validate*
     
-    Then, press **Generate**. You will see *common*, and *standard* directories created in **/Firmware/mavlink/include/mavlink/v2.0/**.
+    然后点击**Generate**按钮。 You will see *common*, and *standard* directories created in **/Firmware/mavlink/include/mavlink/v2.0/**.
 
 2. Make your own uORB message file **key_command.msg** in (Firmware/msg). For this example the "key_command.msg" has only the code:
 
@@ -303,7 +303,7 @@ Now you are ready to build all your work!
    ...
    ```
 
-### Build for PX4
+### PX4 编译
 
 1. Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx).
     
@@ -332,7 +332,7 @@ Next test if the MAVROS message is sent to PX4.
 
 This means, publish 97 ('a' in ASCII) to ROS topic "/mavros/keyboard_command/keyboard_sub" in message type "std_msgs/Char". "-r 10" means to publish continuously in "10Hz".
 
-### Running PX4
+### PX4 运行
 
 1. Enter the Pixhawk nutshell through UDP. Replace xxx.xx.xxx.xxx with your IP.
 
