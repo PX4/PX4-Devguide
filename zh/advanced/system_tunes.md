@@ -17,7 +17,7 @@ PX4还有一个模块可以用于播放（测试）默认或用户自定义音�
 
 创建新乐曲的最简单方式是使用音乐编辑器。 这允许您编辑乐曲并在您的电脑上播放， 然后导出为 PX4 可以播放的格式。
 
-ANSI 音乐在 ANSI BBS 系统中很受欢迎，因此最好的编辑工具是 DOS 实用工具。 在 Windows 上，一个选项是在 *Dosbox* 内使用 *Melody Master*。
+ANSI 音乐在 ANSI BBS 系统中很受欢迎，因此最好的编辑工具是 DOS 实用程序。 在 Windows 上，一个选项是在 *Dosbox* 内使用 *Melody Master*。
 
 使用软件的步骤是：
 
