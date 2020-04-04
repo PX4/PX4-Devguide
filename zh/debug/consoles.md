@@ -1,17 +1,17 @@
-# PX4 Consoles/Shells
+# PX4终端/命令行
 
-PX4 enables terminal access to the system through the [MAVLink Shell](../debug/mavlink_shell.md) and the [System Console](../debug/system_console.md).
+用户可以通过 [MAVLink Shell](../debug/mavlink_shell.md) 和 [System Console](../debug/system_console.md) 访问PX4命令行终端。
 
-This page explains the main differences and how the console/shell are used.
+这里将说明它们的主要区别，以及如何使用。
 
 
 ## System Console vs. Shells {#console_vs_shell}
 
-The PX4 *System Console* provides low-level access to the system, debug output and analysis of the system boot process.
+PX4系统控制台（System Console）提供对系统的底层访问能力，获取调试信息。也可用于分析PX4的启动过程。
 
-There is just one *System Console*, which runs on one specific UART (the debug port, as configured in NuttX), and is commonly attached to a computer via an FTDI cable (or some other debug adapter like  a [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation)).
-- Used for *low-level debugging/development*: bootup, NuttX, startup scripts, board bringup, development on central parts of PX4 (e.g. uORB).
-- In particular, is the only place where all boot output (including information about applications auto-started on boot) is printed.
+PX4只有一个 *System Console* 。它运行在特定的串口上（由Nuttx配置为调试口），通常可以通过FTDI线或其他调试适配器连接至电脑，比如 [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation) 。
+- 用于 *底层开发调试* ，例如：系统启动过程、Nuttx、启动脚本、集成电路板启动，以及PX4中一些特定组件的开发，比如uORB。
+- 更具体一点，这里是包括自启动的用户应用在内的整个PX4系统下所有启动过程唯一的输出位置。
 
 Shells provide higher-level access to the system:
 - Used for basic module testing/running commands.
