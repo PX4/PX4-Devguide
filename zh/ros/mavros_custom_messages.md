@@ -271,9 +271,9 @@
    }
    ```
 
-For a more detailed explanation please see the documentation for [Writing your first application](https://dev.px4.io/en/apps/hello_sky.html).
+详情请见[Writing your first application](https://dev.px4.io/en/apps/hello_sky.html)文档。
 
-1. Lastly add your module in the **default.cmake** file correspondent to your board in **Firmware/boards/**. For example for the Pixhawk 4 add the following code in **Firmware/boards/px4/fmu-v5/default.cmake**:
+1. 最后添加你的模块到你的飞控板**Firmware/boards/**对应的 **default.cmake**文件中。 例如Pixhawk 4，在**Firmware/boards/px4/fmu-v5/default.cmake**中添加以下代码：
 
    ```cmake
     MODULES
@@ -281,17 +281,16 @@ For a more detailed explanation please see the documentation for [Writing your f
         key_receiver
         ...
     ```
+现在开始编译你的代码。
 
-Now you are ready to build all your work!
+## 编译
 
-## Building
+### ROS编译
 
-### Build for ROS
-
-1. In your workspace enter: `catkin build`.
-1. Beforehand, you have to set your "px4.launch" in (/workspace/src/mavros/mavros/launch). 
-   Edit "px4.launch" as below.
-   If you are using USB to connect your computer with Pixhawk, you have to set "fcu_url" as shown below.
+1. 在你的工作空间目录下运行`catkin build`命令。
+1. 在此之前，你必须设置你的“px4.launch”（/workspace/src/mavros/mavros/launch）文件。 
+   编辑“px4.launch”文件如下：
+   如果你使用USB来连接你的电脑和Pixhawk，你必须设置“fcu_url”如下所示。
    But, if you are using CP2102 to connect your computer with Pixhawk, you have to replace "ttyACM0" with "ttyUSB0".
    Modifying "gcs_url" is to connect your Pixhawk with UDP, because serial communication cannot accept MAVROS, and your nutshell connection simultaneously.
 
