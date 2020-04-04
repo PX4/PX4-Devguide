@@ -9,11 +9,11 @@
 
 PX4 系统控制台*（System Console）*提供对系统的底层访问能力，获得调试信息，也可用于分析PX4的启动过程。
 
-PX4 只有一个 *System Console* 。它运行在特定的串口上（由Nuttx配置为调试口），通常可以通过FTDI线或其他调试适配器连接至电脑，比如 [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation)。
+PX4 只有一个 *系统控制台* 。它运行在特定的串口上（由Nuttx配置为调试口），通常可以通过FTDI线或其他调试适配器连接至电脑，比如 [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation)。
 - 用于 *底层开发调试*，例如：系统启动过程、Nuttx、启动脚本、飞控板启动，以及 PX4 中一些特定组件的开发，比如uORB。
 - 更具体一点，这里是包括自启动的用户应用在内的整个PX4系统下所有启动过程唯一的输出位置。
 
-Shells 提供对系统的上层访问能力：
+Shell 提供对系统的上层访问能力：
 - 用于执行基础的模块调试运行命令。
 - 只会*直接*得到你启动的模块的输出信息。
 - 不能*直接*得到运行在任务队列上的其它输出信息。
