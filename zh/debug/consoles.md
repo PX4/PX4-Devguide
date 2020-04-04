@@ -28,9 +28,9 @@ Shells 提供对系统的上层访问能力：
 
 ## 使用控制台/Shell {#using_the_console}
 
-The MAVLink shell/console and the [System Console](../debug/system_console.md) are used in much the same way.
+MAVLink shell/控制台和[系统控制台](../debug/system_console.md)使用方法基本一致。
 
-For example, type `ls` to view the local file system, `free` to see the remaining free RAM, `dmesg` to look at boot output.
+举例来说，可以输入 `ls` 查看本地文件系统；输入 `free` 查看剩余可用RAM；输入 `dmesg` 查看启动日志。
 
 ```bash
 nsh> ls
@@ -38,6 +38,6 @@ nsh> free
 nsh> dmesg
 ```
 
-Many other system commands and modules are listed in the [Modules and Command Reference](../middleware/modules_main.md) (e.g. `top`, `listener`, etc.).
+其它更多的系统命令与模块被列举在 [模块和命令参考](../middleware/modules_main.md) 中。（比如 `top`、`listener` 等）
 
-> **Tip** Some commands may be disabled on some boards (i.e. the some modules are not included in firmware for boards with RAM or FLASH constraints). In this case you will see the response: `command not found`
+> **Tip** 部分飞控板禁用了一些命令。（RAM或FLASH受限的飞控板不含某些模块） 这时你将会得到 `command not found` 提示。
