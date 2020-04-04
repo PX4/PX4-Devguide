@@ -291,8 +291,8 @@
 1. 在此之前，你必须设置你的“px4.launch”（/workspace/src/mavros/mavros/launch）文件。 
    编辑“px4.launch”文件如下：
    如果你使用USB来连接你的电脑和Pixhawk，你必须设置“fcu_url”如下所示。
-   But, if you are using CP2102 to connect your computer with Pixhawk, you have to replace "ttyACM0" with "ttyUSB0".
-   Modifying "gcs_url" is to connect your Pixhawk with UDP, because serial communication cannot accept MAVROS, and your nutshell connection simultaneously.
+   但是，如果你使用CP2102来连接你的电脑和Pixhawk，你必须将“ttyACM0” 替换为"ttyUSB0"。
+   修改“gcs_url”是为了连接你的Pixhawk和UDP，因为串口通信不能同时接收MAVROS和nutshell。
 
 1. Write your IP address at "xxx.xx.xxx.xxx"
    ```xml
@@ -304,53 +304,51 @@
 
 ### PX4 编译
 
-1. Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx).
+1. 编译PX4固件并以 [in the normal way](../setup/building_px4.md#nuttx)方式上传。
     
-    For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the Firmware directory:
+    例如，为Pixhawk 4/FMUv5编译固件，可以在Firmware根目录下执行以下命令：
 
    ```sh
     make px4_fmu-v5_default upload
     ```
+##运行代码
+接下来测试MAVROS消息是否发送给PX4。
 
-## Running the Code
-
-Next test if the MAVROS message is sent to PX4.
-
-### Running ROS
+### 运行 ROS
 
 1. In a terminal enter
    ```sh
    roslaunch mavros px4.launch
    ```
 
-1. In a second terminal run:
+1. 在第二个终端中运行：
 
    ```sh
    rostopic pub -r 10 /mavros/keyboard_command/keyboard_sub std_msgs/Char 97
    ```
 
-This means, publish 97 ('a' in ASCII) to ROS topic "/mavros/keyboard_command/keyboard_sub" in message type "std_msgs/Char". "-r 10" means to publish continuously in "10Hz".
+这意味着以“std_msgs/Char”消息类型发布97（ASCII码的‘a'）到ROS主题“/mavros/keyboard_command/keyboard_sub” “-r 10”意味着以“10Hz”频率持续发布。
 
 ### PX4 运行
 
-1. Enter the Pixhawk nutshell through UDP. Replace xxx.xx.xxx.xxx with your IP.
+1. 通过UDP进入Pixhawk 的 nutshell。 用你的IP地址替换xxx.xx.xxx.xxx 
 
    ```sh
    cd Firmware/Tools
    ./mavlink_shell.py xxx.xx.xxx.xxx:14557 --baudrate 57600
    ```
 
-1. After few seconds, press **Enter** a couple of times. You should see a prompt in the terminal as below:
+1. 几秒钟之后，敲击 **Enter**按键几次。 你会看到终端中以下提示：
 
    ```sh
    nsh>
    nsh>
    ```
 
-Type "key_receiver", to run your subscriber module.
+输入“key_receiver”命令来运行你的订阅模块。
 
    ```
    nsh> key_receiver
    ```
 
-Check if it successfully receives `a` from your ROS topic.
+测试是否从你的ROS主题中接收到`a`字符。
