@@ -26,7 +26,7 @@ Shells 提供对系统的上层访问能力：
 [系统控制台（System Console）](../debug/system_console.md)在调试系统无法启动时十分必要，它会在飞控板上电后输出启动日志。 但是 [MAVLink Shell](../debug/mavlink_shell.md) 则更加易于配置使用，因此通常都推荐用它调试。
 
 
-## Using Consoles/Shells {#using_the_console}
+## 使用PX4终端/命令行 {#using_the_console}
 
 The MAVLink shell/console and the [System Console](../debug/system_console.md) are used in much the same way.
 
