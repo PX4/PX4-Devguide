@@ -1,10 +1,10 @@
-# 从MOVROS发送自定义消息到PX4
+# 将自定义消息从 MOVROS 发送到 PX4
 
-> **Warning** 本文已经经过测试:
+> **Warning** 本文已经过如下测试：
 
-- **Ubuntu:** 18.04
-- **ROS:** Melodic
-- **PX4 Firmware:** 1.9.0
+- **Ubuntu：**18.04
+- **ROS：**Melodic
+- **PX4 Firmware：**1.9.0
     
     这些步骤普遍适用于其他发行版，或者只需要稍微修改。
 
@@ -12,7 +12,7 @@
 
 ## MAVROS 安装
 
-按照*Source Installation*中的指导，从[mavlink/mavros](https://github.com/mavlink/mavros/blob/master/mavros/README.md)安装"ROS Kinetic”版本。
+按照 *Source Installation* 中的指导，从 [mavlink/mavros](https://github.com/mavlink/mavros/blob/master/mavros/README.md) 安装“ROS Kinetic”版本。
 
 ## MAVROS
 
@@ -63,7 +63,7 @@
    PLUGINLIB_EXPORT_CLASS(mavros::extra_plugins::KeyboardCommandPlugin, mavros::plugin::PluginBase)
    ```
 
-1. 编辑**mavros_plugins.xml**(**workspace/src/mavros/mavros_extras**）文件，并添加以下内容：
+1. 编辑 **mavros_plugins.xml** 文件（在**workspace/src/mavros/mavros_extras**文件夹中），并添加以下内容：
 
    ```xml
    <class name="keyboard_command" type="mavros::extra_plugins::KeyboardCommandPlugin" base_class_type="mavros::plugin::PluginBase">
@@ -91,9 +91,9 @@
    ...
    ```
 
-## PX4 更改
+## PX4 修改
 
-1. 打开 **common.xml** （**Firmware/mavlink/include/mavlink/v2.0/message_definitions**）文件，并添加你的MAVLink 消息（和前面MAVROS部分相同的操作）:
+1. 打开 **common.xml** （**Firmware/mavlink/include/mavlink/v2.0/message_definitions**）文件，并添加你的MAVLink 消息（和前面MAVROS部分相同的操作）：
 
    ```xml
    ...
@@ -104,7 +104,7 @@
    ...
    ```
 
-1. 删除*common*,*standard*文件夹（**Firmware/mavlink/include/mavlink/v2.0**）。
+1. 删除 *common*，*standard* 文件夹（**Firmware/mavlink/include/mavlink/v2.0**）。
 
    ```sh
    rm -r common
@@ -127,9 +127,9 @@
     - 选择**2.0**协议
     - 勾选*Validate*
     
-    然后点击**Generate**按钮。 在**/Firmware/mavlink/include/mavlink/v2.0/**中会生成*common*和*standard*文件夹。
+    然后点击 **Generate** 按钮。 在**/Firmware/mavlink/include/mavlink/v2.0/**中会生成*common*和*standard*文件夹。
 
-2. 添加你自己的uORB消息文件 **key_command.msg**到Firmware/msg目录下。 示例中的“key_command.msg”文件只包含以下代码：
+2. 添加你自己的uORB消息文件 **key_command.msg** 到 Firmware/msg 目录下。 示例中的“key_command.msg”文件只包含以下代码：
 
    ```
    char cmd
@@ -144,7 +144,7 @@
         )
    ```
 
-1. 编辑**mavlink_receiver.h**（**Firmware/src/modules/mavlink**）文件。
+1. 编辑 **mavlink_receiver.h**（**Firmware/src/modules/mavlink**）文件。
 
    ```cpp
    ...
@@ -160,7 +160,7 @@
    }
    ```
 
-1. 编辑 **mavlink_receiver.cpp**（**Firmware/src/modules/mavlink**）文件。 这是PX4接收ROS发送过来的MAVLink 消息的地方，并且将消息作为uORB主题发布。
+1. 编辑 **mavlink_receiver.cpp**（**Firmware/src/modules/mavlink**）文件。 这是 PX4 接收 ROS 发送过来的 MAVLink 消息的地方，并且将消息作为 uORB 主题发布。
 
    ```cpp
    ...
@@ -193,7 +193,7 @@
    }
    ```
 
-1. 像其他示例一样订阅你自己的uORB主题。 让我们先在/Firmware/src/modules/文件夹下创建模块key_receiver。 在此模块目录下创建两个文件**CMakeLists.txt**，**key_receiver.cpp**。 每个文件如下所示：
+1. 像其他示例一样订阅你自己的uORB主题。 让我们先在（/Firmware/src/modules/key_receiver）文件夹下创建模型。 在此模型目录下创建两个文件 **CMakeLists.txt**，**key_receiver.cpp**。 两个文件如下所示。
     
     -CMakeLists.txt
 
@@ -271,9 +271,9 @@
    }
    ```
 
-详情请见[Writing your first application](https://dev.px4.io/en/apps/hello_sky.html)文档。
+详情请见 [Writing your first application](https://dev.px4.io/en/apps/hello_sky.html) 文档。
 
-1. 最后添加你的模块到你的飞控板**Firmware/boards/**对应的 **default.cmake**文件中。 例如Pixhawk 4，在**Firmware/boards/px4/fmu-v5/default.cmake**中添加以下代码：
+1. 最后添加你的模块到你的飞控板**Firmware/boards/**对应的 **default.cmake**文件中。 例如Pixhawk 4，在**Firmware/boards/px4/fmu-v5/default.cmake** 中添加以下代码：
 
    ```cmake
     MODULES
@@ -292,9 +292,9 @@
    编辑“px4.launch”文件如下：
    如果你使用USB来连接你的电脑和Pixhawk，你必须设置“fcu_url”如下所示。
    但是，如果你使用CP2102来连接你的电脑和Pixhawk，你必须将“ttyACM0” 替换为"ttyUSB0"。
-   修改“gcs_url”是为了连接你的Pixhawk和UDP，因为串口通信不能同时接收MAVROS和nutshell。
+   修改“gcs_url”是为了连接你的 Pixhawk 和 UDP，因为串口通信不能同时接收 MAVROS 和 nutshell。
 
-1. Write your IP address at "xxx.xx.xxx.xxx"
+1. 将你的 IP 地址写在 "xxx.xx.xxx.xxx"
    ```xml
    ...
      <arg name="fcu_url" default="/dev/ttyACM0:57600" />
@@ -304,7 +304,7 @@
 
 ### PX4 编译
 
-1. 编译PX4固件并以 [in the normal way](../setup/building_px4.md#nuttx)方式上传。
+1. 编译 PX4 固件并以 [普通方式](../setup/building_px4.md#nuttx) 上传。 
     
     例如，为Pixhawk 4/FMUv5编译固件，可以在Firmware根目录下执行以下命令：
 
@@ -316,7 +316,7 @@
 
 ### 运行 ROS
 
-1. In a terminal enter
+1. 在终端中输入
    ```sh
    roslaunch mavros px4.launch
    ```
@@ -351,4 +351,4 @@
    nsh> key_receiver
    ```
 
-测试是否从你的ROS主题中接收到`a`字符。
+测试是否从你的 ROS 话题中接收到 `a` 字符。
