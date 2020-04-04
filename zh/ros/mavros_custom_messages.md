@@ -127,15 +127,15 @@
     - 选择**2.0**协议
     - 勾选*Validate*
     
-    然后点击**Generate**按钮。 You will see *common*, and *standard* directories created in **/Firmware/mavlink/include/mavlink/v2.0/**.
+    然后点击**Generate**按钮。 在**/Firmware/mavlink/include/mavlink/v2.0/**中会生成*common*和*standard*文件夹。
 
-2. Make your own uORB message file **key_command.msg** in (Firmware/msg). For this example the "key_command.msg" has only the code:
+2. 添加你自己的uORB消息文件 **key_command.msg**到Firmware/msg目录下。 示例中的“key_command.msg”文件只包含以下代码：
 
    ```
    char cmd
    ```
 
-Then, in **CMakeLists.txt** (in **Firmware/msg**), include
+然后，在 **CMakeLists.txt**（**Firmware/msg**）文件中包含你的消息文件。
 
    ```cmake
    set(
@@ -144,7 +144,7 @@ Then, in **CMakeLists.txt** (in **Firmware/msg**), include
         )
    ```
 
-1. Edit **mavlink_receiver.h** (in **Firmware/src/modules/mavlink**)
+1. 编辑**mavlink_receiver.h**（**Firmware/src/modules/mavlink**）文件。
 
    ```cpp
    ...
@@ -160,7 +160,7 @@ Then, in **CMakeLists.txt** (in **Firmware/msg**), include
    }
    ```
 
-1. Edit **mavlink_receiver.cpp** (in **Firmware/src/modules/mavlink**). This is where PX4 receives the MAVLink message sent from ROS, and publishes it as a uORB topic.
+1. 编辑 **mavlink_receiver.cpp**（**Firmware/src/modules/mavlink**）文件。 这是PX4接收ROS发送过来的MAVLink 消息的地方，并且将消息作为uORB主题发布。
 
    ```cpp
    ...
@@ -193,7 +193,7 @@ Then, in **CMakeLists.txt** (in **Firmware/msg**), include
    }
    ```
 
-1. Make your own uORB topic subscriber just like any example subscriber module. For this example lets create the model in (/Firmware/src/modules/key_receiver). In this directory, create two files **CMakeLists.txt**, **key_receiver.cpp**. Each one looks like following.
+1. 像其他示例一样订阅你自己的uORB主题。 让我们先在/Firmware/src/modules/文件夹下创建模块key_receiver。 在此模块目录下创建两个文件**CMakeLists.txt**，**key_receiver.cpp**。 每个文件如下所示：
     
     -CMakeLists.txt
 
