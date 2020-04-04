@@ -70,8 +70,7 @@ This is needed because the first version of ROS does not support RTPS.
 
 ## Code generation
 
-> **Note** [Fast RTPS 1.8.2 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
-> *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), or [Windows Cygwin](../setup/dev_env_windows_cygwin.md) (but not [Ubuntu](../setup/dev_env_linux_ubuntu.md) at time of writing).
+> **Note** [Fast RTPS 1.8.2 and FastRTPSGen 1.0.4 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
 
 ### ROS-independent applications
 
@@ -258,7 +257,7 @@ In order to install ROS Melodic and ROS2 Dashing (officially supported) on a Ubu
    ```sh
    sudo pip3 install -U setuptools
    ```
-   
+
    > **Caution** Do not install the `ros1_bridge` package through the deb repository.
      The package must be built from source.
 

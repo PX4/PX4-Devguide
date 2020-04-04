@@ -15,15 +15,6 @@ For more information see: [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middlewa
   - [Installation from Sources](http://eprosima-fast-rtps.readthedocs.io/en/latest/sources.html#installation-from-sources)
   - [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)
 
-## Standard Installations
-
-Fast RTPS is installed as part of the PX4 developer environment on some platforms:
-
-* [Development Environment on Mac](../setup/dev_env_mac.md) (FastRTPS included in common tools)
-* [Development Environment on Windows > Bash on Windows](../setup/dev_env_windows_bash_on_win.md) (FastRTPS included in install script)
-
-The instruction below are useful for adding FastRTPS support in other environments.
-
 
 ## Requirements
 
@@ -36,7 +27,6 @@ The instruction below are useful for adding FastRTPS support in other environmen
 
 Java is required to use our built-in code generation tool - *fastrtpsgen*. [Java JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) is recommended.
 
-
 ### Windows 7 32-bit and 64-bit
 
 #### Visual C++ 2013 or 2015 Redistributable Package
@@ -47,6 +37,8 @@ The installer gives you the option of downloading and installing them.
 
 
 ## Installation from Sources
+
+### Fast-RTPS
 
 Clone the project from Github:
 
@@ -61,37 +53,46 @@ $ mkdir build && cd build
 If you are on Linux, execute:
 
 ```sh
-$ cmake -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
+$ cmake -DTHIRDPARTY=ON -DSECURITY=ON ..
 $ make
 $ sudo make install
 ```
-This will install Fast RTPS to `/usr/local`.
-You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location.
-Afterwards make sure the `fastrtpsgen` application is in your `PATH`.
-You can check with `which fastrtpsgen`.
 
-Then install Fast-RTPS-Gen (Gradle is required for this): 
-```
-git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git -b v1.0.2 ~/Fast-RTPS-Gen \
-    && cd ~/Fast-RTPS-Gen \
-    && gradle assemble \
-    && sudo cp share/fastrtps/fastrtpsgen.jar /usr/local/share/fastrtps/ \
-    && sudo cp scripts/fastrtpsgen /usr/local/bin/
-```
+This will install Fast RTPS to `/usr/local`, with secure communications support.
+You can use `-DCMAKE_INSTALL_PREFIX=<path>` to install to a custom location.
 
 If you are on Windows, choose your version of *Visual Studio*:
 
 ```sh
-> cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON -DBUILD_JAVA=ON ..
+> cmake -G "Visual Studio 14 2015 Win64" -DTHIRDPARTY=ON -DSECURITY=ON ..
 > cmake --build . --target install
 ```
+
+#### Compile options
+
 If you want to compile the examples, you will need to add the argument `-DCOMPILE_EXAMPLES=ON` when calling *CMake*.
 
 If you want to compile the performance tests, you will need to add the argument `-DPERFORMANCE_TESTS=ON` when calling *CMake*.
 
+### Fast-RTPS-Gen
+
+*Fast-RTPS-Gen* is the Fast RTPS IDL code generator tool. It should be installed after Fast RTPS and made sure the `fastrtpsgen` application is in your `PATH`.
+You can check with `which fastrtpsgen`.
+
+Then install Fast-RTPS-Gen 1.0.4 (Gradle is required for this):
+```
+git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git -b v1.0.4 ~/Fast-RTPS-Gen \
+    && cd ~/Fast-RTPS-Gen \
+    && gradle assemble \
+    && gradle install
+```
+
+> **Note** You might require `sudo` permissions on the "install" step
 
 
 ## Installation from Binaries
+
+> **Note** Although the binaries are available, we recommend to build and install the code from source, given that the binaries may not come with required components and dependencies in place.
 
 You can always download the latest binary release of *eProsima Fast RTPS* from the [company website](http://www.eprosima.com/).
 
@@ -107,6 +108,7 @@ Execute the installer and follow the instructions, choosing your preferred *Visu
 *eProsima Fast RTPS* requires the following environmental variable setup in order to function properly
 
 * `FASTRTPSHOME`: Root folder where *eProsima Fast RTPS* is installed.
+* `FASTRTPSGEN_DIR`: Root folder where *eProsima FastRTPSGen* is installed.
 * Additions to the `PATH`: the **/bin** folder and the subfolder for your Visual Studio version of choice should be appended to the PATH.
 
 These variables are set automatically by checking the corresponding box during the installation process.
@@ -134,3 +136,7 @@ After configuring the project compile and install the library:
 ```sh
 $ sudo make install
 ```
+
+#### Environmental Variables
+
+* `FASTRTPSGEN_DIR`: Root folder where *eProsima FastRTPSGen* is installed, usually set to `/usr/local`, which is the default installation directory. If the user sets a different install directory in the `gradle install` step, it must set it here as well.
