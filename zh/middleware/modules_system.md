@@ -150,11 +150,30 @@ Keep printing all messages in the background:
          [-f]        Follow: wait for new messages
     
 
+## esc_battery
+
+Source: [modules/esc_battery](https://github.com/PX4/Firmware/tree/master/src/modules/esc_battery)
+
+### 描述
+
+This implements using information from the ESC status and publish it as battery status.
+
+### Usage {#esc_battery_usage}
+
+    esc_battery <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## heater
 
 Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
-### 描述
+### Description
 
 Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 

@@ -33,3 +33,22 @@ CLI usage example:
        stop
     
        status        print status info
+    
+
+## work_item_example
+
+Source: [examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item)
+
+### Description
+
+Example of a simple module running out of a work queue.
+
+### Usage {#work_item_example_usage}
+
+    work_item_example <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info

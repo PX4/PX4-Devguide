@@ -2,7 +2,7 @@
 
 PX4 定义了一些用于为系统状态和问题提供音频通知的 [标准音符/提示音](https://docs.px4.io/master/en/getting_started/tunes.html)（比如系统启动，解锁成功，电池警告等）
 
-提示音使用字符串来指定 ([ANSI 音乐通知](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt))，并使用 [tunes](https://github.com/PX4/Firmware/tree/master/src/lib/tunes) 库播放。 乐曲库也包含默认系统调节列表——见 [lib/tunes/tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)。
+提示音使用字符串来指定（[ANSI 音乐通知](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt)），并使用 [tunes](https://github.com/PX4/Firmware/tree/master/src/lib/tunes) 库播放这些编码。 乐曲库也包含默认系统调节列表——见 [lib/tunes/tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)。
 
 PX4还有一个模块可以用于播放（测试）默认或用户自定义音乐。
 
@@ -17,7 +17,7 @@ PX4还有一个模块可以用于播放（测试）默认或用户自定义音�
 
 创建新乐曲的最简单方式是使用音乐编辑器。 这允许您编辑乐曲并在您的电脑上播放， 然后导出为 PX4 可以播放的格式。
 
-ANSI 音乐在 ANSI BBS 系统中很受欢迎，因此最好的编辑工具是 DOS 实用工具。 在 Windows 上，一个选项是在 *Dosbox* 内使用 *Melody Master*。
+ANSI 音乐在 ANSI BBS 系统中很受欢迎，因此最好的编辑工具是 DOS 实用程序。 在 Windows 上，一个选项是在 *Dosbox* 内使用 *Melody Master*。
 
 使用软件的步骤是：
 
@@ -48,7 +48,7 @@ ANSI 音乐在 ANSI BBS 系统中很受欢迎，因此最好的编辑工具是 D
 
 ## 测试乐曲
 
-当您准备好在 PX4 上尝试新的乐曲时，请使用 [tune_control](../middleware/modules_system.md#tunecontrol) 库。 For example, to test the tune we "created" above you would enter the following command on a console or shell (e.g. the [MAVLink Shell](../debug/mavlink_shell.md)):
+当您准备好在 PX4 上尝试新的乐曲时，请使用 [tune_control](../middleware/modules_system.md#tunecontrol) 库。 例如，要测试我们在上面“创建的”乐曲，您应在控制台或 shell（例如 [MAVLink Shell](../debug/mavlink_shell.md)）上输入以下命令 ：
 ```sh
 tune_control play -m "150L1O3DL16CL32<B>C<AEL16A"
 ```
@@ -66,7 +66,7 @@ tune_control play -m "150L1O3DL16CL32<B>C<AEL16A"
 ## 添加新乐曲
 
 
-待定。
+待开发
 
 
 <!-- 
