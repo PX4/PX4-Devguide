@@ -397,10 +397,10 @@ The *fastrtpsgen* script can be used to generate a simple RTPS application from 
 Enter the following commands to create the application:
 
 ```sh
-cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
+cd /path/to/PX4/Firmware/build/px4_sitl_rtps/src/modules/micrortps_bridge
 mkdir micrortps_listener
 cd micrortps_listener
-fastrtpsgen -example x64Linux2.6gcc ../micrortps_agent/idl/sensor_combined_.idl
+fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sensor_combined.idl
 ```
 
 This creates a basic subscriber and publisher, and a main-application to run them.
