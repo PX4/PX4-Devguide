@@ -3,7 +3,8 @@
 The *PX4-FastRTPS Bridge* adds a Real Time Publish Subscribe (RTPS) interface to PX4, enabling the exchange of [uORB messages](../middleware/uorb.md) between PX4 components and (offboard) *Fast RTPS* applications (including those built using the ROS2/ROS frameworks).
 
 > **Note** RTPS is the underlying protocol of the Object Management Group's (OMG) Data Distribution Service (DDS) standard.
-  It aims to enable scalable, real-time, dependable, high-performance and inter-operable data communication using the publish/subscribe pattern. *Fast RTPS* is a very lightweight cross-platform implementation of the latest version of the RTPS protocol and a minimum DDS API.
+  It aims to enable scalable, real-time, dependable, high-performance and inter-operable data communication using the publish/subscribe pattern.
+  *Fast RTPS* is a very lightweight cross-platform implementation of the latest version of the RTPS protocol and a minimum DDS API.
 
 RTPS has been adopted as the middleware for the ROS2 (Robot Operating System).
 The *Fast RTPS bridge* allows us to better integrate with ROS2, making it easy to share sensor values, commands, and other vehicle information.
@@ -54,9 +55,11 @@ The main elements of the architecture are the client and agent processes shown i
 ### ROS2/ROS application pipeline
 
 The application pipeline for ROS2 is very straightforward!
-Because ROS2 uses DDS/RTPS as its native communications middleware, you can create a ROS2 listener or advertiser node to publish and subscribe to uORB data on PX4, via the *PX4 Fast RTPS Bridge*. This is shown below.
+Because ROS2 uses DDS/RTPS as its native communications middleware, you can create a ROS2 listener or advertiser node to publish and subscribe to uORB data on PX4, via the *PX4 Fast RTPS Bridge*.
+This is shown below.
 
-> **Note** You do need to make sure that the message types, headers and source files used on both client and agent side (and consequently, on the ROS nodes) are generated from the same Interface Description Language (IDL) files. The `px4_ros_com` package provides the needed infrastructure for generating messages and headers needed by ROS2.
+> **Note** You do need to make sure that the message types, headers and source files used on both client and agent side (and consequently, on the ROS nodes) are generated from the same Interface Description Language (IDL) files.
+  The `px4_ros_com` package provides the needed infrastructure for generating messages and headers needed by ROS2.
 
 ![Architecture with ROS2](../../assets/middleware/micrortps/architecture_ros2.png)
 
@@ -88,11 +91,14 @@ The *Agent* must be separately/manually compiled for the target computer.
 The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)).
 This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
 
-The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
+The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware.
+These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
 
 Both `px4_ros_com` and `px4_msgs` packages have two separate branches:
-- a `master` branch, used with ROS2. It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
-- a `ros1` branch, used with ROS. It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
+- a `master` branch, used with ROS2.
+  It contains code to generate all the required ROS2 messages and IDL files to bridge PX4 with ROS2 nodes.
+- a `ros1` branch, used with ROS.
+  It contains code to generate the ROS message headers and source files, which can be used *with* the `ros1_bridge` to share data between PX4 and ROS.
 
 Both branches in `px4_ros_com` additionally include some example listener and advertiser example nodes.
 
@@ -102,7 +108,8 @@ Both branches in `px4_ros_com` additionally include some example listener and ad
 The generated bridge code will enable a specified subset of uORB topics to be published/subscribed via RTPS.
 This is true for both ROS or non-ROS applications.
 
-For *automatic code generation* there's a *yaml* definition file in the PX4 **Firmware/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
+For *automatic code generation* there's a *yaml* definition file in the PX4 **Firmware/msg/tools/** directory called **uorb_rtps_message_ids.yaml**.
+This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
 
 > **Note** An RTPS ID must be set for all messages.
 
@@ -292,7 +299,9 @@ As an example:
 
 The directory `px4_ros_com/scripts` contains multiple scripts that can be used to build both workspaces.
 
-To build both workspaces with a single script, use the `build_all.bash`. Check the usage with `source build_all.bash --help`. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4 Firmware directory path:
+To build both workspaces with a single script, use the `build_all.bash`.
+Check the usage with `source build_all.bash --help`.
+The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4 Firmware directory path:
 
 ```sh
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
@@ -472,7 +481,8 @@ To create a listener node on ROS2, lets take as an example the `sensor_combined_
 #include <px4_msgs/msg/sensor_combined.hpp>
 ```
 
-The above brings to use the required C++ libraries to interface with the ROS2 middleware. It also includes the required message header file.
+The above brings to use the required C++ libraries to interface with the ROS2 middleware.
+It also includes the required message header file.
 
 ```c++
 /**
@@ -697,7 +707,9 @@ And it should also get data being printed to the console output.
 
 ### Client reports that selected UART port is busy
 
-If the selected UART port is busy, it's possible that the MAVLink application is already being used. If both MAVLink and RTPS connections are required you will have to either move the connection to use another port or configure the port so that it can be shared. <!-- https://github.com/PX4/Devguide/issues/233 -->
+If the selected UART port is busy, it's possible that the MAVLink application is already being used.
+If both MAVLink and RTPS connections are required you will have to either move the connection to use another port or configure the port so that it can be shared.
+<!-- https://github.com/PX4/Devguide/issues/233 -->
 
 > **Tip** A quick/temporary fix to allow bridge testing during development is to stop MAVLink from *NuttShell*:
   ```sh
