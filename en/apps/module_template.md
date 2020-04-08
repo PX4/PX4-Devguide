@@ -1,15 +1,17 @@
 # Module Template for Full Applications
 
-There are 2 different approaches to writing a full application: either running as a task or as a work queue item.
-See [here](../concept/architecture.md#runtime-environment) for the differences.
+An application can be written to run as either a task (a module with its own stack and process priority) or as a work queue item (multiple modules share the same stack).
 In most cases a work queue item can be used, as this minimizes resource usage.
 
+> **Note** [Architectural Overview > Runtime Environment](../concept/architecture.md#runtime-environment) provides more information about stacks and work queues.
+
+<span></span>
 > **Note** All the things learned in the [First Application Tutorial](../apps/hello_sky.md) are relevant for writing a full application.
 
 
 ## Work Queue Item
 
-The PX4 Firmware contains a template for writing a new application (module) that runs as a work queue item:
+The PX4 Firmware contains a template for writing a new application (module) that runs as a work queue item: 
 [src/examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item).
 
 

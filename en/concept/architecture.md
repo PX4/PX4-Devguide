@@ -115,33 +115,25 @@ in real-time on the system by running `uorb top`.
 
 ## Runtime Environment {#runtime-environment}
 
-PX4 runs on various operating systems that provide a POSIX-API
-(such as Linux, macOS, NuttX or QuRT). It should also have some form of
-real-time scheduling (e.g. FIFO).
+PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT).
+It should also have some form of real-time scheduling (e.g. FIFO).
 
-The inter-module communication (using [uORB](../middleware/uorb.md)) is based on shared memory. 
-The whole PX4 middleware runs in a single address space, i.e. memory is shared between all modules. 
+The inter-module communication (using [uORB](../middleware/uorb.md)) is based on shared memory.
+The whole PX4 middleware runs in a single address space, i.e. memory is shared between all modules.
 
-> **Info** The system is designed such that with minimal effort it would
-> be possible to run each module in separate address space (parts that would need
-> to be changed include `uORB`, `parameter interface`, `dataman` and `perf`).
+> **Info** The system is designed such that with minimal effort it would be possible to run each module in separate address space (parts that would need to be changed include `uORB`, `parameter interface`, `dataman` and `perf`).
 
 There are 2 different ways that a module can be executed:
 - **Tasks**: The module runs in its own task with its own stack and process priority.
-- **Work queues**: The module runs on a shared task, meaning that it does not own a stack. 
-  Multiple tasks can run on the same stack with a single priority per work queue.
+- **Work queues**: The module runs on a shared task, meaning that it does not own a stack.
+  Multiple modules can run on the same stack with a single priority per work queue.
 
-  A task is scheduled by specifying a fixed time in the future, or via uORB
-  topic update callback.
-  The advantage is that it uses less RAM and potentially less task switches, but
-  the task is not allowed to sleep or poll on a message, or do blocking IO (such
-  as reading from a file).
-  Long-running tasks (doing heavy computation) should potentially also run in a
-  separate task or at least a separate work queue.
+  A task is scheduled by specifying a fixed time in the future, or via uORB topic update callback.
+  The advantage is that it uses less RAM and potentially less task switches, but the task is not allowed to sleep or poll on a message, or do blocking IO (such as reading from a file).
+  Long-running tasks (doing heavy computation) should potentially also run in a separate task or at least a separate work queue.
 
-> **Note** Tasks running on a work queue do not show up in `top` 
-> (only the work queues themselves can be seen - e.g. as `wq:lp_default`).
-> Use `work_queue status` to display all active work queue items.
+> **Note** Tasks running on a work queue do not show up in [`uorb top`](../middleware/modules_communication.md#uorb) (only the work queues themselves can be seen - e.g. as `wq:lp_default`).
+  Use [`work_queue status`](../middleware/modules_system.md#workqueue) to display all active work queue items.
 
 
 ### Background Tasks
