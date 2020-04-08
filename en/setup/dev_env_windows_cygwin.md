@@ -62,6 +62,9 @@ The installation directory (default: **C:\PX4\**) contains a batch script for la
 
 The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands.
 
+### File Monitoring Tools vs Toolchain Speed
+
+Any background file monitoring tool like e.g. antivirus tools and even the built in Windows Defender can slow down the toolchain operation significantly. While we are not suggesting you or taking any responsibility for disabling any safety features of your setup we have to note that at least halting them temporarily speeds up build times because of the file access intensive POSIX tools in use.
 
 ### Windows & Git Special Cases
 
