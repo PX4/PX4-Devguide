@@ -60,38 +60,44 @@
 
 普遍的工作流程都通过双击 **run-console. bat** 脚本来手动运行终端命令来启动控制台窗口。
 
-### Windows & Git 特殊情况
+### File Monitoring Tools vs Toolchain Speed
+
+Antivirus and other background file monitoring tools can significantly slow down both installation of the toolchain and PX4 build times.
+
+You may wish to halt them temporarily during builds (at your own risk).
+
+### Windows & Git Special Cases
 
 #### Windows CR+LF 对比 Unix LF 行结尾
 
-我们建议您所有的代码仓库都强制使用Unix的LF行结尾，并以此运行工具链（并且使用编辑器可以按照此格式保存您所做的修改 - 譬如 Eclipse 或者 VS Code）。 虽然编译以 CR+LF 行为结尾的本地源代码也是可行的， 但 Cygwin在某些情况下（如执行 shell 脚本）仍要求文件以 Unix 行结尾 (否则你会收到类似 `$'\r': Command not found.` 的错误信息）。 幸运的是, 只需要在代码仓库的根目录执行以下两条命令就可以让 git 自动为你完成此操作：
+We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
 
     git config core.autocrlf false
     git config core.eol lf
     
 
-如果需要在多个代码仓库中使用此工具链,，你可以为你的计算机在全局范围内设置这两种配置：
+If you work with this toolchain on multiple repositories you can also set these two configurations globally for your machine:
 
     git config --global ...
     
 
-但我们并不建议这样做, 因为它可能会影响 Windows 计算机上的任何其他 (无关) git 使用。
+This is not recommended because it may affect any other (unrelated) git use on your Windows machine.
 
 #### Unix 执行权限
 
-在 Unix 下, 每个文件的权限中都有一个标志位, 它会告诉操作系统是否允许执行该文件。 Cygwin 下的 * git * 支持并遵守该标识位 (尽管 Windows 平台的NTFS文件系统并不使用该标志位)。 这一差异通常会导致 *git* 发现权限中的 "假阳性（false-positive）" 差异。 生成的差异可能如下所示:
+Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
 
     diff --git ...
     old mode 100644
     new mode 100755
     
 
-我们建议在 windows 平台上全局禁用权该限检查以避免这个问题：
+We recommend globally disabling the permission check on Windows to avoid the problem:
 
     git config --global core.fileMode false # disable execution bit check globally for the machine
     
 
-对于由局部配置引起此问题的现有存储库，你可以使用如下命令：
+For existing repositories that have this problem caused by a local configuration, additionally:
 
     git config --unset core.filemode # 移除当前存储库的局部配置，改用全局配置
     git submodule foreach --recursive git config --unset core.filemode # 移除所有子模块的局部配置
@@ -99,9 +105,9 @@
 
 ## 附加信息
 
-### 特性/问题 {#features}
+### Features / Issues {#features}
 
-以下已知正常功能 (版本 2.0):
+The following features are known to work (version 2.0):
 
 * 使用 jMAVSim 编译和运行 SITL, 其性能明显优于虚拟机 (Cygwin会生成一个本机 windows 二进制文件 ** px4.exe **)。
 * 编译和上传 NuttX 二进制文件（例如：px4_fmu-v2 和 px4_fmu-v4）。
@@ -110,15 +116,15 @@
 * 绿色安装！ 安装程序不会影响您的系统和全局路径设置 (它只修改选定的安装目录, 例如 ** C:\PX4 \ ** 并使用临时本地路径变量)。
 * 安装程序支持更新到最新版本, 同时保持您的个人更改在工具链文件夹中。
 
-补充:
+Omissions:
 
 * Simulation: Gazebo and ROS are not supported.
 * 仅支持 NuttX 和 JMAVSim/SITL 编译。
 * [Known problems](https://github.com/orgs/PX4/projects/6) (Also use to report issues).
 
-### Shell 脚本安装 {#script_setup}
+### Shell Script Installation {#script_setup}
 
-你还可以使用 Github 项目中的 shell 脚本进行开发环境的安装。
+You can also install the environment using shell scripts in the Github project.
 
 1. 请确保安装了 [ Windows Git ](https://git-scm.com/download/win)。
 2. 将代码仓库 https://github.com/PX4/windows-toolchain 克隆到要安装工具链的位置。 打开 ` Git Bash ` 并执行以下操作，打开后会自动进入默认的安装目录:
@@ -130,9 +136,9 @@
 1. 如果要安装所有组件, 请进入到新克隆的代码仓库文件夹, 然后双击位于文件夹 `toolchain`目录中的脚本 ` install-all-components.bat`。 如果您只需要某些组件并希望占用有限的Internet 数据和磁盘空间, 则可以进入到不同的组件文件夹, 如 ` toolchain\cygwin64 `, 然后单击 ** install-XXX.bat ** 脚本以获取特定的内容。
 2. 继续 [ 入门指南 ](#getting_started) (或 [ 使用说明 ](#usage_instructions)) 
 
-### 手动安装 (对于开发人员) {#manual_setup}
+### Manual Installation (for Toolchain Developers) {#manual_setup}
 
-本节介绍如何在从基于脚本安装目录中通过相应的脚本手动安装 Cygwin 工具链。 使用脚本进行开发环境安装的结果与使用 MSI 安装程序进行安装的结果是一致的。
+This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 
 > **注意：** 因为工具链的更新，下述指令可能无法涵盖未来所有更改的每个细节。
 
