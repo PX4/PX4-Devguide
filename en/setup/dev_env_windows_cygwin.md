@@ -64,7 +64,9 @@ The ordinary workflow consists of starting a console window by double clicking o
 
 ### File Monitoring Tools vs Toolchain Speed
 
-Any background file monitoring tool like e.g. antivirus tools and even the built in Windows Defender significantly slow down the installation and operation of the toolchain. While we are not suggesting you or taking any responsibility for disabling any safety features of your setup we have to note that at least halting them temporarily speeds up build times because of the file access intensive POSIX tools in use.
+Antivirus and other background file monitoring tools can significantly slow down both installation of the toolchain and PX4 build times.
+
+You may wish to halt them temporarily during builds (at your own risk).
 
 ### Windows & Git Special Cases
 
