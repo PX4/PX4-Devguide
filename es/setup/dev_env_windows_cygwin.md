@@ -60,7 +60,13 @@ The installation directory (default: **C:\PX4**) contains a batch script for lau
 
 The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands.
 
-### Windows & Casos especiales en Git
+### File Monitoring Tools vs Toolchain Speed
+
+Antivirus and other background file monitoring tools can significantly slow down both installation of the toolchain and PX4 build times.
+
+You may wish to halt them temporarily during builds (at your own risk).
+
+### Windows & Git Special Cases
 
 #### Finales de linea Windows CR+LF vs Unix LF
 
@@ -116,7 +122,7 @@ Omissions:
 * Only NuttX and JMAVSim/SITL builds are supported.
 * [Known problems](https://github.com/orgs/PX4/projects/6) (Also use to report issues).
 
-### Instalación Shell Script {#script_setup}
+### Shell Script Installation {#script_setup}
 
 You can also install the environment using shell scripts in the Github project.
 
@@ -130,7 +136,7 @@ You can also install the environment using shell scripts in the Github project.
 1. Si desea instalar todos los componentes navegue a la carpeta recién clonada y haga doble clic en el script `install-all-components.bat` ubicado en la carpeta `toolchain`. Si solo necesitas ciertos componentes y quieres ahorrar tráfico de internet o espacio en disco puedes navegar a la carpeta de componente, como por ejemplo `toolchain\cygwin64`, y hacer click en el script **install-XXX.bat** para solo tener encuenta ese específico.
 2. Continúe con [Introducción](#getting_started) (o [Instrucciones de Uso](#usage_instructions)) 
 
-### Manual de instalación (para desarrolladores de Toolchain) {#manual_setup}
+### Manual Installation (for Toolchain Developers) {#manual_setup}
 
 This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 
