@@ -2,80 +2,54 @@
 
 本主题提供 PX4 支持的 [Gazebo](../simulation/gazebo.md) 世界的有关图像/信息。
 
-在默认情况下，对不同的 PX4 载具类型使用 `make` 指令会加载指定的世界。 您也可以手动指定要加载的世界：[Gazebo模拟 &#062 加载指定世界](../simulation/gazebo.md#set_world)。
+The [empty.world](#empty_world) is spawned by default, though this may be overridden by a [model specific world](model_specific_worlds). Developers can also manually specify the world to load: [Gazebo Simulation > Loading a Specific World](../simulation/gazebo.md#set_world).
 
 所支持世界的源代码可在 GitHub 上找到：[PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)。
 
-
-## 海湾
-
-[PX4/sitl_gazebo/worlds/baylands.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/baylands.world)
-
-![海湾世界](../../assets/simulation/gazebo/worlds/baylands.jpg)
-
-
-## 船舶
-
-[PX4/sitl_gazebo/worlds/boat.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/boat.world)
-
-
-## 空白
+## Empty (Default) {#empty_world}
 
 [PX4/sitl_gazebo/worlds/empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world)
 
+![empty](../../assets/simulation/gazebo/worlds/empty.png)
 
-## Hippocampus
+## Baylands
 
+[PX4/sitl_gazebo/worlds/baylands.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/baylands.world)
 
-[PX4/sitl_gazebo/worlds/hippocampus.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/hippocampus.world)
+![Baylands World](../../assets/simulation/gazebo/worlds/baylands.jpg)
 
-## Iris irlock
-
-[PX4/sitl_gazebo/worlds/iris_irlock.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/iris_irlock.world)
-
-## KSQL 机场
+## KSQL Airport
 
 [PX4/sitl_gazebo/worlds/ksql_airport.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/ksql_airport.world)
 
-![KSQL机场世界](../../assets/simulation/gazebo/worlds/ksql_airport.jpg)
+![KSQL Airport World](../../assets/simulation/gazebo/worlds/ksql_airport.jpg)
 
-## 麦克米兰机场
+## McMillan Airfield
 
 [PX4/sitl_gazebo/worlds/mcmillan_airfield.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/mcmillan_airfield.world)
 
-![麦克米兰机场世界](../../assets/simulation/gazebo/worlds/mcmillan_airfield.jpg)
+![McMillan Airfield World](../../assets/simulation/gazebo/worlds/mcmillan_airfield.jpg)
 
+## Sonoma Raceway
 
-## 断壁残垣
+[PX4/sitl_gazebo/worlds/sonoma_raceway.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/sonoma_raceway.world) ![Sonoma_Raceway](../../assets/simulation/gazebo/worlds/sonoma_raceway.png)
 
-[PX4/sitl_gazebo/worlds/rubble.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/rubble.world)
+## Warehouse
 
-## 索诺玛赛道
+[PX4/sitl_gazebo/worlds/warehouse.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/warehouse.world) ![Warehouse](../../assets/simulation/gazebo/worlds/warehouse.png)
 
-
-[PX4/sitl_gazebo/worlds/sonoma_raceway.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/sonoma_raceway.world)
-
-## Typhoon H480
-
-
-[PX4/sitl_gazebo/worlds/cccc.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world)
-
-## 起伏不平的地面
-
-[PX4/sitl_gazebo/worlds/uneven.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/uneven.world)
-
-
-## UUV Hippocampus
-
-[PX4/sitl_gazebo/worlds/uuv_hippocampus.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/uuv_hippocampus.world)
-
-## 仓库
-
-[PX4/sitl_gazebo/worlds/warehouse.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/warehouse.world)
-
-## 约塞米蒂
+## Yosemite
 
 [PX4/sitl_gazebo/worlds/yosemite.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/yosemite.world)
 
-![约塞米蒂](../../assets/simulation/gazebo/worlds/yosemite.jpg)
+![Yosemite](../../assets/simulation/gazebo/worlds/yosemite.jpg)
 
+## Model Specific Worlds {#model_specific_worlds}
+
+Some [vehicle models](../simulation/gazebo_vehicles.md) rely on the physics / plugins of a specific world. The PX4 toolchain will automatically spawn a world that has the same name as the vehicle model if one exists (instead of the default **empty.world**):
+
+The model specific worlds are:
+- [boat.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/boat.world): Includes a surface to simulate buoyancy of the [boat](../simulation/gazebo_vehicles.md#usv).
+- [uuv_hippocampus.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/uuv_hippocampus.world): An empty world used to simulate an underwater environment for the [HippoCampus UUV](../simulation/gazebo_vehicles.md#uuv).
+- [typhoon_h480.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world): Used by [Typhoon H480 (Hexrotor)](../simulation/gazebo_vehicles.md#typhoon_h480) vehicle model and includes a video widget to enable / disable video streaming. The world includes a gazebo plugin for a simulated camera.
+- [iris_irlock.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/iris_irlock.world): Includes a IR beacon for testing (precision landing](https://docs.px4.io/master/en/advanced_features/precland.html).
