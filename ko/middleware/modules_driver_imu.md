@@ -251,8 +251,6 @@ icm20602 <command> [arguments...]
      [-R <val>]  Rotation
                  default: 0
 
-   reset
-
    stop
 
    status        print status info
@@ -276,8 +274,6 @@ icm20608g <command> [arguments...]
      [-R <val>]  Rotation
                  default: 0
 
-   reset
-
    stop
 
    status        print status info
@@ -300,8 +296,6 @@ icm20689 <command> [arguments...]
      [-f <val>]  bus frequency in kHz
      [-R <val>]  Rotation
                  default: 0
-
-   reset
 
    stop
 
@@ -351,8 +345,6 @@ icm40609d <command> [arguments...]
      [-R <val>]  Rotation
                  default: 0
 
-   reset
-
    stop
 
    status        print status info
@@ -375,8 +367,6 @@ icm42688p <command> [arguments...]
      [-f <val>]  bus frequency in kHz
      [-R <val>]  Rotation
                  default: 0
-
-   reset
 
    stop
 
@@ -499,8 +489,6 @@ mpu6000 <command> [arguments...]
      [-R <val>]  Rotation
                  default: 0
 
-   reset
-
    stop
 
    status        print status info
@@ -548,8 +536,6 @@ mpu9520 <command> [arguments...]
      [-f <val>]  bus frequency in kHz
      [-R <val>]  Rotation
                  default: 0
-
-   reset
 
    stop
 
