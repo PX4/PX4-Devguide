@@ -60,6 +60,12 @@ The installation directory (default: **C:\PX4**) contains a batch script for lau
 
 The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands.
 
+### File Monitoring Tools vs Toolchain Speed
+
+Antivirus and other background file monitoring tools can significantly slow down both installation of the toolchain and PX4 build times.
+
+You may wish to halt them temporarily during builds (at your own risk).
+
 ### Windows & Git Special Cases
 
 #### Windows CR+LF vs Unix LF Line Endings

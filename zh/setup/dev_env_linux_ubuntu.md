@@ -145,28 +145,11 @@ To install the development toolchain:
 * [软件安装](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
 * [配置](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
 
-## FastRTPS 安装 {#fast_rtps}
+## Fast RTPS installation {#fast_rtps}
 
 [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) 是 RTPS（Real Time Publish Subscribe 实时发布订阅）协议的 C++ 实现库。 通过 [RTPS/ROS2 接口：PX4-FastRTPS 桥接](../middleware/micrortps.md) 使用 FastRTPS，允许与 Offboard 组件共享 PX4 uORB 话题。
 
-以下说明可用于将 FastRTPS 1.7.1 二进制文件安装到您的 home 目录中。
-
-```sh
-wget https://www.eprosima.com/index.php/component/ars/repository/eprosima-fast-rtps/eprosima-fast-rtps-1-7-1/eprosima_fastrtps-1-7-1-linux-tar-gz -O eprosima_fastrtps-1-7-1-linux.tar.gz
-tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz eProsima_FastRTPS-1.7.1-Linux/
-tar -xzf eprosima_fastrtps-1-7-1-linux.tar.gz requiredcomponents
-tar -xzf requiredcomponents/eProsima_FastCDR-1.0.8-Linux.tar.gz
-```
-
-> **Note** In the following lines where we compile the FastCDR and FastRTPS libraries, the `make` command is issued with the `-j2` option. This option defines the number of parallel threads (or `j`obs) that are used to compile the source code. Change `-j2` to `-j<number_of_cpu_cores_in_your_system>` to speed up the compilation of the libraries.
-
-```sh
-(cd eProsima_FastCDR-1.0.8-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
-(cd eProsima_FastRTPS-1.7.1-Linux && ./configure --libdir=/usr/lib && make -j2 && sudo make install)
-rm -rf requiredcomponents eprosima_fastrtps-1-7-1-linux.tar.gz
-```
-
-> **Note** More "generic" instructions, which additionally cover installation from source, can be found here: [Fast RTPS installation](../setup/fast-rtps-installation.md).
+Follow the instructions in [Fast RTPS Installation](../setup/fast-rtps-installation.md) to install it.
 
 ## 附加工具
 

@@ -55,7 +55,7 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 ## 代码生成
 
-> **Note** [Fast RTPS 1.8.2 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), or [Windows Cygwin](../setup/dev_env_windows_cygwin.md) (but not [Ubuntu](../setup/dev_env_linux_ubuntu.md) at time of writing).
+> **Note** [Fast RTPS 1.8.2 and FastRTPSGen 1.0.4 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
 
 ### 独立于 ROS 的应用程序
 
@@ -350,10 +350,10 @@ $ source clean_all.bash --ros1_ws_dir &lt;path/to/px4_ros_com_ros1/ws&gt;
 输入以下命令来创建应用：
 
 ```sh
-cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
+cd /path/to/PX4/Firmware/build/px4_sitl_rtps/src/modules/micrortps_bridge
 mkdir micrortps_listener
 cd micrortps_listener
-fastrtpsgen -example x64Linux2.6gcc ../micrortps_agent/idl/sensor_combined_.idl
+fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sensor_combined.idl
 ```
 
 这段代码创建了一个基本的订阅器和广播器，和一个运行它们的主程序。 要打印来自 `sensor_combined` 主题的数据, 修改 **sensor_combined_Subscriber.cxx** 文件中的 `onNewDataMessage()` 方法。

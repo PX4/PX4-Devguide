@@ -55,7 +55,7 @@ ROS2와 ROS간의 메시지를 연결하는 [ros1_bridge](https://github.com/ros
 
 ## 코드 생성
 
-> **Note** [Fast RTPS 1.8.2 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code! *Fast RTPS* is installed *by default* if you use the normal installers/scripts for [macOS](../setup/dev_env_mac.md), or [Windows Cygwin](../setup/dev_env_windows_cygwin.md) (but not [Ubuntu](../setup/dev_env_linux_ubuntu.md) at time of writing).
+> **Note** [Fast RTPS 1.8.2 and FastRTPSGen 1.0.4 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
 
 ### ROS에 독립적인 어플리케이션
 
@@ -350,10 +350,10 @@ $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 어플리케이션을 만들기 위해서는 다음의 명령어들을 입력하세요.
 
 ```sh
-cd /path/to/PX4/Firmware/src/modules/micrortps_bridge
+cd /path/to/PX4/Firmware/build/px4_sitl_rtps/src/modules/micrortps_bridge
 mkdir micrortps_listener
 cd micrortps_listener
-fastrtpsgen -example x64Linux2.6gcc ../micrortps_agent/idl/sensor_combined_.idl
+fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sensor_combined.idl
 ```
 
 이 명령어는 기본적인 Subscriber와 Publisher를 만들고, 이것을 실행하기 위한 메인 어플리케이션을 만듭니다. `sensor_combined` 토픽으로 부터 오는 데이터를 출력하기 위해서는 **sensor_combined_Subscriber.cxx** 메소드의 `onNewDataMessage()`를 수정하세요.
