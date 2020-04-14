@@ -9,20 +9,20 @@ Supported vehicle types include: mutirotors, VTOL, VTOL Tailsitter, Plane, Rover
 <span></span>
 > **Note** The [Gazebo](../simulation/gazebo.md) page shows how to install Gazebo, how to enable video and load custom maps, and many other configuration options.
 
-
-## Quadrotor (Default) {#quadrotor}
+## Multicopter
+### Quadrotor (Default) {#quadrotor}
 
 ```sh
 make px4_sitl gazebo
 ```
 
-## Quadrotor with Optical Flow {#quadrotor_optical_flow}
+### Quadrotor with Optical Flow {#quadrotor_optical_flow}
 
 ```sh
 make px4_sitl gazebo_iris_opt_flow
 ```
 
-## 3DR Solo (Quadrotor) {#3dr_solo}
+### 3DR Solo (Quadrotor) {#3dr_solo}
 
 ```sh
 make px4_sitl gazebo_solo
@@ -31,7 +31,7 @@ make px4_sitl gazebo_solo
 ![3DR Solo in Gazebo](../../assets/simulation/gazebo/vehicles/solo.png)
 
 
-## Typhoon H480 (Hexrotor) {#typhoon_h480}
+### Typhoon H480 (Hexrotor) {#typhoon_h480}
 
 ```
 make px4_sitl gazebo_typhoon_h480
@@ -41,7 +41,9 @@ make px4_sitl gazebo_typhoon_h480
 
 > **Note** This target also supports [video streaming simulation](#video).
 
-## Standard Plane {#standard_plane}
+## Plane/Fixed Wing {#fixed_wing}
+
+### Standard Plane {#standard_plane}
 
 ```sh
 make px4_sitl gazebo_plane
@@ -49,7 +51,8 @@ make px4_sitl gazebo_plane
 
 ![Plane in Gazebo](../../assets/simulation/gazebo/vehicles/plane.png)
 
-## Standard VTOL {#standard_vtol}
+## VTOL
+### Standard VTOL {#standard_vtol}
 
 ```sh
 make px4_sitl gazebo_standard_vtol
@@ -57,7 +60,7 @@ make px4_sitl gazebo_standard_vtol
 
 ![Standard VTOL in Gazebo](../../assets/simulation/gazebo/vehicles/standard_vtol.png)
 
-## Tailsitter VTOL {#tailsitter_vtol}
+### Tailsitter VTOL {#tailsitter_vtol}
 
 ```sh
 make px4_sitl gazebo_tailsitter
@@ -65,7 +68,10 @@ make px4_sitl gazebo_tailsitter
 
 ![Tailsitter VTOL in Gazebo](../../assets/simulation/gazebo/vehicles/tailsitter.png)
 
-## Ackerman vehicle (UGV/Rover) {#ugv}
+
+## Unmmanned Ground Vehicle (UGV/Rover/Car) {#ugv}
+
+### Ackerman UGV {#ugv_ackerman}
 
 ```sh
 make px4_sitl gazebo_rover
@@ -73,8 +79,18 @@ make px4_sitl gazebo_rover
 
 ![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/rover.png)
 
+### Differential UGV {#ugv_differential}
 
-## HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#uuv}
+```sh
+make px4_sitl gazebo_r1_rover
+```
+
+![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/r1_rover.png)
+
+
+## Unmanned Underwater Vehicle (UUV/Submarine) {#uuv}
+
+### HippoCampus TUHH UUV {#uuv_hippocampus}
 
 ```sh
 make px4_sitl gazebo_uuv_hippocampus
@@ -82,11 +98,12 @@ make px4_sitl gazebo_uuv_hippocampus
 
 ![Submarine/UUV](../../assets/simulation/gazebo/vehicles/hippocampus.png)
 
-## Boat (USV: Unmanned Surface Vehicle) {#usv}
+## Unmanned Surface Vehicle (USV/Boat) {#usv}
+
+### Boat {#usv_boat}
 
 ```sh
 make px4_sitl gazebo_boat
 ```
 
 ![Boat/USV](../../assets/simulation/gazebo/vehicles/boat.png)
-
