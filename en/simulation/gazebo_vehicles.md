@@ -73,6 +73,14 @@ make px4_sitl gazebo_rover
 
 ![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/rover.png)
 
+## Differential vehicle (UGV/Rover) {#ugv}
+
+```sh
+make px4_sitl gazebo_r1_rover
+```
+
+![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/r1_rover.png)
+
 
 ## HippoCampus TUHH (UUV: Unmanned Underwater Vehicle) {#uuv}
 
