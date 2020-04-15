@@ -39,7 +39,7 @@ param show -c
 
 ### 导出和加载参数
 
-您可以保存自上次将所有参数重置为其固件定义的默认值以来 *touched* 的任何参数（这包括已更改的任何参数，即使这些参数已更改为默认值）。
+You can save any parameters that have been *touched* since all parameters were last reset to their firmware-defined defaults (this includes any parameters that have been changed, even if they have been changed back to their default).
 
 标准的 `param save ` 命令将参数存储在当前默认文件中:
 

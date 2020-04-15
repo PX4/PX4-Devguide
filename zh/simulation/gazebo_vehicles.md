@@ -9,20 +9,20 @@
 <span></span>
 > **Note** [Gazebo](../simulation/gazebo.md) 页面展示了如何安装 Gazebo、如何启用视频并加载自定义地图以及许多其他的配置选项。
 
-
-## 四旋翼（默认） {#quadrotor}
+## Multicopter
+### Quadrotor (Default) {#quadrotor}
 
 ```sh
 make px4_sitl gazebo
 ```
 
-## Quadrotor with Optical Flow {#quadrotor_optical_flow}
+### Quadrotor with Optical Flow {#quadrotor_optical_flow}
 
 ```sh
 make px4_sitl gazebo_iris_opt_flow
 ```
 
-## 3DR Solo（四旋翼） {#3dr_solo}
+### 3DR Solo (Quadrotor) {#3dr_solo}
 
 ```sh
 make px4_sitl gazebo_solo
@@ -31,7 +31,7 @@ make px4_sitl gazebo_solo
 ![3DR Solo 的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/solo.png)
 
 
-## Typhoon H480（六旋翼） {#typhoon_h480}
+### Typhoon H480 (Hexrotor) {#typhoon_h480}
 
 ```
 make px4_sitl gazebo_typhoon_h480
@@ -41,7 +41,9 @@ make px4_sitl gazebo_typhoon_h480
 
 > **Note** 此机型还支持[视频流仿真](#video)。
 
-## 标准构型的固定翼 {#standard_plane}
+## Plane/Fixed Wing {#fixed_wing}
+
+### Standard Plane {#standard_plane}
 
 ```sh
 make px4_sitl gazebo_plane
@@ -49,7 +51,8 @@ make px4_sitl gazebo_plane
 
 ![固定翼的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/plane.png)
 
-## 标准 VTOL {#standard_vtol}
+## VTOL
+### Standard VTOL {#standard_vtol}
 
 ```sh
 make px4_sitl gazebo_standard_vtol
@@ -57,7 +60,7 @@ make px4_sitl gazebo_standard_vtol
 
 ![标准 VTOL 的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/standard_vtol.png)
 
-## 尾座式 VTOL {#tailsitter_vtol}
+### Tailsitter VTOL {#tailsitter_vtol}
 
 ```sh
 make px4_sitl gazebo_tailsitter
@@ -65,7 +68,10 @@ make px4_sitl gazebo_tailsitter
 
 ![尾座式 VTOL 的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/tailsitter.png)
 
-## Ackerman 地面车辆（UGV/Rover） {#ugv}
+
+## Unmmanned Ground Vehicle (UGV/Rover/Car) {#ugv}
+
+### Ackerman UGV {#ugv_ackerman}
 
 ```sh
 make px4_sitl gazebo_rover
@@ -73,20 +79,31 @@ make px4_sitl gazebo_rover
 
 ![无人车的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/rover.png)
 
+### Differential UGV {#ugv_differential}
 
-## HippoCampus TUHH（UUV：无人水下航行器） {#uuv}
+```sh
+make px4_sitl gazebo_r1_rover
+```
+
+![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/r1_rover.png)
+
+
+## Unmanned Underwater Vehicle (UUV/Submarine) {#uuv}
+
+### HippoCampus TUHH UUV {#uuv_hippocampus}
 
 ```sh
 make px4_sitl gazebo_uuv_hippocampus
 ```
 
-![潜艇/UUV 的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/hippocampus.png)
+![Submarine/UUV](../../assets/simulation/gazebo/vehicles/hippocampus.png)
 
-## 船（USV：无人驾驶水面艇） {#usv}
+## Unmanned Surface Vehicle (USV/Boat) {#usv}
+
+### Boat {#usv_boat}
 
 ```sh
 make px4_sitl gazebo_boat
 ```
 
-![船/USV](../../assets/simulation/gazebo/vehicles/boat.png)
-
+![Boat/USV](../../assets/simulation/gazebo/vehicles/boat.png)
