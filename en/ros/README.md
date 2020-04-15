@@ -6,3 +6,7 @@ It uses the [MAVROS](../ros/mavros_installation.md) node to communicate with PX4
 This section contains topics about using ROS for offboard control with PX4.
 
 > **Tip** ROS is only officially supported on Linux platforms.
+
+## External Resources
+
+- [XTDrone](https://github.com/robin-shaun/XTDrone/blob/master/README.en.md) - ROS + PX4 v1.9 simulation environment for computer vision. You could read the [tutorial here](https://www.yuque.com/xtdrone/manual_en) to get started with it.
