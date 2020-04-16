@@ -42,8 +42,7 @@ Modules communicate with each other through a
 publish-subscribe message bus named [uORB](../middleware/uorb.md). 
 The use of the publish-subscribe scheme means that:
 
-- The system is reactive — it is
-  asynchronous and will update instantly when new data is available
+- The system is reactive — it is asynchronous and will update instantly when new data is available
 - All operations and communication are fully parallelized
 - A system component can consume data from anywhere in a thread-safe fashion
 
@@ -125,11 +124,12 @@ The whole PX4 middleware runs in a single address space, i.e. memory is shared b
 
 There are 2 different ways that a module can be executed:
 - **Tasks**: The module runs in its own task with its own stack and process priority.
-- **Work queues**: The module runs on a shared task, meaning that it does not own a stack.
-  Multiple modules can run on the same stack with a single priority per work queue.
+- **Work queue tasks**: The module runs on a shared work queue, sharing the same stack and work queue thread priority as other modules on the queue.
+  - All the tasks must behave co-operatively as they cannot interrupt each other.
+  - Multiple *work queue tasks* can run on a queue, and there can be multiple queues.
+  - A *work queue task* is scheduled by specifying a fixed time in the future, or via uORB topic update callback.
 
-  A task is scheduled by specifying a fixed time in the future, or via uORB topic update callback.
-  The advantage is that it uses less RAM and potentially less task switches, but the task is not allowed to sleep or poll on a message, or do blocking IO (such as reading from a file).
+  The advantage of running modules on a work queue is that it uses less RAM, and potentially results in fewer task switches. The disadvantages are that *work queue tasks* are not allowed to sleep or poll on a message, or do blocking IO (such as reading from a file).
   Long-running tasks (doing heavy computation) should potentially also run in a separate task or at least a separate work queue.
 
 > **Note** Tasks running on a work queue do not show up in [`uorb top`](../middleware/modules_communication.md#uorb) (only the work queues themselves can be seen - e.g. as `wq:lp_default`).
