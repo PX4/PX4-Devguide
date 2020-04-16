@@ -46,3 +46,7 @@ VIO使用[视觉测距](https://en.wikipedia.org/wiki/Visual_odometry)来从视�
 - [光流](https://docs.px4.io/en/sensor/optical_flow.html) 
   - [PX4Flow 智能摄像机](https://docs.px4.io/en/sensor/px4flow.html)
 - [EKF > 光流](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#optical-flow)
+
+## External Resources
+
+- [XTDrone](https://github.com/robin-shaun/XTDrone/blob/master/README.en.md) - ROS + PX4 v1.9 simulation environment for computer vision. The [XTDrone Manual](https://www.yuque.com/xtdrone/manual_en) has everything you need to get started!
