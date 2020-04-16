@@ -12,31 +12,6 @@ bl_update [arguments...]
 
    <file>        Bootloader bin file
 ```
-## config
-Source: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
-
-Configure a sensor driver (sampling & publication rate, etc.)
-### Usage {#config_usage}
-```
-config <command> [arguments...]
- Commands:
-
- The <file:dev> argument is typically one of /dev/{gyro,accel,mag}i
-   block         Block sensor topic publication
-     <file:dev>  Sensor device file
-
-   unblock       Unblock sensor topic publication
-     <file:dev>  Sensor device file
-
-   sampling      Set sensor sampling rate
-     <file:dev> <rate> Sensor device file and sampling rate in Hz
-
-   rate          Set sensor publication rate
-     <file:dev> <rate> Sensor device file and publication rate in Hz
-
-   check         Perform sensor self-test (and print info)
-     <file:dev>  Sensor device file
-```
 ## dumpfile
 Source: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 

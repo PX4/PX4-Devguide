@@ -168,12 +168,6 @@ bmi160 <command> [arguments...]
      [-R <val>]  Rotation
                  default: 0
 
-   reset
-
-   regdump
-
-   testerror
-
    stop
 
    status        print status info

@@ -362,8 +362,6 @@ irlock <command> [arguments...]
      [-a <val>]  I2C address
                  default: 84
 
-   test
-
    stop
 
    status        print status info
