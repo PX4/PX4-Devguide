@@ -376,8 +376,6 @@ Source: [drivers/irlock](https://github.com/PX4/Firmware/tree/master/src/drivers
          [-a <val>]  I2C address
                      default: 84
     
-       test
-    
        stop
     
        status        print status info
