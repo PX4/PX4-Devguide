@@ -15,39 +15,11 @@ Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/s
        <file>        Bootloader bin file
     
 
-## config
-
-Source: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
-
-Configure a sensor driver (sampling & publication rate, etc.)
-
-### Usage {#config_usage}
-
-    config <command> [arguments...]
-     Commands:
-    
-     The <file:dev> argument is typically one of /dev/{gyro,accel,mag}i
-       block         Block sensor topic publication
-         <file:dev>  Sensor device file
-    
-       unblock       Unblock sensor topic publication
-         <file:dev>  Sensor device file
-    
-       sampling      Set sensor sampling rate
-         <file:dev> <rate> Sensor device file and sampling rate in Hz
-    
-       rate          Set sensor publication rate
-         <file:dev> <rate> Sensor device file and publication rate in Hz
-    
-       check         Perform sensor self-test (and print info)
-         <file:dev>  Sensor device file
-    
-
 ## dumpfile
 
 Source: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 
-파일을 덤프하는 유틸리티. 바이너리모드에서 파일 크기와 내용을 출력한다 (LF/CRLF를 변경하지는 않음).
+Dump file utility. Prints file size and contents in binary mode (don't replace LF with CR LF) to stdout.
 
 ### Usage {#dumpfile_usage}
 
@@ -61,7 +33,7 @@ Source: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 ### Description
 
-PX4 바이너리에 컴파일 되지 않은 동적 PX4 모듈을 로드하고 실행한다.
+Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
 
 ### Example
 
@@ -79,9 +51,9 @@ PX4 바이너리에 컴파일 되지 않은 동적 PX4 모듈을 로드하고 �
 
 Source: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
-ESC calibration을 위한 툴
+Tool for ESC calibration
 
-Calibration 과정 (명령어를 실행하면 안내가 됩니다):
+Calibration procedure (running the command will guide you through it):
 
 - ESC의 프로브를 빼고 파워를 끄세요
 - Stop attitude and rate controllers: mc_rate_control stop, fw_att_control stop
@@ -107,9 +79,9 @@ Calibration 과정 (명령어를 실행하면 안내가 됩니다):
 
 Source: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
-하드웨어 문제를 다루는 유틸리티
+Hardfault utility
 
-하드웨어문제를 다루는 스타트업 스크립트에 사용됩니다.
+Used in startup scripts to handle hardfaults
 
 ### Usage {#hardfault_log_usage}
 
@@ -135,7 +107,7 @@ Source: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/s
 
 Source: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
 
-특정 버스에 I2C 디바이스를 스캔하기 위한 유틸리티
+Utility to scan for I2C devices on a particular bus.
 
 ### Usage {#i2cdetect_usage}
 
@@ -150,15 +122,15 @@ Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### Description
 
-(외부) LED를 제어하고 테스트하기 위한 CLI 툴
+Command-line tool to control & test the (external) LED's.
 
-사용하기 위해서는 led_control uORB 토픽을 다루는 드라이버가 수행중인지 확인해야합니다.
+To use it make sure there's a driver running, which handles the led_control uorb topic.
 
-우선순위가 있습니다. 예를 들어, 한 모듈이 낮은 우선 순위를 컬러를 출력하고 다른 모듈이 높은 우선 순위로 N번 깜빡이도록 한다면 LED는 깜빡인 후에 컬러가 변경될 것입니다. `reset` 명령어 또한 낮은 우선수위로 돌아가기 위해 사용될 수 있습니다.
+There are different priorities, such that for example one module can set a color with low priority, and another module can blink N times with high priority, and the LED's automatically return to the lower priority state after the blinking. The `reset` command can also be used to return to a lower priority.
 
 ### Examples
 
-첫번째 LED를 파란색으로 5회 깜빡이게:
+Blink the first LED 5 times in blue:
 
     led_control blink -c blue -l 0 -n 5
     
@@ -198,9 +170,9 @@ Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src
 
 Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
 
-uORB 토픽을 수신하고 데이터를 콘솔로 출력하기 위한 유틸리티
+Utility to listen on uORB topics and print the data to the console.
 
-Ctrl+C, Esc, Q를 누르면 종료됩니다.
+The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
 
 ### Usage {#listener_usage}
 
@@ -221,9 +193,9 @@ Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/syste
 
 ### Description
 
-ESC 드라이버에 믹서를 로그하거나 추가합니다.
+Load or append mixer files to the ESC driver.
 
-RPi는 상관없지만, NuttX에서는 사용되는 ioctl 드라이버가 지원되어야 합니다.
+Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
 
 ### Usage {#mixer_usage}
 
@@ -242,15 +214,15 @@ Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/
 
 ### Description
 
-모터 ramp up 테스트를 위한 어플리케이션
+Application to test motor ramp up.
 
-실행하기 전에 기체 컨트롤러가 멈춰져있는지 확인해주세요
+Before starting, make sure to stop any running attitude controller:
 
     mc_rate_control stop
     fw_att_control stop
     
 
-시작할 때 하나의 백그라운드 작업이 시작되고 몇초(지정된만큼)간 수행된 후 종료됩니다.
+When starting, a background task is started, runs for several seconds (as specified), then exits.
 
 ### Example
 
@@ -269,16 +241,16 @@ Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/
          [-r <val>]  Select motor ramp duration in sec
                      default: 1.0
     
-     WARNING: 모터는 최고 속도까지 ramp up 됩니다.
+     WARNING: motors will ramp up to full speed!
     
 
 ## motor_test
 
 Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
-모터를 테스트하기 위한 유틸리티
+Utility to test motors.
 
-WARNING: 이 명령어를 수행하려면 모든 프로브를 제거하세요.
+WARNING: remove all props before using this command.
 
 ### Usage {#motor_test_usage}
 
@@ -535,9 +507,11 @@ Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/syst
 
 Reboot the system
 
-### Reboot the system {#reboot_usage}
+### Usage {#reboot_usage}
 
-    Usage
+    reboot [arguments...]
+         [-b]        Reboot into bootloader
+         [lock|unlock] Take/release the shutdown lock (for testing)
     
 
 ## sd_bench
