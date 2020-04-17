@@ -400,7 +400,7 @@ Enter the following commands to create the application:
 cd /path/to/PX4/Firmware/build/px4_sitl_rtps/src/modules/micrortps_bridge
 mkdir micrortps_listener
 cd micrortps_listener
-fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sensor_combined.idl
+fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sensor_combined_.idl
 ```
 
 This creates a basic subscriber and publisher, and a main-application to run them.
@@ -421,23 +421,16 @@ void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
             std::cout << "\n\n\n\n\n\n\n\n\n\n";
             std::cout << "Sample received, count=" << n_msg << std::endl;
             std::cout << "=============================" << std::endl;
-            std::cout << "gyro_rad: " << st.gyro_rad().at(0);
-            std::cout << ", " << st.gyro_rad().at(1);
-            std::cout << ", " << st.gyro_rad().at(2) << std::endl;
-            std::cout << "gyro_integral_dt: " << st.gyro_integral_dt() << std::endl;
-            std::cout << "accelerometer_timestamp_relative: " << st.accelerometer_timestamp_relative() << std::endl;
-            std::cout << "accelerometer_m_s2: " << st.accelerometer_m_s2().at(0);
-            std::cout << ", " << st.accelerometer_m_s2().at(1);
-            std::cout << ", " << st.accelerometer_m_s2().at(2) << std::endl;
-            std::cout << "accelerometer_integral_dt: " << st.accelerometer_integral_dt() << std::endl;
-            std::cout << "magnetometer_timestamp_relative: " << st.magnetometer_timestamp_relative() << std::endl;
-            std::cout << "magnetometer_ga: " << st.magnetometer_ga().at(0);
-            std::cout << ", " << st.magnetometer_ga().at(1);
-            std::cout << ", " << st.magnetometer_ga().at(2) << std::endl;
-            std::cout << "baro_timestamp_relative: " << st.baro_timestamp_relative() << std::endl;
-            std::cout << "baro_alt_meter: " << st.baro_alt_meter() << std::endl;
-            std::cout << "baro_temp_celcius: " << st.baro_temp_celcius() << std::endl;
-
+            std::cout << "gyro_rad: " << st.gyro_rad_().at(0);
+            std::cout << ", " << st.gyro_rad_().at(1);
+            std::cout << ", " << st.gyro_rad_().at(2) << std::endl;
+            std::cout << "gyro_integral_dt: " << st.gyro_integral_dt_() << std::endl;
+            std::cout << "accelerometer_timestamp_relative: " << st.accelerometer_timestamp_relative_() << std::endl;
+            std::cout << "accelerometer_m_s2: " << st.accelerometer_m_s2_().at(0);
+            std::cout << ", " << st.accelerometer_m_s2_().at(1);
+            std::cout << ", " << st.accelerometer_m_s2_().at(2) << std::endl;
+            std::cout << "accelerometer_integral_dt: " << st.accelerometer_integral_dt_() << std::endl;
+            
         }
     }
 }
@@ -461,11 +454,6 @@ gyro_integral_dt: 0.004
 accelerometer_timestamp_relative: 0
 accelerometer_m_s2: -2.82708, -6.34799, -7.41101
 accelerometer_integral_dt: 0.004
-magnetometer_timestamp_relative: -10210
-magnetometer_ga: 0.60171, 0.0405879, -0.040995
-baro_timestamp_relative: -17469
-baro_alt_meter: 368.647
-baro_temp_celcius: 43.93
 ```
 
 > **Note** If the *Listener application* does not print anything, make sure the *Client* is running.
