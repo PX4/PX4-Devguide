@@ -18,7 +18,8 @@ The following simulators work with PX4 for HITL and/or SITL simulation.
 
 Simulator |Description
 ---|---
-[Gazebo](../simulation/gazebo.md) | <p><strong>This simulator is highly recommended.</strong></p><p>A powerful 3D simulation environment that is particularly suitable for testing object-avoidance and computer vision. It can also be used for <a href="../simulation/multi-vehicle-simulation.md">multi-vehicle simulation</a> and is commonly used with <a href="../simulation/ros_interface.md">ROS</a>, a collection of tools for automating vehicle control. </p><p><strong>Supported Vehicles:</strong> Quad (<a href="../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor">Iris</a> and <a href="../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo">Solo</a>), Hex (Typhoon H480), <a href="../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol">Generic quad delta VTOL</a>, Tailsitter, Plane, Rover, Submarine (coming soon!) </p>
+[Gazebo](../simulation/gazebo.md) | <p><strong>This simulator is highly recommended.</strong></p><p>A powerful 3D simulation environment that is particularly suitable for testing object-avoidance and computer vision. It can also be used for <a href="../simulation/multi-vehicle-simulation.md">multi-vehicle simulation</a> and is commonly used with <a href="../simulation/ros_interface.md">ROS</a>, a collection of tools for automating vehicle control. </p><p><strong>Supported Vehicles:</strong> Quad (<a href="../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor">Iris</a> and <a href="../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo">Solo</a>), Hex (Typhoon H480), <a href="../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol">Generic quad delta VTOL</a>, Tailsitter, Plane, Rover, Submarine </p>
+[FlightGear](../simulation/flightgear.md) | A simulator that provides physically and visually realistic simulations under various scenarios. The simulator is capable to simulate many weather conditions, including thunderstorm, snow, rain and hail. It is also capable to simulate thermals and different types of atmospheric flows. It can also be used for <a href="../simulation/multi_vehicle_flightgear.md">multi-vehicle simulation</a>. <p><strong>Supported Vehicles:</strong> Plane, Autogyro, Rover</p>
 [jMAVSim](../simulation/jmavsim.md) | A simple multirotor simulator that allows you to fly *copter* type vehicles around a simulated world. <p>It is easy to set up and can be used to test that your vehicle can take off, fly, land, and responds appropriately to various fail conditions (e.g. GPS failure). It can also be used for <a href="../simulation/multi_vehicle_jmavsim.md">multi-vehicle simulation</a>.</p><p><strong>Supported Vehicles:</strong> Quad</p>
 [AirSim](../simulation/airsim.md) | A cross platform simulator that provides physically and visually realistic simulations. This simulator is resource intensive, and requires a very significantly more powerful computer than the other simulators described here. <p><strong>Supported Vehicles:</strong> Iris (MultiRotor model and a configuration for PX4 QuadRotor in the X configuration).</p>
 [Simulation-In-Hardware](../simulation/simulation-in-hardware.md) (SIH) | An alternative to HITL that offers a hard real-time simulation directly on the hardware autopilot.<br><p><strong>Supported Vehicles:</strong> Quad</p>
@@ -147,7 +148,7 @@ make px4_sitl jmavsim
 PX4 SITL and the simulators (jMAVSim or Gazebo) have been set up to run in *lockstep*.
 What this means is that PX4 and the simulator wait on each other for sensor and actuator messages, rather than running at their own speeds.
 
-> **Note** Lockstep makes it possible to [run the simulation faster or slower than realtime](#simulation_speed), and also to pause it in order to step through code. 
+> **Note** Lockstep makes it possible to [run the simulation faster or slower than realtime](#simulation_speed), and also to pause it in order to step through code.
 
 The sequence of steps for lockstep are:
 1. The simulation sends a sensor message [HIL_SENSOR](https://mavlink.io/en/messages/common.html#HIL_SENSOR) including a timestamp `time_usec` to update the sensor state and time of PX4.
@@ -158,7 +159,7 @@ The system starts with a "freewheeling" period where the simulation sends sensor
 
 #### Disable Lockstep Simulation
 
-The lockstep simulation can be disabled if, for example, SITL is to be used with a simulator that does not support this feature. 
+The lockstep simulation can be disabled if, for example, SITL is to be used with a simulator that does not support this feature.
 In this case the simulator and PX4 use the host system time and do not wait on each other.
 
 To disable lockstep in PX4, use `set(ENABLE_LOCKSTEP_SCHEDULER no)` in the [SITL board config](https://github.com/PX4/Firmware/blob/77097b6adc70afbe7e5d8ff9797ed3413e96dbf6/boards/px4/sitl/default.cmake#L104).
@@ -238,7 +239,7 @@ The [mavlink-router](https://github.com/intel/mavlink-router) can be used to rou
 
 To route packets between SITL running on one computer (sending MAVLink traffic to localhost on UDP port 14550), and QGC running on another computer (e.g. at address `10.73.41.30`) you could:
 
-- Start *mavlink-router* with the following command: 
+- Start *mavlink-router* with the following command:
   ```
   mavlink-routerd -e 10.73.41.30:14550 127.0.0.1:14550
   ```
