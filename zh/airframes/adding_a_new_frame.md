@@ -30,7 +30,7 @@ A typical configuration file is shown below ([original file here](https://github
 #
 # @name Wing Wing (aka Z-84) Flying Wing
 #
-# @url https://docs.px4.io/en/framebuild_plane/wing_wing_z84.html
+# @url https://docs.px4.io/master/en/framebuild_plane/wing_wing_z84.html
 #
 # @type Flying Wing
 # @class Plane
@@ -154,7 +154,7 @@ Elevon mixers
 Three scalers total (output, roll, pitch).
 
 The scaling factor for roll inputs is adjusted to implement differential travel
-for the elevons. 
+for the elevons.
 
 This first block of code is for Servo 0...
 
@@ -170,8 +170,8 @@ O:      10000  10000      0 -10000  10000
 S: 0 0  -6000  -6000      0 -10000  10000
 S: 0 1  -6500  -6500      0 -10000  10000
 
-Note that in principle, you could implement left/right wing asymmetric mixing, but in general the two blocks of code will be numerically equal, and just differ by the sign of the third line (S: 0 1), since to roll the plane, the two ailerons must move in OPPOSITE directions. 
-The signs of the second lines (S: 0 0) are indentical, since to pitch the plane, both servos need to move in the SAME direction. 
+Note that in principle, you could implement left/right wing asymmetric mixing, but in general the two blocks of code will be numerically equal, and just differ by the sign of the third line (S: 0 1), since to roll the plane, the two ailerons must move in OPPOSITE directions.
+The signs of the second lines (S: 0 0) are indentical, since to pitch the plane, both servos need to move in the SAME direction.
 
 Output 2
 --------
@@ -194,7 +194,7 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ## 增加一个新的机型组（Airframe Group）
 
-机型 "组" 用于对相似的机型进行分组，以方便在 [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) 中进行选取，同时方便在 *Airframe Reference* 中进行文档记录（[PX4 DevGuide](../airframes/airframe_reference.md) 和 [PX4 UserGuide](https://docs.px4.io/en/airframes/airframe_reference.html) 文档）。 每个组都有一个名称和与之相关联的 svg 图像，该图像展示了该分组内的机型的通用几何形状、电机数量和电机旋转方向。
+Airframe "groups" are used to group similar airframes for selection in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) and in the *Airframe Reference* documentation ([PX4 DevGuide](../airframes/airframe_reference.md) and [PX4 UserGuide](https://docs.px4.io/master/en/airframes/airframe_reference.html)). 每个组都有一个名称和与之相关联的 svg 图像，该图像展示了该分组内的机型的通用几何形状、电机数量和电机旋转方向。
 
 使用编译指令 `make airframe_metadata` 可以运行脚本自动根据机型描述语句生成需要在 *QGroundControl* 中使用的机型元数据文件和文档源代码。
 
@@ -229,19 +229,19 @@ S: 0 3      0  20000 -10000 -10000  10000
             <file alias="Airframe/FlyingWing">src/AutoPilotPlugins/Common/Images/FlyingWing.svg</file>
             ... > 
     
-    **Note** 剩下的机型元数据会自动包含在固件中（只要 **srcparser.py** 完成了更新）。 
+    **Note** 剩下的机型元数据会自动包含在固件中（只要 **srcparser.py** 完成了更新）。
 
 ## 调参
 
 下面的 *PX4 User Guide* 话题解释了如何对那些需要在配置文件中明确的参数进行调整：
 
-* [多轴飞行器 PID 调参指南](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
-* [固定翼 PID 调参指南](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
-* [垂直起降（VTOL）配置](https://docs.px4.io/en/config_vtol/)
+* [多轴飞行器 PID 调参指南](https://docs.px4.io/master/en/advanced_config/pid_tuning_guide_multicopter.html)
+* [固定翼 PID 调参指南](https://docs.px4.io/master/en/advanced_config/pid_tuning_guide_fixedwing.html)
+* [垂直起降（VTOL）配置](https://docs.px4.io/master/en/config_vtol/)
 
 ## 将新的机型加入到 QGroundControl
 
-为了令一个新的机型可以在 *QGroundControl* 软件的 [airframe configuration](https://docs.px4.io/en/config/airframe.html) 页面中可用，你应进行如下操作：
+To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/master/en/config/airframe.html):
 
 1. 创建一个干净的生成（例如，先运行 `make clean` 指令，然后再运行 `make px4_fmu-v5_default`）
 2. 打开 QGC 然后如下图所示单击 **Custom firmware file...**：
