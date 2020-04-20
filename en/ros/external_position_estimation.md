@@ -42,14 +42,16 @@ The following MAVLink "vision" messages are not currently supported by PX4:
 
 ## Reference Frames
 
-PX4 uses FRD (X **F**orward, Y **R**ight and Z **D**own) for the local body frame as well for the reference frame. When using the heading of the magnetometer, the PX4 reference frame x axis will be aligned with north, so therefore it is called NED (X **N**orth, Y **E**ast, Z **D**own). The heading of the reference frame of the PX4 estimator and the one of the external pose estimate will not match in most cases. Therefore the reference frame of the external pose estimate is named differently, it is called [MAV_FRAME_LOCAL_FRD](https://mavlink.io/en/messages/common.html#MAV_FRAME_LOCAL_FRD).
+PX4 uses FRD (X **F**orward, Y **R**ight and Z **D**own) for the local body frame as well for the reference frame. When using the heading of the magnetometer, the PX4 reference frame x axis will be aligned with north, so therefore it is called NED (X **N**orth, Y **E**ast, Z **D**own). The heading of the reference frame of the PX4 estimator and the one of the external pose estimate will not match in most cases.
+Therefore the reference frame of the external pose estimate is named differently, it is called [MAV_FRAME_LOCAL_FRD](https://mavlink.io/en/messages/common.html#MAV_FRAME_LOCAL_FRD).
 
-Depending on the source of your reference frame, you will need to apply a custom transformation to the pose estimate before sending the MAVLink Vision/MoCap message. This is necessary to change the orientation of the parent and child frame of the pose estimate, such that it fits the PX4 convention. Have a look at the MAVROS [*odom* plugin](https://github.com/mavlink/mavros/blob/master/mavros_extras/src/plugins/odom.cpp) for the necessary transformations.
+Depending on the source of your reference frame, you will need to apply a custom transformation to the pose estimate before sending the MAVLink Vision/MoCap message.
+This is necessary to change the orientation of the parent and child frame of the pose estimate, such that it fits the PX4 convention. Have a look at the MAVROS [*odom* plugin](https://github.com/mavlink/mavros/blob/master/mavros_extras/src/plugins/odom.cpp) for the necessary transformations.
 
 > **Tip** ROS users can find more detailed instructions below in [Reference Frames and ROS](#ros_reference_frames).
 
-For example, if using the Optitrack framework the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up. 
-A simple trick is swapping axis in order to obtained NED convention. 
+For example, if using the Optitrack framework the local frame has $$x$$ and $$z$$ on the horizontal plane (*x* front and *z* right) while *y* axis is vertical and pointing up.
+A simple trick is swapping axis in order to obtained NED convention.
 
 If `x_{mav}`, `y_{mav}` and `z_{mav}` are the coordinates that are sent through MAVLink as position feedback, then we obtain:
 ```
@@ -58,7 +60,7 @@ y_{mav} = z_{mocap}
 z_{mav} = - y_{mocap}
 ```
 
-Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. 
+Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way.
 You can apply this trick with every system - if you need to obtain a NED frame, look at your MoCap output and swap axis accordingly.
 
 
@@ -82,8 +84,8 @@ Parameter | Setting for External Position Estimation
 
 Or in other words, it is the difference between the vision system timestamp and the "actual" capture time that would have been recorded by the IMU clock (the "base clock" for EKF2).
 
-Technically this can be set to 0 if there is correct timestamping (not just arrival time) and timesync (e.g NTP) between MoCap and (for example) ROS computers. 
-In reality, this needs some empirical tuning since delays in the entire MoCap->PX4 chain are very setup-specific. 
+Technically this can be set to 0 if there is correct timestamping (not just arrival time) and timesync (e.g NTP) between MoCap and (for example) ROS computers.
+In reality, this needs some empirical tuning since delays in the entire MoCap->PX4 chain are very setup-specific.
 It is rare that a system is setup with an entirely synchronised chain!
 
 A rough estimate of the delay can be obtained from logs by checking the offset between IMU rates and the EV rates:
@@ -109,7 +111,7 @@ The following parameters must be set to use external position information with L
 Parameter | Setting for External Position Estimation
 --- | ---
 [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) | Vision integration is enabled if *fuse vision position* is checked (it is enabled by default).
-[ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | Set to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables MoCap heading use. 
+[ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | Set to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables MoCap heading use.
  
 
 ### Disabling Barometer Fusion
@@ -120,11 +122,11 @@ This can be done by in *QGroundControl* by unchecking the *fuse baro* option in 
 
 ### Tuning Noise Parameters
 
-If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters: [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for VIO) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for MoCap). 
-Reducing them will cause the estimator to trust the incoming pose estimate more. 
-You may need to set them lower than the allowed minimum and force-save. 
+If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters: [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for VIO) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for MoCap).
+Reducing them will cause the estimator to trust the incoming pose estimate more.
+You may need to set them lower than the allowed minimum and force-save.
 
-> **Tip** If performance is still poor, try increasing the [LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) parameter. 
+> **Tip** If performance is still poor, try increasing the [LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) parameter.
   This will cause the estimator to trust measurements more during velocity estimation.
 
 
@@ -137,7 +139,7 @@ PX4 must already have been set up as above.
 
 VIO and MoCap systems have different ways of obtaining pose data, and have their own setup and topics.
 
-The setup for specific systems is covered [below](#setup_specific_systems). 
+The setup for specific systems is covered [below](#setup_specific_systems).
 For other systems consult the vendor setup documentation.
 
 
@@ -152,11 +154,11 @@ ROS | MAVLink | uORB
 /mavros/mocap/pose | [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) | `vehicle_mocap_odometry`
 /mavros/odometry/odom | [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_MOCAP_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_MOCAP_NED)) | `vehicle_mocap_odometry`
 
-You can use any of the above pipelines with LPE. 
+You can use any of the above pipelines with LPE.
 
-If you're working with EKF2, only the "vision" pipelines are supported. 
+If you're working with EKF2, only the "vision" pipelines are supported.
 To use MoCap data with EKF2 you will have to [remap](http://wiki.ros.org/roslaunch/XML/remap) the pose topic that you get from MoCap:
-- MoCap ROS topics of type `geometry_msgs/PoseStamped` or `geometry_msgs/PoseWithCovarianceStamped` must be remapped to `/mavros/vision_pose/pose`. 
+- MoCap ROS topics of type `geometry_msgs/PoseStamped` or `geometry_msgs/PoseWithCovarianceStamped` must be remapped to `/mavros/vision_pose/pose`.
   The `geometry_msgs/PoseStamped` topic is most common as MoCap doesn't usually have associated covariances to the data.
 - If you get data through a `nav_msgs/Odometry` ROS message then you will need to remap it to `/mavros/odometry/odom`.
 
@@ -178,35 +180,44 @@ Both frames are shown in the image below (FLU on left/FRD on right).
 
 With EKF2 when using external heading estimation, magnetic north can either be ignored and or the heading offset to magnetic north can be calculated and compensated. Depending on your choice the yaw angle is given with respect to either magnetic north or local *x*.
 
-> **Note** When creating the rigid body in the MoCap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise the yaw estimate will have an offset. This can stop the external pose estimate fusion from working properly. Yaw angle should be zero when body and reference frame align.
+> **Note** When creating the rigid body in the MoCap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise the yaw estimate will have an offset. This can stop the external pose estimate fusion from working properly.
+Yaw angle should be zero when body and reference frame align.
 
-Using MAVROS, this operation is straightforward. 
-ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. 
-If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. 
+Using MAVROS, this operation is straightforward.
+ROS uses ENU frames as convention, therefore position feedback must be provided in ENU.
+If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU.
 With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and MAVROS will take care of NED conversions.
 
-The MAVROS odometry plugin makes it easy to handle the coordinate frames. It uses ROS's tf package. Your external pose system might have a completely different frame convention that does not match the one of PX4. The body frame of the external pose estimate can depend on how you set the body frame in the MOCAP software or on how you mount the VIO sensor on the drone. The MAVROS odometry plugin needs to know how the external pose's child frame is oriented with respect to either the airframe's FRD or FLU body frame known by MAVROS. You therefore have to add the external pose's body frame to the tf tree. This can be done by including an adapted version of the following line into your ROS launch file.
+The MAVROS odometry plugin makes it easy to handle the coordinate frames.
+It uses ROS's tf package. Your external pose system might have a completely different frame convention that does not match the one of PX4.
+The body frame of the external pose estimate can depend on how you set the body frame in the MOCAP software or on how you mount the VIO sensor on the drone.
+The MAVROS odometry plugin needs to know how the external pose's child frame is oriented with respect to either the airframe's FRD or FLU body frame known by MAVROS.
+You therefore have to add the external pose's body frame to the tf tree. This can be done by including an adapted version of the following line into your ROS launch file.
 
 ```
   <node pkg="tf" type="static_transform_publisher" name="tf_baseLink_externalPoseChildFrame"
         args="0 0 0 <yaw> <pitch> <roll> base_link <external_pose_child_frame> 1000"/>
 ```
-Make sure that you change the values of yaw, pitch and roll such that it properly attaches the external pose's body frame to the `base_link` or `base_link_frd`. Have a look at the [tf package](http://wiki.ros.org/tf#static_transform_publisher) for further help on how to specify the transformation between the frames. You can use rviz to check if you attached the frame right. The name of the `external_pose_child_frame` has to match the child_frame_id of your `nav_msgs/Odometry` message.
+Make sure that you change the values of yaw, pitch and roll such that it properly attaches the external pose's body frame to the `base_link` or `base_link_frd`.
+Have a look at the [tf package](http://wiki.ros.org/tf#static_transform_publisher) for further help on how to specify the transformation between the frames.
+You can use rviz to check if you attached the frame right. The name of the `external_pose_child_frame` has to match the child_frame_id of your `nav_msgs/Odometry` message.
 The same also applies for the reference frame of the external pose. You have to attach the reference frame of the external pose as child to either the `odom` or `odom_frd` frame. Adapt therefore the following code line accordingly.
 ```
   <node pkg="tf" type="static_transform_publisher" name="tf_odom_externalPoseParentFrame"
         args="0 0 0 <yaw> <pitch> <roll> odom <external_pose_parent_frame> 1000"/>
 ```
-If the reference frame has the z axis pointing upwards you can attached it without any rotation (yaw=0, pitch=0, roll=0) to the `odom` frame. The name of `external_pose_parent_frame` has to match the frame_id of the odometry message.
+If the reference frame has the z axis pointing upwards you can attached it without any rotation (yaw=0, pitch=0, roll=0) to the `odom` frame.
+The name of `external_pose_parent_frame` has to match the frame_id of the odometry message.
 
-> **Note** When using the MAVROS *odom* plugin, it is important that no other node is publishing a transform between the external pose's reference and child frame. This might break the *tf* tree.
+> **Note** When using the MAVROS *odom* plugin, it is important that no other node is publishing a transform between the external pose's reference and child frame.
+  This might break the *tf* tree.
 
 ## Specific System Setups {#setup_specific_systems}
 
 ### OptiTrack MoCap
 
-The following steps explain how to feed position estimates from an [OptiTrack](https://optitrack.com/motion-capture-robotics/) system to PX4. 
-It is assumed that the MoCap system is calibrated. 
+The following steps explain how to feed position estimates from an [OptiTrack](https://optitrack.com/motion-capture-robotics/) system to PX4.
+It is assumed that the MoCap system is calibrated.
 See [this video](https://www.youtube.com/watch?v=cNZaFEghTBU) for a tutorial on the calibration process.
 
 #### Steps on the *Motive* MoCap software
@@ -228,9 +239,9 @@ If you named the rigidbody as `robot1`, you will get a topic like `/vrpn_client_
 
 #### Relaying/remapping Pose Data
 
-MAVROS provides a plugin to relay pose data published on `/mavros/vision_pose/pose` to PX4. 
-Assuming that MAVROS is running, you just need to **remap** the pose topic that you get from MoCap `/vrpn_client_node/<rigid_body_name>/pose` directly to `/mavros/vision_pose/pose`. 
-Note that there is also a `mocap` topic that MAVROS provides to feed `ATT_POS_MOCAP` to PX4, but it is not applicable for EKF2. 
+MAVROS provides a plugin to relay pose data published on `/mavros/vision_pose/pose` to PX4.
+Assuming that MAVROS is running, you just need to **remap** the pose topic that you get from MoCap `/vrpn_client_node/<rigid_body_name>/pose` directly to `/mavros/vision_pose/pose`.
+Note that there is also a `mocap` topic that MAVROS provides to feed `ATT_POS_MOCAP` to PX4, but it is not applicable for EKF2.
 However, it is applicable with LPE.
 
 > **Note** Remapping pose topics is covered above [Relaying pose data to PX4](#relaying_pose_data_to_px4)
@@ -251,9 +262,14 @@ The instructions below show how to do so for MoCap and VIO systems
 Be sure to perform the following checks before your first flight:
 
 * Set the PX4 parameter `MAV_ODOM_LP` to 1. PX4 will therefore stream back the received external pose as MAVLink [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) messages.
-* It is recommended to check these MAVLink messages with e.g. the *Analyze* Widget of *QGroundControl*. In order to do this, yaw the vehicle until the quaternion of the ODOMETRY message is very close to a unit quaternion. (w=1, x=y=z=0)
+* It is recommended to check these MAVLink messages with e.g. the *Analyze* Widget of *QGroundControl*.
+  In order to do this, yaw the vehicle until the quaternion of the ODOMETRY message is very close to a unit quaternion. (w=1, x=y=z=0)
 * At this point the body frame is aligned with the reference frame of the external pose system. If you do not manage to get a quaternion close to the unit quaternion without rolling or pitching your vehicle, your frame probably still have a pitch or roll offset. Do not proceed if this is the case and check your coordinate frames again.
-* Once aligned you can pick the vehicle up from the ground and you should see the position's z coordinate decrease. Moving the vehicle in forward direction, should increase the position's x coordinate. While moving the vehicle to the right should increase the y coordinate. In the case you send also linear velocities from the external pose system, you should also check the linear velocities. Check that the linear velocities are in expressed in the *FRD* body frame reference frame.
+* Once aligned you can pick the vehicle up from the ground and you should see the position's z coordinate decrease.
+  Moving the vehicle in forward direction, should increase the position's x coordinate.
+  While moving the vehicle to the right should increase the y coordinate.
+  In the case you send also linear velocities from the external pose system, you should also check the linear velocities.
+  Check that the linear velocities are in expressed in the *FRD* body frame reference frame.
 * Set the PX4 parameter `MAV_ODOM_LP` back to 0. PX4 will stop streaming this message back.
 
 If those steps are consistent, you can try your first flight.
@@ -261,14 +277,14 @@ If those steps are consistent, you can try your first flight.
 Put the robot on the ground and start streaming MoCap feedback.
 Lower your left (throttle) stick and arm the motors.
 
-At this point, with the left stick at the lowest position, switch to position control. 
-You should have a green light. 
-The green light tells you that position feedback is available and position control is now activated. 
+At this point, with the left stick at the lowest position, switch to position control.
+You should have a green light.
+The green light tells you that position feedback is available and position control is now activated.
 
 Put your left stick at the middle, this is the dead zone.
 With this stick value, the robot maintains its altitude;
 raising the stick will increase the reference altitude while lowering the value will decrease it.
-Same for right stick on x and y. 
+Same for right stick on x and y.
 
 Increase the value of the left stick and the robot will take off, 
 put it back to the middle right after. Check if it is able to keep its position.

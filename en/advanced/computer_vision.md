@@ -8,8 +8,8 @@ PX4 uses computer vision systems (primarily running on [Companion Computers](../
   It is primarily used for indoor navigation.
 - [Visual Inertial Odometry](#vio) provides 3D pose and velocity estimation using an onboard vision system and IMU. 
   It is used for navigation when global position information is absent or unreliable.
-- [Obstacle Avoidance](https://docs.px4.io/en/computer_vision/obstacle_avoidance.html) provides navigation around obstacles when flying a planned path (currently missions are supported). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
-- [Collision Prevention](https://docs.px4.io/en/computer_vision/collision_prevention.html) is used to stop vehicles before they can crash into an obstacle (primarily when flying in manual modes).
+- [Obstacle Avoidance](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) provides navigation around obstacles when flying a planned path (currently missions are supported). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
+- [Collision Prevention](https://docs.px4.io/master/en/computer_vision/collision_prevention.html) is used to stop vehicles before they can crash into an obstacle (primarily when flying in manual modes).
 
 > **Tip** The [PX4 Vision Autonomy Development Kit](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro) is a robust and inexpensive kit for developers working with computer vision on PX4.
   It comes with [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) software pre-installed, and can be used as the base for your own algorithms.
@@ -44,11 +44,11 @@ For information about VIO see:
 
 ## Optical Flow {#optical_flow}
 
-[Optical Flow](https://docs.px4.io/en/sensor/optical_flow.html) provides 2D velocity estimation (using a downward facing camera and a downward facing distance sensor).
+[Optical Flow](https://docs.px4.io/master/en/sensor/optical_flow.html) provides 2D velocity estimation (using a downward facing camera and a downward facing distance sensor).
 
 For information about optical flow see:
-- [Optical Flow](https://docs.px4.io/en/sensor/optical_flow.html)
-  - [PX4Flow Smart Camera](https://docs.px4.io/en/sensor/px4flow.html)
+- [Optical Flow](https://docs.px4.io/master/en/sensor/optical_flow.html)
+  - [PX4Flow Smart Camera](https://docs.px4.io/master/en/sensor/px4flow.html)
 - [EKF > Optical Flow](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#optical-flow)
 
 ## External Resources
