@@ -15,4 +15,4 @@ PX4有一个灵活的[混合系统](../concept/mixing.md), 它允许通过单个
 
 <span></span>
 
-> **Note**某些支持的机体的生成日志可以在[PX4用户指南>机体](https://docs.px4.io/en/airframes/) 中找到。
+> **Note** Build logs for some of the supported airframes can be found in [PX4 User Guide > Airframes](https://docs.px4.io/master/en/airframes/).
