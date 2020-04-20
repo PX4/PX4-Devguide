@@ -152,7 +152,7 @@
 
 ## Accesos directos Dronecode
 
-* [Guía del usuario de PX4](https://docs.px4.io/en/)
+* [Guía del usuario de PX4](https://docs.px4.io/master/en/)
 * [Guía del usuario de QGroundControl](https://docs.qgroundcontrol.com/en/)
 * [Guía para desarrolladores de QGroundControl](https://dev.qgroundcontrol.com/en/)
 * [Guía de MAVLink](https://mavlink.io/en/)
