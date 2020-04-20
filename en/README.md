@@ -3,11 +3,11 @@
 [![Releases](https://img.shields.io/badge/release-{{ book.px4_version }}-blue.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
 > **Info** This guide is for primarily for software developers and (new) hardware integrators.
-> To fly, build and modify vehicles using supported hardware see the [PX4 User Guide](https://docs.px4.io/en/).
+> To fly, build and modify vehicles using supported hardware see the [PX4 User Guide](https://docs.px4.io/master/en/).
 
 This guide explains how to:
 
-* Get a [minimum developer setup](setup/config_initial.md), [build PX4 from source](setup/building_px4.md) and deploy on [numerous supported autopilots](https://docs.px4.io/en/flight_controller/).
+* Get a [minimum developer setup](setup/config_initial.md), [build PX4 from source](setup/building_px4.md) and deploy on [numerous supported autopilots](https://docs.px4.io/master/en/flight_controller/).
 * Understand the [PX4 System Architecture](concept/architecture.md) and other core concepts.
 * Learn how to modify the flight stack and middleware:
   - Modify flight algorithms and add new [flight modes](concept/flight_modes.md).

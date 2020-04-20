@@ -59,7 +59,7 @@ One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/master/boards/px
 ## Officially Supported Hardware
 
 The PX4 project supports and maintains the [FMU standard reference hardware](../hardware/reference_design.md) and any boards that are compatible with the standard.
-This includes the [Pixhawk-series](https://docs.px4.io/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/en/flight_controller/)).
+This includes the [Pixhawk-series](https://docs.px4.io/master/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/master/en/flight_controller/)).
 
 Every officially supported board benefits from:
 * PX4 Port available in the PX4 repository
@@ -93,6 +93,6 @@ You can reach out to the core developer team and community on the official [Foru
 * [Device Drivers](../middleware/drivers.md) - How to support new peripheral hardware (device drivers)
 * [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
 * Supported Flight Controllers:
-  * [Autopilot Hardware](https://docs.px4.io/en/flight_controller/) (PX4 User Guide)
+  * [Autopilot Hardware](https://docs.px4.io/master/en/flight_controller/) (PX4 User Guide)
   * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
-* [Supported Peripherals](https://docs.px4.io/en/peripherals/) (PX4 User Guide)
+* [Supported Peripherals](https://docs.px4.io/master/en/peripherals/) (PX4 User Guide)

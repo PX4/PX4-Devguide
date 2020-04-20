@@ -11,7 +11,7 @@ The diagrams use the standard [PX4 notation](../contribute/notation.md) (and eac
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
 
-* Estimates come from [EKF2](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html).
+* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
 * This is a standard cascaded position-velocity loop.
 * Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
 * The integrator in the inner loop (velocity) controller includes an anti-reset windup (ARW) using a clamping method.
@@ -117,7 +117,7 @@ For tailsitters, during transition the multicopter attitude controller is runnin
 The outputs of the VTOL attitude block are separate torque and force commands for the multicopter (typically `actuator_controls_0`) and fixed-wing (typically `actuator_controls_1`) actuators. 
 These are handled in an airframe-specific mixer file (see [Mixing](../concept/mixing.md)). 
 
-For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/en/config_vtol/).
+For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/).
 
 
 
