@@ -26,5 +26,5 @@
 비행기를 구성하려면:
 
 1. 개발 플랫폼을 위해 [QGroundControl 데일리 빌드](https://docs.qgroundcontrol.com/en/releases/daily_builds.html)를 다운로드 하십시오.
-2. [기본 구성](https://docs.px4.io/en/config/) (PX4 사용자 가이드)는 기본 구성 수행법을 설명합니다. 
-3. [매개변수 구성](https://docs.px4.io/en/advanced_config/parameters.html) (PX4 사용자 가이드)는 개별 매개변수를 찾고 수정하는 방법을 설명합니다.
+2. [Basic Configuration](https://docs.px4.io/master/en/config/) (PX4 User Guide) explains how to to perform basic configuration. 
+3. [Parameter Configuration](https://docs.px4.io/master/en/advanced_config/parameters.html) (PX4 User Guide) explains how you can find and modify individual parameters.
