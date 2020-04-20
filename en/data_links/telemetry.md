@@ -5,7 +5,7 @@ This section contains topics about advanced use of supported radios and integrat
 
 ## Supported Radio Systems 
 
-[PX4 User Guide > Telemetry](http://docs.px4.io/en/telemetry/) contains information about telemetry radio systems already supported by PX4. 
+[PX4 User Guide > Telemetry](https://docs.px4.io/master/en/telemetry/) contains information about telemetry radio systems already supported by PX4. 
 This includes radios that use the *SiK Radio* firmware and *3DR WiFi Telemetry Radios*.
 
 ## Integrating Telemetry Systems
