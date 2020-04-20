@@ -11,7 +11,7 @@
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
 
-* 状态估计来自 [EKF2](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html) 模块。
+* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
 * 这是一个标准的位置-速度级联控制回路。
 * 在某些模式，外环(位置回路) 可能会被绕过 (图中在外环之后增加一个多路开关来表示)。 只有在位置保持模式或某轴无速度请求时，位置回路才会发挥作用。
 * 内环（加速度）控制器使用箝位法对积分器做了抗饱和处理（ARW）。
@@ -100,7 +100,7 @@ Request access from dev team. -->
 
 VTOL姿态模块的输出是多旋翼执行器（典型的 `actuator_controls_0`）和固定翼（典型的 `actuator_controls_1`）执行器的独立的扭矩和力指令。 这些是在一个特定机型的混控器文件中处理的（参见[ Mixing](../concept/mixing.md)）。
 
-有关调整 VTOL 模块内部过渡逻辑的更多信息，请参阅 [VTOL 配置](https://docs.px4.io/en/config_vtol/)。 
+For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/).
 
 ### 空速缩放
 
