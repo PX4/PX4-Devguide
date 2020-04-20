@@ -4,7 +4,7 @@ Docker 容器被提供用于完整的 [PX4 开发工具链](../setup/dev_env.md#
 
 本主题说明如何使用 [available docker containers](#px4_containers) 访问本地 Linux 计算机中的构建环境。
 
-> **Note** Dockerfiles 和 README可以在 [Github](https://github.com/PX4/containers/tree/master/docker)找到。 它们是在 [Docker Hub](https://hub.docker.com/u/px4io/) 上自动构建的。
+> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/blob/master/README.md). 它们是在 [Docker Hub](https://hub.docker.com/u/px4io/) 上自动构建的。
 
 ## 系统必备组件
 
@@ -31,7 +31,7 @@ sudo usermod -aG docker $ USER
 
 ## 本地编辑层次结构 {#px4_containers}
 
-下面列出了可用的容器 (来自[Github](https://github.com/PX4/containers/tree/master/docker#container-hierarchy))：
+The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/README.md#container-hierarchy)):
 
 | 容器                              | 描述                             |
 | ------------------------------- | ------------------------------ |
@@ -44,7 +44,7 @@ sudo usermod -aG docker $ USER
 | &emsp;px4-dev-clang             | C 语言工具                         |
 | &emsp;&emsp;px4-dev-nuttx-clang | C 语言与 NuttX 工具                 |
 
-可以使用 `latest` 标记访问最新版本：`px4io/px4-dev-ros:latest`（为 *hub.docker.com* 上的每个容器列出可用标记。 例如，*px4-dev-ros* 标签可以在 [here](https://hub.docker.com/r/px4io/px4-dev-ros/tags/)）。
+The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-nuttx:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-nuttx/tags)).
 
 > **Tip** 通常，您应该使用最近的模式，但不一定是最新的模式（因为这经常更改）。
 
