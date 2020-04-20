@@ -1,6 +1,6 @@
 # 离板控制
 
-> **Warning** 使用 [Offboard 模式控制](https://docs.px4.io/en/flight_modes/offboard.html) 无人机是有危险的。 开发者有责任确保在离板飞行前采取充分的准备、测试和安全预防措施。
+> **Warning** [Offboard control](https://docs.px4.io/master/en/flight_modes/offboard.html) is dangerous. 开发者有责任确保在离板飞行前采取充分的准备、测试和安全预防措施。
 
 离板控制背后的想法是能够使用在自动驾驶仪外运行的软件来控制 PX4 飞控。 This is done through the MAVLink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) messages.
 
