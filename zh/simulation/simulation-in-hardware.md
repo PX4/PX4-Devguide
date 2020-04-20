@@ -18,7 +18,7 @@ Furthermore, the physical parameters representing the vehicle (such as mass, ine
 
 ## Requirements
 
-为了运行硬件仿真，你需要一个飞控板硬件（例如：Pixhawk飞控）。 如果你计划使用一对[无线电控制发射机和接收机](https://docs.px4.io/en/getting_started/rc_transmitter_receiver.html)，你也应该安装好。 或者，使用*QGC地面站*、[操纵杆](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)也能被用来仿真一个无线电控制系统。
+To run the SIH, you will need a [flight controller hardware](https://docs.px4.io/master/en/flight_controller/) (e.g. a Pixhawk-series board). If you are planning to use a [radio control transmitter and receiver pair](https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html) you should have that too. 或者，使用*QGC地面站*、[操纵杆](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html)也能被用来仿真一个无线电控制系统。
 
 硬件仿真可以在除了FMUv2硬件之外的所有Pixhawk飞控板上使用。 它可以在固件主分支和发布版本v1.9.0及以上版本中使用。
 
