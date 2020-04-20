@@ -2,7 +2,7 @@
 
 实时载波相位差分定位能够提供厘米级的定位信息。 这一章节将介绍RTK是如何集成到PX4中的。
 
-> 注意：RTK的使用说明可以在PX4的用户指南中找到。
+> **Note** Instructions for *using* RTK GPS are provided in the [PX4 User Guide](https://docs.px4.io/master/en/advanced_features/rtk-gps.html).
 
 ## 综述
 
