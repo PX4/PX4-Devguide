@@ -32,7 +32,7 @@ This is used in the [Airframes Reference](../airframes/airframe_reference.md) an
 #
 # @name Wing Wing (aka Z-84) Flying Wing
 #
-# @url https://docs.px4.io/en/framebuild_plane/wing_wing_z84.html
+# @url https://docs.px4.io/master/en/framebuild_plane/wing_wing_z84.html
 #
 # @type Flying Wing
 # @class Plane
@@ -106,7 +106,7 @@ A typical mixer file is shown below ([original file here](https://github.com/PX4
 A mixer filename, in this case `wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
 
 The mixer file contains several blocks of code, each of which refers to one actuator or ESC.
-So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code. 
+So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code.
 
 > **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
@@ -169,7 +169,7 @@ Elevon mixers
 Three scalers total (output, roll, pitch).
 
 The scaling factor for roll inputs is adjusted to implement differential travel
-for the elevons. 
+for the elevons.
 
 This first block of code is for Servo 0...
 
@@ -185,8 +185,8 @@ O:      10000  10000      0 -10000  10000
 S: 0 0  -6000  -6000      0 -10000  10000
 S: 0 1  -6500  -6500      0 -10000  10000
 
-Note that in principle, you could implement left/right wing asymmetric mixing, but in general the two blocks of code will be numerically equal, and just differ by the sign of the third line (S: 0 1), since to roll the plane, the two ailerons must move in OPPOSITE directions. 
-The signs of the second lines (S: 0 0) are indentical, since to pitch the plane, both servos need to move in the SAME direction. 
+Note that in principle, you could implement left/right wing asymmetric mixing, but in general the two blocks of code will be numerically equal, and just differ by the sign of the third line (S: 0 1), since to roll the plane, the two ailerons must move in OPPOSITE directions.
+The signs of the second lines (S: 0 0) are indentical, since to pitch the plane, both servos need to move in the SAME direction.
 
 Output 2
 --------
@@ -247,7 +247,7 @@ If the airframe is for a **new group** you additionally need to:
         <file alias="Airframe/FlyingWing">src/AutoPilotPlugins/Common/Images/FlyingWing.svg</file>
         ...
      ```
-   > **Note** The remaining airframe metadata should be automatically included in the firmware (once **srcparser.py** is updated). 
+   > **Note** The remaining airframe metadata should be automatically included in the firmware (once **srcparser.py** is updated).
 
 
 ## Tuning Gains
@@ -268,7 +268,7 @@ To make a new airframe available for section in the *QGroundControl* [airframe c
 
   ![QGC flash custom firmware](../../assets/gcs/qgc_flash_custom_firmware.png)
   
-  You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata). 
+  You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata).
 1. Navigate to the build folder and select the firmware file (e.g. **Firmware/build/px4_fmu-v5_default/px4_fmu-v5_default.px4**).
 1. Press **OK** to start flashing the firmware.
 1. Restart *QGroundControl*.

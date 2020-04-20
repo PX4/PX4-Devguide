@@ -1,6 +1,6 @@
 # Windows Cygwin Toolchain
 
-This toolchain is portable, easy to install, and easy to use. 
+This toolchain is portable, easy to install, and easy to use.
 It is the newest and best performing toolchain for developing PX4 on Windows.
 
 > **Tip** This is the only officially supported toolchain for building PX4 on Windows (i.e. it is tested in our continuous integration system).
@@ -17,7 +17,7 @@ This topic explains how download and use the environment, and how it can be exte
 1. Download the latest version of the ready-to-use MSI installer from: [Github releases](https://github.com/PX4/windows-toolchain/releases) or [Amazon S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.9.msi) (fast download).
 1. Run it, choose your desired installation location, let it install:
     ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
-1. Tick the box at the end of the installation to *clone the PX4 repository, build and run simulation with jMAVSim* (this simplifies the process to get you started). 
+1. Tick the box at the end of the installation to *clone the PX4 repository, build and run simulation with jMAVSim* (this simplifies the process to get you started).
 
    > **Note** If you missed this step you will need to [clone the PX4 Firmware repository manually](#getting_started).
 
@@ -73,7 +73,7 @@ You may wish to halt them temporarily during builds (at your own risk).
 #### Windows CR+LF vs Unix LF Line Endings
 
 We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code).
-Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings ( otherwise you get errors like `$'\r': Command not found.`).
+Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings (otherwise you get errors like `$'\r': Command not found.`).
 Luckily git can do this for you when you execute the two commands in the root directory of your repo:
 ```
 git config core.autocrlf false
@@ -88,9 +88,9 @@ This is not recommended because it may affect any other (unrelated) git use on y
 
 #### Unix Permissions Execution Bit
 
-Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. 
-*git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). 
-This often results in *git* finding "false-positive" differences in permissions. 
+Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed.
+*git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it).
+This often results in *git* finding "false-positive" differences in permissions.
 The resulting diff might look like this:
 ```
 diff --git ...
@@ -144,7 +144,8 @@ git clone https://github.com/PX4/windows-toolchain PX4
 
 ### Manual Installation (for Toolchain Developers) {#manual_setup}
 
-This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
+This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo.
+The result should be the same as using the scripts or MSI installer.
 
 > **Note** The toolchain gets maintained and hence these instructions might not cover every detail of all the future changes.
 
@@ -180,9 +181,9 @@ This section describes how to setup the Cygwin toolchain manually yourself while
    <span></span>
    > **Note** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
 
-1. Write up or copy the **batch scripts** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) and [`setup-environment.bat`](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat). 
+1. Write up or copy the **batch scripts** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) and [`setup-environment.bat`](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat).
    
-   The reason to start all the development tools through the prepared batch script is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. 
+   The reason to start all the development tools through the prepared batch script is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder.
    This is done by always first calling the script [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) and the desired application like the console after that.
 
    The script [setup-environment.bat](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
@@ -232,4 +233,4 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 
     > **Note** This is what the toolchain does in: [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat).
 
-1. Make sure all the binary folders of all the installed components are correctly listed in the `PATH` variable configured by [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat). 
+1. Make sure all the binary folders of all the installed components are correctly listed in the `PATH` variable configured by [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat).
