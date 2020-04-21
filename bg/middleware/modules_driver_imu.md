@@ -272,6 +272,29 @@ icm20608g <command> [arguments...]
 
    status        print status info
 ```
+## icm20649
+Source: [drivers/imu/invensense/icm20649](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20649)
+
+### Usage {#icm20649_usage}
+```
+icm20649 <command> [arguments...]
+ Commands:
+   start
+     [-s]        Internal SPI bus(es)
+     [-S]        External SPI bus(es)
+     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                 (default=1))
+     [-c <val>]  chip-select index (for external SPI)
+                 default: 1
+     [-m <val>]  SPI mode
+     [-f <val>]  bus frequency in kHz
+     [-R <val>]  Rotation
+                 default: 0
+
+   stop
+
+   status        print status info
+```
 ## icm20689
 Source: [drivers/imu/invensense/icm20689](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20689)
 
