@@ -3,7 +3,7 @@
 Visual Inertial Odometry (VIO) and and Motion Capture (MoCap) systems allow vehicles to navigate when a global position source is unavailable or unreliable (e.g. indoors, or when flying under a bridge. etc.).
 
 Both VIO and MoCap determine a vehicle's *pose* (position and attitude) from "visual" information.
-The main difference between them is the frame perspective: 
+The main difference between them is the frame perspective:
 - VIO uses *onboard sensors* to get pose data from the vehicle's perspective (see [egomotion](https://en.wikipedia.org/wiki/Visual_odometry#Egomotion)).
 - MoCap uses a system of *off-board cameras* to get vehicle pose data in a 3D space (i.e. it is an external system that tells the vehicle its pose).
 
@@ -18,7 +18,7 @@ This topic explains how to configure a PX4-based system to get data from MoCap/V
 
 PX4 uses the following MAVLink messages for getting external position information, and maps them to [uORB topics](http://dev.px4.io/en/middleware/uorb.html):
 
-MAVLink | uORB 
+MAVLink | uORB
 --- | ---
 [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE) | `vehicle_visual_odometry`
 [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_LOCAL_FRD](https://mavlink.io/en/messages/common.html#MAV_FRAME_LOCAL_FRD)) | `vehicle_visual_odometry`
@@ -31,12 +31,12 @@ The LPE estimator subscribes to both topics, and can hence process all the above
 
 > **Tip** EFK2 is the default estimator used by PX4.
   It is better tested and supported than LPE, and should be used by preference.
-  
+
 The messages should be streamed at between 30Hz (if containing covariances) and 50 Hz.
 
-The following MAVLink "vision" messages are not currently supported by PX4: 
-[GLOBAL_VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#GLOBAL_VISION_POSITION_ESTIMATE), 
-[VISION_SPEED_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_SPEED_ESTIMATE), 
+The following MAVLink "vision" messages are not currently supported by PX4:
+[GLOBAL_VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#GLOBAL_VISION_POSITION_ESTIMATE),
+[VISION_SPEED_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_SPEED_ESTIMATE),
 [VICON_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VICON_POSITION_ESTIMATE)
 
 
@@ -65,6 +65,8 @@ You can apply this trick with every system - if you need to obtain a NED frame, 
 
 
 ## EKF2 Tuning/Configuration
+
+Note: this is a quick overview. For more detailed information, check the [EKF2 tuning guide](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)
 
 The following parameters must be set to use external position information with EKF2 (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > EKF2**).
 
@@ -112,7 +114,7 @@ Parameter | Setting for External Position Estimation
 --- | ---
 [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) | Vision integration is enabled if *fuse vision position* is checked (it is enabled by default).
 [ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | Set to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables MoCap heading use.
- 
+
 
 ### Disabling Barometer Fusion
 
@@ -147,7 +149,7 @@ For other systems consult the vendor setup documentation.
 
 MAVROS has plugins to relay a visual estimation from a VIO or MoCap system using the following pipelines:
 
-ROS | MAVLink | uORB 
+ROS | MAVLink | uORB
 --- | --- | ---
 /mavros/vision_pose/pose | [VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_POSITION_ESTIMATE) | `vehicle_visual_odometry`
 /mavros/odometry/odom | [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_LOCAL_FRD](https://mavlink.io/en/messages/common.html#MAV_FRAME_LOCAL_FRD)) | `vehicle_visual_odometry`
@@ -234,7 +236,7 @@ See [this video](https://www.youtube.com/watch?v=cNZaFEghTBU) for a tutorial on 
   ```bash
   roslaunch vrpn_client_ros sample.launch server:=<mocap machine ip>
   ```
-  
+
 If you named the rigidbody as `robot1`, you will get a topic like `/vrpn_client_node/robot1/pose`
 
 #### Relaying/remapping Pose Data
@@ -255,7 +257,7 @@ You are now set to proceed to the first flight.
 ## First Flight
 
 After setting up one of the (specific) systems described above you should now be ready to test.
-The instructions below show how to do so for MoCap and VIO systems 
+The instructions below show how to do so for MoCap and VIO systems
 
 ### Check external estimate
 
@@ -286,9 +288,7 @@ With this stick value, the robot maintains its altitude;
 raising the stick will increase the reference altitude while lowering the value will decrease it.
 Same for right stick on x and y.
 
-Increase the value of the left stick and the robot will take off, 
+Increase the value of the left stick and the robot will take off,
 put it back to the middle right after. Check if it is able to keep its position.
 
 If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
-
-### VIO First Flight
