@@ -53,6 +53,8 @@ Regarding the orientation, keep the scalar part *w* of the quaternion the same a
 
 ## EKF2 Tuning/Configuration
 
+Note: this is a quick overview. For more detailed information, check the [EKF2 tuning guide](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)
+
 The following parameters must be set to use external position information with EKF2 (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > EKF2**).
 
 | Parameter                                                                                                                                                                                                     | Setting for External Position Estimation                                                                                                               |
@@ -229,5 +231,3 @@ Put your left stick at the middle, this is the dead zone. With this stick value,
 Increase the value of the left stick and the robot will take off, put it back to the middle right after. Check if it is able to keep its position.
 
 If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
-
-### VIO First Flight
