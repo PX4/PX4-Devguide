@@ -1,4 +1,4 @@
-# Computer Vision (VIO, Avoidance)
+# Computer Vision (Optical Flow, MoCap, VIO, Avoidance)
 
 [Computer vision](https://en.wikipedia.org/wiki/Computer_vision) techniques enable computers to use visual data to make sense of their environment.
 
@@ -7,7 +7,7 @@ PX4 uses computer vision systems (primarily running on [Companion Computers](../
 - [Optical Flow](#optical_flow) provides 2D velocity estimation (using a downward facing camera and a downward facing distance sensor).
 - [Motion Capture](#mocap) provides 3D pose estimation using a vision system that is *external* to the vehicle. It is primarily used for indoor navigation.
 - [Visual Inertial Odometry](#vio) provides 3D pose and velocity estimation using an onboard vision system and IMU. It is used for navigation when global position information is absent or unreliable.
-- [Obstacle Avoidance](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) provides navigation around obstacles when flying a planned path (currently missions are supported). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
+- [Obstacle Avoidance](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) provides full navigation around obstacles when flying a planned path (currently missions are supported). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
 - [Collision Prevention](https://docs.px4.io/master/en/computer_vision/collision_prevention.html) is used to stop vehicles before they can crash into an obstacle (primarily when flying in manual modes).
 
 > **Tip** The [PX4 Vision Autonomy Development Kit](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro) is a robust and inexpensive kit for developers working with computer vision on PX4. It comes with [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) software pre-installed, and can be used as the base for your own algorithms.
@@ -26,15 +26,16 @@ For information about MoCap see:
 
 ## Visual Inertial Odometry {#vio}
 
-Visual Inertial Odometry (VIO) is used for estimating the 3D *pose* (position and orientation) of a moving vehicle relative to a *local* starting position. It is commonly used to navigate a vehicle in situations where GPS is absent (e.g. indoors) or unreliable (e.g. when flying under a bridge).
+Visual Inertial Odometry (VIO) is used for estimating the 3D *pose* (position and orientation) and *velocity* of a moving vehicle relative to a *local* starting position. It is commonly used to navigate a vehicle in situations where GPS is absent (e.g. indoors) or unreliable (e.g. when flying under a bridge).
 
 VIO uses [Visual Odometry](https://en.wikipedia.org/wiki/Visual_odometry) to estimate vehicle *pose* from visual information, combined with inertial measurements from an IMU (to correct for errors associated with rapid vehicle movement resulting in poor image capture).
 
 > **Note** On difference between VIO and [MoCap](#mocap) is that VIO cameras/IMU are vehicle-based, and additionally provide velocity information.
 
-For information about VIO see:
+For information about configuring VIO on PX4 see:
 
 - [EKF > External Vision System](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#external-vision-system)
+- [T265 Setup guide](https://docs.px4.io/master/en/peripheral/t265_vio.md)
 - [Snapdragon > Installation > Install Snap VIO](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
 
 ## Optical Flow {#optical_flow}
