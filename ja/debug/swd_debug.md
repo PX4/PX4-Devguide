@@ -86,9 +86,11 @@ The Pixhawk project has defines a standard pinout and connector type for differe
 > **Note** There FMU and Pixhawk versions are (only) consistent after FMUv5X.
 
 
-### Pixhawk 6-Pin SH Debug Port {#pixhawk_debug_port_6_pin_sh}
+### Pixhawk Debug Mini (6-Pin SH Debug Port) {#pixhawk_debug_port_6_pin_sh}
 
-The [Pixhawk Connector Standard ](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug) (for FMUv4 and FMUv5) specifies a *6-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md).
+The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf) defines a *6-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md).
+
+> **Note** This debug port is used in FMUv4 and FMUv5.
 
 The pinout is as shown below (SWD pins highlighted):
 
@@ -117,9 +119,11 @@ You can connect to the debug port using a [cable like this one](https://www.digi
 ![6-pin JST SH Cable](../../assets/debug/cable_6pin_jst_sh.jpg)
 
 
-### Pixhawk 10-Pin SH Debug Port {#pixhawk_debug_port_10_pin_sh}
+### Pixhawk Debug Full (10-Pin SH Debug Port) {#pixhawk_debug_port_10_pin_sh}
 
-The Pixhawk Connector Standard (for FMUv5x, FMUv6, FMUv6x) specifies a *10-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md). This essentially moves the solder pads from beside the [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh) into the connector, and also adds an SWO pin.
+The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf)  defines a *10-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md). This essentially moves the solder pads from beside the [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh) into the connector, and also adds an SWO pin.
+
+> **Note** This port is specified for use in FMUv5x, FMUv6, FMUv6x.
 
 The pinout is as shown below (SWD pins highlighted):
 
