@@ -138,19 +138,26 @@ git checkout <branch name>
 ## Common pitfalls
 
 ### Force push to forked repository
+
 After having done the first PR, people from the PX4 community will review your changes. In most cases this means that you have to fix your local branch according to the review. After changing the files locally, the feature branch needs to be rebased again with the most recent upstream/master. However, after the rebase, it is no longer possible to push the feature branch to your forked repository directly, but instead you need to use a force push:
 ```sh
 git push --force-with-lease origin <your feature branch name>
 ```
 
 ### Rebase merge conflicts
-If a conflict occurs during a ```git rebase```, please refer to [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/).
+
+If a conflict occurs during a `git rebase`, please refer to [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/).
 
 ### Pull merge conflicts
-If a conflict occurs during a ```git pull```, please refer to [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts).
 
-### Building error due to git tags out of date
-The build error "Error: PX4 version too low, expected at least vx.x.x
-Check the git tag (current tag: 'vy.y.y')" can be solved by fetching the whole upstream repository, including tags
-``` git fetch upstream```
+If a conflict occurs during a `git pull`, please refer to [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts).
+
+### Build error due to git tags out of date
+
+The build error `Error: PX4 version too low, expected at least vx.x.x` occurs if git tags are out of date.
+
+This can be solved by fetching the upstream repository tags:
+```sh
+git fetch upstream --tags
+```
 
