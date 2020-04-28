@@ -11,7 +11,7 @@
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
 
-* 状态估计来自 [EKF2](https://docs.px4.io/en/advanced_config/tuning_the_ecl_ekf.html) 模块。
+* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
 * 这是一个标准的位置-速度级联控制回路。
 * 在某些模式，外环(位置回路) 可能会被绕过 (图中在外环之后增加一个多路开关来表示)。 只有在位置保持模式或某轴无速度请求时，位置回路才会发挥作用。
 * 内环（加速度）控制器使用箝位法对积分器做了抗饱和处理（ARW）。
@@ -30,9 +30,9 @@ Request access from dev team. -->
 
 对真空速和高度的持续跟踪控制不是一个简单的事情。 增加飞行器的俯仰角度不仅会导致高度上升还会导致空速下降。 增加油门会使空速增加但是也会使升力变大从而使高度也增加。 因此，俯仰角和油门两个输入量都会对空速和高度产生影响，从而使控制问题变得难了。
 
-总能量控制系统通过能量法来解决这个问题，而不是通过之前的那种设定点进行控制。 一架飞行器的总能量包括动能和势能。 推力（通过油门控制）增加整个飞机的总能量。 A given total energy state can be achieved by arbitrary combinations of potential and kinetic energies. In other words, flying at a high altitude but at a slow speed can be equivalent to flying at a low altitude but at a faster airspeed in a total energy sense. We refer to this as the specific energy balance and it is calculated from the current altitude and true airspeed setpoint. The specific energy balance is controlled via the aircraft pitch angle. An increase in pitch angle transfers kinetic to potential energy and a negative pitch angle vice versa. The control problem was therefore decoupled by transforming the initial setpoints into energy quantities which can be controlled independently. We use thrust to regulate the specific total energy of the vehicle and pitch maintain a specific balance between potential (height) and kinetic (speed) energy.
+总能量控制系统通过能量法来解决这个问题，而不是通过之前的那种设定点进行控制。 一架飞行器的总能量包括动能和势能。 推力（通过油门控制）增加整个飞机的总能量。 势能和动能的任意组合可以组成总能量 换句话说，飞行器在高海拔以低空速飞行和在低海拔以高空速飞行时的总能量是等价的 我们称这种情况叫做特殊能量平衡，通过当前高度海拔和真空速设定值来计算 特定能量平衡通过飞行器的俯仰角来控制 俯仰角增加将动能转变为势能，减少则情况相反。 这样就把控制问题解耦成最初的空速设定点转化了多少势能能量，而转化多少能量可以独立控制。 我们利用推力调节飞行器的特定总能量，俯仰角来维持势能（高度）和动能（真空速）的特定平衡点。
 
-#### Total energy control loop
+#### 总能量控制逻辑环
 
 ![能量回路](../../assets/diagrams/TECS_throttle.jpg)
 
@@ -100,7 +100,7 @@ Request access from dev team. -->
 
 VTOL姿态模块的输出是多旋翼执行器（典型的 `actuator_controls_0`）和固定翼（典型的 `actuator_controls_1`）执行器的独立的扭矩和力指令。 这些是在一个特定机型的混控器文件中处理的（参见[ Mixing](../concept/mixing.md)）。
 
-有关调整 VTOL 模块内部过渡逻辑的更多信息，请参阅 [VTOL 配置](https://docs.px4.io/en/config_vtol/)。 
+For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/).
 
 ### 空速缩放
 

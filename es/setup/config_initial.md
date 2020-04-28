@@ -26,5 +26,5 @@ Se recomienda encarecidamente el siguiente equipo:
 Para configurar el vehículo:
 
 1. Descargar la [Compilación Diaria QGroundControl](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) para su plataforma de desarrollo.
-2. La [Configuración básica](https://docs.px4.io/en/config/) (Guía de usuario de PX4) explica cómo para realizar la configuración básica. 
-3. La [Configuración de los parámetros](https://docs.px4.io/en/advanced_config/parameters.html) (Guía del usuario de la PX4) explica cómo buscar y modificar los parámetros individuales.
+2. [Basic Configuration](https://docs.px4.io/master/en/config/) (PX4 User Guide) explains how to to perform basic configuration. 
+3. [Parameter Configuration](https://docs.px4.io/master/en/advanced_config/parameters.html) (PX4 User Guide) explains how you can find and modify individual parameters.

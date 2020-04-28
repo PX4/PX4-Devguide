@@ -26,5 +26,5 @@
 飞机配置流程：
 
 1. 下载并安装 [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html)。
-2. [基本配置](https://docs.px4.io/en/config/)（PX4 用户指南）说明了如何执行基本配置。 
-3. [参数配置](https://docs.px4.io/en/advanced_config/parameters.html) （PX4 用户指南）说明了如何查找和修改单个的参数。
+2. [Basic Configuration](https://docs.px4.io/master/en/config/) (PX4 User Guide) explains how to to perform basic configuration. 
+3. [Parameter Configuration](https://docs.px4.io/master/en/advanced_config/parameters.html) (PX4 User Guide) explains how you can find and modify individual parameters.

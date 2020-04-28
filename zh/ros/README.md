@@ -5,3 +5,7 @@
 本节包含有关使用 ROS 在 PX4 的离板控制的主题。
 
 > **Tip** ROS 仅在 Linux 平台上得到官方支持。
+
+## External Resources
+
+- [XTDrone](https://github.com/robin-shaun/XTDrone/blob/master/README.en.md) - ROS + PX4 v1.9 simulation environment for computer vision. The [XTDrone Manual](https://www.yuque.com/xtdrone/manual_en) has everything you need to get started!

@@ -117,7 +117,7 @@ make
 
 ### 本地编译
 
-Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
 
 ## ROS/Gazebo {#rosgazebo}
 
@@ -141,9 +141,9 @@ To install the development toolchain:
 
 在 *PX4 用户指南* 中提供了高通骁龙飞控的安装说明：
 
-* [开发环境](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
-* [软件安装](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
-* [配置](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+* [开发环境](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [软件安装](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_software_installation.html)
+* [配置](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_configuration.html)
 
 ## Fast RTPS installation {#fast_rtps}
 

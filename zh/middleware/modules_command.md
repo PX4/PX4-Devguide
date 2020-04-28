@@ -14,120 +14,92 @@
        &lt;file&gt;        Bootloader bin 文件
     
 
-## config
-
-源码： [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
-
-Configure a sensor driver (sampling & publication rate, etc.)
-
-### 用法 {#config_usage}
-
-    config <command> [arguments...]
-     Commands:
-    
-     The <file:dev> argument is typically one of /dev/{gyro,accel,mag}i
-       block         Block sensor topic publication
-         <file:dev>  Sensor device file
-    
-       unblock       Unblock sensor topic publication
-         <file:dev>  Sensor device file
-    
-       sampling      Set sensor sampling rate
-         <file:dev> <rate> Sensor device file and sampling rate in Hz
-    
-       rate          Set sensor publication rate
-         <file:dev> <rate> Sensor device file and publication rate in Hz
-    
-       check         Perform sensor self-test (and print info)
-         <file:dev>  Sensor device file
-    
-
 ## dumpfile
 
-源码： [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
+Source: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 
-转储文件应用。 将文件大小及内容以二进制模式输出值标准输出设备（不使用 LF 替换 CR LF）。
+Dump file utility. Prints file size and contents in binary mode (don't replace LF with CR LF) to stdout.
 
-### 用法 {#dumpfile_usage}
+### Usage {#dumpfile_usage}
 
     dumpfile [arguments...]
-         &lt;file&gt;      需要进行转储的文件
+         <file>      File to dump
     
 
 ## dyn
 
-源码：[systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
+Source: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
 
-### 描述
+### Description
 
-载入并运行一个未被编译至 PX4 二进制文件内的动态 PX4 模块。
+Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
 
-### 示例
+### Example
 
     dyn ./hello.px4mod start
     
 
-### 用法 {#dyn_usage}
+### Usage {#dyn_usage}
 
     dyn [arguments...]
-         &lt;file&gt;      包含模块的文件
-         [arguments...] 传递给模块的参数
+         <file>      File containing the module
+         [arguments...] Arguments to the module
     
 
 ## esc_calib
 
-源码： [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
+Source: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
-ESC 校准工具。
+Tool for ESC calibration
 
-校准流程（运行命令将会引导你完成此流程）：
+Calibration procedure (running the command will guide you through it):
 
 - 移除螺旋桨，将 ESC 断电
 - Stop attitude and rate controllers: mc_rate_control stop, fw_att_control stop
 - 确保安全设置断开（Make sure safety is off）
 - 运行这个命令
 
-### 用法 {#esc_calib_usage}
+### Usage {#esc_calib_usage}
 
     esc_calib [arguments...]
-         [-d &lt;val&gt;]  选择 PWM 输出设备
-                     取值 &lt;file:dev&gt;, 默认值： /dev/pwm_output0
-         [-l &lt;val&gt;]  Low PWM 值，单位 us
-                     默认值： 1000
-         [-h &lt;val&gt;]  High PWM 值，单位 us
-                     默认值：2000
-         [-c &lt;val&gt;]  使用如下形式选取通道：1234 (1 位数字表示一个通道，
-                     1=第一个通道)
-         [-m &lt;val&gt;]  使用位掩码（bitmask）选取通道 0xF, 3)
+         [-d <val>]  Select PWM output device
+                     values: <file:dev>, default: /dev/pwm_output0
+         [-l <val>]  Low PWM value in us
+                     default: 1000
+         [-h <val>]  High PWM value in us
+                     default: 2000
+         [-c <val>]  select channels in the form: 1234 (1 digit per channel,
+                     1=first)
+         [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
          [-a]        Select all channels
     
 
 ## hardfault_log
 
-源码： [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
+Source: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
-硬错误处理程序。
+Hardfault utility
 
-在启动脚本中用于处理硬错误。
+Used in startup scripts to handle hardfaults
 
-### 用法 {#hardfault_log_usage}
+### Usage {#hardfault_log_usage}
 
-    hardfault_log &lt;command&gt; [arguments...]
+    hardfault_log <command> [arguments...]
      Commands:
-       check         检查是否存在未提交的硬错误（uncommited hardfault）
+       check         Check if there's an uncommited hardfault
     
-       rearm         抛下一个未提交的硬错误
+       rearm         Drop an uncommited hardfault
     
-       fault         生成一个硬错误 (该命令会导致系统崩溃:)
-         [0|1]       硬错误类型： 0=除 0 错误, 1=断言错误（Assertion） (默认值=0)
+       fault         Generate a hardfault (this command crashes the system :)
+         [0|1]       Hardfault type: 0=divide by 0, 1=Assertion (default=0)
     
-       commit        讲一个未提交的硬错误写入 /fs/microsd/fault_%i.txt (然后
-                     rearm但不 reset）
+       commit        Write uncommited hardfault to /fs/microsd/fault_%i.txt (and
+                     rearm, but don't reset)
     
-       count         读取重启计数器，计算一个未提交的硬错误引起的重启次数
-                      (该结果将作为程序的退出代码返回)
+       count         Read the reboot counter, counts the number of reboots of an
+                     uncommited hardfault (returned as the exit code of the program)
     
-       reset         重置重启计数器
+       reset         Reset the reboot counter
     
 
 ## i2cdetect

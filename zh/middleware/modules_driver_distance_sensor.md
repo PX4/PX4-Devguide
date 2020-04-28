@@ -10,7 +10,7 @@ Serial bus driver for the LeddarOne LiDAR.
 
 Most boards are configured to enable/start the driver on a specified UART using the SENS_LEDDAR1_CFG parameter.
 
-Setup/usage information: https://docs.px4.io/en/sensor/leddar_one.html
+Setup/usage information: https://docs.px4.io/master/en/sensor/leddar_one.html
 
 ### Examples
 
@@ -46,7 +46,7 @@ I2C bus driver for LidarLite rangefinders.
 
 The sensor/driver must be enabled using the parameter SENS_EN_LL40LS.
 
-Setup/usage information: https://docs.px4.io/en/sensor/lidar_lite.html
+Setup/usage information: https://docs.px4.io/master/en/sensor/lidar_lite.html
 
 ### Usage {#ll40ls_usage}
 
@@ -150,7 +150,7 @@ Serial bus driver for the LightWare SF02/F, SF10/a, SF10/b, SF10/c, SF11/c Laser
 
 Most boards are configured to enable/start the driver on a specified UART using the SENS_SF0X_CFG parameter.
 
-Setup/usage information: https://docs.px4.io/en/sensor/sfxx_lidar.html
+Setup/usage information: https://docs.px4.io/master/en/sensor/sfxx_lidar.html
 
 ### Examples
 
@@ -184,7 +184,7 @@ Source: [drivers/distance_sensor/sf1xx](https://github.com/PX4/Firmware/tree/mas
 
 I2C bus driver for Lightware SFxx series LIDAR rangefinders: SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20.
 
-Setup/usage information: https://docs.px4.io/en/sensor/sfxx_lidar.html
+Setup/usage information: https://docs.px4.io/master/en/sensor/sfxx_lidar.html
 
 ### Usage {#sf1xx_usage}
 
@@ -236,7 +236,7 @@ I2C bus driver for TeraRanger rangefinders.
 
 The sensor/driver must be enabled using the parameter SENS_EN_TRANGER.
 
-Setup/usage information: https://docs.px4.io/en/sensor/rangefinders.html#teraranger-rangefinders
+Setup/usage information: https://docs.px4.io/master/en/sensor/rangefinders.html#teraranger-rangefinders
 
 ### Usage {#teraranger_usage}
 
@@ -266,7 +266,7 @@ Serial bus driver for the Benewake TFmini LiDAR.
 
 Most boards are configured to enable/start the driver on a specified UART using the SENS_TFMINI_CFG parameter.
 
-Setup/usage information: https://docs.px4.io/en/sensor/tfmini.html
+Setup/usage information: https://docs.px4.io/master/en/sensor/tfmini.html
 
 ### Examples
 

@@ -117,7 +117,7 @@ make
 
 ### Native Builds
 
-Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/en/flight_controller/raspberry_pi_navio2.html).
+Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
 
 ## ROS/Gazebo {#rosgazebo}
 
@@ -141,9 +141,9 @@ Note:
 
 Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 
-* [Development Environment](https://docs.px4.io/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
-* [Software Installation](https://docs.px4.io/en/flight_controller/snapdragon_flight_software_installation.html)
-* [Configuration](https://docs.px4.io/en/flight_controller/snapdragon_flight_configuration.html)
+* [Development Environment](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
+* [Software Installation](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_software_installation.html)
+* [Configuration](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_configuration.html)
 
 ## Fast RTPS installation {#fast_rtps}
 

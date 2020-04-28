@@ -144,8 +144,18 @@ git push --force-with-lease origin <your feature branch name>
 
 ### Rebase merge conflicts
 
-If a conflict occurs during a ```git rebase```, please refer to [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/).
+If a conflict occurs during a `git rebase`, please refer to [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/).
 
 ### Pull merge conflicts
 
-If a conflict occurs during a ```git pull```, please refer to [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts).
+If a conflict occurs during a `git pull`, please refer to [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts).
+
+### Build error due to git tags out of date
+
+The build error `Error: PX4 version too low, expected at least vx.x.x` occurs if git tags are out of date.
+
+This can be solved by fetching the upstream repository tags:
+
+```sh
+git fetch upstream --tags
+```

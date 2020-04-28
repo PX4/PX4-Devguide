@@ -30,7 +30,7 @@ EKF2 只订阅 `vehicle_visual_odometry` 主题，因此只能处理前两个消
 
 消息应在 30Hz（如果包含协方差）和 50 Hz 之间进行流式传输。
 
-以下 MAVLink 视觉消息暂不支持 PX4：[GLOBAL_VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#GLOBAL_VISION_POSITION_ESTIMATE)，[VISION_SPEED_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_SPEED_ESTIMATE)，[VICON_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VICON_POSITION_ESTIMATE)
+The following MAVLink "vision" messages are not currently supported by PX4: [GLOBAL_VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#GLOBAL_VISION_POSITION_ESTIMATE), [VISION_SPEED_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_SPEED_ESTIMATE), [VICON_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VICON_POSITION_ESTIMATE)
 
 ## 参考机架
 
@@ -53,7 +53,9 @@ Depending on the source of your reference frame, you will need to apply a custom
 
 ## EKF2 调参/配置
 
-必须将以下参数设置为将外部位置信息与 ekf2 一起使用（这些信息可以在 *QGroundControl* > **飞机设置参数 > ekf2** 中设置）。
+Note: this is a quick overview. For more detailed information, check the [EKF2 tuning guide](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)
+
+The following parameters must be set to use external position information with EKF2 (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > EKF2**).
 
 | 参数                                                                                                                                                                                                            | 外部位置估计的设置                                                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -66,29 +68,29 @@ Depending on the source of your reference frame, you will need to apply a custom
 
 #### 调参 EKF2_EV_DELAY {#tuning-EKF2_EV_DELAY}
 
-[EKF2_EV_DELAY](../advanced/parameter_reference.md#EKF2_EV_DELAY) 是相对于 IMU 测量的 *Vision 位置估计延迟 *。
+[EKF2_EV_DELAY](../advanced/parameter_reference.md#EKF2_EV_DELAY) is the *Vision Position Estimator delay relative to IMU measurements*.
 
-换句话说，它是视觉系统时间戳和 "实际" 捕获时间之间的差异，将记录的 IMU 时钟（"基本时钟" 为 ekf2）。
+Or in other words, it is the difference between the vision system timestamp and the "actual" capture time that would have been recorded by the IMU clock (the "base clock" for EKF2).
 
-从技术上讲，如果 MoCap 和（例如）ROS 计算机之间有正确的时间戳（而不仅仅是到达时间）和时间同步（例如 NTP），则可以将其设置为0。 在现实中，这需要一些经验调整，因为整个 MoCap->PX4 链中的延迟是非常特定的。 系统设置完全同步链的情况很少见!
+Technically this can be set to 0 if there is correct timestamping (not just arrival time) and timesync (e.g NTP) between MoCap and (for example) ROS computers. In reality, this needs some empirical tuning since delays in the entire MoCap->PX4 chain are very setup-specific. It is rare that a system is setup with an entirely synchronised chain!
 
-通过检查 IMU 速率和 EV 速率之间的偏移量，可以从日志中获得延迟的粗略估计：
+A rough estimate of the delay can be obtained from logs by checking the offset between IMU rates and the EV rates:
 
-![ekf2_ev_delay 日志](../../assets/ekf2/ekf2_ev_delay_tuning.png)
+![ekf2_ev_delay log](../../assets/ekf2/ekf2_ev_delay_tuning.png)
 
 > **Note** 外部数据图表 与 onboard estimate (as above) can be generated using [FlightPlot](https://docs.px4.io/master/en/log/flight_log_analysis.html#flightplot) or similar flight analysis tools.
 
-该值可以通过不同的参数一起调整，在动态变化中来保证最低 EKF 。
+The value can further be tuned by varying the parameter to find the value that yields the lowest EKF innovations during dynamic maneuvers.
 
 ## LPE 调参/配置
 
-首先需要通过设置 [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) 参数进行 [switch lpe 估计值 ](../advanced/switching_state_estimators.md)。
+You will first need to [switch to the LPE estimator](../advanced/switching_state_estimators.md) by setting the [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) parameter.
 
 > **Note** 如果定位 `px4_fmu-v2` 硬件，则还需要使用包含 LPE 模块的固件版本（其他 FMU 系列硬件的固件包括 LPE 和 EKF）。 LPE 版本可以在每个 PX4 版本的 zip 文件中找到，也可以使用生成命令 `make px4_fmu-v2_lpe` 从源生成。 有关详细信息, 请参阅 [ Building the code ](../setup/building_px4.md)。
 
 ### 启用外部位置输入
 
-必须将以下参数设置为将外部位置信息与 LPE 一起使用（这些信息可以在 *QGroundControl* > > **Vehicle 设置 > 参数 > 本地位置估计 </1 > 中设置）。</p> 
+The following parameters must be set to use external position information with LPE (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**).
 
 | 参数                                                                  | 外部位置估计的设置                                                |
 | ------------------------------------------------------------------- | -------------------------------------------------------- |
@@ -97,29 +99,29 @@ Depending on the source of your reference frame, you will need to apply a custom
 
 ### 禁用气压计融合
 
-如果从 VIO 或 MoCap 信息中已经提供了高度精确的高度，则禁用 LPE 中的巴洛校正以减少 z 轴上的漂移可能会很有用。
+If a highly accurate altitude is already available from VIO or MoCap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
 
-这可以通过 *QGroundControl* 中通过取消选中 [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) 参数中的 *fuse baro</0 > 选项来实现。</p> 
+This can be done by in *QGroundControl* by unchecking the *fuse baro* option in the [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) parameter.
 
 ### 滤波噪声参数调参
 
-如果您的视觉或 MoCap 数据非常准确，并且您只希望估计器对其进行严格跟踪, 则应减少标准偏差参数、[ LPE_VIS_XY ](../advanced/parameter_reference.md#LPE_VIS_XY) 和 [ LPE_VIS_Z ](../advanced/parameter_reference.md#LPE_VIS_Z) (用于视觉) 或 [ LPE_VIC_P ](../advanced/parameter_reference.md#LPE_VIC_P)（用于 MoCap）。 减小它们会使估计器更加信任外部传入的位姿信息。 您可能需要将它们设置为允许的最小值。
+If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters: [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for VIO) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for MoCap). Reducing them will cause the estimator to trust the incoming pose estimate more. You may need to set them lower than the allowed minimum and force-save.
 
 > **Tip** 如果性能仍然较差，请尝试增大 [ LPE_PN_V](../advanced/parameter_reference.md#LPE_PN_V) 参数。 这将使估计器在估计速度时更信任测量值。
 
 ## 使用 ROS
 
-ROS 不是提供外部姿态信息的 *required*，但强烈建议使用它，因为它已经与 VIO 和 MoCap 系统进行了良好的集成。 PX4 必须已设置如上所示。
+ROS is not *required* for supplying external pose information, but is highly recommended as it already comes with good integrations with VIO and MoCap systems. PX4 must already have been set up as above.
 
 ### 将数据输入 ROS
 
-VIO 和 MoCap 系统具有不同的获取姿势数据的方式，并且有自己的设置和主题。
+VIO and MoCap systems have different ways of obtaining pose data, and have their own setup and topics.
 
-[below](#setup_specific_systems) 涵盖了特定系统的设置。 对于其他系统，请参阅供应商设置文档。
+The setup for specific systems is covered [below](#setup_specific_systems). For other systems consult the vendor setup documentation.
 
 ### 将数据回传给 PX4 {#relaying_pose_data_to_px4}
 
-MAVROS 具有插件，可使用以下管道从 VIO 或 MOCAP 系统中继可视化估计：
+MAVROS has plugins to relay a visual estimation from a VIO or MoCap system using the following pipelines:
 
 | ROS                      | MAVLink                                                                                                                                                                | uORB                      |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
@@ -128,16 +130,16 @@ MAVROS 具有插件，可使用以下管道从 VIO 或 MOCAP 系统中继可视�
 | /mavros/mocap/pose       | [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP)                                                                                            | `vehicle_mocap_odometry`  |
 | /mavros/odometry/odom    | [ODOMETRY](https://mavlink.io/en/messages/common.html#ODOMETRY) (`frame_id =` [MAV_FRAME_MOCAP_NED](https://mavlink.io/en/messages/common.html#MAV_FRAME_MOCAP_NED)) | `vehicle_mocap_odometry`  |
 
-您可以将上述任何管道与 LPE 一起使用。
+You can use any of the above pipelines with LPE.
 
-如果您使用的是 EKF2，则仅支持 "视觉" 管道。 要将 MoCap 数据与 EKF2 一起使用，您必须 [remap](http://wiki.ros.org/roslaunch/XML/remap) 从 mocap 获得的位置信息主题：
+If you're working with EKF2, only the "vision" pipelines are supported. To use MoCap data with EKF2 you will have to [remap](http://wiki.ros.org/roslaunch/XML/remap) the pose topic that you get from MoCap:
 
 * 必须重新映射 `geometry_msgs/PoseStamped` 或 `geometry_msgs/PoseWithCovarianceStamped` 类型的 MOCAP ROS 主题，以 `/mavros/vision_pose/pose`。 `geometry_msgs/PoseStamped` 主题是最常见的，因为 mocap 通常没有与数据相关的协方差。
 * 如果您通过 `nav_msgs/Odometry` ROS 消息获取数据，则需要重新映射数据以 `/mavros/odometry/odom`。
 
 ### 参考框架和 ROS {#ros_reference_frames}
 
-ROS 和 PX4 使用的本地/世界坐标系和全局框架是不同的。
+The local/world and world frames used by ROS and PX4 are different.
 
 | 框架    | ROS                                                                                  | PX4                                              |
 | ----- | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
@@ -148,13 +150,13 @@ ROS 和 PX4 使用的本地/世界坐标系和全局框架是不同的。
 
 Both frames are shown in the image below (FLU on left/FRD on right).
 
-![参考机架](../../assets/lpe/ref_frames.png)
+![Reference frames](../../assets/lpe/ref_frames.png)
 
 With EKF2 when using external heading estimation, magnetic north can either be ignored and or the heading offset to magnetic north can be calculated and compensated. Depending on your choice the yaw angle is given with respect to either magnetic north or local *x*.
 
 > **Note** When creating the rigid body in the MoCap software, remember to first align the robot's local *x* axis with the world *x* axis otherwise the yaw estimate will have an offset. This can stop the external pose estimate fusion from working properly. Yaw angle should be zero when body and reference frame align.
 
-利用MAVROS功能包，以上操作会十分简单。 ROS 默认使用 ENU 系, 因此你在MAVROS中所有代码必须遵循ENU系。 如果您有一个 Optitrack 系统, 则可以使用 [ mocap_optitrack ](https://github.com/ros-drivers/mocap_optitrack) 节点, 其已经发布了一个关于刚体位姿的一个ROS话题。 通过重新映射，您可以直接将其发布在 `mocap_pose_estimate` 因为它没有任何转换，mavros 将负责 NED 转换。
+Using MAVROS, this operation is straightforward. ROS uses ENU frames as convention, therefore position feedback must be provided in ENU. If you have an Optitrack system you can use [mocap_optitrack](https://github.com/ros-drivers/mocap_optitrack) node which streams the object pose on a ROS topic already in ENU. With a remapping you can directly publish it on `mocap_pose_estimate` as it is without any transformation and MAVROS will take care of NED conversions.
 
 The MAVROS odometry plugin makes it easy to handle the coordinate frames. It uses ROS's tf package. Your external pose system might have a completely different frame convention that does not match the one of PX4. The body frame of the external pose estimate can depend on how you set the body frame in the MOCAP software or on how you mount the VIO sensor on the drone. The MAVROS odometry plugin needs to know how the external pose's child frame is oriented with respect to either the airframe's FRD or FLU body frame known by MAVROS. You therefore have to add the external pose's body frame to the tf tree. This can be done by including an adapted version of the following line into your ROS launch file.
 
@@ -229,5 +231,3 @@ Put your left stick at the middle, this is the dead zone. With this stick value,
 Increase the value of the left stick and the robot will take off, put it back to the middle right after. Check if it is able to keep its position.
 
 If it works, you may want to set up an [offboard](offboard_control.md) experiment by sending position-setpoint from a remote ground station.
-
-### VIO 首飞

@@ -152,7 +152,7 @@
 
 ## Dronecode 相关资源
 
-* [PX4 用户指南](https://docs.px4.cc/zh/)
+* [PX4 用户指南](https://docs.px4.io/master/en/)
 * [QGroundControl用户指南](https://docs.qgroundcontrol.com/en/)
 * [QGroundControl 开发人员指南](http://dev.qgc.dimianzhan.com/zh/)
 * [MAVLink指南](https://mavlink.io/en/)

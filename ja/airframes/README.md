@@ -15,4 +15,4 @@ This section provides information that is relevant to developers who want to add
 
 <span></span>
 
-> **Note** Build logs for some of the supported airframes can be found in [PX4 User Guide > Airframes](https://docs.px4.io/en/airframes/).
+> **Note** Build logs for some of the supported airframes can be found in [PX4 User Guide > Airframes](https://docs.px4.io/master/en/airframes/).

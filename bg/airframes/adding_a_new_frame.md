@@ -30,7 +30,7 @@ The first section is the airframe documentation. This is used in the [Airframes 
 #
 # @name Wing Wing (aka Z-84) Flying Wing
 #
-# @url https://docs.px4.io/en/framebuild_plane/wing_wing_z84.html
+# @url https://docs.px4.io/master/en/framebuild_plane/wing_wing_z84.html
 #
 # @type Flying Wing
 # @class Plane
@@ -154,7 +154,7 @@ Elevon mixers
 Three scalers total (output, roll, pitch).
 
 The scaling factor for roll inputs is adjusted to implement differential travel
-for the elevons. 
+for the elevons.
 
 This first block of code is for Servo 0...
 
@@ -170,8 +170,8 @@ O:      10000  10000      0 -10000  10000
 S: 0 0  -6000  -6000      0 -10000  10000
 S: 0 1  -6500  -6500      0 -10000  10000
 
-Note that in principle, you could implement left/right wing asymmetric mixing, but in general the two blocks of code will be numerically equal, and just differ by the sign of the third line (S: 0 1), since to roll the plane, the two ailerons must move in OPPOSITE directions. 
-The signs of the second lines (S: 0 0) are indentical, since to pitch the plane, both servos need to move in the SAME direction. 
+Note that in principle, you could implement left/right wing asymmetric mixing, but in general the two blocks of code will be numerically equal, and just differ by the sign of the third line (S: 0 1), since to roll the plane, the two ailerons must move in OPPOSITE directions.
+The signs of the second lines (S: 0 0) are indentical, since to pitch the plane, both servos need to move in the SAME direction.
 
 Output 2
 --------
@@ -194,7 +194,7 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ## Adding a New Airframe Group
 
-Airframe "groups" are used to group similar airframes for selection in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) and in the *Airframe Reference* documentation ([PX4 DevGuide](../airframes/airframe_reference.md) and [PX4 UserGuide](https://docs.px4.io/en/airframes/airframe_reference.html)). Every group has a name, and an associated svg image which shows the common geometry, number of motors, and direction of motor rotation for the grouped airframes.
+Airframe "groups" are used to group similar airframes for selection in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) and in the *Airframe Reference* documentation ([PX4 DevGuide](../airframes/airframe_reference.md) and [PX4 UserGuide](https://docs.px4.io/master/en/airframes/airframe_reference.html)). Every group has a name, and an associated svg image which shows the common geometry, number of motors, and direction of motor rotation for the grouped airframes.
 
 The airframe metadata files used by *QGroundControl* and the documentation source code are generated from the airframe description, via a script, using the build command: `make airframe_metadata`
 
@@ -229,19 +229,19 @@ If the airframe is for a **new group** you additionally need to:
             <file alias="Airframe/FlyingWing">src/AutoPilotPlugins/Common/Images/FlyingWing.svg</file>
             ... > 
     
-    **Note** The remaining airframe metadata should be automatically included in the firmware (once **srcparser.py** is updated). 
+    **Note** The remaining airframe metadata should be automatically included in the firmware (once **srcparser.py** is updated).
 
 ## Tuning Gains
 
 The following *PX4 User Guide* topics explain how to tune the parameters that will be specified in the config file:
 
-* [Multicopter PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_multicopter.html)
-* [Fixed Wing PID Tuning Guide](https://docs.px4.io/en/advanced_config/pid_tuning_guide_fixedwing.html)
-* [VTOL Configuration](https://docs.px4.io/en/config_vtol/)
+* [Multicopter PID Tuning Guide](https://docs.px4.io/master/en/advanced_config/pid_tuning_guide_multicopter.html)
+* [Fixed Wing PID Tuning Guide](https://docs.px4.io/master/en/advanced_config/pid_tuning_guide_fixedwing.html)
+* [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/)
 
 ## Add New Airframe to QGroundControl
 
-To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/en/config/airframe.html):
+To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/master/en/config/airframe.html):
 
 1. Make a clean build (e.g. by running `make clean` and then `make px4_fmu-v5_default`)
 2. Open QGC and select **Custom firmware file...** as shown below:
