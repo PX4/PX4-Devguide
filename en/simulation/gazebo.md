@@ -11,13 +11,14 @@ Gazebo can also be used with [HITL](../simulation/hitl.md) and for [multi-vehicl
 
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
+[![Mermaid Graph: Gazebo plugin](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEdhemViby0tPlBsdWdpbjtcbiAgUGx1Z2luLS0-TUFWTGluaztcbiAgTUFWTGluay0tPlNJVEw7IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEdhemViby0tPlBsdWdpbjtcbiAgUGx1Z2luLS0-TUFWTGluaztcbiAgTUFWTGluay0tPlNJVEw7IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
-{% mermaid %}
+<!-- original graph info
 graph LR;
-  Gazebo-->Plugin;
-  Plugin-->MAVLink;
-  MAVLink-->SITL;
-{% endmermaid %}
+  Gazebo-- >Plugin;
+  Plugin-- >MAVLink;
+  MAVLink-- >SITL;
+-->
 
 > **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment, and simulation configuration (e.g. supported vehicles).
 
@@ -212,7 +213,7 @@ make px4_sitl_default gazebo_plane_cam__warehouse
 You can also specify the full path to a world to load using the `PX4_SITL_WORLD` environment variable.
 This is useful if testing a new world that is not yet included with PX4.
 
-> **Tip** If the loaded world does not align with the map, you may need to [set the world location](#set_world_location). 
+> **Tip** If the loaded world does not align with the map, you may need to [set the world location](#set_world_location).
   
 
 ## Set World Location {#set_world_location}
@@ -297,7 +298,7 @@ make px4_sitl_default gazebo_plane_cam
 
 *Gazebo* can be used to simulate deploying a [parachute](https://docs.px4.io/master/en/peripherals/parachute.html) during [Flight Termination](https://docs.px4.io/master/en/advanced_config/flight_termination.html) (flight termination is triggered by the PWM command that is simulated in *Gazebo*).
 
-The `if750a` target has a parachute attached to the vehicle. 
+The `if750a` target has a parachute attached to the vehicle.
 To simulate the vehicle, run the following command:
 ```
 make px4_sitl gazebo_if750a
