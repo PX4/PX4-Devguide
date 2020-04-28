@@ -2,7 +2,7 @@
 
 This topic provides imagery/information about the [Gazebo](../simulation/gazebo.md) worlds supported by PX4.
 
-The [empty.world](#empty_world) is spawned by default, though this may be overridden by a [model specific world](model_specific_worlds). Developers can also manually specify the world to load: [Gazebo Simulation > Loading a Specific World](../simulation/gazebo.md#set_world).
+The [empty.world](#empty_world) is spawned by default, though this may be overridden by a [model specific world](#model_specific_worlds). Developers can also manually specify the world to load: [Gazebo Simulation > Loading a Specific World](../simulation/gazebo.md#set_world).
 
 The source code for supported worlds can be found on GitHub here: [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds).
 
