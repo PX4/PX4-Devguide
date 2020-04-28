@@ -19,7 +19,7 @@
         "validate-links",
         "versions-select@git+https://github.com/Dronecode/gitbook-plugin-versions-select.git",
         "mathjax@git+https://github.com/Dronecode/plugin-mathjax.git#update_cdn",
-        "mermaid",
+        "-mermaid",
         "-stub-out-blocks@git+https://github.com/hamishwillee/gitbook-plugin-stub-out-blocks.git",
         "theme-dronecode@git+https://github.com/dronecode/theme-dronecode.git"
 
