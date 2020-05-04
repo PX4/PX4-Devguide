@@ -8,6 +8,9 @@ This topic explains how you can test safety-critical behavior in SITL simulation
 > **Note** You can also test failsafes using [HITL simulation](../simulation/hitl.md).
   HITL uses the normal configuration parameters of your flight controller.
 
+<span></span>
+> **Tip** The [SITL parameters](../advanced/parameter_reference.md#sitl) allow you to simulate other common sensor failure cases that are not covered here, including: loss of barometer, gyro and accelerometer, increased GPS noise etc.
+
 
 ## Data Link Loss
 
