@@ -23,7 +23,7 @@ In summary:
    ...
    DEPENDS
       px4_work_queue
-```
+   ```
 1. In addition to `ModuleBase`, the task should also derive from `ScheduledWorkItem` (included from [ScheduledWorkItem.hpp]( https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/ScheduledWorkItem.hpp))
 1. Implement the `ScheduledWorkItem::Run()` method to perform "work"
 1. Implement the `task_spawn` method, specifying that the task is a work queue (using the `task_id_is_work_queue` id.
