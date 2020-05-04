@@ -180,6 +180,8 @@ Source: [drivers/imu/fxas21002c](https://github.com/PX4/Firmware/tree/master/src
 fxas21002c <command> [arguments...]
  Commands:
    start
+     [-I]        Internal I2C bus(es)
+     [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
@@ -188,6 +190,8 @@ fxas21002c <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-a <val>]  I2C address
+                 default: 32
      [-R <val>]  Rotation
                  default: 0
 
@@ -207,6 +211,8 @@ Source: [drivers/imu/fxos8701cq](https://github.com/PX4/Firmware/tree/master/src
 fxos8701cq <command> [arguments...]
  Commands:
    start
+     [-I]        Internal I2C bus(es)
+     [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
@@ -215,6 +221,8 @@ fxos8701cq <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-a <val>]  I2C address
+                 default: 30
      [-R <val>]  Rotation
                  default: 0
 
