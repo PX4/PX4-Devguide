@@ -9,24 +9,26 @@ This page describes FlightGear's use in SITL and with single-vehicle, although F
 {% youtube %}https://www.youtube.com/watch?v=iqdcN5Gj4wI{% endyoutube %}
 
 
-{% mermaid %}
+[![Mermaid Graph ](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEZsaWdodEdlYXIgLS0-IEZsaWdodEdlYXItQnJpZGdlO1xuICBGbGlnaHRHZWFyLUJyaWRnZSAtLT4gTUFWTGluaztcbiAgTUFWTGluayAtLT4gUFg0X1NJVEw7XG5cdCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEZsaWdodEdlYXIgLS0-IEZsaWdodEdlYXItQnJpZGdlO1xuICBGbGlnaHRHZWFyLUJyaWRnZSAtLT4gTUFWTGluaztcbiAgTUFWTGluayAtLT4gUFg0X1NJVEw7XG5cdCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+
+<!-- Original mermaid graph
 graph LR;
-  FlightGear-->FlightGear-Bridge;
-  FlightGear-Bridge-->MAVLink;
-  MAVLink-->PX4 SITL;
-{% endmermaid %}
+  FlightGear-- >FlightGear-Bridge;
+  FlightGear-Bridge-- >MAVLink;
+  MAVLink-- >PX4_SITL;
+-->
 
 > **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment, and simulation configuration (e.g. supported vehicles).
 
 
 ## Installation {#installation}
 
-#### Installation tested in Ubuntu 18.04 
+#### Installation tested in Ubuntu 18.04
 
-You need the [Development Environment on Ubuntu LTS / Debian Linux](../setup/dev_env_linux_ubuntu.md) properly installed. 
+You need the [Development Environment on Ubuntu LTS / Debian Linux](../setup/dev_env_linux_ubuntu.md) properly installed.
 
  1. Install FlightGear. In Ubuntu, you can install the latest stable FG from the PAA repository using the following commands. This action will also install the FGdata package.
- 
+
  ```
  sudo add-apt-repository ppa:saiarcot895/flightgear
  sudo apt update
@@ -35,7 +37,7 @@ You need the [Development Environment on Ubuntu LTS / Debian Linux](../setup/dev
 
 For some models (like models with electric engines) the daily build with the newest features may be necessary. It could be installed from [daily build PPA](https://launchpad.net/~saiarcot895/+archive/ubuntu/flightgear-edge).
 
-You should check that you are able to run FlightGear by running the: 
+You should check that you are able to run FlightGear by running the:
 
 ```
 fgfs --launcher
@@ -44,12 +46,12 @@ fgfs --launcher
 Additional installation instructions can be found on [FlightGear wiki](http://wiki.flightgear.org/Howto:Install_Flightgear_from_a_PPA).
 
 
- 2. Set write permissions to the `Protocols` folder in the FlightGear installation directory. On Ubuntu run 
- 
+ 2. Set write permissions to the `Protocols` folder in the FlightGear installation directory. On Ubuntu run
+
  ```
  sudo chmod a+w /usr/share/games/flightgear/Protocols
  ```
- 
+
  Setting the permissions is required because the PX4-FlightGear-Bridge puts the communication definition file here.  
 
 
@@ -77,7 +79,7 @@ Vehicle | Command
 
 > **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
 
-The commands above launch a single vehicle with the full UI. QGroundControl should be able to automatically connect to the simulated vehicle. 
+The commands above launch a single vehicle with the full UI. QGroundControl should be able to automatically connect to the simulated vehicle.
 
 ## Taking it to the Sky
 
