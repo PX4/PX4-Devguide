@@ -39,6 +39,8 @@ bmm150 <command> [arguments...]
 
    regdump
 
+   selftest
+
    stop
 
    status        print status info
