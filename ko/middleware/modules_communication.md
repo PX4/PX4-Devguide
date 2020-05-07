@@ -174,6 +174,7 @@ ORB_USE_PUBLISHER_RULES과 함께 컴파일 되면 어떤 모듈에게 무슨 �
        status        Print topic statistics
     
        top           Monitor topic publication rates
-         [-a]        print all instead of only currently publishing topics
+         [-a]        print all instead of only currently publishing topics with
+                     subscribers
          [-1]        run only once, then exit
          [<filter1> [<filter2>]] topic(s) to match (implies -a)
