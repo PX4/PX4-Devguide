@@ -173,6 +173,7 @@ uORB 模块通常作为第一个模块启动，并且绝大多数其它模块均
        status        Print topic statistics
     
        top           Monitor topic publication rates
-         [-a]        print all instead of only currently publishing topics
+         [-a]        print all instead of only currently publishing topics with
+                     subscribers
          [-1]        run only once, then exit
          [<filter1> [<filter2>]] topic(s) to match (implies -a)
