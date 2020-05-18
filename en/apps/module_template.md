@@ -11,7 +11,7 @@ In most cases a work queue task can be used, as this minimizes resource usage.
 
 ## Work Queue Task
 
-The PX4 Firmware contains a template for writing a new application (module) that runs as a work queue task: 
+The PX4 Firmware contains a template for writing a new application (module) that runs as a *work queue task*: 
 [src/examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item).
 
 A work queue task application is just the same as an ordinary (task) application, except that it needs to specify that it is a work queue task, and schedule itself to run during initialisation.
@@ -25,6 +25,17 @@ In summary:
       px4_work_queue
    ```
 1. In addition to `ModuleBase`, the task should also derive from `ScheduledWorkItem` (included from [ScheduledWorkItem.hpp]( https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/ScheduledWorkItem.hpp))
+1. Specify the queue to add the task to in the constructor initialisation.
+   The [work_item](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/WorkItemExample.cpp#L42) example adds itself to the `test1` work queue as shown below:
+   ```cpp
+   WorkItemExample::WorkItemExample() :
+	   ModuleParams(nullptr),
+	   ScheduledWorkItem(MODULE_NAME, px4::wq_configurations::test1)
+   {
+   }
+   ```
+   > **Note** The available work queues are listed in [WorkQueueManager.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/WorkQueueManager.hpp#L49) (`wq_configurations`).
+
 1. Implement the `ScheduledWorkItem::Run()` method to perform "work"
 1. Implement the `task_spawn` method, specifying that the task is a work queue (using the `task_id_is_work_queue` id.
 1. Schedule the work queue task using one of the scheduling methods (in the example we use `ScheduleOnInterval` from within the `init` method).
