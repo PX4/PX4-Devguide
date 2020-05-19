@@ -399,7 +399,7 @@ S: 0 2  10000  10000      0 -10000  10000
 VTOL systems use a [multirotor mixer](#multirotor_mixer) for the multirotor outputs, and [summing mixers](#summing_mixer) for the fixed-wing actuators (and the tilting servos in case of a tiltrotor VTOL).
 
 The mixer system for a VTOL vehicle can be either combined into a single mixer, where all the actuators are connected to either the IO or the FMU port, or split into separate mixer files for IO and for AUX.
-If separated, we recommended that all the multicopter motors are on one port, and all the servos and the fixed-wing motor on the other.
+If separated, we recommend that all the multicopter motors are on one port, and all the servos and the fixed-wing motor on the other.
 
 > **Note** The FMU output can only be used for multirotor motors starting from PX4 v1.11.
   To use the FMU output set [VT_MC_ON_FMU=1](../advanced/parameter_reference.md#VT_MC_ON_FMU) (otherwise they are not switched off when in fixed-wing flight mode).
