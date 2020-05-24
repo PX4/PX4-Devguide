@@ -85,7 +85,7 @@ if [[ ! -z $unsupported_os ]]; then
 fi
 
 #Install geographiclib
-sudo apt install geographiclib -y
+sudo apt install geographiclib-tools -y
 echo "Downloading dependent script 'install_geographiclib_datasets.sh'"
 # Source the install_geographiclib_datasets.sh script directly from github
 install_geo=$(wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh -O -)
