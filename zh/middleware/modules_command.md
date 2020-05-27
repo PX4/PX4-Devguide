@@ -74,6 +74,27 @@ Calibration procedure (running the command will guide you through it):
          [-a]        Select all channels
     
 
+## gpio
+
+Source: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
+
+This command is used to read and write GPIOs.
+
+### Usage {#gpio_usage}
+
+    gpio [arguments...]
+       read
+         <PORT> <PIN> GPIO port and pin
+         [PULLDOWN|PULLUP] Pulldown/Pullup
+         [--force]   Force (ignore board gpio list)
+    
+       write
+         <PORT> <PIN> GPIO port and pin
+         <VALUE>     Value to write
+         [PULLDOWN|PULLUP] Pulldown/Pullup
+         [--force]   Force (ignore board gpio list)
+    
+
 ## hardfault_log
 
 Source: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
