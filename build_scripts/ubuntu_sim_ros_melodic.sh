@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Bash script for setting up ROS Melodic (with Gazebo 9) development environment for PX4 on Ubuntu LTS (18.04). 
+## Bash script for setting up ROS Melodic (with Gazebo 9) development environment for PX4 on Ubuntu LTS (18.04).
 ## It installs the common dependencies for all targets (including Qt Creator)
 ##
 ## Installs:
@@ -46,7 +46,7 @@ else echo "$rossource" >> ~/.bashrc; fi
 eval $rossource
 
 ## Install rosinstall and other dependencies
-sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential -y
+sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential -y
 
 
 
@@ -99,7 +99,6 @@ sudo bash -c "$install_geo"
 catkin build
 ## Re-source environment to reflect new packages/build environment
 catkin_ws_source="source ~/catkin_ws/devel/setup.bash"
-if grep -Fxq "$catkin_ws_source" ~/.bashrc; then echo ROS catkin_ws setup.bash already in .bashrc; 
+if grep -Fxq "$catkin_ws_source" ~/.bashrc; then echo ROS catkin_ws setup.bash already in .bashrc;
 else echo "$catkin_ws_source" >> ~/.bashrc; fi
 eval $catkin_ws_source
-
