@@ -84,11 +84,8 @@ Then install Fast-RTPS-Gen 1.0.4 (Gradle is required for this):
 git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git -b v1.0.4 ~/Fast-RTPS-Gen \
     && cd ~/Fast-RTPS-Gen \
     && ./gradlew assemble \
-    && ./gradlew install
+    && sudo ./gradlew install
 ```
-
-> **Note** You might require `sudo` permissions on the "install" step
-
 
 ## Installation from Binaries
 
