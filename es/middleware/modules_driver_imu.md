@@ -121,7 +121,7 @@ bmi055 <command> [arguments...]
    status        print status info
 ```
 ## bmi088
-Source: [drivers/imu/bmi088](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bmi088)
+Source: [drivers/imu/bosch/bmi088](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bosch/bmi088)
 
 ### Usage {#bmi088_usage}
 ```
@@ -140,10 +140,6 @@ bmi088 <command> [arguments...]
      [-f <val>]  bus frequency in kHz
      [-R <val>]  Rotation
                  default: 0
-
-   regdump
-
-   testerror
 
    stop
 
