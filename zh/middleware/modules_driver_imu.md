@@ -92,7 +92,7 @@ bma180 <command> [arguments...]
    status        print status info
 ```
 ## bmi055
-Source: [drivers/imu/bmi055](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bmi055)
+Source: [drivers/imu/bosch/bmi055](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bosch/bmi055)
 
 ### Usage {#bmi055_usage}
 ```
@@ -111,10 +111,6 @@ bmi055 <command> [arguments...]
      [-f <val>]  bus frequency in kHz
      [-R <val>]  Rotation
                  default: 0
-
-   regdump
-
-   testerror
 
    stop
 
