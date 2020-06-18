@@ -249,6 +249,24 @@ dshot <command> [arguments...]
 
    status        print status info
 ```
+## fake_magnetometer
+Source: [examples/fake_magnetometer](https://github.com/PX4/Firmware/tree/master/src/examples/fake_magnetometer)
+
+
+### Description
+Publish the earth magnetic field as a fake magnetometer (sensor_mag).
+Requires vehicle_attitude and vehicle_gps_position.
+
+### Usage {#fake_magnetometer_usage}
+```
+fake_magnetometer <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## gps
 Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
 
