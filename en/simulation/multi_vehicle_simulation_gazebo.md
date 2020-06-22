@@ -8,12 +8,13 @@ A different approach is used for simulation with and without ROS.
 
 To simulate multiple iris or plane vehicles in Gazebo use the following commands in the terminal (from the root of the *Firmware* tree):
 ```
-Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>] [-w <world>]
+Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>] [-w <world>] [-s <script>]
 ```
 
 - `<model>`: The [vehicle type/model](../simulation/gazebo_vehicles.md) to spawn, e.g.: `iris` (default), `plane`, `standard_vtol`.
 - `<number_of_vehicles>`: The number of vehicles to spawn. Default is 3. Maximum is 255.
 - `<world>`: The [world](../simulation/gazebo_worlds.md) that the vehicle should be spawned into, e.g.: `empty` (default)
+- `<script>: This overrides the `-n` and `-s` allows spawning a heterogeneous script, e.g.: `-s "iris:3,plane:2,standard_vtol:3"`
 
 Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.) and can be accessed from a unique remote offboard UDP port (14540, 14541, 14542, etc.).
 
