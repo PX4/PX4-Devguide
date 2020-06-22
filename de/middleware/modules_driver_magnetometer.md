@@ -1,10 +1,30 @@
 # Modules Reference: Magnetometer (Driver)
 ## ak09916
-Source: [drivers/magnetometer/ak09916](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/ak09916)
+Source: [drivers/magnetometer/akm/ak09916](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/akm/ak09916)
 
 ### Usage {#ak09916_usage}
 ```
 ak09916 <command> [arguments...]
+ Commands:
+   start
+     [-I]        Internal I2C bus(es)
+     [-X]        External I2C bus(es)
+     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+                 (default=1))
+     [-f <val>]  bus frequency in kHz
+     [-R <val>]  Rotation
+                 default: 0
+
+   stop
+
+   status        print status info
+```
+## ak8963
+Source: [drivers/magnetometer/akm/ak8963](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/akm/ak8963)
+
+### Usage {#ak8963_usage}
+```
+ak8963 <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
