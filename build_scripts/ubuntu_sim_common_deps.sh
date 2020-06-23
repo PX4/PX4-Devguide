@@ -5,7 +5,6 @@
 ##
 ## Installs:
 ## - Common dependencies and tools for all targets (including: Ninja build system, pyulog)
-## - FastRTPS and FastCDR
 ## - jMAVSim simulator dependencies
 ## - PX4/Firmware source (to ~/src/Firmware/)
 
