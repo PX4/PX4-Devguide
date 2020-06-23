@@ -21,6 +21,7 @@ Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>] [-w <wo
    ```
    - Supported vehicle types are: `iris`, `plane`, `standard_vtol`.
    - The number after the colon indicates the number of vehicles (of that type) to spawn.
+   - Maximum number of vehicles is 255.
 
 Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.) and can be accessed from a unique remote offboard UDP port (14540, 14541, 14542, etc.).
 
