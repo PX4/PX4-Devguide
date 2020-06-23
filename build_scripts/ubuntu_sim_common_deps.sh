@@ -31,9 +31,6 @@ sudo -H pip install pandas jinja2 pyserial pyyaml
 # optional python tools
 sudo -H pip install pyulog
 
-# Install FastRTPS 1.7.1 and FastCDR-1.0.8 by following the instructions below
-# https://dev.px4.io/master/en/setup/fast-rtps-installation.html
-
 # jMAVSim simulator dependencies
 echo "Installing jMAVSim simulator dependencies"
 sudo apt-get install ant openjdk-8-jdk openjdk-8-jre -y
