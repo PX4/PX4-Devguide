@@ -14,7 +14,13 @@ Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>] [-w <wo
 - `<model>`: The [vehicle type/model](../simulation/gazebo_vehicles.md) to spawn, e.g.: `iris` (default), `plane`, `standard_vtol`.
 - `<number_of_vehicles>`: The number of vehicles to spawn. Default is 3. Maximum is 255.
 - `<world>`: The [world](../simulation/gazebo_worlds.md) that the vehicle should be spawned into, e.g.: `empty` (default)
-- `<script>: This overrides the `-n` and `-s` allows spawning a heterogeneous script, e.g.: `-s "iris:3,plane:2,standard_vtol:3"`
+- `<script>`: Spawn multiple vehicles of different types (overriding the values in `-m` and `-n`). 
+  For example: 
+   ```
+   -s "iris:3,plane:2,standard_vtol:3"
+   ```
+   - Supported vehicle types are: `iris`, `plane`, `standard_vtol`.
+   - The number after the colon indicates the number of vehicles (of that type) to spawn.
 
 Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.) and can be accessed from a unique remote offboard UDP port (14540, 14541, 14542, etc.).
 
