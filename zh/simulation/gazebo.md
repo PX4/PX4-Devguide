@@ -52,11 +52,12 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     | [3DR Solo（四旋翼）](../simulation/gazebo_vehicles.md#3dr_solo)                                          | `make px4_sitl gazebo_solo`            |
     | <span id="typhoon_h480"></span>[Typhoon H480（六旋翼）](../simulation/gazebo_vehicles.md#typhoon_h480) （支持视频流） | `make px4_sitl gazebo_typhoon_h480`    |
     | [标准构型的固定翼](../simulation/gazebo_vehicles.md#standard_plane)                                         | `make px4_sitl gazebo_plane`           |
-    | [标准垂起](../simulation/gazebo_vehicles.md#standard_vtol)                                              | `make px4_sitl gazebo_standard_vtol`   |
-    | [尾座式垂起](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                           | `make px4_sitl gazebo_tailsitter`      |
-    | [Ackerman 地面车辆（UGV/Rover）](../simulation/gazebo_vehicles.md#ugv)                                    | `make px4_sitl gazebo_rover`           |
-    | [HippoCampus TUHH（UUV：无人水下航行器）](../simulation/gazebo_vehicles.md#uuv)                               | `make px4_sitl gazebo_uuv_hippocampus` |
-    | [船（USV：无人驾驶水面艇）](../simulation/gazebo_vehicles.md#usv)                                              | `make px4_sitl gazebo_boat`            |
+    | [Standard Plane (with catapult launch)](../simulation/gazebo_vehicles.md#standard_plane_catapult)   | `make px4_sitl gazebo_plane_catapult`  |
+    | [Standard VTOL](../simulation/gazebo_vehicles.md#standard_vtol)                                     | `make px4_sitl gazebo_standard_vtol`   |
+    | [Tailsitter VTOL](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                 | `make px4_sitl gazebo_tailsitter`      |
+    | [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                | `make px4_sitl gazebo_rover`           |
+    | [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)         | `make px4_sitl gazebo_uuv_hippocampus` |
+    | [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                        | `make px4_sitl gazebo_boat`            |
     
     > **Note** 如果发生构建错误， [文件和代码安装指南](../setup/dev_env.md) 是一个有用的参考。
     
