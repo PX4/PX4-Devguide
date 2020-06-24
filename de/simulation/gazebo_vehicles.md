@@ -51,7 +51,20 @@ make px4_sitl gazebo_plane
 
 ![Plane in Gazebo](../../assets/simulation/gazebo/vehicles/plane.png)
 
+
+#### Standard Plane with Catapult Launch {#standard_plane_catapult}
+
+```sh
+make px4_sitl gazebo_plane_catapult
+```
+
+This model simulates hand/catapult launch, which can be used for [fixed wing takeoff](http://docs.px4.io/master/en/flying/fixed_wing_takeoff.html#fixed-wing-takeoff) in position mode, takeoff mode, or missions.
+
+The plane will automatically be launched as soon as the vehicle is armed.
+
+
 ## VTOL
+
 ### Standard VTOL {#standard_vtol}
 
 ```sh
