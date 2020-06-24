@@ -1,5 +1,22 @@
 # Modules Reference: System
 
+## battery_simulator
+
+Source: [modules/simulator/battery_simulator](https://github.com/PX4/Firmware/tree/master/src/modules/simulator/battery_simulator)
+
+### Description
+
+### Usage {#battery_simulator_usage}
+
+    battery_simulator <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## battery_status
 
 Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
