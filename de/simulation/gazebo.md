@@ -51,6 +51,7 @@ The supported vehicles and `make` commands are listed below (click links to see 
 | [3DR Solo (Quadrotor)](../simulation/gazebo_vehicles.md#3dr_solo)                                                            | `make px4_sitl gazebo_solo`            |
 | <span id="typhoon_h480"></span>[Typhoon H480 (Hexrotor)](../simulation/gazebo_vehicles.md#typhoon_h480) (supports video streaming) | `make px4_sitl gazebo_typhoon_h480`    |
 | [Standard Plane](../simulation/gazebo_vehicles.md#standard_plane)                                                            | `make px4_sitl gazebo_plane`           |
+| [Standard Plane (with catapult launch)](../simulation/gazebo_vehicles.md#standard_plane_catapult)                            | `make px4_sitl gazebo_plane_catapult`  |
 | [Standard VTOL](../simulation/gazebo_vehicles.md#standard_vtol)                                                              | `make px4_sitl gazebo_standard_vtol`   |
 | [Tailsitter VTOL](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                                          | `make px4_sitl gazebo_tailsitter`      |
 | [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                                         | `make px4_sitl gazebo_rover`           |
