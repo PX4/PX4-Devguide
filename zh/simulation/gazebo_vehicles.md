@@ -51,14 +51,27 @@ make px4_sitl gazebo_plane
 
 ![固定翼的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/plane.png)
 
+
+#### Standard Plane with Catapult Launch {#standard_plane_catapult}
+
+```sh
+make px4_sitl gazebo_plane_catapult
+```
+
+This model simulates hand/catapult launch, which can be used for [fixed wing takeoff](http://docs.px4.io/master/en/flying/fixed_wing_takeoff.html#fixed-wing-takeoff) in position mode, takeoff mode, or missions.
+
+The plane will automatically be launched as soon as the vehicle is armed.
+
+
 ## VTOL
+
 ### Standard VTOL {#standard_vtol}
 
 ```sh
 make px4_sitl gazebo_standard_vtol
 ```
 
-![标准 VTOL 的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/standard_vtol.png)
+![Standard VTOL in Gazebo](../../assets/simulation/gazebo/vehicles/standard_vtol.png)
 
 ### Tailsitter VTOL {#tailsitter_vtol}
 
@@ -66,7 +79,7 @@ make px4_sitl gazebo_standard_vtol
 make px4_sitl gazebo_tailsitter
 ```
 
-![尾座式 VTOL 的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/tailsitter.png)
+![Tailsitter VTOL in Gazebo](../../assets/simulation/gazebo/vehicles/tailsitter.png)
 
 
 ## Unmmanned Ground Vehicle (UGV/Rover/Car) {#ugv}
@@ -77,7 +90,7 @@ make px4_sitl gazebo_tailsitter
 make px4_sitl gazebo_rover
 ```
 
-![无人车的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/rover.png)
+![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/rover.png)
 
 ### Differential UGV {#ugv_differential}
 
