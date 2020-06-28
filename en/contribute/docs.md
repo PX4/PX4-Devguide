@@ -135,7 +135,7 @@ In overview:
 * A file named **book.json** defines any dependencies of the build.
 * A web hook is used to track whenever files are merged into the master branch on this repository, causing the book to rebuild.
 
-## Style guide
+### Style guide
 
 1. Files/file names
 
