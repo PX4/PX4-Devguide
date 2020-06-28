@@ -149,6 +149,7 @@
   * [Source Code Management](contribute/code.md)
     * [GIT Examples](contribute/git_examples.md)
   * [Documentation](contribute/docs.md)
+    * [Building Gitbook Locally](contribute/docs_gitbook.md)
   * [Translation](contribute/translation.md)
   * [Terminology/Notation](contribute/notation.md)
   * [Licenses](contribute/licenses.md)
