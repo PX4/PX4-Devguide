@@ -349,7 +349,7 @@ param <command> [arguments...]
 
    show          Show parameter values
      [-a]        Show all parameters (not just used)
-     [-c]        Show only changed and used params
+     [-c]        Show only changed params (unused too)
      [-q]        quiet mode, print only param value (name needs to be exact)
      [<filter>]  Filter by param name (wildcard at end allowed, eg. sys_*)
 
