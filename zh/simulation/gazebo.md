@@ -193,7 +193,9 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     ## Set World Location {#set_world_location}
     
-    The vehicle gets spawned into the origin of the world model at some simulated GPS location.
+    The vehicle gets spawned very close to the origin of the world model at some simulated GPS location.
+    
+    > **Note** The vehicle is not spawned exactly at the Gazebo origin (0,0,0), but using a slight offset, which can highlight a number of common coding issues.
     
     If using a world that recreates a real location (e.g. a particular airport) this can result in a very obvious mismatch between what is displayed in the simulated world, and what is shown on the ground station map. To overcome this problem you can set the location of the world origin to the GPS co-ordinates where it would be in "real life".
     
