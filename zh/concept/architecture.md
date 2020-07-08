@@ -30,7 +30,7 @@ again. -->
 
 PX4 系统通过一个名为 [uORB](../middleware/uorb.md) 的 发布-订阅 消息总线实现模块之间的相互通讯。 使用 发布-订阅 消息总线这个方案意味着：
 
-- 系统是 “响应式” 的 — 系统异步运行，新数据抵达时系统立即进行更新。
+- The system is reactive — it is asynchronous and will update instantly when new data is available
 - 系统所有的活动和通信都是完全并行的。
 - 系统组件在任何地方都可以在保证线程安全的情况下使用数据。
 
@@ -68,24 +68,26 @@ again. -->
 
 消息的更新速率可以使用 `uorb top` 命令实时 [查看](../middleware/uorb.md) 。
 
-## 运行时的环境
+## Runtime Environment {#runtime-environment}
 
-PX4 可以在提供 POSIX-API 接口的各种操作系统上运行 （比如说 Linux, macOS, NuttX 和 QuRT）。 操作系统应该还具备某种形式的实时调度能力（例如 FIFO ）。
+PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT). It should also have some form of real-time scheduling (e.g. FIFO).
 
 模块间通信 (使用 [uORB](../middleware/uorb.md)) 是基于贡献内存实现的。 整个 PX4 中间件在同一个地址空间内运行，即内存在所有模块之间共享。
 
-> **Info** 整个系统被设计成仅需要很小的工作量就可以实现在单独的地址空间内运行各个模块（需要进行改动的部分主要包括 `uORB`，`parameter interface`，`dataman` 以及 `perf`）。
+> **Info** The system is designed such that with minimal effort it would be possible to run each module in separate address space (parts that would need to be changed include `uORB`, `parameter interface`, `dataman` and `perf`).
 
 有 2 种不同的模块执行方式：
 
-- **任务 （Tasks）**: 模块在它自己的任务中运行, 具有自己的堆栈和进程优先级（这是更常见的方法）。 
-- **工作队列 （Work queues）**：模块在共享任务上运行, 这意味着它没有自己的堆栈。 多个任务在同一堆栈上运行, 每个工作队列只有一个优先级。
-    
-    任务 （Task）模式下通过设定未来时间段的一个固定时间点完成任务的规划。 这种方式的优点是 RAM 占用更少，但任务不能休眠，也不能轮训消息。
-    
-    工作队列（work Queue）用于执行周期性任务， 如传感器驱动程序或触地检测器。
+- **Tasks**: The module runs in its own task with its own stack and process priority.
+- **Work queue tasks**: The module runs on a shared work queue, sharing the same stack and work queue thread priority as other modules on the queue.
+  
+  - All the tasks must behave co-operatively as they cannot interrupt each other.
+  - Multiple *work queue tasks* can run on a queue, and there can be multiple queues.
+  - A *work queue task* is scheduled by specifying a fixed time in the future, or via uORB topic update callback.
+  
+  The advantage of running modules on a work queue is that it uses less RAM, and potentially results in fewer task switches. The disadvantages are that *work queue tasks* are not allowed to sleep or poll on a message, or do blocking IO (such as reading from a file). Long-running tasks (doing heavy computation) should potentially also run in a separate task or at least a separate work queue.
 
-> **Note** 在工作队列中的任务不会显示在 `top` 中（你尽能看见工作队列本身，比如 `lpwork`）。
+> **Note** Tasks running on a work queue do not show up in [`uorb top`](../middleware/modules_communication.md#uorb) (only the work queues themselves can be seen - e.g. as `wq:lp_default`). Use [`work_queue status`](../middleware/modules_system.md#workqueue) to display all active work queue items.
 
 ### 后台任务
 

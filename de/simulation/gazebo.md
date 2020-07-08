@@ -51,6 +51,7 @@ The supported vehicles and `make` commands are listed below (click links to see 
 | [3DR Solo (Quadrotor)](../simulation/gazebo_vehicles.md#3dr_solo)                                                            | `make px4_sitl gazebo_solo`            |
 | <span id="typhoon_h480"></span>[Typhoon H480 (Hexrotor)](../simulation/gazebo_vehicles.md#typhoon_h480) (supports video streaming) | `make px4_sitl gazebo_typhoon_h480`    |
 | [Standard Plane](../simulation/gazebo_vehicles.md#standard_plane)                                                            | `make px4_sitl gazebo_plane`           |
+| [Standard Plane (with catapult launch)](../simulation/gazebo_vehicles.md#standard_plane_catapult)                            | `make px4_sitl gazebo_plane_catapult`  |
 | [Standard VTOL](../simulation/gazebo_vehicles.md#standard_vtol)                                                              | `make px4_sitl gazebo_standard_vtol`   |
 | [Tailsitter VTOL](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                                          | `make px4_sitl gazebo_tailsitter`      |
 | [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                                         | `make px4_sitl gazebo_rover`           |
@@ -191,7 +192,9 @@ You can also specify the full path to a world to load using the `PX4_SITL_WORLD`
 
 ## Set World Location {#set_world_location}
 
-The vehicle gets spawned into the origin of the world model at some simulated GPS location.
+The vehicle gets spawned very close to the origin of the world model at some simulated GPS location.
+
+> **Note** The vehicle is not spawned exactly at the Gazebo origin (0,0,0), but using a slight offset, which can highlight a number of common coding issues.
 
 If using a world that recreates a real location (e.g. a particular airport) this can result in a very obvious mismatch between what is displayed in the simulated world, and what is shown on the ground station map. To overcome this problem you can set the location of the world origin to the GPS co-ordinates where it would be in "real life".
 

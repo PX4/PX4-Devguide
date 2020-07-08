@@ -123,7 +123,7 @@ In overview:
 * A file named **book.json** defines any dependencies of the build.
 * A web hook is used to track whenever files are merged into the master branch on this repository, causing the book to rebuild.
 
-## 文档规范指南
+### Style guide
 
 1. Files/file names
 
@@ -187,10 +187,10 @@ Everything you need to install and build Gitbook locally is also explained in th
         sh
         gitbook help
 
-## 翻译 {#translation}
+## Translations {#translation}
 
 We'd love your help to translate *QGroundControl* and our guides for PX4, *QGroundControl* and MAVLink. For more information see: [Translation](../contribute/translation.md).
 
-## 许可证
+## Licence
 
 All PX4/Dronecode documentation is free to use and modify under terms of the permissive [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence.

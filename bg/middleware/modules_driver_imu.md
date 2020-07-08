@@ -92,7 +92,7 @@ bma180 <command> [arguments...]
    status        print status info
 ```
 ## bmi055
-Source: [drivers/imu/bmi055](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bmi055)
+Source: [drivers/imu/bosch/bmi055](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bosch/bmi055)
 
 ### Usage {#bmi055_usage}
 ```
@@ -112,16 +112,12 @@ bmi055 <command> [arguments...]
      [-R <val>]  Rotation
                  default: 0
 
-   regdump
-
-   testerror
-
    stop
 
    status        print status info
 ```
 ## bmi088
-Source: [drivers/imu/bmi088](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bmi088)
+Source: [drivers/imu/bosch/bmi088](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bosch/bmi088)
 
 ### Usage {#bmi088_usage}
 ```
@@ -140,10 +136,6 @@ bmi088 <command> [arguments...]
      [-f <val>]  bus frequency in kHz
      [-R <val>]  Rotation
                  default: 0
-
-   regdump
-
-   testerror
 
    stop
 
@@ -327,15 +319,13 @@ icm20689 <command> [arguments...]
    status        print status info
 ```
 ## icm20948
-Source: [drivers/imu/icm20948](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/icm20948)
+Source: [drivers/imu/invensense/icm20948](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20948)
 
 ### Usage {#icm20948_usage}
 ```
 icm20948 <command> [arguments...]
  Commands:
    start
-     [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
@@ -344,6 +334,7 @@ icm20948 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-M]        Enable Magnetometer (AK8963)
      [-R <val>]  Rotation
                  default: 0
 
