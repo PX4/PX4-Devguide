@@ -70,6 +70,7 @@ sdp3x_airspeed <command> [arguments...]
      [-f <val>]  bus frequency in kHz
      [-a <val>]  I2C address
                  default: 33
+     [-k]        if initialization (probing) fails, keep retrying periodically
 
    stop
 
