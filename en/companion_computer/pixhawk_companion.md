@@ -23,7 +23,7 @@ The most common options are:
 
   * [MAVROS](../ros/mavros_installation.md) to communicate to ROS nodes
   * [C/C++ example code](https://github.com/mavlink/c_uart_interface_example) to connect custom code
-  * [MAVLink Router](https://github.com/intel/mavlink-router) (recommended) or [MAVProxy](https://github.com/ArduPilot/MAVProxy) to route MAVLink between serial and UDP
+  * [MAVLink Router](https://github.com/intel/mavlink-router) (recommended) or [MAVProxy](https://ardupilot.org/mavproxy/) to route MAVLink between serial and UDP
 
 ## Hardware setup
 
