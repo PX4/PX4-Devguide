@@ -3663,9 +3663,11 @@ but also ignore less noise</p>   </td>
 <li><strong>3:</strong> Return mode</li> 
 
 <li><strong>4:</strong> Terminate</li> 
+
+<li><strong>5:</strong> Land mode</li> 
 </ul>
   </td>
- <td style="vertical-align: top;">0 > 4 </td>
+ <td style="vertical-align: top;">0 > 5 </td>
  <td style="vertical-align: top;">1</td>
  <td style="vertical-align: top;"></td>
 </tr>
