@@ -290,13 +290,13 @@ make
 
 ### uORB 구독 테스트
 
-The final step is to start your application as a background process/task by typing the following in the nsh shell:
+마지막 단계로 nsh 쉘에 다음을 입력하여 어플리케이션을 백그라운드 프로스세/태스크로 시작:
 
 ```sh
 px4_simple_app &
 ```
 
-Your app will display 5 sensor values in the console and then exit:
+어플르케이션은 콘솔에 5개의 센서 값을 표시하고 종료:
 
 ```sh
 [px4_simple_app] Accelerometer:   0.0483          0.0821          0.0332
@@ -307,11 +307,11 @@ Your app will display 5 sensor values in the console and then exit:
 [px4_simple_app] Accelerometer:   0.0489          0.0804          0.0328
 ```
 
-> **Tip** The [Module Template for Full Applications](../apps/module_template.md) can be used to write background process that can be controlled from the command line.
+> **Tip** [Module Template for Full Applications](../apps/module_template.md)을 사용하여, 명령행에서 제어할 수 있는 백그라운드 프로세스 작성 가능.
 
-## Publishing Data
+## 데이터 발행 (Publishing Data)
 
-To use the calculated outputs, the next step is to *publish* the results. Below we show how to publish the attitude topic.
+계산이 완료된 출력값을 사용하기 위한 다음 단계로 결과값을 *발행(publish)*합니다. 다음에서 고도 topic을 발행하는 방법을 보여줍니다.
 
 > **Note** We've chosen `attitude` because we know that the *mavlink* app forwards it to the ground control station - providing an easy way to look at the results.
 
