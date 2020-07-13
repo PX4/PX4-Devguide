@@ -232,13 +232,13 @@ pxh> px4_simple_app
 INFO  [px4_simple_app] Hello Sky!
 ```
 
-The application can now be extended to actually perform useful tasks.
+이제 실제로 유용할 일을 수행하기 위해 이 어플리케이션을 확장할 수 있습니다.
 
-## Subscribing to Sensor Data
+## 센서 데이터 구독 (Subscribing to Sensor Data)
 
-To do something useful, the application needs to subscribe inputs and publish outputs (e.g. motor or servo commands).
+유용한 일을 수행하기 위해, 어플리케이션은 입력값을 구독(subscribe)하고 출력값을 발행(publish)할 필요가 있습니다(예, 모터 혹은 서보 명령).
 
-> **Tip** The benefits of the PX4 hardware abstraction comes into play here! There is no need to interact in any way with sensor drivers and no need to update your app if the board or sensors are updated.
+> **Tip** 이지점에서 PX4 하드웨어 추상화의 이점이 나타납니다! There is no need to interact in any way with sensor drivers and no need to update your app if the board or sensors are updated.
 
 Individual message channels between applications are called [topics](../middleware/uorb.md). For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) topic, which holds the synchronized sensor data of the complete system.
 
