@@ -296,7 +296,7 @@ make
 px4_simple_app &
 ```
 
-어플르케이션은 콘솔에 5개의 센서 값을 표시하고 종료:
+어플리케이션은 콘솔에 5개의 센서 값을 표시하고 종료:
 
 ```sh
 [px4_simple_app] Accelerometer:   0.0483          0.0821          0.0332
@@ -313,9 +313,9 @@ px4_simple_app &
 
 계산이 완료된 출력값을 사용하기 위한 다음 단계로 결과값을 *발행(publish)*합니다. 다음에서 고도 topic을 발행하는 방법을 보여줍니다.
 
-> **Note** We've chosen `attitude` because we know that the *mavlink* app forwards it to the ground control station - providing an easy way to look at the results.
+> **Note** *mavlink* 앱이 지상 관제소에 `attitude`를 전달하며 이 결과를 쉽게 볼수 있어 이를 선정함.
 
-The interface is pretty simple: initialize the `struct` of the topic to be published and advertise the topic:
+인터페이스는 매우 간단함: 발행될 topic의 `구조체(struct)`를 초기화하고 topic을 알림(advertise):
 
 ```c
 #include <uORB/topics/vehicle_attitude.h>
@@ -326,15 +326,15 @@ memset(&att, 0, sizeof(att));
 orb_advert_t att_pub_fd = orb_advertise(ORB_ID(vehicle_attitude), &att);
 ```
 
-In the main loop, publish the information whenever its ready:
+main 루프에서 정보가 준비될 때마다 이를 발행함:
 
 ```c
 orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
 ```
 
-## Full Example Code
+## 전체 예제 코드
 
-The [complete example code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_simple_app/px4_simple_app.c) is now:
+[전체 예제 코드](https://github.com/PX4/Firmware/blob/master/src/examples/px4_simple_app/px4_simple_app.c)는 다음과 같다:
 
 ```c
 /****************************************************************************
@@ -469,20 +469,20 @@ int px4_simple_app_main(int argc, char *argv[])
 }
 ```
 
-## Running the Complete Example
+## 전체 예제 실행
 
-And finally run your app:
+마지막으로 어플리케이션을 실행:
 
 ```sh
 px4_simple_app
 ```
 
-If you start *QGroundControl*, you can check the sensor values in the real time plot ([Analyze > MAVLink Inspector](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_inspector.html)).
+*QGroundControl*을 실행하면, 센서 값을 실시간 플롯으로 확인 가능합니다 ([Analyze > MAVLink Inspector](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_inspector.html)).
 
-## Wrap-Up
+## 마무리
 
-This tutorial covered everything needed to develop a basic PX4 autopilot application. Keep in mind that the full list of uORB messages/topics is [available here](https://github.com/PX4/Firmware/tree/master/msg/) and that the headers are well documented and serve as reference.
+본 튜토리얼에서 PX4 오토파일럿 어플리케이션 개발에 필요한 모든 것을 다루었습니다. 전체 uORB 메시지/토픽의 리스트는 [여기](https://github.com/PX4/Firmware/tree/master/msg/)에 있으며 헤더에 문서화가 잘되어 있으며 참고로 삼을 수 있음을 잊지 마시기 바랍니다.
 
-Further information and troubleshooting/common pitfalls can be found here: [uORB](../middleware/uorb.md).
+보다 상세한 정보와 트러블슈팅/흔한 어려움에 대한 내용은 여기에서 찾을 수 있습니다: [uORB](../middleware/uorb.md).
 
-The next page presents a template for writing a full application with start and stop functionality.
+다음 페이지에서는 시작/종료 기능을 가지는 완전한 어플리케이션(full application)을 작성하기위한 템플릿을 제공합니다.
