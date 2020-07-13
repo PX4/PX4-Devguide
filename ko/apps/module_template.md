@@ -10,19 +10,19 @@
 
 ## Work Queue Task
 
-The PX4 Firmware contains a template for writing a new application (module) that runs as a *work queue task*: [src/examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item).
+PX4 Firmware은 *work queue task*로 동작하는 신규 어플리케이션(모듈) 작성용 템플릿을 포함: [src/examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item).
 
-A work queue task application is just the same as an ordinary (task) application, except that it needs to specify that it is a work queue task, and schedule itself to run during initialisation.
+Work queue task 어플리케이션은 보통의 (task) 어플리케이션과 동일하나, 이 어플리케이션이 work queue task임을 명시하고 초기화 구간에서 자신을 스케쥴할 필요가 있습니다.
 
-The example shows how. In summary:
+예제를 통해 어떻게 하는지 확인합니다. 요약하면:
 
-1. Specify the dependency on the work queue library in the cmake definition file ([CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/CMakeLists.txt)): 
+1. Cmake 정의 파일([CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/CMakeLists.txt))에 work queue 라이브러리 의존성을 명시함: 
         ...
         DEPENDS
           px4_work_queue
 
-2. In addition to `ModuleBase`, the task should also derive from `ScheduledWorkItem` (included from [ScheduledWorkItem.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/ScheduledWorkItem.hpp))
-3. Specify the queue to add the task to in the constructor initialisation. The [work_item](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/WorkItemExample.cpp#L42) example adds itself to the `wq_configurations::test1` work queue as shown below:
+2. 태스크는 `ModuleBase`에 추가로 ([ScheduledWorkItem.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/ScheduledWorkItem.hpp)에 포함된)`ScheduledWorkItem`에서도 파생되어야 함
+3. 생성자 초기화시에 태스크를 추가할 큐를 명시함. [work_item](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/WorkItemExample.cpp#L42) 예제에서는 자신을 `wq_configurations::test1` work queue에 아래와 같이 추가함:
     
     ```cpp
     WorkItemExample::WorkItemExample() :
@@ -32,16 +32,16 @@ The example shows how. In summary:
     }
     ```
     
-    > **Note** The available work queues (`wq_configurations`) are listed in [WorkQueueManager.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/WorkQueueManager.hpp#L49).
+    > **Note** 사용가능한 work queues(`wq_configurations`)는 [WorkQueueManager.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/WorkQueueManager.hpp#L49)에 나열됨.
 
-4. Implement the `ScheduledWorkItem::Run()` method to perform "work".
+4. "작업(work)"을 수행할 `ScheduledWorkItem::Run()` 메서드를 구현.
 
 5. Implement the `task_spawn` method, specifying that the task is a work queue (using the `task_id_is_work_queue` id.
 6. Schedule the work queue task using one of the scheduling methods (in the example we use `ScheduleOnInterval` from within the `init` method).
 
 ## Tasks
 
-The PX4 Firmware contains a template for writing a new application (module) that runs as a task on its own stack: [src/templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module).
+PX4 Firmware은 task로 동작하는 신규 어플리케이션(모듈) 작성용 템플릿을 포함: [src/templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module).
 
 The template demonstrates the following additional features/aspects that are required or are useful for a full application:
 
