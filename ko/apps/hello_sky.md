@@ -250,9 +250,9 @@ Topic 구독은 간단합니다:
 int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 ```
 
-The `sensor_sub_fd` is a topic handle and can be used to very efficiently perform a blocking wait for new data. The current thread goes to sleep and is woken up automatically by the scheduler once new data is available, not consuming any CPU cycles while waiting. To do this, we use the [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) POSIX system call.
+`sensor_sub_fd` 은 topic handle이며, 새로운 데이터를 블로킹 방식으로 대기하는데 효율적으로 사용될 수 있습니다. 현 쓰레드는 슬립상태로 들어가고 새로운 데이터가 있을때 스케쥴러에의해 자동적으로 깨어나며, 대기시 CPU 사이클을 소비하지 않습니다. 이러한 용도로 [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) POSIX 시스템 콜을 사용합니다.
 
-Adding `poll()` to the subscription looks like (*pseudocode, look for the full implementation below*):
+구독하는 쪽에 `poll()`을 추가한 경우 (*의사코드임, 전체 구현은 아래를 볼 것*):
 
 ```cpp
 #include <poll.h>
@@ -282,13 +282,13 @@ while (true) {
 }
 ```
 
-Compile the app again by entering:
+다음을 입력하여 어플리케이션 컴파일:
 
 ```sh
 make
 ```
 
-### Testing the uORB Subscription
+### uORB 구독 테스트
 
 The final step is to start your application as a background process/task by typing the following in the nsh shell:
 
