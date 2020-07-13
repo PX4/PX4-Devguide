@@ -1,6 +1,6 @@
-# First Application Tutorial (Hello Sky)
+# 첫번째 어플리케이션 튜토리얼 (Hello Sky)
 
-This topic explains how to create and run your first onboard application. It covers all the basic concepts and APIs required for app development on PX4.
+이번 주제에서는 여러분의 첫번째 온보드 어플리케이션의 생성 및 실행 방법에 대해 설명합니다. It covers all the basic concepts and APIs required for app development on PX4.
 
 > **Note** For simplicity, more advanced features like start/stop functionality and command-line arguments are omitted. These are covered in [Application/Module Template](../apps/module_template.md).
 
