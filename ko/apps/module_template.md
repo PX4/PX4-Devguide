@@ -1,12 +1,12 @@
 # Module Template for Full Applications
 
-어플리케이션은 *task* (자신의 스택과 수행 우선순위를 지니는 모듈)나 *work queue task* (작업 큐 쓰레드상에서 실행되는 모듈로, 작업큐 내의 다른 여러 태스크와 스택과 우선순위를 공유함)로 작성할 수 있습니다. In most cases a work queue task can be used, as this minimizes resource usage.
+어플리케이션은 *task* (자신의 스택과 수행 우선순위를 지니는 모듈)나 *work queue task* (작업 큐 쓰레드상에서 실행되는 모듈로, 작업큐 내의 다른 여러 태스크와 스택과 우선순위를 공유함)로 작성할 수 있습니다. 리소스 사용을 최소화하기 때문에 대부분의 경우 work queue task를 사용할 수 있습니다.
 
-> **Note** [Architectural Overview > Runtime Environment](../concept/architecture.md#runtime-environment) provides more information about tasks and work queue tasks.
+> **Note** [Architectural Overview > Runtime Environment](../concept/architecture.md#runtime-environment) 항목에서 task와 work queue task에 대한 자세한 정보를 제공.
 
 <span></span>
 
-> **Note** All the things learned in the [First Application Tutorial](../apps/hello_sky.md) are relevant for writing a full application.
+> **Note** [첫 번째 어플리케이션 튜토리얼](../apps/hello_sky.md)에서 배운 내용은 Full 어플리케이션 작성에도 연관됨.
 
 ## Work Queue Task
 
