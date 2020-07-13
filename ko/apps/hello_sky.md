@@ -147,29 +147,29 @@
 
 > **Note** 예제는 기본적으로 펌웨어로 포함되어 있기 때문에, 대부분의 파일에 이 라인은 이미 존재함.
 
-Build the example using the board-specific command:
+보드에 특정된 명령을 이용하여 예제를 빌드:
 
-* jMAVSim Simulator: `make px4_sitl_default jmavsim`
-* Pixhawk v1/2: `make px4_fmu-v2_default` (or just `make px4_fmu-v2`)
+* jMAVSim 시뮬레이터: `make px4_sitl_default jmavsim`
+* Pixhawk v1/2: `make px4_fmu-v2_default` (혹은 단지 `make px4_fmu-v2`)
 * Pixhawk v3: `make px4_fmu-v4_default`
-* Other boards: [Building the Code](../setup/building_px4.md#building_nuttx)
+* 다른 보드: [Building the Code](../setup/building_px4.md#building_nuttx)
 
-## Test App (Hardware)
+## 어플리케이션 테스트 (하드웨어)
 
-### Upload the firmware to your board
+### 보드에 펌웨어 업로드
 
-Enable the uploader and then reset the board:
+업로더를 활성화하고 보드를 리셋:
 
 * Pixhawk v1/2: `make px4_fmu-v2_default upload`
 * Pixhawk v3: `make px4_fmu-v4_default upload`
 
-It should print before you reset the board a number of compile messages and at the end:
+여러분이 보드를 리셋하기 전에 컴파일 메시지가 출력되고 마지막에는 :
 
 ```sh
 Loaded firmware for X,X, waiting for the bootloader...
 ```
 
-Once the board is reset, and uploads, it prints:
+보드가 리셋되면 업로드가 진행되고 다음을 출력:
 
 ```sh
 Erase  : [====================] 100.0%
@@ -180,7 +180,7 @@ Rebooting.
 [100%] Built target upload
 ```
 
-### Connect the Console
+### 콘솔 연결
 
 Now connect to the [system console](../debug/system_console.md) either via serial or USB. Hitting **ENTER** will bring up the shell prompt:
 
