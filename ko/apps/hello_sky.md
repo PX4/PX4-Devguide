@@ -219,13 +219,13 @@ nsh> px4_simple_app
 Hello Sky!
 ```
 
-The application is now correctly registered with the system and can be extended to actually perform useful tasks.
+이제 어플리케이션은 시스템에 올바르게 등록되었고 실제로 유용한 일을 수행하도록 이를 확장할 수 있습니다.
 
-## Test App (SITL)
+## 어플리케이션 테스트 (SITL)
 
-If you're using SITL the *PX4 console* is automatically started (see [Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build)). As with the *nsh console* (see previous section) you can type `help` to see the list of built-in apps.
+SITL을 사용하는 경우, *PX4 콘솔*은 자동적으로 실행됩니다 (참고 [Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build)). *nsh 콘솔*처럼(이전 섹션 참고) `help`를 입력하여 내장된 어플리케이션의 목록을 볼 수 있습니다.
 
-Enter `px4_simple_app` to run the minimal app.
+`px4_simple_app` 입력하여 미니멀 어플리케이션을 실행.
 
 ```sh
 pxh> px4_simple_app
