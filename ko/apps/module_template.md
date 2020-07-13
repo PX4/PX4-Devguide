@@ -36,19 +36,19 @@ Work queue task 어플리케이션은 보통의 (task) 어플리케이션과 동
 
 4. "작업(work)"을 수행할 `ScheduledWorkItem::Run()` 메서드를 구현.
 
-5. Implement the `task_spawn` method, specifying that the task is a work queue (using the `task_id_is_work_queue` id.
-6. Schedule the work queue task using one of the scheduling methods (in the example we use `ScheduleOnInterval` from within the `init` method).
+5. `task_spawn` 메서드를 구현. 해당 task가 work queue임을 명시 (`task_id_is_work_queue` id 사용).
+6. 스케줄링 메서드중 하나를 사용하여 work queue task를 스케쥴링함 (예제에서는 `init` 메서드내의 `ScheduleOnInterval`를 사용함).
 
 ## Tasks
 
 PX4 Firmware은 task로 동작하는 신규 어플리케이션(모듈) 작성용 템플릿을 포함: [src/templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module).
 
-The template demonstrates the following additional features/aspects that are required or are useful for a full application:
+템플릿에서는 Full 어플리케이션에서 요구되거나 혹은 필요한 다음의 추가적인 기능/측면을 보여줌:
 
-- Accessing parameters and reacting to parameter updates.
-- uORB subscriptions and waiting for topic updates.
-- Controlling the task that runs in the background via `start`/`stop`/`status`. The `module start [<arguments>]` command can then be directly added to the [startup script](../concept/system_startup.md).
-- Command-line argument parsing.
+- 파라미터 접근 및 파라미터 업데이트에 대한 대응 동작
+- uORB 구독(subscription) 및 topic 업데이트 대기.
+- `start`/`stop`/`status`를 통해 백그라운드에서 실행되는 task 제어. `module start [<arguments>]` 명령은 [startup script](../concept/system_startup.md) 직접적으로 추가 가능.
+- 명령행 인자 파싱.
 - Documentation: the `PRINT_MODULE_*` methods serve two purposes (the API is documented [in the source code](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381)): 
     - They are used to print the command-line usage when entering `module help` on the console.
     - They are automatically extracted via script to generate the [Modules & Commands Reference](../middleware/modules_main.md) page.
