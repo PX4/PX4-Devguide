@@ -182,13 +182,13 @@ Rebooting.
 
 ### 콘솔 연결
 
-Now connect to the [system console](../debug/system_console.md) either via serial or USB. Hitting **ENTER** will bring up the shell prompt:
+이제 시리얼이나 USB를 통해 [system console](../debug/system_console.md)에 연결합니다. **ENTER** 를 누르면 쉘 프롬프트가 나타납니다.:
 
 ```sh
 nsh>
 ```
 
-Type ''help'' and hit ENTER
+''help''를 입력하고 ENTER를 누릅니다.
 
 ```sh
 nsh> help
@@ -212,7 +212,7 @@ Builtin Apps:
   serdis
 ```
 
-Note that `px4_simple_app` is now part of the available commands. Start it by typing `px4_simple_app` and ENTER:
+이제 `px4_simple_app`가 사용가능한 명령어 중 일부임을 주목합니다. `px4_simple_app`와 ENTER를 입력하여 어플리케이션을 시작:
 
 ```sh
 nsh> px4_simple_app
