@@ -72,13 +72,13 @@
         
         int px4_simple_app_main(int argc, char *argv[]) { PX4_INFO("Hello Sky!"); return OK; } ```
         
-        > **Tip** The main function must be named `<module_name>_main` and exported from the module as shown.
+        > **Tip** 메인 함수의 이름은 반드시 `<module_name>_main` 로 작성하며 위와 같이 모듈에서 추출(export)되어야 함.
         
         <span></span>
         
-        > **Tip** `PX4_INFO` is the equivalent of `printf` for the PX4 shell (included from **px4_platform_common/log.h**). There are different log levels: `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`. Warnings and errors are additionally added to the [ULog](../log/ulog_file_format.md) and shown on [Flight Review](https://logs.px4.io/).
+        > **Tip** PX4 쉘에서 `PX4_INFO`는 `printf`에 해당한다. (**px4_platform_common/log.h**에서 include됨) 4 단계의 로글 레벨이 존재: `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`. 경고와 에러는 [ULog](../log/ulog_file_format.md)에 추가적으로 포함되고 [Flight Review](https://logs.px4.io/)에서 나타난다.
 
-1. Create and open a new *cmake* definition file named **CMakeLists.txt**. Copy in the text below:
+1. **CMakeLists.txt**이름의 *cmake* 정의 파일을 만들고 열기. 아래 텍스트를 파일에 복사.
     
     ```cmake
     ############################################################################
