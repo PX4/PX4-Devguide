@@ -129,16 +129,16 @@
     
     <span></span>
     
-    > **Note** `px4_add_module`의 옵션에 `DYNAMIC`로 지정한 경우에는, 정적 라이브러리 대신 POSIX 플랫폼상의 *공유 라이브러리*가 생성됨. (PX4를 재컴파일하지 않고서도 이를 로딩할 수 있으며, 다른 사람들에게 소스 코드 대신 바이너리로 공유가 가능함). 이 경우 앱은 내장 명령어가 되지 않고, `examples__px4_simple_app.px4mod`와 같은 별도의 파일이 됨. You can then run your command by loading the file at runtime using the `dyn` command: `dyn ./examples__px4_simple_app.px4mod`
+    > **Note** `px4_add_module`의 옵션을 `DYNAMIC`로 지정한 경우에는, 정적 라이브러리 대신 POSIX 플랫폼상의 *공유 라이브러리*가 생성됨. (PX4를 재컴파일하지 않고서도 이를 로딩할 수 있으며, 다른 사람들에게 소스 코드 대신 바이너리로 공유가 가능함). 이 경우 앱은 내장 명령어가 되지 않고, `examples__px4_simple_app.px4mod`와 같은 별도의 파일이 됨. 런타임에서 `dyn` 명령어를 이용하여 이 파일을 로드한 후 실행할 수 있음: `dyn ./examples__px4_simple_app.px4mod`
 
-## Build the Application/Firmware
+## 어플리케이션/펌웨어 빌드
 
-The application is now complete. In order to run it you first need to make sure that it is built as part of PX4. Applications are added to the build/firmware in the appropriate board-level *cmake* file for your target:
+이제 어플리케이션은 완결되었습니다. 이를 실행하기 위해서는 우선 이 어플리케이션을 PX4와 함께 빌드해야할 필요가 있습니다. 여러분의 타겟용 보드 레벨 *cmake* 파일의 build/firmware에 어플리케이션을 추가합니다. 
 
-* PX4 SITL (Simulator): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
+* PX4 SITL (시뮬레이터): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
 * Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
 * Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
-* *cmake* files for other boards can be found in [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)
+* 다른 보드용 *cmake* 파일은 [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)에서 확인 가능
 
 To enable the compilation of the application into the firmware create a new line for your application somewhere in the *cmake* file:
 
