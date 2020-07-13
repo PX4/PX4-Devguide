@@ -2,21 +2,21 @@
 
 이번 주제에서는 여러분의 첫번째 온보드 어플리케이션의 생성 및 실행 방법에 대해 설명합니다. PX4 기반의 어플리케이션 개발에 필요한 API와 기본 컨셉을 다룹니다.
 
-> **Note** For simplicity, more advanced features like start/stop functionality and command-line arguments are omitted. These are covered in [Application/Module Template](../apps/module_template.md).
+> **주의** 기능의 시작/중단, 명령행 인자와 같은 고급 기능은 간결성을 위하여 제외하였습니다. [Application/Module Template](../apps/module_template.md)에서 이러한 내용을 다룹니다..
 
-## Prerequisites
+## 사전 준비 사항
 
-You will require the following:
+다음의 항목이 필요합니다.
 
-* [PX4 SITL Simulator](../simulation/README.md) *or* a [PX4-compatible flight controller](https://docs.px4.io/master/en/flight_controller/#documented-boards).
-* [PX4 Development Toolchain](../setup/dev_env.md) for the desired target.
-* [Download the PX4 Source Code](../setup/building_px4.md#get_px4_code) from Github
+* [PX4 SITL Simulator](../simulation/README.md) * 혹은 * [PX4-compatible flight controller](https://docs.px4.io/master/en/flight_controller/#documented-boards).
+* 사용할 타겟용 [PX4 개발 툴체인](../setup/dev_env.md).
+* Github에서 [PX4 소스 코드 다운로드](../setup/building_px4.md#get_px4_code)
 
-The source code [Firmware/src/examples/px4_simple_app](https://github.com/PX4/Firmware/tree/master/src/examples/px4_simple_app) directory contains a completed version of this tutorial that you can review if you get stuck.
+본 튜토리얼 진행 중 어려움에 막혔을 때 참고할 수 있는 완성된 버전은 [Firmware/src/examples/px4_simple_app](https://github.com/PX4/Firmware/tree/master/src/examples/px4_simple_app) 소스 코드 디렉터리에 있습니다.
 
-* Rename (or delete) the **px4_simple_app** directory. 
+* **px4_simple_app** 디렉터리의 이름을 변경하시오 (혹은 삭제). 
 
-## Minimal Application
+## 미니멀 어플리케이션
 
 In this section we create a *minimal application* that just prints out `Hello Sky!`. This consists of a single *C* file and a *cmake* definition (which tells the toolchain how to build the application).
 
