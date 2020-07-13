@@ -140,12 +140,12 @@
 * Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
 * 다른 보드용 *cmake* 파일은 [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)에서 확인 가능
 
-To enable the compilation of the application into the firmware create a new line for your application somewhere in the *cmake* file:
+어플리케이션을 펌웨어로 포함해서 컴파일하기 위해서는 *cmake* 파일내에 어플리케이션과 관련된 새로운 라인을 작성합니다.
 
     examples/px4_simple_app
     
 
-> **Note** The line will already be present for most files, because the examples are included in firmware by default.
+> **Note** 예제는 기본적으로 펌웨어로 포함되어 있기 때문에, 대부분의 파일에 이 라인은 이미 존재함.
 
 Build the example using the board-specific command:
 
