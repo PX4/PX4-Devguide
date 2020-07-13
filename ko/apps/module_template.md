@@ -49,6 +49,6 @@ PX4 Firmware은 task로 동작하는 신규 어플리케이션(모듈) 작성용
 - uORB 구독(subscription) 및 topic 업데이트 대기.
 - `start`/`stop`/`status`를 통해 백그라운드에서 실행되는 task 제어. `module start [<arguments>]` 명령은 [startup script](../concept/system_startup.md) 직접적으로 추가 가능.
 - 명령행 인자 파싱.
-- Documentation: the `PRINT_MODULE_*` methods serve two purposes (the API is documented [in the source code](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381)): 
-    - They are used to print the command-line usage when entering `module help` on the console.
-    - They are automatically extracted via script to generate the [Modules & Commands Reference](../middleware/modules_main.md) page.
+- 문서화: `PRINT_MODULE_*` 메서드는 2가지 목적 지원 (API를 [소스코드 내에서](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381) 문서화): 
+    - 콘솔상에 `module help` 입력시 해당 명령 사용법 출력을 위해 사용됨.
+    - 스크립트를 통해 자동으로 추출하여 [Modules & Commands Reference](../middleware/modules_main.md) 페이지를 생성.
