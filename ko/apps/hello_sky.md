@@ -238,11 +238,11 @@ INFO  [px4_simple_app] Hello Sky!
 
 유용한 일을 수행하기 위해, 어플리케이션은 입력값을 구독(subscribe)하고 출력값을 발행(publish)할 필요가 있습니다(예, 모터 혹은 서보 명령).
 
-> **Tip** 이지점에서 PX4 하드웨어 추상화의 이점이 나타납니다! There is no need to interact in any way with sensor drivers and no need to update your app if the board or sensors are updated.
+> **Tip** 이 지점에서 PX4 하드웨어 추상화의 이점이 나타납니다! 보드 혹은 센서가 변경되는 경우에도 센서 드라이버와 어떤 방식의 상호작용을 하거나 어플리케이션을 업데이트할 필요는 없습니다.
 
-Individual message channels between applications are called [topics](../middleware/uorb.md). For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) topic, which holds the synchronized sensor data of the complete system.
+어플리케이션 간의 개별 메시지 체널을 [topic](../middleware/uorb.md)이라고 합니다. 본 튜토리얼에서는 전체 시스템의 동기화된 센서 데이터를 가지고 있는 [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) topic에 살펴보겠습니다.
 
-Subscribing to a topic is straightforward:
+Topic 구독은 간단합니다:
 
 ```cpp
 #include <uORB/topics/sensor_combined.h>
