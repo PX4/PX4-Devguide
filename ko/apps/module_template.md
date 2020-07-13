@@ -1,6 +1,6 @@
 # Module Template for Full Applications
 
-An application can be written to run as either a *task* (a module with its own stack and process priority) or as a *work queue task* (a module that runs on a work queue thread, sharing the stack and thread priorit with other tasks on the work queue). In most cases a work queue task can be used, as this minimizes resource usage.
+어플리케이션은 *task* (자신의 스택과 수행 우선순위를 지니는 모듈)나 *work queue task* (작업 큐 쓰레드상에서 실행되는 모듈로, 작업큐 내의 다른 여러 태스크와 스택과 우선순위를 공유함)로 작성할 수 있습니다. In most cases a work queue task can be used, as this minimizes resource usage.
 
 > **Note** [Architectural Overview > Runtime Environment](../concept/architecture.md#runtime-environment) provides more information about tasks and work queue tasks.
 
