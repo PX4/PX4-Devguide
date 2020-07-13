@@ -123,13 +123,13 @@
     )
     ```
     
-    `px4_add_module()` 메써드는 모듈 디스크립션에 있는 내용에서 정적 라이브러리를 빌드합니다. The `MAIN` block lists the name of the module - this registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
+    `px4_add_module()` 메써드는 모듈 디스크립션에 있는 내용에서 정적 라이브러리를 빌드합니다. `MAIN` 블럭에 모듈의 이름을 기재하며 이는 NuttX에 명령어로 등록되어 PX4 쉘이나 SITL 콘솔에서 호출할 수 있습니다.
     
-    > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
+    > **Tip** `px4_add_module()` 의 포맷은 [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake)에 기술되어 있음.
     
     <span></span>
     
-    > **Note** If you specify `DYNAMIC` as an option to `px4_add_module`, a *shared library* is created instead of a static library on POSIX platforms (these can be loaded without having to recompile PX4, and shared to others as binaries rather than source code). Your app will not become a builtin command, but ends up in a separate file called `examples__px4_simple_app.px4mod`. You can then run your command by loading the file at runtime using the `dyn` command: `dyn ./examples__px4_simple_app.px4mod`
+    > **Note** `px4_add_module`의 옵션에 `DYNAMIC`로 지정한 경우에는, 정적 라이브러리 대신 POSIX 플랫폼상의 *공유 라이브러리*가 생성됨. (PX4를 재컴파일하지 않고서도 이를 로딩할 수 있으며, 다른 사람들에게 소스 코드 대신 바이너리로 공유가 가능함). 이 경우 앱은 내장 명령어가 되지 않고, `examples__px4_simple_app.px4mod`와 같은 별도의 파일이 됨. You can then run your command by loading the file at runtime using the `dyn` command: `dyn ./examples__px4_simple_app.px4mod`
 
 ## Build the Application/Firmware
 
