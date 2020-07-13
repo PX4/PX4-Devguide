@@ -18,12 +18,12 @@
 
 ## 미니멀 어플리케이션
 
-In this section we create a *minimal application* that just prints out `Hello Sky!`. This consists of a single *C* file and a *cmake* definition (which tells the toolchain how to build the application).
+여기에서는 단지 `Hello Sky!`를 출력하는 *미니멀 어플리케이션*을 만듭니다. 하나의 *C* 파일과 하나의 *cmake* 정의(어플리케이션을 빌드하는 방법을 툴체인에게 지시)로 구성됩니다.
 
-1. Create a new directory **Firmware/src/examples/px4_simple_app**.
-2. Create a new C file in that directory named **px4_simple_app.c**:
+1. **Firmware/src/examples/px4_simple_app** 디렉터리를 신규 생성.
+2. **px4_simple_app.c** 이름의 C 파일을 신규 생성:
 
-* Copy in the default header to the top of the page. This should be present in all contributed files!
+* 기본 헤더를 페이지 최상단에 복사. 이 내용은 모든 기여 파일(contributed files)에 있어야 함. 
     
     ```c /**************************************************************************** *
     
@@ -57,7 +57,7 @@ In this section we create a *minimal application* that just prints out `Hello Sk
     * POSSIBILITY OF SUCH DAMAGE.
     * ****************************************************************************/ ```
 
-* Copy the following code below the default header. This should be present in all contributed files!
+* 기본 헤더 아래에 다음 코드를 복사. 이 내용은 모든 기여 파일에 있어야 함.
     
     ```c /**
     
