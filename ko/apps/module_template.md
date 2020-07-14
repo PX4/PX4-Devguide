@@ -1,4 +1,4 @@
-# Module Template for Full Applications
+# Full 어플리케이션 개발을 위한 모듈 템플릿
 
 어플리케이션은 *task* (자신의 스택과 수행 우선순위를 지니는 모듈)나 *work queue task* (작업 큐 쓰레드상에서 실행되는 모듈로, 작업큐 내의 다른 여러 태스크와 스택과 우선순위를 공유함)로 작성할 수 있습니다. 리소스 사용을 최소화하기 때문에 대부분의 경우 work queue task를 사용할 수 있습니다.
 
