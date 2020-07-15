@@ -535,3 +535,15 @@ If you have build problems on this platform then try run the following command i
 xcode-select --install
 sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /usr/local/include/
 ``` 
+### macOS: Failed to import Python packages
+
+If you have more than one python versions (e.g.,Python 2.7.16 Python 3.8.3), you may face "Failed to import" errors for  the required packages you already installed [common tools](https://dev.px4.io/master/en/setup/dev_env_mac.html#common-tools) when running `make px4_sitl jmavsim` command. 
+
+In this case, run the commands below:
+```
+make clean
+pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
+```
+
+
+
