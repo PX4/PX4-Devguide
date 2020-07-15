@@ -134,7 +134,7 @@ You can also install the environment using shell scripts in the Github project.
     
 
 1. 如果要安装所有组件, 请进入到新克隆的代码仓库文件夹, 然后双击位于文件夹 `toolchain`目录中的脚本 ` install-all-components.bat`。 如果您只需要某些组件并希望占用有限的Internet 数据和磁盘空间, 则可以进入到不同的组件文件夹, 如 ` toolchain\cygwin64 `, 然后单击 ** install-XXX.bat ** 脚本以获取特定的内容。
-2. 继续 [ 入门指南 ](#getting_started) (或 [ 使用说明 ](#usage_instructions)) 
+2. 继续 [ 入门指南 ](#getting_started) (或 [ 使用说明 ](#usage_instructions))
 
 ### Manual Installation (for Toolchain Developers) {#manual_setup}
 
@@ -196,7 +196,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 
 4. 安装 JDK
     
-    * 下载 [** Java Development Kit Installer **](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)。
+    * Download Java 14 from [Oracle](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html) or [AdoptOpenJDK](https://adoptopenjdk.net/).
     * 因为不幸的是, 没有绿色的归档文件直接包含二进制文件, 所以您必须安装它。
     * 查找二进制文件并将其移动/复制到 ** C:\PX4\toolchain\jdk **。
     * 您可以再次从 Windows 系统中卸载该JDK工具包, 我们只需要工具链的二进制文件。
