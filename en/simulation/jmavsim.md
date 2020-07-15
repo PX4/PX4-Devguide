@@ -177,7 +177,7 @@ This error should no longer occur once the jMAVSim submodule is [updated to newe
 
 ### An illegal reflective access operation has occured
 
-It's likely that you see this error. However, it should still work fine.
+This warning can be ignored (it will probably be displayed but the simulation will still work correctly).
 
 ```
 WARNING: An illegal reflective access operation has occurred
