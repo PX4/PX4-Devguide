@@ -534,16 +534,19 @@ If you have build problems on this platform then try run the following command i
 ```sh
 xcode-select --install
 sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /usr/local/include/
-``` 
-### macOS: Failed to import Python packages
-
-If you have more than one python versions (e.g.,Python 2.7.16 Python 3.8.3), you may face "Failed to import" errors for  the required packages you already installed [common tools](https://dev.px4.io/master/en/setup/dev_env_mac.html#common-tools) when running `make px4_sitl jmavsim` command. 
-
-In this case, run the commands below:
 ```
-make clean
+
+### Failed to import Python packages
+
+"Failed to import" errors when running the `make px4_sitl jmavsim` command indicates that some Python packages are not installed (where expected).
+```
+Failed to import jinja2: No module named 'jinja2'
+You may need to install it using:
+    pip3 install --user jinja2
+```
+If you have already installed these dependencies this may be because there is more than one Python version on the computer (e.g. Python 2.7.16 Python 3.8.3), and the module is not present in the version used by the build toolchain.
+
+You should be able to fix this by explicitly installing the dependencies as shown:
+```
 pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
 ```
-
-
-
