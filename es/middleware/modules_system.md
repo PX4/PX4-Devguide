@@ -247,7 +247,7 @@ Source: [modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modul
 
 ### Description
 
-Background process running periodically with 1 Hz on the LP work queue to calculate the CPU load and RAM usage and publish the `cpuload` topic.
+Background process running periodically on the low priority work queue to calculate the CPU load and RAM usage and publish the `cpuload` topic.
 
 On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output, which will also appear in the log file.
 
