@@ -23,7 +23,7 @@ For more information see [MAVLink Peripherals (GCS/OSD/Companion)](https://docs.
 * [MAVROS](../ros/mavros_installation.md) 与ros 节点通信
 * C/C++ example code </0 > 连接自定义代码</li> 
     
-    * [MAVLink Router](https://github.com/intel/mavlink-router) (recommended) or [MAVProxy](http://mavproxy.org) to route MAVLink between serial and UDP</ul> 
+    * [MAVLink Router](https://github.com/intel/mavlink-router) (recommended) or [MAVProxy](https://ardupilot.org/mavproxy/) to route MAVLink between serial and UDP</ul> 
     
     ## 硬件设置
     

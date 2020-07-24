@@ -134,7 +134,7 @@ You can also install the environment using shell scripts in the Github project.
     
 
 1. If you want to install all components navigate to the freshly cloned folder and double click on the script `install-all-components.bat` located in the folder `toolchain`. If you only need certain components and want to safe Internet traffic and or disk space you can navigate to the different component folders like e.g. `toolchain\cygwin64` and click on the **install-XXX.bat** scripts to only fetch something specific.
-2. Continue with [Getting Started](#getting_started) (or [Usage Instructions](#usage_instructions)) 
+2. Continue with [Getting Started](#getting_started) (or [Usage Instructions](#usage_instructions))
 
 ### Manual Installation (for Toolchain Developers) {#manual_setup}
 
@@ -196,7 +196,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 
 4. Install the JDK:
     
-    * Download the [**Java Development Kit Installer**](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+    * Download Java 14 from [Oracle](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html) or [AdoptOpenJDK](https://adoptopenjdk.net/).
     * Because sadly there is no portable archive containing the binaries directly you have to install it.
     * Find the binaries and move/copy them to **C:\PX4\toolchain\jdk**.
     * You can uninstall the Kit from your Windows system again, we only needed the binaries for the toolchain.

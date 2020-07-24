@@ -498,3 +498,18 @@ As of macOS Catalina 10.15.1 there may be problems when trying to build the simu
 xcode-select --install
 sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /usr/local/include/
 ```
+
+### Failed to import Python packages
+
+"Failed to import" errors when running the `make px4_sitl jmavsim` command indicates that some Python packages are not installed (where expected).
+
+    Failed to import jinja2: No module named 'jinja2'
+    You may need to install it using:
+        pip3 install --user jinja2
+    
+
+If you have already installed these dependencies this may be because there is more than one Python version on the computer (e.g. Python 2.7.16 Python 3.8.3), and the module is not present in the version used by the build toolchain.
+
+You should be able to fix this by explicitly installing the dependencies as shown:
+
+    pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging

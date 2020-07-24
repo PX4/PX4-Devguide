@@ -148,8 +148,6 @@ The simulation can be [interfaced to ROS](../simulation/ros_interface.md) the sa
 
 ### java.long.NoClassDefFoundError
 
-If you see an error similar to the one below, it's likely that you're using a Java version later than 8:
-
     Exception in thread "main" java.lang.NoClassDefFoundError: javax/vecmath/Tuple3d
     at java.base/java.lang.Class.forName0(Native Method)
     at java.base/java.lang.Class.forName(Class.java:374)
@@ -169,33 +167,11 @@ If you see an error similar to the one below, it's likely that you're using a Ja
     at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:499)
     
 
-For more info check [this GitHub issue](https://github.com/PX4/Firmware/issues/9557).
-
-The solution is to install the Java 8, as shown in the following sections.
-
-#### Ubuntu：
-
-    sudo apt install openjdk-8-jdk
-    sudo update-alternatives --config java # 选择Java 8 的指令
-    rm -rf Tools/jMAVSim/out
-    
-
-#### Mac系统：
-
-We recommend to install OpenJDK 8 from [AdoptOpenJDK](https://adoptopenjdk.net/) using brew:
-
-    brew tap adoptopenjdk/openjdk
-    brew cask install adoptopenjdk8
-    brew install ant
-    export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-    rm -rf Tools/jMAVSim/out
-    
-
-Alternatively you could [download Oracle Java 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and install it manually.
+This error should no longer occur once the jMAVSim submodule is [updated to newer jar libs](https://github.com/PX4/jMAVSim/pull/119) and Java 11 or Java 14 should work fine.
 
 ### An illegal reflective access operation has occured
 
-If you see an error similar to the one below, it's likely that you're using a Java version later than 8:
+This warning can be ignored (it will probably be displayed but the simulation will still work correctly).
 
     WARNING: An illegal reflective access operation has occurred
     WARNING: Illegal reflective access by javax.media.j3d.JoglPipeline (rsrc:j3dcore.jar) to method sun.awt.AppContext.getAppContext()
@@ -204,8 +180,6 @@ If you see an error similar to the one below, it's likely that you're using a Ja
     WARNING: All illegal access operations will be denied in a future release
     Inconsistency detected by ld.so: dl-lookup.c: 112: check_match: Assertion version->filename == NULL || ! _dl_name_match_p (version->filename, map)' failed!
     
-
-Follow the steps above to make sure Java 8 is installed and selected.
 
 ### java.awt.AWTError: Assistive Technology not found: org.GNOME.Accessibility.AtkWrapper
 
