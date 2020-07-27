@@ -6,7 +6,11 @@ MacOS 是受支持的 PX4 开发平台。 根据本文的指示构建的开发�
 * jMAVSim 仿真模拟
 * Gazebo Simulation
 
-> **提示：** 若需要为其他平台进行编译请参考： [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets)。
+> **Note** To build other targets see: [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets).
+
+<span></span>
+
+> **Tip** A video tutorial can be found here: [Setting up your PX4 development environment on macOS](https://youtu.be/tMbMGiMs1cQ).
 
 ## Preconditions
 
