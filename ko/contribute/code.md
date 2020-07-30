@@ -44,7 +44,7 @@ PX4 개발자 여러분들에게 목적에 부합하는 소스코드 내 문서 
   - 보통 특이 상황이나 오류 처리 등의 추가 정보를 넣고 싶을 때가 있습니다.
   - 문서에서 필요하다면 다음의 [Doxgyen](http://www.doxygen.nl/) 태그를 사용해야합니다: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`. 바람직한 활용 예시는 [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h) 파일에 있습니다.
 
-## Commits and Commit Messages
+## 제출 코드와 제출 메시지
 
 분명하지 않은 모든 바뀐 내용에 대해 상세하게, 여러 문단에 걸쳐 제출 설명 메시지를 기재하십시오. 내용을 문단 별로 잘 구성하여 한줄 요약 뿐만 아니라 완전한 상세 설명을 통해서도 이해할 수 있게 하십시오.
 
