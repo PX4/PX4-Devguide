@@ -1,37 +1,37 @@
-# 모들 레퍼런스: 명령어
+# 모듈 참고서: 명령어
 
 ## bl_update
 
-Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
+원본: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
-파일에서 부트로터를 플래시하기 위한 유틸리티
+파일에서 부트로터를 플래싱하는 유틸리티
 
-### Usage {#bl_update_usage}
+### 사용법 {#bl_update_usage}
 
-    bl_update [arguments...]
-       setopt        Set option bits to unlock the FLASH (only needed if in locked
-                     state)
+    bl_update [<인자값>...]
+       setopt        FLASH 잠금을 해제할 비트 옵션을 설정합니다 (잠금 상태일 경우만
+                     필요)
     
-       <file>        Bootloader bin file
+       <file>        부트로더 이진 파일
     
 
 ## dumpfile
 
-Source: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
+원본: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 
-Dump file utility. Prints file size and contents in binary mode (don't replace LF with CR LF) to stdout.
+덤프 파일 유틸리티. 파일 크기와 내용을 표준 출력(터미널 창)에 바이너리 모드(LF를 CR LF로 바꾸지 않음)로 출력합니다.
 
-### Usage {#dumpfile_usage}
+### 사용법 {#dumpfile_usage}
 
-    dumpfile [arguments...]
-         <file>      File to dump
+    dumpfile [<인자값>...]
+         <file>      덤프값을 저장할 파일
     
 
 ## dyn
 
-Source: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
+원본: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
 
-### Description
+### 설명
 
 Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
 
