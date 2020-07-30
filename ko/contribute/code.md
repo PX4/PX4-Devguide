@@ -41,12 +41,12 @@ PX4 개발자 여러분들에게 목적에 부합하는 소스코드 내 문서 
   > **팁** 개발자 여러분은 C++ 구성 요소(클래스, 함수, 변수 등)를 목적의 추측이 가능하게끔 작명해야 합니다. 작명을 잘하면 분명하게 문서로 정리할 필요성이 줄어듭니다.
   
   - C++ 항목 이름으로 분명하게 추정할 수 있는 문서는 추가하지 마십시오.
-  - Commonly you may want to add information about corner cases and error handling.
-  - [Doxgyen](http://www.doxygen.nl/) tags should be used if documentation is needed: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`. A good example of usage is [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h).
+  - 보통 특이 상황이나 오류 처리 등의 추가 정보를 넣고 싶을 때가 있습니다.
+  - 문서에서 필요하다면 다음의 [Doxgyen](http://www.doxygen.nl/) 태그를 사용해야합니다: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`. 바람직한 활용 예시는 [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h) 파일에 있습니다.
 
 ## Commits and Commit Messages
 
-Please use descriptive, multi-paragraph commit messages for all non-trivial changes. Structure them well so they make sense in the one-line summary but also provide full detail.
+분명하지 않은 모든 바뀐 내용에 대해 상세하게, 여러 문단에 걸쳐 제출 설명 메시지를 기재하십시오. 내용을 문단 별로 잘 구성하여 한줄 요약 뿐만 아니라 완전한 상세 설명을 통해서도 이해할 수 있게 하십시오.
 
     Component: Explain the change in one sentence. Fixes #1234
     
