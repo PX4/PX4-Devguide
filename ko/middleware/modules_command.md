@@ -33,55 +33,55 @@
 
 ### 설명
 
-Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
+PX4 바이너리로 컴파일하지 않은 동적 PX4 모듈을 불러오고 실행합니다.
 
-### Example
+### 예시
 
     dyn ./hello.px4mod start
     
 
-### Usage {#dyn_usage}
+### 사용법 {#dyn_usage}
 
-    dyn [arguments...]
-         <file>      File containing the module
-         [arguments...] Arguments to the module
+    dyn [<인자값>...]
+         <file>      모듈이 들어있는 파일
+         [<인자값>...] 모듈에 부여할 인자값
     
 
 ## esc_calib
 
-Source: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
+원본: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
-Tool for ESC calibration
+ESC 보정 도구
 
-Calibration procedure (running the command will guide you through it):
+보정 과정(명령을 실행하면 인터페이스 메시지로 안내해줌):
 
-- ESC의 프로브를 빼고 파워를 끄세요
-- Stop attitude and rate controllers: mc_rate_control stop, fw_att_control stop
-- safety가 off인지 확인하세요
-- 이 명령어를 실행하세요
+- ESC의 프롭을 제거하고 전원을 끄십시오
+- 고도, 속도 컨트롤러의 동작을 중단하십시오: mc_rate_control stop, fw_att_control stop
+- safety가 off인지 확인하십시오
+- 이 명령어를 실행하십시오
 
-### Usage {#esc_calib_usage}
+### 사용법 {#esc_calib_usage}
 
-    esc_calib [arguments...]
-         [-d <val>]  Select PWM output device
-                     values: <file:dev>, default: /dev/pwm_output0
-         [-l <val>]  Low PWM value in us
-                     default: 1000
-         [-h <val>]  High PWM value in us
-                     default: 2000
-         [-c <val>]  select channels in the form: 1234 (1 digit per channel,
-                     1=first)
-         [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
-         [-a]        Select all channels
+    esc_calib [<인자값>...]
+         [-d <val>]  PWM 출력 장치를 선택합니다.
+                     값: <file:dev>, 기본값: /dev/pwm_output0
+         [-l <val>]  마이크로 초 단위로 PWM 최저값을 설정합니다
+                     기본값: 1000
+         [-h <val>]  마이크로 초 단위로 PWM 최고값을 설정합니다
+                     기본값: 2000
+         [-c <val>]  우측과 같은 방식으로 채널 값을 설정합니다: 1234 (채널당 한 자리,
+                     1=첫번째)
+         [-m <val>]  비트마스크로 채널 값을 설정합니다 (예:  0xF, 3)
+         [-a]        모든 채널을 선택합니다
     
 
 ## gpio
 
-Source: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
+원본: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
 
-This command is used to read and write GPIOs.
+이 명령은 GPIO 시그널 읽기/쓰기에 활용합니다.
 
-### Usage {#gpio_usage}
+### 사용법 {#gpio_usage}
 
     gpio [arguments...]
        read
@@ -250,7 +250,7 @@ When starting, a background task is started, runs for several seconds (as specif
     motor_ramp sine -a 1100 -r 0.5
     
 
-### Usage {#motor_ramp_usage}
+### 사용법 {#motor_ramp_usage}
 
     motor_ramp [arguments...]
          ramp|sine|square mode
@@ -273,7 +273,7 @@ Utility to test motors.
 
 WARNING: remove all props before using this command.
 
-### Usage {#motor_test_usage}
+### 사용법 {#motor_test_usage}
 
     motor_test <command> [arguments...]
      Commands:
@@ -297,7 +297,7 @@ Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
 
-### Usage {#mtd_usage}
+### 사용법 {#mtd_usage}
 
     mtd <command> [arguments...]
      Commands:
@@ -325,7 +325,7 @@ Start an NSH shell on a given port.
 
 This was previously used to start a shell on the USB serial port. Now there runs mavlink, and it is possible to use a shell over mavlink.
 
-### Usage {#nshterm_usage}
+### 사용법 {#nshterm_usage}
 
     nshterm [arguments...]
          <file:dev>  Device on which to start the shell (eg. /dev/ttyACM0)
@@ -356,7 +356,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
     reboot
     
 
-### Usage {#param_usage}
+### 사용법 {#param_usage}
 
     param <command> [arguments...]
      Commands:
@@ -422,7 +422,7 @@ Source: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/system
 
 Tool to print performance counters
 
-### Usage {#perf_usage}
+### 사용법 {#perf_usage}
 
     perf [arguments...]
        reset         Reset all counters
@@ -465,7 +465,7 @@ Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
     pwm test -c 13 -p 1200
     
 
-### Usage {#pwm_usage}
+### 사용법 {#pwm_usage}
 
     pwm <command> [arguments...]
      Commands:
@@ -528,7 +528,7 @@ Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/syst
 
 Reboot the system
 
-### Usage {#reboot_usage}
+### 사용법 {#reboot_usage}
 
     reboot [arguments...]
          [-b]        Reboot into bootloader
@@ -541,7 +541,7 @@ Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/sy
 
 Test the speed of an SD Card
 
-### Usage {#sd_bench_usage}
+### 사용법 {#sd_bench_usage}
 
     sd_bench [arguments...]
          [-b <val>]  Block size for each read/write
@@ -559,7 +559,7 @@ Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Monitor running processes and their CPU, stack usage, priority and state
 
-### Usage {#top_usage}
+### 사용법 {#top_usage}
 
     top [arguments...]
        once          print load only once
@@ -571,7 +571,7 @@ Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/s
 
 Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
 
-### Usage {#usb_connected_usage}
+### 사용법 {#usb_connected_usage}
 
     usb_connected [arguments...]
     
@@ -582,7 +582,7 @@ Source: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemc
 
 Tool to print various version information
 
-### Usage {#ver_usage}
+### 사용법 {#ver_usage}
 
     ver <command> [arguments...]
      Commands:
