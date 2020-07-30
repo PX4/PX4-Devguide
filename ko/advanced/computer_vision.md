@@ -5,8 +5,8 @@
 PX4는 다음 기능을 지원하기 위해 컴퓨터 비전 시스템([보조 컴퓨터](../companion_computer/pixhawk_companion.md)에서 주로 실행)을 활용합니다.
 
 - [광학 추적(Optical Flow)](#optical_flow) 기술은 2차원 평면상의 속도 추정 정보를 제공합니다(아래 방향으로 향한 카메라와 아래 방향으로 향한 거리 센서 활용).
-- [움직임 촬영(Motion Capture)](#mocap) 기술은 비행체 *외부*의 비전 시스템을 통해 3차원 자세 추정 정보를 제공합니다. 실내 공간 탐색에 주로 활용합니다.
-- [시각적 관성 주행 측정](#vio) 기술은 내장 비전 시스템과 관성 측정부(IMU)를 활용하여 3차원 자세와 속도 추정 정보를 제공합니다. 광역 위치 정보가 빠져있거나 신뢰할 수 없을 때, 공간 탐색에 활용합니다.
+- [움직임 촬영(Motion Capture)](#mocap) 기술은 비행체 *외부*의 비전 시스템을 통해 3차원 자세 추정 정보를 제공합니다. 실내 운행에 주로 활용합니다.
+- [시각적 관성 주행 측정](#vio) 기술은 내장 비전 시스템과 관성 측정부(IMU)를 활용하여 3차원 자세와 속도 추정 정보를 제공합니다. 광역 위치 정보가 빠져있거나 신뢰할 수 없을 때, 운행에 활용합니다.
 - [장애물 회피](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) 기술은 계획 경로를 비행할 때 장애물 주변의 완전한 이동 가능 공간 정보를 제공합니다(현재 missions에서 지원함). 이 기술은 보조 컴퓨터에서 실행하는 [PX4/avoidance](https://github.com/PX4/avoidance)를 활용합니다.
 - [충돌 방지](https://docs.px4.io/master/en/computer_vision/collision_prevention.html) 기술은 (주로 매뉴얼 모드로 비행할 때) 비행체가 장애물로 돌진하기 전에 이동을 멈출 때 활용합니다.
 
@@ -26,11 +26,11 @@ MoCap 기술에 대해 더 알아보려면 다음을 참고하십시오:
 
 ## 시각적 관성 주행 측정 {#vio}
 
-시각적 관성 주행 측정(VIO) 기술은 *로컬* 시작점으로부터 상대적인 위치로 비행체가 이동할 때 3차원 *자세* (위치와 방향)와 *속도*를 추정할 때 활용합니다. It is commonly used to navigate a vehicle in situations where GPS is absent (e.g. indoors) or unreliable (e.g. when flying under a bridge).
+시각적 관성 주행 측정(VIO) 기술은 *로컬* 시작점으로부터 상대적인 위치로 비행체가 이동할 때 3차원 *자세* (위치와 방향)와 *속도*를 추정할 때 활용합니다. 보통 GPS가 빠졌거나 (예: 실내) 신뢰할 수 없을 때(예: 다리 아래로 비행할 경우) 비행체 운행에 활용합니다.
 
-VIO uses [Visual Odometry](https://en.wikipedia.org/wiki/Visual_odometry) to estimate vehicle *pose* from visual information, combined with inertial measurements from an IMU (to correct for errors associated with rapid vehicle movement resulting in poor image capture).
+시각적 관성 주행 측정(VIO) 기술은 관성 측정부(IMU)에서 시각 정보와 관성 측정 수치를 결합(저화질 이미지를 촬영하는 고속 비행체 이동시 오류 보정)하여 비행체의 *자세*를 추정하는 [시각 주행 측정](https://en.wikipedia.org/wiki/Visual_odometry) 기술을 활용합니다.
 
-> **Note** On difference between VIO and [MoCap](#mocap) is that VIO cameras/IMU are vehicle-based, and additionally provide velocity information.
+> **참고** VIO 와 [MoCap](#mocap)간의 차이점이 있다면, VIO 카메라/관성 측정부(IMU)는 비행체 기반이며, 속도 정보가 추가로 붙습니다.
 
 PX4의 VIO 설정 방법을 더 알아보려면 다음을 참고하십시오:
 
