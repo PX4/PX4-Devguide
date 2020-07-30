@@ -216,7 +216,7 @@ listener는 언제든지 Ctrl+C, Esc, Q를 입력하면 끝낼 수 있습니다.
 
 ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
 
-Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
+참고로 라즈베리 파이가 아닌 NuttX의 경우, 드라이버에서 ioctl을 지원해야 합니다.
 
 ### 사용법 {#mixer_usage}
 
@@ -235,15 +235,15 @@ Note that the driver must support the used ioctl's, which is the case on NuttX, 
 
 ### 설명
 
-Application to test motor ramp up.
+모터 출력 증가 테스트 프로그램입니다.
 
-Before starting, make sure to stop any running attitude controller:
+시작하기 전, 동작 중이던 모든 고도 컨트롤러를 멈추었는지 확인하십시오:
 
     mc_rate_control stop
     fw_att_control stop
     
 
-When starting, a background task is started, runs for several seconds (as specified), then exits.
+프로그램 시작시, 백그라운드 작업을 시작하고 (지정한) 몇 초간 실행한 후 빠져나갑니다.
 
 ### 예시
 
@@ -420,7 +420,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
 
 원본: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
-Tool to print performance counters
+성능 카운터 출력 도구
 
 ### 사용법 {#perf_usage}
 
@@ -454,12 +454,12 @@ Note that in OneShot mode, the PWM range [1000, 2000] is automatically mapped to
 
 ### 예시
 
-Set the PWM rate for all channels to 400 Hz:
+모든 채널의 PWM 속도를 400Hz로 설정하려면:
 
     pwm rate -a -r 400
     
 
-Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
+예를 들어, 채널 1, 3번의 PWM 값을 1200us로 설정한다면:
 
     pwm arm
     pwm test -c 13 -p 1200
@@ -539,7 +539,7 @@ Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
 
 원본: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
 
-Test the speed of an SD Card
+SD 카드의 속도를 시험합니다.
 
 ### 사용법 {#sd_bench_usage}
 
