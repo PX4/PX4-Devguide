@@ -4,11 +4,11 @@
 
 PX4는 다음 기능을 지원하기 위해 컴퓨터 비전 시스템([보조 컴퓨터](../companion_computer/pixhawk_companion.md)에서 주로 실행)을 활용합니다.
 
-- [광학 추적](#optical_flow) 기술로 2차원 평면상의 속도를 추정 합니다(아래 방향으로 향한 카메라와 아래 방향으로 향한 거리 센서 활용).
+- [광학 추적](#optical_flow) 기술로 2차원 평면상의 속도를 추정합니다(아래 방향으로 향한 카메라와 아래 방향으로 향한 거리 센서 활용).
 - [움직임 촬영](#mocap)을 통해 이동 장비 *외부*의 비전 시스템으로 3차원 자세를 추정합니다. 실내 공간 탐색에 주로 활용합니다.
 - [비주얼 관성 주행거리 측정](#vio)기술로 내장 비전 시스템과 관성 측정부를 활용하여 3차원 자세와 속도를 추정합니다. 광역 위치 정보가 빠져있거나 신뢰할 수 없을 때, 공간 탐색에 활용합니다.
-- [장애물 회피](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) 기술은 계획 경로를 비행할 때 장애물 주변의 완전한 이동 가능 공간 정보를 제공합니다(현재 missions에서 지원함). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
-- [Collision Prevention](https://docs.px4.io/master/en/computer_vision/collision_prevention.html) is used to stop vehicles before they can crash into an obstacle (primarily when flying in manual modes).
+- [장애물 회피](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) 기술은 계획 경로를 비행할 때 장애물 주변의 완전한 이동 가능 공간 정보를 제공합니다(현재 missions에서 지원함). 이 기술은 보조 컴퓨터에서 실행하는 [PX4/avoidance](https://github.com/PX4/avoidance)를 활용합니다.
+- [충돌 방지](https://docs.px4.io/master/en/computer_vision/collision_prevention.html) 기술은 (주로 매뉴얼 모드로 비행할 때) 비행체가 장애물로 돌진하기 전에 이동을 멈출 때 활용합니다.
 
 > **Tip** The [PX4 Vision Autonomy Development Kit](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro) is a robust and inexpensive kit for developers working with computer vision on PX4. It comes with [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) software pre-installed, and can be used as the base for your own algorithms.
 
