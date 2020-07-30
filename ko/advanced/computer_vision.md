@@ -1,4 +1,4 @@
-# Computer Vision (Optical Flow, MoCap, VIO, Avoidance)
+# 컴퓨터 비전(Optical Flow, MoCap, VIO, Avoidance)
 
 [Computer vision](https://en.wikipedia.org/wiki/Computer_vision) techniques enable computers to use visual data to make sense of their environment.
 
