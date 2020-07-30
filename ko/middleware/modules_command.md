@@ -98,13 +98,13 @@ ESC 보정 도구
 
 ## hardfault_log
 
-Source: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
+원본: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
-Hardfault utility
+하드웨어 문제를 다루는 유틸리티
 
-Used in startup scripts to handle hardfaults
+하드웨어 문제를 처리하는 시작 스크립트에 활용합니다
 
-### Usage {#hardfault_log_usage}
+### 사용법 {#hardfault_log_usage}
 
     hardfault_log <command> [arguments...]
      Commands:
@@ -126,22 +126,22 @@ Used in startup scripts to handle hardfaults
 
 ## i2cdetect
 
-Source: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
+원본: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
 
 Utility to scan for I2C devices on a particular bus.
 
-### Usage {#i2cdetect_usage}
+### 사용법 {#i2cdetect_usage}
 
-    i2cdetect [arguments...]
-         [-b <val>]  I2C bus
-                     default: 1
+    i2cdetect [<인자값>...]
+         [-b <val>]  I2C 버스
+                     기본값: 1
     
 
 ## led_control
 
-Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
+원본: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
 
-### Description
+### 설명
 
 Command-line tool to control & test the (external) LED's.
 
@@ -149,14 +149,14 @@ To use it make sure there's a driver running, which handles the led_control uorb
 
 There are different priorities, such that for example one module can set a color with low priority, and another module can blink N times with high priority, and the LED's automatically return to the lower priority state after the blinking. The `reset` command can also be used to return to a lower priority.
 
-### Examples
+### 예시
 
 Blink the first LED 5 times in blue:
 
     led_control blink -c blue -l 0 -n 5
     
 
-### Usage {#led_control_usage}
+### 사용법 {#led_control_usage}
 
     led_control <command> [arguments...]
      Commands:
@@ -195,7 +195,7 @@ Utility to listen on uORB topics and print the data to the console.
 
 The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
 
-### Usage {#listener_usage}
+### 사용법 {#listener_usage}
 
     listener <command> [arguments...]
      Commands:
@@ -210,15 +210,15 @@ The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
 
 ## mixer
 
-Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
+원본: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
 
-### Description
+### 설명
 
 Load or append mixer files to the ESC driver.
 
 Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
 
-### Usage {#mixer_usage}
+### 사용법 {#mixer_usage}
 
     mixer <command> [arguments...]
      Commands:
@@ -231,9 +231,9 @@ Note that the driver must support the used ioctl's, which is the case on NuttX, 
 
 ## motor_ramp
 
-Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
+원본: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
 
-### Description
+### 설명
 
 Application to test motor ramp up.
 
@@ -245,7 +245,7 @@ Before starting, make sure to stop any running attitude controller:
 
 When starting, a background task is started, runs for several seconds (as specified), then exits.
 
-### Example
+### 예시
 
     motor_ramp sine -a 1100 -r 0.5
     
@@ -267,7 +267,7 @@ When starting, a background task is started, runs for several seconds (as specif
 
 ## motor_test
 
-Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
+원본: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
 Utility to test motors.
 
@@ -293,7 +293,7 @@ WARNING: remove all props before using this command.
 
 ## mtd
 
-Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
+원본: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
 Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
 
@@ -319,7 +319,7 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
 
 ## nshterm
 
-Source: [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
+원본: [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
 
 Start an NSH shell on a given port.
 
@@ -333,9 +333,9 @@ This was previously used to start a shell on the USB serial port. Now there runs
 
 ## param
 
-Source: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
+원본: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
 
-### Description
+### 설명
 
 Command to access and manipulate parameters via shell or script.
 
@@ -347,7 +347,7 @@ If the FLASH-based backend is enabled (which is done at compile time, e.g. for t
 
 Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant parameters to a ground control station.
 
-### Examples
+### 예시
 
 Change the airframe and make sure the airframe's default parameters are loaded:
 
@@ -418,7 +418,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
 
 ## perf
 
-Source: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
+원본: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
 Tool to print performance counters
 
@@ -434,9 +434,9 @@ Tool to print performance counters
 
 ## pwm
 
-Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
+원본: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
 
-### Description
+### 설명
 
 This command is used to configure PWM outputs for servo and ESC control.
 
@@ -452,7 +452,7 @@ The parameters `-p` and `-r` can be set to a parameter instead of specifying an 
 
 Note that in OneShot mode, the PWM range [1000, 2000] is automatically mapped to [125, 250].
 
-### Examples
+### 예시
 
 Set the PWM rate for all channels to 400 Hz:
 
@@ -524,9 +524,9 @@ Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
 
 ## reboot
 
-Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
+원본: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
 
-Reboot the system
+시스템을 다시 부팅합니다
 
 ### 사용법 {#reboot_usage}
 
@@ -537,7 +537,7 @@ Reboot the system
 
 ## sd_bench
 
-Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
+원본: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
 
 Test the speed of an SD Card
 
@@ -555,32 +555,32 @@ Test the speed of an SD Card
 
 ## top
 
-Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
+원본: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
 
 Monitor running processes and their CPU, stack usage, priority and state
 
 ### 사용법 {#top_usage}
 
-    top [arguments...]
-       once          print load only once
+    top [<인자값>...]
+       once          한 번만 불러온 값 출력
     
 
 ## usb_connected
 
-Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
+원본: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
-Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
+USB 연결 여부를 검사하는 유틸리티입니다. 시작 스크립트에서 활용했습니다. A return value of 0 means USB is connected, 1 otherwise.
 
 ### 사용법 {#usb_connected_usage}
 
-    usb_connected [arguments...]
+    usb_connected [<인자값>...]
     
 
 ## ver
 
-Source: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
+원본: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
 
-Tool to print various version information
+다양한 버전 정보를 출력하는 도구입니다
 
 ### 사용법 {#ver_usage}
 
