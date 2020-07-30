@@ -14,26 +14,26 @@ PX4 프로젝트는 분기를 셋으로 나누는 git 분기 모델을 활용합
 
 모든 코드의 기여는 [BSD 3-clause 라이선스](https://opensource.org/licenses/BSD-3-Clause) 하에 진행하며, 사용상 모든 코드에 대해 더 이상의 제약 사항을 강요해서는 안됩니다.
 
-## Code Style Formatting
+## 코드 형식 정리
 
-PX4 uses [astyle](http://astyle.sourceforge.net/) for code formatting. Valid versions are
+PX4는 [astyle](http://astyle.sourceforge.net/) 방식으로 코드 형식을 정리합니다. 유효한 버전은 다음과 같습니다:
 
-- [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/) (recommended)
+- [astyle 2.06](https://sourceforge.net/projects/astyle/files/astyle/astyle%202.06/) (추천)
 - [astyle 3.0](https://sourceforge.net/projects/astyle/files/astyle/astyle%203.0/)
 - [astyle 3.01](https://sourceforge.net/projects/astyle/files/)
 
-Once installed, formatting can be checked with `./Tools/astyle/check_code_style_all.sh`. The output should be `Format checks passed` on a clean master. If that worked, `make format` can be used in the future to check and format all files automatically.
+설치하고 나면 `./Tools/astyle/check_code_style_all.sh` 명령으로 코드 형식을 점검할 수 있습니다. 정리한 master 브랜치에서의 출력은 `Format checks passed`로 나와야 합니다. 이 결과가 나왔다면, 나중에 모든 파일의 코드 형식을 검사할 때 `make format` 명령을 활용할 수 있습니다.
 
-## In-Source Documentation
+## 소스 코드 내 문서 정리
 
-PX4 developers are encouraged to create appropriate in-source documentation.
+PX4 개발자 여러분들에게 목적에 부합하는 소스코드 내 문서 정리를 권장합니다.
 
-> **Note** Source-code documentation standards are not enforced, and the code is currently inconsistently documented. We'd like to do better!
+> **참고** 소스 코드 문서 표준을 강제하지 않으며, 현재 코드는 불규칙하게 문서로 정리했습니다. 이보다 더 나아지길 바랍니다!
 
-Currently we have two types of source-based documentation:
+현재 두가지 방식의 소스코드 기반 문서가 있습니다:
 
-- `PRINT_MODULE_*` methods are used for both module run time usage instructions and for the [Modules & Commands Reference](../middleware/modules_main.md) in this guide. 
-  - The API is documented [in the source code here](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381). 
+- `PRINT_MODULE_*` 메서드는 이 안내서에서 실행 시간의 모듈 사용 방법과 [모듈 및 명령 참고](../middleware/modules_main.md)를 목적으로 활용합니다. 
+  - API는 [이곳 소스 코드에](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381) 문서로 정리했습니다. 
   - Good examples of usage include the [Application/Module Template](../apps/module_template.md) and the files linked from the modules reference.
 
 - We encourage other in-source documentation *where it adds value/is not redundant*.
