@@ -1,4 +1,4 @@
-# PX4 SD Card Layout
+# PX4 SD 카드 배치
 
 The PX4 SD Card is used for storing configuration files, flight logs, mission information etc.
 
