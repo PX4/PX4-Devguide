@@ -1,8 +1,8 @@
 # 컴퓨터 비전(Optical Flow, MoCap, VIO, Avoidance)
 
-[Computer vision](https://en.wikipedia.org/wiki/Computer_vision) techniques enable computers to use visual data to make sense of their environment.
+[컴퓨터 비전](https://en.wikipedia.org/wiki/Computer_vision)은 컴퓨터가 실재하는 환경을 시각 데이터를 활용하여 이해할 수 있게 하는 기술입니다.
 
-PX4 uses computer vision systems (primarily running on [Companion Computers](../companion_computer/pixhawk_companion.md)) in order to support the following features:
+PX4는 다음 기능을 지원하기 위해 컴퓨터 비전 시스템( [보조 컴퓨터](../companion_computer/pixhawk_companion.md)에서 주로 실행)을 활용합니다:
 
 - [Optical Flow](#optical_flow) provides 2D velocity estimation (using a downward facing camera and a downward facing distance sensor).
 - [Motion Capture](#mocap) provides 3D pose estimation using a vision system that is *external* to the vehicle. It is primarily used for indoor navigation.
