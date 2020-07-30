@@ -10,7 +10,7 @@ PX4는 다음 기능을 지원하기 위해 컴퓨터 비전 시스템([보조 �
 - [장애물 회피](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) 기술은 계획 경로를 비행할 때 장애물 주변의 완전한 이동 가능 공간 정보를 제공합니다(현재 missions에서 지원함). 이 기술은 보조 컴퓨터에서 실행하는 [PX4/avoidance](https://github.com/PX4/avoidance)를 활용합니다.
 - [충돌 방지](https://docs.px4.io/master/en/computer_vision/collision_prevention.html) 기술은 (주로 매뉴얼 모드로 비행할 때) 비행체가 장애물로 돌진하기 전에 이동을 멈출 때 활용합니다.
 
-> **Tip** The [PX4 Vision Autonomy Development Kit](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro) is a robust and inexpensive kit for developers working with computer vision on PX4. It comes with [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) software pre-installed, and can be used as the base for your own algorithms.
+> **팁** [PX4 비전 자율 개발 키트](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro)는 개발자들이 PX4 컴퓨터 비전 기술을 다루는데 활용할 수 있는 견고하고 저렴한 키트입니다. It comes with [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) software pre-installed, and can be used as the base for your own algorithms.
 
 ## Motion Capture {#mocap}
 
