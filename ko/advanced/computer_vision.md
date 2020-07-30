@@ -2,12 +2,12 @@
 
 [컴퓨터 비전](https://en.wikipedia.org/wiki/Computer_vision)은 컴퓨터가 실재하는 환경을 시각 데이터를 활용하여 이해할 수 있게 하는 기술입니다.
 
-PX4는 다음 기능을 지원하기 위해 컴퓨터 비전 시스템( [보조 컴퓨터](../companion_computer/pixhawk_companion.md)에서 주로 실행)을 활용합니다:
+PX4는 다음 기능을 지원하기 위해 컴퓨터 비전 시스템([보조 컴퓨터](../companion_computer/pixhawk_companion.md)에서 주로 실행)을 활용합니다.
 
-- [Optical Flow](#optical_flow) provides 2D velocity estimation (using a downward facing camera and a downward facing distance sensor).
-- [Motion Capture](#mocap) provides 3D pose estimation using a vision system that is *external* to the vehicle. It is primarily used for indoor navigation.
-- [Visual Inertial Odometry](#vio) provides 3D pose and velocity estimation using an onboard vision system and IMU. It is used for navigation when global position information is absent or unreliable.
-- [Obstacle Avoidance](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) provides full navigation around obstacles when flying a planned path (currently missions are supported). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
+- [광학 추적](#optical_flow) 기술로 2차원 평면상의 속도를 추정 합니다(아래 방향으로 향한 카메라와 아래 방향으로 향한 거리 센서 활용).
+- [움직임 촬영](#mocap)을 통해 이동 장비 *외부*의 비전 시스템으로 3차원 자세를 추정합니다. 실내 공간 탐색에 주로 활용합니다.
+- [비주얼 관성 주행거리 측정](#vio)기술로 내장 비전 시스템과 관성 측정부를 활용하여 3차원 자세와 속도를 추정합니다. 광역 위치 정보가 빠져있거나 신뢰할 수 없을 때, 공간 탐색에 활용합니다.
+- [장애물 회피](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) 기술은 계획 경로를 비행할 때 장애물 주변의 완전한 이동 가능 공간 정보를 제공합니다(현재 missions에서 지원함). This uses [PX4/avoidance](https://github.com/PX4/avoidance) running on a companion computer.
 - [Collision Prevention](https://docs.px4.io/master/en/computer_vision/collision_prevention.html) is used to stop vehicles before they can crash into an obstacle (primarily when flying in manual modes).
 
 > **Tip** The [PX4 Vision Autonomy Development Kit](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro) is a robust and inexpensive kit for developers working with computer vision on PX4. It comes with [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) software pre-installed, and can be used as the base for your own algorithms.
