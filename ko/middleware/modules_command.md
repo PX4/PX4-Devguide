@@ -128,7 +128,7 @@ ESC 보정 도구
 
 원본: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
 
-Utility to scan for I2C devices on a particular bus.
+각 버스에 연결한 I2C 장치를 검색하는 유틸리티
 
 ### 사용법 {#i2cdetect_usage}
 
@@ -151,7 +151,7 @@ There are different priorities, such that for example one module can set a color
 
 ### 예시
 
-Blink the first LED 5 times in blue:
+첫번째 LED를 파란색으로 5번 깜빡이려면:
 
     led_control blink -c blue -l 0 -n 5
     
@@ -189,11 +189,11 @@ Blink the first LED 5 times in blue:
 
 ## listener
 
-Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
+원본: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
 
-Utility to listen on uORB topics and print the data to the console.
+uORB 요청을 수신하고 콘솔에 데이터를 출력하는 유틸리티
 
-The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
+listener는 언제든지 Ctrl+C, Esc, Q를 입력하면 끝낼 수 있습니다.
 
 ### 사용법 {#listener_usage}
 
@@ -214,7 +214,7 @@ The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
 
 ### 설명
 
-Load or append mixer files to the ESC driver.
+ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
 
 Note that the driver must support the used ioctl's, which is the case on NuttX, but for example not on RPi.
 
@@ -269,9 +269,9 @@ When starting, a background task is started, runs for several seconds (as specif
 
 원본: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
-Utility to test motors.
+모터 테스트 유틸리티.
 
-WARNING: remove all props before using this command.
+이 명령을 사용하기 전 모든 프로펠러를 제거하십시오.
 
 ### 사용법 {#motor_test_usage}
 
@@ -321,14 +321,14 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
 
 원본: [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
 
-Start an NSH shell on a given port.
+설정 포트에서 NSH 셸을 시작합니다.
 
 This was previously used to start a shell on the USB serial port. Now there runs mavlink, and it is possible to use a shell over mavlink.
 
 ### 사용법 {#nshterm_usage}
 
-    nshterm [arguments...]
-         <file:dev>  Device on which to start the shell (eg. /dev/ttyACM0)
+    nshterm [<인자값>...]
+         <file:dev>  셸을 시작할 장치 (예: /dev/ttyACM0)
     
 
 ## param
@@ -530,9 +530,9 @@ Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
 
 ### 사용법 {#reboot_usage}
 
-    reboot [arguments...]
-         [-b]        Reboot into bootloader
-         [lock|unlock] Take/release the shutdown lock (for testing)
+    reboot [<인자값>...]
+         [-b]        부트로더로 다시 부팅
+         [lock|unlock] 시스템 끄기 잠금 설정/해제 (시험용)
     
 
 ## sd_bench
@@ -557,7 +557,7 @@ Test the speed of an SD Card
 
 원본: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
 
-Monitor running processes and their CPU, stack usage, priority and state
+실행 프로세스, CPU 활용, 스택 활용, 우선순위, 상태를 출력합니다.
 
 ### 사용법 {#top_usage}
 
@@ -569,7 +569,7 @@ Monitor running processes and their CPU, stack usage, priority and state
 
 원본: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
-USB 연결 여부를 검사하는 유틸리티입니다. 시작 스크립트에서 활용했습니다. A return value of 0 means USB is connected, 1 otherwise.
+USB 연결 여부를 검사하는 유틸리티입니다. 시작 스크립트에서 활용했습니다. 반환 값 0은 USB 연결함, 1은 이외의 모든 경우에 해당합니다.
 
 ### 사용법 {#usb_connected_usage}
 
