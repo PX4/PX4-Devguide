@@ -61,15 +61,15 @@ cd Firmware
 
 ### 보조 스크립트(docker_run.sh)
 
-The easiest way to use the containers is via the [docker_run.sh](https://github.com/PX4/Firmware/blob/master/Tools/docker_run.sh) helper script. This script takes a PX4 build command as an argument (e.g. `make tests`). It starts up docker with a recent version (hard coded) of the appropriate container and sensible environment settings.
+컨테이너를 활용하는 가장 쉬운 방법은 [docker_run.sh](https://github.com/PX4/Firmware/blob/master/Tools/docker_run.sh) 보조 스크립트를 활용한 방법입니다. 이 스크립트는 PX4 빌드 명령을 인자 값으로 취합니다 (예: `make tests`). 명령을 통해 (하드 코딩한) 적절한 최근 버전의 컨테이너와 적당한 환경 설정 값으로 도커를 시작합니다.
 
-For example, to build SITL you would call (from within the **/Firmware** directory):
+예를 들어, SITL을 빌드하려면 다음 명령을 (**/Firmware** 디렉터리에서) 실행하십시오:
 
 ```sh
 ./Tools/docker_run.sh 'make px4_sitl_default'
 ```
 
-Or to start a bash session using the NuttX toolchain:
+또는 NuttX 툴체인으로 배시 세션을 시작하려면:
 
     ./Tools/docker_run.sh 'bash'
     
@@ -102,7 +102,7 @@ Where,
 * `<container>:<tag>`: The container with version tag to start - e.g.: `px4io/px4-dev-ros:2017-10-23`.
 * `<build_command>`: The command to invoke on the new container. E.g. `bash` is used to open a bash shell in the container.
 
-The concrete example below shows how to open a bash shell and share the directory **~/src/Firmware** on the host computer.
+아래의 보강 예제에서는 호스트 컴퓨터에서 배시 셸을 열고 **~/src/Firmware** 디렉터리를 공유하는 방법을 보여줍니다.
 
 ```sh
 # 컨테이너의 xhost 접근 활성화
