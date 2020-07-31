@@ -1,20 +1,20 @@
-# External Modules (Out-of-Tree)
+# 외부 모듈(트리 외부-Out-of-Tree)
 
-External modules provide a convenient mechanism for developers to manage/group proprietary modules that they want add to (or update in) PX4 firmware. External modules can use the same includes as internal modules and can interact with internal modules via uORB.
+외부 모듈에서는 PX4 펌웨어에 추가하려는 상용 모듈을 관리하고 그룹화하는 편의 매커니즘을 개발자에게 제공합니다. 외부 모듈은 내부 모듈과 마찬가지로 uORB를 통해 내부 모듈과 상호 메시지 교환을 할 수 있도록 활용할 수 있습니다.
 
-This topic explains how to add an external ("out of tree") module to the PX4 build.
+이 주제에서는 외부("out of tree")모듈을 PX4 빌드에 추가하는 방법을 설명합니다.
 
-> **Tip** We encourage you to contribute your changes into PX4, where possible!
+> **Tip** 가능하다면 PX4에 바뀐 내용을 기여해주시기 바랍니다!
 
-## Usage
+## 사용법
 
-To create an external module:
+외부 모듈을 만들려면:
 
-- Create an *external directory* directory for grouping the external modules: 
-  - This can be located anywhere outside of the **Firmware** tree.
-  - It must have the same structure as **Firmware** (i.e. it must contain a directory called **src**).
-  - Later we refer to this directory using `EXTERNAL_MODULES_LOCATION`.
-- Copy an existing module (e.g. **examples/px4_simple_app**) to the external directory, or directly create a new module.
+- 외부 모듈을 모아둘 *외부 디렉터리*를 만드십시오: 
+  - **펌웨어** 트리 외부 어디에든 둘 수 있습니다.
+  - **펌웨어**와 동일한 구조를 가져야합니다(예시: **src** 디렉터리가 있어야합니다).
+  - 이후 우리는 이 디렉터리를 `EXTERNAL_MODULES_LOCATION`이라고 하겠습니다.
+- 기존 모듈을 (예: **examples/px4_simple_app**) 외부 디렉터리로 복사하거나 새 모듈을 바로 만드십시오.
 - Rename the module (including `MODULE` in **CMakeLists.txt**) or remove it from the existing Firmware *cmake* build config. This is to avoid conflicts with internal modules.
 - Add a file **CMakeLists.txt** in the external directory with content: 
       set(config_module_list_external
