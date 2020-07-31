@@ -33,7 +33,7 @@
   * [SD 카드 배치](concept/sd_card_layout.md)
 * [시뮬레이션](simulation/README.md) 
   * [jMAVSim 시뮬레이션](simulation/jmavsim.md) 
-    * [Multi-Vehicle Sim with JMAVSim](simulation/multi_vehicle_jmavsim.md)
+    * [jMAVSim 다중 비행체 모의시험](simulation/multi_vehicle_jmavsim.md)
   * [가제보(Gazebo) 짐벌 모의시험](simulation/gazebo.md) 
     * [가제보(Gazebo) 비행체](simulation/gazebo_vehicles.md)
     * [Gazebo Worlds](simulation/gazebo_worlds.md)
