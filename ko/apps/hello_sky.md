@@ -2,7 +2,7 @@
 
 이번 주제에서는 여러분의 첫번째 온보드 어플리케이션의 생성 및 실행 방법에 대해 설명합니다. PX4 기반의 어플리케이션 개발에 필요한 API와 기본 컨셉을 다룹니다.
 
-> **주의** 기능의 시작/중단, 명령행 인자와 같은 고급 기능은 간결성을 위하여 제외하였습니다. [Application/Module Template](../apps/module_template.md)에서 이러한 내용을 다룹니다..
+> **Note** 기능의 시작/중단, 명령행 인자와 같은 고급 기능은 간결성을 위하여 제외하였습니다. [Application/Module Template](../apps/module_template.md)에서 이러한 내용을 다룹니다..
 
 ## 사전 준비 사항
 
@@ -78,7 +78,7 @@
         
         > **Tip** PX4 쉘에서 `PX4_INFO`는 `printf`에 해당한다. (**px4_platform_common/log.h**에서 include됨) 4 단계의 로글 레벨이 존재: `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`. 경고와 에러는 [ULog](../log/ulog_file_format.md)에 추가적으로 포함되고 [Flight Review](https://logs.px4.io/)에서 나타난다.
 
-1. **CMakeLists.txt**이름의 *cmake* 정의 파일을 만들고 열기. 아래 텍스트를 파일에 복사.
+1. **CMakeLists.txt**이름의 *cmake* 정의 파일을 만들고 여십시오. 아래 텍스트를 파일에 복사하십시오.
     
     ```cmake
     ############################################################################
@@ -133,21 +133,21 @@
 
 ## 어플리케이션/펌웨어 빌드
 
-이제 어플리케이션은 완결되었습니다. 이를 실행하기 위해서는 우선 이 어플리케이션을 PX4와 함께 빌드해야할 필요가 있습니다. 여러분의 타겟용 보드 레벨 *cmake* 파일의 build/firmware에 어플리케이션을 추가합니다. 
+이제 어플리케이션은 완결되었습니다. 이를 실행하려면 우선 이 어플리케이션을 PX4와 함께 빌드해야합니다. 대상 보드에 넣을 적당한 보드레벨 *cmake* 파일에 빌드와 펌웨어로 들어갈 프로그램을 추가했습니다.
 
 * PX4 SITL (시뮬레이터): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
 * Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
 * Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
 * 다른 보드용 *cmake* 파일은 [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)에서 확인 가능
 
-어플리케이션을 펌웨어로 포함해서 컴파일하기 위해서는 *cmake* 파일내에 어플리케이션과 관련된 새로운 라인을 작성합니다.
+어플리케이션을 펌웨어에 넣어 컴파일하려면 *cmake* 파일내에 어플리케이션과 관련된 새 라인을 작성하십시오:
 
     examples/px4_simple_app
     
 
-> **Note** 예제는 기본적으로 펌웨어로 포함되어 있기 때문에, 대부분의 파일에 이 라인은 이미 존재함.
+> **Note** 예제에는 기본적으로 펌웨어로 넣었기 때문에, 대부분의 파일에 이 라인이 있습니다.
 
-보드에 특정된 명령을 이용하여 예제를 빌드:
+보드별 지정 명령으로 예제를 빌드하십시오:
 
 * jMAVSim 시뮬레이터: `make px4_sitl_default jmavsim`
 * Pixhawk v1/2: `make px4_fmu-v2_default` (혹은 단지 `make px4_fmu-v2`)
@@ -158,18 +158,18 @@
 
 ### 보드에 펌웨어 업로드
 
-업로더를 활성화하고 보드를 리셋:
+업로더를 활성화하고 보드를 리셋하십시오:
 
 * Pixhawk v1/2: `make px4_fmu-v2_default upload`
 * Pixhawk v3: `make px4_fmu-v4_default upload`
 
-여러분이 보드를 리셋하기 전에 컴파일 메시지가 출력되고 마지막에는 :
+보드를 리셋하기 전 여러줄의 컴파일 메시지가 나타나고 마지막에 다음과 같은 줄이 떠야 합니다:
 
 ```sh
 Loaded firmware for X,X, waiting for the bootloader...
 ```
 
-보드가 리셋되면 업로드가 진행되고 다음을 출력:
+보드가 리셋되면 업로드를 진행하면서 다음 내용이 나타납니다:
 
 ```sh
 Erase  : [====================] 100.0%
@@ -182,13 +182,13 @@ Rebooting.
 
 ### 콘솔 연결
 
-이제 시리얼이나 USB를 통해 [system console](../debug/system_console.md)에 연결합니다. **ENTER** 를 누르면 쉘 프롬프트가 나타납니다.:
+이제 시리얼이나 USB를 통해 [system console](../debug/system_console.md)에 연결합니다. **ENTER** 를 누르면 쉘 프롬프트가 나타납니다:
 
 ```sh
 nsh>
 ```
 
-''help''를 입력하고 ENTER를 누릅니다.
+''help''를 입력하고 ENTER를 누르십시오.
 
 ```sh
 nsh> help
