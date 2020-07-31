@@ -6,13 +6,13 @@ PX4에는 제각기 다른 입출력 수단에 대한 일반 마운트/짐벌 �
 
 ## 매개변수
 
-[These parameters](../advanced/parameter_reference.md#mount) are used to setup the mount driver. The most important ones are the input (`MNT_MODE_IN`) and the output (`MNT_MODE_OUT`) mode. 초기 값으로 입력은 활성화되어 있지 않고 드라이버도 작동하지 않습니다. After selecting the input mode, reboot the vehicle so that the mount driver starts.
+마운트 드라이버를 설정할 때 [이 매개변수](../advanced/parameter_reference.md#mount)를 활용합니다. 가장 중요한 부분은 입력단(`MNT_MODE_IN`)과 출력단(`MNT_MODE_OUT`)의 상태입니다. 기본적으로, 입력단은 활성 상태가 아니며, 드라이버를 실행하고 있지도 않습니다. 입력 상태를 선택하고 나면, 비행체를 재부팅하여 마운트 드라이버를 시작하십시오.
 
-If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from MAVLink to RC, a large stick motion is required.
+입력단 상태를 `AUTO`로 지정하면, 최근 입력 수단을 기반으로 자동으로 전환합니다. MAVLink에서 리모콘으로 전환하려면, large stick motion이 필요합니다.
 
 ## AUX 출력
 
-If the output mode is set to `AUX`, a mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (overriding any aux mixer provided by the airframe configuration).
+출력단 상태를 `AUX`로 설정하면, 대응 출력 핀을 정의하고 [마운트 믹서](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix)를 자동으로 선택하는 mixer 파일이 필요합니다(airframe을 설정하여 어떤 AUX mixer 보다 우선함).
 
 출력 할당은 다음과 같습니다:
 
@@ -57,18 +57,18 @@ To just test the mount driver on other models or simulators, make sure the drive
 
 ## 시험하기
 
-이 드라이버는 간단한 시험 명령어를 제공하는데 먼저 `vmount stop`으로 정지시킵니다. 아래는 SITL에서의 시험 방법에 대한 설명이지만, 실제 장비에서도 이 명령어들은 작동합니다.
+이 드라이버는 간단한 시험 명령어를 제공합니다. 먼저 `vmount stop`으로 동작을 멈추어야합니다. 아래는 SITL에서의 시험 방법에 대한 설명이지만, 실제 장비에서도 이 명령어들은 작동합니다.
 
 매개변수가 변경될 필요는 없습니다. 아래 명령어로 시뮬레이션을 시작합니다.
 
     make px4_sitl gazebo_typhoon_h480
     
 
-Armed되어 있는지 확인하세요. 예를 들면, `commander takeoff`를 입력하고 아래 명령어를 사용합니다.
+armed 상태인지 확인하십시오. 예를 들면, `commander takeoff`를 입력하고 아래 명령어를 사용하여
 
     vmount test yaw 30
     
 
-짐벌이 제어됩니다. Note that the simulated gimbal stabilizes itself, so if you send MAVLink commands, set the `stabilize` flags to false.
+짐벌을 제어하십시오. 참고로 모의시험 진행시 짐벌은 스스로 안정화를 찾으므로, MAVLink 명령을 보낼 때, `stabilize` 플래그 값을 false로 설정하십시오.
 
-![Gazebo 짐벌 모의](../../assets/simulation/gazebo/gimbal-simulation.png)
+![Gazebo 짐벌 모의시험](../../assets/simulation/gazebo/gimbal-simulation.png)
