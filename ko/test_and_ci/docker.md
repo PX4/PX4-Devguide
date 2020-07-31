@@ -50,7 +50,7 @@ sudo usermod -aG docker $USER
 
 ## 도커 컨테이너 활용
 
-The following instructions show how to build PX4 source code on the host computer using a toolchain running in a docker container. The information assumes that you have already downloaded the PX4 source code to **src/Firmware**, as shown:
+다음 절차는 도커 컨테이너에서 실행하는 툴체인으로 호스트 컴퓨터에서 PX4 소스 코드를 빌드하는 방법을 보여줍니다. PX4 소스 코드를 다음과 같이 **src/Firmware**에 이미 다운로드했음을 가정합니다:
 
 ```sh
 mkdir src
