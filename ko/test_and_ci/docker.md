@@ -12,14 +12,14 @@
 
 리눅스 컴퓨터에 [도커를 설치하십시오](https://docs.docker.com/installation/). 도커 사이트에서 관리하는 꾸러미 저장소에서 적당한 최신 안정 꾸러미 하나를 활용하십시오. *기업용판* 또는 (무료) *커뮤니티판*을 활용할 수 있습니다.
 
-For local installation of non-production setups on *Ubuntu*, the quickest and easiest way to install Docker is to use the [convenience script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script) as shown below (alternative installation methods are found on the same page):
+*우분투*에서 비 프로덕션 설정 방식으로 로컬에 설치하려면, 아래에 보여드리는 바와 같이 [간편 스크립트](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script)를 활용하여 도커를 설치하는 방법이 가장 빠르고 간단한 방법입니다(대안 설치 방식도 동일한 페이지에 있습니다):
 
 ```sh
 curl -fsSL get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-The default installation requires that you invoke *Docker* as the root user (i.e. using `sudo`). However, for building the PX4 firwmare we suggest to [use docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). That way, your build folder won't be owned by root after using docker.
+기본 설치시 *도커*를 루트 사용자로 실행해야 합니다(예: `sudo` 활용). 그러나 PX4 펌웨어를 빌드하려면 [비 루트 사용자 계정으로 도커를 실행](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user) 하시는게 좋습니다. 이렇게 하면, 도커를 활용하면서 빌드 폴더를 루트 소유로 만들지 않습니다.
 
 ```sh
 # Create docker group (may not be required)
@@ -29,26 +29,26 @@ sudo usermod -aG docker $USER
 # Log in/out again before using docker!
 ```
 
-## Container Hierarchy {#px4_containers}
+## 컨테이너 계층 {#px4_containers}
 
-The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/README.md#container-hierarchy)):
+가용 컨테이너는 아래와 같습니다([Github](https://github.com/PX4/containers/blob/master/README.md#container-hierarchy)에 있음):
 
-| Container                       | Description                                      |
-| ------------------------------- | ------------------------------------------------ |
-| px4-dev-base                    | Base setup common to all containers              |
-| &emsp;px4-dev-nuttx             | NuttX toolchain                                  |
-| &emsp;px4-dev-simulation        | NuttX toolchain + simulation (jMAVSim, Gazebo)   |
-| &emsp;&emsp;px4-dev-ros         | NuttX toolchain, simulation + ROS (incl. MAVROS) |
-| &emsp;px4-dev-raspi             | Raspberry Pi toolchain                           |
-| &emsp;px4-dev-snapdragon        | Qualcomm Snapdragon Flight toolchain             |
-| &emsp;px4-dev-clang             | Clang tools                                      |
-| &emsp;&emsp;px4-dev-nuttx-clang | Clang and NuttX tools                            |
+| 컨테이너                            | 설명                                   |
+| ------------------------------- | ------------------------------------ |
+| px4-dev-base                    | 모든 컨테이너에서 공통으로 활용하는 베이스 설치           |
+| &emsp;px4-dev-nuttx             | NuttX 툴체인                            |
+| &emsp;px4-dev-simulation        | NuttX 툴체인 + 모의시험 (jMAVSim, Gazebo)   |
+| &emsp;&emsp;px4-dev-ros         | NuttX 툴체인, 모의시험 + ROS (incl. MAVROS) |
+| &emsp;px4-dev-raspi             | 라즈베리 Pi 툴체인                          |
+| &emsp;px4-dev-snapdragon        | 퀄컴 스냅드래곤 비행 툴체인                      |
+| &emsp;px4-dev-clang             | clang 도구                             |
+| &emsp;&emsp;px4-dev-nuttx-clang | clang과 NuttX 도구                      |
 
 The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-nuttx:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-nuttx/tags)).
 
 > **Tip** Typically you should use a recent container, but not necessarily the latest (as this changes too often).
 
-## Use the Docker Container
+## 도커 컨테이너 활용
 
 The following instructions show how to build PX4 source code on the host computer using a toolchain running in a docker container. The information assumes that you have already downloaded the PX4 source code to **src/Firmware**, as shown:
 
@@ -59,7 +59,7 @@ git clone https://github.com/PX4/Firmware.git
 cd Firmware
 ```
 
-### Helper Script (docker_run.sh)
+### 보조 스크립트(docker_run.sh)
 
 The easiest way to use the containers is via the [docker_run.sh](https://github.com/PX4/Firmware/blob/master/Tools/docker_run.sh) helper script. This script takes a PX4 build command as an argument (e.g. `make tests`). It starts up docker with a recent version (hard coded) of the appropriate container and sensible environment settings.
 
@@ -76,15 +76,15 @@ Or to start a bash session using the NuttX toolchain:
 
 > **Tip** The script is easy because you don't need to know anything much about *Docker* or think about what container to use. However it is not particularly robust! The manual approach discussed in the [section below](#manual_start) is more flexible and should be used if you have any problems with the script.
 
-### Calling Docker Manually {#manual_start}
+### 도커 직접 호출 {#manual_start}
 
 The syntax of a typical command is shown below. This runs a Docker container that has support for X forwarding (makes the simulation GUI available from inside the container). It maps the directory `<host_src>` from your computer to `<container_src>` inside the container and forwards the UDP port needed to connect *QGroundControl*. With the `-–privileged` option it will automatically have access to the devices on your host (e.g. a joystick and GPU). If you connect/disconnect a device you have to restart the container.
 
 ```sh
-# enable access to xhost from the container
+# 컨테이너의 xhost 접근 활성화
 xhost +
 
-# Run docker
+# 도커 실행
 docker run -it --privileged \
     --env=LOCAL_USER_ID="$(id -u)" \
     -v <host_src>:<container_src>:rw \
@@ -105,10 +105,10 @@ Where,
 The concrete example below shows how to open a bash shell and share the directory **~/src/Firmware** on the host computer.
 
 ```sh
-# enable access to xhost from the container
+# 컨테이너의 xhost 접근 활성화
 xhost +
 
-# Run docker and open bash shell
+# 도커 실행 후 배시 셸 열기
 docker run -it --privileged \
 --env=LOCAL_USER_ID="$(id -u)" \
 -v ~/src/Firmware:/src/firmware/:rw \
@@ -125,7 +125,7 @@ cd src/firmware    #This is <container_src>
 make px4_sitl_default gazebo
 ```
 
-### Re-enter the Container
+### 컨테이너 재진입
 
 The `docker run` command can only be used to create a new container. To get back into this container (which will retain your changes) simply do:
 
@@ -138,15 +138,15 @@ docker exec -it container_name bash
 
 If you need multiple shells connected to the container, just open a new shell and execute that last command again.
 
-### Clearing the Container
+### 컨테이너 정리
 
-Sometimes you may need to clear a container altogether. You can do so using its name:
+때로는 컨테이너를 함께 지워야 할 경우가 있습니다. 컨테이너 이름을 다음과 같이 붙이면 지울 수 있습니다:
 
 ```sh
 docker rm mycontainer
 ```
 
-If you can't remember the name, then you can list inactive container ids and then delete them, as shown below:
+이름을 기억할 수 없다면, 비활성 컨테이너 ID를 조회한 후 다음과 같이 삭제하십시오:
 
 ```sh
 docker ps -a -q
@@ -166,15 +166,15 @@ $ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}
 
 > **Note** Spaces between double curly braces above should be not be present (they are needed to avoid a UI rendering problem in gitbook).
 
-### Troubleshooting
+### 문제 해결
 
-#### Permission Errors
+#### 권한 오류
 
 The container creates files as needed with a default user - typically "root". This can lead to permission errors where the user on the host computer is not able to access files created by the container.
 
 The example above uses the line `--env=LOCAL_USER_ID="$(id -u)"` to create a user in the container with the same UID as the user on the host. This ensures that all files created within the container will be accessible on the host.
 
-#### Graphics Driver Issues
+#### 그래픽 드라이버 문제
 
 It's possible that running Gazebo will result in a similar error message like the following:
 
@@ -190,7 +190,7 @@ In that case the native graphics driver for your host system must be installed. 
 
 More information on this can be found [here](http://gernotklingler.com/blog/howto-get-hardware-accelerated-opengl-support-docker/).
 
-## Virtual Machine Support {#virtual_machine}
+## 가상 머신 지원 {#virtual_machine}
 
 Any recent Linux distribution should work.
 
@@ -198,11 +198,11 @@ The following configuration is tested:
 
 * OS X with VMWare Fusion and Ubuntu 14.04 (Docker container with GUI support on Parallels make the X-Server crash).
 
-**Memory**
+**메모리**
 
 Use at least 4GB memory for the virtual machine.
 
-**Compilation problems**
+**컴파일 문제**
 
 If compilation fails with errors like this:
 
@@ -213,7 +213,7 @@ c++: internal compiler error: Killed (program cc1plus)
 
 Try disabling parallel builds.
 
-**Allow Docker Control from the VM Host**
+**가상 머신 호스트에서 도커 제어 허용**
 
 Edit `/etc/defaults/docker` and add this line:
 
