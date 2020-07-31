@@ -1,4 +1,4 @@
-# Installing driver on Ubuntu for Intel RealSense R200
+# 우분투에 인텔 리얼센스 R200 드라이버 설치하기
 
 This tutorial aims to give instructions on how to install the camera driver of the Intel RealSense R200 camera head in Linux environment such that the gathered images can be accessed via the Robot Operation System (ROS). The RealSense R200 camera head is depicted below:
 
