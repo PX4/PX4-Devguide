@@ -10,13 +10,13 @@ PX4는 다음 기능을 지원하기 위해 컴퓨터 비전 시스템([보조 �
 - [장애물 회피](https://docs.px4.io/master/en/computer_vision/obstacle_avoidance.html) 기술은 계획 경로를 비행할 때 장애물 주변의 완전한 이동 가능 공간 정보를 제공합니다(현재 missions에서 지원함). 이 기술은 보조 컴퓨터에서 실행하는 [PX4/avoidance](https://github.com/PX4/avoidance)를 활용합니다.
 - [충돌 방지](https://docs.px4.io/master/en/computer_vision/collision_prevention.html) 기술은 (주로 매뉴얼 모드로 비행할 때) 비행체가 장애물로 돌진하기 전에 이동을 멈출 때 활용합니다.
 
-> **팁** [PX4 비전 자율 개발 키트](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro)는 개발자들이 PX4 컴퓨터 비전 기술을 다루는데 활용할 수 있는 견고하고 저렴한 키트입니다. [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) 프로그램을 미리 설치한 상태로 나오며, 개발자 여러분이 자체적으로 보유한 알고리즘을 시험해볼 수 있는 기반으로 활용할 수 있습니다.
+> **Tip** [PX4 비전 자율 개발 키트](https://docs.px4.io/master/en/complete_vehicles/px4_vision_kit.html) (Holybro)는 개발자들이 PX4 컴퓨터 비전 기술을 다루는데 활용할 수 있는 견고하고 저렴한 키트입니다. [PX4 avoidance](https://github.com/PX4/avoidance#obstacle-detection-and-avoidance) 프로그램을 미리 설치한 상태로 나오며, 개발자 여러분이 자체적으로 보유한 알고리즘을 시험해볼 수 있는 기반으로 활용할 수 있습니다.
 
 ## 움직임 촬영(Motion Capture) {#mocap}
 
 움직임 촬영(Motion Capture, a.k.a MoCap)은 비행체 *외부*의 위치 결정 방법으로 3차원 *자세*(위치와 방향) 를 추정하는 기술입니다. MoCap 시스템은 보통 적외선 카메라로 움직임을 감지하나, 광선 레이더, 광대역 주파(UWB) 형태 기술을 활용할 수도 있습니다.
 
-> **참고** MoCap은 GPS가 빠져있는 상황에서 비행체 탐색 운용을 할 때 활용하며, 상대적인 *로컬* 좌표 체계 위치 정보를 제공합니다.
+> **Note** MoCap은 GPS가 빠져있는 상황에서 비행체 탐색 운용을 할 때 활용하며, 상대적인 *로컬* 좌표 체계 위치 정보를 제공합니다.
 
 MoCap 기술에 대해 더 알아보려면 다음을 참고하십시오:
 
@@ -30,7 +30,7 @@ MoCap 기술에 대해 더 알아보려면 다음을 참고하십시오:
 
 시각적 관성 주행 측정(VIO) 기술은 관성 측정부(IMU)에서 시각 정보와 관성 측정 수치를 결합(저화질 이미지를 촬영하는 고속 비행체 이동시 오류 보정)하여 비행체의 *자세*를 추정하는 [시각 주행 측정](https://en.wikipedia.org/wiki/Visual_odometry) 기술을 활용합니다.
 
-> **참고** VIO 와 [MoCap](#mocap)간의 차이점이 있다면, VIO 카메라/관성 측정부(IMU)는 비행체 기반이며, 속도 정보가 추가로 붙습니다.
+> **Note** VIO 와 [MoCap](#mocap)간의 차이점이 있다면, VIO 카메라/관성 측정부(IMU)는 비행체 기반이며, 속도 정보가 추가로 붙습니다.
 
 PX4의 VIO 설정 방법을 더 알아보려면 다음을 참고하십시오:
 
