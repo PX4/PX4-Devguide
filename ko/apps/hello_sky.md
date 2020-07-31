@@ -125,11 +125,11 @@
     
     `px4_add_module()` 메써드는 모듈 디스크립션에 있는 내용에서 정적 라이브러리를 빌드합니다. `MAIN` 블럭에 모듈의 이름을 기재하며 이는 NuttX에 명령어로 등록되어 PX4 쉘이나 SITL 콘솔에서 호출할 수 있습니다.
     
-    > **Tip** `px4_add_module()` 의 포맷은 [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake)에 기술되어 있음.
+    > **Tip** `px4_add_module()` 의 형식은 [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake)에 들어 있습니다.
     
     <span></span>
     
-    > **Note** `px4_add_module`의 옵션을 `DYNAMIC`로 지정한 경우에는, 정적 라이브러리 대신 POSIX 플랫폼상의 *공유 라이브러리*가 생성됨. (PX4를 재컴파일하지 않고서도 이를 로딩할 수 있으며, 다른 사람들에게 소스 코드 대신 바이너리로 공유가 가능함). 이 경우 앱은 내장 명령어가 되지 않고, `examples__px4_simple_app.px4mod`와 같은 별도의 파일이 됨. 런타임에서 `dyn` 명령어를 이용하여 이 파일을 로드한 후 실행할 수 있음: `dyn ./examples__px4_simple_app.px4mod`
+    > **Note** `px4_add_module`의 옵션을 `DYNAMIC`로 지정한 경우, 정적 라이브러리 대신 POSIX 플랫폼상의 *공유 라이브러리*를 만듭니다. (PX4를 다시 컴파일하지 않아도 불러올 수 있으며, 다른 사람에게 소스 코드 대신 바이너리로 공유할 수 있습니다). 이 경우 앱은 내장 명령어로 나오지 않지만, `examples__px4_simple_app.px4mod`와 같은 별도의 파일이 나옵니다. 런타임에서 `dyn` 명령어를 이용하여 이 파일을 로드한 후 실행할 수 있음: `dyn ./examples__px4_simple_app.px4mod`
 
 ## 어플리케이션/펌웨어 빌드
 
@@ -219,7 +219,7 @@ nsh> px4_simple_app
 Hello Sky!
 ```
 
-이제 어플리케이션은 시스템에 올바르게 등록되었고 실제로 유용한 일을 수행하도록 이를 확장할 수 있습니다.
+이제 어플리케이션을 시스템에 올바르게 등록했고 실제로 유용한 일을 수행하도록 기능을 확장할 수 있습니다.
 
 ## 어플리케이션 테스트 (SITL)
 
@@ -309,13 +309,13 @@ px4_simple_app &
 
 > **Tip** [Module Template for Full Applications](../apps/module_template.md)을 사용하여, 명령행에서 제어할 수 있는 백그라운드 프로세스 작성 가능.
 
-## 데이터 발행 (Publishing Data)
+## 데이터 내보내기
 
-계산이 완료된 출력값을 사용하기 위한 다음 단계로 결과값을 *발행(publish)*합니다. 다음에서 고도 topic을 발행하는 방법을 보여줍니다.
+계산을 끝낸 출력 값을 사용할 다음 단계는 결과 값을 *내보내*는 동작입니다. 다음을 통해 고도 데이터만 따로 내보내는 방법을 보여드리겠습니다.
 
-> **Note** *mavlink* 앱이 지상 관제소에 `attitude`를 전달하며 이 결과를 쉽게 볼수 있어 이를 선정함.
+> **Note** *mavlink* 앱이 지상 관제소에 `attitude`를 전달하며 이 결과를 쉽게 볼수 있어 이를 선정했습니다.
 
-인터페이스는 매우 간단함: 발행될 topic의 `구조체(struct)`를 초기화하고 topic을 알림(advertise):
+인터페이스는 매우 간단합니다. 내보낼 분류의 `구조체(struct)`를 초기화하고 주제를 알려줍니다:
 
 ```c
 #include <uORB/topics/vehicle_attitude.h>
@@ -326,7 +326,7 @@ memset(&att, 0, sizeof(att));
 orb_advert_t att_pub_fd = orb_advertise(ORB_ID(vehicle_attitude), &att);
 ```
 
-main 루프에서 정보가 준비될 때마다 이를 발행함:
+main 루프에서 정보를 마련하면 바로 내보냅니다:
 
 ```c
 orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
@@ -334,7 +334,7 @@ orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
 
 ## 전체 예제 코드
 
-[전체 예제 코드](https://github.com/PX4/Firmware/blob/master/src/examples/px4_simple_app/px4_simple_app.c)는 다음과 같다:
+[전체 예제 코드](https://github.com/PX4/Firmware/blob/master/src/examples/px4_simple_app/px4_simple_app.c)는 다음과 같습니다:
 
 ```c
 /****************************************************************************
@@ -471,7 +471,7 @@ int px4_simple_app_main(int argc, char *argv[])
 
 ## 전체 예제 실행
 
-마지막으로 어플리케이션을 실행:
+마지막으로 어플리케이션을 실행해보십시오:
 
 ```sh
 px4_simple_app
@@ -483,6 +483,6 @@ px4_simple_app
 
 본 튜토리얼에서 PX4 오토파일럿 어플리케이션 개발에 필요한 모든 것을 다루었습니다. 전체 uORB 메시지/토픽의 리스트는 [여기](https://github.com/PX4/Firmware/tree/master/msg/)에 있으며 헤더에 문서화가 잘되어 있으며 참고로 삼을 수 있음을 잊지 마시기 바랍니다.
 
-보다 상세한 정보와 트러블슈팅/흔한 함정에 대한 내용은 여기에서 찾을 수 있습니다: [uORB](../middleware/uorb.md).
+보다 상세한 정보와 문제 해결/흔히 빠지는 함정의 내용은 여기에서 찾을 수 있습니다: [uORB](../middleware/uorb.md).
 
-다음 페이지에서는 시작/종료 기능을 가지는 완전한 어플리케이션(full application)을 작성하기위한 템플릿을 제공합니다.
+다음 페이지에서는 시작/멈춤 기능을 가진 완전한 프로그램을 작성하는 서식을 보여드리겠습니다.
