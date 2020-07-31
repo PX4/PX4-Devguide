@@ -10,34 +10,34 @@
 
 PX4에 실시간 키네매틱(RTK)을 설정하려면, RTK GPS 모듈 두 개와 데이터 링크가 필요합니다. 고정 위치 대지 기반 GPS 유닛을 *베이스* 라 하고, 공중에 띄우는 유닛을 *로버(Rover)*라 합니다. 베이스 유닛은 (USB로) *QGroundControl*에 연결하고, 비행체로의 RTCM 연결 데이터를 지속적으로 송수신하는 데이터 링크를 활용합니다(MAVLink [GPS_RTCM_DATA](https://mavlink.io/en/messages/common.html#GPS_RTCM_DATA) 메시지 활용). 자동 운항 과정에서, MAVLink 패킷을 패키징 해제한 후, RTK 솔루션 획득을 처리할 수 있는 로버 유닛에 보냅니다.
 
-The datalink should typically be able to handle an uplink rate of 300 bytes per second (see the [Uplink Datarate](#uplink-datarate) section below for more information).
+데이터링크는 보통 초당 300바이트 전송을 처리할 수 있어야합니다(더 많은 정보는 [상위 링크 데이터 수신율](#uplink-datarate) 부분을 참고하십시오).
 
-## Supported RTK GPS modules
+## 지원하는 RTK GPS 모듈
 
-PX4 currently only supports the single-frequency (L1) u-blox M8P based GNSS receivers for RTK.
+PX4는 단일 주파(L1) u-blox M8P 기반 GNSS 수신기만을 RTK 기능용으로 지원합니다.
 
-A number of manufacturers have created products using this receiver. The list of devices that we have tested can be found [in the user guide](https://docs.px4.io/master/en/gps_compass/rtk_gps.html#supported-rtk-devices).
+많은 제조사에서 이 수신기로 제품을 만들고있습니다. 커뮤니티에서 시험한 장치 목록은 [사용자 안내서](https://docs.px4.io/master/en/gps_compass/rtk_gps.html#supported-rtk-devices)에서 찾아볼 수 있습니다. 
 
-> **Note** u-blox has two variants of the M8P chip, the M8P-0 and the M8P-2. The M8P-0 can only be used as Rover, not as Base, whereas the M8P-2 can be used both as Rover or as Base.
+> **참고** u-blox는 두가지 M8P칩 모델, M8P-0과 M8P-2의 사용 여부에 따라 다릅니다. M8P-0칩을 장착한 모델은 베이스가 아닌 로버용으로만 사용할 수 있으나, M8P-2칩 장착 모델은 로버용, 베이스용 둘 다 활용 가능합니다.
 
-## Automatic Configuration
+## 자동 설정
 
-The PX4 GPS stack automatically sets up the u-blox M8P modules to send and receive the correct messages over the UART or USB, depending on where the module is connected (to *QGroundControl* or the autopilot).
+PX4 GPS 스택은 u-blox M8P 모듈을 자동으로 설정하여 UART 또는 USB 둘 중 어떤 미디움을 통해 (*QGroundControl* 또는 autopilot에) 모듈을 연결했느냐에 따라 올바른 메시지를 주고 받을 수 있게 합니다.
 
-As soon as the autopilot receives `GPS_RTCM_DATA` MAVLink messages, it automatically forwards the RTCM data to the attached GPS module.
+autopilot에서 `GPS_RTCM_DATA` MAVLink 메시지를 받는 즉시, RTCM 데이터를 GPS 모듈에 자동으로 전달합니다.
 
-> **Note** The U-Center RTK module configuration tool is not needed/used!
+> **참고** U-Center RTK 모듈 설정 도구는 필요하지도 않고 사용하지도 않습니다!
 
 <span></span>
 
-> **Note** Both *QGroundControl* and the autopilot firmware share the same [PX4 GPS driver stack](https://github.com/PX4/GpsDrivers). In practice, this means that support for new protocols and/or messages only need to be added to one place.
+> **Note** *QGroundControl*과 autopilot 펌웨어는 동일한 [PX4 GPS 드라이버 스택](https://github.com/PX4/GpsDrivers)을 공유합니다. 실제로, 새 프로토콜 또는 메시지 지원시 한쪽에만 추가하면 됩니다.
 
-### RTCM messages
+### RTCM 메시지
 
-QGroundControl configures the RTK base station to output the following RTCM3.2 frames, each with 1 Hz:
+QGroundControl 은 RTK 베이스 스테이션을 설정하여 다음 RTCM3.2 프레임을 1초에 한번씩 출력합니다:
 
-- **1005** - Station coordinates XYZ for antenna reference point (Base position).
-- **1077** - Full GPS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution).
+- **1005** - 안테나 참조 지점 값인 스테이션 좌표 XYZ 값(베이스 위치).
+- **1077** - 전체 GPS 가상 범위, 캐리어 위상, 도플러 신호 세기 (고해상).
 - **1087** - Full GLONASS pseudo-ranges, carrier phases, Doppler and signal strength (high resolution).
 
 ## Uplink datarate
