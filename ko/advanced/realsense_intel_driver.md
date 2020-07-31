@@ -79,10 +79,10 @@ sudo apt-get install git
   - 버추어 박스의 메뉴 표시줄에서 장치->USB->Intel Corp Intel RealSense 3D Camera R200를 눌러 가상 머신에 USB 카메라를 연결하십시오.
   - [언팩 폴더]/Bin/DSReadCameraInfo 파일을 실행하십시오: 
     - 다음 오류 메시지가 나타나면 카메라 연결을 해제하십시오(컴퓨터에서 물리적으로 USB 케이블을 뽑아내십시오). 다시 연결한 후, 버추어 박스의 메뉴표시줄에서 장치->USB->Intel Corp Intel RealSense 3D Camera R200를 다시 누르고, [언팩 폴더]/Bin/DSReadCameraInfo 파일을 다시 실행하십시오 ```DSAPI call failed at ReadCameraInfo.cpp:134!```
-    - If the camera driver works and recognises the Intel RealSense R200, you should see specific information about the Intel RealSense R200 camera head.
+    - 카메라 드라이버가 동작하고 Intel RealSense R200을 인식하면 Intel RealSense R200 카메라 헤드 정보를 살펴보아야 합니다.
 
-- Installation and testing of the ROS nodlet:
+- ROS 노들릿(nodlet) 설치 및 시험:
   
-  - Follow the installation instructions in the "Installation" section given [here](https://github.com/bestmodule/RealSense_ROS/blob/master/realsense_dist/2.3/doc/RealSense-ROS-R200-nodelet.md), to install the ROS nodlet.
-  - Follow the instructions in the "Running the R200 nodelet" section given [here](https://github.com/bestmodule/RealSense_ROS/blob/master/realsense_dist/2.3/doc/RealSense-ROS-R200-nodelet.md), to test the ROS nodlet together with the Intel RealSense R200 camera head. 
-    - If everything works, the different data streams from the Intel RealSense R200 camera are published as ROS topics.
+  - [이곳](https://github.com/bestmodule/RealSense_ROS/blob/master/realsense_dist/2.3/doc/RealSense-ROS-R200-nodelet.md)의 "설치" 부분에 언급한 설치 절차를 따라 ROS 노들릿을 설치하십시오.
+  - [이곳](https://github.com/bestmodule/RealSense_ROS/blob/master/realsense_dist/2.3/doc/RealSense-ROS-R200-nodelet.md)의 "Running the R200 nodelet" 부분에 언급한 절차를 따라 ROS 노들릿과 Intel RealSense R200 카메라 헤드를 시험하십시오. 
+    - 모든 기능이 동작하면 ROS 토픽에 Intel RealSense R200 카메라로부터 제각기 다른 데이터 스트림이 나옵니다.
