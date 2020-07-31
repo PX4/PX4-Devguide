@@ -2,7 +2,7 @@
 
 [실시간 키네매틱](https://en.wikipedia.org/wiki/Real_Time_Kinematic) (RTK) 에서는 센티미터 단위의 GPS 정확도를 확보해줍니다. 이 페이지에서는 실시간 키네메틱 기능을 PX4에 결합하는 방법을 설명합니다.
 
-> **참고** RTK GPS *사용* 방법은 [PX4 사용자 안내서](https://docs.px4.io/master/en/advanced_features/rtk-gps.html)에 있습니다.
+> **Note** RTK GPS *사용* 방법은 [PX4 사용자 안내서](https://docs.px4.io/master/en/advanced_features/rtk-gps.html)에 있습니다.
 
 ## 개요
 
@@ -18,7 +18,7 @@ PX4는 단일 주파(L1) u-blox M8P 기반 GNSS 수신기만을 RTK 기능용으
 
 많은 제조사에서 이 수신기로 제품을 만들고있습니다. 커뮤니티에서 시험한 장치 목록은 [사용자 안내서](https://docs.px4.io/master/en/gps_compass/rtk_gps.html#supported-rtk-devices)에서 찾아볼 수 있습니다. 
 
-> **참고** u-blox는 두가지 M8P칩 모델, M8P-0과 M8P-2의 사용 여부에 따라 다릅니다. M8P-0칩을 장착한 모델은 베이스가 아닌 로버용으로만 사용할 수 있으나, M8P-2칩 장착 모델은 로버용, 베이스용 둘 다 활용 가능합니다.
+> **Note** u-blox는 두가지 M8P칩 모델, M8P-0과 M8P-2의 사용 여부에 따라 다릅니다. M8P-0칩을 장착한 모델은 베이스가 아닌 로버용으로만 사용할 수 있으나, M8P-2칩 장착 모델은 로버용, 베이스용 둘 다 활용 가능합니다.
 
 ## 자동 설정
 
@@ -26,7 +26,7 @@ PX4 GPS 스택은 u-blox M8P 모듈을 자동으로 설정하여 UART 또는 USB
 
 autopilot에서 `GPS_RTCM_DATA` MAVLink 메시지를 받는 즉시, RTCM 데이터를 GPS 모듈에 자동으로 전달합니다.
 
-> **참고** U-Center RTK 모듈 설정 도구는 필요하지도 않고 사용하지도 않습니다!
+> **Note** U-Center RTK 모듈 설정 도구는 필요하지도 않고 사용하지도 않습니다!
 
 <span></span>
 
@@ -50,7 +50,7 @@ RTCM 베이스 위치 메시지 (1005)는 22 바이트 길이를 가지며, 다�
 
 *MAVLink 2*를 활용하면 어떤 빈공간에서는 `GPS_RTCM_DATA 메시지`를 제거합니다. 결과적으로 상위 링크 요구 사항은 이론 값(~초당 300 바이트까지)에 동일하게 근접합니다.
 
-> **팁** GCS와 텔레메트리 모듈에서 MAVLink 2를 지원하면, PX4에서 자동으로 MAVLink 2로 전환합니다.
+> **Tip** GCS와 텔레메트리 모듈에서 MAVLink 2를 지원하면, PX4에서 자동으로 MAVLink 2로 전환합니다.
 
 저대역 연결에서 바람직한 RTK 성능을 내려면 MAVLink 2 를 사용해야합니다. 텔레메트리 체인에서 MAVLink 2를 사용하는지를 확인해야합니다. 시스템 콘솔에서 `mavlink status` 명령으로 프로토콜 버전을 확인할 수 있습니다:
 
