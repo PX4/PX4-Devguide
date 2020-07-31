@@ -44,9 +44,9 @@ sudo usermod -aG docker $USER
 | &emsp;px4-dev-clang             | clang 도구                             |
 | &emsp;&emsp;px4-dev-nuttx-clang | clang과 NuttX 도구                      |
 
-The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-nuttx:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-nuttx/tags)).
+`px4io/px4-dev-nuttx:latest`와 같이 `latest` 태그를 활용하면 가장 최근의 버전에 접근할 수 있습니다. (가용 태그는 *hub.docker.com*의 각 컨테이너에 들어있습니다. 예를 들면, [여기](https://hub.docker.com/r/px4io/px4-dev-nuttx/tags)에서는, *px4-dev-ros*태그를 찾아볼 수 있습니다).
 
-> **Tip** Typically you should use a recent container, but not necessarily the latest (as this changes too often).
+> **Tip** 보통 최근의 컨테이너를 활용해야 하나, 최신이 필요한 것은 아닙니다(변경이 너무 자주 일어나기 때문).
 
 ## 도커 컨테이너 활용
 
