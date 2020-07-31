@@ -53,9 +53,9 @@ uORB 메시지는 별도 메시지로 정의할 수도 있습니다. 이렇게 �
   
   `<message#>.msg` 부분은 uORB 메시지 생성시 처리하고 활용할 uORB 메시지 정의 파일의 이름입니다.
 
-The out-of-tree uORB messages will be generated in the same locations as the normal uORB messages. The uORB topic headers are generated in `<build_dir>/uORB/topics/`, and the message source files are generated in `<build_dir>/msg/topics_sources/`.
+별도의 uORB 메시지는 일반 uORB 메시지와 동일한 위치에 생성합니다. uORB 토픽 헤더는 `<build_dir>/uORB/topics/`에 만들고, 메시지 소스 파일은 `<build_dir>/msg/topics_sources/`에 만듭니다.
 
-The new uORB messages can be used like any other uORB message as described [here](../middleware/uorb.md#adding-a-new-topic).
+[이곳](../middleware/uorb.md#adding-a-new-topic)에 설명한 바와 같이 새 uORB 메시지는 다른 uORB 메시지처럼 활용할 수 있습니다.
 
 > **경고** 외부 uORB 메시지 정의는 기존의 일반 uORB 메시지와 동일한 이름을 가질 수 없습니다.
 
