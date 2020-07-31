@@ -1,12 +1,12 @@
-# Translation
+# 번역
 
-We'd love your help to translate *QGroundControl*, and our guides for PX4, *QGroundControl* and MAVLink!
+*QGroundControl* 프로그램과 PX4, *QGroundControl*, MAVLink 안내서 번역 도움을 간절히 바랍니다!
 
-Our docs (and *QGroundControl*) use the [Crowdin](https://crowdin.com) online tool for translation. Crowdin automatically imports source topics from Github and presents new and changed strings for translation and/or review (approval).
+문서 (와 *QGroundControl* 프로그램)은 번역 도구로 [Crowdin](https://crowdin.com) 을 활용합니다. Crowdin은 Github에서 원본 주제를 자동으로 가져와서 번역하고 검토(승인)할 새 문자열 또는 바뀐 문자열을 보여줍니다.
 
-Crowdin exports the translated documents back out to Github as a "Pull Request" (which the development team periodically review and accept). The exported output contains the source document with any translated and approved text replaced with translated strings (i.e. if a string is not translated/is changed, then it will be displayed in English).
+Crowdin은 "풀 리퀘스트"(이 단계에서 개발팀이 주기적으로 검토하고 승인해줍니다) 방식으로 Github에 번역한 문서를 내보냅니다. 내보낸 출력물에는 번역한 원본 문서와 번역한 문자열로 바뀌어 승인한 텍스트가 들어있습니다(예: 문자열을 번역하지 않았거나 바꾸지 않았다면, 영문으로 그대로 나타냅니다).
 
-> **Tip** You will need a (free) [Crowdin account](https://crowdin.com/join) account to join the translation team!
+> **팁** 번역 팀에 참여하려면 (무료) [Crowdin 계정](https://crowdin.com/join) 이 필요합니다!
 
 <span></span>
 
