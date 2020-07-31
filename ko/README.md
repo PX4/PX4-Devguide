@@ -15,17 +15,17 @@
   * 카메라, 범위 검색 센서 등과 같은 새 센서, 액츄에이터를 지원합니다.
   * PX4를 수정하여 새 오토파일럿 하드웨어에서 구동합니다.
 * PX4를 [모의시험](simulation/README.md), [실제 시험](test_and_ci/README.md), [오류 탐색/동작 기록](debug/README.md) 합니다.
-* Communicate/integrate with external robotics APIs.
+* 외부 로보틱스 API와 통신/통합합니다.
 
 ## 지원 {#support}
 
 [지원](contribute/support.md) 페이지에서는 [토의 게시판](http://discuss.px4.io/)과 기타 지원 채널로의 링크를 제공합니다.
 
-> **Tip** The [Weekly Dev Call](contribute/dev_call.md) is another great opportunity to meet the PX4 dev team and discuss platform technical details, pull requests, major impacting issues etc. There is also time for Q&A.
+> **팁** [주간 개발 유선 미팅](contribute/dev_call.md)은 플랫폼 기술 세부 내용, 풀 리퀘스트, 주요 영향 문제 등을 다루는 PX4 개발팀과 만날 수 있는 또 다른 멋진 기회일 수 있습니다. 별도의 질문/답변 시간도 있습니다.
 
-## 기여
+## 기여 
 
-[Contributing](contribute/README.md) explains how to work with our [source codelines](contribute/code.md), [documentation](contribute/docs.md), [translations](contribute/translation.md), and [licenses](contribute/licenses.md).
+[기여](contribute/README.md) 페이지에서는 [소스 코드라인](contribute/code.md), [문서](contribute/docs.md), [번역](contribute/translation.md), [라이선스](contribute/licenses.md)를 다루는 방법을 설명합니다.
 
 ## 라이선스
 
@@ -39,13 +39,13 @@
 
 ## 달력과 행사 {#calendar}
 
-The *Dronecode Calendar* shows important events for platform developers and users. Select the links below to display the calendar in your timezone (and to add it to your own calendar):
+*드론 코드 달력*에서는 플랫폼 개발자, 사용자를 위한 주요 일정을 보여줍니다. 여러분 거주지의 시간대에 맞춘 달력을 보려면 아래 링크를 선택하십시오(그리고 여러분 자신의 달력에 추가하십시오):
 
-* [Switzerland – Zurich](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Europe%2FZurich)
-* [Pacific Time – Tijuana](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=America%2FTijuana)
-* [Australia – Melbourne/Sydney/Hobart](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Australia%2FSydney)
+* [스위스 – 취리히](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Europe%2FZurich)
+* [태평양 시간대 – 티후아나](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=America%2FTijuana)
+* [오스트레일리아 – 멜버른/시드니/호바트](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Australia%2FSydney)
 
-**Note:** calendar defaults to CET.
+**참고:** 달력 기본 시간대는 CET입니다.
 
 {% raw %} <iframe src="https://calendar.google.com/calendar/embed?title=Dronecode%20Calendar&amp;mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Europe%2FZurich" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no" mark="crwd-mark"></iframe> 
 
