@@ -1,14 +1,14 @@
-# PX4 Development Guide ({{ book.px4_version }})
+# PX4 개발 안내서 ({{ book.px4_version }})
 
 [![Releases](https://img.shields.io/badge/release-{{ book.px4_version }}-blue.svg)](https://github.com/PX4/Firmware/releases) [![Discuss](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
-> **Info** This guide is for primarily for software developers and (new) hardware integrators. To fly, build and modify vehicles using supported hardware see the [PX4 User Guide](https://docs.px4.io/master/en/).
+> **정보** 이 안내서는 초보 프로그램 개발자와 (새) 하드웨어 통합 작업자를 대상으로 합니다. 지원하는 하드웨어로 비행체를 날리고 구성하고 뜯어 고쳐보려면 [PX4 사용자 안내서](https://docs.px4.io/master/en/)를 확인하십시오.
 
-This guide explains how to:
+이 안내서는 다음을 설명합니다:
 
-* Get a [minimum developer setup](setup/config_initial.md), [build PX4 from source](setup/building_px4.md) and deploy on [numerous supported autopilots](https://docs.px4.io/master/en/flight_controller/).
-* Understand the [PX4 System Architecture](concept/architecture.md) and other core concepts.
-* Learn how to modify the flight stack and middleware: 
+* [최소 개발자 설정](setup/config_initial.md), [PX4 소스 코드 빌드](setup/building_px4.md), [다양하게 지원하는 오토파일럿](https://docs.px4.io/master/en/flight_controller/)으로의 펌웨어 배포 방법을 배웁니다.
+* [PX4 시스템 구조](concept/architecture.md)와 다른 핵심 개념을 이해합니다.
+* 플라이트 스택과 미들웨어 수정 방법을 배웁니다: 
   * Modify flight algorithms and add new [flight modes](concept/flight_modes.md).
   * Support new [airframes](airframes/README.md).
 * Learn how to integrate PX4 with new hardware: 
