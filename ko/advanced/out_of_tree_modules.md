@@ -57,7 +57,7 @@ uORB 메시지는 별도 메시지로 정의할 수도 있습니다. 이렇게 �
 
 [이곳](../middleware/uorb.md#adding-a-new-topic)에 설명한 바와 같이 새 uORB 메시지는 다른 uORB 메시지처럼 활용할 수 있습니다.
 
-> **경고** 외부 uORB 메시지 정의는 기존의 일반 uORB 메시지와 동일한 이름을 가질 수 없습니다.
+> **Warning** 외부 uORB 메시지 정의는 기존의 일반 uORB 메시지와 동일한 이름을 가질 수 없습니다.
 
 ## 외부 모듈과 uORB 메시지 구성 {#building}
 
