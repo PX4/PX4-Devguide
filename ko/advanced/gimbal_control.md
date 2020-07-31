@@ -16,9 +16,9 @@ PX4에는 제각기 다른 입출력 수단에 대한 일반 마운트/짐벌 �
 
 출력 할당은 다음과 같습니다:
 
-- **AUX1**: Pitch
-- **AUX2**: Roll
-- **AUX3**: Yaw
+- **AUX1**: 상하 회전각(Pitch)
+- **AUX2**: 좌우 회전각(Roll)
+- **AUX3**: 방위 회전각(Yaw)
 - **AUX4**: 셔터/원상복귀
 
 ### 믹서 구성 맞춤설정
@@ -48,18 +48,18 @@ PX4에는 제각기 다른 입출력 수단에 대한 일반 마운트/짐벌 �
 
 ## SITL
 
-Typhoon H480 모델은 미리 설정모의된 짐벌과 함께 제공됩니다. To run it, use:
+Typhoon H480 모델은 미리 설정모의된 짐벌과 함께 제공됩니다. 동작하게 하려면 다음 명령을 활용하십시오:
 
     make px4_sitl gazebo_typhoon_h480
     
 
-To just test the mount driver on other models or simulators, make sure the driver runs, using `vmount start`, then configure its parameters.
+다른 모델 또는 모의 실험 기반에서 마운트 드라이버를 시험하려면, `vmount start` 명령으로 드라이버 실행을 확인한 후 매개 변수를 설정하십시오.
 
 ## 시험하기
 
-이 드라이버는 간단한 시험 명령어를 제공합니다. 먼저 `vmount stop`으로 동작을 멈추어야합니다. 아래는 SITL에서의 시험 방법에 대한 설명이지만, 실제 장비에서도 이 명령어들은 작동합니다.
+이 드라이버는 간단한 시험 명령어를 제공합니다. 먼저 `vmount stop`으로 동작을 멈추어야합니다. 아래는 SITL에서의 시험 방법을 설명하지만, 이 명령어가 실제 장비에서도 작동합니다.
 
-매개변수가 변경될 필요는 없습니다. 아래 명령어로 시뮬레이션을 시작합니다.
+다음 명령으로 시작하십시오(매개 변수값을 바꿀 필요는 없습니다):
 
     make px4_sitl gazebo_typhoon_h480
     
