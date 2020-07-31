@@ -6,9 +6,9 @@
 
 ## 개요
 
-RTK uses measurements of the phase of the signal's carrier wave, rather than the information content of the signal. It relies on a single reference station to provide real-time corrections, which can work with multiple mobile stations.
+실시간 키네매틱(RTK)은 시그널 정보 내용 그 자체를 활용하지 않고, 시그널 캐리어 전파의 파장 측정 방식을 활용합니다. 단일 참조 스테이션에 의존하여 다중 모바일 스테이션을 대상으로 동작할 수 있는 실시간 연결을 제공합니다.
 
-Two RTK GPS modules and a datalink are required to setup RTK with PX4. The fixed-position ground-based GPS unit is called the *Base* and the in-air unit is called the *Rover*. The Base unit connects to *QGroundControl* (via USB) and uses the datalink to stream RTCM corrections to the vehicle (using the MAVLink [GPS_RTCM_DATA](https://mavlink.io/en/messages/common.html#GPS_RTCM_DATA) message). On the autopilot, the MAVLink packets are unpacked and sent to the Rover unit, where they are processed to get the RTK solution.
+PX4에 실시간 키네매틱(RTK)을 설정하려면, RTK GPS 모듈 두 개와 데이터 링크가 필요합니다. 고정 위치 대지 기반 GPS 유닛을 *베이스* 라 하고, 공중에 띄우는 유닛을 *로버(Rover)*라 합니다. 베이스 유닛은 (USB로) *QGroundControl*에 연결하고, 비행체로의 RTCM 연결 데이터를 지속적으로 송수신하는 데이터 링크를 활용합니다(MAVLink [GPS_RTCM_DATA](https://mavlink.io/en/messages/common.html#GPS_RTCM_DATA) 메시지 활용). 자동 운항 과정에서, MAVLink 패킷을 패키징 해제한 후, RTK 솔루션 획득을 처리할 수 있는 로버 유닛에 보냅니다.
 
 The datalink should typically be able to handle an uplink rate of 300 bytes per second (see the [Uplink Datarate](#uplink-datarate) section below for more information).
 
