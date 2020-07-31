@@ -4,6 +4,48 @@ This section contains diagrams for the main PX4 controllers.
 
 The diagrams use the standard [PX4 notation](../contribute/notation.md) (and each have an annotated legend).
 
+## Multicopter Control Architecture
+
+![MC Controller Diagram](../../assets/diagrams/mc_control_arch.jpg)
+
+* This is a standard cascaded control architecture.
+* The controllers are a mix of P and PID controllers.
+* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
+* Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
+
+### Multicopter Angular Rate Controller
+
+![MC Rate Control Diagram](../../assets/diagrams/mc_angular_rate_diagram.jpg)
+
+* K-PID controller. See [Rate Controller](https://docs.px4.io/master/en/config_mc/pid_tuning_guide_multicopter.html#rate-controller) for more information.
+* The integral authority is limited to prevent wind up.
+* A Low Pass Filter (LPF) is used on the derivative path to reduce noise.
+* The outputs are limited, usually at -1 and 1.
+
+### Multicopter Angle Control
+
+![MC Angle Control Diagram](../../assets/diagrams/mc_angle_diagram.jpg)
+
+* The angle controller makes use of [quaternions](https://en.wikipedia.org/wiki/Quaternion).
+* The controller is implemented from this [article](https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf).
+* When tuning this controller, the only parameter of concern is the P gain.
+* The rate command is saturated.
+
+### Multicopter Velocity Control
+
+![MC Velocity Control Diagram](../../assets/diagrams/mc_velocity_diagram.jpg)
+
+* PID controller to stabilise velocity. Commands an acceleration.
+* The integrator includes an anti-reset windup (ARW) using a clamping method.
+* The commanded acceleration is saturated.
+
+### Multicopter Position Control
+
+![MC Position Control Diagram](../../assets/diagrams/mc_position_diagram.jpg)
+
+* Simple P controller that commands a velocity.
+* The commanded velocity is saturated to keep the velocity in certain limits.
+
 ## Multicopter Position Controller
 
 ![MC Position Controller Diagram](../../assets/diagrams/px4_mc_position_controller_diagram.png)
