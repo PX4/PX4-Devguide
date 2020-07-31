@@ -10,7 +10,7 @@ Crowdin은 "풀 리퀘스트"(이 단계에서 개발팀이 주기적으로 검�
 
 <span></span>
 
-> **참고** 이 시스템의 잇점은 원본 문자열과 번역을 맞붙여 추적하는 기능입니다. 독자 입장에서는 오래되어 때가 지난 번역을 보고 오해할 일이 없습니다.
+> **Note** 이 시스템의 잇점은 원본 문자열과 번역을 맞붙여 추적하는 기능입니다. 독자 입장에서는 오래되어 때가 지난 번역을 보고 오해할 일이 없습니다.
 
 ## 시작하기
 
@@ -48,6 +48,6 @@ Gitbook에서는 참고, 팁, 경고를 나타내는 특별한 접두 텍스트�
 
 ## 도움 받기
 
-The *Crowdin* interface is self explanatory, but there is plenty of additional information on the [knowledgeable](https://support.crowdin.com/) and [feedback tool](https://crowdin.uservoice.com/forums/31787-collaborative-translation-tool).
+*Crowdin* 인터페이스는 자체적으로 설명이 잘 붙어있지만, 상당량의 [내용이 많은](https://support.crowdin.com/) 추가 정보가 있으며, [피드백 도구](https://crowdin.uservoice.com/forums/31787-collaborative-translation-tool)도 제공합니다.
 
-You can also ask for help from translators and developers in the Dronecode community using [our support channels](../README.md#support).
+[지원 채널](../README.md#support)을 통해 드론코드 커뮤니티의 번역자와 개발자에게 도움을 요청할 수도 있습니다.
