@@ -122,7 +122,7 @@
   * [리눅스에서의 리모콘 리시버 연결](tutorials/linux_sbus.md)
 * [고급 주제](advanced/README.md) 
   * [매개변수와 설정](advanced/parameters_and_configurations.md)
-  * [매개변수 참고](advanced/parameter_reference.md)
+  * [매개변수 참고서](advanced/parameter_reference.md)
   * [컴퓨터 비전](advanced/computer_vision.md) 
     * [움직임 촬영(Motion Capture) (VICON, Optitrack)](tutorials/motion-capture-vicon-optitrack.md)
   * [Intel RealSense R200 드라이버 설치](advanced/realsense_intel_driver.md)
