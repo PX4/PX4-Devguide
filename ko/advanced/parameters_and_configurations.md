@@ -1,14 +1,14 @@
-# Parameters & Configurations
+# 매개변수와 설정
 
-PX4 uses the *param subsystem* (a flat table of `float` and `int32_t` values) and text files (for mixers and startup scripts) to store its configuration.
+PX4는 설정 값을 저장하는 수단으로 *매개변수 하위 체계* (`float`형과 `int32_t`형 값의 단순 집합)와 텍스트 파일(믹서, 시작 스크립트용)을 사용합니다.
 
-This section discusses the *param* subsystem in detail. It covers how to list, save and load parameters, and how to define them.
+이 장에서는 *매개변수* 하위 시스템을 자세하게 다루도록 하겠습니다. 매개변수를 어떻게 살펴보고, 저장하고, 불러오고, 지정하는지를 다룹니다.
 
-> **Note** [System startup](../concept/system_startup.md) and the way that [airframe configurations](../airframes/adding_a_new_frame.md) work are detailed on other pages.
+> **Note** [시스템 시작](../concept/system_startup.md)과 [에어프레임 설정](../airframes/adding_a_new_frame.md) 작업 방법은 다른 페이지에서 자세하게 언급합니다.
 
 ## 명령행 사용법
 
-The PX4 [system console](../debug/system_console.md) offers the [param](../middleware/modules_command.md#param) tool, which can be used to set parameters, read their value, save them, and export and restore to/from files.
+PX4 [시스템 콘솔](../debug/system_console.md)에서는 [매개변수](../middleware/modules_command.md#param)값을 파일로(부터) 설정, 불러오기, 저장, 내보내기, 복원 처리하는 도구를 제공합니다.
 
 ### 매개변수 값 가져오고 설정하기
 
@@ -65,18 +65,18 @@ By contrast, `import` merges the parameters in the file with the current state o
 Examples for both cases are shown below:
 
 ```sh
-# Reset the parameters to when file was saved
+# 파일을 저장하고 나면 매개변수 값 초기화
 param load /fs/microsd/vtol_param_backup
-# Optionally save params (not done automatically with load)
+# 추가로 매개변수 값 저장 (불러온다고 해서 자동으로 끝나지는 않음)
 param save
 ```
 
 ```sh
-# Merge the saved parameters with current parameters
+# 현재 매개변수 값 목록에 저장한 매개변수 값 병합
 param import /fs/microsd/vtol_param_backup  
 ```
 
-## Parameter Names
+## 매개변수 이름
 
 Parameter names must be no more than 16 ASCII characters.
 
@@ -141,7 +141,7 @@ Subscribe to the update message when the module/driver starts and un-subscribe w
 # parameter_update 메시지 추가 준비
 int parameter_update_sub = orb_subscribe(ORB_ID(parameter_update));
 ...
-# Unsubscribe to parameter_update messages
+# parameter_update 메시지 추가 해제
 orb_unsubscribe(parameter_update_sub);
 ```
 
@@ -153,17 +153,17 @@ void Module::parameters_update(int parameter_update_sub, bool force)
     bool updated;
     struct parameter_update_s param_upd;
 
-    // Check if any parameter updated
+    // 매개변수 값 변경 확인
     orb_check(parameter_update_sub, &updated);
 
-    // If any parameter updated copy it to: param_upd
+    // 바뀐 매개변수 값이 있을 경우 param_upd로 복사
     if (updated) {
         orb_copy(ORB_ID(parameter_update), parameter_update_sub, &param_upd);
     }
 
     if (force || updated) {
-        // If any parameter updated, call updateParams() to check if
-        // this class attributes need updating (and do so). 
+        // 바뀐 매개변수 값이 있다면 updateParams() 를 호출,
+        // 이 클래스 속성 값을 업데이트해야 하는지 검사(그리고 이행). 
         updateParams();
     }
 }
@@ -211,7 +211,7 @@ int32_t my_param = 0;
 param_get(my_param_handle, &my_param);
 ```
 
-## Parameter Meta Data {#parameter_metadata}
+## 매개변수 메타데이터 {#parameter_metadata}
 
 PX4 uses an extensive parameter metadata system to drive the user-facing presentation of parameters, and to set the default value for each parameter in firmware.
 
