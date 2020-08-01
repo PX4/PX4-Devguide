@@ -78,7 +78,7 @@ param import /fs/microsd/vtol_param_backup
 
 ## 매개변수 이름
 
-Parameter names must be no more than 16 ASCII characters.
+매개변수 이름은 ASCII 문자 16개를 넘어서는 안됩니다.
 
 By convention, every parameter in a group should share the same (meaningful) string prefix followed by an underscore, and `MC_` and `FW_` are used for parameters related specifically to Multicopter or Fixed wing systems. This convention is not enforced.
 
