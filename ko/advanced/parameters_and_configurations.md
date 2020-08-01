@@ -6,13 +6,13 @@ This section discusses the *param* subsystem in detail. It covers how to list, s
 
 > **Note** [System startup](../concept/system_startup.md) and the way that [airframe configurations](../airframes/adding_a_new_frame.md) work are detailed on other pages.
 
-## Command Line Usage
+## 명령행 사용법
 
 The PX4 [system console](../debug/system_console.md) offers the [param](../middleware/modules_command.md#param) tool, which can be used to set parameters, read their value, save them, and export and restore to/from files.
 
-### Getting and Setting Parameters
+### 매개변수 값 가져오고 설정하기
 
-The `param show` command lists all system parameters:
+`param show` 명령은 전체 시스템 매개변수 값 목록을 보여줍니다:
 
 ```sh
 param show
@@ -37,7 +37,7 @@ You can use the `-c` flag to show all parameters that have changed (from their d
 param show -c
 ```
 
-### Exporting and Loading Parameters
+### 매개변수 값 불러오고 내보내기
 
 You can save any parameters that have been *touched* since all parameters were last reset to their firmware-defined defaults (this includes any parameters that have been changed, even if they have been changed back to their default).
 
@@ -115,7 +115,7 @@ public:
 private:
 
     /**
-     * Check for parameter changes and update them if needed.
+     * 필요한 경우 매개변수 값을 확인하고 새 값을 설정한다.
      * @param parameter_update_sub uorb subscription to parameter_update
      */
     void parameters_update(int parameter_update_sub, bool force = false);
@@ -138,7 +138,7 @@ First include the header to access the uORB parameter_update message:
 Subscribe to the update message when the module/driver starts and un-subscribe when it is stopped. `parameter_update_sub` returned by `orb_subscribe()` is a handle we can use to refer to this particular subscription.
 
 ```cpp
-# Subscribe to parameter_update message
+# parameter_update 메시지 추가 준비
 int parameter_update_sub = orb_subscribe(ORB_ID(parameter_update));
 ...
 # Unsubscribe to parameter_update messages
@@ -202,11 +202,11 @@ param_get(param_find("PARAM_NAME"), &my_param);
 `param_find()` is an "expensive" operation, which returns a handle that can be used by `param_get()`. If you're going to read the parameter multiple times, you may cache the handle and use it in `param_get()` when needed
 
 ```cpp
-# Get the handle to the parameter
+# 매개변수 핸들러 획득
 param_t my_param_handle = PARAM_INVALID;
 my_param_handle = param_find("PARAM_NAME");
 
-# Query the value of the parameter when needed
+# 필요할 때 매개변수 값 요청
 int32_t my_param = 0;
 param_get(my_param_handle, &my_param);
 ```
@@ -248,8 +248,7 @@ PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
 
 ```cpp
 /**
- * Acceleration compensation based on GPS
- * velocity.
+ * GPS 속도 기반 가속 보상.
  *
  * @group Attitude Q estimator
  * @boolean
