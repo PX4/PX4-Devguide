@@ -40,17 +40,17 @@ pxh> commander takeoff
 
 ![jMAVSim UI](../../assets/jmavsim_first_takeoff.png)
 
-The drone can be landed by typing `commander land` and the whole simulation can be stopped by doing **CTRL+C** (or by entering `shutdown`).
+`commander land` 명령으로 드론을 착륙할 수 있으며 모의시험 환경은 **CTRL+C** 키 입력(또는 `shutdown` 명령 입력)으로 멈출 수 있습니다.
 
-Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
+지상 관제 스테이션에서의 비행체 모의시험은 실제 비행체 운용과 거의 흡사합니다. 비행체가 날고 있을 때(비행체 이륙 모드) 지도에서 위치를 누르고 슬라이더를 활성화합니다. 이 동작을 통해 비행체의 위치를 바꿉니다.
 
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
-> **Tip** PX4 can be used with a number of other [Simulators](../simulation/README.md), including [Gazebo Simulation](../simulation/gazebo.md) and [AirSim Simulation](../simulation/airsim.md). These are also started with *make* - e.g. ```make px4_sitl gazebo```
+> **Tip** [가제보(Gazebo) 모의시험 환경](../simulation/gazebo.md), [AirSim 모의시험 환경](../simulation/airsim.md)과 같은 다른 여러 [모의시험 환경](../simulation/README.md)에서도 PX4를 활용할 수 있습니다. 이들 역시 *make* 명령으로 시작합니다. 예시: ```make px4_sitl gazebo```
 
-## NuttX / Pixhawk Based Boards {#nuttx}
+## NuttX / Pixhawk 기반 보드 {#nuttx}
 
-### Building {#building_nuttx}
+### 빌드 {#building_nuttx}
 
 To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board.
 
@@ -94,9 +94,9 @@ The following list shows the build commands for common boards:
 - [Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** 이 보드를 대상으로 빌드하려면 지원하는 GCC 버전(예: [CI/docker](../test_and_ci/docker.md)에서 사용하는 버전과 동일)을 활용 **해야** 하거나, 빌드에서 모듈을 제거해야합니다. 지원하지 않는 버전의 GCC 로 빌드하면, PX4 보드의 1MB 플래시 용량 제한에 가까워져 실패할 수 있습니다.
 - 2 MB flash의 Pixhawk 1: `make px4_fmu-v3_default`
 
-> **Note** Generally the `_default` suffix is optional (i.e. you can also build using `make px4_fmu-v4`, `make bitcraze_crazyflie`, etc.).
+> **Note** 보통 `_default` 접미사는 선택 입력사항입니다 (예: `make px4_fmu-v4`, `make bitcraze_crazyflie`, 등의 명령으로도 빌드할 수 있습니다.).
 
-### Uploading Firmware (Flashing the board)
+### 펌웨어 업로드 (보드 플래싱)
 
 Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
 
@@ -104,7 +104,7 @@ Append `upload` to the make commands to upload the compiled binary to the autopi
 make px4_fmu-v4_default upload
 ```
 
-A successful run will end with this output:
+성공적인 실행시 다음 출력 내용으로 끝납니다:
 
 ```sh
 Erase  : [====================] 100.0%
@@ -131,7 +131,7 @@ Set the IP (or hostname) of your RPi using:
 export AUTOPILOT_HOST=192.168.X.X
 ```
 
-or
+또는
 
 ```sh
 export AUTOPILOT_HOST=pi_hostname.domain
