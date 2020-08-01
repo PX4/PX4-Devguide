@@ -80,9 +80,9 @@ param import /fs/microsd/vtol_param_backup
 
 매개변수 이름은 ASCII 문자 16개를 넘어서는 안됩니다.
 
-By convention, every parameter in a group should share the same (meaningful) string prefix followed by an underscore, and `MC_` and `FW_` are used for parameters related specifically to Multicopter or Fixed wing systems. This convention is not enforced.
+관례에 따르면, 그룹의 모든 매개변수는 밑줄 문자가 뒤따라오는 동일한(의미를 가진) 문자열을 공유하며, 다중 프로펠러 항공기 또는 고정익 항공기의 여부에 따라 `MC_`와 `FW_`를 매개변수 이름에 활용합니다. 이 관례는 강제 사항이 아닙니다.
 
-The name must match in both code and [parameter metadata](#parameter_metadata) to correctly associate the parameter with its metadata (including default value in Firmware).
+이름은 매개변수와 (펌웨어 기본값이 들어있는) 메타데이터가 올바르게 붙도록 코드와 [매개변수 메타데이터](#parameter_metadata)에 일치해야합니다.
 
 ## C / C++ API
 
@@ -127,15 +127,15 @@ private:
 };
 ```
 
-Update the cpp file with boilerplate to check for the uORB message related to parameter updates.
+상용구 코드(boilerplate)로 cpp 파일을 업데이트하여 매개변수 업데이트와 관련 있는 uORB 메시지를 확인하도록 합니다.
 
-First include the header to access the uORB parameter_update message:
+우선 헤더를 포함하여 uORB parameter_update 메시지에 접근하게 합니다:
 
 ```cpp
 #include <uORB/topics/parameter_update.h>
 ```
 
-Subscribe to the update message when the module/driver starts and un-subscribe when it is stopped. `parameter_update_sub` returned by `orb_subscribe()` is a handle we can use to refer to this particular subscription.
+모듈 또는 드라이버를 시작할 때 메시지 업데이트 과정에 참여(subscribe)하며, 과정이 끝나면 해제합니다. `orb_subscribe()`에서 반환하는 `parameter_update_sub` 값은 메시지 업데이트 과정 참여시 참고할 핸들입니다.
 
 ```cpp
 # parameter_update 메시지 추가 준비
@@ -145,7 +145,7 @@ int parameter_update_sub = orb_subscribe(ORB_ID(parameter_update));
 orb_unsubscribe(parameter_update_sub);
 ```
 
-Call `parameters_update(parameter_update_sub);` periodically in code to check if there has been an update (this is boilerplate):
+`parameters_update(parameter_update_sub);`를 주기적으로 호출하여 업데이트한 매개변수가 있는지 확인하십시오:
 
 ```cpp
 void Module::parameters_update(int parameter_update_sub, bool force)
@@ -169,7 +169,7 @@ void Module::parameters_update(int parameter_update_sub, bool force)
 }
 ```
 
-In the above method:
+위 메서드에서:
 
 - `orb_check()` tells us if there is *any* update to the `param_update` uORB message (but not what parameter is affected) and sets the `updated` bool.
 - If there has been "some" parameter updated, we copy the update into a `parameter_update_s` (`param_upd`)
