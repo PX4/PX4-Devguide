@@ -1,17 +1,17 @@
 # 시스템 알림음
 
-PX4 defines a number of [standard tones/tunes](https://docs.px4.io/master/en/getting_started/tunes.html) that are used to provide audio notification for important system states and problems (e.g. system startup, arming success, battery warnings, etc.)
+PX4는 중요한 시스템 상태와 문제를 음성으로 알리는 여러가지 [표준 알림음](https://docs.px4.io/master/en/getting_started/tunes.html)을 지정해두었습니다(예시: 시스템 시작, 이륙 준비 완료, 배터리 경고 등)
 
-Tunes are specified using strings (in [ANSI Music notation](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt)) and played by code using the [tunes](https://github.com/PX4/Firmware/tree/master/src/lib/tunes) library. The tunes library also contains the list of default system tunes - see [lib/tunes/tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc).
+알림음은 문자열([안시 악보 표기](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt))로 정의하며 [튠즈](https://github.com/PX4/Firmware/tree/master/src/lib/tunes) 라이브러리를 통해 코드로 재생합니다. 튠즈 라이브러리에는 기본 시스템 음 목록이 들어있습니다. 해당 내용은 [lib/tunes/tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc) 파일을 참고하십시오.
 
-PX4 also has a module that can be used to play (test) the default tunes or a user defined tune.
+PX4에는 기본음 또는 사용자 지정음을 재생(시험)할 때 활용할 모듈이 있습니다.
 
-This topic provides general guidance on how to create your own tunes and add to/replace the system notification tones/tunes.
+이 주제에서는 알림음을 만들고 시스템 알림 음으로 추가하는 일반 과정을 안내해드리도록 하겠습니다.
 
 
-## Creating Tunes
+## 알림음 만들기
 
-Tune strings are defined using [ANSI Music notation](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt).
+음 문자열은 [안시 악보 표기 방식](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt)으로 정의합니다.
 
 > **Tip** More information about the format can be found in [QBasic PLAY statement](https://en.wikibooks.org/wiki/QBasic/Appendix#PLAY) (Wikibooks) and has been reproduced in [tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc).
 
