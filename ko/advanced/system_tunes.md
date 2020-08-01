@@ -37,18 +37,18 @@ PX4에는 기본음 또는 사용자 지정음을 재생(시험)할 때 활용�
 
    화면의 절반 하단부에서 도구 사용에 필요한 키보드 단축키를 안내해줍니다(악보를 움직이고 음표 길이를 선택할 수 있는 등의 작업 가능).
 1. 음악을 저장할 준비가 끝나면:
-   - Press **F2** to give the tune a name and save it in the */Music* sub folder of your Melody Master installation.
-   - Press **F7**, the scroll down the list of output formats on the right to get to ANSI. The file will be exported to the *root* of the Melody Master directory (with the same name and a file-type specific extension).
-1. Open the file. The output might look like this:
+   - **F2** 키를 눌러 이름 부여하고, 멜로디 마스터 설치 디렉터리의 */Music*  하위 폴더에 저장하십시오.
+   - **F7** 키를 누른 후 우측 화면에서 하단으로 스크롤 이동하여 출력 형식을 ANSI로 설정하십시오. 파일은 멜로디 마스터 디렉터리 *루트*에 내보냅니다(동일한 이름이나, 파일 형식에 맞는 확장자가 따로 붙음).
+1. 파일을 여십시오. 출력 내용은 다음과 같습니다:
 
    ![ANSI Output from file](../../assets/tunes/tune_musicmaker_ansi_output.png)
 
-1. The string that can be played in PX4 is the bit between `MNT` and `P64`: `150L1O3DL16CL32<B>C<AEL16A`
+1. PX4에서 재생할 수 있는 문자열은 `MNT`와 `P64` 사이의 `150L1O3DL16CL32<B>C<AEL16A` 입니다.
 
 
-## Testing Tunes
+## 알림음 시험
 
-When you're ready to try it out a new tune on PX4, use the [tune_control](../middleware/modules_system.md#tunecontrol) library. For example, to test the tune we "created" above you would enter the following command on a console or shell (e.g. the [MAVLink Shell](../debug/mavlink_shell.md)):
+PX4에서 재생할 알림음을 새로 추가할 준비가 되었다면, [tune_control](../middleware/modules_system.md#tunecontrol) 라이브러리를 활용하십시오. 예를 들어, 우리가 위 과정을 거쳐 "만든" 재생음을 시험하려면 다음 명령을 콘솔 또는 셸(예: [MAVLink 셸](../debug/mavlink_shell.md))에 입력하십시오:
 ```sh
 tune_control play -m "150L1O3DL16CL32<B>C<AEL16A"
 ```
