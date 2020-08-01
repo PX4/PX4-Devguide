@@ -30,7 +30,7 @@ make px4_sitl jmavsim
 
 이 명령으로 다음의 PX4 콘솔을 띄웁니다:
 
-![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
+![PX4 콘솔 (jMAVSim)](../../assets/console_jmavsim.png)
 
 다음 명령을 입력하면 드론이 날 수 있습니다:
 
@@ -46,7 +46,7 @@ pxh> commander takeoff
 
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
-> **Tip** [가제보(Gazebo) 모의시험 환경](../simulation/gazebo.md), [AirSim 모의시험 환경](../simulation/airsim.md)과 같은 다른 여러 [모의시험 환경](../simulation/README.md)에서도 PX4를 활용할 수 있습니다. 이들 역시 *make* 명령으로 시작합니다. 예시: ```make px4_sitl gazebo```
+> **Tip** [가제보(Gazebo) 모의시험 환경](../simulation/gazebo.md), [AirSim 모의시험 환경](../simulation/airsim.md)과 같은 다른 여러 [모의시험 환경](../simulation/README.md)에서도 PX4를 활용할 수 있습니다. 이들 역시 *make* 명령으로 시작합니다. 예를 들면: ```make px4_sitl gazebo```
 
 ## NuttX / Pixhawk 기반 보드 {#nuttx}
 
@@ -161,7 +161,7 @@ Then, connect over ssh and run it with (as root):
 sudo ./bin/px4 -s px4.config
 ```
 
-#### Native Build
+#### 자체 빌드
 
 If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
 
@@ -242,7 +242,7 @@ The mixer currently needs to be copied manually:
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 ```
 
-#### Run
+#### 실행
 
 Run the DSP debug monitor:
 
@@ -261,7 +261,7 @@ cd /home/linaro
 
 Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
 
-#### Autostart
+#### 자동 시작
 
 To run the px4 as soon as the Snapdragon has booted, you can add the startup to `rc.local`:
 
@@ -301,19 +301,19 @@ Then reboot the Snapdragon:
 adb reboot
 ```
 
-## Compiling in a Graphical IDE
+## 그래픽 IDE에서의 컴파일
 
 The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
-## Qt Creator Functionality
+## Qt Creator 기능 
 
 Qt creator offers clickable symbols, auto-completion of the complete codebase and building and flashing firmware.
 
 ![](../../assets/toolchain/qtcreator.png)
 
-### Qt Creator on Linux
+### 리눅스용 Qt Creator
 
 Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
@@ -328,11 +328,11 @@ Then load the CMakeLists.txt in the root firmware folder via **File > Open File 
 
 After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
-### Qt Creator on Windows
+### Windows용 Qt Creator
 
 > **Note** Windows has not been tested for PX4 development with Qt Creator.
 
-### Qt Creator on Mac OS
+### Mac OS용 Qt Creator
 
 Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
@@ -347,7 +347,7 @@ That's it! Start *Qt Creator*, then complete the steps in the video below to set
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
 
-## PX4 Make Build Targets {#make_targets}
+## PX4 make 빌드 타겟 {#make_targets}
 
 The previous sections showed how you can call *make* to build a number of different targets, start simulators, use IDEs etc. This section shows how *make* options are constructed and how to find the available choices.
 
@@ -392,7 +392,7 @@ The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files
 
 Additional make targets are discussed in the following sections (list is not exhaustive):
 
-### Binary Size Profiling {#bloaty_compare_master}
+### 이진 파일 크기 프로파일링 {#bloaty_compare_master}
 
 The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
 
@@ -451,19 +451,19 @@ Then use the make target, specifying the target build to compare (`px4_fmu-v2_de
 
 This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
 
-## Firmware Version & Git Tags {#firmware_version}
+## 펌웨어 버전과 git 태그 {#firmware_version}
 
 The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
 
-![Firmware info](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
+![펌웨어 정보](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
 
 These are extracted at build time from the active *git tag* for your repo tree. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
 
 > **Warning** If you use a different git tag format, versions information may not be displayed properly.
 
-## Troubleshooting {#troubleshooting}
+## 문제 해결 {#troubleshooting}
 
-### General Build Errors
+### 일반 빌드 오류
 
 Many build problems are caused by either mismatching submodules or an incompletely cleaned-up build environment. Updating the submodules and doing a `distclean` can fix these kinds of errors:
 
@@ -479,7 +479,7 @@ If you're building the *vanilla* master branch, the most likely cause is using a
 
 If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. In this case you will need to remove any drivers/modules that you don't need from the build.
 
-### macOS: Too many open fileserror {#macos_open_files}
+### macOS: Too many open files error {#macos_open_files}
 
 MacOS allows a default maximum of 256 open files in all running processes. The PX4 build system opens a large number of files, so you may exceed this number.
 
