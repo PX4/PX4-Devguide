@@ -1,22 +1,22 @@
-# PX4 소프트웨어 제작
+# PX4 소프트웨어 빌드
 
-PX4는 시뮬레이션된 대상과 하드웨어 대상 모두에 대해 콘솔이나 IDE에서 개발될 수 있습니다.
+PX4는 모의시험 환경과 하드웨어 타겟 모두에 대해 콘솔 또는 IDE 환경에서 빌드할 수 있습니다.
 
-> **Note** Before following these instructions you must first install the [Developer Toolchain](../setup/dev_env.md) for your host operating system and target hardware.
+> **Note** 다음 절차를 따르기 전에 우선 [개발자 툴체인](../setup/dev_env.md)을 호스트 운영 체제와 타겟 하드웨어용으로 설치해야합니다.
 
 <span></span>
 
-> **Tip** For solutions to common build problems see [Troubleshooting](#troubleshooting) below.
+> **Tip** 일반 빌드 문제에 대한 해결책은 하단의 [문제 해결](#troubleshooting) 부준을 참고하십시오.
 
-## Download the PX4 Source Code {#get_px4_code}
+## PX4 소스 코드 다운로드 {#get_px4_code}
 
-The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. To get the *very latest* version onto your computer, enter the following command into a terminal:
+PX4 소스 코드는 github의 [PX4/Firmware](https://github.com/PX4/Firmware) 저장소에 있습니다. *가장 최신*의 버전을 컴퓨터에 받으려면, 다음 명령을 터미널에 입력하십시오:
 
 ```sh
 git clone https://github.com/PX4/Firmware.git --recursive
 ```
 
-> **Note** This is all you need to do just to build the latest code. [GIT Examples > Contributing code to PX4](../contribute/git_examples.md#contributing_code) provides a lot more information about using git to contribute to PX4.
+> **Note** 이 방법이 최신 코드를 빌드하는데 필요한 모든 과정입니다. [GIT Examples > Contributing code to PX4](../contribute/git_examples.md#contributing_code) provides a lot more information about using git to contribute to PX4.
 
 ## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
 
