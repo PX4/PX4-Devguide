@@ -1,4 +1,4 @@
-# System Notification Tunes
+# 시스템 알림음
 
 PX4 defines a number of [standard tones/tunes](https://docs.px4.io/master/en/getting_started/tunes.html) that are used to provide audio notification for important system states and problems (e.g. system startup, arming success, battery warnings, etc.)
 
