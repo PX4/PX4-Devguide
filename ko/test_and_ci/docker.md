@@ -158,7 +158,7 @@ docker rm 45eeb98f1dd9
 
 도커 컨테이너에서 SITL과 같은 모의시험 인스턴스를 실행하고 호스트에서 *QGroundControl*로 제어할 때, 통신 링크는 직접 설정해야합니다. 여기서 *QGroundControl*의 자동 연결 기능은 동작하지 않습니다.
 
-In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. The IP address of the docker container can be found with the following command (assuming the container name is `mycontainer`):
+*QGroundControl*에서 [설정](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html)을 찾아 Comm 연결을 선택하십시오. UDP 프로토콜을 사용할 새 링크를 만드십시오. 포트는 14570과 같은 번호를 SITL [설정](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)에서 지정한 값에 따릅니다. IP 주소는 기본 네트워크를 사용한다고 할 경우, 보통 172.17.0.1/16 도커 컨테이너에 지정한 설정 값 중 하나를 사용합니다. 도커 컨테이너의 IP 주소는 다음 명령으로 확인할 수 있습니다(컨테이너 이름은 `mycontainer`로 가정합니다):
 
 ```sh
 $ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}' mycontainer
@@ -172,7 +172,7 @@ $ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}
 
 컨테이너에서는 기본 사용자 권한으로 필요한 파일을 만듭니다. 보통 기본 사용자는 "root"입니다. 이렇게 하면 호스트 컴퓨터의 사용자가 컨테이너에서 만든 파일에 접근할 수 없는 권한 오류가 나타납니다.
 
-The example above uses the line `--env=LOCAL_USER_ID="$(id -u)"` to create a user in the container with the same UID as the user on the host. This ensures that all files created within the container will be accessible on the host.
+위 예제에서는 호스트 사용자와 동일한 UID로 컨테이너의 사용자를 만들 때 `--env=LOCAL_USER_ID="$(id -u)"` 행을 활용합니다. 이 명령을 사용하면 호스트에서 컨테이너에 만든 모든 파일을 접근할 수 있습니다.
 
 #### 그래픽 드라이버 문제
 
