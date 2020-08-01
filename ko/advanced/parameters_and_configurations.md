@@ -39,24 +39,24 @@ param show -c
 
 ### 매개변수 값 불러오고 내보내기
 
-You can save any parameters that have been *touched* since all parameters were last reset to their firmware-defined defaults (this includes any parameters that have been changed, even if they have been changed back to their default).
+모든 매개변수 값을 펌웨어 지정 기본값으로 초기화한 이래로 *값을 바꾼*적이 있는 임의의 매개변수를 저장할 수 있습니다.
 
-The standard `param save` command will store the parameters in the current default file:
+`param save` 표준 명령은 현재 기본 파일에 매개변수 값을 저장합니다:
 
 ```sh
 param save
 ```
 
-If provided with an argument, it will store the parameters instead to this new location:
+인자 값을 제시했다면 새 위치에 매개변수 값을 저장합니다:
 
 ```sh
 param save /fs/microsd/vtol_param_backup
 ```
 
-There are two different commands to *load* parameters:
+매개변수를 *불러오는(load)* 명령에는 두가지가 있습니다:
 
-- `param load` first does a full reset of all parameters to their defaults, and then overwrites parameter values with any values stored in the file.
-- `param import` just overwrites parameter values with the values from the file and then saves the result (i.e. effectively calls `param save`).
+- 우선 `param load` 명령은 모든 매개변수 값을 기본값으로 초기화하며, 파일에 저장한 어떤 값이든 덮어씁니다.
+- `param import`는 파일에서 가져온 매개변수 값을 덮어쓰기만 하고, 결과를 저장합니다(예: `param save` 명령 호출과 동일한 결과).
 
 The `load` effectively resets the parameters to the state when the parameters were saved (we say "effectively" because any parameters saved in the file will be updated, but other parameters may have different firmware-defined default values than when the parameters file was created).
 
