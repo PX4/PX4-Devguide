@@ -33,7 +33,7 @@ PX4에는 기본음 또는 사용자 지정음을 재생(시험)할 때 활용�
    c:
    start
    ```
-1. 일부 화면을 통해 선택지를 누른 후, **1**을 눌러 *멜로디 마스터*를 띄우십시오: ![Melody Master 2.1](../../assets/tunes/tunes_melody_master_2_1.jpg)
+1. 일부 화면을 통해 선택지를 누른 후, **1**을 눌러 *멜로디 마스터*를 띄우십시오: ![멜로디 마스터 2.1](../../assets/tunes/tunes_melody_master_2_1.jpg)
 
    화면의 절반 하단부에서 도구 사용에 필요한 키보드 단축키를 안내해줍니다(악보를 움직이고 음표 길이를 선택할 수 있는 등의 작업 가능).
 1. 음악을 저장할 준비가 끝나면:
@@ -41,7 +41,7 @@ PX4에는 기본음 또는 사용자 지정음을 재생(시험)할 때 활용�
    - **F7** 키를 누른 후 우측 화면에서 하단으로 스크롤 이동하여 출력 형식을 ANSI로 설정하십시오. 파일은 멜로디 마스터 디렉터리 *루트*에 내보냅니다(동일한 이름이나, 파일 형식에 맞는 확장자가 따로 붙음).
 1. 파일을 여십시오. 출력 내용은 다음과 같습니다:
 
-   ![ANSI Output from file](../../assets/tunes/tune_musicmaker_ansi_output.png)
+   ![파일 내용 안시 출력](../../assets/tunes/tune_musicmaker_ansi_output.png)
 
 1. PX4에서 재생할 수 있는 문자열은 `MNT`와 `P64` 사이의 `150L1O3DL16CL32<B>C<AEL16A` 입니다.
 
@@ -53,20 +53,20 @@ PX4에서 재생할 알림음을 새로 추가할 준비가 되었다면, [tune_
 tune_control play -m "150L1O3DL16CL32<B>C<AEL16A"
 ```
 
-> **Note** Out of the box, the tune_control is only present on real hardware (not the simulator).
+> **Note** 특별하게도, tune_control은 실제 하드웨어(모의시험 프로그램 아님)에서만 나타납니다.
 
 
-## Replacing Existing Tunes
+## 기존 알림음 바꾸기
 
-Tunes are defined within [tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc).
+알림음은 [tune_definition.desc](https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc)에 목록을 지정합니다.
 
-If you just need to replace an existing tune, then you can replace the file in your own fork, and update the tune strings defined in `PX4_DEFINE_TUNE`.
-
-
-## Adding a New Tune
+기존 알림음을 바꾸려면, 파일을 별도로 복사한 후, `PX4_DEFINE_TUNE` 에 정의한 알림음 문자열을 새로 바꾸시면 됩니다.
 
 
-TBD.
+## 새 알림음 추가
+
+
+곧 추가 예정.
 
 
 <!-- 
