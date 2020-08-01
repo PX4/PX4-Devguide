@@ -78,7 +78,7 @@ cd Firmware
 
 ### 도커 직접 호출 {#manual_start}
 
-The syntax of a typical command is shown below. This runs a Docker container that has support for X forwarding (makes the simulation GUI available from inside the container). It maps the directory `<host_src>` from your computer to `<container_src>` inside the container and forwards the UDP port needed to connect *QGroundControl*. With the `-–privileged` option it will automatically have access to the devices on your host (e.g. a joystick and GPU). If you connect/disconnect a device you have to restart the container.
+보통 사용하는 명령의 문법은 다음과 같습니다. 이 명령은 X 포워딩을 지원하는 도커 컨테이너를 실행합니다(컨테이너에서 모의시험 GUI 환경을 사용할 수 있습니다). 컴퓨터의 `<host_src>` 디렉터리를 컨테이너의 `<container_src>` 디렉터리로 대응하며 *QGroundControl*에 연결할 UDP 포트 데이터를 전달합니다. `-–privileged` 옵션을 사용하면 호스트의 장치(예: 조이스틱, CPU)에 자동으로 접근합니다. 장치를 연결하거나 장치의 연결을 해제하고 나면 컨테이너를 다시 시작해야합니다.
 
 ```sh
 # 컨테이너의 xhost 접근 활성화
@@ -94,13 +94,13 @@ docker run -it --privileged \
     --name=<local_container_name> <container>:<tag> <build_command>
 ```
 
-Where,
+여기서,
 
-* `<host_src>`: The host computer directory to be mapped to `<container_src>` in the container. This should normally be the **Firmware** directory.
-* `<container_src>`: The location of the shared (source) directory when inside the container.
-* `<local_container_name>`: A name for the docker container being created. This can later be used if we need to reference the container again.
-* `<container>:<tag>`: The container with version tag to start - e.g.: `px4io/px4-dev-ros:2017-10-23`.
-* `<build_command>`: The command to invoke on the new container. E.g. `bash` is used to open a bash shell in the container.
+* `<host_src>`: 컨테이너의 `<container_src>` 디렉터리에 대응할 호스트 컴퓨터의 디렉터리입니다. 보통 **Firmware** 디렉터리입니다.
+* `<container_src>`: 컨테이너에 들어있는 공유 (소스) 디렉터리의 위치입니다.
+* `<local_container_name>`: 만들어 둔 도커 컨테이너의 이름입니다. 컨테이너를 나중에 다시 참조해야 할 때 활용할 수 있습니다.
+* `<container>:<tag>`: 시작할 컨테이너 이름과 버전입니다. 예시: `px4io/px4-dev-ros:2017-10-23`
+* `<build_command>`: 새 컨테이너에서 실행할 명령입니다. 예시: `bash`는 컨테이너의 배시 셸을 여는데 사용하는 명령입니다.
 
 아래의 보강 예제에서는 호스트 컴퓨터에서 배시 셸을 열고 **~/src/Firmware** 디렉터리를 공유하는 방법을 보여줍니다.
 
@@ -118,7 +118,7 @@ docker run -it --privileged \
 --name=mycontainer px4io/px4-dev-ros:2017-10-23 bash
 ```
 
-If everything went well you should be in a new bash shell now. Verify if everything works by running, for example, SITL:
+모든 과정이 잘 넘어갔다면 새 배시 셸 상태에 있어야 합니다. 모든 요소가 제대로 동작하는지 검증하십시오. SITL을 예를 들자면:
 
 ```sh
 cd src/firmware    #This is <container_src>
@@ -127,7 +127,7 @@ make px4_sitl_default gazebo
 
 ### 컨테이너 재진입
 
-The `docker run` command can only be used to create a new container. To get back into this container (which will retain your changes) simply do:
+`docker run` 명령은 새 컨테이너를 만들 때만 사용합니다. 이 컨테이너로 돌아가려면 (바뀐 내용은 그대로 유지) 다음 명령을 실행하십시오:
 
 ```sh
 # start the container
@@ -136,7 +136,7 @@ docker start container_name
 docker exec -it container_name bash
 ```
 
-If you need multiple shells connected to the container, just open a new shell and execute that last command again.
+컨테이너에 여러 셸을 연결해야 한다면, 새 셸을 열고 마지막 명령을 다시 실행하기만 하면 됩니다.
 
 ### 컨테이너 정리
 
