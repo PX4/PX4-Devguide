@@ -62,7 +62,7 @@ param save /fs/microsd/vtol_param_backup
 
 반면에, `import` 명령은 비행체의 현재 상태 값과 파일의 매개변수 값을 병합합니다. 이를테면 시스템 설정의 나머지 부분을 덮어쓰기 하지 않고 보정 값을 동반하여 매개변수 값 파일을 내용을 가져올 때 사용할 수 있습니다.
 
-Examples for both cases are shown below:
+아래 예제에 두가지 경우를 모두 보여드립니다:
 
 ```sh
 # 파일을 저장하고 나면 매개변수 값 초기화
