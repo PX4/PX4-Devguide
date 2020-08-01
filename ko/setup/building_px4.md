@@ -16,23 +16,23 @@ PX4 소스 코드는 github의 [PX4/Firmware](https://github.com/PX4/Firmware) �
 git clone https://github.com/PX4/Firmware.git --recursive
 ```
 
-> **Note** 이 방법이 최신 코드를 빌드하는데 필요한 모든 과정입니다. [GIT Examples > Contributing code to PX4](../contribute/git_examples.md#contributing_code) provides a lot more information about using git to contribute to PX4.
+> **Note** 이 방법이 최신 코드를 빌드하는데 필요한 모든 과정입니다. PX4에 기여할 목적의 더 많은 git 활용 내용은 [git 예제 > PX4에 코드 기여하기](../contribute/git_examples.md#contributing_code) 에 있습니다.
 
-## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
+## 첫 빌드 (jMAVSim 모의시험 환경 활용) {#jmavsim_build}
 
-First we'll build a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
+우선 콘솔 환경에서 모의시험 환경을 빌드하겠습니다. 모의시험 환경은 실제 하드웨어와 IDE로 옮겨가기 전 시스템 설정을 검증할 수 있게 합니다.
 
-Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
+**Firmware** 디렉터리를 찾아간 후 다음 명령으로 [jMAVSim](../simulation/jmavsim.md)을 시작하십시오:
 
 ```sh
 make px4_sitl jmavsim
 ```
 
-This will bring up the PX4 console below:
+이 명령으로 다음의 PX4 콘솔을 띄웁니다:
 
 ![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
 
-The drone can be flown by typing:
+다음 명령을 입력하면 드론이 날 수 있습니다:
 
 ```sh
 pxh> commander takeoff
@@ -115,15 +115,15 @@ Rebooting.
 [100%] Built target upload
 ```
 
-## Other Boards
+## 기타 보드
 
-The following boards have more complicated build and/or deployment instructions.
+다음 보트는 빌드 또는 배포 방법이 좀 더 복잡합니다.
 
-### Raspberry Pi 2/3 Boards
+### 라즈베리 파이 2/3 보드
 
-The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
+아래 명령으로 [Raspberry Pi 2/3 Navio2](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html) 대상 바이너리를 빌드합니다.
 
-#### Cross-compiler Build
+#### 교차 컴파일러 빌드
 
 Set the IP (or hostname) of your RPi using:
 
@@ -192,7 +192,7 @@ px4 starting.
 pxh>
 ```
 
-#### Autostart
+#### 자동 시작
 
 To autostart px4, add the following to the file **/etc/rc.local** (adjust it accordingly if you use native build), right before the `exit 0` line:
 
@@ -207,11 +207,11 @@ Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/master/en/fligh
 - [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
 - [OcPoC PX4 Setup Page](https://aerotenna.readme.io/docs/px4-setup)
 
-### QuRT / Snapdragon Based Boards
+### QuRT / 스냅드래곤 기반 보드
 
 This section shows how to build for the [Qualcomm Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html).
 
-#### Build
+#### 빌드
 
 > **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
 
