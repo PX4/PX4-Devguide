@@ -88,11 +88,11 @@ param import /fs/microsd/vtol_param_backup
 
 PX4 모듈과 드라이버에서 매개변수 값에 접근하는 용도로 C와 C++언어로 활용할 수 있는 개별 API가 있습니다.
 
-One important difference between the APIs is that the C++ version has a more efficient standardized mechanism to synchronize with changes to parameter values (i.e. from a GCS).
+API간 중요한 차이점이 있다면, C++ 버전은 매개변수 값을 바꿀 때 동기화하는 표준 매커니즘이 더욱 효율적입니다(예: GCS에서 업데이트).
 
-Synchronization is important because a parameter can be changed to another value at any time. Your code should *always* use the current value from the parameter store. If getting the latest version is not possible, then a reboot will be required after the parameter is changed (set this requirement using the `@reboot_required` metadata).
+매개변수 값이 다른 값으로 언제든 바뀔 수 있으므로 동기화는 중요합니다. 코드는 매개변수 저장소에 *항상* 현재 값을 사용해야합니다. 최근 버전을 가져올 수 없다면, 매개변수 값을 바꾼 후 다시 부팅해야 합니다(`@reboot_required` 메타데이터로 필수 여부 설정).
 
-In addition, the C++ version has also better type-safety and less overhead in terms of RAM. The drawback is that the parameter name must be known at compile-time, while the C API can take a dynamically created name as a string.
+게다가, C++ 버전은 자료형 관리에 있어 더욱 안전하며 RAM 사용 부하량이 적습니다. 문제점이 있다면, C API는 동적으로 문자열로 만든 이름을 취할 수 있지만, C++ API에서는 컴파일 시간에 매개변수 이름을 밝혀야합니다.
 
 ### C++ API
 
@@ -277,16 +277,16 @@ The lines in the comment block are all optional, and are primarily used to contr
  */
 ```
 
-### YAML Metadata {#yaml_metadata}
+### YAML 메타데이터 {#yaml_metadata}
 
-> **Note** At time of writing YAML parameter definitions cannot be used in *libraries*.
+> **Note** YAML 매개변수 정의를 작성했을 때는 *라이브러리*에서 활용할 수 없습니다.
 
-YAML meta data is intended as a full replacement for the **.c** definitions. It supports all the same metadata, along with new features like multi-instance definitions.
+YAML 메타데이터는 **.c**의 정의를 완전히 대체할 용도로 존재합니다. 모든 동일한 메타데이터를 지원하며, 다중 인스턴스 정의와 같은 새 기능도 있습니다.
 
-- The YAML parameter metadata schema is here: [validation/module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml).
-- An example of YAML definitions being used can be found in the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml).
+- YAML 매개변수 메타데이터 스키마는 [validation/module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml)에 있습니다.
+- 활용 중인 YAML 정의 예제는 [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml) MAVLink 매개변수 정의파일에서 찾을 수 있습니다.
 
-#### Multi-Instance (Templated) Meta Data {#multi_instance_metadata}
+#### 다중 인스턴스 (서식화) 메타데이터 {#multi_instance_metadata}
 
 Templated parameter definitions are supported in [YAML parameter definitions](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml) (templated parameter code is not supported).
 
@@ -304,7 +304,7 @@ The following YAML definitions provide the start and end indexes.
 
 For a full example see the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml)
 
-## Further Information
+## 추가 정보
 
-- [Finding/Updating Parameters](https://docs.px4.io/master/en/advanced_config/parameters.html) (PX4 User Guide)
-- [Parameter Reference](../advanced/parameter_reference.md)
+- [매개변수 검색/업데이트](https://docs.px4.io/master/en/advanced_config/parameters.html) (PX4 사용자 안내서)
+- [매개변수 참고서](../advanced/parameter_reference.md)
