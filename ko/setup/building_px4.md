@@ -83,7 +83,7 @@ The following list shows the build commands for common boards:
 - [Cube Black](https://docs.px4.io/master/en/flight_controller/pixhawk-2.html): `make px4_fmu-v3_default`
 - Cube Yellow: `make hex_cube-yellow`
 - Cube Orange: `make hex_cube-orange`
-- [mRo Pixhawk](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html): `make px4_fmu-v3_default` (supports 2MB Flash)
+- [mRo Pixhawk](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html): `make px4_fmu-v3_default` (2MB 플래시 메모리 지원)
 - [HKPilot32](https://docs.px4.io/master/en/flight_controller/HKPilot32.html): `make px4_fmu-v2_default`
 - [Pixfalcon](https://docs.px4.io/master/en/flight_controller/pixfalcon.html): `make px4_fmu-v2_default`
 - [Dropix](https://docs.px4.io/master/en/flight_controller/dropix.html): `make px4_fmu-v2_default`
@@ -91,8 +91,8 @@ The following list shows the build commands for common boards:
 - [mRo X-2.1](https://docs.px4.io/master/en/flight_controller/mro_x2.1.html): `make mro_x21_default` 
 - [Crazyflie 2.0](https://docs.px4.io/master/en/flight_controller/crazyflie2.html): `make bitcraze_crazyflie_default`
 - [Intel® Aero Ready to Fly Drone](https://docs.px4.io/master/en/flight_controller/intel_aero.html): `make intel_aerofc-v1_default`
-- [Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** You **must** use a supported version of GCC to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. Building with an unsupported GCC may fail, as PX4 is close to the board's 1MB flash limit.
-- Pixhawk 1 with 2 MB flash: `make px4_fmu-v3_default`
+- [Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** 이 보드를 대상으로 빌드하려면 지원하는 GCC 버전(예: [CI/docker](../test_and_ci/docker.md)에서 사용하는 버전과 동일)을 활용 **해야** 하거나, 빌드에서 모듈을 제거해야합니다. 지원하지 않는 버전의 GCC 로 빌드하면, PX4 보드의 1MB 플래시 용량 제한에 가까워져 실패할 수 있습니다.
+- 2 MB flash의 Pixhawk 1: `make px4_fmu-v3_default`
 
 > **Note** Generally the `_default` suffix is optional (i.e. you can also build using `make px4_fmu-v4`, `make bitcraze_crazyflie`, etc.).
 
@@ -117,7 +117,7 @@ Rebooting.
 
 ## 기타 보드
 
-다음 보트는 빌드 또는 배포 방법이 좀 더 복잡합니다.
+다음 보드는 빌드 또는 배포 방법이 좀 더 복잡합니다.
 
 ### 라즈베리 파이 2/3 보드
 
