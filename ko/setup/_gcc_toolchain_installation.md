@@ -1,6 +1,6 @@
-<!-- GCC toolchain documentation used for all Linux platforms to build NuttX -->
+<!-- NuttX를 빌드할 모든 리눅스 플랫폼에서 활용하는 GCC 툴체인 문서 -->
 
-Execute the script below to install GCC 7-2017-q4:
+아래 스크립트를 실행하여 GCC 7-2017-q4를 설치하십시오:
 
 ```sh
 pushd .
@@ -12,18 +12,18 @@ if grep -Fxq "$exportline" ~/.profile; then echo nothing to do ; else echo $expo
 popd
 ```
 
-Now restart your machine.
+이제 시스템을 다시 시작하십시오.
 
 
-**Troubleshooting**
+**문제 해결**
 
-Check the version by entering the following command:
+다음 명령을 입력하여 버전을 확인하십시오:
 
 ```sh
 arm-none-eabi-gcc --version
 ```
 
-The output should be something similar to:
+다음과 비슷한 출력 결과가 나와야 합니다:
 
 ```sh
 arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM/embedded-7-branch revision 255204]
