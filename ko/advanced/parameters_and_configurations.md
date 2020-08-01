@@ -18,7 +18,7 @@ PX4 [시스템 콘솔](../debug/system_console.md)에서는 [매개변수](../mi
 param show
 ```
 
-To be more selective, a partial parameter name with wildcard "*" can be used:
+좀 더 원하는 부분을 선택할 경우, 매개변수 이름 일부 대신 와일드 카드 문자 "*"를 사용할 수 있습니다:
 
 ```sh
 nsh> param show RC_MAP_A*
@@ -31,7 +31,7 @@ x   RC_MAP_ACRO_SW [375,514] : 0
  723 parameters total, 532 used.
 ```
 
-You can use the `-c` flag to show all parameters that have changed (from their defaults):
+`-c` 플래그를 사용하여 (기본값으로부터) 값이 바뀐 모든 매개변수를 확인할 수 있습니다:
 
 ```sh
 param show -c
