@@ -129,7 +129,7 @@
   * [상태 추정자(State Estimator) 전환](advanced/switching_state_estimators.md)
   * [별도 모듈](advanced/out_of_tree_modules.md)
   * [STM32 부트로더](software_update/stm32_bootloader.md)
-  * [시스템 세부 설정](advanced/system_tunes.md)
+  * [시스템 알림음](advanced/system_tunes.md)
 * [플랫폼 시험과 지속 통합](test_and_ci/README.md) 
   * [비행 시험](test_and_ci/test_flights.md) 
     * [Test MC_01 - Manual Modes](test_cards/mc_01_manual_modes.md)
