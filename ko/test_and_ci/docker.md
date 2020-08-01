@@ -164,7 +164,7 @@ In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/S
 $ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}' mycontainer
 ```
 
-> **Note** Spaces between double curly braces above should be not be present (they are needed to avoid a UI rendering problem in gitbook).
+> **Note** 이중 중괄호 사이에 공백문자를 두어서는 안됩니다(gitbook의 인터페이스 렌더링 문제로 일부러 빈칸을 두었습니다).
 
 ### 문제 해결
 
@@ -176,52 +176,52 @@ The example above uses the line `--env=LOCAL_USER_ID="$(id -u)"` to create a use
 
 #### 그래픽 드라이버 문제
 
-It's possible that running Gazebo will result in a similar error message like the following:
+가제보(Gazebo) 실행시 다음과 같은 오류 메시지가 나타날 수 있습니다:
 
 ```sh
 libGL error: failed to load driver: swrast
 ```
 
-In that case the native graphics driver for your host system must be installed. Download the right driver and install it inside the container. For Nvidia drivers the following command should be used (otherwise the installer will see the loaded modules from the host and refuse to proceed):
+이 경우 호스트 시스템에 자체 그래픽 드라이버를 설치해야 합니다. 올바른 드라이버를 다운로드하시고 컨테이너 내부에 설치하십시오. 엔비디아 드라이버의 경우 다음 명령을 사용합니다(그렇지 않으면 호스트에서 불러온 모듈을 설치 관리자가 찾아내어 과정 진행을 거절합니다):
 
 ```sh
 ./NVIDIA-DRIVER.run -a -N --ui=none --no-kernel-module
 ```
 
-More information on this can be found [here](http://gernotklingler.com/blog/howto-get-hardware-accelerated-opengl-support-docker/).
+더 많은 정보는 [여기](http://gernotklingler.com/blog/howto-get-hardware-accelerated-opengl-support-docker/)에서 찾을 수 있습니다.
 
 ## 가상 머신 지원 {#virtual_machine}
 
-Any recent Linux distribution should work.
+최근 리눅스 배포판이라면 동작해야 합니다.
 
-The following configuration is tested:
+다음 설정을 시험했습니다:
 
-* OS X with VMWare Fusion and Ubuntu 14.04 (Docker container with GUI support on Parallels make the X-Server crash).
+* OS X VMWare Fusion 환경에 Ubuntu 14.04 설치(GUI 지원 도커 컨테이너 병렬 실행시 X-Server 치명 오류 발생).
 
 **메모리**
 
-Use at least 4GB memory for the virtual machine.
+가상 머신에 최소한 4GB 용량의 메모리를 할당하십시오.
 
 **컴파일 문제**
 
-If compilation fails with errors like this:
+다음 오류로 컴파일에 실패했을 경우:
 
 ```sh
 The bug is not reproducible, so it is likely a hardware or OS problem.
 c++: internal compiler error: Killed (program cc1plus)
 ```
 
-Try disabling parallel builds.
+동시 빌드가 아닌 단일 빌드로 진행해보십시오.
 
 **가상 머신 호스트에서 도커 제어 허용**
 
-Edit `/etc/defaults/docker` and add this line:
+`/etc/defaults/docker` 파일을 편집하여 다음 줄을 추가하십시오:
 
 ```sh
 DOCKER_OPTS="${DOCKER_OPTS} -H unix:///var/run/docker.sock -H 0.0.0.0:2375"
 ```
 
-You can then control docker from your host OS:
+이제 호스트 운영체제에서 도커를 제어할 수 있습니다:
 
 ```sh
 export DOCKER_HOST=tcp://<ip of your VM>:2375
