@@ -74,7 +74,7 @@ cd Firmware
     ./Tools/docker_run.sh 'bash'
     
 
-> **Tip** The script is easy because you don't need to know anything much about *Docker* or think about what container to use. However it is not particularly robust! The manual approach discussed in the [section below](#manual_start) is more flexible and should be used if you have any problems with the script.
+> **Tip** *도커*에 대해 더 많이 알 필요도 없거니와 컨테이너가 뭘 활용하는지 생각할 필요가 없기 때문에 스크립트를 활용하시는 편이 쉽습니다. 그러나 일부분은 온전하지 않습니다! [아래 절](#manual_start)에서 다루는 내용을 통해 직접 접근하는 방식이 훨씬 유연하며, 스크립트에 어떤 문제가 있다면 오히려 아래와 같은 방식을 따라야합니다.
 
 ### 도커 직접 호출 {#manual_start}
 
