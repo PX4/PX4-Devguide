@@ -194,7 +194,7 @@ pxh>
 
 #### 자동 시작
 
-To autostart px4, add the following to the file **/etc/rc.local** (adjust it accordingly if you use native build), right before the `exit 0` line:
+PX4를 자동으로 시작하려면 다음 실행 명령을 **/etc/rc.local**의 `exit 0` 행 바로 전에 추가하십시오(자체적으로 빌드했다면, 적당한 명령으로 수정하십시오):
 
 ```sh
 cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
@@ -202,14 +202,14 @@ cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 
 ### OcPoC-Zynq Mini
 
-Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html) are covered in:
+[OcPoC-Zynq Mini](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html) 빌드 절차는 다음 문서에서 다룹니다:
 
-- [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
-- [OcPoC PX4 Setup Page](https://aerotenna.readme.io/docs/px4-setup)
+- [Aerotenna OcPoC-Zynq Mini Flight Controller > OcPoC-Zynq용 PX4 빌드](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)
+- [OcPoC PX4 설정 페이지](https://aerotenna.readme.io/docs/px4-setup)
 
 ### QuRT / 스냅드래곤 기반 보드
 
-This section shows how to build for the [Qualcomm Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html).
+이 절에서는 [Qualcomm Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html)용 빌드 방법을 알려드립니다.
 
 #### 빌드
 
@@ -349,7 +349,7 @@ That's it! Start *Qt Creator*, then complete the steps in the video below to set
 
 ## PX4 make 빌드 타겟 {#make_targets}
 
-The previous sections showed how you can call *make* to build a number of different targets, start simulators, use IDEs etc. This section shows how *make* options are constructed and how to find the available choices.
+앞 절에서는 *make*를 호출하여 제각기 다른 타겟을 빌드하고, 모의시험 환경을 시작하고 IDE를 활용하는 방법을 다루었습니다. 이 절에서는 *make* 옵션을 구성하는 방법과 존재하는 선택지를 찾는 방법을 다루도록 하겠습니다.
 
 The full syntax to call *make* with a particular configuration and initialization file is:
 
@@ -390,7 +390,7 @@ Notes:
 
 The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
 
-Additional make targets are discussed in the following sections (list is not exhaustive):
+다음 절에서 추가 make 타겟을 다루도록 하겠습니다 (완전한 목록은 아님):
 
 ### 이진 파일 크기 프로파일링 {#bloaty_compare_master}
 
