@@ -52,25 +52,25 @@ pxh> commander takeoff
 
 ### 빌드 {#building_nuttx}
 
-To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board.
+NuttX- 또는 Pixhawk- 기반 보드용으로 빌드하려면 **Firmware** 디렉토리를 탐색한 후 보드에 해당하는 빌드 타겟을 찾아 `make`를 호출하십시오.
 
-For example, to build for *Pixracer* you would use the following command:
+예를 들어 *Pixracer* 용으로 빌드하려면 다음 명령을 사용하십시오:
 
 ```sh
 cd Firmware
 make px4_fmu-v4_default
 ```
 
-> **Note** In the example above the first part of the build target `px4_fmu-v4` is the firmware for a particular flight controller hardware and `default` is the configuration name (in this case the "default" configuration). The `default` is optional so you could instead do: ```make px4_fmu-v4```
+> **Note** 위 예제에서 빌드 타겟의 처음 부분인 `px4_fmu-v4`는 비행체 제어부 하드웨어 일부 기종용 펌웨어 이름이며, `default`는 설정 이름입니다 (이 경우 "default" 설정입니다). `default`는 선택 사항이기에, 대신 다음 명령을 실행할 수 있습니다: ```make px4_fmu-v4```
 
-A successful run will end with similar output to:
+성공적인 실행시 다음 출력 내용으로 끝납니다:
 
 ```sh
 -- Build files have been written to: /home/youruser/src/Firmware/build/px4_fmu-v4_default
 [954/954] Creating /home/youruser/src/Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
 ```
 
-The following list shows the build commands for common boards:
+다음 목록은 일반 보드에서의 빌드 명령을 보여줍니다:
 
 - [Pixhawk 4](http://docs.px4.io/master/en/flight_controller/pixhawk4.html): `make px4_fmu-v5_default`
 - [Pixhawk 4 Mini](http://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html): `make px4_fmu-v5_default`
