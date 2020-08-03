@@ -30,36 +30,36 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 
 ### 컨트롤 그룹 #0 (비행 제어)
 
-- 0: roll (-1..1)
-- 1: pitch (-1..1)
-- 2: yaw (-1..1)
-- 3: throttle (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-- 4: flaps (-1..1)
-- 5: spoilers (-1..1)
-- 6: airbrakes (-1..1)
-- 7: landing gear (-1..1)
+- 0: 좌우 회전각 (-1..1)
+- 1: 상하 회전각 (-1..1)
+- 2: 방위 회전각 (-1..1)
+- 3: 스로틀 (0..1 일반 범위, -1..1 다양한 상하 회전각 조절 장치 / 역추진 장치용)
+- 4: 플랩 (-1..1)
+- 5: 스포일러 (-1..1)
+- 6: 에어 제동장치 (-1..1)
+- 7: 랜딩 기어 (-1..1)
 
 ### 컨트롤 그룹 #1 (수직이착륙기 비행제어/Alternate)
 
-- 0: roll ALT (-1..1)
-- 1: pitch ALT (-1..1)
-- 2: yaw ALT (-1..1)
-- 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-- 4: reserved / aux0
-- 5: reserved / aux1
-- 6: reserved / aux2
+- 0: 좌우 회전각 대체용 (-1..1)
+- 1: 상하 회전각 대체용 (-1..1)
+- 2: 방위 회전각 대체용 (-1..1)
+- 3: 스로틀 대체용 (0..1 일반 범위, -1..1 다양한 상하 회전각 조절 장치 / 역추진 장치용 )
+- 4: 예약 / aux0
+- 5: 예약 / aux1
+- 6: 예약 / aux2
 - 7: reserved / aux3
 
 ### 컨트롤 그룹 #2 (Gimbal)
 
-- 0: gimbal roll
-- 1: gimbal pitch
-- 2: gimbal yaw
-- 3: gimbal shutter
-- 4: camera zoom
-- 5: reserved
-- 6: reserved
-- 7: reserved (parachute, -1..1)
+- 0: 짐벌 좌우 회전각
+- 1: 짐벌 상하 회전각
+- 2: 짐벌 방위 회전각
+- 3: 짐벌 셔터
+- 4: 카메라 확대/축소
+- 5: 예약
+- 6: 예약
+- 7: 예약 (패러슈트, -1..1)
 
 ### 컨트롤 그룹 #3 (Manual Passthrough)
 
