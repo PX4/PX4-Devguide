@@ -1,3 +1,3 @@
-# Concepts
+# 개념
 
-이 섹션은 [PX4 시스템 아키텍쳐](../concept/architecture.md)와 다른 중요한 개념을 포함합니다.
+이 섹션은 [PX4 시스템 구성](../concept/architecture.md)과 기타 핵심 개념을 주제로 다룹니다.

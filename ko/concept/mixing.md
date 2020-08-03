@@ -30,51 +30,51 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 
 ### 컨트롤 그룹 #0 (비행 제어)
 
-- 0: roll (-1..1)
-- 1: pitch (-1..1)
-- 2: yaw (-1..1)
-- 3: throttle (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-- 4: flaps (-1..1)
-- 5: spoilers (-1..1)
-- 6: airbrakes (-1..1)
-- 7: landing gear (-1..1)
+- 0: 좌우 회전각 (-1..1)
+- 1: 상하 회전각 (-1..1)
+- 2: 방위 회전각 (-1..1)
+- 3: 스로틀 (0..1 일반 범위, -1..1 다양한 상하 회전각 조절 장치 / 역추진 장치용)
+- 4: 플랩 (-1..1)
+- 5: 스포일러 (-1..1)
+- 6: 에어 제동장치 (-1..1)
+- 7: 랜딩 기어 (-1..1)
 
 ### 컨트롤 그룹 #1 (수직이착륙기 비행제어/Alternate)
 
-- 0: roll ALT (-1..1)
-- 1: pitch ALT (-1..1)
-- 2: yaw ALT (-1..1)
-- 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-- 4: reserved / aux0
-- 5: reserved / aux1
-- 6: reserved / aux2
+- 0: 좌우 회전각 대체용 (-1..1)
+- 1: 상하 회전각 대체용 (-1..1)
+- 2: 방위 회전각 대체용 (-1..1)
+- 3: 스로틀 대체용 (0..1 일반 범위, -1..1 다양한 상하 회전각 조절 장치 / 역추진 장치용 )
+- 4: 예약 / aux0
+- 5: 예약 / aux1
+- 6: 예약 / aux2
 - 7: reserved / aux3
 
 ### 컨트롤 그룹 #2 (Gimbal)
 
-- 0: gimbal roll
-- 1: gimbal pitch
-- 2: gimbal yaw
-- 3: gimbal shutter
-- 4: camera zoom
-- 5: reserved
-- 6: reserved
-- 7: reserved (parachute, -1..1)
+- 0: 짐벌 좌우 회전각
+- 1: 짐벌 상하 회전각
+- 2: 짐벌 방위 회전각
+- 3: 짐벌 셔터
+- 4: 카메라 확대/축소
+- 5: 예약
+- 6: 예약
+- 7: 예약 (패러슈트, -1..1)
 
 ### 컨트롤 그룹 #3 (Manual Passthrough)
 
-- 0: RC roll
-- 1: RC pitch
-- 2: RC yaw
-- 3: RC throttle
-- 4: RC mode switch (Passthrough of RC channel mapped by [RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_FLAPS))
-- 5: RC aux1 (Passthrough of RC channel mapped by [RC_MAP_AUX1](../advanced/parameter_reference.md#RC_MAP_AUX1))
-- 6: RC aux2 (Passthrough of RC channel mapped by [RC_MAP_AUX2](../advanced/parameter_reference.md#RC_MAP_AUX2))
-- 7: RC aux3 (Passthrough of RC channel mapped by [RC_MAP_AUX3](../advanced/parameter_reference.md#RC_MAP_AUX3))
+- 0: 원격 조종 좌우 회전각
+- 1: 원격 조종 상하 회전각
+- 2: 원격 조종 방위 회전각
+- 3: 원격 조종 스로틀
+- 4: 원격 조종 모드 전환 ([RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_FLAPS)에 매핑한 RC 채널 통과)
+- 5: 원격 조종 AUX 1 ([RC_MAP_AUX1](../advanced/parameter_reference.md#RC_MAP_AUX1)에 매핑한 RC 채널 통과)
+- 6: 원격 조종 AUX2 ([RC_MAP_AUX2](../advanced/parameter_reference.md#RC_MAP_AUX2)에 매핑한 RC 채널 통과)
+- 7: 원격 조종 AUX3 ([RC_MAP_AUX3](../advanced/parameter_reference.md#RC_MAP_AUX3)에 매핑한 RC 채널 통과)
 
-> **Note** 이 그룹은 오로지 RC 입력을 *normal operation* 동안에 특정한 출력으로 매핑하기 위해 사용됩니다 ( AUX2가 믹서에서 스케일링되는 예로[quad_x.maim.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7)를 참고하세요). 수동 입출력 페일세이프 (PX4FMU가 PX4IO 보드와의 통신을 멈춘경우) 이벤트에서는 컨트롤 그룹 0 입력에 의해 정의되고 매핑된 roll, pitch, yaw, throttle을 우선시 합니다 (다른 매핑들은 무시됨).
+> **Note** 이 그룹은 *일반 동작*을 진행하는 동안 특정 출력에 대한 원격 조정 대응 입력을 정의하는 용도로만 사용합니다(믹서에서 스케일링 처리하는 AUX2 예제는 [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7)를 참고하십시오). 수동 입출력 이벤트 발생시 안전장치는 (PX4FMU 가 PX4IO 보드와의 통신을 멈췄을 때) 제어 그룹 0에 정의한 좌우/상하/방위 회전각 조절, 스로틀에 대한 매핑/믹싱만 활용합니다(다른 매핑은 무시).
 
-### Control Group #6 (First Payload) {#control_group_6}
+### 제어 그룹 #6 (첫번째 페이로드) {#control_group_6}
 
 - 0: function 0
 - 1: function 1
@@ -87,9 +87,9 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 
 ## 가상 컨트롤 그룹
 
-> **Caution** *Virtual Control Group*s are only relevant to developers creating VTOL code. They should not be used in mixers, and are provided only for "completeness".
+> **Caution** *가상 제어 그룹*은 수직이착륙기 코드를 작성하려는 개발자와 관련된 부분입니다. 믹서에서 사용하면 안되며, "완벽성"을 목적으로만 제공합니다.
 
-이 그룹들은 믹서의 입력들은 아니지만 고정익과 멀티콥터 컨트롤러의 출력을 VTOL govenor 모듈에 피드하기 위한 메타 채널을 제공합니다.
+이 그룹은 믹서의 입력을 받지 않습니다. 다만, 고정익과 멀티콥터 컨트롤러의 출력을 VTOL 거버너 모듈로 먹이려는 메타채널로 제공합니다.
 
 ### 컨트롤 그룹 #4 (비행 제어 MC VIRTUAL)
 
@@ -170,9 +170,9 @@ Most commonly you will override/replace the **AUX** mixer file for your current 
 
 > **Tip** You can also *manually* load a mixer at runtime using the [mixer load](../middleware/modules_command.md#mixer) command (thereby avoiding the need for a reboot). For example, to load a mixer **/etc/mixers/test_mixer.mix** onto the MAIN PWM outputs, you could enter the following command in a [console](../debug/consoles.md): ```mixer load /dev/pwm_output0 /fs/microsd/etc/mixers/test_mixer.mix```
 
-### Syntax {#mixer_syntax}
+### 문법 {#mixer_syntax}
 
-Mixer files are text files that define one or more mixer definitions: mappings between one or more inputs and one or more outputs.
+믹서 파일은 하나 이상의 믹서를 정의하는 텍스트 파일입니다: 하나 이상의 입력과 출력을 서로 대응합니다.
 
 There are four types of mixers definitions: [multirotor mixer](#multirotor_mixer), [helicopter mixer](#helicopter_mixer), [summing mixer](#summing_mixer), and [null mixer](#null_mixer).
 
@@ -234,22 +234,22 @@ The remaining fields on the line configure the control scaler with parameters as
 
 An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
 
-#### Null Mixer {#null_mixer}
+#### 널(null) 믹서 {#null_mixer}
 
-A null mixer consumes no controls and generates a single actuator output with a value that is always zero.
+널 믹서는 어떤 제어도 받지 않으며 항상 0값만 출력하는 단일 액츄에이터를 생성합니다.
 
-Typically a null mixer is used as a placeholder in a collection of mixers in order to achieve a specific pattern of actuator outputs. It may also be used to control the value of an output used for a failsafe device (the output is 0 in normal use; during failsafe the mixer is ignored and a failsafe value is used instead).
+보통 널 믹서는 특정 액츄에이터 출력 패턴을 만들기 위해 믹서 집합에서 빈 자리로 활용합니다 안전 장치에 사용하는 출력 값을 제어하는 용도로도 사용할 수 있습니다(보통 출력 값은 0 입니다. 안전장치 가동시 믹서는 무시하며 안전장치 처리용 값을 대신 활용합니다).
 
-The null mixer definition has the form:
+널 믹서 정의는 다음과 같습니다:
 
     Z:
     
 
-#### Multirotor Mixer {#multirotor_mixer}
+#### 멀티로터 믹서 {#multirotor_mixer}
 
-The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust) into a set of actuator outputs intended to drive motor speed controllers.
+멀티로터 믹서는 컨트롤러 입력 넷(좌우/상하/방위 회전각, 역추진)을 모터 속도 컨트롤러를 제어할 액츄에이터 출력조합으로 모읍니다.
 
-The mixer definition is a single line of the form:
+믹서 정의는 단일 행의 형태를 지니고 있습니다:
 
     R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
     
@@ -331,7 +331,7 @@ The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROM
 - The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo.
 - The servos are limited at -8000 and 8000 because they are mechanically constrained.
 
-#### VTOL Mixer {#vtol_mixer}
+#### VTOL 믹서 {#vtol_mixer}
 
 VTOL systems use a [multirotor mixer](#multirotor_mixer) for the multirotor outputs, and [summing mixers](#summing_mixer) for the fixed-wing actuators (and the tilting servos in case of a tiltrotor VTOL).
 

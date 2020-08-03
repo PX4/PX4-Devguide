@@ -1,8 +1,8 @@
-# Flight Tasks
+# 비행 과업
 
-*Flight Tasks* are used within [Flight Modes](../concept/flight_modes.md) to provide specific movement behaviours: e.g. follow me, or flight smoothing.
+*비행 과업*은 [비행 상태](../concept/flight_modes.md)에서 특정 이동 동작(예: 나를 따르라, 평활 비행 등)을 수행하는 목적으로 활용합니다.
 
-At time of writing the best description of how flight modes work (in PX4 v1.9) is provided in the following video: **PX4 Flight Task Architecture Overview** - Dennis Mannhart, Matthias Grob (*PX4 Developer Summit 2019*).
+이 글을 작성하는 시점에서의 비행 모드 동작 방식에 대한 최상의 설명은 다음 **PX4 Flight Task Architecture Overview** - Dennis Mannhart, Matthias Grob (*PX4 Developer Summit 2019*) 동영상에 있습니다.
 
 {% youtube %}
 https://youtu.be/-dkQG8YLffc
