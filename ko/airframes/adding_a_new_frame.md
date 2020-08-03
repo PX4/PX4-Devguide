@@ -124,14 +124,14 @@ set PWM_DISARMED 1000
 * O: 출력 계수(음의 *1 , 양의 *1), 오프셋(여기서는 0), 출력 범위(여기서는 -1..+1)를 나타냅니다.  
   * PWM 신호를 반전하려면 출력 계수를 바꾸어야 합니다: ```O:      -10000  -10000      0 -10000  10000```
   * 기본 계수를 지정할 경우 이 행은 완전히 생략할 수 있습니다(또는 생략해야 합니다): ```O:      10000  10000   0 -10000  10000```
-* S: 첫 입력 계수를 나타냅니다. 컨트롤 그룹 #0 (비행체 제어)와 처음 입력(roll - 좌우 회전각) 의 입력을 취합니다. It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
-* S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). \ It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
+* S: 첫 입력 계수를 나타냅니다. 제어 그룹 #0 (비행체 제어)와 처음 입력(roll - 좌우 회전각) 의 입력을 취합니다. 좌우 회전각 제어 입력의 0.6배 조정하며 부호를 반전합니다(스케일 단위에 따라 -0.6은 -6000이 됨). 오프셋을 반영하지 않으며, 전체 범위(-1..+1)로 출력합니다.
+* S: 두번째 입력 계수를 나타냅니다. 제어 그룹 #0 (비행체 제어)와 두번째 입력(roll - 상하 회전각)의 입력값을 취합니다. 상하 회전각 제어 입력의 0.65배로 조정합니다. 오프셋을 반영하지 않으며 전체 범위(-1..+1)로 출력합니다.
 
-> **Note** In short, the output of this mixer would be SERVO = ( (roll input \* -0.6 + 0) \* 1 + (pitch input \* 0.65 + 0) \* 1 ) \* 1 + 0
+> **Note** 간단히 말해, 이 믹서의 출력은 SERVO = ( (좌우 회전각 입력 \* -0.6 + 0) \* 1 + (상하 회전각 입력 \* 0.65 + 0) \* 1 ) \* 1 + 0 가 됩니다.
 
-Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch.
+보이는 모습 뒤에는 두 계수를 추가하는데, 비행익에 대해 좌우 회전각에 대해 최대 60% 감소, 상하 회전각에 대해 65% 감소함을 의미합니다.
 
-The complete mixer looks like this:
+완전한 믹서 동작은 다음과 같습니다:
 
 ```bash
 Delta-wing mixer for PX4FMU
