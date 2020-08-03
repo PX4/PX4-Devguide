@@ -108,9 +108,9 @@ set PWM_DISARMED 1000
 
 > **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
-So MAIN1 would be the left aileron, MAIN2 the right aileron, MAIN3 is empty (note the Z: zero mixer) and MAIN4 is throttle (to keep throttle on output 4 for common fixed wing configurations).
+따라서 MAIN1은 좌측 보조익, MAIN2는 우측 보조익, MAIN3은 비워두며(믹서가 없을때 Z: 로 표기함), MAIN4는 스로틀입니다(일반 고정익 설정에서 4번 출력을 스로틀로 유지함).
 
-A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1..+1.
+믹서는 -10000부터 10000까지 정규화 된 값으로 인코딩하며, 이 값은 -1..+1에 해당합니다.
 
     M: 2
     O:      10000  10000      0 -10000  10000
