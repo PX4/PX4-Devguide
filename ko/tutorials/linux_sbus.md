@@ -1,14 +1,14 @@
-# Connecting an RC Receiver on Linux (Including S.Bus)
+# 리눅스에 리모콘 수신기 연결 (S.Bus 포함)
 
-This topic shows how to setup a PX4 Linux-based autopilot to connect and use a [supported RC receiver](https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html) on any serial port.
+이 절에서는 [지원 리모콘 수신기](https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html)를 임의의 직렬 포트에 연결하고 사용할 목적으로 리눅스 기반 오토파일럿을 설정하는 방법을 알려드립니다.
 
-For RC types other than S.Bus, you can just connect the receiver directly to the serial ports, or to USB via a USB to TTY serial cable (e.g. like PL2302 USB to Serial TTL converter).
+S.Bus에 비해 원격 조종 타입은 수신기를 직렬 포트에 연결하거나 USB to TTY 직렬 케이블(PL2302 USB to Serial TTL 변환기)로 USB에 연결할 수 있습니다.
 
-> **Note** For an S.Bus reciever (or encoder - e.g. from Futaba, RadioLink, etc.) you will usually need to connect the receiver and device via a [signal inverter circuit](#signal_inverter_circuit), but otherwise the setup is the same.
+> **Note** S.Bus 수신기(또는 후타바, 래디오링크 등의 인코더)를 사용하는 목적이라면 보통 [신호 반전 회로](#signal_inverter_circuit)를 거쳐 수신기와 장치를 연결해야겠지만, 이외의 경우 설정은 동일합니다.
 
-Then [Start the PX4 RC Driver](#start_driver) on the device, as shown below.
+이후, 장치에서 다음과 같이 [PX4 원격 조정 드라이버를 시작](#start_driver)하십시오.
 
-## Starting the Driver {#start_driver}
+## 드라이버 시작 {#start_driver}
 
 To start the RC driver on a particular UART (e.g. in this case `/dev/ttyS2`):
 
