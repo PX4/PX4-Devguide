@@ -30,22 +30,22 @@ MAVLink 메시지를 받으려면, 보조 컴퓨터에서 직렬 포트로 통�
 
 > **Warning** 대부분의 최근 보조 컴퓨터는 1.8V 레벨에서 하드웨어 UART가 동작하며 3.3V 레벨에서 손상을 입을 수 있습니다. 전압 변환 칩을 활용하십시오. 대부분의 경우 접근할 수 있는 하드웨어 직렬 포트에는 연결하려는 장비(모뎀 또는 콘솔)와 관련된 일부 기능이 있으며, 해당 장비를 사용할 수 있으려면 *리눅스에서 재설정*해야합니다.
 
-The safe bet is to use an FTDI Chip USB-to-serial adapter board and the wiring below. This always works and is easy to set up.
+확실히 안전한 방법은 아래의 결선표를 참고하여 FTDI 칩을 내장한 USB-to-serial 변환 보드를 사용하는 방법입니다. 얼마든지 동작하고, 설정하기도 쉽습니다.
 
-|  | TELEM2 |           | FTDI |                        |
-|  | ------ | --------- | ---- | ---------------------- |
-|  | 1      | +5V (red) |      | DO NOT CONNECT!        |
-|  | 2      | Tx (out)  | 5    | FTDI RX (yellow) (in)  |
-|  | 3      | Rx (in)   | 4    | FTDI TX (orange) (out) |
-|  | 4      | CTS (in)  | 6    | FTDI RTS (green) (out) |
-|  | 5      | RTS (out) | 2    | FTDI CTS (brown) (in)  |
-|  | 6      | GND       | 1    | FTDI GND (black)       |
+|  | TELEM2 |          | FTDI |                   |
+|  | ------ | -------- | ---- | ----------------- |
+|  | 1      | +5V (적)  |      | 연결하지 마십시오!        |
+|  | 2      | Tx (출력)  | 5    | FTDI RX (황) (입력)  |
+|  | 3      | Rx (입력)  | 4    | FTDI TX (적황) (출력) |
+|  | 4      | CTS (입력) | 6    | FTDI RTS (녹) (출력) |
+|  | 5      | RTS (출력) | 2    | FTDI CTS (갈) (입력) |
+|  | 6      | GND      | 1    | FTDI GND (흑)      |
 
-## Software setup on Linux
+## 리눅스 소프트웨어 설정
 
-On Linux the default name of a USB FTDI would be like `\dev\ttyUSB0`. If you have a second FTDI linked on the USB or an Arduino, it will registered as `\dev\ttyUSB1`. To avoid the confusion between the first plugged and the second plugged, we recommend you to create a symlink from `ttyUSBx` to a friendly name, depending on the Vendor and Product ID of the USB device.
+리눅스에서 USB FTDI 기본 명칭은 `/dev/ttyUSB0`와 같습니다. USB로 두번째 FTDI 칩을 연결했을 경우나, 아두이노에 연결했다면 `/dev/ttyUSB1`이 됩니다. 첫번째 연결 하드웨어와 두번째 연결 하드웨어의 혼동을 막으려면 `ttyUSBx`의 심볼릭 링크를 USB 장치의 제조사, 제폼 ID 에 따라 알기 쉬운 이름으로 만드시는 방안을 추천해드립니다.
 
-Using `lsusb` we can get the vendor and product IDs.
+`lsusb`를 사용하면 제조사와 제품 ID를 가져올 수 있습니다.
 
 ```sh
 $ lsusb
