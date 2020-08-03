@@ -288,21 +288,21 @@ YAML 메타데이터는 **.c**의 정의를 완전히 대체할 용도로 존재
 
 #### 다중 인스턴스 (서식화) 메타데이터 {#multi_instance_metadata}
 
-Templated parameter definitions are supported in [YAML parameter definitions](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml) (templated parameter code is not supported).
+서식화 매개변수 정의는 [YAML 매개변수 정의](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml)에서 지원합니다(서식화 매개변수 코드는 지원하지 않습니다).
 
-The YAML allows you to define instance numbers in parameter names, descriptions, etc. using `${i}`. For example, below will generate MY_PARAM_1_RATE, MY_PARAM_2_RATE etc.
+YAML은 매개변수 이름, 설명 등의 인스턴스 번호를 정의할 수 있게 합니다. `${i}`를 활용합니다. 예를 들어, 아래 예제에서는 MY_PARAM_1_RATE, MY_PARAM_2_RATE 등을 만듭니다.
 
     MY_PARAM_${i}_RATE:
                 description:
                     short: Maximum rate for instance ${i}
     
 
-The following YAML definitions provide the start and end indexes.
+다음 YAML 정의에서는 시작, 끝 인덱스 번호를 제공합니다.
 
-- `num_instances` (default 1): Number of instances to generate (>=1)
-- `instance_start` (default 0): First instance number. If 0, `${i}` expands to [0, N-1]`.
+- `num_instances` (기본값 1): 생성할 인스턴스 갯수(하나 이상)
+- `instance_start` (기본값 0): 첫번재 인스턴스 번호. 0으로 지정하면, `${i}` 값은 0부터 N-1 까지 갑니다.
 
-For a full example see the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml)
+전체 예제를 보려면 [/src/modules/mavlink/module.yaml](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/module.yaml) MAVLink 매개변수 정의 파일을 살펴보십시오
 
 ## 추가 정보
 
