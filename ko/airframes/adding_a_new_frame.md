@@ -239,20 +239,20 @@ The following *PX4 User Guide* topics explain how to tune the parameters that wi
 * [Fixed Wing PID Tuning Guide](https://docs.px4.io/master/en/advanced_config/pid_tuning_guide_fixedwing.html)
 * [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/)
 
-## Add New Airframe to QGroundControl
+## QGroundControl에 새 에어프레임 추가
 
-To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/master/en/config/airframe.html):
+*QGroundControl* [에어프레임 설정](https://docs.px4.io/master/en/config/airframe.html)섹션에 새 에어프레임을 추가하려면:
 
-1. Make a clean build (e.g. by running `make clean` and then `make px4_fmu-v5_default`)
-2. Open QGC and select **Custom firmware file...** as shown below:
+1. 빌드한 바이너리를 정리하고 다시 빌드하십시오(예: `make clean` 명령 수행 후 `make px4_fmu-v5_default` 실행)
+2. QGC를 열어 다음과 같이 **사용자 정의 펌웨어 파일...**을 선택하십시오:
   
   ![QGC flash custom firmware](../../assets/gcs/qgc_flash_custom_firmware.png)
   
-  You will be asked to choose the **.px4** firmware file to flash (this file is a zipped JSON file and contains the airframe metadata).
+  플래싱할 **.px4** 펌웨어 파일을 선택하라는 요청을 받습니다(이 파일은 zip으로 압축한 JSON 파일이며, 에어프레임 메타데이터가 들어있습니다).
 
-3. Navigate to the build folder and select the firmware file (e.g. **Firmware/build/px4_fmu-v5_default/px4_fmu-v5_default.px4**).
+3. 빌드 폴더를 둘러보고 펌웨어 파일을 선택하십시오(예: **Firmware/build/px4_fmu-v5_default/px4_fmu-v5_default.px4**).
 
-4. Press **OK** to start flashing the firmware.
+4. **확인**을 눌러 펌웨어 플래싱을 시작하십시오.
 5. Restart *QGroundControl*.
 
 The new airframe will then be available for selection in *QGroundControl*.
