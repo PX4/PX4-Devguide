@@ -10,25 +10,25 @@
 
 `TELEM 2`의 기본 보조컴퓨터 메시지 스트림을 설정하려면 다음 매개변수를 설정하십시오:
 
-* [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) = `TELEM 2` (`MAV_1_CONFIG` is often used to map the `TELEM 2` port)
+* [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) = `TELEM 2` (`MAV_1_CONFIG`는 `TELEM 2` 포트 매핑 목적으로 주로 활용합니다)
 * [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) = `Onboard`
-* [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) = `921600` (921600 or higher recommended for applications like log streaming or FastRTPS)
+* [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) = `921600` (로그 스트리밍 또는 FastRTPS 활용 목적으로 921600 이상 값을 권장합니다)
 
-For more information see [MAVLink Peripherals (GCS/OSD/Companion)](https://docs.px4.io/master/en/peripherals/mavlink_peripherals.html).
+더 많은 정보는 [MAVLink 주변기기 편(GCS/OSD/Companion)](https://docs.px4.io/master/en/peripherals/mavlink_peripherals.html)을 참고하십시오.
 
-## Companion Computer Setup
+## 보조 컴퓨터 설정
 
-In order to receive MAVLink, the companion computer needs to run some software talking to the serial port. The most common options are:
+MAVLink 메시지를 받으려면, 보조 컴퓨터에서 직렬 포트로 통신하는 어떤 프로그램이 필요합니다. 대부분 일반적으로 선택할 수 있는 방안은 다음과 같습니다:
 
-* [MAVROS](../ros/mavros_installation.md) to communicate to ROS nodes
-* [C/C++ example code](https://github.com/mavlink/c_uart_interface_example) to connect custom code
-* [MAVLink Router](https://github.com/intel/mavlink-router) (recommended) or [MAVProxy](https://ardupilot.org/mavproxy/) to route MAVLink between serial and UDP
+* ROS 노드와 통신 용도로 사용하는 [MAVROS](../ros/mavros_installation.md)
+* 개별 작성 코드를 연결할 [C/C++ 예제 코드](https://github.com/mavlink/c_uart_interface_example)
+* 시리얼 인터페이스와 UDP 통신간 라우팅 작업을 수행하는 [MAVLink 라우터](https://github.com/intel/mavlink-router)(추천) 또는 [MAVProxy](https://ardupilot.org/mavproxy/)
 
-## Hardware setup
+## 하드웨어 설정
 
-Wire the serial port according to the instructions below. All Pixhawk serial ports operate at 3.3V and are 5V level compatible.
+다음 절차에 따라 직렬 포트를 연결하십시오. 모든 픽스호크 직렬 포트는 3.3V ~ 5V 레벨 호환으로 동작합니다.
 
-> **Warning** Many modern companion computers only support 1.8V levels on their hardware UART and can be damaged by 3.3V levels. Use a level shifter. In most cases the accessible hardware serial ports already have some function (modem or console) associated with them and need to be *reconfigured in Linux* before they can be used.
+> **Warning** 대부분의 최근 보조 컴퓨터는 1.8V 레벨에서 하드웨어 UART가 동작하며 3.3V 레벨에서 손상을 입을 수 있습니다. 전압 변환 칩을 활용하십시오. 대부분의 경우 접근할 수 있는 하드웨어 직렬 포트에는 연결하려는 장비(모뎀 또는 콘솔)와 관련된 일부 기능이 있으며, 해당 장비를 사용할 수 있으려면 *리눅스에서 재설정*해야합니다.
 
 The safe bet is to use an FTDI Chip USB-to-serial adapter board and the wiring below. This always works and is easy to set up.
 
