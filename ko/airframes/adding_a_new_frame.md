@@ -17,13 +17,13 @@ PX4에서는 에어프레임 시작점과 같은 설정값을 잘 포장한 에�
 
 대부분 독립적인 측면이 있는데 많은 설정이 에어프레임의 동일한 물리 형체를 공유하고 동일한 프로그램을 시작하며, 게인 조정에 있어서만 다름을 의미합니다.
 
-> **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
+> **Note** 새 에어프레임 파일은 빌드를 정리한 후에만 빌드 시스템에 자동으로 추가합니다(`make clean` 실행).
 
 ### 설정 파일 {#config-file}
 
-A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
+보통 설정 파일은 아래와 같습니다([원본 파일은 여기에 있습니다](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
 
-The first section is the airframe documentation. This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
+처음 부분은 에어프레임 문서입니다. [에어프레임 참조](../airframes/airframe_reference.md)와 *QGroundControl*에서 활용합니다.
 
 ```bash
 #!nsh
@@ -100,11 +100,11 @@ set PWM_DISARMED 1000
 
 ### 믹서 파일 {#mixer-file}
 
-> **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
+> **Note** 우선 [개념 > 믹싱](../concept/mixing.md)을 읽어보십시오. 이 문서에서는 믹서 파일을 이해하는데 필요한 배경 지식을 전달합니다.
 
-A typical mixer file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). A mixer filename, in this case `wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
+보통 믹서 파일은 아래와 같습니다([원본 파일은 여기에 있습니다](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). 이 경우 믹서 파일 이름은 `wingwing.main.mix`이며, 중요한 에어프레임 형식(`wingwing`), 출력 형식(`.main` 또는 `.aux`), 믹서 파일을 의미하는 확장자(`.mix`)정보를 바로 전달해줍니다. 
 
-The mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code.
+믹서 파일에는 여러 코드 블록이 들어있으며, 각 코드 블록은 액츄에이터 또는 ESC 하나를 참조합니다. 따라서 서보모터 둘과 ESC 유닛 하나를 붙였다면, 믹서 파일은 세개의 코드 블록을 가집니다.
 
 > **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
