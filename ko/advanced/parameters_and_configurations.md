@@ -96,15 +96,15 @@ API간 중요한 차이점이 있다면, C++ 버전은 매개변수 값을 바�
 
 ### C++ API
 
-C++ API에서는 *클래스 속성*으로 매개변수를 선언하는 매크로를 제공합니다. *임의의* 매개변수 업데이트와 관련된 [uORB 토픽](../middleware/uorb.md)의 변경을 주기적으로 확인하는 상용구 코드를 추가합니다. Framework code then (invisibly) handles tracking uORB messages that affect your parameter attributes and keeping them in sync. In the rest of the code you can just use the defined parameter attributes and they will always be up to date!
+C++ API에서는 *클래스 속성*으로 매개변수를 선언하는 매크로를 제공합니다. *임의의* 매개변수 업데이트와 관련된 [uORB 토픽](../middleware/uorb.md)의 변경을 주기적으로 확인하는 상용구 코드를 추가합니다. 이렇게 하면 프레임워크 코드는 매개변수 속성 값에 영향을 주는 uORB 메시지를 (감쪽같이) 추적하고 동기화 과정을 통해 매개변수 속성 값을 유지합니다. 나머지 코드에서 지정한 매개변수 속성을 활용하고 항상 최신으로 유지할 수 있습니다!
 
-First include **px4_platform_common/module_params.h** in the class header for your module or driver (to get the `DEFINE_PARAMETERS` macro):
+모듈 또는 드라이버에 **px4_platform_common/module_params.h** 헤더를 클래스 헤더에 넣으십시오(`DEFINE_PARAMETERS` 매크로를 가져옵니다):
 
 ```cpp
 #include <px4_platform_common/module_params.h>
 ```
 
-Derive your class from `ModuleParams`, and use `DEFINE_PARAMETERS` to specify a list of parameters and their associated parameter attributes. The names of the parameters must be the same as their parameter metadata definitions.
+`ModuleParams` 클래스를 상송하고 매개변수 목록과 관련 매개변수 속성을 정의할 때 `DEFINE_PARAMETERS`를 활용하십시오. 매개변수 이름은 매개변수 메타데이터 정의와 정확히 일치해야합니다.
 
 ```cpp
 class MyModule : ..., public ModuleParams
@@ -178,19 +178,19 @@ void Module::parameters_update(int parameter_update_sub, bool force)
 
 매개변수 속성(이 경우, `_sys_autostart` 와 `_att_bias_max`)은 매개변수를 대신할 목적으로 활용할 수 있으며, 매개변수 값이 바뀔 때마다 업데이트합니다.
 
-> **Tip** The [Application/Module Template](../apps/module_template.md) uses the new-style C++ API but does not include [parameter metadata](#parameter_metadata).
+> [어플리케이션/모듈 서식](../apps/module_template.md)에서는 새 방식의 C++ API를 사용하나 [매개변수 메타데이터](#parameter_metadata)는 들어있지 않습니다.
 
 ### C API
 
-The C API can be used within both modules and drivers.
+C API는 모듈과 드라이버 모두에서 활용할 수 있습니다.
 
-First include the parameter API:
+우선 매개변수 API를 넣으십시오:
 
 ```C
 #include <parameters/param.h>
 ```
 
-Then retrieve the parameter and assign it to a variable (here `my_param`), as shown below for `PARAM_NAME`. The variable `my_param` can then be used in your module code.
+그리고 아래와 같이 `PARAM_NAME` 매개변수를 가져와서 변수에 할당하십시오(여기서는 `my_param`). `my_param` 변수는 여러분이 작성한 모듈 코드에서 활용할 수 있습니다.
 
 ```C
 int32_t my_param = 0;
