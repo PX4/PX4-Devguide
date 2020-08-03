@@ -236,25 +236,25 @@ An example of a typical mixer file is explained [here](../airframes/adding_a_new
 
 #### 널(null) 믹서 {#null_mixer}
 
-A null mixer consumes no controls and generates a single actuator output with a value that is always zero.
+널 믹서는 어떤 제어도 받지 않으며 항상 0값만 출력하는 단일 액츄에이터를 생성합니다.
 
-Typically a null mixer is used as a placeholder in a collection of mixers in order to achieve a specific pattern of actuator outputs. It may also be used to control the value of an output used for a failsafe device (the output is 0 in normal use; during failsafe the mixer is ignored and a failsafe value is used instead).
+보통 널 믹서는 특정 액츄에이터 출력 패턴을 만들기 위해 믹서 집합에서 빈 자리로 활용합니다 안전 장치에 사용하는 출력 값을 제어하는 용도로도 사용할 수 있습니다(보통 출력 값은 0 입니다. 안전장치 가동시 믹서는 무시하며 안전장치 처리용 값을 대신 활용합니다).
 
 널 믹서 정의는 다음과 같습니다:
 
     Z:
     
 
-#### Multirotor Mixer {#multirotor_mixer}
+#### 멀티로터 믹서 {#multirotor_mixer}
 
-The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust) into a set of actuator outputs intended to drive motor speed controllers.
+멀티로터 믹서는 컨트롤러 입력 넷(좌우/상하/방위 회전각, 역추진)을 모터 속도 컨트롤러를 제어할 액츄에이터 출력조합으로 모읍니다.
 
-The mixer definition is a single line of the form:
+믹서 정의는 단일 행의 형태를 지니고 있습니다:
 
     R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
     
 
-The supported geometries include:
+지원하는 형태는 다음과 같습니다:
 
 - 4x - quadrotor in X configuration
 - 4+ - quadrotor in + configuration
