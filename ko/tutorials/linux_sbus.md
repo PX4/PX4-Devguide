@@ -10,38 +10,38 @@ S.Bus에 비해 원격 조종 타입은 수신기를 직렬 포트에 연결하�
 
 ## 드라이버 시작 {#start_driver}
 
-To start the RC driver on a particular UART (e.g. in this case `/dev/ttyS2`):
+원격 조종 드라이버를 각 UART 에서 시작하려면 (예: `/dev/ttS2`):
 
     rc_input start -d /dev/ttyS2
     
 
-For other driver usage information see: [rc_input](../middleware/modules_driver.md#rcinput).
+다른 드라이버 사용법을 보려면 [rc_input](../middleware/modules_driver.md#rcinput)을 참고하십시오.
 
-## Signal Inverter Circuit (S.Bus only) {#signal_inverter_circuit}
+## 신호 반전 회로(S.Bus 전용) {#signal_inverter_circuit}
 
-S.Bus is an *inverted* UART communication signal.
+S.Bus에서는 *반전* UART 통신 신호를 주고 받습니다.
 
-While some serial ports/flight controllers can read an inverted UART signal, most require a signal inverter circuit between the receiver and serial port to un-invert the signal.
+일부 직렬 포트/비행 조종 유닛에서는 반전 UART 신호를 읽을 수 있으나 대부분 반전 신호를 복원하기 위해 신호 반전 회로가 필요합니다.
 
-> **Tip** This circuit is also required to read S.Bus remote control signals through the serial port or USB-to-TTY serial converter.
+> **Tip** 이 회로는 직렬 포트 또는 USB-to-TTY 직렬 변환기에서 S.Bus 원격 제어 신호를 읽는데 필요합니다.
 
-This section shows how to create an appropriate circuit.
+이 장에서는 적절한 회로를 만드는 방법을 알아봅니다.
 
-### Required Components
+### 필요한 소자
 
-* 1x NPN transistor (e.g. NPN S9014 TO92)
-* 1x 10K resistor
-* 1x 1K resistor
+* 1x NPN 트랜지스터 (예: NPN S9014 TO92)
+* 1x 10K 저항
+* 1x 1K 저항
 
-> **Note** Any type/model of transistor can be used because the current drain is very low.
+> **Note** 전류 드레인 값이 상당히 낮으므로 트랜지스터를 어떤 형식/모델로 써도 상관 없습니다.
 
-### Circuit Diagram/Connections
+### 회로 구성도/연결
 
-Connect the components as described below (and shown in the circuit diagram):
+아래에 설명(그리고 회로 구성도)하는 바와 같이 회로 소자를 연결하십시오:
 
-* S.Bus signal &rarr; 1K resistor &rarr; NPN transistor base
-* NPN transistor emit &rarr; GND
-* 3.3VCC &rarr; 10K resistor &rarr; NPN transistor collection &rarr; USB-to-TTY rxd
+* S.Bus 신호선 &rarr; 1K 저항 &rarr; NPN 트랜지스터 베이스
+* NPN 트랜지스터 에밋 &rarr; GND
+* 3.3VCC &rarr; 10K 저항 &rarr; NPN 트랜지스터 컬렉션 &rarr; USB-to-TTY rxd
 * 5.0VCC &rarr; S.Bus VCC
 * GND &rarr; S.Bus GND
 
