@@ -197,9 +197,9 @@ int32_t my_param = 0;
 param_get(param_find("PARAM_NAME"), &my_param);
 ```
 
-> **Note** If `PARAM_NAME` was declared in parameter metadata then its default value will be set, and the above call to find the parameter should always succeed.
+> **Note** `PARAM_NAME`을 매개변수 메타데이터에서 선언했다면 우선 이 기본값을 설정하며, 위 코드에서의 매개변수 검색 호출은 언제든 성공합니다.
 
-`param_find()` is an "expensive" operation, which returns a handle that can be used by `param_get()`. If you're going to read the parameter multiple times, you may cache the handle and use it in `param_get()` when needed
+`param_find()`은 "실행 시간이 조금 걸리는" 동작이며, 이 함수에서 나온 핸들 값은 `param_get()` 함수에서 사용할 수 있습니다. 매개변수를 여러줄에서 가져올 경우, 필요할 때 핸들 값을 캐싱한 다음 `param_get()` 값을 사용합니다.
 
 ```cpp
 # 매개변수 핸들러 획득
@@ -213,9 +213,9 @@ param_get(my_param_handle, &my_param);
 
 ## 매개변수 메타데이터 {#parameter_metadata}
 
-PX4 uses an extensive parameter metadata system to drive the user-facing presentation of parameters, and to set the default value for each parameter in firmware.
+PX4에서는 확장 매개변수 메타데이터 시스템을 활용하여 펌웨어의 각 매개변수별로 사용자와 접하는 매개 변수의 발현을 제어하고 기본 값을 설정합니다. 
 
-> **Tip** Correct meta data is critical for good user experience in a ground station.
+> **Tip** 올바른 메타데이터는 지상 관제에 있어 바람직한 사용자 경험을 위해 중요합니다.
 
 Parameter metadata can be stored anywhere in the source tree as either **.c** or **.yaml** parameter definitions (the YAML definition is newer, and more flexible). Typically it is stored alongside its associated module.
 
