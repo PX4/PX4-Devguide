@@ -106,7 +106,7 @@ set PWM_DISARMED 1000
 
 믹서 파일에는 여러 코드 블록이 들어있으며, 각 코드 블록은 액츄에이터 또는 ESC 하나를 참조합니다. 따라서 서보모터 둘과 ESC 유닛 하나를 붙였다면, 믹서 파일은 세개의 코드 블록을 가집니다.
 
-> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
+> **Note** 서보 / 모터는 이 파일에서 언급한 순서대로 연결했습니다.
 
 따라서 MAIN1은 좌측 보조익, MAIN2는 우측 보조익, MAIN3은 비워두며(믹서가 없을때 Z: 로 표기함), MAIN4는 스로틀입니다(일반 고정익 설정에서 4번 출력을 스로틀로 유지함).
 
@@ -194,15 +194,15 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ## 새 에어프레임 그룹 추가
 
-Airframe "groups" are used to group similar airframes for selection in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) and in the *Airframe Reference* documentation ([PX4 DevGuide](../airframes/airframe_reference.md) and [PX4 UserGuide](https://docs.px4.io/master/en/airframes/airframe_reference.html)). Every group has a name, and an associated svg image which shows the common geometry, number of motors, and direction of motor rotation for the grouped airframes.
+에어프레임 "그룹"은 [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html)과 *에어프레임 참조*문서([PX4 개발 안내서](../airframes/airframe_reference.md) 와 [PX4 사용자 안내서](https://docs.px4.io/master/en/airframes/airframe_reference.html)) 에서의 선택에 대한 유사 에어프레임 분류에 활용합니다. 모든 그룹에는 이름이 있으며 에어프레임 분류에 대한 일반 공간 기하 정보, 모터 수, 모터 회전 방향을 보여주는 관련 svg 이미지가 있습니다.
 
-The airframe metadata files used by *QGroundControl* and the documentation source code are generated from the airframe description, via a script, using the build command: `make airframe_metadata`
+*QGroundControl*에서 활용하는 에어프레임 메타데이터 파일과 문서 소스코드는 `make airframe_metadata` 명령으로 에어프레임 설명, 스크립트에서 만듭니다.
 
-For a new airframe belonging to an existing group, you don't need to do anything more than provide documentation in the airframe description located at [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d).
+기존 그룹에 새 에어프레임을 넣을 때, [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)에 있는 에어프레임 설명에 무언가를 더 추가할 필요는 없습니다.
 
-If the airframe is for a **new group** you additionally need to:
+에어프레임에 넣을 **새 그룹**이 추가로 필요하다면:
 
-1. 여러 svg 이미지를 문서 저장소에 추가하십시오(이미지를 넣지 않으면 삽입 안내 이미지가 뜹니다): 
+1. 분류에 해당하는 svg 이미지를 문서 저장소에 추가하십시오(이미지를 넣지 않으면 삽입 안내 이미지가 뜹니다): 
   * PX4 개발 안내서: [assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
   * PX4 사용 안내서: [assets/airframes/types](https://github.com/PX4/px4_user_guide/tree/master/assets/airframes/types)
 2. 새 그룹 이름과 이미지 파일 이름간의 관계를 [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py)의 `GetImageName()` 메서드에 추가하십시오 (다음 반복 규칙 참조): 
