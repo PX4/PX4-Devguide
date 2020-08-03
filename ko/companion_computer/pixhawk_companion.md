@@ -1,14 +1,14 @@
-# Companion Computer for Pixhawk Series
+# 픽스호크 시리즈용 보조 컴퓨터
 
-Interfacing a companion computer (Raspberry Pi, Odroid, Tegra K1) to Pixhawk-family boards always works the same way: They are interfaced using a serial port to `TELEM 2`, the port intended for this purpose. The message format on this link is [MAVLink](https://mavlink.io/en/).
+픽스호크 계열 보드에 보조 컴퓨터(라즈베리 파이, 오드로이드, 테그라 K1)를 붙이는 작업의 방식은 동일합니다. 보조 컴퓨터를 연결하려는 용도의 포트 `TELEM 2`에 시리얼 포트로 연결하면 됩니다. 이 연결의 메시지 형식은 [MAVLink](https://mavlink.io/en/) 입니다.
 
-## Pixhawk Setup
+## 픽스호크 설정
 
-Enable MAVLink on any [configurable serial port](https://docs.px4.io/master/en/peripherals/serial_configuration.html).
+[설정 가능한 시리얼 포트](https://docs.px4.io/master/en/peripherals/serial_configuration.html)에 MAVLink를 활성화하십시오.
 
-> **Tip** Typically the `TELEM 2` port is used for a companion computer.
+> **Tip** 보통 `TELEM 2` 포트는 보조 컴퓨터용으로 사용합니다.
 
-To set up the default companion computer message stream on `TELEM 2`, set the following parameters:
+`TELEM 2`의 기본 보조컴퓨터 메시지 스트림을 설정하려면 다음 매개변수를 설정하십시오:
 
 * [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) = `TELEM 2` (`MAV_1_CONFIG` is often used to map the `TELEM 2` port)
 * [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) = `Onboard`
