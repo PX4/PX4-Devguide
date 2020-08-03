@@ -64,22 +64,22 @@ Bus 001 Device 002: ID 0bda:8176 Realtek Semiconductor Corp. RTL8188CUS 802.11n 
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ```
 
-The Arduino is `Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC ACM)`
+여기서 아두이노는 `Bus 003 Device 004: ID 2341:0042 Arduino SA Mega 2560 R3 (CDC ACM)`입니다.
 
-The Pixhawk is `Bus 003 Device 005: ID 26ac:0011`
+픽스호크 장비는 `Bus 003 Device 005: ID 26ac:0011`입니다.
 
-> **Note** If you do not find your device, unplug it, execute `lsusb`, plug it, execute `lsusb` again and see the added device.
+> **Note** 장치를 찾지 못하겠다면, 뽑고 `lsusb`를 입력, 다시 연결한 후 `lsusb`를 다시 입력하여 추가 장치를 확인하십시오.
 
-Therefore, we can create a new UDEV rule in a file called `/etc/udev/rules.d/99-pixhawk.rules` with the following content, changing the idVendor and idProduct to yours.
+이 과정을 수행하여 `/etc/udev/rules.d/99-pixhawk.rules` 파일에 다음 내용에서 idVendor와 idProduct를 여러분의 장비에 맞게 바꾸어 추가한 새 UDEV 규칙을 만들 수 있습니다.
 
 ```sh
 SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="ttyArduino"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="26ac", ATTRS{idProduct}=="0011", SYMLINK+="ttyPixhawk"
 ```
 
-Finally, after a **reboot** you can be sure to know which device is what and put `/dev/ttyPixhawk` instead of `/dev/ttyUSB0` in your scripts.
+마지막으로 **reboot**를 수행하면 방금 작성한 스크립트를 통해, 어떤 장치를 연결했을 때 `/dev/ttyUSB0` 대신 `/dev/ttyPixhawk`가 뜨는지 확인할 수 있습니다.
 
-> **Note** Be sure to add yourself in the `tty` and `dialout` groups via `usermod` to avoid to have to execute scripts as root.
+> **Note** 스크립트를 루트 계정으로 실행하는 일을 막기 위해 `usermod` 명령으로 `tty` 그룹과 `dialout` 그룹에 여러분 자신의 계정을 추가했는지 확인하십시오.
 
 ```sh
 usermod -a -G tty ros-user
