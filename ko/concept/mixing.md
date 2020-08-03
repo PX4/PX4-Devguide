@@ -254,7 +254,7 @@ An example of a typical mixer file is explained [here](../airframes/adding_a_new
     R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
     
 
-지원하는 형태는 다음과 같습니다:
+The supported geometries include:
 
 - 4x - quadrotor in X configuration
 - 4+ - quadrotor in + configuration
