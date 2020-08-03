@@ -1,21 +1,21 @@
 # 새 에어프레임 설정 추가
 
-PX4에서는 에어프레임 시작점과 같은 설정값을 잘 포장한 에어프레임 설정을 활용합니다. [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 저장한 [설정 파일 ](#config-file)에 설정을 정의합니다. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
+PX4에서는 에어프레임 시작점과 같은 설정값을 잘 포장한 에어프레임 설정을 활용합니다. [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 저장한 [설정 파일 ](#config-file)에 설정을 정의합니다. 설정 파일은 시스템의 물리 설정을 기술한 [믹서 파일](#mixer-file)을 참조하며 이 파일은 [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) 폴더에 들어있습니다.
 
-Adding a configuration is straightforward: create a new config file in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (prepend the filename with an unused autostart ID), then [build and upload](../setup/building_px4.md) the software.
+설정 추가는 굉장히 간단합니다: [init.d 폴더](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (파일 이름 앞에 사용하지 않는 자동 시작 ID를 붙임)에 새 설정 파일을 넣고, 프로그램을 [빌드 후 업로드](../setup/building_px4.md) 합니다.
 
-Developers who do not want to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../concept/system_startup.md) page.
+자체 설정을 만들고 싶지 않은 개발자는 대신 [개별 시스템 시작](../concept/system_startup.md) 페이지에서 자세하게 설명한 대로 microSD 카드에서 텍스트 파일로 이루어진 기존 설정을 약간 고칠 수 있습니다.
 
 ## 설정 파일 개요
 
-The configuration in the config and mixer files consists of several main blocks:
+설정 파일과 믹서 파일의 설정 내용은 몇가지 메인 블록으로 이루어져있습니다:
 
-* Airframe documentation (used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*).
-* Vehicle-specific parameter settings, including [tuning gains](#tuning-gains).
-* The controllers and apps it should start, e.g. multicopter or fixed wing controllers, land detectors etc.
-* The physical configuration of the system (e.g. a plane, wing or multicopter). This is called a [mixer](../concept/mixing.md).
+* 에어프레임 문서([에어프레임 참조](../airframes/airframe_reference.md)와 *QGroundControl*에서 사용).
+* [게인 조정](#tuning-gains)을 동반한 비행체별 매개변수 설정.
+* 시작해야 할 컨트롤러와 프로그램 (예: 멀티콥터, 고정익 컨트롤러, 착륙 감지자 등)
+* 시스템 물리 설정(예: 비행체, 날개, 멀티콥터 등). 이 부분을 [믹서](../concept/mixing.md)라 칭합니다.
 
-These aspects are mostly independent, which means that many configurations share the same physical layout of the airframe, start the same applications and differ most in their tuning gains.
+대부분 독립적인 측면이 있는데 많은 설정이 에어프레임의 동일한 물리 형체를 공유하고 동일한 프로그램을 시작하며, 게인 조정에 있어서만 다름을 의미합니다.
 
 > **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
 
