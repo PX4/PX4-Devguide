@@ -11,8 +11,8 @@ PX4에는 상상 가능한 비행체 형식/프레임을 단일 코드베이스�
 
 이 절에서는 새 비행체 또는 PX4 형식의 비행체 기능 지원을 추가하려는 개발자 관련 정보를 언급합니다. 여전히 개발 중인 비행체 빌드 로그 기능도 다룹니다.
 
-> **Tip** PX4 또한 다른 비행체 형식과 일반 로봇, 잠수함, 보트, 수륙 양용 운송 수단을 포함한 시험 항공 장비에서 로켓까지 거의 모든 분야의 용도로 안성맞춤입니다. *Let us know* if you have a new vehicle or frame-type you want to help support in PX4.
+> **Tip** PX4 또한 다른 비행체 형식과 일반 로봇, 잠수함, 보트, 수륙 양용 운송 수단을 포함한 시험 항공 장비에서 로켓까지 거의 모든 분야의 용도로 안성맞춤입니다. 새 비행체 또는 프레임 형식을 보유하고 있다면 PX4에 지원을 요청할 수 있습니다.
 
 <span></span>
 
-> **Note** Build logs for some of the supported airframes can be found in [PX4 User Guide > Airframes](https://docs.px4.io/master/en/airframes/).
+> **Note** 일부 지원 비행체의 빌드 로그는 [PX4 사용자 안내서 > 에어프레임](https://docs.px4.io/master/en/airframes/) 에서 찾아볼 수 있습니다.
