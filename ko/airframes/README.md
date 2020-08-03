@@ -1,6 +1,6 @@
-# Airframes
+# 에어프레임
 
-PX4 has a flexible [mixing system](../concept/mixing.md) that allows it to support almost any imaginable vehicle type/frame through a single codebase:
+PX4에는 상상 가능한 비행체 형식/프레임을 단일 코드베이스로 지원하게 하는 유연한 [믹싱 시스템](../concept/mixing.md)을 채용했습니다:
 
 * **Planes:** Normal planes, flying wings, inverted V-tail planes, etc.
 * **Multicopters:** Helicopters, tricopters, quadcopters, hexarotors, dodecarotors in many different geometries.
