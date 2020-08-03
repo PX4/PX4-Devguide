@@ -217,17 +217,17 @@ PX4에서는 확장 매개변수 메타데이터 시스템을 활용하여 펌�
 
 > **Tip** 올바른 메타데이터는 지상 관제에 있어 바람직한 사용자 경험을 위해 중요합니다.
 
-Parameter metadata can be stored anywhere in the source tree as either **.c** or **.yaml** parameter definitions (the YAML definition is newer, and more flexible). Typically it is stored alongside its associated module.
+매개변수 메타데이터는 소스트리 어디에든 **.c** 또는 **.yaml** 매개변수 정의파일로 저장할 수 있습니다(YAML 정의가 더 최신이며 다루기에 유연합니다). 보통 관련 모듈과 함께 저장합니다.
 
-The build system extracts the metadata (using `make parameters_metadata`) to build the [parameter reference](../advanced/parameter_reference.md) and the parameter information used by ground stations.
+빌드 시스템에서는 (`make parameters_metadata` 명령을 활용하여) 메타데이터를 추출하여 지상 관제 프로그램에서 활용할 [매개변수 참조](../advanced/parameter_reference.md)와 매개변수 정보를 빌드합니다.
 
-> **Warning** After adding a *new* parameter file you should call `make clean` before building to generate the new parameters (parameter files are added as part of the *cmake* configure step, which happens for clean builds and if a cmake file is modified).
+> **Warning** *새* 매개변수 파일을 추가하고 나면, 새 매개변수를 만들기 전 `make clean`을 실행해야합니다(매개변수 파일은 *cmake* 설정 단계의 일부로서 추가하며, 이 명령을 실행하면 cmake 파일을 수장했을 때, 기존의 빌드 파일을 정리합니다).
 
-### c Parameter Metadata {#c_metadata}
+### C 매개변수 메타데이터 {#c_metadata}
 
-The legacy approach for defining parameter metadata is in a file with extension **.c** (at time of writing this is the approach most commonly used in the source tree).
+기존의 매개변수 메타데이터 정의 방식의 접근은 **.c** 확장자를 가진 파일을 활용하는 방식입니다(이 글을 작성하는 시점에는 소스트리에서 가장 일반적으로 활용하는 접근법입니다).
 
-Parameter metadata sections look like the following examples:
+매개변수 메타데이터 부분은 다음 예제와 같습니다:
 
 ```cpp
 /**
@@ -256,9 +256,9 @@ PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
 PARAM_DEFINE_INT32(ATT_ACC_COMP, 1);
 ```
 
-The `PARAM_DEFINE_*` macro at the end specifies the type of parameter (`PARAM_DEFINE_FLOAT` or `PARAM_DEFINE_INT32`), the name of the parameter (which must match the name used in code), and the default value in firmware.
+위 코드 마지막의 `PARAM_DEFINE_*` 매크로는 매개변수 형식(`PARAM_DEFINE_FLOAT` 또는 `PARAM_DEFINE_INT32`), 매개변수 이름(코드에서 사용할 이름과 일치해야 함), 펌웨어의 기본값을 지정합니다.
 
-The lines in the comment block are all optional, and are primarily used to control display and editing options within a ground station. The purpose of each line is given below (for more detail see [module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml)).
+주석 블록의 라인은 모두 취사선택 요소이며, 기본적으로 지상 관제 머신에서 화면을 제어하고 옵션을 편집할 때 활용합니다. 각 행의 목적은 다음과 같습니다(자세한 내용은 [module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml)을 참고하십시오).
 
 ```cpp
 /**
