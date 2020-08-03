@@ -28,13 +28,13 @@ rostest px4 mavros_posix_tests_iris.launch gui:=true headless:=false
 
 ### 새 MAVROS 시험 작성 (파이썬)
 
-> **Note** Currently in early stages, more streamlined support for testing (helper classes/methods etc.) to come.
+> **Note** 가장 최신의 스테이지에서는, 시험에 대해 좀 더 간소화한 시원을 앞으로 (헬퍼 클래스/메서드 등) 지원할 예정입니다.
 
 #### 1.) 새 시험 스크립트 작성
 
-시험 스크립트는 `integrationtests/python_src/px4_it/mavros/`에 있습니다. 다른 예제는 기존 스크립트를 살펴보십시오. Also please consult the official ROS documentation on how to use [unittest](http://wiki.ros.org/unittest).
+시험 스크립트는 `integrationtests/python_src/px4_it/mavros/`에 있습니다. 다른 예제는 기존 스크립트를 살펴보십시오. [unittest](http://wiki.ros.org/unittest) 활용법은 공식 ROS 문서를 참고하십시오.
 
-Empty test skeleton:
+빈 시험 양식은 다음과 같습니다:
 
 ```python
 #!/usr/bin/env python
