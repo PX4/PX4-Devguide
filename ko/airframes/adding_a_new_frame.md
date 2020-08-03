@@ -1,6 +1,6 @@
 # 새 에어프레임 설정 추가
 
-PX4 uses canned airframe configurations as starting point for airframes. The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
+PX4에서는 에어프레임 시작점과 같은 설정값을 잘 포장한 에어프레임 설정을 활용합니다. [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 저장한 [설정 파일 ](#config-file)에 설정을 정의합니다. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
 Adding a configuration is straightforward: create a new config file in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (prepend the filename with an unused autostart ID), then [build and upload](../setup/building_px4.md) the software.
 
@@ -96,9 +96,9 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-> **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
+> **Warning** 채널을 역순으로 보려면 RC 송수신기 또는 `RC1_REV`와 같은 매크로 매개변수에 이 작업을 수행하지 마십시오. 수동 모드로 비행체를 날릴 경우에만 채널을 반전합니다. 자동 비행 모드로 전환하면 채널 출력이 잘못될 수 있습니다(리모콘 신호만 반전할 수 있음). 따라서 올바른 채널 할당을 수행하려면 (예: 채널 하나에 대해) PWM 시그널 `PWM_MAIN_REV1`으로 PWM 시그널을 바꾸거나 믹서와 관련된 출력 계수 부호만 바꾸십시오(아래 참고).
 
-### Mixer File {#mixer-file}
+### 믹서 파일 {#mixer-file}
 
 > **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
 
