@@ -1,4 +1,4 @@
-# Adding a New Airframe Configuration
+# 새 에어프레임 설정 추가
 
 PX4 uses canned airframe configurations as starting point for airframes. The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
@@ -6,7 +6,7 @@ Adding a configuration is straightforward: create a new config file in the [init
 
 Developers who do not want to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../concept/system_startup.md) page.
 
-## Configuration File Overview
+## 설정 파일 개요
 
 The configuration in the config and mixer files consists of several main blocks:
 
@@ -19,7 +19,7 @@ These aspects are mostly independent, which means that many configurations share
 
 > **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
 
-### Config File {#config-file}
+### 설정 파일 {#config-file}
 
 A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
 
@@ -47,7 +47,7 @@ The first section is the airframe documentation. This is used in the [Airframes 
 #
 ```
 
-The next section specifies vehicle-specific parameters, including [tuning gains](#tuning-gains):
+다음 절에서는 [게인 조정](#tuning-gains)과 비행체별 매개변수를 지정합니다:
 
 ```bash
 sh /etc/init.d/rc.fw_defaults
@@ -74,21 +74,21 @@ then
 fi
 ```
 
-Set frame type ([MAV_TYPE](https://mavlink.io/en/messages/common.html#MAV_TYPE)):
+프레임 형식([MAV_TYPE](https://mavlink.io/en/messages/common.html#MAV_TYPE))을 설정하십시오:
 
 ```bash
 # Configure this as plane
 set MAV_TYPE 1
 ```
 
-Set the [mixer](#mixer-file) to use:
+사용할 [믹서](#mixer-file)를 설정하십시오
 
 ```bash
 # Set mixer
 set MIXER wingwing
 ```
 
-Configure PWM outputs (specify the outputs to drive/activate, and the levels).
+PWM 출력을 설정하십시오(제어/활성/레벨 출력을 지정하십시오).
 
 ```bash
 # Provide ESC a constant 1000 us pulse
@@ -118,12 +118,12 @@ A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1
     S: 0 1   6500   6500      0 -10000  10000
     
 
-Where each number from left to right means:
+왼편에서 오른편 방향으로 각 숫자의 의미는 다음과 같습니다:
 
-* M: Indicates two scalers for two control inputs. It indicates the number of control inputs the mixer will receive.
-* O: Indicates the output scaling (*1 in negative, *1 in positive), offset (zero here), and output range (-1..+1 here).  
-  * If you want to invert your PWM signal, the signs of the output scalings have to be changed: ```O:      -10000  -10000      0 -10000  10000```
-  * This line can (and should) be omitted completely if it specifies the default scaling: ```O:      10000  10000   0 -10000  10000```
+* M: 두개의 제어 입력에 대해 스케일러가 둘 있음을 나타냅니다. 믹서가 받을 제어 입력의 수를 나타냅니다.
+* O: 출력 계수(음의 *1 , 양의 *1), 오프셋(여기서는 0), 출력 범위(여기서는 -1..+1)를 나타냅니다.  
+  * PWM 신호를 반전하려면 출력 계수를 바꾸어야 합니다: ```O:      -10000  -10000      0 -10000  10000```
+  * 기본 계수를 지정할 경우 이 행은 완전히 생략할 수 있습니다(또는 생략해야 합니다): ```O:      10000  10000   0 -10000  10000```
 * S: Indicates the first input scaler: It takes input from control group #0 (Flight Control) and the first input (roll). It scales the roll control input * 0.6 and reverts the sign (-0.6 becomes -6000 in scaled units). It applies no offset (0) and outputs to the full range (-1..+1)
 * S: Indicates the second input scaler: It takes input from control group #0 (Flight Control) and the second input (pitch). \ It scales the pitch control input * 0.65. It applies no offset (0) and outputs to the full range (-1..+1)
 
