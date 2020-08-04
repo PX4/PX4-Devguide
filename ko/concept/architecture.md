@@ -24,7 +24,7 @@ again. -->
 
 소스코드는 자체 포함 모듈/프로그램으로 나눕니다(도표의 `monospace` 참고). 보통 블록 구성은 정확히 하나의 모듈에 대응합니다.
 
-> **Tip** 실행중에, 쉘에서 `top` 명령어를 통해 실행중인 모듈을 검사할 수 있고, 각각의 모듈을 `<module_name> start/stop` 명령어를 통해서 시작/중지 시킬 수 있습니다. 하지만 `top` 명령어는 NuttX 쉘에서만 사용가능하고 다른 명령어들은 SITL 쉘 (pxh >) 에서도 사용할 수 있습니다. 각 모듈들에 대한 자세한 정보는[Modules & Commands Reference](../middleware/modules_main.md)를 참고하세요.
+> **Tip** 실행 중에, 셸에서 `top` 명령으로 어떤 모듈을 실행하는지 볼 수 있으며, 어떤 모듈을 `<module_name> start/stop` 명령으로 제각각 시작하고 멈출 수 있는지 확인할 수 있습니다. `top` 명령어는 NuttX 쉘에서만 쓸 수 있지만, 다른 명령어들은 SITL 쉘(pxh>)에서도 사용할 수 있습니다. 이 모듈에 대한 더 많은 내용은 [모듈 & 명령 참고](../middleware/modules_main.md)를 참고하십시오. 
 
 화살표는 모듈간의 *가장 중요한* 커넥션에 대한 정보의 흐름을 보여줍니다. 실제로는 표시된 것 보다 많은 커넥션들이 있고, 일부 데이터 (e.g. 파라미터) 들은 다수의 모듈들에 의해 접근됩니다.
 
@@ -68,15 +68,15 @@ again. -->
 
 메시지의 업데이트 속도는 시스템의 `uORB top`에 의해 실시간으로 [검사](../middleware/uorb.md) 됩니다.
 
-## Runtime Environment {#runtime-environment}
+## 런타임 환경 {#runtime-environment}
 
-PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT). It should also have some form of real-time scheduling (e.g. FIFO).
+PX4에서는 POSIX-API를 제공하는 다양한 운영체제(Linux, macOS, NuttX, QuRT)에서 동작합니다. 이 운영체제에는 실시간 스케쥴링(예: FIFO)같은 기능이 들어갑니다.
 
-[uORB](../middleware/uorb.md)을 이용한 모듈간 통신은 공유 메모리를 기초로 합니다. PX4 middleware 전체는 하나의 주소공간에서 실행됩니다. 메모리가 모든 모듈이게 공유되는 것 입니다.
+([uORB](../middleware/uorb.md)을 이용한) 모듈간 통신은 공유 메모리 기반입니다. PX4 미들웨어 전부는 단일 주소 공간에서 실행합니다. 예를 들면 메모리는 모든 모듈에서 공유합니다.
 
-> **Info** The system is designed such that with minimal effort it would be possible to run each module in separate address space (parts that would need to be changed include `uORB`, `parameter interface`, `dataman` and `perf`).
+> **Info** 시스템은 개별 주소 공간에서 각 모듈을 실행하는데 최소한의 비용이 들어가도록 설계했습니다(`uORB`, `매개변수 인터페이스`, `dataman`, `perf` 같은 부분을 조금 바꿔야 합니다).
 
-모듈을 실행하는 2가지 방법이 있습니다.
+모듈을 실행하는 방법에는 2가지가 있습니다.
 
 - **Tasks**: The module runs in its own task with its own stack and process priority.
 - **Work queue tasks**: The module runs on a shared work queue, sharing the same stack and work queue thread priority as other modules on the queue.
@@ -85,7 +85,7 @@ PX4 runs on various operating systems that provide a POSIX-API (such as Linux, m
   - Multiple *work queue tasks* can run on a queue, and there can be multiple queues.
   - A *work queue task* is scheduled by specifying a fixed time in the future, or via uORB topic update callback.
   
-  The advantage of running modules on a work queue is that it uses less RAM, and potentially results in fewer task switches. The disadvantages are that *work queue tasks* are not allowed to sleep or poll on a message, or do blocking IO (such as reading from a file). Long-running tasks (doing heavy computation) should potentially also run in a separate task or at least a separate work queue.
+  실행 큐에서 모듈을 실행하는 장점은 RAM 소모량이 적고, 잠재적으로 작업 전환이 빈번하지 않는다는 점입니다. 단점은 *작업 큐 작업*을 대기 상태로 두거나 메시지를 폴링하거나 입출력을 멈출(파일 읽기 등) 수 없습니다. 장시간 실행 작업(막대한 양의 계산처리 수행)의 경우 잠재적으로 개별 작업으로 분리하여 실행하거나 최소한 작업 큐를 분할해야 합니다.
 
 > **Note** Tasks running on a work queue do not show up in [`uorb top`](../middleware/modules_communication.md#uorb) (only the work queues themselves can be seen - e.g. as `wq:lp_default`). Use [`work_queue status`](../middleware/modules_system.md#workqueue) to display all active work queue items.
 
