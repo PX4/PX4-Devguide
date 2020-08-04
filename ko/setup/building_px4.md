@@ -98,7 +98,7 @@ make px4_fmu-v4_default
 
 ### 펌웨어 업로드 (보드 플래싱)
 
-Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
+make 명령에 `upload`를 붙여 컴파일한 바이너리를 USB 연결을 거쳐 자동 비행 하드웨어로 업로드하십시오. 예를 들면,
 
 ```sh
 make px4_fmu-v4_default upload
@@ -125,7 +125,7 @@ Rebooting.
 
 #### 교차 컴파일러 빌드
 
-Set the IP (or hostname) of your RPi using:
+다음 명령으로 라즈베리 파이에 IP(또는 호스트 이름)을 설정하십시오:
 
 ```sh
 export AUTOPILOT_HOST=192.168.X.X
