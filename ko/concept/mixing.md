@@ -205,19 +205,19 @@ Each mixer definition begin with a line of the form:
 
 #### 믹서 결합 {#summing_mixer}
 
-Summing mixers are used for actuator and servo control.
+결합 믹서는 액츄에이터와 서보 제어 목적으로 활용합니다.
 
-A summing (simple) mixer combines zero or more control inputs into a single actuator output. Inputs are scaled, and the mixing function sums the result before applying an output scaler.
+(단순) 결합 믹서는 0개 이상의 제어 입력을 단일 액츄에이터 출력으로 결합합니다. 입력값은 스케일링 처리하고, 믹싱 함수는 출력 계수에 적용하기 전에 결과를 결합합니다.
 
-A simple mixer definition begins with:
+단순 믹서 정의는 다음처럼 시작합니다:
 
     M: <control count>
     O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-If `<control count>` is zero, the sum is effectively zero and the mixer will output a fixed value that is `<offset>` constrained by `<lower limit>` and `<upper limit>`.
+`<control count>` 값이 0이면, 결합 결과값은 0값이며, 믹서에서는 `<lower limit>` 값과 `<upper limit>` 값으로 제한한 `<offset>` 값이 나옵니다.
 
-The second line defines the output scaler with scaler parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+둘째 행에서는 위에서 언급한대로 계수 매개변수로 출력 계수를 지정합니다. 소숫점 처리 계산을 진행하는 동안 정의 파일의 값은 상수 10000만배만큼 늘어납니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다.
 
 The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
 
