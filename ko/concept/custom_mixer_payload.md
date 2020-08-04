@@ -7,9 +7,9 @@
 
 ## 페이로드 믹서 예제
 
-A payload mixer is just a [summing mixer](../concept/mixing.md#summing_mixer) that maps any of the function values from [Control Group #6 (First Payload)](../concept/mixing.md#control_group_6) to a particular output. You can then publish uORB topics to the selected control group function and their value will be mapped to the specified output.
+페이로드 믹서는 단지 [제어 분류 #6 (첫번째 페이로드)](../concept/mixing.md#control_group_6)로부터 각각의 출력으로의 기능 값에 대응하는 [믹서 결합](../concept/mixing.md#summing_mixer)을 수행할 뿐입니다. uORB 토픽을 지정 출력으로 대응할 선택 그룹 함수와 값으로 uORB 토픽을 내보낼 수 있습니다.
 
-For this example, we'll create a custom mixer based on the *RC passthrough mixer* ([pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)). This mixer is commonly loaded into the AUX PWM ports on large multicopters). It passes through the values of 4 user-defined RC channels (set using the [RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) parameters) to the first four outputs on the AUX PWM output.
+이 예제에서, *원격 조종 처리 믹서*([pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)) 기반 개별 믹서를 만들어보도록 하겠습니다. 이 믹서는 보통 대형 멀티콥터에서 AUX PWM 포트로 불러옵니다. 이 믹서로 4개의 사용자 정의 원격 조종 채널 값을 처리합니다([RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) 매개변수로 설정). 그리하여 첫번째 4개의 출력은 AUX PWM 출력입니다.
 
 ```
 # Manual pass through mixer for servo outputs 1-4
@@ -31,7 +31,7 @@ M: 1
 S: 3 4  10000  10000      0 -10000  10000
 ```
 
-> **Note** The file defines four [summing mixers](../concept/mixing.md#summing_mixer) (for four outputs). - `M: 1` indicates an output that is defined by one control input (the following `S` line). - `S: 3`_`n`_ indicates that the input is the n<>th<> input of [Control Group 3 (Manual Passthrough)](../concept/mixing.md#control-group-3-manual-passthrough). So for `S: 3 5` the input is called "RC aux1" (this maps to the RC channel set in parameter `RC_MAP_AUX1`). - The section declaration order defines the order of the outputs when assigned to a physical bus (e.g. the third section might be assigned to AUX3).
+> **Note** 파일에서는 4개의 (출력에 대한) [믹서 결합](../concept/mixing.md#summing_mixer)을 나타냅니다. - `M: 1` 하나의 제어 입력(다음 `S`행)에 대한 출력을 나타냅니다. - `S: 3`_`n`_ [제어 분류 3 (수동 처리)](../concept/mixing.md#control-group-3-manual-passthrough)의 n번째 입력을 나타냅니다. So for `S: 3 5` the input is called "RC aux1" (this maps to the RC channel set in parameter `RC_MAP_AUX1`). - The section declaration order defines the order of the outputs when assigned to a physical bus (e.g. the third section might be assigned to AUX3).
 
 
 Start by copying the mixer file and putting it onto the SD Card at: **/etc/mixers/pass.aux.mix** (see [Mixing and Actuators > Loading a Custom Mixer](../concept/mixing.md#loading_custom_mixer).
