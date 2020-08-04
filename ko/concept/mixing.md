@@ -226,7 +226,7 @@ Most commonly you will override/replace the **AUX** mixer file for your current 
 
 > **Note** `S:` 행은 `O:` 행 아래에 있어야합니다.
 
-The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group. These values are specific to the device reading the mixer definition.
+`<group>` 값은 계수를 읽을 제어 분류 식별자를 정의하며, `<index>` 값은 해당 그룹의 오프셋을 지정합니다. 이 값은 믹서 정의를 장치에 불러올 때 장치에 해당하는 값입니다.
 
 When used to mix vehicle controls, mixer group zero is the vehicle attitude control group, and index values zero through three are normally roll, pitch, yaw and thrust respectively.
 
@@ -254,7 +254,7 @@ An example of a typical mixer file is explained [here](../airframes/adding_a_new
     R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
     
 
-The supported geometries include:
+지원하는 공간 기하 성분은 다음과 같습니다:
 
 - 4x - quadrotor in X configuration
 - 4+ - quadrotor in + configuration
@@ -269,7 +269,7 @@ Roll, pitch and yaw inputs are expected to range from -1.0 to 1.0, whilst the th
 
 Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed of motors and it is the speed at which the motors are commanded to rotate when all control inputs are zero.
 
-In the case where an actuator saturates, all actuator values are rescaled so that the saturating actuator is limited to 1.0.
+액츄에이터 출력 값이 임계에 도달할 경우, 모든 액츄에이터 출력 값을 다시 비례 조정하여 임계에 도달한 액츄에이터 출력 값은 1.0으로 제한됩니다.
 
 #### 헬리콥터 믹서  {#helicopter_mixer}
 
@@ -333,8 +333,8 @@ The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROM
 
 #### VTOL 믹서 {#vtol_mixer}
 
-VTOL systems use a [multirotor mixer](#multirotor_mixer) for the multirotor outputs, and [summing mixers](#summing_mixer) for the fixed-wing actuators (and the tilting servos in case of a tiltrotor VTOL).
+VTOL 시스템은 멀티로터 출력 목적의 [멀티로터 믹서](#multirotor_mixer)를 활용하며, 고정익 액츄에이터 동작을 위해 [결합 믹서](#summing_mixer)를 채용했습니다(그리고 틸트로터 수직 이착륙기의 경우 틸팅 서보를 결합 믹서에 붙입니다).
 
-The mixer system for a VTOL vehicle can be either combined into a single mixer, where all the actuators are connected to either the IO or the FMU port, or split into separate mixer files for IO and for AUX. If separated, we recommend that all the multicopter motors are on one port, and all the servos and the fixed-wing motor on the other.
+수직 이착륙기 믹서 시스템은 단일 믹서로 결합할 수 있는데, 액츄에이터는 입출력 포트 또는 FMU 포트로 연결하거나, 제각각의 믹서 파일로 입출력과 AUX용포트를 따로 나눕니다. 액츄에이터를 별도로 분리할 경우, 모든 멀티콥터 모터를 하나의 포트에 모아 붙이고, 모든 서보와 고정익 모터를 다른 포트에 모아 붙이는 방안을 추천드립니다.
 
 > **Note** The FMU output can only be used for multirotor motors starting from PX4 v1.11. To use the FMU output set [VT_MC_ON_FMU=1](../advanced/parameter_reference.md#VT_MC_ON_FMU) (otherwise they are not switched off when in fixed-wing flight mode).
