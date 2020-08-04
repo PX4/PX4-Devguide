@@ -12,7 +12,7 @@ PX4 구조는 코어 컨트롤러에서 에어프레임 레이아웃이 특별�
 
 특정 컨트롤러는 특정 정규화된 물리력이나 토크를 (-1..+1 로 스케일 됨) 믹서로 보내고, 그러면 각각의 액추에이터들이 설정됩니다. 출력 드라이버 (예. UART, UAVCAN 또는 PWM) 은 그것을 액추에이터의 기본 단위로 변환합니다 (예. 1300의 PWM 값).
 
-![Mixer Control Pipeline](../../assets/concepts/mermaid_mixer_control_pipeline.png) <!--- Mermaid Live Version:
+![믹서 제어 파이프라인](../../assets/concepts/mermaid_mixer_control_pipeline.png) <!--- Mermaid Live Version:
 https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIGF0dF9jdHJsW0F0dGl0dWRlIENvbnRyb2xsZXJdIC0tPiBhY3RfZ3JvdXAwW0FjdHVhdG9yIENvbnRyb2wgR3JvdXAgMF1cbiAgZ2ltYmFsX2N0cmxbR2ltYmFsIENvbnRyb2xsZXJdIC0tPiBhY3RfZ3JvdXAyW0FjdHVhdG9yIENvbnRyb2wgR3JvdXAgMl1cbiAgYWN0X2dyb3VwMCAtLT4gb3V0cHV0X2dyb3VwNVtBY3R1YXRvciA1XVxuICBhY3RfZ3JvdXAwIC0tPiBvdXRwdXRfZ3JvdXA2W0FjdHVhdG9yIDZdXG4gIGFjdF9ncm91cDJbQWN0dWF0b3IgQ29udHJvbCBHcm91cCAyXSAtLT4gb3V0cHV0X2dyb3VwMFtBY3R1YXRvciA1XVxuXHRcdCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19
 graph LR;
   att_ctrl[Attitude Controller] dash-dash> act_group0[Actuator Control Group 0]
@@ -123,7 +123,7 @@ PX4는 제어 분류 (입력) 과 출력 분류를 활용합니다. 개념은 �
 
 여러개의 컨트롤 그룹과 (비행 컨트롤, 페이로드 등) 출력 그룹 (버스들) 이 있기 때문에, 하나의 컨트롤 그룹은 여러개의 출력 그룹에게 명령어를 보낼 수 있습니다.
 
-![Mixer Input/Output Mapping](../../assets/concepts/mermaid_mixer_inputs_outputs.png) <!--- Mermaid Live Version:
+![믹서 입출력 대응](../../assets/concepts/mermaid_mixer_inputs_outputs.png) <!--- Mermaid Live Version:
 https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGFjdHVhdG9yX2dyb3VwXzAtLT5vdXRwdXRfZ3JvdXBfNVxuICBhY3R1YXRvcl9ncm91cF8wLS0-b3V0cHV0X2dyb3VwXzZcbiAgYWN0dWF0b3JfZ3JvdXBfMS0tPm91dHB1dF9ncm91cF8wIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0
 graph TD;
   actuator_group_0 dashdash>output_group_5
@@ -228,7 +228,7 @@ Most commonly you will override/replace the **AUX** mixer file for your current 
 
 `<group>` 값은 계수를 읽을 제어 분류 식별자를 정의하며, `<index>` 값은 해당 그룹의 오프셋을 지정합니다. 이 값은 믹서 정의를 장치에 불러올 때 장치에 해당하는 값입니다.
 
-When used to mix vehicle controls, mixer group zero is the vehicle attitude control group, and index values zero through three are normally roll, pitch, yaw and thrust respectively.
+기체 제어 입력을 믹싱할 때, 믹서 분류 0은 기체 고도 제어 분류이며, 0부터 3까지의 일반 인덱스 값은 각각, 좌우 회전각(roll), 상하 회전각(pitch), 방위 회전각(yaw), 추력입니다.
 
 The remaining fields on the line configure the control scaler with parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
 
@@ -247,7 +247,7 @@ An example of a typical mixer file is explained [here](../airframes/adding_a_new
 
 #### 멀티로터 믹서 {#multirotor_mixer}
 
-멀티로터 믹서는 컨트롤러 입력 넷(좌우/상하/방위 회전각, 역추진)을 모터 속도 컨트롤러를 제어할 액츄에이터 출력조합으로 모읍니다.
+멀티로터 믹서는 컨트롤러 입력 넷(좌우/상하/방위 회전각, 추력)을 모터 속도 컨트롤러를 제어할 액츄에이터 출력조합으로 모읍니다.
 
 믹서 정의는 단일 행의 형태를 지니고 있습니다:
 
@@ -303,7 +303,7 @@ The tail rotor can be controller by adding a [summing mixer](#summing_mixer):
     S: 0 2  10000  10000      0 -10000  10000
     
 
-By doing so, the tail rotor setting is directly mapped to the yaw command. This works for both servo-controlled tail-rotors, as well as for tail rotors with a dedicated motor.
+이렇게 하여, 미익 설정은 yaw 명령에 직접적으로 대응합니다. 미익에 전용 모터가 달린만큼, 서보 제어 미익 로터와 동작합니다.
 
 The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) can be viewed as an example.
 
@@ -320,16 +320,16 @@ The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROM
     S: 0 2  10000  10000      0 -10000  10000
     
 
-- The throttle-curve starts with a slightly steeper slope to reach 6000 (0.6) at 50% thrust.
-- It continues with a less steep slope to reach 10000 (1.0) at 100% thrust.
-- The pitch-curve is linear, but does not use the entire range.
-- At 0% throttle, the collective pitch setting is already at 500 (0.05).
-- At maximum throttle, the collective pitch is only 4500 (0.45).
-- Using higher values for this type of helicopter would stall the blades.
-- The swash-plate servos for this helicopter are located at angles of 0, 140 and 220 degrees.
-- The servo arm-lenghts are not equal.
-- The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo.
-- The servos are limited at -8000 and 8000 because they are mechanically constrained.
+- 스로틀-커브는 50%의 추력에 6000 (0.6) 값에 도달하는 약간 가파른 경사로 시작합니다.
+- 덜 가파른 경사로 계속 진행하며 100% 추력으로 10000 (1.0) 에 도달합니다.
+- 상하 회전각 커브는 선형이지만, 전체 범위를 다 사용하지는 않습니다.
+- 0% 스로틀 출력시, 상하 회전각 보정 설정은 거의 500 (0.05) 입니다.
+- 최대 스로틀 출력시, 상하 회전각 보정 설정은 4500 (0.45) 밖에 안됩니다.
+- 이 헬리콥터 형식에 더 큰 값을 사용하면 날개의 기능을 상실합니다.
+- 이 헬리콥터의 경사판 서보는 0, 140에 220도 기울기를 가집니다.
+- 서보 암 길이는 동일하지 않습니다.
+- 두번째 세번째 서보는 긴 암을 가지나 처음 서보에 비해 1.3054배의 길이를 지닙니다.
+- 서보 출력은 기계적 제약사항이 있어 -8000에서 8000 까지로 제한합니다.
 
 #### VTOL 믹서 {#vtol_mixer}
 
