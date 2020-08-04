@@ -22,7 +22,7 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
-소스코드는 독립적인 모듈/프로그램(다이어그램에서 블럭들로 표시) 으로 나뉩니다. 대게 하나의 블럭은 하나의 모듈과 완전히 일치합니다.
+소스코드는 자체 포함 모듈/프로그램으로 나눕니다(도표의 `monospace` 참고). 보통 블록 구성은 정확히 하나의 모듈에 대응합니다.
 
 > **Tip** 실행중에, 쉘에서 `top` 명령어를 통해 실행중인 모듈을 검사할 수 있고, 각각의 모듈을 `<module_name> start/stop` 명령어를 통해서 시작/중지 시킬 수 있습니다. 하지만 `top` 명령어는 NuttX 쉘에서만 사용가능하고 다른 명령어들은 SITL 쉘 (pxh >) 에서도 사용할 수 있습니다. 각 모듈들에 대한 자세한 정보는[Modules & Commands Reference](../middleware/modules_main.md)를 참고하세요.
 
@@ -30,11 +30,11 @@ again. -->
 
 모듈들은 [uORB](../middleware/uorb.md)라고 불리는 publish-subscribe 메시지 버스를 통해 각각 통신합니다. Publish-subscribe 스킴의 사용은 다음을 의미합니다.
 
-- The system is reactive — it is asynchronous and will update instantly when new data is available
-- 모든 연산과 통신들이 완전히 병렬화 되어있다.
-- 시스템의 컴포넌트는 thread-safe 방식으로 어디에서든 data를 사용할 수 있다.
+- 반응형 시스템 — 비동기 방식으로 동작하며 새 데이터를 넣으면 바로 업데이트합니다
+- 모든 연산, 통신 동작에 대해 완전한 병렬 처리를 수행합니다
+- 시스템 구성요소는 스레드 처리에 안전한 방식으로 어디에서든 데이터를 활용할 수 있습니다.
 
-> **Info** 이 아키텍처는 이러한 블록 중 하나를 런타임시에도 빠르고 쉽게 교체 할 수 있습니다.
+> **Info** 이 아키텍처는 실행 시간중에도 이러한 모든 단일 블록을 빠르고 쉽게 대체하도록 합니다.
 
 ### Flight Stack {#flight-stack}
 
