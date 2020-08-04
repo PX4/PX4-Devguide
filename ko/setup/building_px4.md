@@ -326,15 +326,15 @@ cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 
 **파일 > 파일 또는 프로젝트 열기**로 펌웨어 폴더 루트의 CMakeLists.txt 파일을 불러오십시오 (CMakeLists.txt 파일 선택).
 
-After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
+불러온 다음, **play** 단추를 누르면 실행 대상 설정에서 '개별 실행파일'을 선택하고 'make' 명령을 실행 명령으로, 'upload'을 인자 값으로 넣어 프로젝트를 실행하는 방식으로 설정할 수 있습니다.
 
 ### Windows용 Qt Creator
 
-> **Note** Windows has not been tested for PX4 development with Qt Creator.
+> **Note** 윈도우에서는 Qt 크리에이터로 PX4 개발을 시험해보지 않았습니다.
 
 ### Mac OS용 Qt Creator
 
-Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
+Qt 크리에이터 시작 전 [project 파일](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator)을 만들어야 합니다:
 
 ```sh
 cd ~/src/Firmware
@@ -343,7 +343,7 @@ cd build/creator
 cmake ../.. -G "CodeBlocks - Unix Makefiles"
 ```
 
-That's it! Start *Qt Creator*, then complete the steps in the video below to set up the project to build.
+이제 됐습니다! *Qt 크리에이터*를 시작하고 아래 동영상에서 설명하는 단계를 완료하여 프로젝트 빌드 설정을 완료하십시오.
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
 
@@ -351,19 +351,19 @@ That's it! Start *Qt Creator*, then complete the steps in the video below to set
 
 앞 절에서는 *make*를 호출하여 제각기 다른 타겟을 빌드하고, 모의시험 환경을 시작하고 IDE를 활용하는 방법을 다루었습니다. 이 절에서는 *make* 옵션을 구성하는 방법과 존재하는 선택지를 찾는 방법을 다루도록 하겠습니다.
 
-The full syntax to call *make* with a particular configuration and initialization file is:
+일부 설정과 초기화 파일로 *make*를 호출하는 완전한 문법은 다음과 같습니다:
 
 ```sh
 make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER_WORLD]
 ```
 
-**VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
+**VENDOR_MODEL_VARIANT**: (`CONFIGURATION_TARGET` 으로도 알려짐)
 
-- **VENDOR:** The manufacturer of the board: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp`, etc. The vendor name for Pixhawk series boards is `px4`.
-- **MODEL:** The *board model* "model": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2`, etc.
-- **VARIANT:** Indicates particular configurations: e.g. `rtps`, `lpe`, which contain components that are not present in the `default` configuration. Most commonly this is `default`, and may be omitted.
+- **VENDOR:** 보드의 제조사: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp` 등. 픽스호크 계열 보드 제조사 이름은 `px4` 입니다.
+- **MODEL:** *보드* "모델": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2` 등.
+- **VARIANT:** 개별 일부 설정을 나타냅니다. 예: `default` 설정에 일부 구성요소가 들어있지 않는 `rtps`, `lpe`. 대부분 `default`를 사용하며, 생략합니다.
 
-> **Tip** You can get a list of *all* available `CONFIGURATION_TARGET` options using the command below: 
+> **Tip** 아래 명령으로 *모든* 가용 `CONFIGURATION_TARGET` 옵션을 확인해볼 수 있습니다: 
 > 
 >     sh
 >       make list_config_targets
