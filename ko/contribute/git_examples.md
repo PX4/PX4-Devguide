@@ -1,8 +1,8 @@
-# GIT Examples
+# git 예제
 
-## Contributing Code to PX4 {#contributing_code}
+## PX4에 코드 기여하기 {#contributing_code}
 
-Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
+PX4로의 기능 추가는 다음 절차를 따릅니다. In order to share your contributions on PX4, you can follow this example.
 
 * [Sign up](https://github.com/join) for github if you haven't already
 * Fork the Firmware (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
