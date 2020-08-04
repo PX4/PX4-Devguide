@@ -425,7 +425,7 @@ index 40d7778..2ce7972 100644
                 #magnetometer # all available magnetometer drivers
 ```
 
-Then use the make target, specifying the target build to compare (`px4_fmu-v2_default` in this case):
+이후 make 대상을 활용하여 비교할 대상 빌드(이 경우, `px4_fmu-v2_default`)를 비교하면:
 
 ```sh
 % make px4_fmu-v2_default bloaty_compare_master
@@ -449,7 +449,7 @@ Then use the make target, specifying the target build to compare (`px4_fmu-v2_de
   -1.0% -10.3Ki TOTAL                                                                            +14.9Ki  +0.1%
 ```
 
-This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
+위 화면에서는 *mpu9250*을 `px4_fmu-v2_default` 펌웨어에서 제거하여 플래시 메모리의 10.3kB 용량을 저장함을 나타냅니다. 또한, *mpu9250* 드라이버의 기타 부분 용량을 나타냅니다.
 
 ## 펌웨어 버전과 git 태그 {#firmware_version}
 
@@ -457,9 +457,9 @@ This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB 
 
 ![펌웨어 정보](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
 
-이 정보는 활성 *git tag* 또는 저장소 트리로부터 빌드 시간에 추출합니다. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
+이 정보는 활성 *git tag* 또는 저장소 트리로부터 빌드 시간에 추출합니다. git 태그는 `<PX4-version>-<vendor-version>` (예: 위 이미지에서 태그를 `v1.8.1-2.22.1`로 설정) 과 같은 형태를 가져야합니다.
 
-> **Warning** If you use a different git tag format, versions information may not be displayed properly.
+> **Warning** 다른 git 태그 형식을 취하면 버전 정보를 제대로 나타내지 못합니다.
 
 ## 문제 해결 {#troubleshooting}
 
