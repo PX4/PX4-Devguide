@@ -174,12 +174,12 @@ Most commonly you will override/replace the **AUX** mixer file for your current 
 
 믹서 파일은 하나 이상의 믹서를 정의하는 텍스트 파일입니다: 하나 이상의 입력과 출력을 서로 대응합니다.
 
-There are four types of mixers definitions: [multirotor mixer](#multirotor_mixer), [helicopter mixer](#helicopter_mixer), [summing mixer](#summing_mixer), and [null mixer](#null_mixer).
+믹서 정의 형식에는 [멀티로터 믹서](#multirotor_mixer), [헬리콥터 믹서](#helicopter_mixer), [결합 믹서](#summing_mixer), [널 믹서](#null_mixer) 네가지가 있습니다.
 
-- [Multirotor mixer](#multirotor_mixer) - Defines outputs for 4, 6, or 8 rotor vehicles with + or X geometry.
-- [Helicopter mixer](#helicopter_mixer) - Defines outputs for helicopter swash-plate servos and main motor ESCs (the tail-rotor is a separate [summing mixer](#summing_mixer).)
-- [Summing mixer](#summing_mixer) - Combines zero or more control inputs into a single actuator output. Inputs are scaled, and the mixing function sums the result before applying an output scaler.
-- [Null mixer](#null_mixer) - Generates a single actuator output that has zero output (when not in failsafe mode).
+- [멀티로터 믹서](#multirotor_mixer) - + 방향 또는 X축 방향의 4, 6, 8 회전 객체 출력을 가진 비행체를 정의
+- [헬리콥터 믹서](#helicopter_mixer) - 경사판 서보와 메인 모터 ESC 출력을 지닌 비행체를 정의(미익은 별도의 [결합 믹서](#summing_mixer)임.)
+- [결합 믹서](#summing_mixer) - 0개 이상의 제어 입력을 단일 액츄에이터 출력으로 결합합니다. 입력은 비례 조정하며, 출력 계수를 반영하기 전에 믹싱 함수에서 결합합니다.
+- [널 믹서](#null_mixer) - 0을 출력하는 단일 액츄에이터 출력을 만듭니다(안전장치 모드가 아닐 때).
 
 > **Tip** Use *multirotor* and *helicopter mixers* for the respective types, the *summing mixer* for servos and actuator controls, and the *null mixer* for creating outputs that must be zero during normal use (e.g. a parachute has 0 normally, but might have a particular value during failsafe). A [VTOL Mixer](#vtol_mixer) combines the other mixer types.
 
@@ -192,18 +192,18 @@ Each mixer definition begin with a line of the form:
     <tag>: <mixer arguments>
     
 
-The `tag` selects the mixer type (see links for detail on each type):
+`tag`로 믹서 형식을 선택합니다(각 형식에 대한 자세한 내용은 링크 참고):
 
-- `R`: [Multirotor mixer](#multirotor_mixer)
-- `H`: [Helicopter mixer](#helicopter_mixer)
-- `M`: [Summing mixer](#summing_mixer)
-- `Z`: [Null mixer](#null_mixer)
+- `R`: [멀티로터 믹서](#multirotor_mixer)
+- `H`: [헬리콥터 믹서](#helicopter_mixer)
+- `M`: [결합 믹서](#summing_mixer)
+- `Z`: [널 믹서](#null_mixer)
 
-Some mixers definitions consist of a number of tags (e.g. `O` and `S`) that follow the mixer-type tag above.
+일부 믹서는 믹서 형식 태그가 뒤따라오는 식으로 여러 태그를 구성(예: `O`, `S`)하여 정의하기도 합니다.
 
-> **Note** Any line that does not begin with a single capital letter followed by a colon may be ignored (so explanatory text can be freely mixed with the definitions).
+> **Note** 단일 대문자로 시작하지 않은 일부 행은 무시합니다(따라서 설명문을 정의 행과 자유롭게 섞어쓸 수 있습니다).
 
-#### Summing Mixer {#summing_mixer}
+#### 믹서 결합 {#summing_mixer}
 
 Summing mixers are used for actuator and servo control.
 
