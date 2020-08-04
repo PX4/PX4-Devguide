@@ -55,35 +55,35 @@ PX4 사용자에는 여러가지 유형이 있고, 문서는 제위치에 있다
 
 라이브러리 원본 코드를 로컬 컴퓨터에 가져오려면 git 툴체인이 있어야합니다. 아래 절차는 로컬 컴퓨터에 git을 가져다 사용하는 방법을 설명합니다.
 
-1. git 을 <https://git-scm.com/downloads>에서 컴퓨터로 다운로드합니다.
-2. 아직 Github에 계정이 없으면 [가입](https://github.com/join)합니다.
-3. Github에서 원하는 라이브러리의 사본을 여러분의 계정으로 복사하여 만(Fork)듭니다([절차는 여기에 있음](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository)). 저장소 라이브러리 URL은 다음과 같습니다: 
+1. git 을 <https://git-scm.com/downloads>에서 컴퓨터로 다운로드하십시오.
+2. 아직 Github에 계정이 없으면 [가입](https://github.com/join)하십시오.
+3. Github에서 원하는 라이브러리의 사본을 여러분의 계정으로 복사하여 만(Fork)드십시오([절차는 여기에 있음](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository)). 저장소 라이브러리 URL은 다음과 같습니다: 
     * PX4 사용자 안내서: https://github.com/PX4/px4_user_guide
     * PX4 개발자 안내서: https://github.com/PX4/Devguide
     * QGroundControl 사용자 안내서: https://github.com/mavlink/qgc-user-guide
     * QGroundControl 개발자 안내서: https://github.com/mavlink/qgc-dev-guide
     * MAVLink 개발자 안내서: https://github.com/mavlink/mavlink-devguide
-4. 복제한 저장소를 로컬 컴퓨터에 가져옵니다: 
+4. 복제한 저장소를 로컬 컴퓨터에 가져오십시오: 
         sh
         cd ~/wherever/
-        git clone https://github.com/<your git name>/<repository_name>.git For example, to clone the PX4 userguide fork for a user with github account "john_citizen_smith": 
+        git clone https://github.com/<your git name>/<repository_name>.git 예를 들어, PX4 사용자 안내서 복제본을 "john_citizen_smith" github 계정에서 가져오려면: 
     
         sh
         git clone https://github.com/john_citizen_smith/px4_user_guide.git
 
-5. Navigate to your local repository (px4_user_guide is used below): 
+5. 로컬 저장소를 탐색합니다(아래에서는 px4_user_guide 디렉터리 활용): 
         sh
         cd ~/wherever/px4_user_guide
 
-6. Add a *remote* called "upstream" to point to the original library. The exmaple below shows how to do this for the user guide (note the URL format - it is the repo URL with extension ".git").
+6. "업스트림"으로 부르는 *remote* 지점을 만들어 원본 라이브러리를 가리킵니다. 아래 예제에서는 사용자 안내서에 대해 수행하는 방법을 보여줍니다(URL 형식을 참고 - ".git" 확장자를 가지는 저장소 URL 입니다).
     
     ```sh
     git remote add upstream https://github.com/PX4/px4_user_guide.git
     ```
     
-    > **Tip** A "remote" is a handle to a particular repository. The remote named *origin* is created by default when you clone the repository, and points to your fork of the guide. You want to create a new remote *upstream* that points to the official version of the document.
+    > **Tip** "remote" 은 저장소 일부의 핸들입니다. *origin* remove는 저장소를 복제할 때 기본으로 만드는 항목이며, 여러분이 여러분의 계정으로 포크한 안내서 저장소를 가리킵니다. 문서의 공식 버전을 가리키는 새 원격 *업스트림* 을 만들고 싶을 것입니다.
 
-7. Create a branch for your changes:
+7. 여러분이 바꾼 내용에 대한 브랜치를 새로 만드십시오:
     
     ```sh
     git checkout -b <your_feature_branch_name>
@@ -123,22 +123,22 @@ In overview:
 * A file named **book.json** defines any dependencies of the build.
 * A web hook is used to track whenever files are merged into the master branch on this repository, causing the book to rebuild.
 
-### Style guide
+### 방식 안내
 
-1. Files/file names
+1. 파일 이름 
 
-* Put new files in an appropriate sub-folder
-* Use descriptive names. In particular, image filename should describe what they contain.
-* Use lower case and separate words using underscores "\_"
+* 적당한 하위 폴더에 새 파일을 추가하십시오
+* 이해할 수 있는 이름을 사용하십시오. 일례를 들어, 그림 파일 이름은 어떤 그림이 있는지 설명해야합니다.
+* 소문자를 사용하고 밑줄 문자 "\_"를 활용하여 단어를 구분하십시오
 
-2. Images
+2. 그림
 
-* Use the smallest size and lowest resolution that makes the image still useful.
-* New images should be created in a sub-folder of **/assets/** by default (so they can be shared between translations).
+* 최대한 용량은 작게, 쓸만할 정도로 해상도를 낮춘 이미지를 사용하십시오.
+* 새 그림은 기본적으로 **/assets/** 하위 폴더에 만들어야합니다(그래야 번역에서도 쓸 수 있습니다).
 
-3. Content:
+3. 내용:
 
-* Use "style" \(bold, emphasis, etc\) consistently. **Bold** for button presses and menu definitions. *Emphasis* for tool names. Otherwise use as little as possible.
+* "모양새" \(굵게, 강조(이탤릭) 등\)를 일관되게 활용하십시오. **굵게** 는 누르는 단추 텍스트와 메뉴 정의에 활용합니다. *Emphasis* for tool names. Otherwise use as little as possible.
 * Headings and page titles should use "First Letter Capitalisation"
 * The page title should be a first level heading \(\#\). All other headings should be h2 \(\#\#\) or lower.
 * Don't add any style to headings.
