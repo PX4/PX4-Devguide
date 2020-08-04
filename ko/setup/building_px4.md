@@ -473,11 +473,11 @@ index 40d7778..2ce7972 100644
 
 ### Flash overflowed by XXX bytes
 
-The `region 'flash' overflowed by XXXX bytes` error indicates that the firmware is too large for the target hardware platform. This is common for `make px4_fmu-v2_default` builds, where the flash size is limited to 1MB.
+`region 'flash' overflowed by XXXX bytes` 오류는 대상 하드웨어 플랫폼에 비해 펌웨어 크기가 너무 큼을 나타냅니다. 이 오류는 `make px4_fmu-v2_default` 대상을 빌드할 때 일반적인데, 이 하드웨어의 경우 플래시 메모리 용량은 1MB로 제한적입니다.
 
-If you're building the *vanilla* master branch, the most likely cause is using an unsupported version of GCC. In this case, install the version specified in the [Developer Toolchain](../setup/dev_env.md) instructions.
+*바닐라* 마스터 브랜치를 빌드할 경우, 대부분의 원인은 지원하지 않는 GCC 버전의 사용에 있습니다. 이 경우 [개발자 툴체인](../setup/dev_env.md)의 설명에서 지정한 버전을 설치하시면 됩니다.
 
-If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. In this case you will need to remove any drivers/modules that you don't need from the build.
+여러분의 자체 브랜치를 빌드할 경우, 늘어나는 펌웨어의 용량이 1MB 제한을 넘어설 수 있습니다. 이 경우, 빌드에서 필요하지 않은 드라이버나 모듈을 제거해야합니다.
 
 ### macOS: Too many open files error {#macos_open_files}
 
@@ -516,6 +516,6 @@ sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /us
 
 이 의존 요소를 이미 설치했을 경우 컴퓨터에 하나 이상의 파이썬 버전을 설치하고 (예: Python 2.7.16 과 Python 3.8.3) 빌드 툴체인에서 설치하는 해당 버전이 없는 경우입니다.
 
-You should be able to fix this by explicitly installing the dependencies as shown:
+이 경우 다음과 같이 의존 요소를 명백하게 설치하면 문제를 잡을 수 있습니다:
 
     pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
