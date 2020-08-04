@@ -370,19 +370,19 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER_WORLD]
 
 **VIEWER_MODEL_DEBUGGER_WORLD:**
 
-- **VIEWER:** This is the simulator ("viewer") to launch and connect: `gazebo`, `jmavsim` <!-- , ?airsim -->
+- **VIEWER:** `gazebo`, `jmavsim`에 연결할 모의실험 환경("viewer") <!-- , ?airsim -->
 
-- **MODEL:** The *vehicle* model to use (e.g. `iris` (*default*), `rover`, `tailsitter`, etc), which will be loaded by the simulator. The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](..\simulation\README.md#scripts) to select appropriate parameters.
+- **MODEL:** 모의시험 환경에서 불러와서 활용할 *운송 수단* 모델(예: `iris` (*default*), `rover`, `tailsitter` 등). 적절한 매개변수를 선택하는 [시작 스크립트](..\simulation\README.md#scripts)에서 활용할 선택 모델을 `PX4_SIM_MODEL` 환경 변수로 설정합니다.
 
-- **DEBUGGER:** Debugger to use: `none` (*default*), `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. For more information see [Simulation Debugging](../debug/simulation_debugging.md).
-- **WORLD:** (Gazebo only). Set a the world ([PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) that is loaded. Default is [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world). For more information see [Gazebo > Loading a Specific World](../simulation/gazebo.md#set_world).
+- **DEBUGGER:** 활용 디버거 `none` (*default*), `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. 자세한 내용은 [모의시험 환경 디버깅](../debug/simulation_debugging.md)을 살펴보십시오.
+- **WORLD:** (가제보 전용). 불러온 월드([PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds))를 설정합니다. 기본값은 [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world)입니다. 자세한 내용은 [가제보 > 지정 월드 불러오기](../simulation/gazebo.md#set_world)를 살펴보십시오.
 
-> **Tip** You can get a list of *all* available `VIEWER_MODEL_DEBUGGER_WORLD` options using the command below: 
+> **Tip** 아래 명령으로 *모든* 가용 `VIEWER_MODEL_DEBUGGER_WORLD` 옵션을 확인할 수 있습니다: 
 > 
 >     sh
 >       make px4_sitl list_vmd_make_targets
 
-Notes:
+참고:
 
 - Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`.
 - You can use three underscores if you want to specify a default value between two other settings. For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
@@ -453,11 +453,11 @@ This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB 
 
 ## 펌웨어 버전과 git 태그 {#firmware_version}
 
-The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
+*PX4 펌웨어 버전*과 *개별 펌웨어 버전* 은 MAVLink의 [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) 메시지로 내보내며, *QGroundControl*의 **설정 > 요약** 에어프레임 패널에 나타납니다:
 
 ![펌웨어 정보](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
 
-These are extracted at build time from the active *git tag* for your repo tree. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
+이 정보는 활성 *git tag* 또는 저장소 트리로부터 빌드 시간에 추출합니다. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
 
 > **Warning** If you use a different git tag format, versions information may not be displayed properly.
 
@@ -465,7 +465,7 @@ These are extracted at build time from the active *git tag* for your repo tree. 
 
 ### 일반 빌드 오류
 
-Many build problems are caused by either mismatching submodules or an incompletely cleaned-up build environment. Updating the submodules and doing a `distclean` can fix these kinds of errors:
+하위 모듈의 불일치, 빌드 환경의 완전하지 못한 정리상태로 인해 여러 빌드 문제가 나타납니다. 하위 모듈을 업데이트하고 `distclean`을 실행하면 이런 오류를 잡아낼 수 있습니다:
 
     git submodule update --recursive
     make distclean
