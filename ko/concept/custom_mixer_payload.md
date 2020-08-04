@@ -53,12 +53,12 @@ S: 3 4  10000  10000      0 -10000  10000
 이 출력은 파일의 처음에 있기 때문에 (UAVCAN을 활성화하기 전에는) 첫번째 AUX PWM 출력에 대응합니다. 이 출력은 앞으로 페이로드 제어 분류 (6)의 출력 1을 업데이트합니다.
 
 제어 분류 6은 코드에서 정의한 그대로 필요합니다(빠져있음!):
-- Add `actuator_controls_6` to the TOPICS definition in [/msg/actuator_controls.msg](https://github.com/PX4/Firmware/blob/master/msg/actuator_controls.msg#L17):
+- `actuator_controls_6`를 [/msg/actuator_controls.msg](https://github.com/PX4/Firmware/blob/master/msg/actuator_controls.msg#L17)의 토픽 정의에 추가하십시오:
   ```
   # TOPICS actuator_controls actuator_controls_0 actuator_controls_1 actuator_controls_2 actuator_controls_3 actuator_controls_6
   ```
-- Increase `NUM_ACTUATOR_CONTROL_GROUPS` to 7 in the same file.
-- Subscribe to the additional control group in the output library ([/src/lib/mixer_module/mixer_module.cpp#L52](https://github.com/PX4/Firmware/blob/master/src/lib/mixer_module/mixer_module.cpp#L52)) in the `MixingOutput` constructor. It should look like this:
+- 동일한 파일에서 `NUM_ACTUATOR_CONTROL_GROUPS` 값을 7로 바꾸십시오.
+- 출력 라이브러리([/src/lib/mixer_module/mixer_module.cpp#L52](https://github.com/PX4/Firmware/blob/master/src/lib/mixer_module/mixer_module.cpp#L52))의 `MixingOutput` 생성자에서 추가 제어 분류에 등록하십시오. 대략 다음과 같습니다:
   ```
     {&interface, ORB_ID(actuator_controls_0)},
     {&interface, ORB_ID(actuator_controls_1)},
@@ -71,12 +71,12 @@ S: 3 4  10000  10000      0 -10000  10000
     {&interface, ORB_ID(actuator_controls_6)},
   ```
 
-Putting an output on group 6 works by publishing actuator control group 6. First you have to create the publication. This should happen once when the PX4 module is initialized (look for places where this pattern is already being used):
+분류 6번의 출력은 액츄에이터 제어 분류 6번과 동작합니다. 우선 퍼블리케이션 객체를 만들어야합니다. 이 과정은 PX4 모듈을 초기화할 때 일어납니다(이 반복 규칙을 이미 사용한 곳을 살펴보십시오):
 ```
 uORB::Publication<actuator_controls_s> _actuator_controls_pub{ORB_ID(actuator_controls_6)};
 ```
 
-Then you need to publish the first message:
+그 다음 첫 메시지를 내보내야합니다:
 ```
 actuator_controls_s _act_controls{};
 _act_controls.timestamp = hrt_absolute_time();
