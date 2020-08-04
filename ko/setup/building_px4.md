@@ -137,25 +137,25 @@ export AUTOPILOT_HOST=192.168.X.X
 export AUTOPILOT_HOST=pi_hostname.domain
 ```
 
-> **Note** The value of the environment variable should be set before the build, or `make upload` will fail to find your RPi.
+> **Note** 환경 변수 값을 빌드 전에 설정하지 않으면, `make upload` 명령 실행시 라즈베리 파이 찾기에 실패합니다.
 
-Build the executable file:
+실행 파일을 만드십시오:
 
 ```sh
 cd Firmware
 make emlid_navio2 # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory **build/emlid_navio2_default/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
+"px4" 실행 파일은 **build/emlid_navio2_default/** 디렉터리에 있습니다. 라즈베리 파이에 SSH 연결이 가능한지 확인하시고 [라즈베리 파이 접근 방법](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start)을 살펴보십시오.
 
-Then upload it with:
+다음 명령으로 업로드하십시오:
 
 ```sh
 cd Firmware
 make emlid_navio2 upload # for cross-compiler build
 ```
 
-Then, connect over ssh and run it with (as root):
+그리고 SSH를 통해 (루트 계정으로) 접근 후 다음 명령을 실행하십시오:
 
 ```sh
 sudo ./bin/px4 -s px4.config
@@ -163,20 +163,20 @@ sudo ./bin/px4 -s px4.config
 
 #### 자체 빌드
 
-If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
+라즈베리 파이에서 *직접* 빌드할 경우, 자체 빌드 대상을 찾으려 할 것입니다(emlid_navio2_native).
 
 ```sh
 cd Firmware
 make emlid_navio2_native # for native build
 ```
 
-The "px4" executable file is in the directory **build/emlid_navio2_native/**. Run it directly with:
+"px4" 실행 파일은 **build/emlid_navio2_native/** 디렉터리에 있습니다. 다음 명령으로 실행하십시오:
 
 ```sh
 sudo ./build/emlid_navio2_native/px4 -s ./posix-configs/rpi/px4.config
 ```
 
-A successful build followed by executing px4 will give you something like this:
+px4를 실행하여 나타난 성공적인 빌드 화면은 다음과 같습니다:
 
 ```sh
 <br />______  __   __    ___
