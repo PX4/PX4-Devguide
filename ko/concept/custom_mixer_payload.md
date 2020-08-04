@@ -1,4 +1,4 @@
-# Custom Payload Mixers
+# 개별 페이로드 믹서
 
 This topic shows how to add a custom [mixer](../concept/mixing.md) for programmatically controlling a custom payload (e.g., an electromagnetic gripper).
 
