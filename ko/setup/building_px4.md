@@ -244,35 +244,35 @@ adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 
 #### 실행
 
-Run the DSP debug monitor:
+DSP 디버깅 모니터를 실행하십시오:
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
-Note: alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+Note: 대신, Mac에서는 [nano-dm](https://github.com/kevinmehall/nano-dm)을 활용할 수도 있습니다.
 
-Go back to ADB shell and run px4:
+ADB 셸로 돌아가서 px4를 실행하십시오:
 
 ```sh
 cd /home/linaro
 ./px4 -s mainapp.config
 ```
 
-Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
+px4는 USB 케이블을 뽑으면(또는 ssh 세션을 끊으면) 바로 멈춥니다. 비행을 진행하려면, 부팅 후 px4를 자동으로 실행하게 하십시오.
 
 #### 자동 시작
 
-To run the px4 as soon as the Snapdragon has booted, you can add the startup to `rc.local`:
+스냅드래곤을 부팅하자마자 px4를 실행하려면, `rc.local`에 시작 스크립트를 추가할 수 있습니다:
 
-Either edit the file `/etc/rc.local` directly on the Snapdragon:
+스냅드래곤 보드의 `/etc/rc.local` 파일을 직접 편집하거나:
 
 ```sh
 adb shell
 vim /etc/rc.local
 ```
 
-Or copy the file to your computer, edit it locally, and copy it back:
+컴퓨터에 파일을 복사하여 편집 후, 스냅드래곤 보드로 다시 복사하십시오:
 
 ```sh
 adb pull /etc/rc.local
@@ -280,7 +280,7 @@ gedit rc.local
 adb push rc.local /etc/rc.local
 ```
 
-For the auto-start, add the following line before `exit 0`:
+자동으로 시작하려면 다음 행을 `exit 0` 전에 추가하십시오:
 
 ```sh
 (cd /home/linaro && ./px4 -s mainapp.config > mainapp.log)
@@ -288,14 +288,14 @@ For the auto-start, add the following line before `exit 0`:
 exit 0
 ```
 
-Make sure that the `rc.local` is executable:
+`rc.local`을 실행할 수 있게 설정했는지 확인하십시오:
 
 ```sh
 adb shell
 chmod +x /etc/rc.local
 ```
 
-Then reboot the Snapdragon:
+그 다음 스냅드래곤 보드를 다시 부팅하십시오:
 
 ```sh
 adb reboot
@@ -303,19 +303,19 @@ adb reboot
 
 ## 그래픽 IDE에서의 컴파일
 
-The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
+PX4 시스템은 Qt 크리에이터, 이클립스, 서브라임 텍스트를 지원합니다. Qt 크리에이터는 사용자에게 매우 친숙한 버전이므로 이 프로그램만 공식적으로 IDE를 지원합니다. 이클립스 또는 서브라임을 전문적으로 활용할 줄 모른다면, 활용하지 않는걸 권합니다. 하드코어 사용자는 [이클립스 프로젝트](https://github.com/PX4/Firmware/blob/master/eclipse.project)와 [서브라임 프로젝트](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project)를 소스트리에서 찾을 수 있습니다.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
 ## Qt Creator 기능 
 
-Qt creator offers clickable symbols, auto-completion of the complete codebase and building and flashing firmware.
+Qt 크리에이터는 누를 수 있는 심볼, 완전 코드 기반 자동 완성, 펌웨어 빌드, 플래싱을 지원합니다.
 
 ![](../../assets/toolchain/qtcreator.png)
 
 ### 리눅스용 Qt Creator
 
-Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
+Qt 크리에이터 시작 전 [project 파일](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator)을 만들어야 합니다:
 
 ```sh
 cd ~/src/Firmware
@@ -324,7 +324,7 @@ cd ../Firmware-build
 cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 ```
 
-Then load the CMakeLists.txt in the root firmware folder via **File > Open File or Project** (Select the CMakeLists.txt file).
+**파일 > 파일 또는 프로젝트 열기**로 펌웨어 폴더 루트의 CMakeLists.txt 파일을 불러오십시오 (CMakeLists.txt 파일 선택).
 
 After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
