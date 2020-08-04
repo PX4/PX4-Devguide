@@ -1,11 +1,11 @@
 # 개별 페이로드 믹서
 
-This topic shows how to add a custom [mixer](../concept/mixing.md) for programmatically controlling a custom payload (e.g., an electromagnetic gripper).
+이 주제에서는 개별 페이로드를 프로그램으로 제어하는 개별 [믹서](../concept/mixing.md) 추가 방법을 다룹니다(예: 전자기 집게).
 
-The topic is intended for developers who want to support payload types that do not have existing control group definitions (e.g. gimbals have a control group, but grippers do not). You should already have read [Mixing and Actuators](../concept/mixing.md).
+기존 제어 분류 정의에 없는 페이로드 형식을 지원하려는 개발자에게 이 주제를 안내하고자합니다(예: 짐벌은 제어 그룹이 있으나, 집게는 그렇지 않음). [믹싱과 액츄에이터](../concept/mixing.md)를 우선 읽고 오셔야 합니다.
 
 
-## Payload Mixer Example
+## 페이로드 믹서 예제
 
 A payload mixer is just a [summing mixer](../concept/mixing.md#summing_mixer) that maps any of the function values from [Control Group #6 (First Payload)](../concept/mixing.md#control_group_6) to a particular output. You can then publish uORB topics to the selected control group function and their value will be mapped to the specified output.
 
