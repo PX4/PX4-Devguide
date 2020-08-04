@@ -1,12 +1,12 @@
-# Contributing to Documentation
+# 문서 기여
 
-Contributions to the guides for all parts of the Dronecode project are very welcome. This includes the PX4 and QGroundControl developer and user guides, and the MAVLink guide. This article explains how you can make changes, add content, and create translations.
+드론코드 프로젝트의 모든 영역을 다루는 안내서에 기여를 해주심을 매우 좋게 생각합니다. 이 내용에는 PX4, QGroundControl 개발자 및 사용자 안내서, MAVLink 안내서를 포함합니다. 여기서는 문서의 내용을 바꾸고, 내용을 추가하며, 번역문을 만드는 방법에 대해 설명합니다.
 
-> **Note** You will need a (free) [Github](http://github.com) account to contribute to the guides.
+> **Note** 안내서 발전에 기여하려면 (무료) [Github](http://github.com) 계정을 만드십시오.
 
-## Quick Changes
+## 간단한 수정
 
-Fixing typos or editing the text an *existing page* is easy:
+오타 수정 또는 *기존 페이지*의 텍스트 편집은 간단합니다:
 
 1. Click the **Edit** toolbar icon at the top of the relevant page in the guide.
     
