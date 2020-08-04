@@ -8,28 +8,28 @@
 
 오타 수정 또는 *기존 페이지*의 텍스트 편집은 간단합니다:
 
-1. Click the **Edit** toolbar icon at the top of the relevant page in the guide.
+1. 안내서 관련 페이지 상단에 있는 **편집** 도구모음 아이콘을 누릅니다.
     
     ![Gitbook: Edit Page button](../../assets/gitbook/gitbook_toolbar_icon_edit.png)
     
-    This will open the page for editing (in Github).
+    (Github의) 편집 페이지를 엽니다.
 
-2. Make the desired change.
+2. 원하는 내용으로 수정합니다.
 
-3. At the bottom of the page you'll be prompted to create a separate branch and then guided to submit a *pull request*.
+3. 페이지 하단으로 내려가면 별도의 브랜치로 만들지를 물어보고, 이 과정을 넘어가면 *pull request*를 제출하도록 안내받습니다.
 
-The documentation team reviews submitted pull requests and will either merge it or work with you to update it.
+문서 팀은 제출한 pull request를 검토하고 여러분이 바꾼 내용을 병합하거나 추가 작업을 진행합니다.
 
-> **Note** If you want to add new pages or images, then you will need to work through the git tool rather than github. Often you will want to build the library using the gitbook toolchain to test your changes.
+> 새 페이지 또는 그림을 추가하려면, github가 아닌 git 도구로 작업해야합니다. 종종 바뀐 내용을 살펴보려 할 때 gitbook 툴체인으로 라이브러리를 빌드하고 싶을 때가 있습니다.
 
-## Adding New Pages and Images - Big Changes
+## 새 페이지 및 그림 추가 - 규모가 큰 수정 작업
 
-If you want to add new pages or images that can't easily be done through the Github interface. In this case you make changes in the same way as you would for *code* changes:
+Github 인터페이스는 쉽게 안되는 새 페이지 또는 그림의 추가 작업을 진행하고 싶을 때가 있습니다. 이 경우 *코드* 변경과 동일한 방식으로 내용을 바꿔야 합니다:
 
-1. Use the *git* toolchain to get the documentation source code
-2. Modify it as needed (add, change, delete).
-3. Test that it renders properly using the Gitbook client
-4. Create a branch for your changes and create a pull request (PR) to pull it back into the documentation. 
+1. *git* 툴체인을 사용하여 문서 소스코드를 가져옵니다
+2. 필요한 부분을 수정합니다(추가, 수정, 삭제).
+3. Gitbook 클라이언트로 제대로 뜨는지 시험해봅니다.
+4. 여러분이 바꾼 내용에 대한 별도의 브랜치를 만들고 pull request(PR)를 만들어 문서에 끌어다놓게 합니다. 
 
 Change requests can be either done on the Gitbook website using the [Gitbook editor](https://gitbookio.gitbooks.io/documentation/content/editor/index.html) or locally (more flexible, but less user-friendly). Most of these instructions cover the local setup.
 
