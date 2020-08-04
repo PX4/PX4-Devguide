@@ -10,7 +10,7 @@
 
 1. 안내서 관련 페이지 상단에 있는 **편집** 도구모음 아이콘을 누릅니다.
     
-    ![Gitbook: Edit Page button](../../assets/gitbook/gitbook_toolbar_icon_edit.png)
+    ![Gitbook: 페이지 편집 단추](../../assets/gitbook/gitbook_toolbar_icon_edit.png)
     
     (Github의) 편집 페이지를 엽니다.
 
@@ -89,26 +89,26 @@ PX4 사용자에는 여러가지 유형이 있고, 문서는 제위치에 있다
     git checkout -b <your_feature_branch_name>
     ```
     
-    This creates a local branch on your computer named `your_feature_branch_name`.
+    이 명령으로 `your_feature_branch_name` 이름의 로컬 브랜치를 만듭니다.
 
-8. Make changes to the documentation as needed (general guidance on this in following sections)
-9. Once you are satisfied with your changes, you can add them to your local branch using a "commit": 
+8. 문서에서 필요한 부분을 바꾸십시오(이 방법에 대한 일반 지침은 다음 절에 있습니다)
+9. 바꾼 내용에 만족스럽다면, 해당 내용을 "commit" 명령으로 로컬 브랜치에 추가할 수 있습니다: 
         sh
         git add <file name>
-        git commit -m "<your commit message>" For a good commit message, please refer to 
+        git commit -m "<your commit message>" 바람직한 제출 메시지에 대해서는 
     
-    [Contributing](../contribute/README.md) section.
-10. Push your local branch (including commits added to it) to your forked repository on github 
+    [기여](../contribute/README.md) 절을 참고하십시오.
+10. 로컬 브랜치(추가한 제출 사항)를 여러분의 github 계정으로 push 하십시오. 
         sh
         git push origin your_feature_branch_name
 
-11. Go to your forked repository on Github in a web browser, e.g.: `https://github.com/<your git name>/px4_user_guide.git`. There you should see the message that a new branch has been pushed to your forked repository.
-12. Create a pull request (PR): 
-    * On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Press it.
-    * A pull request template will be created. It will list your commits and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/px4_user_guide/pulls) for comparison)
-13. You're done! Responsible members of PX4 guides will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
+11. 웹 브라우저에서 `https://github.com/<your git name>/px4_user_guide.git`와 같이 Github의 복제 라이브러리로 이동하십시오. 이 과정을 통해 복제한 원격 저장소로 새 브랜치를 밀어 올렸다는 메시지가 나타나야합니다.
+12. pull 요청(PR) 만들기: 
+    * "new branch message" 우측을 보면(한단계 전), "Compare & Create Pull Request"가 적힌 녹색 단추를 볼 수 있습니다. 그 단추를누르십시오.
+    * pull 요청 양식이 나타납니다. 제출한 변경 내역을 나타낼텐데, 의미있는 제목(커밋 하나를 가진 PR의 경우 커밋 메시지)과 메시지를 추가할 수 있습니다(<span style="color:orange">어떤 이유로 무엇을 했는지 설명하십시오.</span> [다른 pull 요청](https://github.com/PX4/px4_user_guide/pulls)을 보고 비교해보십시오)
+13. 이제 다 끝났습니다. PX4 문서 담당자가 기여 상황을 살펴보고 병합을 할 지 말지를 결정하게 됩니다. 그동안 바뀐 내용에 대해 질문이 있을지 한번 정도는 확인해보십시오.
 
-### Source Code Structure
+### 소스 코드 구성
 
 The guide uses the [Legacy Gitbook Toolchain](https://legacy.gitbook.com/) toolchain. Instructions for how this toolchain is setup and used can be found in the [toolchain documentation](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md).
 
@@ -138,13 +138,13 @@ In overview:
 
 3. 내용:
 
-* "모양새" \(굵게, 강조(이탤릭) 등\)를 일관되게 활용하십시오. **굵게** 는 누르는 단추 텍스트와 메뉴 정의에 활용합니다. *Emphasis* for tool names. Otherwise use as little as possible.
-* Headings and page titles should use "First Letter Capitalisation"
-* The page title should be a first level heading \(\#\). All other headings should be h2 \(\#\#\) or lower.
-* Don't add any style to headings.
-* Don't translate the *first part* of a note, tip or warning declaration (e.g. `> **Note**`) as this precise text is required to render the note properly.
+* "모양새" \(굵게, 강조(이탤릭) 등\)를 일관되게 활용하십시오. **굵게** 는 누르는 단추 텍스트와 메뉴 정의에 활용합니다. *강조*는 도구 이름에 사용합니다. 다른 경우에는 가급적 드물게 활용하십시오.
+* 소제목과 페이지 제목은 "첫글자를 대문자로" 해야 합니다.
+* 페이지 제목은 처음 수준 제목 \(\#\) 형식이어야 합니다. 다른 소제목은 h2 \(\#\#\) 또는 그 이하여야 합니다.
+* 제목에는 모양새를 덧붙이지 마십시오.
+* Note, Tip, Warning의 *첫 부분*은 번역하지 마십시오(예: `> **Note**`). 참고 내용을 제대로 표시하려면 있는 그대로의 텍스트가 필요합니다.
 
-### Building the Gitbook Locally
+### Gitbook을 로컬에서 빌드하기
 
 Everything you need to install and build Gitbook locally is also explained in the [toolchain documentation](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md).
 
@@ -167,30 +167,30 @@ Everything you need to install and build Gitbook locally is also explained in th
     
     > **Note** If you run into an error: `/usr/bin/env: node: No such file or directory`, run `ln -s /usr/bin/nodejs /usr/bin/node`
 
-4. Build your book:
+4. 책을 빌드하십시오:
     
     ```sh
     gitbook build
     ```
 
-5. To preview and serve your book, run: 
+5. 책을 미리 보고 원격 공유하면 다음 명령을 실행하십시오: 
         sh
         gitbook serve
     
-    * Now you can browse your local book on http://localhost:4000/
-    * Exit serving using `CTRL+c` in the terminal prompt.
-6. You can also serve on a different port instead of 4000: 
+    * 이제 http://localhost:4000/ 에서 로컬 책을 탐색할 수 있습니다.
+    * 원격 공개 상태에서 빠져나가려면 터미널 프롬프트에서 `CTRL+c` 키를 누르십시오.
+6. 4000번 대신 다른 포트 번호로 책을 원격 공개할 수 있습니다: 
         sh
         gitbook serve --port 4003
 
-7. You can also output as html, pdf, epub or mobi: 
+7. html, pdf, epub, mobi로 내보낼 수도 있습니다: 
         sh
         gitbook help
 
-## Translations {#translation}
+## 번역 {#translation}
 
-We'd love your help to translate *QGroundControl* and our guides for PX4, *QGroundControl* and MAVLink. For more information see: [Translation](../contribute/translation.md).
+*QGroundControl*과 PX4, *QGroundControl*, MAVLink 안내서 번역의 도움을 간절히 바랍니다. 자세한 정보는 [Translation](../contribute/translation.md)을 살펴보십시오.
 
-## Licence
+## 라이선스
 
-All PX4/Dronecode documentation is free to use and modify under terms of the permissive [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence.
+모든 PX4/드론코드 문서는 [크리에이티브 커먼즈 저작자표시 4.0](https://creativecommons.org/licenses/by/4.0/) 라이선스의 허여 조항에 따라 자유롭게 활용하고 수정할 수 있습니다.
