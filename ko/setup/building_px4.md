@@ -396,16 +396,16 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER_WORLD]
 
 `bloaty_compare_master` 빌드 대상은 코드 규모가 바뀌었을 때 미치는 영향을 잘 이해할 수 있게 합니다. 이 명령을 활용하면 툴체인은 일부 펌웨어에 대해 최근 성공한 마스터 브랜치의 빌드를 다운로드하고 로컬 빌드와 비교합니다(이진 파일에 대한 [bloaty](https://github.com/google/bloaty) 용량 프로파일러를 활용).
 
-> **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
+> **Tip** 이 과정을 통해 `px4_fmu-v2_default` 빌드 대상이 (아마도) 1MB 플래시 용량 제한에 걸리는 원인 변경을 분석할 수 있습니다.
 
-*Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/Dockerfile_nuttx-bionic) install *bloaty* as shown:
+여러분이 지정한 경로상에 *bloaty*가 있어야 하며 *cmake* 설정 시간에 찾을 수 있어야 합니다. PX4 [도커 파일](https://github.com/PX4/containers/blob/master/docker/Dockerfile_nuttx-bionic)에 *bloaty*를 다음과 같이 설치합니다:
 
     git clone --recursive https://github.com/google/bloaty.git /tmp/bloaty \
         && cd /tmp/bloaty && cmake -GNinja . && ninja bloaty && cp bloaty /usr/local/bin/ \
         && rm -rf /tmp/*
     
 
-The example below shows how you might see the impact of removing the *mpu9250* driver from `px4_fmu-v2_default`. First it locally sets up a build without the driver:
+아래 예제에서는 `px4_fmu-v2_default` 빌드에서 *mpu9250* 드라이버를 제거하는 방법을 보여줍니다: 우선 자체적으로 드라이버 없이 빌드를 설정합니다:
 
 ```sh
  % git diff
@@ -481,24 +481,24 @@ If building your own branch, it is possibly you have increased the firmware size
 
 ### macOS: Too many open files error {#macos_open_files}
 
-MacOS allows a default maximum of 256 open files in all running processes. The PX4 build system opens a large number of files, so you may exceed this number.
+MacOS에서는 기본적으로 모든 실행 프로세스에 대해 최대 256개 파일을 열 수 있습니다. PX4 빌드 시스템에서는 수많은 파일을 열게 되므로, 이 갯수를 초과할 수도 있습니다.
 
-The build toolchain will then report `Too many open files` for many files, as shown below:
+이 경우 빌드 툴체인에서 파일을 지정 갯수보다 많이 열었을 때, 아래와 같이 `Too many open files` 오류 메시지를 출력할 수 있습니다:
 
 ```sh
 /usr/local/Cellar/gcc-arm-none-eabi/20171218/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/bin/ld: cannot find NuttX/nuttx/fs/libfs.a: Too many open files
 ```
 
-The solution is to increase the maximum allowed number of open files (e.g. to 300). You can do this in the macOS *Terminal* for each session:
+최대 개방 파일 갯수를 늘리면 이 문제를 해결할 수 있습니다(예: 300). macOS 에서는 각 *터미널* 세션별로 이 과정을 수행할 수 있습니다:
 
-- Run this script [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh), or
-- Enter this command: 
+- [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh) 스크립트를 실행하거나
+- 다음 명령을 입력하십시오 
         sh
         ulimit -S -n 300
 
 ### macOS Catalina: Problem running cmake
 
-As of macOS Catalina 10.15.1 there may be problems when trying to build the simulator with *cmake*. If you have build problems on this platform then try run the following command in your terminal:
+macOS 카탈리나 10.15.1 에서는 *cmake*를 실행하여 모의시험 환경 빌드를 시도할 경우 이런 문제가 발생할수 있습니다. 이 플랫폼에서 빌드 문제가 생긴다면 다음 명령을 터미널에서 실행하십시오:
 
 ```sh
 xcode-select --install
@@ -507,14 +507,14 @@ sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /us
 
 ### Failed to import Python packages
 
-"Failed to import" errors when running the `make px4_sitl jmavsim` command indicates that some Python packages are not installed (where expected).
+`make px4_sitl jmavsim` 명령을 실행할 때 나타나는 "Failed to import" 오류는 일부 파이썬 꾸러미를 설치하지 않았(다고 예상)음을 나타냅니다.
 
     Failed to import jinja2: No module named 'jinja2'
     You may need to install it using:
         pip3 install --user jinja2
     
 
-If you have already installed these dependencies this may be because there is more than one Python version on the computer (e.g. Python 2.7.16 Python 3.8.3), and the module is not present in the version used by the build toolchain.
+이 의존 요소를 이미 설치했을 경우 컴퓨터에 하나 이상의 파이썬 버전을 설치하고 (예: Python 2.7.16 과 Python 3.8.3) 빌드 툴체인에서 설치하는 해당 버전이 없는 경우입니다.
 
 You should be able to fix this by explicitly installing the dependencies as shown:
 
