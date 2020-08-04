@@ -78,20 +78,20 @@ PX4에서는 POSIX-API를 제공하는 다양한 운영체제(Linux, macOS, Nutt
 
 모듈을 실행하는 방법에는 2가지가 있습니다.
 
-- **Tasks**: The module runs in its own task with its own stack and process priority.
-- **Work queue tasks**: The module runs on a shared work queue, sharing the same stack and work queue thread priority as other modules on the queue.
+- **작업**: 모듈은 자체 스택을 확보하고 프로세스 우선순위를 부여받아 자체 작업내에서 실행합니다.
+- **작업 큐(work queue)의 작업**: 모듈은 동일한 스택과 큐의 다른 모듈처럼 작업 큐 스레드 우선순위를 부여받은 공유 작업 큐에서 실행합니다.
   
-  - All the tasks must behave co-operatively as they cannot interrupt each other.
-  - Multiple *work queue tasks* can run on a queue, and there can be multiple queues.
-  - A *work queue task* is scheduled by specifying a fixed time in the future, or via uORB topic update callback.
+  - 모든 작업은 서로의 동작을 중단하지 않고 사이좋게 동작해야합니다.
+  - 다중 *작업 큐 작업*은 큐에서 실행할 수 있으며, 다중 큐가 될 수 있습니다.
+  - *작업 큐의 작업*은 향후 지정 시간에 동작하도록 계획하거나 uORB 토픽 업데이트 콜백으로 처리합니다.
   
   실행 큐에서 모듈을 실행하는 장점은 RAM 소모량이 적고, 잠재적으로 작업 전환이 빈번하지 않는다는 점입니다. 단점은 *작업 큐 작업*을 대기 상태로 두거나 메시지를 폴링하거나 입출력을 멈출(파일 읽기 등) 수 없습니다. 장시간 실행 작업(막대한 양의 계산처리 수행)의 경우 잠재적으로 개별 작업으로 분리하여 실행하거나 최소한 작업 큐를 분할해야 합니다.
 
-> **Note** Tasks running on a work queue do not show up in [`uorb top`](../middleware/modules_communication.md#uorb) (only the work queues themselves can be seen - e.g. as `wq:lp_default`). Use [`work_queue status`](../middleware/modules_system.md#workqueue) to display all active work queue items.
+> **Note** 작업 큐에서 실행하는 작업은 [`uorb top`](../middleware/modules_communication.md#uorb)에 나타나지 않습니다(작업 큐 자체는 `wq:lp_default`처럼 나타날 수는 있습니다). 모든 활성 작업 큐 항목을 보려면 [`work_queue status`](../middleware/modules_system.md#workqueue) 명령을 활용하십시오.
 
-### Background Tasks
+### 백그라운드 작업
 
-`px4_task_spawn_cmd()` 는 호출하는 (부모) 태스크와 독립적으로 수행되는 새로운 태스크 (NuttX) 나 쓰레드 (POSIX - Linux/macOS) 를 시작할때 사용됩니다.
+`px4_task_spawn_cmd()` 는 호출(상위) 작업으로부터 독립적으로 실행하는 새 작업 (NuttX) 또는 스레드(POSIX - Linux/MacOS) 실행에 활용합니다.
 
 ```cpp
 ndependent_task = px4_task_spawn_cmd(
@@ -105,15 +105,15 @@ ndependent_task = px4_task_spawn_cmd(
     );
 ```
 
-### OS-Specific Information
+### 운영체제별 정보
 
 #### NuttX
 
 [NuttX](http://nuttx.org/) 는 기체 제어 보드에서 PX4를 구동하는 주된 RTOS입니다. 오픈소스 (BSD license) 이며, 가볍고, 효율적이며 안정적입니다.
 
-모듈들은 태스크로 실행됩니다. 그들은 자신의 파일 디스크립터 리스트를 가지지만, 하나의 주소 공간을 공유합니다. 태스크는 파일 디스크립터 리스트를 공유하면서 하나 이상의 스레드를 시작할 수 있습니다.
+모듈은 작업 처럼 실행합니다. 자체적으로 파일서술자 목록를 가지나, 단일 주소 공간을 공유합니다. 작업은 파일서술자 목록을 공유하는 하나 이상의 스레드를 시작할 수 있습니다.
 
-각각의 태스크/스레드는 고정된 크기의 스택을 갖고 있습니다. 그리고 모든 스택이 적당한 여유 공간을 갖고 있는지 검사하는 주기적인 태스크가 있습니다 (stack coloring 에 기초).
+각 작업/스레드는 고정 크기 스택을 가지며, 모든 스택에 충분한 여분의 공간이 남아있는지 검사하는 (스택 콜로닝 기반) 주기적인 작업이 있습니다.
 
 #### Linux/macOS
 
