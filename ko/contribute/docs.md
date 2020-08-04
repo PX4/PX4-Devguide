@@ -31,39 +31,39 @@ Github 인터페이스는 쉽게 안되는 새 페이지 또는 그림의 추가
 3. Gitbook 클라이언트로 제대로 뜨는지 시험해봅니다.
 4. 여러분이 바꾼 내용에 대한 별도의 브랜치를 만들고 pull request(PR)를 만들어 문서에 끌어다놓게 합니다. 
 
-Change requests can be either done on the Gitbook website using the [Gitbook editor](https://gitbookio.gitbooks.io/documentation/content/editor/index.html) or locally (more flexible, but less user-friendly). Most of these instructions cover the local setup.
+변경 요청은 [Gitbook 편집기](https://gitbookio.gitbooks.io/documentation/content/editor/index.html)로 Gitbook 웹사이트에서 또는 로컬(더 유연하지만, 사용자에게 친숙하지 않은 방법)에서 진행할 수 있습니다. 이들 방법 대부분은 로컬에서의 설정을 다룹니다.
 
-### Developer or User Guide?
+### 개발자 안내서인가요? 사용자 안내서인가요?
 
-There are different types of PX4 users, and it is important that documentation goes into the right place.
+PX4 사용자에는 여러가지 유형이 있고, 문서는 제위치에 있다는 점이 중요합니다.
 
-The *Developer Guide* is for documentation that is relevant to *software developers*. This includes users who need to:
+*개발자 안내서*는 *소프트웨어 개발자*와 관련있는 내용들로 채운 문서입니다. 이 문서의 사용자는 다음을 필요로 합니다:
 
-* Add or modify platform features - modules, flight modes, etc.
-* Add support/integrate with new hardware - flight controllers, peripherals, airframes, etc.
-* Communicate with the platform from an external source - e.g. a companion computer.
-* Understand the architecture
+* 플랫폼 기능의 추가, 수정 - 모듈, 비행 모드, 등.
+* 새 하드웨어 지원 추가/통합 - 비행 컨트롤러, 주변기기, 에어프레임 등.
+* 외부 소스와의 플랫폼 통신 - 예: 보조 컴퓨터.
+* 아키텍처의 이해
 
-The *User Guide*, by contrast, is *primarily* for users who want to:
+반면에 *사용자 안내서*의 사용자는 *기초적으로* 다음을 필요로 합니다:
 
-* Fly a vehicle using PX4
-* Build, modify, or configure a vehicle using PX4 on a supported/existing airframe.
+* PX4로 비행체를 날리기
+* 지원/기존 에어프레임에 PX4로 비행체를 구성하고, 수정하고, 설정합니다.
 
-> **Tip** For example, detailed information about how to build/configure an existing airframe are in the User Guide, while instructions for defining a *new* airframe are in the Developer Guide.
+> **Tip** 예를 들어 기존 에어프레임을 빌드하고 설정하는 자세한 정보는 사용자 안내서에 있지만, *새* 에어프레임을 지정하는 방법은 개발자 안내서에 있습니다.
 
-### Get/Push Documentation Source Code
+### 문서 소스 코드 가져오고(Get) 밀어올리기(Push)
 
-To get the library(s) sources onto your local computer you will need to use the git toolchain. The instructions below explain how to get git and use it on your local computer.
+라이브러리 원본 코드를 로컬 컴퓨터에 가져오려면 git 툴체인이 있어야합니다. 아래 절차는 로컬 컴퓨터에 git을 가져다 사용하는 방법을 설명합니다.
 
-1. Download git for your computer from <https://git-scm.com/downloads>
-2. [Sign up](https://github.com/join) for github if you haven't already
-3. Create a copy (Fork) of the desired library on Github ([instructions here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository)). The library repo URLs are: 
-    * PX4 User Guide: https://github.com/PX4/px4_user_guide
-    * PX4 Developer Guide: https://github.com/PX4/Devguide
-    * QGroundControl User Guide: https://github.com/mavlink/qgc-user-guide
-    * QGroundControl Developer Guide: https://github.com/mavlink/qgc-dev-guide
-    * MAVLink Developer Guide: https://github.com/mavlink/mavlink-devguide
-4. Clone (copy) your forked repository to your local computer: 
+1. git 을 <https://git-scm.com/downloads>에서 컴퓨터로 다운로드합니다.
+2. 아직 Github에 계정이 없으면 [가입](https://github.com/join)합니다.
+3. Github에서 원하는 라이브러리의 사본을 여러분의 계정으로 복사하여 만(Fork)듭니다([절차는 여기에 있음](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository)). 저장소 라이브러리 URL은 다음과 같습니다: 
+    * PX4 사용자 안내서: https://github.com/PX4/px4_user_guide
+    * PX4 개발자 안내서: https://github.com/PX4/Devguide
+    * QGroundControl 사용자 안내서: https://github.com/mavlink/qgc-user-guide
+    * QGroundControl 개발자 안내서: https://github.com/mavlink/qgc-dev-guide
+    * MAVLink 개발자 안내서: https://github.com/mavlink/mavlink-devguide
+4. 복제한 저장소를 로컬 컴퓨터에 가져옵니다: 
         sh
         cd ~/wherever/
         git clone https://github.com/<your git name>/<repository_name>.git For example, to clone the PX4 userguide fork for a user with github account "john_citizen_smith": 
