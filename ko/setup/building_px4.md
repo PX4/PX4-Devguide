@@ -213,22 +213,22 @@ cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 
 #### 빌드
 
-> **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
+> **Note** (UART 기반) [퀄컴 ESC 보드](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board)를 사용한다면, [이곳](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md) 절차를 따르십시오. PWM기반 일반 ESC 보드를 사용한다면 이 페이지의 다음 과정을 계속 따르는 것이 좋습니다.
 
-The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](../middleware/uorb.md).
+아리 명령은 리눅스와 DSP 쪽 대상을 빌드합니다. 두 실행 파일은 [muORB](../middleware/uorb.md) 기반으로 통신합니다.
 
 ```sh
 cd Firmware
 make atlflight_eagle_default
 ```
 
-To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
+장치의 소프트웨어를 불러오려면 USB 케이블로 연결하고 장치를 부팅했는지 확인하십시오. 이 명령을 새 터미널 창에서 실행하십시오:
 
 ```sh
 adb shell
 ```
 
-Go back to previous terminal and upload:
+이전 터미널로 돌아가서 다음 명령으로 업로드하십시오:
 
 ```sh
 make atlflight_eagle_default upload
