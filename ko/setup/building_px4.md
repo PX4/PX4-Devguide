@@ -234,9 +234,9 @@ adb shell
 make atlflight_eagle_default upload
 ```
 
-Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle.
+참고로 이 명령은 [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) 설정 파일과 [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) 설정 파일을 장치에 복사(그리고 덮어쓰기)하기도 합니다. 이 파일은 각각 /usr/share/data/adsp/px4.config 와 /home/linaro/mainapp.config에 위치합니다. 운송 장비의 시작 스크립트를 직접 편집하려는 경우 참고하십시오.
 
-The mixer currently needs to be copied manually:
+현재 믹서 설정은 직접 복사해야 합니다:
 
 ```sh
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
@@ -384,17 +384,17 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER_WORLD]
 
 참고:
 
-- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`.
-- You can use three underscores if you want to specify a default value between two other settings. For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
-- You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
+- `CONFIGURATION_TARGET` 변수와 `VIEWER_MODEL_DEBUGGER` 변수의 대부분의 값은 기본값이기에, 다른 값으로의 설정은 선택입니다. 예를 들어 `gazebo` 는 `gazebo_iris` 또는 `gazebo_iris_none`과 동일합니다. 
+- 두개의 다른 설정 사이에 기본값을 지정하려면 밑줄 문자를 셋 사용할 수 있습니다. 예를 들면, `gazebo___gdb`는 `gazebo_iris_gdb`와 동일합니다.
+- PX4를 시작한 후 모의시험 환경의 동작을 기다리려면 `VIEWER_MODEL_DEBUGGER`에 `none` 값을 사용할 수 있습니다. 예로, `make px4_sitl_default none` 명령을 사용하는 PX4와 `./Tools/jmavsim_run.sh -l` 명령을 사용하는 jMAVSim을 시작하려면:
 
-The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
+`VENDOR_MODEL_VARIANT` 옵션은 PX4 소스 트리의 [/boards](https://github.com/PX4/Firmware/tree/master/boards) 디렉터리에서 *cmake* 설정 파일 일부에 대응합니다. 특히 `VENDOR_MODEL_VARIANT`는 **boards/VENDOR/MODEL/VARIANT.cmake**에 대응합니다 (예: `px4_fmu-v5_default`는 [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)에 대응)
 
 다음 절에서 추가 make 타겟을 다루도록 하겠습니다 (완전한 목록은 아님):
 
 ### 이진 파일 크기 프로파일링 {#bloaty_compare_master}
 
-The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
+`bloaty_compare_master` 빌드 대상은 코드 규모가 바뀌었을 때 미치는 영향을 잘 이해할 수 있게 합니다. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
 
 > **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
 
