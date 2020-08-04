@@ -115,9 +115,9 @@ PX4는 제어 분류 (입력) 과 출력 분류를 활용합니다. 개념은 �
 
 ## 출력 그룹/매핑
 
-하나의 출력그룹은 믹서에 매핑되고 스케일링 될 수있는 보통 8개의 정규화된 (-1..+1) 명령 포트를 가진 물리적인 버스입니다 (예. FMU PWM 출력, IO PWM 출력, UAVCAN 등).
+하나의 출력 분류는 믹서로 대응하고 스케일링할 수 있는 N개의(보통 8개) 정규화(-1..+1) 명령 포트를 가진 하나의 물리 버스(예: FMU PWM 출력, 입출력 PWM 출력, UAVCAN 등)입니다.
 
-믹서 파일은 출력이 적용되는 실제 *output group* (물리적인 버스) 를 명시적으로 정의하지는 않습니다. 대신에, 믹서의 목적은 (예. MAIN 또는 AUX 출력 컨트롤) [filename](#mixer_file_names)에서 알 수 있고, [startup scripts](../concept/system_startup.md) 에서 적절한 물리적인 버스로 매핑됩니다 ([rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface) 에서 특정지어짐).
+믹서 파일은 출력을 적용하는 실제 *출력 분류* (물리 버스)를 분명하게 정의하지 않습니다. 대신에, 믹서의 목적은 (예: MAIN 또는 AUX 출력 제어) 믹서 [파일 이름](#mixer_file_names)에서 알 수 있고, 시스템 [시작 스크립트](../concept/system_startup.md)에서 적절한 물리 버스로 대응합니다 ([rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface) 에서 특정지음).
 
 > **Note** This approach is needed because the physical bus used for MAIN outputs is not always the same; it depends on whether or not the flight controller has an IO Board (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) or uses UAVCAN for motor control. The startup scripts load the mixer files into the appropriate device driver for the board, using the abstraction of a "device". The main mixer is loaded into device `/dev/uavcan/esc` (uavcan) if UAVCAN is enabled, and otherwise `/dev/pwm_output0` (this device is mapped to the IO driver on controllers with an I/O board, and the FMU driver on boards that don't). The aux mixer file is loaded into device `/dev/pwm_output1`, which maps to the FMU driver on Pixhawk controllers that have an I/O board.
 
@@ -160,7 +160,7 @@ The AUX mixer filename (prefix `YYYY` above) depends on airframe settings and/or
 
 > **Note** Mixer file loading is implemented in [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface).
 
-### Loading a Custom Mixer {#loading_custom_mixer}
+### 개별 믹서 불러오기 {#loading_custom_mixer}
 
 PX4 loads appropriately named mixer files from the SD card directory **/etc/mixers/**, by preference, and then the version in Firmware.
 
