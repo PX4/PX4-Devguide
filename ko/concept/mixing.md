@@ -219,12 +219,12 @@ Each mixer definition begin with a line of the form:
 
 둘째 행에서는 위에서 언급한대로 계수 매개변수로 출력 계수를 지정합니다. 소숫점 처리 계산을 진행하는 동안 정의 파일의 값은 상수 10000만배만큼 늘어납니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다.
 
-The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
+정의 내용을 통해 다음과 같은 형식으로 `<control count>`개 항목에 대한 제어 입력, 스케일링을 지정합니다:
 
     S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-> **Note** The `S:` lines must be below the `O:` line.
+> **Note** `S:` 행은 `O:` 행 아래에 있어야합니다.
 
 The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group. These values are specific to the device reading the mixer definition.
 
@@ -271,7 +271,7 @@ Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed 
 
 In the case where an actuator saturates, all actuator values are rescaled so that the saturating actuator is limited to 1.0.
 
-#### Helicopter Mixer {#helicopter_mixer}
+#### 헬리콥터 믹서  {#helicopter_mixer}
 
 The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs (swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
 
