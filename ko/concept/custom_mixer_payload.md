@@ -31,28 +31,28 @@ M: 1
 S: 3 4  10000  10000      0 -10000  10000
 ```
 
-> **Note** 파일에서는 4개의 (출력에 대한) [믹서 결합](../concept/mixing.md#summing_mixer)을 나타냅니다. - `M: 1` 하나의 제어 입력(다음 `S`행)에 대한 출력을 나타냅니다. - `S: 3`_`n`_ [제어 분류 3 (수동 처리)](../concept/mixing.md#control-group-3-manual-passthrough)의 n번째 입력을 나타냅니다. So for `S: 3 5` the input is called "RC aux1" (this maps to the RC channel set in parameter `RC_MAP_AUX1`). - The section declaration order defines the order of the outputs when assigned to a physical bus (e.g. the third section might be assigned to AUX3).
+> **Note** 파일에서는 4개의 (출력에 대한) [믹서 결합](../concept/mixing.md#summing_mixer)을 나타냅니다. - `M: 1` 하나의 제어 입력(다음 `S`행)에 대한 출력을 나타냅니다. - `S: 3`_`n`_ [제어 분류 3 (수동 처리)](../concept/mixing.md#control-group-3-manual-passthrough)의 n번째 입력을 나타냅니다. 따라서 `S: 3 5` 은 "원격 조종 AUX1"입니다(이 입력은 `RC_MAP_AUX1` 매개변수의 원격 조종 채널 세트에 대응합니다). 섹션 선언 순서는 물리 버스에 할당할 출력 순서를 정의합니다(예: 세번째 섹션은 AUX3에 할당함).
 
 
-Start by copying the mixer file and putting it onto the SD Card at: **/etc/mixers/pass.aux.mix** (see [Mixing and Actuators > Loading a Custom Mixer](../concept/mixing.md#loading_custom_mixer).
+믹서 파일을 복사하여 **/etc/mixers/pass.aux.mix** SD 카드의  <0>/etc/mixers/pass.aux.mix</0> 디렉터리 위치에 놓는 과정으로 시작합니다([믹싱과 액츄에이터 > 개별 믹서 불러오기](../concept/mixing.md#loading_custom_mixer) 참고).
 
-Remove the first section with a payload control group function input:
-- Change this:
+첫번째 섹션과 페이로드 제어 분류 함수 입력을 제거하십시오:
+- 아래를:
   ```
   # AUX1 channel (control group 3, RC CH5) (select RC channel with RC_MAP_AUX1 param)
   M: 1
   S: 3 5  10000  10000      0 -10000  10000
   ```
-- To:
+- 다음으로 바꾸십시오:
   ```
   # Payload 1 (control group 6) channel 1
   M: 1
   S: 6 1  10000  10000      0 -10000  10000
   ```
 
-Because this output is in the first position in the file it will map to the first AUX PWM output (unless UAVCAN is enabled). This output will now respect updates to the payload control group (6) output 1.
+이 출력은 파일의 처음에 있기 때문에 (UAVCAN을 활성화하기 전에는) 첫번째 AUX PWM 출력에 대응합니다. 이 출력은 앞으로 페이로드 제어 분류 (6)의 출력 1을 업데이트합니다.
 
-Control group 6 will need to be defined in the code as well (it is missing!):
+제어 분류 6은 코드에서 정의한 그대로 필요합니다(빠져있음!):
 - Add `actuator_controls_6` to the TOPICS definition in [/msg/actuator_controls.msg](https://github.com/PX4/Firmware/blob/master/msg/actuator_controls.msg#L17):
   ```
   # TOPICS actuator_controls actuator_controls_0 actuator_controls_1 actuator_controls_2 actuator_controls_3 actuator_controls_6
