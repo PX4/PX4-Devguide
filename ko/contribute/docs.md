@@ -12,7 +12,7 @@
     
     ![Gitbook: 페이지 편집 단추](../../assets/gitbook/gitbook_toolbar_icon_edit.png)
     
-    (Github의) 편집 페이지를 엽니다.
+    이 동작을 통해 (Github의) 편집 페이지를 엽니다.
 
 2. 원하는 내용으로 수정합니다.
 
