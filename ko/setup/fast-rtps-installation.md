@@ -1,6 +1,6 @@
 # Fast RTPS 설치
 
-<img alt="logo" src="../../assets/fastrtps/eprosima_logo.png" style="float:left;" /> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/)는 RTPS(Real Time Publish Subscribe) 규약을 C++로 구현한 것으로 개체 관리 그룹(Object Management Group, OMG) 컨소시엄에 의해 정의되고 관리되는 UDP와 같은 신뢰성이 좋지 않은 전송을 통해 게시자-가입자간의 통신을 제공합니다. 또한 RTPS는 역시나 OMG에 의한 데이터 분배 서비스(Data Distribution Service, DDS)로 정의된 유선 상호 운용성 규약입니다.
+<img alt="logo" src="../../assets/fastrtps/eprosima_logo.png" style="float:left;" /> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/)는 RTPS(Real Time Publish Subscribe) 프로토콜의 C++ 구현체입니다. 객체 관리 그룹(Object Management Group, OMG) 컨소시엄에서 기술을 정의하고 관리합니다. UDP와 같은 신뢰성이 낮은 전송 수단으로의 게시자-가입자간의 통신 기능을 제공합니다. 또한 RTPS는 OMG에 의한 데이터 배포 서비스(Data Distribution Service, DDS)로 정의한 유선 기반 상호 운용 프로토콜입니다.
 
 Fast RTPS는 PX4에서 RTPS 인터페이스가 활성화되도록 사용되어 PX4 uORB 주제를 허용함으로서 로봇 공학 및 시뮬레이터 도구를 포함한 보드 이외의 구성 요소와 공유되도록 합니다. RTPS는 DDS의 기반 규약으로 우주항공, 군사, 그리고 IoT 활용에 널리 사용되는 실시간 게시/가입 미들웨어를 제공하는 OMG(Object Management Group)의 표준입니다. 또한 ROS2 로봇 공학 툴킷을 위한 미들웨어로서 채택되었습니다. 더 많은 정보는 [RTPS/ROS2 인터페이스: PX4-FastRTPS 브릿지](../middleware/micrortps.md)를 보십시오.
 
@@ -42,7 +42,7 @@ $ cd ~/FastRTPS-1.8.2
 $ mkdir build && cd build
 ```
 
-> **Note** You may need to [install Gradle](https://gradle.org/install/) to build the source (e.g. this is true on vanilla Fedora Linux). A build warning will be displayed if this is the case.
+> **Note** 소스코드를 빌드하려면 [Gradle을 설치](https://gradle.org/install/)해야 합니다. 이 경우 빌드 경고가 뜰 수 있습니다.
 
 리눅스에서 실행한다면, 다음 명령을 실행하십시오:
 
@@ -85,23 +85,23 @@ $ sudo make install
 
 > **Note** 바이너리를 쓸 수 있긴 하나, 소스 코드로부터 빌드하고 설치하는 방법을 추천드립니다. 바이너리로 받으면 필요 구성 요소와 의존 요소를 제자리에 위치하지 못할 수도 있습니다.
 
-You can always download the latest binary release of *eProsima Fast RTPS* from the [company website](http://www.eprosima.com/).
+[업체 웹사이트](http://www.eprosima.com/)에서 *eProsima Fast RTPS*의 최신 바이너리 릴리즈를 얼마든지 다운로드할 수 있습니다.
 
-Documentation on how to do this can be found here: [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries) (*eProsima Fast RTPS* official documentation)
+이 과정을 진행하는 방법을 언급한 문서는 [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries) (*eProsima Fast RTPS* 공식 문서)에 있습니다.
 
 ### Windows 7 32-bit와 64-bit
 
-Execute the installer and follow the instructions, choosing your preferred *Visual Studio* version and architecture when prompted.
+설치 관리자를 실행하고 절차에 따라 적절한 *비주얼 스튜디오* 버전과 프로세서 아키텍처를 선택하십시오.
 
 #### 환경 변수
 
-*eProsima Fast RTPS* requires the following environmental variable setup in order to function properly
+*eProsima Fast RTPS*가 제대로 동작하려면 다음 환경 변수 설정이 필요합니다
 
-* `FASTRTPSHOME`: Root folder where *eProsima Fast RTPS* is installed.
-* `FASTRTPSGEN_DIR`: Root folder where *eProsima FastRTPSGen* is installed.
-* Additions to the `PATH`: the **/bin** folder and the subfolder for your Visual Studio version of choice should be appended to the PATH.
+* `FASTRTPSHOME`: *eProsima Fast RTPS*를 설치한 루트 폴더
+* `FASTRTPSGEN_DIR`: *eProsima FastRTPSGen*을 설치한 루트 폴더
+* `PATH`에 설정 추가: **/bin** 폴더와 선택한 비주얼 스튜디오 버전의 하위 폴더 역시 PATH에 등록해야합니다.
 
-These variables are set automatically by checking the corresponding box during the installation process.
+이 변수는 설치 과정에서 관련 상자를 표시하면 자동으로 설정합니다.
 
 ### Linux
 
