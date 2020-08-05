@@ -82,11 +82,11 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
 
 ## 하위 모듈 업데이트 
 
-There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#contributing_code).
+하위모듈을 업데이트하는 방법에는 여러가지가 있습니다. 저장소를 복제하거나 하위모듈 디렉터리로 이동하여 [PX4에 코드 기여하기](#contributing_code)의 동일한 절차를 따르는 것입니다.
 
 ## 하위 모듈 업데이트 PR 진행
 
-This is required after you have done a PR for a submodule X repository and the bug-fix / feature-add is in the current master of submodule X. Since the Firmware still points to a commit before your update, a submodule pull request is required such that the submodule used by the Firmware points to the newest commit.
+하위모듈 X 저장소와 버그 수정/기능 추가는 하위 모듈 X 의 현재 마스터 브랜치의 PR을 완료하고 나면 이 과정이 필요합니다. 펌웨어에서는 업데이트 이전 제출 사항을 가리키고 있으니 하위 모듈 pull 요청시 펌웨어에서 활용하는 하위모듈이 새 제출 내용을 가리키도록 해야 합니다.
 
 ```sh
 cd Firmware
@@ -100,7 +100,7 @@ cd Firmware
         sh
         cd <path to submodule>
 
-* PX4 submodule might not necessarily point to the newest commit. Therefore, first checkout master and pull the newest upstream code. 
+* PX4 하위 모듈은 아마도 새 제출 내용을 가리킬 필요는 없을수도 있습니다. 그러니, 마스터 브랜치를 우선 체크아웃한 후 새 업스트림 코드를 가져오십시오. 
         sh
         git checkout master
         git pull upstream master
