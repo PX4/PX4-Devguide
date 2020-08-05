@@ -23,10 +23,10 @@ VM을 활용하는 방법이 설치하고 펌웨어 빌드 환경을 시험하�
 5. 가상 머신 생성 마법사에서 다운로드한 우분투 ISO 이미지를 설치 미디어로 선택하면 설치를 원하는 운영체제를 자동으로 감지합니다.
 6. 또한 마법사 과정을 통해, 가상머신을 실행하는 동안 할당할 자원의 양을 선택하십시오. 최대한 많은 용량의 메모리와 많은 수의 CPU 코어를 할당하고, 사용할 수 없는 호스트 윈도우 시스템 렌더링 기능은 끄십시오.
 7. 마법사 과정이 끝나면 새 가상 머신을 실행하고 다음 설치 절차에 따라 우분투 배포판을 설치하십시오. 모든 설정은 호스트 운영체제내에서만 활용할 설정이기에 화면 보호기와, 네트워크 공갹의 피해 증가를 막는 로컬 워크스테이션 보안 기능은 끄십시오.
-8. 새 가상머신을 부팅하고 나면 *VMWare 도구 드라이버와 도구 확장*을 게스트 운영체제에 설치하였는지 확인하십시오. This will enhance performance and usability of your VM usage: 
-    - Significantly enhanced graphics performance
-    - Proper support for hardware device usage like USB port allocation (important for target upload), proper mouse wheel scrolling, sound suppport
-    - Guest display resolution adaption to the window size
-    - Clipboard sharing to host system
-    - File sharing to host system
-9. Continue with [PX4 environment setup for Linux](../setup/dev_env_linux.md)
+8. 새 가상머신을 부팅하고 나면 *VMWare 도구 드라이버와 도구 확장*을 게스트 운영체제에 설치하였는지 확인하십시오. 이 과정을 거치면 가상머신의 성능을 개선하고 용이성을 확보합니다: 
+    - 그래픽 성능이 두드러지게 개선됨
+    - USB 포트 할당(타겟 업로드에 중요)과 같은 하드웨어 장치의 적절한 지원, 적절한 마우스 휠 스크롤, 음성 출력 기능 지원
+    - 게스트 운영체제 화면 해상도를 창 크기에 맞춤
+    - 호스트 시스템과 클립보드 공유
+    - 호스트 시스템과 파일 공유
+9. [리눅스용 PX4 환경 설정](../setup/dev_env_linux.md)으로 계속 진행하십시오
