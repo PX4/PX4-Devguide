@@ -2,16 +2,16 @@
 
 ## PX4에 코드 기여하기 {#contributing_code}
 
-PX4로의 기능 추가는 다음 절차를 따릅니다. In order to share your contributions on PX4, you can follow this example.
+PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따라 PX4에 기여 결과를 공유할 수 있습니다.
 
-* [Sign up](https://github.com/join) for github if you haven't already
-* Fork the Firmware (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
-* Clone your forked repository to your local computer  
+* 아직 github 계정이 없다면 [가입](https://github.com/join) 하십시오
+* 펌웨어를 별도로 복제(fork)하십시오([이곳](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository) 참고)
+* 여러분의 계정으로 복제(fork)한 저장소를 로컬 컴퓨터로 가져오십시오  
         sh
         cd ~/wherever/
         git clone https://github.com/<your git name>/Firmware.git
 
-* Go into the new directory, initialize and update the submodules, and add the original upstream Firmware  
+* 새 디렉터리로 이동, 초기화, 하위 모듈을 업데이트한 후, 원본 업스트림 펌웨어를 추가하십시오  
         sh
         cd Firmware
         git submodule update --init --recursive
@@ -58,9 +58,9 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. In order to share your
         sh
         git push origin <your feature branch name>
 
-* You can verify that the push was successful by going to your forked repository in your browser: `https://github.com/<your git name>/Firmware.git`  
-    There you should see the message that a new branch has been pushed to your forked repository.
-* Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
+* 복제(fork)한 저장소로 이동하여 밀어올리기(push)를 제대로 수행했는지 확인할 수 있습니다: `https://github.com/<your git name>/Firmware.git`  
+    새 브랜치를 복제 저장소로 밀어올렸음을 알리는 메시지를 볼 수 있어야합니다.
+* 이제 pull 요청(PR)을 할 시간입니다. On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
 ## Get a Specific Release
