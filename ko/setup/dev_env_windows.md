@@ -1,18 +1,18 @@
-# Windows Installation Instructions
+# 윈도우 환경 설치 방법
 
-To develop for PX4 on Windows, follow the instructions in [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md).
+윈도우에서 PX4 를 개발하려면, [윈도우용 Cygwin 툴체인](../setup/dev_env_windows_cygwin.md)에서 다음 절차를 따르십시오.
 
-> **Tip** The *Cygwin toolchain* supports building for NuttX/Pixhawk and jMAVSim simulator targets. If you want to build for [other targets](/setup/dev_env.md#supported-targets), consider setting up a dual boot system with [Ubuntu Linux](http://ubuntu.com).
+> **Tip** *Cygwin 툴체인에서는* NuttX/픽스호크, jMAVSim 모의시험 환경대상 빌드를 지원합니다. [다른 대상](/setup/dev_env.md#supported-targets)을 빌드하고자 한다면, [우분투 리눅스](http://ubuntu.com) 이중 부팅 시스템 설치를 고려하십시오.
 
-## Additional Tools
+## 추가 도구
 
 After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful "general development" tools.
 
-## Next Steps
+## 다음 단계
 
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+환경 구성이 끝나면, [빌드 설명서](../setup/building_px4.md)로 계속 진행하십시오.
 
-## Other Windows Toolchains
+## 기타 윈도우 툴체인
 
 There are a number of other legacy/alternative solutions that may be of interest to some developers. A comparison of the options is provided below.
 
