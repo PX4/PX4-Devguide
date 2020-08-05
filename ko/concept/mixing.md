@@ -154,19 +154,19 @@ MAIN 믹서 파일 이름(앞에 `XXXX`가 붙음)은 `set MIXER XXXX` 설정행
 AUX 믹서 파일 이름(위에서 `YYYY`로 앞에 붙음)은 에어프레임 설정이나 기본값 여부에 따릅니다:
 
 - `MIXER_AUX`는 *분명하게* 어떤 AUX 파일을 불러올 지 설정할 때 활용할 수 있습니다(예: 에어프레임 설정시 `set MIXER_AUX vtol_AAERT` 설정은 `vtol_AAERT.aux.mix` 파일을 불러옴).
-- 멀티콥터와 고정익 에어프레임은 기본적으로 [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix) 믹서 파일을 불러옵니다(예: 따로 설정하지 않으면 `MIXER_AUX` 활용). > **Tip** `pass.aux.mix` is the *RC passthrough mixer*, which passes the values of 4 user-defined RC channels (set using the [RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) parameters) to the first four outputs on the AUX output.
+- 멀티콥터와 고정익 에어프레임은 기본적으로 [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix) 믹서 파일을 불러옵니다(예: 따로 설정하지 않으면 `MIXER_AUX` 활용). > **Tip** `pass.aux.mix` 파일은 *원격 조종 처리 믹서*이며, 믹서에서는 4개의 사용자 지정 원격 조종 채널 값을 ([RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) 매개변수 활용) AUX 출력의 첫번째 출력 넷으로 전달합니다.
 - VTOL 프레임에 대해 `MIXER_AUX`을 설정했을 경우 지정 AUX 파일을 불러오며, 그렇지 않을 경우 `MIXER`에 지정한 값대로 파일을 불러옵니다.
 - 짐벌 조종간을 활용할 수 있(고 AUX에 출력 상태를 설정)는 프레임은 에어프레임별 MIXER_AUX 설정보다 *우선 반영*하며, `mount.aux.mix` 파일을 AUX 출력에 불러옵니다.
 
-> **Note** Mixer file loading is implemented in [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface).
+> **Note** 믹서 파일을 불러오는 부분은 [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)에 있습니다.
 
 ### 개별 믹서 불러오기 {#loading_custom_mixer}
 
-PX4 loads appropriately named mixer files from the SD card directory **/etc/mixers/**, by preference, and then the version in Firmware.
+PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙은 믹서 파일을 기본 설정에 따라 불러온 후, 펌웨어 버전을 불러옵니다.
 
-To load a custom mixer, you should give it the same name as a "normal" mixer file (that is going to be loaded by your airframe) and put it in the **etc/mixers** directory on your flight controller's SD card.
+개별 정의 믹서를 불러오려면 "일반" 믹서 파일과 동일한 이름을 부여해야 하며(이 파일을 에어프레임에서 불러옵니다), 이 파일을 비행 조종 장치의 SD 카드의 **/etc/mixers**에 넣어야합니다.
 
-Most commonly you will override/replace the **AUX** mixer file for your current airframe (which may be the RC passthrough mixer - [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)). See above for more information on [mixer loading](#loading_mixer).
+대부분 **AUX** 믹서 파일을 현재 에어프레임에 따라 대체합니다(원격 조종 처리 믹서 파일 이름은 [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)가 됩니다). [믹서 불러오기](#loading_mixer)에 대한 자세한 정보는 위를 다시 살펴보십시오.
 
 > **Tip** You can also *manually* load a mixer at runtime using the [mixer load](../middleware/modules_command.md#mixer) command (thereby avoiding the need for a reboot). For example, to load a mixer **/etc/mixers/test_mixer.mix** onto the MAIN PWM outputs, you could enter the following command in a [console](../debug/consoles.md): ```mixer load /dev/pwm_output0 /fs/microsd/etc/mixers/test_mixer.mix```
 
@@ -230,7 +230,7 @@ Most commonly you will override/replace the **AUX** mixer file for your current 
 
 기체 제어 입력을 믹싱할 때, 믹서 분류 0은 기체 고도 제어 분류이며, 0부터 3까지의 일반 인덱스 값은 각각, 좌우 회전각(roll), 상하 회전각(pitch), 방위 회전각(yaw), 추력입니다.
 
-The remaining fields on the line configure the control scaler with parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+행의 나머지 필드에서는 위에서 다룬대로 매개변수를 통해 제어 계수를 설정합니다. 부동 소숫점 연산을 수행하는 동안 정의 파일에 지정한 값은 1만배 증가합니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다.
 
 An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
 
