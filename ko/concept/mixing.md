@@ -217,7 +217,7 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
 
 `<control count>` 값이 0이면, 결합 결과값은 0값이며, 믹서에서는 `<lower limit>` 값과 `<upper limit>` 값으로 제한한 `<offset>` 값이 나옵니다.
 
-둘째 행에서는 위에서 언급한대로 계수 매개변수로 출력 계수를 지정합니다. 소숫점 처리 계산을 진행하는 동안 정의 파일의 값은 상수 10000만배만큼 늘어납니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다.
+둘째 행에서는 위에서 언급한대로 계수 매개변수로 출력 계수를 지정합니다. 부동 소숫점 연산을 수행하는 동안 정의 파일에 지정한 값은 10000만큼 배율을 조정합니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다.
 
 정의 내용을 통해 다음과 같은 형식으로 `<control count>`개 항목에 대한 제어 입력, 스케일링을 지정합니다:
 
@@ -265,17 +265,17 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
 
 각 좌우 회전각(roll), 상하 회전각(pitch), 방위 회전각(yaw) 계수 값은 추력 제어에 상대적인 좌우 회전각, 상하 회전각, 방위 회전각 제어의 배율을 결정합니다. 부동 소숫점 연산을 수행하는 동안 정의 파일에 지정한 값은 10000만큼 배율을 조정합니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다. 
 
-Roll, pitch and yaw inputs are expected to range from -1.0 to 1.0, whilst the thrust input ranges from 0.0 to 1.0. Output for each actuator is in the range -1.0 to 1.0.
+좌우 회전각(roll), 상하 회전각(pitch), 방위 회전각(yaw) 입력은 -1.0에서 1.0 정도 되나, 추력 입력 범위는 0.0에서 1.0 정도 됩니다. 각 액츄에이터 출력 범위는 -1.0에서 1.0까지입니다.
 
-Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed of motors and it is the speed at which the motors are commanded to rotate when all control inputs are zero.
+대기 속도는 0.0에서 1.0의 범위를 가질 수 있습니다. 대기 속도는 모터의 최대 속도에 대해 상대적이며, 다른 제어 입력을 0으로 하는 동안 어떤 모터를 회전하도록 명령을 내리느냐에 따른 속력이기도 합니다.
 
 액츄에이터 출력 값이 임계에 도달할 경우, 모든 액츄에이터 출력 값을 다시 비례 조정하여 임계에 도달한 액츄에이터 출력 값은 1.0으로 제한됩니다.
 
 #### 헬리콥터 믹서  {#helicopter_mixer}
 
-The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs (swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
+헬리콥터 믹서는 세개의 제어 입력(좌우 회전각 - roll, 상하 회전각 - pitch, 추력 - thrust)을 네개의 출력으로 묶습니다(경사판 모터와 메인 모터 ESC 설정). 헬리콥터 믹서의 첫 출력은 메인 모터의 스로틀 설정입니다. 그 다음 따라오는 출력은 경사판 서보용입니다. 미익은 단일 믹서를 추가하여 컨트롤할 수 있습니다.
 
-The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points.
+추력 제어 입력은 경사판의 상하 회전각 보정과 메인 모터 설정에 활용합니다. 스로틀 곡선과 상하 회전각 곡선을 활용하며, 커브 곡선은 5개의 점을 따라 구성합니다.
 
 > **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
 
