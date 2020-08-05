@@ -1,4 +1,4 @@
-# Weekly Dev Call {#dev_call}
+# 주간 유선 개발 미팅 {#dev_call}
 
 The PX4 dev team syncs up on platform technical details and in-depth analysis. There is also space in the agenda to discuss pull requests, major impacting issues and Q&A.
 
