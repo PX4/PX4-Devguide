@@ -168,7 +168,7 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
 
 대부분 **AUX** 믹서 파일을 현재 에어프레임에 따라 대체합니다(원격 조종 처리 믹서 파일 이름은 [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)가 됩니다). [믹서 불러오기](#loading_mixer)에 대한 자세한 정보는 위를 다시 살펴보십시오.
 
-> **Tip** You can also *manually* load a mixer at runtime using the [mixer load](../middleware/modules_command.md#mixer) command (thereby avoiding the need for a reboot). For example, to load a mixer **/etc/mixers/test_mixer.mix** onto the MAIN PWM outputs, you could enter the following command in a [console](../debug/consoles.md): ```mixer load /dev/pwm_output0 /fs/microsd/etc/mixers/test_mixer.mix```
+> **Tip** 실행 시간에 [mixer load](../middleware/modules_command.md#mixer) 명령으로 믹서를 *직접* 불러올 수도 있습니다(다시 부팅하는 상황을 피함). 예를 들면, MAIN PWM 출력의 **/etc/mixers/test_mixer.mix** 믹서 파일을 불러오려면, [콘솔](../debug/consoles.md)에서 다음 명령을 입력합니다: ```mixer load /dev/pwm_output0 /fs/microsd/etc/mixers/test_mixer.mix```
 
 ### 문법 {#mixer_syntax}
 
@@ -181,7 +181,7 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
 - [결합 믹서](#summing_mixer) - 0개 이상의 제어 입력을 단일 액츄에이터 출력으로 결합합니다. 입력은 비례 조정하며, 출력 계수를 반영하기 전에 믹싱 함수에서 결합합니다.
 - [널 믹서](#null_mixer) - 0을 출력하는 단일 액츄에이터 출력을 만듭니다(안전장치 모드가 아닐 때).
 
-> **Tip** Use *multirotor* and *helicopter mixers* for the respective types, the *summing mixer* for servos and actuator controls, and the *null mixer* for creating outputs that must be zero during normal use (e.g. a parachute has 0 normally, but might have a particular value during failsafe). A [VTOL Mixer](#vtol_mixer) combines the other mixer types.
+> **Tip** *멀티로터*와 *헬리콥터 믹서*는 각 형식에 맞게 사용하십시오. *결합 믹서*는 서보와 액츄에이터 제어에 해당하며, *널 믹서*는 일반 사용시 0값을 출력해야 하는 경우의 출력을 만들 때 활용합니다(예: 낙하산은 보통 0 값을 주지만, 안전장치 가동시 해당 값을 부여합니다). [VTOL 믹서](#vtol_mixer)는 다른 믹서 형식을 혼합합니다.
 
 각 믹서에서 내보내는 여러 출력은 믹서 형식과 설정에 따라 다릅니다. 예를 들어 결합 믹서나 널 믹서의 경우는 하나의 출력만 내보내는데 반해, 멀티로터 믹서는 공간 기하 정보에 따라 4, 6, 8개의 출력을 내보냅니다.
 
@@ -232,7 +232,7 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
 
 행의 나머지 필드에서는 위에서 다룬대로 매개변수를 통해 제어 계수를 설정합니다. 부동 소숫점 연산을 수행하는 동안 정의 파일에 지정한 값은 1만배 증가합니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다.
 
-An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
+일반적인 믹서 파일 예제는 [여기](../airframes/adding_a_new_frame.md#mixer-file)에서 설명합니다.
 
 #### 널(null) 믹서 {#null_mixer}
 
@@ -256,14 +256,14 @@ An example of a typical mixer file is explained [here](../airframes/adding_a_new
 
 지원하는 공간 기하 성분은 다음과 같습니다:
 
-- 4x - quadrotor in X configuration
-- 4+ - quadrotor in + configuration
-- 6x - hexacopter in X configuration
-- 6+ - hexacopter in + configuration
-- 8x - octocopter in X configuration
-- 8+ - octocopter in + configuration
+- 4x - 쿼드로터의 X 설정
+- 4+ - 쿼드로터의 + 설정
+- 6x - 헥사콥터의 X 설정
+- 6+ - 헥사콥터의 + 설정
+- 8x - 옥토콥터의 X 설정
+- 8+ - 옥토콥터의 + 설정
 
-Each of the roll, pitch and yaw scale values determine scaling of the roll, pitch and yaw controls relative to the thrust control. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an factor of 0.5 is encoded as 5000.
+각 좌우 회전각(roll), 상하 회전각(pitch), 방위 회전각(yaw) 계수 값은 추력 제어에 상대적인 좌우 회전각, 상하 회전각, 방위 회전각 제어의 배율을 결정합니다. 부동 소숫점 연산을 수행하는 동안 정의 파일에 지정한 값은 10000만큼 배율을 조정합니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다. 
 
 Roll, pitch and yaw inputs are expected to range from -1.0 to 1.0, whilst the thrust input ranges from 0.0 to 1.0. Output for each actuator is in the range -1.0 to 1.0.
 
