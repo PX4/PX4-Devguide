@@ -38,7 +38,7 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
         git commit -m "<your commit message>" 바람직한 제출 메시지 내용은 
     
     [기여](../contribute/README.md)절을 참조하십시오.
-* 때로는 [업스트림 마스터](https://github.com/PX4/Firmware.git) 변경으로 인해 건너뛰는 경우가 있습니다. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch  
+* 때로는 [업스트림 마스터](https://github.com/PX4/Firmware.git) 변경으로 인해 건너뛰는 경우가 있습니다. PX4는 선형 제출 기록 유지를 선호하며 [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing) 명령을 활용합니다. 업스트림의 새로 바뀐 내용을 로컬 브랜치에 반영하려면 마스터 브랜치로 전환하십시오.  
         sh
         git checkout master 그리고 새 커밋을 업스트림 마스터에서 가져오십시오
     
@@ -48,7 +48,7 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
     
       
         sh
-        git checkout <your feature branch name> and rebase on your updated master
+        git checkout <your feature branch name> 그리고 master 브랜치를 재편성(rebase)하십시오
     
       
         sh
@@ -63,9 +63,9 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
 * 이제 pull 요청(PR)을 할 시간입니다. "new branch message" 우측을 보면(한단계 전), "Compare & Create Pull Request"가 적힌 녹색 단추를 볼 수 있습니다. Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
-## Get a Specific Release
+## 특정 릴리스 가져오기
 
-To get the source code for a *specific older release*:
+*오래된 특정 릴리스*의 소스코드를 가져오려면:
 
 * Clone the Firmware repo and navigate into Firmware directory: 
         sh
