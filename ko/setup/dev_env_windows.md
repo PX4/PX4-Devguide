@@ -6,7 +6,7 @@
 
 ## 추가 도구
 
-After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful "general development" tools.
+빌드/모의시험 툴체인을 설치하고 난 후, 기타 유용한 "일반 개발" 도구 정보를 살펴보려면 [추가 도구](../setup/generic_dev_tools.md)를 실펴보십시오.
 
 ## 다음 단계
 
@@ -14,7 +14,7 @@ After setting up the build/simulation toolchain, see [Additional Tools](../setup
 
 ## 기타 윈도우 툴체인
 
-There are a number of other legacy/alternative solutions that may be of interest to some developers. A comparison of the options is provided below.
+일부 개발자에게 흥미로울 법한 수많은 기존/대안이 있습니다. A comparison of the options is provided below.
 
 > **Note** The [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the only one that is supported by the PX4 dev team. It is regularly tested as part of our continuous integration system and is known to be better performing than the other alternatives.
 
@@ -29,20 +29,20 @@ There are a number of other legacy/alternative solutions that may be of interest
 | Support                 | +                                                                      | ++ (Linux)                                                  | +/-                                                                  |
 | Comments                |                                                                        |                                                             |                                                                      |
 
-- New in 2018
-- Slim setup
-- Portable
+- 2018년도 도입
+- 간단한 설치
+- 휴대성 있음
 
 |
 
-- Full Linux features
-- CPU & RAM intensive
-- Disk space intensive
+- 완전한 리눅스 기능을 갖춤
+- CPU와 RAM 자원을 집중 소모
+- 집약적 디스크 공간 소모
 
 |
 
-- Simulation UI is a "hack".
-- Windows 10 only
-- Essentially a VM
+- 모의시험 환경 인터페이스 "해부" 필요
+- 윈도우 10 전용
+- 가상 머신
 
 |
