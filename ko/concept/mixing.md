@@ -273,20 +273,20 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
 
 #### 헬리콥터 믹서  {#helicopter_mixer}
 
-헬리콥터 믹서는 세개의 제어 입력(좌우 회전각 - roll, 상하 회전각 - pitch, 추력 - thrust)을 네개의 출력으로 묶습니다(경사판 모터와 메인 모터 ESC 설정). 헬리콥터 믹서의 첫 출력은 메인 모터의 스로틀 설정입니다. 그 다음 따라오는 출력은 경사판 서보용입니다. 미익은 단일 믹서를 추가하여 컨트롤할 수 있습니다.
+헬리콥터 믹서는 세개의 제어 입력(좌우 회전각 - roll, 상하 회전각 - pitch, 추력 - thrust)을 네 개의 출력으로 묶습니다(경사판 모터와 메인 모터 ESC 설정). 헬리콥터 믹서의 첫 출력은 메인 모터의 스로틀 설정입니다. 그 다음 따라오는 출력은 경사판 서보용입니다. 미익은 단일 믹서를 추가하여 제어할 수 있습니다.
 
-추력 제어 입력은 경사판의 상하 회전각 보정과 메인 모터 설정에 활용합니다. 스로틀 곡선과 상하 회전각 곡선을 활용하며, 커브 곡선은 5개의 점을 따라 구성합니다.
+추력 제어 입력은 경사판 모터의 상하 회전각 보정과 메인 모터 설정에 활용합니다. 스로틀 곡선과 상하 회전각 곡선을 활용하며, 커브 곡선은 5개의 점을 따라 구성합니다.
 
-> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
+> **Note** 스로틀 출력 변화 곡선과 상하 회전각 변화 곡선은 포지션에 대응하여 스로틀 값과 상하 회전각 값(제각각 별도로)이 위치한 "추력" 스틱 입력에 대응합니다. 이 설정 방식으로 제각기 다른 비행체 형식을 지닌 비행체의 각 부분의 특징을 조정할 수 있습니다. 커브 조정 방법 설명은 [이 안내서](https://www.rchelicopterfun.com/rc-helicopter-radios.html)에 있습니다 (*프로그램 구성 가능한 스로틀 출력 변화 곡선*과 *프로그램 구성 가능한 상하 회전각 변화 곡선*에서 찾아보십시오).
 
-The mixer definition begins with:
+믹서 정의는 다음으로 시작합니다:
 
     H: <number of swash-plate servos, either 3 or 4>
     T: <throttle setting at thrust: 0%> <25%> <50%> <75%> <100%>
     P: <collective pitch at thrust: 0%> <25%> <50%> <75%> <100%>
     
 
-`T:` defines the points for the throttle-curve. `P:` defines the points for the pitch-curve. Both curves contain five points in the range between 0 and 10000. For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
+`T:` 스로틀 출력 변화 곡선 점을 정의합니다. `P:` 상하 회전각 변화 곡선 점을 정의합니다. 두 변화 곡선 설정은 0부터 10000까지의 점 다섯 개를 보유합니다. 단순 선형 동작의 경우, 변화 곡선 다섯 점의 값은 `0 2500 5000 7500 10000`입니다.
 
 This is followed by lines for each of the swash-plate servos (either 3 or 4) in the following form:
 
