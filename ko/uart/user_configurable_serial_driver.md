@@ -1,4 +1,4 @@
-# Making Serial Port Drivers User-Configurable
+# 직렬 포트 드라이버의 사용자 설정 개방
 
 This topic explains how to set up a serial driver so that it can be end-user configured (via parameters) to run on any of a flight controller board's configurable serial ports.
 
