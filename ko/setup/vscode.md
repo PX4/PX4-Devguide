@@ -8,47 +8,47 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
 - 풍부한 확장기능 생태계 덕분에 PX4 개발시 C/C++ (단일 *cmake* 통합), *Python*, *Jinja2*, ROS 메시지, UAVCAN DSDL에 필요한 필요한 여러 도구를 쓸 수 있습니다: 
 - Github와의 통합 기능이 우수합니다.
 
-This topic explains how to setup the IDE and start developing.
+이 주제에서는 IDE를 설치하고 개발을 시작하는 방법을 설명합니다.
 
-> **Note** There are other powerful IDEs, but they typically take more effort to integrate with PX4. With *VScode*, configuration is stored in the PX4/Firmware tree ([Firmware/.vscode](https://github.com/PX4/Firmware/tree/master/.vscode)) so the setup process is as simple as adding the project folder.
+> **Note** 다른 강력한 통합 개발 환경이 있지만, PX4 개발을 목적으로 몇가지 기능을 통합하려면 약간의 수고로움이 더 필요합니다. *VSCode*에서는 PX4/Firmware 트리([Firmware/.vscode](https://github.com/PX4/Firmware/tree/master/.vscode)에 설정을 저장하기에 설치 과정은 단지 프로젝트 폴더를 추가하면 되는 정도로 간단합니다.
 
 ## 선행 조건
 
-You must already have installed the command line [PX4 developer environment](../setup/dev_env.md) for your platform and downloaded the *Firmware* source code repo.
+[PX4 개발자 환경](../setup/dev_env.md) 명령행을 플랫폼에 우선 설치해야 하며, *Firmware* 소스 코드 저장소를 다운로드해야합니다.
 
 ## 설치 및 설정
 
-1. [Download and install VSCode](https://code.visualstudio.com/) (you will be offered the correct version for your OS).
-2. Open VSCode and add the PX4 source code:
+1. [VSCode를 다운로드하고 설치합니다](https://code.visualstudio.com/) (운영체제에 맞는 올바른 버전을 받아야 합니다).
+2. VSCode를 열고 PX4 소스 코드를 추가하십시오:
     
-   - Select *Open folder ...* option on the welcome page (or using the menu: **File > Open Folder**): ![폴더 열기](../../assets/vscode/welcome_open_folder.jpg)
-   - A file selection dialog will appear. Select the PX4 **Firmware** directory and then press **OK**.
+   - 환영 페이지에서 *Open folder ...* 옵션을 선택하십시오(또는 **File > Open Folder** 메뉴 선택): ![폴더 열기](../../assets/vscode/welcome_open_folder.jpg)
+   - 파일 선택 대화상자가 뜹니다. PX4 **Firmware** 디렉터리를 선택하고 **OK**를 누르십시오.
     
-    The project files and configuration will then load into *VSCode*.
+    이 과정을 끝내면 프로젝트 파일과 설정 파일을 *VSCode*에 불러옵니다.
 
-3. Press **Install All** on the *This workspace has extension recommendations* prompt (this will appear on the bottom right of the IDE). ![확장 기능 설치](../../assets/vscode/prompt_install_extensions.jpg)
+3. *This workspace has extension recommendations* 프롬프트가 뜨면 **Install All** 을 누르십시오(IDE의 우측 하단에 뜹니다). ![확장 기능 설치](../../assets/vscode/prompt_install_extensions.jpg)
     
-    VSCode will open the *Extensions* panel on the left hand side so you can watch the progress of installation.
+    VSCode에서 *Extensions* 창을 좌측에 띄우므로 설치 과정을 볼 수 있습니다.
     
     ![VSCode 탐색기에 불러온 PX4
 ](../../assets/vscode/installing_extensions.jpg)
 
-4. A number of notifications/prompts may appear in the bottom right corner
+4. 몇가지 알림/프롬프트가 우측 하단 구석에 뜹니다
     
-    > **Tip** If the prompts disappear, click the little "alarm" icon on the right of the bottom blue bar.
+    > **Tip** 프롬프트가 사라지면, 하단 청색 표시줄의 우측 "alarm" 아이콘을 누르십시오.
 
-- If prompted to install a new version of *cmake*: 
-   - Say **No** (the right version is installed with the [PX4 developer environment](../setup/dev_env.md)).
-- If prompted to sign into *github.com* and add your credentials: 
-   - This is up to you! It provides a deep integration between Github and the IDE, which may simplify your workflow.
-- Other prompts are optional, and may be installed if they seem useful. <!-- perhaps add screenshot of these prompts -->
+- *cmake* 최신 버전을 설치하라고 뜬다면: 
+   - **No**를 선택하십시오(올바른 버전은 [PX4 개발 환경](../setup/dev_env.md)에 있습니다).
+- *github.com*에 접속할 지를 물으면 인증 정보를 입력하십시오: 
+   - 이제 다 끝났습니다! Github와 통합 개발 환경간의 충분한 통합이 이루어져 작업 과정을 단순화해줍니다.
+- 다른 프롬프트 응답은 선택적입니다. 쓸만하다고 생각하면 설치하십시오.<!-- perhaps add screenshot of these prompts -->
 
 ## PX4 빌드 {#building}
 
-To build:
+빌드를 진행하려면:
 
-1. Select your build target ("cmake build config"): 
-   - The current *cmake build target* is shown on the blue *config* bar at the bottom (if this is already your desired target, skip to next step). ![Cmake 빌드 대상 선택](../../assets/vscode/cmake_build_config.jpg)
+1. 빌드 대상을 선택하십시오("cmake build config"): 
+   - 현재 *cmake build target*은 하단 청색 *config* 표시줄에 나타납니다(이미 원하는 대상이 떴다면 이 과정은 건너뛰셔도 됩니다). ![Cmake 빌드 대상 선택](../../assets/vscode/cmake_build_config.jpg)
    - Click the target on the config bar to display other options, and select the one you want (this will replace any selected target).
    - *Cmake* will then configure your project (see notification in bottom right). ![Cmake 설정 프로젝트](../../assets/vscode/cmake_configuring_project.jpg)
    - Wait until configuration completes. When this is done the notification will disappear and you'll be shown the build location: ![Cmake config project](../../assets/vscode/cmake_configuring_project_done.jpg).
@@ -68,7 +68,7 @@ SITL의 PX4를 디버깅하려면:
 
 3. 디버깅 "play" 화살표를 눌러 디버깅을 시작하십시오(상단 표시줄의 디버깅 대상 옆 - 분홍색 상자에 있음).
 
-While debugging you can set breakpoints, step over code, and otherwise develop as normal.
+디버깅을 진행하는 동안 중단점을 설정하고, 코드를 건너뛰어 실행할 수 있으며, 그 동안에도 일반 상태로 개발이 가능합니다.
 
 ## 코드 자동 완성 {#code completion}
 
