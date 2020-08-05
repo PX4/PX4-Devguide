@@ -305,7 +305,7 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
 
 이렇게 하여, 후미익 설정은 yaw 명령에 직접적으로 대응합니다. 후미익에 전용 모터가 달린만큼, 후미익 서보 제어 로터와 동작합니다.
 
-The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) can be viewed as an example.
+[blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix)를 예로 살펴볼 수 있습니다.
 
     H: 3
     T:      0   3000   6000   8000  10000
@@ -337,4 +337,4 @@ VTOL 시스템은 멀티로터 출력 목적의 [멀티로터 믹서](#multiroto
 
 수직 이착륙기 믹서 시스템은 단일 믹서로 결합할 수 있는데, 액츄에이터는 입출력 포트 또는 FMU 포트로 연결하거나, 제각각의 믹서 파일로 입출력과 AUX용포트를 따로 나눕니다. 액츄에이터를 별도로 분리할 경우, 모든 멀티콥터 모터를 하나의 포트에 모아 붙이고, 모든 서보와 고정익 모터를 다른 포트에 모아 붙이는 방안을 추천드립니다.
 
-> **Note** The FMU output can only be used for multirotor motors starting from PX4 v1.11. To use the FMU output set [VT_MC_ON_FMU=1](../advanced/parameter_reference.md#VT_MC_ON_FMU) (otherwise they are not switched off when in fixed-wing flight mode).
+> FMU 출력은 PX4 v1.11 부터 시작하는 멀티로터 모터에 활용할 수 있습니다. FMU 출력을 활용하려면 [VT_MC_ON_FMU=1](../advanced/parameter_reference.md#VT_MC_ON_FMU) 값을 설정하십시오(그렇지 않으면 고정익 비행 모드일 때 끌 수 없습니다).
