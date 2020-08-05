@@ -60,8 +60,8 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
 
 * 복제(fork)한 저장소로 이동하여 밀어올리기(push)를 제대로 수행했는지 확인할 수 있습니다: `https://github.com/<your git name>/Firmware.git`  
     새 브랜치를 복제 저장소로 밀어올렸음을 알리는 메시지를 볼 수 있어야합니다.
-* 이제 pull 요청(PR)을 할 시간입니다. "new branch message" 우측을 보면(한단계 전), "Compare & Create Pull Request"가 적힌 녹색 단추를 볼 수 있습니다. Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
-* You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
+* 이제 pull 요청(PR)을 할 시간입니다. "new branch message" 우측을 보면(한단계 전), "Compare & Create Pull Request"가 적힌 녹색 단추를 볼 수 있습니다. 그 다음 바뀐 내용을 나열하고 의미있는 제목(PR 제출 건이 하나인 경우, 보통 제출 메시지)과 메시지(<span style="color:orange">어떤 이유로 뭘 했는가를 설명</span>)를 추가할 수 있습니다(추가해야 합니다). [다른 pull 요청](https://github.com/PX4/Firmware/pulls)을 보고 비교해보십시오)
+* 이제 다 끝났습니다. PX4 담당자가 기여 내용을 살펴보고 병합을 할 지 말지를 결정합니다. 그동안 바뀐 내용에 대해 질문이 있을지 한번 정도는 확인해보십시오.
 
 ## 특정 릴리스 가져오기
 
@@ -92,11 +92,11 @@ This is required after you have done a PR for a submodule X repository and the b
 cd Firmware
 ```
 
-* Make a new branch that describes the fix / feature for the submodule update: 
+* 수정 내용 / 하위모듈 업데이트 기능을 설명하는 새 브랜치를 만드십시오: 
         sh
         git checkout -b pr-some-fix
 
-* Go to submodule subdirectory 
+* 하위 모듈 하위 디렉터리로 이동하십시오 
         sh
         cd <path to submodule>
 
@@ -105,7 +105,7 @@ cd Firmware
         git checkout master
         git pull upstream master
 
-* Go back to Firmware directory, and as usual add, commit and push the changes. 
+* 펌웨어 디렉터리로 돌아가서 마찬가지로 바뀐 내용의 추가, 제출, 밀어올리기를 진행하십시오. 
         sh
         cd -
         git add <path to submodule>
@@ -114,19 +114,19 @@ cd Firmware
 
 ## pull 요청 진입
 
-You can test someone's pull request (changes are not yet merged) even if the branch to merge only exists on the fork from that person. Do the following:
+브랜치를 만든 사람의 기존 사본에만 병합 대상 브랜치가 있을 경우, 누군가의 pull 요청을 시험(바뀐 내용을 마스터 브랜치에 아직 병합하지 않음)할 수 있습니다. 다음 명령을 실행하십시오:
 
 ```sh
 git fetch upstream  pull/<PR ID>/head:<branch name>
 ```
 
-`PR ID` is the number right next to the PR's title (without the #) and the `<branch name>` can also be found right below the `PR ID`, e.g. `<the other persons git name>:<branch name>`. After that you can see the newly created branch locally with
+`PR ID`는 PR 제목 다음 옆에 있는 (# 을 뺀) 숫자이며 `<branch name>`은 아래의 `PR ID` 바로 옆에서 찾을 수 있습니다. 예를 들면 `<the other persons git name>:<branch name>` 같은 식입니다. 이 과정을 진행하고 나면 다음 명령으로 로컬에서 새로 만든 브랜치를 볼 수 있습니다
 
 ```sh
 git branch
 ```
 
-Then switch to that branch
+그러면 브랜치를 전환하겠습니다.
 
 ```sh
 git checkout <branch name>
