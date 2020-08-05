@@ -177,7 +177,7 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
 믹서 정의 형식에는 [멀티로터 믹서](#multirotor_mixer), [헬리콥터 믹서](#helicopter_mixer), [결합 믹서](#summing_mixer), [널 믹서](#null_mixer) 네가지가 있습니다.
 
 - [멀티로터 믹서](#multirotor_mixer) - + 방향 또는 X축 방향의 4, 6, 8 회전 객체 출력을 가진 기체를 정의
-- [헬리콥터 믹서](#helicopter_mixer) - 경사판 서보와 메인 모터 ESC 출력을 지닌 기체를 정의(미익은 별도의 [결합 믹서](#summing_mixer)임.)
+- [헬리콥터 믹서](#helicopter_mixer) - 경사판 서보와 메인 모터 ESC 출력을 지닌 기체를 정의(후미익은 별도의 [결합 믹서](#summing_mixer)임.)
 - [결합 믹서](#summing_mixer) - 0개 이상의 제어 입력을 단일 액츄에이터 출력으로 결합합니다. 입력은 비례 조정하며, 출력 계수를 반영하기 전에 믹싱 함수에서 결합합니다.
 - [널 믹서](#null_mixer) - 0을 출력하는 단일 액츄에이터 출력을 만듭니다(안전장치 모드가 아닐 때).
 
@@ -273,7 +273,7 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
 
 #### 헬리콥터 믹서  {#helicopter_mixer}
 
-헬리콥터 믹서는 세개의 제어 입력(좌우 회전각 - roll, 상하 회전각 - pitch, 추력 - thrust)을 네 개의 출력으로 묶습니다(경사판 모터와 메인 모터 ESC 설정). 헬리콥터 믹서의 첫 출력은 메인 모터의 스로틀 설정입니다. 그 다음 따라오는 출력은 경사판 서보용입니다. 미익은 단일 믹서를 추가하여 제어할 수 있습니다.
+헬리콥터 믹서는 세개의 제어 입력(좌우 회전각 - roll, 상하 회전각 - pitch, 추력 - thrust)을 네 개의 출력으로 묶습니다(경사판 모터와 메인 모터 ESC 설정). 헬리콥터 믹서의 첫 출력은 메인 모터의 스로틀 설정입니다. 그 다음 따라오는 출력은 경사판 서보용입니다. 후미익은 단일 믹서를 추가하여 제어할 수 있습니다.
 
 추력 제어 입력은 경사판 모터의 상하 회전각 보정과 메인 모터 설정에 활용합니다. 스로틀 곡선과 상하 회전각 곡선을 활용하며, 커브 곡선은 5개의 점을 따라 구성합니다.
 
@@ -293,17 +293,17 @@ PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙�
     S: <angle> <arm length> <scale> <offset> <lower limit> <upper limit>
     
 
-The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
+`<angle>`는 도 단위로, 0도는 선두 부분의 방향입니다. 위에서 본 바와 같이, 양의 각도 방향은 시계 방향입니다. `<arm length>`은 정규화 길이이며, 10000은 1을 의미합니다. 모든 서보 암이 동일한 길이를 가진다면, 해당 값은 10000이어야 합니다. 암의 길이가 늘어나면 서보 하자율을 줄이며, 길이가 줄어들면 하자율이 늘어납니다.
 
-The servo output is scaled by `<scale> / 10000`. After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
+서보 출력은 `<scale> / 10000`만큼 비율 조정됩니다. 비율 조정이 끝나면 `<offset>`을 반영하는데 이 값은 -10000에서 +10000까지입니다. `<lower limit>`과 `<upper limit>` 값은 전체 서보 출력 범위에 해당하는 -10000과 +10000입니다.
 
-The tail rotor can be controller by adding a [summing mixer](#summing_mixer):
+후미익은 [결합 믹서](#summing_mixer)를 추가하여 제어할 수 있습니다.
 
     M: 1
     S: 0 2  10000  10000      0 -10000  10000
     
 
-이렇게 하여, 미익 설정은 yaw 명령에 직접적으로 대응합니다. 미익에 전용 모터가 달린만큼, 서보 제어 미익 로터와 동작합니다.
+이렇게 하여, 후미익 설정은 yaw 명령에 직접적으로 대응합니다. 후미익에 전용 모터가 달린만큼, 후미익 서보 제어 로터와 동작합니다.
 
 The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) can be viewed as an example.
 
