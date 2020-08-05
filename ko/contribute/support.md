@@ -27,17 +27,17 @@
 
 ## 주간 유선 개발 미팅 {#dev_call}
 
-The [Dev Call](../contribute/dev_call.md) is a weekly meeting attended by the PX4 dev team to discuss platform technical details, coordinate activities and perform in-depth analysis.
+[유선 개발 미팅(Dev Call)](../contribute/dev_call.md)은 PX4 개발팀이 주관하는 주간 회의이며, 플랫폼 기술 상세, 활동 조정, 심층 분석 수행 관련하여 논의합니다.
 
-There is also space in the agenda to discuss pull requests, major impacting issues and Q&A.
+pull 요청, 주요 현안, 질답 요소를 의논할 의제 시간을 확보하기도 합니다.
 
-> **Tip** For other developer events see: [Contribution > Calendar & Events](../README.md#calendar).
+> **Tip**: 다른 개발자 행사는 [기여n > 달력과 행사](../README.md#calendar)를 살펴보십시오.
 
 ## 시험 비행
 
 드론코드 시험 팀에서는 여러분이 보낸 pull 요청의 검토(시험 비행)를 지원할 수 있고 로그에 대한 의견을 제공할 수 있습니다.
 
-See [Test Flights](../test_and_ci/test_flights.md) for information about available test vehicles/autopilots, how to request flights, and response times.
+진행할 기체 시험, 자동 운항 시험, 운항 요청 방법, 결과 응답 시간 정보는 [시험 비행](../test_and_ci/test_flights.md)을 참고 하십시오.
 
 ## 일반 지원
 
