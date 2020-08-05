@@ -17,34 +17,34 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
         git submodule update --init --recursive
         git remote add upstream https://github.com/PX4/Firmware.git
 
-* You should have now two remote repositories: One repository is called upstream that points to the PX4 Firmware, and one repository that points to your forked repository of the PX4 repository.
-* This can be checked with the following command: 
+* 이제 원격 저장소가 둘이 됐습니다. 하나는 PX4 펌웨어를 가리키는 업스트림 저장소이며, 다른 하나는 PX4 저장소에서 복제(fork)한 저장소를 가리키는 저장소입니다.
+* 다음 명령으로 이를 확인해볼 수 있습니다: 
         sh
         git remote -v
 
-* Make the changes that you want to add to the current master.
-* Create a new branch with a meaningful name that represents your feature  
+* 현재 마스터 브랜치에 추가하고자 하는 내용을 수정하십시오.
+* 여러분이 구현한 기능을 설명하는 의미있는 이름으로 새 브랜치를 만드십시오.  
         sh
-        git checkout -b <your feature branch name> you can use the command 
+        git checkout -b <your feature branch name>
     
-    `git branch` to make sure you're on the right branch.
-* Add your changes that you want to be part of the commit by adding the respective files  
+    `git branch` 명령으로 적절한 브랜치에 있는지 확인할 수 있습니다.
+* 각 파일을 커밋의 일부로 추가하는 방식으로 바뀐 내용을 추가하십시오.  
         sh
-        git add <file name> If you prefer having a GUI to add your files see 
+        git add <file name> 파일을 추가하는 적절한 GUI 프로그램을 원한다면 
     
-    [Gitk](https://git-scm.com/book/en/v2/Git-in-Other-Environments-Graphical-Interfaces) or [`git add -p`](http://nuclearsquid.com/writings/git-add/).
-* Commit the added files with a meaningful message explaining your changes  
+    [Gitk](https://git-scm.com/book/en/v2/Git-in-Other-Environments-Graphical-Interfaces) 또는 [`git add -p`](http://nuclearsquid.com/writings/git-add/) 를 참고하십시오.
+* 추가한 파일을 바뀐 내용을 설명한 명료한 메시지를 넣어 제출하십시오  
         sh
-        git commit -m "<your commit message>" For a good commit message, please refer to 
+        git commit -m "<your commit message>" 바람직한 제출 메시지 내용은 
     
-    [Contributing](../contribute/README.md) section.
+    [기여](../contribute/README.md)절을 참조하십시오.
 * Some time might have passed and the [upstream master](https://github.com/PX4/Firmware.git) has changed. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch  
         sh
-        git checkout master Then pull the newest commits from upstream master
+        git checkout master 그리고 새 커밋을 업스트림 마스터에서 가져오십시오
     
       
         sh
-        git pull upstream master Now your local master is up to date. Switch back to your feature branch
+        git pull upstream master 이제 로컬 마스터 브랜치는 최신입니다. 여러분이 기능을 추가하는 브랜치로 돌아가십시오
     
       
         sh
@@ -54,13 +54,13 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
         sh
         git rebase master
 
-* Now you can push your local commits to your forked repository  
+* 이제 로컬 커밋을 복제(fork)한 저장소로 밀어 올릴 수 있습니다  
         sh
         git push origin <your feature branch name>
 
 * 복제(fork)한 저장소로 이동하여 밀어올리기(push)를 제대로 수행했는지 확인할 수 있습니다: `https://github.com/<your git name>/Firmware.git`  
     새 브랜치를 복제 저장소로 밀어올렸음을 알리는 메시지를 볼 수 있어야합니다.
-* 이제 pull 요청(PR)을 할 시간입니다. On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
+* 이제 pull 요청(PR)을 할 시간입니다. "new branch message" 우측을 보면(한단계 전), "Compare & Create Pull Request"가 적힌 녹색 단추를 볼 수 있습니다. Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
 ## Get a Specific Release
