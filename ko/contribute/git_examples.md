@@ -38,7 +38,7 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
         git commit -m "<your commit message>" 바람직한 제출 메시지 내용은 
     
     [기여](../contribute/README.md)절을 참조하십시오.
-* Some time might have passed and the [upstream master](https://github.com/PX4/Firmware.git) has changed. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch  
+* 때로는 [업스트림 마스터](https://github.com/PX4/Firmware.git) 변경으로 인해 건너뛰는 경우가 있습니다. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch  
         sh
         git checkout master 그리고 새 커밋을 업스트림 마스터에서 가져오십시오
     
