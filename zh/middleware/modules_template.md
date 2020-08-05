@@ -1,38 +1,38 @@
-# Modules Reference: Template
+# 模块参考: 模板
 
-## module
+## 模块
 
-Source: [templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module)
+源码：[templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module)
 
-### Description
+### 描述
 
-Section that describes the provided module functionality.
+该部分描述所提供模块的功能。
 
-This is a template for a module running as a task in the background with start/stop/status functionality.
+这是一个模块的模版，该模块在后台作为任务（task）运行并且有 start/stop/status 功能。
 
-### Implementation
+### 实现
 
-Section describing the high-level implementation of this module.
+该部分描述模块的高层次实现。
 
-### Examples
+### 示例
 
-CLI usage example:
+CLI 命令行用法示例：
 
     module start -f -p 42
     
 
-### Usage {#module_usage}
+### 用法 {#module_usage}
 
-    module <command> [arguments...]
+    module &lt;command&gt; [arguments...]
      Commands:
        start
-         [-f]        Optional example flag
-         [-p <val>]  Optional example parameter
-                     default: 0
+         [-f]        可选的示例标志
+         [-p &lt;val&gt;]  可选的示例参数
+                     默认值：0
     
        stop
     
-       status        print status info
+       status        打印状态信息
     
 
 ## work_item_example
