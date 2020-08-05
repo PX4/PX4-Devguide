@@ -1,8 +1,8 @@
-# Visual Studio Code IDE (VSCode)
+# 비주얼 스튜디오 코드 IDE (VSCode)
 
-[Visual Studio Code](https://code.visualstudio.com/) is a powerful cross-platform source code editor/IDE that can be used for PX4 development on Ubuntu 18.04 LTS and macOS (Windows support coming soon).
+[비주얼 스튜디오 코드](https://code.visualstudio.com/)는 강력한 교차 플랫폼 소스 코드 편집기/통합 개발 환경이며, 우분투 18.04 LTS와 macOS(윈도우 는 곧 지원 예정)의 PX4 개발에 활용할 수 있습니다.
 
-There are a number of reasons to use VSCode for PX4 development:
+PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니다:
 
 - Getting setup *really* only takes a few minutes.
 - A rich extension ecosystem that enables a huge range of tools needed for PX4 development: C/C++ (with solid *cmake* integration), *Python*, *Jinja2*, ROS messages, and even UAVCAN dsdl.
