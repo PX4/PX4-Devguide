@@ -2,7 +2,7 @@
 
 <img alt="logo" src="../../assets/fastrtps/eprosima_logo.png" style="float:left;" /> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/)는 RTPS(Real Time Publish Subscribe) 프로토콜의 C++ 구현체입니다. 객체 관리 그룹(Object Management Group, OMG) 컨소시엄에서 기술을 정의하고 관리합니다. UDP와 같은 신뢰성이 낮은 전송 수단으로의 게시자-가입자간의 통신 기능을 제공합니다. 또한 RTPS는 OMG에 의한 데이터 배포 서비스(Data Distribution Service, DDS)로 정의한 유선 기반 상호 운용 프로토콜입니다.
 
-Fast RTPS는 PX4에서 RTPS 인터페이스가 활성화되도록 사용되어 PX4 uORB 주제를 허용함으로서 로봇 공학 및 시뮬레이터 도구를 포함한 보드 이외의 구성 요소와 공유되도록 합니다. RTPS는 DDS의 기반 규약으로 우주항공, 군사, 그리고 IoT 활용에 널리 사용되는 실시간 게시/가입 미들웨어를 제공하는 OMG(Object Management Group)의 표준입니다. 또한 ROS2 로봇 공학 툴킷을 위한 미들웨어로서 채택되었습니다. 더 많은 정보는 [RTPS/ROS2 인터페이스: PX4-FastRTPS 브릿지](../middleware/micrortps.md)를 보십시오.
+PX4에서 활용하는 Fast RTPS는 RTPS 인터페이스에서 PX4 uORB 토픽을 로보틱스 도구와 모의시험 환경 도구 등의 오프보드 도구에 공유할 수 있게 합니다. RTPS는 DDS의 기반 프로토콜로 항공, 군사, IoT 활용에 널리 활용하도록 실시간 게시/가입 미들웨어를 제공하는 OMG(Object Management Group) 표준입니다. 또한 ROS2 로봇 공학 툴킷용 미들웨어로 채택했습니다. 더 많은 정보는 [RTPS/ROS2 인터페이스: PX4-FastRTPS 브릿지](../middleware/micrortps.md)를 보십시오.
 
 > **Tip** 이 글을 작성하는 시점에 우분투 운영체제에서는 *소스 코드*로 FastRTPS 1.8.2 를 설치해야합니다.
 
