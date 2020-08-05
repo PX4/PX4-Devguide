@@ -1,20 +1,20 @@
-# Windows Virtual Machine-Hosted Toolchain
+# 윈도우 가상 머신 제공 툴체인
 
-> **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.
+> **Note** [윈도우 Cygwin 툴체인](../setup/dev_env_windows_cygwin.md)이 윈도우 개발 환경에서 (유일하게) 공식 지원하는 툴체인입니다.
 
-Windows developers can run the PX4 toolchain in a virtual machine (VM) with Linux as the guest operating system. After setting up the virtual machine, the installation and setup of PX4 within the VM is exactly the same as on a native Linux computer.
+윈도우 개발자는 PX4 툴체인을 게스트 운영체제로 설치한 리눅스 가상 머신(VM)에서에서 실행할 수 있습니다. 가상 머신 설치 후, 가상 머신 내의 PX4 설치 및 설정은 리눅스 자체를 설치한 컴퓨터와 동일합니다.
 
-> **Tip** Allocate as many CPU cores and memory resources to the VM as possible.
+> **Tip** 가능하면 가상 머신에 CPU 코어와 메모리를 많이 할당하십시오.
 
-While using a VM is a very easy way to set up and test an environment for building firmware, users should be aware:
+VM을 활용하는 방법이 설치하고 펌웨어 빌드 환경을 시험하기에 가장 쉬운 방버이긴 하나, 사용자 여러분은 다음을 인지하고 있어야 합니다:
 
-1. Firmware building will be slower than native building on Linux.
-2. The JMAVSim frame rate be much slower than on native Linux. In some cases the vehicle may crash due to issues related to insufficient VM resources.
-3. Gazebo and ROS can be installed, but are unusably slow.
+1. 펌웨어 빌드는 리눅스 자체에서 빌드할 때보다 느립니다.
+2. jMAVSim 프레임 재생율은 리눅스 자체에서 재생할 때보다 느립니다. 어떤 경우에는 가상 머신 자원이 부족하여 기체가 멈출 수 있습니다.
+3. 가제보와 ROS를 설치할 수 있습니다만, 도저히 못쓸 만큼 느립니다.
 
-## Instructions
+## 절차
 
-There are multiple ways to setup a VM which is capable of executing the PX4 environment on your system. This guide walks you through a VMWare setup. VMWare performance is acceptable for basic usage (building Firmware) but not for running ROS or Gazebo.
+시스템에 PX4 환경 실행 기능을 심은 VM 환경을 설치하는 방법에는 여러가지가 있습니다. 이 안네서에서는 VMWare 설치 방식으로 진행하도록 하겠습니다. VMWare performance is acceptable for basic usage (building Firmware) but not for running ROS or Gazebo.
 
 1. Download [VMWare Player Freeware](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)
 2. Install it on your Windows system
