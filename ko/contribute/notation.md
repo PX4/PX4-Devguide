@@ -10,16 +10,16 @@
 
 ## 약어
 
-| 축약어         | 확장                                                                                                                                                                             |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| AOA         | 받음각. *alpha*로 표기                                                                                                                                                               |
-| AOS         | 횡활각. *beta*로 표기                                                                                                                                                                |
-| FRD         | Coordinate system where the X-axis is pointing towards the Front of the vehicle, the Y-axis is pointing Right and the Z-axis is pointing Down, completing the right-hand rule. |
-| FW          | 고정익                                                                                                                                                                            |
-| MC          | 멀티콥터                                                                                                                                                                           |
-| MPC 또는 MCPC | 멀티콥터 위치 조종기. MPC는 모델 예측 제어라고도 합니다.                                                                                                                                             |
-| NED         | Coordinate system where the X-axis is pointing towards the true North, the Y-axis is pointing East and the Z-axis is pointing Down, completing the right-hand rule.            |
-| PID         | Controller with Proportional, Integral and Derivative actions.                                                                                                                 |
+| 축약어         | 확장                                                     |
+| ----------- | ------------------------------------------------------ |
+| AOA         | 받음각. *alpha*로 표기                                       |
+| AOS         | 횡활각. *beta*로 표기                                        |
+| FRD         | 오른손 법칙에 따라 기체의 앞부분을 X축, 오른쪽 방향을 Y축, 아래 방향을 Z축으로 두는 좌표계 |
+| FW          | 고정익                                                    |
+| MC          | 멀티콥터                                                   |
+| MPC 또는 MCPC | 멀티콥터 위치 조종기. MPC는 모델 예측 제어라고도 합니다.                     |
+| NED         | 오른손 법칙에 따라 X 축은 진북을 가리키고 Y 축은 진동, Z 축은 아래를 가리키는 좌표계    |
+| PID         | 비례, 적분, 미분 동작 조종기.                                     |
 
 ## 기호
 
@@ -79,14 +79,14 @@ $$\boldsymbol{\mathrm{\tilde{q}}}$$ 로컬 프레임 $$\ell$$에 상대적인 �
 | $$b$$     | 바디 프레임              |
 | $$w$$     | 윈드 프레임              |
 
-## Decorators
+## 장식 기호
 
-| Decorator       | Description        |
-| --------------- | ------------------ |
-| $$()^*$$        | Complex conjugate. |
-| $$\dot{()}$$   | Time derivative.   |
-| $$\hat{()}$$   | Estimate.          |
-| $$\bar{()}$$   | Mean.              |
-| $$()^{-1}$$     | Matrix inverse.    |
-| $$()^T$$        | Matrix transpose.  |
-| $$\tilde{()}$$ | Quaternion.        |
+| 장식 기호           | 설명     |
+| --------------- | ------ |
+| $$()^*$$        | 켤레 복소수 |
+| $$\dot{()}$$   | 시간 미분  |
+| $$\hat{()}$$   | 추정     |
+| $$\bar{()}$$   | 평균     |
+| $$()^{-1}$$     | 역행렬    |
+| $$()^T$$        | 전치행렬   |
+| $$\tilde{()}$$ | 4원화    |
