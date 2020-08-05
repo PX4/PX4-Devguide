@@ -14,24 +14,24 @@
 
 ## 기타 윈도우 툴체인
 
-일부 개발자에게 흥미로울 법한 수많은 기존/대안이 있습니다. A comparison of the options is provided below.
+일부 개발자에게 흥미로울 법한 수많은 기존/대안이 있습니다. 선택지의 비교는 다음과 같습니다.
 
-> **Note** The [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the only one that is supported by the PX4 dev team. It is regularly tested as part of our continuous integration system and is known to be better performing than the other alternatives.
+> **Note** [Cygwin 툴체인](../setup/dev_env_windows_cygwin.md) 은 PX4 개발팀에서 유일하게 지원하는 수단입니다. 지속 통합 시스템에서 주기적으로 시험하며, 다른 대안에 비해 훨씬 잘 동작합니다.
 
-|                         | [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) **(Supported)** | [Virtual Machine Toolchain](../setup/dev_env_windows_vm.md) | [Bash on Windows Toolchain](../setup/dev_env_windows_bash_on_win.md) |
-| ----------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------- |
-| Installation            | MSI installer or Script                                                | Script                                                      | Script                                                               |
-| Native binary execution | yes                                                                    | no                                                          | no                                                                   |
-| Performance             | ++                                                                     | --                                                          | -                                                                    |
-| ARM Targets             | ++ (quick)                                                             | + (VM USB)                                                  | +                                                                    |
-| Simulation jMAVSim      | ++                                                                     | +                                                           | +                                                                    |
-| Simulation gazebo       | - (not yet)                                                            | + (slow)                                                    | + (slow)                                                             |
-| Support                 | +                                                                      | ++ (Linux)                                                  | +/-                                                                  |
-| Comments                |                                                                        |                                                             |                                                                      |
+|                 | [Cygwin 툴체인](../setup/dev_env_windows_cygwin.md) **(지원)** | [가상 머신 툴체인](../setup/dev_env_windows_vm.md) | [윈도우용 배시 툴체인](../setup/dev_env_windows_bash_on_win.md) |
+| --------------- | --------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------ |
+| 설치              | MSI 설치 관리자 또는 스크립트                                        | 스크립트                                        | 스크립트                                                   |
+| 자체 바이너리 실행      | 예                                                         | 아니요                                         | 아니요                                                    |
+| 성능              | ++                                                        | --                                          | -                                                      |
+| ARM 타겟          | ++ (빠름)                                                   | + (VM USB)                                  | +                                                      |
+| jMAVSim 모의시험 환경 | ++                                                        | +                                           | +                                                      |
+| 가제보 모의시험 환경     | - (동작 안함)                                                 | + (느림)                                      | + (느림)                                                 |
+| 지원              | +                                                         | ++ (리눅스)                                    | +/-                                                    |
+| 설명              |                                                           |                                             |                                                        |
 
 - 2018년도 도입
 - 간단한 설치
-- 휴대성 있음
+- 이식성 있음
 
 |
 
