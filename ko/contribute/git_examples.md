@@ -67,24 +67,24 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
 
 *오래된 특정 릴리스*의 소스코드를 가져오려면:
 
-* Clone the Firmware repo and navigate into Firmware directory: 
+* 펌웨어 저장소를 다운로드한 후 펌웨어 디렉터리를 찾아보십시오: 
         sh
         git clone https://github.com/PX4/Firmware.git
         cd Firmware
 
-* List all releases (tags) 
+* 모든 릴리스(태그)를 조회하십시오 
         sh
         git tag -l
 
-* Checkout code for particular tag (e.g. for tag 1.7.4beta) 
+* 해당 태그의 코드를 체크아웃하십시오(예: 태그 1.7.4beta) 
         sh
         git checkout v1.7.4beta
 
-## Update Submodule
+## 하위 모듈 업데이트 
 
 There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#contributing_code).
 
-## Do a PR for a submodule update
+## 하위 모듈 업데이트 PR 진행
 
 This is required after you have done a PR for a submodule X repository and the bug-fix / feature-add is in the current master of submodule X. Since the Firmware still points to a commit before your update, a submodule pull request is required such that the submodule used by the Firmware points to the newest commit.
 
@@ -112,7 +112,7 @@ cd Firmware
         git commit -m "Update submodule to include ..."
         git push upstream pr-some-fix
 
-## Checkout pull requests
+## pull 요청 진입
 
 You can test someone's pull request (changes are not yet merged) even if the branch to merge only exists on the fork from that person. Do the following:
 
@@ -132,29 +132,29 @@ Then switch to that branch
 git checkout <branch name>
 ```
 
-## Common pitfalls
+## 일반적인 실수
 
-### Force push to forked repository
+### 복제한 저장소로 강제로 밀어올리기(push)
 
-After having done the first PR, people from the PX4 community will review your changes. In most cases this means that you have to fix your local branch according to the review. After changing the files locally, the feature branch needs to be rebased again with the most recent upstream/master. However, after the rebase, it is no longer possible to push the feature branch to your forked repository directly, but instead you need to use a force push:
+처음 PR을 끝내고나면 PX4 커뮤니티에서 바뀐 내용을 살펴봅니다. 대부분의 경우는 검토 후 로컬 브랜치에서 무언가를 수정해야 합니다. 파일을 바꾼 다음에는 기능 브랜치를 가장 최근의 업스트림/마스터로 다시 재편성해야합니다. 그러나 재편성(rebase)후, 복제(fork)한 저장소에의 기능 단위 브랜치에 더이상 직접 밀어올릴 수 없는 상황이 옵니다만, 강제로 진행해야 합니다.
 
 ```sh
 git push --force-with-lease origin <your feature branch name>
 ```
 
-### Rebase merge conflicts
+### 동시 병합 문제 재편성 해결
 
-If a conflict occurs during a `git rebase`, please refer to [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/).
+`git rebase` 명령 진행 중 문제가 발생했을 때는 [이 안내서](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/)를 참고하십시오.
 
-### Pull merge conflicts
+### pull 동시 병합 문제
 
-If a conflict occurs during a `git pull`, please refer to [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts).
+`git pull` 명령 실행 중 동시 병합 문제가 발생할 경우 [이 안내서](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts)를 참고하십시오.
 
-### Build error due to git tags out of date
+### 오래된 git 태그로 인한 빌드 오류
 
-The build error `Error: PX4 version too low, expected at least vx.x.x` occurs if git tags are out of date.
+`Error: PX4 version too low, expected at least vx.x.x` 빌드 오류는 git 태그가 너무 오래됐을 경우 나타납니다.
 
-This can be solved by fetching the upstream repository tags:
+이 문제는 업스트림 저장소 태그를 가져오면 해결할 수 있습니다:
 
 ```sh
 git fetch upstream --tags
