@@ -131,32 +131,32 @@ graph TD;
   actuator_group_1dashdash>output_group_0
 --->
 
-> **Note** 실제로 시작 스크립트는 단일 장치(출력 분류)에 믹서만 불러옵니다. This is a configuration rather than technical limitation; you could load the main mixer into multiple drivers and have, for example, the same signal on both UAVCAN and the main pins.
+> **Note** 실제로 시작 스크립트는 단일 장치(출력 분류)에 믹서만 불러옵니다. 기술적인 제한이라기보단 그냥 설정입니다. 여러 드라이버에 메인 믹서를 불러올 수 있습니다. 예를 들면 메인 믹서를 통해 UAVCAN과 메인 핀에 동일한 신호를 줍니다.
 
 ## PX4 믹서 정의
 
-Mixers are defined in plain-text files using the [syntax](#mixer_syntax) below.
+믹서는 아래 [문법](#mixer_syntax)을 따라 플레인 텍스트로 정의합니다.
 
-Files for pre-defined airframes can be found in [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers). These can be used as a basis for customisation, or for general testing purposes.
+사전 정의한 에어프레임 파일은 [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers)에 있습니다. 이 구성요소는 개별 설정 기반 또는 일반 시험 목적으로 활용할 수 있습니다.
 
 ### 믹서 파일 이름 {#mixer_file_names}
 
-A mixer file must be named **XXXX.*main*.mix** if it is responsible for the mixing of MAIN outputs or **XXXX.*aux*.mix** if it mixes AUX outputs.
+믹서 파일은 MAIN 출력 혼합에 해당할 경우**XXXX.*main*.mix**, AUX 출력 혼합에 해당할 경우 **XXXX.*aux*.mix**로 이름을 붙여야 합니다.
 
 ### 믹서 불러오기 {#loading_mixer}
 
-The default set of mixer files (in Firmware) are defined in [px4fmu_common/init.d/airframes/](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/). These can be overridden by mixer files with the same name in the SD card directory **/etc/mixers/** (SD card mixer files are loaded by preference).
+(펌웨어의) 믹서 파일 기본 모음은 [px4fmu_common/init.d/airframes/](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/)에 지정합니다. SD카드 메모리에 있는 **/etc/mixers** 디렉터리에 동일한 이름을 가진 믹서 파일을 두어 우선 중복적용할 수 있습니다(SD 카드 믹서 파일은 기본설정으로 불러옴).
 
-PX4 loads mixer files named **XXXX.*main*.mix** onto the MAIN outputs and **YYYY.*aux*.mix** onto the AUX outputs, where the prefixes depend on the airframe and airframe configuration. Commonly the MAIN and AUX outputs correspond to MAIN and AUX PWM outputs, but these may be loaded into a UAVCAN (or other) bus when that is enabled.
+PX4에서는 MAIN 출력에 해당하는 파일의 이름을 **XXXX.*main*.mix**로, AUX 출력에 해당하는 파일 이름을 **YYYY.*aux*.mix**로 정하며, 여기서 접두부는 에어프레임과 에어프레임 설정에 따릅니다. 보통 MAIN 출력과 AUX 출력은 MAIN PWM 출력과 AUX PWM 출력에 해당하지만, UAVCAN(또는 기타) 버스를 활성화 했을 때는 UAVCAN으로 불러옵니다.
 
-The MAIN mixer filename (prefix `XXXX`) is set in the airframe configuration using `set MIXER XXXX` (e.g. [airframes/10015_tbs_discovery](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/10015_tbs_discovery) calls `set MIXER quad_w` to load the main mixer file **quad_w.*main*.mix**).
+MAIN 믹서 파일 이름(앞에 `XXXX`가 붙음)은 `set MIXER XXXX` 설정행으로 에어프레임 설정에서 맞춥니다(예: [airframes/10015_tbs_discovery](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/10015_tbs_discovery)은 `set MIXER quad_w`를 호출하여 **quad_w.*main*.mix** 메인 믹서 파일을 불러옵니다).
 
-The AUX mixer filename (prefix `YYYY` above) depends on airframe settings and/or defaults:
+AUX 믹서 파일 이름(위에서 `YYYY`로 앞에 붙음)은 에어프레임 설정이나 기본값 여부에 따릅니다:
 
-- `MIXER_AUX` can be used to *explicitly* set which AUX file is loaded (e.g. in the aiframe configuration, `set MIXER_AUX vtol_AAERT` will load `vtol_AAERT.aux.mix`).
-- Multicopter and Fixed-Wing airframes load [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix) by default (i.e if not set using `MIXER_AUX`). > **Tip** `pass.aux.mix` is the *RC passthrough mixer*, which passes the values of 4 user-defined RC channels (set using the [RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) parameters) to the first four outputs on the AUX output.
-- VTOL frames load the AUX file specified using `MIXER_AUX` if set, or the value specified by `MIXER` if not.
-- Frames with gimbal control enabled (and output mode set to AUX) will *override* the airframe-specific MIXER_AUX setting and load `mount.aux.mix` on the AUX outputs.
+- `MIXER_AUX`는 *분명하게* 어떤 AUX 파일을 불러올 지 설정할 때 활용할 수 있습니다(예: 에어프레임 설정시 `set MIXER_AUX vtol_AAERT` 설정은 `vtol_AAERT.aux.mix` 파일을 불러옴).
+- 멀티콥터와 고정익 에어프레임은 기본적으로 [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix) 믹서 파일을 불러옵니다(예: 따로 설정하지 않으면 `MIXER_AUX` 활용). > **Tip** `pass.aux.mix` is the *RC passthrough mixer*, which passes the values of 4 user-defined RC channels (set using the [RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) parameters) to the first four outputs on the AUX output.
+- VTOL 프레임에 대해 `MIXER_AUX`을 설정했을 경우 지정 AUX 파일을 불러오며, 그렇지 않을 경우 `MIXER`에 지정한 값대로 파일을 불러옵니다.
+- 짐벌 조종간을 활용할 수 있(고 AUX에 출력 상태를 설정)는 프레임은 에어프레임별 MIXER_AUX 설정보다 *우선 반영*하며, `mount.aux.mix` 파일을 AUX 출력에 불러옵니다.
 
 > **Note** Mixer file loading is implemented in [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface).
 
