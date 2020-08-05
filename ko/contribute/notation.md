@@ -1,16 +1,16 @@
-# Terminology
+# 용어
 
-The following terms, symbols, and decorators are used in text and diagrams throughout this guide.
+다음 용어, 기호, 장식 문자는 이 안내서 전체의 텍스트와 다이어그램에 활용합니다.
 
-## Notation
+## 표기
 
-- Bold face variables indicate vectors or matrices and non-bold face variables represent scalars. 
-- The default frame for each variable is the local frame $$\ell$$. Right [superscripts](#superscripts) represent the coordinate frame. If no right superscript is present, then the default frame $$\ell$$ is assumed. An exception is given by Rotation Matrices, where the lower right subscripts indicates the current frame and the right superscripts the target frame.
-- Variables and subscripts can share the same letter, but they always have different meaning.
+- 굵은 서체 변형은 벡터, 행렬을 나타내며, 굵지 않은 서체는 스칼라 배열을 나타냅니다. 
+- 각 변수의 기본 프레임은 로컬 프레임 $$\ell$$ 입니다. 우측 [위첨자](#superscripts)는 좌표 프레임을 나타냅니다. 우측 위첨자가 없으면 $$\ell$$ 기본 프레임임을 가정합니다. 회전 행렬일 경우 예외입니다. 우측 아래첨자로 현재 프레임을 나타내며 우측 위첨자로 대상 프레임을 나타냅니다.
+- 변수와 아래 첨자는 동일한 문자를 쓸 수 있으나, 늘 다른 의미를 지닙니다.
 
-## Acronyms
+## 약어
 
-| Acronym     | Expansion                                                                                                                                                                      |
+| 축약어         | Expansion                                                                                                                                                                      |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | AOA         | Angle Of Attack. Also named *alpha*.                                                                                                                                           |
 | AOS         | Angle Of Sideslip. Also named *beta*.                                                                                                                                          |
@@ -21,9 +21,9 @@ The following terms, symbols, and decorators are used in text and diagrams throu
 | NED         | Coordinate system where the X-axis is pointing towards the true North, the Y-axis is pointing East and the Z-axis is pointing Down, completing the right-hand rule.            |
 | PID         | Controller with Proportional, Integral and Derivative actions.                                                                                                                 |
 
-## Symbols
+## 기호
 
-| Variable                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| 변수                                     | 설명                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | $$x,y,z$$                              | Translation along coordinate axis x,y and z respectively.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | $$\boldsymbol{\mathrm{r}}$$          | Position vector $$\boldsymbol{\mathrm{r}} = [x \quad y \quad z]^{T}$$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -58,26 +58,26 @@ $$\boldsymbol{\mathrm{\tilde{q}}}$$ describes the attitude relative to the local
 | $$\boldsymbol{\omega}^b$$            | Angular rate vector in body frame $$\boldsymbol{\omega}^b = [p \quad q \quad r]^T$$.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | $$\boldsymbol{\mathrm{x}}$$          | General state vector.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
-### Subscripts / Indices
+### 아래첨자 / 인덱스
 
-| Subscripts / Indices | Description                                                      |
-| -------------------- | ---------------------------------------------------------------- |
-| $$a$$                | Aileron.                                                         |
-| $$e$$                | Elevator.                                                        |
-| $$r$$                | Rudder.                                                          |
-| $$Aero$$             | Aerodynamic.                                                     |
-| $$T$$                | Thrust force.                                                    |
-| $$w$$                | Relative airspeed.                                               |
-| $$x,y,z$$            | Component of vector along coordinate axis x, y and z.            |
-| $$N,E,D$$            | Component of vector along global north, east and down direction. |
+| 아래첨자 / 인덱스 | 설명                                                               |
+| ---------- | ---------------------------------------------------------------- |
+| $$a$$      | 보조익                                                              |
+| $$e$$      | 승강타                                                              |
+| $$r$$      | 방향타                                                              |
+| $$Aero$$   | 기체역학                                                             |
+| $$T$$      | 강제 추력                                                            |
+| $$w$$      | 상대 공속                                                            |
+| $$x,y,z$$  | x, y, z 축에 따른 벡터 요소                                              |
+| $$N,E,D$$  | Component of vector along global north, east and down direction. |
 
-### Superscripts / Indices {#superscripts}
+### 위첨자 / 인덱스 {#superscripts}
 
-| Superscripts / Indices | Description                                     |
-| ---------------------- | ----------------------------------------------- |
-| $$\ell$$              | Local-frame. Default for PX4 related variables. |
-| $$b$$                  | Body-frame.                                     |
-| $$w$$                  | Wind-frame.                                     |
+| 위첨자 / 인덱스 | 설명                  |
+| --------- | ------------------- |
+| $$\ell$$ | 로컬 프레임 PX4 기본 상대 변수 |
+| $$b$$     | 바디 프레임              |
+| $$w$$     | Wind-frame.         |
 
 ## Decorators
 
