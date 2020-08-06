@@ -70,7 +70,7 @@
 
 #### 윈도우 CR+LF vs 유닉스 LF 개행 문자
 
-We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings (otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
+이 툴체인으로 작업하는 모든 저장소에는 유닉스 방식의 LF 개행 문자로의 강제 설정을 권장합니다(또한 이클립스 또는 비주얼 스튜디오 코드와 같은 편집기를 사용하여 바뀐 파일에 대해서도 동일한 개행 문자 체계를 유지하십시오). 소스 파일의 컴파일 과정에서도 CR+LF 개행 문자를 자체적으로 허용하여 진행하지만, Cygwin에서 (예: 셸 스크립트 실행) 유닉스 개행 문자가 필요한 경우가 있습니다(LF 개행 문자로 맞춰주지 않으면 `$'\r': Command not found.` 오류가 뜹니다). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
 
     git config core.autocrlf false
     git config core.eol lf
