@@ -26,23 +26,23 @@ UAVCAN 부트로더 설치 및 업데이트는 다음 과정이 필요합니다:
 
 장치 부트로더 이미지를 컴파일하거나 가져온 후에는(자세한 내용은 장치 문서 참조), 부트로더를 장치 플래시 메모리 시작 부분에 복사해야합니다.
 
-The process for doing this depends on the SWD or JTAG interface used.
+이 진행 과정은 SWE 또는 JTAG 사용 인터페이스에 따라 다릅니다.
 
 ## BlackMagic Probe
 
-Ensure your BlackMagic Probe [firmware is up to date](https://github.com/blacksphere/blackmagic/wiki/Hacking).
+BlackMagic Probe의 [펌웨어가 최신](https://github.com/blacksphere/blackmagic/wiki/Hacking)인지 확인하십시오.
 
-Connect the probe to your UAVCAN device, and connect the probe to your computer.
+프루브를 UAVCAN 장치에 연결하고, 컴퓨터에도 연결하십시오.
 
-Identify the probe's device name. This will typically be `/dev/ttyACM<x>` or `/dev/ttyUSB<x>`.
+프루브 장치 이름을 확인하십시오. 보통 `/dev/ttyACM<x>` 또는 `/dev/ttyUSB<x>`입니다.
 
-Power up your UAVCAN device, and run:
+UAVCAN 장치 전원을 켠 후 다음 명령을 실행하십시오:
 
 ```sh
 arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 ```
 
-At the `gdb` prompt, run:
+`gdb` 프롬프트에서 다음 명령을 실행하십시오:
 
 ```gdb
 target extended /dev/ttyACM0
@@ -54,22 +54,22 @@ load
 run
 ```
 
-If `monitor swdp_scan` returns an error, ensure your wiring is correct, and that you have an up-to-date version of the BlackMagic firmware.
+`monitor swdp_scan` 명령에서 오류가 나타났을 경우 결선을 제대로 했는지, 블랙매직 펌웨어가 최신인지 확인하십시오.
 
 ## ST-Link v2
 
-Ensure you have a recent version—at least 0.9.0—of [OpenOCD](http://openocd.org).
+[OpenOCD](http://openocd.org) 버전이 최소한 0.9.0의 최근 버전인지 확인하십시오.
 
-Connect the ST-Link to your UAVCAN device, and connect the ST-Link to your computer.
+ST-Link 를 UAVCAN 장치에 연결하고, 컴퓨터에도 연결하십시오.
 
-Power up your UAVCAN device, and run:
+UAVCAN 장치의 전원을 켜고 다음 명령을 실행하십시오:
 
 ```sh
 openocd -f /path/to/your/openocd.cfg &
 arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 ```
 
-At the `gdb` prompt, run:
+`gdb` 프롬프트에서 다음 명령을 실행하십시오:
 
 ```gdb
 target extended-remote localhost:3333
