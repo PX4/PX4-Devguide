@@ -52,9 +52,9 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
    - 설정 표시줄의 대상을 눌러 다른 옵션을 표시한 후, 원하는 대상을 선택하십시오(이 과정을 통해 올바른 대상을 선택합니다).
    - 이 과정이 끝나면 *Cmake*에서 프로젝트의 빌드 조건을 구성합니다(하단 우측의 알림 참고). ![Cmake 설정 프로젝트](../../assets/vscode/cmake_configuring_project.jpg)
    - 빌드 설정이 끝날때까지 기다리십시오. 빌드 설정이 끝나면 알림이 사라지고, 빌드 위치를 볼 수 있습니다: ![Cmake config project](../../assets/vscode/cmake_configuring_project_done.jpg).
-2. You can then kick off a build from the config bar (select either **Build** or **Debug**). ![디버깅 또는 빌드 실행](../../assets/vscode/run_debug_build.jpg)
+2. 설정 표시줄을 통해 빌드를 시작할 수 있습니다. (**Build** 또는 **Debug**를 선택하십시오). ![디버깅 또는 빌드 실행](../../assets/vscode/run_debug_build.jpg)
 
-After building at least once you can now use [code completion](#code completion) and other *VSCode* features.
+일단 빌드하고 나면, [코드 자동 완성](#code completion)과 기타 *VSCode* 기능을 쓸 수 있습니다.
 
 ## PX4 디버깅 {#debugging_sitl}
 
