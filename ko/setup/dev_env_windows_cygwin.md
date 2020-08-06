@@ -68,7 +68,7 @@
 
 ### 윈도우와 Git의 개별 사례
 
-#### Windows CR+LF vs Unix LF Line Endings
+#### 윈도우 CR+LF vs 유닉스 LF 개행 문자
 
 We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings (otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
 
@@ -85,19 +85,19 @@ This is not recommended because it may affect any other (unrelated) git use on y
 
 #### 유닉스 실행 권한 비트
 
-유닉스에서는 각 파일을 실행할 수 있는지 여부를 운영체제에 알리는 권한 플래그가 있습니다. Cygwin의 *git*은 해당 비트를 (윈도우 NTFS 파일 시스템에서 활용하지 않지만) 지원하고 관리합니다. This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
+유닉스에서는 각 파일을 실행할 수 있는지 여부를 운영체제에 알리는 권한 플래그가 있습니다. Cygwin의 *git*은 해당 비트를 (윈도우 NTFS 파일 시스템에서 활용하지 않지만) 지원하고 관리합니다. 종종 *git* 에서 권한 비트를 비교하는데 있어 "거짓-양성"의 차이를 보이기도 합니다. git diff 명령의 결과는 대략 다음과 같습니다:
 
     diff --git ...
     old mode 100644
     new mode 100755
     
 
-We recommend globally disabling the permission check on Windows to avoid the problem:
+이런 문제를 피하기 위해 윈도우에서는 전체적으로 권한 비트 검사의 비활성을 권장합니다:
 
     git config --global core.fileMode false # disable execution bit check globally for the machine
     
 
-For existing repositories that have this problem caused by a local configuration, additionally:
+기존 저장소에서는 로컬 설정으로 인해 이런 문제가 나타나므로 추가적으로:
 
     git config --unset core.filemode # remove the local option for this repository to apply the global one
     git submodule foreach --recursive git config --unset core.filemode # remove the local option for all submodules
@@ -107,7 +107,7 @@ For existing repositories that have this problem caused by a local configuration
 
 ### 기능 / 문제 {#features}
 
-The following features are known to work (version 2.0):
+다음 기능은 동작하는걸로 밝혀져있습니다 (버전 2.0):
 
 * Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
 * Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
