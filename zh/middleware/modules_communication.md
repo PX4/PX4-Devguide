@@ -8,15 +8,16 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
 
 ### 用法 {#frsky_telemetry_usage}
 
-    frsky_telemetry &lt;command&gt; [arguments...]
+    frsky_telemetry <command> [arguments...]
      Commands:
        start
-         [-d &lt;val&gt;]  选择串口设备
-                    取值 &lt;file:dev&gt;, 默认值： /dev/ttyS6
-         [-t &lt;val&gt;]  扫描超时时间 [s] (默认值： no timeout)
+         [-d <val>]  Select Serial Device
+                     values: <file:dev>, default: /dev/ttyS6
+         [-t <val>]  Scanning timeout [s] (default: no timeout)
                      default: 0
-         [-m &lt;val&gt;]  选择通信协议 (默认值：auto-detect)
-                     取值： sport|sport_single|dtype, 默认值： auto
+         [-m <val>]  Select protocol (default: auto-detect)
+                     values: sport|sport_single|sport_single_invert|dtype, default:
+                     auto
     
        stop
     
