@@ -28,16 +28,16 @@
 2. **run-console.bat** 을 실행(두번 누르기)하여 Cygwin 배시 콘솔을 실행하십시오
 3. PX4 펌웨어 저장소를 콘솔에서 가져(clone)오십시오:
     
-    > **Note** 가져오는 동작은 한번이면 됩니다! Skip this step if you ticked the installer option to *clone the PX4 repository, build and run simulation with jMAVSim*.
+    > **Note** 가져오는 동작은 한번이면 됩니다! *clone the PX4 repository, build and run simulation with jMAVSim* 옵션을 설치 관리자에서 표시했다면 이 과정을 건너뛰십시오.
     
     ```bash
     # Clone PX4 Firmware repository into the home folder & loads submodules in parallel
     git clone --recursive -j8 https://github.com/PX4/Firmware.git
     ```
     
-    You can now use the console/Firmware repository to build PX4.
+    이제 PX4를 빌드할 콘솔과 펌웨어 저장소를 활용할 수 있습니다.
 
-4. For example, to run JMAVSim:
+4. 예를 들어 jMAVSim을 실행하려면:
     
     ```bash
     # Navigate to Firmware repo
@@ -46,27 +46,27 @@
     make px4_sitl jmavsim
     ```
     
-    The console will then display:
+    위 명령을 실행하면 화면이 나타납니다:
     
     ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.PNG)
 
-Continue next to [the detailed instructions on how to build PX4](../setup/building_px4.md) (or see the section below for more general usage instructions).
+[PX4를 빌드하는 자세한 방법](../setup/building_px4.md)으로 계속 진행하십시오(또는 바로 아래 절에서 좀 더 일반적인 사용 방법을 살펴보십시오).
 
-## Usage Instructions {#usage_instructions}
+## 사용 방법 {#usage_instructions}
 
-The installation directory (default: **C:\PX4**) contains a batch script for launching the PX4 SITL (linux like) bash console: **run-console.bat**
+설치 디렉터리(기본 위치:**C:\PX4**)에는 PX4 SITL(리눅스 유사) 배시 콘솔을 실행하는 배치 스크립트 **run-console.bat** 파일이 들어있습니다.
 
-> **Tip** The [Manual Setup](#manual_setup) section explains why you need to use the script and how it all works.
+> **Tip** [수동 설치](#manual_setup) 절에서는 왜 스크립트를 사용해야 하는지 각각의 모든 과정이 어떤 동작을 하는지 설명합니다.
 
-The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands.
+일반적인 과정은 **run-console.bat** 스크립트를 두번 눌러 터미널 명령을 직접 실행하는 방식으로 콘솔 창을 시작합니다.
 
-### File Monitoring Tools vs Toolchain Speed
+### 파일 감시 도구 vs 툴체인 속도
 
-Antivirus and other background file monitoring tools can significantly slow down both installation of the toolchain and PX4 build times.
+백신과 기타 백그라운드 파일 감시 도구는 툴체인 설치 속도와 PX4 빌드 시간을 급격하게 줄일 수 있습니다.
 
-You may wish to halt them temporarily during builds (at your own risk).
+빌드를 진행하는 동안에는 임시로 멈추는것이 좋겠습니다(대신 그동안에 일어나는 일은 여러분 책임입니다 :P).
 
-### Windows & Git Special Cases
+### 윈도우와 Git의 개별 사례
 
 #### Windows CR+LF vs Unix LF Line Endings
 
@@ -103,9 +103,9 @@ For existing repositories that have this problem caused by a local configuration
     git submodule foreach --recursive git config --unset core.filemode # remove the local option for all submodules
     
 
-## Additional Information
+## 추가 정보
 
-### Features / Issues {#features}
+### 기능 / 문제 {#features}
 
 The following features are known to work (version 2.0):
 
@@ -116,13 +116,13 @@ The following features are known to work (version 2.0):
 * Non-invasive installer! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4** and uses a temporary local path).
 * The installer supports updating to a new version keeping your personal changes inside the toolchain folder
 
-Omissions:
+생략:
 
 * Simulation: Gazebo and ROS are not supported.
 * Only NuttX and JMAVSim/SITL builds are supported.
 * [Known problems](https://github.com/orgs/PX4/projects/6) (Also use to report issues).
 
-### Shell Script Installation {#script_setup}
+### 셸 스크립트 설치 {#script_setup}
 
 You can also install the environment using shell scripts in the Github project.
 
@@ -136,7 +136,7 @@ You can also install the environment using shell scripts in the Github project.
 1. If you want to install all components navigate to the freshly cloned folder and double click on the script `install-all-components.bat` located in the folder `toolchain`. If you only need certain components and want to safe Internet traffic and or disk space you can navigate to the different component folders like e.g. `toolchain\cygwin64` and click on the **install-XXX.bat** scripts to only fetch something specific.
 2. Continue with [Getting Started](#getting_started) (or [Usage Instructions](#usage_instructions))
 
-### Manual Installation (for Toolchain Developers) {#manual_setup}
+### 수동 설치 (툴체인 개발자용) {#manual_setup}
 
 This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 
@@ -203,7 +203,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
     
     > **Note** This is what the toolchain does in: [jdk/install-jdk.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/jdk/install-jdk.bat).
 
-5. Download [**Apache Ant**](https://ant.apache.org/bindownload.cgi) as zip archive of the binaries for Windows and unpack the content to the folder `C:\PX4\toolchain\apache-ant`.
+5. 윈도우용 [**Apache Ant**](https://ant.apache.org/bindownload.cgi)를 zip 압축 파일 바이너리로 다운로드하고 `C:\PX4\toolchain\apache-ant` 폴더에 압축을 해제하십시오.
     
     > **Tip** Make sure you don't have an additional folder layer from the folder which is inside the downloaded archive.
     
@@ -217,7 +217,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
             cd /c/toolchain/genromfs
             git clone https://github.com/chexum/genromfs.git genromfs-src
 
-* Compile it with: 
+* 다음 명령으로 컴파일하십시오: 
     
         cd genromfs-src
          make all
