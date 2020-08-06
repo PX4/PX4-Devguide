@@ -21,19 +21,19 @@ I2C는 선 두가닥만 활용하여 다중 마스터 장비를 다중 슬레이
     drivers/sf1xx
     
 
-> **Tip** For example, you can see/search for this driver in the [px4_fmu-v4_default](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake) configuration.
+> **Tip** 예로써 [px4_fmu-v4_default](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake) 설정에서 이 드라이버를 보거나 검색할 수 있습니다.
 
-## I2C Driver Examples
+## I2C 드라이버 예제
 
-To find I2C driver examples, search for **i2c.h** in [/src/drivers/](https://github.com/PX4/Firmware/tree/master/src/drivers).
+I2C 드라이버 예제를 찾아보려면 [/src/drivers/](https://github.com/PX4/Firmware/tree/master/src/drivers)에서 **i2c.h**로 찾아보십시오.
 
-Just a few examples are:
+몇가지 예제를 찾아볼 수 있습니다:
 
-* [drivers/sf1xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf1xx) - I2C Driver for [Lightware SF1XX LIDAR](https://docs.px4.io/master/en/sensor/sfxx_lidar.html).
-* [drivers/ms5611](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/ms5611) - I2C Driver for the MS5611 and MS6507 barometric pressure sensor connected via I2C (or SPI).
+* [drivers/sf1xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf1xx) - [Lightware SF1XX LIDAR](https://docs.px4.io/master/en/sensor/sfxx_lidar.html)용 I2C 드라이버.
+* [drivers/ms5611](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/ms5611) - I2C(또는 SPI)로 연결하는 대기압 센서 MS5611과 MS6507용 I2C용 드라이버.
 
-## Further Information
+## 추가 정보
 
-* [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) (Wikipedia)
-* [I2C Comparative Overview](https://learn.sparkfun.com/tutorials/i2c) (learn.sparkfun.com)
-* [Driver Framework](../middleware/drivers.md)
+* [I2C](https://en.wikipedia.org/wiki/I%C2%B2C) (위키피디아) - 영문
+* [I2C 비교 개요](https://learn.sparkfun.com/tutorials/i2c) (learn.sparkfun.com)
+* [드라이버 프레임워크](../middleware/drivers.md)
