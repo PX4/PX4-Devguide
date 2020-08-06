@@ -109,12 +109,12 @@
 
 다음 기능은 동작하는걸로 밝혀져있습니다 (버전 2.0):
 
-* Building and running SITL with jMAVSim with significantly better performance than a VM (it generates a native windows binary **px4.exe**).
-* Building and uploading NuttX builds (e.g.: px4_fmu-v2 and px4_fmu-v4)
-* Style check with *astyle* (supports the command: `make format`)
-* Command line auto completion
-* Non-invasive installer! The installer does NOT affect your system and global path (it only modifies the selected installation directory e.g. **C:\PX4** and uses a temporary local path).
-* The installer supports updating to a new version keeping your personal changes inside the toolchain folder
+* jMAVSim과 SITL의 빌드 및 실행은 가상 머신에서보다는 성능이 비약적으로 월등합니다(자체 윈도우 바이너리 **px4.exe**를 만듭니다).
+* NuttX 빌드 및 업로드 (예: px4_fmu-v2 and px4_fmu-v4)
+* *astyle* 코드 모양새 검사(지원 명령: `make format`)
+* 명령행 자동 완성
+* 시스템의 중요 부위를 건드리지 않는 설치 마법사입니다! 설치 프로그램은 시스템과 전역 경로 설정에 어떤 영향도 주지 않습니다(**C:\PX4**와 같은 선택한 설치 디렉터리만 수정하며 임시 로컬 경로를 사용합니다).
+* 설치 마법사에서는 툴체인 폴더의 개별 설정을 유지하면서 새 버전으로 업데이트할 수 있습니다.
 
 생략:
 
@@ -124,17 +124,17 @@
 
 ### 셸 스크립트 설치 {#script_setup}
 
-You can also install the environment using shell scripts in the Github project.
+Github 프로젝트의 셸 스크립트를 활용하여 환경을 설치할 수도 있습니다.
 
-1. Make sure you have [Git for Windows](https://git-scm.com/download/win) installed.
-2. Clone the repository https://github.com/PX4/windows-toolchain to the location you want to install the toolchain. Default location and naming is achieved by opening the `Git Bash` and executing:
+1. [윈도우용 Git](https://git-scm.com/download/win)을 우선 설치했는지 확인하십시오.
+2. https://github.com/PX4/windows-toolchain 저장소를 툴체인을 설치하려는 위치로 가져오십시오. 기본 위치와 이름은 `Git 배시`를 열고 다음을 실행하면 됩니다:
 
     cd /c/
     git clone https://github.com/PX4/windows-toolchain PX4
     
 
-1. If you want to install all components navigate to the freshly cloned folder and double click on the script `install-all-components.bat` located in the folder `toolchain`. If you only need certain components and want to safe Internet traffic and or disk space you can navigate to the different component folders like e.g. `toolchain\cygwin64` and click on the **install-XXX.bat** scripts to only fetch something specific.
-2. Continue with [Getting Started](#getting_started) (or [Usage Instructions](#usage_instructions))
+1. 모든 구성 요소를 설치하려면 새로 가져온 폴더를 찾아 `toolchain` 폴더에 있는 `install-all-components.bat` 스크립트를 두 번 누르십시오. 데이터 전송 용량과 디스크 공간을 아끼려 일부 요소만 필요하다면 별도의 `install-all-components.bat` 구성요소 폴더를 찾아 개별적으로 받을 구성요소의 **install-XXX.bat** 스크립트를 실행하면 됩니다.
+2. [시작하기](#getting_started) (또는 [사용 방법](#usage_instructions))으로 계속 진행하십시오
 
 ### 수동 설치 (툴체인 개발자용) {#manual_setup}
 
@@ -146,7 +146,7 @@ You can also install the environment using shell scripts in the Github project.
 2. [공식 Cygwin 웹사이트](https://cygwin.com/install.html)에서 [setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe) *Cygwin 설치* 파일을 다운로드하십시오
 3. 다운로드한 설치 파일을 실행하십시오
 4. 마법사 프로그램에서 설치할 대상 폴더 **C:\PX4\toolchain\cygwin64**를 선택하십시오.
-5. Select to install the default Cygwin base and the newest available version of the following additional packages:
+5. 기본 Cygwin 기반과 다음 추가 꾸러미의 새 버전을 설치하도록 선택하십시오.
 
 * **분류:꾸러미 명칭**
 * Devel:cmake (3.3.2 에서 deprecated 경고가 없고, 3.6.2 는 동작하지만 경고는 뜹니다)
