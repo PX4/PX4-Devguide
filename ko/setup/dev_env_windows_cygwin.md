@@ -70,18 +70,18 @@
 
 #### 윈도우 CR+LF vs 유닉스 LF 개행 문자
 
-이 툴체인으로 작업하는 모든 저장소에는 유닉스 방식의 LF 개행 문자로의 강제 설정을 권장합니다(또한 이클립스 또는 비주얼 스튜디오 코드와 같은 편집기를 사용하여 바뀐 파일에 대해서도 동일한 개행 문자 체계를 유지하십시오). 소스 파일의 컴파일 과정에서도 CR+LF 개행 문자를 자체적으로 허용하여 진행하지만, Cygwin에서 (예: 셸 스크립트 실행) 유닉스 개행 문자가 필요한 경우가 있습니다(LF 개행 문자로 맞춰주지 않으면 `$'\r': Command not found.` 오류가 뜹니다). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
+이 툴체인으로 작업하는 모든 저장소에는 유닉스 방식의 LF 개행 문자로의 강제 설정을 권장합니다(또한 이클립스 또는 비주얼 스튜디오 코드와 같은 편집기를 사용하여 바뀐 파일에 대해서도 동일한 개행 문자 체계를 유지하십시오). 소스 파일의 컴파일 과정에서도 CR+LF 개행 문자를 자체적으로 허용하여 진행하지만, Cygwin에서 (예: 셸 스크립트 실행) 유닉스 개행 문자가 필요한 경우가 있습니다(LF 개행 문자로 맞춰주지 않으면 `$'\r': Command not found.` 오류가 뜹니다). 다행스럽게도 git 에서는 저장소에서 다음 두 명령을 저장소 루트 디렉터리에서 실행하면 이 문제를 해결할 수 있습니다:
 
     git config core.autocrlf false
     git config core.eol lf
     
 
-If you work with this toolchain on multiple repositories you can also set these two configurations globally for your machine:
+다중 주정소에 대해 이 툴체인이 동작한다면 여러분의 머신에 두가지 설정 값을 다음 옵션을 주어 지정할 수 있습니다:
 
     git config --global ...
     
 
-This is not recommended because it may affect any other (unrelated) git use on your Windows machine.
+윈도우 머신에서 git을 사용할 때 (관련 없는) 다른 프로젝트에도 영향을 줄 수 있으므로 권장하지는 않습니다.
 
 #### 유닉스 실행 권한 비트
 
@@ -118,9 +118,9 @@ This is not recommended because it may affect any other (unrelated) git use on y
 
 생략:
 
-* Simulation: Gazebo and ROS are not supported.
-* Only NuttX and JMAVSim/SITL builds are supported.
-* [Known problems](https://github.com/orgs/PX4/projects/6) (Also use to report issues).
+* 모의시험 환경: 가제보, ROS는 지원 안함.
+* NuttX와 jMAVSim/SITL 빌드만 지원. 
+* [알려진 문제](https://github.com/orgs/PX4/projects/6) (또한 보고할 문제).
 
 ### 셸 스크립트 설치 {#script_setup}
 
@@ -138,14 +138,14 @@ You can also install the environment using shell scripts in the Github project.
 
 ### 수동 설치 (툴체인 개발자용) {#manual_setup}
 
-This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
+이 절에서는 Cygwin 툴체인을 직접 설치하고, 스크립트 기반 설치 저장소에서 관련 스크립트를 직접 찾아서 실행하는 방법을 설명합니다. 결과는 스크립트를 활용하는 방법이나 MSI 설치 관리자를 활용하는 방법이나 같습니다.
 
-> **Note** The toolchain gets maintained and hence these instructions might not cover every detail of all the future changes.
+> **Note** 툴체인은 관리 대상이므로 방법 설명에 있어 앞으로 바뀔 모든 세부사항은 다루지 않습니다.
 
-1. Create the *folders*: **C:\PX4**, **C:\PX4\toolchain** and **C:\PX4\home**
-2. Download the *Cygwin installer* file [setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe) from the [official Cygwin website](https://cygwin.com/install.html)
-3. Run the downloaded setup file
-4. In the wizard choose to install into the folder: **C:\PX4\toolchain\cygwin64**
+1. **C:\PX4**, **C:\PX4\toolchain**, **C:\PX4\home** *폴더*를 만드십시오.
+2. [공식 Cygwin 웹사이트](https://cygwin.com/install.html)에서 [setup-x86_64.exe](https://cygwin.com/setup-x86_64.exe) *Cygwin 설치* 파일을 다운로드하십시오
+3. 다운로드한 설치 파일을 실행하십시오
+4. 마법사 프로그램에서 설치할 대상 폴더 **C:\PX4\toolchain\cygwin64**를 선택하십시오.
 5. Select to install the default Cygwin base and the newest available version of the following additional packages:
 
 * **분류:꾸러미 명칭**
