@@ -1,35 +1,35 @@
-# UAVCAN Firmware Upgrading
+# UAVCAN 펌웨어 업그레이드
 
-## Vectorcontrol ESC Codebase (Pixhawk ESC 1.6 and S2740VC)
+## Vectorcontrol ESC 코드 베이스 (픽스호크 ESC 1.6과 S2740VC)
 
-Download the ESC code:
+ESC 코드를 다운로드하십시오:
 
 ```sh
 git clone https://github.com/thiemar/vectorcontrol
 cd vectorcontrol
 ```
 
-### Flashing the UAVCAN Bootloader
+### UAVCAN 부트로더 플래싱
 
-Before updating firmware via UAVCAN, the Pixhawk ESC 1.6 requires the UAVCAN bootloader be flashed. To build the bootloader, run:
+UAVCAN으로 펌웨어 업그레이드를 진행하기 전, 픽스호크 ESC 1.6에 UAVCAN 부트로더를 플래싱해야합니다. 부트로더를 빌드하려면 다음 명령을 실행하십시오:
 
 ```sh
 make clean && BOARD=px4esc_1_6 make -j8
 ```
 
-After building, the bootloader image is located at `firmware/px4esc_1_6-bootloader.bin`, and the OpenOCD configuration is located at `openocd_px4esc_1_6.cfg`. Follow [these instructions](../uavcan/bootloader_installation.md) to install the bootloader on the ESC.
+빌드가 끝나면 부트로더 이미지는 `firmware/px4esc_1_6-bootloader.bin`에 들어가고, OpenOCD 설정은 `openocd_px4esc_1_6.cfg`에 들어갑니다. ESC 부트로더를 설치하려면 [이 절차](../uavcan/bootloader_installation.md)를 따르십시오.
 
-### Compiling the Main Binary
+### 메인 바이너리 컴파일
 
 ```sh
 BOARD=s2740vc_1_0 make && BOARD=px4esc_1_6 make
 ```
 
-This will build the UAVCAN node firmware for both supported ESCs. The firmware images will be located at `com.thiemar.s2740vc-v1-1.0-1.0.<git hash>.bin` and `org.pixhawk.px4esc-v1-1.6-1.0.<git hash>.binn`.
+이 명령은 지원하는 ESC용 UAVCAN 노드 펌웨어를 빌드합니다. 펌웨어 이미지는 `com.thiemar.s2740vc-v1-1.0-1.0.<git hash>.bin`과 `org.pixhawk.px4esc-v1-1.6-1.0.<git hash>.bin`으로 들어갑니다.
 
-## Sapog Codebase (Pixhawk ESC 1.4 and Zubax Orel 20)
+## Sapog 코드 베이스 (픽스호크 ESC 1.4와 Zubax Orel 20)
 
-Download the Sapog codebase:
+Sapog 코드 베이스를 다운로드하십시오:
 
 ```sh
 git clone https://github.com/PX4/sapog
@@ -37,9 +37,9 @@ cd sapog
 git submodule update --init --recursive
 ```
 
-### Flashing the UAVCAN Bootloader
+### UAVCAN 부트로더 플래싱
 
-Before updating firmware via UAVCAN, the ESC requires the UAVCAN bootloader to be flashed. The bootloader can be built as follows:
+UAVCAN으로 펌웨어를 업데이트하기 전, ESC에 UAVCAN 부트로더를 플래싱해야합니다. 다음 명령어로 부트로더를 빌드할 수 있습니다:
 
 ```sh
 cd bootloader
