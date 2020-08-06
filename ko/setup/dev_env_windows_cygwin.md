@@ -173,7 +173,7 @@ Github 프로젝트의 셸 스크립트를 활용하여 환경을 설치할 수�
     
     <span></span>
     
-    > **Note** [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) 스크립트의 동작입니다.
+    > **Note** 이 과정은 [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) 스크립트에서 수행합니다.
 
 1. [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) 파일과 [`setup-environment.bat`](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) 파일(**배치 스크립트**)를 작성하거나 복사하십시오.
     
@@ -188,20 +188,20 @@ Github 프로젝트의 셸 스크립트를 활용하여 환경을 설치할 수�
         pip2 install pyulog
         
     
-    > **Note** 이 동작이 [cygwin64/install-cygwin-python-packages.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) 스크립트에서 하는 일입니다.
+    > **Note** 이 과정은 [cygwin64/install-cygwin-python-packages.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) 스크립트에서 수행합니다.
 
 3. 윈도우용 바이너리 [**ARM GCC compiler**](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)를 zip 압축 파일로 다운로드한 후 `C:\PX4\toolchain\gcc-arm` 폴더에 내용물을 풀어 넣으십시오.
     
-    > **Note** This is what the toolchain does in: [gcc-arm/install-gcc-arm.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat).
+    > **Note** 이 과정은 [gcc-arm/install-gcc-arm.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat) 스크립트에서 수행합니다.
 
 4. JDK를 설치하십시오:
     
-    * Download Java 14 from [Oracle](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html) or [AdoptOpenJDK](https://adoptopenjdk.net/).
-    * Because sadly there is no portable archive containing the binaries directly you have to install it.
-    * Find the binaries and move/copy them to **C:\PX4\toolchain\jdk**.
-    * You can uninstall the Kit from your Windows system again, we only needed the binaries for the toolchain.
+    * [오라클](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html) 또는 [AdoptOpenJDK](https://adoptopenjdk.net/)에서 Java 14를 다운로드하십시오.
+    * 바이너리가 바로 들어있는 이식이 용이한 꾸러미가 없어 설치해야합니다.
+    * 바이너리를 찾아 **C:\PX4\toolchain\jdk**로 이동/복사하십시오.
+    * 윈도우 시스템에서 키트 설치를 제거할 수 있습니다. 툴체인에는 바이너리만 필요합니다.
     
-    > **Note** This is what the toolchain does in: [jdk/install-jdk.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/jdk/install-jdk.bat).
+    > **Note** 이 과정은 [jdk/install-jdk.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/jdk/install-jdk.bat) 스크립트에서 수행합니다.
 
 5. 윈도우용 [**Apache Ant**](https://ant.apache.org/bindownload.cgi)를 zip 압축 파일 바이너리로 다운로드하고 `C:\PX4\toolchain\apache-ant` 폴더에 압축을 해제하십시오.
     
