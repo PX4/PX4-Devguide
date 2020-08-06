@@ -1,6 +1,6 @@
-# Maintenance notes
+# 유지관리 참고
 
-This picks and describes some tools to help analyze the state of the codebase and support its maintenance.
+여기서는 코드 베이스 상태를 분석하고 유지 관리를 지원하는 몇가지 도구를 설명합니다.
 
 ## Analyze churn
 
@@ -11,7 +11,7 @@ To find churn metrics a tool such as [Churn](https://github.com/danmayer/churn) 
     gem install churn
     
 
-An example output as of `v1.6.0-rc2` would be:
+`v1.6.0-rc2` 출력 예제는 다음과 같습니다:
 
     cd src/Firmware
     churn --start_date "6 months ago"
