@@ -13,17 +13,17 @@ This guide is focused only on the host OS and middleware as the applications/fli
 Board startup and configuration files are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in each board's vendor-specific directory (i.e. **boards/_VENDOR_/_MODEL_/**)).
 
 For example, for FMUv5:
-* (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5). 
-* Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
-* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/init/rc.board)
+* (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/v1.9.0/boards/px4/fmu-v5). 
+* Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/v1.9.0/boards/px4/fmu-v5/default.cmake).
+* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board](https://github.com/PX4/Firmware/blob/v1.9.0/boards/px4/fmu-v5/init/rc.board_defaults)
   - A board-specific initialisation file is automatically included in startup scripts if found under the boards directory at **init/rc.board**.
   - The file is used to start sensors (and other things) that only exist on a particular board. 
     It may also be used to set a board's default parameters, UART mappings, and any other special cases.
   - For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF, and in AUTOCNF section (fresh setups) it sets the [SYS_FMU_TASK](../advanced/parameter_reference.md#SYS_FMU_TASK) parameter.
 
 In addition there are several groups of configuration files for each board located throughout the code base:
-* The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
-* Driver files are located in: [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers).
+* The boot file system (startup script) is located in: [ROMFS/px4fmu\_common](https://github.com/PX4/Firmware/tree/v1.9.0/ROMFS/px4fmu_common)
+* Driver files are located in: [src/drivers](https://github.com/PX4/Firmware/tree/v1.9.0/src/drivers).
 
 ## Host Operating System Configuration
 
@@ -55,7 +55,7 @@ make px4_fmu-v5_default menuconfig
 make px4_fmu-v5_default qconfig
 ```
 
-For fresh installs of PX4 onto Ubuntu using [ubuntu_sim_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/master/build_scripts/ubuntu_sim_nuttx.sh) you will also need to install *kconfig* tools from [NuttX tools](https://bitbucket.org/nuttx/tools/src/master/).
+For fresh installs of PX4 onto Ubuntu using [ubuntu_sim_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/v1.9.0/build_scripts/ubuntu_sim_nuttx.sh) you will also need to install *kconfig* tools from [NuttX tools](https://bitbucket.org/nuttx/tools/src/master/).
 
 > **Note** The following steps are not required if using the [px4-dev-nuttx](https://hub.docker.com/r/px4io/px4-dev-nuttx/) docker container or have installed to macOS using our normal instructions (as these include`kconfig-mconf`). 
 
@@ -88,7 +88,7 @@ This section describes the various middleware components, and the configuration 
 
 ### QuRT / Hexagon
 
-* The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs).
+* The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/v1.9.0/posix-configs).
 * The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions).
 * The PX4 middleware configuration is located in [src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards). TODO: ADD BUS CONFIG
 * Drivers: [DriverFramework](https://github.com/px4/DriverFramework).
