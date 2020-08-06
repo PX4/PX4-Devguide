@@ -83,9 +83,9 @@ If you work with this toolchain on multiple repositories you can also set these 
 
 This is not recommended because it may affect any other (unrelated) git use on your Windows machine.
 
-#### Unix Permissions Execution Bit
+#### 유닉스 실행 권한 비트
 
-Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
+유닉스에서는 각 파일을 실행할 수 있는지 여부를 운영체제에 알리는 권한 플래그가 있습니다. Cygwin의 *git*은 해당 비트를 (윈도우 NTFS 파일 시스템에서 활용하지 않지만) 지원하고 관리합니다. This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
 
     diff --git ...
     old mode 100644
@@ -148,8 +148,8 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 4. In the wizard choose to install into the folder: **C:\PX4\toolchain\cygwin64**
 5. Select to install the default Cygwin base and the newest available version of the following additional packages:
 
-* **Category:Packagename**
-* Devel:cmake (3.3.2 gives no deprecated warnings, 3.6.2 works but has the warnings)
+* **분류:꾸러미 명칭**
+* Devel:cmake (3.3.2 에서 deprecated 경고가 없고, 3.6.2 는 동작하지만 경고는 뜹니다)
 * Devel:gcc-g++
 * Devel:gdb
 * Devel:git
@@ -157,7 +157,7 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 * Devel:ninja
 * Devel:patch
 * Editors:xxd
-* Editors:nano (unless you're the vim pro)
+* Editors:nano (vim을 사용하지 않는 경우)
 * Python:python2
 * Python:python2-pip
 * Python:python2-numpy
@@ -169,13 +169,13 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 * Shells:bash-completion
 * Web:wget
     
-    > **Note** Do not select as many packages as possible which are not on this list, there are some which conflict and break the builds.
+    > **Note** 이 목록에 없는 다른 수많은 꾸러미는 빌드를 깨먹는 요소이므로 가능하면 선택하지 마십시오.
     
     <span></span>
     
-    > **Note** That's what [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) does.
+    > **Note** [cygwin64/install-cygwin-px4.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-px4.bat) 스크립트의 동작입니다.
 
-1. Write up or copy the **batch scripts** [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) and [`setup-environment.bat`](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat).
+1. [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) 파일과 [`setup-environment.bat`](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) 파일(**배치 스크립트**)를 작성하거나 복사하십시오.
     
     The reason to start all the development tools through the prepared batch script is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. This is done by always first calling the script [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) and the desired application like the console after that.
     
@@ -205,15 +205,15 @@ This section describes how to setup the Cygwin toolchain manually yourself while
 
 5. 윈도우용 [**Apache Ant**](https://ant.apache.org/bindownload.cgi)를 zip 압축 파일 바이너리로 다운로드하고 `C:\PX4\toolchain\apache-ant` 폴더에 압축을 해제하십시오.
     
-    > **Tip** Make sure you don't have an additional folder layer from the folder which is inside the downloaded archive.
+    > **Tip** 다운로드한 내용의 폴더 안에 추가 폴더 구성을 갖추었는지(없는지)여부를 확인하십시오.
     
     <span></span>
     
-    > **Note** This is what the toolchain does in: [apache-ant/install-apache-ant.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/apache-ant/install-apache-ant.bat).
+    > **Note** 툴체인이 있는 위치는 [apache-ant/install-apache-ant.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/apache-ant/install-apache-ant.bat) 입니다.
 
-6. Download, build and add *genromfs* to the path:
+6. *genromfs*를 다운로드하고 빌드한 다음 PATH에 추가하십시오:
     
-    * Clone the source code to the folder **C:\PX4\toolchain\genromfs\genromfs-src** with 
+    * 소스코드를 **C:\PX4\toolchain\genromfs\genromfs-src** 폴더에 다음 명령으로 가져오십시오 
             cd /c/toolchain/genromfs
             git clone https://github.com/chexum/genromfs.git genromfs-src
 
@@ -222,8 +222,8 @@ This section describes how to setup the Cygwin toolchain manually yourself while
         cd genromfs-src
          make all
     
-    * Copy the resulting binary **genromfs.exe** one folder level out to: **C:\PX4\toolchain\genromfs**
+    * **genromfs.exe** 결과 바이너리 파일을 한단계 폴더 위인 **C:\PX4\toolchain\genromfs**에 복사하십시오
     
-    > **Note** This is what the toolchain does in: [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat).
+    > **Note** 툴체인이 있는 위치는 [genromfs/install-genromfs.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/genromfs/install-genromfs.bat) 입니다.
 
-1. Make sure all the binary folders of all the installed components are correctly listed in the `PATH` variable configured by [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat).
+1. 설치한 모든 구성요소의 모든 바이너리 폴더가 [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) 스크립트에서 설정한 `PATH` 환경 변수에 제대로 들어갔는지 확인하십시오.
