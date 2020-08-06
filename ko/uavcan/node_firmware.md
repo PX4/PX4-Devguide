@@ -47,16 +47,16 @@ make clean && make -j8
 cd ..
 ```
 
-The bootloader image is located at `bootloader/firmware/bootloader.bin`, and the OpenOCD configuration is located at `openocd.cfg`. Follow [these instructions](../uavcan/bootloader_installation.md) to install the bootloader on the ESC.
+부트로더 이미지는 `bootloader/firmware/bootloader.bin`에 있고, OpenOCD 설정은 `openocd.cfg`에 있습니다. ESC에 부트로더를 설치하려면 [이 절차](../uavcan/bootloader_installation.md)를 따르십시오.
 
-### Compiling the Main Binary
+### 메인 바이너리 컴파일
 
 ```sh
 cd firmware
 make RELEASE=1 # RELEASE is optional; omit to build the debug version
 ```
 
-Beware, some newer version of GCC lead to segfaults during linking. Version 4.9 did work at the time of writing. The firmware image will be located at `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`, where `<xxxxxxxx>` is an arbitrary sequence of numbers and letters. There are two hardware version of the Zubax Orel 20 (1.0 and 1.1). Make sure you copy the binary to the correct folder in the subsequent description. The ESC firmware will check the hardware version and works on both products.1
+일부 GCC 신 버전에서 심볼 링크를 진행할 때 segmentation fault 오류가 나타날 수 있음을 염두에 두십시오. 이 글을 작성할 때 버전 4.9는 동작합니다. 펌웨어 이미지는 `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`에 들어가는데, `<xxxxxxxx>`는 임의 순서대로 나열한 문자 숫자입니다. Zubax Orel 20 하드웨어 버전은 두가지가 있습니다 (1.0과 1.1). Make sure you copy the binary to the correct folder in the subsequent description. The ESC firmware will check the hardware version and works on both products.1
 
 ## Zubax GNSS
 
