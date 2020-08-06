@@ -61,7 +61,7 @@ jMAVSim 을 설치하려면:
     
     ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
 
-> **Caution** Gazebo can similarly be run within Ubuntu Bash for Windows, but too slow to be useful. To try this, follow the [ROS kinetic install guide](http://wiki.ros.org/kinetic/Installation/Ubuntu) and run Gazebo in the Bash shell as shown: 
+> **Caution** 가제보는 윈도우용 우분투 배시에서 비슷하게 실행할 수 있지만, 쓸만하기에는 너무 느립니다. 그래도 써보시겠다면 [ROS 키네틱 설치 안내서](http://wiki.ros.org/kinetic/Installation/Ubuntu)를 따라 설치후 다음과 같이 배시셸에서 가제보를 실행해보십시오: 
 > 
 >     sh
 >       export DISPLAY=:0
