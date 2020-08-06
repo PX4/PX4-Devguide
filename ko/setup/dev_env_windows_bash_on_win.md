@@ -11,53 +11,53 @@ Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 d
 
 ### 환경 설치
 
-The easiest way to setup the environment is to use the **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** script (details for script are [given below](#build_script_details)).
+환경을 설치하는 가장 간단한 방법은 **<a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh" target="_blank" download>windows_bash_nuttx.sh</a>** 스크립트를 활용하는 방법입니다(스크립트 동작의 세부내용은 [아래에 있습니다](#build_script_details))
 
-To setup the development environment:
+개발 환경을 설치하려면:
 
-1. Install [Bash on Windows](https://github.com/Microsoft/BashOnWindows).
-2. Open the bash shell.
-3. Download the **windows_bash_nuttx.sh**:  
+1. [윈도우용 배시](https://github.com/Microsoft/BashOnWindows)를 설치하십시오.
+2. 배시 셸을 여십시오.
+3. **windows_bash_nuttx.sh** 스크립트를 다운로드하십시오:  
     `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh`
-4. Run the script using the command below (acknowledging any prompts as required): 
+4. 다음 명령으로 스크립트를 실행하십시오(필요할 경우 프롬프트에 응답): 
         sh
         bash windows_bash_nuttx.sh
 
-### Build Firmware
+### 펌웨어 빌드
 
-To build the firmware (i.e. for px4_fmu-v4):
+펌웨어를 빌드하려면 (예: px4_fmu-v4):
 
-1. Enter the following commands in the bash shell:
+1. 다음 명령을 배시셸에 입력하십시오:
     
         cd ~/src/Firmware
         make px4_fmu-v4_default
         
     
-    On successful completion you'll find the firmware here: `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
+    완전히 끝나면, `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4` 위치의 펌웨어를 찾을 수 있습니다.
     
-    > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx)
+    > **Note** 기타 보드 대상 펌웨어 빌드용 `make` 명령은 [코드 빌드](../setup/building_px4.md#nuttx)에서 확인하실 수 있습니다
 
-2. You can flash the custom firmware on Windows using *QGroundControl* or *Mission Planner* (it is not possible to directly flash the firmware from within the bash shell using the `upload` command).
+2. *QGroundControl* 또는 *Mission Planner* 로 윈도우에서 개별 펌웨어를 플래싱할 수 있습니다(배시 셸에서 `upload` 명령으로 펌웨어를 바로 플래싱할 수는 없습니다).
 
-### Simulation (JMAVSim)
+### 모의시험 환경(jMAVSim)
 
-Bash on Windows does not include support for UI libraries. In order to display the jMAVSim UI you will first need to install an X-Window application like [XMing](https://sourceforge.net/projects/xming/) into Windows.
+윈도우용 배시에서는 UI 라이브러리를 지원하지 않습니다. jMAVSim 인터페이스를 화면에 띄우려면 [XMing](https://sourceforge.net/projects/xming/) 같은 X-Window 프로그래을 윈도우에 우선 설치해야합니다.
 
-To run JMAVSim:
+jMAVSim 을 설치하려면:
 
-1. Install and start [XMing](https://sourceforge.net/projects/xming/) on Windows.
-2. Enter the following command in the bash shell: 
+1. 윈도우에 [XMing](https://sourceforge.net/projects/xming/)을 설치하고 시작하십시오.
+2. 다음 명령을 배시셸에 입력하십시오: 
         sh
         export DISPLAY=:0 > 
     
-    **Tip** Add this line to the Ubuntu **.bashrc** file if you don't want to enter it every session.
-3. Start PX4 and jMAVSim in the bash shell:
+    **Tip** 매 세션을 열 때마다 입력을 원치 않으면 우분투 **.bashrc** 파일에 이 행을 추가하십시오.
+3. PX4와 jMAVSim 을 배시셸에서 시작하십시오:
     
     ```sh
     make px4_sitl jmavsim
     ```
     
-    The JMAVSim UI is then displayed in XMing as shown below:
+    이후 아래와 같이 XMing 창에 jMAVSim 인터페이스가 뜹니다:
     
     ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
 
