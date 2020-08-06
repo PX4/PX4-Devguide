@@ -5,9 +5,9 @@
 윈도우 사용자는 대신 *약간 수정한* 우분투 리눅스 PX4 개발 환경을 [윈도우용 배시](https://github.com/Microsoft/BashOnWindows)에 설치할 수 있고 다음 항목을 활용할 수 있습니다:
 
 * NuttX/픽스호트 대상 펌웨어 빌드.
-* Run the PX4 JMAVSim simulation (using a Windows-hosted X-Windows app to display the UI)
+* PX4 jMAVSim 모의시험 환경 실행(인터페이스를 띄울 때 윈도우에서 제공하는 X-Window 앱 활용)
 
-> **Note** This mechanism only works on Windows 10. It essentially runs the toolchain in a virtual machine, and is relatively slow compared to other solutions.
+> **Note** 이 매커니즘은 윈도우 10에서만 동작합니다. 핵심적인 부분은 가상 머신에서 툴체인으로 동작하며 다른 솔루션보다는 상대적으로 느립니다.
 
 ### 환경 설치
 
