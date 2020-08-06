@@ -7,28 +7,28 @@
 툴체인에서 지원하는 기능은 다음과 같습니다:
 
 * PX4를 NuttX 대상(픽스호크 계열 조종기)에 빌드하고 업로드합니다
-* JMAVSim/SITL simulator with significantly better performance than the other Windows toolchains.
-* Style check, portable installer, command line completion and many [other features](#features).
+* jMAVSim/SITL 모의시험 환경의 성능이 다른 윈도우 툴체인을 사용할 때보다 비약적으로 개선됩니다.
+* 코드 모양새 검사, 간편 설치 관리자, 명령행 자동 완성 등의 [기타 수많은 기능](#features)을 내포하고 있습니다.
 
-This topic explains how download and use the environment, and how it can be extended and updated if needed (for example, to use a different compiler).
+이 주제에서는 환경을 다운로드하고 활용하는 방법, 필요한 경우 기능을 확장하고 업데이트하는 방법(예: 다른 컴파일러 활용)을 설명하도록 하겠습니다.
 
-## Installation Instructions {#installation}
+## 설치 방법 {#installation}
 
-1. Download the latest version of the ready-to-use MSI installer from: [Github releases](https://github.com/PX4/windows-toolchain/releases) or [Amazon S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.9.msi) (fast download).
-2. Run it, choose your desired installation location, let it install: ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
-3. Tick the box at the end of the installation to *clone the PX4 repository, build and run simulation with jMAVSim* (this simplifies the process to get you started).
+1. 바로 사용할 수 있는 MSI 설치 프로그램의 최신 버전을 [Github 릴리스](https://github.com/PX4/windows-toolchain/releases) 또는 [아마존 S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.9.msi) (다운로드 속도 빠름) 서버에서 받으십시오.
+2. 실행하고, 원하는 위치를 선택한 후, 진행하십시오:![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
+3. 설치 과정 마지막에서 *clone the PX4 repository, build and run simulation with jMAVSim*의 확인 상자에 표시하십시오(이 동작은 시작할 때 과정을 단순화합니다).
     
-    > **Note** If you missed this step you will need to [clone the PX4 Firmware repository manually](#getting_started).
+    > **Note** 이 단계를 놓쳤다면 [PX4 펌웨어 저장소를 직접 가져와야합니다](#getting_started).
 
-## Getting Started {#getting_started}
+## 시작하기 {#getting_started}
 
-The toolchain uses a specially configured console window (started by running the **run-console.bat** script) from which you can call the normal PX4 build commands:
+툴체인은 별도로 설정한 콘솔 창(**run-console.bat** 스크립트 실행)을 사용하며, 이 콘솔창에서 PX4 빌드에 사용할 일반 명령을 호출할 수 있습니다:
 
-1. Browse to the toolchain installation directory (default **C:\PX4**)
-2. Run **run-console.bat** (double click) to start the Cygwin bash console
-3. Clone the PX4 Firmware repository from within the console:
+1. 툴체인 설치 디렉터리를 탐색하십시오 (기본 위치 **C:\PX4**)
+2. **run-console.bat** 을 실행(두번 누르기)하여 Cygwin 배시 콘솔을 실행하십시오
+3. PX4 펌웨어 저장소를 콘솔에서 가져(clone)오십시오:
     
-    > **Note** Cloning only needs to be done once! Skip this step if you ticked the installer option to *clone the PX4 repository, build and run simulation with jMAVSim*.
+    > **Note** 가져오는 동작은 한번이면 됩니다! Skip this step if you ticked the installer option to *clone the PX4 repository, build and run simulation with jMAVSim*.
     
     ```bash
     # Clone PX4 Firmware repository into the home folder & loads submodules in parallel
