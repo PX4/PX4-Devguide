@@ -1,12 +1,12 @@
-# Windows Cygwin Toolchain
+# 윈도우 Cygwin 툴체인
 
-This toolchain is portable, easy to install, and easy to use. It is the newest and best performing toolchain for developing PX4 on Windows.
+이 툴체인은 이식이 용이하고, 설치하기 쉬우며, 사용하기에도 간편합니다. 윈도우에서 PX4 개발에 활용하는 가장 최신의, 최상의 기능과 성능을 발휘하는 툴체인입니다.
 
-> **Tip** This is the only officially supported toolchain for building PX4 on Windows (i.e. it is tested in our continuous integration system).
+> **Tip** 윈도우에서 PX4 빌드에 활용하는 툴체인 중, 유일하게 공식적으로 지원하는 툴체인입니다(예: 지속 통합 시스템에서 시험해보았습니다).
 
-The toolchain supports:
+툴체인에서 지원하는 기능은 다음과 같습니다:
 
-* Build/upload of PX4 to NuttX targets (Pixhawk series controllers)
+* PX4를 NuttX 대상(픽스호크 계열 조종기)에 빌드하고 업로드합니다
 * JMAVSim/SITL simulator with significantly better performance than the other Windows toolchains.
 * Style check, portable installer, command line completion and many [other features](#features).
 
