@@ -2,9 +2,9 @@
 
 > **Note** [윈도우 Cygwin 툴체인](../setup/dev_env_windows_cygwin.md)이 (유일하게) 윈도우 환경에서 공식적으로 지원하는 툴체인입니다.
 
-Windows users can alternatively install a *slightly modified* Ubuntu Linux PX4 development environment within [Bash on Windows](https://github.com/Microsoft/BashOnWindows), and use it to:
+윈도우 사용자는 대신 *약간 수정한* 우분투 리눅스 PX4 개발 환경을 [윈도우용 배시](https://github.com/Microsoft/BashOnWindows)에 설치할 수 있고 다음 항목을 활용할 수 있습니다:
 
-* Build firmware for NuttX/Pixhawk targets.
+* NuttX/픽스호트 대상 펌웨어 빌드.
 * Run the PX4 JMAVSim simulation (using a Windows-hosted X-Windows app to display the UI)
 
 > **Note** This mechanism only works on Windows 10. It essentially runs the toolchain in a virtual machine, and is relatively slow compared to other solutions.
@@ -68,20 +68,20 @@ jMAVSim 을 설치하려면:
 >       export GAZEBO_IP=127.0.0.1
 >       make px4_sitl gazebo
 
-### Build Script Details {#build_script_details}
+### 빌드 스크립트 세부 내용 {#build_script_details}
 
-The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
+[windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh) 빌드 스크립트는 우분투 빌드 과정에서 우분투에만 해당하는 내용과, *Qt 크리에이터* UI 의존 요소 부분을 제거하여 수정한 버전입니다.
 
-In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) since BashOnWindows doesn't run 32 bit ELF programs (and the default compiler from `https://launchpad.net/gcc-arm-embedded` is 32 bit).
+또한 윈도우용 배시는 32비트 ELF 바이너리를 실행하지 못하므로(또한 `https://launchpad.net/gcc-arm-embedded` 컴파일러도 32비트) [64비트 arm-none-eabi 컴파일러](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git)를 활용합니다.
 
-To add this compiler to your environment manually:
+이 컴퓨터에 환경을 직접 추가하려면:
 
-1. Download the compiler: 
+1. 컴파일러를 다운로드하십시오: 
         sh
         wget https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-/raw/master/gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2
 
-2. Unpack it using this command line in the Bash On Windows console: 
+2. 윈도우용 배시 콘솔에서 이 명령행으로 압축을 풀어내십시오: 
         sh
-        tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2 This will unpack the arm gcc cross-compiler to: ```gcc-arm-none-eabi-5_4-2017q2/bin```
+        tar -xvf gcc-arm-none-eabi-5_4-2017q2-20170512-linux.tar.bz2 이 명령은 다음 경로로 ARM GCC 교차 컴파일러를 풀어냅니다: ```gcc-arm-none-eabi-5_4-2017q2/bin```
 
-3. Add the to the environment (add the line to your bash profile to make the change permanent) ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:$PATH```
+3. 다음 행을 PATH 환경 변수에 추가하십시오(배시 프로파일에 아래 행을 추가하면 앞으로도 바뀐 내용을 계속 반영합니다) ```export PATH=$HOME/gcc-arm-none-eabi-5_4-2017q2/bin:$PATH```
