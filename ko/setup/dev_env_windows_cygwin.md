@@ -177,24 +177,24 @@ Github 프로젝트의 셸 스크립트를 활용하여 환경을 설치할 수�
 
 1. [`run-console.bat`](https://github.com/MaEtUgR/PX4Toolchain/blob/master/run-console.bat) 파일과 [`setup-environment.bat`](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) 파일(**배치 스크립트**)를 작성하거나 복사하십시오.
     
-    The reason to start all the development tools through the prepared batch script is they preconfigure the starting program to use the local, portable Cygwin environment inside the toolchain's folder. This is done by always first calling the script [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) and the desired application like the console after that.
+    미리 준비한 배치 스크립트로 모든 개발 도구를 받아 시작하는 이유는 로컬에 이식이 용이한 Cygwin 환경을 툴체인 폴더에 넣고 사용할 프로그램의 시작 단계에서 우선 설정하기 때문입니다. [**setup-environment.bat**](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) 스크립트를 언제든 우선 호출하고, 콘솔 같은 원하는 프로그램을 그 다음에 실행합니다.
     
-    The script [setup-environment.bat](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) locally sets environmental variables for the workspace root directory `PX4_DIR`, all binary locations `PATH`, and the home directory of the unix environment `HOME`.
+    [setup-environment.bat](https://github.com/PX4/windows-toolchain/blob/master/toolchain/scripts/setup-environment.bat) 스크립트는 작업 환경 루트 디렉터리의 환경 변수 `PX4_DIR`, 전체 바이너리 경로 `PATH`, 유닉스 환경의 계정 루트 디렉터리 `HOME`을 설정합니다.
 
-2. Add necessary **python packages** to your setup by opening the Cygwin toolchain console (double clicking **run-console.bat**) and executing
+2. (**run-console.bat**을 두번 눌러) Cygwin 툴체인 콘솔을 열고 다음 명령을 입력하여 필요한 **파이썬 꾸러미**를 설치 과정에 추가하십시오.
     
         pip2 install toml
         pip2 install pyserial
         pip2 install pyulog
         
     
-    > **Note** That's what [cygwin64/install-cygwin-python-packages.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) does.
+    > **Note** 이 동작이 [cygwin64/install-cygwin-python-packages.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/cygwin64/install-cygwin-python-packages.bat) 스크립트에서 하는 일입니다.
 
-3. Download the [**ARM GCC compiler**](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads) as zip archive of the binaries for Windows and unpack the content to the folder `C:\PX4\toolchain\gcc-arm`.
+3. 윈도우용 바이너리 [**ARM GCC compiler**](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)를 zip 압축 파일로 다운로드한 후 `C:\PX4\toolchain\gcc-arm` 폴더에 내용물을 풀어 넣으십시오.
     
     > **Note** This is what the toolchain does in: [gcc-arm/install-gcc-arm.bat](https://github.com/MaEtUgR/PX4Toolchain/blob/master/toolchain/gcc-arm/install-gcc-arm.bat).
 
-4. Install the JDK:
+4. JDK를 설치하십시오:
     
     * Download Java 14 from [Oracle](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html) or [AdoptOpenJDK](https://adoptopenjdk.net/).
     * Because sadly there is no portable archive containing the binaries directly you have to install it.
