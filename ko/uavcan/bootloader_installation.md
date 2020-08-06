@@ -1,16 +1,16 @@
-# UAVCAN Bootloader Installation
+# UAVCAN 부트로더 설치
 
-> **Warning** UAVCAN devices typically ship with a bootloader pre-installed. Do not follow the instructions in this section unless you are developing UAVCAN devices.
+> **Warning** UAVCAN 장치는 보통 부트로더를 미리 넣은 상태로 나옵니다. UAVCAN 장치를 직접 개발할 의도가 아니라면 이 절의 절차는 따르지 마십시오.
 
-## Overview
+## 개요
 
-The PX4 project includes a standard UAVCAN bootloader for STM32 devices.
+PX4 프로젝트에서는 STM32 장치용 표준 UAVCAN 부트로더를 다룹니다.
 
-The bootloader occupies the first 8–16 KB of flash, and is the first code executed on power-up. Typically, the bootloader performs low-level device initialization, automatically determines the CAN bus baud rate, acts as a UAVCAN dynamic node ID client to obtain a unique node ID, and waits for confirmation from the flight controller before proceeding with application boot.
+부트로더는 처음 8~16KB 플래이 메모리 영역을 차지하며, 처음 코드는 전원을 켰을 때 실행합니다. 보통 부트로더는 로우레벨 장치 초기화, CAN 버스 전송률 자동 결정, 고유 노드 ID 획득을 위한 UAVCAN 동적 노드 ID 클라이언트 동작, 프로그램 부팅 진행 전 비행체 컨트롤러 응답 확인 과정을 수행합니다.
 
-This process ensures that a UAVCAN device can recover from invalid or corrupted application firmware without user intervention, and also permits automatic firmware updates.
+이 과정에서는 사용자의 개입 없이 UAVCAN 장치를 잘못된, 프로그램이 손상된 펌웨어 상태로부터 복원할 수 있으며, 자동 펌웨어 업데이트를 수행합니다.
 
-## Prerequisites
+## 준비 요건
 
 Installing or updating the UAVCAN bootloader requires:
 
@@ -22,7 +22,7 @@ Installing or updating the UAVCAN bootloader requires:
 
 If you are unable to connect to your device using the instructions below, it's possible that firmware already on the device has disabled the MCU's debug pins. To recover from this, you will need to connect your interface's NRST or nSRST pin (pin 15 on the standard ARM 20-pin connector) to your MCU's NRST pin. Obtain your device schematics and PCB layout or contact the manufacturer for details.
 
-## Installation
+## 설치
 
 After compiling or obtaining a bootloader image for your device (refer to device documentation for details), the bootloader must be copied to the beginning of the device's flash memory.
 
@@ -79,7 +79,7 @@ load
 run
 ```
 
-## Segger J-Link Debugger
+## Segger J-Link 디버거
 
 Connect the JLink Debugger to your UAVCAN device, and connect the JLink Debugger to your computer.
 
