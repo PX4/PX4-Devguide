@@ -1,32 +1,32 @@
-# ULog File Format
+# ULog 파일 형식
 
-ULog is the file format used for logging system data.
+ULog는 시스템 데이터를 기록할 떄 사용하는 파일 형식입니다.
 
-The format is self-describing, i.e. it contains the format and message types that are logged (note that the [system logger](../log/logging.md) allows the *default set* of logged topics to be replaced from an SD card).
+형식은 자체적 설명이 들어있으며, 예를 들면, 로깅한 내용에 형식 정보와 메세지 형식이 들어있습니다(참고로 [시스템 로거](../log/logging.md)에서는 로그 토픽의 *기본 설정*을 SD 카드의 설정으로의 대체를 허용합니다).
 
-It can be used for logging device inputs (sensors, etc.), internal states (cpu load, attitude, etc.) and `printf` log messages.
+장치 입력(센서, 등), 내부 상태(CPU 부하, 고도, 등), `printf` 로그 메세지의 로깅에 활용할 수 있습니다.
 
-The format uses Little Endian for all binary types.
+모든 바이너리 형식에 리틀 엔디안 방식을 적용합니다.
 
-## Data types
+## 데이터 형식
 
-The following binary types are used. They all correspond to the types in C:
+다음 바이너리 형식을 사용합니다. C의 자료형에 해당합니다:
 
-| Type                | Size in Bytes |
-| ------------------- | ------------- |
-| int8_t, uint8_t   | 1             |
-| int16_t, uint16_t | 2             |
-| int32_t, uint32_t | 4             |
-| int64_t, uint64_t | 8             |
-| float               | 4             |
-| double              | 8             |
-| bool, char          | 1             |
+| 형식                  | 바이트 크기 |
+| ------------------- | ------ |
+| int8_t, uint8_t   | 1      |
+| int16_t, uint16_t | 2      |
+| int32_t, uint32_t | 4      |
+| int64_t, uint64_t | 8      |
+| float               | 4      |
+| double              | 8      |
+| bool, char          | 1      |
 
-Additionally all can be used as an array, eg. `float[5]`. In general all strings (`char[length]`) do not contain a `'\0'` at the end. String comparisons are case sensitive.
+게다가 다음과 같은 배열에도 활용할 수 있습니다. `float[5]`가 이에 해당합니다. 보통 모든 문자열(`char[length]`)의 마지막에 `'\0'`이 있는건 아닙니다. 문자열 비교시 대소문자를 구분합니다.
 
-## File structure
+## 파일 구조
 
-The file consists of three sections:
+파일은 다음과 같이 세 부분으로 나뉩니다:
 
     ----------------------
     |       Header       |
@@ -37,7 +37,7 @@ The file consists of three sections:
     ----------------------
     
 
-### Header Section
+### 헤더 섹션
 
 The header is a fixed-size section and has the following format (16 bytes):
 
@@ -183,7 +183,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
   
   `multi_id`: 동일한 형식의 센서 두가지를 달고 있는 시스템의 경우를 예로 들어, 여러 인스턴스를 가질 수 있는 동일한 메세지 형식입니다. 기본값과 첫번째 인스턴스는 0이어야 합니다. `msg_id`: `message_data_s` 데이터에 일치하는 고유 ID입니다. 처음 활용 부분은 0으로 설정하고, 값을 늘려야 합니다. 동일한 `msg_id`를 각기 다른 가입 절차를 위해 두번 사용하면 안되며, 그 반대의 경우도 마찬가지입니다. `message_name`: 처리 과정에 가입할 메세지 이름입니다. `message_format_s`에 지정한 이름과 정확하게 일치해야합니다.
 
-- 'R': unsubscribe a message, to mark that it will not be logged anymore (not used currently).
+- 'R': 더이상 로그를 진행하지 않음을 알리는 탈외 메시지(현재 사용하지 않음)입니다.
   
   ```c
   struct message_remove_logged_s {
@@ -192,7 +192,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
   };
   ```
 
-- 'D': contains logged data.
+- 'D': 로그 데이터가 들어있습니다.
   
       struct message_data_s {
         struct message_header_s header;
@@ -201,9 +201,9 @@ This section ends before the start of the first `message_add_logged_s` or `messa
       };
       
   
-  `msg_id`: as defined by a `message_add_logged_s` message. `data` contains the logged binary message as defined by `message_format_s`. See above for special treatment of padding fields.
+  `msg_id`: `message_add_logged_s` 메시지에서 정의한 그대로입니다. `data`에는 `message_format_s`에 지정한 대로 이진 형식의 로그 메시지가 들어있습니다. 필드 여백을 특별히 처리한 방법은 위를 참고하십시오.
 
-- 'L': Logged string message, i.e. printf output.
+- 'L': 로깅한 문자열 메시지입니다. 예: printf 출력.
   
       struct message_logging_s {
         struct message_header_s header;
@@ -213,7 +213,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
       };
       
   
-  `timestamp`: in microseconds, `log_level`: same as in the Linux kernel:
+  `timestamp`: 마이크로초 단위, `log_level`: 리눅스 커널과 동이:
 
 | Name    | Level value | Meaning                          |
 | ------- | ----------- | -------------------------------- |
