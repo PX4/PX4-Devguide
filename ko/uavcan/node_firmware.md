@@ -60,7 +60,7 @@ make RELEASE=1 # RELEASE is optional; omit to build the debug version
 
 ## Zubax GNSS
 
-펌웨어 빌드 및 플래싱 방법은 [프로젝트 페이지](https://github.com/Zubax/zubax_gnss)를 참고하십시오. Zubax GNSS comes with a UAVCAN-capable bootloader, so its firmware can be updated in a uniform fashion via UAVCAN as described below.
+펌웨어 빌드 및 플래싱 방법은 [프로젝트 페이지](https://github.com/Zubax/zubax_gnss)를 참고하십시오. Zubax GNSS는 UAVCAN 기능을 활용할 수 있는 부트로더가 딸려오기 때문에, 아래에서 설명하는대로 UAVCAN을 활용하는 단순 방식으로 펌웨어를 업데이트할 수 있습니다.
 
 ## Autopilot에 펌웨어 설치
 
@@ -89,9 +89,9 @@ ROMFS 기반 업데이터는 다음과 같은 규칙을 따르나, 파일 이름
     /etc/uavcan/fw/<device name>/<hw version major>.<hw version minor>/_<hw name>-<sw version major>.<sw version minor>.<git hash>.bin
     
 
-## Placing the binaries in the PX4 ROMFS
+## PX4 ROMFS에 바이너리 복사
 
-The resulting finale file locations are:
+최종 파일 위치는 다음과 같습니다.
 
 * S2740VC ESC: `ROMFS/px4fmu_common/uavcan/fw/com.thiemar.s2740vc-v1/1.0/_s2740vc-v1-1.0.<git hash>.bin`
 * Pixhawk ESC 1.6: `ROMFS/px4fmu_common/uavcan/fw/org.pixhawk.px4esc-v1/1.6/_px4esc-v1-1.6.<git hash>.bin`
@@ -99,13 +99,13 @@ The resulting finale file locations are:
 * Zubax GNSS v1: `ROMFS/px4fmu_common/uavcan/fw/com.zubax.gnss/1.0/gnss-1.0.<git has>.bin`
 * Zubax GNSS v2: `ROMFS/px4fmu_common/uavcan/fw/com.zubax.gnss/2.0/gnss-2.0.<git has>.bin`
 
-Note that the ROMFS/px4fmu_common directory will be mounted to /etc on Pixhawk.
+ROMFS/px4fmu_common 디렉터리는 픽스호크의 /etc 로 마운트합니다.
 
-### Starting the Firmware Upgrade process
+### 펌웨어 업그레이드 과정 시작
 
-When using the PX4 Flight Stack, enable UAVCAN in the 'Power Config' section and reboot the system before attempting an UAVCAN firmware upgrade.
+PX4 플라이트 스택을 활용할 경우, 'Power Config' 절의 UAVCAN 기능을 켜고, UAVCAN 펌웨어 업그레이드를 시도하기 전에 시스템을 다시 부팅하십시오.
 
-Alternatively UAVCAN firmware upgrading can be started manually on NSH via:
+대신, UAVCAN 펌웨어 업그레이드를 다음 명령으로 직접 시작할 수 있습니다:
 
 ```sh
 uavcan start
