@@ -74,23 +74,23 @@ By far the best card we know so far is the **SanDisk Extreme U3 32GB**. This car
 
 You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/Firmware/issues/4634.
 
-## Log Streaming
+## 로그 스트리밍
 
-The traditional and still fully supported way to do logging is using an SD card on the FMU. However there is an alternative, log streaming, which sends the same logging data via MAVLink. This method can be used for example in cases where the FMU does not have an SD card slot (e.g. Intel® Aero Ready to Fly Drone) or simply to avoid having to deal with SD cards. Both methods can be used independently and at the same time.
+태로초부터 지금까지 제대로 지원하는 로그 스트리밍 방법은 FMU에서 SD 카드를 활용하는 방법입니다. 그러나, 이 대안책으로, MAVLink로 동일한 로깅 데이터를 전송하는 로깅 스트리밍 방식이 있습니다. 이 방식은 FMU에 SD 카드 슬롯이 없을 경우(예: Intel® Aero Ready to Fly 드론)에 활용하거나, 단순히 SD 카드의 취급을 피하려 하고자 할 경우 진행할 수 있습니다. 두가지 방식은 동시에 제각각 활용할 수 있습니다.
 
-The requirement is that the link provides at least ~50KB/s, so for example a WiFi link. And only one client can request log streaming at the same time. The connection does not need to be reliable, the protocol is designed to handle drops.
+필요 요소는 WiFi 연결 처럼 초당 50KB를 제공할 수 있는 통신 수단입니다. 단일 클라이언트만 동시에 로그 스트리밍을 요청할 수 있습니다. The connection does not need to be reliable, the protocol is designed to handle drops.
 
 There are different clients that support ulog streaming:
 
 - `mavlink_ulog_streaming.py` script in Firmware/Tools.
-- QGroundControl: ![QGC Log Streaming](../../assets/gcs/qgc-log-streaming.png)
+- QGroundControl: ![QGC 로그 스트리밍](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 
 ### 진단
 
 - 로그 스트리밍을 시작하지 않았다면, `logger`를 실행 중인지(위 참고) 확인하고, 시작하는 동안 콘솔 출력을 살펴보십시오.
 - 여전히 동작하지 않는다면 MAVLink 2를 사용하고 있는지 확인하십시오. `MAV_PROTO_VER` 매개변수 값을 2로 강제 설정하십시오.
-- Log streaming uses a maximum of 70% of the configured MAVLink rate (`-r` parameter). If more is needed, messages are dropped. The currently used percentage can be inspected with `mavlink status` (1.8% is used in this example): 
+- 로그 스트리밍은 MAVLink 전송율 설정(`-r` 매개변수) 최대값의 70% 전송율을 보입니다. 더 큰 전송율이 필요하다면, 메세지가 사라집니다. 현재 MAVLink 패킷에서 로그가 차지하는 백분율은 `mavlink status` 명령으로 확인할 수 있습니다(이 예제에서는 1.8%). 
         instance #0:
               GCS heartbeat:  160955 us ago
               mavlink chan: #0
@@ -104,6 +104,6 @@ There are different clients that support ulog streaming:
               ULog rate: 1.8% of max 70.0%
               accepting commands: YES
               MAVLink version: 2
-              transport protocol: UDP (14556) Also make sure 
+              transport protocol: UDP (14556) 또한 
     
-    `txerr` stays at 0. If this goes up, either the NuttX sending buffer is too small, the physical link is saturated or the hardware is too slow to handle the data.
+    `txerr` 값이 0에 머물러있는지 확인하십시오. 만약 이 값이 올라간다면, NuttX 전송 버퍼가 너무 작거나, 물리 링크 대역폭이 포화 상태이거나, 하드웨어가 데이터를 처리하기에 너무 느린 상황임을 의미합니다.
