@@ -36,7 +36,7 @@ SD 카드에 기록할 토픽 목록은 설정 파일로 개별 지정할 수 �
     sensor_mag 200 1
     
 
-This configuration will log sensor_accel 0 at full rate, sensor_accel 1 at 10Hz, all sensor_gyro instances at 5Hz and sensor_mag 1 at 5Hz.
+이 설정을 통해 sensor_accel 0 을 최대 기록율로, sensor_accel 1을 초당 10회, 모든 sensor_gyro 인스턴스를 초당 5회, sensor_mag 1을 초당 5회 기록합니다.
 
 ## 스크립트
 
