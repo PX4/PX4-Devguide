@@ -166,11 +166,11 @@ struct message_header_s {
 
 This section ends before the start of the first `message_add_logged_s` or `message_logging_s` message, whichever comes first.
 
-### Data Section
+### 데이터 섹션
 
-The following messages belong to this section:
+다음 메시지가 이 섹션에 해당합니다:
 
-- 'A': subscribe a message by name and give it an id that is used in `message_data_s`. This must come before the first corresponding `message_data_s`.
+- 'A': 이름을 부여한 가입 메시지이며, `message_data_s`에서 활용하는 ID 값이 들어있습니다. 이 섹션은 `message_data_s`에 해당하는 첫번째 부분 이전에 와야합니다.
   
   ```c
   struct message_add_logged_s {
@@ -181,7 +181,7 @@ The following messages belong to this section:
   };
   ```
   
-  `multi_id`: the same message format can have multiple instances, for example if the system has two sensors of the same type. The default and first instance must be 0. `msg_id`: unique id to match `message_data_s` data. The first use must set this to 0, then increase it. The same `msg_id` must not be used twice for different subscriptions, not even after unsubscribing. `message_name`: message name to subscribe to. Must match one of the `message_format_s` definitions.
+  `multi_id`: 동일한 형식의 센서 두가지를 달고 있는 시스템의 경우를 예로 들어, 여러 인스턴스를 가질 수 있는 동일한 메세지 형식입니다. 기본값과 첫번째 인스턴스는 0이어야 합니다. `msg_id`: `message_data_s` 데이터에 일치하는 고유 ID입니다. 처음 활용 부분은 0으로 설정하고, 값을 늘려야 합니다. 동일한 `msg_id`를 각기 다른 가입 절차를 위해 두번 사용하면 안되며, 그 반대의 경우도 마찬가지입니다. `message_name`: 처리 과정에 가입할 메세지 이름입니다. `message_format_s`에 지정한 이름과 정확하게 일치해야합니다.
 
 - 'R': unsubscribe a message, to mark that it will not be logged anymore (not used currently).
   
@@ -300,7 +300,7 @@ The following messages belong to this section:
 - 로그가 메세지 중간에 갑자기 끝났을 경우에도 제대로 처리할 수 있어야 함. 끝나지 않은 메시지는 무시해야 함.
 - 후위 첨가 데이터: 파서에서 데이터 섹션이 존재함을 가정할 수 있어야 함. 예: 정의 섹션 다음의 위치를 오프셋이 가리킴.
   
-  Appended data must be treated as if it was part of the regular Data section.
+  후위 첨가 데이터는 정규 데이터 섹션의 일부로 다루어야 함.
 
 ## Known Implementations
 
