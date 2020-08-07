@@ -22,9 +22,9 @@ SD 카드에 기록할 토픽 목록은 설정 파일로 개별 지정할 수 �
     <topic_name> <interval> <instance>
     
 
-The `<interval>` is optional, and if specified, defines the minimum interval in ms between two logged messages of this topic. If not specified, the topic is logged at full rate.
+`<interval>` 항목은 선택 사항이나, 이 항목은 밀리초 단위로 이 토픽을 기록할 두 로그간의 최소 간격 시간을 지정합니다. 지정하지 않으면, 토픽을 최대 기록율로 기록합니다.
 
-The `<instance>` is optional, and if specified, defines the instance to log. If not specified, all instances of the topic are logged. To specify `<instance>`, `<interval>` must be specified. It can be set to 0 to log at full rate
+`<instance>` 항목 역시 선택사항이나, 이 항목은 로그를 진행할 인스턴스를 지정합니다. 지정하지 않으면, 토픽의 모든 인스턴스를 로깅합니다. `<instance>`를 지정하려면, `<interval>`을 반드시 지정해야합니다. 0을 설정하여 최대 기록율로 지정할 수 있습니다.
 
 이 파일에 들어간 토픽 목록은 기본 로깅 토픽 종류를 바꿉니다.
 
