@@ -78,13 +78,13 @@ struct message_header_s {
   
   - `compat_flags`: 호환 플래그 비트값. 아직 정의하는 사항은 없으며 모든 경우에 0으로 설정해야합니다. 이 비트 값은 나중에 ULog 형식이 바뀌고 기존 파서와의 호환성을 비교할 때 활용합니다. 이는 알 수 없는 비트값을 설정했다면, 파서에서 이 비트값을 무시할 수 있음을 의미합니다.
   - `incompat_flags`: 비호환성 플래그 비트값. 로그에 후위 첨가 데이터가 있고 최소한 `appended_offsets` 값 중 하나가 0 값이 아닌 경우, 인덱스 0번의 최하위 비트 값을 1로 설정해야합니다. 다른 비트 값은 별도로 정의한 내용이 없어 0으로 설정해야합니다. 파서에서 이 비트 중 최소한 하나라도 설정 값을 발견했다면 로그 해석을 거절해야합니다. 기존 파서에서 처리할 수 없는 변경 손상 발견에 활용할 수 있습니다.
-  - `appended_offsets`: File offsets (0-based) for appended data. If no data is appended, all offsets must be zero. This can be used to reliably append data for logs that may stop in the middle of a message.
+  - `appended_offsets`: 후위 첨가 데이터의 (0 부터 시작하는) 파일 오프셋 값입니다. 후위 첨가 데이터가 없을 경우, 모든 오프셋 값은 0이어야합니다. 이 값은 메시지 기록 중 중간에서 멈추더라도 로그의 데이터를 뒤에 확실하게 붙일 때 활용할 수 있습니다.
     
-    A process appending data should do:
+    데이터 후위 첨부 절차는 다음과 같이 진행합니다:
     
-    - set the relevant `incompat_flags` bit,
-    - set the first `appended_offsets` that is 0 to the length of the log file,
-    - then append any type of messages that are valid for the Data section.
+    - 관련 `incompat_flags` 비트 값을 설정합니다.
+    - `append_offsets` 처음 값을 로그 파일 길이 값인 0으로 설정합니다.
+    - 그 다음 데이터 섹션에 유효한 어떤 메시지든 뒤에 붙입니다.
   
   It is possible that there are more fields appended at the end of this message in future ULog specifications. This means a parser must not assume a fixed length of this message. If the message is longer than expected (currently 40 bytes), the exceeding bytes must just be ignored.
 
@@ -215,16 +215,16 @@ This section ends before the start of the first `message_add_logged_s` or `messa
   
   `timestamp`: 마이크로초 단위, `log_level`: 리눅스 커널과 동이:
 
-| Name    | Level value | Meaning                          |
-| ------- | ----------- | -------------------------------- |
-| EMERG   | '0'         | System is unusable               |
-| ALERT   | '1'         | Action must be taken immediately |
-| CRIT    | '2'         | Critical conditions              |
-| ERR     | '3'         | Error conditions                 |
-| WARNING | '4'         | Warning conditions               |
-| NOTICE  | '5'         | Normal but significant condition |
-| INFO    | '6'         | Informational                    |
-| DEBUG   | '7'         | Debug-level messages             |
+| 이름      | 레벨 값 | 의미                  |
+| ------- | ---- | ------------------- |
+| EMERG   | '0'  | 시스템 사용 불가           |
+| ALERT   | '1'  | 즉시 조치해야 함           |
+| CRIT    | '2'  | 중대한 상황              |
+| ERR     | '3'  | 오류 상황               |
+| WARNING | '4'  | 경고 상황               |
+| NOTICE  | '5'  | 보통의 상태이나 주시가 필요한 상황 |
+| INFO    | '6'  | 정보                  |
+| DEBUG   | '7'  | 디버깅 메시지             |
 
 - 'C': Tagged Logged string message
   
