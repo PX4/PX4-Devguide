@@ -42,12 +42,12 @@ This configuration will log sensor_accel 0 at full rate, sensor_accel 1 at 10Hz,
 
 There are several scripts to analyze and convert logging files in the [pyulog](https://github.com/PX4/pyulog) repository.
 
-## Dropouts
+## 손실
 
-Logging dropouts are undesired and there are a few factors that influence the amount of dropouts:
+로깅 손실은 그다지 반갑지 않은 상황이며, 이에 영향을 주는 몇가지 요인이 있습니다.
 
-- Most SD cards we tested exhibit multiple pauses per minute. This shows itself as a several 100 ms delay during a write command. It causes a dropout if the write buffer fills up during this time. This effect depends on the SD card (see below).
-- Formatting an SD card can help to prevent dropouts.
+- 대부분 우리가 시험해본 SD 카드는 1분 단위로 관찰 했을 때 여러번 멈추었습니다. 이는 기록 명령을 처리함에 있어 수 100ms 정도의 지연이 있음을 보여줍니다. 이런 현상으로 인해 그동안 기록 버퍼가 차면 손실을 유발합니다. (아래와 같이) SD 카드에 따라 영향을 받습니다.
+- SD 카드를 포맷하면 손실을 어느정도 예방할 수 있습니다.
 - Increasing the log buffer helps.
 - Decrease the logging rate of selected topics or remove unneeded topics from being logged (`info.py <file>` is useful for this).
 
@@ -68,11 +68,11 @@ The following provides performance results for different SD cards. Tests were do
 | Sandisk Pixtor Class 10 16GB                                  | 334                 | 250                     |
 | Sandisk Extreme PLUS Class 10 32GB                            | 332                 | 150                     |
 
-More important than the mean write speed is the maximum write time per block (of 4 KB). This defines the minimum buffer size: the larger this maximum, the larger the log buffer needs to be to avoid dropouts. Logging bandwidth with the default topics is around 50 KB/s, which all of the SD cards satisfy.
+평균 기록속도보다 중요한 부분은 블록(4 KB)당 최대 기록 시간입니다. 블록은 최소 버퍼 크기를 정의합니다. 최대치가 커지면 버퍼 내용의 손실을 피하기 위해 더 큰 버퍼가 필요합니다. 기본 토픽 로깅 대역폭은 50 KB/s 이며, 모든 SD 카드에서 소화할 수 있습니다.
 
-By far the best card we know so far is the **SanDisk Extreme U3 32GB**. This card is recommended, because it does not exhibit write time spikes (and thus virtually no dropouts). Different card sizes might work equally well, but the performance is usually different.
+무엇보다도 우리가 가장 좋다고 알게된 카드의 모델은 **SanDisk Extreme U3 32GB**입니다. 순간적으로 증가하는 기록 시간이 없(어 패킷 손실이 없을거라고 생각할 수 있)기에 이 카드를 추천합니다. 다른 카드 용량에 대해서도 비슷하게 잘 동작하지만, 보통 성능이 다릅니다.
 
-You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/Firmware/issues/4634.
+`sd_bench -r 50` 명령으로 SD 카드를 테스트하고 https://github.com/PX4/Firmware/issues/4634 에 결과를 보고할 수 있습니다.
 
 ## 로그 스트리밍
 
