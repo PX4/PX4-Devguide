@@ -19,7 +19,7 @@ Flying 탭으로 전환하십시오. 임무 내용이 지도에 나타나야합�
 
 ## 매개변수 설정
 
-Switch to the setup tab. Scroll the menu on the left all the way to the bottom and click on the parameter icon. Parameters can be changed by double-clicking on them, which opens a context menu to edit, along with a more detailed description.
+설정 탭으로 전환하십시오. Scroll the menu on the left all the way to the bottom and click on the parameter icon. Parameters can be changed by double-clicking on them, which opens a context menu to edit, along with a more detailed description.
 
 ![](../../assets/gcs/setting-parameter.png)
 
