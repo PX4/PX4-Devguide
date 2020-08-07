@@ -290,15 +290,15 @@ The following messages belong to this section:
 
 - 'P': parameter message. See above.
 
-## Requirements for Parsers
+## 파서 요구 사항
 
-A valid ULog parser must fulfill the following requirements:
+온전히 동작하는 ULog 파서는 다음 요건을 만족해야합니다:
 
-- Must ignore unknown messages (but it can print a warning).
-- Parse future/unknown file format versions as well (but it can print a warning).
-- Must refuse to parse a log which contains unknown incompatibility bits set (`incompat_flags` of `ulog_message_flag_bits_s` message), meaning the log contains breaking changes that the parser cannot handle.
-- A parser must be able to correctly handle logs that end abruptly, in the middle of a message. The unfinished message should just be discarded.
-- For appended data: a parser can assume the Data section exists, i.e. the offset points to a place after the Definitions section.
+- 알 수 없는 메시지는 무시해야 함(그러나 경고를 출력할 수 있음).
+- 이후/알 수 없는 파일 형식 버전도 해석(그러나 경고를 출력할 수 있음).
+- 로그에 파서에서 처리할 수 없는 깨진 변경이 들어있음을 의미하는 알 수 없는 비호환성 비트(`ulog_message_flag_bits_s` 메세지의 `incompat_flags`) 설정 값이 들어있을 경우 로그 해석을 거절해야함.
+- 로그가 메세지 중간에 갑자기 끝났을 경우에도 제대로 처리할 수 있어야 함. 끝나지 않은 메시지는 무시해야 함.
+- 후위 첨가 데이터: 파서에서 데이터 섹션이 존재함을 가정할 수 있어야 함. 예: 정의 섹션 다음의 위치를 오프셋이 가리킴.
   
   Appended data must be treated as if it was part of the regular Data section.
 
@@ -318,8 +318,8 @@ A valid ULog parser must fulfill the following requirements:
 - [PlotJuggler](https://github.com/facontidavide/PlotJuggler): C++/Qt application to plot logs and time series. Supports ULog since version 2.1.3.
 - [ulogreader](https://github.com/maxsun/ulogreader): Javascript, ULog reader and parser outputs log in JSON object format. 
 
-## File Format Version History
+## 파일 형식 버전 이력
 
-### Changes in version 2
+### 버전 2 개정 사항
 
 Addition of `ulog_message_info_multiple_header_s` and `ulog_message_flag_bits_s` messages and the ability to append data to a log. This is used to add crash data to an existing log. If data is appended to a log that is cut in the middle of a message, it cannot be parsed with version 1 parsers. Other than that forward and backward compatibility is given if parsers ignore unknown messages.
