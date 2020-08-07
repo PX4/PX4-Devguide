@@ -6,16 +6,16 @@
 
 ## 사용법
 
-기본적으로, 로깅은 이륙 준비를 마쳤을 때 시작하며, 이륙 준비를 해제할 때 멈춥니다. 매회 이륙 준비 세션당 새 로그 파일은 SD 카드에 만듭니다. 현재 상태를 표시하려면 콘솔에서 `logger status`명령을 활용하십시오. 로깅을 바로 시작하고 싶다면 `logger on` 명령을 내리십시오. This overrides the arming state, as if the system was armed. `logger off` undoes this.
+기본적으로, 로깅은 이륙 준비를 마쳤을 때 시작하며, 이륙 준비를 해제할 때 멈춥니다. 매회 이륙 준비 세션당 새 로그 파일은 SD 카드에 만듭니다. 현재 상태를 표시하려면 콘솔에서 `logger status`명령을 활용하십시오. 로깅을 바로 시작하고 싶다면 `logger on` 명령을 내리십시오. 이 명령으로 이륙 준비 상태를 마쳤을 때, 그 이전 상태에 관계없이 재개합니다. `logger off` 명령은 그 반대입니다.
 
-Use
+다음 명령을 활용
 
     logger help
     
 
-for a list of all supported logger commands and parameters.
+하여 모든 지원 로거 명령과 매개변수 목록을 확인하십시오.
 
-## Configuration
+## 설정
 
 The list of logged topics can be customized with a file on the SD card. Create a file `etc/logging/logger_topics.txt` on the card with a list of topics (For SITL, it's `build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`):
 
@@ -28,7 +28,7 @@ The `<instance>` is optional, and if specified, defines the instance to log. If 
 
 The topics in this file replace all of the default logged topics.
 
-Example :
+예시 :
 
     sensor_accel 0 0
     sensor_accel 100 1
@@ -51,22 +51,22 @@ Logging dropouts are undesired and there are a few factors that influence the am
 - Increasing the log buffer helps.
 - Decrease the logging rate of selected topics or remove unneeded topics from being logged (`info.py <file>` is useful for this).
 
-## SD Cards
+## SD 카드
 
 The following provides performance results for different SD cards. Tests were done on a Pixracer; the results are applicable to Pixhawk as well.
 
 > **Tip** The maximum supported SD card size for NuttX is 32GB (SD Memory Card Specifications Version 2.0).
 
-| SD Card                                                       | Mean Seq. Write Speed [KB/s] | Max Write Time / Block (average) [ms] |
-| ------------------------------------------------------------- | ---------------------------- | ------------------------------------- |
-| SanDisk Extreme U3 32GB                                       | 461                          | **15**                                |
-| Sandisk Ultra Class 10 8GB                                    | 348                          | 40                                    |
-| Sandisk Class 4 8GB                                           | 212                          | 60                                    |
-| SanDisk Class 10 32 GB (High Endurance Video Monitoring Card) | 331                          | 220                                   |
-| Lexar U1 (Class 10), 16GB High-Performance                    | 209                          | 150                                   |
-| Sandisk Ultra PLUS Class 10 16GB                              | 196                          | 500                                   |
-| Sandisk Pixtor Class 10 16GB                                  | 334                          | 250                                   |
-| Sandisk Extreme PLUS Class 10 32GB                            | 332                          | 150                                   |
+| SD 카드                                                         | 평균 시퀀스 기록 속도 [KB/s] | 최대 기록 시간 / 블록 (평균) [ms] |
+| ------------------------------------------------------------- | ------------------- | ----------------------- |
+| SanDisk Extreme U3 32GB                                       | 461                 | **15**                  |
+| Sandisk Ultra Class 10 8GB                                    | 348                 | 40                      |
+| Sandisk Class 4 8GB                                           | 212                 | 60                      |
+| SanDisk Class 10 32 GB (High Endurance Video Monitoring Card) | 331                 | 220                     |
+| Lexar U1 (Class 10), 16GB High-Performance                    | 209                 | 150                     |
+| Sandisk Ultra PLUS Class 10 16GB                              | 196                 | 500                     |
+| Sandisk Pixtor Class 10 16GB                                  | 334                 | 250                     |
+| Sandisk Extreme PLUS Class 10 32GB                            | 332                 | 150                     |
 
 More important than the mean write speed is the maximum write time per block (of 4 KB). This defines the minimum buffer size: the larger this maximum, the larger the log buffer needs to be to avoid dropouts. Logging bandwidth with the default topics is around 50 KB/s, which all of the SD cards satisfy.
 
@@ -78,12 +78,12 @@ You can test your own SD card with `sd_bench -r 50`, and report the results to h
 
 태로초부터 지금까지 제대로 지원하는 로그 스트리밍 방법은 FMU에서 SD 카드를 활용하는 방법입니다. 그러나, 이 대안책으로, MAVLink로 동일한 로깅 데이터를 전송하는 로깅 스트리밍 방식이 있습니다. 이 방식은 FMU에 SD 카드 슬롯이 없을 경우(예: Intel® Aero Ready to Fly 드론)에 활용하거나, 단순히 SD 카드의 취급을 피하려 하고자 할 경우 진행할 수 있습니다. 두가지 방식은 동시에 제각각 활용할 수 있습니다.
 
-필요 요소는 WiFi 연결 처럼 초당 50KB를 제공할 수 있는 통신 수단입니다. 단일 클라이언트만 동시에 로그 스트리밍을 요청할 수 있습니다. The connection does not need to be reliable, the protocol is designed to handle drops.
+필요 요소는 WiFi 연결 처럼 초당 50KB를 제공할 수 있는 통신 수단입니다. 단일 클라이언트만 동시에 로그 스트리밍을 요청할 수 있습니다. 프로토콜에서 손실 패킷을 관리하기에 연결은 굳이 안정적이지 않아도 좋습니다.
 
-There are different clients that support ulog streaming:
+ulog 스트리밍을 지원하는 클라이언트는 여러가지가 있습니다.:
 
-- `mavlink_ulog_streaming.py` script in Firmware/Tools.
-- QGroundControl: ![QGC 로그 스트리밍](../../assets/gcs/qgc-log-streaming.png)
+- Firmware/Tools의 `mavlink_ulog_streaming.py`
+- QGroundControl:![QGC 로그 스트리밍](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 
 ### 진단
