@@ -56,35 +56,35 @@ cd firmware
 make RELEASE=1 # RELEASE is optional; omit to build the debug version
 ```
 
-일부 GCC 신 버전에서 심볼 링크를 진행할 때 segmentation fault 오류가 나타날 수 있음을 염두에 두십시오. 이 글을 작성할 때 버전 4.9는 동작합니다. 펌웨어 이미지는 `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`에 들어가는데, `<xxxxxxxx>`는 임의 순서대로 나열한 문자 숫자입니다. Zubax Orel 20 하드웨어 버전은 두가지가 있습니다 (1.0과 1.1). Make sure you copy the binary to the correct folder in the subsequent description. The ESC firmware will check the hardware version and works on both products.1
+일부 GCC 신 버전에서 심볼 링크를 진행할 때 segmentation fault 오류가 나타날 수 있음을 염두에 두십시오. 이 글을 작성할 때 버전 4.9는 동작합니다. 펌웨어 이미지는 `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`에 들어가는데, `<xxxxxxxx>`는 임의 순서대로 나열한 문자 숫자입니다. Zubax Orel 20 하드웨어 버전은 두가지가 있습니다 (1.0과 1.1). 바이너리 파일을 다음 설명의 올바른 폴더 위치로 복사했는지 확인하십시오. ESC 펌웨어는 하드웨어 버전과 두 제품의 동작을 확인합니다.
 
 ## Zubax GNSS
 
-Please refer to the [project page](https://github.com/Zubax/zubax_gnss) to learn how to build and flash the firmware. Zubax GNSS comes with a UAVCAN-capable bootloader, so its firmware can be updated in a uniform fashion via UAVCAN as described below.
+펌웨어 빌드 및 플래싱 방법은 [프로젝트 페이지](https://github.com/Zubax/zubax_gnss)를 참고하십시오. Zubax GNSS comes with a UAVCAN-capable bootloader, so its firmware can be updated in a uniform fashion via UAVCAN as described below.
 
-## Firmware Installation on the Autopilot
+## Autopilot에 펌웨어 설치
 
-The UAVCAN node file names follow a naming convention which allows the Pixhawk to update all UAVCAN devices on the network, regardless of manufacturer. The firmware files generated in the steps above must therefore be copied to the correct locations on an SD card or the PX4 ROMFS in order for the devices to be updated.
+UAVCAN 노드 파일 이름은 픽스호크에서 제조사에 관계없이 어떤 이름으로 네트워크의 모든 UAVCAN 장치를 업데이트하는지 결정하는 작명 규칙을 따릅니다. 이 단계에서 만든 펌웨어 파일은 장치를 업데이트하기 위해 SD카드나 PX4 ROMFS 의 올바른 위치에 복사해야합니다.
 
-The convention for firmware image names is:
+펌웨어 이미지 이름의 규칙은 다음과 같습니다:
 
     <uavcan name>-<hw version major>.<hw version minor>-<sw version major>.<sw version minor>.<version hash>.bin
     
 
-e.g. `com.thiemar.s2740vc-v1-1.0-1.0.68e34de6.bin`
+예: `com.thiemar.s2740vc-v1-1.0-1.0.68e34de6.bin`
 
-However, due to space/performance constraints (names may not exceed 28 charates), the UAVCAN firmware updater requires those filenames to be split and stored in a directory structure like the following:
+그러나 용량과 성능의 제약 문제로 인해(이름 글자수는 28글자를 넘으면 안됨), UAVCAN 펌웨어 업데이터는 파일 이름을 다음과 같은 구조의 디렉터리에 쪼개어 저장합니다:
 
     /fs/microsd/fw/<node name>/<hw version major>.<hw version minor>/<hw name>-<sw version major>.<sw version minor>.<git hash>.bin
     
 
-e.g.
+예:
 
     s2740vc-v1-1.0.68e34de6.bin 
     /fs/microsd/fw/io.px4.sapog/1.1/sapog-1.7.87c7bc0.bin
     
 
-The ROMFS-based updater follows that pattern, but prepends the file name with ```_``` so you add the firmware in:
+ROMFS 기반 업데이터는 다음과 같은 규칙을 따르나, 파일 이름 앞에 ```_``` 문자가 붙어 펌웨어파일이 다음 위치에 들어갑니다:
 
     /etc/uavcan/fw/<device name>/<hw version major>.<hw version minor>/_<hw name>-<sw version major>.<sw version minor>.<git hash>.bin
     
