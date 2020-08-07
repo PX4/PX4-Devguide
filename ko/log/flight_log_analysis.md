@@ -1,7 +1,7 @@
-# Flight Log Analysis
+# 비행 로그 분석
 
-Information about Flight Log Analysis is covered in the PX4 User Guide:
+비행 로그 분석 관련 내용은 PX4 사용자 안내서에서 다룹니다:
 
-- [Flight Reporting](https://docs.px4.io/master/en/getting_started/flight_reporting.html) - How to download a log and report/discuss issues about a flight.
-- [Log Analysis using Flight Review](https://docs.px4.io/master/en/log/flight_review.html) - How to analyse many common vehicle problems using the [Flight Review](https://logs.px4.io/) online tool.
+- [비행 보고서](https://docs.px4.io/master/en/getting_started/flight_reporting.html) - 로그, 보고서 다운로드 방법과, 비행 문제를 다룹니다.
+- [플라이트 리뷰로 로그 분석하기](https://docs.px4.io/master/en/log/flight_review.html) - [플라이트 리뷰](https://logs.px4.io/) 온라인 도구로 대부분의 일반적인 기체 문제를 분석하는 방법을 다룹니다.
 - [Flight Log Analysis](https://docs.px4.io/master/en/log/flight_log_analysis.html) - Introduction to flight analysis and links to a number of analysis tools.
