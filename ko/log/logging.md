@@ -1,12 +1,12 @@
-# Logging
+# 로깅
 
-The logger is able to log any ORB topic with all included fields. Everything necessary is generated from the `.msg` file, so that only the topic name needs to be specified. An optional interval parameter specifies the maximum logging rate of a certain topic. All existing instances of a topic are logged.
+로거 프로그램은 어떤 ORB 주제에 대해서든 모든 내용을 넣어 기록할 수 있습니다. 결국 우리가 필요한 것은 `.msg` 파일이기에 토픽 이름만 정하면 됩니다. 추가 주기 매개변수에는 각 토픽별 최대 기록 주기를 지정합니다. 모든 토픽의 실존 인스턴스를 기록합니다.
 
-The output log format is [ULog](../log/ulog_file_format.md).
+출력 로그 형식은 [ULog](../log/ulog_file_format.md) 입니다.
 
-## Usage
+## 사용법
 
-By default, logging is automatically started when arming, and stopped when disarming. A new log file is created for each arming session on the SD card. To display the current state, use `logger status` on the console. If you want to start logging immediately, use `logger on`. This overrides the arming state, as if the system was armed. `logger off` undoes this.
+기본적으로, 로깅은 이륙 준비를 마쳤을 때 시작하며, 이륙 준비를 해제할 때 멈춥니다. 매회 이륙 준비 세션당 새 로그 파일은 SD 카드에 만듭니다. 현재 상태를 표시하려면 콘솔에서 `logger status`명령을 활용하십시오. 로깅을 바로 시작하고 싶다면 `logger on` 명령을 내리십시오. This overrides the arming state, as if the system was armed. `logger off` undoes this.
 
 Use
 
@@ -86,10 +86,10 @@ There are different clients that support ulog streaming:
 - QGroundControl: ![QGC Log Streaming](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 
-### Diagnostics
+### 진단
 
-- If log streaming does not start, make sure the `logger` is running (see above), and inspect the console output while starting.
-- If it still does not work, make sure that MAVLink 2 is used. Enforce it by setting `MAV_PROTO_VER` to 2.
+- 로그 스트리밍을 시작하지 않았다면, `logger`를 실행 중인지(위 참고) 확인하고, 시작하는 동안 콘솔 출력을 살펴보십시오.
+- 여전히 동작하지 않는다면 MAVLink 2를 사용하고 있는지 확인하십시오. `MAV_PROTO_VER` 매개변수 값을 2로 강제 설정하십시오.
 - Log streaming uses a maximum of 70% of the configured MAVLink rate (`-r` parameter). If more is needed, messages are dropped. The currently used percentage can be inspected with `mavlink status` (1.8% is used in this example): 
         instance #0:
               GCS heartbeat:  160955 us ago
