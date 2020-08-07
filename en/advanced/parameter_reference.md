@@ -1001,9 +1001,9 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="TRIG_PINS">TRIG_PINS</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Camera trigger pin</p><p><strong>Comment:</strong> Selects which FMU pin is used (range: AUX1-AUX6 on Pixhawk controllers with an I/O board, MAIN1-MAIN6 on controllers without an I/O board. The PWM interface takes two pins per camera, while relay triggers on every pin individually. Example: Value 56 would trigger on pins 5 and 6. For GPIO mode Pin 6 will be triggered followed by 5. With a value of 65 pin 5 will be triggered followed by 6. Pins may be non contiguous. I.E. 16 or 61. In GPIO mode the delay pin to pin is < .2 uS.</p>   <p><b>Reboot required:</b> true</p>
+ <td style="vertical-align: top;"><p>Camera trigger pin</p><p><strong>Comment:</strong> Selects which FMU pin is used (range: AUX1-AUX8 on Pixhawk controllers with an I/O board, MAIN1-MAIN8 on controllers without an I/O board. The PWM interface takes two pins per camera, while relay triggers on every pin individually. Example: Value 56 would trigger on pins 5 and 6. For GPIO mode Pin 6 will be triggered followed by 5. With a value of 65 pin 5 will be triggered followed by 6. Pins may be non contiguous. I.E. 16 or 61. In GPIO mode the delay pin to pin is < .2 uS. Note: only with a value of 56 or 78 it is possible to use the lower pins for actuator outputs (e.g. ESC's).</p>   <p><b>Reboot required:</b> true</p>
 </td>
- <td style="vertical-align: top;">1 > 123456 </td>
+ <td style="vertical-align: top;">1 > 12345678 </td>
  <td style="vertical-align: top;">56</td>
  <td style="vertical-align: top;"></td>
 </tr>
@@ -4077,27 +4077,6 @@ Value 0 turns the functionality off</p>   </td>
  <td style="vertical-align: top;">-1 > 10000 </td>
  <td style="vertical-align: top;">-1.0</td>
  <td style="vertical-align: top;">m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="LNDMC_FFALL_THR">LNDMC_FFALL_THR</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Multicopter specific force threshold</p><p><strong>Comment:</strong> Multicopter threshold on the specific force measured by accelerometers in m/s^2 for free-fall detection</p>   </td>
- <td style="vertical-align: top;">0.1 > 10 </td>
- <td style="vertical-align: top;">2.0</td>
- <td style="vertical-align: top;">m/s^2</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="LNDMC_FFALL_TTRI">LNDMC_FFALL_TTRI</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Multicopter free-fall trigger time</p><p><strong>Comment:</strong> Seconds (decimal) that freefall conditions have to met before triggering a freefall. Minimal value is limited by LAND_DETECTOR_UPDATE_RATE=50Hz in landDetector.h</p>   </td>
- <td style="vertical-align: top;">0.02 > 5 </td>
- <td style="vertical-align: top;">0.3</td>
- <td style="vertical-align: top;">s</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="LNDMC_LOW_T_THR">LNDMC_LOW_T_THR</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Low throttle detection threshold</p><p><strong>Comment:</strong> Defines the commanded throttle value below which the land detector considers the vehicle to have "low thrust". This is one condition that is used to detect the ground contact state. The value is calculated as val = (MPC_THR_HOVER - MPC_THR_MIN) * LNDMC_LOW_T_THR + MPC_THR_MIN Increase this value if the system takes long time to detect landing.</p>   </td>
- <td style="vertical-align: top;">0.1 > 0.9 </td>
- <td style="vertical-align: top;">0.3</td>
- <td style="vertical-align: top;">norm</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="LNDMC_ROT_MAX">LNDMC_ROT_MAX</strong> (FLOAT)</td>

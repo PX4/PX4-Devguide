@@ -6,7 +6,11 @@ MacOS es una plataforma de desarrollo compatible para PX4. Las siguientes instru
 * Simulación en jMAVSim
 * Gazebo Simulation
 
-> **Nota** Para compilar para otros objetivos véase: [Instalación de la Toolchain > Objetivos compatibles](../setup/dev_env.md#supported-targets).
+> **Note** To build other targets see: [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets).
+
+<span></span>
+
+> **Tip** A video tutorial can be found here: [Setting up your PX4 development environment on macOS](https://youtu.be/tMbMGiMs1cQ).
 
 ## Preconditions
 

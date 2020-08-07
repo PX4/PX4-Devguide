@@ -129,6 +129,9 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
                      default: 2020
          [-i <val>]  Select IP address (remote)
                      values: <x.x.x.x>, default: 127.0.0.1
+         [-f]        Activate UART link SW flow control
+         [-h]        Activate UART link HW flow control
+         [-v]        Add more verbosity
     
        stop
     

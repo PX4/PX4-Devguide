@@ -1,38 +1,38 @@
-# PX4 소프트웨어 제작
+# PX4 소프트웨어 빌드
 
-PX4는 시뮬레이션된 대상과 하드웨어 대상 모두에 대해 콘솔이나 IDE에서 개발될 수 있습니다.
+PX4는 모의시험 환경과 하드웨어 타겟 모두에 대해 콘솔 또는 IDE 환경에서 빌드할 수 있습니다.
 
-> **Note** Before following these instructions you must first install the [Developer Toolchain](../setup/dev_env.md) for your host operating system and target hardware.
+> **Note** 다음 절차를 따르기 전에 우선 [개발자 툴체인](../setup/dev_env.md)을 호스트 운영 체제와 타겟 하드웨어용으로 설치해야합니다.
 
 <span></span>
 
-> **Tip** For solutions to common build problems see [Troubleshooting](#troubleshooting) below.
+> **Tip** 일반 빌드 문제에 대한 해결책은 하단의 [문제 해결](#troubleshooting) 부준을 참고하십시오.
 
-## Download the PX4 Source Code {#get_px4_code}
+## PX4 소스 코드 다운로드 {#get_px4_code}
 
-The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository. To get the *very latest* version onto your computer, enter the following command into a terminal:
+PX4 소스 코드는 github의 [PX4/Firmware](https://github.com/PX4/Firmware) 저장소에 있습니다. *가장 최신*의 버전을 컴퓨터에 받으려면, 다음 명령을 터미널에 입력하십시오:
 
 ```sh
 git clone https://github.com/PX4/Firmware.git --recursive
 ```
 
-> **Note** This is all you need to do just to build the latest code. [GIT Examples > Contributing code to PX4](../contribute/git_examples.md#contributing_code) provides a lot more information about using git to contribute to PX4.
+> **Note** 이 방법이 최신 코드를 빌드하는데 필요한 모든 과정입니다. PX4에 기여할 목적의 더 많은 git 활용 내용은 [git 예제 > PX4에 코드 기여하기](../contribute/git_examples.md#contributing_code) 에 있습니다.
 
-## First Build (Using the jMAVSim Simulator) {#jmavsim_build}
+## 첫 빌드 (jMAVSim 모의시험 환경 활용) {#jmavsim_build}
 
-First we'll build a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
+우선 콘솔 환경에서 모의시험 환경을 빌드하겠습니다. 모의시험 환경은 실제 하드웨어와 IDE로 옮겨가기 전 시스템 설정을 검증할 수 있게 합니다.
 
-Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
+**Firmware** 디렉터리를 찾아간 후 다음 명령으로 [jMAVSim](../simulation/jmavsim.md)을 시작하십시오:
 
 ```sh
 make px4_sitl jmavsim
 ```
 
-This will bring up the PX4 console below:
+이 명령으로 다음의 PX4 콘솔을 띄웁니다:
 
-![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
+![PX4 콘솔 (jMAVSim)](../../assets/console_jmavsim.png)
 
-The drone can be flown by typing:
+다음 명령을 입력하면 드론이 날 수 있습니다:
 
 ```sh
 pxh> commander takeoff
@@ -40,44 +40,50 @@ pxh> commander takeoff
 
 ![jMAVSim UI](../../assets/jmavsim_first_takeoff.png)
 
-The drone can be landed by typing `commander land` and the whole simulation can be stopped by doing **CTRL+C** (or by entering `shutdown`).
+`commander land` 명령으로 드론을 착륙할 수 있으며 모의시험 환경은 **CTRL+C** 키 입력(또는 `shutdown` 명령 입력)으로 멈출 수 있습니다.
 
-Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. This will reposition the vehicle.
+지상 관제 스테이션에서의 비행체 모의시험은 실제 비행체 운용과 거의 흡사합니다. 비행체가 날고 있을 때(비행체 이륙 모드) 지도에서 위치를 누르고 슬라이더를 활성화합니다. 이 동작을 통해 비행체의 위치를 바꿉니다.
 
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
-> **Tip** PX4 can be used with a number of other [Simulators](../simulation/README.md), including [Gazebo Simulation](../simulation/gazebo.md) and [AirSim Simulation](../simulation/airsim.md). These are also started with *make* - e.g. ```make px4_sitl gazebo```
+> **Tip** [가제보(Gazebo) 모의시험 환경](../simulation/gazebo.md), [AirSim 모의시험 환경](../simulation/airsim.md)과 같은 다른 여러 [모의시험 환경](../simulation/README.md)에서도 PX4를 활용할 수 있습니다. 이들 역시 *make* 명령으로 시작합니다. 예를 들면: ```make px4_sitl gazebo```
 
-## NuttX / Pixhawk Based Boards {#nuttx}
+## NuttX / Pixhawk 기반 보드 {#nuttx}
 
-### Building {#building_nuttx}
+### 빌드 {#building_nuttx}
 
-To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board.
+NuttX- 또는 Pixhawk- 기반 보드용으로 빌드하려면 **Firmware** 디렉토리를 탐색한 후 보드에 해당하는 빌드 타겟을 찾아 `make`를 호출하십시오.
 
-For example, to build for *Pixracer* you would use the following command:
+예를 들어 *Pixracer* 용으로 빌드하려면 다음 명령을 사용하십시오:
 
 ```sh
 cd Firmware
 make px4_fmu-v4_default
 ```
 
-> **Note** In the example above the first part of the build target `px4_fmu-v4` is the firmware for a particular flight controller hardware and `default` is the configuration name (in this case the "default" configuration). The `default` is optional so you could instead do: ```make px4_fmu-v4```
+> **Note** 위 예제에서 빌드 타겟의 처음 부분인 `px4_fmu-v4`는 비행체 제어부 하드웨어 일부 기종용 펌웨어 이름이며, `default`는 설정 이름입니다 (이 경우 "default" 설정입니다). `default`는 선택 사항이기에, 대신 다음 명령을 실행할 수 있습니다: ```make px4_fmu-v4```
 
-A successful run will end with similar output to:
+성공적인 실행시 다음 출력 내용으로 끝납니다:
 
 ```sh
 -- Build files have been written to: /home/youruser/src/Firmware/build/px4_fmu-v4_default
 [954/954] Creating /home/youruser/src/Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
 ```
 
-The following list shows the build commands for common boards:
+다음 목록은 일반 보드에서의 빌드 명령을 보여줍니다:
 
-- Pixhawk 4: `make px4_fmu-v5_default`
+- [Pixhawk 4](http://docs.px4.io/master/en/flight_controller/pixhawk4.html): `make px4_fmu-v5_default`
+- [Pixhawk 4 Mini](http://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html): `make px4_fmu-v5_default`
+- [CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html): `make px4_fmu-v5_default`
+- [CUAV V5 nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html): `make px4_fmu-v5_default`
+- [Holybro Kakute F7](http://docs.px4.io/master/en/flight_controller/kakutef7.html): `make holybro_kakutef7_default`
 - [Pixracer](https://docs.px4.io/master/en/flight_controller/pixracer.html): `make px4_fmu-v4_default`
 - [Pixhawk 3 Pro](https://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html): `make px4_fmu-v4pro_default`
 - [Pixhawk Mini](https://docs.px4.io/master/en/flight_controller/pixhawk_mini.html): `make px4_fmu-v3_default`
-- [Pixhawk 2](https://docs.px4.io/master/en/flight_controller/pixhawk-2.html): `make px4_fmu-v3_default`
-- [mRo Pixhawk](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html): `make px4_fmu-v3_default` (supports 2MB Flash)
+- [Cube Black](https://docs.px4.io/master/en/flight_controller/pixhawk-2.html): `make px4_fmu-v3_default`
+- Cube Yellow: `make hex_cube-yellow`
+- Cube Orange: `make hex_cube-orange`
+- [mRo Pixhawk](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html): `make px4_fmu-v3_default` (2MB 플래시 메모리 지원)
 - [HKPilot32](https://docs.px4.io/master/en/flight_controller/HKPilot32.html): `make px4_fmu-v2_default`
 - [Pixfalcon](https://docs.px4.io/master/en/flight_controller/pixfalcon.html): `make px4_fmu-v2_default`
 - [Dropix](https://docs.px4.io/master/en/flight_controller/dropix.html): `make px4_fmu-v2_default`
@@ -85,12 +91,12 @@ The following list shows the build commands for common boards:
 - [mRo X-2.1](https://docs.px4.io/master/en/flight_controller/mro_x2.1.html): `make mro_x21_default` 
 - [Crazyflie 2.0](https://docs.px4.io/master/en/flight_controller/crazyflie2.html): `make bitcraze_crazyflie_default`
 - [Intel® Aero Ready to Fly Drone](https://docs.px4.io/master/en/flight_controller/intel_aero.html): `make intel_aerofc-v1_default`
-- [Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** You **must** use a supported version of GCC to build this board (e.g. the same as used by [CI/docker](../test_and_ci/docker.md)) or remove modules from the build. Building with an unsupported GCC may fail, as PX4 is close to the board's 1MB flash limit.
-- Pixhawk 1 with 2 MB flash: `make px4_fmu-v3_default`
+- [Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html): `make px4_fmu-v2_default` > **Warning** 이 보드를 대상으로 빌드하려면 지원하는 GCC 버전(예: [CI/docker](../test_and_ci/docker.md)에서 사용하는 버전과 동일)을 활용 **해야** 하거나, 빌드에서 모듈을 제거해야합니다. 지원하지 않는 버전의 GCC 로 빌드하면, PX4 보드의 1MB 플래시 용량 제한에 가까워져 실패할 수 있습니다.
+- 2 MB flash의 Pixhawk 1: `make px4_fmu-v3_default`
 
-> **Note** Generally the `_default` suffix is optional (i.e. you can also build using `make px4_fmu-v4`, `make bitcraze_crazyflie`, etc.).
+> **Note** 보통 `_default` 접미사는 선택 입력사항입니다 (예: `make px4_fmu-v4`, `make bitcraze_crazyflie`, 등의 명령으로도 빌드할 수 있습니다.).
 
-### Uploading Firmware (Flashing the board)
+### 펌웨어 업로드 (보드 플래싱)
 
 Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
 
@@ -98,7 +104,7 @@ Append `upload` to the make commands to upload the compiled binary to the autopi
 make px4_fmu-v4_default upload
 ```
 
-A successful run will end with this output:
+성공적인 실행시 다음 출력 내용으로 끝납니다:
 
 ```sh
 Erase  : [====================] 100.0%
@@ -109,15 +115,15 @@ Rebooting.
 [100%] Built target upload
 ```
 
-## Other Boards
+## 기타 보드
 
-The following boards have more complicated build and/or deployment instructions.
+다음 보드는 빌드 또는 배포 방법이 좀 더 복잡합니다.
 
-### Raspberry Pi 2/3 Boards
+### 라즈베리 파이 2/3 보드
 
-The command below builds the target for [Raspberry Pi 2/3 Navio2](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
+아래 명령으로 [Raspberry Pi 2/3 Navio2](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html) 대상 바이너리를 빌드합니다.
 
-#### Cross-compiler Build
+#### 교차 컴파일러 빌드
 
 Set the IP (or hostname) of your RPi using:
 
@@ -125,7 +131,7 @@ Set the IP (or hostname) of your RPi using:
 export AUTOPILOT_HOST=192.168.X.X
 ```
 
-or
+또는
 
 ```sh
 export AUTOPILOT_HOST=pi_hostname.domain
@@ -155,7 +161,7 @@ Then, connect over ssh and run it with (as root):
 sudo ./bin/px4 -s px4.config
 ```
 
-#### Native Build
+#### 자체 빌드
 
 If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
 
@@ -186,9 +192,9 @@ px4 starting.
 pxh>
 ```
 
-#### Autostart
+#### 자동 시작
 
-To autostart px4, add the following to the file **/etc/rc.local** (adjust it accordingly if you use native build), right before the `exit 0` line:
+PX4를 자동으로 시작하려면 다음 실행 명령을 **/etc/rc.local**의 `exit 0` 행 바로 전에 추가하십시오(자체적으로 빌드했다면, 적당한 명령으로 수정하십시오):
 
 ```sh
 cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
@@ -196,16 +202,16 @@ cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 
 ### OcPoC-Zynq Mini
 
-Build instructions for the [OcPoC-Zynq Mini](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html) are covered in:
+[OcPoC-Zynq Mini](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html) 빌드 절차는 다음 문서에서 다룹니다:
 
-- [Aerotenna OcPoC-Zynq Mini Flight Controller > Building PX4 for OcPoC-Zynq](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq) (PX4 User Guide)
-- [OcPoC PX4 Setup Page](https://aerotenna.readme.io/docs/px4-setup)
+- [Aerotenna OcPoC-Zynq Mini Flight Controller > OcPoC-Zynq용 PX4 빌드](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)
+- [OcPoC PX4 설정 페이지](https://aerotenna.readme.io/docs/px4-setup)
 
-### QuRT / Snapdragon Based Boards
+### QuRT / 스냅드래곤 기반 보드
 
-This section shows how to build for the [Qualcomm Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html).
+이 절에서는 [Qualcomm Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html)용 빌드 방법을 알려드립니다.
 
-#### Build
+#### 빌드
 
 > **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
 
@@ -236,7 +242,7 @@ The mixer currently needs to be copied manually:
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 ```
 
-#### Run
+#### 실행
 
 Run the DSP debug monitor:
 
@@ -255,7 +261,7 @@ cd /home/linaro
 
 Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
 
-#### Autostart
+#### 자동 시작
 
 To run the px4 as soon as the Snapdragon has booted, you can add the startup to `rc.local`:
 
@@ -295,19 +301,19 @@ Then reboot the Snapdragon:
 adb reboot
 ```
 
-## Compiling in a Graphical IDE
+## 그래픽 IDE에서의 컴파일
 
 The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
-## Qt Creator Functionality
+## Qt Creator 기능 
 
 Qt creator offers clickable symbols, auto-completion of the complete codebase and building and flashing firmware.
 
 ![](../../assets/toolchain/qtcreator.png)
 
-### Qt Creator on Linux
+### 리눅스용 Qt Creator
 
 Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
@@ -322,11 +328,11 @@ Then load the CMakeLists.txt in the root firmware folder via **File > Open File 
 
 After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
-### Qt Creator on Windows
+### Windows용 Qt Creator
 
 > **Note** Windows has not been tested for PX4 development with Qt Creator.
 
-### Qt Creator on Mac OS
+### Mac OS용 Qt Creator
 
 Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
@@ -341,9 +347,9 @@ That's it! Start *Qt Creator*, then complete the steps in the video below to set
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
 
-## PX4 Make Build Targets {#make_targets}
+## PX4 make 빌드 타겟 {#make_targets}
 
-The previous sections showed how you can call *make* to build a number of different targets, start simulators, use IDEs etc. This section shows how *make* options are constructed and how to find the available choices.
+앞 절에서는 *make*를 호출하여 제각기 다른 타겟을 빌드하고, 모의시험 환경을 시작하고 IDE를 활용하는 방법을 다루었습니다. 이 절에서는 *make* 옵션을 구성하는 방법과 존재하는 선택지를 찾는 방법을 다루도록 하겠습니다.
 
 The full syntax to call *make* with a particular configuration and initialization file is:
 
@@ -384,9 +390,9 @@ Notes:
 
 The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
 
-Additional make targets are discussed in the following sections (list is not exhaustive):
+다음 절에서 추가 make 타겟을 다루도록 하겠습니다 (완전한 목록은 아님):
 
-### Binary Size Profiling {#bloaty_compare_master}
+### 이진 파일 크기 프로파일링 {#bloaty_compare_master}
 
 The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
 
@@ -445,19 +451,19 @@ Then use the make target, specifying the target build to compare (`px4_fmu-v2_de
 
 This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
 
-## Firmware Version & Git Tags {#firmware_version}
+## 펌웨어 버전과 git 태그 {#firmware_version}
 
 The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
 
-![Firmware info](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
+![펌웨어 정보](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
 
 These are extracted at build time from the active *git tag* for your repo tree. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
 
 > **Warning** If you use a different git tag format, versions information may not be displayed properly.
 
-## Troubleshooting {#troubleshooting}
+## 문제 해결 {#troubleshooting}
 
-### General Build Errors
+### 일반 빌드 오류
 
 Many build problems are caused by either mismatching submodules or an incompletely cleaned-up build environment. Updating the submodules and doing a `distclean` can fix these kinds of errors:
 
@@ -473,7 +479,7 @@ If you're building the *vanilla* master branch, the most likely cause is using a
 
 If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. In this case you will need to remove any drivers/modules that you don't need from the build.
 
-### macOS: Too many open fileserror {#macos_open_files}
+### macOS: Too many open files error {#macos_open_files}
 
 MacOS allows a default maximum of 256 open files in all running processes. The PX4 build system opens a large number of files, so you may exceed this number.
 

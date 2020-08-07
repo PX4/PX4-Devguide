@@ -14,7 +14,8 @@ frsky_telemetry <command> [arguments...]
      [-t <val>]  Scanning timeout [s] (default: no timeout)
                  default: 0
      [-m <val>]  Select protocol (default: auto-detect)
-                 values: sport|sport_single|dtype, default: auto
+                 values: sport|sport_single|sport_single_invert|dtype, default:
+                 auto
 
    stop
 
@@ -129,6 +130,9 @@ micrortps_client <command> [arguments...]
                  default: 2020
      [-i <val>]  Select IP address (remote)
                  values: <x.x.x.x>, default: 127.0.0.1
+     [-f]        Activate UART link SW flow control
+     [-h]        Activate UART link HW flow control
+     [-v]        Add more verbosity
 
    stop
 
