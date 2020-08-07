@@ -39,7 +39,7 @@ ULog는 시스템 데이터를 기록할 떄 사용하는 파일 형식입니다
 
 ### 헤더 섹션
 
-The header is a fixed-size section and has the following format (16 bytes):
+헤더는 고정 길이(16 바이트) 섹션이며, 다음 형식을 갖추고 있습니다:
 
     ----------------------------------------------------------------------
     | 0x55 0x4c 0x6f 0x67 0x01 0x12 0x35 | 0x01         | uint64_t       |
@@ -47,13 +47,13 @@ The header is a fixed-size section and has the following format (16 bytes):
     ----------------------------------------------------------------------
     
 
-Version is the file format version, currently 1. Timestamp is a `uint64_t` integer, denotes the start of the logging in microseconds.
+버전은 파일 형식 버전이며, 현재 값은 1입니다. 타임스탬프는 `uint64_t` 정수형이며, 로깅을 시작한 시각을 마이크로초 단위로 표기합니다.
 
-### Definitions Section
+### 섹션 정의
 
-Variable length section, contains version information, format definitions, and (initial) parameter values.
+다양한 길이를 가진 섹션에는 버전 정보, 형식 정의, (초기) 매개변수 값이 들어있습니다.
 
-The Definitions and Data sections consist of a stream of messages. Each starts with this header:
+데이터 섹션 정의는 메시지 스트림으로 구성합니다. 각 데이터 섹션은 이 헤더로 시작합니다:
 
 ```c
 struct message_header_s {
@@ -62,9 +62,9 @@ struct message_header_s {
 };
 ```
 
-`msg_size` is the size of the message in bytes without the header (`hdr_size`= 3 bytes). `msg_type` defines the content and is one of the following:
+`msg_size`는 헤더 길이(`hdr_size`=3 바이트)를 뺀 바이트 단위의 메시지 길이입니다. `msg_type`은 내용과 다음 중 하나를 정의합니다:
 
-- 'B': Flag bitset message.
+- 'B': 플래그 비트 집합 메시지입니다.
   
       struct ulog_message_flag_bits_s {
         struct message_header_s;
@@ -74,10 +74,10 @@ struct message_header_s {
       };
       
   
-  This message **must** be the first message, right after the header section, so that it has a fixed constant offset.
+  이 메시지는 처음 메시지 **여야 합니다**. 그 다음에는 고정 상수 오프셋 값이 들어간 헤더 섹션이 옵니다.
   
-  - `compat_flags`: compatible flag bits. None of them is currently defined and all must be set to 0. These bits can be used for future ULog changes that are compatible with existing parsers. It means parsers can just ignore the bits if one of the unknown bits is set.
-  - `incompat_flags`: incompatible flag bits. The LSB bit of index 0 is set to one if the log contains appended data and at least one of the `appended_offsets` is non-zero. All other bits are undefined and must be set to 0. If a parser finds one of these bits set, it must refuse to parse the log. This can be used to introduce breaking changes that existing parsers cannot handle.
+  - `compat_flags`: 호환 플래그 비트값. 아직 정의하는 사항은 없으며 모든 경우에 0으로 설정해야합니다. 이 비트 값은 나중에 ULog 형식이 바뀌고 기존 파서와의 호환성을 비교할 때 활용합니다. 이는 알 수 없는 비트값을 설정했다면, 파서에서 이 비트값을 무시할 수 있음을 의미합니다.
+  - `incompat_flags`: 비호환성 플래그 비트값. 로그에 후위 첨가 데이터가 있고 최소한 `appended_offsets` 값 중 하나가 0 값이 아닌 경우, 인덱스 0번의 최하위 비트 값을 1로 설정해야합니다. 다른 비트 값은 별도로 정의한 내용이 없어 0으로 설정해야합니다. 파서에서 이 비트 중 최소한 하나라도 설정 값을 발견했다면 로그 해석을 거절해야합니다. 기존 파서에서 처리할 수 없는 변경 손상 발견에 활용할 수 있습니다.
   - `appended_offsets`: File offsets (0-based) for appended data. If no data is appended, all offsets must be zero. This can be used to reliably append data for logs that may stop in the middle of a message.
     
     A process appending data should do:
