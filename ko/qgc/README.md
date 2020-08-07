@@ -1,13 +1,13 @@
 # QGroundControl
 
-QGroundControl is an app to configure and fly a PX4 based autopilot. It is cross platform and supports all major operating systems:
+QGroundControl는 PX4 기반 오토파일럿을 설정하고 운항하는 앱입니다. 여러 플랫폼과 운영체제를 지원합니다:
 
-- Mobile: Android and iOS (currently focused on tablet)
-- Desktop: Windows, Linux, Mac OS
+- 모바일: 안드로이드와 iOS(현재는 태블릿에 맞춤)
+- 데스크톱: 윈도우, 리눅스, Mac OS
 
-## Planning Missions
+## 임무 계획
 
-To plan a new mission, switch to the planning tab, click on the + icon in the top left and click on the map to create waypoints. A context menu will open on the side to adjust the waypoints. Click on the highlight transmission icon to send them to the vehicle.
+새 임무를 계획하려면, planning 탭으로 전환한 후, 좌측 상단의 + 아이콘을 눌러 경로점을 만들 준비를 하고 지도상에 경로점을 찍으십시오. A context menu will open on the side to adjust the waypoints. Click on the highlight transmission icon to send them to the vehicle.
 
 ![](../../assets/gcs/planning-mission.png)
 
