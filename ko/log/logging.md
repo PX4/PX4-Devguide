@@ -17,7 +17,7 @@
 
 ## 설정
 
-The list of logged topics can be customized with a file on the SD card. Create a file `etc/logging/logger_topics.txt` on the card with a list of topics (For SITL, it's `build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`):
+SD 카드에 기록할 토픽 목록은 설정 파일로 개별 지정할 수 있습니다. Create a file `etc/logging/logger_topics.txt` on the card with a list of topics (For SITL, it's `build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`):
 
     <topic_name> <interval> <instance>
     
@@ -38,9 +38,9 @@ The topics in this file replace all of the default logged topics.
 
 This configuration will log sensor_accel 0 at full rate, sensor_accel 1 at 10Hz, all sensor_gyro instances at 5Hz and sensor_mag 1 at 5Hz.
 
-## Scripts
+## 스크립트
 
-There are several scripts to analyze and convert logging files in the [pyulog](https://github.com/PX4/pyulog) repository.
+[pyulog](https://github.com/PX4/pyulog) 저장소에 로깅 파일을 분석하고 변환하는 다양한 스크립트가 있습니다.
 
 ## 손실
 
@@ -48,14 +48,14 @@ There are several scripts to analyze and convert logging files in the [pyulog](h
 
 - 대부분 우리가 시험해본 SD 카드는 1분 단위로 관찰 했을 때 여러번 멈추었습니다. 이는 기록 명령을 처리함에 있어 수 100ms 정도의 지연이 있음을 보여줍니다. 이런 현상으로 인해 그동안 기록 버퍼가 차면 손실을 유발합니다. (아래와 같이) SD 카드에 따라 영향을 받습니다.
 - SD 카드를 포맷하면 손실을 어느정도 예방할 수 있습니다.
-- Increasing the log buffer helps.
-- Decrease the logging rate of selected topics or remove unneeded topics from being logged (`info.py <file>` is useful for this).
+- 로그 버퍼 크기를 늘리면 도움이 됩니다.
+- 선택한 토픽에 대한 로깅 율을 줄이거나 필요없는 토픽을 로깅 목록에서 제거해보십시오(`info.py`가 이 문제 해결에 도움됨).
 
 ## SD 카드
 
-The following provides performance results for different SD cards. Tests were done on a Pixracer; the results are applicable to Pixhawk as well.
+다음 표에서는 제각기 다른 SD 카드의 성능 측정 결과를 보여줍니다. Pixracer에서 시험을 완료했습니다. 결과는 픽스호크에도 해당합니다.
 
-> **Tip** The maximum supported SD card size for NuttX is 32GB (SD Memory Card Specifications Version 2.0).
+> **Tip** NuttX의 최대 지원 SD 카드 용량은 32GB(SD 메모리 카드 명세 버전 2.0) 입니다.
 
 | SD 카드                                                         | 평균 시퀀스 기록 속도 [KB/s] | 최대 기록 시간 / 블록 (평균) [ms] |
 | ------------------------------------------------------------- | ------------------- | ----------------------- |
