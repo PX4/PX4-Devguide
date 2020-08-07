@@ -105,7 +105,7 @@ struct message_header_s {
     
     If the padding field is the last field, then this field will not be logged, to avoid writing unnecessary data. This means the `message_data_s.data` will be shorter by the size of the padding. However the padding is still needed when the message is used in a nested definition.
 
-- 'I': information message.
+- 'I': 정보 메세지.
   
   ```c
   struct message_info_s {
@@ -148,7 +148,7 @@ struct message_header_s {
     This message can also be used in the Data section (this is however the preferred section).
     
 
-- 'M': information message multi.
+- 'M': 다중 정보 메세지.
   
   ```c
   struct ulog_message_info_multiple_header_s {
@@ -162,7 +162,7 @@ struct message_header_s {
   
   The same as the information message, except that there can be multiple messages with the same key (parsers store them as a list). The `is_continued` can be used for split-up messages: if set to 1, it is part of the previous message with the same key. Parsers can store all information multi messages as a 2D list, using the same order as the messages occur in the log.
 
-- 'P': parameter message. Same format as `message_info_s`. If a parameter dynamically changes during runtime, this message can also be used in the Data section. The data type is restricted to: `int32_t`, `float`.
+- 'P': 매개변수 메세지. Same format as `message_info_s`. If a parameter dynamically changes during runtime, this message can also be used in the Data section. The data type is restricted to: `int32_t`, `float`.
 
 This section ends before the start of the first `message_add_logged_s` or `message_logging_s` message, whichever comes first.
 
@@ -213,7 +213,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
       };
       
   
-  `timestamp`: 마이크로초 단위, `log_level`: 리눅스 커널과 동이:
+  `timestamp`: 마이크로초 단위, `log_level`: 리눅스 커널과 동일합니다:
 
 | 이름      | 레벨 값 | 의미                  |
 | ------- | ---- | ------------------- |
@@ -226,7 +226,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
 | INFO    | '6'  | 정보                  |
 | DEBUG   | '7'  | 디버깅 메시지             |
 
-- 'C': Tagged Logged string message
+- 'C': 태그가 붙은 로깅 문자열 메세지
   
       struct message_logging_tagged_s {
         struct message_header_s header;
@@ -253,18 +253,18 @@ This section ends before the start of the first `message_add_logged_s` or `messa
       };
       
   
-  `timestamp`: in microseconds `log_level`: same as in the Linux kernel:
+  `timestamp`: 마이크로초 단위, `log_level`: 리눅스 커널과 동일합니다:
 
-| Name    | Level value | Meaning                          |
-| ------- | ----------- | -------------------------------- |
-| EMERG   | '0'         | System is unusable               |
-| ALERT   | '1'         | Action must be taken immediately |
-| CRIT    | '2'         | Critical conditions              |
-| ERR     | '3'         | Error conditions                 |
-| WARNING | '4'         | Warning conditions               |
-| NOTICE  | '5'         | Normal but significant condition |
-| INFO    | '6'         | Informational                    |
-| DEBUG   | '7'         | Debug-level messages             |
+| 이름      | 레벨 값 | 의미                  |
+| ------- | ---- | ------------------- |
+| EMERG   | '0'  | 시스템 사용 불가           |
+| ALERT   | '1'  | 즉시 조치해야 함           |
+| CRIT    | '2'  | 중대한 상황              |
+| ERR     | '3'  | 오류 상황               |
+| WARNING | '4'  | 경고 상황               |
+| NOTICE  | '5'  | 보통의 상태이나 주시가 필요한 상황 |
+| INFO    | '6'  | 정보                  |
+| DEBUG   | '7'  | 디버깅 메시지             |
 
 - 'S': synchronization message so that a reader can recover from a corrupt message by searching for the next sync message.
   
@@ -284,11 +284,11 @@ This section ends before the start of the first `message_add_logged_s` or `messa
       };
       
 
-- 'I': information message. See above.
+- 'I': 정보 메세지. 상단 참고.
 
-- 'M': information message multi. See above.
+- 'M': 다중 정보 메세지. 상단 참고.
 
-- 'P': parameter message. See above.
+- 'P': 매개변수 메세지. 상단 참고.
 
 ## 파서 요구 사항
 
@@ -304,19 +304,19 @@ This section ends before the start of the first `message_add_logged_s` or `messa
 
 ## Known Implementations
 
-- PX4 Firmware: C++ 
-  - [logger module](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
-  - [replay module](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
-  - [hardfault_log module](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log): append hardfault crash data.
-- [pyulog](https://github.com/PX4/pyulog): python, ULog parser library with CLI scripts.
-- [FlightPlot](https://github.com/PX4/FlightPlot): Java, log plotter.
-- [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis): Python, log plotter and 3D visualization tool based on pyulog.
-- [MAVLink](https://github.com/mavlink/mavlink): Messages for ULog streaming via MAVLink (note that appending data is not supported, at least not for cut off messages).
-- [QGroundControl](https://github.com/mavlink/qgroundcontrol): C++, ULog streaming via MAVLink and minimal parsing for GeoTagging.
-- [mavlink-router](https://github.com/01org/mavlink-router): C++, ULog streaming via MAVLink.
-- [MAVGAnalysis](https://github.com/ecmnet/MAVGCL): Java, ULog streaming via MAVLink and parser for plotting and analysis.
-- [PlotJuggler](https://github.com/facontidavide/PlotJuggler): C++/Qt application to plot logs and time series. Supports ULog since version 2.1.3.
-- [ulogreader](https://github.com/maxsun/ulogreader): Javascript, ULog reader and parser outputs log in JSON object format. 
+- PX4 펌웨어: C++ 
+  - [로거 모듈](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
+  - [재현 모듈](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
+  - [hardfault_log 모듈](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log): hardfault 치명 오류 데이터를 붙입니다.
+- [pyulog](https://github.com/PX4/pyulog): CLI 스크립트가 들어있는 파이썬 ULog 파서 라이브러리.
+- [FlightPlot](https://github.com/PX4/FlightPlot): Java언어로 작성한 로그 플로터.
+- [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis): pyulog 기반 로그 플로터, 3D 시각화 도구.
+- [MAVLink](https://github.com/mavlink/mavlink): MAVLink를 통한 ULog 메세지 스트리밍 (후위 첨가 데이터는 지원하지 않습니다. 최소한 잘린 메세지의 무시는 지원하지 않습니다.).
+- [QGroundControl](https://github.com/mavlink/qgroundcontrol): C++로 작성한 MAVLink ULog 스트리밍 및 간단한 GeoTagging 파싱 도구를 제공합니다.
+- [mavlink-router](https://github.com/01org/mavlink-router): MAVLink ULog 스트리밍 기능을 제공하는 C++ 기반 프로그램.
+- [MAVGAnalysis](https://github.com/ecmnet/MAVGCL): 자바 기반의 MAVLink ULog 스트리밍 기능과 도표 작성, 분석 기능을 제공하는 파서 기능을 갖춘 프로그램.
+- [PlotJuggler](https://github.com/facontidavide/PlotJuggler): 로그와 시간대를 플롯 차트로 출력하는 C++/Qt 기반 프로그램. 2.1.3부터 ULog를 지원합니다.
+- [ulogreader](https://github.com/maxsun/ulogreader): ULog로그를 읽어 JSON 객체 포멧으로 출력하는 Javascript 기반 파서. 
 
 ## 파일 형식 버전 이력
 
