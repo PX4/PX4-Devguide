@@ -17,7 +17,7 @@
 
 ## 설정
 
-SD 카드에 기록할 토픽 목록은 설정 파일로 개별 지정할 수 있습니다. Create a file `etc/logging/logger_topics.txt` on the card with a list of topics (For SITL, it's `build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`):
+SD 카드에 기록할 토픽 목록은 설정 파일로 개별 지정할 수 있습니다. SD 카드에 `etc/logging/logger_topics.txt` 파일을 만들어 토픽 목록을 넣으십시오(SITL용 파일은 `build/px4_sitl_default/tmp/rootfs/fs/microsd/etc/logging/logger_topics.txt`입니다). 
 
     <topic_name> <interval> <instance>
     
@@ -26,7 +26,7 @@ The `<interval>` is optional, and if specified, defines the minimum interval in 
 
 The `<instance>` is optional, and if specified, defines the instance to log. If not specified, all instances of the topic are logged. To specify `<instance>`, `<interval>` must be specified. It can be set to 0 to log at full rate
 
-The topics in this file replace all of the default logged topics.
+이 파일에 들어간 토픽 목록은 기본 로깅 토픽 종류를 바꿉니다.
 
 예시 :
 
