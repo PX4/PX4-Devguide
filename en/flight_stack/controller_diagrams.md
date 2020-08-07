@@ -4,6 +4,11 @@ This section contains diagrams for the main PX4 controllers.
 
 The diagrams use the standard [PX4 notation](../contribute/notation.md) (and each have an annotated legend).
 
+<!--    The diagrams were created with LaTeX / TikZ.
+        The code can be found in assets/diagrams/mc_control_arch_tikz.tex.
+        The easiest way to generate the diagrams and edit them is to copy the code and paste it an Overleaf (www.overleaf.com/) document to see the output.
+-->
+
 ## Multicopter Control Architecture
 
 ![MC Controller Diagram](../../assets/diagrams/mc_control_arch.jpg)
@@ -39,24 +44,19 @@ The diagrams use the standard [PX4 notation](../contribute/notation.md) (and eac
 * The integrator includes an anti-reset windup (ARW) using a clamping method.
 * The commanded acceleration is saturated.
 
-### Multicopter Position Control
+### Multicopter Position Controller
 
 ![MC Position Control Diagram](../../assets/diagrams/mc_position_diagram.jpg)
 
 * Simple P controller that commands a velocity.
 * The commanded velocity is saturated to keep the velocity in certain limits.
 
-## Multicopter Position Controller
+#### Combined Position and Velocity Controller Diagram
 
 ![MC Position Controller Diagram](../../assets/diagrams/px4_mc_position_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
-
-* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
-* This is a standard cascaded position-velocity loop.
-* Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
-* The integrator in the inner loop (velocity) controller includes an anti-reset windup (ARW) using a clamping method.
 
 ## Fixed-Wing Position Controller
 
