@@ -125,28 +125,28 @@ Then make sure to enable the stream, for example by adding the following line to
 
 ## MAVLink 개별 메시지 수신
 
-이 섹션에서는 MAVLink의 메시지를 수신하고 uORB로 퍼블리시 하는 것을 설명합니다.
+이 절에서는 MAVLink 메시지 수신 및 uORB 대상 송신 방법을 설명합니다.
 
-[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)에 들어오는 MAVLink 메시지를 핸들링하는 함수를 추가하세요.
+[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)에 MAVLink 메세지 수신 핸들 함수를 추가하십시오.
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v2.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-Add a function that handles the incoming MAVLink message in the [mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140) 에 들어오는 MAVLink 메시지를 핸들링하기 위한 함수를`MavlinkReceiver` 클래스안에 추가하세요.
+[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)의 `MavlinkReceiver` 클래스에 MAVLink 메세지 수신을 처리할 핸들 함수를 추가하십시오.
 
 ```C
 void handle_message_ca_trajectory_msg(mavlink_message_t *msg);
 ```
 
-[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)의 `MavlinkReceiver` 클래스에 uORB 퍼블리셔를 추가하세요.
+[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)의 `MavlinkReceiver` 클래스에 uORB 송신부를 추가하십시오.
 
 ```C
 orb_advert_t _ca_traj_msg_pub;
 ```
 
-[mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)에 `handle_message_ca_trajectory_msg` 함수를 추가하세요.
+[mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)에 `handle_message_ca_trajectory_msg` 함수 구현체를 넣으십시오.
 
 ```C
 void MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
@@ -187,27 +187,27 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
     }
 ```
 
-## 커스텀 MAVLink 메시지를 만드는 다른 방법
+## MAVLink 개별 메세지 생성 대안
 
 때로는 완전히 정의하지 못한 내용이 담긴 MAVLink 개별 메세지가 필요할 경우가 있습니다.
 
 예를 들어 PX4와 내장된 디바이스의 인터페이스를 MAVLink로 사용할 때 자동조종장치와 그 디바이스는 안전화되기 전에 여러번의 메시지를 교환할 것입니다. 이 과정은 오류에 취약한 MAVLink 헤더를 다시 만들고 장치간 프로토콜 버전의 동일 여부를 확인하는데 시간을 소요할 수 있습니다.
 
-임시 대안책은 디버깅 메시지의 목적 전환입니다. MAVLink 개별 메세지 `CA_TRAJECTORY`를 만드는 대신, `CA_TRAJ` 문자열 키와 `x`, `y`, `z` 필드에 데이터를 담은 `DEBUG_VECT` 메세지를 보낼 수 있습니다. [이 튜토리얼](../debug/debug_values.md)을 참고하세요. 디버그 메시지의 사용예제입니다.
+임시 대안책은 디버깅 메시지의 목적 전환입니다. MAVLink 개별 메세지 `CA_TRAJECTORY`를 만드는 대신, `CA_TRAJ` 문자열 키와 `x`, `y`, `z` 필드에 데이터를 담은 `DEBUG_VECT` 메세지를 보낼 수 있습니다. [이 자습서](../debug/debug_values.md)를 살펴보십시오. 디버깅 메시지 사용 예제가 들어있습니다.
 
-> **Note** 이 방법은 네트워크를 통해 전송하고 문자열 비교를 포함하기 때문에 효율적이지는 않습니다. 개발용으로만 사용하는 것을 권장합니다.
+> **Note** 이 방법은 문자열을 네트워크로 보내면서 문자열 비교과정에 관여하므로 그다지 효율적이지 않습니다. 개발용으로만 활용하십시오!
 
-## General
+## 일반
 
-### 스트리밍 레이트 설정하기
+### 스트리밍 전송율 설정
 
-때로는 개별적인 토픽들의 스트리밍 레이트를 향상시키는 것이 유용할때가 있습니다(예. QGC 감독). 쉘에 다음과 같은 명령어를 통해 수행할 수 있습니다.
+개별 토픽의 스트리밍 전송율을 늘리는 방법이 좋을 때가 있습니다(QGC 에서의 상태 검사). 셸에 다음 명령을 입력해서 처리할 수 있습니다:
 
 ```sh
 mavlink stream -u <port number> -s <mavlink topic name> -r <rate>
 ```
 
-포트넘버와 `transport protocol: UDP (<port number>)`를 출력하는 `mavlink status`를 얻을수도 있습니다. 예:
+(다른 내용과 함께) `transport protocol: UDP (<port number>)`를 출력하는 `mavlink status` 명령으로 포트 번호를 알 수 있습니다. 예제는 다음과 같습니다:
 
 ```sh
 mavlink stream -u 14556 -s OPTICAL_FLOW_RAD -r 300
