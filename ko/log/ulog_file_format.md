@@ -122,24 +122,24 @@ struct message_header_s {
   
   Predefined information messages are:
 
-| key                                 | Description                                 | Example for value  |
-| ----------------------------------- | ------------------------------------------- | ------------------ |
-| char[value_len] sys_name          | Name of the system                          | "PX4"              |
-| char[value_len] ver_hw            | Hardware version (board)                    | "PX4FMU_V4"        |
-| char[value_len] ver_hw_subtype    | Board subversion (variation)                | "V2"               |
-| char[value_len] ver_sw            | Software version (git tag)                  | "7f65e01"          |
-| char[value_len] ver_sw_branch     | git branch                                  | "master"           |
-| uint32_t ver_sw_release           | Software version (see below)                | 0x010401ff         |
-| char[value_len] sys_os_name       | Operating System Name                       | "Linux"            |
-| char[value_len] sys_os_ver        | OS version (git tag)                        | "9f82919"          |
-| uint32_t ver_os_release           | OS version (see below)                      | 0x010401ff         |
-| char[value_len] sys_toolchain     | Toolchain Name                              | "GNU GCC"          |
-| char[value_len] sys_toolchain_ver | Toolchain Version                           | "6.2.1"            |
-| char[value_len] sys_mcu           | Chip name and revision                      | "STM32F42x, rev A" |
-| char[value_len] sys_uuid          | Unique identifier for vehicle (eg. MCU ID)  | "392a93e32fa3"...  |
-| char[value_len] log_type          | Type of the log (full log if not specified) | "mission"          |
-| char[value_len] replay              | File name of replayed log if in replay mode | "log001.ulg"       |
-| int32_t time_ref_utc              | UTC Time offset in seconds                  | -3600              |
+| 키                                   | 설명                    | 예제 값               |
+| ----------------------------------- | --------------------- | ------------------ |
+| char[value_len] sys_name          | 시스템 이름                | "PX4"              |
+| char[value_len] ver_hw            | 하드웨어(보드) 버전           | "PX4FMU_V4"        |
+| char[value_len] ver_hw_subtype    | 보드 하위 버전(변형판)         | "V2"               |
+| char[value_len] ver_sw            | 소프트웨어 버전(git tag)     | "7f65e01"          |
+| char[value_len] ver_sw_branch     | git 브랜치               | "master"           |
+| uint32_t ver_sw_release           | 소프트웨어 버전 (아래 참고)      | 0x010401ff         |
+| char[value_len] sys_os_name       | 운영 체제 명칭              | "Linux"            |
+| char[value_len] sys_os_ver        | 운영체제 버전 (git tag)     | "9f82919"          |
+| uint32_t ver_os_release           | 운영체제 버전 (아래 참고)       | 0x010401ff         |
+| char[value_len] sys_toolchain     | 툴체인 명칭                | "GNU GCC"          |
+| char[value_len] sys_toolchain_ver | 툴체인 버전                | "6.2.1"            |
+| char[value_len] sys_mcu           | 칩 명칭과 버전              | "STM32F42x, rev A" |
+| char[value_len] sys_uuid          | 기체 고유 식별자(예: MCU ID)  | "392a93e32fa3"...  |
+| char[value_len] log_type          | 로그 형식(지정하지 않으면 전체 기록) | "mission"          |
+| char[value_len] replay              | 재현 모드일 때 재현 파일 이름     | "log001.ulg"       |
+| int32_t time_ref_utc              | 초 단위 UTC 시간 오프셋       | -3600              |
 
     The format of `ver_sw_release` and `ver_os_release` is: 0xAABBCCTT, where AA is major, BB is minor, CC is patch and TT is the type. 
     Type is defined as following: `>= 0`: development, `>= 64`: alpha version, `>= 128`: beta version, `>= 192`: RC version, `== 255`: release version.
@@ -164,7 +164,7 @@ struct message_header_s {
 
 - 'P': 매개변수 메세지. Same format as `message_info_s`. If a parameter dynamically changes during runtime, this message can also be used in the Data section. The data type is restricted to: `int32_t`, `float`.
 
-This section ends before the start of the first `message_add_logged_s` or `message_logging_s` message, whichever comes first.
+이 절은 처음 `message_add_logged_s` 메세지 또는 `message_logging_s` 메세지 둘 중 어떤 메세지 하나를 시작하기 전에 끝납니다.
 
 ### 데이터 섹션
 
@@ -276,7 +276,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
   
   `sync_magic`: [0x2F, 0x73, 0x13, 0x20, 0x25, 0x0C, 0xBB, 0x12]
 
-- 'O': mark a dropout (lost logging messages) of a given duration in ms. Dropouts can occur e.g. if the device is not fast enough.
+- 'O': 밀리초 단위의 주어진 시간을 초과하여 버린 메시지를 표기(손실 로깅 메세지)합니다. 장치 동작이 충분히 빠르지 않을 경우 로그메시지 손실이 나타날 수 있습니다.
   
       struct message_dropout_s {
         struct message_header_s header;
@@ -302,7 +302,7 @@ This section ends before the start of the first `message_add_logged_s` or `messa
   
   후위 첨가 데이터는 정규 데이터 섹션의 일부로 다루어야 함.
 
-## Known Implementations
+## 알려진 기존 구현체
 
 - PX4 펌웨어: C++ 
   - [로거 모듈](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
