@@ -123,7 +123,7 @@ Then make sure to enable the stream, for example by adding the following line to
 > 
 > *QGroundControl*의 메시지를 보기위해서는 [나만의 MAVLink library](https://dev.qgroundcontrol.com/en/getting_started/)를 빌드하고, 수신하는 메시지를 [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html)를 통해 확인할 수 있습니다.
 
-## 커스텀 MAVLink 메시지 수신하기
+## MAVLink 개별 메시지 수신
 
 이 섹션에서는 MAVLink의 메시지를 수신하고 uORB로 퍼블리시 하는 것을 설명합니다.
 
@@ -189,11 +189,11 @@ MavlinkReceiver::handle_message(mavlink_message_t *msg)
 
 ## 커스텀 MAVLink 메시지를 만드는 다른 방법
 
-때로는 아직 완전히 정의되지 않은 내용을 포함하는 MAVLink 메시지를 만들필요가 있습니다.
+때로는 완전히 정의하지 못한 내용이 담긴 MAVLink 개별 메세지가 필요할 경우가 있습니다.
 
-예를 들어 PX4와 내장된 디바이스의 인터페이스를 MAVLink로 사용할 때 자동조종장치와 그 디바이스는 안전화되기 전에 여러번의 메시지를 교환할 것입니다. 이 작업은 MAVLink 헤더를 재생성하기 위해 시간도 소모되고 에러도 읽어나기 쉽습니다. 그리고 두 장치가 같은 버전의 프로토콜을 사용하는지 확인해야 합니다.
+예를 들어 PX4와 내장된 디바이스의 인터페이스를 MAVLink로 사용할 때 자동조종장치와 그 디바이스는 안전화되기 전에 여러번의 메시지를 교환할 것입니다. 이 과정은 오류에 취약한 MAVLink 헤더를 다시 만들고 장치간 프로토콜 버전의 동일 여부를 확인하는데 시간을 소요할 수 있습니다.
 
-임시적이고 대안적인 방법은 repurpose 디버그 메시지입니다. 커스텀 MAVLink 메시지를 만들기보다는 `CA_TRAJECTORY`, 여러분은 `DEBUG_VECT` 메시지를 문자열 키를 `CA_TRAJ` 에 담고 데이터는 `x`, `y`, `z`에 담아 보낼 수 있습니다. [이 튜토리얼](../debug/debug_values.md)을 참고하세요. 디버그 메시지의 사용예제입니다.
+임시 대안책은 디버깅 메시지의 목적 전환입니다. MAVLink 개별 메세지 `CA_TRAJECTORY`를 만드는 대신, `CA_TRAJ` 문자열 키와 `x`, `y`, `z` 필드에 데이터를 담은 `DEBUG_VECT` 메세지를 보낼 수 있습니다. [이 튜토리얼](../debug/debug_values.md)을 참고하세요. 디버그 메시지의 사용예제입니다.
 
 > **Note** 이 방법은 네트워크를 통해 전송하고 문자열 비교를 포함하기 때문에 효율적이지는 않습니다. 개발용으로만 사용하는 것을 권장합니다.
 
