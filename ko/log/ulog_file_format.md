@@ -100,7 +100,7 @@ struct message_header_s {
   
   일부 특별한 필드 이름은 다음과 같습니다:
   
-  - `timestamp`: 매번 기록하는 메시지(`message_add_logged_s`)에는 타임스탬프 필드가 들어있어야합니다(처음 필드에는 필요하지 않음). Its type can be: `uint64_t` (currently the only one used), `uint32_t`, `uint16_t` or `uint8_t`. The unit is always microseconds, except for in `uint8_t` it's milliseconds. A log writer must make sure to log messages often enough to be able to detect wrap-arounds and a log reader must handle wrap-arounds (and take into account dropouts). The timestamp must always be monotonic increasing for a message series with the same `msg_id`.
+  - `timestamp`: 매번 기록하는 메시지(`message_add_logged_s`)에는 타임스탬프 필드가 들어있어야합니다(처음 필드에는 필요하지 않음). 타임스탬프의 자료형은 `uint64_t` (현재 유일하게 사용하는 형식), `uint32_t`, `uint16_t`, `uint8_t` 중 하나로 설정할 수 있습니다. 단위는 마이크로초이며, `uint8_t` 형일 경우 밀리초입니다. A log writer must make sure to log messages often enough to be able to detect wrap-arounds and a log reader must handle wrap-arounds (and take into account dropouts). The timestamp must always be monotonic increasing for a message series with the same `msg_id`.
   - Padding: field names that start with `_padding` should not be displayed and their data must be ignored by a reader. These fields can be inserted by a writer to ensure correct alignment.
     
     If the padding field is the last field, then this field will not be logged, to avoid writing unnecessary data. This means the `message_data_s.data` will be shorter by the size of the padding. However the padding is still needed when the message is used in a nested definition.
