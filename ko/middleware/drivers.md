@@ -37,7 +37,7 @@ PX4는 장치 ID를 시스템의 개별 센서를 주기적으로 식별하는 �
     CAL_MAG_PRIME = 73225.0
     
 
-This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will show up in the log file as `IMU.MagX`.
+I2C로 연결한 외부 HMC5983 칩입니다. `0x1E` 주소의 버스 1번입니다. 로그 파일에서 `IMU.MagX`로 나타납니다.
 
     # device ID 73225 in 24-bit binary:
     00000001  00011110  00001 001
@@ -46,7 +46,7 @@ This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will
     HMC5883   0x1E    bus 1 I2C
     
 
-This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It will show up in the log file as `IMU1.MagX`.
+SPI로 연결한 내부 HMC5983 칩입니다. 버스 1번에서 슬롯 5번을 선택한 하위노드입니다. 로그 파일에서 `IMU1.MagX`로 나타납니다.
 
     # device ID 66826 in 24-bit binary:
     00000001  00000101  00001 010
@@ -55,7 +55,7 @@ This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It w
     HMC5883   dev 5   bus 1 SPI
     
 
-And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave select slot 4. It will show up in the log file as `IMU2.MagX`.
+SPI로 연결한 내부 MPU9250 지자계센서입니다. 버스 1번에서 슬롯 4번을 선택한 하위노드입니다. 로그 파일에서 `IMU2.MagX`로 나타납니다.
 
     # device ID 263178 in 24-bit binary:
     00000100  00000100  00001 010
@@ -115,11 +115,11 @@ enum DeviceBusType {
 
 ### 상세 기록
 
-Drivers (and other modules) output minimally verbose logs strings by default (e.g. for `PX4_DEBUG`, `PX4_WARN`, `PX4_ERR`, etc.).
+드라이버 (와 기타 모듈) 에서는 기본적으로 최소한 자세한 로그 문자열을 출력합니다(예: `PX4_DEBUG`, `PX4_WARN`, `PX4_ERR` 등)
 
-Log verbosity is defined at build time using the `RELEASE_BUILD` (default), `DEBUG_BUILD` (verbose) or `TRACE_BUILD` (extremely verbose) macros.
+로그의 상세도는 `RELEASE_BUILD` (기본), `DEBUG_BUILD` (상세), `TRACE_BUILD` (매우 상세) 매크로로 빌드 시간에 정의할 수 있습니다. 
 
-Change the logging level using `COMPILE_FLAGS` in the driver `px4_add_module` function (**CMakeLists.txt**). The code fragment below shows the required change to enable DEBUG_BUILD level debugging for a single module or driver.
+드라이버의 소스트리에 있는 CMakeLists.txt의 `px4_add_module` 함수에서 `COMPILE_FLAGS`로깅 수준 값을 바꾸십시오. 아래 코드 단편은 단일 모듈 또는 드라이버에서의 DEBUG_BUILD 레벨 디버깅을 활성화할 때 바꿀 필요가 있는 부분을 보여줍니다.
 
     px4_add_module(
         MODULE templates__module
@@ -137,4 +137,4 @@ Change the logging level using `COMPILE_FLAGS` in the driver `px4_add_module` fu
         )
     
 
-> **Tip** Verbose logging can also be enabled on a per-file basis, by adding `#define DEBUG_BUILD` at the very top of a .cpp file (before any includes).
+> **Tip** 상세 로깅은 .cpp 파일 최상단에 `#define DEBUG_BUILD` 행을 추가하여 파일 기반 별로 활성화할 수 있습니다.
