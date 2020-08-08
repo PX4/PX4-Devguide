@@ -12,7 +12,7 @@ ROS2(Robot Operating System)의 미들웨어로 RTPS를 채택했습니다. *Fas
 2. ROS2 노드들과 PX4 연결하기(RTPS 브릿지를 통해 연결되며 `px4_ros_com` 패키지를 사용함)
 3. ROS (version 1) 노드들과 PX4를 연결하기, 추가적으로 ROS2와 ROS를 연결하기 위해`ros1_bridge` 패키지를 사용하기.
 
-## RTPS는 언제 사용되어야 하나요?
+## RTPS는 언제 사용해야 할까?
 
 비행 조종기와 오프보드 컴포넌의 간의 정보를 확실히 time-critical/real-time하게 공유하고자 한다면 RTPS가 사용되어야 합니다. 특히 오프보드 소프트웨어가 PX4에서 구동되는 소프트웨어 컴포넌트(uORB 토픽들을 송수신)들의 *peer*가 되어야 할 때 유용합니다.
 
@@ -28,14 +28,14 @@ ROS2(Robot Operating System)의 미들웨어로 RTPS를 채택했습니다. *Fas
 
 ### RTPS 브릿지
 
-RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게 변환하여 PX4와 RTPS 어플리케이션들간의 메시지를 교환합니다.
+RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게 변환하여 PX4와 RTPS 어플리케이션간 주고 받는 메시지를 송수신합니다.
 
 ![basic example flow](../../assets/middleware/micrortps/architecture.png)
 
-구조의 주된 요소들은 위에보이는 클라이언트와 에이전트 프로세스입니다.
+구조의 주된 요소는 상단 그림에 있는 클라이언트와 에이전트 프로세스입니다.
 
-* *Client*는 flight controller에서 실행되는 PX4 미들웨어 데몬입니다. 다른 PX4 컴포넌트들이 퍼블리시하는 토픽들을 구독하고, *Agent*로 업데이트를 보냅니다(UART 또는 UDP 포트). *Agent*로 부터 메시지도 받으며 PX4로 uORB 메시지를 퍼블리시하기도 합니다.
-* *Agent*는 offboard computer에서 데몬으로 실행됩니다. *Client*의 업데이트 메시지를 검사하고 그것들을 RTPS를 통해 퍼블리시합니다. RTPS 어플리케이션으로부터 오는 "uORB" RTPS 메시지들 또한 구독하며 *Client*에 전달합니다.
+* *Client*는 비행 조종기에서 실행하는 PX4 미들웨어 데몬입니다. 다른 PX4 컴포넌트가 보내는 토픽을 구독하고, (UART 또는 UDP 포트로) *Agent*를 대상으로 업데이트 내용을 보냅니다. *Agent*로 부터 메시지도 받으며 PX4로 uORB 메시지를 내보내기도 합니다.
+* *Agent*는 외부 컴퓨터에서 데몬으로 실행합니다. *Client*에서 보낸 uORB 업데이트 메시지를 검사한 후 RTPS에 실어 보냅니다. RTPS 어플리케이션으로부터 오는 "uORB" RTPS 메시지들 또한 구독하며 *Client*에 전달합니다.
 * *Agent*과 *Client*는 시리얼링크(UART)나 UDP 네트워크로 연결됩니다. uORB 정보는 전송을 위해 [CDR serialized](https://en.wikipedia.org/wiki/Common_Data_Representation)됩니다. *CDR serialization*는 다른 플랫폼들과 시리얼 데이터 교환을 위한 일반적인 포맷을 제공합니다.
 * *Agent*와 *Fast RTPS* 어플리케이션은 UDP를 통해 연결되며, 다른 장치에 있을수도 있습니다. 일반적인 구성에서는 와이파이나 USB로 *Client*에 연결된 동일한 시스템에 있을 것입니다 (예. 개발 컴퓨터, 리눅스 컴퓨터 또는 컴퓨터 보드).
 
