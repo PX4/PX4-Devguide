@@ -322,4 +322,4 @@ struct message_header_s {
 
 ### 버전 2 개정 사항
 
-`ulog_message_info_multiple_header_s` 메시지와 `ulog_message_flag_bits_s` 메시지를 추가하고 로그에 데이터를 후위 첨가하는 기능을 붙였습니다. 기존 로그에 치명 오류 정보를 추가할 때 활용할 수 있습니다. 중간이 잘린 메세지에 데이터가 붙어 기록할 경우 버전 1의 해석 프로그램에서는 해석할 수 없습니다. Other than that forward and backward compatibility is given if parsers ignore unknown messages.
+`ulog_message_info_multiple_header_s` 메시지와 `ulog_message_flag_bits_s` 메시지를 추가하고 로그에 데이터를 후위 첨가하는 기능을 붙였습니다. 기존 로그에 치명 오류 정보를 추가할 때 활용할 수 있습니다. 중간이 잘린 메세지에 데이터가 붙어 기록할 경우 버전 1의 해석 프로그램에서는 해석할 수 없습니다. 파서에서 알 수 없는 메세지를 무시한다면 전후 호환성을 확보할 수 있습니다.
