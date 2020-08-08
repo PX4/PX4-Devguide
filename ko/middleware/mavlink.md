@@ -1,8 +1,8 @@
 # MAVLink 메시징
 
-[MAVLink](https://mavlink.io/en/)는 드론 에코시스템을 위해 설계된 아주 가벼운 메시징 프로토콜입니다.
+[MAVLink](https://mavlink.io/en/)는 드론 생태계에서 활용하려 설계한 초경량 메세지 프로토콜입니다.
 
-PX4는 *QGroundControl*(그리고 다른 GS)과 통신하기 위해 *MAVLink*를 사용합니다. 그리고 비행 컨트롤러 밖에서 드론 컴포넌트에 연결하기 위한 통합 메커니즘니다(예. 회사의 컴퓨터, MAVLink가 활성화된 카메라 등).
+PX4는 *QGroundControl*(그리고 기타 지상 통제국)과의 통신, 그리고 보조 컴퓨터, MAVLink 기능을 갖춘 카메라 등 비행체 조종기 외의 드론 구성요소 연결을 위한 통합 매커니즘 용도로 *MAVLink* 를 활용합니다.
 
 이 프로토콜은 데이터 교환을 위해 다수의 [message](https://mavlink.io/en/messages/)와 [microservices](https://mavlink.io/en/services/)를 정의했습니다(다는 아니지만 많은 messages/services가 PX4에 구현되어 있습니다).
 
