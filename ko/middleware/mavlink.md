@@ -114,14 +114,14 @@ nullptr
 };
 ```
 
-Then make sure to enable the stream, for example by adding the following line to the [startup script](../concept/system_startup.md) (e.g. [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on NuttX or [ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)) on SITL. Note that `-r` configures the streaming rate and `-u` identifies the MAVLink channel on UDP port 14556).
+그 다음 [시작 스크립트](../concept/system_startup.md) (예: NuttX의 [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) 또는 SITL의 [ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)) 에 다음 행을 추가하는 식으로 스트림을 활성화했는지 확인하십시오. 참고로, `-r` 인자로 스트리밍 전송율을 설정하고 `-u` 인자로 UDP 포트 14556의 MAVLink 채널을 식별합니다.
 
     mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
     
 
-> **Tip** 여러분의 메시지가 리얼타임으로 동작하는지 확인하기 위해서는 `uorb top [<message_name>]` 명령어를 사용하면됩니다([uORB Messaging](../middleware/uorb.md#uorb-top-command)를 참고하세요). 이 방법은 들어오는 uORB 토픽 메시지를 테스트할 때도 사용할 수 있습니다.(다른 메시지들을 위해서는 코드내에서 `printf` 를 사용하세요).
+> **Tip** `uorb top [<message_name>]` 명령을 활용하여 메시지 송신 여부와 전송율을 실시간으로 확인할 수 있습니다([uORB 메세징](../middleware/uorb.md#uorb-top-command) 참고). 이 방법으로 uORB 토픽을 내보내는 메시지 수신을 시험해볼 수 있습니다(다른 메시지에 대해서는 SITL에서 코드와 테스트에 `printf`를 사용해야 합니다).
 > 
-> *QGroundControl*의 메시지를 보기위해서는 [나만의 MAVLink library](https://dev.qgroundcontrol.com/en/getting_started/)를 빌드하고, 수신하는 메시지를 [MAVLink Inspector Widget](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html)를 통해 확인할 수 있습니다.
+> *QGroundControl*에서 메세지를 보려면 [MAVLink 라이브러리를 빌드](https://dev.qgroundcontrol.com/en/getting_started/)하고 [MAVLink 검사 위젯](https://docs.qgroundcontrol.com/en/app_menu/mavlink_inspector.html)(또는 다른 MAVLink 도구)으로 수신 메시지를 확인해야 합니다.
 
 ## MAVLink 개별 메시지 수신
 
