@@ -96,7 +96,7 @@ struct message_header_s {
       };
       
   
-  `format`: `message_name:field0;field1;` 형식의 플레인 텍스트 문자열입니다. `;` 문자로 나눈 임의 갯수의 필드(최소 1개)를 넣을 수 있습니다. 필드는 `type field_name` 형식 또는 `type[array_length] field_name` (고정 길이만 지원) 배열 형식을 지닙니다. `type` 은 기본 바이너리 형식 또는 기타 형식 정의의 `message_name`중 하나입니다(중첩 활용). 형식 자체를 정의하기 전에 먼저 활용할 수 있습니다. 임의대로 중첩할 수 있으나 순환 의존성을 지니면 안됩니다.
+  `format`: `message_name:field0;field1;` 형식의 일반 텍스트 문자열입니다. `;` 문자로 나눈 임의 갯수의 필드(최소 1개)를 넣을 수 있습니다. 필드는 `type field_name` 형식 또는 `type[array_length] field_name` (고정 길이만 지원) 배열 형식을 지닙니다. `type` 은 기본 바이너리 형식 또는 기타 형식 정의의 `message_name`중 하나입니다(중첩 활용). 형식 자체를 정의하기 전에 먼저 활용할 수 있습니다. 임의대로 중첩할 수 있으나 순환 의존성을 지니면 안됩니다.
   
   일부 특별한 필드 이름은 다음과 같습니다:
   
@@ -116,11 +116,11 @@ struct message_header_s {
   };
   ```
   
-  `key` is a plain string, as in the format message (can also be a custom type), but consists of only a single field without ending `;`, eg. `float[3] myvalues`. `value` contains the data as described by `key`.
+  `key`는 형식 메세지에서처럼 일반 문자열이지만(개별 설정 형식일 수 있음), `;` 문자로 끝나지 않는 단일 필드로 구성합니다. 예를 들면, `float[3] myvalues` 가 있습니다. `value` 에는 `key`가 설명하는 데이터가 들어있습니다.
   
-  Note that an information message with a certain key must occur at most once in the entire log. Parsers can store information messages as a dictionary.
+  제각각의 키에 들어있는 정보 메세지는 전체 로그에 한번만 들어가야 합니다. 파서는 해당 메세지를 딕셔너리로 형태로 저장합니다.
   
-  Predefined information messages are:
+  사전 정의 정보 메세지는 다음과 같습니다:
 
 | 키                                   | 설명                    | 예제 값               |
 | ----------------------------------- | --------------------- | ------------------ |
@@ -237,7 +237,7 @@ struct message_header_s {
       };
       
   
-  `tag`: id representing source of logged message string. It could represent a process, thread or a class depending upon the system architecture. For example, a reference implementation for an onboard computer running multiple processes to control different payloads, external disks, serial devices etc can encode these process identifiers using a `uint16_t enum` into the tag attribute of `message_logging_tagged_s` struct as follows:
+  `tag`: 로그 메세지 문자열의 원본을 나타내는 ID입니다. 과정, 스레드, 시스템 아키텍처별 클래스를 나타낼 수도 있습니다. 예를 들어, 제각각의 페이로드, 외부 디스크, 직렬 장치 등을 제어하려 다중 프로세스를 처리하는 온보드 컴퓨터용 참조 구현체는 다음과 같은 `message_logging_tagged_s` 구조체의 `uint16_t enum` 태그 속성으로 프로세스 식별자를 인코딩할 수 있습니다.
   
       enum class ulog_tag : uint16_t {
         unassigned,
@@ -266,7 +266,7 @@ struct message_header_s {
 | INFO    | '6'  | 정보                  |
 | DEBUG   | '7'  | 디버깅 메시지             |
 
-- 'S': synchronization message so that a reader can recover from a corrupt message by searching for the next sync message.
+- 'S': 메시지를 동기화하여 리더 프로그램에서 다음 동기화 메시지를 검색하여 깨진 메세지를 복원할 수 있게 합니다.
   
       struct message_sync_s {
         struct message_header_s header;
@@ -322,4 +322,4 @@ struct message_header_s {
 
 ### 버전 2 개정 사항
 
-Addition of `ulog_message_info_multiple_header_s` and `ulog_message_flag_bits_s` messages and the ability to append data to a log. This is used to add crash data to an existing log. If data is appended to a log that is cut in the middle of a message, it cannot be parsed with version 1 parsers. Other than that forward and backward compatibility is given if parsers ignore unknown messages.
+`ulog_message_info_multiple_header_s` 메시지와 `ulog_message_flag_bits_s` 메시지를 추가하고 로그에 데이터를 후위 첨가하는 기능을 붙였습니다. 기존 로그에 치명 오류 정보를 추가할 때 활용할 수 있습니다. 중간이 잘린 메세지에 데이터가 붙어 기록할 경우 버전 1의 해석 프로그램에서는 해석할 수 없습니다. Other than that forward and backward compatibility is given if parsers ignore unknown messages.
