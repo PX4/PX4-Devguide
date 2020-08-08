@@ -86,9 +86,9 @@ struct message_header_s {
     - `append_offsets` 처음 값을 로그 파일 길이 값인 0으로 설정합니다.
     - 그 다음 데이터 섹션에 유효한 어떤 메시지든 뒤에 붙입니다.
   
-  It is possible that there are more fields appended at the end of this message in future ULog specifications. This means a parser must not assume a fixed length of this message. If the message is longer than expected (currently 40 bytes), the exceeding bytes must just be ignored.
+  향후 ULog 명세에서는 이 메시지의 끝에 추가 필드가 붙을 수 있습니다. 그러니까, 이 메시지의 길이가 고정임을 간주해서는 안됩니다. 예상 길이보다 메시지의 길이가 길어지면(현재 40바이트), 초과 길이는 무시해야합니다.
 
-- 'F': format definition for a single (composite) type that can be logged or used in another definition as a nested type.
+- 'F': 중첩 형식으로 다른 정의에 활용할 수 있는 단일(요소)형식 정의 구성(포맷)
   
       struct message_format_s {
         struct message_header_s header;
@@ -98,9 +98,9 @@ struct message_header_s {
   
   `format`: plain-text string with the following format: `message_name:field0;field1;` There can be an arbitrary amount of fields (at least 1), separated by `;`. A field has the format: `type field_name` or `type[array_length] field_name` for arrays (only fixed size arrays are supported). `type` is one of the basic binary types or a `message_name` of another format definition (nested usage). A type can be used before it's defined. There can be arbitrary nesting but no circular dependencies.
   
-  Some field names are special:
+  일부 특별한 필드 이름은 다음과 같습니다:
   
-  - `timestamp`: every logged message (`message_add_logged_s`) must include a timestamp field (does not need to be the first field). Its type can be: `uint64_t` (currently the only one used), `uint32_t`, `uint16_t` or `uint8_t`. The unit is always microseconds, except for in `uint8_t` it's milliseconds. A log writer must make sure to log messages often enough to be able to detect wrap-arounds and a log reader must handle wrap-arounds (and take into account dropouts). The timestamp must always be monotonic increasing for a message series with the same `msg_id`.
+  - `timestamp`: 매번 기록하는 메시지(`message_add_logged_s`)에는 타임스탬프 필드가 들어있어야합니다(처음 필드에는 필요하지 않음). Its type can be: `uint64_t` (currently the only one used), `uint32_t`, `uint16_t` or `uint8_t`. The unit is always microseconds, except for in `uint8_t` it's milliseconds. A log writer must make sure to log messages often enough to be able to detect wrap-arounds and a log reader must handle wrap-arounds (and take into account dropouts). The timestamp must always be monotonic increasing for a message series with the same `msg_id`.
   - Padding: field names that start with `_padding` should not be displayed and their data must be ignored by a reader. These fields can be inserted by a writer to ensure correct alignment.
     
     If the padding field is the last field, then this field will not be logged, to avoid writing unnecessary data. This means the `message_data_s.data` will be shorter by the size of the padding. However the padding is still needed when the message is used in a nested definition.
