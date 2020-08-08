@@ -1,22 +1,22 @@
 # 드라이버 개발
 
-PX4 device drivers are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) framework.
+PX4 장치 드라이버는 [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) 프레임워크에 기반합니다.
 
 ## 드라이버 만들기
 
-PX4 almost exclusively consumes data from [uORB](../middleware/uorb.md). Drivers for common peripheral types must publish the correct uORB messages (for example: gyro, accelerometer, pressure sensors, etc.).
+PX4는 [uORB](../middleware/uorb.md) 데이터만을 유일하게 가져옵니다. 일반 주변기기 형식의 드라이버는 올바른 uORB 메시지를 내보내야합니다(예: 각가속계, 가속계, 압력계 등)
 
-The best approach for creating a new driver is to start with a similar driver as a template (see [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)).
+새 드라이버를 만드는 가장 바람직한 접근법은 코드 서식을 통해 유사 드라이버로 시작하는 방식입니다([src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers) 참고).
 
-> **Tip** More detailed information about working with specific I/O busses and sensors may be available in [Sensor and Actuator Buses](../sensor_bus/README.md) section.
+> **Tip** 특정 입출력 버스와 센서와 동작하기 위한 자세한 정보는 [센서와 액츄에이터 버스](../sensor_bus/README.md)절을 참고하십시오.
 
 <span></span>
 
-> **Note** Publishing the correct uORB topics is the only pattern that drivers *must* follow.
+> **Note** 드라이버가 *반드시* 따라야 할 정규 동작은 올바른 uORB 토픽의 전송입니다.
 
-## 중요 아키텍쳐
+## 핵심 아키텍처
 
-PX4 is a [reactive system](../concept/architecture.md) and uses [uORB](../middleware/uorb.md) publish/subscribe to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
+PX4는 [반응형 시스템](../concept/architecture.md)이며 메세지 송수신시 [uORB](../middleware/uorb.md) 송신/가입 방식을 활용합니다. 시스템의 핵심부 처리에 있어 파일 핸들을 활용하거나 필요로 하지 않습니다. 주요 API는 두가지를 활용합니다:
 
 * Pub/Sub 시스템은 PX4가 실행되는 시스템에 의존하는 네트워크나 공유메모리 백엔드가 있습니다.
 * 글로벌 장치 레지스트리를 통해 디바이스 목록과 그 설정을 get/set할 수 있습니다. 이것은 링크리스트처럼 간단하며, 파일시스템에 매핑할 수도 있습니다.
