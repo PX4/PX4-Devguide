@@ -96,14 +96,14 @@ struct message_header_s {
       };
       
   
-  `format`: plain-text string with the following format: `message_name:field0;field1;` There can be an arbitrary amount of fields (at least 1), separated by `;`. A field has the format: `type field_name` or `type[array_length] field_name` for arrays (only fixed size arrays are supported). `type` is one of the basic binary types or a `message_name` of another format definition (nested usage). A type can be used before it's defined. There can be arbitrary nesting but no circular dependencies.
+  `format`: `message_name:field0;field1;` 형식의 플레인 텍스트 문자열입니다. `;` 문자로 나눈 임의 갯수의 필드(최소 1개)를 넣을 수 있습니다. 필드는 `type field_name` 형식 또는 `type[array_length] field_name` (고정 길이만 지원) 배열 형식을 지닙니다. `type` 은 기본 바이너리 형식 또는 기타 형식 정의의 `message_name`중 하나입니다(중첩 활용). 형식 자체를 정의하기 전에 먼저 활용할 수 있습니다. 임의대로 중첩할 수 있으나 순환 의존성을 지니면 안됩니다.
   
   일부 특별한 필드 이름은 다음과 같습니다:
   
   - `timestamp`: 매번 기록하는 메시지(`message_add_logged_s`)에는 타임스탬프 필드가 들어있어야합니다(처음 필드에는 필요하지 않음). 타임스탬프의 자료형은 `uint64_t` (현재 유일하게 사용하는 형식), `uint32_t`, `uint16_t`, `uint8_t` 중 하나로 설정할 수 있습니다. 단위는 마이크로초이며, `uint8_t` 형일 경우 밀리초입니다. A log writer must make sure to log messages often enough to be able to detect wrap-arounds and a log reader must handle wrap-arounds (and take into account dropouts). The timestamp must always be monotonic increasing for a message series with the same `msg_id`.
-  - Padding: field names that start with `_padding` should not be displayed and their data must be ignored by a reader. These fields can be inserted by a writer to ensure correct alignment.
+  - Padding: `_padding`으로 시작하는 필드 이름을 가진 부분은 화면에 뿌리면 안되며, 리더에서 무시해야합니다. 이 필드는 데이터의 정렬을 제대로 하기 위해 로그 기록 프로그램에서 넣을 수 있습니다.
     
-    If the padding field is the last field, then this field will not be logged, to avoid writing unnecessary data. This means the `message_data_s.data` will be shorter by the size of the padding. However the padding is still needed when the message is used in a nested definition.
+    패딩 필드가 마지막 필드라면, 이 필드는 필요없는 데이터 기록을 피하려 기록에 넣지 않습니다. 이는 `message_data_s.data` 데이터가 패딩 길이를 줄이는 만큼 더 짧아질 수 있음을 의미합니다. 그러나 패딩은 중첩 정의에서 메세지를 활용할 경우 여전히 필요합니다. 
 
 - 'I': 정보 메세지.
   
@@ -160,9 +160,9 @@ struct message_header_s {
   };
   ```
   
-  The same as the information message, except that there can be multiple messages with the same key (parsers store them as a list). The `is_continued` can be used for split-up messages: if set to 1, it is part of the previous message with the same key. Parsers can store all information multi messages as a 2D list, using the same order as the messages occur in the log.
+  정보 메세지와 동일하지만 동일한 키를 지닌 다중 메세지가 되는 경우는 예외입니다(파서에서는 이 메세지를 목록으로 저장합니다). `is_continued`는 쪼갠 메세지에 사용할 수 있습니다. 1로 설정하면, 이전 메세지와 동일한 키를 지닌 부분입니다. 파서는 로그 메세지를 기록하는 순서 그대로 2차원 목록으로 다중 메세지의 모든 정보를 저장할 수 있습니다.
 
-- 'P': 매개변수 메세지. Same format as `message_info_s`. If a parameter dynamically changes during runtime, this message can also be used in the Data section. The data type is restricted to: `int32_t`, `float`.
+- 'P': 매개변수 메세지. `message_info_s`와 동일한 형식입니다. 매개변수가 실행 시간동안 수시로 바뀌는 경우, 이 메시지도 데이터 섹션에서 활용할 수 있습니다. 이 데이터 형식은 `int32_t`, `float` 두가지 형식으로 제한합니다.
 
 이 절은 처음 `message_add_logged_s` 메세지 또는 `message_logging_s` 메세지 둘 중 어떤 메세지 하나를 시작하기 전에 끝납니다.
 
