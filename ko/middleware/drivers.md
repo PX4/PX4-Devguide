@@ -23,13 +23,13 @@ PX4는 [반응형 시스템](../concept/architecture.md)이며 메세지 송수�
 
 ## 디바이스 ID
 
-PX4 uses device IDs to identify individual sensors consistently across the system. These IDs are stored in the configuration parameters and used to match sensor calibration values, as well as to determine which sensor is logged to which logfile entry.
+PX4는 장치 ID를 시스템의 개별 센서를 주기적으로 식별하는 용도로 활용합니다. 이 ID는 설정 매개변수에 저장하며, 어떤 로그 파일 항목에 어떤 센서 내용을 기록할 지 결정하듯, 센서 보정값을 일치할 때 활용하기도 합니다.
 
-The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) does not determine priority - the priority is instead stored as part of the published uORB topic.
+센서 순서는(예: `/dev/mag0` 와 `/dev/mag1`가 있을 때) 우선 순위를 결정하지 않습니다. 우선순위는 uORB 토픽을 내보낼 일부로 저장할 뿐입니다).
 
 ### 디코딩 예제
 
-For the example of three magnetometers on a system, use the flight log (.px4log) to dump the parameters. The three parameters encode the sensor IDs and `MAG_PRIME` identifies which magnetometer is selected as the primary sensor. Each MAGx_ID is a 24bit number and should be padded left with zeros for manual decoding.
+예를 들어 세개의 지자계 센서가 있을 때 덤프에 넣으려는 매개변수 값을 비행 로그(.px4log)에서 활용합니다. 세 매개변수는 센서 ID와 어떤 지자계 센서를 첫번째 센서로 선택할 지 식별할 `MAG_PRIME`을 인코딩 합니다. 각각의 MAGx_ID는 24비트 숫자이며 직접 인코딩을 진행할 경우 상위 비트(좌측)을 0으로 채워야 합니다.
 
     CAL_MAG0_ID = 73225.0
     CAL_MAG1_ID = 66826.0
@@ -66,7 +66,7 @@ And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave se
 
 ### 디바이스 ID 인코딩
 
-The device ID is a 24bit number according to this format. Note that the first fields are the least significant bits in the decoding example above.
+장치 ID는 다음 형식의 24비트 숫자입니다. 참고로 위 디코딩 예제에서 처음 필드는 최하위 비트입니다.
 
 ```C
 struct DeviceStructure {
@@ -77,7 +77,7 @@ struct DeviceStructure {
 };
 ```
 
-The `bus_type` is decoded according to:
+`bus_type`은 다음과 같이 디코딩하며:
 
 ```C
 enum DeviceBusType {
@@ -88,7 +88,7 @@ enum DeviceBusType {
 };
 ```
 
-and `devtype` is decoded according to:
+`devtype`은 다음 내용대로 디코딩합니다:
 
 ```C
 #define DRV_MAG_DEVTYPE_HMC5883  0x01
@@ -109,11 +109,11 @@ and `devtype` is decoded according to:
 #define DRV_RNG_DEVTYPE_LL40LS   0x32
 ```
 
-## Debugging
+## 디버깅
 
-For general debugging topics see: [Debugging/Logging](../debug/README.md).
+일반 디버깅 주제는 [디버깅/로깅](../debug/README.md)을 살펴보십시오.
 
-### Verbose Logging
+### 상세 기록
 
 Drivers (and other modules) output minimally verbose logs strings by default (e.g. for `PX4_DEBUG`, `PX4_WARN`, `PX4_ERR`, etc.).
 
