@@ -1,10 +1,10 @@
 # RTPS/ROS2 인터페이스: PX4-FastRTPS 브릿지
 
-*PX4-FastRTPS 브릿지*는 PX4 컴포넌트와 *Fast RTPS* 프로그램(ROS2/ROS 프레임워크를 사용하여 빌드한 것 포함)간의 [uORB messages](../middleware/uorb.md)를 교환하는 RTPS(Real Time Publish Subscribe) 인터페이스를 PX4에 추가했다.
+*PX4-FastRTPS 브릿지*는 PX4 구성요소와 (보드 외부의) *Fast RTPS* 프로그램(ROS2/ROS 프레임워크로 빌드한 결과 포함)간 [uORB 메세지](../middleware/uorb.md)를 송수신하는 RTPS(Real Time Publish Subscribe) 인터페이스를 PX4에 추가했습니다.
 
-> **Note** RTPS는 OMG(Object Management Group)의 DDS(Data Distribution Service) 표준의 기본 프로토콜입니다. 이 프로토콜은 Pub/Sub을 사용하여 확장성, 실시간성, 의존성, 고성능, 상호교환성을 만족합니다. *Fast RTPS*는 최신 RTPS와 최소한의 DDS API를 크로스플랫폼 환경에서 경량화해 구현한 것입니다.
+> **Note** RTPS는 OMG(Object Management Group)의 DDS(Data Distribution Service) 표준 기본 프로토콜입니다. 이 프로토콜은 Pub/Sub 패턴을 활용, 확장성, 실시간성, 의존성, 고성능, 상호운용 규격을 만족합니다. *Fast RTPS*는 최신 RTPS 프로토콜과 최소한의 DDS API를 크로스플랫폼 환경에 맞춰 경량화한 구현체입니다.
 
-RTPS는 ROS2(Robot Operating System)의 미들웨어로 채택되었습니다. *Fast RTPS 브릿지*는 센서의 값, 명령어 그리고 다른 기체의 정보를 공유하기 쉽게하는 ROS2와의 통합을 용이하게 합니다.
+ROS2(Robot Operating System)의 미들웨어로 RTPS를 채택했습니다. *Fast RTPS 브릿지*는 센서의 값, 명령어 그리고 다른 기체의 정보를 공유하기 쉽게하는 ROS2와의 통합을 용이하게 합니다.
 
 이 토픽에서는 RTPS 브릿지 구조에 대해 설명할 것입니다. 그리고 그것이 ROS2/ROS 어플리케이션 파이프라인내에서 어떻게 사용되는지 살펴볼 것입니다. 그리고 필요한 코드를 어떻게 컴파일할지도 알아볼 것입니다.
 
