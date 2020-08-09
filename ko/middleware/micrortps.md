@@ -51,7 +51,7 @@ ROS 어플리케이션과 PX4를 통합하기 위한 구조는 아래에 나왔�
 
 ![Architecture with ROS](../../assets/middleware/micrortps/architecture_ros.png)
 
-ROS2와 ROS간의 메시지를 연결하는 [ros1_bridge](https://github.com/ros2/ros1_bridge) 사용에 주의하세요. ROS의 첫번째 버전은 RTPS를 지원하기 않기 때문에 필요합니다.
+ROS2와 ROS간의 메시지를 주고 받는 [ros1_bridge](https://github.com/ros2/ros1_bridge) 활용을 참고하십시오. ROS의 처음 버전이 RTPS를 지원하기 않기 때문에 필요합니다.
 
 ## 코드 생성
 
