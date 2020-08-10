@@ -43,7 +43,7 @@ RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게
 
 ROS2를 위한 어플리케이션 파이프라인은 아주 직관적입니다. ROS2는 자체 통신 미들웨어로 DDS/RTPS를 사용하기 때문에, *PX4 Fast RTPS 브릿지*를 통해 PX4에서 내보내거나 지속 감청하는 ROS2 감청 유닛 또는 광역 전달 노드를 만들 수 있습니다. 이 내용을 아래의 그림으로 정리했습니다.
 
-> **Note** 클라이언트와 에이전트에서 사용되는 메시지 타입, 헤더, 소스 파일들이 동일한 IDL(Interface Description Language) 파일에서 생성됐는지 확실히 해야합니다. `px4_ros_com` 패키지는 ROS2가 필요로 하는 메시지나 헤더들을 생성하기 위한 인프라를 제공합니다.
+> **Note** 클라이언트와 에이전트(그리고 ROS 노드에서 계속)에서 사용하는 메시지 타입, 헤더, 소스 파일이 동일한 인터페이스 기술 언어(IDL) 파일에서 만들었는지 확인해야합니다. `px4_ros_com` 패키지는 ROS2에서 필요한 메시지, 헤더 생성에 필요한 기반입니다.
 
 ![Architecture with ROS2](../../assets/middleware/micrortps/architecture_ros2.png)
 
@@ -55,21 +55,21 @@ ROS2와 ROS간의 메시지를 주고 받는 [ros1_bridge](https://github.com/ro
 
 ## 코드 생성
 
-> **Note** [Fast RTPS 1.8.2 and FastRTPSGen 1.0.4 or later must be installed](../setup/fast-rtps-installation.md) in order to generate the required code!
+> **Note** [Fast RTPS 1.8.2 와 FastRTPSGen 1.0.4 또는 이후의 버전을 설치해야합니다](../setup/fast-rtps-installation.md). 그래야 필요한 코드를 만들 수 있습니다!
 
-### ROS에 독립적인 어플리케이션
+### ROS-독립 어플리케이션
 
-브릿지를 만들고, 빌드하고, 사용하기 위한 모든 코드들은 PX4 펌웨어가 컴파일될 때 자동적으로 생성됩니다.
+브릿지를 만들고 빌드하고 사용할 때 필요한 모든 코드는 PX4 펌웨어 컴파일 과정에서 자동으로 만듭니다.
 
-*Client* 어플리케이션의 컴파일, 빌드 또한 일반적인 빌드 과정에서 처리됩니다. *Agent*는 타켓 컴퓨터에 맞게 독립적, 수동적으로 컴파일 되어야합니다.
+*Client* 어플리케이션 또한 일반 빌드 과정의 일부로 컴파일하고 빌드하여 펌웨어에 들어갑니다. *Agent*는 대상 컴퓨터에 맞게 따로 직접 컴파일해야합니다.
 
 <span></span>
 
-> **Tip** 브릿지 코드 또한 [수동적으로 생성](micrortps_manual_code_generation.md)될 수 있습니다. 대부분의 사용자들은 그럴 필요가 없습니다. 자세한 빌드 과정과 트러블슈팅을 위해서는 링크를 참고하세요.
+> **Tip** 브릿지 코드 또한 [직접 만들](micrortps_manual_code_generation.md)수 있습니다. 대부분의 사용자는 그럴 필요가 없지만, 연결한 주제에서는 빌드 과정을 자세하게 안내하며, 이 내용을 통해 문제 해결의 도움을 받을 수 있습니다.
 
 ### ROS2/ROS 어플리케이션 {#px4_ros_com}
 
-빌드될 때 [px4_ros_com](https://github.com/PX4/px4_ros_com) 패키지는 ROS2 노드에서 PX4 uORB 메시지에 접근하기 위한 모든 것을 생성합니다(ROS일 경우 [ros1_bridge](https://github.com/ros2/ros1_bridge)가 필요할 것입니다). `micrortps_agent`와 `micrortps_agent`에 필요한 IDL 파일을 포함해서 *PX4 RTPS bridge*를 위한 모든 컴포넌트를 포함합니다.
+[px4_ros_com](https://github.com/PX4/px4_ros_com) 패키지를 빌드하면, ROS2 노드에서 PX4 uORB 메시지를 다룰 때 필요한 모든 요소가 나옵니다(ROS일 경우 [ros1_bridge](https://github.com/ros2/ros1_bridge)가 필요합니다). `micrortps_agent`와 `micrortps_agent`에 필요한 IDL 파일을 포함해서 *PX4 RTPS bridge*를 위한 모든 컴포넌트를 포함합니다.
 
 ROS, ROS2의 메시지 정의 헤더와 인터페이스는 [px4_msgs](https://github.com/PX4/px4_msgs) 패키지에서 생성되며 PX4 펌웨어의 uORB 메시지와 일치합니다. 이 파일들은 `px4_ros_com`가 `micrortps_agent`가 사용하는 IDL 파일을 생성하기 위해 필요로합니다.
 
