@@ -204,7 +204,7 @@ $ ./micrortps_agent [options]
 
 ### ROS와 ROS2 설치와 의존성
 
-> **Note** This install and build guide covers ROS Melodic and ROS2 Dashing (ROS2 Ardent, Bouncy or Crystal are not covered as they are EOL).
+> **Note**이 설치 빌드 안내서는 ROS Melodic과 ROS2 Dashing을 다룹니다(ROS2 Ardent, Bouncy, Crystal은 지원이 끝나 다루지 않습니다).
 
 ROS Melodic과 ROS2 Dashing(공식 지원)을 Ubuntu 18.04 머신에 설치하려면 다음 각 링크의 내용을 따르십시오:
 
