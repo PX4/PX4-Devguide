@@ -171,7 +171,7 @@ make
 
 > **Note** *Qualcomm Snapdragon Flight* 플랫폼을 위한 크로스 컴파일을 [여기](https://github.com/eProsima/PX4-FastRTPS-PoC-Snapdragon-UDP#how-to-use)를 참고하세요.
 
-*Agent*를 위한 명령어들은 아래와 같습니다.
+*Agent* 명령어는 아래와 같습니다:
 
 ```sh
 $ ./micrortps_agent [options]
@@ -196,7 +196,7 @@ $ ./micrortps_agent [options]
 
 `pxr_ros_com` 빌드 과정에서는 `px4_msgs` 패키지가 동일한 ROS2 작업 공간(또는 다른 ROS2 작업 공간에 놓여)에 빌드 결과물을 두기 때문에 필요에 따라 에이전트 프로그램을 자동으로 만들어 빌드합니다. [`colcon`](http://design.ros2.org/articles/build_tool.html) 빌드 툴을 활용하여 설치하므로 위와 동일한 방식으로도 동작합니다. 자세한 빌드 구조 내용은 **`px4_ros_com` 패키지 빌드**를 참고하십시오. 
 
-## `px4_ros_com`와 `px4_msgs` 패키지 빌드하기
+## `px4_ros_com`와 `px4_msgs` 패키지 빌드
 
 개발용 컴퓨터에 ROS2와 ROS 환경을 설치하고 세팅하세요, 그리고 `px4_ros_com`와 `px4_msgs` 저장소를 `master`와 `ros1`브랜치에 독립적으로 클론하세요([더 자세한 정보는 여기를 보세요](#px4_ros_com)).
 
@@ -230,7 +230,7 @@ ROS Melodic과 ROS2 Dashing(공식 지원)을 Ubuntu 18.04 머신에 설치하�
     
     > **Caution** 데비안 저장소에서 `ros1_bridge` 패키지를 설치하지 마십시오. 이 패키지는 소스 코드를 빌드해야합니다.
 
-### 워크스페이스 세팅하기
+### 작업 영역 설정
 
 ROS와 ROS2가 다른 환경을 필요로 하기 때문에 각 ROS를 위한 워크스페이스를 분리할 필요가 있습니다. 예:
 
