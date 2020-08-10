@@ -1,6 +1,6 @@
-# Send and Receive Debug Values
+# 디버깅 값 송수신
 
-It is often necessary during software development to output individual important numbers. This is where the generic `NAMED_VALUE_FLOAT`, `DEBUG` and `DEBUG_VECT` packets of MAVLink come in.
+소프트웨어 개발 과정에서 제각각 중요한 숫자 값을 출력할 필요가 종종 있습니다. This is where the generic `NAMED_VALUE_FLOAT`, `DEBUG` and `DEBUG_VECT` packets of MAVLink come in.
 
 ## Mapping between MAVLink Debug Messages and uORB Topics
 
