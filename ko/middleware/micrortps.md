@@ -260,11 +260,11 @@ ROS와 ROS2가 다른 환경을 필요로 하기 때문에 각 ROS를 위한 워
     $ git clone https://github.com/PX4/px4_msgs.git ~/px4_ros_com_ros1/src/px4_msgs -b ros1
     ```
 
-### 워크스페이스 빌드하기
+### 작업 영역 빌드하기
 
-`px4_ros_com/scripts` 디렉토리는 두 워킹스페이스를 빌드하기위해 사용되는 여러개의 스크립트를 포함합니다.
+`px4_ros_com/scripts` 디렉터리는 두 작업 영역을 빌드할 때 활용하는 여러 스크립트가 들어있습니다.
 
-두 워크스페이스를 하나의 스크립트로 빌드하기 위해서는 `build_all.bash`를 사용하세요. `source build_all.bash --help`로 사용법을 확인하세요. 사용하는 가장 일반적인 방법은 ROS 워크스페이스 디렉토리 경로와 PX4 펌웨어 디렉토리 경로를 전달하는 것입니다.
+두 작업 영역을 단일 스크립트로 빌드하려면 `build_all.bash`를 사용하십시오. `source build_all.bash --help` 명령으로 사용법을 확인하십시오. 가장 일반적인 사용법은 ROS(1) 작업 영역 경로와 PX4 펌웨어 디렉터리 경로를 전달하는 방법입니다:
 
 ```sh
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
@@ -274,13 +274,13 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 > 
 > **Note** 빌드 과정 도중 다른 환경 설정을 적용해야 하는 각 빌드 과정 단계에 따라 콘솔의 새 탭을 엽니다.
 
-부분적으로 빌드하기 위해서는 아래의 개별적인 스크립트를 쓸 수 있습니다.
+일부를 빌드하려면 아래 별도 스크립트를 사용할 수 있습니다:
 
 * `ros1_bridge`를 빌드할 `build_ros1_bridge.bash`.
 * `px4_ros_com`과 `px4_msgs`의 `ros1` 브랜치를 가져온 위치에 ROS1 작업 영역을 빌드하는 `build_ros1_workspace.bash`(`px4_ros_com`의 `ros1` 브랜치에만 있음).
 * `px4_ros_com`과 `px4_msgs`의 `master` 브랜치를 가져온 위치에 ROS2 작업 영역을 빌드하는 `build_ros2_workspace.bash`.
 
-아래 단계는 어떻게 *직접* 패키지를 빌드하는 지 보여줍니다(이해를 돕기위한 용도로만 제공함):
+아래 단계는 어떻게 *직접* 패키지를 빌드하는 지 보여줍니다(이해를 돕는 용도로만 제공함):
 
 1. `px4_ros_com_ros2` 디렉터리를 대상으로 `cd` 명령을 실행하고 ROS2 환경에 필요한 모든 설정을 적용(source)하십시오. 앞서 작업 영역을 설정했다고 하더라도 신경쓰지 마십시오:
     
@@ -327,7 +327,7 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
     cd ~/px4_ros_com_ros2 && colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure --event-handlers console_direct+
     ```
 
-### 워크스페이스 정리하기
+### 작업 영역 정리하기
 
 빌드가 끝나면 클린 빌드나 새 빌드를 하기전에 삭제되어야 할 많은 파일들이 있습니다 (예. 코드의 일부를 수정하고 다시 필요하려고 할 때). *colcon*는 현재 생성된 **build**, **install**, **log** 디렉토리를 자동으로 지우는 방법이 없습니다. 직접 지우세요.
 
