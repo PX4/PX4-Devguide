@@ -144,9 +144,9 @@ struct message_header_s {
     `ver_sw_release`와 `ver_os_release` 형식은 0xAABBCCTT입니다. 여기서 AA는 메이저 버전, BB는 마이너 버전, CC는 패치 횟수, TT는 형식을 의미합니다. 
     형식 값은 다음을 따릅니다. >= 0`: 개발 버전, `>= 64`: 알파 버전, `>= 128`: 베타 버전, `>= 192`: 출시 후보, `== 255`: 출시 버전
     
-    So for example 0x010402ff translates into the release version v1.4.2.
+    예를 들어 0x010402ff는 출시 버전 v1.4.2로 변환합니다.
     
-    This message can also be used in the Data section (this is however the preferred section).
+    이 메세지는 데이터 섹션(이나, 섹션 앞 부분)에도 활용할 수 있습니다.
     
 
 - 'M': 다중 정보 메세지.
