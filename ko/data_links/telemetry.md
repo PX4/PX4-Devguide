@@ -10,4 +10,4 @@
 
 PX4 에서는 픽스호크 기반 비행체 조종기의 텔레메트리 포트로 MAVLink 기반 텔레메트리를 활용할 수 있습니다. 제공한 텔레메트리 무선 장치에서 MAVLink를 지원하며, 호환 전압 레벨/커넥터를 지원하는 UART 인터페이스가 있어 더이상의 통합 지원이 필요치 않습니다.
 
-Telemetry systems that communicate using some other protocol will need more extensive integration, potentially covering both software (e.g. device drivers) and hardware (connectors etc.). While this has been done for specific cases (e.g. [FrSky Telemetry](https://docs.px4.io/master/en/peripherals/frsky_telemetry.html) enables sending vehicle status to an RC controller via an FrSky receiver) providing general advice is difficult. We recommend you start by [discussing with the development team](../README.md#support).
+일부 다른 프로토콜을 하용하여 통신하는 텔레메트리 시스템에는 잠재적으로 소프트웨어(예: 장치 드라이버)와 하드웨어(커넥터 등)을 다루는 더 넓은 개념의 확장 통합이 필요합니다. 몇가지 특별한 경우에 온전히 갖출 수 있긴 하지만(예: [FrSky Telemetry](https://docs.px4.io/master/en/peripherals/frsky_telemetry.html)는 FrSky 수신 모듈로 원격 조종기에 기체 상태를 보낼 수 있습니다) 일반적으로 단정짓기에는 어렵습니다. [개발팀과 이야기](../README.md#support)를 진행해보시는것이 좋습니다.
