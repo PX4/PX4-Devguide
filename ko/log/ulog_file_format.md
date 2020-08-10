@@ -100,7 +100,7 @@ struct message_header_s {
   
   일부 특별한 필드 이름은 다음과 같습니다:
   
-  - `timestamp`: 매번 기록하는 메시지(`message_add_logged_s`)에는 타임스탬프 필드가 들어있어야합니다(처음 필드에는 필요하지 않음). 타임스탬프의 자료형은 `uint64_t` (현재 유일하게 사용하는 형식), `uint32_t`, `uint16_t`, `uint8_t` 중 하나로 설정할 수 있습니다. 단위는 마이크로초이며, `uint8_t` 형일 경우 밀리초입니다. A log writer must make sure to log messages often enough to be able to detect wrap-arounds and a log reader must handle wrap-arounds (and take into account dropouts). The timestamp must always be monotonic increasing for a message series with the same `msg_id`.
+  - `timestamp`: 매번 기록하는 메시지(`message_add_logged_s`)에는 타임스탬프 필드가 들어있어야합니다(처음 필드에는 필요하지 않음). 타임스탬프의 자료형은 `uint64_t` (현재 유일하게 사용하는 형식), `uint32_t`, `uint16_t`, `uint8_t` 중 하나로 설정할 수 있습니다. 단위는 마이크로초이며, `uint8_t` 형일 경우 밀리초입니다. 로그 기록 프로그램은 반드시 로그의 시작과 끝을 확인할 수 있도록 로그를 작성하는지 확인해야 하며, 로그 읽기 프로그램은 양 끝단을 처리해야 합니다(그리고 상황에 따라 폐기를 고려합니다). 타임스탬프 값은 동일한 `msg_id`를 지닌 메세지 모음에 대해 단조롭게 계속 늘어나야합니다.
   - Padding: `_padding`으로 시작하는 필드 이름을 가진 부분은 화면에 뿌리면 안되며, 리더에서 무시해야합니다. 이 필드는 데이터의 정렬을 제대로 하기 위해 로그 기록 프로그램에서 넣을 수 있습니다.
     
     패딩 필드가 마지막 필드라면, 이 필드는 필요없는 데이터 기록을 피하려 기록에 넣지 않습니다. 이는 `message_data_s.data` 데이터가 패딩 길이를 줄이는 만큼 더 짧아질 수 있음을 의미합니다. 그러나 패딩은 중첩 정의에서 메세지를 활용할 경우 여전히 필요합니다. 
@@ -141,8 +141,9 @@ struct message_header_s {
 | char[value_len] replay              | 재현 모드일 때 재현 파일 이름     | "log001.ulg"       |
 | int32_t time_ref_utc              | 초 단위 UTC 시간 오프셋       | -3600              |
 
-    The format of `ver_sw_release` and `ver_os_release` is: 0xAABBCCTT, where AA is major, BB is minor, CC is patch and TT is the type. 
-    Type is defined as following: `>= 0`: development, `>= 64`: alpha version, `>= 128`: beta version, `>= 192`: RC version, `== 255`: release version.
+    `ver_sw_release`와 `ver_os_release` 형식은 0xAABBCCTT입니다. 여기서 AA는 메이저 버전, BB는 마이너 버전, CC는 패치 횟수, TT는 형식을 의미합니다. 
+    형식 값은 다음을 따릅니다. >= 0`: 개발 버전, `>= 64`: 알파 버전, `>= 128`: 베타 버전, `>= 192`: 출시 후보, `== 255`: 출시 버전
+    
     So for example 0x010402ff translates into the release version v1.4.2.
     
     This message can also be used in the Data section (this is however the preferred section).
