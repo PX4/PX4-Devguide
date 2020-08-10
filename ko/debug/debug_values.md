@@ -54,9 +54,9 @@ QGroundControl에서는 아래와 같은 실시간 플롯(2차원 도표)을 보
 
 ## 자습서: 문자열 / 부동소숫점 값 받기
 
-The following code snippets show how to receive the `velx` debug variable that was sent in the previous tutorial.
+다음 코드 부분을 통해 앞선 자습서 내용에서 보낸 `velx` 디버깅 값을 받는 방법을 보여드리겠습니다.
 
-First, subscribe to the topic `debug_key_value`:
+우선 `debug_key_value` 토픽의 지속 수신을 설정(subscribe)하십시오.
 
 ```C
 #include <poll.h>
@@ -82,7 +82,7 @@ while (true) {
     [...]
 ```
 
-When a new message is available on the `debug_key_value` topic, do not forget to filter it based on its key attribute in order to discard the messages with key different than `velx`:
+`debug_key_value` 토픽에 새 메시지가 들어가면, `velx`와 다른 값을 지닌 메시지를 무시하기 위해 키 속성을 기반으로 걸러내는 과정으로의 처리를 잊지 마십시오.
 
 ```C
     [...]
