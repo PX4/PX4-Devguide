@@ -282,13 +282,13 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 
 아래 단계는 어떻게 *직접* 패키지를 빌드하는 지 보여줍니다(이해를 돕기위한 용도로만 제공함):
 
-1. `px4_ros_com_ros2` 디렉터리를 대상으로 `cd` 명령을 실행하고 ROS2 환경에 필요한 모든 설정을 적용(source)하십시오. 이전에 바로 전의 워크스페이스가 설정되었다고 나와도 무시하시면 됩니다.
+1. `px4_ros_com_ros2` 디렉터리를 대상으로 `cd` 명령을 실행하고 ROS2 환경에 필요한 모든 설정을 적용(source)하십시오. 앞서 작업 영역을 설정했다고 하더라도 신경쓰지 마십시오:
     
     ```sh
     source /opt/ros/dashing/setup.bash
     ```
 
-2. `ros1_bridge` 패키지를 ROS2 워크스페이스에서 빌드될 수 있도록 클론하세요.
+2. ROS2 작업 영역에 빌드할 수 있도록 `ros1_bridge` 패키지를 원격에서 가져오십시오:
     
     ```sh
     git clone https://github.com/ros2/ros1_bridge.git -b dashing ~/px4_ros_com_ros2/src/ros1_bridge
@@ -588,14 +588,14 @@ ROS 노드 만들기 예제는 많이 알려져 있으며, 문서화가 잘 되�
     $ ros2 run ros1_bridge dynamic_bridge
     ```
 
-3. 다른 터미널에서 ROS 워크스페이스를 가져오고 `sensor_combined` 리스너 노드를 실행하세요. 이미 여러분은 `roslaunch`를 실행하고 있기 때문에, `roscore` 또한 자동적으로 실행될 것입니다.
+3. 다른 터미널에서 ROS 작업 영역 설정을 적용하고 `sensor_combined` 감청 노드를 실행하십시오. `roslaunch`를 실행했다면 `roscore`도 자동으로 시작합니다:
     
     ```sh
     $ source ~/px4_ros_com_ros1/install/setup.bash
     $ roslaunch px4_ros_com sensor_combined_listener.launch
     ```
 
-4. 하나의 터미널에서 ROS2 워크스페이스를 가져오고 UDP를 사용하는 `micrortps_agent` 데몬을 실행하세요.
+4. 터미널에서 ROS2 작업 영역의 설정을 적용하고 `micrortps_agent` 데몬을 시작하면서 UDP를 전송 프로토콜로 지정하십시오:
     
     ```sh
     $ source ~/px4_ros_com_ros2/install/setup.bash
