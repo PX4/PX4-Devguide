@@ -143,11 +143,11 @@ ESC 보정 도구
 
 ### 설명
 
-Command-line tool to control & test the (external) LED's.
+(외부) LED를 제어하고 테스트하는 명령행 도구입니다.
 
-To use it make sure there's a driver running, which handles the led_control uorb topic.
+이 명령을 사용하려면 led_control uORB 토픽을 처리하는 드라이버를 실행하고 있는지 우선 확인하십시오.
 
-There are different priorities, such that for example one module can set a color with low priority, and another module can blink N times with high priority, and the LED's automatically return to the lower priority state after the blinking. The `reset` command can also be used to return to a lower priority.
+여러가지 우선 순위가 있습니다만, 어떤 모듈은 낮은 우선순위로 색상을 설정하고 다른 모듈은 높은 우선순위로 N 번 깜빡일 수 있으며, LED를 깜빡인 다음에는 낮은 우선순위 상태로 자동으로 돌아가는 식의 예를 들 수 있습니다. `reset` 명령은 낮은 우선순위로 복귀할 용도로 활용할 수 있습니다.
 
 ### 예시
 
@@ -295,7 +295,7 @@ ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
 
 원본: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
-Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
+분할 영역을 마운트하고 테스트하는 유틸리티(보드에 정의한 FRAM/EEPROM 저장장치 기반)
 
 ### 사용법 {#mtd_usage}
 
@@ -323,7 +323,7 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
 
 설정 포트에서 NSH 셸을 시작합니다.
 
-This was previously used to start a shell on the USB serial port. Now there runs mavlink, and it is possible to use a shell over mavlink.
+이전에는 USB 시리얼 포트로 셸을 시작할때 활용했습니다. 이제는 mavlink를 실행하여 mavlink를 통한 셸 사용이 가능합니다.
 
 ### 사용법 {#nshterm_usage}
 
@@ -337,19 +337,19 @@ This was previously used to start a shell on the USB serial port. Now there runs
 
 ### 설명
 
-Command to access and manipulate parameters via shell or script.
+셸 또는 스크립트로 매개변수 값에 접근하고 조정하는 명령압니다.
 
-This is used for example in the startup script to set airframe-specific parameters.
+에어프레임 전용 매개변수를 설정하는 시작 스크립트에서 예제를 찾아볼 수 있습니다.
 
-Parameters are automatically saved when changed, eg. with `param set`. They are typically stored to FRAM or to the SD card. `param select` can be used to change the storage location for subsequent saves (this will need to be (re-)configured on every boot).
+매개변수 값이 바뀌면 자동으로 저장합니다. 예: `param set` 명령어 활용. 보통 FRAM이나 SD 카드에 저장합니다. `param select` 명령으로 다음에 계속 저장할 저장장치 위치를 설정하여 바꿀 수 있습니다(매번 부팅할 때마가 다시 설정해야합니다).
 
-If the FLASH-based backend is enabled (which is done at compile time, e.g. for the Intel Aero or Omnibus), `param select` has no effect and the default is always the FLASH backend. However `param save/load <file>` can still be used to write to/read from files.
+플래시 기반 백엔드를 활성화했다면(컴파일 시간에 결정, 예: Intel Aero 또는 Omnibus), `param select` 명령은 실행 결과를 반영하지 않으며, 기본 값은 늘 플래시 백엔드입니다. 그러나 `param save/load<file>` 명령으로 파일에 저장하고 파일을 읽을 수 있습니다.
 
-Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant parameters to a ground control station.
+각 매개변수에는 'used' 플래그가 있는데, 부팅 과정에서 읽었을 때 설정합니다. 지상 통제국에 관련있는 매개변수 값만 보여줍니다.
 
 ### 예시
 
-Change the airframe and make sure the airframe's default parameters are loaded:
+에어프레임 종류를 바꾸고 해당 에어프레임의 기본 매개변수를 불러오도록 합니다:
 
     param set SYS_AUTOSTART 4001
     param set SYS_AUTOCONFIG 1
@@ -438,15 +438,15 @@ Change the airframe and make sure the airframe's default parameters are loaded:
 
 ### 설명
 
-This command is used to configure PWM outputs for servo and ESC control.
+이 명령은 서보와 ESC 제어용 PWM 출력을 설정하는 용도로 사용합니다.
 
-The default device `/dev/pwm_output0` are the Main channels, AUX channels are on `/dev/pwm_output1` (`-d` parameter).
+기본 장치 `/dev/pwm_output0`가 메인 채널, AUX 채널은 `/dev/pwm_output1`입니다(`d` 매개변수).
 
-It is used in the startup script to make sure the PWM parameters (`PWM_*`) are applied (or the ones provided by the airframe config if specified). `pwm info` shows the current settings (the trim value is an offset and configured with `PWM_MAIN_TRIMx` and `PWM_AUX_TRIMx`).
+PWM 매개변수(`PWM_*`) 를 적용했는지 여부를 확인할 때 시작 스크립트에서 사용할 수 있습니다(또는 에어프레임 설정을 지정했을 때 제공하는 PWM 매개변수 확인). `pwm info` 명령은 현재 설정을 보여줍니다(trim 값은 `PWM_MAIN_TRIMx` 와 `PWM_AUX_TRIMx`로 설정하는 오프셋 값입니다).
 
-The disarmed value should be set such that the motors don't spin (it's also used for the kill switch), at the minimum value they should spin.
+이륙 준비 해제 값은 모터를 회전하지 않게 하려면 반드시 설정해야합니다(킬 스위치 용도로 활용할 수도 있음), 최저 값을 지정하면 모터가 회전합니다.
 
-Channels are assigned to a group. Due to hardware limitations, the update rate can only be set per group. Use `pwm info` to display the groups. If the `-c` argument is used, all channels of any included group must be included.
+채널은 모임에 할당합니다. 하드웨어 제한 때문에 업데이트 속도는 모임별로만 설정할 수 있습니다. `pwm info`명령은 출력 모임을 나타냅니다. If the `-c` argument is used, all channels of any included group must be included.
 
 The parameters `-p` and `-r` can be set to a parameter instead of specifying an integer: use -p p:PWM_MIN for example.
 
@@ -530,9 +530,9 @@ Note that in OneShot mode, the PWM range [1000, 2000] is automatically mapped to
 
 ### 사용법 {#reboot_usage}
 
-    reboot [<인자값>...]
-         [-b]        부트로더로 다시 부팅
-         [lock|unlock] 시스템 끄기 잠금 설정/해제 (시험용)
+    reboot [arguments...]
+         [-b]        Reboot into bootloader
+         [lock|unlock] Take/release the shutdown lock (for testing)
     
 
 ## sd_bench
@@ -561,8 +561,8 @@ SD 카드의 속도를 시험합니다.
 
 ### 사용법 {#top_usage}
 
-    top [<인자값>...]
-       once          한 번만 불러온 값 출력
+    top [arguments...]
+       once          print load only once
     
 
 ## usb_connected
