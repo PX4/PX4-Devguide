@@ -446,11 +446,11 @@ PWM 매개변수(`PWM_*`) 를 적용했는지 여부를 확인할 때 시작 스
 
 이륙 준비 해제 값은 모터를 회전하지 않게 하려면 반드시 설정해야합니다(킬 스위치 용도로 활용할 수도 있음), 최저 값을 지정하면 모터가 회전합니다.
 
-채널은 모임에 할당합니다. 하드웨어 제한 때문에 업데이트 속도는 모임별로만 설정할 수 있습니다. `pwm info`명령은 출력 모임을 나타냅니다. If the `-c` argument is used, all channels of any included group must be included.
+채널은 모임에 할당합니다. 하드웨어 제한 때문에 업데이트 속도는 모임별로만 설정할 수 있습니다. `pwm info`명령은 출력 모임을 나타냅니다. `-c` 인자를 사용하면, 해당하는 모임의 모든 채널을 포함합니다.
 
-The parameters `-p` and `-r` can be set to a parameter instead of specifying an integer: use -p p:PWM_MIN for example.
+`-p`와 `-r` 매개변수는 정수를 지정하기보다는 매개변수를 설정할 수 있습니다. 예를 들면 -p p:PWM_MIN 처럼 활용합니다.
 
-Note that in OneShot mode, the PWM range [1000, 2000] is automatically mapped to [125, 250].
+참고로 OneShot 모드의 경우 PWM 값 범위 [1000, 2000]을 [125, 250]으로 자동으로 대응합니다.
 
 ### 예시
 
