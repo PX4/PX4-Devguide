@@ -34,14 +34,14 @@ RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게
 
 구조의 주된 요소는 상단 그림에 있는 클라이언트와 에이전트 프로세스입니다.
 
-* *Client*는 비행 조종기에서 실행하는 PX4 미들웨어 데몬입니다. 다른 PX4 컴포넌트가 보내는 토픽을 구독하고, (UART 또는 UDP 포트로) *Agent*를 대상으로 업데이트 내용을 보냅니다. *Agent*로 부터 메시지도 받으며 PX4로 uORB 메시지를 내보내기도 합니다.
-* *Agent*는 외부 컴퓨터에서 데몬으로 실행합니다. *Client*에서 보낸 uORB 업데이트 메시지를 검사한 후 RTPS에 실어 보냅니다. RTPS 어플리케이션에서 오는 "uORB" RTPS 메시지도 구독하며 *Client*에 전달합니다.
+* *Client*는 비행 조종기에서 실행하는 PX4 미들웨어 데몬입니다. 다른 PX4 컴포넌트가 보내는 토픽을 지속적으로 수신하고, (UART 또는 UDP 포트로) *Agent*를 대상으로 업데이트 내용을 보냅니다. *Agent*로 부터 메시지도 받으며 PX4로 uORB 메시지를 내보내기도 합니다.
+* *Agent*는 외부 컴퓨터에서 데몬으로 실행합니다. *Client*에서 보낸 uORB 업데이트 메시지를 검사한 후 RTPS에 실어 보냅니다. RTPS 어플리케이션에서 오는 "uORB" RTPS 메시지도 지속적으로 수신하며 Client에 전달합니다.
 * *Agent*과 *Client*는 직렬 연결(UART) 또는 UDP 네트워크로 연결합니다. uORB 정보는 전송 전 [CDR 직렬화](https://en.wikipedia.org/wiki/Common_Data_Representation) 처리합니다(*CDR 직렬화* 수단은 다른 플랫폼들간 직렬 데이터 송수신에 활용하는 일반 형식을 제공합니다).
 * *Agent*와 *Fast RTPS* 어플리케이션은 UDP를 통해 연결되며, 다른 장치에 있을수도 있습니다. 일반적인 구성에서는 와이파이나 USB로 *Client*에 연결된 동일한 시스템에 있을 것입니다 (예. 개발 컴퓨터, 리눅스 컴퓨터 또는 컴퓨터 보드).
 
 ### ROS2/ROS 어플리케이션 파이프라인
 
-ROS2를 위한 어플리케이션 파이프라인은 아주 직관적입니다. ROS2는 자체 통신 미들웨어로 DDS/RTPS를 사용하기 때문에, *PX4 Fast RTPS 브릿지*를 통해 PX4에서 내보내거나 지속 감청하는 ROS2 감청 유닛 또는 광역 전달 노드를 만들 수 있습니다. 이 내용을 아래의 그림으로 정리했습니다.
+ROS2를 위한 어플리케이션 파이프라인은 아주 직관적입니다. ROS2는 자체 통신 미들웨어로 DDS/RTPS를 사용하기 때문에, *PX4 Fast RTPS 브릿지*를 통해 PX4에서 내보내거나 지속 수신하는 ROS2 감청 유닛 또는 광역 전달 노드를 만들 수 있습니다. 이 내용을 아래의 그림으로 정리했습니다.
 
 > **Note** 클라이언트와 에이전트(그리고 ROS 노드에서 계속)에서 사용하는 메시지 형식, 헤더, 소스 파일이 동일한 인터페이스 기술 언어(IDL) 파일에서 만들었는지 확인해야합니다. `px4_ros_com` 패키지는 ROS2에서 필요한 메시지, 헤더 생성에 필요한 기반입니다.
 
@@ -345,9 +345,9 @@ $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 
 *fastrtpsgen* 스크립트는 IDL 메시지 파일을 이용해 간단한 RTPS 어플리케이션을 만드는데 사용됩니다.
 
-> **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a *Fast RTPS* application to communicate with PX4.
+> **Note** RTPS 메시지는 IDL 파일에 정의해두고 *fastrtpsgen* 명령으로 C++ 언어로 작성한 코드를 컴파일합니다. 브릿지 코드 빌드 과정에서 송수신할 uORB 메세지 파일에 대한 IDL 파일을 만듭니다(**build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl** 참고). PX4와 통신할 *Fast RTPS* 어플리케이션을 만들 때 IDL 파일이 필요합니다.
 
-어플리케이션을 만들기 위해서는 다음의 명령어들을 입력하세요.
+어플리케이션을 만들려면 다음 명령을 입력하십시오:
 
 ```sh
 cd /path/to/PX4/Firmware/build/px4_sitl_rtps/src/modules/micrortps_bridge
