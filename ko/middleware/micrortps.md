@@ -113,9 +113,9 @@ rtps:
     send: true
 ```
 
-> **Note** An API change in ROS2 Dashing means that we now use the `rosidl_generate_interfaces()` CMake module (in `px4_msgs`) to generate the IDL files that we require for microRTPS agent generation (in `px4_ros_com`). PX4 펌웨어는 빌드과정에서 사용되는 IDL 파일 생성 템플릿을 포함합니다.
+> **Note** ROS2 Dashing에서의 API 변경으로 `rosidl_generate_interfaces()` (`px4_msgs`에서의) CMake 모듈을 활용하여 microRTPS 에이전트 생성에 필요한 IDL 파일을 만들 수 있습니다. PX4 펌웨어는 PX4 빌드 과정에서만 활용하는 IDL 파일 생성 과정의 서식이 들어있습니다.
 > 
-> The `px4_msgs` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). 새로운 IDL 파일들은 송수신한 메시지들을 다시보냅니다(왜냐하면 클라이언트에서 메시지를 보내고 에이전트 에서 수신하거나 반대의 경우를 위해).
+> `px4_msgs` 빌드 과정에서는 ROS2/ROS에 활용할 *약간 다른* IDL 파일(PX4 펌웨어 용으로 빌드)을 만듭니다. **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). 새로운 IDL 파일들은 송수신한 메시지들을 다시보냅니다(왜냐하면 클라이언트에서 메시지를 보내고 에이전트 에서 수신하거나 반대의 경우를 위해).
 
 ## 클라이언트 (PX4 펌웨어) {#client_firmware}
 
