@@ -7,10 +7,10 @@
 
 - [J-Link EDU Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/)
 - Segger JLink를 비행 컨트롤러로 연결하는 어댑터 [SWD (JTAG) 하드웨어 디버깅 인터페이스](../debug/swd_debug.md)(디버깅 포트).
-- USB micro cable
-- Suitable cables to connect your target.
+- 마이크로 USB 케이블
+- 대상 하드웨어에 연결할 적당한 케이블.
 
-## Installation
+## 설치
 
 ### PX4
 
@@ -25,7 +25,7 @@ To install *Eclipse*:
 1. Extract the Eclipse folder and copy it anywhere (there is no need to run any install scripts).
 1. Run *Eclipse* and choose a location for your initial workbench.
 
-### Segger Jlink Tools
+### Segger Jlink 도구
 
 To install the *Segger Jlink* tools:
 1. Download and run the [J-Link Software and Documentation Pack](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack) for your OS (Windows and Linux packages available).
