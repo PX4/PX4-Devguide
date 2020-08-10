@@ -27,25 +27,25 @@
 
 ### Segger Jlink 도구
 
-To install the *Segger Jlink* tools:
-1. Download and run the [J-Link Software and Documentation Pack](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack) for your OS (Windows and Linux packages available).
-   - On Linux the tools are installed in **usr/bin**.
+*Segger Jlink* 도구를 설치하려면:
+1. [J-Link Software and Documentation Pack](https://www.segger.com/downloads/jlink/#J-LinkSoftwareAndDocumentationPack)을 운영체제에 해당(윈도우와 리눅스용이 있음)하는 버전으로 다운로드하고 설치하십시오.
+   - 리눅스 도구는 **usr/bin**에 설치합니다.
 
 For more information, see: https://gnu-mcu-eclipse.github.io/debug/jlink/install/
 
-## First Use
+## 첫 사용
 
-1. Connect the *Segger JLink* to the host computer and the [flight controller debug port](../debug/swd_debug.md) (via an adapter).
-1. Power the flight controller.
-1. Run *Eclipse*.
-1. Add a source by choosing **File > Import > C/C++ > Existing Code as Makefile Project** and click **Next**.
-1. Point it to the **Firmware** folder and give it a name, then select *ARM Cross GCC* in the *Toolchain for Indexer Settings* and click **Finish**. Import takes a while, wait for it to complete.
-1. Set the MCU settings: right-click on the top-level project in the Project Explorer, select *Properties* then under MCU choose *SEGGER J-Link Path*. Set it as shown in the screenshot below. ![Eclipse: Segger J-Link 경로](../../assets/debug/eclipse_segger_jlink_path.png)
-1. Update packs:
-   - Click the small icon on the top right called *Open Perspective* and open the *Packs* perspective. ![Eclipse: Workspace](../../assets/debug/eclipse_workspace_perspective.png)
-   - Click the **update all** button.
+1. *Segger JLink*를 (어댑터로) 호스트 컴퓨터와 [비행체 조종기 디버거 포트](../debug/swd_debug.md)에 연결하십시오.
+1. 비행체 조종기 전원을 켜십시오.
+1. *Eclipse*를 실행하십시오.
+1. **File > Import > C/C++ > Existing Code as Makefile Project**를 선택하여 프로젝트에 소스 코드를 추가하고 **Next**를 누르십시오.
+1. **Firmware** 펌웨어 폴더를 가리키고 이름을 지정한 후 *Toolchain for Indexer Settings*의 *ARM 교차 GCC*를 선택하고 **Finish**를 누르십시오. 상당한 시간동안 가져옵니다. 끝날 때까지 기다리십시오.
+1. Set the MCU settings: right-click on the top-level project in the Project Explorer, select *Properties* then under MCU choose *SEGGER J-Link Path*. Set it as shown in the screenshot below. ![Eclipse: Segger J-Link Path](../../assets/debug/eclipse_segger_jlink_path.png)
+1. 패키지를 업데이트하십시오:
+   - 우측 상단의 작은 *Open Perspective* 아이콘을 눌러 *Packs* 감시 창을 여십시오. ![Eclipse: Workspace](../../assets/debug/eclipse_workspace_perspective.png)
+   - **update all** 단추를 누르십시오.
 
-     > **Tip** This takes a VERY LONG TIME (10 minutes). Ignore all the errors about missing packages that pop up.
+     > **Tip** 매우 오랜 시간이 걸립니다(10분). 화면에 뜨는 모든 빠진 패키지 오류는 무시하십시오.
 
      ![Eclipse: Workspace Packs Perspective](../../assets/debug/eclipse_packs_perspective.jpg)
    - The STM32Fxx devices are found in the Keil folder, install by right-clicking and then selecting **install** on the according device for F4 and F7.
@@ -55,16 +55,16 @@ For more information, see: https://gnu-mcu-eclipse.github.io/debug/jlink/install
    - Find the FMU chip you wish to debug.
 
    ![Eclipse: Select FMU in settings](../../assets/debug/eclipse_settings_devices_fmu.png)
-1. Select debug configurations with the small drop-down next to the bug symbol: ![Eclipse: Debug config](../../assets/debug/eclipse_settings_debug_config.png)
-1. Then select *GDB SEGGER J-Link Debugging* and then the **New config** button on the top left. ![Eclipse: GDB Segger Debug config](../../assets/debug/eclipse_settings_debug_config_gdb_segger.png)
+1. Select debug configurations with the small drop-down next to the bug symbol: ![Eclipse: 디버깅 설정](../../assets/debug/eclipse_settings_debug_config.png)
+1. Then select *GDB SEGGER J-Link Debugging* and then the **New config** button on the top left. ![Eclipse: GDB Segger 디버깅 설정](../../assets/debug/eclipse_settings_debug_config_gdb_segger.png)
 1. Setup build config:
    - Give it a name and set  the *C/C++ Application* to the corresponding **.elf** file.
    - Choose *Disable Auto build* > **Note** Remember that you must build the target from the command line before starting a debug session.
 
-   ![Eclipse: GDB Segger Debug config](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config.png)
+   ![Eclipse: GDB Segger 디버깅 설정](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config.png)
 1. The *Debugger* and *Startup* tabs shouldn’t need any modifications (just verify your settings with the screenshots below)
 
-   ![Eclipse: GDB Segger Debug config: debugger tab](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config_debugger_tab.png) ![Eclipse: GDB Segger Debug config: startup tab](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config_startup_tab.png)
+   ![Eclipse: GDB Segger 디버깅 설정: 디버거 탭](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config_debugger_tab.png) ![Eclipse: GDB Segger 디버깅 설정: 시작 탭](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config_startup_tab.png)
 
 
 ## 문제 해결
@@ -76,7 +76,7 @@ For more information, see: https://gnu-mcu-eclipse.github.io/debug/jlink/install
 > **Tip** 보통 일어나서는 안될 일입니다(만, STM F7 컨트롤러 연결에 대해 보고가 들어온 적이 있습니다).
 
 *주변 장치 보기*에서 빠진 SVD 파일을 추가하려면:
-1. Find out where MCU Eclipse stores its packages (**Preferences > C/C++ > MCU Packages**): ![Eclipse: MCU Packages](../../assets/debug/eclipse_mcu_packages.png)
+1. Find out where MCU Eclipse stores its packages (**Preferences > C/C++ > MCU Packages**): ![Eclipse: MCU 패키지](../../assets/debug/eclipse_mcu_packages.png)
 2. Download missing packages from: http://www.keil.com/dd2/Pack/
 3. Open downloaded pack with a decompression tool, and extract the **.SVD** files from: **/CMSIS/SVD**.
 4. Select desired **.SVD** file in: **Debug Options > GDB SEGGER JLink Debugging > SVD Path** ![Eclipse: SVD 파일 경로](../../assets/debug/eclipse_svd_file_path.png)
