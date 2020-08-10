@@ -30,7 +30,7 @@ PX4 *시스템 콘솔*은 저수즌 시스템 접근 방식을 제공하며, 디
 
 MAVLink 셸/콘솔과 [시스템 콘솔](../debug/system_console.md)은 상당히 동일한 방식으로 활용합니다.
 
-For example, type `ls` to view the local file system, `free` to see the remaining free RAM, `dmesg` to look at boot output.
+예를 들어 `ls`를 입력하면 로컬 파일 시스템의 파일과 디렉터리를 볼 수 있고, `free`를 입력하면 남아있는 가용 RAM 용량을 볼 수 있으며, `dmesg`를 입력하면 부팅 출력을 살펴볼 수 있습니다.
 
 ```bash
 nsh> ls
@@ -38,6 +38,6 @@ nsh> free
 nsh> dmesg
 ```
 
-Many other system commands and modules are listed in the [Modules and Command Reference](../middleware/modules_main.md) (e.g. `top`, `listener`, etc.).
+다른 시스템 명령과 모듈은 [모듈 명령 참고](../middleware/modules_main.md)(예: `top`, `listener` 등)에 나와있습니다.
 
-> **Tip** Some commands may be disabled on some boards (i.e. the some modules are not included in firmware for boards with RAM or FLASH constraints). In this case you will see the response: `command not found`
+> **Tip** 일부 명령은 어떤 보드에서 사용할 수 없을 때가 있습니다(예: 일부 모듈은 RAM 또는 플래시 용량 제한 때문에 펌웨어에 들어있지 않음). 이 경우 `command not found` 라는 응답을 볼 수 있습니다
