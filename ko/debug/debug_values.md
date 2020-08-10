@@ -1,20 +1,20 @@
 # 디버깅 값 송수신
 
-소프트웨어 개발 과정에서 제각각 중요한 숫자 값을 출력할 필요가 종종 있습니다. This is where the generic `NAMED_VALUE_FLOAT`, `DEBUG` and `DEBUG_VECT` packets of MAVLink come in.
+소프트웨어 개발 과정에서 제각각 중요한 숫자 값을 출력할 필요가 종종 있습니다. 이 때가 보통 MAVLink 패킷이 들어올 때 `NAMED_VALUE_FLOAT`, `DEBUG`, `DEBUG_VECT` 패킷을 활용할 수 있는 경우입니다.
 
-## Mapping between MAVLink Debug Messages and uORB Topics
+## MAVLink 디버깅 메시지와 uORB 토픽 대응
 
-MAVLink debug messages are translated to/from uORB topics. In order to send or receive a MAVLink debug message, you have to respectively publish or subscribe to the corresponding topic. Here is a table that summarizes the mapping between MAVLink debug messages and uORB topics:
+MAVLink 디버깅 메시지는 uORB 토픽으로 변환하거나 그 반대로 재변환할 수 있습니다. MAVLink 디버깅 메시지를 송수신하려면, 각각의 해당 토픽을 보내(publish)거나 지속적으로 수신(subscribe)해야합니다. 아래 표를 통해 MAVLink 디버깅 메시지와 uORB 토픽의 대응을 정리해드렸습니다:
 
-| MAVLink message     | uORB topic        |
+| MAVLink 메세지         | uORB 토픽           |
 | ------------------- | ----------------- |
 | NAMED_VALUE_FLOAT | debug_key_value |
 | DEBUG               | debug_value       |
 | DEBUG_VECT          | debug_vect        |
 
-## Tutorial: Send String / Float Pairs
+## 자습서: 문자열 / 부동소숫점 값 보내기
 
-This tutorial shows how to send the MAVLink message `NAMED_VALUE_FLOAT` using the associated uORB topic `debug_key_value`.
+이번 따라하기 절에서는 MAVLink 메세지 `NAMED_VALUE_FLOAT`를 uORB 토픽의 `debug_key_value`로 보내는 방법을 알려드리도록 하겠습니다.
 
 The code for this tutorial is available here:
 
