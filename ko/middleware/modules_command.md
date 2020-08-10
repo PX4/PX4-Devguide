@@ -8,11 +8,11 @@
 
 ### 사용법 {#bl_update_usage}
 
-    bl_update [<인자값>...]
-       setopt        FLASH 잠금을 해제할 비트 옵션을 설정합니다 (잠금 상태일 경우만
-                     필요)
+    bl_update [arguments...]
+       setopt        Set option bits to unlock the FLASH (only needed if in locked
+                     state)
     
-       <file>        부트로더 이진 파일
+       <file>        Bootloader bin file
     
 
 ## dumpfile
@@ -23,8 +23,8 @@
 
 ### 사용법 {#dumpfile_usage}
 
-    dumpfile [<인자값>...]
-         <file>      덤프값을 저장할 파일
+    dumpfile [arguments...]
+         <file>      File to dump
     
 
 ## dyn
@@ -42,9 +42,9 @@ PX4 바이너리로 컴파일하지 않은 동적 PX4 모듈을 불러오고 실
 
 ### 사용법 {#dyn_usage}
 
-    dyn [<인자값>...]
-         <file>      모듈이 들어있는 파일
-         [<인자값>...] 모듈에 부여할 인자값
+    dyn [arguments...]
+         <file>      File containing the module
+         [arguments...] Arguments to the module
     
 
 ## esc_calib
@@ -62,17 +62,17 @@ ESC 보정 도구
 
 ### 사용법 {#esc_calib_usage}
 
-    esc_calib [<인자값>...]
-         [-d <val>]  PWM 출력 장치를 선택합니다.
-                     값: <file:dev>, 기본값: /dev/pwm_output0
-         [-l <val>]  마이크로 초 단위로 PWM 최저값을 설정합니다
-                     기본값: 1000
-         [-h <val>]  마이크로 초 단위로 PWM 최고값을 설정합니다
-                     기본값: 2000
-         [-c <val>]  우측과 같은 방식으로 채널 값을 설정합니다: 1234 (채널당 한 자리,
-                     1=첫번째)
-         [-m <val>]  비트마스크로 채널 값을 설정합니다 (예:  0xF, 3)
-         [-a]        모든 채널을 선택합니다
+    esc_calib [arguments...]
+         [-d <val>]  Select PWM output device
+                     values: <file:dev>, default: /dev/pwm_output0
+         [-l <val>]  Low PWM value in us
+                     default: 1000
+         [-h <val>]  High PWM value in us
+                     default: 2000
+         [-c <val>]  select channels in the form: 1234 (1 digit per channel,
+                     1=first)
+         [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
+         [-a]        Select all channels
     
 
 ## gpio
@@ -132,9 +132,9 @@ ESC 보정 도구
 
 ### 사용법 {#i2cdetect_usage}
 
-    i2cdetect [<인자값>...]
-         [-b <val>]  I2C 버스
-                     기본값: 1
+    i2cdetect [arguments...]
+         [-b <val>]  I2C bus
+                     default: 1
     
 
 ## led_control
@@ -429,7 +429,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
     
        latency       Print HRT timer latency histogram
     
-     Prints all performance counters if no arguments given
+     어떤 인자도 부여하지 않았다면 모든 성능 카운터를 출력합니다
     
 
 ## pwm
