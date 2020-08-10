@@ -78,7 +78,7 @@ ROS, ROS2의 메시지 정의 헤더와 인터페이스는 PX4 펌웨어의 uORB
 * ROS2에서 사용하는 `master` 브랜치. 이 브랜치는 PX4와 ROS2 노드를 연결할 ROS2 메시지와 IDL 파일을 만드는 코드가 들어있습니다.
 * ROS에서 사용하는 `ros1` 브랜치. 이 브랜치는 `ros1_bridge`로 PX4와 ROS의 데이터를 공유하는데, *이를* 활용할 ROS 메시지 헤더와 소스 파일을 생성하는 코드가 들어있습니다.
 
-`px4_ros_com`의 두 브랜치 모두 감청부와 광역 전달 예제 노드도 들어있습니다.
+`px4_ros_com`의 두 브랜치 모두 감청 유닛과 광역 전달 예제 노드도 들어있습니다.
 
 ## 지원하는 uORB 메시지
 
@@ -468,7 +468,7 @@ public:
     }
 ```
 
-This creates a callback function for when the `sensor_combined` uORB messages are received (now as DDS messages). 이 함수는 메시지를 받을때 마다 메시지 필드내의 내용을 출력합니다.
+이 코드는 `sensor_combined` uORB 메세지(DDS 메세지와 유사)를 받았을 때 호출하는 함수를 만듭니다. 이 함수는 메세지를 받을 때바다 메세지 팔드 내용을 출력합니다.
 
 ```c++
 private:
@@ -507,7 +507,7 @@ ROS2 Advertiser 노드는 데이터를 DDS/RTPS/PX4 네트워크에 퍼블리시
 using namespace std::chrono_literals;
 ```
 
-`debug_vect` 메시지 헤더를 포함해 필요한 헤더들을 선언합니다.
+`debug_vect` 메세지 헤더와 필요한 헤더를 함께 선언합니다.
 
 ```c++
 class DebugVectAdvertiser : public rclcpp::Node
