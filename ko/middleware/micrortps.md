@@ -302,7 +302,7 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
     
     > **Note** ` --event-handlers console_direct+`는 단지 `colcon` 빌드 과정을 자세하게 보여주는 용도로만 사용되고 원하지 않으면 삭제하면 됩니다.
 
-4. 이제 ROS 패키지를 빌드하세요. 빌드를 위해, 새 터미널을 하나열고 ROS 환경설정을 얻으세요.
+4. 이제 ROS 패키지를 빌드하십시오. 빌드 과정 진행을 위해 새 터미널 창을 열고 시스템에 설치한 ROS(1) 환경 전용 설정 값을 적용하십시오:
     
     ```sh
     source /opt/ros/melodic/setup.bash
@@ -314,14 +314,14 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
     cd ~/px4_ros_com_ros1 && colcon build --symlink-install --event-handlers console_direct+
     ```
 
-6. `ros1_bridge`를 빌드하기 전에, 새 터미널을 열고 아래에 나와있는 순서대로 환경과 워크스페이스를 설정하세요.
+6. `ros1_bridge`를 빌드하기 전, 새 터미널을 열고 아래 순서대로 환경과 작업 영역을 설정하십시오:
     
     ```sh
     source ~/px4_ros_com_ros1/install/setup.bash
     source ~/px4_ros_com_ros2/install/setup.bash
     ```
 
-7. 이제 `ros1_bridge`를 빌드하세요. 참고로, 빌드 과정은 메모리를 많이 소비합니다. 리소스가 제한된 환경에서는, 병렬적으로 처리되는 수를 줄이세요 (예. `MAKEFLAGS=-j1`). 자세한 빌드 과정을 위해서는 [ros1_bridge](https://github.com/ros2/ros1_bridge) 패키지의 빌드 명령을 참고하세요.
+7. 이제 `ros1_bridge`를 빌드하십시오. 참고로, 빌드 과정은 메모리를 많이 소비합니다. 한정 자원을 지닌 환경에서는, 병렬 처리 건수를 줄이십시오(예: 환경 변수 설정 `MAKEFLAGS=-j1`). 자세한 빌드 과정은 [ros1_bridge](https://github.com/ros2/ros1_bridge) 패키지의 빌드 명령을 참고하십시오.
     
     ```sh
     cd ~/px4_ros_com_ros2 && colcon build --symlink-install --packages-select ros1_bridge --cmake-force-configure --event-handlers console_direct+
@@ -329,9 +329,9 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 
 ### 작업 영역 정리하기
 
-빌드가 끝나면 클린 빌드나 새 빌드를 하기전에 삭제되어야 할 많은 파일들이 있습니다 (예. 코드의 일부를 수정하고 다시 필요하려고 할 때). *colcon*는 현재 생성된 **build**, **install**, **log** 디렉토리를 자동으로 지우는 방법이 없습니다. 직접 지우세요.
+빌드가 끝나면 새 빌드를 진행하기 전 삭제할 파일이 있습니다 (예. 코드의 일부를 수정하고 다시 필요하려고 할 때). *colcon*는 현재 생성한 **build**, **install**, **log** 디렉터리를 자동으로 지우는 수단이 없습니다. 직접 지우십시오.
 
-정리를 쉽게하기 위해 **clean_all.bash** 스크립트를 제공합니다. 사용하는 가장 일반적인 방법은 ROS 워크스페이스 디렉토리 경로를 전달하는 것입니다.
+정리 과정을 쉽게 처리하는 (**px4_ros_com/scripts**의) **clean_all.bash** 스크립트를 제공합니다. 가장 일반적인 활용법은 ROS(1) 작업 영역 디렉터리 경로(해당 경로가 기본 경로가 아니기 때문)를 전달하는 방법입니다:
 
 ```sh
 $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
