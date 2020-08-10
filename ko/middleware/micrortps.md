@@ -43,7 +43,7 @@ RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게
 
 ROS2를 위한 어플리케이션 파이프라인은 아주 직관적입니다. ROS2는 자체 통신 미들웨어로 DDS/RTPS를 사용하기 때문에, *PX4 Fast RTPS 브릿지*를 통해 PX4에서 내보내거나 지속 감청하는 ROS2 감청 유닛 또는 광역 전달 노드를 만들 수 있습니다. 이 내용을 아래의 그림으로 정리했습니다.
 
-> **Note** 클라이언트와 에이전트(그리고 ROS 노드에서 계속)에서 사용하는 메시지 타입, 헤더, 소스 파일이 동일한 인터페이스 기술 언어(IDL) 파일에서 만들었는지 확인해야합니다. `px4_ros_com` 패키지는 ROS2에서 필요한 메시지, 헤더 생성에 필요한 기반입니다.
+> **Note** 클라이언트와 에이전트(그리고 ROS 노드에서 계속)에서 사용하는 메시지 형식, 헤더, 소스 파일이 동일한 인터페이스 기술 언어(IDL) 파일에서 만들었는지 확인해야합니다. `px4_ros_com` 패키지는 ROS2에서 필요한 메시지, 헤더 생성에 필요한 기반입니다.
 
 ![Architecture with ROS2](../../assets/middleware/micrortps/architecture_ros2.png)
 
@@ -150,7 +150,7 @@ make px4_sitl_rtps
 
 > **Note** 기본적으로 *Client*는 데몬으로 동작하지만, 직접 실행해야 할 수도 있습니다. PX4 펌웨어 초기화 코드는 나중에 *Client*를 영구 실행 데몬 프로세스로 자동 시작합니다.
 
-예를 들어 SITL에서 UDP를 통해 Agent에 연결하는 *Client*를 실행하기 위해서는 아래와 같이 실행해야 합니다.
+예를 들어 UDP로 에이전트에 SITL 연결하는 *Client* 데몬을 실행하려면 데몬을 다음과 같이 시작하십시오:
 
 ```sh
 micrortps_client start -t UDP
