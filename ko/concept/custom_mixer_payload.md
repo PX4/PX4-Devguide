@@ -1,15 +1,15 @@
-# Custom Payload Mixers
+# 개별 페이로드 믹서
 
-This topic shows how to add a custom [mixer](../concept/mixing.md) for programmatically controlling a custom payload (e.g., an electromagnetic gripper).
+이 주제에서는 개별 페이로드를 프로그램으로 제어하는 개별 [믹서](../concept/mixing.md) 추가 방법을 다룹니다(예: 전자기 집게).
 
-The topic is intended for developers who want to support payload types that do not have existing control group definitions (e.g. gimbals have a control group, but grippers do not). You should already have read [Mixing and Actuators](../concept/mixing.md).
+기존 제어 분류 정의에 없는 페이로드 형식을 지원하려는 개발자에게 이 주제를 안내하고자합니다(예: 짐벌은 제어 그룹이 있으나, 집게는 그렇지 않음). [믹싱과 액츄에이터](../concept/mixing.md)를 우선 읽고 오셔야 합니다.
 
 
-## Payload Mixer Example
+## 페이로드 믹서 예제
 
-A payload mixer is just a [summing mixer](../concept/mixing.md#summing_mixer) that maps any of the function values from [Control Group #6 (First Payload)](../concept/mixing.md#control_group_6) to a particular output. You can then publish uORB topics to the selected control group function and their value will be mapped to the specified output.
+페이로드 믹서는 단지 [제어 분류 #6 (첫번째 페이로드)](../concept/mixing.md#control_group_6)로부터 각각의 출력으로의 기능 값에 대응하는 [믹서 결합](../concept/mixing.md#summing_mixer)을 수행할 뿐입니다. uORB 토픽을 지정 출력으로 대응할 선택 그룹 함수와 값으로 uORB 토픽을 내보낼 수 있습니다.
 
-For this example, we'll create a custom mixer based on the *RC passthrough mixer* ([pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)). This mixer is commonly loaded into the AUX PWM ports on large multicopters). It passes through the values of 4 user-defined RC channels (set using the [RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) parameters) to the first four outputs on the AUX PWM output.
+이 예제에서, *원격 조종 처리 믹서*([pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)) 기반 개별 믹서를 만들어보도록 하겠습니다. 이 믹서는 보통 대형 멀티콥터에서 AUX PWM 포트로 불러옵니다. 이 믹서로 4개의 사용자 정의 원격 조종 채널 값을 처리합니다([RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) 매개변수로 설정). 그리하여 첫번째 4개의 출력은 AUX PWM 출력입니다.
 
 ```
 # Manual pass through mixer for servo outputs 1-4
@@ -31,34 +31,34 @@ M: 1
 S: 3 4  10000  10000      0 -10000  10000
 ```
 
-> **Note** The file defines four [summing mixers](../concept/mixing.md#summing_mixer) (for four outputs). - `M: 1` indicates an output that is defined by one control input (the following `S` line). - `S: 3`_`n`_ indicates that the input is the n<>th<> input of [Control Group 3 (Manual Passthrough)](../concept/mixing.md#control-group-3-manual-passthrough). So for `S: 3 5` the input is called "RC aux1" (this maps to the RC channel set in parameter `RC_MAP_AUX1`). - The section declaration order defines the order of the outputs when assigned to a physical bus (e.g. the third section might be assigned to AUX3).
+> **Note** 파일에서는 4개의 (출력에 대한) [믹서 결합](../concept/mixing.md#summing_mixer)을 나타냅니다. - `M: 1` 하나의 제어 입력(다음 `S`행)에 대한 출력을 나타냅니다. - `S: 3`_`n`_ [제어 분류 3 (수동 처리)](../concept/mixing.md#control-group-3-manual-passthrough)의 n번째 입력을 나타냅니다. 따라서 `S: 3 5` 은 "원격 조종 AUX1"입니다(이 입력은 `RC_MAP_AUX1` 매개변수의 원격 조종 채널 세트에 대응합니다). 섹션 선언 순서는 물리 버스에 할당할 출력 순서를 정의합니다(예: 세번째 섹션은 AUX3에 할당함).
 
 
-Start by copying the mixer file and putting it onto the SD Card at: **/etc/mixers/pass.aux.mix** (see [Mixing and Actuators > Loading a Custom Mixer](../concept/mixing.md#loading_custom_mixer).
+믹서 파일을 복사하여 **/etc/mixers/pass.aux.mix** SD 카드의  <0>/etc/mixers/pass.aux.mix</0> 디렉터리 위치에 놓는 과정으로 시작합니다([믹싱과 액츄에이터 > 개별 믹서 불러오기](../concept/mixing.md#loading_custom_mixer) 참고).
 
-Remove the first section with a payload control group function input:
-- Change this:
+첫번째 섹션과 페이로드 제어 분류 함수 입력을 제거하십시오:
+- 아래를:
   ```
   # AUX1 channel (control group 3, RC CH5) (select RC channel with RC_MAP_AUX1 param)
   M: 1
   S: 3 5  10000  10000      0 -10000  10000
   ```
-- To:
+- 다음으로 바꾸십시오:
   ```
   # Payload 1 (control group 6) channel 1
   M: 1
   S: 6 1  10000  10000      0 -10000  10000
   ```
 
-Because this output is in the first position in the file it will map to the first AUX PWM output (unless UAVCAN is enabled). This output will now respect updates to the payload control group (6) output 1.
+이 출력은 파일의 처음에 있기 때문에 (UAVCAN을 활성화하기 전에는) 첫번째 AUX PWM 출력에 대응합니다. 이 출력은 앞으로 페이로드 제어 분류 (6)의 출력 1을 업데이트합니다.
 
-Control group 6 will need to be defined in the code as well (it is missing!):
-- Add `actuator_controls_6` to the TOPICS definition in [/msg/actuator_controls.msg](https://github.com/PX4/Firmware/blob/master/msg/actuator_controls.msg#L17):
+제어 분류 6은 코드에서 정의한 그대로 필요합니다(빠져있음!):
+- `actuator_controls_6`를 [/msg/actuator_controls.msg](https://github.com/PX4/Firmware/blob/master/msg/actuator_controls.msg#L17)의 토픽 정의에 추가하십시오:
   ```
   # TOPICS actuator_controls actuator_controls_0 actuator_controls_1 actuator_controls_2 actuator_controls_3 actuator_controls_6
   ```
-- Increase `NUM_ACTUATOR_CONTROL_GROUPS` to 7 in the same file.
-- Subscribe to the additional control group in the output library ([/src/lib/mixer_module/mixer_module.cpp#L52](https://github.com/PX4/Firmware/blob/master/src/lib/mixer_module/mixer_module.cpp#L52)) in the `MixingOutput` constructor. It should look like this:
+- 동일한 파일에서 `NUM_ACTUATOR_CONTROL_GROUPS` 값을 7로 바꾸십시오.
+- 출력 라이브러리([/src/lib/mixer_module/mixer_module.cpp#L52](https://github.com/PX4/Firmware/blob/master/src/lib/mixer_module/mixer_module.cpp#L52))의 `MixingOutput` 생성자에서 추가 제어 분류에 등록하십시오. 대략 다음과 같습니다:
   ```
     {&interface, ORB_ID(actuator_controls_0)},
     {&interface, ORB_ID(actuator_controls_1)},
@@ -71,12 +71,12 @@ Control group 6 will need to be defined in the code as well (it is missing!):
     {&interface, ORB_ID(actuator_controls_6)},
   ```
 
-Putting an output on group 6 works by publishing actuator control group 6. First you have to create the publication. This should happen once when the PX4 module is initialized (look for places where this pattern is already being used):
+분류 6번의 출력은 액츄에이터 제어 분류 6번과 동작합니다. 우선 퍼블리케이션 객체를 만들어야합니다. 이 과정은 PX4 모듈을 초기화할 때 일어납니다(이 반복 규칙을 이미 사용한 곳을 살펴보십시오):
 ```
 uORB::Publication<actuator_controls_s> _actuator_controls_pub{ORB_ID(actuator_controls_6)};
 ```
 
-Then you need to publish the first message:
+그 다음 첫 메시지를 내보내야합니다:
 ```
 actuator_controls_s _act_controls{};
 _act_controls.timestamp = hrt_absolute_time();

@@ -22,19 +22,19 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
-소스코드는 독립적인 모듈/프로그램(다이어그램에서 블럭들로 표시) 으로 나뉩니다. 대게 하나의 블럭은 하나의 모듈과 완전히 일치합니다.
+소스코드는 자체 포함 모듈/프로그램으로 나눕니다(도표의 `monospace` 참고). 보통 블록 구성은 정확히 하나의 모듈에 대응합니다.
 
-> **Tip** 실행중에, 쉘에서 `top` 명령어를 통해 실행중인 모듈을 검사할 수 있고, 각각의 모듈을 `<module_name> start/stop` 명령어를 통해서 시작/중지 시킬 수 있습니다. 하지만 `top` 명령어는 NuttX 쉘에서만 사용가능하고 다른 명령어들은 SITL 쉘 (pxh >) 에서도 사용할 수 있습니다. 각 모듈들에 대한 자세한 정보는[Modules & Commands Reference](../middleware/modules_main.md)를 참고하세요.
+> **Tip** 실행 중에, 셸에서 `top` 명령으로 어떤 모듈을 실행하는지 볼 수 있으며, 어떤 모듈을 `<module_name> start/stop` 명령으로 제각각 시작하고 멈출 수 있는지 확인할 수 있습니다. `top` 명령어는 NuttX 쉘에서만 쓸 수 있지만, 다른 명령어들은 SITL 쉘(pxh>)에서도 사용할 수 있습니다. 이 모듈에 대한 더 많은 내용은 [모듈 & 명령 참고](../middleware/modules_main.md)를 참고하십시오. 
 
 화살표는 모듈간의 *가장 중요한* 커넥션에 대한 정보의 흐름을 보여줍니다. 실제로는 표시된 것 보다 많은 커넥션들이 있고, 일부 데이터 (e.g. 파라미터) 들은 다수의 모듈들에 의해 접근됩니다.
 
 모듈들은 [uORB](../middleware/uorb.md)라고 불리는 publish-subscribe 메시지 버스를 통해 각각 통신합니다. Publish-subscribe 스킴의 사용은 다음을 의미합니다.
 
-- The system is reactive — it is asynchronous and will update instantly when new data is available
-- 모든 연산과 통신들이 완전히 병렬화 되어있다.
-- 시스템의 컴포넌트는 thread-safe 방식으로 어디에서든 data를 사용할 수 있다.
+- 반응형 시스템 — 비동기 방식으로 동작하며 새 데이터를 넣으면 바로 업데이트합니다
+- 모든 연산, 통신 동작에 대해 완전한 병렬 처리를 수행합니다
+- 시스템 구성요소는 스레드 처리에 안전한 방식으로 어디에서든 데이터를 활용할 수 있습니다.
 
-> **Info** 이 아키텍처는 이러한 블록 중 하나를 런타임시에도 빠르고 쉽게 교체 할 수 있습니다.
+> **Info** 이 아키텍처는 실행 시간중에도 이러한 모든 단일 블록을 빠르고 쉽게 대체하도록 합니다.
 
 ### Flight Stack {#flight-stack}
 
@@ -68,30 +68,30 @@ again. -->
 
 메시지의 업데이트 속도는 시스템의 `uORB top`에 의해 실시간으로 [검사](../middleware/uorb.md) 됩니다.
 
-## Runtime Environment {#runtime-environment}
+## 런타임 환경 {#runtime-environment}
 
-PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT). It should also have some form of real-time scheduling (e.g. FIFO).
+PX4에서는 POSIX-API를 제공하는 다양한 운영체제(Linux, macOS, NuttX, QuRT)에서 동작합니다. 이 운영체제에는 실시간 스케쥴링(예: FIFO)같은 기능이 들어갑니다.
 
-[uORB](../middleware/uorb.md)을 이용한 모듈간 통신은 공유 메모리를 기초로 합니다. PX4 middleware 전체는 하나의 주소공간에서 실행됩니다. 메모리가 모든 모듈이게 공유되는 것 입니다.
+([uORB](../middleware/uorb.md)을 이용한) 모듈간 통신은 공유 메모리 기반입니다. PX4 미들웨어 전부는 단일 주소 공간에서 실행합니다. 예를 들면 메모리는 모든 모듈에서 공유합니다.
 
-> **Info** The system is designed such that with minimal effort it would be possible to run each module in separate address space (parts that would need to be changed include `uORB`, `parameter interface`, `dataman` and `perf`).
+> **Info** 시스템은 개별 주소 공간에서 각 모듈을 실행하는데 최소한의 비용이 들어가도록 설계했습니다(`uORB`, `매개변수 인터페이스`, `dataman`, `perf` 같은 부분을 조금 바꿔야 합니다).
 
-모듈을 실행하는 2가지 방법이 있습니다.
+모듈을 실행하는 방법에는 2가지가 있습니다.
 
-- **Tasks**: The module runs in its own task with its own stack and process priority.
-- **Work queue tasks**: The module runs on a shared work queue, sharing the same stack and work queue thread priority as other modules on the queue.
+- **작업**: 모듈은 자체 스택을 확보하고 프로세스 우선순위를 부여받아 자체 작업내에서 실행합니다.
+- **작업 큐(work queue)의 작업**: 모듈은 동일한 스택과 큐의 다른 모듈처럼 작업 큐 스레드 우선순위를 부여받은 공유 작업 큐에서 실행합니다.
   
-  - All the tasks must behave co-operatively as they cannot interrupt each other.
-  - Multiple *work queue tasks* can run on a queue, and there can be multiple queues.
-  - A *work queue task* is scheduled by specifying a fixed time in the future, or via uORB topic update callback.
+  - 모든 작업은 서로의 동작을 중단하지 않고 사이좋게 동작해야합니다.
+  - 다중 *작업 큐 작업*은 큐에서 실행할 수 있으며, 다중 큐가 될 수 있습니다.
+  - *작업 큐의 작업*은 향후 지정 시간에 동작하도록 계획하거나 uORB 토픽 업데이트 콜백으로 처리합니다.
   
-  The advantage of running modules on a work queue is that it uses less RAM, and potentially results in fewer task switches. The disadvantages are that *work queue tasks* are not allowed to sleep or poll on a message, or do blocking IO (such as reading from a file). Long-running tasks (doing heavy computation) should potentially also run in a separate task or at least a separate work queue.
+  실행 큐에서 모듈을 실행하는 장점은 RAM 소모량이 적고, 잠재적으로 작업 전환이 빈번하지 않는다는 점입니다. 단점은 *작업 큐 작업*을 대기 상태로 두거나 메시지를 폴링하거나 입출력을 멈출(파일 읽기 등) 수 없습니다. 장시간 실행 작업(막대한 양의 계산처리 수행)의 경우 잠재적으로 개별 작업으로 분리하여 실행하거나 최소한 작업 큐를 분할해야 합니다.
 
-> **Note** Tasks running on a work queue do not show up in [`uorb top`](../middleware/modules_communication.md#uorb) (only the work queues themselves can be seen - e.g. as `wq:lp_default`). Use [`work_queue status`](../middleware/modules_system.md#workqueue) to display all active work queue items.
+> **Note** 작업 큐에서 실행하는 작업은 [`uorb top`](../middleware/modules_communication.md#uorb)에 나타나지 않습니다(작업 큐 자체는 `wq:lp_default`처럼 나타날 수는 있습니다). 모든 활성 작업 큐 항목을 보려면 [`work_queue status`](../middleware/modules_system.md#workqueue) 명령을 활용하십시오.
 
-### Background Tasks
+### 백그라운드 작업
 
-`px4_task_spawn_cmd()` 는 호출하는 (부모) 태스크와 독립적으로 수행되는 새로운 태스크 (NuttX) 나 쓰레드 (POSIX - Linux/macOS) 를 시작할때 사용됩니다.
+`px4_task_spawn_cmd()` 는 호출(상위) 작업으로부터 독립적으로 실행하는 새 작업 (NuttX) 또는 스레드(POSIX - Linux/MacOS) 실행에 활용합니다.
 
 ```cpp
 ndependent_task = px4_task_spawn_cmd(
@@ -105,15 +105,15 @@ ndependent_task = px4_task_spawn_cmd(
     );
 ```
 
-### OS-Specific Information
+### 운영체제별 정보
 
 #### NuttX
 
 [NuttX](http://nuttx.org/) 는 기체 제어 보드에서 PX4를 구동하는 주된 RTOS입니다. 오픈소스 (BSD license) 이며, 가볍고, 효율적이며 안정적입니다.
 
-모듈들은 태스크로 실행됩니다. 그들은 자신의 파일 디스크립터 리스트를 가지지만, 하나의 주소 공간을 공유합니다. 태스크는 파일 디스크립터 리스트를 공유하면서 하나 이상의 스레드를 시작할 수 있습니다.
+모듈은 작업 처럼 실행합니다. 자체적으로 파일서술자 목록를 가지나, 단일 주소 공간을 공유합니다. 작업은 파일서술자 목록을 공유하는 하나 이상의 스레드를 시작할 수 있습니다.
 
-각각의 태스크/스레드는 고정된 크기의 스택을 갖고 있습니다. 그리고 모든 스택이 적당한 여유 공간을 갖고 있는지 검사하는 주기적인 태스크가 있습니다 (stack coloring 에 기초).
+각 작업/스레드는 고정 크기 스택을 가지며, 모든 스택에 충분한 여분의 공간이 남아있는지 검사하는 (스택 콜로닝 기반) 주기적인 작업이 있습니다.
 
 #### Linux/macOS
 

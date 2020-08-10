@@ -98,7 +98,7 @@ make px4_fmu-v4_default
 
 ### 펌웨어 업로드 (보드 플래싱)
 
-Append `upload` to the make commands to upload the compiled binary to the autopilot hardware via USB. For example
+make 명령에 `upload`를 붙여 컴파일한 바이너리를 USB 연결을 거쳐 자동 비행 하드웨어로 업로드하십시오. 예를 들면,
 
 ```sh
 make px4_fmu-v4_default upload
@@ -125,7 +125,7 @@ Rebooting.
 
 #### 교차 컴파일러 빌드
 
-Set the IP (or hostname) of your RPi using:
+다음 명령으로 라즈베리 파이에 IP(또는 호스트 이름)을 설정하십시오:
 
 ```sh
 export AUTOPILOT_HOST=192.168.X.X
@@ -137,25 +137,25 @@ export AUTOPILOT_HOST=192.168.X.X
 export AUTOPILOT_HOST=pi_hostname.domain
 ```
 
-> **Note** The value of the environment variable should be set before the build, or `make upload` will fail to find your RPi.
+> **Note** 환경 변수 값을 빌드 전에 설정하지 않으면, `make upload` 명령 실행시 라즈베리 파이 찾기에 실패합니다.
 
-Build the executable file:
+실행 파일을 만드십시오:
 
 ```sh
 cd Firmware
 make emlid_navio2 # for cross-compiler build
 ```
 
-The "px4" executable file is in the directory **build/emlid_navio2_default/**. Make sure you can connect to your RPi over ssh, see [instructions how to access your RPi](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start).
+"px4" 실행 파일은 **build/emlid_navio2_default/** 디렉터리에 있습니다. 라즈베리 파이에 SSH 연결이 가능한지 확인하시고 [라즈베리 파이 접근 방법](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html#developer-quick-start)을 살펴보십시오.
 
-Then upload it with:
+다음 명령으로 업로드하십시오:
 
 ```sh
 cd Firmware
 make emlid_navio2 upload # for cross-compiler build
 ```
 
-Then, connect over ssh and run it with (as root):
+그리고 SSH를 통해 (루트 계정으로) 접근 후 다음 명령을 실행하십시오:
 
 ```sh
 sudo ./bin/px4 -s px4.config
@@ -163,20 +163,20 @@ sudo ./bin/px4 -s px4.config
 
 #### 자체 빌드
 
-If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
+라즈베리 파이에서 *직접* 빌드할 경우, 자체 빌드 대상을 찾으려 할 것입니다(emlid_navio2_native).
 
 ```sh
 cd Firmware
 make emlid_navio2_native # for native build
 ```
 
-The "px4" executable file is in the directory **build/emlid_navio2_native/**. Run it directly with:
+"px4" 실행 파일은 **build/emlid_navio2_native/** 디렉터리에 있습니다. 다음 명령으로 실행하십시오:
 
 ```sh
 sudo ./build/emlid_navio2_native/px4 -s ./posix-configs/rpi/px4.config
 ```
 
-A successful build followed by executing px4 will give you something like this:
+px4를 실행하여 나타난 성공적인 빌드 화면은 다음과 같습니다:
 
 ```sh
 <br />______  __   __    ___
@@ -213,30 +213,30 @@ cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 
 #### 빌드
 
-> **Note** If you use the [Qualcomm ESC board](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board) (UART-based), then please follow their instructions [here](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md). If you use normal PWM-based ESCs boards, then you may continue to follow the instructions on this page.
+> **Note** (UART 기반) [퀄컴 ESC 보드](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board)를 사용한다면, [이곳](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md) 절차를 따르십시오. PWM기반 일반 ESC 보드를 사용한다면 이 페이지의 다음 과정을 계속 따르는 것이 좋습니다.
 
-The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](../middleware/uorb.md).
+아리 명령은 리눅스와 DSP 쪽 대상을 빌드합니다. 두 실행 파일은 [muORB](../middleware/uorb.md) 기반으로 통신합니다.
 
 ```sh
 cd Firmware
 make atlflight_eagle_default
 ```
 
-To load the SW on the device, connect via USB cable and make sure the device is booted. Run this in a new terminal window:
+장치의 소프트웨어를 불러오려면 USB 케이블로 연결하고 장치를 부팅했는지 확인하십시오. 이 명령을 새 터미널 창에서 실행하십시오:
 
 ```sh
 adb shell
 ```
 
-Go back to previous terminal and upload:
+이전 터미널로 돌아가서 다음 명령으로 업로드하십시오:
 
 ```sh
 make atlflight_eagle_default upload
 ```
 
-Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device. Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle.
+참고로 이 명령은 [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) 설정 파일과 [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) 설정 파일을 장치에 복사(그리고 덮어쓰기)하기도 합니다. 이 파일은 각각 /usr/share/data/adsp/px4.config 와 /home/linaro/mainapp.config에 위치합니다. 운송 장비의 시작 스크립트를 직접 편집하려는 경우 참고하십시오.
 
-The mixer currently needs to be copied manually:
+현재 믹서 설정은 직접 복사해야 합니다:
 
 ```sh
 adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
@@ -244,35 +244,35 @@ adb push ROMFS/px4fmu_common/mixers/quad_x.main.mix  /usr/share/data/adsp
 
 #### 실행
 
-Run the DSP debug monitor:
+DSP 디버깅 모니터를 실행하십시오:
 
 ```sh
 ${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
 ```
 
-Note: alternatively, especially on Mac, you can also use [nano-dm](https://github.com/kevinmehall/nano-dm).
+Note: 대신, Mac에서는 [nano-dm](https://github.com/kevinmehall/nano-dm)을 활용할 수도 있습니다.
 
-Go back to ADB shell and run px4:
+ADB 셸로 돌아가서 px4를 실행하십시오:
 
 ```sh
 cd /home/linaro
 ./px4 -s mainapp.config
 ```
 
-Note that the px4 will stop as soon as you disconnect the USB cable (or if you ssh session is disconnected). To fly, you should make the px4 auto-start after boot.
+px4는 USB 케이블을 뽑으면(또는 ssh 세션을 끊으면) 바로 멈춥니다. 비행을 진행하려면, 부팅 후 px4를 자동으로 실행하게 하십시오.
 
 #### 자동 시작
 
-To run the px4 as soon as the Snapdragon has booted, you can add the startup to `rc.local`:
+스냅드래곤을 부팅하자마자 px4를 실행하려면, `rc.local`에 시작 스크립트를 추가할 수 있습니다:
 
-Either edit the file `/etc/rc.local` directly on the Snapdragon:
+스냅드래곤 보드의 `/etc/rc.local` 파일을 직접 편집하거나:
 
 ```sh
 adb shell
 vim /etc/rc.local
 ```
 
-Or copy the file to your computer, edit it locally, and copy it back:
+컴퓨터에 파일을 복사하여 편집 후, 스냅드래곤 보드로 다시 복사하십시오:
 
 ```sh
 adb pull /etc/rc.local
@@ -280,7 +280,7 @@ gedit rc.local
 adb push rc.local /etc/rc.local
 ```
 
-For the auto-start, add the following line before `exit 0`:
+자동으로 시작하려면 다음 행을 `exit 0` 전에 추가하십시오:
 
 ```sh
 (cd /home/linaro && ./px4 -s mainapp.config > mainapp.log)
@@ -288,14 +288,14 @@ For the auto-start, add the following line before `exit 0`:
 exit 0
 ```
 
-Make sure that the `rc.local` is executable:
+`rc.local`을 실행할 수 있게 설정했는지 확인하십시오:
 
 ```sh
 adb shell
 chmod +x /etc/rc.local
 ```
 
-Then reboot the Snapdragon:
+그 다음 스냅드래곤 보드를 다시 부팅하십시오:
 
 ```sh
 adb reboot
@@ -303,19 +303,19 @@ adb reboot
 
 ## 그래픽 IDE에서의 컴파일
 
-The PX4 system supports Qt Creator, Eclipse and Sublime Text. Qt Creator is the most user-friendly variant and hence the only officially supported IDE. Unless an expert in Eclipse or Sublime, their use is discouraged. Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
+PX4 시스템은 Qt 크리에이터, 이클립스, 서브라임 텍스트를 지원합니다. Qt 크리에이터는 사용자에게 매우 친숙한 버전이므로 이 프로그램만 공식적으로 IDE를 지원합니다. 이클립스 또는 서브라임을 전문적으로 활용할 줄 모른다면, 활용하지 않는걸 권합니다. 하드코어 사용자는 [이클립스 프로젝트](https://github.com/PX4/Firmware/blob/master/eclipse.project)와 [서브라임 프로젝트](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project)를 소스트리에서 찾을 수 있습니다.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
 ## Qt Creator 기능 
 
-Qt creator offers clickable symbols, auto-completion of the complete codebase and building and flashing firmware.
+Qt 크리에이터는 누를 수 있는 심볼, 완전 코드 기반 자동 완성, 펌웨어 빌드, 플래싱을 지원합니다.
 
 ![](../../assets/toolchain/qtcreator.png)
 
 ### 리눅스용 Qt Creator
 
-Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
+Qt 크리에이터 시작 전 [project 파일](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator)을 만들어야 합니다:
 
 ```sh
 cd ~/src/Firmware
@@ -324,17 +324,17 @@ cd ../Firmware-build
 cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 ```
 
-Then load the CMakeLists.txt in the root firmware folder via **File > Open File or Project** (Select the CMakeLists.txt file).
+**파일 > 파일 또는 프로젝트 열기**로 펌웨어 폴더 루트의 CMakeLists.txt 파일을 불러오십시오 (CMakeLists.txt 파일 선택).
 
-After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
+불러온 다음, **play** 단추를 누르면 실행 대상 설정에서 '개별 실행파일'을 선택하고 'make' 명령을 실행 명령으로, 'upload'을 인자 값으로 넣어 프로젝트를 실행하는 방식으로 설정할 수 있습니다.
 
 ### Windows용 Qt Creator
 
-> **Note** Windows has not been tested for PX4 development with Qt Creator.
+> **Note** 윈도우에서는 Qt 크리에이터로 PX4 개발을 시험해보지 않았습니다.
 
 ### Mac OS용 Qt Creator
 
-Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
+Qt 크리에이터 시작 전 [project 파일](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator)을 만들어야 합니다:
 
 ```sh
 cd ~/src/Firmware
@@ -343,7 +343,7 @@ cd build/creator
 cmake ../.. -G "CodeBlocks - Unix Makefiles"
 ```
 
-That's it! Start *Qt Creator*, then complete the steps in the video below to set up the project to build.
+이제 됐습니다! *Qt 크리에이터*를 시작하고 아래 동영상에서 설명하는 단계를 완료하여 프로젝트 빌드 설정을 완료하십시오.
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
 
@@ -351,61 +351,61 @@ That's it! Start *Qt Creator*, then complete the steps in the video below to set
 
 앞 절에서는 *make*를 호출하여 제각기 다른 타겟을 빌드하고, 모의시험 환경을 시작하고 IDE를 활용하는 방법을 다루었습니다. 이 절에서는 *make* 옵션을 구성하는 방법과 존재하는 선택지를 찾는 방법을 다루도록 하겠습니다.
 
-The full syntax to call *make* with a particular configuration and initialization file is:
+일부 설정과 초기화 파일로 *make*를 호출하는 완전한 문법은 다음과 같습니다:
 
 ```sh
 make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER_WORLD]
 ```
 
-**VENDOR_MODEL_VARIANT**: (also known as `CONFIGURATION_TARGET`)
+**VENDOR_MODEL_VARIANT**: (`CONFIGURATION_TARGET` 으로도 알려짐)
 
-- **VENDOR:** The manufacturer of the board: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp`, etc. The vendor name for Pixhawk series boards is `px4`.
-- **MODEL:** The *board model* "model": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2`, etc.
-- **VARIANT:** Indicates particular configurations: e.g. `rtps`, `lpe`, which contain components that are not present in the `default` configuration. Most commonly this is `default`, and may be omitted.
+- **VENDOR:** 보드의 제조사: `px4`, `aerotenna`, `airmind`, `atlflight`, `auav`, `beaglebone`, `intel`, `nxp` 등. 픽스호크 계열 보드 제조사 이름은 `px4` 입니다.
+- **MODEL:** *보드* "모델": `sitl`, `fmu-v2`, `fmu-v3`, `fmu-v4`, `fmu-v5`, `navio2` 등.
+- **VARIANT:** 개별 일부 설정을 나타냅니다. 예: `default` 설정에 일부 구성요소가 들어있지 않는 `rtps`, `lpe`. 대부분 `default`를 사용하며, 생략합니다.
 
-> **Tip** You can get a list of *all* available `CONFIGURATION_TARGET` options using the command below: 
+> **Tip** 아래 명령으로 *모든* 가용 `CONFIGURATION_TARGET` 옵션을 확인해볼 수 있습니다: 
 > 
 >     sh
 >       make list_config_targets
 
 **VIEWER_MODEL_DEBUGGER_WORLD:**
 
-- **VIEWER:** This is the simulator ("viewer") to launch and connect: `gazebo`, `jmavsim` <!-- , ?airsim -->
+- **VIEWER:** `gazebo`, `jmavsim`에 연결할 모의실험 환경("viewer") <!-- , ?airsim -->
 
-- **MODEL:** The *vehicle* model to use (e.g. `iris` (*default*), `rover`, `tailsitter`, etc), which will be loaded by the simulator. The environment variable `PX4_SIM_MODEL` will be set to the selected model, which is then used in the [startup script](..\simulation\README.md#scripts) to select appropriate parameters.
+- **MODEL:** 모의시험 환경에서 불러와서 활용할 *운송 수단* 모델(예: `iris` (*default*), `rover`, `tailsitter` 등). 적절한 매개변수를 선택하는 [시작 스크립트](..\simulation\README.md#scripts)에서 활용할 선택 모델을 `PX4_SIM_MODEL` 환경 변수로 설정합니다.
 
-- **DEBUGGER:** Debugger to use: `none` (*default*), `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. For more information see [Simulation Debugging](../debug/simulation_debugging.md).
-- **WORLD:** (Gazebo only). Set a the world ([PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) that is loaded. Default is [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world). For more information see [Gazebo > Loading a Specific World](../simulation/gazebo.md#set_world).
+- **DEBUGGER:** 활용 디버거 `none` (*default*), `ide`, `gdb`, `lldb`, `ddd`, `valgrind`, `callgrind`. 자세한 내용은 [모의시험 환경 디버깅](../debug/simulation_debugging.md)을 살펴보십시오.
+- **WORLD:** (가제보 전용). 불러온 월드([PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds))를 설정합니다. 기본값은 [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world)입니다. 자세한 내용은 [가제보 > 지정 월드 불러오기](../simulation/gazebo.md#set_world)를 살펴보십시오.
 
-> **Tip** You can get a list of *all* available `VIEWER_MODEL_DEBUGGER_WORLD` options using the command below: 
+> **Tip** 아래 명령으로 *모든* 가용 `VIEWER_MODEL_DEBUGGER_WORLD` 옵션을 확인할 수 있습니다: 
 > 
 >     sh
 >       make px4_sitl list_vmd_make_targets
 
-Notes:
+참고:
 
-- Most of the values in the `CONFIGURATION_TARGET` and `VIEWER_MODEL_DEBUGGER` have defaults, and are hence optional. For example, `gazebo` is equivalent to `gazebo_iris` or `gazebo_iris_none`.
-- You can use three underscores if you want to specify a default value between two other settings. For example, `gazebo___gdb` is equivalent to `gazebo_iris_gdb`.
-- You can use a `none` value for `VIEWER_MODEL_DEBUGGER` to start PX4 and wait for a simulator. For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
+- `CONFIGURATION_TARGET` 변수와 `VIEWER_MODEL_DEBUGGER` 변수의 대부분의 값은 기본값이기에, 다른 값으로의 설정은 선택입니다. 예를 들어 `gazebo` 는 `gazebo_iris` 또는 `gazebo_iris_none`과 동일합니다. 
+- 두개의 다른 설정 사이에 기본값을 지정하려면 밑줄 문자를 셋 사용할 수 있습니다. 예를 들면, `gazebo___gdb`는 `gazebo_iris_gdb`와 동일합니다.
+- PX4를 시작한 후 모의시험 환경의 동작을 기다리려면 `VIEWER_MODEL_DEBUGGER`에 `none` 값을 사용할 수 있습니다. 예로, `make px4_sitl_default none` 명령을 사용하는 PX4와 `./Tools/jmavsim_run.sh -l` 명령을 사용하는 jMAVSim을 시작하려면:
 
-The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
+`VENDOR_MODEL_VARIANT` 옵션은 PX4 소스 트리의 [/boards](https://github.com/PX4/Firmware/tree/master/boards) 디렉터리에서 *cmake* 설정 파일 일부에 대응합니다. 특히 `VENDOR_MODEL_VARIANT`는 **boards/VENDOR/MODEL/VARIANT.cmake**에 대응합니다 (예: `px4_fmu-v5_default`는 [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)에 대응)
 
 다음 절에서 추가 make 타겟을 다루도록 하겠습니다 (완전한 목록은 아님):
 
 ### 이진 파일 크기 프로파일링 {#bloaty_compare_master}
 
-The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
+`bloaty_compare_master` 빌드 대상은 코드 규모가 바뀌었을 때 미치는 영향을 잘 이해할 수 있게 합니다. 이 명령을 활용하면 툴체인은 일부 펌웨어에 대해 최근 성공한 마스터 브랜치의 빌드를 다운로드하고 로컬 빌드와 비교합니다(이진 파일에 대한 [bloaty](https://github.com/google/bloaty) 용량 프로파일러를 활용).
 
-> **Tip** This can help analyse changes that (may) cause `px4_fmu-v2_default` to hit the 1MB flash limit.
+> **Tip** 이 과정을 통해 `px4_fmu-v2_default` 빌드 대상이 (아마도) 1MB 플래시 용량 제한에 걸리는 원인 변경을 분석할 수 있습니다.
 
-*Bloaty* must be in your path and found at *cmake* configure time. The PX4 [docker files](https://github.com/PX4/containers/blob/master/docker/Dockerfile_nuttx-bionic) install *bloaty* as shown:
+여러분이 지정한 경로상에 *bloaty*가 있어야 하며 *cmake* 설정 시간에 찾을 수 있어야 합니다. PX4 [도커 파일](https://github.com/PX4/containers/blob/master/docker/Dockerfile_nuttx-bionic)에 *bloaty*를 다음과 같이 설치합니다:
 
     git clone --recursive https://github.com/google/bloaty.git /tmp/bloaty \
         && cd /tmp/bloaty && cmake -GNinja . && ninja bloaty && cp bloaty /usr/local/bin/ \
         && rm -rf /tmp/*
     
 
-The example below shows how you might see the impact of removing the *mpu9250* driver from `px4_fmu-v2_default`. First it locally sets up a build without the driver:
+아래 예제에서는 `px4_fmu-v2_default` 빌드에서 *mpu9250* 드라이버를 제거하는 방법을 보여줍니다: 우선 자체적으로 드라이버 없이 빌드를 설정합니다:
 
 ```sh
  % git diff
@@ -425,7 +425,7 @@ index 40d7778..2ce7972 100644
                 #magnetometer # all available magnetometer drivers
 ```
 
-Then use the make target, specifying the target build to compare (`px4_fmu-v2_default` in this case):
+이후 make 대상을 활용하여 비교할 대상 빌드(이 경우, `px4_fmu-v2_default`)를 비교하면:
 
 ```sh
 % make px4_fmu-v2_default bloaty_compare_master
@@ -449,23 +449,23 @@ Then use the make target, specifying the target build to compare (`px4_fmu-v2_de
   -1.0% -10.3Ki TOTAL                                                                            +14.9Ki  +0.1%
 ```
 
-This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
+위 화면에서는 *mpu9250*을 `px4_fmu-v2_default` 펌웨어에서 제거하여 플래시 메모리의 10.3kB 용량을 저장함을 나타냅니다. 또한, *mpu9250* 드라이버의 기타 부분 용량을 나타냅니다.
 
 ## 펌웨어 버전과 git 태그 {#firmware_version}
 
-The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
+*PX4 펌웨어 버전*과 *개별 펌웨어 버전* 은 MAVLink의 [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) 메시지로 내보내며, *QGroundControl*의 **설정 > 요약** 에어프레임 패널에 나타납니다:
 
 ![펌웨어 정보](../../assets/gcs/qgc_setup_summary_airframe_firmware.jpg)
 
-These are extracted at build time from the active *git tag* for your repo tree. The git tag should be formatted as `<PX4-version>-<vendor-version>` (e.g. the tag in the image above was set to `v1.8.1-2.22.1`).
+이 정보는 활성 *git tag* 또는 저장소 트리로부터 빌드 시간에 추출합니다. git 태그는 `<PX4-version>-<vendor-version>` (예: 위 이미지에서 태그를 `v1.8.1-2.22.1`로 설정) 과 같은 형태를 가져야합니다.
 
-> **Warning** If you use a different git tag format, versions information may not be displayed properly.
+> **Warning** 다른 git 태그 형식을 취하면 버전 정보를 제대로 나타내지 못합니다.
 
 ## 문제 해결 {#troubleshooting}
 
 ### 일반 빌드 오류
 
-Many build problems are caused by either mismatching submodules or an incompletely cleaned-up build environment. Updating the submodules and doing a `distclean` can fix these kinds of errors:
+하위 모듈의 불일치, 빌드 환경의 완전하지 못한 정리상태로 인해 여러 빌드 문제가 나타납니다. 하위 모듈을 업데이트하고 `distclean`을 실행하면 이런 오류를 잡아낼 수 있습니다:
 
     git submodule update --recursive
     make distclean
@@ -473,32 +473,32 @@ Many build problems are caused by either mismatching submodules or an incomplete
 
 ### Flash overflowed by XXX bytes
 
-The `region 'flash' overflowed by XXXX bytes` error indicates that the firmware is too large for the target hardware platform. This is common for `make px4_fmu-v2_default` builds, where the flash size is limited to 1MB.
+`region 'flash' overflowed by XXXX bytes` 오류는 대상 하드웨어 플랫폼에 비해 펌웨어 크기가 너무 큼을 나타냅니다. 이 오류는 `make px4_fmu-v2_default` 대상을 빌드할 때 일반적인데, 이 하드웨어의 경우 플래시 메모리 용량은 1MB로 제한적입니다.
 
-If you're building the *vanilla* master branch, the most likely cause is using an unsupported version of GCC. In this case, install the version specified in the [Developer Toolchain](../setup/dev_env.md) instructions.
+*바닐라* 마스터 브랜치를 빌드할 경우, 대부분의 원인은 지원하지 않는 GCC 버전의 사용에 있습니다. 이 경우 [개발자 툴체인](../setup/dev_env.md)의 설명에서 지정한 버전을 설치하시면 됩니다.
 
-If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. In this case you will need to remove any drivers/modules that you don't need from the build.
+여러분의 자체 브랜치를 빌드할 경우, 늘어나는 펌웨어의 용량이 1MB 제한을 넘어설 수 있습니다. 이 경우, 빌드에서 필요하지 않은 드라이버나 모듈을 제거해야합니다.
 
 ### macOS: Too many open files error {#macos_open_files}
 
-MacOS allows a default maximum of 256 open files in all running processes. The PX4 build system opens a large number of files, so you may exceed this number.
+MacOS에서는 기본적으로 모든 실행 프로세스에 대해 최대 256개 파일을 열 수 있습니다. PX4 빌드 시스템에서는 수많은 파일을 열게 되므로, 이 갯수를 초과할 수도 있습니다.
 
-The build toolchain will then report `Too many open files` for many files, as shown below:
+이 경우 빌드 툴체인에서 파일을 지정 갯수보다 많이 열었을 때, 아래와 같이 `Too many open files` 오류 메시지를 출력할 수 있습니다:
 
 ```sh
 /usr/local/Cellar/gcc-arm-none-eabi/20171218/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/bin/ld: cannot find NuttX/nuttx/fs/libfs.a: Too many open files
 ```
 
-The solution is to increase the maximum allowed number of open files (e.g. to 300). You can do this in the macOS *Terminal* for each session:
+최대 개방 파일 갯수를 늘리면 이 문제를 해결할 수 있습니다(예: 300). macOS 에서는 각 *터미널* 세션별로 이 과정을 수행할 수 있습니다:
 
-- Run this script [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh), or
-- Enter this command: 
+- [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh) 스크립트를 실행하거나
+- 다음 명령을 입력하십시오 
         sh
         ulimit -S -n 300
 
 ### macOS Catalina: Problem running cmake
 
-As of macOS Catalina 10.15.1 there may be problems when trying to build the simulator with *cmake*. If you have build problems on this platform then try run the following command in your terminal:
+macOS 카탈리나 10.15.1 에서는 *cmake*를 실행하여 모의시험 환경 빌드를 시도할 경우 이런 문제가 발생할수 있습니다. 이 플랫폼에서 빌드 문제가 생긴다면 다음 명령을 터미널에서 실행하십시오:
 
 ```sh
 xcode-select --install
@@ -507,15 +507,15 @@ sudo ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/* /us
 
 ### Failed to import Python packages
 
-"Failed to import" errors when running the `make px4_sitl jmavsim` command indicates that some Python packages are not installed (where expected).
+`make px4_sitl jmavsim` 명령을 실행할 때 나타나는 "Failed to import" 오류는 일부 파이썬 꾸러미를 설치하지 않았(다고 예상)음을 나타냅니다.
 
     Failed to import jinja2: No module named 'jinja2'
     You may need to install it using:
         pip3 install --user jinja2
     
 
-If you have already installed these dependencies this may be because there is more than one Python version on the computer (e.g. Python 2.7.16 Python 3.8.3), and the module is not present in the version used by the build toolchain.
+이 의존 요소를 이미 설치했을 경우 컴퓨터에 하나 이상의 파이썬 버전을 설치하고 (예: Python 2.7.16 과 Python 3.8.3) 빌드 툴체인에서 설치하는 해당 버전이 없는 경우입니다.
 
-You should be able to fix this by explicitly installing the dependencies as shown:
+이 경우 다음과 같이 의존 요소를 명백하게 설치하면 문제를 잡을 수 있습니다:
 
     pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging

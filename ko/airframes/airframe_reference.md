@@ -1,10 +1,46 @@
-# Airframes Reference
+# 에어프레임 참고
 
-> **Note** **This list is [auto-generated](https://github.com/PX4/Firmware/edit/master/Tools/px4airframes/markdownout.py) from the source code**.
+> **Note** 이 목록은 소스 코드에서 가져온 데이터로 [자동으로 생성](https://github.com/PX4/Firmware/edit/master/Tools/px4airframes/markdownout.py) 했습니다.
 > 
-> **AUX** channels may not be present on some flight controllers. If present, PWM AUX channels are commonly labelled **AUX OUT**.
+> **AUX** 채널은 일부 비행 컨트롤러에 나타나지 않을 수 있습니다. 만약 나타난다면, PWM AUX 채널에 **AUX OUT**으로 레이블이 붙습니다.
 
-This page lists all supported airframes and types including the motor assignment and numbering. The motors in **green** rotate clockwise, the ones in **blue** counterclockwise.
+이 페이지에는 지원하는 모든 에어프레임과 모터 할당 및 번호 정보가 들어있습니다. **녹색**의 모터는 시계방향, **청색**의 모터는 반시계 방향으로 회전합니다.
+
+## Airship
+
+### Airship
+
+<div>
+  <img src="../../assets/airframes/types/Airship.svg" width="29%" style="max-height: 180px;" /> 
+  
+  <table style="float: right; width: 70%; font-size:1.5rem;">
+    <colgroup><col></colgroup> <tr>
+      <th>
+        Common Outputs
+      </th>
+    </tr>
+<tr>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: starboard thruster</li><li><b>MAIN2</b>: port thruster</li><li><b>MAIN3</b>: thrust tilt</li><li><b>MAIN4</b>: tail thruster</li></ul></td>
+</tr>
+  </table>
+</div>
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
+  <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
+    <th>
+      Name
+    </th>
+    
+    <th>
+    </th>
+  </tr>
+<tbody>
+<tr id="airship_airship_cloudship">
+ <td style="vertical-align: top;">Cloudship</td>
+ <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 2507</p></td>
+
+</tr>
+</tbody></table>
 
 ## Autogyro
 
@@ -1076,8 +1112,8 @@ This page lists all supported airframes and types including the motor assignment
  <td style="vertical-align: top;"><p>Maintainer: Timothy Scott</p><p><code>SYS_AUTOSTART</code> = 50003</p><p><b>Specific Outputs:</b><ul><li><b>MAIN0</b>: Speed of left wheels</li><li><b>MAIN1</b>: Speed of right wheels</li></ul></p></td>
 
 </tr>
-<tr id="rover_rover_df_robot_gpx:asurada">
- <td style="vertical-align: top;">DF Robot GPX:Asurada</td>
+<tr id="rover_rover_nxp_cup_car:_df_robot_gpx">
+ <td style="vertical-align: top;">NXP Cup car: DF Robot GPX</td>
  <td style="vertical-align: top;"><p>Maintainer: Katrin Moritz</p><p><code>SYS_AUTOSTART</code> = 50004</p><p><b>Specific Outputs:</b><ul><li><b>MAIN2</b>: Steering servo</li><li><b>MAIN3</b>: Speed of left wheels</li><li><b>MAIN4</b>: Speed of right wheels</li></ul></p></td>
 
 </tr>

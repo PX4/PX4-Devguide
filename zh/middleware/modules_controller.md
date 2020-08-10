@@ -1,10 +1,35 @@
 # 模块参考：控制器
 
+## airship_att_control
+
+Source: [modules/airship_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/airship_att_control)
+
+### 描述
+
+This implements the airship attitude and rate controller. Ideally it would take attitude setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+
+Currently it is feeding the `manual_control_setpoint` topic directly to the actuators.
+
+### Implementation
+
+To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
+
+### Usage {#airship_att_control_usage}
+
+    airship_att_control <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## fw_att_control
 
 Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
 
-### 描述
+### Description
 
 fw_att_control is the fixed wing attitude controller.
 
@@ -24,7 +49,7 @@ fw_att_control is the fixed wing attitude controller.
 
 Source: [modules/fw_pos_control_l1](https://github.com/PX4/Firmware/tree/master/src/modules/fw_pos_control_l1)
 
-### 描述
+### Description
 
 fw_pos_control_l1 is the fixed wing position controller.
 
@@ -44,7 +69,7 @@ fw_pos_control_l1 is the fixed wing position controller.
 
 Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
 
-### 描述
+### Description
 
 This implements the multicopter attitude controller. It takes attitude setpoints (`vehicle_attitude_setpoint`) as inputs and outputs a rate setpoint.
 

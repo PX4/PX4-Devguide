@@ -1,48 +1,48 @@
-# Windows Installation Instructions
+# 윈도우 환경 설치 방법
 
-To develop for PX4 on Windows, follow the instructions in [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md).
+윈도우에서 PX4 를 개발하려면, [윈도우용 Cygwin 툴체인](../setup/dev_env_windows_cygwin.md)에서 다음 절차를 따르십시오.
 
-> **Tip** The *Cygwin toolchain* supports building for NuttX/Pixhawk and jMAVSim simulator targets. If you want to build for [other targets](/setup/dev_env.md#supported-targets), consider setting up a dual boot system with [Ubuntu Linux](http://ubuntu.com).
+> **Tip** *Cygwin 툴체인에서는* NuttX/픽스호크, jMAVSim 모의시험 환경대상 빌드를 지원합니다. [다른 대상](/setup/dev_env.md#supported-targets)을 빌드하고자 한다면, [우분투 리눅스](http://ubuntu.com) 이중 부팅 시스템 설치를 고려하십시오.
 
-## Additional Tools
+## 추가 도구
 
-After setting up the build/simulation toolchain, see [Additional Tools](../setup/generic_dev_tools.md) for information about other useful "general development" tools.
+빌드/모의시험 툴체인을 설치하고 난 후, 기타 유용한 "일반 개발" 도구 정보를 살펴보려면 [추가 도구](../setup/generic_dev_tools.md)를 실펴보십시오.
 
-## Next Steps
+## 다음 단계
 
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+환경 구성이 끝나면, [빌드 설명서](../setup/building_px4.md)로 계속 진행하십시오.
 
-## Other Windows Toolchains
+## 기타 윈도우 툴체인
 
-There are a number of other legacy/alternative solutions that may be of interest to some developers. A comparison of the options is provided below.
+일부 개발자에게 흥미로울 법한 수많은 기존/대안이 있습니다. 선택지의 비교는 다음과 같습니다.
 
-> **Note** The [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the only one that is supported by the PX4 dev team. It is regularly tested as part of our continuous integration system and is known to be better performing than the other alternatives.
+> **Note** [Cygwin 툴체인](../setup/dev_env_windows_cygwin.md) 은 PX4 개발팀에서 유일하게 지원하는 수단입니다. 지속 통합 시스템에서 주기적으로 시험하며, 다른 대안에 비해 훨씬 잘 동작합니다.
 
-|                         | [Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) **(Supported)** | [Virtual Machine Toolchain](../setup/dev_env_windows_vm.md) | [Bash on Windows Toolchain](../setup/dev_env_windows_bash_on_win.md) |
-| ----------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------- |
-| Installation            | MSI installer or Script                                                | Script                                                      | Script                                                               |
-| Native binary execution | yes                                                                    | no                                                          | no                                                                   |
-| Performance             | ++                                                                     | --                                                          | -                                                                    |
-| ARM Targets             | ++ (quick)                                                             | + (VM USB)                                                  | +                                                                    |
-| Simulation jMAVSim      | ++                                                                     | +                                                           | +                                                                    |
-| Simulation gazebo       | - (not yet)                                                            | + (slow)                                                    | + (slow)                                                             |
-| Support                 | +                                                                      | ++ (Linux)                                                  | +/-                                                                  |
-| Comments                |                                                                        |                                                             |                                                                      |
+|                 | [Cygwin 툴체인](../setup/dev_env_windows_cygwin.md) **(지원)** | [가상 머신 툴체인](../setup/dev_env_windows_vm.md) | [윈도우용 배시 툴체인](../setup/dev_env_windows_bash_on_win.md) |
+| --------------- | --------------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------ |
+| 설치              | MSI 설치 관리자 또는 스크립트                                        | 스크립트                                        | 스크립트                                                   |
+| 자체 바이너리 실행      | 예                                                         | 아니요                                         | 아니요                                                    |
+| 성능              | ++                                                        | --                                          | -                                                      |
+| ARM 타겟          | ++ (빠름)                                                   | + (VM USB)                                  | +                                                      |
+| jMAVSim 모의시험 환경 | ++                                                        | +                                           | +                                                      |
+| 가제보 모의시험 환경     | - (동작 안함)                                                 | + (느림)                                      | + (느림)                                                 |
+| 지원              | +                                                         | ++ (리눅스)                                    | +/-                                                    |
+| 설명              |                                                           |                                             |                                                        |
 
-- New in 2018
-- Slim setup
-- Portable
-
-|
-
-- Full Linux features
-- CPU & RAM intensive
-- Disk space intensive
+- 2018년도 도입
+- 간단한 설치
+- 이식성 있음
 
 |
 
-- Simulation UI is a "hack".
-- Windows 10 only
-- Essentially a VM
+- 완전한 리눅스 기능을 갖춤
+- CPU와 RAM 자원을 집중 소모
+- 집약적 디스크 공간 소모
+
+|
+
+- 모의시험 환경 인터페이스 "해부" 필요
+- 윈도우 10 전용
+- 가상 머신
 
 |

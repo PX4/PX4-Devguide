@@ -12,7 +12,7 @@ PX4 구조는 코어 컨트롤러에서 에어프레임 레이아웃이 특별�
 
 특정 컨트롤러는 특정 정규화된 물리력이나 토크를 (-1..+1 로 스케일 됨) 믹서로 보내고, 그러면 각각의 액추에이터들이 설정됩니다. 출력 드라이버 (예. UART, UAVCAN 또는 PWM) 은 그것을 액추에이터의 기본 단위로 변환합니다 (예. 1300의 PWM 값).
 
-![Mixer Control Pipeline](../../assets/concepts/mermaid_mixer_control_pipeline.png) <!--- Mermaid Live Version:
+![믹서 제어 파이프라인](../../assets/concepts/mermaid_mixer_control_pipeline.png) <!--- Mermaid Live Version:
 https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIGF0dF9jdHJsW0F0dGl0dWRlIENvbnRyb2xsZXJdIC0tPiBhY3RfZ3JvdXAwW0FjdHVhdG9yIENvbnRyb2wgR3JvdXAgMF1cbiAgZ2ltYmFsX2N0cmxbR2ltYmFsIENvbnRyb2xsZXJdIC0tPiBhY3RfZ3JvdXAyW0FjdHVhdG9yIENvbnRyb2wgR3JvdXAgMl1cbiAgYWN0X2dyb3VwMCAtLT4gb3V0cHV0X2dyb3VwNVtBY3R1YXRvciA1XVxuICBhY3RfZ3JvdXAwIC0tPiBvdXRwdXRfZ3JvdXA2W0FjdHVhdG9yIDZdXG4gIGFjdF9ncm91cDJbQWN0dWF0b3IgQ29udHJvbCBHcm91cCAyXSAtLT4gb3V0cHV0X2dyb3VwMFtBY3R1YXRvciA1XVxuXHRcdCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19
 graph LR;
   att_ctrl[Attitude Controller] dash-dash> act_group0[Actuator Control Group 0]
@@ -22,13 +22,13 @@ graph LR;
   act_group2[Actuator Control Group 2] dash-dash> output_group0[Actuator 5]
 --->
 
-## 컨트롤 그룹
+## 제어 분류 
 
-PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은 아주 간단합니다: 예를 들어 중요 비행 컨트롤러에 대한 컨트롤 그룹은 `attitude`, 페이로드에 대한 그룹은 `gimbal` 입니다. 출력 그룹은 하나의 물리적인 버스입니다 (예. 서보로의 첫 8개의 PWM 출력). 이들 각 그룹에는 믹서에 매핑되고 스케일될 수 있는 8개의 정규화된 (-1..+1) 명령 포트가 있습니다. 하나의 믹서는 어떻게 8개의 제어 신호 각각을 8개의 출력으로 연결할지 정의합니다.
+PX4는 제어 분류 (입력) 과 출력 분류를 활용합니다. 개념은 아주 간단합니다: 예를 들어 중요 비행 컨트롤러에 대한 제어 분류는 `attitude`, 페이로드 분류는 `gimbal` 입니다. 출력 분류는 하나의 물리적인 버스입니다 (예. 서보의 첫 8개의 PWM 출력). 이들 각 분류는 믹서에 대응하여 스케일할 수 있는 8개의 정규화 (-1..+1) 명령 포트가 있습니다. 하나의 믹서는 어떻게 8개의 제어 신호 각각을 8개의 출력으로 연결할지 정의합니다.
 
-간단한 비행기를 예로 들면, 컨트롤 0 (rolle) 은 곧바로 출력 0 (aileron) 에 연결됩니다. 멀티콥터는 조금 다릅니다. 컨트롤 0 (roll) 은 4개의 모터에 모두 연결되고 스로틀과 결합합니다.
+간단한 비행기를 예로 들면, 컨트롤 0 (rolle) 은 곧바로 출력 0 (aileron) 에 연결됩니다. 멀티콥터는 조금 다릅니다. 제어 0번(좌우 회전각)은 4개의 모터에 모두 연결하고 스로틀과 결합합니다.
 
-### 컨트롤 그룹 #0 (비행 제어)
+### 제어 분류 #0 (비행 제어)
 
 - 0: 좌우 회전각 (-1..1)
 - 1: 상하 회전각 (-1..1)
@@ -39,7 +39,7 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 - 6: 에어 제동장치 (-1..1)
 - 7: 랜딩 기어 (-1..1)
 
-### 컨트롤 그룹 #1 (수직이착륙기 비행제어/Alternate)
+### 제어 분류 #1 (수직이착륙기 비행제어/대체용)
 
 - 0: 좌우 회전각 대체용 (-1..1)
 - 1: 상하 회전각 대체용 (-1..1)
@@ -48,7 +48,7 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 - 4: 예약 / aux0
 - 5: 예약 / aux1
 - 6: 예약 / aux2
-- 7: reserved / aux3
+- 7: 예약 / aux3
 
 ### 컨트롤 그룹 #2 (Gimbal)
 
@@ -61,7 +61,7 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 - 6: 예약
 - 7: 예약 (패러슈트, -1..1)
 
-### 컨트롤 그룹 #3 (Manual Passthrough)
+### 제어 분류 #3 (수동 처리)
 
 - 0: 원격 조종 좌우 회전각
 - 1: 원격 조종 상하 회전각
@@ -74,7 +74,7 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 
 > **Note** 이 그룹은 *일반 동작*을 진행하는 동안 특정 출력에 대한 원격 조정 대응 입력을 정의하는 용도로만 사용합니다(믹서에서 스케일링 처리하는 AUX2 예제는 [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7)를 참고하십시오). 수동 입출력 이벤트 발생시 안전장치는 (PX4FMU 가 PX4IO 보드와의 통신을 멈췄을 때) 제어 그룹 0에 정의한 좌우/상하/방위 회전각 조절, 스로틀에 대한 매핑/믹싱만 활용합니다(다른 매핑은 무시).
 
-### 제어 그룹 #6 (첫번째 페이로드) {#control_group_6}
+### 제어 분류 #6 (첫번째 페이로드) {#control_group_6}
 
 - 0: function 0
 - 1: function 1
@@ -85,45 +85,45 @@ PX4는 컨트롤 그룹 (입력) 과 출력 그룹을 사용합니다. 개념은
 - 6: function 6
 - 7: function 7
 
-## 가상 컨트롤 그룹
+## 가상 제어 분류
 
-> **Caution** *가상 제어 그룹*은 수직이착륙기 코드를 작성하려는 개발자와 관련된 부분입니다. 믹서에서 사용하면 안되며, "완벽성"을 목적으로만 제공합니다.
+> **Caution** *가상 제어 분류*는 수직이착륙기 코드를 작성하려는 개발자와 관련된 부분입니다. 믹서에서 사용하면 안되며, "완벽성"을 목적으로만 제공합니다.
 
 이 그룹은 믹서의 입력을 받지 않습니다. 다만, 고정익과 멀티콥터 컨트롤러의 출력을 VTOL 거버너 모듈로 먹이려는 메타채널로 제공합니다.
 
-### 컨트롤 그룹 #4 (비행 제어 MC VIRTUAL)
+### 제어 분류 #4 (비행 제어 MC 가상)
 
-- 0: roll ALT (-1..1)
-- 1: pitch ALT (-1..1)
-- 2: yaw ALT (-1..1)
-- 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-- 4: reserved / aux0
-- 5: reserved / aux1
-- 6: reserved / aux2
-- 7: reserved / aux3
+- 0: 좌우 회전각 대체용 (-1..1)
+- 1: 상하 회전각 대체용 (-1..1)
+- 2: 방위 회전각 대체용 (-1..1)
+- 3: 스로틀 대체용 (0..1 일반 범위, -1..1 다양한 상하 회전각 조절 장치 / 역추진 장치용 )
+- 4: 예약 / aux0
+- 5: 예약 / aux1
+- 6: 예약 / aux2
+- 7: 예약 / aux3
 
-### 컨트롤 그룹 #5 (비행 제어 FW VIRTUAL)
+### 제어 분류 #5 (비행 제어 FW 가상)
 
-- 0: roll ALT (-1..1)
-- 1: pitch ALT (-1..1)
-- 2: yaw ALT (-1..1)
-- 3: throttle ALT (0..1 normal range, -1..1 for variable pitch / thrust reversers)
-- 4: reserved / aux0
-- 5: reserved / aux1
-- 6: reserved / aux2
-- 7: reserved / aux3
+- 0: 좌우 회전각 대체용 (-1..1)
+- 1: 상하 회전각 대체용 (-1..1)
+- 2: 방위 회전각 대체용 (-1..1)
+- 3: 스로틀 대체용 (0..1 일반 범위, -1..1 다양한 상하 회전각 조절 장치 / 역추진 장치용 )
+- 4: 예약 / aux0
+- 5: 예약 / aux1
+- 6: 예약 / aux2
+- 7: 예약 / aux3
 
 ## 출력 그룹/매핑
 
-하나의 출력그룹은 믹서에 매핑되고 스케일링 될 수있는 보통 8개의 정규화된 (-1..+1) 명령 포트를 가진 물리적인 버스입니다 (예. FMU PWM 출력, IO PWM 출력, UAVCAN 등).
+하나의 출력 분류는 믹서로 대응하고 스케일링할 수 있는 N개의(보통 8개) 정규화(-1..+1) 명령 포트를 가진 하나의 물리 버스(예: FMU PWM 출력, 입출력 PWM 출력, UAVCAN 등)입니다.
 
-믹서 파일은 출력이 적용되는 실제 *output group* (물리적인 버스) 를 명시적으로 정의하지는 않습니다. 대신에, 믹서의 목적은 (예. MAIN 또는 AUX 출력 컨트롤) [filename](#mixer_file_names)에서 알 수 있고, [startup scripts](../concept/system_startup.md) 에서 적절한 물리적인 버스로 매핑됩니다 ([rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface) 에서 특정지어짐).
+믹서 파일은 출력을 적용하는 실제 *출력 분류* (물리 버스)를 분명하게 정의하지 않습니다. 대신에, 믹서의 목적은 (예: MAIN 또는 AUX 출력 제어) 믹서 [파일 이름](#mixer_file_names)에서 알 수 있고, 시스템 [시작 스크립트](../concept/system_startup.md)에서 적절한 물리 버스로 대응합니다 ([rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface) 에서 특정지음).
 
-> **Note** This approach is needed because the physical bus used for MAIN outputs is not always the same; it depends on whether or not the flight controller has an IO Board (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) or uses UAVCAN for motor control. The startup scripts load the mixer files into the appropriate device driver for the board, using the abstraction of a "device". The main mixer is loaded into device `/dev/uavcan/esc` (uavcan) if UAVCAN is enabled, and otherwise `/dev/pwm_output0` (this device is mapped to the IO driver on controllers with an I/O board, and the FMU driver on boards that don't). The aux mixer file is loaded into device `/dev/pwm_output1`, which maps to the FMU driver on Pixhawk controllers that have an I/O board.
+> **Note** MAIN 출력에 활용하는 물리 버스가 항상 동일하지 않으므로 이런 접근 방법이 필요합니다. 비행 조종기에 입출력 보드가 붙어([PX4 레퍼런스 비행 조종기 설계 > 메인 입출력 기능 해부](../hardware/reference_design.md#mainio-function-breakdown)편을 참고)있거나 모터 제어 목적으로 UAVCAN 통신 수단을 활용하는지 여부에 따라 달려있습니다. 시작 스크립트에서는 "device" 추상 레이어를 활용하여 적절한 믹서 파일을 보드에 적당한 장치 드라이버로 불러옵니다. 메인 믹서는 UAVCAN을 활성화했을 경우 `/dev/uavcan/esc`(uavcan) 장치를 불러오며, 그렇지 않을 경우 `/dev/pwm_output0`(이 장치는 입출력 보드 조종기의 입출력 드라이버를 대응하며, 보드의 FMU 드라이버는 이에 해당하지 않습니다) 조종 장치를 불러옵니다. AUX 믹서 파일은 입출력 보드를 내장한 픽스호크 컨트롤러의 FMU 드라이버에 대응하는 `/dev/pwm_output1` 장치에 불러옵니다.
 
 여러개의 컨트롤 그룹과 (비행 컨트롤, 페이로드 등) 출력 그룹 (버스들) 이 있기 때문에, 하나의 컨트롤 그룹은 여러개의 출력 그룹에게 명령어를 보낼 수 있습니다.
 
-![Mixer Input/Output Mapping](../../assets/concepts/mermaid_mixer_inputs_outputs.png) <!--- Mermaid Live Version:
+![믹서 입출력 대응](../../assets/concepts/mermaid_mixer_inputs_outputs.png) <!--- Mermaid Live Version:
 https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGFjdHVhdG9yX2dyb3VwXzAtLT5vdXRwdXRfZ3JvdXBfNVxuICBhY3R1YXRvcl9ncm91cF8wLS0-b3V0cHV0X2dyb3VwXzZcbiAgYWN0dWF0b3JfZ3JvdXBfMS0tPm91dHB1dF9ncm91cF8wIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0
 graph TD;
   actuator_group_0 dashdash>output_group_5
@@ -131,108 +131,108 @@ graph TD;
   actuator_group_1dashdash>output_group_0
 --->
 
-> **Note** In practice, the startup scripts only load mixers into a single device (output group). This is a configuration rather than technical limitation; you could load the main mixer into multiple drivers and have, for example, the same signal on both UAVCAN and the main pins.
+> **Note** 실제로 시작 스크립트는 단일 장치(출력 분류)에 믹서만 불러옵니다. 기술적인 제한이라기보단 그냥 설정입니다. 여러 드라이버에 메인 믹서를 불러올 수 있습니다. 예를 들면 메인 믹서를 통해 UAVCAN과 메인 핀에 동일한 신호를 줍니다.
 
 ## PX4 믹서 정의
 
-Mixers are defined in plain-text files using the [syntax](#mixer_syntax) below.
+믹서는 아래 [문법](#mixer_syntax)을 따라 플레인 텍스트로 정의합니다.
 
-Files for pre-defined airframes can be found in [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers). These can be used as a basis for customisation, or for general testing purposes.
+사전 정의한 에어프레임 파일은 [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers)에 있습니다. 이 구성요소는 개별 설정 기반 또는 일반 시험 목적으로 활용할 수 있습니다.
 
 ### 믹서 파일 이름 {#mixer_file_names}
 
-A mixer file must be named **XXXX.*main*.mix** if it is responsible for the mixing of MAIN outputs or **XXXX.*aux*.mix** if it mixes AUX outputs.
+믹서 파일은 MAIN 출력 혼합에 해당할 경우**XXXX.*main*.mix**, AUX 출력 혼합에 해당할 경우 **XXXX.*aux*.mix**로 이름을 붙여야 합니다.
 
-### Mixer Loading {#loading_mixer}
+### 믹서 불러오기 {#loading_mixer}
 
-The default set of mixer files (in Firmware) are defined in [px4fmu_common/init.d/airframes/](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/). These can be overridden by mixer files with the same name in the SD card directory **/etc/mixers/** (SD card mixer files are loaded by preference).
+(펌웨어의) 믹서 파일 기본 모음은 [px4fmu_common/init.d/airframes/](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/)에 지정합니다. SD카드 메모리에 있는 **/etc/mixers** 디렉터리에 동일한 이름을 가진 믹서 파일을 두어 우선 중복적용할 수 있습니다(SD 카드 믹서 파일은 기본설정으로 불러옴).
 
-PX4 loads mixer files named **XXXX.*main*.mix** onto the MAIN outputs and **YYYY.*aux*.mix** onto the AUX outputs, where the prefixes depend on the airframe and airframe configuration. Commonly the MAIN and AUX outputs correspond to MAIN and AUX PWM outputs, but these may be loaded into a UAVCAN (or other) bus when that is enabled.
+PX4에서는 MAIN 출력에 해당하는 파일의 이름을 **XXXX.*main*.mix**로, AUX 출력에 해당하는 파일 이름을 **YYYY.*aux*.mix**로 정하며, 여기서 접두부는 에어프레임과 에어프레임 설정에 따릅니다. 보통 MAIN 출력과 AUX 출력은 MAIN PWM 출력과 AUX PWM 출력에 해당하지만, UAVCAN(또는 기타) 버스를 활성화 했을 때는 UAVCAN으로 불러옵니다.
 
-The MAIN mixer filename (prefix `XXXX`) is set in the airframe configuration using `set MIXER XXXX` (e.g. [airframes/10015_tbs_discovery](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/10015_tbs_discovery) calls `set MIXER quad_w` to load the main mixer file **quad_w.*main*.mix**).
+MAIN 믹서 파일 이름(앞에 `XXXX`가 붙음)은 `set MIXER XXXX` 설정행으로 에어프레임 설정에서 맞춥니다(예: [airframes/10015_tbs_discovery](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/10015_tbs_discovery)은 `set MIXER quad_w`를 호출하여 **quad_w.*main*.mix** 메인 믹서 파일을 불러옵니다).
 
-The AUX mixer filename (prefix `YYYY` above) depends on airframe settings and/or defaults:
+AUX 믹서 파일 이름(위에서 `YYYY`로 앞에 붙음)은 에어프레임 설정이나 기본값 여부에 따릅니다:
 
-- `MIXER_AUX` can be used to *explicitly* set which AUX file is loaded (e.g. in the aiframe configuration, `set MIXER_AUX vtol_AAERT` will load `vtol_AAERT.aux.mix`).
-- Multicopter and Fixed-Wing airframes load [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix) by default (i.e if not set using `MIXER_AUX`). > **Tip** `pass.aux.mix` is the *RC passthrough mixer*, which passes the values of 4 user-defined RC channels (set using the [RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) parameters) to the first four outputs on the AUX output.
-- VTOL frames load the AUX file specified using `MIXER_AUX` if set, or the value specified by `MIXER` if not.
-- Frames with gimbal control enabled (and output mode set to AUX) will *override* the airframe-specific MIXER_AUX setting and load `mount.aux.mix` on the AUX outputs.
+- `MIXER_AUX`는 *분명하게* 어떤 AUX 파일을 불러올 지 설정할 때 활용할 수 있습니다(예: 에어프레임 설정시 `set MIXER_AUX vtol_AAERT` 설정은 `vtol_AAERT.aux.mix` 파일을 불러옴).
+- 멀티콥터와 고정익 에어프레임은 기본적으로 [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix) 믹서 파일을 불러옵니다(예: 따로 설정하지 않으면 `MIXER_AUX` 활용). > **Tip** `pass.aux.mix` 파일은 *원격 조종 처리 믹서*이며, 믹서에서는 4개의 사용자 지정 원격 조종 채널 값을 ([RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) 매개변수 활용) AUX 출력의 첫번째 출력 넷으로 전달합니다.
+- VTOL 프레임에 대해 `MIXER_AUX`을 설정했을 경우 지정 AUX 파일을 불러오며, 그렇지 않을 경우 `MIXER`에 지정한 값대로 파일을 불러옵니다.
+- 짐벌 조종간을 활용할 수 있(고 AUX에 출력 상태를 설정)는 프레임은 에어프레임별 MIXER_AUX 설정보다 *우선 반영*하며, `mount.aux.mix` 파일을 AUX 출력에 불러옵니다.
 
-> **Note** Mixer file loading is implemented in [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface).
+> **Note** 믹서 파일을 불러오는 부분은 [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)에 있습니다.
 
-### Loading a Custom Mixer {#loading_custom_mixer}
+### 개별 믹서 불러오기 {#loading_custom_mixer}
 
-PX4 loads appropriately named mixer files from the SD card directory **/etc/mixers/**, by preference, and then the version in Firmware.
+PX4는 SD 카드의 **/etc/mixers/** 디렉터리에서 적절한 이름이 붙은 믹서 파일을 기본 설정에 따라 불러온 후, 펌웨어 버전을 불러옵니다.
 
-To load a custom mixer, you should give it the same name as a "normal" mixer file (that is going to be loaded by your airframe) and put it in the **etc/mixers** directory on your flight controller's SD card.
+개별 정의 믹서를 불러오려면 "일반" 믹서 파일과 동일한 이름을 부여해야 하며(이 파일을 에어프레임에서 불러옵니다), 이 파일을 비행 조종 장치의 SD 카드의 **/etc/mixers**에 넣어야합니다.
 
-Most commonly you will override/replace the **AUX** mixer file for your current airframe (which may be the RC passthrough mixer - [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)). See above for more information on [mixer loading](#loading_mixer).
+대부분 **AUX** 믹서 파일을 현재 에어프레임에 따라 대체합니다(원격 조종 처리 믹서 파일 이름은 [pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)가 됩니다). [믹서 불러오기](#loading_mixer)에 대한 자세한 정보는 위를 다시 살펴보십시오.
 
-> **Tip** You can also *manually* load a mixer at runtime using the [mixer load](../middleware/modules_command.md#mixer) command (thereby avoiding the need for a reboot). For example, to load a mixer **/etc/mixers/test_mixer.mix** onto the MAIN PWM outputs, you could enter the following command in a [console](../debug/consoles.md): ```mixer load /dev/pwm_output0 /fs/microsd/etc/mixers/test_mixer.mix```
+> **Tip** 실행 시간에 [mixer load](../middleware/modules_command.md#mixer) 명령으로 믹서를 *직접* 불러올 수도 있습니다(다시 부팅하는 상황을 피함). 예를 들면, MAIN PWM 출력의 **/etc/mixers/test_mixer.mix** 믹서 파일을 불러오려면, [콘솔](../debug/consoles.md)에서 다음 명령을 입력합니다: ```mixer load /dev/pwm_output0 /fs/microsd/etc/mixers/test_mixer.mix```
 
 ### 문법 {#mixer_syntax}
 
 믹서 파일은 하나 이상의 믹서를 정의하는 텍스트 파일입니다: 하나 이상의 입력과 출력을 서로 대응합니다.
 
-There are four types of mixers definitions: [multirotor mixer](#multirotor_mixer), [helicopter mixer](#helicopter_mixer), [summing mixer](#summing_mixer), and [null mixer](#null_mixer).
+믹서 정의 형식에는 [멀티로터 믹서](#multirotor_mixer), [헬리콥터 믹서](#helicopter_mixer), [결합 믹서](#summing_mixer), [널 믹서](#null_mixer) 네가지가 있습니다.
 
-- [Multirotor mixer](#multirotor_mixer) - Defines outputs for 4, 6, or 8 rotor vehicles with + or X geometry.
-- [Helicopter mixer](#helicopter_mixer) - Defines outputs for helicopter swash-plate servos and main motor ESCs (the tail-rotor is a separate [summing mixer](#summing_mixer).)
-- [Summing mixer](#summing_mixer) - Combines zero or more control inputs into a single actuator output. Inputs are scaled, and the mixing function sums the result before applying an output scaler.
-- [Null mixer](#null_mixer) - Generates a single actuator output that has zero output (when not in failsafe mode).
+- [멀티로터 믹서](#multirotor_mixer) - + 방향 또는 X축 방향의 4, 6, 8 회전 객체 출력을 가진 기체를 정의
+- [헬리콥터 믹서](#helicopter_mixer) - 경사판 서보와 메인 모터 ESC 출력을 지닌 기체를 정의(후미익은 별도의 [결합 믹서](#summing_mixer)임.)
+- [결합 믹서](#summing_mixer) - 0개 이상의 제어 입력을 단일 액츄에이터 출력으로 결합합니다. 입력은 비례 조정하며, 출력 계수를 반영하기 전에 믹싱 함수에서 결합합니다.
+- [널 믹서](#null_mixer) - 0을 출력하는 단일 액츄에이터 출력을 만듭니다(안전장치 모드가 아닐 때).
 
-> **Tip** Use *multirotor* and *helicopter mixers* for the respective types, the *summing mixer* for servos and actuator controls, and the *null mixer* for creating outputs that must be zero during normal use (e.g. a parachute has 0 normally, but might have a particular value during failsafe). A [VTOL Mixer](#vtol_mixer) combines the other mixer types.
+> **Tip** *멀티로터*와 *헬리콥터 믹서*는 각 형식에 맞게 사용하십시오. *결합 믹서*는 서보와 액츄에이터 제어에 해당하며, *널 믹서*는 일반 사용시 0값을 출력해야 하는 경우의 출력을 만들 때 활용합니다(예: 낙하산은 보통 0 값을 주지만, 안전장치 가동시 해당 값을 부여합니다). [VTOL 믹서](#vtol_mixer)는 다른 믹서 형식을 혼합합니다.
 
-The number of outputs generated by each mixer depends on the mixer type and configuration. For example, the multirotor mixer generates 4, 6, or 8 outputs depending on the geometry, while a summing mixer or null mixer generate just one output.
+각 믹서에서 내보내는 여러 출력은 믹서 형식과 설정에 따라 다릅니다. 예를 들어 결합 믹서나 널 믹서의 경우는 하나의 출력만 내보내는데 반해, 멀티로터 믹서는 공간 기하 정보에 따라 4, 6, 8개의 출력을 내보냅니다.
 
-You can specify more than one mixer in each file. The output order (allocation of mixers to actuators) is specific to the device reading the mixer definition; for a PWM device the output order matches the order of declaration. For example, if you define a multi-rotor mixer for a quad geometry, followed by a null mixer, followed by two summing mixers then this would allocate the first 4 outputs to the quad, an "empty" output, and the next two outputs.
+각 파일에는 하나 이상의 믹서를 지정할 수 있습니다. 출력 순서(액츄에이터로의 믹서 할당)는 믹서 정의를 읽는 장비에 따라 다릅니다. PWM 장비의 경우, 출력 순서는 선언 순서에 일치합니다. 예를 들어 성분 네개의 공간 기하 정보를 지닌 멀티로터 믹서를 지정하고, 그 다음 널 믹서를, 그 다음은 두개의 결합 믹서를 지정하면, 처음 네개의 출력을 네개의 액츄에이터로, 그 다음은 "빈" 출력을, 그 다음은 두개의 출력이 뒤따라옵니다.
 
-Each mixer definition begin with a line of the form:
+각각의 믹서 정의는 다음 형식의 행으로 시작합니다:
 
     <tag>: <mixer arguments>
     
 
-The `tag` selects the mixer type (see links for detail on each type):
+`tag`로 믹서 형식을 선택합니다(각 형식에 대한 자세한 내용은 링크 참고):
 
-- `R`: [Multirotor mixer](#multirotor_mixer)
-- `H`: [Helicopter mixer](#helicopter_mixer)
-- `M`: [Summing mixer](#summing_mixer)
-- `Z`: [Null mixer](#null_mixer)
+- `R`: [멀티로터 믹서](#multirotor_mixer)
+- `H`: [헬리콥터 믹서](#helicopter_mixer)
+- `M`: [결합 믹서](#summing_mixer)
+- `Z`: [널 믹서](#null_mixer)
 
-Some mixers definitions consist of a number of tags (e.g. `O` and `S`) that follow the mixer-type tag above.
+일부 믹서는 믹서 형식 태그가 뒤따라오는 식으로 여러 태그를 구성(예: `O`, `S`)하여 정의하기도 합니다.
 
-> **Note** Any line that does not begin with a single capital letter followed by a colon may be ignored (so explanatory text can be freely mixed with the definitions).
+> **Note** 단일 대문자로 시작하지 않은 일부 행은 무시합니다(따라서 설명문을 정의 행과 자유롭게 섞어쓸 수 있습니다).
 
-#### Summing Mixer {#summing_mixer}
+#### 믹서 결합 {#summing_mixer}
 
-Summing mixers are used for actuator and servo control.
+결합 믹서는 액츄에이터와 서보 제어 목적으로 활용합니다.
 
-A summing (simple) mixer combines zero or more control inputs into a single actuator output. Inputs are scaled, and the mixing function sums the result before applying an output scaler.
+(단순) 결합 믹서는 0개 이상의 제어 입력을 단일 액츄에이터 출력으로 결합합니다. 입력값은 스케일링 처리하고, 믹싱 함수는 출력 계수에 적용하기 전에 결과를 결합합니다.
 
-A simple mixer definition begins with:
+단순 믹서 정의는 다음처럼 시작합니다:
 
     M: <control count>
     O: <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-If `<control count>` is zero, the sum is effectively zero and the mixer will output a fixed value that is `<offset>` constrained by `<lower limit>` and `<upper limit>`.
+`<control count>` 값이 0이면, 결합 결과값은 0값이며, 믹서에서는 `<lower limit>` 값과 `<upper limit>` 값으로 제한한 `<offset>` 값이 나옵니다.
 
-The second line defines the output scaler with scaler parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+둘째 행에서는 위에서 언급한대로 계수 매개변수로 출력 계수를 지정합니다. 부동 소숫점 연산을 수행하는 동안 정의 파일에 지정한 값은 10000만큼 배율을 조정합니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다.
 
-The definition continues with `<control count>` entries describing the control inputs and their scaling, in the form:
+정의 내용을 통해 다음과 같은 형식으로 `<control count>`개 항목에 대한 제어 입력, 스케일링을 지정합니다:
 
     S: <group> <index> <-ve scale> <+ve scale> <offset> <lower limit> <upper limit>
     
 
-> **Note** The `S:` lines must be below the `O:` line.
+> **Note** `S:` 행은 `O:` 행 아래에 있어야합니다.
 
-The `<group>` value identifies the control group from which the scaler will read, and the `<index>` value an offset within that group. These values are specific to the device reading the mixer definition.
+`<group>` 값은 계수를 읽을 제어 분류 식별자를 정의하며, `<index>` 값은 해당 그룹의 오프셋을 지정합니다. 이 값은 믹서 정의를 장치에 불러올 때 장치에 해당하는 값입니다.
 
-When used to mix vehicle controls, mixer group zero is the vehicle attitude control group, and index values zero through three are normally roll, pitch, yaw and thrust respectively.
+기체 제어 입력을 믹싱할 때, 믹서 분류 0은 기체 고도 제어 분류이며, 0부터 3까지의 일반 인덱스 값은 각각, 좌우 회전각(roll), 상하 회전각(pitch), 방위 회전각(yaw), 추력입니다.
 
-The remaining fields on the line configure the control scaler with parameters as discussed above. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an offset of -0.5 is encoded as -5000.
+행의 나머지 필드에서는 위에서 다룬대로 매개변수를 통해 제어 계수를 설정합니다. 부동 소숫점 연산을 수행하는 동안 정의 파일에 지정한 값은 1만배 증가합니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다.
 
-An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
+일반적인 믹서 파일 예제는 [여기](../airframes/adding_a_new_frame.md#mixer-file)에서 설명합니다.
 
 #### 널(null) 믹서 {#null_mixer}
 
@@ -247,65 +247,65 @@ An example of a typical mixer file is explained [here](../airframes/adding_a_new
 
 #### 멀티로터 믹서 {#multirotor_mixer}
 
-멀티로터 믹서는 컨트롤러 입력 넷(좌우/상하/방위 회전각, 역추진)을 모터 속도 컨트롤러를 제어할 액츄에이터 출력조합으로 모읍니다.
+멀티로터 믹서는 컨트롤러 입력 넷(좌우/상하/방위 회전각, 추력)을 모터 속도 컨트롤러를 제어할 액츄에이터 출력조합으로 모읍니다.
 
 믹서 정의는 단일 행의 형태를 지니고 있습니다:
 
     R: <geometry> <roll scale> <pitch scale> <yaw scale> <idlespeed>
     
 
-The supported geometries include:
+지원하는 공간 기하 성분은 다음과 같습니다:
 
-- 4x - quadrotor in X configuration
-- 4+ - quadrotor in + configuration
-- 6x - hexacopter in X configuration
-- 6+ - hexacopter in + configuration
-- 8x - octocopter in X configuration
-- 8+ - octocopter in + configuration
+- 4x - 쿼드로터의 X 설정
+- 4+ - 쿼드로터의 + 설정
+- 6x - 헥사콥터의 X 설정
+- 6+ - 헥사콥터의 + 설정
+- 8x - 옥토콥터의 X 설정
+- 8+ - 옥토콥터의 + 설정
 
-Each of the roll, pitch and yaw scale values determine scaling of the roll, pitch and yaw controls relative to the thrust control. Whilst the calculations are performed as floating-point operations, the values stored in the definition file are scaled by a factor of 10000; i.e. an factor of 0.5 is encoded as 5000.
+각 좌우 회전각(roll), 상하 회전각(pitch), 방위 회전각(yaw) 계수 값은 추력 제어에 상대적인 좌우 회전각, 상하 회전각, 방위 회전각 제어의 배율을 결정합니다. 부동 소숫점 연산을 수행하는 동안 정의 파일에 지정한 값은 10000만큼 배율을 조정합니다. 예를 들어 -0.5 오프셋은 -5000으로 인코딩합니다. 
 
-Roll, pitch and yaw inputs are expected to range from -1.0 to 1.0, whilst the thrust input ranges from 0.0 to 1.0. Output for each actuator is in the range -1.0 to 1.0.
+좌우 회전각(roll), 상하 회전각(pitch), 방위 회전각(yaw) 입력은 -1.0에서 1.0 정도 되나, 추력 입력 범위는 0.0에서 1.0 정도 됩니다. 각 액츄에이터 출력 범위는 -1.0에서 1.0까지입니다.
 
-Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed of motors and it is the speed at which the motors are commanded to rotate when all control inputs are zero.
+대기 속도는 0.0에서 1.0의 범위를 가질 수 있습니다. 대기 속도는 모터의 최대 속도에 대해 상대적이며, 다른 제어 입력을 0으로 하는 동안 어떤 모터를 회전하도록 명령을 내리느냐에 따른 속력이기도 합니다.
 
-In the case where an actuator saturates, all actuator values are rescaled so that the saturating actuator is limited to 1.0.
+액츄에이터 출력 값이 임계에 도달할 경우, 모든 액츄에이터 출력 값을 다시 비례 조정하여 임계에 도달한 액츄에이터 출력 값은 1.0으로 제한됩니다.
 
-#### Helicopter Mixer {#helicopter_mixer}
+#### 헬리콥터 믹서  {#helicopter_mixer}
 
-The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs (swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
+헬리콥터 믹서는 세개의 제어 입력(좌우 회전각 - roll, 상하 회전각 - pitch, 추력 - thrust)을 네 개의 출력으로 묶습니다(경사판 모터와 메인 모터 ESC 설정). 헬리콥터 믹서의 첫 출력은 메인 모터의 스로틀 설정입니다. 그 다음 따라오는 출력은 경사판 서보용입니다. 후미익은 단일 믹서를 추가하여 제어할 수 있습니다.
 
-The thrust control input is used for both the main motor setting as well as the collective pitch for the swash-plate. It uses a throttle-curve and a pitch-curve, both consisting of five points.
+추력 제어 입력은 경사판 모터의 상하 회전각 보정과 메인 모터 설정에 활용합니다. 스로틀 곡선과 상하 회전각 곡선을 활용하며, 커브 곡선은 5개의 점을 따라 구성합니다.
 
-> **Note** The throttle- and pitch- curves map the "thrust" stick input position to a throttle value and a pitch value (separately). This allows the flight characteristics to be tuned for different types of flying. An explanation of how curves might be tuned can be found in [this guide](https://www.rchelicopterfun.com/rc-helicopter-radios.html) (search on *Programmable Throttle Curves* and *Programmable Pitch Curves*).
+> **Note** 스로틀 출력 변화 곡선과 상하 회전각 변화 곡선은 포지션에 대응하여 스로틀 값과 상하 회전각 값(제각각 별도로)이 위치한 "추력" 스틱 입력에 대응합니다. 이 설정 방식으로 제각기 다른 비행체 형식을 지닌 비행체의 각 부분의 특징을 조정할 수 있습니다. 커브 조정 방법 설명은 [이 안내서](https://www.rchelicopterfun.com/rc-helicopter-radios.html)에 있습니다 (*프로그램 구성 가능한 스로틀 출력 변화 곡선*과 *프로그램 구성 가능한 상하 회전각 변화 곡선*에서 찾아보십시오).
 
-The mixer definition begins with:
+믹서 정의는 다음으로 시작합니다:
 
     H: <number of swash-plate servos, either 3 or 4>
     T: <throttle setting at thrust: 0%> <25%> <50%> <75%> <100%>
     P: <collective pitch at thrust: 0%> <25%> <50%> <75%> <100%>
     
 
-`T:` defines the points for the throttle-curve. `P:` defines the points for the pitch-curve. Both curves contain five points in the range between 0 and 10000. For simple linear behavior, the five values for a curve should be `0 2500 5000 7500 10000`.
+`T:` 스로틀 출력 변화 곡선 점을 정의합니다. `P:` 상하 회전각 변화 곡선 점을 정의합니다. 두 변화 곡선 설정은 0부터 10000까지의 점 다섯 개를 보유합니다. 단순 선형 동작의 경우, 변화 곡선 다섯 점의 값은 `0 2500 5000 7500 10000`입니다.
 
-This is followed by lines for each of the swash-plate servos (either 3 or 4) in the following form:
+아래는 각각의 (3개 또는 4개) 경사판 서보에 대한 행으로, 다음과 같은 형식을 갖추고 있습니다:
 
     S: <angle> <arm length> <scale> <offset> <lower limit> <upper limit>
     
 
-The `<angle>` is in degrees, with 0 degrees being in the direction of the nose. Viewed from above, a positive angle is clock-wise. The `<arm length>` is a normalized length with 10000 being equal to 1. If all servo-arms are the same length, the values should al be 10000. A bigger arm length reduces the amount of servo deflection and a shorter arm will increase the servo deflection.
+`<angle>`는 도 단위로, 0도는 선두 부분의 방향입니다. 위에서 본 바와 같이, 양의 각도 방향은 시계 방향입니다. `<arm length>`은 정규화 길이이며, 10000은 1을 의미합니다. 모든 서보 암이 동일한 길이를 가진다면, 해당 값은 10000이어야 합니다. 암의 길이가 늘어나면 서보 하자율을 줄이며, 길이가 줄어들면 하자율이 늘어납니다.
 
-The servo output is scaled by `<scale> / 10000`. After the scaling, the `<offset>` is applied, which should be between -10000 and +10000. The `<lower limit>` and `<upper limit>` should be -10000 and +10000 for full servo range.
+서보 출력은 `<scale> / 10000`만큼 비율 조정됩니다. 비율 조정이 끝나면 `<offset>`을 반영하는데 이 값은 -10000에서 +10000까지입니다. `<lower limit>`과 `<upper limit>` 값은 전체 서보 출력 범위에 해당하는 -10000과 +10000입니다.
 
-The tail rotor can be controller by adding a [summing mixer](#summing_mixer):
+후미익은 [결합 믹서](#summing_mixer)를 추가하여 제어할 수 있습니다.
 
     M: 1
     S: 0 2  10000  10000      0 -10000  10000
     
 
-By doing so, the tail rotor setting is directly mapped to the yaw command. This works for both servo-controlled tail-rotors, as well as for tail rotors with a dedicated motor.
+이렇게 하여, 후미익 설정은 yaw 명령에 직접적으로 대응합니다. 후미익에 전용 모터가 달린만큼, 후미익 서보 제어 로터와 동작합니다.
 
-The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix) can be viewed as an example.
+[blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/blade130.main.mix)를 예로 살펴볼 수 있습니다.
 
     H: 3
     T:      0   3000   6000   8000  10000
@@ -320,21 +320,21 @@ The [blade 130 helicopter mixer](https://github.com/PX4/Firmware/blob/master/ROM
     S: 0 2  10000  10000      0 -10000  10000
     
 
-- The throttle-curve starts with a slightly steeper slope to reach 6000 (0.6) at 50% thrust.
-- It continues with a less steep slope to reach 10000 (1.0) at 100% thrust.
-- The pitch-curve is linear, but does not use the entire range.
-- At 0% throttle, the collective pitch setting is already at 500 (0.05).
-- At maximum throttle, the collective pitch is only 4500 (0.45).
-- Using higher values for this type of helicopter would stall the blades.
-- The swash-plate servos for this helicopter are located at angles of 0, 140 and 220 degrees.
-- The servo arm-lenghts are not equal.
-- The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo.
-- The servos are limited at -8000 and 8000 because they are mechanically constrained.
+- 스로틀-커브는 50%의 추력에 6000 (0.6) 값에 도달하는 약간 가파른 경사로 시작합니다.
+- 덜 가파른 경사로 계속 진행하며 100% 추력으로 10000 (1.0) 에 도달합니다.
+- 상하 회전각 커브는 선형이지만, 전체 범위를 다 사용하지는 않습니다.
+- 0% 스로틀 출력시, 상하 회전각 보정 설정은 거의 500 (0.05) 입니다.
+- 최대 스로틀 출력시, 상하 회전각 보정 설정은 4500 (0.45) 밖에 안됩니다.
+- 이 헬리콥터 형식에 더 큰 값을 사용하면 날개의 기능을 상실합니다.
+- 이 헬리콥터의 경사판 서보는 0, 140에 220도 기울기를 가집니다.
+- 서보 암 길이는 동일하지 않습니다.
+- 두번째 세번째 서보는 긴 암을 가지나 처음 서보에 비해 1.3054배의 길이를 지닙니다.
+- 서보 출력은 기계적 제약사항이 있어 -8000에서 8000 까지로 제한합니다.
 
 #### VTOL 믹서 {#vtol_mixer}
 
-VTOL systems use a [multirotor mixer](#multirotor_mixer) for the multirotor outputs, and [summing mixers](#summing_mixer) for the fixed-wing actuators (and the tilting servos in case of a tiltrotor VTOL).
+VTOL 시스템은 멀티로터 출력 목적의 [멀티로터 믹서](#multirotor_mixer)를 활용하며, 고정익 액츄에이터 동작을 위해 [결합 믹서](#summing_mixer)를 채용했습니다(그리고 틸트로터 수직 이착륙기의 경우 틸팅 서보를 결합 믹서에 붙입니다).
 
-The mixer system for a VTOL vehicle can be either combined into a single mixer, where all the actuators are connected to either the IO or the FMU port, or split into separate mixer files for IO and for AUX. If separated, we recommend that all the multicopter motors are on one port, and all the servos and the fixed-wing motor on the other.
+수직 이착륙기 믹서 시스템은 단일 믹서로 결합할 수 있는데, 액츄에이터는 입출력 포트 또는 FMU 포트로 연결하거나, 제각각의 믹서 파일로 입출력과 AUX용포트를 따로 나눕니다. 액츄에이터를 별도로 분리할 경우, 모든 멀티콥터 모터를 하나의 포트에 모아 붙이고, 모든 서보와 고정익 모터를 다른 포트에 모아 붙이는 방안을 추천드립니다.
 
-> **Note** The FMU output can only be used for multirotor motors starting from PX4 v1.11. To use the FMU output set [VT_MC_ON_FMU=1](../advanced/parameter_reference.md#VT_MC_ON_FMU) (otherwise they are not switched off when in fixed-wing flight mode).
+> FMU 출력은 PX4 v1.11 부터 시작하는 멀티로터 모터에 활용할 수 있습니다. FMU 출력을 활용하려면 [VT_MC_ON_FMU=1](../advanced/parameter_reference.md#VT_MC_ON_FMU) 값을 설정하십시오(그렇지 않으면 고정익 비행 모드일 때 끌 수 없습니다).

@@ -234,7 +234,7 @@ The module runs periodically on the HP work queue.
     land_detector <command> [arguments...]
      Commands:
        start         Start the background task
-         fixedwing|multicopter|vtol|rover Select vehicle type
+         fixedwing|multicopter|vtol|rover|airship Select vehicle type
     
        stop
     

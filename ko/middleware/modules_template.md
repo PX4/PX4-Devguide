@@ -1,20 +1,20 @@
-# 모듈 레퍼런스: 템플릿
+# 모듈 참고: 서식
 
 ## 모듈
 
-Source: [templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module)
+소스 코드: [templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module)
 
 ### 설명
 
-제공하는 모듈 기능을 설명하는 섹션입니다.
+제공하는 모듈의 기능을 설명하는 절입니다.
 
-시작/종료/상태 기능을 가진 백그라운드에서 수행되는 작업을 수행하는 모듈을 위한 템플릿입니다.
+start/stop/status 기능을 지닌 백그라운드 작업 실행 모듈의 서식입니다.
 
 ### 구현
 
-이 모듈을 구현하는 방법을 설명하는 섹션
+이 모듈의 고수준 구현체를 설명하는 절입니다.
 
-### Examples
+### 예제
 
 CLI 사용 예:
 
@@ -37,13 +37,13 @@ CLI 사용 예:
 
 ## work_item_example
 
-Source: [examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item)
+소스 코드: [examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item)
 
-### Description
+### 설명
 
-Example of a simple module running out of a work queue.
+작업 큐에서 실행하는단순 모듈 예제입니다.
 
-### Usage {#work_item_example_usage}
+### 사용법 {#work_item_example_usage}
 
     work_item_example <command> [arguments...]
      Commands:

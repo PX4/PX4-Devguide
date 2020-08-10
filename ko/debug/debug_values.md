@@ -1,27 +1,27 @@
-# Send and Receive Debug Values
+# 디버깅 값 송수신
 
-It is often necessary during software development to output individual important numbers. This is where the generic `NAMED_VALUE_FLOAT`, `DEBUG` and `DEBUG_VECT` packets of MAVLink come in.
+소프트웨어 개발 과정에서 제각각 중요한 숫자 값을 출력할 필요가 종종 있습니다. 이 때가 보통 MAVLink 패킷이 들어올 때 `NAMED_VALUE_FLOAT`, `DEBUG`, `DEBUG_VECT` 패킷을 활용할 수 있는 경우입니다.
 
-## Mapping between MAVLink Debug Messages and uORB Topics
+## MAVLink 디버깅 메시지와 uORB 토픽 대응
 
-MAVLink debug messages are translated to/from uORB topics. In order to send or receive a MAVLink debug message, you have to respectively publish or subscribe to the corresponding topic. Here is a table that summarizes the mapping between MAVLink debug messages and uORB topics:
+MAVLink 디버깅 메시지는 uORB 토픽으로 변환하거나 그 반대로 재변환할 수 있습니다. MAVLink 디버깅 메시지를 송수신하려면, 각각의 해당 토픽을 보내(publish)거나 지속적으로 수신(subscribe)해야합니다. 아래 표를 통해 MAVLink 디버깅 메시지와 uORB 토픽의 대응을 정리해드렸습니다:
 
-| MAVLink message     | uORB topic        |
+| MAVLink 메세지         | uORB 토픽           |
 | ------------------- | ----------------- |
 | NAMED_VALUE_FLOAT | debug_key_value |
 | DEBUG               | debug_value       |
 | DEBUG_VECT          | debug_vect        |
 
-## Tutorial: Send String / Float Pairs
+## 자습서: 문자열 / 부동소숫점 값 보내기
 
-This tutorial shows how to send the MAVLink message `NAMED_VALUE_FLOAT` using the associated uORB topic `debug_key_value`.
+이번 따라하기 절에서는 MAVLink 메세지 `NAMED_VALUE_FLOAT`를 uORB 토픽의 `debug_key_value`로 보내는 방법을 알려드리도록 하겠습니다.
 
-The code for this tutorial is available here:
+이 자습서에 있는 코드는 다음과 같습니다:
 
-* [Debug Tutorial Code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.cpp)
-* [Enable the tutorial app](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake) by ensuring the MAVLink debug app (**px4_mavlink_debug**) is uncommented in the config of your board.
+* [디버깅 자습 코드](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.cpp)
+* MAVLink 디버깅 앱(**px4_mavlink_debug**)에서 보드 설정의 주석을 해제하여 하나하나 확인하는 과정을 통해 [자습서 앱 동작을 활성화](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)합니다.
 
-All required to set up a debug publication is this code snippet. First add the header file:
+디버깅 내용 출력을 설정하는데 필요한 모든 구성은 이 코드 조각에 다 들어있습니다. 우선 헤더 파일을 추가해보도록 하겠습니다:
 
 ```C
 #include <uORB/uORB.h>
@@ -29,7 +29,7 @@ All required to set up a debug publication is this code snippet. First add the h
 #include <string.h>
 ```
 
-Then advertise the debug value topic (one advertisement for different published names is sufficient). Put this in front of your main loop:
+그 다음 디버깅 값 토픽(다른 공개 이름에 대해 한번의 광역 송신으로 충분합니다)을 여러 노드로 보내겠습니다. 이 코드를 메인 루프 앞에 붙여넣으십시오.
 
 ```C
 /* advertise debug value */
@@ -39,24 +39,24 @@ dbg.value = 0.0f;
 orb_advert_t pub_dbg = orb_advertise(ORB_ID(debug_key_value), &dbg);
 ```
 
-And sending in the main loop is even simpler:
+이렇게 하면 메인 루프에서 메시지 전송은 상당히 간단합니다:
 
 ```C
 dbg.value = position[0];
 orb_publish(ORB_ID(debug_key_value), pub_dbg, &dbg);
 ```
 
-> **Caution** Multiple debug messages must have enough time between their respective publishings for Mavlink to process them. This means that either the code must wait between publishing multiple debug messages, or alternate the messages on each function call iteration.
+> **Caution** 다중 디버깅 메시지를 보내서 MAVLink로 처리하는데 충분한 시간을 주어야합니다. 이는 여러 디버깅 메시지를 내보니거나 각 함수 호출 반복간 메시지 전송시 대기 시간을 주어야 한다는 의미입니다.
 
-The result in QGroundControl then looks like this on the real-time plot:
+QGroundControl에서는 아래와 같은 실시간 플롯(2차원 도표)을 보여줍니다:
 
 ![QGC debugvalue plot](../../assets/gcs/qgc-debugval-plot.jpg)
 
-## Tutorial: Receive String / Float Pairs
+## 자습서: 문자열 / 부동소숫점 값 받기
 
-The following code snippets show how to receive the `velx` debug variable that was sent in the previous tutorial.
+다음 코드 부분을 통해 앞선 자습서 내용에서 보낸 `velx` 디버깅 값을 받는 방법을 보여드리겠습니다.
 
-First, subscribe to the topic `debug_key_value`:
+우선 `debug_key_value` 토픽의 지속 수신을 설정(subscribe)하십시오.
 
 ```C
 #include <poll.h>
@@ -66,7 +66,7 @@ int debug_sub_fd = orb_subscribe(ORB_ID(debug_key_value));
 [...]
 ```
 
-Then poll on the topic:
+이후 토픽을 폴링 처리하십시오:
 
 ```C
 [...]
@@ -82,7 +82,7 @@ while (true) {
     [...]
 ```
 
-When a new message is available on the `debug_key_value` topic, do not forget to filter it based on its key attribute in order to discard the messages with key different than `velx`:
+`debug_key_value` 토픽에 새 메시지가 들어가면, `velx`와 다른 값을 지닌 메시지를 무시하기 위해 키 속성을 기반으로 걸러내는 과정으로의 처리를 잊지 마십시오.
 
 ```C
     [...]

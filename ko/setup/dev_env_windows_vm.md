@@ -1,32 +1,32 @@
-# Windows Virtual Machine-Hosted Toolchain
+# 윈도우 가상 머신 제공 툴체인
 
-> **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.
+> **Note** [윈도우 Cygwin 툴체인](../setup/dev_env_windows_cygwin.md)이 윈도우 개발 환경에서 (유일하게) 공식 지원하는 툴체인입니다.
 
-Windows developers can run the PX4 toolchain in a virtual machine (VM) with Linux as the guest operating system. After setting up the virtual machine, the installation and setup of PX4 within the VM is exactly the same as on a native Linux computer.
+윈도우 개발자는 PX4 툴체인을 게스트 운영체제로 설치한 리눅스 가상 머신(VM)에서에서 실행할 수 있습니다. 가상 머신 설치 후, 가상 머신 내의 PX4 설치 및 설정은 리눅스 자체를 설치한 컴퓨터와 동일합니다.
 
-> **Tip** Allocate as many CPU cores and memory resources to the VM as possible.
+> **Tip** 가능하면 가상 머신에 CPU 코어와 메모리를 많이 할당하십시오.
 
-While using a VM is a very easy way to set up and test an environment for building firmware, users should be aware:
+VM을 활용하는 방법이 설치하고 펌웨어 빌드 환경을 시험하기에 가장 쉬운 방버이긴 하나, 사용자 여러분은 다음을 인지하고 있어야 합니다:
 
-1. Firmware building will be slower than native building on Linux.
-2. The JMAVSim frame rate be much slower than on native Linux. In some cases the vehicle may crash due to issues related to insufficient VM resources.
-3. Gazebo and ROS can be installed, but are unusably slow.
+1. 펌웨어 빌드는 리눅스 자체에서 빌드할 때보다 느립니다.
+2. jMAVSim 프레임 재생율은 리눅스 자체에서 재생할 때보다 느립니다. 어떤 경우에는 가상 머신 자원이 부족하여 기체가 멈출 수 있습니다.
+3. 가제보와 ROS를 설치할 수 있습니다만, 도저히 못쓸 만큼 느립니다.
 
-## Instructions
+## 절차
 
-There are multiple ways to setup a VM which is capable of executing the PX4 environment on your system. This guide walks you through a VMWare setup. VMWare performance is acceptable for basic usage (building Firmware) but not for running ROS or Gazebo.
+시스템에 PX4 환경 실행 기능을 심은 VM 환경을 설치하는 방법에는 여러가지가 있습니다. 이 안네서에서는 VMWare 설치 방식으로 진행하도록 하겠습니다. VMWare 성능은 기본 사용(펌웨어 빌드)에 지장이 없지만 ROS나 가제보 실행 용도로는 아닙니다.
 
-1. Download [VMWare Player Freeware](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)
-2. Install it on your Windows system
-3. Download the desired version of [Ubuntu Desktop ISO Image](https://www.ubuntu.com/download/desktop). (see [Linux Instructions Page](../setup/dev_env_linux.md) for recommended Ubuntu version).
-4. Open *VMWare Player* and select the option to create a new virtual machine
-5. In the VM creation wizard choose the downloaded Ubuntu ISO image as your installation medium and will automatically detect the operating system you want to use
-6. Also in the wizard, select the resources you want to allocate to your virtual machine while it is running. Allocate as much memory and as many CPU cores as you can without rendering your host Windows system unusable.
-7. Run your new VM at the end of the wizard and let it install Ubuntu following the setup instructions. Remember all settings are only for within your host operating system usage and hence you can disable any screen saver and local workstation security features which do not increase risk of a network attack.
-8. Once the new VM is booted up make sure you install *VMWare tools drivers and tools extension* inside your guest system. This will enhance performance and usability of your VM usage: 
-    - Significantly enhanced graphics performance
-    - Proper support for hardware device usage like USB port allocation (important for target upload), proper mouse wheel scrolling, sound suppport
-    - Guest display resolution adaption to the window size
-    - Clipboard sharing to host system
-    - File sharing to host system
-9. Continue with [PX4 environment setup for Linux](../setup/dev_env_linux.md)
+1. [VMWare Player Freeware](https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html)를 다운로드하십시오
+2. 윈도우 시스템에 설치하십시오
+3. 원하는 [Ubuntu Desktop ISO Image](https://www.ubuntu.com/download/desktop) 버전을 다운로드하십시오. (우분투 배포판의 추천 버전을 알아보려면 [리눅스 설치 절차 페이지](../setup/dev_env_linux.md)를 살펴보십시오)
+4. *VMWare Player*를 열어 새 가상 머신을 만드는 옵션을 선택하십시오 
+5. 가상 머신 생성 마법사에서 다운로드한 우분투 ISO 이미지를 설치 미디어로 선택하면 설치를 원하는 운영체제를 자동으로 감지합니다.
+6. 또한 마법사 과정을 통해, 가상머신을 실행하는 동안 할당할 자원의 양을 선택하십시오. 최대한 많은 용량의 메모리와 많은 수의 CPU 코어를 할당하고, 사용할 수 없는 호스트 윈도우 시스템 렌더링 기능은 끄십시오.
+7. 마법사 과정이 끝나면 새 가상 머신을 실행하고 다음 설치 절차에 따라 우분투 배포판을 설치하십시오. 모든 설정은 호스트 운영체제내에서만 활용할 설정이기에 화면 보호기와, 네트워크 공갹의 피해 증가를 막는 로컬 워크스테이션 보안 기능은 끄십시오.
+8. 새 가상머신을 부팅하고 나면 *VMWare 도구 드라이버와 도구 확장*을 게스트 운영체제에 설치하였는지 확인하십시오. 이 과정을 거치면 가상머신의 성능을 개선하고 용이성을 확보합니다: 
+    - 그래픽 성능이 두드러지게 개선됨
+    - USB 포트 할당(타겟 업로드에 중요)과 같은 하드웨어 장치의 적절한 지원, 적절한 마우스 휠 스크롤, 음성 출력 기능 지원
+    - 게스트 운영체제 화면 해상도를 창 크기에 맞춤
+    - 호스트 시스템과 클립보드 공유
+    - 호스트 시스템과 파일 공유
+9. [리눅스용 PX4 환경 설정](../setup/dev_env_linux.md)으로 계속 진행하십시오
