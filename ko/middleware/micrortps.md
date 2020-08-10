@@ -216,19 +216,19 @@ ROS Melodic과 ROS2 Dashing(공식 지원)을 Ubuntu 18.04 머신에 설치하�
     sudo apt install python3-colcon-common-extensions
     ```
 
-4. *eigen3_cmake_module* is also required, since Eigen3 is used on the transforms library:
+4. Eigen3를 변환 라이브러리에서 활용하므로 *eigen3_cmake_module* 모듈도 필요합니다:
     
     ```sh
     sudo apt install ros-dashing-eigen3-cmake-module
     ```
 
-5. *setuptools* must also be installed (using *pip* or *apt*):
+5. *setuptools*를 설치해야합니다(*apt* 또는 *apt* 활용):
     
     ```sh
     sudo pip3 install -U setuptools
     ```
     
-    > **Caution** Do not install the `ros1_bridge` package through the deb repository. The package must be built from source.
+    > **Caution** 데비안 저장소에서 `ros1_bridge` 패키지를 설치하지 마십시오. 이 패키지는 소스 코드를 빌드해야합니다.
 
 ### 워크스페이스 세팅하기
 
@@ -270,19 +270,19 @@ ROS와 ROS2가 다른 환경을 필요로 하기 때문에 각 ROS를 위한 워
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
-> **Note** Using the `--verbose` argument will allow you to see the full *colcon* build output.
+> **Note** `--verbose` 인자는 *colcon* 빌드 출력 전체 내용을 보여줍니다.
 > 
-> **Note** The build process will open new tabs on the console, corresponding to different stages of the build process that need to have different environment configurations sourced.
+> **Note** 빌드 과정 도중 다른 환경 설정을 적용해야 하는 각 빌드 과정 단계에 따라 콘솔의 새 탭을 엽니다.
 
 부분적으로 빌드하기 위해서는 아래의 개별적인 스크립트를 쓸 수 있습니다.
 
-* `ros1_bridge`를 빌드 하기 위해서는 `build_ros1_bridge.bash`
-* `build_ros1_workspace.bash` (only on the `ros1` branch of `px4_ros_com`), to build the ROS1 workspace to where the `px4_ros_com` and `px4_msgs` `ros1` branches were cloned;
-* `px4_ros_com` and `px4_msgs` `master`가 클로된 ROS2 워크스페이스를 빌드 하기 위한 `build_ros2_workspace.bash`
+* `ros1_bridge`를 빌드할 `build_ros1_bridge.bash`.
+* `px4_ros_com`과 `px4_msgs`의 `ros1` 브랜치를 가져온 위치에 ROS1 작업 영역을 빌드하는 `build_ros1_workspace.bash`(`px4_ros_com`의 `ros1` 브랜치에만 있음).
+* `px4_ros_com`과 `px4_msgs`의 `master` 브랜치를 가져온 위치에 ROS2 작업 영역을 빌드하는 `build_ros2_workspace.bash`.
 
-아래의 단계들은 어떻게 *수동으로* 패키지를 빌드할지 보여줍니다(더 나은 이해와 정보를 위해 제공함)
+아래 단계는 어떻게 *직접* 패키지를 빌드하는 지 보여줍니다(이해를 돕기위한 용도로만 제공함):
 
-1. `cd`로 `px4_ros_com_ros2` 디렉토리에 들어가고 ROS2 환경설정을 얻으세요. 이전에 바로 전의 워크스페이스가 설정되었다고 나와도 무시하시면 됩니다.
+1. `px4_ros_com_ros2` 디렉터리를 대상으로 `cd` 명령을 실행하고 ROS2 환경에 필요한 모든 설정을 적용(source)하십시오. 이전에 바로 전의 워크스페이스가 설정되었다고 나와도 무시하시면 됩니다.
     
     ```sh
     source /opt/ros/dashing/setup.bash
