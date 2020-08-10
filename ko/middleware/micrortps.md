@@ -206,10 +206,10 @@ $ ./micrortps_agent [options]
 
 > **Note** This install and build guide covers ROS Melodic and ROS2 Dashing (ROS2 Ardent, Bouncy or Crystal are not covered as they are EOL).
 
-In order to install ROS Melodic and ROS2 Dashing (officially supported) on a Ubuntu 18.04 machine, follow the links below, respectively:
+ROS Melodic과 ROS2 Dashing(공식 지원)을 Ubuntu 18.04 머신에 설치하려면 다음 각 링크의 내용을 따르십시오:
 
-1. [ROS Melodic 설치하기](http://wiki.ros.org/melodic/Installation/Ubuntu)
-2. [Install ROS2 Dashing](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/)
+1. [ROS Melodic을 설치하십시오](http://wiki.ros.org/melodic/Installation/Ubuntu)
+2. [ROS2 Dashing을 설치하십시오](https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/)
 3. 이 설치과정은 *colcon* 빌드 툴 설치가 필요할 것 입니다. 설치되지 않으면 수동으로 설치해주세요.
     
     ```sh
@@ -395,14 +395,14 @@ void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
 }
 ```
 
-리눅스에서 어플리케이션을 빌드하고 수행하기 위해서는
+리눅스 어플리케이션을 빌드하고 실행하려면:
 
 ```sh
 make -f makefile_x64Linux2.6gcc
 bin/*/sensor_combined_PublisherSubscriber subscriber
 ```
 
-이제 센서의 정보가 출력되는 것을 볼 수 있어야 합니다.
+이제 센서 정보가 나타나야합니다:
 
 ```sh
 Sample received, count=10119
@@ -420,13 +420,13 @@ baro_alt_meter: 368.647
 baro_temp_celcius: 43.93
 ```
 
-> **Note** If the *Listener application* does not print anything, make sure the *Client* is running.
+> **Note** *감청 어플리케이션*에서 아무 내용도 출력하지 않는다면 *클라이언트*를 실행하고 있는지 확인하십시오.
 
 ## ROS2 리스너 만들기
 
 `px4_ros_com`가 빌드되면, 생성된 *micro-RTPS* 에이전트 앱과 `px4_msgs`로 부터 생성된 ROS2 메시지 헤더, 소스를 사용할 수 있습니다. 대응하는 uORB와 1:1로 매칭됩니다.
 
-ROS2에서 리스너 노드를 만드려면 `px4_ros_com/src/listeners`하위의 `sensor_combined_listener.cpp` 를 참고하세요.
+ROS2에서 감청 노드를 만드려면 `px4_ros_com/src/listeners`의 `sensor_combined_listener.cpp` 를 참고하십시오.
 
 ```c++
 #include <rclcpp/rclcpp.hpp>
@@ -468,7 +468,7 @@ public:
     }
 ```
 
-이 코드는 `sensor_combined` uORB 메세지(DDS 메세지와 유사)를 받았을 때 호출하는 함수를 만듭니다. 이 함수는 메세지를 받을 때바다 메세지 팔드 내용을 출력합니다.
+이 코드는 `sensor_combined` uORB 메세지(DDS 메세지와 유사)를 받았을 때 호출하는 함수를 만듭니다. 이 함수는 메세지를 받을 때마다 메세지 필드 내용을 출력합니다.
 
 ```c++
 private:
@@ -476,7 +476,7 @@ private:
 };
 ```
 
-하나이상의 호환가능한 ROS 퍼블리셔와 연결될 수 있는 `sensor_combined_topic`에 대한 subsciption을 만듭니다.
+위 코드에서는 호환성을 가진 하나 이상의 ROS 송신자에 대응 가능한 `sensor_combined_topic`으로 지속 감청 연결을 만듭니다.
 
 ```c++
 int main(int argc, char *argv[])
