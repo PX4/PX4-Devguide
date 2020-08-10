@@ -491,13 +491,13 @@ int main(int argc, char *argv[])
 }
 ```
 
-ROS 노드로서의 `SensorCombinedListener` 클래스의 초기화는 `main` 함수에서 수행됩니다.
+ROS 노드의 `SensorCombinedListener` 클래스 초기화는 `main` 함수에서 수행합니다.
 
 ## ROS2 Advertise 만들기
 
-ROS2 Advertiser 노드는 데이터를 DDS/RTPS/PX4 네트워크에 퍼블리시합니다.
+ROS2 광역 전달 노드는 DDS/RTPS/PX4 네트워크에 데이터를 내보냅니다.
 
-`px4_ros_com/src/listeners` 하위의 `debug_vect_advertiser.cpp`를 참고하세요.
+`px4_ros_com/src/listeners`의 `debug_vect_advertiser.cpp` 예제를 살펴보겠습니다:
 
 ```c++
 #include <chrono>
@@ -542,7 +542,7 @@ private:
 };
 ```
 
-메시지를 송신할 때 사용할 함수를 만듭니다. 메시지들은 주기적으로 동작하는 콜백함수에 의해 송신됩니다. 타이머를 기준으로 초당 2개의 메시지를 송신합니다.
+메시지를 송신할 때 사용할 함수를 만듭니다. 메시지는 타이머 기반으로 동작하는 콜백 함수에서 초당 2개씩 보냅니다.
 
 ```c++
 int main(int argc, char *argv[])
@@ -557,13 +557,13 @@ int main(int argc, char *argv[])
 }
 ```
 
-ROS 노드로써 `DebugVectAdvertiser` 클래스 초기화는 `main` 함수에서 수행됩니다.
+ROS 노드에서의 `DebugVectAdvertiser` 클래스 초기화는 `main` 함수에서 수행합니다.
 
-## Creating a ROS(1) listener
+## ROS(1) 감청 유닛 만들기
 
-ROS 노드를 만드는 것은 많이 알려져 있고 문서화가 잘 되어있습니다. `sensor_combined` 메시지를 위한 ROS 리스너를 위한 예제가 `ros1` 브랜치에서 `px4_ros_com/src/listeners`에 있습니다.
+ROS 노드 만들기 예제는 많이 알려져 있으며, 문서화가 잘 되어있습니다. `sensor_combined` 메시지를 위한 ROS 리스너를 위한 예제가 `ros1` 브랜치에서 `px4_ros_com/src/listeners`에 있습니다.
 
-## ROS에 독립적인 어플리케이션 예제와 테스트
+## ROS-독립 어플리케이션 예제와 테스트
 
 아래의 예제들은 이 섹션에서 설명한 기능들을 실제로 어떻게 사용하는지에 대한 추가적인 정보를 제공합니다.
 
