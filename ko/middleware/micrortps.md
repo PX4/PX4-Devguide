@@ -186,7 +186,7 @@ $ ./micrortps_agent [options]
 
 *Agent*를 실행하려면 `micrortps_agent`를 *Client*에 연결하기 위한 적절한 옵션을 주어 실행하세요(리눅스 디바이스는 기본적으로 UART 포트를 통해 *Client*에 연결합니다).
 
-하나의 예로, UDP로 연결하는 *micrortps_agent*을 시작하기 위해서는
+예를 들어, UDP로 연결하는 *micrortps_agent*을 시작하려면, 다음 명령을 실행하십시오:
 
 ```sh
 ./micrortps_agent -t UDP
@@ -194,7 +194,7 @@ $ ./micrortps_agent [options]
 
 ## Agent와 ROS2 미들웨어
 
-`px4_ros_com`를 빌드할때 의존성 때문에 에이전트 어플리케이션을 생성하고 빌드합니다, `px4_msgs` 패키지또한 같은 ROS2 워크스페이스나 오버레이한 ROS2 스페이스에 빌드됩니다. [`colcon`](http://design.ros2.org/articles/build_tool.html) 빌드 툴을 사용할때도 설치되기 때문에, 위에 설명한 것과 완벽히 동일하게 동작합니다. 자세한 빌드 구조에 대한 것은 ** `px4_ros_com` 패키지 빌드하기 **를 참고하세요.
+`pxr_ros_com` 빌드 과정에서는 `px4_msgs` 패키지가 동일한 ROS2 작업 공간(또는 다른 ROS2 작업 공간에 놓여)에 빌드 결과물을 두기 때문에 필요에 따라 에이전트 프로그램을 자동으로 만들어 빌드합니다. [`colcon`](http://design.ros2.org/articles/build_tool.html) 빌드 툴을 활용하여 설치하므로 위와 동일한 방식으로도 동작합니다. 자세한 빌드 구조 내용은 **`px4_ros_com` 패키지 빌드**를 참고하십시오. 
 
 ## `px4_ros_com`와 `px4_msgs` 패키지 빌드하기
 
