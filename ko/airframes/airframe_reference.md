@@ -6,6 +6,42 @@
 
 이 페이지에는 지원하는 모든 에어프레임과 모터 할당 및 번호 정보가 들어있습니다. **녹색**의 모터는 시계방향, **청색**의 모터는 반시계 방향으로 회전합니다.
 
+## Airship
+
+### Airship
+
+<div>
+  <img src="../../assets/airframes/types/Airship.svg" width="29%" style="max-height: 180px;" /> 
+  
+  <table style="float: right; width: 70%; font-size:1.5rem;">
+    <colgroup><col></colgroup> <tr>
+      <th>
+        Common Outputs
+      </th>
+    </tr>
+<tr>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: starboard thruster</li><li><b>MAIN2</b>: port thruster</li><li><b>MAIN3</b>: thrust tilt</li><li><b>MAIN4</b>: tail thruster</li></ul></td>
+</tr>
+  </table>
+</div>
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
+  <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
+    <th>
+      Name
+    </th>
+    
+    <th>
+    </th>
+  </tr>
+<tbody>
+<tr id="airship_airship_cloudship">
+ <td style="vertical-align: top;">Cloudship</td>
+ <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 2507</p></td>
+
+</tr>
+</tbody></table>
+
 ## Autogyro
 
 ### Autogyro
