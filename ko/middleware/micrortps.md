@@ -115,25 +115,25 @@ rtps:
 
 > **Note** ROS2 Dashing에서의 API 변경으로 `rosidl_generate_interfaces()` (`px4_msgs`에서의) CMake 모듈을 활용하여 microRTPS 에이전트 생성에 필요한 IDL 파일을 만들 수 있습니다. PX4 펌웨어는 PX4 빌드 과정에서만 활용하는 IDL 파일 생성 과정의 서식이 들어있습니다.
 > 
-> `px4_msgs` 빌드 과정에서는 ROS2/ROS에 활용할 *약간 다른* IDL 파일(PX4 펌웨어 용으로 빌드)을 만듭니다. **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). 새로운 IDL 파일들은 송수신한 메시지들을 다시보냅니다(왜냐하면 클라이언트에서 메시지를 보내고 에이전트 에서 수신하거나 반대의 경우를 위해).
+> `px4_msgs` 빌드 과정에서는 ROS2/ROS에 활용할 *약간 다른* IDL 파일(PX4 펌웨어 용으로 빌드)을 만듭니다. **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). 새 IDL 파일은 송수신한 메세지를 되돌립니다(메시지를 클라이언트에서 보냈을 때, 에이전트에서 보내거나 그 반대의 경우로도 가능하기 때문에 필요).
 
 ## 클라이언트 (PX4 펌웨어) {#client_firmware}
 
-*Client* 소스코드는 일반적인 빌드 과정을 거치면서 생성, 컴파일, 빌드되어 PX4 펌웨어에 포함됩니다.
+*Client* 소스코드는 일반적인 빌드 과정을 거쳐 생성, 컴파일, 빌드하여 PX4 펌웨어에 넣습니다.
 
-NuttX/Pixhawk 비행 컨트롤러의 펌웨어를 빌드하려면 설정 타켓으로 `_rtps`을 사용하세요. 예를 들어, RTPS를 px4_fmu-v4에 빌드하려면
+NuttX/픽스호크 비행체 컨트롤러를 대상으로 펌웨어를 빌드하려면 설정 대상에서 `_rtps` 대상을 사용하십시오. 예를 들어, RTPS를 px4_fmu-v4에 빌드하려면:
 
 ```sh
 make px4_fmu-v4_rtps
 ```
 
-SITL 타켓을 위한 펌웨어를 빌드하려면
+SITL 대상 펌웨어를 빌드하려면:
 
 ```sh
 make px4_sitl_rtps
 ```
 
-*Client* 어플리케이션은 [NuttShell/System Console](../debug/system_console.md)에서 실행할 수 있습니다. 명령어는 아래에 나와있습니다.
+*Client* 어플리케이션은 [NuttShell/System Console](../debug/system_console.md)에서 실행할 수 있습니다. 명령 문법은 다음과 같습니다(여러 인자의 변수 값을 지정할 수 있음):
 
 ```sh
 > micrortps_client start|stop|status [options]
