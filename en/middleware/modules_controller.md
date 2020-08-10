@@ -1,5 +1,30 @@
 # Modules Reference: Controller
 
+## airship_att_control
+Source: [modules/airship_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/airship_att_control)
+
+
+### Description
+This implements the airship attitude and rate controller. Ideally it would
+take attitude setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode
+via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+
+Currently it is feeding the `manual_control_setpoint` topic directly to the actuators.
+
+### Implementation
+To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
+
+
+### Usage {#airship_att_control_usage}
+```
+airship_att_control <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## fw_att_control
 Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
 
