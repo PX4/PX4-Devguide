@@ -337,13 +337,13 @@ $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 ```
 
-## Fast RTPS 리스너 어플리케이션 만들기
+## Fast RTPS 감청 어플리케이션 만들기
 
 한번 *Client* (비행 컨트롤러의) 와 *Agent* (오프보드 컴퓨터의)가 동작하고 연결되기 시작하면, *Fast RTPS* 어플리케이션은 RTPS를 이용하여 uORB 토픽들을 퍼블리시하고 구독할 수 있게 됩니다.
 
-이 예제는 `sensor_combined` 토픽을 구독하고 갱신결과를 출력하는 *Fast RTPS* "리스너" 어플리케이션을 어떻게 만들지 보여줍니다. 연결된 RTPS 어플리케이션은 같은 네트워크내의 어떤 컴퓨터에서는 *Agent*로 동작할 수 있습니다. 이 예제에서는 *Agent* 와 *Listener application*은 동일한 컴퓨터에서 수행됩니다.
+이 예제는 `sensor_combined` 토픽을 구독하고 갱신결과를 출력하는 *Fast RTPS* "리스너" 어플리케이션을 어떻게 만들지 보여줍니다. 연결한 RTPS 어플리케이션은 같은 네트워크내의 어떤 컴퓨터에 대해 *Agent*로 동작할 수 있습니다 이 예제에서 *Agent*와 *Listener application*은 동일한 컴퓨터에서 실행합니다.
 
-*fastrtpsgen* 스크립트는 IDL 메시지 파일을 이용해 간단한 RTPS 어플리케이션을 만드는데 사용됩니다.
+*fastrtpsgen* 스크립트는 IDL 메시지 파일을 이용해 간단한 RTPS 어플리케이션을 만들 때 활용할 수 있습니다.
 
 > **Note** RTPS 메시지는 IDL 파일에 정의해두고 *fastrtpsgen* 명령으로 C++ 언어로 작성한 코드를 컴파일합니다. 브릿지 코드 빌드 과정에서 송수신할 uORB 메세지 파일에 대한 IDL 파일을 만듭니다(**build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl** 참고). PX4와 통신할 *Fast RTPS* 어플리케이션을 만들 때 IDL 파일이 필요합니다.
 
@@ -422,7 +422,7 @@ baro_temp_celcius: 43.93
 
 > **Note** *감청 어플리케이션*에서 아무 내용도 출력하지 않는다면 *클라이언트*를 실행하고 있는지 확인하십시오.
 
-## ROS2 리스너 만들기
+## ROS2 감청 유닛 만들기
 
 `px4_ros_com`가 빌드되면, 생성된 *micro-RTPS* 에이전트 앱과 `px4_msgs`로 부터 생성된 ROS2 메시지 헤더, 소스를 사용할 수 있습니다. 대응하는 uORB와 1:1로 매칭됩니다.
 
@@ -493,7 +493,7 @@ int main(int argc, char *argv[])
 
 ROS 노드의 `SensorCombinedListener` 클래스 초기화는 `main` 함수에서 수행합니다.
 
-## ROS2 Advertise 만들기
+## ROS2 광역 전달 노드 만들기
 
 ROS2 광역 전달 노드는 DDS/RTPS/PX4 네트워크에 데이터를 내보냅니다.
 
@@ -569,17 +569,17 @@ ROS 노드 만들기 예제는 많이 알려져 있으며, 문서화가 잘 되�
 
 * [Throughput test](../middleware/micrortps_throughput_test.md): 브릿지의 처리량을 측적하는 간단한 테스트입니다.
 
-## ROS2/ROS 와 브릿지된 PX4-FastRPTS 테스트하기
+## ROS2/ROS와 브릿징한 PX4-FastRPTS 테스트하기
 
-패키지를 빠르게 테스트하기 위해서 (PX4 SITL와 Gazebo를 사용하세요):
+패키지를 빠르게 테스트하려면 (PX4 SITL와 Gazebo를 사용):
 
-1. PX4 SITL와 Gazebo를 빌드하세요.
+1. PX4 SITL와 가제보를 빌드하십시오
     
     ```sh
     make px4_sitl_rtps gazebo
     ```
 
-2. 하나의 터미널에서 ROS2 환경설정과 워크스페이스를 가져오고 `ros1_bridge` 를 실행하세요(ROS2와 ROS가 서로 통신할 수 있게 합니다). Also set the `ROS_MASTER_URI` where the `roscore` is/will be running:
+2. 하나의 터미널에서 ROS2 환경과 작업 영역의 설정을 가져오고 `ros1_bridge` 를 실행하십시오(ROS2와 ROS가 서로 통신할 수 있게 합니다). 또한 `roscore`를 실행할 위치인 `ROS_MASTER_URI`를 설정하십시오:
     
     ```sh
     $ source /opt/ros/dashing/setup.bash
@@ -650,17 +650,17 @@ ROS 노드 만들기 예제는 많이 알려져 있으며, 문서화가 잘 되�
     $ ros2 launch px4_ros_com sensor_combined_listener.launch.py
     ```
 
-이 작업은 콘솔로 출력되고 있는 데이터를 얻게 됩니다.
+이 작업은 콘솔에 출력 중인 데이터를 가져옵니다.
 
-> **Note** If ones uses the `build_all.bash` script, it automatically open and source all the required terminals so one just has to run the respective apps in each terminal.
+> **Note** 누군가가 `build_all.bash` 스크립트를 사용하면, 필요한 모든 터미널을 자동으로 열고 모든 환경 변수 설정을 적용하여 각 터미널에서 제각각의 앱이 올바른 설정으로 동작하게 합니다.
 
-## 트러블슈팅
+## 문제 해결
 
-### 클라이언트가 선택한 UART 포트를 사용할 수 없다고 할 때
+### 클라이언트에서 선택한 UART 포트가 사용 중이라고 할 경우
 
 만약 선택한 UART 포트가 사용할 수 없는 상태이면, MAVLink 어플리케이션이 이미 실행중일 가능성이 있습니다. MAVLink와 RTPS 연결을 모두 필요로 하다면 다른 포트를 사용하도록 하거나 포트를 공유할 수 있도록 설정해야 합니다. <!-- https://github.com/PX4/Devguide/issues/233 -->
 
-> **Tip** A quick/temporary fix to allow bridge testing during development is to stop MAVLink from *NuttShell*: 
+> **Tip** 개발 과정에서 브릿지 시험을 허용하도록 재빠르게 임시로 조치하는 방법은 *NuttShell*에서 MAVLink를 중단하는 방법입니다: 
 > 
 >     sh
 >       mavlink stop-all
@@ -677,7 +677,7 @@ ROS 노드 만들기 예제는 많이 알려져 있으며, 문서화가 잘 되�
 export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 ```
 
-> **Note** This should not be a problem if [Fast RTPS is installed in the default location](../setup/fast-rtps-installation.md).
+> **Note** [Fast RTPS 를 기본 경로에 설치](../setup/fast-rtps-installation.md)했다면 문제가 나타나지 않아야합니다.
 
 ### OBC(온보드 컴퓨터)에서 UART 활성화하기
 
@@ -710,8 +710,8 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
     enable_uart=1
     ```
 
-## 추가적인 정보
+## 추가 정보
 
 * [Fast RTPS 설치](../setup/fast-rtps-installation.md)
-* [직접 Client와 Agent 코드 생성하기](micrortps_manual_code_generation.md)
+* [Client와 Agent 코드 직접 생성](micrortps_manual_code_generation.md)
 * [DDS와 ROS 미들웨어 구현](https://github.com/ros2/ros2/wiki/DDS-and-ROS-middleware-implementations)
