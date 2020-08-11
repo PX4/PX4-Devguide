@@ -42,27 +42,27 @@
 1. **Firmware** 펌웨어 폴더를 가리키고 이름을 지정한 후 *Toolchain for Indexer Settings*의 *ARM 교차 GCC*를 선택하고 **Finish**를 누르십시오. 상당한 시간동안 가져옵니다. 끝날 때까지 기다리십시오.
 1. MCU 설정을 맞추십시오: Project Explorer에서 상위레벨 프로젝트에 커서를 둔 후 오른쪽 단추를 눌러 *Properties*를 선택, MCU 하위 항목 중 *SEGGER J-Link Path*를 선택하십시오. 아래 화면 촬영 그림처럼 설정하십시오. ![Eclipse: Segger J-Link Path](../../assets/debug/eclipse_segger_jlink_path.png)
 1. 패키지를 업데이트하십시오:
-   - 우측 상단의 작은 *Open Perspective* 아이콘을 눌러 *Packs* 감시 창을 여십시오. ![Eclipse: Workspace](../../assets/debug/eclipse_workspace_perspective.png)
+   - 우측 상단의 작은 *Open Perspective* 아이콘을 눌러 *Packs* 감시 창을 여십시오. ![Eclipse: 작업 영역](../../assets/debug/eclipse_workspace_perspective.png)
    - **update all** 단추를 누르십시오.
 
      > **Tip** 매우 오랜 시간이 걸립니다(10분). 화면에 뜨는 모든 빠진 패키지 오류는 무시하십시오.
 
-     ![Eclipse: Workspace Packs Perspective](../../assets/debug/eclipse_packs_perspective.jpg)
+     ![Eclipse: 작업 영역 패키지 관점](../../assets/debug/eclipse_packs_perspective.jpg)
    - STM32Fxx 장치는 Keil 폴더에 있습니다. F4와 F7 장비의 드라이버에 마우스 커서를 둔 후 오른쪽 단추를 눌러 **설치**하십시오.
 1. 대상에 대한 디버깅 설정을 진행하십시오:
    - 프로젝트 항목에 커서를 두어 오른쪽 단추를 누른 후 *설정*을 여십시오(메뉴:  **C/C++ Build > Settings**)
    - *Devices* 탭을 선택 후, *Devices* 섹션에 진입하십시오(*Boards*아님).
    - 디버깅할 FMU 칩을 찾으십시오.
 
-   ![Eclipse: Select FMU in settings](../../assets/debug/eclipse_settings_devices_fmu.png)
+   ![Eclipse: 설정에서 FMU 선택](../../assets/debug/eclipse_settings_devices_fmu.png)
 1. 버그 심볼 옆의 작은 드롭다운 유닛으로 디버깅 설정을 선택하십시오:![Eclipse: 디버깅 설정](../../assets/debug/eclipse_settings_debug_config.png)
 1. 그런 다음  *GDB SEGGER J-Link Debugging*을 선택하고 좌측 상단에서 **New config** 단추를 누르십시오. ![Eclipse: GDB Segger 디버깅 설정](../../assets/debug/eclipse_settings_debug_config_gdb_segger.png)
 1. 빌드 값을 설정하십시오:
    - 이름을 지정하고 *C/C++ Application*을 해당 **.elf** 파일로 설정하십시오.
-   - Choose *Disable Auto build* > **Note** Remember that you must build the target from the command line before starting a debug session.
+   - *Disable Auto build*를 선택하십시오 > **Note** 디버깅 세션을 시작하기 전 명령행에서 대상을 빌드해야 함을 기억하십시오.
 
    ![Eclipse: GDB Segger 디버깅 설정](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config.png)
-1. The *Debugger* and *Startup* tabs shouldn’t need any modifications (just verify your settings with the screenshots below)
+1. *Debugger*와 *Startup* 탭은 따로 수정하지 않아도 됩니다(아래 화면 그림과 같이 설정했는지만 확인하십시오)
 
    ![Eclipse: GDB Segger 디버깅 설정: 디버거 탭](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config_debugger_tab.png) ![Eclipse: GDB Segger 디버깅 설정: 시작 탭](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config_startup_tab.png)
 
