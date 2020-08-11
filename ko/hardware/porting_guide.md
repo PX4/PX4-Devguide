@@ -27,30 +27,30 @@ This section describes the purpose and location of the configuration files requi
 
 ### NuttX
 
-See [NuttX Board Porting Guide](porting_guide_nuttx.md).
+[NuttX 보드 포팅 안내](porting_guide_nuttx.md)를 살펴보십시오. 
 
 ### Linux
 
-Linux boards do not include the OS and kernel configuration. These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
+리눅스 보드에는 운영체제와 커널 설정이 들어있지 않습니다. 해당 보드에 맞는 리눅스 이미지를 이미 제공하고 있습니다(관성 센서 별도 지원에 필요함).
 
-* [boards/px4/raspberrypi/default.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/raspberrypi/default.cmake) - RPI cross-compilation. 
+* [boards/px4/raspberrypi/default.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/raspberrypi/default.cmake) - RPI 교차 컴파일. 
 
-## Middleware Components and Configuration
+## 미들웨어 요소와 설정
 
-This section describes the various middleware components, and the configuration file updates needed to port them to new flight controller hardware.
+이 절에서는 다양한 미들웨어 요소와 새 비행체 조종 하드웨어에 이식할 설정 파일 업데이트를 설명합니다.
 
 ### QuRT / Hexagon
 
-* The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/posix-configs).
-* The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions).
-* The PX4 middleware configuration is located in [src/boards](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/boards). TODO: ADD BUS CONFIG 
-* Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
+* 시작 스크립트는 [posix-configs/](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/posix-configs) 경로에 있습니다.
+* 운영체제 설정은 기본 리눅스 이미지의 일부입니다 (처리할 일: 리눅스 이미지 위치와 플래싱 방법 안내).
+* PX4 미들웨어 설정은 [src/boards](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/boards)에 있습니다. (처리할 일: 버스 설정 내용 추가) 
+* 참고 설정: `make eagle_default`를 실행하면 스냅드래곤 플라이트 참조 설정을 빌드합니다.
 
-## RC UART Wiring Recommendations
+## 원격 조종 UART 연결 추천
 
 It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. This is done via board config and manifest files. One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/src/manifest.c).
 
-## Officially Supported Hardware
+## 공식 지원 하드웨어
 
 The PX4 project supports and maintains the [FMU standard reference hardware](../hardware/reference_design.md) and any boards that are compatible with the standard. This includes the [Pixhawk-series](https://docs.px4.io/master/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/master/en/flight_controller/)).
 
@@ -80,11 +80,11 @@ If you want to have your board officially supported in PX4:
 
 You can reach out to the core developer team and community on the official [Forums and Chat](../README.md#support).
 
-## Related Information
+## 관련 정보
 
-* [Device Drivers](../middleware/drivers.md) - How to support new peripheral hardware (device drivers)
-* [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
-* Supported Flight Controllers: 
-  * [Autopilot Hardware](https://docs.px4.io/master/en/flight_controller/) (PX4 User Guide)
-  * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
-* [Supported Peripherals](https://docs.px4.io/master/en/peripherals/) (PX4 User Guide)
+* [장치 드라이버](../middleware/drivers.md) - 새 주변기기 하드웨어 (장치 드라이버) 지원 방법
+* [코드 빌드](../setup/building_px4.md) - 펌웨어 소스 코드 빌드 및 업로드 방법 
+* 지원 비행 조종기: 
+  * [오토파일럿 하드웨어](https://docs.px4.io/master/en/flight_controller/) (PX4 사용자 안내서)
+  * [지원 보드 목록](https://github.com/PX4/Firmware/#supported-hardware) (Github)
+* [지원 주변기기](https://docs.px4.io/master/en/peripherals/) (PX4 사용자 안내서)
