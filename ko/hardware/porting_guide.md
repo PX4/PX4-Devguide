@@ -1,4 +1,4 @@
-# 비행체 조종기 이식 안내
+# 비행체 조종 장치 이식 안내
 
 이 주제에서는 *새* 비행체 조종 하드웨어가 PX4와 동작하도록 하려는 개발자에 해당하는 내용을 다룹니다.
 
@@ -8,7 +8,7 @@ PX4는 두개의 주요 계층으로 이루어져있습니다. 호스트 운영�
 
 This guide is focused only on the host OS and middleware as the applications/flight stack will run on any board target.
 
-## Flight Controller Configuration File Layout
+## 비행체 조종 장치 설정 파일 구조
 
 Board startup and configuration files are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in each board's vendor-specific directory (i.e. **boards/*VENDOR*/*MODEL*/**)).
 
@@ -21,9 +21,9 @@ For example, for FMUv5:
   * The file is used to start sensors (and other things) that only exist on a particular board. It may also be used to set a board's default parameters, UART mappings, and any other special cases.
   * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF. 
 
-## Host Operating System Configuration
+## 호스트 운영체제 설정
 
-This section describes the purpose and location of the configuration files required for each supported host operating system to port them to new flight controller hardware.
+이 절에서는 각 지원 운영체제를 새 비행체 조종 하드웨어에 이식할 목적으로 필요한 설정 파일의 목적과 위치를 설명합니다.
 
 ### NuttX
 
@@ -48,7 +48,7 @@ This section describes the purpose and location of the configuration files requi
 
 ## 원격 조종 UART 연결 추천
 
-It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. This is done via board config and manifest files. One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/src/manifest.c).
+보통 원격 조종 장치를 연결하는 추천 방법은 마이크로 컨트롤러로의 RX 핀과 TX 핀 개별 연결 방식입니다. RX와 TX를 함께 연결하면 UART 통신 방식상 경합 현상을 피하기 위해 단일 회선 모드로 설정해야합니다. 이 문제는 보드와 mainfest 파일의 설정으로 해결할 수 있습니다. 예를 하나 들자면 [px4fmu-v5](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/src/manifest.c)가 있습니다.
 
 ## 공식 지원 하드웨어
 
