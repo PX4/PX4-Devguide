@@ -49,16 +49,16 @@
 
      ![Eclipse: Workspace Packs Perspective](../../assets/debug/eclipse_packs_perspective.jpg)
    - STM32Fxx 장치는 Keil 폴더에 있습니다. F4와 F7 장비의 드라이버에 마우스 커서를 둔 후 오른쪽 단추를 눌러 **설치**하십시오.
-1. Setup debug configuration for target:
-   - Right click project and open the *Settings* (menu: **C/C++ Build > Settings**)
-   - Choose the *Devices* Tab, *Devices* section (Not *Boards*).
-   - Find the FMU chip you wish to debug.
+1. 대상에 대한 디버깅 설정을 진행하십시오:
+   - 프로젝트 항목에 커서를 두어 오른쪽 단추를 누른 후 *설정*을 여십시오(메뉴:  **C/C++ Build > Settings**)
+   - *Devices* 탭을 선택 후, *Devices* 섹션에 진입하십시오(*Boards*아님).
+   - 디버깅할 FMU 칩을 찾으십시오.
 
    ![Eclipse: Select FMU in settings](../../assets/debug/eclipse_settings_devices_fmu.png)
-1. Select debug configurations with the small drop-down next to the bug symbol: ![Eclipse: 디버깅 설정](../../assets/debug/eclipse_settings_debug_config.png)
-1. Then select *GDB SEGGER J-Link Debugging* and then the **New config** button on the top left. ![Eclipse: GDB Segger 디버깅 설정](../../assets/debug/eclipse_settings_debug_config_gdb_segger.png)
-1. Setup build config:
-   - Give it a name and set  the *C/C++ Application* to the corresponding **.elf** file.
+1. 버그 심볼 옆의 작은 드롭다운 유닛으로 디버깅 설정을 선택하십시오:![Eclipse: 디버깅 설정](../../assets/debug/eclipse_settings_debug_config.png)
+1. 그런 다음  *GDB SEGGER J-Link Debugging*을 선택하고 좌측 상단에서 **New config** 단추를 누르십시오. ![Eclipse: GDB Segger 디버깅 설정](../../assets/debug/eclipse_settings_debug_config_gdb_segger.png)
+1. 빌드 값을 설정하십시오:
+   - 이름을 지정하고 *C/C++ Application*을 해당 **.elf** 파일로 설정하십시오.
    - Choose *Disable Auto build* > **Note** Remember that you must build the target from the command line before starting a debug session.
 
    ![Eclipse: GDB Segger 디버깅 설정](../../assets/debug/eclipse_settings_debug_config_gdb_segger_build_config.png)
