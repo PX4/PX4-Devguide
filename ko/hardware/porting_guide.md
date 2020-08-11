@@ -4,7 +4,7 @@
 
 ## PX4 구조
 
-PX4는 두개의 주요 계층으로 이루어져있습니다. 호스트 운영체제(NuttX, Linux 또는 Mac OS 유사 POSIX 계열 플랫폼)와 프로그램([src/modules](https://github.com/PX4/Firmware/tree/master/src/modules)의 플라이트 스택) 상단의 [보드 지원 계층과 미들웨어 계층입니다.](../middleware/README.md) Please reference the [PX4 Architectural Overview](../concept/architecture.md) for more information.
+PX4는 두개의 주요 계층으로 이루어져있습니다. 호스트 운영체제(NuttX, Linux 또는 Mac OS 유사 POSIX 계열 플랫폼)와 프로그램([src/modules](https://github.com/PX4/Firmware/tree/master/src/modules)의 플라이트 스택) 상단의 [보드 지원 계층과 미들웨어 계층입니다.](../middleware/README.md) 자세한 내용은 [PX4 구조 개요](../concept/architecture.md)를 참고하십시오.
 
 This guide is focused only on the host OS and middleware as the applications/flight stack will run on any board target.
 
