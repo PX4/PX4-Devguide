@@ -23,15 +23,15 @@ Most standard telemetry links like 3DR/SiK radios are **not** suitable for high-
 
 그러나 외부 방향 추정시, 자북은 무시하고 가상 세계 *X* 좌표 축을 따라 벡터 기준을 삼습니다(움직임 촬영 기법으로 보정할 때 언제든 자유롭게 둘 수 있습니다), 방위각면이 로컬 *x* 좌표를 두는 면입니다.
 
-> **Warning** When creating the rigid body in the motion capture software, remember to first align the robot with the world **X** axis otherwise yaw estimation will have an initial offset.
+> **Warning** 움직임을 촬영하는 프로그램에서 강체를 만들 때, 세계 **X** 좌표 축에 로봇을 우선 맞춰야 함을 기억하십시오. 그렇지 않으면 방위 회전각 추정시 초기 오프셋으로 처리합니다.
 
-## Estimator choice
+## 추정자 선택
 
-### LPE and Attitude Estimator Q
+### LPE와 고도 추정자 Q
 
 ### EKF2
 
-움직임 촬영 기법에 있어 mocap 시스템에선 `mocap_pose_estimate`을 시각 정보 처리에는 `vision_pose_estimate`를 ROS 토픽 메시지로 다룹니다. Check [mavros_extras](http://wiki.ros.org/mavros_extras) for further info.
+움직임 촬영 기법에 있어 mocap 시스템에선 `mocap_pose_estimate`을 시각 정보 처리에는 `vision_pose_estimate`를 ROS 토픽 메시지로 다룹니다. 더 자세한 정보는 [mavros_extras](http://wiki.ros.org/mavros_extras)를 확인하십시오.
 
 ## 시험
 
