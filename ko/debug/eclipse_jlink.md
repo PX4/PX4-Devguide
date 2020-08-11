@@ -48,7 +48,7 @@
      > **Tip** 매우 오랜 시간이 걸립니다(10분). 화면에 뜨는 모든 빠진 패키지 오류는 무시하십시오.
 
      ![Eclipse: Workspace Packs Perspective](../../assets/debug/eclipse_packs_perspective.jpg)
-   - The STM32Fxx devices are found in the Keil folder, install by right-clicking and then selecting **install** on the according device for F4 and F7.
+   - STM32Fxx 장치는 Keil 폴더에 있습니다. F4와 F7 장비의 드라이버에 마우스 커서를 둔 후 오른쪽 단추를 눌러 **설치**하십시오.
 1. Setup debug configuration for target:
    - Right click project and open the *Settings* (menu: **C/C++ Build > Settings**)
    - Choose the *Devices* Tab, *Devices* section (Not *Boards*).
