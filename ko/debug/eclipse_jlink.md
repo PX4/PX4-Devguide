@@ -76,7 +76,7 @@
 > **Tip** 보통 일어나서는 안될 일입니다(만, STM F7 컨트롤러 연결에 대해 보고가 들어온 적이 있습니다).
 
 *주변 장치 보기*에서 빠진 SVD 파일을 추가하려면:
-1. Find out where MCU Eclipse stores its packages (**Preferences > C/C++ > MCU Packages**): ![Eclipse: MCU 패키지](../../assets/debug/eclipse_mcu_packages.png)
-2. Download missing packages from: http://www.keil.com/dd2/Pack/
-3. Open downloaded pack with a decompression tool, and extract the **.SVD** files from: **/CMSIS/SVD**.
-4. Select desired **.SVD** file in: **Debug Options > GDB SEGGER JLink Debugging > SVD Path** ![Eclipse: SVD 파일 경로](../../assets/debug/eclipse_svd_file_path.png)
+1. MCU Eclipse 스토어에서 패키지를 찾으십시오(**Preferences > C/C++ > MCU Packages**): ![Eclipse: MCU 패키지](../../assets/debug/eclipse_mcu_packages.png)
+2. http://www.keil.com/dd2/Pack/ 에서 빠진 패키지를 다운로드하십시오
+3. 압축 해제 도구로 다운로드한 팩을 여시고, **/CMSIS/SVD**의 **.SVD** 파일의 압축을 푸십시오.
+4. **Debug Options > GDB SEGGER JLink Debugging > SVD Path**에서 원하는 **.SVD** 파일을 여십시오. ![Eclipse: SVD 파일 경로](../../assets/debug/eclipse_svd_file_path.png)
