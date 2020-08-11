@@ -1,86 +1,72 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/middleware/drivers.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# 驱动开发
 
-# 驱动框架
+PX4 device drivers are based on the [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) framework.
 
+## 创建驱动程序
 
-PX4的代码库使用一个轻量级的，统一的驱动抽象层：[DriverFramework](https://github.com/px4/DriverFramework). 
-POSIX和 [QuRT](https://en.wikipedia.org/wiki/Qualcomm_Hexagon)的驱动写入这个驱动框架当中。
+PX4 almost exclusively consumes data from [uORB](../middleware/uorb.md). Drivers for common peripheral types must publish the correct uORB messages (for example: gyro, accelerometer, pressure sensors, etc.).
 
-> **Todo** 旧的NuttX驱动是基于[设备](https://github.com/PX4/Firmware/tree/master/src/drivers/device) 架构的，以后将会移植到驱动框架之中。
+The best approach for creating a new driver is to start with a similar driver as a template (see [src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)).
 
+> **Tip** More detailed information about working with specific I/O busses and sensors may be available in [Sensor and Actuator Buses](../sensor_bus/README.md) section.
+
+<span></span>
+
+> **Note** Publishing the correct uORB topics is the only pattern that drivers *must* follow.
 
 ## 核心架构
-PX4 是一个反应式系统[reactive system](../concept/architecture.md) ，使用订阅/发布来传递消息。文件句柄是不被操作系统的核心所需要或者使用。主要使用了以下两个API：
 
-- 发布/订阅系统，该系统拥有一个文件，网络或者共享内存，其依靠于PX4后台运行。
-- 全局驱动注册器，它允许枚举设备和获取/设置这些设备参数。这个可以很简单的作为一个链表或者文件系统地图。
+PX4 is a [reactive system](../concept/architecture.md) and uses [uORB](../middleware/uorb.md) publish/subscribe to transport messages. File handles are not required or used for the core operation of the system. Two main APIs are used:
 
-## 一个新的平台
-### NuttX
-- 启动脚本位于[ROMFS/px4fmu_common](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common)
-- 系统配置文件位于[nuttx-configs](https://github.com/PX4/Firmware/tree/master/nuttx-configs). 作为应用的一部分被构建并被操作系统加载。
-- PX4中间件配置位于[src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards).其中包括总线和GPIO映射还有硬件平台初始化代码。
-- 驱动位于[src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers)
-- 参考配置:运行使px4fmu-v4_default构建FMUv4配置,这是当前NuttX参考配置。
+* Publish / subscribe 系统具有文件、网络或共享内存后端，具体取决于系统 PX4 运行。
+* 全局设备注册表，可用于枚举设备并获取其配置。 这可以像链接列表或映射到文件系统一样简单。
 
-### QuRT / Hexagon
-- 启动脚本位于 [posix-configs/](https://github.com/PX4/Firmware/tree/master/posix-configs)
-- 系统配置文件模式作为Linux映射的一部分（备注：提供 本地的LINUX IMAGE和flash指令）
-- PX4中间件配置位于[src/drivers/boards](https://github.com/PX4/Firmware/tree/master/src/drivers/boards)。备注：增加总线配置。
-- 驱动位于[DriverFramework](https://github.com/px4/DriverFramework)
-- 参考配置：运行'make qurt_eagle_release'构建Snapdragon飞行参考配置。
+## 设备ID
 
+PX4 uses device IDs to identify individual sensors consistently across the system. These IDs are stored in the configuration parameters and used to match sensor calibration values, as well as to determine which sensor is logged to which logfile entry.
 
-## 驱动ID
-PX4使用驱动ID将独立传感器贯穿于整个系统。这些ID存储于配置参数中，用于匹配传感器校正值，以及决定哪些传感器被记录到log中。
+The order of sensors (e.g. if there is a `/dev/mag0` and an alternate `/dev/mag1`) does not determine priority - the priority is instead stored as part of the published uORB topic.
 
-传感器的顺序（例如一个是`/dev/mag0`，另一个是`/dev/mag1`）于优先级是不挂钩的，优先级实际是在发布uORB topic时确定的。
+### 解码示例
 
-### 举个例子
+For the example of three magnetometers on a system, use the flight log (.px4log) to dump the parameters. The three parameters encode the sensor IDs and `MAG_PRIME` identifies which magnetometer is selected as the primary sensor. Each MAGx_ID is a 24bit number and should be padded left with zeros for manual decoding.
 
-有关系统上三个磁力计的示例，使用飞行日志（.px4log）转存变量。三个参数对传感器ID进行编码，MAG_PRIME识别哪个磁力计被选为主传感器。每一个MAGx_ID是一个24bit数值，左面手工填零补充。
+    CAL_MAG0_ID = 73225.0
+    CAL_MAG1_ID = 66826.0
+    CAL_MAG2_ID = 263178.0
+    CAL_MAG_PRIME = 73225.0
+    
 
-```
-CAL_MAG0_ID = 73225.0
-CAL_MAG1_ID = 66826.0
-CAL_MAG2_ID = 263178.0
-CAL_MAG_PRIME = 73225.0
-```
-通过I2C连接的外部HMC5983，总线1，地址0x1E：在log中以`IMU.MagX`显示。
+This is the external HMC5983 connected via I2C, bus 1 at address `0x1E`: It will show up in the log file as `IMU.MagX`.
 
-```
-# device ID 73225 in 24-bit binary:
-00000001  00011110  00001 001
+    # device ID 73225 in 24-bit binary:
+    00000001  00011110  00001 001
+    
+    # decodes to:
+    HMC5883   0x1E    bus 1 I2C
+    
 
-# decodes to:
-HMC5883   0x1E    bus 1 I2C
-```
+This is the internal HMC5983 connected via SPI, bus 1, slave select slot 5. It will show up in the log file as `IMU1.MagX`.
 
-通过SPI连接的内部HMC5983，总线1，选择slot5。在log中以`IMU1.MagX`显示。
+    # device ID 66826 in 24-bit binary:
+    00000001  00000101  00001 010
+    
+    # decodes to:
+    HMC5883   dev 5   bus 1 SPI
+    
 
-```
-# device ID 66826 in 24-bit binary:
-00000001  00000101  00001 010
+And this is the internal MPU9250 magnetometer connected via SPI, bus 1, slave select slot 4. It will show up in the log file as `IMU2.MagX`.
 
-# decodes to:
-HMC5883   dev 5   bus 1 SPI
-```
+    # device ID 263178 in 24-bit binary:
+    00000100  00000100  00001 010
+    
+    #decodes to:
+    MPU9250   dev 4   bus 1 SPI
+    
 
-以及通过SPI总线连接的内部MPU9250磁力计，总线1，从设备选择slot4。在log中以`IMU2.MagX`显示。
+### 设备 ID 编码
 
-```
-# device ID 263178 in 24-bit binary:
-00000100  00000100  00001 010
-
-#decodes to:
-MPU9250   dev 4   bus 1 SPI
-```
-
-### 设备ID编码
-根据此格式，设备ID是一个24位的数字。注意，第一字段是上述解码示例中的最低有效位。
+The device ID is a 24bit number according to this format. Note that the first fields are the least significant bits in the decoding example above.
 
 ```C
 struct DeviceStructure {
@@ -90,7 +76,8 @@ struct DeviceStructure {
   uint8_t devtype;   // device class specific device type
 };
 ```
-这里`bus_type` 按以下方式解码：
+
+The `bus_type` is decoded according to:
 
 ```C
 enum DeviceBusType {
@@ -101,7 +88,7 @@ enum DeviceBusType {
 };
 ```
 
-`devtype` 按以下方式解码：
+and `devtype` is decoded according to:
 
 ```C
 #define DRV_MAG_DEVTYPE_HMC5883  0x01
@@ -121,3 +108,33 @@ enum DeviceBusType {
 #define DRV_RNG_DEVTYPE_MB12XX   0x31
 #define DRV_RNG_DEVTYPE_LL40LS   0x32
 ```
+
+## Debugging
+
+For general debugging topics see: [Debugging/Logging](../debug/README.md).
+
+### Verbose Logging
+
+Drivers (and other modules) output minimally verbose logs strings by default (e.g. for `PX4_DEBUG`, `PX4_WARN`, `PX4_ERR`, etc.).
+
+Log verbosity is defined at build time using the `RELEASE_BUILD` (default), `DEBUG_BUILD` (verbose) or `TRACE_BUILD` (extremely verbose) macros.
+
+Change the logging level using `COMPILE_FLAGS` in the driver `px4_add_module` function (**CMakeLists.txt**). The code fragment below shows the required change to enable DEBUG_BUILD level debugging for a single module or driver.
+
+    px4_add_module(
+        MODULE templates__module
+        MAIN module
+    
+
+        COMPILE_FLAGS
+            -DDEBUG_BUILD
+    
+
+        SRCS
+            module.cpp
+        DEPENDS
+            modules__uORB
+        )
+    
+
+> **Tip** Verbose logging can also be enabled on a per-file basis, by adding `#define DEBUG_BUILD` at the very top of a .cpp file (before any includes).

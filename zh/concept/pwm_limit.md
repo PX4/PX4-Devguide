@@ -1,34 +1,26 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/concept/pwm_limit.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# PWM_limit 状态机
 
-# PWM_limit状态机
+[PWM_limit 状态机] 以锁定（pre-armed）和解锁（armed）模式作为功能函数的输入量对飞控的 PWM 输出进行控制， 并且会在解锁指令发出后、飞机油门增加之前引入一个延时。
 
-PWM_limit 状态机根据解锁前和解锁后的输入控制PWM输出。并在”解锁“、油门加速和解锁信号的断言之间提供延迟。
-
-
-
-## 快速概要
+## 总览
 
 **输入**
 
-* armed: 置1使能诸如旋转螺旋桨的危险行为。
-* pre-armed: 置1使能诸如移动控制面的良性行为。
-  * 这个输入覆盖当前状态。
-  * pre-aremd置1无视当前状态，立即强制转移到状态ON，值0则回复到当前状态。
-
+- 解锁（armed）模式：宣告允许执行危险的动作指令，如转动螺旋桨。
+- 锁定（pre-armed）模式：宣告允许执行温和的动作指令，如移动控制舵面。 
+    - 该输入会覆盖当前状态。
+    - 激活 锁定（pre-armed）模式后无论飞控当前处于什么状态，飞控都会立刻终止状态 ON 的运转。
+    - 取消 锁定（pre-armed）模式会使飞控返回到当前状态。
 
 **状态**
 
-* INIT和OFF
-  * pwm输出值设定为未解锁值。
-
-* RAMP
-  * pwm输出值从未解锁值上升到最小值。
-
-* ON
-  * pwm输出值根据控制量设定。
+- INIT 和 OFF 
+    - pwm 输出设置为锁定状态的值。
+- RAMP 
+    - pwm 输出从锁定状态的值上升到解锁状态的最小值。
+- ON 
+    - 根据实际控制量设定 pwm 的输出值。
 
 ## 状态转移图
+
 ![](../../assets/diagrams/pwm_limit_state_diagram.png)

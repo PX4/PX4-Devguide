@@ -1,63 +1,56 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/middleware/uorb.md
-translated_sha: 18f5865bf5265934136cf5d18f838203c3db2100
----
-
-# uORB消息机制
+# uORB 消息
 
 ## 简介
 
-uORB是一种用于线程间/进程间进行异步发布-订阅的消息机制的应用程序接口（API）。
+The uORB is an asynchronous `publish()` / `subscribe()` messaging API used for inter-thread/inter-process communication.
 
-在[这个教程](../tutorials/tutorial_hello_sky.md)中可以学习通过C++如何使用uORB。
+查看 [教程](../apps/hello_sky.md) 以了解如何在 C++ 中使用它。
 
-由于很多应用都是基于uORB的，因此在系统刚启动时uORB就自动运行了。uORB通过`uorb start`启动。可以使用`uorb test`进行单位测试。
+uORB 会在启动时自动启动，因为许多应用程序都依赖于它。 它以 `uorb start</0 > 开头。 单元测试可以从 <code>uorb_tests` 开始。
 
-## 添加新的话题(topic)
+## 添加新 Topic（主题）
 
-要想增加新的topic，你需要在`msg/`目录下创建一个新的`.msg` 文件，并在`msg/CMakeLists.txt`下添加该文件名。这样会自动生成所需的C / C ++代码
+New uORB topics can be added either within the main PX4/Firmware repository, or can be added in an out-of-tree message definitions. For information on adding out-of-tree uORB message definitions, please see [this section](../advanced/out_of_tree_modules.md#uorb_message_definitions).
 
-可以先看看现有的`msg`文件所支持的类型。一个消息也可以嵌套在其他消息当中。
+To add a new topic, you need to create a new **.msg** file in the `msg/` directory and add the file name to the `msg/CMakeLists.txt` list. From this, the needed C/C++ code is automatically generated.
 
-每一个生成的C/C++结构体中，需要添加一个`uint64_t timestamp` 时间戳字段。该字段用于记录器（logger），因此确保在发布消息时一定要添加它。
+查看支持类型的现有 `msg` 文件。 A message can also be used nested in other messages.
 
-为了在代码中使用"topic"，需要添加头文件:
+对于每个生成的 C/C + 结构，将添加一个字段 `uint64_t timestamp `。 This is used for the logger, so make sure to fill it in when publishing the message.
 
-```
-#include <uORB/topics/topic_name.h>
-```
+若要在代码中使用该主题，请包括头文件：
 
-通过在`.msg`文件中，添加类似如下的一行代码,一个消息定义就可以用于多个独立的topic中：
+    #include <uORB/topics/topic_name.h>
+    
 
-```
-# TOPICS mission offboard_mission onboard_mission
-```
+By adding a line like the following in the `.msg` file, a single message definition can be used for multiple independent topics:
 
-> 【按】这里这一步将产生三个topic ID- mission、 offboard_mission 以及 onboard_mission (第一个ID务必与.msg文件名相同)
+    # TOPICS mission offboard_mission onboard_mission
+    
 
-然后在代码中, 通过topic ID:`ORB_ID(offboard_mission)`来使用这个topic.
+然后在代码中，将它们用作主题 id: `ORB_ID(offboard_mission)`。
 
-## 发布话题 
+## 发布
 
-在系统的任何地方都可以发布（publish）一个话题, 包括在中断上下文中(被`hrt_call`接口调用的函数). 但是, 公告(advertise)一个话题仅限于在中断上下文之外. 一个话题必须同它随后发布的同一进程中公告。一个话题必须在它随后发布的相同进程中进行公告。
+Publishing a topic can be done from anywhere in the system, including interrupt context (functions called by the `hrt_call` API). However, advertising a topic is only possible outside of interrupt context. A topic has to be advertised in the same process as it's later published.
 
-## 列出话题并进行监听 {#listing-topics-and-listening-in}
+## 主题列表和监听（Listener）
 
-> **Note** `监听器(listener)`命令仅在Pixracer（FMUv4）以及Linux/OS X上可用。
+> **Note** `listener` 命令仅适用于 Pixracer (FMUv4) 和 Linux/OS X。
 
-要列出所有话题, 先列出文件句柄:
+要列出所有主题，列出文件句柄：
 
 ```sh
 ls /obj
 ```
 
-要列出一个话题中的5个消息, 执行以下监听命令:
+要监听五条信息中的一个主题内容，运行监听器：
 
 ```sh
 listener sensor_accel 5
 ```
 
-得到的输出就是关于该话题的n次内容:
+输出主题内容如下：
 
 ```sh
 TOPIC: sensor_accel #3
@@ -89,11 +82,11 @@ range_m_s2: 78
 scaling: 0
 ```
 
-> **提示** 在基于NuttX的系统(Pixhawk, Pixracer等)， `listener`命令可从地面站*QGroundControl* MAVLink控制台调用，来监听传感器数值和其他话题。 这是一个强大的调试工具，因为QGC通过无线链路连接时也可以使用它（例如，当无人机在飞行过程中）。更多信息可以看[Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md).
+> **Tip** 在基于 NuttX 的系统上（如 Pixhawk， Pixracer等），监听器可以用 *QGroundControl* 内部的 MAVLink 终端监视传感器的值和其他主题。 之所以是非常有用的调试工具是因为可以在 QGC 上通过无线连接（比如飞机在飞行过程中）。 有关详细信息，请参阅 [传感器/主题调试 ](../debug/sensor_uorb_topic_debugging.md)。
 
+### uorb top 命令
 
-### uorb up 命令
-`uorb top` 命令可以实时显示每个话题的发布频率：
+uorb top 命令实时显示每个主题的发布频率。
 
 ```sh
 update: 1s, num topics: 77
@@ -112,29 +105,23 @@ sensor_accel                         1    1  249    43 1
 sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
-每列分别是：话题名，多实例索引，订阅者数，发布频率(Hz)，丢失消息数（所有订阅者合并显示），队列大小。
 
+The columns are: topic name, multi-instance index, number of subscribers, publishing frequency in Hz, number of lost messages per second (for all subscribers combined), and queue size.
 
-## 多实例（Multi-instance）
-uORB提供一种通过 `orb_advertise_multi` 发布同一话题的多个实例的机制。它将向发布者（publisher）返回一个实例索引。一个订阅者（subscriber）必须用 `orb_subscribe_multi` (`orb_subscribe` ，订阅第一个实例)来选择订阅哪个实例。对于一个具有多个相同类型传感器的系统，这种多实例机制非常有用。
+## 多实例
 
-对于同一个话题，确保不要将 `orb_advertise_multi` 和 `orb_advertise` 混淆。
+uORB provides a mechanism to publish multiple independent instances of the same topic through `orb_advertise_multi`. It will return an instance index to the publisher. A subscriber will then have to choose to which instance to subscribe to using `orb_subscribe_multi` (`orb_subscribe` subscribes to the first instance). Having multiple instances is useful for example if the system has several sensors of the same type.
 
-完整的API文档可见[src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp).
+请确保不要为同一主题混合 `orb_advertise_multi` 和 `orb_advertise`。
 
-## 故障排除和常见问题
-以下列出一些常见的问题和几个极端情况：
-- The topic is not published: make sure the `ORB_ID()`'s of each call match. It
-  is also important that `orb_subscribe` and `orb_unsubscribe` are **called from
-  the same task** as `orb_publish`. This applies to `px4_task_spawn_cmd()`, but
-  also when using work queues (`work_queue()`).
-- Make sure to clean up: use `orb_unsubscribe` and `orb_unadvertise`.
-- A successful `orb_check()` or `px4_poll()` call requires an `orb_copy()`,
-  otherwise the next poll will return immediately.
-- It is perfectly ok to call `orb_subscribe` before anyone advertised the topic.
-- `orb_check()` and `px4_poll()` will only return true for publications that are
-  done after `orb_subscribe()`. This is important for topics that are not
-  published regularly. If a subscriber needs the previous data, it should just
-  do an unconditional `orb_copy()` right after `orb_subscribe()` (Note that
-  `orb_copy()` will fail if there is no advertiser yet).
+完整的 API 记录在 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp) 中。
 
+## Message/Field Deprecation {#deprecation}
+
+As there are external tools using uORB messages from log files, such as [Flight Review](https://github.com/PX4/flight_review), certain aspects need to be considered when updating existing messages:
+
+- Changing existing fields or messages that external tools rely on is generally acceptable if there are good reasons for the update. In particular for breaking changes to *Flight Review*, *Flight Review* must be updated before code is merged to `master`.
+- In order for external tools to reliably distinguish between two message versions, the following steps must be followed: 
+  - Removed or renamed messages must be added to the `deprecated_msgs` list in [msg/CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/msg/CMakeLists.txt#L157) and the **.msg** file needs to be deleted.
+  - Removed or renamed fields must be commented and marked as deprecated. For example `uint8 quat_reset_counter` would become `# DEPRECATED: uint8 quat_reset_counter`. This is to ensure that removed fields (or messages) are not re-added in future.
+  - In case of a semantic change (e.g. the unit changes from degrees to radians), the field must be renamed as well and the previous one marked as deprecated as above.

@@ -1,10 +1,11 @@
 # PX4 Docker Containers
 
-Docker containers are provided for the complete [PX4 development toolchain](http://localhost:4000/en/setup/dev_env.html#supported-targets) including NuttX and Linux based hardware, [Gazebo Simulation](../simulation/gazebo.md) and [ROS](../simulation/ros_interface.md).
+Docker containers are provided for the complete [PX4 development toolchain](../setup/dev_env.md#supported-targets) including NuttX and Linux based hardware, [Gazebo Simulation](../simulation/gazebo.md) and [ROS](../simulation/ros_interface.md).
 
 This topic shows how to use the [available docker containers](#px4_containers) to access the build environment in a local Linux computer.
 
-> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/tree/master/docker/px4-dev). They are built automatically on [Docker Hub](https://hub.docker.com/u/px4io/).
+> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/blob/master/README.md).
+  They are built automatically on [Docker Hub](https://hub.docker.com/u/px4io/).
 
 
 ## Prerequisites
@@ -13,14 +14,15 @@ This topic shows how to use the [available docker containers](#px4_containers) t
 
 [Install Docker](https://docs.docker.com/installation/) for your Linux computer, preferably using one of the Docker-maintained package repositories to get the latest stable version. You can use either the *Enterprise Edition* or (free) *Community Edition*.
 
-For local installation of non-production setups on *Ubuntu*, the quickest and easiest way to install Docker is to use the [convenience script](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-convenience-script) as shown below (alternative installation methods are found on the same page):
+For local installation of non-production setups on *Ubuntu*, the quickest and easiest way to install Docker is to use the [convenience script](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script) as shown below (alternative installation methods are found on the same page):
 
 ```sh
 curl -fsSL get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-The default installation requires that you invoke *Docker* as the root user (i.e. using `sudo`). If you would like to [use Docker as a non-root user](https://docs.docker.com/engine/installation/linux/linux-postinstall/#manage-docker-as-a-non-root-user), you can optionally add the user to the "docker" group and then log out/in:
+The default installation requires that you invoke *Docker* as the root user (i.e. using `sudo`). However, for building the PX4 firwmare we suggest to [use docker as a non-root user](https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user). That way, your build folder won't be owned by root after using docker.
+
 ```sh
 # Create docker group (may not be required)
 sudo groupadd docker
@@ -32,21 +34,21 @@ sudo usermod -aG docker $USER
 
 ## Container Hierarchy {#px4_containers}
 
-The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/docker/px4-dev/README.md#container-hierarchy)):
+The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/README.md#container-hierarchy)):
 
 Container | Description
 ---|---
 px4-dev-base | Base setup common to all containers
 &emsp;px4-dev-nuttx | NuttX toolchain
-&emsp;&emsp;px4-dev-simulation | NuttX toolchain + simulation (jMAVSim, Gazebo)
-&emsp;&emsp;&emsp;px4-dev-ros | NuttX toolchain, simulation + ROS (incl. MAVROS)
+&emsp;px4-dev-simulation | NuttX toolchain + simulation (jMAVSim, Gazebo)
+&emsp;&emsp;px4-dev-ros | NuttX toolchain, simulation + ROS (incl. MAVROS)
 &emsp;px4-dev-raspi | Raspberry Pi toolchain
 &emsp;px4-dev-snapdragon | Qualcomm Snapdragon Flight toolchain
 &emsp;px4-dev-clang | Clang tools
 &emsp;&emsp;px4-dev-nuttx-clang | Clang and NuttX tools
 
 
-The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-ros:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-ros/tags/)).
+The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-nuttx:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-nuttx/tags)).
 
 > **Tip** Typically you should use a recent container, but not necessarily the latest (as this changes too often).
 
@@ -69,11 +71,11 @@ The easiest way to use the containers is via the [docker_run.sh](https://github.
 For example, to build SITL you would call (from within the **/Firmware** directory):
 
 ```sh
-sudo ./Tools/docker_run.sh 'make posix_sitl_default'
+./Tools/docker_run.sh 'make px4_sitl_default'
 ```
 Or to start a bash session using the NuttX toolchain:
 ```
-sudo ./Tools/docker_run.sh 'bash'
+./Tools/docker_run.sh 'bash'
 ```
 
 > **Tip** The script is easy because you don't need to know anything much about *Docker* or think about what container to use. However it is not particularly robust! The manual approach discussed in the [section below](#manual_start) is more flexible and should be used if you have any problems with the script.
@@ -93,7 +95,7 @@ docker run -it --privileged \
     -v <host_src>:<container_src>:rw \
     -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
     -e DISPLAY=:0 \
-    -p 14556:14556/udp \
+    -p 14570:14570/udp \
     --name=<local_container_name> <container>:<tag> <build_command>
 ```
 Where,
@@ -109,12 +111,12 @@ The concrete example below shows how to open a bash shell and share the director
 xhost +
 
 # Run docker and open bash shell
-sudo docker run -it --privileged \
+docker run -it --privileged \
 --env=LOCAL_USER_ID="$(id -u)" \
 -v ~/src/Firmware:/src/firmware/:rw \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 -e DISPLAY=:0 \
--p 14556:14556/udp \
+-p 14570:14570/udp \
 --name=mycontainer px4io/px4-dev-ros:2017-10-23 bash
 ```
 
@@ -122,7 +124,7 @@ If everything went well you should be in a new bash shell now. Verify if everyth
 
 ```sh
 cd src/firmware    #This is <container_src>
-make posix_sitl_default gazebo
+make px4_sitl_default gazebo
 ```
 
 
@@ -132,9 +134,9 @@ The `docker run` command can only be used to create a new container. To get back
 
 ```sh
 # start the container
-sudo docker start container_name
+docker start container_name
 # open a new bash shell in this container
-sudo docker exec -it container_name bash
+docker exec -it container_name bash
 ```
 
 If you need multiple shells connected to the container, just open a new shell and execute that last command again.
@@ -143,20 +145,26 @@ If you need multiple shells connected to the container, just open a new shell an
 
 Sometimes you may need to clear a container altogether. You can do so using its name:
 ```sh
-$ sudo docker rm mycontainer
+docker rm mycontainer
 ```
 If you can't remember the name, then you can list inactive container ids and then delete them, as shown below:
 ```sh
-$ sudo docker ps -a -q
+docker ps -a -q
 45eeb98f1dd9
-$ sudo docker rm 45eeb98f1dd9
+docker rm 45eeb98f1dd9
 ```
 
 ### QGroundControl
 
 When running a simulation instance e.g. SITL inside the docker container and controlling it via *QGroundControl* from the host, the communication link has to be set up manually. The autoconnect feature of *QGroundControl* does not work here.
 
-In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/tree/master/posix-configs/SITL) e.g. port 14557 for the SITL iris config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network.
+In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. The IP address of the docker container can be found with the following command (assuming the container name is `mycontainer`):
+
+```sh
+$ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}' mycontainer
+```
+> **Note** Spaces between double curly braces above should be not be present (they are needed to avoid a UI rendering problem in gitbook). 
+  
 
 ### Troubleshooting
 
@@ -223,6 +231,3 @@ export DOCKER_HOST=tcp://<ip of your VM>:2375
 docker ps
 ```
 
-## Legacy
-
-The ROS multiplatform containers are not maintained anymore: https://github.com/PX4/containers/tree/master/docker/ros-indigo

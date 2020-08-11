@@ -7,7 +7,7 @@ The autopilots running PX4 support debugging via GDB or LLDB.
 The command below will list the largest static allocations:
 
 ```bash
-arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4fmu-v2_default/src/firmware/nuttx/firmware_nuttx | grep " [bBdD] "
+arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4_fmu-v2_default/px4_fmu-v2_default.elf | grep " [bBdD] "
 ```
 
 This NSH command provides the remaining free memory:
@@ -39,13 +39,13 @@ sudo apt-get install google-perftools libgoogle-perftools-dev
 
 First of all, build the firmware as follows:
 ```bash
-make posix_sitl_default
+make px4_sitl_default
 ```
-Start jmavsim: `./Tools/jmavsim_run.sh`
+Start jmavsim: `./Tools/jmavsim_run.sh -l`
 
 In another terminal, type:
 ```bash
-cd build/posix_sitl_default/tmp
+cd build/px4_sitl_default/tmp/rootfs
 export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
@@ -54,13 +54,13 @@ Enter this depending on your system:
 
 ##### Fedora:
 ```bash
-env LD_PRELOAD=/lib64/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
+env LD_PRELOAD=/lib64/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
 pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
 ##### Ubuntu:
 ```bash
-env LD_PRELOAD=/usr/lib/libtcmalloc.so ../src/firmware/posix/px4 ../../posix-configs/SITL/init/lpe/iris
+env LD_PRELOAD=/usr/lib/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
 google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
@@ -70,12 +70,28 @@ The numbers in the graph will all be zero, because they are in MB. Just look at 
 See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html) for more information.
 
 
-## Debugging Hard Faults in NuttX
+## Hard Fault Debugging
 
-A hard fault is a state when the operating system detects that it has no valid instructions to execute. This is typically the case when key areas in RAM have been corrupted. A typical scenario is when incorrect memory access smashed the stack and the processor sees that the address in memory is not a valid address for the microprocessors's RAM.
+A hard fault is a state when a CPU executes an invalid instruction or accesses an invalid memory address.
+This might occur when key areas in RAM have been corrupted.
+
+### Video
+
+The following video demonstrates hardfault debugging on PX4 using Eclipse and a JTAG debugger.
+It was presented at the PX4 Developer Conference 2019.
+
+{% youtube %}
+https://www.youtube.com/watch?v=KZkAM_PVOi0
+{% endyoutube %}
+
+### Debugging Hard Faults in NuttX
+
+A typical scenario that can cause a hard fault is when the processor overwrites the stack and then the processor returns to an invalid address from the stack. 
+This may be caused by a bug in code were a wild pointer corrupts the stack, or another task overwrites this task's stack.
 
 * NuttX maintains two stacks: The IRQ stack for interrupt processing and the user stack
-* The stack grows downward. So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
+* The stack grows downward.
+  So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
 
 ```bash
 Assertion failed at file:armv7-m/up_hardfault.c line: 184 task: ekf_att_pos_estimator
@@ -127,10 +143,11 @@ EXC_RETURN: ffffffe9
 To decode the hard fault, load the *exact* binary into the debugger:
 
 ```bash
-arm-none-eabi-gdb build/px4fmu-v2_default/nuttx_px4fmu-v2_default.elf
+arm-none-eabi-gdb build/px4_fmu-v2_default/px4_fmu-v2_default.elf
 ```
 
-Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
+Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`).
+The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
 
 ```gdb
 (gdb) info line *0x0808439f

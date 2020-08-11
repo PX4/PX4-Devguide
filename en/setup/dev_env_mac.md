@@ -1,6 +1,25 @@
 # Development Environment on Mac
 
-Mac OS X is the main development platform for PX4. The following instructions explain how to set up a development environment for building NuttX-based hardware (Pixhawk, etc.) and Simulation (jMAVSim/Gazebo8) targets. For other targets see: [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets).
+MacOS is a supported development platform for PX4. The following instructions set up an environment for building:
+* NuttX-based hardware (Pixhawk, etc.)
+* jMAVSim Smulation
+* Gazebo Simulation
+
+> **Note** To build other targets see: [Toolchain Installation > Supported Targets](../setup/dev_env.md#supported-targets).
+
+<span></span>
+> **Tip** A video tutorial can be found here: [Setting up your PX4 development environment on macOS](https://youtu.be/tMbMGiMs1cQ).
+
+
+## Preconditions
+
+Increase the maximum allowed number of open files on macOS using the *Terminal* command:
+```sh
+ulimit -S -n 2048
+```
+
+> **Note**  At time of writing (December 2018) the master branch uses more than the default maximum allowed open files on macOS (256 in all running processes).
+  As a *short term solution*, increasing the number of allowed open files to 300 should fix most problems.
 
 
 ## Homebrew Installation
@@ -15,23 +34,47 @@ After installing Homebrew, run these commands in your shell to install the commo
 ```sh
 brew tap PX4/px4
 brew install px4-dev
-# Optional, but recommended additional simulation tools:
-brew install px4-sim
 ```
 
-If the installation outputs an error message about missing requirements follow the instructions. Your system will be missing Java and Quartz:
+Make sure you have Python 3 installed.
 
 ```sh
-brew cask install xquartz java
+brew install python3
+
+# install required packages using pip3
+pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
 ```
 
-Install pip if you don't already have it and use it to install the required packages:
+## Gazebo Simulation
+
+To install SITL simulation with Gazebo:
 
 ```sh
-sudo easy_install pip
-sudo -H pip install pyserial empy toml numpy pandas jinja2
+brew cask install xquartz
+brew install px4-sim-gazebo
 ```
 
-<!-- import docs for other tools and next steps. -->
-{% include "_addition_dev_tools.txt" %}
+## jMAVSim Simulation
+
+To use SITL simulation with jMAVSim you need to install a recent version of Java (e.g. Java 14).
+You can either download [Java 14 from Oracle](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html) or use the AdoptOpenJDK tap:
+
+```sh
+brew tap AdoptOpenJDK/openjdk
+brew cask install adoptopenjdk14
+```
+
+```sh
+brew install px4-sim-jmavsim
+```
+
+> **Note** jMAVSim for PX4 v1.11 and earlier required Java 8.
+
+## Additional Tools
+
+See [Additional Tools](../setup/generic_dev_tools.md) for information about other useful development tools that are not part of the build toolchain (for example IDEs and GCSs).
+
+## Next Steps
+
+Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
 

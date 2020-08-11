@@ -26,7 +26,7 @@ drivers/ulanding
 ##  启动驱动程序
 
 
-在系统启动期间，须告诉系统启动雷达驱动程序，将以下行添加到位于SD卡上的[extras.txt](../advanced/system_startup.md)文件即可。
+在系统启动期间，须告诉系统启动雷达驱动程序，将以下行添加到位于SD卡上的[extras.txt](../concept/system_startup.md)文件即可。
 
 ```
 ulanding_radar start /dev/serial_port

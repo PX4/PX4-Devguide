@@ -1,44 +1,52 @@
-# Linux系统下使用S.Bus驱动
+# Connecting an RC Receiver on Linux (Including S.Bus)
 
-这个驱动可以使飞控通过串口读取Sbus接收机的数据，最大支持16通道。  
-兼容市面上的常见接收机，诸如frsky，乐迪，甚至sbus编码器。  
-板载串口、USB串口、以及其他串口均可支持。  
-仅支持linux平台。 
-这个驱动位于 drivers/linux_sbus 下
+This topic shows how to setup a PX4 Linux-based autopilot to connect and use a [supported RC receiver](https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html) on any serial port.
 
-## 必要组件
+For RC types other than S.Bus, you can just connect the receiver directly to the serial ports, or to USB via a USB to TTY serial cable (e.g. like PL2302 USB to Serial TTL converter).
 
-* NPN 三极管 * 1  
-* 10K 电阻 * 1  
-* 1K 电阻 * 1  
+> **Note** For an S.Bus reciever (or encoder - e.g. from Futaba, RadioLink, etc.) you will usually need to connect the receiver and device via a [signal inverter circuit](#signal_inverter_circuit), but otherwise the setup is the same.
 
-**注意：**上述器件型号不限,可从淘宝上任意购买，因为接收机的电流较小，所以三极管的型号任意。  
+Then [Start the PX4 RC Driver](#start_driver) on the device, as shown below.
 
-## 可选组件
-usb转ttl *1  ,推荐PL2302
+## Starting the Driver {#start_driver}
 
-上述组件也可从淘宝购买,若不购买,则可使用板载串口替代。  
+To start the RC driver on a particular UART (e.g. in this case `/dev/ttyS2`):
 
-## 组装
-请安下列方式对器件进行连线  
+    rc_input start -d /dev/ttyS2
+    
 
-* S.bus信号线 &rarr; 1K电阻 &rarr; NPN三极管基级  
-* NPN 三极管发射级 &rarr; GND  
-* 3.3v  VCC &rarr; 10K电阻 &rarr; NPN三极管发射级集电极 &rarr; USB-to-TTY rxd  
-* 5.0v  VCC &rarr; S.Bus vcc  
-* GND &rarr; S.Bus GND  
+For other driver usage information see: [rc_input](../middleware/modules_driver.md#rcinput).
 
-## 电路图
+## Signal Inverter Circuit (S.Bus only) {#signal_inverter_circuit}
+
+S.Bus is an *inverted* UART communication signal.
+
+While some serial ports/flight controllers can read an inverted UART signal, most require a signal inverter circuit between the receiver and serial port to un-invert the signal.
+
+> **Tip** This circuit is also required to read S.Bus remote control signals through the serial port or USB-to-TTY serial converter.
+
+This section shows how to create an appropriate circuit.
+
+### Required Components
+
+* 1x NPN 晶体管（例如 NPN S9014 TO92）
+* 1x 10K 电阻
+* 1x 1K 电阻
+
+> **Note** 可以使用任何类型/型号的晶体管，因为电流消耗非常低。
+
+### Circuit Diagram/Connections
+
+Connect the components as described below (and shown in the circuit diagram):
+
+* S.Bus 信号&rarr;1K 电阻&rarr;NPN 晶体管
+* NPN晶体管发射&rarr;GND
+* 3.3VCC＆&rarr; 10K电阻&rarr; NPN晶体管集合&rarr; USB-to-TTY rxd
+* 5.0VCC&rarr;S.Bus VCC
+* GND &rarr; S.Bus GND
 
 ![Signal inverter circuit diagram](../../assets/driver_sbus_signal_inverter_circuit_diagram.png)
-这个电路是个倒相器，树莓派这类设备无法直接读取S.bus信号，必须借助倒相器辅助，将信号进行反转，才可读取。
 
-
-## 安装实例
+The image below shows the connections on a breadboard.
 
 ![Signal inverter breadboard](../../assets/driver_sbus_signal_inverter_breadboard.png)
-
-## 启动
-把 `linux_sbus start -d /dev/ttyUSB0 -c 8` 加入配置文件中，即可自动运行,并通过`/dev/ttyUSBO`监听8个通道  
-原始配置文件位于Firmware下的posix-configs目录中，如果按照官方文档编译，做了make upload的操作，则文件会存放在
-目标机的`/home/pi`目录中,修改你使用的文件即可。

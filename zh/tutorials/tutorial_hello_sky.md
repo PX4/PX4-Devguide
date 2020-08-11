@@ -115,9 +115,10 @@ int px4_simple_app_main(int argc, char *argv[])
 
 现在应用程序已经完成并且能够运行，但还没有注册成NuttShell命令行工具。如果想要将应用程序编译到固件中，将它加到下面的模块编译列表中：
 
-- Pixhawk v1/2: [Firmware/cmake/configs/nuttx_px4fmu-v2_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v2_default.cmake)
-
-- Pixracer: [Firmware/cmake/configs/nuttx_px4fmu-v4_default.cmake](https://github.com/PX4/Firmware/blob/master/cmake/configs/nuttx_px4fmu-v4_default.cmake)
+* PX4 SITL (Simulator): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
+* Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
+* Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
+* *cmake* files for other boards can be found in [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)
 
 
 在你的应用程序的下面的文件中添加一行：
@@ -128,24 +129,22 @@ int px4_simple_app_main(int argc, char *argv[])
 编译它：
 
 
-- Pixhawk v1/2: `make px4fmu-v2_default`
-- Pixhawk v3: `make px4fmu-v4_default`
+- Pixhawk v1/2: `make px4_fmu-v2_default`
+- Pixhawk v3: `make px4_fmu-v4_default`
 
 
 ## 第四步：上传并且测试应用程序
 
 使能uploader然后重置开发板：
 
-- Pixhawk v1/2: `make px4fmu-v2_default upload`
-- Pixhawk v3: `make px4fmu-v4_default upload`
+- Pixhawk v1/2: `make px4_fmu-v2_default upload`
+- Pixhawk v3: `make px4_fmu-v4_default upload`
 
 在你重置开发板之前，会在后面打印如下的编译信息：
 
   `Loaded firmware for X,X, waiting for the bootloader...`
 
 一旦开发板重置成功并且应用程序上传成功，打印信息：
-
-<div class="host-code"></div>
 
 ```sh
 Erase  : [====================] 100.0%

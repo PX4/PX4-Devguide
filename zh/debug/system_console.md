@@ -1,95 +1,63 @@
----
-translated_page: https://github.com/PX4/Devguide/blob/master/en/debug/system_console.md
-translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
----
+# PX4 系统控制台
 
-# PX4 System Console(系统控制台)
+The PX4 *System Console* provides low-level access to the system, debug output and analysis of the system boot process.
 
-System Console(系统控制台)允许访问系统底层，调试输出和分析系统启动流程。访问System Console最快捷的方式是使用 [Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product), 但是常见的FTDI连线也是可以的。
+> **Tip** The console should be used for debugging if the system won't boot. The [MAVLink Shell](../debug/mavlink_shell.md) may otherwise be more suitable, as it is much easier to set up and can be used for [many of the same tasks](../debug/consoles.md#console_vs_shell).
 
-## System Console vs. Shell
+## Wiring the Console
 
+The console is made available through a (board-specific) UART that can be connected to a computer USB port using a [3.3V FTDI](https://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393) cable. This allows the console to be accessed using a terminal application.
 
-有好多种shell，但只有一个Console：系统控制台，它是打印所有引导输出（和引导中自动启动的应用程序）的位置。（可以理解为系统控制台是多个shell中唯一一个打印所有引导输出的shell）
+Pixhawk controller manufacturers are expected to expose the console UART and SWD (JTAG) debug interfaces through a dedicated *debug port* that complies with the [Pixhawk Connector Standard](#pixhawk_debug_port). Unfortunately some boards predate this standard or a non-compliant.
 
-The system console is the location where all boot output (and applications auto-started on boot) is printed.
+> **Tip** Developers targeting a number of different boards may wish to use a *debug adapter* to simplify connecting multiple boards. For example, the [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation) comes with connectors for the [Pixhawk Debug Port](#pixhawk_debug_port) and several other boards.
 
-  * System console（第一shell）：硬件串口
-  * 其他shell : 连接至USB的Pixhawk(如Mac OS下显示为 /dev/tty.usbmodem1)
+The sections below outline/link to the wiring and system console information for many common boards.
 
-> **info**
-> USB shell: 如果只是运行几个简单的命令或测试应用程序，连接到USB shell就足够了。
->MAVLink shell可以这么使用，参照下文。
->只有在调试启动流程或USB接口已被用于MAVlink连接地面站[GCS](../qgc/README.md)的时候，才需要使用硬件串口console。
+### Board-Specific Wiring
 
-## Snapdragon Flight : Console接线
+The System Console UART pinouts/debug ports are typically documented in [autopilot overview pages](https://docs.px4.io/master/en/flight_controller/) (some are linked below):
 
-Snapdragon Flight（骁龙开发平台）开发人员套件里面包含了一个3引脚的接线板，它可以用于访问console。 将附带的FTDI线连接到接头，并将接线板连接到扩展连接器。
+- [3DR Pixhawk v1 Flight Controller](https://docs.px4.io/master/en/flight_controller/pixhawk.html#console-port) (also applies to [mRo Pixhawk](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html#debug-ports), [HobbyKing HKPilot32](https://docs.px4.io/master/en/flight_controller/HKPilot32.html#debug-port))
+- [Pixhawk 3](https://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port)
+- [Pixracer](https://docs.px4.io/master/en/flight_controller/pixracer.html#debug-port)
 
-## Pixracer / Pixhawk v3: Console接线
+- [Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html):
+  
+  - [FTDI](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#over-ftdi)
+  - [DSP Debug Monitor/Console](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#dsp-debug-monitorconsole)
 
-将6P JST SH 1：1线连接到Dronecode Probe，或者将连接线的每个引脚按照如下所示连接到FTDI线上：
+### Pixhawk Debug Port {#pixhawk_debug_port}
 
-| Pixracer / Pixhawk v3 |           | FTDI |              |
-| --------------------- | --------- | ---- | ------------ |
-| 1                     | +5V (红)  |      | N/C          |
-| 2                     | UART7 Tx  | 5    | FTDI RX (黄) |
-| 3                     | UART7 Rx  | 4    | FTDI TX (橙) |
-| 4                     | SWDIO     |      | N/C          |
-| 5                     | SWCLK     |      | N/C          |
-| 6                     | GND       | 1    | FTDI GND (黑)|
+Flight controllers that adhere to the Pixhawk Connector standard use the [Pixhawk Standard Debug Port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug).
 
-## Pixhawk v1: Console连线
+The port/FTDI mapping is shown below.
 
-系统console可以通过Dronecode Probe或FTDI线访问。两种方式将在下面介绍。
+| Pixhawk Debug Port | -                        | FTDI | -                                 |
+| ------------------ | ------------------------ | ---- | --------------------------------- |
+| 1 (red)            | TARGET PROCESSOR VOLTAGE |      | N/C (used for SWD/JTAG debugging) |
+| 2 (blk)            | CONSOLE TX (OUT)         | 5    | FTDI RX （黄色）                      |
+| 3 (blk)            | CONSOLE RX (IN)          | 4    | FTDI TX （橙色）                      |
+| 4 (blk)            | SWDIO                    |      | N/C (used for SWD/JTAG debugging) |
+| 5 (blk)            | SWCLK                    |      | N/C (used for SWD/JTAG debugging) |
+| 6 (blk)            | GND                      | 1    | FTDI GND (黑色)                     |
 
-### 通过Dronecode Probe连接
+## Opening the Console
 
-将 [Dronecode probe](http://nicadrone.com/index.php?id_product=65&controller=product) 的6P DF13 1:1线连接到Pixhawk的SERIAL4/5接口。
-
-![](../../assets/console/dronecode_probe.jpg)
-
-### 通过FTDI 3.3V 线连接
-
-如果手头没有Dronecode Probe，也可以使用FTDI 3.3V (Digi-Key: [768-1015-ND](http://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393)) 。
-
-| Pixhawk 1/2 |           | FTDI |                  |
-| ----------- | --------- | ---- | ---------------- |
-| 1           | +5V (红)  |      | N/C              |
-| 2           | S4 Tx     |      | N/C              |
-| 3           | S4 Rx     |      | N/C              |
-| 4           | S5 Tx     | 5    | FTDI RX (黄)     |
-| 5           | S5 Rx     | 4    | FTDI TX (橙)     |
-| 6           | GND       | 1    | FTDI GND (黑)    |
-
-连接器引脚接线如下图所示。
-
-![](../../assets/console/console_connector.jpg)
-
-完整的接线如下图所示。
-
-![](../../assets/console/console_debug.jpg)
-
-## 打开Console
-
-Console接线完成后, 使用你选择的默认串口工具或者下面描述的默认工具：
+After the console connection is wired up, use the default serial port tool of your choice or the defaults described below:
 
 ### Linux / Mac OS: Screen
 
-Ubuntu下安装screen (Mac OS 已经默认安装了):
-
-<div class="host-code"></div>
+Install screen on Ubuntu (Mac OS already has it installed):
 
 ```bash
 sudo apt-get install screen
 ```
 
-  * 串口: Pixhawk v1 / Pixracer 使用 57600 波特率
-  * 串行: Snapdragon Flight 使用 115200 波特率
+- Serial: Pixhawk v1 / Pixracer use 57600 baud
+- Serial: Snapdragon Flight uses 115200 baud
 
-按照 BAUDRATE baud, 8 data bits, 1 stop bit 将screen连接至正确的串口（使用 `ls /dev/tty*`命令，观察在拔下/重插USB设备时什么发生了变化）。Linux下的常见名称是 `/dev/ttyUSB0` 和 `/dev/ttyACM0` ，Mac OS下是`/dev/tty.usbserial-ABCBD`。
-
-<div class="host-code"></div>
+Connect screen at BAUDRATE baud, 8 data bits, 1 stop bit to the right serial port (use `ls /dev/tty*` and watch what changes when unplugging / replugging the USB device). Common names are `/dev/ttyUSB0` and `/dev/ttyACM0` for Linux and `/dev/tty.usbserial-ABCBD` for Mac OS.
 
 ```bash
 screen /dev/ttyXXX BAUDRATE 8N1
@@ -97,50 +65,10 @@ screen /dev/ttyXXX BAUDRATE 8N1
 
 ### Windows: PuTTY
 
-下载 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) 并启动它。
+Download [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) and start it.
 
-选择“串口连接”，然后设置串口参数：
+Then select 'serial connection' and set the port parameters to:
 
-  * 57600 baud
-  * 8 data bits
-  * 1 stop bit
-
-## Console入门
-
-输入`ls`查看本地文件系统，输入`free`查看剩余可用RAM。当飞控板带电重启时，console也可以显示系统启动日志。
-
-```bash
-nsh> ls
-nsh> free
-```
-
-## MAVLink Shell
-对于基于NuttX的系统（Pixhawk，Pixracer，...），也可以通过mavlink访问nsh console。它通过串口连接或WiFi（UDP/TCP）来工作。确保没有运行QGC，然后使用如下命令启动shell`./Tools/mavlink_shell.py /dev/ttyACM0`（在固件源代码中）。使用`-h`获得所有可用参数的描述。也许你先要使用`sudo pip install pymavlink pyserial`安装依赖文件。
-
-# Snapdragon DSP Console
-当通过USB连接到Snapdragon开发板，你可以访问PX4 shell操作posix相关资源 。与DSP侧（QuRT）的交互可以通过`qshell`posix应用程序及其QuRT companion。
-
-将Snapdragon通过USB连接后，打开mini-dm就可以看到DSP的输出：
-```
-${HEXAGON_SDK_ROOT}/tools/debug/mini-dm/Linux_Debug/mini-dm
-```
-
-注意: 可选方法，尤其是在Mac上,你也可以使用 [nano-dm](https://github.com/kevinmehall/nano-dm)。
-
-在linaro侧运行主程序：
-```
-cd /home/linaro
-./px4 px4.config
-```
-
-你可以通过linaro shell使用DSP加载的所有的应用程序，通过以下语法：
-```
-pxh> qshell command [args ...]
-```
-
-例如，要查看可用QuRT应用程序：
-```
-pxh> qshell list_tasks
-```
-
-所执行命令的输出显示在minidm上。
+- 57600 baud
+- 8 data bits
+- 1 stop bit

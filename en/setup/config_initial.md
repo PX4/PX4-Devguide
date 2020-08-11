@@ -10,8 +10,8 @@ The equipment below is highly recommended:
 
 * A Taranis Plus remote control for the safety pilot (or equivalent)
 * A development computer:
-  * MacBook Pro (early 2015 and later) with OSX 10.13 or later
-  * Lenovo Thinkpad 450 (i5) with Ubuntu Linux 16.04 or later
+  * MacBook Pro (early 2015 and later) with OSX 10.15 or later 
+  * Lenovo Thinkpad 450 (i5) with Ubuntu Linux 18.04 or later 
 * A ground control station device:
   * iPad (requires Wifi telemetry adapter)
   * Any MacBook or Ubuntu Linux laptop (can be the development computer)
@@ -26,5 +26,5 @@ The equipment below is highly recommended:
 To configure the vehicle:
 
 1. Download the [QGroundControl Daily Build](https://docs.qgroundcontrol.com/en/releases/daily_builds.html) for your development platform.
-1. [Basic Configuration](https://docs.px4.io/en/config/) (PX4 User Guide) explains how to to perform basic configuration. 
-1. [Parameter Configuration](https://docs.px4.io/en/advanced_config/parameters.html) (PX4 User Guide) explains how you can find and modify individual parameters.
+1. [Basic Configuration](https://docs.px4.io/master/en/config/) (PX4 User Guide) explains how to to perform basic configuration. 
+1. [Parameter Configuration](https://docs.px4.io/master/en/advanced_config/parameters.html) (PX4 User Guide) explains how you can find and modify individual parameters.

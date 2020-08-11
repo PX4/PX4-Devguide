@@ -1,4 +1,5 @@
 # Modules Reference: Command
+
 ## bl_update
 Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
@@ -11,34 +12,6 @@ bl_update [arguments...]
 
    <file>        Bootloader bin file
 ```
-## config
-Source: [systemcmds/config](https://github.com/PX4/Firmware/tree/master/src/systemcmds/config)
-
-Configure a sensor driver (sampling & publication rate, range, etc.)
-### Usage {#config_usage}
-```
-config <command> [arguments...]
- Commands:
-
- The <file:dev> argument is typically one of /dev/{gyro,accel,mag}i
-   block         Block sensor topic publication
-     <file:dev>  Sensor device file
-
-   unblock       Unblock sensor topic publication
-     <file:dev>  Sensor device file
-
-   sampling      Set sensor sampling rate
-     <file:dev> <rate> Sensor device file and sampling rate in Hz
-
-   rate          Set sensor publication rate
-     <file:dev> <rate> Sensor device file and publication rate in Hz
-
-   range         Set sensor measurement range
-     <file:dev> <rate> Sensor device file and range
-
-   check         Perform sensor self-test (and print info)
-     <file:dev>  Sensor device file
-```
 ## dumpfile
 Source: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 
@@ -48,6 +21,25 @@ Dump file utility. Prints file size and contents in binary mode (don't replace L
 dumpfile [arguments...]
      <file>      File to dump
 ```
+## dyn
+Source: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
+
+
+### Description
+Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
+
+### Example
+```
+dyn ./hello.px4mod start
+```
+
+
+### Usage {#dyn_usage}
+```
+dyn [arguments...]
+     <file>      File containing the module
+     [arguments...] Arguments to the module
+```
 ## esc_calib
 Source: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
@@ -55,7 +47,7 @@ Tool for ESC calibration
 
 Calibration procedure (running the command will guide you through it):
 - Remove props, power off the ESC's
-- Stop attitude controllers: mc_att_control stop, fw_att_control stop
+- Stop attitude and rate controllers: mc_rate_control stop, fw_att_control stop
 - Make sure safety is off
 - Run this command
 
@@ -71,8 +63,25 @@ esc_calib [arguments...]
      [-c <val>]  select channels in the form: 1234 (1 digit per channel,
                  1=first)
      [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
-                 default: 0
      [-a]        Select all channels
+```
+## gpio
+Source: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
+
+This command is used to read and write GPIOs.
+### Usage {#gpio_usage}
+```
+gpio [arguments...]
+   read
+     <PORT> <PIN> GPIO port and pin
+     [PULLDOWN|PULLUP] Pulldown/Pullup
+     [--force]   Force (ignore board gpio list)
+
+   write
+     <PORT> <PIN> GPIO port and pin
+     <VALUE>     Value to write
+     [PULLDOWN|PULLUP] Pulldown/Pullup
+     [--force]   Force (ignore board gpio list)
 ```
 ## hardfault_log
 Source: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
@@ -99,6 +108,16 @@ hardfault_log <command> [arguments...]
                  uncommited hardfault (returned as the exit code of the program)
 
    reset         Reset the reboot counter
+```
+## i2cdetect
+Source: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
+
+Utility to scan for I2C devices on a particular bus.
+### Usage {#i2cdetect_usage}
+```
+i2cdetect [arguments...]
+     [-b <val>]  I2C bus
+                 default: 1
 ```
 ## led_control
 Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
@@ -147,7 +166,6 @@ led_control <command> [arguments...]
                  values: red|blue|green|yellow|purple|amber|cyan|white, default:
                  white
      [-l <val>]  Which LED to control: 0, 1, 2, ... (default=all)
-                 default: -1
      [-p <val>]  Priority
                  default: 2
 ```
@@ -157,14 +175,19 @@ Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/
 
 Utility to listen on uORB topics and print the data to the console.
 
-Limitation: it can only listen to the first instance of a topic.
-
+The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
 
 ### Usage {#listener_usage}
 ```
-listener [arguments...]
-     <topic_name> [<num_msgs>] uORB topic name and optionally number of messages
-                 (default=1)
+listener <command> [arguments...]
+ Commands:
+     <topic_name> uORB topic name
+     [-i <val>]  Topic instance
+                 default: 0
+     [-n <val>]  Number of messages
+                 default: 1
+     [-r <val>]  Subscription rate (unlimited if 0)
+                 default: 0
 ```
 ## mixer
 Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
@@ -194,33 +217,38 @@ Application to test motor ramp up.
 
 Before starting, make sure to stop any running attitude controller:
 ```
-mc_att_control stop
+mc_rate_control stop
 fw_att_control stop
 ```
 
 When starting, a background task is started, runs for several seconds (as specified), then exits.
 
-Note: this command currently only supports the `/dev/pwm_output0` output.
-
 ### Example
 ```
-motor_ramp sine 1100 0.5
+motor_ramp sine -a 1100 -r 0.5
 ```
 
 ### Usage {#motor_ramp_usage}
 ```
 motor_ramp [arguments...]
      ramp|sine|square mode
-     <min_pwm> <time> [<max_pwm>] pwm value in us, time in sec
+     [-d <val>]  Pwm output device
+                 default: /dev/pwm_output0
+     -a <val>    Select minimum pwm duty cycle in usec
+     [-b <val>]  Select maximum pwm duty cycle in usec
+                 default: 2000
+     [-r <val>]  Select motor ramp duration in sec
+                 default: 1.0
 
  WARNING: motors will ramp up to full speed!
 ```
 ## motor_test
 Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
+
 Utility to test motors.
 
-Note: this can only be used for drivers which support the motor_test uorb topic (currently uavcan and tap_esc)
+WARNING: remove all props before using this command.
 
 ### Usage {#motor_test_usage}
 ```
@@ -228,8 +256,11 @@ motor_test <command> [arguments...]
  Commands:
    test          Set motor(s) to a specific output value
      [-m <val>]  Motor to test (0...7, all if not specified)
-                 default: -1
      [-p <val>]  Power (0...100)
+                 default: 0
+     [-t <val>]  Timeout in seconds (default=no timeout)
+                 default: 0
+     [-i <val>]  driver instance
                  default: 0
 
    stop          Stop all motors
@@ -285,6 +316,10 @@ Parameters are automatically saved when changed, eg. with `param set`. They are 
 or to the SD card. `param select` can be used to change the storage location for subsequent saves (this will
 need to be (re-)configured on every boot).
 
+If the FLASH-based backend is enabled (which is done at compile time, e.g. for the Intel Aero or Omnibus),
+`param select` has no effect and the default is always the FLASH backend. However `param save/load <file>`
+can still be used to write to/read from files.
+
 Each parameter has a 'used' flag, which is set when it's read during boot. It is used to only show relevant
 parameters to a ground control station.
 
@@ -313,19 +348,29 @@ param <command> [arguments...]
      [<file>]    File name (use <root>/eeprom/parameters if not given)
 
    show          Show parameter values
-     [-c]        Show only changed params
+     [-a]        Show all parameters (not just used)
+     [-c]        Show only changed params (unused too)
+     [-q]        quiet mode, print only param value (name needs to be exact)
      [<filter>]  Filter by param name (wildcard at end allowed, eg. sys_*)
+
+   status        Print status of parameter system
 
    set           Set parameter to a value
      <param_name> <value> Parameter name and value to set
      [fail]      If provided, let the command fail if param is not found
 
    compare       Compare a param with a value. Command will succeed if equal
+     [-s]        If provided, silent errors if parameter doesn't exists
      <param_name> <value> Parameter name and value to compare
 
    greater       Compare a param with a value. Command will succeed if param is
                  greater than the value
+     [-s]        If provided, silent errors if parameter doesn't exists
      <param_name> <value> Parameter name and value to compare
+     <param_name> <value> Parameter name and value to compare
+
+   touch         Mark a parameter as used
+     [<param_name1> [<param_name2>]] Parameter name (one or more)
 
    reset         Reset params to default
      [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
@@ -404,10 +449,12 @@ pwm <command> [arguments...]
 
    info          Print current configuration of all channels
 
-   forcefail     Force Failsafe mode
+   forcefail     Force Failsafe mode. PWM outputs are set to failsafe values.
      on|off      Turn on or off
 
-   terminatefail Force Termination Failsafe mode
+   terminatefail Enable Termination Failsafe mode. While this is true, any
+                 failsafe that occurs will be unrecoverable (even if recovery
+                 conditions are met).
      on|off      Turn on or off
 
    rate          Configure PWM rates
@@ -438,10 +485,8 @@ pwm <command> [arguments...]
      [-c <val>]  select channels in the form: 1234 (1 digit per channel,
                  1=first)
      [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
-                 default: 0
      [-g <val>]  Select channels by group (eg. 0, 1, 2. use 'pwm info' to show
                  groups)
-                 default: 0
      [-a]        Select all channels
 
  These parameters apply to all commands:
@@ -513,16 +558,14 @@ ver <command> [arguments...]
 
    bdate         Build date and time
 
-   uid           UUID
-
-   mfguid        Manufacturer UUID
+   px4guid       PX4 GUID
 
    uri           Build URI
 
    all           Print all versions
 
    hwcmp         Compare hardware version (returns 0 on match)
-     <hw> [<hw2>] Hardware to compare against (eg. PX4FMU_V4). An OR comparison
+     <hw> [<hw2>] Hardware to compare against (eg. PX4_FMU_V4). An OR comparison
                  is used if multiple are specified
 
    hwtypecmp     Compare hardware type (returns 0 on match)

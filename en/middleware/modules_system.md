@@ -1,4 +1,106 @@
 # Modules Reference: System
+
+## battery_simulator
+Source: [modules/simulator/battery_simulator](https://github.com/PX4/Firmware/tree/master/src/modules/simulator/battery_simulator)
+
+
+### Description
+
+
+
+### Usage {#battery_simulator_usage}
+```
+battery_simulator <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
+## battery_status
+Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
+
+
+### Description
+
+The provided functionality includes:
+- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
+
+
+### Implementation
+It runs in its own thread and polls on the currently selected gyro topic.
+
+
+### Usage {#battery_status_usage}
+```
+battery_status <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
+## camera_feedback
+Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/src/modules/camera_feedback)
+
+
+### Description
+
+
+
+### Usage {#camera_feedback_usage}
+```
+camera_feedback <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
+## commander
+Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
+
+
+### Description
+The commander module contains the state machine for mode switching and failsafe behavior.
+
+### Usage {#commander_usage}
+```
+commander <command> [arguments...]
+ Commands:
+   start
+     [-h]        Enable HIL mode
+
+   calibrate     Run sensor calibration
+     mag|accel|gyro|level|esc|airspeed Calibration type
+
+   check         Run preflight checks
+
+   arm
+     [-f]        Force arming (do not run preflight checks)
+
+   disarm
+
+   takeoff
+
+   land
+
+   transition    VTOL transition
+
+   mode          Change flight mode
+     manual|acro|offboard|stabilized|rattitude|altctl|posctl|auto:mission|auto:l
+                 oiter|auto:rtl|auto:takeoff|auto:land|auto:precland Flight mode
+
+   lockdown
+     [off]       Turn lockdown off
+
+   stop
+
+   status        print status info
+```
 ## dataman
 Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
@@ -45,6 +147,65 @@ dataman <command> [arguments...]
 
    status        print status info
 ```
+## dmesg
+Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
+
+
+### Description
+
+Command-line tool to show bootup console messages.
+Note that output from NuttX's work queues and syslog are not captured.
+
+### Examples
+
+Keep printing all messages in the background:
+```
+dmesg -f &
+```
+
+### Usage {#dmesg_usage}
+```
+dmesg <command> [arguments...]
+ Commands:
+     [-f]        Follow: wait for new messages
+```
+## esc_battery
+Source: [modules/esc_battery](https://github.com/PX4/Firmware/tree/master/src/modules/esc_battery)
+
+
+### Description
+This implements using information from the ESC status and publish it as battery status.
+
+
+### Usage {#esc_battery_usage}
+```
+esc_battery <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
+## heater
+Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
+
+
+### Description
+Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
+
+This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
+
+### Usage {#heater_usage}
+```
+heater <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## land_detector
 Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
 
@@ -77,7 +238,7 @@ The module runs periodically on the HP work queue.
 land_detector <command> [arguments...]
  Commands:
    start         Start the background task
-     fixedwing|multicopter|vtol|ugv Select vehicle type
+     fixedwing|multicopter|vtol|rover|airship Select vehicle type
 
    stop
 
@@ -88,7 +249,7 @@ Source: [modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modul
 
 
 ### Description
-Background process running periodically with 1 Hz on the LP work queue to calculate the CPU load and RAM
+Background process running periodically on the low priority work queue to calculate the CPU load and RAM
 usage and publish the `cpuload` topic.
 
 On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output,
@@ -119,13 +280,19 @@ It supports 2 backends:
 
 Both backends can be enabled and used at the same time.
 
+The file backend supports 2 types of log files: full (the normal log) and a mission
+log. The mission log is a reduced ulog file and can be used for example for geotagging or
+vehicle management. It can be enabled and configured via SDLOG_MISSION parameter.
+The normal log is always a superset of the mission log.
+
 ### Implementation
 The implementation uses two threads:
 - The main thread, running at a fixed rate (or polling on a topic if started with -p) and checking for
   data updates
 - The writer thread, writing data to the file
 
-In between there is a write buffer with configurable size. It should be large to avoid dropouts.
+In between there is a write buffer with configurable size (and another fixed-size buffer for
+the mission log). It should be large to avoid dropouts.
 
 ### Examples
 Typical usage to start logging immediately:
@@ -145,6 +312,7 @@ logger <command> [arguments...]
    start
      [-m <val>]  Backend mode
                  values: file|mavlink|all, default: all
+     [-x]        Enable/disable logging via Aux1 RC channel
      [-e]        Enable logging right after start until disarm (otherwise only
                  when armed)
      [-f]        Log until shutdown (implies -e)
@@ -153,8 +321,6 @@ logger <command> [arguments...]
                  default: 280
      [-b <val>]  Log buffer size in KiB
                  default: 12
-     [-q <val>]  uORB queue size for mavlink mode
-                 default: 14
      [-p <val>]  Poll on a topic instead of running with fixed rate (Log rate
                  and topic intervals are ignored if this is set)
                  values: <topic_name>
@@ -162,6 +328,49 @@ logger <command> [arguments...]
    on            start logging now, override arming (logger must be running)
 
    off           stop logging now, override arming (logger must be running)
+
+   stop
+
+   status        print status info
+```
+## pwm_input
+Source: [drivers/pwm_input](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_input)
+
+
+### Description
+Measures the PWM input on AUX5 (or MAIN5) via a timer capture ISR and publishes via the uORB 'pwm_input` message.
+
+
+### Usage {#pwm_input_usage}
+```
+pwm_input <command> [arguments...]
+ Commands:
+   start
+
+   test          prints PWM capture info.
+
+   stop
+
+   status        print status info
+```
+## rc_update
+Source: [modules/rc_update](https://github.com/PX4/Firmware/tree/master/src/modules/rc_update)
+
+
+### Description
+The rc_update module handles RC channel mapping: read the raw input channels (`input_rc`),
+then apply the calibration, map the RC channels to the configured channels & mode switches,
+low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
+
+### Implementation
+To reduce control latency, the module is scheduled on input_rc publications.
+
+
+### Usage {#rc_update_usage}
+```
+rc_update <command> [arguments...]
+ Commands:
+   start
 
    stop
 
@@ -185,7 +394,7 @@ The module is typically used together with uORB publisher rules, to specify whic
 The replay module will just publish all messages that are found in the log. It also applies the parameters from
 the log.
 
-The replay procedure is documented on the [System-wide Replay](https://dev.px4.io/en/debug/system_wide_replay.html)
+The replay procedure is documented on the [System-wide Replay](https://dev.px4.io/master/en/debug/system_wide_replay.html)
 page.
 
 ### Usage {#replay_usage}
@@ -208,7 +417,7 @@ Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules
 
 ### Description
 Background process running periodically on the LP work queue to perform housekeeping tasks.
-It is currently only responsible for temperature calibration.
+It is currently only responsible for tone alarm on RC Loss.
 
 The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
 
@@ -217,12 +426,6 @@ The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, e
 send_event <command> [arguments...]
  Commands:
    start         Start the background task
-
-   temperature_calibration Run temperature calibration process
-     [-g]        calibrate the gyro
-     [-a]        calibrate the accel
-     [-b]        calibrate the baro (if none of these is given, all will be
-                 calibrated)
 
    stop
 
@@ -241,10 +444,6 @@ The provided functionality includes:
   If there are multiple of the same type, do voting and failover handling.
   Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the
   topics is `sensor_combined`, used by many parts of the system.
-- Do RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels
-  to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and
-  `manual_control_setpoint`.
-- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
 - Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or
   on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the
   sensor drivers must already be running when `sensors` is started.
@@ -260,6 +459,93 @@ sensors <command> [arguments...]
  Commands:
    start
      [-h]        Start in HIL mode
+
+   stop
+
+   status        print status info
+```
+## temperature_compensation
+Source: [modules/temperature_compensation](https://github.com/PX4/Firmware/tree/master/src/modules/temperature_compensation)
+
+
+### Description
+The temperature compensation module allows all of the gyro(s), accel(s), and baro(s) in the system to be temperature
+compensated. The module monitors the data coming from the sensors and updates the associated sensor_thermal_cal topic
+whenever a change in temperature is detected. The module can also be configured to perform the coeffecient calculation
+routine at next boot, which allows the thermal calibration coeffecients to be calculated while the vehicle undergoes
+a temperature cycle.
+
+
+### Usage {#temperature_compensation_usage}
+```
+temperature_compensation <command> [arguments...]
+ Commands:
+   start         Start the module, which monitors the sensors and updates the
+                 sensor_thermal_cal topic
+
+   calibrate     Run temperature calibration process
+     [-g]        calibrate the gyro
+     [-a]        calibrate the accel
+     [-b]        calibrate the baro (if none of these is given, all will be
+                 calibrated)
+
+   stop
+
+   status        print status info
+```
+## tune_control
+Source: [systemcmds/tune_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tune_control)
+
+
+### Description
+
+Command-line tool to control & test the (external) tunes.
+
+Tunes are used to provide audible notification and warnings (e.g. when the system arms, gets position lock, etc.).
+The tool requires that a driver is running that can handle the tune_control uorb topic.
+
+Information about the tune format and predefined system tunes can be found here:
+https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
+
+### Examples
+
+Play system tune #2:
+```
+tune_control play -t 2
+```
+
+### Usage {#tune_control_usage}
+```
+tune_control <command> [arguments...]
+ Commands:
+   play          Play system tune or single note.
+     [-t <val>]  Play predefined system tune
+                 default: 1
+     [-f <val>]  Frequency of note in Hz (0-22kHz)
+     [-d <val>]  Duration of note in us
+     [-s <val>]  Volume level (loudness) of the note (0-100)
+                 default: 40
+     [-m <val>]  Melody in string form
+                 values: <string> - e.g. "MFT200e8a8a"
+
+   libtest       Test library
+
+   stop          Stop playback (use for repeated tunes)
+```
+## work_queue
+Source: [systemcmds/work_queue](https://github.com/PX4/Firmware/tree/master/src/systemcmds/work_queue)
+
+
+### Description
+
+Command-line tool to show work queue status.
+
+
+### Usage {#work_queue_usage}
+```
+work_queue <command> [arguments...]
+ Commands:
+   start
 
    stop
 
