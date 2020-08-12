@@ -1,10 +1,10 @@
-# Poor Man's Sampling Profiler
+# 가난한 자의 샘플링 프로파일러
 
-This section describes how to assess performance of the PX4 system by means of profiling.
+이 절에서는 프로파일링 평균 수치로 PX4 시스템 성능을 살펴보는 방법을 설명합니다.
 
-## Approach
+## 접근
 
-PMSP is a shell script that operates by interrupting execution of the firmware periodically in order to sample the current stack trace. Sampled stack traces are appended into a text file. Once sampling is finished (which normally takes about an hour or more), the collected stack traces are *folded*. The result of *folding* is another text file that contains the same stack traces, except that all similar stack traces (i.e. those that were obtained at the same point in the program) are joined together, and the number of their occurrences is recorded. The folded stacks are then fed into the visualization script, for which purpose we employ [FlameGraph - an open source stack trace visualizer](http://www.brendangregg.com/flamegraphs.html).
+PSMP는 현재 스택을 추적하면서 샘플 값을 채취하기 위해 펌웨어 실행을 주기적으로 중단하며 동작하는 셸 스크립트입니다. 채취한 스택 추적 결과는 텍스트 파일에 넣습니다. 표본 데이터 채취가 끝나면(보통 몇시간 이상 걸림), 수집한 스택 추적 결과를 *접어둡니다*. The result of *folding* is another text file that contains the same stack traces, except that all similar stack traces (i.e. those that were obtained at the same point in the program) are joined together, and the number of their occurrences is recorded. The folded stacks are then fed into the visualization script, for which purpose we employ [FlameGraph - an open source stack trace visualizer](http://www.brendangregg.com/flamegraphs.html).
 
 ## Basic Usage
 
