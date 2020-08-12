@@ -17,8 +17,8 @@ PX4는 두개의 주요 계층으로 이루어져있습니다. 호스트 운영�
 * 보드에 해당하는 (모든) 파일: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/boards/px4/fmu-v5). 
 * 빌드 설정: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/default.cmake).
 * 개별 보드용 초기 파일: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/init/rc.board_defaults) 
-  * A board-specific initialisation file is automatically included in startup scripts if found under the boards directory at **init/rc.board**.
-  * The file is used to start sensors (and other things) that only exist on a particular board. It may also be used to set a board's default parameters, UART mappings, and any other special cases.
+  * 개별 보드용 초기화 파일은 보드 디렉터리의 **init/rc.board** 경로에서 시작 스크립트를 찾으면 자동으로 넣습니다.
+  * 개별 보드에 붙어있는 센서(및 기타 소자)를 시작할 때 사용하는 파일입니다. It may also be used to set a board's default parameters, UART mappings, and any other special cases.
   * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF. 
 
 ## 호스트 운영체제 설정
