@@ -71,7 +71,7 @@ fw_pos_control_l1은 고정익 위치 제어 모듈입니다.
 
 ### 설명
 
-This implements the multicopter attitude controller. It takes attitude setpoints (`vehicle_attitude_setpoint`) as inputs and outputs a rate setpoint.
+이 모듈은 멀티콥터 자세 제어를 구현했습니다. It takes attitude setpoints (`vehicle_attitude_setpoint`) as inputs and outputs a rate setpoint.
 
 The controller has a P loop for angular error
 
