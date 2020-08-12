@@ -170,13 +170,13 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ### 설명
 
-Controls the position of a ground rover using an L1 controller.
+L1 조종 장치로 외계 탐사 차량 위치를 제어합니다.
 
-Publishes `actuator_controls_0` messages at a constant 250Hz.
+`actuator_controls_0` 메세지를 초당 250번 규칙적으로 내보냅니다.
 
 ### 구현
 
-Currently, this implementation supports only a few modes:
+구현체에서는 현재 일부 모드만 지원합니다:
 
 - Full manual: Throttle, yaw가 액추에이터를 통해 직접적으로 제어됩니다.
 - Auto mission: 기체가 미션을 수행합니다
@@ -208,16 +208,16 @@ Currently, this implementation supports only a few modes:
 
 ### 설명
 
-Controls the attitude of an unmanned underwater vehicle (UUV).
+무인 수중선(UUV)의 자세를 제어합니다.
 
-Publishes `actuator_controls_0` messages at a constant 250Hz.
+`actuator_controls_0` 메세지를 초당 250번 규칙적으로 내보냅니다.
 
 ### 구현
 
 구현체에서는 현재 일부 모드만 지원합니다:
 
 - 완전 수동 방식: 좌우 회전, 상하 회전, 방위 회전, 추력 제어 값을 액츄에이터에 직접 전달
-- Auto mission: The uuv runs missions
+- 자동 수행 임무: 무인 수중선(UUV)의 임무 수행
 
 ### 예제
 
@@ -245,7 +245,7 @@ Publishes `actuator_controls_0` messages at a constant 250Hz.
 
 ### 설명
 
-fw_att_control is the fixed wing attitude controller.
+fw_att_control은 고정익 자세 제어부입니다.
 
 ### 사용법 {#vtol_att_control_usage}
 
