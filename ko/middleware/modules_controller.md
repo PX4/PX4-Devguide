@@ -141,13 +141,13 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ### 설명
 
-자동 비행 모드를 담당하는 모듈입니다. 임무(dataman에서 수신), 이륙, RTL 기능이 들어갑니다. It is also responsible for geofence violation checking.
+자동 비행 모드를 담당하는 모듈입니다. 임무(dataman에서 수신), 이륙, RTL 기능이 들어갑니다. 비행 제한 설정 구역 위반 여부 검사도 처리합니다.
 
 ### 구현
 
-The different internal modes are implemented as separate classes that inherit from a common base class `NavigatorMode`. The member `_navigation_mode` contains the current active mode.
+`NavigatorMode` 공통 기반 클래스에서 상속한 개별 클래스로 다른 내부 모드를 구현했습니다. `_navigation_mode` 구성 변수에는 현재 활성 모드 값이 들어있습니다.
 
-Navigator publishes position setpoint triplets (`position_setpoint_triplet_s`), which are then used by the position controller.
+네비게이터에서는 위체 제어부에서 활용할 위치 설정값 3개(`position_setpoint_triplet_s`)를 내보냅니다.
 
 ### 사용법 {#navigator_usage}
 
@@ -184,7 +184,7 @@ Currently, this implementation supports only a few modes:
 
 ### 예제
 
-CLI usage example:
+명령행 사용 예제는 다음과 같습니다:
 
     rover_pos_control start
     rover_pos_control status
@@ -214,9 +214,9 @@ Publishes `actuator_controls_0` messages at a constant 250Hz.
 
 ### 구현
 
-Currently, this implementation supports only a few modes:
+구현체에서는 현재 일부 모드만 지원합니다:
 
-- Full manual: Roll, pitch, yaw, and throttle controls are passed directly through to the actuators
+- 완전 수동 방식: 좌우 회전, 상하 회전, 방위 회전, 추력 제어 값을 액츄에이터에 직접 전달
 - Auto mission: The uuv runs missions
 
 ### 예제
