@@ -6,13 +6,13 @@
 
 ### 설명
 
-이 모듈은 비행체의 자세, 속도 제어부를 구현합니다. Ideally it would take attitude setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+이 모듈은 비행체의 자세, 속도 제어부를 구현합니다. 이상적으로 액츄에이터 제어 메세지 입출력으로 자세 설정값 (`vehicle_attitude_setpoint`) 또는 속도 설정값 (`manual_control_setpoint` 토픽의 아크로(acro) 모드) 을 취합니다.
 
-Currently it is feeding the `manual_control_setpoint` topic directly to the actuators.
+현재 `manual_control_setpoint` 토픽은 액츄에이터에 직접 전달합니다.
 
 ### 구현
 
-To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
+제어 지연을 최소화하려면, 모듈에서는 IMU 드라이버에서 보낸 gyro 토픽을 직접 폴링 처리해야합니다.
 
 ### 사용법 {#airship_att_control_usage}
 
@@ -31,7 +31,7 @@ To reduce control latency, the module directly polls on the gyro topic published
 
 ### 설명
 
-fw_att_control is the fixed wing attitude controller.
+fw_att_control은 고정익 자세 제어 모듈입니다.
 
 ### 사용법 {#fw_att_control_usage}
 
@@ -51,7 +51,7 @@ fw_att_control is the fixed wing attitude controller.
 
 ### 설명
 
-fw_pos_control_l1 is the fixed wing position controller.
+fw_pos_control_l1은 고정익 위치 제어 모듈입니다.
 
 ### 사용법 {#fw_pos_control_l1_usage}
 
@@ -67,7 +67,7 @@ fw_pos_control_l1 is the fixed wing position controller.
 
 ## mc_att_control
 
-Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
+소스 코드: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
 
 ### 설명
 
