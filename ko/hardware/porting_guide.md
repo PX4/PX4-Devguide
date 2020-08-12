@@ -10,13 +10,13 @@ PX4는 두개의 주요 계층으로 이루어져있습니다. 호스트 운영�
 
 ## 비행체 조종 장치 설정 파일 구조
 
-Board startup and configuration files are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in each board's vendor-specific directory (i.e. **boards/*VENDOR*/*MODEL*/**)).
+보드의 시작, 설정 파일은 각 보드의 제조사별 디렉터리의 [/boards](https://github.com/PX4/Firmware/tree/master/boards/)에 있습니다(예: **boards/*VENDOR*/*MODEL*/**).
 
-For example, for FMUv5:
+예를 들어, FMUv5에서는:
 
-* (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/boards/px4/fmu-v5). 
-* Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/default.cmake).
-* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/init/rc.board_defaults) 
+* 보드에 해당하는 (모든) 파일: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/boards/px4/fmu-v5). 
+* 빌드 설정: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/default.cmake).
+* 개별 보드용 초기 파일: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/init/rc.board_defaults) 
   * A board-specific initialisation file is automatically included in startup scripts if found under the boards directory at **init/rc.board**.
   * The file is used to start sensors (and other things) that only exist on a particular board. It may also be used to set a board's default parameters, UART mappings, and any other special cases.
   * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF. 
