@@ -1,51 +1,51 @@
-# Embedded Debugging
+# 임베디드 디버깅
 
-The autopilots running PX4 support debugging via GDB or LLDB.
+PX4를 실행하는 오토파일럿은 GDB/LLDB 디버깅을 지원합니다.
 
-## Identifying large memory consumers
+## 고용량 메모리 점유 프로그램 식별
 
-The command below will list the largest static allocations:
+아래 명령은 메모리 용량을 늘 가장 많이 차지하는 부분을 목록으로 보여줍니다:
 
 ```bash
 arm-none-eabi-nm --size-sort --print-size --radix=dec build/px4_fmu-v2_default/px4_fmu-v2_default.elf | grep " [bBdD] "
 ```
 
-This NSH command provides the remaining free memory:
+NSH 명령은 남아있는 메모리 용량을 보여줍니다:
 
 ```bash
 free
 ```
 
-And the top command shows the stack usage per application:
+그리고 top 명령은 프로그램당 스택 사용량을 보여줍니다:
 
     top
     
 
-Stack usage is calculated with stack coloring and thus is not the current usage, but the maximum since the start of the task.
+스택 사용량은 스택에 쌓아둔 공간 용량을 계산하기에, 현재 사용량은 아니며 작업 시작 후 최대 점유량을 나타냅니다.
 
-### Heap allocations
+### 힙 할당
 
-Dynamic heap allocations can be traced on POSIX in SITL with [gperftools](https://github.com/gperftools/gperftools).
+동적 힙 할당은 [gperttools](https://github.com/gperftools/gperftools)로 SITL의 POSIX 환경에서 추적할 수 있습니다.
 
-#### Install Instructions
+#### 설치 방법
 
-##### Ubuntu:
+##### 우분투:
 
 ```bash
 sudo apt-get install google-perftools libgoogle-perftools-dev
 ```
 
-#### Start heap profiling
+#### 힙 프로파일링 시작
 
-First of all, build the firmware as follows:
+우선 다음과 같이 펌웨어를 빌드하십시오:
 
 ```bash
 make px4_sitl_default
 ```
 
-Start jmavsim: `./Tools/jmavsim_run.sh -l`
+jMAVSim을 시작하십시오: `./Tools/jmavsim_run.sh`
 
-In another terminal, type:
+다른 터미널에서 다음 명령을 입력하십시오
 
 ```bash
 cd build/px4_sitl_default/tmp/rootfs
@@ -53,37 +53,37 @@ export HEAPPROFILE=/tmp/heapprofile.hprof
 export HEAP_PROFILE_TIME_INTERVAL=30
 ```
 
-Enter this depending on your system:
+시스템에 따라 다음 명령행을 입력하십시오:
 
-##### Fedora:
+##### 페도라:
 
 ```bash
 env LD_PRELOAD=/lib64/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
 pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
-##### Ubuntu:
+##### 우분투:
 
 ```bash
 env LD_PRELOAD=/usr/lib/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
 google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
 ```
 
-It will generate a pdf with a graph of the heap allocations. The numbers in the graph will all be zero, because they are in MB. Just look at the percentages instead. They show the live memory (of the node and the subtree), meaning the memory that was still in use at the end.
+힙 할당 그래프를 넣은 pdf 문서가 나타납니다. 그래프의 숫자는 MB 단위기 때문에 모두 0입니다. 그래서 백분율만을 대신 보겠습니다. 실제 동작하는 메모리(노드, 하위트리의 점유 대상)를 보여주는데, 프로그램이 끝나기 전까지도 여전히 메모리를 사용중이었음을 의미합니다.
 
-See the [gperftools docs](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html) for more information.
+자세한 정보는 [gperftools 문서](https://htmlpreview.github.io/?https://github.com/gperftools/gperftools/blob/master/docs/heapprofile.html)를 살펴보십시오.
 
-## Hard Fault Debugging
+## 하드웨어 오류 디버깅
 
-A hard fault is a state when a CPU executes an invalid instruction or accesses an invalid memory address. This might occur when key areas in RAM have been corrupted.
+하드웨어 오류는 CPU 에서 잘못된 명령어를 받아 처리하려 하거나 잘못된 메모리 주소로 접근하려할 경우 나타나는 상태입니다. This might occur when key areas in RAM have been corrupted.
 
-### Video
+### 비디오
 
 The following video demonstrates hardfault debugging on PX4 using Eclipse and a JTAG debugger. It was presented at the PX4 Developer Conference 2019.
 
 {% youtube %} https://www.youtube.com/watch?v=KZkAM_PVOi0 {% endyoutube %}
 
-### Debugging Hard Faults in NuttX
+### NuttX에서 하드웨어 오류 디버깅
 
 A typical scenario that can cause a hard fault is when the processor overwrites the stack and then the processor returns to an invalid address from the stack. This may be caused by a bug in code were a wild pointer corrupts the stack, or another task overwrites this task's stack.
 
@@ -137,13 +137,13 @@ xPSR: 61000000 BASEPRI: 00000000 CONTROL: 00000000
 EXC_RETURN: ffffffe9
 ```
 
-To decode the hard fault, load the *exact* binary into the debugger:
+하드웨어 오류를 디코딩하려면 *정확한* 바이너리를 디버거에 불러오십시오:
 
 ```bash
 arm-none-eabi-gdb build/px4_fmu-v2_default/px4_fmu-v2_default.elf
 ```
 
-Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
+그 다음 GDB 프롬프트에서 플래시의 처음 주소에 있는 R8의 마지막 인스트럭션부터 시작하십시오(`0x080`부터 시작하므로 처음 부분은 `0x0808439f`임). 실행은 왼쪽에서 오른쪽으로 진행합니다. 따라서 하드웨어 오류가 발생하기 전의 마지막 단계중 하나는, 다음 파일이 ```mavlink_log.c``` 무언가를 내보낼 때 나타납니다.
 
 ```gdb
 (gdb) info line *0x0808439f
