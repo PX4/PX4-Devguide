@@ -56,21 +56,21 @@ PX4 프로젝트에서는 [FMU 표준 참조 하드웨어](../hardware/reference
 
 모든 공식 지원 보드를 활용하면 다음과 같은 장점이 있습니다:
 
-* PX4 저장소의 PX4 포팅 소스코드를 활용
+* PX4 저장소의 PX4 포팅 소스 코드 활용
 * *QGroundControl*에서 접근할 수 있는 펌웨어 자동 빌드
 * 생태계 호환성 확보
-* Automated checks via CI - safety remains paramount to this community
-* [Flight testing](../test_and_ci/test_flights.md)
+* 지속 통합 관리 시스템으로 자동 검사 - 이 커뮤니티에 있어 최고의 안전성 확보
+* [비행체 시험](../test_and_ci/test_flights.md)
 
-We encourage board manufacturers to aim for full compatibility with the [FMU spec](https://pixhawk.org/). With full compatibility you benefit from the ongoing day-to-day development of PX4, but have none of the maintenance costs that come from supporting deviations from the specification.
+[FMU 명세](https://pixhawk.org/)에 최대한의 호환성을 확보한 보드 제조사의 제품 활용을 권합니다. 완전한 호환성을 갖춘 보드를 활용하면 PX4 일일 개발 소스코드로부터 여러가지 잇점을 취할 수 있으며, 사양으로부터 벗어나는 지원에 그 어떤 비용도 발생하지 않습니다.
 
-> **Tip** Manufacturers should carefully consider the cost of maintenance before deviating from the specification (the cost to the manufacturer is proportional to the level of divergence).
+> **Tip** 제조사에서는 기본 사양에 벗어나는 무언가를 추가할 때 유지 비용을 주의깊게 고려해야합니다(제조사의 비용은 다양한 정도에 비례합니다).
 
-We welcome any individual or company to submit their port for inclusion in our supported hardware, provided they are willing to follow our [Code of Conduct](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/CODE_OF_CONDUCT.md) and work with the Dev Team to provide a safe and fulfilling PX4 experience to their customers.
+개인 또는 업체에서 자신들의 지원 하드웨어로의 소프트웨어 이식을 보내준다면 기꺼이 받도록 하겠습니다. 또한 기여 개인 또는 조직이 [활동 지침](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/CODE_OF_CONDUCT.md)을 따르며, 고객들에게 안전하고 만족스러운 PX4 경험을 안겨주기 위해 개발팀과 함께 일해주시면 좋겠습니다.
 
-It's also important to note that the PX4 dev team has a responsibility to release safe software, and as such we require any board manufacturer to commit any resources necessary to keep their port up-to-date, and in a working state.
+참고할 중요한 점이 또 있다면, PX4 개발팀은 안전한 프로그램을 출시할 책임이 있기에 보드 제조사에 항상 최신을 유지하는데 필요한 여러 지원 요소와 작업 현황을 알려달라고 요청합니다.
 
-If you want to have your board officially supported in PX4:
+PX4에서 공식적으로 지원하고자 하는 보드가 있다면:
 
 * Your hardware must be available in the market (i.e. it can be purchased by any developer without restriction).
 * Hardware must be made available to the PX4 Dev Team so that they can validate the port (contact <lorenz@px4.io> for guidance on where to ship hardware for testing).
