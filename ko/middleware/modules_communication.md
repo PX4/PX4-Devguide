@@ -28,21 +28,21 @@ FrSky 통신을 지원합니다. D, S.PORT 프로토콜을 자동으로 감지�
 
 Source: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
 
-### Description
+### 설명
 
-이 모듈은 시리얼통신이나 UDP 통신에 사용될 수 있는 MAVLink 프로토콜을 구현한 것입니다. uORB를 통해 시스템과 통신합니다. 몇몇의 메시지는 이 모듈에서 처리합니다. 예를 들면, mission protocol 입니다. 다른 메시지들은 uROB를 통해 퍼블리시됩니다. 예를 들면, vehicle_command 입니다.
+이 모듈은 시리얼 통신이나 UDP 통신에 사용할 수 있는 MAVLink 프로토콜 구현체입니다. uORB로 시스템과 통신합니다. 일부 메시지는 모듈에서 직접 처리합니다(예: mission protocol), 다른 메세지는 uORB로 처리합니다(예: vehicle_command).
 
-스트림은 특정한 속도로 주기적인 메시지(예, 기체 자세)를 보내기 위해 사용됩니다. mavlink 인스턴스를 시작할 때 특정 속도로 스트림을 활성화 할지 정의하는 모드를 설정할 수 있습니다. 인스터스가 실행중 일때는 `mavlink stream` 명령어를 통해 설정할 수 있습니다.
+기체 자세와 같은 주기 메세지는 일정 속도로 내보냅니다. mavlink 인스턴스를 시작할 때 특정 속도로 스트림을 활성화 할지 정의하는 모드를 설정할 수 있습니다. 인스터스가 실행중 일때는 `mavlink stream` 명령어를 통해 설정할 수 있습니다.
 
-시리얼 디바이스나 네트워크 포트에 연결된 여러개의 독립적인 인스턴스가 있을 수 있습니다. 
+직렬 통신 장치나 네트워크 포트에 연결한 다중 독립 인스턴스가 있을 수 있습니다. 
 
-### Implementation
+### 구현
 
 송신하는 쓰레드, 수신하는 쓰레드 2개를 사용해 구현했습니다. 송신 쓰레드는 일정한 속도로 수행되고 설정한 속도(`-r`)보다 대역폭이 높아지거나 물리적인 연결이 포화가 되면 스트림의 속도는 동적으로 줄어듭니다. `mavlink status` 명령러를 통해 확인할 수 있습니다. `rate mult`가 1보다 작은지 보세요.
 
-**Careful**: 일부 데이터는 두개의 쓰레드 모두에서 접근되고 수저됩니다. 따라서 코드를 바꾸거나 기능을 확장할 때는 레이스 컨디션과 데이터가 오염되는 것을 고려해야합니다.
+**Careful**: 일부 데이터는 양쪽 스레드에서 접근하고 수정합니다. 코드를 바꾸거나 기능을 확장할 경우 경쟁 상태(race condition)로의 진입과 데이터 유실을 피하기 위한 검토가 필요합니다.
 
-### Examples
+### 예제
 
 ttyS1에 baudrate 921600, 최대 전송속도 80kB/s로 mavlink를 시작합니다.
 
@@ -55,7 +55,7 @@ UDP 포트 14556에 HIGHRES_IMU 메시지를 50Hz속도로 활성화해 mavlink�
     mavlink stream -u 14556 -s HIGHRES_IMU -r 50
     
 
-### Usage {#mavlink_usage}
+### 사용법 {#mavlink_usage}
 
     mavlink <command> [arguments...]
      Commands:
@@ -106,9 +106,9 @@ UDP 포트 14556에 HIGHRES_IMU 메시지를 50Hz속도로 활성화해 mavlink�
 
 ## micrortps_client
 
-Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
+소스 코드: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
 
-### Usage {#micrortps_client_usage}
+### 사용법 {#micrortps_client_usage}
 
     micrortps_client <command> [arguments...]
      Commands:
