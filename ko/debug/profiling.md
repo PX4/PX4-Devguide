@@ -29,19 +29,19 @@ ad-hoc 솔루션으로 개발했기에 일부 문제가 있습니다. 사용중�
 
 * GDB가 제대로 동작하지 않으면, 스크립트는 GDB 발견에 실패하고 실행을 계속합니다. 이 경우, 명백하게 가용 스택이 나타나지 않습니다. 이 문제를 피하려면, 사용자는 최근 GDB 실행시 나타난 표준 오류 기록 파일 `/tmp/pmpn-gdberr.log`를 주기적으로 확인해야합니다. 나중에는 스크립트를 종료 코드로 문제를 나타내는 부분인 출력 동작없이 GDB를 실행하도록 수정할 예정입니다.
 
-* 때로는 GDB가 스택 추적 표본 데이터를 수정하는 동안 GDB가 계속 멈춰있을 수가 있습니다. 이런 문제가 나타나면, 대상의 동작이 알 수 없는 이유로 끝납니다. 해결책은 스크립트를 일단 직접 멈추고 `--append` 옵션을 붙여 다시 실행하는 방법입니다. In the future the script should be modified to enforce a timeout for every GDB invocation.
+* 때로는 GDB가 스택 추적 표본 데이터를 수정하는 동안 GDB가 계속 멈춰있을 수가 있습니다. 이런 문제가 나타나면, 대상의 동작이 알 수 없는 이유로 끝납니다. 해결책은 스크립트를 일단 직접 멈추고 `--append` 옵션을 붙여 다시 실행하는 방법입니다. 나중에는 매번 GDB 실행시 강제로 제한 시간을 부여하도록 수정할 예정입니다.
 
-* Multithreaded environments are not supported. This does not affect single core embedded targets, since they always execute in one thread, but this limitation makes the profiler incompatible with many other applications. In the future the stack folder should be modified to support multiple stack traces per sample.
+* 다중 스레드 환경을 지원하지 않습니다. 단일 코어 임베디드 대상에서는 늘 하나의 스레드로만 실행하기 때문에 문제가 없습니다. 다만, 이런 제약 사항이 다른 프로그램과 프로파일러의 호환성을 떨어뜨립니다. 나중에는 스택 폴더에서 표본 데이터당 다중 스택 추적을 지원하도록 할 예정입니다.
 
 ## 구현 {#implementation}
 
-The script is located at `Debug/poor-mans-profiler.sh`. Once launched, it will perform the specified number of samples with the specified time interval. Collected samples will be stored in a text file in the system temp directory (typically `/tmp`). Once sampling is finished, the script will automatically invoke the stack folder, the output of which will be stored in an adjacent file in the temp directory. If the stacks were folded successfully, the script will invoke the *FlameGraph* script and store the result in an interactive SVG file. Please note that not all image viewers support interactive images; it is recommended to open the resulting SVG in a web browser.
+스크립트는 `Debug/poor-mans-profiler.sh` 위치에 있습니다. 한번 실행하면 지정 시간 주기별로 지정 표본 데이터 수만큼 동작합니다. 수집 표본 데이터는 시스템 임시 디렉터리(보통 `/tmp`)에 텍스트 파일로 저장합니다. 표본 데이터 수집이 끝나면, 스크립트는 임시 디렉터리의 인접 파일에 저장한 출력파일 스택 폴더를 자동으로 호출합니다. 스택을 잘 접어두었다면, 스크립트는 *FrameGraph* 스크립트를 호출하고 관련 결과를 양방향 SVG 파일에 저장합니다. 모든 이미지 보기 프로그램이 이 그림 형식을 지원하지 않음을 참고하십시오. 웹 브라우저에서 결과 SVG 파일을 열어보시는 것이 좋습니다.
 
-The FlameGraph script must reside in the `PATH`, otherwise PMSP will refuse to launch.
+FlameGraph 스크립트 위치는 `PATH`에 두어야 합니다. 그렇지 않으면 PMSP를 실행할 수 없습니다.
 
-PMSP uses GDB to collect the stack traces. Currently it uses `arm-none-eabi-gdb`, other toolchains may be added in the future.
+PMSP는 스택 추적 표본 데이터 수집시 GDB를 활용합니다. 현재 `arm-none-eabi-gdb`를 활용하며, 다른 툴체인은 나중에 추가하겠습니다.
 
-In order to be able to map memory locations to symbols, the script needs to be referred to the executable file that is currently running on the target. This is done with the help of the option `--elf=<file>`, which expects a path (relative to the root of the repository) pointing to the location of the currently executing ELF.
+메모리 위치를 심볼에 대응할 수 있으려면, 스크립트에서 대상 하드웨어의 현재 실행 파일에 접근해야합니다. This is done with the help of the option `--elf=<file>`, which expects a path (relative to the root of the repository) pointing to the location of the currently executing ELF.
 
 Usage example:
 
