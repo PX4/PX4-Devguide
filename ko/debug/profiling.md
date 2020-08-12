@@ -41,23 +41,23 @@ FlameGraph 스크립트 위치는 `PATH`에 두어야 합니다. 그렇지 않�
 
 PMSP는 스택 추적 표본 데이터 수집시 GDB를 활용합니다. 현재 `arm-none-eabi-gdb`를 활용하며, 다른 툴체인은 나중에 추가하겠습니다.
 
-메모리 위치를 심볼에 대응할 수 있으려면, 스크립트에서 대상 하드웨어의 현재 실행 파일에 접근해야합니다. This is done with the help of the option `--elf=<file>`, which expects a path (relative to the root of the repository) pointing to the location of the currently executing ELF.
+메모리 위치를 심볼에 대응할 수 있으려면, 스크립트에서 대상 하드웨어의 현재 실행 파일에 접근해야합니다. 이는 현재 실행중인 ELF 바이너리 위치를 가리키는 경로를 `--elf=<file>`에 대입하는 옵션의 도움을 받아 처리할 수 있습니다.
 
-Usage example:
+사용 예제:
 
 ```bash
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000
 ```
 
-Note that every launch of the script will overwrite the old stacks. Should you want to append to the old stacks rather than overwrite them, use the option `--append`:
+참고로 매번 스크립트를 실행할 때 이전 스택 내용을 덮어씁니다. 이전 스택 내용을 덮어쓰기보다, 계속 뒤에 추가할 경우 `--append` 옵션을 사용하십시오:
 
 ```bash
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000 --append
 ```
 
-As one might suspect, `--append` with `--nsamples=0` will instruct the script to only regenerate the SVG without accessing the target at all.
+짐작하는대로, `--append` 옵션과 `--nsamples=0` 옵션은 대상에 모두 접근하지 않고도 스크립트로 하여금 SVG 파일만 다시 만들게끔합니다.
 
-Please read the script for a more in depth understanding of how it works.
+스크립트의 동작 방식을 더 자세하게 이해하려면 코드를 직접 살펴보십시오.
 
 ## 기여자
 
