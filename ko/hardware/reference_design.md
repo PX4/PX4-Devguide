@@ -22,7 +22,7 @@ FMU 1~3 세대는 공개 하드웨어로 설계했으나, 4~5세대에서는 핀
 
 아래 그림에서는 픽스호크 계열 비행 조종 장치의 FMU와 I/O 보드간 버스 구분과 담당 기능을 나타냅니다(보픽스호크 계열 비행 조종 장치의 FMU와 I/O 보드간 버스 구분과 담당 기능을 나타냅니다(보드는 단일 물리 모듈에 들어갑니다).
 
-![PX4 Main/IO Functional Breakdown](../../assets/diagrams/px4_fmu_io_functions.png)
+![PX4 주요/입출력 기능 해부](../../assets/diagrams/px4_fmu_io_functions.png)
 
 <!-- Draw.io version of file can be found here: https://drive.google.com/file/d/1H0nK7Ufo979BE9EBjJ_ccVx3fcsilPS3/view?usp=sharing -->
 
@@ -41,4 +41,4 @@ FMU 1~3 세대는 공개 하드웨어로 설계했으나, 4~5세대에서는 핀
 
 > **Note** 입출력 보드가 빠진 제조사의 비행 조종 장치 변경 버전은 보통 해당 버전의 "소형" 모델로, 예를 들면, *Pixhawk 4* **Mini**_, *CUAV v5 **nano***와 같이 표기합니다.
 
-대부분의 PX4 PWM 출력은 믹서의 `MAIN` 또는 `AUX` 포트에 대응합니다. A few specific cases, including camera triggering and Dshot ESCs, are directly mapped to the FMU pins (i.e. they will output to *either* `MAIN` or `AUX`, depending on whether or not the flight controller has an I/O board).
+대부분의 PX4 PWM 출력은 믹서의 `MAIN` 또는 `AUX` 포트에 대응합니다. 일부 드문 경우, Dshot ESC, 카메라 촬영 핀을 FMU 핀에 직접 연결합니다(예: 비행 조종 장치에 입출력 보드가 붙어있는지 여부에 따라 `MAIN`핀 또는 `AUX`핀 *어디로든* 출력함).
