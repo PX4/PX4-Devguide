@@ -75,20 +75,20 @@ google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > 
 
 ## 하드웨어 오류 디버깅
 
-하드웨어 오류는 CPU 에서 잘못된 명령어를 받아 처리하려 하거나 잘못된 메모리 주소로 접근하려할 경우 나타나는 상태입니다. This might occur when key areas in RAM have been corrupted.
+하드웨어 오류는 CPU 에서 잘못된 명령어를 받아 처리하려 하거나 잘못된 메모리 주소로 접근하려 할 경우 나타나는 상태입니다. RAM의 핵심 영역이 깨졌을 때 나타날 수 있는 현상입니다.
 
 ### 비디오
 
-The following video demonstrates hardfault debugging on PX4 using Eclipse and a JTAG debugger. It was presented at the PX4 Developer Conference 2019.
+다음 동영상에서는 Eclipse와 JTAG 디버거로 하드웨어 오류 디버깅을 하는 방법을 시연합니다. 이 내용은 2019년 PX4 개발자 컨퍼런스에서 다루었습니다.
 
 {% youtube %} https://www.youtube.com/watch?v=KZkAM_PVOi0 {% endyoutube %}
 
 ### NuttX에서 하드웨어 오류 디버깅
 
-A typical scenario that can cause a hard fault is when the processor overwrites the stack and then the processor returns to an invalid address from the stack. This may be caused by a bug in code were a wild pointer corrupts the stack, or another task overwrites this task's stack.
+하드웨어 오류는 보통 프로세서에서 스택을 엎어쓰거나 하여 프로세서에서 스택 주소 오류를 반환하는 상황에서 나타날 수 있습니다. 이 상황은 아마도 코드의 포인터가 메모리 들판을 헤집고 다니다 스택을 깨먹거나, 작업 스택을 다른 작업이 엎어버리는 버그로 인해 나타납니다.
 
-* NuttX maintains two stacks: The IRQ stack for interrupt processing and the user stack
-* The stack grows downward. So the highest address in the example below is 0x20021060, the size is 0x11f4 (4596 bytes) and consequently the lowest address is 0x2001fe6c.
+* NuttX는 두 종류의, 인터럽트를 처리하는 IRQ 스택과 사용자 스택을 관리합니다
+* 스택의 점유량은 아래로 늘어납니다. 따라서 아래 예제에서 가장 높은 지점의 주소는 0x20021060 으로, 사이즈는 0x11f4(4596 바이트)이며, 고로 최하위 주소는 0x2001fe6c입니다.
 
 ```bash
 Assertion failed at file:armv7-m/up_hardfault.c line: 184 task: ekf_att_pos_estimator
