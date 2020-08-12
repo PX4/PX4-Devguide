@@ -8,9 +8,9 @@ PX4는 2개의 주된 레이어로 구성됩니다. [flight stack](#flight-stack
 - 통신은 비동기적인 메시지 전달에 의해 수행됩니다.
 - 이 시스템은 다양한 작업을 쉽게 다룰 수 있습니다.
 
-## High-Level Software Architecture{#architecture}
+## 고수준 소프트웨어 구조{#architecture}
 
-아래의 다이어그램은 PX4를 구성하는 블럭들의 개요를 자세히 보여줍니다, 최상단의 다이어그램은 미들웨어 블럭들을 포함하고, 그 아래의 컴포넌트들은 flight stack을 나타냅니다.
+아래 그림은 PX4를 구성하는 블럭 내용을 자세히 보여줍니다, 최상단의 다이어그램은 미들웨어 블럭들을 포함하고, 그 아래의 컴포넌트들은 flight stack을 나타냅니다.
 
 ![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
 
