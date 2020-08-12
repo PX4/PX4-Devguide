@@ -27,9 +27,9 @@ FlameGraph에서, 수평 단계는 스택 프레임을, 프레임의 높이는 �
 
 ad-hoc 솔루션으로 개발했기에 일부 문제가 있습니다. 사용중에 다음 내용을 확인하십시오:
 
-* If GDB is malfunctioning, the script may fail to detect that, and continue running. In this case, obviously, no usable stacks will be produced. In order to avoid that, the user should periodically check the file `/tmp/pmpn-gdberr.log`, which contains the stderr output of the most recent invocation of GDB. In the future the script should be modified to invoke GDB in quiet mode, where it will indicate issues via its exit code.
+* GDB가 제대로 동작하지 않으면, 스크립트는 GDB 발견에 실패하고 실행을 계속합니다. 이 경우, 명백하게 가용 스택이 나타나지 않습니다. 이 문제를 피하려면, 사용자는 최근 GDB 실행시 나타난 표준 오류 기록 파일 `/tmp/pmpn-gdberr.log`를 주기적으로 확인해야합니다. 나중에는 스크립트를 종료 코드로 문제를 나타내는 부분인 출력 동작없이 GDB를 실행하도록 수정할 예정입니다.
 
-* Sometimes GDB just sticks forever while sampling the stack trace. During this failure, the target will be halted indefinitely. The solution is to manually abort the script and re-launch it again with the `--append` option. In the future the script should be modified to enforce a timeout for every GDB invocation.
+* 때로는 GDB가 스택 추적 표본 데이터를 수정하는 동안 GDB가 계속 멈춰있을 수가 있습니다. 이런 문제가 나타나면, 대상의 동작이 알 수 없는 이유로 끝납니다. 해결책은 스크립트를 일단 직접 멈추고 `--append` 옵션을 붙여 다시 실행하는 방법입니다. In the future the script should be modified to enforce a timeout for every GDB invocation.
 
 * Multithreaded environments are not supported. This does not affect single core embedded targets, since they always execute in one thread, but this limitation makes the profiler incompatible with many other applications. In the future the stack folder should be modified to support multiple stack traces per sample.
 
