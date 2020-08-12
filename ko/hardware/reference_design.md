@@ -33,12 +33,12 @@ FMU 1~3 세대는 공개 하드웨어로 설계했으나, 4~5세대에서는 핀
 - 메인 믹서 파일을 FMU로 불러옵니다(따라서 "메인" 출력은 [에어프레임 참고](../airframes/airframe_reference.md)에서 AUX로 표기한 포트로 나타냅니다). AUX 믹서 파일은 불러오지 않으므로, 이 파일에 지정한 출력 핀은 사용하지 않습니다.
 - RC 입력은 입출력 보드가 아닌 FMU로 바로 들어갑니다.
 
-입출력 보드를 장착하지 않은 비행 조종 장치에는 `MAIN` 포트가 있지만, `AUX`포트는 *없습니다*. Consequently they can only be used in [airframes](../airframes/airframe_reference.md) that do not use `AUX` ports, or that only use them for non-essential purposes (e.g. RC passthrough). They can be used for most multicopters and *fully* autonomous vehicles (without a safety pilot using RC control), as these typically only use `MAIN` ports for motors/essential controls.
+입출력 보드를 장착하지 않은 비행 조종 장치에는 `MAIN` 포트가 있지만, `AUX`포트는 *없습니다*. 따라서 `AUX` 포트를 활용하지 않는 [에어프레임](../airframes/airframe_reference.md)에서만 사용할 수 있거나 덜 핵심적인 목적으로 활용할 수 있습니다(예: RC 전달). 대부분의 멀티콥터와 *완전* 자동화 기체(원격 조정을 통한 안전 항해 기능을 뺌)는 모터와 핵심부를 제어하는 `MAIN` 포트만을 사용하기 때문에 이 목적으로만 활용할 수 있습니다.
 
-> **Warning** Flight controllers without an I/O board cannot be used in [airframes](../airframes/airframe_reference.md) that map any `AUX` ports to essential flight controls or motors (as they have no `AUX` ports).
+> **Warning** 입출력 보드가 빠진 비행 조종 장치는 핵심 비행 조종부와 모터를 `AUX`포트에 연결하는 [에어프레임](../airframes/airframe_reference.md)에서 사용할 수 없습니다(`AUX` 포트가 없기 때문).
 
 <span></span>
 
-> **Note** Manufacturer flight controller variants without an I/O board are often named as a "diminutive" of a version that includes the I/O board: e.g. *Pixhawk 4* **Mini**_, *CUAV v5 **nano***.
+> **Note** 입출력 보드가 빠진 제조사의 비행 조종 장치 변경 버전은 보통 해당 버전의 "소형" 모델로, 예를 들면, *Pixhawk 4* **Mini**_, *CUAV v5 **nano***와 같이 표기합니다.
 
 대부분의 PX4 PWM 출력은 믹서의 `MAIN` 또는 `AUX` 포트에 대응합니다. A few specific cases, including camera triggering and Dshot ESCs, are directly mapped to the FMU pins (i.e. they will output to *either* `MAIN` or `AUX`, depending on whether or not the flight controller has an I/O board).
