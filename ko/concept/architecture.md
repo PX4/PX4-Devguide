@@ -1,18 +1,18 @@
 # PX4 아키텍처 개요
 
-PX4는 2개의 주된 레이어로 구성됩니다. [flight stack](#flight-stack)은 비행제어를 추상화한 계층입니다. [middle](#middleware)는 자율 로봇, 내/외부 통신, 하드웨어 통합을 지원하는 일반적인 레이어입니다.
+PX4는 주요 계층 2가지로 구성했습니다. [플라이트 스택](#flight-stack)은 추정, 비행 제어 시스템이며, [미들웨어](#middleware)는 내외부 통신과 하드웨어간 결합 기능을 지원하는 여러가지 자동 처리 로봇을 지원할 수 있는 범용 로보틱스 계층입니다.
 
-모든 PX4 [기체](../airframes/README.md)는 하나의 codebase (보트, 로봇, 잠수함 등의 다른 로보틱스 시스템도 포함) 를 공유합니다. 완전한 시스템 디자인은 [reactive](http://www.reactivemanifesto.org)입니다. 무슨 뜻이나면
+모든 PX4 [기체](../airframes/README.md)는 하나의 코드 기반(보트, 로봇, 잠수함 등의 다른 로보틱스 시스템도 포함)을 공유합니다. 완전한 시스템 디자인은 [반응형](http://www.reactivemanifesto.org)입니다. 무슨 뜻이나면:
 
-- 모든 기능들은 교환가능하고 재사용가능한 컴포넌트들로 나뉩니다.
-- 통신은 비동기적인 메시지 전달에 의해 수행됩니다.
-- 이 시스템은 다양한 작업을 쉽게 다룰 수 있습니다.
+- 모든 기능은 대체, 재사용 가능 요소로 나눕니다.
+- 비동기 메시지 전달로 통신을 수행합니다.
+- 다양한 부하 작업을 처리할 수 있습니다.
 
 ## 고수준 소프트웨어 구조{#architecture}
 
 아래 그림은 PX4를 구성하는 블럭 내용을 자세히 보여줍니다, 그림 최상부에는 미들웨어 부분이 있고, 그 아래 부분은 flight stack 부분이 있습니다.
 
-![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
+![PX4 구조](../../assets/diagrams/PX4_Architecture.svg)
 
 <!-- This diagram can be updated from 
 [here](https://drive.google.com/file/d/0B1TDW9ajamYkaGx3R0xGb1NaeU0/view?usp=sharing) 
@@ -28,7 +28,7 @@ again. -->
 
 화살표는 모듈간의 *가장 중요한* 연결의 정보 흐름을 보여줍니다. 실제로는 그림에서 나타낸 연결 수보다 더 많고, 일부 데이터(예: 매개변수)는 상당히 많은 모듈에서 접근합니다.
 
-각 모듈은 [uORB](../middleware/uorb.md)라고 하는 publish-subscribe 메세지 버스로 통신합니다. Publish-subscribe 스킴의 사용은 다음을 의미합니다.
+각 모듈은 [uORB](../middleware/uorb.md)라고 하는 publish-subscribe 메세지 버스로 통신합니다. publish-subscribe 방식의 활용 의미는 다음과 같습니다:
 
 - 반응형 시스템 — 비동기 방식으로 동작하며 새 데이터를 넣으면 바로 업데이트합니다
 - 모든 연산, 통신 동작에 대해 완전한 병렬 처리를 수행합니다
@@ -42,7 +42,7 @@ Flight Stack은 자율적인 드론을 위한 유도, 네비게이션, 컨트롤
 
 아래의 그림은 flight stack을 구성하는 블록들의 개요를 보여줍니다. 센서, RC 입력 및 자율 비행 제어 (네비게이터) 에서 모터 또는 서보 제어 (액추에이터) 까지의 전체 파이프라인을 포함합니다.
 
-![PX4 High-Level Flight Stack](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
+![PX4 고수준 플라이트 스택](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
 [here](https://drive.google.com/a/px4.io/file/d/15J0eCL77fHbItA249epT3i2iOx4VwJGI/view?usp=sharing) 
 and opened with draw.io Diagrams. You might need to request access if you
 don't have a px4.io Google account.
@@ -117,4 +117,4 @@ ndependent_task = px4_task_spawn_cmd(
 
 #### Linux/macOS
 
-리눅스나 macOS에서는 PX4는 하나의 프로세스 안에서 동작합니다. 그리고 각 모듈들은 자신의 스레드를 갖고 수행됩니다 (NuttX의 태스크와 스레드간에는 특별한 차이는 없습니다).
+리눅스나 macOS에서는 PX4는 하나의 프로세스 안에서 동작합니다. 그리고 각 모듈은 자체 스레드에서 동작을 수행합니다(NuttX의 작업과 스레드의 차이는 없음).
