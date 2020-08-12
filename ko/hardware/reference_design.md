@@ -33,7 +33,7 @@ FMU 1~3 세대는 공개 하드웨어로 설계했으나, 4~5세대에서는 핀
 - 메인 믹서 파일을 FMU로 불러옵니다(따라서 "메인" 출력은 [에어프레임 참고](../airframes/airframe_reference.md)에서 AUX로 표기한 포트로 나타냅니다). AUX 믹서 파일은 불러오지 않으므로, 이 파일에 지정한 출력 핀은 사용하지 않습니다.
 - RC 입력은 입출력 보드가 아닌 FMU로 바로 들어갑니다.
 
-Flight controllers without an I/O board have `MAIN` ports, but they *do not* have `AUX` ports. Consequently they can only be used in [airframes](../airframes/airframe_reference.md) that do not use `AUX` ports, or that only use them for non-essential purposes (e.g. RC passthrough). They can be used for most multicopters and *fully* autonomous vehicles (without a safety pilot using RC control), as these typically only use `MAIN` ports for motors/essential controls.
+입출력 보드를 장착하지 않은 비행 조종 장치에는 `MAIN` 포트가 있지만, `AUX`포트는 *없습니다*. Consequently they can only be used in [airframes](../airframes/airframe_reference.md) that do not use `AUX` ports, or that only use them for non-essential purposes (e.g. RC passthrough). They can be used for most multicopters and *fully* autonomous vehicles (without a safety pilot using RC control), as these typically only use `MAIN` ports for motors/essential controls.
 
 > **Warning** Flight controllers without an I/O board cannot be used in [airframes](../airframes/airframe_reference.md) that map any `AUX` ports to essential flight controls or motors (as they have no `AUX` ports).
 
