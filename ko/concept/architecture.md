@@ -91,7 +91,7 @@ PX4에서는 POSIX-API를 제공하는 다양한 운영체제(Linux, macOS, Nutt
 
 ### 백그라운드 작업
 
-`px4_task_spawn_cmd()` 는 호출(상위) 작업으로부터 독립적으로 실행하는 새 작업 (NuttX) 또는 스레드(POSIX - Linux/MacOS) 실행에 활용합니다.
+`px4_task_spawn_cmd()`는 호출(상위) 작업과 별개로 실행하는 새 작업(NuttX)또는 스레드(POSIX - Linux/MacOS) 실행에 활용합니다.
 
 ```cpp
 ndependent_task = px4_task_spawn_cmd(
@@ -109,7 +109,7 @@ ndependent_task = px4_task_spawn_cmd(
 
 #### NuttX
 
-[NuttX](http://nuttx.org/) 는 기체 제어 보드에서 PX4를 구동하는 주요 RTOS입니다. 오픈소스 (BSD license) 이며, 가볍고, 효율적이고, 상당히 안정적입니다.
+[NuttX](http://nuttx.org/)는 기체 제어 보드에서 PX4를 구동하는 주요 RTOS입니다. 오픈소스 (BSD license) 이며, 가볍고, 효율적이고, 상당히 안정적입니다.
 
 모듈은 작업처럼 실행합니다. 자체적으로 파일서술자 목록를 가지나, 단일 주소 공간을 공유합니다. 작업은 파일서술자 목록을 공유하는 하나 이상의 스레드를 시작할 수 있습니다.
 
