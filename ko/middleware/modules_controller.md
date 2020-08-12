@@ -6,7 +6,7 @@
 
 ### 설명
 
-이 모듈은 비행체의 자세, 속도 제어부를 구현합니다. 이상적으로 액츄에이터 제어 메세지 입출력으로 자세 설정값 (`vehicle_attitude_setpoint`) 또는 속도 설정값 (`manual_control_setpoint` 토픽의 아크로(acro) 모드) 을 취합니다.
+이 모듈은 비행체의 자세, 속도 제어부를 구현합니다. 이상적으로 액츄에이터의 제어 메세지 입출력 용도로 자세 설정값 (`vehicle_attitude_setpoint`) 또는 속도 설정값 (`manual_control_setpoint` 토픽의 아크로(acro) 모드) 을 취합니다.
 
 현재 `manual_control_setpoint` 토픽은 액츄에이터에 직접 전달합니다.
 
@@ -71,11 +71,11 @@ fw_pos_control_l1은 고정익 위치 제어 모듈입니다.
 
 ### 설명
 
-이 모듈은 멀티콥터 자세 제어를 구현했습니다. It takes attitude setpoints (`vehicle_attitude_setpoint`) as inputs and outputs a rate setpoint.
+이 모듈은 멀티콥터 자세 제어를 구현했습니다. 속도 설정값의 입출력 용도로 자세 설정값(`vehicle_attitude_setpoint`)을 취합니다.
 
-The controller has a P loop for angular error
+각도 오류 보정을 목적으로 P 루프 로직이 들어있습니다.
 
-Publication documenting the implemented Quaternion Attitude Control: Nonlinear Quadrocopter Attitude Control (2013) by Dario Brescianini, Markus Hehn and Raffaello D'Andrea Institute for Dynamic Systems and Control (IDSC), ETH Zurich
+4차원 행렬 자세 제어관련 참고 논문은 다음과 같습니다: Nonlinear Quadrocopter Attitude Control (2013) by Dario Brescianini, Markus Hehn and Raffaello D'Andrea Institute for Dynamic Systems and Control (IDSC), ETH Zurich
 
 https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf
 
@@ -93,11 +93,11 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ## mc_pos_control
 
-Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_pos_control)
+소스 코드: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_pos_control)
 
 ### 설명
 
-The controller has two loops: a P loop for position error and a PID loop for velocity error. Output of the velocity controller is thrust vector that is split to thrust direction (i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
+이 제어부에는 두 루프 로직이 있습니다. 위치 오류 보정에 P 루프를 활용하고 속도 오류 보정에 PID 루프를 활용합니다. Output of the velocity controller is thrust vector that is split to thrust direction (i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
 
 The controller doesn't use Euler angles for its work, they are generated only for more human-friendly control and logging.
 
