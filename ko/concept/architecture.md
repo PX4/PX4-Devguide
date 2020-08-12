@@ -10,7 +10,7 @@ PX4는 2개의 주된 레이어로 구성됩니다. [flight stack](#flight-stack
 
 ## 고수준 소프트웨어 구조{#architecture}
 
-아래 그림은 PX4를 구성하는 블럭 내용을 자세히 보여줍니다, 최상단의 다이어그램은 미들웨어 블럭들을 포함하고, 그 아래의 컴포넌트들은 flight stack을 나타냅니다.
+아래 그림은 PX4를 구성하는 블럭 내용을 자세히 보여줍니다, 그림 최상부에는 미들웨어 부분이 있고, 그 아래 부분은 flight stack 부분이 있습니다.
 
 ![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
 
@@ -22,13 +22,13 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
-소스코드는 자체 포함 모듈/프로그램으로 나눕니다(도표의 `monospace` 참고). 보통 블록 구성은 정확히 하나의 모듈에 대응합니다.
+소스 코드는 자체 모듈/프로그램으로 나눕니다(도표의 `monospace` 참고). 보통 블록 구성은 정확히 하나의 모듈에 대응합니다.
 
 > **Tip** 실행 중에, 셸에서 `top` 명령으로 어떤 모듈을 실행하는지 볼 수 있으며, 어떤 모듈을 `<module_name> start/stop` 명령으로 제각각 시작하고 멈출 수 있는지 확인할 수 있습니다. `top` 명령어는 NuttX 쉘에서만 쓸 수 있지만, 다른 명령어들은 SITL 쉘(pxh>)에서도 사용할 수 있습니다. 이 모듈에 대한 더 많은 내용은 [모듈 & 명령 참고](../middleware/modules_main.md)를 참고하십시오. 
 
-화살표는 모듈간의 *가장 중요한* 커넥션에 대한 정보의 흐름을 보여줍니다. 실제로는 표시된 것 보다 많은 커넥션들이 있고, 일부 데이터 (e.g. 파라미터) 들은 다수의 모듈들에 의해 접근됩니다.
+화살표는 모듈간의 *가장 중요한* 연결의 정보 흐름을 보여줍니다. 실제로는 그림에서 나타낸 연결 수보다 더 많고, 일부 데이터(예: 매개변수)는 상당히 많은 모듈에서 접근합니다.
 
-모듈들은 [uORB](../middleware/uorb.md)라고 불리는 publish-subscribe 메시지 버스를 통해 각각 통신합니다. Publish-subscribe 스킴의 사용은 다음을 의미합니다.
+각 모듈은 [uORB](../middleware/uorb.md)라고 하는 publish-subscribe 메세지 버스로 통신합니다. Publish-subscribe 스킴의 사용은 다음을 의미합니다.
 
 - 반응형 시스템 — 비동기 방식으로 동작하며 새 데이터를 넣으면 바로 업데이트합니다
 - 모든 연산, 통신 동작에 대해 완전한 병렬 처리를 수행합니다
