@@ -4,28 +4,28 @@
 
 ## 접근
 
-PSMP는 현재 스택을 추적하면서 샘플 값을 채취하기 위해 펌웨어 실행을 주기적으로 중단하며 동작하는 셸 스크립트입니다. 채취한 스택 추적 결과는 텍스트 파일에 넣습니다. 표본 데이터 채취가 끝나면(보통 몇시간 이상 걸림), 수집한 스택 추적 결과를 *접어둡니다*. The result of *folding* is another text file that contains the same stack traces, except that all similar stack traces (i.e. those that were obtained at the same point in the program) are joined together, and the number of their occurrences is recorded. The folded stacks are then fed into the visualization script, for which purpose we employ [FlameGraph - an open source stack trace visualizer](http://www.brendangregg.com/flamegraphs.html).
+PSMP는 현재 스택을 추적하면서 샘플 값을 채취하기 위해 펌웨어 실행을 주기적으로 중단하며 동작하는 셸 스크립트입니다. 채취한 스택 추적 결과는 텍스트 파일에 넣습니다. 표본 데이터 채취가 끝나면(보통 몇시간 이상 걸림), 수집한 스택 추적 결과를 *접어둡니다*. *접어둔* 결과는 다른 텍스트 파일에 동일한 스택 추적 결과가 들어있지만, 서로 붙어있는 모든 유사 스택 추적 결과를 제외하고, 발생 횟수를 기록합니다. 접어둔 스택을 시각화 스크립트에 던져두는데 이 목적으로 우리가 사용하는 도구가 [FlameGraph - 오픈소스 스택 추적 시각화도구](http://www.brendangregg.com/flamegraphs.html)입니다.
 
-## Basic Usage
+## 기본 사용법
 
-Basic usage of the profiler is available through the build system. For example, the following command builds and profiles px4_fmu-v4pro target with 10000 samples (fetching *FlameGraph* and adding it to the path as needed).
+프로파일러 기본 사용법은 빌드 시스템에 있습니다. 예를 들면 다음 명령은 px4_fmu-v4pro 대상을 빌드한 후 추적 샘플 10000개를 만듭니다(필요한 경우 *FrameGraph*를 불러와서 경로를 추가하십시오).
 
     make px4_fmu-v4pro_default profile
     
 
-For more control over the build process, including setting the number of samples, see the [Implementation](#implementation).
+샘플 채취 수를 조정하여 빌드 과정을 통제하고 싶다면 [구현](#implementation) 절을 살펴보십시오.
 
-## Understanding the Output
+## 출력 내용 이해
 
-A screenshot of an example output is provided below (note that it is not interactive here):
+예제 출력 화면은 아래에 있습니다(참고로 여기 화면이 대화식은 아닙니다):
 
-![FlameGraph Example](../../assets/flamegraph-example.png)
+![FlameGraph 예제](../../assets/flamegraph-example.png)
 
-On the flame graph, the horizontal levels represent stack frames, whereas the width of each frame is proportional to the number of times it was sampled. In turn, the number of times a function ended up being sampled is proportional to the duration times frequency of its execution.
+FlameGraph에서, 수평 단계는 스택 프레임을, 프레임의 높이는 샘플 채취 횟수에 비례합니다. 여기서 채취한 함수 실행 종료 횟수는 실행 주기 시간 길이에 비례합니다.
 
-## Possible Issues
+## 나타날 수 있는 문제
 
-The script was developed as an ad-hoc solution, so it has some issues. Please watch out for them while using it:
+ad-hoc 솔루션으로 개발했기에 일부 문제가 있습니다. 사용중에 다음 내용을 확인하십시오:
 
 * If GDB is malfunctioning, the script may fail to detect that, and continue running. In this case, obviously, no usable stacks will be produced. In order to avoid that, the user should periodically check the file `/tmp/pmpn-gdberr.log`, which contains the stderr output of the most recent invocation of GDB. In the future the script should be modified to invoke GDB in quiet mode, where it will indicate issues via its exit code.
 
@@ -33,7 +33,7 @@ The script was developed as an ad-hoc solution, so it has some issues. Please wa
 
 * Multithreaded environments are not supported. This does not affect single core embedded targets, since they always execute in one thread, but this limitation makes the profiler incompatible with many other applications. In the future the stack folder should be modified to support multiple stack traces per sample.
 
-## Implementation {#implementation}
+## 구현 {#implementation}
 
 The script is located at `Debug/poor-mans-profiler.sh`. Once launched, it will perform the specified number of samples with the specified time interval. Collected samples will be stored in a text file in the system temp directory (typically `/tmp`). Once sampling is finished, the script will automatically invoke the stack folder, the output of which will be stored in an adjacent file in the temp directory. If the stacks were folded successfully, the script will invoke the *FlameGraph* script and store the result in an interactive SVG file. Please note that not all image viewers support interactive images; it is recommended to open the resulting SVG in a web browser.
 
@@ -59,6 +59,6 @@ As one might suspect, `--append` with `--nsamples=0` will instruct the script to
 
 Please read the script for a more in depth understanding of how it works.
 
-## Credits
+## 기여자
 
-Credits for the idea belong to [Mark Callaghan and Domas Mituzas](https://dom.as/2009/02/15/poor-mans-contention-profiling/).
+[Mark Callaghan과 Domas Mituzas](https://dom.as/2009/02/15/poor-mans-contention-profiling/)의 아이디어입니다.
