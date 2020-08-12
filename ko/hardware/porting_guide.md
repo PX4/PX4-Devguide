@@ -72,13 +72,13 @@ PX4 프로젝트에서는 [FMU 표준 참조 하드웨어](../hardware/reference
 
 PX4에서 공식적으로 지원하고자 하는 보드가 있다면:
 
-* Your hardware must be available in the market (i.e. it can be purchased by any developer without restriction).
-* Hardware must be made available to the PX4 Dev Team so that they can validate the port (contact <lorenz@px4.io> for guidance on where to ship hardware for testing).
-* The board must pass full [test suite](../test_and_ci/README.md) and [flight testing](../test_and_ci/test_flights.md).
+* 하드웨어를 시장에서 판매해야합니다(예: 제한없이 어떤 개발자에게든 구매할 수 있음).
+* 해당 하드웨어를 PX4 개발팀에서 활용할 수 있어, 프로그램 이식을 검증할 수 있어야합니다(시험 하드웨어 공급처 상담은 <lorenz@px4.io>에게 메일을 보내주십시오).
+* 보드는 [소프트웨어 시험 과정](../test_and_ci/README.md)과 [비행 시험](../test_and_ci/test_flights.md)을 모두 통과해야 합니다.
 
-**The PX4 project reserves the right to refuse acceptance of new ports (or remove current ports) for failure to meet the requirements set by the project.**
+**PX4 프로젝트는 프로젝트에서 설정한 필수 요구사항을 만족하지 못하여 새 이식 대상으로의 수용 거절(또는 현재 이식 대상에서 제거)하는 권한을 보류합니다.**
 
-You can reach out to the core developer team and community on the official [Forums and Chat](../README.md#support).
+공식 [포럼 및 대화방](../README.md#support)에서 핵심 개발팀과 커뮤니티에게 연락할 수 있습니다.
 
 ## 관련 정보
 
