@@ -1,13 +1,13 @@
-# NuttX Board Porting Guide
+# NuttX 보드 이식 안내
 
-In order to port PX4 on NuttX to a new hardware target, that hardware target must be supported by NuttX. The NuttX project maintains an excellent [porting guide](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide) for porting NuttX to a new computing platform.
+새 대상 하드웨어에 NuttX용 PX4를 이식하려면, 해당 대상 하드웨어가 NuttX에서 지원해야합니다. NuttX 프로젝트는 NuttX를 새 처리 플랫폼에 이식하는 최상의 [이식 안내서](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide)를 관리하고 있습니다.
 
-The following guide assumes you are using an already supported hardware target or have ported NuttX (including the [PX4 base layer](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/src/px4)) already.
+다음 안내서에서는 이미 지원 하드웨어 대상을 선정했고, 해당 하드웨어에 NuttX(와 [PX4 기반 계층](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/src/px4))를 이식 했음을 가정합니다.
 
-The configuration files for all boards, including linker scripts and other required settings, are located under [/boards](https://github.com/PX4/Firmware/tree/master/boards/) in a vendor- and board-specific directory (i.e. **boards/_VENDOR_/_MODEL_/**)).
+모든 보드를 대상으로 한 설정 파일, 링커 스크립트와 기타 필요한 설정은 제조사별 보드별 디렉터리(i.e. **boards/_VENDOR_/_MODEL_/**)의 [/boards](https://github.com/PX4/Firmware/tree/master/boards/)에 있습니다.
 
-The following example uses FMUv5 as it is a recent [reference configuration](../hardware/reference_design.md) for NuttX based flight controllers:
-* Running `make px4_fmu-v5_default` from the **Firmware** directory will build the FMUv5 config
+다음 예제는 NuttX 기반 비행체 조종 장치 용도로 최신 [기준 참고 설정](../hardware/reference_design.md)인 FMUv5를 활용합니다:
+* **Firmware** 디렉터리에서 `make px4_fmu-v5_default` 명령을 실행하면 FMUv5 설정을 빌드합니다
 * The base FMUv5 configuration files are located in: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5).
   * Board specific header (NuttX pins and clock configuration): [/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h).
   * Board specific header (PX4 configuration): [/boards/px4/fmu-v5/src/board_config.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/src/board_config.h).
