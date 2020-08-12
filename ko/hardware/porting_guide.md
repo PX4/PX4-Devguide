@@ -18,8 +18,8 @@ PX4는 두개의 주요 계층으로 이루어져있습니다. 호스트 운영�
 * 빌드 설정: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/default.cmake).
 * 개별 보드용 초기 파일: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/init/rc.board_defaults) 
   * 개별 보드용 초기화 파일은 보드 디렉터리의 **init/rc.board** 경로에서 시작 스크립트를 찾으면 자동으로 넣습니다.
-  * 개별 보드에 붙어있는 센서(및 기타 소자)를 시작할 때 사용하는 파일입니다. It may also be used to set a board's default parameters, UART mappings, and any other special cases.
-  * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF. 
+  * 개별 보드에 붙어있는 센서(및 기타 소자)를 시작할 때 사용하는 파일입니다. 이 파일은 보드 기본 매개변수 설정, UART 대응, 기타 특별한 경우에 활용합니다.
+  * FMUv5에서는 픽스호크의 모든 센서를 시작하고 큰 LOGGER_BUF 값의 설정을 확인할 수 있습니다. 
 
 ## 호스트 운영체제 설정
 
@@ -52,13 +52,13 @@ PX4는 두개의 주요 계층으로 이루어져있습니다. 호스트 운영�
 
 ## 공식 지원 하드웨어
 
-The PX4 project supports and maintains the [FMU standard reference hardware](../hardware/reference_design.md) and any boards that are compatible with the standard. This includes the [Pixhawk-series](https://docs.px4.io/master/en/flight_controller/pixhawk_series.html) (see the user guide for a [full list of officially supported hardware](https://docs.px4.io/master/en/flight_controller/)).
+PX4 프로젝트에서는 [FMU 표준 참조 하드웨어](../hardware/reference_design.md) 와 표준 호환 보드를 지원하고 관리합니다. 이 범위에는 [픽스호크 계열](https://docs.px4.io/master/en/flight_controller/pixhawk_series.html)이 들어있습니다([공식적으로 지원하는 하드웨어 총 목록](https://docs.px4.io/master/en/flight_controller/)은 사용자 안내서에서 찾아보십시오).
 
-Every officially supported board benefits from:
+모든 공식 지원 보드를 활용하면 다음과 같은 장점이 있습니다:
 
-* PX4 Port available in the PX4 repository
-* Automatic firmware builds that are accessible from *QGroundControl*
-* Compatibility with the rest of the ecosystem
+* PX4 저장소의 PX4 포팅 소스코드를 활용
+* *QGroundControl*에서 접근할 수 있는 펌웨어 자동 빌드
+* 생태계 호환성 확보
 * Automated checks via CI - safety remains paramount to this community
 * [Flight testing](../test_and_ci/test_flights.md)
 
