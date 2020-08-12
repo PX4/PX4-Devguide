@@ -1,4 +1,4 @@
-# MAVLink Shell
+# MAVLink 셸
 
 The MAVLink Shell is an *NSH console* that can be accessed via MAVLink over serial (USB/Telemetry) or WiFi (UDP/TCP) links (in particular, on NuttX-based systems like: Pixhawk, Pixracer, etc.).
 
@@ -15,12 +15,12 @@ The easiest way to access shell is to use the [QGroundControl MAVLink Console](h
 ### mavlink_shell.py
 
 You can also access the shell in a terminal using the **mavlink_shell.py** script:
-1. Shut down *QGroundControl*.
-1. Install dependencies:
+1. *QGroundControl*을 끄십시오.
+1. 의존 요소를 설치하십시오:
    ```sh
    sudo pip3 install pymavlink pyserial
    ```
-1. Open terminal (in Firmware directory) and start the shell:
+1. 터미널을 (Firmware 디렉터리에서) 열고 셸을 시작하십시오:
    ```sh
    # For serial port
    ./Tools/mavlink_shell.py /dev/ttyACM0
@@ -30,8 +30,8 @@ You can also access the shell in a terminal using the **mavlink_shell.py** scrip
    ./Tools/mavlink_shell.py 0.0.0.0:14550
    ```
 
-Use `mavlink_shell.py -h` to get a description of all available arguments.
+모든 가용 인자 설명을 보려면 `mavlink_shell.py -h` 명령을 사용하십시오.
 
-## Using the MAVLink Shell
+## MAVLink 셸 사용법
 
-For information see: [PX4 Consoles/Shells > Using Consoles/Shells](../debug/consoles.md#using_the_console).
+자세한 정보는 [PX4 콘솔/셸 > 콘솔/셸 사용법](../debug/consoles.md#using_the_console)을 살펴보십시오.
