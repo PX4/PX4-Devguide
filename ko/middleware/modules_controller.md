@@ -97,9 +97,9 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ### 설명
 
-이 제어부에는 두 루프 로직이 있습니다. 위치 오류 보정에 P 루프를 활용하고 속도 오류 보정에 PID 루프를 활용합니다. Output of the velocity controller is thrust vector that is split to thrust direction (i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
+이 제어부에는 두 루프 로직이 있습니다. 위치 오류 보정에 P 루프 로직을 활용하고 속도 오류 보정에 PID 루프로직을 활용합니다. 속도 제어부의 출력은 추력 방향(예: 멀티콥터 방향의 회전 행렬)과 추력 스칼라(예: 멀티콥터 추력 자체값)를 분리하는 추력 벡터 값입니다.
 
-The controller doesn't use Euler angles for its work, they are generated only for more human-friendly control and logging.
+제어부는 자체 동작시 오일러 각 값을 사용하지 않으며, 사용자가 좀 더 이해하기 쉬운 제어부, 기록 데이터를 만듭니다.
 
 ### 사용법 {#mc_pos_control_usage}
 
@@ -119,9 +119,9 @@ The controller doesn't use Euler angles for its work, they are generated only fo
 
 ### 설명
 
-This implements the multicopter rate controller. It takes rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
+멀티콥터 속도 제어부를 구현합니다. 액츄에이터 제어 메시지의 입출력 값으로 속도 설정값(`manual_control_setpoint` 토픽의 아크로(acro) 모드)을 취합니다.
 
-The controller has a PID loop for angular rate error.
+제어부에는 각 속도 오류를 보정하는 PID 루프 로직이 들어있습니다.
 
 ### 사용법 {#mc_rate_control_usage}
 
@@ -141,7 +141,7 @@ The controller has a PID loop for angular rate error.
 
 ### 설명
 
-Module that is responsible for autonomous flight modes. This includes missions (read from dataman), takeoff and RTL. It is also responsible for geofence violation checking.
+자동 비행 모드를 담당하는 모듈입니다. 임무(dataman에서 수신), 이륙, RTL 기능이 들어갑니다. It is also responsible for geofence violation checking.
 
 ### 구현
 
