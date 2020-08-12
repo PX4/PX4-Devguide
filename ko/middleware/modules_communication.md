@@ -144,13 +144,13 @@ Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmw
 
 Source: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
 
-### Description
+### 설명
 
 uORB는 모듈간의 통신을 위해 사용되는 내부적인 Pub/Sub 메시징 시스템입니다.
 
 일반적으로 첫 번째로 시작되는 모듈이며 다른 모듈들이 이 모듈에 의존합니다.
 
-### Implementation
+### 구현
 
 스레드나 작업 큐는 필요하지 않습니다. 모듈 시작시 공유 광역 상태의 초기화 여부만 확인합니다. 공유 메모리로 통신합니다. 비동기 방식으로 잠금 구현을 배제하여 구현했습니다. 예를 들어, 퍼블리셔와 섭스크라이버는 서로를 기다릴 필요하 없습니다. 이것은 퍼블리셔와 섭스크라이버가 독립적인 버퍼를 가짐으로써 이뤄집니다.
 
@@ -160,9 +160,9 @@ uORB는 모듈간의 통신을 위해 사용되는 내부적인 Pub/Sub 메시�
 
 `/msg` 디렉토리에 메시지들이 정의되어있습니다. 빌드할때 C/C++ 코드로 변환됩니다.
 
-ORB_USE_PUBLISHER_RULES과 함께 컴파일 되면 어떤 모듈에게 무슨 토픽을 허용할지 설정할 수 있습니다. 이것은 system-wide replay에 사용됩니다.
+ORB_USE_PUBLISHER_RULES 설정 값을 넣어 컴파일하면, uORB 전송 규칙이 들어있는 파일을 어떤 모듈에서 어떤 토픽을 내보낼지 설정할 목적으로 활용할 수 있습니다. 이 설정은 시스템 영역의 동작 재현에 활용합니다. 
 
-### Examples
+### 예제
 
 토픽 송신 속도를 감시합니다. `top` 과 함께 전반적인 시스템을 관찰할 수 있는 중요한 명령어입니다.
 
