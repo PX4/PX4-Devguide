@@ -6,9 +6,9 @@
 
 이 페이지에는 지원하는 모든 에어프레임과 모터 할당 및 번호 정보가 들어있습니다. **녹색**의 모터는 시계방향, **청색**의 모터는 반시계 방향으로 회전합니다.
 
-## Airship
+## 비행선
 
-### Airship
+### 비행선
 
 <div>
   <img src="../../assets/airframes/types/Airship.svg" width="29%" style="max-height: 180px;" /> 
@@ -16,11 +16,11 @@
   <table style="float: right; width: 70%; font-size:1.5rem;">
     <colgroup><col></colgroup> <tr>
       <th>
-        Common Outputs
+        공통 출력
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: starboard thruster</li><li><b>MAIN2</b>: port thruster</li><li><b>MAIN3</b>: thrust tilt</li><li><b>MAIN4</b>: tail thruster</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 우현 추진기</li><li><b>MAIN2</b>: 좌현 추진기</li><li><b>MAIN3</b>: 틸팅 추진기</li><li><b>MAIN4</b>: 후미 추진기</li></ul></td>
 </tr>
   </table>
 </div>
@@ -28,7 +28,7 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      Name
+      명칭
     </th>
     
     <th>
@@ -36,8 +36,8 @@
   </tr>
 <tbody>
 <tr id="airship_airship_cloudship">
- <td style="vertical-align: top;">Cloudship</td>
- <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 2507</p></td>
+ <td style="vertical-align: top;">구름선</td>
+ <td style="vertical-align: top;"><p>유지관리자: John Doe<john@example.com></p><p><code>SYS_AUTOSTART</code> = 2507</p></td>
 
 </tr>
 </tbody></table>
@@ -52,11 +52,11 @@
   <table style="float: right; width: 70%; font-size:1.5rem;">
     <colgroup><col></colgroup> <tr>
       <th>
-        Common Outputs
+        공통 출력
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: rotor_head_L</li><li><b>MAIN2</b>: rotor_head_R</li><li><b>MAIN3</b>: elevator</li><li><b>MAIN4</b>: rudder</li><li><b>MAIN5</b>: rudder (second, optional)</li><li><b>MAIN6</b>: throttle</li><li><b>MAIN7</b>: wheel</li><li><b>AUX1</b>: feed-through of RC AUX1 channel for prerotator (optional)</li><li><b>AUX2</b>: feed-through of RC AUX2 channel for release device (optional)</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 좌측 로터 헤드</li><li><b>MAIN2</b>: 우측 로터 헤드</li><li><b>MAIN3</b>: 승강타</li><li><b>MAIN4</b>: 방향타</li><li><b>MAIN5</b>: 방향타 (보조, 추가)</li><li><b>MAIN6</b>: 추진기</li><li><b>MAIN7</b>: 바퀴</li><li><b>AUX1</b>: feed-through of RC AUX1 channel for prerotator (optional)</li><li><b>AUX2</b>: feed-through of RC AUX2 channel for release device (optional)</li></ul></td>
 </tr>
   </table>
 </div>
@@ -64,7 +64,7 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      Name
+      명칭
     </th>
     
     <th>
@@ -72,15 +72,15 @@
   </tr>
 <tbody>
 <tr id="autogyro_autogyro_thunderfly_auto-g2">
- <td style="vertical-align: top;"><a href="https://github.com/ThunderFly-aerospace/Auto-G2/">ThunderFly Auto-G2</a></td>
- <td style="vertical-align: top;"><p>Maintainer: ThunderFly s.r.o., Roman Dvorak <dvorakroman@thunderfly.cz></p><p><code>SYS_AUTOSTART</code> = 17002</p></td>
+ <td style="vertical-align: top;"><a href="https://github.com/ThunderFly-aerospace/Auto-G2/">선더플라이 Auto-G2</a></td>
+ <td style="vertical-align: top;"><p>유지관리자: ThunderFly s.r.o., Roman Dvorak <dvorakroman@thunderfly.cz></p><p><code>SYS_AUTOSTART</code> = 17002</p></td>
 
 </tr>
 </tbody></table>
 
-## Copter
+## 콥터
 
-### Coaxial Helicopter
+### 동축 헬리콥터
 
 <div>
   <img src="../../assets/airframes/types/HelicopterCoaxial.svg" width="29%" style="max-height: 180px;" /> 
@@ -100,7 +100,7 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      Name
+      명칭
     </th>
     
     <th>
@@ -109,12 +109,12 @@
 <tbody>
 <tr id="copter_coaxial_helicopter_esky_(big)_lama_v4">
  <td style="vertical-align: top;">Esky (Big) Lama v4</td>
- <td style="vertical-align: top;"><p>Maintainer: Emmanuel Roussel</p><p><code>SYS_AUTOSTART</code> = 15001</p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Emmanuel Roussel</p><p><code>SYS_AUTOSTART</code> = 15001</p></td>
 
 </tr>
 </tbody></table>
 
-### Dodecarotor cox
+### 도데카로터 콕스
 
 <div>
   <img src="../../assets/airframes/types/DodecaRotorXCoaxial.svg" width="29%" style="max-height: 180px;" /> 
@@ -122,7 +122,7 @@
   <table style="float: right; width: 70%; font-size:1.5rem;">
     <colgroup><col></colgroup> <tr>
       <th>
-        Common Outputs
+        공통 출력
       </th>
     </tr>
 <tr>
@@ -134,7 +134,7 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      Name
+      명칭
     </th>
     
     <th>
@@ -142,13 +142,13 @@
   </tr>
 <tbody>
 <tr id="copter_dodecarotor_cox_generic_dodecarotor_cox_geometry">
- <td style="vertical-align: top;">Generic Dodecarotor cox geometry</td>
+ <td style="vertical-align: top;">일반 도데카로터 콕스 지오메트리</td>
  <td style="vertical-align: top;"><p>Maintainer: William Peale <develop707@gmail.com></p><p><code>SYS_AUTOSTART</code> = 24001</p></td>
 
 </tr>
 </tbody></table>
 
-### Helicopter
+### 헬리콥터
 
 <div>
   <img src="../../assets/airframes/types/Helicopter.svg" width="29%" style="max-height: 180px;" /> 
@@ -1262,7 +1262,7 @@
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li><li><b>MAIN5</b>: 모터 5</li><li><b>MAIN6</b>: 모터 6</li><li><b>MAIN7</b>: 모터 7</li><li><b>MAIN8</b>: 모터 8</li><li><b>AUX1</b>: 보조날개 1</li><li><b>AUX2</b>: 보조날개 2</li><li><b>AUX3</b>: 승강타</li><li><b>AUX4</b>: 방향타</li><li><b>AUX5</b>: 스로틀</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li><li><b>MAIN5</b>: 모터 5</li><li><b>MAIN6</b>: 모터 6</li><li><b>MAIN7</b>: 모터 7</li><li><b>MAIN8</b>: 모터 8</li><li><b>AUX1</b>: 보조익 1</li><li><b>AUX2</b>: 보조익 2</li><li><b>AUX3</b>: 승강타</li><li><b>AUX4</b>: 방향타</li><li><b>AUX5</b>: 추력부</li></ul></td>
 </tr>
   </table>
 </div>
@@ -1296,7 +1296,7 @@
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 4</li><li><b>MAIN4</b>: 모터 5</li><li><b>MAIN5</b>: 좌측 보조날개</li><li><b>MAIN6</b>: 우측 엘러본(elevon)</li><li><b>MAIN7</b>: 캐너드 표면</li><li><b>MAIN8</b>: 방향키 (rudder)</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 4</li><li><b>MAIN4</b>: 모터 5</li><li><b>MAIN5</b>: 좌측 보조익</li><li><b>MAIN6</b>: 우측 보조익</li><li><b>MAIN7</b>: 귀날개 표면</li><li><b>MAIN8</b>: 방향타</li></ul></td>
 </tr>
   </table>
 </div>
@@ -1360,7 +1360,7 @@
 </tr>
 <tr id="vtol_vtol_tiltrotor_e-flite_convergence">
  <td style="vertical-align: top;">E-플라이트 컨버전스</td>
- <td style="vertical-align: top;"><p>유지관리자: Andreas Antener<andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13012</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 우측 모터</li><li><b>MAIN2</b>: 좌측 모터</li><li><b>MAIN3</b>: 후면 모터</li><li><b>MAIN4</b>: 비어 있음</li><li><b>MAIN5</b></0>: 우측 틸트 서보</li><li><b>MAIN6</b></0>: 좌측 틸트 서보</li><li><b>MAIN7</b>: 우측 엘러본(elevon)</li><li><b>MAIN8</b>: 좌측 엘러본(elevon)</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Andreas Antener<andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13012</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 우측 모터</li><li><b>MAIN2</b>: 좌측 모터</li><li><b>MAIN3</b>: 후면 모터</li><li><b>MAIN4</b>: (비어 있음)</li><li><b>MAIN5</b></0>: 우측 틸트 서보</li><li><b>MAIN6</b></0>: 좌측 틸트 서보</li><li><b>MAIN7</b>: 우측 보조익</li><li><b>MAIN8</b>: 좌측 보조익</li></ul></p></td>
 
 </tr>
 </table>
