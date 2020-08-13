@@ -86,7 +86,7 @@ scaling: 0
 
 ### uorb top Command
 
-`uorb top` 명령어는 각 토픽들의 퍼블리시 주기를 리얼타임으로 보여줍니다.
+`uorb top` 명령어는 각 토픽의 전송 주기를 실시간으로 보여줍니다.
 
 ```sh
 update: 1s, num topics: 77
@@ -106,15 +106,15 @@ sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
 
-컬럼들: 토픽 이름, 다중-인스턴스 인덱스, 구독자 수, 퍼블리시 주기(Hz), 초당 잃어버리는 메시지 수 (모든 구독자수를 대상으로), 큐 크기.
+각 컬럼의 내용은 토픽 이름, 다중 인스턴스 색인 번호, 지속 수신자 수, Hz 단위 송신 빈도, 초당 손실 메세지 수(모든 지속 수신자 통합), 큐 용량입니다.
 
-## 멀티-인스턴스
+## 다중 인스턴스
 
-uORB는 `orb_advertise_multi`를 통해 동일한 토픽에 대해 독립적인 여러개의 인스턴스를 퍼블리시 하는 메커니즘을 갖고 있습니다. 이 메커니즘은 퍼블리셔에게 인스턴스의 인덱스를 돌려줍니다. 그러면 Sub은 `orb_subscribe_multi`을 사용하여 어떤 인스턴스를 구독할지 선택해야만 합니다(`orb_subscribe`는 첫번째 인스턴스 구독하기). 다수의 인스턴스를 가지는 것은 동일한 타입의 센서를 여러개 가진 시스템에서 유용합니다.
+uORB는 `orb_advertise_multi`로 동일 토픽의 다중 독립 인스턴스를 내보내는 매커니즘을 제공합니다. 이 메커니즘은 송신자에게 인스턴스의 색인 번호를 반환합니다. 그러면 지속 수신자는 `orb_subscribe_multi`로 (`orb_instance`는 처음 인스턴스를 지속 수신) 어떤 인스턴스의 메세지를 지속적으로 수신할 지 선택합니다. 다수의 인스턴스를 가지는 것은 동일한 타입의 센서를 여러개 가진 시스템에서 유용합니다.
 
-같은 토픽에 대해 `orb_advertise_multi`과 `orb_advertise`가 섞이지 않도록 유의하세요.
+같은 토픽에서 `orb_advertise_multi`과 `orb_advertise`가 섞이지 않도록 유의하십시오.
 
-API문서는 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp)참고하세요.
+완전한 API 문서는 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp)에 있습니다.
 
 ## Message/Field Deprecation {#deprecation}
 
