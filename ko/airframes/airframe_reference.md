@@ -834,12 +834,12 @@
 </tr>
 <tr id="copter_quadrotor_x_uvify_ifo">
  <td style="vertical-align: top;">UVify IFO</td>
- <td style="vertical-align: top;"><p>유지관리자: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4071</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4071</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li></ul></p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_uvify_draco">
  <td style="vertical-align: top;">UVify Draco</td>
- <td style="vertical-align: top;"><p>유지관리자: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4072</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4072</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li></ul></p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_uvify_ifo">
@@ -869,12 +869,12 @@
 </tr>
 <tr id="copter_quadrotor_x_crazyflie_2">
  <td style="vertical-align: top;">Crazyflie 2</td>
- <td style="vertical-align: top;"><p>Maintainer: Dennis Shtatov <densht@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4900</p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Dennis Shtatov <densht@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4900</p></td>
 
 </tr>
 </table>
 
-### Simulation (Copter)
+### 모의시험 환경 (콥터)
 
 <div>
 <img src="../../assets/airframes/types/AirframeUnknown.svg" width="29%" style="max-height: 180px;"/>
@@ -883,7 +883,7 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      Name
+      명칭
     </th>
     
     <th>
@@ -1125,11 +1125,11 @@
   <table style="float: right; width: 70%; font-size:1.5rem;">
     <colgroup><col></colgroup> <tr>
       <th>
-        Common Outputs
+        공통 출력
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: aileron right</li><li><b>MAIN2</b>: aileron left</li><li><b>MAIN3</b>: v-tail right</li><li><b>MAIN4</b>: v-tail left</li><li><b>MAIN5</b>: throttle</li><li><b>MAIN6</b>: wheel</li><li><b>MAIN7</b>: flaps right</li><li><b>MAIN8</b>: flaps left</li><li><b>AUX1</b>: feed-through of RC AUX1 channel</li><li><b>AUX2</b>: feed-through of RC AUX2 channel</li><li><b>AUX3</b>: feed-through of RC AUX3 channel</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 우측 보조익</li><li><b>MAIN2</b>: 좌측 보조익</li><li><b>MAIN3</b>: v형 미익 우측</li><li><b>MAIN4</b>: v형 미익 좌측</li><li><b>MAIN5</b>: 추진기</li><li><b>MAIN6</b>: 바퀴</li><li><b>MAIN7</b>: flaps right</li><li><b>MAIN8</b>: flaps left</li><li><b>AUX1</b>: feed-through of RC AUX1 channel</li><li><b>AUX2</b>: feed-through of RC AUX2 channel</li><li><b>AUX3</b>: feed-through of RC AUX3 channel</li></ul></td>
 </tr>
   </table>
 </div>
@@ -1137,7 +1137,7 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      Name
+      명칭
     </th>
     
     <th>
@@ -1146,12 +1146,12 @@
 <tbody>
 <tr id="plane_plane_v-tail_x-uav_mini_talon">
  <td style="vertical-align: top;">X-UAV Mini Talon</td>
- <td style="vertical-align: top;"><p>Maintainer: Friedrich Beckmann <friedrich.beckmann@hs-augsburg.de></p><p><code>SYS_AUTOSTART</code> = 2200</p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Friedrich Beckmann <friedrich.beckmann@hs-augsburg.de></p><p><code>SYS_AUTOSTART</code> = 2200</p></td>
 
 </tr>
 </tbody></table>
 
-### Simulation (Plane)
+### 모의시험 환경 (항공기)
 
 <div>
   <img src="../../assets/airframes/types/AirframeUnknown.svg" width="29%" style="max-height: 180px;" /> 
@@ -1159,11 +1159,11 @@
   <table style="float: right; width: 70%; font-size:1.5rem;">
     <colgroup><col></colgroup> <tr>
       <th>
-        Common Outputs
+        공통 출력
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: aileron</li><li><b>MAIN2</b>: elevator</li><li><b>MAIN3</b>: rudder</li><li><b>MAIN4</b>: throttle</li><li><b>MAIN5</b>: flaps</li><li><b>MAIN6</b>: gear</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 보조익</li><li><b>MAIN2</b>: 승강타</li><li><b>MAIN3</b>: 방향타</li><li><b>MAIN4</b>: 추진기</li><li><b>MAIN5</b>: 플랩</li><li><b>MAIN6</b>: 기어</li></ul></td>
 </tr>
   </table>
 </div>
@@ -1171,7 +1171,7 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      Name
+      명칭
     </th>
     
     <th>
@@ -1180,12 +1180,12 @@
 <tbody>
 <tr id="plane_simulation_(plane)_hilstar_(xplane)">
  <td style="vertical-align: top;">HILStar (XPlane)</td>
- <td style="vertical-align: top;"><p>Maintainer: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 1000</p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 1000</p></td>
 
 </tr>
 </tbody></table>
 
-### Standard Plane
+### 표준 항공기
 
 <div>
   <img src="../../assets/airframes/types/Plane.svg" width="29%" style="max-height: 180px;" /> 
@@ -1193,32 +1193,45 @@
   <table style="float: right; width: 70%; font-size:1.5rem;">
     <colgroup><col></colgroup> <tr>
       <th>
-        Common Outputs
+        공통 출력
       </th>
     </tr>
-<tr>
- <td style="vertical-align: top;"><ul><li><b>AUX1</b>: feed-through of RC AUX1 channel</li><li><b>AUX2</b>: feed-through of RC AUX2 channel</li><li><b>AUX3</b>: feed-through of RC AUX3 channel</li></ul></td>
-</tr>
+    
+    <tr>
+      <td style="vertical-align: top;">
+        <ul>
+          <li>
+            <b>AUX1</b>: RC AUX1 채널의 입력
+          </li>
+          <li>
+            <b>AUX2</b>: RC AUX2 채널의 입력
+          </li>
+          <li>
+            <b>AUX3</b>: RC AUX3 채널의 입력
+          </li>
+        </ul>
+      </td>
+    </tr>
   </table>
 </div>
 
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      Name
+      명칭
     </th>
     
     <th>
     </th>
   </tr>
 <tr id="plane_standard_plane_standard_plane">
- <td style="vertical-align: top;">Standard Plane</td>
- <td style="vertical-align: top;"><p>Maintainer: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 2100</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: aileron</li><li><b>MAIN2</b>: elevator</li><li><b>MAIN3</b>: throttle</li><li><b>MAIN4</b>: rudder</li><li><b>MAIN5</b>: flaps</li><li><b>MAIN6</b>: gear</li></ul></p></td>
+ <td style="vertical-align: top;">표준 항공기</td>
+ <td style="vertical-align: top;"><p>유지관리자: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 2100</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 보조익</li><li><b>MAIN2</b>: 승강타</li><li><b>MAIN3</b>: 추진기</li><li><b>MAIN4</b>: 방향타</li><li><b>MAIN5</b>: 플랩</li><li><b>MAIN6</b>: 기어</li></ul></p></td>
 
 </tr>
 <tr id="plane_standard_plane_bormatec_maja">
  <td style="vertical-align: top;">Bormatec Maja</td>
- <td style="vertical-align: top;"><p>Maintainer: Andreas Antener <andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 2105</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: aileron</li><li><b>MAIN2</b>: aileron</li><li><b>MAIN3</b>: elevator</li><li><b>MAIN4</b>: rudder</li><li><b>MAIN5</b>: throttle</li><li><b>MAIN6</b>: wheel</li><li><b>MAIN7</b>: flaps</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Andreas Antener<andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 2105</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 보조익</li><li><b>MAIN2</b>: 보조익</li><li><b>MAIN3</b>: 승강타</li><li><b>MAIN4</b>: 방향타</li><li><b>MAIN5</b>: 추진기</li><li><b>MAIN6</b>: 바퀴</li><li><b>MAIN7</b>: 플랩</li></ul></p></td>
 
 </tr>
 </table>
@@ -1234,25 +1247,25 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      Name
+      명칭
     </th>
     
     <th>
     </th>
   </tr>
 <tr id="rover_rover_generic_ground_vehicle">
- <td style="vertical-align: top;">Generic Ground Vehicle</td>
- <td style="vertical-align: top;"><p><code>SYS_AUTOSTART</code> = 50000</p><p><b>Specific Outputs:</b><ul><li><b>MAIN2</b>: steering</li><li><b>MAIN4</b>: throttle</li></ul></p></td>
+ <td style="vertical-align: top;">일반 지상 차량</td>
+ <td style="vertical-align: top;"><p><code>SYS_AUTOSTART</code> = 50000</p><p><b>지정 출력:</b><ul><li><b>MAIN2</b>: 조향기</li><li><b>MAIN4</b>: 추진기</li></ul></p></td>
 
 </tr>
 <tr id="rover_rover_axial_racing_ax10">
  <td style="vertical-align: top;">Axial Racing AX10</td>
- <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 50001</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: pass-through of control group 0, channel 0</li><li><b>MAIN2</b>: pass-through of control group 0, channel 1</li><li><b>MAIN3</b>: pass-through of control group 0, channel 2</li><li><b>MAIN4</b>: pass-through of control group 0, channel 3</li><li><b>MAIN5</b>: pass-through of control group 0, channel 4</li><li><b>MAIN6</b>: pass-through of control group 0, channel 5</li><li><b>MAIN7</b>: pass-through of control group 0, channel 6</li><li><b>MAIN8</b>: pass-through of control group 0, channel 7</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: John Doe<john@example.com></p><p><code>SYS_AUTOSTART</code> = 50001</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: pass-through of control group 0, channel 0</li><li><b>MAIN2</b>: pass-through of control group 0, channel 1</li><li><b>MAIN3</b>: pass-through of control group 0, channel 2</li><li><b>MAIN4</b>: pass-through of control group 0, channel 3</li><li><b>MAIN5</b>: pass-through of control group 0, channel 4</li><li><b>MAIN6</b>: pass-through of control group 0, channel 5</li><li><b>MAIN7</b>: pass-through of control group 0, channel 6</li><li><b>MAIN8</b>: pass-through of control group 0, channel 7</li></ul></p></td>
 
 </tr>
 <tr id="rover_rover_traxxas_stampede_vxl_2wd">
  <td style="vertical-align: top;"><a href="https://traxxas.com/products/models/electric/stampede-vxl-tsm">Traxxas stampede vxl 2wd</a></td>
- <td style="vertical-align: top;"><p>Maintainer: Marco Zorzi</p><p><code>SYS_AUTOSTART</code> = 50002</p><p><b>Specific Outputs:</b><ul><li><b>MAIN2</b>: steering</li><li><b>MAIN4</b>: throttle</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Marco Zorzi</p><p><code>SYS_AUTOSTART</code> = 50002</p><p><b>지정 출력:</b><ul><li><b>MAIN2</b>: 조향기</li><li><b>MAIN4</b>: 추진기</li></ul></p></td>
 
 </tr>
 <tr id="rover_rover_aion_robotics_r1_ugv">
