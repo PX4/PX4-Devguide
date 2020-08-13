@@ -6,7 +6,7 @@ ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을
 
 ## 준비 요건
 
-The first thing that needs to be done is to identify the module or modules that should be replayed. Then, identify all the inputs to these modules, i.e. subscribed ORB topics. For system-wide replay, this consists of all hardware input: sensors, RC input, MAVLink commands and file system.
+가장 먼저 필요한 과정은 재현할 모듈의 파악입니다. 그 다음 해당 모듈의 입력단을 모두 확인합니다(예: 지속 수신하는 ORB 토픽). For system-wide replay, this consists of all hardware input: sensors, RC input, MAVLink commands and file system.
 
 All identified topics need to be logged at full rate (see [logging](../log/logging.md)). For `ekf2` this is already the case with the default set of logged topics.
 
@@ -93,7 +93,7 @@ The parameters can be adjusted as well. They can be extracted from the log with 
 
 Then edit the parameters in the file as needed and restart the replay process with `make px4_sitl none`. This will create a new log file.
 
-생성 로그 위치는 다음 메세지와 함께 화면에 나타납니다:
+생성 로그 위치는 다음 메세지처럼 화면에 나타납니다:
 
     INFO  [logger] Opened log file: rootfs/fs/microsd/log/2017-03-01/13_30_51_replayed.ulg
     
