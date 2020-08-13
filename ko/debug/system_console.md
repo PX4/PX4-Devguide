@@ -8,9 +8,9 @@ PX4 *시스템 콘솔*에서는 시스템 저수준 접근이 가능하며, 디�
 
 콘솔은 [3.3V FTDI](https://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393) 케이블을 활용하여 컴퓨터에 USB 포트를 연결할 수 있게 하는 (보드별) UART 포트로 띄울 수 있습니다. 이 포트는 터미널 프로그램으로 콘솔에 접근할 수 있게 해줍니다.
 
-Pixhawk controller manufacturers are expected to expose the console UART and SWD (JTAG) debug interfaces through a dedicated *debug port* that complies with the [Pixhawk Connector Standard](#pixhawk_debug_port). Unfortunately some boards predate this standard or a non-compliant.
+픽스호크 컨트롤러 제조사는 [픽스호크 커넥터 표준](#pixhawk_debug_port)을 준수하는 내장 *디버깅 포트*로 콘솔 UART와 SWD(JTAG) 디버깅 인터페이스를 장치 외부로 제공하리라 봅니다. 그러나 불행하게도 일부 보드는 이 표준을 제정하기 이전의 설계를 반영했거나, 호환성이 없습니다.
 
-> **Tip** Developers targeting a number of different boards may wish to use a *debug adapter* to simplify connecting multiple boards. For example, the [Dronecode probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation) comes with connectors for the [Pixhawk Debug Port](#pixhawk_debug_port) and several other boards.
+> **Tip** 여러가지 보드를 대상으로 개발하려는 개발자는 아마도 여러 보드에 간단하게 연결하는 *디버깅 어댑터* 활용하는 편을 원할지도 모릅니다. 이를테면, [드론코드 프루브](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation)에는 [픽스호크 디버깅 포트](#pixhawk_debug_port)와 여러 기타 보드에 활용할 커넥터가 딸려옵니다.
 
 The sections below outline/link to the wiring and system console information for many common boards.
 
