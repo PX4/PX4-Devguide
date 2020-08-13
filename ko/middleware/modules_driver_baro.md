@@ -1,8 +1,8 @@
-# Modules Reference: Baro (Driver)
+# 모듈 참고: 기압(드라이버)
 ## bmp280
-Source: [drivers/barometer/bmp280](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/bmp280)
+소스 코드: [drivers/barometer/bmp280](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/bmp280)
 
-### Usage {#bmp280_usage}
+### 사용법 {#bmp280_usage}
 ```
 bmp280 <command> [arguments...]
  Commands:
@@ -25,9 +25,9 @@ bmp280 <command> [arguments...]
    status        print status info
 ```
 ## bmp388
-Source: [drivers/barometer/bmp388](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/bmp388)
+소스 코드: [drivers/barometer/bmp388](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/bmp388)
 
-### Usage {#bmp388_usage}
+### 사용법 {#bmp388_usage}
 ```
 bmp388 <command> [arguments...]
  Commands:
@@ -50,9 +50,9 @@ bmp388 <command> [arguments...]
    status        print status info
 ```
 ## dps310
-Source: [drivers/barometer/dps310](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/dps310)
+소스 코드: [drivers/barometer/dps310](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/dps310)
 
-### Usage {#dps310_usage}
+### 사용법 {#dps310_usage}
 ```
 dps310 <command> [arguments...]
  Commands:
@@ -75,9 +75,9 @@ dps310 <command> [arguments...]
    status        print status info
 ```
 ## lps22hb
-Source: [drivers/barometer/lps22hb](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/lps22hb)
+소스 코드: [drivers/barometer/lps22hb](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/lps22hb)
 
-### Usage {#lps22hb_usage}
+### 사용법 {#lps22hb_usage}
 ```
 lps22hb <command> [arguments...]
  Commands:
@@ -98,9 +98,9 @@ lps22hb <command> [arguments...]
    status        print status info
 ```
 ## lps25h
-Source: [drivers/barometer/lps25h](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/lps25h)
+소스 코드: [drivers/barometer/lps25h](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/lps25h)
 
-### Usage {#lps25h_usage}
+### 사용법 {#lps25h_usage}
 ```
 lps25h <command> [arguments...]
  Commands:
@@ -121,9 +121,9 @@ lps25h <command> [arguments...]
    status        print status info
 ```
 ## lps33hw
-Source: [drivers/barometer/lps33hw](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/lps33hw)
+소스 코드: [drivers/barometer/lps33hw](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/lps33hw)
 
-### Usage {#lps33hw_usage}
+### 사용법 {#lps33hw_usage}
 ```
 lps33hw <command> [arguments...]
  Commands:
@@ -146,9 +146,9 @@ lps33hw <command> [arguments...]
    status        print status info
 ```
 ## mpl3115a2
-Source: [drivers/barometer/mpl3115a2](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/mpl3115a2)
+소스 코드: [drivers/barometer/mpl3115a2](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/mpl3115a2)
 
-### Usage {#mpl3115a2_usage}
+### 사용법 {#mpl3115a2_usage}
 ```
 mpl3115a2 <command> [arguments...]
  Commands:
@@ -164,9 +164,9 @@ mpl3115a2 <command> [arguments...]
    status        print status info
 ```
 ## ms5611
-Source: [drivers/barometer/ms5611](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/ms5611)
+소스 코드: [drivers/barometer/ms5611](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/ms5611)
 
-### Usage {#ms5611_usage}
+### 사용법 {#ms5611_usage}
 ```
 ms5611 <command> [arguments...]
  Commands:
