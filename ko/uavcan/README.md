@@ -19,17 +19,17 @@
   * [Pomegranate Systems Power Module](http://docs.px4.io/master/en/power_module/pomegranate_systems_pm.html)
   * [CUAV CAN PMU Power Module](http://docs.px4.io/master/en/power_module/cuav_can_pmu.html)
 
-In contrast to hobby-grade devices it uses rugged, differential signalling and supports firmware upgrades over the bus. All motor controllers provide status feedback and implement field-oriented-control \(FOC\).
+취미 활용 수준의 장치와는 달리, 이들 장치는 기복이 있는, 차분 신호처리를 활용하며, 버스를 통한 펌웨어 업그레이드 기능을 지원합니다. 모든 모터 제어부에는 상태 피드백 기능을 제공하고 지상 지향 제어(FOC) 기능을 구현했습니다.
 
-> **Note** PX4 requires an SD card for UAVCAN node allocation and firmware upgrade. It is not used during flight by UAVCAN.
+> **Note** PX4에서는 UAVCAN 노드 할당 및 펌웨어 업그레이드 기능을 활용하려면 SD카드가 필요합니다. 비행중에 UAVCAN으로 사용하는 기능이 아닙니다.
 
 ## 초기 설정
 
-The following instructions provide a step-by-step guide to connect and setup a quadcopter with ESCs and GPS connected via UAVCAN. The hardware of choice is a Pixhawk 2.1, Zubax Orel 20 ESCs and a Zubax GNSS GPS module.
+다음 설명을 통해 쿼드콥터로의 ESC 장비와 GPS의 UAVCAN 연결 및 설정 방법을 단계별로 안내합니다. 선택한 하드웨어는 Pixhawk 2.1, Zubax Orel 20 ESCs, Zubax GNSS GPS 입니다.
 
 ### 결선
 
-The first step is to connect all UAVCAN enabled devices with the flight controller. The following diagram displays how to wire all components. The used Zubax devices all support a redundant CAN interface in which the second bus is optional but increases the robustness of the connection.
+처음 단계에서 할 일은 UAVCAN을 활성화한 모든 장치와 비행 조종 장치의 연결입니다. 다음 그림은 모든 부품에 대한 결선 방법을 보여줍니다. 여기서 활용하는 Zubax 장치는 모두 두번째 버스를 옵션으로 달고 있지만 이를 통해 연결 신뢰성을 개선하는 이중 CAN 인터페이스를 지원합니다.
 
 ![UAVCAN 결선](../../assets/UAVCAN_wiring.png)
 
