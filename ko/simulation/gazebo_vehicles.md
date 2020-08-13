@@ -82,7 +82,7 @@ make px4_sitl gazebo_tailsitter
 ![Tailsitter VTOL in Gazebo](../../assets/simulation/gazebo/vehicles/tailsitter.png)
 
 
-## Unmmanned Ground Vehicle (UGV/Rover/Car) {#ugv}
+## 무인 지상 기체(UGV/탐사선/차량) {#ugv}
 
 ### Ackerman UGV {#ugv_ackerman}
 
@@ -90,15 +90,15 @@ make px4_sitl gazebo_tailsitter
 make px4_sitl gazebo_rover
 ```
 
-![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/rover.png)
+![가제보의 탐사 차량](../../assets/simulation/gazebo/vehicles/rover.png)
 
 ### Differential UGV {#ugv_differential}
 
 ```sh
-make px4_sitl gazebo_r1_rover
+Rover in Gazebo
 ```
 
-![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/r1_rover.png)
+![가제보의 탐사 차량](../../assets/simulation/gazebo/vehicles/r1_rover.png)
 
 
 ## Unmanned Underwater Vehicle (UUV/Submarine) {#uuv}
