@@ -2,7 +2,7 @@
 
 This topic lists/displays the vehicles supported by the PX4 [Gazebo](../simulation/gazebo.md) simulation and the `make` commands required to run them (the commands are run from a terminal in the **Firmware** directory).
 
-Supported vehicle types include: mutirotors, VTOL, VTOL Tailsitter, Plane, Rover, Submarine/UUV.
+지원 기체 형식은 멀티로터, 수직 이착륙기, 수직 이착륙 테일시터, 항공기, 탐사선, 수중선/무인 수중선이 있습니다.
 
 > **Tip** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
 
@@ -90,7 +90,7 @@ make px4_sitl gazebo_tailsitter
 make px4_sitl gazebo_rover
 ```
 
-![가제보의 탐사 차량](../../assets/simulation/gazebo/vehicles/rover.png)
+![가제보의 탐사선](../../assets/simulation/gazebo/vehicles/rover.png)
 
 ### Differential UGV {#ugv_differential}
 
@@ -98,7 +98,7 @@ make px4_sitl gazebo_rover
 Rover in Gazebo
 ```
 
-![가제보의 탐사 차량](../../assets/simulation/gazebo/vehicles/r1_rover.png)
+![가제보의 탐사선](../../assets/simulation/gazebo/vehicles/r1_rover.png)
 
 
 ## Unmanned Underwater Vehicle (UUV/Submarine) {#uuv}
