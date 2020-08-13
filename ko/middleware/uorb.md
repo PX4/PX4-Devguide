@@ -124,4 +124,4 @@ uORB 메세지를 로그 파일에서 추출해보는 외부 도구, 예를 들�
 - 외부 도구로 두 메세지 버전간 구분을 확실히 하려면 다음 과정을 따라야합니다: 
   - 제거했거나 이름을 바꾼 메세지는 [msg/CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/msg/CMakeLists.txt#L157)의 `deprecated_msgs`에 추가해야 하며, **.msg** 파일은 삭제해야합니다.
   - 제거했거나 삭제한 필드는 주석처리하고 지원 중단(deprecated) 표시합니다. 예를 들면 `uint8 quat_reset_counter`는 `# DEPRECATED: uint8 quat_reset_counter`로 바꿉니다. 이렇게 하면 앞으로 제거한 필드(또는 메세지)를 다시 추가하면 안되겠구나 하고 확인할 수 있습니다.
-  - In case of a semantic change (e.g. the unit changes from degrees to radians), the field must be renamed as well and the previous one marked as deprecated as above.
+  - 문맥적으로 바뀌었을 경우(예: 도에서 라디안으로 각 단위가 바뀌었을 때), 해당 필드 역시 이름을 바꾸고 앞서 활용한 필드는 위에서와 같이 지원 중단(deprecated) 표시합니다.
