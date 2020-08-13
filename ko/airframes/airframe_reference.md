@@ -1276,9 +1276,9 @@
 </tr>
 </table>
 
-## 탐사 차량
+## 탐사선
 
-### 탐사 차량
+### 탐사선
 
 <div>
 <img src="../../assets/airframes/types/Rover.svg" width="29%" style="max-height: 180px;"/>
@@ -1294,7 +1294,7 @@
     </th>
   </tr>
 <tr id="rover_rover_generic_ground_vehicle">
- <td style="vertical-align: top;">일반 지상 차량</td>
+ <td style="vertical-align: top;">일반 지상 탐사선</td>
  <td style="vertical-align: top;"><p><code>SYS_AUTOSTART</code> = 50000</p><p><b>지정 출력:</b><ul><li><b>MAIN2</b>: 조향기</li><li><b>MAIN4</b>: 추진기</li></ul></p></td>
 
 </tr>
