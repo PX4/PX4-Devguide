@@ -223,26 +223,26 @@ Hello Sky!
 
 ## 프로그램 테스트 (SITL)
 
-SITL을 사용하는 경우, *PX4 콘솔*을 자동으로 실행합니다 ([Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build) 참고). *nsh 콘솔*처럼(이전 섹션 참고) `help`를 입력하여 내장된 어플리케이션의 목록을 볼 수 있습니다.
+SITL을 사용하는 경우, *PX4 콘솔*을 자동으로 실행합니다 ([Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build) 참고). *nsh 콘솔*처럼(이전 섹션 참고) `help`를 입력하여 내장 프로그램 목록을 볼 수 있습니다.
 
-`px4_simple_app` 입력하여 미니멀 어플리케이션을 실행.
+`px4_simple_app` 입력하여 간단한 프로그램을 실행하십시오.
 
 ```sh
 pxh> px4_simple_app
 INFO  [px4_simple_app] Hello Sky!
 ```
 
-이제 실제로 유용할 일을 수행하기 위해 이 어플리케이션을 확장할 수 있습니다.
+이제 진짜로 쓸만한 동작으로 프로그램을 확장할 수 있습니다.
 
-## 센서 데이터 구독 (Subscribing to Sensor Data)
+## 센서 데이터 정기 수신
 
-유용한 일을 수행하기 위해, 어플리케이션은 입력값을 구독(subscribe)하고 출력값을 발행(publish)할 필요가 있습니다(예, 모터 혹은 서보 명령).
+뭔가 쓸만한 동작을 하려면, 프로그램에서는 입력 값을 정기적으로 수신하고 출력 값(예: 모터 혹은 서보 명령)을 내보낼 필요가 있습니다.
 
-> **Tip** 이 지점에서 PX4 하드웨어 추상화의 이점이 나타납니다! 보드 혹은 센서가 변경되는 경우에도 센서 드라이버와 어떤 방식의 상호작용을 하거나 어플리케이션을 업데이트할 필요는 없습니다.
+> **Tip** 이 시점에서 PX4 하드웨어 추상화의 이점이 나타납니다! 보드 또는 센서를 업데이트했을 때 센서 드라이버와 직접 통신하거나 프로그램을 업데이트할 필요가 없습니다.
 
-어플리케이션 간의 개별 메시지 체널을 [topic](../middleware/uorb.md)이라고 합니다. 본 튜토리얼에서는 전체 시스템의 동기화된 센서 데이터를 가지고 있는 [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) topic에 살펴보겠습니다.
+프로그램간 주고 받는 개별 메세지 채널을 [토픽](../middleware/uorb.md)이라고 합니다. 이 자습서에서는 온전한 시스템에서 센서 데이터를 동기화 유지하는 [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) 토픽을 살펴보겠습니다.
 
-Topic 구독은 간단합니다:
+토픽을 정기적으로 수신하는 방법은 간단합니다:
 
 ```cpp
 #include <uORB/topics/sensor_combined.h>
@@ -250,9 +250,9 @@ Topic 구독은 간단합니다:
 int sensor_sub_fd = orb_subscribe(ORB_ID(sensor_combined));
 ```
 
-`sensor_sub_fd` 은 topic handle이며, 새로운 데이터를 블로킹 방식으로 대기하는데 효율적으로 사용될 수 있습니다. 현 쓰레드는 슬립상태로 들어가고 새로운 데이터가 있을때 스케쥴러에의해 자동적으로 깨어나며, 대기시 CPU 사이클을 소비하지 않습니다. 이러한 용도로 [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) POSIX 시스템 콜을 사용합니다.
+`sensor_sub_fd` 은 토픽 핸들이며, 새 데이터를 수신할 때 블로킹 대기를 매우 효율적으로 수행하는 목적으로 활용할 수 있습니다. 현재 스레드는 대기 상태로 진입하며, 기다리는 동안 CPU 사이클을 소모하지 않고, 새 데이터가 나타나면 스케쥴러에서 자동으로 깨웁니다. 이러한 용도로 [poll()](http://pubs.opengroup.org/onlinepubs/007908799/xsh/poll.html) POSIX 시스템 콜을 사용합니다.
 
-구독하는 쪽에 `poll()`을 추가한 경우 (*의사코드임, 전체 구현은 아래를 볼 것*):
+정기 수신 노드에 `poll()`을 추가한 경우 (*의사코드임, 전체 구현은 아래를 볼 것*):
 
 ```cpp
 #include <poll.h>
@@ -282,15 +282,15 @@ while (true) {
 }
 ```
 
-다음을 입력하여 어플리케이션 컴파일:
+다음 명령을 입력하여 프로그램을 컴파일하십시오:
 
 ```sh
 make
 ```
 
-### uORB 구독 테스트
+### uORB 정기 수신 테스트
 
-마지막 단계로 nsh 쉘에 다음을 입력하여 어플리케이션을 백그라운드 프로스세/태스크로 시작:
+마지막 단계로, 다음 명령을 nsh 셸에서 입력하여 프로그램을 백그라운드 프로세스 작업으로 시작하십시오:
 
 ```sh
 px4_simple_app &
