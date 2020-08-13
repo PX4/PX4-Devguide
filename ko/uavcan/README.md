@@ -1,6 +1,6 @@
 # UAVCAN 소개
 
-![UAVCAN Logo](../../assets/uavcan-logo-transparent.png)
+![UAVCAN 로고](../../assets/uavcan-logo-transparent.png)
 
 [UAVCAN](http://uavcan.org)는 보드상에서 처리하는 네트워크로 오토파일럿을 항공 전자장비에 연결할 수 있게 합니다. 다음 하드웨어를 지원합니다:
 
@@ -31,7 +31,7 @@ The following instructions provide a step-by-step guide to connect and setup a q
 
 The first step is to connect all UAVCAN enabled devices with the flight controller. The following diagram displays how to wire all components. The used Zubax devices all support a redundant CAN interface in which the second bus is optional but increases the robustness of the connection.
 
-![UAVCAN Wiring](../../assets/UAVCAN_wiring.png)
+![UAVCAN 결선](../../assets/UAVCAN_wiring.png)
 
 It is important to mention that some devices require an external power supply \(e.g. Zubax Orel 20\) and others can be powered by the CAN connection \(e.g Zubax GNSS\) itself. Please refer to the documentation of your hardware before continuing with the setup.
 
@@ -47,10 +47,10 @@ PX4 미들웨어에서는 UAVCAN 노드에 일치하는 펌웨어를 받았을 �
 
 ## 모터 컨트롤러 기수 부여 및 설정
 
-ID와 각 모터 컨트롤러의 회전 방향은 간단한 설치 루틴에서 설치 과정을 마친 후 할당할 수 있습니다: [UAVCAN 노드 기수 부여](../uavcan/node_enumeration.md). The routine can be started by the user through QGroundControl.
+ID와 각 모터 컨트롤러의 회전 방향은 간단한 설치 루틴에서 설치 과정을 마친 후 할당할 수 있습니다: [UAVCAN 노드 기수 부여](../uavcan/node_enumeration.md). QGroundControl에서 사용자가 루틴 실행을 시작할 수 있습니다.
 
-## Useful links
+## 참고할만한 링크
 
-* [Homepage](http://uavcan.org)
-* [Specification](https://uavcan.org/specification/)
-* [Implementations and tutorials](http://uavcan.org/Implementations)
+* [홈페이지](http://uavcan.org)
+* [상세사양](https://uavcan.org/specification/)
+* [구현 및 자습서](http://uavcan.org/Implementations)
