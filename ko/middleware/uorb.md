@@ -110,7 +110,7 @@ sensor_combined                      0    6  242   636 1
 
 ## 다중 인스턴스
 
-uORB는 `orb_advertise_multi`로 동일 토픽의 다중 독립 인스턴스를 내보내는 매커니즘을 제공합니다. 이 메커니즘은 송신자에게 인스턴스의 색인 번호를 반환합니다. 그러면 지속 수신자는 `orb_subscribe_multi`로 (`orb_instance`는 처음 인스턴스를 지속 수신) 어떤 인스턴스의 메세지를 지속적으로 수신할 지 선택합니다. 다수의 인스턴스를 가지는 것은 동일한 타입의 센서를 여러개 가진 시스템에서 유용합니다.
+uORB는 `orb_advertise_multi`로 동일 토픽의 다중 독립 인스턴스를 내보내는 매커니즘을 제공합니다. 이 메커니즘은 송신자에게 인스턴스의 색인 번호를 반환합니다. 그러면 지속 수신자는 `orb_subscribe_multi`로 (`orb_instance`는 처음 인스턴스를 지속 수신) 어떤 인스턴스의 메세지를 지속적으로 수신할 지 선택합니다. 다중 인스턴스 보유는 시스템에 동일한 형식의 센서 여러개가 있을 때 도움이 될 수 있습니다.
 
 같은 토픽에서 `orb_advertise_multi`과 `orb_advertise`가 섞이지 않도록 유의하십시오.
 
@@ -118,9 +118,9 @@ uORB는 `orb_advertise_multi`로 동일 토픽의 다중 독립 인스턴스를 
 
 ## Message/Field Deprecation {#deprecation}
 
-As there are external tools using uORB messages from log files, such as [Flight Review](https://github.com/PX4/flight_review), certain aspects need to be considered when updating existing messages:
+uORB 메세지를 로그 파일에서 추출해보는 외부 도구, 예를 들면 [Flight Review](https://github.com/PX4/flight_review)에서는 기존 메세지를 업데이트할 때 고려해야할 몇가지 양상이 있습니다:
 
-- Changing existing fields or messages that external tools rely on is generally acceptable if there are good reasons for the update. In particular for breaking changes to *Flight Review*, *Flight Review* must be updated before code is merged to `master`.
+- 업데이트상 타당한 이유가 있을 경우에는 기존 필드와 외부 도구에 의존하는 메세지를 바꾸는게 일반적으로 통용됩니다. In particular for breaking changes to *Flight Review*, *Flight Review* must be updated before code is merged to `master`.
 - In order for external tools to reliably distinguish between two message versions, the following steps must be followed: 
   - Removed or renamed messages must be added to the `deprecated_msgs` list in [msg/CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/msg/CMakeLists.txt#L157) and the **.msg** file needs to be deleted.
   - Removed or renamed fields must be commented and marked as deprecated. For example `uint8 quat_reset_counter` would become `# DEPRECATED: uint8 quat_reset_counter`. This is to ensure that removed fields (or messages) are not re-added in future.
