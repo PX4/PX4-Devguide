@@ -571,7 +571,7 @@ mode_* 명령으로 모듈을 설정합니다. 이 명령으로 어떤 처음 N�
 
 ### 구현
 
-By default the module runs on a work queue with a callback on the uORB actuator_controls topic.
+기본적으로 모듈은 uORB actuator_controls 토픽의 함수 콜백을 통한 작업 큐에서 동작합니다.
 
 ### 예제
 
@@ -582,17 +582,17 @@ By default the module runs on a work queue with a callback on the uORB actuator_
 
 이 명령으로 모든 가용핀을 제어합니다.
 
-Capture input (rising and falling edges) and print on the console: start pwm_out in one of the capture modes:
+입력을 잡아(신호 레벨의 상승 하강 순간) 콘솔에 출력합니다. pwm_out 을 원하는 캡처 모드로 시작합니다:
 
     pwm_out mode_pwm3cap1
     
 
-This will enable capturing on the 4th pin. Then do:
+이 명령으로 네번째 핀의 입력 신호 캡처를 시작합니다. 그 다음 명령을 실행해보십시오:
 
     pwm_out test
     
 
-Use the `pwm` command for further configurations (PWM rate, levels, ...), and the `mixer` command to load mixer files.
+다른 설정(PWM 속도, 레벨 등)을 진행하려면 `pwm` 명령을 사용하시고, 믹서 파일을 불러오려면 `mixer` 명령을 사용하십시오.
 
 ### 사용법 {#pwm_out_usage}
 
@@ -817,7 +817,7 @@ This module is responsible for the safety button. Pressing the safety button 3 t
 
 ### 설명
 
-This module controls the TAP_ESC hardware via UART. It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
+UART로 TAP_ESC 하드웨어를 제어하는 모듈입니다. actuator_controls 토픽을 수신하고, PWM 출력을 혼합하여 기록합니다.
 
 ### 구현
 
@@ -844,17 +844,17 @@ The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
 
 ### 설명
 
-Mount (Gimbal) control driver. It maps several different input methods (eg. RC or MAVLink) to a configured output (eg. AUX channels or MAVLink).
+마운트 (짐벌) 제어 드라이버입니다. 각기 다른 입력 방식을(예: RC 또는 MAVLink) 설정 출력에(예: AUX 채널 또는 MAVLink) 대응합니다.
 
-Documentation how to use it is on the [gimbal_control](https://dev.px4.io/master/en/advanced/gimbal_control.html) page.
+[gimbal_control](https://dev.px4.io/master/en/advanced/gimbal_control.html) 페이지에 사용법이 잘 나와있습니다.
 
 ### 구현
 
-Each method is implemented in its own class, and there is a common base class for inputs and outputs. They are connected via an API, defined by the `ControlData` data structure. This makes sure that each input method can be used with each output method and new inputs/outputs can be added with minimal effort.
+각 방식은 자체 클래스로 구현하며, 입출력용 공통 기반 클래스가 있습니다. `ControlData` 데이터 구조로 정의한 API로 연결합니다. 제각각의 입력 방식을 각 출력 방식에 대해 사용할 수 있음을 보여주며, 새 입출력 수단을 최소한의 노력으로 추가할 수 있습니다.
 
 ### 예제
 
-Test the output by setting a fixed yaw angle (and the other axes to 0):
+고정 방위각을 설정한 출력 값을 시험합니다(그리고 다른 축은 0 값을 잡아줍니다):
 
     vmount stop
     vmount test yaw 30
