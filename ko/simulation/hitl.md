@@ -111,11 +111,11 @@ Follow the appropriate setup steps for the specific simulator in the following s
     gazebo Tools/sitl_gazebo/worlds/iris.world
     ```
 
-6. Start *QGroundControl*. It should autoconnect to PX4 and Gazebo.
+6. *QGroundControl *을 시작하십시오. It should autoconnect to PX4 and Gazebo.
 
 #### jMAVSim (Quadrotor only) {#jmavsim_hitl_configuration}
 
-> **Note** Make sure *QGroundControl* is not running!
+> **Note** *QGroundControl*을 실행하고 있지 않은지 확인하십시오!
 
 1. Connect the flight controller to the computer and wait for it to boot.
 2. Run jMAVSim in HITL mode: 
