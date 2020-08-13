@@ -97,11 +97,11 @@ make list_vmd_make_targets
 
 ## 컴파일러 최적화
 
-It is possible to suppress compiler optimization for given executables and/or modules (as added by cmake with `add_executable` or `add_library`) when configuring for `posix_sitl_*`. This can be handy when it is necessary to step through code with a debugger or print variables that would otherwise be optimized out.
+`posix_sitl_*`을 설정할 때, 주어진 실행 파일 또는 모듈(cmake에 `add_executable` 또는 `add_library`로 추가)에 대해 컴파일러 최적화를 막을 수 있습니다. This can be handy when it is necessary to step through code with a debugger or print variables that would otherwise be optimized out.
 
 To do so, set the environment variable `PX4_NO_OPTIMIZATION` to be a semi-colon separated list of regular expressions that match the targets that need to be compiled without optimization. This environment variable is ignored when the configuration isn't `posix_sitl_*`.
 
-For example,
+예를 들어,
 
 ```sh
 export PX4_NO_OPTIMIZATION='px4;^modules__uORB;^modules__systemlib$'
@@ -109,7 +109,7 @@ export PX4_NO_OPTIMIZATION='px4;^modules__uORB;^modules__systemlib$'
 
 would suppress optimization of the targets: platforms*\_posix**px4\_layer, modules**systemlib, modules**uORB, examples**px4\_simple\_app, modules**uORB*\_uORB\_tests and px4.
 
-The targets that can be matched with these regular expressions can be printed with the command:
+다음 명령으로 정규 표현식에 일치하는 대상을 출력할 수 있습니다:
 
 ```sh
 make -C build/posix_sitl_* list_cmake_targets
