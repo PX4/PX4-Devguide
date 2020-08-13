@@ -39,7 +39,7 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 
 <span></span>
 
-> **Tip** Where possible, we highly recommend that you create or obtain an adapter board rather than custom cables for connecting to SWD/JTAG debuggers and computers. This reduces the risk or poor wiring contributing to debugging problems, and has the benefit that adapters usually provide a common interface for connecting to multiple popular flight controller boards.
+> **Tip** 가능한 부분이 있다면, SWD/JTAG 디버거, 컴퓨터용 케이블을 별도로 만들기 보다는 어댑터 보드를 만들거나 구하는 방안을 권해드립니다. 디버깅 문제를 해결하려는 과정에서 입는 손해와 미흡한 결선 문제를 줄이며, 다양하고 인기있는 비행 조종 장치 보드에 연결할 공통 인터페이스를 제공하는 어댑터를 쓰시는 방법이 여러모로 이득입니다.
 
 
 ## 오토파일럿 디버깅 포트 {#debug_ports}
@@ -60,7 +60,7 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 | [Drotek Pixhawk 3 Pro](http://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port)    | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)                                                                                                                                                                    |
 | [Holybro Pixhawk 4](http://docs.px4.io/master/en/flight_controller/pixhawk4.html#debug_port)           | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)                                                                                                                                                                    |
 | [Holybro Pixhawk 4 Mini](http://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html#debug-port) | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)                                                                                                                                                                    |
-| [Holybro Kakute F7](http://docs.px4.io/master/en/flight_controller/kakutef7.html#debug-port)           | Solder pads                                                                                                                                                                                                               |
+| [Holybro Kakute F7](http://docs.px4.io/master/en/flight_controller/kakutef7.html#debug-port)           | 판 납땜                                                                                                                                                                                                                      |
 | [Holybro Durandal](http://docs.px4.io/master/en/flight_controller/durandal.html#debug-port)            | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)                                                                                                                                                                    |
 
 > **Tip** 사용 중인 비행 조종 장치가 없다면 [오토파일럿 주제](http://docs.px4.io/master/en/flight_controller/)를 확인하십시오.
@@ -151,7 +151,7 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 다음 절에서는 PX4를 구동하는 오토파일럿에 연결할 일부 잘 알려진 디버깅 프루브 장비와 어댑터의 개요를 설명하겠습니다.
 
 
-### Segger JLink EDU Mini Debug Probe {#segger_jlink_edu_mini}
+### Segger JLink EDU Mini 디버깅 프루브 {#segger_jlink_edu_mini}
 
 [Segger JLink EDU Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/)는 값싸고 인기있는 SWD 디버깅 프루브입니다. 프루브 커넥터 핀 출력은 아래 그림과 같습니다([FTSH-105-01-F-DV-K](https://www.digikey.com/products/en?keywords=SAM8796-ND)같은 ARM 10-pin 미니 커넥터로 연결).
 
