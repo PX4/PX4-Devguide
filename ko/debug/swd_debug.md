@@ -35,7 +35,7 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 
 일부 SWD [디버깅 프루브](#debug_probes)는 픽스호크 공용 [디버깅 포트](#debug_ports)에 연결할 어댑터와 케이블이 딸려옵니다. 다른 보드 또는 프루브에 연결할 개별 케이블을 직접 만들 수도 있습니다.
 
-> **Note** 일부 제조사에서는 SWD 인터페이스와 [시스템 콘솔](../debug/system_console.md)을 쉽게 연결하는 케이블을 제공합니다. For example the [CUAV V5nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port) and [CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port) include this debug cable: ![6-pin JST SH Cable](../../assets/debug/cuav_v5_debug_cable.jpg)
+> **Note** 일부 제조사에서는 SWD 인터페이스와 [시스템 콘솔](../debug/system_console.md)을 쉽게 연결하는 케이블을 제공합니다. 예로서, [CUAV V5nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port)와 [CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port)에 디버깅 케이블이 들어있습니다: ![6-pin JST SH Cable](../../assets/debug/cuav_v5_debug_cable.jpg)
 
 <span></span>
 
@@ -114,7 +114,7 @@ The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/bl
 
 The socket is a *6-pin JST SH* - Digikey number: [BM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-2875-1-ND) (vertical mount), [SM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1806-1-ND)(side mount).
 
-You can connect to the debug port using a [cable like this one](https://www.digikey.com/products/en?keywords=A06SR06SR30K152A).
+[이 같은 케이블](https://www.digikey.com/products/en?keywords=A06SR06SR30K152A)로 디버깅 포트에 연결할 수 있습니다.
 
 ![6-pin JST SH Cable](../../assets/debug/cable_6pin_jst_sh.jpg)
 
@@ -125,7 +125,7 @@ The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/bl
 
 > **Note** This port is specified for use in FMUv5x, FMUv6, FMUv6x.
 
-The pinout is as shown below (SWD pins highlighted):
+핀 출력은 아래와 같습니다 (SWD 핀은 강조함):
 
 | 디버깅 포트 | 핀        |
 | ------ | -------- |
@@ -140,9 +140,9 @@ The pinout is as shown below (SWD pins highlighted):
 | 9      | nRST     |
 | 10     | `GND`    |
 
-The socket is a *10-pin JST SH* - Digikey number: [BM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1796-2-ND) (vertical mount) or [SM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1810-2-ND) (side mount).
+*10-pin JST SH* 소켓을 사용합니다 - Digikey number: [BM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1796-2-ND) (수직 마운트), [SM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1810-2-ND) (측면 마운트).
 
-You can connect to the debug port using a [cable like this one](https://www.digikey.com/products/en?keywords=A10SR10SR30K203A).
+[이 같은 케이블](https://www.digikey.com/products/en?keywords=A10SR10SR30K203A)로 디버깅 포트에 연결할 수 있습니다.
 ![10-pin JST SH Cable](../../assets/debug/cable_10pin_jst_sh.jpg) <!-- better to have image showing proper connections for SWD+SWO -->
 
 
@@ -168,31 +168,31 @@ J-Link Edu Mini를 [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh)�
 | 5 (SWDCLK) | 4           |
 | 6 (GND)    | 3 또는 5      |
 
-> **Tip** From the table above you can infer the connections for autopilots that do not use the standard port.
+> **Tip** 상단 표를 보시면 오토파일럿 표준 포트에서 사용하지 않는 연결을 짐작하실 수 있습니다.
 
 <!-- Image of SWD cable and connector to debug port? --> 
 
 
 ### 드론코드 프루브 {#dronecode_probe}
 
-The [Dronecode Probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation) is a generic JTAG/SWD + UART console adapter compatible with most ARM Cortex based designs, and in particular with Pixhawk series flight controllers (and other hardware that PX4 supports).
+[드론코드 프루브](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation)는 ARM Cortex 기반으로 설계한 일반 JTAG/SWD + UART 콘솔 어댑터 호환 제품이며, 특히 픽스호크 계열 비행 조종 장치(와 PX4 지원 기타 하드웨어)와 동작합니다.
 
-The probe's USB interface exposes two separate virtual serial port interfaces: one for connecting to the [System Console](../debug/system_console.md) (UART) and the other for an embedded GDB server (SWD interface).
+프루브의 USB 인터페이스는 둘로 분리한 가상 직렬 포트 인터페이스가 나와있습니다. 하나는 [시스템 콘솔](../debug/system_console.md)(UART) 에 연결하는 용도, 다른 하나는 임베디드 GDB 서버에 연결(SWD 인터페이스)하는 용도입니다.
 
-The probe provides a DCD-M connector cable for attaching to the [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh).
+프루브에서는 [Pixhawk 6-Pin SH 디버깅 포트](#pixhawk_debug_port_6_pin_sh)에 연결하는  DCD-M 커넥터 케이블을 제공합니다.
 
-> **Note** The *6-pos DF13* connector that comes with the probe cannot be used for SWD debugging (it is for using the System Console).
+> **Note** *6-pos DF13* 프루브와 딸려오는 커넥터는 SWD 디버깅 용이 아닙니다(시스템 콘솔 연결용).
 
 <span></span>
-> **Note** The *Dronecode Probe* is based on the [Black Magic Probe](#black_magic_probe).
+> **Note** *드론코드 프루브*는 [블랙매직 프루브](#black_magic_probe)를 기반으로 만들었습니다.
 
 
 ### 블랙매직 프루브 {#black_magic_probe}
 
-The [Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki) is much like the [Dronecode probe](#dronecode_probe) but does not come with the same adapters for directly connecting to Pixhawk series flight controllers.
+[블랙매직 프루브](https://github.com/blacksphere/blackmagic/wiki)는 <0>드론코드 프루브</0>와 매우 유사하나, 픽스호크 계열 비행 조종 장치에 직접 연결하는 동일한 어댑터가 딸려오진 않습니다.
 
-Adapters can be purchased separately:
-- [Drone Code Debug Adapter](https://1bitsquared.com/products/drone-code-debug-adapter) (1 BIT SQUARED).
+어댑터는 별매입니다:
+- [드론 코드 디버깅 어댑터](https://1bitsquared.com/products/drone-code-debug-adapter) (1 BIT 각 커넥터).
 
 
 ## 다음 단계 {#debugging_topics}
