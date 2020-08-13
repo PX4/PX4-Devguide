@@ -22,7 +22,7 @@ PX4는 단일 주파(L1) u-blox M8P 기반 GNSS 수신기만을 RTK 기능용으
 
 ## 자동 설정
 
-PX4 GPS 스택은 u-blox M8P 모듈을 자동으로 설정하여 UART 또는 USB 둘 중 어떤 미디움을 통해 (*QGroundControl* 또는 autopilot에) 모듈을 연결했느냐에 따라 올바른 메시지를 주고 받을 수 있게 합니다.
+PX4 GPS 스택은 u-blox M8P 모듈을 자동으로 설정하여 UART 또는 USB 둘 중 어떤 매체를 통해 (*QGroundControl* 또는 autopilot에) 모듈을 연결했느냐에 따라 올바른 메시지를 주고 받을 수 있게 합니다.
 
 autopilot에서 `GPS_RTCM_DATA` MAVLink 메시지를 받는 즉시, RTCM 데이터를 GPS 모듈에 자동으로 전달합니다.
 
@@ -30,7 +30,7 @@ autopilot에서 `GPS_RTCM_DATA` MAVLink 메시지를 받는 즉시, RTCM 데이�
 
 <span></span>
 
-> **Note** *QGroundControl*과 autopilot 펌웨어는 동일한 [PX4 GPS 드라이버 스택](https://github.com/PX4/GpsDrivers)을 공유합니다. 실제로, 새 프로토콜 또는 메시지 지원시 한쪽에만 추가하면 됩니다.
+> **Note** *QGroundControl*과 오토파일럿 펌웨어는 동일한 [PX4 GPS 드라이버 스택](https://github.com/PX4/GpsDrivers)을 공유합니다. 실제로, 새 프로토콜 또는 메시지 지원시 한쪽에만 추가하면 됩니다.
 
 ### RTCM 메시지
 
