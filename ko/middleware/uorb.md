@@ -116,12 +116,12 @@ uORB는 `orb_advertise_multi`로 동일 토픽의 다중 독립 인스턴스를 
 
 완전한 API 문서는 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp)에 있습니다.
 
-## Message/Field Deprecation {#deprecation}
+## 메세지/필드 지원 중단(deprecation) 처리 {#deprecation}
 
 uORB 메세지를 로그 파일에서 추출해보는 외부 도구, 예를 들면 [Flight Review](https://github.com/PX4/flight_review)에서는 기존 메세지를 업데이트할 때 고려해야할 몇가지 양상이 있습니다:
 
-- 업데이트상 타당한 이유가 있을 경우에는 기존 필드와 외부 도구에 의존하는 메세지를 바꾸는게 일반적으로 통용됩니다. In particular for breaking changes to *Flight Review*, *Flight Review* must be updated before code is merged to `master`.
-- In order for external tools to reliably distinguish between two message versions, the following steps must be followed: 
-  - Removed or renamed messages must be added to the `deprecated_msgs` list in [msg/CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/msg/CMakeLists.txt#L157) and the **.msg** file needs to be deleted.
-  - Removed or renamed fields must be commented and marked as deprecated. For example `uint8 quat_reset_counter` would become `# DEPRECATED: uint8 quat_reset_counter`. This is to ensure that removed fields (or messages) are not re-added in future.
+- 업데이트상 타당한 이유가 있을 경우에는 기존 필드와 외부 도구에 의존하는 메세지를 바꾸는게 일반적으로 통용됩니다. 특히 *Flight Review*에서 바뀐 내용을 깼을 경우, `master`에 코드를 병합하기 전에 *Flight Review*를 업데이트해야합니다.
+- 외부 도구로 두 메세지 버전간 구분을 확실히 하려면 다음 과정을 따라야합니다: 
+  - 제거했거나 이름을 바꾼 메세지는 [msg/CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/msg/CMakeLists.txt#L157)의 `deprecated_msgs`에 추가해야 하며, **.msg** 파일은 삭제해야합니다.
+  - 제거했거나 삭제한 필드는 주석처리하고 지원 중단(deprecated) 표시합니다. 예를 들면 `uint8 quat_reset_counter`는 `# DEPRECATED: uint8 quat_reset_counter`로 바꿉니다. 이렇게 하면 앞으로 제거한 필드(또는 메세지)를 다시 추가하면 안되겠구나 하고 확인할 수 있습니다.
   - In case of a semantic change (e.g. the unit changes from degrees to radians), the field must be renamed as well and the previous one marked as deprecated as above.
