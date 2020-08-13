@@ -26,21 +26,21 @@ The SIH is compatible with all Pixhawk-series boards except those based on FMUv2
 
 Running the SIH is as easy as selecting an airframe. Plug the autopilot to the desktop computer with a USB cable, let it boot, then using a ground control station select the [SIH airframe](../airframes/airframe_reference.md#simulation-copter). The autopilot will then reboot.
 
-When the SIH airframe is selected, the SIH module starts by itself, the vehicle should be displayed on the ground control station map.
+SIH 에어프레임을 선택하면, SIH 모듈이 자체적으로 시작하고, 기체가 지상 통제국 지도에 떠야합니다.
 
 ## Setting up the Display
 
 The simulated quadrotor can be displayed in jMAVSim from PX4 v1.11.
 
-1. Close *QGroundControl* (if opened).
+1. *QGroundControl*을 (열었을 경우) 닫으십시오.
 2. Unplug and replug the hardware autopilot (allow a few seconds for it to boot).
 3. Start jMAVSim by calling the script **jmavsim_run.sh** from a terminal: ```./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250 -o``` where the flags are 
-    - `-q` to allow the communication to *QGroundControl* (optional).
+    - `q`를 누르면 *QGroundControl*와의 통신을 허용합니다(추가).
     - `-d` to start the serial device `/dev/ttyACM0` on Linux. On macOS this would be `/dev/tty.usbmodem1`.
     - `-b` to set the serial baud rate to `921600`.
     - `-r` to set the refresh rate to `250` Hz (optional).
     - `-o` to start jMAVSim in *display Only* mode (i.e. the physical engine is turned off and jMAVSim only displays the trajectory given by the SIH in real-time).
-4. After few seconds, *QGroundControl* can be opened again.
+4. 몇 초가 지나면 *QGroundControl*을 다시 열 수 있습니다.
 
 At this point, the system can be armed and flown. The vehicle can be observed moving in jMAVSim, and on the QGC **Fly** view.
 
