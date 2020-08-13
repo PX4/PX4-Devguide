@@ -1,10 +1,10 @@
-# System-wide Replay
+# 시스템 범위 재현
 
-Based on ORB messages, it's possible to record and replay arbitrary parts of the system.
+ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을 기록하고 재현할 수 있습니다.
 
-Replay is useful to test the effect of different parameter values based on real data, compare different estimators, etc.
+실제 데이터를 기반으로 한 제각각의 매개변수 값 영향 시험, 제각기 다른 추정자의 동작 비교 등에 재현 과정에 상당히 쓸만합니다.
 
-## Prerequisites
+## 준비 요건
 
 The first thing that needs to be done is to identify the module or modules that should be replayed. Then, identify all the inputs to these modules, i.e. subscribed ORB topics. For system-wide replay, this consists of all hardware input: sensors, RC input, MAVLink commands and file system.
 
@@ -12,7 +12,7 @@ All identified topics need to be logged at full rate (see [logging](../log/loggi
 
 It is important that all replayed topics contain only a single absolute timestamp, which is the automatically generated field `timestamp`. Should there be more timestamps, then they must be relative with respect to the main timestamp. For an example, see [sensor_combined.msg](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg). Reasons for this are given below.
 
-## Usage
+## 사용법
 
 - First, choose the file to replay, and build the target (from within the Firmware directory): 
         sh
@@ -68,7 +68,7 @@ It is important that all replayed topics contain only a single absolute timestam
 - It is currently only possible to replay in 'real-time', meaning as fast as the recording was done. This is planned to be extended in the future.
 - A message that has a timestamp of 0 will be considered invalid and not be replayed.
 
-## EKF2 Replay
+## EKF2 재현
 
 This is a specialization of the system-wide replay for fast EKF2 replay. It will automatically create the ORB publisher rules and works as following:
 
@@ -93,12 +93,12 @@ The parameters can be adjusted as well. They can be extracted from the log with 
 
 Then edit the parameters in the file as needed and restart the replay process with `make px4_sitl none`. This will create a new log file.
 
-The location of the generated log is printed with a message like this:
+생성 로그 위치는 다음 메세지와 함께 화면에 나타납니다:
 
     INFO  [logger] Opened log file: rootfs/fs/microsd/log/2017-03-01/13_30_51_replayed.ulg
     
 
-When finished, use `unset replay; unset replay_mode` to exit the replay mode.
+과정이 끝난 후 재현 모드를 끝내려면 `unset replay; unset replay_mode` 명령을 내리십시오.
 
 ## Behind the Scenes
 
