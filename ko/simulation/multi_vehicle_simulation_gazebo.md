@@ -45,7 +45,7 @@ https://youtu.be/lAjjTFFZebI
 
 ## Multiple Vehicles with ROS and Gazebo {#with_ros}
 
-This example demonstrates a setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world. You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle.
+This example demonstrates a setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world. 이렇게 하고 나면 *QGroundControl*과 MAVROS로 단일 기체를 통제하는 방식과 동일하게 여러 기체를 통제할 수 있습니다.
 
 ### Required
 
@@ -78,8 +78,8 @@ To build an example setup, follow the step below:
 
 The tutorial example opens the Gazebo client GUI showing two Iris vehicles in an empty world.
 
-You can control the vehicles with *QGroundControl* or MAVROS in a similar way to how you would manage a single vehicle:
-* *QGroundControl* will have a drop-down to select the vehicle that is "in focus"
+*QGroundControl*과 MAVROS로 단일 기체를 통제하는 방식과 동일하게 여러 기체를 통제할 수 있습니다.
+* *QGroundControl*에는 기체 선택시 "선택 대상을 강조한" 드롭다운 메뉴를 둡니다
 * MAVROS requires that you include the proper namespace before the topic/service path (e.g. for `<group ns="uav1">` you'll use */uav1/mavros/mission/push*).
 
 
