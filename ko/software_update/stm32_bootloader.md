@@ -1,8 +1,8 @@
-# STM32 Bootloader
+# STM32 부트로더
 
-The code for the PX4 bootloader is available from the Github [Bootloader](https://github.com/px4/bootloader) repository.
+PX4 부트로더 코드는 깃허브 [Bootloader](https://github.com/px4/bootloader)에 있습니다.
 
-## Supported Boards
+## 지원 보드
 
 * FMUv2 (Pixhawk 1, STM32F4)
 * FMUv3 (Pixhawk 2, STM32F4)
@@ -11,7 +11,7 @@ The code for the PX4 bootloader is available from the Github [Bootloader](https:
 * TAPv1 (TBA, STM32F4)
 * ASCv1 (TBA, STM32F4)
 
-## Building the Bootloader
+## 부트로드 빌드하기
 
 ```bash
 git clone https://github.com/PX4/Bootloader.git
@@ -21,11 +21,11 @@ git submodule update
 make
 ```
 
-After this step a range of elf files for all supported boards are present in the Bootloader directory.
+위 과정을 거치면 Bootloader 디렉토리내에 지원되는 모든 보드에 대한 elf파일이 생성됩니다.
 
-## Flashing the Bootloader
+## 부트로더 플래싱하기
 
-> **Warning** The right power sequence is critical for some boards to allow JTAG / SWD access. Follow these steps exactly as described.
+> **Warning** 몇몇 보드의 경우 JTAG / SWD 접속을 위해서는 올바른 파워 시퀀스가 매우 중요합니다. 아래 단계를 설명한 것과 같이 정확하게 수행하십시오.
 
 The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
 
