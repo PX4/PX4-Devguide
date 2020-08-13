@@ -10,12 +10,12 @@
     
     > **Note** [Sapog Firmware](https://github.com/px4/sapog)(오픈소스)를 실행합니다. [Sapog Reference Hardware](https://github.com/PX4/Hardware/tree/master/sapog_reference_hardware)에 기반합니다.
 
-* Airspeed sensors
+* 대기속도 센서
   
   * [Thiemar airspeed sensor](https://github.com/thiemar/airspeed)
-* GNSS receivers for GPS and GLONASS 
+* GPS 및 GLONASS용 GNSS 리시버 
   * [Zubax GNSS](https://zubax.com/products/gnss_2)
-* Power monitors 
+* 전력량계 
   * [Pomegranate Systems Power Module](http://docs.px4.io/master/en/power_module/pomegranate_systems_pm.html)
   * [CUAV CAN PMU Power Module](http://docs.px4.io/master/en/power_module/cuav_can_pmu.html)
 
