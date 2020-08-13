@@ -12,7 +12,7 @@ PX4 *시스템 콘솔*에서는 시스템 저수준 접근이 가능하며, 디�
 
 > **Tip** 여러가지 보드를 대상으로 개발하려는 개발자는 아마도 여러 보드에 간단하게 연결하는 *디버깅 어댑터* 활용하는 편을 원할지도 모릅니다. 이를테면, [드론코드 프루브](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation)에는 [픽스호크 디버깅 포트](#pixhawk_debug_port)와 여러 기타 보드에 활용할 커넥터가 딸려옵니다.
 
-The sections below outline/link to the wiring and system console information for many common boards.
+아래 절에서는 여러 보드에서 활용할 결선 개요 및 시스템 콘솔 정보를 다루겠습니다.
 
 ### 보드별 연결 방법
 
@@ -29,9 +29,9 @@ The sections below outline/link to the wiring and system console information for
 
 ### 픽스호크 디버깅 포트 {#pixhawk_debug_port}
 
-Flight controllers that adhere to the Pixhawk Connector standard use the [Pixhawk Standard Debug Port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug).
+픽스호크 조종 장치 표준이 붙는 비행 조종 장치에는 [픽스호크 표준 디버깅 포트](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug)가 붙어있습니다.
 
-The port/FTDI mapping is shown below.
+포트/FTDI 결선 개념은 아래와 같습니다.
 
 | 픽스호크 디버깅 포트 | -                        | FTDI | -                        |
 | ----------- | ------------------------ | ---- | ------------------------ |
