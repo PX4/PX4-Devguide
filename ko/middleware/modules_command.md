@@ -2,9 +2,9 @@
 
 ## bl_update
 
-원본: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
+소스 코드: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
-파일에서 부트로터를 플래싱하는 유틸리티
+파일에서 부트로더를 플래싱하는 유틸리티
 
 ### 사용법 {#bl_update_usage}
 
@@ -17,7 +17,7 @@
 
 ## dumpfile
 
-원본: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
+소스 코드: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
 
 덤프 파일 유틸리티. 파일 크기와 내용을 표준 출력(터미널 창)에 바이너리 모드(LF를 CR LF로 바꾸지 않음)로 출력합니다.
 
@@ -29,7 +29,7 @@
 
 ## dyn
 
-원본: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
+소스 코드: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
 
 ### 설명
 
@@ -49,7 +49,7 @@ PX4 바이너리로 컴파일하지 않은 동적 PX4 모듈을 불러오고 실
 
 ## esc_calib
 
-원본: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
+소스 코드: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
 ESC 보정 도구
 
@@ -77,7 +77,7 @@ ESC 보정 도구
 
 ## gpio
 
-원본: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
+소스 코드: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
 
 이 명령은 GPIO 시그널 읽기/쓰기에 활용합니다.
 
@@ -98,7 +98,7 @@ ESC 보정 도구
 
 ## hardfault_log
 
-원본: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
+소스 코드: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
 
 하드웨어 문제를 다루는 유틸리티
 
@@ -126,7 +126,7 @@ ESC 보정 도구
 
 ## i2cdetect
 
-원본: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
+소스 코드: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
 
 각 버스에 연결한 I2C 장치를 검색하는 유틸리티
 
@@ -139,7 +139,7 @@ ESC 보정 도구
 
 ## led_control
 
-원본: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
+소스 코드: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
 
 ### 설명
 
@@ -189,7 +189,7 @@ ESC 보정 도구
 
 ## listener
 
-원본: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
+소스 코드: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
 
 uORB 요청을 수신하고 콘솔에 데이터를 출력하는 유틸리티
 
@@ -210,7 +210,7 @@ listener는 언제든지 Ctrl+C, Esc, Q를 입력하면 끝낼 수 있습니다.
 
 ## mixer
 
-원본: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
+소스 코드: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)/
 
 ### 설명
 
@@ -231,7 +231,7 @@ ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
 
 ## motor_ramp
 
-원본: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
+소스 코드: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
 
 ### 설명
 
@@ -267,7 +267,7 @@ ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
 
 ## motor_test
 
-원본: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
+소스 코드: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
 
 모터 테스트 유틸리티.
 
@@ -293,7 +293,7 @@ ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
 
 ## mtd
 
-원본: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
+소스 코드: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
 
 분할 영역을 마운트하고 테스트하는 유틸리티(보드에 정의한 FRAM/EEPROM 저장장치 기반)
 
@@ -333,7 +333,7 @@ ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
 
 ## param
 
-원본: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
+소스 코드: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
 
 ### 설명
 
@@ -418,7 +418,7 @@ ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
 
 ## perf
 
-원본: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
+소스 코드: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
 
 성능 카운터 출력 도구
 
@@ -434,7 +434,7 @@ ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
 
 ## pwm
 
-원본: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
+소스 코드: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
 
 ### 설명
 
@@ -524,7 +524,7 @@ PWM 매개변수(`PWM_*`) 를 적용했는지 여부를 확인할 때 시작 스
 
 ## reboot
 
-원본: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
+소스 코드: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
 
 시스템을 다시 부팅합니다
 
@@ -537,7 +537,7 @@ PWM 매개변수(`PWM_*`) 를 적용했는지 여부를 확인할 때 시작 스
 
 ## sd_bench
 
-원본: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
+소스 코드: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
 
 SD 카드의 속도를 시험합니다.
 
@@ -555,7 +555,7 @@ SD 카드의 속도를 시험합니다.
 
 ## top
 
-원본: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
+소스 코드: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
 
 실행 프로세스, CPU 활용, 스택 활용, 우선순위, 상태를 출력합니다.
 
@@ -567,7 +567,7 @@ SD 카드의 속도를 시험합니다.
 
 ## usb_connected
 
-원본: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
+소스 코드: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
 
 USB 연결 여부를 검사하는 유틸리티입니다. 시작 스크립트에서 활용했습니다. 반환 값 0은 USB 연결함, 1은 이외의 모든 경우에 해당합니다.
 
@@ -578,7 +578,7 @@ USB 연결 여부를 검사하는 유틸리티입니다. 시작 스크립트에�
 
 ## ver
 
-원본: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
+소스 코드: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
 
 다양한 버전 정보를 출력하는 도구입니다
 
