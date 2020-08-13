@@ -73,7 +73,7 @@ To setup the (Linux) development computer:
 
 ### Ground Station Setup
 
-1. Run *QGroundControl* or use the following command to decode video: 
+1. 동영상을 디코딩하려면 *QGroundStation*을 실행하거나 다음 명령을 실행하십시오: 
         gst-launch-1.0 udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
                  ! rtph264depay ! avdec_h264 ! clockoverlay valignment=bottom ! autovideosink fps-update-interval=1000 sync=false
 
