@@ -33,28 +33,28 @@ Flight controllers that adhere to the Pixhawk Connector standard use the [Pixhaw
 
 The port/FTDI mapping is shown below.
 
-| 픽스호크 디버깅 포트 | -                        | FTDI | -                                 |
-| ----------- | ------------------------ | ---- | --------------------------------- |
-| 1 (적)       | TARGET PROCESSOR VOLTAGE |      | N/C (used for SWD/JTAG debugging) |
-| 2 (blk)     | CONSOLE TX (OUT)         | 5    | FTDI RX (yellow)                  |
-| 3 (blk)     | CONSOLE RX (IN)          | 4    | FTDI TX (orange)                  |
-| 4 (blk)     | SWDIO                    |      | N/C (used for SWD/JTAG debugging) |
-| 5 (blk)     | SWCLK                    |      | N/C (used for SWD/JTAG debugging) |
-| 6 (blk)     | GND                      | 1    | FTDI GND (black)                  |
+| 픽스호크 디버깅 포트 | -                        | FTDI | -                        |
+| ----------- | ------------------------ | ---- | ------------------------ |
+| 1 (적)       | TARGET PROCESSOR VOLTAGE |      | 연결 안함 (SWD/JTAG 디버깅에 활용) |
+| 2 (흑)       | CONSOLE TX (출력)          | 5    | FTDI RX (황)              |
+| 3 (흑)       | CONSOLE RX (입력)          | 4    | FTDI TX (주황)             |
+| 4 (흑)       | SWDIO                    |      | 연결 안함 (SWD/JTAG 디버깅에 활용) |
+| 5 (흑)       | SWCLK                    |      | 연결 안함 (SWD/JTAG 디버깅에 활용) |
+| 6 (흑)       | GND                      | 1    | FTDI GND (흑)             |
 
-## Opening the Console
+## 콘솔 열기
 
 After the console connection is wired up, use the default serial port tool of your choice or the defaults described below:
 
 ### Linux / Mac OS: Screen
 
-Install screen on Ubuntu (Mac OS already has it installed):
+우분투에 screen을 설치하십시오(Mac OS에는 이미 설치해둔 상태임):
 
 ```bash
 sudo apt-get install screen
 ```
 
-- Serial: Pixhawk v1 / Pixracer use 57600 baud
+- 직렬 포트: 픽스호크 v1 / 픽스레이서 전송율: 57600 bps
 - Serial: Snapdragon Flight uses 115200 baud
 
 Connect screen at BAUDRATE baud, 8 data bits, 1 stop bit to the right serial port (use `ls /dev/tty*` and watch what changes when unplugging / replugging the USB device). Common names are `/dev/ttyUSB0` and `/dev/ttyACM0` for Linux and `/dev/tty.usbserial-ABCBD` for Mac OS.
@@ -63,12 +63,12 @@ Connect screen at BAUDRATE baud, 8 data bits, 1 stop bit to the right serial por
 screen /dev/ttyXXX BAUDRATE 8N1
 ```
 
-### Windows: PuTTY
+### 윈도우: PuTTY
 
-Download [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) and start it.
+[PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)를 다운로드하고 시작하십시오.
 
-Then select 'serial connection' and set the port parameters to:
+이후 '직렬 연결'을 선택하고 포트 매개변수를 다음과 같이 설정하십시오:
 
-- 57600 baud
-- 8 data bits
-- 1 stop bit
+- 초당 전송 비트: 57600
+- 데이터 비트: 8
+- 정지 비트: 1
