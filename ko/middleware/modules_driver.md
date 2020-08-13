@@ -2,21 +2,21 @@
 
 하위 분류:
 
-- [Imu](modules_driver_imu.md)
-- [Distance Sensor](modules_driver_distance_sensor.md)
-- [Airspeed Sensor](modules_driver_airspeed_sensor.md)
-- [Baro](modules_driver_baro.md)
-- [Magnetometer](modules_driver_magnetometer.md)
+- [관성 센서](modules_driver_imu.md)
+- [거리 센서](modules_driver_distance_sensor.md)
+- [대기속도 센서](modules_driver_airspeed_sensor.md)
+- [기압](modules_driver_baro.md)
+- [자력계](modules_driver_magnetometer.md)
 
 ## adc
 
-Source: [drivers/adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc)
+소스 코드: [drivers/adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc)
 
-### Description
+### 설명
 
-ADC driver.
+ADC 드라이버입니다.
 
-### Usage {#adc_usage}
+### 사용법 {#adc_usage}
 
     adc <command> [arguments...]
      Commands:
@@ -357,7 +357,7 @@ For example, one instance can run on Bus 2, address 0x41, and one can run on Bus
 
 If the INA226 module is not powered, then by default, initialization of the driver will fail. To change this, use the -f flag. If this flag is set, then if initialization fails, the driver will keep trying to initialize again every 0.5 seconds. With this flag set, you can plug in a battery after the driver starts, and it will work. Without this flag set, the battery must be plugged in before starting the driver.
 
-### Usage {#ina226_usage}
+### 사용법 {#ina226_usage}
 
     ina226 <command> [arguments...]
      Commands:
@@ -380,9 +380,9 @@ If the INA226 module is not powered, then by default, initialization of the driv
 
 ## irlock
 
-Source: [drivers/irlock](https://github.com/PX4/Firmware/tree/master/src/drivers/irlock)
+소스 코드: [drivers/irlock](https://github.com/PX4/Firmware/tree/master/src/drivers/irlock)
 
-### Usage {#irlock_usage}
+### 사용법 {#irlock_usage}
 
     irlock <command> [arguments...]
      Commands:
@@ -402,9 +402,9 @@ Source: [drivers/irlock](https://github.com/PX4/Firmware/tree/master/src/drivers
 
 ## lsm303agr
 
-Source: [drivers/magnetometer/lsm303agr](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/lsm303agr)
+소스 코드: [drivers/magnetometer/lsm303agr](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/lsm303agr)
 
-### Usage {#lsm303agr_usage}
+### 사용법 {#lsm303agr_usage}
 
     lsm303agr <command> [arguments...]
      Commands:
@@ -427,9 +427,9 @@ Source: [drivers/magnetometer/lsm303agr](https://github.com/PX4/Firmware/tree/ma
 
 ## paw3902
 
-Source: [drivers/optical_flow/paw3902](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/paw3902)
+소스 코드: [drivers/optical_flow/paw3902](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/paw3902)
 
-### Usage {#paw3902_usage}
+### 사용법 {#paw3902_usage}
 
     paw3902 <command> [arguments...]
      Commands:
@@ -452,9 +452,9 @@ Source: [drivers/optical_flow/paw3902](https://github.com/PX4/Firmware/tree/mast
 
 ## pca9685
 
-Source: [drivers/pca9685](https://github.com/PX4/Firmware/tree/master/src/drivers/pca9685)
+소스 코드: [drivers/pca9685](https://github.com/PX4/Firmware/tree/master/src/drivers/pca9685)
 
-### Usage {#pca9685_usage}
+### 사용법 {#pca9685_usage}
 
     pca9685 <command> [arguments...]
      Commands:
@@ -476,19 +476,19 @@ Source: [drivers/pca9685](https://github.com/PX4/Firmware/tree/master/src/driver
 
 ## pca9685_pwm_out
 
-Source: [drivers/pca9685_pwm_out](https://github.com/PX4/Firmware/tree/master/src/drivers/pca9685_pwm_out)
+소스 코드: [drivers/pca9685_pwm_out](https://github.com/PX4/Firmware/tree/master/src/drivers/pca9685_pwm_out)
 
-### Description
+### 설명
 
 This module is responsible for generate pwm pulse with PCA9685 chip.
 
 It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
 
-### Implementation
+### 구현
 
 This module depends on ModuleBase and OutputModuleInterface. IIC communication is based on CDev::I2C
 
-### Examples
+### 예제
 
 It is typically started with:
 
@@ -497,7 +497,7 @@ It is typically started with:
 
 Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 ROMFS/px4fmu_common/mixers/quad_x.main.mix`
 
-### Usage {#pca9685_pwm_out_usage}
+### 사용법 {#pca9685_pwm_out_usage}
 
     pca9685_pwm_out <command> [arguments...]
      Commands:
@@ -514,9 +514,9 @@ Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 ROMFS/px4f
 
 ## pcf8583
 
-Source: [drivers/rpm/pcf8583](https://github.com/PX4/Firmware/tree/master/src/drivers/rpm/pcf8583)
+소스 코드: [drivers/rpm/pcf8583](https://github.com/PX4/Firmware/tree/master/src/drivers/rpm/pcf8583)
 
-### Usage {#pcf8583_usage}
+### 사용법 {#pcf8583_usage}
 
     pcf8583 <command> [arguments...]
      Commands:
@@ -534,9 +534,9 @@ Source: [drivers/rpm/pcf8583](https://github.com/PX4/Firmware/tree/master/src/dr
 
 ## pmw3901
 
-Source: [drivers/optical_flow/pmw3901](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/pmw3901)
+소스 코드: [drivers/optical_flow/pmw3901](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/pmw3901)
 
-### Usage {#pmw3901_usage}
+### 사용법 {#pmw3901_usage}
 
     pmw3901 <command> [arguments...]
      Commands:
@@ -561,7 +561,7 @@ Source: [drivers/optical_flow/pmw3901](https://github.com/PX4/Firmware/tree/mast
 
 소스 코드: [drivers/pwm_out](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_out)
 
-### Description
+### 설명
 
 This module is responsible for driving the output and reading the input pins. For boards without a separate IO chip (eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
 
@@ -569,11 +569,11 @@ It listens on the actuator_controls topics, does the mixing and writes the PWM o
 
 The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy. By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder driver. Alternatively, pwm_out can be started in one of the capture modes, and then drivers can register a capture callback with ioctl calls.
 
-### Implementation
+### 구현
 
 By default the module runs on a work queue with a callback on the uORB actuator_controls topic.
 
-### Examples
+### 예제
 
 It is typically started with:
 
