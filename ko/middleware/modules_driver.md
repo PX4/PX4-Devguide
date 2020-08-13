@@ -299,18 +299,18 @@ DShot 출력 드라이버입니다. FMU 드라이버와 유사하나, PWM 대신
 
 ### 예제
 
-For testing it can be useful to fake a GPS signal (it will signal the system that it has a valid position):
+시험을 진행할 때 GPS 신호를 속이는 목적으로 쓸만합니다(유효한 위치 정보를 가지고 있다고 시스템에 시그널을 보냄):
 
     gps stop
     gps start -f
     
 
-Starting 2 GPS devices (the main GPS on /dev/ttyS3 and the secondary on /dev/ttyS4):
+GPS 장치 2개를 시작하려면(주 GPS 장치는 /dev/ttyS3에, 보조 GPS 장치는 /dev/ttyS4):
 
     gps start -d /dev/ttyS3 -e /dev/ttyS4
     
 
-Initiate warm restart of GPS device
+전원 인가 상태에서 GPS 장치를 다시 시작하려면
 
     gps reset warm
     
@@ -349,13 +349,13 @@ Initiate warm restart of GPS device
 
 ### 설명
 
-Driver for the INA226 power monitor.
+INA226 전력 감시 칩 드라이버입니다.
 
-Multiple instances of this driver can run simultaneously, if each instance has a separate bus OR I2C address.
+각 인스턴스에 개별 버스 또는 I2C 주소를 부여받았다면 이 드라이버의 다중 인스턴스를 동시에 실행할 수 있습니다.
 
-For example, one instance can run on Bus 2, address 0x41, and one can run on Bus 2, address 0x43.
+예를 들어, 어떤 인스턴스는 2번 버스, 주소 0x41에서 동작할 수 있고, 다른 인스턴스는 2번 버스, 주소 0x43에서 동작할 수 있습니다.
 
-If the INA226 module is not powered, then by default, initialization of the driver will fail. To change this, use the -f flag. If this flag is set, then if initialization fails, the driver will keep trying to initialize again every 0.5 seconds. With this flag set, you can plug in a battery after the driver starts, and it will work. Without this flag set, the battery must be plugged in before starting the driver.
+INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 초기화에 실패합니다. 이 문제를 수정하려면 -f 플래그를 사용하십시오. 이 플래그를 설정하고 나서도 초기화에 실패하면, 드라이버는 0.5초당 한번씩 초기화를 다시 시도합니다. 이 플래그를 설정하고 나면, 드라이버를 시작하고 난 후 배터리를 연결할 수 있고, 그 후에 이 드라이버가 동작합니다. Without this flag set, the battery must be plugged in before starting the driver.
 
 ### 사용법 {#ina226_usage}
 
