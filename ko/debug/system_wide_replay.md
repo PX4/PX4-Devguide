@@ -100,16 +100,16 @@ ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을
 
 과정이 끝난 후 재현 모드를 끝내려면 `unset replay; unset replay_mode` 명령을 내리십시오.
 
-## Behind the Scenes
+## 재현 과정의 이면
 
-Replay is split into 3 components:
+재현 요소는 3부분으로 나뉩니다:
 
-- a replay module
-- ORB publisher rules
-- time handling
+- 재현 모듈
+- ORB 전송 규칙
+- 시간 처리부
 
-The replay module reads the log and publishes the messages with the same speed as they were recorded. A constant offset is added to the timestamp of each message to match the current system time (this is the reason why all other timestamps need to be relative). The command `replay tryapplyparams` is executed before all other modules are loaded and applies the parameters from the log and user-set parameters. Then as the last command, `replay trystart` will again apply the parameters and start the actual replay. Both commands do nothing if the environment variable `replay` is not set.
+replay 모듈은 로그를 읽어 기록한 속도와 동일하게 메시지를 내보냅니다. 오프셋 정수를 각 메시지의 타임스탬프에 추가하여 현재 시스템 시간에 맞춥니다(다른 타임스탬프가 왜 상대적이어야 하는지에 대한 이유입니다). `replay tryapplyparams` 명령은 다른 모듈을 불러와서 로그에서 불러온 매개변수와 사용자 설정 매개변수를 반영하기 전에 실행합니다. 그 다음 `replay trystart` 명령을 마지막 명령으로 처리하며 매개변수를 다시 반영하고 실제 재현을 시작합니다. 환경 변수에 `replay`를 설정하지 않으면 두 명령은 아무 동작도 취하지 않습니다.
 
-The ORB publisher rules allow to select which part of the system is replayed, as described above. They are only compiled for the posix SITL targets.
+ORB 전송 규칙에서는 시스템의 어떤 부분의 동작을 재현할 지 위에서 설명한대로 허용합니다. They are only compiled for the posix SITL targets.
 
 The **time handling** is still an **open point**, and needs to be implemented.
