@@ -49,7 +49,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
     1. Open **Setup > Safety** section.
     2. Enable HITL mode by selecting **Enabled** from the *HITL Enabled* list:
         
-        ![QGroundControl HITL configuration](../../assets/gcs/qgc_hitl_config.png)
+        ![QGroundControl HITL 설정](../../assets/gcs/qgc_hitl_config.png)
 
 3. Select Airframe
     
@@ -123,8 +123,8 @@ Follow the appropriate setup steps for the specific simulator in the following s
         ./Tools/jmavsim_run.sh -q -s -d /dev/ttyACM0 -b 921600 -r 250 > 
     
     **Note** Replace the serial port name `/dev/ttyACM0` as appropriate. On macOS this port would be `/dev/tty.usbmodem1`. On Windows (including Cygwin) it would be the COM1 or another port - check the connection in the Windows Device Manager.
-3. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
+3. *QGroundControl *을 시작하십시오. It should autoconnect to PX4 and jMAVSim.
 
 ## Fly an Autonomous Mission in HITL
 
-You should be able to use *QGroundControl* to [run missions](../qgc/README.md#planning-missions) and otherwise control the vehicle.
+[임무를 수행](../qgc/README.md#planning-missions) 하거나 기체를 조종하려면 *QGroundControl*을 활용할 수 있어야 합니다.
