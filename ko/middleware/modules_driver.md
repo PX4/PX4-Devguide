@@ -1,6 +1,6 @@
-# Modules Reference: Driver
+# 모듈 참고: 드라이버
 
-Subcategories:
+하위 분류:
 
 - [Imu](modules_driver_imu.md)
 - [Distance Sensor](modules_driver_distance_sensor.md)
@@ -31,15 +31,15 @@ ADC driver.
 
 ## atxxxx
 
-Source: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
+소스 코드: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
 
-### Description
+### 설명
 
-OSD driver for the ATXXXX chip that is mounted on the OmnibusF4SD board for example.
+OmnibusF4SD 보드에 붙은것과 같은 ATXXXX 칩용 OSD 드라이버입니다.
 
 It can be enabled with the OSD_ATXXXX_CFG parameter.
 
-### Usage {#atxxxx_usage}
+### 사용법 {#atxxxx_usage}
 
     atxxxx <command> [arguments...]
      Commands:
@@ -66,14 +66,14 @@ Source: [drivers/batt_smbus](https://github.com/PX4/Firmware/tree/master/src/dri
 
 Smart battery driver for the BQ40Z50 fuel gauge IC.
 
-### Examples
+### 예제
 
-To write to flash to set parameters. address, number_of_bytes, byte0, ... , byteN
+다음 설정 매개변수를 플래시에 기록합니다: address, number_of_bytes, byte0, ... , byteN
 
     batt_smbus -X write_flash 19069 2 27 0
     
 
-### Usage {#batt_smbus_usage}
+### 사용법 {#batt_smbus_usage}
 
     batt_smbus <command> [arguments...]
      Commands:
@@ -110,9 +110,9 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
 
 ## blinkm
 
-Source: [drivers/lights/blinkm](https://github.com/PX4/Firmware/tree/master/src/drivers/lights/blinkm)
+소스 코드: [drivers/lights/blinkm](https://github.com/PX4/Firmware/tree/master/src/drivers/lights/blinkm)
 
-### Usage {#blinkm_usage}
+### 사용법 {#blinkm_usage}
 
     blinkm <command> [arguments...]
      Commands:
@@ -142,7 +142,7 @@ Source: [drivers/lights/blinkm](https://github.com/PX4/Firmware/tree/master/src/
 
 ## bst
 
-Source: [drivers/telemetry/bst](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/bst)
+소스 코드: [drivers/telemetry/bst](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/bst)
 
 ### Usage {#bst_usage}
 
@@ -164,9 +164,9 @@ Source: [drivers/telemetry/bst](https://github.com/PX4/Firmware/tree/master/src/
 
 ## dshot
 
-Source: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
+소스 코드: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
 
-### Description
+### 설명
 
 This is the DShot output driver. It is similar to the fmu driver, and can be used as drop-in replacement to use DShot as ESC communication protocol instead of PWM.
 
@@ -176,7 +176,7 @@ It supports:
 - telemetry via separate UART and publishing as esc_status message
 - sending DShot commands via CLI
 
-### Examples
+### 예제
 
 Permanently reverse motor 1:
 
@@ -186,7 +186,7 @@ Permanently reverse motor 1:
 
 After saving, the reversed direction will be regarded as the normal one. So to reverse again repeat the same commands.
 
-### Usage {#dshot_usage}
+### 사용법 {#dshot_usage}
 
     dshot <command> [arguments...]
      Commands:
@@ -266,13 +266,13 @@ After saving, the reversed direction will be regarded as the normal one. So to r
 
 ## fake_magnetometer
 
-Source: [examples/fake_magnetometer](https://github.com/PX4/Firmware/tree/master/src/examples/fake_magnetometer)
+소스 코드: [examples/fake_magnetometer](https://github.com/PX4/Firmware/tree/master/src/examples/fake_magnetometer)
 
-### Description
+### 설명
 
 Publish the earth magnetic field as a fake magnetometer (sensor_mag). Requires vehicle_attitude and vehicle_gps_position.
 
-### Usage {#fake_magnetometer_usage}
+### 사용법 {#fake_magnetometer_usage}
 
     fake_magnetometer <command> [arguments...]
      Commands:
@@ -285,9 +285,9 @@ Publish the earth magnetic field as a fake magnetometer (sensor_mag). Requires v
 
 ## gps
 
-Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
+소스 코드: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
 
-### Description
+### 설명
 
 GPS driver module that handles the communication with the device and publishes the position via uORB. It supports multiple protocols (device vendors) and by default automatically selects the correct one.
 
