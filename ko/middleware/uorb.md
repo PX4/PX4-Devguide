@@ -82,7 +82,7 @@ range_m_s2: 78
 scaling: 0
 ```
 
-> **Tip** NuttX기반의 시스템(Pixhawk, Pixracer 등)는 `listener`를 *QGroundControl* MAVLink Console 에서 센서나 다른 토픽들을 검사하기 위해 호출할 수 있습니다. 이 방법은 QGC가 무선으로 연결되어 있을 때 (예. 비행 중 일때)에도 사용할 수 있기 때문에 강력한 디버깅 툴입니다. 더 많은 정보는 [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md)를 참고하세요.
+> **Tip** NuttX기반의 시스템(Pixhawk, Pixracer 등)에서는 *QGroundControl* MAVLink 콘솔에서 센서 값과 다른 토픽들을 검사하려 `listener` 명령을 호출할 수 있습니다. 이 방법은 QGC가 무선으로 연결되어 있을 때 (예. 비행 중 일때)에도 사용할 수 있기 때문에 강력한 디버깅 툴입니다. 더 많은 정보는 [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md)를 참고하세요.
 
 ### uorb top Command
 
