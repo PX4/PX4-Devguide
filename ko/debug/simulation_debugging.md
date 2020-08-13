@@ -68,9 +68,9 @@ libsystem_kernel.dylib`__read_nocancel:
     (gdb) handle SIGCONT noprint nostop
     
 
-After that the The lldb or gdb shells behave like normal sessions, please refer to the LLDB / GDB documentation.
+이 설정이 끝나고 나면 lldb 또는 gdb 셸에서 일반 세션처럼 동작합니다. LLDB / GDB 문서를 참고하십시오.
 
-The last parameter, the &lt;viewer\_model\_debugger&gt; triplet, is actually passed to make in the build directory, so
+마지막 매개변수는 변수가 셋인 &lt;viewer\_model\_debugger&gt; 입니다. 실제로 이 매개변수 값을 빌드 디렉터리 형태로 전달합니다. 따라서,
 
 ```sh
 make px4_sitl_default jmavsim___gdb
@@ -83,19 +83,19 @@ make px4_sitl_default   # Configure with cmake
 make -C build/px4_sitl_default jmavsim___gdb
 ```
 
-A full list of the available make targets in the build directory can be obtained with:
+빌드 디렉터리의 빌드 대상 전체 목록을 활용하려면 다음 명령을 활용하십시오:
 
 ```sh
 make help
 ```
 
-but for your convenience, a list with just the &lt;viewer\_model\_debugger&gt; triplets is printed with the command
+편의상, 변수셋을 지닌 &lt;viewer\_model\_debugger&gt; 형식의 값은 다음 명령으로 출력합니다
 
 ```sh
 make list_vmd_make_targets
 ```
 
-## Compiler optimization
+## 컴파일러 최적화
 
 It is possible to suppress compiler optimization for given executables and/or modules (as added by cmake with `add_executable` or `add_library`) when configuring for `posix_sitl_*`. This can be handy when it is necessary to step through code with a debugger or print variables that would otherwise be optimized out.
 
