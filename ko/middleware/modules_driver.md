@@ -759,18 +759,18 @@ SITL과 HITL을 활용합니다.
 - `actuator_controls_0` uORB 토픽을 기반으로 모터를 제어합니다.
 - 바퀴 인코더를 읽고 `wheel_encoders` uORB 토픽에 생짜 데이터를 내보냅니다
 
-이 드라이버를 사용하려면 Roboclaw를 패킷 직렬 처리 모드로 두어야 하며(연결 문서 참고), 문서에 언급한대로 비행 조종 장치의 UART 포트를 Roboclaw에 연결해야 합니다. For Pixhawk 4, use the `UART & I2C B` port, which corresponds to `/dev/ttyS3`.
+이 드라이버를 사용하려면 Roboclaw를 패킷 직렬 처리 모드로 두어야 하며(연결 문서 참고), 문서에 언급한대로 비행 조종 장치의 UART 포트를 Roboclaw에 연결해야 합니다. 픽스호크 4에서는, `/dev/ttyS3`에 대응하는 `UART & I2C B` 포트를 사용하십시오.
 
 ### 구현
 
-The main loop of this module (Located in `RoboClaw.cpp::task_main()`) performs 2 tasks:
+이 모듈의 메인 루프( `RoboClaw.cpp::task_main()`에 있음)에서는 두가지 작업을 수행합니다:
 
-1. Write `actuator_controls_0` messages to the Roboclaw as they become available
-2. Read encoder data from the Roboclaw at a constant, fixed rate.
+1. Roboclaw가 가동중인 경우 `actuator_controls_0` 메세지를 기록합니다
+2. Roboclaw의 인코더 데이터를 주기적으로 읽습니다.
 
-Because of the latency of UART, this driver does not write every single `actuator_controls_0` message to the Roboclaw immediately. Instead, it is rate limited based on the parameter `RBCLW_WRITE_PER`.
+UART 지연 때문에, 이 드라이버에서는 모든 단일 `actuator_controls_0` 메세지를 Roboclaw에 직접 기록하지 않습니다. 대신, `RBCLW_WRITE_PER` 값에 따라 기록 속도에 제한을 둡니다.
 
-On startup, this driver will attempt to read the status of the Roboclaw to verify that it is connected. If this fails, the driver terminates immediately.
+시작시, 이 드라이버는 Roboclaw의 연결 여부 확인을 위해 상태를 읽으려 합니다. 이 과정이 실패하면, 드라이버는 바로 멈춥니다.
 
 ### 예제
 
