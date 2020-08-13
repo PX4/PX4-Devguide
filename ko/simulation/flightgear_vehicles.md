@@ -75,7 +75,7 @@ This rover is equipped with a towing hitch and might be used for aero-towing of 
 make px4_sitl_nolockstep flightgear_tf-r1
 ```
 
-![TF-R1 rover in FlightGear](../../assets/simulation/flightgear/vehicles/tf-r1_towing.jpg)
+![플라이트 기어의 TF-R1 탐사선](../../assets/simulation/flightgear/vehicles/tf-r1_towing.jpg)
 
 
 ## Quadrotor {#quadrotor}
