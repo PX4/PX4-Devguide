@@ -18,12 +18,12 @@
 
 ## 간단한 프로그램
 
-여기에서는 `Hello Sky!` 만을 출력하는 *간단한 프로그램*을 만들어보겠습니다. 하나의 *C* 파일과 하나의 *cmake* 정의(어플리케이션을 빌드하는 방법을 툴체인에게 지시)로 구성됩니다.
+여기에서는 `Hello Sky!` 만을 출력하는 *간단한 프로그램*을 만들어보겠습니다. 하나의 *C* 파일과 하나의 *cmake* 정의(프로그램 빌드 방법을 툴체인에게 지시)로 구성됩니다.
 
-1. **Firmware/src/examples/px4_simple_app** 디렉터리를 신규 생성.
-2. **px4_simple_app.c** 이름의 C 파일을 신규 생성:
+1. **Firmware/src/examples/px4_simple_app** 디렉터리를 새로 만드십시오.
+2. **px4_simple_app.c** 이름의 C 파일을 새로 만드십시오:
 
-* 기본 헤더를 페이지 최상단에 복사. 이 내용은 모든 기여 파일(contributed files)에 있어야 함. 
+* 기본 헤더를 페이지 최상단에 복사하십시오. 이 BSD 3-Clauses 라이선스 주석은 모든 기여 파일에 있어야 합니다.
     
     ```c /**************************************************************************** *
     
@@ -57,7 +57,7 @@
     * POSSIBILITY OF SUCH DAMAGE.
     * ****************************************************************************/ ```
 
-* 기본 헤더 아래에 다음 코드를 복사. 이 내용은 모든 기여 파일에 있어야 함.
+* 기본 헤더 아래에 다음 코드를 복사하십시오. 소스 코드 설명과 작성자 시그니쳐는 모든 파일에 있어야합니다!
     
     ```c /**
     
@@ -72,11 +72,11 @@
         
         int px4_simple_app_main(int argc, char *argv[]) { PX4_INFO("Hello Sky!"); return OK; } ```
         
-        > **Tip** 메인 함수의 이름은 반드시 `<module_name>_main` 로 작성하며 위와 같이 모듈에서 추출(export)되어야 함.
+        > **Tip** 메인 함수의 이름은 `<module_name>_main`으로 붙어야 하며, 나타난 바와 같이 모듈로 뺄 수 있어야합니다.
         
         <span></span>
         
-        > **Tip** PX4 쉘에서 `PX4_INFO`는 `printf`에 해당한다. (**px4_platform_common/log.h**에서 include됨) 4 단계의 로글 레벨이 존재: `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`. 경고와 에러는 [ULog](../log/ulog_file_format.md)에 추가적으로 포함되고 [Flight Review](https://logs.px4.io/)에서 나타난다.
+        > **Tip** PX4 쉘에서 `PX4_INFO`는 `printf`에 해당합니다(**px4_platform_common/log.h**에서 끌어옴) 4단계의 로그 레벨 `PX4_INFO`, `PX4_WARN`, `PX4_ERR`, `PX4_DEBUG`이 있습니다. 경고와 오류는 [ULog](../log/ulog_file_format.md)에 추가로 들어가고 [Flight Review](https://logs.px4.io/)에서 나타납니다.
 
 1. **CMakeLists.txt**이름의 *cmake* 정의 파일을 만들고 여십시오. 아래 텍스트를 파일에 복사하십시오.
     
@@ -123,7 +123,7 @@
     )
     ```
     
-    `px4_add_module()` 메써드는 모듈 디스크립션에 있는 내용에서 정적 라이브러리를 빌드합니다. `MAIN` 블럭에 모듈의 이름을 기재하며 이는 NuttX에 명령어로 등록되어 PX4 쉘이나 SITL 콘솔에서 호출할 수 있습니다.
+    `px4_add_module()` 메서드는 모듈 설명에 따라 정적 라이브러리를 빌드합니다. `MAIN` 블럭에는 모듈의 이름이 나타납니다 - NuttX에서 명령을 등록하여 PX4 셸 또는 SITL 콘솔에서 호출할 수 있습니다.
     
     > **Tip** `px4_add_module()` 의 형식은 [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake)에 들어 있습니다.
     
@@ -315,7 +315,7 @@ px4_simple_app &
 
 > **Note** *mavlink*앱이 지상 통제국에 `attitude`를 전달하는 결과를 쉽게 볼 수 있어 이를 선정했습니다.
 
-인터페이스는 매우 간단합니다. 내보낼 분류의 `구조체(struct)`를 초기화하고 주제를 알려줍니다:
+인터페이스는 매우 간단합니다. 내보낼 토픽의 `구조체(struct)`를 초기화하고 토픽을 내보냅니다:
 
 ```c
 #include <uORB/topics/vehicle_attitude.h>
@@ -326,7 +326,7 @@ memset(&att, 0, sizeof(att));
 orb_advert_t att_pub_fd = orb_advertise(ORB_ID(vehicle_attitude), &att);
 ```
 
-main 루프에서 정보를 마련하면 바로 내보냅니다:
+main 루프에서 정보를 준비하는 대로 바로 내보냅니다:
 
 ```c
 orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
