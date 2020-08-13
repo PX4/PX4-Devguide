@@ -16,9 +16,9 @@
 
 * **px4_simple_app** 디렉터리의 이름을 변경하시오 (혹은 삭제). 
 
-## 미니멀 어플리케이션
+## 간단한 프로그램
 
-여기에서는 단지 `Hello Sky!`를 출력하는 *미니멀 어플리케이션*을 만듭니다. 하나의 *C* 파일과 하나의 *cmake* 정의(어플리케이션을 빌드하는 방법을 툴체인에게 지시)로 구성됩니다.
+여기에서는 `Hello Sky!` 만을 출력하는 *간단한 프로그램*을 만들어보겠습니다. 하나의 *C* 파일과 하나의 *cmake* 정의(어플리케이션을 빌드하는 방법을 툴체인에게 지시)로 구성됩니다.
 
 1. **Firmware/src/examples/px4_simple_app** 디렉터리를 신규 생성.
 2. **px4_simple_app.c** 이름의 C 파일을 신규 생성:
@@ -131,16 +131,16 @@
     
     > **Note** `px4_add_module`의 옵션을 `DYNAMIC`로 지정한 경우, 정적 라이브러리 대신 POSIX 플랫폼상의 *공유 라이브러리*를 만듭니다. (PX4를 다시 컴파일하지 않아도 불러올 수 있으며, 다른 사람에게 소스 코드 대신 바이너리로 공유할 수 있습니다). 이 경우 앱은 내장 명령어로 나오지 않지만, `examples__px4_simple_app.px4mod`와 같은 별도의 파일이 나옵니다. 런타임에서 `dyn` 명령어를 이용하여 이 파일을 로드한 후 실행할 수 있음: `dyn ./examples__px4_simple_app.px4mod`
 
-## 어플리케이션/펌웨어 빌드
+## 프로그램/펌웨어 빌드
 
-이제 어플리케이션은 완결되었습니다. 이를 실행하려면 우선 이 어플리케이션을 PX4와 함께 빌드해야합니다. 대상 보드에 넣을 적당한 보드레벨 *cmake* 파일에 빌드와 펌웨어로 들어갈 프로그램을 추가했습니다.
+이제 프로그램 작성이 끝났습니다. 이를 실행하려면 우선 이 프로그램을 PX4의 일부로 빌드해야합니다. 대상 보드에 넣을 적당한 보드레벨 *cmake* 파일에 빌드와 펌웨어로 들어갈 프로그램을 추가했습니다:
 
 * PX4 SITL (시뮬레이터): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
 * Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
 * Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
 * 다른 보드용 *cmake* 파일은 [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)에서 확인 가능
 
-어플리케이션을 펌웨어에 넣어 컴파일하려면 *cmake* 파일내에 어플리케이션과 관련된 새 라인을 작성하십시오:
+프로그램을 펌웨어에 넣어 컴파일하려면 *cmake* 파일내에 프로그램 포함 내용 한 줄을 새로 작성하십시오:
 
     examples/px4_simple_app
     
@@ -154,7 +154,7 @@
 * Pixhawk v3: `make px4_fmu-v4_default`
 * 다른 보드: [Building the Code](../setup/building_px4.md#building_nuttx)
 
-## 어플리케이션 테스트 (하드웨어)
+## 프로그램 테스트 (하드웨어)
 
 ### 보드에 펌웨어 업로드
 
@@ -169,7 +169,7 @@
 Loaded firmware for X,X, waiting for the bootloader...
 ```
 
-보드가 리셋되면 업로드를 진행하면서 다음 내용이 나타납니다:
+보드를 재부팅하면 업로드를 진행하면서 다음 내용이 나타납니다:
 
 ```sh
 Erase  : [====================] 100.0%
@@ -182,7 +182,7 @@ Rebooting.
 
 ### 콘솔 연결
 
-이제 시리얼이나 USB를 통해 [system console](../debug/system_console.md)에 연결합니다. **ENTER** 를 누르면 쉘 프롬프트가 나타납니다:
+이제 시리얼이나 USB를 통해 [시스템 콘솔](../debug/system_console.md)에 연결하십시오. **ENTER** 를 누르면 셸 프롬프트가 나타납니다:
 
 ```sh
 nsh>
@@ -221,9 +221,9 @@ Hello Sky!
 
 이제 어플리케이션을 시스템에 올바르게 등록했고 실제로 유용한 일을 수행하도록 기능을 확장할 수 있습니다.
 
-## 어플리케이션 테스트 (SITL)
+## 프로그램 테스트 (SITL)
 
-SITL을 사용하는 경우, *PX4 콘솔*은 자동적으로 실행됩니다 (참고 [Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build)). *nsh 콘솔*처럼(이전 섹션 참고) `help`를 입력하여 내장된 어플리케이션의 목록을 볼 수 있습니다.
+SITL을 사용하는 경우, *PX4 콘솔*을 자동으로 실행합니다 ([Building the Code > First Build (Using the jMAVSim Simulator)](../setup/building_px4.md#jmavsim_build) 참고). *nsh 콘솔*처럼(이전 섹션 참고) `help`를 입력하여 내장된 어플리케이션의 목록을 볼 수 있습니다.
 
 `px4_simple_app` 입력하여 미니멀 어플리케이션을 실행.
 
