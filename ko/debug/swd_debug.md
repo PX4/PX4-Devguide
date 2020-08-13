@@ -1,21 +1,21 @@
-# SWD (JTAG) Hardware Debugging Interface
+# SWD (JTAG) 하드웨어 디버깅 인터페이스
 
-PX4 usually runs on autopilot controller hardware that provides an ARM *Serial Wire Debug (SWD)* interface. SWD is a low pin-count physical interface for JTAG debugging on ARM-processors. It can be used with an SWD-compatible debug probe (e.g. [Segger J-Link EDU Mini](#segger_jlink_edu_mini), [Dronecode Probe](#dronecode_probe), etc.) to set breakpoints in PX4 and step through the code running on a real device.
+PX4는 보통 ARM 칩의 *직렬 회선 디버깅(SWD)*을 지원하는 오토파일럿 조종 장치 하드웨어에서 실행합니다. SWD는 ARM 프로세서에서 JTAG 디버깅을 수행할 때 적은 수의 핀을 물리 인터페이스로 연결하는 방식입니다. SWD 호환 디버깅 프로브로 PX4의 중단점을 설정하고 실제 장치에서 코드 실행을 단계별로 진행할 때 활용할 수 있습니다.
 
-The SWD interface can also be used to add a new bootloader and/or firmware on a completely empty board (one that does not have the USB bootloader installed).
+SWD 인터페이스는 새 부트로더 또는 펌웨어를 완전히 깡통인 (USB 부트로더를 설치한 적이 없는) 보드에 추가할 때 사용할 수 있습니다.
 
-This topic explains how to connect the SWD interface on different boards (actually performing debugging is then covered in the associated [debugging topics](#debugging_topics)).
+이 주제에서는 다양한 보드로의 SWD 인터페이스 연결 방법(실제 디버깅 수행 방법은 관련 [디버깅 주제](#debugging_topics)에서 다룸)을 설명합니다.
 
-## SWD Interface Definition {#swd_interface}
+## SWD 인터페이스 정의  {#swd_interface}
 
-The SWD interface consists of the following pins.
+SWD 인터페이스는 다음 핀으로 이루어져있습니다.
 
-| Pin     | Signal Type | Description                                                                                                                                                                                       |
-| ------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Vref`  | Output      | Target reference voltage.<br>Some JTAG adapters require the `Vref` voltage to set the voltage on the SWD lines. For example, [SEGGER J-Link Debug Probes](#segger_jlink_edu_mini) require `Vref`. |
-| `SWDIO` | I/O         | Single bi-directional data pin.                                                                                                                                                                   |
-| `SWCLK` | Output      | Clock signal.                                                                                                                                                                                     |
-| `GND`   | -           | Ground pin.                                                                                                                                                                                       |
+| 핀       | 신호 형식 | 설명                                                                                                                                             |
+| ------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Vref`  | 출력    | 대상 참조 전압. <br>일부 JTAG 어댑터에는 SWD 라인에 전압을 설정할 때 `Vref` 전압이 필요합니다. 예를 들면,  [SEGGER J-Link Debug Probes](#segger_jlink_edu_mini) 에서 `Vref`가 필요합니다. |
+| `SWDIO` | 입출력   | 단일 전이중 데이터 핀.                                                                                                                                  |
+| `SWCLK` | 출력    | 클록 신호.                                                                                                                                         |
+| `GND`   | -     | 접지핀.                                                                                                                                           |
 
 
 While not "part" of SWD, an autopilot may also have an *Serial Wire Output (SWO)* trace output pin. If present this should also be connected.
