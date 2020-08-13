@@ -1,19 +1,19 @@
 # listener 명령을 활용한 센서/토픽 디버깅
 
-uORB는 스레드/프로세스간 통신용 비동기 `publish()` / `subscribe()` 메세지 처리 API입니다. The `listener` command can be used from the *QGroundControl MAVLink Console* to inspect topic (message) values, including the current values published by sensors.
+uORB는 스레드/프로세스간 통신용 비동기 `publish()` / `subscribe()` 메세지 처리 API입니다. *QGroundControl MAVLink 콘솔*에서 토픽(메세지)에 들어간 센서값을 검사할 때 `listener` 명령을 활용할 수 있습니다.
 
-> **Tip** This is a powerful debugging tool because it can be used even when QGC is connected over a wireless link (e.g. when the vehicle is flying).
-
-<span></span>
-
-> **Note** The `listener` command is also available through the [System Console](../debug/system_console.md) and the [MAVLink Shell](../debug/mavlink_shell.md).
+> **Tip** QGC를 무선 링크(예: 기체 비행 중)로 연결할 때도 활용할 수 있기 때문에 굉장히 강력한 디버깅 도구입니다.
 
 <span></span>
 
-> **Note** The `listener` command is only available on NuttX-based systems (Pixhawk, Pixracer, etc.) and Linux / OS X.
+> **Note** `listener` 명령은 [시스템 콘솔](../debug/system_console.md)과 [MAVLink 셸](../debug/mavlink_shell.md)에서도 활용할 수 있습니다.
 
-The image below demonstrates *QGroundControl* being used to get the value of the acceleration sensor.
+<span></span>
 
-![QGC MAVLink Console](../../assets/gcs/qgc_mavlink_console_listener_command.png)
+> **Note** `listener` 명령은 NuttX 기반 시스템(픽스호크, 픽스레이서 등)과 Linux / OS X 에서만 활용할 수 있습니다.
 
-For more information about how to determine what topics are available and how to call `listener` see: [uORB Messaging > Listing Topics and Listening in](../middleware/uorb.md#listing-topics-and-listening-in).
+아래 그림에서는 가속 센서 값을 가져오는 *QGroundControl*의 모습을 보여드립니다.
+
+![QGC MAVLink 콘솔](../../assets/gcs/qgc_mavlink_console_listener_command.png)
+
+어떤 토픽을 쓸 수 있는지 결정하는 방법과 `listener` 호출 방법을 더 알아보시려면 [uORB Messaging > Listing Topics and Listening in](../middleware/uorb.md#listing-topics-and-listening-in)을 살펴보십시오.
