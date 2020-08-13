@@ -355,7 +355,7 @@ INA226 전력 감시 칩 드라이버입니다.
 
 예를 들어, 어떤 인스턴스는 2번 버스, 주소 0x41에서 동작할 수 있고, 다른 인스턴스는 2번 버스, 주소 0x43에서 동작할 수 있습니다.
 
-INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 초기화에 실패합니다. 이 문제를 수정하려면 -f 플래그를 사용하십시오. 이 플래그를 설정하고 나서도 초기화에 실패하면, 드라이버는 0.5초당 한번씩 초기화를 다시 시도합니다. 이 플래그를 설정하고 나면, 드라이버를 시작하고 난 후 배터리를 연결할 수 있고, 그 후에 이 드라이버가 동작합니다. Without this flag set, the battery must be plugged in before starting the driver.
+INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 초기화에 실패합니다. 이 문제를 수정하려면 -f 플래그를 사용하십시오. 이 플래그를 설정하고 나서도 초기화에 실패하면, 드라이버는 0.5초당 한번씩 초기화를 다시 시도합니다. 이 플래그를 설정하고 나면, 드라이버를 시작하고 난 후에도 배터리를 연결할 수 있고, 그 후에 이 드라이버가 동작합니다. 이 플래그를 설정하지 않으면, 드라이버를 시작하기 전에 배터리를 연결해두어야합니다.
 
 ### 사용법 {#ina226_usage}
 
@@ -480,22 +480,22 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
 
 ### 설명
 
-This module is responsible for generate pwm pulse with PCA9685 chip.
+이 모듈은 PCA9685 칩으로 PWM 펄스를 생성합니다.
 
-It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
+actuator_controls 토픽을 수신하고, PWM 출력을 혼합하여 기록합니다.
 
 ### 구현
 
-This module depends on ModuleBase and OutputModuleInterface. IIC communication is based on CDev::I2C
+ModuleBase과 OutputModuleInterface를 기반으로 구현했습니다. IIC 통신은 CDev::I2C에 기반합니다
 
 ### 예제
 
-It is typically started with:
+보통 다음 명령으로 시작합니다:
 
     pca9685_pwm_out start -a 64 -b 1
     
 
-Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 ROMFS/px4fmu_common/mixers/quad_x.main.mix`
+믹서 파일을 불러오려면 `mixer` 명령을 활용하십시오. `mixer load /dev/pca9685 ROMFS/px4fmu_common/mixers/quad_x.main.mix`
 
 ### 사용법 {#pca9685_pwm_out_usage}
 
@@ -563,11 +563,11 @@ Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 ROMFS/px4f
 
 ### 설명
 
-This module is responsible for driving the output and reading the input pins. For boards without a separate IO chip (eg. Pixracer), it uses the main channels. On boards with an IO chip (eg. Pixhawk), it uses the AUX channels, and the px4io driver is used for main ones.
+이 모듈은 출력을 제어하고 입력 핀의 신호를 읽습니다. 개별 입출력 칩이 없는 보드에서는(예: 픽스레이서), 메인 채널을 활용합니다. 보드에 입출력 칩이 있다면(예: 픽스호크), AUX 채널을 활용하며, px4io 드라이버를 주요 입출력 드라이버로 활용합니다.
 
-It listens on the actuator_controls topics, does the mixing and writes the PWM outputs.
+actuator_controls 토픽을 수신하고, PWM 출력을 혼합하여 기록합니다.
 
-The module is configured via mode_* commands. This defines which of the first N pins the driver should occupy. By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder driver. Alternatively, pwm_out can be started in one of the capture modes, and then drivers can register a capture callback with ioctl calls.
+mode_* 명령으로 모듈을 설정합니다. 이 명령으로 어떤 처음 N개의 핀을 드라이버에 할당할지를 정의합니다. By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder driver. Alternatively, pwm_out can be started in one of the capture modes, and then drivers can register a capture callback with ioctl calls.
 
 ### 구현
 
@@ -575,12 +575,12 @@ By default the module runs on a work queue with a callback on the uORB actuator_
 
 ### 예제
 
-It is typically started with:
+보통 다음 명령으로 시작합니다:
 
     pwm_out mode_pwm
     
 
-To drive all available pins.
+이 명령으로 모든 가용핀을 제어합니다.
 
 Capture input (rising and falling edges) and print on the console: start pwm_out in one of the capture modes:
 
