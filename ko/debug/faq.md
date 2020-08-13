@@ -1,28 +1,28 @@
-# Frequently Asked Questions
+# 자주 묻는 질문
 
-## Build Errors
+## 빌드 오류
 
-### Flash Overflow
+### 플래시 오버플로우
 
-> **Tip** Use the FMUv4 architecture to obtain double the flash. The first available board from this generation is the [Pixracer](https://docs.px4.io/master/en/flight_controller/pixracer.html).
+> **Tip** 플래시 용량을 두배로 활용하려면 FMUv4 아키텍처를 활용하십시오. 이 세대에서 가장 먼저 나온 보드는 [픽스레이서](https://docs.px4.io/master/en/flight_controller/pixracer.html)입니다.
 
-The amount of code that can be loaded onto a board is limited by the amount of flash memory it has. When adding additional modules or code its possible that the addition exceeds the flash memory. This will result in a "flash overflow". The upstream version will always build, but depending on what a developer adds it might overflow locally.
+보드에서 불러올 수 있는 코드는 플래시 메모리 양에 제한적입니다. 추가 모듈 또는 코드를 넣을 떄 플래시 메모리의 용량을 넘길 수 있습니다. 이 결과로 "플래시 오버플로우"가 일어납니다. 업스트림 버전을 늘 빌드하겠지만, 개발자가 무얼 추가하느냐에 따라 로컬에서 오버플로우가 일어날 수 있습니다.
 
 ```sh
 region `flash' overflowed by 12456 bytes
 ```
 
-To remedy it, either use more recent hardware or remove modules from the build which are not essential to your use case. The configuration is stored in **/Firmware/boards/px4** (e.g. [Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)). To remove a module, just comment it out:
+이 문제를 해결하려면, 최신 하드웨어를 활용하거나 빌드에서 활용상 별로 중요하지 않은 모듈을 빼십시오. 설정은 **/Firmware/boards/px4** 경로에 들어있습니다. (예: [Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)). 모듈을 제거하려면 다음과 같이 주석처리하시면 됩니다:
 
 ```cmake
 #tune_control
 ```
 
-## USB Errors
+## USB 오류
 
-### The upload never succeeds
+### 업로드를 전혀 끝낼 수 없음
 
-On Ubuntu, uninstall the modem manager:
+우분투의 경우 modemmanager를 제거하십시오:
 
 ```sh
 sudo apt-get remove modemmanager
