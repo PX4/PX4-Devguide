@@ -2,7 +2,7 @@
 
 This topic explains how to simulate multiple vehicles using FlightGear in SITL. All vehicle instances have parameters defined by their startup scripts.
 
-> **Note** This is the most environmentally realistic way to simulate multiple vehicles running PX, and allows easy testing of multiple different types of vehicles. It is suitable for testing multi-vehicle support in *QGroundControl*, [MAVSDK](https://mavsdk.mavlink.io/), etc. [Multi-Vehicle Simulation with Gazebo](../simulation/multi-vehicle-simulation.md) should be used instead for: swarm simulations with many vehicles, and testing features like computer vision that are only supported by Gazebo.
+> **Note** This is the most environmentally realistic way to simulate multiple vehicles running PX, and allows easy testing of multiple different types of vehicles. *QGroundControl*, [MAVSDK](https://mavsdk.mavlink.io/) 등에서 다중 기체 지원 여부를 시험해보기에 적합합니다. [Multi-Vehicle Simulation with Gazebo](../simulation/multi-vehicle-simulation.md)를 대신 활용하는게 좋습니다. 다중 기체의 무리 비행 모의시험, 가제보에서만 지원하는 컴퓨터 비전 기능 시험.
 
 
 ## How to Start Multiple Instances
@@ -30,7 +30,7 @@ Each instance should have its own startup script, which can represent a complete
 
 ![Multi-vehicle simulation using PX4 SITL and FlightGear](../../assets/simulation/flightgear/flightgear-multi-vehicle-sitl.jpg)
 
-Ground stations such as *QGroundControl* connect to all instances using the normal UDP port 14550 (all traffic goes to the same port).
+*QGroundControl*같은 지상 통제국에서는 일반 UDP 포트 14550 번으로 모든 인스턴스에 연결합니다(모든 트래픽은 동일한 포트로 들어갑니다).
 
 The number of simultaneously running instances is limited mainly by computer resources. FlightGear is a single-thread application, but aerodynamics solvers consume a lot of memory. Therefore splitting to multiple computers and using a [multiplayer server](http://wiki.flightgear.org/index.php?title=Howto:Multiplayer) is probably required to run *many* vehicle instances.
 
