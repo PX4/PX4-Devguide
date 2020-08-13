@@ -90,7 +90,7 @@ You will first need to [switch to the LPE estimator](../advanced/switching_state
 
 ### Enabling External Pose Input
 
-The following parameters must be set to use external position information with LPE (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**).
+LPE의 외부 위치 정보를 활용하려면 다음 매개변수를 설정해야합니다(*QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**에서 설정 가능).
 
 | Parameter                                                           | Setting for External Position Estimation                                                                                               |
 | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
