@@ -25,15 +25,15 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 | `SWO` | 출력    | 직렬 회선 출력 방식의 추적 출력 핀. 실시간 추적 데이터를 인가하려면 *SWD*도 연결해야 합니다. |
 
 
-## Connecting SWD Debuggers to PX4 Hardware
+## PX4 하드웨어로의 SWD 디버거 연결
 
-Connect `SWDIO`, `SWCLK` and `GND` pins on the debug probe to the corresponding pins on the autopilot.
+디버깅 프루브의 `SWDIO`, `SWCLK`, `GND` 핀을 오토파일럿의 각 해당 핀으로 연결하십시오.
 
-In addition:
-- Connect the `VRef` pin, if required by the debug adapter that is being used.
-- Connect the `SWO` pin, if present.
+추가로:
+- 디버깅 어댑터에서 `VRef` 핀 연결이 필요하다면 연결하십시오.
+- `SWO` 핀이 있다면 연결하십시오.
 
-Some SWD [debug probes](#debug_probes) come with adapters/cables for connecting to common Pixhawk [debug ports](#debug_ports). You can also create custom cables for connecting to different boards or probes.
+일부 SWD [디버깅 프루브](#debug_probes)는 픽스호크 공용 [디버깅 포트](#debug_ports)에 연결할 어댑터와 케이블이 딸려옵니다. 다른 보드 또는 프루브에 연결할 개별 케이블을 직접 만들 수도 있습니다.
 
 > **Note** Some manufacturers provide cables to make it easy to connect the SWD interface and [System Console](../debug/system_console.md). For example the [CUAV V5nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port) and [CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port) include this debug cable: ![6-pin JST SH Cable](../../assets/debug/cuav_v5_debug_cable.jpg)
 
@@ -42,9 +42,9 @@ Some SWD [debug probes](#debug_probes) come with adapters/cables for connecting 
 > **Tip** Where possible, we highly recommend that you create or obtain an adapter board rather than custom cables for connecting to SWD/JTAG debuggers and computers. This reduces the risk or poor wiring contributing to debugging problems, and has the benefit that adapters usually provide a common interface for connecting to multiple popular flight controller boards.
 
 
-## Autopilot Debug Ports {#debug_ports}
+## 오토파일럿 디버깅 포트 {#debug_ports}
 
-Flight controllers commonly provide a debug port that exposes both the [SWD Interface](#swd_interface) and [System Console](../debug/system_console.md).
+비행 조종 장치는 보통 [SWD 인터페이스](#swd_interface)와 [시스템 콘솔](../debug/system_console.md)을 노출하는 디버깅 포트를 제공합니다.
 
 The [Pixhawk Connector Standards](#pixhawk_standard_debug_ports) attempts to standardise this port. However since many boards use different pinouts or connectors, we recommend you check the documentation for your autopilot to confirm port location and pinout.
 
@@ -69,9 +69,9 @@ The debug port location and pinouts for a small subset of autopilots are linked 
 
 ## Pixhawk 표준 디버깅 포트 {#pixhawk_standard_debug_ports}
 
-The Pixhawk project has defines a standard pinout and connector type for different Pixhawk FMU releases:
+픽스호트 프로젝트에는 다양한 픽스호크 FMU 출시작에 대한 표준 핀 출력 및 커넥터 형식을 지정했습니다:
 
-> **Tip** Check your [specific board](#port_information) to confirm the port used.
+> **Tip** 사용하고자 하는 포트를 확인하려면 [개별 보드](#port_information)를 확인하십시오.
 
 | FMU 버전 | 픽스호크 버전                                                                                     | 디버그 인터페이스                                        |
 | ------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------ |
