@@ -168,23 +168,23 @@ BQ40Z50 잔여량 측정 IC용 지능형 배터리 드라이버.
 
 ### 설명
 
-This is the DShot output driver. It is similar to the fmu driver, and can be used as drop-in replacement to use DShot as ESC communication protocol instead of PWM.
+DShot 출력 드라이버입니다. FMU 드라이버와 유사하나, PWM 대신 ESC 통신 프로토콜처럼 DShot용 대체 용도로 활용할 수 있습니다.
 
-It supports:
+다음 항목, 기능을 지원합니다:
 
 - DShot150, DShot300, DShot600, DShot1200
-- telemetry via separate UART and publishing as esc_status message
-- sending DShot commands via CLI
+- 별도의 UART를 통한 텔레메트리 통신, esc_status 메세지 전송
+- CLI로의 DShot 명령 전송
 
 ### 예제
 
-Permanently reverse motor 1:
+모터 1번의 영구 역방향 설정:
 
     dshot reverse -m 1
     dshot save -m 1
     
 
-After saving, the reversed direction will be regarded as the normal one. So to reverse again repeat the same commands.
+저장 후, 기존 회전 방향과는 반대 방향으로 모터가 동작합니다. 동일한 명령을 반복하면 다시 회전 방향을 반전합니다.
 
 ### 사용법 {#dshot_usage}
 
@@ -270,7 +270,7 @@ After saving, the reversed direction will be regarded as the normal one. So to r
 
 ### 설명
 
-Publish the earth magnetic field as a fake magnetometer (sensor_mag). Requires vehicle_attitude and vehicle_gps_position.
+가상 지자계(sensor_mag)로서 지자계데이터를 내보냅니다. vehicle_attitude와 vehicle_gps_position이 필요합니다.
 
 ### 사용법 {#fake_magnetometer_usage}
 
@@ -289,13 +289,13 @@ Publish the earth magnetic field as a fake magnetometer (sensor_mag). Requires v
 
 ### 설명
 
-GPS driver module that handles the communication with the device and publishes the position via uORB. It supports multiple protocols (device vendors) and by default automatically selects the correct one.
+장치와의 통신을 처리하는 GPS 드라이버 모듈이며, uORB로 위치 정보를 내보냅니다. 여러 (장치 제조사의) 프로토콜을 지원하며, 기본적으로 해당 프로토콜을 자동으로 선택합니다.
 
-The module supports a secondary GPS device, specified via `-e` parameter. The position will be published on the second uORB topic instance, but it's currently not used by the rest of the system (however the data will be logged, so that it can be used for comparisons).
+모듈에서는 `-e` 매개변수로 지정하면 2차 GPS 장치를 지원합니다. 2차 uORB 토픽 인스턴스에서 위치 정보를 내보내나, 현재는 시스템 대부분에서 사용하지 않습니다(다만, 데이터는 기록하기 때문에, 비교 목적으로 활용할 수 있음).
 
 ### 구현
 
-There is a thread for each device polling for data. The GPS protocol classes are implemented with callbacks so that they can be used in other projects as well (eg. QGroundControl uses them too).
+각 장치의 데이터 폴링용 스레드가 있습니다. GPS 프로토콜 클래스는 콜백 함수로 구현하므로 다른 프로젝트에서 마찬가지로 사용할 수 있습니다(예: QGroundControl에서도 사용).
 
 ### 예제
 
