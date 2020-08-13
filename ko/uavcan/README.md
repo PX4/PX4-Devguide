@@ -2,13 +2,13 @@
 
 ![UAVCAN Logo](../../assets/uavcan-logo-transparent.png)
 
-[UAVCAN](http://uavcan.org) is an onboard network which allows the autopilot to connect to avionics. It supports hardware like:
+[UAVCAN](http://uavcan.org)는 보드상에서 처리하는 네트워크로 오토파일럿을 항공 전자장비에 연결할 수 있게 합니다. 다음 하드웨어를 지원합니다:
 
-* Motor controllers
+* 모터 컨트롤러
   
   * [Zubax Orel 20](https://zubax.com/product/zubax-orel-20)
     
-    > **Note** Runs [Sapog Firmware](https://github.com/px4/sapog) (open source). Based on [Sapog Reference Hardware](https://github.com/PX4/Hardware/tree/master/sapog_reference_hardware).
+    > **Note** [Sapog Firmware](https://github.com/px4/sapog)(오픈소스)를 실행합니다. [Sapog Reference Hardware](https://github.com/PX4/Hardware/tree/master/sapog_reference_hardware)에 기반합니다.
 
 * Airspeed sensors
   
@@ -23,11 +23,11 @@ In contrast to hobby-grade devices it uses rugged, differential signalling and s
 
 > **Note** PX4 requires an SD card for UAVCAN node allocation and firmware upgrade. It is not used during flight by UAVCAN.
 
-## Initial Setup
+## 초기 설정
 
 The following instructions provide a step-by-step guide to connect and setup a quadcopter with ESCs and GPS connected via UAVCAN. The hardware of choice is a Pixhawk 2.1, Zubax Orel 20 ESCs and a Zubax GNSS GPS module.
 
-### Wiring
+### 결선
 
 The first step is to connect all UAVCAN enabled devices with the flight controller. The following diagram displays how to wire all components. The used Zubax devices all support a redundant CAN interface in which the second bus is optional but increases the robustness of the connection.
 
@@ -35,19 +35,19 @@ The first step is to connect all UAVCAN enabled devices with the flight controll
 
 It is important to mention that some devices require an external power supply \(e.g. Zubax Orel 20\) and others can be powered by the CAN connection \(e.g Zubax GNSS\) itself. Please refer to the documentation of your hardware before continuing with the setup.
 
-### Firmware Setup
+### 펌웨어 설치
 
 Next, follow the instructions in [UAVCAN Configuration](../uavcan/node_enumeration.md) to activate the UAVCAN functionalities in the firmware. Disconnect your power supply and reconnect it. After the power cycle all UAVCAN devices should be detected which is confirmed by a beeping motor on the Orel 20 ESCs. You can now continue with the general setup and calibration.
 
 Depending on the used hardware, it can be reasonable to perform an update of the firmware on the UAVCAN devices. This can be done via the UAVCAN itself and the PX4 firmware. For more details please refer to the instructions in [UAVCAN Firmware](../uavcan/node_firmware.md).
 
-## Upgrading Node Firmware
+## 노드 펌웨어 업그레이드
 
-The PX4 middleware will automatically upgrade firmware on UAVCAN nodes if the matching firmware is supplied. The process and requirements are described on the [UAVCAN Firmware](../uavcan/node_firmware.md) page.
+PX4 미들웨어에서는 UAVCAN 노드에 일치하는 펌웨어를 받았을 경우 자동으로 업그레이드합니다. 절차와 요구사항은 [UAVCAN 펌웨어](../uavcan/node_firmware.md) 페이지에 있습니다.
 
-## Enumerating and Configuring Motor Controllers
+## 모터 컨트롤러 기수 부여 및 설정
 
-The ID and rotational direction of each motor controller can be assigned after installation in a simple setup routine: [UAVCAN Node Enumeration](../uavcan/node_enumeration.md). The routine can be started by the user through QGroundControl.
+ID와 각 모터 컨트롤러의 회전 방향은 간단한 설치 루틴에서 설치 과정을 마친 후 할당할 수 있습니다: [UAVCAN 노드 기수 부여](../uavcan/node_enumeration.md). The routine can be started by the user through QGroundControl.
 
 ## Useful links
 
