@@ -1,6 +1,6 @@
-# Simulation Debugging
+# 모의시험 디버깅
 
-As the simulation is running on the host machine, all the desktop development tools are available.
+모의시험은 호스트 머신에서 동작하므로, 모든 데스크톱 환경에서 도구를 활용할 수 있습니다.
 
 ## CLANG Address Sanitizer (Mac OS, Linux)
 
@@ -17,21 +17,21 @@ PX4_ASAN=1 make px4_sitl jmavsim
 brew install valgrind
 ```
 
-or
+또는
 
 ```sh
 sudo apt-get install valgrind
 ```
 
-To use valgrind during the SITL simulation:
+명령으로 SITL 모의시험 환경을 실행하는 동안 valgrind를 사용할 수 있습니다:
 
 ```sh
 make px4_sitl_default jmavsim___valgrind
 ```
 
-## Start combinations
+## 시작 조합
 
-SITL can be launched with and without debugger attached and with either jMAVSim or Gazebo as simulation backend. This results in the start options below:
+SITL은 디버거를 붙이거나 그렇지 않은 상태에서 시작할 수 있으며 jMAVSim 또는 가제보를 모의시험 백엔드로 붙일 수 있습니다. 다음 명령을 내리면 준비할 수 있습니다:
 
 ```sh
 make px4_sitl_default jmavsim
@@ -43,7 +43,7 @@ make px4_sitl_default gazebo___gdb
 make px4_sitl_default gazebo___lldb
 ```
 
-where the last parameter is the &lt;viewer\_model\_debugger&gt; triplet (using three underscores implies the default 'iris' model). This will start the debugger and launch the SITL application. In order to break into the debugger shell and halt the execution, hit ```CTRL-C```:
+마지막 매개변수는 변수가 셋인 &lt;viewer\_model\_debugger&gt;입니다(밑줄 문자 셋을 활용하는 부분은 기본 'iris'모델임을 의미). 이 명령은 SITL 프로그램과 디버거를 시작합니다. 실행을 멈추고 디버거로 진입하려면 다음 키를 누르십시오 ```CTRL-C```:
 
 ```gdb
 Process 16529 stopped
@@ -57,45 +57,45 @@ libsystem_kernel.dylib`__read_nocancel:
 (lldb) 
 ```
 
-In order to not have the DriverFrameworks scheduling interfere with the debugging session ```SIGCONT``` should be masked in LLDB and GDB:
+디버깅 세션에서 DriverFrameworks 스케쥴링 혼동을 방지하려면 ```SIGCONT``` 를 LLDB나 GDB에서 마스킹 처리해야 합니다:
 
 ```bash
 (lldb) process handle SIGCONT -n false -p false -s false
 ```
 
-Or in the case of GDB:
+또는 GDB의 경우:
 
     (gdb) handle SIGCONT noprint nostop
     
 
-After that the The lldb or gdb shells behave like normal sessions, please refer to the LLDB / GDB documentation.
+이 설정이 끝나고 나면 lldb 또는 gdb 셸에서 일반 세션처럼 동작합니다. LLDB / GDB 문서를 참고하십시오.
 
-The last parameter, the &lt;viewer\_model\_debugger&gt; triplet, is actually passed to make in the build directory, so
+마지막 매개변수는 변수가 셋인 &lt;viewer\_model\_debugger&gt; 입니다. 실제로 이 매개변수 값을 빌드 디렉터리 형태로 전달합니다. 따라서,
 
 ```sh
 make px4_sitl_default jmavsim___gdb
 ```
 
-is equivalent with
+명령은 다음 명령과 같습니다.
 
 ```sh
 make px4_sitl_default   # Configure with cmake
 make -C build/px4_sitl_default jmavsim___gdb
 ```
 
-A full list of the available make targets in the build directory can be obtained with:
+빌드 디렉터리의 빌드 대상 전체 목록을 활용하려면 다음 명령을 활용하십시오:
 
 ```sh
 make help
 ```
 
-but for your convenience, a list with just the &lt;viewer\_model\_debugger&gt; triplets is printed with the command
+편의상, 변수셋을 지닌 &lt;viewer\_model\_debugger&gt; 형식의 값은 다음 명령으로 출력합니다
 
 ```sh
 make list_vmd_make_targets
 ```
 
-## Compiler optimization
+## 컴파일러 최적화
 
 It is possible to suppress compiler optimization for given executables and/or modules (as added by cmake with `add_executable` or `add_library`) when configuring for `posix_sitl_*`. This can be handy when it is necessary to step through code with a debugger or print variables that would otherwise be optimized out.
 

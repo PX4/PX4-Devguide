@@ -1,26 +1,26 @@
-# System-wide Replay
+# 시스템 범위 재현
 
-Based on ORB messages, it's possible to record and replay arbitrary parts of the system.
+ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을 기록하고 재현할 수 있습니다.
 
-Replay is useful to test the effect of different parameter values based on real data, compare different estimators, etc.
+실제 데이터를 기반으로 한 제각각의 매개변수 값 영향 시험, 제각기 다른 추정자의 동작 비교 등에 재현 과정에 상당히 쓸만합니다.
 
-## Prerequisites
+## 준비 요건
 
-The first thing that needs to be done is to identify the module or modules that should be replayed. Then, identify all the inputs to these modules, i.e. subscribed ORB topics. For system-wide replay, this consists of all hardware input: sensors, RC input, MAVLink commands and file system.
+가장 먼저 필요한 과정은 재현할 모듈의 파악입니다. 그 다음 해당 모듈의 입력단을 모두 확인합니다(예: 지속 수신하는 ORB 토픽). 시스템 범위 재현시, 모든 하드웨어 입력요소로, 센서, 원격 조종 입력, MAVLink 명령, 파일 시스템을 들 수 있습니다.
 
-All identified topics need to be logged at full rate (see [logging](../log/logging.md)). For `ekf2` this is already the case with the default set of logged topics.
+파악한 모든 토픽을 최대 데이터 전송률로 기록해야합니다([로깅](../log/logging.md) 참고). `ekf2`의 경우 이미 토픽 로깅 기본 설정에 반영했습니다.
 
-It is important that all replayed topics contain only a single absolute timestamp, which is the automatically generated field `timestamp`. Should there be more timestamps, then they must be relative with respect to the main timestamp. For an example, see [sensor_combined.msg](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg). Reasons for this are given below.
+모든 재현 토픽에는 `timestamp` 필드에 자동으로 입력하는 단일 타임스탬프 절대값이 들어있다는 점이 중요합니다. 타임스탬프 정보가 더 들어가야 하겠지만, 그렇다면 메인 타임스탬프 값에 상대적인 값이 들어가야 합니다. 예제는 [sensor_combined.msg](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg)에 있습니다. 이 경우에 대한 이유는 아래에 설명해드리겠습니다.
 
-## Usage
+## 사용법
 
-- First, choose the file to replay, and build the target (from within the Firmware directory): 
+- 우선 재현할 파일을 선택하고, 대상을 빌드하십시오(Firmware 디렉터리에서 처리함): 
         sh
         export replay=<absolute_path_to_log_file.ulg>
-        make px4_sitl_default This will create the output in a separate build directory 
+        make px4_sitl_default 별도의 빌드 디렉터리 
     
-    `build/px4_sitl_default_replay` (so that the parameters don't interfere with normal builds). It's possible to choose any posix SITL build target for replay, the build system knows through the `replay` environment variable that it's in replay mode.
-- Add ORB publisher rules file in `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules`. This file defines which module is allowed to publish which messages. It has the following format:
+    `build/px4_sitl_default_replay` 에 출력 내용을 새로 만들어둡니다(그래서 기존 빌드와 매개변수의 값이 뒤섞이지 않음). 재현을 위해 임의의 POSIX SITL 빌드 대상을 선택할 수 있습니다. 빌드 시스템에서는 `replay` 환경 변수를 통해 재현 모드에 들어갔음을 이해합니다.
+- ORB 전송 규칙을 `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules`에 추가하십시오. This file defines which module is allowed to publish which messages. It has the following format:
     
         restrict_topics: <topic1>, <topic2>, ..., <topicN>
         module: <module>
@@ -68,7 +68,7 @@ It is important that all replayed topics contain only a single absolute timestam
 - It is currently only possible to replay in 'real-time', meaning as fast as the recording was done. This is planned to be extended in the future.
 - A message that has a timestamp of 0 will be considered invalid and not be replayed.
 
-## EKF2 Replay
+## EKF2 재현
 
 This is a specialization of the system-wide replay for fast EKF2 replay. It will automatically create the ORB publisher rules and works as following:
 
@@ -93,12 +93,12 @@ The parameters can be adjusted as well. They can be extracted from the log with 
 
 Then edit the parameters in the file as needed and restart the replay process with `make px4_sitl none`. This will create a new log file.
 
-The location of the generated log is printed with a message like this:
+생성 로그 위치는 다음 메세지처럼 화면에 나타납니다:
 
     INFO  [logger] Opened log file: rootfs/fs/microsd/log/2017-03-01/13_30_51_replayed.ulg
     
 
-When finished, use `unset replay; unset replay_mode` to exit the replay mode.
+과정이 끝난 후 재현 모드를 끝내려면 `unset replay; unset replay_mode` 명령을 내리십시오.
 
 ## Behind the Scenes
 
