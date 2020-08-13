@@ -14,14 +14,14 @@ PX4 펌웨어에는 *작업 큐의 작업*으로 동작하는 새 프로그램(�
 
 작업 큐 작업 프로그램은 그냥 일반 (작업) 프로그램과 동일하나, 작업 큐의 작업이란 점을 지정하고 초기화 단계에서 자체적으로 스케쥴링하는 점만 다릅니다.
 
-예제를 통해 어떻게 하는지 확인합니다. 요약하면:
+예제를 통해 어떻게 하는지 확인합니다. 요약하자면:
 
-1. Cmake 정의 파일([CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/CMakeLists.txt))에 work queue 라이브러리 의존성을 명시함: 
+1. Cmake 정의 파일([CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/CMakeLists.txt))에 작업 큐 라이브러리 의존성을 지정합니다: 
         ...
         DEPENDS
           px4_work_queue
 
-2. 태스크는 `ModuleBase`에 추가로 ([ScheduledWorkItem.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/ScheduledWorkItem.hpp)에 포함된)`ScheduledWorkItem`에서도 파생되어야 함
+2. `ModuleBase`에 추가로, 작업은 ([ScheduledWorkItem.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/ScheduledWorkItem.hpp)에 들어간)`ScheduledWorkItem`도 상속받아야 합니다
 3. 생성자 초기화시에 태스크를 추가할 큐를 명시함. [work_item](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/WorkItemExample.cpp#L42) 예제에서는 자신을 `wq_configurations::test1` work queue에 아래와 같이 추가함:
     
     ```cpp
