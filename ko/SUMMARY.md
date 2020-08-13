@@ -116,7 +116,7 @@
   * [비행 로그 분석](log/flight_log_analysis.md)
   * [ULog 파일 구성](log/ulog_file_format.md)
 * [자습서](tutorials/tutorials.md) 
-  * [지상 통제 스테이션](qgc/README.md)
+  * [지상 통제국](qgc/README.md)
   * [Odroid C1에서 QGC로의 동영상 스트리밍 전송](qgc/video_streaming.md)
   * [장거리 동영상 스트리밍 전송](qgc/video_streaming_wifi_broadcast.md)
   * [리눅스에서의 리모콘 리시버 연결](tutorials/linux_sbus.md)
