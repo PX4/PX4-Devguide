@@ -55,7 +55,7 @@ Regarding the orientation, keep the scalar part *w* of the quaternion the same a
 
 Note: this is a quick overview. For more detailed information, check the [EKF2 tuning guide](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)
 
-The following parameters must be set to use external position information with EKF2 (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > EKF2**).
+EKF2의 외부 위치 정보를 활용하려면 다음 매개변수를 설정해야합니다(*QGroundControl* > **Vehicle Setup > Parameters > EKF2**에서 설정 가능).
 
 | Parameter                                                                                                                                                                                                     | Setting for External Position Estimation                                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
