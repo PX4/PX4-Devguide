@@ -20,7 +20,7 @@ ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을
         make px4_sitl_default 별도의 빌드 디렉터리 
     
     `build/px4_sitl_default_replay` 에 출력 내용을 새로 만들어둡니다(그래서 기존 빌드와 매개변수의 값이 뒤섞이지 않음). 재현을 위해 임의의 POSIX SITL 빌드 대상을 선택할 수 있습니다. 빌드 시스템에서는 `replay` 환경 변수를 통해 재현 모드에 들어갔음을 이해합니다.
-- ORB 전송 규칙을 `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules`에 추가하십시오. This file defines which module is allowed to publish which messages. It has the following format:
+- ORB 전송 규칙을 `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules`에 추가하십시오. 이 파일에는 어떤 모듈에서 어떤 메세지를 내보낼지 여부 설정값이 들어있습니다. 파일의 설정 형식은 다음과 같습니다:
     
         restrict_topics: <topic1>, <topic2>, ..., <topicN>
         module: <module>
@@ -62,19 +62,19 @@ ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을
     unset replay
     ```
 
-### Important Notes
+### 중요사항
 
-- During replay, all dropouts in the log file are reported. These have a negative effect on replay and thus it should be taken care that dropouts are avoided during recording.
-- It is currently only possible to replay in 'real-time', meaning as fast as the recording was done. This is planned to be extended in the future.
-- A message that has a timestamp of 0 will be considered invalid and not be replayed.
+- 재현 과정에서 버리는 기록 내용 보고 내용이 나타납니다. 재현 과정에 있어 부정적인 현상이며, 기록을 진행하는 동안 일부 기록을 폐기하는 일이 없도록 주의깊게 살펴보아야 합니다.
+- 현재는 '실시간' 재현만 가능합니다. 한마디로, 기록을 재빠르게 진행한 만큼 재현도 동일한 시간에 진행한다는 의미입니다. 관련 기능은 나중에 좀 더 추가하겠습니다.
+- 타임스탬프가 0으로 찍힌 메세지는 잘못된 메세지로 간주하며 재현 과정에 반영하지 않습니다.
 
 ## EKF2 재현
 
-This is a specialization of the system-wide replay for fast EKF2 replay. It will automatically create the ORB publisher rules and works as following:
+이 절의 내용은 EKF2의 시스템 범위 고속 재현에 해당합니다. ORB 전송 규칙을 자동으로 만들며 다음과 같이 동작합니다:
 
-- Optionally set `SDLOG_MODE` to 1 to start logging from boot
-- Record the log
-- To replay:
+- `SDLOG_MODE`를 별도로 1로 설정하여 부팅할 때 로깅을 시작하도록 함
+- 여러 동작과 상태를 기록
+- 이 과정을 재현하려면:
 
     export replay_mode=ekf2
     export replay=<abs_path_to_log.ulg>
