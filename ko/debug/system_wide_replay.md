@@ -27,9 +27,9 @@ ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을
         ignore_others: <true/false>
         
     
-    It means that the given list of topics should only be published by `<module>` (which is the command name). Publications to any of these topics from another module are silently ignored. If `ignore_others` is `true`, then publications to other topics from `<module>` are ignored.
+    위 기록은 `<module>`(명령 이름)에서 내보낼 여러 토픽을 나타냅니다. 다른 모듈에서 내보내는 토픽은 조용히 무시합니다. `ignore_others` 값을 `true`로 설정하면 다른 `<module>`에서 내보낸 토픽은 무시합니다.
     
-    For replay, we only want the `replay` module to be able to publish the previously identified list of topics. So for replaying `ekf2`, the rules file looks like this:
+    재현을 위해 `replay` 모듈에서 앞서 식별한 토픽 목록을 내보내려합니다. So for replaying `ekf2`, the rules file looks like this:
     
         restrict_topics: sensor_combined, vehicle_gps_position, vehicle_land_detected
         module: replay
@@ -81,17 +81,17 @@ ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을
     make px4_sitl none
     
 
-You can stop it after there's an output like:
+다음과 같은 출력 내용이 뜨고 나면 중단할 수 있습니다:
 
     INFO  [replay] Replay done (published 9917 msgs, 2.136 s)
     
 
-The parameters can be adjusted as well. They can be extracted from the log with \(install pyulog with `sudo pip install pyulog` first\):
+매개변수도 마찬가지로 조정할 수 있습니다. 다음 명령으로 로그에서 매개변수 값을 뽑아낼 수 있습니다 \(우선 `sudo pip install pyulog` 명령으로 pyulog를 설치하십시오\):
 
     ulog_params -i "$replay" -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
     
 
-Then edit the parameters in the file as needed and restart the replay process with `make px4_sitl none`. This will create a new log file.
+그 다음 원하는대로 파일의 매개변수 값을 편집한 후 `make px4_sitl none` 명령으로 재현 과정을 다시 시작하십시오. 이 과정을 통해 새 로그 파일을 만듭니다.
 
 생성 로그 위치는 다음 메세지처럼 화면에 나타납니다:
 
