@@ -33,13 +33,13 @@
 
 ![UAVCAN 결선](../../assets/UAVCAN_wiring.png)
 
-It is important to mention that some devices require an external power supply \(e.g. Zubax Orel 20\) and others can be powered by the CAN connection \(e.g Zubax GNSS\) itself. Please refer to the documentation of your hardware before continuing with the setup.
+일부 장치(예: Zubax Orel 20\)의 경우 외부 전원 공급 장치가 필요할 수 있고 나머지\(예: Zubax GNSS\)는 CAN 연결로 자체 전원을 공급받음을 참고하는게 중요합니다. 설정을 계속 진행하기 전 하드웨어 문서를 참고하십시오.
 
 ### 펌웨어 설치
 
-Next, follow the instructions in [UAVCAN Configuration](../uavcan/node_enumeration.md) to activate the UAVCAN functionalities in the firmware. Disconnect your power supply and reconnect it. After the power cycle all UAVCAN devices should be detected which is confirmed by a beeping motor on the Orel 20 ESCs. You can now continue with the general setup and calibration.
+그 다음, [UAVCAN 설정](../uavcan/node_enumeration.md)의 지침에 따라 펌웨어에서 UAVCAN 기능을 켜십시오. 전원을 끊은 후 다시 연결하십시오. 전원 재 인가 후, Orel 20 ESC의 모터에서 비프음을 내어 확인하는 방식으로 UAVCAN 장치를 찾아내야합니다. 이 과정이 끝나고 나야 일반 설치 및 보정 과정으로 계속 진행할 수 있습니다.
 
-Depending on the used hardware, it can be reasonable to perform an update of the firmware on the UAVCAN devices. This can be done via the UAVCAN itself and the PX4 firmware. For more details please refer to the instructions in [UAVCAN Firmware](../uavcan/node_firmware.md).
+사용 하드웨어에 따라, UAVCAN 장치의 펌웨어 업데이트를 진행할 여건이 갖춰질 수 있습니다. UAVCAN 자체와 PX4 펌웨어로 처리가 가능합니다. 자세한 내용은 [UAVCAN 펌웨어](../uavcan/node_firmware.md)의 절차를 참고 하십시오.
 
 ## 노드 펌웨어 업그레이드
 
