@@ -6,7 +6,7 @@ PX4 *시스템 콘솔*에서는 시스템 저수준 접근이 가능하며, 디�
 
 ## 콘솔 연결
 
-The console is made available through a (board-specific) UART that can be connected to a computer USB port using a [3.3V FTDI](https://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393) cable. This allows the console to be accessed using a terminal application.
+콘솔은 [3.3V FTDI](https://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393) 케이블을 활용하여 컴퓨터에 USB 포트를 연결할 수 있게 하는 (보드별) UART 포트로 띄울 수 있습니다. 이 포트는 터미널 프로그램으로 콘솔에 접근할 수 있게 해줍니다.
 
 Pixhawk controller manufacturers are expected to expose the console UART and SWD (JTAG) debug interfaces through a dedicated *debug port* that complies with the [Pixhawk Connector Standard](#pixhawk_debug_port). Unfortunately some boards predate this standard or a non-compliant.
 
@@ -14,13 +14,13 @@ Pixhawk controller manufacturers are expected to expose the console UART and SWD
 
 The sections below outline/link to the wiring and system console information for many common boards.
 
-### Board-Specific Wiring
+### 보드별 연결 방법
 
-The System Console UART pinouts/debug ports are typically documented in [autopilot overview pages](https://docs.px4.io/master/en/flight_controller/) (some are linked below):
+시스템 콘솔 UART 핀 출력/디버깅 포트는 [오토파일럿 개요 페이지](https://docs.px4.io/master/en/flight_controller/)에 정리해두었습니다(아래 링크에 있음):
 
-- [3DR Pixhawk v1 Flight Controller](https://docs.px4.io/master/en/flight_controller/pixhawk.html#console-port) (also applies to [mRo Pixhawk](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html#debug-ports), [HobbyKing HKPilot32](https://docs.px4.io/master/en/flight_controller/HKPilot32.html#debug-port))
-- [Pixhawk 3](https://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port)
-- [Pixracer](https://docs.px4.io/master/en/flight_controller/pixracer.html#debug-port)
+- [3DR 픽스호크 v1 비행 조종 장치](https://docs.px4.io/master/en/flight_controller/pixhawk.html#console-port) ([mRo Pixhawk](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html#debug-ports), [HobbyKing HKPilot32](https://docs.px4.io/master/en/flight_controller/HKPilot32.html#debug-port)에도 적용)
+- [픽스호크 3](https://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port)
+- [픽스레이서](https://docs.px4.io/master/en/flight_controller/pixracer.html#debug-port)
 
 - [스냅드래곤 플라이트](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html):
   
@@ -44,7 +44,7 @@ The port/FTDI mapping is shown below.
 
 ## 콘솔 열기
 
-After the console connection is wired up, use the default serial port tool of your choice or the defaults described below:
+콘솔 연결을 끝내고 나면, 기본 직렬 포트 통신 도구를 취향에 따라 골라 사용하거나 아래 설명하는 기본 직렬 포트 통신 도구를 사용하십시오:
 
 ### Linux / Mac OS: Screen
 
@@ -55,9 +55,9 @@ sudo apt-get install screen
 ```
 
 - 직렬 포트: 픽스호크 v1 / 픽스레이서 전송율: 57600 bps
-- Serial: Snapdragon Flight uses 115200 baud
+- 직렬 포트: 스냅드래곤 플라이트의 경우 115200 bps
 
-Connect screen at BAUDRATE baud, 8 data bits, 1 stop bit to the right serial port (use `ls /dev/tty*` and watch what changes when unplugging / replugging the USB device). Common names are `/dev/ttyUSB0` and `/dev/ttyACM0` for Linux and `/dev/tty.usbserial-ABCBD` for Mac OS.
+screen을 BAUDRATE bps, 데이터 비트 수 8, 정지 비트 1을 올바른 직렬 통신 포트에 설정하여 연결하여 연결하십시오(`ls /dev/tty*` 명령을 활용하여 USB 장치를 연결/분리 했을 때 어떤 값이 바뀌는지 확인). 일반 명칭은 리눅스의 경우 `/dev/ttyUSB0`과 `/dev/ttyACM0` 이며, Mac OS의 경우 `/dev/tty.usbserial-ABCBD`입니다.
 
 ```bash
 screen /dev/ttyXXX BAUDRATE 8N1
