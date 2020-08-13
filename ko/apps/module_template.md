@@ -21,8 +21,8 @@ PX4 펌웨어에는 *작업 큐의 작업*으로 동작하는 새 프로그램(�
         DEPENDS
           px4_work_queue
 
-2. `ModuleBase`에 추가로, 작업은 ([ScheduledWorkItem.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/ScheduledWorkItem.hpp)에 들어간)`ScheduledWorkItem`도 상속받아야 합니다
-3. 생성자 초기화시에 태스크를 추가할 큐를 명시함. [work_item](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/WorkItemExample.cpp#L42) 예제에서는 자신을 `wq_configurations::test1` work queue에 아래와 같이 추가함:
+2. `ModuleBase`에 추가로, 작업은 ([ScheduledWorkItem.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/ScheduledWorkItem.hpp)에 들어간) `ScheduledWorkItem`도 상속받아야 합니다
+3. 생성자 초기화시, 작업을 추가할 큐를 지정하십시오. [work_item](https://github.com/PX4/Firmware/blob/master/src/examples/work_item/WorkItemExample.cpp#L42) 예제에서는 아래와 같이 자신을 `wq_configurations::test1` 작업 큐에 추가합니다:
     
     ```cpp
     WorkItemExample::WorkItemExample() :
@@ -32,22 +32,22 @@ PX4 펌웨어에는 *작업 큐의 작업*으로 동작하는 새 프로그램(�
     }
     ```
     
-    > **Note** 사용가능한 work queues(`wq_configurations`)는 [WorkQueueManager.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/WorkQueueManager.hpp#L49)에 나열됨.
+    > **Note** 가용 작업 큐(`wq_configurations`)는 [WorkQueueManager.hpp](https://github.com/PX4/Firmware/blob/master/platforms/common/include/px4_platform_common/px4_work_queue/WorkQueueManager.hpp#L49)에 있습니다.
 
-4. "작업(work)"을 수행할 `ScheduledWorkItem::Run()` 메서드를 구현.
+4. "작업"을 수행할 `ScheduledWorkItem::Run()` 메서드를 구현하십시오.
 
-5. `task_spawn` 메서드를 구현. 해당 task가 work queue임을 명시 (`task_id_is_work_queue` id 사용).
+5. 작업을 작업 큐(`task_id_is_work_queue` id 사용)에 지정하는 `task_spawn` 메서드를 구현하십시오.
 6. 스케줄링 메서드중 하나를 사용하여 work queue task를 스케쥴링함 (예제에서는 `init` 메서드내의 `ScheduleOnInterval`를 사용함).
 
-## Tasks
+## 작업
 
-PX4 Firmware은 task로 동작하는 신규 어플리케이션(모듈) 작성용 템플릿을 포함: [src/templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module).
+PX4 펌웨어는 자체 스택에서 작업으로 동작하는 신규 프로그램 (모듈) 작성용 서식이 들어있습니다: [src/templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module).
 
-템플릿에서는 Full 어플리케이션에서 요구되거나 혹은 필요한 다음의 추가적인 기능/측면을 보여줌:
+서식에서는 완전한 프로그램 작성에 필요하거나 쓸만한 다음 추가 기능이나 양항을 보여줍니다:
 
-- 파라미터 접근 및 파라미터 업데이트에 대한 대응 동작
-- uORB 구독(subscription) 및 topic 업데이트 대기.
-- `start`/`stop`/`status`를 통해 백그라운드에서 실행되는 task 제어. `module start [<arguments>]` 명령은 [startup script](../concept/system_startup.md) 직접적으로 추가 가능.
+- 배개변수 접근, 매개변수 업데이트에 대응
+- uORB 정기 수신 및 토픽 업데이트 대기
+- `start`/`stop`/`status`로 백그라운드에 실행하는 작업 제어 `module start [<arguments>]` 명령은 [시작 스크립트에](../concept/system_startup.md) 직접 추가할 수 있습니다.
 - 명령행 인자 파싱.
 - 문서화: `PRINT_MODULE_*` 메서드는 2가지 목적 지원 (API를 [소스코드 내에서](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381) 문서화): 
     - 콘솔상에 `module help` 입력시 해당 명령 사용법 출력을 위해 사용됨.
