@@ -1349,18 +1349,18 @@
     </th>
   </tr>
 <tr id="vtol_vtol_tiltrotor_birdseyeview_aerobotics_firefly6">
- <td style="vertical-align: top;">BirdsEyeView Aerobotics FireFly6</td>
- <td style="vertical-align: top;"><p>Maintainer: Roman Bapst <roman@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13002</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: Front right motor bottom</li><li><b>MAIN2</b>: Front right motor top</li><li><b>MAIN3</b>: Back motor bottom</li><li><b>MAIN4</b>: Back motor top</li><li><b>MAIN5</b>: Front left motor bottom</li><li><b>MAIN6</b>: Front left motor top</li></ul></p></td>
+ <td style="vertical-align: top;">BirdsEyeView 에어로빅스 파이어플라이6</td>
+ <td style="vertical-align: top;"><p>유지관리자: Roman Bapst <roman@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13002</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 전면 좌측 모터 하단</li><li><b>MAIN2</b>: 전면 우측 모터 하단</li><li><b>MAIN3</b>: 후면 모터 하단</li><li><b>MAIN4</b>: 후면 모터 상단</li><li><b>MAIN5</b>: Front left motor bottom</li><li><b>MAIN6</b>: Front left motor top</li></ul></p></td>
 
 </tr>
 <tr id="vtol_vtol_tiltrotor_cruiseader_claire">
- <td style="vertical-align: top;">CruiseAder Claire</td>
- <td style="vertical-align: top;"><p>Maintainer: Samay Siga <samay_s@icloud.com></p><p><code>SYS_AUTOSTART</code> = 13010</p></td>
+ <td style="vertical-align: top;">크루즈애더 클레어</td>
+ <td style="vertical-align: top;"><p>유지관리자: Samay Siga<samay_s@icloud.com></p><p><code>SYS_AUTOSTART</code> = 13010</p></td>
 
 </tr>
 <tr id="vtol_vtol_tiltrotor_e-flite_convergence">
- <td style="vertical-align: top;">E-flite Convergence</td>
- <td style="vertical-align: top;"><p>Maintainer: Andreas Antener <andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13012</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: Motor right</li><li><b>MAIN2</b>: Motor left</li><li><b>MAIN3</b>: Motor back</li><li><b>MAIN4</b>: empty</li><li><b>MAIN5</b>: Tilt servo right</li><li><b>MAIN6</b>: Tilt servo left</li><li><b>MAIN7</b>: Elevon right</li><li><b>MAIN8</b>: Elevon left</li></ul></p></td>
+ <td style="vertical-align: top;">E-플라이트 컨버전스</td>
+ <td style="vertical-align: top;"><p>유지관리자: Andreas Antener<andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13012</p><p><b>특정 출력:</b><ul><li><b>MAIN1</b>: 우측 모터</li><li><b>MAIN2</b>: 좌측 모터</li><li><b>MAIN3</b>: 후면 모터</li><li><b>MAIN4</b>: 비어 있음</li><li><b>MAIN5</b></0>: 우측 틸트 서보</li><li><b>MAIN6</b></0>: 좌측 틸트 서보</li><li><b>MAIN7</b>: 우측 엘러본(elevon)</li><li><b>MAIN8</b>: 좌측 엘러본(elevon)</li></ul></p></td>
 
 </tr>
 </table>
