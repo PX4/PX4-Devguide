@@ -68,7 +68,7 @@ The supported vehicles and `make` commands are listed below (click on the links 
 | [Ackerman 기체 (UGV/탐사선)](../simulation/flightgear_vehicles.md#ugv)     | `make px4_sitl_nolockstep flightgear_tf-r1`  |
 | [Autogyro](../simulation/flightgear_vehicles.md#autogyro)             | `make px4_sitl_nolockstep flightgear_tf-g1`  |
 
-The commands above launch a single vehicle with the full UI. *QGroundControl* should be able to automatically connect to the simulated vehicle.
+The commands above launch a single vehicle with the full UI. *QGroundControl*은 모의시험 환경에 모델로 띄운 기체에 자동으로 연결할 수 있어야합니다.
 
 > **Note** For the full list of FlightGear build targets (highlighted) run: 
 > 
@@ -170,7 +170,7 @@ The example above starts the simulation on the [Honolulu international airport](
 
 ### Using a Joystick {#joystick}
 
-Joystick and thumb-joystick are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
+조이스틱과 엄지 조이스틱은 *QGroundControl* 에서 지원합니다([설정 방법은 여기에 있음](../simulation/README.md#joystickgamepad-integration)).
 
 The joystick input in FlightGear should be disabled in otherwise there will be a "race condition" between the FG joystick input and PX4 commands.
 
