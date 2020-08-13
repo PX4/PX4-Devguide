@@ -18,11 +18,11 @@ SWD 인터페이스는 다음 핀으로 이루어져있습니다.
 | `GND`   | -     | 접지핀.                                                                                                                                           |
 
 
-While not "part" of SWD, an autopilot may also have an *Serial Wire Output (SWO)* trace output pin. If present this should also be connected.
+SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 (SWO)* 추적 출력 핀이 있습니다. 만약 이 핀이 있다면 이 핀도 연결해야합니다.
 
-| Pin   | Signal Type | Description                                                                                                    |
-| ----- | ----------- | -------------------------------------------------------------------------------------------------------------- |
-| `SWO` | Output      | Serial  Wire Output trace output pin. This may be used in combination with *SWD* to emit real-time trace data. |
+| 핀     | 신호 형식 | 설명                                                       |
+| ----- | ----- | -------------------------------------------------------- |
+| `SWO` | 출력    | 직렬 회선 출력 방식의 추적 출력 핀. 실시간 추적 데이터를 인가하려면 *SWD*도 연결해야 합니다. |
 
 
 ## Connecting SWD Debuggers to PX4 Hardware
@@ -73,15 +73,15 @@ The Pixhawk project has defines a standard pinout and connector type for differe
 
 > **Tip** Check your [specific board](#port_information) to confirm the port used.
 
-| FMU Version | Pixhawk Ver.                                                                                | Debug Interface                                  |
-| ----------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| FMUv2       | [Pixhawk / Pixhawk 1](http://docs.px4.io/master/en/flight_controller/pixhawk.html#swd-port) | 10 pin ARM Debug                                 |
-| FMUv3       | Pixhawk 2                                                                                   | 6 pin SUR Debug                                  |
-| FMUv4       | Pixhawk 3                                                                                   | [6 pin SH Debug](#pixhawk_debug_port_6_pin_sh)   |
-| FMUv5       | Pixhawk 4 FMUv5                                                                             | [6 pin SH Debug](#pixhawk_debug_port_6_pin_sh)   |
-| FMUv5X      | Pixhawk 5X                                                                                  | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh) |
-| FMUv6       | Pixhawk 6                                                                                   | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh) |
-| FMUv6X      | Pixhawk 6                                                                                   | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh) |
+| FMU 버전 | 픽스호크 버전                                                                                     | 디버그 인터페이스                                        |
+| ------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| FMUv2  | [Pixhawk / Pixhawk 1](http://docs.px4.io/master/en/flight_controller/pixhawk.html#swd-port) | 10 pin ARM Debug                                 |
+| FMUv3  | Pixhawk 2                                                                                   | 6 pin SUR Debug                                  |
+| FMUv4  | Pixhawk 3                                                                                   | [6 pin SH Debug](#pixhawk_debug_port_6_pin_sh)   |
+| FMUv5  | Pixhawk 4 FMUv5                                                                             | [6 pin SH Debug](#pixhawk_debug_port_6_pin_sh)   |
+| FMUv5X | Pixhawk 5X                                                                                  | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh) |
+| FMUv6  | Pixhawk 6                                                                                   | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh) |
+| FMUv6X | Pixhawk 6                                                                                   | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh) |
 
 > **Note** There FMU and Pixhawk versions are (only) consistent after FMUv5X.
 
@@ -94,23 +94,23 @@ The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/bl
 
 The pinout is as shown below (SWD pins highlighted):
 
-| Debug Port | Pin        |
-| ---------- | ---------- |
-| 1          | `Vtref`    |
-| 2          | Console TX |
-| 3          | Console RX |
-| 4          | `SWDIO`    |
-| 5          | `SWDCLK`   |
-| 6          | `GND`      |
+| 디버깅 포트 | 핀        |
+| ------ | -------- |
+| 1      | `Vtref`  |
+| 2      | 콘솔 TX    |
+| 3      | 콘솔 RX    |
+| 4      | `SWDIO`  |
+| 5      | `SWDCLK` |
+| 6      | `GND`    |
 
-The debug port definition includes the following solder pads (on board next to connector):
+디버깅 포트 정의에는 다음 결선 방법도 포함합니다(커넥터로 이어지는 보드):
 
-| Debug Port | Pin               | Voltage |
-| ---------- | ----------------- | ------- |
-| Pad        | Signal            | Volt    |
-| 1          | NRST (reset)      | +3.3V   |
-| 2          | GPIO1 (free GPIO) | +3.3V   |
-| 3          | GPIO2 (free GPIO) | +3.3V   |
+| 디버깅 포트 | 핀                 | 전압    |
+| ------ | ----------------- | ----- |
+| 패드     | 신호                | 볼트    |
+| 1      | NRST (reset)      | +3.3V |
+| 2      | GPIO1 (여분의 GPIO)  | +3.3V |
+| 3      | GPIO2 (free GPIO) | +3.3V |
 
 The socket is a *6-pin JST SH* - Digikey number: [BM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-2875-1-ND) (vertical mount), [SM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1806-1-ND)(side mount).
 
@@ -146,27 +146,27 @@ You can connect to the debug port using a [cable like this one](https://www.digi
 ![10-pin JST SH Cable](../../assets/debug/cable_10pin_jst_sh.jpg) <!-- better to have image showing proper connections for SWD+SWO -->
 
 
-## Debug Probes {#debug_probes}
+## 디버깅 프루브 {#debug_probes}
 
-The following section outlines some popular debug probes and adaptors for connecting them to autopilots running PX4.
+다음 절에서는 PX4를 구동하는 오토파일럿에 연결할 일부 잘 알려진 디버깅 프루브 장비와 어댑터의 개요를 설명하겠습니다.
 
 
 ### Segger JLink EDU Mini Debug Probe {#segger_jlink_edu_mini}
 
-The [Segger JLink EDU Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/) is an inexpensive and popular SWD debug probe. The probe's connector pinout looks like the image below (connect to this using an ARM 10-pin mini connector like [FTSH-105-01-F-DV-K](https://www.digikey.com/products/en?keywords=SAM8796-ND)).
+[Segger JLink EDU Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/)는 값싸고 인기있는 SWD 디버깅 프루브입니다. The probe's connector pinout looks like the image below (connect to this using an ARM 10-pin mini connector like [FTSH-105-01-F-DV-K](https://www.digikey.com/products/en?keywords=SAM8796-ND)).
 
 ![connector_jlink_mini.png](../../assets/debug/connector_jlink_mini.png)
 
 The pin mapping to connect the J-Link Edu Mini to [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh) is shown below (note, the `-` indicates a pin that is not required for SWD).
 
-| Debug Port     | J-Link Mini |
-| -------------- | ----------- |
-| 1 (Vtref)      | 1           |
-| 2 (Console TX) | -           |
-| 3 (Console RX) | -           |
-| 4 (SWDIO)      | 2           |
-| 5 (SWDCLK)     | 4           |
-| 6 (GND)        | 3 or 5      |
+| 디버깅 포트     | J-Link Mini |
+| ---------- | ----------- |
+| 1 (Vtref)  | 1           |
+| 2 (콘솔 TX)  | -           |
+| 3 (콘솔 RX)  | -           |
+| 4 (SWDIO)  | 2           |
+| 5 (SWDCLK) | 4           |
+| 6 (GND)    | 3 또는 5      |
 
 > **Tip** From the table above you can infer the connections for autopilots that do not use the standard port.
 
