@@ -46,15 +46,15 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 
 비행 조종 장치는 보통 [SWD 인터페이스](#swd_interface)와 [시스템 콘솔](../debug/system_console.md)을 노출하는 디버깅 포트를 제공합니다.
 
-The [Pixhawk Connector Standards](#pixhawk_standard_debug_ports) attempts to standardise this port. However since many boards use different pinouts or connectors, we recommend you check the documentation for your autopilot to confirm port location and pinout.
+[픽스호크 커넥터 표준](#pixhawk_standard_debug_ports)에서는 이 포트의 표준 제정을 시도합니다. 그러나 여러 보드가 다른 핀 출력 또는 커넥터를 쓰기 때문에, 오토파일럿의 포트 위치와 핀 출력 정보의 문서상 확인을 추천드립니다.
 
-The debug port location and pinouts for a small subset of autopilots are linked below:
+오토파일럿 일부 하위 집합의 디버깅 포트 위치와 핀  출력은 아래와 같습니다.
 
 <span id="port_information"></span>
 
 | 오토파일럿                                                                                                  | 커넥터                                                                                                                                                                                                                       |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [3DR Pixhawk](http://docs.px4.io/master/en/flight_controller/pixhawk.html#swd-port)                    | ARM 10-pin JTAG Connector (*mRo Pixhawk*, *HobbyKing HKPilot32*등의 FMUv2 보드에서도 사용함).                                                                                                                                       |
+| [3DR Pixhawk](http://docs.px4.io/master/en/flight_controller/pixhawk.html#swd-port)                    | ARM 10-pin JTAG 커넥터 (*mRo Pixhawk*, *HobbyKing HKPilot32*등의 FMUv2 보드에서도 사용함).                                                                                                                                             |
 | [CUAV V5nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port)             | 6-pin JST GH<br>Digikey: [BM06B-GHS-TBT(LF)(SN)(N)](https://www.digikey.com/products/en?keywords=455-1582-1-ND) (수직 마운트), [SM06B-GHS-TBT(LF)(SN)(N)](https://www.digikey.com/products/en?keywords=455-1568-1-ND) (측면 마운트) |
 | [CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port)                | 6-pin JST GH<br>Digikey: [BM06B-GHS-TBT(LF)(SN)(N)](https://www.digikey.com/products/en?keywords=455-1582-1-ND) (수직 마운트), [SM06B-GHS-TBT(LF)(SN)(N)](https://www.digikey.com/products/en?keywords=455-1568-1-ND) (측면 마운트) |
 | [Drotek Pixhawk 3 Pro](http://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port)    | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)                                                                                                                                                                    |
@@ -83,12 +83,12 @@ The debug port location and pinouts for a small subset of autopilots are linked 
 | FMUv6  | Pixhawk 6                                                                                   | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh) |
 | FMUv6X | Pixhawk 6                                                                                   | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh) |
 
-> **Note** There FMU and Pixhawk versions are (only) consistent after FMUv5X.
+> **Note** FMU와 픽스호크 버전은 FMUv5X 이후(에만) 동일하게 갑니다
 
 
 ### Pixhawk Debug Mini (6-Pin SH Debug Port) {#pixhawk_debug_port_6_pin_sh}
 
-The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf) defines a *6-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md).
+[Pixhawk 커넥터 표준](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf)에서는 SWD 핀과 [시스템 콘솔](../debug/system_console.md)에 다 접근할 수 있는 *6-Pin SH 디버깅 포트* 를 정의합니다.
 
 > **Note** 이 디버깅 코드는 FMUv4와 FMUv5에서 활용합니다.
 
@@ -112,7 +112,7 @@ The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/bl
 | 2      | GPIO1 (여분의 GPIO) | +3.3V |
 | 3      | GPIO1 (여분의 GPIO) | +3.3V |
 
-The socket is a *6-pin JST SH* - Digikey number: [BM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-2875-1-ND) (vertical mount), [SM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1806-1-ND)(side mount).
+*6-pin JST SH* 소켓을 사용합니다 - Digikey number: [BM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-2875-1-ND) (수직 마운트), [SM06B-SRSS-TBT(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1806-1-ND)(측면 마운트).
 
 [이 같은 케이블](https://www.digikey.com/products/en?keywords=A06SR06SR30K152A)로 디버깅 포트에 연결할 수 있습니다.
 
@@ -121,9 +121,9 @@ The socket is a *6-pin JST SH* - Digikey number: [BM06B-SRSS-TBT(LF)(SN)](https:
 
 ### Pixhawk Debug Full (10-Pin SH Debug Port) {#pixhawk_debug_port_10_pin_sh}
 
-The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf)  defines a *10-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md). This essentially moves the solder pads from beside the [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh) into the connector, and also adds an SWO pin.
+[Pixhawk 커넥터 표준](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf)에서는 SWD 핀과 [시스템 콘솔](../debug/system_console.md)에 다 접근할 수 있는 *10-Pin SH 디버깅 포트* 를 정의합니다. 핵심적으로 [Pixhawk 6-Pin SH 디버깅 포트](#pixhawk_debug_port_6_pin_sh) 에서 커넥터로 납땜 대상을 옮겼으며,  SWO 핀도 추가했습니다.
 
-> **Note** This port is specified for use in FMUv5x, FMUv6, FMUv6x.
+> **Note** 이 포트는 FMUv5x, FMUv6, FMUv6x에서 사용하도록 지정했습니다.
 
 핀 출력은 아래와 같습니다 (SWD 핀은 강조함):
 
