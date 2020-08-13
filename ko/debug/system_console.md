@@ -1,10 +1,10 @@
-# PX4 System Console
+# PX4 시스템 콘솔
 
-The PX4 *System Console* provides low-level access to the system, debug output and analysis of the system boot process.
+PX4 *시스템 콘솔*에서는 시스템 저수준 접근이 가능하며, 디버깅 출력과 시스템 부팅 과정 분석을 진행할 수 있습니다.
 
-> **Tip** The console should be used for debugging if the system won't boot. The [MAVLink Shell](../debug/mavlink_shell.md) may otherwise be more suitable, as it is much easier to set up and can be used for [many of the same tasks](../debug/consoles.md#console_vs_shell).
+> **Tip** 시스템이 부팅하지 않는지 디버깅하려면 콘솔을 사용해야합니다. [MAVLink 셸](../debug/mavlink_shell.md)은 아마도 설치하기 쉽고 [동일한 여러 작업 처리](../debug/consoles.md#console_vs_shell)에 활용할 수 있기에 다용도로 적격이라 봅니다.
 
-## Wiring the Console
+## 콘솔 연결
 
 The console is made available through a (board-specific) UART that can be connected to a computer USB port using a [3.3V FTDI](https://www.digikey.com/product-detail/en/TTL-232R-3V3/768-1015-ND/1836393) cable. This allows the console to be accessed using a terminal application.
 
@@ -22,25 +22,25 @@ The System Console UART pinouts/debug ports are typically documented in [autopil
 - [Pixhawk 3](https://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port)
 - [Pixracer](https://docs.px4.io/master/en/flight_controller/pixracer.html#debug-port)
 
-- [Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html):
+- [스냅드래곤 플라이트](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html):
   
   - [FTDI](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#over-ftdi)
-  - [DSP Debug Monitor/Console](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#dsp-debug-monitorconsole)
+  - [DSP 디버깅 모니터/콘솔](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#dsp-debug-monitorconsole)
 
-### Pixhawk Debug Port {#pixhawk_debug_port}
+### 픽스호크 디버깅 포트 {#pixhawk_debug_port}
 
 Flight controllers that adhere to the Pixhawk Connector standard use the [Pixhawk Standard Debug Port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug).
 
 The port/FTDI mapping is shown below.
 
-| Pixhawk Debug Port | -                        | FTDI | -                                 |
-| ------------------ | ------------------------ | ---- | --------------------------------- |
-| 1 (red)            | TARGET PROCESSOR VOLTAGE |      | N/C (used for SWD/JTAG debugging) |
-| 2 (blk)            | CONSOLE TX (OUT)         | 5    | FTDI RX (yellow)                  |
-| 3 (blk)            | CONSOLE RX (IN)          | 4    | FTDI TX (orange)                  |
-| 4 (blk)            | SWDIO                    |      | N/C (used for SWD/JTAG debugging) |
-| 5 (blk)            | SWCLK                    |      | N/C (used for SWD/JTAG debugging) |
-| 6 (blk)            | GND                      | 1    | FTDI GND (black)                  |
+| 픽스호크 디버깅 포트 | -                        | FTDI | -                                 |
+| ----------- | ------------------------ | ---- | --------------------------------- |
+| 1 (적)       | TARGET PROCESSOR VOLTAGE |      | N/C (used for SWD/JTAG debugging) |
+| 2 (blk)     | CONSOLE TX (OUT)         | 5    | FTDI RX (yellow)                  |
+| 3 (blk)     | CONSOLE RX (IN)          | 4    | FTDI TX (orange)                  |
+| 4 (blk)     | SWDIO                    |      | N/C (used for SWD/JTAG debugging) |
+| 5 (blk)     | SWCLK                    |      | N/C (used for SWD/JTAG debugging) |
+| 6 (blk)     | GND                      | 1    | FTDI GND (black)                  |
 
 ## Opening the Console
 
