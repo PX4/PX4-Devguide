@@ -35,7 +35,7 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 
 일부 SWD [디버깅 프루브](#debug_probes)는 픽스호크 공용 [디버깅 포트](#debug_ports)에 연결할 어댑터와 케이블이 딸려옵니다. 다른 보드 또는 프루브에 연결할 개별 케이블을 직접 만들 수도 있습니다.
 
-> **Note** Some manufacturers provide cables to make it easy to connect the SWD interface and [System Console](../debug/system_console.md). For example the [CUAV V5nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port) and [CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port) include this debug cable: ![6-pin JST SH Cable](../../assets/debug/cuav_v5_debug_cable.jpg)
+> **Note** 일부 제조사에서는 SWD 인터페이스와 [시스템 콘솔](../debug/system_console.md)을 쉽게 연결하는 케이블을 제공합니다. For example the [CUAV V5nano](http://docs.px4.io/master/en/flight_controller/cuav_v5_nano.html#debug_port) and [CUAV V5+](http://docs.px4.io/master/en/flight_controller/cuav_v5_plus.html#debug-port) include this debug cable: ![6-pin JST SH Cable](../../assets/debug/cuav_v5_debug_cable.jpg)
 
 <span></span>
 
