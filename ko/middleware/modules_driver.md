@@ -567,7 +567,7 @@ ModuleBase과 OutputModuleInterface를 기반으로 구현했습니다. IIC 통�
 
 actuator_controls 토픽을 수신하고, PWM 출력을 혼합하여 기록합니다.
 
-mode_* 명령으로 모듈을 설정합니다. 이 명령으로 어떤 처음 N개의 핀을 드라이버에 할당할지를 정의합니다. By using mode_pwm4 for example, pins 5 and 6 can be used by the camera trigger driver or by a PWM rangefinder driver. Alternatively, pwm_out can be started in one of the capture modes, and then drivers can register a capture callback with ioctl calls.
+mode_* 명령으로 모듈을 설정합니다. 이 명령으로 어떤 처음 N개의 핀을 드라이버에 할당할지를 정의합니다. mode_pwm4를 사용한다면, 카메라 촬영 드라이버 또는 PWM 범위 검색 드라이버에서 핀 5, 6개를 사용할 수 있습니다. 대신 pwm_out은 캡처 모드 중 하나로 시작할 수 있으며, 드라이버는 ioctl을 호출하여 캡처 콜백 함수를 등록할 수 있습니다.
 
 ### 구현
 
@@ -653,11 +653,11 @@ mode_* 명령으로 모듈을 설정합니다. 이 명령으로 어떤 처음 N�
 
 ### 설명
 
-Driver for simulated PWM outputs.
+PWM 출력 가상 재현 드라이버입니다.
 
-Its only function is to take `actuator_control` uORB messages, mix them with any loaded mixer and output the result to the `actuator_output` uORB topic.
+`actuator_control` uORB 메세지를 취하고, 사전에 불러온 믹서로 혼합한 후, `actuator_output` uORB 토픽에 결과를 실어 내보내는 유일한 함수입니다.
 
-It is used in SITL and HITL.
+SITL과 HITL을 활용합니다.
 
 ### 사용법 {#pwm_out_sim_usage}
 
@@ -702,14 +702,14 @@ It is used in SITL and HITL.
 
 ### 설명
 
-This module does the RC input parsing and auto-selecting the method. Supported methods are:
+이 모듈은 RC 입력 을 해석하며, 처리방식을 자동으로 선택합니다. 지원하는 처리 방식은 다음과 같습니다:
 
 - PPM
 - SBUS
 - DSM
 - SUMD
 - ST24
-- TBS Crossfire (CRSF)
+- TBS 크로스파이어 (CRSF)
 
 ### 사용법 {#rc_input_usage}
 
@@ -754,12 +754,12 @@ This module does the RC input parsing and auto-selecting the method. Supported m
 
 ### 설명
 
-This driver communicates over UART with the [Roboclaw motor driver](http://downloads.basicmicro.com/docs/roboclaw_user_manual.pdf). It performs two tasks:
+이 드라이버는 UART로 [Roboclaw 모터 드라이버](http://downloads.basicmicro.com/docs/roboclaw_user_manual.pdf)와 통신합니다. 이 드라이버는 두가지 작업을 수행합니다:
 
-- Control the motors based on the `actuator_controls_0` UOrb topic.
-- Read the wheel encoders and publish the raw data in the `wheel_encoders` UOrb topic
+- `actuator_controls_0` uORB 토픽을 기반으로 모터를 제어합니다.
+- 바퀴 인코더를 읽고 `wheel_encoders` uORB 토픽에 생짜 데이터를 내보냅니다
 
-In order to use this driver, the Roboclaw should be put into Packet Serial mode (see the linked documentation), and your flight controller's UART port should be connected to the Roboclaw as shown in the documentation. For Pixhawk 4, use the `UART & I2C B` port, which corresponds to `/dev/ttyS3`.
+이 드라이버를 사용하려면 Roboclaw를 패킷 직렬 처리 모드로 두어야 하며(연결 문서 참고), 문서에 언급한대로 비행 조종 장치의 UART 포트를 Roboclaw에 연결해야 합니다. For Pixhawk 4, use the `UART & I2C B` port, which corresponds to `/dev/ttyS3`.
 
 ### 구현
 
@@ -798,7 +798,7 @@ $ roboclaw start <device> <baud>
 
 ### 설명
 
-This module is responsible for the safety button. Pressing the safety button 3 times quickly will trigger a GCS pairing request.
+이 모듈은 안전 단추 동작을 담당합니다. 안전 단추를 세번 누르면 GCS 페어링 요청을 신속하게 실행합니다.
 
 ### 사용법 {#safety_button_usage}
 
@@ -821,11 +821,11 @@ UART로 TAP_ESC 하드웨어를 제어하는 모듈입니다. actuator_controls 
 
 ### 구현
 
-Currently the module is implementd as a threaded version only, meaning that it runs in its own thread instead of on the work queue.
+이 모듈은 스레드 버전으로만 구현했습니다. 이는 작업 큐에서 동작하는 대신, 자체 스레드에서 실행한다는 뜻입니다.
 
 ### 예제
 
-The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
+모듈은 보통 다음 명령으로 시작합니다: tap_esc start -d /dev/ttyS2 -n <1-8>
 
 ### 사용법 {#tap_esc_usage}
 
