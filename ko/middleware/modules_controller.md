@@ -170,7 +170,7 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ### 설명
 
-L1 조종 장치로 외계 탐사 차량 위치를 제어합니다.
+L1 조종 장치로 지상 탐사선 위치를 제어합니다.
 
 `actuator_controls_0` 메세지를 초당 250번 규칙적으로 내보냅니다.
 
