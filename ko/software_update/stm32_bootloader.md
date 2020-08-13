@@ -27,15 +27,15 @@ make
 
 > **Warning** 몇몇 보드의 경우 JTAG / SWD 접속을 위해서는 올바른 파워 시퀀스가 매우 중요합니다. 아래 단계를 설명한 것과 같이 정확하게 수행하십시오.
 
-The instructions below are valid for a Blackmagic / Dronecode probe. Other JTAG probes will need different but similar steps. Developers attempting to flash the bootloader should have the required knowledge. If you do not know how to do this you probably should reconsider if you really need to change anything about the bootloader.
+다음 안내는 Blackmagic / Dronecode 프로브를 사용하는 경우에 유효합니다. 다른 JTAG 프로브는 유사하지만 다른 절차가 필요합니다. 부트로더를 플래싱하는 개발자는 반드시 관련된 지식을 숙지하고 있어야 합니다. 이를 어떻게 하는지를 모르는 경우에는 부트로더와 관련된 무언가를 변경하는 것이 정말로 필요한지 다시 한번 고려해보시기 바랍니다.
 
-The sequence is
+절차는 다음과 같습니다.
 
-1. Disconnect the JTAG cable
-2. Connect the USB power cable
-3. Connect the JTAG cable
+1. JTAG 케이블 연결 제거
+2. USB 전원 케이블 연결
+3. JTAG 케이블 연결
 
-### Black Magic / Dronecode Probe
+### Black Magic / Dronecode 프로브
 
 #### Using the right serial port
 
