@@ -1260,7 +1260,7 @@
 </tr>
 <tr id="rover_rover_axial_racing_ax10">
  <td style="vertical-align: top;">Axial Racing AX10</td>
- <td style="vertical-align: top;"><p>유지관리자: John Doe<john@example.com></p><p><code>SYS_AUTOSTART</code> = 50001</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: pass-through of control group 0, channel 0</li><li><b>MAIN2</b>: pass-through of control group 0, channel 1</li><li><b>MAIN3</b>: pass-through of control group 0, channel 2</li><li><b>MAIN4</b>: pass-through of control group 0, channel 3</li><li><b>MAIN5</b>: pass-through of control group 0, channel 4</li><li><b>MAIN6</b>: pass-through of control group 0, channel 5</li><li><b>MAIN7</b>: pass-through of control group 0, channel 6</li><li><b>MAIN8</b>: pass-through of control group 0, channel 7</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: John Doe<john@example.com></p><p><code>SYS_AUTOSTART</code> = 50001</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 제어 그룹 0, 채널 0 입력</li><li><b>MAIN2</b>:  제어 그룹 0, 채널 1 입력</li><li><b>MAIN3</b>:  제어 그룹 0, 채널 2 입력</li><li><b>MAIN4</b>: 제어 그룹 0, 채널 3 입력</li><li><b>MAIN5</b>: 제어 그룹 0, 채널 4 입력</li><li><b>MAIN6</b>: 제어 그룹 0, 채널 5 입력</li><li><b>MAIN7</b>: 제어 그룹 0, 채널 6 입력</li><li><b>MAIN8</b>: pass-through of control group 0, channel 7</li></ul></p></td>
 
 </tr>
 <tr id="rover_rover_traxxas_stampede_vxl_2wd">
@@ -1338,42 +1338,42 @@
 </tr>
 <tr id="vtol_standard_vtol_fun_cub_quad_vtol">
  <td style="vertical-align: top;">펀 컵 쿼드 VTOL</td>
- <td style="vertical-align: top;"><p>Maintainer: Simon Wilks <simon@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13005</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li><li><b>AUX1</b>: 보조익 1</li><li><b>AUX2</b>: 보조익 2</li><li><b>AUX3</b>: 승강타</li><li><b>AUX4</b>: 방향타</li><li><b>AUX5</b>: 추진기</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Simon Wilks <simon@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13005</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li><li><b>AUX1</b>: 보조익 1</li><li><b>AUX2</b>: 보조익 2</li><li><b>AUX3</b>: 승강타</li><li><b>AUX4</b>: 방향타</li><li><b>AUX5</b>: 추진기</li></ul></p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_generic_quad_delta_vtol">
  <td style="vertical-align: top;">Generic quad delta VTOL</td>
- <td style="vertical-align: top;"><p>유지관리자: Simon Wilks <simon@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13006</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li><li><b>AUX1</b>: 우측 보조익</li><li><b>AUX2</b>: Left elevon</li><li><b>AUX3</b>: Motor</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Simon Wilks <simon@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13006</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li><li><b>AUX1</b>: 우측 승강 보조익</li><li><b>AUX2</b>: 좌측 승강 보조익</li><li><b>AUX3</b>: 모터</li></ul></p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_generic_aavvt_v-tail_plane_airframe_with_quad_vtol.">
  <td style="vertical-align: top;">Generic AAVVT v-tail plane airframe with Quad VTOL.</td>
- <td style="vertical-align: top;"><p>Maintainer: Sander Smeets <sander@droneslab.com></p><p><code>SYS_AUTOSTART</code> = 13007</p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Sander Smeets<sander@droneslab.com></p><p><code>SYS_AUTOSTART</code> = 13007</p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_quadranger">
  <td style="vertical-align: top;">QuadRanger</td>
- <td style="vertical-align: top;"><p>Maintainer: Sander Smeets <sander@droneslab.com></p><p><code>SYS_AUTOSTART</code> = 13008</p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Sander Smeets<sander@droneslab.com></p><p><code>SYS_AUTOSTART</code> = 13008</p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_sparkle_tech_ranger_vtol">
  <td style="vertical-align: top;">Sparkle Tech Ranger VTOL</td>
- <td style="vertical-align: top;"><p>Maintainer: Andreas Antener <andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13009</p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Andreas Antener<andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13009</p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_vertical_technologies_deltaquad">
  <td style="vertical-align: top;">Vertical Technologies DeltaQuad</td>
- <td style="vertical-align: top;"><p>Maintainer: Sander Smeets <sander@droneslab.com></p><p><code>SYS_AUTOSTART</code> = 13013</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li><li><b>MAIN5</b>: Right elevon</li><li><b>MAIN6</b>: Left elevon</li><li><b>MAIN7</b>: Pusher motor</li><li><b>MAIN8</b>: Pusher reverse channel</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Sander Smeets<sander@droneslab.com></p><p><code>SYS_AUTOSTART</code> = 13013</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li><li><b>MAIN5</b>: 우측 승강 보조익</li><li><b>MAIN6</b>: 좌측 승강 보조익</li><li><b>MAIN7</b>: 추진 모터</li><li><b>MAIN8</b>: 역추진 채널</li></ul></p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_babyshark_vtol">
  <td style="vertical-align: top;">아기상어 수직 이착륙기</td>
- <td style="vertical-align: top;"><p>유지관리자: Silvan Fuhrer <silvan@auterion.com></p><p><code>SYS_AUTOSTART</code> = 13014</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: Ailerons</li><li><b>MAIN2</b>: A-tail left</li><li><b>MAIN3</b>: Pusher motor</li><li><b>MAIN4</b>: A-tail right</li><li><b>MAIN5</b>: motor 1</li><li><b>MAIN6</b>: motor 2</li><li><b>MAIN7</b>: motor 3</li><li><b>MAIN8</b>: motor 4</li></ul></p></td>
+ <td style="vertical-align: top;"><p>유지관리자: Silvan Fuhrer <silvan@auterion.com></p><p><code>SYS_AUTOSTART</code> = 13014</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 보조익</li><li><b>MAIN2</b>: A형 주익 좌측</li><li><b>MAIN3</b>: 추진 모터</li><li><b>MAIN4</b>: A형 주익 우측</li><li><b>MAIN5</b>: 모터 1</li><li><b>MAIN6</b>: 모터 2</li><li><b>MAIN7</b>: 모터 3</li><li><b>MAIN8</b>: 모터 4</li></ul></p></td>
 
 </tr>
 </table>
 
-### VTOL Duo Tailsitter
+### VTOL 듀오 테일시터
 
 <div>
   <img src="../../assets/airframes/types/VTOLDuoRotorTailSitter.svg" width="29%" style="max-height: 180px;" /> 
@@ -1381,11 +1381,11 @@
   <table style="float: right; width: 70%; font-size:1.5rem;">
     <colgroup><col></colgroup> <tr>
       <th>
-        Common Outputs
+        공통 출력
       </th>
     </tr>
 <tr>
- <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: motor right</li><li><b>MAIN2</b>: motor left</li><li><b>MAIN5</b>: elevon right</li><li><b>MAIN6</b>: elevon left</li></ul></td>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: 우측 모터</li><li><b>MAIN2</b>: 좌측 모터</li><li><b>MAIN5</b>: 우측 승강 보조익</li><li><b>MAIN6</b>: 좌측 승강 보조익</li></ul></td>
 </tr>
   </table>
 </div>
