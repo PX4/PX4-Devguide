@@ -4,7 +4,7 @@
 
 This page describes FlightGear's single-vehicle use in SITL. For information about multi-vehicle use see: [Multi-Vehicle Simulation with FlightGear](../simulation/multi_vehicle_flightgear.md).
 
-**Supported Vehicles:** Autogyro, Plane, Rover.
+**지원 기체:** 오토자이로, 항공기, 탐사선
 
 {% youtube %}https://www.youtube.com/watch?v=iqdcN5Gj4wI{% endyoutube %}
 
@@ -62,11 +62,11 @@ make px4_sitl_nolockstep flightgear_rascal
 
 The supported vehicles and `make` commands are listed below (click on the links to see the vehicle images).
 
-| Vehicle                                                                  | Command                                      |
-| ------------------------------------------------------------------------ | -------------------------------------------- |
-| [Standard Plane](../simulation/flightgear_vehicles.md#standard_plane)    | `make px4_sitl_nolockstep flightgear_rascal` |
-| [Ackerman vehicle (UGV/Rover)](../simulation/flightgear_vehicles.md#ugv) | `make px4_sitl_nolockstep flightgear_tf-r1`  |
-| [Autogyro](../simulation/flightgear_vehicles.md#autogyro)                | `make px4_sitl_nolockstep flightgear_tf-g1`  |
+| Vehicle                                                               | Command                                      |
+| --------------------------------------------------------------------- | -------------------------------------------- |
+| [Standard Plane](../simulation/flightgear_vehicles.md#standard_plane) | `make px4_sitl_nolockstep flightgear_rascal` |
+| [Ackerman 기체 (UGV/탐사선)](../simulation/flightgear_vehicles.md#ugv)     | `make px4_sitl_nolockstep flightgear_tf-r1`  |
+| [Autogyro](../simulation/flightgear_vehicles.md#autogyro)             | `make px4_sitl_nolockstep flightgear_tf-g1`  |
 
 The commands above launch a single vehicle with the full UI. *QGroundControl* should be able to automatically connect to the simulated vehicle.
 
