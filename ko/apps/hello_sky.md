@@ -477,7 +477,7 @@ int px4_simple_app_main(int argc, char *argv[])
 px4_simple_app
 ```
 
-*QGroundControl*을 실행하면, 센서 값을 실시간 플롯으로 확인 가능합니다 ([Analyze > MAVLink Inspector](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_inspector.html)).
+*QGroundControl*을 실행하면, 센서 값을 실시간 플롯으로 확인할 수 있습니다 ([Analyze > MAVLink Inspector](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_inspector.html)).
 
 ## 마무리
 
