@@ -29,34 +29,34 @@ ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을
     
     위 기록은 `<module>`(명령 이름)에서 내보낼 여러 토픽을 나타냅니다. 다른 모듈에서 내보내는 토픽은 조용히 무시합니다. `ignore_others` 값을 `true`로 설정하면 다른 `<module>`에서 내보낸 토픽은 무시합니다.
     
-    재현을 위해 `replay` 모듈에서 앞서 식별한 토픽 목록을 내보내려합니다. So for replaying `ekf2`, the rules file looks like this:
+    재현을 위해 `replay` 모듈에서 앞서 식별한 토픽 목록을 내보내려합니다. 그러니, `EKF2` 동작을 재현하려면 규칙 파일 내용을 다음과 같이 작성합니다:
     
         restrict_topics: sensor_combined, vehicle_gps_position, vehicle_land_detected
         module: replay
         ignore_others: true
         
     
-    This allows that the modules, which usually publish these topics, don't need to be disabled for replay.
+    이 설정을 통해 replay 모듈에서의 토픽 내보내기를 허용하며, replay를 비활성할 필요는 없습니다.
 
-- Optional: setup parameter overrides in the file `build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt`. This file should contain a list of `<param_name> <value>`, like:
+- 추가: `build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt` 파일에서 매개변수를 설정하면 이 설정을 무시합니다. 이 파일에는 다음과 같이 `<param_name> <value>` 목록이 들어있어야합니다:
     
         EKF2_GB_NOISE 0.001
         
     
-    By default, all parameters from the log file are applied. When a parameter changed during recording, it will be changed as well at the right time during replay. A parameter in the `replay_params.txt` will override the value and changes to it from the log file will not be applied.
+    기본적으로 로그 파일의 모든 매개변수를 반영합니다. 매개변수 값이 기록 중 바뀌면, 재현 과정을 진행하는 동안 해당 시간에 마찬가지로 결과가 바뀝니다. `replay_params.txt`의 매개변수는 기존 설정 값을 대체하며, 로그 파일에서 바꾼 값은 반영하지 않습니다.
 
-- Optional: copy `dataman` missions file from the SD card to the build directory. Only necessary if a mission should be replayed.
-- Start the replay:
+- 추가: `dataman` 임무 파일을 SD 카드에서 빌드 디렉터리로 복사하십시오. 임무를 재현할 경우에만 필요합니다.
+- 재현을 시작합니다:
     
     ```sh
     make px4_sitl_default jmavsim
     ```
     
-    This will automatically open the log file, apply the parameters and start to replay. Once done, it will be reported and the process can be exited. Then the newly generated log file can be analyzed, it has `_replayed` appended to its file name.
+    이 명령은 자동으로 로그 파일을 열고 매개변수 값을 반영한 후 재현을 시작합니다. 이 과정이 끝나면, 해당 결과를 보고하고 프로세스를 끝낼 수 있습니다. 그 다음 새로 만든 로그 파일을 분석할 수 있고, 이 파일 이름에 `_replayed` 문자열이 뒤에 붙습니다.
     
-    Note that the above command will show the simulator as well, but depending on what is being replayed, it will not show what's actually going on. It's possible to connect via QGC and e.g. view the changing attitude during replay.
+    참고로 위 명령은 모의시험 환경에서 역시 마찬가지로 나타나지만, 어떤 항목을 재현하느냐에 따라 실제로 동작하는 부분이 어딘지 나오지 않을 수도 있습니다. QGC로 연결한 다음 재현 진행 동안 비뀌는 자세를 관찰하는 등이 가능합니다.
 
-- Finally, unset the environment variable, so that the normal build targets are used again:
+- 마지막으로 환경 변수 설정을 해제하여 일반 빌드 대상을 다시 활용할 수 있게 합니다:
     
     ```sh
     unset replay
