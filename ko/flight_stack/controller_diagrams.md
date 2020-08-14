@@ -14,13 +14,13 @@ Request access from dev team. -->
 * 대략적으로 [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)에서 왔다고 보고 있습니다.
 * 표준 위치-속도 중첩 처리 루프입니다.
 * 모드에 따라 외부(위치) 루프를 건너뛸 수 있습니다 (외부 루프 실행 후 처리하는 멀티플렉서처럼 동작함). 위치 루프는 위치를 유지하거나 축 방향 속도를 부여하지 않을 경우에만 동작합니다.
-* The integrator in the inner loop (velocity) controller includes an anti-reset windup (ARW) using a clamping method.
+* 내부 루프(속도) 제어부의 적분 연산 처리자에는 클램핑 기법을 사용하는 안티리셋 와인드업(ARW) 기능이 들어있습니다.
 
 ## 고정익 위치 조종기
 
-### Total Energy Control System (TECS)
+### 총체적 에너지 관리 시스템 (TECS)
 
-The PX4 implementation of the Total Energy Control System (TECS) enables simultaneous control of true airspeed and altitude of a fixed wing aircraft. The code is implemented as a library which is used in the fixed wing position control module.
+총체적 에너지 관리 시스템(TECS)으로의 PX4 구현은 고정익 선체의 항속과 고도를 동시에 제대로 제어할 수 있게 합니다. The code is implemented as a library which is used in the fixed wing position control module.
 
 ![TECS](../../assets/diagrams/tecs_in_context.svg)
 
