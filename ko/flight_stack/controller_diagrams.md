@@ -12,8 +12,8 @@
 Request access from dev team. -->
 
 * 대략적으로 [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)에서 왔다고 보고 있습니다.
-* This is a standard cascaded position-velocity loop.
-* Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
+* 표준 위치-속도 중첩 처리 루프입니다.
+* 모드에 따라 외부(위치) 루프를 건너뛸 수 있습니다 (외부 루프 실행 후 처리하는 멀티플렉서처럼 동작함). 위치 루프는 위치를 유지하거나 축 방향 속도를 부여하지 않을 경우에만 동작합니다.
 * The integrator in the inner loop (velocity) controller includes an anti-reset windup (ARW) using a clamping method.
 
 ## 고정익 위치 조종기
