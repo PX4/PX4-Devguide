@@ -4,7 +4,7 @@
 
 - [관성 센서](modules_driver_imu.md)
 - [거리 센서](modules_driver_distance_sensor.md)
-- [대기속도 센서](modules_driver_airspeed_sensor.md)
+- [항속 센서](modules_driver_airspeed_sensor.md)
 - [기압](modules_driver_baro.md)
 - [자력계](modules_driver_magnetometer.md)
 
