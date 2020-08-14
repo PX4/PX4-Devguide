@@ -79,7 +79,7 @@
   * [통신](middleware/modules_communication.md)
   * [컨트롤러](middleware/modules_controller.md)
   * [드라이버](middleware/modules_driver.md) 
-    * [대기속도 센서](middleware/modules_driver_airspeed_sensor.md)
+    * [항속 센서](middleware/modules_driver_airspeed_sensor.md)
     * [기압](middleware/modules_driver_baro.md)
     * [거리 센서](middleware/modules_driver_distance_sensor.md)
     * [관성계](middleware/modules_driver_imu.md)
