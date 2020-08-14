@@ -10,9 +10,9 @@
     
     > **Note** [Sapog Firmware](https://github.com/px4/sapog)(오픈소스)를 실행합니다. [Sapog Reference Hardware](https://github.com/PX4/Hardware/tree/master/sapog_reference_hardware)에 기반합니다.
 
-* 대기속도 센서
+* 항속 센서
   
-  * [Thiemar airspeed sensor](https://github.com/thiemar/airspeed)
+  * [Thiemar 항속 센서](https://github.com/thiemar/airspeed)
 * GPS 및 GLONASS용 GNSS 리시버 
   * [Zubax GNSS](https://zubax.com/products/gnss_2)
 * 전력량계 
