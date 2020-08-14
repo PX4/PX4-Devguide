@@ -1,22 +1,22 @@
-# Controller Diagrams
+# 조종 장치 구성도
 
-This section contains diagrams for the main PX4 controllers.
+이 절에서는 PX4 주 조종 장치 구성도를 보여드립니다.
 
-The diagrams use the standard [PX4 notation](../contribute/notation.md) (and each have an annotated legend).
+구성도 상의 명칭은 [PX4 표기 방식](../contribute/notation.md)을 따릅니다(그리고 각 표시 내용에는 범례가 따릅니다).
 
-## Multicopter Position Controller
+## 멀티콥터 위치 조종기
 
 ![MC Position Controller Diagram](../../assets/diagrams/px4_mc_position_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
 
-* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
+* 대략적으로 [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)에서 왔다고 보고 있습니다.
 * This is a standard cascaded position-velocity loop.
 * Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
 * The integrator in the inner loop (velocity) controller includes an anti-reset windup (ARW) using a clamping method.
 
-## Fixed-Wing Position Controller
+## 고정익 위치 조종기
 
 ### Total Energy Control System (TECS)
 
@@ -42,7 +42,7 @@ TECS offers a solution by respresenting the problem in terms of energies rather 
 
 The total energy of an aircraft is the sum of kinetic and potential energy:
 
-$$E_T = \frac{1}{2} m V_T^2 + m g h$$,
+From this, the specific energy rate can be formed as:
 
 Taking the derivative with respect to time leads to the total energy rate:
 
@@ -70,7 +70,7 @@ Elevator control on the other hand is energy conservative, and is thus used for 
 
 $$\dot{B} = \gamma - \frac{\dot{V_T}}{g}$$.
 
-## Fixed-Wing Attitude Controller
+## 고정익 위치 조종기
 
 ![FW Attitude Controller Diagram](../../assets/diagrams/px4_fw_attitude_controller_diagram.png)
 
@@ -87,7 +87,7 @@ The feedforward gain is used to compensate for aerodynamic damping. Basically, t
 
 The roll and pitch controllers have the same structure and the longitudinal and lateral dynamics are assumed to be uncoupled enough to work independently. The yaw controller, however, generates its yaw rate setpoint using the turn coordination constraint in order to minimize lateral acceleration, generated when the aircraft is slipping. The yaw rate controller also helps to counteract adverse yaw effects (https://youtu.be/sNV_SDDxuWk) and to damp the [Dutch roll mode](https://en.wikipedia.org/wiki/Dutch_roll) by providing extra directional damping.
 
-## VTOL Flight Controller
+## 수직 이착륙 항공 조종기
 
 ![VTOL Attitude Controller Diagram](../../assets/diagrams/VTOL_controller_diagram.png)
 
@@ -102,7 +102,7 @@ The outputs of the VTOL attitude block are separate torque and force commands fo
 
 For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/).
 
-### Airspeed Scaling
+### 대기 속도 비례 조정
 
 The objective of this section is to explain with the help of equations why and how the output of the rate PI and feedforward (FF) controllers can be scaled with airspeed to improve the control performance. We will first present the simplified linear dimensional moment equation on the roll axis, then show the influence of airspeed on the direct moment generation and finally, the influence of airspeed during a constant roll.
 
@@ -176,7 +176,7 @@ $$\delta_a = -\frac{b \: C_{\ell_p}}{2 \: C_{\ell_{\delta_a}}} \frac{1}{V_T} \: 
 
 The first fraction gives the value of the ideal feedforward and we can see that the scaling is linear to the TAS. Note that the negative sign is then absorbed by the roll damping derivative which is also negative.
 
-#### Conclusion
+#### 결론
 
 The output of the rate PI controller has to be scaled with the indicated airspeed (IAS) squared and the output of the rate feedforward (FF) has to be scaled with the true airspeed (TAS)
 
