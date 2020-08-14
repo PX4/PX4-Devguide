@@ -24,7 +24,7 @@ Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>] [-w <wo
    - The number after the colon indicates the number of vehicles (of that type) to spawn.
    - Maximum number of vehicles is 255.
 
- - `<target>`: build target, e.g: `px4_sitl_default` (default)
+ - `<target>`: build target, e.g: `px4_sitl_default` (default), `px4_sitl_rtps`
 
 Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.) and can be accessed from a unique remote offboard UDP port (14540, 14541, 14542, etc.).
 
@@ -53,22 +53,23 @@ https://youtu.be/lAjjTFFZebI
 
 ## Multiple Vehicles with Gazebo based on RTPS {#with_rtps}
 
-To simulate multiple vehicles based on RTPS in Gazebo, use `gazebo_sitl_multiple_run.sh` command in the terminal as described above with `-t px4_sitl_rtps` option (from the root of the *Firmware* tree).  For RTPS, the `micrortps_agent` should be run in the different terminal  for each vehicle.
+To simulate multiple vehicles based on RTPS in Gazebo, use the `gazebo_sitl_multiple_run.sh` command in the terminal with the `-t px4_sitl_rtps` option from the root of the *Firmware* tree (as described above).
+
+> **Note** You will need to have installed RTPS and the `micrortps_agent` should be run in the different terminal for each vehicle.
+  For more information see: [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md).
 
 ```
 Tools/gazebo_sitl_multiple_run.sh  -t px4_sitl_rtps [-m <model>] [-n <number_of_vehicles>] [-w <world>] [-s <script>]
 ```
 
-> **Note** In this case, the `px4_sitl_rtps` target should be build . To build and know the concept of RTPS, please refer to [here](https://dev.px4.io/master/en/middleware/micrortps.html). The model "iris_rtps" is only implemented until now.
-
+This will build and run the `iris_rtps` model (the only model that is currently implemented).
 
 
 ### Build and Test
 
-To build an example setup, follow the step below:
+To build an example setup, follow the steps below:
 
 1. Clone the PX4/Firmware code, then build the SITL code:
-
    ```bash
    cd Firmware_clone
    git submodule update --init --recursive
@@ -76,18 +77,20 @@ To build an example setup, follow the step below:
    ```
 
 1. build `micrortps_agent`
-   * If you want to use agent in ROS-independent RTPS, please follow the  [instruction](https://dev.px4.io/master/en/middleware/micrortps.html#agent-in-a-ros-independent-offboard-fast-rtps-interface) to install
-   * If you want to use agent in ROS2, please follow the [instruction](https://dev.px4.io/master/en/middleware/micrortps.html#agent-interfacing-with-a-ros2-middleware) to install
+   * To use agent in ROS-independent RTPS, follow the [installation instructions here](../middleware/micrortps.md#agent-in-a-ros-independent-offboard-fast-rtps-interface)
+   * To use the agent in ROS2, follow the [instructions here](../middleware/micrortps.md#agent-interfacing-with-a-ros2-middleware)
 
-1. Run `gabo_sitl_multiple_run.sh`. For example, if you want to spawn  4 vehicles, run:
+1. Run `gazebo_sitl_multiple_run.sh`.
+   For example, to spawn 4 vehicles, run:
 
    ```bash
    ./Tools/gabo_sitl_multiple_run.sh  -m iris_rtps -t px4_sitl_rtps -n 4
    ```
 
-   >  **Note** Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.) and can receive data from a unique remote UDP port (2019, 2021, 2023, etc.) and transmit data to UDP port (2020, 2022, 2024, etc.).
+   >  **Note** Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.), can receive data from a unique remote UDP port (2019, 2021, 2023, etc.), and transmit data to UDP port (2020, 2022, 2024, etc.).
 
-1. Run `micrortps_agent`. For example, if you want to connect 4 vehicles, run :
+1. Run `micrortps_agent`.
+   For example, to connect 4 vehicles, run:
 
    ```bash
    micrortps_agent -t UDP -r 2020 -s 2019 &
