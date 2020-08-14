@@ -21,13 +21,13 @@ Attitude estimator q.
 
 ## airspeed_estimator
 
-Source: [modules/airspeed_selector](https://github.com/PX4/Firmware/tree/master/src/modules/airspeed_selector)
+소스 코드: [modules/airspeed_selector](https://github.com/PX4/Firmware/tree/master/src/modules/airspeed_selector)
 
 ### Description
 
 This module provides a single airspeed_validated topic, containing an indicated (IAS), equivalent (EAS), true airspeed (TAS) and the information if the estimation currently is invalid and if based sensor readings or on groundspeed minus windspeed. Supporting the input of multiple "raw" airspeed inputs, this module automatically switches to a valid sensor in case of failure detection. For failure detection as well as for the estimation of a scale factor from IAS to EAS, it runs several wind estimators and also publishes those.
 
-### Usage {#airspeed_estimator_usage}
+### 사용법 {#airspeed_estimator_usage}
 
     airspeed_estimator <command> [arguments...]
      Commands:
