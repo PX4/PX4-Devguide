@@ -192,9 +192,9 @@ C API 형식의 간단한 데이터베이스형 영구 저장소를 시스템의
 
 ### 설명
 
-Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
+백그라운드 프로세스는 관성센서의 온도를 지정 값으로 정규화하려는 목적으로 LP 작업 큐에서 주기적으로 실행합니다.
 
-This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
+이 작업은 SENS_EN_THERMAL을 설정하여 부팅할 때 시작 스크립트로 시작하거나 명령행 환경에서 시작할 수 있습니다.
 
 ### 사용법 {#heater_usage}
 
@@ -213,7 +213,7 @@ This task can be started at boot from the startup scripts by setting SENS_EN_THE
 
 ### 설명
 
-Module to detect the freefall and landed state of the vehicle, and publishing the `vehicle_land_detected` topic. Each vehicle type (multirotor, fixedwing, vtol, ...) provides its own algorithm, taking into account various states, such as commanded thrust, arming state and vehicle motion.
+기체의 자유 낙하를 감지하거나 착륙 상태를 감지하는 모듈이며, `vehicle_land_detected` 토픽을 내보냅니다. 여러가지 기체 형식(멀티로터, 고정익, 수직이착륙기,...) 에 대해 고유의 알고리즘을 제공하며, 명령에 의한 추진, 이륙 준비 상태, 기체의 움직임 등 여러 상태를 고려합니다.
 
 ### 구현
 
