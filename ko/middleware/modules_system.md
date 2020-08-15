@@ -106,24 +106,24 @@ commander 모듈에는 모듈 스위칭 기능과 안전 조치 기능을 수반
 
 소스 코드: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
-### Description
+### 설명
 
-Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
+C API 형식의 간단한 데이터베이스형 영구 저장소를 시스템의 나머지 자원을 가용하여 제공합니다. 여러 백엔드를 지원합니다:
 
-- a file (eg. on the SD card)
-- FLASH (if the board supports it)
+- 파일(예: SD 카드) 
+- 플래시(보드에 붙어있을 경우)
 - FRAM
-- RAM (this is obviously not persistent)
+- RAM(분명히 영구 저장장치는 아님)
 
-It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
+임부 경로 지점, 임무 상태, 다각형 비행 제한 구역 같은 여러가지 형식의 구조 데이터를 저장합니다. 각 데이터에 고유 형식을 할당하며, 항목당 저장소상 최대 고정 용량이 있기에, 고속의 임의 접근이 가능합니다.
 
-### Implementation
+### 구현
 
 Reading and writing a single item is always atomic. If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
 
 **DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
 
-### Usage {#dataman_usage}
+### 사용법 {#dataman_usage}
 
     dataman <command> [arguments...]
      Commands:
@@ -147,20 +147,20 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 ## dmesg
 
-Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
+소스 코드: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
 
-### Description
+### 설명
 
 Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
 
-### Examples
+### 예제
 
-Keep printing all messages in the background:
+백그라운드의 모든 메시지 출력 유지:
 
     dmesg -f &
     
 
-### Usage {#dmesg_usage}
+### 사용법 {#dmesg_usage}
 
     dmesg <command> [arguments...]
      Commands:
@@ -169,13 +169,13 @@ Keep printing all messages in the background:
 
 ## esc_battery
 
-Source: [modules/esc_battery](https://github.com/PX4/Firmware/tree/master/src/modules/esc_battery)
+소스 코드: [modules/esc_battery](https://github.com/PX4/Firmware/tree/master/src/modules/esc_battery)
 
-### Description
+### 설명
 
-This implements using information from the ESC status and publish it as battery status.
+이 구현체에서는 ESC 상태 정보를 활용하며, 배터리 상태를 내보냅니다.
 
-### Usage {#esc_battery_usage}
+### 사용법 {#esc_battery_usage}
 
     esc_battery <command> [arguments...]
      Commands:
@@ -188,15 +188,15 @@ This implements using information from the ESC status and publish it as battery 
 
 ## heater
 
-Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
+소스 코드: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
-### Description
+### 설명
 
 Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 
 This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
 
-### Usage {#heater_usage}
+### 사용법 {#heater_usage}
 
     heater <command> [arguments...]
      Commands:
@@ -209,17 +209,17 @@ This task can be started at boot from the startup scripts by setting SENS_EN_THE
 
 ## land_detector
 
-Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
+소스 코드: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
 
-### Description
+### 설명
 
 Module to detect the freefall and landed state of the vehicle, and publishing the `vehicle_land_detected` topic. Each vehicle type (multirotor, fixedwing, vtol, ...) provides its own algorithm, taking into account various states, such as commanded thrust, arming state and vehicle motion.
 
-### Implementation
+### 구현
 
 Every type is implemented in its own class with a common base class. The base class maintains a state (landed, maybe_landed, ground_contact). Each possible state is implemented in the derived classes. A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
 
-#### Multicopter Land Detector
+#### 멀티콥터 착륙 감지
 
 **ground_contact**: thrust setpoint and velocity in z-direction must be below a defined threshold for time GROUND_CONTACT_TRIGGER_TIME_US. When ground_contact is detected, the position controller turns off the thrust setpoint in body x and y.
 
@@ -229,7 +229,7 @@ Every type is implemented in its own class with a common base class. The base cl
 
 The module runs periodically on the HP work queue.
 
-### Usage {#land_detector_usage}
+### 사용법 {#land_detector_usage}
 
     land_detector <command> [arguments...]
      Commands:
@@ -243,15 +243,15 @@ The module runs periodically on the HP work queue.
 
 ## load_mon
 
-Source: [modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modules/load_mon)
+소스 코드: [modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modules/load_mon)
 
-### Description
+### 설명
 
 Background process running periodically on the low priority work queue to calculate the CPU load and RAM usage and publish the `cpuload` topic.
 
 On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output, which will also appear in the log file.
 
-### Usage {#load_mon_usage}
+### 사용법 {#load_mon_usage}
 
     load_mon <command> [arguments...]
      Commands:
@@ -264,7 +264,7 @@ On NuttX it also checks the stack usage of each process and if it falls below 30
 
 ## logger
 
-Source: [modules/logger](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
+소스 코드: [modules/logger](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
 
 ### Description
 
@@ -279,7 +279,7 @@ Both backends can be enabled and used at the same time.
 
 The file backend supports 2 types of log files: full (the normal log) and a mission log. The mission log is a reduced ulog file and can be used for example for geotagging or vehicle management. It can be enabled and configured via SDLOG_MISSION parameter. The normal log is always a superset of the mission log.
 
-### Implementation
+### 구현
 
 The implementation uses two threads:
 
@@ -288,19 +288,19 @@ The implementation uses two threads:
 
 In between there is a write buffer with configurable size (and another fixed-size buffer for the mission log). It should be large to avoid dropouts.
 
-### Examples
+### 예제
 
-Typical usage to start logging immediately:
+보통 로깅을 바로 시작할 때 사용법:
 
     logger start -e -t
     
 
-Or if already running:
+또는 이미 동작중일 경우:
 
     logger on
     
 
-### Usage {#logger_usage}
+### 사용법 {#logger_usage}
 
     logger <command> [arguments...]
      Commands:
@@ -331,13 +331,13 @@ Or if already running:
 
 ## pwm_input
 
-Source: [drivers/pwm_input](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_input)
+소스 코드: [drivers/pwm_input](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_input)
 
-### Description
+### 설명
 
 Measures the PWM input on AUX5 (or MAIN5) via a timer capture ISR and publishes via the uORB 'pwm_input` message.
 
-### Usage {#pwm_input_usage}
+### 사용법 {#pwm_input_usage}
 
     pwm_input <command> [arguments...]
      Commands:
@@ -352,15 +352,15 @@ Measures the PWM input on AUX5 (or MAIN5) via a timer capture ISR and publishes 
 
 ## rc_update
 
-Source: [modules/rc_update](https://github.com/PX4/Firmware/tree/master/src/modules/rc_update)
+소스 코드: [modules/rc_update](https://github.com/PX4/Firmware/tree/master/src/modules/rc_update)
 
-### Description
+### 설명
 
 The rc_update module handles RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
 
-### Implementation
+### 구현
 
-To reduce control latency, the module is scheduled on input_rc publications.
+제어 지연을 줄이려, 모듈은 input_rc 를 내보낼 때 동작하도록 했습니다.
 
 ### Usage {#rc_update_usage}
 
