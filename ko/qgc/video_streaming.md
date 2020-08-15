@@ -185,6 +185,6 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,
 
 모든 부분이 제대로 동작한다면, 아래 화면과 같이 *QGroundControl*의 비행 모드 창 좌측 하단 구석에서 실시간 동영상 전송 화면을 볼 수 있어야합니다.
 
-![QGC displaying video stream](../../assets/videostreaming/qgc-screenshot.png)
+![QGC에서의 실시간 동영상 전송 화면](../../assets/videostreaming/qgc-screenshot.png)
 
 실시간 동영상 전송 화면을 누르면, 좌측 하단 구석에는 인공위성 지도가 뜨고, 전체 배경에 동영상이 뜹니다.
