@@ -24,11 +24,11 @@
 
 ![Power Pins](../../assets/videostreaming/power-pins.jpg)
 
-## Enable WiFi Connection for Odroid C1
+## 오드로이드 C1 WiFi 연결 활성화
 
 In this this tutorial the WiFi module TP-LINK TL-WN722N is used. To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](http://web.archive.org/web/20180617111122/http://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
 
-## Configure as WiFi Access Point
+## WiFi 액세스 포인트로 설정
 
 This sections shows how to set up the Odroid C1 such that it is an access point. The content is taken from the pixhawk.org "access point" tutorial (no longer available) with some small adaptions. Odroid C1으로 촬영한 카메라 동영상을 컴퓨터에서 실행하는 QGroundControl로의 실시간 전송을 활성화하려 한다면 이 절의 내용을 따를 필요가 없습니다. However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion. The TP-LINK TL-WN722N is used as a WiFi module.
 
@@ -44,7 +44,7 @@ Install the necessary software
 sudo apt-get install hostapd udhcpd
 ```
 
-Configure DHCP. Edit the file `/etc/udhcpd.conf`
+DHCP를 설정합니다. `/etc/udhcpd.conf` 파일을 편집하십시오
 
 ```bash
 start 192.168.2.100 # This is the range of IPs that the hotspot will give to client devices.
@@ -57,15 +57,15 @@ opt router 192.168.2.1 # The Onboard Computer's IP address on wlan0 which we wil
 opt lease 864000 # 10 day DHCP lease time in seconds
 ```
 
-All other 'opt' entries should be disabled or configured properly if you know what you are doing.
+기타 모든 'opt' 항목은 비활성화하든지, 설정 방법을 안다면 적절하게 설정해야합니다.
 
-Edit the file `/etc/default/udhcpd` and change the line:
+`/etc/default/udhcpd` 파일을 편집하여 다음 줄을:
 
 ```bash
 DHCPD_ENABLED="no"
 ```
 
-to
+다음처럼 주석 처리하십시오.
 
 ```bash
 #DHCPD_ENABLED="no"
@@ -122,12 +122,12 @@ Configure HostAPD: To create a WPA-secured network, edit the file `/etc/hostapd/
 
 Change `ssid=`, `channel=`, and `wpa_passphrase=` to values of your choice. SSID is the hotspot's name which is broadcast to other devices, channel is what frequency the hotspot will run on, wpa_passphrase is the password for the wireless network. For many more options see the file `/usr/share/doc/hostapd/examples/hostapd.conf.gz`. Look for a channel that is not in use in the area. You can use tools such as *wavemon* for that.
 
-Edit the file `/etc/default/hostapd` and change the line:
+`/etc/default/hostapd` 파일을 편집하여 다음 줄을:
 
     #DAEMON_CONF=""
     
 
-to:
+다음처럼 주석을 해제하고 변수값을 입력하십시오.
 
     DAEMON_CONF="/etc/hostapd/hostapd.conf"
     
@@ -164,21 +164,21 @@ Now edit the file /etc/network/interfaces and add the following line to the bott
 up iptables-restore < /etc/iptables.ipv4.nat
 ```
 
-# Gstreamer Installation
+# 지스트리머 설치
 
-To install gstreamer packages on the computer and on the Odroid C1 and start the stream, follow the instruction given in the [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoReceiver/README.md).
+컴퓨터와 오드로이드 C1에 지스트리머 꾸러미를 설치하고 스트리밍을 시작하려면, [QGroundControl README](https://github.com/mavlink/qgroundcontrol/blob/master/src/VideoReceiver/README.md)에 설명하는 내용을 따르십시오.
 
-If you cannot start the stream on the Odroid with the uvch264s plugin, you can also try to start it with the v4l2src plugin:
+uvch264 플러그인으로 오드로이드에서 스트리밍 전송을 시작할 수 없다면, v4l2src 플러그인도 함께 시작하게 할 수도 있습니다.
 
 ```sh
 gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-h264,width=1920,height=1080,framerate=24/1 ! h264parse ! rtph264pay ! udpsink host=xxx.xxx.xxx.xxx port=5000
 ```
 
-Where `xxx.xxx.xxx.xxx` is the IP address where QGC is running.
+여기사 `xxx.xxx.xxx.xxx` 부분은 QGC를 실행하는 컴퓨터의 IP 주소입니다.
 
-> **Tip** If you get the system error: `Permission denied`, you might need to prepend `sudo` to the command above.
+> **Tip** `Permission denied` 오류가 뜬다면, 위 명령 앞에 `sudo` 를 붙여야합니다.
 
-Alternatively add the current user to the `video` group as shown below (and then logout/login):
+대신 아래와 같이 현재 사용자를 `video` 그룹에 추가할 수 있습니다(그리고 로그아웃한 다음 다시 로그인하십시오).
 
     sh
       sudo usermod -aG video $USER
