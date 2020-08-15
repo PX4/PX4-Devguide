@@ -356,7 +356,7 @@ In between there is a write buffer with configurable size (and another fixed-siz
 
 ### 설명
 
-The rc_update module handles RC channel mapping: read the raw input channels (`input_rc`), then apply the calibration, map the RC channels to the configured channels & mode switches, low-pass filter, and then publish as `rc_channels` and `manual_control_setpoint`.
+rc_update 모듈은 RC 채널 대응을 처리합니다. 원시 입력 채널(`input_rc`)의 데이터를 읽고, 보정 값을 적용, RC 채널을 설정 채널, 모드 전환, 저역대 필터에 대응한 다음 `rc_channels`와 `manual_control_setpoint`로 내보냅니다.
 
 ### 구현
 
@@ -379,16 +379,16 @@ The rc_update module handles RC channel mapping: read the raw input channels (`i
 
 ### 설명
 
-This module is used to replay ULog files.
+이 모듈은 ULog 파일 재현에 사용합니다.
 
-There are 2 environment variables used for configuration: `replay`, which must be set to an ULog file name - it's the log file to be replayed. The second is the mode, specified via `replay_mode`:
+설정에 사용하는 환경 변수 2가지가 있습니다. `replay`에는 ULog 파일 이름을 지정해야 하는데, 이 변수에는 재현할 로그 파일이 들어갑니다. 두번째 변수는 `replay_mode`로 지정하는 모드입니다:
 
-- `replay_mode=ekf2`: specific EKF2 replay mode. It can only be used with the ekf2 module, but allows the replay to run as fast as possible.
-- Generic otherwise: this can be used to replay any module(s), but the replay will be done with the same speed as the log was recorded.
+- `replay_mode=ekf2`: EKF2 재현 모드로 설정합니다. ekf2 모듈하고만 값을 사용할 수 있으나, 가능한 한 빠른 재현이 가능합니다.
+- 기타 일반: 다른 모듈 재현에 활용할 수 있습니다만, 기록한 로그 속도대로만 재현할 수 있습니다.
 
-The module is typically used together with uORB publisher rules, to specify which messages should be replayed. The replay module will just publish all messages that are found in the log. It also applies the parameters from the log.
+모듈은 보통 어떤 메세지를 재현해야 하는지 지정하는 uORB 전송 규칙을 함께 활용할 수 있습니다. 재현 모드는 로그에서 찾은 모든 메세지를 내보내기만 합니다. 또한 로그의 매개변수 값을 적용하기도합니다.
 
-The replay procedure is documented on the [System-wide Replay](https://dev.px4.io/master/en/debug/system_wide_replay.html) page.
+재현 절차는 [시스템 수준 재현](https://dev.px4.io/master/en/debug/system_wide_replay.html)페이지에 있습니다.
 
 ### 사용법 {#replay_usage}
 
@@ -411,7 +411,7 @@ The replay procedure is documented on the [System-wide Replay](https://dev.px4.i
 
 ### 설명
 
-Background process running periodically on the LP work queue to perform housekeeping tasks. It is currently only responsible for tone alarm on RC Loss.
+LP 작업 큐에서 백그라운드 프로세스를 주기적으로 실행하여 자원 관리 작업을 수행합니다. 현재는 RC 손실시 소리 알람만 담당합니다.
 
 The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
 
