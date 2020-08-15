@@ -1,4 +1,4 @@
-# Modules Reference: Imu (Driver)
+# 모듈 참고: 관성 센서(드라이버)
 ## adis16448
 소스 코드: [drivers/imu/adis16448](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/adis16448)
 
