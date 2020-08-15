@@ -270,23 +270,23 @@ NuttX에서는 각 프로세스의 스택 사용량을 늘 확인하고 300 바�
 
 여러 uORB 토픽과 시스템 printf 메세지를 설정할 수 있는 항목을 기록하는 시스템 로거입니다. 시스템 및 비행 성능 분석, 세부 설정, 재현, 지명 오류 분석에 활용할 수 있습니다.
 
-It supports 2 backends:
+백엔드 두가지를 지원합니다:
 
-- Files: write ULog files to the file system (SD card)
-- MAVLink: stream ULog data via MAVLink to a client (the client must support this)
+- 파일: ULog 파일을 시스템에 기록합니다(SD 카드)
+- MAVLink: 이 프로토콜에 ULog 데이터를 실어 클라이언트에 지속적으로 보냅니다(클라이언트에서 MAVLink 프로토콜을 지원해야함).
 
-Both backends can be enabled and used at the same time.
+두 백엔드는 동시에 활성화하고 사용할 수 있습니다.
 
-The file backend supports 2 types of log files: full (the normal log) and a mission log. The mission log is a reduced ulog file and can be used for example for geotagging or vehicle management. It can be enabled and configured via SDLOG_MISSION parameter. The normal log is always a superset of the mission log.
+파일 백엔드는 로그 파일 형식 두가지 전체 (일반 로그) 방식, 그리고 임부 기록 방식을 지원합니다. 임무 로그는 축약형 ULog 파일이며, 지리 정보 표시(geotagging) 및 기체 관리 등에 활용할 수 있습니다. SDLOG_MISSION 매개변수로 로그 기능을 켜고 설정할 수 있습니다. 일반 로그는 항상 임무 로그의 상위 집합입니다.
 
 ### 구현
 
-The implementation uses two threads:
+구현체에서는 스레드 두가지를 활용합니다:
 
-- The main thread, running at a fixed rate (or polling on a topic if started with -p) and checking for data updates
-- The writer thread, writing data to the file
+- 메인 스레드해서는, 고정 주기(또는 -p 로 시작했을 경우 토픽을 폴링 처리)로 실행하며, 데이터 업데이트를 확인합니다.
+- 기록 스레드는 데이터를 파일에 기록합니다
 
-In between there is a write buffer with configurable size (and another fixed-size buffer for the mission log). It should be large to avoid dropouts.
+이 사이에 설정할 수 있는 크기를 지닌 기록 버퍼가 있습니다(그리고 임무 기록용으로 다른 고정 크기 버퍼도 있음). 기록이 버려지는 일을 막기 위해 버퍼는 충분히 커야합니다.
 
 ### 예제
 
