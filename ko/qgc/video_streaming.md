@@ -1,14 +1,14 @@
 # Odroid C1에서 QGroundControl로의 동영상 스트리밍
 
-> **Tip** This article is somewhat out of date. Community members are encouraged to retest the instructions on a more recent Ubuntu version, and to import Odroid setup instructions into the wiki.
+> **TIp** 이 글 일부는 내용이 오래됐습니다. 커뮤니티 구성원들은 최근 우분투 버전에 맞추어 절차를 다시 테스트해주었으면 좋겠고, 위치에 오드로이드 설치 절차 내용도 가져다 두었으면 좋겠습니다.
 
-이 주제에서는 보조 컴퓨터([Odroid C1](https://magazine.odroid.com/wp-content/uploads/odroid-c1-user-manual.pdf))에 붙은 카메라(로지텍 C920)로 동영상을 촬영한 후 (WiFi에 실어) 다른 컴퓨터로 실시간 전송하여 *QGroundControl*에 띄우는 방법을 보여드립니다.
+이 주제에서는 보조 컴퓨터([Odroid C1](https://magazine.odroid.com/wp-content/uploads/odroid-c1-user-manual.pdf))에 붙은 카메라(로지텍 C920)로 동영상을 촬영한 후 (WiFi에 실어) 다른 컴퓨터로 실시간 전송하여 *QGroundControl*에 띄우는 방법을 보여드립니다. 
 
-The hardware setup is shown in the figure below. It consists of the following parts:
+하드웨어 구성은 아래 그림과 같습니다. 다음 부분으로 구성합니다:
 
-* Odroid C1
-* Logitech camera C920
-* WiFi module TP-LINK TL-WN722N
+* 오드로이드 C1
+* 로지텍 카메라 C920
+* WiFi 모듈 TP-LINK TL-WN722N
 
 ![Setup](../../assets/videostreaming/setup_whole.jpg)
 
