@@ -247,9 +247,9 @@ C API 형식의 간단한 데이터베이스형 영구 저장소를 시스템의
 
 ### 설명
 
-Background process running periodically on the low priority work queue to calculate the CPU load and RAM usage and publish the `cpuload` topic.
+작업 큐에서 낮은 우선순위로 주기적으로 실행하는 백그라운드 프로세스는 CPU 부하와 RAM 사용량을 계산하고 `cpuload` 토픽으로 내보냅니다.
 
-On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output, which will also appear in the log file.
+NuttX에서는 각 프로세스의 스택 사용량을 늘 확인하고 300 바이트 이하로 떨어지면, 로그 파일에 나타나는 경고를 출력합니다.
 
 ### 사용법 {#load_mon_usage}
 
@@ -268,7 +268,7 @@ On NuttX it also checks the stack usage of each process and if it falls below 30
 
 ### 설명
 
-System logger which logs a configurable set of uORB topics and system printf messages (`PX4_WARN` and `PX4_ERR`) to ULog files. These can be used for system and flight performance evaluation, tuning, replay and crash analysis.
+여러 uORB 토픽과 시스템 printf 메세지를 설정할 수 있는 항목을 기록하는 시스템 로거입니다. 시스템 및 비행 성능 분석, 세부 설정, 재현, 지명 오류 분석에 활용할 수 있습니다.
 
 It supports 2 backends:
 
@@ -462,7 +462,7 @@ CLI 또는 uORB 토픽 (MAVLink 의 vehicle_command 등) 을 통해 시작할 �
 
 ### 설명
 
-온도 보정 모듈은 시스템의 모든 각가속, 가속, 기압 값에 온도 보정을 적용할 수 있게 합니다. 이 모듈은 센서로 오는 데이터를 확인하고 온도 변화를 감지할 때마다 sensor_thermal_cal 관련 토픽을 업데이트합니다. The module can also be configured to perform the coeffecient calculation routine at next boot, which allows the thermal calibration coeffecients to be calculated while the vehicle undergoes a temperature cycle.
+온도 보정 모듈은 시스템의 모든 각가속, 가속, 기압 값에 온도 보정을 적용할 수 있게 합니다. 이 모듈은 센서로 오는 데이터를 확인하고 온도 변화를 감지할 때마다 sensor_thermal_cal 관련 토픽을 업데이트합니다. 이 모듈은 기체가 온도 변화 사이클을 겪는 동안 계산할 온도 보정 상관 계수를 처리할 수 있도록, 다음 부팅시 상관계수 처리 루틴 수행을 설정할 수 있습니다.
 
 ### 사용법 {#temperature_compensation_usage}
 
@@ -488,11 +488,11 @@ CLI 또는 uORB 토픽 (MAVLink 의 vehicle_command 등) 을 통해 시작할 �
 
 ### 설명
 
-Command-line tool to control & test the (external) tunes.
+(외부) 소리를 제어하고 시험하는 명령행 도구입니다.
 
-Tunes are used to provide audible notification and warnings (e.g. when the system arms, gets position lock, etc.). The tool requires that a driver is running that can handle the tune_control uorb topic.
+소리는 들을 수 있는 알림, 경고를 나타낼 때 사용합니다(예: 시스템 이륙 준비, 위치 고정 획득, 등.). 이 도구는 tune_control uORB 토픽을 제어할 수 있는 실행 중인 드라이버가 필요합니다.
 
-Information about the tune format and predefined system tunes can be found here: https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
+소리 형식과 사전 지정 시스템 알림음은 다음 주소에서 찾을 수 있습니다: https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
 
 ### 예제
 
