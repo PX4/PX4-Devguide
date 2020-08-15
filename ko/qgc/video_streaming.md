@@ -12,15 +12,15 @@
 
 ![Setup](../../assets/videostreaming/setup_whole.jpg)
 
-The instructions were tested on Ubuntu 14.04 but a similar approach should work for later Ubuntu versions.
+절차는 우분투 14.04에서 테스트했지만 최근 우분투 버전에서도 비슷한 방식으로 동작할지 모릅니다.
 
-## Install Linux Environment in Odroid C1
+## 오드로이드 C1에 리눅스 환경 설치
 
-To install the Linux environment (Ubuntu 14.04), follow the instruction given in the [Odroid C1 tutorial](http://web.archive.org/web/20180617111122/http://pixhawk.org/peripherals/onboard_computers/odroid_c1) (wayback machine). The tutorial also shows how to access the Odroid C1 with a UART cable and how to establish Ethernet connection.
+리눅스 환경(우분투 14.04)를 설치하려면, [오드로이드 C1 자습서](http://web.archive.org/web/20180617111122/http://pixhawk.org/peripherals/onboard_computers/odroid_c1)(기록 보관 사이트)에 주어진 절차를 따르십시오. 자습서에는 오드로이드 C1에 UART 케이블로 연결하는 방법과 이더넷 케이블로 연결하는 방법을 알려줍니다.
 
-## Set up Alternative Power Connection
+## 대안 전원 연결 설정
 
-The Odroid C1 can be powered via the 5V DC jack. If the Odroid is mounted on a drone, it is recommended to solder two pins next to the 5V DC jack by applying the through-hole soldering [method](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering) as shown in the figure below. The power is delivered by connecting the DC voltage source (5 V) via a jumper cable (red in the image above) with the Odroid C1 and connect the ground of the circuit with a jumper cable (black in the image above) with a ground pin of the Odroid C1 in the example setup.
+오드로이드 C1에는 5V 직류 전원 커넥터로 전원을 공급합니다. 오드로이드를 드론에 연결할 경우 아래 그림과 같이 홀을 관통하는 [방식](https://learn.sparkfun.com/tutorials/how-to-solder---through-hole-soldering)으로 5V 직류 연결 커넥터 옆 핀 두개의 납땜을 권장합니다. 전원은 예제 설정과 같이 점퍼 케이블(그림 위쪽의 적색 케이블)을 직류 전압 공급원(5V)과 오드로이드 C1에 연결하고, 점퍼 케이블(그림 위쪽의 흑색)을 회로의 접지부와 오드로이드 C1의 접지 핀을 연결하여 끌어옵니다.
 
 ![Power Pins](../../assets/videostreaming/power-pins.jpg)
 
