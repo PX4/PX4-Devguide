@@ -413,7 +413,7 @@ rc_update 모듈은 RC 채널 대응을 처리합니다. 원시 입력 채널(`i
 
 LP 작업 큐에서 백그라운드 프로세스를 주기적으로 실행하여 자원 관리 작업을 수행합니다. 현재는 RC 손실시 소리 알람만 담당합니다.
 
-The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
+CLI 또는 uORB 토픽 (MAVLink 의 vehicle_command 등) 을 통해 시작할 수 있습니다.
 
 ### 사용법 {#send_event_usage}
 
@@ -432,13 +432,13 @@ The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, e
 
 ### 설명
 
-The sensors module is central to the whole system. It takes low-level output from drivers, turns it into a more usable form, and publishes it for the rest of the system.
+센서 모듈은 전체 시스템의 중심입니다. 드라이버의 저수준 출력, 사용 가능한 구성 형태로의 전환을 취하며, 시스템 나머지 동작 부분을 위해 데이터를 내보냅니다.
 
-The provided functionality includes:
+제공 기능은 다음과 같습니다:
 
-- Read the output from the sensor drivers (`sensor_gyro`, etc.). If there are multiple of the same type, do voting and failover handling. Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the topics is `sensor_combined`, used by many parts of the system.
-- Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
-- Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
+- 센서 드라이버(`sensor_gyro` 등)의 출력을 읽습니다. 다중 동일 형식 출력이 있을 경우, 출력 데이터 중 하나를 뽑아 안전 조치를 수행합니다. 그 후 보드 회전과 온도 보정 값(기능을 켰을 경우)을 적용합니다. 마지막으로 데이터를 내보냅니다. 내보내는 여러 토픽 중 하나는 시스템의 여러 부분에서 활용하는 `sensor_combined` 입니다.
+- 매개변수 값이 바뀌었거나 비행체 가동 시작시, 센서 드라이버에서 최신 보정 매개변수 값(계수와 오프셋)을 받았는지 확인합니다. 센서 드라이버는 매개변수 값 업데이트시 ioctl 인터페이스를 활용합니다. 이 동작을 제대로 수행하기 위해 센서 드라이버는 반드시 `센서`를 시작할 때 먼저 동작해야 합니다.
+- 비행정 센서 값 일관성을 우선 확인하고 `sensor_preflight` 토픽으로 내보냅니다.
 
 ### 구현
 
@@ -462,7 +462,7 @@ The provided functionality includes:
 
 ### 설명
 
-The temperature compensation module allows all of the gyro(s), accel(s), and baro(s) in the system to be temperature compensated. The module monitors the data coming from the sensors and updates the associated sensor_thermal_cal topic whenever a change in temperature is detected. The module can also be configured to perform the coeffecient calculation routine at next boot, which allows the thermal calibration coeffecients to be calculated while the vehicle undergoes a temperature cycle.
+온도 보정 모듈은 시스템의 모든 각가속, 가속, 기압 값에 온도 보정을 적용할 수 있게 합니다. 이 모듈은 센서로 오는 데이터를 확인하고 온도 변화를 감지할 때마다 sensor_thermal_cal 관련 토픽을 업데이트합니다. The module can also be configured to perform the coeffecient calculation routine at next boot, which allows the thermal calibration coeffecients to be calculated while the vehicle undergoes a temperature cycle.
 
 ### 사용법 {#temperature_compensation_usage}
 
