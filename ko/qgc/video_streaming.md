@@ -26,19 +26,19 @@
 
 ## 오드로이드 C1 WiFi 연결 활성화
 
-이 자습서에서는 TP-LINK TL-WN722N WiFi 모듈을 사용합니다. To enable WiFi connection for the Odroid C1, follow the steps described in the [Odroid C1 tutorial](http://web.archive.org/web/20180617111122/http://pixhawk.org/peripherals/onboard_computers/odroid_c1) in the section Establishing wifi connection with antenna.
+이 자습서에서는 TP-LINK TL-WN722N WiFi 모듈을 사용합니다. 오드로이드에서 WiFi 연결을 사용하려면, [오드로이드 C1 자습서](http://web.archive.org/web/20180617111122/http://pixhawk.org/peripherals/onboard_computers/odroid_c1)의 안테나로 WiFi 연결하기 절 단계를 따르십시오.
 
-## WiFi 액세스 포인트로 설정
+## WiFi 액세스 포인트 구성
 
-This sections shows how to set up the Odroid C1 such that it is an access point. The content is taken from the pixhawk.org "access point" tutorial (no longer available) with some small adaptions. Odroid C1으로 촬영한 카메라 동영상을 컴퓨터에서 실행하는 QGroundControl로의 실시간 전송을 활성화하려 한다면 이 절의 내용을 따를 필요가 없습니다. However, it is shown here because setting up the Odroid C1 as an access point allows to use the system in a stand-alone fashion. The TP-LINK TL-WN722N is used as a WiFi module.
+이 절에서는 오드로이드 C1을 액세스 포인트로 구성하는 방법을 알려드리겠습니다. 이 내용은 pixhawk.org의 "액세스 포인트" 구축 자습서(더이상 내용이 없음)의 일부 적용 예에서 가져왔습니다. Odroid C1으로 촬영한 카메라 동영상을 컴퓨터에서 실행하는 QGroundControl로의 실시간 전송을 활성화하려 한다면 이 절의 내용을 따를 필요가 없습니다. 그러나, 오드로이드 C1를 자체 동작 모드 시스템으로 사용할 수 있는 액세스 포인트로 구성할 것이기에 이 내용을 보여드립니다. TP-LINK TL-WN722N을 WiFi 모듈로 활용합니다.
 
-In the following steps it is assumed that the Odroid C1 assigns the name wlan0 to your WiFi module. Change all occurrences of wlan0 to the appropriate interface if different (e.g. wlan1).
+다음 단계에서는 오드로이드 C1에서 WiFi 모듈 이름을 wlan0(으)로 지정했음을 가정합니다. wlan0이(가) 나오는 모든 부분 대신 인터페이스 이름이 차이가 있는 경우 적절한 이름(예: wlan1)으로 바꾸십시오. 
 
-### Onboard Computer as Access Point
+### 액세스 포인트 내장 컴퓨터
 
-For a more in depth explanation, you can look at [RPI-Wireless-Hotspot](http://elinux.org/RPI-Wireless-Hotspot)
+좀 더 자세한 내용은 [RPI-Wireless-Hotspot](http://elinux.org/RPI-Wireless-Hotspot) 문서를 살펴볼 수 있습니다
 
-Install the necessary software
+필요한 프로그램을 설치하십시오
 
 ```bash
 sudo apt-get install hostapd udhcpd
@@ -71,7 +71,7 @@ DHCPD_ENABLED="no"
 #DHCPD_ENABLED="no"
 ```
 
-You will need to give the Onboard Computer a static IP address. Edit the file `/etc/network/interfaces` and replace the line `iface wlan0 inet dhcp` (or `iface wlan0 inet manual`) to:
+자체 컴퓨터에 고정 IP 주소를 할당해야합니다. `/etc/network/interfaces` 파일을 편집하여 `iface wlan0 inet dhcp` 줄 (또는 `iface wlan0 inet manual`줄)을 다음과 같이 바꾸십시오:
 
 ```sh
 auto wlan0
