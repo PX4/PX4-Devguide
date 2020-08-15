@@ -221,13 +221,13 @@ C API 형식의 간단한 데이터베이스형 영구 저장소를 시스템의
 
 #### 멀티콥터 착륙 감지
 
-**ground_contact**: thrust setpoint and velocity in z-direction must be below a defined threshold for time GROUND_CONTACT_TRIGGER_TIME_US. When ground_contact is detected, the position controller turns off the thrust setpoint in body x and y.
+**ground_contact**: 추력 설정값과 z 방향 속도는 GROUND_CONTACT_TRIGGER_TIME_US 시간동안 설정 임계값 미만이어야 합니다. ground_contact 를 감지하면, 위치 제어 장치가 동체의 x 및 y 축 방향의 추력 설정 값을 끕니다.
 
-**maybe_landed**: it requires ground_contact together with a tighter thrust setpoint threshold and no velocity in the horizontal direction. The trigger time is defined by MAYBE_LAND_TRIGGER_TIME. When maybe_landed is detected, the position controller sets the thrust setpoint to zero.
+**maybe_landed**: 낮은 추력 한계 값과 수평 방향의 0 속도 값을 지닌 ground_contact가 필요합니다. horizontal direction. 계기 시간은 MAYBE_LAND_TRIGGER_TIM으로 정의합니다. maybe_landed를 감지하면 위치 조정 장치가 추력 설정 값을 0으로 잡습니다.
 
-**landed**: it requires maybe_landed to be true for time LAND_DETECTOR_TRIGGER_TIME_US.
+**landed**: 시간 값을 LAND_DETECTOR_TRIGGER_TIME_US로 설정한 maybe_landed가 필요합니다.
 
-The module runs periodically on the HP work queue.
+모듈은 HP 작업 큐에서 주기적으로 실행합니다.
 
 ### 사용법 {#land_detector_usage}
 
@@ -266,7 +266,7 @@ On NuttX it also checks the stack usage of each process and if it falls below 30
 
 소스 코드: [modules/logger](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
 
-### Description
+### 설명
 
 System logger which logs a configurable set of uORB topics and system printf messages (`PX4_WARN` and `PX4_ERR`) to ULog files. These can be used for system and flight performance evaluation, tuning, replay and crash analysis.
 
@@ -335,7 +335,7 @@ In between there is a write buffer with configurable size (and another fixed-siz
 
 ### 설명
 
-Measures the PWM input on AUX5 (or MAIN5) via a timer capture ISR and publishes via the uORB 'pwm_input` message.
+타이머 캡처 ISR을 통해 AUX5 (또는 MAIN5)의 PWM 입력을 측정하고 uORB 'pwm_input' 메세지로 내보냅니다.
 
 ### 사용법 {#pwm_input_usage}
 
