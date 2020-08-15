@@ -1,8 +1,8 @@
 # Modules Reference: Imu (Driver)
 ## adis16448
-Source: [drivers/imu/adis16448](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/adis16448)
+소스 코드: [drivers/imu/adis16448](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/adis16448)
 
-### Usage {#adis16448_usage}
+### 사용법 {#adis16448_usage}
 ```
 adis16448 <command> [arguments...]
  Commands:
@@ -23,9 +23,9 @@ adis16448 <command> [arguments...]
    status        print status info
 ```
 ## adis16477
-Source: [drivers/imu/adis16477](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/adis16477)
+소스 코드: [drivers/imu/adis16477](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/adis16477)
 
-### Usage {#adis16477_usage}
+### 사용법 {#adis16477_usage}
 ```
 adis16477 <command> [arguments...]
  Commands:
@@ -46,9 +46,9 @@ adis16477 <command> [arguments...]
    status        print status info
 ```
 ## adis16497
-Source: [drivers/imu/adis16497](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/adis16497)
+소스 코드: [drivers/imu/adis16497](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/adis16497)
 
-### Usage {#adis16497_usage}
+### 사용법 {#adis16497_usage}
 ```
 adis16497 <command> [arguments...]
  Commands:
@@ -69,9 +69,9 @@ adis16497 <command> [arguments...]
    status        print status info
 ```
 ## bma180
-Source: [drivers/imu/bma180](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bma180)
+소스 코드: [drivers/imu/bma180](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bma180)
 
-### Usage {#bma180_usage}
+### 사용법 {#bma180_usage}
 ```
 bma180 <command> [arguments...]
  Commands:
@@ -92,9 +92,9 @@ bma180 <command> [arguments...]
    status        print status info
 ```
 ## bmi055
-Source: [drivers/imu/bosch/bmi055](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bosch/bmi055)
+소스 코드: [drivers/imu/bosch/bmi055](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bosch/bmi055)
 
-### Usage {#bmi055_usage}
+### 사용법 {#bmi055_usage}
 ```
 bmi055 <command> [arguments...]
  Commands:
@@ -117,9 +117,9 @@ bmi055 <command> [arguments...]
    status        print status info
 ```
 ## bmi088
-Source: [drivers/imu/bosch/bmi088](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bosch/bmi088)
+소스 코드: [drivers/imu/bosch/bmi088](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bosch/bmi088)
 
-### Usage {#bmi088_usage}
+### 사용법 {#bmi088_usage}
 ```
 bmi088 <command> [arguments...]
  Commands:
@@ -142,9 +142,9 @@ bmi088 <command> [arguments...]
    status        print status info
 ```
 ## bmi160
-Source: [drivers/imu/bmi160](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bmi160)
+소스 코드: [drivers/imu/bmi160](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/bmi160)
 
-### Usage {#bmi160_usage}
+### 사용법 {#bmi160_usage}
 ```
 bmi160 <command> [arguments...]
  Commands:
@@ -165,9 +165,9 @@ bmi160 <command> [arguments...]
    status        print status info
 ```
 ## fxas21002c
-Source: [drivers/imu/fxas21002c](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/fxas21002c)
+소스 코드: [drivers/imu/fxas21002c](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/fxas21002c)
 
-### Usage {#fxas21002c_usage}
+### 사용법 {#fxas21002c_usage}
 ```
 fxas21002c <command> [arguments...]
  Commands:
@@ -196,9 +196,9 @@ fxas21002c <command> [arguments...]
    status        print status info
 ```
 ## fxos8701cq
-Source: [drivers/imu/fxos8701cq](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/fxos8701cq)
+소스 코드: [drivers/imu/fxos8701cq](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/fxos8701cq)
 
-### Usage {#fxos8701cq_usage}
+### 사용법 {#fxos8701cq_usage}
 ```
 fxos8701cq <command> [arguments...]
  Commands:
@@ -227,9 +227,9 @@ fxos8701cq <command> [arguments...]
    status        print status info
 ```
 ## icm20602
-Source: [drivers/imu/invensense/icm20602](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20602)
+소스 코드: [drivers/imu/invensense/icm20602](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20602)
 
-### Usage {#icm20602_usage}
+### 사용법 {#icm20602_usage}
 ```
 icm20602 <command> [arguments...]
  Commands:
@@ -250,9 +250,9 @@ icm20602 <command> [arguments...]
    status        print status info
 ```
 ## icm20608g
-Source: [drivers/imu/invensense/icm20608g](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20608g)
+소스 코드: [drivers/imu/invensense/icm20608g](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20608g)
 
-### Usage {#icm20608g_usage}
+### 사용법 {#icm20608g_usage}
 ```
 icm20608g <command> [arguments...]
  Commands:
@@ -273,9 +273,9 @@ icm20608g <command> [arguments...]
    status        print status info
 ```
 ## icm20649
-Source: [drivers/imu/invensense/icm20649](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20649)
+소스 코드: [drivers/imu/invensense/icm20649](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20649)
 
-### Usage {#icm20649_usage}
+### 사용법 {#icm20649_usage}
 ```
 icm20649 <command> [arguments...]
  Commands:
@@ -296,9 +296,9 @@ icm20649 <command> [arguments...]
    status        print status info
 ```
 ## icm20689
-Source: [drivers/imu/invensense/icm20689](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20689)
+소스 코드: [drivers/imu/invensense/icm20689](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20689)
 
-### Usage {#icm20689_usage}
+### 사용법 {#icm20689_usage}
 ```
 icm20689 <command> [arguments...]
  Commands:
@@ -319,9 +319,9 @@ icm20689 <command> [arguments...]
    status        print status info
 ```
 ## icm20948
-Source: [drivers/imu/invensense/icm20948](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20948)
+소스 코드: [drivers/imu/invensense/icm20948](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm20948)
 
-### Usage {#icm20948_usage}
+### 사용법 {#icm20948_usage}
 ```
 icm20948 <command> [arguments...]
  Commands:
@@ -343,9 +343,9 @@ icm20948 <command> [arguments...]
    status        print status info
 ```
 ## icm40609d
-Source: [drivers/imu/invensense/icm40609d](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm40609d)
+소스 코드: [drivers/imu/invensense/icm40609d](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm40609d)
 
-### Usage {#icm40609d_usage}
+### 사용법 {#icm40609d_usage}
 ```
 icm40609d <command> [arguments...]
  Commands:
@@ -366,9 +366,9 @@ icm40609d <command> [arguments...]
    status        print status info
 ```
 ## icm42688p
-Source: [drivers/imu/invensense/icm42688p](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm42688p)
+소스 코드: [drivers/imu/invensense/icm42688p](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/icm42688p)
 
-### Usage {#icm42688p_usage}
+### 사용법 {#icm42688p_usage}
 ```
 icm42688p <command> [arguments...]
  Commands:
@@ -389,9 +389,9 @@ icm42688p <command> [arguments...]
    status        print status info
 ```
 ## ism330dlc
-Source: [drivers/imu/st/ism330dlc](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/st/ism330dlc)
+소스 코드: [drivers/imu/st/ism330dlc](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/st/ism330dlc)
 
-### Usage {#ism330dlc_usage}
+### 사용법 {#ism330dlc_usage}
 ```
 ism330dlc <command> [arguments...]
  Commands:
@@ -414,9 +414,9 @@ ism330dlc <command> [arguments...]
    status        print status info
 ```
 ## l3gd20
-Source: [drivers/imu/l3gd20](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/l3gd20)
+소스 코드: [drivers/imu/l3gd20](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/l3gd20)
 
-### Usage {#l3gd20_usage}
+### 사용법 {#l3gd20_usage}
 ```
 l3gd20 <command> [arguments...]
  Commands:
@@ -441,9 +441,9 @@ l3gd20 <command> [arguments...]
    status        print status info
 ```
 ## lsm303d
-Source: [drivers/imu/lsm303d](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/lsm303d)
+소스 코드: [drivers/imu/lsm303d](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/lsm303d)
 
-### Usage {#lsm303d_usage}
+### 사용법 {#lsm303d_usage}
 ```
 lsm303d <command> [arguments...]
  Commands:
@@ -464,9 +464,9 @@ lsm303d <command> [arguments...]
    status        print status info
 ```
 ## lsm9ds1
-Source: [drivers/imu/st/lsm9ds1](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/st/lsm9ds1)
+소스 코드: [drivers/imu/st/lsm9ds1](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/st/lsm9ds1)
 
-### Usage {#lsm9ds1_usage}
+### 사용법 {#lsm9ds1_usage}
 ```
 lsm9ds1 <command> [arguments...]
  Commands:
@@ -487,9 +487,9 @@ lsm9ds1 <command> [arguments...]
    status        print status info
 ```
 ## mpu6000
-Source: [drivers/imu/invensense/mpu6000](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/mpu6000)
+소스 코드: [drivers/imu/invensense/mpu6000](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/mpu6000)
 
-### Usage {#mpu6000_usage}
+### 사용법 {#mpu6000_usage}
 ```
 mpu6000 <command> [arguments...]
  Commands:
@@ -510,9 +510,9 @@ mpu6000 <command> [arguments...]
    status        print status info
 ```
 ## mpu9250
-Source: [drivers/imu/mpu9250](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/mpu9250)
+소스 코드: [drivers/imu/mpu9250](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/mpu9250)
 
-### Usage {#mpu9250_usage}
+### 사용법 {#mpu9250_usage}
 ```
 mpu9250 <command> [arguments...]
  Commands:
@@ -535,9 +535,9 @@ mpu9250 <command> [arguments...]
    status        print status info
 ```
 ## mpu9520
-Source: [drivers/imu/invensense/mpu6500](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/mpu6500)
+소스 코드: [drivers/imu/invensense/mpu6500](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/mpu6500)
 
-### Usage {#mpu9520_usage}
+### 사용법 {#mpu9520_usage}
 ```
 mpu9520 <command> [arguments...]
  Commands:
