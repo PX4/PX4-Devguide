@@ -217,7 +217,7 @@ C API 형식의 간단한 데이터베이스형 영구 저장소를 시스템의
 
 ### 구현
 
-Every type is implemented in its own class with a common base class. The base class maintains a state (landed, maybe_landed, ground_contact). Each possible state is implemented in the derived classes. A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
+모든 객체 형식은 공통 기반 클래스를 상속받아 자체 클래스로 구현했습니다. 기반 클래스에서는 상태를 관리(landed, maybe_landed, ground_contact)합니다. 가능한 각각의 상태는 상속 클래스에서 구현합니다. 이력 현상(hysteresis)과 각 초기 상태의 고정 우선순위는 실제 land_detector 상태로 결정합니다.
 
 #### 멀티콥터 착륙 감지
 
