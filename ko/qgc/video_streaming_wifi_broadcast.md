@@ -79,15 +79,15 @@ To setup the (Linux) development computer:
 
 2. Configure WFB for ground station as described in [Setup HOWTO](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO).
 
-## Tuning Radio Settings
+## 미세 전파 조정
 
 With default settings WFB use radio channel 165 (5825 MHz), width 20MHz, MCS #1 (QPSK 1/2) with long GI. This provides ~7 mbit/s of **effective** speed (i.e. usable speed after FEC and packet encoding) for **both directions** in sum, because WiFi is half-duplex. So it is suitable for video down stream 720p@49fps (4 mbit/s) + two full-speed telemetry streams (uplink and downlink). If you need a higher bandwidth you can use other MCS index (for example 2 or greater) and/or 40MHz channel.
 
-## Antennas and Diversity
+## 안테나와 다양성
 
 For simple cases you can use omnidirectional antennas with linear (that bundled with wifi cards) or circular leaf ([circularly polarized Coverleaf Antenna](http://www.antenna-theory.com/antennas/cloverleaf.php)) polarization. If you want to setup long distance link you can use multiple wifi adapters with directional and omnidirectional antennas. TX/RX diversity for multiple adapters supported out of box (just add multiple NICs to `/etc/default/wifibroadcast`). If your WiFi adapter has two antennas (like Alfa AWU036ACH) TX diversity is implemented via [STBC](https://en.wikipedia.org/wiki/Space%E2%80%93time_block_code). Cards with 4 ports (like Alfa AWUS1900) are currently not supported for TX diversity (only RX is supported).
 
-## FAQ
+## 자주 묻는 질문
 
 **Q:** *What is a difference from original wifibroadcast?*
 
@@ -103,7 +103,7 @@ The new version was rewritten to use UDP as data source and pack one source UDP 
 
 **A:** Wifibrodcast use FEC (forward error correction) which can recover 4 lost packets from 12 packets block with default settings. You can tune it (both TX and RX simultaneously!) to fit your needs.
 
-> **Caution** Don't use band that the RC TX operates on! Or setup RTL properly to avoid model loss.
+> **Caution** RC TX 동작시 해당 대역을 사용하지 마십시오! 만일 그대로 사용하려면 모델 손실을 막기 위해 RTL 속성을 설정하십시오.
 
 **Q:** *Is only Raspberry PI supported?*
 
