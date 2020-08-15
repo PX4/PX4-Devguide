@@ -1,12 +1,12 @@
-# Modules Reference: System
+# 모듈 참고: 시스템
 
 ## battery_simulator
 
-Source: [modules/simulator/battery_simulator](https://github.com/PX4/Firmware/tree/master/src/modules/simulator/battery_simulator)
+소스 코드: [modules/simulator/battery_simulator](https://github.com/PX4/Firmware/tree/master/src/modules/simulator/battery_simulator)
 
-### Description
+### 설명
 
-### Usage {#battery_simulator_usage}
+### 사용법 {#battery_simulator_usage}
 
     battery_simulator <command> [arguments...]
      Commands:
@@ -19,19 +19,19 @@ Source: [modules/simulator/battery_simulator](https://github.com/PX4/Firmware/tr
 
 ## battery_status
 
-Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
+소스 코드: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
 
-### Description
+### 설명
 
-The provided functionality includes:
+제공 기능은 다음과 같습니다:
 
-- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
+- (ioctl 인터페이스로) ADC 드라이버의 출력을 읽고 `battery_status`로 내보냅니다.
 
-### Implementation
+### 구현
 
-It runs in its own thread and polls on the currently selected gyro topic.
+현재 선택한 자이로 토픽에 대해 스레드와 폴링을 기반으로 실행합니다.
 
-### Usage {#battery_status_usage}
+### 사용법 {#battery_status_usage}
 
     battery_status <command> [arguments...]
      Commands:
@@ -44,11 +44,11 @@ It runs in its own thread and polls on the currently selected gyro topic.
 
 ## camera_feedback
 
-Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/src/modules/camera_feedback)
+소스 코드: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/src/modules/camera_feedback)
 
-### Description
+### 설명
 
-### Usage {#camera_feedback_usage}
+### 사용법 {#camera_feedback_usage}
 
     camera_feedback <command> [arguments...]
      Commands:
@@ -61,13 +61,13 @@ Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/sr
 
 ## commander
 
-Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
+소스 코드: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
 
-### Description
+### 설명
 
-The commander module contains the state machine for mode switching and failsafe behavior.
+commander 모듈에는 모듈 스위칭 기능과 안전 조치 기능을 수반한 상태 머신이 들어있습니다.
 
-### Usage {#commander_usage}
+### 사용법 {#commander_usage}
 
     commander <command> [arguments...]
      Commands:
@@ -104,7 +104,7 @@ The commander module contains the state machine for mode switching and failsafe 
 
 ## dataman
 
-Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
+소스 코드: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
 ### Description
 
