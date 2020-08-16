@@ -43,8 +43,8 @@ RX(지상 통제국) 측에서는:
 
 Alpha AWUS036ACH는 고출력 WiFi 카드로, 전송하는 동안 최대 전류를 소모합니다. USB 전원을 사용하면 대부분의 ARM 보드를 다시 시작하는 현상이 나타납니다. 따라서 다음 두가지 방법중 하나로 5V 배터리 전력 소모 회로(BEC)에 바로 연결해야합니다:
 
-1. Make a custom USB cable ([cut `+5V` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
-2. Cut a `+5V` wire on PCB near USB port and wire it to BEC (don't do this if doubt - use custom cable instead). Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29) when using several ground wires.
+1. 자체 USB 케이블 제작([USB 플러그에서 `+5V`를 뽑아 BEC에 연결](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables))
+2. USB 포트 인근의 PCB 기판에서 <1>+5V</1> 선을 뽑아 BEC에 연결(동작 여부가 의심스럽다면 진행하지 마십시오 - 대신 자체 제작 케이블을 쓰십시오). 또한 (ESC 같은) 470uF 낮은 등가저항 축전기를 전원과 접지부를 브릿징하여 전압 스파이크 현상을 방지하는걸 추천합니다. 여러 접지선을 사용하면 [접지 루프](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29)가 나타날 수 있음을 명심하십시오.
 
 ## 소프트웨어 설정
 
@@ -81,7 +81,7 @@ Alpha AWUS036ACH는 고출력 WiFi 카드로, 전송하는 동안 최대 전류�
 
 ## 미세 전파 조정
 
-With default settings WFB use radio channel 165 (5825 MHz), width 20MHz, MCS #1 (QPSK 1/2) with long GI. This provides ~7 mbit/s of **effective** speed (i.e. usable speed after FEC and packet encoding) for **both directions** in sum, because WiFi is half-duplex. So it is suitable for video down stream 720p@49fps (4 mbit/s) + two full-speed telemetry streams (uplink and downlink). If you need a higher bandwidth you can use other MCS index (for example 2 or greater) and/or 40MHz channel.
+기본 설정을 한 WFB는 20MHz의 폭을 지닌 165번 무선 채널(5825MHz), MCS #1 (QPSK 1/2)을 사용하며, 채널간에는 긴 폭의 보호 대역(Guard Interval)이 있습니다. This provides ~7 mbit/s of **effective** speed (i.e. usable speed after FEC and packet encoding) for **both directions** in sum, because WiFi is half-duplex. So it is suitable for video down stream 720p@49fps (4 mbit/s) + two full-speed telemetry streams (uplink and downlink). If you need a higher bandwidth you can use other MCS index (for example 2 or greater) and/or 40MHz channel.
 
 ## 안테나와 다양성
 
