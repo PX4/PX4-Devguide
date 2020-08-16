@@ -89,9 +89,9 @@ For simple cases you can use omnidirectional antennas with linear (that bundled 
 
 ## 자주 묻는 질문
 
-**Q:** *What is a difference from original wifibroadcast?*
+**문:** *원래 wifibroadcast와의 차이는 뭔가요?*
 
-**A:** The original version of wifibroadcast used a byte-stream as input and split it to packets of fixed size (1024 by default). With this scheme if radio packets were lost (and this was not corrected by FEC) the result was random/unexpected holes in the stream. This is especially bad if the data protocol is not resistant to such random erasures.
+**답:** wifibroadcast 원래 버전은 바이트스트림을 입력으로 받고 지정 길이(기본 1024 바이트) 패킷으로 쪼갭니다. 이 방식대로라면 무선 통신 패킷을 잃으면(그리고 FEC로 문제를 해결하지 못하면) 실시간 전송 데이터에 임의의 예기치 못한 구멍이 여기저기 납니다. This is especially bad if the data protocol is not resistant to such random erasures.
 
 The new version was rewritten to use UDP as data source and pack one source UDP packet into one radio packet. Radio packets now have variable size that depends on payload size. This significantly reduces a video latency.
 
@@ -138,13 +138,13 @@ Wifibroadcast puts the WiFi cards into monitor mode. This mode allows to send an
 - 1Gbps 이더넷 포트  
 - UART 포트 3개  
 - 기판이 매우 작음  
-- 무선 통신 혼선에 잘 견딤 | - Small community  
+- 무선 통신 혼선에 잘 견딤 | - 커뮤니티 조직이 작음  
 - 512MB SDRAM  
-- No camera interface                                                                                                       |
+- 카메라 인터페이스 없음                                                                                                                  |
 
-This article chose to use Pi Zero as camera board (encode video) and NEO2 as main UAV board (wifibroadcast, MAVLink telemetry, etc.)
+위 내용을 통해 라즈베리 파이 제로를 카메라 보드(동영상 인코딩 용)로, 네오2를 무인항공기 메인보드(wifibroadcast, MAVLink 텔레메트리 통신 등)로 선택했습니다.
 
-## TODO
+## 할 일
 
-1. Make prebuilt images. Pull requests are welcome.
-2. Do a flight test with different cards/antennas.
+1. 사전 빌드 이미지를 만들어야합니다. pull 요청은 언제든 환영합니다.
+2. 여러가지 카드/안테나로 비행 시험을 진행해야합니다.
