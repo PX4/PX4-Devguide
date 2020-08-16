@@ -81,7 +81,7 @@ Alpha AWUS036ACH는 고출력 WiFi 카드로, 전송하는 동안 최대 전류�
 
 ## 미세 전파 조정
 
-기본 설정을 한 WFB는 20MHz의 폭을 지닌 165번 무선 채널(5825MHz), MCS #1 (QPSK 1/2)을 사용하며, 채널간에는 긴 폭의 보호 대역(Guard Interval)이 있습니다. This provides ~7 mbit/s of **effective** speed (i.e. usable speed after FEC and packet encoding) for **both directions** in sum, because WiFi is half-duplex. So it is suitable for video down stream 720p@49fps (4 mbit/s) + two full-speed telemetry streams (uplink and downlink). If you need a higher bandwidth you can use other MCS index (for example 2 or greater) and/or 40MHz channel.
+기본 설정을 한 WFB는 20MHz의 폭을 지닌 165번 무선 채널(5825MHz), MCS #1 (QPSK 1/2)을 사용하며, 채널간에는 긴 폭의 보호 대역(Guard Interval)이 있습니다. WiFi는 반이중 통신을 수행하므로 이같은 채널 활용을 통해 **양방향** 합계로, 대략 7Mbit/s의 실효 속도가 나타납니다(예: FEC 및 패킷 인코딩 처리 후의 쓸만한 속도). 따라서 720p@49fps 동영상의 실시간 데이터 다운로드(4 mbit/s) + 두 채널로의 텔레메트리 실시간 데이터 전속력 전송(상하향 연결)에 안성맞춤입니다. 더 높은 대역폭을 활용하려면 다른 MCS 인덱스를 활용(예를 들어, 2 이상)하거나 40MHz 대역폭을 지닌 채널을 활용할 수 있습니다.
 
 ## 안테나와 다양성
 
