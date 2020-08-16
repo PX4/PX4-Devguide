@@ -4,9 +4,9 @@
 
 > **Note** *Wifibroadcast*를 활용하기 전 사용자 여러분의 국가에서 합법적으로 WiFi 무선 통신을 활용할 수 있는지 확인하십시오.
 
-## Wifibroadcast Overview
+## wifibroadcast 개요
 
-The *Wifibroadcast project* provides video and telemetry transport that use low-level WiFi packets to avoid the distance and latency limitations of the ordinary IEEE 802.11 stack.
+*wifibroadcast 프로젝트*는 저수준 WiFi 패킷에 동영상 및 텔레메트리 정보를 실어보내어 IEEE 802.11 일반 스택상의 거리와 지연 한계를 막아줍니다.
 
 The high level benefits of *Wifibroadcast* include:
 
