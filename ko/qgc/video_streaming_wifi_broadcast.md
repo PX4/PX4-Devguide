@@ -26,9 +26,9 @@ Additional information is provided in the [FAQ](#faq) below.
 
 The hardware setup consists of the following parts:
 
-On TX (UAV) side:
+TX(무인 항공기) 측에서는:
 
-* [NanoPI NEO2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180) (and/or Raspberry Pi if using Pi camera).
+* [나노파이 네오2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180)(그리고 파이 카메라 활용시 라즈베리 파이)
 * [Logitech camera C920](https://www.logitech.com/en-us/product/hd-pro-webcam-c920?crid=34) or [Raspberry Pi camera](https://www.raspberrypi.org/products/camera-module-v2/).
 * WiFi module [ALPHA AWUS036ACH](https://www.alfa.com.tw/products_detail/1.htm).
 
@@ -48,13 +48,13 @@ Alpha AWUS036ACH is a high power card that uses too much current while transmitt
 
 ## 소프트웨어 설정
 
-To setup the (Linux) development computer:
+(리눅스) 개발 컴퓨터를 설정하려면:
 
-1. Install **libpcap** and **libsodium** development libs and install **python2.7** + **python-twisted** packages.
-2. Download [wifibroadcast sources](https://github.com/svpcom/wifibroadcast).
-3. See [Setup HOWTO](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO) how to build debian, rpm or tar.gz package and configure it.
+1. **libpcap**과 **libsodium** 개발 라이브러리와 **python2.7** + **python-twisted** 패키지를 설치하십시오.
+2. [wifibroadcast 소스 코드](https://github.com/svpcom/wifibroadcast)를 다운로드하십시오.
+3. [설치 방법](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO)을 참고하여 데비안, rpm, tar.gz 패키지를 빌드하고 정하는 방법을 살펴보십시오.
 
-### UAV Setup
+### 무인 항공기 설정
 
 1. 카메라에 RTP 실시간 전송 데이터 출력을 설정하십시오:
     
