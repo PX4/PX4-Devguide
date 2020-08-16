@@ -29,15 +29,15 @@ The hardware setup consists of the following parts:
 TX(무인 항공기) 측에서는:
 
 * [나노파이 네오2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180)(그리고 파이 카메라 활용시 라즈베리 파이)
-* [Logitech camera C920](https://www.logitech.com/en-us/product/hd-pro-webcam-c920?crid=34) or [Raspberry Pi camera](https://www.raspberrypi.org/products/camera-module-v2/).
-* WiFi module [ALPHA AWUS036ACH](https://www.alfa.com.tw/products_detail/1.htm).
+* [로지텍 C920 카메라](https://www.logitech.com/en-us/product/hd-pro-webcam-c920?crid=34) 또는 [라즈베리 파이 카메라](https://www.raspberrypi.org/products/camera-module-v2/).
+* [ALPHA AWUS036ACH](https://www.alfa.com.tw/products_detail/1.htm) WiFi 모듈.
 
-On RX (ground station side):
+RX(지상 통제국) 측에서는:
 
-* Any computer with Linux (tested on Fedora 25 x86-64).
-* WiFi module [ALPHA AWUS036ACH](https://www.alfa.com.tw/products_detail/1.htm). See [wifibroadcast wiki > WiFi hardware](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) for more information on supported modules.
+* 리눅스를 설치한 아무 컴퓨터(페도라 25 x86_64 시험 완료).
+* [ALPHA AWUS036ACH](https://www.alfa.com.tw/products_detail/1.htm) 와이파이 모듈. 더 많은 지원 모듈 정보를 보려면 [wifibroadcast 위키 > WiFi 하드웨어](https://github.com/svpcom/wifibroadcast/wiki/WiFi-hardware) 를 참고하십시오.
 
-If you don't need high-power cards, you can use any card with **rtl8812au** chipset.
+고수준 신호세기 지원 카드가 필요하지 않으면 **rtl8812au** 칩셋이 달린 카드를 사용해도 됩니다.
 
 ## 하드웨어 개조
 
@@ -111,7 +111,7 @@ For simple cases you can use omnidirectional antennas with linear (that bundled 
 
 ## 이론
 
-wifibroadcast는 WiFi 카드를 감시자 모드로 둡니다. 이 모드를 통해 ACK 패킷을 기다리거나 (3-way handshake 등을 통한) 연결을 진행하지 않고도 임의의 패킷을 주고받을 수 있습니다. [Analysis of Injection Capabilities and Media Access of IEEE 802.11 Hardware in Monitor Mode](https://github.com/svpcom/wifibroadcast/blob/master/patches/Analysis%20of%20Injection%20Capabilities%20and%20Media%20Access%20of%20IEEE%20802.11%20Hardware%20in%20Monitor%20Mode.pdf) [802.11 timings](https://github.com/ewa/802.11-data)
+wifibroadcast는 WiFi 카드를 감시자 모드로 둡니다. 이 모드를 통해 ACK 패킷을 기다리거나 (3-way handshake 등을 통한) 연결을 진행하지 않고도 임의의 패킷을 주고받을 수 있습니다. [802.11 타이밍](https://github.com/ewa/802.11-data) [감시자 모드에서의 IEEE 802.11 하드웨어 데이터 강제 전송 기능 및 미디어 접근 분석](https://github.com/svpcom/wifibroadcast/blob/master/patches/Analysis%20of%20Injection%20Capabilities%20and%20Media%20Access%20of%20IEEE%20802.11%20Hardware%20in%20Monitor%20Mode.pdf) 
 
 #### 무인 항공기에 추천할 ARM 보드는 무엇입니까?
 
