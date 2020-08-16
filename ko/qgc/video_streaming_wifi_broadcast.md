@@ -22,7 +22,7 @@ The high level benefits of *Wifibroadcast* include:
 
 Additional information is provided in the [FAQ](#faq) below.
 
-## Hardware Setup
+## 하드웨어 설정
 
 The hardware setup consists of the following parts:
 
@@ -39,14 +39,14 @@ On RX (ground station side):
 
 If you don't need high-power cards, you can use any card with **rtl8812au** chipset.
 
-## Hardware Modification
+## 하드웨어 개조
 
 Alpha AWUS036ACH is a high power card that uses too much current while transmitting. If you power it from USB it will reset the port on most ARM boards. So it must be directly connected to 5V BEC in one of two ways:
 
 1. Make a custom USB cable ([cut `+5V` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
 2. Cut a `+5V` wire on PCB near USB port and wire it to BEC (don't do this if doubt - use custom cable instead). Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29) when using several ground wires.
 
-## Software Setup
+## 소프트웨어 설정
 
 To setup the (Linux) development computer:
 
@@ -56,14 +56,14 @@ To setup the (Linux) development computer:
 
 ### UAV Setup
 
-1. Setup camera to output RTP stream:
+1. 카메라에 RTP 실시간 전송 데이터 출력을 설정하십시오:
     
-    a. Logitech camera C920 camera: 
+    a. 로지텍 C920 카메라: 
     
         gst-launch-1.0 uvch264src device=/dev/video0 initial-bitrate=4000000 average-bitrate=4000000 iframe-period=3000 name=src auto-start=true \
-                   src.vidsrc ! queue ! video/x-h264,width=1280,height=720,framerate=30/1 ! h264parse ! rtph264pay ! udpsink host=localhost port=5602 b. RaspberryPi camera: ```raspivid --nopreview --awb auto -ih -t 0 -w 1280 -h 720 -fps 49 -b 4000000 -g 147 -pf high -o - | gst-launch-1.0 fdsrc ! h264parse !  rtph264pay !  udpsink host=127.0.0.1 port=5602```
+                   src.vidsrc ! queue ! video/x-h264,width=1280,height=720,framerate=30/1 ! h264parse ! rtph264pay ! udpsink host=localhost port=5602 b. 라즈베리 파이 카메라: ```raspivid --nopreview --awb auto -ih -t 0 -w 1280 -h 720 -fps 49 -b 4000000 -g 147 -pf high -o - | gst-launch-1.0 fdsrc ! h264parse !  rtph264pay !  udpsink host=127.0.0.1 port=5602```
 
-2. Configure WFB for drone as described in [Setup HOWTO](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO)
+2. [설정 방법](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO)에 따라 무인 항공기의 WFB를 설정하십시오
 
 3. Configure autopilot (px4 stack) to output telemetry stream at 1500kbps (other UART speeds doesn't match well to NEO2 frequency dividers). Setup [mavlink-router](https://github.com/intel/mavlink-router) to route MAVLink packets to/from WFB: 
         [UdpEndpoint wifibroadcast]
@@ -71,13 +71,13 @@ To setup the (Linux) development computer:
         Address = 127.0.0.1
         Port = 14550
 
-### Ground Station Setup
+### 지상 통제국 설정
 
 1. 동영상을 디코딩하려면 *QGroundStation*을 실행하거나 다음 명령을 실행하십시오: 
         gst-launch-1.0 udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
                  ! rtph264depay ! avdec_h264 ! clockoverlay valignment=bottom ! autovideosink fps-update-interval=1000 sync=false
 
-2. Configure WFB for ground station as described in [Setup HOWTO](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO).
+2. [설정 방법](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO)에 따라 지상 통제국의 WFB를 설정하십시오.
 
 ## 미세 전파 조정
 
@@ -105,13 +105,13 @@ For simple cases you can use omnidirectional antennas with linear (that bundled 
 
 > **Caution** RC TX 동작시 해당 대역을 사용하지 마십시오! 만일 그대로 사용하려면 모델 손실을 막기 위해 RTL 속성을 설정하십시오.
 
-**Q:** *Is only Raspberry PI supported?*
+**문:** *라즈베리 파이에서만 지원하나요?*
 
-**A:** Wifibroadcast is not tied to any GPU - it operates with UDP packets. But to get RTP stream you need a video encoder (with encode raw data from camera to x264 stream). In my case RPI is only used for video encoding (because RPI Zero is too slow to do anything else) and all other tasks (including wifibroadcast) are done by other board (NanoPI NEO2).
+**답:** wifibroadcast 기술은 어떤 GPU에 한정하지 않습니다. UDP 패킷에 대해 동작합니다. 그런데 RTP 실시간 전송 데이터를 받으려면 (카메라 원시 데이터에서 x264 실시간 전송 데이터로 변환하는) 동영상 인코더가 필요합니다. 라즈베리 파이의 경우 동영상 인코딩 목적으로만 활용(라즈베리 파이 제로에서 다른 작업을 동시에 하기엔 너무 느리므로)하고 기타 다른 작업(wifibroadcast 동작 포함)은 다른 보드(나노파이 네오2)에서 수행합니다.
 
-## Theory
+## 이론
 
-Wifibroadcast puts the WiFi cards into monitor mode. This mode allows to send and receive arbitrary packets without association and waiting for ACK packets. [Analysis of Injection Capabilities and Media Access of IEEE 802.11 Hardware in Monitor Mode](https://github.com/svpcom/wifibroadcast/blob/master/patches/Analysis%20of%20Injection%20Capabilities%20and%20Media%20Access%20of%20IEEE%20802.11%20Hardware%20in%20Monitor%20Mode.pdf) [802.11 timings](https://github.com/ewa/802.11-data)
+wifibroadcast는 WiFi 카드를 감시자 모드로 둡니다. 이 모드를 통해 ACK 패킷을 기다리거나 (3-way handshake 등을 통한) 연결을 진행하지 않고도 임의의 패킷을 주고받을 수 있습니다. [Analysis of Injection Capabilities and Media Access of IEEE 802.11 Hardware in Monitor Mode](https://github.com/svpcom/wifibroadcast/blob/master/patches/Analysis%20of%20Injection%20Capabilities%20and%20Media%20Access%20of%20IEEE%20802.11%20Hardware%20in%20Monitor%20Mode.pdf) [802.11 timings](https://github.com/ewa/802.11-data)
 
 #### 무인 항공기에 추천할 ARM 보드는 무엇입니까?
 
