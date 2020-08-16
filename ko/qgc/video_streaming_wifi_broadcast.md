@@ -93,15 +93,15 @@ For simple cases you can use omnidirectional antennas with linear (that bundled 
 
 **답:** wifibroadcast 원래 버전은 바이트스트림을 입력으로 받고 지정 길이(기본 1024 바이트) 패킷으로 쪼갭니다. 이 방식대로라면 무선 통신 패킷을 잃으면(그리고 FEC로 문제를 해결하지 못하면) 실시간 전송 데이터에 임의의 예기치 못한 구멍이 여기저기 납니다. 특히 데이터 프로토콜이 임의 소거 현상에 대비하지 못하면 좋지 못한 결과를 가져옵니다.
 
-The new version was rewritten to use UDP as data source and pack one source UDP packet into one radio packet. Radio packets now have variable size that depends on payload size. This significantly reduces a video latency.
+새 버전은 UDP를 데이터 전송 수단으로, 데이터를 UDP 패킷에 실어 무선 통신 패킷으로 보내도록 재작성했습니다. 이제 무선 통신 패킷은 페이로드 길이에 따라 크기가 바뀝니다. 이렇게 하여 동영상 처리 지연을 줄입니다.
 
-**Q:** *What type of data can be transmitted using wifibroadcast?*
+**문:** *어떤 데이터 형식을 wifibroadcast로 보낼 수 있나요?*
 
-**A:** Any UDP with packet size <= 1466. For example x264 inside RTP or MAVLink.
+**답:** 일정 크기의 UDP 패킷입니다. <= 1466. For example x264 inside RTP or MAVLink.
 
-**Q:** *What are transmission guarantees?*
+**문:** *전송을 보장하는 기술은 무엇인가요?*
 
-**A:** Wifibrodcast use FEC (forward error correction) which can recover 4 lost packets from 12 packets block with default settings. You can tune it (both TX and RX simultaneously!) to fit your needs.
+**답:** wifibroadcast는 전송 오류 수정(FEC) 기법을 통해 기본 설정에 따라 12패킷 단위로 들어가는 한 블록에서 손실 패킷 4개 정도 복구할 수 있습니다. 필요에 따라 (TX, RX에서 동시에!) 설정 값을 조율할 수 있습니다.
 
 > **Caution** RC TX 동작시 해당 대역을 사용하지 마십시오! 만일 그대로 사용하려면 모델 손실을 막기 위해 RTL 속성을 설정하십시오.
 
