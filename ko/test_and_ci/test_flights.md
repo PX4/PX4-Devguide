@@ -11,7 +11,7 @@
 * 여러분이 바꾼 코드를 pull 요청에 추가하십시오
 * **@PX4/testflight** 태그로 댓글에 시험 팀을 호출하십시오 
 * 시험 팀의 답변을 기다리십시오
-* The test team will [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
+* 시험 팀은 [자신들이 할 일에 여러분이 제출한 PR/Issue을 추가합니다](https://github.com/PX4/Firmware/projects/18)
 
 ## 응답 시간
 
@@ -20,13 +20,13 @@
 
 ## 시험 항목
 
-각 플랫폼에 대해 수행할 시험은 아래 링크와 같습니다:
+각 플랫폼을 대상으로 수행할 시험은 아래 링크와 같습니다:
 
-* [MC_01 - Manual modes](../test_cards/mc_01_manual_modes.md)
-* [MC_02 - Full Autonomous](../test_cards/mc_02_full_autonomous.md)
-* [MC_03 - Auto Manual Mix](../test_cards/mc_03_auto_manual_mix.md)
-* [MC_04 - Failsafe Testing](../test_cards/mc_04_failsafe_testing.md)
-* [MC_05 - Indoor Flight (Manual Modes)](../test_cards/mc_05_indoor_flight_manual_modes.md)
+* [MC_01 - 수동 상태](../test_cards/mc_01_manual_modes.md)
+* [MC_02 - 완전 자동화](../test_cards/mc_02_full_autonomous.md)
+* [MC_03 - 자동 / 수동 혼합](../test_cards/mc_03_auto_manual_mix.md)
+* [MC_04 - 안전 장치 시험](../test_cards/mc_04_failsafe_testing.md)
+* [MC_05 - 실내 비행 (수동 상태)](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
 ## 시험 기체/오토파일럿 {#fleet}
 
