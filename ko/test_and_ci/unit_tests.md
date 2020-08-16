@@ -57,7 +57,7 @@ The steps to create new SITL unit tests are as follows:
     ut_declare_test_c(test_[description], [Description]Test)
     ```
     
-    Here is a template:
+    서식은 아래와 같습니다:
     
     ```cpp
     #include <unit_test.h>
