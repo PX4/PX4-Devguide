@@ -85,7 +85,7 @@ Alpha AWUS036ACH는 고출력 WiFi 카드로, 전송하는 동안 최대 전류�
 
 ## 안테나와 다양성
 
-간단한 경우를 예로 들어, 선형 양극화(WiFi 카드에 붙어있음) 또는 환엽형 양극화([환형 양극화 엽상 안테나](http://www.antenna-theory.com/antennas/cloverleaf.php)) 무지향성 안테나를 사용할 수 있습니다. 장거리 연결을 설정하려 한다면, 지항성 및 무지향성 안테나를 다중 WiFi 어댑터에 붙여 사용할 수 있습니다. 다중 어댑터에서는 송수신 다양성을 특별히 지원합니다(단지 `/etc/default/wifibroadcast`에 여러 NIC를 추가하면 됨). If your WiFi adapter has two antennas (like Alfa AWU036ACH) TX diversity is implemented via [STBC](https://en.wikipedia.org/wiki/Space%E2%80%93time_block_code). Cards with 4 ports (like Alfa AWUS1900) are currently not supported for TX diversity (only RX is supported).
+간단한 경우를 예로 들어, 선형 양극화(WiFi 카드에 붙어있음) 또는 환엽형 양극화([환형 양극화 엽상 안테나](http://www.antenna-theory.com/antennas/cloverleaf.php)) 무지향성 안테나를 사용할 수 있습니다. 장거리 연결을 설정하려 한다면, 지항성 및 무지향성 안테나를 다중 WiFi 어댑터에 붙여 사용할 수 있습니다. 다중 어댑터에서는 송수신 다양성을 특별히 지원합니다(단지 `/etc/default/wifibroadcast`에 여러 NIC를 추가하면 됨). WiFi 어댑터에 (Alfa AWU036ACH 처럼)안테나가 둘 붙어있을 경우, TX 다향성은 [STBC](https://en.wikipedia.org/wiki/Space%E2%80%93time_block_code)로 구현합니다. (Alfa AWU036ACH 같이) 4 포트가 붙은 카드는 현재 TX 다양성을 지원하지 않습니다(RX만 지원).
 
 ## 자주 묻는 질문
 
