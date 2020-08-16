@@ -27,16 +27,16 @@ The diagrams use the standard [PX4 notation](../contribute/notation.md) (and eac
 * A Low Pass Filter (LPF) is used on the derivative path to reduce noise.
 * The outputs are limited, usually at -1 and 1.
 
-### Multicopter Angle Control
+### Multicopter Attitude Controller
 
 ![MC Angle Control Diagram](../../assets/diagrams/mc_angle_diagram.jpg)
 
-* The angle controller makes use of [quaternions](https://en.wikipedia.org/wiki/Quaternion).
+* The attitude controller makes use of [quaternions](https://en.wikipedia.org/wiki/Quaternion).
 * The controller is implemented from this [article](https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf).
 * When tuning this controller, the only parameter of concern is the P gain.
 * The rate command is saturated.
 
-### Multicopter Velocity Control
+### Multicopter Velocity Controller
 
 ![MC Velocity Control Diagram](../../assets/diagrams/mc_velocity_diagram.jpg)
 
