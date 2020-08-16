@@ -65,7 +65,7 @@ To setup the (Linux) development computer:
 
 2. [설정 방법](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO)에 따라 무인 항공기의 WFB를 설정하십시오
 
-3. Configure autopilot (px4 stack) to output telemetry stream at 1500kbps (other UART speeds doesn't match well to NEO2 frequency dividers). Setup [mavlink-router](https://github.com/intel/mavlink-router) to route MAVLink packets to/from WFB: 
+3. 오토파일럿(px4 스택)이 1500kbps 전송률로 텔레메트리 실시간 전송 데이터를 내보내도록 설정하십시오(기타 UART 속도는 네오2 주파수 분할 장치와 잘 맞지 않음). WFB간에 MAVLink 패킷을 주고받을 수 있도록 [mavlink-router](https://github.com/intel/mavlink-router)를 설정하십시오: 
         [UdpEndpoint wifibroadcast]
         Mode = Normal
         Address = 127.0.0.1
