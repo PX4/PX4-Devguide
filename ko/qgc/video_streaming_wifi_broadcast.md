@@ -8,23 +8,23 @@
 
 *wifibroadcast 프로젝트*는 저수준 WiFi 패킷에 동영상 및 텔레메트리 정보를 실어보내어 IEEE 802.11 일반 스택상의 거리와 지연 한계를 막아줍니다.
 
-The high level benefits of *Wifibroadcast* include:
+고수준 관점에서 *wifibroadcast* 가 주는 장점은 다음과 같습니다:
 
-* 1:1 map RTP to IEEE 802.11 packets for minimum latency (doesn't serialize to byte steam).
-* Smart FEC support (immediately yield packet to video decoder if FEC pipeline without gaps).
-* [Bidirectional MAVLink telemetry](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO). You can use it for MAVLink up/down and video down link.
-* Automatic TX diversity (select TX card based on RX RSSI).
-* Stream encryption and authentication ([libsodium](https://download.libsodium.org/doc/)).
-* Distributed operation. It can gather data from cards on different hosts. So you aren't limited to bandwidth of single USB bus.
-* Aggregation of MAVLink packets. Doesn't send WiFi packet for every MAVLink packet.
-* Enhanced [OSD](https://github.com/svpcom/wifibroadcast_osd) for Raspberry PI (consume 10% CPU on PI Zero).
-* Compatible with any screen resolution. Supports aspect correction for PAL to HD scaling.
+* 지연 최소화를 위해 RTP를 IEEE 802.11 패킷으로 1:1 대응합니다(바이트 스트림으로 직렬화하지 않음).
+* 지능형 FEC 지원(FEC 파이프라인에 갭이 존재하지 않을 경우 동영상 디코더로 즉시 패킷을 넘겨줌).
+* [양방향 MAVLink 텔레메트리](https://github.com/svpcom/wifibroadcast/wiki/Setup-HOWTO) 전송을 지원합니다. MAVLink 상하향 송수신과 동영상 다운 링크 용도로 활용할 수 있습니다.
+* 자동 TX 다변화(RX RSSI에 따라 TX 카드 선택).
+* 실시간 전송 데이터 암호화 및 인증 ([libsodium](https://download.libsodium.org/doc/)).
+* 분산 처리. 다양한 호스트의 카드에서 데이터를 수신할 수 있습니다. 따라서 단일 USB 버스의 대역폭에 제한을 받지 않습니다.
+* MAVLink 패킷 수신을 일원화합니다. 모든 MAVLink 패킷에 대해 WiFi 패킷을 보내지 않습니다.
+* 개선된 라즈베리 파이용 [OSD](https://github.com/svpcom/wifibroadcast_osd) (파이 제로에서 CPU에게 10% 부하를 안겨줌).
+* 어떤 스크린 해상도에든 호환됩니다. PAL에서 HD 화면으로의 화면 비율 보정을 지원합니다.
 
-Additional information is provided in the [FAQ](#faq) below.
+추가 정보는 하단 [자주 묻는 질문](#faq)에 있습니다.
 
 ## 하드웨어 설정
 
-The hardware setup consists of the following parts:
+하드웨어 설정은 다음 두 부분으로 나누어 구성했습니다:
 
 TX(무인 항공기) 측에서는:
 
@@ -41,7 +41,7 @@ RX(지상 통제국) 측에서는:
 
 ## 하드웨어 개조
 
-Alpha AWUS036ACH is a high power card that uses too much current while transmitting. If you power it from USB it will reset the port on most ARM boards. So it must be directly connected to 5V BEC in one of two ways:
+Alpha AWUS036ACH는 고출력 WiFi 카드로, 전송하는 동안 최대 전류를 소모합니다. USB 전원을 사용하면 대부분의 ARM 보드를 다시 시작하는 현상이 나타납니다. 따라서 다음 두가지 방법중 하나로 5V 배터리 전력 소모 회로(BEC)에 바로 연결해야합니다:
 
 1. Make a custom USB cable ([cut `+5V` wire from USB plug and connect it to BEC](https://electronics.stackexchange.com/questions/218500/usb-charge-and-data-separate-cables)
 2. Cut a `+5V` wire on PCB near USB port and wire it to BEC (don't do this if doubt - use custom cable instead). Also I suggest to add 470uF low ESR capacitor (like ESC has) between power and ground to filter voltage spikes. Be aware of [ground loop](https://en.wikipedia.org/wiki/Ground_loop_%28electricity%29) when using several ground wires.
