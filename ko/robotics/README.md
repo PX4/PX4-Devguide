@@ -1,4 +1,4 @@
-# Robotics
+# 로보틱스
 
 Robotics APIs allow you to control PX4 from outside the flight stack computing environment (flight controller) using a [companion computer](../companion_computer/pixhawk_companion.md) or other computing environment. The APIs communicate with PX4 using [MAVLink](../middleware/mavlink.md) or [RTPS](../middleware/micrortps.md).
 
