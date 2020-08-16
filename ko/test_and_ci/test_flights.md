@@ -1,26 +1,26 @@
-# Tests Flights
+# 시험 비행
 
-Test flights are important for quality assurance. The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.
+시험 비행은 품질 보증에 중요한 과정입니다. 드론코드 시험 팀에서는 여러분이 보낸 pull 요청의 검토(시험 비행)를 지원할 수 있고 기록에 대한 의견을 제시할 수 있습니다.
 
 {% if book.px4_version != 'master' %}
 
-> **Tip** Test flight process and fleet information may change over time. Current information [can be found in the head revision/master docs](https://dev.px4.io/master/en/test_and_ci/test_flights.html)! {% else %} <!-- START: details below displayed only in master -->
+> **Tip** 시험 비행 절차와 시험 비행대 정보는 매번 바뀔 수 있습니다. 현재 정보는 [head 리비전/master 문서에서 찾을 수 있습니다](https://dev.px4.io/master/en/test_and_ci/test_flights.html)! {% else %} <!-- START: details below displayed only in master -->
 
-## How to Request Test Flights
+## 시험 비행 요청 방법
 
-* Add a complete and thorough description of your changes in the pull request
-* Tag the test team in a comment using **@PX4/testflight** 
-* Wait for feedback from the test team
+* 여러분이 바꾼 코드를 pull 요청에 추가하십시오
+* **@PX4/testflight** 태그로 댓글에 시험 팀을 호출하십시오 
+* 시험 팀의 답변을 기다리십시오
 * The test team will [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
 
-## Response Times
+## 응답 시간
 
-* Multi-Copter: up to 48 hours (typically within 24 hours)
-* VTOL, Fixed Wing: up to 4 days (typically 2 days)
+* 멀티콥터: 최대 48시간(보통 24시간 이내)
+* 수직이착륙기, 고정익: 최대 4일(보통 2일)
 
-## Test Cards
+## 시험 항목
 
-The tests performed for each platform are linked below:
+각 플랫폼에 대해 수행할 시험은 아래 링크와 같습니다:
 
 * [MC_01 - Manual modes](../test_cards/mc_01_manual_modes.md)
 * [MC_02 - Full Autonomous](../test_cards/mc_02_full_autonomous.md)
@@ -28,11 +28,11 @@ The tests performed for each platform are linked below:
 * [MC_04 - Failsafe Testing](../test_cards/mc_04_failsafe_testing.md)
 * [MC_05 - Indoor Flight (Manual Modes)](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
-## Test Vehicles/Autopilots {#fleet}
+## 시험 기체/오토파일럿 {#fleet}
 
-Multicopter
+멀티콥터
 
-| Frame                                                                                                                                                                                                                                                             | Flight Controller                                                                                                                                                                                                                                                | UUID                                                        |
+| 프레임                                                                                                                                                                                                                                                               | 비행 조종 장치                                                                                                                                                                                                                                                         | UUID                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | [DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html)                                                                                                                                                                                             | [Pixhawk Mini](https://docs.px4.io/master/en/flight_controller/pixhawk_mini.html)                                                                                                                                                                                | 002400283335510A33373538 (f450-v3)                          |
 | [DJI F450](https://www.getfpv.com/dji-flamewheel-f450-basic-kit.html)                                                                                                                                                                                             | [Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html)                                                                                                                                                                                        | 000100000000363533353336510900500021 (f450-v3)              |
@@ -46,15 +46,15 @@ Multicopter
 | Holybro [QAV250](https://docs.px4.io/master/en/frames_multicopter/holybro_qav250_pixhawk4_mini.html)                                                                                                                                                              | [Pixhawk 4 Mini](https://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html)                                                                                                                                                                             | 000200000000343233383038511500420032 (f450-v5-m)            |
 | NXP Semiconductor [KIT-HGDRONEK66](https://www.nxp.com/applications/solutions/industrial/unmanned-aerial-vehicles-uavs/uavs-drones-and-rovers/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66) ("[Hovergames](https://www.hovergames.com/)") | [RDDRONE-FMUK66](https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/kinetis-cortex-m-mcus/k-seriesperformancem4/k6x-ethernet/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66?tid=vanRDDRONE-FMUK66) | 00030016ffffffffffff4e45362050130029                        |
 
-Fixed Wing
+고정익
 
-| Frame                                                                                               | Flight Controller                                                         | UUID                                           |
+| 프레임                                                                                                 | 비행 조종 장치                                                                  | UUID                                           |
 | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------- |
 | [Phantom Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html) | [Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html) | 0001000000003035333330365104003c0020 (f450-v2) |
 
-VTOL
+수직이착륙기
 
-| Frame                                                                                | Flight Controller                                                                    | UUID                                             |
+| 프레임                                                                                  | 비행 조종 장치                                                                             | UUID                                             |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
 | [Convergence VTOL](https://www.horizonhobby.com/convergence-vtol-bnf-basic-efl11050) | [Pixhawk 4 Mini](https://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html) | 000200000000343233383038511500350039 (vtol-v5-m) |
 | [Delta Quad Pro](https://px4.io/portfolio/deltaquad-vtol/)                           | [Dropix](https://docs.px4.io/master/en/flight_controller/dropix.html)                | 0001000000003437393931375114004c0042 (delta-v2)  |
