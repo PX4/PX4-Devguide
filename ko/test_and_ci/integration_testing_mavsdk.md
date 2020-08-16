@@ -62,13 +62,13 @@ optional arguments:
 - 시험 진행 주체는 C++ 라이브러리이며, 다음 특징이 있습니다.
   - 인자를 분석하는 [main](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_main.cpp) 함수.
   - [autopilot_tester](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/autopilot_tester.h)를 호출하는 MAVSDK의 추상체.
-  - The actual tests using the abstraction around MAVSDK as e.g. [test_multicopter_mission.cpp](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp).
-  - The tests use the [catch2](https://github.com/catchorg/Catch2) unit testing framework. The reasons for using this framework are:
-      - Asserts (`REQUIRE`) which are needed to abort a test can be inside of functions (and not just in the top level test as is [the case with gtest](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)).
-      - Dependency management is easier because *catch2* can just be included as a header-only library.
-      - *Catch2* supports [tags](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md#tags), which allows for flexible composition of tests.
+  - [test_multicopter_mission.cpp](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp)와 같이, MAVSDK의 추상체를 활용한 실제 시험 절차.
+  - 시험 코드에서는 [catch2](https://github.com/catchorg/Catch2) 단위 시험 프레임워크를 활용합니다. 이 프레임워크를 사용하고자 하는 동기는 다음과 같습니다:
+      - 함수 내부에 존재할 수 있는 시험 대상을 멈춰야 할 경우에 대해 단언(`REQUIRE`) 합니다(그리고 [gtest 시험](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)과 같이 최상위의 시험만 진행하는것은 아닙니다).
+      - *catch2*에 헤더만 있는 라이브러리를 넣을 수 있기 때문에 의존 관리가 간편해집니다.
+      - *catch2*에서 시험 과정의 유연한 조합을 허용하는 [tag](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md#tags)를 지원합니다.
 
 
-Terms used:
-- "model": This is the selected Gazebo model, e.g. `iris`.
-- "test case": This is a [catch2 test case](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md).
+활용 용어:
+- "모델": 선택한 가제보 모델, 예: `iris`
+- "테스트 케이스": [catch2용 조건 시험 코드 단위](https://github.com/catchorg/Catch2/blob/master/docs/test-cases-and-sections.md).
