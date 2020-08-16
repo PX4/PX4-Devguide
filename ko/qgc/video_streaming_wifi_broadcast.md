@@ -113,33 +113,34 @@ The new version was rewritten to use UDP as data source and pack one source UDP 
 
 Wifibroadcast puts the WiFi cards into monitor mode. This mode allows to send and receive arbitrary packets without association and waiting for ACK packets. [Analysis of Injection Capabilities and Media Access of IEEE 802.11 Hardware in Monitor Mode](https://github.com/svpcom/wifibroadcast/blob/master/patches/Analysis%20of%20Injection%20Capabilities%20and%20Media%20Access%20of%20IEEE%20802.11%20Hardware%20in%20Monitor%20Mode.pdf) [802.11 timings](https://github.com/ewa/802.11-data)
 
-#### What ARM Boards are recommended for the UAV?
+#### 무인 항공기에 추천할 ARM 보드는 무엇입니까?
 
-| Board                                                                                    | Pros                                                                                                                                                                                             | Cons                                                                                                                                                                                                                                            |
-| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Raspberry Pi Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/)             | - Huge community  
-- Camera support  
-- HW video encoder/decoder with OMX API.                                                                                                                   | - Hard to buy outside US (shipping costs >> its price)  
-- Slow CPU  
-- Only one USB bus  
-- 512MB SDRAM                                                                                                                                        |
-| [Odroid C0](https://www.hardkernel.com/shop/odroid-c0/)                                  | - Fast CPU  
+| 보드                                                                                    | 장점                                                                                                                          | 단점                                                                                                                                                              |
+| ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [라즈베리 파이 제로](https://www.raspberrypi.org/products/raspberry-pi-zero/)                 | - 대형 커뮤니티  
+- 카메라 지원  
+- OMX API를 통한 하드웨어 기반  
+동영상 인코더/디코더 지원                                                               | - 북미 외 지역에서의 구매시 어려움( 운송비 >> 구매비 )  
+- 느린 CPU  
+- USB 버스만 있음  
+- 512MB SDRAM                                                                                    |
+| [오드로이드 C0](https://www.hardkernel.com/shop/odroid-c0/)                                | - 빠른 CPU  
 - EMMC  
-- 1GB SDRAM                                                                                                                                                                | - Very sensitive to radio interference  
-- Doesn't supported by mainline kernel  
-- High cost  
-- HW video encoder is broken  
-- Bad PCB quality (too thin, ground pins without [thermal relief](https://en.wikipedia.org/wiki/Thermal_relief)) |
-| [NanoPI NEO2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180) | - ARM 64-bit CPU  
-- Very cheap  
-- Supported by mainline kernel  
-- 3 independent USB busses  
-- 1Gbps Ethernet port  
-- 3 UARTs  
-- Very small form-factor  
-- Resistant to radio interference | - Small community  
+- 1GB SDRAM                                                                                             | - 무선 통신 혼선에 매우 민감  
+- 메인 라인 커널을 지원하지 않음  
+- 높은 가격대  
+- 하드웨어 동영상 인코더 동작 안함  
+- 인쇄기판 품질 불량(너무 얇고, 접지 핀에 [내열](https://en.wikipedia.org/wiki/Thermal_relief)기능이 없음) |
+| [나노파이 네오2](http://www.friendlyarm.com/index.php?route=product/product&product_id=180) | - ARM 64비트 CPU  
+- 매우 쌈  
+- 메인라인 커널 지원  
+- 독립 USB 버스 3개 장착  
+- 1Gbps 이더넷 포트  
+- UART 포트 3개  
+- 기판이 매우 작음  
+- 무선 통신 혼선에 잘 견딤 | - Small community  
 - 512MB SDRAM  
-- No camera interface                                                                                                                                                                                       |
+- No camera interface                                                                                                       |
 
 This article chose to use Pi Zero as camera board (encode video) and NEO2 as main UAV board (wifibroadcast, MAVLink telemetry, etc.)
 
