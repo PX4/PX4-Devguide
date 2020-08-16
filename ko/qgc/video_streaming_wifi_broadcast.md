@@ -91,7 +91,7 @@ For simple cases you can use omnidirectional antennas with linear (that bundled 
 
 **문:** *원래 wifibroadcast와의 차이는 뭔가요?*
 
-**답:** wifibroadcast 원래 버전은 바이트스트림을 입력으로 받고 지정 길이(기본 1024 바이트) 패킷으로 쪼갭니다. 이 방식대로라면 무선 통신 패킷을 잃으면(그리고 FEC로 문제를 해결하지 못하면) 실시간 전송 데이터에 임의의 예기치 못한 구멍이 여기저기 납니다. This is especially bad if the data protocol is not resistant to such random erasures.
+**답:** wifibroadcast 원래 버전은 바이트스트림을 입력으로 받고 지정 길이(기본 1024 바이트) 패킷으로 쪼갭니다. 이 방식대로라면 무선 통신 패킷을 잃으면(그리고 FEC로 문제를 해결하지 못하면) 실시간 전송 데이터에 임의의 예기치 못한 구멍이 여기저기 납니다. 특히 데이터 프로토콜이 임의 소거 현상에 대비하지 못하면 좋지 못한 결과를 가져옵니다.
 
 The new version was rewritten to use UDP as data source and pack one source UDP packet into one radio packet. Radio packets now have variable size that depends on payload size. This significantly reduces a video latency.
 
