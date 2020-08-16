@@ -1,10 +1,10 @@
-# Offboard Control
+# 보드 외부 제어
 
 > **Warning** [Offboard control](https://docs.px4.io/master/en/flight_modes/offboard.html) is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
 
 The idea behind off-board control is to be able to control the PX4 flight stack using software running outside of the autopilot. This is done through the MAVLink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) messages.
 
-## Offboard Control Firmware Setup
+## 보드 외부 제어 펌웨어 설치
 
 There are two things you want to setup on the firmware side before starting offboard development.
 
@@ -18,16 +18,16 @@ Although this step isn't mandatory since you can activate offboard mode using a 
 
 Enable MAVLink on the serial port that you connect to the companion computer (see [Companion computer setup](../companion_computer/pixhawk_companion.md)).
 
-## Hardware setup
+## 하드웨어 설정
 
 Usually, there are three ways of setting up offboard communication.
 
-### Serial radios
+### 직렬 무선 통신
 
 1. One connected to a UART port of the autopilot
 2. One connected to a ground station computer
 
-Example radios include:
+무선 통신 장치의 예는 다음과 같습니다:
 
 * [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
 * [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
@@ -41,7 +41,7 @@ graph TD;
   rad2 --MAVLink-- > a[Autopilot];
 -->
 
-### On-board processor
+### 보드 내장 프로세서
 
 A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter. There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
 
