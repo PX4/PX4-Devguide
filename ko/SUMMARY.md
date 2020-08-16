@@ -98,7 +98,7 @@
     * [라즈베리 파이로의 ROS 설치](ros/raspberrypi_installation.md)
     * [외부 위치 추정 (시각/움직임 기반)](ros/external_position_estimation.md)
     * [MAVROS에서의 개별 메시지 전송](ros/mavros_custom_messages.md)
-  * [드론키트](robotics/dronekit.md)
+  * [DroneKit](robotics/dronekit.md)
 * [디버깅/로깅](debug/README.md) 
   * [자주 묻는 질문](debug/faq.md)
   * [콘솔/셸](debug/consoles.md) 
