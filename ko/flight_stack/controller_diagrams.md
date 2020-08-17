@@ -4,31 +4,73 @@
 
 구성도 상의 명칭은 [PX4 표기 방식](../contribute/notation.md)을 따릅니다(그리고 각 표시 내용에는 범례가 따릅니다).
 
-## 멀티콥터 위치 조종기
+<!--    The diagrams were created with LaTeX / TikZ.
+        The code can be found in assets/diagrams/mc_control_arch_tikz.tex.
+        The easiest way to generate the diagrams and edit them is to copy the code and paste it an Overleaf (www.overleaf.com/) document to see the output.
+-->
+
+## Multicopter Control Architecture
+
+![MC Controller Diagram](../../assets/diagrams/mc_control_arch.jpg)
+
+* This is a standard cascaded control architecture.
+* The controllers are a mix of P and PID controllers.
+* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
+* Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
+
+### Multicopter Angular Rate Controller
+
+![MC Rate Control Diagram](../../assets/diagrams/mc_angular_rate_diagram.jpg)
+
+* K-PID controller. See [Rate Controller](https://docs.px4.io/master/en/config_mc/pid_tuning_guide_multicopter.html#rate-controller) for more information.
+* The integral authority is limited to prevent wind up.
+* A Low Pass Filter (LPF) is used on the derivative path to reduce noise.
+* The outputs are limited, usually at -1 and 1.
+
+### Multicopter Attitude Controller
+
+![MC Angle Control Diagram](../../assets/diagrams/mc_angle_diagram.jpg)
+
+* The attitude controller makes use of [quaternions](https://en.wikipedia.org/wiki/Quaternion).
+* The controller is implemented from this [article](https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf).
+* When tuning this controller, the only parameter of concern is the P gain.
+* The rate command is saturated.
+
+### Multicopter Velocity Controller
+
+![MC Velocity Control Diagram](../../assets/diagrams/mc_velocity_diagram.jpg)
+
+* PID controller to stabilise velocity. Commands an acceleration.
+* The integrator includes an anti-reset windup (ARW) using a clamping method.
+* The commanded acceleration is saturated.
+
+### Multicopter Position Controller
+
+![MC Position Control Diagram](../../assets/diagrams/mc_position_diagram.jpg)
+
+* Simple P controller that commands a velocity.
+* The commanded velocity is saturated to keep the velocity in certain limits.
+
+#### Combined Position and Velocity Controller Diagram
 
 ![MC Position Controller Diagram](../../assets/diagrams/px4_mc_position_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
 
-* 대략적으로 [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)에서 왔다고 보고 있습니다.
-* 표준 위치-속도 중첩 처리 루프입니다.
-* 모드에 따라 외부(위치) 루프를 건너뛸 수 있습니다 (외부 루프 실행 후 처리하는 멀티플렉서처럼 동작함). 위치 루프는 위치를 유지하거나 축 방향 속도를 부여하지 않을 경우에만 동작합니다.
-* 내부 루프(속도) 제어부의 적분 연산 처리자에는 클램핑 기법을 사용하는 안티리셋 와인드업(ARW) 기능이 들어있습니다.
-
 ## 고정익 위치 조종기
 
-### 총체적 에너지 관리 시스템 (TECS)
+### Total Energy Control System (TECS)
 
-총체적 에너지 관리 시스템(TECS)으로의 PX4 구현은 고정익 선체의 항속과 고도를 동시에 제대로 제어할 수 있게 합니다. 고정익 위치 제어 모듈로서 활용하는 라이브러리로 코드를 구현했습니다.
+The PX4 implementation of the Total Energy Control System (TECS) enables simultaneous control of true airspeed and altitude of a fixed wing aircraft. The code is implemented as a library which is used in the fixed wing position control module.
 
 ![TECS](../../assets/diagrams/tecs_in_context.svg)
 
-위 그림에서 살펴보듯, TECS에서 항속과 고도 설정 값을 입력으로 받고 추진체와 상하 회전각을 출력으로 내보냅니다. 두가지 출력 값은 자세 조종 처리 기능을 구현한 고정익 자세 조종기로 보냅니다. 따라서, TECS의 성능이 상하 회전각 조종 루프의 성능에 직접적으로 영향을 줄 수 있다는 사실의 이해가 중요합니다. 항속과 고도의 빈약한 상태 추적은 항공기의 상하 회전각의 빈약한 관찰에서 비롯됩니다.
+As seen in the diagram above, TECS receives as inputs airspeed and altitude setpoints and outputs a throttle and pitch angle setpoint. These two outputs are sent to the fixed wing attitude controller which implements the attitude control solution. It's therefore important to understand that the performance of TECS is directly affected by the performance of the pitch control loop. A poor tracking of airspeed and altitude is often caused by a poor tracking of the aircraft pitch angle.
 
 > **Note** TECS 값을 조정하기 전 자세 조종 장치 설정값 조정 상태를 확인하십시오.
 
-실제 항속과 고도의 동시 제어는 평범한 작업이 아닙니다. 항공기의 상하 회전각의 증가는 운항 고도를 높이지만, 항속의 감소를 초래합니다. 추진력을 증가하면 항속이 증가하나 지상으로부터 들어올리는 힘도 늘어나기 때문에 운항 고도도 덩달아 높아집니다. 따라서, 제어 문제를 해결하도록 하는 두가지 요소 출력(항속, 자세)에 두가지 입력(상하 회전각, 추진력)을 사용합니다.
+Simultaneous control of true airspeed and height is not a trivial task. Increasing aircraft pitch angle will cause an increase in height but also a decrease in airspeed. Increasing the throttle will increase airspeed but also height will increase due to the increase in lift. Therefore, we have two inputs (pitch angle and throttle) which both affect the two outputs (airspeed and altitude) which makes the control problem challenging.
 
 TECS offers a solution by respresenting the problem in terms of energies rather than the original setpoints. The total energy of an aircraft is the sum of kinetic and potential energy. Thrust (via throttle control) increases the total energy state of the aircraft. A given total energy state can be achieved by arbitrary combinations of potential and kinetic energies. In other words, flying at a high altitude but at a slow speed can be equivalent to flying at a low altitude but at a faster airspeed in a total energy sense. We refer to this as the specific energy balance and it is calculated from the current altitude and true airspeed setpoint. The specific energy balance is controlled via the aircraft pitch angle. An increase in pitch angle transfers kinetic to potential energy and a negative pitch angle vice versa. The control problem was therefore decoupled by transforming the initial setpoints into energy quantities which can be controlled independently. We use thrust to regulate the specific total energy of the vehicle and pitch maintain a specific balance between potential (height) and kinetic (speed) energy.
 
@@ -42,7 +84,7 @@ TECS offers a solution by respresenting the problem in terms of energies rather 
 
 The total energy of an aircraft is the sum of kinetic and potential energy:
 
-From this, the specific energy rate can be formed as:
+$$E_T = \frac{1}{2} m V_T^2 + m g h$$,
 
 Taking the derivative with respect to time leads to the total energy rate:
 
@@ -66,7 +108,7 @@ $$ \Delta T = mg(\frac{\dot{V_T}}{g} + \gamma) $$.
 
 As can be seen, $$\Delta T$$ is proportional to $$\dot{E}$$, and thus the thrust setpoint should be used for total energy control.
 
-반면에 승강타 제어는 에너지 소비에 보수적인 입장을 취하기에 힘 에너지와 운동 에너지간의 전환에 활용합니다. 결국, 에너지 균형율의 수식은 다음과 같습니다.
+Elevator control on the other hand is energy conservative, and is thus used for exchanging potentional energy for kinetic energy and vice versa. To this end, a specific energy balance rate is defined as
 
 $$\dot{B} = \gamma - \frac{\dot{V_T}}{g}$$.
 
@@ -102,7 +144,7 @@ The outputs of the VTOL attitude block are separate torque and force commands fo
 
 For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/).
 
-### 항속 비례 조정
+### Airspeed Scaling
 
 The objective of this section is to explain with the help of equations why and how the output of the rate PI and feedforward (FF) controllers can be scaled with airspeed to improve the control performance. We will first present the simplified linear dimensional moment equation on the roll axis, then show the influence of airspeed on the direct moment generation and finally, the influence of airspeed during a constant roll.
 
@@ -176,7 +218,7 @@ $$\delta_a = -\frac{b \: C_{\ell_p}}{2 \: C_{\ell_{\delta_a}}} \frac{1}{V_T} \: 
 
 The first fraction gives the value of the ideal feedforward and we can see that the scaling is linear to the TAS. Note that the negative sign is then absorbed by the roll damping derivative which is also negative.
 
-#### 결론
+#### Conclusion
 
 The output of the rate PI controller has to be scaled with the indicated airspeed (IAS) squared and the output of the rate feedforward (FF) has to be scaled with the true airspeed (TAS)
 
