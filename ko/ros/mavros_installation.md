@@ -1,20 +1,20 @@
 # MAVROS
 
-The [mavros](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) ROS package enables MAVLink extendable communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.
+[mavros](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) ROS 패키지는 ROS를 구동하는 컴퓨터와, MAVLink를 활성화한 오토파일럿, MAVLink 기능을 지닌 GCS간의 MAVLink 확장 통신이 가능하게 합니다.
 
-> **Note** *MAVROS* is the "official" supported bridge between ROS and the MAVLink protocol. It is currently being extended to enable [fast-RTPS messaging](../middleware/micrortps.md), including a layer to translate PX4 [uORB messages](../middleware/uorb.md) to common ROS idioms.
+> **Note** *MAVROS*는 ROS와 MAVLink 프로토콜간 브릿지를 "공식" 지원합니다. It is currently being extended to enable [fast-RTPS messaging](../middleware/micrortps.md), including a layer to translate PX4 [uORB messages](../middleware/uorb.md) to common ROS idioms.
 
 While MAVROS can be used to communicate with any MAVLink enabled autopilot this documentation will be in the context of enabling communication between the PX4 flight stack and a ROS enabled companion computer.
 
 ## 설치
 
-MAVROS can be installed either from source or binary. Developers working with ROS are advised to use the source installation.
+MAVROS 는 소스코드 또는 바이너리 그 어떤 수단으로든 설치할 수 있습니다. ROS롤 다루는 개발자는 소스 코드 설치 방식을 추천드립니다.
 
-> **Tip** These instructions are a simplified version of the [official installation guide](https://github.com/mavlink/mavros/tree/master/mavros#installation). They cover the *ROS Melodic* release.
+> **Tip** 이 절차는 [공식 설치 안내서](https://github.com/mavlink/mavros/tree/master/mavros#installation)에서 단순화했습니다. 이 문서에서는 *ROS Melodic* 릴리스를 다룹니다.
 
 ### 바이너리 설치 (데비안 / 우분투)
 
-The ROS repository has binary packages for Ubuntu x86, amd64 (x86\_64) and armhf (ARMv7). Kinetic also supports Debian Jessie amd64 and arm64 (ARMv8).
+ROS 저장소에는 x86, amd64(x86\_64), armhf(ARMv7)용 우분투 바이너리 패키지가 들어있습니다. 키네틱에서는 데비안 Jessie amd64와 arm64(ARMv8)를 지원합니다.
 
 설치시 `apt-get` 명령을 사용하십시오:
 
@@ -44,24 +44,24 @@ You will be using the ROS Python tools: *wstool* (for retrieving sources), *rosi
 sudo apt-get install python-catkin-tools python-rosinstall-generator -y
 ```
 
-> **Tip** While the package can be built using **catkin_make** the preferred method is using **catkin_tools** as it is a more versatile and "friendly" build tool.
+> **Tip** **catkin_make** 명령으로 패키지를 빌드할 수 있지만, **catkin_tools** 명령을 활용하는 방식이 선호하는 방식인 이유는 기능이 다양하고 사용이 "편한" 빌드 도구이기 때문입니다.
 
-If this is your first time using wstool you will need to initialize your source space with:
+wstool을 처음 사용한다면 소스 코드 영역을 다음 명령으로 초기화해야합니다:
 
 ```sh
 $ wstool init ~/catkin_ws/src
 ```
 
-Now you are ready to do the build
+이제 빌드할 준비가 끝났습니다
 
-1. Install MAVLink: 
+1. MAVLink를 설치하십시오: 
         # We use the Kinetic reference for all ROS distros as it's not distro-specific and up to date
         rosinstall_generator --rosdistro kinetic mavlink | tee /tmp/mavros.rosinstall
 
-2. Install MAVROS from source using either released or latest version:
+2. MAVROS를 출시 버전 또는 최신 버전의 소스 코드로 설치하십시오:
     
-    - Released/stable ```rosinstall_generator --upstream mavros | tee -a /tmp/mavros.rosinstall```
-    - Latest source 
+    - 출시/안정 ```rosinstall_generator --upstream mavros | tee -a /tmp/mavros.rosinstall```
+    - 최신 소스 코드 
             sh
             rosinstall_generator --upstream-development mavros | tee -a /tmp/mavros.rosinstall
         
@@ -70,27 +70,27 @@ Now you are ready to do the build
             # just add '--deps' to the above scripts, E.g.:
             #   rosinstall_generator --upstream mavros --deps | tee -a /tmp/mavros.rosinstall
 
-3. Create workspace & deps
+3. 작업 영역과 의존 요소 트리를 만드십시오
     
         wstool merge -t src /tmp/mavros.rosinstall
         wstool update -t src -j4
         rosdep install --from-paths src --ignore-src -y
         
 
-4. Install [GeographicLib](https://geographiclib.sourceforge.io/) datasets:
+4. [GeographicLib](https://geographiclib.sourceforge.io/) 데이터세트를 설치하십시오:
     
         ./src/mavros/mavros/scripts/install_geographiclib_datasets.sh
         
 
-5. Build source
+5. 소스 코드를 빌드하십시오
     
         catkin build
         
 
-6. Make sure that you use setup.bash or setup.zsh from workspace.
+6. 작업 영역에서 setup.bash 또는 setup.zsh 스크립트를 사용했는지 확인하십시오.
     
         #Needed or rosrun can't find nodes from this workspace.
         source devel/setup.bash
         
 
-In the case of error, there are addition installation and troubleshooting notes in the [mavros repo](https://github.com/mavlink/mavros/tree/master/mavros#installation).
+오류가 발생했을 경우, [mavros 저장소](https://github.com/mavlink/mavros/tree/master/mavros#installation)의 추가 설치 및 문제 해결 참고 부분을 확인하십시오.
