@@ -6,28 +6,28 @@ The [mavros](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) ROS pac
 
 While MAVROS can be used to communicate with any MAVLink enabled autopilot this documentation will be in the context of enabling communication between the PX4 flight stack and a ROS enabled companion computer.
 
-## Installation
+## 설치
 
 MAVROS can be installed either from source or binary. Developers working with ROS are advised to use the source installation.
 
 > **Tip** These instructions are a simplified version of the [official installation guide](https://github.com/mavlink/mavros/tree/master/mavros#installation). They cover the *ROS Melodic* release.
 
-### Binary Installation (Debian / Ubuntu)
+### 바이너리 설치 (데비안 / 우분투)
 
 The ROS repository has binary packages for Ubuntu x86, amd64 (x86\_64) and armhf (ARMv7). Kinetic also supports Debian Jessie amd64 and arm64 (ARMv8).
 
-Use `apt-get` for installation:
+설치시 `apt-get` 명령을 사용하십시오:
 
     sudo apt-get install ros-kinetic-mavros ros-kinetic-mavros-extras
     
 
-Then install [GeographicLib](https://geographiclib.sourceforge.io/) datasets by running the `install_geographiclib_datasets.sh` script:
+`install_geographiclib_datasets.sh` 스크립트를 실행하여 [GeographicLib](https://geographiclib.sourceforge.io/) 데이터셋을 설치하십시오:
 
     wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
     ./install_geographiclib_datasets.sh
     
 
-### Source Installation
+### 소스 코드 설치
 
 This installation assumes you have a catkin workspace located at `~/catkin_ws` If you don't create one with:
 
