@@ -142,7 +142,7 @@ ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>("mav
 ros::Rate rate(20.0);
 ```
 
-PX4는 *보드 외부*에 인가하는 명령 두개 사이에 500ms의 제한 시간을 둡니다. If this timeout is exceeded, the commander will fall back to the last mode the vehicle was in before entering *Offboard* mode. This is why the publishing rate **must** be faster than 2 Hz to also account for possible latencies. This is also the same reason why it is recommended to enter *Offboard* mode from *Position* mode, this way if the vehicle drops out of *Offboard* mode it will stop in its tracks and hover.
+PX4는 *보드 외부*에 인가하는 명령 두개 사이에 500ms의 제한 시간을 둡니다. 제한 시간이 지나면, 통제 주체는 *보드 외부* 통제 모드로 들어가기 전 기체의 최근 상태로 복귀합니다. 이게 바로 가능한 지연 시간을 고려하여 메세지와 명령을 내보내는 속도가 2Hz보다 **빨라야 하는** 이유입니다. 또한 *위치* 통제 모드에서 *보드 외부* 통제 모드로의 진입을 추천하는 동일한 이유이기도 하며, *보드 외부* 통제 모드 진입을 기체에서 중단하면 추적을 멈추고 그 자리에서 떠 있습니다.
 
 ```cpp
 // wait for FCU connection
