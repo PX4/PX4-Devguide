@@ -354,4 +354,4 @@ ROS 토픽 "/mavros/keyboard_command/keyboard_sub"에 "std_msgs/Char" 메시지 
    nsh> key_receiver
    ```
 
-Check if it successfully receives `a` from your ROS topic.
+ROS 토픽으로 부터 `a`를 올바르게 수신하는지 확인합니다.
