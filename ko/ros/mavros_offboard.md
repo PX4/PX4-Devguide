@@ -126,7 +126,7 @@ void state_cb(const mavros_msgs::State::ConstPtr& msg){
 }
 ```
 
-오토파일럿의 현재 상태를 저장하는 간단한 콜백 메서드를 만들었습니다. 이 콜백 메서드로 연결, 이륙 준비 상태 *보드 외부* 플래그를 확인합니다.
+오토파일럿의 현재 상태를 저장하는 간단한 콜백 메서드를 만들었습니다. 이 콜백 메서드로 연결, 이륙 준비 상태, *OFFBOARD* 플래그를 확인합니다.
 
 ```cpp
 ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>("mavros/state", 10, state_cb);
@@ -213,6 +213,6 @@ while(ros::ok()){
 }
 ```
 
-나머지 코드는 굳이 설명하지 않아도 있는 그대로 동작합니다. We attempt to switch to *Offboard* mode, after which we arm the quad to allow it to fly. We space out the service calls by 5 seconds so to not flood the autopilot with the requests. In the same loop, we continue sending the requested pose at the appropriate rate.
+나머지 코드는 굳이 설명하지 않아도 있는 그대로 동작합니다. 쿼드콥터 비행을 할 수 있도록 이륙 준비가 끝나고 나면, *OFFBOARD* 모드로 전환을 시도합니다. 5초간의 서비스 호출 여유 시간을 두어 오토 파일럿에 요청이 과도하게 들어가지 않게 합니다. 동일한 루프에서 적당한 속도로 요청한 자세를 계속 보냅니다.
 
-> **Tip** This code has been simplified to the bare minimum for illustration purposes. In larger systems, it is often useful to create a new thread which will be in charge of periodically publishing the setpoints.
+> **Tip** 이 코드는 최소한의 묘사를 목적으로 단순화했습니다. 좀 더 규모가 큰 시스템에서는 설정값을 주기적으로 내보내도록 새 스레드를 만드는게 좋습니다.
