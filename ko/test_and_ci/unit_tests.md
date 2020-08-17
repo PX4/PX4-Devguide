@@ -114,7 +114,7 @@ The steps to create new SITL unit tests are as follows:
     extern int test_[description](int argc, char *argv[]);
     ```
 
-11. Within [tests_main.c](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.c) add description name, test function and option:
+11. [tests_main.c](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.c)에 새 설명 이름, 테스트 함수, 옵션을 추가하십시오:
     
     ```cpp ... } tests[] = { {... {"[description]", test_[description], OPTION}, ... }
 
