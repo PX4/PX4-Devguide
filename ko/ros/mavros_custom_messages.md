@@ -93,7 +93,7 @@
 
 ## PX4 수정사항
 
-1. Inside **common.xml** (in **Firmware/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (same procedure as for MAVROS section above):
+1. **common.xml** (**Firmware/mavlink/include/mavlink/v2.0/message_definitions**에 있음)에 다음과 같이 여러분의 MAVLink 메시지를 추가합니다.(위의 MAVROS와 동일):
 
    ```xml
    ...
@@ -104,14 +104,14 @@
    ...
    ```
 
-1. Remove *common*, *standard* directories in (**Firmware/mavlink/include/mavlink/v2.0**).
+1. *common*, *standard* (**Firmware/mavlink/include/mavlink/v2.0**에 있음) 디렉토리 삭제.
 
    ```sh
    rm -r common
    rm -r standard
    ```
 
-1. Git clone "mavlink_generator" to any directory you want and execute it.
+1. 원하는 디렉터리로 "mavlink_generator"를 git 클론 후 실행.
 
    ```sh
    git clone https://github.com/mavlink/mavlink mavlink-generator
@@ -119,7 +119,7 @@
    python mavgenerate.py
    ```
 
-1. You will see a "MAVLink Generator" popup:
+1. "MAVLink Generator" 팝업이 나타납니다:
     
     - For *XML*, "Browse" to **/Firmware/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**.
     - For Out, "Browse" to **/Firmware/mavlink/include/mavlink/v2.0/**.
