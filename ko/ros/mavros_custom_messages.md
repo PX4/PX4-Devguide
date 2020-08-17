@@ -12,11 +12,11 @@
 
 ## MAVROS 설치
 
-Follow *Source Installation* instructions from [mavlink/mavros](https://github.com/mavlink/mavros/blob/master/mavros/README.md) to install "ROS Kinetic".
+[mavlink/mavros](https://github.com/mavlink/mavros/blob/master/mavros/README.md) 의 *소프트웨어 설치* 안내에 따라 "ROS Kinetic" 설치를 따라하십시오.
 
 ## MAVROS
 
-1. We start by creating a new MAVROS plugin, in this example named **keyboard_command.cpp** (in **workspace/src/mavros/mavros_extras/src/plugins**) by using the code below:
+1. **keyboard_command.cpp** (**workspace/src/mavros/mavros_extras/src/plugins**에 있음) 예제에서, 우선 아래의 코드를 이용하여 신규 MAVROS 플러그인을 만듭니다:
     
     The code subscribes a 'char' message from ROS topic `/mavros/keyboard_command/keyboard_sub` and sends it as a MAVLink message.
 
