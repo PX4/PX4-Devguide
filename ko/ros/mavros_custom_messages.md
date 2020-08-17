@@ -121,21 +121,21 @@
 
 1. "MAVLink Generator" 팝업이 나타납니다:
     
-    - For *XML*, "Browse" to **/Firmware/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**.
-    - For Out, "Browse" to **/Firmware/mavlink/include/mavlink/v2.0/**.
-    - Select Language **C**
-    - Select Protocol **2.0**
-    - Check *Validate*
+    - *XML*은 **/Firmware/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**로 "Browse"합니다.
+    - Out은 **/Firmware/mavlink/include/mavlink/v2.0/**로 "Browse"합니다.
+    - **C** 언어를 선택
+    - 프로토콜 **2.0**을 선택
+    - *Validate* 체크
     
-    Then, press **Generate**. You will see *common*, and *standard* directories created in **/Firmware/mavlink/include/mavlink/v2.0/**.
+    **Generate**를 누릅니다. **/Firmware/mavlink/include/mavlink/v2.0/**아래에 *common* 및 *standard* 디렉토리가 생성됩니다.
 
-2. Make your own uORB message file **key_command.msg** in (Firmware/msg). For this example the "key_command.msg" has only the code:
+2. (Firmware/msg)에 **key_command.msg**라는 uORB 메시지 파일을 작성합니다. 이번 예제에서는 "key_command.msg" 파일에는 아래의 코드만 있습니다:
 
    ```
    char cmd
    ```
 
-Then, in **CMakeLists.txt** (in **Firmware/msg**), include
+다음으로 **CMakeLists.txt**(**Firmware/msg**에 있음)에 아래를 추가합니다.
 
    ```cmake
    set(
@@ -144,7 +144,7 @@ Then, in **CMakeLists.txt** (in **Firmware/msg**), include
         )
    ```
 
-1. Edit **mavlink_receiver.h** (in **Firmware/src/modules/mavlink**)
+1. **mavlink_receiver.h** (**Firmware/src/modules/mavlink**에 있음) 편집
 
    ```cpp
    ...
@@ -160,7 +160,7 @@ Then, in **CMakeLists.txt** (in **Firmware/msg**), include
    }
    ```
 
-1. Edit **mavlink_receiver.cpp** (in **Firmware/src/modules/mavlink**). This is where PX4 receives the MAVLink message sent from ROS, and publishes it as a uORB topic.
+1. **mavlink_receiver.cpp** (**Firmware/src/modules/mavlink**에 있음) 편집. This is where PX4 receives the MAVLink message sent from ROS, and publishes it as a uORB topic.
 
    ```cpp
    ...
