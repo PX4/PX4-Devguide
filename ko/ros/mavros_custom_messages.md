@@ -18,7 +18,7 @@
 
 1. **keyboard_command.cpp** (**workspace/src/mavros/mavros_extras/src/plugins**에 있음) 예제에서, 우선 아래의 코드를 이용하여 신규 MAVROS 플러그인을 만듭니다:
     
-    The code subscribes a 'char' message from ROS topic `/mavros/keyboard_command/keyboard_sub` and sends it as a MAVLink message.
+    다음 코드는 ROS 토픽 `/mavros/keyboard_command/keyboard_sub`의 'char' 메시지를 구독하고 이를 MAVLink 메시지로 전송합니다.
 
    ```c
     #include <mavros/mavros_plugin.h>
@@ -63,7 +63,7 @@
    PLUGINLIB_EXPORT_CLASS(mavros::extra_plugins::KeyboardCommandPlugin, mavros::plugin::PluginBase)
    ```
 
-1. Edit **mavros_plugins.xml** (in **workspace/src/mavros/mavros_extras**) and add the following lines:
+1. **mavros_plugins.xml** (**workspace/src/mavros/mavros_extras**에 있음)에 다음 행을 추가합니다:
 
    ```xml
    <class name="keyboard_command" type="mavros::extra_plugins::KeyboardCommandPlugin" base_class_type="mavros::plugin::PluginBase">
@@ -71,7 +71,7 @@
    </class>
    ```
 
-1. Edit **CMakeLists.txt** (in **workspace/src/mavros/mavros_extras**) and add the following line in `add_library`.
+1. **CMakeLists.txt** (**workspace/src/mavros/mavros_extras**에 있음)에 아래 `add_library`에 아래 행을 추가합니다.
 
    ```cmake
    add_library( 
@@ -80,7 +80,7 @@
    )
    ```
 
-1. Inside **common.xml** in (**workspace/src/mavlink/message_definitions/v1.0**), copy the following lines to add your MAVLink message:
+1. **common.xml** (**workspace/src/mavlink/message_definitions/v1.0**에 있음)에 다음 행을 복사하여 여러분의 MAVLink 메시지를 추가합니다:
 
    ```xml
    ...
@@ -91,7 +91,7 @@
    ...
    ```
 
-## PX4 Changes
+## PX4 수정사항
 
 1. Inside **common.xml** (in **Firmware/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (same procedure as for MAVROS section above):
 
