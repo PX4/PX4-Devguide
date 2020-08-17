@@ -160,7 +160,7 @@
    }
    ```
 
-1. **mavlink_receiver.cpp** (**Firmware/src/modules/mavlink**에 있음) 편집. This is where PX4 receives the MAVLink message sent from ROS, and publishes it as a uORB topic.
+1. **mavlink_receiver.cpp** (**Firmware/src/modules/mavlink**에 있음) 편집. 여기에서 PX4는 ROS에서 전송된 MAVLink 메시지를 수신하고, 이를 uORB 토픽으로 발행합니다.
 
    ```cpp
    ...
@@ -193,7 +193,7 @@
    }
    ```
 
-1. Make your own uORB topic subscriber just like any example subscriber module. For this example lets create the model in (/Firmware/src/modules/key_receiver). In this directory, create two files **CMakeLists.txt**, **key_receiver.cpp**. Each one looks like following.
+1. 다른 subscriber 모듈예저처럼 여러분의 uORB 토픽 subscriber를 작성합니다. (/Firmware/src/modules/key_receiver)에 모델을 생성합니다. 이 디렉토리에, **CMakeLists.txt** 및 **key_receiver.cpp** 두개의 파일을 생성합니다. 개별 파일은 다음과 같습니다.
     
     -CMakeLists.txt
 
@@ -271,9 +271,9 @@
    }
    ```
 
-For a more detailed explanation please see the documentation for [Writing your first application](https://dev.px4.io/en/apps/hello_sky.html).
+상세한 설명은 [Writing your first application](https://dev.px4.io/en/apps/hello_sky.html) 문서를 참고하십시오.
 
-1. Lastly add your module in the **default.cmake** file correspondent to your board in **Firmware/boards/**. For example for the Pixhawk 4 add the following code in **Firmware/boards/px4/fmu-v5/default.cmake**:
+1. 마지막으로 **Firmware/boards/**에서 여러분의 보드에 해댕하는 **default.cmake**파일에 여러분의 모듈을 추가합니다. 예를 들면, Pixhawk 4의 경우에는 **Firmware/boards/px4/fmu-v5/default.cmake**에 다음 코드를 추가합니다:
 
    ```cmake
     MODULES
@@ -282,13 +282,13 @@ For a more detailed explanation please see the documentation for [Writing your f
         ...
     ```
 
-Now you are ready to build all your work!
+이제 여러분의 작업을 빌드할 준비가 되었습니다!
 
 ## Building
 
 ### Build for ROS
 
-1. In your workspace enter: `catkin build`.
+1. 워크스페이스에서 `catkin build` 입력.
 1. Beforehand, you have to set your "px4.launch" in (/workspace/src/mavros/mavros/launch). 
    Edit "px4.launch" as below.
    If you are using USB to connect your computer with Pixhawk, you have to set "fcu_url" as shown below.
