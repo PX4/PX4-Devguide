@@ -2,9 +2,9 @@
 
 [mavros](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) ROS 패키지는 ROS를 구동하는 컴퓨터와, MAVLink를 활성화한 오토파일럿, MAVLink 기능을 지닌 GCS간의 MAVLink 확장 통신이 가능하게 합니다.
 
-> **Note** *MAVROS*는 ROS와 MAVLink 프로토콜간 브릿지를 "공식" 지원합니다. It is currently being extended to enable [fast-RTPS messaging](../middleware/micrortps.md), including a layer to translate PX4 [uORB messages](../middleware/uorb.md) to common ROS idioms.
+> **Note** *MAVROS*는 ROS와 MAVLink 프로토콜간 "공식" 지원 브릿지입니다. 현재로서는 [고속 RTPS 메세징](../middleware/micrortps.md), PX4 [uORB 메세지](../middleware/uorb.md)의 일반 ROS 문맥 변환 계층을 사용할 수 있도록 확장했습니다.
 
-While MAVROS can be used to communicate with any MAVLink enabled autopilot this documentation will be in the context of enabling communication between the PX4 flight stack and a ROS enabled companion computer.
+MAVROS 가 MAVLink를 활성화한 어떤 오토파일럿과도 통신할 수 있지만, 이 문서에서는 PX4 플라이트 스택과 ROS 활성 보조 컴퓨터의 통신 활성화 상황만 다룹니다.
 
 ## 설치
 
@@ -29,7 +29,7 @@ ROS 저장소에는 x86, amd64(x86\_64), armhf(ARMv7)용 우분투 바이너리 
 
 ### 소스 코드 설치
 
-This installation assumes you have a catkin workspace located at `~/catkin_ws` If you don't create one with:
+이 설치 과정에서는 catkin 작업 영역 `~/catkin_ws` 디렉터리를 만들었다고 가정합니다. 만약 이 디렉터리가 없다면 다음 명령을 실행하십시오:
 
 ```sh
 mkdir -p ~/catkin_ws/src
@@ -38,7 +38,7 @@ catkin init
 wstool init src
 ```
 
-You will be using the ROS Python tools: *wstool* (for retrieving sources), *rosinstall*, and *catkin_tools* (building) for this installation. While they may have been installed during your installation of ROS you can also install them with:
+이번 설치 과정에서는 ROS 파이썬 도구 *wstool* (소스 코드 다운로드), *rosinstall*, and *catkin_tools* (빌드) 를 활용하도록 하겠습니다. While they may have been installed during your installation of ROS you can also install them with:
 
 ```sh
 sudo apt-get install python-catkin-tools python-rosinstall-generator -y
