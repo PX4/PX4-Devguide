@@ -284,18 +284,18 @@
 
 이제 여러분의 작업을 빌드할 준비가 되었습니다!
 
-## Building
+## 빌드하기
 
-### Build for ROS
+### ROS관련 빌드
 
 1. 워크스페이스에서 `catkin build` 입력.
-1. Beforehand, you have to set your "px4.launch" in (/workspace/src/mavros/mavros/launch). 
-   Edit "px4.launch" as below.
-   If you are using USB to connect your computer with Pixhawk, you have to set "fcu_url" as shown below.
-   But, if you are using CP2102 to connect your computer with Pixhawk, you have to replace "ttyACM0" with "ttyUSB0".
-   Modifying "gcs_url" is to connect your Pixhawk with UDP, because serial communication cannot accept MAVROS, and your nutshell connection simultaneously.
+1. 우선, (/workspace/src/mavros/mavros/launch)아래 여러분의 "px4.launch"를 설정해야합니다. 
+   아래와 같이 "px4.launch"를 편집합니다.
+   USB를 사용하여 컴퓨터와 Pixhawk를 연결한 경우, "fcu_url"을 다음과 같이 설정합니다.
+   하지만, 만일 CP2102을 사용하여 컴퓨터와 Pixhawk를 연결한 경우에는, "ttyACM0"를 "ttyUSB0"로 변경합니다.
+   시리얼 통신으로는 MAVROS와 nutshell을 동시에 연결할 수 없기 때문에, UDP로 Pixhawk로 연결하기위해 "gcs_url"를 수정합니다.
 
-1. Write your IP address at "xxx.xx.xxx.xxx"
+1. IP 주소를 "xxx.xx.xxx.xxx"에 기입
    ```xml
    ...
      <arg name="fcu_url" default="/dev/ttyACM0:57600" />
@@ -303,7 +303,7 @@
    ...
    ```
 
-### Build for PX4
+### PX4관련 빌드
 
 1. Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx).
     
