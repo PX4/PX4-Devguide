@@ -1,22 +1,22 @@
 # 보드 외부 제어
 
-> **Warning** [Offboard control](https://docs.px4.io/master/en/flight_modes/offboard.html) is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.
+> **Warning** [보드 외부](https://docs.px4.io/master/en/flight_modes/offboard.html) 제어는 위험합니다. 개발자에게는 충분히 보드 외부 제어 비행을 수행하기 전 준비하고 시험했으며 안전 예방책을 수립했는지 확인할 책임이 있습니다.
 
-The idea behind off-board control is to be able to control the PX4 flight stack using software running outside of the autopilot. This is done through the MAVLink protocol, specifically the [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) and the [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) messages.
+보드 외부 제어 개념은 오토파일럿 외부에서 동작하는 프로그램으로 PX4 플라이트 스택을 제어할 수 있음에 기인합니다. MAVLink 프로토콜에서 [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) 와 [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) 메세지로 처리가 가능합니다.
 
 ## 보드 외부 제어 펌웨어 설치
 
-There are two things you want to setup on the firmware side before starting offboard development.
+보드 외부 개발을 시작하기 전 펌웨어 측면에서 설정해야 할 두가지가 있습니다.
 
-### Map an RC switch to offboard mode activation
+### OFFBOARD 모드 활성화용 원격 조종 스위치 매핑
 
-To do this, load up the parameters in *QGroundControl* and look for the RC_MAP_OFFB_SW parameter to which you can assign the RC channel you want to use to activate offboard mode. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
+이 과정을 수행하려면, *QGroundControl*의 매개변수를 불러온 후 RC_MAP_OFFB_SW 매개변수를 찾아 OFFBOARD 모드를 활성화 할, 할당 가능한 원격 조종 채널값으로 설정합니다. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
 
 Although this step isn't mandatory since you can activate offboard mode using a MAVLink message. We consider this method much safer.
 
-### Enable the companion computer interface
+### 보조 컴퓨터 인터페이스 활성화
 
-Enable MAVLink on the serial port that you connect to the companion computer (see [Companion computer setup](../companion_computer/pixhawk_companion.md)).
+보조 컴퓨터에 연결할 MAVLink 직렬 포트를 활성화하십시오([보조 컴퓨터 설정](../companion_computer/pixhawk_companion.md) 참고).
 
 ## 하드웨어 설정
 
