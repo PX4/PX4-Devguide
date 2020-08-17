@@ -212,7 +212,7 @@ You are now set to proceed to the first flight.
 
 After setting up one of the (specific) systems described above you should now be ready to test. The instructions below show how to do so for MoCap and VIO systems
 
-### Check external estimate
+### 외부 추정자 점검
 
 Be sure to perform the following checks before your first flight:
 
