@@ -19,7 +19,7 @@ The current set of compatible airframes vs Simulators is:
 
 With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*.
 
-> **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable). For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)).
+> **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable). 예를 들어, 컴퓨터와 이더넷으로 연결해 둔 라즈베리 파이와 PX4의 설정 시험을 이미 진행했습니다(jMAVSim 실행 명령이 들어간 시작 설정은 [여기](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)에 있습니다).
 
 The diagram below shows the simulation environment:
 
