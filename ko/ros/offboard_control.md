@@ -43,19 +43,19 @@ graph TD;
 
 ### 보드 내장 프로세서
 
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter. There are many possibilities here and it will depend on what kind of additional on-board processing you want to do in addition to sending commands to the autopilot.
+장치에 붙은 소형 컴퓨터는 UART to USB 어댑터로 오토파일럿에 연결합니다. 어떤 작업을 보드상에서 처리하느냐에 따라 오토파일럿에 추가로 명령을 보내 처리할 수 있습니다.
 
-Small low power examples:
+몇가지 저전력 보드를 예로 들면:
 
-* [Odroid C1+](https://www.hardkernel.com/shop/odroid-c1/) or [Odroid XU4](https://magazine.odroid.com/odroid-xu4)
-* [Raspberry Pi](https://www.raspberrypi.org/)
-* [Intel Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
+* [Odroid C1+](https://www.hardkernel.com/shop/odroid-c1/) 또는 [Odroid XU4](https://magazine.odroid.com/odroid-xu4)
+* [라즈베리 파이](https://www.raspberrypi.org/)
+* [인텔 에디슨](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
 
-Larger high power examples:
+좀 더 큰 고 전력 소비 보드를 예로 들면:
 
-* [Intel NUC](http://www.intel.com/content/www/us/en/nuc/overview.html)
-* [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
-* [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
+* [인텔 NUC](http://www.intel.com/content/www/us/en/nuc/overview.html)
+* [기가바이트 브릭스](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
+* [엔비디아 젯슨 TK1](https://developer.nvidia.com/jetson-tk1)
 
 [![Mermaid diagram: Companion mavlink](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGNvbXBbQ29tcGFuaW9uIENvbXB1dGVyXSAtLU1BVkxpbmstLT4gdWFydFtVQVJUIEFkYXB0ZXJdO1xuICB1YXJ0IC0tTUFWTGluay0tPiBBdXRvcGlsb3Q7IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGNvbXBbQ29tcGFuaW9uIENvbXB1dGVyXSAtLU1BVkxpbmstLT4gdWFydFtVQVJUIEFkYXB0ZXJdO1xuICB1YXJ0IC0tTUFWTGluay0tPiBBdXRvcGlsb3Q7IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
