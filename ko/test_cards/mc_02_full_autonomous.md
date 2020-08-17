@@ -14,7 +14,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;❏ 5~6분간 수행
 
-*QGroundControl*을 통한 기체로의 임무 업로드
+❏ *QGroundControl*을 통한 기체로의 임무 업로드
 
 ## 이륙 준비 및 이륙
 
