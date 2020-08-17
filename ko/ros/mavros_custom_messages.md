@@ -305,50 +305,50 @@
 
 ### PX4관련 빌드
 
-1. Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx).
+1. PX4 펌웨어를 빌드하고 [일반적은 방법으로](../setup/building_px4.md#nuttx) 업로드합니다.
     
-    For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the Firmware directory:
+    예를 들며, Pixhawk 4/FMUv5를 빌드하기위해서는 Firmware 디렉토리의 루트에서 아래 명령을 실행합니다:
 
    ```sh
     make px4_fmu-v5_default upload
     ```
 
-## Running the Code
+## 코드 실행
 
-Next test if the MAVROS message is sent to PX4.
+다음으로 MAVROS 메시지가 PX4로 전송되는지 테스트합니다.
 
-### Running ROS
+### ROS 실행
 
-1. In a terminal enter
+1. 터밀널에서 다음을 입력합니다.
    ```sh
    roslaunch mavros px4.launch
    ```
 
-1. In a second terminal run:
+1. 두번째 터밀널에서 다음을 실행:
 
    ```sh
    rostopic pub -r 10 /mavros/keyboard_command/keyboard_sub std_msgs/Char 97
    ```
 
-This means, publish 97 ('a' in ASCII) to ROS topic "/mavros/keyboard_command/keyboard_sub" in message type "std_msgs/Char". "-r 10" means to publish continuously in "10Hz".
+ROS 토픽 "/mavros/keyboard_command/keyboard_sub"에 "std_msgs/Char" 메시지 타입으로 97(ASCII 코드 'a')를 발행하는 것을 의미합니다. "-r 10"은 "10Hz"를 일정하게 발행하는 것을 의미합니다.
 
-### Running PX4
+### PX4 실행하기
 
-1. Enter the Pixhawk nutshell through UDP. Replace xxx.xx.xxx.xxx with your IP.
+1. UDP를 통해 Pixhawk nutshell로 들어갑니다. xxx.xx.xxx.xxx를 여러분의 IP로 변경하세요.
 
    ```sh
    cd Firmware/Tools
    ./mavlink_shell.py xxx.xx.xxx.xxx:14557 --baudrate 57600
    ```
 
-1. After few seconds, press **Enter** a couple of times. You should see a prompt in the terminal as below:
+1. 몇초후, **Enter** 를 몇번 누릅니다. 아래와 같이 터미널에서 프롬프트가 나타납니다:
 
    ```sh
    nsh>
    nsh>
    ```
 
-Type "key_receiver", to run your subscriber module.
+"key_receiver"를 입력하여 subscriber 모듈을 실행합니다.
 
    ```
    nsh> key_receiver
