@@ -1,4 +1,4 @@
-# Various Notes
+# 다양한 참고 사항
 
 This is a collection of tips and tricks to solve issues when setting up or working with the UAVCAN.
 
