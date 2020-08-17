@@ -10,14 +10,14 @@ PX4에서는 단위 테스트 작성에 필요한 몇가지 수단을 제공합�
 
 ## GTest 단위 테스트 작성
 
-**Tip**: In general, if you need access to advanced GTest utilities, data structures from the STL or need to link to `parameters` or `uorb` libraries you should use the functional tests instead.
+**Tip**: 보통, 고급 GTest 유틸리티, STL 데이터 구조에 접근해야 하거나 `매개변수` 또는 `uORB` 라이브러리로의 연결이 필요하다면, 기능 테스트를 대신 활용해야합니다.
 
-The steps to create new unit tests are as follows:
+새 단위 테스트의 작성 절차는 다음과 같습니다:
 
-1. Unit tests should be arranged in three sections: setup, run, check results. Each test should test one very specific behavior or setup case, so if a test fails it is obvious what is wrong. Please try to follow these standards when possible.
-2. Copy and rename the example unit test [AttitudeControlTest](https://github.com/PX4/Firmware/blob/master/src/modules/mc_att_control/AttitudeControl/AttitudeControlTest.cpp) to the directory the code to be tested is in.
-3. Add the new file to the directory's `CMakeLists.txt`. It should look something like `px4_add_unit_gtest(SRC MyNewUnitTest.cpp LINKLIBS <library_to_be_tested>)`
-4. Add the desired test functionality. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the setup, running the code to be tested and verifying that it behaves as expected.
+1. 단위 테스트는 설치, 실행, 결과 검사 세 부분으로 정리해야 합니다. 각 테스트에서는 매우 극히 일부의 동작을 시험하거나 설정 조건을 시험하면, 테스트에 실패했을 경우 어떤 부분에서 문제가 있는지 명백하게 드러납니다. 가능하면 이 표준을 따라주십시오.
+2. [AttitudeControlTest](https://github.com/PX4/Firmware/blob/master/src/modules/mc_att_control/AttitudeControl/AttitudeControlTest.cpp) 예제 단위 테스트를 시험할 코드가 있는 디렉터리로 복사하고 이름을 바꾸십시오.
+3. 해당 디렉터리의 `CMakeLists.txt`에 새 파일을 추가하십시오. `px4_add_unit_gtest(SRC MyNewUnitTest.cpp LINKLIBS <library_to_be_tested>)`와 같아야 합니다.
+4. 원하는 시험 기능을 추가하십시오. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the setup, running the code to be tested and verifying that it behaves as expected.
 5. If additional library dependencies are required, they should also be added to the CMakeLists after the `LINKLIBS` as shown above.
 
 Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/unit-MyNewUnit`. It can be run directly in a debugger.
