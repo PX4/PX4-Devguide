@@ -172,14 +172,14 @@ for(int i = 100; ros::ok() && i > 0; --i){
 }
 ```
 
-Before entering *Offboard* mode, you must have already started streaming setpoints. Otherwise the mode switch will be rejected. Here, `100` was chosen as an arbitrary amount.
+*보드 외부* 제어 모드로 들어가기 전에 실시간 데이터 전송 설정값을 둔 상태로 시작해야합니다. 그렇지 않으면 모드 전환이 불가능합니다. 여기서는 `100`을 임의의 값으로 선택했습니다.
 
 ```cpp
 mavros_msgs::SetMode offb_set_mode;
 offb_set_mode.request.custom_mode = "OFFBOARD";
 ```
 
-We set the custom mode to `OFFBOARD`. A list of [supported modes](http://wiki.ros.org/mavros/CustomModes#PX4_native_flight_stack) is available for reference.
+`OFFBOARD`를 custom_mode 값으로 설정했습니다. [지원 모드](http://wiki.ros.org/mavros/CustomModes#PX4_native_flight_stack) 목록을 참고 목적으로 두었습니다.
 
 ```cpp
 mavros_msgs::CommandBool arm_cmd;
@@ -213,6 +213,6 @@ while(ros::ok()){
 }
 ```
 
-The rest of the code is pretty self explanatory. We attempt to switch to *Offboard* mode, after which we arm the quad to allow it to fly. We space out the service calls by 5 seconds so to not flood the autopilot with the requests. In the same loop, we continue sending the requested pose at the appropriate rate.
+나머지 코드는 굳이 설명하지 않아도 있는 그대로 동작합니다. We attempt to switch to *Offboard* mode, after which we arm the quad to allow it to fly. We space out the service calls by 5 seconds so to not flood the autopilot with the requests. In the same loop, we continue sending the requested pose at the appropriate rate.
 
 > **Tip** This code has been simplified to the bare minimum for illustration purposes. In larger systems, it is often useful to create a new thread which will be in charge of periodically publishing the setpoints.
