@@ -681,7 +681,7 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 
 ### OBC(온보드 컴퓨터)에서 UART 활성화하기
 
-라즈페이파이나 다른 OBC에서 UART 전송을 위해서는 시리얼 포트를 활성화해야만 합니다.
+라즈베리 파이나 다른 OBC에서 UART 전송을 수행하려면 시리얼 포트를 활성화해야 합니다:
 
 1. `userid`(라즈베리 파이에서는 pi가 기본)가 `dialout` 그룹의 구성원인지 확인하세요.
     
