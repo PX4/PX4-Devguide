@@ -1,14 +1,14 @@
-# Unit Tests
+# 단위 테스트
 
-Developers are encouraged to write unit tests during all parts of development, including adding new features, fixing bugs, and refactoring.
+개발자 여러분은 개발 새 기능 추가, 버그 수정, 리팩토링 등 전 영역에 걸쳐 단위 테스트를 작성하시는게 좋습니다.
 
-PX4 provides several methods for writing unit tests:
+PX4에서는 단위 테스트 작성에 필요한 몇가지 수단을 제공합니다:
 
-1. Unit tests with [Google Test](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) ("GTest") - tests that have minimal, internal-only dependencies
-2. Functional tests with GTest - tests that depend on parameters and uORB messages
-3. SITL unit tests. This is for tests that need to run in full SITL. These tests are much slower to run and harder to debug, so it is recommended to use GTest instead when possible.
+1. [구글 테스트](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) ("GTest")를 통한 단위 테스트 - 최소한의 내부 전용 의존 요소를 시험
+2. GTest로의 기능 시험 - 매개변수와 uORB 메세지에 따른 시험
+3. SITL 단위 테스트. 완전한 SITL 실행에 필요한 테스트입니다. 이 테스트는 실행하기에 매우 느리거나 디버깅하기 어려운 부분입니다. 따라서 가능하면 GTest를 활용하시는게 좋습니다.
 
-## Writing a GTest Unit Test
+## GTest 단위 테스트 작성
 
 **Tip**: In general, if you need access to advanced GTest utilities, data structures from the STL or need to link to `parameters` or `uorb` libraries you should use the functional tests instead.
 
