@@ -1,16 +1,16 @@
-# Sending a Custom Message from MAVROS to PX4
+# MAVROS에서 PX4로 커스텀 메시지 전송
 
-> **Warning** This article has been tested against:
+> **경고** 본 문서는 아래 환경에서 테스트하였습니다:
 
 - **Ubuntu:** 18.04
 - **ROS:** Melodic
 - **PX4 Firmware:** 1.9.0
     
-    However these steps are fairly general and so it should work with other distros/versions with little to no modifications.
+    그렇지만 아래 절차는 아주 일반적이기 때문에 다른 배포판이나 버전에서 약간의 수정이나 수정 없이 동작할 것입니다. 
 
 <!-- Content reproduced with permission from @JoonmoAhn in https://github.com/JoonmoAhn/Sending-Custom-Message-from-MAVROS-to-PX4/issues/1 -->
 
-## MAVROS Installation
+## MAVROS 설치
 
 Follow *Source Installation* instructions from [mavlink/mavros](https://github.com/mavlink/mavros/blob/master/mavros/README.md) to install "ROS Kinetic".
 
