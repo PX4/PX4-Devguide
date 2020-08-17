@@ -1,4 +1,4 @@
-# Test MC_03 - Auto Manual Mix
+# 시험 MC_03 - 자동 / 수동 혼합
 
 ## 임무 수립 및 업로드
 
