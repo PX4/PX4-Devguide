@@ -683,14 +683,14 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 
 라즈페이파이나 다른 OBC에서 UART 전송을 위해서는 시리얼 포트를 활성화해야만 합니다.
 
-1. `userid`가 `dialout` 그룹의 멤버인지 확인하세요(라즈베리파이에서는 기본값이 pi 입니다).
+1. `userid`(라즈베리 파이에서는 pi가 기본)가 `dialout` 그룹의 구성원인지 확인하세요.
     
     ```sh
     groups pi
     sudo usermod -a -G dialout pi
     ```
 
-2. 일부 라즈베리파이에서는 그 포트를 사용하고 있는 GPIO 시리얼 콘솔을 멈춰야 합니다.
+2. 일부 라즈베리 파이에서는 포트를 사용하는 GPIO 직렬 콘솔 사용을 멈춰야 합니다.
     
     ```sh
     sudo raspi-config
