@@ -152,7 +152,7 @@ while(ros::ok() && !current_state.connected){
 }
 ```
 
-Before publishing anything, we wait for the connection to be established between MAVROS and the autopilot. This loop should exit as soon as a heartbeat message is received.
+무언가를 전송하기 전 MAVROS와 오토파일럿의 연결을 기다립니다. 이 루프는 하트비트 메세지를 수신한 즉시 빠져나갑니다.
 
 ```cpp
 geometry_msgs::PoseStamped pose;
@@ -161,7 +161,7 @@ pose.pose.position.y = 0;
 pose.pose.position.z = 2;
 ```
 
-Even though the PX4 Pro Flight Stack operates in the aerospace NED coordinate frame, MAVROS translates these coordinates to the standard ENU frame and vice-versa. This is why we set `z` to positive 2.
+PX4 프로 플라이트 스택이 항공 NED 좌표 영역에서 동작하긴 하지만, MAVROS는 이 좌표를 표준 ENU 프레임 또는 그 반대로 (자유 자재로) 변환합니다. 따라서 `z` 값을 양의 정수 2로 설정했습니다.
 
 ```cpp
 //send a few setpoints before starting
