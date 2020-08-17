@@ -10,9 +10,9 @@
 
 ### OFFBOARD 모드 활성화용 원격 조종 스위치 매핑
 
-이 과정을 수행하려면, *QGroundControl*의 매개변수를 불러온 후 RC_MAP_OFFB_SW 매개변수를 찾아 OFFBOARD 모드를 활성화 할, 할당 가능한 원격 조종 채널값으로 설정합니다. It can be useful to map things in such a way that when you fall out of offboard mode you go into position control.
+이 과정을 수행하려면, *QGroundControl*의 매개변수를 불러온 후 RC_MAP_OFFB_SW 매개변수를 찾아 OFFBOARD 모드를 활성화 할, 할당 가능한 원격 조종 채널값으로 설정합니다. OFFBOARD 모드에서 벗어나 위치 제어 상태로 진입해야 할 때 이런 식으로 원격 조종 스위치 입력을 대응을 해주면 도움이 될 수 있습니다.
 
-Although this step isn't mandatory since you can activate offboard mode using a MAVLink message. We consider this method much safer.
+MAVLink 메세지로 OFFBOARD 모드를 활성화할 수 있으므로, 이 단계를 반드시 거쳐야 하는건 아닙니다. 단, 이 방식이 훨씬 안전하다고 간주합니다.
 
 ### 보조 컴퓨터 인터페이스 활성화
 
@@ -67,7 +67,7 @@ graph TD;
 
 ### ROS로의 보드 내장 프로세서와 WiFi 링크(***추천***)
 
-A small computer mounted onto the vehicle connected to the autopilot through a UART to USB adapter while also having a WiFi link to a ground station running ROS. This can be any of the computers from the above section coupled with a WiFi adapter. For example, the Intel NUC D34010WYB has a PCI Express Half-Mini connector which can accommodate an [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) adapter.
+기체에 붙은 소형 컴퓨터는 오토파일럿에 UART to USB 어댑터로 연결하며, ROS 실행 환경에서는 지상 통제국과 WiFi 로 연결합니다. 위 절에서 언급한 어떤 컴퓨터는 WiFi 어댑터로 연결할 수 있습니다. 예를 들면, 인텔 NUC D34010WYB 에는 PCI 익스프레스 Half-Mini 커넥터가 있는데 여기에 [Intel WiFi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) 어댑터를 붙일 수 있습니다.
 
 [![mermaid 도표: ROS](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgc3ViZ3JhcGggR3JvdW5kICBTdGF0aW9uXG4gIGduZFtST1MgRW5hYmxlZCBDb21wdXRlcl0gLS0tIHFnY1txR3JvdW5kQ29udHJvbF1cbiAgZW5kXG4gIGduZCAtLU1BVkxpbmsvVURQLS0-IHdbV2lGaV07XG4gIHFnYyAtLU1BVkxpbmstLT4gdztcbiAgc3ViZ3JhcGggVmVoaWNsZVxuICBjb21wW0NvbXBhbmlvbiBDb21wdXRlcl0gLS1NQVZMaW5rLS0-IHVhcnRbVUFSVCBBZGFwdGVyXVxuICB1YXJ0IC0tLSBBdXRvcGlsb3RcbiAgZW5kXG4gIHcgLS0tIGNvbXAiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgc3ViZ3JhcGggR3JvdW5kICBTdGF0aW9uXG4gIGduZFtST1MgRW5hYmxlZCBDb21wdXRlcl0gLS0tIHFnY1txR3JvdW5kQ29udHJvbF1cbiAgZW5kXG4gIGduZCAtLU1BVkxpbmsvVURQLS0-IHdbV2lGaV07XG4gIHFnYyAtLU1BVkxpbmstLT4gdztcbiAgc3ViZ3JhcGggVmVoaWNsZVxuICBjb21wW0NvbXBhbmlvbiBDb21wdXRlcl0gLS1NQVZMaW5rLS0-IHVhcnRbVUFSVCBBZGFwdGVyXVxuICB1YXJ0IC0tLSBBdXRvcGlsb3RcbiAgZW5kXG4gIHcgLS0tIGNvbXAiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
 
