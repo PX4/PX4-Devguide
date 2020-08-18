@@ -1,8 +1,8 @@
 # AirSim 시뮬레이션
 
-AirSim은 언리얼 엔진기반으로 만들어진, 드론용 오픈소스, 크로스 플랫폼 시뮬레이터입니다. It provides physically and visually realistic simulations of Pixhawk/PX4 using either Hardware-In-The-Loop \(HITL\) or Software-In-The-Loop \(SITL\).
+AirSim은 언리얼 엔진기반으로 만들어진, 드론용 오픈소스, 크로스 플랫폼 시뮬레이터입니다. Hardware-In-The-Loop \(HITL\) 혹은 Software-In-The-Loop \(SITL\)을 이용하여 Pixhawk/PX4의 물리적, 시각적으로 현실적인 시뮬레이션을 제공합니다.
 
-The main entry point for the documentation is the [Github AirSim README](https://github.com/Microsoft/AirSim/blob/master/README.md).
+[Github AirSim README](https://github.com/Microsoft/AirSim/blob/master/README.md)가 문서의 주요 시작점입니다.
 
 The main entry point for documentation on working with PX4 is [PX4 Setup for AirSim](https://github.com/Microsoft/AirSim/blob/master/docs/px4_setup.md) (covering both HITL and SITL).
 
