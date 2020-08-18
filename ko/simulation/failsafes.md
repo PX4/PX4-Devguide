@@ -1,6 +1,6 @@
-# Simulate Failsafes
+# Failsafe 시뮬레이션하기
 
-[Failsafes](https://docs.px4.io/master/en/config/safety.html) define the safe limits/conditions under which you can safely use PX4, and the action that will be performed if a failsafe is triggered (for example, landing, holding position, or returning to a specified point).
+[Failsafe](https://docs.px4.io/master/en/config/safety.html)은 PX4를 안전하게 사용할 수 있는 안전 한계/조건과 failsafe가 트리거된 경우에 수행될 동작을 정의합니다. (예를 들면, 착륙, 위치 유지, 혹은 지정된 지점으로 복귀)
 
 In SITL some failsafes are disabled by default to enable easier simulation usage. This topic explains how you can test safety-critical behavior in SITL simulation before attempting it in the real world.
 
