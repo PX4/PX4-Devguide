@@ -2,9 +2,9 @@
 
 [Failsafe](https://docs.px4.io/master/en/config/safety.html)은 PX4를 안전하게 사용할 수 있는 안전 한계/조건과 failsafe가 트리거된 경우에 수행될 동작을 정의합니다. (예를 들면, 착륙, 위치 유지, 혹은 지정된 지점으로 복귀)
 
-In SITL some failsafes are disabled by default to enable easier simulation usage. This topic explains how you can test safety-critical behavior in SITL simulation before attempting it in the real world.
+SITL 모드에서는 용이한 시뮬레이션을 위해 failsafe는 기본값으로 비활성화되어 있습니다. 본 주제에서는 안전상 중요한(safety-critical) 동작을 실제 환경이전에 시도해보기 이전에 SITL 시뮬레이션에서 어떻게 테스트할 수 있는지를 설명합니다.
 
-> **Note** You can also test failsafes using [HITL simulation](../simulation/hitl.md). HITL uses the normal configuration parameters of your flight controller.
+> **Note** [HITL 시뮬레이션](../simulation/hitl.md)을 활용해도 failsafe 테스트가 가능합니다. HITL uses the normal configuration parameters of your flight controller.
 
 <span></span>
 
