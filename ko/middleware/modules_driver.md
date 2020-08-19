@@ -889,7 +889,8 @@ UART로 TAP_ESC 하드웨어를 제어하는 모듈입니다. actuator_controls 
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-T <val>]  Type
-                     values: VBATT|P5VDC, default: VBATT
+                     values: VBATT|P5VDC|P12VDC, default: VBATT
+         [-K]        if initialization (probing) fails, keep retrying periodically
     
        stop
     
