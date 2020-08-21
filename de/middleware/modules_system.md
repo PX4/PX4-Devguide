@@ -76,6 +76,7 @@ The commander module contains the state machine for mode switching and failsafe 
     
        calibrate     Run sensor calibration
          mag|accel|gyro|level|esc|airspeed Calibration type
+         quick       Quick calibration (accel only, not recommended)
     
        check         Run preflight checks
     
@@ -438,7 +439,7 @@ The provided functionality includes:
 
 - Read the output from the sensor drivers (`sensor_gyro`, etc.). If there are multiple of the same type, do voting and failover handling. Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the topics is `sensor_combined`, used by many parts of the system.
 - Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
-- Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
+- Do preflight sensor consistency checks and publish the `sensor_preflight_imu` topic.
 
 ### Implementation
 
