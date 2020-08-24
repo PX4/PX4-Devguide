@@ -120,3 +120,13 @@ make px4_sitl gazebo_boat
 ```
 
 ![Boat/USV](../../assets/simulation/gazebo/vehicles/boat.png)
+
+## Airship {#airship}
+
+### Cloudship {#cloudship}
+
+```sh
+make px4_sitl gazebo_cloudship
+```
+
+![Airship](../../assets/simulation/gazebo/vehicles/airship.png)
