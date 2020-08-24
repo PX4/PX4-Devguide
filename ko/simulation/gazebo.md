@@ -57,6 +57,7 @@ The supported vehicles and `make` commands are listed below (click links to see 
 | [Ackerman 기체 (UGV/탐사선)](../simulation/gazebo_vehicles.md#ugv)                                                                | `make px4_sitl gazebo_rover`           |
 | [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)                                  | `make px4_sitl gazebo_uuv_hippocampus` |
 | [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                                                 | `make px4_sitl gazebo_boat`            |
+| [Cloudship (Airship)](../simulation/gazebo_vehicles.md#airship)                                                              | `make px4_sitl gazebo_cloudship`       |
 
 > **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
 
