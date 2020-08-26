@@ -48,6 +48,7 @@ atxxxx <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    stop
 
@@ -77,6 +78,7 @@ batt_smbus <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 11
 
@@ -114,6 +116,7 @@ blinkm <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 9
 
@@ -144,6 +147,7 @@ bst <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 118
 
@@ -354,6 +358,7 @@ ina226 <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 65
      [-k]        if initialization (probing) fails, keep retrying periodically
@@ -377,6 +382,7 @@ irlock <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 84
 
@@ -400,6 +406,7 @@ lsm303agr <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -423,6 +430,7 @@ paw3902 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -443,6 +451,7 @@ pca9685 <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    reset
 
@@ -501,6 +510,7 @@ pcf8583 <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    stop
 
@@ -522,6 +532,7 @@ pmw3901 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -658,6 +669,7 @@ px4flow <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 66
      [-R <val>]  Rotation (default=downwards)
@@ -708,6 +720,7 @@ rgbled <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 57
 
@@ -858,6 +871,7 @@ voxlpm [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-T <val>]  Type
                  values: VBATT|P5VDC|P12VDC, default: VBATT
      [-K]        if initialization (probing) fails, keep retrying periodically

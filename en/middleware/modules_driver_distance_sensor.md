@@ -55,6 +55,7 @@ ll40ls <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -77,6 +78,7 @@ mappydot <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    stop
 
@@ -95,6 +97,7 @@ mb12xx <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 112
 
@@ -187,6 +190,7 @@ sf1xx <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Sensor rotation - downward facing by default
                  default: 25
 
@@ -207,6 +211,7 @@ srf02 <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Sensor rotation - downward facing by default
                  default: 25
 
@@ -236,6 +241,7 @@ teraranger <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Sensor rotation - downward facing by default
                  default: 25
 
@@ -329,6 +335,7 @@ vl53l0x <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Sensor rotation - downward facing by default
                  default: 25
 
