@@ -58,6 +58,7 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/lidar_lite.html
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Rotation
                      default: 0
     
@@ -82,6 +83,7 @@ Source: [drivers/distance_sensor/mappydot](https://github.com/PX4/Firmware/tree/
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
     
        stop
     
@@ -102,6 +104,7 @@ Source: [drivers/distance_sensor/mb12xx](https://github.com/PX4/Firmware/tree/ma
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 112
     
@@ -196,6 +199,7 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/sfxx_lidar.html
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
@@ -218,6 +222,7 @@ Source: [drivers/distance_sensor/srf02](https://github.com/PX4/Firmware/tree/mas
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
@@ -248,6 +253,7 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/rangefinders.html#
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
@@ -347,6 +353,7 @@ Source: [drivers/distance_sensor/vl53l0x](https://github.com/PX4/Firmware/tree/m
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
