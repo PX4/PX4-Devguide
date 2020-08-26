@@ -15,6 +15,7 @@ adis16448 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -38,6 +39,7 @@ adis16477 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -61,6 +63,7 @@ adis16497 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -84,6 +87,7 @@ bma180 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -109,6 +113,7 @@ bmi055 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -134,6 +139,7 @@ bmi088 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -157,6 +163,7 @@ bmi160 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -182,6 +189,7 @@ fxas21002c <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 32
      [-R <val>]  Rotation
@@ -213,6 +221,7 @@ fxos8701cq <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 30
      [-R <val>]  Rotation
@@ -242,6 +251,7 @@ icm20602 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -265,6 +275,7 @@ icm20608g <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -288,6 +299,7 @@ icm20649 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -311,6 +323,7 @@ icm20689 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -334,6 +347,7 @@ icm20948 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-M]        Enable Magnetometer (AK8963)
      [-R <val>]  Rotation
                  default: 0
@@ -358,6 +372,7 @@ icm40609d <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -381,6 +396,7 @@ icm42605 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -404,6 +420,7 @@ icm42688p <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -427,6 +444,7 @@ ism330dlc <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -452,6 +470,7 @@ l3gd20 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -479,6 +498,7 @@ lsm303d <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -502,6 +522,7 @@ lsm9ds1 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -525,6 +546,7 @@ mpu6000 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -550,6 +572,7 @@ mpu9250 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -573,6 +596,7 @@ mpu9520 <command> [arguments...]
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
