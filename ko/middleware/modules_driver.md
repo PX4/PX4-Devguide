@@ -52,6 +52,7 @@ OSD_ATXXXX_CFG 매개변수로 활성화할 수 있습니다.
                      default: 1
          [-m <val>]  SPI mode
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
     
        stop
     
@@ -83,6 +84,7 @@ BQ40Z50 잔여량 측정 IC용 지능형 배터리 드라이버.
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 11
     
@@ -122,6 +124,7 @@ BQ40Z50 잔여량 측정 IC용 지능형 배터리 드라이버.
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 9
     
@@ -154,6 +157,7 @@ BQ40Z50 잔여량 측정 IC용 지능형 배터리 드라이버.
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 118
     
@@ -367,6 +371,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 65
          [-k]        if initialization (probing) fails, keep retrying periodically
@@ -392,6 +397,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 84
     
@@ -417,6 +423,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
                      default: 1
          [-m <val>]  SPI mode
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Rotation
                      default: 0
     
@@ -442,6 +449,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
                      default: 1
          [-m <val>]  SPI mode
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Rotation
                      default: 0
     
@@ -464,6 +472,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
     
        reset
     
@@ -526,6 +535,7 @@ ModuleBase과 OutputModuleInterface를 기반으로 구현했습니다. IIC 통�
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
     
        stop
     
@@ -549,6 +559,7 @@ ModuleBase과 OutputModuleInterface를 기반으로 구현했습니다. IIC 통�
                      default: 1
          [-m <val>]  SPI mode
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Rotation
                      default: 0
     
@@ -686,6 +697,7 @@ SITL과 HITL을 활용합니다.
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 66
          [-R <val>]  Rotation (default=downwards)
@@ -740,6 +752,7 @@ SITL과 HITL을 활용합니다.
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 57
     
@@ -888,6 +901,7 @@ UART로 TAP_ESC 하드웨어를 제어하는 모듈입니다. actuator_controls 
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-T <val>]  Type
                      values: VBATT|P5VDC|P12VDC, default: VBATT
          [-K]        if initialization (probing) fails, keep retrying periodically
