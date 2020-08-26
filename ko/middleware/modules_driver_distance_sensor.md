@@ -58,6 +58,7 @@ LidarLite 범위 검색 센서용 I2C 버스 드라이버입니다.
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Rotation
                      default: 0
     
@@ -82,6 +83,7 @@ LidarLite 범위 검색 센서용 I2C 버스 드라이버입니다.
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
     
        stop
     
@@ -102,6 +104,7 @@ LidarLite 범위 검색 센서용 I2C 버스 드라이버입니다.
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 112
     
@@ -196,6 +199,7 @@ Lightware SFxx 계열 SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20 LIDAR 범위 검�
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
@@ -218,6 +222,7 @@ Lightware SFxx 계열 SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20 LIDAR 범위 검�
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
@@ -248,6 +253,7 @@ TeraRanger 범위 검색 센서용 I2C 버스 드라이버입니다.
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
@@ -347,6 +353,7 @@ Aerotenna uLanding 레이더 장치용 직렬 버스 통신 드라이버입니�
          [-b <val>]  bus (board-specific internal (default=all) or n-th external
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
