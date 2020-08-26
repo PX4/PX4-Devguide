@@ -12,6 +12,7 @@ ets_airspeed <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    stop
 
@@ -30,6 +31,7 @@ ms4525_airspeed <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-T <val>]  Device type
                  values: 4525|4515, default: 4525
 
@@ -50,6 +52,7 @@ ms5525_airspeed <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    stop
 
@@ -68,6 +71,7 @@ sdp3x_airspeed <command> [arguments...]
      [-b <val>]  bus (board-specific internal (default=all) or n-th external
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 33
      [-k]        if initialization (probing) fails, keep retrying periodically
