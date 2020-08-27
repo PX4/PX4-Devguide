@@ -6,7 +6,8 @@
 - [거리 센서](modules_driver_distance_sensor.md)
 - [항속 센서](modules_driver_airspeed_sensor.md)
 - [기압](modules_driver_baro.md)
-- [자력계](modules_driver_magnetometer.md)
+- [Optical Flow](modules_driver_optical_flow.md)
+- [Magnetometer](modules_driver_magnetometer.md)
 
 ## adc
 
