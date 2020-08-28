@@ -56,8 +56,8 @@ ll40ls <command> [arguments...]
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
-     [-R <val>]  Rotation
-                 default: 0
+     [-R <val>]  Sensor rotation - downward facing by default
+                 default: 25
 
    regdump
 
