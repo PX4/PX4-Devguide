@@ -215,12 +215,12 @@ lsm9ds1_mag <command> [arguments...]
 
    status        print status info
 ```
-## qmc5883
-Source: [drivers/magnetometer/qmc5883](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/qmc5883)
+## qmc5883l
+Source: [drivers/magnetometer/qmc5883l](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/qmc5883l)
 
-### Usage {#qmc5883_usage}
+### Usage {#qmc5883l_usage}
 ```
-qmc5883 <command> [arguments...]
+qmc5883l <command> [arguments...]
  Commands:
    start
      [-I]        Internal I2C bus(es)
@@ -229,8 +229,6 @@ qmc5883 <command> [arguments...]
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
-     [-a <val>]  I2C address
-                 default: 13
      [-R <val>]  Rotation
                  default: 0
 
