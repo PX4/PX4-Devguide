@@ -117,7 +117,7 @@ ist8308 <command> [arguments...]
    status        print status info
 ```
 ## ist8310
-Source: [drivers/magnetometer/ist8310](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/ist8310)
+Source: [drivers/magnetometer/isentek/ist8310](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/isentek/ist8310)
 
 ### Usage {#ist8310_usage}
 ```
@@ -130,8 +130,6 @@ ist8310 <command> [arguments...]
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
-     [-a <val>]  I2C address
-                 default: 14
      [-R <val>]  Rotation
                  default: 0
 
