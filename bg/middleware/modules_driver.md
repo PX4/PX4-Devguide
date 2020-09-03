@@ -47,7 +47,7 @@ It can be enabled with the OSD_ATXXXX_CFG parameter.
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
@@ -82,7 +82,7 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -122,7 +122,7 @@ Source: [drivers/lights/blinkm](https://github.com/PX4/Firmware/tree/master/src/
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -155,7 +155,7 @@ Source: [drivers/telemetry/bst](https://github.com/PX4/Firmware/tree/master/src/
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -369,7 +369,7 @@ If the INA226 module is not powered, then by default, initialization of the driv
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -395,7 +395,7 @@ Source: [drivers/irlock](https://github.com/PX4/Firmware/tree/master/src/drivers
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -418,7 +418,7 @@ Source: [drivers/magnetometer/lsm303agr](https://github.com/PX4/Firmware/tree/ma
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
@@ -444,7 +444,7 @@ Source: [drivers/optical_flow/paw3902](https://github.com/PX4/Firmware/tree/mast
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
@@ -470,7 +470,7 @@ Source: [drivers/pca9685](https://github.com/PX4/Firmware/tree/master/src/driver
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -533,7 +533,7 @@ Source: [drivers/rpm/pcf8583](https://github.com/PX4/Firmware/tree/master/src/dr
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -554,7 +554,7 @@ Source: [drivers/optical_flow/pmw3901](https://github.com/PX4/Firmware/tree/mast
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
@@ -695,7 +695,7 @@ Source: [drivers/optical_flow/px4flow](https://github.com/PX4/Firmware/tree/mast
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -750,7 +750,7 @@ Source: [drivers/lights/rgbled_ncp5623c](https://github.com/PX4/Firmware/tree/ma
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -899,7 +899,7 @@ Source: [drivers/power_monitor/voxlpm](https://github.com/PX4/Firmware/tree/mast
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
