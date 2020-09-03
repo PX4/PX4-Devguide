@@ -55,7 +55,7 @@ LidarLite 범위 검색 센서용 I2C 버스 드라이버입니다.
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -80,7 +80,7 @@ LidarLite 범위 검색 센서용 I2C 버스 드라이버입니다.
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -101,7 +101,7 @@ LidarLite 범위 검색 센서용 I2C 버스 드라이버입니다.
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -196,7 +196,7 @@ Lightware SFxx 계열 SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20 LIDAR 범위 검�
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -219,7 +219,7 @@ Lightware SFxx 계열 SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20 LIDAR 범위 검�
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -250,7 +250,7 @@ TeraRanger 범위 검색 센서용 I2C 버스 드라이버입니다.
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -350,7 +350,7 @@ Aerotenna uLanding 레이더 장치용 직렬 버스 통신 드라이버입니�
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
