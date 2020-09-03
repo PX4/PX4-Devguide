@@ -9,7 +9,7 @@ adis16448 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -33,7 +33,7 @@ adis16477 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -57,7 +57,7 @@ adis16497 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -81,7 +81,7 @@ bma180 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -107,7 +107,7 @@ bmi055 <command> [arguments...]
      [-G]        Gyro
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -133,7 +133,7 @@ bmi088 <command> [arguments...]
      [-G]        Gyro
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -157,7 +157,7 @@ bmi160 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -183,7 +183,7 @@ fxas21002c <command> [arguments...]
      [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -215,7 +215,7 @@ fxos8701cq <command> [arguments...]
      [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -245,7 +245,7 @@ icm20602 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -269,7 +269,7 @@ icm20608g <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -293,7 +293,7 @@ icm20649 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -317,7 +317,7 @@ icm20689 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -341,7 +341,7 @@ icm20948 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -366,7 +366,7 @@ icm40609d <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -390,7 +390,7 @@ icm42605 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -414,7 +414,7 @@ icm42688p <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -438,7 +438,7 @@ ism330dlc <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -464,7 +464,7 @@ l3gd20 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -492,7 +492,7 @@ lsm303d <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -516,7 +516,7 @@ lsm9ds1 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -540,7 +540,7 @@ mpu6000 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -566,7 +566,7 @@ mpu9250 <command> [arguments...]
      [-X]        External I2C bus(es)
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -590,7 +590,7 @@ mpu9520 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
