@@ -52,7 +52,7 @@ ll40ls <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -75,7 +75,7 @@ mappydot <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -94,7 +94,7 @@ mb12xx <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -187,7 +187,7 @@ sf1xx <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -208,7 +208,7 @@ srf02 <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -238,7 +238,7 @@ teraranger <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -332,7 +332,7 @@ vl53l0x <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)

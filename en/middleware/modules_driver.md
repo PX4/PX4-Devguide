@@ -43,7 +43,7 @@ atxxxx <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -76,7 +76,7 @@ batt_smbus <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -114,7 +114,7 @@ blinkm <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -145,7 +145,7 @@ bst <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -356,7 +356,7 @@ ina226 <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -380,7 +380,7 @@ irlock <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -401,7 +401,7 @@ lsm303agr <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -425,7 +425,7 @@ paw3902 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -449,7 +449,7 @@ pca9685 <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -508,7 +508,7 @@ pcf8583 <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -527,7 +527,7 @@ pmw3901 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
@@ -667,7 +667,7 @@ px4flow <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -718,7 +718,7 @@ rgbled <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
@@ -869,7 +869,7 @@ voxlpm [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
      [-q]        quiet startup (no message if no device found)
