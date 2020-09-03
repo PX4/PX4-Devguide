@@ -47,7 +47,7 @@ OSD_ATXXXX_CFG 매개변수로 활성화할 수 있습니다.
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
@@ -82,7 +82,7 @@ BQ40Z50 잔여량 측정 IC용 지능형 배터리 드라이버.
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -122,7 +122,7 @@ BQ40Z50 잔여량 측정 IC용 지능형 배터리 드라이버.
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -155,7 +155,7 @@ BQ40Z50 잔여량 측정 IC용 지능형 배터리 드라이버.
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -369,7 +369,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -395,7 +395,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -418,7 +418,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
@@ -444,7 +444,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
@@ -470,7 +470,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -533,7 +533,7 @@ ModuleBase과 OutputModuleInterface를 기반으로 구현했습니다. IIC 통�
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -554,7 +554,7 @@ ModuleBase과 OutputModuleInterface를 기반으로 구현했습니다. IIC 통�
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
@@ -695,7 +695,7 @@ SITL과 HITL을 활용합니다.
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -750,7 +750,7 @@ SITL과 HITL을 활용합니다.
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -899,7 +899,7 @@ UART로 TAP_ESC 하드웨어를 제어하는 모듈입니다. actuator_controls 
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
