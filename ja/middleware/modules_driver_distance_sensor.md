@@ -55,7 +55,7 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/lidar_lite.html
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -80,7 +80,7 @@ Source: [drivers/distance_sensor/mappydot](https://github.com/PX4/Firmware/tree/
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -101,7 +101,7 @@ Source: [drivers/distance_sensor/mb12xx](https://github.com/PX4/Firmware/tree/ma
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -196,7 +196,7 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/sfxx_lidar.html
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -219,7 +219,7 @@ Source: [drivers/distance_sensor/srf02](https://github.com/PX4/Firmware/tree/mas
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -250,7 +250,7 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/rangefinders.html#
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
@@ -350,7 +350,7 @@ Source: [drivers/distance_sensor/vl53l0x](https://github.com/PX4/Firmware/tree/m
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
