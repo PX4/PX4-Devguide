@@ -45,7 +45,7 @@ S.Bus에서는 *반전* UART 통신 신호를 주고 받습니다.
 * 5.0VCC &rarr; S.Bus VCC
 * GND &rarr; S.Bus GND
 
-![신호 반전 회로도](../../assets/driver_sbus_signal_inverter_circuit_diagram.png)
+![신호 인버터 회로도](../../assets/driver_sbus_signal_inverter_circuit_diagram.png)
 
 아래 이미지에서는 빵판 연결 모습을 보여줍니다.
 
