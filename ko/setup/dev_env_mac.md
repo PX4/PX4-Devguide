@@ -41,7 +41,9 @@ brew install px4-dev
 brew install python3
 
 # install required packages using pip3
-pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
+python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
+# if this fails with a permissions error, your Python install is in a system path - use this command instead:
+sudo -H python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
 ```
 
 ## 가제보 모의 시험 환경
