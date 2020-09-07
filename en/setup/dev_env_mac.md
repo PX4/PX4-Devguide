@@ -42,7 +42,9 @@ Make sure you have Python 3 installed.
 brew install python3
 
 # install required packages using pip3
-pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
+python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
+# if this fails with a permissions error, your Python install is in a system path - use this command instead:
+sudo -H python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
 ```
 
 ## Gazebo Simulation
