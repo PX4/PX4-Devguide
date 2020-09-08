@@ -397,12 +397,10 @@ ESC 드라이버에 mixer 파일을 불러오거나 추가합니다.
        touch         Mark a parameter as used
          [<param_name1> [<param_name2>]] Parameter name (one or more)
     
-       reset         Reset params to default
-         [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
-                     allowed)
+       reset         Reset only specified params to default
+         [<param1> [<param2>]] Parameter names to reset (wildcard at end allowed)
     
-       reset_nostart Reset params to default, but keep SYS_AUTOSTART and
-                     SYS_AUTOCONFIG
+       reset_all     Reset all params to default
          [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
                      allowed)
     
