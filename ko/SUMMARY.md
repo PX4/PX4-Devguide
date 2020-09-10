@@ -83,7 +83,7 @@
     * [기압](middleware/modules_driver_baro.md)
     * [거리 센서](middleware/modules_driver_distance_sensor.md)
     * [관성계](middleware/modules_driver_imu.md)
-    * [자력계](middleware/modules_driver_magnetometer.md)
+    * [지자계](middleware/modules_driver_magnetometer.md)
   * [추정자](middleware/modules_estimator.md)
   * [모의시험](middleware/modules_simulation.md)
   * [시스템](middleware/modules_system.md)
