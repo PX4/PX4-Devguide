@@ -97,7 +97,7 @@ LPE의 외부 위치 정보를 활용하려면 다음 매개변수를 설정해�
 | [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION)         | Vision integration is enabled if *fuse vision position* is checked (it is enabled by default).                                         |
 | [ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | Set to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables MoCap heading use. |
 
-### Barometer Fusion 비활성
+### 기압 센서 병용 비활성
 
 If a highly accurate altitude is already available from VIO or MoCap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
 
