@@ -96,25 +96,7 @@ LidarLite 범위 검색 센서용 I2C 버스 드라이버입니다.
 
 ### 사용법 {#mb12xx_usage}
 
-    mb12xx <command> [arguments...]
-     Commands:
-       start
-         [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es)
-         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
-                     (default=1))
-         [-f <val>]  bus frequency in kHz
-         [-q]        quiet startup (no message if no device found)
-         [-a <val>]  I2C address
-                     default: 112
-    
-       set_address
-         [-a <val>]  I2C address
-                     default: 112
-    
-       stop
-    
-       status        print status info
+    mb12xx
     
 
 ## pga460
@@ -191,21 +173,7 @@ Lightware SFxx 계열 SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20 LIDAR 범위 검�
 
 ### 사용법 {#sf1xx_usage}
 
-    sf1xx <command> [arguments...]
-     Commands:
-       start
-         [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es)
-         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
-                     (default=1))
-         [-f <val>]  bus frequency in kHz
-         [-q]        quiet startup (no message if no device found)
-         [-R <val>]  Sensor rotation - downward facing by default
-                     default: 25
-    
-       stop
-    
-       status        print status info
+    pga460
     
 
 ## srf02
