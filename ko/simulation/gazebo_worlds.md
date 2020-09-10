@@ -10,41 +10,41 @@ The source code for supported worlds can be found on GitHub here: [PX4/sitl_gaze
 
 [PX4/sitl_gazebo/worlds/empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world)
 
-![empty](../../assets/simulation/gazebo/worlds/empty.png)
+![빈 월드](../../assets/simulation/gazebo/worlds/empty.png)
 
-## Baylands
+## 베이랜드
 
 [PX4/sitl_gazebo/worlds/baylands.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/baylands.world)
 
-![Baylands World](../../assets/simulation/gazebo/worlds/baylands.jpg)
+![베이랜드 월드](../../assets/simulation/gazebo/worlds/baylands.jpg)
 
 ## KSQL 공항
 
 [PX4/sitl_gazebo/worlds/ksql_airport.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/ksql_airport.world)
 
-![KSQL Airport World](../../assets/simulation/gazebo/worlds/ksql_airport.jpg)
+![KSQL 공항 월드](../../assets/simulation/gazebo/worlds/ksql_airport.jpg)
 
-## McMillan Airfield
+## 맥밀리언 비행장
 
 [PX4/sitl_gazebo/worlds/mcmillan_airfield.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/mcmillan_airfield.world)
 
-![McMillan Airfield World](../../assets/simulation/gazebo/worlds/mcmillan_airfield.jpg)
+![맥밀리언 비행장 월드](../../assets/simulation/gazebo/worlds/mcmillan_airfield.jpg)
 
-## Sonoma Raceway
+## 소노마 경주로
 
-[PX4/sitl_gazebo/worlds/sonoma_raceway.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/sonoma_raceway.world) ![Sonoma_Raceway](../../assets/simulation/gazebo/worlds/sonoma_raceway.png)
+[PX4/sitl_gazebo/worlds/sonoma_raceway.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/sonoma_raceway.world) ![소노마 경주로](../../assets/simulation/gazebo/worlds/sonoma_raceway.png)
 
-## Warehouse
+## 창고
 
 [PX4/sitl_gazebo/worlds/warehouse.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/warehouse.world)
 
-![Warehouse](../../assets/simulation/gazebo/worlds/warehouse.png)
+![창고](../../assets/simulation/gazebo/worlds/warehouse.png)
 
-## Yosemite
+## 요세미티
 
 [PX4/sitl_gazebo/worlds/yosemite.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/yosemite.world)
 
-![Yosemite](../../assets/simulation/gazebo/worlds/yosemite.jpg)
+![요세미티](../../assets/simulation/gazebo/worlds/yosemite.jpg)
 
 ## 모델별 월드 {#model_specific_worlds}
 
@@ -53,5 +53,5 @@ The source code for supported worlds can be found on GitHub here: [PX4/sitl_gaze
 모델별 월드는 다음과 같습니다:
 - [boat.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/boat.world): [boat](../simulation/gazebo_vehicles.md#usv)의 부력을 모의시험할 표면 정보가 들어있습니다..
 - [uuv_hippocampus.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/uuv_hippocampus.world): [HippoCampus UUV](../simulation/gazebo_vehicles.md#uuv) 수중 환경 모의 시험용 빈 월드.
-- [typhoon_h480.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world): Used by [Typhoon H480 (Hexrotor)](../simulation/gazebo_vehicles.md#typhoon_h480) vehicle model and includes a video widget to enable / disable video streaming. The world includes a gazebo plugin for a simulated camera.
-- [iris_irlock.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/iris_irlock.world): Includes a IR beacon for testing [precision landing](https://docs.px4.io/master/en/advanced_features/precland.html).
+- [typhoon_h480.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world): [태풍 H480 (헥스로터)](../simulation/gazebo_vehicles.md#typhoon_h480) 기체 모델에서 활용하며 동영상 스트리밍 (비)/활성을 가능케 하는 동영상 위젯이 들어있습니다. 이 월드에는 카메라 모의시험용 카제보 플러그인이 들어있습니다.
+- [iris_irlock.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/iris_irlock.world): [정밀 착륙](https://docs.px4.io/master/en/advanced_features/precland.html) 시험용 적외선 비콘이 들어있습니다.
