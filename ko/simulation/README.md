@@ -74,10 +74,10 @@ The messages are described below (see links for specific detail).
 
 ## PX4 MAVLink 기본 UDP 포트
 
-기본적으로 PX4는 보통 지상 통제국(예: *QGroundControl*), 외장 보드(예: MAVSDK, MAVROS), 모의시험 환경 API(예: 가제보)와의 MAVLink 통신을 목적으로 UDP 포트로의 연결을 수립합니다. 해당 포트는 다음과 같습니다:
+기본적으로 PX4는 보통 지상 통제 장치(예: *QGroundControl*), 외장 보드(예: MAVSDK, MAVROS), 모의시험 환경 API(예: 가제보)와의 MAVLink 통신을 목적으로 UDP 포트로의 연결을 수립합니다. 해당 포트는 다음과 같습니다:
 
 - UDP Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
-- UDP 포트 **14550**번은 지상 통제국과의 통신 용도로 사용합니다. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
+- UDP 포트 **14550**번은 지상 통제 장치의 통신 용도로 사용합니다. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
 - The simulator's local TCP Port **4560** is used for communication with PX4. PX4 listens to this port, and simulators are expected to initiate the communication by broadcasting data to this port.
 
 > **Note** The ports for the GCS and offboard APIs are set in configuration files, while the simulator broadcast port is hard-coded in the simulation MAVLink module.
