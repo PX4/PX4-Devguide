@@ -6,12 +6,12 @@
 - [거리 센서](modules_driver_distance_sensor.md)
 - [항속 센서](modules_driver_airspeed_sensor.md)
 - [기압](modules_driver_baro.md)
-- [Optical Flow](modules_driver_optical_flow.md)
-- [Magnetometer](modules_driver_magnetometer.md)
+- [광류 센서](modules_driver_optical_flow.md)
+- [지자계](modules_driver_magnetometer.md)
 
 ## adc
 
-Source: [drivers/adc/board_adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc/board_adc)
+소스 코드: [drivers/adc/board_adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc/board_adc)
 
 ### 설명
 
@@ -413,24 +413,7 @@ INA226 모듈에 전원을 인가하지 않으면, 기본적으로 드라이버 
 
 ### 사용법 {#lsm303agr_usage}
 
-    lsm303agr <command> [arguments...]
-     Commands:
-       start
-         [-s]        Internal SPI bus(es)
-         [-S]        External SPI bus(es)
-         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
-                     (default=1))
-         [-c <val>]  chip-select index (for external SPI)
-                     default: 1
-         [-m <val>]  SPI mode
-         [-f <val>]  bus frequency in kHz
-         [-q]        quiet startup (no message if no device found)
-         [-R <val>]  Rotation
-                     default: 0
-    
-       stop
-    
-       status        print status info
+    lsm303agr
     
 
 ## paw3902
