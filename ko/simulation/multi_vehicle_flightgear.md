@@ -30,7 +30,7 @@ Each instance should have its own startup script, which can represent a complete
 
 ![Multi-vehicle simulation using PX4 SITL and FlightGear](../../assets/simulation/flightgear/flightgear-multi-vehicle-sitl.jpg)
 
-*QGroundControl*같은 지상 통제국에서는 일반 UDP 포트 14550 번으로 모든 인스턴스에 연결합니다(모든 트래픽은 동일한 포트로 들어갑니다).
+*QGroundControl*같은 지상 통제 장치에서는 일반 UDP 포트 14550 번으로 모든 인스턴스에 연결합니다(모든 트래픽은 동일한 포트로 들어갑니다).
 
 The number of simultaneously running instances is limited mainly by computer resources. FlightGear is a single-thread application, but aerodynamics solvers consume a lot of memory. Therefore splitting to multiple computers and using a [multiplayer server](http://wiki.flightgear.org/index.php?title=Howto:Multiplayer) is probably required to run *many* vehicle instances.
 
