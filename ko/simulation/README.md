@@ -26,25 +26,25 @@ A powerful 3D simulation environment that is particularly suitable for testing o
 
 A simulator that provides physically and visually realistic simulations. In particular it can simulate many weather conditions, including thunderstorms, snow, rain and hail, and can also simulate thermals and different types of atmospheric flows. [Multi-vehicle simulation](../simulation/multi_vehicle_flightgear.md) is also supported.
 
-**Supported Vehicles:** 항공기, 오토자일로, 탐사선
+**지원 기체:** 항공기, 오토자일로, 탐사선
 
 [jMAVSim](../simulation/jmavsim.md) | A simple multirotor simulator that allows you to fly *copter* type vehicles around a simulated world.
 
 It is easy to set up and can be used to test that your vehicle can take off, fly, land, and responds appropriately to various fail conditions (e.g. GPS failure). It can also be used for [multi-vehicle simulation](../simulation/multi_vehicle_jmavsim.md).
 
-**Supported Vehicles:** Quad
+**지원 기체:** 쿼드
 
 [AirSim](../simulation/airsim.md) |
 
 A cross platform simulator that provides physically and visually realistic simulations. This simulator is resource intensive, and requires a very significantly more powerful computer than the other simulators described here.
 
-**Supported Vehicles:** Iris (MultiRotor model and a configuration for PX4 QuadRotor in the X configuration).
+**지원 기체:** Iris (X 설정에서의 멀티로터 모델과 PX4 쿼드로터 설정).
 
 [Simulation-In-Hardware](../simulation/simulation-in-hardware.md) (SIH) |
 
 An alternative to HITL that offers a hard real-time simulation directly on the hardware autopilot.
 
-**Supported Vehicles:** Quad
+**지원 기체:** 쿼드
 
 Instructions for how to setup and use the simulators are in the topics linked above.
 
@@ -62,19 +62,19 @@ All simulators communicate with PX4 using the Simulator MAVLink API. This API de
 
 The messages are described below (see links for specific detail).
 
-| Message                                                                                                        | Direction  | Description                                                                                                                                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [MAV_MODE:MAV_MODE_FLAG_HIL_ENABLED](https://mavlink.io/en/messages/common.html#MAV_MODE_FLAG_HIL_ENABLED) | NA         | Mode flag when using simulation. All motors/actuators are blocked, but internal software is fully operational.                                                                                                                                |
-| [HIL_ACTUATOR_CONTROLS](https://mavlink.io/en/messages/common.html#HIL_ACTUATOR_CONTROLS)                    | PX4 to Sim | PX4 control outputs (to motors, actuators).                                                                                                                                                                                                   |
-| [HIL_SENSOR](https://mavlink.io/en/messages/common.html#HIL_SENSOR)                                            | Sim to PX4 | Simulated IMU readings in SI units in NED body frame.                                                                                                                                                                                         |
-| [HIL_GPS](https://mavlink.io/en/messages/common.html#HIL_GPS)                                                  | Sim to PX4 | The simulated GPS RAW sensor value.                                                                                                                                                                                                           |
-| [HIL_OPTICAL_FLOW](https://mavlink.io/en/messages/common.html#HIL_OPTICAL_FLOW)                              | Sim to PX4 | Simulated optical flow from a flow sensor (e.g. PX4FLOW or optical mouse sensor)                                                                                                                                                              |
-| [HIL_STATE_QUATERNION](https://mavlink.io/en/messages/common.html#HIL_STATE_QUATERNION)                      | Sim to PX4 | Contains the actual "simulated" vehicle position, attitude, speed etc. This can be logged and compared to PX4's estimates for analysis and debugging (for example, checking how well an estimator works for noisy (simulated) sensor inputs). |
-| [HIL_RC_INPUTS_RAW](https://mavlink.io/en/messages/common.html#HIL_RC_INPUTS_RAW)                            | Sim to PX4 | The RAW values of the RC channels received.                                                                                                                                                                                                   |
+| 메세지                                                                                                            | 방향             | 설명                                                                                                                                                                                                                                            |
+| -------------------------------------------------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [MAV_MODE:MAV_MODE_FLAG_HIL_ENABLED](https://mavlink.io/en/messages/common.html#MAV_MODE_FLAG_HIL_ENABLED) | 없음             | Mode flag when using simulation. All motors/actuators are blocked, but internal software is fully operational.                                                                                                                                |
+| [HIL_ACTUATOR_CONTROLS](https://mavlink.io/en/messages/common.html#HIL_ACTUATOR_CONTROLS)                    | PX4 -> 모의시험 환경 | PX4 control outputs (to motors, actuators).                                                                                                                                                                                                   |
+| [HIL_SENSOR](https://mavlink.io/en/messages/common.html#HIL_SENSOR)                                            | 모의시험 환경 -> PX4 | Simulated IMU readings in SI units in NED body frame.                                                                                                                                                                                         |
+| [HIL_GPS](https://mavlink.io/en/messages/common.html#HIL_GPS)                                                  | 모의시험 환경 -> PX4 | The simulated GPS RAW sensor value.                                                                                                                                                                                                           |
+| [HIL_OPTICAL_FLOW](https://mavlink.io/en/messages/common.html#HIL_OPTICAL_FLOW)                              | 모의시험 환경 -> PX4 | Simulated optical flow from a flow sensor (e.g. PX4FLOW or optical mouse sensor)                                                                                                                                                              |
+| [HIL_STATE_QUATERNION](https://mavlink.io/en/messages/common.html#HIL_STATE_QUATERNION)                      | 모의시험 환경 -> PX4 | Contains the actual "simulated" vehicle position, attitude, speed etc. This can be logged and compared to PX4's estimates for analysis and debugging (for example, checking how well an estimator works for noisy (simulated) sensor inputs). |
+| [HIL_RC_INPUTS_RAW](https://mavlink.io/en/messages/common.html#HIL_RC_INPUTS_RAW)                            | 모의시험 환경 -> PX4 | The RAW values of the RC channels received.                                                                                                                                                                                                   |
 
 ## PX4 MAVLink 기본 UDP 포트
 
-기본적으로 PX4는 보통 지상 통제국(예: *QGroundControl*), 외장 보드(예: MAVSDK, MAVROS), 모의시험 환경 API(예: 가제보)와의 MAVLink 통신을 목적으로 UDP 포트로의 연결을 수립합니다. These ports are:
+기본적으로 PX4는 보통 지상 통제국(예: *QGroundControl*), 외장 보드(예: MAVSDK, MAVROS), 모의시험 환경 API(예: 가제보)와의 MAVLink 통신을 목적으로 UDP 포트로의 연결을 수립합니다. 해당 포트는 다음과 같습니다:
 
 - UDP Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
 - UDP 포트 **14550**번은 지상 통제국과의 통신 용도로 사용합니다. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
@@ -122,7 +122,7 @@ The simulation can be further configured via environment variables:
 
 The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
-### Run Simulation Faster than Realtime {#simulation_speed}
+### 실제보다 빠른 속도로 모의시험 실행 {#simulation_speed}
 
 SITL can be run faster or slower than realtime when using jMAVSim or Gazebo.
 
@@ -148,7 +148,7 @@ You can apply the factor to all SITL runs in the current session using `EXPORT`:
 
 > **Note** To avoid PX4 detecting data link timeouts, increase the value of param [COM_DL_LOSS_T](../advanced/parameter_reference.md#COM_DL_LOSS_T) proportional to the simulation rate. For example, if `COM_DL_LOSS_T` is 10 in realtime, at 10x simulation rate increase to 100.
 
-### Lockstep Simulation
+### 록스텝 모의시험
 
 PX4 SITL and the simulators (jMAVSim or Gazebo) have been set up to run in *lockstep*. What this means is that PX4 and the simulator wait on each other for sensor and actuator messages, rather than running at their own speeds.
 
@@ -162,7 +162,7 @@ The sequence of steps for lockstep are:
 
 The system starts with a "freewheeling" period where the simulation sends sensor messages including time and therefore runs PX4 until it has initialized and responds with an actautor message.
 
-#### Disable Lockstep Simulation
+#### 록스텝 모의시험 비활성
 
 The lockstep simulation can be disabled if, for example, SITL is to be used with a simulator that does not support this feature. In this case the simulator and PX4 use the host system time and do not wait on each other.
 
@@ -172,7 +172,7 @@ To disable lockstep in Gazebo, edit [the model SDF file](https://github.com/PX4/
 
 To disable lockstep in jMAVSim, remove `-l` in [jmavsim_run.sh](https://github.com/PX4/Firmware/blob/77097b6adc70afbe7e5d8ff9797ed3413e96dbf6/Tools/sitl_run.sh#L75), or make sure otherwise that the java binary is started without the `-lockstep` flag.
 
-### Startup Scripts {#scripts}
+### 시작 스크립트 {#scripts}
 
 Scripts are used to control which parameter settings to use or which modules to start. They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix) directory, the `rcS` file is the main entry point. See [System Startup](../concept/system_startup.md) for more information.
 
@@ -186,7 +186,7 @@ Additionally (and with some overlap), [Simulate Failsafes](../simulation/failsaf
 
 With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. The HITL Simulation Environment in documented in: [HITL Simulation](../simulation/hitl.md).
 
-## Joystick/Gamepad Integration
+## 조종기/게임패드 통합
 
 *QGroundControl* desktop versions can connect to a USB Joystick/Gamepad and send its movement commands and button presses to PX4 over MAVLink. This works on both SITL and HITL simulations, and allows you to directly control the simulated vehicle. If you don't have a joystick you can alternatively control the vehicle using QGroundControl's onscreen virtual thumbsticks.
 
