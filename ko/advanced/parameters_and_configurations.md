@@ -258,7 +258,7 @@ PARAM_DEFINE_INT32(ATT_ACC_COMP, 1);
 
 위 코드 마지막의 `PARAM_DEFINE_*` 매크로는 매개변수 형식(`PARAM_DEFINE_FLOAT` 또는 `PARAM_DEFINE_INT32`), 매개변수 이름(코드에서 사용할 이름과 일치해야 함), 펌웨어의 기본값을 지정합니다.
 
-주석 블록의 라인은 모두 취사선택 요소이며, 기본적으로 지상 통제국에서 화면을 제어하고 옵션을 편집할 때 활용합니다. 각 행의 목적은 다음과 같습니다(자세한 내용은 [module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml)을 참고하십시오).
+주석 블록의 라인은 모두 취사선택 요소이며, 기본적으로 지상 통제 장치에서 화면을 제어하고 옵션을 편집할 때 활용합니다. 각 행의 목적은 다음과 같습니다(자세한 내용은 [module_schema.yaml](https://github.com/PX4/Firmware/blob/master/validation/module_schema.yaml)을 참고하십시오).
 
 ```cpp
 /**
