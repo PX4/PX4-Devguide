@@ -1,17 +1,17 @@
 # Modules Reference: Optical Flow (Driver)
 ## thoneflow
-Source: [drivers/optical_flow/thoneflow](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/thoneflow)
+소스 코드: [drivers/optical_flow/thoneflow](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/thoneflow)
 
 
-### Description
+### 설명
 
-Serial bus driver for the ThoneFlow-3901U optical flow sensor.
+ThoneFlow-3901U 광류 센서용 직렬 버스 드라이버입니다.
 
-Most boards are configured to enable/start the driver on a specified UART using the SENS_TFLOW_CFG parameter.
+대부분의 보드는 SENS_TFLOW_CFG 매개변수로 지정 UART 드라이버를 활성/시작하도록 설정했습니다.
 
-Setup/usage information: https://docs.px4.io/en/sensor/thoneflow.html
+설정/활용 정보: https://docs.px4.io/en/sensor/thoneflow.html
 
-### Examples
+### 예제
 
 Attempt to start driver on a specified serial device.
 ```
@@ -22,7 +22,7 @@ Stop driver
 thoneflow stop
 ```
 
-### Usage {#thoneflow_usage}
+### 사용법 {#thoneflow_usage}
 ```
 thoneflow <command> [arguments...]
  Commands:
