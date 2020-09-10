@@ -1,14 +1,14 @@
-# ROS with Gazebo Simulation
+# 가제보 모의시험 환경의 ROS
 
-[ROS](../ros/README.md) (Robot Operating System) can be used with PX4 and the [Gazebo simulator](../simulation/gazebo.md). It uses the [MAVROS](../ros/mavros_installation.md) MAVLink node to communicate with PX4.
+[ROS](../ros/README.md) (로봇 운영체제)는 PX4와 [가제보 모의시험 환경](../simulation/gazebo.md)을 함께 쓸 수 있습니다. PX4와 통신하는 [MAVROS](../ros/mavros_installation.md) MAVLink 노드를 활용합니다.
 
 The ROS/Gazebo integration with PX4 follows the pattern in the diagram below (this shows the *generic* [PX4 simulation environment](../simulation/README.md#sitl-simulation-environment)). PX4 communicates with the simulator (e.g. Gazebo) to receive sensor data from the simulated world and send motor and actuator values. It communicates with the GCS and an Offboard API (e.g. ROS) to send telemetry from the simulated environment and receive commands.
 
-![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
+![PX4 SITL 개요](../../assets/simulation/px4_sitl_overview.png)
 
 > **Note** The only *slight* difference to "normal behaviour" is that ROS initiates the connection on port 14557, while it is more typical for an offboard API to listen for connections on UDP port 14540.
 
-## Installing ROS and Gazebo
+## ROS와 가제보 설치
 
 > **Note** *ROS* is only supported on Linux (not macOS or Windows).
 
@@ -16,7 +16,7 @@ The easiest way to setup PX4 simulation with ROS on Ubuntu Linux is to use the s
 
 > **Note** The script follows the [standard ROS "Melodic" installation instructions](http://wiki.ros.org/melodic/Installation/Ubuntu), which includes Gazebo 9.
 
-## Launching ROS/Simulation
+## ROS/모의시험 환경 실행
 
 The command below can be used to launch the simulation and connect ROS to it via [MAVROS](../ros/mavros_installation.md), where `fcu_url` is the IP / port of the computer running the simulation:
 
@@ -60,7 +60,7 @@ roslaunch px4 posix_sitl.launch
 
 Include one of the above mentioned launch files in your own launch file to run your ROS application in the simulation.
 
-## What's Happening Behind the Scenes
+## 움직임 뒤에서 일어나는 일
 
 This section shows how the *roslaunch* instructions provided previously actually work (you can follow them to manually launch the simulation and ROS).
 
