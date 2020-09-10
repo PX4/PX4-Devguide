@@ -1,4 +1,4 @@
-# 모듈 참고: 자력계(드라이버)
+# 모듈 참고: 지자계 (드라이버)
 ## ak09916
 소스 코드: [drivers/magnetometer/akm/ak09916](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/akm/ak09916)
 
@@ -117,7 +117,7 @@ ist8308 <command> [arguments...]
    status        print status info
 ```
 ## ist8310
-Source: [drivers/magnetometer/isentek/ist8310](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/isentek/ist8310)
+소스 코드: [drivers/magnetometer/isentek/ist8310](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/isentek/ist8310)
 
 ### 사용법 {#ist8310_usage}
 ```
@@ -218,9 +218,9 @@ lsm9ds1_mag <command> [arguments...]
    status        print status info
 ```
 ## qmc5883l
-Source: [drivers/magnetometer/qmc5883l](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/qmc5883l)
+소스 코드: [drivers/magnetometer/qmc5883l](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/qmc5883l)
 
-### Usage {#qmc5883l_usage}
+### 사용법 {#qmc5883l_usage}
 ```
 qmc5883l <command> [arguments...]
  Commands:
