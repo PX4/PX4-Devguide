@@ -1,4 +1,4 @@
-# Modules Reference: Optical Flow (Driver)
+# 모듈 참고: 광류 센서 (드라이버)
 ## thoneflow
 소스 코드: [drivers/optical_flow/thoneflow](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/thoneflow)
 
@@ -13,11 +13,11 @@ ThoneFlow-3901U 광류 센서용 직렬 버스 드라이버입니다.
 
 ### 예제
 
-Attempt to start driver on a specified serial device.
+지정 직렬 통신 장치에서 드라이버를 시작하려면
 ```
 thoneflow start -d /dev/ttyS1
 ```
-Stop driver
+드라이버 동작 중단
 ```
 thoneflow stop
 ```
