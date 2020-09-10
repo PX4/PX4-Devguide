@@ -728,21 +728,7 @@ SITL과 HITL을 활용합니다.
 
 ### 사용법 {#rgbled_usage}
 
-    rgbled <command> [arguments...]
-     Commands:
-       start
-         [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es)
-         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
-                     (default=1))
-         [-f <val>]  bus frequency in kHz
-         [-q]        quiet startup (no message if no device found)
-         [-a <val>]  I2C address
-                     default: 57
-    
-       stop
-    
-       status        print status info
+    rc_input
     
 
 ## roboclaw
