@@ -56,26 +56,7 @@ bmp388 <command> [arguments...]
 
 ### 사용법 {#dps310_usage}
 ```
-dps310 <command> [arguments...]
- Commands:
-   start
-     [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es)
-     [-s]        Internal SPI bus(es)
-     [-S]        External SPI bus(es)
-     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
-                 (default=1))
-     [-c <val>]  chip-select index (for external SPI)
-                 default: 1
-     [-m <val>]  SPI mode
-     [-f <val>]  bus frequency in kHz
-     [-q]        quiet startup (no message if no device found)
-     [-a <val>]  I2C address
-                 default: 119
-
-   stop
-
-   status        print status info
+dps310
 ```
 ## lps22hb
 소스 코드: [drivers/barometer/lps22hb](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/lps22hb)
