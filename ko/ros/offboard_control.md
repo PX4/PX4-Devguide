@@ -25,7 +25,7 @@ MAVLink 메세지로 OFFBOARD 모드를 활성화할 수 있으므로, 이 단�
 ### 직렬 무선 통신
 
 1. UART 포트로 연결한 하나는 오토파일럿
-2. 한쪽은 지상 통제국 컴퓨터에 연결합니다
+2. 한쪽은 지상 통제 장치 컴퓨터에 연결합니다
 
 무선 통신 장치의 예는 다음과 같습니다:
 
@@ -67,7 +67,7 @@ graph TD;
 
 ### ROS로의 보드 내장 프로세서와 WiFi 링크(***추천***)
 
-기체에 붙은 소형 컴퓨터는 오토파일럿에 UART to USB 어댑터로 연결하며, ROS 실행 환경에서는 지상 통제국과 WiFi 로 연결합니다. 위 절에서 언급한 어떤 컴퓨터는 WiFi 어댑터로 연결할 수 있습니다. 예를 들면, 인텔 NUC D34010WYB 에는 PCI 익스프레스 Half-Mini 커넥터가 있는데 여기에 [Intel WiFi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) 어댑터를 붙일 수 있습니다.
+기체에 붙은 소형 컴퓨터는 오토파일럿에 UART to USB 어댑터로 연결하며, ROS 실행 환경에서는 지상 통제 장치와 무선랜으로 연결합니다. 위 절에서 언급한 어떤 컴퓨터는 WiFi 어댑터로 연결할 수 있습니다. 예를 들면, 인텔 NUC D34010WYB 에는 PCI 익스프레스 Half-Mini 커넥터가 있는데 여기에 [Intel WiFi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) 어댑터를 붙일 수 있습니다.
 
 [![mermaid 도표: ROS](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgc3ViZ3JhcGggR3JvdW5kICBTdGF0aW9uXG4gIGduZFtST1MgRW5hYmxlZCBDb21wdXRlcl0gLS0tIHFnY1txR3JvdW5kQ29udHJvbF1cbiAgZW5kXG4gIGduZCAtLU1BVkxpbmsvVURQLS0-IHdbV2lGaV07XG4gIHFnYyAtLU1BVkxpbmstLT4gdztcbiAgc3ViZ3JhcGggVmVoaWNsZVxuICBjb21wW0NvbXBhbmlvbiBDb21wdXRlcl0gLS1NQVZMaW5rLS0-IHVhcnRbVUFSVCBBZGFwdGVyXVxuICB1YXJ0IC0tLSBBdXRvcGlsb3RcbiAgZW5kXG4gIHcgLS0tIGNvbXAiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgc3ViZ3JhcGggR3JvdW5kICBTdGF0aW9uXG4gIGduZFtST1MgRW5hYmxlZCBDb21wdXRlcl0gLS0tIHFnY1txR3JvdW5kQ29udHJvbF1cbiAgZW5kXG4gIGduZCAtLU1BVkxpbmsvVURQLS0-IHdbV2lGaV07XG4gIHFnYyAtLU1BVkxpbmstLT4gdztcbiAgc3ViZ3JhcGggVmVoaWNsZVxuICBjb21wW0NvbXBhbmlvbiBDb21wdXRlcl0gLS1NQVZMaW5rLS0-IHVhcnRbVUFSVCBBZGFwdGVyXVxuICB1YXJ0IC0tLSBBdXRvcGlsb3RcbiAgZW5kXG4gIHcgLS0tIGNvbXAiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
 
