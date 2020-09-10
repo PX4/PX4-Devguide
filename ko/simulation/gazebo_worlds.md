@@ -1,4 +1,4 @@
-# Gazebo Worlds
+# 가제보 월드(world)
 
 This topic provides imagery/information about the [Gazebo](../simulation/gazebo.md) worlds supported by PX4.
 
@@ -6,7 +6,7 @@ The [empty.world](#empty_world) is spawned by default, though this may be overri
 
 The source code for supported worlds can be found on GitHub here: [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds).
 
-## Empty (Default) {#empty_world}
+## 빈 월드 (기본) {#empty_world}
 
 [PX4/sitl_gazebo/worlds/empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world)
 
@@ -18,7 +18,7 @@ The source code for supported worlds can be found on GitHub here: [PX4/sitl_gaze
 
 ![Baylands World](../../assets/simulation/gazebo/worlds/baylands.jpg)
 
-## KSQL Airport
+## KSQL 공항
 
 [PX4/sitl_gazebo/worlds/ksql_airport.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/ksql_airport.world)
 
@@ -46,12 +46,12 @@ The source code for supported worlds can be found on GitHub here: [PX4/sitl_gaze
 
 ![Yosemite](../../assets/simulation/gazebo/worlds/yosemite.jpg)
 
-## Model Specific Worlds {#model_specific_worlds}
+## 모델별 월드 {#model_specific_worlds}
 
-Some [vehicle models](../simulation/gazebo_vehicles.md) rely on the physics / plugins of a specific world. The PX4 toolchain will automatically spawn a world that has the same name as the vehicle model if one exists (instead of the default **empty.world**):
+일부 [기체 모델](../simulation/gazebo_vehicles.md)은 특정 월드의 물리 구현체 / 플러그인에 따릅니다. PX4 툴체인에서는 기체 모델과 동일한 이름을 가진 월드가 있다면 (**empty.world**를 불러오지 않고) 자동으로 월드를 불러옵니다:
 
-The model specific worlds are:
-- [boat.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/boat.world): Includes a surface to simulate buoyancy of the [boat](../simulation/gazebo_vehicles.md#usv).
-- [uuv_hippocampus.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/uuv_hippocampus.world): An empty world used to simulate an underwater environment for the [HippoCampus UUV](../simulation/gazebo_vehicles.md#uuv).
+모델별 월드는 다음과 같습니다:
+- [boat.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/boat.world): [boat](../simulation/gazebo_vehicles.md#usv)의 부력을 모의시험할 표면 정보가 들어있습니다..
+- [uuv_hippocampus.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/uuv_hippocampus.world): [HippoCampus UUV](../simulation/gazebo_vehicles.md#uuv) 수중 환경 모의 시험용 빈 월드.
 - [typhoon_h480.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/typhoon_h480.world): Used by [Typhoon H480 (Hexrotor)](../simulation/gazebo_vehicles.md#typhoon_h480) vehicle model and includes a video widget to enable / disable video streaming. The world includes a gazebo plugin for a simulated camera.
 - [iris_irlock.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/iris_irlock.world): Includes a IR beacon for testing [precision landing](https://docs.px4.io/master/en/advanced_features/precland.html).
