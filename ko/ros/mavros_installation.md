@@ -38,7 +38,7 @@ catkin init
 wstool init src
 ```
 
-이번 설치 과정에서는 ROS 파이썬 도구 *wstool* (소스 코드 다운로드), *rosinstall*, and *catkin_tools* (빌드) 를 활용하도록 하겠습니다. While they may have been installed during your installation of ROS you can also install them with:
+이번 설치 과정에서는 ROS 파이썬 도구 *wstool* (소스 코드 다운로드), *rosinstall*, and *catkin_tools* (빌드) 를 활용하도록 하겠습니다. ROS 설치를 진행하는 동안 이들 모두를 설치했을 경우 다음 명령으로 설치를 진행할 수 있습니다:
 
 ```sh
 sudo apt-get install python-catkin-tools python-rosinstall-generator -y
