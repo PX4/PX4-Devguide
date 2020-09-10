@@ -26,7 +26,7 @@ The SIH is compatible with all Pixhawk-series boards except those based on FMUv2
 
 Running the SIH is as easy as selecting an airframe. Plug the autopilot to the desktop computer with a USB cable, let it boot, then using a ground control station select the [SIH airframe](../airframes/airframe_reference.md#simulation-copter). The autopilot will then reboot.
 
-SIH 에어프레임을 선택하면, SIH 모듈이 자체적으로 시작하고, 기체가 지상 통제국 지도에 떠야합니다.
+SIH 에어프레임을 선택하면, SIH 모듈이 자체적으로 시작하고, 기체가 지상 통제 장치의 지도에 떠야합니다.
 
 ## Setting up the Display
 
