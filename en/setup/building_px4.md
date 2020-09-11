@@ -167,6 +167,7 @@ make emlid_navio2 upload # for cross-compiler build
 Then, connect over ssh and run it with (as root):
 
 ```sh
+cd ~/px4
 sudo ./bin/px4 -s px4.config
 ```
 
@@ -183,7 +184,7 @@ The "px4" executable file is in the directory **build/emlid_navio2_native/**.
 Run it directly with:
 
 ```sh
-sudo ./build/emlid_navio2_native/px4 -s ./posix-configs/rpi/px4.config
+sudo ./build/emlid_navio2_native/px4 build/emlid_navio2_native/etc -s ./posix-configs/rpi/px4.config
 ```
 
 A successful build followed by executing px4 will give you something like this:
