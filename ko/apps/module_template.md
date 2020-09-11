@@ -41,7 +41,7 @@ PX4 펌웨어에는 *작업 큐의 작업*으로 동작하는 새 프로그램(�
 
 ## 작업
 
-PX4 펌웨어는 자체 스택에서 작업으로 동작하는 신규 프로그램 (모듈) 작성용 서식이 들어있습니다: [src/templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module).
+The PX4 Firmware contains a template for writing a new application (module) that runs as a task on its own stack: [src/templates/template_module](https://github.com/PX4/Firmware/tree/master/src/templates/template_module).
 
 서식에서는 완전한 프로그램 작성에 필요하거나 쓸만한 다음 추가 기능이나 양항을 보여줍니다:
 
