@@ -158,6 +158,7 @@ make emlid_navio2 upload # for cross-compiler build
 그리고 SSH를 통해 (루트 계정으로) 접근 후 다음 명령을 실행하십시오:
 
 ```sh
+cd ~/px4
 sudo ./bin/px4 -s px4.config
 ```
 
@@ -173,7 +174,7 @@ make emlid_navio2_native # for native build
 "px4" 실행 파일은 **build/emlid_navio2_native/** 디렉터리에 있습니다. 다음 명령으로 실행하십시오:
 
 ```sh
-sudo ./build/emlid_navio2_native/px4 -s ./posix-configs/rpi/px4.config
+sudo ./build/emlid_navio2_native/px4 build/emlid_navio2_native/etc -s ./posix-configs/rpi/px4.config
 ```
 
 px4를 실행하여 나타난 성공적인 빌드 화면은 다음과 같습니다:
