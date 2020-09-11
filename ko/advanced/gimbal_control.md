@@ -64,7 +64,7 @@ Typhoon H480 모델은 미리 설정모의된 짐벌과 함께 제공됩니다. 
     make px4_sitl gazebo_typhoon_h480
     
 
-armed 상태인지 확인하십시오. 예를 들면, `commander takeoff`를 입력하고 아래 명령어를 사용하여
+동력 인가 상태인지 확인하십시오. 예를 들면, `commander takeoff`를 입력하고 아래 명령어를 사용하여
 
     vmount test yaw 30
     
