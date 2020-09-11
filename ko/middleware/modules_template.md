@@ -2,7 +2,7 @@
 
 ## 모듈
 
-소스 코드: [templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module)
+Source: [templates/template_module](https://github.com/PX4/Firmware/tree/master/src/templates/template_module)
 
 ### 설명
 
