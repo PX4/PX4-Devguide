@@ -16,6 +16,16 @@ MacOS 是受支持的 PX4 开发平台。 根据本文的指示构建的开发�
 
 The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
 
+## Enable more open files (Handle "LD: too many open files" error)
+
+The PX4 toolchain requires the usage of the ZSH shell. If you are using the shell, add this line to your shell profile:
+
+Create this file or append it: `~/.zshenv` and add this line:
+
+```sh
+ulimit -S -n 2048
+```
+
 ## Ensuring Python points to Homebrew
 
 If not already existing, create the file `~/.zshrc` and add these lines:
