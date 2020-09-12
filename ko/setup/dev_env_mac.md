@@ -16,6 +16,16 @@ MacOS는 PX4 지원 개발 환경입니다. 다음 절차는 빌드 환경을 �
 
 The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
 
+## Enable more open files (Handle "LD: too many open files" error)
+
+The PX4 toolchain requires the usage of the ZSH shell. If you are using the shell, add this line to your shell profile:
+
+Create this file or append it: `~/.zshenv` and add this line:
+
+```sh
+ulimit -S -n 2048
+```
+
 ## Ensuring Python points to Homebrew
 
 If not already existing, create the file `~/.zshrc` and add these lines:
@@ -27,9 +37,9 @@ alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
 ```
 
-## 공통 도구
+## Common Tools
 
-홈브류(Homebrew) 설치 후, 셸에서 이 명령을 실행하여 일반 도구를 설치하십시오:
+After installing Homebrew, run these commands in your shell to install the common tools:
 
 ```sh
 brew tap PX4/px4
@@ -45,18 +55,18 @@ python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyro
 sudo -H python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
 ```
 
-## 가제보 모의 시험 환경
+## Gazebo Simulation
 
-가제보 SITL 모의시험 환경을 설치하려면:
+To install SITL simulation with Gazebo:
 
 ```sh
 brew cask install xquartz
 brew install px4-sim-gazebo
 ```
 
-## jMAVSim 모의 시험 환경
+## jMAVSim Simulation
 
-jMAVSim SITL 모의시험 환경을 활용하려면 자바 최신 버전(예: Java 14)을 우선 설치해야 합니다. [오라클에서 자바 14](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html)를 다운로드 하거나 AdoptOpenJDK 탭을 활용할 수 있습니다:
+To use SITL simulation with jMAVSim you need to install a recent version of Java (e.g. Java 14). You can either download [Java 14 from Oracle](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html) or use the AdoptOpenJDK tap:
 
 ```sh
 brew tap AdoptOpenJDK/openjdk
@@ -69,10 +79,10 @@ brew install px4-sim-jmavsim
 
 > **Note** jMAVSim for PX4 v1.11 and earlier required Java 8.
 
-## 추가 도구
+## Additional Tools
 
-빌드 툴체인의 일부가 아닌 기타 유용한 개발 도구(IDE, GCS 등)의 내용을 살펴보려면 [추가 도구](../setup/generic_dev_tools.md) 를 살펴보십시오.
+See [Additional Tools](../setup/generic_dev_tools.md) for information about other useful development tools that are not part of the build toolchain (for example IDEs and GCSs).
 
-## 다음 단계
+## Next Steps
 
-환경 구성이 끝나면, [빌드 설명서](../setup/building_px4.md)로 계속 진행하십시오.
+Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
