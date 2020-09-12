@@ -12,19 +12,20 @@ MacOS는 PX4 지원 개발 환경입니다. 다음 절차는 빌드 환경을 �
 
 > **Tip** 동영상 자습서는 여기에 있습니다: [Setting up your PX4 development environment on macOS](https://youtu.be/tMbMGiMs1cQ).
 
-## 선행 조건
+## Homebrew Installation
 
-*터미널* 명령으로 macOS의 최대 개방 파일 수를 늘리십시오:
+The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
+
+## Ensuring Python points to Homebrew
+
+If not already existing, create the file `~/.zshrc` and add these lines:
 
 ```sh
-ulimit -S -n 2048
+# Point python to python 3 from Homebrew
+alias python=/usr/local/bin/python3
+# Point pip to python 3 pip
+alias pip=/usr/local/bin/pip3
 ```
-
-> **Note** 이 글을 작성하는 시점(2018년 12월) 마스터 브랜치에서는 macOS에서 허용하는 프로세스당 최대 개방 가능 파일 수(모든 실행 프로세스당 256개)를 넘게 활용합니다. *간단한 해결책*으로는, 허용 개방 파일 수를 늘리는 방법입니다.
-
-## 홈브류(Homebrew) 설치
-
-홈브루 설치 방법은 간단하고 쉽습니다: [설치 방법](https://brew.sh)
 
 ## 공통 도구
 
@@ -35,11 +36,9 @@ brew tap PX4/px4
 brew install px4-dev
 ```
 
-파이썬 3를 설치했는지 확인하십시오.
+Install the required Python packages
 
 ```sh
-brew install python3
-
 # install required packages using pip3
 python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
 # if this fails with a permissions error, your Python install is in a system path - use this command instead:
@@ -68,7 +67,7 @@ brew cask install adoptopenjdk14
 brew install px4-sim-jmavsim
 ```
 
-> **Note** jMAVSim PX4 v1.11이전 버전은 Java 8이 필요합니다.
+> **Note** jMAVSim for PX4 v1.11 and earlier required Java 8.
 
 ## 추가 도구
 
