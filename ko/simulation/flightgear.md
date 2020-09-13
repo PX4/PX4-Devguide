@@ -1,8 +1,8 @@
-# FlightGear Simulation
+# 플라이트기어 모의시험
 
-[FlightGear](https://www.flightgear.org/) is a flight simulator with powerful [FDM engines](http://wiki.flightgear.org/Flight_Dynamics_Model). This allows FlightGear to simulate rotorcrafts under various meteorological conditions (which is why the bridge was originally developed by [ThunderFly s.r.o.](https://www.thunderfly.cz/)).
+[플라이트기어](https://www.flightgear.org/)는 강력한 [FDM 엔진](http://wiki.flightgear.org/Flight_Dynamics_Model) 기반 비행 모의시험 환경입니다. 플라이트기어에서는 다양한 기후 환경에서 탐사기체 운행을 모의시험해볼 수 있습니다([ThunderFly s.r.o.](https://www.thunderfly.cz/)가 브릿지를 개발한 이유입니다).
 
-이 페이지는 SITL에서 플라이트기어 단일 기체 활용법을 설명합니다. For information about multi-vehicle use see: [Multi-Vehicle Simulation with FlightGear](../simulation/multi_vehicle_flightgear.md).
+이 페이지는 SITL에서 플라이트기어 단일 기체 활용법을 설명합니다. 다중 기체 정보는 [플라이트기어 다중 기체 모의 시험](../simulation/multi_vehicle_flightgear.md)을 참고하십시오.
 
 **지원 기체:** 오토자이로, 항공기, 탐사선
 
@@ -24,45 +24,45 @@ graph LR;
 
 ## 설치(우분투 리눅스) {#installation}
 
-> **Note** These instructions were tested on Ubuntu 18.04
+> **Note** 우분투 18.04에서 절차를 시험해보았습니다
 
-1. Install the usual [Development Environment on Ubuntu LTS / Debian Linux](../setup/dev_env_linux_ubuntu.md).
-1. Install FlightGear:
+1. [우분투 LTS / 데비안 리눅스 개발 환경](../setup/dev_env_linux_ubuntu.md)을 설치하십시오.
+1. 플라이트기어를 설치하십시오:
    ```sh
    sudo add-apt-repository ppa:saiarcot895/flightgear
    sudo apt update
    sudo apt install flightgear
    ```
-   This installs the latest stable FlightGear version from the PAA repository along with the the FGdata package.
+   이 과정은 PAA 저장소에서 FGdata 패키지를 함께 끌어오는 최신 안정판 플라이트기어를 설치합니다.
 
-   > **Tip** For some models (e.g. those with electric engines) the daily build with the newest features may be necessary. Install this using the [daily build PPA](https://launchpad.net/~saiarcot895/+archive/ubuntu/flightgear-edge).
+   > **Tip** 일부 모델에서는 (예: 전동 엔진) 새 기능이 들어간 일일 빌드가 필요할 수 있습니다. [일일 빌드 PPA](https://launchpad.net/~saiarcot895/+archive/ubuntu/flightgear-edge)를 설치하십시오.
 
-1. Check that you are able to run FlightGear:
+1. 플라이트기어 실행 가능 여부를 확인하십시오:
    ```
    fgfs --launcher
    ```
-1. Set write permissions to the **Protocols** folder in the FlightGear installation directory:
+1. 플라이트기어 설치 디렉터리의 **Protocols** 폴더에 쓰기 권한을 설정하십시오:
    ```
    sudo chmod a+w /usr/share/games/flightgear/Protocols
    ```
-   Setting the permissions is required because the PX4-FlightGear-Bridge puts the communication definition file here.
+   PX4-FlightGear-Bridge에서 통신 정의 파일을 이곳에 복사하기 때문에 권한 설정이 필요합니다.
 
-Additional installation instructions can be found on [FlightGear wiki](http://wiki.flightgear.org/Howto:Install_Flightgear_from_a_PPA).
+추가 설치 과정은 [플라이트기어 위키](http://wiki.flightgear.org/Howto:Install_Flightgear_from_a_PPA)에 있습니다.
 
 
-## Running the Simulation {#running}
+## 모의 시험 환경 실행 {#running}
 
-Run a simulation by starting PX4 SITL, specifying the airframe configuration of your choice.
+PX4 SITL을 시작하여 모의 시험환경을 실행하고, 원하는 에어프레임 설정 값을 부여하십시오.
 
-The easiest way to do this is to open a terminal in the root directory of the PX4 *Firmware* repository and call `make` for the desired target. For example, to start a plane simulation :
+가장 쉬운 방법은 PX4 *Firmware* 저장소 루트 디렉터리에서 터미널을 열고 원하는 대상에 대해 `make` 명령을 호출하는 방식입니다. 예를 들어 비행체 모의 시험을 시작하려면:
 ```sh
 cd /path/to/Firmware
 make px4_sitl_nolockstep flightgear_rascal
 ```
 
-The supported vehicles and `make` commands are listed below (click on the links to see the vehicle images).
+지원 기체와 `make` 명령은 아래와 같습니다(기체 그림을 보려면 링크를 누르십시오).
 
-| Vehicle                                                           | Command                                      |
+| 기체                                                                | 명령                                           |
 | ----------------------------------------------------------------- | -------------------------------------------- |
 | [표준 비행체](../simulation/flightgear_vehicles.md#standard_plane)     | `make px4_sitl_nolockstep flightgear_rascal` |
 | [Ackerman 기체 (UGV/탐사선)](../simulation/flightgear_vehicles.md#ugv) | `make px4_sitl_nolockstep flightgear_tf-r1`  |
@@ -70,15 +70,15 @@ The supported vehicles and `make` commands are listed below (click on the links 
 
 위 명령은 전체 인터페이스에 단일 기체를 띄워 실행합니다. *QGroundControl*은 모의시험 환경에 모델로 띄운 기체에 자동으로 연결할 수 있어야합니다.
 
-> **Note** For the full list of FlightGear build targets (highlighted) run: 
+> **Note** FlightGear 빌드 대상 전체 목록 (강조) 을 보려면 다음 명령을 실행하십시오: 
 > 
 > ```
   make px4_sitl_nolockstep list_vmd_make_targets | grep flightgear_
 ```
-  For additional information see: [FlightGear Vehicles](../simulation/flightgear_vehicles.md) (this includes information about "unsupported" vehicles, and adding new vehicles).
+  추가 정보는 [플라이트기어 기체](../simulation/flightgear_vehicles.md)를 살펴보십시오("지원하지 않는" 기체와 새 기체 추가 방법 정보도 있습니다).
 
 <span></span>
-> **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
+> **Note** [파일 및 코드 설치](../setup/dev_env.md) 안내서는 빌드 과정에 오류가 나타날 경우 도움이 될 참고서입니다.
 
 
 ## Taking it to the Sky
