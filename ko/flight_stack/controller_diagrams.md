@@ -129,7 +129,7 @@ The feedforward gain is used to compensate for aerodynamic damping. Basically, t
 
 The roll and pitch controllers have the same structure and the longitudinal and lateral dynamics are assumed to be uncoupled enough to work independently. The yaw controller, however, generates its yaw rate setpoint using the turn coordination constraint in order to minimize lateral acceleration, generated when the aircraft is slipping. The yaw rate controller also helps to counteract adverse yaw effects (https://youtu.be/sNV_SDDxuWk) and to damp the [Dutch roll mode](https://en.wikipedia.org/wiki/Dutch_roll) by providing extra directional damping.
 
-## 수직 이착륙 비행 조종 장치
+## 수직 이착륙 비행체 제어 장치
 
 ![수직 이착륙 자세 제어 다이어그램](../../assets/diagrams/VTOL_controller_diagram.png)
 
