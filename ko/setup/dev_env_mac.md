@@ -66,7 +66,7 @@ brew install px4-sim-gazebo
 
 ## jMAVSim 모의 시험 환경
 
-jMAVSim SITL 모의시험 환경을 활용하려면 자바 최신 버전(예: Java 14)을 우선 설치해야 합니다. You can either download [Java 14 from Oracle](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html) or use the AdoptOpenJDK tap:
+jMAVSim SITL 모의시험 환경을 활용하려면 자바 최신 버전(예: Java 14)을 우선 설치해야 합니다. [오라클 Java 14](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html)을 다운로드하거나 AdoptOpenJDK 탭을 활용할 수 있습니다:
 
 ```sh
 brew tap AdoptOpenJDK/openjdk
@@ -77,12 +77,12 @@ brew cask install adoptopenjdk14
 brew install px4-sim-jmavsim
 ```
 
-> **Note** jMAVSim for PX4 v1.11 and earlier required Java 8.
+> **Note** jMAVSim PX4 v1.11이전 버전은 Java 8이 필요합니다.
 
-## Additional Tools
+## 추가 도구
 
-See [Additional Tools](../setup/generic_dev_tools.md) for information about other useful development tools that are not part of the build toolchain (for example IDEs and GCSs).
+빌드 툴체인의 일부가 아닌 기타 유용한 개발 도구(IDE, GCS 등)의 내용을 살펴보려면 [추가 도구](../setup/generic_dev_tools.md) 를 살펴보십시오.
 
-## Next Steps
+## 다음 단계
 
-Once you have finished setting up the environment, continue to the [build instructions](../setup/building_px4.md).
+환경 구성이 끝나면, [빌드 설명서](../setup/building_px4.md)로 계속 진행하십시오.
