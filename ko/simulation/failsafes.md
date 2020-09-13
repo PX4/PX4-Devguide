@@ -1,4 +1,4 @@
-# Failsafe 시뮬레이션하기
+# 안전 장치 모의 시험
 
 [안전장치](https://docs.px4.io/master/en/config/safety.html)는 PX4를 안전하게 활용할 수 있는 안전 한계와 조건, 그리고 안전장치 가동을 개시했을 때 취할 수 있는 동작을 정의합니다(예: 착륙, 자세 유지 위치, 지정 지점으로의 복귀 등).
 
@@ -8,7 +8,7 @@ SITL에서는 모의시험 활용의 용이성을 위해 기본적으로 안전�
 
 <span></span>
 
-> **Tip** The [SITL parameters](../advanced/parameter_reference.md#sitl) allow you to simulate other common sensor failure cases that are not covered here, including: loss of barometer, gyro and accelerometer, increased GPS noise etc.
+> **Tip** [SITL 매개변수](../advanced/parameter_reference.md#sitl)는 기압계 소실, 각속도, 가속도계, GPS 불량 신호 수신 등 여기서 다루지 않는 일반적인 센서 동작 문제 상황을 모의 시험할 수 있게 합니다.
 
 ## 데이터 연결 유실
 
