@@ -66,10 +66,10 @@ rviz
 roslaunch octomap_server octomap_tracking_server.launch
 ```
 
-In *Rviz*, change the field 'Fixed Frame' from 'map' to 'world' in the top left of the window. Now click the add button in the bottom left and select MarkerArray. Then double click the MarkerArray and change 'Marker Topic' from '/free_cells_vis_array' to '/occupied_cells_vis_array'
+*Rviz*에서 창의 좌측 상단에 있는 'Fixed Frame' 필드 내용을 'map'에서 'world'로 바꾸십시오. 이제 좌측 하단의 추가 단추를 누르고 MarkerArray를 선택하십시오. 그 다음 MarkerArray를 두번 누르고 'Marker Topic'의 내용을 '/free_cells_vis_array'에서 '/occupied_cells_vis_array'로 바꾸십시오
 
-Now you should see a part of the floor.
+이제 바닥 부분을 볼 수 있어야 합니다.
 
-In the *Gazebo* window, insert a cube in front of the red rotors and you should see it in *Rviz*.
+*가제보* 창에서, 붉은 탐사선 앞에 정방체를 넣었을 때 *Rviz*에서 볼 수 있어야 합니다.
 
-![OctoMap Example in Gazebo](../../assets/simulation/octomap.png)
+![가제보 옥토맵 예제](../../assets/simulation/octomap.png)
