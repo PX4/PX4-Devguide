@@ -64,7 +64,7 @@ EKF2의 외부 위치 정보를 활용하려면 다음 매개변수를 설정해
 | [EKF2_EV_DELAY](../advanced/parameter_reference.md#EKF2_EV_DELAY)                                                                                                                                           | Set to the difference between the timestamp of the measurement and the "actual" capture time. For more information see [below](#tuning-EKF2_EV_DELAY). |
 | [EKF2_EV_POS_X](../advanced/parameter_reference.md#EKF2_EV_POS_X), [EKF2_EV_POS_Y](../advanced/parameter_reference.md#EKF2_EV_POS_Y), [EKF2_EV_POS_Z](../advanced/parameter_reference.md#EKF2_EV_POS_Z) | Set the position of the vision sensor (or MoCap markers) with respect to the robot's body frame.                                                       |
 
-> **Tip** 바뀐 매개변수 값을 적용하려면 비행 조종 장치를 다시 부팅하십시오.
+> **Tip** 바뀐 매개변수 값을 적용하려면 비행체 제어 장치를 다시 부팅하십시오.
 
 #### Tuning EKF2_EV_DELAY {#tuning-EKF2_EV_DELAY}
 
