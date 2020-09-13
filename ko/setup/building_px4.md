@@ -205,12 +205,12 @@ cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 
 [OcPoC-Zynq Mini](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html) 빌드 절차는 다음 문서에서 다룹니다:
 
-- [Aerotenna OcPoC-Zynq Mini Flight Controller > OcPoC-Zynq용 PX4 빌드](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)
+- [Aerotenna OcPoC-Zynq 미니 비행체 제어 장치 > OcPoC-Zynq용 PX4 빌드](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)
 - [OcPoC PX4 설정 페이지](https://aerotenna.readme.io/docs/px4-setup)
 
 ### QuRT / 스냅드래곤 기반 보드
 
-이 절에서는 [Qualcomm Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html)용 빌드 방법을 알려드립니다.
+이 절에서는 [퀄컴 스냅드래곤 플라이트](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html)용 빌드 방법을 알려드립니다.
 
 #### 빌드
 
