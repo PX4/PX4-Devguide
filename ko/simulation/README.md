@@ -1,10 +1,10 @@
 # 모의 시험
 
-Simulators allow PX4 flight code to control a computer modeled vehicle in a simulated "world". You can interact with this vehicle just as you might with a real vehicle, using *QGroundControl*, an offboard API, or a radio controller/gamepad.
+모의 시험환경에서는 PX4 비행 코드가 모의 환경을 구현한 "월드"에서 컴퓨터 모델 기체를 제어할 수 있습니다. You can interact with this vehicle just as you might with a real vehicle, using *QGroundControl*, an offboard API, or a radio controller/gamepad.
 
 > **Tip** Simulation is a quick, easy, and most importantly, *safe* way to test changes to PX4 code before attempting to fly in the real world. It is also a good way to start flying with PX4 when you haven't yet got a vehicle to experiment with.
 
-PX4 supports both *Software In the Loop (SITL)* simulation, where the flight stack runs on computer (either the same computer or another computer on the same network) and *Hardware In the Loop (HITL)* simulation using a simulation firmware on a real flight controller board.
+PX4에서는 비행 스택을 컴퓨터에서 실행(동일한 컴퓨터 또는 네트워크의 다른 컴퓨터)하는 *반복 실행 프그램 (SITL)* 모의 시험환경과 실제 비행체 제어 장치 보드의 모의 시험 펌웨어를 활용한 *반복 실행 하드웨어 (HITL)* 모의 시험환경을 지원합니다.
 
 Information about available simulators and how to set them up are provided in the next section. The other sections provide general information about how the simulator works, and are not required to *use* the simulators.
 
