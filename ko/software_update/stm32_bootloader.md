@@ -65,7 +65,7 @@ Segger 웹사이트의 [Download the J-Link software](https://www.segger.com/dow
 
 #### JLink GDB 서버 실행
 
-다음 명령어는 STM32F427VI SoC 기반의 비행 제어기용 서버를 실행하기 위해 사용됨: 
+다음 명령어는 STM32F427VI SoC 기반의 비행체 제어 장치용 서버를 실행합니다: 
 
 ```bash
 JLinkGDBServer -select USB=0 -device STM32F427VI -if SWD-DP -speed 20000
