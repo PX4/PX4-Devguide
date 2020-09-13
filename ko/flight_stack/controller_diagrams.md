@@ -129,14 +129,14 @@ The feedforward gain is used to compensate for aerodynamic damping. Basically, t
 
 The roll and pitch controllers have the same structure and the longitudinal and lateral dynamics are assumed to be uncoupled enough to work independently. The yaw controller, however, generates its yaw rate setpoint using the turn coordination constraint in order to minimize lateral acceleration, generated when the aircraft is slipping. The yaw rate controller also helps to counteract adverse yaw effects (https://youtu.be/sNV_SDDxuWk) and to damp the [Dutch roll mode](https://en.wikipedia.org/wiki/Dutch_roll) by providing extra directional damping.
 
-## 수직 이착륙 항공 조종기
+## 수직 이착륙 비행 조종 장치
 
-![VTOL Attitude Controller Diagram](../../assets/diagrams/VTOL_controller_diagram.png)
+![수직 이착륙 자세 제어 다이어그램](../../assets/diagrams/VTOL_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/file/d/1tVpmFhLosYjAtVI46lfZkxBz_vTNi8VH/view?usp=sharing
 Request access from dev team. -->
 
-This section gives a short overview on the control structure of Vertical Take-off and Landing (VTOL) aircraft. The VTOL flight controller consists of both the multicopter and fixed-wing controllers, either running separately in the corresponding VTOL modes, or together during transitions. The diagram above presents a simplified control diagram. Note the VTOL attitude controller block, which mainly facilitates the necessary switching and blending logic for the different VTOL modes, as well as VTOL-type-specific control actions during transitions (e.g. ramping up the pusher motor of a standard VTOL during forward transition). The inputs into this block are called "virtual" as, depending on the current VTOL mode, some are ignored by the controller.
+이 절에서는 수직 이착륙(VTOL)기의 간단한 개요 내용을 다룹니다. 수직 이착륙 비행 제어 장치는 멀티콥터와 고정익 제어 장치로 구성하며 각 부분은 수직 이착륙 모드를 별개로 또는 모드 전이 진행 과정에서 동시에 동작하기도 합니다. The diagram above presents a simplified control diagram. 수직 이착륙기 자세 제어 장치 블록은 다양한 수직 이착륙 모드를 전환하고 합성하는 로직에 필요한 수단을 주로 갖추고 있으며, 또한 전이 동작 진행시 수직 이착륙 형태의 제어 동작도 수행합니다(예: 전이 동작 진행시 표준 수직 이착륙기의 추진 모터의 출력 증가). 현재 수직 이착륙 모드에 따라 이 블록의 입력은 "가상" 이며, 일부는 제어 장치에서 무시하기도 합니다.
 
 For a standard and tilt-rotor VTOL, during transition the fixed-wing attitude controller produces the rate setpoints, which are then fed into the separate rate controllers, resulting in torque commands for the multicopter and fixed-wing actuators. For tailsitters, during transition the multicopter attitude controller is running.
 
