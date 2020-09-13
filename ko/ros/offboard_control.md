@@ -2,7 +2,7 @@
 
 > **Warning** [보드 외부](https://docs.px4.io/master/en/flight_modes/offboard.html) 제어는 위험합니다. 개발자에게는 충분히 보드 외부 제어 비행을 수행하기 전 준비하고 시험했으며 안전 예방책을 수립했는지 확인할 책임이 있습니다.
 
-보드 외부 제어 개념은 오토파일럿 외부에서 동작하는 프로그램으로 PX4 플라이트 스택을 제어할 수 있음에 기인합니다. MAVLink 프로토콜에서 [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) 와 [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) 메세지로 처리가 가능합니다.
+보드 외부 제어 개념은 오토파일럿 외부에서 동작하는 프로그램으로 PX4 비행 스택을 제어할 수 있음에 기인합니다. MAVLink 프로토콜에서 [SET_POSITION_TARGET_LOCAL_NED](https://mavlink.io/en/messages/common.html#SET_POSITION_TARGET_LOCAL_NED) 와 [SET_ATTITUDE_TARGET](https://mavlink.io/en/messages/common.html#SET_ATTITUDE_TARGET) 메세지로 처리가 가능합니다.
 
 ## 보드 외부 제어 펌웨어 설치
 
