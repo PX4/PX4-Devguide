@@ -121,7 +121,7 @@ PX4는 제어 분류 (입력) 과 출력 분류를 활용합니다. 개념은 �
 
 > **Note** MAIN 출력에 활용하는 물리 버스가 항상 동일하지 않으므로 이런 접근 방법이 필요합니다. 비행 조종기에 입출력 보드가 붙어([PX4 레퍼런스 비행 조종기 설계 > 메인 입출력 기능 해부](../hardware/reference_design.md#mainio-function-breakdown)편을 참고)있거나 모터 제어 목적으로 UAVCAN 통신 수단을 활용하는지 여부에 따라 달려있습니다. 시작 스크립트에서는 "device" 추상 레이어를 활용하여 적절한 믹서 파일을 보드에 적당한 장치 드라이버로 불러옵니다. 메인 믹서는 UAVCAN을 활성화했을 경우 `/dev/uavcan/esc`(uavcan) 장치를 불러오며, 그렇지 않을 경우 `/dev/pwm_output0`(이 장치는 입출력 보드 조종기의 입출력 드라이버를 대응하며, 보드의 FMU 드라이버는 이에 해당하지 않습니다) 조종 장치를 불러옵니다. AUX 믹서 파일은 입출력 보드를 내장한 픽스호크 컨트롤러의 FMU 드라이버에 대응하는 `/dev/pwm_output1` 장치에 불러옵니다.
 
-여러개의 컨트롤 그룹과 (비행 컨트롤, 페이로드 등) 출력 그룹 (버스들) 이 있기 때문에, 하나의 컨트롤 그룹은 여러개의 출력 그룹에게 명령어를 보낼 수 있습니다.
+여러 제어 분류와 (비행체 제어, 페이로드 등) 출력 분류(여러 버스)가 있기 때문에, 하나의 제어 분류를 여러 개의 출력에 명령을 보낼 수 있습니다.
 
 ![믹서 입출력 대응](../../assets/concepts/mermaid_mixer_inputs_outputs.png) <!--- Mermaid Live Version:
 https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGFjdHVhdG9yX2dyb3VwXzAtLT5vdXRwdXRfZ3JvdXBfNVxuICBhY3R1YXRvcl9ncm91cF8wLS0-b3V0cHV0X2dyb3VwXzZcbiAgYWN0dWF0b3JfZ3JvdXBfMS0tPm91dHB1dF9ncm91cF8wIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0
