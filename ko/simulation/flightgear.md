@@ -22,7 +22,7 @@ graph LR;
 > **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment, and simulation configuration (e.g. supported vehicles).
 
 
-## Installation (Ubuntu Linux) {#installation}
+## 설치(우분투 리눅스) {#installation}
 
 > **Note** These instructions were tested on Ubuntu 18.04
 
@@ -62,13 +62,13 @@ make px4_sitl_nolockstep flightgear_rascal
 
 The supported vehicles and `make` commands are listed below (click on the links to see the vehicle images).
 
-| Vehicle                                                               | Command                                      |
-| --------------------------------------------------------------------- | -------------------------------------------- |
-| [Standard Plane](../simulation/flightgear_vehicles.md#standard_plane) | `make px4_sitl_nolockstep flightgear_rascal` |
-| [Ackerman 기체 (UGV/탐사선)](../simulation/flightgear_vehicles.md#ugv)     | `make px4_sitl_nolockstep flightgear_tf-r1`  |
-| [Autogyro](../simulation/flightgear_vehicles.md#autogyro)             | `make px4_sitl_nolockstep flightgear_tf-g1`  |
+| Vehicle                                                           | Command                                      |
+| ----------------------------------------------------------------- | -------------------------------------------- |
+| [표준 비행체](../simulation/flightgear_vehicles.md#standard_plane)     | `make px4_sitl_nolockstep flightgear_rascal` |
+| [Ackerman 기체 (UGV/탐사선)](../simulation/flightgear_vehicles.md#ugv) | `make px4_sitl_nolockstep flightgear_tf-r1`  |
+| [Autogyro](../simulation/flightgear_vehicles.md#autogyro)         | `make px4_sitl_nolockstep flightgear_tf-g1`  |
 
-The commands above launch a single vehicle with the full UI. *QGroundControl*은 모의시험 환경에 모델로 띄운 기체에 자동으로 연결할 수 있어야합니다.
+위 명령은 전체 인터페이스에 단일 기체를 띄워 실행합니다. *QGroundControl*은 모의시험 환경에 모델로 띄운 기체에 자동으로 연결할 수 있어야합니다.
 
 > **Note** For the full list of FlightGear build targets (highlighted) run: 
 > 
@@ -114,7 +114,7 @@ INFO  [commander] LED: open /dev/led0 failed (22)
 INFO  [commander] Mission #3 loaded, 9 WPs, curr: 8
 INFO  [init] Mixer: etc/mixers-sitl/plane_sitl.main.mix on /dev/pwm_output0
 INFO  [mavlink] mode: Normal, data rate: 4000000 B/s on udp port 18570 remote port 14550
-INFO  [airspeed_selector] No airspeed sensor detected. 비 항속제어 모드로 전환합니다.
+INFO  [airspeed_selector] No airspeed sensor detected. Switch to non-airspeed mode.
 INFO  [mavlink] mode: Onboard, data rate: 4000000 B/s on udp port 14580 remote port 14540
 INFO  [mavlink] mode: Onboard, data rate: 4000 B/s on udp port 14280 remote port 14030
 INFO  [logger] logger started (mode=all)
