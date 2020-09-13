@@ -9,7 +9,7 @@
 {% youtube %}https://www.youtube.com/watch?v=iqdcN5Gj4wI{% endyoutube %}
 
 
-[![Mermaid Graph ](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEZsaWdodEdlYXIgLS0-IEZsaWdodEdlYXItQnJpZGdlO1xuICBGbGlnaHRHZWFyLUJyaWRnZSAtLT4gTUFWTGluaztcbiAgTUFWTGluayAtLT4gUFg0X1NJVEw7XG5cdCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEZsaWdodEdlYXIgLS0-IEZsaWdodEdlYXItQnJpZGdlO1xuICBGbGlnaHRHZWFyLUJyaWRnZSAtLT4gTUFWTGluaztcbiAgTUFWTGluayAtLT4gUFg0X1NJVEw7XG5cdCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
+[![머메이드 그래프 ](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEZsaWdodEdlYXIgLS0-IEZsaWdodEdlYXItQnJpZGdlO1xuICBGbGlnaHRHZWFyLUJyaWRnZSAtLT4gTUFWTGluaztcbiAgTUFWTGluayAtLT4gUFg0X1NJVEw7XG5cdCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEZsaWdodEdlYXIgLS0-IEZsaWdodEdlYXItQnJpZGdlO1xuICBGbGlnaHRHZWFyLUJyaWRnZSAtLT4gTUFWTGluaztcbiAgTUFWTGluayAtLT4gUFg0X1NJVEw7XG5cdCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 
 
 <!-- Original mermaid graph
@@ -19,7 +19,7 @@ graph LR;
   MAVLink-- >PX4_SITL;
 -->
 
-> **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment, and simulation configuration (e.g. supported vehicles).
+> **Note** 모의 시험 프로그램, 모의 시험 환경, 모의 시험 설정(예: 지원 기체) 관련 일반 정보는 [모의 시험](/simulation/README.md)에 있습니다.
 
 
 ## 설치(우분투 리눅스) {#installation}
@@ -81,11 +81,11 @@ make px4_sitl_nolockstep flightgear_rascal
 > **Note** [파일 및 코드 설치](../setup/dev_env.md) 안내서는 빌드 과정에 오류가 나타날 경우 도움이 될 참고서입니다.
 
 
-## Taking it to the Sky
+## 하늘로 띄우기
 
-The `make` commands mentioned above first build PX4 and then run it along with the FlightGear simulator.
+위에서 언급한 `make` 명령은 PX4를 우선 빌드하고 플라이트기어 모의 시험 환경을 띄웁니다.
 
-Once the PX4 has started it will launch the PX4 shell as shown below. You must select enter to get the command prompt.
+PX4를 시작하면 아래와 같이 PX4 셸을 실행합니다. 명령 프롬프트를 띄우려면 진입해야합니다.
 
 ```
 ______  __   __    ___
@@ -129,12 +129,12 @@ PX4 Communicator: PX4 Connected.
 pxh>
 ```
 
-The console will print out status as PX4 loads the airframe-specific initialization and parameter files, wait for (and connect to) the simulator. Once there is an INFO print that [ecl/EKF] is `commencing GPS fusion` the vehicle is ready to arm. At this point, you should see a FlightGear window with some view of aircraft.
+콘솔에서는 PX4에서 airframe별 초기화를 진행하고 매개변수 파일을 읽은 다음, 모의 시험 환경을 기다리(고 연결하)는 상태를 출력합니다. Once there is an INFO print that [ecl/EKF] is `commencing GPS fusion` the vehicle is ready to arm. At this point, you should see a FlightGear window with some view of aircraft.
 
 
 > **Note** You can change the view by pressing **Ctrl+V**.
 
-![FlightGear UI](../../assets/simulation/flightgear/flightgearUI.jpg)
+![플라이트기어 UI](../../assets/simulation/flightgear/flightgearUI.jpg)
 
 You can bring it into the air by typing:
 
@@ -142,7 +142,7 @@ You can bring it into the air by typing:
 pxh> commander takeoff
 ```
 
-## Usage/Configuration Options
+## 사용법/설정 옵션
 
 You can tune your FG installation/settings by the following environment variables:
 
@@ -150,36 +150,36 @@ You can tune your FG installation/settings by the following environment variable
 - `FG\_MODELS\_DIR` - absolute path to the folder containing the manually-downloaded aircraft models which should be used for simulation.
 - `FG\_ARGS\_EX` - any additional FG parameters.
 
-### Display the frame rate {#frame_rate}
+### 프레임 재생율 표시 {#frame_rate}
 
-In FlightGear you can display the frame rate by enabling it in: **View > View Options > Show frame rate**.
+플라이트기어에서는 **View > View Options > Show frame rate** 에서 프레임 재생율을 표시할 수 있습니다.
 
-### Set Custom Takeoff Location {#custom_takeoff_location}
+### 개별 이륙 지점 설정 {#custom_takeoff_location}
 
-Takeoff location in SITL FlightGear can be set using additional variables. Setting the variable will override the default takeoff location.
+SITL 플라이트 기어의 이륙 위치는 추가 변수를 활용하여 설정할 수 있습니다. 변수 설정을 통해 기본 이륙 위치를 재지정합니다.
 
-The variables which can be set are as follows: `--airport`, `--runway`, and `--offset-distance`. Other options can be found on [FlightGear wiki](http://wiki.flightgear.org/Command_line_options#Initial_Position_and_Orientation)
+설정할 수 있는 변수는 `--airport`, `--runway`, `--offset-distance`가 있습니다. 다른 옵션은 [플라이트기어 위키](http://wiki.flightgear.org/Command_line_options#Initial_Position_and_Orientation)에 있습니다
 
-For example:
+예를 들어:
 ```
 FG_ARGS_EX="--airport=PHNL"  make px4_sitl_nolockstep flightgear_rascal
 ```
 
-The example above starts the simulation on the [Honolulu international airport](http://wiki.flightgear.org/Suggested_airports)
+위 예제는 [호놀룰루 국제 공항](http://wiki.flightgear.org/Suggested_airports)에서의 모의 시험을 시작합니다.
 
 
-### Using a Joystick {#joystick}
+### 조종기 활용 {#joystick}
 
-조이스틱과 엄지 조이스틱은 *QGroundControl* 에서 지원합니다([설정 방법은 여기에 있음](../simulation/README.md#joystickgamepad-integration)).
+조종기와 엄지 조종기는 *QGroundControl* 에서 지원합니다([설정 방법은 여기에 있음](../simulation/README.md#joystickgamepad-integration)).
 
-The joystick input in FlightGear should be disabled in otherwise there will be a "race condition" between the FG joystick input and PX4 commands.
-
-
-## Extending and Customizing
-
-To extend or customize the simulation interface, edit the files in the **Tools/flightgear_bridge* folder. The code is available in the [PX4-FlightGear-Bridge repository](https://github.com/ThunderFly-aerospace/PX4-FlightGear-Bridge) on Github.
+플라이트기어의 조종기 입력을 끄지 않으면 FG 조종기 입력과 PX4 명령간 "입력 처리 경쟁 현상"이 일어날 수 있습니다.
 
 
-## Further Information
+## 확장 및 개별 설정
+
+모의 시험 인터페이스를 확장하거나 개별 설정하려면,   **Tools/flightgear_bridge** 폴더의 파일을 편집하십시오. 코드는 깃허브의 [PX4-FlightGear-Bridge 저장소](https://github.com/ThunderFly-aerospace/PX4-FlightGear-Bridge)에 있습니다.
+
+
+## 추가 정보
 
 * [PX4-FlightGear-Bridge readme](https://github.com/ThunderFly-aerospace/PX4-FlightGear-Bridge)
