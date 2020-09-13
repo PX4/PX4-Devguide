@@ -4,25 +4,25 @@
 
 지원 기체 형식은 멀티로터, 수직 이착륙기, 수직 이착륙 테일시터, 항공기, 탐사선, 수중선/무인 수중선이 있습니다.
 
-> **Tip** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
+> **Tip** 전체 대상을 빌드하려면 `make px4_sitl list_vmd_make_targets` 명령을 실행 (하고 `gazebo_`로 시작하는 요소를 검색) 하십시오.
 
 <span></span>
-> **Note** The [Gazebo](../simulation/gazebo.md) page shows how to install Gazebo, how to enable video and load custom maps, and many other configuration options.
+> **Note** [가제보](../simulation/gazebo.md) 페이지에서는 가제보 설치 방법, 동영상 활성, 개별 지도 불러오기, 기타 설정 옵션을 보여줍니다.
 
-## Multicopter
-### Quadrotor (Default) {#quadrotor}
+## 멀티콥터
+### 쿼드로터 (기본) {#quadrotor}
 
 ```sh
 make px4_sitl gazebo
 ```
 
-### Quadrotor with Optical Flow {#quadrotor_optical_flow}
+### 광류 센서 장착 쿼드로터 {#quadrotor_optical_flow}
 
 ```sh
 make px4_sitl gazebo_iris_opt_flow
 ```
 
-### 3DR Solo (Quadrotor) {#3dr_solo}
+### 3DR 솔로 (쿼드로터) {#3dr_solo}
 
 ```sh
 make px4_sitl gazebo_solo
@@ -31,7 +31,7 @@ make px4_sitl gazebo_solo
 ![3DR Solo in Gazebo](../../assets/simulation/gazebo/vehicles/solo.png)
 
 
-### Typhoon H480 (Hexrotor) {#typhoon_h480}
+### 태풍 H480 (헥스로터) {#typhoon_h480}
 
 ```
 make px4_sitl gazebo_typhoon_h480
@@ -39,11 +39,11 @@ make px4_sitl gazebo_typhoon_h480
 
 ![Typhoon H480 in Gazebo](../../assets/simulation/gazebo/vehicles/typhoon.jpg)
 
-> **Note** This target also supports [video streaming simulation](#video).
+> **Note** 이 대상에서는[동영상 스트리밍 모의 시험환경](#video)도 지원합니다.
 
-## Plane/Fixed Wing {#fixed_wing}
+## 비행체/고정익 {#fixed_wing}
 
-### Standard Plane {#standard_plane}
+### 표준 비행체 {#standard_plane}
 
 ```sh
 make px4_sitl gazebo_plane
@@ -52,7 +52,7 @@ make px4_sitl gazebo_plane
 ![Plane in Gazebo](../../assets/simulation/gazebo/vehicles/plane.png)
 
 
-#### Standard Plane with Catapult Launch {#standard_plane_catapult}
+#### 캐터펄트 발사형 표준 비행체 {#standard_plane_catapult}
 
 ```sh
 make px4_sitl gazebo_plane_catapult
@@ -95,15 +95,15 @@ make px4_sitl gazebo_rover
 ### Differential UGV {#ugv_differential}
 
 ```sh
-Rover in Gazebo
+make px4_sitl gazebo_r1_rover
 ```
 
 ![가제보의 탐사선](../../assets/simulation/gazebo/vehicles/r1_rover.png)
 
 
-## Unmanned Underwater Vehicle (UUV/Submarine) {#uuv}
+## 무인 수중 기체(UUV/잠수함) {#uuv}
 
-### HippoCampus TUHH UUV {#uuv_hippocampus}
+### 히포캠퍼스 TUHH UUV {#uuv_hippocampus}
 
 ```sh
 make px4_sitl gazebo_uuv_hippocampus
@@ -111,9 +111,9 @@ make px4_sitl gazebo_uuv_hippocampus
 
 ![Submarine/UUV](../../assets/simulation/gazebo/vehicles/hippocampus.png)
 
-## Unmanned Surface Vehicle (USV/Boat) {#usv}
+## 무인 수면 기체(USV/보트) {#usv}
 
-### Boat {#usv_boat}
+### 보트 {#usv_boat}
 
 ```sh
 make px4_sitl gazebo_boat
@@ -121,9 +121,9 @@ make px4_sitl gazebo_boat
 
 ![Boat/USV](../../assets/simulation/gazebo/vehicles/boat.png)
 
-## Airship {#airship}
+## 비행선 {#airship}
 
-### Cloudship {#cloudship}
+### 구름선 {#cloudship}
 
 ```sh
 make px4_sitl gazebo_cloudship
