@@ -8,7 +8,7 @@
 
 다음의 항목이 필요합니다.
 
-* [PX4 SITL Simulator](../simulation/README.md) * 혹은 * [PX4-compatible flight controller](https://docs.px4.io/master/en/flight_controller/#documented-boards).
+* [PX4 SITL 모의 시험환경](../simulation/README.md) * 혹은 * [PX4-호환 비행체 제어 장치](https://docs.px4.io/master/en/flight_controller/#documented-boards).
 * 사용할 타겟용 [PX4 개발 툴체인](../setup/dev_env.md).
 * Github에서 [PX4 소스 코드 다운로드](../setup/building_px4.md#get_px4_code)
 
