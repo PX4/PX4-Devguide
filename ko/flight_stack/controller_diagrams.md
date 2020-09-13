@@ -138,9 +138,9 @@ Request access from dev team. -->
 
 이 절에서는 수직 이착륙(VTOL)기의 간단한 개요 내용을 다룹니다. 수직 이착륙 비행 제어 장치는 멀티콥터와 고정익 제어 장치로 구성하며 각 부분은 수직 이착륙 모드를 별개로 또는 모드 전이 진행 과정에서 동시에 동작하기도 합니다. The diagram above presents a simplified control diagram. 수직 이착륙기 자세 제어 장치 블록은 다양한 수직 이착륙 모드를 전환하고 합성하는 로직에 필요한 수단을 주로 갖추고 있으며, 또한 전이 동작 진행시 수직 이착륙 형태의 제어 동작도 수행합니다(예: 전이 동작 진행시 표준 수직 이착륙기의 추진 모터의 출력 증가). 현재 수직 이착륙 모드에 따라 이 블록의 입력은 "가상" 이며, 일부는 제어 장치에서 무시하기도 합니다.
 
-For a standard and tilt-rotor VTOL, during transition the fixed-wing attitude controller produces the rate setpoints, which are then fed into the separate rate controllers, resulting in torque commands for the multicopter and fixed-wing actuators. For tailsitters, during transition the multicopter attitude controller is running.
+표준/틸트로터 수직 이착륙기에서는 고정익으로 전이하는 동안 자세 제어 장치에서 속도 설정값을 부여하며, 별개의 속도 제어 장치에서 해당 값을 받아 멀티콥터와 고정익 액츄에이터용 토크 명령을 자체 인가합니다. For tailsitters, during transition the multicopter attitude controller is running.
 
-The outputs of the VTOL attitude block are separate torque and force commands for the multicopter (typically `actuator_controls_0`) and fixed-wing (typically `actuator_controls_1`) actuators. These are handled in an airframe-specific mixer file (see [Mixing](../concept/mixing.md)).
+수직 이착륙기 자세 블록의 출력은 멀티콥터에서의 토크와 힘 명령(보통 `actuator_controls_0`), 고정익에서의 액츄에이터(보통 `actuator_controls_1`)로 나눕니다. These are handled in an airframe-specific mixer file (see [Mixing](../concept/mixing.md)).
 
 For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/).
 
