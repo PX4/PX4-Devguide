@@ -12,11 +12,11 @@ SITL에서는 모의시험 활용의 용이성을 위해 기본적으로 안전�
 
 ## 데이터 연결 유실
 
-The *Data Link Loss* failsafe (unavailability of external data via MAVLink) is enabled by default. This makes the simulation only usable with a connected GCS, SDK, or other MAVLink application.
+*데이터 연결 유실*(MAVLink 외부 데이터 사용 불가) 안전 장치는 기본 활성 설정한 상태입니다. GCS, SDK 또는 기타 MAVLink 프로그램에 연결한 상태로만 모의 시험을 진행할 수 있습니다.
 
 Set the parameter [NAV_DLL_ACT](../advanced/parameter_reference.md#NAV_DLL_ACT) to the desired failsafe action to change the behavior. For example, set to `0` to disable it.
 
-> **Note** All parameters in SITL including this one get reset when you do `make clean`.
+> **Note** 이를 포함한 SITL의 모든 매개변수 값은 `make clean` 명령을 실행하면 초기 값으로 돌아갑니다.
 
 ## 원격 조종 연결 유실
 
@@ -24,17 +24,17 @@ The *RC Link Loss* failsafe (unavailability of data from a remote control) is en
 
 Set the parameter [NAV_RCL_ACT](../advanced/parameter_reference.md#NAV_RCL_ACT) to the desired failsafe action to change the behavior. For example, set to `0` to disable it.
 
-> **Note** All parameters in SITL including this one get reset when you do `make clean`.
+> **Note** 이를 포함한 SITL의 모든 매개변수 값은 `make clean` 명령을 실행하면 초기 값으로 돌아갑니다.
 
 ## 배터리 부족
 
 The simulated battery is implemented to never run out of energy, and by default only depletes to 50% of its capacity and hence reported voltage. This enables testing of battery indication in GCS UIs without triggering low battery reactions that might interrupt other testing.
 
-To change this minimal battery percentage value change [this line](https://github.com/PX4/Firmware/blob/9d67bbc328553bbd0891ffb8e73b8112bca33fcc/src/modules/simulator/simulator_mavlink.cpp#L330).
+최소 배터리 백분율 값을 바꾸려면 [이 줄](https://github.com/PX4/Firmware/blob/9d67bbc328553bbd0891ffb8e73b8112bca33fcc/src/modules/simulator/simulator_mavlink.cpp#L330)의 값을 바꾸십시오.
 
-To control how fast the battery depletes to the minimal value use the parameter [SIM_BAT_DRAIN](../advanced/parameter_reference.md#SIM_BAT_DRAIN).
+배터리 소모율을 최소값으로 조절하려면 [SIM_BAT_DRAIN](../advanced/parameter_reference.md#SIM_BAT_DRAIN) 매개변수를 활용하십시오.
 
-> **Tip** By changing this configuration in flight, you can also test regaining capacity to simulate inaccurate battery state estimation or in-air charging technology.
+> **Tip** 이 설정 값을 비행 중에 조절하면, 부정확한 배터리 상태 추산 또는 공중 충전 기술을 모의 시험해볼 수 있습니다.
 
 ## GPS 신호 유실
 
