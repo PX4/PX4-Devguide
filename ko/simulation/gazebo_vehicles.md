@@ -63,23 +63,23 @@ This model simulates hand/catapult launch, which can be used for [fixed wing tak
 The plane will automatically be launched as soon as the vehicle is armed.
 
 
-## VTOL
+## 수직 이착륙기
 
-### Standard VTOL {#standard_vtol}
+### 표준 수직 이착륙기 {#standard_vtol}
 
 ```sh
 make px4_sitl gazebo_standard_vtol
 ```
 
-![Standard VTOL in Gazebo](../../assets/simulation/gazebo/vehicles/standard_vtol.png)
+![가제보 표준 수직 이착륙기](../../assets/simulation/gazebo/vehicles/standard_vtol.png)
 
-### Tailsitter VTOL {#tailsitter_vtol}
+### 테일시터 수직 이착륙기 {#tailsitter_vtol}
 
 ```sh
 make px4_sitl gazebo_tailsitter
 ```
 
-![Tailsitter VTOL in Gazebo](../../assets/simulation/gazebo/vehicles/tailsitter.png)
+![가제보 테일시터 수직 이착륙기](../../assets/simulation/gazebo/vehicles/tailsitter.png)
 
 
 ## 무인 지상 기체(UGV/탐사선/차량) {#ugv}
