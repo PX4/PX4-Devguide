@@ -123,7 +123,10 @@
     )
     ```
     
-    `px4_add_module()` 메서드는 모듈 설명에 따라 정적 라이브러리를 빌드합니다. `MAIN` 블럭에는 모듈의 이름이 나타납니다 - NuttX에서 명령을 등록하여 PX4 셸 또는 SITL 콘솔에서 호출할 수 있습니다.
+    The `px4_add_module()` method builds a static library from a module description.
+    
+    * The `MODULE` block is the Firmware-unique name of the module (by convention the module name is prefixed by parent directories back to `src`).
+    * The `MAIN` block lists the entry point of the module, which registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
     
     > **Tip** `px4_add_module()` 의 형식은 [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake)에 들어 있습니다.
     
