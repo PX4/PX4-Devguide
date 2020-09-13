@@ -54,9 +54,9 @@
 
 수직이착륙기
 
-| 프레임                                                                                  | 비행 조종 장치                                                                             | UUID                                             |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
-| [Convergence VTOL](https://www.horizonhobby.com/convergence-vtol-bnf-basic-efl11050) | [Pixhawk 4 Mini](https://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html) | 000200000000343233383038511500350039 (vtol-v5-m) |
-| [Delta Quad Pro](https://px4.io/portfolio/deltaquad-vtol/)                           | [Dropix](https://docs.px4.io/master/en/flight_controller/dropix.html)                | 0001000000003437393931375114004c0042 (delta-v2)  |
+| 프레임                                                                            | 비행 조종 장치                                                                             | UUID                                             |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| [혼합 수직 이착륙기](https://www.horizonhobby.com/convergence-vtol-bnf-basic-efl11050) | [Pixhawk 4 Mini](https://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html) | 000200000000343233383038511500350039 (vtol-v5-m) |
+| [Delta Quad Pro](https://px4.io/portfolio/deltaquad-vtol/)                     | [Dropix](https://docs.px4.io/master/en/flight_controller/dropix.html)                | 0001000000003437393931375114004c0042 (delta-v2)  |
 
 {% endif %} <!-- END: details above displayed only in master -->
