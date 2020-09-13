@@ -86,7 +86,8 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
          [-f]        Enable message forwarding to other Mavlink instances
          [-w]        Wait to send, until first message received
          [-x]        Enable FTP
-         [-z]        Force flow control always on
+         [-z]        Force hardware flow control always on
+         [-Z]        Force hardware flow control always off
     
        stop-all      Stop all instances
     

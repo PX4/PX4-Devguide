@@ -1,45 +1,45 @@
-# Test MC_01 - Manual Modes
+# 시험 MC_01 - 수동 상태
 
-## Arm and Take-off
+## 이륙 준비 및 이륙
 
-❏ Set flight mode to stabilize and Arm
+❏ 안정화를 목적으로 비행 모드를 설정하고 이륙 준비를 완료함
 
-❏ Take-off by raising the throttle
+❏ 추진력을 올려 이륙
 
-## Flight
+## 비행
 
-❏ Stabilized
+❏ 안정화 상태
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response 1:1
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 상하/좌우/방위 회전각 응답 1:1
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response 1:1
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 추진력 응답 1:1
 
-❏ Altitude
+❏ 고도
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Vertical position should hold current value with stick centered
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 스틱을 가운데 두었을 때 현재 상태에서 수직 위치를 유지해야 함
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response 1:1
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 상하/좌우/방위 회전각 응답 1:1
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response set to Climbs/Descend rate
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 상승 하강 속도 설정시 추력부의 반응
 
-❏ Position
+❏ 위치
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Horizontal position should hold current value with stick centered
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 스틱을 가운데 두었을 때 현재 상태에서 수평 위치를 유지해야 함
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Vertical position should hold current value with stick centered
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 스틱을 가운데 두었을 때 현재 상태에서 수직 위치를 유지해야 함
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Throttle response set to Climbs/Descend rate
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 상승 하강 속도 설정시 추력부의 반응
 
-&nbsp;&nbsp;&nbsp;&nbsp;❏ Pitch/Roll/Yaw response set to Pitch/Roll/Yaw rates
+&nbsp;&nbsp;&nbsp;&nbsp;❏ 상하/좌우/방위 회전각 응답으로 상하/좌우/방위 각 변화 속도 설정
 
-## Landing
+## 착륙
 
-❏ Land in Position mode with the throttle below 40%
+❏ 40% 미만의 추력으로 위치 모드 상태에서 착륙
 
-❏ Upon touching ground, copter should disarm automatically within 2 seconds (disarm time set by parameter: [COM_DISARM_LAND](../advanced/parameter_reference.md#COM_DISARM_LAND))
+❏ 콥터가 지면에 닿을 때, 2초 안에 이륙 준비를 해제해야 함(이륙 준비 해제 시간은 [COM_DISARM_LAND](../advanced/parameter_reference.md#COM_DISARM_LAND)로 설정)
 
-## Expected Results
+## 예상 결과
 
-* Take-off should be smooth as throttle is raised
-* No oscillations should present in any of the above flight modes
-* Upon landing, copter should not bounce on the ground
+* 추력을 올릴 때 서서히 이륙한다
+* 위에 언급한 어떤 비행 모드에서도 떨림이 나타나서는 안됨
+* 지면에 착륙시, 콥터가 지면에서 튀면 안됨

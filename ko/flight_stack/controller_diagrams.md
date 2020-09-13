@@ -1,22 +1,64 @@
-# Controller Diagrams
+# 조종 장치 구성도
 
-This section contains diagrams for the main PX4 controllers.
+이 절에서는 PX4 주 조종 장치 구성도를 보여드립니다.
 
-The diagrams use the standard [PX4 notation](../contribute/notation.md) (and each have an annotated legend).
+구성도 상의 명칭은 [PX4 표기 방식](../contribute/notation.md)을 따릅니다(그리고 각 표시 내용에는 범례가 따릅니다).
 
-## Multicopter Position Controller
+<!--    The diagrams were created with LaTeX / TikZ.
+        The code can be found in assets/diagrams/mc_control_arch_tikz.tex.
+        The easiest way to generate the diagrams and edit them is to copy the code and paste it an Overleaf (www.overleaf.com/) document to see the output.
+-->
+
+## Multicopter Control Architecture
+
+![MC Controller Diagram](../../assets/diagrams/mc_control_arch.jpg)
+
+* This is a standard cascaded control architecture.
+* The controllers are a mix of P and PID controllers.
+* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
+* Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
+
+### Multicopter Angular Rate Controller
+
+![MC Rate Control Diagram](../../assets/diagrams/mc_angular_rate_diagram.jpg)
+
+* K-PID controller. See [Rate Controller](https://docs.px4.io/master/en/config_mc/pid_tuning_guide_multicopter.html#rate-controller) for more information.
+* The integral authority is limited to prevent wind up.
+* A Low Pass Filter (LPF) is used on the derivative path to reduce noise.
+* The outputs are limited, usually at -1 and 1.
+
+### Multicopter Attitude Controller
+
+![MC Angle Control Diagram](../../assets/diagrams/mc_angle_diagram.jpg)
+
+* The attitude controller makes use of [quaternions](https://en.wikipedia.org/wiki/Quaternion).
+* The controller is implemented from this [article](https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf).
+* When tuning this controller, the only parameter of concern is the P gain.
+* The rate command is saturated.
+
+### Multicopter Velocity Controller
+
+![MC Velocity Control Diagram](../../assets/diagrams/mc_velocity_diagram.jpg)
+
+* PID controller to stabilise velocity. Commands an acceleration.
+* The integrator includes an anti-reset windup (ARW) using a clamping method.
+* The commanded acceleration is saturated.
+
+### Multicopter Position Controller
+
+![MC Position Control Diagram](../../assets/diagrams/mc_position_diagram.jpg)
+
+* Simple P controller that commands a velocity.
+* The commanded velocity is saturated to keep the velocity in certain limits.
+
+#### Combined Position and Velocity Controller Diagram
 
 ![MC Position Controller Diagram](../../assets/diagrams/px4_mc_position_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
 
-* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
-* This is a standard cascaded position-velocity loop.
-* Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
-* The integrator in the inner loop (velocity) controller includes an anti-reset windup (ARW) using a clamping method.
-
-## Fixed-Wing Position Controller
+## 고정익 위치 조종기
 
 ### Total Energy Control System (TECS)
 
@@ -26,7 +68,7 @@ The PX4 implementation of the Total Energy Control System (TECS) enables simulta
 
 As seen in the diagram above, TECS receives as inputs airspeed and altitude setpoints and outputs a throttle and pitch angle setpoint. These two outputs are sent to the fixed wing attitude controller which implements the attitude control solution. It's therefore important to understand that the performance of TECS is directly affected by the performance of the pitch control loop. A poor tracking of airspeed and altitude is often caused by a poor tracking of the aircraft pitch angle.
 
-> **Note** Make sure to tune the attitude controller before attempting to tune TECS.
+> **Note** TECS 값을 조정하기 전 자세 조종 장치 설정값 조정 상태를 확인하십시오.
 
 Simultaneous control of true airspeed and height is not a trivial task. Increasing aircraft pitch angle will cause an increase in height but also a decrease in airspeed. Increasing the throttle will increase airspeed but also height will increase due to the increase in lift. Therefore, we have two inputs (pitch angle and throttle) which both affect the two outputs (airspeed and altitude) which makes the control problem challenging.
 
@@ -70,7 +112,7 @@ Elevator control on the other hand is energy conservative, and is thus used for 
 
 $$\dot{B} = \gamma - \frac{\dot{V_T}}{g}$$.
 
-## Fixed-Wing Attitude Controller
+## 고정익 위치 조종기
 
 ![FW Attitude Controller Diagram](../../assets/diagrams/px4_fw_attitude_controller_diagram.png)
 
@@ -87,18 +129,18 @@ The feedforward gain is used to compensate for aerodynamic damping. Basically, t
 
 The roll and pitch controllers have the same structure and the longitudinal and lateral dynamics are assumed to be uncoupled enough to work independently. The yaw controller, however, generates its yaw rate setpoint using the turn coordination constraint in order to minimize lateral acceleration, generated when the aircraft is slipping. The yaw rate controller also helps to counteract adverse yaw effects (https://youtu.be/sNV_SDDxuWk) and to damp the [Dutch roll mode](https://en.wikipedia.org/wiki/Dutch_roll) by providing extra directional damping.
 
-## VTOL Flight Controller
+## 수직 이착륙 비행체 제어 장치
 
-![VTOL Attitude Controller Diagram](../../assets/diagrams/VTOL_controller_diagram.png)
+![수직 이착륙 자세 제어 다이어그램](../../assets/diagrams/VTOL_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/file/d/1tVpmFhLosYjAtVI46lfZkxBz_vTNi8VH/view?usp=sharing
 Request access from dev team. -->
 
-This section gives a short overview on the control structure of Vertical Take-off and Landing (VTOL) aircraft. The VTOL flight controller consists of both the multicopter and fixed-wing controllers, either running separately in the corresponding VTOL modes, or together during transitions. The diagram above presents a simplified control diagram. Note the VTOL attitude controller block, which mainly facilitates the necessary switching and blending logic for the different VTOL modes, as well as VTOL-type-specific control actions during transitions (e.g. ramping up the pusher motor of a standard VTOL during forward transition). The inputs into this block are called "virtual" as, depending on the current VTOL mode, some are ignored by the controller.
+이 절에서는 수직 이착륙(VTOL)기의 간단한 개요 내용을 다룹니다. 수직 이착륙 비행 제어 장치는 멀티콥터와 고정익 제어 장치로 구성하며 각 부분은 수직 이착륙 모드를 별개로 또는 모드 전이 진행 과정에서 동시에 동작하기도 합니다. The diagram above presents a simplified control diagram. 수직 이착륙기 자세 제어 장치 블록은 다양한 수직 이착륙 모드를 전환하고 합성하는 로직에 필요한 수단을 주로 갖추고 있으며, 또한 전이 동작 진행시 수직 이착륙 형태의 제어 동작도 수행합니다(예: 전이 동작 진행시 표준 수직 이착륙기의 추진 모터의 출력 증가). 현재 수직 이착륙 모드에 따라 이 블록의 입력은 "가상" 이며, 일부는 제어 장치에서 무시하기도 합니다.
 
-For a standard and tilt-rotor VTOL, during transition the fixed-wing attitude controller produces the rate setpoints, which are then fed into the separate rate controllers, resulting in torque commands for the multicopter and fixed-wing actuators. For tailsitters, during transition the multicopter attitude controller is running.
+표준/틸트로터 수직 이착륙기에서는 고정익으로 전이하는 동안 자세 제어 장치에서 속도 설정값을 부여하며, 별개의 속도 제어 장치에서 해당 값을 받아 멀티콥터와 고정익 액츄에이터용 토크 명령을 자체 인가합니다. For tailsitters, during transition the multicopter attitude controller is running.
 
-The outputs of the VTOL attitude block are separate torque and force commands for the multicopter (typically `actuator_controls_0`) and fixed-wing (typically `actuator_controls_1`) actuators. These are handled in an airframe-specific mixer file (see [Mixing](../concept/mixing.md)).
+수직 이착륙기 자세 블록의 출력은 멀티콥터에서의 토크와 힘 명령(보통 `actuator_controls_0`), 고정익에서의 액츄에이터(보통 `actuator_controls_1`)로 나눕니다. These are handled in an airframe-specific mixer file (see [Mixing](../concept/mixing.md)).
 
 For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/).
 

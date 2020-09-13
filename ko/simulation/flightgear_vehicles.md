@@ -1,6 +1,6 @@
 # FlightGear Vehicles
 
-This topic lists/displays the vehicles supported by the PX4 [FlightGear](../simulation/flightgear.md) simulation, and the `make` commands required to run them (the commands are run from terminal in the **Firmware** directory). The supported types are: plane, autogyro and rover (there are specific frames within these types).
+This topic lists/displays the vehicles supported by the PX4 [FlightGear](../simulation/flightgear.md) simulation, and the `make` commands required to run them (the commands are run from terminal in the **Firmware** directory). 지원 형식은 항공기, 오토자이로, 탐사선입니다(이 형식의 몇가지 지정 프레임이 있습니다).
 
 > **Tip** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (filter out those that start with `flightgear_`).
 
@@ -65,17 +65,17 @@ make px4_sitl_nolockstep flightgear_tf-g1
 ![TF-G1 in FlightGear](../../assets/simulation/flightgear/vehicles/tf-g1.jpg)
 
 
-## Ackerman vehicle (UGV/Rover) {#ugv}
+## Ackerman 기체 (UGV/탐사선) {#ugv}
 
-### TF-R1 Ground support Rover
+### TF-R1 지상 지원 탐사선
 
-This rover is equipped with a towing hitch and might be used for aero-towing of other vehicles.
+이 탐사선은 견인 고리를 장착하였기 때문에 아마도 다른 기체의 공중 견인에 활용할 지도 모르겠습니다.
 
 ```sh
 make px4_sitl_nolockstep flightgear_tf-r1
 ```
 
-![TF-R1 rover in FlightGear](../../assets/simulation/flightgear/vehicles/tf-r1_towing.jpg)
+![플라이트 기어의 TF-R1 탐사선](../../assets/simulation/flightgear/vehicles/tf-r1_towing.jpg)
 
 
 ## Quadrotor {#quadrotor}
@@ -85,7 +85,7 @@ There is only an [incomplete multirotor model](https://github.com/ThunderFly-aer
 
 # Adding a New Vehicle
 
-A new vehicle model needs to be included as a git submodule into [PX4-FlightGear-Bridge/models/](https://github.com/PX4/PX4-FlightGear-Bridge/tree/master/models) directory. This directory contains an control channel definition [JSON file](https://github.com/PX4/PX4-FlightGear-Bridge/blob/master/models/rascal.json).
+A new vehicle model needs to be included as a git submodule into [PX4-FlightGear-Bridge/models/](https://github.com/PX4/PX4-FlightGear-Bridge/tree/master/models) directory. 이 디렉터리에는 제어 채널 정의 [JSON 파일](https://github.com/PX4/PX4-FlightGear-Bridge/blob/master/models/rascal.json)이 들어있습니다.
 
 ```json
 {

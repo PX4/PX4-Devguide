@@ -117,7 +117,7 @@ make
 
 ### 자체 빌드
 
-라즈베리 파이 기반 PX4 활용(PX4 자체 빌드내용 포함) 관련 추가 개발 정보는 [라즈베리 파이 2/3 Navio2 Autopilot](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html)에서 찾아보실 수 있습니다.
+라즈베리 파이 기반 PX4 활용(PX4 자체 빌드내용 포함) 관련 추가 개발 정보는 [라즈베리 파이 2/3 Navio2 오토파일럿](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html)에서 찾아보실 수 있습니다.
 
 ## ROS/가제보 {#rosgazebo}
 

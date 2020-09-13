@@ -19,7 +19,7 @@ The current set of compatible airframes vs Simulators is:
 
 With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*.
 
-> **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable). For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)).
+> **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable). 예를 들어, 컴퓨터와 이더넷으로 연결해 둔 라즈베리 파이와 PX4의 설정 시험을 이미 진행했습니다(jMAVSim 실행 명령이 들어간 시작 설정은 [여기](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)에 있습니다).
 
 The diagram below shows the simulation environment:
 
@@ -49,7 +49,7 @@ In summary, HITL runs PX4 on the actual hardware using standard firmware, but SI
     1. Open **Setup > Safety** section.
     2. Enable HITL mode by selecting **Enabled** from the *HITL Enabled* list:
         
-        ![QGroundControl HITL configuration](../../assets/gcs/qgc_hitl_config.png)
+        ![QGroundControl HITL 설정](../../assets/gcs/qgc_hitl_config.png)
 
 3. Select Airframe
     
@@ -111,11 +111,11 @@ Follow the appropriate setup steps for the specific simulator in the following s
     gazebo Tools/sitl_gazebo/worlds/iris.world
     ```
 
-6. Start *QGroundControl*. It should autoconnect to PX4 and Gazebo.
+6. *QGroundControl *을 시작하십시오. It should autoconnect to PX4 and Gazebo.
 
 #### jMAVSim (Quadrotor only) {#jmavsim_hitl_configuration}
 
-> **Note** Make sure *QGroundControl* is not running!
+> **Note** *QGroundControl*을 실행하고 있지 않은지 확인하십시오!
 
 1. Connect the flight controller to the computer and wait for it to boot.
 2. Run jMAVSim in HITL mode: 
@@ -123,8 +123,8 @@ Follow the appropriate setup steps for the specific simulator in the following s
         ./Tools/jmavsim_run.sh -q -s -d /dev/ttyACM0 -b 921600 -r 250 > 
     
     **Note** Replace the serial port name `/dev/ttyACM0` as appropriate. On macOS this port would be `/dev/tty.usbmodem1`. On Windows (including Cygwin) it would be the COM1 or another port - check the connection in the Windows Device Manager.
-3. Start *QGroundControl*. It should autoconnect to PX4 and jMAVSim.
+3. *QGroundControl *을 시작하십시오. It should autoconnect to PX4 and jMAVSim.
 
 ## Fly an Autonomous Mission in HITL
 
-You should be able to use *QGroundControl* to [run missions](../qgc/README.md#planning-missions) and otherwise control the vehicle.
+[임무를 수행](../qgc/README.md#planning-missions) 하거나 기체를 조종하려면 *QGroundControl*을 활용할 수 있어야 합니다.

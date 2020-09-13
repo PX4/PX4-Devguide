@@ -39,7 +39,7 @@ sudo usermod -aG docker $USER
 | &emsp;px4-dev-nuttx             | NuttX 툴체인                            |
 | &emsp;px4-dev-simulation        | NuttX 툴체인 + 모의시험 (jMAVSim, Gazebo)   |
 | &emsp;&emsp;px4-dev-ros         | NuttX 툴체인, 모의시험 + ROS (incl. MAVROS) |
-| &emsp;px4-dev-raspi             | 라즈베리 Pi 툴체인                          |
+| &emsp;px4-dev-raspi             | 라즈베리 파이 툴체인                          |
 | &emsp;px4-dev-snapdragon        | 퀄컴 스냅드래곤 비행 툴체인                      |
 | &emsp;px4-dev-clang             | clang 도구                             |
 | &emsp;&emsp;px4-dev-nuttx-clang | clang과 NuttX 도구                      |

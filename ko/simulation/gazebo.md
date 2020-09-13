@@ -1,8 +1,8 @@
-# Gazebo Simulation
+# 가제보 모의 시험 환경
 
 [Gazebo](http://gazebosim.org) is a powerful 3D simulation environment for autonomous robots that is particularly suitable for testing object-avoidance and computer vision. This page describes its use with SITL and a single vehicle. Gazebo can also be used with [HITL](../simulation/hitl.md) and for [multi-vehicle simulation](../simulation/multi-vehicle-simulation.md).
 
-**Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) and [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo), Hex (Typhoon H480), [Generic quad delta VTOL](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), Tailsitter, Plane, Rover, Submarine/UUV.
+**Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) and [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo), Hex (Typhoon H480), [Generic quad delta VTOL](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), 태일시터, 항공기, 탐사선, 수중선/무인 수중선
 
 > **Warning** Gazebo is often used with [ROS](../ros/README.md), a toolkit/offboard API for automating vehicle control. If you plan to use PX4 with ROS you **should follow the** [ROS Instructions](../simulation/ros_interface.md) to install both ROS and Gazebo (and thereby avoid installation conflicts).
 
@@ -19,7 +19,7 @@ graph LR;
 
 > **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment, and simulation configuration (e.g. supported vehicles).
 
-## Installation {#installation}
+## 설치 {#installation}
 
 Gazebo 9 setup is included in our standard build instructions:
 
@@ -29,7 +29,7 @@ Gazebo 9 setup is included in our standard build instructions:
 
 Additional installation instructions can be found on [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1).
 
-## Running the Simulation
+## 모의 시험 환경 실행
 
 Run a simulation by starting PX4 SITL and gazebo with the airframe configuration to load (multicopters, planes, VTOL, optical flow and multi-vehicle simulations are supported).
 
@@ -44,19 +44,20 @@ The supported vehicles and `make` commands are listed below (click links to see 
 
 > **Note** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
 
-| Vehicle                                                                                                                      | Command                                |
-| ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| [Quadrotor](../simulation/gazebo_vehicles.md#quadrotor)                                                                      | `make px4_sitl gazebo`                 |
-| [Quadrotor with Optical Flow](../simulation/gazebo_vehicles.md#quadrotor_optical_flow)                                       | `make px4_sitl gazebo_iris_opt_flow`   |
-| [3DR Solo (Quadrotor)](../simulation/gazebo_vehicles.md#3dr_solo)                                                            | `make px4_sitl gazebo_solo`            |
-| <span id="typhoon_h480"></span>[Typhoon H480 (Hexrotor)](../simulation/gazebo_vehicles.md#typhoon_h480) (supports video streaming) | `make px4_sitl gazebo_typhoon_h480`    |
-| [Standard Plane](../simulation/gazebo_vehicles.md#standard_plane)                                                            | `make px4_sitl gazebo_plane`           |
-| [Standard Plane (with catapult launch)](../simulation/gazebo_vehicles.md#standard_plane_catapult)                            | `make px4_sitl gazebo_plane_catapult`  |
-| [Standard VTOL](../simulation/gazebo_vehicles.md#standard_vtol)                                                              | `make px4_sitl gazebo_standard_vtol`   |
-| [Tailsitter VTOL](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                                          | `make px4_sitl gazebo_tailsitter`      |
-| [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                                         | `make px4_sitl gazebo_rover`           |
-| [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)                                  | `make px4_sitl gazebo_uuv_hippocampus` |
-| [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                                                 | `make px4_sitl gazebo_boat`            |
+| 기체                                                                                                     | 명령                                     |
+| ------------------------------------------------------------------------------------------------------ | -------------------------------------- |
+| [쿼드로터](../simulation/gazebo_vehicles.md#quadrotor)                                                     | `make px4_sitl gazebo`                 |
+| [광류 센서 장착 쿼드로터](../simulation/gazebo_vehicles.md#quadrotor_optical_flow)                               | `make px4_sitl gazebo_iris_opt_flow`   |
+| [3DR 솔로 (쿼드로터)](../simulation/gazebo_vehicles.md#3dr_solo)                                             | `make px4_sitl gazebo_solo`            |
+| <span id="typhoon_h480"></span>[태풍 H480 (헥스로터)](../simulation/gazebo_vehicles.md#typhoon_h480) (동영상 스트리밍 지원) | `make px4_sitl gazebo_typhoon_h480`    |
+| [표준 비행체](../simulation/gazebo_vehicles.md#standard_plane)                                              | `make px4_sitl gazebo_plane`           |
+| [(캐터펄트 발사형) 표준 비행체](../simulation/gazebo_vehicles.md#standard_plane_catapult)                          | `make px4_sitl gazebo_plane_catapult`  |
+| [표준 수직 이착륙기](../simulation/gazebo_vehicles.md#standard_vtol)                                           | `make px4_sitl gazebo_standard_vtol`   |
+| [테일시터 수직 이착륙기](../simulation/gazebo_vehicles.md#tailsitter_vtol)                                       | `make px4_sitl gazebo_tailsitter`      |
+| [Ackerman 기체 (UGV/탐사선)](../simulation/gazebo_vehicles.md#ugv)                                          | `make px4_sitl gazebo_rover`           |
+| [히포캠퍼스 TUHH (UUV: 무인 수중선)](../simulation/gazebo_vehicles.md#uuv)                                       | `make px4_sitl gazebo_uuv_hippocampus` |
+| [보트 (USV: 무인 수면선)](../simulation/gazebo_vehicles.md#usv)                                               | `make px4_sitl gazebo_boat`            |
+| [구름선 (비행선)](../simulation/gazebo_vehicles.md#airship)                                                  | `make px4_sitl gazebo_cloudship`       |
 
 > **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
 
@@ -65,7 +66,7 @@ The commands above launch a single vehicle with the full UI. Other options inclu
 * [Starting PX4 and Gazebo separately](#start_px4_sim_separately) so that you can keep Gazebo running and only re-launch PX4 when needed (quicker than restarting both).
 * Run the simulation in [Headless Mode](#headless), which does not start the Gazebo UI (this uses fewer resources and is much faster).
 
-## Taking it to the Sky
+## 하늘로 띄우기
 
 The `make` commands above first build PX4, and then run it along with the Gazebo simulator.
 
@@ -99,13 +100,13 @@ The console will print out status as PX4 loads the airframe-specific initialisat
 
 ![Gazebo UI](../../assets/simulation/gazebo/gazebo_follow.jpg)
 
-You can bring it into the air by typing:
+이 기체를 다음 명령으로 띄울 수 있습니다:
 
 ```sh
 pxh> commander takeoff
 ```
 
-## Usage/Configuration Options
+## 사용법/설정 옵션
 
 ### Headless Mode {#headless}
 
@@ -117,13 +118,13 @@ Simply prefix the normal `make` command with `HEADLESS=1` as shown:
 HEADLESS=1 make px4_sitl gazebo_plane
 ```
 
-### Set Custom Takeoff Location {#custom_takeoff_location}
+### 개별 이륙 지점 설정 {#custom_takeoff_location}
 
 The takeoff location in SITL Gazebo can be set using environment variables. This will override both the default takeoff location, and any value [set for the world](#set_world_location).
 
 The variables to set are: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
 
-For example:
+예를 들어:
 
     export PX4_HOME_LAT=28.452386
     export PX4_HOME_LON=-13.867138
@@ -131,7 +132,7 @@ For example:
     make px4_sitl gazebo
     
 
-### Change Simulation Speed
+### 모의 시험 진행 속도 변경
 
 The simulation speed can be increased or decreased with respect to realtime using the environment variable `PX4_SIM_SPEED_FACTOR`.
 
@@ -141,17 +142,17 @@ The simulation speed can be increased or decreased with respect to realtime usin
 
 For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
-### Using a Joystick
+### 조종기 활용
 
-Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
+조종기와 엄지 조종기는 *QGroundControl* 에서 지원합니다([설정 방법은 여기에 있음](../simulation/README.md#joystickgamepad-integration)).
 
-### Improving Distance Sensor Performance
+### 거리 센서 성능 개선
 
 The current default world is [PX4/sitl_gazebo/worlds/**iris.world**](https://github.com/PX4/sitl_gazebo/tree/master/worlds)), which uses a heightmap as ground.
 
 This can cause difficulty when using a distance sensor. If there are unexpected results we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
 
-### Simulating GPS Noise {#gps_noise}
+### GPS 잡음 신호 재현 {#gps_noise}
 
 Gazebo can simulate GPS noise that is similar to that typically found in real systems (otherwise reported GPS values will be noise-free/perfect). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
 
@@ -173,7 +174,7 @@ To enable/disable GPS noise:
 
 The next time you build/restart Gazebo it will use the new GPS noise setting.
 
-## Loading a Specific World {#set_world}
+## 개별 world 불러오기 {#set_world}
 
 PX4 supports a number of [Gazebo Worlds](../simulation/gazebo_worlds.md), which are stored in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) By default Gazebo displays a flat featureless plane, as defined in [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world).
 
@@ -190,7 +191,7 @@ You can also specify the full path to a world to load using the `PX4_SITL_WORLD`
 
 > **Tip** If the loaded world does not align with the map, you may need to [set the world location](#set_world_location).
 
-## Set World Location {#set_world_location}
+## world 위치 설정 {#set_world_location}
 
 The vehicle gets spawned very close to the origin of the world model at some simulated GPS location.
 
@@ -229,7 +230,7 @@ To start Gazebo and PX4 separately:
 
 * Run gazebo (or any other sim) server and client viewers via the terminal specifing an `_ide` variant: 
         sh
-        make px4_sitl gazebo___ide or 
+        make px4_sitl gazebo___ide 또는 
     
         sh
         make px4_sitl gazebo_iris_ide
@@ -250,13 +251,13 @@ To simulate a plane with this camera:
     make px4_sitl_default gazebo_plane_cam
     
 
-> **Note** The camera also supports/responds to the following MAVLink commands: [MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS), [MAV_CMD_REQUEST_STORAGE_INFORMATION](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_STORAGE_INFORMATION), [MAV_CMD_REQUEST_CAMERA_SETTINGS](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_CAMERA_SETTINGS), [MAV_CMD_REQUEST_CAMERA_INFORMATION](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_CAMERA_INFORMATION), [MAV_CMD_RESET_CAMERA_SETTINGS](https://mavlink.io/en/messages/common.html#MAV_CMD_RESET_CAMERA_SETTINGS), [MAV_CMD_STORAGE_FORMAT](https://mavlink.io/en/messages/common.html#MAV_CMD_STORAGE_FORMAT), [MAV_CMD_SET_CAMERA_ZOOM](https://mavlink.io/en/messages/common.html#MAV_CMD_SET_CAMERA_ZOOM), [MAV_CMD_IMAGE_START_CAPTURE](https://mavlink.io/en/messages/common.html#MAV_CMD_IMAGE_START_CAPTURE), [MAV_CMD_IMAGE_STOP_CAPTURE](https://mavlink.io/en/messages/common.html#MAV_CMD_IMAGE_STOP_CAPTURE), [MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION), [MAV_CMD_REQUEST_VIDEO_STREAM_STATUS](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_VIDEO_STREAM_STATUS), [MAV_CMD_SET_CAMERA_MODE](https://mavlink.io/en/messages/common.html#MAV_CMD_SET_CAMERA_MODE).
+> **Note** 카메라에서는 다음 MAVLink 명령을 지원하고 이에 응답합니다: [MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_CAMERA_CAPTURE_STATUS), [MAV_CMD_REQUEST_STORAGE_INFORMATION](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_STORAGE_INFORMATION), [MAV_CMD_REQUEST_CAMERA_SETTINGS](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_CAMERA_SETTINGS), [MAV_CMD_REQUEST_CAMERA_INFORMATION](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_CAMERA_INFORMATION), [MAV_CMD_RESET_CAMERA_SETTINGS](https://mavlink.io/en/messages/common.html#MAV_CMD_RESET_CAMERA_SETTINGS), [MAV_CMD_STORAGE_FORMAT](https://mavlink.io/en/messages/common.html#MAV_CMD_STORAGE_FORMAT), [MAV_CMD_SET_CAMERA_ZOOM](https://mavlink.io/en/messages/common.html#MAV_CMD_SET_CAMERA_ZOOM), [MAV_CMD_IMAGE_START_CAPTURE](https://mavlink.io/en/messages/common.html#MAV_CMD_IMAGE_START_CAPTURE), [MAV_CMD_IMAGE_STOP_CAPTURE](https://mavlink.io/en/messages/common.html#MAV_CMD_IMAGE_STOP_CAPTURE), [MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_VIDEO_STREAM_INFORMATION), [MAV_CMD_REQUEST_VIDEO_STREAM_STATUS](https://mavlink.io/en/messages/common.html#MAV_CMD_REQUEST_VIDEO_STREAM_STATUS), [MAV_CMD_SET_CAMERA_MODE](https://mavlink.io/en/messages/common.html#MAV_CMD_SET_CAMERA_MODE).
 
 <span></span>
 
 > **Note** The simulated camera is implemented in [PX4/sitl_gazebo/src/gazebo_geotagged_images_plugin.cpp](https://github.com/PX4/sitl_gazebo/blob/master/src/gazebo_geotagged_images_plugin.cpp).
 
-## Simulated Parachute/Flight Termination {#flight_termination}
+## 낙하산/비행 종료 재현 {#flight_termination}
 
 *Gazebo* can be used to simulate deploying a [parachute](https://docs.px4.io/master/en/peripherals/parachute.html) during [Flight Termination](https://docs.px4.io/master/en/advanced_config/flight_termination.html) (flight termination is triggered by the PWM command that is simulated in *Gazebo*).
 
@@ -273,7 +274,7 @@ For more information see:
 * [Parachute](https://docs.px4.io/master/en/peripherals/parachute.html)
 * [Safety Configuration (Failsafes)](https://docs.px4.io/master/en/config/safety.html)
 
-## Video Streaming {#video}
+## 동영상 스트리밍 {#video}
 
 PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor attached to a vehicle model. When streaming is enabled, you can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera. The video is streamed using a *gstreamer* pipeline and can be enabled/disabled using a button in the Gazebo UI.
 
@@ -287,7 +288,7 @@ The Gazebo camera sensor is supported/enabled on the following frames:
 
 > **Note** FYI only, the dependencies include: `gstreamer1.0-plugins-base`, g`streamer1.0-plugins-good`, `gstreamer1.0-plugins-bad`, `gstreamer1.0-plugins-ugly`, `libgstreamer-plugins-base1.0-dev`.
 
-### Start/Stop Video Streaming
+### 동영상 스트리밍 시작/중지
 
 Video streaming is automatically started when supported by the target vehicle. For example, to start streaming video on the Typhoon H480:
 
@@ -298,7 +299,7 @@ Streaming can be paused/restarted using the Gazebo UI *Video ON/OFF* button..
 
 ![Video ON/OFF button](../../assets/simulation/gazebo/sitl_video_stream.png)
 
-### How to View Gazebo Video
+### 가제보 동영상 보는 방법
 
 The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Application Settings > General** and set **Video Source** to *UDP h.264 Video Stream* and **UDP Port** to *5600*:
 
@@ -317,13 +318,13 @@ gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video
 ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
 ```
 
-## Extending and Customizing
+## 확장 및 개별 설정
 
-To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.
+모의 시험 인터페이스를 확장하거나 개별 설정하려면, `Tools/sitl_gazebo` 폴더의 파일을 편집하십시오. 코드는 깃허브의 [sitl_gazebo 저장소에](https://github.com/px4/sitl_gazebo) 있습니다
 
 > **Note** The build system enforces the correct GIT submodules, including the simulator. It will not overwrite changes in files in the directory.
 
-## Further Information
+## 추가 정보
 
 * [ROS with Gazebo Simulation](../simulation/ros_interface.md)
 * [Gazebo Octomap](../simulation/gazebo_octomap.md)

@@ -4,41 +4,83 @@
 
 图解使用标准的 [PX4 符号](../contribute/notation.md) (附有详细图例注解)。
 
-## 多旋翼位置控制器
+<!--    The diagrams were created with LaTeX / TikZ.
+        The code can be found in assets/diagrams/mc_control_arch_tikz.tex.
+        The easiest way to generate the diagrams and edit them is to copy the code and paste it an Overleaf (www.overleaf.com/) document to see the output.
+-->
 
-![多旋翼位置控制器图解](../../assets/diagrams/px4_mc_position_controller_diagram.png)
+## Multicopter Control Architecture
+
+![MC Controller Diagram](../../assets/diagrams/mc_control_arch.jpg)
+
+* This is a standard cascaded control architecture.
+* The controllers are a mix of P and PID controllers.
+* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
+* Depending on the mode, the outer (position) loop is bypassed (shown as a multiplexer after the outer loop). The position loop is only used when holding position or when the requested velocity in an axis is null.
+
+### Multicopter Angular Rate Controller
+
+![MC Rate Control Diagram](../../assets/diagrams/mc_angular_rate_diagram.jpg)
+
+* K-PID controller. See [Rate Controller](https://docs.px4.io/master/en/config_mc/pid_tuning_guide_multicopter.html#rate-controller) for more information.
+* The integral authority is limited to prevent wind up.
+* A Low Pass Filter (LPF) is used on the derivative path to reduce noise.
+* The outputs are limited, usually at -1 and 1.
+
+### Multicopter Attitude Controller
+
+![MC Angle Control Diagram](../../assets/diagrams/mc_angle_diagram.jpg)
+
+* The attitude controller makes use of [quaternions](https://en.wikipedia.org/wiki/Quaternion).
+* The controller is implemented from this [article](https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf).
+* When tuning this controller, the only parameter of concern is the P gain.
+* The rate command is saturated.
+
+### Multicopter Velocity Controller
+
+![MC Velocity Control Diagram](../../assets/diagrams/mc_velocity_diagram.jpg)
+
+* PID controller to stabilise velocity. Commands an acceleration.
+* The integrator includes an anti-reset windup (ARW) using a clamping method.
+* The commanded acceleration is saturated.
+
+### Multicopter Position Controller
+
+![MC Position Control Diagram](../../assets/diagrams/mc_position_diagram.jpg)
+
+* Simple P controller that commands a velocity.
+* The commanded velocity is saturated to keep the velocity in certain limits.
+
+#### Combined Position and Velocity Controller Diagram
+
+![MC Position Controller Diagram](../../assets/diagrams/px4_mc_position_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/open?id=13Mzjks1KqBiZZQs15nDN0r0Y9gM_EjtX
 Request access from dev team. -->
 
-* Estimates come from [EKF2](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html).
-* 这是一个标准的位置-速度级联控制回路。
-* 在某些模式，外环(位置回路) 可能会被绕过 (图中在外环之后增加一个多路开关来表示)。 只有在位置保持模式或某轴无速度请求时，位置回路才会发挥作用。
-* 内环（加速度）控制器使用箝位法对积分器做了抗饱和处理（ARW）。
-
 ## 固定翼位置控制器
 
-### 总能量控制系统
+### Total Energy Control System (TECS)
 
-通过总能量控制系统(TECS)，PX4可以持续得对固定翼飞行器的真空速和高度进行控制。 这其中的代码通过一个用库（这个库是用于固定翼位置控制模块）作为接口。
+The PX4 implementation of the Total Energy Control System (TECS) enables simultaneous control of true airspeed and altitude of a fixed wing aircraft. The code is implemented as a library which is used in the fixed wing position control module.
 
-![总能量控制系统](../../assets/diagrams/tecs_in_context.svg)
+![TECS](../../assets/diagrams/tecs_in_context.svg)
 
-从上面的图表可以看出，总能量控制系统接受空速和高度需求量，然后输出油门和俯仰角控制量。 这两个输出控制量输入到固定翼的姿态控制器（姿态控制器实施姿态控制） 因此，总能量控制系统是直接受到俯仰控制逻辑环的性能影响 对飞行器俯仰角度的预测不准往往会导致对空速和高度的预测不准。
+As seen in the diagram above, TECS receives as inputs airspeed and altitude setpoints and outputs a throttle and pitch angle setpoint. These two outputs are sent to the fixed wing attitude controller which implements the attitude control solution. It's therefore important to understand that the performance of TECS is directly affected by the performance of the pitch control loop. A poor tracking of airspeed and altitude is often caused by a poor tracking of the aircraft pitch angle.
 
 > **Note** 在试图调试总能量控制系统前，请一定要调试好姿态控制器。
 
-对真空速和高度的持续跟踪控制不是一个简单的事情。 增加飞行器的俯仰角度不仅会导致高度上升还会导致空速下降。 增加油门会使空速增加但是也会使升力变大从而使高度也增加。 因此，俯仰角和油门两个输入量都会对空速和高度产生影响，从而使控制问题变得难了。
+Simultaneous control of true airspeed and height is not a trivial task. Increasing aircraft pitch angle will cause an increase in height but also a decrease in airspeed. Increasing the throttle will increase airspeed but also height will increase due to the increase in lift. Therefore, we have two inputs (pitch angle and throttle) which both affect the two outputs (airspeed and altitude) which makes the control problem challenging.
 
-总能量控制系统通过能量法来解决这个问题，而不是通过之前的那种设定点进行控制。 一架飞行器的总能量包括动能和势能。 推力（通过油门控制）增加整个飞机的总能量。 势能和动能的任意组合可以组成总能量 换句话说，飞行器在高海拔以低空速飞行和在低海拔以高空速飞行时的总能量是等价的 我们称这种情况叫做特殊能量平衡，通过当前高度海拔和真空速设定值来计算 特定能量平衡通过飞行器的俯仰角来控制 俯仰角增加将动能转变为势能，减少则情况相反。 这样就把控制问题解耦成最初的空速设定点转化了多少势能能量，而转化多少能量可以独立控制。 我们利用推力调节飞行器的特定总能量，俯仰角来维持势能（高度）和动能（真空速）的特定平衡点。
+TECS offers a solution by respresenting the problem in terms of energies rather than the original setpoints. The total energy of an aircraft is the sum of kinetic and potential energy. Thrust (via throttle control) increases the total energy state of the aircraft. A given total energy state can be achieved by arbitrary combinations of potential and kinetic energies. In other words, flying at a high altitude but at a slow speed can be equivalent to flying at a low altitude but at a faster airspeed in a total energy sense. We refer to this as the specific energy balance and it is calculated from the current altitude and true airspeed setpoint. The specific energy balance is controlled via the aircraft pitch angle. An increase in pitch angle transfers kinetic to potential energy and a negative pitch angle vice versa. The control problem was therefore decoupled by transforming the initial setpoints into energy quantities which can be controlled independently. We use thrust to regulate the specific total energy of the vehicle and pitch maintain a specific balance between potential (height) and kinetic (speed) energy.
 
-#### 总能量控制逻辑环
+#### Total energy control loop
 
-![能量回路](../../assets/diagrams/TECS_throttle.jpg)
+![Energy loop](../../assets/diagrams/TECS_throttle.jpg)
 
 #### Total energy balance control loop
 
-![能量平衡回路](../../assets/diagrams/TECS_pitch.jpg)
+![Energy balance loop](../../assets/diagrams/TECS_pitch.jpg)
 
 The total energy of an aircraft is the sum of kinetic and potential energy:
 
@@ -72,7 +114,7 @@ $$\dot{B} = \gamma - \frac{\dot{V_T}}{g}$$.
 
 ## Fixed-Wing Attitude Controller
 
-![固定翼姿态控制器图解](../../assets/diagrams/px4_fw_attitude_controller_diagram.png)
+![FW Attitude Controller Diagram](../../assets/diagrams/px4_fw_attitude_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/file/d/1ibxekmtc6Ljq60DvNMplgnnU-JOvKYLQ/view?usp=sharing
 Request access from dev team. -->
@@ -89,109 +131,109 @@ The roll and pitch controllers have the same structure and the longitudinal and 
 
 ## VTOL 飞行控制器
 
-![VTOL 姿态控制器图解](../../assets/diagrams/VTOL_controller_diagram.png)
+![VTOL Attitude Controller Diagram](../../assets/diagrams/VTOL_controller_diagram.png)
 
 <!-- The drawing is on draw.io: https://drive.google.com/file/d/1tVpmFhLosYjAtVI46lfZkxBz_vTNi8VH/view?usp=sharing
 Request access from dev team. -->
 
-本节简要介绍垂直起降（VTOL）无人机的控制结构。 垂直起降飞行控制器由多旋翼控制器和固定翼控制器组成，多旋翼控制器在垂直起降模式下运行，固定翼控制器在平飞模式下运行，二者在过渡模式下同时运行。 上图是一个简化的控制流程图。 注意到 VTOL 姿态控制器模块，它主要对不同 VTOL 模式间的必要切换和混控逻辑，以及过渡模式下 VTOL 机型的特定控制动作（例如，在前向过渡期间加速标准 VTOL 的推进马达）起到促进作用。 此模块的输入称为“虚拟输入”，因为控制器会根据当前的 VTOL 模式而忽略一些输入。
+This section gives a short overview on the control structure of Vertical Take-off and Landing (VTOL) aircraft. The VTOL flight controller consists of both the multicopter and fixed-wing controllers, either running separately in the corresponding VTOL modes, or together during transitions. The diagram above presents a simplified control diagram. Note the VTOL attitude controller block, which mainly facilitates the necessary switching and blending logic for the different VTOL modes, as well as VTOL-type-specific control actions during transitions (e.g. ramping up the pusher motor of a standard VTOL during forward transition). The inputs into this block are called "virtual" as, depending on the current VTOL mode, some are ignored by the controller.
 
-对于标准和倾转旋翼 VTOL，在过渡期间，固定翼姿态控制器产生角速率设定值，然后将其输入到单独的角速率控制器中，从而产生多旋翼和固定翼执行器的扭矩指令。 而对尾座式 VTOL，在过渡期间，多旋翼姿态控制器独立运行。
+For a standard and tilt-rotor VTOL, during transition the fixed-wing attitude controller produces the rate setpoints, which are then fed into the separate rate controllers, resulting in torque commands for the multicopter and fixed-wing actuators. For tailsitters, during transition the multicopter attitude controller is running.
 
-VTOL姿态模块的输出是多旋翼执行器（典型的 `actuator_controls_0`）和固定翼（典型的 `actuator_controls_1`）执行器的独立的扭矩和力指令。 这些是在一个特定机型的混控器文件中处理的（参见[ Mixing](../concept/mixing.md)）。
+The outputs of the VTOL attitude block are separate torque and force commands for the multicopter (typically `actuator_controls_0`) and fixed-wing (typically `actuator_controls_1`) actuators. These are handled in an airframe-specific mixer file (see [Mixing](../concept/mixing.md)).
 
 For more information on the tuning of the transition logic inside the VTOL block, see [VTOL Configuration](https://docs.px4.io/master/en/config_vtol/).
 
-### 空速缩放
+### Airspeed Scaling
 
-本节的目的是：通过公式来解释为何以及怎样根据空速调整角速率回路 (PI) 和前馈控制器 (FF) 的输出。 我们首先给出简化的滚转轴线性力矩方程，然后分析空速对直接力矩产生的影响，最后分析了空速对匀速滚转运动的影响。
+The objective of this section is to explain with the help of equations why and how the output of the rate PI and feedforward (FF) controllers can be scaled with airspeed to improve the control performance. We will first present the simplified linear dimensional moment equation on the roll axis, then show the influence of airspeed on the direct moment generation and finally, the influence of airspeed during a constant roll.
 
-如上图中的固定翼姿态控制器所示，角速率控制器为控制分配器（这里称为“混控器”）输出角加速度设定值。 为了达到期望的角加速度，混控器利用可行的气动控制面 (例如：典型的飞机通常有两个副翼，两个升降舵和一个方向舵) 产生力矩。 气动控制面产生的力矩在很大程度上受飞机的相对空速和空气密度的影响，更准确地说，是受气动压力的影响。 如果不进行空速缩放，在某一特定巡航速度下调参的控制器，将会使飞机在高速下发生振荡，或者在低速下产生不良的跟踪性能。
+As shown in the fixed-wing attitude controller above, the rate controllers produce angular acceleration setpoints for the control allocator (here named "mixer"). In order to generate these desired angular accelerations, the mixer produces torques using available aerodynamic control surfaces (e.g.: a standard airplane typically has two ailerons, two elevators and a rudder). The torques generated by those control surfaces is highly influenced by the relative airspeed and the air density, or more precisely, by the dynamic pressure. If no airspeed scaling is made, a controller tightly tuned for a certain cruise airspeed will make the aircraft oscillate at higher airspeed or will give bad tracking performance at low airspeed.
 
-读者们应注意 [真实空速（TAS）](https://en.wikipedia.org/wiki/True_airspeed)和 [指示空速 （IAS）](https://en.wikipedia.org/wiki/Indicated_airspeed)之间的不同，因为它们的值在非海面飞行时有显著差异。
+The reader should be aware of the difference between the [true airspeed (TAS)](https://en.wikipedia.org/wiki/True_airspeed) and the [indicated airspeed (IAS)](https://en.wikipedia.org/wiki/Indicated_airspeed) as their values are significantly different when not flying at sea level.
 
-气动压力的定义是
+The definition of the dynamic pressure is
 
 $$\bar{q} = \frac{1}{2} \rho V_T^2$$,
 
-其中，$$\rho$$ 代表空气密度，$$V_T$$ 代表真实空速（TAS）。
+where $$\rho$$ is the air density and $$V_T$$ the true airspeed (TAS).
 
-本节剩余部分以滚转轴为例，写出带量纲的滚转轴力矩
+Taking the roll axis for the rest of this section as an example, the dimensional roll moment can be written
 
 $$\ell = \frac{1}{2}\rho V_T^2 S b C_\ell = \bar{q} S b C_\ell$$,
 
-其中，$$\ell$$ 代表滚转力矩，$$b$$ 代表飞机翼展，$$S$$ 代表参考面。
+where $$\ell$$ is the roll moment, $$b$$ the wing span and $$S$$ the reference surface.
 
-无量纲的滚转力矩导数 $$C_\ell$$ 可以通过以下几个系数建模得到：副翼效率导数 $$C_{\ell_{\delta_a}}$$，滚转阻尼导数 $$C_{\ell_p}$$ 和二面角导数 $$C_{\ell_\beta}$$。
+The nondimensional roll moment derivative $$C_\ell$$ can be modeled using the aileron effectiveness derivative $$C_{\ell_{\delta_a}}$$, the roll damping derivative $$C_{\ell_p}$$ and the dihedral derivative $$C_{\ell_\beta}$$
 
 $$C_\ell = C_{\ell_0} + C_{\ell_\beta}\:\beta + C_{\ell_p}\:\frac{b}{2V_T}\:p + C_{\ell_{\delta_a}} \:\delta_a$$,
 
-其中，$$\beta$$ 代表侧滑角，$$p$$ 代表滚转角速率，$$\delta_a$$ 代表副翼偏转角。
+where $$\beta$$ is the sideslip angle, $$p$$ the body roll rate and $$\delta_a$$ the aileron deflection.
 
-假设一架飞机对称 ($$C_{\ell_0} = 0$$) 且无协调（$$\beta = 0$$），则上面的方程可以简化到只用滚转率阻尼和副翼产生的滚转力矩表示。
+Assuming a symmetric ($$C_{\ell_0} = 0$$) and coordinated ($$\beta = 0$$) aircraft, the equation can be simplified using only the rollrate damping and the roll moment produced by the ailerons
 
 $$\ell = \frac{1}{2}\rho V_T^2 S b \left [C_{\ell_{\delta_a}} \:\delta_a + C_{\ell_p}\:\frac{b}{2V_T} \: p \right ]$$.
 
-最后一个方程将作为以下两个小节的基准，以推导 PI 和 FF 控制器所需的空速缩放表达式。
+This final equation is then taken as a baseline for the two next subsections to determine the airspeed scaling expression required for the PI and the FF controllers.
 
-#### 静态力矩 (PI) 缩放
+#### Static torque (PI) scaling
 
-在滚转角速率为0（$$p = 0$$）的情况下，阻尼项将会消失，并且可以通过以下方式生成一个恒定-瞬时力矩
+At a zero rates condition ($$p = 0$$), the damping term vanishes and a constant - instantaneous - torque can be generated using
 
 $$\ell = \frac{1}{2}\rho V_T^2 S b \: C_{\ell_{\delta_a}} \:\delta_a = \bar{q} S b \: C_{\ell_{\delta_a}} \:\delta_a$$.
 
-提取 $$\delta_a$$，如下所示
+Extracting $$\delta_a$$ gives
 
 $$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}} \frac{1}{\rho V_T^2} \ell = \frac{bS}{C_{\ell_{\delta_a}}} \frac{1}{\bar{q}} \ell$$,
 
-其中，第一项是常数，第二项则取决于空气密度和真实空速的平方。
+where the first fraction is constant and the second one depends on the air density and the true airspeed squared.
 
-此外，不用空气密度和真实空速进行缩放，可以发现指示空速（IAS，$$V_I$$）在本质上是受空气密度影响的，在低空低速情况下，指示空速可以乘以一个简单的密度误差因子而转换成真实空速。
+Furthermore, instead of scaling with the air density and the TAS, it can be shown that the indicated airspeed (IAS, $$V_I$$) is inherently adjusted by the air density since at low altitude and speed, IAS can be converted to TAS using a simple density error factor
 
 $$V_T = V_I \sqrt{\frac{\rho_0}{\rho}}$$,
 
-其中，$$\rho_o$$ 代表海平面15°C场景下的空气密度。
+where $$\rho_o$$ is the air density as sea level, 15°C.
 
-经过一系列重组变换（平方、重排列并使左右两侧同时乘以 1/2 倍），将气动压力 $$\bar{q}$$ 表示如下
+Squaring, rearranging and adding a 1/2 factor to both sides makes the dynamic pressure $$\bar{q}$$ expression appear
 
 $$\bar{q} = \frac{1}{2} \rho V_T^2 = \frac{1}{2} V_I^2 \rho_0$$.
 
-现在我们能清楚地看到气动压力与 IAS 的平方成正比
+We can now easily see that the dynamic pressure is proportional to the IAS squared
 
 $$\bar{q} \propto V_I^2$$.
 
-之前用 TAS 和空气密度表示的缩放因数，最终可以用 IAS 重写成以下形式
+The scaler previously containing TAS and the air density can finally be written using IAS only
 
 $$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}\rho_0} \frac{1}{V_I^2} \ell$$.
 
-#### 角速率回路 (FF) 缩放
+#### Rate (FF) scaling
 
-角速率控制器前馈通道的主要作用是补偿自然速率阻尼。 回到基准方程，这次在匀速滚转的条件下做简化，副翼产生的力矩应当恰好完全补偿阻尼项
+The main use of the feedforward of the rate controller is to compensate for the natural rate damping. Starting again from the baseline dimensional equation but this time, during a roll at constant speed, the torque produced by the ailerons should exactly compensate for the damping such as
 
 $$- C_{\ell_{\delta_a}} \:\delta_a = C_{\ell_p} \frac{b}{2 V_T} \: p$$.
 
-重组公式以得到理想的副翼偏转角
+Rearranging to extract the ideal ailerons deflection gives
 
 $$\delta_a = -\frac{b \: C_{\ell_p}}{2 \: C_{\ell_{\delta_a}}} \frac{1}{V_T} \: p$$.
 
-第一项给出了理想的前馈值，我们可以看到缩放因数相对TAS是线性的。 请注意式中的负号，随后它会与滚转阻尼系数的负号相互抵消。
+The first fraction gives the value of the ideal feedforward and we can see that the scaling is linear to the TAS. Note that the negative sign is then absorbed by the roll damping derivative which is also negative.
 
-#### 结论
+#### Conclusion
 
-角速率回路 PI 控制器的输出必须由指示空速（IAS）的平方进行缩放，角速率回路前馈通道（FF）必须由真实空速（TAS）进行缩放。
+The output of the rate PI controller has to be scaled with the indicated airspeed (IAS) squared and the output of the rate feedforward (FF) has to be scaled with the true airspeed (TAS)
 
 $$\delta_{a} = \frac{V_{I_0}^2}{V_I^2} \delta_{a_{PI}} + \frac{V_{T_0}}{V_T} \delta_{a_{FF}}$$,
 
-其中，$$V_{I_0}$$ 和 $$V_{T_0}$$ 分别代表配平条件下的 IAS 和 TAS。
+where $$V_{I_0}$$ and $$V_{T_0}$$ are the IAS and TAS at trim conditions.
 
-最后，由于执行器的输出是归一化的，且混控和伺服模块被假定为线性的，因此我们可以将上述方程重写如下
+Finally, since the actuator outputs are normalized and that the mixer and the servo blocks are assumed to be linear, we can rewrite this last equation as follows
 
 $$\dot{\mathbf{\omega}}*{sp}^b = \frac{V*{I_0}^2}{V_I^2} \dot{\mathbf{\omega}}*{sp*{PI}}^b + \frac{V_{T_0}}{V_T} \dot{\mathbf{\omega}}*{sp*{FF}}^b$$,
 
-该方程可以直接在滚转速率，俯仰速率和偏航速率控制器中实现。
+and implement it directly in the rollrate, pitchrate and yawrate controllers.
 
-#### 调参建议
+#### Tuning recommendations
 
-这套空速缩放算法的巧妙之处就是它不需要进行特意的调参。 然而，空速传感器的质量将直接影响它的性能。
+The beauty of this airspeed scaling algorithm is that it does not require any specific tuning. However, the quality of the airspeed measurements directly influences its performance.
 
-此外，如果要使稳定的飞行包络线最大化，您应该在最小飞行速度和最大飞行速度的中点位置进行调参 (例如： 一架飞机的飞行速度在 15~25 m/s 之间，则应在 20 m/s调参)。 该“调整”空速应在 [FW_AIRSPD_TRIM](../advanced/parameter_reference.md#FW_AIRSPD_TRIM) 参数中设置。
+Furthermore, to get the largest stable flight envelope, one should tune the attitude controllers at an airspeed value centered between the stall speed and the maximum airspeed of the vehicle (e.g.: an airplane that can fly between 15 and 25m/s should be tuned at 20m/s). This "tuning" airspeed should be set in the [FW_AIRSPD_TRIM](../advanced/parameter_reference.md#FW_AIRSPD_TRIM) parameter.

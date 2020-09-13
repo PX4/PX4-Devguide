@@ -17,7 +17,7 @@ Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>] [-w <wo
    ```
    -s "iris:3,plane:2,standard_vtol:3"
    ```
-   - Supported vehicle types are: `iris`, `plane`, `standard_vtol`.
+   - 지원 기체 형식: `iris`, `plane`, `standard_vtol`.
    - The number after the colon indicates the number of vehicles (of that type) to spawn.
    - Maximum number of vehicles is 255.
 
@@ -37,7 +37,7 @@ https://youtu.be/Mskx_WxzeCk
 https://youtu.be/aEzFKPMEfjc
 {% endyoutube %}
 
-### Video: Multiple VTOL {#video_vtol}
+### 동영상: 다중 수직 이착륙기 {#video_vtol}
 
 {% youtube %}
 https://youtu.be/lAjjTFFZebI
@@ -45,7 +45,7 @@ https://youtu.be/lAjjTFFZebI
 
 ## Multiple Vehicles with ROS and Gazebo {#with_ros}
 
-This example demonstrates a setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world. You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle.
+This example demonstrates a setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world. 이렇게 하고 나면 *QGroundControl*과 MAVROS로 단일 기체를 통제하는 방식과 동일하게 여러 기체를 통제할 수 있습니다.
 
 ### Required
 
@@ -78,8 +78,8 @@ To build an example setup, follow the step below:
 
 The tutorial example opens the Gazebo client GUI showing two Iris vehicles in an empty world.
 
-You can control the vehicles with *QGroundControl* or MAVROS in a similar way to how you would manage a single vehicle:
-* *QGroundControl* will have a drop-down to select the vehicle that is "in focus"
+*QGroundControl*과 MAVROS로 단일 기체를 통제하는 방식과 동일하게 여러 기체를 통제할 수 있습니다.
+* *QGroundControl*에는 기체 선택시 "선택 대상을 강조한" 드롭다운 메뉴를 둡니다
 * MAVROS requires that you include the proper namespace before the topic/service path (e.g. for `<group ns="uav1">` you'll use */uav1/mavros/mission/push*).
 
 
@@ -88,7 +88,7 @@ You can control the vehicles with *QGroundControl* or MAVROS in a similar way to
 
 For each simulated vehicle, the following is required:
 
-* **Gazebo model**: This is defined as `xacro` file in `Firmware/Tools/sitl_gazebo/models/rotors_description/urdf/<model>_base.xacro` see [here](https://github.com/PX4/sitl_gazebo/tree/02060a86652b736ca7dd945a524a8bf84eaf5a05/models/rotors_description/urdf). Currently, the model `xacro` file is assumed to end with **base.xacro**. This model should have an argument called  `mavlink_udp_port` which defines the UDP port on which gazebo will communicate with PX4 node. The model's `xacro` file will be used to generate an `urdf` model that contains UDP port that you select. To define the UDP port, set the `mavlink_udp_port` in the launch file for each vehicle, see [here](https://github.com/PX4/Firmware/blob/4d0964385b84dc91189f377aafb039d10850e5d6/launch/multi_uav_mavros_sitl.launch#L37) as an example.
+* **가제보 모델**: 이 모델은 `Firmware/Tools/sitl_gazebo/models/rotors_description/urdf/<model>_base.xacro`에 `xacro` 파일로 정의합니다. [여기](https://github.com/PX4/sitl_gazebo/tree/02060a86652b736ca7dd945a524a8bf84eaf5a05/models/rotors_description/urdf)를 참고하십시오. Currently, the model `xacro` file is assumed to end with **base.xacro**. This model should have an argument called  `mavlink_udp_port` which defines the UDP port on which gazebo will communicate with PX4 node. The model's `xacro` file will be used to generate an `urdf` model that contains UDP port that you select. To define the UDP port, set the `mavlink_udp_port` in the launch file for each vehicle, see [here](https://github.com/PX4/Firmware/blob/4d0964385b84dc91189f377aafb039d10850e5d6/launch/multi_uav_mavros_sitl.launch#L37) as an example.
 
   > **Note** If you are using the same vehicle model, you don't need a separate **`xacro`** file for each vehicle. The same **`xacro`** file is adequate.
 
@@ -186,11 +186,11 @@ To add a new vehicle, you need to make sure the model can be found (in order to 
 
      > **Note** Ensure you set the `vehicle` argument even if you hardcode the path to your model.
    * copy your model into the folder indicated above (following the same path convention).
-1. The `vehicle` argument is used to set the `PX4_SIM_MODEL` environment variable, which is used by the default rCS (startup script) to find the corresponding startup settings file for the model. Within PX4 these startup files can be found in the **Firmware/ROMFS/px4fmu_common/init.d-posix/** directory. For example, here is the plane model's [startup script](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/1030_plane). For this to work, the PX4 node in the launch file is passed arguments that specify the *rCS* file (**etc/init.d/rcS**) and the location of the rootfs directory (`$(find px4)/ROMFS/px4fmu_common`). For simplicity, it is suggested that the startup file for the model be placed alongside PX4's in **Firmware/ROMFS/px4fmu_common/init.d-posix/**.
+1. The `vehicle` argument is used to set the `PX4_SIM_MODEL` environment variable, which is used by the default rcS (startup script) to find the corresponding startup settings file for the model. Within PX4 these startup files can be found in the **Firmware/ROMFS/px4fmu_common/init.d-posix/** directory. For example, here is the plane model's [startup script](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/1030_plane). For this to work, the PX4 node in the launch file is passed arguments that specify the *rcS* file (**etc/init.d/rcS**) and the location of the rootfs etc directory (`$(find px4)/build_px4_sitl_default/etc`). For simplicity, it is suggested that the startup file for the model be placed alongside PX4's in **Firmware/ROMFS/px4fmu_common/init.d-posix/**.
 
 
 ## Additional Resources
 
-* See [Simulation](../simulation/README.md) for a description of the UDP port configuration.
+* UDP 포트 설정 설명을 보면 [모의 시험](../simulation/README.md)을 참고하십시오.
 * See [URDF in Gazebo](http://gazebosim.org/tutorials/?tut=ros_urdf) for more information about spawning the model with xacro.
-* See [RotorS](https://github.com/ethz-asl/rotors_simulator/tree/master/rotors_description/urdf) for more xacro models.
+* 더 많은 xacro 모델은 [RotorS](https://github.com/ethz-asl/rotors_simulator/tree/master/rotors_description/urdf)를 참고하십시오.

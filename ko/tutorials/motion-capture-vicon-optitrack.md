@@ -8,7 +8,7 @@ Pose (position and orientation) data from the motion capture system is sent to t
 
 ## 처리 구조
 
-It is **highly recommended** that you send motion capture data via an **onboard** computer (e.g Raspberry Pi, ODroid, etc.) for reliable communications. The onboard computer can be connected to the motion capture computer through WiFi, which offers reliable, high-bandwidth connection.
+온전한 통신의 수행을 위해 **내장 컴퓨터**(예: 라즈베리 파이, 오드로이드 등)로 동영상 촬영 데이터를 보내시는 방안을 **강력 추천**합니다. The onboard computer can be connected to the motion capture computer through WiFi, which offers reliable, high-bandwidth connection.
 
 Most standard telemetry links like 3DR/SiK radios are **not** suitable for high-bandwidth motion capture applications.
 

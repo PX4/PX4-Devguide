@@ -4,7 +4,7 @@
 
 ## CLANG Address Sanitizer (Mac OS, Linux)
 
-The Clang address sanitizer can help to find alignment (bus) errors and other memory faults like segmentation faults. The command below sets the right compile options.
+Clang address sanitizer는 정렬(버스)오류 또는 세그먼테이션 폴트같은 기타 메모리 오류를 잡아내줄 수 있습니다. 아래 명령은 적절한 컴파일 옵션을 반영합니다.
 
 ```sh
 make clean # only required on first address sanitizer run after a normal build
@@ -97,19 +97,19 @@ make list_vmd_make_targets
 
 ## 컴파일러 최적화
 
-It is possible to suppress compiler optimization for given executables and/or modules (as added by cmake with `add_executable` or `add_library`) when configuring for `posix_sitl_*`. This can be handy when it is necessary to step through code with a debugger or print variables that would otherwise be optimized out.
+`posix_sitl_*`을 설정할 때, 주어진 실행 파일 또는 모듈(cmake에 `add_executable` 또는 `add_library`로 추가)에 대해 컴파일러 최적화를 막을 수 있습니다. 디버거로 코드 실행을 진행할 때 또는 최적화 할 변수값을 출력할 때 이 조치가 상당히 유용할 수 있습니다.
 
-To do so, set the environment variable `PX4_NO_OPTIMIZATION` to be a semi-colon separated list of regular expressions that match the targets that need to be compiled without optimization. This environment variable is ignored when the configuration isn't `posix_sitl_*`.
+최적화 방지를 진행하려면, 세미콜론으로 구분한 최적화 과정을 거치지 않고 컴파일해야 하는 다수의 대상을 아우르는 정규 표현식 값 목록 형식으로 `PX4_NO_OPTIMIZATION` 환경 변수를 설정하십시오. 이 환경 변수는 컴파일 대상이 `posix_sitl_*` 설정값에 해당하지 않으면 무시합니다.
 
-For example,
+예를 들어,
 
 ```sh
 export PX4_NO_OPTIMIZATION='px4;^modules__uORB;^modules__systemlib$'
 ```
 
-would suppress optimization of the targets: platforms*\_posix**px4\_layer, modules**systemlib, modules**uORB, examples**px4\_simple\_app, modules**uORB*\_uORB\_tests and px4.
+설정은 다음 대상의 최적화를 막아줍니다: platforms*\_posix**px4\_layer, modules**systemlib, modules**uORB, examples**px4\_simple\_app, modules**uORB*\_uORB\_tests 와 px4. 
 
-The targets that can be matched with these regular expressions can be printed with the command:
+다음 명령으로 정규 표현식에 일치하는 대상을 출력할 수 있습니다:
 
 ```sh
 make -C build/posix_sitl_* list_cmake_targets

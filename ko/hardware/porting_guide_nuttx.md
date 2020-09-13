@@ -6,7 +6,7 @@
 
 모든 보드를 대상으로 한 설정 파일, 링커 스크립트와 기타 필요한 설정은 제조사별 보드별 디렉터리(i.e. **boards/_VENDOR_/_MODEL_/**)의 [/boards](https://github.com/PX4/Firmware/tree/master/boards/)에 있습니다.
 
-다음 예제는 NuttX 기반 비행체 조종 장치 용도로 최신 [기준 참고 설정](../hardware/reference_design.md)인 FMUv5를 활용합니다:
+다음 예제는 NuttX 기반 비행체 제어 장치 용도로 최신 [기준 참고 설정](../hardware/reference_design.md)인 FMUv5를 활용합니다:
 * **Firmware** 디렉터리에서 `make px4_fmu-v5_default` 명령을 실행하면 FMUv5 설정을 빌드합니다
 * FMUv5 기본 설정 파일은 [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5)에 있습니다.
   * 보드 전용 헤더(NuttX 핀, 클록 설정): [/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h).

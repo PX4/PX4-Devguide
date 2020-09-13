@@ -42,7 +42,7 @@ pxh> commander takeoff
 
 `commander land` 명령으로 드론을 착륙할 수 있으며 모의시험 환경은 **CTRL+C** 키 입력(또는 `shutdown` 명령 입력)으로 멈출 수 있습니다.
 
-지상 관제 스테이션에서의 비행체 모의시험은 실제 비행체 운용과 거의 흡사합니다. 비행체가 날고 있을 때(비행체 이륙 모드) 지도에서 위치를 누르고 슬라이더를 활성화합니다. 이 동작을 통해 비행체의 위치를 바꿉니다.
+지상 통제 장치에서의 비행체 모의시험은 실제 비행체 운용과 거의 흡사합니다. 비행체가 날고 있을 때(비행체 이륙 모드) 지도에서 위치를 누르고 슬라이더를 활성화합니다. 이 동작을 통해 비행체의 위치를 바꿉니다.
 
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
@@ -158,6 +158,7 @@ make emlid_navio2 upload # for cross-compiler build
 그리고 SSH를 통해 (루트 계정으로) 접근 후 다음 명령을 실행하십시오:
 
 ```sh
+cd ~/px4
 sudo ./bin/px4 -s px4.config
 ```
 
@@ -173,7 +174,7 @@ make emlid_navio2_native # for native build
 "px4" 실행 파일은 **build/emlid_navio2_native/** 디렉터리에 있습니다. 다음 명령으로 실행하십시오:
 
 ```sh
-sudo ./build/emlid_navio2_native/px4 -s ./posix-configs/rpi/px4.config
+sudo ./build/emlid_navio2_native/px4 build/emlid_navio2_native/etc -s ./posix-configs/rpi/px4.config
 ```
 
 px4를 실행하여 나타난 성공적인 빌드 화면은 다음과 같습니다:
@@ -204,16 +205,16 @@ cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 
 [OcPoC-Zynq Mini](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html) 빌드 절차는 다음 문서에서 다룹니다:
 
-- [Aerotenna OcPoC-Zynq Mini Flight Controller > OcPoC-Zynq용 PX4 빌드](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)
+- [Aerotenna OcPoC-Zynq 미니 비행체 제어 장치 > OcPoC-Zynq용 PX4 빌드](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)
 - [OcPoC PX4 설정 페이지](https://aerotenna.readme.io/docs/px4-setup)
 
 ### QuRT / 스냅드래곤 기반 보드
 
-이 절에서는 [Qualcomm Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html)용 빌드 방법을 알려드립니다.
+이 절에서는 [퀄컴 스냅드래곤 플라이트](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html)용 빌드 방법을 알려드립니다.
 
 #### 빌드
 
-> **Note** (UART 기반) [퀄컴 ESC 보드](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board)를 사용한다면, [이곳](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md) 절차를 따르십시오. PWM기반 일반 ESC 보드를 사용한다면 이 페이지의 다음 과정을 계속 따르는 것이 좋습니다.
+> **Note** (UART 기반) [퀄컴 전동 변속기 보드](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board)를 사용한다면, [이 곳](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md) 절차를 따르십시오. PWM기반 일반 전동 변속기 보드를 사용한다면 이 페이지의 다음 과정을 계속 따르는 것이 좋습니다.
 
 아리 명령은 리눅스와 DSP 쪽 대상을 빌드합니다. 두 실행 파일은 [muORB](../middleware/uorb.md) 기반으로 통신합니다.
 

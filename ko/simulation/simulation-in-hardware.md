@@ -12,13 +12,13 @@ The SIH provides two benefits over the HITL:
 
 The SIH can be used by new PX4 users to get familiar with PX4 and the different modes and features, and of course to learn to fly a quadrotor with the real RC controller.
 
-The dynamic model is described in this [pdf report](https://github.com/PX4/Devguide/raw/master/assets/simulation/SIH_dynamic_model.pdf).
+동적 모델 설명은 [pdf 보고서](https://github.com/PX4/Devguide/raw/master/assets/simulation/SIH_dynamic_model.pdf)에 있습니다.
 
 Furthermore, the physical parameters representing the vehicle (such as mass, inertia, and maximum thrust force) can easily be modified from the [SIH parameters](../advanced/parameter_reference.md#simulation-in-hardware).
 
 ## Requirements
 
-To run the SIH, you will need a [flight controller hardware](https://docs.px4.io/master/en/flight_controller/) (e.g. a Pixhawk-series board). If you are planning to use a [radio control transmitter and receiver pair](https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html) you should have that too. Alternatively, using *QGroundControl*, a [joystick](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) can be used to emulate a radio control system.
+SIH를 실행하려면 [비행체 제어 장치 하드웨어](https://docs.px4.io/master/en/flight_controller/)(예: 픽스호크 시리즈 보드)가 필요합니다. If you are planning to use a [radio control transmitter and receiver pair](https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html) you should have that too. Alternatively, using *QGroundControl*, a [joystick](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) can be used to emulate a radio control system.
 
 The SIH is compatible with all Pixhawk-series boards except those based on FMUv2. It is available on the firmware master branch and release versions v1.9.0 and above.
 
@@ -26,21 +26,21 @@ The SIH is compatible with all Pixhawk-series boards except those based on FMUv2
 
 Running the SIH is as easy as selecting an airframe. Plug the autopilot to the desktop computer with a USB cable, let it boot, then using a ground control station select the [SIH airframe](../airframes/airframe_reference.md#simulation-copter). The autopilot will then reboot.
 
-When the SIH airframe is selected, the SIH module starts by itself, the vehicle should be displayed on the ground control station map.
+SIH 에어프레임을 선택하면, SIH 모듈이 자체적으로 시작하고, 기체가 지상 통제 장치의 지도에 떠야합니다.
 
 ## Setting up the Display
 
 The simulated quadrotor can be displayed in jMAVSim from PX4 v1.11.
 
-1. Close *QGroundControl* (if opened).
+1. *QGroundControl*을 (열었을 경우) 닫으십시오.
 2. Unplug and replug the hardware autopilot (allow a few seconds for it to boot).
 3. Start jMAVSim by calling the script **jmavsim_run.sh** from a terminal: ```./Tools/jmavsim_run.sh -q -d /dev/ttyACM0 -b 921600 -r 250 -o``` where the flags are 
-    - `-q` to allow the communication to *QGroundControl* (optional).
+    - `q`를 누르면 *QGroundControl*와의 통신을 허용합니다(추가).
     - `-d` to start the serial device `/dev/ttyACM0` on Linux. On macOS this would be `/dev/tty.usbmodem1`.
     - `-b` to set the serial baud rate to `921600`.
     - `-r` to set the refresh rate to `250` Hz (optional).
     - `-o` to start jMAVSim in *display Only* mode (i.e. the physical engine is turned off and jMAVSim only displays the trajectory given by the SIH in real-time).
-4. After few seconds, *QGroundControl* can be opened again.
+4. 몇 초가 지나면 *QGroundControl*을 다시 열 수 있습니다.
 
 At this point, the system can be armed and flown. The vehicle can be observed moving in jMAVSim, and on the QGC **Fly** view.
 

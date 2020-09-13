@@ -86,7 +86,8 @@ Start mavlink on UDP port 14556 and enable the HIGHRES_IMU message with 50Hz:
          [-f]        Enable message forwarding to other Mavlink instances
          [-w]        Wait to send, until first message received
          [-x]        Enable FTP
-         [-z]        Force flow control always on
+         [-z]        Force hardware flow control always on
+         [-Z]        Force hardware flow control always off
     
        stop-all      Stop all instances
     

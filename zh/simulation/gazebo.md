@@ -58,6 +58,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     | [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                | `make px4_sitl gazebo_rover`           |
     | [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)         | `make px4_sitl gazebo_uuv_hippocampus` |
     | [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                        | `make px4_sitl gazebo_boat`            |
+    | [Cloudship (Airship)](../simulation/gazebo_vehicles.md#airship)                                     | `make px4_sitl gazebo_cloudship`       |
     
     > **Note** 如果发生构建错误， [文件和代码安装指南](../setup/dev_env.md) 是一个有用的参考。
     

@@ -41,7 +41,7 @@ The example shows how. In summary:
 
 ## Tasks
 
-The PX4 Firmware contains a template for writing a new application (module) that runs as a task on its own stack: [src/templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module).
+The PX4 Firmware contains a template for writing a new application (module) that runs as a task on its own stack: [src/templates/template_module](https://github.com/PX4/Firmware/tree/master/src/templates/template_module).
 
 The template demonstrates the following additional features/aspects that are required or are useful for a full application:
 

@@ -6,7 +6,7 @@
 ## 필요한 하드웨어
 
 - [J-Link EDU Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/)
-- Segger JLink를 비행 컨트롤러로 연결하는 어댑터 [SWD (JTAG) 하드웨어 디버깅 인터페이스](../debug/swd_debug.md)(디버깅 포트).
+- Segger JLink를 비행체 제어 장치로 연결하는 어댑터 [SWD (JTAG) 하드웨어 디버깅 인터페이스](../debug/swd_debug.md)(디버깅 포트).
 - 마이크로 USB 케이블
 - 대상 하드웨어에 연결할 적당한 케이블.
 
@@ -35,8 +35,8 @@
 
 ## 첫 사용
 
-1. *Segger JLink*를 (어댑터로) 호스트 컴퓨터와 [비행체 조종기 디버거 포트](../debug/swd_debug.md)에 연결하십시오.
-1. 비행체 조종기 전원을 켜십시오.
+1. *Segger JLink*를 (어댑터로) 호스트 컴퓨터와 [비행체 제어 장치 디버거 포트](../debug/swd_debug.md)에 연결하십시오.
+1. 비행체 제어 장치 전원을 켜십시오.
 1. *Eclipse*를 실행하십시오.
 1. **File > Import > C/C++ > Existing Code as Makefile Project**를 선택하여 프로젝트에 소스 코드를 추가하고 **Next**를 누르십시오.
 1. **Firmware** 펌웨어 폴더를 가리키고 이름을 지정한 후 *Toolchain for Indexer Settings*의 *ARM 교차 GCC*를 선택하고 **Finish**를 누르십시오. 상당한 시간동안 가져옵니다. 끝날 때까지 기다리십시오.

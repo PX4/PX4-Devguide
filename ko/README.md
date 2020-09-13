@@ -10,7 +10,7 @@
 * [PX4 시스템 구조](concept/architecture.md)와 다른 핵심 개념을 이해합니다.
 * 플라이트 스택과 미들웨어 수정 방법을 배웁니다: 
   * 비행 알고리즘 수정 및 새 [비행 상태](concept/flight_modes.md) 추가.
-  * 새 [airframes](airframes/README.md)을 지원합니다.
+  * 새 [에어프레임](airframes/README.md)을 지원합니다.
 * PX4에 새 하드웨어를 붙이는 방법을 배웁니다: 
   * 카메라, 범위 검색 센서 등과 같은 새 센서, 액츄에이터를 지원합니다.
   * PX4를 수정하여 새 오토파일럿 하드웨어에서 구동합니다.

@@ -2,7 +2,7 @@
 
 PX4 시작은 쉘 스크립트로 제어합니다. NuttX에서 쉘 스크립트는 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 있습니다. 일부 Posix 계열(Linux/MacOS) 운영체제도 동일합니다. POSIX 전용 스크립트는 [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d-posix)에 위치합니다.
 
-숫자와 밑줄 문자로 시작하는 모든 파일(예: `00000_airplane`)은 선정의 에어프레임 설정 파일입니다. 설정값들은 빌드 타임에 [QGroundControl](http://qgroundcontrol.com)에서 해석할 `airframes.xml` 파일로 내보내고 기체 선택 UI에 활용합니다. 새 설정 추가는 [여기](../airframes/adding_a_new_frame.md)에서 다룹니다.
+숫자와 밑줄 문자로 시작하는 모든 파일(예: `00000_airplane`)은 선정의 에어프레임 설정 파일입니다. 설정 값은 빌드 타임에 [QGroundControl](http://qgroundcontrol.com)에서 해석할 `airframes.xml` 파일로 내보내고 기체 선택 UI에 활용합니다. 새 설정 추가는 [여기](../airframes/adding_a_new_frame.md)에서 다룹니다.
 
 남아있는 파일은 공통 시작 로직의 일부입니다. 첫 실행 파일은 다른 모든 스크립트를 호출하는 [init.d/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/rcS) 스크립트 (또는 Posix에서 [init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS))입니다.
 

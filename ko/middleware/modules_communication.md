@@ -86,7 +86,8 @@ UDP 포트 14556에 HIGHRES_IMU 메시지를 초당 50번 전송하도록 설정
          [-f]        Enable message forwarding to other Mavlink instances
          [-w]        Wait to send, until first message received
          [-x]        Enable FTP
-         [-z]        Force flow control always on
+         [-z]        Force hardware flow control always on
+         [-Z]        Force hardware flow control always off
     
        stop-all      Stop all instances
     
