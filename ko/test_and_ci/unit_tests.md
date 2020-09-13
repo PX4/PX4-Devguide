@@ -39,7 +39,7 @@ Tests can be run via `make tests`, after which you will find the binary in `buil
 
 ## SITL 단위 테스트 작성
 
-SITL unit tests should be used when you specifically need all of the flight controller components - drivers, time, and more. These tests are slower to run (1s+ for each new module), and harder to debug, so in general they should only be used when necessary.
+특히 비행체 제어 장치의 모든 부분 - 드라이버, 시간, 등을 시험하려면 SITL 단위 테스트를 거쳐야합니다. These tests are slower to run (1s+ for each new module), and harder to debug, so in general they should only be used when necessary.
 
 The steps to create new SITL unit tests are as follows:
 
