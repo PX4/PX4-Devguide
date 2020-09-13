@@ -28,7 +28,7 @@ make px4_sitl gazebo_iris_opt_flow
 make px4_sitl gazebo_solo
 ```
 
-![3DR Solo in Gazebo](../../assets/simulation/gazebo/vehicles/solo.png)
+![가제보 3DR 솔로](../../assets/simulation/gazebo/vehicles/solo.png)
 
 
 ### 태풍 H480 (헥스로터) {#typhoon_h480}
@@ -37,7 +37,7 @@ make px4_sitl gazebo_solo
 make px4_sitl gazebo_typhoon_h480
 ```
 
-![Typhoon H480 in Gazebo](../../assets/simulation/gazebo/vehicles/typhoon.jpg)
+![가제보 태풍 H480](../../assets/simulation/gazebo/vehicles/typhoon.jpg)
 
 > **Note** 이 대상에서는[동영상 스트리밍 모의 시험환경](#video)도 지원합니다.
 
@@ -49,7 +49,7 @@ make px4_sitl gazebo_typhoon_h480
 make px4_sitl gazebo_plane
 ```
 
-![Plane in Gazebo](../../assets/simulation/gazebo/vehicles/plane.png)
+![가제보 비행체](../../assets/simulation/gazebo/vehicles/plane.png)
 
 
 #### 캐터펄트 발사형 표준 비행체 {#standard_plane_catapult}
@@ -60,7 +60,7 @@ make px4_sitl gazebo_plane_catapult
 
 이 모델로 자세 준비 모드, 이륙 모드, 임무 비행시 [고정익 이륙](http://docs.px4.io/master/en/flying/fixed_wing_takeoff.html#fixed-wing-takeoff)시 손으로 날리거나 발사대로 날리는 비행체를 모의 시험 실시할 수 있습니다.
 
-The plane will automatically be launched as soon as the vehicle is armed.
+비행체는 기체 동력을 인가하고난 후 바로 자동으로 발사할 수 있습니다.
 
 
 ## 수직 이착륙기
@@ -109,7 +109,7 @@ make px4_sitl gazebo_r1_rover
 make px4_sitl gazebo_uuv_hippocampus
 ```
 
-![Submarine/UUV](../../assets/simulation/gazebo/vehicles/hippocampus.png)
+![잠수함/UUV](../../assets/simulation/gazebo/vehicles/hippocampus.png)
 
 ## 무인 수면 기체(USV/보트) {#usv}
 
@@ -119,7 +119,7 @@ make px4_sitl gazebo_uuv_hippocampus
 make px4_sitl gazebo_boat
 ```
 
-![Boat/USV](../../assets/simulation/gazebo/vehicles/boat.png)
+![보트/USV](../../assets/simulation/gazebo/vehicles/boat.png)
 
 ## 비행선 {#airship}
 
@@ -129,4 +129,4 @@ make px4_sitl gazebo_boat
 make px4_sitl gazebo_cloudship
 ```
 
-![Airship](../../assets/simulation/gazebo/vehicles/airship.png)
+![비행선](../../assets/simulation/gazebo/vehicles/airship.png)
