@@ -129,14 +129,14 @@ PX4 Communicator: PX4 Connected.
 pxh>
 ```
 
-콘솔에서는 PX4에서 airframe별 초기화를 진행하고 매개변수 파일을 읽은 다음, 모의 시험 환경을 기다리(고 연결하)는 상태를 출력합니다. Once there is an INFO print that [ecl/EKF] is `commencing GPS fusion` the vehicle is ready to arm. At this point, you should see a FlightGear window with some view of aircraft.
+콘솔에서는 PX4에서 airframe별 초기화를 진행하고 매개변수 파일을 읽은 다음, 모의 시험 환경을 기다리(고 연결하)는 상태를 출력합니다. INFO 출력에서는 [ecl/EKF]에서 `혼합 GPS 수신을 시작하고` 기체의 동력을 인가할 준비가 끝났음을 나타냅니다. 여기서 플라이트기어 창과 기체 모습이 나타나야합니다.
 
 
-> **Note** You can change the view by pressing **Ctrl+V**.
+> **Note** **Ctrl+V**를 눌러 화면 모습을 바꿔볼 수 있습니다.
 
 ![플라이트기어 UI](../../assets/simulation/flightgear/flightgearUI.jpg)
 
-You can bring it into the air by typing:
+이 기체를 다음 명령으로 띄울 수 있습니다:
 
 ```sh
 pxh> commander takeoff
@@ -144,11 +144,11 @@ pxh> commander takeoff
 
 ## 사용법/설정 옵션
 
-You can tune your FG installation/settings by the following environment variables:
+플라이트기어 설치/설정 상태를 다음 환경 변수로 세밀하게 조정할 수 있습니다:
 
-- `FG\_BINARY` - absolute path to FG binary to run. (It can be an AppImage)
-- `FG\_MODELS\_DIR` - absolute path to the folder containing the manually-downloaded aircraft models which should be used for simulation.
-- `FG\_ARGS\_EX` - any additional FG parameters.
+- `FG\_BINARY` - 플라이트기어 바이너리 실행 절대 경로. (앱 이미지)
+- `FG\_MODELS\_DIR` - 모의시험 환경에서 사용하려 직접 다운로드한 비행체 모델을 넣는 폴더의 절대 경로.
+- `FG\_ARGS\_EX` - 추가 FG 매개변수.
 
 ### 프레임 재생율 표시 {#frame_rate}
 
