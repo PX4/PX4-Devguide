@@ -36,7 +36,7 @@ It is easy to set up and can be used to test that your vehicle can take off, fly
 
 [AirSim](../simulation/airsim.md) |
 
-A cross platform simulator that provides physically and visually realistic simulations. This simulator is resource intensive, and requires a very significantly more powerful computer than the other simulators described here.
+A cross platform simulator that provides physically and visually realistic simulations. 이 모의 시험 환경은 자원 활용에 집중하며, 여기에 설명한 다른 모의 시험 환경보다 훨씬 성능이 좋은 컴퓨터가 필요합니다.
 
 **지원 기체:** Iris (X 설정에서의 멀티로터 모델과 PX4 쿼드로터 설정).
 
@@ -50,7 +50,7 @@ Instructions for how to setup and use the simulators are in the topics linked ab
 
 * * *
 
-The remainder of this topic is a "somewhat generic" description of how the simulation infrastructure works. It is not required to *use* the simulators.
+이 주제의 나머지 부분에서는 모의 시험 환경 기반 동작 방식에 대한 "약간 일반적인" 설명을 다룹니다. It is not required to *use* the simulators.
 
 ## 모의시험 환경의 MAVLink API
 
@@ -60,7 +60,7 @@ All simulators communicate with PX4 using the Simulator MAVLink API. This API de
 
 > **Note** A SITL build of PX4 uses [simulator_mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp) to handle these messages while a hardware build in HIL mode uses [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp). Sensor data from the simulator is written to PX4 uORB topics. All motors / actuators are blocked, but internal software is fully operational.
 
-The messages are described below (see links for specific detail).
+메시지는 아래에 설명합니다(별도의 세부 내용은 링크를 참고).
 
 | 메세지                                                                                                            | 방향             | 설명                                                                                                                                                                                                                                            |
 | -------------------------------------------------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
