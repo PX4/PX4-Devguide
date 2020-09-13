@@ -6,6 +6,6 @@ AirSim은 언리얼 엔진기반으로 만들어진, 드론용 오픈소스, 크
 
 PX4로 작업하는 경우에는 [PX4 Setup for AirSim](https://github.com/Microsoft/AirSim/blob/master/docs/px4_setup.md)이 주요 시작 문서입니다 (HITL 및 SITL 모두 포함).
 
-## Further Information
+## 추가 정보
 
 * [Using AirSim to Simulate Aircraft Inspection by Autonomous Drones](https://github.com/generalized-intelligence/GAAS/tree/master/demo/case_study_1?fbclid=IwAR2JO0LPesA5z313sA2QGm1t01bb4wn0Xpz_JkD7Z1s3nombJWHyTZdLuMA) ( Generalized Autonomy Aviation System (GAAS) 프로젝트의 케이스 스터디).
