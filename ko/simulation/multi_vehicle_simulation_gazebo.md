@@ -17,7 +17,7 @@ Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>] [-w <wo
    ```
    -s "iris:3,plane:2,standard_vtol:3"
    ```
-   - Supported vehicle types are: `iris`, `plane`, `standard_vtol`.
+   - 지원 기체 형식: `iris`, `plane`, `standard_vtol`.
    - The number after the colon indicates the number of vehicles (of that type) to spawn.
    - Maximum number of vehicles is 255.
 
@@ -37,7 +37,7 @@ https://youtu.be/Mskx_WxzeCk
 https://youtu.be/aEzFKPMEfjc
 {% endyoutube %}
 
-### Video: Multiple VTOL {#video_vtol}
+### 동영상: 다중 수직 이착륙기 {#video_vtol}
 
 {% youtube %}
 https://youtu.be/lAjjTFFZebI
