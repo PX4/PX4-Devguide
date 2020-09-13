@@ -51,11 +51,11 @@ PX4 바이너리로 컴파일하지 않은 동적 PX4 모듈을 불러오고 실
 
 소스 코드: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
 
-ESC 보정 도구
+전동 변속기 보정 도구
 
 보정 과정(명령을 실행하면 인터페이스 메시지로 안내해줌):
 
-- ESC의 프롭을 제거하고 전원을 끄십시오
+- 전동 변속기의 프로펠러를 제거하고 전원을 끄십시오
 - 고도, 속도 컨트롤러의 동작을 중단하십시오: mc_rate_control stop, fw_att_control stop
 - safety가 off인지 확인하십시오
 - 이 명령어를 실행하십시오
