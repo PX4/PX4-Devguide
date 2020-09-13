@@ -1349,7 +1349,7 @@
 </tr>
 </table>
 
-## 수직이착륙기
+## 수직 이착륙기
 
 ### 표준 수직 이착륙기
 
@@ -1377,27 +1377,27 @@
 
 </tr>
 <tr id="vtol_standard_vtol_fun_cub_quad_vtol">
- <td style="vertical-align: top;">펀 컵 쿼드 VTOL</td>
+ <td style="vertical-align: top;">펀 컵 쿼드 수직 이착륙기</td>
  <td style="vertical-align: top;"><p>유지관리자: Simon Wilks <simon@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13005</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li><li><b>AUX1</b>: 보조익 1</li><li><b>AUX2</b>: 보조익 2</li><li><b>AUX3</b>: 승강타</li><li><b>AUX4</b>: 방향타</li><li><b>AUX5</b>: 추진기</li></ul></p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_generic_quad_delta_vtol">
- <td style="vertical-align: top;">Generic quad delta VTOL</td>
+ <td style="vertical-align: top;">일반 쿼드 델타 수직 이착륙기</td>
  <td style="vertical-align: top;"><p>유지관리자: Simon Wilks <simon@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13006</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li><li><b>AUX1</b>: 우측 승강 보조익</li><li><b>AUX2</b>: 좌측 승강 보조익</li><li><b>AUX3</b>: 모터</li></ul></p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_generic_aavvt_v-tail_plane_airframe_with_quad_vtol.">
- <td style="vertical-align: top;">Generic AAVVT v-tail plane airframe with Quad VTOL.</td>
+ <td style="vertical-align: top;">쿼드 수직 이착륙기 형태의 일반 AAVVT v-tail 기체 에어프레임.</td>
  <td style="vertical-align: top;"><p>유지관리자: Sander Smeets<sander@droneslab.com></p><p><code>SYS_AUTOSTART</code> = 13007</p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_quadranger">
- <td style="vertical-align: top;">QuadRanger</td>
+ <td style="vertical-align: top;">쿼드레인저</td>
  <td style="vertical-align: top;"><p>유지관리자: Sander Smeets<sander@droneslab.com></p><p><code>SYS_AUTOSTART</code> = 13008</p></td>
 
 </tr>
 <tr id="vtol_standard_vtol_sparkle_tech_ranger_vtol">
- <td style="vertical-align: top;">Sparkle Tech Ranger VTOL</td>
+ <td style="vertical-align: top;">스파클 테크 레인저 수직 이착륙기</td>
  <td style="vertical-align: top;"><p>유지관리자: Andreas Antener<andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 13009</p></td>
 
 </tr>
