@@ -121,7 +121,7 @@ rtps:
 
 *Client* 소스코드는 일반적인 빌드 과정을 거쳐 생성, 컴파일, 빌드하여 PX4 펌웨어에 넣습니다.
 
-NuttX/픽스호크 비행체 조종 장치를 대상으로 펌웨어를 빌드하려면 설정 대상에서 `_rtps` 대상을 사용하십시오. 예를 들어, RTPS를 px4_fmu-v4에 빌드하려면:
+NuttX/픽스호크 비행체 제어 장치를 대상으로 펌웨어를 빌드하려면 설정 대상에서 `_rtps` 대상을 사용하십시오. 예를 들어, RTPS를 px4_fmu-v4에 빌드하려면:
 
 ```sh
 make px4_fmu-v4_rtps
@@ -339,7 +339,7 @@ $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 
 ## Fast RTPS 감청 어플리케이션 만들기
 
-*Client* (비행체 조종 장치)와 *Agent* (외부 컴퓨터)이 동작하고 서로 연결하고 나면, *Fast RTPS* 프로그램에서 RTPS로 PX4의 uORB 토픽을 내보내고 주기적으로 수신할 수 있습니다.
+*Client* (비행체 제어 장치)와 *Agent* (외부 컴퓨터)가 동작하여 서로 연결하면, *Fast RTPS* 프로그램에서 RTPS로 PX4의 uORB 토픽을 내보내고 주기적으로 수신할 수 있습니다.
 
 이 예제는 `sensor_combined` 토픽을 구독하고 갱신결과를 출력하는 *Fast RTPS* "리스너" 어플리케이션을 어떻게 만들지 보여줍니다. 연결한 RTPS 어플리케이션은 같은 네트워크내의 어떤 컴퓨터에 대해 *Agent*로 동작할 수 있습니다 이 예제에서 *Agent*와 *Listener application*은 동일한 컴퓨터에서 실행합니다.
 
