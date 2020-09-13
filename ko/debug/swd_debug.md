@@ -39,7 +39,7 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 
 <span></span>
 
-> **Tip** 가능한 부분이 있다면, SWD/JTAG 디버거, 컴퓨터용 케이블을 별도로 만들기 보다는 어댑터 보드를 만들거나 구하는 방안을 권해드립니다. 디버깅 문제를 해결하려는 과정에서 입는 손해와 미흡한 결선 문제를 줄이며, 다양하고 인기있는 비행 조종 장치 보드에 연결할 공통 인터페이스를 제공하는 어댑터를 쓰시는 방법이 여러모로 이득입니다.
+> **Tip** 가능한 부분이 있다면, SWD/JTAG 디버거, 컴퓨터용 케이블을 별도로 만들기 보다는 어댑터 보드를 만들거나 구하는 방안을 권해드립니다. 디버깅 문제를 해결하려는 과정에서 입는 손해와 미흡한 결선 문제를 줄이는 과정에서, 다양하고 인기있는 비행체 제어 장치 보드에 연결할 공통 인터페이스를 제공하는 어댑터를 쓰시는 방안이 여러모로 이득입니다.
 
 
 ## 오토파일럿 디버깅 포트 {#debug_ports}
@@ -63,7 +63,7 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 | [Holybro Kakute F7](http://docs.px4.io/master/en/flight_controller/kakutef7.html#debug-port)           | 판 납땜                                                                                                                                                                                                                      |
 | [Holybro Durandal](http://docs.px4.io/master/en/flight_controller/durandal.html#debug-port)            | [Pixhawk 6-pin SH Debug](#pixhawk_debug_port_6_pin_sh)                                                                                                                                                                    |
 
-> **Tip** 사용 중인 비행 조종 장치가 없다면 [오토파일럿 주제](http://docs.px4.io/master/en/flight_controller/)를 확인하십시오.
+> **Tip** 사용 중인 비행체 제어 장치가 없다면 [오토파일럿 주제](http://docs.px4.io/master/en/flight_controller/)를 확인하십시오.
 
 
 
