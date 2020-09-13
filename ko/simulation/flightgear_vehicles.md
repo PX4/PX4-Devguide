@@ -85,7 +85,7 @@ There is only an [incomplete multirotor model](https://github.com/ThunderFly-aer
 
 # Adding a New Vehicle
 
-A new vehicle model needs to be included as a git submodule into [PX4-FlightGear-Bridge/models/](https://github.com/PX4/PX4-FlightGear-Bridge/tree/master/models) directory. This directory contains an control channel definition [JSON file](https://github.com/PX4/PX4-FlightGear-Bridge/blob/master/models/rascal.json).
+A new vehicle model needs to be included as a git submodule into [PX4-FlightGear-Bridge/models/](https://github.com/PX4/PX4-FlightGear-Bridge/tree/master/models) directory. 이 디렉터리에는 제어 채널 정의 [JSON 파일](https://github.com/PX4/PX4-FlightGear-Bridge/blob/master/models/rascal.json)이 들어있습니다.
 
 ```json
 {
