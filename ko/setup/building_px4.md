@@ -214,7 +214,7 @@ cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 
 #### 빌드
 
-> **Note** (UART 기반) [퀄컴 ESC 보드](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board)를 사용한다면, [이곳](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md) 절차를 따르십시오. PWM기반 일반 ESC 보드를 사용한다면 이 페이지의 다음 과정을 계속 따르는 것이 좋습니다.
+> **Note** (UART 기반) [퀄컴 전동 변속기 보드](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board)를 사용한다면, [이 곳](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md) 절차를 따르십시오. PWM기반 일반 전동 변속기 보드를 사용한다면 이 페이지의 다음 과정을 계속 따르는 것이 좋습니다.
 
 아리 명령은 리눅스와 DSP 쪽 대상을 빌드합니다. 두 실행 파일은 [muORB](../middleware/uorb.md) 기반으로 통신합니다.
 
