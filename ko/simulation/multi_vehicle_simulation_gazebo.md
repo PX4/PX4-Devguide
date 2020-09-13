@@ -88,7 +88,7 @@ The tutorial example opens the Gazebo client GUI showing two Iris vehicles in an
 
 For each simulated vehicle, the following is required:
 
-* **Gazebo model**: This is defined as `xacro` file in `Firmware/Tools/sitl_gazebo/models/rotors_description/urdf/<model>_base.xacro` see [here](https://github.com/PX4/sitl_gazebo/tree/02060a86652b736ca7dd945a524a8bf84eaf5a05/models/rotors_description/urdf). Currently, the model `xacro` file is assumed to end with **base.xacro**. This model should have an argument called  `mavlink_udp_port` which defines the UDP port on which gazebo will communicate with PX4 node. The model's `xacro` file will be used to generate an `urdf` model that contains UDP port that you select. To define the UDP port, set the `mavlink_udp_port` in the launch file for each vehicle, see [here](https://github.com/PX4/Firmware/blob/4d0964385b84dc91189f377aafb039d10850e5d6/launch/multi_uav_mavros_sitl.launch#L37) as an example.
+* **가제보 모델**: 이 모델은 `Firmware/Tools/sitl_gazebo/models/rotors_description/urdf/<model>_base.xacro`에 `xacro` 파일로 정의합니다. [여기](https://github.com/PX4/sitl_gazebo/tree/02060a86652b736ca7dd945a524a8bf84eaf5a05/models/rotors_description/urdf)를 참고하십시오. Currently, the model `xacro` file is assumed to end with **base.xacro**. This model should have an argument called  `mavlink_udp_port` which defines the UDP port on which gazebo will communicate with PX4 node. The model's `xacro` file will be used to generate an `urdf` model that contains UDP port that you select. To define the UDP port, set the `mavlink_udp_port` in the launch file for each vehicle, see [here](https://github.com/PX4/Firmware/blob/4d0964385b84dc91189f377aafb039d10850e5d6/launch/multi_uav_mavros_sitl.launch#L37) as an example.
 
   > **Note** If you are using the same vehicle model, you don't need a separate **`xacro`** file for each vehicle. The same **`xacro`** file is adequate.
 
@@ -191,6 +191,6 @@ To add a new vehicle, you need to make sure the model can be found (in order to 
 
 ## Additional Resources
 
-* See [Simulation](../simulation/README.md) for a description of the UDP port configuration.
+* UDP 포트 설정 설명을 보면 [모의 시험](../simulation/README.md)을 참고하십시오.
 * See [URDF in Gazebo](http://gazebosim.org/tutorials/?tut=ros_urdf) for more information about spawning the model with xacro.
-* See [RotorS](https://github.com/ethz-asl/rotors_simulator/tree/master/rotors_description/urdf) for more xacro models.
+* 더 많은 xacro 모델은 [RotorS](https://github.com/ethz-asl/rotors_simulator/tree/master/rotors_description/urdf)를 참고하십시오.
