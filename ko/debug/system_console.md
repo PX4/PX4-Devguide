@@ -18,7 +18,7 @@ PX4 *시스템 콘솔*에서는 시스템 저수준 접근이 가능하며, 디�
 
 시스템 콘솔 UART 핀 출력/디버깅 포트는 [오토파일럿 개요 페이지](https://docs.px4.io/master/en/flight_controller/)에 정리해두었습니다(아래 링크에 있음):
 
-- [3DR 픽스호크 v1 비행체 제어 장치](https://docs.px4.io/master/en/flight_controller/pixhawk.html#console-port) ([mRo Pixhawk](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html#debug-ports), [HobbyKing HKPilot32](https://docs.px4.io/master/en/flight_controller/HKPilot32.html#debug-port)에도 적용)
+- [3DR 픽스호크 v1 비행체 제어 장치](https://docs.px4.io/master/en/flight_controller/pixhawk.html#console-port) ([mRo 픽스호크](https://docs.px4.io/master/en/flight_controller/mro_pixhawk.html#debug-ports), [하비킹 HKPilot32](https://docs.px4.io/master/en/flight_controller/HKPilot32.html#debug-port)에도 적용)
 - [픽스호크 3](https://docs.px4.io/master/en/flight_controller/pixhawk3_pro.html#debug-port)
 - [픽스레이서](https://docs.px4.io/master/en/flight_controller/pixracer.html#debug-port)
 
