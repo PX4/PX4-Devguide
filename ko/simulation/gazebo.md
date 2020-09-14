@@ -59,7 +59,7 @@ make px4_sitl gazebo
 | [보트 (USV: 무인 수면선)](../simulation/gazebo_vehicles.md#usv)                                               | `make px4_sitl gazebo_boat`            |
 | [구름선 (비행선)](../simulation/gazebo_vehicles.md#airship)                                                  | `make px4_sitl gazebo_cloudship`       |
 
-> **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
+> **Note** [파일 및 코드 설치](../setup/dev_env.md) 안내서는 빌드 과정에 오류가 나타날 경우 도움이 될 참고서입니다.
 
 위 명령은 전체 인터페이스에 단일 기체를 띄워 실행합니다. 다른 옵션은 다음과 같습니다:
 
@@ -148,29 +148,29 @@ For more information see: [Simulation > Run Simulation Faster than Realtime](../
 
 ### 거리 센서 성능 개선
 
-The current default world is [PX4/sitl_gazebo/worlds/**iris.world**](https://github.com/PX4/sitl_gazebo/tree/master/worlds)), which uses a heightmap as ground.
+현재 기본 월드는 높이 지도를 지면으로 활용하는 [PX4/sitl_gazebo/worlds/**iris.world**](https://github.com/PX4/sitl_gazebo/tree/master/worlds)입니다.
 
 This can cause difficulty when using a distance sensor. If there are unexpected results we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
 
 ### GPS 잡음 신호 재현 {#gps_noise}
 
-Gazebo can simulate GPS noise that is similar to that typically found in real systems (otherwise reported GPS values will be noise-free/perfect). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
+가제보에서는 실제 시스템에서 확인할 수 있는 현상과 유사하게 GPS 잡음 신호를 재현할 수 있습니다(아니면 GPS 신호에 잡음이 없는 완벽한 상태임을 알리는 보고서가 나옵니다). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
 
 GPS noise is enabled if the target vehicle's SDF file contains a value for the `gpsNoise` element (i.e. it has the line: `<gpsNoise>true</gpsNoise>`). It is enabled by default in many vehicle SDF files: **solo.sdf**, **iris.sdf**, **standard_vtol.sdf**, **delta_wing.sdf**, **plane.sdf**, **typhoon_h480**, **tailsitter.sdf**.
 
-To enable/disable GPS noise:
+GPS 잡음 신호 발생을 (비)활성 하려면:
 
-1. Build any gazebo target in order to generate SDF files (for all vehicles). For example: ```make px4_sitl gazebo_iris``` > **Tip** The SDF files are not overwritten on subsequent builds.
-2. Open the SDF file for your target vehicle (e.g. **./Tools/sitl_gazebo/models/iris/iris.sdf**).
-3. Search for the `gpsNoise` element: 
+1. 임의의 가제보 대상을 빌드하여 (모든 기체에 대한) SDF 파일을 만드십시오. 예를 들어: ```make px4_sitl gazebo_iris``` > **Tip** 빌드를 반복할 때 SDF 파일은 덮어쓰지 않습니다.
+2. 대상 기체의 SDF 파일을 여십시오(예: **./Tools/sitl_gazebo/models/iris/iris.sdf**).
+3. `gpsNoise` 항목을 찾으십시오: 
         xml
         <plugin name='gps_plugin' filename='libgazebo_gps_plugin.so'>
          <robotNamespace/>
          <gpsNoise>true</gpsNoise>
         </plugin>
     
-    * If it is present, GPS is enabled. You can disable it by deleting the line: `<gpsNoise>true</gpsNoise>`
-    * If it is not preset GPS is disabled. You can enable it by adding the `gpsNoise` element to the `gps_plugin` section (as shown above).
+    * 항목이 있다면, GPS 잡음 신호가 켜진 상태입니다. 다음 줄을 삭제하면 끌 수 있습니다: `<gpsNoise>true</gpsNoise>`
+    * 나타나지 않는다면 GPS 잡음 신호를 꺼둔 상태입니다. (위에서 보시는 바와 같이) `gps_plugin` 섹션에 `gpsNoise` 항목을 추가하여 GPS 잡음 신호를 켤 수 있습니다.
 
 The next time you build/restart Gazebo it will use the new GPS noise setting.
 
