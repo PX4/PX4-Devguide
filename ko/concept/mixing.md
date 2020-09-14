@@ -24,7 +24,7 @@ graph LR;
 
 ## 제어 분류 
 
-PX4는 제어 분류 (입력) 과 출력 분류를 활용합니다. 개념은 아주 간단합니다: 예를 들어 핵심 비행체 제어 장치에 대한 제어 분류는 `attitude`, 페이로드 분류는 `gimbal` 입니다. 출력 분류는 하나의 물리적인 버스입니다 (예. 서보의 첫 8개의 PWM 출력). 이들 각 분류는 믹서에 대응하여 스케일할 수 있는 8개의 정규화 (-1..+1) 명령 포트가 있습니다. 하나의 믹서는 어떻게 8개의 제어 신호 각각을 8개의 출력으로 연결할지 정의합니다.
+PX4는 제어 분류 (입력) 과 출력 분류를 활용합니다. 개념은 아주 간단합니다: 예를 들어 핵심 비행체 제어 장치에 대한 제어 분류는 `attitude`, 탑재 분류는 `gimbal` 입니다. 출력 분류는 하나의 물리적인 버스입니다 (예. 서보의 첫 8개의 PWM 출력). 이들 각 분류는 믹서에 대응하여 스케일할 수 있는 8개의 정규화 (-1..+1) 명령 포트가 있습니다. 하나의 믹서는 어떻게 8개의 제어 신호 각각을 8개의 출력으로 연결할지 정의합니다.
 
 간단한 비행기를 예로 들면, 컨트롤 0 (rolle) 은 곧바로 출력 0 (aileron) 에 연결됩니다. 멀티콥터는 조금 다릅니다. 제어 0번(좌우 회전각)은 4개의 모터에 모두 연결하고 스로틀과 결합합니다.
 
@@ -74,7 +74,7 @@ PX4는 제어 분류 (입력) 과 출력 분류를 활용합니다. 개념은 �
 
 > **Note** 이 그룹은 *일반 동작*을 진행하는 동안 특정 출력에 대한 원격 조정 대응 입력을 정의하는 용도로만 사용합니다(믹서에서 스케일링 처리하는 AUX2 예제는 [quad_x.main.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7)를 참고하십시오). 수동 입출력 이벤트 발생시 안전장치는 (PX4FMU 가 PX4IO 보드와의 통신을 멈췄을 때) 제어 그룹 0에 정의한 좌우/상하/방위 회전각 조절, 스로틀에 대한 매핑/믹싱만 활용합니다(다른 매핑은 무시).
 
-### 제어 분류 #6 (첫번째 페이로드) {#control_group_6}
+### 제어 분류 #6 (첫번째 탑재 장치) {#control_group_6}
 
 - 0: function 0
 - 1: function 1
@@ -121,7 +121,7 @@ PX4는 제어 분류 (입력) 과 출력 분류를 활용합니다. 개념은 �
 
 > **Note** MAIN 출력에 활용하는 물리 버스가 항상 동일하지 않으므로 이런 접근 방법이 필요합니다. 비행체 제어 장치에 입출력 보드가 붙어([PX4 레퍼런스 비행체 제어 장치 설계 > 메인 입출력 기능 해부](../hardware/reference_design.md#mainio-function-breakdown)편을 참고)있거나 모터 제어 목적으로 UAVCAN 통신 수단을 활용하는지 여부에 따라 달려있습니다. 시작 스크립트에서는 "device" 추상 레이어를 활용하여 적절한 믹서 파일을 보드에 적당한 장치 드라이버로 불러옵니다. 메인 믹서는 UAVCAN을 활성화했을 경우 `/dev/uavcan/esc`(uavcan) 장치를 불러오며, 그렇지 않을 경우 `/dev/pwm_output0`(이 장치는 입출력 보드 조종기의 입출력 드라이버를 대응하며, 보드의 FMU 드라이버는 이에 해당하지 않습니다) 조종 장치를 불러옵니다. AUX 믹서 파일은 입출력 보드를 내장한 픽스호크 컨트롤러의 FMU 드라이버에 대응하는 `/dev/pwm_output1` 장치에 불러옵니다.
 
-여러 제어 분류와 (비행체 제어, 페이로드 등) 출력 분류(여러 버스)가 있기 때문에, 하나의 제어 분류를 여러 개의 출력에 명령을 보낼 수 있습니다.
+여러 제어 분류와 (비행체 제어, 탑재 장치 등) 출력 분류(여러 버스)가 있기 때문에, 하나의 제어 분류를 여러 개의 출력에 명령을 보낼 수 있습니다.
 
 ![믹서 입출력 대응](../../assets/concepts/mermaid_mixer_inputs_outputs.png) <!--- Mermaid Live Version:
 https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGFjdHVhdG9yX2dyb3VwXzAtLT5vdXRwdXRfZ3JvdXBfNVxuICBhY3R1YXRvcl9ncm91cF8wLS0-b3V0cHV0X2dyb3VwXzZcbiAgYWN0dWF0b3JfZ3JvdXBfMS0tPm91dHB1dF9ncm91cF8wIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0
