@@ -14,7 +14,7 @@ PX4에서는 단위 테스트 작성에 필요한 몇가지 수단을 제공합�
 
 새 단위 테스트의 작성 절차는 다음과 같습니다:
 
-1. 단위 테스트는 설치, 실행, 결과 검사 세 부분으로 정리해야 합니다. 각 테스트에서는 매우 극히 일부의 동작을 시험하거나 설정 조건을 시험하면, 테스트에 실패했을 경우 어떤 부분에서 문제가 있는지 명백하게 드러납니다. 가능하면 이 표준을 따라주십시오.
+1. 단위 테스트는 설치, 실행, 결과 검사 세 부분으로 정리해야 합니다. 각 테스트에서는 매우 극히 일부의 동작을 시험하거나 설정 조건을 시험하기 때문에, 테스트에 실패했을 경우 어떤 부분에서 문제가 있는지 명백하게 드러납니다. 가능하면 이 표준을 따라주십시오.
 2. [AttitudeControlTest](https://github.com/PX4/Firmware/blob/master/src/modules/mc_att_control/AttitudeControl/AttitudeControlTest.cpp) 예제 단위 테스트를 시험할 코드가 있는 디렉터리로 복사하고 이름을 바꾸십시오.
 3. 해당 디렉터리의 `CMakeLists.txt`에 새 파일을 추가하십시오. `px4_add_unit_gtest(SRC MyNewUnitTest.cpp LINKLIBS <library_to_be_tested>)`와 같아야 합니다.
 4. 원하는 시험 기능을 추가하십시오. 특정 테스트를 수행하려면 헤더 파일 추가가 필요하며, 새 테스트 추가(제각각의 이름을 지님), 설정 로직 배치, 시험할 코드 실행, 결과 검증을 기대대로 수행합니다.
@@ -28,7 +28,7 @@ GTest 기능 시험은 매개변수, uORB 메세지, 고급 GTest 기능에 따�
 
 새 기능 테스트의 작성 절차는 다음과 같습니다:
 
-1. In general (and similar to unit tests), functional tests should be arranged in three sections: setup, run, check results. Each test should test one very specific behavior or setup case, so if a test fails it is obvious what is wrong. Please try to follow these standards when possible.
+1. 보통 (그리고 단위 테스트와 유사한 상황에서), 기능 테스트는 구성, 실행, 결과 검사 세부분으로 정리해야합니다. 각 테스트에서는 매우 극히 일부의 동작을 시험하거나 설정 조건을 시험하기 때문에, 테스트에 실패했을 경우 어떤 부분에서 문제가 있는지 명백하게 드러납니다. Please try to follow these standards when possible.
 2. Copy and rename the example functional test [ParameterTest](https://github.com/PX4/Firmware/blob/master/src/lib/parameters/ParameterTest.cpp) to the directory the code to be tested is in.
 3. Rename the class from ParameterTest to something better representing the code being testing
 4. Add the new file to the directory's `CMakeLists.txt`. It should look something like `px4_add_functional_gtest(SRC MyNewFunctionalTest.cpp LINKLIBS <library_to_be_tested>)`
