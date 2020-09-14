@@ -2,9 +2,9 @@
 
 [가제보](http://gazebosim.org) 는 개체 회피 및 컴퓨터 시각 정보 처리 시험에 일부 적합한, 강력한 자동화 로봇용 3차원 모의 시험 환경입니다. 이 페이지에서는 SITL과 단일 기체와의 활용법을 설명합니다. 가제보는 또한 [HITL](../simulation/hitl.md)과 [다중 기체 모의 시험](../simulation/multi-vehicle-simulation.md)용으로 활용할 수 있습니다.
 
-**Supported Vehicles:** Quad ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) and [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo), Hex (Typhoon H480), [Generic quad delta VTOL](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), 태일시터, 항공기, 탐사선, 수중선/무인 수중선
+**지원 기체:** 쿼드 ([Iris](../airframes/airframe_reference.md#copter_quadrotor_wide_3dr_iris_quadrotor) 와 [Solo](../airframes/airframe_reference.md#copter_quadrotor_x_3dr_solo), 헥스 (태풍 H480), [일반 쿼드 델타 수직 이착륙기](../airframes/airframe_reference.md#vtol_standard_vtol_generic_quad_delta_vtol), 태일시터, 항공기, 탐사선, 수중선/무인 수중선
 
-> **Warning** Gazebo is often used with [ROS](../ros/README.md), a toolkit/offboard API for automating vehicle control. If you plan to use PX4 with ROS you **should follow the** [ROS Instructions](../simulation/ros_interface.md) to install both ROS and Gazebo (and thereby avoid installation conflicts).
+> **Warning** 가제보 자동화 기체 제어를 목적으로 주로 [ROS](../ros/README.md), 툴킷, 외부 보드 API를 함께 활용합니다. PX4를 ROS와 활용하려면 [ROS 활용 절차](../simulation/ros_interface.md)를 **따라** ROS와 가제보를 설치해야합니다(그리고 설치 과정상 중복을 피하십시오).
 
 {% youtube %}https://www.youtube.com/watch?v=qfFF9-0k4KA&vq=hd720{% endyoutube %}
 
@@ -17,32 +17,32 @@ graph LR;
   MAVLink-- >SITL;
 -->
 
-> **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment, and simulation configuration (e.g. supported vehicles).
+> **Note** 모의 시험 프로그램, 모의 시험 환경, 모의 시험 설정(예: 지원 기체) 관련 일반 정보는 [모의 시험](/simulation/README.md)을 참고 하십시오.
 
 ## 설치 {#installation}
 
-Gazebo 9 setup is included in our standard build instructions:
+가제보 9 설치 프로그램 내용은 표준 빌드 과정에 들어있습니다:
 
-* **macOS:** [Development Environment on Mac](../setup/dev_env_mac.md)
-* **Linux:** [Development Environment on Ubuntu LTS / Debian Linux > Gazebo, JMAVSim and NuttX (Pixhawk) Targets](../setup/dev_env_linux_ubuntu.md#sim_nuttx)
-* **Windows:** Not supported.
+* **macOS:** [맥용 개발 환경](../setup/dev_env_mac.md)
+* **Linux:** [우분투 LTS / 데비안 리눅스 > 가제보, JMAVSim, NuttX(Pixhawk) 대상 개발 환경](../setup/dev_env_linux_ubuntu.md#sim_nuttx)
+* **Windows:** 지원 안함.
 
-Additional installation instructions can be found on [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1).
+추가 설치 방법은 [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1)에서 찾을 수 있습니다.
 
 ## 모의 시험 환경 실행
 
-Run a simulation by starting PX4 SITL and gazebo with the airframe configuration to load (multicopters, planes, VTOL, optical flow and multi-vehicle simulations are supported).
+PX4 SITL과 에어프레임 설정(멀티콥터, 비행체, 수직 이착륙기, 광류센서 및 다중 기체 모의 시험 지원)을 불러오는 명령으로 모의 시험환경을 시작하십시오.
 
-The easiest way to do this is to open a terminal in the root directory of the PX4 *Firmware* repository and call `make` for the desired target. For example, to start a quadrotor simulation (the default):
+가장 쉬운 방법은 PX4 *Firmware* 저장소 루트 디렉터리에서 터미널을 열고 원하는 대상에 대해 `make` 명령을 호출하는 방식입니다. 예를 들어, 쿼드로터 모의 시험을 시작(기본)하려면:
 
 ```sh
 cd /path/to/Firmware
 make px4_sitl gazebo
 ```
 
-The supported vehicles and `make` commands are listed below (click links to see vehicle images).
+지원 기체와 `make` 명령은 아래와 같습니다(기체 그림을 보려면 링크를 누르십시오).
 
-> **Note** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (and filter on those that start with `gazebo_`).
+> **Note** 전체 대상을 빌드하려면 `make px4_sitl list_vmd_make_targets` 명령을 실행 (하고 `gazebo_`로 시작하는 요소를 검색) 하십시오.
 
 | 기체                                                                                                     | 명령                                     |
 | ------------------------------------------------------------------------------------------------------ | -------------------------------------- |
@@ -61,16 +61,16 @@ The supported vehicles and `make` commands are listed below (click links to see 
 
 > **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
 
-The commands above launch a single vehicle with the full UI. Other options include:
+위 명령은 전체 인터페이스에 단일 기체를 띄워 실행합니다. 다른 옵션은 다음과 같습니다:
 
-* [Starting PX4 and Gazebo separately](#start_px4_sim_separately) so that you can keep Gazebo running and only re-launch PX4 when needed (quicker than restarting both).
-* Run the simulation in [Headless Mode](#headless), which does not start the Gazebo UI (this uses fewer resources and is much faster).
+* [PX4와 가제보를 개별 시작](#start_px4_sim_separately)하면 가제보 실행 상태를 유지할 수 있고 PX4만 필요할 경우 다시 실행할 수 있습니다(둘 다 다시 시작하는 것보단 빠름).
+* 가제보 인터페이스를 시작하지 않는 [헤드리스 모드](#headless)로 모의시험 환경을 실행합니다(자원을 훨씬 적게 차지하며 더 빠릅니다).
 
 ## 하늘로 띄우기
 
-The `make` commands above first build PX4, and then run it along with the Gazebo simulator.
+위에서 언급한 `make` 명령은 PX4를 우선 빌드하고, 가제보 모의 시험 환경을 띄웁니다.
 
-Once PX4 has started it will launch the PX4 shell as shown below.
+PX4를 시작하면 아래와 같이 PX4 셸을 실행합니다.
 
     ______  __   __    ___ 
     | ___ \ \ \ / /   /   |
