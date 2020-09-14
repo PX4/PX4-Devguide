@@ -39,7 +39,7 @@ PX4는 두개의 주요 계층으로 이루어져있습니다. 호스트 운영�
 
 이 절에서는 다양한 미들웨어 요소와 새 비행체 제어 하드웨어에 이식할 설정 파일 업데이트를 설명합니다.
 
-### QuRT / Hexagon
+### QuRT / 헥사곤
 
 * 시작 스크립트는 [posix-configs/](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/posix-configs) 경로에 있습니다.
 * 운영체제 설정은 기본 리눅스 이미지의 일부입니다 (처리할 일: 리눅스 이미지 위치와 플래싱 방법 안내).
