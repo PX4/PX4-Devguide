@@ -27,7 +27,7 @@
   * [비행 모드](concept/flight_modes.md)
   * [비행 동작](concept/flight_tasks.md)
   * [믹서와 액추에이터](concept/mixing.md) 
-    * [개별 페이로드 믹서](concept/custom_mixer_payload.md)
+    * [개별 탑재 장치 믹서](concept/custom_mixer_payload.md)
   * [PWM limit 상태 머신](concept/pwm_limit.md)
   * [시스템 시작](concept/system_startup.md)
   * [SD 카드 배치](concept/sd_card_layout.md)
