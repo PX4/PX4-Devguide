@@ -24,7 +24,7 @@ ROS 저장소에는 x86, amd64(x86\_64), armhf(ARMv7)용 우분투 바이너리 
 `install_geographiclib_datasets.sh` 스크립트를 실행하여 [GeographicLib](https://geographiclib.sourceforge.io/) 데이터셋을 설치하십시오:
 
     wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
-    ./install_geographiclib_datasets.sh
+    sudo bash ./install_geographiclib_datasets.sh   
     
 
 ### 소스 코드 설치
