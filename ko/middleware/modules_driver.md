@@ -528,7 +528,7 @@ It is typically started with:
     pca9685_pwm_out start -a 64 -b 1
     
 
-Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 ROMFS/px4fmu_common/mixers/quad_x.main.mix`
+Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 etc/mixers/quad_x.main.mix`
 
 ### Usage {#pca9685_pwm_out_usage}
 
@@ -928,7 +928,7 @@ Source: [drivers/power_monitor/voxlpm](https://github.com/PX4/Firmware/tree/mast
          [-q]        quiet startup (no message if no device found)
          [-T <val>]  Type
                      values: VBATT|P5VDC|P12VDC, default: VBATT
-         [-K]        if initialization (probing) fails, keep retrying periodically
+         [-k]        if initialization (probing) fails, keep retrying periodically
     
        stop
     
