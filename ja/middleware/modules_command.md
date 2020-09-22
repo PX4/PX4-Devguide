@@ -75,6 +75,34 @@ Calibration procedure (running the command will guide you through it):
          [-a]        Select all channels
     
 
+## failure
+
+Source: [systemcmds/failure](https://github.com/PX4/Firmware/tree/master/src/systemcmds/failure)
+
+### Description
+
+Inject failures into system.
+
+### Implementation
+
+This system command sends a vehicle command over uORB to trigger failure.
+
+### Examples
+
+Test the GPS failsafe by stopping GPS:
+
+failure gps off
+
+### Usage {#failure_usage}
+
+    failure [arguments...]
+       help          Show this help text
+    
+       gps|...       Specify component
+    
+       ok|off|...    Specify failure type
+    
+
 ## gpio
 
 Source: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
@@ -377,6 +405,8 @@ Change the airframe and make sure the airframe's default parameters are loaded:
          [-c]        Show only changed params (unused too)
          [-q]        quiet mode, print only param value (name needs to be exact)
          [<filter>]  Filter by param name (wildcard at end allowed, eg. sys_*)
+    
+       show-for-airframe Show changed params for airframe config
     
        status        Print status of parameter system
     
