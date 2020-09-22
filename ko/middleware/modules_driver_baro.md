@@ -127,6 +127,7 @@ lps33hw <command> [arguments...]
      [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 93
+     [-k]        if initialization (probing) fails, keep retrying periodically
 
    stop
 
