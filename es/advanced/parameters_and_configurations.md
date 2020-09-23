@@ -37,6 +37,8 @@ You can use the `-c` flag to show all parameters that have changed (from their d
 param show -c
 ```
 
+You can use `param show-for-airframe` to show all parameters that have changed from their defaults for just the current airframe's definition file (and defaults it imports).
+
 ### Exporting and Loading Parameters
 
 You can save any parameters that have been *touched* since all parameters were last reset to their firmware-defined defaults (this includes any parameters that have been changed, even if they have been changed back to their default).
