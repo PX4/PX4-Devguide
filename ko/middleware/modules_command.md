@@ -581,6 +581,31 @@ Test the speed of an SD Card
          [-s]        Call fsync after each block (default=at end of each run)
     
 
+## system_time
+
+Source: [systemcmds/system_time](https://github.com/PX4/Firmware/tree/master/src/systemcmds/system_time)
+
+### Description
+
+Command-line tool to set and get system time.
+
+### Examples
+
+Set the system time and read it back
+
+    system_time set 1600775044
+    system_time get
+    
+
+### Usage {#system_time_usage}
+
+    system_time <command> [arguments...]
+     Commands:
+       set           Set the system time, provide time in unix epoch time format
+    
+       get           Get the system time
+    
+
 ## top
 
 Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
