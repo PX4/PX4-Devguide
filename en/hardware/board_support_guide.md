@@ -54,7 +54,7 @@ Because these boards are 100% compliant with the Pixhawk standard, the values as
 
 For example on FMUv5, the values are as listed below:
 
-REV | VER |  
+REV | VER |  &nbsp;
 --- | --- | ---
 0 | 0 | FMUV5
 0 | 4 | FMUV5 Mini
@@ -71,9 +71,10 @@ To qualify for this category the board must work with the latest stable PX4 rele
 > **Tip** While there is no commitment from the PX4 maintainers and the flight test team to support and test boards in this category, we strongly recommended PX4 and manufacturer teams build close working relationships.
   This will result in a better result for all parties.
 
-These boards will be assigned [VER and REV ID](#ver_rev_id) based on compatibility.
-A special assignment will be made by PX4 if the board is a variant of an FMU specification and capable of running the same binary, with minor differences supported by the manufacturer. 
-Contact the PX4 maintainer at [boards@px4.io](mailto:boards@px4.io) to request more information.
+<span></span>
+> **Note** These boards will be assigned [VER and REV ID](#ver_rev_id) based on compatibility.
+  A special assignment will be made by PX4 if the board is a variant of an FMU specification and capable of running the same binary, with minor differences supported by the manufacturer. 
+  Contact the PX4 maintainer at [boards@px4.io](mailto:boards@px4.io) to request more information.
 
 ## Experimental
 
@@ -82,9 +83,10 @@ The following requirements apply:
 
 - The board must be working with at least one PX4 release for a defined vehicle type, but not necessarily the latest release.
 
-Experimental boards are allocated [VER and REV IDs](#ver_rev_id) based on compatibility, in the same way as Manufacturer Supported boards.
-
+<span></span>
 > **Note** Experimental boards that were _previously_ Pixhawk or Manufacturer supported will have/retain their original IDs.
+  *New* experimental boards are allocated [VER and REV IDs](#ver_rev_id) based on compatibility, in the same way as Manufacturer Supported boards.
+  
 
 ## Unsupported {#unsupported}
 
@@ -95,7 +97,8 @@ This category includes all boards that aren't supported by the PX4 project or a 
 - Closed source, where any of the necessary tools/libs/drivers/etc needed to add support for a board is deemed incompatible due to licensing restrictions
 - Board doesn't meet minimum requirements outlined in the General requirements
 
-These boards will NOT be assigned [VER and REV ID](#ver_rev_id) (and cannot run PX4 FMUvX firmware).
+<span></span>
+> **Note** Unsupported boards will NOT be assigned [VER and REV ID](#ver_rev_id) (and cannot run PX4 FMUvX firmware).
 
 ## Release Process
 
