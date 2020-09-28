@@ -2,7 +2,7 @@
 
 PX4 uses canned airframe configurations as starting point for airframes. The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) folder. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
-Adding a configuration is straightforward: create a new config file in the [init.d folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (prepend the filename with an unused autostart ID), then [build and upload](../setup/building_px4.md) the software.
+Adding a configuration is straightforward: create a new config file in the [init.d/airframes folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d/airframes) (prepend the filename with an unused autostart ID), add the name of your new airframe config file to the [CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/CMakeLists.txt) in the relevant section, then [build and upload](../setup/building_px4.md) the software.
 
 Developers who do not want to create their own configuration can instead customize existing configurations using text files on the microSD card, as detailed on the [custom system startup](../concept/system_startup.md) page.
 
