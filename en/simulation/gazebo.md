@@ -375,6 +375,11 @@ The code is available on the [sitl_gazebo repository](https://github.com/px4/sit
 > **Note** The build system enforces the correct GIT submodules, including the simulator.
   It will not overwrite changes in files in the directory.
 
+In case something is not working as expected, you can increase the verbosity of the gazebo simulation through `VERBOSE_SIM`
+```
+export VERBOSE_SIM=1
+make px4_sitl gazebo
+```
 
 ## Further Information
 
