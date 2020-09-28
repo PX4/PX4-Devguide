@@ -279,7 +279,7 @@ WARNING: remove all props before using this command.
 motor_test <command> [arguments...]
  Commands:
    test          Set motor(s) to a specific output value
-     [-m <val>]  Motor to test (0...7, all if not specified)
+     [-m <val>]  Motor to test (1...8, all if not specified)
      [-p <val>]  Power (0...100)
                  default: 0
      [-t <val>]  Timeout in seconds (default=no timeout)
