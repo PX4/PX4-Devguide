@@ -24,7 +24,7 @@ ROS 代码库有针对 Ubuntu x86、amd64 (x86\_64) 和 armhf (ARMv7) 的二进�
 然后通过运行 ` install_geographiclib_datasets.sh ` 脚本来安装 [ GeographicLib ](https://geographiclib.sourceforge.io/) 数据集:(译者注：注意这一步需要在命令前加sudo才会安装成功)
 
     wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
-    ./install_geographiclib_datasets.sh
+    sudo bash ./install_geographiclib_datasets.sh   
     
 
 ### 源码方式安装

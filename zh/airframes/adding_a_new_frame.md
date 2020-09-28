@@ -6,6 +6,8 @@ PX4使用存储的配置作为机型的起始点。 机体的配置在[ROMFS/px4
 
 如果不想创建自己的配置文件，也可以用SD卡上的文本文件替换掉已有的自定义配置文件，具体细节请查看[自定义系统启动页。](../concept/system_startup.md)
 
+> **Note** To determine which parameters/values need to be set in the configuration file, you can first assign a generic airframe and tune the vehicle, and then use [`param show-for-airframe`](../middleware/modules_command.html#param) to list the parameters that changed.
+
 ## 配置文件概述
 
 配置和混控文件中的机型配置包括如下几个主要模块：
@@ -17,7 +19,7 @@ PX4使用存储的配置作为机型的起始点。 机体的配置在[ROMFS/px4
 
 上述几个模块在很大程度上都是相互独立的，这就意味着很多配置共用同一套机架的物理结构、启动同样的应用，仅在参数整定增益上有较大区别。
 
-> **Note** 新的机型配置文件仅在执行干净的构建后（运行命令 `make clean`）才会被自动添加到构建系统中。
+> **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
 
 ### 配置文件 {#config-file}
 
@@ -96,17 +98,17 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-> **Warning**：如果你想将某一个通道反相, 千万不要在你的遥控器上这样做或者改变例如 `RC1_REV` 这样的参数. 这些参数只会在你使用手动模式飞行的时候才会反相, 当你切换到飞控控制的飞行模式时, 这些通道输出依然是错误的(它只会改变你的遥控器的信号) 因此，对于一个正确的通道分配，要么改变PWM信号与`PWM_MAIN_REV1`（例如，对于通道1），要么改变相应混控器的输出缩放系数（见下文）。
+> **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
 ### 混控器文件 {#mixer-file}
 
-> **Note** 你应首先阅读 [概念 > 混控器](../concept/mixing.md) 页面， 该页面中的内容提供了理解如下混控器文件所需的背景知识。
+> **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
 
 下面展示了一个典型的混控器文件（[原始文件在这里](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)）。 混控器文件的文件名，在这里的案例中也就是 `wingwing.main.mix`，向我们提供了包括机型类型（`wingwing`），输出类型（`.main` 或者 `.aux`）和它是一个混控器定义文件（`.mix`）这三个重要信息。
 
 混频器文件包含多个代码块，每个代码块都针对一个执行器或电调。 因此，如果你有两个执行器和一个 ESC，那么你的混控器文件应该包含三个代码块。
 
-> **Note** 舵机 / 电机应按照混控器文件中的定义顺序对应地接入飞控。
+> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
 所以 MAIN1 应为左副翼，MAIN2 应为为右副翼 ，MAIN3 为空 （这里需要注意的是 Z: 表示混控器为空），MAIN4 为油门（在常规固定翼机型配置中应保持油门在 4 号输出位置上）。
 

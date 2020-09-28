@@ -30,6 +30,29 @@ ADC driver.
        status        print status info
     
 
+## ads1115
+
+Source: [drivers/adc/ads1115](https://github.com/PX4/Firmware/tree/master/src/drivers/adc/ads1115)
+
+### Usage {#ads1115_usage}
+
+    ads1115 <command> [arguments...]
+     Commands:
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
+         [-a <val>]  I2C address
+                     default: 72
+    
+       stop
+    
+       status        print status info
+    
+
 ## atxxxx
 
 Source: [drivers/osd/atxxxx](https://github.com/PX4/Firmware/tree/master/src/drivers/osd/atxxxx)
@@ -505,7 +528,7 @@ It is typically started with:
     pca9685_pwm_out start -a 64 -b 1
     
 
-Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 ROMFS/px4fmu_common/mixers/quad_x.main.mix`
+Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 etc/mixers/quad_x.main.mix`
 
 ### Usage {#pca9685_pwm_out_usage}
 
@@ -905,7 +928,7 @@ Source: [drivers/power_monitor/voxlpm](https://github.com/PX4/Firmware/tree/mast
          [-q]        quiet startup (no message if no device found)
          [-T <val>]  Type
                      values: VBATT|P5VDC|P12VDC, default: VBATT
-         [-K]        if initialization (probing) fails, keep retrying periodically
+         [-k]        if initialization (probing) fails, keep retrying periodically
     
        stop
     

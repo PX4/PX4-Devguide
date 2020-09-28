@@ -123,7 +123,10 @@ In this section we create a *minimal application* that just prints out `Hello Sk
     )
     ```
     
-    The `px4_add_module()` method builds a static library from a module description. The `MAIN` block lists the name of the module - this registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
+    The `px4_add_module()` method builds a static library from a module description.
+    
+    * The `MODULE` block is the Firmware-unique name of the module (by convention the module name is prefixed by parent directories back to `src`).
+    * The `MAIN` block lists the entry point of the module, which registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
     
     > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
     

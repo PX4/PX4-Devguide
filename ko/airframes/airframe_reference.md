@@ -1480,7 +1480,7 @@
 <tbody>
 <tr id="vtol_vtol_octoplane_generic_octoplane_vtol">
  <td style="vertical-align: top;">일반 8중 날개 수직 이착륙기</td>
- <td style="vertical-align: top;"><p><code>SYS_AUTOSTART</code> = 13050</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 13050</p></td>
 
 </tr>
 </tbody></table>

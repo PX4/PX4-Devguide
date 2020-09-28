@@ -38,15 +38,15 @@ PX4의 VIO 설정 방법을 더 알아보려면 다음을 참고하십시오:
 - [T265 설정 안내서](https://docs.px4.io/master/en/peripheral/t265_vio.md)
 - [스냅드래곤 > 설치 > 스냅 VIO 설치](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_software_installation.html#install-snap-vio)
 
-## 광학 추적(Optical Flow) {#optical_flow}
+## 광류 센서(Optical Flow) {#optical_flow}
 
-[광학 추적(Optical Flow)](https://docs.px4.io/master/en/sensor/optical_flow.html) 기술로 2차원 평면상의 속도를 추정합니다(아래 방향으로 향한 카메라와 아래 방향으로 향한 거리 센서 활용).
+[광류 센서(Optical Flow)](https://docs.px4.io/master/en/sensor/optical_flow.html) 기술로 2차원 평면상의 속도를 추정합니다(아래 방향으로 향한 카메라와 아래 방향으로 향한 거리 센서 활용).
 
-광학 추적(Optical Flow) 기술에 대해 더 알아보려면 다음을 참고하십시오:
+광류 센서(Optical Flow) 기술에 대해 더 알아보려면 다음을 참고하십시오:
 
-- [광학 추적(Optical Flow)](https://docs.px4.io/master/en/sensor/optical_flow.html) 
+- [광류 센서(Optical Flow)](https://docs.px4.io/master/en/sensor/optical_flow.html) 
   - [PX4Flow 스마트 카메라](https://docs.px4.io/master/en/sensor/px4flow.html)
-- [EKF > 광학 추적(Optical Flow)](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#optical-flow)
+- [EKF > 광류 센서(Optical Flow)](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html#optical-flow)
 
 ## 외부 참고 자료
 
