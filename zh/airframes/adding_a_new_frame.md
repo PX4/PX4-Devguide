@@ -2,7 +2,7 @@
 
 PX4使用存储的配置作为机型的起始点。 机体的配置在[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)文件夹下的[配置文件](#config-file)中定义。 配置文件中引用了用于描述机体物理结构的[混控文件](#mixer-file)，该类文件存储在[ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers)文件夹下。
 
-添加配置是非常简单的：在 [init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 文件夹下创建一个新的文件（使用未使用的 autostart ID 作为文件名的前缀），然后[构建并上传](../setup/building_px4.md)固件即可。
+Adding a configuration is straightforward: create a new config file in the [init.d/airframes folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d/airframes) (prepend the filename with an unused autostart ID), add the name of your new airframe config file to the [CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/CMakeLists.txt) in the relevant section, then [build and upload](../setup/building_px4.md) the software.
 
 如果不想创建自己的配置文件，也可以用SD卡上的文本文件替换掉已有的自定义配置文件，具体细节请查看[自定义系统启动页。](../concept/system_startup.md)
 
