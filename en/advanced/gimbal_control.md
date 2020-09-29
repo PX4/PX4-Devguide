@@ -19,6 +19,15 @@ After selecting the input mode, reboot the vehicle so that the mount driver star
 If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input.
 To switch from MAVLink to RC, a large stick motion is required.
 
+## MAVLINK Gimbal Support
+To enable a mavlink supported gimbal, (`MNT_MODE_IN`) parameter can be set to **MAVLINK_DO_MOUNT** and (`MNT_MODE_OUT`) should be set to **MAVLINK**. 
+
+If the serial connection from the gimbal to pixhawk is connected to the telemetry2 port in the pixhawk, (`MAV_1_CONFIG`) has to be set to **TELEM2**.If any other serial port is selected, (`MAV_1_CONFIG`) should be set to the correspoinding port.
+
+(`MAV_1_MODE`) should be set to **NORMAL** and (`SER_TEL2_BAUD`) parameter should be set according to the manufacturer recommended baude rate.
+
+This will enable the user to command the gimbal using **MAV_CMD_DO_MOUNT_CONTROL** and **MAV_CMD_DO_MOUNT_CONFIGURE**.
+
 ## AUX output
 
 If the output mode is set to `AUX`, a mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (overriding any aux mixer provided by the airframe configuration).
