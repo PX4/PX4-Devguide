@@ -503,7 +503,9 @@ pca9685_pwm_out start -a 64 -b 1
 ```
 
 Use the `mixer` command to load mixer files.
-`mixer load /dev/pca9685 etc/mixers/quad_x.main.mix`
+`mixer load /dev/pwm_outputX etc/mixers/quad_x.main.mix`
+The number X can be acquired by executing
+`pca9685_pwm_out status` when this driver is running.
 
 ### Usage {#pca9685_pwm_out_usage}
 ```
