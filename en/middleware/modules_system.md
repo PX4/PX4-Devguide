@@ -188,6 +188,23 @@ esc_battery <command> [arguments...]
 
    status        print status info
 ```
+## gyro_fft
+Source: [examples/gyro_fft](https://github.com/PX4/Firmware/tree/master/src/examples/gyro_fft)
+
+
+### Description
+
+
+### Usage {#gyro_fft_usage}
+```
+gyro_fft <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## heater
 Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
