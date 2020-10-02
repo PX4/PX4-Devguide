@@ -292,6 +292,23 @@ After saving, the reversed direction will be regarded as the normal one. So to r
        status        print status info
     
 
+## fake_gyro
+
+Source: [examples/fake_gyro](https://github.com/PX4/Firmware/tree/master/src/examples/fake_gyro)
+
+### Description
+
+### Usage {#fake_gyro_usage}
+
+    fake_gyro <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## fake_magnetometer
 
 Source: [examples/fake_magnetometer](https://github.com/PX4/Firmware/tree/master/src/examples/fake_magnetometer)
