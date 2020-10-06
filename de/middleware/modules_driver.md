@@ -892,6 +892,25 @@ The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
                      default: 4
     
 
+## tone_alarm
+
+Source: [drivers/tone_alarm](https://github.com/PX4/Firmware/tree/master/src/drivers/tone_alarm)
+
+### Description
+
+This module is responsible for the tone alarm.
+
+### Usage {#tone_alarm_usage}
+
+    tone_alarm <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## vmount
 
 Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
