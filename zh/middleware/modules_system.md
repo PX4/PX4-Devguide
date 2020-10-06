@@ -524,6 +524,7 @@ Play system tune #2:
     tune_control <command> [arguments...]
      Commands:
        play          Play system tune or single note.
+         error       Play error tune
          [-t <val>]  Play predefined system tune
                      default: 1
          [-f <val>]  Frequency of note in Hz (0-22kHz)
