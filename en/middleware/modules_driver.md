@@ -864,6 +864,24 @@ tap_esc <command> [arguments...]
      [-n <val>]  Number of ESCs
                  default: 4
 ```
+## tone_alarm
+Source: [drivers/tone_alarm](https://github.com/PX4/Firmware/tree/master/src/drivers/tone_alarm)
+
+
+### Description
+This module is responsible for the tone alarm.
+
+
+### Usage {#tone_alarm_usage}
+```
+tone_alarm <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## vmount
 Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
