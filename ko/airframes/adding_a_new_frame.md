@@ -2,7 +2,7 @@
 
 PX4에서는 에어프레임 시작점과 같은 설정값을 잘 포장한 에어프레임 설정을 활용합니다. [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 저장한 [설정 파일 ](#config-file)에 설정을 정의합니다. 설정 파일은 시스템의 물리 설정을 기술한 [믹서 파일](#mixer-file)을 참조하며 이 파일은 [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) 폴더에 들어있습니다.
 
-설정 추가는 굉장히 간단합니다: [init.d 폴더](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (파일 이름 앞에 사용하지 않는 자동 시작 ID를 붙임)에 새 설정 파일을 넣고, 프로그램을 [빌드 후 업로드](../setup/building_px4.md) 합니다.
+Adding a configuration is straightforward: create a new config file in the [init.d/airframes folder](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d/airframes) (prepend the filename with an unused autostart ID), add the name of your new airframe config file to the [CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/CMakeLists.txt) in the relevant section, then [build and upload](../setup/building_px4.md) the software.
 
 자체 설정을 만들고 싶지 않은 개발자는 대신 [개별 시스템 시작](../concept/system_startup.md) 페이지에서 자세하게 설명한 대로 microSD 카드에서 텍스트 파일로 이루어진 기존 설정을 약간 고칠 수 있습니다.
 

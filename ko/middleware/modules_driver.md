@@ -292,6 +292,23 @@ After saving, the reversed direction will be regarded as the normal one. So to r
        status        print status info
     
 
+## fake_gyro
+
+Source: [examples/fake_gyro](https://github.com/PX4/Firmware/tree/master/src/examples/fake_gyro)
+
+### Description
+
+### Usage {#fake_gyro_usage}
+
+    fake_gyro <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## fake_magnetometer
 
 Source: [examples/fake_magnetometer](https://github.com/PX4/Firmware/tree/master/src/examples/fake_magnetometer)
@@ -528,7 +545,7 @@ It is typically started with:
     pca9685_pwm_out start -a 64 -b 1
     
 
-Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 etc/mixers/quad_x.main.mix`
+Use the `mixer` command to load mixer files. `mixer load /dev/pwm_outputX etc/mixers/quad_x.main.mix` The number X can be acquired by executing `pca9685_pwm_out status` when this driver is running.
 
 ### Usage {#pca9685_pwm_out_usage}
 
@@ -873,6 +890,25 @@ The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
                      values: <device>
          [-n <val>]  Number of ESCs
                      default: 4
+    
+
+## tone_alarm
+
+Source: [drivers/tone_alarm](https://github.com/PX4/Firmware/tree/master/src/drivers/tone_alarm)
+
+### Description
+
+This module is responsible for the tone alarm.
+
+### Usage {#tone_alarm_usage}
+
+    tone_alarm <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
     
 
 ## vmount

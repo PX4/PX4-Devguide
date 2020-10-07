@@ -25,7 +25,7 @@
 
 ### 설명
 
-이 모듈은 계기 항속(IAS), 등가 항속(EAS), 실제 항속(TAS)과 현재 추정치가 잘못되었는지 여부의 정보, 센서 기반 데이터 또는 지상 속도에 풍속을 뺀 속도 데이터에 기반하는지 여부의 정보가 들어간 단일 airspeed_validated 토픽을 내보냅니다. 다중 "원시" 항속 입력을 지원하는 이 모듈은 오류 감지시 유효 값을 감지하는 센서로 자동 전환합니다. 오류 감지와 마찬가지로 계기 항속(IAS)에서 등가 항속(EAS)까지의 비례 상수 추정시에도 다양한 풍향/풍속 추정자를 실행하여 적절한 값을 내보냅니다.
+This module provides a single airspeed_validated topic, containing indicated (IAS), calibrated (CAS), true airspeed (TAS) and the information if the estimation currently is invalid and if based sensor readings or on groundspeed minus windspeed. 다중 "원시" 항속 입력을 지원하는 이 모듈은 오류 감지시 유효 값을 감지하는 센서로 자동 전환합니다. For failure detection as well as for the estimation of a scale factor from IAS to CAS, it runs several wind estimators and also publishes those.
 
 ### 사용법 {#airspeed_estimator_usage}
 
