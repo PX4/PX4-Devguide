@@ -3,6 +3,11 @@
 [ROS](http://www.ros.org/) (Robot Operating System) is a general purpose robotics library that can be used with PX4 for [offboard control](../ros/mavros_offboard.md).
 It uses the [MAVROS](../ros/mavros_installation.md) node to communicate with PX4 running on hardware or using the [Gazebo Simulator](../simulation/ros_interface.md).
 
+The easiest way to setup PX4 simulation with ROS on Ubuntu Linux is to use the standard installation script that can be found at [Development Environment on Linux > Gazebo with ROS](../setup/dev_env_linux_ubuntu.md#rosgazebo).
+The script installs everything you need: PX4, ROS "Melodic", the Gazebo 9 simulator, and [MAVROS](../ros/mavros_installation.md).
+
+> **Note** If you just need to install ROS on Ubuntu, follow [standard ROS "Melodic" installation instructions](http://wiki.ros.org/melodic/Installation/Ubuntu). For other OS guides, follow [ROS Melodic installation instructions](http://wiki.ros.org/melodic/Installation).
+
 This section contains topics about using ROS for offboard control with PX4.
 
 > **Tip** ROS is only officially supported on Linux platforms.
