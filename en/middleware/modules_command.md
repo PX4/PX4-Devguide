@@ -88,6 +88,8 @@ failure [arguments...]
    gps|...       Specify component
 
    ok|off|...    Specify failure type
+     [-i <val>]  sensor instance (0=all)
+                 default: 0
 ```
 ## gpio
 Source: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
