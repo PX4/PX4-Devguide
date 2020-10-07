@@ -100,6 +100,8 @@ failure gps off
        gps|...       Specify component
     
        ok|off|...    Specify failure type
+         [-i <val>]  sensor instance (0=all)
+                     default: 0
     
 
 ## gpio
