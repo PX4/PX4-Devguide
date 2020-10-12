@@ -548,7 +548,7 @@ The instantiation of the `SensorCombinedListener` class as a ROS node is done on
 
 A ROS2 advertiser node publishes data into the DDS/RTPS network (and hence to PX4).
 
-Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/listeners`:
+Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/advertisers`:
 
 ```c++
 #include <chrono>
