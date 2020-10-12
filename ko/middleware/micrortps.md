@@ -497,7 +497,7 @@ ROS 노드의 `SensorCombinedListener` 클래스 초기화는 `main` 함수에�
 
 ROS2 광역 전달 노드는 DDS/RTPS/PX4 네트워크에 데이터를 내보냅니다.
 
-`px4_ros_com/src/listeners`의 `debug_vect_advertiser.cpp` 예제를 살펴보겠습니다:
+Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/advertisers`:
 
 ```c++
 #include <chrono>
