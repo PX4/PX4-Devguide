@@ -22,18 +22,18 @@ Rotational earth effects are also modeled into the dynamics.
    ```sh
    dpkg -i JSBSim-devel_1.1.0.dev1-<release-number>.bionic.amd64.deb
    ```
-1. (Optional) For visualization, flightgear is used.
-   To install flightgear, refer to the [flightgear installation instructions](../simulation/flightgear.md)).
+1. (Optional) FlightGear may (optionally) be used for visualisation.
+   To install FlightGear, refer to the [FlightGear installation instructions](../simulation/flightgear.md)).
 
 ## Running the Simulation {#running}
 
-JSBSim SITL simulation can be conveniently run through a make command as the following.
-This will run the PX4 SITL instance as well as the flightgear UI for visualization.
+JSBSim SITL simulation can be conveniently run through a `make` command as shown below:
 ```sh
 cd /path/to/Firmware
 make px4_sitl jsbsim
 ```
-If you want to run without the flightgear UI, you can add `HEADLESS=1` to the front of the make command.
+This will run both the PX4 SITL instance and the FlightGear UI (for visualization).
+If you want to run without the FlightGear UI, you can add `HEADLESS=1` to the front of the `make` command.
 
 The supported vehicles and `make` commands are listed below (click on the links to see the vehicle images).
 
