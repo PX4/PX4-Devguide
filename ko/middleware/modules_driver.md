@@ -3,11 +3,11 @@
 하위 분류:
 
 - [관성 센서](modules_driver_imu.md)
-- [거리 센서](modules_driver_distance_sensor.md)
-- [항속 센서](modules_driver_airspeed_sensor.md)
-- [기압](modules_driver_baro.md)
-- [광류 센서](modules_driver_optical_flow.md)
-- [지자계](modules_driver_magnetometer.md)
+- [Distance Sensor](modules_driver_distance_sensor.md)
+- [Airspeed Sensor](modules_driver_airspeed_sensor.md)
+- [Baro](modules_driver_baro.md)
+- [Optical Flow](modules_driver_optical_flow.md)
+- [Magnetometer](modules_driver_magnetometer.md)
 
 ## adc
 

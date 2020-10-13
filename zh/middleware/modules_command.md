@@ -100,6 +100,8 @@ failure gps off
        gps|...       Specify component
     
        ok|off|...    Specify failure type
+         [-i <val>]  sensor instance (0=all)
+                     default: 0
     
 
 ## gpio
@@ -337,6 +339,12 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
        rwtest        Perform read-write test
     
        erase         Erase partition(s)
+    
+       has-secondary Check if the board has configured a secondary device
+    
+     The commands 'start', 'readtest' and 'rwtest' have an optional instance index:
+         [-i <val>]  storage index (if the board has multiple storages)
+                     default: 0
     
      The commands 'start', 'readtest', 'rwtest' and 'erase' have an optional
      parameter:

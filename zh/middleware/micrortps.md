@@ -497,7 +497,7 @@ int main(int argc, char *argv[])
 
 ROS2 广播器节点将数据发布到 DDS/RTPS 网络 (再转发至 PX4)。
 
-以 `px4_ros_com/src/listeners` 目录下的 `debug_vect_advertiser.cpp` 为例：
+Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/advertisers`:
 
 ```c++
 #include <chrono>

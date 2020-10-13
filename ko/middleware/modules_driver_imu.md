@@ -581,7 +581,7 @@ mpu9250 <command> [arguments...]
    status        print status info
 ```
 ## mpu9520
-소스 코드: [drivers/imu/invensense/mpu6500](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/mpu6500)
+Source: [drivers/imu/invensense/mpu6500](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/invensense/mpu6500)
 
 ### 사용법 {#mpu9520_usage}
 ```
