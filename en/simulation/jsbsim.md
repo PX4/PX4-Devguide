@@ -1,9 +1,8 @@
 # JSBSim Simulation
 
-[JSBSim](http://jsbsim.sourceforge.net/index.html) is a open source flight dynamics model (FDM) that supports many operating systems, including Microsoft Windows, Apple Macintosh, Linux, IRIX, Cygwin (Unix on Windows), etc.
-JSBSim is the simulation 
-
-Features include a fully configurable aerodynamics, propulsion system that can model complex flight dynamics of an aircraft. Also rotational earth effects are modeled into the dynamics. 
+[JSBSim](http://jsbsim.sourceforge.net/index.html) is a open source flight simulator ("flight dynamics model (FDM)") that runs on Microsoft Windows, Apple Macintosh, Linux, IRIX, Cygwin (Unix on Windows), etc.
+Its features include: fully configurable aerodynamics and a propulsion system that can model complex flight dynamics of an aircraft.
+Rotational earth effects are also modeled into the dynamics. 
 
 
 **Supported Vehicles:** Plane, Quadrotor, Hexarotor
@@ -23,17 +22,18 @@ Features include a fully configurable aerodynamics, propulsion system that can m
    ```sh
    dpkg -i JSBSim-devel_1.1.0.dev1-<release-number>.bionic.amd64.deb
    ```
-1. (Optional) For visualization, flightgear is used. To install flightgear, refer to the [flightgear installation instructions](../simulation/flightgear.md)).
+1. (Optional) For visualization, flightgear is used.
+   To install flightgear, refer to the [flightgear installation instructions](../simulation/flightgear.md)).
 
 ## Running the Simulation {#running}
 
-JSBSim SITL simulation can be conveniently run through a make command as the following. This will run the PX4 SITL instance as well as the flightgear UI for visualization.
+JSBSim SITL simulation can be conveniently run through a make command as the following.
+This will run the PX4 SITL instance as well as the flightgear UI for visualization.
 ```sh
 cd /path/to/Firmware
 make px4_sitl jsbsim
 ```
 If you want to run without the flightgear UI, you can add `HEADLESS=1` to the front of the make command.
-
 
 The supported vehicles and `make` commands are listed below (click on the links to see the vehicle images).
 
