@@ -38,11 +38,11 @@ LeddarOne LiDAR 직렬 버스 드라이버입니다.
 
 ## ll40ls
 
-소스 코드: [drivers/distance_sensor/ll40ls](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ll40ls)
+Source: [drivers/distance_sensor/ll40ls_pwm](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ll40ls_pwm)
 
 ### 설명
 
-LidarLite 범위 검색 센서용 I2C 버스 드라이버입니다.
+PWM driver for LidarLite rangefinders.
 
 센서/드라이버는 SENS_EN_LL40LS 매개변수를 활용하여 활성화해야합니다.
 
@@ -52,21 +52,13 @@ LidarLite 범위 검색 센서용 I2C 버스 드라이버입니다.
 
     ll40ls <command> [arguments...]
      Commands:
-       start
-         [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es)
-         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
-                     (default=1))
-         [-f <val>]  bus frequency in kHz
-         [-q]        quiet startup (no message if no device found)
+       start         Start driver
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
-       regdump
+       status        Print driver status information
     
-       stop
-    
-       status        print status info
+       stop          Stop driver
     
 
 ## mappydot
