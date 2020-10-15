@@ -41,6 +41,7 @@
   * [FlightGear Simulation](simulation/flightgear.md)
     * [FlightGear Vehicles](simulation/flightgear_vehicles.md)
 	* [Multi-Vehicle Sim with FlightGear](simulation/multi_vehicle_flightgear.md)
+  * [JSBSim Simulation](simulation/jsbsim.md)
   * [AirSim Simulation](simulation/airsim.md)
   * [Multi-Vehicle Simulation](simulation/multi-vehicle-simulation.md)
   * [Simulate Failsafes](simulation/failsafes.md)
