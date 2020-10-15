@@ -28,39 +28,45 @@ A simulator that provides physically and visually realistic simulations. In part
 
 **지원 기체:** 항공기, 오토자일로, 탐사선
 
+[JSBSim](../simulation/jsbsim.md) |
+
+A simulator that provides advanced flight dynamics models. This can be used to model realistic flight dynamics based on wind tunnel data.
+
+**Supported Vehicles:** Plane, Quad, Hex
+
 [jMAVSim](../simulation/jmavsim.md) | A simple multirotor simulator that allows you to fly *copter* type vehicles around a simulated world.
 
 It is easy to set up and can be used to test that your vehicle can take off, fly, land, and responds appropriately to various fail conditions (e.g. GPS failure). It can also be used for [multi-vehicle simulation](../simulation/multi_vehicle_jmavsim.md).
 
-**지원 기체:** 쿼드
+**Supported Vehicles:** Quad
 
 [AirSim](../simulation/airsim.md) |
 
-A cross platform simulator that provides physically and visually realistic simulations. 이 모의 시험 환경은 자원 활용에 집중하며, 여기에 설명한 다른 모의 시험 환경보다 훨씬 성능이 좋은 컴퓨터가 필요합니다.
+A cross platform simulator that provides physically and visually realistic simulations. This simulator is resource intensive, and requires a very significantly more powerful computer than the other simulators described here.
 
-**지원 기체:** Iris (X 설정에서의 멀티로터 모델과 PX4 쿼드로터 설정).
+**Supported Vehicles:** Iris (MultiRotor model and a configuration for PX4 QuadRotor in the X configuration).
 
 [Simulation-In-Hardware](../simulation/simulation-in-hardware.md) (SIH) |
 
 An alternative to HITL that offers a hard real-time simulation directly on the hardware autopilot.
 
-**지원 기체:** 쿼드
+**Supported Vehicles:** Quad
 
 Instructions for how to setup and use the simulators are in the topics linked above.
 
 * * *
 
-이 주제의 나머지 부분에서는 모의 시험 환경 기반 동작 방식에 대한 "약간 일반적인" 설명을 다룹니다. It is not required to *use* the simulators.
+The remainder of this topic is a "somewhat generic" description of how the simulation infrastructure works. It is not required to *use* the simulators.
 
 ## 모의시험 환경의 MAVLink API
 
 All simulators communicate with PX4 using the Simulator MAVLink API. This API defines a set of MAVLink messages that supply sensor data from the simulated world to PX4 and return motor and actuator values from the flight code that will be applied to the simulated vehicle. The image below shows the message flow.
 
-![모의시험 환경 MAVLink API](../../assets/simulation/px4_simulator_messages.png)
+![Simulator MAVLink API](../../assets/simulation/px4_simulator_messages.png)
 
 > **Note** A SITL build of PX4 uses [simulator_mavlink.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/simulator/simulator_mavlink.cpp) to handle these messages while a hardware build in HIL mode uses [mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp). Sensor data from the simulator is written to PX4 uORB topics. All motors / actuators are blocked, but internal software is fully operational.
 
-메시지는 아래에 설명합니다(별도의 세부 내용은 링크를 참고).
+The messages are described below (see links for specific detail).
 
 | 메세지                                                                                                            | 방향             | 설명                                                                                                                                                                                                                                            |
 | -------------------------------------------------------------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -74,7 +80,7 @@ All simulators communicate with PX4 using the Simulator MAVLink API. This API de
 
 ## PX4 MAVLink 기본 UDP 포트
 
-기본적으로 PX4는 보통 지상 통제 장치(예: *QGroundControl*), 외장 보드(예: MAVSDK, MAVROS), 모의시험 환경 API(예: 가제보)와의 MAVLink 통신을 목적으로 UDP 포트로의 연결을 수립합니다. 해당 포트는 다음과 같습니다:
+By default, PX4 uses commonly established UDP ports for MAVLink communication with ground control stations (e.g. *QGroundControl*), Offboard APIs (e.g. MAVSDK, MAVROS) and simulator APIs (e.g. Gazebo). These ports are:
 
 - UDP Port **14540** is used for communication with offboard APIs. Offboard APIs are expected to listen for connections on this port.
 - UDP 포트 **14550**번은 지상 통제 장치의 통신 용도로 사용합니다. GCS are expected to listen for connections on this port. *QGroundControl* listens to this port by default.
@@ -90,7 +96,7 @@ The diagram below shows a typical SITL simulation environment for any of the sup
 - PX4 uses the normal MAVLink module to connect to ground stations (which listen on port 14550) and external developer APIs like MAVSDK or ROS (which listen on port 14540).
 - A serial connection is used to connect Joystick/Gamepad hardware via *QGroundControl*.
 
-![PX4 SITL 개요](../../assets/simulation/px4_sitl_overview.png)
+![PX4 SITL overview](../../assets/simulation/px4_sitl_overview.png)
 
 If you use the normal build system SITL `make` configuration targets (see next section) then both SITL and the Simulator will be launched on the same computer and the ports above will automatically be configured. You can configure additional MAVLink UDP connections and otherwise modify the simulation environment in the build configuration and initialisation files.
 
