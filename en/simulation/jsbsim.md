@@ -39,9 +39,9 @@ The supported vehicles and `make` commands are listed below (click on the links 
 
 Vehicle | Command
 --- | ---
-[Standard Plane]() | `make px4_sitl jsbsim_rascal`
-[Quadrotor]() | `make px4_sitl jsbsim_quadrotor_x`
-[Hexarotor]() | `make px4_sitl jsbsim_hexarotor_x`
+Standard Plane | `make px4_sitl jsbsim_rascal`
+Quadrotor | `make px4_sitl jsbsim_quadrotor_x`
+Hexarotor | `make px4_sitl jsbsim_hexarotor_x`
 
 The commands above launch a single vehicle with the full UI.
 *QGroundControl* should be able to automatically connect to the simulated vehicle.
