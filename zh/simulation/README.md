@@ -28,6 +28,12 @@ A simulator that provides physically and visually realistic simulations. In part
 
 **Supported Vehicles:** Plane, Autogyro, Rover
 
+[JSBSim](../simulation/jsbsim.md) |
+
+A simulator that provides advanced flight dynamics models. This can be used to model realistic flight dynamics based on wind tunnel data.
+
+**Supported Vehicles:** Plane, Quad, Hex
+
 [jMAVSim](../simulation/jmavsim.md) | A simple multirotor simulator that allows you to fly *copter* type vehicles around a simulated world.
 
 It is easy to set up and can be used to test that your vehicle can take off, fly, land, and responds appropriately to various fail conditions (e.g. GPS failure). It can also be used for [multi-vehicle simulation](../simulation/multi_vehicle_jmavsim.md).
