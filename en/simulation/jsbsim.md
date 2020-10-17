@@ -26,25 +26,41 @@ Rotational earth effects are also modeled into the dynamics.
    To install FlightGear, refer to the [FlightGear installation instructions](../simulation/flightgear.md)).
 
 ## Running the Simulation {#running}
+### Running with make{#running}
 
-JSBSim SITL simulation can be conveniently run through a `make` command as shown below:
+JSBSim SITL simulation can be conveniently run through a `make` command in PX4 Firmware as shown below:
 ```sh
 cd /path/to/Firmware
 make px4_sitl jsbsim
 ```
+This is convenient for developers who are developing the firmware and evaluating the software in the jsbsim simulation.
 This will run both the PX4 SITL instance and the FlightGear UI (for visualization).
-If you want to run without the FlightGear UI, you can add `HEADLESS=1` to the front of the `make` command.
+If you want to run without the FlightGear UI, you can add `HEADLESS=1` to the front of the `make` command. For example:
+```
+HEADLESS=1 make px4_sitl jsbsim
+```
 
 The supported vehicles and `make` commands are listed below (click on the links to see the vehicle images).
 
 Vehicle | Command
 --- | ---
 Standard Plane | `make px4_sitl jsbsim_rascal`
+Standard Plane | `make px4_sitl jsbsim_malolo`
 Quadrotor | `make px4_sitl jsbsim_quadrotor_x`
 Hexarotor | `make px4_sitl jsbsim_hexarotor_x`
 
 The commands above launch a single vehicle with the full UI.
 *QGroundControl* should be able to automatically connect to the simulated vehicle.
+
+### Running with ROS{#running}
+> **Warning** This document assumes that the [ROS](../ros/README.md) environment has been setup correctly. 
+  If you plan to use PX4 with ROS you **should follow the** [ROS Instructions](../simulation/ros_interface.md) to install ROS (and thereby avoid installation conflicts).
+
+JSBSim can be useful for ROS developers that need advanced flight dynamics simulated to evaluate their software components.
+```
+roslaunch jsbsim_bridge px4_jsbsim_bridge.launch
+```
+
 
 
 ## Further Information
