@@ -360,3 +360,26 @@ Aerotenna uLanding 레이더 장치용 직렬 버스 통신 드라이버입니�
        stop
     
        status        print status info
+    
+
+## vl53l1x
+
+Source: [drivers/distance_sensor/vl53l1x](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/vl53l1x)
+
+### Usage {#vl53l1x_usage}
+
+    vl53l1x <command> [arguments...]
+     Commands:
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
+         [-R <val>]  Sensor rotation - downward facing by default
+                     default: 25
+    
+       stop
+    
+       status        print status info
