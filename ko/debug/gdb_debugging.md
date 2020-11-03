@@ -59,14 +59,14 @@ export HEAP_PROFILE_TIME_INTERVAL=30
 
 ```bash
 env LD_PRELOAD=/lib64/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../etc -s etc/init.d-posix/rcS
-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
+pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf 
 ```
 
 ##### 우분투:
 
 ```bash
 env LD_PRELOAD=/usr/lib/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../etc -s etc/init.d-posix/rcS
-google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
+google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf 
 ```
 
 힙 할당 그래프를 넣은 pdf 문서가 나타납니다. 그래프의 숫자는 MB 단위기 때문에 모두 0입니다. 그래서 백분율만을 대신 보겠습니다. 실제 동작하는 메모리(노드, 하위트리의 점유 대상)를 보여주는데, 프로그램이 끝나기 전까지도 여전히 메모리를 사용중이었음을 의미합니다.
