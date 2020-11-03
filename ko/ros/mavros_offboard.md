@@ -6,7 +6,7 @@
 
 <span></span>
 
-> **Tip** 이 예제는 C++ 언어를 사용합니다. 파이썬 언어로 작성한 동일 예제는 [integrationtests/python_src/px4_it/mavros](https://github.com/PX4/Firmware/tree/master/integrationtests/python_src/px4_it/mavros)에 있습니다.
+> **Tip** 이 예제는 C++ 언어를 사용합니다. Similar examples in Python can be found here: [integrationtests/python_src/px4_it/mavros](https://github.com/PX4/PX4-Autopilot/tree/master/integrationtests/python_src/px4_it/mavros).
 
 <video width="100%" autoplay="true" controls="true">
     <source src="../../assets/simulation/gazebo_offboard.webm" type="video/webm">
