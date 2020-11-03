@@ -93,7 +93,7 @@
 
 ## PX4 수정사항
 
-1. **common.xml** (**Firmware/mavlink/include/mavlink/v2.0/message_definitions**에 있음)에 다음과 같이 여러분의 MAVLink 메시지를 추가합니다.(위의 MAVROS와 동일):
+1. Inside **common.xml** (in **PX4-Autopilot/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (same procedure as for MAVROS section above):
 
    ```xml
    ...
@@ -104,7 +104,7 @@
    ...
    ```
 
-1. *common*, *standard* (**Firmware/mavlink/include/mavlink/v2.0**에 있음) 디렉토리 삭제.
+1. Remove *common*, *standard* directories in (**PX4-Autopilot/mavlink/include/mavlink/v2.0**).
 
    ```sh
    rm -r common
@@ -121,21 +121,21 @@
 
 1. "MAVLink Generator" 팝업이 나타납니다:
     
-    - *XML*은 **/Firmware/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**로 "Browse"합니다.
-    - Out은 **/Firmware/mavlink/include/mavlink/v2.0/**로 "Browse"합니다.
+    - For *XML*, "Browse" to **/PX4-Autopilot/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**.
+    - For Out, "Browse" to **/PX4-Autopilot/mavlink/include/mavlink/v2.0/**.
     - **C** 언어를 선택
     - 프로토콜 **2.0**을 선택
     - *Validate* 체크
     
-    **Generate**를 누릅니다. **/Firmware/mavlink/include/mavlink/v2.0/**아래에 *common* 및 *standard* 디렉토리가 생성됩니다.
+    **Generate**를 누릅니다. You will see *common*, and *standard* directories created in **/PX4-Autopilot/mavlink/include/mavlink/v2.0/**.
 
-2. (Firmware/msg)에 **key_command.msg**라는 uORB 메시지 파일을 작성합니다. 이번 예제에서는 "key_command.msg" 파일에는 아래의 코드만 있습니다:
+2. Make your own uORB message file **key_command.msg** in (PX4-Autopilot/msg). 이번 예제에서는 "key_command.msg" 파일에는 아래의 코드만 있습니다:
 
    ```
    char cmd
    ```
 
-다음으로 **CMakeLists.txt**(**Firmware/msg**에 있음)에 아래를 추가합니다.
+Then, in **CMakeLists.txt** (in **PX4-Autopilot/msg**), include
 
    ```cmake
    set(
@@ -144,7 +144,7 @@
         )
    ```
 
-1. **mavlink_receiver.h** (**Firmware/src/modules/mavlink**에 있음) 편집
+1. Edit **mavlink_receiver.h** (in **PX4-Autopilot/src/modules/mavlink**)
 
    ```cpp
    ...
@@ -160,7 +160,7 @@
    }
    ```
 
-1. **mavlink_receiver.cpp** (**Firmware/src/modules/mavlink**에 있음) 편집. 여기에서 PX4는 ROS에서 전송된 MAVLink 메시지를 수신하고, 이를 uORB 토픽으로 발행합니다.
+1. Edit **mavlink_receiver.cpp** (in **PX4-Autopilot/src/modules/mavlink**). 여기에서 PX4는 ROS에서 전송된 MAVLink 메시지를 수신하고, 이를 uORB 토픽으로 발행합니다.
 
    ```cpp
    ...
@@ -193,7 +193,7 @@
    }
    ```
 
-1. 다른 subscriber 모듈예저처럼 여러분의 uORB 토픽 subscriber를 작성합니다. (/Firmware/src/modules/key_receiver)에 모델을 생성합니다. 이 디렉토리에, **CMakeLists.txt** 및 **key_receiver.cpp** 두개의 파일을 생성합니다. 개별 파일은 다음과 같습니다.
+1. 다른 subscriber 모듈예저처럼 여러분의 uORB 토픽 subscriber를 작성합니다. For this example lets create the model in (/PX4-Autopilot/src/modules/key_receiver). 이 디렉토리에, **CMakeLists.txt** 및 **key_receiver.cpp** 두개의 파일을 생성합니다. 개별 파일은 다음과 같습니다.
     
     -CMakeLists.txt
 
@@ -273,7 +273,7 @@
 
 상세한 설명은 [Writing your first application](https://dev.px4.io/en/apps/hello_sky.html) 문서를 참고하십시오.
 
-1. 마지막으로 **Firmware/boards/**에서 여러분의 보드에 해댕하는 **default.cmake**파일에 여러분의 모듈을 추가합니다. 예를 들면, Pixhawk 4의 경우에는 **Firmware/boards/px4/fmu-v5/default.cmake**에 다음 코드를 추가합니다:
+1. Lastly add your module in the **default.cmake** file correspondent to your board in **PX4-Autopilot/boards/**. For example for the Pixhawk 4 add the following code in **PX4-Autopilot/boards/px4/fmu-v5/default.cmake**:
 
    ```cmake
     MODULES
@@ -305,9 +305,9 @@
 
 ### PX4관련 빌드
 
-1. PX4 펌웨어를 빌드하고 [일반적은 방법으로](../setup/building_px4.md#nuttx) 업로드합니다.
+1. Build PX4-Autopilot and upload [in the normal way](../setup/building_px4.md#nuttx).
     
-    예를 들며, Pixhawk 4/FMUv5를 빌드하기위해서는 Firmware 디렉토리의 루트에서 아래 명령을 실행합니다:
+    For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the PX4-Autopilot directory:
 
    ```sh
     make px4_fmu-v5_default upload
@@ -337,7 +337,7 @@ ROS 토픽 "/mavros/keyboard_command/keyboard_sub"에 "std_msgs/Char" 메시지 
 1. UDP를 통해 Pixhawk nutshell로 들어갑니다. xxx.xx.xxx.xxx를 여러분의 IP로 변경하세요.
 
    ```sh
-   cd Firmware/Tools
+   cd PX4-Autopilot/Tools
    ./mavlink_shell.py xxx.xx.xxx.xxx:14557 --baudrate 57600
    ```
 
