@@ -23,22 +23,22 @@ MAVLink 2 메세지는 C 라이브러리로 만들어야합니다. 일단 [MAVLi
 python -m pymavlink.tools.mavgen --lang=C --wire-protocol=2.0 --output=generated/include/mavlink/v2.0 message_definitions/v1.0/custom_messages.xml
 ```
 
-새로 만든 헤더를 활용/시험 목적으로 **Firmware/mavlink/include/mavlink/v2.0**에 복사할 수 있습니다.
+For your own use/testing you can just copy the generated headers into **PX4-Autopilot/mavlink/include/mavlink/v2.0**.
 
-기존의 다른 요소와 바뀐 내용을 쉽게 시험해보려면, https://github.com/mavlink/c_library_v2 저장소를 가져온 소스트리에 새로 만든 헤더를 추가하는 방법이 가장 바람직한 접근 방안이라 볼 수 있습니다. PX4 개발자의 경우 가져온 하위 모듈을 빌드를 진행하기 전에 펌웨어 저장소에서 업데이트할 수 있습니다.
+기존의 다른 요소와 바뀐 내용을 쉽게 시험해보려면, https://github.com/mavlink/c_library_v2 저장소를 가져온 소스트리에 새로 만든 헤더를 추가하는 방법이 가장 바람직한 접근 방안이라 볼 수 있습니다. PX4 developers can then update the submodule to your fork in the PX4-Autopilot repo before building.
 
 ## MAVLink 개별 메시지 송신
 
 이 절에서는 uORB 개별 설정 메세지를 활용하여 MAVLink 메세지에 실어 보내는 방법을 설명합니다.
 
-[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)에 MAVLink 헤더와 uORB 메세지를 추가하십시오.
+Add the headers of the MAVLink and uORB messages to [mavlink_messages.cpp](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/mavlink_messages.cpp)
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v2.0/custom_messages/mavlink.h>
 ```
 
-[mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)에 새 클래스를 만드십시오.
+Create a new class in [mavlink_messages.cpp](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/mavlink_messages.cpp#L2193)
 
 ```C
 class MavlinkStreamCaTrajectory : public MavlinkStream
@@ -104,7 +104,7 @@ protected:
 };
 ```
 
-마지막으로 [mavlink_messages.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_messages.cpp)의 하단에 `streams_list`의 스트림 클래스를 추가하십시오.
+Finally append the stream class to the `streams_list` at the bottom of [mavlink_messages.cpp](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/mavlink_messages.cpp)
 
 ```C
 StreamListItem *streams_list[] = {
@@ -114,7 +114,7 @@ nullptr
 };
 ```
 
-그 다음 [시작 스크립트](../concept/system_startup.md) (예: NuttX의 [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) 또는 SITL의 [ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)) 에 다음 행을 추가하는 식으로 스트림을 활성화했는지 확인하십시오. 참고로, `-r` 인자로 스트리밍 전송율을 설정하고 `-u` 인자로 UDP 포트 14556의 MAVLink 채널을 식별합니다.
+Then make sure to enable the stream, for example by adding the following line to the [startup script](../concept/system_startup.md) (e.g. [/ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) on NuttX or [ROMFS/px4fmu_common/init.d-posix/rcS](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)) on SITL. 참고로, `-r` 인자로 스트리밍 전송율을 설정하고 `-u` 인자로 UDP 포트 14556의 MAVLink 채널을 식별합니다.
 
     mavlink stream -r 50 -s CA_TRAJECTORY -u 14556
     
@@ -127,26 +127,26 @@ nullptr
 
 이 절에서는 MAVLink 메시지 수신 및 uORB 대상 송신 방법을 설명합니다.
 
-[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)에 MAVLink 메세지 수신 핸들 함수를 추가하십시오.
+Add a function that handles the incoming MAVLink message in [mavlink_receiver.h](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/mavlink_receiver.h#L77)
 
 ```C
 #include <uORB/topics/ca_trajectory.h>
 #include <v2.0/custom_messages/mavlink_msg_ca_trajectory.h>
 ```
 
-[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)의 `MavlinkReceiver` 클래스에 MAVLink 메세지 수신을 처리할 핸들 함수를 추가하십시오.
+Add a function that handles the incoming MAVLink message in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/mavlink_receiver.h#L140)
 
 ```C
 void handle_message_ca_trajectory_msg(mavlink_message_t *msg);
 ```
 
-[mavlink_receiver.h](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)의 `MavlinkReceiver` 클래스에 uORB 송신부를 추가하십시오.
+Add an uORB publisher in the `MavlinkReceiver` class in [mavlink_receiver.h](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/mavlink_receiver.h#L195)
 
 ```C
 orb_advert_t _ca_traj_msg_pub;
 ```
 
-[mavlink_receiver.cpp](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp)에 `handle_message_ca_trajectory_msg` 함수 구현체를 넣으십시오.
+Implement the `handle_message_ca_trajectory_msg` function in [mavlink_receiver.cpp](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/mavlink_receiver.cpp)
 
 ```C
 void MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
@@ -173,7 +173,7 @@ void MavlinkReceiver::handle_message_ca_trajectory_msg(mavlink_message_t *msg)
 }
 ```
 
-and finally make sure it is called in [MavlinkReceiver::handle_message()](https://github.com/PX4/Firmware/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)
+and finally make sure it is called in [MavlinkReceiver::handle_message()](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/mavlink_receiver.cpp#L228)
 
 ```C
 MavlinkReceiver::handle_message(mavlink_message_t *msg)
