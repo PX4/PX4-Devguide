@@ -33,7 +33,7 @@ This will enable the user to command the gimbal using [MAV_CMD_DO_MOUNT_CONTROL]
 
 The gimbal can be connected to the Flight controller AUX ports by setting the ouptut mode to `MNT_MODE_OUT=AUX`.
 
-A mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (this overrides any AUX mixer provided by the airframe configuration).
+A mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (this overrides any AUX mixer provided by the airframe configuration).
 
 The output assignment is as following:
 
