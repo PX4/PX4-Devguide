@@ -9,7 +9,7 @@
 
 A payload mixer is just a [summing mixer](../concept/mixing.md#summing_mixer) that maps any of the function values from [Control Group #6 (First Payload)](../concept/mixing.md#control_group_6) to a particular output. 随后您可以将 uORB 主题发布到选定的控制组函数中，其值将被映射到指定的输出。
 
-在这个例子中，我们将创建一个基于*遥控信号直穿的混控器*（[穿过辅助混控器](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)） 这个混控器通常被加载到大型多旋翼的 AUX PWM 端口)。 它将4个用户自定义的遥控信号值（使用[RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1)参数）直传到4个AUX口作为PWM输出
+For this example, we'll create a custom mixer based on the *RC passthrough mixer* ([pass.aux.mix](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)). 这个混控器通常被加载到大型多旋翼的 AUX PWM 端口)。 它将4个用户自定义的遥控信号值（使用[RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1)参数）直传到4个AUX口作为PWM输出
 
 ```
 # 输出1-4的手动直传混控器
@@ -53,12 +53,12 @@ Start by copying the mixer file and putting it onto the SD Card at: **/etc/mixer
 因为这个输出处于文件中的第一个位置，它将映射到第一个AUX PWM输出(除非启用 UAVCAN)。 此输出将遵从对载荷控制组(6)输出1的更新。
 
 控制组6也需要在代码中定义(缺少!):
-- Add `actuator_controls_6` to the TOPICS definition in [/msg/actuator_controls.msg](https://github.com/PX4/Firmware/blob/master/msg/actuator_controls.msg#L17):
+- Add `actuator_controls_6` to the TOPICS definition in [/msg/actuator_controls.msg](https://github.com/PX4/PX4-Autopilot/blob/master/msg/actuator_controls.msg#L17):
   ```
   # TOPICS actuator_controls actuator_controls_0 actuator_controls_1 actuator_controls_2 actuator_controls_3 actuator_controls_6
   ```
 - Increase `NUM_ACTUATOR_CONTROL_GROUPS` to 7 in the same file.
-- Subscribe to the additional control group in the output library ([/src/lib/mixer_module/mixer_module.cpp#L52](https://github.com/PX4/Firmware/blob/master/src/lib/mixer_module/mixer_module.cpp#L52)) in the `MixingOutput` constructor. It should look like this:
+- Subscribe to the additional control group in the output library ([/src/lib/mixer_module/mixer_module.cpp#L52](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/mixer_module/mixer_module.cpp#L52)) in the `MixingOutput` constructor. It should look like this:
   ```
     {&interface, ORB_ID(actuator_controls_0)},
     {&interface, ORB_ID(actuator_controls_1)},
