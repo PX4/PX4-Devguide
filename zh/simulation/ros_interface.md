@@ -41,15 +41,15 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 
 有launch文件的可以直接ROS中运行仿真
 
-* [ posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/posix_sitl.launch)：最简单的软件在环仿真launch文件
-* [ mavros_posix_sitl.launch ](https://github.com/PX4/Firmware/blob/master/launch/mavros_posix_sitl.launch)：在软件在环仿真launch多加了mavros通讯 
+* [posix_sitl.launch](https://github.com/PX4/PX4-Autopilot/blob/master/launch/posix_sitl.launch): plain SITL launch
+* [mavros_posix_sitl.launch](https://github.com/PX4/PX4-Autopilot/blob/master/launch/mavros_posix_sitl.launch): SITL and MAVROS 
 
 要在ROS中运行软件在环仿真，需要先source你的路径
 
 （可选）：如果您从源代码编译 MAVROS 或其他 ROS 包，则仅获取 catkin 工作区：
 
 ```sh
-cd <Firmware_clone>
+cd <PX4-Autopilot_clone>
 DONT_RUN=1 make px4_sitl_default gazebo
 source ~/catkin_ws/devel/setup.bash    # (optional)
 source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
@@ -98,7 +98,7 @@ INFO  Waiting for initial data on UDP. Please start the flight simulator to proc
 现在在新终端中确保您可以通过 Gazebo 菜单插入 Iris 模型，为此设置环境变量以包含相应的` sitl_gazebo `文件夹。
 
 ```sh
-cd <Firmware_clone>
+cd <PX4-Autopilot_clone>
 source Tools/setup_gazebo.bash $(pwd) $(pwd)/build/px4_sitl_default
 ```
 
