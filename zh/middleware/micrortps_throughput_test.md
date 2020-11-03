@@ -6,7 +6,7 @@
 
 ## 使用 uORB 报文
 
-首先，在 **Firmware/msg/** 目录下创建一个新的 uORB 报文。 可以命名为 **throughput_256.msg** 并包含如下内容：
+First create a new uORB message for this test in the folder **/PX4-Autopilot/msg/**. 可以命名为 **throughput_256.msg** 并包含如下内容：
 
 ```text
 uint8[256] data
@@ -15,11 +15,11 @@ uint8[256] data
 可以使用如下命令：
 
 ```sh
-cd /path/to/PX4/Firmware/msg
+cd /path/to/PX4/PX4-Autopilot/msg
 echo uint8[256] data > throughput_256.msg
 ```
 
-注册新的报文，添加到如下文件中：**/Firmware/msg/CMakeLists.txt**：
+Register the new message adding it to the list of messages in the file: **/PX4-Autopilot/msg/CMakeLists.txt**:
 
 ```cmake
 ...
@@ -29,7 +29,7 @@ throughput_256.msg
 ...
 ```
 
-通过在脚本 **/Firmware/Tools/message_id.py** 中添加一行，制定一个该报文的话题 Id ：
+Give the message a topic id by adding a line in the **/PX4-Autopilot/Tools/message_id.py** script:
 
 ```python
 ...
@@ -52,7 +52,7 @@ set(GENERATE_RTPS_BRIDGE off)
 使用 *generate_microRTPS_bridge.py* 手动生成桥接代码（代码会发送和接收我们刚刚加入的 `throughput_256` uORB 话题报文）：
 
 ```sh
-cd /path/to/PX4/Firmware
+cd /path/to/PX4/PX4-Autopilot
 python Tools/generate_microRTPS_bridge.py --send msg/throughput_256.msg --receive msg/throughput_256.msg
 ```
 
