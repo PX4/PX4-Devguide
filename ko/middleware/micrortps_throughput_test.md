@@ -6,7 +6,7 @@
 
 ## uORB 메시지 만들기
 
-우선 이 테스트를 위해 **/Firmware/msg/** 폴더에 새로운 uORB 메시지를 만드세요. 이 메시지를 **throughput_256.msg**로 하고 아래의 내용을 가질 것입니다.
+First create a new uORB message for this test in the folder **/PX4-Autopilot/msg/**. 이 메시지를 **throughput_256.msg**로 하고 아래의 내용을 가질 것입니다.
 
 ```text
 uint8[256] data
@@ -15,11 +15,11 @@ uint8[256] data
 아래와 같은 명령어를 통해 수행됩니다.
 
 ```sh
-cd /path/to/PX4/Firmware/msg
+cd /path/to/PX4/PX4-Autopilot/msg
 echo uint8[256] data > throughput_256.msg
 ```
 
-**/Firmware/msg/CMakeLists.txt** 파일의 메시지 목록에 새 메시지 파일을 추가합니다.
+Register the new message adding it to the list of messages in the file: **/PX4-Autopilot/msg/CMakeLists.txt**:
 
 ```cmake
 ...
@@ -29,7 +29,7 @@ throughput_256.msg
 ...
 ```
 
-**/Firmware/Tools/message_id.py** 스크립트에 토픽 ID를 추가하세요.
+Give the message a topic id by adding a line in the **/PX4-Autopilot/Tools/message_id.py** script:
 
 ```python
 ...
@@ -52,7 +52,7 @@ set(GENERATE_RTPS_BRIDGE off)
 *generate_microRTPS_bridge.py*를 사용하여 브릿지 코드를 수동으로 생성합니다(이 코드는 오로지 `throughput_256` uORB 토픽만 송수신함).
 
 ```sh
-cd /path/to/PX4/Firmware
+cd /path/to/PX4/PX4-Autopilot
 python Tools/generate_microRTPS_bridge.py --send msg/throughput_256.msg --receive msg/throughput_256.msg
 ```
 
