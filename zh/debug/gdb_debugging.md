@@ -59,14 +59,14 @@ export HEAP_PROFILE_TIME_INTERVAL=30
 
 ```bash
 env LD_PRELOAD=/lib64/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../etc -s etc/init.d-posix/rcS
-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
+pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf 
 ```
 
 ##### Ubuntu：
 
 ```bash
 env LD_PRELOAD=/usr/lib/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../etc -s etc/init.d-posix/rcS
-google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
+google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf 
 ```
 
 这会生成一个带堆分配示意图的 Pdf。 图中的数字会一直是0，因为单位是 MB。 可以看百分比。 这显示出（节点及子树的）活动内存，意味着最终内存依然在使用。
