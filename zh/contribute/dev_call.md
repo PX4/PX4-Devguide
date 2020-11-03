@@ -20,7 +20,7 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
 
 会议的第一部分也是重要的部分将持续45分钟，为项目的发展方向提供一个高质量的讨论论坛。 
 
-这儿是讨论贡献的地方，包含开发调用标签的观点以及回拉问题。 我们希望提议者和指定的审阅者都可以参加回访。
+This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/PX4-Autopilot/labels/devcall5) label. 我们希望提议者和指定的审阅者都可以参加回访。
 
 > **注意** 主要的调用被设计用来做出集中快速的决策。 我们希望不要过深的探究技术，同样也不会花费太多的时间用在功能请求上。 提案是受欢迎的，但这些提案需要赞助者（那些愿意实现这些提案工作的人）！
 
@@ -45,6 +45,6 @@ PX4开发团队会深入分析技术细节并同步到平台上。 在议程中�
 
 * 议程在[PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)之前发布
 
-* 为了讨论指定的问题和回拉请求，你可以使用[devcall](https://github.com/PX4/Firmware/labels/devcall)标签来标记
+* To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/PX4-Autopilot/labels/devcall) label to flag them for discussion.
 
 {% endif %} <!-- END: dev call details: displayed only in master -->
