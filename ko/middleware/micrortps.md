@@ -59,7 +59,7 @@ ROS2와 ROS간의 메시지를 주고 받는 [ros1_bridge](https://github.com/ro
 
 ### ROS-독립 어플리케이션
 
-브릿지를 만들고 빌드하고 사용할 때 필요한 모든 코드는 PX4 펌웨어 컴파일 과정에서 자동으로 만듭니다.
+All the code needed to create, build and use the bridge is automatically generated when PX4-Autopilot is compiled.
 
 *Client* 어플리케이션 또한 일반 빌드 과정의 일부로 컴파일하고 빌드하여 펌웨어에 들어갑니다. *Agent*는 대상 컴퓨터에 맞게 따로 직접 컴파일해야합니다.
 
@@ -71,7 +71,7 @@ ROS2와 ROS간의 메시지를 주고 받는 [ros1_bridge](https://github.com/ro
 
 [px4_ros_com](https://github.com/PX4/px4_ros_com) 패키지를 빌드하면, ROS2 노드에서 PX4 uORB 메시지를 다룰 때 필요한 모든 요소가 나옵니다(ROS일 경우 [ros1_bridge](https://github.com/ros2/ros1_bridge)가 필요합니다). `micrortps_agent`와 (`microtps_agent`에서 필요한) IDL 파일이 들어간 *PX4 RTPS 브릿지*에서 필요로하는 모든 구성 요소가 다 들어있습니다.
 
-ROS, ROS2의 메시지 정의 헤더와 인터페이스는 PX4 펌웨어의 uORB 메시지 대응 부분에 맞추는 [px4_msgs](https://github.com/PX4/px4_msgs) 패키지에서 생성합니다. `micrortps_agent`에서 사용하는 IDL 파일을 만들 때 `px4_ros_com`에서 필요합니다.
+The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4-Autopilot. `micrortps_agent`에서 사용하는 IDL 파일을 만들 때 `px4_ros_com`에서 필요합니다.
 
 `px4_ros_com`와 `px4_msgs` 패키지는 2개의 개별 브랜치를 갖고 있습니다.
 
@@ -84,7 +84,7 @@ ROS, ROS2의 메시지 정의 헤더와 인터페이스는 PX4 펌웨어의 uORB
 
 생성된 브릿지 코드는 특정 토픽들에 대해 RTPS를 통해 Pub/Sub이 가능하도록 합니다. ROS와 non-ROS 어플리케이선 모두 해당됩니다.
 
-*자동 코드 생성*을 위해 **Firmware/msg/tools/** 디렉토리에 **uorb_rtps_message_ids.yaml** 파일이 있습니다(*yaml*). 이 파일은 RTPS에 사용될 uORB 메시지의 집합을 정의 합니다. 메시지의 송, 수신 여부와 DDS/RTPS 미들웨어에 사용될 RTPS ID를 정의합니다.
+For *automatic code generation* there's a *yaml* definition file in the PX4 **PX4-Autopilot/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. 이 파일은 RTPS에 사용될 uORB 메시지의 집합을 정의 합니다. 메시지의 송, 수신 여부와 DDS/RTPS 미들웨어에 사용될 RTPS ID를 정의합니다.
 
 > **Note** 모든 메시지들에 대해 RTPS ID가 설정해야 합니다.
 
@@ -113,11 +113,11 @@ rtps:
     send: true
 ```
 
-> **Note** ROS2 Dashing에서의 API 변경으로 `rosidl_generate_interfaces()` (`px4_msgs`에서의) CMake 모듈을 활용하여 microRTPS 에이전트 생성에 필요한 IDL 파일을 만들 수 있습니다. PX4 펌웨어는 PX4 빌드 과정에서만 활용하는 IDL 파일 생성 과정의 서식이 들어있습니다.
+> **Note** ROS2 Dashing에서의 API 변경으로 `rosidl_generate_interfaces()` (`px4_msgs`에서의) CMake 모듈을 활용하여 microRTPS 에이전트 생성에 필요한 IDL 파일을 만들 수 있습니다. PX4-Autopilot includes a template for the IDL file generation, which is only used during the PX4 build process.
 > 
 > `px4_msgs` 빌드 과정에서는 ROS2/ROS에 활용할 *약간 다른* IDL 파일(PX4 펌웨어 용으로 빌드)을 만듭니다. **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). 새 IDL 파일은 송수신한 메세지를 되돌립니다(메시지를 클라이언트에서 보냈을 때, 에이전트에서 보내거나 그 반대의 경우로도 가능하기 때문에 필요).
 
-## 클라이언트 (PX4 펌웨어) {#client_firmware}
+## Client (PX4/PX4-Autopilot) {#client_firmware}
 
 *Client* 소스코드는 일반적인 빌드 과정을 거쳐 생성, 컴파일, 빌드하여 PX4 펌웨어에 넣습니다.
 
@@ -264,7 +264,7 @@ ROS와 ROS2가 다른 환경을 필요로 하기 때문에 각 ROS를 위한 워
 
 `px4_ros_com/scripts` 디렉터리는 두 작업 영역을 빌드할 때 활용하는 여러 스크립트가 들어있습니다.
 
-두 작업 영역을 단일 스크립트로 빌드하려면 `build_all.bash`를 사용하십시오. `source build_all.bash --help` 명령으로 사용법을 확인하십시오. 가장 일반적인 사용법은 ROS(1) 작업 영역 경로와 PX4 펌웨어 디렉터리 경로를 전달하는 방법입니다:
+두 작업 영역을 단일 스크립트로 빌드하려면 `build_all.bash`를 사용하십시오. `source build_all.bash --help` 명령으로 사용법을 확인하십시오. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4-Autopilot directory path:
 
 ```sh
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
@@ -350,7 +350,7 @@ $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 어플리케이션을 만들려면 다음 명령을 입력하십시오:
 
 ```sh
-cd /path/to/PX4/Firmware/build/px4_sitl_rtps/src/modules/micrortps_bridge
+cd /path/to/PX4/PX4-Autopilot/build/px4_sitl_rtps/src/modules/micrortps_bridge
 mkdir micrortps_listener
 cd micrortps_listener
 fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sensor_combined.idl
