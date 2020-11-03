@@ -26,7 +26,7 @@
 
 JSBSim SITL simulation can be conveniently run through a `make` command as shown below:
 ```sh
-cd /path/to/Firmware
+cd /path/to/PX4-Autopilot
 make px4_sitl jsbsim
 ```
 This will run both the PX4 SITL instance and the FlightGear UI (for visualization). If you want to run without the FlightGear UI, you can add `HEADLESS=1` to the front of the `make` command.
