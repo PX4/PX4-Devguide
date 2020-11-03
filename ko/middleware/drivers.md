@@ -1,12 +1,12 @@
 # 드라이버 개발
 
-PX4 장치 드라이버는 [Device](https://github.com/PX4/Firmware/tree/master/src/lib/drivers/device) 프레임워크에 기반합니다.
+PX4 device drivers are based on the [Device](https://github.com/PX4/PX4-Autopilot/tree/master/src/lib/drivers/device) framework.
 
 ## 드라이버 만들기
 
 PX4는 [uORB](../middleware/uorb.md) 데이터만을 유일하게 가져옵니다. 일반 주변기기 형식의 드라이버는 올바른 uORB 메시지를 내보내야합니다(예: 각가속계, 가속계, 압력계 등)
 
-새 드라이버를 만드는 가장 바람직한 접근법은 코드 서식을 통해 유사 드라이버로 시작하는 방식입니다([src/drivers](https://github.com/PX4/Firmware/tree/master/src/drivers) 참고).
+The best approach for creating a new driver is to start with a similar driver as a template (see [src/drivers](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers)).
 
 > **Tip** 특정 입출력 버스와 센서와 동작하기 위한 자세한 정보는 [센서와 액츄에이터 버스](../sensor_bus/README.md)절을 참고하십시오.
 
