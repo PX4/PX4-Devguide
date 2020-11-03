@@ -50,20 +50,20 @@ sudo usermod -aG docker $USER
 
 ## 도커 컨테이너 활용
 
-다음 절차는 도커 컨테이너에서 실행하는 툴체인으로 호스트 컴퓨터에서 PX4 소스 코드를 빌드하는 방법을 보여줍니다. PX4 소스 코드를 다음과 같이 **src/Firmware**에 이미 다운로드했음을 가정합니다:
+다음 절차는 도커 컨테이너에서 실행하는 툴체인으로 호스트 컴퓨터에서 PX4 소스 코드를 빌드하는 방법을 보여줍니다. The information assumes that you have already downloaded the PX4 source code to **src/PX4-Autopilot**, as shown:
 
 ```sh
 mkdir src
 cd src
-git clone https://github.com/PX4/Firmware.git
-cd Firmware
+git clone https://github.com/PX4/PX4-Autopilot.git
+cd PX4-Autopilot
 ```
 
 ### 보조 스크립트(docker_run.sh)
 
-컨테이너를 활용하는 가장 쉬운 방법은 [docker_run.sh](https://github.com/PX4/Firmware/blob/master/Tools/docker_run.sh) 보조 스크립트를 활용한 방법입니다. 이 스크립트는 PX4 빌드 명령을 인자 값으로 취합니다 (예: `make tests`). 명령을 통해 (하드 코딩한) 적절한 최근 버전의 컨테이너와 적당한 환경 설정 값으로 도커를 시작합니다.
+The easiest way to use the containers is via the [docker_run.sh](https://github.com/PX4/PX4-Autopilot/blob/master/Tools/docker_run.sh) helper script. 이 스크립트는 PX4 빌드 명령을 인자 값으로 취합니다 (예: `make tests`). 명령을 통해 (하드 코딩한) 적절한 최근 버전의 컨테이너와 적당한 환경 설정 값으로 도커를 시작합니다.
 
-예를 들어, SITL을 빌드하려면 다음 명령을 (**/Firmware** 디렉터리에서) 실행하십시오:
+For example, to build SITL you would call (from within the **/PX4-Autopilot** directory):
 
 ```sh
 ./Tools/docker_run.sh 'make px4_sitl_default'
@@ -96,22 +96,22 @@ docker run -it --privileged \
 
 여기서,
 
-* `<host_src>`: 컨테이너의 `<container_src>` 디렉터리에 대응할 호스트 컴퓨터의 디렉터리입니다. 보통 **Firmware** 디렉터리입니다.
+* `<host_src>`: 컨테이너의 `<container_src>` 디렉터리에 대응할 호스트 컴퓨터의 디렉터리입니다. This should normally be the **PX4-Autopilot** directory.
 * `<container_src>`: 컨테이너에 들어있는 공유 (소스) 디렉터리의 위치입니다.
 * `<local_container_name>`: 만들어 둔 도커 컨테이너의 이름입니다. 컨테이너를 나중에 다시 참조해야 할 때 활용할 수 있습니다.
 * `<container>:<tag>`: 시작할 컨테이너 이름과 버전입니다. 예시: `px4io/px4-dev-ros:2017-10-23`
 * `<build_command>`: 새 컨테이너에서 실행할 명령입니다. 예시: `bash`는 컨테이너의 배시 셸을 여는데 사용하는 명령입니다.
 
-아래의 보강 예제에서는 호스트 컴퓨터에서 배시 셸을 열고 **~/src/Firmware** 디렉터리를 공유하는 방법을 보여줍니다.
+The concrete example below shows how to open a bash shell and share the directory **~/src/PX4-Autopilot** on the host computer.
 
 ```sh
-# 컨테이너의 xhost 접근 활성화
+# enable access to xhost from the container
 xhost +
 
-# 도커 실행 후 배시 셸 열기
+# Run docker and open bash shell
 docker run -it --privileged \
 --env=LOCAL_USER_ID="$(id -u)" \
--v ~/src/Firmware:/src/firmware/:rw \
+-v ~/src/PX4-Autopilot:/src/PX4-Autopilot/:rw \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 -e DISPLAY=:0 \
 -p 14570:14570/udp \
@@ -121,7 +121,7 @@ docker run -it --privileged \
 모든 과정이 잘 넘어갔다면 새 배시 셸 상태에 있어야 합니다. 모든 요소가 제대로 동작하는지 검증하십시오. SITL을 예를 들자면:
 
 ```sh
-cd src/firmware    #This is <container_src>
+cd src/PX4-Autopilot    #This is <container_src>
 make px4_sitl_default gazebo
 ```
 
@@ -158,7 +158,7 @@ docker rm 45eeb98f1dd9
 
 도커 컨테이너에서 SITL과 같은 모의시험 인스턴스를 실행하고 호스트에서 *QGroundControl*로 제어할 때, 통신 링크는 직접 설정해야합니다. 여기서 *QGroundControl*의 자동 연결 기능은 동작하지 않습니다.
 
-*QGroundControl*에서 [설정](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html)을 찾아 Comm 연결을 선택하십시오. UDP 프로토콜을 사용할 새 링크를 만드십시오. 포트는 14570과 같은 번호를 SITL [설정](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)에서 지정한 값에 따릅니다. IP 주소는 기본 네트워크를 사용한다고 할 경우, 보통 172.17.0.1/16 도커 컨테이너에 지정한 설정 값 중 하나를 사용합니다. 도커 컨테이너의 IP 주소는 다음 명령으로 확인할 수 있습니다(컨테이너 이름은 `mycontainer`로 가정합니다):
+*QGroundControl*에서 [설정](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html)을 찾아 Comm 연결을 선택하십시오. UDP 프로토콜을 사용할 새 링크를 만드십시오. The port depends on the used [configuration](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. 도커 컨테이너의 IP 주소는 다음 명령으로 확인할 수 있습니다(컨테이너 이름은 `mycontainer`로 가정합니다):
 
 ```sh
 $ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}' mycontainer
