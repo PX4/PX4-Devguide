@@ -2,7 +2,7 @@
 
 {% if book.px4_version != 'master' %} **Current** information about contributing to PX4, working with the community and codelines, and the dev call, [can be found in the "master" docs here](https://dev.px4.io/master/en/contribute/)! {% else %} <!-- START: dev call details: displayed only in master -->
 
-> **Tip** We pledge to adhere to the [PX4 code of conduct](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md). This code aims to foster an open and welcoming environment.
+> **Tip** We pledge to adhere to the [PX4 code of conduct](https://github.com/PX4/PX4-Autopilot/blob/master/CODE_OF_CONDUCT.md). This code aims to foster an open and welcoming environment.
 
 This section contains information about contributing to PX4, including the source code, documentation, and translations, and their relevant licenses.
 
