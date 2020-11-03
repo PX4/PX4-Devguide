@@ -2,7 +2,7 @@
 
 ## airship_att_control
 
-Source: [modules/airship_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/airship_att_control)
+Source: [modules/airship_att_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/airship_att_control)
 
 ### 描述
 
@@ -27,7 +27,7 @@ To reduce control latency, the module directly polls on the gyro topic published
 
 ## fw_att_control
 
-Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
+Source: [modules/fw_att_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/fw_att_control)
 
 ### Description
 
@@ -47,7 +47,7 @@ fw_att_control is the fixed wing attitude controller.
 
 ## fw_pos_control_l1
 
-Source: [modules/fw_pos_control_l1](https://github.com/PX4/Firmware/tree/master/src/modules/fw_pos_control_l1)
+Source: [modules/fw_pos_control_l1](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/fw_pos_control_l1)
 
 ### Description
 
@@ -67,7 +67,7 @@ fw_pos_control_l1 is the fixed wing position controller.
 
 ## mc_att_control
 
-Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
+Source: [modules/mc_att_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/mc_att_control)
 
 ### Description
 
@@ -93,7 +93,7 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ## mc_pos_control
 
-Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_pos_control)
+Source: [modules/mc_pos_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/mc_pos_control)
 
 ### Description
 
@@ -115,7 +115,7 @@ The controller doesn't use Euler angles for its work, they are generated only fo
 
 ## mc_rate_control
 
-Source: [modules/mc_rate_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_rate_control)
+Source: [modules/mc_rate_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/mc_rate_control)
 
 ### Description
 
@@ -137,7 +137,7 @@ The controller has a PID loop for angular rate error.
 
 ## navigator
 
-Source: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modules/navigator)
+Source: [modules/navigator](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/navigator)
 
 ### Description
 
@@ -166,7 +166,7 @@ Navigator publishes position setpoint triplets (`position_setpoint_triplet_s`), 
 
 ## rover_pos_control
 
-Source: [modules/rover_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/rover_pos_control)
+Source: [modules/rover_pos_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/rover_pos_control)
 
 ### Description
 
@@ -204,7 +204,7 @@ CLI usage example:
 
 ## uuv_att_control
 
-Source: [modules/uuv_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/uuv_att_control)
+Source: [modules/uuv_att_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/uuv_att_control)
 
 ### Description
 
@@ -241,7 +241,7 @@ CLI usage example:
 
 ## vtol_att_control
 
-Source: [modules/vtol_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/vtol_att_control)
+Source: [modules/vtol_att_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/vtol_att_control)
 
 ### Description
 
