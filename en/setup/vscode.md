@@ -10,7 +10,7 @@ There are a number of reasons to use VSCode for PX4 development:
 This topic explains how to setup the IDE and start developing.
 
 > **Note** There are other powerful IDEs, but they typically take more effort to integrate with PX4.
-  With *VScode*, configuration is stored in the PX4/Firmware tree ([Firmware/.vscode](https://github.com/PX4/Firmware/tree/master/.vscode)) so the setup process is as simple as adding the project folder.
+  With *VScode*, configuration is stored in the PX4/PX4-Autopilot tree ([PX4-Autopilot/.vscode](https://github.com/PX4/PX4-Autopilot/tree/master/.vscode)) so the setup process is as simple as adding the project folder.
 
 ## Preconditions
 
@@ -23,7 +23,7 @@ You must already have installed the command line [PX4 developer environment](../
    - Select *Open folder ...* option on the welcome page (or using the menu: **File > Open Folder**):
      ![Open Folder](../../assets/vscode/welcome_open_folder.jpg)
    - A file selection dialog will appear.
-     Select the PX4 **Firmware** directory and then press **OK**.
+     Select the **PX4-Autopilot** directory and then press **OK**.
 
    The project files and configuration will then load into *VSCode*.
 1. Press **Install All** on the *This workspace has extension recommendations* prompt (this will appear on the bottom right of the IDE).

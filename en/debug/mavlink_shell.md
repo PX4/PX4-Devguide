@@ -22,7 +22,7 @@ You can also access the shell in a terminal using the **mavlink_shell.py** scrip
    ```sh
    sudo pip3 install pymavlink pyserial
    ```
-1. Open terminal (in Firmware directory) and start the shell:
+1. Open terminal (in PX4-Autopilot directory) and start the shell:
    ```sh
    # For serial port
    ./Tools/mavlink_shell.py /dev/ttyACM0

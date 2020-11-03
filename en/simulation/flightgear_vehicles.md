@@ -1,6 +1,6 @@
 # FlightGear Vehicles
 
-This topic lists/displays the vehicles supported by the PX4 [FlightGear](../simulation/flightgear.md) simulation, and the `make` commands required to run them (the commands are run from terminal in the **Firmware** directory).
+This topic lists/displays the vehicles supported by the PX4 [FlightGear](../simulation/flightgear.md) simulation, and the `make` commands required to run them (the commands are run from terminal in the **PX4-Autopilot** directory).
 The supported types are: plane, autogyro and rover (there are specific frames within these types).
 
 > **Tip** For the full list of build targets run `make px4_sitl list_vmd_make_targets` (filter out those that start with `flightgear_`).
@@ -120,5 +120,5 @@ The file content meaning is as follows:
 
 After preparing all these files a new vehicle need to be included in the PX4 make system. 
 
-The PX4 configuration is in [/platforms/posix/cmake/sitl_target.cmake](https://github.com/PX4/Firmware/blob/c5341da8137f460c84f47f0e38293667ea69a6cb/platforms/posix/cmake/sitl_target.cmake#L164-L171).
+The PX4 configuration is in [/platforms/posix/cmake/sitl_target.cmake](https://github.com/PX4/PX4-Autopilot/blob/c5341da8137f460c84f47f0e38293667ea69a6cb/platforms/posix/cmake/sitl_target.cmake#L164-L171).
 The new vehicle's json name should be added to the list.

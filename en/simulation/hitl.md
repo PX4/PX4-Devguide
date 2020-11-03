@@ -25,7 +25,7 @@ JMAVSim or Gazebo (running on a development computer) are connected to the fligh
 The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*.
 
 > **Note** The simulator can also be connected via UDP if the flight controller has networking support and uses a stable, low-latency connection (e.g. a wired Ethernet connection - WiFi is usually not sufficiently reliable).
-  For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/Firmware/blob/master/posix-configs/rpi/px4_hil.config)).
+  For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/PX4-Autopilot/blob/master/posix-configs/rpi/px4_hil.config)).
 
 The diagram below shows the simulation environment:
 * A HITL configuration is selected (via *QGroundControl*) that doesn't start any real sensors.

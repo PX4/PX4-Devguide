@@ -1,6 +1,6 @@
 # Development Environment on Arch Linux
 
-The Firmware repository provides a convenient script to set your Arch installation up for PX4 development: [Tools/setup/arch.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/arch.sh).
+The PX4-Autopilot repository provides a convenient script to set your Arch installation up for PX4 development: [Tools/setup/arch.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/arch.sh).
 
 The script installs (by default) all tools to build PX4 (without RTPS) for NuttX targets and run simulation with *jMAVsim*.
 You can additionally install the *Gazebo* simulator by specifying the command line argument: `--gazebo`.
@@ -12,13 +12,13 @@ You can additionally install the *Gazebo* simulator by specifying the command li
 To get and run the scripts, do either of:
 * [Download PX4 Source Code](../setup/building_px4.md) and run the scripts in place:
   ```
-  git clone https://github.com/PX4/Firmware.git
-  bash Firmware/Tools/setup/arch.sh
+  git clone https://github.com/PX4/PX4-Autopilot.git
+  bash PX4-Autopilot/Tools/setup/arch.sh
   ```
 * Download just the needed scripts and then run them:
   ```sh
-  wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/arch.sh
-  wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/requirements.txt
+  wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/master/Tools/setup/arch.sh
+  wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/master/Tools/setup/requirements.txt
   bash arch.sh
   ```
 

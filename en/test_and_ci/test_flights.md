@@ -13,7 +13,7 @@ The Dronecode test team can help review (test flight) your pull requests and pro
 * Add a complete and thorough description of your changes in the pull request
 * Tag the test team in a comment using **@PX4/testflight** 
 * Wait for feedback from the test team
-* The test team will [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
+* The test team will [add your PR/issue to their queue](https://github.com/PX4/PX4-Autopilot/projects/18)
 
 ## Response Times
 
