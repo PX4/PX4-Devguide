@@ -14,13 +14,13 @@
 
 ## 실행 시험
 
-젠킨스는 컨테이너를 시작할 때 [run_container.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_container.bash) 파일을 사용하는데, 실행 단계에서 컴파일 후 코드를 시험할 때 [run_tests.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_tests.bash)를 실행할 차례에 실행합니다.
+Jenkins uses [run_container.bash](https://github.com/PX4/PX4-Autopilot/blob/master/integrationtests/run_container.bash) to start the container, which in turn executes [run_tests.bash](https://github.com/PX4/PX4-Autopilot/blob/master/integrationtests/run_tests.bash) to compile and run the tests.
 
 도거를 설치했다면 동일한 방식을 로컬에서 진행할 수 있습니다:
 
 ```sh
-cd <directory_where_firmware_is_cloned>
-sudo WORKSPACE=$(pwd) ./Firmware/integrationtests/run_container.bash
+cd <directory_where_PX4-Autopilot_is_cloned>
+sudo WORKSPACE=$(pwd) ./PX4-Autopilot/integrationtests/run_container.bash
 ```
 
 ## 서버 설정
