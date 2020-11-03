@@ -137,7 +137,9 @@ JMAVSim can be used for multi-vehicle simulation: [Multi-Vehicle Sim with JMAVSi
 
 To extend or customize the simulation interface, edit the files in the **Tools/jMAVSim** folder. The code can be accessed through the[jMAVSim repository](https://github.com/px4/jMAVSim) on Github.
 
-> **Info** The build system enforces the correct submodule to be checked out for all dependencies, including the simulator. It will not overwrite changes in files in the directory, however, when these changes are committed the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/jMAVSim` and commit the change. This will update the GIT hash of the simulator.
+> **Info** The build system enforces the correct submodule to be checked out for all dependencies, including the simulator.
+  It will not overwrite changes in files in the directory, however, when these changes are committed the submodule needs to be registered in the Firmware repo with the new commit hash. To do so, `git add Tools/jMAVSim` and commit the change.
+  This will update the GIT hash of the simulator.
 
 ## Interfacing to ROS
 
@@ -223,5 +225,5 @@ and comment out the line indicated below:
 #assistive_technologies=org.GNOME.Acessibility.AtkWrapper
 ```
 
-For more info check [this GitHub issue](https://github.com/PX4/Firmware/issues/9557).
+For more info check [this GitHub issue](https://github.com/PX4/PX4-Autopilot/issues/9557).
 The fix was found in [askubuntu.com](https://askubuntu.com/questions/695560).

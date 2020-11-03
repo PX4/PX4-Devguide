@@ -5,20 +5,20 @@
 Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 
 * [Sign up](https://github.com/join) for github if you haven't already
-* Fork the Firmware (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
+* Fork the PX4-Autopilot re[p (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
 * Clone your forked repository to your local computer<br>
   ```sh
   cd ~/wherever/
-  git clone https://github.com/<your git name>/Firmware.git
+  git clone https://github.com/<your git name>/PX4-Autopilot.git
   ```
-* Go into the new directory, initialize and update the submodules, and add the original upstream Firmware<br>
+* Go into the new directory, initialize and update the submodules, and add the original upstream PX4-Autopilot<br>
   ```sh
-  cd Firmware
+  cd PX4-Autopilot
   git submodule update --init --recursive
-  git remote add upstream https://github.com/PX4/Firmware.git
+  git remote add upstream https://github.com/PX4/PX4-Autopilot.git
   ```
-* You should have now two remote repositories: One repository is called upstream that points to the PX4 Firmware,
-and one repository that points to your forked repository of the PX4 repository.
+* You should have now two remote repositories: One repository is called upstream that points to PX4/PX4-Autopilot,
+  and one repository that points to your forked repository of the PX4 repository.
 * This can be checked with the following command:
   ```sh
   git remote -v
@@ -39,7 +39,7 @@ and one repository that points to your forked repository of the PX4 repository.
   git commit -m "<your commit message>"
   ```
 For a good commit message, please refer to [Contributing](../contribute/README.md) section.
-* Some time might have passed and the [upstream master](https://github.com/PX4/Firmware.git) has changed.
+* Some time might have passed and the [upstream master](https://github.com/PX4/PX4-Autopilot.git) has changed.
   PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing).
   To include the newest changes from upstream in your local branch, switch to your master branch<br>
   ```sh
@@ -61,12 +61,12 @@ For a good commit message, please refer to [Contributing](../contribute/README.m
   ```sh
   git push origin <your feature branch name>
   ```
-* You can verify that the push was successful by going to your forked repository in your browser: `https://github.com/<your git name>/Firmware.git`<br>
+* You can verify that the push was successful by going to your forked repository in your browser: `https://github.com/<your git name>/PX4-Autopilot.git`<br>
   There you should see the message that a new branch has been pushed to your forked repository.
 * Now it's time to create a pull request (PR).
   On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request".
   Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>.
-  Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
+  Check [other pull requests](https://github.com/PX4/PX4-Autopilot/pulls) for comparison)
 * You're done! 
   Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it.
   Check if they have questions on your changes every once in a while.
@@ -74,10 +74,10 @@ For a good commit message, please refer to [Contributing](../contribute/README.m
 ## Get a Specific Release
 
 To get the source code for a *specific older release*:
-* Clone the Firmware repo and navigate into Firmware directory:
+* Clone the PX4-Autopilot repo and navigate into PX4-Autopilot directory:
   ```sh
-  git clone https://github.com/PX4/Firmware.git
-  cd Firmware
+  git clone https://github.com/PX4/PX4-Autopilot.git
+  cd PX4-Autopilot
   ```
 * List all releases (tags)
   ```sh

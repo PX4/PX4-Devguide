@@ -9,11 +9,11 @@ PX4 can be built on the console or in an IDE, for both simulated and hardware ta
 
 ## Download the PX4 Source Code {#get_px4_code}
 
-The PX4 source code is stored on Github in the [PX4/Firmware](https://github.com/PX4/Firmware) repository.
+The PX4 source code is stored on Github in the [PX4/PX4-Autopilot](https://github.com/PX4/PX4-Autopilot) repository.
 To get the *very latest* version onto your computer, enter the following command into a terminal:
 
 ```sh
-git clone https://github.com/PX4/Firmware.git --recursive
+git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 ```
 
 > **Note** This is all you need to do just to build the latest code. 
@@ -25,7 +25,7 @@ git clone https://github.com/PX4/Firmware.git --recursive
 First we'll build a simulated target using a console environment.
 This allows us to validate the system setup before moving on to real hardware and an IDE.
 
-Navigate into the **Firmware** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
+Navigate into the **PX4-Autopilot** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 ```sh
 make px4_sitl jmavsim
 ```
@@ -58,11 +58,11 @@ This will reposition the vehicle.
 
 ### Building {#building_nuttx}
 
-To build for NuttX- or Pixhawk- based boards, navigate into the **Firmware** directory and then call `make` with the build target for your board.
+To build for NuttX- or Pixhawk- based boards, navigate into the **PX4-Autopilot** directory and then call `make` with the build target for your board.
 
 For example, to build for *Pixracer* you would use the following command:
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make px4_fmu-v4_default
 ```
 
@@ -74,8 +74,8 @@ make px4_fmu-v4_default
 
 A successful run will end with similar output to:
 ```sh
--- Build files have been written to: /home/youruser/src/Firmware/build/px4_fmu-v4_default
-[954/954] Creating /home/youruser/src/Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
+-- Build files have been written to: /home/youruser/src/PX4-Autopilot/build/px4_fmu-v4_default
+[954/954] Creating /home/youruser/src/PX4-Autopilot/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
 ```
 
 The following list shows the build commands for common boards:
@@ -150,7 +150,7 @@ export AUTOPILOT_HOST=pi_hostname.domain
 Build the executable file:
 
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make emlid_navio2 # for cross-compiler build
 ```
 
@@ -160,7 +160,7 @@ Make sure you can connect to your RPi over ssh, see [instructions how to access 
 Then upload it with:
 
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make emlid_navio2 upload # for cross-compiler build
 ```
 
@@ -176,7 +176,7 @@ sudo ./bin/px4 -s px4.config
 If you're building *directly* on the Pi, you will want the native build target (emlid_navio2_native).
 
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make emlid_navio2_native # for native build
 ```
 
@@ -232,7 +232,7 @@ This section shows how to build for the [Qualcomm Snapdragon Flight](https://doc
 The commands below build the targets for the Linux and the DSP side. Both executables communicate via [muORB](../middleware/uorb.md).
 
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make atlflight_eagle_default
 ```
 
@@ -249,7 +249,7 @@ Go back to previous terminal and upload:
 make atlflight_eagle_default upload
 ```
 
-Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) to the device.
+Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/PX4-Autopilot/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/PX4-Autopilot/blob/master/posix-configs/eagle/flight/px4.config) to the device.
 Those files are stored under /usr/share/data/adsp/px4.config and /home/linaro/mainapp.config respectively if you want to edit the startup scripts directly on your vehicle.
 
 The mixer currently needs to be copied manually:
@@ -323,7 +323,7 @@ adb reboot
 The PX4 system supports Qt Creator, Eclipse and Sublime Text.
 Qt Creator is the most user-friendly variant and hence the only officially supported IDE.
 Unless an expert in Eclipse or Sublime, their use is discouraged.
-Hardcore users can find an [Eclipse project](https://github.com/PX4/Firmware/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project) in the source tree.
+Hardcore users can find an [Eclipse project](https://github.com/PX4/PX4-Autopilot/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/PX4-Autopilot/blob/master/Firmware.sublime-project) in the source tree.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
@@ -338,13 +338,13 @@ Qt creator offers clickable symbols, auto-completion of the complete codebase an
 Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
 ```sh
-cd ~/src/Firmware
+cd ~/src/PX4-Autopilot
 mkdir ../Firmware-build
 cd ../Firmware-build
-cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
+cmake ../PX4-Autopilot -G "CodeBlocks - Unix Makefiles"
 ```
 
-Then load the CMakeLists.txt in the root firmware folder via **File > Open File or Project** (Select the CMakeLists.txt file).
+Then load the CMakeLists.txt in the root PX4-Autopilot folder via **File > Open File or Project** (Select the CMakeLists.txt file).
 
 After loading, the **play** button can be configured to run the project by selecting 'custom executable' in the run target configuration and entering 'make' as executable and 'upload' as argument.
 
@@ -358,7 +358,7 @@ After loading, the **play** button can be configured to run the project by selec
 Before starting Qt Creator, the [project file](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator) needs to be created:
 
 ```sh
-cd ~/src/Firmware
+cd ~/src/PX4-Autopilot
 mkdir -p build/creator
 cd build/creator
 cmake ../.. -G "CodeBlocks - Unix Makefiles"
@@ -416,9 +416,9 @@ Notes:
   For example start PX4 using `make px4_sitl_default none` and jMAVSim using `./Tools/jmavsim_run.sh -l`.
 
 
-The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/Firmware/tree/master/boards) directory.
+The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/PX4-Autopilot/tree/master/boards) directory.
 Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake**
-(e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)).
+(e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v5/default.cmake)).
 
 Additional make targets are discussed in the following sections (list is not exhaustive):
 
@@ -528,7 +528,7 @@ The build toolchain will then report `Too many open files` for many files, as sh
 
 The solution is to increase the maximum allowed number of open files (e.g. to 300). 
 You can do this in the macOS *Terminal* for each session:
-- Run this script [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh), or
+- Run this script [Tools/mac_set_ulimit.sh](https://github.com/PX4/PX4-Autopilot/blob/master/Tools/mac_set_ulimit.sh), or
 - Enter this command:
   ```sh
   ulimit -S -n 300

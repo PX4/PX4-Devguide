@@ -19,7 +19,7 @@ This topic explains how download and use the environment, and how it can be exte
     ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 1. Tick the box at the end of the installation to *clone the PX4 repository, build and run simulation with jMAVSim* (this simplifies the process to get you started).
 
-   > **Note** If you missed this step you will need to [clone the PX4 Firmware repository manually](#getting_started).
+   > **Note** If you missed this step you will need to [clone the PX4-Autopilot repository manually](#getting_started).
 
 
 ## Getting Started {#getting_started}
@@ -28,22 +28,22 @@ The toolchain uses a specially configured console window (started by running the
 
 1. Browse to the toolchain installation directory (default **C:\PX4\**)
 1. Run **run-console.bat** (double click) to start the Cygwin bash console
-1. Clone the PX4 Firmware repository from within the console:
+1. Clone the PX4 PX4-Autopilot repository from within the console:
 
    > **Note** Cloning only needs to be done once!
      Skip this step if you ticked the installer option to *clone the PX4 repository, build and run simulation with jMAVSim*.
 
    ```bash
-   # Clone PX4 Firmware repository into the home folder & loads submodules in parallel
-   git clone --recursive -j8 https://github.com/PX4/Firmware.git
+   # Clone the PX4-Autopilot repository into the home folder & loads submodules in parallel
+   git clone --recursive -j8 https://github.com/PX4/PX4-Autopilot.git
    ```
 
-   You can now use the console/Firmware repository to build PX4.
+   You can now use the console/PX4-Autopilot repository to build PX4.
 
 1. For example, to run JMAVSim:
    ```bash
-   # Navigate to Firmware repo
-   cd Firmware
+   # Navigate to PX4-Autopilot repo
+   cd PX4-Autopilot
    # Build and runs SITL simulation with jMAVSim to test the setup
    make px4_sitl jmavsim
    ```

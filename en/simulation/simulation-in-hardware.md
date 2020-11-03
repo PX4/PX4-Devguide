@@ -27,7 +27,7 @@ If you are planning to use a [radio control transmitter and receiver pair](https
 Alternatively, using *QGroundControl*, a [joystick](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) can be used to emulate a radio control system.
 
 The SIH is compatible with all Pixhawk-series boards except those based on FMUv2.
-It is available on the firmware master branch and release versions v1.9.0 and above.
+It is available on the PX4-Autopilot master branch and release versions v1.9.0 and above.
 
 ## Setting up SIH
 

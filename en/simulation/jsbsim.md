@@ -29,7 +29,7 @@ Rotational earth effects are also modeled into the dynamics.
 
 JSBSim SITL simulation can be conveniently run through a `make` command as shown below:
 ```sh
-cd /path/to/Firmware
+cd /path/to/PX4-Autopilot
 make px4_sitl jsbsim
 ```
 This will run both the PX4 SITL instance and the FlightGear UI (for visualization).

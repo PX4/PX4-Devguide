@@ -1,7 +1,7 @@
 # Modules Reference: System
 
 ## battery_simulator
-Source: [modules/simulator/battery_simulator](https://github.com/PX4/Firmware/tree/master/src/modules/simulator/battery_simulator)
+Source: [modules/simulator/battery_simulator](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/simulator/battery_simulator)
 
 
 ### Description
@@ -19,7 +19,7 @@ battery_simulator <command> [arguments...]
    status        print status info
 ```
 ## battery_status
-Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
+Source: [modules/battery_status](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/battery_status)
 
 
 ### Description
@@ -43,7 +43,7 @@ battery_status <command> [arguments...]
    status        print status info
 ```
 ## camera_feedback
-Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/src/modules/camera_feedback)
+Source: [modules/camera_feedback](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/camera_feedback)
 
 
 ### Description
@@ -61,7 +61,7 @@ camera_feedback <command> [arguments...]
    status        print status info
 ```
 ## commander
-Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
+Source: [modules/commander](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/commander)
 
 
 ### Description
@@ -103,7 +103,7 @@ commander <command> [arguments...]
    status        print status info
 ```
 ## dataman
-Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
+Source: [modules/dataman](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/dataman)
 
 
 ### Description
@@ -149,7 +149,7 @@ dataman <command> [arguments...]
    status        print status info
 ```
 ## dmesg
-Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
+Source: [systemcmds/dmesg](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/dmesg)
 
 
 ### Description
@@ -171,7 +171,7 @@ dmesg <command> [arguments...]
      [-f]        Follow: wait for new messages
 ```
 ## esc_battery
-Source: [modules/esc_battery](https://github.com/PX4/Firmware/tree/master/src/modules/esc_battery)
+Source: [modules/esc_battery](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/esc_battery)
 
 
 ### Description
@@ -189,7 +189,7 @@ esc_battery <command> [arguments...]
    status        print status info
 ```
 ## gyro_fft
-Source: [examples/gyro_fft](https://github.com/PX4/Firmware/tree/master/src/examples/gyro_fft)
+Source: [examples/gyro_fft](https://github.com/PX4/PX4-Autopilot/tree/master/src/examples/gyro_fft)
 
 
 ### Description
@@ -206,7 +206,7 @@ gyro_fft <command> [arguments...]
    status        print status info
 ```
 ## heater
-Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
+Source: [drivers/heater](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/heater)
 
 
 ### Description
@@ -225,7 +225,7 @@ heater <command> [arguments...]
    status        print status info
 ```
 ## land_detector
-Source: [modules/land_detector](https://github.com/PX4/Firmware/tree/master/src/modules/land_detector)
+Source: [modules/land_detector](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/land_detector)
 
 
 ### Description
@@ -263,7 +263,7 @@ land_detector <command> [arguments...]
    status        print status info
 ```
 ## load_mon
-Source: [modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modules/load_mon)
+Source: [modules/load_mon](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/load_mon)
 
 
 ### Description
@@ -284,7 +284,7 @@ load_mon <command> [arguments...]
    status        print status info
 ```
 ## logger
-Source: [modules/logger](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
+Source: [modules/logger](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/logger)
 
 
 ### Description
@@ -352,7 +352,7 @@ logger <command> [arguments...]
    status        print status info
 ```
 ## pwm_input
-Source: [drivers/pwm_input](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_input)
+Source: [drivers/pwm_input](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/pwm_input)
 
 
 ### Description
@@ -372,7 +372,7 @@ pwm_input <command> [arguments...]
    status        print status info
 ```
 ## rc_update
-Source: [modules/rc_update](https://github.com/PX4/Firmware/tree/master/src/modules/rc_update)
+Source: [modules/rc_update](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/rc_update)
 
 
 ### Description
@@ -395,7 +395,7 @@ rc_update <command> [arguments...]
    status        print status info
 ```
 ## replay
-Source: [modules/replay](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
+Source: [modules/replay](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/replay)
 
 
 ### Description
@@ -430,7 +430,7 @@ replay <command> [arguments...]
    status        print status info
 ```
 ## send_event
-Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules/events)
+Source: [modules/events](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/events)
 
 
 ### Description
@@ -450,7 +450,7 @@ send_event <command> [arguments...]
    status        print status info
 ```
 ## sensors
-Source: [modules/sensors](https://github.com/PX4/Firmware/tree/master/src/modules/sensors)
+Source: [modules/sensors](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/sensors)
 
 
 ### Description
@@ -483,7 +483,7 @@ sensors <command> [arguments...]
    status        print status info
 ```
 ## temperature_compensation
-Source: [modules/temperature_compensation](https://github.com/PX4/Firmware/tree/master/src/modules/temperature_compensation)
+Source: [modules/temperature_compensation](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/temperature_compensation)
 
 
 ### Description
@@ -512,7 +512,7 @@ temperature_compensation <command> [arguments...]
    status        print status info
 ```
 ## tune_control
-Source: [systemcmds/tune_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tune_control)
+Source: [systemcmds/tune_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/tune_control)
 
 
 ### Description
@@ -523,7 +523,7 @@ Tunes are used to provide audible notification and warnings (e.g. when the syste
 The tool requires that a driver is running that can handle the tune_control uorb topic.
 
 Information about the tune format and predefined system tunes can be found here:
-https://github.com/PX4/Firmware/blob/master/src/lib/tunes/tune_definition.desc
+https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/tunes/tune_definition.desc
 
 ### Examples
 
@@ -552,7 +552,7 @@ tune_control <command> [arguments...]
    stop          Stop playback (use for repeated tunes)
 ```
 ## work_queue
-Source: [systemcmds/work_queue](https://github.com/PX4/Firmware/tree/master/src/systemcmds/work_queue)
+Source: [systemcmds/work_queue](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/work_queue)
 
 
 ### Description

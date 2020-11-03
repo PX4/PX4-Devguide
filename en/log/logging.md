@@ -88,7 +88,7 @@ By far the best card we know so far is the **SanDisk Extreme U3 32GB**.
 This card is recommended, because it does not exhibit write time spikes (and thus virtually no dropouts).
 Different card sizes might work equally well, but the performance is usually different.
 
-You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/Firmware/issues/4634.
+You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/PX4-Autopilot/issues/4634.
 
 ## Log Streaming
 
@@ -102,7 +102,7 @@ And only one client can request log streaming at the same time.
 The connection does not need to be reliable, the protocol is designed to handle drops.
 
 There are different clients that support ulog streaming:
-- `mavlink_ulog_streaming.py` script in Firmware/Tools.
+- `mavlink_ulog_streaming.py` script in PX4-Autopilot/Tools.
 - QGroundControl:
   ![QGC Log Streaming](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
