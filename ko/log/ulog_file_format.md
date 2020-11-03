@@ -305,10 +305,10 @@ struct message_header_s {
 
 ## 알려진 기존 구현체
 
-- PX4 펌웨어: C++ 
-  - [로거 모듈](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
-  - [재현 모듈](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
-  - [hardfault_log 모듈](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log): hardfault 치명 오류 데이터를 붙입니다.
+- PX4-Autopilot: C++ 
+  - [로거 모듈](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/logger)
+  - [재현 모듈](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/replay)
+  - [hardfault_log module](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/hardfault_log): append hardfault crash data.
 - [pyulog](https://github.com/PX4/pyulog): CLI 스크립트가 들어있는 파이썬 ULog 파서 라이브러리.
 - [FlightPlot](https://github.com/PX4/FlightPlot): Java언어로 작성한 로그 플로터.
 - [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis): pyulog 기반 로그 플로터, 3D 시각화 도구.
