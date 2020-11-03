@@ -9,7 +9,7 @@
 
 탑재 장치 믹서는 단지 [제어 분류 #6 (첫번째 탑재 장치)](../concept/mixing.md#control_group_6)로부터 각각의 출력으로의 기능 값에 대응하는 [믹서 결합](../concept/mixing.md#summing_mixer)을 수행할 뿐입니다. uORB 토픽을 지정 출력으로 대응할 선택 그룹 함수와 값으로 uORB 토픽을 내보낼 수 있습니다.
 
-이 예제에서, *원격 조종 처리 믹서*([pass.aux.mix](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)) 기반 개별 믹서를 만들어보도록 하겠습니다. 이 믹서는 보통 대형 멀티콥터에서 AUX PWM 포트로 불러옵니다. 이 믹서로 4개의 사용자 정의 원격 조종 채널 값을 처리합니다([RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) 매개변수로 설정). 그리하여 첫번째 4개의 출력은 AUX PWM 출력입니다.
+For this example, we'll create a custom mixer based on the *RC passthrough mixer* ([pass.aux.mix](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/pass.aux.mix)). 이 믹서는 보통 대형 멀티콥터에서 AUX PWM 포트로 불러옵니다. 이 믹서로 4개의 사용자 정의 원격 조종 채널 값을 처리합니다([RC_MAP_AUXx/RC_MAP_FLAPS](../advanced/parameter_reference.md#RC_MAP_AUX1) 매개변수로 설정). 그리하여 첫번째 4개의 출력은 AUX PWM 출력입니다.
 
 ```
 # Manual pass through mixer for servo outputs 1-4
@@ -53,12 +53,12 @@ S: 3 4  10000  10000      0 -10000  10000
 이 출력은 파일의 처음에 있기 때문에 (UAVCAN을 활성화하기 전에는) 첫번째 AUX PWM 출력에 대응합니다. 이 출력은 앞으로 탑재 장치 제어 분류 (6)의 출력 1을 업데이트합니다.
 
 제어 분류 6은 코드에서 정의한 그대로 필요합니다(빠져있음!):
-- `actuator_controls_6`를 [/msg/actuator_controls.msg](https://github.com/PX4/Firmware/blob/master/msg/actuator_controls.msg#L17)의 토픽 정의에 추가하십시오:
+- Add `actuator_controls_6` to the TOPICS definition in [/msg/actuator_controls.msg](https://github.com/PX4/PX4-Autopilot/blob/master/msg/actuator_controls.msg#L17):
   ```
   # TOPICS actuator_controls actuator_controls_0 actuator_controls_1 actuator_controls_2 actuator_controls_3 actuator_controls_6
   ```
 - 동일한 파일에서 `NUM_ACTUATOR_CONTROL_GROUPS` 값을 7로 바꾸십시오.
-- 출력 라이브러리([/src/lib/mixer_module/mixer_module.cpp#L52](https://github.com/PX4/Firmware/blob/master/src/lib/mixer_module/mixer_module.cpp#L52))의 `MixingOutput` 생성자에서 추가 제어 분류에 등록하십시오. 대략 다음과 같습니다:
+- Subscribe to the additional control group in the output library ([/src/lib/mixer_module/mixer_module.cpp#L52](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/mixer_module/mixer_module.cpp#L52)) in the `MixingOutput` constructor. 대략 다음과 같습니다:
   ```
     {&interface, ORB_ID(actuator_controls_0)},
     {&interface, ORB_ID(actuator_controls_1)},
