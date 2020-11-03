@@ -12,25 +12,25 @@ I2C는 선 두가닥만 활용하여 다중 마스터 장비를 다중 슬레이
 
 ## I2C 장치 통합
 
-드라이버 코드에는 반드시 `#include <drivers/device/i2c.h>` 행이 있어야 하며, 대상 하드웨어의 드라이버를 **I2C.hpp** 의 추상 기반 클래스 `I2C` 구현체로 구현해야합니다(예: NuttX 코드는 [여기](https://github.com/PX4/Firmware/blob/master/src/lib/drivers/device/nuttx/I2C.hpp)에 있습니다).
+Drivers should `#include <drivers/device/i2c.h>` and then provide an implementation of the abstract base class `I2C` defined in **I2C.hpp** for the target hardware (i.e. for NuttX [here](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/drivers/device/nuttx/I2C.hpp)).
 
-드라이버는 또한 장치 형식별로 [/src/drivers/](https://github.com/PX4/Firmware/tree/master/src/drivers)의 헤더(**drv_*.h**)가 필요합니다. 예: [drv_baro.h](https://github.com/PX4/Firmware/blob/master/src/drivers/drv_baro.h).
+Drivers will also need to include headers for their type of device (**drv_*.h**) in [/src/drivers/](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers) - e.g. [drv_baro.h](https://github.com/PX4/PX4-Autopilot/blob/master/src/drivers/drv_baro.h).
 
 펌웨어에 드라이버를 넣으려면 보드별 cmake 파일에 빌드하려는 대상의 드라이버를 넣어야 합니다:
 
     drivers/sf1xx
     
 
-> **Tip** 예로써 [px4_fmu-v4_default](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake) 설정에서 이 드라이버를 보거나 검색할 수 있습니다.
+> **Tip** For example, you can see/search for this driver in the [px4_fmu-v4_default](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v4/default.cmake) configuration.
 
 ## I2C 드라이버 예제
 
-I2C 드라이버 예제를 찾아보려면 [/src/drivers/](https://github.com/PX4/Firmware/tree/master/src/drivers)에서 **i2c.h**로 찾아보십시오.
+To find I2C driver examples, search for **i2c.h** in [/src/drivers/](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers).
 
 몇가지 예제를 찾아볼 수 있습니다:
 
-* [drivers/sf1xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf1xx) - [Lightware SF1XX LIDAR](https://docs.px4.io/master/en/sensor/sfxx_lidar.html)용 I2C 드라이버.
-* [drivers/ms5611](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/ms5611) - I2C(또는 SPI)로 연결하는 대기압 센서 MS5611과 MS6507용 I2C용 드라이버.
+* [drivers/sf1xx](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/sf1xx) - I2C Driver for [Lightware SF1XX LIDAR](https://docs.px4.io/master/en/sensor/sfxx_lidar.html).
+* [drivers/ms5611](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/barometer/ms5611) - I2C Driver for the MS5611 and MS6507 barometric pressure sensor connected via I2C (or SPI).
 
 ## 추가 정보
 
