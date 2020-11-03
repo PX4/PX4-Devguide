@@ -1,6 +1,6 @@
 # 가제보 기체
 
-이 주제에서는 PX4 [가제보](../simulation/gazebo.md) 시뮬레이션에서 지원하는 기체와 기체를 가동하는데 필요한 `make` 명령을 나열합니다(명령은 **Firmware** 디렉터리 위치에서 터미널에서 실행).
+This topic lists/displays the vehicles supported by the PX4 [Gazebo](../simulation/gazebo.md) simulation and the `make` commands required to run them (the commands are run from a terminal in the **PX4-Autopilot** directory).
 
 지원 기체 형식은 멀티로터, 수직 이착륙기, 수직 이착륙 테일시터, 항공기, 탐사선, 수중선/무인 수중선이 있습니다.
 
