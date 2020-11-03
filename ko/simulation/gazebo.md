@@ -33,10 +33,10 @@ graph LR;
 
 PX4 SITL과 에어프레임 설정(멀티콥터, 비행체, 수직 이착륙기, 광류센서 및 다중 기체 모의 시험 지원)을 불러오는 명령으로 모의 시험환경을 시작하십시오.
 
-가장 쉬운 방법은 PX4 *Firmware* 저장소 루트 디렉터리에서 터미널을 열고 원하는 대상에 대해 `make` 명령을 호출하는 방식입니다. 예를 들어, 쿼드로터 모의 시험을 시작(기본)하려면:
+The easiest way to do this is to open a terminal in the root directory of the PX4 *PX4-Autopilot* repository and call `make` for the desired target. 예를 들어, 쿼드로터 모의 시험을 시작(기본)하려면:
 
 ```sh
-cd /path/to/Firmware
+cd /path/to/PX4-Autopilot
 make px4_sitl gazebo
 ```
 
@@ -244,7 +244,7 @@ This approach significantly reduces the debug cycle time because simulator (e.g.
 
 The *Gazebo* survey camera simulates a [MAVLink camera](https://mavlink.io/en/services/camera.html) that captures geotagged JPEG images and sends camera capture information to a connected ground station. The camera also supports video streaming. It can be used to test camera capture, in particular within survey missions.
 
-The camera emits the [CAMERA_IMAGE_CAPTURED](https://mavlink.io/en/messages/common.html#CAMERA_IMAGE_CAPTURED) message every time an image is captured. The captured images are saved to: **Firmware/build/px4_sitle_default/tmp/frames/DSC_n_.jpg** (where *n* starts as 00000 and is iterated by one on each capture).
+The camera emits the [CAMERA_IMAGE_CAPTURED](https://mavlink.io/en/messages/common.html#CAMERA_IMAGE_CAPTURED) message every time an image is captured. The captured images are saved to: **PX4-Autopilot/build/px4_sitle_default/tmp/frames/DSC_n_.jpg** (where *n* starts as 00000 and is iterated by one on each capture).
 
 To simulate a plane with this camera:
 
