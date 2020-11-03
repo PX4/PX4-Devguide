@@ -5,19 +5,19 @@
 PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따라 PX4에 기여 결과를 공유할 수 있습니다.
 
 * 아직 github 계정이 없다면 [가입](https://github.com/join) 하십시오
-* 펌웨어를 별도로 복제(fork)하십시오([이곳](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository) 참고)
+* Fork the PX4-Autopilot re[p (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
 * 여러분의 계정으로 복제(fork)한 저장소를 로컬 컴퓨터로 가져오십시오  
         sh
         cd ~/wherever/
-        git clone https://github.com/<your git name>/Firmware.git
+        git clone https://github.com/<your git name>/PX4-Autopilot.git
 
-* 새 디렉터리로 이동, 초기화, 하위 모듈을 업데이트한 후, 원본 업스트림 펌웨어를 추가하십시오  
+* Go into the new directory, initialize and update the submodules, and add the original upstream PX4-Autopilot  
         sh
-        cd Firmware
+        cd PX4-Autopilot
         git submodule update --init --recursive
-        git remote add upstream https://github.com/PX4/Firmware.git
+        git remote add upstream https://github.com/PX4/PX4-Autopilot.git
 
-* 이제 원격 저장소가 둘이 됐습니다. 하나는 PX4 펌웨어를 가리키는 업스트림 저장소이며, 다른 하나는 PX4 저장소에서 복제(fork)한 저장소를 가리키는 저장소입니다.
+* You should have now two remote repositories: One repository is called upstream that points to PX4/PX4-Autopilot, and one repository that points to your forked repository of the PX4 repository.
 * 다음 명령으로 이를 확인해볼 수 있습니다: 
         sh
         git remote -v
@@ -38,7 +38,7 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
         git commit -m "<your commit message>" 바람직한 제출 메시지 내용은 
     
     [기여](../contribute/README.md)절을 참조하십시오.
-* 때로는 [업스트림 마스터](https://github.com/PX4/Firmware.git) 변경으로 인해 건너뛰는 경우가 있습니다. PX4는 선형 제출 기록 유지를 선호하며 [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing) 명령을 활용합니다. 업스트림의 새로 바뀐 내용을 로컬 브랜치에 반영하려면 마스터 브랜치로 전환하십시오.  
+* Some time might have passed and the [upstream master](https://github.com/PX4/PX4-Autopilot.git) has changed. PX4는 선형 제출 기록 유지를 선호하며 [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing) 명령을 활용합니다. 업스트림의 새로 바뀐 내용을 로컬 브랜치에 반영하려면 마스터 브랜치로 전환하십시오.  
         sh
         git checkout master 그리고 새 커밋을 업스트림 마스터에서 가져오십시오
     
@@ -58,19 +58,19 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
         sh
         git push origin <your feature branch name>
 
-* 복제(fork)한 저장소로 이동하여 밀어올리기(push)를 제대로 수행했는지 확인할 수 있습니다: `https://github.com/<your git name>/Firmware.git`  
-    새 브랜치를 복제 저장소로 밀어올렸음을 알리는 메시지를 볼 수 있어야합니다.
-* 이제 pull 요청(PR)을 할 시간입니다. "new branch message" 우측을 보면(한단계 전), "Compare & Create Pull Request"가 적힌 녹색 단추를 볼 수 있습니다. 그 다음 바뀐 내용을 나열하고 의미있는 제목(PR 제출 건이 하나인 경우, 보통 제출 메시지)과 메시지(<span style="color:orange">어떤 이유로 뭘 했는가를 설명</span>)를 추가할 수 있습니다(추가해야 합니다). [다른 pull 요청](https://github.com/PX4/Firmware/pulls)을 보고 비교해보십시오)
+* You can verify that the push was successful by going to your forked repository in your browser: `https://github.com/<your git name>/PX4-Autopilot.git`  
+    There you should see the message that a new branch has been pushed to your forked repository.
+* 이제 pull 요청(PR)을 할 시간입니다. "new branch message" 우측을 보면(한단계 전), "Compare & Create Pull Request"가 적힌 녹색 단추를 볼 수 있습니다. 그 다음 바뀐 내용을 나열하고 의미있는 제목(PR 제출 건이 하나인 경우, 보통 제출 메시지)과 메시지(<span style="color:orange">어떤 이유로 뭘 했는가를 설명</span>)를 추가할 수 있습니다(추가해야 합니다). Check [other pull requests](https://github.com/PX4/PX4-Autopilot/pulls) for comparison)
 * 이제 다 끝났습니다. PX4 담당자가 기여 내용을 살펴보고 병합을 할 지 말지를 결정합니다. 그동안 바뀐 내용에 대해 질문이 있을지 한번 정도는 확인해보십시오.
 
 ## 특정 릴리스 가져오기
 
 *오래된 특정 릴리스*의 소스코드를 가져오려면:
 
-* 펌웨어 저장소를 다운로드한 후 펌웨어 디렉터리를 찾아보십시오: 
+* Clone the PX4-Autopilot repo and navigate into PX4-Autopilot directory: 
         sh
-        git clone https://github.com/PX4/Firmware.git
-        cd Firmware
+        git clone https://github.com/PX4/PX4-Autopilot.git
+        cd PX4-Autopilot
 
 * 모든 릴리스(태그)를 조회하십시오 
         sh
