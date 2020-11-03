@@ -39,7 +39,7 @@
 1. 비행체 제어 장치 전원을 켜십시오.
 1. *Eclipse*를 실행하십시오.
 1. **File > Import > C/C++ > Existing Code as Makefile Project**를 선택하여 프로젝트에 소스 코드를 추가하고 **Next**를 누르십시오.
-1. **Firmware** 펌웨어 폴더를 가리키고 이름을 지정한 후 *Toolchain for Indexer Settings*의 *ARM 교차 GCC*를 선택하고 **Finish**를 누르십시오. 상당한 시간동안 가져옵니다. 끝날 때까지 기다리십시오.
+1. Point it to the **PX4-Autopilot** folder and give it a name, then select *ARM Cross GCC* in the *Toolchain for Indexer Settings* and click **Finish**. 상당한 시간동안 가져옵니다. 끝날 때까지 기다리십시오.
 1. MCU 설정을 맞추십시오: Project Explorer에서 상위레벨 프로젝트에 커서를 둔 후 오른쪽 단추를 눌러 *Properties*를 선택, MCU 하위 항목 중 *SEGGER J-Link Path*를 선택하십시오. 아래 화면 촬영 그림처럼 설정하십시오. ![Eclipse: Segger J-Link Path](../../assets/debug/eclipse_segger_jlink_path.png)
 1. 패키지를 업데이트하십시오:
    - 우측 상단의 작은 *Open Perspective* 아이콘을 눌러 *Packs* 감시 창을 여십시오. ![Eclipse: 작업 영역](../../assets/debug/eclipse_workspace_perspective.png)
