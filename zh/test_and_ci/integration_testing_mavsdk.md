@@ -22,7 +22,7 @@ DONT_RUN=1 make px4_sitl gazebo mavsdk_tests
 
 ### 运行所有PX4测试
 
-运行 [sitl.json](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/configs/sitl.json) 中定义的所有SITL测试，执行：
+To run all SITL tests as defined in [sitl.json](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/configs/sitl.json), do:
 
 ```sh
 test/mavsdk_tests/mavsdk_test_runner.py test/mavsdk_tests/configs/sitl.json --speed-factor 10
@@ -58,11 +58,11 @@ optional 参数：
 ## 关于实现的说明
 
 
-- 使用 Python 编写的测试运行程序脚本 [mavsdk_test_runner.py](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/mavsdk_test_runner.py) 调用这些测试。 该运行程序还启动 `px4` 以及用于 SITL 测试的 Gazebo，并收集这些进程的日志。
+- The tests are invoked from the test runner script [mavsdk_test_runner.py](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/mavsdk_test_runner.py), which is written in Python. 该运行程序还启动 `px4` 以及用于 SITL 测试的 Gazebo，并收集这些进程的日志。
 - 这个测试运行器是一个 C++ 库 它包含了：
-  - 解析参数的 [main](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_main.cpp) 函数。
-  - MAVSDK的抽象称为 [autopilot_tester](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/autopilot_tester.h)。
-  - 使用围绕MAVSDK的抽象的实际测试，例如 [ test_multicopter_mission.cpp ](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp)。
+  - The [main](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/test_main.cpp) function to parse the arguments.
+  - An abstraction around MAVSDK called [autopilot_tester](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/autopilot_tester.h).
+  - The actual tests using the abstraction around MAVSDK as e.g. [test_multicopter_mission.cpp](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp).
   - 测试使用 [catch2](https://github.com/catchorg/Catch2) 单元测试框架。 使用这个框架的原因如下：
       - 终止测试所需的断言（`REQUIRE`）可以位于函数内部（而不仅仅是顶层，如 [gtest 测试所示](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)）。
       - 依赖关系管理比较容易，因为* catch2 *可以只作为头文件库包含在内。
