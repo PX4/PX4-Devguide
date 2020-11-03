@@ -72,7 +72,7 @@ More important than the mean write speed is the maximum write time per block (of
 
 By far the best card we know so far is the **SanDisk Extreme U3 32GB**. This card is recommended, because it does not exhibit write time spikes (and thus virtually no dropouts). Different card sizes might work equally well, but the performance is usually different.
 
-You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/Firmware/issues/4634.
+You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/PX4-Autopilot/issues/4634.
 
 ## 日志流
 
@@ -82,7 +82,7 @@ The requirement is that the link provides at least ~50KB/s, so for example a WiF
 
 There are different clients that support ulog streaming:
 
-- Firmware/Tools 中的 `mavlink_ulog_streaming.py` 脚本
+- `mavlink_ulog_streaming.py` script in PX4-Autopilot/Tools.
 - QGroundControl ![QGC Log Streaming](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 
