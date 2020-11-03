@@ -10,7 +10,7 @@ uORB는 많은 어플리케이션이 의존하고 있기 때문에 부트업시�
 
 ## 새로운 토픽 추가하기
 
-새로운 uORB 토픽은 메인 PX4 펌웨어 저장소나 독립 브랜치의 메시지 정의에 추가하여 사용할 수 있습니다. 독립적인 브랜치에 uORB 메시지 정의에 추가하는 것은 [이 섹션](../advanced/out_of_tree_modules.md#uorb_message_definitions)을 참고하세요.
+New uORB topics can be added either within the main PX4/PX4-Autopilot repository, or can be added in an out-of-tree message definitions. 독립적인 브랜치에 uORB 메시지 정의에 추가하는 것은 [이 섹션](../advanced/out_of_tree_modules.md#uorb_message_definitions)을 참고하세요.
 
 새로운 토픽을 만들기 위해서는 `msg/` 디렉토리에 **.msg** 파일을 만들고 `msg/CMakeLists.txt` 리스트에 추가해야합니다. 필요한 C/C++ 코드는 자동적으로 생성됩니다.
 
@@ -114,7 +114,7 @@ uORB는 `orb_advertise_multi`로 동일 토픽의 다중 독립 인스턴스를 
 
 같은 토픽에서 `orb_advertise_multi`과 `orb_advertise`가 섞이지 않도록 유의하십시오.
 
-완전한 API 문서는 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp)에 있습니다.
+The full API is documented in [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/uORB/uORBManager.hpp).
 
 ## 메세지/필드 지원 중단(deprecation) 처리 {#deprecation}
 
@@ -122,6 +122,6 @@ uORB 메세지를 로그 파일에서 추출해보는 외부 도구, 예를 들�
 
 - 업데이트상 타당한 이유가 있을 경우에는 기존 필드와 외부 도구에 의존하는 메세지를 바꾸는게 일반적으로 통용됩니다. 특히 *Flight Review*에서 바뀐 내용을 깼을 경우, `master`에 코드를 병합하기 전에 *Flight Review*를 업데이트해야합니다.
 - 외부 도구로 두 메세지 버전간 구분을 확실히 하려면 다음 과정을 따라야합니다: 
-  - 제거했거나 이름을 바꾼 메세지는 [msg/CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/msg/CMakeLists.txt#L157)의 `deprecated_msgs`에 추가해야 하며, **.msg** 파일은 삭제해야합니다.
+  - Removed or renamed messages must be added to the `deprecated_msgs` list in [msg/CMakeLists.txt](https://github.com/PX4/PX4-Autopilot/blob/master/msg/CMakeLists.txt#L157) and the **.msg** file needs to be deleted.
   - 제거했거나 삭제한 필드는 주석처리하고 지원 중단(deprecated) 표시합니다. 예를 들면 `uint8 quat_reset_counter`는 `# DEPRECATED: uint8 quat_reset_counter`로 바꿉니다. 이렇게 하면 앞으로 제거한 필드(또는 메세지)를 다시 추가하면 안되겠구나 하고 확인할 수 있습니다.
   - 문맥적으로 바뀌었을 경우(예: 도에서 라디안으로 각 단위가 바뀌었을 때), 해당 필드 역시 이름을 바꾸고 앞서 활용한 필드는 위에서와 같이 지원 중단(deprecated) 표시합니다.
