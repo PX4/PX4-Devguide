@@ -20,7 +20,7 @@ MAVLink Shell 是一个可以通过串口（USB、数传或基于WIFI的UDP/TCP�
    ```sh
    sudo pip3 install pymavlink pyserial
    ```
-1. 在 Firmware 目录中打开终端并启动 shell：
+1. Open terminal (in PX4-Autopilot directory) and start the shell:
    ```sh
    # 通过串口
    ./Tools/mavlink_shell.py /dev/ttyACM0
