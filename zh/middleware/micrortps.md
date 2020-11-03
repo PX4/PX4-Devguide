@@ -59,7 +59,7 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 ### 独立于 ROS 的应用程序
 
-编译 PX4 固件时, 将自动生成创建、编译和使用该桥接所需的所有代码。
+All the code needed to create, build and use the bridge is automatically generated when PX4-Autopilot is compiled.
 
 *Client* 应用程序也被编译成为固件的一部分，这是标准编译过程的一部分。 但是*Agent* 必须为目标机单独/手动编译。
 
@@ -71,7 +71,7 @@ ROS2 的应用程序流程非常简单直接! 由于 ROS2 原生支持 DDS/RTPS 
 
 完成编译的 [px4_ros_com](https://github.com/PX4/px4_ros_com) 包可以生成从一个ROS2节点获取 PX4 uORB消息所需的所有组件 (如果使用 ROS一代，还需要 [ros1_bridge](https://github.com/ros2/ros1_bridge))。 This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
 
-The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4 Firmware. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
+The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4-Autopilot. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
 
 Both `px4_ros_com` and `px4_msgs` packages have two separate branches:
 
@@ -84,7 +84,7 @@ Both branches in `px4_ros_com` additionally include some example listener and ad
 
 The generated bridge code will enable a specified subset of uORB topics to be published/subscribed via RTPS. This is true for both ROS or non-ROS applications.
 
-For *automatic code generation* there's a *yaml* definition file in the PX4 **Firmware/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
+For *automatic code generation* there's a *yaml* definition file in the PX4 **PX4-Autopilot/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. This file defines the set of uORB messages to be used with RTPS, whether the messages are to be sent, received or both, and the RTPS ID for the message to be used in DDS/RTPS middleware.
 
 > **Note** 所有消息都必须分配一个 RTPS ID 。
 
@@ -113,11 +113,11 @@ rtps:
     send: true
 ```
 
-> **Note** An API change in ROS2 Dashing means that we now use the `rosidl_generate_interfaces()` CMake module (in `px4_msgs`) to generate the IDL files that we require for microRTPS agent generation (in `px4_ros_com`). PX4固件中又一个IDL文件模板，只在PX4编译过程中才使用。
+> **Note** An API change in ROS2 Dashing means that we now use the `rosidl_generate_interfaces()` CMake module (in `px4_msgs`) to generate the IDL files that we require for microRTPS agent generation (in `px4_ros_com`). PX4-Autopilot includes a template for the IDL file generation, which is only used during the PX4 build process.
 > 
 > The `px4_msgs` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). **uorb_rtps_message_ids.yaml** 文件将消息改名使之符合*PascalCased*标准 (改名这事儿与客户端-代理端之间的通信没有任何关系，但是对于 ROS2 是至关重要的，因为 ROS2 的消息命名必须符合 PascalCase 约定)。 新的IDL文件还反转了消息的发送/接收状态 (这是必须的，因为同一个消息在客户端是发送，在代理端的状态就是接收，反之亦然)。
 
-## 客户端 (PX4固件) {#client_firmware}
+## Client (PX4/PX4-Autopilot) {#client_firmware}
 
 The *Client* source code is generated, compiled and built into the PX4 firmware as part of the normal build process.
 
@@ -264,7 +264,7 @@ Since the ROS2 and ROS require different environments you will need a separate w
 
 The directory `px4_ros_com/scripts` contains multiple scripts that can be used to build both workspaces.
 
-To build both workspaces with a single script, use the `build_all.bash`. Check the usage with `source build_all.bash --help`. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4 Firmware directory path:
+To build both workspaces with a single script, use the `build_all.bash`. Check the usage with `source build_all.bash --help`. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4-Autopilot directory path:
 
 ```sh
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
@@ -350,7 +350,7 @@ $ source clean_all.bash --ros1_ws_dir &lt;path/to/px4_ros_com_ros1/ws&gt;
 输入以下命令来创建应用：
 
 ```sh
-cd /path/to/PX4/Firmware/build/px4_sitl_rtps/src/modules/micrortps_bridge
+cd /path/to/PX4/PX4-Autopilot/build/px4_sitl_rtps/src/modules/micrortps_bridge
 mkdir micrortps_listener
 cd micrortps_listener
 fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sensor_combined.idl
