@@ -10,7 +10,7 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
 
 이 주제에서는 IDE를 설치하고 개발을 시작하는 방법을 설명합니다.
 
-> **Note** 다른 강력한 통합 개발 환경이 있지만, PX4 개발을 목적으로 몇가지 기능을 통합하려면 약간의 수고로움이 더 필요합니다. *VSCode*에서는 PX4/Firmware 트리([Firmware/.vscode](https://github.com/PX4/Firmware/tree/master/.vscode)에 설정을 저장하기에 설치 과정은 단지 프로젝트 폴더를 추가하면 되는 정도로 간단합니다.
+> **Note** 다른 강력한 통합 개발 환경이 있지만, PX4 개발을 목적으로 몇가지 기능을 통합하려면 약간의 수고로움이 더 필요합니다. With *VScode*, configuration is stored in the PX4/PX4-Autopilot tree ([PX4-Autopilot/.vscode](https://github.com/PX4/PX4-Autopilot/tree/master/.vscode)) so the setup process is as simple as adding the project folder.
 
 ## 선행 조건
 
@@ -22,7 +22,7 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
 2. VSCode를 열고 PX4 소스 코드를 추가하십시오:
     
    - 환영 페이지에서 *Open folder ...* 옵션을 선택하십시오(또는 **File > Open Folder** 메뉴 선택): ![폴더 열기](../../assets/vscode/welcome_open_folder.jpg)
-   - 파일 선택 대화상자가 뜹니다. PX4 **Firmware** 디렉터리를 선택하고 **OK**를 누르십시오.
+   - 파일 선택 대화상자가 뜹니다. Select the **PX4-Autopilot** directory and then press **OK**.
     
     이 과정을 끝내면 프로젝트 파일과 설정 파일을 *VSCode*에 불러옵니다.
 
