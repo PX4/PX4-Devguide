@@ -5,19 +5,19 @@
 按照定义的工作流向 px4 添加功能。 为了在 px4 上分享您的贡献, 您可以遵循此示例。
 
 * 如果您还没有注册，请先[Sign up](https://github.com/join) Github 账户
-* 创建固件分支 (见 [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
+* Fork the PX4-Autopilot re[p (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
 * Clone your forked repository to your local computer  
         sh
         cd ~/wherever/
-        git clone https://github.com/<your git name>/Firmware.git
+        git clone https://github.com/<your git name>/PX4-Autopilot.git
 
-* Go into the new directory, initialize and update the submodules, and add the original upstream Firmware  
+* Go into the new directory, initialize and update the submodules, and add the original upstream PX4-Autopilot  
         sh
-        cd Firmware
+        cd PX4-Autopilot
         git submodule update --init --recursive
-        git remote add upstream https://github.com/PX4/Firmware.git
+        git remote add upstream https://github.com/PX4/PX4-Autopilot.git
 
-* You should have now two remote repositories: One repository is called upstream that points to the PX4 Firmware, and one repository that points to your forked repository of the PX4 repository.
+* You should have now two remote repositories: One repository is called upstream that points to PX4/PX4-Autopilot, and one repository that points to your forked repository of the PX4 repository.
 * This can be checked with the following command: 
         sh
         git remote -v
@@ -38,7 +38,7 @@
         git commit -m "<your commit message>" For a good commit message, please refer to 
     
     [Contributing](../contribute/README.md) section.
-* Some time might have passed and the [upstream master](https://github.com/PX4/Firmware.git) has changed. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch  
+* Some time might have passed and the [upstream master](https://github.com/PX4/PX4-Autopilot.git) has changed. PX4 prefers a linear commit history and uses [git rebase](https://git-scm.com/book/de/v1/Git-Branching-Rebasing). To include the newest changes from upstream in your local branch, switch to your master branch  
         sh
         git checkout master Then pull the newest commits from upstream master
     
@@ -58,19 +58,19 @@
         sh
         git push origin <your feature branch name>
 
-* You can verify that the push was successful by going to your forked repository in your browser: `https://github.com/<your git name>/Firmware.git`  
+* You can verify that the push was successful by going to your forked repository in your browser: `https://github.com/<your git name>/PX4-Autopilot.git`  
     There you should see the message that a new branch has been pushed to your forked repository.
-* Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/Firmware/pulls) for comparison)
+* Now it's time to create a pull request (PR). On the right hand side of the "new branch message" (see one step before), you should see a green button saying "Compare & Create Pull Request". Then it should list your changes and you can (must) add a meaningful title (in case of a one commit PR, it's usually the commit message) and message (<span style="color:orange">explain what you did for what reason</span>. Check [other pull requests](https://github.com/PX4/PX4-Autopilot/pulls) for comparison)
 * You're done! Responsible members of PX4 will now have a look at your contribution and decide if they want to integrate it. Check if they have questions on your changes every once in a while.
 
 ## Get a Specific Release
 
 To get the source code for a *specific older release*:
 
-* Clone the Firmware repo and navigate into Firmware directory: 
+* Clone the PX4-Autopilot repo and navigate into PX4-Autopilot directory: 
         sh
-        git clone https://github.com/PX4/Firmware.git
-        cd Firmware
+        git clone https://github.com/PX4/PX4-Autopilot.git
+        cd PX4-Autopilot
 
 * List all releases (tags) 
         sh
