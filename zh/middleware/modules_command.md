@@ -2,7 +2,7 @@
 
 ## bl_update
 
-源码： [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
+Source: [systemcmds/bl_update](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/bl_update)
 
 用于从文件中刷新飞行控制器的 引导加载程序（bootloader ）
 
@@ -16,7 +16,7 @@
 
 ## dumpfile
 
-Source: [systemcmds/dumpfile](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dumpfile)
+Source: [systemcmds/dumpfile](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/dumpfile)
 
 Dump file utility. Prints file size and contents in binary mode (don't replace LF with CR LF) to stdout.
 
@@ -28,7 +28,7 @@ Dump file utility. Prints file size and contents in binary mode (don't replace L
 
 ## dyn
 
-Source: [systemcmds/dyn](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dyn)
+Source: [systemcmds/dyn](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/dyn)
 
 ### Description
 
@@ -48,7 +48,7 @@ Load and run a dynamic PX4 module, which was not compiled into the PX4 binary.
 
 ## esc_calib
 
-Source: [systemcmds/esc_calib](https://github.com/PX4/Firmware/tree/master/src/systemcmds/esc_calib)
+Source: [systemcmds/esc_calib](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/esc_calib)
 
 Tool for ESC calibration
 
@@ -76,7 +76,7 @@ Calibration procedure (running the command will guide you through it):
 
 ## failure
 
-Source: [systemcmds/failure](https://github.com/PX4/Firmware/tree/master/src/systemcmds/failure)
+Source: [systemcmds/failure](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/failure)
 
 ### Description
 
@@ -106,7 +106,7 @@ failure gps off
 
 ## gpio
 
-Source: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
+Source: [systemcmds/gpio](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/gpio)
 
 This command is used to read and write GPIOs.
 
@@ -127,7 +127,7 @@ This command is used to read and write GPIOs.
 
 ## hardfault_log
 
-Source: [systemcmds/hardfault_log](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log)
+Source: [systemcmds/hardfault_log](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/hardfault_log)
 
 Hardfault utility
 
@@ -155,7 +155,7 @@ Used in startup scripts to handle hardfaults
 
 ## i2cdetect
 
-Source: [systemcmds/i2cdetect](https://github.com/PX4/Firmware/tree/master/src/systemcmds/i2cdetect)
+Source: [systemcmds/i2cdetect](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/i2cdetect)
 
 Utility to scan for I2C devices on a particular bus.
 
@@ -168,7 +168,7 @@ Utility to scan for I2C devices on a particular bus.
 
 ## led_control
 
-Source: [systemcmds/led_control](https://github.com/PX4/Firmware/tree/master/src/systemcmds/led_control)
+Source: [systemcmds/led_control](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/led_control)
 
 ### Description
 
@@ -218,7 +218,7 @@ Blink the first LED 5 times in blue:
 
 ## listener
 
-Source: [systemcmds/topic_listener](https://github.com/PX4/Firmware/tree/master/src/systemcmds/topic_listener)
+Source: [systemcmds/topic_listener](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/topic_listener)
 
 Utility to listen on uORB topics and print the data to the console.
 
@@ -239,7 +239,7 @@ The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
 
 ## mixer
 
-Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
+Source: [systemcmds/mixer](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/mixer)
 
 ### Description
 
@@ -260,7 +260,7 @@ Note that the driver must support the used ioctl's, which is the case on NuttX, 
 
 ## motor_ramp
 
-Source: [systemcmds/motor_ramp](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_ramp)
+Source: [systemcmds/motor_ramp](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/motor_ramp)
 
 ### Description
 
@@ -296,7 +296,7 @@ When starting, a background task is started, runs for several seconds (as specif
 
 ## motor_test
 
-Source: [systemcmds/motor_test](https://github.com/PX4/Firmware/tree/master/src/systemcmds/motor_test)
+Source: [systemcmds/motor_test](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/motor_test)
 
 Utility to test motors.
 
@@ -322,7 +322,7 @@ WARNING: remove all props before using this command.
 
 ## mtd
 
-Source: [systemcmds/mtd](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mtd)
+Source: [systemcmds/mtd](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/mtd)
 
 Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by the board)
 
@@ -354,7 +354,7 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
 
 ## nshterm
 
-Source: [systemcmds/nshterm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/nshterm)
+Source: [systemcmds/nshterm](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/nshterm)
 
 Start an NSH shell on a given port.
 
@@ -368,7 +368,7 @@ This was previously used to start a shell on the USB serial port. Now there runs
 
 ## param
 
-Source: [systemcmds/param](https://github.com/PX4/Firmware/tree/master/src/systemcmds/param)
+Source: [systemcmds/param](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/param)
 
 ### Description
 
@@ -453,7 +453,7 @@ Change the airframe and make sure the airframe's default parameters are loaded:
 
 ## perf
 
-Source: [systemcmds/perf](https://github.com/PX4/Firmware/tree/master/src/systemcmds/perf)
+Source: [systemcmds/perf](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/perf)
 
 Tool to print performance counters
 
@@ -469,7 +469,7 @@ Tool to print performance counters
 
 ## pwm
 
-Source: [systemcmds/pwm](https://github.com/PX4/Firmware/tree/master/src/systemcmds/pwm)
+Source: [systemcmds/pwm](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/pwm)
 
 ### Description
 
@@ -559,7 +559,7 @@ Test the outputs of eg. channels 1 and 3, and set the PWM value to 1200 us:
 
 ## reboot
 
-Source: [systemcmds/reboot](https://github.com/PX4/Firmware/tree/master/src/systemcmds/reboot)
+Source: [systemcmds/reboot](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/reboot)
 
 Reboot the system
 
@@ -572,7 +572,7 @@ Reboot the system
 
 ## sd_bench
 
-Source: [systemcmds/sd_bench](https://github.com/PX4/Firmware/tree/master/src/systemcmds/sd_bench)
+Source: [systemcmds/sd_bench](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/sd_bench)
 
 Test the speed of an SD Card
 
@@ -590,7 +590,7 @@ Test the speed of an SD Card
 
 ## system_time
 
-Source: [systemcmds/system_time](https://github.com/PX4/Firmware/tree/master/src/systemcmds/system_time)
+Source: [systemcmds/system_time](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/system_time)
 
 ### Description
 
@@ -615,7 +615,7 @@ Set the system time and read it back
 
 ## top
 
-Source: [systemcmds/top](https://github.com/PX4/Firmware/tree/master/src/systemcmds/top)
+Source: [systemcmds/top](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/top)
 
 Monitor running processes and their CPU, stack usage, priority and state
 
@@ -627,7 +627,7 @@ Monitor running processes and their CPU, stack usage, priority and state
 
 ## usb_connected
 
-Source: [systemcmds/usb_connected](https://github.com/PX4/Firmware/tree/master/src/systemcmds/usb_connected)
+Source: [systemcmds/usb_connected](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/usb_connected)
 
 Utility to check if USB is connected. Was previously used in startup scripts. A return value of 0 means USB is connected, 1 otherwise.
 
@@ -638,7 +638,7 @@ Utility to check if USB is connected. Was previously used in startup scripts. A 
 
 ## ver
 
-Source: [systemcmds/ver](https://github.com/PX4/Firmware/tree/master/src/systemcmds/ver)
+Source: [systemcmds/ver](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/ver)
 
 Tool to print various version information
 
