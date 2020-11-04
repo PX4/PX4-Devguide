@@ -18,8 +18,8 @@ MAVLink 디버깅 메시지는 uORB 토픽으로 변환하거나 그 반대로 �
 
 이 자습서에 있는 코드는 다음과 같습니다:
 
-* [디버깅 자습 코드](https://github.com/PX4/Firmware/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.cpp)
-* MAVLink 디버깅 앱(**px4_mavlink_debug**)에서 보드 설정의 주석을 해제하여 하나하나 확인하는 과정을 통해 [자습서 앱 동작을 활성화](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)합니다.
+* [디버깅 자습 코드](https://github.com/PX4/PX4-Autopilot/blob/master/src/examples/px4_mavlink_debug/px4_mavlink_debug.cpp)
+* [Enable the tutorial app](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v5/default.cmake) by ensuring the MAVLink debug app (**px4_mavlink_debug**) is uncommented in the config of your board.
 
 디버깅 내용 출력을 설정하는데 필요한 모든 구성은 이 코드 조각에 다 들어있습니다. 우선 헤더 파일을 추가해보도록 하겠습니다:
 

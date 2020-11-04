@@ -30,7 +30,7 @@ SITL에서는 모의시험 활용의 용이성을 위해 기본적으로 안전�
 
 동작을 재현하는 배터리는 절대로 바닥나지 않는 배터리 구현체이며, 기본적으로 50% 방전 상태로 전압을 보고합니다. 다른 시험을 가로막는 배터리 용량 부족 상태를 유발하지 않고 GCS의 배터리 표시를 시험해볼 수 있습니다.
 
-최소 배터리 백분율 값을 바꾸려면 [이 줄](https://github.com/PX4/Firmware/blob/9d67bbc328553bbd0891ffb8e73b8112bca33fcc/src/modules/simulator/simulator_mavlink.cpp#L330)의 값을 바꾸십시오.
+To change this minimal battery percentage value change [this line](https://github.com/PX4/PX4-Autopilot/blob/9d67bbc328553bbd0891ffb8e73b8112bca33fcc/src/modules/simulator/simulator_mavlink.cpp#L330).
 
 배터리 소모율을 최소값으로 조절하려면 [SIM_BAT_DRAIN](../advanced/parameter_reference.md#SIM_BAT_DRAIN) 매개변수를 활용하십시오.
 

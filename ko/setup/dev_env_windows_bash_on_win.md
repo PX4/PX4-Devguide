@@ -29,11 +29,11 @@
 
 1. 다음 명령을 배시셸에 입력하십시오:
     
-        cd ~/src/Firmware
+        cd ~/src/PX4-Autopilot
         make px4_fmu-v4_default
         
     
-    완전히 끝나면, `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4` 위치의 펌웨어를 찾을 수 있습니다.
+    On successful completion you'll find the firmware here: `PX4-Autopilot/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
     
     > **Note** 기타 보드 대상 펌웨어 빌드용 `make` 명령은 [코드 빌드](../setup/building_px4.md#nuttx)에서 확인하실 수 있습니다
 

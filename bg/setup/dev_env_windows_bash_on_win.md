@@ -29,11 +29,11 @@ To build the firmware (i.e. for px4_fmu-v4):
 
 1. Enter the following commands in the bash shell:
     
-        cd ~/src/Firmware
+        cd ~/src/PX4-Autopilot
         make px4_fmu-v4_default
         
     
-    On successful completion you'll find the firmware here: `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
+    On successful completion you'll find the firmware here: `PX4-Autopilot/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
     
     > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx)
 

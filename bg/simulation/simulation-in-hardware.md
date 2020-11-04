@@ -20,7 +20,7 @@ Furthermore, the physical parameters representing the vehicle (such as mass, ine
 
 To run the SIH, you will need a [flight controller hardware](https://docs.px4.io/master/en/flight_controller/) (e.g. a Pixhawk-series board). If you are planning to use a [radio control transmitter and receiver pair](https://docs.px4.io/master/en/getting_started/rc_transmitter_receiver.html) you should have that too. Alternatively, using *QGroundControl*, a [joystick](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) can be used to emulate a radio control system.
 
-The SIH is compatible with all Pixhawk-series boards except those based on FMUv2. It is available on the firmware master branch and release versions v1.9.0 and above.
+The SIH is compatible with all Pixhawk-series boards except those based on FMUv2. It is available on the PX4-Autopilot master branch and release versions v1.9.0 and above.
 
 ## Setting up SIH
 

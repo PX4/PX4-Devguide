@@ -18,7 +18,7 @@
 2. Run it, choose your desired installation location, let it install: ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 3. 在安装结束后勾选*clone the PX4 repository, build and run simulation with jMAVSim*(这简化了你的开始准备工作)
     
-    > **Note** If you missed this step you will need to [clone the PX4 Firmware repository manually](#getting_started).
+    > **Note** If you missed this step you will need to [clone the PX4-Autopilot repository manually](#getting_started).
 
 ## 入门指南 {#getting_started}
 
@@ -26,23 +26,23 @@
 
 1. 进入到工具链的安装目录(默认**C:\PX4**)
 2. 运行**run-console.bat**(双击)启动Cygwin bash控制台
-3. 在控制台中运行克隆PX4 Firmware仓库命令
+3. Clone the PX4 PX4-Autopilot repository from within the console:
     
     > **注意**只需要克隆一次 如果你在安装程序最后选择了*clone the PX4 repository, build and run simulation with jMAVSim*，则可以跳过这一步。
     
     ```bash
-    # 克隆 PX4 Firmware 仓库到 home 目录 & 同时并行加载子模块
-    git clone --recursive -j8 https://github.com/PX4/Firmware.git
+    # Clone the PX4-Autopilot repository into the home folder & loads submodules in parallel
+    git clone --recursive -j8 https://github.com/PX4/PX4-Autopilot.git
     ```
     
-    你现在可以使用控制台中的Firmware仓库代码来编译PX4
+    You can now use the console/PX4-Autopilot repository to build PX4.
 
 4. 举例，要运行JMAVSim:
     
     ```bash
-    # 进入Firmware仓库目录
-    cd Firmware 
-    # 使用JMAVSim编译并运行SITL模拟器来验证 
+    # Navigate to PX4-Autopilot repo
+    cd PX4-Autopilot
+    # Build and runs SITL simulation with jMAVSim to test the setup
     make px4_sitl jmavsim
     ```
     

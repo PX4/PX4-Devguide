@@ -2,7 +2,7 @@
 
 {% if book.px4_version != 'master' %} PX4 기여 **현재** 정보, 커뮤니티와의 작업, 코드라인, 유선 개발 미팅은 [이곳 "master" 문서에서 찾을 수 있습니다](https://dev.px4.io/master/en/contribute/)! {% else %} <!-- START: dev call details: displayed only in master -->
 
-> **Tip** [PX4 활동 지침](https://github.com/PX4/Firmware/blob/master/CODE_OF_CONDUCT.md)을 언급하겠습니다. 이 지침은 개방하고 환영하는 분위기를 조성하기 위함입니다.
+> **Tip** We pledge to adhere to the [PX4 code of conduct](https://github.com/PX4/PX4-Autopilot/blob/master/CODE_OF_CONDUCT.md). 이 지침은 개방하고 환영하는 분위기를 조성하기 위함입니다.
 
 이 절에서는 소스 코드, 문서, 번역, 관련 라이선스에 대한 PX4 기여 정보를 담고 있습니다.
 

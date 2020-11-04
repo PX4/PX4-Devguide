@@ -4,9 +4,9 @@
 
 PX4 项目使用三分支 Git 模型：
 
-- [master](https://github.com/px4/firmware/tree/master) 默认是不稳定版本， 用于快速开发。
-- [beta](https://github.com/px4/firmware/tree/beta) 经过全面测试。 它是供飞行测试人员使用的。
-- [stable](https://github.com/px4/firmware/tree/stable) 是最新发行版本。
+- [master](https://github.com/PX4/PX4-Autopilot/tree/master) is by default unstable and sees rapid development.
+- [beta](https://github.com/PX4/PX4-Autopilot/tree/beta) has been thoroughly tested. 它是供飞行测试人员使用的。
+- [stable](https://github.com/PX4/PX4-Autopilot/tree/stable) points to the last release.
 
 我们试着 [通过重置保留线性历史](https://www.atlassian.com/git/tutorials/rewriting-history)，并且避免 [Github flow](https://guides.github.com/introduction/flow/)。 然而，由于全球团队和快速的发展，我们可能有时会进行合并。
 
@@ -33,7 +33,7 @@ PX4 使用 [asty](http://astyle.sourceforge.net/) 进行代码格式化。 有�
 目前，我们有两种基于来源的文件：
 
 - `PRINT_MODULE_*` 在本指南中，同时两个模块的运行时间使用说明和 [模块 & 命令参考](../middleware/modules_main.md) 使用方法。 
-  - API 记录在 [源代码](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381)。 
+  - The API is documented [in the source code here](https://github.com/PX4/PX4-Autopilot/blob/v1.8.0/src/platforms/px4_module.h#L381). 
   - 使用的良好例子包括在 [应用程序/模块模板](../apps/module_template.md) 以及从模块引用链接的文件。
 
 - 我们鼓励其它源文档 *添加必要的值*。
@@ -42,7 +42,7 @@ PX4 使用 [asty](http://astyle.sourceforge.net/) 进行代码格式化。 有�
   
   - 不要添加可以从 C++ 实体名称零碎地推断出的文档。
   - 通常您可能想要添加关于 corner cases 和错误处理的信息。
-  - [Doxgyen](http://www.doxygen.nl/)如果需要文件，应使用标签：`@class`，`@file`，`@param`，`@return`，`@var`，`@see`，`@note`，`@note`。 一个很好的用法例子是 [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h)。
+  - [Doxgyen](http://www.doxygen.nl/)如果需要文件，应使用标签：`@class`，`@file`，`@param`，`@return`，`@var`，`@see`，`@note`，`@note`。 A good example of usage is [src/modules/events/send_event.h](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/events/send_event.h).
 
 ## 提交和提交消息
 

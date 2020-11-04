@@ -15,7 +15,7 @@ PX4提供了以下几种编写单元测试的方法：
 创建新的单元测试步骤如下：
 
 1. 单元测试分成三个部分：设置、运行、检查结果。 每个单元测试都应该测试一个特定行为或设置案例，如果测试失败，则很明显你的测试代码有错误。 请尽可能遵循这些标准。
-2. 复制示例单元测试 [AttitudeControlTest](https://github.com/PX4/Firmware/blob/master/src/modules/mc_att_control/AttitudeControl/AttitudeControlTest.cpp) 到你测试目录，并重命名。
+2. Copy and rename the example unit test [AttitudeControlTest](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mc_att_control/AttitudeControl/AttitudeControlTest.cpp) to the directory the code to be tested is in.
 3. 将新文件到该目录的`CMakeLists.txt`文件中。 文件看起来像`px4_add_unit_gtest(SRC MyNewUnitTest.cpp LINKLIBS <library_to_be_tested>)`
 4. 添加你想要的测试功能。 这包括了添加所需的头文件、新测试(每个测试都应该有单独的名称)，并加入相关逻辑，运行测试代码并验证其行为是否符合预期。
 5. 如果需要添加新的依赖库，只要在如上所说的CMakeLists文件中`LINKLIBS`后面加入库的名字。
@@ -29,7 +29,7 @@ PX4提供了以下几种编写单元测试的方法：
 创建一个新的功能测试步骤如下：
 
 1. 一般来说（与单元测试类似）功能测试应分为三个部分：设置，运行，检查结果。 每个测试都应该包括一个特定行为或是设置案例，如果测试失败，则很明显有错误。 请尽可能遵循这些标准。
-2. 复制示例功能测试 [ParameterTest](https://github.com/PX4/Firmware/blob/master/src/lib/parameters/ParameterTest.cpp) 到你测试目录，并重命名。
+2. Copy and rename the example functional test [ParameterTest](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/parameters/ParameterTest.cpp) to the directory the code to be tested is in.
 3. 将ParameterTest 重命名为更符合你正在测试的代码功能。
 4. 将新文件添加到目录里面的`CMakeLists.txt`。 文件内容看起来像 `px4_add_functional_gtest(SRC MyNewFunctionalTest.cpp LINKLIBS <library_to_be_tested>)`
 5. 添加你想要的测试功能。 这包括了，添加特定的头文件、新测试（每个测试都应该使用不同的命名），并设置相关逻辑，运行测试代码并验证是否符合预期。
@@ -43,8 +43,8 @@ PX4提供了以下几种编写单元测试的方法：
 
 创建一个新的SITL单元测试步骤如下：
 
-1. 检查示例 [Unittest-class](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h)。
-2. 在 [tests](https://github.com/PX4/Firmware/tree/master/src/systemcmds/tests) 中创建名为 **test_ [description] .cpp** 的新 .cpp 文件。
+1. Examine the sample [Unittest-class](https://github.com/PX4/PX4-Autopilot/blob/master/src/include/unit_test.h).
+2. Create a new .cpp file within [tests](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/tests) with name **test_[description].cpp**.
 3. 在 **test_[description].cpp** 中包括基本 unittest-class`<unit_test.h>` 以及为新功能编写测试所需的所有文件。
 4. 在 **test_[description].cpp** 中创建一个继承自 `UnitTest` 的类 `[Description]Test`。
 5. 在 `[Description]Test` 类中，声明公共方法 `virtual bool run_tests()`。
@@ -106,15 +106,15 @@ PX4提供了以下几种编写单元测试的方法：
     ut_declare_test_c(test_[description], [Description]Test)
     ```
     
-    注意，`ut_[name of one of the unit test functions]` 对应于 [unit_test.h ](https://github.com/PX4/Firmware/blob/master/src/include/unit_test.h) 中定义的单元测试函数之一。
+    Note that `ut_[name of one of the unit test functions]` corresponds to one of the unittest functions defined within [unit_test.h](https://github.com/PX4/PX4-Autopilot/blob/master/src/include/unit_test.h).
 
-10. 在 [tests_main.h](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.h) 中定义新测试：
+10. Within [tests_main.h](https://github.com/PX4/PX4-Autopilot/blob/master/src/systemcmds/tests/tests_main.h) define the new test:
     
     ```cpp
     extern int test_[description](int argc, char *argv[]);
     ```
 
-11. 在 [tests_main.c](https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/tests_main.c) 中添加描述名称，测试功能和选项：
+11. Within [tests_main.c](https://github.com/PX4/PX4-Autopilot/blob/master/src/systemcmds/tests/tests_main.c) add description name, test function and option:
     
     ```cpp ... } tests[] = { {... {"[description]", test_[description], OPTION}, ... }
 
@@ -130,7 +130,7 @@ PX4提供了以下几种编写单元测试的方法：
        ```
        If a test has option `OPT_NOALLTEST`, then that test will be excluded when calling `tests all`. The same is true for `OPT_NOJITEST` when command `test jig` is called. 选项“0”表示从不排除测试，这是大多数开发人员想要使用的。
     
-    1. 将测试`test_ [description].cpp`添加到 [CMakeLists.txt]（https://github.com/PX4/Firmware/blob/master/src/systemcmds/tests/CMakeLists.txt）。
+    1. Add the test `test_[description].cpp` to the [CMakeLists.txt](https://github.com/PX4/PX4-Autopilot/blob/master/src/systemcmds/tests/CMakeLists.txt).
     
     
     ## 本地机器上的测试

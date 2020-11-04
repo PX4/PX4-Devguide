@@ -1,6 +1,6 @@
 # 아치 리눅스 개발 환경
 
-펌웨어 저장소에서는 PX4 개발에 필요한 아치 리눅스용 편의 설치 스크립트 [Tools/setup/arch.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/arch.sh) 파일을 제공합니다.
+The PX4-Autopilot repository provides a convenient script to set your Arch installation up for PX4 development: [Tools/setup/arch.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/arch.sh).
 
 (기본적으로) 스크립트에서는 PX4 NuttX 대상 빌드에 필요한 모든 도구(RTPS 제외)를 설치하며 *jMAVSim*으로 모의시험 환경을 실행합니다. 추가로 명령행에 `--gazebo` 인자를 지정하여 *가제보(Gazebo)* 모의시험 환경을 설치할 수도 있습니다.
 
@@ -11,13 +11,13 @@
 스크립트를 받아서 실행하려면, 다음 둘 중 한가지 절차를 이행하십시오:
 
 - [PX4 소스코드를 다운로드](../setup/building_px4.md) 하고, 해당 위치에서 스크립트를 실행하십시오: 
-        git clone https://github.com/PX4/Firmware.git
-        bash Firmware/Tools/setup/arch.sh
+        git clone https://github.com/PX4/PX4-Autopilot.git
+        bash PX4-Autopilot/Tools/setup/arch.sh
 
 - 필요한 스크립트만 다운로드하고 바로 실행하십시오: 
         sh
-        wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/arch.sh
-        wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/requirements.txt
+        wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/master/Tools/setup/arch.sh
+        wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/master/Tools/setup/requirements.txt
         bash arch.sh
 
 이 스크립트는 다음 추가 매개변수를 받을 수 있습니다:

@@ -20,7 +20,7 @@ PX4 개발 팀은 플랫폼 기술 세부내역과 심층 분석 내역을 정�
 
 초반의 주요 회의는 45분간 진행하며 프로젝트를 어디서 진행 중인지 의논하는 고수준 포럼도 제공해드립니다.
 
-[dev call](https://github.com/PX4/Firmware/labels/devcall5) 레이블이 붙은 문제/PR을 포함, *기여* 주제를 다루는 기회입니다. 유선 미팅을 통해 무언가를 제안하고, 문제를 검토해주기 바랍니다!
+This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/PX4-Autopilot/labels/devcall5) label. 유선 미팅을 통해 무언가를 제안하고, 문제를 검토해주기 바랍니다!
 
 > **Note** 본 유선 미팅은 신속에 초점을 맞춘 결정을 지원하는게 목적입니다. 심도있는 기술적 토론을 기대하지 않으며, 기능 제안에 많은 시간을 할애하지 않습니다. 제안은 반갑습니다만, 지원자가 필요합니다(누군가가 해당 기능을 *구현*해야합니다)!
 
@@ -45,6 +45,6 @@ PX4 개발 팀은 플랫폼 기술 세부내역과 심층 분석 내역을 정�
 
 * 유선 미팅 진행 전 [PX4 토론 - 주간 유선 개발 미팅](http://discuss.px4.io/c/weekly-dev-call)에 의제를 게시할 예정입니다 
 
-* 유선 미팅에서 문제나 PR을 다루려면 해당 내용에 [devcall](https://github.com/PX4/Firmware/labels/devcall) 레이블을 달아 의제로 표기할 수 있습니다.
+* To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/PX4-Autopilot/labels/devcall) label to flag them for discussion.
 
 {% endif %} <!-- END: dev call details: displayed only in master -->

@@ -15,7 +15,7 @@
 MAVROS 테스트 기반에서 완전한 시험을 실행하려면:
 
 ```sh
-cd <Firmware_clone>
+cd <PX4-Autopilot_clone>
 source integrationtests/setup_gazebo_ros.bash $(pwd)
 rostest px4 mavros_posix_tests_iris.launch
 ```
@@ -91,12 +91,12 @@ if __name__ == '__main__':
 
 ```sh
 # Start simulation
-cd <Firmware_clone>
+cd <PX4-Autopilot_clone>
 source integrationtests/setup_gazebo_ros.bash $(pwd)
 roslaunch px4 mavros_posix_sitl.launch
 
 # Run test (in a new shell):
-cd <Firmware_clone>
+cd <PX4-Autopilot_clone>
 source integrationtests/setup_gazebo_ros.bash $(pwd)
 rosrun px4 mavros_new_test.py
 ```

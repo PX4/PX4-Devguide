@@ -22,7 +22,7 @@ DONT_RUN=1 make px4_sitl gazebo mavsdk_tests
 
 ### 모든 PX4 시험 절차 실행
 
-SITL 시험을 [sitl.json](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/configs/sitl.json)에 지정한대로 실행하려면 다음 명령을 내리십시오:
+To run all SITL tests as defined in [sitl.json](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/configs/sitl.json), do:
 
 ```sh
 test/mavsdk_tests/mavsdk_test_runner.py test/mavsdk_tests/configs/sitl.json --speed-factor 10
@@ -58,11 +58,11 @@ optional arguments:
 ## 구현상 참고
 
 
-- 시험 절차는 파이썬 코드로 작성한 시험 실행 스크립트 [mavsdk_test_runner.py](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/mavsdk_test_runner.py) 파일로 진행합니다. 이 실행 주체는 `px4`를 SITL 시험 용도의 가제보와 마찬가지로 시작하며, 처리 과정의 기록을 수집합니다.
+- The tests are invoked from the test runner script [mavsdk_test_runner.py](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/mavsdk_test_runner.py), which is written in Python. 이 실행 주체는 `px4`를 SITL 시험 용도의 가제보와 마찬가지로 시작하며, 처리 과정의 기록을 수집합니다.
 - 시험 진행 주체는 C++ 라이브러리이며, 다음 특징이 있습니다.
-  - 인자를 분석하는 [main](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_main.cpp) 함수.
-  - [autopilot_tester](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/autopilot_tester.h)를 호출하는 MAVSDK의 추상체.
-  - [test_multicopter_mission.cpp](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp)와 같이, MAVSDK의 추상체를 활용한 실제 시험 절차.
+  - The [main](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/test_main.cpp) function to parse the arguments.
+  - An abstraction around MAVSDK called [autopilot_tester](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/autopilot_tester.h).
+  - The actual tests using the abstraction around MAVSDK as e.g. [test_multicopter_mission.cpp](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp).
   - 시험 코드에서는 [catch2](https://github.com/catchorg/Catch2) 단위 시험 프레임워크를 활용합니다. 이 프레임워크를 사용하고자 하는 동기는 다음과 같습니다:
       - 함수 내부에 존재할 수 있는 시험 대상을 멈춰야 할 경우에 대해 단언(`REQUIRE`) 합니다(그리고 [gtest 시험](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)과 같이 최상위의 시험만 진행하는것은 아닙니다).
       - *catch2*에 헤더만 있는 라이브러리를 넣을 수 있기 때문에 의존 관리가 간편해집니다.

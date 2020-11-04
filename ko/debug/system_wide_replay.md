@@ -10,11 +10,11 @@ ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을
 
 파악한 모든 토픽을 최대 데이터 전송률로 기록해야합니다([로깅](../log/logging.md) 참고). `ekf2`의 경우 이미 토픽 로깅 기본 설정에 반영했습니다.
 
-모든 재현 토픽에는 `timestamp` 필드에 자동으로 입력하는 단일 타임스탬프 절대값이 들어있다는 점이 중요합니다. 타임스탬프 정보가 더 들어가야 하겠지만, 그렇다면 메인 타임스탬프 값에 상대적인 값이 들어가야 합니다. 예제는 [sensor_combined.msg](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg)에 있습니다. 이 경우에 대한 이유는 아래에 설명해드리겠습니다.
+모든 재현 토픽에는 `timestamp` 필드에 자동으로 입력하는 단일 타임스탬프 절대값이 들어있다는 점이 중요합니다. 타임스탬프 정보가 더 들어가야 하겠지만, 그렇다면 메인 타임스탬프 값에 상대적인 값이 들어가야 합니다. For an example, see [sensor_combined.msg](https://github.com/PX4/PX4-Autopilot/blob/master/msg/sensor_combined.msg). 이 경우에 대한 이유는 아래에 설명해드리겠습니다.
 
 ## 사용법
 
-- 우선 재현할 파일을 선택하고, 대상을 빌드하십시오(Firmware 디렉터리에서 처리함): 
+- First, choose the file to replay, and build the target (from within the PX4-Autopilot directory): 
         sh
         export replay=<absolute_path_to_log_file.ulg>
         make px4_sitl_default 별도의 빌드 디렉터리 

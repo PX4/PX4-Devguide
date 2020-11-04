@@ -50,20 +50,20 @@ The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-n
 
 ## 使用 Docker 容器
 
-以下说明显示如何使用在 docker 容器中运行的工具链在主机上构建 PX4 源代码。 该信息假定您已将 PX4 源代码下载到 **src/Firmware**，如下所示：
+以下说明显示如何使用在 docker 容器中运行的工具链在主机上构建 PX4 源代码。 The information assumes that you have already downloaded the PX4 source code to **src/PX4-Autopilot**, as shown:
 
 ```sh
 mkdir src
 cd src
-git clone https://github.com/PX4/Firmware.git
-cd Firmware
+git clone https://github.com/PX4/PX4-Autopilot.git
+cd PX4-Autopilot
 ```
 
 ### 助手脚本（docker_run.sh）
 
-使用容器的最简单方法是通过 [docker_run.sh](https://github.com/PX4/Firmware/blob/master/Tools/docker_run.sh) 帮助程序脚本。 此脚本将 PX4 构建命令作为参数（例如 `make tests`）。 它使用适当容器和合理环境设置的最新版本（硬编码）启动 docker。
+The easiest way to use the containers is via the [docker_run.sh](https://github.com/PX4/PX4-Autopilot/blob/master/Tools/docker_run.sh) helper script. 此脚本将 PX4 构建命令作为参数（例如 `make tests`）。 它使用适当容器和合理环境设置的最新版本（硬编码）启动 docker。
 
-例如，要构建 SITL，您将调用（从 **/Firmware** 目录中）：
+For example, to build SITL you would call (from within the **/PX4-Autopilot** directory):
 
 ```sh
 ./Tools/docker_run.sh 'make px4_sitl_default'
@@ -96,13 +96,13 @@ docker run -it --privileged \
 
 位置：
 
-* `&lt;host_src&gt;`：要映射到容器中的 `&lt;container_src&gt;` 的主计算机目录。 这通常应该是 **Firmware** 目录。
+* `&lt;host_src&gt;`：要映射到容器中的 `&lt;container_src&gt;` 的主计算机目录。 This should normally be the **PX4-Autopilot** directory.
 * `&lt;container_src&gt;`：容器内的共享（源）目录的位置。
 * `&lt;local_container_name&gt;`：正在创建的 docker 容器的名称 如果我们需要再次引用容器，以后可以使用它。
 * `&lt;container&gt;：&lt;tag&gt;`：具有版本标签的容器 - 例如：`px4io/px4-dev-ros：2017-10-23`。
 * `&lt;build_command&gt;`：要在新容器上调用的命令。 例如. `bash` 用于打开容器中的 bash shell。
 
-下面的具体示例显示了如何打开 bash shell 并在主机上共享目录 **〜/src/Firmware**。
+The concrete example below shows how to open a bash shell and share the directory **~/src/PX4-Autopilot** on the host computer.
 
 ```sh
 # enable access to xhost from the container
@@ -111,7 +111,7 @@ xhost +
 # Run docker and open bash shell
 docker run -it --privileged \
 --env=LOCAL_USER_ID="$(id -u)" \
--v ~/src/Firmware:/src/firmware/:rw \
+-v ~/src/PX4-Autopilot:/src/PX4-Autopilot/:rw \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 -e DISPLAY=:0 \
 -p 14570:14570/udp \
@@ -121,7 +121,7 @@ docker run -it --privileged \
 如果一切顺利，你现在应该在一个新的 bash shell 中。 通过运行验证一切是否正常，例如，SITL：
 
 ```sh
-cd src/firmware    #This is &lt;container_src&gt;
+cd src/PX4-Autopilot    #This is <container_src>
 make px4_sitl_default gazebo
 ```
 
@@ -158,7 +158,7 @@ docker rm 45eeb98f1dd9
 
 运行模拟实例时，例如在 docker 容器内的 SITL 并通过 *QGroundControl* 从主机控制它，必须手动设置通信链接。 *QGroundControl* 的自动连接功能在此处不起作用。
 
-在 *QGroundControl* 中，导航至 [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) 并选择“通信链接”。 创建使用 UDP 协议的新链接。 端口取决于 [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS)中的配置，例如： 端口14570 用于 SITL 配置，docker容器默认网络的IP 地址通常是172.17.0.1/16。 可以使用以下命令找到Docker容器的IP地址（假设容器名称为` mycontainer </ 0>）：</p>
+在 *QGroundControl* 中，导航至 [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) 并选择“通信链接”。 创建使用 UDP 协议的新链接。 The port depends on the used [configuration](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. 可以使用以下命令找到Docker容器的IP地址（假设容器名称为` mycontainer </ 0>）：</p>
 
 <pre><code class="sh">$ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}' mycontainer
 `</pre> 

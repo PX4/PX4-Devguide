@@ -11,11 +11,11 @@
 외부 모듈을 만들려면:
 
 - 외부 모듈을 모아둘 *외부 디렉터리*를 만드십시오: 
-  - **Firmware** 트리 외부 어디에든 둘 수 있습니다.
-  - **Firmware**와 동일한 구조를 가져야합니다(예시: **src** 디렉터리가 있어야합니다).
+  - This can be located anywhere outside of the **PX4-Autopilot** tree.
+  - It must have the same structure as **PX4-Autopilot** (i.e. it must contain a directory called **src**).
   - 이후 우리는 이 디렉터리를 `EXTERNAL_MODULES_LOCATION`이라고 하겠습니다.
 - 기존 모듈을 (예: **examples/px4_simple_app**) 외부 디렉터리로 복사하거나 새 모듈을 바로 만드십시오.
-- 모듈 이름(**CMakeLists.txt**의 `MODULE`도) 을 바꾸거나, 기존 펌웨어의 *cmake* 빌드 설정에서 제거하십시오. 내부 모듈과의 참조 중복, 동시 자원 사용을 막기 위함입니다.
+- Rename the module (including `MODULE` in **CMakeLists.txt**) or remove it from the existing PX4-Autopilot *cmake* build config. This is to avoid conflicts with internal modules.
 - 외부 디렉터리의 **CMakeLists.txt**에 다음 내용을 추가하십시오: 
       set(config_module_list_external
           modules/<new_module>

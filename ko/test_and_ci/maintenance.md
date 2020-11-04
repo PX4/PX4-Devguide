@@ -13,7 +13,7 @@
 
 `v1.6.0-rc2` 출력 예제는 다음과 같습니다:
 
-    cd src/Firmware
+    cd src/PX4-Autopilot
     churn --start_date "6 months ago"
     **********************************************************************
     * Revision Changes

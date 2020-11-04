@@ -12,7 +12,7 @@
 region `flash' overflowed by 12456 bytes
 ```
 
-이 문제를 해결하려면, 최신 하드웨어를 활용하거나 빌드에서 활용상 별로 중요하지 않은 모듈을 빼십시오. 설정은 **/Firmware/boards/px4** 경로에 들어있습니다. (예: [Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)). 모듈을 제거하려면 다음과 같이 주석처리하시면 됩니다:
+이 문제를 해결하려면, 최신 하드웨어를 활용하거나 빌드에서 활용상 별로 중요하지 않은 모듈을 빼십시오. The configuration is stored in **/PX4-Autopilot/boards/px4** (e.g. [PX4-Autopilot/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v5/default.cmake)). 모듈을 제거하려면 다음과 같이 주석처리하시면 됩니다:
 
 ```cmake
 #tune_control

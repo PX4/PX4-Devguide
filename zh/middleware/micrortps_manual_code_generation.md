@@ -17,7 +17,7 @@ set(GENERATE_RTPS_BRIDGE off)
 *generate_microRTPS_bridge* 工具的命令语法如下所示:
 
 ```sh
-$ cd /path/to/PX4/Firmware/msg/tools
+$ cd /path/to/PX4/PX4-Autopilot/msg/tools
 $ python generate_microRTPS_bridge.py -h
 usage: generate_microRTPS_bridge.py [-h] [-s *.msg [*.msg ...]]
                                     [-r *.msg [*.msg ...]] [-a] [-c]
@@ -25,12 +25,12 @@ usage: generate_microRTPS_bridge.py [-h] [-s *.msg [*.msg ...]]
                                     [-f FASTRTPSGEN]
 
 optional arguments:
-  -h, --help            显示这个帮助信息并退出
+  -h, --help            show this help message and exit
   -s *.msg [*.msg ...], --send *.msg [*.msg ...]
-                        要发送的 Topic
+                        Topics to be sent
   -r *.msg [*.msg ...], --receive *.msg [*.msg ...]
-                        要接收的 Topic
-  -a, --agent           生成 agent 的参数。 默认值为 true。
+                        Topics to be received
+  -a, --agent           Flag to generate the agent. 默认值为 true。
   -c, --client          生成客户端的标志位。 默认值为 true。
   -t MSGDIR, --topic-msg-dir MSGDIR
                         主题消息目录。 默认为： msg/
@@ -54,7 +54,7 @@ optional arguments:
 下面的示例演示如何生成桥接代码以发布/订阅 `sensor_baro` 单个 uORB 主题。
 
 ```sh
-$ cd /path/to/PX4/Firmware
+$ cd /path/to/PX4/PX4-Autopilot
 $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor_combined.msg
 ```
 

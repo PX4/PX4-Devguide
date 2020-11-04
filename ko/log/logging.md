@@ -72,7 +72,7 @@ SD 카드에 기록할 토픽 목록은 설정 파일로 개별 지정할 수 �
 
 무엇보다도 우리가 가장 좋다고 알게된 카드의 모델은 **SanDisk Extreme U3 32GB**입니다. 순간적으로 증가하는 기록 시간이 없(어 패킷 손실이 없을거라고 생각할 수 있)기에 이 카드를 추천합니다. 다른 카드 용량에 대해서도 비슷하게 잘 동작하지만, 보통 성능이 다릅니다.
 
-`sd_bench -r 50` 명령으로 SD 카드를 테스트하고 https://github.com/PX4/Firmware/issues/4634 에 결과를 보고할 수 있습니다.
+You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/PX4-Autopilot/issues/4634.
 
 ## 로그 스트리밍
 
@@ -82,7 +82,7 @@ SD 카드에 기록할 토픽 목록은 설정 파일로 개별 지정할 수 �
 
 ulog 스트리밍을 지원하는 클라이언트는 여러가지가 있습니다.:
 
-- Firmware/Tools의 `mavlink_ulog_streaming.py`
+- `mavlink_ulog_streaming.py` script in PX4-Autopilot/Tools.
 - QGroundControl:![QGC 로그 스트리밍](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 

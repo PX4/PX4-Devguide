@@ -1,6 +1,6 @@
 # 에어프레임 참고
 
-> **Note** 이 목록은 소스 코드에서 가져온 데이터로 [자동으로 생성](https://github.com/PX4/Firmware/edit/master/Tools/px4airframes/markdownout.py) 했습니다.
+> **Note** **This list is [auto-generated](https://github.com/PX4/PX4-Autopilot/edit/master/Tools/px4airframes/markdownout.py) from the source code**.
 > 
 > **AUX** 채널은 일부 비행체 제어 장치에 나타나지 않을 수 있습니다. 만약 나타난다면, PWM AUX 채널에 **AUX OUT**으로 레이블이 붙습니다.
 

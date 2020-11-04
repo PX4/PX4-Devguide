@@ -39,7 +39,7 @@ For more information, see: https://gnu-mcu-eclipse.github.io/debug/jlink/install
 1. Power the flight controller.
 1. Run *Eclipse*.
 1. Add a source by choosing **File > Import > C/C++ > Existing Code as Makefile Project** and click **Next**.
-1. Point it to the **Firmware** folder and give it a name, then select *ARM Cross GCC* in the *Toolchain for Indexer Settings* and click **Finish**. Import takes a while, wait for it to complete.
+1. Point it to the **PX4-Autopilot** folder and give it a name, then select *ARM Cross GCC* in the *Toolchain for Indexer Settings* and click **Finish**. Import takes a while, wait for it to complete.
 1. Set the MCU settings: right-click on the top-level project in the Project Explorer, select *Properties* then under MCU choose *SEGGER J-Link Path*. Set it as shown in the screenshot below. ![Eclipse: Segger J-Link Path](../../assets/debug/eclipse_segger_jlink_path.png)
 1. Update packs:
    - Click the small icon on the top right called *Open Perspective* and open the *Packs* perspective. ![Eclipse: Workspace](../../assets/debug/eclipse_workspace_perspective.png)

@@ -29,11 +29,11 @@ The easiest way to setup the environment is to use the **<a href="https://raw.gi
 
 1. 在 bash shell 命令行界面输入如下指令：
     
-        cd ~/src/Firmware
+        cd ~/src/PX4-Autopilot
         make px4_fmu-v4_default
         
     
-    成功完成编译后可以在 `Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4` 文件夹下找到编译好的固件。
+    On successful completion you'll find the firmware here: `PX4-Autopilot/build/px4_fmu-v4_default/px4_fmu-v4_default.px4`
     
     > **Note** The `make` commands to build firmware for other boards can be found in [Building the Code](../setup/building_px4.md#nuttx)
 

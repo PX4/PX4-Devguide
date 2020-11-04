@@ -11,7 +11,7 @@
 * 여러분이 바꾼 코드를 pull 요청에 추가하십시오
 * **@PX4/testflight** 태그로 댓글에 시험 팀을 호출하십시오 
 * 시험 팀의 답변을 기다리십시오
-* 시험 팀은 [자신들이 할 일에 여러분이 제출한 PR/Issue을 추가합니다](https://github.com/PX4/Firmware/projects/18)
+* The test team will [add your PR/issue to their queue](https://github.com/PX4/PX4-Autopilot/projects/18)
 
 ## 응답 시간
 

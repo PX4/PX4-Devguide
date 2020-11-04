@@ -13,7 +13,7 @@ To find churn metrics a tool such as [Churn](https://github.com/danmayer/churn) 
 
 An example output as of `v1.6.0-rc2` would be:
 
-    cd src/Firmware
+    cd src/PX4-Autopilot
     churn --start_date "6 months ago"
     **********************************************************************
     * Revision Changes

@@ -2,7 +2,7 @@
 
 ## module
 
-Source: [templates/template_module](https://github.com/PX4/Firmware/tree/master/src/templates/template_module)
+Source: [templates/template_module](https://github.com/PX4/PX4-Autopilot/tree/master/src/templates/template_module)
 
 ### Description
 
@@ -37,7 +37,7 @@ CLI usage example:
 
 ## work_item_example
 
-Source: [examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item)
+Source: [examples/work_item](https://github.com/PX4/PX4-Autopilot/tree/master/src/examples/work_item)
 
 ### Description
 

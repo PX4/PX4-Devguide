@@ -13,7 +13,7 @@
 
 从 `v1.6.0-rc2` 开始的示例输出将是：
 
-    cd src/Firmware
+    cd src/PX4-Autopilot
     churn --start_date "6 months ago"
     **********************************************************************
     * Revision Changes

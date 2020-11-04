@@ -17,7 +17,7 @@ set(GENERATE_RTPS_BRIDGE off)
 The *generate_microRTPS_bridge* tool's command syntax is shown below:
 
 ```sh
-$ cd /path/to/PX4/Firmware/msg/tools
+$ cd /path/to/PX4/PX4-Autopilot/msg/tools
 $ python generate_microRTPS_bridge.py -h
 usage: generate_microRTPS_bridge.py [-h] [-s *.msg [*.msg ...]]
                                     [-r *.msg [*.msg ...]] [-a] [-c]
@@ -55,7 +55,7 @@ optional arguments:
 The example below shows how you can generate bridge code to publish/subscribe just the `sensor_baro` single uORB topic.
 
 ```sh
-$ cd /path/to/PX4/Firmware
+$ cd /path/to/PX4/PX4-Autopilot
 $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor_combined.msg
 ```
 
