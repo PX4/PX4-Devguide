@@ -406,7 +406,7 @@ fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sens
 This creates a basic subscriber and publisher, and a main-application to run them.
 To print out the data from the `sensor_combined` topic, modify the `onNewDataMessage()` method in **sensor_combined_Subscriber.cxx**:
 
-```c++
+```cpp
 void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
 {
     // Take data
@@ -476,7 +476,7 @@ With the `px4_ros_com` built successfully, one can now take advantage of the gen
 
 To create a listener node on ROS2, lets take as an example the `sensor_combined_listener.cpp` node under `px4_ros_com/src/listeners`:
 
-```c++
+```cpp
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/sensor_combined.hpp>
 ```
@@ -484,7 +484,7 @@ To create a listener node on ROS2, lets take as an example the `sensor_combined_
 The above brings to use the required C++ libraries to interface with the ROS2 middleware.
 It also includes the required message header file.
 
-```c++
+```cpp
 /**
  * @brief Sensor Combined uORB topic data callback
  */
@@ -494,7 +494,7 @@ class SensorCombinedListener : public rclcpp::Node
 
 The above creates a `SensorCombinedListener` class that subclasses the generic `rclcpp::Node` base class.
 
-```c++
+```cpp
 public:
 	explicit SensorCombinedListener() : Node("sensor_combined_listener") {
 		subscription_ = this->create_subscription<px4_msgs::msg::SensorCombined>(
@@ -520,7 +520,7 @@ public:
 This creates a callback function for when the `sensor_combined` uORB messages are received (now as DDS messages).
 It outputs the content of the message fields each time the message is received.
 
-```c++
+```cpp
 private:
 	rclcpp::Subscription<px4_msgs::msg::SensorCombined>::SharedPtr subscription_;
 };
@@ -528,7 +528,7 @@ private:
 
 The above create a subscription to the `sensor_combined_topic` which can be matched with one or more compatible ROS publishers.
 
-```c++
+```cpp
 int main(int argc, char *argv[])
 {
 	std::cout << "Starting sensor_combined listener node..." << std::endl;
@@ -550,7 +550,7 @@ A ROS2 advertiser node publishes data into the DDS/RTPS network (and hence to PX
 
 Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/advertisers`:
 
-```c++
+```cpp
 #include <chrono>
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/debug_vect.hpp>
@@ -560,14 +560,14 @@ using namespace std::chrono_literals;
 
 Bring in the required headers, including the `debug_vect` msg header.
 
-```c++
+```cpp
 class DebugVectAdvertiser : public rclcpp::Node
 {
 ```
 
 The above creates a `DebugVectAdvertiser` class that subclasses the generic `rclcpp::Node` base class.
 
-```c++
+```cpp
 public:
 	DebugVectAdvertiser() : Node("debug_vect_advertiser") {
 		publisher_ = this->create_publisher<px4_msgs::msg::DebugVect>("DebugVect_PubSubTopic", 10);
@@ -596,7 +596,7 @@ private:
 This creates a function for when messages are to be sent.
 The messages are sent based on a timed callback, which sends two messages per second based on a timer.
 
-```c++
+```cpp
 int main(int argc, char *argv[])
 {
 	std::cout << "Starting debug_vect advertiser node..." << std::endl;
@@ -755,7 +755,7 @@ For UART transport on a Raspberry Pi or any other OBC you will have to enable th
    ```
 
    And make sure that the `enable_uart` value is set to 1:
-   ```txt
+   ```
     enable_uart=1
    ```
 
