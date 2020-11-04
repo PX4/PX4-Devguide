@@ -78,7 +78,8 @@ To get the build toolchain for Raspberry Pi:
 
 ### GCC (armhf)
 
-Ubuntu software repository provides a set of pre-compiled toolchains. Note that Ubuntu Focal comes up with `gcc-9-arm-linux-gnueabihf` as its default installation, so we must manually install `gcc-8-arm-linux-gnueabihf` and set it as the default toolchain. The following instruction assumes you haven't installed any version of arm-linux-gnueabihf, and will set up the default executable with `update-alternatives`.
+Ubuntu software repository provides a set of pre-compiled toolchains. Note that Ubuntu Focal comes up with `gcc-9-arm-linux-gnueabihf` as its default installation, so we must manually install `gcc-8-arm-linux-gnueabihf` and set it as the default toolchain.
+The following instruction assumes you haven't installed any version of arm-linux-gnueabihf, and will set up the default executable with `update-alternatives`.
 Install them with the terminal command:
 
 ```sh
@@ -102,16 +103,16 @@ sudo update-alternatives --install /usr/bin/aarch64-linux-gnu-gcc aarch64-linux-
 sudo update-alternatives --config aarch64-linux-gnu-gcc
 ```
 
-### Clang (not required)
+### Clang (optional)
 
 First [install GCC](#gcc) (needed to use clang).
 
-We recommend you to get clang from the Ubuntu software repository as follows:
+We recommend you to get clang from the Ubuntu software repository, as shown below:
 ```
 sudo apt-get install clang
 ```
 
-Example below for building PX4 firmware out of tree, using CMake.
+Example below for building PX4 firmware out of tree, using *CMake*.
 ```sh
 cd <PATH-TO-PX4-SRC>
 mkdir build/px4_raspberrypi_default_clang
