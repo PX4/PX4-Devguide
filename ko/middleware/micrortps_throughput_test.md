@@ -8,9 +8,8 @@
 
 First create a new uORB message for this test in the folder **/PX4-Autopilot/msg/**. 이 메시지를 **throughput_256.msg**로 하고 아래의 내용을 가질 것입니다.
 
-```text
-uint8[256] data
-```
+    uint8[256] data
+    
 
 아래와 같은 명령어를 통해 수행됩니다.
 

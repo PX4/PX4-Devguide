@@ -2,7 +2,7 @@
 
 ## frsky_telemetry
 
-Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/telemetry/frsky_telemetry)
+Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
 
 FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
 
@@ -26,7 +26,7 @@ FrSky 数传支持， 会自动检测使用 D.PORT 还是 S.PORT 协议。
 
 ## mavlink
 
-Source: [modules/mavlink](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/mavlink)
+Source: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
 
 ### 描述
 
@@ -106,7 +106,7 @@ Source: [modules/mavlink](https://github.com/PX4/PX4-Autopilot/tree/master/src/m
 
 ## micrortps_client
 
-Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/micrortps_bridge/micrortps_client)
+Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
 
 ### 用法 {#micrortps_client_usage}
 
@@ -142,7 +142,7 @@ Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/PX4-A
 
 ## uorb
 
-Source: [modules/uORB](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/uORB)
+Source: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
 
 ### 描述
 

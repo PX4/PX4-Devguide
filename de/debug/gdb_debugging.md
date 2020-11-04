@@ -145,13 +145,13 @@ arm-none-eabi-gdb build/px4_fmu-v2_default/px4_fmu-v2_default.elf
 
 Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
 
-```gdb
+```sh
 (gdb) info line *0x0808439f
 Line 77 of "../src/modules/systemlib/mavlink_log.c" starts at address 0x8084398 <mavlink_vasprintf+36>
    and ends at 0x80843a0 <mavlink_vasprintf+44>.
 ```
 
-```gdb
+```sh
 (gdb) info line *0x08087c4e
 Line 311 of "../src/modules/uORB/uORBDevices_nuttx.cpp"
    starts at address 0x8087c4e <uORB::DeviceNode::publish(orb_metadata const*, void*, void const*)+2>

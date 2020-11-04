@@ -45,7 +45,7 @@ make px4_sitl_default gazebo___lldb
 
 마지막 매개변수는 변수가 셋인 &lt;viewer\_model\_debugger&gt;입니다(밑줄 문자 셋을 활용하는 부분은 기본 'iris'모델임을 의미). 이 명령은 SITL 프로그램과 디버거를 시작합니다. 실행을 멈추고 디버거로 진입하려면 다음 키를 누르십시오 ```CTRL-C```:
 
-```gdb
+```sh
 Process 16529 stopped
 * thread #1: tid = 0x114e6d, 0x00007fff90f4430a libsystem_kernel.dylib`__read_nocancel + 10, name = 'px4', queue = 'com.apple.main-thread', stop reason = signal SIGSTOP
     frame #0: 0x00007fff90f4430a libsystem_kernel.dylib`__read_nocancel + 10

@@ -358,7 +358,7 @@ fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sens
 
 이 명령어는 기본적인 Subscriber와 Publisher를 만들고, 이것을 실행하기 위한 메인 어플리케이션을 만듭니다. `sensor_combined` 토픽으로 부터 오는 데이터를 출력하기 위해서는 **sensor_combined_Subscriber.cxx** 메소드의 `onNewDataMessage()`를 수정하세요.
 
-```c++
+```cpp
 void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
 {
     // Take data
@@ -428,14 +428,14 @@ baro_temp_celcius: 43.93
 
 ROS2에서 감청 노드를 만드려면 `px4_ros_com/src/listeners`의 `sensor_combined_listener.cpp` 를 참고하십시오.
 
-```c++
+```cpp
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/sensor_combined.hpp>
 ```
 
 위의 헤더들은 ROS2 미들웨어에 접속하기 위해 필요한 C++ 라이브러리들을 포함합니다. 필요한 메시지 헤더파일들 또한 포함합니다.
 
-```c++
+```cpp
 /**
  * @brief Sensor Combined uORB topic data callback
  */
@@ -445,7 +445,7 @@ class SensorCombinedListener : public rclcpp::Node
 
 `rclcpp::Node`의 서브클래스로 `SensorCombinedListener` 클래스를 만드는 것 입니다.
 
-```c++
+```cpp
 public:
     explicit SensorCombinedListener() : Node("sensor_combined_listener") {
         subscription_ = this->create_subscription<px4_msgs::msg::SensorCombined>(
@@ -470,7 +470,7 @@ public:
 
 이 코드는 `sensor_combined` uORB 메세지(DDS 메세지와 유사)를 받았을 때 호출하는 함수를 만듭니다. 이 함수는 메세지를 받을 때마다 메세지 필드 내용을 출력합니다.
 
-```c++
+```cpp
 private:
     rclcpp::Subscription<px4_msgs::msg::SensorCombined>::SharedPtr subscription_;
 };
@@ -478,7 +478,7 @@ private:
 
 위 코드에서는 호환성을 가진 하나 이상의 ROS 송신자에 대응 가능한 `sensor_combined_topic`으로 지속 감청 연결을 만듭니다.
 
-```c++
+```cpp
 int main(int argc, char *argv[])
 {
     std::cout << "Starting sensor_combined listener node..." << std::endl;
@@ -499,7 +499,7 @@ ROS2 광역 전달 노드는 DDS/RTPS/PX4 네트워크에 데이터를 내보냅
 
 Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/advertisers`:
 
-```c++
+```cpp
 #include <chrono>
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/debug_vect.hpp>
@@ -509,14 +509,14 @@ using namespace std::chrono_literals;
 
 `debug_vect` 메세지 헤더와 필요한 헤더를 함께 선언합니다.
 
-```c++
+```cpp
 class DebugVectAdvertiser : public rclcpp::Node
 {
 ```
 
 `rclcpp::Node`의 서브클래스로 `DebugVectAdvertiser` 클래스를 만드는 것 입니다.
 
-```c++
+```cpp
 public:
     DebugVectAdvertiser() : Node("debug_vect_advertiser") {
         publisher_ = this->create_publisher<px4_msgs::msg::DebugVect>("DebugVect_PubSubTopic", 10);
@@ -544,7 +544,7 @@ private:
 
 메시지를 송신할 때 사용할 함수를 만듭니다. 메시지는 타이머 기반으로 동작하는 콜백 함수에서 초당 2개씩 보냅니다.
 
-```c++
+```cpp
 int main(int argc, char *argv[])
 {
     std::cout << "Starting debug_vect advertiser node..." << std::endl;
@@ -706,9 +706,8 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
     
     `enable_uart` 값이 1로 설정되어 있는지 확인하세요.
     
-    ```txt
-    enable_uart=1
-    ```
+        enable_uart=1
+        
 
 ## 추가 정보
 

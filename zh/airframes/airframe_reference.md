@@ -1,6 +1,6 @@
 # 机架参考
 
-> **Note** **This list is [auto-generated](https://github.com/PX4/PX4-Autopilot/edit/master/Tools/px4airframes/markdownout.py) from the source code**.
+> **Note** **This list is [auto-generated](https://github.com/PX4/Firmware/edit/master/Tools/px4airframes/markdownout.py) from the source code**.
 > 
 > **AUX** channels may not be present on some flight controllers. If present, PWM AUX channels are commonly labelled **AUX OUT**.
 
@@ -642,6 +642,11 @@
 <tr id="copter_quadrotor_x_px4_vision_devkit_platform">
  <td style="vertical-align: top;">PX4 Vision DevKit Platform</td>
  <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 4016</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
+
+</tr>
+<tr id="copter_quadrotor_x_nxp_hovergames">
+ <td style="vertical-align: top;">NXP HoverGames</td>
+ <td style="vertical-align: top;"><p>Maintainer: Iain Galloway <iain.galloway@nxp.com></p><p><code>SYS_AUTOSTART</code> = 4017</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_hobbyking_micro_pcb">

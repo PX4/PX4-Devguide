@@ -45,7 +45,7 @@ make px4_sitl_default gazebo___lldb
 
 where the last parameter is the &lt;viewer\_model\_debugger&gt; triplet (using three underscores implies the default 'iris' model). This will start the debugger and launch the SITL application. In order to break into the debugger shell and halt the execution, hit ```CTRL-C```:
 
-```gdb
+```sh
 Process 16529 stopped
 * thread #1: tid = 0x114e6d, 0x00007fff90f4430a libsystem_kernel.dylib`__read_nocancel + 10, name = 'px4', queue = 'com.apple.main-thread', stop reason = signal SIGSTOP
     frame #0: 0x00007fff90f4430a libsystem_kernel.dylib`__read_nocancel + 10

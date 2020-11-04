@@ -322,6 +322,19 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
     ```
     
+    ### Verbose Logging
+    
+    SITL fails silently when there is something wrong with the gazebo model. You can enable more verbose logging using `VERBOSE_SIM`, as shown:
+    
+        export VERBOSE_SIM=1
+        make px4_sitl gazebo
+        
+    
+    or
+    
+        VERBOSE_SIM=1 make px4_sitl gazebo
+        
+    
     ## Extending and Customizing
     
     To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder. The code is available on the [sitl_gazebo repository](https://github.com/px4/sitl_gazebo) on Github.

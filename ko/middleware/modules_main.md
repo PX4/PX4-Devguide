@@ -6,7 +6,7 @@
 
 완전한 목록은 아니며, NuttX에서는 (`free` 같은) 추가 명령어를 제공합니다. 모든 가용 명령어를 살펴보시려면 `help`를 사용하십시오. 대부분의 경우 `command help` 명령에서 사용법을 출력합니다.
 
-소스 코드에서 추출하여 만든 문서이므로, 잘못된 내용은 [Firmware](https://github.com/PX4/Firmware) 저장소에 보고하고 수정해야 합니다. 문서 페이지는 Firmware 디렉터리 루트에서 다음 명령을 실행하야 만들 수 있습니다:
+Since this is generated from source, errors must be reported/fixed in the [PX4-Autopilot](https://github.com/PX4/PX4-Autopilot) repository. 문서 페이지는 Firmware 디렉터리 루트에서 다음 명령을 실행하야 만들 수 있습니다:
 
     make module_documentation
     

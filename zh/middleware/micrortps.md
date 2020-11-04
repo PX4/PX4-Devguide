@@ -358,7 +358,7 @@ fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sens
 
 这段代码创建了一个基本的订阅器和广播器，和一个运行它们的主程序。 要打印来自 `sensor_combined` 主题的数据, 修改 **sensor_combined_Subscriber.cxx** 文件中的 `onNewDataMessage()` 方法。
 
-```c++
+```cpp
 void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
 {
     // Take data
@@ -428,14 +428,14 @@ With the `px4_ros_com` built successfully, one can now take advantage of the gen
 
 要在 ROS2 上创建一个监听器, 让我们以 `sensor_combined_listener.cpp` node under `px4_ros_com/src/listeners` 作为举例：
 
-```c++
+```cpp
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/sensor_combined.hpp>
 ```
 
 上面两行代码将与ROS2中间件交互的 C++ 库包含进来。 同时还包含了我们要用到的消息头文件。
 
-```c++
+```cpp
 /**
  * @brief Sensor Combined uORB topic data callback
  */
@@ -445,7 +445,7 @@ class SensorCombinedListener : public rclcpp::Node
 
 上面这行代码创建了一个子类 `SensorCombinedListener`， 继承自 `rclcpp::Node` 基类。
 
-```c++
+```cpp
 public:
     explicit SensorCombinedListener() : Node("sensor_combined_listener") {
         subscription_ = this->create_subscription<px4_msgs::msg::SensorCombined>(
@@ -470,7 +470,7 @@ public:
 
 This creates a callback function for when the `sensor_combined` uORB messages are received (now as DDS messages). 一旦收到消息就打印出每一个字段。
 
-```c++
+```cpp
 private:
     rclcpp::Subscription<px4_msgs::msg::SensorCombined>::SharedPtr subscription_;
 };
@@ -478,7 +478,7 @@ private:
 
 上面这段代码创建了 `sensor_combined_topic` 主题的订阅，可以匹配到一个或多个该消息的 ROS 广播者上。
 
-```c++
+```cpp
 int main(int argc, char *argv[])
 {
     std::cout << "Starting sensor_combined listener node..." << std::endl;
@@ -499,7 +499,7 @@ ROS2 广播器节点将数据发布到 DDS/RTPS 网络 (再转发至 PX4)。
 
 Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/advertisers`:
 
-```c++
+```cpp
 #include <chrono>
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/debug_vect.hpp>
@@ -509,14 +509,14 @@ using namespace std::chrono_literals;
 
 包含必要的头文件，包括 `debug_vect` 消息头文件。
 
-```c++
+```cpp
 class DebugVectAdvertiser : public rclcpp::Node
 {
 ```
 
 上面这行代码创建了一个 `DebugVectAdvertiser` 类，继承自 `rclcpp::Node` 基类。
 
-```c++
+```cpp
 public:
     DebugVectAdvertiser() : Node("debug_vect_advertiser") {
         publisher_ = this->create_publisher<px4_msgs::msg::DebugVect>("DebugVect_PubSubTopic", 10);
@@ -544,7 +544,7 @@ private:
 
 这段代码创建了一个用来发送消息的回调函数。 发送消息的回调函数由定时器触发的，每秒钟发送两次消息。
 
-```c++
+```cpp
 int main(int argc, char *argv[])
 {
     std::cout << "Starting debug_vect advertiser node..." << std::endl;
@@ -706,9 +706,8 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
     
     确保 `enable_uart` 被设置为 1：
     
-    ```txt
-    enable_uart=1
-    ```
+        enable_uart=1
+        
 
 ## 更多信息
 

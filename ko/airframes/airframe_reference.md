@@ -1,6 +1,6 @@
 # 에어프레임 참고
 
-> **Note** **This list is [auto-generated](https://github.com/PX4/PX4-Autopilot/edit/master/Tools/px4airframes/markdownout.py) from the source code**.
+> **Note** **This list is [auto-generated](https://github.com/PX4/Firmware/edit/master/Tools/px4airframes/markdownout.py) from the source code**.
 > 
 > **AUX** 채널은 일부 비행체 제어 장치에 나타나지 않을 수 있습니다. 만약 나타난다면, PWM AUX 채널에 **AUX OUT**으로 레이블이 붙습니다.
 
@@ -792,84 +792,89 @@
  <td style="vertical-align: top;"><p>유지관리자: John Doe<john@example.com></p><p><code>SYS_AUTOSTART</code> = 4016</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li></ul></p></td>
 
 </tr>
+<tr id="copter_quadrotor_x_nxp_hovergames">
+ <td style="vertical-align: top;">NXP HoverGames</td>
+ <td style="vertical-align: top;"><p>Maintainer: Iain Galloway <iain.galloway@nxp.com></p><p><code>SYS_AUTOSTART</code> = 4017</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
+
+</tr>
 <tr id="copter_quadrotor_x_hobbyking_micro_pcb">
  <td style="vertical-align: top;">Hobbyking Micro PCB</td>
- <td style="vertical-align: top;"><p>유지관리자: Thomas Gubler <thomas@px4.io></p><p><code>SYS_AUTOSTART</code> = 4020</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Thomas Gubler <thomas@px4.io></p><p><code>SYS_AUTOSTART</code> = 4020</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_3dr_solo">
  <td style="vertical-align: top;">3DR Solo</td>
- <td style="vertical-align: top;"><p>유지관리자: Andreas Antener<andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 4030</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Andreas Antener <andreas@uaventure.com></p><p><code>SYS_AUTOSTART</code> = 4030</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_3dr_diy_quad">
  <td style="vertical-align: top;">3DR DIY Quad</td>
- <td style="vertical-align: top;"><p>유지관리자: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 4031</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 4031</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_generic_250_racer">
  <td style="vertical-align: top;">Generic 250 Racer</td>
- <td style="vertical-align: top;"><p>유지관리자: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 4050</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 4050</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_holybro_qav250">
  <td style="vertical-align: top;"><a href="https://docs.px4.io/master/en/frames_multicopter/holybro_qav250_pixhawk4_mini.html">HolyBro QAV250</a></td>
- <td style="vertical-align: top;"><p>유지관리자: Beat Kueng <beat-kueng@gmx.net></p><p><code>SYS_AUTOSTART</code> = 4052</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Beat Kueng <beat-kueng@gmx.net></p><p><code>SYS_AUTOSTART</code> = 4052</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_holybro_kopis_2">
  <td style="vertical-align: top;">Holybro Kopis 2</td>
- <td style="vertical-align: top;"><p>유지관리자: Beat Kueng <beat@px4.io></p><p><code>SYS_AUTOSTART</code> = 4053</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Beat Kueng <beat@px4.io></p><p><code>SYS_AUTOSTART</code> = 4053</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_dji_matrice_100">
  <td style="vertical-align: top;">DJI Matrice 100</td>
- <td style="vertical-align: top;"><p>유지관리자: James Goppert <james.goppert@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4060</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: James Goppert <james.goppert@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4060</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_intel_aero_ready_to_fly_drone">
  <td style="vertical-align: top;">Intel Aero Ready to Fly Drone</td>
- <td style="vertical-align: top;"><p>유지관리자: Beat Kueng <beat@px4.io></p><p><code>SYS_AUTOSTART</code> = 4070</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Beat Kueng <beat@px4.io></p><p><code>SYS_AUTOSTART</code> = 4070</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_uvify_ifo">
  <td style="vertical-align: top;">UVify IFO</td>
- <td style="vertical-align: top;"><p>유지관리자: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4071</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li></ul></p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4071</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_uvify_draco">
  <td style="vertical-align: top;">UVify Draco</td>
- <td style="vertical-align: top;"><p>유지관리자: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4072</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li></ul></p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4072</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_uvify_ifo">
  <td style="vertical-align: top;">UVify IFO</td>
- <td style="vertical-align: top;"><p>유지관리자: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4073</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li></ul></p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Hyon Lim <lim@uvify.com></p><p><code>SYS_AUTOSTART</code> = 4073</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_zmr250_racer">
- <td style="vertical-align: top;">ZMR250 레이서</td>
- <td style="vertical-align: top;"><p>유지관리자: Anton Matosov <anton.matosov@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4080</p></td>
+ <td style="vertical-align: top;">ZMR250 Racer</td>
+ <td style="vertical-align: top;"><p>Maintainer: Anton Matosov <anton.matosov@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4080</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_nanomind_110_quad">
- <td style="vertical-align: top;">나노마인드 110 쿼드</td>
- <td style="vertical-align: top;"><p>유지관리자: Henry Zhang <zhanghui629@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4090</p></td>
+ <td style="vertical-align: top;">NanoMind 110 Quad</td>
+ <td style="vertical-align: top;"><p>Maintainer: Henry Zhang <zhanghui629@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4090</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_teal_one">
  <td style="vertical-align: top;">Teal One</td>
- <td style="vertical-align: top;"><p>유지관리자: Matt McFadden <matt.mcfadden@tealdrones.com></p><p><code>SYS_AUTOSTART</code> = 4250</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 모터 1</li><li><b>MAIN2</b>: 모터 2</li><li><b>MAIN3</b>: 모터 3</li><li><b>MAIN4</b>: 모터 4</li></ul></p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Matt McFadden <matt.mcfadden@tealdrones.com></p><p><code>SYS_AUTOSTART</code> = 4250</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_coex_clover_4">
  <td style="vertical-align: top;">COEX Clover 4</td>
- <td style="vertical-align: top;"><p>유지관리자: Oleg Kalachev <okalachev@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4500</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Oleg Kalachev <okalachev@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4500</p></td>
 
 </tr>
 <tr id="copter_quadrotor_x_crazyflie_2">
  <td style="vertical-align: top;">Crazyflie 2</td>
- <td style="vertical-align: top;"><p>유지관리자: Dennis Shtatov <densht@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4900</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: Dennis Shtatov <densht@gmail.com></p><p><code>SYS_AUTOSTART</code> = 4900</p></td>
 
 </tr>
 </table>
