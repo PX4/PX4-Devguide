@@ -8,9 +8,8 @@ This a simple test to measure the throughput of the [PX4-FastRTPS Bridge](../mid
 
 First create a new uORB message for this test in the folder **/PX4-Autopilot/msg/**. The message file will be called **throughput_256.msg** and have the following content:
 
-```text
-uint8[256] data
-```
+    uint8[256] data
+    
 
 This can be done with the command line below:
 
