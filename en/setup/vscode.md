@@ -79,7 +79,9 @@ While debugging you can set breakpoints, step over code, and otherwise develop a
 
 The instructions in [SWD (JTAG) Hardware Debugging Interface](../debug/swd_debug.html) explain how to connect to the SWD interface on common flight controllers (for example, using the Dronecode or Blackmagic probes).
 
-After connecting to the SWD interface, hardware debugging in VSCode is then typically the same as for [SITL Debugging](#debugging_sitl) except you select the debug target for your firmware - e.g. `px4_fmu-v5`.
+After connecting to the SWD interface, hardware debugging in VSCode is then the same as for [SITL Debugging](#debugging_sitl) except that you select a debug target appropriate for your debugger type (and firmware) - e.g. `jlink (px4_fmu-v5)`.
+
+![Image showing hardware targets with options for the different probes](../../assets/vscode/vscode_hardware_debugging_options.png)
 
 
 ## Code Completion {#code completion}
