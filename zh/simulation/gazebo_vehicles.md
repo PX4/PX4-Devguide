@@ -1,6 +1,6 @@
 # Gazebo 机型
 
-本话题列出/展示 PX4 [Gazebo](../simulation/gazebo.md) 仿真支持的机型以及运行这些机型所需的 `make` 指令（在 **Fimeware** 目录下启动一个终端来运行这些指令）。
+This topic lists/displays the vehicles supported by the PX4 [Gazebo](../simulation/gazebo.md) simulation and the `make` commands required to run them (the commands are run from a terminal in the **PX4-Autopilot** directory).
 
 支持的机型种类包括：多旋翼、VTOL、尾座式 VTOL、固定翼、无人车、潜艇/无人水下航行器。
 
@@ -120,3 +120,13 @@ make px4_sitl gazebo_boat
 ```
 
 ![Boat/USV](../../assets/simulation/gazebo/vehicles/boat.png)
+
+## Airship {#airship}
+
+### Cloudship {#cloudship}
+
+```sh
+make px4_sitl gazebo_cloudship
+```
+
+![Airship](../../assets/simulation/gazebo/vehicles/airship.png)

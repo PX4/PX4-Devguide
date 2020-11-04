@@ -22,7 +22,7 @@ DONT_RUN=1 make px4_sitl gazebo mavsdk_tests
 
 ### Run All PX4 Tests
 
-To run all SITL tests as defined in [sitl.json](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/configs/sitl.json), do:
+To run all SITL tests as defined in [sitl.json](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/configs/sitl.json), do:
 
 ```sh
 test/mavsdk_tests/mavsdk_test_runner.py test/mavsdk_tests/configs/sitl.json --speed-factor 10
@@ -58,11 +58,11 @@ optional arguments:
 ## Notes on implementation
 
 
-- The tests are invoked from the test runner script [mavsdk_test_runner.py](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/mavsdk_test_runner.py), which is written in Python. This runner also starts `px4` as well as Gazebo for SITL tests, and collects the logs of these processes.
+- The tests are invoked from the test runner script [mavsdk_test_runner.py](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/mavsdk_test_runner.py), which is written in Python. This runner also starts `px4` as well as Gazebo for SITL tests, and collects the logs of these processes.
 - The test runner is a C++ binary It contains:
-  - The [main](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_main.cpp) function to parse the arguments.
-  - An abstraction around MAVSDK called [autopilot_tester](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/autopilot_tester.h).
-  - The actual tests using the abstraction around MAVSDK as e.g. [test_multicopter_mission.cpp](https://github.com/PX4/Firmware/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp).
+  - The [main](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/test_main.cpp) function to parse the arguments.
+  - An abstraction around MAVSDK called [autopilot_tester](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/autopilot_tester.h).
+  - The actual tests using the abstraction around MAVSDK as e.g. [test_multicopter_mission.cpp](https://github.com/PX4/PX4-Autopilot/blob/master/test/mavsdk_tests/test_multicopter_mission.cpp).
   - The tests use the [catch2](https://github.com/catchorg/Catch2) unit testing framework. The reasons for using this framework are:
       - Asserts (`REQUIRE`) which are needed to abort a test can be inside of functions (and not just in the top level test as is [the case with gtest](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#assertion-placement)).
       - Dependency management is easier because *catch2* can just be included as a header-only library.

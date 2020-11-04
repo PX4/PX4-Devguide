@@ -2,7 +2,7 @@
 
 ## 모듈
 
-소스 코드: [templates/module](https://github.com/PX4/Firmware/tree/master/src/templates/module)
+Source: [templates/template_module](https://github.com/PX4/Firmware/tree/master/src/templates/template_module)
 
 ### 설명
 
@@ -37,7 +37,7 @@ CLI 사용 예:
 
 ## work_item_example
 
-소스 코드: [examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item)
+Source: [examples/work_item](https://github.com/PX4/Firmware/tree/master/src/examples/work_item)
 
 ### 설명
 

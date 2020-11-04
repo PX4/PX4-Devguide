@@ -6,7 +6,7 @@
 
 PX4 프로젝트에서는 STM32 장치용 표준 UAVCAN 부트로더를 다룹니다.
 
-부트로더는 처음 8~16KB 플래이 메모리 영역을 차지하며, 처음 코드는 전원을 켰을 때 실행합니다. 보통 부트로더는 로우레벨 장치 초기화, CAN 버스 전송률 자동 결정, 고유 노드 ID 획득을 위한 UAVCAN 동적 노드 ID 클라이언트 동작, 프로그램 부팅 진행 전 비행체 컨트롤러 응답 확인 과정을 수행합니다.
+부트로더는 처음 8~16KB 플래이 메모리 영역을 차지하며, 처음 코드는 전원을 켰을 때 실행합니다. 보통 부트로더는 저수준 장치 초기화, CAN 버스 전송률 자동 결정, 고유 노드 ID 획득을 위한 UAVCAN 동적 노드 ID 클라이언트 동작, 프로그램 부팅 진행 전 비행체 제어 장치 응답 확인 과정을 수행합니다.
 
 이 과정에서는 사용자의 개입 없이 UAVCAN 장치를 잘못된, 프로그램이 손상된 펌웨어 상태로부터 복원할 수 있으며, 자동 펌웨어 업데이트를 수행합니다.
 
@@ -44,7 +44,7 @@ arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 
 `gdb` 프롬프트에서 다음 명령을 실행하십시오:
 
-```gdb
+```sh
 target extended /dev/ttyACM0
 monitor connect_srst enable
 monitor swdp_scan
@@ -71,7 +71,7 @@ arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 
 `gdb` 프롬프트에서 다음 명령을 실행하십시오:
 
-```gdb
+```sh
 target extended-remote localhost:3333
 monitor reset halt
 set mem inaccessible-by-default off

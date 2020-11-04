@@ -213,4 +213,5 @@ You've now connected the flight controller to an SWD debug probe!
 The following topics explain how to start on-target debugging:
 
 - [MCU Eclipse/J-Link Debugging for PX4](../debug/eclipse_jlink.md)
+- [Visual Studio Code IDE (VSCode)](../setup/vscode.md)
 

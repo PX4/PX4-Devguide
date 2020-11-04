@@ -50,20 +50,20 @@ The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-n
 
 ## Use the Docker Container
 
-The following instructions show how to build PX4 source code on the host computer using a toolchain running in a docker container. The information assumes that you have already downloaded the PX4 source code to **src/Firmware**, as shown:
+The following instructions show how to build PX4 source code on the host computer using a toolchain running in a docker container. The information assumes that you have already downloaded the PX4 source code to **src/PX4-Autopilot**, as shown:
 
 ```sh
 mkdir src
 cd src
-git clone https://github.com/PX4/Firmware.git
-cd Firmware
+git clone https://github.com/PX4/PX4-Autopilot.git
+cd PX4-Autopilot
 ```
 
 ### Helper Script (docker_run.sh)
 
-The easiest way to use the containers is via the [docker_run.sh](https://github.com/PX4/Firmware/blob/master/Tools/docker_run.sh) helper script. This script takes a PX4 build command as an argument (e.g. `make tests`). It starts up docker with a recent version (hard coded) of the appropriate container and sensible environment settings.
+The easiest way to use the containers is via the [docker_run.sh](https://github.com/PX4/PX4-Autopilot/blob/master/Tools/docker_run.sh) helper script. This script takes a PX4 build command as an argument (e.g. `make tests`). It starts up docker with a recent version (hard coded) of the appropriate container and sensible environment settings.
 
-For example, to build SITL you would call (from within the **/Firmware** directory):
+For example, to build SITL you would call (from within the **/PX4-Autopilot** directory):
 
 ```sh
 ./Tools/docker_run.sh 'make px4_sitl_default'
@@ -96,13 +96,13 @@ docker run -it --privileged \
 
 Where,
 
-* `<host_src>`: The host computer directory to be mapped to `<container_src>` in the container. This should normally be the **Firmware** directory.
+* `<host_src>`: The host computer directory to be mapped to `<container_src>` in the container. This should normally be the **PX4-Autopilot** directory.
 * `<container_src>`: The location of the shared (source) directory when inside the container.
 * `<local_container_name>`: A name for the docker container being created. This can later be used if we need to reference the container again.
 * `<container>:<tag>`: The container with version tag to start - e.g.: `px4io/px4-dev-ros:2017-10-23`.
 * `<build_command>`: The command to invoke on the new container. E.g. `bash` is used to open a bash shell in the container.
 
-The concrete example below shows how to open a bash shell and share the directory **~/src/Firmware** on the host computer.
+The concrete example below shows how to open a bash shell and share the directory **~/src/PX4-Autopilot** on the host computer.
 
 ```sh
 # enable access to xhost from the container
@@ -111,7 +111,7 @@ xhost +
 # Run docker and open bash shell
 docker run -it --privileged \
 --env=LOCAL_USER_ID="$(id -u)" \
--v ~/src/Firmware:/src/firmware/:rw \
+-v ~/src/PX4-Autopilot:/src/PX4-Autopilot/:rw \
 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 -e DISPLAY=:0 \
 -p 14570:14570/udp \
@@ -121,7 +121,7 @@ docker run -it --privileged \
 If everything went well you should be in a new bash shell now. Verify if everything works by running, for example, SITL:
 
 ```sh
-cd src/firmware    #This is <container_src>
+cd src/PX4-Autopilot    #This is <container_src>
 make px4_sitl_default gazebo
 ```
 
@@ -158,7 +158,7 @@ docker rm 45eeb98f1dd9
 
 When running a simulation instance e.g. SITL inside the docker container and controlling it via *QGroundControl* from the host, the communication link has to be set up manually. The autoconnect feature of *QGroundControl* does not work here.
 
-In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. The IP address of the docker container can be found with the following command (assuming the container name is `mycontainer`):
+In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. The IP address of the docker container can be found with the following command (assuming the container name is `mycontainer`):
 
 ```sh
 $ docker inspect -f '{ {range .NetworkSettings.Networks}}{ {.IPAddress}}{ {end}}' mycontainer

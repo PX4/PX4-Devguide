@@ -238,7 +238,7 @@ struct message_header_s {
       };
       
   
-  `tag`: 로그 메세지 문자열의 원본을 나타내는 ID입니다. 과정, 스레드, 시스템 아키텍처별 클래스를 나타낼 수도 있습니다. 예를 들어, 제각각의 페이로드, 외부 디스크, 직렬 장치 등을 제어하려 다중 프로세스를 처리하는 온보드 컴퓨터용 참조 구현체는 다음과 같은 `message_logging_tagged_s` 구조체의 `uint16_t enum` 태그 속성으로 프로세스 식별자를 인코딩할 수 있습니다.
+  `tag`: 로그 메세지 문자열의 원본을 나타내는 ID입니다. 과정, 스레드, 시스템 아키텍처별 클래스를 나타낼 수도 있습니다. 예를 들어, 제각각의 탑재 장치, 외부 디스크, 직렬 장치 등을 제어하려 다중 프로세스를 처리하는 내장 컴퓨터용 참조 구현체는 다음과 같은 `message_logging_tagged_s` 구조체의 `uint16_t enum` 태그 속성으로 프로세스 식별자를 인코딩할 수 있습니다.
   
       enum class ulog_tag : uint16_t {
         unassigned,
@@ -305,10 +305,10 @@ struct message_header_s {
 
 ## 알려진 기존 구현체
 
-- PX4 펌웨어: C++ 
-  - [로거 모듈](https://github.com/PX4/Firmware/tree/master/src/modules/logger)
-  - [재현 모듈](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
-  - [hardfault_log 모듈](https://github.com/PX4/Firmware/tree/master/src/systemcmds/hardfault_log): hardfault 치명 오류 데이터를 붙입니다.
+- PX4-Autopilot: C++ 
+  - [로거 모듈](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/logger)
+  - [재현 모듈](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules/replay)
+  - [hardfault_log module](https://github.com/PX4/PX4-Autopilot/tree/master/src/systemcmds/hardfault_log): append hardfault crash data.
 - [pyulog](https://github.com/PX4/pyulog): CLI 스크립트가 들어있는 파이썬 ULog 파서 라이브러리.
 - [FlightPlot](https://github.com/PX4/FlightPlot): Java언어로 작성한 로그 플로터.
 - [pyFlightAnalysis](https://github.com/Marxlp/pyFlightAnalysis): pyulog 기반 로그 플로터, 3D 시각화 도구.

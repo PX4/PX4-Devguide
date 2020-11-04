@@ -1,6 +1,6 @@
 # Arch Linux 上开发环境的搭建
 
-固件仓库里已经提供了一个脚本 [Tools/setup/arch.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/arch.sh) 方便你快速地在你的平台上搭建 PX4 的开发环境。
+The PX4-Autopilot repository provides a convenient script to set your Arch installation up for PX4 development: [Tools/setup/arch.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/arch.sh).
 
 该脚本默认安装所有必需的工具，用于编译基于NuttX的PX4源码（不带RTPS），以及运行基于 *jMAVsim* 的仿真器。 你也可以安装额外的*Gazebo*仿真器通过在命令行中指定一个参数： `--gazebo`。
 
@@ -11,13 +11,13 @@
 要获取并运行这个脚本，有下面几种办法：
 
 - [下载PX4的源码，](../setup/building_px4.md) 然后运行这个目录下的脚本： 
-        git clone https://github.com/PX4/Firmware.git
-        bash Firmware/Tools/setup/arch.sh
+        git clone https://github.com/PX4/PX4-Autopilot.git
+        bash PX4-Autopilot/Tools/setup/arch.sh
 
 - 只下载你所需的脚本并运行他们： 
         sh
-        wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/arch.sh
-        wget https://raw.githubusercontent.com/PX4/Firmware/master/Tools/setup/requirements.txt
+        wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/master/Tools/setup/arch.sh
+        wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/master/Tools/setup/requirements.txt
         bash arch.sh
 
 该脚本可以加入这些可选的参数：

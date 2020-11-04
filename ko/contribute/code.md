@@ -4,9 +4,9 @@
 
 PX4 프로젝트는 분기를 셋으로 나누는 git 분기 모델을 활용합니다:
 
-- [master](https://github.com/px4/firmware/tree/master)는 기본 브랜치이며, 비교적 불안정하고 빠른 개발 속도를 보여줍니다.
-- [beta](https://github.com/px4/firmware/tree/beta)는 철저하게 시험한 코드의 브랜치입니다. 비행체 시험자들이 활용하도록 만들었습니다.
-- [stable](https://github.com/px4/firmware/tree/stable)은 최신 릴리스를 가리킵니다.
+- [master](https://github.com/PX4/PX4-Autopilot/tree/master) is by default unstable and sees rapid development.
+- [beta](https://github.com/PX4/PX4-Autopilot/tree/beta) has been thoroughly tested. 비행체 시험자들이 활용하도록 만들었습니다.
+- [stable](https://github.com/PX4/PX4-Autopilot/tree/stable) points to the last release.
 
 [리베이스를 통한 선형 기록](https://www.atlassian.com/git/tutorials/rewriting-history)을 유지하며 [Github 흐름](https://guides.github.com/introduction/flow/)을 배제합니다. 그러나, 전세계의 팀과 역동적인 개발로 인해 그때그때 최종적으로 병합을 진행합니다.
 
@@ -33,7 +33,7 @@ PX4 개발자 여러분들에게 목적에 부합하는 소스코드 내 문서 
 현재 두가지 방식의 소스코드 기반 문서가 있습니다:
 
 - `PRINT_MODULE_*` 메서드는 이 안내서에서 실행 시간의 모듈 사용 방법과 [모듈 및 명령 참고](../middleware/modules_main.md)를 목적으로 활용합니다. 
-  - API는 [이곳 소스 코드에](https://github.com/PX4/Firmware/blob/v1.8.0/src/platforms/px4_module.h#L381) 문서로 정리했습니다. 
+  - The API is documented [in the source code here](https://github.com/PX4/PX4-Autopilot/blob/v1.8.0/src/platforms/px4_module.h#L381). 
   - 바람직한 활용 예시로 [프로그램/모듈 템플릿](../apps/module_template.md)과 모듈 참조에서 연결한 파일을 들 수 있습니다.
 
 - *값을 추가하였고, 내용의 반복이 없는 코드에 대해* 소스코드 내 문서 작성을 권장합니다.
@@ -42,7 +42,7 @@ PX4 개발자 여러분들에게 목적에 부합하는 소스코드 내 문서 
   
   - C++ 항목 이름으로 분명하게 추정할 수 있는 문서는 추가하지 마십시오.
   - 보통 특이 상황이나 오류 처리 등의 추가 정보를 넣고 싶을 때가 있습니다.
-  - 문서에서 필요하다면 다음의 [Doxgyen](http://www.doxygen.nl/) 태그를 사용해야합니다: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`. 바람직한 활용 예시는 [src/modules/events/send_event.h](https://github.com/PX4/Firmware/blob/master/src/modules/events/send_event.h) 파일에 있습니다.
+  - 문서에서 필요하다면 다음의 [Doxgyen](http://www.doxygen.nl/) 태그를 사용해야합니다: `@class`, `@file`, `@param`, `@return`, `@brief`, `@var`, `@see`, `@note`. A good example of usage is [src/modules/events/send_event.h](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/events/send_event.h).
 
 ## 제출 코드와 제출 메시지
 

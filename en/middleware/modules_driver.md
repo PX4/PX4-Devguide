@@ -4,10 +4,11 @@ Subcategories:
 - [Distance Sensor](modules_driver_distance_sensor.md)
 - [Airspeed Sensor](modules_driver_airspeed_sensor.md)
 - [Baro](modules_driver_baro.md)
+- [Optical Flow](modules_driver_optical_flow.md)
 - [Magnetometer](modules_driver_magnetometer.md)
 
 ## adc
-Source: [drivers/adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc)
+Source: [drivers/adc/board_adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc/board_adc)
 
 
 ### Description
@@ -21,6 +22,27 @@ adc <command> [arguments...]
    start
 
    test
+
+   stop
+
+   status        print status info
+```
+## ads1115
+Source: [drivers/adc/ads1115](https://github.com/PX4/Firmware/tree/master/src/drivers/adc/ads1115)
+
+### Usage {#ads1115_usage}
+```
+ads1115 <command> [arguments...]
+ Commands:
+   start
+     [-I]        Internal I2C bus(es)
+     [-X]        External I2C bus(es)
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
+                 (default=1))
+     [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
+     [-a <val>]  I2C address
+                 default: 72
 
    stop
 
@@ -42,12 +64,13 @@ atxxxx <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    stop
 
@@ -74,9 +97,10 @@ batt_smbus <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 11
 
@@ -111,9 +135,10 @@ blinkm <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 9
 
@@ -141,9 +166,10 @@ bst <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 118
 
@@ -244,6 +270,23 @@ dshot <command> [arguments...]
 
    esc_info      Request ESC information
      -m <val>    Motor index (1-based)
+
+   stop
+
+   status        print status info
+```
+## fake_gyro
+Source: [examples/fake_gyro](https://github.com/PX4/Firmware/tree/master/src/examples/fake_gyro)
+
+
+### Description
+
+
+### Usage {#fake_gyro_usage}
+```
+fake_gyro <command> [arguments...]
+ Commands:
+   start
 
    stop
 
@@ -351,9 +394,10 @@ ina226 <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 65
      [-k]        if initialization (probing) fails, keep retrying periodically
@@ -374,9 +418,10 @@ irlock <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 84
 
@@ -394,12 +439,13 @@ lsm303agr <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -417,12 +463,13 @@ paw3902 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -440,9 +487,10 @@ pca9685 <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    reset
 
@@ -472,7 +520,9 @@ pca9685_pwm_out start -a 64 -b 1
 ```
 
 Use the `mixer` command to load mixer files.
-`mixer load /dev/pca9685 ROMFS/px4fmu_common/mixers/quad_x.main.mix`
+`mixer load /dev/pwm_outputX etc/mixers/quad_x.main.mix`
+The number X can be acquired by executing
+`pca9685_pwm_out status` when this driver is running.
 
 ### Usage {#pca9685_pwm_out_usage}
 ```
@@ -498,9 +548,10 @@ pcf8583 <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    stop
 
@@ -516,12 +567,13 @@ pmw3901 <command> [arguments...]
    start
      [-s]        Internal SPI bus(es)
      [-S]        External SPI bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-c <val>]  chip-select index (for external SPI)
                  default: 1
      [-m <val>]  SPI mode
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Rotation
                  default: 0
 
@@ -655,9 +707,10 @@ px4flow <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 66
      [-R <val>]  Rotation (default=downwards)
@@ -705,9 +758,10 @@ rgbled <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 57
 
@@ -810,6 +864,24 @@ tap_esc <command> [arguments...]
      [-n <val>]  Number of ESCs
                  default: 4
 ```
+## tone_alarm
+Source: [drivers/tone_alarm](https://github.com/PX4/Firmware/tree/master/src/drivers/tone_alarm)
+
+
+### Description
+This module is responsible for the tone alarm.
+
+
+### Usage {#tone_alarm_usage}
+```
+tone_alarm <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
 ## vmount
 Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
 
@@ -855,11 +927,13 @@ voxlpm [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-T <val>]  Type
-                 values: VBATT|P5VDC, default: VBATT
+                 values: VBATT|P5VDC|P12VDC, default: VBATT
+     [-k]        if initialization (probing) fails, keep retrying periodically
 
    stop
 

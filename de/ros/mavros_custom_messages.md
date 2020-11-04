@@ -93,7 +93,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
 
 ## PX4 Changes
 
-1. Inside **common.xml** (in **Firmware/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (same procedure as for MAVROS section above):
+1. Inside **common.xml** (in **PX4-Autopilot/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (same procedure as for MAVROS section above):
 
    ```xml
    ...
@@ -104,7 +104,7 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
    ...
    ```
 
-1. Remove *common*, *standard* directories in (**Firmware/mavlink/include/mavlink/v2.0**).
+1. Remove *common*, *standard* directories in (**PX4-Autopilot/mavlink/include/mavlink/v2.0**).
 
    ```sh
    rm -r common
@@ -121,21 +121,21 @@ Follow *Source Installation* instructions from [mavlink/mavros](https://github.c
 
 1. You will see a "MAVLink Generator" popup:
     
-    - For *XML*, "Browse" to **/Firmware/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**.
-    - For Out, "Browse" to **/Firmware/mavlink/include/mavlink/v2.0/**.
+    - For *XML*, "Browse" to **/PX4-Autopilot/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**.
+    - For Out, "Browse" to **/PX4-Autopilot/mavlink/include/mavlink/v2.0/**.
     - Select Language **C**
     - Select Protocol **2.0**
     - Check *Validate*
     
-    Then, press **Generate**. You will see *common*, and *standard* directories created in **/Firmware/mavlink/include/mavlink/v2.0/**.
+    Then, press **Generate**. You will see *common*, and *standard* directories created in **/PX4-Autopilot/mavlink/include/mavlink/v2.0/**.
 
-2. Make your own uORB message file **key_command.msg** in (Firmware/msg). For this example the "key_command.msg" has only the code:
+2. Make your own uORB message file **key_command.msg** in (PX4-Autopilot/msg). For this example the "key_command.msg" has only the code:
 
    ```
    char cmd
    ```
 
-Then, in **CMakeLists.txt** (in **Firmware/msg**), include
+Then, in **CMakeLists.txt** (in **PX4-Autopilot/msg**), include
 
    ```cmake
    set(
@@ -144,7 +144,7 @@ Then, in **CMakeLists.txt** (in **Firmware/msg**), include
         )
    ```
 
-1. Edit **mavlink_receiver.h** (in **Firmware/src/modules/mavlink**)
+1. Edit **mavlink_receiver.h** (in **PX4-Autopilot/src/modules/mavlink**)
 
    ```cpp
    ...
@@ -160,7 +160,7 @@ Then, in **CMakeLists.txt** (in **Firmware/msg**), include
    }
    ```
 
-1. Edit **mavlink_receiver.cpp** (in **Firmware/src/modules/mavlink**). This is where PX4 receives the MAVLink message sent from ROS, and publishes it as a uORB topic.
+1. Edit **mavlink_receiver.cpp** (in **PX4-Autopilot/src/modules/mavlink**). This is where PX4 receives the MAVLink message sent from ROS, and publishes it as a uORB topic.
 
    ```cpp
    ...
@@ -193,7 +193,7 @@ Then, in **CMakeLists.txt** (in **Firmware/msg**), include
    }
    ```
 
-1. Make your own uORB topic subscriber just like any example subscriber module. For this example lets create the model in (/Firmware/src/modules/key_receiver). In this directory, create two files **CMakeLists.txt**, **key_receiver.cpp**. Each one looks like following.
+1. Make your own uORB topic subscriber just like any example subscriber module. For this example lets create the model in (/PX4-Autopilot/src/modules/key_receiver). In this directory, create two files **CMakeLists.txt**, **key_receiver.cpp**. Each one looks like following.
     
     -CMakeLists.txt
 
@@ -273,7 +273,7 @@ Then, in **CMakeLists.txt** (in **Firmware/msg**), include
 
 For a more detailed explanation please see the documentation for [Writing your first application](https://dev.px4.io/en/apps/hello_sky.html).
 
-1. Lastly add your module in the **default.cmake** file correspondent to your board in **Firmware/boards/**. For example for the Pixhawk 4 add the following code in **Firmware/boards/px4/fmu-v5/default.cmake**:
+1. Lastly add your module in the **default.cmake** file correspondent to your board in **PX4-Autopilot/boards/**. For example for the Pixhawk 4 add the following code in **PX4-Autopilot/boards/px4/fmu-v5/default.cmake**:
 
    ```cmake
     MODULES
@@ -305,9 +305,9 @@ Now you are ready to build all your work!
 
 ### Build for PX4
 
-1. Build PX4 Firmware and upload [in the normal way](../setup/building_px4.md#nuttx).
+1. Build PX4-Autopilot and upload [in the normal way](../setup/building_px4.md#nuttx).
     
-    For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the Firmware directory:
+    For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the PX4-Autopilot directory:
 
    ```sh
     make px4_fmu-v5_default upload
@@ -337,7 +337,7 @@ This means, publish 97 ('a' in ASCII) to ROS topic "/mavros/keyboard_command/key
 1. Enter the Pixhawk nutshell through UDP. Replace xxx.xx.xxx.xxx with your IP.
 
    ```sh
-   cd Firmware/Tools
+   cd PX4-Autopilot/Tools
    ./mavlink_shell.py xxx.xx.xxx.xxx:14557 --baudrate 57600
    ```
 

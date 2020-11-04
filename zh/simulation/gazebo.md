@@ -34,10 +34,10 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     启动 PX4 SITL 和 Gazebo 进行仿真，并加载机架配置（支持多旋翼，固定翼，VTOL，光流和多机仿真）。
     
-    运行仿真最简单的方法是在 PX4 *Firmware* 存储库的根目录下打开一个终端，并调用 `make` 编译所需目标。 例如，要开始一个四旋翼飞行器的仿真（默认）：
+    The easiest way to do this is to open a terminal in the root directory of the PX4 *PX4-Autopilot* repository and call `make` for the desired target. 例如，要开始一个四旋翼飞行器的仿真（默认）：
     
     ```sh
-    cd /path/to/Firmware
+    cd /path/to/PX4-Autopilot
     make px4_sitl gazebo
     ```
     
@@ -58,6 +58,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     | [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv)                                | `make px4_sitl gazebo_rover`           |
     | [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv)         | `make px4_sitl gazebo_uuv_hippocampus` |
     | [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv)                        | `make px4_sitl gazebo_boat`            |
+    | [Cloudship (Airship)](../simulation/gazebo_vehicles.md#airship)                                     | `make px4_sitl gazebo_cloudship`       |
     
     > **Note** 如果发生构建错误， [文件和代码安装指南](../setup/dev_env.md) 是一个有用的参考。
     
@@ -244,7 +245,7 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     
     The *Gazebo* survey camera simulates a [MAVLink camera](https://mavlink.io/en/services/camera.html) that captures geotagged JPEG images and sends camera capture information to a connected ground station. The camera also supports video streaming. It can be used to test camera capture, in particular within survey missions.
     
-    The camera emits the [CAMERA_IMAGE_CAPTURED](https://mavlink.io/en/messages/common.html#CAMERA_IMAGE_CAPTURED) message every time an image is captured. The captured images are saved to: **Firmware/build/px4_sitle_default/tmp/frames/DSC_n_.jpg** (where *n* starts as 00000 and is iterated by one on each capture).
+    The camera emits the [CAMERA_IMAGE_CAPTURED](https://mavlink.io/en/messages/common.html#CAMERA_IMAGE_CAPTURED) message every time an image is captured. The captured images are saved to: **PX4-Autopilot/build/px4_sitle_default/tmp/frames/DSC_n_.jpg** (where *n* starts as 00000 and is iterated by one on each capture).
     
     To simulate a plane with this camera:
     
@@ -320,6 +321,19 @@ Gazebo 9 的安装在标准的环境编译已有说明。
     gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' \
     ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
     ```
+    
+    ### Verbose Logging
+    
+    SITL fails silently when there is something wrong with the gazebo model. You can enable more verbose logging using `VERBOSE_SIM`, as shown:
+    
+        export VERBOSE_SIM=1
+        make px4_sitl gazebo
+        
+    
+    or
+    
+        VERBOSE_SIM=1 make px4_sitl gazebo
+        
     
     ## Extending and Customizing
     

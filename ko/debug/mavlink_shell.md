@@ -20,7 +20,7 @@ MAVLink 셸은 직렬 포트 연결(USB/텔레메트리), 무선랜(UDP/TCP) 연
    ```sh
    sudo pip3 install pymavlink pyserial
    ```
-1. 터미널을 (Firmware 디렉터리에서) 열고 셸을 시작하십시오:
+1. Open terminal (in PX4-Autopilot directory) and start the shell:
    ```sh
    # For serial port
    ./Tools/mavlink_shell.py /dev/ttyACM0

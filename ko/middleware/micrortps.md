@@ -14,11 +14,11 @@ ROS2(Robot Operating System)의 미들웨어로 RTPS를 채택했습니다. *Fas
 
 ## RTPS는 언제 사용해야 할까?
 
-비행 조종기와 보드 외부 요소간 지정 제한 시간내 실시간 정보 공유를 확실히하려면 RTPS를 사용해야합니다. 특히 보드 외부 프로그램이 PX4에서 (uORB 토픽 송수신으로) 동작하는 프로그램 구성요소의 *피어*로 동작할 경우 유용합니다.
+비행체 제어 장치와 보드 외부 요소간 지정 제한 시간내 실시간 정보 공유를 분명히 하려면 RTPS를 사용해야합니다. 특히 보드 외부 프로그램이 PX4에서 (uORB 토픽 송수신으로) 동작하는 프로그램 구성요소의 *피어*로 동작할 경우 유용합니다.
 
 사용가능한 경우는, 컴퓨터 비전을 위한 로보틱스 라이브러리들간의 통신, 기체 조종을 위한 액추에이터와 센서간의 실시간 데이터 통신입니다.
 
-> **Note** *Fast RTPS*는 MAVLink의 대체 수단이 아닙니다. (*Fast RTPS*는 일부 주변기기와 동작할 목적의 다른 기회가 열려있지만) MAVLink는 지상 통제국, 짐벌, 카메라 그 외의 보드 외부 요소와의 통신에 적합한 프로토콜로 남아있습니다
+> **Note** *Fast RTPS*는 MAVLink의 대체 수단이 아닙니다. (*Fast RTPS*는 일부 주변기기와 동작할 목적의 다른 기회가 열려있지만) MAVLink는 지상 통제 장치, 짐벌, 카메라 그 외의 보드 외부 요소와의 통신에 적합한 프로토콜로 남아있습니다
 
 <span></span>
 
@@ -34,10 +34,10 @@ RTPS브릿지는 [uORB](../middleware/uorb.md)와 RTPS 메시지를 매끄럽게
 
 구조의 주된 요소는 상단 그림에 있는 클라이언트와 에이전트 프로세스입니다.
 
-* *Client*는 비행 조종기에서 실행하는 PX4 미들웨어 데몬입니다. 다른 PX4 컴포넌트가 보내는 토픽을 지속적으로 수신하고, (UART 또는 UDP 포트로) *Agent*를 대상으로 업데이트 내용을 보냅니다. *Agent*로 부터 메시지도 받으며 PX4로 uORB 메시지를 내보내기도 합니다.
+* *Client*는 비행체 제어 장치에서 실행하는 PX4 미들웨어 데몬입니다. 다른 PX4 컴포넌트가 보내는 토픽을 지속적으로 수신하고, (UART 또는 UDP 포트로) *Agent*를 대상으로 업데이트 내용을 보냅니다. *Agent*로 부터 메시지도 받으며 PX4로 uORB 메시지를 내보내기도 합니다.
 * *Agent*는 외부 컴퓨터에서 데몬으로 실행합니다. *Client*에서 보낸 uORB 업데이트 메시지를 검사한 후 RTPS에 실어 보냅니다. RTPS 어플리케이션에서 오는 "uORB" RTPS 메시지도 지속적으로 수신하며 Client에 전달합니다.
 * *Agent*과 *Client*는 직렬 연결(UART) 또는 UDP 네트워크로 연결합니다. uORB 정보는 전송 전 [CDR 직렬화](https://en.wikipedia.org/wiki/Common_Data_Representation) 처리합니다(*CDR 직렬화* 수단은 다른 플랫폼들간 직렬 데이터 송수신에 활용하는 일반 형식을 제공합니다).
-* *Agent*와 *Fast RTPS* 어플리케이션은 UDP를 통해 연결되며, 다른 장치에 있을수도 있습니다. 일반적인 구성에서는 와이파이나 USB로 *Client*에 연결된 동일한 시스템에 있을 것입니다 (예. 개발 컴퓨터, 리눅스 컴퓨터 또는 컴퓨터 보드).
+* *Agent*와 *Fast RTPS* 어플리케이션은 UDP를 통해 연결되며, 다른 장치에 있을수도 있습니다. 일반 설정상으론 무선랜 또는 USB로 연결한 *클라이언트*에 연결한 동일한 시스템(예: 개발 컴퓨터, 리눅스 보조 컴퓨터, 처리 보드)입니다.
 
 ### ROS2/ROS 어플리케이션 파이프라인
 
@@ -59,7 +59,7 @@ ROS2와 ROS간의 메시지를 주고 받는 [ros1_bridge](https://github.com/ro
 
 ### ROS-독립 어플리케이션
 
-브릿지를 만들고 빌드하고 사용할 때 필요한 모든 코드는 PX4 펌웨어 컴파일 과정에서 자동으로 만듭니다.
+All the code needed to create, build and use the bridge is automatically generated when PX4-Autopilot is compiled.
 
 *Client* 어플리케이션 또한 일반 빌드 과정의 일부로 컴파일하고 빌드하여 펌웨어에 들어갑니다. *Agent*는 대상 컴퓨터에 맞게 따로 직접 컴파일해야합니다.
 
@@ -71,7 +71,7 @@ ROS2와 ROS간의 메시지를 주고 받는 [ros1_bridge](https://github.com/ro
 
 [px4_ros_com](https://github.com/PX4/px4_ros_com) 패키지를 빌드하면, ROS2 노드에서 PX4 uORB 메시지를 다룰 때 필요한 모든 요소가 나옵니다(ROS일 경우 [ros1_bridge](https://github.com/ros2/ros1_bridge)가 필요합니다). `micrortps_agent`와 (`microtps_agent`에서 필요한) IDL 파일이 들어간 *PX4 RTPS 브릿지*에서 필요로하는 모든 구성 요소가 다 들어있습니다.
 
-ROS, ROS2의 메시지 정의 헤더와 인터페이스는 PX4 펌웨어의 uORB 메시지 대응 부분에 맞추는 [px4_msgs](https://github.com/PX4/px4_msgs) 패키지에서 생성합니다. `micrortps_agent`에서 사용하는 IDL 파일을 만들 때 `px4_ros_com`에서 필요합니다.
+The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4-Autopilot. `micrortps_agent`에서 사용하는 IDL 파일을 만들 때 `px4_ros_com`에서 필요합니다.
 
 `px4_ros_com`와 `px4_msgs` 패키지는 2개의 개별 브랜치를 갖고 있습니다.
 
@@ -84,7 +84,7 @@ ROS, ROS2의 메시지 정의 헤더와 인터페이스는 PX4 펌웨어의 uORB
 
 생성된 브릿지 코드는 특정 토픽들에 대해 RTPS를 통해 Pub/Sub이 가능하도록 합니다. ROS와 non-ROS 어플리케이선 모두 해당됩니다.
 
-*자동 코드 생성*을 위해 **Firmware/msg/tools/** 디렉토리에 **uorb_rtps_message_ids.yaml** 파일이 있습니다(*yaml*). 이 파일은 RTPS에 사용될 uORB 메시지의 집합을 정의 합니다. 메시지의 송, 수신 여부와 DDS/RTPS 미들웨어에 사용될 RTPS ID를 정의합니다.
+For *automatic code generation* there's a *yaml* definition file in the PX4 **PX4-Autopilot/msg/tools/** directory called **uorb_rtps_message_ids.yaml**. 이 파일은 RTPS에 사용될 uORB 메시지의 집합을 정의 합니다. 메시지의 송, 수신 여부와 DDS/RTPS 미들웨어에 사용될 RTPS ID를 정의합니다.
 
 > **Note** 모든 메시지들에 대해 RTPS ID가 설정해야 합니다.
 
@@ -113,15 +113,15 @@ rtps:
     send: true
 ```
 
-> **Note** ROS2 Dashing에서의 API 변경으로 `rosidl_generate_interfaces()` (`px4_msgs`에서의) CMake 모듈을 활용하여 microRTPS 에이전트 생성에 필요한 IDL 파일을 만들 수 있습니다. PX4 펌웨어는 PX4 빌드 과정에서만 활용하는 IDL 파일 생성 과정의 서식이 들어있습니다.
+> **Note** ROS2 Dashing에서의 API 변경으로 `rosidl_generate_interfaces()` (`px4_msgs`에서의) CMake 모듈을 활용하여 microRTPS 에이전트 생성에 필요한 IDL 파일을 만들 수 있습니다. PX4-Autopilot includes a template for the IDL file generation, which is only used during the PX4 build process.
 > 
 > `px4_msgs` 빌드 과정에서는 ROS2/ROS에 활용할 *약간 다른* IDL 파일(PX4 펌웨어 용으로 빌드)을 만듭니다. **uorb_rtps_message_ids.yaml**는 *PascalCased*방식으로 메시지 이름을 짓습니다(이름을 바꾸는 것은 client-agent 통신과는 상관없지만 ROS2에는 크리티컬합니다, 따라서 메시지 네이밍은 PascalCase 컨벤션을 따라야합니다). 새 IDL 파일은 송수신한 메세지를 되돌립니다(메시지를 클라이언트에서 보냈을 때, 에이전트에서 보내거나 그 반대의 경우로도 가능하기 때문에 필요).
 
-## 클라이언트 (PX4 펌웨어) {#client_firmware}
+## Client (PX4/PX4-Autopilot) {#client_firmware}
 
 *Client* 소스코드는 일반적인 빌드 과정을 거쳐 생성, 컴파일, 빌드하여 PX4 펌웨어에 넣습니다.
 
-NuttX/픽스호크 비행체 컨트롤러를 대상으로 펌웨어를 빌드하려면 설정 대상에서 `_rtps` 대상을 사용하십시오. 예를 들어, RTPS를 px4_fmu-v4에 빌드하려면:
+NuttX/픽스호크 비행체 제어 장치를 대상으로 펌웨어를 빌드하려면 설정 대상에서 `_rtps` 대상을 사용하십시오. 예를 들어, RTPS를 px4_fmu-v4에 빌드하려면:
 
 ```sh
 make px4_fmu-v4_rtps
@@ -264,7 +264,7 @@ ROS와 ROS2가 다른 환경을 필요로 하기 때문에 각 ROS를 위한 워
 
 `px4_ros_com/scripts` 디렉터리는 두 작업 영역을 빌드할 때 활용하는 여러 스크립트가 들어있습니다.
 
-두 작업 영역을 단일 스크립트로 빌드하려면 `build_all.bash`를 사용하십시오. `source build_all.bash --help` 명령으로 사용법을 확인하십시오. 가장 일반적인 사용법은 ROS(1) 작업 영역 경로와 PX4 펌웨어 디렉터리 경로를 전달하는 방법입니다:
+두 작업 영역을 단일 스크립트로 빌드하려면 `build_all.bash`를 사용하십시오. `source build_all.bash --help` 명령으로 사용법을 확인하십시오. The most common way of using it is by passing the ROS(1) workspace directory path and also the PX4-Autopilot directory path:
 
 ```sh
 $ source build_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
@@ -339,7 +339,7 @@ $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 
 ## Fast RTPS 감청 어플리케이션 만들기
 
-한번 *Client* (비행 컨트롤러의) 와 *Agent* (오프보드 컴퓨터의)가 동작하고 연결되기 시작하면, *Fast RTPS* 어플리케이션은 RTPS를 이용하여 uORB 토픽들을 퍼블리시하고 구독할 수 있게 됩니다.
+*Client* (비행체 제어 장치)와 *Agent* (외부 컴퓨터)가 동작하여 서로 연결하면, *Fast RTPS* 프로그램에서 RTPS로 PX4의 uORB 토픽을 내보내고 주기적으로 수신할 수 있습니다.
 
 이 예제는 `sensor_combined` 토픽을 구독하고 갱신결과를 출력하는 *Fast RTPS* "리스너" 어플리케이션을 어떻게 만들지 보여줍니다. 연결한 RTPS 어플리케이션은 같은 네트워크내의 어떤 컴퓨터에 대해 *Agent*로 동작할 수 있습니다 이 예제에서 *Agent*와 *Listener application*은 동일한 컴퓨터에서 실행합니다.
 
@@ -350,7 +350,7 @@ $ source clean_all.bash --ros1_ws_dir <path/to/px4_ros_com_ros1/ws>
 어플리케이션을 만들려면 다음 명령을 입력하십시오:
 
 ```sh
-cd /path/to/PX4/Firmware/build/px4_sitl_rtps/src/modules/micrortps_bridge
+cd /path/to/PX4/PX4-Autopilot/build/px4_sitl_rtps/src/modules/micrortps_bridge
 mkdir micrortps_listener
 cd micrortps_listener
 fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sensor_combined.idl
@@ -358,7 +358,7 @@ fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sens
 
 이 명령어는 기본적인 Subscriber와 Publisher를 만들고, 이것을 실행하기 위한 메인 어플리케이션을 만듭니다. `sensor_combined` 토픽으로 부터 오는 데이터를 출력하기 위해서는 **sensor_combined_Subscriber.cxx** 메소드의 `onNewDataMessage()`를 수정하세요.
 
-```c++
+```cpp
 void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
 {
     // Take data
@@ -428,14 +428,14 @@ baro_temp_celcius: 43.93
 
 ROS2에서 감청 노드를 만드려면 `px4_ros_com/src/listeners`의 `sensor_combined_listener.cpp` 를 참고하십시오.
 
-```c++
+```cpp
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/sensor_combined.hpp>
 ```
 
 위의 헤더들은 ROS2 미들웨어에 접속하기 위해 필요한 C++ 라이브러리들을 포함합니다. 필요한 메시지 헤더파일들 또한 포함합니다.
 
-```c++
+```cpp
 /**
  * @brief Sensor Combined uORB topic data callback
  */
@@ -445,7 +445,7 @@ class SensorCombinedListener : public rclcpp::Node
 
 `rclcpp::Node`의 서브클래스로 `SensorCombinedListener` 클래스를 만드는 것 입니다.
 
-```c++
+```cpp
 public:
     explicit SensorCombinedListener() : Node("sensor_combined_listener") {
         subscription_ = this->create_subscription<px4_msgs::msg::SensorCombined>(
@@ -470,7 +470,7 @@ public:
 
 이 코드는 `sensor_combined` uORB 메세지(DDS 메세지와 유사)를 받았을 때 호출하는 함수를 만듭니다. 이 함수는 메세지를 받을 때마다 메세지 필드 내용을 출력합니다.
 
-```c++
+```cpp
 private:
     rclcpp::Subscription<px4_msgs::msg::SensorCombined>::SharedPtr subscription_;
 };
@@ -478,7 +478,7 @@ private:
 
 위 코드에서는 호환성을 가진 하나 이상의 ROS 송신자에 대응 가능한 `sensor_combined_topic`으로 지속 감청 연결을 만듭니다.
 
-```c++
+```cpp
 int main(int argc, char *argv[])
 {
     std::cout << "Starting sensor_combined listener node..." << std::endl;
@@ -497,9 +497,9 @@ ROS 노드의 `SensorCombinedListener` 클래스 초기화는 `main` 함수에�
 
 ROS2 광역 전달 노드는 DDS/RTPS/PX4 네트워크에 데이터를 내보냅니다.
 
-`px4_ros_com/src/listeners`의 `debug_vect_advertiser.cpp` 예제를 살펴보겠습니다:
+Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/advertisers`:
 
-```c++
+```cpp
 #include <chrono>
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/debug_vect.hpp>
@@ -509,14 +509,14 @@ using namespace std::chrono_literals;
 
 `debug_vect` 메세지 헤더와 필요한 헤더를 함께 선언합니다.
 
-```c++
+```cpp
 class DebugVectAdvertiser : public rclcpp::Node
 {
 ```
 
 `rclcpp::Node`의 서브클래스로 `DebugVectAdvertiser` 클래스를 만드는 것 입니다.
 
-```c++
+```cpp
 public:
     DebugVectAdvertiser() : Node("debug_vect_advertiser") {
         publisher_ = this->create_publisher<px4_msgs::msg::DebugVect>("DebugVect_PubSubTopic", 10);
@@ -544,7 +544,7 @@ private:
 
 메시지를 송신할 때 사용할 함수를 만듭니다. 메시지는 타이머 기반으로 동작하는 콜백 함수에서 초당 2개씩 보냅니다.
 
-```c++
+```cpp
 int main(int argc, char *argv[])
 {
     std::cout << "Starting debug_vect advertiser node..." << std::endl;
@@ -681,16 +681,16 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 
 ### OBC(온보드 컴퓨터)에서 UART 활성화하기
 
-라즈페이파이나 다른 OBC에서 UART 전송을 위해서는 시리얼 포트를 활성화해야만 합니다.
+라즈베리 파이나 다른 OBC에서 UART 전송을 수행하려면 시리얼 포트를 활성화해야 합니다:
 
-1. `userid`가 `dialout` 그룹의 멤버인지 확인하세요(라즈베리파이에서는 기본값이 pi 입니다).
+1. `userid`(라즈베리 파이에서는 pi가 기본)가 `dialout` 그룹의 구성원인지 확인하세요.
     
     ```sh
     groups pi
     sudo usermod -a -G dialout pi
     ```
 
-2. 일부 라즈베리파이에서는 그 포트를 사용하고 있는 GPIO 시리얼 콘솔을 멈춰야 합니다.
+2. 일부 라즈베리 파이에서는 포트를 사용하는 GPIO 직렬 콘솔 사용을 멈춰야 합니다.
     
     ```sh
     sudo raspi-config
@@ -706,9 +706,8 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
     
     `enable_uart` 값이 1로 설정되어 있는지 확인하세요.
     
-    ```txt
-    enable_uart=1
-    ```
+        enable_uart=1
+        
 
 ## 추가 정보
 

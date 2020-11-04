@@ -12,19 +12,30 @@ MacOS는 PX4 지원 개발 환경입니다. 다음 절차는 빌드 환경을 �
 
 > **Tip** 동영상 자습서는 여기에 있습니다: [Setting up your PX4 development environment on macOS](https://youtu.be/tMbMGiMs1cQ).
 
-## 선행 조건
+## 홈브류(Homebrew) 설치
 
-*터미널* 명령으로 macOS의 최대 개방 파일 수를 늘리십시오:
+홈브루 설치 방법은 간단하고 쉽습니다: [설치 방법](https://brew.sh).
+
+## 파일 열기 갯수 증가 ("LD: too many open files" 오류 처리)
+
+PX4 툴체인에서는 ZSH 셸을 사용해야합니다. 셸을 사용중이라면, 다음 줄을 셸 프로파일에 추가하십시오:
+
+이 파일을 만들거나 명령행을 뒤에 붙여넣습니다: `~/.zshenv` 그리고 다음 줄을 추가하십시오:
 
 ```sh
 ulimit -S -n 2048
 ```
 
-> **Note** 이 글을 작성하는 시점(2018년 12월) 마스터 브랜치에서는 macOS에서 허용하는 프로세스당 최대 개방 가능 파일 수(모든 실행 프로세스당 256개)를 넘게 활용합니다. *간단한 해결책*으로는, 허용 개방 파일 수를 늘리는 방법입니다.
+## 홈브류에서 파이썬 실행 대상 확인
 
-## 홈브류(Homebrew) 설치
+아직 없다면, `~/.zshrc` 파일을 만들어 다음 줄을 추가하십시오:
 
-홈브루 설치 방법은 간단하고 쉽습니다: [설치 방법](https://brew.sh)
+```sh
+# Point python to python 3 from Homebrew
+alias python=/usr/local/bin/python3
+# Point pip to python 3 pip
+alias pip=/usr/local/bin/pip3
+```
 
 ## 공통 도구
 
@@ -35,13 +46,13 @@ brew tap PX4/px4
 brew install px4-dev
 ```
 
-파이썬 3를 설치했는지 확인하십시오.
+필요한 파이썬 패키지를 설치하십시오
 
 ```sh
-brew install python3
-
 # install required packages using pip3
-pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
+python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
+# if this fails with a permissions error, your Python install is in a system path - use this command instead:
+sudo -H python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
 ```
 
 ## 가제보 모의 시험 환경
@@ -55,7 +66,7 @@ brew install px4-sim-gazebo
 
 ## jMAVSim 모의 시험 환경
 
-jMAVSim SITL 모의시험 환경을 활용하려면 자바 최신 버전(예: Java 14)을 우선 설치해야 합니다. [오라클에서 자바 14](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html)를 다운로드 하거나 AdoptOpenJDK 탭을 활용할 수 있습니다:
+jMAVSim SITL 모의시험 환경을 활용하려면 자바 최신 버전(예: Java 14)을 우선 설치해야 합니다. [오라클 Java 14](https://www.oracle.com/java/technologies/javase-jdk14-downloads.html)을 다운로드하거나 AdoptOpenJDK 탭을 활용할 수 있습니다:
 
 ```sh
 brew tap AdoptOpenJDK/openjdk

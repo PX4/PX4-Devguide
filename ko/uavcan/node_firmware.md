@@ -1,8 +1,8 @@
 # UAVCAN 펌웨어 업그레이드
 
-## Vectorcontrol ESC 코드 베이스 (픽스호크 ESC 1.6과 S2740VC)
+## Vectorcontrol 전동 변속기 코드 베이스 (픽스호크 전동 변속기 1.6과 S2740VC)
 
-ESC 코드를 다운로드하십시오:
+전동 변속기 코드를 다운로드하십시오:
 
 ```sh
 git clone https://github.com/thiemar/vectorcontrol
@@ -11,13 +11,13 @@ cd vectorcontrol
 
 ### UAVCAN 부트로더 플래싱
 
-UAVCAN으로 펌웨어 업그레이드를 진행하기 전, 픽스호크 ESC 1.6에 UAVCAN 부트로더를 플래싱해야합니다. 부트로더를 빌드하려면 다음 명령을 실행하십시오:
+UAVCAN으로 펌웨어 업그레이드를 진행하기 전, 픽스호크 전동 변속기 1.6에 UAVCAN 부트로더를 플래싱해야합니다. 부트로더를 빌드하려면 다음 명령을 실행하십시오:
 
 ```sh
 make clean && BOARD=px4esc_1_6 make -j8
 ```
 
-빌드가 끝나면 부트로더 이미지는 `firmware/px4esc_1_6-bootloader.bin`에 들어가고, OpenOCD 설정은 `openocd_px4esc_1_6.cfg`에 들어갑니다. ESC 부트로더를 설치하려면 [이 절차](../uavcan/bootloader_installation.md)를 따르십시오.
+빌드가 끝나면 부트로더 이미지는 `firmware/px4esc_1_6-bootloader.bin`에 들어가고, OpenOCD 설정은 `openocd_px4esc_1_6.cfg`에 들어갑니다. 전동 변속기 부트로더를 설치하려면 [이 절차](../uavcan/bootloader_installation.md)를 따르십시오.
 
 ### 메인 바이너리 컴파일
 
@@ -25,9 +25,9 @@ make clean && BOARD=px4esc_1_6 make -j8
 BOARD=s2740vc_1_0 make && BOARD=px4esc_1_6 make
 ```
 
-이 명령은 지원하는 ESC용 UAVCAN 노드 펌웨어를 빌드합니다. 펌웨어 이미지는 `com.thiemar.s2740vc-v1-1.0-1.0.<git hash>.bin`과 `org.pixhawk.px4esc-v1-1.6-1.0.<git hash>.bin`으로 들어갑니다.
+이 명령은 지원하는 전동 변속기용 UAVCAN 노드 펌웨어를 빌드합니다. 펌웨어 이미지는 `com.thiemar.s2740vc-v1-1.0-1.0.<git hash>.bin`과 `org.pixhawk.px4esc-v1-1.6-1.0.<git hash>.bin`으로 들어갑니다.
 
-## Sapog 코드 베이스 (픽스호크 ESC 1.4와 Zubax Orel 20)
+## Sapog 코드 베이스 (픽스호크 전동 변속기 1.4와 Zubax Orel 20)
 
 Sapog 코드 베이스를 다운로드하십시오:
 
@@ -39,7 +39,7 @@ git submodule update --init --recursive
 
 ### UAVCAN 부트로더 플래싱
 
-UAVCAN으로 펌웨어를 업데이트하기 전, ESC에 UAVCAN 부트로더를 플래싱해야합니다. 다음 명령어로 부트로더를 빌드할 수 있습니다:
+UAVCAN으로 펌웨어를 업데이트하기 전, 전동 변속기에 UAVCAN 부트로더를 플래싱해야합니다. 다음 명령어로 부트로더를 빌드할 수 있습니다:
 
 ```sh
 cd bootloader
@@ -47,7 +47,7 @@ make clean && make -j8
 cd ..
 ```
 
-부트로더 이미지는 `bootloader/firmware/bootloader.bin`에 있고, OpenOCD 설정은 `openocd.cfg`에 있습니다. ESC에 부트로더를 설치하려면 [이 절차](../uavcan/bootloader_installation.md)를 따르십시오.
+부트로더 이미지는 `bootloader/firmware/bootloader.bin`에 있고, OpenOCD 설정은 `openocd.cfg`에 있습니다. 전동 변속기에 부트로더를 설치하려면 [이 절차](../uavcan/bootloader_installation.md)를 따르십시오.
 
 ### 메인 바이너리 컴파일
 
@@ -56,7 +56,7 @@ cd firmware
 make RELEASE=1 # RELEASE is optional; omit to build the debug version
 ```
 
-일부 GCC 신 버전에서 심볼 링크를 진행할 때 segmentation fault 오류가 나타날 수 있음을 염두에 두십시오. 이 글을 작성할 때 버전 4.9는 동작합니다. 펌웨어 이미지는 `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`에 들어가는데, `<xxxxxxxx>`는 임의 순서대로 나열한 문자 숫자입니다. Zubax Orel 20 하드웨어 버전은 두가지가 있습니다 (1.0과 1.1). 바이너리 파일을 다음 설명의 올바른 폴더 위치로 복사했는지 확인하십시오. ESC 펌웨어는 하드웨어 버전과 두 제품의 동작을 확인합니다.
+일부 GCC 신 버전에서 심볼 링크를 진행할 때 segmentation fault 오류가 나타날 수 있음을 염두에 두십시오. 이 글을 작성할 때 버전 4.9는 동작합니다. 펌웨어 이미지는 `firmware/build/io.px4.sapog-1.1-1.7.<xxxxxxxx>.application.bin`에 들어가는데, `<xxxxxxxx>`는 임의 순서대로 나열한 문자 숫자입니다. Zubax Orel 20 하드웨어 버전은 두가지가 있습니다 (1.0과 1.1). 바이너리 파일을 다음 설명의 올바른 폴더 위치로 복사했는지 확인하십시오. 전동 변속기 펌웨어는 하드웨어 버전과 두 제품의 동작을 확인합니다.
 
 ## Zubax GNSS
 
@@ -93,9 +93,9 @@ ROMFS 기반 업데이터는 다음과 같은 규칙을 따르나, 파일 이름
 
 최종 파일 위치는 다음과 같습니다.
 
-* S2740VC ESC: `ROMFS/px4fmu_common/uavcan/fw/com.thiemar.s2740vc-v1/1.0/_s2740vc-v1-1.0.<git hash>.bin`
-* Pixhawk ESC 1.6: `ROMFS/px4fmu_common/uavcan/fw/org.pixhawk.px4esc-v1/1.6/_px4esc-v1-1.6.<git hash>.bin`
-* Pixhawk ESC 1.4: `ROMFS/px4fmu_common/uavcan/fw/org.pixhawk.sapog-v1/1.4/_sapog-v1-1.4.<git hash>.bin``
+* S2740VC 전동 변속기: `ROMFS/px4fmu_common/uavcan/fw/com.thiemar.s2740vc-v1/1.0/_s2740vc-v1-1.0.<git hash>.bin`
+* Pixhawk 전동 변속기 1.6: `ROMFS/px4fmu_common/uavcan/fw/org.pixhawk.px4esc-v1/1.6/_px4esc-v1-1.6.<git hash>.bin`
+* Pixhawk 전동 변속기 1.4: `ROMFS/px4fmu_common/uavcan/fw/org.pixhawk.sapog-v1/1.4/_sapog-v1-1.4.<git hash>.bin``
 * Zubax GNSS v1: `ROMFS/px4fmu_common/uavcan/fw/com.zubax.gnss/1.0/gnss-1.0.<git has>.bin`
 * Zubax GNSS v2: `ROMFS/px4fmu_common/uavcan/fw/com.zubax.gnss/2.0/gnss-2.0.<git has>.bin`
 

@@ -4,19 +4,19 @@
 
 ## PX4 架构
 
-PX4 由两个主要层次组成：基于主机操作系统（NuttX，Linux 或者其他 POSIX 平台，比如 Mac OS）的 [板卡支持和中间件层](../middleware/README.md) ，以及应用层（位于 [src/modules](https://github.com/PX4/Firmware/tree/master/src/modules)\ 的飞行控制栈）。 更多有关详细信息请参阅： [PX4 系统架构概述](../concept/architecture.md) 。
+PX4 consists of two main layers: The [board support and middleware layer](../middleware/README.md) on top of the host OS (NuttX, Linux or any other POSIX platform like Mac OS), and the applications (Flight Stack in [src/modules](https://github.com/PX4/PX4-Autopilot/tree/master/src/modules)\). 更多有关详细信息请参阅： [PX4 系统架构概述](../concept/architecture.md) 。
 
 本指南仅关注主机操作系统和中间件，因为 应用层/飞行控制栈 可以在任何目标平台上运行。
 
 ## 飞行控制器配置文件分布位置
 
-飞控板的启动和配置文件位于特定于每类飞控板供应商（vendor-specific）的目录下，这些目录都位于 [/boards](https://github.com/PX4/Firmware/tree/master/boards/) 文件夹下（例如**boards/*VENDOR*/*MODEL*/**文件夹)。
+Board startup and configuration files are located under [/boards](https://github.com/PX4/PX4-Autopilot/tree/master/boards/) in each board's vendor-specific directory (i.e. **boards/*VENDOR*/*MODEL*/**)).
 
 例如，对于 FMUv5 飞控硬件平台：
 
-* (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/boards/px4/fmu-v5). 
-* Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/default.cmake).
-* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/init/rc.board_defaults) 
+* (All) Board-specific files: [/boards/px4/fmu-v5](https://github.com/PX4/PX4-Autopilot/tree/{{ book.px4_version }}/boards/px4/fmu-v5). 
+* Build configuration: [/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/boards/px4/fmu-v5/default.cmake).
+* Board-specific initialisation file: [/boards/px4/fmu-v5/init/rc.board_defaults](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/boards/px4/fmu-v5/init/rc.board_defaults) 
   * 如果在飞控板平台目录下可以找到 **init/rc.board** 文件，则针对该飞控板平台的初始化文件将会自动包含在启动脚本中。
   * 该文件用于启动仅存在于特定主板上的传感器 (和其他东西)。 它也被用于完成对飞控板的默认参数、 UART 映射关系和其它特殊情况的设定。
   * For FMUv5 you can see all the Pixhawk 4 sensors being started, and it also sets a larger LOGGER_BUF. 
@@ -33,7 +33,7 @@ See [NuttX Board Porting Guide](porting_guide_nuttx.md).
 
 Linux boards do not include the OS and kernel configuration. These are already provided by the Linux image available for the board (which needs to support the inertial sensors out of the box).
 
-* [boards/px4/raspberrypi/default.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/raspberrypi/default.cmake) - RPI cross-compilation. 
+* [boards/px4/raspberrypi/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/boards/px4/raspberrypi/default.cmake) - RPI cross-compilation. 
 
 ## 中间件组件和配置
 
@@ -41,14 +41,14 @@ This section describes the various middleware components, and the configuration 
 
 ### QuRT / Hexagon
 
-* The start script is located in [posix-configs/](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/posix-configs).
+* The start script is located in [posix-configs/](https://github.com/PX4/PX4-Autopilot/tree/{{ book.px4_version }}/posix-configs).
 * The OS configuration is part of the default Linux image (TODO: Provide location of LINUX IMAGE and flash instructions).
-* The PX4 middleware configuration is located in [src/boards](https://github.com/PX4/Firmware/tree/{{ book.px4_version }}/boards). TODO: ADD BUS CONFIG 
+* The PX4 middleware configuration is located in [src/boards](https://github.com/PX4/PX4-Autopilot/tree/{{ book.px4_version }}/boards). TODO: ADD BUS CONFIG 
 * Reference config: Running `make eagle_default` builds the Snapdragon Flight reference config.
 
 ## RC UART 接线建议
 
-It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. This is done via board config and manifest files. One example is [px4fmu-v5](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/boards/px4/fmu-v5/src/manifest.c).
+It is generally recommended to connect RC via separate RX and TX pins to the microcontroller. If however RX and TX are connected together, the UART has to be put into singlewire mode to prevent any contention. This is done via board config and manifest files. One example is [px4fmu-v5](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/boards/px4/fmu-v5/src/manifest.c).
 
 ## 官方支持的硬件
 
@@ -66,7 +66,7 @@ We encourage board manufacturers to aim for full compatibility with the [FMU spe
 
 > **Tip** Manufacturers should carefully consider the cost of maintenance before deviating from the specification (the cost to the manufacturer is proportional to the level of divergence).
 
-We welcome any individual or company to submit their port for inclusion in our supported hardware, provided they are willing to follow our [Code of Conduct](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/CODE_OF_CONDUCT.md) and work with the Dev Team to provide a safe and fulfilling PX4 experience to their customers.
+We welcome any individual or company to submit their port for inclusion in our supported hardware, provided they are willing to follow our [Code of Conduct](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/CODE_OF_CONDUCT.md) and work with the Dev Team to provide a safe and fulfilling PX4 experience to their customers.
 
 It's also important to note that the PX4 dev team has a responsibility to release safe software, and as such we require any board manufacturer to commit any resources necessary to keep their port up-to-date, and in a working state.
 
@@ -86,5 +86,5 @@ You can reach out to the core developer team and community on the official [Foru
 * [Building the Code](../setup/building_px4.md) - How to build source and upload firmware 
 * Supported Flight Controllers: 
   * [Autopilot Hardware](https://docs.px4.io/master/en/flight_controller/) (PX4 User Guide)
-  * [Supported boards list](https://github.com/PX4/Firmware/#supported-hardware) (Github)
+  * [Supported boards list](https://github.com/PX4/PX4-Autopilot/#supported-hardware) (Github)
 * [Supported Peripherals](https://docs.px4.io/master/en/peripherals/) (PX4 User Guide)

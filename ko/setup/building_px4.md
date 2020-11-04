@@ -10,10 +10,10 @@ PX4는 모의시험 환경과 하드웨어 타겟 모두에 대해 콘솔 또는
 
 ## PX4 소스 코드 다운로드 {#get_px4_code}
 
-PX4 소스 코드는 github의 [PX4/Firmware](https://github.com/PX4/Firmware) 저장소에 있습니다. *가장 최신*의 버전을 컴퓨터에 받으려면, 다음 명령을 터미널에 입력하십시오:
+The PX4 source code is stored on Github in the [PX4/PX4-Autopilot](https://github.com/PX4/PX4-Autopilot) repository. *가장 최신*의 버전을 컴퓨터에 받으려면, 다음 명령을 터미널에 입력하십시오:
 
 ```sh
-git clone https://github.com/PX4/Firmware.git --recursive
+git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 ```
 
 > **Note** 이 방법이 최신 코드를 빌드하는데 필요한 모든 과정입니다. PX4에 기여할 목적의 더 많은 git 활용 내용은 [git 예제 > PX4에 코드 기여하기](../contribute/git_examples.md#contributing_code) 에 있습니다.
@@ -22,7 +22,7 @@ git clone https://github.com/PX4/Firmware.git --recursive
 
 우선 콘솔 환경에서 모의시험 환경을 빌드하겠습니다. 모의시험 환경은 실제 하드웨어와 IDE로 옮겨가기 전 시스템 설정을 검증할 수 있게 합니다.
 
-**Firmware** 디렉터리를 찾아간 후 다음 명령으로 [jMAVSim](../simulation/jmavsim.md)을 시작하십시오:
+Navigate into the **PX4-Autopilot** directory and start [jMAVSim](../simulation/jmavsim.md) using the following command:
 
 ```sh
 make px4_sitl jmavsim
@@ -42,7 +42,7 @@ pxh> commander takeoff
 
 `commander land` 명령으로 드론을 착륙할 수 있으며 모의시험 환경은 **CTRL+C** 키 입력(또는 `shutdown` 명령 입력)으로 멈출 수 있습니다.
 
-지상 관제 스테이션에서의 비행체 모의시험은 실제 비행체 운용과 거의 흡사합니다. 비행체가 날고 있을 때(비행체 이륙 모드) 지도에서 위치를 누르고 슬라이더를 활성화합니다. 이 동작을 통해 비행체의 위치를 바꿉니다.
+지상 통제 장치에서의 비행체 모의시험은 실제 비행체 운용과 거의 흡사합니다. 비행체가 날고 있을 때(비행체 이륙 모드) 지도에서 위치를 누르고 슬라이더를 활성화합니다. 이 동작을 통해 비행체의 위치를 바꿉니다.
 
 ![QGroundControl GoTo](../../assets/qgc_goto.jpg)
 
@@ -52,12 +52,12 @@ pxh> commander takeoff
 
 ### 빌드 {#building_nuttx}
 
-NuttX- 또는 Pixhawk- 기반 보드용으로 빌드하려면 **Firmware** 디렉토리를 탐색한 후 보드에 해당하는 빌드 타겟을 찾아 `make`를 호출하십시오.
+To build for NuttX- or Pixhawk- based boards, navigate into the **PX4-Autopilot** directory and then call `make` with the build target for your board.
 
 예를 들어 *Pixracer* 용으로 빌드하려면 다음 명령을 사용하십시오:
 
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make px4_fmu-v4_default
 ```
 
@@ -66,8 +66,8 @@ make px4_fmu-v4_default
 성공적인 실행시 다음 출력 내용으로 끝납니다:
 
 ```sh
--- Build files have been written to: /home/youruser/src/Firmware/build/px4_fmu-v4_default
-[954/954] Creating /home/youruser/src/Firmware/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
+-- Build files have been written to: /home/youruser/src/PX4-Autopilot/build/px4_fmu-v4_default
+[954/954] Creating /home/youruser/src/PX4-Autopilot/build/px4_fmu-v4_default/px4_fmu-v4_default.px4
 ```
 
 다음 목록은 일반 보드에서의 빌드 명령을 보여줍니다:
@@ -142,7 +142,7 @@ export AUTOPILOT_HOST=pi_hostname.domain
 실행 파일을 만드십시오:
 
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make emlid_navio2 # for cross-compiler build
 ```
 
@@ -151,13 +151,14 @@ make emlid_navio2 # for cross-compiler build
 다음 명령으로 업로드하십시오:
 
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make emlid_navio2 upload # for cross-compiler build
 ```
 
 그리고 SSH를 통해 (루트 계정으로) 접근 후 다음 명령을 실행하십시오:
 
 ```sh
+cd ~/px4
 sudo ./bin/px4 -s px4.config
 ```
 
@@ -166,14 +167,14 @@ sudo ./bin/px4 -s px4.config
 라즈베리 파이에서 *직접* 빌드할 경우, 자체 빌드 대상을 찾으려 할 것입니다(emlid_navio2_native).
 
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make emlid_navio2_native # for native build
 ```
 
 "px4" 실행 파일은 **build/emlid_navio2_native/** 디렉터리에 있습니다. 다음 명령으로 실행하십시오:
 
 ```sh
-sudo ./build/emlid_navio2_native/px4 -s ./posix-configs/rpi/px4.config
+sudo ./build/emlid_navio2_native/px4 build/emlid_navio2_native/etc -s ./posix-configs/rpi/px4.config
 ```
 
 px4를 실행하여 나타난 성공적인 빌드 화면은 다음과 같습니다:
@@ -204,21 +205,21 @@ cd /home/pi && ./bin/px4 -d -s px4.config > px4.log
 
 [OcPoC-Zynq Mini](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html) 빌드 절차는 다음 문서에서 다룹니다:
 
-- [Aerotenna OcPoC-Zynq Mini Flight Controller > OcPoC-Zynq용 PX4 빌드](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)
+- [Aerotenna OcPoC-Zynq 미니 비행체 제어 장치 > OcPoC-Zynq용 PX4 빌드](https://docs.px4.io/master/en/flight_controller/ocpoc_zynq.html#building-px4-for-ocpoc-zynq)
 - [OcPoC PX4 설정 페이지](https://aerotenna.readme.io/docs/px4-setup)
 
 ### QuRT / 스냅드래곤 기반 보드
 
-이 절에서는 [Qualcomm Snapdragon Flight](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html)용 빌드 방법을 알려드립니다.
+이 절에서는 [퀄컴 스냅드래곤 플라이트](https://docs.px4.io/master/en/flight_controller/snapdragon_flight.html)용 빌드 방법을 알려드립니다.
 
 #### 빌드
 
-> **Note** (UART 기반) [퀄컴 ESC 보드](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board)를 사용한다면, [이곳](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md) 절차를 따르십시오. PWM기반 일반 ESC 보드를 사용한다면 이 페이지의 다음 과정을 계속 따르는 것이 좋습니다.
+> **Note** (UART 기반) [퀄컴 전동 변속기 보드](http://shop.intrinsyc.com/products/qualcomm-electronic-speed-control-board)를 사용한다면, [이 곳](https://github.com/ATLFlight/ATLFlightDocs/blob/master/PX4.md) 절차를 따르십시오. PWM기반 일반 전동 변속기 보드를 사용한다면 이 페이지의 다음 과정을 계속 따르는 것이 좋습니다.
 
 아리 명령은 리눅스와 DSP 쪽 대상을 빌드합니다. 두 실행 파일은 [muORB](../middleware/uorb.md) 기반으로 통신합니다.
 
 ```sh
-cd Firmware
+cd PX4-Autopilot
 make atlflight_eagle_default
 ```
 
@@ -234,7 +235,7 @@ adb shell
 make atlflight_eagle_default upload
 ```
 
-참고로 이 명령은 [mainapp.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/mainapp.config) 설정 파일과 [px4.config](https://github.com/PX4/Firmware/blob/master/posix-configs/eagle/flight/px4.config) 설정 파일을 장치에 복사(그리고 덮어쓰기)하기도 합니다. 이 파일은 각각 /usr/share/data/adsp/px4.config 와 /home/linaro/mainapp.config에 위치합니다. 운송 장비의 시작 스크립트를 직접 편집하려는 경우 참고하십시오.
+Note that this will also copy (and overwrite) the two config files [mainapp.config](https://github.com/PX4/PX4-Autopilot/blob/master/posix-configs/eagle/flight/mainapp.config) and [px4.config](https://github.com/PX4/PX4-Autopilot/blob/master/posix-configs/eagle/flight/px4.config) to the device. 이 파일은 각각 /usr/share/data/adsp/px4.config 와 /home/linaro/mainapp.config에 위치합니다. 운송 장비의 시작 스크립트를 직접 편집하려는 경우 참고하십시오.
 
 현재 믹서 설정은 직접 복사해야 합니다:
 
@@ -303,7 +304,7 @@ adb reboot
 
 ## 그래픽 IDE에서의 컴파일
 
-PX4 시스템은 Qt 크리에이터, 이클립스, 서브라임 텍스트를 지원합니다. Qt 크리에이터는 사용자에게 매우 친숙한 버전이므로 이 프로그램만 공식적으로 IDE를 지원합니다. 이클립스 또는 서브라임을 전문적으로 활용할 줄 모른다면, 활용하지 않는걸 권합니다. 하드코어 사용자는 [이클립스 프로젝트](https://github.com/PX4/Firmware/blob/master/eclipse.project)와 [서브라임 프로젝트](https://github.com/PX4/Firmware/blob/master/Firmware.sublime-project)를 소스트리에서 찾을 수 있습니다.
+PX4 시스템은 Qt 크리에이터, 이클립스, 서브라임 텍스트를 지원합니다. Qt 크리에이터는 사용자에게 매우 친숙한 버전이므로 이 프로그램만 공식적으로 IDE를 지원합니다. 이클립스 또는 서브라임을 전문적으로 활용할 줄 모른다면, 활용하지 않는걸 권합니다. Hardcore users can find an [Eclipse project](https://github.com/PX4/PX4-Autopilot/blob/master/eclipse.project) and a [Sublime project](https://github.com/PX4/PX4-Autopilot/blob/master/Firmware.sublime-project) in the source tree.
 
 {% youtube %}https://www.youtube.com/watch?v=Bkk8zttWxEI&rel=0&vq=hd720{% endyoutube %}
 
@@ -318,13 +319,13 @@ Qt 크리에이터는 누를 수 있는 심볼, 완전 코드 기반 자동 완�
 Qt 크리에이터 시작 전 [project 파일](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator)을 만들어야 합니다:
 
 ```sh
-cd ~/src/Firmware
+cd ~/src/PX4-Autopilot
 mkdir ../Firmware-build
 cd ../Firmware-build
-cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
+cmake ../PX4-Autopilot -G "CodeBlocks - Unix Makefiles"
 ```
 
-**파일 > 파일 또는 프로젝트 열기**로 펌웨어 폴더 루트의 CMakeLists.txt 파일을 불러오십시오 (CMakeLists.txt 파일 선택).
+Then load the CMakeLists.txt in the root PX4-Autopilot folder via **File > Open File or Project** (Select the CMakeLists.txt file).
 
 불러온 다음, **play** 단추를 누르면 실행 대상 설정에서 '개별 실행파일'을 선택하고 'make' 명령을 실행 명령으로, 'upload'을 인자 값으로 넣어 프로젝트를 실행하는 방식으로 설정할 수 있습니다.
 
@@ -337,7 +338,7 @@ cmake ../Firmware -G "CodeBlocks - Unix Makefiles"
 Qt 크리에이터 시작 전 [project 파일](https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/Generator-Specific-Information#codeblocks-generator)을 만들어야 합니다:
 
 ```sh
-cd ~/src/Firmware
+cd ~/src/PX4-Autopilot
 mkdir -p build/creator
 cd build/creator
 cmake ../.. -G "CodeBlocks - Unix Makefiles"
@@ -388,7 +389,7 @@ make [VENDOR_][MODEL][_VARIANT] [VIEWER_MODEL_DEBUGGER_WORLD]
 - 두개의 다른 설정 사이에 기본값을 지정하려면 밑줄 문자를 셋 사용할 수 있습니다. 예를 들면, `gazebo___gdb`는 `gazebo_iris_gdb`와 동일합니다.
 - PX4를 시작한 후 모의시험 환경의 동작을 기다리려면 `VIEWER_MODEL_DEBUGGER`에 `none` 값을 사용할 수 있습니다. 예로, `make px4_sitl_default none` 명령을 사용하는 PX4와 `./Tools/jmavsim_run.sh -l` 명령을 사용하는 jMAVSim을 시작하려면:
 
-`VENDOR_MODEL_VARIANT` 옵션은 PX4 소스 트리의 [/boards](https://github.com/PX4/Firmware/tree/master/boards) 디렉터리에서 *cmake* 설정 파일 일부에 대응합니다. 특히 `VENDOR_MODEL_VARIANT`는 **boards/VENDOR/MODEL/VARIANT.cmake**에 대응합니다 (예: `px4_fmu-v5_default`는 [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)에 대응)
+The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files in the PX4 source tree under the [/boards](https://github.com/PX4/PX4-Autopilot/tree/master/boards) directory. Specifically `VENDOR_MODEL_VARIANT` maps to a configuration file **boards/VENDOR/MODEL/VARIANT.cmake** (e.g. `px4_fmu-v5_default` corresponds to [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v5/default.cmake)).
 
 다음 절에서 추가 make 타겟을 다루도록 하겠습니다 (완전한 목록은 아님):
 
@@ -491,7 +492,7 @@ MacOS에서는 기본적으로 모든 실행 프로세스에 대해 최대 256�
 
 최대 개방 파일 갯수를 늘리면 이 문제를 해결할 수 있습니다(예: 300). macOS 에서는 각 *터미널* 세션별로 이 과정을 수행할 수 있습니다:
 
-- [Tools/mac_set_ulimit.sh](https://github.com/PX4/Firmware/blob/master/Tools/mac_set_ulimit.sh) 스크립트를 실행하거나
+- Run this script [Tools/mac_set_ulimit.sh](https://github.com/PX4/PX4-Autopilot/blob/master/Tools/mac_set_ulimit.sh), or
 - 다음 명령을 입력하십시오 
         sh
         ulimit -S -n 300

@@ -2,17 +2,17 @@
 
 새 대상 하드웨어에 NuttX용 PX4를 이식하려면, 해당 대상 하드웨어가 NuttX에서 지원해야합니다. NuttX 프로젝트는 NuttX를 새 처리 플랫폼에 이식하는 최상의 [이식 안내서](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide)를 관리하고 있습니다.
 
-다음 안내서에서는 이미 지원 하드웨어 대상을 선정했고, 해당 하드웨어에 NuttX(와 [PX4 기반 계층](https://github.com/PX4/Firmware/tree/master/platforms/nuttx/src/px4))를 이식 했음을 가정합니다.
+The following guide assumes you are using an already supported hardware target or have ported NuttX (including the [PX4 base layer](https://github.com/PX4/PX4-Autopilot/tree/master/platforms/nuttx/src/px4)) already.
 
-모든 보드를 대상으로 한 설정 파일, 링커 스크립트와 기타 필요한 설정은 제조사별 보드별 디렉터리(i.e. **boards/_VENDOR_/_MODEL_/**)의 [/boards](https://github.com/PX4/Firmware/tree/master/boards/)에 있습니다.
+The configuration files for all boards, including linker scripts and other required settings, are located under [/boards](https://github.com/PX4/PX4-Autopilot/tree/master/boards/) in a vendor- and board-specific directory (i.e. **boards/_VENDOR_/_MODEL_/**)).
 
-다음 예제는 NuttX 기반 비행체 조종 장치 용도로 최신 [기준 참고 설정](../hardware/reference_design.md)인 FMUv5를 활용합니다:
-* **Firmware** 디렉터리에서 `make px4_fmu-v5_default` 명령을 실행하면 FMUv5 설정을 빌드합니다
-* FMUv5 기본 설정 파일은 [/boards/px4/fmu-v5](https://github.com/PX4/Firmware/tree/master/boards/px4/fmu-v5)에 있습니다.
-  * 보드 전용 헤더(NuttX 핀, 클록 설정): [/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h).
-  * 보드 전용 헤더(PX4 설정): [/boards/px4/fmu-v5/src/board_config.h](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/src/board_config.h).
-  * NuttX 운영체제 설정(NuttX menuconfig로 만듦): [/boards/px4/fmu-v5/nuttx-config/nsh/defconfig](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/nuttx-config/nsh/defconfig).
-  * 빌드 설정: [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake).
+다음 예제는 NuttX 기반 비행체 제어 장치 용도로 최신 [기준 참고 설정](../hardware/reference_design.md)인 FMUv5를 활용합니다:
+* Running `make px4_fmu-v5_default` from the **PX4-Autopilot** directory will build the FMUv5 config
+* The base FMUv5 configuration files are located in: [/boards/px4/fmu-v5](https://github.com/PX4/PX4-Autopilot/tree/master/boards/px4/fmu-v5).
+  * Board specific header (NuttX pins and clock configuration): [/boards/px4/fmu-v5/nuttx-config/include/board.h](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v5/nuttx-config/include/board.h).
+  * Board specific header (PX4 configuration): [/boards/px4/fmu-v5/src/board_config.h](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v5/src/board_config.h).
+  * NuttX OS config (created with NuttX menuconfig): [/boards/px4/fmu-v5/nuttx-config/nsh/defconfig](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v5/nuttx-config/nsh/defconfig).
+  * Build configuration: [boards/px4/fmu-v5/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v5/default.cmake).
 
 ## NuttX 메뉴 설정을 통한 설치
 
@@ -22,7 +22,7 @@ make px4_fmu-v5_default menuconfig
 make px4_fmu-v5_default qconfig
 ```
 
-[ubuntu.sh](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) 스크립트를 활용하여 PX4를 우분투에 깔끔하게 설치하려면 [NuttX 도구](https://bitbucket.org/nuttx/tools/src/master/)의 *kconfig* 도구도 설치해야합니다.
+For fresh installs of PX4 onto Ubuntu using [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) you will also need to install *kconfig* tools from [NuttX tools](https://bitbucket.org/nuttx/tools/src/master/).
 
 > **Note** [px4-dev-nuttx](https://hub.docker.com/r/px4io/px4-dev-nuttx/) 도커 컨테이너나 공식적으로 안내하는 macOS용 일반 설치 절차를 따랐다면, (`kconfig-mconf`를 이미 가지고 있으므로) 이 단계는 굳이 필요하지 않습니다.
 
@@ -43,7 +43,7 @@ sudo make install
 ### 부트로더
 
 우선, 하드웨어 대상에 따른 부트로더가 필요합니다:
-- STM32H7: NuttX 기반 부트로더이며, PX4 펌웨어에 들어있습니다. 예제는 [여기](https://github.com/PX4/Firmware/tree/master/boards/holybro/durandal-v1/nuttx-config/bootloader)를 살펴보십시오.
+- STM32H7: NuttX 기반 부트로더이며, PX4 펌웨어에 들어있습니다. See [here](https://github.com/PX4/PX4-Autopilot/tree/master/boards/holybro/durandal-v1/nuttx-config/bootloader) for an example.
 - 다른 대상용으로는, https://github.com/PX4/Bootloader를 사용합니다. 새 대상 추가 방법 예제를 보려면 [여기](https://github.com/PX4/Bootloader/pull/155/files)를 살펴보십시오. 그 다음 [빌드, 플래시 방법](../software_update/stm32_bootloader.md)을 살펴보십시오.
 
 ### 펌웨어 이식 절차
@@ -51,8 +51,8 @@ sudo make install
 1. [development setup](../setup/dev_env.md)이 동작하는지 NuttX 메뉴 설정 도구를 설치했는지 확인하십시오(위 참고).
 1. 소스 코드를 다운로드한 후 기존 대상에 빌드할 수 있는지 확인하십시오:
    ```bash
-   git clone --recursive https://github.com/PX4/Firmware.git
-   cd Firmware
+   git clone --recursive https://github.com/PX4/PX4-Autopilot.git
+   cd PX4-Autopilot
    make px4_fmu-v5
    ```
 1. 기존 대상과 동일한(또는 거의 근접한) CPU 형식을 찾아 복사하십시오. 예를 들면 STM32F7의 경우:

@@ -2,19 +2,40 @@
 
 如果你想要去控制一个装在飞机上带相机的云台（或者是其他的挂载设备），你需要配置使用什么去控制它和 PX4 怎样才能命令它。 本页内容就是讲解这些设置。
 
-PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种输入输出方式。 输入就是你使用什么去控制云台：通过遥控器或者 MAVLink 命令（例如处在任务模式或者搜索模式时）。 输出就是云台怎样与飞机连接的：一些云台支持 MAVLink 命令， 其他则可以通过 PWM 连接（下文定义为AUX输出）。 可以选择任何的输入方式去驱动任何的输出。 两种方式都需要通过参数配置。
+PX4 contains a generic mount/gimbal control driver with different input and output methods.
+
+- The input defines how you control the gimbal: via RC or via MAVLink commands (for example in missions or surveys).
+- The output defines how the gimbal is connected: either via MAVLink commands or using the Flight Controller AUX PWM port. Any input method can be selected to drive any output, and both input and output have to be configured via parameters.
 
 ## 参数
 
-[这些参数](../advanced/parameter_reference.md#mount) 被用于配置挂载设备的驱动。 其中最重要的是输入模式 (` MNT_MODE_IN `) 和输出模式 (` MNT_MODE_OUT `) 。 默认情况下，输入是没有被使能的，所以这个驱动没有运行。 选择了输入模式之后，重启飞机便可以使设备驱动开始工作。
+The [Mount](../advanced/parameter_reference.md#mount) parameters are used to setup the mount driver.
 
-如果输入模式设置为 ` AUTO `，则模式将根据最新输入进行自动切换。 如果需要从 MAVLink 切换为 RC 输入，则需要一个较大的杆量。
+The most important ones are the input ([MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN)) and the output ([MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT)) mode. By default, the input is disabled and the driver does not run. After selecting the input mode, reboot the vehicle so that the mount driver starts.
 
-## AUX 输出
+If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from MAVLink to RC, a large stick motion is required.
 
-如果输出模式设置为` AUX `，需要定义混控器文件去重新映射输出引脚，[挂载混控器](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix)会被自动选择（机型配置文件提供了覆盖任何一款的 AUX 混控器）。
+## MAVLink Gimbal (MNT_MODE_OUT=MAVLINK)
 
-输出分配如下所示:
+To enable a MAVLink gimbal, first set parameter [MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN) to `MAVLINK_DO_MOUNT` and [MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT) to `MAVLINK`.
+
+The gimbal can be connected to *any free serial port* using the instructions in [MAVLink Peripherals (GCS/OSD/Companion)(https://docs.px4.io/master/en/peripherals/mavlink_peripherals.html#mavlink-peripherals-gcsosdcompanion) (also see [Serial Port Configuration](https://docs.px4.io/master/en/peripherals/serial_configuration.html#serial-port-configuration)).
+
+A common configuration is to have a serial connection to the gimbal from the Flight Controller TELEM2 port (assuming TELEM2 is free). For this configuration you would set:
+
+- [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) to **TELEM2** (if `MAV_1_CONFIG` is already used for a companion computer (say), use `MAV_2_CONFIG`).
+- [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) to **NORMAL**
+- [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) to manufacturer recommended baude rate.
+
+This will enable the user to command the gimbal using [MAV_CMD_DO_MOUNT_CONTROL](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONTROL) and [MAV_CMD_DO_MOUNT_CONFIGURE](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONFIGURE).
+
+## Gimbal on Flight Controller (MNT_MODE_OUT=AUX)
+
+The gimbal can be connected to the Flight controller AUX ports by setting the ouptut mode to `MNT_MODE_OUT=AUX`.
+
+A mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (this overrides any AUX mixer provided by the airframe configuration).
+
+The output assignment is as following:
 
 - **AUX1**: Pitch
 - **AUX2**: Roll
@@ -23,11 +44,11 @@ PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种
 
 ### 自定义混控器配置
 
-> **注意** 阅读 [混控与执行器](../concept/mixing.md) 去理解混控器的工作方式与混控器文件的格式。
+> **Note** Read [Mixing and Actuators](../concept/mixing.md) for an explanation of how mixers work and the format of the mixer file.
 
-输出能够使用在 SD 卡上 [创建一个混控器文件](../concept/system_startup.md#starting-a-custom-mixer) 进行配置。文件名字为`etc/mixers/mount.aux.mix`。
+The outputs can be customized by [creating a mixer file](../concept/system_startup.md#starting-a-custom-mixer) on the SD card named `etc/mixers/mount.aux.mix`.
 
-下面举例的是挂载设备的基本混控器配置：
+A basic basic mixer configuration for a mount is shown below.
 
     # roll
     M: 1
@@ -45,29 +66,31 @@ PX4 包含了一个通用的挂载设备/云台的控制驱动，它含有多种
     S: 2 2  10000  10000      0 -10000  10000
     
 
-## 软件在环仿真（ SITL ）
+## SITL
 
-台风 H480 的模型带有一个预先配置的仿真云台。 若要运行它，请使用：
+The Typhoon H480 model comes with a preconfigured simulated gimbal.
 
-    make px4_sitl gazebo_typhoon_h480
-    
-
-为了能够在其他模型或者仿真器件下测试挂载驱动，请使用 `vmount start` 去确保驱动正在运行。然后再配置它的参数。
-
-## 测试
-
-驱动程序提供了一个简单的测试指令。首先它需要使用 </code>vmount stop</0> 指令来停止。 接下来描述了在SITL中的测试方式，但是这些指令也可以在真实的设备中使用。
-
-使用下面这条指令开始仿真（不需要修改任何参数）：
+To run it, use:
 
     make px4_sitl gazebo_typhoon_h480
     
 
-先确保飞机已经解锁，例如 输入 `commander takeoff`。 然后使用下面的指令作为例子控制云台。
+To just test the mount driver on other models or simulators, make sure the driver runs (using `vmount start`), then configure its parameters.
+
+## Testing
+
+The driver provides a simple test command - it needs to be stopped first with `vmount stop`. The following describes testing in SITL, but the commands also work on a real device.
+
+Start the simulation with (no parameter needs to be changed for that):
+
+    make px4_sitl gazebo_typhoon_h480
+    
+
+Make sure it's armed, eg. with `commander takeoff`, then use the following command to control the gimbal (for example):
 
     vmount test yaw 30
     
 
-请注意， 仿真的云台会自行稳定。因此，如果发送 MAVLink 命令，请将 `stabilize` 标志设置为 false。
+Note that the simulated gimbal stabilizes itself, so if you send MAVLink commands, set the `stabilize` flags to `false`.
 
-![Gazebo 云台仿真](../../assets/simulation/gazebo/gimbal-simulation.png)
+![Gazebo Gimbal Simulation](../../assets/simulation/gazebo/gimbal-simulation.png)

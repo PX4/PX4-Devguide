@@ -15,14 +15,14 @@ For `ekf2` this is already the case with the default set of logged topics.
 
 It is important that all replayed topics contain only a single absolute timestamp, which is the automatically generated field `timestamp`.
 Should there be more timestamps, then they must be relative with respect to the main timestamp.
-For an example, see [sensor_combined.msg](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg).
+For an example, see [sensor_combined.msg](https://github.com/PX4/PX4-Autopilot/blob/master/msg/sensor_combined.msg).
 Reasons for this are given below.
 
 
 ## Usage
 
 - First, choose the file to replay, and build the target (from within the
-  Firmware directory):
+  PX4-Autopilot directory):
   ```sh
   export replay=<absolute_path_to_log_file.ulg>
   make px4_sitl_default

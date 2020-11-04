@@ -6,7 +6,7 @@ At the end of the tutorial, you should see the same behaviour as in the video be
 > **Caution** *Offboard* control is dangerous. If you are operating on a real vehicle be sure to have a way of gaining back manual control in case something goes wrong.
 
 <span></span>
-> **Tip** This example uses C++. Similar examples in Python can be found here: [integrationtests/python_src/px4_it/mavros](https://github.com/PX4/Firmware/tree/master/integrationtests/python_src/px4_it/mavros).
+> **Tip** This example uses C++. Similar examples in Python can be found here: [integrationtests/python_src/px4_it/mavros](https://github.com/PX4/PX4-Autopilot/tree/master/integrationtests/python_src/px4_it/mavros).
 
 <video width="100%" autoplay="true" controls="true">
 	<source src="../../assets/simulation/gazebo_offboard.webm" type="video/webm">

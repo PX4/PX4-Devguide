@@ -18,7 +18,7 @@ En esta página se explica cómo descargar y usar el entorno y cómo puede ser a
 2. Run it, choose your desired installation location, let it install: ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 3. Marque la casilla al final de la instalación para *clonar el repositorio PX4, compilar y ejecuta la simulación con jMAVSim* (Esto simplifica el proceso para empezar).
     
-    > **Note** If you missed this step you will need to [clone the PX4 Firmware repository manually](#getting_started).
+    > **Note** If you missed this step you will need to [clone the PX4-Autopilot repository manually](#getting_started).
 
 ## Primeros pasos {#getting_started}
 
@@ -26,23 +26,23 @@ La toolchain utiliza una ventana de consola especialmente configurada (iniciada 
 
 1. Busque el directorio de instalación de la toolchain (por defecto **C:\PX4**)
 2. Ejecute **run-console.bat** (doble click) para iniciar la consola de bash de Cygwin
-3. Clone el repositorio de la PX4 Firmware desde la consola:
+3. Clone the PX4 PX4-Autopilot repository from within the console:
     
     > **Nota** ¡La clonación solo necesita hacerse una vez! Omita este paso si usted marcó la opción del instalador para *clonar el repositorio PX4, compilar y ejecutar la simulación con jMAVSim*.
     
     ```bash
-    # Clona el repositorio del Firmware PX4 en la carpeta de inicio & carga submódulos en paralelo
-    git clone--recursive-j8 https://github.com/PX4/Firmware.git
+    # Clone the PX4-Autopilot repository into the home folder & loads submodules in parallel
+    git clone --recursive -j8 https://github.com/PX4/PX4-Autopilot.git
     ```
     
-    Ahora puede usar el repositorio de Firmware de consola para compilar PX4.
+    You can now use the console/PX4-Autopilot repository to build PX4.
 
 4. Por ejemplo, para ejecutar JMAVSim:
     
     ```bash
-    # Navegue al repo Firmware
-    cd Firmware
-    # Compile y ejecute la simulación SITL con jMAVSim para probar la configuración
+    # Navigate to PX4-Autopilot repo
+    cd PX4-Autopilot
+    # Build and runs SITL simulation with jMAVSim to test the setup
     make px4_sitl jmavsim
     ```
     

@@ -93,7 +93,7 @@
 
 ## PX4 修改
 
-1. 打开 **common.xml** （**Firmware/mavlink/include/mavlink/v2.0/message_definitions**）文件，并添加你的MAVLink 消息（和前面MAVROS部分相同的操作）：
+1. Inside **common.xml** (in **PX4-Autopilot/mavlink/include/mavlink/v2.0/message_definitions**), add your MAVLink message as following (same procedure as for MAVROS section above):
 
    ```xml
    ...
@@ -104,7 +104,7 @@
    ...
    ```
 
-1. 删除 *common*，*standard* 文件夹（**Firmware/mavlink/include/mavlink/v2.0**）。
+1. Remove *common*, *standard* directories in (**PX4-Autopilot/mavlink/include/mavlink/v2.0**).
 
    ```sh
    rm -r common
@@ -121,21 +121,21 @@
 
 1. 你会看到一个“MAVLink Generator”应用程序窗口：
     
-    - *XML*一栏选择**/Firmware/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**。
-    - 输出一栏选择**/Firmware/mavlink/include/mavlink/v2.0/**
+    - For *XML*, "Browse" to **/PX4-Autopilot/mavlink/include/mavlink/v2.0/message_definitions/standard.xml**.
+    - For Out, "Browse" to **/PX4-Autopilot/mavlink/include/mavlink/v2.0/**.
     - 语言一栏选择**C**
     - 选择**2.0**协议
     - 勾选*Validate*
     
-    然后点击 **Generate** 按钮。 在**/Firmware/mavlink/include/mavlink/v2.0/**中会生成*common*和*standard*文件夹。
+    然后点击 **Generate** 按钮。 You will see *common*, and *standard* directories created in **/PX4-Autopilot/mavlink/include/mavlink/v2.0/**.
 
-2. 添加你自己的uORB消息文件 **key_command.msg** 到 Firmware/msg 目录下。 示例中的“key_command.msg”文件只包含以下代码：
+2. Make your own uORB message file **key_command.msg** in (PX4-Autopilot/msg). 示例中的“key_command.msg”文件只包含以下代码：
 
    ```
    char cmd
    ```
 
-然后，在 **CMakeLists.txt**（**Firmware/msg**）文件中包含你的消息文件。
+Then, in **CMakeLists.txt** (in **PX4-Autopilot/msg**), include
 
    ```cmake
    set(
@@ -144,7 +144,7 @@
         )
    ```
 
-1. 编辑 **mavlink_receiver.h**（**Firmware/src/modules/mavlink**）文件。
+1. Edit **mavlink_receiver.h** (in **PX4-Autopilot/src/modules/mavlink**)
 
    ```cpp
    ...
@@ -160,7 +160,7 @@
    }
    ```
 
-1. 编辑 **mavlink_receiver.cpp**（**Firmware/src/modules/mavlink**）文件。 这是 PX4 接收 ROS 发送过来的 MAVLink 消息的地方，并且将消息作为 uORB 主题发布。
+1. Edit **mavlink_receiver.cpp** (in **PX4-Autopilot/src/modules/mavlink**). 这是 PX4 接收 ROS 发送过来的 MAVLink 消息的地方，并且将消息作为 uORB 主题发布。
 
    ```cpp
    ...
@@ -193,7 +193,7 @@
    }
    ```
 
-1. 像其他示例一样订阅你自己的uORB主题。 让我们先在（/Firmware/src/modules/key_receiver）文件夹下创建模型。 在此模型目录下创建两个文件 **CMakeLists.txt**，**key_receiver.cpp**。 两个文件如下所示。
+1. 像其他示例一样订阅你自己的uORB主题。 For this example lets create the model in (/PX4-Autopilot/src/modules/key_receiver). 在此模型目录下创建两个文件 **CMakeLists.txt**，**key_receiver.cpp**。 两个文件如下所示。
     
     -CMakeLists.txt
 
@@ -273,7 +273,7 @@
 
 详情请见 [Writing your first application](https://dev.px4.io/en/apps/hello_sky.html) 文档。
 
-1. 最后添加你的模块到你的飞控板**Firmware/boards/**对应的 **default.cmake**文件中。 例如Pixhawk 4，在**Firmware/boards/px4/fmu-v5/default.cmake** 中添加以下代码：
+1. Lastly add your module in the **default.cmake** file correspondent to your board in **PX4-Autopilot/boards/**. For example for the Pixhawk 4 add the following code in **PX4-Autopilot/boards/px4/fmu-v5/default.cmake**:
 
    ```cmake
     MODULES
@@ -304,9 +304,9 @@
 
 ### PX4 编译
 
-1. 编译 PX4 固件并以 [普通方式](../setup/building_px4.md#nuttx) 上传。 
+1. Build PX4-Autopilot and upload [in the normal way](../setup/building_px4.md#nuttx).
     
-    例如，为Pixhawk 4/FMUv5编译固件，可以在Firmware根目录下执行以下命令：
+    For example, to build for Pixhawk 4/FMUv5 execute the following command in the root of the PX4-Autopilot directory:
 
    ```sh
     make px4_fmu-v5_default upload
@@ -334,7 +334,7 @@
 1. 通过UDP进入Pixhawk 的 nutshell。 用你的IP地址替换xxx.xx.xxx.xxx 
 
    ```sh
-   cd Firmware/Tools
+   cd PX4-Autopilot/Tools
    ./mavlink_shell.py xxx.xx.xxx.xxx:14557 --baudrate 57600
    ```
 

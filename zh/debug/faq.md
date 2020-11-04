@@ -12,7 +12,7 @@
 region `flash' overflowed by 12456 bytes
 ```
 
-若要解决此问题，请使用较新的硬件或从生成中删除对您的用例不重要的模块。 The configuration is stored in **/Firmware/boards/px4** (e.g. [Firmware/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v5/default.cmake)). 要删除模块，只需将其注释掉：
+若要解决此问题，请使用较新的硬件或从生成中删除对您的用例不重要的模块。 The configuration is stored in **/PX4-Autopilot/boards/px4** (e.g. [PX4-Autopilot/boards/px4/fmu-v5/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v5/default.cmake)). 要删除模块，只需将其注释掉：
 
 ```cmake
 #tune_control

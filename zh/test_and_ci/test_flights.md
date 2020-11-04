@@ -11,7 +11,7 @@
 * 在拉取请求中添加对更改的完整而全面的描述
 * 使用 **@PX4/testflight** 在评论中标记测试团队 
 * 等待测试团队的反馈
-* 测试团队将 [add your PR/issue to their queue](https://github.com/PX4/Firmware/projects/18)
+* The test team will [add your PR/issue to their queue](https://github.com/PX4/PX4-Autopilot/projects/18)
 
 ## 响应速度
 

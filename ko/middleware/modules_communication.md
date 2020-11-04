@@ -2,7 +2,7 @@
 
 ## frsky_telemetry
 
-소스 코드: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
+Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
 
 FrSky 통신을 지원합니다. D, S.PORT 프로토콜을 자동으로 감지합니다.
 
@@ -26,7 +26,7 @@ FrSky 통신을 지원합니다. D, S.PORT 프로토콜을 자동으로 감지�
 
 ## mavlink
 
-소스 코드: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
+Source: [modules/mavlink](https://github.com/PX4/Firmware/tree/master/src/modules/mavlink)
 
 ### 설명
 
@@ -86,7 +86,8 @@ UDP 포트 14556에 HIGHRES_IMU 메시지를 초당 50번 전송하도록 설정
          [-f]        Enable message forwarding to other Mavlink instances
          [-w]        Wait to send, until first message received
          [-x]        Enable FTP
-         [-z]        Force flow control always on
+         [-z]        Force hardware flow control always on
+         [-Z]        Force hardware flow control always off
     
        stop-all      Stop all instances
     
@@ -106,7 +107,7 @@ UDP 포트 14556에 HIGHRES_IMU 메시지를 초당 50번 전송하도록 설정
 
 ## micrortps_client
 
-소스 코드: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
+Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
 
 ### 사용법 {#micrortps_client_usage}
 
@@ -142,7 +143,7 @@ UDP 포트 14556에 HIGHRES_IMU 메시지를 초당 50번 전송하도록 설정
 
 ## uorb
 
-소스 코드: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
+Source: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/uORB)
 
 ### 설명
 

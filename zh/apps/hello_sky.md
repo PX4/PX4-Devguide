@@ -12,7 +12,7 @@
 * 适用于期望平台的 [PX4 开发工具链](../setup/dev_env.md) 。
 * 从 Github [下载 PX4 源代码](../setup/building_px4.md#get_px4_code) 。
 
-源代码 [Firmware/src/examples/px4_simple_app](https://github.com/PX4/Firmware/tree/master/src/examples/px4_simple_app) 文件夹下包含了本教程的完整版代码，如果你卡住了可以前去查看该文件夹下的内容。
+The source code [PX4-Autopilot/src/examples/px4_simple_app](https://github.com/PX4/PX4-Autopilot/tree/master/src/examples/px4_simple_app) directory contains a completed version of this tutorial that you can review if you get stuck.
 
 * 重命名 (或删除) **px4_simple_app** 目录。 
 
@@ -20,7 +20,7 @@
 
 在本节中, 我们将创建一个仅打印出 `Hello Sky!` 的 *最小应用程序* 。 该程序由一个 *C* 和一个 *cmake* 定义文件（该定义文件负责告诉工具链应该如何编译应用程序）组成。
 
-1. 新建如下文件夹： **Firmware/src/examples/px4_simple_app**。
+1. Create a new directory **PX4-Autopilot/src/examples/px4_simple_app**.
 2. 在该目录中新建一个名为 **px4_simple_app.c** 的 C 文件：
 
 * 将下面的默认头部注释复制到文件页面的顶部， 该注释应出现在所有贡献的文件中！
@@ -123,9 +123,12 @@
     )
     ```
     
-    `px4_add_module()` 方法从模块描述生成静态库。 `MAIN` 块列出了模块的名称 — 该名称将会作为 NuttX 的注册命令以便可以从 PX4 命令行或 SITL 控制台调用该命令。
+    The `px4_add_module()` method builds a static library from a module description.
     
-    > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
+    * The `MODULE` block is the Firmware-unique name of the module (by convention the module name is prefixed by parent directories back to `src`).
+    * The `MAIN` block lists the entry point of the module, which registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
+    
+    > **Tip** The `px4_add_module()` format is documented in [PX4-Autopilot/cmake/px4_add_module.cmake](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
     
     <span></span>
     
@@ -135,10 +138,10 @@
 
 应用程序的编写至此完成。 为了保证改程序可以被运行，你首先需要确保编译器会将它作为 PX4 固件的一部分进行编译。 应用程序将根据与你的硬件平台相对应的 *cmake* 文件被添加到 build/firmware 文件夹下。
 
-* PX4 SITL (模拟器): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
-* Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
-* Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
-* 针对其他平台的 *cmake* 文件见： [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards) 。
+* PX4 SITL (Simulator): [PX4-Autopilot/boards/px4/sitl/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/sitl/default.cmake)
+* Pixhawk v1/2: [PX4-Autopilot/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v2/default.cmake)
+* Pixracer (px4/fmu-v4): [PX4-Autopilot/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v4/default.cmake)
+* *cmake* files for other boards can be found in [PX4-Autopilot/boards/](https://github.com/PX4/PX4-Autopilot/tree/master/boards)
 
 要启用将应用程序编译到固件中, 请在 *cmake* 文件中的某个位置为应用程序创建新行：
 
@@ -240,7 +243,7 @@ INFO  [px4_simple_app] Hello Sky!
 
 > **Tip** PX4 对硬件层进行抽象化的好处在这里发挥了作用！ 我们在构建应用程序时无需直接与传感器驱动进行任何的交互，且即便对飞控板或者传感器硬件进行更新后也不需要对你的应用程序进行任何更新。
 
-各应用之间的消息通道被称为 [topics](../middleware/uorb.md) 。 在本教程中, 我们主要关注名为 [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) 的 topic, 该 topic 负责同步整个系统的传感器数据。
+各应用之间的消息通道被称为 [topics](../middleware/uorb.md) 。 For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/PX4-Autopilot/blob/master/msg/sensor_combined.msg) topic, which holds the synchronized sensor data of the complete system.
 
 订阅一个 topic 非常简单直接：
 
@@ -334,7 +337,7 @@ orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
 
 ## 完整的示例代码
 
-[完整的示例代码](https://github.com/PX4/Firmware/blob/master/src/examples/px4_simple_app/px4_simple_app.c) 现在如下：
+The [complete example code](https://github.com/PX4/PX4-Autopilot/blob/master/src/examples/px4_simple_app/px4_simple_app.c) is now:
 
 ```c
 /****************************************************************************
@@ -481,7 +484,7 @@ If you start *QGroundControl*, you can check the sensor values in the real time 
 
 ## 总结
 
-本教程介绍了开发一个基本的 PX4 自动驾驶仪应用程序需要涉及的一切内容。 请记住， uORB 消息/topic 的完整列表 [在这里](https://github.com/PX4/Firmware/tree/master/msg/) ，并且在文件头部注释中有详细的文档记录可以作为参考。
+本教程介绍了开发一个基本的 PX4 自动驾驶仪应用程序需要涉及的一切内容。 Keep in mind that the full list of uORB messages/topics is [available here](https://github.com/PX4/PX4-Autopilot/tree/master/msg/) and that the headers are well documented and serve as reference.
 
 更多信息和故障排除 /常见的陷阱等可以在这里找到： [uORB](../middleware/uorb.md)。
 

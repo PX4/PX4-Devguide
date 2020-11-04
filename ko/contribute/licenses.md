@@ -4,8 +4,8 @@
 
 이 페이지는 시스템의 다양한 구성요소에 대한 라이선스를 문서로 정리합니다.
 
-* [PX4 Flight Stack](https://github.com/PX4/Firmware) &mdash; BSD
-* [PX4 Middleware](https://github.com/PX4/Firmware) &mdash; BSD
+* [PX4 Flight Stack](https://github.com/PX4/PX4-Autopilot) &mdash; BSD
+* [PX4 Middleware](https://github.com/PX4/PX4-Autopilot) &mdash; BSD
 * [픽스호크 하드웨어](https://github.com/PX4/Hardware) &mdash; 크리에이티브 커먼즈 저작자표시-동일조건변경허락 3.0
 * 스냅드래곤 하드웨어 &mdash; 퀄컴 상업용
 * 문서 

@@ -56,10 +56,10 @@ Additional installation instructions can be found on [FlightGear wiki](http://wi
 
 Run a simulation by starting PX4 SITL, specifying the airframe configuration of your choice.
 
-The easiest way to do this is to open a terminal in the root directory of the PX4 *Firmware* repository and call `make` for the desired target.
+The easiest way to do this is to open a terminal in the root directory of the PX4 *PX4-Autopilot* repository and call `make` for the desired target.
 For example, to start a plane simulation :
 ```sh
-cd /path/to/Firmware
+cd /path/to/PX4-Autopilot
 make px4_sitl_nolockstep flightgear_rascal
 ```
 

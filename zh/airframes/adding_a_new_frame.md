@@ -1,10 +1,12 @@
 # 添加一个新的机型
 
-PX4使用存储的配置作为机型的起始点。 机体的配置在[ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)文件夹下的[配置文件](#config-file)中定义。 配置文件中引用了用于描述机体物理结构的[混控文件](#mixer-file)，该类文件存储在[ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers)文件夹下。
+PX4使用存储的配置作为机型的起始点。 The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d) folder. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
-添加配置是非常简单的：在 [init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 文件夹下创建一个新的文件（使用未使用的 autostart ID 作为文件名的前缀），然后[构建并上传](../setup/building_px4.md)固件即可。
+Adding a configuration is straightforward: create a new config file in the [init.d/airframes folder](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d/airframes) (prepend the filename with an unused autostart ID), add the name of your new airframe config file to the [CMakeLists.txt](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/airframes/CMakeLists.txt) in the relevant section, then [build and upload](../setup/building_px4.md) the software.
 
 如果不想创建自己的配置文件，也可以用SD卡上的文本文件替换掉已有的自定义配置文件，具体细节请查看[自定义系统启动页。](../concept/system_startup.md)
+
+> **Note** To determine which parameters/values need to be set in the configuration file, you can first assign a generic airframe and tune the vehicle, and then use [`param show-for-airframe`](../middleware/modules_command.html#param) to list the parameters that changed.
 
 ## 配置文件概述
 
@@ -17,11 +19,11 @@ PX4使用存储的配置作为机型的起始点。 机体的配置在[ROMFS/px4
 
 上述几个模块在很大程度上都是相互独立的，这就意味着很多配置共用同一套机架的物理结构、启动同样的应用，仅在参数整定增益上有较大区别。
 
-> **Note** 新的机型配置文件仅在执行干净的构建后（运行命令 `make clean`）才会被自动添加到构建系统中。
+> **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
 
 ### 配置文件 {#config-file}
 
-A typical configuration file is shown below ([original file here](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
+A typical configuration file is shown below ([original file here](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
 
 第一部分是关于机身框架的文档说明。 [Airframes Reference](../airframes/airframe_reference.md) 和 *QGroundControl* 会用到该部分内容。
 
@@ -96,17 +98,17 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-> **Warning**：如果你想将某一个通道反相, 千万不要在你的遥控器上这样做或者改变例如 `RC1_REV` 这样的参数. 这些参数只会在你使用手动模式飞行的时候才会反相, 当你切换到飞控控制的飞行模式时, 这些通道输出依然是错误的(它只会改变你的遥控器的信号) 因此，对于一个正确的通道分配，要么改变PWM信号与`PWM_MAIN_REV1`（例如，对于通道1），要么改变相应混控器的输出缩放系数（见下文）。
+> **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
 ### 混控器文件 {#mixer-file}
 
-> **Note** 你应首先阅读 [概念 > 混控器](../concept/mixing.md) 页面， 该页面中的内容提供了理解如下混控器文件所需的背景知识。
+> **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
 
-下面展示了一个典型的混控器文件（[原始文件在这里](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)）。 混控器文件的文件名，在这里的案例中也就是 `wingwing.main.mix`，向我们提供了包括机型类型（`wingwing`），输出类型（`.main` 或者 `.aux`）和它是一个混控器定义文件（`.mix`）这三个重要信息。
+A typical mixer file is shown below ([original file here](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). 混控器文件的文件名，在这里的案例中也就是 `wingwing.main.mix`，向我们提供了包括机型类型（`wingwing`），输出类型（`.main` 或者 `.aux`）和它是一个混控器定义文件（`.mix`）这三个重要信息。
 
 混频器文件包含多个代码块，每个代码块都针对一个执行器或电调。 因此，如果你有两个执行器和一个 ESC，那么你的混控器文件应该包含三个代码块。
 
-> **Note** 舵机 / 电机应按照混控器文件中的定义顺序对应地接入飞控。
+> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
 所以 MAIN1 应为左副翼，MAIN2 应为为右副翼 ，MAIN3 为空 （这里需要注意的是 Z: 表示混控器为空），MAIN4 为油门（在常规固定翼机型配置中应保持油门在 4 号输出位置上）。
 
@@ -198,14 +200,14 @@ Airframe "groups" are used to group similar airframes for selection in [QGroundC
 
 使用编译指令 `make airframe_metadata` 可以运行脚本自动根据机型描述语句生成需要在 *QGroundControl* 中使用的机型元数据文件和文档源代码。
 
-如果新机型属于现有某一个分组，那么你只需要在向位于 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 文件夹下的机型描述文件中提供相关文档即可。
+For a new airframe belonging to an existing group, you don't need to do anything more than provide documentation in the airframe description located at [ROMFS/px4fmu_common/init.d](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d).
 
 如果机型属于一个 **新的组** 那么你还需要进行如下操作：
 
 1. 向文档仓库添加该机型组的 svg 图像文件（如果未添加图像文件则会显示一个占位符图像）： 
   * PX4 开发指南： [assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
   * PX4 用户指南： [assets/airframes/types](https://github.com/PX4/px4_user_guide/tree/master/assets/airframes/types)
-2. 在 [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py) 文件的 `GetImageName()` 中添加机型组名称与图像文件名的映射关系（遵循如下模式）： 
+2. Add a mapping between the new group name and image filename in the [srcparser.py](https://github.com/PX4/PX4-Autopilot/blob/master/Tools/px4airframes/srcparser.py) method `GetImageName()` (follow the pattern below): 
       def GetImageName(self):
            """
            Get parameter group image base name (w/o extension)
@@ -250,7 +252,7 @@ To make a new airframe available for section in the *QGroundControl* [airframe c
   
   随后你将会被要求选择需要被载入的 **.px4** 固件文件（该文件是一个被压缩的 JSON 文件，文件内包含了机型的元数据）。
 
-3. 导航到构建文件夹然后选择相应的固件文件 （例如， **Firmware/build/px4_fmu-v5_default/px4_fmu-v5_default.px4**）。
+3. Navigate to the build folder and select the firmware file (e.g. **PX4-Autopilot/build/px4_fmu-v5_default/px4_fmu-v5_default.px4**).
 
 4. 单击 **OK** 开始载入固件。
 5. 重启 *QGroundControl*。

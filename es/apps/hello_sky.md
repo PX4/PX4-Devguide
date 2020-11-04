@@ -12,7 +12,7 @@ You will require the following:
 * [PX4 Development Toolchain](../setup/dev_env.md) for the desired target.
 * [Download the PX4 Source Code](../setup/building_px4.md#get_px4_code) from Github
 
-The source code [Firmware/src/examples/px4_simple_app](https://github.com/PX4/Firmware/tree/master/src/examples/px4_simple_app) directory contains a completed version of this tutorial that you can review if you get stuck.
+The source code [PX4-Autopilot/src/examples/px4_simple_app](https://github.com/PX4/PX4-Autopilot/tree/master/src/examples/px4_simple_app) directory contains a completed version of this tutorial that you can review if you get stuck.
 
 * Rename (or delete) the **px4_simple_app** directory. 
 
@@ -20,7 +20,7 @@ The source code [Firmware/src/examples/px4_simple_app](https://github.com/PX4/Fi
 
 In this section we create a *minimal application* that just prints out `Hello Sky!`. This consists of a single *C* file and a *cmake* definition (which tells the toolchain how to build the application).
 
-1. Create a new directory **Firmware/src/examples/px4_simple_app**.
+1. Create a new directory **PX4-Autopilot/src/examples/px4_simple_app**.
 2. Create a new C file in that directory named **px4_simple_app.c**:
 
 * Copy in the default header to the top of the page. This should be present in all contributed files!
@@ -123,9 +123,12 @@ In this section we create a *minimal application* that just prints out `Hello Sk
     )
     ```
     
-    The `px4_add_module()` method builds a static library from a module description. The `MAIN` block lists the name of the module - this registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
+    The `px4_add_module()` method builds a static library from a module description.
     
-    > **Tip** The `px4_add_module()` format is documented in [Firmware/cmake/px4_add_module.cmake](https://github.com/PX4/Firmware/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
+    * The `MODULE` block is the Firmware-unique name of the module (by convention the module name is prefixed by parent directories back to `src`).
+    * The `MAIN` block lists the entry point of the module, which registers the command with NuttX so that it can be called from the PX4 shell or SITL console.
+    
+    > **Tip** The `px4_add_module()` format is documented in [PX4-Autopilot/cmake/px4_add_module.cmake](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
     
     <span></span>
     
@@ -135,10 +138,10 @@ In this section we create a *minimal application* that just prints out `Hello Sk
 
 The application is now complete. In order to run it you first need to make sure that it is built as part of PX4. Applications are added to the build/firmware in the appropriate board-level *cmake* file for your target:
 
-* PX4 SITL (Simulator): [Firmware/boards/px4/sitl/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/sitl/default.cmake)
-* Pixhawk v1/2: [Firmware/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v2/default.cmake)
-* Pixracer (px4/fmu-v4): [Firmware/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/Firmware/blob/master/boards/px4/fmu-v4/default.cmake)
-* *cmake* files for other boards can be found in [Firmware/boards/](https://github.com/PX4/Firmware/tree/master/boards)
+* PX4 SITL (Simulator): [PX4-Autopilot/boards/px4/sitl/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/sitl/default.cmake)
+* Pixhawk v1/2: [PX4-Autopilot/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v2/default.cmake)
+* Pixracer (px4/fmu-v4): [PX4-Autopilot/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v4/default.cmake)
+* *cmake* files for other boards can be found in [PX4-Autopilot/boards/](https://github.com/PX4/PX4-Autopilot/tree/master/boards)
 
 To enable the compilation of the application into the firmware create a new line for your application somewhere in the *cmake* file:
 
@@ -240,7 +243,7 @@ To do something useful, the application needs to subscribe inputs and publish ou
 
 > **Tip** The benefits of the PX4 hardware abstraction comes into play here! There is no need to interact in any way with sensor drivers and no need to update your app if the board or sensors are updated.
 
-Individual message channels between applications are called [topics](../middleware/uorb.md). For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg) topic, which holds the synchronized sensor data of the complete system.
+Individual message channels between applications are called [topics](../middleware/uorb.md). For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/PX4-Autopilot/blob/master/msg/sensor_combined.msg) topic, which holds the synchronized sensor data of the complete system.
 
 Subscribing to a topic is straightforward:
 
@@ -334,7 +337,7 @@ orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
 
 ## Full Example Code
 
-The [complete example code](https://github.com/PX4/Firmware/blob/master/src/examples/px4_simple_app/px4_simple_app.c) is now:
+The [complete example code](https://github.com/PX4/PX4-Autopilot/blob/master/src/examples/px4_simple_app/px4_simple_app.c) is now:
 
 ```c
 /****************************************************************************
@@ -481,7 +484,7 @@ If you start *QGroundControl*, you can check the sensor values in the real time 
 
 ## Wrap-Up
 
-This tutorial covered everything needed to develop a basic PX4 autopilot application. Keep in mind that the full list of uORB messages/topics is [available here](https://github.com/PX4/Firmware/tree/master/msg/) and that the headers are well documented and serve as reference.
+This tutorial covered everything needed to develop a basic PX4 autopilot application. Keep in mind that the full list of uORB messages/topics is [available here](https://github.com/PX4/PX4-Autopilot/tree/master/msg/) and that the headers are well documented and serve as reference.
 
 Further information and troubleshooting/common pitfalls can be found here: [uORB](../middleware/uorb.md).
 

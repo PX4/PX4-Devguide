@@ -76,6 +76,7 @@ commander <command> [arguments...]
 
    calibrate     Run sensor calibration
      mag|accel|gyro|level|esc|airspeed Calibration type
+     quick       Quick calibration (accel only, not recommended)
 
    check         Run preflight checks
 
@@ -180,6 +181,23 @@ This implements using information from the ESC status and publish it as battery 
 ### Usage {#esc_battery_usage}
 ```
 esc_battery <command> [arguments...]
+ Commands:
+   start
+
+   stop
+
+   status        print status info
+```
+## gyro_fft
+Source: [examples/gyro_fft](https://github.com/PX4/Firmware/tree/master/src/examples/gyro_fft)
+
+
+### Description
+
+
+### Usage {#gyro_fft_usage}
+```
+gyro_fft <command> [arguments...]
  Commands:
    start
 
@@ -447,7 +465,7 @@ The provided functionality includes:
 - Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or
   on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the
   sensor drivers must already be running when `sensors` is started.
-- Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
+- Do sensor consistency checks and publish the `sensors_status_imu` topic.
 
 ### Implementation
 It runs in its own thread and polls on the currently selected gyro topic.
@@ -519,6 +537,7 @@ tune_control play -t 2
 tune_control <command> [arguments...]
  Commands:
    play          Play system tune or single note.
+     error       Play error tune
      [-t <val>]  Play predefined system tune
                  default: 1
      [-f <val>]  Frequency of note in Hz (0-22kHz)

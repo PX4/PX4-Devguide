@@ -2,7 +2,7 @@
 
 ## airship_att_control
 
-소스 코드: [modules/airship_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/airship_att_control)
+Source: [modules/airship_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/airship_att_control)
 
 ### 설명
 
@@ -27,7 +27,7 @@
 
 ## fw_att_control
 
-소스 코드: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
+Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
 
 ### 설명
 
@@ -47,7 +47,7 @@ fw_att_control은 고정익 자세 제어 모듈입니다.
 
 ## fw_pos_control_l1
 
-소스 코드: [modules/fw_pos_control_l1](https://github.com/PX4/Firmware/tree/master/src/modules/fw_pos_control_l1)
+Source: [modules/fw_pos_control_l1](https://github.com/PX4/Firmware/tree/master/src/modules/fw_pos_control_l1)
 
 ### 설명
 
@@ -67,7 +67,7 @@ fw_pos_control_l1은 고정익 위치 제어 모듈입니다.
 
 ## mc_att_control
 
-소스 코드: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
+Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_att_control)
 
 ### 설명
 
@@ -93,7 +93,7 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ## mc_pos_control
 
-소스 코드: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_pos_control)
+Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_pos_control)
 
 ### 설명
 
@@ -115,7 +115,7 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ## mc_rate_control
 
-소스 코드: [modules/mc_rate_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_rate_control)
+Source: [modules/mc_rate_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_rate_control)
 
 ### 설명
 
@@ -137,7 +137,7 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ## navigator
 
-소스 코드: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modules/navigator)
+Source: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modules/navigator)
 
 ### 설명
 
@@ -166,11 +166,11 @@ https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth
 
 ## rover_pos_control
 
-소스 코드: [modules/rover_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/rover_pos_control)
+Source: [modules/rover_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/rover_pos_control)
 
 ### 설명
 
-L1 조종 장치로 외계 탐사 차량 위치를 제어합니다.
+L1 조종 장치로 지상 탐사선 위치를 제어합니다.
 
 `actuator_controls_0` 메세지를 초당 250번 규칙적으로 내보냅니다.
 
@@ -179,8 +179,8 @@ L1 조종 장치로 외계 탐사 차량 위치를 제어합니다.
 구현체에서는 현재 일부 모드만 지원합니다:
 
 - Full manual: Throttle, yaw가 액추에이터를 통해 직접적으로 제어됩니다.
-- Auto mission: 기체가 미션을 수행합니다
-- Loiter: 기체가 그 선회반경 이내로 들어간 후 모터를 멈춥니다.
+- 자동 미션: 탐사선이 임무를 수행
+- Loiter: 탐사선이 해당 선회반경 이내로 들어간 후 모터를 멈춥니다.
 
 ### 예제
 
@@ -204,7 +204,7 @@ L1 조종 장치로 외계 탐사 차량 위치를 제어합니다.
 
 ## uuv_att_control
 
-소스 코드: [modules/uuv_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/uuv_att_control)
+Source: [modules/uuv_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/uuv_att_control)
 
 ### 설명
 
@@ -241,7 +241,7 @@ L1 조종 장치로 외계 탐사 차량 위치를 제어합니다.
 
 ## vtol_att_control
 
-소스 코드: [modules/vtol_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/vtol_att_control)
+Source: [modules/vtol_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/vtol_att_control)
 
 ### 설명
 

@@ -1,12 +1,12 @@
-# Using DroneKit to communicate with PX4
+# DroneKit로 PX4와 통신하기
 
-[DroneKit](http://dronekit.io) helps you create powerful apps for UAVs. These apps run on a UAV’s Companion Computer, and augment the autopilot by performing tasks that are both computationally intensive and require a low-latency link (e.g. computer vision).
+[DroneKit](http://dronekit.io)는 무인 항공기용 프로그램에 강력한 기능을 갖추도록 도와줍니다. 이 프로그램은 UAV의 보조 컴퓨터에서 실행하며, 처리 집약적 저지연 연결이 필요한 작업을 수행하여 오토파일럿의 능력(또는 기능, 예: 컴퓨터 비전)을 확장합니다.
 
-DroneKit and PX4 are currently working on getting full compatibility. As of DroneKit-python 2.2.0 there is basic support for mission handling and vehicle monitoring.
+DroneKit과 PX4는 현재 완전한 호환성을 갖추는 중입니다. DroneKit-python 2.2.0에서는 임무 처리와 기체 감시등 기본 기능을 지원합니다.
 
-## Setting up DroneKit with PX4
+## DroneKit와 PX4 설치 
 
-Start by installing DroneKit-python from the current master.
+DroneKit-python을 현재 마스터 브랜치에서 끌어와 설치하십시오.
 
 ```sh
 git clone https://github.com/dronekit/dronekit-python.git
@@ -15,7 +15,7 @@ sudo python setup.py build
 sudo python setup.py install
 ```
 
-Create a new python file and import DroneKit, pymavlink and basic modules
+새 파이썬 파일을 만들어 DroneKit, pymavlink, 기본 모듈을 끌어(import)오십시오.
 
 ```C
 # Import DroneKit-Python
@@ -25,7 +25,7 @@ import time, sys, argparse, math
 
 ```
 
-Connect to a MAVLink port of your drone or simulation (e.g. [JMavSim](../simulation/jmavsim.md)).
+드론 또는 모의시험 환경(예: jMAVSim)의 MAVLink 포트로 연결하십시오.
 
 ```C
 # Connect to the Vehicle
@@ -35,7 +35,7 @@ vehicle = connect(connection_string, wait_ready=True)
 
 ```
 
-Display some basic status information
+일부 기본 정보를 표시해보십시오.
 
 ```C
 # Display basic vehicle state
@@ -46,9 +46,9 @@ print " GPS: %s" % vehicle.gps_0
 print " Alt: %s" % vehicle.location.global_relative_frame.alt
 ```
 
-## Full mission example
+## 전체 임무 예제
 
-The following python script shows a full mission example using DroneKit and PX4. Mode switching is not yet fully supported from DroneKit, we therefor send our own custom mode switching commands.
+다음 파이썬 스크립트에서는 DroneKit와 PX4를 활용한 전체 임무 예제를 보여줍니다. DroneKit에서 상태 전환은 완전히 지원하지 않기에, 개별 상태 전환 명령을 따로 보냅니다.
 
 ```C
 ################################################################################################
@@ -72,7 +72,7 @@ import time, sys, argparse, math
 
 connection_string       = '127.0.0.1:14540'
 MAV_MODE_AUTO   = 4
-# https://github.com/PX4/Firmware/blob/master/Tools/mavlink_px4.py
+# https://github.com/PX4/PX4-Autopilot/blob/master/Tools/mavlink_px4.py
 
 
 # Parse connection argument

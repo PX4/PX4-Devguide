@@ -1,12 +1,12 @@
-# Modules Reference: System
+# 모듈 참고: 시스템
 
 ## battery_simulator
 
 Source: [modules/simulator/battery_simulator](https://github.com/PX4/Firmware/tree/master/src/modules/simulator/battery_simulator)
 
-### Description
+### 설명
 
-### Usage {#battery_simulator_usage}
+### 사용법 {#battery_simulator_usage}
 
     battery_simulator <command> [arguments...]
      Commands:
@@ -21,17 +21,17 @@ Source: [modules/simulator/battery_simulator](https://github.com/PX4/Firmware/tr
 
 Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src/modules/battery_status)
 
-### Description
+### 설명
 
-The provided functionality includes:
+제공 기능은 다음과 같습니다:
 
-- Read the output from the ADC driver (via ioctl interface) and publish `battery_status`.
+- (ioctl 인터페이스로) ADC 드라이버의 출력을 읽고 `battery_status`로 내보냅니다.
 
-### Implementation
+### 구현
 
-It runs in its own thread and polls on the currently selected gyro topic.
+현재 선택한 자이로 토픽에 대해 스레드와 폴링을 기반으로 실행합니다.
 
-### Usage {#battery_status_usage}
+### 사용법 {#battery_status_usage}
 
     battery_status <command> [arguments...]
      Commands:
@@ -46,9 +46,9 @@ It runs in its own thread and polls on the currently selected gyro topic.
 
 Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/src/modules/camera_feedback)
 
-### Description
+### 설명
 
-### Usage {#camera_feedback_usage}
+### 사용법 {#camera_feedback_usage}
 
     camera_feedback <command> [arguments...]
      Commands:
@@ -63,11 +63,11 @@ Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/sr
 
 Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modules/commander)
 
-### Description
+### 설명
 
-The commander module contains the state machine for mode switching and failsafe behavior.
+commander 모듈에는 모듈 스위칭 기능과 안전 조치 기능을 수반한 상태 머신이 들어있습니다.
 
-### Usage {#commander_usage}
+### 사용법 {#commander_usage}
 
     commander <command> [arguments...]
      Commands:
@@ -76,6 +76,7 @@ The commander module contains the state machine for mode switching and failsafe 
     
        calibrate     Run sensor calibration
          mag|accel|gyro|level|esc|airspeed Calibration type
+         quick       Quick calibration (accel only, not recommended)
     
        check         Run preflight checks
     
@@ -106,24 +107,24 @@ The commander module contains the state machine for mode switching and failsafe 
 
 Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/modules/dataman)
 
-### Description
+### 설명
 
-Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
+C API 형식의 간단한 데이터베이스형 영구 저장소를 시스템의 나머지 자원을 가용하여 제공합니다. 여러 백엔드를 지원합니다:
 
-- a file (eg. on the SD card)
-- FLASH (if the board supports it)
+- 파일(예: SD 카드) 
+- 플래시(보드에 붙어있을 경우)
 - FRAM
-- RAM (this is obviously not persistent)
+- RAM(분명히 영구 저장장치는 아님)
 
-It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
+임부 경로 지점, 임무 상태, 다각형 비행 제한 구역 같은 여러가지 형식의 구조 데이터를 저장합니다. 각 데이터에 고유 형식을 할당하며, 항목당 저장소상 최대 고정 용량이 있기에, 고속의 임의 접근이 가능합니다.
 
-### Implementation
+### 구현
 
-Reading and writing a single item is always atomic. If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
+단일 항목의 읽기/쓰기 동작은 원소 형태입니다. 여러 항목을 개별적으로 읽고 수정하려면, `dm_lock`으로 항목 형식별 추가 잠금을 걸어두어야 합니다.
 
-**DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
+**DM_KEY_FENCE_POINTS**와 **DM_KEY_SAFE_POINTS** 항목: 첫 데이타 요소는 이런 형식의 항목을 저장하는 `mission_stats_entry_s` 구조체입니다. 트랜잭션 1회당 이 항목은 (MAVLink 임무 관리자에서) 개별적으로 업데이트합니다. 이때 동안, 네비게이터에서는 비행 제한 구역(geofence) 항목의 잠금 획득을 시도하고, 비행 제한 구역 위반을 검사하지 않습니다.
 
-### Usage {#dataman_usage}
+### 사용법 {#dataman_usage}
 
     dataman <command> [arguments...]
      Commands:
@@ -149,18 +150,18 @@ Reading and writing a single item is always atomic. If multiple items need to be
 
 Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/systemcmds/dmesg)
 
-### Description
+### 설명
 
-Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
+부팅 콘솔 메시지를 보여주는 명령행 도구입니다. NuttX의 작업 큐와 syslog의 출력은 잡아 보여주지 않습니다.
 
-### Examples
+### 예제
 
-Keep printing all messages in the background:
+백그라운드의 모든 메시지 출력 유지:
 
     dmesg -f &
     
 
-### Usage {#dmesg_usage}
+### 사용법 {#dmesg_usage}
 
     dmesg <command> [arguments...]
      Commands:
@@ -171,13 +172,30 @@ Keep printing all messages in the background:
 
 Source: [modules/esc_battery](https://github.com/PX4/Firmware/tree/master/src/modules/esc_battery)
 
-### Description
+### 설명
 
-This implements using information from the ESC status and publish it as battery status.
+이 구현체에서는 전동 변속기 상태 정보를 활용하며, 배터리 상태를 내보냅니다.
 
-### Usage {#esc_battery_usage}
+### 사용법 {#esc_battery_usage}
 
     esc_battery <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
+## gyro_fft
+
+Source: [examples/gyro_fft](https://github.com/PX4/Firmware/tree/master/src/examples/gyro_fft)
+
+### 설명
+
+### Usage {#gyro_fft_usage}
+
+    gyro_fft <command> [arguments...]
      Commands:
        start
     
@@ -190,7 +208,7 @@ This implements using information from the ESC status and publish it as battery 
 
 Source: [drivers/heater](https://github.com/PX4/Firmware/tree/master/src/drivers/heater)
 
-### Description
+### 설명
 
 Background process running periodically on the LP work queue to regulate IMU temperature at a setpoint.
 
@@ -219,7 +237,7 @@ Module to detect the freefall and landed state of the vehicle, and publishing th
 
 Every type is implemented in its own class with a common base class. The base class maintains a state (landed, maybe_landed, ground_contact). Each possible state is implemented in the derived classes. A hysteresis and a fixed priority of each internal state determines the actual land_detector state.
 
-#### Multicopter Land Detector
+#### 멀티콥터 착륙 감지
 
 **ground_contact**: thrust setpoint and velocity in z-direction must be below a defined threshold for time GROUND_CONTACT_TRIGGER_TIME_US. When ground_contact is detected, the position controller turns off the thrust setpoint in body x and y.
 
@@ -245,7 +263,7 @@ The module runs periodically on the HP work queue.
 
 Source: [modules/load_mon](https://github.com/PX4/Firmware/tree/master/src/modules/load_mon)
 
-### Description
+### 설명
 
 Background process running periodically on the low priority work queue to calculate the CPU load and RAM usage and publish the `cpuload` topic.
 
@@ -272,8 +290,8 @@ System logger which logs a configurable set of uORB topics and system printf mes
 
 It supports 2 backends:
 
-- Files: write ULog files to the file system (SD card)
-- MAVLink: stream ULog data via MAVLink to a client (the client must support this)
+- 파일: ULog 파일을 시스템에 기록합니다(SD 카드)
+- MAVLink: 이 프로토콜에 ULog 데이터를 실어 클라이언트에 지속적으로 보냅니다(클라이언트에서 MAVLink 프로토콜을 지원해야함).
 
 Both backends can be enabled and used at the same time.
 
@@ -283,8 +301,8 @@ The file backend supports 2 types of log files: full (the normal log) and a miss
 
 The implementation uses two threads:
 
-- The main thread, running at a fixed rate (or polling on a topic if started with -p) and checking for data updates
-- The writer thread, writing data to the file
+- 메인 스레드해서는, 고정 주기(또는 -p 로 시작했을 경우 토픽을 폴링 처리)로 실행하며, 데이터 업데이트를 확인합니다.
+- 기록 스레드는 데이터를 파일에 기록합니다
 
 In between there is a write buffer with configurable size (and another fixed-size buffer for the mission log). It should be large to avoid dropouts.
 
@@ -333,7 +351,7 @@ Or if already running:
 
 Source: [drivers/pwm_input](https://github.com/PX4/Firmware/tree/master/src/drivers/pwm_input)
 
-### Description
+### 설명
 
 Measures the PWM input on AUX5 (or MAIN5) via a timer capture ISR and publishes via the uORB 'pwm_input` message.
 
@@ -377,14 +395,14 @@ To reduce control latency, the module is scheduled on input_rc publications.
 
 Source: [modules/replay](https://github.com/PX4/Firmware/tree/master/src/modules/replay)
 
-### Description
+### 설명
 
 This module is used to replay ULog files.
 
 There are 2 environment variables used for configuration: `replay`, which must be set to an ULog file name - it's the log file to be replayed. The second is the mode, specified via `replay_mode`:
 
-- `replay_mode=ekf2`: specific EKF2 replay mode. It can only be used with the ekf2 module, but allows the replay to run as fast as possible.
-- Generic otherwise: this can be used to replay any module(s), but the replay will be done with the same speed as the log was recorded.
+- `replay_mode=ekf2`: EKF2 재현 모드로 설정합니다. ekf2 모듈하고만 값을 사용할 수 있으나, 가능한 한 빠른 재현이 가능합니다.
+- 기타 일반: 다른 모듈 재현에 활용할 수 있습니다만, 기록한 로그 속도대로만 재현할 수 있습니다.
 
 The module is typically used together with uORB publisher rules, to specify which messages should be replayed. The replay module will just publish all messages that are found in the log. It also applies the parameters from the log.
 
@@ -409,7 +427,7 @@ The replay procedure is documented on the [System-wide Replay](https://dev.px4.i
 
 Source: [modules/events](https://github.com/PX4/Firmware/tree/master/src/modules/events)
 
-### Description
+### 설명
 
 Background process running periodically on the LP work queue to perform housekeeping tasks. It is currently only responsible for tone alarm on RC Loss.
 
@@ -436,9 +454,9 @@ The sensors module is central to the whole system. It takes low-level output fro
 
 The provided functionality includes:
 
-- Read the output from the sensor drivers (`sensor_gyro`, etc.). If there are multiple of the same type, do voting and failover handling. Then apply the board rotation and temperature calibration (if enabled). And finally publish the data; one of the topics is `sensor_combined`, used by many parts of the system.
-- Make sure the sensor drivers get the updated calibration parameters (scale & offset) when the parameters change or on startup. The sensor drivers use the ioctl interface for parameter updates. For this to work properly, the sensor drivers must already be running when `sensors` is started.
-- Do preflight sensor consistency checks and publish the `sensor_preflight` topic.
+- 센서 드라이버(`sensor_gyro` 등)의 출력을 읽습니다. 다중 동일 형식 출력이 있을 경우, 출력 데이터 중 하나를 뽑아 안전 조치를 수행합니다. 그 후 보드 회전과 온도 보정 값(기능을 켰을 경우)을 적용합니다. 마지막으로 데이터를 내보냅니다. 내보내는 여러 토픽 중 하나는 시스템의 여러 부분에서 활용하는 `sensor_combined` 입니다.
+- 매개변수 값이 바뀌었거나 비행체 가동 시작시, 센서 드라이버에서 최신 보정 매개변수 값(계수와 오프셋)을 받았는지 확인합니다. 센서 드라이버는 매개변수 값 업데이트시 ioctl 인터페이스를 활용합니다. 이 동작을 제대로 수행하기 위해 센서 드라이버는 반드시 `센서`를 시작할 때 먼저 동작해야 합니다.
+- 센서 무결성을 점검하고 `sensors_status_imu` 토픽을 내보냅니다.
 
 ### Implementation
 
@@ -460,7 +478,7 @@ It runs in its own thread and polls on the currently selected gyro topic.
 
 Source: [modules/temperature_compensation](https://github.com/PX4/Firmware/tree/master/src/modules/temperature_compensation)
 
-### Description
+### 설명
 
 The temperature compensation module allows all of the gyro(s), accel(s), and baro(s) in the system to be temperature compensated. The module monitors the data coming from the sensors and updates the associated sensor_thermal_cal topic whenever a change in temperature is detected. The module can also be configured to perform the coeffecient calculation routine at next boot, which allows the thermal calibration coeffecients to be calculated while the vehicle undergoes a temperature cycle.
 
@@ -506,6 +524,7 @@ Play system tune #2:
     tune_control <command> [arguments...]
      Commands:
        play          Play system tune or single note.
+         error       Play error tune
          [-t <val>]  Play predefined system tune
                      default: 1
          [-f <val>]  Frequency of note in Hz (0-22kHz)

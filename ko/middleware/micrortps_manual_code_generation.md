@@ -17,7 +17,7 @@ set(GENERATE_RTPS_BRIDGE off)
 *generate_microRTPS_bridge* 스크립트의 사용법은 아래와 같습니다.
 
 ```sh
-$ cd /path/to/PX4/Firmware/msg/tools
+$ cd /path/to/PX4/PX4-Autopilot/msg/tools
 $ python generate_microRTPS_bridge.py -h
 usage: generate_microRTPS_bridge.py [-h] [-s *.msg [*.msg ...]]
                                     [-r *.msg [*.msg ...]] [-a] [-c]
@@ -55,7 +55,7 @@ optional arguments:
 아래의 예제는 하나의 uORB 토픽을 설정한 센서 `sensor_baro`의 브릿지 Pub/Sub 코드를 생성하는 것을 보여줍니다. 
 
 ```sh
-$ cd /path/to/PX4/Firmware
+$ cd /path/to/PX4/PX4-Autopilot
 $ python Tools/generate_microRTPS_bridge.py -s msg/sensor_baro.msg -r msg/sensor_combined.msg
 ```
 

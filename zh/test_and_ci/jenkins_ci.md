@@ -14,13 +14,13 @@
 
 ## 测试执行
 
-Jenkins使用[run_container.bash](https://github.com/PX4/Firmware/blob/master/integrationtests/run_container.bash)来启动容器， 然后容器执行[ run_tests.bash ](https://github.com/PX4/Firmware/blob/master/integrationtests/run_tests.bash)来编译和运行测试。
+Jenkins uses [run_container.bash](https://github.com/PX4/PX4-Autopilot/blob/master/integrationtests/run_container.bash) to start the container, which in turn executes [run_tests.bash](https://github.com/PX4/PX4-Autopilot/blob/master/integrationtests/run_tests.bash) to compile and run the tests.
 
 如果安装了 Docker，则可以在本地使用相同的方法：
 
 ```sh
-cd <directory_where_firmware_is_cloned>
-sudo WORKSPACE=$(pwd) ./Firmware/integrationtests/run_container.bash
+cd <directory_where_PX4-Autopilot_is_cloned>
+sudo WORKSPACE=$(pwd) ./PX4-Autopilot/integrationtests/run_container.bash
 ```
 
 ## 服务器配置

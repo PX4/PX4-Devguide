@@ -6,7 +6,7 @@
 
 它并不是一个完整的列表，NuttX 也会提供一些额外的命令（比如 `free`）。 在控制台使用 `help` 获取所有的可用命令，大部分情况下使用 `command help` 可以在控制台上打印出该命令的使用方法。
 
-由于列表是从源代码中直接生成的，所以文档中任何的错误都必须在 [Firmware](https://github.com/PX4/Firmware) 仓库中进行报告和修复。 文档页可以在固件目录的根目录下运行如下命令生成：
+Since this is generated from source, errors must be reported/fixed in the [PX4-Autopilot](https://github.com/PX4/PX4-Autopilot) repository. 文档页可以在固件目录的根目录下运行如下命令生成：
 
     make module_documentation
     

@@ -72,17 +72,17 @@ SD 카드에 기록할 토픽 목록은 설정 파일로 개별 지정할 수 �
 
 무엇보다도 우리가 가장 좋다고 알게된 카드의 모델은 **SanDisk Extreme U3 32GB**입니다. 순간적으로 증가하는 기록 시간이 없(어 패킷 손실이 없을거라고 생각할 수 있)기에 이 카드를 추천합니다. 다른 카드 용량에 대해서도 비슷하게 잘 동작하지만, 보통 성능이 다릅니다.
 
-`sd_bench -r 50` 명령으로 SD 카드를 테스트하고 https://github.com/PX4/Firmware/issues/4634 에 결과를 보고할 수 있습니다.
+You can test your own SD card with `sd_bench -r 50`, and report the results to https://github.com/PX4/PX4-Autopilot/issues/4634.
 
 ## 로그 스트리밍
 
 태로초부터 지금까지 제대로 지원하는 로그 스트리밍 방법은 FMU에서 SD 카드를 활용하는 방법입니다. 그러나, 이 대안책으로, MAVLink로 동일한 로깅 데이터를 전송하는 로깅 스트리밍 방식이 있습니다. 이 방식은 FMU에 SD 카드 슬롯이 없을 경우(예: Intel® Aero Ready to Fly 드론)에 활용하거나, 단순히 SD 카드의 취급을 피하려 하고자 할 경우 진행할 수 있습니다. 두가지 방식은 동시에 제각각 활용할 수 있습니다.
 
-필요 요소는 WiFi 연결 처럼 초당 50KB를 제공할 수 있는 통신 수단입니다. 단일 클라이언트만 동시에 로그 스트리밍을 요청할 수 있습니다. 프로토콜에서 손실 패킷을 관리하기에 연결은 굳이 안정적이지 않아도 좋습니다.
+필요 요소는 무선랜 연결처럼 초당 50KB를 제공할 수 있는 통신 수단입니다. 단일 클라이언트만 동시에 로그 스트리밍을 요청할 수 있습니다. 프로토콜에서 손실 패킷을 관리하기에 연결은 굳이 안정적이지 않아도 좋습니다.
 
 ulog 스트리밍을 지원하는 클라이언트는 여러가지가 있습니다.:
 
-- Firmware/Tools의 `mavlink_ulog_streaming.py`
+- `mavlink_ulog_streaming.py` script in PX4-Autopilot/Tools.
 - QGroundControl:![QGC 로그 스트리밍](../../assets/gcs/qgc-log-streaming.png)
 - [MAVGCL](https://github.com/ecmnet/MAVGCL)
 

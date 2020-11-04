@@ -13,7 +13,7 @@ This topic explains how to configure a PX4-based system to get data from MoCap/V
 
 > **Note** The instructions differ depending on whether you are using the EKF2 or LPE estimator.
 
-## PX4 MAVLink Integration
+## PX4 MAVLink 통합
 
 PX4 uses the following MAVLink messages for getting external position information, and maps them to [uORB topics](http://dev.px4.io/en/middleware/uorb.html):
 
@@ -32,7 +32,7 @@ The messages should be streamed at between 30Hz (if containing covariances) and 
 
 The following MAVLink "vision" messages are not currently supported by PX4: [GLOBAL_VISION_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#GLOBAL_VISION_POSITION_ESTIMATE), [VISION_SPEED_ESTIMATE](https://mavlink.io/en/messages/common.html#VISION_SPEED_ESTIMATE), [VICON_POSITION_ESTIMATE](https://mavlink.io/en/messages/common.html#VICON_POSITION_ESTIMATE)
 
-## Reference Frames
+## 참조 프레임
 
 PX4 uses FRD (X **F**orward, Y **R**ight and Z **D**own) for the local body frame as well for the reference frame. When using the heading of the magnetometer, the PX4 reference frame x axis will be aligned with north, so therefore it is called NED (X **N**orth, Y **E**ast, Z **D**own). The heading of the reference frame of the PX4 estimator and the one of the external pose estimate will not match in most cases. Therefore the reference frame of the external pose estimate is named differently, it is called [MAV_FRAME_LOCAL_FRD](https://mavlink.io/en/messages/common.html#MAV_FRAME_LOCAL_FRD).
 
@@ -51,20 +51,20 @@ If `x_{mav}`, `y_{mav}` and `z_{mav}` are the coordinates that are sent through 
 
 Regarding the orientation, keep the scalar part *w* of the quaternion the same and swap the vector part *x*, *y* and *z* in the same way. You can apply this trick with every system - if you need to obtain a NED frame, look at your MoCap output and swap axis accordingly.
 
-## EKF2 Tuning/Configuration
+## EKF2 조율/설정
 
-Note: this is a quick overview. For more detailed information, check the [EKF2 tuning guide](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)
+Note: 간단한 개요 내용입니다. 더 자세한 내용은 [EKF2 조율 안내서](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)를 참고 하십시오
 
-The following parameters must be set to use external position information with EKF2 (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > EKF2**).
+EKF2의 외부 위치 정보를 활용하려면 다음 매개변수를 설정해야합니다(*QGroundControl* > **Vehicle Setup > Parameters > EKF2**에서 설정 가능).
 
-| Parameter                                                                                                                                                                                                     | Setting for External Position Estimation                                                                                                               |
+| 매개변수                                                                                                                                                                                                          | 외부 위치 추정 설정                                                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [EKF2_AID_MASK](../advanced/parameter_reference.md#EKF2_AID_MASK)                                                                                                                                           | Set *vision position fusion*, *vision velocity fusion*, *vision yaw fusion* and *external vision rotation* accoring to your desired fusion model.      |
 | [EKF2_HGT_MODE](../advanced/parameter_reference.md#EKF2_HGT_MODE)                                                                                                                                           | Set to *Vision* to use the vision a primary source for altitude estimation.                                                                            |
 | [EKF2_EV_DELAY](../advanced/parameter_reference.md#EKF2_EV_DELAY)                                                                                                                                           | Set to the difference between the timestamp of the measurement and the "actual" capture time. For more information see [below](#tuning-EKF2_EV_DELAY). |
 | [EKF2_EV_POS_X](../advanced/parameter_reference.md#EKF2_EV_POS_X), [EKF2_EV_POS_Y](../advanced/parameter_reference.md#EKF2_EV_POS_Y), [EKF2_EV_POS_Z](../advanced/parameter_reference.md#EKF2_EV_POS_Z) | Set the position of the vision sensor (or MoCap markers) with respect to the robot's body frame.                                                       |
 
-> **Tip** Reboot the flight controller in order for parameter changes to take effect.
+> **Tip** 바뀐 매개변수 값을 적용하려면 비행체 제어 장치를 다시 부팅하십시오.
 
 #### Tuning EKF2_EV_DELAY {#tuning-EKF2_EV_DELAY}
 
@@ -82,28 +82,28 @@ A rough estimate of the delay can be obtained from logs by checking the offset b
 
 The value can further be tuned by varying the parameter to find the value that yields the lowest EKF innovations during dynamic maneuvers.
 
-## LPE Tuning/Configuration
+## LPE 조율/설정
 
 You will first need to [switch to the LPE estimator](../advanced/switching_state_estimators.md) by setting the [SYS_MC_EST_GROUP](../advanced/parameter_reference.md#SYS_MC_EST_GROUP) parameter.
 
 > **Note** If targeting `px4_fmu-v2` hardware you will also need to use a firmware version that includes the LPE module (firmware for other FMU-series hardware includes both LPE and and EKF). The LPE version can be found in the zip file for each PX4 release or it can be built from source using the build command `make px4_fmu-v2_lpe`. See [Building the Code](../setup/building_px4.md) for more details.
 
-### Enabling External Pose Input
+### 외부 자세 데이터 입력 활성화
 
-The following parameters must be set to use external position information with LPE (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**).
+LPE의 외부 위치 정보를 활용하려면 다음 매개변수를 설정해야합니다(*QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**에서 설정 가능).
 
-| Parameter                                                           | Setting for External Position Estimation                                                                                               |
+| 매개변수                                                                | 외부 위치 추정 설정                                                                                                                            |
 | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION)         | Vision integration is enabled if *fuse vision position* is checked (it is enabled by default).                                         |
 | [ATT_EXT_HDG_M](../advanced/parameter_reference.md#ATT_EXT_HDG_M) | Set to 1 or 2 to enable external heading integration. Setting it to 1 will cause vision to be used, while 2 enables MoCap heading use. |
 
-### Disabling Barometer Fusion
+### 기압 센서 병용 비활성
 
 If a highly accurate altitude is already available from VIO or MoCap information, it may be useful to disable the baro correction in LPE to reduce drift on the Z axis.
 
 This can be done by in *QGroundControl* by unchecking the *fuse baro* option in the [LPE_FUSION](../advanced/parameter_reference.md#LPE_FUSION) parameter.
 
-### Tuning Noise Parameters
+### 잡음 매개변수 미세조정
 
 If your vision or MoCap data is highly accurate, and you just want the estimator to track it tightly, you should reduce the standard deviation parameters: [LPE_VIS_XY](../advanced/parameter_reference.md#LPE_VIS_XY) and [LPE_VIS_Z](../advanced/parameter_reference.md#LPE_VIS_Z) (for VIO) or [LPE_VIC_P](../advanced/parameter_reference.md#LPE_VIC_P) (for MoCap). Reducing them will cause the estimator to trust the incoming pose estimate more. You may need to set them lower than the allowed minimum and force-save.
 
@@ -136,14 +136,14 @@ If you're working with EKF2, only the "vision" pipelines are supported. To use M
 
 * MoCap ROS topics of type `geometry_msgs/PoseStamped` or `geometry_msgs/PoseWithCovarianceStamped` must be remapped to `/mavros/vision_pose/pose`. The `geometry_msgs/PoseStamped` topic is most common as MoCap doesn't usually have associated covariances to the data.
 * If you get data through a `nav_msgs/Odometry` ROS message then you will need to remap it to `/mavros/odometry/out`, making sure to update the `frame_id` and `child_frame_id` accordingly.
-* The odometry frames `frame_id = odom`, `child_frame_id = base_link` can be changed by updating the file in `mavros/launch/px4_config.yaml`. However, the current version of mavros (`1.2.0`) needs to be able to use the tf tree to find a transform from `frame_id` to the hardcoded frame `odom_ned`. The same applies to the `child_frame_id`, which needs to be connected in the tf tree to the hardcoded frame `base_link_frd`. If you are using mavros `1.2.0` and you didn't update the file `mavros/launch/px4_config.yaml`, then you can safely use the odometry frames `frame_id = odom`, `child_frame_id = base_link` without much worry.
+* The odometry frames `frame_id = odom`, `child_frame_id = base_link` can be changed by updating the file in `mavros/launch/px4_config.yaml`. However, the current version of mavros (`1.3.0`) needs to be able to use the tf tree to find a transform from `frame_id` to the hardcoded frame `odom_ned`. The same applies to the `child_frame_id`, which needs to be connected in the tf tree to the hardcoded frame `base_link_frd`. If you are using mavros `1.2.0` and you didn't update the file `mavros/launch/px4_config.yaml`, then you can safely use the odometry frames `frame_id = odom`, `child_frame_id = base_link` without much worry.
 * Note that if you are sending odometry data to px4 using `child_frame_id = base_link`, then then you need to make sure that the `twist` portion of the `nav_msgs/Odometry` message is **expressed in body frame**, **not in inertial frame!!!!!**.
 
 ### Reference Frames and ROS {#ros_reference_frames}
 
 The local/world and world frames used by ROS and PX4 are different.
 
-| Frame | ROS                                                                                  | PX4                                              |
+| 프레임   | ROS                                                                                  | PX4                                              |
 | ----- | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
 | Body  | FLU (X **F**orward, Y **L**eft, Z **U**p), usually named `base_link`                 | FRD (X **F**orward, Y **R**ight and Z **D**own)  |
 | World | FLU or ENU (X **E**ast, Y **N**orth and Z Up), with the naming being `odom` or `map` | FRD or NED (X **N**orth, Y **E**ast, Z **D**own) |
@@ -208,11 +208,11 @@ Assuming that you have configured EKF2 parameters as described above, PX4 now is
 
 You are now set to proceed to the first flight.
 
-## First Flight
+## 첫 비행
 
 After setting up one of the (specific) systems described above you should now be ready to test. The instructions below show how to do so for MoCap and VIO systems
 
-### Check external estimate
+### 외부 추정자 점검
 
 Be sure to perform the following checks before your first flight:
 

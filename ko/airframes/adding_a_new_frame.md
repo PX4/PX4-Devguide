@@ -1,10 +1,12 @@
 # 새 에어프레임 설정 추가
 
-PX4에서는 에어프레임 시작점과 같은 설정값을 잘 포장한 에어프레임 설정을 활용합니다. [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) 폴더에 저장한 [설정 파일 ](#config-file)에 설정을 정의합니다. 설정 파일은 시스템의 물리 설정을 기술한 [믹서 파일](#mixer-file)을 참조하며 이 파일은 [ROMFS/px4fmu_common/mixers](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/mixers) 폴더에 들어있습니다.
+PX4에서는 에어프레임 시작점과 같은 설정값을 잘 포장한 에어프레임 설정을 활용합니다. The configurations are defined in [config files](#config-file) that are stored in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d) folder. The config files reference [mixer files](#mixer-file) that describe the physical configuration of the system, and which are stored in the [ROMFS/px4fmu_common/mixers](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/mixers) folder.
 
-설정 추가는 굉장히 간단합니다: [init.d 폴더](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d) (파일 이름 앞에 사용하지 않는 자동 시작 ID를 붙임)에 새 설정 파일을 넣고, 프로그램을 [빌드 후 업로드](../setup/building_px4.md) 합니다.
+Adding a configuration is straightforward: create a new config file in the [init.d/airframes folder](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d/airframes) (prepend the filename with an unused autostart ID), add the name of your new airframe config file to the [CMakeLists.txt](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/airframes/CMakeLists.txt) in the relevant section, then [build and upload](../setup/building_px4.md) the software.
 
 자체 설정을 만들고 싶지 않은 개발자는 대신 [개별 시스템 시작](../concept/system_startup.md) 페이지에서 자세하게 설명한 대로 microSD 카드에서 텍스트 파일로 이루어진 기존 설정을 약간 고칠 수 있습니다.
+
+> **Note** To determine which parameters/values need to be set in the configuration file, you can first assign a generic airframe and tune the vehicle, and then use [`param show-for-airframe`](../middleware/modules_command.html#param) to list the parameters that changed.
 
 ## 설정 파일 개요
 
@@ -17,11 +19,11 @@ PX4에서는 에어프레임 시작점과 같은 설정값을 잘 포장한 에�
 
 대부분 독립적인 측면이 있는데 많은 설정이 에어프레임의 동일한 물리 형체를 공유하고 동일한 프로그램을 시작하며, 게인 조정에 있어서만 다름을 의미합니다.
 
-> **Note** 새 에어프레임 파일은 빌드를 정리한 후에만 빌드 시스템에 자동으로 추가합니다(`make clean` 실행).
+> **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
 
 ### 설정 파일 {#config-file}
 
-보통 설정 파일은 아래와 같습니다([원본 파일은 여기에 있습니다](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
+A typical configuration file is shown below ([original file here](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
 
 처음 부분은 에어프레임 문서입니다. [에어프레임 참조](../airframes/airframe_reference.md)와 *QGroundControl*에서 활용합니다.
 
@@ -96,19 +98,19 @@ set PWM_OUT 4
 set PWM_DISARMED 1000
 ```
 
-> **Warning** 채널을 역순으로 보려면 RC 송수신기 또는 `RC1_REV`와 같은 매크로 매개변수에 이 작업을 수행하지 마십시오. 수동 모드로 비행체를 날릴 경우에만 채널을 반전합니다. 자동 비행 모드로 전환하면 채널 출력이 잘못될 수 있습니다(리모콘 신호만 반전할 수 있음). 따라서 올바른 채널 할당을 수행하려면 (예: 채널 하나에 대해) PWM 시그널 `PWM_MAIN_REV1`으로 PWM 시그널을 바꾸거나 믹서와 관련된 출력 계수 부호만 바꾸십시오(아래 참고).
+> **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
 ### 믹서 파일 {#mixer-file}
 
-> **Note** 우선 [개념 > 믹싱](../concept/mixing.md)을 읽어보십시오. 이 문서에서는 믹서 파일을 이해하는데 필요한 배경 지식을 전달합니다.
+> **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
 
-보통 믹서 파일은 아래와 같습니다([원본 파일은 여기에 있습니다](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). 이 경우 믹서 파일 이름은 `wingwing.main.mix`이며, 중요한 에어프레임 형식(`wingwing`), 출력 형식(`.main` 또는 `.aux`), 믹서 파일을 의미하는 확장자(`.mix`)정보를 바로 전달해줍니다. 
+A typical mixer file is shown below ([original file here](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). 이 경우 믹서 파일 이름은 `wingwing.main.mix`이며, 중요한 에어프레임 형식(`wingwing`), 출력 형식(`.main` 또는 `.aux`), 믹서 파일을 의미하는 확장자(`.mix`)정보를 바로 전달해줍니다. 
 
-믹서 파일에는 여러 코드 블록이 들어있으며, 각 코드 블록은 액츄에이터 또는 ESC 하나를 참조합니다. 따라서 서보모터 둘과 ESC 유닛 하나를 붙였다면, 믹서 파일은 세개의 코드 블록을 가집니다.
+믹서 파일에는 여러 코드 블록이 들어있으며, 각 코드 블록은 액츄에이터 또는 전동 변속기 하나를 참조합니다. 따라서 서보 모터 둘과 전동 변속기 유닛 하나를 붙였다면, 믹서 파일은 세개의 코드 블록을 가집니다.
 
-> **Note** 서보 / 모터는 이 파일에서 언급한 순서대로 연결했습니다.
+> **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
-따라서 MAIN1은 좌측 보조익, MAIN2는 우측 보조익, MAIN3은 비워두며(믹서가 없을때 Z: 로 표기함), MAIN4는 스로틀입니다(일반 고정익 설정에서 4번 출력을 스로틀로 유지함).
+따라서 MAIN1은 좌측 보조익, MAIN2는 우측 보조익, MAIN3은 빈 상태(믹서가 없을때 Z: 로 표기함), MAIN4는 추진기입니다(일반 고정익 설정에서 4번 출력을 추진기로 둠).
 
 믹서는 -10000부터 10000까지 정규화 된 값으로 인코딩하며, 이 값은 -1..+1에 해당합니다.
 
@@ -127,7 +129,7 @@ set PWM_DISARMED 1000
 * S: 첫 입력 계수를 나타냅니다. 제어 그룹 #0 (비행체 제어)와 처음 입력(roll - 좌우 회전각) 의 입력을 취합니다. 좌우 회전각 제어 입력의 0.6배 조정하며 부호를 반전합니다(스케일 단위에 따라 -0.6은 -6000이 됨). 오프셋을 반영하지 않으며, 전체 범위(-1..+1)로 출력합니다.
 * S: 두번째 입력 계수를 나타냅니다. 제어 그룹 #0 (비행체 제어)와 두번째 입력(roll - 상하 회전각)의 입력값을 취합니다. 상하 회전각 제어 입력의 0.65배로 조정합니다. 오프셋을 반영하지 않으며 전체 범위(-1..+1)로 출력합니다.
 
-> **Note** 간단히 말해, 이 믹서의 출력은 SERVO = ( (좌우 회전각 입력 \* -0.6 + 0) \* 1 + (상하 회전각 입력 \* 0.65 + 0) \* 1 ) \* 1 + 0 가 됩니다.
+> **Note** In short, the output of this mixer would be SERVO = ( (roll input \* -0.6 + 0) \* 1 + (pitch input \* 0.65 + 0) \* 1 ) \* 1 + 0
 
 보이는 모습 뒤에는 두 계수를 추가하는데, 비행익에 대해 좌우 회전각에 대해 최대 60% 감소, 상하 회전각에 대해 65% 감소함을 의미합니다.
 
@@ -198,14 +200,14 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 *QGroundControl*에서 활용하는 에어프레임 메타데이터 파일과 문서 소스코드는 `make airframe_metadata` 명령으로 에어프레임 설명, 스크립트에서 만듭니다.
 
-기존 그룹에 새 에어프레임을 넣을 때, [ROMFS/px4fmu_common/init.d](https://github.com/PX4/Firmware/tree/master/ROMFS/px4fmu_common/init.d)에 있는 에어프레임 설명에 무언가를 더 추가할 필요는 없습니다.
+For a new airframe belonging to an existing group, you don't need to do anything more than provide documentation in the airframe description located at [ROMFS/px4fmu_common/init.d](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d).
 
 에어프레임에 넣을 **새 그룹**이 추가로 필요하다면:
 
 1. 분류에 해당하는 svg 이미지를 문서 저장소에 추가하십시오(이미지를 넣지 않으면 삽입 안내 이미지가 뜹니다): 
   * PX4 개발 안내서: [assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
   * PX4 사용 안내서: [assets/airframes/types](https://github.com/PX4/px4_user_guide/tree/master/assets/airframes/types)
-2. 새 그룹 이름과 이미지 파일 이름간의 관계를 [srcparser.py](https://github.com/PX4/Firmware/blob/master/Tools/px4airframes/srcparser.py)의 `GetImageName()` 메서드에 추가하십시오 (다음 반복 규칙 참조): 
+2. Add a mapping between the new group name and image filename in the [srcparser.py](https://github.com/PX4/PX4-Autopilot/blob/master/Tools/px4airframes/srcparser.py) method `GetImageName()` (follow the pattern below): 
       def GetImageName(self):
            """
            Get parameter group image base name (w/o extension)
@@ -250,7 +252,7 @@ S: 0 3      0  20000 -10000 -10000  10000
   
   플래싱할 **.px4** 펌웨어 파일을 선택하라는 요청을 받습니다(이 파일은 zip으로 압축한 JSON 파일이며, 에어프레임 메타데이터가 들어있습니다).
 
-3. 빌드 폴더를 둘러보고 펌웨어 파일을 선택하십시오(예: **Firmware/build/px4_fmu-v5_default/px4_fmu-v5_default.px4**).
+3. Navigate to the build folder and select the firmware file (e.g. **PX4-Autopilot/build/px4_fmu-v5_default/px4_fmu-v5_default.px4**).
 
 4. **확인**을 눌러 펌웨어 플래싱을 시작하십시오.
 5. *QGroundControl*을 다시 시작하십시오.

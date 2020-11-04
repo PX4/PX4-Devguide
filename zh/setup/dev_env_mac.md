@@ -12,19 +12,30 @@ MacOS 是受支持的 PX4 开发平台。 根据本文的指示构建的开发�
 
 > **Tip** A video tutorial can be found here: [Setting up your PX4 development environment on macOS](https://youtu.be/tMbMGiMs1cQ).
 
-## Preconditions
+## Homebrew Installation
 
-Increase the maximum allowed number of open files on macOS using the *Terminal* command:
+The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
+
+## Enable more open files (Handle "LD: too many open files" error)
+
+The PX4 toolchain requires the usage of the ZSH shell. If you are using the shell, add this line to your shell profile:
+
+Create this file or append it: `~/.zshenv` and add this line:
 
 ```sh
 ulimit -S -n 2048
 ```
 
-> **Note** At time of writing (December 2018) the master branch uses more than the default maximum allowed open files on macOS (256 in all running processes). As a *short term solution*, increasing the number of allowed open files to 300 should fix most problems.
+## Ensuring Python points to Homebrew
 
-## Homebrew Installation
+If not already existing, create the file `~/.zshrc` and add these lines:
 
-The installation of Homebrew is quick and easy: [installation instructions](https://brew.sh).
+```sh
+# Point python to python 3 from Homebrew
+alias python=/usr/local/bin/python3
+# Point pip to python 3 pip
+alias pip=/usr/local/bin/pip3
+```
 
 ## Common Tools
 
@@ -35,13 +46,13 @@ brew tap PX4/px4
 brew install px4-dev
 ```
 
-Make sure you have Python 3 installed.
+Install the required Python packages
 
 ```sh
-brew install python3
-
 # install required packages using pip3
-pip3 install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
+python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
+# if this fails with a permissions error, your Python install is in a system path - use this command instead:
+sudo -H python3 -m pip install --user pyserial empy toml numpy pandas jinja2 pyyaml pyros-genmsg packaging
 ```
 
 ## Gazebo Simulation

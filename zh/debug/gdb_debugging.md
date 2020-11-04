@@ -58,15 +58,15 @@ export HEAP_PROFILE_TIME_INTERVAL=30
 ##### Fedora：
 
 ```bash
-env LD_PRELOAD=/lib64/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
+env LD_PRELOAD=/lib64/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../etc -s etc/init.d-posix/rcS
+pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf 
 ```
 
 ##### Ubuntu：
 
 ```bash
-env LD_PRELOAD=/usr/lib/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../../../ROMFS/px4fmu_common -s etc/init.d-posix/rcS
-google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf
+env LD_PRELOAD=/usr/lib/libtcmalloc.so PX4_SIM_MODEL=iris ../../bin/px4 ../../etc -s etc/init.d-posix/rcS
+google-pprof --pdf ../src/firmware/posix/px4 /tmp/heapprofile.hprof.0001.heap > heap.pdf 
 ```
 
 这会生成一个带堆分配示意图的 Pdf。 图中的数字会一直是0，因为单位是 MB。 可以看百分比。 这显示出（节点及子树的）活动内存，意味着最终内存依然在使用。
@@ -145,13 +145,13 @@ arm-none-eabi-gdb build/px4_fmu-v2_default/px4_fmu-v2_default.elf
 
 Then in the GDB prompt, start with the last instructions in R8, with the first address in flash (recognizable because it starts with `0x080`, the first is `0x0808439f`). The execution is left to right. So one of the last steps before the hard fault was when ```mavlink_log.c``` tried to publish something,
 
-```gdb
+```sh
 (gdb) info line *0x0808439f
 Line 77 of "../src/modules/systemlib/mavlink_log.c" starts at address 0x8084398 <mavlink_vasprintf+36>
    and ends at 0x80843a0 <mavlink_vasprintf+44>.
 ```
 
-```gdb
+```sh
 (gdb) info line *0x08087c4e
 Line 311 of "../src/modules/uORB/uORBDevices_nuttx.cpp"
    starts at address 0x8087c4e <uORB::DeviceNode::publish(orb_metadata const*, void*, void const*)+2>

@@ -20,7 +20,7 @@ The PX4 dev team syncs up on platform technical details and in-depth analysis. T
 
 The first/main part of the meeting runs for 45 minutes and provides a high-level forum to discuss where the project is going.
 
-This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/Firmware/labels/devcall5) label. We expect the proposer and the assigned reviewer to be on the call!
+This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/PX4-Autopilot/labels/devcall5) label. We expect the proposer and the assigned reviewer to be on the call!
 
 > **Note** The main call is designed to support rapid/focused decision making. We don't expect deep technical discussions and we will not spend extended amounts of time on feature requests. Proposals are welcome, but they need a sponsor (someone willing to *implement* the work)!
 
@@ -45,6 +45,6 @@ The second part of the meeting is for in-depth technical discussions and open en
 
 * Agenda is published before the call on [PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)
 
-* To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/Firmware/labels/devcall) label to flag them for discussion.
+* To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/PX4-Autopilot/labels/devcall) label to flag them for discussion.
 
 {% endif %} <!-- END: dev call details: displayed only in master -->

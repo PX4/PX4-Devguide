@@ -10,88 +10,88 @@ ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을
 
 파악한 모든 토픽을 최대 데이터 전송률로 기록해야합니다([로깅](../log/logging.md) 참고). `ekf2`의 경우 이미 토픽 로깅 기본 설정에 반영했습니다.
 
-모든 재현 토픽에는 `timestamp` 필드에 자동으로 입력하는 단일 타임스탬프 절대값이 들어있다는 점이 중요합니다. 타임스탬프 정보가 더 들어가야 하겠지만, 그렇다면 메인 타임스탬프 값에 상대적인 값이 들어가야 합니다. 예제는 [sensor_combined.msg](https://github.com/PX4/Firmware/blob/master/msg/sensor_combined.msg)에 있습니다. 이 경우에 대한 이유는 아래에 설명해드리겠습니다.
+모든 재현 토픽에는 `timestamp` 필드에 자동으로 입력하는 단일 타임스탬프 절대값이 들어있다는 점이 중요합니다. 타임스탬프 정보가 더 들어가야 하겠지만, 그렇다면 메인 타임스탬프 값에 상대적인 값이 들어가야 합니다. For an example, see [sensor_combined.msg](https://github.com/PX4/PX4-Autopilot/blob/master/msg/sensor_combined.msg). 이 경우에 대한 이유는 아래에 설명해드리겠습니다.
 
 ## 사용법
 
-- 우선 재현할 파일을 선택하고, 대상을 빌드하십시오(Firmware 디렉터리에서 처리함): 
+- First, choose the file to replay, and build the target (from within the PX4-Autopilot directory): 
         sh
         export replay=<absolute_path_to_log_file.ulg>
         make px4_sitl_default 별도의 빌드 디렉터리 
     
     `build/px4_sitl_default_replay` 에 출력 내용을 새로 만들어둡니다(그래서 기존 빌드와 매개변수의 값이 뒤섞이지 않음). 재현을 위해 임의의 POSIX SITL 빌드 대상을 선택할 수 있습니다. 빌드 시스템에서는 `replay` 환경 변수를 통해 재현 모드에 들어갔음을 이해합니다.
-- ORB 전송 규칙을 `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules`에 추가하십시오. This file defines which module is allowed to publish which messages. It has the following format:
+- ORB 전송 규칙을 `build/px4_sitl_default_replay/tmp/rootfs/orb_publisher.rules`에 추가하십시오. 이 파일에는 어떤 모듈에서 어떤 메세지를 내보낼지 여부 설정값이 들어있습니다. 파일의 설정 형식은 다음과 같습니다:
     
         restrict_topics: <topic1>, <topic2>, ..., <topicN>
         module: <module>
         ignore_others: <true/false>
         
     
-    It means that the given list of topics should only be published by `<module>` (which is the command name). Publications to any of these topics from another module are silently ignored. If `ignore_others` is `true`, then publications to other topics from `<module>` are ignored.
+    위 기록은 `<module>`(명령 이름)에서 내보낼 여러 토픽을 나타냅니다. 다른 모듈에서 내보내는 토픽은 조용히 무시합니다. `ignore_others` 값을 `true`로 설정하면 다른 `<module>`에서 내보낸 토픽은 무시합니다.
     
-    For replay, we only want the `replay` module to be able to publish the previously identified list of topics. So for replaying `ekf2`, the rules file looks like this:
+    재현을 위해 `replay` 모듈에서 앞서 식별한 토픽 목록을 내보내려합니다. 그러니, `EKF2` 동작을 재현하려면 규칙 파일 내용을 다음과 같이 작성합니다:
     
         restrict_topics: sensor_combined, vehicle_gps_position, vehicle_land_detected
         module: replay
         ignore_others: true
         
     
-    This allows that the modules, which usually publish these topics, don't need to be disabled for replay.
+    이 설정을 통해 replay 모듈에서의 토픽 내보내기를 허용하며, replay를 비활성할 필요는 없습니다.
 
-- Optional: setup parameter overrides in the file `build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt`. This file should contain a list of `<param_name> <value>`, like:
+- 추가: `build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt` 파일에서 매개변수를 설정하면 이 설정을 무시합니다. 이 파일에는 다음과 같이 `<param_name> <value>` 목록이 들어있어야합니다:
     
         EKF2_GB_NOISE 0.001
         
     
-    By default, all parameters from the log file are applied. When a parameter changed during recording, it will be changed as well at the right time during replay. A parameter in the `replay_params.txt` will override the value and changes to it from the log file will not be applied.
+    기본적으로 로그 파일의 모든 매개변수를 반영합니다. 매개변수 값이 기록 중 바뀌면, 재현 과정을 진행하는 동안 해당 시간에 마찬가지로 결과가 바뀝니다. `replay_params.txt`의 매개변수는 기존 설정 값을 대체하며, 로그 파일에서 바꾼 값은 반영하지 않습니다.
 
-- Optional: copy `dataman` missions file from the SD card to the build directory. Only necessary if a mission should be replayed.
-- Start the replay:
+- 추가: `dataman` 임무 파일을 SD 카드에서 빌드 디렉터리로 복사하십시오. 임무를 재현할 경우에만 필요합니다.
+- 재현을 시작합니다:
     
     ```sh
     make px4_sitl_default jmavsim
     ```
     
-    This will automatically open the log file, apply the parameters and start to replay. Once done, it will be reported and the process can be exited. Then the newly generated log file can be analyzed, it has `_replayed` appended to its file name.
+    이 명령은 자동으로 로그 파일을 열고 매개변수 값을 반영한 후 재현을 시작합니다. 이 과정이 끝나면, 해당 결과를 보고하고 프로세스를 끝낼 수 있습니다. 그 다음 새로 만든 로그 파일을 분석할 수 있고, 이 파일 이름에 `_replayed` 문자열이 뒤에 붙습니다.
     
-    Note that the above command will show the simulator as well, but depending on what is being replayed, it will not show what's actually going on. It's possible to connect via QGC and e.g. view the changing attitude during replay.
+    참고로 위 명령은 모의시험 환경에서 역시 마찬가지로 나타나지만, 어떤 항목을 재현하느냐에 따라 실제로 동작하는 부분이 어딘지 나오지 않을 수도 있습니다. QGC로 연결한 다음 재현 진행 동안 비뀌는 자세를 관찰하는 등이 가능합니다.
 
-- Finally, unset the environment variable, so that the normal build targets are used again:
+- 마지막으로 환경 변수 설정을 해제하여 일반 빌드 대상을 다시 활용할 수 있게 합니다:
     
     ```sh
     unset replay
     ```
 
-### Important Notes
+### 중요사항
 
-- During replay, all dropouts in the log file are reported. These have a negative effect on replay and thus it should be taken care that dropouts are avoided during recording.
-- It is currently only possible to replay in 'real-time', meaning as fast as the recording was done. This is planned to be extended in the future.
-- A message that has a timestamp of 0 will be considered invalid and not be replayed.
+- 재현 과정에서 버리는 기록 내용 보고 내용이 나타납니다. 재현 과정에 있어 부정적인 현상이며, 기록을 진행하는 동안 일부 기록을 폐기하는 일이 없도록 주의깊게 살펴보아야 합니다.
+- 현재는 '실시간' 재현만 가능합니다. 한마디로, 기록을 재빠르게 진행한 만큼 재현도 동일한 시간에 진행한다는 의미입니다. 관련 기능은 나중에 좀 더 추가하겠습니다.
+- 타임스탬프가 0으로 찍힌 메세지는 잘못된 메세지로 간주하며 재현 과정에 반영하지 않습니다.
 
 ## EKF2 재현
 
-This is a specialization of the system-wide replay for fast EKF2 replay. It will automatically create the ORB publisher rules and works as following:
+이 절의 내용은 EKF2의 시스템 범위 고속 재현에 해당합니다. ORB 전송 규칙을 자동으로 만들며 다음과 같이 동작합니다:
 
-- Optionally set `SDLOG_MODE` to 1 to start logging from boot
-- Record the log
-- To replay:
+- `SDLOG_MODE`를 별도로 1로 설정하여 부팅할 때 로깅을 시작하도록 함
+- 여러 동작과 상태를 기록
+- 이 과정을 재현하려면:
 
     export replay_mode=ekf2
     export replay=<abs_path_to_log.ulg>
     make px4_sitl none
     
 
-You can stop it after there's an output like:
+다음과 같은 출력 내용이 뜨고 나면 중단할 수 있습니다:
 
     INFO  [replay] Replay done (published 9917 msgs, 2.136 s)
     
 
-The parameters can be adjusted as well. They can be extracted from the log with \(install pyulog with `sudo pip install pyulog` first\):
+매개변수도 마찬가지로 조정할 수 있습니다. 다음 명령으로 로그에서 매개변수 값을 뽑아낼 수 있습니다 \(우선 `sudo pip install pyulog` 명령으로 pyulog를 설치하십시오\):
 
     ulog_params -i "$replay" -d ' ' | grep -e '^EKF2' > build/px4_sitl_default_replay/tmp/rootfs/replay_params.txt
     
 
-Then edit the parameters in the file as needed and restart the replay process with `make px4_sitl none`. This will create a new log file.
+그 다음 원하는대로 파일의 매개변수 값을 편집한 후 `make px4_sitl none` 명령으로 재현 과정을 다시 시작하십시오. 이 과정을 통해 새 로그 파일을 만듭니다.
 
 생성 로그 위치는 다음 메세지처럼 화면에 나타납니다:
 
@@ -100,16 +100,16 @@ Then edit the parameters in the file as needed and restart the replay process wi
 
 과정이 끝난 후 재현 모드를 끝내려면 `unset replay; unset replay_mode` 명령을 내리십시오.
 
-## Behind the Scenes
+## 재현 과정의 이면
 
-Replay is split into 3 components:
+재현 요소는 3부분으로 나뉩니다:
 
-- a replay module
-- ORB publisher rules
-- time handling
+- 재현 모듈
+- ORB 전송 규칙
+- 시간 처리부
 
-The replay module reads the log and publishes the messages with the same speed as they were recorded. A constant offset is added to the timestamp of each message to match the current system time (this is the reason why all other timestamps need to be relative). The command `replay tryapplyparams` is executed before all other modules are loaded and applies the parameters from the log and user-set parameters. Then as the last command, `replay trystart` will again apply the parameters and start the actual replay. Both commands do nothing if the environment variable `replay` is not set.
+replay 모듈은 로그를 읽어 기록한 속도와 동일하게 메시지를 내보냅니다. 오프셋 정수를 각 메시지의 타임스탬프에 추가하여 현재 시스템 시간에 맞춥니다(다른 타임스탬프가 왜 상대적이어야 하는지에 대한 이유입니다). `replay tryapplyparams` 명령은 다른 모듈을 불러와서 로그에서 불러온 매개변수와 사용자 설정 매개변수를 반영하기 전에 실행합니다. 그 다음 `replay trystart` 명령을 마지막 명령으로 처리하며 매개변수를 다시 반영하고 실제 재현을 시작합니다. 환경 변수에 `replay`를 설정하지 않으면 두 명령은 아무 동작도 취하지 않습니다.
 
-The ORB publisher rules allow to select which part of the system is replayed, as described above. They are only compiled for the posix SITL targets.
+ORB 전송 규칙에서는 시스템의 어떤 부분의 동작을 재현할 지 위에서 설명한대로 허용합니다. POSIX SITL 대상만 컴파일합니다.
 
-The **time handling** is still an **open point**, and needs to be implemented.
+**시간 처리**는 아직 **개방 지점**이며, 실제 동작은 구현해야합니다.

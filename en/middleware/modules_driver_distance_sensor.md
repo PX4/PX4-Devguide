@@ -33,6 +33,68 @@ leddar_one <command> [arguments...]
 
    stop          Stop driver
 ```
+## lightware_laser_i2c
+Source: [drivers/distance_sensor/lightware_laser_i2c](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/lightware_laser_i2c)
+
+
+### Description
+
+I2C bus driver for Lightware SFxx series LIDAR rangefinders: SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20.
+
+Setup/usage information: https://docs.px4.io/master/en/sensor/sfxx_lidar.html
+
+### Usage {#lightware_laser_i2c_usage}
+```
+lightware_laser_i2c <command> [arguments...]
+ Commands:
+   start
+     [-I]        Internal I2C bus(es)
+     [-X]        External I2C bus(es)
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
+                 (default=1))
+     [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
+     [-R <val>]  Sensor rotation - downward facing by default
+                 default: 25
+
+   stop
+
+   status        print status info
+```
+## lightware_laser_serial
+Source: [drivers/distance_sensor/lightware_laser_serial](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/lightware_laser_serial)
+
+
+### Description
+
+Serial bus driver for the LightWare SF02/F, SF10/a, SF10/b, SF10/c, SF11/c Laser rangefinders.
+
+Most boards are configured to enable/start the driver on a specified UART using the SENS_SF0X_CFG parameter.
+
+Setup/usage information: https://docs.px4.io/master/en/sensor/sfxx_lidar.html
+
+### Examples
+
+Attempt to start driver on a specified serial device.
+```
+lightware_laser_serial start -d /dev/ttyS1
+```
+Stop driver
+```
+lightware_laser_serial stop
+```
+
+### Usage {#lightware_laser_serial_usage}
+```
+lightware_laser_serial <command> [arguments...]
+ Commands:
+   start         Start driver
+     -d <val>    Serial device
+     [-R <val>]  Sensor rotation - downward facing by default
+                 default: 25
+
+   stop          Stop driver
+```
 ## ll40ls
 Source: [drivers/distance_sensor/ll40ls](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ll40ls)
 
@@ -52,11 +114,12 @@ ll40ls <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
-     [-R <val>]  Rotation
-                 default: 0
+     [-q]        quiet startup (no message if no device found)
+     [-R <val>]  Sensor rotation - downward facing by default
+                 default: 25
 
    regdump
 
@@ -74,9 +137,10 @@ mappydot <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
 
    stop
 
@@ -92,9 +156,10 @@ mb12xx <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-a <val>]  I2C address
                  default: 112
 
@@ -133,67 +198,6 @@ pga460 <command> [arguments...]
 
    help
 ```
-## sf0x
-Source: [drivers/distance_sensor/sf0x](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf0x)
-
-
-### Description
-
-Serial bus driver for the LightWare SF02/F, SF10/a, SF10/b, SF10/c, SF11/c Laser rangefinders.
-
-Most boards are configured to enable/start the driver on a specified UART using the SENS_SF0X_CFG parameter.
-
-Setup/usage information: https://docs.px4.io/master/en/sensor/sfxx_lidar.html
-
-### Examples
-
-Attempt to start driver on a specified serial device.
-```
-sf0x start -d /dev/ttyS1
-```
-Stop driver
-```
-sf0x stop
-```
-
-### Usage {#sf0x_usage}
-```
-sf0x <command> [arguments...]
- Commands:
-   start         Start driver
-     -d <val>    Serial device
-     [-R <val>]  Sensor rotation - downward facing by default
-                 default: 25
-
-   stop          Stop driver
-```
-## sf1xx
-Source: [drivers/distance_sensor/sf1xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/sf1xx)
-
-
-### Description
-
-I2C bus driver for Lightware SFxx series LIDAR rangefinders: SF10/a, SF10/b, SF10/c, SF11/c, SF/LW20.
-
-Setup/usage information: https://docs.px4.io/master/en/sensor/sfxx_lidar.html
-
-### Usage {#sf1xx_usage}
-```
-sf1xx <command> [arguments...]
- Commands:
-   start
-     [-I]        Internal I2C bus(es)
-     [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
-                 (default=1))
-     [-f <val>]  bus frequency in kHz
-     [-R <val>]  Sensor rotation - downward facing by default
-                 default: 25
-
-   stop
-
-   status        print status info
-```
 ## srf02
 Source: [drivers/distance_sensor/srf02](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/srf02)
 
@@ -204,9 +208,10 @@ srf02 <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Sensor rotation - downward facing by default
                  default: 25
 
@@ -233,9 +238,10 @@ teraranger <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Sensor rotation - downward facing by default
                  default: 25
 
@@ -326,9 +332,31 @@ vl53l0x <command> [arguments...]
    start
      [-I]        Internal I2C bus(es)
      [-X]        External I2C bus(es)
-     [-b <val>]  bus (board-specific internal (default=all) or n-th external
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                  (default=1))
      [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
+     [-R <val>]  Sensor rotation - downward facing by default
+                 default: 25
+
+   stop
+
+   status        print status info
+```
+## vl53l1x
+Source: [drivers/distance_sensor/vl53l1x](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/vl53l1x)
+
+### Usage {#vl53l1x_usage}
+```
+vl53l1x <command> [arguments...]
+ Commands:
+   start
+     [-I]        Internal I2C bus(es)
+     [-X]        External I2C bus(es)
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
+                 (default=1))
+     [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Sensor rotation - downward facing by default
                  default: 25
 

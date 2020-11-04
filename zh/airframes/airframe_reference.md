@@ -644,6 +644,11 @@
  <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 4016</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
 
 </tr>
+<tr id="copter_quadrotor_x_nxp_hovergames">
+ <td style="vertical-align: top;">NXP HoverGames</td>
+ <td style="vertical-align: top;"><p>Maintainer: Iain Galloway <iain.galloway@nxp.com></p><p><code>SYS_AUTOSTART</code> = 4017</p><p><b>Specific Outputs:</b><ul><li><b>MAIN1</b>: motor 1</li><li><b>MAIN2</b>: motor 2</li><li><b>MAIN3</b>: motor 3</li><li><b>MAIN4</b>: motor 4</li></ul></p></td>
+
+</tr>
 <tr id="copter_quadrotor_x_hobbyking_micro_pcb">
  <td style="vertical-align: top;">Hobbyking Micro PCB</td>
  <td style="vertical-align: top;"><p>Maintainer: Thomas Gubler <thomas@px4.io></p><p><code>SYS_AUTOSTART</code> = 4020</p></td>
@@ -1148,6 +1153,40 @@
 </tr>
 </table>
 
+### Vectored 6 DOF UUV
+
+<div>
+  <img src="../../assets/airframes/types/AirframeUnknown.svg" width="29%" style="max-height: 180px;" /> 
+  
+  <table style="float: right; width: 70%; font-size:1.5rem;">
+    <colgroup><col></colgroup> <tr>
+      <th>
+        Common Outputs
+      </th>
+    </tr>
+<tr>
+ <td style="vertical-align: top;"><ul><li><b>MAIN1</b>: motor 1 CCW, bow starboard horizontal, , propeller CCW</li><li><b>MAIN2</b>: motor 2 CCW, bow port horizontal, propeller CCW</li><li><b>MAIN3</b>: motor 3 CCW, stern starboard horizontal, propeller CW</li><li><b>MAIN4</b>: motor 4 CCW, stern port horizontal, propeller CW</li><li><b>MAIN5</b>: motor 5 CCW, bow starboard vertical, propeller CCW</li><li><b>MAIN6</b>: motor 6 CCW, bow port vertical, propeller CW</li><li><b>MAIN7</b>: motor 7 CCW, stern starboard vertical, propeller CW</li><li><b>MAIN8</b>: motor 8 CCW, stern port vertical, propeller CCW</li></ul></td>
+</tr>
+  </table>
+</div>
+
+<table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
+  <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
+    <th>
+      名称
+    </th>
+    
+    <th>
+    </th>
+  </tr>
+<tbody>
+<tr id="underwater_robot_vectored_6_dof_uuv_bluerov2_(heavy_configuration)">
+ <td style="vertical-align: top;">BlueROV2 (Heavy Configuration)</td>
+ <td style="vertical-align: top;"><p>Maintainer: Thies Lennart Alff <thies.lennart.alff@tuhh.de></p><p><code>SYS_AUTOSTART</code> = 60002</p></td>
+
+</tr>
+</tbody></table>
+
 ## VTOL
 
 ### Standard VTOL
@@ -1159,7 +1198,7 @@
 <table style="width: 100%; table-layout:fixed; font-size:1.5rem;">
   <colgroup><col style="width: 30%"><col style="width: 70%"></colgroup> <tr>
     <th>
-      名称
+      Name
     </th>
     
     <th>
@@ -1279,7 +1318,7 @@
 <tbody>
 <tr id="vtol_vtol_octoplane_generic_octoplane_vtol">
  <td style="vertical-align: top;">Generic Octoplane VTOL</td>
- <td style="vertical-align: top;"><p><code>SYS_AUTOSTART</code> = 13050</p></td>
+ <td style="vertical-align: top;"><p>Maintainer: John Doe <john@example.com></p><p><code>SYS_AUTOSTART</code> = 13050</p></td>
 
 </tr>
 </tbody></table>

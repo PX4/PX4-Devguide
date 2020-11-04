@@ -1,6 +1,6 @@
 # PX4 개발 안내서 ({{ book.px4_version }})
 
-[![릴리즈](https://img.shields.io/badge/release-{{ book.px4_version }}-blue.svg)](https://github.com/PX4/Firmware/releases) [![토의](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![슬랙](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
+[![릴리즈](https://img.shields.io/badge/release-{{ book.px4_version }}-blue.svg)](https://github.com/PX4/PX4-Autopilot/releases) [![토의](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![슬랙](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
 > **정보** 이 안내서는 초보 프로그램 개발자와 (새) 하드웨어 통합 작업자를 대상으로 합니다. 지원하는 하드웨어로 비행체를 날리고 구성하고 뜯어 고쳐보려면 [PX4 사용자 안내서](https://docs.px4.io/master/en/)를 확인하십시오.
 
@@ -10,7 +10,7 @@
 * [PX4 시스템 구조](concept/architecture.md)와 다른 핵심 개념을 이해합니다.
 * 플라이트 스택과 미들웨어 수정 방법을 배웁니다: 
   * 비행 알고리즘 수정 및 새 [비행 상태](concept/flight_modes.md) 추가.
-  * 새 [airframes](airframes/README.md)을 지원합니다.
+  * 새 [에어프레임](airframes/README.md)을 지원합니다.
 * PX4에 새 하드웨어를 붙이는 방법을 배웁니다: 
   * 카메라, 범위 검색 센서 등과 같은 새 센서, 액츄에이터를 지원합니다.
   * PX4를 수정하여 새 오토파일럿 하드웨어에서 구동합니다.

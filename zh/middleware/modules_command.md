@@ -2,7 +2,7 @@
 
 ## bl_update
 
-源码： [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
+Source: [systemcmds/bl_update](https://github.com/PX4/Firmware/tree/master/src/systemcmds/bl_update)
 
 用于从文件中刷新飞行控制器的 引导加载程序（bootloader ）
 
@@ -72,6 +72,36 @@ Calibration procedure (running the command will guide you through it):
                      1=first)
          [-m <val>]  Select channels via bitmask (eg. 0xF, 3)
          [-a]        Select all channels
+    
+
+## failure
+
+Source: [systemcmds/failure](https://github.com/PX4/Firmware/tree/master/src/systemcmds/failure)
+
+### Description
+
+Inject failures into system.
+
+### Implementation
+
+This system command sends a vehicle command over uORB to trigger failure.
+
+### Examples
+
+Test the GPS failsafe by stopping GPS:
+
+failure gps off
+
+### Usage {#failure_usage}
+
+    failure [arguments...]
+       help          Show this help text
+    
+       gps|...       Specify component
+    
+       ok|off|...    Specify failure type
+         [-i <val>]  sensor instance (0=all)
+                     default: 0
     
 
 ## gpio
@@ -277,7 +307,7 @@ WARNING: remove all props before using this command.
     motor_test <command> [arguments...]
      Commands:
        test          Set motor(s) to a specific output value
-         [-m <val>]  Motor to test (0...7, all if not specified)
+         [-m <val>]  Motor to test (1...8, all if not specified)
          [-p <val>]  Power (0...100)
                      default: 0
          [-t <val>]  Timeout in seconds (default=no timeout)
@@ -309,6 +339,12 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
        rwtest        Perform read-write test
     
        erase         Erase partition(s)
+    
+       has-secondary Check if the board has configured a secondary device
+    
+     The commands 'start', 'readtest' and 'rwtest' have an optional instance index:
+         [-i <val>]  storage index (if the board has multiple storages)
+                     default: 0
     
      The commands 'start', 'readtest', 'rwtest' and 'erase' have an optional
      parameter:
@@ -377,6 +413,8 @@ Change the airframe and make sure the airframe's default parameters are loaded:
          [-q]        quiet mode, print only param value (name needs to be exact)
          [<filter>]  Filter by param name (wildcard at end allowed, eg. sys_*)
     
+       show-for-airframe Show changed params for airframe config
+    
        status        Print status of parameter system
     
        set           Set parameter to a value
@@ -396,12 +434,10 @@ Change the airframe and make sure the airframe's default parameters are loaded:
        touch         Mark a parameter as used
          [<param_name1> [<param_name2>]] Parameter name (one or more)
     
-       reset         Reset params to default
-         [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
-                     allowed)
+       reset         Reset only specified params to default
+         [<param1> [<param2>]] Parameter names to reset (wildcard at end allowed)
     
-       reset_nostart Reset params to default, but keep SYS_AUTOSTART and
-                     SYS_AUTOCONFIG
+       reset_all     Reset all params to default
          [<exclude1> [<exclude2>]] Do not reset matching params (wildcard at end
                      allowed)
     
@@ -550,6 +586,31 @@ Test the speed of an SD Card
          [-d <val>]  Duration of a run in ms
                      default: 2000
          [-s]        Call fsync after each block (default=at end of each run)
+    
+
+## system_time
+
+Source: [systemcmds/system_time](https://github.com/PX4/Firmware/tree/master/src/systemcmds/system_time)
+
+### Description
+
+Command-line tool to set and get system time.
+
+### Examples
+
+Set the system time and read it back
+
+    system_time set 1600775044
+    system_time get
+    
+
+### Usage {#system_time_usage}
+
+    system_time <command> [arguments...]
+     Commands:
+       set           Set the system time, provide time in unix epoch time format
+    
+       get           Get the system time
     
 
 ## top

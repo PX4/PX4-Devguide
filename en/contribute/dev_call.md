@@ -22,7 +22,7 @@ There is also space in the agenda to discuss pull requests, major impacting issu
 
 The first/main part of the meeting runs for 45 minutes and provides a high-level forum to discuss where the project is going. 
 
-This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/Firmware/labels/devcall5) label.
+This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/PX4-Autopilot/labels/devcall5) label.
 We expect the proposer and the assigned reviewer to be on the call!
 
 > **Note** The main call is designed to support rapid/focused decision making.
@@ -49,6 +49,6 @@ The core team/subsystem maintainers will be available for up to 45 additional mi
   * [**International numbers available**](https://zoom.us/zoomconference)
 
 * Agenda is published before the call on [PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)
-* To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/Firmware/labels/devcall) label to flag them for discussion.
+* To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/PX4-Autopilot/labels/devcall) label to flag them for discussion.
 
 {% endif %} <!-- END: dev call details: displayed only in master -->

@@ -4,8 +4,8 @@
 
 此页记录系统中各种组件的许可证。
 
-* [PX4 飞行栈](https://github.com/PX4/Firmware) &mdash; BSD
-* [PX4 中间件](https://github.com/PX4/Firmware) &mdash; BSD
+* [PX4 Flight Stack](https://github.com/PX4/PX4-Autopilot) &mdash; BSD
+* [PX4 Middleware](https://github.com/PX4/PX4-Autopilot) &mdash; BSD
 * [Pixhawk 硬件](https://github.com/PX4/Hardware) &mdash; CC-BY-SA 3.0
 * 骁龙硬件 &mdash; 高通专有
 * 文档 

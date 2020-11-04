@@ -1,28 +1,52 @@
-# Modules Reference: Driver
+# 모듈 참고: 드라이버
 
-Subcategories:
+하위 분류:
 
-- [Imu](modules_driver_imu.md)
+- [관성 센서](modules_driver_imu.md)
 - [Distance Sensor](modules_driver_distance_sensor.md)
 - [Airspeed Sensor](modules_driver_airspeed_sensor.md)
 - [Baro](modules_driver_baro.md)
+- [Optical Flow](modules_driver_optical_flow.md)
 - [Magnetometer](modules_driver_magnetometer.md)
 
 ## adc
 
-Source: [drivers/adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc)
+Source: [drivers/adc/board_adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc/board_adc)
 
-### Description
+### 설명
 
-ADC driver.
+ADC 드라이버입니다.
 
-### Usage {#adc_usage}
+### 사용법 {#adc_usage}
 
     adc <command> [arguments...]
      Commands:
        start
     
        test
+    
+       stop
+    
+       status        print status info
+    
+
+## ads1115
+
+Source: [drivers/adc/ads1115](https://github.com/PX4/Firmware/tree/master/src/drivers/adc/ads1115)
+
+### Usage {#ads1115_usage}
+
+    ads1115 <command> [arguments...]
+     Commands:
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
+         [-a <val>]  I2C address
+                     default: 72
     
        stop
     
@@ -46,12 +70,13 @@ It can be enabled with the OSD_ATXXXX_CFG parameter.
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
          [-m <val>]  SPI mode
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
     
        stop
     
@@ -80,9 +105,10 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 11
     
@@ -119,9 +145,10 @@ Source: [drivers/lights/blinkm](https://github.com/PX4/Firmware/tree/master/src/
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 9
     
@@ -151,9 +178,10 @@ Source: [drivers/telemetry/bst](https://github.com/PX4/Firmware/tree/master/src/
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 118
     
@@ -173,8 +201,8 @@ This is the DShot output driver. It is similar to the fmu driver, and can be use
 It supports:
 
 - DShot150, DShot300, DShot600, DShot1200
-- telemetry via separate UART and publishing as esc_status message
-- sending DShot commands via CLI
+- 별도의 UART를 통한 텔레메트리 통신, esc_status 메세지 전송
+- CLI로의 DShot 명령 전송
 
 ### Examples
 
@@ -258,6 +286,23 @@ After saving, the reversed direction will be regarded as the normal one. So to r
     
        esc_info      Request ESC information
          -m <val>    Motor index (1-based)
+    
+       stop
+    
+       status        print status info
+    
+
+## fake_gyro
+
+Source: [examples/fake_gyro](https://github.com/PX4/Firmware/tree/master/src/examples/fake_gyro)
+
+### Description
+
+### Usage {#fake_gyro_usage}
+
+    fake_gyro <command> [arguments...]
+     Commands:
+       start
     
        stop
     
@@ -364,9 +409,10 @@ If the INA226 module is not powered, then by default, initialization of the driv
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 65
          [-k]        if initialization (probing) fails, keep retrying periodically
@@ -389,9 +435,10 @@ Source: [drivers/irlock](https://github.com/PX4/Firmware/tree/master/src/drivers
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 84
     
@@ -411,12 +458,13 @@ Source: [drivers/magnetometer/lsm303agr](https://github.com/PX4/Firmware/tree/ma
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
          [-m <val>]  SPI mode
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Rotation
                      default: 0
     
@@ -436,12 +484,13 @@ Source: [drivers/optical_flow/paw3902](https://github.com/PX4/Firmware/tree/mast
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
          [-m <val>]  SPI mode
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Rotation
                      default: 0
     
@@ -461,9 +510,10 @@ Source: [drivers/pca9685](https://github.com/PX4/Firmware/tree/master/src/driver
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
     
        reset
     
@@ -495,7 +545,7 @@ It is typically started with:
     pca9685_pwm_out start -a 64 -b 1
     
 
-Use the `mixer` command to load mixer files. `mixer load /dev/pca9685 ROMFS/px4fmu_common/mixers/quad_x.main.mix`
+Use the `mixer` command to load mixer files. `mixer load /dev/pwm_outputX etc/mixers/quad_x.main.mix` The number X can be acquired by executing `pca9685_pwm_out status` when this driver is running.
 
 ### Usage {#pca9685_pwm_out_usage}
 
@@ -523,9 +573,10 @@ Source: [drivers/rpm/pcf8583](https://github.com/PX4/Firmware/tree/master/src/dr
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
     
        stop
     
@@ -543,12 +594,13 @@ Source: [drivers/optical_flow/pmw3901](https://github.com/PX4/Firmware/tree/mast
        start
          [-s]        Internal SPI bus(es)
          [-S]        External SPI bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-c <val>]  chip-select index (for external SPI)
                      default: 1
          [-m <val>]  SPI mode
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Rotation
                      default: 0
     
@@ -683,9 +735,10 @@ Source: [drivers/optical_flow/px4flow](https://github.com/PX4/Firmware/tree/mast
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 66
          [-R <val>]  Rotation (default=downwards)
@@ -709,7 +762,7 @@ This module does the RC input parsing and auto-selecting the method. Supported m
 - DSM
 - SUMD
 - ST24
-- TBS Crossfire (CRSF)
+- TBS 크로스파이어 (CRSF)
 
 ### Usage {#rc_input_usage}
 
@@ -737,9 +790,10 @@ Source: [drivers/lights/rgbled_ncp5623c](https://github.com/PX4/Firmware/tree/ma
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-a <val>]  I2C address
                      default: 57
     
@@ -756,8 +810,8 @@ Source: [drivers/roboclaw](https://github.com/PX4/Firmware/tree/master/src/drive
 
 This driver communicates over UART with the [Roboclaw motor driver](http://downloads.basicmicro.com/docs/roboclaw_user_manual.pdf). It performs two tasks:
 
-- Control the motors based on the `actuator_controls_0` UOrb topic.
-- Read the wheel encoders and publish the raw data in the `wheel_encoders` UOrb topic
+- `actuator_controls_0` uORB 토픽을 기반으로 모터를 제어합니다.
+- 바퀴 인코더를 읽고 `wheel_encoders` uORB 토픽에 생짜 데이터를 내보냅니다
 
 In order to use this driver, the Roboclaw should be put into Packet Serial mode (see the linked documentation), and your flight controller's UART port should be connected to the Roboclaw as shown in the documentation. For Pixhawk 4, use the `UART & I2C B` port, which corresponds to `/dev/ttyS3`.
 
@@ -765,8 +819,8 @@ In order to use this driver, the Roboclaw should be put into Packet Serial mode 
 
 The main loop of this module (Located in `RoboClaw.cpp::task_main()`) performs 2 tasks:
 
-1. Write `actuator_controls_0` messages to the Roboclaw as they become available
-2. Read encoder data from the Roboclaw at a constant, fixed rate.
+1. Roboclaw가 가동중인 경우 `actuator_controls_0` 메세지를 기록합니다
+2. Roboclaw의 인코더 데이터를 주기적으로 읽습니다.
 
 Because of the latency of UART, this driver does not write every single `actuator_controls_0` message to the Roboclaw immediately. Instead, it is rate limited based on the parameter `RBCLW_WRITE_PER`.
 
@@ -838,6 +892,25 @@ The module is typically started with: tap_esc start -d /dev/ttyS2 -n <1-8>
                      default: 4
     
 
+## tone_alarm
+
+Source: [drivers/tone_alarm](https://github.com/PX4/Firmware/tree/master/src/drivers/tone_alarm)
+
+### Description
+
+This module is responsible for the tone alarm.
+
+### Usage {#tone_alarm_usage}
+
+    tone_alarm <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## vmount
 
 Source: [modules/vmount](https://github.com/PX4/Firmware/tree/master/src/modules/vmount)
@@ -885,11 +958,13 @@ Source: [drivers/power_monitor/voxlpm](https://github.com/PX4/Firmware/tree/mast
        start
          [-I]        Internal I2C bus(es)
          [-X]        External I2C bus(es)
-         [-b <val>]  bus (board-specific internal (default=all) or n-th external
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
                      (default=1))
          [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-T <val>]  Type
-                     values: VBATT|P5VDC, default: VBATT
+                     values: VBATT|P5VDC|P12VDC, default: VBATT
+         [-k]        if initialization (probing) fails, keep retrying periodically
     
        stop
     

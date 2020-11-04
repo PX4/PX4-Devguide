@@ -10,7 +10,7 @@ uORB는 많은 어플리케이션이 의존하고 있기 때문에 부트업시�
 
 ## 새로운 토픽 추가하기
 
-새로운 uORB 토픽은 메인 PX4 펌웨어 저장소나 독립 브랜치의 메시지 정의에 추가하여 사용할 수 있습니다. 독립적인 브랜치에 uORB 메시지 정의에 추가하는 것은 [이 섹션](../advanced/out_of_tree_modules.md#uorb_message_definitions)을 참고하세요.
+New uORB topics can be added either within the main PX4/PX4-Autopilot repository, or can be added in an out-of-tree message definitions. 독립적인 브랜치에 uORB 메시지 정의에 추가하는 것은 [이 섹션](../advanced/out_of_tree_modules.md#uorb_message_definitions)을 참고하세요.
 
 새로운 토픽을 만들기 위해서는 `msg/` 디렉토리에 **.msg** 파일을 만들고 `msg/CMakeLists.txt` 리스트에 추가해야합니다. 필요한 C/C++ 코드는 자동적으로 생성됩니다.
 
@@ -82,11 +82,11 @@ range_m_s2: 78
 scaling: 0
 ```
 
-> **Tip** NuttX기반의 시스템(Pixhawk, Pixracer 등)는 `listener`를 *QGroundControl* MAVLink Console 에서 센서나 다른 토픽들을 검사하기 위해 호출할 수 있습니다. 이 방법은 QGC가 무선으로 연결되어 있을 때 (예. 비행 중 일때)에도 사용할 수 있기 때문에 강력한 디버깅 툴입니다. 더 많은 정보는 [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md)를 참고하세요.
+> **Tip** NuttX기반의 시스템(Pixhawk, Pixracer 등)에서는 *QGroundControl* MAVLink 콘솔에서 센서 값과 다른 토픽들을 검사하려 `listener` 명령을 호출할 수 있습니다. 이 방법은 QGC가 무선으로 연결되어 있을 때 (예. 비행 중 일때)에도 사용할 수 있기 때문에 강력한 디버깅 툴입니다. 더 많은 정보는 [Sensor/Topic Debugging](../debug/sensor_uorb_topic_debugging.md)를 참고하세요.
 
 ### uorb top Command
 
-`uorb top` 명령어는 각 토픽들의 퍼블리시 주기를 리얼타임으로 보여줍니다.
+`uorb top` 명령어는 각 토픽의 전송 주기를 실시간으로 보여줍니다.
 
 ```sh
 update: 1s, num topics: 77
@@ -106,22 +106,22 @@ sensor_baro                          0    1   42     0 1
 sensor_combined                      0    6  242   636 1
 ```
 
-컬럼들: 토픽 이름, 다중-인스턴스 인덱스, 구독자 수, 퍼블리시 주기(Hz), 초당 잃어버리는 메시지 수 (모든 구독자수를 대상으로), 큐 크기.
+각 컬럼의 내용은 토픽 이름, 다중 인스턴스 색인 번호, 지속 수신자 수, Hz 단위 송신 빈도, 초당 손실 메세지 수(모든 지속 수신자 통합), 큐 용량입니다.
 
-## 멀티-인스턴스
+## 다중 인스턴스
 
-uORB는 `orb_advertise_multi`를 통해 동일한 토픽에 대해 독립적인 여러개의 인스턴스를 퍼블리시 하는 메커니즘을 갖고 있습니다. 이 메커니즘은 퍼블리셔에게 인스턴스의 인덱스를 돌려줍니다. 그러면 Sub은 `orb_subscribe_multi`을 사용하여 어떤 인스턴스를 구독할지 선택해야만 합니다(`orb_subscribe`는 첫번째 인스턴스 구독하기). 다수의 인스턴스를 가지는 것은 동일한 타입의 센서를 여러개 가진 시스템에서 유용합니다.
+uORB는 `orb_advertise_multi`로 동일 토픽의 다중 독립 인스턴스를 내보내는 매커니즘을 제공합니다. 이 메커니즘은 송신자에게 인스턴스의 색인 번호를 반환합니다. 그러면 지속 수신자는 `orb_subscribe_multi`로 (`orb_instance`는 처음 인스턴스를 지속 수신) 어떤 인스턴스의 메세지를 지속적으로 수신할 지 선택합니다. 다중 인스턴스 보유는 시스템에 동일한 형식의 센서 여러개가 있을 때 도움이 될 수 있습니다.
 
-같은 토픽에 대해 `orb_advertise_multi`과 `orb_advertise`가 섞이지 않도록 유의하세요.
+같은 토픽에서 `orb_advertise_multi`과 `orb_advertise`가 섞이지 않도록 유의하십시오.
 
-API문서는 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/Firmware/blob/master/src/modules/uORB/uORBManager.hpp)참고하세요.
+The full API is documented in [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/uORB/uORBManager.hpp).
 
-## Message/Field Deprecation {#deprecation}
+## 메세지/필드 지원 중단(deprecation) 처리 {#deprecation}
 
-As there are external tools using uORB messages from log files, such as [Flight Review](https://github.com/PX4/flight_review), certain aspects need to be considered when updating existing messages:
+uORB 메세지를 로그 파일에서 추출해보는 외부 도구, 예를 들면 [Flight Review](https://github.com/PX4/flight_review)에서는 기존 메세지를 업데이트할 때 고려해야할 몇가지 양상이 있습니다:
 
-- Changing existing fields or messages that external tools rely on is generally acceptable if there are good reasons for the update. In particular for breaking changes to *Flight Review*, *Flight Review* must be updated before code is merged to `master`.
-- In order for external tools to reliably distinguish between two message versions, the following steps must be followed: 
-  - Removed or renamed messages must be added to the `deprecated_msgs` list in [msg/CMakeLists.txt](https://github.com/PX4/Firmware/blob/master/msg/CMakeLists.txt#L157) and the **.msg** file needs to be deleted.
-  - Removed or renamed fields must be commented and marked as deprecated. For example `uint8 quat_reset_counter` would become `# DEPRECATED: uint8 quat_reset_counter`. This is to ensure that removed fields (or messages) are not re-added in future.
-  - In case of a semantic change (e.g. the unit changes from degrees to radians), the field must be renamed as well and the previous one marked as deprecated as above.
+- 업데이트상 타당한 이유가 있을 경우에는 기존 필드와 외부 도구에 의존하는 메세지를 바꾸는게 일반적으로 통용됩니다. 특히 *Flight Review*에서 바뀐 내용을 깼을 경우, `master`에 코드를 병합하기 전에 *Flight Review*를 업데이트해야합니다.
+- 외부 도구로 두 메세지 버전간 구분을 확실히 하려면 다음 과정을 따라야합니다: 
+  - Removed or renamed messages must be added to the `deprecated_msgs` list in [msg/CMakeLists.txt](https://github.com/PX4/PX4-Autopilot/blob/master/msg/CMakeLists.txt#L157) and the **.msg** file needs to be deleted.
+  - 제거했거나 삭제한 필드는 주석처리하고 지원 중단(deprecated) 표시합니다. 예를 들면 `uint8 quat_reset_counter`는 `# DEPRECATED: uint8 quat_reset_counter`로 바꿉니다. 이렇게 하면 앞으로 제거한 필드(또는 메세지)를 다시 추가하면 안되겠구나 하고 확인할 수 있습니다.
+  - 문맥적으로 바뀌었을 경우(예: 도에서 라디안으로 각 단위가 바뀌었을 때), 해당 필드 역시 이름을 바꾸고 앞서 활용한 필드는 위에서와 같이 지원 중단(deprecated) 표시합니다.

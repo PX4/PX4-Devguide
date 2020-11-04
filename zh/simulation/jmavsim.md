@@ -215,4 +215,4 @@ and comment out the line indicated below:
     #assistive_technologies=org.GNOME.Acessibility.AtkWrapper
     
 
-For more info check [this GitHub issue](https://github.com/PX4/Firmware/issues/9557). The fix was found in [askubuntu.com](https://askubuntu.com/questions/695560).
+For more info check [this GitHub issue](https://github.com/PX4/PX4-Autopilot/issues/9557). The fix was found in [askubuntu.com](https://askubuntu.com/questions/695560).

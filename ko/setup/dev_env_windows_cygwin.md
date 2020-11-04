@@ -18,7 +18,7 @@
 2. 실행하고, 원하는 위치를 선택한 후, 진행하십시오:![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
 3. 설치 과정 마지막에서 *clone the PX4 repository, build and run simulation with jMAVSim*의 확인 상자에 표시하십시오(이 동작은 시작할 때 과정을 단순화합니다).
     
-    > **Note** 이 단계를 놓쳤다면 [PX4 펌웨어 저장소를 직접 가져와야합니다](#getting_started).
+    > **Note** If you missed this step you will need to [clone the PX4-Autopilot repository manually](#getting_started).
 
 ## 시작하기 {#getting_started}
 
@@ -26,22 +26,22 @@
 
 1. 툴체인 설치 디렉터리를 탐색하십시오 (기본 위치 **C:\PX4**)
 2. **run-console.bat** 을 실행(두번 누르기)하여 Cygwin 배시 콘솔을 실행하십시오
-3. PX4 펌웨어 저장소를 콘솔에서 가져(clone)오십시오:
+3. Clone the PX4 PX4-Autopilot repository from within the console:
     
     > **Note** 가져오는 동작은 한번이면 됩니다! *clone the PX4 repository, build and run simulation with jMAVSim* 옵션을 설치 관리자에서 표시했다면 이 과정을 건너뛰십시오.
     
     ```bash
-    # Clone PX4 Firmware repository into the home folder & loads submodules in parallel
-    git clone --recursive -j8 https://github.com/PX4/Firmware.git
+    # Clone the PX4-Autopilot repository into the home folder & loads submodules in parallel
+    git clone --recursive -j8 https://github.com/PX4/PX4-Autopilot.git
     ```
     
-    이제 PX4를 빌드할 콘솔과 펌웨어 저장소를 활용할 수 있습니다.
+    You can now use the console/PX4-Autopilot repository to build PX4.
 
 4. 예를 들어 jMAVSim을 실행하려면:
     
     ```bash
-    # Navigate to Firmware repo
-    cd Firmware
+    # Navigate to PX4-Autopilot repo
+    cd PX4-Autopilot
     # Build and runs SITL simulation with jMAVSim to test the setup
     make px4_sitl jmavsim
     ```

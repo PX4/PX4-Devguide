@@ -37,10 +37,10 @@ Additional installation instructions can be found on [gazebosim.org](http://gaze
 
 Run a simulation by starting PX4 SITL and gazebo with the airframe configuration to load (multicopters, planes, VTOL, optical flow and multi-vehicle simulations are supported).
 
-The easiest way to do this is to open a terminal in the root directory of the PX4 *Firmware* repository and call `make` for the desired target.
+The easiest way to do this is to open a terminal in the root directory of the PX4 *PX4-Autopilot* repository and call `make` for the desired target.
 For example, to start a quadrotor simulation (the default):
 ```sh
-cd /path/to/Firmware
+cd /path/to/PX4-Autopilot
 make px4_sitl gazebo
 ```
 
@@ -61,6 +61,7 @@ Vehicle | Command
 [Ackerman vehicle (UGV/Rover)](../simulation/gazebo_vehicles.md#ugv) | `make px4_sitl gazebo_rover`
 [HippoCampus TUHH (UUV: Unmanned Underwater Vehicle)](../simulation/gazebo_vehicles.md#uuv) | `make px4_sitl gazebo_uuv_hippocampus`
 [Boat (USV: Unmanned Surface Vehicle)](../simulation/gazebo_vehicles.md#usv) | `make px4_sitl gazebo_boat`
+[Cloudship (Airship)](../simulation/gazebo_vehicles.md#airship) | `make px4_sitl gazebo_cloudship`
 
 
 > **Note** The [Installing Files and Code](../setup/dev_env.md) guide is a useful reference if there are build errors.
@@ -284,7 +285,7 @@ The camera also supports video streaming.
 It can be used to test camera capture, in particular within survey missions.
 
 The camera emits the [CAMERA_IMAGE_CAPTURED](https://mavlink.io/en/messages/common.html#CAMERA_IMAGE_CAPTURED) message every time an image is captured.
-The captured images are saved to: **Firmware/build/px4_sitle_default/tmp/frames/DSC_n_.jpg** (where _n_ starts as 00000 and is iterated by one on each capture).
+The captured images are saved to: **PX4-Autopilot/build/px4_sitle_default/tmp/frames/DSC_n_.jpg** (where _n_ starts as 00000 and is iterated by one on each capture).
 
 To simulate a plane with this camera:
 ```
@@ -366,6 +367,23 @@ gst-launch-1.0  -v udpsrc port=5600 caps='application/x-rtp, media=(string)video
 ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink fps-update-interval=1000 sync=false
 ```
 
+### Verbose Logging
+
+SITL fails silently when there is something wrong with the gazebo model.
+You can enable more verbose logging using `VERBOSE_SIM`, as shown:
+
+```
+export VERBOSE_SIM=1
+make px4_sitl gazebo
+```
+
+or 
+
+```
+VERBOSE_SIM=1 make px4_sitl gazebo
+```
+
+
 ## Extending and Customizing
 
 To extend or customize the simulation interface, edit the files in the `Tools/sitl_gazebo` folder.
@@ -373,7 +391,6 @@ The code is available on the [sitl_gazebo repository](https://github.com/px4/sit
 
 > **Note** The build system enforces the correct GIT submodules, including the simulator.
   It will not overwrite changes in files in the directory.
-
 
 ## Further Information
 

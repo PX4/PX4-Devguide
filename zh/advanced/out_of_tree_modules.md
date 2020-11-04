@@ -11,11 +11,11 @@
 要创建外部模块：
 
 - 创建*外部目录*目录以对外部模块进行分组： 
-  - 它可以位于 **Firmware** 目录树之外的任何位置。
-  - 它必须与** Firmware **具有相同的目录结构（即它必须包含名为** src **的目录）。
+  - This can be located anywhere outside of the **PX4-Autopilot** tree.
+  - It must have the same structure as **PX4-Autopilot** (i.e. it must contain a directory called **src**).
   - 稍后我们使用` EXTERNAL_MODULES_LOCATION `来引用此目录。
 - 将现有模块（例如**examples/px4_simple_app**）复制到外部目录，或直接创建新模块。
-- 重命名模块（包括 **CMakeLists.txt** 中的 `MODULE`）或从现有的Firmware *cmake* 构建配置中删除它。 这是为了避免与内部模块冲突。
+- Rename the module (including `MODULE` in **CMakeLists.txt**) or remove it from the existing PX4-Autopilot *cmake* build config. This is to avoid conflicts with internal modules.
 - 在外部目录中添加文件** CMakeLists.txt **，内容为： 
       set(config_module_list_external
           modules/<new_module>
