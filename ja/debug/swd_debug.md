@@ -143,6 +143,7 @@ The pinout is as shown below (SWD pins highlighted):
 The socket is a *10-pin JST SH* - Digikey number: [BM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1796-2-ND) (vertical mount) or [SM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1810-2-ND) (side mount).
 
 You can connect to the debug port using a [cable like this one](https://www.digikey.com/products/en?keywords=A10SR10SR30K203A).
+
 ![10-pin JST SH Cable](../../assets/debug/cable_10pin_jst_sh.jpg) <!-- better to have image showing proper connections for SWD+SWO -->
 
 
@@ -202,4 +203,5 @@ You've now connected the flight controller to an SWD debug probe!
 The following topics explain how to start on-target debugging:
 
 - [MCU Eclipse/J-Link Debugging for PX4](../debug/eclipse_jlink.md)
+- [Visual Studio Code IDE (VSCode)](../setup/vscode.md)
 
