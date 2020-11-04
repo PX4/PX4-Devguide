@@ -1,6 +1,6 @@
 # Modules Reference: Distance Sensor (Driver)
 ## leddar_one
-Source: [drivers/distance_sensor/leddar_one](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/leddar_one)
+Source: [drivers/distance_sensor/leddar_one](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/leddar_one)
 
 
 ### Description
@@ -34,7 +34,7 @@ leddar_one <command> [arguments...]
    stop          Stop driver
 ```
 ## lightware_laser_i2c
-Source: [drivers/distance_sensor/lightware_laser_i2c](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/lightware_laser_i2c)
+Source: [drivers/distance_sensor/lightware_laser_i2c](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/lightware_laser_i2c)
 
 
 ### Description
@@ -62,7 +62,7 @@ lightware_laser_i2c <command> [arguments...]
    status        print status info
 ```
 ## lightware_laser_serial
-Source: [drivers/distance_sensor/lightware_laser_serial](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/lightware_laser_serial)
+Source: [drivers/distance_sensor/lightware_laser_serial](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/lightware_laser_serial)
 
 
 ### Description
@@ -96,12 +96,12 @@ lightware_laser_serial <command> [arguments...]
    stop          Stop driver
 ```
 ## ll40ls
-Source: [drivers/distance_sensor/ll40ls_pwm](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/ll40ls_pwm)
+Source: [drivers/distance_sensor/ll40ls](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ll40ls)
 
 
 ### Description
 
-PWM driver for LidarLite rangefinders.
+I2C bus driver for LidarLite rangefinders.
 
 The sensor/driver must be enabled using the parameter SENS_EN_LL40LS.
 
@@ -111,16 +111,24 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/lidar_lite.html
 ```
 ll40ls <command> [arguments...]
  Commands:
-   start         Start driver
+   start
+     [-I]        Internal I2C bus(es)
+     [-X]        External I2C bus(es)
+     [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
+                 (default=1))
+     [-f <val>]  bus frequency in kHz
+     [-q]        quiet startup (no message if no device found)
      [-R <val>]  Sensor rotation - downward facing by default
                  default: 25
 
-   status        Print driver status information
+   regdump
 
-   stop          Stop driver
+   stop
+
+   status        print status info
 ```
 ## mappydot
-Source: [drivers/distance_sensor/mappydot](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/mappydot)
+Source: [drivers/distance_sensor/mappydot](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/mappydot)
 
 ### Usage {#mappydot_usage}
 ```
@@ -139,7 +147,7 @@ mappydot <command> [arguments...]
    status        print status info
 ```
 ## mb12xx
-Source: [drivers/distance_sensor/mb12xx](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/mb12xx)
+Source: [drivers/distance_sensor/mb12xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/mb12xx)
 
 ### Usage {#mb12xx_usage}
 ```
@@ -164,7 +172,7 @@ mb12xx <command> [arguments...]
    status        print status info
 ```
 ## pga460
-Source: [drivers/distance_sensor/pga460](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/pga460)
+Source: [drivers/distance_sensor/pga460](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/pga460)
 
 
 ### Description
@@ -191,7 +199,7 @@ pga460 <command> [arguments...]
    help
 ```
 ## srf02
-Source: [drivers/distance_sensor/srf02](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/srf02)
+Source: [drivers/distance_sensor/srf02](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/srf02)
 
 ### Usage {#srf02_usage}
 ```
@@ -212,7 +220,7 @@ srf02 <command> [arguments...]
    status        print status info
 ```
 ## teraranger
-Source: [drivers/distance_sensor/teraranger](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/teraranger)
+Source: [drivers/distance_sensor/teraranger](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/teraranger)
 
 
 ### Description
@@ -242,7 +250,7 @@ teraranger <command> [arguments...]
    status        print status info
 ```
 ## tfmini
-Source: [drivers/distance_sensor/tfmini](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/tfmini)
+Source: [drivers/distance_sensor/tfmini](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/tfmini)
 
 
 ### Description
@@ -282,7 +290,7 @@ tfmini <command> [arguments...]
    status        Print driver status
 ```
 ## ulanding_radar
-Source: [drivers/distance_sensor/ulanding_radar](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/ulanding_radar)
+Source: [drivers/distance_sensor/ulanding_radar](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ulanding_radar)
 
 
 ### Description
@@ -315,7 +323,7 @@ ulanding_radar <command> [arguments...]
    stop          Stop driver
 ```
 ## vl53l0x
-Source: [drivers/distance_sensor/vl53l0x](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/vl53l0x)
+Source: [drivers/distance_sensor/vl53l0x](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/vl53l0x)
 
 ### Usage {#vl53l0x_usage}
 ```
@@ -336,7 +344,7 @@ vl53l0x <command> [arguments...]
    status        print status info
 ```
 ## vl53l1x
-Source: [drivers/distance_sensor/vl53l1x](https://github.com/PX4/PX4-Autopilot/tree/master/src/drivers/distance_sensor/vl53l1x)
+Source: [drivers/distance_sensor/vl53l1x](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/vl53l1x)
 
 ### Usage {#vl53l1x_usage}
 ```
