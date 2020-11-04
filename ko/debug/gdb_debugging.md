@@ -145,13 +145,13 @@ arm-none-eabi-gdb build/px4_fmu-v2_default/px4_fmu-v2_default.elf
 
 그 다음 GDB 프롬프트에서 플래시의 처음 주소에 있는 R8의 마지막 인스트럭션부터 시작하십시오(`0x080`부터 시작하므로 처음 부분은 `0x0808439f`임). 실행은 왼쪽에서 오른쪽으로 진행합니다. 따라서 하드웨어 오류가 발생하기 전의 마지막 단계중 하나는, 다음 파일이 ```mavlink_log.c``` 무언가를 내보낼 때 나타납니다.
 
-```gdb
+```sh
 (gdb) info line *0x0808439f
 Line 77 of "../src/modules/systemlib/mavlink_log.c" starts at address 0x8084398 <mavlink_vasprintf+36>
    and ends at 0x80843a0 <mavlink_vasprintf+44>.
 ```
 
-```gdb
+```sh
 (gdb) info line *0x08087c4e
 Line 311 of "../src/modules/uORB/uORBDevices_nuttx.cpp"
    starts at address 0x8087c4e <uORB::DeviceNode::publish(orb_metadata const*, void*, void const*)+2>
