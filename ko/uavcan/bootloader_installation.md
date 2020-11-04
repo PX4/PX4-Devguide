@@ -44,7 +44,7 @@ arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 
 `gdb` 프롬프트에서 다음 명령을 실행하십시오:
 
-```gdb
+```sh
 target extended /dev/ttyACM0
 monitor connect_srst enable
 monitor swdp_scan
@@ -71,7 +71,7 @@ arm-none-eabi-gdb /path/to/your/bootloader/image.elf
 
 `gdb` 프롬프트에서 다음 명령을 실행하십시오:
 
-```gdb
+```sh
 target extended-remote localhost:3333
 monitor reset halt
 set mem inaccessible-by-default off
