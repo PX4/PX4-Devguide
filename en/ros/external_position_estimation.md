@@ -80,7 +80,8 @@ Parameter | Setting for External Position Estimation
 > **Tip** Reboot the flight controller in order for parameter changes to take effect.
 
 
-#### Tuning EKF2_EV_DELAY {#tuning-EKF2_EV_DELAY}
+<a id="tuning-EKF2_EV_DELAY"></a>
+#### Tuning EKF2_EV_DELAY
 
 [EKF2_EV_DELAY](../advanced/parameter_reference.md#EKF2_EV_DELAY) is the *Vision Position Estimator delay relative to IMU measurements*.
 
@@ -145,7 +146,8 @@ The setup for specific systems is covered [below](#setup_specific_systems).
 For other systems consult the vendor setup documentation.
 
 
-### Relaying Pose Data to PX4 {#relaying_pose_data_to_px4}
+<a id="relaying_pose_data_to_px4"></a>
+### Relaying Pose Data to PX4
 
 MAVROS has plugins to relay a visual estimation from a VIO or MoCap system using the following pipelines:
 
@@ -167,7 +169,8 @@ To use MoCap data with EKF2 you will have to [remap](http://wiki.ros.org/roslaun
 - Note that if you are sending odometry data to px4 using `child_frame_id = base_link`, then then you need to make sure that the `twist` portion of the `nav_msgs/Odometry` message is **expressed in body frame**, **not in inertial frame!!!!!**.
 
 
-### Reference Frames and ROS {#ros_reference_frames}
+<a id="ros_reference_frames"></a>
+### Reference Frames and ROS
 
 The local/world and world frames used by ROS and PX4 are different.
 
@@ -216,7 +219,8 @@ The name of `external_pose_parent_frame` has to match the frame_id of the odomet
 > **Note** When using the MAVROS *odom* plugin, it is important that no other node is publishing a transform between the external pose's reference and child frame.
   This might break the *tf* tree.
 
-## Specific System Setups {#setup_specific_systems}
+<a id="setup_specific_systems"></a>
+## Specific System Setups
 
 ### OptiTrack MoCap
 

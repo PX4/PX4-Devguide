@@ -42,7 +42,8 @@ To create an external module:
   ```
 
 
-## Out-of-Tree uORB Message Definitions {#uorb_message_definitions}
+<a id="uorb_message_definitions"></a>
+## Out-of-Tree uORB Message Definitions
 
 uORB messages can also be defined out-of-tree. For this, the `$EXTERNAL_MODULES_LOCATION/msg` folder must exist.
 
@@ -69,7 +70,8 @@ The new uORB messages can be used like any other uORB message as described [here
 > **Warning** The out-of-tree uORB message definitions cannot have the same name as any of the normal uORB messages.
 
 
-## Building External Modules and uORB Messages {#building}
+<a id="building"></a>
+## Building External Modules and uORB Messages
 
 Execute `make px4_sitl EXTERNAL_MODULES_LOCATION=<path>`.
  

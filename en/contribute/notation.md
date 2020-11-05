@@ -71,7 +71,8 @@ $$w$$ | Relative airspeed.
 $$x,y,z$$ | Component of vector along coordinate axis x, y and z.
 $$N,E,D$$ | Component of vector along global north, east and down direction.
 
-### Superscripts / Indices {#superscripts}
+<a id="superscripts"></a>
+### Superscripts / Indices
 
 Superscripts / Indices | Description
 --- | ---

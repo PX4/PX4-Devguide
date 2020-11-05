@@ -65,7 +65,8 @@ To run JMAVSim:
  ```
 
 
-### Build Script Details {#build_script_details}
+<a id="build_script_details"></a>
+### Build Script Details
 
 The <a href="https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh">windows_bash_nuttx.sh</a> build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
 

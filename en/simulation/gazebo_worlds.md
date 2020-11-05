@@ -7,7 +7,8 @@ Developers can also manually specify the world to load: [Gazebo Simulation > Loa
 
 The source code for supported worlds can be found on GitHub here: [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds).
 
-## Empty (Default) {#empty_world}
+<a id="empty_world"></a>
+## Empty (Default)
 
 [PX4/sitl_gazebo/worlds/empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world)
 
@@ -48,7 +49,8 @@ The source code for supported worlds can be found on GitHub here: [PX4/sitl_gaze
 
 ![Yosemite](../../assets/simulation/gazebo/worlds/yosemite.jpg)
 
-## Model Specific Worlds {#model_specific_worlds}
+<a id="model_specific_worlds"></a>
+## Model Specific Worlds
 
 Some [vehicle models](../simulation/gazebo_vehicles.md) rely on the physics / plugins of a specific world.
 The PX4 toolchain will automatically spawn a world that has the same name as the vehicle model if one exists (instead of the default **empty.world**):

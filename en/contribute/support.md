@@ -4,7 +4,8 @@ This section shows how you can get help from the core dev team and the wider com
 
 > **Tip** Developers are most welcome to attend the [weekly dev call](../contribute/dev_call.md) and other [developer events](../README.md#calendar) to engage more deeply with the project.
 
-## Forums and Chat {#support}
+<a id="support"></a>
+## Forums and Chat
 
 The core development team and community are active on the following forums and chat channels.
 
@@ -26,7 +27,8 @@ If you are unsure what the problem is and you need help diagnosing
 * [Open a Github Issue](https://github.com/PX4/Devguide/issues) with a flight report with as much detail as possible and links to logs.
 
 
-## Weekly Dev Call {#dev_call}
+<a id="dev_call"></a>
+## Weekly Dev Call
 
 The [Dev Call](../contribute/dev_call.md) is a weekly meeting attended by the PX4 dev team to discuss platform technical details, coordinate activities and perform in-depth analysis.
 

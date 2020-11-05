@@ -19,7 +19,8 @@ This guide explains how to:
 * Communicate/integrate with external robotics APIs.
 
 
-## Support {#support}
+<a id="support"></a>
+## Support
 
 [Support](contribute/support.md) provide links to the [discussion boards](http://discuss.px4.io/) and other support channels.
 
@@ -45,7 +46,8 @@ You can access these by clicking the language-switcher icon:
 ![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
 
 
-## Calendar & Events {#calendar}
+<a id="calendar"></a>
+## Calendar & Events
 
 The *Dronecode Calendar* shows important events for platform developers and users. 
 Select the links below to display the calendar in your timezone (and to add it to your own calendar):

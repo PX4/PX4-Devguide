@@ -23,7 +23,8 @@ graph LR;
 > **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment, and simulation configuration (e.g. supported vehicles).
 
 
-## Installation {#installation}
+<a id="installation"></a>
+## Installation
 
 Gazebo 9 setup is included in our standard build instructions:
 - **macOS:** [Development Environment on Mac](../setup/dev_env_mac.md)
@@ -116,7 +117,8 @@ pxh> commander takeoff
 
 ## Usage/Configuration Options
 
-### Headless Mode {#headless}
+<a id="headless"></a>
+### Headless Mode
 
 Gazebo can be run in a *headless* mode in which the Gazebo UI is not launched.
 This starts up more quickly and uses less system resources (i.e. it is a more "lightweight" way to run the simulation).
@@ -126,7 +128,8 @@ Simply prefix the normal `make` command with `HEADLESS=1` as shown:
 HEADLESS=1 make px4_sitl gazebo_plane
 ```
 
-### Set Custom Takeoff Location {#custom_takeoff_location}
+<a id="custom_takeoff_location"></a>
+### Set Custom Takeoff Location
 
 The takeoff location in SITL Gazebo can be set using environment variables.
 This will override both the default takeoff location, and any value [set for the world](#set_world_location).
@@ -166,7 +169,8 @@ This can cause difficulty when using a distance sensor.
 If there are unexpected results we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
 
 
-### Simulating GPS Noise {#gps_noise}
+<a id="gps_noise"></a>
+### Simulating GPS Noise
 
 Gazebo can simulate GPS noise that is similar to that typically found in real systems (otherwise reported GPS values will be noise-free/perfect).
 This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
@@ -197,7 +201,8 @@ To enable/disable GPS noise:
 The next time you build/restart Gazebo it will use the new GPS noise setting.
 
 
-## Loading a Specific World {#set_world}
+<a id="set_world"></a>
+## Loading a Specific World
 
 PX4 supports a number of [Gazebo Worlds](../simulation/gazebo_worlds.md), which are stored in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds))
 By default Gazebo displays a flat featureless plane, as defined in [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world).
@@ -218,7 +223,8 @@ This is useful if testing a new world that is not yet included with PX4.
 > **Tip** If the loaded world does not align with the map, you may need to [set the world location](#set_world_location).
   
 
-## Set World Location {#set_world_location}
+<a id="set_world_location"></a>
+## Set World Location
 
 The vehicle gets spawned very close to the origin of the world model at some simulated GPS location.
 
@@ -255,7 +261,8 @@ https://youtu.be/-a2WWLni5do
 
 
 
-## Starting Gazebo and PX4 Separately {#start_px4_sim_separately}
+<a id="start_px4_sim_separately"></a>
+## Starting Gazebo and PX4 Separately
 
 For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
 
@@ -298,7 +305,8 @@ make px4_sitl_default gazebo_plane_cam
 > **Note** The simulated camera is implemented in [PX4/sitl_gazebo/src/gazebo_geotagged_images_plugin.cpp](https://github.com/PX4/sitl_gazebo/blob/master/src/gazebo_geotagged_images_plugin.cpp).
 
 
-## Simulated Parachute/Flight Termination {#flight_termination}
+<a id="flight_termination"></a>
+## Simulated Parachute/Flight Termination
 
 *Gazebo* can be used to simulate deploying a [parachute](https://docs.px4.io/master/en/peripherals/parachute.html) during [Flight Termination](https://docs.px4.io/master/en/advanced_config/flight_termination.html) (flight termination is triggered by the PWM command that is simulated in *Gazebo*).
 
@@ -316,7 +324,8 @@ For more information see:
 - [Parachute](https://docs.px4.io/master/en/peripherals/parachute.html)
 - [Safety Configuration (Failsafes)](https://docs.px4.io/master/en/config/safety.html)
 
-## Video Streaming {#video}
+<a id="video"></a>
+## Video Streaming
 
 PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor attached to a vehicle model.
 When streaming is enabled, you can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera.

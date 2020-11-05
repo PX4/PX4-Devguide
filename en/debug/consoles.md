@@ -5,7 +5,8 @@ PX4 enables terminal access to the system through the [MAVLink Shell](../debug/m
 This page explains the main differences and how the console/shell are used.
 
 
-## System Console vs. Shells {#console_vs_shell}
+<a id="console_vs_shell"></a>
+## System Console vs. Shells
 
 The PX4 *System Console* provides low-level access to the system, debug output and analysis of the system boot process.
 
@@ -29,7 +30,8 @@ The [System Console](../debug/system_console.md) is essential when the system do
 The [MAVLink Shell](../debug/mavlink_shell.md) is much easier to setup, and so is more generally recommended for most debugging.
 
 
-## Using Consoles/Shells {#using_the_console}
+<a id="using_the_console"></a>
+## Using Consoles/Shells
 
 The MAVLink shell/console and the [System Console](../debug/system_console.md) are used in much the same way.
 

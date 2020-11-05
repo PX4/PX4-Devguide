@@ -8,7 +8,8 @@ Manufacturers who wish to deviate from the standard or create completely new boa
 > **Note** Boards that are not compliant with the requirements are [unsupported](#unsupported);
   they will not be listed on the PX4 website hardware list and will be removed from the codebase.
 
-## General Requirements {#general_requirements}
+<a id="general_requirements"></a>
+## General Requirements
 
 The general requirements for all supported boards are:
 
@@ -45,7 +46,8 @@ A Pixhawk board is one that conforms to the Pixhawk standards. These standards a
 
 PX4 generally only supports boards that are commercially available, which typically means that board standards released within the last five years are supported.
 
-### VER and REV ID (Hardware Revision and Version Sensing) {#ver_rev_id}
+<a id="ver_rev_id"></a>
+### VER and REV ID (Hardware Revision and Version Sensing)
 
 FMUv5 and onwards have an electrical sensing mechanism.
 This sensing coupled with optional configuration data will be used to define hardware’s configuration with respect to a mandatory device and power supply configuration. Manufacturers must obtain the VER and REV ID from PX4 board maintainers at [boards@px4.io](mailto:boards@px4.io) for releasing Pixhawk standard boards. 
@@ -88,7 +90,8 @@ The following requirements apply:
   *New* experimental boards are allocated [VER and REV IDs](#ver_rev_id) based on compatibility, in the same way as Manufacturer Supported boards.
   
 
-## Unsupported {#unsupported}
+<a id="unsupported"></a>
+## Unsupported
 
 This category includes all boards that aren't supported by the PX4 project or a manufacturer, and that fall outside the"experimental" support.
 

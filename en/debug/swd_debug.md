@@ -8,7 +8,8 @@ The SWD interface can also be used to add a new bootloader and/or firmware on a 
 
 This topic explains how to connect the SWD interface on different boards (actually performing debugging is then covered in the associated [debugging topics](#debugging_topics)).
 
-## SWD Interface Definition {#swd_interface}
+<a id="swd_interface"></a>
+## SWD Interface Definition
 
 The SWD interface consists of the following pins.
 
@@ -49,7 +50,8 @@ You can also create custom cables for connecting to different boards or probes.
   This reduces the risk or poor wiring contributing to debugging problems, and has the benefit that adapters usually provide a common interface for connecting to multiple popular flight controller boards.
 
 
-## Autopilot Debug Ports {#debug_ports}
+<a id="debug_ports"></a>
+## Autopilot Debug Ports
 
 Flight controllers commonly provide a debug port that exposes both the [SWD Interface](#swd_interface) and [System Console](../debug/system_console.md).
 
@@ -75,7 +77,8 @@ Autopilot | Connector
 
 
 
-## Pixhawk Standard Debug Ports {#pixhawk_standard_debug_ports}
+<a id="pixhawk_standard_debug_ports"></a>
+## Pixhawk Standard Debug Ports
 
 The Pixhawk project has defines a standard pinout and connector type for different Pixhawk FMU releases:
 
@@ -94,7 +97,8 @@ FMUv6X | Pixhawk 6 | [10 pin SH Debug](#pixhawk_debug_port_10_pin_sh)
 > **Note** There FMU and Pixhawk versions are (only) consistent after FMUv5X.
 
 
-### Pixhawk Debug Mini (6-Pin SH Debug Port) {#pixhawk_debug_port_6_pin_sh}
+<a id="pixhawk_debug_port_6_pin_sh"></a>
+### Pixhawk Debug Mini (6-Pin SH Debug Port)
 
 The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf) defines a *6-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md).
 
@@ -127,7 +131,8 @@ You can connect to the debug port using a [cable like this one](https://www.digi
 ![6-pin JST SH Cable](../../assets/debug/cable_6pin_jst_sh.jpg)
 
 
-### Pixhawk Debug Full (10-Pin SH Debug Port) {#pixhawk_debug_port_10_pin_sh}
+<a id="pixhawk_debug_port_10_pin_sh"></a>
+### Pixhawk Debug Full (10-Pin SH Debug Port)
 
 The [Pixhawk Connector Standard](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf)  defines a *10-Pin SH Debug Port* that provides access to both SWD pins and the [System Console](../debug/system_console.md).
 This essentially moves the solder pads from beside the [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh) into the connector, and also adds an SWO pin.
@@ -156,12 +161,14 @@ You can connect to the debug port using a [cable like this one](https://www.digi
 ![10-pin JST SH Cable](../../assets/debug/cable_10pin_jst_sh.jpg) <!-- better to have image showing proper connections for SWD+SWO -->
 
 
-## Debug Probes {#debug_probes}
+<a id="debug_probes"></a>
+## Debug Probes
 
 The following section outlines some popular debug probes and adaptors for connecting them to autopilots running PX4.
 
 
-### Segger JLink EDU Mini Debug Probe {#segger_jlink_edu_mini}
+<a id="segger_jlink_edu_mini"></a>
+### Segger JLink EDU Mini Debug Probe
 
 The [Segger JLink EDU Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/) is an inexpensive and popular SWD debug probe. 
 The probe's connector pinout looks like the image below (connect to this using an ARM 10-pin mini connector like [FTSH-105-01-F-DV-K](https://www.digikey.com/products/en?keywords=SAM8796-ND)).
@@ -184,7 +191,8 @@ Debug Port | J-Link Mini
 <!-- Image of SWD cable and connector to debug port? --> 
 
 
-### Dronecode Probe {#dronecode_probe}
+<a id="dronecode_probe"></a>
+### Dronecode Probe
 
 The [Dronecode Probe](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation) is a generic JTAG/SWD + UART console adapter compatible with most ARM Cortex based designs, and in particular with Pixhawk series flight controllers (and other hardware that PX4 supports).
 
@@ -198,7 +206,8 @@ The probe provides a DCD-M connector cable for attaching to the [Pixhawk 6-Pin S
 > **Note** The *Dronecode Probe* is based on the [Black Magic Probe](#black_magic_probe).
 
 
-### Black Magic Probe {#black_magic_probe}
+<a id="black_magic_probe"></a>
+### Black Magic Probe
 
 The [Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki) is much like the [Dronecode probe](#dronecode_probe) but does not come with the same adapters for directly connecting to Pixhawk series flight controllers.
 
@@ -206,7 +215,8 @@ Adapters can be purchased separately:
 - [Drone Code Debug Adapter](https://1bitsquared.com/products/drone-code-debug-adapter) (1 BIT SQUARED).
 
 
-## Next Steps {#debugging_topics}
+<a id="debugging_topics"></a>
+## Next Steps
 
 You've now connected the flight controller to an SWD debug probe!
 
