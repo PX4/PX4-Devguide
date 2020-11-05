@@ -4,8 +4,9 @@
 
 这里将说明它们的主要区别，以及如何使用。
 
+<a id="console_vs_shell"></a>
 
-## 系统控制台 vs. Shells {#console_vs_shell}
+## System Console vs. Shells
 
 PX4 系统控制台*（System Console）*提供对系统的底层访问能力，获得调试信息，也可用于分析PX4的启动过程。
 
@@ -25,8 +26,9 @@ Shell 提供对系统的上层访问能力：
 
 [系统控制台（System Console）](../debug/system_console.md)在调试系统无法启动时十分必要，它会在飞控板上电后输出启动日志。 但是 [MAVLink Shell](../debug/mavlink_shell.md) 则更加易于配置使用，因此通常都推荐用它调试。
 
+<a id="using_the_console"></a>
 
-## 使用控制台/Shell {#using_the_console}
+## Using Consoles/Shells
 
 MAVLink shell/控制台和[系统控制台](../debug/system_console.md)使用方法基本一致。
 
