@@ -31,21 +31,9 @@ The second part of the meeting is for in-depth technical discussions and open en
 ## 日程
 
 * 时间: 欧洲中部时间周二17：00, 东部标准时间12：00, 太平洋标准时间9：00 \([订阅日历](https://www.dronecode.org/calendar/)\)
-* **参加网址**: https://zoom.us/j/946175205 
-* **会议ID**: 946 175 205
-* **拨号(为了更好的质量, 拨号时请根据你现在的所在地)**:
-  
-  * **瑞典**: +41 (0) 31 528 0988 
-  * **美国**: +1 646 876 9923 or +1 669 900 6833 or +1 408 740 3766 
-  * **德国**: +49 (0) 30 3080 6188 
-  * **墨西哥**: +52 554 161 4288 
-  * **澳大利亚**: +61 (0) 2 8015 2088 
-  * **英国**: +44 (0) 20 3695 0088 
-  * **南韩**: +82 (0) 2 6022 2322 
-  * **西班牙**: +34 91 198 0188 
-  * [**国际号码可用**](https://zoom.us/zoomconference)
+* **Join the call**: https://meet.jit.si/PX4DeveloperCallWeekly
 
-* 议程在[PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)之前发布
+* Agenda is published before the call on [PX4 Discuss - weekly-dev-call](http://discuss.px4.io/c/weekly-dev-call)
 
 * To nominate Issues and PRs for the call you can use the [devcall](https://github.com/PX4/PX4-Autopilot/labels/devcall) label to flag them for discussion.
 
