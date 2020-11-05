@@ -19,7 +19,6 @@ This guide explains how to:
 * Communicate/integrate with external robotics APIs.
 
 
-<a id="support"></a>
 ## Support
 
 [Support](contribute/support.md) provide links to the [discussion boards](http://discuss.px4.io/) and other support channels.
