@@ -1,6 +1,8 @@
-# 주간 유선 개발 미팅 {#dev_call}
+<a id="dev_call"></a>
 
-PX4 개발 팀은 플랫폼 기술 세부내역과 심층 분석 내역을 정리합니다. pull 요청, 주요 현안, 질답 요소를 의논할 의제 시간을 확보하기도 합니다.
+# Weekly Dev Call
+
+The PX4 dev team syncs up on platform technical details and in-depth analysis. There is also space in the agenda to discuss pull requests, major impacting issues and Q&A.
 
 {% if book.px4_version != 'master' %}
 
@@ -18,13 +20,13 @@ PX4 개발 팀은 플랫폼 기술 세부내역과 심층 분석 내역을 정�
 
 ## 의논해서 뭘 할 수 있을까요?
 
-초반의 주요 회의는 45분간 진행하며 프로젝트를 어디서 진행 중인지 의논하는 고수준 포럼도 제공해드립니다.
+The first/main part of the meeting runs for 45 minutes and provides a high-level forum to discuss where the project is going.
 
-This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/PX4-Autopilot/labels/devcall5) label. 유선 미팅을 통해 무언가를 제안하고, 문제를 검토해주기 바랍니다!
+This is where we discuss *contributions*, including issues/PRs that have the [dev call](https://github.com/PX4/PX4-Autopilot/labels/devcall5) label. We expect the proposer and the assigned reviewer to be on the call!
 
 > **Note** 본 유선 미팅은 신속에 초점을 맞춘 결정을 지원하는게 목적입니다. 심도있는 기술적 토론을 기대하지 않으며, 기능 제안에 많은 시간을 할애하지 않습니다. 제안은 반갑습니다만, 지원자가 필요합니다(누군가가 해당 기능을 *구현*해야합니다)!
 
-미팅 후반부는 고급 기술 토론과 끝나고 열려있는 질문을 다룹니다. 핵심 팀/하위시스템 관리자는 최대 45분동안 더 참여할 수 있습니다.
+The second part of the meeting is for in-depth technical discussions and open ended questions. The core team/subsystem maintainers will be available for up to 45 additional minutes.
 
 ## 일정
 
