@@ -65,6 +65,11 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 <!-- NOTE: RaPi docker toolchain (for comparison) here: https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf -->
 
+> **Warning** Use Ubuntu **18.04** or [Docker](https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf) for building RasPi!
+  *Do not use Ubuntu 20.04*. The *armhf* or *aarch64* toolchains on a Ubuntu 20.04 host machine depend on *libc6-2.29* which is not available on RPi at time of writing (it has *libc6-2.27*).
+
+They can pass the build and provide binary files, but is extreme new so cannot run on actual Pi. The really working one is documented separately in user docs.
+
 To get the build toolchain for Raspberry Pi:
 
 1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):
