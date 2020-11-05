@@ -68,13 +68,15 @@ jMAVSim 을 설치하려면:
 >       export GAZEBO_IP=127.0.0.1
 >       make px4_sitl gazebo
 
-### 빌드 스크립트 세부 내용 {#build_script_details}
+<a id="build_script_details"></a>
 
-[windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh) 빌드 스크립트는 우분투 빌드 과정에서 우분투에만 해당하는 내용과, *Qt 크리에이터* UI 의존 요소 부분을 제거하여 수정한 버전입니다.
+### Build Script Details
 
-또한 윈도우용 배시는 32비트 ELF 바이너리를 실행하지 못하므로(또한 `https://launchpad.net/gcc-arm-embedded` 컴파일러도 32비트) [64비트 arm-none-eabi 컴파일러](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git)를 활용합니다.
+The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
 
-이 컴퓨터에 환경을 직접 추가하려면:
+In addition, it uses a [64 bit arm-none-eabi compiler](https://github.com/SolinGuo/arm-none-eabi-bash-on-win10-.git) since BashOnWindows doesn't run 32 bit ELF programs (and the default compiler from `https://launchpad.net/gcc-arm-embedded` is 32 bit).
+
+To add this compiler to your environment manually:
 
 1. 컴파일러를 다운로드하십시오: 
         sh
