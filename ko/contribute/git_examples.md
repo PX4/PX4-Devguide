@@ -1,8 +1,10 @@
 # git 예제
 
-## PX4에 코드 기여하기 {#contributing_code}
+<a id="contributing_code"></a>
 
-PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따라 PX4에 기여 결과를 공유할 수 있습니다.
+## Contributing Code to PX4
+
+Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 
 * 아직 github 계정이 없다면 [가입](https://github.com/join) 하십시오
 * Fork the PX4-Autopilot re[p (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
@@ -65,7 +67,7 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
 
 ## 특정 릴리스 가져오기
 
-*오래된 특정 릴리스*의 소스코드를 가져오려면:
+To get the source code for a *specific older release*:
 
 * Clone the PX4-Autopilot repo and navigate into PX4-Autopilot directory: 
         sh
@@ -82,11 +84,11 @@ PX4로의 기능 추가는 다음 절차를 따릅니다. 다음 예제를 따�
 
 ## 하위 모듈 업데이트 
 
-하위모듈을 업데이트하는 방법에는 여러가지가 있습니다. 저장소를 복제하거나 하위모듈 디렉터리로 이동하여 [PX4에 코드 기여하기](#contributing_code)의 동일한 절차를 따르는 것입니다.
+There are several ways to update a submodule. Either you clone the repository or you go in the submodule directory and follow the same procedure as in [Contributing code to PX4](#contributing_code).
 
 ## 하위 모듈 업데이트 PR 진행
 
-하위모듈 X 저장소와 버그 수정/기능 추가는 하위 모듈 X 의 현재 마스터 브랜치의 PR을 완료하고 나면 이 과정이 필요합니다. 펌웨어에서는 업데이트 이전 제출 사항을 가리키고 있으니 하위 모듈 pull 요청시 펌웨어에서 활용하는 하위모듈이 새 제출 내용을 가리키도록 해야 합니다.
+This is required after you have done a PR for a submodule X repository and the bug-fix / feature-add is in the current master of submodule X. Since the Firmware still points to a commit before your update, a submodule pull request is required such that the submodule used by the Firmware points to the newest commit.
 
 ```sh
 cd Firmware
@@ -114,19 +116,19 @@ cd Firmware
 
 ## pull 요청 진입
 
-브랜치를 만든 사람의 기존 사본에만 병합 대상 브랜치가 있을 경우, 누군가의 pull 요청을 시험(바뀐 내용을 마스터 브랜치에 아직 병합하지 않음)할 수 있습니다. 다음 명령을 실행하십시오:
+You can test someone's pull request (changes are not yet merged) even if the branch to merge only exists on the fork from that person. Do the following:
 
 ```sh
 git fetch upstream  pull/<PR ID>/head:<branch name>
 ```
 
-`PR ID`는 PR 제목 다음 옆에 있는 (# 을 뺀) 숫자이며 `<branch name>`은 아래의 `PR ID` 바로 옆에서 찾을 수 있습니다. 예를 들면 `<the other persons git name>:<branch name>` 같은 식입니다. 이 과정을 진행하고 나면 다음 명령으로 로컬에서 새로 만든 브랜치를 볼 수 있습니다
+`PR ID` is the number right next to the PR's title (without the #) and the `<branch name>` can also be found right below the `PR ID`, e.g. `<the other persons git name>:<branch name>`. After that you can see the newly created branch locally with
 
 ```sh
 git branch
 ```
 
-그러면 브랜치를 전환하겠습니다.
+Then switch to that branch
 
 ```sh
 git checkout <branch name>
@@ -136,7 +138,7 @@ git checkout <branch name>
 
 ### 복제한 저장소로 강제로 밀어올리기(push)
 
-처음 PR을 끝내고나면 PX4 커뮤니티에서 바뀐 내용을 살펴봅니다. 대부분의 경우는 검토 후 로컬 브랜치에서 무언가를 수정해야 합니다. 파일을 바꾼 다음에는 기능 브랜치를 가장 최근의 업스트림/마스터로 다시 재편성해야합니다. 그러나 재편성(rebase)후, 복제(fork)한 저장소에의 기능 단위 브랜치에 더이상 직접 밀어올릴 수 없는 상황이 옵니다만, 강제로 진행해야 합니다.
+After having done the first PR, people from the PX4 community will review your changes. In most cases this means that you have to fix your local branch according to the review. After changing the files locally, the feature branch needs to be rebased again with the most recent upstream/master. However, after the rebase, it is no longer possible to push the feature branch to your forked repository directly, but instead you need to use a force push:
 
 ```sh
 git push --force-with-lease origin <your feature branch name>
@@ -144,17 +146,17 @@ git push --force-with-lease origin <your feature branch name>
 
 ### 동시 병합 문제 재편성 해결
 
-`git rebase` 명령 진행 중 문제가 발생했을 때는 [이 안내서](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/)를 참고하십시오.
+If a conflict occurs during a `git rebase`, please refer to [this guide](https://help.github.com/articles/resolving-merge-conflicts-after-a-git-rebase/).
 
 ### pull 동시 병합 문제
 
-`git pull` 명령 실행 중 동시 병합 문제가 발생할 경우 [이 안내서](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts)를 참고하십시오.
+If a conflict occurs during a `git pull`, please refer to [this guide](https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/#competing-line-change-merge-conflicts).
 
 ### 오래된 git 태그로 인한 빌드 오류
 
-`Error: PX4 version too low, expected at least vx.x.x` 빌드 오류는 git 태그가 너무 오래됐을 경우 나타납니다.
+The build error `Error: PX4 version too low, expected at least vx.x.x` occurs if git tags are out of date.
 
-이 문제는 업스트림 저장소 태그를 가져오면 해결할 수 있습니다:
+This can be solved by fetching the upstream repository tags:
 
 ```sh
 git fetch upstream --tags
