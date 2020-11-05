@@ -10,19 +10,26 @@ This topic lists/displays the vehicles supported by the PX4 [Gazebo](../simulati
 > **Note** [Gazebo](../simulation/gazebo.md) 页面展示了如何安装 Gazebo、如何启用视频并加载自定义地图以及许多其他的配置选项。
 
 ## Multicopter
-### Quadrotor (Default) {#quadrotor}
+
+<a id="quadrotor"></a>
+
+### Quadrotor (Default)
 
 ```sh
 make px4_sitl gazebo
 ```
 
-### Quadrotor with Optical Flow {#quadrotor_optical_flow}
+<a id="quadrotor_optical_flow"></a>
+
+### Quadrotor with Optical Flow
 
 ```sh
 make px4_sitl gazebo_iris_opt_flow
 ```
 
-### 3DR Solo (Quadrotor) {#3dr_solo}
+<a id="3dr_solo"></a>
+
+### 3DR Solo (Quadrotor)
 
 ```sh
 make px4_sitl gazebo_solo
@@ -30,8 +37,9 @@ make px4_sitl gazebo_solo
 
 ![3DR Solo 的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/solo.png)
 
+<a id="typhoon_h480"></a>
 
-### Typhoon H480 (Hexrotor) {#typhoon_h480}
+### Typhoon H480 (Hexrotor)
 
 ```
 make px4_sitl gazebo_typhoon_h480
@@ -41,9 +49,13 @@ make px4_sitl gazebo_typhoon_h480
 
 > **Note** 此机型还支持[视频流仿真](#video)。
 
-## Plane/Fixed Wing {#fixed_wing}
+<a id="fixed_wing"></a>
 
-### Standard Plane {#standard_plane}
+## Plane/Fixed Wing
+
+<a id="standard_plane"></a>
+
+### Standard Plane
 
 ```sh
 make px4_sitl gazebo_plane
@@ -51,8 +63,9 @@ make px4_sitl gazebo_plane
 
 ![固定翼的 Gazebo 仿真](../../assets/simulation/gazebo/vehicles/plane.png)
 
+<a id="standard_plane_catapult"></a>
 
-#### Standard Plane with Catapult Launch {#standard_plane_catapult}
+#### Standard Plane with Catapult Launch
 
 ```sh
 make px4_sitl gazebo_plane_catapult
@@ -65,7 +78,9 @@ The plane will automatically be launched as soon as the vehicle is armed.
 
 ## VTOL
 
-### Standard VTOL {#standard_vtol}
+<a id="standard_vtol"></a>
+
+### Standard VTOL
 
 ```sh
 make px4_sitl gazebo_standard_vtol
@@ -73,7 +88,9 @@ make px4_sitl gazebo_standard_vtol
 
 ![Standard VTOL in Gazebo](../../assets/simulation/gazebo/vehicles/standard_vtol.png)
 
-### Tailsitter VTOL {#tailsitter_vtol}
+<a id="tailsitter_vtol"></a>
+
+### Tailsitter VTOL
 
 ```sh
 make px4_sitl gazebo_tailsitter
@@ -81,10 +98,13 @@ make px4_sitl gazebo_tailsitter
 
 ![Tailsitter VTOL in Gazebo](../../assets/simulation/gazebo/vehicles/tailsitter.png)
 
+<a id="ugv"></a>
 
-## Unmmanned Ground Vehicle (UGV/Rover/Car) {#ugv}
+## Unmmanned Ground Vehicle (UGV/Rover/Car)
 
-### Ackerman UGV {#ugv_ackerman}
+<a id="ugv_ackerman"></a>
+
+### Ackerman UGV
 
 ```sh
 make px4_sitl gazebo_rover
@@ -92,7 +112,9 @@ make px4_sitl gazebo_rover
 
 ![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/rover.png)
 
-### Differential UGV {#ugv_differential}
+<a id="ugv_differential"></a>
+
+### Differential UGV
 
 ```sh
 make px4_sitl gazebo_r1_rover
@@ -100,10 +122,13 @@ make px4_sitl gazebo_r1_rover
 
 ![Rover in Gazebo](../../assets/simulation/gazebo/vehicles/r1_rover.png)
 
+<a id="uuv"></a>
 
-## Unmanned Underwater Vehicle (UUV/Submarine) {#uuv}
+## Unmanned Underwater Vehicle (UUV/Submarine)
 
-### HippoCampus TUHH UUV {#uuv_hippocampus}
+<a id="uuv_hippocampus"></a>
+
+### HippoCampus TUHH UUV
 
 ```sh
 make px4_sitl gazebo_uuv_hippocampus
@@ -111,9 +136,13 @@ make px4_sitl gazebo_uuv_hippocampus
 
 ![Submarine/UUV](../../assets/simulation/gazebo/vehicles/hippocampus.png)
 
-## Unmanned Surface Vehicle (USV/Boat) {#usv}
+<a id="usv"></a>
 
-### Boat {#usv_boat}
+## Unmanned Surface Vehicle (USV/Boat)
+
+<a id="usv_boat"></a>
+
+### Boat
 
 ```sh
 make px4_sitl gazebo_boat
@@ -121,9 +150,13 @@ make px4_sitl gazebo_boat
 
 ![Boat/USV](../../assets/simulation/gazebo/vehicles/boat.png)
 
-## Airship {#airship}
+<a id="airship"></a>
 
-### Cloudship {#cloudship}
+## Airship
+
+<a id="cloudship"></a>
+
+### Cloudship
 
 ```sh
 make px4_sitl gazebo_cloudship
