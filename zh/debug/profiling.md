@@ -33,32 +33,34 @@ PMSP 是一种 shell 脚本,它通过定期中断固件的执行来运行，便�
 
 * 不支持多线程环境。 这不会影响单个核心嵌入式目标，因为它们总是在一个线程中执行，但这一限制使探查器与许多其他应用程序不兼容。 将来，应修改堆栈文件夹以支持每个示例的多个堆栈跟踪。
 
-## 实现 {#implementation}
+<a id="implementation"></a>
 
-该脚本位于 `Debug/poor-mans-profiler.sh`。 一旦启动，它将执行指定的时间间隔的样本数。 收集采样会保存在系统临时文件夹的文本文件（典型如`tmp`）。 一旦采样完成，脚本会自动调用栈文件夹，将输出内容保存在 temp 文件夹下的文件中。 如果栈成功收集，脚本会调用 *FlameGraph* 脚本并且将结果保存在 SVG 文件。 请注意，不是所有的镜像工具都支持：推荐使用网页浏览器打开 SVG 文件。
+## Implementation
 
-FlameGraph 脚本必须驻留在 `PATH`，否则 PMSP 将拒绝启动。
+The script is located at `Debug/poor-mans-profiler.sh`. Once launched, it will perform the specified number of samples with the specified time interval. Collected samples will be stored in a text file in the system temp directory (typically `/tmp`). Once sampling is finished, the script will automatically invoke the stack folder, the output of which will be stored in an adjacent file in the temp directory. If the stacks were folded successfully, the script will invoke the *FlameGraph* script and store the result in an interactive SVG file. Please note that not all image viewers support interactive images; it is recommended to open the resulting SVG in a web browser.
 
-PMSP 使用 GDB 收集堆栈跟踪。 目前，它使用 `arm-none-eabi-gdb`，今后可能会添加其他工具链。
+The FlameGraph script must reside in the `PATH`, otherwise PMSP will refuse to launch.
 
-为了能够映射内存地址到符号，脚本需要被当前运行的文件中提及。 这个是在 `--elf=&lt;file&gt;` 的选项帮助下完成的，该选项需要一个指向当前执行ELF位置的路径来执行（相对于储存库的root）。
+PMSP uses GDB to collect the stack traces. Currently it uses `arm-none-eabi-gdb`, other toolchains may be added in the future.
 
-用法示例：
+In order to be able to map memory locations to symbols, the script needs to be referred to the executable file that is currently running on the target. This is done with the help of the option `--elf=<file>`, which expects a path (relative to the root of the repository) pointing to the location of the currently executing ELF.
+
+Usage example:
 
 ```bash
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000
 ```
 
-请注意，每次启动脚本都会覆盖旧堆栈。 如果你希望在后以前的栈后面追加而不是覆盖的话，使用选项 `--append`：
+Note that every launch of the script will overwrite the old stacks. Should you want to append to the old stacks rather than overwrite them, use the option `--append`:
 
 ```bash
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000 --append
 ```
 
-正如人们可能会怀疑的那样，`--append` 带 `--nsamples=0` 将指示脚本只重新生成 SVG 而根本不访问目标。
+As one might suspect, `--append` with `--nsamples=0` will instruct the script to only regenerate the SVG without accessing the target at all.
 
-请阅读脚本，以更深入地了解其工作原理。
+Please read the script for a more in depth understanding of how it works.
 
 ## 鸣谢
 
-该想法的功劳归属 [Mark Callaghan and Domas Mituzas](https://dom.as/2009/02/15/poor-mans-contention-profiling/)。
+Credits for the idea belong to [Mark Callaghan and Domas Mituzas](https://dom.as/2009/02/15/poor-mans-contention-profiling/).
