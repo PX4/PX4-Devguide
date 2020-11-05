@@ -4,7 +4,9 @@ Hardware-in-the-Loop (HITL or HIL) is a simulation mode in which normal PX4 firm
 
 PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and VTOL (using Gazebo).
 
-## HITL-Compatible Airframes {#compatible_airframe}
+<a id="compatible_airframe"></a>
+
+## HITL-Compatible Airframes
 
 The current set of compatible airframes vs Simulators is:
 
@@ -15,7 +17,9 @@ The current set of compatible airframes vs Simulators is:
 | [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadcopter) copter | 4001            | Y      | Y       |
 | [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450)     | 4011            | Y      | Y       |
 
-## HITL Simulation Environment {#simulation_environment}
+<a id="simulation_environment"></a>
+
+## HITL Simulation Environment
 
 With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*.
 
@@ -113,7 +117,9 @@ Follow the appropriate setup steps for the specific simulator in the following s
 
 6. Start *QGroundControl*. It should autoconnect to PX4 and Gazebo.
 
-#### jMAVSim (Quadrotor only) {#jmavsim_hitl_configuration}
+<a id="jmavsim_hitl_configuration"></a>
+
+#### jMAVSim (Quadrotor only)
 
 > **Note** Make sure *QGroundControl* is not running!
 
