@@ -29,7 +29,9 @@ sudo usermod -aG docker $USER
 # Log in/out again before using docker!
 ```
 
-## Container Hierarchy {#px4_containers}
+<a id="px4_containers"></a>
+
+## Container Hierarchy
 
 The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/README.md#container-hierarchy)):
 
@@ -76,7 +78,9 @@ Or to start a bash session using the NuttX toolchain:
 
 > **Tip** The script is easy because you don't need to know anything much about *Docker* or think about what container to use. However it is not particularly robust! The manual approach discussed in the [section below](#manual_start) is more flexible and should be used if you have any problems with the script.
 
-### Calling Docker Manually {#manual_start}
+<a id="manual_start"></a>
+
+### Calling Docker Manually
 
 The syntax of a typical command is shown below. This runs a Docker container that has support for X forwarding (makes the simulation GUI available from inside the container). It maps the directory `<host_src>` from your computer to `<container_src>` inside the container and forwards the UDP port needed to connect *QGroundControl*. With the `-–privileged` option it will automatically have access to the devices on your host (e.g. a joystick and GPU). If you connect/disconnect a device you have to restart the container.
 
@@ -190,7 +194,9 @@ In that case the native graphics driver for your host system must be installed. 
 
 More information on this can be found [here](http://gernotklingler.com/blog/howto-get-hardware-accelerated-opengl-support-docker/).
 
-## Virtual Machine Support {#virtual_machine}
+<a id="virtual_machine"></a>
+
+## Virtual Machine Support
 
 Any recent Linux distribution should work.
 
