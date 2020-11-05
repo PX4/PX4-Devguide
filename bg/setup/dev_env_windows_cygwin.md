@@ -15,7 +15,7 @@ This topic explains how download and use the environment, and how it can be exte
 ## Installation Instructions {#installation}
 
 1. Download the latest version of the ready-to-use MSI installer from: [Github releases](https://github.com/PX4/windows-toolchain/releases) or [Amazon S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.9.msi) (fast download).
-2. Run it, choose your desired installation location, let it install: ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
+2. Run it, choose your desired installation location, let it install: ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.png)
 3. Tick the box at the end of the installation to *clone the PX4 repository, build and run simulation with jMAVSim* (this simplifies the process to get you started).
     
     > **Note** If you missed this step you will need to [clone the PX4-Autopilot repository manually](#getting_started).
@@ -48,7 +48,7 @@ The toolchain uses a specially configured console window (started by running the
     
     The console will then display:
     
-    ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.PNG)
+    ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.png)
 
 Continue next to [the detailed instructions on how to build PX4](../setup/building_px4.md) (or see the section below for more general usage instructions).
 

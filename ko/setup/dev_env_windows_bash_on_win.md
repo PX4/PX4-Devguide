@@ -59,7 +59,7 @@ jMAVSim 을 설치하려면:
     
     이후 아래와 같이 XMing 창에 jMAVSim 인터페이스가 뜹니다:
     
-    ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
+    ![jMAVSimOnWindows](../../assets/simulation/jmavsim_on_windows.png)
 
 > **Caution** 가제보는 윈도우용 우분투 배시에서 비슷하게 실행할 수 있지만, 쓸만하기에는 너무 느립니다. 그래도 써보시겠다면 [ROS 키네틱 설치 안내서](http://wiki.ros.org/kinetic/Installation/Ubuntu)를 따라 설치후 다음과 같이 배시셸에서 가제보를 실행해보십시오: 
 > 
