@@ -4,7 +4,8 @@ This topic explains how to simulate multiple UAV vehicles using Gazebo and SITL 
 A different approach is used for simulation with and without ROS.
 
 
-## Multiple Vehicle with Gazebo (No ROS) {#no_ros}
+<a id="no_ros"></a>
+## Multiple Vehicle with Gazebo (No ROS)
 
 To simulate multiple iris or plane vehicles in Gazebo use the following commands in the terminal (from the root of the *Firmware* tree):
 ```
@@ -28,25 +29,29 @@ Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.) an
 > **Note** The 255-vehicle limitation occurs because mavlink `MAV_SYS_ID` only supports 255 vehicles in the same network
   The `MAV_SYS_ID` and various UDP ports are allocated in the SITL rcS: [init.d-posix/rcS](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS#L108-L112)
 
-### Video: Multiple Multicopter (Iris) {#video_mc}
+<a id="video_mc"></a>
+### Video: Multiple Multicopter (Iris)
 
 {% youtube %}
 https://youtu.be/Mskx_WxzeCk
 {% endyoutube %}
 
-### Video: Multiple Plane {#video_fw}
+<a id="video_fw"></a>
+### Video: Multiple Plane
 
 {% youtube %}
 https://youtu.be/aEzFKPMEfjc
 {% endyoutube %}
 
-### Video: Multiple VTOL {#video_vtol}
+<a id="video_vtol"></a>
+### Video: Multiple VTOL
 
 {% youtube %}
 https://youtu.be/lAjjTFFZebI
 {% endyoutube %}
 
-## Multiple Vehicles with ROS and Gazebo {#with_ros}
+<a id="with_ros"></a>
+## Multiple Vehicles with ROS and Gazebo
 
 This example demonstrates a setup that opens the Gazebo client GUI showing two Iris vehicles in an empty world.
 You can then control the vehicles with *QGroundControl* and MAVROS in a similar way to how you would manage a single vehicle.

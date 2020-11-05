@@ -13,7 +13,8 @@ Rotational earth effects are also modeled into the dynamics.
 > **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment, and simulation configuration (e.g. supported vehicles).
 
 
-## Installation (Ubuntu Linux) {#installation}
+<a id="installation"></a>
+## Installation (Ubuntu Linux)
 
 > **Note** These instructions were tested on Ubuntu 18.04
 
@@ -25,7 +26,8 @@ Rotational earth effects are also modeled into the dynamics.
 1. (Optional) FlightGear may (optionally) be used for visualisation.
    To install FlightGear, refer to the [FlightGear installation instructions](../simulation/flightgear.md)).
 
-## Running the Simulation {#running}
+<a id="running"></a>
+## Running the Simulation
 
 JSBSim SITL simulation can be conveniently run through a `make` command as shown below:
 ```sh

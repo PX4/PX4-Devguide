@@ -216,7 +216,8 @@ param_get(my_param_handle, &my_param);
 ```
 
 
-## Parameter Meta Data {#parameter_metadata}
+<a id="parameter_metadata"></a>
+## Parameter Meta Data
 
 PX4 uses an extensive parameter metadata system to drive the user-facing presentation of parameters, and to set the default value for each parameter in firmware.
 
@@ -230,7 +231,8 @@ The build system extracts the metadata (using `make parameters_metadata`) to bui
 > **Warning** After adding a *new* parameter file you should call `make clean` before building to generate the new parameters (parameter files are added as part of the *cmake* configure step, which happens for clean builds and if a cmake file is modified).
 
 
-### c Parameter Metadata {#c_metadata}
+<a id="c_metadata"></a>
+### c Parameter Metadata
 
 The legacy approach for defining parameter metadata is in a file with extension **.c** (at time of writing this is the approach most commonly used in the source tree).
 
@@ -285,7 +287,8 @@ The purpose of each line is given below (for more detail see [module_schema.yaml
  */
 ```
 
-### YAML Metadata {#yaml_metadata}
+<a id="yaml_metadata"></a>
+### YAML Metadata
 
 > **Note** At time of writing YAML parameter definitions cannot be used in *libraries*.
 
@@ -295,7 +298,8 @@ It supports all the same metadata, along with new features like multi-instance d
 - The YAML parameter metadata schema is here: [validation/module_schema.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/validation/module_schema.yaml).
 - An example of YAML definitions being used can be found in the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/module.yaml).
 
-#### Multi-Instance (Templated) Meta Data {#multi_instance_metadata}
+<a id="multi_instance_metadata"></a>
+#### Multi-Instance (Templated) Meta Data
 
 Templated parameter definitions are supported in [YAML parameter definitions](https://github.com/PX4/PX4-Autopilot/blob/master/validation/module_schema.yaml) (templated parameter code is not supported).
 

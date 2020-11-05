@@ -96,7 +96,8 @@ make px4_sitl_default jmavsim
 
 For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
-### Using a Joystick {#joystick}
+<a id="joystick"></a>
+### Using a Joystick
 
 Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
 

@@ -23,7 +23,8 @@ graph LR;
 > **Note** See [Simulation](/simulation/README.md) for general information about simulators, the simulation environment, and simulation configuration (e.g. supported vehicles).
 
 
-## Installation (Ubuntu Linux) {#installation}
+<a id="installation"></a>
+## Installation (Ubuntu Linux)
 
 > **Note** These instructions were tested on Ubuntu 18.04
 
@@ -52,7 +53,8 @@ graph LR;
 Additional installation instructions can be found on [FlightGear wiki](http://wiki.flightgear.org/Howto:Install_Flightgear_from_a_PPA).   
 
 
-## Running the Simulation {#running}
+<a id="running"></a>
+## Running the Simulation
 
 Run a simulation by starting PX4 SITL, specifying the airframe configuration of your choice.
 
@@ -156,11 +158,13 @@ You can tune your FG installation/settings by the following environment variable
 - `FG\_MODELS\_DIR` - absolute path to the folder containing the manually-downloaded aircraft models which should be used for simulation.
 - `FG\_ARGS\_EX` - any additional FG parameters.
 
-### Display the frame rate {#frame_rate}
+<a id="frame_rate"></a>
+### Display the frame rate
 
 In FlightGear you can display the frame rate by enabling it in: **View > View Options > Show frame rate**.
 
-### Set Custom Takeoff Location {#custom_takeoff_location}
+<a id="custom_takeoff_location"></a>
+### Set Custom Takeoff Location
 
 Takeoff location in SITL FlightGear can be set using additional variables.
 Setting the variable will override the default takeoff location.
@@ -176,7 +180,8 @@ FG_ARGS_EX="--airport=PHNL"  make px4_sitl_nolockstep flightgear_rascal
 The example above starts the simulation on the [Honolulu international airport](http://wiki.flightgear.org/Suggested_airports)
 
 
-### Using a Joystick {#joystick}
+<a id="joystick"></a>
+### Using a Joystick
 
 Joystick and thumb-joystick are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
 

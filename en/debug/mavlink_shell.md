@@ -10,7 +10,8 @@ While the shell cannot *directly* display the output of modules that it does not
 
 ## Opening the Shell
 
-### QGroundControl MAVLink Console {#qgroundcontrol}
+<a id="qgroundcontrol"></a>
+### QGroundControl MAVLink Console
 
 The easiest way to access shell is to use the [QGroundControl MAVLink Console](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html) (see **Analyze View > Mavlink Console**).
 
