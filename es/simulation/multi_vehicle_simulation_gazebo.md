@@ -8,19 +8,22 @@ This topic explains how to simulate multiple UAV vehicles using Gazebo and SITL 
 
 To simulate multiple iris or plane vehicles in Gazebo use the following commands in the terminal (from the root of the *Firmware* tree):
 ```
-Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>] [-w <world>] [-s <script>]
+Tools/gazebo_sitl_multiple_run.sh [-m <model>] [-n <number_of_vehicles>] [-w <world>] [-s <script>] [-t <target>]
 ```
 
 - `<model>`: The [vehicle type/model](../simulation/gazebo_vehicles.md) to spawn, e.g.: `iris` (default), `plane`, `standard_vtol`.
 - `<number_of_vehicles>`: The number of vehicles to spawn. Default is 3. Maximum is 255.
 - `<world>`: The [world](../simulation/gazebo_worlds.md) that the vehicle should be spawned into, e.g.: `empty` (default)
 - `<script>`: Spawn multiple vehicles of different types (overriding the values in `-m` and `-n`). For example:
+
    ```
    -s "iris:3,plane:2,standard_vtol:3"
    ```
    - Supported vehicle types are: `iris`, `plane`, `standard_vtol`.
    - The number after the colon indicates the number of vehicles (of that type) to spawn.
    - Maximum number of vehicles is 255.
+
+ - `<target>`: build target, e.g: `px4_sitl_default` (default), `px4_sitl_rtps`
 
 Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.) and can be accessed from a unique remote offboard UDP port (14540, 14541, 14542, etc.).
 
@@ -49,6 +52,44 @@ https://youtu.be/aEzFKPMEfjc
 {% youtube %}
 https://youtu.be/lAjjTFFZebI
 {% endyoutube %}
+
+<a id="with_rtps"></a>
+
+### Build and Test (RTPS)
+
+To simulate multiple vehicles based on RTPS in Gazebo, use the `gazebo_sitl_multiple_run.sh` command in the terminal with the `-t px4_sitl_rtps` option from the root of the *PX4-Autopilot* tree (as described above). Here we will use the `-t px4_sitl_rtps` option, which sets that we will use RTPS for communicating with  PX4 rather than the MAVLink Simulation API. This will build and run the `iris_rtps` model (the only model that is currently implemented for use with RTPS).
+
+> **Note** You will need to have installed RTPS and the `micrortps_agent` should be run in the different terminal for each vehicle. For more information see: [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md).
+
+To build an example setup, follow the steps below:
+
+1. Clone the PX4/Firmware code, then build the SITL code:
+   ```bash
+   cd Firmware_clone
+   git submodule update --init --recursive
+   DONT_RUN=1 make px4_sitl_rtps gazebo
+   ```
+
+1. build `micrortps_agent`
+   * To use agent in ROS-independent RTPS, follow the [installation instructions here](../middleware/micrortps.md#agent-in-a-ros-independent-offboard-fast-rtps-interface)
+   * To use the agent in ROS2, follow the [instructions here](../middleware/micrortps.md#agent-interfacing-with-a-ros2-middleware)
+
+1. Run `gazebo_sitl_multiple_run.sh`. For example, to spawn 4 vehicles, run:
+
+   ```bash
+   ./Tools/gabo_sitl_multiple_run.sh  -m iris_rtps -t px4_sitl_rtps -n 4
+   ```
+
+   > **Note** Each vehicle instance is allocated a unique MAVLink system id (1, 2, 3, etc.), can receive data from a unique remote UDP port (2019, 2021, 2023, etc.), and transmit data to UDP port (2020, 2022, 2024, etc.).
+
+1. Run `micrortps_agent`. For example, to connect 4 vehicles, run:
+
+   ```bash
+   micrortps_agent -t UDP -r 2020 -s 2019 &
+   micrortps_agent -t UDP -r 2022 -s 2021 &
+   micrortps_agent -t UDP -r 2024 -s 2023 &
+   micrortps_agent -t UDP -r 2026 -s 2025 &
+   ```
 
 <a id="with_ros"></a>
 
@@ -195,6 +236,7 @@ To add a new vehicle, you need to make sure the model can be found (in order to 
 
      > **Note** Ensure you set the `vehicle` argument even if you hardcode the path to your model.
    * copy your model into the folder indicated above (following the same path convention).
+
 1. The `vehicle` argument is used to set the `PX4_SIM_MODEL` environment variable, which is used by the default rcS (startup script) to find the corresponding startup settings file for the model. Within PX4 these startup files can be found in the **PX4-Autopilot/ROMFS/px4fmu_common/init.d-posix/** directory. For example, here is the plane model's [startup script](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d-posix/1030_plane). For this to work, the PX4 node in the launch file is passed arguments that specify the *rcS* file (**etc/init.d/rcS**) and the location of the rootfs etc directory (`$(find px4)/build_px4_sitl_default/etc`). For simplicity, it is suggested that the startup file for the model be placed alongside PX4's in **PX4-Autopilot/ROMFS/px4fmu_common/init.d-posix/**.
 
 
