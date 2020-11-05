@@ -8,7 +8,9 @@ The shell can be used for running commands and modules, and displaying their out
 
 ## Opening the Shell
 
-### QGroundControl MAVLink Console {#qgroundcontrol}
+<a id="qgroundcontrol"></a>
+
+### QGroundControl MAVLink Console
 
 The easiest way to access shell is to use the [QGroundControl MAVLink Console](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html) (see **Analyze View > Mavlink Console**).
 
