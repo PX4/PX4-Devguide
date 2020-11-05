@@ -2,7 +2,7 @@
 
 本教程旨在提供有关如何在 linux 环境中安装英特尔实感 r200 相机头的相机驱动程序的说明, 以便可以通过机器人操作系统 (ros) 访问收集到的图像。 实感 r200 相机头如下图所示:
 
-![](../../assets/realsense_intel/realsense.png)
+![Intel Realsense Camera front view](../../assets/hardware/sensors/realsense/intel_realsense.png)
 
 驱动程序包的安装是在 Virtual Box 中作为虚拟机运行的 ubuntu 操作系统 (os) 上执行的。 运行 Virtual Box 的宿主机、虚拟机的规格如下:
 
