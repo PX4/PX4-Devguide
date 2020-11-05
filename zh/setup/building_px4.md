@@ -8,7 +8,9 @@
 
 > **Tip** For solutions to common build problems see [Troubleshooting](#troubleshooting) below.
 
-## Download the PX4 Source Code {#get_px4_code}
+<a id="get_px4_code"></a>
+
+## Download the PX4 Source Code
 
 The PX4 source code is stored on Github in the [PX4/PX4-Autopilot](https://github.com/PX4/PX4-Autopilot) repository. To get the *very latest* version onto your computer, enter the following command into a terminal:
 
@@ -18,7 +20,9 @@ git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 
 > **Note** This is all you need to do just to build the latest code. [GIT Examples > Contributing code to PX4](../contribute/git_examples.md#contributing_code) provides a lot more information about using git to contribute to PX4.
 
-## 初次编译（使用 jMAVSim 模拟器） {#jmavsim_build}
+<a id="jmavsim_build"></a>
+
+## First Build (Using the jMAVSim Simulator)
 
 First we'll build a simulated target using a console environment. This allows us to validate the system setup before moving on to real hardware and an IDE.
 
@@ -48,9 +52,13 @@ Flying the simulation with the ground control station is closer to the real oper
 
 > **Tip** PX4 can be used with a number of other [Simulators](../simulation/README.md), including [Gazebo Simulation](../simulation/gazebo.md) and [AirSim Simulation](../simulation/airsim.md). These are also started with *make* - e.g. ```make px4_sitl gazebo```
 
-## NuttX / Pixhawk Based Boards {#nuttx}
+<a id="nuttx"></a>
 
-### Building {#building_nuttx}
+## NuttX / Pixhawk Based Boards
+
+<a id="building_nuttx"></a>
+
+### Building
 
 To build for NuttX- or Pixhawk- based boards, navigate into the **PX4-Autopilot** directory and then call `make` with the build target for your board.
 
@@ -348,7 +356,9 @@ That's it! Start *Qt Creator*, then complete the steps in the video below to set
 
 {% youtube %}https://www.youtube.com/watch?v=0pa0gS30zNw&rel=0&vq=hd720{% endyoutube %}
 
-## PX4 创建生成目标 {#make_targets}
+<a id="make_targets"></a>
+
+## PX4 Make Build Targets
 
 The previous sections showed how you can call *make* to build a number of different targets, start simulators, use IDEs etc. This section shows how *make* options are constructed and how to find the available choices.
 
@@ -393,7 +403,9 @@ The `VENDOR_MODEL_VARIANT` options map to particular *cmake* configuration files
 
 Additional make targets are discussed in the following sections (list is not exhaustive):
 
-### Binary Size Profiling {#bloaty_compare_master}
+<a id="bloaty_compare_master"></a>
+
+### Binary Size Profiling
 
 The `bloaty_compare_master` build target allows you to get a better understanding of the impact of changes on code size. When it is used, the toolchain downloads the latest successful master build of a particular firmware and compares it to the local build (using the [bloaty](https://github.com/google/bloaty) size profiler for binaries).
 
@@ -452,7 +464,9 @@ Then use the make target, specifying the target build to compare (`px4_fmu-v2_de
 
 This shows that removing *mpu9250* from `px4_fmu-v2_default` would save 10.3 kB of flash. It also shows the sizes of different pieces of the *mpu9250* driver.
 
-## Firmware Version & Git Tags {#firmware_version}
+<a id="firmware_version"></a>
+
+## Firmware Version & Git Tags
 
 The *PX4 Firmware Version* and *Custom Firmware Version* are published using the MAVLink [AUTOPILOT_VERSION](https://mavlink.io/en/messages/common.html#AUTOPILOT_VERSION) message, and displayed in the *QGroundControl* **Setup > Summary** airframe panel:
 
@@ -462,7 +476,9 @@ These are extracted at build time from the active *git tag* for your repo tree. 
 
 > **Warning** If you use a different git tag format, versions information may not be displayed properly.
 
-## Troubleshooting {#troubleshooting}
+<a id="troubleshooting"></a>
+
+## Troubleshooting
 
 ### General Build Errors
 
@@ -480,7 +496,9 @@ If you're building the *vanilla* master branch, the most likely cause is using a
 
 If building your own branch, it is possibly you have increased the firmware size over the 1MB limit. In this case you will need to remove any drivers/modules that you don't need from the build.
 
-### macOS: Too many open fileserror {#macos_open_files}
+<a id="macos_open_files"></a>
+
+### macOS: Too many open fileserror
 
 MacOS allows a default maximum of 256 open files in all running processes. The PX4 build system opens a large number of files, so you may exceed this number.
 
