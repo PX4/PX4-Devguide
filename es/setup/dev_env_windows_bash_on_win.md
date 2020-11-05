@@ -59,7 +59,7 @@ Para ejecutar JMAVSim:
     
     La UI de JMAVSim se mostrará en XMing tal como se muestra a continuación:
     
-    ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
+    ![jMAVSimOnWindows](../../assets/simulation/jmavsim_on_windows.png)
 
 > **Advertencia** Gazebo puede ejecutarse de igual forma en Ubuntu Bash for Windows, pero demasiado lento como par ser útil. Para intentarlo, siguie la [Guia de instalación de ROS kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) y ejecuta Gazebo en el shell de la siguiente forma: 
 > 
