@@ -21,16 +21,16 @@ You must already have installed the command line [PX4 developer environment](../
 1. [Download and install VSCode](https://code.visualstudio.com/) (you will be offered the correct version for your OS).
 2. Open VSCode and add the PX4 source code:
     
-   - Select *Open folder ...* option on the welcome page (or using the menu: **File > Open Folder**): ![Open Folder](../../assets/vscode/welcome_open_folder.jpg)
+   - Select *Open folder ...* option on the welcome page (or using the menu: **File > Open Folder**): ![Open Folder](../../assets/toolchain/vscode/welcome_open_folder.jpg)
    - A file selection dialog will appear. Select the **PX4-Autopilot** directory and then press **OK**.
     
     The project files and configuration will then load into *VSCode*.
 
-3. Press **Install All** on the *This workspace has extension recommendations* prompt (this will appear on the bottom right of the IDE). ![Install extensions](../../assets/vscode/prompt_install_extensions.jpg)
+3. Press **Install All** on the *This workspace has extension recommendations* prompt (this will appear on the bottom right of the IDE). ![Install extensions](../../assets/toolchain/vscode/prompt_install_extensions.jpg)
     
     VSCode will open the *Extensions* panel on the left hand side so you can watch the progress of installation.
     
-    ![PX4 loaded into VSCode Explorer](../../assets/vscode/installing_extensions.jpg)
+    ![PX4 loaded into VSCode Explorer](../../assets/toolchain/vscode/installing_extensions.jpg)
 
 4. A number of notifications/prompts may appear in the bottom right corner
     
@@ -47,11 +47,11 @@ You must already have installed the command line [PX4 developer environment](../
 To build:
 
 1. Select your build target ("cmake build config"): 
-   - The current *cmake build target* is shown on the blue *config* bar at the bottom (if this is already your desired target, skip to next step). ![Select Cmake build target](../../assets/vscode/cmake_build_config.jpg)
+   - The current *cmake build target* is shown on the blue *config* bar at the bottom (if this is already your desired target, skip to next step). ![Select Cmake build target](../../assets/toolchain/vscode/cmake_build_config.jpg)
    - Click the target on the config bar to display other options, and select the one you want (this will replace any selected target).
-   - *Cmake* will then configure your project (see notification in bottom right). ![Cmake config project](../../assets/vscode/cmake_configuring_project.jpg)
-   - Wait until configuration completes. When this is done the notification will disappear and you'll be shown the build location: ![Cmake config project](../../assets/vscode/cmake_configuring_project_done.jpg).
-2. You can then kick off a build from the config bar (select either **Build** or **Debug**). ![Run debug or build](../../assets/vscode/run_debug_build.jpg)
+   - *Cmake* will then configure your project (see notification in bottom right). ![Cmake config project](../../assets/toolchain/vscode/cmake_configuring_project.jpg)
+   - Wait until configuration completes. When this is done the notification will disappear and you'll be shown the build location: ![Cmake config project](../../assets/toolchain/vscode/cmake_configuring_project_done.jpg).
+2. You can then kick off a build from the config bar (select either **Build** or **Debug**). ![Run debug or build](../../assets/toolchain/vscode/run_debug_build.jpg)
 
 After building at least once you can now use [code completion](#code completion) and other *VSCode* features.
 
@@ -61,7 +61,7 @@ After building at least once you can now use [code completion](#code completion)
 
 To debug PX4 on SITL:
 
-1. Select the debug icon on the sidebar (marked in red) to display the debug panel. ![Run debug](../../assets/vscode/vscode_debug.jpg)
+1. Select the debug icon on the sidebar (marked in red) to display the debug panel. ![Run debug](../../assets/toolchain/vscode/vscode_debug.jpg)
 
 2. Then choose your debug target (e.g. *Debug SITL (Gazebo Iris)*) from the top bar debug dropdown (purple box).
     
@@ -77,7 +77,7 @@ The instructions in [SWD (JTAG) Hardware Debugging Interface](../debug/swd_debug
 
 After connecting to the SWD interface, hardware debugging in VSCode is then the same as for [SITL Debugging](#debugging_sitl) except that you select a debug target appropriate for your debugger type (and firmware) - e.g. `jlink (px4_fmu-v5)`.
 
-![Image showing hardware targets with options for the different probes](../../assets/vscode/vscode_hardware_debugging_options.png)
+![Image showing hardware targets with options for the different probes](../../assets/toolchain/vscode/vscode_hardware_debugging_options.png)
 
 ## Code Completion {#code completion}
 
@@ -85,4 +85,4 @@ In order for the code completion to work (and other IntelliSense magic) you need
 
 Once that is done you don't need to do anything else; the toolchain will automatically offer you symbols as you type.
 
-![IntelliSense](../../assets/vscode/vscode_intellisense.jpg)
+![IntelliSense](../../assets/toolchain/vscode/vscode_intellisense.jpg)
