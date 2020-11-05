@@ -8,7 +8,9 @@ PX4 참조 설계는 비행체 제어 장치의 [픽스호크 계열](https://do
 
 FMU 1~3 세대는 공개 하드웨어로 설계했으나, 4~5세대에서는 핀 출력과 전원 공급장치 명세 정보만 제공합니다(설계도는 각 제조사에서 만듦). 좀 더 우수한 호환성을 확보하기 위해, FMUv6 및 이후 버전에서는 완전한 참조 설계 모델로 돌아올 예정입니다.
 
-## 참조 설계 세대 {#reference_design_generations}
+<a id="reference_design_generations"></a>
+
+## Reference Design Generations
 
 * FMUv1: 개발 보드 \(STM32F407, 128 KB RAM, 1MB flash, [설계도](https://github.com/PX4/Hardware/tree/master/FMUv1)\) (PX4에서 더이상 지원하지 않음)
 * FMUv2: 픽스호크 \(STM32F427, 168 MHz, 192 KB RAM, 1MB flash, [설계도](https://github.com/PX4/Hardware/tree/master/FMUv2)\)
@@ -20,20 +22,20 @@ FMU 1~3 세대는 공개 하드웨어로 설계했으나, 4~5세대에서는 핀
 
 ## 주요/입출력 기능 해부
 
-아래 그림에서는 픽스호크 계열 비행체 제어 장치의 FMU와 I/O 보드간 버스 구분과 담당 기능을 나타냅니다(보드는 단일 물리 모듈에 들어갑니다).
+The diagram below shows the division of bus and functional responsibilities between the FMU and I/O boards in a Pixhawk-series flight controller (the boards are incorporated into a single physical module).
 
-![PX4 주요/입출력 기능 해부](../../assets/diagrams/px4_fmu_io_functions.png)
+![PX4 Main/IO Functional Breakdown](../../assets/diagrams/px4_fmu_io_functions.png)
 
 <!-- Draw.io version of file can be found here: https://drive.google.com/file/d/1H0nK7Ufo979BE9EBjJ_ccVx3fcsilPS3/view?usp=sharing -->
 
-일부 픽스호크 계열 조종 장치는 입출력보드 없이 만들어 공간과 복잡도를 출이거나, 각 보드 용도를 알맞게 개선했습니다.
+Some Pixhawk-series controllers are built without the I/O board in order to reduce space or complexity, or to better address certain board use-cases.
 
-입출력 보드의 기능은 [SYS_USE_IO=0](../advanced/parameter_reference.md#SYS_USE_IO) 매개변수 설정으로 끌 수 있습니다. 입출력 보드의 기능을 끄면:
+The I/O board is disabled by setting parameter [SYS_USE_IO=0](../advanced/parameter_reference.md#SYS_USE_IO). When the I/O board is disabled:
 
 - 메인 믹서 파일을 FMU로 불러옵니다(따라서 "메인" 출력은 [에어프레임 참고](../airframes/airframe_reference.md)에서 AUX로 표기한 포트로 나타냅니다). AUX 믹서 파일은 불러오지 않으므로, 이 파일에 지정한 출력 핀은 사용하지 않습니다.
 - RC 입력은 입출력 보드가 아닌 FMU로 바로 들어갑니다.
 
-입출력 보드를 장착하지 않은 비행체 제어 장치에는 `MAIN` 포트가 있지만, `AUX`포트는 *없습니다*. 따라서 `AUX` 포트를 활용하지 않는 [에어프레임](../airframes/airframe_reference.md)에서만 사용할 수 있거나 덜 핵심적인 목적으로 활용할 수 있습니다(예: RC 전달). 대부분의 멀티콥터와 *완전* 자동화 기체(원격 조정을 통한 안전 항해 기능을 뺌)는 모터와 핵심부를 제어하는 `MAIN` 포트만을 사용하기 때문에 이 목적으로만 활용할 수 있습니다.
+Flight controllers without an I/O board have `MAIN` ports, but they *do not* have `AUX` ports. Consequently they can only be used in [airframes](../airframes/airframe_reference.md) that do not use `AUX` ports, or that only use them for non-essential purposes (e.g. RC passthrough). They can be used for most multicopters and *fully* autonomous vehicles (without a safety pilot using RC control), as these typically only use `MAIN` ports for motors/essential controls.
 
 > **Warning** 입출력 보드가 빠진 비행체 제어 장치는 핵심 비행 제어부와 모터를 `AUX`포트에 연결하는 [에어프레임](../airframes/airframe_reference.md)에서 사용할 수 없습니다(`AUX` 포트가 없기 때문).
 
@@ -41,4 +43,4 @@ FMU 1~3 세대는 공개 하드웨어로 설계했으나, 4~5세대에서는 핀
 
 > **Note** 입출력 보드가 빠진 제조사의 비행체 제어 장치 변경 버전은 보통 해당 버전의 "소형" 모델로, 예를 들면, *픽스호크 4* **미니**_, *CUAV v5 **나노***와 같이 표기합니다.
 
-대부분의 PX4 PWM 출력은 믹서의 `MAIN` 또는 `AUX` 포트에 대응합니다. 일부 드문 경우, Dshot ESC, 카메라 촬영 핀을 FMU 핀에 직접 연결합니다(예: 비행체 제어 장치에 입출력 보드가 붙어있는지 여부에 따라 `MAIN`핀 또는 `AUX`핀 *어디로든* 출력함).
+Most PX4 PWM outputs are mapped to either `MAIN` or `AUX` ports in mixers. A few specific cases, including camera triggering and Dshot ESCs, are directly mapped to the FMU pins (i.e. they will output to *either* `MAIN` or `AUX`, depending on whether or not the flight controller has an I/O board).
