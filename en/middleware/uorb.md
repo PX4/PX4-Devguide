@@ -133,7 +133,8 @@ Make sure not to mix `orb_advertise_multi` and `orb_advertise` for the same topi
 The full API is documented in
 [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/uORB/uORBManager.hpp).
 
-## Message/Field Deprecation {#deprecation}
+<a id="deprecation"></a>
+## Message/Field Deprecation
 As there are external tools using uORB messages from log files, such as [Flight Review](https://github.com/PX4/flight_review), certain aspects need to be considered when updating existing messages:
 
 - Changing existing fields or messages that external tools rely on is generally acceptable if there are good reasons for the update.

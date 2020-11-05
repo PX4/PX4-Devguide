@@ -59,7 +59,7 @@ JMAVSim 运行流程：
     
     JMAVSim 的UI界面会显示在 XMing 程序中，如下所示：
     
-    ![jMAVSimOnWindows](../../assets/simulation/JMAVSim_on_Windows.PNG)
+    ![jMAVSimOnWindows](../../assets/simulation/jmavsim_on_windows.png)
 
 > **注意！** Gazebo 也可以以类似方式在 Ubuntu Bash for Windows 中运行，但运行速度太慢以至于没有实用价值。 如要尝试运行，请遵循 [ROS kinetic install guide](http://wiki.ros.org/kinetic/Installation/Ubuntu) 的指示然后在 Bash shell 界面中使用如下命令运行Gazebo： 
 > 

@@ -49,7 +49,8 @@ Please watch out for them while using it:
   This does not affect single core embedded targets, since they always execute in one thread, but this limitation makes the profiler incompatible with many other applications.
   In the future the stack folder should be modified to support multiple stack traces per sample.
 
-## Implementation {#implementation}
+<a id="implementation"></a>
+## Implementation
 
 The script is located at `Debug/poor-mans-profiler.sh`.
 Once launched, it will perform the specified number of samples with the specified time interval.

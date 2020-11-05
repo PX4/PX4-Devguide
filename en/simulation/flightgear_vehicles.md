@@ -10,7 +10,8 @@ The supported types are: plane, autogyro and rover (there are specific frames wi
   (this page is a summary of vehicle-specific features).
 
 
-## Standard Plane {#standard_plane}
+<a id="standard_plane"></a>
+## Standard Plane
 
 FlightGear has models for many planes.
 The most suitable one for UAV development is currently the [Rascal RC plane](https://github.com/ThunderFly-aerospace/FlightGear-Rascal) (which also exists in multiple variants).
@@ -61,7 +62,8 @@ Rascal JSBsim variant.
 This variant does not have a direct `make` option but can be manually selected in the **rascal.json** configuration file (part of [PX4-FlightGear-Bridge](https://github.com/ThunderFly-aerospace/PX4-FlightGear-Bridge)).
 Simply change `Rascal110-YASim` to `Rascal110-JSBSim` in [this file](https://github.com/ThunderFly-aerospace/PX4-FlightGear-Bridge/blob/master/rascal.json#L2).
 
-## Autogyro {#autogyro}
+<a id="autogyro"></a>
+## Autogyro
 
 The only UAV autogyro model supported by FlightGear is [TF-G1 Autogyro](https://github.com/ThunderFly-aerospace/TF-G1).
 
@@ -72,7 +74,8 @@ make px4_sitl_nolockstep flightgear_tf-g1
 ![TF-G1 in FlightGear](../../assets/simulation/flightgear/vehicles/tf-g1.jpg)
 
 
-## Ackerman vehicle (UGV/Rover) {#ugv}
+<a id="ugv"></a>
+## Ackerman vehicle (UGV/Rover)
 
 ### TF-R1 Ground support Rover
 
@@ -85,7 +88,8 @@ make px4_sitl_nolockstep flightgear_tf-r1
 ![TF-R1 rover in FlightGear](../../assets/simulation/flightgear/vehicles/tf-r1_towing.jpg)
 
 
-## Quadrotor {#quadrotor}
+<a id="quadrotor"></a>
+## Quadrotor
 
 There is only an [incomplete multirotor model](https://github.com/ThunderFly-aerospace/FlightGear-TF-Mx1).
 This is not yet usable (it is numerically unstable and needs an additional work).

@@ -15,7 +15,7 @@
 ## 설치 방법 {#installation}
 
 1. 바로 사용할 수 있는 MSI 설치 프로그램의 최신 버전을 [Github 릴리스](https://github.com/PX4/windows-toolchain/releases) 또는 [아마존 S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.9.msi) (다운로드 속도 빠름) 서버에서 받으십시오.
-2. 실행하고, 원하는 위치를 선택한 후, 진행하십시오:![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.PNG)
+2. 실행하고, 원하는 위치를 선택한 후, 진행하십시오:![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.png)
 3. 설치 과정 마지막에서 *clone the PX4 repository, build and run simulation with jMAVSim*의 확인 상자에 표시하십시오(이 동작은 시작할 때 과정을 단순화합니다).
     
     > **Note** If you missed this step you will need to [clone the PX4-Autopilot repository manually](#getting_started).
@@ -48,7 +48,7 @@
     
     위 명령을 실행하면 화면이 나타납니다:
     
-    ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.PNG)
+    ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.png)
 
 [PX4를 빌드하는 자세한 방법](../setup/building_px4.md)으로 계속 진행하십시오(또는 바로 아래 절에서 좀 더 일반적인 사용 방법을 살펴보십시오).
 

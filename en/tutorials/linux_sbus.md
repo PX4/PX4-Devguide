@@ -9,7 +9,8 @@ For RC types other than S.Bus, you can just connect the receiver directly to the
 Then [Start the PX4 RC Driver](#start_driver) on the device, as shown below.
 
 
-## Starting the Driver {#start_driver}
+<a id="start_driver"></a>
+## Starting the Driver
 
 To start the RC driver on a particular UART (e.g. in this case `/dev/ttyS2`): 
 ```
@@ -19,7 +20,8 @@ rc_input start -d /dev/ttyS2
 For other driver usage information see: [rc_input](../middleware/modules_driver.md#rcinput).
 
 
-## Signal Inverter Circuit (S.Bus only) {#signal_inverter_circuit}
+<a id="signal_inverter_circuit"></a>
+## Signal Inverter Circuit (S.Bus only)
 
 S.Bus is an *inverted* UART communication signal.
 

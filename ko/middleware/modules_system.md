@@ -6,7 +6,9 @@ Source: [modules/simulator/battery_simulator](https://github.com/PX4/Firmware/tr
 
 ### 설명
 
-### 사용법 {#battery_simulator_usage}
+<a id="battery_simulator_usage"></a>
+
+### Usage
 
     battery_simulator <command> [arguments...]
      Commands:
@@ -23,15 +25,17 @@ Source: [modules/battery_status](https://github.com/PX4/Firmware/tree/master/src
 
 ### 설명
 
-제공 기능은 다음과 같습니다:
+The provided functionality includes:
 
 - (ioctl 인터페이스로) ADC 드라이버의 출력을 읽고 `battery_status`로 내보냅니다.
 
 ### 구현
 
-현재 선택한 자이로 토픽에 대해 스레드와 폴링을 기반으로 실행합니다.
+It runs in its own thread and polls on the currently selected gyro topic.
 
-### 사용법 {#battery_status_usage}
+<a id="battery_status_usage"></a>
+
+### Usage
 
     battery_status <command> [arguments...]
      Commands:
@@ -48,7 +52,9 @@ Source: [modules/camera_feedback](https://github.com/PX4/Firmware/tree/master/sr
 
 ### 설명
 
-### 사용법 {#camera_feedback_usage}
+<a id="camera_feedback_usage"></a>
+
+### Usage
 
     camera_feedback <command> [arguments...]
      Commands:
@@ -65,9 +71,11 @@ Source: [modules/commander](https://github.com/PX4/Firmware/tree/master/src/modu
 
 ### 설명
 
-commander 모듈에는 모듈 스위칭 기능과 안전 조치 기능을 수반한 상태 머신이 들어있습니다.
+The commander module contains the state machine for mode switching and failsafe behavior.
 
-### 사용법 {#commander_usage}
+<a id="commander_usage"></a>
+
+### Usage
 
     commander <command> [arguments...]
      Commands:
@@ -109,22 +117,24 @@ Source: [modules/dataman](https://github.com/PX4/Firmware/tree/master/src/module
 
 ### 설명
 
-C API 형식의 간단한 데이터베이스형 영구 저장소를 시스템의 나머지 자원을 가용하여 제공합니다. 여러 백엔드를 지원합니다:
+Module to provide persistent storage for the rest of the system in form of a simple database through a C API. Multiple backends are supported:
 
 - 파일(예: SD 카드) 
 - 플래시(보드에 붙어있을 경우)
 - FRAM
 - RAM(분명히 영구 저장장치는 아님)
 
-임부 경로 지점, 임무 상태, 다각형 비행 제한 구역 같은 여러가지 형식의 구조 데이터를 저장합니다. 각 데이터에 고유 형식을 할당하며, 항목당 저장소상 최대 고정 용량이 있기에, 고속의 임의 접근이 가능합니다.
+It is used to store structured data of different types: mission waypoints, mission state and geofence polygons. Each type has a specific type and a fixed maximum amount of storage items, so that fast random access is possible.
 
 ### 구현
 
-단일 항목의 읽기/쓰기 동작은 원소 형태입니다. 여러 항목을 개별적으로 읽고 수정하려면, `dm_lock`으로 항목 형식별 추가 잠금을 걸어두어야 합니다.
+Reading and writing a single item is always atomic. If multiple items need to be read/modified atomically, there is an additional lock per item type via `dm_lock`.
 
-**DM_KEY_FENCE_POINTS**와 **DM_KEY_SAFE_POINTS** 항목: 첫 데이타 요소는 이런 형식의 항목을 저장하는 `mission_stats_entry_s` 구조체입니다. 트랜잭션 1회당 이 항목은 (MAVLink 임무 관리자에서) 개별적으로 업데이트합니다. 이때 동안, 네비게이터에서는 비행 제한 구역(geofence) 항목의 잠금 획득을 시도하고, 비행 제한 구역 위반을 검사하지 않습니다.
+**DM_KEY_FENCE_POINTS** and **DM_KEY_SAFE_POINTS** items: the first data element is a `mission_stats_entry_s` struct, which stores the number of items for these types. These items are always updated atomically in one transaction (from the mavlink mission manager). During that time, navigator will try to acquire the geofence item lock, fail, and will not check for geofence violations.
 
-### 사용법 {#dataman_usage}
+<a id="dataman_usage"></a>
+
+### Usage
 
     dataman <command> [arguments...]
      Commands:
@@ -152,16 +162,18 @@ Source: [systemcmds/dmesg](https://github.com/PX4/Firmware/tree/master/src/syste
 
 ### 설명
 
-부팅 콘솔 메시지를 보여주는 명령행 도구입니다. NuttX의 작업 큐와 syslog의 출력은 잡아 보여주지 않습니다.
+Command-line tool to show bootup console messages. Note that output from NuttX's work queues and syslog are not captured.
 
 ### 예제
 
-백그라운드의 모든 메시지 출력 유지:
+Keep printing all messages in the background:
 
     dmesg -f &
     
 
-### 사용법 {#dmesg_usage}
+<a id="dmesg_usage"></a>
+
+### Usage
 
     dmesg <command> [arguments...]
      Commands:
@@ -174,9 +186,11 @@ Source: [modules/esc_battery](https://github.com/PX4/Firmware/tree/master/src/mo
 
 ### 설명
 
-이 구현체에서는 전동 변속기 상태 정보를 활용하며, 배터리 상태를 내보냅니다.
+This implements using information from the ESC status and publish it as battery status.
 
-### 사용법 {#esc_battery_usage}
+<a id="esc_battery_usage"></a>
+
+### Usage
 
     esc_battery <command> [arguments...]
      Commands:
@@ -193,7 +207,9 @@ Source: [examples/gyro_fft](https://github.com/PX4/Firmware/tree/master/src/exam
 
 ### 설명
 
-### Usage {#gyro_fft_usage}
+<a id="gyro_fft_usage"></a>
+
+### Usage
 
     gyro_fft <command> [arguments...]
      Commands:
@@ -214,7 +230,9 @@ Background process running periodically on the LP work queue to regulate IMU tem
 
 This task can be started at boot from the startup scripts by setting SENS_EN_THERMAL or via CLI.
 
-### Usage {#heater_usage}
+<a id="heater_usage"></a>
+
+### Usage
 
     heater <command> [arguments...]
      Commands:
@@ -247,7 +265,9 @@ Every type is implemented in its own class with a common base class. The base cl
 
 The module runs periodically on the HP work queue.
 
-### Usage {#land_detector_usage}
+<a id="land_detector_usage"></a>
+
+### Usage
 
     land_detector <command> [arguments...]
      Commands:
@@ -269,7 +289,9 @@ Background process running periodically on the low priority work queue to calcul
 
 On NuttX it also checks the stack usage of each process and if it falls below 300 bytes, a warning is output, which will also appear in the log file.
 
-### Usage {#load_mon_usage}
+<a id="load_mon_usage"></a>
+
+### Usage
 
     load_mon <command> [arguments...]
      Commands:
@@ -318,7 +340,9 @@ Or if already running:
     logger on
     
 
-### Usage {#logger_usage}
+<a id="logger_usage"></a>
+
+### Usage
 
     logger <command> [arguments...]
      Commands:
@@ -355,7 +379,9 @@ Source: [drivers/pwm_input](https://github.com/PX4/Firmware/tree/master/src/driv
 
 Measures the PWM input on AUX5 (or MAIN5) via a timer capture ISR and publishes via the uORB 'pwm_input` message.
 
-### Usage {#pwm_input_usage}
+<a id="pwm_input_usage"></a>
+
+### Usage
 
     pwm_input <command> [arguments...]
      Commands:
@@ -380,7 +406,9 @@ The rc_update module handles RC channel mapping: read the raw input channels (`i
 
 To reduce control latency, the module is scheduled on input_rc publications.
 
-### Usage {#rc_update_usage}
+<a id="rc_update_usage"></a>
+
+### Usage
 
     rc_update <command> [arguments...]
      Commands:
@@ -408,7 +436,9 @@ The module is typically used together with uORB publisher rules, to specify whic
 
 The replay procedure is documented on the [System-wide Replay](https://dev.px4.io/master/en/debug/system_wide_replay.html) page.
 
-### Usage {#replay_usage}
+<a id="replay_usage"></a>
+
+### Usage
 
     replay <command> [arguments...]
      Commands:
@@ -433,7 +463,9 @@ Background process running periodically on the LP work queue to perform housekee
 
 The tasks can be started via CLI or uORB topics (vehicle_command from MAVLink, etc.).
 
-### Usage {#send_event_usage}
+<a id="send_event_usage"></a>
+
+### Usage
 
     send_event <command> [arguments...]
      Commands:
@@ -462,7 +494,9 @@ The provided functionality includes:
 
 It runs in its own thread and polls on the currently selected gyro topic.
 
-### Usage {#sensors_usage}
+<a id="sensors_usage"></a>
+
+### Usage
 
     sensors <command> [arguments...]
      Commands:
@@ -482,7 +516,9 @@ Source: [modules/temperature_compensation](https://github.com/PX4/Firmware/tree/
 
 The temperature compensation module allows all of the gyro(s), accel(s), and baro(s) in the system to be temperature compensated. The module monitors the data coming from the sensors and updates the associated sensor_thermal_cal topic whenever a change in temperature is detected. The module can also be configured to perform the coeffecient calculation routine at next boot, which allows the thermal calibration coeffecients to be calculated while the vehicle undergoes a temperature cycle.
 
-### Usage {#temperature_compensation_usage}
+<a id="temperature_compensation_usage"></a>
+
+### Usage
 
     temperature_compensation <command> [arguments...]
      Commands:
@@ -519,7 +555,9 @@ Play system tune #2:
     tune_control play -t 2
     
 
-### Usage {#tune_control_usage}
+<a id="tune_control_usage"></a>
+
+### Usage
 
     tune_control <command> [arguments...]
      Commands:
@@ -547,7 +585,9 @@ Source: [systemcmds/work_queue](https://github.com/PX4/Firmware/tree/master/src/
 
 Command-line tool to show work queue status.
 
-### Usage {#work_queue_usage}
+<a id="work_queue_usage"></a>
+
+### Usage
 
     work_queue <command> [arguments...]
      Commands:

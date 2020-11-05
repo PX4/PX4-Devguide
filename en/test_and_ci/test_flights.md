@@ -31,7 +31,8 @@ The tests performed for each platform are linked below:
 * [MC_05 - Indoor Flight (Manual Modes)](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
 
-## Test Vehicles/Autopilots {#fleet}
+<a id="fleet"></a>
+## Test Vehicles/Autopilots
 
 Multicopter
 

@@ -16,7 +16,9 @@ Source: [modules/sih](https://github.com/PX4/Firmware/tree/master/src/modules/si
 
 모의 시험 환경에는 행렬 수식으로 모션 방정식을 구현했습니다. 자세 표현시 4차원 행렬을 활용합니다. 각 요소 통합시 Forward Euler 법칙을 활용합니다. 대부분의 변수는 스택 오버플로우 방지를 목적으로 .hpp에 전역 선언했습니다.
 
-### 사용법 {#sih_usage}
+<a id="sih_usage"></a>
+
+### Usage
 
     sih <command> [arguments...]
      Commands:

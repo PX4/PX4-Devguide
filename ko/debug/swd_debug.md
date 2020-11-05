@@ -143,6 +143,7 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 *10-pin JST SH* 소켓을 사용합니다 - Digikey number: [BM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1796-2-ND) (수직 마운트), [SM10B-SRSS-TB(LF)(SN)](https://www.digikey.com/products/en?keywords=455-1810-2-ND) (측면 마운트).
 
 [이 같은 케이블](https://www.digikey.com/products/en?keywords=A10SR10SR30K203A)로 디버깅 포트에 연결할 수 있습니다.
+
 ![10-pin JST SH Cable](../../assets/debug/cable_10pin_jst_sh.jpg) <!-- better to have image showing proper connections for SWD+SWO -->
 
 
@@ -202,4 +203,5 @@ J-Link Edu Mini를 [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh)�
 다음 주제에서는 온-타겟 디버깅 방법을 설명하도록 하겠습니다:
 
 - [PX4용 MCU Eclipse/J-Link 디버깅](../debug/eclipse_jlink.md)
+- [Visual Studio Code IDE (VSCode)](../setup/vscode.md)
 

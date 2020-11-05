@@ -2,7 +2,9 @@
 ## ets_airspeed
 Source: [drivers/differential_pressure/ets](https://github.com/PX4/Firmware/tree/master/src/drivers/differential_pressure/ets)
 
-### 사용법 {#ets_airspeed_usage}
+<a id="ets_airspeed_usage"></a>
+
+### Usage
 ```
 ets_airspeed <command> [arguments...]
  Commands:
@@ -21,21 +23,27 @@ ets_airspeed <command> [arguments...]
 ## ms4525_airspeed
 Source: [drivers/differential_pressure/ms4525](https://github.com/PX4/Firmware/tree/master/src/drivers/differential_pressure/ms4525)
 
-### 사용법 {#ms4525_airspeed_usage}
+<a id="ms4525_airspeed_usage"></a>
+
+### Usage
 ```
 ms4525_airspeed
 ```
 ## ms5525_airspeed
 Source: [drivers/differential_pressure/ms5525](https://github.com/PX4/Firmware/tree/master/src/drivers/differential_pressure/ms5525)
 
-### 사용법 {#ms5525_airspeed_usage}
+<a id="ms5525_airspeed_usage"></a>
+
+### Usage
 ```
 ms5525_airspeed
 ```
 ## sdp3x_airspeed
 Source: [drivers/differential_pressure/sdp3x](https://github.com/PX4/Firmware/tree/master/src/drivers/differential_pressure/sdp3x)
 
-### 사용법 {#sdp3x_airspeed_usage}
+<a id="sdp3x_airspeed_usage"></a>
+
+### Usage
 ```
 sdp3x_airspeed <command> [arguments...]
  Commands:
