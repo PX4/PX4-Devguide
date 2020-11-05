@@ -21,7 +21,9 @@ CLI 사용 예:
     module start -f -p 42
     
 
-### 사용법 {#module_usage}
+<a id="module_usage"></a>
+
+### Usage
 
     module <command> [arguments...]
      Commands:
@@ -41,9 +43,11 @@ Source: [examples/work_item](https://github.com/PX4/Firmware/tree/master/src/exa
 
 ### 설명
 
-작업 큐에서 실행하는단순 모듈 예제입니다.
+Example of a simple module running out of a work queue.
 
-### 사용법 {#work_item_example_usage}
+<a id="work_item_example_usage"></a>
+
+### Usage
 
     work_item_example <command> [arguments...]
      Commands:
