@@ -488,11 +488,11 @@ initializeGraph();
 
 </script>
 
- 
+ <a id="instructions"></a>
 
-## 图形属性{#instructions}
+## Graph Properties
 
-该图具备如下属性：
+The graph has the following properties:
 
 - 模块以灰色圆角矩形表示，而主题则以彩色直角矩形框表示。
 - 相关联的模块和主题通过直线相连接。 虚线表示模块发布该主题，而实现则表示模块订阅了该主题。
