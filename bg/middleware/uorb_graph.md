@@ -488,9 +488,9 @@ initializeGraph();
 
 </script>
 
- 
+ <a id="instructions"></a>
 
-## Graph Properties{#instructions}
+## Graph Properties
 
 The graph has the following properties:
 
