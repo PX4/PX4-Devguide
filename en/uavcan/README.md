@@ -1,6 +1,6 @@
 # UAVCAN Introduction
 
-![UAVCAN Logo](../../assets/uavcan-logo-transparent.png)
+![UAVCAN Logo](../../assets/uavcan/uavcan_logo_transparent.png)
 
 [UAVCAN](http://uavcan.org) is an onboard network which allows the autopilot to connect to avionics.
 It supports hardware like:
@@ -35,7 +35,7 @@ The first step is to connect all UAVCAN enabled devices with the flight controll
 The following diagram displays how to wire all components.
 The used Zubax devices all support a redundant CAN interface in which the second bus is optional but increases the robustness of the connection.
 
-![UAVCAN Wiring](../../assets/UAVCAN_wiring.png)
+![UAVCAN Wiring](../../assets/uavcan/uavcan_wiring.png)
 
 It is important to mention that some devices require an external power supply \(e.g. Zubax Orel 20\) and others can be powered by the CAN connection \(e.g Zubax GNSS\) itself.
 Please refer to the documentation of your hardware before continuing with the setup.
