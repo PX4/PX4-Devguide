@@ -21,11 +21,13 @@ Adding a configuration is straightforward: create a new config file in the [init
 
 > **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
 
-### 설정 파일 {#config-file}
+<a id="config-file"></a>
+
+### Config File
 
 A typical configuration file is shown below ([original file here](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
 
-처음 부분은 에어프레임 문서입니다. [에어프레임 참조](../airframes/airframe_reference.md)와 *QGroundControl*에서 활용합니다.
+The first section is the airframe documentation. This is used in the [Airframes Reference](../airframes/airframe_reference.md) and *QGroundControl*.
 
 ```bash
 #!nsh
@@ -49,7 +51,7 @@ A typical configuration file is shown below ([original file here](https://github
 #
 ```
 
-다음 절에서는 [게인 조정](#tuning-gains)과 개체별 매개변수를 지정합니다:
+The next section specifies vehicle-specific parameters, including [tuning gains](#tuning-gains):
 
 ```bash
 sh /etc/init.d/rc.fw_defaults
@@ -76,21 +78,21 @@ then
 fi
 ```
 
-프레임 형식([MAV_TYPE](https://mavlink.io/en/messages/common.html#MAV_TYPE))을 설정하십시오:
+Set frame type ([MAV_TYPE](https://mavlink.io/en/messages/common.html#MAV_TYPE)):
 
 ```bash
 # Configure this as plane
 set MAV_TYPE 1
 ```
 
-사용할 [믹서](#mixer-file)를 설정하십시오
+Set the [mixer](#mixer-file) to use:
 
 ```bash
 # Set mixer
 set MIXER wingwing
 ```
 
-PWM 출력을 설정하십시오(제어/활성/레벨 출력을 지정하십시오).
+Configure PWM outputs (specify the outputs to drive/activate, and the levels).
 
 ```bash
 # Provide ESC a constant 1000 us pulse
@@ -100,19 +102,21 @@ set PWM_DISARMED 1000
 
 > **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
-### 믹서 파일 {#mixer-file}
+<a id="mixer-file"></a>
+
+### Mixer File
 
 > **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
 
-A typical mixer file is shown below ([original file here](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). 이 경우 믹서 파일 이름은 `wingwing.main.mix`이며, 중요한 에어프레임 형식(`wingwing`), 출력 형식(`.main` 또는 `.aux`), 믹서 파일을 의미하는 확장자(`.mix`)정보를 바로 전달해줍니다. 
+A typical mixer file is shown below ([original file here](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/wingwing.main.mix)). A mixer filename, in this case `wingwing.main.mix`, gives important information about the type of airframe (`wingwing`), the type of output (`.main` or `.aux`) and lastly that it is a mixer file (`.mix`).
 
-믹서 파일에는 여러 코드 블록이 들어있으며, 각 코드 블록은 액츄에이터 또는 전동 변속기 하나를 참조합니다. 따라서 서보 모터 둘과 전동 변속기 유닛 하나를 붙였다면, 믹서 파일은 세개의 코드 블록을 가집니다.
+The mixer file contains several blocks of code, each of which refers to one actuator or ESC. So if you have e.g. two servos and one ESC, the mixer file will contain three blocks of code.
 
 > **Note** The plugs of the servos / motors go in the order of the mixers in this file.
 
-따라서 MAIN1은 좌측 보조익, MAIN2는 우측 보조익, MAIN3은 빈 상태(믹서가 없을때 Z: 로 표기함), MAIN4는 추진기입니다(일반 고정익 설정에서 4번 출력을 추진기로 둠).
+So MAIN1 would be the left aileron, MAIN2 the right aileron, MAIN3 is empty (note the Z: zero mixer) and MAIN4 is throttle (to keep throttle on output 4 for common fixed wing configurations).
 
-믹서는 -10000부터 10000까지 정규화 된 값으로 인코딩하며, 이 값은 -1..+1에 해당합니다.
+A mixer is encoded in normalized units from -10000 to 10000, corresponding to -1..+1.
 
     M: 2
     O:      10000  10000      0 -10000  10000
@@ -120,7 +124,7 @@ A typical mixer file is shown below ([original file here](https://github.com/PX4
     S: 0 1   6500   6500      0 -10000  10000
     
 
-왼편에서 오른편 방향으로 각 숫자의 의미는 다음과 같습니다:
+Where each number from left to right means:
 
 * M: 두개의 제어 입력에 대해 스케일러가 둘 있음을 나타냅니다. 믹서가 받을 제어 입력의 수를 나타냅니다.
 * O: 출력 계수(음의 *1 , 양의 *1), 오프셋(여기서는 0), 출력 범위(여기서는 -1..+1)를 나타냅니다.  
@@ -131,9 +135,9 @@ A typical mixer file is shown below ([original file here](https://github.com/PX4
 
 > **Note** In short, the output of this mixer would be SERVO = ( (roll input \* -0.6 + 0) \* 1 + (pitch input \* 0.65 + 0) \* 1 ) \* 1 + 0
 
-보이는 모습 뒤에는 두 계수를 추가하는데, 비행익에 대해 좌우 회전각에 대해 최대 60% 감소, 상하 회전각에 대해 65% 감소함을 의미합니다.
+Behind the scenes, both scalers are added, which for a flying wing means the control surface takes maximum 60% deflection from roll and 65% deflection from pitch.
 
-완전한 믹서 동작은 다음과 같습니다:
+The complete mixer looks like this:
 
 ```bash
 Delta-wing mixer for PX4FMU
@@ -196,13 +200,13 @@ S: 0 3      0  20000 -10000 -10000  10000
 
 ## 새 에어프레임 그룹 추가
 
-에어프레임 "그룹"은 [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html)과 *에어프레임 참조*문서([PX4 개발 안내서](../airframes/airframe_reference.md) 와 [PX4 사용자 안내서](https://docs.px4.io/master/en/airframes/airframe_reference.html)) 에서의 선택에 대한 유사 에어프레임 분류에 활용합니다. 모든 그룹에는 이름이 있으며 에어프레임 분류에 대한 일반 공간 기하 정보, 모터 수, 모터 회전 방향을 보여주는 관련 svg 이미지가 있습니다.
+Airframe "groups" are used to group similar airframes for selection in [QGroundControl](https://docs.qgroundcontrol.com/en/SetupView/Airframe.html) and in the *Airframe Reference* documentation ([PX4 DevGuide](../airframes/airframe_reference.md) and [PX4 UserGuide](https://docs.px4.io/master/en/airframes/airframe_reference.html)). Every group has a name, and an associated svg image which shows the common geometry, number of motors, and direction of motor rotation for the grouped airframes.
 
-*QGroundControl*에서 활용하는 에어프레임 메타데이터 파일과 문서 소스코드는 `make airframe_metadata` 명령으로 에어프레임 설명, 스크립트에서 만듭니다.
+The airframe metadata files used by *QGroundControl* and the documentation source code are generated from the airframe description, via a script, using the build command: `make airframe_metadata`
 
 For a new airframe belonging to an existing group, you don't need to do anything more than provide documentation in the airframe description located at [ROMFS/px4fmu_common/init.d](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d).
 
-에어프레임에 넣을 **새 그룹**이 추가로 필요하다면:
+If the airframe is for a **new group** you additionally need to:
 
 1. 분류에 해당하는 svg 이미지를 문서 저장소에 추가하십시오(이미지를 넣지 않으면 삽입 안내 이미지가 뜹니다): 
   * PX4 개발 안내서: [assets/airframes/types](https://github.com/PX4/Devguide/tree/master/assets/airframes/types)
@@ -235,7 +239,7 @@ For a new airframe belonging to an existing group, you don't need to do anything
 
 ## 게인 조정
 
-다음 *PX4 사용자 안내서*의 일부 주제에서는 설정 파일에 지정한 매개변수 값을 설정하는 방법을 설명합니다:
+The following *PX4 User Guide* topics explain how to tune the parameters that will be specified in the config file:
 
 * [멀티콥터 PID 조정 안내](https://docs.px4.io/master/en/advanced_config/pid_tuning_guide_multicopter.html)
 * [고정익 PID 조정 안내](https://docs.px4.io/master/en/advanced_config/pid_tuning_guide_fixedwing.html)
@@ -243,7 +247,7 @@ For a new airframe belonging to an existing group, you don't need to do anything
 
 ## QGroundControl에 새 에어프레임 추가
 
-*QGroundControl* [에어프레임 설정](https://docs.px4.io/master/en/config/airframe.html)섹션에 새 에어프레임을 추가하려면:
+To make a new airframe available for section in the *QGroundControl* [airframe configuration](https://docs.px4.io/master/en/config/airframe.html):
 
 1. 빌드한 바이너리를 정리하고 다시 빌드하십시오(예: `make clean` 명령 수행 후 `make px4_fmu-v5_default` 실행)
 2. QGC를 열어 다음과 같이 **사용자 정의 펌웨어 파일...**을 선택하십시오:
@@ -257,4 +261,4 @@ For a new airframe belonging to an existing group, you don't need to do anything
 4. **확인**을 눌러 펌웨어 플래싱을 시작하십시오.
 5. *QGroundControl*을 다시 시작하십시오.
 
-이 과정을 거치고 나면 *QGroundControl*의 섹션에 나타납니다.
+The new airframe will then be available for selection in *QGroundControl*.
