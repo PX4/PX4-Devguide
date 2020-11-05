@@ -68,7 +68,9 @@ To run JMAVSim:
 >       export GAZEBO_IP=127.0.0.1
 >       make px4_sitl gazebo
 
-### Build Script Details {#build_script_details}
+<a id="build_script_details"></a>
+
+### Build Script Details
 
 The [windows_bash_nuttx.sh](https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/windows_bash_nuttx.sh) build script modifies the Ubuntu build instructions to remove Ubuntu-specific and UI-dependent components, including the *Qt Creator* IDE and the simulators.
 

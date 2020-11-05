@@ -27,7 +27,9 @@ The System Console UART pinouts/debug ports are typically documented in [autopil
   - [FTDI](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#over-ftdi)
   - [DSP Debug Monitor/Console](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#dsp-debug-monitorconsole)
 
-### Pixhawk Debug Port {#pixhawk_debug_port}
+<a id="pixhawk_debug_port"></a>
+
+### Pixhawk Debug Port
 
 Flight controllers that adhere to the Pixhawk Connector standard use the [Pixhawk Standard Debug Port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug).
 

@@ -8,7 +8,9 @@ MAVLink Shell 是一个可以通过串口（USB、数传或基于WIFI的UDP/TCP�
 
 ## 启用 Shell
 
-### QGroundControl MAVLink Console {#qgroundcontrol}
+<a id="qgroundcontrol"></a>
+
+### QGroundControl MAVLink Console
 
 访问 shell 的最简单方式是使用 [QGC地面站 MAVLink 控制台](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html) (见**Analyze View > Mavlink Console**)。
 

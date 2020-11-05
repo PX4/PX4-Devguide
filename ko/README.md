@@ -17,7 +17,7 @@
 * PX4를 [모의시험](simulation/README.md), [실제 시험](test_and_ci/README.md), [오류 탐색/동작 기록](debug/README.md) 합니다.
 * 외부 로보틱스 API와 통신/통합합니다.
 
-## 지원 {#support}
+## Support
 
 [지원](contribute/support.md) 페이지에서는 [토의 게시판](http://discuss.px4.io/)과 기타 지원 채널로의 링크를 제공합니다.
 
@@ -37,15 +37,17 @@
 
 ![Gitbook 언어 선택](../assets/gitbook/gitbook_language_selector.png)
 
-## 달력과 행사 {#calendar}
+<a id="calendar"></a>
 
-*드론 코드 달력*에서는 플랫폼 개발자, 사용자를 위한 주요 일정을 보여줍니다. 여러분 거주지의 시간대에 맞춘 달력을 보려면 아래 링크를 선택하십시오(그리고 여러분 자신의 달력에 추가하십시오):
+## Calendar & Events
+
+The *Dronecode Calendar* shows important events for platform developers and users. Select the links below to display the calendar in your timezone (and to add it to your own calendar):
 
 * [스위스 – 취리히](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Europe%2FZurich)
 * [태평양 시간대 – 티후아나](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=America%2FTijuana)
 * [오스트레일리아 – 멜버른/시드니/호바트](https://calendar.google.com/calendar/embed?src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&ctz=Australia%2FSydney)
 
-**참고:** 달력 기본 시간대는 CET입니다.
+**Note:** calendar defaults to CET.
 
 {% raw %} <iframe src="https://calendar.google.com/calendar/embed?title=Dronecode%20Calendar&amp;mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=linuxfoundation.org_g21tvam24m7pm7jhev01bvlqh8%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Europe%2FZurich" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no" mark="crwd-mark"></iframe> 
 
@@ -53,9 +55,9 @@
 
 ## 운영
 
-PX4 플라이트 기술 스택은 [드론코드 프로젝트](https://www.dronecode.org/)의 운영 기반으로 제공합니다.
+The PX4 flight stack is hosted under the governance of the [Dronecode Project](https://www.dronecode.org/).
 
-<a href="https://www.dronecode.org/" style="padding:20px"><img src="https://mavlink.io/assets/site/logo_dronecode.png" alt="드론코드 로고" width="110px"/></a>
-<a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="리눅스 재단 로고" width="80px" /></a>
+<a href="https://www.dronecode.org/" style="padding:20px"><img src="https://mavlink.io/assets/site/logo_dronecode.png" alt="Dronecode Logo" width="110px"/></a>
+<a href="https://www.linuxfoundation.org/projects" style="padding:20px;"><img src="https://mavlink.io/assets/site/logo_linux_foundation.png" alt="Linux Foundation Logo" width="80px" /></a>
 
 <div style="padding:10px">&nbsp;</div>

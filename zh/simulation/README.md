@@ -128,7 +128,9 @@ The simulation can be further configured via environment variables:
 
 The syntax described here is simplified, and there are many other options that you can configure via *make* - for example, to set that you wish to connect to an IDE or debugger. For more information see: [Building the Code > PX4 Make Build Targets](../setup/building_px4.md#make_targets).
 
-### 以比实际时间更快的流速运行仿真 {#simulation_speed}
+<a id="simulation_speed"></a>
+
+### Run Simulation Faster than Realtime
 
 SITL can be run faster or slower than realtime when using jMAVSim or Gazebo.
 
@@ -178,7 +180,9 @@ To disable lockstep in Gazebo, edit [the model SDF file](https://github.com/PX4/
 
 To disable lockstep in jMAVSim, remove `-l` in [jmavsim_run.sh](https://github.com/PX4/PX4-Autopilot/blob/77097b6adc70afbe7e5d8ff9797ed3413e96dbf6/Tools/sitl_run.sh#L75), or make sure otherwise that the java binary is started without the `-lockstep` flag.
 
-### Startup Scripts {#scripts}
+<a id="scripts"></a>
+
+### Startup Scripts
 
 Scripts are used to control which parameter settings to use or which modules to start. They are located in the [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d-posix) directory, the `rcS` file is the main entry point. See [System Startup](../concept/system_startup.md) for more information.
 

@@ -11,11 +11,13 @@ The supported/tested Linux OS versions for PX4 development are [Ubuntu Linux LTS
 
 本说明将在下面解释如何下载并使用这些脚本。
 
-## Gazebo，JMAVSim 与 NuttX（Pixhawk）编译目标 {#sim_nuttx}
+<a id="sim_nuttx"></a>
+
+## Gazebo, JMAVSim and NuttX (Pixhawk) Targets
 
 Use the [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) script to set up a development environment that includes [Gazebo 9](../simulation/gazebo.md) and [jMAVSim](../simulation/jmavsim.md) simulators, and/or the [NuttX/Pixhawk](../setup/building_px4.md#nuttx) toolchain.
 
-执行步骤：
+To install the toolchain:
 
 1. [下载 PX4 源代码](../setup/building_px4.md)： 
         bash
@@ -35,7 +37,7 @@ Use the [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_versio
 > `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`   
 > `bash ubuntu.sh`
 
-备注：
+Notes:
 
 * PX4需要跟Gazebo 7, 8, 或者 9一起工作， 该脚本使用[gazebosim.org instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)来安装Gazebo9。
 * 如果你正在使用ROS工作，那么请遵循[ROS/Gazebo](#rosgazebo)的介绍来安装（它是自动转安装的，作为ROS安装的一部分）。
@@ -59,11 +61,13 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 <p>-->
 
-## Raspberry Pi {#raspberry-pi-hardware}
+<a id="raspberry-pi-hardware"></a>
+
+## Raspberry Pi
 
 <!-- NOTE: RaPi docker toolchain (for comparison) here: https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf -->
 
-获取用于树莓派 Raspberry Pi 的构建工具链：
+To get the build toolchain for Raspberry Pi:
 
 1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):   
     `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
@@ -119,7 +123,9 @@ make
 
 Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
 
-## ROS/Gazebo {#rosgazebo}
+<a id="rosgazebo"></a>
+
+## ROS/Gazebo
 
 This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") for use with PX4.
 
@@ -131,7 +137,7 @@ To install the development toolchain:
         bash
         bash ubuntu_sim_ros_melodic.sh 随着脚本的运行，可能需要根据提示进行确认。
 
-注：
+Note:
 
 * ROS Melodic 已经默认跟Gazebo9一起安装了。
 * 你的catkin（ROS编译系统）工作空间已经创建在**~/catkin_ws/**中。
@@ -139,15 +145,17 @@ To install the development toolchain:
 
 ## 高通骁龙飞控（Snapdragon Flight）
 
-在 *PX4 用户指南* 中提供了高通骁龙飞控的安装说明：
+Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 
 * [开发环境](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_dev_environment_installation.html)
 * [软件安装](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_software_installation.html)
 * [配置](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_configuration.html)
 
-## Fast RTPS installation {#fast_rtps}
+<a id="fast_rtps"></a>
 
-[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) 是 RTPS（Real Time Publish Subscribe 实时发布订阅）协议的 C++ 实现库。 通过 [RTPS/ROS2 接口：PX4-FastRTPS 桥接](../middleware/micrortps.md) 使用 FastRTPS，允许与 Offboard 组件共享 PX4 uORB 话题。
+## Fast RTPS installation
+
+[eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
 
 Follow the instructions in [Fast RTPS Installation](../setup/fast-rtps-installation.md) to install it.
 

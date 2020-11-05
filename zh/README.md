@@ -17,7 +17,7 @@
 * 对 PX4 进行 [仿真](simulation/README.md)、[测试](test_and_ci/README.md) 和 [调试/查看日志](debug/README.md)。
 * 与外部机器人的 API 进行联调通信/集成。
 
-## 支持 {#support}
+## Support
 
 [Support](contribute/support.md) provide links to the [discussion boards](http://discuss.px4.io/) and other support channels.
 
@@ -37,7 +37,9 @@ There are Chinese and Korean [translations](contribute/docs.md#translation) of t
 
 ![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
 
-## 日历 & 活动 {#calendar}
+<a id="calendar"></a>
+
+## Calendar & Events
 
 The *Dronecode Calendar* shows important events for platform developers and users. Select the links below to display the calendar in your timezone (and to add it to your own calendar):
 

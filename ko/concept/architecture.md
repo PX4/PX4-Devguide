@@ -8,11 +8,13 @@ PX4는 주요 계층 2가지로 구성했습니다. [플라이트 스택](#fligh
 - 비동기 메시지 전달로 통신을 수행합니다.
 - 다양한 부하 작업을 처리할 수 있습니다.
 
-## 고수준 소프트웨어 구조{#architecture}
+<a id="architecture"></a>
 
-아래 그림은 PX4를 구성하는 블럭 내용을 자세히 보여줍니다, 그림 최상부에는 미들웨어 부분이 있고, 그 아래 부분은 flight stack 부분이 있습니다.
+## High-Level Software Architecture
 
-![PX4 구조](../../assets/diagrams/PX4_Architecture.svg)
+The diagram below provides a detailed overview of the building blocks of PX4. The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
+
+![PX4 Architecture](../../assets/diagrams/PX4_Architecture.svg)
 
 <!-- This diagram can be updated from 
 [here](https://drive.google.com/file/d/0B1TDW9ajamYkaGx3R0xGb1NaeU0/view?usp=sharing) 
@@ -22,13 +24,13 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
-소스 코드는 자체 모듈/프로그램으로 나눕니다(도표의 `monospace` 참고). 보통 블록 구성은 정확히 하나의 모듈에 대응합니다.
+The source code is split into self-contained modules/programs (shown in `monospace` in the diagram). Usually a building block corresponds to exactly one module.
 
 > **Tip** 실행 중에, 셸에서 `top` 명령으로 어떤 모듈을 실행하는지 볼 수 있으며, 어떤 모듈을 `<module_name> start/stop` 명령으로 제각각 시작하고 멈출 수 있는지 확인할 수 있습니다. `top` 명령어는 NuttX 쉘에서만 쓸 수 있지만, 다른 명령어들은 SITL 쉘(pxh>)에서도 사용할 수 있습니다. 이 모듈에 대한 더 많은 내용은 [모듈 & 명령 참고](../middleware/modules_main.md)를 참고하십시오. 
 
-화살표는 모듈간의 *가장 중요한* 연결의 정보 흐름을 보여줍니다. 실제로는 그림에서 나타낸 연결 수보다 더 많고, 일부 데이터(예: 매개변수)는 상당히 많은 모듈에서 접근합니다.
+The arrows show the information flow for the *most important* connections between the modules. In reality, there are many more connections than shown, and some data (e.g. for parameters) is accessed by most of the modules.
 
-각 모듈은 [uORB](../middleware/uorb.md)라고 하는 publish-subscribe 메세지 버스로 통신합니다. publish-subscribe 방식의 활용 의미는 다음과 같습니다:
+Modules communicate with each other through a publish-subscribe message bus named [uORB](../middleware/uorb.md). The use of the publish-subscribe scheme means that:
 
 - 반응형 시스템 — 비동기 방식으로 동작하며 새 데이터를 넣으면 바로 업데이트합니다
 - 모든 연산, 통신 동작에 대해 완전한 병렬 처리를 수행합니다
@@ -36,13 +38,15 @@ again. -->
 
 > **Info** 이 아키텍처는 실행 시간중에도 모든 단일 블록을 빠르고 쉽게 대체하도록 합니다.
 
-### Flight Stack {#flight-stack}
+<a id="flight-stack"></a>
 
-비행 스택은 자율 비행 드론용 유도, 네비게이션, 제어 알고리즘 집합입니다. 고정익, 멀티로터, 수직 이착륙 기체, 자세 위치 추정 컨트롤러를 포함합니다.
+### Flight Stack
 
-아래의 그림은 flight stack을 구성하는 블록들의 개요를 보여줍니다. 센서, RC 입력 및 자율 비행 제어 (네비게이터) 에서 모터 또는 서보 제어 (액추에이터) 까지의 전체 파이프라인을 포함합니다.
+The flight stack is a collection of guidance, navigation and control algorithms for autonomous drones. It includes controllers for fixed wing, multirotor and VTOL airframes as well as estimators for attitude and position.
 
-![PX4 고수준 플라이트 스택](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
+The following diagram shows an overview of the building blocks of the flight stack. It contains the full pipeline from sensors, RC input and autonomous flight control (Navigator), down to the motor or servo control (Actuators).
+
+![PX4 High-Level Flight Stack](../../assets/diagrams/PX4_High-Level_Flight-Stack.svg) <!-- This diagram can be updated from 
 [here](https://drive.google.com/a/px4.io/file/d/15J0eCL77fHbItA249epT3i2iOx4VwJGI/view?usp=sharing) 
 and opened with draw.io Diagrams. You might need to request access if you
 don't have a px4.io Google account.
@@ -50,33 +54,37 @@ Caution: it can happen that after exporting some of the arrows are wrong. In
 that case zoom into the graph until the arrows are correct, and then export
 again. -->
 
-**추정자**는 하나 이상의 센서 입력을 받아들이고 취합하여 기체 상태를 계산합니다 (예를 들어 IMU 센서의 데이터의 자세 정보).
+An **estimator** takes one or more sensor inputs, combines them, and computes a vehicle state (for example the attitude from IMU sensor data).
 
-**컨트롤러**는 설정값, 측정장 또는 추정값 (측정된 값을 처리한 값) 을 입력으로 받아들이는 컴포넌트 입니다. 이 장치의 목표는 설정값과 일치하도록 처리 변수 값을 조정하는 것입니다. 출력은 설정값에 도달하기 위해 보정된 값입니다. 예를 들어, 위치 제어부는 위치 설정 값을 입력 받고, 처리 변수는 현재 추정 위치 값을 담으며, 자세 및 추력 설정값을 출력으로 내보내 원하는 위치로 기체를 옮깁니다.
+A **controller** is a component that takes a setpoint and a measurement or estimated state (process variable) as input. Its goal is to adjust the value of the process variable such that it matches the setpoint. The output is a correction to eventually reach that setpoint. For example the position controller takes position setpoints as inputs, the process variable is the currently estimated position, and the output is an attitude and thrust setpoint that move the vehicle towards the desired position.
 
-**믹서**는 명령 (예. 우회전)을 받아들이고 해석하여 개별 모터 명령으로 변환하지만 한계 조건을 넘지 않습니다. 이 변환은 기체의 타입, 무게 중심을 기준으로한 모터의 배열, 기체의 회전 관성과 같은 요소들에 의존적입니다.
+A **mixer** takes force commands (e.g. turn right) and translates them into individual motor commands, while ensuring that some limits are not exceeded. This translation is specific for a vehicle type and depends on various factors, such as the motor arrangements with respect to the center of gravity, or the vehicle's rotational inertia.
 
-### 미들웨어 {#middleware}
+<a id="middleware"></a>
 
-[미들웨어](../middleware/README.md) 는 주로 임베디드 센서, 외부와의 통신 (보조 컴퓨터, GCS, 등), uORB publish-subscribe 메시지 버스용 장치 드라이버로 이루어져있습니다.
+### Middleware
 
-게다가, 미들웨어에는 [모의 시험 계층](../simulation/README.md)이 들어있습니다. 모의 시험 계층은 데스크톱 운영체제에서 PX4 비행 코드를 실행하고, 모의 시험환경의 "world"에 모델로 표현한 기체를 컴퓨터로 제어합니다.
+The [middleware](../middleware/README.md) consists primarily of device drivers for embedded sensors, communication with the external world (companion computer, GCS, etc.) and the uORB publish-subscribe message bus.
+
+In addition, the middleware includes a [simulation layer](../simulation/README.md) that allows PX4 flight code to run on a desktop operating system and control a computer modeled vehicle in a simulated "world".
 
 ## 업데이트 속도
 
-모듈은 메시지 업데이트를 기다리기 때문에, 보통 드라이버에는 모듈 업데이트를 얼마나 빨리할 지 지정합니다. 대부분의 IMU 드라이버는 데이터를 초당 1천 건 추출한 후, 취합하여 초당 250건을 내보냅니다. `네비게이터`류의 다른 시스템은 빨리 업데이트할 필요가 없어서 상대적으로 느리게 실행합니다.
+Since the modules wait for message updates, typically the drivers define how fast a module updates. Most of the IMU drivers sample the data at 1kHz, integrate it and publish with 250Hz. Other parts of the system, such as the `navigator`, don't need such a high update rate, and thus run considerably slower.
 
-메시지의 업데이트 속도는 `uorb top`을 실행하여 시스템에서 실시간으로 [검사](../middleware/uorb.md) 할 수 있습니다.
+The message update rates can be [inspected](../middleware/uorb.md) in real-time on the system by running `uorb top`.
 
-## 런타임 환경 {#runtime-environment}
+<a id="runtime-environment"></a>
 
-PX4에서는 POSIX-API를 제공하는 다양한 운영체제(Linux, macOS, NuttX, QuRT)에서 동작합니다. 이 운영체제에는 실시간 스케쥴링(예: FIFO)같은 기능이 들어갑니다.
+## Runtime Environment
 
-([uORB](../middleware/uorb.md)을 이용한) 모듈간 통신은 공유 메모리 기반입니다. PX4 미들웨어 전부는 단일 주소 공간에서 실행합니다. 예를 들면 메모리는 모든 모듈에서 공유합니다.
+PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT). It should also have some form of real-time scheduling (e.g. FIFO).
+
+The inter-module communication (using [uORB](../middleware/uorb.md)) is based on shared memory. The whole PX4 middleware runs in a single address space, i.e. memory is shared between all modules.
 
 > **Info** 시스템은 개별 주소 공간에서 각 모듈을 실행하는데 최소한의 비용이 들어가도록 설계했습니다(`uORB`, `매개변수 인터페이스`, `dataman`, `perf` 같은 부분을 조금 바꿔야 합니다).
 
-모듈을 실행하는 방법에는 2가지가 있습니다.
+There are 2 different ways that a module can be executed:
 
 - **작업**: 모듈은 자체 스택을 확보하고 프로세스 우선순위를 부여받아 자체 작업내에서 실행합니다.
 - **작업 큐(work queue)의 작업**: 모듈은 동일한 스택과 큐의 다른 모듈처럼 작업 큐 스레드 우선순위를 부여받은 공유 작업 큐에서 실행합니다.
@@ -91,7 +99,7 @@ PX4에서는 POSIX-API를 제공하는 다양한 운영체제(Linux, macOS, Nutt
 
 ### 백그라운드 작업
 
-`px4_task_spawn_cmd()`는 호출(상위) 작업과 별개로 실행하는 새 작업(NuttX)또는 스레드(POSIX - Linux/MacOS) 실행에 활용합니다.
+`px4_task_spawn_cmd()` is used to launch new tasks (NuttX) or threads (POSIX - Linux/macOS) that run independently from the calling (parent) task:
 
 ```cpp
 ndependent_task = px4_task_spawn_cmd(
@@ -109,12 +117,12 @@ ndependent_task = px4_task_spawn_cmd(
 
 #### NuttX
 
-[NuttX](http://nuttx.org/)는 기체 제어 보드에서 PX4를 구동하는 주요 RTOS입니다. 오픈소스 (BSD license) 이며, 가볍고, 효율적이고, 상당히 안정적입니다.
+[NuttX](http://nuttx.org/) is the primary RTOS for running PX4 on a flight-control board. It is open source (BSD license), light-weight, efficient and very stable.
 
-모듈은 작업처럼 실행합니다. 자체적으로 파일서술자 목록를 가지나, 단일 주소 공간을 공유합니다. 작업은 파일서술자 목록을 공유하는 하나 이상의 스레드를 시작할 수 있습니다.
+Modules are executed as tasks: they have their own file descriptor lists, but they share a single address space. A task can still start one or more threads that share the file descriptor list.
 
-각 작업/스레드는 고정 크기 스택을 가지며, 모든 스택에 충분한 여분의 공간이 남아있는지 검사하는 (스택 콜로닝 기반) 주기적인 작업이 있습니다.
+Each task/thread has a fixed-size stack, and there is a periodic task which checks that all stacks have enough free space left (based on stack coloring).
 
 #### Linux/macOS
 
-리눅스나 macOS에서는 PX4는 하나의 프로세스 안에서 동작합니다. 그리고 각 모듈은 자체 스레드에서 동작을 수행합니다(NuttX의 작업과 스레드의 차이는 없음).
+On Linux or macOS, PX4 runs in a single process, and the modules run in their own threads (there is no distinction between tasks and threads as on NuttX).

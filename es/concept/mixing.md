@@ -74,7 +74,9 @@ For a simple plane control 0 (roll) is connected straight to output 0 (aileron).
 
 > **Note** This group is only used to define mapping of RC inputs to specific outputs during *normal operation* (see [quad_x.main.mix](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7) for an example of AUX2 being scaled in a mixer). In the event of manual IO failsafe override (if the PX4FMU stops communicating with the PX4IO board) only the mapping/mixing defined by control group 0 inputs for roll, pitch, yaw and throttle are used (other mappings are ignored).
 
-### Control Group #6 (First Payload) {#control_group_6}
+<a id="control_group_6"></a>
+
+### Control Group #6 (First Payload)
 
 - 0: function 0
 - 1: function 1
@@ -139,11 +141,15 @@ Mixers are defined in plain-text files using the [syntax](#mixer_syntax) below.
 
 Files for pre-defined airframes can be found in [ROMFS/px4fmu_common/mixers](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/mixers). These can be used as a basis for customisation, or for general testing purposes.
 
-### Mixer File Names {#mixer_file_names}
+<a id="mixer_file_names"></a>
+
+### Mixer File Names
 
 A mixer file must be named **XXXX.*main*.mix** if it is responsible for the mixing of MAIN outputs or **XXXX.*aux*.mix** if it mixes AUX outputs.
 
-### Mixer Loading {#loading_mixer}
+<a id="loading_mixer"></a>
+
+### Mixer Loading
 
 The default set of mixer files (in PX4 firmware) are defined in [px4fmu_common/init.d/airframes/](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/airframes/). These can be overridden by mixer files with the same name in the SD card directory **/etc/mixers/** (SD card mixer files are loaded by preference).
 
@@ -160,7 +166,9 @@ The AUX mixer filename (prefix `YYYY` above) depends on airframe settings and/or
 
 > **Note** Mixer file loading is implemented in [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/rc.interface).
 
-### Loading a Custom Mixer {#loading_custom_mixer}
+<a id="loading_custom_mixer"></a>
+
+### Loading a Custom Mixer
 
 PX4 loads appropriately named mixer files from the SD card directory **/etc/mixers/**, by preference, and then the version in Firmware.
 
@@ -170,7 +178,9 @@ Most commonly you will override/replace the **AUX** mixer file for your current 
 
 > **Tip** You can also *manually* load a mixer at runtime using the [mixer load](../middleware/modules_command.md#mixer) command (thereby avoiding the need for a reboot). For example, to load a mixer **/etc/mixers/test_mixer.mix** onto the MAIN PWM outputs, you could enter the following command in a [console](../debug/consoles.md): ```mixer load /dev/pwm_output0 /fs/microsd/etc/mixers/test_mixer.mix```
 
-### Syntax {#mixer_syntax}
+<a id="mixer_syntax"></a>
+
+### Syntax
 
 Mixer files are text files that define one or more mixer definitions: mappings between one or more inputs and one or more outputs.
 
@@ -203,7 +213,9 @@ Some mixers definitions consist of a number of tags (e.g. `O` and `S`) that foll
 
 > **Note** Any line that does not begin with a single capital letter followed by a colon may be ignored (so explanatory text can be freely mixed with the definitions).
 
-#### Summing Mixer {#summing_mixer}
+<a id="summing_mixer"></a>
+
+#### Summing Mixer
 
 Summing mixers are used for actuator and servo control.
 
@@ -234,7 +246,9 @@ The remaining fields on the line configure the control scaler with parameters as
 
 An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
 
-#### Null Mixer {#null_mixer}
+<a id="null_mixer"></a>
+
+#### Null Mixer
 
 A null mixer consumes no controls and generates a single actuator output with a value that is always zero.
 
@@ -245,7 +259,9 @@ The null mixer definition has the form:
     Z:
     
 
-#### Multirotor Mixer {#multirotor_mixer}
+<a id="multirotor_mixer"></a>
+
+#### Multirotor Mixer
 
 The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust) into a set of actuator outputs intended to drive motor speed controllers.
 
@@ -271,7 +287,9 @@ Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed 
 
 In the case where an actuator saturates, all actuator values are rescaled so that the saturating actuator is limited to 1.0.
 
-#### Helicopter Mixer {#helicopter_mixer}
+<a id="helicopter_mixer"></a>
+
+#### Helicopter Mixer
 
 The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs (swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
 
@@ -331,7 +349,9 @@ The [blade 130 helicopter mixer](https://github.com/PX4/PX4-Autopilot/blob/maste
 - The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo.
 - The servos are limited at -8000 and 8000 because they are mechanically constrained.
 
-#### VTOL Mixer {#vtol_mixer}
+<a id="vtol_mixer"></a>
+
+#### VTOL Mixer
 
 VTOL systems use a [multirotor mixer](#multirotor_mixer) for the multirotor outputs, and [summing mixers](#summing_mixer) for the fixed-wing actuators (and the tilting servos in case of a tiltrotor VTOL).
 

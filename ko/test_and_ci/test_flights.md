@@ -28,9 +28,11 @@
 * [MC_04 - 안전 장치 시험](../test_cards/mc_04_failsafe_testing.md)
 * [MC_05 - 실내 비행 (수동 상태)](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
-## 시험 기체/오토파일럿 {#fleet}
+<a id="fleet"></a>
 
-멀티콥터
+## Test Vehicles/Autopilots
+
+Multicopter
 
 | 프레임                                                                                                                                                                                                                                                               | 비행체 제어 장치                                                                                                                                                                                                                                                        | UUID                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
@@ -46,13 +48,13 @@
 | Holybro [QAV250](https://docs.px4.io/master/en/frames_multicopter/holybro_qav250_pixhawk4_mini.html)                                                                                                                                                              | [Pixhawk 4 Mini](https://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html)                                                                                                                                                                             | 000200000000343233383038511500420032 (f450-v5-m)            |
 | NXP Semiconductor [KIT-HGDRONEK66](https://www.nxp.com/applications/solutions/industrial/unmanned-aerial-vehicles-uavs/uavs-drones-and-rovers/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66) ("[Hovergames](https://www.hovergames.com/)") | [RDDRONE-FMUK66](https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/kinetis-cortex-m-mcus/k-seriesperformancem4/k6x-ethernet/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66?tid=vanRDDRONE-FMUK66) | 00030016ffffffffffff4e45362050130029                        |
 
-고정익
+Fixed Wing
 
 | 프레임                                                                                                 | 비행체 제어 장치                                                                 | UUID                                           |
 | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------- |
 | [Phantom Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html) | [Pixhawk 1](https://docs.px4.io/master/en/flight_controller/pixhawk.html) | 0001000000003035333330365104003c0020 (f450-v2) |
 
-수직이착륙기
+VTOL
 
 | 프레임                                                                            | 비행체 제어 장치                                                                            | UUID                                             |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------ |

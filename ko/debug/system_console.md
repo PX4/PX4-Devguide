@@ -27,11 +27,13 @@ PX4 *시스템 콘솔*에서는 시스템 저수준 접근이 가능하며, 디�
   - [FTDI](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#over-ftdi)
   - [DSP 디버깅 모니터/콘솔](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_advanced.html#dsp-debug-monitorconsole)
 
-### 픽스호크 디버깅 포트 {#pixhawk_debug_port}
+<a id="pixhawk_debug_port"></a>
 
-픽스호크 표준 연결부가 붙는 비행체 제어 장치에는 [픽스호크 표준 디버깅 포트](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug)가 붙어있습니다.
+### Pixhawk Debug Port
 
-포트/FTDI 결선 개념은 아래와 같습니다.
+Flight controllers that adhere to the Pixhawk Connector standard use the [Pixhawk Standard Debug Port](https://pixhawk.org/pixhawk-connector-standard/#dronecode_debug).
+
+The port/FTDI mapping is shown below.
 
 | 픽스호크 디버깅 포트 | -                        | FTDI | -                        |
 | ----------- | ------------------------ | ---- | ------------------------ |
@@ -44,11 +46,11 @@ PX4 *시스템 콘솔*에서는 시스템 저수준 접근이 가능하며, 디�
 
 ## 콘솔 열기
 
-콘솔 연결을 끝내고 나면, 기본 직렬 포트 통신 도구를 취향에 따라 골라 사용하거나 아래 설명하는 기본 직렬 포트 통신 도구를 사용하십시오:
+After the console connection is wired up, use the default serial port tool of your choice or the defaults described below:
 
 ### Linux / Mac OS: Screen
 
-우분투에 screen을 설치하십시오(Mac OS에는 이미 설치해둔 상태임):
+Install screen on Ubuntu (Mac OS already has it installed):
 
 ```bash
 sudo apt-get install screen
@@ -57,7 +59,7 @@ sudo apt-get install screen
 - 직렬 포트: 픽스호크 v1 / 픽스레이서 전송율: 57600 bps
 - 직렬 포트: 스냅드래곤 플라이트의 경우 115200 bps
 
-screen을 BAUDRATE bps, 데이터 비트 수 8, 정지 비트 1을 올바른 직렬 통신 포트에 설정하여 연결하여 연결하십시오(`ls /dev/tty*` 명령을 활용하여 USB 장치를 연결/분리 했을 때 어떤 값이 바뀌는지 확인). 일반 명칭은 리눅스의 경우 `/dev/ttyUSB0`과 `/dev/ttyACM0` 이며, Mac OS의 경우 `/dev/tty.usbserial-ABCBD`입니다.
+Connect screen at BAUDRATE baud, 8 data bits, 1 stop bit to the right serial port (use `ls /dev/tty*` and watch what changes when unplugging / replugging the USB device). Common names are `/dev/ttyUSB0` and `/dev/ttyACM0` for Linux and `/dev/tty.usbserial-ABCBD` for Mac OS.
 
 ```bash
 screen /dev/ttyXXX BAUDRATE 8N1
@@ -65,9 +67,9 @@ screen /dev/ttyXXX BAUDRATE 8N1
 
 ### 윈도우: PuTTY
 
-[PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)를 다운로드하고 시작하십시오.
+Download [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) and start it.
 
-이후 '직렬 연결'을 선택하고 포트 매개변수를 다음과 같이 설정하십시오:
+Then select 'serial connection' and set the port parameters to:
 
 - 초당 전송 비트: 57600
 - 데이터 비트: 8

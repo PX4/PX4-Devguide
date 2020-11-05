@@ -1,6 +1,8 @@
 # GIT Examples
 
-## Contributing Code to PX4 {#contributing_code}
+<a id="contributing_code"></a>
+
+## Contributing Code to PX4
 
 Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 

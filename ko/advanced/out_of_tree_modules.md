@@ -36,9 +36,11 @@
         )
       
 
-## 외부(Out-of-Tree) uORB 메시지 정의 {#uorb_message_definitions}
+<a id="uorb_message_definitions"></a>
 
-uORB 메시지는 별도 메시지로 정의할 수도 있습니다. 이렇게 하려면 `$EXTERNAL_MODULES_LOCATION/msg` 폴더가 있어야합니다.
+## Out-of-Tree uORB Message Definitions
+
+uORB messages can also be defined out-of-tree. For this, the `$EXTERNAL_MODULES_LOCATION/msg` folder must exist.
 
 - 모든 새 메시지 정의를 `$EXTERNAL_MODULES_LOCATION/msg` 디렉터리에 넣으십시오. 이들 새 별도 메시지 정의 형식은 다른 [uORB 메시지 정의](../middleware/uorb.md#adding-a-new-topic)시에도 동일합니다.
 - 다음 내용을 채워 넣은 `$EXTERNAL_MODULES_LOCATION/msg/CMakeLists.txt` 파일을 추가하십시오:
@@ -53,16 +55,18 @@ uORB 메시지는 별도 메시지로 정의할 수도 있습니다. 이렇게 �
   
   `<message#>.msg` 부분은 uORB 메시지 생성시 처리하고 활용할 uORB 메시지 정의 파일의 이름입니다.
 
-별도의 uORB 메시지는 일반 uORB 메시지와 동일한 위치에 생성합니다. uORB 토픽 헤더는 `<build_dir>/uORB/topics/`에 만들고, 메시지 소스 파일은 `<build_dir>/msg/topics_sources/`에 만듭니다.
+The out-of-tree uORB messages will be generated in the same locations as the normal uORB messages. The uORB topic headers are generated in `<build_dir>/uORB/topics/`, and the message source files are generated in `<build_dir>/msg/topics_sources/`.
 
-[이곳](../middleware/uorb.md#adding-a-new-topic)에 설명한 바와 같이 새 uORB 메시지는 다른 uORB 메시지처럼 활용할 수 있습니다.
+The new uORB messages can be used like any other uORB message as described [here](../middleware/uorb.md#adding-a-new-topic).
 
 > **Warning** 외부 uORB 메시지 정의는 기존의 일반 uORB 메시지와 동일한 이름을 가질 수 없습니다.
 
-## 외부 모듈과 uORB 메시지 구성 {#building}
+<a id="building"></a>
 
-`make px4_sitl EXTERNAL_MODULES_LOCATION=<path>` 명령을 실행하십시오.
+## Building External Modules and uORB Messages
 
-다른 빌드 대상을 활용할 수 있지만, 아직 빌드 디렉터리를 두면 안됩니다. 이미 있다면 *cmake* 변수 값을 빌드 폴더에 설정할 수 있습니다.
+Execute `make px4_sitl EXTERNAL_MODULES_LOCATION=<path>`.
 
-차후 추가 빌드 과정에서는 `EXTERNAL_MODULES_LOCATION` 값을 지정할 필요가 없습니다.
+Any other build target can be used, but the build directory must not yet exist. If it already exists, you can also just set the *cmake* variable in the build folder.
+
+For subsequent incremental builds `EXTERNAL_MODULES_LOCATION` does not need to be specified.

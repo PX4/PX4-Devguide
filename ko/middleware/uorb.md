@@ -116,9 +116,11 @@ uORB는 `orb_advertise_multi`로 동일 토픽의 다중 독립 인스턴스를 
 
 The full API is documented in [src/modules/uORB/uORBManager.hpp](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/uORB/uORBManager.hpp).
 
-## 메세지/필드 지원 중단(deprecation) 처리 {#deprecation}
+<a id="deprecation"></a>
 
-uORB 메세지를 로그 파일에서 추출해보는 외부 도구, 예를 들면 [Flight Review](https://github.com/PX4/flight_review)에서는 기존 메세지를 업데이트할 때 고려해야할 몇가지 양상이 있습니다:
+## Message/Field Deprecation
+
+As there are external tools using uORB messages from log files, such as [Flight Review](https://github.com/PX4/flight_review), certain aspects need to be considered when updating existing messages:
 
 - 업데이트상 타당한 이유가 있을 경우에는 기존 필드와 외부 도구에 의존하는 메세지를 바꾸는게 일반적으로 통용됩니다. 특히 *Flight Review*에서 바뀐 내용을 깼을 경우, `master`에 코드를 병합하기 전에 *Flight Review*를 업데이트해야합니다.
 - 외부 도구로 두 메세지 버전간 구분을 확실히 하려면 다음 과정을 따라야합니다: 

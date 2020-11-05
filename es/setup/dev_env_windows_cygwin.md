@@ -12,7 +12,9 @@ La toolchain soporta:
 
 En esta página se explica cómo descargar y usar el entorno y cómo puede ser ampliado y actualizado si es necesario (por ejemplo, para utilizar un compilador diferente).
 
-## Instrucciones de Instalación {#installation}
+<a id="installation"></a>
+
+## Installation Instructions
 
 1. Download the latest version of the ready-to-use MSI installer from: [Github releases](https://github.com/PX4/windows-toolchain/releases) or [Amazon S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.9.msi) (fast download).
 2. Run it, choose your desired installation location, let it install: ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.png)
@@ -20,9 +22,11 @@ En esta página se explica cómo descargar y usar el entorno y cómo puede ser a
     
     > **Note** If you missed this step you will need to [clone the PX4-Autopilot repository manually](#getting_started).
 
-## Primeros pasos {#getting_started}
+<a id="getting_started"></a>
 
-La toolchain utiliza una ventana de consola especialmente configurada (iniciada ejecutando el script **run-console.bat**) desde el que se puede llamar a los comandos de compilación de PX4:
+## Getting Started
+
+The toolchain uses a specially configured console window (started by running the **run-console.bat** script) from which you can call the normal PX4 build commands:
 
 1. Busque el directorio de instalación de la toolchain (por defecto **C:\PX4**)
 2. Ejecute **run-console.bat** (doble click) para iniciar la consola de bash de Cygwin
@@ -50,9 +54,11 @@ La toolchain utiliza una ventana de consola especialmente configurada (iniciada 
     
     ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.png)
 
-Continúe en las [instrucciones que detallan cómo compilar PX4](../setup/building_px4.md)(o consulte la siguiente sección para obtener instrucciones de uso más general).
+Continue next to [the detailed instructions on how to build PX4](../setup/building_px4.md) (or see the section below for more general usage instructions).
 
-## Instrucciones de uso {#usage_instructions}
+<a id="usage_instructions"></a>
+
+## Usage Instructions
 
 The installation directory (default: **C:\PX4**) contains a batch script for launching the PX4 SITL (linux like) bash console: **run-console.bat**
 
@@ -105,7 +111,9 @@ For existing repositories that have this problem caused by a local configuration
 
 ## Información adicional
 
-### Features / Issues {#features}
+<a id="features"></a>
+
+### Features / Issues
 
 The following features are known to work (version 2.0):
 
@@ -122,7 +130,9 @@ Omissions:
 * Only NuttX and JMAVSim/SITL builds are supported.
 * [Known problems](https://github.com/orgs/PX4/projects/6) (Also use to report issues).
 
-### Shell Script Installation {#script_setup}
+<a id="script_setup"></a>
+
+### Shell Script Installation
 
 You can also install the environment using shell scripts in the Github project.
 
@@ -136,7 +146,9 @@ You can also install the environment using shell scripts in the Github project.
 1. Si desea instalar todos los componentes navegue a la carpeta recién clonada y haga doble clic en el script `install-all-components.bat` ubicado en la carpeta `toolchain`. Si solo necesitas ciertos componentes y quieres ahorrar tráfico de internet o espacio en disco puedes navegar a la carpeta de componente, como por ejemplo `toolchain\cygwin64`, y hacer click en el script **install-XXX.bat** para solo tener encuenta ese específico.
 2. Continúe con [Introducción](#getting_started) (o [Instrucciones de Uso](#usage_instructions))
 
-### Manual Installation (for Toolchain Developers) {#manual_setup}
+<a id="manual_setup"></a>
+
+### Manual Installation (for Toolchain Developers)
 
 This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 

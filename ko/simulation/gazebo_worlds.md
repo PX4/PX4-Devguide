@@ -6,7 +6,9 @@ The [empty.world](#empty_world) is spawned by default, though this may be overri
 
 The source code for supported worlds can be found on GitHub here: [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds).
 
-## 빈 월드 (기본) {#empty_world}
+<a id="empty_world"></a>
+
+## Empty (Default)
 
 [PX4/sitl_gazebo/worlds/empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world)
 
@@ -46,7 +48,9 @@ The source code for supported worlds can be found on GitHub here: [PX4/sitl_gaze
 
 ![요세미티](../../assets/simulation/gazebo/worlds/yosemite.jpg)
 
-## 모델별 월드 {#model_specific_worlds}
+<a id="model_specific_worlds"></a>
+
+## Model Specific Worlds
 
 일부 [기체 모델](../simulation/gazebo_vehicles.md)은 특정 월드의 물리 구현체 / 플러그인에 따릅니다. PX4 툴체인에서는 기체 모델과 동일한 이름을 가진 월드가 있다면 (**empty.world**를 불러오지 않고) 자동으로 월드를 불러옵니다:
 

@@ -4,9 +4,11 @@
 
 PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and VTOL (using Gazebo).
 
-## HITL兼容机架 {#compatible_airframe}
+<a id="compatible_airframe"></a>
 
-目前兼容的机架构型和模拟器的情况如下：
+## HITL-Compatible Airframes
+
+The current set of compatible airframes vs Simulators is:
 
 | 机架                                                                                                     | `SYS_AUTOSTART` | Gazebo | jMAVSim |
 | ------------------------------------------------------------------------------------------------------ | --------------- | ------ | ------- |
@@ -15,13 +17,15 @@ PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and VTOL (using Gaz
 | [Generic Quadrotor x](../airframes/airframe_reference.md#copter_quadrotor_x_generic_quadcopter) copter | 4001            | Y      | Y       |
 | [DJI Flame Wheel f450](../airframes/airframe_reference.md#copter_quadrotor_x_dji_flame_wheel_f450)     | 4011            | Y      | Y       |
 
-## HITL 仿真环境 {#simulation_environment}
+<a id="simulation_environment"></a>
 
-硬件在环仿真（HITL）模式下标准的 PX4 固件在真实的硬件上运行。 JMAVSim 或 Gazebo (运行在开发计算机上) 通过 USB或者串口 完成与飞行控制器硬件平台连接。 模拟器充当在 PX4 和 *QGroundControl* 之间共享 MAVLink 数据的网关。
+## HITL Simulation Environment
+
+With Hardware-in-the-Loop (HITL) simulation the normal PX4 firmware is run on real hardware. JMAVSim or Gazebo (running on a development computer) are connected to the flight controller hardware via USB/UART. The simulator acts as gateway to share MAVLink data between PX4 and *QGroundControl*.
 
 > **Note** 如果飞行控制器支持网络连接且使用的是稳定、低延迟的连接（如有线以太网，WIFI 通常不太稳定），那么模拟器也可以使用 UDP 完成通讯连接。 For example, this configuration has been tested with PX4 running on a Raspberry Pi connected via Ethernet to the computer (a startup configuration that includes the command for running jMAVSim can be found [here](https://github.com/PX4/PX4-Autopilot/blob/master/posix-configs/rpi/px4_hil.config)).
 
-下面展示了仿真模拟的环境：
+The diagram below shows the simulation environment:
 
 * 飞控板 HITL 模式被激活 (通过 *QGroundControl*) ，该模式下不会启动飞控板上任何传感器。
 * *jMAVSim* 或者 *Gazebo* 通过 USB 连接到飞控板。
@@ -33,11 +37,11 @@ PX4 supports HITL for multicopters (using jMAVSim or Gazebo) and VTOL (using Gaz
 
 ## HITL 相比于 SITL
 
-SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生成的固件。 除了通过模拟器提供模拟环境数据的模拟驱动数据以外，系统正常运作的其他驱动数据。
+SITL runs on a development computer in a simulated environment, and uses firmware specifically generated for that environment. Other than simulation drivers to provide fake environmental data from the simulator the system behaves normally.
 
-与此相对照，HITL 在正常硬件上运行正常的 PX4 固件。 仿真数据进入整个仿真系统的时间点与 SITL 有所不同。 commander 和传感器等核心模块在启动时有HITL 模式，这种模式绕过了某些正常功能。
+By contrast, HITL runs normal PX4 firmware in "HITL mode", on normal hardware. The simulation data enters the system at a different point than for SITL. Core modules like commander and sensors have HITL modes at startup that bypass some of the normal functionality.
 
-总而言之， HITL 在真实硬件上运行标准 PX4 固件，而 SITL 实际上要比标准 PX4 系统执行更多的代码。
+In summary, HITL runs PX4 on the actual hardware using standard firmware, but SITL actually executes more of the standard system code.
 
 ## 配置 HITL
 
@@ -73,11 +77,11 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
     
     > **Tip** *QGroundControl User Guide* 中也有如何配置 [操纵杆](https://docs.qgroundcontrol.com/en/SetupView/Joystick.html) 和 [虚拟操纵杆](https://docs.qgroundcontrol.com/en/SettingsView/VirtualJoystick.html) 的说明。
 
-完成所有的配置设定后 **关闭** *QGroundControl* 并断开飞控板与计算机的连接。
+Once configuration is complete, **close** *QGroundControl* and disconnect the flight controller hardware from the computer.
 
 ### 模拟器特定设置
 
-在以下章节中按照特定模拟器的适当设置步骤。
+Follow the appropriate setup steps for the specific simulator in the following sections.
 
 #### Gazebo
 
@@ -112,7 +116,9 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 
 6. 启动*QGroundControl*。 它应该会自动连接 PX4 和 Gazebo 。
 
-#### jMAVSim (Quadrotor only) {#jmavsim_hitl_configuration}
+<a id="jmavsim_hitl_configuration"></a>
+
+#### jMAVSim (Quadrotor only)
 
 > **Note** 确保 *QGroundControl* 没有运行！
 
@@ -126,4 +132,4 @@ SITL 开发计算机中的模拟环境中运行, 并使用专门为该环境生�
 
 ## 在 HITL 仿真中执行自主飞行任务
 
-你可以使用 *QGroundControl* 实现对飞机的控制并令其 [执行飞行任务](../qgc/README.md#planning-missions) 。
+You should be able to use *QGroundControl* to [run missions](../qgc/README.md#planning-missions) and otherwise control the vehicle.

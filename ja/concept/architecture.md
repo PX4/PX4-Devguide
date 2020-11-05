@@ -8,7 +8,9 @@ All PX4 [airframes](../airframes/README.md) share a single codebase (this includ
 - Communication is done by asynchronous message passing
 - The system can deal with varying workload
 
-## High-Level Software Architecture{#architecture}
+<a id="architecture"></a>
+
+## High-Level Software Architecture
 
 The diagram below provides a detailed overview of the building blocks of PX4. The top part of the diagram contains middleware blocks, while the lower section shows the components of the flight stack.
 
@@ -36,7 +38,9 @@ Modules communicate with each other through a publish-subscribe message bus name
 
 > **Info** This architecture allows every single one of these blocks to be rapidly and easily replaced, even at runtime.
 
-### Flight Stack {#flight-stack}
+<a id="flight-stack"></a>
+
+### Flight Stack
 
 The flight stack is a collection of guidance, navigation and control algorithms for autonomous drones. It includes controllers for fixed wing, multirotor and VTOL airframes as well as estimators for attitude and position.
 
@@ -56,7 +60,9 @@ A **controller** is a component that takes a setpoint and a measurement or estim
 
 A **mixer** takes force commands (e.g. turn right) and translates them into individual motor commands, while ensuring that some limits are not exceeded. This translation is specific for a vehicle type and depends on various factors, such as the motor arrangements with respect to the center of gravity, or the vehicle's rotational inertia.
 
-### Middleware {#middleware}
+<a id="middleware"></a>
+
+### Middleware
 
 The [middleware](../middleware/README.md) consists primarily of device drivers for embedded sensors, communication with the external world (companion computer, GCS, etc.) and the uORB publish-subscribe message bus.
 
@@ -68,7 +74,9 @@ Since the modules wait for message updates, typically the drivers define how fas
 
 The message update rates can be [inspected](../middleware/uorb.md) in real-time on the system by running `uorb top`.
 
-## Runtime Environment {#runtime-environment}
+<a id="runtime-environment"></a>
+
+## Runtime Environment
 
 PX4 runs on various operating systems that provide a POSIX-API (such as Linux, macOS, NuttX or QuRT). It should also have some form of real-time scheduling (e.g. FIFO).
 

@@ -12,7 +12,9 @@
 
 이 주제에서는 환경을 다운로드하고 활용하는 방법, 필요한 경우 기능을 확장하고 업데이트하는 방법(예: 다른 컴파일러 활용)을 설명하도록 하겠습니다.
 
-## 설치 방법 {#installation}
+<a id="installation"></a>
+
+## Installation Instructions
 
 1. 바로 사용할 수 있는 MSI 설치 프로그램의 최신 버전을 [Github 릴리스](https://github.com/PX4/windows-toolchain/releases) 또는 [아마존 S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.9.msi) (다운로드 속도 빠름) 서버에서 받으십시오.
 2. 실행하고, 원하는 위치를 선택한 후, 진행하십시오:![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.png)
@@ -20,9 +22,11 @@
     
     > **Note** If you missed this step you will need to [clone the PX4-Autopilot repository manually](#getting_started).
 
-## 시작하기 {#getting_started}
+<a id="getting_started"></a>
 
-툴체인은 별도로 설정한 콘솔 창(**run-console.bat** 스크립트 실행)을 사용하며, 이 콘솔창에서 PX4 빌드에 사용할 일반 명령을 호출할 수 있습니다:
+## Getting Started
+
+The toolchain uses a specially configured console window (started by running the **run-console.bat** script) from which you can call the normal PX4 build commands:
 
 1. 툴체인 설치 디렉터리를 탐색하십시오 (기본 위치 **C:\PX4**)
 2. **run-console.bat** 을 실행(두번 누르기)하여 Cygwin 배시 콘솔을 실행하십시오
@@ -50,54 +54,56 @@
     
     ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.png)
 
-[PX4를 빌드하는 자세한 방법](../setup/building_px4.md)으로 계속 진행하십시오(또는 바로 아래 절에서 좀 더 일반적인 사용 방법을 살펴보십시오).
+Continue next to [the detailed instructions on how to build PX4](../setup/building_px4.md) (or see the section below for more general usage instructions).
 
-## 사용 방법 {#usage_instructions}
+<a id="usage_instructions"></a>
 
-설치 디렉터리(기본 위치:**C:\PX4**)에는 PX4 SITL(리눅스 유사) 배시 콘솔을 실행하는 배치 스크립트 **run-console.bat** 파일이 들어있습니다.
+## Usage Instructions
+
+The installation directory (default: **C:\PX4**) contains a batch script for launching the PX4 SITL (linux like) bash console: **run-console.bat**
 
 > **Tip** [수동 설치](#manual_setup) 절에서는 왜 스크립트를 사용해야 하는지 각각의 모든 과정이 어떤 동작을 하는지 설명합니다.
 
-일반적인 과정은 **run-console.bat** 스크립트를 두번 눌러 터미널 명령을 직접 실행하는 방식으로 콘솔 창을 시작합니다.
+The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands.
 
 ### 파일 감시 도구 vs 툴체인 속도
 
-백신과 기타 백그라운드 파일 감시 도구는 툴체인 설치 속도와 PX4 빌드 시간을 급격하게 줄일 수 있습니다.
+Antivirus and other background file monitoring tools can significantly slow down both installation of the toolchain and PX4 build times.
 
-빌드를 진행하는 동안에는 임시로 멈추는것이 좋겠습니다(대신 그동안에 일어나는 일은 여러분 책임입니다 :P).
+You may wish to halt them temporarily during builds (at your own risk).
 
 ### 윈도우와 Git의 개별 사례
 
 #### 윈도우 CR+LF vs 유닉스 LF 개행 문자
 
-이 툴체인으로 작업하는 모든 저장소에는 유닉스 방식의 LF 개행 문자로의 강제 설정을 권장합니다(또한 이클립스 또는 비주얼 스튜디오 코드와 같은 편집기를 사용하여 바뀐 파일에 대해서도 동일한 개행 문자 체계를 유지하십시오). 소스 파일의 컴파일 과정에서도 CR+LF 개행 문자를 자체적으로 허용하여 진행하지만, Cygwin에서 (예: 셸 스크립트 실행) 유닉스 개행 문자가 필요한 경우가 있습니다(LF 개행 문자로 맞춰주지 않으면 `$'\r': Command not found.` 오류가 뜹니다). 다행스럽게도 git 에서는 저장소에서 다음 두 명령을 저장소 루트 디렉터리에서 실행하면 이 문제를 해결할 수 있습니다:
+We recommend that you force Unix style LF endings for every repository you're working with using this toolchain (and use an editor which preserves them when saving your changes - e.g. Eclipse or VS Code). Compilation of source files also works with CR+LF endings checked out locally, but there are cases in Cygwin (e.g. execution of shell scripts) that require Unix line endings (otherwise you get errors like `$'\r': Command not found.`). Luckily git can do this for you when you execute the two commands in the root directory of your repo:
 
     git config core.autocrlf false
     git config core.eol lf
     
 
-다중 주정소에 대해 이 툴체인이 동작한다면 여러분의 머신에 두가지 설정 값을 다음 옵션을 주어 지정할 수 있습니다:
+If you work with this toolchain on multiple repositories you can also set these two configurations globally for your machine:
 
     git config --global ...
     
 
-윈도우 머신에서 git을 사용할 때 (관련 없는) 다른 프로젝트에도 영향을 줄 수 있으므로 권장하지는 않습니다.
+This is not recommended because it may affect any other (unrelated) git use on your Windows machine.
 
 #### 유닉스 실행 권한 비트
 
-유닉스에서는 각 파일을 실행할 수 있는지 여부를 운영체제에 알리는 권한 플래그가 있습니다. Cygwin의 *git*은 해당 비트를 (윈도우 NTFS 파일 시스템에서 활용하지 않지만) 지원하고 관리합니다. 종종 *git* 에서 권한 비트를 비교하는데 있어 "거짓-양성"의 차이를 보이기도 합니다. git diff 명령의 결과는 대략 다음과 같습니다:
+Under Unix there's a flag in the permissions of each file that tells the OS whether or not the file is allowed to be executed. *git* under Cygwin supports and cares about that bit (even though the Windows NTFS file system does not use it). This often results in *git* finding "false-positive" differences in permissions. The resulting diff might look like this:
 
     diff --git ...
     old mode 100644
     new mode 100755
     
 
-이런 문제를 피하기 위해 윈도우에서는 전체적으로 권한 비트 검사의 비활성을 권장합니다:
+We recommend globally disabling the permission check on Windows to avoid the problem:
 
     git config --global core.fileMode false # disable execution bit check globally for the machine
     
 
-기존 저장소에서는 로컬 설정으로 인해 이런 문제가 나타나므로 추가적으로:
+For existing repositories that have this problem caused by a local configuration, additionally:
 
     git config --unset core.filemode # remove the local option for this repository to apply the global one
     git submodule foreach --recursive git config --unset core.filemode # remove the local option for all submodules
@@ -105,9 +111,11 @@
 
 ## 추가 정보
 
-### 기능 / 문제 {#features}
+<a id="features"></a>
 
-다음 기능은 동작하는걸로 밝혀져있습니다 (버전 2.0):
+### Features / Issues
+
+The following features are known to work (version 2.0):
 
 * jMAVSim과 SITL의 빌드 및 실행은 가상 머신에서보다는 성능이 비약적으로 월등합니다(자체 윈도우 바이너리 **px4.exe**를 만듭니다).
 * NuttX 빌드 및 업로드 (예: px4_fmu-v2 and px4_fmu-v4)
@@ -116,15 +124,17 @@
 * 시스템의 중요 부위를 건드리지 않는 설치 마법사입니다! 설치 프로그램은 시스템과 전역 경로 설정에 어떤 영향도 주지 않습니다(**C:\PX4**와 같은 선택한 설치 디렉터리만 수정하며 임시 로컬 경로를 사용합니다).
 * 설치 마법사에서는 툴체인 폴더의 개별 설정을 유지하면서 새 버전으로 업데이트할 수 있습니다.
 
-생략:
+Omissions:
 
 * 모의시험 환경: 가제보, ROS는 지원 안함.
 * NuttX와 jMAVSim/SITL 빌드만 지원. 
 * [알려진 문제](https://github.com/orgs/PX4/projects/6) (또한 보고할 문제).
 
-### 셸 스크립트 설치 {#script_setup}
+<a id="script_setup"></a>
 
-Github 프로젝트의 셸 스크립트를 활용하여 환경을 설치할 수도 있습니다.
+### Shell Script Installation
+
+You can also install the environment using shell scripts in the Github project.
 
 1. [윈도우용 Git](https://git-scm.com/download/win)을 우선 설치했는지 확인하십시오.
 2. https://github.com/PX4/windows-toolchain 저장소를 툴체인을 설치하려는 위치로 가져오십시오. 기본 위치와 이름은 `Git 배시`를 열고 다음을 실행하면 됩니다:
@@ -136,9 +146,11 @@ Github 프로젝트의 셸 스크립트를 활용하여 환경을 설치할 수�
 1. 모든 구성 요소를 설치하려면 새로 가져온 폴더를 찾아 `toolchain` 폴더에 있는 `install-all-components.bat` 스크립트를 두 번 누르십시오. 데이터 전송 용량과 디스크 공간을 아끼려 일부 요소만 필요하다면 별도의 `install-all-components.bat` 구성요소 폴더를 찾아 개별적으로 받을 구성요소의 **install-XXX.bat** 스크립트를 실행하면 됩니다.
 2. [시작하기](#getting_started) (또는 [사용 방법](#usage_instructions))으로 계속 진행하십시오
 
-### 수동 설치 (툴체인 개발자용) {#manual_setup}
+<a id="manual_setup"></a>
 
-이 절에서는 Cygwin 툴체인을 직접 설치하고, 스크립트 기반 설치 저장소에서 관련 스크립트를 직접 찾아서 실행하는 방법을 설명합니다. 결과는 스크립트를 활용하는 방법이나 MSI 설치 관리자를 활용하는 방법이나 같습니다.
+### Manual Installation (for Toolchain Developers)
+
+This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 
 > **Note** 툴체인은 관리 대상이므로 방법 설명에 있어 앞으로 바뀔 모든 세부사항은 다루지 않습니다.
 

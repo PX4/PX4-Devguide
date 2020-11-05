@@ -21,7 +21,9 @@ These aspects are mostly independent, which means that many configurations share
 
 > **Note** New airframe files are only automatically added to the build system after a clean build (run `make clean`).
 
-### Config File {#config-file}
+<a id="config-file"></a>
+
+### Config File
 
 A typical configuration file is shown below ([original file here](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/airframes/3033_wingwing)).
 
@@ -100,7 +102,9 @@ set PWM_DISARMED 1000
 
 > **Warning** If you want to reverse a channel, never do this on your RC transmitter or with e.g `RC1_REV`. The channels are only reversed when flying in manual mode, when you switch in an autopilot flight mode, the channels output will still be wrong (it only inverts your RC signal). Thus for a correct channel assignment change either your PWM signals with `PWM_MAIN_REV1` (e.g. for channel one) or change the signs of the output scaling in the corresponding mixer (see below).
 
-### Mixer File {#mixer-file}
+<a id="mixer-file"></a>
+
+### Mixer File
 
 > **Note** First read [Concepts > Mixing](../concept/mixing.md). This provides background information required to interpret this mixer file.
 

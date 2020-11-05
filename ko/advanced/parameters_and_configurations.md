@@ -213,7 +213,9 @@ int32_t my_param = 0;
 param_get(my_param_handle, &my_param);
 ```
 
-## 매개변수 메타데이터 {#parameter_metadata}
+<a id="parameter_metadata"></a>
+
+## Parameter Meta Data
 
 PX4 uses an extensive parameter metadata system to drive the user-facing presentation of parameters, and to set the default value for each parameter in firmware.
 
@@ -225,7 +227,9 @@ The build system extracts the metadata (using `make parameters_metadata`) to bui
 
 > **Warning** *새* 매개변수 파일을 추가하고 나면, 새 매개변수를 만들기 전 `make clean`을 실행해야합니다(매개변수 파일은 *cmake* 설정 단계의 일부로서 추가하며, 이 명령을 실행하면 cmake 파일을 수장했을 때, 기존의 빌드 파일을 정리합니다).
 
-### C 매개변수 메타데이터 {#c_metadata}
+<a id="c_metadata"></a>
+
+### c Parameter Metadata
 
 The legacy approach for defining parameter metadata is in a file with extension **.c** (at time of writing this is the approach most commonly used in the source tree).
 
@@ -279,7 +283,9 @@ The lines in the comment block are all optional, and are primarily used to contr
  */
 ```
 
-### YAML 메타데이터 {#yaml_metadata}
+<a id="yaml_metadata"></a>
+
+### YAML Metadata
 
 > **Note** YAML 매개변수 정의를 작성했을 때는 *라이브러리*에서 활용할 수 없습니다.
 
@@ -288,7 +294,9 @@ YAML meta data is intended as a full replacement for the **.c** definitions. It 
 - The YAML parameter metadata schema is here: [validation/module_schema.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/validation/module_schema.yaml).
 - An example of YAML definitions being used can be found in the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/module.yaml).
 
-#### 다중 인스턴스 (서식화) 메타데이터 {#multi_instance_metadata}
+<a id="multi_instance_metadata"></a>
+
+#### Multi-Instance (Templated) Meta Data
 
 Templated parameter definitions are supported in [YAML parameter definitions](https://github.com/PX4/PX4-Autopilot/blob/master/validation/module_schema.yaml) (templated parameter code is not supported).
 

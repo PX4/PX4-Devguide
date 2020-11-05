@@ -17,7 +17,7 @@ Esta guía explica cómo:
 * [Simular](simulation/README.md), [probar](test_and_ci/README.md) y [depurar](debug/README.md) PX4.
 * Comunicar/integrar con APIs externas.
 
-## Support {#support}
+## Support
 
 [Support](contribute/support.md) provide links to the [discussion boards](http://discuss.px4.io/) and other support channels.
 
@@ -37,7 +37,9 @@ There are Chinese and Korean [translations](contribute/docs.md#translation) of t
 
 ![Gitbook Language Selector](../assets/gitbook/gitbook_language_selector.png)
 
-## Calendar & Events {#calendar}
+<a id="calendar"></a>
+
+## Calendar & Events
 
 The *Dronecode Calendar* shows important events for platform developers and users. Select the links below to display the calendar in your timezone (and to add it to your own calendar):
 

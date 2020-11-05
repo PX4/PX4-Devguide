@@ -12,7 +12,9 @@
 
 这篇文章将解释怎样下载和使用该环境，并且在需要的时候怎样扩展和更新(比如，使用其他的编译器)。
 
-## 安装说明 {#installation}
+<a id="installation"></a>
+
+## Installation Instructions
 
 1. Download the latest version of the ready-to-use MSI installer from: [Github releases](https://github.com/PX4/windows-toolchain/releases) or [Amazon S3](https://s3-us-west-2.amazonaws.com/px4-tools/PX4+Windows+Cygwin+Toolchain/PX4+Windows+Cygwin+Toolchain+0.9.msi) (fast download).
 2. Run it, choose your desired installation location, let it install: ![jMAVSimOnWindows](../../assets/toolchain/cygwin_toolchain_installer.png)
@@ -20,9 +22,11 @@
     
     > **Note** If you missed this step you will need to [clone the PX4-Autopilot repository manually](#getting_started).
 
-## 入门指南 {#getting_started}
+<a id="getting_started"></a>
 
-工具链使用专门配置的控制台(通过运行**run-console.bat**脚本)从而可以使用PX4编译命令
+## Getting Started
+
+The toolchain uses a specially configured console window (started by running the **run-console.bat** script) from which you can call the normal PX4 build commands:
 
 1. 进入到工具链的安装目录(默认**C:\PX4**)
 2. 运行**run-console.bat**(双击)启动Cygwin bash控制台
@@ -50,15 +54,17 @@
     
     ![jMAVSimOnWindows](../../assets/simulation/jmavsim_windows_cygwin.png)
 
-下面[ 有关如何生成 PX4 的详细说明 ](../setup/building_px4.md) (或参阅下面的部分以了解更多常规用法说明)。
+Continue next to [the detailed instructions on how to build PX4](../setup/building_px4.md) (or see the section below for more general usage instructions).
 
-## 使用说明 {#usage_instructions}
+<a id="usage_instructions"></a>
 
-安装目录 （默认位置： **C:\PX4**） 用于开启PX4 SITL（类Linux）命令行窗口的脚本文件： **run-console.bat**
+## Usage Instructions
+
+The installation directory (default: **C:\PX4**) contains a batch script for launching the PX4 SITL (linux like) bash console: **run-console.bat**
 
 > **Tip** [Manual Setup](#manual_setup) 部分解释了为什么需要使用该脚本以及它的工作原理。
 
-普遍的工作流程都通过双击 **run-console. bat** 脚本来手动运行终端命令来启动控制台窗口。
+The ordinary workflow consists of starting a console window by double clicking on the **run-console.bat** script to manually run terminal commands.
 
 ### File Monitoring Tools vs Toolchain Speed
 
@@ -105,7 +111,9 @@ For existing repositories that have this problem caused by a local configuration
 
 ## 附加信息
 
-### Features / Issues {#features}
+<a id="features"></a>
+
+### Features / Issues
 
 The following features are known to work (version 2.0):
 
@@ -122,7 +130,9 @@ Omissions:
 * 仅支持 NuttX 和 JMAVSim/SITL 编译。
 * [Known problems](https://github.com/orgs/PX4/projects/6) (Also use to report issues).
 
-### Shell Script Installation {#script_setup}
+<a id="script_setup"></a>
+
+### Shell Script Installation
 
 You can also install the environment using shell scripts in the Github project.
 
@@ -136,7 +146,9 @@ You can also install the environment using shell scripts in the Github project.
 1. 如果要安装所有组件, 请进入到新克隆的代码仓库文件夹, 然后双击位于文件夹 `toolchain`目录中的脚本 ` install-all-components.bat`。 如果您只需要某些组件并希望占用有限的Internet 数据和磁盘空间, 则可以进入到不同的组件文件夹, 如 ` toolchain\cygwin64 `, 然后单击 ** install-XXX.bat ** 脚本以获取特定的内容。
 2. 继续 [ 入门指南 ](#getting_started) (或 [ 使用说明 ](#usage_instructions))
 
-### Manual Installation (for Toolchain Developers) {#manual_setup}
+<a id="manual_setup"></a>
+
+### Manual Installation (for Toolchain Developers)
 
 This section describes how to setup the Cygwin toolchain manually yourself while pointing to the corresponding scripts from the script based installation repo. The result should be the same as using the scripts or MSI installer.
 

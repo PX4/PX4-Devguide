@@ -71,7 +71,9 @@ $$\boldsymbol{\mathrm{\tilde{q}}}$$ 로컬 프레임 $$\ell$$에 상대적인 �
 | $$x,y,z$$  | x, y, z 축에 따른 벡터 요소      |
 | $$N,E,D$$  | 북, 동, 하 글로벌 방위에 따른 벡터 요소 |
 
-### 위첨자 / 인덱스 {#superscripts}
+<a id="superscripts"></a>
+
+### Superscripts / Indices
 
 | 위첨자 / 인덱스 | 설명                  |
 | --------- | ------------------- |

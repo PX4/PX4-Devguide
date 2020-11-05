@@ -66,7 +66,9 @@ EKF2의 외부 위치 정보를 활용하려면 다음 매개변수를 설정해
 
 > **Tip** 바뀐 매개변수 값을 적용하려면 비행체 제어 장치를 다시 부팅하십시오.
 
-#### Tuning EKF2_EV_DELAY {#tuning-EKF2_EV_DELAY}
+<a id="tuning-EKF2_EV_DELAY"></a>
+
+#### Tuning EKF2_EV_DELAY
 
 [EKF2_EV_DELAY](../advanced/parameter_reference.md#EKF2_EV_DELAY) is the *Vision Position Estimator delay relative to IMU measurements*.
 
@@ -90,7 +92,7 @@ You will first need to [switch to the LPE estimator](../advanced/switching_state
 
 ### 외부 자세 데이터 입력 활성화
 
-LPE의 외부 위치 정보를 활용하려면 다음 매개변수를 설정해야합니다(*QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**에서 설정 가능).
+The following parameters must be set to use external position information with LPE (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > Local Position Estimator**).
 
 | 매개변수                                                                | 외부 위치 추정 설정                                                                                                                            |
 | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -119,7 +121,9 @@ VIO and MoCap systems have different ways of obtaining pose data, and have their
 
 The setup for specific systems is covered [below](#setup_specific_systems). For other systems consult the vendor setup documentation.
 
-### Relaying Pose Data to PX4 {#relaying_pose_data_to_px4}
+<a id="relaying_pose_data_to_px4"></a>
+
+### Relaying Pose Data to PX4
 
 MAVROS has plugins to relay a visual estimation from a VIO or MoCap system using the following pipelines:
 
@@ -139,7 +143,9 @@ If you're working with EKF2, only the "vision" pipelines are supported. To use M
 * The odometry frames `frame_id = odom`, `child_frame_id = base_link` can be changed by updating the file in `mavros/launch/px4_config.yaml`. However, the current version of mavros (`1.3.0`) needs to be able to use the tf tree to find a transform from `frame_id` to the hardcoded frame `odom_ned`. The same applies to the `child_frame_id`, which needs to be connected in the tf tree to the hardcoded frame `base_link_frd`. If you are using mavros `1.2.0` and you didn't update the file `mavros/launch/px4_config.yaml`, then you can safely use the odometry frames `frame_id = odom`, `child_frame_id = base_link` without much worry.
 * Note that if you are sending odometry data to px4 using `child_frame_id = base_link`, then then you need to make sure that the `twist` portion of the `nav_msgs/Odometry` message is **expressed in body frame**, **not in inertial frame!!!!!**.
 
-### Reference Frames and ROS {#ros_reference_frames}
+<a id="ros_reference_frames"></a>
+
+### Reference Frames and ROS
 
 The local/world and world frames used by ROS and PX4 are different.
 
@@ -176,7 +182,9 @@ If the reference frame has the z axis pointing upwards you can attached it witho
 
 > **Note** When using the MAVROS *odom* plugin, it is important that no other node is publishing a transform between the external pose's reference and child frame. This might break the *tf* tree.
 
-## Specific System Setups {#setup_specific_systems}
+<a id="setup_specific_systems"></a>
+
+## Specific System Setups
 
 ### OptiTrack MoCap
 

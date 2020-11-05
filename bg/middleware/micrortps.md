@@ -67,7 +67,9 @@ The *Client* application is also compiled and built into the firmware as part of
 
 > **Tip** The bridge code can also be [manually generated](micrortps_manual_code_generation.md). Most users will not need to do so, but the linked topic provides a more detailed overview of the build process and can be useful for troubleshooting.
 
-### ROS2/ROS applications {#px4_ros_com}
+<a id="px4_ros_com"></a>
+
+### ROS2/ROS applications
 
 The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)). This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
 
@@ -117,7 +119,9 @@ rtps:
 > 
 > The `px4_msgs` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). The **uorb_rtps_message_ids.yaml** is transformed in a way that the message names become *PascalCased* (the name change is irrelevant to the client-agent communication, but is critical for ROS2, since the message naming must follow the PascalCase convention). The new IDL files also reverse the messages that are sent and received (required because if a message is sent from the client side, then it's received on the agent side, and vice-versa).
 
-## Client (PX4/PX4-Autopilot) {#client_firmware}
+<a id="client_firmware"></a>
+
+## Client (PX4/PX4-Autopilot)
 
 The *Client* source code is generated, compiled and built into the PX4 firmware as part of the normal build process.
 

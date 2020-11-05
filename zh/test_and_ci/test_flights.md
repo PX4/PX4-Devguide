@@ -28,9 +28,11 @@
 * [MC_04 - 故障安全测试](../test_cards/mc_04_failsafe_testing.md)
 * [MC_05 - 室内飞行（手动模式）](../test_cards/mc_05_indoor_flight_manual_modes.md)
 
-## 测试机型/飞控 {#fleet}
+<a id="fleet"></a>
 
-多旋翼
+## Test Vehicles/Autopilots
+
+Multicopter
 
 | 机型                                                                                                                                                                                                                                                                | 飞控                                                                                                                                                                                                                                                               | UUID                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
@@ -46,17 +48,17 @@
 | Holybro [QAV250](https://docs.px4.io/master/en/frames_multicopter/holybro_qav250_pixhawk4_mini.html)                                                                                                                                                              | [Pixhawk 4 Mini](https://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html)                                                                                                                                                                             | 000200000000343233383038511500420032 (f450-v5-m)            |
 | NXP Semiconductor [KIT-HGDRONEK66](https://www.nxp.com/applications/solutions/industrial/unmanned-aerial-vehicles-uavs/uavs-drones-and-rovers/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66) ("[Hovergames](https://www.hovergames.com/)") | [RDDRONE-FMUK66](https://www.nxp.com/products/processors-and-microcontrollers/arm-based-processors-and-mcus/kinetis-cortex-m-mcus/k-seriesperformancem4/k6x-ethernet/rddrone-fmuk66-px4-robotic-drone-fmu-reference-design:RDDRONE-FMUK66?tid=vanRDDRONE-FMUK66) | 00030016ffffffffffff4e45362050130029                        |
 
-固定翼
+Fixed Wing
 
 | 机型                                                                                                  | 飞控                                                                           | UUID                                           |
 | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------- |
 | [Phantom Wing](https://hobbyking.com/en_us/phantom-fpv-flying-wing-epo-airplane-1550mm-v2-kit.html) | [Phantom Wing](https://docs.px4.io/master/en/flight_controller/pixhawk.html) | 0001000000003035333330365104003c0020 (f450-v2) |
 
-垂直起降
+VTOL
 
 | 机型                                                                                   | 飞控                                                                                   | UUID                                             |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
 | [Convergence VTOL](https://www.horizonhobby.com/convergence-vtol-bnf-basic-efl11050) | [Pixhawk 4 Mini](https://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html) | 000200000000343233383038511500350039 (vtol-v5-m) |
 | [Delta Quad Pro](https://px4.io/portfolio/deltaquad-vtol/)                           | [Dropix](https://docs.px4.io/master/en/flight_controller/dropix.html)                | 0001000000003437393931375114004c0042 (delta-v2)  |
 
-{% endif %}<!-- END: details above displayed only in master -->
+{% endif %} <!-- END: details above displayed only in master -->

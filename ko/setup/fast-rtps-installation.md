@@ -75,15 +75,13 @@ $ sudo make install
 
     git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git -b v1.0.4 ~/Fast-RTPS-Gen \
         && cd ~/Fast-RTPS-Gen \
-        && gradle assemble \
-        && gradle install
+        && ./gradlew assemble \
+        && sudo ./gradlew install
     
-
-> **Note** "install" 단계에서 `sudo` 권한이 필요합니다.
 
 ## 바이너리 설치
 
-> **Note** 바이너리를 쓸 수 있긴 하나, 소스 코드로부터 빌드하고 설치하는 방법을 추천드립니다. 바이너리로 받으면 필요 구성 요소와 의존 요소를 제자리에 위치하지 못할 수도 있습니다.
+> **Note** Although the binaries are available, we recommend to build and install the code from source, given that the binaries may not come with required components and dependencies in place.
 
 [업체 웹사이트](http://www.eprosima.com/)에서 *eProsima Fast RTPS*의 최신 바이너리 릴리즈를 얼마든지 다운로드할 수 있습니다.
 
