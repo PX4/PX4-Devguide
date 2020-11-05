@@ -21,7 +21,9 @@ CLI 命令行用法示例：
     module start -f -p 42
     
 
-### 用法 {#module_usage}
+<a id="module_usage"></a>
+
+### Usage
 
     module &lt;command&gt; [arguments...]
      Commands:
@@ -43,7 +45,9 @@ Source: [examples/work_item](https://github.com/PX4/Firmware/tree/master/src/exa
 
 Example of a simple module running out of a work queue.
 
-### Usage {#work_item_example_usage}
+<a id="work_item_example_usage"></a>
+
+### Usage
 
     work_item_example <command> [arguments...]
      Commands:
