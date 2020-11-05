@@ -93,7 +93,9 @@ The simulation speed can be increased or decreased with respect to realtime usin
 
 For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
-### Using a Joystick {#joystick}
+<a id="joystick"></a>
+
+### Using a Joystick
 
 Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
 
