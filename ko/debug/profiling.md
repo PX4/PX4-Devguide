@@ -33,32 +33,34 @@ ad-hoc 솔루션으로 개발했기에 일부 문제가 있습니다. 사용중�
 
 * 다중 스레드 환경을 지원하지 않습니다. 단일 코어 임베디드 대상에서는 늘 하나의 스레드로만 실행하기 때문에 문제가 없습니다. 다만, 이런 제약 사항이 다른 프로그램과 프로파일러의 호환성을 떨어뜨립니다. 나중에는 스택 폴더에서 표본 데이터당 다중 스택 추적을 지원하도록 할 예정입니다.
 
-## 구현 {#implementation}
+<a id="implementation"></a>
 
-스크립트는 `Debug/poor-mans-profiler.sh` 위치에 있습니다. 한번 실행하면 지정 시간 주기별로 지정 표본 데이터 수만큼 동작합니다. 수집 표본 데이터는 시스템 임시 디렉터리(보통 `/tmp`)에 텍스트 파일로 저장합니다. 표본 데이터 수집이 끝나면, 스크립트는 임시 디렉터리의 인접 파일에 저장한 출력파일 스택 폴더를 자동으로 호출합니다. 스택을 잘 접어두었다면, 스크립트는 *FrameGraph* 스크립트를 호출하고 관련 결과를 양방향 SVG 파일에 저장합니다. 모든 이미지 보기 프로그램이 이 그림 형식을 지원하지 않음을 참고하십시오. 웹 브라우저에서 결과 SVG 파일을 열어보시는 것이 좋습니다.
+## Implementation
 
-FlameGraph 스크립트 위치는 `PATH`에 두어야 합니다. 그렇지 않으면 PMSP를 실행할 수 없습니다.
+The script is located at `Debug/poor-mans-profiler.sh`. Once launched, it will perform the specified number of samples with the specified time interval. Collected samples will be stored in a text file in the system temp directory (typically `/tmp`). Once sampling is finished, the script will automatically invoke the stack folder, the output of which will be stored in an adjacent file in the temp directory. If the stacks were folded successfully, the script will invoke the *FlameGraph* script and store the result in an interactive SVG file. Please note that not all image viewers support interactive images; it is recommended to open the resulting SVG in a web browser.
 
-PMSP는 스택 추적 표본 데이터 수집시 GDB를 활용합니다. 현재 `arm-none-eabi-gdb`를 활용하며, 다른 툴체인은 나중에 추가하겠습니다.
+The FlameGraph script must reside in the `PATH`, otherwise PMSP will refuse to launch.
 
-메모리 위치를 심볼에 대응할 수 있으려면, 스크립트에서 대상 하드웨어의 현재 실행 파일에 접근해야합니다. 이는 현재 실행중인 ELF 바이너리 위치를 가리키는 경로를 `--elf=<file>`에 대입하는 옵션의 도움을 받아 처리할 수 있습니다.
+PMSP uses GDB to collect the stack traces. Currently it uses `arm-none-eabi-gdb`, other toolchains may be added in the future.
 
-사용 예제:
+In order to be able to map memory locations to symbols, the script needs to be referred to the executable file that is currently running on the target. This is done with the help of the option `--elf=<file>`, which expects a path (relative to the root of the repository) pointing to the location of the currently executing ELF.
+
+Usage example:
 
 ```bash
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000
 ```
 
-참고로 매번 스크립트를 실행할 때 이전 스택 내용을 덮어씁니다. 이전 스택 내용을 덮어쓰기보다, 계속 뒤에 추가할 경우 `--append` 옵션을 사용하십시오:
+Note that every launch of the script will overwrite the old stacks. Should you want to append to the old stacks rather than overwrite them, use the option `--append`:
 
 ```bash
 ./poor-mans-profiler.sh --elf=build/px4_fmu-v4_default/px4_fmu-v4_default.elf --nsamples=30000 --append
 ```
 
-짐작하는대로, `--append` 옵션과 `--nsamples=0` 옵션은 대상에 모두 접근하지 않고도 스크립트로 하여금 SVG 파일만 다시 만들게끔합니다.
+As one might suspect, `--append` with `--nsamples=0` will instruct the script to only regenerate the SVG without accessing the target at all.
 
-스크립트의 동작 방식을 더 자세하게 이해하려면 코드를 직접 살펴보십시오.
+Please read the script for a more in depth understanding of how it works.
 
 ## 기여자
 
-[Mark Callaghan과 Domas Mituzas](https://dom.as/2009/02/15/poor-mans-contention-profiling/)의 아이디어입니다.
+Credits for the idea belong to [Mark Callaghan and Domas Mituzas](https://dom.as/2009/02/15/poor-mans-contention-profiling/).
