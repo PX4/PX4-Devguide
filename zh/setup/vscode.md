@@ -42,7 +42,9 @@ You must already have installed the command line [PX4 developer environment](../
    - This is up to you! It provides a deep integration between Github and the IDE, which may simplify your workflow.
 - Other prompts are optional, and may be installed if they seem useful. <!-- perhaps add screenshot of these prompts -->
 
-## Building PX4 {#building}
+<a id="building"></a>
+
+## Building PX4
 
 To build:
 
@@ -57,7 +59,9 @@ After building at least once you can now use [code completion](#code completion)
 
 ## Debugging
 
-### SITL Debugging {#debugging_sitl}
+<a id="debugging_sitl"></a>
+
+### SITL Debugging
 
 To debug PX4 on SITL:
 
@@ -79,7 +83,9 @@ After connecting to the SWD interface, hardware debugging in VSCode is then the 
 
 ![Image showing hardware targets with options for the different probes](../../assets/toolchain/vscode/vscode_hardware_debugging_options.png)
 
-## Code Completion {#code completion}
+<a id="code completion"></a>
+
+## Code Completion
 
 In order for the code completion to work (and other IntelliSense magic) you need an active configuration and to have [built the code](#building).
 
