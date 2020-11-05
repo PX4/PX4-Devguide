@@ -188,10 +188,15 @@ PX4 사용자에는 여러가지 유형이 있고, 문서는 제위치에 있다
             sh
             gitbook help
     
-    ## 번역 {#translation}
     
-    *QGroundControl*과 PX4, *QGroundControl*, MAVLink 안내서 번역의 도움을 간절히 바랍니다. 자세한 정보는 [Translation](../contribute/translation.md)을 살펴보십시오.
+
+<a id="translation"></a>
+
+    
+    ## Translations
+    
+    We'd love your help to translate *QGroundControl* and our guides for PX4, *QGroundControl* and MAVLink. For more information see: [Translation](../contribute/translation.md).
     
     ## 라이선스
     
-    모든 PX4/드론코드 문서는 [크리에이티브 커먼즈 저작자표시 4.0](https://creativecommons.org/licenses/by/4.0/) 라이선스의 허여 조항에 따라 자유롭게 활용하고 수정할 수 있습니다.
+    All PX4/Dronecode documentation is free to use and modify under terms of the permissive [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence.
