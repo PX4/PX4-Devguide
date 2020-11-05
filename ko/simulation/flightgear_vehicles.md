@@ -7,8 +7,9 @@ This topic lists/displays the vehicles supported by the PX4 [FlightGear](../simu
 <span></span>
 > **Note** The [FlightGear](../simulation/flightgear.md) page shows how to install and use FlightGear in more detail. (this page is a summary of vehicle-specific features).
 
+<a id="standard_plane"></a>
 
-## Standard Plane {#standard_plane}
+## Standard Plane
 
 FlightGear has models for many planes. The most suitable one for UAV development is currently the [Rascal RC plane](https://github.com/ThunderFly-aerospace/FlightGear-Rascal) (which also exists in multiple variants).
 
@@ -54,7 +55,9 @@ Rascal JSBsim variant.
 
 This variant does not have a direct `make` option but can be manually selected in the **rascal.json** configuration file (part of [PX4-FlightGear-Bridge](https://github.com/ThunderFly-aerospace/PX4-FlightGear-Bridge)). Simply change `Rascal110-YASim` to `Rascal110-JSBSim` in [this file](https://github.com/ThunderFly-aerospace/PX4-FlightGear-Bridge/blob/master/rascal.json#L2).
 
-## Autogyro {#autogyro}
+<a id="autogyro"></a>
+
+## Autogyro
 
 The only UAV autogyro model supported by FlightGear is [TF-G1 Autogyro](https://github.com/ThunderFly-aerospace/TF-G1).
 
@@ -64,8 +67,9 @@ make px4_sitl_nolockstep flightgear_tf-g1
 
 ![TF-G1 in FlightGear](../../assets/simulation/flightgear/vehicles/tf-g1.jpg)
 
+<a id="ugv"></a>
 
-## Ackerman 기체 (UGV/탐사선) {#ugv}
+## Ackerman vehicle (UGV/Rover)
 
 ### TF-R1 지상 지원 탐사선
 
@@ -77,8 +81,9 @@ make px4_sitl_nolockstep flightgear_tf-r1
 
 ![플라이트 기어의 TF-R1 탐사선](../../assets/simulation/flightgear/vehicles/tf-r1_towing.jpg)
 
+<a id="quadrotor"></a>
 
-## Quadrotor {#quadrotor}
+## Quadrotor
 
 There is only an [incomplete multirotor model](https://github.com/ThunderFly-aerospace/FlightGear-TF-Mx1). This is not yet usable (it is numerically unstable and needs an additional work).
 
