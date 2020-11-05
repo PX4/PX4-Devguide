@@ -24,7 +24,9 @@ LeddarOne LiDAR 직렬 버스 드라이버입니다.
     leddar_one stop
     
 
-### 사용법 {#leddar_one_usage}
+<a id="leddar_one_usage"></a>
+
+### Usage
 
     leddar_one <command> [arguments...]
      Commands:
@@ -46,7 +48,9 @@ I2C bus driver for Lightware SFxx series LIDAR rangefinders: SF10/a, SF10/b, SF1
 
 Setup/usage information: https://docs.px4.io/master/en/sensor/sfxx_lidar.html
 
-### Usage {#lightware_laser_i2c_usage}
+<a id="lightware_laser_i2c_usage"></a>
+
+### Usage
 
     lightware_laser_i2c <command> [arguments...]
      Commands:
@@ -89,7 +93,9 @@ Stop driver
     lightware_laser_serial stop
     
 
-### Usage {#lightware_laser_serial_usage}
+<a id="lightware_laser_serial_usage"></a>
+
+### Usage
 
     lightware_laser_serial <command> [arguments...]
      Commands:
@@ -113,7 +119,9 @@ The sensor/driver must be enabled using the parameter SENS_EN_LL40LS.
 
 Setup/usage information: https://docs.px4.io/master/en/sensor/lidar_lite.html
 
-### Usage {#ll40ls_usage}
+<a id="ll40ls_usage"></a>
+
+### Usage
 
     ll40ls <command> [arguments...]
      Commands:
@@ -138,7 +146,9 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/lidar_lite.html
 
 Source: [drivers/distance_sensor/mappydot](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/mappydot)
 
-### Usage {#mappydot_usage}
+<a id="mappydot_usage"></a>
+
+### Usage
 
     mappydot <command> [arguments...]
      Commands:
@@ -159,7 +169,9 @@ Source: [drivers/distance_sensor/mappydot](https://github.com/PX4/Firmware/tree/
 
 Source: [drivers/distance_sensor/mb12xx](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/mb12xx)
 
-### Usage {#mb12xx_usage}
+<a id="mb12xx_usage"></a>
+
+### Usage
 
     mb12xx <command> [arguments...]
      Commands:
@@ -194,7 +206,9 @@ Ultrasonic range finder driver that handles the communication with the device an
 
 This driver is implented as a NuttX task. This Implementation was chosen due to the need for polling on a message via UART, which is not supported in the work_queue. This driver continuously takes range measurements while it is running. A simple algorithm to detect false readings is implemented at the driver levelin an attemptto improve the quality of data that is being published. The driver will not publish data at all if it deems the sensor data to be invalid or unstable.
 
-### Usage {#pga460_usage}
+<a id="pga460_usage"></a>
+
+### Usage
 
     pga460 <command> [arguments...]
      Commands:
@@ -212,7 +226,9 @@ This driver is implented as a NuttX task. This Implementation was chosen due to 
 
 Source: [drivers/distance_sensor/srf02](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/srf02)
 
-### 사용법 {#srf02_usage}
+<a id="srf02_usage"></a>
+
+### Usage
 
     srf02 <command> [arguments...]
      Commands:
@@ -237,13 +253,15 @@ Source: [drivers/distance_sensor/teraranger](https://github.com/PX4/Firmware/tre
 
 ### 설명
 
-TeraRanger 범위 검색 센서용 I2C 버스 드라이버입니다.
+I2C bus driver for TeraRanger rangefinders.
 
-센서/드라이버는 SENS_EN_TRANGER 매개변수를 활용하여 활성화해야합니다.
+The sensor/driver must be enabled using the parameter SENS_EN_TRANGER.
 
-설정/활용 정보: https://docs.px4.io/master/en/sensor/rangefinders.html#teraranger-rangefinders 
+Setup/usage information: https://docs.px4.io/master/en/sensor/rangefinders.html#teraranger-rangefinders
 
-### 사용법 {#teraranger_usage}
+<a id="teraranger_usage"></a>
+
+### Usage
 
     teraranger <command> [arguments...]
      Commands:
@@ -268,25 +286,27 @@ Source: [drivers/distance_sensor/tfmini](https://github.com/PX4/Firmware/tree/ma
 
 ### 설명
 
-Benewake TFmini LiDAR용 직렬 버스 통신 드라이버입니다.
+Serial bus driver for the Benewake TFmini LiDAR.
 
-대부분 보드는 SENS_TFMINI_CFG 매개변수로 지정 UART 에서 드라이버를 활성화/시작 하도록 설정했습니다.
+Most boards are configured to enable/start the driver on a specified UART using the SENS_TFMINI_CFG parameter.
 
-설정/활용 정보: https://docs.px4.io/master/en/sensor/tfmini.html
+Setup/usage information: https://docs.px4.io/master/en/sensor/tfmini.html
 
 ### 예제
 
-지정 직렬 통신 장치에서 드라이버를 시작하려면
+Attempt to start driver on a specified serial device.
 
     tfmini start -d /dev/ttyS1
     
 
-드라이버 동작 중단
+Stop driver
 
     tfmini stop
     
 
-### 사용법 {#tfmini_usage}
+<a id="tfmini_usage"></a>
+
+### Usage
 
     tfmini <command> [arguments...]
      Commands:
@@ -310,23 +330,25 @@ Source: [drivers/distance_sensor/ulanding_radar](https://github.com/PX4/Firmware
 
 ### 설명
 
-Aerotenna uLanding 레이더 장치용 직렬 버스 통신 드라이버입니다. 
+Serial bus driver for the Aerotenna uLanding radar.
 
-설정/활용 정보: https://docs.px4.io/v1.9.0/en/sensor/ulanding_radar.html
+Setup/usage information: https://docs.px4.io/v1.9.0/en/sensor/ulanding_radar.html
 
 ### 예시
 
-지정 직렬 통신 장치에서 드라이버를 시작하려면
+Attempt to start driver on a specified serial device.
 
     ulanding_radar start -d /dev/ttyS1
     
 
-드라이버 동작 중단
+Stop driver
 
     ulanding_radar stop
     
 
-### 사용법 {#ulanding_radar_usage}
+<a id="ulanding_radar_usage"></a>
+
+### Usage
 
     ulanding_radar <command> [arguments...]
      Commands:
@@ -343,7 +365,9 @@ Aerotenna uLanding 레이더 장치용 직렬 버스 통신 드라이버입니�
 
 Source: [drivers/distance_sensor/vl53l0x](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/vl53l0x)
 
-### 사용법 {#vl53l0x_usage}
+<a id="vl53l0x_usage"></a>
+
+### Usage
 
     vl53l0x <command> [arguments...]
      Commands:
@@ -366,7 +390,9 @@ Source: [drivers/distance_sensor/vl53l0x](https://github.com/PX4/Firmware/tree/m
 
 Source: [drivers/distance_sensor/vl53l1x](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/vl53l1x)
 
-### Usage {#vl53l1x_usage}
+<a id="vl53l1x_usage"></a>
+
+### Usage
 
     vl53l1x <command> [arguments...]
      Commands:
