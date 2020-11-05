@@ -50,22 +50,15 @@ https://youtu.be/lAjjTFFZebI
 {% endyoutube %}
 
 
+<a id="with_rtps"></a>
+### Build and Test (RTPS)
 
-## Multiple Vehicles with Gazebo based on RTPS {#with_rtps}
-
-To simulate multiple vehicles based on RTPS in Gazebo, use the `gazebo_sitl_multiple_run.sh` command in the terminal with the `-t px4_sitl_rtps` option from the root of the *Firmware* tree (as described above).
+To simulate multiple vehicles based on RTPS in Gazebo, use the `gazebo_sitl_multiple_run.sh` command in the terminal with the `-t px4_sitl_rtps` option from the root of the *PX4-Autopilot* tree (as described above).
+Here we will use the `-t px4_sitl_rtps` option, which sets that we will use RTPS for communicating with  PX4 rather than the MAVLink Simulation API.
+This will build and run the `iris_rtps` model (the only model that is currently implemented for use with RTPS).
 
 > **Note** You will need to have installed RTPS and the `micrortps_agent` should be run in the different terminal for each vehicle.
   For more information see: [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md).
-
-```
-Tools/gazebo_sitl_multiple_run.sh  -t px4_sitl_rtps [-m <model>] [-n <number_of_vehicles>] [-w <world>] [-s <script>]
-```
-
-This will build and run the `iris_rtps` model (the only model that is currently implemented).
-
-
-### Build and Test
 
 To build an example setup, follow the steps below:
 
