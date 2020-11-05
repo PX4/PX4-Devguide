@@ -11,7 +11,9 @@ Bash scripts are provided to help make it easy to install development environmen
 
 The instructions below explain how to download and use the scripts.
 
-## Gazebo, JMAVSim and NuttX (Pixhawk) Targets {#sim_nuttx}
+<a id="sim_nuttx"></a>
+
+## Gazebo, JMAVSim and NuttX (Pixhawk) Targets
 
 Use the [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) script to set up a development environment that includes [Gazebo 9](../simulation/gazebo.md) and [jMAVSim](../simulation/jmavsim.md) simulators, and/or the [NuttX/Pixhawk](../setup/building_px4.md#nuttx) toolchain.
 
@@ -59,7 +61,9 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 <p>-->
 
-## Raspberry Pi {#raspberry-pi-hardware}
+<a id="raspberry-pi-hardware"></a>
+
+## Raspberry Pi
 
 <!-- NOTE: RaPi docker toolchain (for comparison) here: https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf -->
 
@@ -119,7 +123,9 @@ make
 
 Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
 
-## ROS/Gazebo {#rosgazebo}
+<a id="rosgazebo"></a>
+
+## ROS/Gazebo
 
 This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") for use with PX4.
 
@@ -145,7 +151,9 @@ Setup instructions for Snapdragon Flight are provided in the *PX4 User Guide*:
 * [Software Installation](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_software_installation.html)
 * [Configuration](https://docs.px4.io/master/en/flight_controller/snapdragon_flight_configuration.html)
 
-## Fast RTPS installation {#fast_rtps}
+<a id="fast_rtps"></a>
+
+## Fast RTPS installation
 
 [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/) is a C++ implementation of the RTPS (Real Time Publish Subscribe) protocol. FastRTPS is used, via the [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middleware/micrortps.md), to allow PX4 uORB topics to be shared with offboard components.
 
