@@ -14,7 +14,9 @@ Source: [modules/airship_att_control](https://github.com/PX4/Firmware/tree/maste
 
 제어 지연을 최소화하려면, 모듈에서는 IMU 드라이버에서 보낸 gyro 토픽을 직접 폴링 처리해야합니다.
 
-### 사용법 {#airship_att_control_usage}
+<a id="airship_att_control_usage"></a>
+
+### Usage
 
     airship_att_control <command> [arguments...]
      Commands:
@@ -31,9 +33,11 @@ Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### 설명
 
-fw_att_control은 고정익 자세 제어 모듈입니다.
+fw_att_control is the fixed wing attitude controller.
 
-### 사용법 {#fw_att_control_usage}
+<a id="fw_att_control_usage"></a>
+
+### Usage
 
     fw_att_control <command> [arguments...]
      Commands:
@@ -51,9 +55,11 @@ Source: [modules/fw_pos_control_l1](https://github.com/PX4/Firmware/tree/master/
 
 ### 설명
 
-fw_pos_control_l1은 고정익 위치 제어 모듈입니다.
+fw_pos_control_l1 is the fixed wing position controller.
 
-### 사용법 {#fw_pos_control_l1_usage}
+<a id="fw_pos_control_l1_usage"></a>
+
+### Usage
 
     fw_pos_control_l1 <command> [arguments...]
      Commands:
@@ -71,15 +77,17 @@ Source: [modules/mc_att_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### 설명
 
-이 모듈은 멀티콥터 자세 제어를 구현했습니다. 속도 설정값의 입출력 용도로 자세 설정값(`vehicle_attitude_setpoint`)을 취합니다.
+This implements the multicopter attitude controller. It takes attitude setpoints (`vehicle_attitude_setpoint`) as inputs and outputs a rate setpoint.
 
-각도 오류 보정을 목적으로 P 루프 로직이 들어있습니다.
+The controller has a P loop for angular error
 
-4차원 행렬 자세 제어관련 참고 논문은 다음과 같습니다: Nonlinear Quadrocopter Attitude Control (2013) by Dario Brescianini, Markus Hehn and Raffaello D'Andrea Institute for Dynamic Systems and Control (IDSC), ETH Zurich
+Publication documenting the implemented Quaternion Attitude Control: Nonlinear Quadrocopter Attitude Control (2013) by Dario Brescianini, Markus Hehn and Raffaello D'Andrea Institute for Dynamic Systems and Control (IDSC), ETH Zurich
 
 https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/154099/eth-7387-01.pdf
 
-### 사용법 {#mc_att_control_usage}
+<a id="mc_att_control_usage"></a>
+
+### Usage
 
     mc_att_control <command> [arguments...]
      Commands:
@@ -97,11 +105,13 @@ Source: [modules/mc_pos_control](https://github.com/PX4/Firmware/tree/master/src
 
 ### 설명
 
-이 제어부에는 두 루프 로직이 있습니다. 위치 오류 보정에 P 루프 로직을 활용하고 속도 오류 보정에 PID 루프로직을 활용합니다. 속도 제어부의 출력은 추력 방향(예: 멀티콥터 방향의 회전 행렬)과 추력 스칼라(예: 멀티콥터 추력 자체값)를 분리하는 추력 벡터 값입니다.
+The controller has two loops: a P loop for position error and a PID loop for velocity error. Output of the velocity controller is thrust vector that is split to thrust direction (i.e. rotation matrix for multicopter orientation) and thrust scalar (i.e. multicopter thrust itself).
 
-제어부는 자체 동작시 오일러 각 값을 사용하지 않으며, 사용자가 좀 더 이해하기 쉬운 제어부, 기록 데이터를 만듭니다.
+The controller doesn't use Euler angles for its work, they are generated only for more human-friendly control and logging.
 
-### 사용법 {#mc_pos_control_usage}
+<a id="mc_pos_control_usage"></a>
+
+### Usage
 
     mc_pos_control <command> [arguments...]
      Commands:
@@ -119,11 +129,13 @@ Source: [modules/mc_rate_control](https://github.com/PX4/Firmware/tree/master/sr
 
 ### 설명
 
-멀티콥터 속도 제어부를 구현합니다. 액츄에이터 제어 메시지의 입출력 값으로 속도 설정값(`manual_control_setpoint` 토픽의 아크로(acro) 모드)을 취합니다.
+This implements the multicopter rate controller. It takes rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
 
-제어부에는 각 속도 오류를 보정하는 PID 루프 로직이 들어있습니다.
+The controller has a PID loop for angular rate error.
 
-### 사용법 {#mc_rate_control_usage}
+<a id="mc_rate_control_usage"></a>
+
+### Usage
 
     mc_rate_control <command> [arguments...]
      Commands:
@@ -141,15 +153,17 @@ Source: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modu
 
 ### 설명
 
-자동 비행 모드를 담당하는 모듈입니다. 임무(dataman에서 수신), 이륙, RTL 기능이 들어갑니다. 비행 제한 설정 구역 위반 여부 검사도 처리합니다.
+Module that is responsible for autonomous flight modes. This includes missions (read from dataman), takeoff and RTL. It is also responsible for geofence violation checking.
 
 ### 구현
 
-`NavigatorMode` 공통 기반 클래스에서 상속한 개별 클래스로 다른 내부 모드를 구현했습니다. `_navigation_mode` 구성 변수에는 현재 활성 모드 값이 들어있습니다.
+The different internal modes are implemented as separate classes that inherit from a common base class `NavigatorMode`. The member `_navigation_mode` contains the current active mode.
 
-네비게이터에서는 위체 제어부에서 활용할 위치 설정값 3개(`position_setpoint_triplet_s`)를 내보냅니다.
+Navigator publishes position setpoint triplets (`position_setpoint_triplet_s`), which are then used by the position controller.
 
-### 사용법 {#navigator_usage}
+<a id="navigator_usage"></a>
+
+### Usage
 
     navigator <command> [arguments...]
      Commands:
@@ -170,13 +184,13 @@ Source: [modules/rover_pos_control](https://github.com/PX4/Firmware/tree/master/
 
 ### 설명
 
-L1 조종 장치로 지상 탐사선 위치를 제어합니다.
+Controls the position of a ground rover using an L1 controller.
 
-`actuator_controls_0` 메세지를 초당 250번 규칙적으로 내보냅니다.
+Publishes `actuator_controls_0` messages at a constant 250Hz.
 
 ### 구현
 
-구현체에서는 현재 일부 모드만 지원합니다:
+Currently, this implementation supports only a few modes:
 
 - Full manual: Throttle, yaw가 액추에이터를 통해 직접적으로 제어됩니다.
 - 자동 미션: 탐사선이 임무를 수행
@@ -184,14 +198,16 @@ L1 조종 장치로 지상 탐사선 위치를 제어합니다.
 
 ### 예제
 
-명령행 사용 예제는 다음과 같습니다:
+CLI usage example:
 
     rover_pos_control start
     rover_pos_control status
     rover_pos_control stop
     
 
-### 사용법 {#rover_pos_control_usage}
+<a id="rover_pos_control_usage"></a>
+
+### Usage
 
     rover_pos_control <command> [arguments...]
      Commands:
@@ -208,27 +224,29 @@ Source: [modules/uuv_att_control](https://github.com/PX4/Firmware/tree/master/sr
 
 ### 설명
 
-무인 수중선(UUV)의 자세를 제어합니다.
+Controls the attitude of an unmanned underwater vehicle (UUV).
 
-`actuator_controls_0` 메세지를 초당 250번 규칙적으로 내보냅니다.
+Publishes `actuator_controls_0` messages at a constant 250Hz.
 
 ### 구현
 
-구현체에서는 현재 일부 모드만 지원합니다:
+Currently, this implementation supports only a few modes:
 
 - 완전 수동 방식: 좌우 회전, 상하 회전, 방위 회전, 추력 제어 값을 액츄에이터에 직접 전달
 - 자동 수행 임무: 무인 수중선(UUV)의 임무 수행
 
 ### 예제
 
-명령행 사용 예제는 다음과 같습니다:
+CLI usage example:
 
     uuv_att_control start
     uuv_att_control status
     uuv_att_control stop
     
 
-### 사용법 {#uuv_att_control_usage}
+<a id="uuv_att_control_usage"></a>
+
+### Usage
 
     uuv_att_control <command> [arguments...]
      Commands:
@@ -245,9 +263,11 @@ Source: [modules/vtol_att_control](https://github.com/PX4/Firmware/tree/master/s
 
 ### 설명
 
-fw_att_control은 고정익 자세 제어부입니다.
+fw_att_control is the fixed wing attitude controller.
 
-### 사용법 {#vtol_att_control_usage}
+<a id="vtol_att_control_usage"></a>
+
+### Usage
 
     vtol_att_control <command> [arguments...]
      Commands:

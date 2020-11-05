@@ -5,8 +5,9 @@
 Source: [drivers/telemetry/frsky_telemetry](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/frsky_telemetry)
 
 FrSky 통신을 지원합니다. D, S.PORT 프로토콜을 자동으로 감지합니다.
+<a id="frsky_telemetry_usage"></a>
 
-### Usage {#frsky_telemetry_usage}
+### Usage
 
     frsky_telemetry <command> [arguments...]
      Commands:
@@ -55,7 +56,9 @@ UDP 포트 14556에 HIGHRES_IMU 메시지를 초당 50번 전송하도록 설정
     mavlink stream -u 14556 -s HIGHRES_IMU -r 50
     
 
-### 사용법 {#mavlink_usage}
+<a id="mavlink_usage"></a>
+
+### Usage
 
     mavlink <command> [arguments...]
      Commands:
@@ -109,7 +112,9 @@ UDP 포트 14556에 HIGHRES_IMU 메시지를 초당 50번 전송하도록 설정
 
 Source: [modules/micrortps_bridge/micrortps_client](https://github.com/PX4/Firmware/tree/master/src/modules/micrortps_bridge/micrortps_client)
 
-### 사용법 {#micrortps_client_usage}
+<a id="micrortps_client_usage"></a>
+
+### Usage
 
     micrortps_client <command> [arguments...]
      Commands:
@@ -147,30 +152,32 @@ Source: [modules/uORB](https://github.com/PX4/Firmware/tree/master/src/modules/u
 
 ### 설명
 
-uORB는 모듈간의 통신을 위해 사용되는 내부적인 Pub/Sub 메시징 시스템입니다.
+uORB is the internal pub-sub messaging system, used for communication between modules.
 
-일반적으로 첫 번째로 시작되는 모듈이며 다른 모듈들이 이 모듈에 의존합니다.
+It is typically started as one of the very first modules and most other modules depend on it.
 
 ### 구현
 
-스레드나 작업 큐는 필요하지 않습니다. 모듈 시작시 공유 광역 상태의 초기화 여부만 확인합니다. 공유 메모리로 통신합니다. 비동기 방식으로 잠금 구현을 배제하여 구현했습니다. 예를 들어, 송신자와 주기 수신자는 서로를 기다릴 필요가 없습니다. 송신자와 주기 수신자간 별도의 버퍼를 두어 처리합니다.
+No thread or work queue is needed, the module start only makes sure to initialize the shared global state. Communication is done via shared memory. The implementation is asynchronous and lock-free, ie. a publisher does not wait for a subscriber and vice versa. This is achieved by having a separate buffer between a publisher and a subscriber.
 
-메모리 점유 영역과 메시지 교환 지연을 최소화 하도록 코드를 최적화했습니다.
+The code is optimized to minimize the memory footprint and the latency to exchange messages.
 
-인터페이스는 내부적으로 `read`, `write`, `ioctl`을 사용하며, 파일 서술자를 기반으로 동작합니다. `orb_advert_t` 핸들을 사용하는 퍼블리시를 제외하고는 NuttX에서는 인터럽트에서도 사용할 수 있습니다.
+The interface is based on file descriptors: internally it uses `read`, `write` and `ioctl`. Except for the publications, which use `orb_advert_t` handles, so that they can be used from interrupts as well (on NuttX).
 
-`/msg` 디렉터리에 정의 메세지가 들어있습니다. 빌드 시점에 C/C++ 코드로 변환합니다.
+Messages are defined in the `/msg` directory. They are converted into C/C++ code at build-time.
 
-ORB_USE_PUBLISHER_RULES 설정 값을 넣어 컴파일하면, uORB 전송 규칙이 들어있는 파일을 어떤 모듈에서 어떤 토픽을 내보낼지 설정할 목적으로 활용할 수 있습니다. 이 설정은 시스템 영역의 동작 재현에 활용합니다. 
+If compiled with ORB_USE_PUBLISHER_RULES, a file with uORB publication rules can be used to configure which modules are allowed to publish which topics. This is used for system-wide replay.
 
 ### 예제
 
-토픽 송신 속도를 감시합니다. `top` 과 함께 전반적인 시스템을 관찰할 수 있는 중요한 명령어입니다.
+Monitor topic publication rates. Besides `top`, this is an important command for general system inspection:
 
     uorb top
     
 
-### 사용법 {#uorb_usage}
+<a id="uorb_usage"></a>
+
+### Usage
 
     uorb <command> [arguments...]
      Commands:
