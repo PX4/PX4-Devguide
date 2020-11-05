@@ -6,7 +6,9 @@ SWD 인터페이스는 새 부트로더 또는 펌웨어를 완전히 깡통인 
 
 이 주제에서는 다양한 보드로의 SWD 인터페이스 연결 방법(실제 디버깅 수행 방법은 관련 [디버깅 주제](#debugging_topics)에서 다룸)을 설명합니다.
 
-## SWD 인터페이스 정의  {#swd_interface}
+<a id="swd_interface"></a>
+
+## SWD Interface Definition
 
 SWD 인터페이스는 다음 핀으로 이루어져있습니다.
 
@@ -41,8 +43,9 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 
 > **Tip** 가능한 부분이 있다면, SWD/JTAG 디버거, 컴퓨터용 케이블을 별도로 만들기 보다는 어댑터 보드를 만들거나 구하는 방안을 권해드립니다. 디버깅 문제를 해결하려는 과정에서 입는 손해와 미흡한 결선 문제를 줄이는 과정에서, 다양하고 인기있는 비행체 제어 장치 보드에 연결할 공통 인터페이스를 제공하는 어댑터를 쓰시는 방안이 여러모로 이득입니다.
 
+<a id="debug_ports"></a>
 
-## 오토파일럿 디버깅 포트 {#debug_ports}
+## Autopilot Debug Ports
 
 비행체 제어 장치는 보통 [SWD 인터페이스](#swd_interface)와 [시스템 콘솔](../debug/system_console.md)을 노출하는 디버깅 포트를 제공합니다.
 
@@ -65,9 +68,9 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 
 > **Tip** 사용 중인 비행체 제어 장치가 없다면 [오토파일럿 주제](http://docs.px4.io/master/en/flight_controller/)를 확인하십시오.
 
+<a id="pixhawk_standard_debug_ports"></a>
 
-
-## Pixhawk 표준 디버깅 포트 {#pixhawk_standard_debug_ports}
+## Pixhawk Standard Debug Ports
 
 픽스호트 프로젝트에는 다양한 픽스호크 FMU 출시작에 대한 표준 핀 출력 및 커넥터 형식을 지정했습니다:
 
@@ -85,8 +88,9 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 
 > **Note** FMU와 픽스호크 버전은 FMUv5X 이후(에만) 동일하게 갑니다
 
+<a id="pixhawk_debug_port_6_pin_sh"></a>
 
-### Pixhawk Debug Mini (6-Pin SH Debug Port) {#pixhawk_debug_port_6_pin_sh}
+### Pixhawk Debug Mini (6-Pin SH Debug Port)
 
 [Pixhawk 커넥터 표준](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf)에서는 SWD 핀과 [시스템 콘솔](../debug/system_console.md)에 다 접근할 수 있는 *6-Pin SH 디버깅 포트* 를 정의합니다.
 
@@ -118,8 +122,9 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 
 ![6-pin JST SH Cable](../../assets/debug/cable_6pin_jst_sh.jpg)
 
+<a id="pixhawk_debug_port_10_pin_sh"></a>
 
-### Pixhawk Debug Full (10-Pin SH Debug Port) {#pixhawk_debug_port_10_pin_sh}
+### Pixhawk Debug Full (10-Pin SH Debug Port)
 
 [Pixhawk 커넥터 표준](https://github.com/pixhawk/Pixhawk-Standards/blob/master/DS-009%20Pixhawk%20Connector%20Standard.pdf)에서는 SWD 핀과 [시스템 콘솔](../debug/system_console.md)에 다 접근할 수 있는 *10-Pin SH 디버깅 포트* 를 정의합니다. 핵심적으로 [Pixhawk 6-Pin SH 디버깅 포트](#pixhawk_debug_port_6_pin_sh) 에서 커넥터로 납땜 대상을 옮겼으며,  SWO 핀도 추가했습니다.
 
@@ -147,12 +152,15 @@ SWD의 "일부"는 아니지만, 오토파일럿에서는 *직렬 회선 출력 
 ![10-pin JST SH Cable](../../assets/debug/cable_10pin_jst_sh.jpg) <!-- better to have image showing proper connections for SWD+SWO -->
 
 
-## 디버깅 프루브 {#debug_probes}
+<a id="debug_probes"></a>
+
+## Debug Probes
 
 다음 절에서는 PX4를 구동하는 오토파일럿에 연결할 일부 잘 알려진 디버깅 프루브 장비와 어댑터의 개요를 설명하겠습니다.
 
+<a id="segger_jlink_edu_mini"></a>
 
-### Segger JLink EDU Mini 디버깅 프루브 {#segger_jlink_edu_mini}
+### Segger JLink EDU Mini Debug Probe
 
 [Segger JLink EDU Mini](https://www.segger.com/products/debug-probes/j-link/models/j-link-edu-mini/)는 값싸고 인기있는 SWD 디버깅 프루브입니다. 프루브 커넥터 핀 출력은 아래 그림과 같습니다([FTSH-105-01-F-DV-K](https://www.digikey.com/products/en?keywords=SAM8796-ND)같은 ARM 10-pin 미니 커넥터로 연결).
 
@@ -174,7 +182,9 @@ J-Link Edu Mini를 [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh)�
 <!-- Image of SWD cable and connector to debug port? --> 
 
 
-### 드론코드 프루브 {#dronecode_probe}
+<a id="dronecode_probe"></a>
+
+### Dronecode Probe
 
 [드론코드 프루브](https://kb.zubax.com/display/MAINKB/Dronecode+Probe+documentation)는 ARM Cortex 기반으로 설계한 일반 JTAG/SWD + UART 콘솔 어댑터 호환 제품이며, 특히 픽스호크 계열 비행체 제어 장치(와 PX4 지원 기타 하드웨어)와 동작합니다.
 
@@ -187,16 +197,18 @@ J-Link Edu Mini를 [Pixhawk 6-Pin SH Debug Port](#pixhawk_debug_port_6_pin_sh)�
 <span></span>
 > **Note** *드론코드 프루브*는 [블랙매직 프루브](#black_magic_probe)를 기반으로 만들었습니다.
 
+<a id="black_magic_probe"></a>
 
-### 블랙매직 프루브 {#black_magic_probe}
+### Black Magic Probe
 
 [블랙매직 프루브](https://github.com/blacksphere/blackmagic/wiki)는 <0>드론코드 프루브</0>와 매우 유사하나, 픽스호크 계열 비행체 제어 장치에 직접 연결하는 동일한 어댑터가 딸려오진 않습니다.
 
 어댑터는 별매입니다:
 - [드론 코드 디버깅 어댑터](https://1bitsquared.com/products/drone-code-debug-adapter) (1 BIT 각 커넥터).
 
+<a id="debugging_topics"></a>
 
-## 다음 단계 {#debugging_topics}
+## Next Steps
 
 이제 SWD 디버깅 프루브를 비행체 제어 장치에 연결했습니다!
 
