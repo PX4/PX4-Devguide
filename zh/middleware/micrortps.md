@@ -67,9 +67,11 @@ All the code needed to create, build and use the bridge is automatically generat
 
 > **Tip** 桥接的代码也可以 [手动生成](micrortps_manual_code_generation.md)。 大多数用户不需要这样做, 但链接的主题提供了编译过程的更详细的描述, 排故的时候也许有用。
 
-### ROS2/ROS 应用 {#px4_ros_com}
+<a id="px4_ros_com"></a>
 
-完成编译的 [px4_ros_com](https://github.com/PX4/px4_ros_com) 包可以生成从一个ROS2节点获取 PX4 uORB消息所需的所有组件 (如果使用 ROS一代，还需要 [ros1_bridge](https://github.com/ros2/ros1_bridge))。 This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
+### ROS2/ROS applications
+
+The [px4_ros_com](https://github.com/PX4/px4_ros_com) package, when built, generates everything needed to access PX4 uORB messages from a ROS2 node (for ROS you also need [ros1_bridge](https://github.com/ros2/ros1_bridge)). This includes all the required components of the *PX4 RTPS bridge*, including the `micrortps_agent` and the IDL files (required by the `micrortps_agent`).
 
 The ROS and ROS2 message definition headers and interfaces are generated from the [px4_msgs](https://github.com/PX4/px4_msgs) package, which match the uORB messages counterparts under PX4-Autopilot. These are required by `px4_ros_com` when generating the IDL files to be used by the `micrortps_agent`.
 
@@ -117,7 +119,9 @@ rtps:
 > 
 > The `px4_msgs` build generates *slightly different* IDL files for use with ROS2/ROS (than are built for PX4 firmware). **uorb_rtps_message_ids.yaml** 文件将消息改名使之符合*PascalCased*标准 (改名这事儿与客户端-代理端之间的通信没有任何关系，但是对于 ROS2 是至关重要的，因为 ROS2 的消息命名必须符合 PascalCase 约定)。 新的IDL文件还反转了消息的发送/接收状态 (这是必须的，因为同一个消息在客户端是发送，在代理端的状态就是接收，反之亦然)。
 
-## Client (PX4/PX4-Autopilot) {#client_firmware}
+<a id="client_firmware"></a>
+
+## Client (PX4/PX4-Autopilot)
 
 The *Client* source code is generated, compiled and built into the PX4 firmware as part of the normal build process.
 
@@ -339,15 +343,15 @@ $ source clean_all.bash --ros1_ws_dir &lt;path/to/px4_ros_com_ros1/ws&gt;
 
 ## 创建一个 Fast RTPS 监听应用
 
-一旦 *Client* (在飞行控制器上) 和 *Agent* (在一台 offboard 计算机上) 同时运行并且成功互联, *Fast RTPS* 应用就可以通过 RTPS 发布或订阅PX4 上的 uORB 消息。
+Once the *Client* (on the flight controller) and the *Agent* (on an offboard computer) are running and connected, *Fast RTPS* applications can publish and subscribe to uORB topics on PX4 using RTPS.
 
-下面这个例子演示了怎样创建一个订阅了 `sensor_combined` 主题并打印 (来自PX4) 的消息更新的 *Fast RTPS* "监听" 应用。 一个已连接的 RTPS 应用可以在与 *Agent* 同一网段的任何计算机上运行。 在这个例子中 *Agent* and *监听应用* 在同一台计算机上运行。
+This example shows how to create a *Fast RTPS* "listener" application that subscribes to the `sensor_combined` topic and prints out updates (from PX4). A connected RTPS application can run on any computer on the same network as the *Agent*. For this example the *Agent* and *Listener application* will be on the same computer.
 
-*fastrtpsgen* 脚本可以从 IDL 消息文件创建一个简单的 RTPS 应用。
+The *fastrtpsgen* script can be used to generate a simple RTPS application from an IDL message file.
 
 > **Note** RTPS messages are defined in IDL files and compiled to C++ using *fastrtpsgen*. As part of building the bridge code, IDL files are generated for the uORB message files that may be sent/received (see **build/BUILDPLATFORM/src/modules/micrortps_bridge/micrortps_agent/idl/*.idl**). These IDL files are needed when you create a *Fast RTPS* application to communicate with PX4.
 
-输入以下命令来创建应用：
+Enter the following commands to create the application:
 
 ```sh
 cd /path/to/PX4/PX4-Autopilot/build/px4_sitl_rtps/src/modules/micrortps_bridge
@@ -356,7 +360,7 @@ cd micrortps_listener
 fastrtpsgen -example x64Linux2.6gcc ../micrortps_client/micrortps_agent/idl/sensor_combined.idl
 ```
 
-这段代码创建了一个基本的订阅器和广播器，和一个运行它们的主程序。 要打印来自 `sensor_combined` 主题的数据, 修改 **sensor_combined_Subscriber.cxx** 文件中的 `onNewDataMessage()` 方法。
+This creates a basic subscriber and publisher, and a main-application to run them. To print out the data from the `sensor_combined` topic, modify the `onNewDataMessage()` method in **sensor_combined_Subscriber.cxx**:
 
 ```cpp
 void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
@@ -395,14 +399,14 @@ void sensor_combined_Subscriber::SubListener::onNewDataMessage(Subscriber* sub)
 }
 ```
 
-要在Linux上构建并运行该应用：
+To build and run the application on Linux:
 
 ```sh
 make -f makefile_x64Linux2.6gcc
 bin/*/sensor_combined_PublisherSubscriber subscriber
 ```
 
-然后就可以看到打印出的传感器信息：
+Now you should see the sensor information being printed out:
 
 ```sh
 Sample received, count=10119
@@ -426,14 +430,14 @@ baro_temp_celcius: 43.93
 
 With the `px4_ros_com` built successfully, one can now take advantage of the generated *micro-RTPS* agent app and also from the generated sources and headers of the ROS2 msgs from `px4_msgs`, which represent a one-to-one matching with the uORB counterparts.
 
-要在 ROS2 上创建一个监听器, 让我们以 `sensor_combined_listener.cpp` node under `px4_ros_com/src/listeners` 作为举例：
+To create a listener node on ROS2, lets take as an example the `sensor_combined_listener.cpp` node under `px4_ros_com/src/listeners`:
 
 ```cpp
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/sensor_combined.hpp>
 ```
 
-上面两行代码将与ROS2中间件交互的 C++ 库包含进来。 同时还包含了我们要用到的消息头文件。
+The above brings to use the required C++ libraries to interface with the ROS2 middleware. It also includes the required message header file.
 
 ```cpp
 /**
@@ -443,7 +447,7 @@ class SensorCombinedListener : public rclcpp::Node
 {
 ```
 
-上面这行代码创建了一个子类 `SensorCombinedListener`， 继承自 `rclcpp::Node` 基类。
+The above creates a `SensorCombinedListener` class that subclasses the generic `rclcpp::Node` base class.
 
 ```cpp
 public:
@@ -468,7 +472,7 @@ public:
     }
 ```
 
-This creates a callback function for when the `sensor_combined` uORB messages are received (now as DDS messages). 一旦收到消息就打印出每一个字段。
+This creates a callback function for when the `sensor_combined` uORB messages are received (now as DDS messages). It outputs the content of the message fields each time the message is received.
 
 ```cpp
 private:
@@ -476,7 +480,7 @@ private:
 };
 ```
 
-上面这段代码创建了 `sensor_combined_topic` 主题的订阅，可以匹配到一个或多个该消息的 ROS 广播者上。
+The above create a subscription to the `sensor_combined_topic` which can be matched with one or more compatible ROS publishers.
 
 ```cpp
 int main(int argc, char *argv[])
@@ -491,11 +495,11 @@ int main(int argc, char *argv[])
 }
 ```
 
-在 `main` 函数中将 `SensorCombinedListener`类作为一个 ROS 节点实例化。
+The instantiation of the `SensorCombinedListener` class as a ROS node is done on the `main` function.
 
 ## 创建一个ROS2广播器
 
-ROS2 广播器节点将数据发布到 DDS/RTPS 网络 (再转发至 PX4)。
+A ROS2 advertiser node publishes data into the DDS/RTPS network (and hence to PX4).
 
 Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/advertisers`:
 
@@ -507,14 +511,14 @@ Taking as an example the `debug_vect_advertiser.cpp` under `px4_ros_com/src/adve
 using namespace std::chrono_literals;
 ```
 
-包含必要的头文件，包括 `debug_vect` 消息头文件。
+Bring in the required headers, including the `debug_vect` msg header.
 
 ```cpp
 class DebugVectAdvertiser : public rclcpp::Node
 {
 ```
 
-上面这行代码创建了一个 `DebugVectAdvertiser` 类，继承自 `rclcpp::Node` 基类。
+The above creates a `DebugVectAdvertiser` class that subclasses the generic `rclcpp::Node` base class.
 
 ```cpp
 public:
@@ -542,7 +546,7 @@ private:
 };
 ```
 
-这段代码创建了一个用来发送消息的回调函数。 发送消息的回调函数由定时器触发的，每秒钟发送两次消息。
+This creates a function for when messages are to be sent. The messages are sent based on a timed callback, which sends two messages per second based on a timer.
 
 ```cpp
 int main(int argc, char *argv[])
@@ -557,21 +561,21 @@ int main(int argc, char *argv[])
 }
 ```
 
-这段代码在 `main` 函数中将 `DebugVectAdvertiser` 类实例化成一个ROS节点。
+The instantiation of the `DebugVectAdvertiser` class as a ROS node is done on the `main` function.
 
 ## Creating a ROS(1) listener
 
-创建ROS节点的方法有详细的文档供参考，不在赘述。 在 `ros1` 分支的代码的 `px4_ros_com/src/listeners` 目录下，有一个关于 `sensor_combined` 消息的ROS 监听器的例子。
+The creation of ROS nodes is a well known and documented process. An example of a ROS listener for `sensor_combined` messages can be found in the `ros1` branch repo, under `px4_ros_com/src/listeners`.
 
 ## 与ROS无关的应用程序的示例/测试
 
-下面是PX4-FastRTPS桥接在实际应用中的更多示例。
+The following examples provide additional real-world demonstrations of how to use the features described in this topic.
 
 * [吞吐量测试](../middleware/micrortps_throughput_test.md): 一个测试PX4-FastRTPS桥接吞吐量的简单示例。
 
 ## PX4-FastRPTS桥接与 ROS2 和 ROS 的联合测试
 
-快速测试该模块的流程如下 (使用 PX4 SITL 和 Gazebo)：
+To quickly test the package (using PX4 SITL with Gazebo):
 
 1. 启动 PX4 SITL 和 Gazebo：
     
@@ -650,7 +654,7 @@ int main(int argc, char *argv[])
     $ ros2 launch px4_ros_com sensor_combined_listener.launch.py
     ```
 
-也会有数据被打印到控制台输出。
+And it should also get data being printed to the console output.
 
 > **Note** If ones uses the `build_all.bash` script, it automatically open and source all the required terminals so one just has to run the respective apps in each terminal.
 
@@ -658,7 +662,7 @@ int main(int argc, char *argv[])
 
 ### Client reports that selected UART port is busy
 
-如果所选串口已被占用，可能是MAVLink应用已经在运行。 如果MAVLink和RTPS连接需要同时运行，你必须为RTPS连接指定另一个端口或者将这个端口配置为可以共享。 <!-- https://github.com/PX4/Devguide/issues/233 -->
+If the selected UART port is busy, it's possible that the MAVLink application is already being used. If both MAVLink and RTPS connections are required you will have to either move the connection to use another port or configure the port so that it can be shared. <!-- https://github.com/PX4/Devguide/issues/233 -->
 
 > **Tip** A quick/temporary fix to allow bridge testing during development is to stop MAVLink from *NuttShell*: 
 > 
@@ -667,11 +671,11 @@ int main(int argc, char *argv[])
 
 ### Agent not built/fastrtpsgen is not found
 
-*Agent*代码是由一个叫做 *fastrtpsgen* 的 *Fast RTPS* 工具生成的。
+The *Agent* code is generated using a *Fast RTPS* tool called *fastrtpsgen*.
 
-如果你没有将 Fast RTPS 安装到默认路径，那就必须在执行 *make*之前，将环境变量 `FASTRTPSGEN_DIR` 设置为你的安装路径。
+If you haven't installed Fast RTPS in the default path then you must specify its installation directory by setting the `FASTRTPSGEN_DIR` environment variable before executing *make*.
 
-在 Linux/Mac 平台上可以这样：
+On Linux/Mac this is done as shown below:
 
 ```sh
 export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
@@ -681,7 +685,7 @@ export FASTRTPSGEN_DIR=/path/to/fastrtps/install/folder/bin
 
 ### Enable UART on an OBC (onboard computer)
 
-要在树莓派或其它OBC上使用UART传输，你必须首先使能所有串口：
+For UART transport on a Raspberry Pi or any other OBC you will have to enable the serial port:
 
 1. 确保 `userid` (在树莓派上默认用户是 pi) 是 `dialout` 用户组的成员：
     
