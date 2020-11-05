@@ -19,28 +19,30 @@ graph LR;
 
 > **Note** 모의 시험 프로그램, 모의 시험 환경, 모의 시험 설정(예: 지원 기체) 관련 일반 정보는 [모의 시험](/simulation/README.md)을 참고 하십시오.
 
-## 설치 {#installation}
+<a id="installation"></a>
 
-가제보 9 설치 프로그램 내용은 표준 빌드 과정에 들어있습니다:
+## Installation
+
+Gazebo 9 setup is included in our standard build instructions:
 
 * **macOS:** [맥용 개발 환경](../setup/dev_env_mac.md)
 * **Linux:** [우분투 LTS / 데비안 리눅스 > 가제보, JMAVSim, NuttX(Pixhawk) 대상 개발 환경](../setup/dev_env_linux_ubuntu.md#sim_nuttx)
 * **Windows:** 지원 안함.
 
-추가 설치 방법은 [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1)에서 찾을 수 있습니다.
+Additional installation instructions can be found on [gazebosim.org](http://gazebosim.org/tutorials?cat=guided_b&tut=guided_b1).
 
 ## 모의 시험 환경 실행
 
-PX4 SITL과 에어프레임 설정(멀티콥터, 비행체, 수직 이착륙기, 광류센서 및 다중 기체 모의 시험 지원)을 불러오는 명령으로 모의 시험환경을 시작하십시오.
+Run a simulation by starting PX4 SITL and gazebo with the airframe configuration to load (multicopters, planes, VTOL, optical flow and multi-vehicle simulations are supported).
 
-The easiest way to do this is to open a terminal in the root directory of the PX4 *PX4-Autopilot* repository and call `make` for the desired target. 예를 들어, 쿼드로터 모의 시험을 시작(기본)하려면:
+The easiest way to do this is to open a terminal in the root directory of the PX4 *PX4-Autopilot* repository and call `make` for the desired target. For example, to start a quadrotor simulation (the default):
 
 ```sh
 cd /path/to/PX4-Autopilot
 make px4_sitl gazebo
 ```
 
-지원 기체와 `make` 명령은 아래와 같습니다(기체 그림을 보려면 링크를 누르십시오).
+The supported vehicles and `make` commands are listed below (click links to see vehicle images).
 
 > **Note** 전체 대상을 빌드하려면 `make px4_sitl list_vmd_make_targets` 명령을 실행 (하고 `gazebo_`로 시작하는 요소를 검색) 하십시오.
 
@@ -61,16 +63,16 @@ make px4_sitl gazebo
 
 > **Note** [파일 및 코드 설치](../setup/dev_env.md) 안내서는 빌드 과정에 오류가 나타날 경우 도움이 될 참고서입니다.
 
-위 명령은 전체 인터페이스에 단일 기체를 띄워 실행합니다. 다른 옵션은 다음과 같습니다:
+The commands above launch a single vehicle with the full UI. Other options include:
 
 * [PX4와 가제보를 개별 시작](#start_px4_sim_separately)하면 가제보 실행 상태를 유지할 수 있고 PX4만 필요할 경우 다시 실행할 수 있습니다(둘 다 다시 시작하는 것보단 빠름).
 * 가제보 인터페이스를 시작하지 않는 [헤드리스 모드](#headless)로 모의시험 환경을 실행합니다(자원을 훨씬 적게 차지하며 더 빠릅니다).
 
 ## 하늘로 띄우기
 
-위에서 언급한 `make` 명령은 PX4를 우선 빌드하고, 가제보 모의 시험 환경을 띄웁니다.
+The `make` commands above first build PX4, and then run it along with the Gazebo simulator.
 
-PX4를 시작하면 아래와 같이 PX4 셸을 실행합니다.
+Once PX4 has started it will launch the PX4 shell as shown below.
 
     ______  __   __    ___ 
     | ___ \ \ \ / /   /   |
@@ -100,7 +102,7 @@ The console will print out status as PX4 loads the airframe-specific initialisat
 
 ![Gazebo UI](../../assets/simulation/gazebo/gazebo_follow.jpg)
 
-이 기체를 다음 명령으로 띄울 수 있습니다:
+You can bring it into the air by typing:
 
 ```sh
 pxh> commander takeoff
@@ -108,7 +110,9 @@ pxh> commander takeoff
 
 ## 사용법/설정 옵션
 
-### Headless Mode {#headless}
+<a id="headless"></a>
+
+### Headless Mode
 
 Gazebo can be run in a *headless* mode in which the Gazebo UI is not launched. This starts up more quickly and uses less system resources (i.e. it is a more "lightweight" way to run the simulation).
 
@@ -118,13 +122,15 @@ Simply prefix the normal `make` command with `HEADLESS=1` as shown:
 HEADLESS=1 make px4_sitl gazebo_plane
 ```
 
-### 개별 이륙 지점 설정 {#custom_takeoff_location}
+<a id="custom_takeoff_location"></a>
+
+### Set Custom Takeoff Location
 
 The takeoff location in SITL Gazebo can be set using environment variables. This will override both the default takeoff location, and any value [set for the world](#set_world_location).
 
 The variables to set are: `PX4_HOME_LAT`, `PX4_HOME_LON`, and `PX4_HOME_ALT`.
 
-예를 들어:
+For example:
 
     export PX4_HOME_LAT=28.452386
     export PX4_HOME_LON=-13.867138
@@ -144,21 +150,23 @@ For more information see: [Simulation > Run Simulation Faster than Realtime](../
 
 ### 조종기 활용
 
-조종기와 엄지 조종기는 *QGroundControl* 에서 지원합니다([설정 방법은 여기에 있음](../simulation/README.md#joystickgamepad-integration)).
+Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
 
 ### 거리 센서 성능 개선
 
-현재 기본 월드는 높이 지도를 지면으로 활용하는 [PX4/sitl_gazebo/worlds/**iris.world**](https://github.com/PX4/sitl_gazebo/tree/master/worlds)입니다.
+The current default world is [PX4/sitl_gazebo/worlds/**iris.world**](https://github.com/PX4/sitl_gazebo/tree/master/worlds)), which uses a heightmap as ground.
 
 This can cause difficulty when using a distance sensor. If there are unexpected results we recommend you change the model in **iris.model** from `uneven_ground` to `asphalt_plane`.
 
-### GPS 잡음 신호 재현 {#gps_noise}
+<a id="gps_noise"></a>
 
-가제보에서는 실제 시스템에서 확인할 수 있는 현상과 유사하게 GPS 잡음 신호를 재현할 수 있습니다(아니면 GPS 신호에 잡음이 없는 완벽한 상태임을 알리는 보고서가 나옵니다). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
+### Simulating GPS Noise
+
+Gazebo can simulate GPS noise that is similar to that typically found in real systems (otherwise reported GPS values will be noise-free/perfect). This is useful when working on applications that might be impacted by GPS noise - e.g. precision positioning.
 
 GPS noise is enabled if the target vehicle's SDF file contains a value for the `gpsNoise` element (i.e. it has the line: `<gpsNoise>true</gpsNoise>`). It is enabled by default in many vehicle SDF files: **solo.sdf**, **iris.sdf**, **standard_vtol.sdf**, **delta_wing.sdf**, **plane.sdf**, **typhoon_h480**, **tailsitter.sdf**.
 
-GPS 잡음 신호 발생을 (비)활성 하려면:
+To enable/disable GPS noise:
 
 1. 임의의 가제보 대상을 빌드하여 (모든 기체에 대한) SDF 파일을 만드십시오. 예를 들어: ```make px4_sitl gazebo_iris``` > **Tip** 빌드를 반복할 때 SDF 파일은 덮어쓰지 않습니다.
 2. 대상 기체의 SDF 파일을 여십시오(예: **./Tools/sitl_gazebo/models/iris/iris.sdf**).
@@ -174,7 +182,9 @@ GPS 잡음 신호 발생을 (비)활성 하려면:
 
 The next time you build/restart Gazebo it will use the new GPS noise setting.
 
-## 개별 world 불러오기 {#set_world}
+<a id="set_world"></a>
+
+## Loading a Specific World
 
 PX4 supports a number of [Gazebo Worlds](../simulation/gazebo_worlds.md), which are stored in [PX4/sitl_gazebo/worlds](https://github.com/PX4/sitl_gazebo/tree/master/worlds)) By default Gazebo displays a flat featureless plane, as defined in [empty.world](https://github.com/PX4/sitl_gazebo/blob/master/worlds/empty.world).
 
@@ -191,7 +201,9 @@ You can also specify the full path to a world to load using the `PX4_SITL_WORLD`
 
 > **Tip** If the loaded world does not align with the map, you may need to [set the world location](#set_world_location).
 
-## world 위치 설정 {#set_world_location}
+<a id="set_world_location"></a>
+
+## Set World Location
 
 The vehicle gets spawned very close to the origin of the world model at some simulated GPS location.
 
@@ -220,7 +232,9 @@ You can test this by spawning a rover in the [Sonoma Raceway World](../simulatio
 
 The video below shows that the location of the environment is aligned with the gazebo world: {% youtube %} https://youtu.be/-a2WWLni5do {% endyoutube %}
 
-## Starting Gazebo and PX4 Separately {#start_px4_sim_separately}
+<a id="start_px4_sim_separately"></a>
+
+## Starting Gazebo and PX4 Separately
 
 For extended development sessions it might be more convenient to start Gazebo and PX4 separately or even from within an IDE.
 
@@ -257,7 +271,9 @@ To simulate a plane with this camera:
 
 > **Note** The simulated camera is implemented in [PX4/sitl_gazebo/src/gazebo_geotagged_images_plugin.cpp](https://github.com/PX4/sitl_gazebo/blob/master/src/gazebo_geotagged_images_plugin.cpp).
 
-## 낙하산/비행 종료 재현 {#flight_termination}
+<a id="flight_termination"></a>
+
+## Simulated Parachute/Flight Termination
 
 *Gazebo* can be used to simulate deploying a [parachute](https://docs.px4.io/master/en/peripherals/parachute.html) during [Flight Termination](https://docs.px4.io/master/en/advanced_config/flight_termination.html) (flight termination is triggered by the PWM command that is simulated in *Gazebo*).
 
@@ -274,7 +290,9 @@ For more information see:
 * [Parachute](https://docs.px4.io/master/en/peripherals/parachute.html)
 * [Safety Configuration (Failsafes)](https://docs.px4.io/master/en/config/safety.html)
 
-## 동영상 스트리밍 {#video}
+<a id="video"></a>
+
+## Video Streaming
 
 PX4 SITL for Gazebo supports UDP video streaming from a Gazebo camera sensor attached to a vehicle model. When streaming is enabled, you can connect to this stream from *QGroundControl* (on UDP port 5600) and view video of the Gazebo environment from the simulated vehicle - just as you would from a real camera. The video is streamed using a *gstreamer* pipeline and can be enabled/disabled using a button in the Gazebo UI.
 
