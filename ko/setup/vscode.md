@@ -56,7 +56,9 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
 
 일단 빌드하고 나면, [코드 자동 완성](#code completion)과 기타 *VSCode* 기능을 쓸 수 있습니다.
 
-## PX4 디버깅 {#debugging_sitl}
+## Debugging
+
+### SITL Debugging {#debugging_sitl}
 
 SITL의 PX4를 디버깅하려면:
 
@@ -70,10 +72,18 @@ SITL의 PX4를 디버깅하려면:
 
 디버깅을 진행하는 동안 중단점을 설정하고, 코드를 건너뛰어 실행할 수 있으며, 그 동안에도 일반 상태로 개발이 가능합니다.
 
+### Hardware Debugging
+
+The instructions in [SWD (JTAG) Hardware Debugging Interface](../debug/swd_debug.html) explain how to connect to the SWD interface on common flight controllers (for example, using the Dronecode or Blackmagic probes).
+
+After connecting to the SWD interface, hardware debugging in VSCode is then the same as for [SITL Debugging](#debugging_sitl) except that you select a debug target appropriate for your debugger type (and firmware) - e.g. `jlink (px4_fmu-v5)`.
+
+![Image showing hardware targets with options for the different probes](../../assets/vscode/vscode_hardware_debugging_options.png)
+
 ## 코드 자동 완성 {#code completion}
 
-코드 자동 완성(과 기타 인텔리센스 마법 기능)이 동작하려면 설정을 활성화화하고 [코드를 빌드](#building)해야합니다.
+In order for the code completion to work (and other IntelliSense magic) you need an active configuration and to have [built the code](#building).
 
-이 과정이 끝나면 더이상 어떤 것도 하지 않아도 됩니다. 툴체인에서는 여러분이 입력한 심볼을 자동으로 찾아줍니다.
+Once that is done you don't need to do anything else; the toolchain will automatically offer you symbols as you type.
 
-![인텔리센스](../../assets/vscode/vscode_intellisense.jpg)
+![IntelliSense](../../assets/vscode/vscode_intellisense.jpg)
