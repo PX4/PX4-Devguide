@@ -74,7 +74,9 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 > **Note** This group is only used to define mapping of RC inputs to specific outputs during *normal operation* (see [quad_x.main.mix](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/quad_x.main.mix#L7) for an example of AUX2 being scaled in a mixer). 在手动 IO 故障安全覆盖事件中(如果 PX4FMU 停止与 PX4IO 板通信)， 只有 pitch、yaw和 throttle 这些控制组0定义的映射/混合被使用 (忽略其他映射)。
 
-### Control Group #6 (First Payload) {#control_group_6}
+<a id="control_group_6"></a>
+
+### Control Group #6 (First Payload)
 
 - 0: function 0
 - 1: function 1
@@ -89,7 +91,7 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 > **Caution** *Virtual Control Group*s are only relevant to developers creating VTOL code. They should not be used in mixers, and are provided only for "completeness".
 
-虚拟控制组并不作为混控器的输入量使用，它们将作为元通道（meta-channels）将固定翼控制器和多旋翼控制器的输出传递给 VOTL 调节器模块（VTOL governor module）。
+These groups are NOT mixer inputs, but serve as meta-channels to feed fixed wing and multicopter controller outputs into the VTOL governor module.
 
 ### 控制组 #4 (Flight Control MC VIRTUAL)
 
@@ -115,13 +117,13 @@ PX4 系统中使用控制组（输入）和输出组。 从概念上讲这两个
 
 ## 输出组/映射
 
-一个产出组是一个物理总线(例如 FMU PWM 输出，IO PWM 输出，UAVCAN 等)。 具有 N (通常为8) 个规范化(-1..+1)的命令端口，可以通过混音器映射和缩放。
+An output group is one physical bus (e.g. FMU PWM outputs, IO PWM outputs, UAVCAN etc.) that has N (usually 8) normalized (-1..+1) command ports that can be mapped and scaled through the mixer.
 
-混音器文件没有明确定义输出应用的实际 *输出组* (物理总线)。 Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is inferred from the mixer [filename](#mixer_file_names), and mapped to the appropriate physical bus in the system [startup scripts](../concept/system_startup.md) (and in particular in [rc.interface](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)).
+The mixer file does not explicitly define the actual *output group* (physical bus) where the outputs are applied. Instead, the purpose of the mixer (e.g. to control MAIN or AUX outputs) is inferred from the mixer [filename](#mixer_file_names), and mapped to the appropriate physical bus in the system [startup scripts](../concept/system_startup.md) (and in particular in [rc.interface](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/rc.interface)).
 
 > **Note** This approach is needed because the physical bus used for MAIN outputs is not always the same; it depends on whether or not the flight controller has an IO Board (see [PX4 Reference Flight Controller Design > Main/IO Function Breakdown](../hardware/reference_design.md#mainio-function-breakdown)) or uses UAVCAN for motor control. The startup scripts load the mixer files into the appropriate device driver for the board, using the abstraction of a "device". The main mixer is loaded into device `/dev/uavcan/esc` (uavcan) if UAVCAN is enabled, and otherwise `/dev/pwm_output0` (this device is mapped to the IO driver on controllers with an I/O board, and the FMU driver on boards that don't). The aux mixer file is loaded into device `/dev/pwm_output1`, which maps to the FMU driver on Pixhawk controllers that have an I/O board.
 
-因为有多个控制组(例如飞行控制、有效载荷等)。 和多个输出组(总线) ，一个控制组可以向多个输出组发送命令。
+Since there are multiple control groups (like flight controls, payload, etc.) and multiple output groups (busses), one control group can send commands to multiple output groups.
 
 ![Mixer Input/Output Mapping](../../assets/concepts/mermaid_mixer_inputs_outputs.png) <!--- Mermaid Live Version:
 https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGFjdHVhdG9yX2dyb3VwXzAtLT5vdXRwdXRfZ3JvdXBfNVxuICBhY3R1YXRvcl9ncm91cF8wLS0-b3V0cHV0X2dyb3VwXzZcbiAgYWN0dWF0b3JfZ3JvdXBfMS0tPm91dHB1dF9ncm91cF8wIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0
@@ -139,11 +141,15 @@ Mixers are defined in plain-text files using the [syntax](#mixer_syntax) below.
 
 Files for pre-defined airframes can be found in [ROMFS/px4fmu_common/mixers](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/mixers). These can be used as a basis for customisation, or for general testing purposes.
 
-### 混合文件名称 {#mixer_file_names}
+<a id="mixer_file_names"></a>
+
+### Mixer File Names
 
 A mixer file must be named **XXXX.*main*.mix** if it is responsible for the mixing of MAIN outputs or **XXXX.*aux*.mix** if it mixes AUX outputs.
 
-### Mixer Loading {#loading_mixer}
+<a id="loading_mixer"></a>
+
+### Mixer Loading
 
 The default set of mixer files (in PX4 firmware) are defined in [px4fmu_common/init.d/airframes/](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/airframes/). These can be overridden by mixer files with the same name in the SD card directory **/etc/mixers/** (SD card mixer files are loaded by preference).
 
@@ -160,7 +166,9 @@ The AUX mixer filename (prefix `YYYY` above) depends on airframe settings and/or
 
 > **Note** Mixer file loading is implemented in [ROMFS/px4fmu_common/init.d/rc.interface](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/init.d/rc.interface).
 
-### Loading a Custom Mixer {#loading_custom_mixer}
+<a id="loading_custom_mixer"></a>
+
+### Loading a Custom Mixer
 
 PX4 loads appropriately named mixer files from the SD card directory **/etc/mixers/**, by preference, and then the version in Firmware.
 
@@ -170,7 +178,9 @@ Most commonly you will override/replace the **AUX** mixer file for your current 
 
 > **Tip** You can also *manually* load a mixer at runtime using the [mixer load](../middleware/modules_command.md#mixer) command (thereby avoiding the need for a reboot). For example, to load a mixer **/etc/mixers/test_mixer.mix** onto the MAIN PWM outputs, you could enter the following command in a [console](../debug/consoles.md): ```mixer load /dev/pwm_output0 /fs/microsd/etc/mixers/test_mixer.mix```
 
-### Syntax {#mixer_syntax}
+<a id="mixer_syntax"></a>
+
+### Syntax
 
 Mixer files are text files that define one or more mixer definitions: mappings between one or more inputs and one or more outputs.
 
@@ -203,7 +213,9 @@ Some mixers definitions consist of a number of tags (e.g. `O` and `S`) that foll
 
 > **Note** Any line that does not begin with a single capital letter followed by a colon may be ignored (so explanatory text can be freely mixed with the definitions).
 
-#### Summing Mixer {#summing_mixer}
+<a id="summing_mixer"></a>
+
+#### Summing Mixer
 
 Summing mixers are used for actuator and servo control.
 
@@ -234,7 +246,9 @@ The remaining fields on the line configure the control scaler with parameters as
 
 An example of a typical mixer file is explained [here](../airframes/adding_a_new_frame.md#mixer-file).
 
-#### Null Mixer {#null_mixer}
+<a id="null_mixer"></a>
+
+#### Null Mixer
 
 A null mixer consumes no controls and generates a single actuator output with a value that is always zero.
 
@@ -245,7 +259,9 @@ The null mixer definition has the form:
     Z:
     
 
-#### Multirotor Mixer {#multirotor_mixer}
+<a id="multirotor_mixer"></a>
+
+#### Multirotor Mixer
 
 The multirotor mixer combines four control inputs (roll, pitch, yaw, thrust) into a set of actuator outputs intended to drive motor speed controllers.
 
@@ -271,7 +287,9 @@ Idlespeed can range from 0.0 to 1.0. Idlespeed is relative to the maximum speed 
 
 In the case where an actuator saturates, all actuator values are rescaled so that the saturating actuator is limited to 1.0.
 
-#### Helicopter Mixer {#helicopter_mixer}
+<a id="helicopter_mixer"></a>
+
+#### Helicopter Mixer
 
 The helicopter mixer combines three control inputs (roll, pitch, thrust) into four outputs (swash-plate servos and main motor ESC setting). The first output of the helicopter mixer is the throttle setting for the main motor. The subsequent outputs are the swash-plate servos. The tail-rotor can be controlled by adding a simple mixer.
 
@@ -331,7 +349,9 @@ The [blade 130 helicopter mixer](https://github.com/PX4/PX4-Autopilot/blob/maste
 - The second and third servo have a longer arm, by a ratio of 1.3054 compared to the first servo.
 - The servos are limited at -8000 and 8000 because they are mechanically constrained.
 
-#### VTOL Mixer {#vtol_mixer}
+<a id="vtol_mixer"></a>
+
+#### VTOL Mixer
 
 VTOL systems use a [multirotor mixer](#multirotor_mixer) for the multirotor outputs, and [summing mixers](#summing_mixer) for the fixed-wing actuators (and the tilting servos in case of a tiltrotor VTOL).
 
