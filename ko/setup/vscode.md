@@ -43,9 +43,11 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
    - 이제 다 끝났습니다! Github와 통합 개발 환경간의 충분한 통합이 이루어져 작업 과정을 단순화해줍니다.
 - 다른 프롬프트 응답은 선택적입니다. 쓸만하다고 생각하면 설치하십시오.<!-- perhaps add screenshot of these prompts -->
 
-## PX4 빌드 {#building}
+<a id="building"></a>
 
-빌드를 진행하려면:
+## Building PX4
+
+To build:
 
 1. 빌드 대상을 선택하십시오("cmake build config"): 
    - 현재 *cmake build target*은 하단 청색 *config* 표시줄에 나타납니다(이미 원하는 대상이 떴다면 이 과정은 건너뛰셔도 됩니다). ![Cmake 빌드 대상 선택](../../assets/toolchain/vscode/cmake_build_config.jpg)
@@ -54,13 +56,15 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
    - 빌드 설정이 끝날때까지 기다리십시오. When this is done the notification will disappear and you'll be shown the build location: ![Cmake config project](../../assets/toolchain/vscode/cmake_configuring_project_done.jpg).
 2. 설정 표시줄을 통해 빌드를 시작할 수 있습니다. (**Build** 또는 **Debug**를 선택하십시오). ![디버깅 또는 빌드 실행](../../assets/toolchain/vscode/run_debug_build.jpg)
 
-일단 빌드하고 나면, [코드 자동 완성](#code completion)과 기타 *VSCode* 기능을 쓸 수 있습니다.
+After building at least once you can now use [code completion](#code completion) and other *VSCode* features.
 
 ## Debugging
 
-### SITL Debugging {#debugging_sitl}
+<a id="debugging_sitl"></a>
 
-SITL의 PX4를 디버깅하려면:
+### SITL Debugging
+
+To debug PX4 on SITL:
 
 1. 측면 표시줄의 디버깅 아이콘을 선택(붉은색 표시)하여 디버깅 창을 표시하십시오.![디버깅 실행](../../assets/toolchain/vscode/vscode_debug.jpg)
 
@@ -70,7 +74,7 @@ SITL의 PX4를 디버깅하려면:
 
 3. 디버깅 "play" 화살표를 눌러 디버깅을 시작하십시오(상단 표시줄의 디버깅 대상 옆 - 분홍색 상자에 있음).
 
-디버깅을 진행하는 동안 중단점을 설정하고, 코드를 건너뛰어 실행할 수 있으며, 그 동안에도 일반 상태로 개발이 가능합니다.
+While debugging you can set breakpoints, step over code, and otherwise develop as normal.
 
 ### Hardware Debugging
 
@@ -80,7 +84,9 @@ After connecting to the SWD interface, hardware debugging in VSCode is then the 
 
 ![Image showing hardware targets with options for the different probes](../../assets/toolchain/vscode/vscode_hardware_debugging_options.png)
 
-## 코드 자동 완성 {#code completion}
+<a id="code completion"></a>
+
+## Code Completion
 
 In order for the code completion to work (and other IntelliSense magic) you need an active configuration and to have [built the code](#building).
 
