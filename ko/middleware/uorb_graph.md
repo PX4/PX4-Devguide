@@ -488,11 +488,11 @@ initializeGraph();
 
 </script>
 
- 
+ <a id="instructions"></a>
 
-## 그래프 특성{#instructions}
+## Graph Properties
 
-그래프는 다음과 같은 특성을 갖고 있습니다.
+The graph has the following properties:
 
 - 모듈은 회색배경에 둥근 모서리로, 토픽들은 색이있는 네모난 박스로 표시합니다.
 - 연관있는 모듈과 토픽들은 선으로 연결됩니다. 점선은 토픽을 발행하는 것을 나타내고, 실선은 토픽을 구독하는 것을 나타냅니다.
