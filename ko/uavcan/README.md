@@ -1,6 +1,6 @@
 # UAVCAN 소개
 
-![UAVCAN 로고](../../assets/uavcan-logo-transparent.png)
+![UAVCAN 로고](../../assets/uavcan/uavcan_logo_transparent.png)
 
 [UAVCAN](http://uavcan.org)는 보드상에서 처리하는 네트워크로 오토파일럿을 항공 전자장비에 연결할 수 있게 합니다. 다음 하드웨어를 지원합니다:
 
@@ -31,7 +31,7 @@
 
 처음 단계에서 할 일은 UAVCAN을 활성화한 모든 장치와 비행체 제어 장치의 연결입니다. 다음 그림은 모든 부품에 대한 결선 방법을 보여줍니다. 여기서 활용하는 Zubax 장치는 모두 두번째 버스를 옵션으로 달고 있지만 이를 통해 연결 신뢰성을 개선하는 이중 CAN 인터페이스를 지원합니다.
 
-![UAVCAN 결선](../../assets/UAVCAN_wiring.png)
+![UAVCAN 결선](../../assets/uavcan/uavcan_wiring.png)
 
 일부 장치(예: Zubax Orel 20\)의 경우 외부 전원 공급 장치가 필요할 수 있고 나머지\(예: Zubax GNSS\)는 CAN 연결로 자체 전원을 공급받음을 참고하는게 중요합니다. 설정을 계속 진행하기 전 하드웨어 문서를 참고하십시오.
 

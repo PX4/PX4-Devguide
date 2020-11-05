@@ -21,17 +21,17 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
 1. [VSCode를 다운로드하고 설치합니다](https://code.visualstudio.com/) (운영체제에 맞는 올바른 버전을 받아야 합니다).
 2. VSCode를 열고 PX4 소스 코드를 추가하십시오:
     
-   - 환영 페이지에서 *Open folder ...* 옵션을 선택하십시오(또는 **File > Open Folder** 메뉴 선택): ![폴더 열기](../../assets/vscode/welcome_open_folder.jpg)
+   - 환영 페이지에서 *Open folder ...* 옵션을 선택하십시오(또는 **File > Open Folder** 메뉴 선택): ![폴더 열기](../../assets/toolchain/vscode/welcome_open_folder.jpg)
    - 파일 선택 대화상자가 뜹니다. Select the **PX4-Autopilot** directory and then press **OK**.
     
     이 과정을 끝내면 프로젝트 파일과 설정 파일을 *VSCode*에 불러옵니다.
 
-3. *This workspace has extension recommendations* 프롬프트가 뜨면 **Install All** 을 누르십시오(IDE의 우측 하단에 뜹니다). ![확장 기능 설치](../../assets/vscode/prompt_install_extensions.jpg)
+3. *This workspace has extension recommendations* 프롬프트가 뜨면 **Install All** 을 누르십시오(IDE의 우측 하단에 뜹니다). ![확장 기능 설치](../../assets/toolchain/vscode/prompt_install_extensions.jpg)
     
     VSCode에서 *Extensions* 창을 좌측에 띄우므로 설치 과정을 볼 수 있습니다.
     
     ![VSCode 탐색기에 불러온 PX4
-](../../assets/vscode/installing_extensions.jpg)
+](../../assets/toolchain/vscode/installing_extensions.jpg)
 
 4. 몇가지 알림/프롬프트가 우측 하단 구석에 뜹니다
     
@@ -48,11 +48,11 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
 빌드를 진행하려면:
 
 1. 빌드 대상을 선택하십시오("cmake build config"): 
-   - 현재 *cmake build target*은 하단 청색 *config* 표시줄에 나타납니다(이미 원하는 대상이 떴다면 이 과정은 건너뛰셔도 됩니다). ![Cmake 빌드 대상 선택](../../assets/vscode/cmake_build_config.jpg)
+   - 현재 *cmake build target*은 하단 청색 *config* 표시줄에 나타납니다(이미 원하는 대상이 떴다면 이 과정은 건너뛰셔도 됩니다). ![Cmake 빌드 대상 선택](../../assets/toolchain/vscode/cmake_build_config.jpg)
    - 설정 표시줄의 대상을 눌러 다른 옵션을 표시한 후, 원하는 대상을 선택하십시오(이 과정을 통해 올바른 대상을 선택합니다).
-   - 이 과정이 끝나면 *Cmake*에서 프로젝트의 빌드 조건을 구성합니다(하단 우측의 알림 참고). ![Cmake 설정 프로젝트](../../assets/vscode/cmake_configuring_project.jpg)
-   - 빌드 설정이 끝날때까지 기다리십시오. 빌드 설정이 끝나면 알림이 사라지고, 빌드 위치를 볼 수 있습니다: ![Cmake config project](../../assets/vscode/cmake_configuring_project_done.jpg).
-2. 설정 표시줄을 통해 빌드를 시작할 수 있습니다. (**Build** 또는 **Debug**를 선택하십시오). ![디버깅 또는 빌드 실행](../../assets/vscode/run_debug_build.jpg)
+   - 이 과정이 끝나면 *Cmake*에서 프로젝트의 빌드 조건을 구성합니다(하단 우측의 알림 참고). ![Cmake 설정 프로젝트](../../assets/toolchain/vscode/cmake_configuring_project.jpg)
+   - 빌드 설정이 끝날때까지 기다리십시오. When this is done the notification will disappear and you'll be shown the build location: ![Cmake config project](../../assets/toolchain/vscode/cmake_configuring_project_done.jpg).
+2. 설정 표시줄을 통해 빌드를 시작할 수 있습니다. (**Build** 또는 **Debug**를 선택하십시오). ![디버깅 또는 빌드 실행](../../assets/toolchain/vscode/run_debug_build.jpg)
 
 일단 빌드하고 나면, [코드 자동 완성](#code completion)과 기타 *VSCode* 기능을 쓸 수 있습니다.
 
@@ -62,7 +62,7 @@ PX4 개발에 VSCode를 활용해야 하는 이유는 여러가지가 있습니�
 
 SITL의 PX4를 디버깅하려면:
 
-1. 측면 표시줄의 디버깅 아이콘을 선택(붉은색 표시)하여 디버깅 창을 표시하십시오.![디버깅 실행](../../assets/vscode/vscode_debug.jpg)
+1. 측면 표시줄의 디버깅 아이콘을 선택(붉은색 표시)하여 디버깅 창을 표시하십시오.![디버깅 실행](../../assets/toolchain/vscode/vscode_debug.jpg)
 
 2. 상단 표시줄의 디버깅 드롭다운(자주색 상자)으로 디버깅 대상을 선택하십시오(예: *Debug SITL (Gazebo Iris)*).
     
@@ -78,7 +78,7 @@ The instructions in [SWD (JTAG) Hardware Debugging Interface](../debug/swd_debug
 
 After connecting to the SWD interface, hardware debugging in VSCode is then the same as for [SITL Debugging](#debugging_sitl) except that you select a debug target appropriate for your debugger type (and firmware) - e.g. `jlink (px4_fmu-v5)`.
 
-![Image showing hardware targets with options for the different probes](../../assets/vscode/vscode_hardware_debugging_options.png)
+![Image showing hardware targets with options for the different probes](../../assets/toolchain/vscode/vscode_hardware_debugging_options.png)
 
 ## 코드 자동 완성 {#code completion}
 
@@ -86,4 +86,4 @@ In order for the code completion to work (and other IntelliSense magic) you need
 
 Once that is done you don't need to do anything else; the toolchain will automatically offer you symbols as you type.
 
-![IntelliSense](../../assets/vscode/vscode_intellisense.jpg)
+![IntelliSense](../../assets/toolchain/vscode/vscode_intellisense.jpg)

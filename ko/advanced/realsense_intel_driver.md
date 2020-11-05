@@ -2,7 +2,7 @@
 
 이 지침서에서는 리눅스 운영체제에서 Intel RealSense R200 카메라 헤드를 통해 가져온 이미지를 로봇 운영체제(ROS)에서 접근할 수 있도록 카메라 드라이버를 설치하는 절차를 제시합니다. Intel RealSense R200 카메라 헤드에 대한 설명은 다음과 같습니다:
 
-![](../../assets/realsense_intel/realsense.png)
+![Intel Realsense Camera front view](../../assets/hardware/sensors/realsense/intel_realsense.png)
 
 버추어 박스의 게스트 운영체제로 동작하는 우분투 운영체제(OS)에서 드라이버 꾸러미 설치를 실행합니다. 버추어 박스를 실행하는 호스트 컴퓨터, 버추어 박스, 게스트 시스템의 사양(예시)은 다음과 같습니다:
 

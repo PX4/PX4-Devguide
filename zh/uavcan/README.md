@@ -1,6 +1,6 @@
 # UAVCAN 介绍
 
-![UAVCAN Logo](../../assets/uavcan-logo-transparent.png)
+![UAVCAN Logo](../../assets/uavcan/uavcan_logo_transparent.png)
 
 [UAVCAN](http://uavcan.org)是一个板载网络, 它允许自动驾驶仪连接到航空电子设备。 它支持如下硬件:
 
@@ -31,7 +31,7 @@
     > 
     > 第一步是将所有启用uavcan的设备与飞行控制器连接。 下图显示了如何连接所有组件。 使用Zubex的设备全部支持一条冗余的CAN接口，其中第二条是可选的，增加了连接的可靠性。
     > 
-    > ![UAVCAN Wiring](../../assets/UAVCAN_wiring.png)
+    > ![UAVCAN Wiring](../../assets/uavcan/uavcan_wiring.png)
     > 
     > 要点提及, 有些设备需要外部电源\(例如Zubax orrel 20\), 而其他设备可以由CAN连接\(例如 zubax gnss\) 本身供电。 在继续安装之前, 请参考硬件的文档。
     > 
