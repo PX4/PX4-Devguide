@@ -21,8 +21,9 @@ graph LR;
 
 > **Note** 모의 시험 프로그램, 모의 시험 환경, 모의 시험 설정(예: 지원 기체) 관련 일반 정보는 [모의 시험](/simulation/README.md)에 있습니다.
 
+<a id="installation"></a>
 
-## 설치(우분투 리눅스) {#installation}
+## Installation (Ubuntu Linux)
 
 > **Note** 우분투 18.04에서 절차를 시험해보았습니다
 
@@ -47,10 +48,11 @@ graph LR;
    ```
    PX4-FlightGear-Bridge에서 통신 정의 파일을 이곳에 복사하기 때문에 권한 설정이 필요합니다.
 
-추가 설치 과정은 [플라이트기어 위키](http://wiki.flightgear.org/Howto:Install_Flightgear_from_a_PPA)에 있습니다.
+추가 설치 과정은 [플라이트기어 위키](http://wiki.flightgear.org/Howto:Install_Flightgear_from_a_PPA)에 있습니다.   
 
+<a id="running"></a>
 
-## 모의 시험 환경 실행 {#running}
+## Running the Simulation
 
 PX4 SITL을 시작하여 모의 시험환경을 실행하고, 원하는 에어프레임 설정 값을 부여하십시오.
 
@@ -150,11 +152,15 @@ pxh> commander takeoff
 - `FG\_MODELS\_DIR` - 모의시험 환경에서 사용하려 직접 다운로드한 비행체 모델을 넣는 폴더의 절대 경로.
 - `FG\_ARGS\_EX` - 추가 FG 매개변수.
 
-### 프레임 재생율 표시 {#frame_rate}
+<a id="frame_rate"></a>
+
+### Display the frame rate
 
 플라이트기어에서는 **View > View Options > Show frame rate** 에서 프레임 재생율을 표시할 수 있습니다.
 
-### 개별 이륙 지점 설정 {#custom_takeoff_location}
+<a id="custom_takeoff_location"></a>
+
+### Set Custom Takeoff Location
 
 SITL 플라이트 기어의 이륙 위치는 추가 변수를 활용하여 설정할 수 있습니다. 변수 설정을 통해 기본 이륙 위치를 재지정합니다.
 
@@ -167,8 +173,9 @@ FG_ARGS_EX="--airport=PHNL"  make px4_sitl_nolockstep flightgear_rascal
 
 위 예제는 [호놀룰루 국제 공항](http://wiki.flightgear.org/Suggested_airports)에서의 모의 시험을 시작합니다.
 
+<a id="joystick"></a>
 
-### 조종기 활용 {#joystick}
+### Using a Joystick
 
 조종기와 엄지 조종기는 *QGroundControl* 에서 지원합니다([설정 방법은 여기에 있음](../simulation/README.md#joystickgamepad-integration)).
 
