@@ -8,7 +8,9 @@ MAVLink 셸은 직렬 포트 연결(USB/텔레메트리), 무선랜(UDP/TCP) 연
 
 ## 셸 열기
 
-### QGroundControl MAVLink 콘솔 {#qgroundcontrol}
+<a id="qgroundcontrol"></a>
+
+### QGroundControl MAVLink Console
 
 셸에 접근하는 가장 간단한 수단은  [QGroundControl MAVLink 콘솔](https://docs.qgroundcontrol.com/en/analyze_view/mavlink_console.html)입니다(**Analyze View > Mavlink Console** 참고).
 
