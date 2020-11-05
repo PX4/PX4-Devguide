@@ -1,8 +1,10 @@
 # GIT 示例
 
-## Contributing Code to PX4 {#contributing_code}
+<a id="contributing_code"></a>
 
-按照定义的工作流向 px4 添加功能。 为了在 px4 上分享您的贡献, 您可以遵循此示例。
+## Contributing Code to PX4
+
+Adding a feature to PX4 follows a defined workflow. In order to share your contributions on PX4, you can follow this example.
 
 * 如果您还没有注册，请先[Sign up](https://github.com/join) Github 账户
 * Fork the PX4-Autopilot re[p (see [here](https://help.github.com/articles/fork-a-repo/#fork-an-example-repository))
