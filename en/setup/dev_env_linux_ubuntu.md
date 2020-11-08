@@ -68,9 +68,9 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 > **Warning** Use Ubuntu **18.04** or [Docker](https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf) for building RasPi!
   *Do not use Ubuntu 20.04*. The *armhf* or *aarch64* toolchains on a Ubuntu 20.04 host machine depend on *libc6-2.29* which is not available on RPi at time of writing (it has *libc6-2.27*).
 
-They can pass the build and provide binary files, but is extreme new so cannot run on actual Pi. The really working one is documented separately in user docs.
+GCC toolchains provided by Ubuntu Focal can pass the build and provide binary files, but is extreme new so cannot run on actual Pi. To build with Ubuntu Focal, please refer to [docker-based guide](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker) and skip the following procedures.
 
-To get the build toolchain for Raspberry Pi:
+To get the common dependencies for Raspberry Pi:
 
 1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):
    <br>`wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`
@@ -83,7 +83,7 @@ To get the build toolchain for Raspberry Pi:
 
 ### GCC (armhf)
 
-Ubuntu software repository provides a set of pre-compiled toolchains. Note that Ubuntu Focal comes up with `gcc-9-arm-linux-gnueabihf` as its default installation, so we must manually install `gcc-8-arm-linux-gnueabihf` and set it as the default toolchain.
+Ubuntu software repository provides a set of pre-compiled toolchains. Note that Ubuntu Focal comes up with `gcc-9-arm-linux-gnueabihf` as its default installation which is not fully supported, so we must manually install `gcc-8-arm-linux-gnueabihf` and set it as the default toolchain. This guide also applies to earlier Ubuntu releases (Bionic).
 The following instruction assumes you haven't installed any version of arm-linux-gnueabihf, and will set up the default executable with `update-alternatives`.
 Install them with the terminal command:
 
@@ -133,11 +133,12 @@ cmake \
 make
 ```
 
-### Native Builds
+### Detailed Information
 
 Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: 
 
 - [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
+- [Raspberry Pi 2/3/4 PilotPi Shield](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi.html).
 
 
 <a id="rosgazebo"></a>
