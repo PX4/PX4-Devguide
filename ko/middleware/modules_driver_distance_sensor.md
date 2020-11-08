@@ -109,11 +109,11 @@ Stop driver
 
 ## ll40ls
 
-Source: [drivers/distance_sensor/ll40ls_pwm](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ll40ls_pwm)
+Source: [drivers/distance_sensor/ll40ls](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ll40ls)
 
 ### Description
 
-PWM driver for LidarLite rangefinders.
+I2C bus driver for LidarLite rangefinders.
 
 The sensor/driver must be enabled using the parameter SENS_EN_LL40LS.
 
@@ -125,13 +125,21 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/lidar_lite.html
 
     ll40ls <command> [arguments...]
      Commands:
-       start         Start driver
+       start
+         [-I]        Internal I2C bus(es)
+         [-X]        External I2C bus(es)
+         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
+                     (default=1))
+         [-f <val>]  bus frequency in kHz
+         [-q]        quiet startup (no message if no device found)
          [-R <val>]  Sensor rotation - downward facing by default
                      default: 25
     
-       status        Print driver status information
+       regdump
     
-       stop          Stop driver
+       stop
+    
+       status        print status info
     
 
 ## mappydot
@@ -239,11 +247,40 @@ Source: [drivers/distance_sensor/srf02](https://github.com/PX4/Firmware/tree/mas
        status        print status info
     
 
+## srf05
+
+Source: [drivers/distance_sensor/srf05](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/srf05)
+
+### Description
+
+Driver for HY-SRF05 / HC-SR05 and HC-SR04 rangefinders.
+
+The sensor/driver must be enabled using the parameter SENS_EN_HXSRX0X.
+
+<a id="srf05_usage"></a>
+
+### Usage
+
+    srf05 <command> [arguments...]
+     Commands:
+       start         Start driver
+         [-R <val>]  Sensor rotation - downward facing by default
+                     default: 25
+    
+       status        Print driver status information
+    
+       stop          Stop driver
+    
+       stop
+    
+       status        print status info
+    
+
 ## teraranger
 
 Source: [drivers/distance_sensor/teraranger](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/teraranger)
 
-### 설명
+### Description
 
 I2C bus driver for TeraRanger rangefinders.
 
@@ -276,7 +313,7 @@ Setup/usage information: https://docs.px4.io/master/en/sensor/rangefinders.html#
 
 Source: [drivers/distance_sensor/tfmini](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/tfmini)
 
-### 설명
+### Description
 
 Serial bus driver for the Benewake TFmini LiDAR.
 
@@ -284,7 +321,7 @@ Most boards are configured to enable/start the driver on a specified UART using 
 
 Setup/usage information: https://docs.px4.io/master/en/sensor/tfmini.html
 
-### 예제
+### Examples
 
 Attempt to start driver on a specified serial device.
 
@@ -320,13 +357,13 @@ Stop driver
 
 Source: [drivers/distance_sensor/ulanding_radar](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/ulanding_radar)
 
-### 설명
+### Description
 
 Serial bus driver for the Aerotenna uLanding radar.
 
 Setup/usage information: https://docs.px4.io/v1.9.0/en/sensor/ulanding_radar.html
 
-### 예시
+### Examples
 
 Attempt to start driver on a specified serial device.
 
