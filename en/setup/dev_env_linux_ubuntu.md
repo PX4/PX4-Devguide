@@ -26,7 +26,7 @@ To install the toolchain:
 1. Run the **ubuntu.sh** with no arguments (in a bash shell) to install everything:
    ```bash
    bash ./Tools/setup/ubuntu.sh
-   ```   
+   ```
    - Acknowledge any prompts as the script progress.
    - You can use the `--no-nuttx` and `--no-sim-tools` to omit the nuttx and/or simulation tools.
 1. Restart the computer on completion.
@@ -48,7 +48,7 @@ Notes:
    Copyright (C) 2017 Free Software Foundation, Inc.
    This is free software; see the source for copying conditions.  There is NO
    warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-   ```
+  ```
 
 <!-- Do we need to add to our scripts or can we assume correct version installs over?
 Remove any old versions of the arm-none-eabi toolchain.
@@ -63,9 +63,13 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 <a id="raspberry-pi-hardware"></a>
 ## Raspberry Pi
 
-<!-- NOTE: RaPi docker toolchain (for comparison) here: https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf -->
+The following instructions explain how to set up a build toolchain for RasPi on *Ubuntu 18.04*.
 
-To get the build toolchain for Raspberry Pi:
+> **Warning** To build for Ubuntu 20.04 (focal) you must use docker (the GCC toolchain on Ubuntu 20.04 can build PX4, but the generated binary files are too new to run on actual Pi).
+  For more information see [PilotPi with Raspberry Pi OS
+#Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
+
+To get the common dependencies for Raspberry Pi:
 
 1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):
    <br>`wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`
@@ -74,35 +78,45 @@ To get the build toolchain for Raspberry Pi:
    ```bash
    bash ubuntu.sh --no-nuttx --no-sim-tools
    ```
-1. Then setup an ARMv7 cross-compiler (either GCC or clang) as described in the following sections.
+1. Then setup an cross-compiler (either GCC or clang) as described in the following sections.
 
-### GCC
+### GCC (armhf)
 
-The official Raspberry Pi toolchains are not supported as PX4 has requires C++14 (which they do not support).
+Ubuntu software repository provides a set of pre-compiled toolchains. Note that Ubuntu Focal comes up with `gcc-9-arm-linux-gnueabihf` as its default installation which is not fully supported, so we must manually install `gcc-8-arm-linux-gnueabihf` and set it as the default toolchain. This guide also applies to earlier Ubuntu releases (Bionic).
+The following instruction assumes you haven't installed any version of arm-linux-gnueabihf, and will set up the default executable with `update-alternatives`.
+Install them with the terminal command:
 
-Ubuntu provides a set of pre-compiled toolchains that you can use instead.
-Install these with the terminal command:
-```
-sudo apt-get install -y gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
-```
-
-These package contains GCC/G++ 7.4.0 at time of writing.
-To test the toolchain, please execute:
-```
-arm-linux-gnueabihf-gcc -v
-arm-linux-gnueabihf-g++ -v
+```sh
+sudo apt-get install -y gcc-8-arm-linux-gnueabihf g++-8-arm-linux-gnueabihf
 ```
 
-### Clang
+Set them as default:
+
+```sh
+sudo update-alternatives --install /usr/bin/arm-linux-gnueabihf-gcc arm-linux-gnueabihf-gcc /usr/bin/arm-linux-gnueabihf-8 100 --slave /usr/bin/arm-linux-gnueabihf-g++ arm-linux-gnueabihf-g++ /usr/bin/arm-linux-gnueabihf-g++-8
+sudo update-alternatives --config arm-linux-gnueabihf-gcc
+```
+
+### GCC (aarch64)
+
+If you want to build PX4 for ARM64 devices, this section is required.
+
+```sh
+sudo apt-get install -y gcc-8-aarch64-linux-gnu g++-8-aarch64-linux-gnu
+sudo update-alternatives --install /usr/bin/aarch64-linux-gnu-gcc aarch64-linux-gnu-gcc /usr/bin/aarch64-linux-gnu-gcc-8 100 --slave /usr/bin/aarch64-linux-gnu-g++ aarch64-linux-gnu-g++ /usr/bin/aarch64-linux-gnu-g++-8
+sudo update-alternatives --config aarch64-linux-gnu-gcc
+```
+
+### Clang (optional)
 
 First [install GCC](#gcc) (needed to use clang).
 
-We recommend you to get clang from the Ubuntu software repository as follows:
+We recommend you to get clang from the Ubuntu software repository, as shown below:
 ```
 sudo apt-get install clang
 ```
 
-Example below for building PX4 firmware out of tree, using CMake.
+Example below for building PX4 firmware out of tree, using *CMake*.
 ```sh
 cd <PATH-TO-PX4-SRC>
 mkdir build/px4_raspberrypi_default_clang
@@ -118,9 +132,12 @@ cmake \
 make
 ```
 
-### Native Builds
+### Detailed Information
 
-Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
+Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: 
+
+- [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
+- [Raspberry Pi 2/3/4 PilotPi Shield](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi.html).
 
 
 <a id="rosgazebo"></a>
