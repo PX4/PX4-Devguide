@@ -148,6 +148,27 @@ The simulation speed can be increased or decreased with respect to realtime usin
 
 For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
 
+### Change Wind Speed
+
+To simulate wind speed, add this plugin to your world file and replace `SET_YOUR_WIND_SPEED` with the desired speed:
+
+```xml
+  <plugin name='wind_plugin' filename='libgazebo_wind_plugin.so'>
+      <frameId>base_link</frameId>
+      <robotNamespace/>
+      <xyzOffset>1 0 0</xyzOffset>
+      <windDirectionMean>0 1 0</windDirectionMean>
+      <windVelocityMean>SET_YOUR_WIND_SPEED</windVelocityMean>
+      <windGustDirection>0 0 0</windGustDirection>
+      <windGustDuration>0</windGustDuration>
+      <windGustStart>0</windGustStart>
+      <windGustVelocityMean>0</windGustVelocityMean>
+      <windPubTopic>world_wind</windPubTopic>
+    </plugin>
+```
+
+You can see this how this is done in [PX4/PX4-SITL_gazebo/worlds/windy.world](https://github.com/PX4/PX4-SITL_gazebo/blob/master/worlds/windy.world#L15-L26).
+
 ### Using a Joystick
 
 Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
