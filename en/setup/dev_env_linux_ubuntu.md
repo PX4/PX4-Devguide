@@ -63,12 +63,11 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 <a id="raspberry-pi-hardware"></a>
 ## Raspberry Pi
 
-<!-- NOTE: RaPi docker toolchain (for comparison) here: https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf -->
+The following instructions explain how to set up a build toolchain for RasPi on *Ubuntu 18.04*.
 
-> **Warning** Use Ubuntu **18.04** or [Docker](https://github.com/PX4/containers/blob/master/docker/Dockerfile_armhf) for building RasPi!
-  *Do not use Ubuntu 20.04*. The *armhf* or *aarch64* toolchains on a Ubuntu 20.04 host machine depend on *libc6-2.29* which is not available on RPi at time of writing (it has *libc6-2.27*).
-
-GCC toolchains provided by Ubuntu Focal can pass the build and provide binary files, but is extreme new so cannot run on actual Pi. To build with Ubuntu Focal, please refer to [docker-based guide](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker) and skip the following procedures.
+> **Warning** To build for Ubuntu 20.04 (focal) you must use docker (the GCC toolchain on Ubuntu 20.04 can build PX4, but the generated binary files are too new to run on actual Pi).
+  For more information see [PilotPi with Raspberry Pi OS
+#Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
 
 To get the common dependencies for Raspberry Pi:
 
