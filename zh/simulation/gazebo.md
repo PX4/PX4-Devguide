@@ -155,11 +155,32 @@ Gazebo 9 setup is included in our standard build instructions:
     
     For more information see: [Simulation > Run Simulation Faster than Realtime](../simulation/README.md#simulation_speed).
     
-    ### 使用操纵杆
+    ### Change Wind Speed
+    
+    To simulate wind speed, add this plugin to your world file and replace `SET_YOUR_WIND_SPEED` with the desired speed:
+    
+    ```xml
+      <plugin name='wind_plugin' filename='libgazebo_wind_plugin.so'>
+          <frameId>base_link</frameId>
+          <robotNamespace/>
+          <xyzOffset>1 0 0</xyzOffset>
+          <windDirectionMean>0 1 0</windDirectionMean>
+          <windVelocityMean>SET_YOUR_WIND_SPEED</windVelocityMean>
+          <windGustDirection>0 0 0</windGustDirection>
+          <windGustDuration>0</windGustDuration>
+          <windGustStart>0</windGustStart>
+          <windGustVelocityMean>0</windGustVelocityMean>
+          <windPubTopic>world_wind</windPubTopic>
+        </plugin>
+    ```
+    
+    You can see this how this is done in [PX4/PX4-SITL_gazebo/worlds/windy.world](https://github.com/PX4/PX4-SITL_gazebo/blob/master/worlds/windy.world#L15-L26).
+    
+    ### Using a Joystick
     
     Joystick and thumb-joystick support are supported through *QGroundControl* ([setup instructions here](../simulation/README.md#joystickgamepad-integration)).
     
-    ### 提高距离传感器的性能
+    ### Improving Distance Sensor Performance
     
     The current default world is [PX4/sitl_gazebo/worlds/**iris.world**](https://github.com/PX4/sitl_gazebo/tree/master/worlds)), which uses a heightmap as ground.
     
@@ -328,13 +349,13 @@ Gazebo 9 setup is included in our standard build instructions:
     
     * [Typhoon H480](#typhoon_h480)
     
-    ### 必备组件
+    ### Prerequisites
     
     *Gstreamer 1.0* is required for video streaming. The required dependencies should already have been [installed when you set up Gazebo](#installation) (they are included in the standard PX4 installation scripts/instructions for macOS and Ubuntu Linux).
     
     > **Note** FYI only, the dependencies include: `gstreamer1.0-plugins-base`, g`streamer1.0-plugins-good`, `gstreamer1.0-plugins-bad`, `gstreamer1.0-plugins-ugly`, `libgstreamer-plugins-base1.0-dev`.
     
-    ### 启动/停止视频流
+    ### Start/Stop Video Streaming
     
     Video streaming is automatically started when supported by the target vehicle. For example, to start streaming video on the Typhoon H480:
     
@@ -345,7 +366,7 @@ Gazebo 9 setup is included in our standard build instructions:
     
     ![Video ON/OFF button](../../assets/simulation/gazebo/sitl_video_stream.png)
     
-    ### 如何查看 Gazebo 视频
+    ### How to View Gazebo Video
     
     The easiest way to view the SITL/Gazebo camera video stream is in *QGroundControl*. Simply open **Application Settings > General** and set **Video Source** to *UDP h.264 Video Stream* and **UDP Port** to *5600*:
     
