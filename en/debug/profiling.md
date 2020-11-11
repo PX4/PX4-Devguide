@@ -25,7 +25,7 @@ For more control over the build process, including setting the number of samples
 
 A screenshot of an example output is provided below (note that it is not interactive here):
 
-![FlameGraph Example](../../assets/flamegraph-example.png)
+![FlameGraph Example](../../assets/debug/flamegraph-example.png)
 
 On the flame graph, the horizontal levels represent stack frames, whereas the width of each frame is proportional to the number of times it was sampled.
 In turn, the number of times a function ended up being sampled is proportional to the duration times frequency of its execution.

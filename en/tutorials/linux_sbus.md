@@ -50,8 +50,8 @@ Connect the components as described below (and shown in the circuit diagram):
 * 5.0VCC &rarr; S.Bus VCC
 * GND &rarr; S.Bus GND
 
-![Signal inverter circuit diagram](../../assets/driver_sbus_signal_inverter_circuit_diagram.png)
+![Signal inverter circuit diagram](../../assets/sbus/driver_sbus_signal_inverter_circuit_diagram.png)
 
 The image below shows the connections on a breadboard.
 
-![Signal inverter breadboard](../../assets/driver_sbus_signal_inverter_breadboard.png)
+![Signal inverter breadboard](../../assets/sbus/driver_sbus_signal_inverter_breadboard.png)
