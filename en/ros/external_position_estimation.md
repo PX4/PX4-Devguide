@@ -66,7 +66,8 @@ You can apply this trick with every system - if you need to obtain a NED frame, 
 
 ## EKF2 Tuning/Configuration
 
-Note: this is a quick overview. For more detailed information, check the [EKF2 tuning guide](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)
+Note: this is a quick overview.
+For more detailed information, check the [EKF2 tuning guide](https://docs.px4.io/master/en/advanced_config/tuning_the_ecl_ekf.html)
 
 The following parameters must be set to use external position information with EKF2 (these can be set in *QGroundControl* > **Vehicle Setup > Parameters > EKF2**).
 
