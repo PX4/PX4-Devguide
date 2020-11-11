@@ -19,7 +19,7 @@ PMSP 是一种 shell 脚本,它通过定期中断固件的执行来运行，便�
 
 下面提供了一个示例输出的屏幕截图（请注意，它在这里不是交互式的）：
 
-![FlameGraph 实例](../../assets/flamegraph-example.png)
+![FlameGraph 实例](../../assets/debug/flamegraph-example.png)
 
 在火焰图上，水平水平表示堆叠帧，而每个帧的宽度与采样次数成正比。 反过来，函数最终被采样的次数也与其执行的持续时间频率成正比。
 
