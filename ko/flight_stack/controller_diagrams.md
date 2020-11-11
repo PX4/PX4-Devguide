@@ -84,33 +84,33 @@ TECS offers a solution by respresenting the problem in terms of energies rather 
 
 The total energy of an aircraft is the sum of kinetic and potential energy:
 
-$$E_T = \frac{1}{2} m V_T^2 + m g h$$,
+$$E_T = \frac{1}{2} m V_T^2 + m g h$$
 
 Taking the derivative with respect to time leads to the total energy rate:
 
-$$\dot{E_T} = m V_T \dot{V_T} + m g \dot{h}$$.
+$$\dot{E_T} = m V_T \dot{V_T} + m g \dot{h}$$
 
 From this, the specific energy rate can be formed as:
 
-$$\dot{E} = \frac{\dot{E_T}}{mgV_T} = \frac{\dot{V_T}}{g} + \frac{\dot{h}}{V_T} = \frac{\dot{V_T}}{g} + sin(\gamma) $$
+$$\dot{E} = \frac{\dot{E_T}}{mgV_T} = \frac{\dot{V_T}}{g} + \frac{\dot{h}}{V_T} = \frac{\dot{V_T}}{g} + sin(\gamma)$$
 
 where $$\gamma$$ is the flight plan angle. For small $$\gamma$$ we can approximate this as
 
-$$ \dot{E} \approx \frac{\dot{V_T}}{g} + \gamma $$.
+$$\dot{E} \approx \frac{\dot{V_T}}{g} + \gamma$$
 
 From the dynamic equations of an aircraft we get the following relation:
 
-$$ T - D = mg(\frac{\dot{V_T}}{g} + sin(\gamma)) \approx mg(\frac{\dot{V_T}}{g} + \gamma) $$,
+$$T - D = mg(\frac{\dot{V_T}}{g} + sin(\gamma)) \approx mg(\frac{\dot{V_T}}{g} + \gamma)$$
 
 where T and D are the thrust and drag forces. In level flight, initial thrust is trimmed against the drag and a change in thrust results thus in:
 
-$$ \Delta T = mg(\frac{\dot{V_T}}{g} + \gamma) $$.
+$$\Delta T = mg(\frac{\dot{V_T}}{g} + \gamma)$$
 
 As can be seen, $$\Delta T$$ is proportional to $$\dot{E}$$, and thus the thrust setpoint should be used for total energy control.
 
 Elevator control on the other hand is energy conservative, and is thus used for exchanging potentional energy for kinetic energy and vice versa. To this end, a specific energy balance rate is defined as
 
-$$\dot{B} = \gamma - \frac{\dot{V_T}}{g}$$.
+$$\dot{B} = \gamma - \frac{\dot{V_T}}{g}$$
 
 ## 고정익 위치 조종기
 
@@ -154,37 +154,37 @@ The reader should be aware of the difference between the [true airspeed (TAS)](h
 
 The definition of the dynamic pressure is
 
-$$\bar{q} = \frac{1}{2} \rho V_T^2$$,
+$$\bar{q} = \frac{1}{2} \rho V_T^2$$
 
 where $$\rho$$ is the air density and $$V_T$$ the true airspeed (TAS).
 
 Taking the roll axis for the rest of this section as an example, the dimensional roll moment can be written
 
-$$\ell = \frac{1}{2}\rho V_T^2 S b C_\ell = \bar{q} S b C_\ell$$,
+$$\ell = \frac{1}{2}\rho V_T^2 S b C_\ell = \bar{q} S b C_\ell$$
 
 where $$\ell$$ is the roll moment, $$b$$ the wing span and $$S$$ the reference surface.
 
 The nondimensional roll moment derivative $$C_\ell$$ can be modeled using the aileron effectiveness derivative $$C_{\ell_{\delta_a}}$$, the roll damping derivative $$C_{\ell_p}$$ and the dihedral derivative $$C_{\ell_\beta}$$
 
-$$C_\ell = C_{\ell_0} + C_{\ell_\beta}\:\beta + C_{\ell_p}\:\frac{b}{2V_T}\:p + C_{\ell_{\delta_a}} \:\delta_a$$,
+$$C_\ell = C_{\ell_0} + C_{\ell_\beta}\:\beta + C_{\ell_p}\:\frac{b}{2V_T}\:p + C_{\ell_{\delta_a}} \:\delta_a$$
 
 where $$\beta$$ is the sideslip angle, $$p$$ the body roll rate and $$\delta_a$$ the aileron deflection.
 
 Assuming a symmetric ($$C_{\ell_0} = 0$$) and coordinated ($$\beta = 0$$) aircraft, the equation can be simplified using only the rollrate damping and the roll moment produced by the ailerons
 
-$$\ell = \frac{1}{2}\rho V_T^2 S b \left [C_{\ell_{\delta_a}} \:\delta_a + C_{\ell_p}\:\frac{b}{2V_T} \: p \right ]$$.
+$$\ell = \frac{1}{2}\rho V_T^2 S b \left [C_{\ell_{\delta_a}} \:\delta_a + C_{\ell_p}\:\frac{b}{2V_T} \: p \right ]$$
 
 This final equation is then taken as a baseline for the two next subsections to determine the airspeed scaling expression required for the PI and the FF controllers.
 
 #### Static torque (PI) scaling
 
-At a zero rates condition ($$p = 0$$), the damping term vanishes and a constant - instantaneous - torque can be generated using
+At a zero rates condition ($$p = 0$$), the damping term vanishes and a constant - instantaneous - torque can be generated using:
 
-$$\ell = \frac{1}{2}\rho V_T^2 S b \: C_{\ell_{\delta_a}} \:\delta_a = \bar{q} S b \: C_{\ell_{\delta_a}} \:\delta_a$$.
+$$\ell = \frac{1}{2}\rho V_T^2 S b \: C_{\ell_{\delta_a}} \:\delta_a = \bar{q} S b \: C_{\ell_{\delta_a}} \:\delta_a$$
 
 Extracting $$\delta_a$$ gives
 
-$$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}} \frac{1}{\rho V_T^2} \ell = \frac{bS}{C_{\ell_{\delta_a}}} \frac{1}{\bar{q}} \ell$$,
+$$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}} \frac{1}{\rho V_T^2} \ell = \frac{bS}{C_{\ell_{\delta_a}}} \frac{1}{\bar{q}} \ell$$
 
 where the first fraction is constant and the second one depends on the air density and the true airspeed squared.
 
@@ -196,7 +196,7 @@ where $$\rho_o$$ is the air density as sea level, 15°C.
 
 Squaring, rearranging and adding a 1/2 factor to both sides makes the dynamic pressure $$\bar{q}$$ expression appear
 
-$$\bar{q} = \frac{1}{2} \rho V_T^2 = \frac{1}{2} V_I^2 \rho_0$$.
+$$\bar{q} = \frac{1}{2} \rho V_T^2 = \frac{1}{2} V_I^2 \rho_0$$
 
 We can now easily see that the dynamic pressure is proportional to the IAS squared
 
@@ -204,17 +204,17 @@ $$\bar{q} \propto V_I^2$$.
 
 The scaler previously containing TAS and the air density can finally be written using IAS only
 
-$$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}\rho_0} \frac{1}{V_I^2} \ell$$.
+$$\delta_a = \frac{2bS}{C_{\ell_{\delta_a}}\rho_0} \frac{1}{V_I^2} \ell$$
 
 #### Rate (FF) scaling
 
 The main use of the feedforward of the rate controller is to compensate for the natural rate damping. Starting again from the baseline dimensional equation but this time, during a roll at constant speed, the torque produced by the ailerons should exactly compensate for the damping such as
 
-$$- C_{\ell_{\delta_a}} \:\delta_a = C_{\ell_p} \frac{b}{2 V_T} \: p$$.
+$$- C_{\ell_{\delta_a}} \:\delta_a = C_{\ell_p} \frac{b}{2 V_T} \: p$$
 
 Rearranging to extract the ideal ailerons deflection gives
 
-$$\delta_a = -\frac{b \: C_{\ell_p}}{2 \: C_{\ell_{\delta_a}}} \frac{1}{V_T} \: p$$.
+$$\delta_a = -\frac{b \: C_{\ell_p}}{2 \: C_{\ell_{\delta_a}}} \frac{1}{V_T} \: p$$
 
 The first fraction gives the value of the ideal feedforward and we can see that the scaling is linear to the TAS. Note that the negative sign is then absorbed by the roll damping derivative which is also negative.
 
@@ -222,13 +222,13 @@ The first fraction gives the value of the ideal feedforward and we can see that 
 
 The output of the rate PI controller has to be scaled with the indicated airspeed (IAS) squared and the output of the rate feedforward (FF) has to be scaled with the true airspeed (TAS)
 
-$$\delta_{a} = \frac{V_{I_0}^2}{V_I^2} \delta_{a_{PI}} + \frac{V_{T_0}}{V_T} \delta_{a_{FF}}$$,
+$$\delta_{a} = \frac{V_{I_0}^2}{V_I^2} \delta_{a_{PI}} + \frac{V_{T_0}}{V_T} \delta_{a_{FF}}$$
 
 where $$V_{I_0}$$ and $$V_{T_0}$$ are the IAS and TAS at trim conditions.
 
 Finally, since the actuator outputs are normalized and that the mixer and the servo blocks are assumed to be linear, we can rewrite this last equation as follows
 
-$$\dot{\mathbf{\omega}}*{sp}^b = \frac{V*{I_0}^2}{V_I^2} \dot{\mathbf{\omega}}*{sp*{PI}}^b + \frac{V_{T_0}}{V_T} \dot{\mathbf{\omega}}*{sp*{FF}}^b$$,
+$$\dot{\mathbf{\omega}}*{sp}^b = \frac{V*{I_0}^2}{V_I^2} \dot{\mathbf{\omega}}*{sp*{PI}}^b + \frac{V_{T_0}}{V_T} \dot{\mathbf{\omega}}*{sp*{FF}}^b$$
 
 and implement it directly in the rollrate, pitchrate and yawrate controllers.
 
