@@ -34,21 +34,22 @@ make px4_sitl jmavsim
 
 This will bring up the PX4 console below:
 
-![PX4 Console (jMAVSim)](../../assets/console_jmavsim.png)
+![PX4 Console (jMAVSim)](../../assets/toolchain/console_jmavsim.png)
 
 The drone can be flown by typing:
 ```sh
 pxh> commander takeoff
 ```
 
-![jMAVSim UI](../../assets/jmavsim_first_takeoff.png)
+![jMAVSim UI](../../assets/toolchain/jmavsim_first_takeoff.png)
 
 The drone can be landed by typing `commander land` and the whole simulation can be stopped by doing **CTRL+C** (or by entering `shutdown`).
 
-Flying the simulation with the ground control station is closer to the real operation of the vehicle. Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. 
+Flying the simulation with the ground control station is closer to the real operation of the vehicle.
+Click on a location in the map while the vehicle is flying (takeoff flight mode) and enable the slider. 
 This will reposition the vehicle.
 
-![QGroundControl GoTo](../../assets/qgc_goto.jpg)
+![QGroundControl GoTo](../../assets/toolchain/qgc_goto.jpg)
 
 > **Tip** PX4 can be used with a number of other [Simulators](../simulation/README.md), including [Gazebo Simulation](../simulation/gazebo.md) and [AirSim Simulation](../simulation/airsim.md). 
   These are also started with *make* - e.g.
