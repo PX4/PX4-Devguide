@@ -19,7 +19,7 @@ PSMP는 현재 스택을 추적하면서 샘플 값을 채취하기 위해 펌�
 
 예제 출력 화면은 아래에 있습니다(참고로 여기 화면이 대화식은 아닙니다):
 
-![FlameGraph 예제](../../assets/flamegraph-example.png)
+![FlameGraph 예제](../../assets/debug/flamegraph-example.png)
 
 FlameGraph에서, 수평 단계는 스택 프레임을, 프레임의 높이는 샘플 채취 횟수에 비례합니다. 여기서 채취한 함수 실행 종료 횟수는 실행 주기 시간 길이에 비례합니다.
 
