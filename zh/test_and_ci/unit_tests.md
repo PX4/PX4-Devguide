@@ -24,7 +24,7 @@ PX4提供了以下几种编写单元测试的方法：
 
 ## 写一个GTest功能测试
 
-当测试或测试的组件依赖参数、uORB 消息、或更高级的GTest功能的时候，应当使用GTest功能测试。 此外，功能测试可以包含STL数据结构的本地用法（要小心平台之间的差异，如 macOS 和 Linux)
+当测试或测试的组件依赖参数、uORB 消息、或更高级的GTest功能的时候，应当使用GTest功能测试。 Additionally, functional tests can contain local usage of STL data structures (although be careful of platform differences between e.g. macOS and Linux).
 
 创建一个新的功能测试步骤如下：
 
@@ -35,7 +35,7 @@ PX4提供了以下几种编写单元测试的方法：
 5. 添加你想要的测试功能。 这包括了，添加特定的头文件、新测试（每个测试都应该使用不同的命名），并设置相关逻辑，运行测试代码并验证是否符合预期。
 6. 如果需要添加新的依赖库，只要在如上所说的CMakeLists文件中LINKLIBS后面加入库的名字。
 
-可以通用`make tests`命令来运行所有测试，然后在 `build/px4_sitl_test/functional-MyNewFunctional`目录中找到二进行制文件。 也可以直接通过调试器中运行。 可以直接在调试器中运行，但是当每个可执行文件只有一个测试的时候请谨慎使用[--gtest_filter=<regex>](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests)参数，因为uORB和参数库的某些部分清理的时候不太完美，如果多次设置，可能会导致不确定的行为。
+可以通用`make tests`命令来运行所有测试，然后在 `build/px4_sitl_test/functional-MyNewFunctional`目录中找到二进行制文件。 也可以直接通过调试器中运行。 It can be run directly in a debugger, however be careful to only run one test per executable invocation using the [--gtest_filter=\<regex\>](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests) arguments, as some parts of the uORB and parameter libraries don't clean themselves up perfectly and may result in undefined behavior if set up multiple times.
 
 ## 写一个软件在环（SITL）单元测试
 
