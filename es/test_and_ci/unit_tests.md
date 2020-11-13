@@ -24,7 +24,7 @@ Tests can be run via `make tests`, after which you will find the binary in `buil
 
 ## Writing a GTest Functional Test
 
-GTest functional tests should be used when the test or the components being tested depend on parameters, uORB messages and/or advanced GTest functionality. Additionally, functional tests can contain local usage of STL data structures (although be careful of platform differences between eg. macOS and Linux).
+GTest functional tests should be used when the test or the components being tested depend on parameters, uORB messages and/or advanced GTest functionality. Additionally, functional tests can contain local usage of STL data structures (although be careful of platform differences between e.g. macOS and Linux).
 
 The steps to creating new functional tests are as follows:
 
@@ -35,7 +35,7 @@ The steps to creating new functional tests are as follows:
 5. Add the desired test functionality. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the test setup, running the code to be tested and verifying that it behaves as expected.
 6. If additional library dependencies are required, they should also be added to the CMakeLists after the `LINKLIBS` as shown above.
 
-Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/functional-MyNewFunctional`. It can be run directly in a debugger, however be careful to only run one test per executable invocation using the [--gtest_filter=<regex>](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests) arguments, as some parts of the uORB and parameter libraries don't clean themselves up perfectly and may result in undefined behavior if set up multiple times.
+Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/functional-MyNewFunctional`. It can be run directly in a debugger, however be careful to only run one test per executable invocation using the [--gtest_filter=\<regex\>](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests) arguments, as some parts of the uORB and parameter libraries don't clean themselves up perfectly and may result in undefined behavior if set up multiple times.
 
 ## Writing a SITL Unit Test
 
