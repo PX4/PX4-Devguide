@@ -1,8 +1,8 @@
 # Unit Tests
 
- Developers are encouraged to write unit tests during all parts of development, including adding new features, fixing bugs, and refactoring.
+Developers are encouraged to write unit tests during all parts of development, including adding new features, fixing bugs, and refactoring.
 
- PX4 provides several methods for writing unit tests:
+PX4 provides several methods for writing unit tests:
 
 1. Unit tests with [Google Test](https://github.com/google/googletest/blob/master/googletest/docs/primer.md) ("GTest") - tests that have minimal, internal-only dependencies
 1. Functional tests with GTest - tests that depend on parameters and uORB messages
@@ -20,26 +20,34 @@ The steps to create new unit tests are as follows:
 1. Add the desired test functionality. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the setup, running the code to be tested and verifying that it behaves as expected.
 1. If additional library dependencies are required, they should also be added to the CMakeLists after the `LINKLIBS` as shown above.
 
-Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/unit-MyNewUnit`. It can be run directly in a debugger.
+Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/unit-MyNewUnit`.
+It can be run directly in a debugger.
 
 ## Writing a GTest Functional Test
 
-GTest functional tests should be used when the test or the components being tested depend on parameters, uORB messages and/or advanced GTest functionality. Additionally, functional tests can contain local usage of STL data structures (although be careful of platform differences between eg. macOS and Linux).
+GTest functional tests should be used when the test or the components being tested depend on parameters, uORB messages and/or advanced GTest functionality.
+Additionally, functional tests can contain local usage of STL data structures (although be careful of platform differences between e.g. macOS and Linux).
 
 The steps to creating new functional tests are as follows:
 
-1. In general (and similar to unit tests), functional tests should be arranged in three sections: setup, run, check results. Each test should test one very specific behavior or setup case, so if a test fails it is obvious what is wrong. Please try to follow these standards when possible.
+1. In general (and similar to unit tests), functional tests should be arranged in three sections: setup, run, check results.
+   Each test should test one very specific behavior or setup case, so if a test fails it is obvious what is wrong.
+   Please try to follow these standards when possible.
 1. Copy and rename the example functional test [ParameterTest](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/parameters/ParameterTest.cpp) to the directory the code to be tested is in.
 1. Rename the class from ParameterTest to something better representing the code being testing
-1. Add the new file to the directory's `CMakeLists.txt`. It should look something like `px4_add_functional_gtest(SRC MyNewFunctionalTest.cpp LINKLIBS <library_to_be_tested>)`
-1. Add the desired test functionality. This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the test setup, running the code to be tested and verifying that it behaves as expected.
+1. Add the new file to the directory's `CMakeLists.txt`.
+   It should look something like `px4_add_functional_gtest(SRC MyNewFunctionalTest.cpp LINKLIBS <library_to_be_tested>)`
+1. Add the desired test functionality.
+   This will mean including the header files required for your specific tests, adding new tests (each with an individual name) and putting the logic for the test setup, running the code to be tested and verifying that it behaves as expected.
 1. If additional library dependencies are required, they should also be added to the CMakeLists after the `LINKLIBS` as shown above.
 
-Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/functional-MyNewFunctional`. It can be run directly in a debugger, however be careful to only run one test per executable invocation using the [--gtest_filter=<regex>](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests) arguments, as some parts of the uORB and parameter libraries don't clean themselves up perfectly and may result in undefined behavior if set up multiple times.
+Tests can be run via `make tests`, after which you will find the binary in `build/px4_sitl_test/functional-MyNewFunctional`.
+It can be run directly in a debugger, however be careful to only run one test per executable invocation using the [--gtest_filter=\<regex\>](https://github.com/google/googletest/blob/master/googletest/docs/advanced.md#running-a-subset-of-the-tests) arguments, as some parts of the uORB and parameter libraries don't clean themselves up perfectly and may result in undefined behavior if set up multiple times.
 
 ## Writing a SITL Unit Test
 
-SITL unit tests should be used when you specifically need all of the flight controller components - drivers, time, and more. These tests are slower to run (1s+ for each new module), and harder to debug, so in general they should only be used when necessary.
+SITL unit tests should be used when you specifically need all of the flight controller components - drivers, time, and more.
+These tests are slower to run (1s+ for each new module), and harder to debug, so in general they should only be used when necessary.
 
 The steps to create new SITL unit tests are as follows:
 
