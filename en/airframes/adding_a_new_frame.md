@@ -56,7 +56,7 @@ The next section specifies vehicle-specific parameters, including [tuning gains]
 ```bash
 sh /etc/init.d/rc.fw_defaults
 
-if [ $AUTOCNF == yes ]
+if [ $AUTOCNF = yes ]
 then
 	param set BAT_N_CELLS 2
 	param set FW_AIRSPD_MAX 15
