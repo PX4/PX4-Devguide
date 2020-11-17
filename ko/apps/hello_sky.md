@@ -12,7 +12,7 @@
 * 사용할 타겟용 [PX4 개발 툴체인](../setup/dev_env.md).
 * Github에서 [PX4 소스 코드 다운로드](../setup/building_px4.md#get_px4_code)
 
-The source code [PX4-Autopilot/src/examples/px4_simple_app](https://github.com/PX4/PX4-Autopilot/tree/master/src/examples/px4_simple_app) directory contains a completed version of this tutorial that you can review if you get stuck.
+본 튜토리얼 진행 중 어려움에 막혔을 때 참고할 수 있는 완성된 버전은 [PX4-Autopilot/src/examples/px4_simple_app](https://github.com/PX4/PX4-Autopilot/tree/master/src/examples/px4_simple_app) 소스 코드 디렉터리에 있습니다.
 
 * **px4_simple_app** 디렉터리의 이름을 변경(또는 삭제)하십시오. 
 
@@ -128,7 +128,7 @@ The source code [PX4-Autopilot/src/examples/px4_simple_app](https://github.com/P
     * `MODULE` 블록에서는 모듈의 펌웨어 식별 이름입니다(작명 원칙에 따르면 모듈 이름은 `src` 뒤에 상위 디렉터리 이름으로 붙습니다).
     * `MAIN` 블록에는 NuttX 명령을 등록하는 모듈 항목을 나열하므로, PX4 셸 또는 SITL 콘솔에서 호출할 수 있습니다.
     
-    > **Tip** The `px4_add_module()` format is documented in [PX4-Autopilot/cmake/px4_add_module.cmake](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake).
+    > **Tip** `px4_add_module()` 의 형식은 [PX4-Autopilot/cmake/px4_add_module.cmake](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/cmake/px4_add_module.cmake)에 들어 있습니다.
     
     <span></span>
     
@@ -138,10 +138,10 @@ The source code [PX4-Autopilot/src/examples/px4_simple_app](https://github.com/P
 
 이제 프로그램 작성이 끝났습니다. 이를 실행하려면 우선 이 프로그램을 PX4의 일부로 빌드해야합니다. 대상 보드에 넣을 적당한 보드레벨 *cmake* 파일에 빌드와 펌웨어로 들어갈 프로그램을 추가했습니다:
 
-* PX4 SITL (Simulator): [PX4-Autopilot/boards/px4/sitl/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/sitl/default.cmake)
+* PX4 SITL (시뮬레이터): [PX4-Autopilot/boards/px4/sitl/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/sitl/default.cmake)
 * Pixhawk v1/2: [PX4-Autopilot/boards/px4/fmu-v2/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v2/default.cmake)
 * Pixracer (px4/fmu-v4): [PX4-Autopilot/boards/px4/fmu-v4/default.cmake](https://github.com/PX4/PX4-Autopilot/blob/master/boards/px4/fmu-v4/default.cmake)
-* *cmake* files for other boards can be found in [PX4-Autopilot/boards/](https://github.com/PX4/PX4-Autopilot/tree/master/boards)
+* 다른 보드용 *cmake* 파일은 [PX4-Autopilot/boards/](https://github.com/PX4/PX4-Autopilot/tree/master/boards)에서 확인 가능
 
 프로그램을 펌웨어에 넣어 컴파일하려면 *cmake* 파일내에 프로그램 포함 내용 한 줄을 새로 작성하십시오:
 
@@ -243,7 +243,7 @@ INFO  [px4_simple_app] Hello Sky!
 
 > **Tip** 이 시점에서 PX4 하드웨어 추상화의 이점이 나타납니다! 보드 또는 센서를 업데이트했을 때 센서 드라이버와 직접 통신하거나 프로그램을 업데이트할 필요가 없습니다.
 
-프로그램간 주고 받는 개별 메세지 채널을 [토픽](../middleware/uorb.md)이라고 합니다. For this tutorial, we are interested in the [sensor_combined](https://github.com/PX4/PX4-Autopilot/blob/master/msg/sensor_combined.msg) topic, which holds the synchronized sensor data of the complete system.
+프로그램간 주고 받는 개별 메세지 채널을 [토픽](../middleware/uorb.md)이라고 합니다. 이 자습서에서는 온전한 시스템에서 센서 데이터를 동기화 유지하는 [sensor_combined](https://github.com/PX4/PX4-Autopilot/blob/master/msg/sensor_combined.msg) 토픽을 살펴보겠습니다.
 
 토픽을 정기적으로 수신하는 방법은 간단합니다:
 
@@ -337,7 +337,7 @@ orb_publish(ORB_ID(vehicle_attitude), att_pub_fd, &att);
 
 ## 전체 예제 코드
 
-The [complete example code](https://github.com/PX4/PX4-Autopilot/blob/master/src/examples/px4_simple_app/px4_simple_app.c) is now:
+[전체 예제 코드](https://github.com/PX4/PX4-Autopilot/blob/master/src/examples/px4_simple_app/px4_simple_app.c)는 다음과 같습니다:
 
 ```c
 /****************************************************************************
@@ -484,7 +484,7 @@ px4_simple_app
 
 ## 마무리
 
-본 자습서에서 PX4 오토파일럿 프로그램 개발에 필요한 모든 내용을 다루었습니다. Keep in mind that the full list of uORB messages/topics is [available here](https://github.com/PX4/PX4-Autopilot/tree/master/msg/) and that the headers are well documented and serve as reference.
+본 자습서에서 PX4 오토파일럿 프로그램 개발에 필요한 모든 내용을 다루었습니다. 전체 uORB 메시지/토픽의 리스트는 [여기](https://github.com/PX4/PX4-Autopilot/tree/master/msg/)에 있고, 헤더에 문서화가 잘되어 있으며, 참고삼을 수 있음을 잊지 마시기 바랍니다.
 
 보다 상세한 정보와 문제 해결/흔히 빠지는 함정의 내용은 여기에서 찾을 수 있습니다: [uORB](../middleware/uorb.md).
 
