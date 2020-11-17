@@ -2,7 +2,7 @@
 
 PX4는 중요한 시스템 상태와 문제를 음성으로 알리는 여러가지 [표준 알림음](https://docs.px4.io/master/en/getting_started/tunes.html)을 지정해두었습니다(예시: 시스템 시작, 이륙 준비 완료, 배터리 경고 등)
 
-Tunes are specified using strings (in [ANSI Music notation](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt)) and played by code using the [tunes](https://github.com/PX4/PX4-Autopilot/tree/master/src/lib/tunes) library. The tunes library also contains the list of default system tunes - see [lib/tunes/tune_definition.desc](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/tunes/tune_definition.desc).
+알림음은 문자열([안시 악보 표기](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt))로 정의하며 [튠즈](https://github.com/PX4/PX4-Autopilot/tree/master/src/lib/tunes) 라이브러리를 통해 코드로 재생합니다. 튠즈 라이브러리에는 기본 시스템 음 목록이 들어있습니다. 해당 내용은 [lib/tunes/tune_definition.desc](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/tunes/tune_definition.desc) 파일을 참고하십시오.
 
 PX4에는 기본음 또는 사용자 지정음을 재생(시험)할 때 활용할 모듈이 있습니다.
 
@@ -13,7 +13,7 @@ PX4에는 기본음 또는 사용자 지정음을 재생(시험)할 때 활용�
 
 음 문자열은 [안시 악보 표기 방식](http://artscene.textfiles.com/ansimusic/information/ansimtech.txt)으로 정의합니다.
 
-> **Tip** More information about the format can be found in [QBasic PLAY statement](https://en.wikibooks.org/wiki/QBasic/Appendix#PLAY) (Wikibooks) and has been reproduced in [tune_definition.desc](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/tunes/tune_definition.desc).
+> **Tip** 형식에 대한 자세한 정보는 [QBasic PLAY 구문](https://en.wikibooks.org/wiki/QBasic/Appendix#PLAY)(위키북스)에서 찾아볼 수 있으며, [tune_definition.desc](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/tunes/tune_definition.desc) 파일로 확인할 수 있습니다.
 
 새 알림음을 만드는 가장 쉬운 방법은 뮤직 편집기를 활용하는 방법입니다. 이 방법으로 컴퓨터에서 음악을 편집하고 재생해볼 수 있으며, PX4에서 재생할 수 있는 형식으로 내보낼 수 있습니다.
 
@@ -58,7 +58,7 @@ tune_control play -m "150L1O3DL16CL32<B>C<AEL16A"
 
 ## 기존 알림음 바꾸기
 
-Tunes are defined within [tune_definition.desc](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/tunes/tune_definition.desc).
+알림음은 [tune_definition.desc](https://github.com/PX4/PX4-Autopilot/blob/master/src/lib/tunes/tune_definition.desc)에 지정되어 있습니다.
 
 기존 알림음을 바꾸려면, 파일을 별도로 복사한 후, `PX4_DEFINE_TUNE` 에 정의한 알림음 문자열을 새로 바꾸시면 됩니다.
 
