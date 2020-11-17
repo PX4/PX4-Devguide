@@ -2,7 +2,7 @@
 
 > **Warning** **작성중입니다**. 이 주제에서는 [외부 위치 추정(ROS)](../ros/external_position_estimation.md)과 약간 겹칩니다.
 
-VICON이나 Optitrack과 같은 실내 움직임 촬영 시스템은 기체 상태 추정을 위한 위치와 자세 정보를 제공하거나 분석을 위한 참값으로 사용될 수 있습니다. The motion capture data can be used to update PX4's local position estimate relative to the local origin. Heading (yaw) from the motion capture system can also be optionally integrated by the attitude estimator.
+VICON이나 Optitrack과 같은 실내 움직임 촬영 시스템은 기체 상태 추정을 위한 위치와 자세 정보를 제공하거나 분석을 위한 참값으로 사용될 수 있습니다. 움직임 촬영 데이터는 지역 원점을 기준으로 PX4의 지역 위치 추정치를 업데이트하는 데 사용될 수 있습니다. 선택에 따라 움직임 촬영 시스템의 헤딩(Yaw)값도 자세 추정기에 통합 될 수 있습니다.
 
 Pose (position and orientation) data from the motion capture system is sent to the autopilot over MAVLink, using the [ATT_POS_MOCAP](https://mavlink.io/en/messages/common.html#ATT_POS_MOCAP) message. See the section below on coordinate frames for data representation conventions. The [mavros](../ros/mavros_installation.md) ROS-Mavlink interface has a default plugin to send this message. They can also be sent using pure C/C++ code and direct use of the MAVLink library.
 
