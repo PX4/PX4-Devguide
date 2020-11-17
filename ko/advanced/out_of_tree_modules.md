@@ -11,7 +11,7 @@
 외부 모듈을 만들려면:
 
 - 외부 모듈을 모아둘 *외부 디렉터리*를 만드십시오: 
-  - This can be located anywhere outside of the **PX4-Autopilot** tree.
+  - 이것은 **PX4-Autopilot** 트리 외부 어디에든 둘 수 있습니다.
   - It must have the same structure as **PX4-Autopilot** (i.e. it must contain a directory called **src**).
   - 이후 우리는 이 디렉터리를 `EXTERNAL_MODULES_LOCATION`이라고 하겠습니다.
 - 기존 모듈을 (예: **examples/px4_simple_app**) 외부 디렉터리로 복사하거나 새 모듈을 바로 만드십시오.
