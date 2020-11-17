@@ -46,9 +46,9 @@ MAVLink 짐벌을 사용하기 위해서는, 먼저 매개변수 [MNT_MODE_IN](.
 
 > **주의** 믹서의 작동 및 믹서 파일의 형식에 대한 설명은 [혼합과 구동기](../concept/mixing.md)를 보시오.
 
-The outputs can be customized by [creating a mixer file](../concept/system_startup.md#starting-a-custom-mixer) on the SD card named `etc/mixers/mount.aux.mix`.
+출력은 [믹서 파일 만들기](../concept/system_startup.md#starting-a-custom-mixer)로 원하는 대로 변경이 가능하며, SD 카드의 `etc/mixers/mount.aux.mix`에 있습니다.
 
-A basic basic mixer configuration for a mount is shown below.
+설치를 위한 기본 믹서 구성은 아래과 같습니다.
 
     # roll
     M: 1
@@ -69,29 +69,29 @@ A basic basic mixer configuration for a mount is shown below.
 
 ## SITL
 
-The Typhoon H480 model comes with a preconfigured simulated gimbal.
+Typhoon H480 모델은 미리 설정모의된 짐벌과 함께 제공됩니다.
 
-To run it, use:
-
-    make px4_sitl gazebo_typhoon_h480
-    
-
-To just test the mount driver on other models or simulators, make sure the driver runs (using `vmount start`), then configure its parameters.
-
-## Testing
-
-The driver provides a simple test command - it needs to be stopped first with `vmount stop`. The following describes testing in SITL, but the commands also work on a real device.
-
-Start the simulation with (no parameter needs to be changed for that):
+실행하려면 아래 명령어를 사용하십시오:
 
     make px4_sitl gazebo_typhoon_h480
     
 
-Make sure it's armed, eg. with `commander takeoff`, then use the following command to control the gimbal (for example):
+다른 모델이나 시뮬레이터에 설치된 드라이버를 시험하려면, 설치된 드라이버가 `vmount start`를 사용해 작동하는지를 확인하고 난 후, 매개 변수들을 구성하십시오.
+
+## 시험하기
+
+이 드라이버는 간단한 시험 명령어를 제공합니다. 먼저 `vmount stop`으로 동작을 멈추어야합니다. 아래는 SITL에서의 시험 방법을 설명하지만, 이 명령어가 실제 장비에서도 작동합니다.
+
+다음 명령으로 시작하십시오(매개 변수값을 바꿀 필요는 없습니다):
+
+    make px4_sitl gazebo_typhoon_h480
+    
+
+시동 상태인지 확인하십시오, 예를 들면, `commander takeoff`를 입력하고 짐벌을 제어하기 위해 다음 명령어를 사용합니다:
 
     vmount test yaw 30
     
 
-Note that the simulated gimbal stabilizes itself, so if you send MAVLink commands, set the `stabilize` flags to `false`.
+참고로 모의시험 진행시 짐벌은 스스로 안정화되므로, MAVLink 명령을 보낼 때는, `stabilize` 플래그 값을 `false`로 설정하십시오.
 
-![Gazebo Gimbal Simulation](../../assets/simulation/gazebo/gimbal-simulation.png)
+![Gazebo 짐벌 모의시험](../../assets/simulation/gazebo/gimbal-simulation.png)
