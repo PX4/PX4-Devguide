@@ -20,7 +20,7 @@ The source code [PX4-Autopilot/src/examples/px4_simple_app](https://github.com/P
 
 여기에서는 `Hello Sky!` 만을 출력하는 *간단한 프로그램*을 만들어보겠습니다. 하나의 *C* 파일과 하나의 *cmake* 정의(프로그램 빌드 방법을 툴체인에게 지시)로 구성됩니다.
 
-1. Create a new directory **PX4-Autopilot/src/examples/px4_simple_app**.
+1. **PX4-Autopilot/src/examples/px4_simple_app** 디렉터리를 새로 만드십시오.
 2. **px4_simple_app.c** 이름의 C 파일을 새로 만드십시오:
 
 * 기본 헤더를 페이지 최상단에 복사하십시오. 이 BSD 3-Clauses 라이선스 주석은 모든 기여 파일에 있어야 합니다.
