@@ -17,17 +17,17 @@ PX4에는 제각기 다른 입출력 방법을 갖는 일반적인 마운트/짐
 
 ## MAVLink 짐벌 (MNT_MODE_OUT=MAVLINK)
 
-To enable a MAVLink gimbal, first set parameter [MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN) to `MAVLINK_DO_MOUNT` and [MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT) to `MAVLINK`.
+MAVLink 짐벌을 사용하기 위해서는, 먼저 매개변수 [MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN) 을 `MAVLINK_DO_MOUNT`으로, [MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT)을 `MAVLINK`으로 설정하십시오.
 
-The gimbal can be connected to *any free serial port* using the instructions in [MAVLink Peripherals (GCS/OSD/Companion)(https://docs.px4.io/master/en/peripherals/mavlink_peripherals.html#mavlink-peripherals-gcsosdcompanion) (also see [Serial Port Configuration](https://docs.px4.io/master/en/peripherals/serial_configuration.html#serial-port-configuration)).
+짐벌은 [MAVLink Peripherals (GCS/OSD/Companion)(https://docs.px4.io/master/en/peripherals/mavlink_peripherals.html#mavlink-peripherals-gcsosdcompanion) 의 설명에 따라 *모든 사용가능한 직렬 포트*에 연결될 수 있습니다. (또한 [직렬 포트 설정](https://docs.px4.io/master/en/peripherals/serial_configuration.html#serial-port-configuration)을 보세요.
 
-A common configuration is to have a serial connection to the gimbal from the Flight Controller TELEM2 port (assuming TELEM2 is free). For this configuration you would set:
+일반적인 구성은 비행 제어기 TELEM2 포트에서 짐벌에 직렬 연결하는 것입니다.(TELEM2가 사용가능한 경우) 이 구성의 경우 다음과 같이 설정합니다:
 
-- [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) to **TELEM2** (if `MAV_1_CONFIG` is already used for a companion computer (say), use `MAV_2_CONFIG`).
-- [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) to **NORMAL**
-- [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) to manufacturer recommended baude rate.
+- [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) 을 **TELEM2**으로 설정. (만약 `MAV_1_CONFIG` 가 이미 보조컴퓨터에서 사용중인 경우, `MAV_2_CONFIG`을 사용).
+- [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) 을 **NORMAL**로 설정.
+- [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) 을 제조사 권장 보드 레이트(Baud rate)로 설정.
 
-This will enable the user to command the gimbal using [MAV_CMD_DO_MOUNT_CONTROL](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONTROL) and [MAV_CMD_DO_MOUNT_CONFIGURE](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONFIGURE).
+이렇게 하면 사용자가 [MAV_CMD_DO_MOUNT_CONTROL](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONTROL) 과 [MAV_CMD_DO_MOUNT_CONFIGURE](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONFIGURE)를 이용해 짐벌에 명령할 수 있습니다.
 
 ## Gimbal on Flight Controller (MNT_MODE_OUT=AUX)
 
