@@ -9,13 +9,13 @@ PX4에는 제각기 다른 입출력 방법을 갖는 일반적인 마운트/짐
 
 ## 매개변수
 
-The [Mount](../advanced/parameter_reference.md#mount) parameters are used to setup the mount driver.
+[매개변수들](../advanced/parameter_reference.md#mount)은 설치 드라이버를 설정하는데 사용됩니다.
 
-The most important ones are the input ([MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN)) and the output ([MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT)) mode. By default, the input is disabled and the driver does not run. After selecting the input mode, reboot the vehicle so that the mount driver starts.
+가장 중요한 부분은 입력([MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN)과 출력([MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT)) 모드입니다. 초기 값으로 입력은 활성화되어 있지 않고 드라이버도 작동하지 않습니다. 입력 모드를 선택하면, 재부팅이 되어 설치된 드라이버가 시작됩니다.
 
-If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from MAVLink to RC, a large stick motion is required.
+입력 모드가 `AUTO`로 설정되어 있으면, 가장 최근의 입력 수단을 기반으로 자동으로 모드가 바뀔 것입니다. MAVLink에서 RC로 전환하기 위해 스틱의 큰 움직임이 필요합니다.
 
-## MAVLink Gimbal (MNT_MODE_OUT=MAVLINK)
+## MAVLink 짐벌 (MNT_MODE_OUT=MAVLINK)
 
 To enable a MAVLink gimbal, first set parameter [MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN) to `MAVLINK_DO_MOUNT` and [MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT) to `MAVLINK`.
 
