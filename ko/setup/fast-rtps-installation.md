@@ -10,9 +10,12 @@ PX4에서 활용하는 Fast RTPS는 RTPS 인터페이스에서 PX4 uORB 토픽�
 
 > **Note** 이 주제의 내용은 [*eProsima Fast RTPS* 문서](http://eprosima-fast-rtps.readthedocs.io/en/latest/)의 공식 내용을 끌어왔습니다. 자세한 정보는 다음을 살펴보십시오:
 
-* [요구사항](http://eprosima-fast-rtps.readthedocs.io/en/latest/requirements.html#requirements)
-* [소스로 설치](http://eprosima-fast-rtps.readthedocs.io/en/latest/sources.html#installation-from-sources)
-* [바이너리로 설치](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)
+* Installation from Sources 
+    * [Linux](https://fast-dds.docs.eprosima.com/en/latest/installation/sources/sources_linux.html)
+    * [Windows](https://fast-dds.docs.eprosima.com/en/latest/installation/sources/sources_windows.html)
+* Installation from Binaries 
+    * [Linux](https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_linux.html)
+    * [Windows](https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_windows.html)
 
 ## 요구사항
 
@@ -85,7 +88,7 @@ $ sudo make install
 
 [업체 웹사이트](http://www.eprosima.com/)에서 *eProsima Fast RTPS*의 최신 바이너리 릴리즈를 얼마든지 다운로드할 수 있습니다.
 
-이 과정을 진행하는 방법을 언급한 문서는 [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries) (*eProsima Fast RTPS* 공식 문서)에 있습니다.
+Documentation on how to do this can be found here: [Installation from Binaries on Linux](https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_linux.html) and [Installation from Binaries on Windows](https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_windows.html) (*eProsima Fast RTPS* official documentation)
 
 ### Windows 7 32-bit와 64-bit
 
