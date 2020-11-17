@@ -2,10 +2,10 @@
 
 기체에 카메라(또는 다른 물건)를 달아 장착하는 짐벌을 제어하려면, 어떻게 제어할 지, PX4가 어떻게 명령을 내릴지 설정해야합니다. 여기서는 이 설정 방법을 설명합니다.
 
-PX4 contains a generic mount/gimbal control driver with different input and output methods.
+PX4에는 제각기 다른 입출력 방법을 갖는 일반적인 마운트/짐벌 컨트롤 드라이버가 있습니다.
 
-- The input defines how you control the gimbal: via RC or via MAVLink commands (for example in missions or surveys).
-- The output defines how the gimbal is connected: either via MAVLink commands or using the Flight Controller AUX PWM port. Any input method can be selected to drive any output, and both input and output have to be configured via parameters.
+- 입력은 (예를 들어, 임무 수행이나 측량할 경우) RC나 MAVLink 명령어를 통해 어떻게 짐벌을 제어할지 정의합니다.
+- 출력은 MAVLink 명령 또는 비행 컨트롤러 AUX PWM 포트를 사용해 짐벌이 연결되는 방식을 정의합니다. 어떠한 입력 방법도 모든 출력을 구동 하는데 선택될 수 있으며, 입력 및 출력 모두 매개 변수를 통해 구성해야 합니다.
 
 ## 매개변수
 
