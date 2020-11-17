@@ -10,26 +10,26 @@ S.Bus에 비해 원격 조종 타입은 수신기를 직렬 포트에 연결하�
 
 <a id="start_driver"></a>
 
-## Starting the Driver
+## 드라이버 시작
 
-To start the RC driver on a particular UART (e.g. in this case `/dev/ttyS2`):
+원격 조종 드라이버를 각 UART 에서 시작하려면 (예: `/dev/ttS2`):
 
     rc_input start -d /dev/ttyS2
     
 
-For other driver usage information see: [rc_input](../middleware/modules_driver.md#rcinput).
+다른 드라이버 사용법을 보려면 [rc_input](../middleware/modules_driver.md#rcinput)을 참고하십시오.
 
 <a id="signal_inverter_circuit"></a>
 
-## Signal Inverter Circuit (S.Bus only)
+## 신호 반전 회로(S.Bus 전용)
 
-S.Bus is an *inverted* UART communication signal.
+S.Bus에서는 *반전* UART 통신 신호를 주고 받습니다.
 
-While some serial ports/flight controllers can read an inverted UART signal, most require a signal inverter circuit between the receiver and serial port to un-invert the signal.
+일부 직렬 포트/비행체 제어 장치에서는 반전 UART 신호를 읽을 수 있으나 대부분 반전 신호를 복원하는 신호 반전 회로가 필요합니다.
 
 > **Tip** 이 회로는 직렬 포트 또는 USB-to-TTY 직렬 변환기에서 S.Bus 원격 제어 신호를 읽는데 필요합니다.
 
-This section shows how to create an appropriate circuit.
+이 장에서는 적절한 회로를 만드는 방법을 알아봅니다.
 
 ### 필요한 소자
 
@@ -41,7 +41,7 @@ This section shows how to create an appropriate circuit.
 
 ### 회로 구성도/연결
 
-Connect the components as described below (and shown in the circuit diagram):
+아래에 설명(그리고 회로 구성도)하는 바와 같이 회로 소자를 연결하십시오:
 
 * S.Bus 신호선 &rarr; 1K 저항 &rarr; NPN 트랜지스터 베이스
 * NPN 트랜지스터 에밋 &rarr; GND
@@ -49,8 +49,8 @@ Connect the components as described below (and shown in the circuit diagram):
 * 5.0VCC &rarr; S.Bus VCC
 * GND &rarr; S.Bus GND
 
-![Signal inverter circuit diagram](../../assets/sbus/driver_sbus_signal_inverter_circuit_diagram.png)
+![신호 인버터 회로도](../../assets/sbus/driver_sbus_signal_inverter_circuit_diagram.png)
 
-The image below shows the connections on a breadboard.
+아래 이미지에서는 빵판 연결 모습을 보여줍니다.
 
-![Signal inverter breadboard](../../assets/sbus/driver_sbus_signal_inverter_breadboard.png)
+![신호 반전 빵판](../../assets/sbus/driver_sbus_signal_inverter_breadboard.png)
