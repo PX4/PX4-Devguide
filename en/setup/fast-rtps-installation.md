@@ -11,9 +11,12 @@ For more information see: [RTPS/ROS2 Interface: PX4-FastRTPS Bridge](../middlewa
 
 <span></span>
 > **Note** This topic is derived from the official [*eProsima Fast RTPS* documentation](http://eprosima-fast-rtps.readthedocs.io/en/latest/). For more information see:
-  - [Requirements](http://eprosima-fast-rtps.readthedocs.io/en/latest/requirements.html#requirements)
-  - [Installation from Sources](http://eprosima-fast-rtps.readthedocs.io/en/latest/sources.html#installation-from-sources)
-  - [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries)
+  - Installation from Sources
+    - [Linux](https://fast-dds.docs.eprosima.com/en/latest/installation/sources/sources_linux.html)
+    - [Windows](https://fast-dds.docs.eprosima.com/en/latest/installation/sources/sources_windows.html)
+  - Installation from Binaries
+    - [Linux](https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_linux.html)
+    - [Windows](https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_windows.html)
 
 
 ## Requirements
@@ -93,7 +96,7 @@ git clone --recursive https://github.com/eProsima/Fast-RTPS-Gen.git -b v1.0.4 ~/
 
 You can always download the latest binary release of *eProsima Fast RTPS* from the [company website](http://www.eprosima.com/).
 
-Documentation on how to do this can be found here: [Installation from Binaries](http://eprosima-fast-rtps.readthedocs.io/en/latest/binaries.html#installation-from-binaries) (*eProsima Fast RTPS* official documentation)
+Documentation on how to do this can be found here: [Installation from Binaries on Linux](https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_linux.html) and [Installation from Binaries on Windows](https://fast-dds.docs.eprosima.com/en/latest/installation/binaries/binaries_windows.html) (*eProsima Fast RTPS* official documentation)
 
 
 ### Windows 7 32-bit and 64-bit
