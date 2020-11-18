@@ -313,7 +313,7 @@ After saving, the reversed direction will be regarded as the normal one. So to r
 
 ## gps
 
-Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
+소스 코드: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
 
 ### 설명
 
@@ -327,20 +327,20 @@ There is a thread for each device polling for data. The GPS protocol classes are
 
 ### 예제
 
-For testing it can be useful to fake a GPS signal (it will signal the system that it has a valid position):
+시험을 진행할 때 GPS 신호를 속이는 목적으로 쓸만합니다(유효한 위치 정보를 가지고 있다고 시스템에 시그널을 보냄):
 
     gps stop
     gps start -f
     
 
-Starting 2 GPS devices (the main GPS on /dev/ttyS3 and the secondary on /dev/ttyS4):
+GPS 장치 2개를 시작하려면(주 GPS 장치는 /dev/ttyS3에, 보조 GPS 장치는 /dev/ttyS4):
 
     gps start -d /dev/ttyS3 -e /dev/ttyS4
     
 
-Initiate warm restart of GPS device
+전원 인가 상태에서 GPS 장치를 다시 시작하려면
 
-    gps reset warm
+    ina226
     
 
 <a id="gps_usage"></a>
