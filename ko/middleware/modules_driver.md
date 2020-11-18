@@ -3,15 +3,15 @@
 하위 분류:
 
 - [관성 센서](modules_driver_imu.md)
-- [Distance Sensor](modules_driver_distance_sensor.md)
-- [Airspeed Sensor](modules_driver_airspeed_sensor.md)
-- [Baro](modules_driver_baro.md)
-- [Optical Flow](modules_driver_optical_flow.md)
+- [거리 센서](modules_driver_distance_sensor.md)
+- [항속 센서](modules_driver_airspeed_sensor.md)
+- [기압 센서](modules_driver_baro.md)
+- [광류 센서](modules_driver_optical_flow.md)
 - [Magnetometer](modules_driver_magnetometer.md)
 
 ## adc
 
-Source: [drivers/adc/board_adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc/board_adc)
+소스 코드: [drivers/adc/board_adc](https://github.com/PX4/Firmware/tree/master/src/drivers/adc/board_adc)
 
 ### 설명
 
@@ -19,7 +19,7 @@ ADC 드라이버입니다.
 
 <a id="adc_usage"></a>
 
-### Usage
+### 사용법
 
     adc <command> [arguments...]
      Commands:
@@ -108,19 +108,7 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
 
 ### Usage
 
-    batt_smbus <command> [arguments...]
-     Commands:
-       start
-         [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es)
-         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
-                     (default=1))
-         [-f <val>]  bus frequency in kHz
-         [-q]        quiet startup (no message if no device found)
-         [-a <val>]  I2C address
-                     default: 11
-    
-       man_info      Prints manufacturer info.
+    batt_smbus
     
        unseal        Unseals the devices flash memory to enable write_flash
                      commands.
@@ -144,46 +132,23 @@ To write to flash to set parameters. address, number_of_bytes, byte0, ... , byte
 
 ## blinkm
 
-Source: [drivers/lights/blinkm](https://github.com/PX4/Firmware/tree/master/src/drivers/lights/blinkm)
+소스 코드: [drivers/lights/blinkm](https://github.com/PX4/Firmware/tree/master/src/drivers/lights/blinkm)
 
 <a id="blinkm_usage"></a>
 
 ### Usage
 
-    blinkm <command> [arguments...]
-     Commands:
-       start
-         [-I]        Internal I2C bus(es)
-         [-X]        External I2C bus(es)
-         [-b <val>]  board-specific bus (default=all) (external SPI: n-th bus
-                     (default=1))
-         [-f <val>]  bus frequency in kHz
-         [-q]        quiet startup (no message if no device found)
-         [-a <val>]  I2C address
-                     default: 9
-    
-       systemstate
-    
-       ledoff
-    
-       list
-    
-       script
-         -n <val>    Script file name
-                     values: <file>
-    
-       stop
-    
-       status        print status info
+    unseal        Unseals the devices flash memory to enable write_flash
+                     commands.
     
 
 ## bst
 
-Source: [drivers/telemetry/bst](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/bst)
+소스 코드: [drivers/telemetry/bst](https://github.com/PX4/Firmware/tree/master/src/drivers/telemetry/bst)
 
 <a id="bst_usage"></a>
 
-### Usage
+### 사용법
 
     bst <command> [arguments...]
      Commands:
@@ -204,19 +169,19 @@ Source: [drivers/telemetry/bst](https://github.com/PX4/Firmware/tree/master/src/
 
 ## dshot
 
-Source: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
+소스 코드: [drivers/dshot](https://github.com/PX4/Firmware/tree/master/src/drivers/dshot)
 
-### Description
+### 설명
 
-This is the DShot output driver. It is similar to the fmu driver, and can be used as drop-in replacement to use DShot as ESC communication protocol instead of PWM.
+DShot 출력 드라이버입니다. FMU 드라이버와 유사하나, PWM 대신 ESC 통신 프로토콜처럼 DShot용 대체 용도로 활용할 수 있습니다.
 
-It supports:
+다음 항목, 기능을 지원합니다:
 
 - DShot150, DShot300, DShot600, DShot1200
 - 별도의 UART를 통한 텔레메트리 통신, esc_status 메세지 전송
 - CLI로의 DShot 명령 전송
 
-### Examples
+### 예제
 
 Permanently reverse motor 1:
 
@@ -228,7 +193,7 @@ After saving, the reversed direction will be regarded as the normal one. So to r
 
 <a id="dshot_usage"></a>
 
-### Usage
+### 사용법
 
     dshot <command> [arguments...]
      Commands:
@@ -308,13 +273,13 @@ After saving, the reversed direction will be regarded as the normal one. So to r
 
 ## fake_gyro
 
-Source: [examples/fake_gyro](https://github.com/PX4/Firmware/tree/master/src/examples/fake_gyro)
+소스 코드: [examples/fake_gyro](https://github.com/PX4/Firmware/tree/master/src/examples/fake_gyro)
 
-### Description
+### 설명
 
 <a id="fake_gyro_usage"></a>
 
-### Usage
+### 사용법
 
     fake_gyro <command> [arguments...]
      Commands:
@@ -329,7 +294,7 @@ Source: [examples/fake_gyro](https://github.com/PX4/Firmware/tree/master/src/exa
 
 Source: [examples/fake_magnetometer](https://github.com/PX4/Firmware/tree/master/src/examples/fake_magnetometer)
 
-### Description
+### 설명
 
 Publish the earth magnetic field as a fake magnetometer (sensor_mag). Requires vehicle_attitude and vehicle_gps_position.
 
