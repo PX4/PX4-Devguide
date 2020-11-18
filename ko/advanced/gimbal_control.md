@@ -9,46 +9,46 @@ PX4에는 제각기 다른 입출력 방법을 갖는 일반적인 마운트/짐
 
 ## 매개변수
 
-The [Mount](../advanced/parameter_reference.md#mount) parameters are used to setup the mount driver.
+[매개변수들](../advanced/parameter_reference.md#mount)은 설치 드라이버를 설정하는데 사용됩니다.
 
-The most important ones are the input ([MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN)) and the output ([MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT)) mode. By default, the input is disabled and the driver does not run. After selecting the input mode, reboot the vehicle so that the mount driver starts.
+가장 중요한 부분은 입력([MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN)과 출력([MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT)) 모드입니다. 초기 값으로 입력은 활성화되어 있지 않고 드라이버도 작동하지 않습니다. 입력 모드를 선택하면, 재부팅이 되어 설치된 드라이버가 시작됩니다.
 
-If the input mode is set to `AUTO`, the mode will automatically be switched based on the latest input. To switch from MAVLink to RC, a large stick motion is required.
+입력 모드가 `AUTO`로 설정되어 있으면, 가장 최근의 입력 수단을 기반으로 자동으로 모드가 바뀔 것입니다. MAVLink에서 RC로 전환하기 위해 스틱의 큰 움직임이 필요합니다.
 
-## MAVLink Gimbal (MNT_MODE_OUT=MAVLINK)
+## MAVLink에 연결된 짐벌 (MNT_MODE_OUT=MAVLINK)
 
-To enable a MAVLink gimbal, first set parameter [MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN) to `MAVLINK_DO_MOUNT` and [MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT) to `MAVLINK`.
+MAVLink 짐벌을 사용하기 위해서는, 먼저 매개변수 [MNT_MODE_IN](../advanced/parameter_reference.md#MNT_MODE_IN) 을 `MAVLINK_DO_MOUNT`으로, [MNT_MODE_OUT](../advanced/parameter_reference.md#MNT_MODE_OUT)을 `MAVLINK`으로 설정하십시오.
 
-The gimbal can be connected to *any free serial port* using the instructions in [MAVLink Peripherals (GCS/OSD/Companion)(https://docs.px4.io/master/en/peripherals/mavlink_peripherals.html#mavlink-peripherals-gcsosdcompanion) (also see [Serial Port Configuration](https://docs.px4.io/master/en/peripherals/serial_configuration.html#serial-port-configuration)).
+짐벌은 [MAVLink Peripherals (GCS/OSD/Companion)(https://docs.px4.io/master/en/peripherals/mavlink_peripherals.html#mavlink-peripherals-gcsosdcompanion) 의 설명에 따라 *모든 사용가능한 직렬 포트*에 연결될 수 있습니다. (또한 [직렬 포트 설정](https://docs.px4.io/master/en/peripherals/serial_configuration.html#serial-port-configuration)을 보세요.
 
-A common configuration is to have a serial connection to the gimbal from the Flight Controller TELEM2 port (assuming TELEM2 is free). For this configuration you would set:
+일반적인 구성은 비행 제어기 TELEM2 포트에서 짐벌에 직렬 연결하는 것입니다.(TELEM2가 사용가능한 경우) 이 구성의 경우 다음과 같이 설정합니다:
 
-- [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) to **TELEM2** (if `MAV_1_CONFIG` is already used for a companion computer (say), use `MAV_2_CONFIG`).
-- [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) to **NORMAL**
-- [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) to manufacturer recommended baude rate.
+- [MAV_1_CONFIG](../advanced/parameter_reference.md#MAV_1_CONFIG) 을 **TELEM2**으로 설정. (만약 `MAV_1_CONFIG` 가 이미 보조컴퓨터에서 사용중인 경우, `MAV_2_CONFIG`을 사용).
+- [MAV_1_MODE](../advanced/parameter_reference.md#MAV_1_MODE) 을 **NORMAL**로 설정.
+- [SER_TEL2_BAUD](../advanced/parameter_reference.md#SER_TEL2_BAUD) 을 제조사 권장 보드 레이트(Baud rate)로 설정.
 
-This will enable the user to command the gimbal using [MAV_CMD_DO_MOUNT_CONTROL](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONTROL) and [MAV_CMD_DO_MOUNT_CONFIGURE](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONFIGURE).
+이렇게 하면 사용자가 [MAV_CMD_DO_MOUNT_CONTROL](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONTROL) 과 [MAV_CMD_DO_MOUNT_CONFIGURE](https://mavlink.io/en/messages/common.html#MAV_CMD_DO_MOUNT_CONFIGURE)를 이용해 짐벌에 명령할 수 있습니다.
 
-## Gimbal on Flight Controller (MNT_MODE_OUT=AUX)
+## 비행컨트롤러에 연결된 짐벌
 
-The gimbal can be connected to the Flight controller AUX ports by setting the ouptut mode to `MNT_MODE_OUT=AUX`.
+짐벌은 출력모드를 `MNT_MODE_OUT=AUX`로 설정해 비행 컨트롤러 AUX 포트에 연결할 수 있습니다.
 
-A mixer file is required to define the mapping for the output pins and the [mount mixer](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix) is automatically selected (this overrides any AUX mixer provided by the airframe configuration).
+믹서파일은 출력핀 설정을 위해 필요하며 [mount mixer](https://github.com/PX4/PX4-Autopilot/blob/master/ROMFS/px4fmu_common/mixers/mount.aux.mix)가 자동으로 선택됩니다.(이는 기체 설정에 의해 제공되는 AUX 믹서보다 우선으로 적용됩니다.)
 
-The output assignment is as following:
+출력 할당은 다음과 같습니다.
 
-- **AUX1**: Pitch
-- **AUX2**: Roll
-- **AUX3**: Yaw
-- **AUX4**: Shutter/retract
+- **AUX1**: 상하 회전각(Pitch)
+- **AUX2**: 좌우 회전각(Roll)
+- **AUX3**: 방위 회전각(Yaw)
+- **AUX4**: 셔터/원상복귀
 
 ### 믹서 구성 맞춤설정
 
-> **Note** Read [Mixing and Actuators](../concept/mixing.md) for an explanation of how mixers work and the format of the mixer file.
+> **주의** 믹서의 작동 및 믹서 파일의 형식에 대한 설명은 [혼합과 구동기](../concept/mixing.md)를 보시오.
 
-The outputs can be customized by [creating a mixer file](../concept/system_startup.md#starting-a-custom-mixer) on the SD card named `etc/mixers/mount.aux.mix`.
+출력은 [믹서 파일 만들기](../concept/system_startup.md#starting-a-custom-mixer)로 원하는 대로 변경이 가능하며, SD 카드의 `etc/mixers/mount.aux.mix`에 있습니다.
 
-A basic basic mixer configuration for a mount is shown below.
+설치를 위한 기본 믹서 구성은 아래과 같습니다.
 
     # roll
     M: 1
@@ -69,29 +69,29 @@ A basic basic mixer configuration for a mount is shown below.
 
 ## SITL
 
-The Typhoon H480 model comes with a preconfigured simulated gimbal.
+Typhoon H480 모델은 미리 설정모의된 짐벌과 함께 제공됩니다.
 
-To run it, use:
-
-    make px4_sitl gazebo_typhoon_h480
-    
-
-To just test the mount driver on other models or simulators, make sure the driver runs (using `vmount start`), then configure its parameters.
-
-## Testing
-
-The driver provides a simple test command - it needs to be stopped first with `vmount stop`. The following describes testing in SITL, but the commands also work on a real device.
-
-Start the simulation with (no parameter needs to be changed for that):
+실행하려면 아래 명령어를 사용하십시오:
 
     make px4_sitl gazebo_typhoon_h480
     
 
-Make sure it's armed, eg. with `commander takeoff`, then use the following command to control the gimbal (for example):
+다른 모델이나 시뮬레이터에 설치된 드라이버를 시험하려면, 설치된 드라이버가 `vmount start`를 사용해 작동하는지를 확인하고 난 후, 매개 변수들을 구성하십시오.
+
+## 시험하기
+
+이 드라이버는 간단한 시험 명령어를 제공합니다. 먼저 `vmount stop`으로 동작을 멈추어야합니다. 아래는 SITL에서의 시험 방법을 설명하지만, 이 명령어가 실제 장비에서도 작동합니다.
+
+다음 명령으로 시작하십시오(매개 변수값을 바꿀 필요는 없습니다):
+
+    make px4_sitl gazebo_typhoon_h480
+    
+
+시동 상태인지 확인하십시오, 예를 들면, `commander takeoff`를 입력하고 짐벌을 제어하기 위해 다음 명령어를 사용합니다:
 
     vmount test yaw 30
     
 
-Note that the simulated gimbal stabilizes itself, so if you send MAVLink commands, set the `stabilize` flags to `false`.
+참고로 모의시험 진행시 짐벌은 스스로 안정화되므로, MAVLink 명령을 보낼 때는, `stabilize` 플래그 값을 `false`로 설정하십시오.
 
-![Gazebo Gimbal Simulation](../../assets/simulation/gazebo/gimbal-simulation.png)
+![Gazebo 짐벌 모의시험](../../assets/simulation/gazebo/gimbal-simulation.png)
