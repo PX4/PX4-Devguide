@@ -137,7 +137,7 @@ private:
 #include <uORB/topics/parameter_update.h>
 ```
 
-모듈 또는 드라이버를 시작할 때 메시지 업데이트 과정에 참여(subscribe)하며, 과정이 끝나면 해제합니다. `parameter_update_sub` returned by `orb_subscribe()` is a handle we can use to refer to this particular subscription.
+모듈 또는 드라이버를 시작할 때 메시지 업데이트 과정에 참여(subscribe)하며, 과정이 끝나면 해제합니다. `orb_subscribe()`에서 반환하는 `parameter_update_sub` 값은 메시지 업데이트 과정 참여시 참고할 핸들입니다.
 
 ```cpp
 # parameter_update 메시지 추가 준비
@@ -147,7 +147,7 @@ int parameter_update_sub = orb_subscribe(ORB_ID(parameter_update));
 orb_unsubscribe(parameter_update_sub);
 ```
 
-Call `parameters_update(parameter_update_sub);` periodically in code to check if there has been an update (this is boilerplate):
+`parameters_update(parameter_update_sub);`를 주기적으로 호출하여 업데이트한 매개변수가 있는지 확인하십시오:
 
 ```cpp
 void Module::parameters_update(int parameter_update_sub, bool force)
@@ -171,28 +171,28 @@ void Module::parameters_update(int parameter_update_sub, bool force)
 }
 ```
 
-In the above method:
+위 메서드에서:
 
 - `param_update` uORB 메시지에 *어떤* 업데이트 사항이 있다면 `orb_check()`에서 알려주고 (다만 어떤 매개변수가 영향을 받았는지 정보는 아님) `updated` 부울린 값을 설정합니다.
 - "일부" 매개변수를 업데이트했다면 `parameter_update_s` (`param_upd`)에 최신 매개변수 값을 복사합니다
 - 그 다음 `ModuleParams::updateParams()` 메서드를 호출합니다. 이 "하부" 에서는 `DEFINE_PARAMETERS` 목록에 있는 특정 매개변수 속성을 업데이트해야 하는지 확인하고, 필요할 경우 진행합니다.
 - 이 예제에서는 `Module::parameters_update()` 메서드를 `force=True` 인자 값을 대입하여 호출하지 않습니다. 만약 함수에 넣은 일반 패턴을 설정해야 할 다른 값이 있다면, 초기화를 진행하는 동안 `force=True` 값을 대입하여 1회 호출합니다.
 
-The parameter attributes (`_sys_autostart` and `_att_bias_max` in this case) can then be used to represent the parameters, and will be updated whenever the parameter value changes.
+매개변수 속성(이 경우, `_sys_autostart` 와 `_att_bias_max`)은 매개변수를 대신할 목적으로 활용할 수 있으며, 매개변수 값이 바뀔 때마다 업데이트합니다.
 
 > [어플리케이션/모듈 서식](../apps/module_template.md)에서는 새 방식의 C++ API를 사용하나 [매개변수 메타데이터](#parameter_metadata)는 들어있지 않습니다.
 
 ### C API
 
-The C API can be used within both modules and drivers.
+C API는 모듈과 드라이버 모두에서 활용할 수 있습니다.
 
-First include the parameter API:
+우선 매개변수 API를 넣으십시오:
 
 ```C
 #include <parameters/param.h>
 ```
 
-Then retrieve the parameter and assign it to a variable (here `my_param`), as shown below for `PARAM_NAME`. The variable `my_param` can then be used in your module code.
+그리고 아래와 같이 `PARAM_NAME` 매개변수를 가져와서 변수에 할당하십시오(여기서는 `my_param`). `my_param` 변수는 여러분이 작성한 모듈 코드에서 활용할 수 있습니다.
 
 ```C
 int32_t my_param = 0;
@@ -201,7 +201,7 @@ param_get(param_find("PARAM_NAME"), &my_param);
 
 > **Note** `PARAM_NAME`을 매개변수 메타데이터에서 선언했다면 우선 이 기본값을 설정하며, 위 코드에서의 매개변수 검색 호출은 언제든 성공합니다.
 
-`param_find()` is an "expensive" operation, which returns a handle that can be used by `param_get()`. If you're going to read the parameter multiple times, you may cache the handle and use it in `param_get()` when needed
+`param_find()`은 "실행 시간이 조금 걸리는" 동작이며, 이 함수에서 나온 핸들 값은 `param_get()` 함수에서 사용할 수 있습니다. 매개변수를 여러줄에서 가져올 경우, 필요할 때 핸들 값을 캐싱한 다음 `param_get()` 값을 사용합니다.
 
 ```cpp
 # 매개변수 핸들러 획득
@@ -215,25 +215,25 @@ param_get(my_param_handle, &my_param);
 
 <a id="parameter_metadata"></a>
 
-## Parameter Meta Data
+## 매개변수 메타데이터
 
-PX4 uses an extensive parameter metadata system to drive the user-facing presentation of parameters, and to set the default value for each parameter in firmware.
+PX4에서는 확장 매개변수 메타데이터 시스템을 활용하여 펌웨어의 각 매개변수별로 사용자와 접하는 매개 변수의 발현을 제어하고 기본 값을 설정합니다. 
 
 > **Tip** 올바른 메타데이터는 지상 관제에 있어 바람직한 사용자 경험을 위해 중요합니다.
 
-Parameter metadata can be stored anywhere in the source tree as either **.c** or **.yaml** parameter definitions (the YAML definition is newer, and more flexible). Typically it is stored alongside its associated module.
+매개변수 메타데이터는 소스트리 어디에든 **.c** 또는 **.yaml** 매개변수 정의파일로 저장할 수 있습니다(YAML 정의가 더 최신이며 다루기에 유연합니다). 보통 관련 모듈과 함께 저장합니다.
 
-The build system extracts the metadata (using `make parameters_metadata`) to build the [parameter reference](../advanced/parameter_reference.md) and the parameter information used by ground stations.
+빌드 시스템에서는 (`make parameters_metadata` 명령을 활용하여) 메타데이터를 추출하여 지상 관제 프로그램에서 활용할 [매개변수 참조](../advanced/parameter_reference.md)와 매개변수 정보를 빌드합니다.
 
 > **Warning** *새* 매개변수 파일을 추가하고 나면, 새 매개변수를 만들기 전 `make clean`을 실행해야합니다(매개변수 파일은 *cmake* 설정 단계의 일부로서 추가하며, 이 명령을 실행하면 cmake 파일을 수장했을 때, 기존의 빌드 파일을 정리합니다).
 
 <a id="c_metadata"></a>
 
-### c Parameter Metadata
+### C 매개변수 메타데이터
 
-The legacy approach for defining parameter metadata is in a file with extension **.c** (at time of writing this is the approach most commonly used in the source tree).
+기존의 매개변수 메타데이터 정의 방식의 접근은 **.c** 확장자를 가진 파일을 활용하는 방식입니다(이 글을 작성하는 시점에는 소스트리에서 가장 일반적으로 활용하는 접근법입니다).
 
-Parameter metadata sections look like the following examples:
+매개변수 메타데이터 부분은 다음 예제와 같습니다:
 
 ```cpp
 /**
@@ -262,9 +262,9 @@ PARAM_DEFINE_FLOAT(MC_PITCH_P, 6.5f);
 PARAM_DEFINE_INT32(ATT_ACC_COMP, 1);
 ```
 
-The `PARAM_DEFINE_*` macro at the end specifies the type of parameter (`PARAM_DEFINE_FLOAT` or `PARAM_DEFINE_INT32`), the name of the parameter (which must match the name used in code), and the default value in firmware.
+위 코드 마지막의 `PARAM_DEFINE_*` 매크로는 매개변수 형식(`PARAM_DEFINE_FLOAT` 또는 `PARAM_DEFINE_INT32`), 매개변수 이름(코드에서 사용할 이름과 일치해야 함), 펌웨어의 기본값을 지정합니다.
 
-The lines in the comment block are all optional, and are primarily used to control display and editing options within a ground station. The purpose of each line is given below (for more detail see [module_schema.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/validation/module_schema.yaml)).
+주석 블록의 라인은 모두 취사선택 요소이며, 기본적으로 지상 통제 장치에서 화면을 제어하고 옵션을 편집할 때 활용합니다. 각 행의 목적은 다음과 같습니다(자세한 내용은 [module_schema.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/validation/module_schema.yaml)을 참고하십시오).
 
 ```cpp
 /**
@@ -285,34 +285,34 @@ The lines in the comment block are all optional, and are primarily used to contr
 
 <a id="yaml_metadata"></a>
 
-### YAML Metadata
+### YAML 메타데이터
 
 > **Note** YAML 매개변수 정의를 작성했을 때는 *라이브러리*에서 활용할 수 없습니다.
 
-YAML meta data is intended as a full replacement for the **.c** definitions. It supports all the same metadata, along with new features like multi-instance definitions.
+YAML 메타데이터는 **.c**의 정의를 완전히 대체할 용도로 존재합니다. It supports all the same metadata, along with new features like multi-instance definitions.
 
 - The YAML parameter metadata schema is here: [validation/module_schema.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/validation/module_schema.yaml).
 - An example of YAML definitions being used can be found in the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/module.yaml).
 
 <a id="multi_instance_metadata"></a>
 
-#### Multi-Instance (Templated) Meta Data
+#### 다중 인스턴스 (서식화) 메타데이터
 
-Templated parameter definitions are supported in [YAML parameter definitions](https://github.com/PX4/PX4-Autopilot/blob/master/validation/module_schema.yaml) (templated parameter code is not supported).
+서식화 매개변수 정의는 [YAML 매개변수 정의](https://github.com/PX4/PX4-Autopilot/blob/master/validation/module_schema.yaml)에서 지원합니다(서식화 매개변수 코드는 지원하지 않습니다).
 
-The YAML allows you to define instance numbers in parameter names, descriptions, etc. using `${i}`. For example, below will generate MY_PARAM_1_RATE, MY_PARAM_2_RATE etc.
+YAML은 매개변수 이름, 설명 등의 인스턴스 번호를 정의할 수 있게 합니다. `${i}`를 활용합니다. 예를 들어, 아래 예제에서는 MY_PARAM_1_RATE, MY_PARAM_2_RATE 등을 만듭니다.
 
     MY_PARAM_${i}_RATE:
                 description:
                     short: Maximum rate for instance ${i}
     
 
-The following YAML definitions provide the start and end indexes.
+다음 YAML 정의에서는 시작, 끝 인덱스 번호를 제공합니다.
 
 - `num_instances` (기본값 1): 생성할 인스턴스 갯수(하나 이상)
 - `instance_start` (기본값 0): 첫번재 인스턴스 번호. 0으로 지정하면, `${i}` 값은 0부터 N-1 까지 갑니다.
 
-For a full example see the MAVLink parameter definitions: [/src/modules/mavlink/module.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/module.yaml)
+전체 예제를 보려면 [/src/modules/mavlink/module.yaml](https://github.com/PX4/PX4-Autopilot/blob/master/src/modules/mavlink/module.yaml) MAVLink 매개변수 정의 파일을 살펴보십시오
 
 ## 추가 정보
 
