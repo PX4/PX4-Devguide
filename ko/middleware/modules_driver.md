@@ -292,15 +292,15 @@ After saving, the reversed direction will be regarded as the normal one. So to r
 
 ## fake_magnetometer
 
-Source: [examples/fake_magnetometer](https://github.com/PX4/Firmware/tree/master/src/examples/fake_magnetometer)
+소스 코드: [examples/fake_magnetometer](https://github.com/PX4/Firmware/tree/master/src/examples/fake_magnetometer)
 
 ### 설명
 
-Publish the earth magnetic field as a fake magnetometer (sensor_mag). Requires vehicle_attitude and vehicle_gps_position.
+가상 지자계(sensor_mag)로서 지자계데이터를 내보냅니다. vehicle_attitude와 vehicle_gps_position이 필요합니다.
 
 <a id="fake_magnetometer_usage"></a>
 
-### Usage
+### 사용법
 
     fake_magnetometer <command> [arguments...]
      Commands:
@@ -315,17 +315,17 @@ Publish the earth magnetic field as a fake magnetometer (sensor_mag). Requires v
 
 Source: [drivers/gps](https://github.com/PX4/Firmware/tree/master/src/drivers/gps)
 
-### Description
+### 설명
 
 GPS driver module that handles the communication with the device and publishes the position via uORB. It supports multiple protocols (device vendors) and by default automatically selects the correct one.
 
 The module supports a secondary GPS device, specified via `-e` parameter. The position will be published on the second uORB topic instance, but it's currently not used by the rest of the system (however the data will be logged, so that it can be used for comparisons).
 
-### Implementation
+### 구현
 
 There is a thread for each device polling for data. The GPS protocol classes are implemented with callbacks so that they can be used in other projects as well (eg. QGroundControl uses them too).
 
-### Examples
+### 예제
 
 For testing it can be useful to fake a GPS signal (it will signal the system that it has a valid position):
 
