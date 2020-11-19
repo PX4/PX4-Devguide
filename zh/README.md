@@ -2,9 +2,13 @@
 
 [![版本发布](https://img.shields.io/badge/release-{{ book.px4_version }}-blue.svg)](https://github.com/PX4/PX4-Autopilot/releases) [![讨论](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![Slack](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)
 
-> **Info** 本手册主要面向软件开发人员及（新的）硬件集成商。 To fly, build and modify vehicles using supported hardware see the [PX4 User Guide](https://docs.px4.io/master/en/).
+> **Warning** This guide has been [merged into the PX4 User Guide](http://localhost:8080/px4_user_guide/en/development/development.html). It is now frozen for contributions and may be out of date. Please make any further edits, updates and translations in the user guide.
 
-本指南介绍了如下内容：
+<span></span>
+
+> **Info** This guide is for primarily for software developers and (new) hardware integrators. To fly, build and modify vehicles using supported hardware see the [PX4 User Guide](https://docs.px4.io/master/en/).
+
+This guide explains how to:
 
 * Get a [minimum developer setup](setup/config_initial.md), [build PX4 from source](setup/building_px4.md) and deploy on [numerous supported autopilots](https://docs.px4.io/master/en/flight_controller/).
 * 理解 [PX4 系统架构](concept/architecture.md) 以及核心概念。
