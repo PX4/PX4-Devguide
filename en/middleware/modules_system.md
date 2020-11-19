@@ -505,7 +505,7 @@ Source: [modules/temperature_compensation](https://github.com/PX4/Firmware/tree/
 
 ### Description
 The temperature compensation module allows all of the gyro(s), accel(s), and baro(s) in the system to be temperature
-compensated. The module monitors the data coming from the sensors and updates the associated sensor_thermal_cal topic
+compensated. The module monitors the data coming from the sensors and updates the associated sensor_correction topic
 whenever a change in temperature is detected. The module can also be configured to perform the coeffecient calculation
 routine at next boot, which allows the thermal calibration coeffecients to be calculated while the vehicle undergoes
 a temperature cycle.
@@ -517,7 +517,7 @@ a temperature cycle.
 temperature_compensation <command> [arguments...]
  Commands:
    start         Start the module, which monitors the sensors and updates the
-                 sensor_thermal_cal topic
+                 sensor_correction topic
 
    calibrate     Run temperature calibration process
      [-g]        calibrate the gyro
