@@ -693,7 +693,7 @@
   </tr>
 <tbody>
 <tr id="copter_quadrotor_asymmetric_spedix_s250aq">
- <td style="vertical-align: top;"><a href="https://docs.px4.io/master/en/framebuild_multicopter/spedix_s250_pixracer.html">Spedix S250AQ</a></td>
+ <td style="vertical-align: top;"><a href="https://docs.px4.io/master/en/frames_multicopter/spedix_s250_pixracer.html">Spedix S250AQ</a></td>
  <td style="vertical-align: top;"><p>유지관리자: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 4051</p></td>
 
 </tr>
@@ -1097,7 +1097,7 @@
 
 </tr>
 <tr id="plane_flying_wing_wing_wing_(aka_z-84)_flying_wing">
- <td style="vertical-align: top;"><a href="https://docs.px4.io/master/en/framebuild_plane/wing_wing_z84.html">윙윙(또는 Z-84) 플라잉 윙</a></td>
+ <td style="vertical-align: top;"><a href="https://docs.px4.io/master/en/frames_plane/wing_wing_z84.html">윙윙(또는 Z-84) 플라잉 윙</a></td>
  <td style="vertical-align: top;"><p>유지관리자: Lorenz Meier <lorenz@px4.io></p><p><code>SYS_AUTOSTART</code> = 3033</p><p><b>지정 출력:</b><ul><li><b>MAIN1</b>: 좌측 보조익</li><li><b>MAIN2</b>: 우측 보조익</li><li><b>MAIN4</b>: 추진기</li></ul></p></td>
 
 </tr>
