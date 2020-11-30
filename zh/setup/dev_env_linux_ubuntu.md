@@ -19,21 +19,21 @@ Use the [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_versio
 
 To install the toolchain:
 
-1. [下载 PX4 源代码](../setup/building_px4.md)： 
+1. [下载 PX4 源代码](../setup/building_px4.md)：
         bash
         git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 
-2. 在bash shell中不带参数地运行ubuntu.sh来安装所有的依赖工具： 
+2. 在bash shell中不带参数地运行ubuntu.sh来安装所有的依赖工具：
         bash
         bash ./Tools/setup/ubuntu.sh
-    
+
     * 在安装过程中确认并通过所有的提示。
     * 你可以通过传输参数`--no-nuttx` 和 `--no-sim-tools` 来跳过 nuttx 和/或 仿真器工具的安装。
 3. 完成后重新启动计算机。
 
-> **Note** You can alternatively download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**) and run ubuntu.sh in place:   
-> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
-> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`   
+> **Note** You can alternatively download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**) and run ubuntu.sh in place:
+> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`
+> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`
 > `bash ubuntu.sh`
 
 Notes:
@@ -41,10 +41,10 @@ Notes:
 * PX4需要跟Gazebo 7, 8, 或者 9一起工作， 该脚本使用[gazebosim.org instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)来安装Gazebo9。
 * 如果你正在使用ROS工作，那么请遵循[ROS/Gazebo](#rosgazebo)的介绍来安装（它是自动转安装的，作为ROS安装的一部分）。
 * 你可以通过确认gcc的版本来验证Nuttx的安装：
-    
+
     ```bash
     $arm-none-eabi-gcc --version
-    
+
     arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM/embedded-7-branch revision 255204]
     Copyright (C) 2017 Free Software Foundation, Inc.
     This is free software; see the source for copying conditions.  There is NO
@@ -65,16 +65,14 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 The following instructions explain how to set up a build toolchain for RasPi on *Ubuntu 18.04*.
 
-> **Warning** To build for Ubuntu 20.04 (focal) you must use docker (the GCC toolchain on Ubuntu 20.04 can build PX4, but the generated binary files are too new to run on actual Pi). For more information see [PilotPi with Raspberry Pi OS
-
-# Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
+> **Warning** To build for Ubuntu 20.04 (focal) you must use docker (the GCC toolchain on Ubuntu 20.04 can build PX4, but the generated binary files are too new to run on actual Pi). For more information see [PilotPi with Raspberry Pi OS Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
 
 To get the common dependencies for Raspberry Pi:
 
-1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):   
-    `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
+1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):
+    `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`
     `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`
-2. 在终端中运行**ubuntu.sh**，获取一般的依赖模块： 
+2. 在终端中运行**ubuntu.sh**，获取一般的依赖模块：
         bash
         bash ubuntu.sh --no-nuttx --no-sim-tools
 
@@ -112,7 +110,7 @@ First [install GCC](#gcc) (needed to use clang).
 We recommend you to get clang from the Ubuntu software repository, as shown below:
 
     sudo apt-get install clang
-    
+
 
 Example below for building PX4 firmware out of tree, using *CMake*.
 
@@ -146,9 +144,9 @@ This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") 
 
 To install the development toolchain:
 
-1. 在bash shell中下载脚本：   
+1. 在bash shell中下载脚本：
     `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh`
-2. 运行脚本： 
+2. 运行脚本：
         bash
         bash ubuntu_sim_ros_melodic.sh 随着脚本的运行，可能需要根据提示进行确认。
 

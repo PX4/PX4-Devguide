@@ -19,21 +19,21 @@ Use the [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_versio
 
 To install the toolchain:
 
-1. [Download PX4 Source Code](../setup/building_px4.md): 
+1. [Download PX4 Source Code](../setup/building_px4.md):
         bash
         git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 
-2. Run the **ubuntu.sh** with no arguments (in a bash shell) to install everything: 
+2. Run the **ubuntu.sh** with no arguments (in a bash shell) to install everything:
         bash
         bash ./Tools/setup/ubuntu.sh
-    
+
     * Acknowledge any prompts as the script progress.
     * You can use the `--no-nuttx` and `--no-sim-tools` to omit the nuttx and/or simulation tools.
 3. Restart the computer on completion.
 
-> **Note** You can alternatively download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**) and run ubuntu.sh in place:   
-> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
-> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`   
+> **Note** You can alternatively download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**) and run ubuntu.sh in place:
+> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`
+> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`
 > `bash ubuntu.sh`
 
 Notes:
@@ -41,10 +41,10 @@ Notes:
 * PX4 works with Gazebo 7, 8, and 9. The script uses [gazebosim.org instructions](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) to install Gazebo9.
 * If you're going work with ROS then follow the [ROS/Gazebo](#rosgazebo) instructions instead (these install Gazebo automatically, as part of the ROS installation).
 * You can verify the the NuttX installation by confirming the gcc version as shown:
-    
+
     ```bash
     $arm-none-eabi-gcc --version
-    
+
     arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM/embedded-7-branch revision 255204]
     Copyright (C) 2017 Free Software Foundation, Inc.
     This is free software; see the source for copying conditions.  There is NO
@@ -65,16 +65,14 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 The following instructions explain how to set up a build toolchain for RasPi on *Ubuntu 18.04*.
 
-> **Warning** To build for Ubuntu 20.04 (focal) you must use docker (the GCC toolchain on Ubuntu 20.04 can build PX4, but the generated binary files are too new to run on actual Pi). For more information see [PilotPi with Raspberry Pi OS
-
-# Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
+> **Warning** To build for Ubuntu 20.04 (focal) you must use docker (the GCC toolchain on Ubuntu 20.04 can build PX4, but the generated binary files are too new to run on actual Pi). For more information see [PilotPi with Raspberry Pi OS Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
 
 To get the common dependencies for Raspberry Pi:
 
-1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):   
-    `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
+1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):
+    `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`
     `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`
-2. Run **ubuntu.sh** in a terminal to get just the common dependencies: 
+2. Run **ubuntu.sh** in a terminal to get just the common dependencies:
         bash
         bash ubuntu.sh --no-nuttx --no-sim-tools
 
@@ -112,7 +110,7 @@ First [install GCC](#gcc) (needed to use clang).
 We recommend you to get clang from the Ubuntu software repository, as shown below:
 
     sudo apt-get install clang
-    
+
 
 Example below for building PX4 firmware out of tree, using *CMake*.
 
@@ -146,9 +144,9 @@ This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") 
 
 To install the development toolchain:
 
-1. Download the script in a bash shell:   
+1. Download the script in a bash shell:
     `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh`
-2. Run the script: 
+2. Run the script:
         bash
         bash ubuntu_sim_ros_melodic.sh You may need to acknowledge some prompts as the script progresses.
 

@@ -66,8 +66,7 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 The following instructions explain how to set up a build toolchain for RasPi on *Ubuntu 18.04*.
 
 > **Warning** To build for Ubuntu 20.04 (focal) you must use docker (the GCC toolchain on Ubuntu 20.04 can build PX4, but the generated binary files are too new to run on actual Pi).
-  For more information see [PilotPi with Raspberry Pi OS
-#Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
+  For more information see [PilotPi with Raspberry Pi OS Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
 
 To get the common dependencies for Raspberry Pi:
 
@@ -134,7 +133,7 @@ make
 
 ### Detailed Information
 
-Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here: 
+Additional developer information for using PX4 on Raspberry Pi (including building PX4 natively) can be found here:
 
 - [Raspberry Pi 2/3 Navio2 Autopilot](https://docs.px4.io/master/en/flight_controller/raspberry_pi_navio2.html).
 - [Raspberry Pi 2/3/4 PilotPi Shield](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi.html).

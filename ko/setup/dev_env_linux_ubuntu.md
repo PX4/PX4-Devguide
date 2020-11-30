@@ -19,21 +19,21 @@ Use the [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_versio
 
 To install the toolchain:
 
-1. [PX4 소스 코드를 다운로드하십시오](../setup/building_px4.md): 
+1. [PX4 소스 코드를 다운로드하십시오](../setup/building_px4.md):
         bash
         git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 
-2. 어떤 인자값도 주지 말고 **ubuntu.sh** 파일을 (배시 셸에서) 실행하여 모든 요소를 설치하십시오: 
+2. 어떤 인자값도 주지 말고 **ubuntu.sh** 파일을 (배시 셸에서) 실행하여 모든 요소를 설치하십시오:
         bash
         bash ./Tools/setup/ubuntu.sh
-    
+
     * 스크립트 진행 과정 중 프롬프트에 응답하십시오.
     * nuttx 또는 모의시험 도구 설치를 생략할 때 `--no-nuttx` 와 `--no-sim-tools` 인자를 활용할 수 있습니다.
 3. 설치가 끝나면 컴퓨터를 다시 시작하십시오.
 
-> **Note** You can alternatively download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**) and run ubuntu.sh in place:   
-> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
-> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`   
+> **Note** You can alternatively download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**) and run ubuntu.sh in place:
+> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`
+> `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`
 > `bash ubuntu.sh`
 
 Notes:
@@ -41,10 +41,10 @@ Notes:
 * PX4는 가제보 버전 7, 8, 9에서 동작합니다. 가제보 9을 설치할 때 [gazebosim.org 과정](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install)을 활용합니다.
 * ROS를 다루려 할 경우 [ROS/가제보](#rosgazebo) 의 절차를 따르십시오(해당 설명 과정은 ROS 설치시 일부 구성요소로 가제보를 자동으로 설치합니다).
 * 아래와 같이 GCC 버전이 나타남을 확인하면 NuttX 설치가 끝났음을 검증할 수 있습니다:
-    
+
     ```bash
     $arm-none-eabi-gcc --version
-    
+
     arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 7-2017-q4-major) 7.2.1 20170904 (release) [ARM/embedded-7-branch revision 255204]
     Copyright (C) 2017 Free Software Foundation, Inc.
     This is free software; see the source for copying conditions.  There is NO
@@ -65,16 +65,14 @@ sudo add-apt-repository --remove ppa:team-gcc-arm-embedded/ppa
 
 The following instructions explain how to set up a build toolchain for RasPi on *Ubuntu 18.04*.
 
-> **Warning** To build for Ubuntu 20.04 (focal) you must use docker (the GCC toolchain on Ubuntu 20.04 can build PX4, but the generated binary files are too new to run on actual Pi). For more information see [PilotPi with Raspberry Pi OS
-
-# Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
+> **Warning** To build for Ubuntu 20.04 (focal) you must use docker (the GCC toolchain on Ubuntu 20.04 can build PX4, but the generated binary files are too new to run on actual Pi). For more information see [PilotPi with Raspberry Pi OS Developer Quick Start > Alternative build method using docker](https://docs.px4.io/master/en/flight_controller/raspberry_pi_pilotpi_rpios.html#alternative-build-method-using-docker).
 
 To get the common dependencies for Raspberry Pi:
 
-1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):   
-    `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`   
+1. Download [ubuntu.sh](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/ubuntu.sh) and [requirements.txt](https://github.com/PX4/PX4-Autopilot/blob/{{ book.px4_version }}/Tools/setup/requirements.txt) from the PX4 source repository (**/Tools/setup/**):
+    `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/ubuntu.sh`
     `wget https://raw.githubusercontent.com/PX4/PX4-Autopilot/{{ book.px4_version }}/Tools/setup/requirements.txt`
-2. 터미널에서 **ubuntu.sh** 명령을 실행하여 일반 의존 요소를 받으십시오: 
+2. 터미널에서 **ubuntu.sh** 명령을 실행하여 일반 의존 요소를 받으십시오:
         bash
         bash ubuntu.sh --no-nuttx --no-sim-tools
 
@@ -112,7 +110,7 @@ First [install GCC](#gcc) (needed to use clang).
 We recommend you to get clang from the Ubuntu software repository, as shown below:
 
     sudo apt-get install clang
-    
+
 
 Example below for building PX4 firmware out of tree, using *CMake*.
 
@@ -146,9 +144,9 @@ This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") 
 
 To install the development toolchain:
 
-1. 배시 셸에서 스크립트를 다운로드하십시오:   
+1. 배시 셸에서 스크립트를 다운로드하십시오:
     `wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh`
-2. 스크립트를 실행하십시오: 
+2. 스크립트를 실행하십시오:
         bash
         bash ubuntu_sim_ros_melodic.sh 스크립트 처리 진행시 일부 프롬프트에 응답해야 합니다.
 
