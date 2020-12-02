@@ -57,12 +57,6 @@
                     "label": "GitHub",
                     "icon": "fa fa-github",
                     "url": "https://github.com/PX4/Devguide"
-                },
-                {
-                    "label": "Edit page on github",
-                    "icon": "fa fa-pencil-square-o",
-                    "position" : "left",
-                    "url": "https://github.com/PX4/PX4-user_guide/edit/master/{{filepath_lang}}"
                 }
             ]
         },
