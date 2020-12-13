@@ -555,6 +555,8 @@ Use the `mixer` command to load mixer files. `mixer load /dev/pwm_outputX etc/mi
                      default: 64
          [-b <val>]  bus that pca9685 is connected to
                      default: 1
+         [-r <val>]  schedule rate limit
+                     default: 400
     
        stop
     

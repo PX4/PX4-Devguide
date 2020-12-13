@@ -254,6 +254,20 @@ The listener can be exited any time by pressing Ctrl+C, Esc, or Q.
                      default: 0
     
 
+## mfd
+
+Source: [systemcmds/mft](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mft)
+
+Utility interact with the manifest
+<a id="mfd_usage"></a>
+
+### Usage
+
+    mfd <command> [arguments...]
+     Commands:
+       query         Returns true if not existed
+    
+
 ## mixer
 
 Source: [systemcmds/mixer](https://github.com/PX4/Firmware/tree/master/src/systemcmds/mixer)
@@ -356,22 +370,17 @@ Utility to mount and test partitions (based on FRAM/EEPROM storage as defined by
      Commands:
        status        Print status information
     
-       start         Mount partitions
-    
        readtest      Perform read test
     
        rwtest        Perform read-write test
     
        erase         Erase partition(s)
     
-       has-secondary Check if the board has configured a secondary device
-    
-     The commands 'start', 'readtest' and 'rwtest' have an optional instance index:
+     The commands 'readtest' and 'rwtest' have an optional instance index:
          [-i <val>]  storage index (if the board has multiple storages)
                      default: 0
     
-     The commands 'start', 'readtest', 'rwtest' and 'erase' have an optional
-     parameter:
+     The commands 'readtest', 'rwtest' and 'erase' have an optional parameter:
          [<partition_name1> [<partition_name2> ...]] Partition names (eg.
                      /fs/mtd_params), use system default if not provided
     
