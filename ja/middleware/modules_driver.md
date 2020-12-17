@@ -521,7 +521,7 @@ Source: [drivers/optical_flow/paw3902](https://github.com/PX4/Firmware/tree/mast
          [-m <val>]  SPI mode
          [-f <val>]  bus frequency in kHz
          [-q]        quiet startup (no message if no device found)
-         [-R <val>]  Rotation
+         [-Y <val>]  custom yaw rotation (degrees)
                      default: 0
     
        stop
