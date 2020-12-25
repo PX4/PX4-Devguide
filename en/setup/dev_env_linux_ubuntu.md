@@ -148,7 +148,7 @@ This section explains how to install [ROS/Gazebo](../ros/README.md) ("Melodic") 
 To install the development toolchain:
 
 1. Download the script in a bash shell:
-   <br>`wget https://raw.githubusercontent.com/PX4/Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh`
+   <br>`wget https://raw.githubusercontent.com/PX4/PX4-Devguide/{{ book.px4_version }}/build_scripts/ubuntu_sim_ros_melodic.sh`
 1. Run the script:
    ```bash
    bash ubuntu_sim_ros_melodic.sh
