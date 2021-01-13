@@ -15,6 +15,7 @@
         "language-picker",
         "custom-favicon",
         "bulk-redirect@git+https://github.com/Dronecode/gitbook-plugin-bulk-redirect.git",
+        "redirect",
         "toolbar@git+https://github.com/hamishwillee/gitbook-plugin-toolbar.git",
         "validate-links",
         "versions-select@git+https://github.com/Dronecode/gitbook-plugin-versions-select.git",
@@ -82,13 +83,9 @@
                 },
                 {
                     "value": "https://dev.px4.io/v1.8.2/en/",
-                    "text": "1.8.2"
-                },
-
-                {
-                    "value": "https://dev.px4.io/v1.8.0/en/",
-                    "text": "1.8.0"
+                    "text": "1.8"
                 }
+				
             ]
         }
         

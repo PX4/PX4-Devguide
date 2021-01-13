@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/dev_setup/getting_started.html"
+
 # Getting Started
 
 This section contains topics about getting started with PX4 development:
