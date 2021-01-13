@@ -66,24 +66,20 @@
             "gitbookConfigURL": "https://raw.githubusercontent.com/PX4/Devguide/master/book.json",
             "options": [
                 {
-                    "value": "https://dev.px4.io/master/en/",
+                    "value": "https://docs.px4.io/master/en/development/development.html",
                     "text": "master"
                 },
                 {
-                    "value": "https://dev.px4.io/v1.11/en/",
+                    "value": "https://dev.px4.io/v1.11_noredirect/en/",
                     "text": "1.11 - stable"
                 },
                 {
-                    "value": "https://dev.px4.io/v1.10/en/",
+                    "value": "https://dev.px4.io/v1.10_noredirect/en/",
                     "text": "1.10"
                 },
                 {
-                    "value": "https://dev.px4.io/v1.9.0/en/",
+                    "value": "https://dev.px4.io/v1.9.0_noredirect/en/",
                     "text": "1.9 "
-                },
-                {
-                    "value": "https://dev.px4.io/v1.8.2/en/",
-                    "text": "1.8"
                 }
 				
             ]
