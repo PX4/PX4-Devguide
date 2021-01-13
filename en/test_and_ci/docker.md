@@ -4,7 +4,7 @@ Docker containers are provided for the complete [PX4 development toolchain](../s
 
 This topic shows how to use the [available docker containers](#px4_containers) to access the build environment in a local Linux computer.
 
-> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/tree/master/docker).
+> **Note** Dockerfiles and README can be found on [Github here](https://github.com/PX4/containers/blob/master/README.md).
   They are built automatically on [Docker Hub](https://hub.docker.com/u/px4io/).
 
 
@@ -34,7 +34,7 @@ sudo usermod -aG docker $USER
 
 ## Container Hierarchy {#px4_containers}
 
-The available containers are listed below (from [Github](https://github.com/PX4/containers/tree/master/docker#container-hierarchy)):
+The available containers are listed below (from [Github](https://github.com/PX4/containers/blob/master/README.md#container-hierarchy)):
 
 Container | Description
 ---|---
@@ -48,7 +48,7 @@ px4-dev-base | Base setup common to all containers
 &emsp;&emsp;px4-dev-nuttx-clang | Clang and NuttX tools
 
 
-The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-ros:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-ros/tags/)).
+The most recent version can be accessed using the `latest` tag: `px4io/px4-dev-nuttx:latest` (available tags are listed for each container on *hub.docker.com*. For example, the *px4-dev-ros* tags can be found [here](https://hub.docker.com/r/px4io/px4-dev-nuttx/tags)).
 
 > **Tip** Typically you should use a recent container, but not necessarily the latest (as this changes too often).
 
@@ -161,8 +161,10 @@ When running a simulation instance e.g. SITL inside the docker container and con
 In *QGroundControl*, navigate to [Settings](https://docs.qgroundcontrol.com/en/SettingsView/SettingsView.html) and select Comm Links. Create a new link that uses the UDP protocol. The port depends on the used [configuration](https://github.com/PX4/Firmware/blob/master/ROMFS/px4fmu_common/init.d-posix/rcS) e.g. port 14570 for the SITL config. The IP address is the one of your docker container, usually 172.17.0.1/16 when using the default network. The IP address of the docker container can be found with the following command (assuming the container name is `mycontainer`):
 
 ```sh
-$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mycontainer
+$ docker inspect -f '{ {range .NetworkSettings.Networks} }{ {.IPAddress} }{ {end} }' mycontainer
 ```
+> **Note** Spaces between double curly braces above should be not be present (they are needed to avoid a UI rendering problem in gitbook). 
+  
 
 ### Troubleshooting
 
@@ -228,4 +230,3 @@ export DOCKER_HOST=tcp://<ip of your VM>:2375
 # run some docker command to see if it works, e.g. ps
 docker ps
 ```
-
