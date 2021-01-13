@@ -1,6 +1,8 @@
+!REDIRECT "https://docs.px4.io/master/en/dev_setup/getting_started.html"
+
 # 入门指南
 
-本节包含有关开始 PX4 开发的主题：
+This section contains topics about getting started with PX4 development:
 
 * [初始设置](../setup/config_initial.md)
 * [工具链安装](../setup/dev_env.md)
