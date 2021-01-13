@@ -26,11 +26,4 @@ PX4는 2개 주요 레이어로 구성 : autopilot 소프트웨어 솔루션인 
 
 GCS와 상호작용은 "business logic"을 통해 처리됩니다. 여기에는 commander(일반적인 명령과 제어로 예제로 arming), navigator(mission 받아서 이를 하위레벨의 기본적인 navigation으로 변환), mavlink application이 포함됩니다. MAVLink 패킷을 받아서 onboard uORB 자료구조로 변환합니다. 이렇게 분리하는 이유는 시스템내에서 MAVLink와 깊은 의존을 갖는 것을 명시적으로 방지하기 위한 구조입니다. MAVLink application은 많은 sensor 데이터를 사용하며, estimate를 사용하고 이를 ground control station으로 보냅니다.
 
-{% mermaid %}
-graph TD;
-  mavlink---commander;
-  mavlink---navigator;
-  position_estimator-->mavlink;
-  attitude_estimator-->mavlink;
-  mixer-->mavlink;
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIG1hdmxpbmstLS1jb21tYW5kZXI7XG4gIG1hdmxpbmstLS1uYXZpZ2F0b3I7XG4gIHBvc2l0aW9uX2VzdGltYXRvci0tPm1hdmxpbms7XG4gIGF0dGl0dWRlX2VzdGltYXRvci0tPm1hdmxpbms7XG4gIG1peGVyLS0-bWF2bGluazsiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIG1hdmxpbmstLS1jb21tYW5kZXI7XG4gIG1hdmxpbmstLS1uYXZpZ2F0b3I7XG4gIHBvc2l0aW9uX2VzdGltYXRvci0tPm1hdmxpbms7XG4gIGF0dGl0dWRlX2VzdGltYXRvci0tPm1hdmxpbms7XG4gIG1peGVyLS0-bWF2bGluazsiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)

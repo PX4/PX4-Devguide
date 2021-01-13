@@ -11,16 +11,4 @@ PX4飞行控制栈集成了各种自主无人机的制导、导航以及控制�
 
 下图所示为一个典型框图（typical blocks）的实现示例。根据飞行器的不同，其中的一些框图（blocks）也可以组成一个单独的应用（例如，当我们需要一个特定飞行器的模型预测控制器时）
 
-{% mermaid %}
-graph TD;
-  pos_ctrl-->att_ctrl;
-  att_ctrl-->mixer;
-  inertial_sensors-->attitude_estimator;
-  inertial_sensors-->position_estimator;
-  GPS-->position_estimator;
-  computer_vision-->position_estimator;
-  position_estimator-->navigator;
-  position_estimator-->attitude_estimator;
-  position_estimator-->pos_ctrl;
-  attitude_estimator-->att_ctrl;
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIHBvc19jdHJsLS0-YXR0X2N0cmw7XG4gIGF0dF9jdHJsLS0-bWl4ZXI7XG4gIGluZXJ0aWFsX3NlbnNvcnMtLT5hdHRpdHVkZV9lc3RpbWF0b3I7XG4gIGluZXJ0aWFsX3NlbnNvcnMtLT5wb3NpdGlvbl9lc3RpbWF0b3I7XG4gIEdQUy0tPnBvc2l0aW9uX2VzdGltYXRvcjtcbiAgY29tcHV0ZXJfdmlzaW9uLS0-cG9zaXRpb25fZXN0aW1hdG9yO1xuICBwb3NpdGlvbl9lc3RpbWF0b3ItLT5uYXZpZ2F0b3I7XG4gIHBvc2l0aW9uX2VzdGltYXRvci0tPmF0dGl0dWRlX2VzdGltYXRvcjtcbiAgcG9zaXRpb25fZXN0aW1hdG9yLS0-cG9zX2N0cmw7XG4gIGF0dGl0dWRlX2VzdGltYXRvci0tPmF0dF9jdHJsOyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIHBvc19jdHJsLS0-YXR0X2N0cmw7XG4gIGF0dF9jdHJsLS0-bWl4ZXI7XG4gIGluZXJ0aWFsX3NlbnNvcnMtLT5hdHRpdHVkZV9lc3RpbWF0b3I7XG4gIGluZXJ0aWFsX3NlbnNvcnMtLT5wb3NpdGlvbl9lc3RpbWF0b3I7XG4gIEdQUy0tPnBvc2l0aW9uX2VzdGltYXRvcjtcbiAgY29tcHV0ZXJfdmlzaW9uLS0-cG9zaXRpb25fZXN0aW1hdG9yO1xuICBwb3NpdGlvbl9lc3RpbWF0b3ItLT5uYXZpZ2F0b3I7XG4gIHBvc2l0aW9uX2VzdGltYXRvci0tPmF0dGl0dWRlX2VzdGltYXRvcjtcbiAgcG9zaXRpb25fZXN0aW1hdG9yLS0-cG9zX2N0cmw7XG4gIGF0dGl0dWRlX2VzdGltYXRvci0tPmF0dF9jdHJsOyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)

@@ -35,11 +35,4 @@ PX4由两个层次组成：一是[飞行控制栈(flight stack)](../concept/flig
 与地面站（GCS）之间的交互是通过一种“商业逻辑”应用程序来处理的，包括如 commander( 一般命令与控制，例如解锁 ) ， navigator ( 接受任务并将其转为底层导航的原始数据 ) 和 mavlink 应用， mavlink 用于接受 MAVLink 数据包并将其转换为板载 uORB 数据结构。这种隔离方式使架构更为清晰，可以避免系统对 MAVLink  过于依赖 。 MAVLink 应用也会获取大量的传感器数据和状态估计值，并将其发送到地面站。
 
 
-{% mermaid %}
-graph TD;
-  mavlink---commander;
-  mavlink---navigator;
-  position_estimator-->mavlink;
-  attitude_estimator-->mavlink;
-  mixer-->mavlink;
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIG1hdmxpbmstLS1jb21tYW5kZXI7XG4gIG1hdmxpbmstLS1uYXZpZ2F0b3I7XG4gIHBvc2l0aW9uX2VzdGltYXRvci0tPm1hdmxpbms7XG4gIGF0dGl0dWRlX2VzdGltYXRvci0tPm1hdmxpbms7XG4gIG1peGVyLS0-bWF2bGluazsiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIG1hdmxpbmstLS1jb21tYW5kZXI7XG4gIG1hdmxpbmstLS1uYXZpZ2F0b3I7XG4gIHBvc2l0aW9uX2VzdGltYXRvci0tPm1hdmxpbms7XG4gIGF0dGl0dWRlX2VzdGltYXRvci0tPm1hdmxpbms7XG4gIG1peGVyLS0-bWF2bGluazsiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)

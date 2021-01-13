@@ -8,11 +8,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 软件在环仿真是在主机上运行一个完整的系统并模拟自驾仪。它通过本地网络连接到仿真器。 设置成如下的形式：
 
-{% mermaid %}
-graph LR;
-  Simulator-->MAVLink;
-  MAVLink-->SITL;
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIFNpbXVsYXRvci0tPk1BVkxpbms7XG4gIE1BVkxpbmstLT5TSVRMOyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIFNpbXVsYXRvci0tPk1BVkxpbms7XG4gIE1BVkxpbmstLT5TSVRMOyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 
 ## 运行SITL
 

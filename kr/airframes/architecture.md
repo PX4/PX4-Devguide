@@ -2,13 +2,7 @@
 
 PX4 시스템은 모듈화 구조로 되어 있어 모든 로봇 타입을 단일 코드베이스로 대응합니다.
 
-{% mermaid %}
-graph LR;
-  Autopilot-->Controller;
-  SafetyPilot-->Controller;
-  Controller-->Mixer;
-  Mixer-->Actuator
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEF1dG9waWxvdC0tPkNvbnRyb2xsZXI7XG4gIFNhZmV0eVBpbG90LS0-Q29udHJvbGxlcjtcbiAgQ29udHJvbGxlci0tPk1peGVyO1xuICBNaXhlci0tPkFjdHVhdG9yIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEF1dG9waWxvdC0tPkNvbnRyb2xsZXI7XG4gIFNhZmV0eVBpbG90LS0-Q29udHJvbGxlcjtcbiAgQ29udHJvbGxlci0tPk1peGVyO1xuICBNaXhlci0tPkFjdHVhdG9yIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
 ## 기본 장비
 

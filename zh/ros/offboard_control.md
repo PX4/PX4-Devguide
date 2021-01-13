@@ -41,12 +41,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 - [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
 - [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
-{% mermaid %}
-graph TD;
-  gnd[Ground Station] --MAVLink--> rad1[Ground Radio];
-  rad1 --RadioProtocol--> rad2[Vehicle Radio];
-  rad2 --MAVLink--> a[Autopilot];
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGduZFtHcm91bmQgU3RhdGlvbl0gLS1NQVZMaW5rLS0-IHJhZDFbR3JvdW5kIFJhZGlvXTtcbiAgcmFkMSAtLVJhZGlvUHJvdG9jb2wtLT4gcmFkMltWZWhpY2xlIFJhZGlvXTtcbiAgcmFkMiAtLU1BVkxpbmstLT4gYVtBdXRvcGlsb3RdOyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGduZFtHcm91bmQgU3RhdGlvbl0gLS1NQVZMaW5rLS0-IHJhZDFbR3JvdW5kIFJhZGlvXTtcbiAgcmFkMSAtLVJhZGlvUHJvdG9jb2wtLT4gcmFkMltWZWhpY2xlIFJhZGlvXTtcbiAgcmFkMiAtLU1BVkxpbmstLT4gYVtBdXRvcGlsb3RdOyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 
 ### 2. 机载协同计算机
 
@@ -64,26 +59,10 @@ graph TD;
 - [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
 - [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
 
-{% mermaid %}
-graph TD;
-  comp[Companion Computer] --MAVLink--> uart[UART Adapter];
-  uart --MAVLink--> Autopilot;
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGNvbXBbQ29tcGFuaW9uIENvbXB1dGVyXSAtLU1BVkxpbmstLT4gdWFydFtVQVJUIEFkYXB0ZXJdO1xuICB1YXJ0IC0tTUFWTGluay0tPiBBdXRvcGlsb3Q7IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGNvbXBbQ29tcGFuaW9uIENvbXB1dGVyXSAtLU1BVkxpbmstLT4gdWFydFtVQVJUIEFkYXB0ZXJdO1xuICB1YXJ0IC0tTUFWTGluay0tPiBBdXRvcGlsb3Q7IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
 ### 3. 机载计算机和到ROS的WIFI连接（***推荐***）
 
 一个挂载在飞行器上的小型计算机，通过串口转USB适配器连接到飞控板，同时提供到运行ROS的地面站的WIFI连接。可以是上一部分的任意一个机载计算机，同时再加一个WIFI适配器。例如：Intel NUC D34010WYB有一个PCI Express Half-Mini接口，可以连接一个[Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/)适配器。
-{% mermaid %}
-graph TD
-subgraph Ground  Station
-gnd[ROS Enabled Computer] --- qgc[qGroundControl]
-end
-gnd --MAVLink/UDP--> w[WiFi];
-qgc --MAVLink--> w;
-subgraph Vehicle
-comp[Companion Computer] --MAVLink--> uart[UART Adapter]
-uart --- Autopilot
-end
-w --- comp
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbnN1YmdyYXBoIEdyb3VuZCAgU3RhdGlvblxuZ25kW1JPUyBFbmFibGVkIENvbXB1dGVyXSAtLS0gcWdjW3FHcm91bmRDb250cm9sXVxuZW5kXG5nbmQgLS1NQVZMaW5rL1VEUC0tPiB3W1dpRmldO1xucWdjIC0tTUFWTGluay0tPiB3O1xuc3ViZ3JhcGggVmVoaWNsZVxuY29tcFtDb21wYW5pb24gQ29tcHV0ZXJdIC0tTUFWTGluay0tPiB1YXJ0W1VBUlQgQWRhcHRlcl1cbnVhcnQgLS0tIEF1dG9waWxvdFxuZW5kXG53IC0tLSBjb21wIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbnN1YmdyYXBoIEdyb3VuZCAgU3RhdGlvblxuZ25kW1JPUyBFbmFibGVkIENvbXB1dGVyXSAtLS0gcWdjW3FHcm91bmRDb250cm9sXVxuZW5kXG5nbmQgLS1NQVZMaW5rL1VEUC0tPiB3W1dpRmldO1xucWdjIC0tTUFWTGluay0tPiB3O1xuc3ViZ3JhcGggVmVoaWNsZVxuY29tcFtDb21wYW5pb24gQ29tcHV0ZXJdIC0tTUFWTGluay0tPiB1YXJ0W1VBUlQgQWRhcHRlcl1cbnVhcnQgLS0tIEF1dG9waWxvdFxuZW5kXG53IC0tLSBjb21wIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 

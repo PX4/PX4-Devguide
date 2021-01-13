@@ -29,12 +29,7 @@
 * [Lairdtech RM024](http://www.lairdtech.com/products/rm024)
 * [Digi International XBee Pro](http://www.digi.com/products/xbee-rf-solutions/modules)
 
-{% mermaid %}
-graph TD;
-  gnd[Ground Station] --MAVLink--> rad1[Ground Radio];
-  rad1 --RadioProtocol--> rad2[Vehicle Radio];
-  rad2 --MAVLink--> a[Autopilot];
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGduZFtHcm91bmQgU3RhdGlvbl0gLS1NQVZMaW5rLS0-IHJhZDFbR3JvdW5kIFJhZGlvXTtcbiAgcmFkMSAtLVJhZGlvUHJvdG9jb2wtLT4gcmFkMltWZWhpY2xlIFJhZGlvXTtcbiAgcmFkMiAtLU1BVkxpbmstLT4gYVtBdXRvcGlsb3RdOyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGduZFtHcm91bmQgU3RhdGlvbl0gLS1NQVZMaW5rLS0-IHJhZDFbR3JvdW5kIFJhZGlvXTtcbiAgcmFkMSAtLVJhZGlvUHJvdG9jb2wtLT4gcmFkMltWZWhpY2xlIFJhZGlvXTtcbiAgcmFkMiAtLU1BVkxpbmstLT4gYVtBdXRvcGlsb3RdOyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2V9)
 
 ### 2. On-board 프로세서
 autopilot에 연결하는 작은 컴퓨터는 UART를 통해 USB 어댑터에 연결합니다. autopilot에 추가로 명령을 보내고자 한다면 추가하는 온보드 프로세싱 종류에 따라서 다양한 선택이 가능합니다.
@@ -49,26 +44,10 @@ autopilot에 연결하는 작은 컴퓨터는 UART를 통해 USB 어댑터에 �
 * [Gigabyte Brix](http://www.gigabyte.com/products/list.aspx?s=47&ck=104)
 * [Nvidia Jetson TK1](https://developer.nvidia.com/jetson-tk1)
 
-{% mermaid %}
-graph TD;
-  comp[Companion Computer] --MAVLink--> uart[UART Adapter];
-  uart --MAVLink--> Autopilot;
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGNvbXBbQ29tcGFuaW9uIENvbXB1dGVyXSAtLU1BVkxpbmstLT4gdWFydFtVQVJUIEFkYXB0ZXJdO1xuICB1YXJ0IC0tTUFWTGluay0tPiBBdXRvcGlsb3Q7IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVEQ7XG4gIGNvbXBbQ29tcGFuaW9uIENvbXB1dGVyXSAtLU1BVkxpbmstLT4gdWFydFtVQVJUIEFkYXB0ZXJdO1xuICB1YXJ0IC0tTUFWTGluay0tPiBBdXRvcGlsb3Q7IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
 ### 3. 온보드 프로세서와 wifi로 ROS에 연결 (***추천***)
 비행체에 부착하는 작은 컴퓨터는 UART USB 아답터를 통해 autopilot로 연결하며 ROS가 실행되고 있는 ground station에 WiFi 링크를 가질 수 있습니다. WiFi 아답터와 결합된 위 섹션에 소개한 어떤 컴퓨터도 가능합니다. 예로 Intel NUC D34010WYB는 [Intel Wifi Link 5000](http://www.intel.com/products/wireless/adapters/5000/) 아답터를 제공하는 PCI Express Half-Mini 커넥터가 있습니다.
 
 
-{% mermaid %}
-	graph TD
-	subgraph Ground  Station
-	  gnd[ROS Enabled Computer] --- qgc[qGroundControl]
-	end
-	gnd --MAVLink/UDP--> w[WiFi];
-	qgc --MAVLink--> w;
-	subgraph Vehicle
-	  comp[Companion Computer] --MAVLink--> uart[UART Adapter]
-	uart --- Autopilot
-	end
-	w --- comp
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiXHRncmFwaCBURFxuXHRzdWJncmFwaCBHcm91bmQgIFN0YXRpb25cblx0ICBnbmRbUk9TIEVuYWJsZWQgQ29tcHV0ZXJdIC0tLSBxZ2NbcUdyb3VuZENvbnRyb2xdXG5cdGVuZFxuXHRnbmQgLS1NQVZMaW5rL1VEUC0tPiB3W1dpRmldO1xuXHRxZ2MgLS1NQVZMaW5rLS0-IHc7XG5cdHN1YmdyYXBoIFZlaGljbGVcblx0ICBjb21wW0NvbXBhbmlvbiBDb21wdXRlcl0gLS1NQVZMaW5rLS0-IHVhcnRbVUFSVCBBZGFwdGVyXVxuXHR1YXJ0IC0tLSBBdXRvcGlsb3Rcblx0ZW5kXG5cdHcgLS0tIGNvbXAiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiXHRncmFwaCBURFxuXHRzdWJncmFwaCBHcm91bmQgIFN0YXRpb25cblx0ICBnbmRbUk9TIEVuYWJsZWQgQ29tcHV0ZXJdIC0tLSBxZ2NbcUdyb3VuZENvbnRyb2xdXG5cdGVuZFxuXHRnbmQgLS1NQVZMaW5rL1VEUC0tPiB3W1dpRmldO1xuXHRxZ2MgLS1NQVZMaW5rLS0-IHc7XG5cdHN1YmdyYXBoIFZlaGljbGVcblx0ICBjb21wW0NvbXBhbmlvbiBDb21wdXRlcl0gLS1NQVZMaW5rLS0-IHVhcnRbVUFSVCBBZGFwdGVyXVxuXHR1YXJ0IC0tLSBBdXRvcGlsb3Rcblx0ZW5kXG5cdHcgLS0tIGNvbXAiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)

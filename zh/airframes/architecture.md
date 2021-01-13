@@ -8,13 +8,7 @@ translated_sha: 95b39d747851dd01c1fe5d36b24e59ec865e323e
 
 PX4系统是模块化的架构，这使得它对所有的机器人类型都可以使用同一个代码库。
 
-{% mermaid %}
-graph LR;
-  Autopilot-->Controller;
-  SafetyPilot-->Controller;
-  Controller-->Mixer;
-  Mixer-->Actuator
-{% endmermaid %}
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEF1dG9waWxvdC0tPkNvbnRyb2xsZXI7XG4gIFNhZmV0eVBpbG90LS0-Q29udHJvbGxlcjtcbiAgQ29udHJvbGxlci0tPk1peGVyO1xuICBNaXhlci0tPkFjdHVhdG9yIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggTFI7XG4gIEF1dG9waWxvdC0tPkNvbnRyb2xsZXI7XG4gIFNhZmV0eVBpbG90LS0-Q29udHJvbGxlcjtcbiAgQ29udHJvbGxlci0tPk1peGVyO1xuICBNaXhlci0tPkFjdHVhdG9yIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 
 ## 基本设备
 
