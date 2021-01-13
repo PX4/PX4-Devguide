@@ -1,5 +1,3 @@
-!REDIRECT "https://docs.px4.io/master/en/middleware/modules_simulation.html"
-
 # Modules Reference: Simulation
 
 ## sih

@@ -1,5 +1,3 @@
-!REDIRECT "https://docs.px4.io/master/en/middleware/modules_controller.html"
-
 # Modules Reference: Controller
 
 ## airship_att_control

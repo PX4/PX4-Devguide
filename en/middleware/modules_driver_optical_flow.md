@@ -1,5 +1,3 @@
-!REDIRECT "https://docs.px4.io/master/en/middleware/modules_driver_optical_flow.html"
-
 # Modules Reference: Optical Flow (Driver)
 ## thoneflow
 Source: [drivers/optical_flow/thoneflow](https://github.com/PX4/Firmware/tree/master/src/drivers/optical_flow/thoneflow)

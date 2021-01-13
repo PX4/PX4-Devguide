@@ -1,5 +1,3 @@
-!REDIRECT "https://docs.px4.io/master/en/middleware/modules_template.html"
-
 # Modules Reference: Template
 
 ## module
