@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/test_and_ci/integration_testing.html"
+
 # 통합 시험
 
 종단간 통합 시험을 다룹니다. 시험은 자동으로 실행합니다([Jenkins CI](../test_and_ci/jenkins_ci.md))

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/test_and_ci/integration_testing_mavsdk.html"
+
 # 使用 MAVSDK 进行集成测试
 
 可以使用基于 [MAVSDK](https://mavsdk.mavlink.io) 的集成测试对 PX4 进行端到端测试。

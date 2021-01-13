@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/qgc/video_streaming.html"
+
 # Video Streaming from Odroid C1 to QGroundControl
 
 > **Tip** This article is somewhat out of date. 

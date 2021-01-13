@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/dev_setup/dev_env_linux_centos.html"
+
 # Development Environment on CentOS
 
 > **Note** These instructions have not been tested with recent builds of PX4. We hope to provide fully tested instructions with the supported toolchain in the near future.

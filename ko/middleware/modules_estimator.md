@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_estimator.html"
+
 # 모듈 참고: 추정자
 
 ## AttitudeEstimatorQ

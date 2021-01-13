@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/simulation/"
+
 # Simulation
 
 Simulators allow PX4 flight code to control a computer modeled vehicle in a simulated "world".

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/test_cards/mc_04_failsafe_testing.html"
+
 # 시험 MC_04 - 안전 장치 시험
 
 ❏ 원격 조종 유실 동작이 착륙 준비인지 확인

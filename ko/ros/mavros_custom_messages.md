@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/ros/mavros_custom_messages.html"
+
 # MAVROS에서 PX4로 커스텀 메시지 전송
 
 > **경고** 본 문서는 아래 환경에서 테스트하였습니다:

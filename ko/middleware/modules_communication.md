@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_communication.html"
+
 # 모듈 참조: 통신
 
 ## frsky_telemetry

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/middleware/modules_main.html"
+
 # Modules & Commands Reference
 
 The following pages document the PX4 modules, drivers and commands. They describe the provided functionality, high-level implementation overview and how to use the command-line interface.

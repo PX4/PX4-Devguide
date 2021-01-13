@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/dev_env_advanced_linux.html"
+
 # 고급 리눅스 설치 활용 사례
 
 ## JTAG 프로그래밍 어댑터 활용

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_simulation.html"
+
 # 模块参考：仿真
 
 ## sih

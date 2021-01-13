@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_main.html"
+
 # 모듈과 명령어 참고
 
 다음 페이지에서는 PX4 모듈, 드라이버, 명령어를 설명합니다. 제공 기능, 고수준 구현 개요, 명령행 인터페이스 사용법을 설명합니다.

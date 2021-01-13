@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_log/flight_log_analysis.html"
+
 # 飞行日志分析
 
 关于飞行日志分析的资料包含在 PX4 用户指南中：

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/dev_env_windows.html"
+
 # 윈도우 환경 설치 방법
 
 윈도우에서 PX4 를 개발하려면, [윈도우용 Cygwin 툴체인](../setup/dev_env_windows_cygwin.md)에서 다음 절차를 따르십시오.

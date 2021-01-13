@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/test_and_ci/jenkins_ci.html"
+
 # Jenkins CI
 
 Jenkins continuous integration server on [ci.px4.io](http://ci.px4.io/) is used to automatically run integration tests against PX4 SITL.

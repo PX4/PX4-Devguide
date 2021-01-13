@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/simulation/gazebo.html"
+
 # Gazebo 仿真
 
 [ Gazebo ](http://gazebosim.org)是用于自主机器人的强大3D模拟环境，其特别适用于测试物体避障和计算机视觉。 本文描述了如何使用它来进行单机的软件在环仿真。 Gazebo 也可以适用于 [硬件在环仿真](../simulation/hitl.md) 和 [多机仿真](../simulation/multi-vehicle-simulation.md) 。

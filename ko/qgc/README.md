@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/qgc/"
+
 # QGroundControl
 
 QGroundControl는 PX4 기반 오토파일럿을 설정하고 운항하는 앱입니다. 여러 플랫폼과 운영체제를 지원합니다:

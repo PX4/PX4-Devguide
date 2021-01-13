@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/micrortps_manual_code_generation.html"
+
 # 수동으로 클라이언트와 에이전트 코드 생성하기
 
 이번 토픽에서는 어떻게 수동적으로 클라이언트와 에이전트 코드를 생성할지 다룰 것입니다(PX4 펌웨어가 컴파일될 때 [자동적으로 생성되는 것](../middleware/micrortps.md) 대신에)

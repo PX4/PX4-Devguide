@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/test_and_ci/test_flights.html"
+
 # 测试飞行
 
 测试飞行对于质量保证很重要。 Dronecode 测试团队可以帮助您检查（测试飞行）您的拉取请求并提供反馈和日志。

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/test_cards/mc_03_auto_manual_mix.html"
+
 # 测试 MC_03 - 自动手动混合
 
 ## 创建和上传任务

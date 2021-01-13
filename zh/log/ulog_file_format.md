@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_log/ulog_file_format.html"
+
 # ULog 文件格式
 
 ULog is the file format used for logging system data.

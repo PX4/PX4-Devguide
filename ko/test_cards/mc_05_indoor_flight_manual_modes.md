@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/test_cards/mc_05_indoor_flight_manual_modes.html"
+
 # 시험 MC_05 - 실내 비행 (수동 상태)
 
 ## 이 시험 카드를 사용해야 할 때

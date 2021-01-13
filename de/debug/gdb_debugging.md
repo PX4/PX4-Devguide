@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/debug/gdb_debugging.html"
+
 # Embedded Debugging
 
 The autopilots running PX4 support debugging via GDB or LLDB.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/robotics/dronekit.html"
+
 # DroneKit로 PX4와 통신하기
 
 [DroneKit](http://dronekit.io)는 무인 항공기용 프로그램에 강력한 기능을 갖추도록 도와줍니다. 이 프로그램은 UAV의 보조 컴퓨터에서 실행하며, 처리 집약적 저지연 연결이 필요한 작업을 수행하여 오토파일럿의 능력(또는 기능, 예: 컴퓨터 비전)을 확장합니다.

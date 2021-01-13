@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/concept/architecture.html"
+
 # PX4 Architectural Overview
 
 PX4 consists of two main layers: the [flight stack](#flight-stack) is an estimation and flight control system,

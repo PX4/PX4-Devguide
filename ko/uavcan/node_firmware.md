@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/uavcan/node_firmware.html"
+
 # UAVCAN 펌웨어 업그레이드
 
 ## Vectorcontrol 전동 변속기 코드 베이스 (픽스호크 전동 변속기 1.6과 S2740VC)

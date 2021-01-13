@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/_ninja_build_system.html"
+
 ## 닌자 빌드 시스템
 
 [Ninja](https://ninja-build.org/) 는 *make* 보다 빠른 빌드 시스템이며 PX4 *CMake* 제네레이서에서 이 빌드 시스템을 지원합니다. 

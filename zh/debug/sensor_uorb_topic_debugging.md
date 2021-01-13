@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/debug/sensor_uorb_topic_debugging.html"
+
 # 使用侦听器命令进行传感器/主题调试
 
 uORB 是用于进程间通信的异步 `publish()`/`subscribe()` 消息传递 API。 `listener` 命令可从 *QGroundControl 的 MAVLink 控制台* 中用于检查主题（消息）值，包括传感器发布的当前值。

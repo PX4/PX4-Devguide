@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/debug/mavlink_shell.html"
+
 # MAVLink Shell
 
 MAVLink Shell 是一个可以通过串口（USB、数传或基于WIFI的UDP/TCP链路）使用MAVLink协议访问的 *NSH 控制台* 。只适用于基于NuttX的系统，如：Pixhawk、Pixracer等。

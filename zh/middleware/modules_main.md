@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_main.html"
+
 # 模块 & 命令 参考
 
 后续页面对 PX4 的模块、驱动和命令相关内容的进行了记录。 主要描述了各自提供的功能、功能实现的高层次总览以及如何使用命令行进行交互。

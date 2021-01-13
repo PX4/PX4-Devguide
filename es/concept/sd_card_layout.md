@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/concept/sd_card_layout.html"
+
 # PX4 SD Card Layout
 
 The PX4 SD Card is used for storing configuration files, flight logs, mission information etc.

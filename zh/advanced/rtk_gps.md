@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/advanced/rtk_gps.html"
+
 # RTK GPS（背景知识）
 
 实时载波相位差分定位能够提供厘米级的定位信息。 这一章节将介绍RTK是如何集成到PX4中的。

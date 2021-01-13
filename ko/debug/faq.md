@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/faq.html"
+
 # 자주 묻는 질문
 
 ## 빌드 오류

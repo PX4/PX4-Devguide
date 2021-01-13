@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/ros/offboard_control.html"
+
 # Offboard Control
 
 > **Warning** [Offboard control](https://docs.px4.io/master/en/flight_modes/offboard.html) is dangerous. It is the responsibility of the developer to ensure adequate preparation, testing and safety precautions are taken before offboard flights.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_airframes/adding_a_new_frame.html"
+
 # 새 에어프레임 설정 추가
 
 PX4에서는 에어프레임 시작점과 같은 설정값을 잘 포장한 에어프레임 설정을 활용합니다. 설정값들은 [ROMFS/px4fmu_common/init.d](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d)폴더에 저장된 [설정 파일](#config-file) 에 정의되어 있습니다. 설정 파일들은 [믹서 파일](#mixer-file)을 참조합니다. 이 파일은 시스템의 물리 설정을 기술하며, [ROMFS/px4fmu_common/mixers](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/mixers)폴더에 저장되어 있습니다.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/test_cards/mc_03_auto_manual_mix.html"
+
 # 시험 MC_03 - 자동 / 수동 혼합
 
 ## 임무 수립 및 업로드

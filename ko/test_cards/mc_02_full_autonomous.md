@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/test_cards/mc_02_full_autonomous.html"
+
 # 시험 MC_02 - 완전 자동화
 
 ## 임무 수립 및 업로드

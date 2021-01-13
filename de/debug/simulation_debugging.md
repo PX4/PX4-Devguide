@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/debug/simulation_debugging.html"
+
 # Simulation Debugging
 
 As the simulation is running on the host machine, all the desktop development tools are available.

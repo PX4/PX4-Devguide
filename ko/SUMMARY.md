@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/SUMMARY.html"
+
 # 요약
 
 * [소개](README.md)

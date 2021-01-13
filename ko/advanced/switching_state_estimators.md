@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/advanced/switching_state_estimators.html"
+
 # 상태 추정자(State Estimator) 전환
 
 이 페이지에서는 상태 추정자의 존재 여부를 확인하고 전환하는 방법을 보여줍니다.

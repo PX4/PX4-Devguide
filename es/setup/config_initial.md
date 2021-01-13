@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/dev_setup/config_initial.html"
+
 # Configuración inicial & Configuración
 
 Recomendamos que los desarrolladores obtengan el equipo básico descrito a continuación (o similar) y utilicen una configuración de [fuselaje](../airframes/airframe_reference.md) "default".

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/apps/hello_sky.html"
+
 # 첫 프로그램 자습서(Hello Sky)
 
 이 주제에서는 보드상에서 처음 실행하는 프로그램을 작성하고 실행하는 방법을 설명합니다. PX4 기반 프로그램을 개발할 때 필요한 기본 개념과 API를 다룹니다.

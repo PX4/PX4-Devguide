@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/test_and_ci/jenkins_ci.html"
+
 # Jenkins CI（持续集成测试）
 
 [ci.px4.io](http://ci.px4.io/) 上的 Jenkins 持续集成服务器用于自动运行针对 PX4 SITL 的集成测试。

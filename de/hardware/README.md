@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/hardware/"
+
 # Hardware
 
 This section contains topics about:

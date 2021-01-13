@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/advanced/parameter_reference.html"
+
 # Parameter Reference
 
 > **Note** **This documentation was auto-generated from the source code for this PX4 version** (using `make parameters_metadata`).

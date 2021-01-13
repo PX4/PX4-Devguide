@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/ros/mavros_installation.html"
+
 # MAVROS
 
 The [mavros](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) ROS package enables MAVLink extendable communication between computers running ROS, MAVLink enabled autopilots, and MAVLink enabled GCS.

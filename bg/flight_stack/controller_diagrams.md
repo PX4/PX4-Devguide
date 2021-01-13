@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/flight_stack/controller_diagrams.html"
+
 # Controller Diagrams
 
 This section contains diagrams for the main PX4 controllers.

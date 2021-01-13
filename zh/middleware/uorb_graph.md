@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/uorb_graph.html"
+
 # UORB 发布/订阅 图
 
 <!--

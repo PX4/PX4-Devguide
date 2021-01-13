@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/test_cards/mc_05_indoor_flight_manual_modes.html"
+
 # Test MC_05 - Indoor Flight (Manual Modes)
 
 ## When to Use This Test Card

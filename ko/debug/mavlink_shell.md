@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/mavlink_shell.html"
+
 # MAVLink 셸
 
 MAVLink 셸은 직렬 포트 연결(USB/텔레메트리), 무선랜(UDP/TCP) 연결을 거쳐 MAVLink로 접근할 수 있는 *NSH 콘솔*입니다(특히, 픽스호크, 픽스레이서 등의 NuttX 기반 시스템으로).

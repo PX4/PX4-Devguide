@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/middleware/uorb_graph.html"
+
 # uORB Publication/Subscription Graph
 
 <!--

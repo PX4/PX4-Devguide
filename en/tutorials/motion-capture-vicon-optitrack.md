@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/tutorials/motion-capture-vicon-optitrack.html"
+
 # Flying with Motion Capture (VICON, Optitrack)
 
 > **Warning** **WORK IN PROGRESS**. 

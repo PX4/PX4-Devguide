@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/simulation/gazebo_octomap.html"
+
 # ROS/가제보용 옥토맵 3D 모델
 
 [옥토맵(OctoMap) 라이브러리](http://octomap.github.io/)는 센서 데이터로부터 체적 기반 3D 환경 모델을 만드는 오픈소스 라이브러리입니다. 이 모델 데이터는 드론의 지형 탐색과 충돌 방지 용도로 활용할 수 있습니다.

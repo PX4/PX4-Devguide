@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/fast-rtps-installation.html"
+
 # Fast RTPS 설치
 
 <img alt="logo" src="../../assets/fastrtps/eprosima_logo.png" style="float:left;" /> [eProsima Fast RTPS](http://eprosima-fast-rtps.readthedocs.io/en/latest/)는 RTPS(Real Time Publish Subscribe) 프로토콜의 C++ 구현체입니다. 객체 관리 그룹(Object Management Group, OMG) 컨소시엄에서 기술을 정의하고 관리합니다. UDP와 같은 신뢰성이 낮은 전송 수단으로의 게시자-가입자간의 통신 기능을 제공합니다. 또한 RTPS는 OMG에 의한 데이터 배포 서비스(Data Distribution Service, DDS)로 정의한 유선 기반 상호 운용 프로토콜입니다.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/dev_env_mac.html"
+
 # Mac 개발 환경
 
 MacOS는 PX4 지원 개발 환경입니다. 다음 절차는 빌드 환경을 설치합니다:

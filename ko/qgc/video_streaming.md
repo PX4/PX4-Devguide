@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/qgc/video_streaming.html"
+
 # Odroid C1에서 QGroundControl로의 동영상 스트리밍
 
 > **TIp** 이 글 일부는 내용이 오래됐습니다. 커뮤니티 구성원들은 최근 우분투 버전에 맞추어 절차를 다시 테스트해주었으면 좋겠고, 위치에 오드로이드 설치 절차 내용도 가져다 두었으면 좋겠습니다.

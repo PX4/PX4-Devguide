@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_system.html"
+
 # 모듈 참고: 시스템
 
 ## battery_simulator

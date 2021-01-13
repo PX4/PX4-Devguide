@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/contribute/code.html"
+
 # 소스 코드 관리
 
 ## 분기 모델

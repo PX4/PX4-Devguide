@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/SUMMARY.html"
+
 # Índice
 
 * [Introducción](README.md)

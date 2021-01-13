@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/test_cards/mc_03_auto_manual_mix.html"
+
 # Test MC_03 - Auto Manual Mix
 
 ## Create and Upload Mission

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/ros/"
+
 # ROS를 활용한 로보틱스
 
 [ROS](http://www.ros.org/) (Robot Operating System)는 로보틱스용 범용 라이브러리이며, PX4에 [offboard control](../ros/mavros_offboard.md)용으로 사용할 수 있습니다. [MAVROS](../ros/mavros_installation.md) 노드를 사용하여 하드웨어상에서 동작하거나 [Gazebo Simulator](../simulation/ros_interface.md)를 사용하는 PX4와 통신할 수 있습니다.

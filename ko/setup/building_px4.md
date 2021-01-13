@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/building_px4.html"
+
 # PX4 소프트웨어 빌드
 
 PX4는 모의시험 환경과 하드웨어 타겟 모두에 대해 콘솔 또는 IDE 환경에서 빌드할 수 있습니다.

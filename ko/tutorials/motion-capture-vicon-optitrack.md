@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/tutorials/motion-capture-vicon-optitrack.html"
+
 # 움직임 촬영(Motion Capture)기술을 활용한 비행 (VICON, Optitrack)
 
 > **Warning** **작성중입니다**. 이 주제에서는 [외부 위치 추정(ROS)](../ros/external_position_estimation.md)과 약간 겹칩니다.

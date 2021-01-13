@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/ros/external_position_estimation.html"
+
 # Using Vision or Motion Capture Systems for Position Estimation
 
 Visual Inertial Odometry (VIO) and and Motion Capture (MoCap) systems allow vehicles to navigate when a global position source is unavailable or unreliable (e.g. indoors, or when flying under a bridge. etc.).

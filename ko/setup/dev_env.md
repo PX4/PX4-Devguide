@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/dev_env.html"
+
 # 개발 환경(툴체인) 설정
 
 PX4 코드는 [리눅스](../setup/dev_env_linux.md), [맥 OS](../setup/dev_env_mac.md), [윈도우](../setup/dev_env_windows.md)에서 개발할 수 있습니다. [Ubuntu Linux LTS](https://wiki.ubuntu.com/LTS) 에디션을 권장하며, [모든 PX4 대상](#supported-targets) 빌드 및 대부분의 [시뮬레이터](../simulation/README.md)와 [ROS](../ros/README.md) 사용이 가능하기 때문입니다.

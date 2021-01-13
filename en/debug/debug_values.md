@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/debug/debug_values.html"
+
 # Send and Receive Debug Values
 
 It is often necessary during software development to output individual important numbers.

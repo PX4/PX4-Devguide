@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/ros/raspberrypi_installation.html"
+
 # 라즈베리 파이 - ROS 설치
 
 픽스호크용 보조 컴퓨터로 활약할 라즈베리 파이 2에 ROS-indigo를 설치하는 방법을 안내합니다.

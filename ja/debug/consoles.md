@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/debug/consoles.html"
+
 # PX4 Consoles/Shells
 
 PX4 enables terminal access to the system through the [MAVLink Shell](../debug/mavlink_shell.md) and the [System Console](../debug/system_console.md).

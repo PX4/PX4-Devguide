@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/concept/system_startup.html"
+
 # System Startup
 
 The PX4 startup is controlled by shell scripts. On NuttX they reside in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d) folder - some of these are also used on Posix (Linux/MacOS). The scripts that are only used on Posix are located in [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d-posix).

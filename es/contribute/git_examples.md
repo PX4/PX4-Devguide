@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/contribute/git_examples.html"
+
 # GIT Examples
 
 <a id="contributing_code"></a>

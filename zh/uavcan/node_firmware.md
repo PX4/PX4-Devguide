@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/uavcan/node_firmware.html"
+
 # UAVCAN 固件升级
 
 ## Ectorcontrol ESC 代码库（Pixhawk ESC 1.6 和 S2740VC）

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_driver_baro.html"
+
 # 모듈 참고: 기압(드라이버)
 ## bmp280
 Source: [drivers/barometer/bmp280](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/bmp280)

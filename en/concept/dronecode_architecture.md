@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/concept/dronecode_architecture.html"
+
 # PX4 Platform Hardware/Software Architecture
 
 The diagram below provides a forward-looking high level overview of a full PX4 onboard and offboard stack.

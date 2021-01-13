@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_communication.html"
+
 # 模块参考：通信（Communication）
 
 ## frsky_telemetry

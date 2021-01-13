@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/test_and_ci/"
+
 # Platform Testing and Continuous Integration
 
 PX4 offers extensive tests and testing facilities, including unit and integration tests run via continuous integration and "live" flight testing by our dedicated test team. This page provides an overview.

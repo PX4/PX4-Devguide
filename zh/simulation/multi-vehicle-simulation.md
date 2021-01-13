@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/simulation/multi-vehicle-simulation.html"
+
 # Multi-Vehicle Simulation
 
 PX4 supports multi-vehicle simulation using the following simulators:

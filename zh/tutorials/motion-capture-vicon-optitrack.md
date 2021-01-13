@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/tutorials/motion-capture-vicon-optitrack.html"
+
 # 使用 Motion Capture 飞行（VICON，Optitrack）
 
 > **Warning** **WORK IN PROGRESS**. 该主题与 [External Position Estimation (ROS)](../ros/external_position_estimation.md) 是重叠的。

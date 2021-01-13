@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/contribute/"
+
 # Contributing
 
 {% if book.px4_version != 'master' %}

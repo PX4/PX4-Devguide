@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/simulation/multi_vehicle_jmavsim.html"
+
 # Multi-Vehicle Simulation with JMAVSim
 
 This topic explains how to simulate multiple UAV (multicopter) vehicles using JMAVSim and SITL.

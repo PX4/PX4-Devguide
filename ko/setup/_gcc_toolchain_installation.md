@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/_gcc_toolchain_installation.html"
+
 <!-- NuttX를 빌드할 모든 리눅스 플랫폼에서 활용하는 GCC 툴체인 문서 -->
 
 아래 스크립트를 실행하여 GCC 7-2017-q4를 설치하십시오:

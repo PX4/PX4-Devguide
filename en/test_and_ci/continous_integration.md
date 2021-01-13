@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/test_and_ci/continous_integration.html"
+
 # PX4 Continuous Integration
 
 PX4 builds and testing are spread out over multiple continuous integration services. 

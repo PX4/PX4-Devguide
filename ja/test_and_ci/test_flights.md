@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/test_and_ci/test_flights.html"
+
 # Tests Flights
 
 Test flights are important for quality assurance. The Dronecode test team can help review (test flight) your pull requests and provide feedback and logs.

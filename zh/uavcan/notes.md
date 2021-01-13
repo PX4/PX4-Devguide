@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/uavcan/notes.html"
+
 # 各种说明
 
 这是在设置或使用 UAVCAN 时解决问题的一系列提示和技巧。

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/concept/dronecode_architecture.html"
+
 # PX4 플랫폼 하드웨어/소프트웨어 구조
 
 아래의 그림은 PX4 보드 내외의 전체 스택 개요를 고수준 관점에서 보여드립니다. 왼쪽 편은 가능한 하나의 하드웨어 설정을 보여줍니다. *flight controller*(밝은 파란색)부분을 [RTPS](../middleware/micrortps.md)로 *perception computer*(어두운 파랑)과 연결합니다. 인지 처리 컴퓨터(Perception Computer)는 카메라 센서 배열로 시각요소를 제어하고 물체를 회피하며, 별도의 탑재 카메라를 갖추고 있습니다.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/profiling.html"
+
 # 가난한 자의 샘플링 프로파일러
 
 이 절에서는 프로파일링 평균 수치로 PX4 시스템 성능을 살펴보는 방법을 설명합니다.

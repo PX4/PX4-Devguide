@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/middleware/micrortps.html"
+
 # RTPS/ROS2 Interface: PX4-FastRTPS Bridge
 
 The *PX4-FastRTPS Bridge* adds a Real Time Publish Subscribe (RTPS) interface to PX4, enabling the exchange of [uORB messages](../middleware/uorb.md) between PX4 components and (offboard) *Fast RTPS* applications (including those built using the ROS2/ROS frameworks).

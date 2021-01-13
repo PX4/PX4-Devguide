@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/middleware/modules_main.html"
+
 
 # Modules & Commands Reference
 The following pages document the PX4 modules, drivers and commands. They

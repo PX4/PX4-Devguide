@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/uavcan/"
+
 # UAVCAN Introduction
 
 ![UAVCAN Logo](../../assets/uavcan/uavcan_logo_transparent.png)

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/middleware/modules_driver_baro.html"
+
 # Modules Reference: Baro (Driver)
 ## bmp280
 Source: [drivers/barometer/bmp280](https://github.com/PX4/Firmware/tree/master/src/drivers/barometer/bmp280)

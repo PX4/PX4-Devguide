@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/contribute/support.html"
+
 # 지원
 
 이 절에서는 핵심 개발팀과 커뮤니티의 지원을 받는 방법을 알려드립니다.

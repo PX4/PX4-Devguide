@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/contribute/docs.html"
+
 # Contributing to Documentation
 
 Contributions to the guides for all parts of the Dronecode project are very welcome. This includes the PX4 and QGroundControl developer and user guides, and the MAVLink guide. This article explains how you can make changes, add content, and create translations.

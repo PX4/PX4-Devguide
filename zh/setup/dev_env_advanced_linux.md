@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_setup/dev_env_advanced_linux.html"
+
 # 高级 Linux 安装用例
 
 ## 使用 JTAG 编程调试器

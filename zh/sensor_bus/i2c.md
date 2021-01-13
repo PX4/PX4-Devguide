@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/sensor_bus/i2c.html"
+
 # I2C 总线概述
 
 I2C 是一种分组交换串行通信协议，允许多个主设备连接到多个从属设备，每个连接只需使用2根电线。 它用于在短距离、板内通信中将低速外设 IC 连接到处理器和微控制器。

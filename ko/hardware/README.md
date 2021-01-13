@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/hardware/"
+
 # 하드웨어
 
 이 절에서는 다음 주제를 다룹니다:

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/debug/faq.html"
+
 # Frequently Asked Questions
 
 
