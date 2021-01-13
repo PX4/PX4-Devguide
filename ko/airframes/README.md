@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_airframes/"
+
 # 에어프레임
 
 PX4에는 상상 가능한 기체 형식/프레임을 단일 코드베이스로 지원하는 유연한 [믹싱 시스템](../concept/mixing.md)을 채용했습니다:

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/contribute/code.html"
+
 # 源代码管理
 
 ## 分支模型

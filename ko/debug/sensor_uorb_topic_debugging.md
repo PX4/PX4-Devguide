@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/sensor_uorb_topic_debugging.html"
+
 # listener 명령을 활용한 센서/토픽 디버깅
 
 uORB는 스레드/프로세스간 통신용 비동기 `publish()` / `subscribe()` 메세지 처리 API입니다. *QGroundControl MAVLink 콘솔*에서 토픽(메세지)에 들어간 센서값을 검사할 때 `listener` 명령을 활용할 수 있습니다.

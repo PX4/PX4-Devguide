@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_driver.html"
+
 # 模块参考：驱动
 
 子分类

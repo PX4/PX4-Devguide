@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/middleware/"
+
 # Middleware
 
 This section contains topics about PX4 middleware, 

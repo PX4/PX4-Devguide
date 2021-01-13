@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/dev_setup/_gcc_toolchain_installation.html"
+
 <!-- GCC toolchain documentation used for all Linux platforms to build NuttX -->
 
 Execute the script below to install GCC 7-2017-q4:

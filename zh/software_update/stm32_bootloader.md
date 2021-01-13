@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/software_update/stm32_bootloader.html"
+
 # STM32 Bootloader
 
 PX4 引导加载程序的代码可从 Github [ Bootloader ](https://github.com/px4/bootloader)存储库获得。

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/debug_values.html"
+
 # 디버깅 값 송수신
 
 소프트웨어 개발 과정에서 제각각 중요한 숫자 값을 출력할 필요가 종종 있습니다. 이 때가 보통 MAVLink 패킷이 들어올 때 `NAMED_VALUE_FLOAT`, `DEBUG`, `DEBUG_VECT` 패킷을 활용할 수 있는 경우입니다.

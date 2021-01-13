@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/software_update/stm32_bootloader.html"
+
 # STM32 Bootloader
 
 The code for the PX4 bootloader is available from the Github [Bootloader](https://github.com/px4/bootloader) repository.

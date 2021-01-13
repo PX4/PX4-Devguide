@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/middleware/drivers.html"
+
 # Driver Development
 
 PX4 device drivers are based on the [Device](https://github.com/PX4/PX4-Autopilot/tree/master/src/lib/drivers/device) framework.

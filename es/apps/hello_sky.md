@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/apps/hello_sky.html"
+
 # First Application Tutorial (Hello Sky)
 
 This topic explains how to create and run your first onboard application. It covers all the basic concepts and APIs required for app development on PX4.

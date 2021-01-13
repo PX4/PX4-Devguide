@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_command.html"
+
 # 모듈 참고서: 명령어
 
 ## bl_update

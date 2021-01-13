@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/contribute/dev_call.html"
+
 <a id="dev_call"></a>
 
 # Weekly Dev Call

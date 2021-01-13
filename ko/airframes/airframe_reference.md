@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_airframes/airframe_reference.html"
+
 # 에어프레임 참고
 
 > **Note** **This list is [auto-generated](https://github.com/PX4/Firmware/edit/master/Tools/px4airframes/markdownout.py) from the source code**.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/middleware/modules_driver_distance_sensor.html"
+
 # Modules Reference: Distance Sensor (Driver)
 
 ## leddar_one

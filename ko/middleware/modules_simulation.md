@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_simulation.html"
+
 # 모듈 참고: 모의시험 환경
 
 ## sih

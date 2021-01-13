@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/middleware/micrortps_throughput_test.html"
+
 # Micro RTPS Throughput Test
 
 This a simple test to measure the throughput of the [PX4-FastRTPS Bridge](../middleware/micrortps.md).

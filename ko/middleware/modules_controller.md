@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_controller.html"
+
 # 모듈 참고: 조종 장치
 
 ## airship_att_control

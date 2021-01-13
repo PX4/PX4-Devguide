@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/contribute/translation.html"
+
 # 参与翻译
 
 We'd love your help to translate *QGroundControl*, and our guides for PX4, *QGroundControl* and MAVLink!

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/ros/mavros_offboard.html"
+
 # MAVROS *Offboard* control example
 
 This tutorial shows the basics of *Offboard* control with MAVROS, using an Iris quadcopter simulated in Gazebo/SITL.

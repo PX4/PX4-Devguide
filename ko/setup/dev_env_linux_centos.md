@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/dev_env_linux_centos.html"
+
 # CentOS의 개발 환경
 
 > **Note** 이 설명서 내용은 최근 PX4 빌드에 대해 시험해보지 않았습니다. 곧 지원 툴체인을 설명서를 따라 완전한 시험이 진행되길 빕니다.

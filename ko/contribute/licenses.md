@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/contribute/licenses.html"
+
 # 라이선스
 
 > **참고** 모든 코드의 기여는 [BSD 3-clause 라이선스](https://opensource.org/licenses/BSD-3-Clause) 하에 진행하며, 사용상 모든 코드에 대해 더 이상의 제약 사항을 강요해서는 안됩니다.

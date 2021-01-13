@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/middleware/uorb_graph.html"
+
 # uORB Publication/Subscription Graph
 <!--
 Note: this page is disabled for now, as the graph is too incomplete and requires support for uORB::Subscription, uORB::Publication and library code

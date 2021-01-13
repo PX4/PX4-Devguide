@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/companion_computer/pixhawk_companion.html"
+
 # Companion Computer for Pixhawk Series
 
 Interfacing a companion computer (Raspberry Pi, Odroid, Tegra K1) to Pixhawk-family boards always works the same way: They are interfaced using a serial port to `TELEM 2`, the port intended for this purpose. The message format on this link is [MAVLink](https://mavlink.io/en/).

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/flight_stack/controller_diagrams.html"
+
 # 控制器图解
 
 本节包括PX4主要控制器的图解。

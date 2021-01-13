@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/dev_setup/dev_env_windows_cygwin.html"
+
 # Toolchain Windows Cygwin
 
 Esta toolchain es portable, fácil de instalar, y fácil de usar. Es la toolchain más reciente y con mejor rendimiento para el desarrollo de la PX4 en Windows.

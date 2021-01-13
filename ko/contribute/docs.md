@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/contribute/docs.html"
+
 # 문서 기여
 
 드론코드 프로젝트의 모든 영역을 다루는 안내서에 기여를 해주심을 매우 좋게 생각합니다. 이 내용에는 PX4, QGroundControl 개발자 및 사용자 안내서, MAVLink 안내서 내용이 들어있습니다. 여기서는 문서의 내용을 바꾸고, 내용을 추가하며, 번역문을 만드는 방법에 대해 설명합니다.

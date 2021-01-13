@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/consoles.html"
+
 # PX4 콘솔/셸
 
 PX4는 [MAVLink 셸](../debug/mavlink_shell.md)과 [시스템 콘솔](../debug/system_console.md)로 시스템으로의 터미널 접근이 가능합니다.

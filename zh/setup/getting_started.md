@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_setup/getting_started.html"
+
 # 入门指南
 
 本节包含有关开始 PX4 开发的主题：

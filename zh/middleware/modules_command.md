@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_command.html"
+
 # 模块参考：命令（Command）
 
 ## bl_update

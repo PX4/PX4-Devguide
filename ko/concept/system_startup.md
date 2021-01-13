@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/concept/system_startup.html"
+
 # 시스템 시작
 
 PX4 시작은 쉘 스크립트로 제어합니다. On NuttX they reside in the [ROMFS/px4fmu_common/init.d](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d) folder - some of these are also used on Posix (Linux/MacOS). The scripts that are only used on Posix are located in [ROMFS/px4fmu_common/init.d-posix](https://github.com/PX4/PX4-Autopilot/tree/master/ROMFS/px4fmu_common/init.d-posix).

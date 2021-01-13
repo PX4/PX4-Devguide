@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/concept/custom_mixer_payload.html"
+
 # 自定义有效载荷混控器
 
 此主题展示了如何添加一个用以可编程控制自定义载荷的自定义的[混控器](../concept/mixing.md)（比如电磁控制的机械手）

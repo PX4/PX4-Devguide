@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/middleware/modules_driver_distance_sensor.html"
+
 # Modules Reference: Distance Sensor (Driver)
 ## leddar_one
 Source: [drivers/distance_sensor/leddar_one](https://github.com/PX4/Firmware/tree/master/src/drivers/distance_sensor/leddar_one)

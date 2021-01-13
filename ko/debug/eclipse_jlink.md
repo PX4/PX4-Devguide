@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/eclipse_jlink.html"
+
 # PX4용 MCU Eclipse/J-Link 디버깅
 
 이 주제에서는 [MCU Eclipse](https://gnu-mcu-eclipse.github.io/)와 NuttX에서 동작하는 PX4 디버깅장비 *Segger Jlink adapter*를 설치하고 활용하는 방법을 설명합니다.

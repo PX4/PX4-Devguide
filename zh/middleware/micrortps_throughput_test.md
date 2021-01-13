@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/micrortps_throughput_test.html"
+
 # Micro RTPS 吞吐量测试
 
 这是一个测量 [PX4-FastRTPS Bridge](../middleware/micrortps.md) 吞吐量的简单测试。 最大速率下，同时收发 256 字节的报文，并且输出结果。

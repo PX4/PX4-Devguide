@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/dev_setup/dev_env_windows_cygwin.html"
+
 # Windows Cygwin Toolchain
 
 This toolchain is portable, easy to install, and easy to use.

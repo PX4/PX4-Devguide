@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/dev_env_linux_ubuntu.html"
+
 # 우분투 LTS / 데비안 리눅스 개발 환경
 
 PX4 개발용 지원/시험 리눅스 운영체제 버전은 [우분투 리눅스 장기 지원 버전](https://wiki.ubuntu.com/LTS) 18.04 (Bionic Beaver)와 20.04(Focal Fossa)입니다. 두 버전에서는 [대부분의 PX4 대상](../setup/dev_env.md#supported-targets)(NuttX 기반 하드웨어, *퀄컴 스냅드래곤 플라이트* 하드웨어, 리눅스 기반 하드웨어, 모의시험 환경)을 빌드할 수 있습니다.

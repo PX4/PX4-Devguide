@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/simulation/airsim.html"
+
 # AirSim 仿真
 
 AirSim 是一款开源、跨平台的无人机仿真器，基于虚幻引擎开发。 它提供物理上和视觉上都非常逼真的 Pixhawk/PX4 仿真，无论是硬件在环（HITL）或是软件在环（SITL）。

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/uorb_graph.html"
+
 # uORB Pub/Sub 그래프
 
 <!--

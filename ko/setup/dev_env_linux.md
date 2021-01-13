@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/dev_env_linux.html"
+
 # 리눅스 개발환경
 
 리눅스에서는 [모든 PX4 모델을 대상](../setup/dev_env.md#supported-targets)(NuttX 기반 하드웨어, 퀄컴 스냅드래곤 비행 하드웨어,리눅스 기반 하드웨어, 모의시홈 환경, ROS)으로 빌드를 수행할 수 있습니다.

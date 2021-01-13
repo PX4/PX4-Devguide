@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/ros/offboard_control.html"
+
 # 보드 외부 제어
 
 > **Warning** [보드 외부](https://docs.px4.io/master/en/flight_modes/offboard.html) 제어는 위험합니다. 개발자에게는 충분히 보드 외부 제어 비행을 수행하기 전 준비하고 시험했으며 안전 예방책을 수립했는지 확인할 책임이 있습니다.

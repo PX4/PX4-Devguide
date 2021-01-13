@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_driver_magnetometer.html"
+
 # Modules Reference: Magnetometer (Driver)
 ## ak09916
 Source: [drivers/magnetometer/akm/ak09916](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/akm/ak09916)

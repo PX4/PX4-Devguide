@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/data_links/telemetry.html"
+
 # 无线数传
 
 无线数传 (选配) 可以用于建立 *QGroundControl* 地面站与PX4飞控之间的无线MAVLink连接。 本节包含两个主题：已经支持的无线数传 和 在PX4系统中集成新的数传。

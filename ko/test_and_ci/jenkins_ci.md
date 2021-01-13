@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/test_and_ci/jenkins_ci.html"
+
 # 젠킨스 CI
 
 [ci.px4.io](http://ci.px4.io/)의 젠킨스 지속 통합 서버는 PX4 SITL에 대한 통합 테스트를 자동으로 수행합니다.

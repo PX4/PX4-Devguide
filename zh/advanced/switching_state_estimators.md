@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/advanced/switching_state_estimators.html"
+
 # 更换状态估计器
 
 此页显示了可用的状态估计器以及如何在它们之间切换。

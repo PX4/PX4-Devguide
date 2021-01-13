@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/contribute/code.html"
+
 # Source Code Management
 
 ## Branching Model

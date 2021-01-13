@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_log/flight_log_analysis.html"
+
 # 비행 로그 분석
 
 비행 로그 분석 관련 내용은 PX4 사용자 안내서에서 다룹니다:

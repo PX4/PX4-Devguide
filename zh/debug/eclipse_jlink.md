@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/debug/eclipse_jlink.html"
+
 # MCU Eclipse/J-Link Debugging for PX4
 
 This topic explains how to setup and use [MCU Eclipse](https://gnu-mcu-eclipse.github.io/) with a *Segger Jlink adapter* to debug PX4 running on NuttX (e.g. Pixhawk series boards).

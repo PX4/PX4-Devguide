@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/test_and_ci/unit_tests.html"
+
 # 单元测试
 
 我们鼓励开发人员在开发的每个模块时编写单元测试，包括添加新功能，修复错误和重构。

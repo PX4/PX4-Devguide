@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_driver_magnetometer.html"
+
 # 모듈 참고: 지자계 (드라이버)
 ## ak09916
 Source: [drivers/magnetometer/akm/ak09916](https://github.com/PX4/Firmware/tree/master/src/drivers/magnetometer/akm/ak09916)

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/simulation/"
+
 # 모의 시험
 
 모의 시험환경에서는 PX4 비행 코드가 모의 환경을 구현한 "월드"에서 컴퓨터 모델 기체를 제어할 수 있습니다. You can interact with this vehicle just as you might with a real vehicle, using *QGroundControl*, an offboard API, or a radio controller/gamepad.

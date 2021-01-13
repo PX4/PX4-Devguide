@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/getting_started.html"
+
 # 시작하기
 
 이 세션은 PX4 개발 시작 관련 주제를 다룹니다.

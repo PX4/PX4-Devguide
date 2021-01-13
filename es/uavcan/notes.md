@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/uavcan/notes.html"
+
 # Various Notes
 
 This is a collection of tips and tricks to solve issues when setting up or working with the UAVCAN.

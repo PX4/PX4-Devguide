@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/hardware/porting_guide.html"
+
 # 飞行控制器移植指南
 
 本主题主要针对希望将 PX4 移植到 *新* 飞控硬件平台上的开发人员。

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/generic_dev_tools.html"
+
 # 일반적인 개발 도구
 
 이 절에서는 PX4 핵심 빌드 툴체인의 요소가 아닌, 쓸만한 여러 추가 개발 도구를 알려드립니다.

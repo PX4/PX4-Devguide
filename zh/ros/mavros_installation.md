@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/ros/mavros_installation.html"
+
 # MAVROS
 
 [ mavros ](http://wiki.ros.org/mavros#mavros.2BAC8-Plugins.sys_status) 功能包提供了 一台能够运行ros的机载电脑、支持MAVLINK协议的飞控和支持MAVLINK的地面站这三者之间的通讯功能。

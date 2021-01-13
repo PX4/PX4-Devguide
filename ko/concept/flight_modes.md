@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/concept/flight_modes.html"
+
 # 비행 모드
 
 *비행 모드*는 오토파일럿의 사용자 입력에 대한 응답 방식과 기체 움직임 제어 방식을 정합니다. 오토파일럿에서 나오는 제어 수준 및 형식을 기반으로 *manual*, *assisted*, *auto* 모드로 대략적으로 나눕니다. 조종사는 원격 조종 장비의 스위치나 [지상 통제 장치](../qgc/README.md)로 비행 모드를 전환합니다.

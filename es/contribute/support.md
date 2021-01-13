@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/contribute/support.html"
+
 # Support
 
 This section shows how you can get help from the core dev team and the wider community.

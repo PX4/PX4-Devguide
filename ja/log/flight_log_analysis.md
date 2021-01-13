@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/dev_log/flight_log_analysis.html"
+
 # Flight Log Analysis
 
 Information about Flight Log Analysis is covered in the PX4 User Guide:

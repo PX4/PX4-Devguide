@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/test_and_ci/maintenance.html"
+
 # 维护说明
 
 这选择并描述了一些工具来帮助分析代码库的状态并支持其维护。

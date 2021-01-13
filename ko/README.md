@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/"
+
 # PX4 개발 안내서 ({{ book.px4_version }})
 
 [![릴리즈](https://img.shields.io/badge/release-{{ book.px4_version }}-blue.svg)](https://github.com/PX4/PX4-Autopilot/releases) [![토의](https://img.shields.io/badge/discuss-px4-ff69b4.svg)](http://discuss.px4.io/) [![슬랙](https://px4-slack.herokuapp.com/badge.svg)](http://slack.px4.io)

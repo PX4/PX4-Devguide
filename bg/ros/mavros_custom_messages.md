@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/ros/mavros_custom_messages.html"
+
 # Sending a Custom Message from MAVROS to PX4
 
 > **Warning** This article has been tested against:

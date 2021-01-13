@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/simulation/gazebo_worlds.html"
+
 # 가제보 월드(world)
 
 This topic provides imagery/information about the [Gazebo](../simulation/gazebo.md) worlds supported by PX4.

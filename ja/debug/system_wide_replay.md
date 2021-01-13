@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/debug/system_wide_replay.html"
+
 # System-wide Replay
 
 Based on ORB messages, it's possible to record and replay arbitrary parts of the system.

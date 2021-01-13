@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/dev_airframes/airframe_reference.html"
+
 # Airframes Reference
 
 > **Note** **This list is [auto-generated](https://github.com/PX4/Firmware/edit/master/Tools/px4airframes/markdownout.py) from the source code**.

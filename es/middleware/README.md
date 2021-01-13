@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/middleware/"
+
 # Middleware
 
 This section contains topics about PX4 middleware, including PX4 internal communication mechanisms ([uORB](../middleware/uorb.md)), and between PX4 and offboard systems like companion computers and GCS (e.g. [MAVLink](../middleware/mavlink.md), [RTPS](../middleware/micrortps.md)).

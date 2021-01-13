@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_setup/generic_dev_tools.html"
+
 # 通用开发工具
 
 本节列出了不属于核心 PX4 构建工具链的实用的其他开发工具。

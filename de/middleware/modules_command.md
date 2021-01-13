@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/middleware/modules_command.html"
+
 # Modules Reference: Command
 
 ## bl_update

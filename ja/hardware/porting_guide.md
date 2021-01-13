@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/hardware/porting_guide.html"
+
 # Flight Controller Porting Guide
 
 This topic is for developers who want to port PX4 to work with *new* flight controller hardware.

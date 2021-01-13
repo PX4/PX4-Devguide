@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/data_links/telemetry.html"
+
 # 텔레메트리 무선 장비/모뎀
 
 텔레메트리 무선 장치는 (별도로) *QGroundControl*같은 지상 통제 장치와 PX4를 구동하는 기체간 무선 MAVLink 연결 수단의 제공 목적으로 활용합니다. 이 절에서는 지원 무선 장치의 고급 활용법 및 PX4로의 새 텔레메트리 시스템 통합 방법을 다룹니다.

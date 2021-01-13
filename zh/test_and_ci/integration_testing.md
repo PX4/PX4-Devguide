@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/test_and_ci/integration_testing.html"
+
 # 集成测试
 
 这是关于端到端集成测试。 测试自动执行（[Jenkins CI](../test_and_ci/jenkins_ci.md)）

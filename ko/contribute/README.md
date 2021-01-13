@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/contribute/"
+
 # 기여
 
 {% if book.px4_version != 'master' %} PX4 기여 **현재** 정보, 커뮤니티와의 작업, 코드라인, 유선 개발 미팅은 [이곳 "master" 문서에서 찾을 수 있습니다](https://dev.px4.io/master/en/contribute/)! {% else %} <!-- START: dev call details: displayed only in master -->

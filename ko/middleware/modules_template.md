@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/modules_template.html"
+
 # 모듈 참고: 서식
 
 ## 모듈

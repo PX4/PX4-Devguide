@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_system.html"
+
 # 模块参考：系统
 
 ## battery_simulator

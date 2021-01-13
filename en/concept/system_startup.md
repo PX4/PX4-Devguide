@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/concept/system_startup.html"
+
 # System Startup
 
 The PX4 startup is controlled by shell scripts.

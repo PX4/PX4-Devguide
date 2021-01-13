@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/debug/swd_debug.html"
+
 # SWD (JTAG) Hardware Debugging Interface
 
 PX4 usually runs on autopilot controller hardware that provides an ARM *Serial Wire Debug (SWD)* interface.

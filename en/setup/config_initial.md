@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/dev_setup/config_initial.html"
+
 # Initial Setup & Configuration
 
 We recommend that developers obtain the basic equipment described below (or similar) and use a "default" [airframe](../airframes/airframe_reference.md) configuration.

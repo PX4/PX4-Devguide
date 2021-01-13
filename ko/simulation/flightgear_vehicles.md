@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/simulation/flightgear_vehicles.html"
+
 # FlightGear Vehicles
 
 This topic lists/displays the vehicles supported by the PX4 [FlightGear](../simulation/flightgear.md) simulation, and the `make` commands required to run them (the commands are run from terminal in the **PX4-Autopilot** directory). 지원 형식은 항공기, 오토자이로, 탐사선입니다(이 형식의 몇가지 지정 프레임이 있습니다).

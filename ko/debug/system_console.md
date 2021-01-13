@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/system_console.html"
+
 # PX4 시스템 콘솔
 
 PX4 *시스템 콘솔*에서는 시스템 저수준 접근이 가능하며, 디버깅 출력과 시스템 부팅 과정 분석을 진행할 수 있습니다.

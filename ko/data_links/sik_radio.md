@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/data_links/sik_radio.html"
+
 # SiK 무선 통신
 
 [SiK 무선 통신](https://github.com/LorenzMeier/SiK) 텔레메트리 무선 통신용 펌웨어, 도구 모음입니다.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/dev_setup/dev_env_windows.html"
+
 # Instrucciones de Instalación en Windows
 
 Para desarrollar para PX4 en Windows, siga las instrucciones en [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md).

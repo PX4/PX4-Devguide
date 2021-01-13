@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/concept/dronecode_architecture.html"
+
 # PX4 平台硬件/软件结构
 
 下面的图表提供了对完整的PX4号板载和离线堆栈的前瞻性高层概览。 图的左侧展示的是一种可能的 *飞行控制器 （flight controller）* （亮蓝色）通过 [RTPS](../middleware/micrortps.md) 与 *视觉感知计算机（perception computer）* (深蓝色) 相连接的硬件配置。 感知计算机配备一个单独的相机载荷，并使用相机传感器阵列提供视觉控制和目标回避功能。

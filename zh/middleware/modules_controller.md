@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_controller.html"
+
 # 模块参考：控制器
 
 ## airship_att_control

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/simulation/flightgear.html"
+
 # FlightGear Simulation
 
 [FlightGear](https://www.flightgear.org/) is a flight simulator with powerful [FDM engines](http://wiki.flightgear.org/Flight_Dynamics_Model).

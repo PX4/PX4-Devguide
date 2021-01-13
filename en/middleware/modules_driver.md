@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/middleware/modules_driver.html"
+
 # Modules Reference: Driver
 Subcategories:
 - [Imu](modules_driver_imu.md)
