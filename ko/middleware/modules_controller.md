@@ -29,6 +29,28 @@ Source: [modules/airship_att_control](https://github.com/PX4/Firmware/tree/maste
        status        print status info
     
 
+## flight_mode_manager
+
+Source: [modules/flight_mode_manager](https://github.com/PX4/Firmware/tree/master/src/modules/flight_mode_manager)
+
+### 설명
+
+This implements the setpoint generation for all modes. It takes the current mode state of the vehicle as input and outputs setpoints for controllers.
+
+<a id="flight_mode_manager_usage"></a>
+
+### Usage
+
+    flight_mode_manager <command> [arguments...]
+     Commands:
+       start
+         [vtol]      VTOL mode
+    
+       stop
+    
+       status        print status info
+    
+
 ## fw_att_control
 
 Source: [modules/fw_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/fw_att_control)
@@ -153,11 +175,11 @@ The controller has a PID loop for angular rate error.
 
 Source: [modules/navigator](https://github.com/PX4/Firmware/tree/master/src/modules/navigator)
 
-### 설명
+### Description
 
 Module that is responsible for autonomous flight modes. This includes missions (read from dataman), takeoff and RTL. It is also responsible for geofence violation checking.
 
-### 구현
+### Implementation
 
 The different internal modes are implemented as separate classes that inherit from a common base class `NavigatorMode`. The member `_navigation_mode` contains the current active mode.
 
@@ -184,13 +206,13 @@ Navigator publishes position setpoint triplets (`position_setpoint_triplet_s`), 
 
 Source: [modules/rover_pos_control](https://github.com/PX4/Firmware/tree/master/src/modules/rover_pos_control)
 
-### 설명
+### Description
 
 Controls the position of a ground rover using an L1 controller.
 
 Publishes `actuator_controls_0` messages at a constant 250Hz.
 
-### 구현
+### Implementation
 
 Currently, this implementation supports only a few modes:
 
@@ -198,7 +220,7 @@ Currently, this implementation supports only a few modes:
 - 자동 미션: 탐사선이 임무를 수행
 - Loiter: 탐사선이 해당 선회반경 이내로 들어간 후 모터를 멈춥니다.
 
-### 예제
+### Examples
 
 CLI usage example:
 
@@ -224,20 +246,20 @@ CLI usage example:
 
 Source: [modules/uuv_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/uuv_att_control)
 
-### 설명
+### Description
 
 Controls the attitude of an unmanned underwater vehicle (UUV).
 
 Publishes `actuator_controls_0` messages at a constant 250Hz.
 
-### 구현
+### Implementation
 
 Currently, this implementation supports only a few modes:
 
 - 완전 수동 방식: 좌우 회전, 상하 회전, 방위 회전, 추력 제어 값을 액츄에이터에 직접 전달
 - 자동 수행 임무: 무인 수중선(UUV)의 임무 수행
 
-### 예제
+### Examples
 
 CLI usage example:
 
@@ -263,7 +285,7 @@ CLI usage example:
 
 Source: [modules/vtol_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/vtol_att_control)
 
-### 설명
+### Description
 
 fw_att_control is the fixed wing attitude controller.
 

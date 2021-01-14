@@ -1,4 +1,4 @@
-!REDIRECT "https://docs.px4.io/master/ja/dev_setup/getting_started.html"
+!REDIRECT "https://docs.px4.io/master/en/dev_setup/getting_started.html"
 
 # Getting Started
 
