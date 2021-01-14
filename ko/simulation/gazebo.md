@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/simulation/gazebo.html"
+
 # 가제보 모의 시험 환경
 
 [가제보](http://gazebosim.org) 는 개체 회피 및 컴퓨터 시각 정보 처리 시험에 일부 적합한, 강력한 자동화 로봇용 3차원 모의 시험 환경입니다. 이 페이지에서는 SITL과 단일 기체와의 활용법을 설명합니다. 가제보는 또한 [HITL](../simulation/hitl.md)과 [다중 기체 모의 시험](../simulation/multi-vehicle-simulation.md)용으로 활용할 수 있습니다.

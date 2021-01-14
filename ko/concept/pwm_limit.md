@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/concept/pwm_limit.html"
+
 # PWM_limit 상태 머신
 
 [PWM_limit 상태 머신]은 PWM의 출력을 pre-armed 와 armed 입력을 받는 함수로 제어합니다. "armed"의 실행 시점과 armed 시그널 발생후 스로틀 출력 증가 시점 사이에 지연 시간이 있습니다.

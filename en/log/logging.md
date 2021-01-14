@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/dev_log/logging.html"
+
 # Logging
 
 The logger is able to log any ORB topic with all included fields.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/ros/raspberrypi_installation.html"
+
 # Raspberry Pi - ROS installation
 
 This is a guide on how to install ROS-indigo on a Raspberry Pi 2 serving as a companion computer for Pixhawk.

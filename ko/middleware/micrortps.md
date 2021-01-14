@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/micrortps.html"
+
 # RTPS/ROS2 인터페이스: PX4-FastRTPS 브릿지
 
 *PX4-FastRTPS 브릿지*는 PX4 구성요소와 (보드 외부의) *Fast RTPS* 프로그램(ROS2/ROS 프레임워크로 빌드한 결과 포함)간 [uORB 메세지](../middleware/uorb.md)를 송수신하는 RTPS(Real Time Publish Subscribe) 인터페이스를 PX4에 추가했습니다.

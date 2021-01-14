@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/contribute/docs.html"
+
 # 投稿指南
 
 非常欢迎大家给Dronecode项目的相关指南积极投稿。 投稿内容包括PX4和QGroundControl 开发者和用户指南，以及MAVLink指南。 本篇章用来向投稿者们解释如何对项目指南进行更改、添加内容和创建翻译。

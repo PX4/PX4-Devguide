@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/dev_setup/dev_env_windows_vm.html"
+
 # Windows Virtual Machine-Hosted Toolchain
 
 > **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.

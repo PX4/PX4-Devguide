@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/uart/"
+
 # 串行总线
 
 本节包含关于串行总线和串行驱动程序的主题:

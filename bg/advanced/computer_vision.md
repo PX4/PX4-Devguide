@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/advanced/computer_vision.html"
+
 # Computer Vision (Optical Flow, MoCap, VIO, Avoidance)
 
 [Computer vision](https://en.wikipedia.org/wiki/Computer_vision) techniques enable computers to use visual data to make sense of their environment.

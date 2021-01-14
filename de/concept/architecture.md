@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/concept/architecture.html"
+
 # PX4 Architectural Overview
 
 PX4 consists of two main layers: the [flight stack](#flight-stack) is an estimation and flight control system, and the [middleware](#middleware) is a general robotics layer that can support any type of autonomous robot, providing internal/external communications and hardware integration.

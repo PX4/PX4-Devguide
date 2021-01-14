@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/debug/sensor_uorb_topic_debugging.html"
+
 # Sensor/Topic Debugging using the Listener Command
 
 The uORB is an asynchronous `publish()` / `subscribe()` messaging API used for

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/dev_setup/dev_env_mac.html"
+
 # Entorno de desarrollo en Mac
 
 MacOS es una plataforma de desarrollo compatible para PX4. Las siguientes instrucciones configuran un entorno para la compilación:

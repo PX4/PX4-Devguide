@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/advanced/realsense_intel_driver.html"
+
 # 在 Ubuntu 上安装英特尔 RealSense R200 的驱动程序
 
 本教程旨在提供有关如何在 linux 环境中安装英特尔实感 r200 相机头的相机驱动程序的说明, 以便可以通过机器人操作系统 (ros) 访问收集到的图像。 实感 r200 相机头如下图所示:

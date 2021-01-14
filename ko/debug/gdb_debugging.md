@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/gdb_debugging.html"
+
 # 임베디드 디버깅
 
 PX4를 실행하는 오토파일럿은 GDB/LLDB 디버깅을 지원합니다.

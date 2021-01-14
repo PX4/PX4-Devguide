@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_estimator.html"
+
 # 模块参考：估计器
 
 ## AttitudeEstimatorQ

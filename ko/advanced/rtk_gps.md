@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/advanced/rtk_gps.html"
+
 # RTK GPS (백그라운드)
 
 [실시간 키네매틱](https://en.wikipedia.org/wiki/Real_Time_Kinematic) (RTK) 에서는 센티미터 단위의 GPS 정확도를 확보해줍니다. 이 페이지에서는 실시간 키네메틱 기능을 PX4에 결합하는 방법을 설명합니다.

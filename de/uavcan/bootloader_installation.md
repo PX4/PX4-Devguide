@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/uavcan/bootloader_installation.html"
+
 # UAVCAN Bootloader Installation
 
 > **Warning** UAVCAN devices typically ship with a bootloader pre-installed. Do not follow the instructions in this section unless you are developing UAVCAN devices.

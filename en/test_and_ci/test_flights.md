@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/test_and_ci/test_flights.html"
+
 # Tests Flights
 
 Test flights are important for quality assurance. 

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/dev_airframes/"
+
 # Airframes
 
 PX4 has a flexible [mixing system](../concept/mixing.md) that allows it to support almost any imaginable vehicle type/frame through a single codebase:

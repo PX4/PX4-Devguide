@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/debug/simulation_debugging.html"
+
 # 仿真调试
 
 当模拟在主机上运行时，所有桌面开发工具都可用。

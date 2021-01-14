@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/micrortps.html"
+
 # RTPS/ROS2 接口：PX4-FastRTPS桥接
 
 *PX4-fastRTPS 桥接* 在 PX4 中添加了一个实时发布订阅 (RTPS) 接口, 从而能够在PX4组件和 (offboard) *Fast RTPS* 应用程序 (包括使用 ROS2/ROS 框架构建的应用程序) 之间进行 [uORB 消息](../middleware/uorb.md) 交换。

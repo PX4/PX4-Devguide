@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/qgc/video_streaming.html"
+
 # Video Streaming from Odroid C1 to QGroundControl
 
 > **Tip** This article is somewhat out of date. Community members are encouraged to retest the instructions on a more recent Ubuntu version, and to import Odroid setup instructions into the wiki.

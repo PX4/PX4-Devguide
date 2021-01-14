@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/hardware/"
+
 # 硬件
 
 本节包含有关以下内容的主题:

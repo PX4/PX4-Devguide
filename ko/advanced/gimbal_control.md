@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/advanced/gimbal_control.html"
+
 # 짐벌 제어 설정
 
 기체에 카메라(또는 다른 물건)를 달아 장착하는 짐벌을 제어하려면, 어떻게 제어할 지, PX4가 어떻게 명령을 내릴지 설정해야합니다. 여기서는 이 설정 방법을 설명합니다.

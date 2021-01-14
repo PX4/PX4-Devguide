@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/ros/offboard_control.html"
+
 # Offboard Control
 
 > **Warning** [Offboard control](https://docs.px4.io/master/en/flight_modes/offboard.html) is dangerous.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/hardware/porting_guide_nuttx.html"
+
 # NuttX 보드 이식 안내
 
 새 대상 하드웨어에 NuttX용 PX4를 이식하려면, 해당 대상 하드웨어가 NuttX에서 지원해야합니다. NuttX 프로젝트는 NuttX를 새 처리 플랫폼에 이식하는 최상의 [이식 안내서](https://cwiki.apache.org/confluence/display/NUTTX/Porting+Guide)를 관리하고 있습니다.

@@ -1181,21 +1181,6 @@ Set to 2 to use heading from motion capture</p> <strong>Values:</strong><ul>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="COM_ARM_EKF_AB">COM_ARM_EKF_AB</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum value of EKF accelerometer delta velocity bias estimate that will allow arming.
-Note: ekf2 will limit the delta velocity bias estimate magnitude to be less than EKF2_ABL_LIM * FILTER_UPDATE_PERIOD_MS * 0.001 so this parameter must be less than that to be useful</p>   </td>
- <td style="vertical-align: top;">0.001 > 0.01 (0.0001)</td>
- <td style="vertical-align: top;">0.0022</td>
- <td style="vertical-align: top;">m/s</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="COM_ARM_EKF_GB">COM_ARM_EKF_GB</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum value of EKF gyro delta angle bias estimate that will allow arming</p>   </td>
- <td style="vertical-align: top;">0.0001 > 0.0017 (0.0001)</td>
- <td style="vertical-align: top;">0.0011</td>
- <td style="vertical-align: top;">rad</td>
-</tr>
-<tr>
  <td style="vertical-align: top;"><strong id="COM_ARM_EKF_HGT">COM_ARM_EKF_HGT</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Maximum EKF height innovation test ratio that will allow arming</p>   </td>
  <td style="vertical-align: top;">0.1 > 1.0 (0.05)</td>
@@ -1786,8 +1771,8 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="COM_RC_OVERRIDE">COM_RC_OVERRIDE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Enable RC stick override of auto and/or offboard modes</p><p><strong>Comment:</strong> When RC stick override is enabled, moving the RC sticks according to COM_RC_STICK_OV immediately gives control back to the pilot (switches to manual position mode): bit 0: Enable for auto modes (except for in critical battery reaction), bit 1: Enable for offboard mode. Only has an effect on multicopters, and VTOLS in multicopter mode.</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> Enable override in auto modes</li> 
-  <li><strong>1:</strong> Enable override in offboard mode</li> 
+ <td style="vertical-align: top;"><p>Enable RC stick override of auto and/or offboard modes</p><p><strong>Comment:</strong> When RC stick override is enabled, moving the RC sticks more than COM_RC_STICK_OV from their center position immediately gives control back to the pilot by switching to Position mode. Note: Only has an effect on multicopters, and VTOLs in multicopter mode.</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> Enable override during auto modes (except for in critical battery reaction)</li> 
+  <li><strong>1:</strong> Enable override during offboard mode</li> 
 </ul>
  </td>
  <td style="vertical-align: top;">0 > 3 </td>
@@ -1873,6 +1858,8 @@ See COM_OBL_ACT and COM_OBL_RC_ACT to configure action</p>   </td>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -2370,58 +2357,6 @@ If no airspeed measurements are avalable, the EKF-GSF AHRS calculation will assu
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0.0</td>
  <td style="vertical-align: top;">m</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="EKF2_MAGBIAS_ID">EKF2_MAGBIAS_ID</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>ID of Magnetometer the learned bias is for</p>   <p><b>Reboot required:</b> true</p>
-</td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">0</td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="EKF2_MAGBIAS_X">EKF2_MAGBIAS_X</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Learned value of magnetometer X axis bias.
-This is the amount of X-axis magnetometer bias learned by the EKF and saved from the last flight. It must be set to zero if the ground based magnetometer calibration is repeated</p>   <p><b>Reboot required:</b> true</p>
-</td>
- <td style="vertical-align: top;">-0.5 > 0.5 </td>
- <td style="vertical-align: top;">0.0</td>
- <td style="vertical-align: top;">gauss</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="EKF2_MAGBIAS_Y">EKF2_MAGBIAS_Y</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Learned value of magnetometer Y axis bias.
-This is the amount of Y-axis magnetometer bias learned by the EKF and saved from the last flight. It must be set to zero if the ground based magnetometer calibration is repeated</p>   <p><b>Reboot required:</b> true</p>
-</td>
- <td style="vertical-align: top;">-0.5 > 0.5 </td>
- <td style="vertical-align: top;">0.0</td>
- <td style="vertical-align: top;">gauss</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="EKF2_MAGBIAS_Z">EKF2_MAGBIAS_Z</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Learned value of magnetometer Z axis bias.
-This is the amount of Z-axis magnetometer bias learned by the EKF and saved from the last flight. It must be set to zero if the ground based magnetometer calibration is repeated</p>   <p><b>Reboot required:</b> true</p>
-</td>
- <td style="vertical-align: top;">-0.5 > 0.5 </td>
- <td style="vertical-align: top;">0.0</td>
- <td style="vertical-align: top;">gauss</td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="EKF2_MAGB_K">EKF2_MAGB_K</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum fraction of learned mag bias saved at each disarm.
-Smaller values make the saved mag bias learn slower from flight to flight. Larger values make it learn faster. Must be > 0.0 and <= 1.0</p>   </td>
- <td style="vertical-align: top;">0.0 > 1.0 </td>
- <td style="vertical-align: top;">0.2</td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="EKF2_MAGB_VREF">EKF2_MAGB_VREF</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>State variance assumed for magnetometer bias storage.
-This is a reference variance used to calculate the fraction of learned magnetometer bias that will be used to update the stored value. Smaller values will make the stored bias data adjust more slowly from flight to flight. Larger values will make it adjust faster</p>   <p><b>Reboot required:</b> true</p>
-</td>
- <td style="vertical-align: top;"></td>
- <td style="vertical-align: top;">2.5E-7</td>
- <td style="vertical-align: top;">gauss^2</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="EKF2_MAG_ACCLIM">EKF2_MAG_ACCLIM</strong> (FLOAT)</td>
@@ -3394,7 +3329,7 @@ Set to 0 to disable heading hold</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_LND_THRTC_SC">FW_LND_THRTC_SC</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Throttle time constant factor for landing</p><p><strong>Comment:</strong> Set this parameter to less than 1.0 to make the TECS throttle loop react faster during landing than during normal flight (i.e. giving efficiency and low motor wear at high altitudes but control accuracy during landing). During landing, the TECS throttle time constant (FW_T_THRO_CONST) is multiplied by this value.</p>   </td>
+ <td style="vertical-align: top;"><p>Altitude time constant factor for landing</p><p><strong>Comment:</strong> Set this parameter to less than 1.0 to make TECS react faster to altitude errors during landing than during normal flight (i.e. giving efficiency and low motor wear at high altitudes but control accuracy during landing). During landing, the TECS altitude time constant (FW_T_ALT_TC) is multiplied by this value.</p>   </td>
  <td style="vertical-align: top;">0.2 > 1.0 (0.1)</td>
  <td style="vertical-align: top;">1.0</td>
  <td style="vertical-align: top;"></td>
@@ -3579,6 +3514,13 @@ Set to 0 to disable heading hold</p>   </td>
  <td style="vertical-align: top;">m/s</td>
 </tr>
 <tr>
+ <td style="vertical-align: top;"><strong id="FW_T_ALT_TC">FW_T_ALT_TC</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Altitude error time constant</p>   </td>
+ <td style="vertical-align: top;">2.0 > ? (0.5)</td>
+ <td style="vertical-align: top;">5.0</td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
  <td style="vertical-align: top;"><strong id="FW_T_CLMB_MAX">FW_T_CLMB_MAX</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Maximum climb rate</p><p><strong>Comment:</strong> This is the best climb rate that the aircraft can achieve with the throttle set to THR_MAX and the airspeed set to the default value. For electric aircraft make sure this number can be achieved towards the end of flight when the battery voltage has reduced. The setting of this parameter can be checked by commanding a positive altitude change of 100m in loiter, RTL or guided mode. If the throttle required to climb is close to THR_MAX and the aircraft is maintaining airspeed, then this parameter is set correctly. If the airspeed starts to reduce, then the parameter is set to high, and if the throttle demand required to climb and maintain speed is noticeably less than FW_THR_MAX, then either FW_T_CLMB_MAX should be increased or FW_THR_MAX reduced.</p>   </td>
  <td style="vertical-align: top;">1.0 > 15.0 (0.5)</td>
@@ -3589,28 +3531,28 @@ Set to 0 to disable heading hold</p>   </td>
  <td style="vertical-align: top;"><strong id="FW_T_HRATE_FF">FW_T_HRATE_FF</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Height rate feed forward</p>   </td>
  <td style="vertical-align: top;">0.0 > 1.0 (0.05)</td>
- <td style="vertical-align: top;">0.8</td>
+ <td style="vertical-align: top;">0.3</td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="FW_T_HRATE_P">FW_T_HRATE_P</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Height rate proportional factor</p>   </td>
- <td style="vertical-align: top;">0.0 > 1.0 (0.05)</td>
- <td style="vertical-align: top;">0.05</td>
- <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="FW_T_INTEG_GAIN">FW_T_INTEG_GAIN</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Integrator gain</p><p><strong>Comment:</strong> This is the integrator gain on the control loop. Increasing this gain increases the speed at which speed and height offsets are trimmed out, but reduces damping and increases overshoot. Set this value to zero to completely disable all integrator action.</p>   </td>
+ <td style="vertical-align: top;"><strong id="FW_T_I_GAIN_PIT">FW_T_I_GAIN_PIT</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Integrator gain pitch</p><p><strong>Comment:</strong> This is the integrator gain on the pitch part of the control loop. Increasing this gain increases the speed at which speed and height offsets are trimmed out, but reduces damping and increases overshoot. Set this value to zero to completely disable all integrator action.</p>   </td>
  <td style="vertical-align: top;">0.0 > 2.0 (0.05)</td>
  <td style="vertical-align: top;">0.1</td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="FW_T_I_GAIN_THR">FW_T_I_GAIN_THR</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Integrator gain throttle</p><p><strong>Comment:</strong> This is the integrator gain on the throttle part of the control loop. Increasing this gain increases the speed at which speed and height offsets are trimmed out, but reduces damping and increases overshoot. Set this value to zero to completely disable all integrator action.</p>   </td>
+ <td style="vertical-align: top;">0.0 > 2.0 (0.05)</td>
+ <td style="vertical-align: top;">0.3</td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_T_PTCH_DAMP">FW_T_PTCH_DAMP</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Pitch damping factor</p><p><strong>Comment:</strong> This is the damping gain for the pitch demand loop. Increase to add damping to correct for oscillations in height. The default value of 0.0 will work well provided the pitch to servo controller has been tuned properly.</p>   </td>
  <td style="vertical-align: top;">0.0 > 2.0 (0.1)</td>
- <td style="vertical-align: top;">0.0</td>
+ <td style="vertical-align: top;">0.1</td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
@@ -3649,32 +3591,32 @@ Set to 0 to disable heading hold</p>   </td>
  <td style="vertical-align: top;">rad/s</td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="FW_T_SRATE_P">FW_T_SRATE_P</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Speed rate P factor</p>   </td>
- <td style="vertical-align: top;">0.0 > 2.0 (0.01)</td>
- <td style="vertical-align: top;">0.02</td>
+ <td style="vertical-align: top;"><strong id="FW_T_STE_R_TC">FW_T_STE_R_TC</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>Specific total energy rate first order filter time constant</p><p><strong>Comment:</strong> This filter is applied to the specific total energy rate used for throttle damping.</p>   </td>
+ <td style="vertical-align: top;">0.0 > 2 (0.01)</td>
+ <td style="vertical-align: top;">0.4</td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
- <td style="vertical-align: top;"><strong id="FW_T_THRO_CONST">FW_T_THRO_CONST</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>TECS Throttle time constant</p><p><strong>Comment:</strong> This is the time constant of the TECS throttle control algorithm (in seconds). Smaller values make it faster to respond, larger values make it slower to respond.</p>   </td>
- <td style="vertical-align: top;">1.0 > 10.0 (0.5)</td>
- <td style="vertical-align: top;">8.0</td>
- <td style="vertical-align: top;">s</td>
+ <td style="vertical-align: top;"><strong id="FW_T_TAS_R_TC">FW_T_TAS_R_TC</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>True airspeed rate first order filter time constant</p><p><strong>Comment:</strong> This filter is applied to the true airspeed rate.</p>   </td>
+ <td style="vertical-align: top;">0.0 > 2 (0.01)</td>
+ <td style="vertical-align: top;">0.2</td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="FW_T_TAS_TC">FW_T_TAS_TC</strong> (FLOAT)</td>
+ <td style="vertical-align: top;"><p>True airspeed error time constant</p>   </td>
+ <td style="vertical-align: top;">2.0 > ? (0.5)</td>
+ <td style="vertical-align: top;">5.0</td>
+ <td style="vertical-align: top;"></td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_T_THR_DAMP">FW_T_THR_DAMP</strong> (FLOAT)</td>
  <td style="vertical-align: top;"><p>Throttle damping factor</p><p><strong>Comment:</strong> This is the damping gain for the throttle demand loop. Increase to add damping to correct for oscillations in speed and height.</p>   </td>
  <td style="vertical-align: top;">0.0 > 2.0 (0.1)</td>
- <td style="vertical-align: top;">0.5</td>
+ <td style="vertical-align: top;">0.1</td>
  <td style="vertical-align: top;"></td>
-</tr>
-<tr>
- <td style="vertical-align: top;"><strong id="FW_T_TIME_CONST">FW_T_TIME_CONST</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>TECS time constant</p><p><strong>Comment:</strong> This is the time constant of the TECS control algorithm (in seconds). Smaller values make it faster to respond, larger values make it slower to respond.</p>   </td>
- <td style="vertical-align: top;">1.0 > 10.0 (0.5)</td>
- <td style="vertical-align: top;">5.0</td>
- <td style="vertical-align: top;">s</td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="FW_T_VERT_ACC">FW_T_VERT_ACC</strong> (FLOAT)</td>
@@ -3819,11 +3761,27 @@ but also ignore less noise</p>   </td>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">201</td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="GPS_1_GNSS">GPS_1_GNSS</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>GNSS Systems for Primary GPS (integer bitmask)</p><p><strong>Comment:</strong> This integer bitmask controls the set of GNSS systems used by the receiver. Check your receiver's documentation on how many systems are supported to be used in parallel. Currently this functionality is just implemented for u-blox receivers. When no bits are set, the receiver's default configuration should be used. Set bits true to enable: 0 : Use GPS (with QZSS) 1 : Use SBAS (multiple GPS augmentation systems) 2 : Use Galileo 3 : Use BeiDou 4 : Use GLONASS</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> GPS (with QZSS)</li> 
+  <li><strong>1:</strong> SBAS</li> 
+  <li><strong>2:</strong> Galileo</li> 
+  <li><strong>3:</strong> BeiDou</li> 
+  <li><strong>4:</strong> GLONASS</li> 
+</ul>
+ <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;">0 > 31 </td>
+ <td style="vertical-align: top;">0</td>
  <td style="vertical-align: top;"></td>
 </tr>
 <tr>
@@ -3867,10 +3825,26 @@ but also ignore less noise</p>   </td>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
  <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0</td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="GPS_2_GNSS">GPS_2_GNSS</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>GNSS Systems for Secondary GPS (integer bitmask)</p><p><strong>Comment:</strong> This integer bitmask controls the set of GNSS systems used by the receiver. Check your receiver's documentation on how many systems are supported to be used in parallel. Currently this functionality is just implemented for u-blox receivers. When no bits are set, the receiver's default configuration should be used. Set bits true to enable: 0 : Use GPS (with QZSS) 1 : Use SBAS (multiple GPS augmentation systems) 2 : Use Galileo 3 : Use BeiDou 4 : Use GLONASS</p>  <strong>Bitmask:</strong><ul>  <li><strong>0:</strong> GPS (with QZSS)</li> 
+  <li><strong>1:</strong> SBAS</li> 
+  <li><strong>2:</strong> Galileo</li> 
+  <li><strong>3:</strong> BeiDou</li> 
+  <li><strong>4:</strong> GLONASS</li> 
+</ul>
+ <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;">0 > 31 </td>
  <td style="vertical-align: top;">0</td>
  <td style="vertical-align: top;"></td>
 </tr>
@@ -4015,10 +3989,10 @@ but also ignore less noise</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="GF_ALTMODE">GF_ALTMODE</strong> (INT32)</td>
- <td style="vertical-align: top;"><p>Geofence altitude mode</p><p><strong>Comment:</strong> Select which altitude reference should be used 0 = WGS84, 1 = AMSL</p> <strong>Values:</strong><ul>
-<li><strong>0:</strong> WGS84</li> 
+ <td style="vertical-align: top;"><p>Geofence altitude mode</p><p><strong>Comment:</strong> Select which altitude (AMSL) source should be used for geofence calculations.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Autopilot estimator global position altitude (GPS)</li> 
 
-<li><strong>1:</strong> AMSL</li> 
+<li><strong>1:</strong> Raw barometer altitude (assuming standard atmospheric pressure)</li> 
 </ul>
   </td>
  <td style="vertical-align: top;">0 > 1 </td>
@@ -4121,6 +4095,8 @@ but also ignore less noise</p>   </td>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -4621,6 +4597,8 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -4699,6 +4677,8 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -4777,6 +4757,8 @@ Used to calculate increased terrain random walk nosie due to movement</p>   </td
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -7113,6 +7095,8 @@ default 1.5 turns per second</p>   </td>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -7142,6 +7126,8 @@ default 1.5 turns per second</p>   </td>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -9443,7 +9429,7 @@ default 1.5 turns per second</p>   </td>
 </ul>
   </td>
  <td style="vertical-align: top;">0 > 90 </td>
- <td style="vertical-align: top;">0</td>
+ <td style="vertical-align: top;">45</td>
  <td style="vertical-align: top;">deg</td>
 </tr>
 <tr>
@@ -9462,9 +9448,9 @@ default 1.5 turns per second</p>   </td>
 </tr>
 <tr>
  <td style="vertical-align: top;"><strong id="RTL_MIN_DIST">RTL_MIN_DIST</strong> (FLOAT)</td>
- <td style="vertical-align: top;"><p>Maximum horizontal distance from return destination, below which RTL_DESCEND_ALT is used as return altitude</p><p><strong>Comment:</strong> If the vehicle is less than this horizontal distance from the return destination when return mode is activated it will ascend to RTL_DESCEND_ALT for the return journey (rather than the altitude set by RTL_RETURN_ALT and RTL_CONE_ANG).</p>   </td>
+ <td style="vertical-align: top;"><p>Horizontal radius from return point within which special rules for return mode apply</p><p><strong>Comment:</strong> The return altitude will be calculated based on RTL_CONE_ANG parameter. The yaw setpoint will switch to the one defined by corresponding waypoint.</p>   </td>
  <td style="vertical-align: top;">0.5 > 100 (0.5)</td>
- <td style="vertical-align: top;">5.0</td>
+ <td style="vertical-align: top;">10.0</td>
  <td style="vertical-align: top;">m</td>
 </tr>
 <tr>
@@ -9546,6 +9532,8 @@ default 1.5 turns per second</p>   </td>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -12533,6 +12521,8 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -12836,6 +12826,8 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -13486,6 +13478,8 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -13522,6 +13516,8 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -13551,6 +13547,8 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -13580,6 +13578,8 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -13635,6 +13635,8 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -14191,6 +14193,67 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
  <td style="vertical-align: top;">57600</td>
  <td style="vertical-align: top;"></td>
 </tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="SER_WIFI_BAUD">SER_WIFI_BAUD</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Baudrate for the Wifi Port Serial Port</p><p><strong>Comment:</strong> Configure the Baudrate for the Wifi Port Serial Port. Note: certain drivers such as the GPS can determine the Baudrate automatically.</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> Auto</li> 
+
+<li><strong>50:</strong> 50 8N1</li> 
+
+<li><strong>75:</strong> 75 8N1</li> 
+
+<li><strong>110:</strong> 110 8N1</li> 
+
+<li><strong>134:</strong> 134 8N1</li> 
+
+<li><strong>150:</strong> 150 8N1</li> 
+
+<li><strong>200:</strong> 200 8N1</li> 
+
+<li><strong>300:</strong> 300 8N1</li> 
+
+<li><strong>600:</strong> 600 8N1</li> 
+
+<li><strong>1200:</strong> 1200 8N1</li> 
+
+<li><strong>1800:</strong> 1800 8N1</li> 
+
+<li><strong>2400:</strong> 2400 8N1</li> 
+
+<li><strong>4800:</strong> 4800 8N1</li> 
+
+<li><strong>9600:</strong> 9600 8N1</li> 
+
+<li><strong>19200:</strong> 19200 8N1</li> 
+
+<li><strong>38400:</strong> 38400 8N1</li> 
+
+<li><strong>57600:</strong> 57600 8N1</li> 
+
+<li><strong>115200:</strong> 115200 8N1</li> 
+
+<li><strong>230400:</strong> 230400 8N1</li> 
+
+<li><strong>460800:</strong> 460800 8N1</li> 
+
+<li><strong>500000:</strong> 500000 8N1</li> 
+
+<li><strong>921600:</strong> 921600 8N1</li> 
+
+<li><strong>1000000:</strong> 1000000 8N1</li> 
+
+<li><strong>1500000:</strong> 1500000 8N1</li> 
+
+<li><strong>2000000:</strong> 2000000 8N1</li> 
+
+<li><strong>3000000:</strong> 3000000 8N1</li> 
+</ul>
+  <p><b>Reboot required:</b> true</p>
+</td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">1</td>
+ <td style="vertical-align: top;"></td>
+</tr>
 </tbody></table>
 
 ## Simulation In Hardware
@@ -14568,6 +14631,8 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -14597,6 +14662,8 @@ How often the sensor is readout</p>   <p><b>Reboot required:</b> true</p>
 <li><strong>203:</strong> GPS 3</li> 
 
 <li><strong>300:</strong> Radio Controller</li> 
+
+<li><strong>301:</strong> Wifi Port</li> 
 </ul>
   <p><b>Reboot required:</b> true</p>
 </td>
@@ -16547,6 +16614,18 @@ to fixed wing mode. Zero or negative values will produce an instant throttle ris
  <td style="vertical-align: top;"><p></p>   </td>
  <td style="vertical-align: top;"></td>
  <td style="vertical-align: top;">0.1</td>
+ <td style="vertical-align: top;"></td>
+</tr>
+<tr>
+ <td style="vertical-align: top;"><strong id="UUV_SKIP_CTRL">UUV_SKIP_CTRL</strong> (INT32)</td>
+ <td style="vertical-align: top;"><p>Skip the controller</p> <strong>Values:</strong><ul>
+<li><strong>0:</strong> use the module's controller</li> 
+
+<li><strong>1:</strong> skip the controller and feedthrough the setpoints</li> 
+</ul>
+  </td>
+ <td style="vertical-align: top;"></td>
+ <td style="vertical-align: top;">0</td>
  <td style="vertical-align: top;"></td>
 </tr>
 </tbody></table>

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/mavlink.html"
+
 # MAVLink 메세징
 
 [MAVLink](https://mavlink.io/en/)는 드론 생태계에서 활용하려 설계한 초경량 메세지 프로토콜입니다.

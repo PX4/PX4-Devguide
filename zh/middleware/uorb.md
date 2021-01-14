@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/uorb.html"
+
 # uORB 消息
 
 ## 简介

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/SUMMARY.html"
+
 # 概要 
 
 * [简介](README.md)

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/debug/consoles.html"
+
 # PX4 控制台/Shell
 
 用户可以通过 [MAVLink Shell](../debug/mavlink_shell.md) 和 [系统控制台](../debug/system_console.md) 访问 PX4 终端。

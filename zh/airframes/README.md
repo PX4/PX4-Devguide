@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_airframes/"
+
 # 机架
 
 PX4有一个灵活的[混合系统](../concept/mixing.md), 它允许通过单个代码库支持任何可以想象到的飞行器类型/帧:

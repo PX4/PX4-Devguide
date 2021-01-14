@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/hardware/porting_guide.html"
+
 # 비행체 제어 장치 이식 안내
 
 이 주제에서는 *새* 비행체 제어 하드웨어가 PX4와 동작하게 하려는 개발자에 해당하는 내용을 다룹니다.

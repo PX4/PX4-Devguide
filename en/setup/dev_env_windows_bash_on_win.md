@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/dev_setup/dev_env_windows_bash_on_win.html"
+
 # Bash on Windows Toolchain
 
 > **Note** The [Windows Cygwin Toolchain](../setup/dev_env_windows_cygwin.md) is the (only) officially supported toolchain for Windows development.

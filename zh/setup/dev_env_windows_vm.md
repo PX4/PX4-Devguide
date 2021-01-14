@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_setup/dev_env_windows_vm.html"
+
 # Windows 虚拟机托管的工具链
 
 > **Note** [Windows Cygwin 工具链](../setup/dev_env_windows_cygwin.md) 是 Windows 平台唯一获得官方支持的开发环境。

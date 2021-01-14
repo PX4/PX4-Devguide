@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/concept/custom_mixer_payload.html"
+
 # Custom Payload Mixers
 
 This topic shows how to add a custom [mixer](../concept/mixing.md) for programmatically controlling a custom payload (e.g., an electromagnetic gripper).

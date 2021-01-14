@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/middleware/modules_system.html"
+
 # Modules Reference: System
 
 ## battery_simulator

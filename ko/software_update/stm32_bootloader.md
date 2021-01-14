@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/software_update/stm32_bootloader.html"
+
 # STM32 부트로더
 
 PX4 부트로더 코드는 깃허브 [Bootloader](https://github.com/px4/bootloader)에 있습니다.

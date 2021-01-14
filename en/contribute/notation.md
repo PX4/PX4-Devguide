@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/contribute/notation.html"
+
 # Terminology
 
 The following terms, symbols, and decorators are used in text and diagrams throughout this guide.

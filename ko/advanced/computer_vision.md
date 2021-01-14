@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/advanced/computer_vision.html"
+
 # 컴퓨터 비전(Optical Flow, MoCap, VIO, Avoidance)
 
 [컴퓨터 비전](https://en.wikipedia.org/wiki/Computer_vision)은 컴퓨터가 실재하는 환경을 시각 데이터를 활용하여 이해할 수 있게 하는 기술입니다.

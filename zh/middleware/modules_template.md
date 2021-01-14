@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_template.html"
+
 # 模块参考: 模板
 
 ## 模块

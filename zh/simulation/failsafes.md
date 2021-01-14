@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/simulation/failsafes.html"
+
 # 模拟故障保护
 
 [Failsafes](https://docs.px4.io/master/en/config/safety.html) define the safe limits/conditions under which you can safely use PX4, and the action that will be performed if a failsafe is triggered (for example, landing, holding position, or returning to a specified point).

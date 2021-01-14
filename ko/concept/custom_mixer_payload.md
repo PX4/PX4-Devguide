@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/concept/custom_mixer_payload.html"
+
 # 개별 탑재 장치 믹서
 
 이 주제에서는 개별 탑재 장치를 프로그램으로 제어하는 개별 [믹서](../concept/mixing.md) 추가 방법을 다룹니다(예: 전자기 집게).

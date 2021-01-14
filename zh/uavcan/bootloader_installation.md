@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/uavcan/bootloader_installation.html"
+
 # UAVCAN Bootloader 安装
 
 > **Warning** UAVCAN 设备通常使用预安装的引导程序装运。 除非您正在开发 UAVCAN 设备, 否则请不要按照本节中的说明操作。

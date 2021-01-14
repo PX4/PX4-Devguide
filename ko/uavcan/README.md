@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/uavcan/"
+
 # UAVCAN 소개
 
 ![UAVCAN 로고](../../assets/uavcan/uavcan_logo_transparent.png)

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_setup/dev_env_windows.html"
+
 # Windows 安装指南
 
 如果希望在Windows平台进行PX4的开发，请参考： [Windows Cygwin 工具链](../setup/dev_env_windows_cygwin.md)进行工具链的安装。

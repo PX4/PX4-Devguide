@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/de/debug/system_console.html"
+
 # PX4 System Console
 
 The PX4 *System Console* provides low-level access to the system, debug output and analysis of the system boot process.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/flight_stack/controller_diagrams.html"
+
 # 조종 장치 구성도
 
 이 절에서는 PX4 주 조종 장치 구성도를 보여드립니다.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/concept/architecture.html"
+
 # PX4 아키텍처 개요
 
 PX4는 주요 계층 2가지로 구성했습니다. [플라이트 스택](#flight-stack)은 추정, 비행 제어 체계이며, [미들웨어](#middleware)는 내외부 통신과 하드웨어간 결합 기능을 지원하는 여러가지 자동 처리 로봇을 지원할 수 있는 범용 로보틱스 계층입니다.

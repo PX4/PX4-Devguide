@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_setup/dev_env_windows_bash_on_win.html"
+
 # Bash on Windows 工具链
 
 > **注意：** [Windows Cygwin 工具链](../setup/dev_env_windows_cygwin.md) 是Windows平台唯一获得官方支持的开发环境。

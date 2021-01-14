@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/dev_setup/dev_env_advanced_linux.html"
+
 # Advanced Linux Installation Use-Cases
 
 ## Using JTAG Programming Adapters

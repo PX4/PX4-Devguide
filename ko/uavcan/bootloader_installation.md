@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/uavcan/bootloader_installation.html"
+
 # UAVCAN 부트로더 설치
 
 > **Warning** UAVCAN 장치는 보통 부트로더를 미리 넣은 상태로 나옵니다. UAVCAN 장치를 직접 개발할 의도가 아니라면 이 절의 절차는 따르지 마십시오.

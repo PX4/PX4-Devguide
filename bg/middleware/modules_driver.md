@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/middleware/modules_driver.html"
+
 # Modules Reference: Driver
 
 Subcategories:

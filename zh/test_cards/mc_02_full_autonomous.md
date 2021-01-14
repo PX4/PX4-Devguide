@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/test_cards/mc_02_full_autonomous.html"
+
 # 测试 MC_02-完全自主
 
 ## 创建和上传任务

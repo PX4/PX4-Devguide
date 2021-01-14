@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/simulation/multi_vehicle_jmavsim.html"
+
 # JMAVSim 进行多机仿真
 
 本主题介绍如何使用 JMAVSim 仿真器配合软件在环仿真实现多机仿真。 在仿真中所有无人机实例均在同一位置启动。

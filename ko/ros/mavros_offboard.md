@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/ros/mavros_offboard.html"
+
 # MAVROS *보드 외부* 제어 예제
 
 이 자습서에서는 가제보/SITL에서 모의시험을 진행할 쿼드콥터로 MAVROS의 *보드 외부* 제어 기본을 설명하도록 하겠습니다. 자습서의 마지막 부분에서는 아래 동영상에서 나타난 2미터 고도에서의 저속 이륙과 같은 동일한 동작이 나타나야 합니다.

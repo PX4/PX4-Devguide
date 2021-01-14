@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/middleware/micrortps_throughput_test.html"
+
 # Micro RTPS 처리량 테스트
 
 이 간단한 테스트는[PX4-FastRTPS Bridge](../middleware/micrortps.md)의 처리량을 특정하는 테스트입니다. 최고 속도로 256바이트의 메시지를 동시에 주고 받는 것을 측정합니다.

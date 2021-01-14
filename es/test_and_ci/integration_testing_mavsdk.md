@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/test_and_ci/integration_testing_mavsdk.html"
+
 # Integration Testing using MAVSDK
 
 PX4 can be tested end to end to using integration tests based on [MAVSDK](https://mavsdk.mavlink.io).

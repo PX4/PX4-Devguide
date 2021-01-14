@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/ros/mavros_custom_messages.html"
+
 # 将自定义消息从 MOVROS 发送到 PX4
 
 > **Warning** 本文已经过如下测试：

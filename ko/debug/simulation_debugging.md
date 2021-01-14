@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/simulation_debugging.html"
+
 # 모의시험 디버깅
 
 모의시험은 호스트 머신에서 동작하므로, 모든 데스크톱 환경에서 도구를 활용할 수 있습니다.

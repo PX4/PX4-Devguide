@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/data_links/sik_radio.html"
+
 # SiK 电台
 
 [SiK radio](https://github.com/LorenzMeier/SiK) is a collection of firmware and tools for telemetry radios.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/dev_airframes/adding_a_new_frame.html"
+
 # Adding a New Airframe Configuration
 
 PX4 uses canned airframe configurations as starting point for airframes.

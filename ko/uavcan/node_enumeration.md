@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/uavcan/node_enumeration.html"
+
 # UAVCAN 기수 부여 및 설정
 
 > **Note** 아래와 같이 'Enable UAVCAN' 확인 상자에 표시하여 기본 모터 출력 버스로서 UAVCAN을 활성화하십시오. 또는, *QGroundControl* 매개변수 편집기에서 UAVCAN_ENABLE 매개변수를 '3'으로 설정할 수 있습니다. '2'로 설정하면 CAN을 가동할 수 있으나, PWM 모터 출력 설정이 남습니다.

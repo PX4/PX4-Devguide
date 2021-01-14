@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/debug/system_wide_replay.html"
+
 # 全系统回放
 
 基于 ORB 消息，可以记录和回放系统的任意部分。

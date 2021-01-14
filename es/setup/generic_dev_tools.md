@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/dev_setup/generic_dev_tools.html"
+
 # Herramientas Generales de Desarrollo
 
 Esta sección incluye herramientas de desarrollo adicionales útiles que no son parte de la toolchain de compilación base de PX4.

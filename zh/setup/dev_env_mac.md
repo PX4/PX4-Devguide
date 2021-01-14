@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_setup/dev_env_mac.html"
+
 # Mac 上的开发环境
 
 MacOS 是受支持的 PX4 开发平台。 根据本文的指示构建的开发环境可以用编译：

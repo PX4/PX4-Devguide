@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/advanced/parameters_and_configurations.html"
+
 # 参数 & 配置
 
 PX4 使用 *param subsystem *（`float` 和 `int32_t` 值的平面表）和文本文件（用于混频器和启动脚本）来存储其配置。

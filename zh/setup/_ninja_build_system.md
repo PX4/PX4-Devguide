@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/dev_setup/_ninja_build_system.html"
+
 ## Ninja 构建系统
 
 [Ninja](https://ninja-build.org/) 是一个比 *Make* 速度更快的构建系统， 且 PX4 *CMake* 生成器也支持该构建系统。 

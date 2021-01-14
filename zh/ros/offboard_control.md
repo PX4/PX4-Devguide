@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/ros/offboard_control.html"
+
 # 离板控制
 
 > **Warning** [Offboard control](https://docs.px4.io/master/en/flight_modes/offboard.html) is dangerous. 开发者有责任确保在离板飞行前采取充分的准备、测试和安全预防措施。

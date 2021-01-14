@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/debug/profiling.html"
+
 # Poor Man's Sampling Profiler
 
 This section describes how to assess performance of the PX4 system by means of profiling.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/SUMMARY.html"
+
 # Summary
 
 * [Introduction](README.md)

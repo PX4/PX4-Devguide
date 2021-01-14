@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/uavcan/node_firmware.html"
+
 # UAVCAN Firmware Upgrading
 
 ## Vectorcontrol ESC Codebase (Pixhawk ESC 1.6 and S2740VC)

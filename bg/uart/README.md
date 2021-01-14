@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/bg/uart/"
+
 # UART/Serial Bus
 
 This section contains topics about the serial bus and serial drivers:

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/swd_debug.html"
+
 # SWD (JTAG) 하드웨어 디버깅 인터페이스
 
 PX4는 보통 ARM 칩의 *직렬 회선 디버깅(SWD)*을 지원하는 오토파일럿 조종 장치 하드웨어에서 실행합니다. SWD는 ARM 프로세서에서 JTAG 디버깅을 수행할 때 적은 수의 핀을 물리 인터페이스로 연결하는 방식입니다. SWD 호환 디버깅 프로브로 PX4의 중단점을 설정하고 실제 장치에서 코드 실행을 단계별로 진행할 때 활용할 수 있습니다.

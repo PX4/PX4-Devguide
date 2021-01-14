@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/tutorials/motion-capture-vicon-optitrack.html"
+
 # Flying with Motion Capture (VICON, Optitrack)
 
 > **Warning** **WORK IN PROGRESS**. This topic shares significant overlap with [External Position Estimation (ROS)](../ros/external_position_estimation.md).

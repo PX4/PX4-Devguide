@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/test_and_ci/maintenance.html"
+
 # 유지관리 참고
 
 여기서는 코드 베이스 상태를 분석하고 유지 관리를 지원하는 몇가지 도구를 설명합니다.

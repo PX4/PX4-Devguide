@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/middleware/modules_driver_airspeed_sensor.html"
+
 # Modules Reference: Airspeed Sensor (Driver)
 ## ets_airspeed
 Source: [drivers/differential_pressure/ets](https://github.com/PX4/Firmware/tree/master/src/drivers/differential_pressure/ets)

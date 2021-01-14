@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/dev_env_windows_vm.html"
+
 # 윈도우 가상 머신 제공 툴체인
 
 > **Note** [윈도우 Cygwin 툴체인](../setup/dev_env_windows_cygwin.md)이 윈도우 개발 환경에서 (유일하게) 공식 지원하는 툴체인입니다.

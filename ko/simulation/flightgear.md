@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/simulation/flightgear.html"
+
 # 플라이트기어 모의시험
 
 [플라이트기어](https://www.flightgear.org/)는 강력한 [FDM 엔진](http://wiki.flightgear.org/Flight_Dynamics_Model) 기반 비행 모의시험 환경입니다. 플라이트기어에서는 다양한 기후 환경에서 탐사기체 운행을 모의시험해볼 수 있습니다([ThunderFly s.r.o.](https://www.thunderfly.cz/)가 브릿지를 개발한 이유입니다).

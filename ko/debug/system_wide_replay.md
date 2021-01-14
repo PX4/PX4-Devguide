@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/debug/system_wide_replay.html"
+
 # 시스템 범위 재현
 
 ORB 메세지에 기반하여, 시스템에 붙어있는 각 부품의 동작을 기록하고 재현할 수 있습니다.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/es/test_and_ci/integration_testing.html"
+
 # Integration Testing
 
 This is about end to end integration testing. Tests are executed automatically ([Jenkins CI](../test_and_ci/jenkins_ci.md))

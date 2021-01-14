@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/simulation/"
+
 # 仿真
 
 在仿真机中模拟器允许 px4 飞行代码来控制计算机建模工具。 您可以与此工具进行交互，就像您可以使用 *QGroundControl*、非机载 api 或无线电控制器/游戏板与真正的车辆进行交互一样。

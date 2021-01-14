@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/test_cards/mc_01_manual_modes.html"
+
 # Test MC_01 - Manual Modes
 
 ## Arm and Take-off

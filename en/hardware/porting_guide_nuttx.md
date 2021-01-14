@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/hardware/porting_guide_nuttx.html"
+
 # NuttX Board Porting Guide
 
 In order to port PX4 on NuttX to a new hardware target, that hardware target must be supported by NuttX.

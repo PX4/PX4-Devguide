@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/dev_env_windows_bash_on_win.html"
+
 # 윈도우용 배시 툴체인
 
 > **Note** [윈도우 Cygwin 툴체인](../setup/dev_env_windows_cygwin.md)이 (유일하게) 윈도우 환경에서 공식적으로 지원하는 툴체인입니다.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/uart/user_configurable_serial_driver.html"
+
 # Making Serial Port Drivers User-Configurable
 
 This topic explains how to set up a serial driver so that it can be end-user configured (via parameters) to run on any of a flight controller board's configurable serial ports.

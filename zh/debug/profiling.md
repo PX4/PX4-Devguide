@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/debug/profiling.html"
+
 # Poor Man's Sampling Profiler
 
 本节介绍如何通过分析来评估 PX4 系统的性能。

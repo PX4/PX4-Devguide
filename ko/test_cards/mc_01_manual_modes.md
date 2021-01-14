@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/test_cards/mc_01_manual_modes.html"
+
 # 시험 MC_01 - 수동 상태
 
 ## 이륙 준비 및 이륙

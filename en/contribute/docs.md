@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/contribute/docs.html"
+
 # Contributing to Documentation
 
 Contributions to the guides for all parts of the Dronecode project are very welcome. 

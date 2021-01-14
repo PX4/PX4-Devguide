@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/contribute/"
+
 # 贡献
 
 {% if book.px4_version != 'master' %} **Current** information about contributing to PX4, working with the community and codelines, and the dev call, [can be found in the "master" docs here](https://dev.px4.io/master/en/contribute/)! {% else %} <!-- START: dev call details: displayed only in master -->

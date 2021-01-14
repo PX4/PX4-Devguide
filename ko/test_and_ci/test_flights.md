@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/test_and_ci/test_flights.html"
+
 # 시험 비행
 
 시험 비행은 품질 보증에 중요한 과정입니다. 드론코드 시험 팀에서는 여러분이 보낸 pull 요청의 검토(시험 비행)를 지원할 수 있고 기록에 대한 의견을 제시할 수 있습니다.

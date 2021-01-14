@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/debug/faq.html"
+
 # 常见问题
 
 ## 编译错误

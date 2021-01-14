@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_log/ulog_file_format.html"
+
 # ULog 파일 형식
 
 ULog는 시스템 데이터를 기록할 떄 사용하는 파일 형식입니다.

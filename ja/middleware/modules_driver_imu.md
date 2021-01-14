@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/middleware/modules_driver_imu.html"
+
 # Modules Reference: Imu (Driver)
 ## adis16448
 Source: [drivers/imu/adis16448](https://github.com/PX4/Firmware/tree/master/src/drivers/imu/adis16448)

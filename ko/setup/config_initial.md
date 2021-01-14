@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ko/dev_setup/config_initial.html"
+
 # 초기 설정과 구성
 
 개발자는 아래에 소개된 (또는 유사한) 기본 장비로 "기본" [에어프레임](../airframes/airframe_reference.md) 구성의 활용을 권장합니다.

@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/ja/dev_setup/dev_env_mac.html"
+
 # Development Environment on Mac
 
 MacOS is a supported development platform for PX4. The following instructions set up an environment for building:

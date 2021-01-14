@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/en/simulation/simulation-in-hardware.html"
+
 # Simulation-In-Hardware (SIH)
 
 Simulation-In-Hardware (SIH) is an alternative to [Hardware In The Loop simulation (HITL)](../simulation/hitl.md) for a quadrotor.

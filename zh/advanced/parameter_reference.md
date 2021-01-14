@@ -1,3 +1,5 @@
+!REDIRECT "https://docs.px4.io/master/zh/advanced/parameter_reference.html"
+
 # 参数对照表
 
 > **注意****该文档是该版本PX4根据源码自动生成的**（通过执行`make parameters_metadata`）。
