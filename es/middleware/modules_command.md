@@ -1,5 +1,3 @@
-!REDIRECT "https://docs.px4.io/master/es/middleware/modules_command.html"
-
 # Modules Reference: Command
 
 ## bl_update
@@ -119,21 +117,45 @@ failure gps off
 
 Source: [systemcmds/gpio](https://github.com/PX4/Firmware/tree/master/src/systemcmds/gpio)
 
-This command is used to read and write GPIOs.
+### Description
+
+This command is used to read and write GPIOs
+
+gpio read <port><pin>/<device> \[PULLDOWN|PULLUP\] \[--force\] gpio write <port><pin>/<device> <value> \[PUSHPULL|OPENDRAIN\] \[--force\]
+
+### Examples
+
+Read the value on port H pin 4 configured as pullup, and it is high
+
+    gpio read H4 PULLUP
+    
+
+1 OK
+
+Set the output value on Port E pin 7 to high
+
+    gpio write E7 1 --force
+    
+
+Set the output value on device /dev/gpin1 to high
+
+    gpio write /dev/gpin1 1
+    
+
 <a id="gpio_usage"></a>
 
 ### Usage
 
     gpio [arguments...]
        read
-         <PORT> <PIN> GPIO port and pin
+         <PORT><PIN>/<DEVICE> GPIO port and pin or device
          [PULLDOWN|PULLUP] Pulldown/Pullup
          [--force]   Force (ignore board gpio list)
     
        write
          <PORT> <PIN> GPIO port and pin
          <VALUE>     Value to write
-         [PULLDOWN|PULLUP] Pulldown/Pullup
+         [PUSHPULL|OPENDRAIN] Pushpull/Opendrain
          [--force]   Force (ignore board gpio list)
     
 
