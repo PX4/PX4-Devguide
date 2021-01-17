@@ -1,5 +1,3 @@
-!REDIRECT "https://docs.px4.io/master/zh/middleware/modules_controller.html"
-
 # 模块参考：控制器
 
 ## airship_att_control
@@ -44,7 +42,6 @@ This implements the setpoint generation for all modes. It takes the current mode
     flight_mode_manager <command> [arguments...]
      Commands:
        start
-         [vtol]      VTOL mode
     
        stop
     
