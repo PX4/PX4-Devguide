@@ -1,18 +1,39 @@
 # 모듈 참고: 조종 장치
 
+## ODULE_NAM
+
+Source: [modules/control_allocator](https://github.com/PX4/Firmware/tree/master/src/modules/control_allocator)
+
+### 설명
+
+This implements control allocation. It takes torque and thrust setpoints as inputs and outputs actuator setpoint messages.
+
+<a id="ODULE_NAM_usage"></a>
+
+### Usage
+
+    ODULE_NAM <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## airship_att_control
 
 Source: [modules/airship_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/airship_att_control)
 
-### 설명
+### Description
 
-이 모듈은 비행체의 자세, 속도 제어부를 구현합니다. 이상적으로 액츄에이터의 제어 메세지 입출력 용도로 자세 설정값 (`vehicle_attitude_setpoint`) 또는 속도 설정값 (`manual_control_setpoint` 토픽의 아크로(acro) 모드) 을 취합니다.
+This implements the airship attitude and rate controller. Ideally it would take attitude setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
 
-현재 `manual_control_setpoint` 토픽은 액츄에이터에 직접 전달합니다.
+Currently it is feeding the `manual_control_setpoint` topic directly to the actuators.
 
-### 구현
+### Implementation
 
-제어 지연을 최소화하려면, 모듈에서는 IMU 드라이버에서 보낸 gyro 토픽을 직접 폴링 처리해야합니다.
+To reduce control latency, the module directly polls on the gyro topic published by the IMU driver.
 
 <a id="airship_att_control_usage"></a>
 
@@ -148,7 +169,7 @@ The controller doesn't use Euler angles for its work, they are generated only fo
 
 Source: [modules/mc_rate_control](https://github.com/PX4/Firmware/tree/master/src/modules/mc_rate_control)
 
-### 설명
+### Description
 
 This implements the multicopter rate controller. It takes rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
 
