@@ -1,10 +1,31 @@
 # 模块参考：控制器
 
+## ODULE_NAM
+
+Source: [modules/control_allocator](https://github.com/PX4/Firmware/tree/master/src/modules/control_allocator)
+
+### 描述
+
+This implements control allocation. It takes torque and thrust setpoints as inputs and outputs actuator setpoint messages.
+
+<a id="ODULE_NAM_usage"></a>
+
+### Usage
+
+    ODULE_NAM <command> [arguments...]
+     Commands:
+       start
+    
+       stop
+    
+       status        print status info
+    
+
 ## airship_att_control
 
 Source: [modules/airship_att_control](https://github.com/PX4/Firmware/tree/master/src/modules/airship_att_control)
 
-### 描述
+### Description
 
 This implements the airship attitude and rate controller. Ideally it would take attitude setpoints (`vehicle_attitude_setpoint`) or rate setpoints (in acro mode via `manual_control_setpoint` topic) as inputs and outputs actuator control messages.
 
